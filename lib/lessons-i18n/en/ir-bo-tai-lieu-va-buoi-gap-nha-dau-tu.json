@@ -1,0 +1,168 @@
+{
+  "slug": "ir-bo-tai-lieu-va-buoi-gap-nha-dau-tu",
+  "title": "IR, Part 4: The deck and the meeting - answering hard questions without promising anything extra",
+  "subtitle": "How to structure an investor deck, prepare for hostile questions, and hold the line in a closed room",
+  "duration": "10 min",
+  "whyItMatters": "An investor meeting is the one place a company has to answer questions it did not choose. Get the preparation wrong and you either disclose something unpublished or leave the impression that you are dodging - and both cost more than a clumsy presentation.",
+  "openingQuestion": "In a private meeting, a fund asks how this month's revenue compares with the same month last year. That figure is unpublished. What should IR do?",
+  "openingOptions": [
+    "Decline, and explain why",
+    "Answer in general, positive terms without giving a specific figure",
+    "Give the figure but ask the fund to keep it confidential until the official release",
+    "Promise an answer later, after checking with the CFO on how sensitive it is"
+  ],
+  "explanation": "Declining is the right answer, and explaining why makes it a professional answer rather than a dodge: we do not comment on unpublished figures, and when we publish, every investor receives it at the same moment. Answering in general, positive terms sounds safe but still conveys material information - a professional listener reads a great deal from tone and confidence. A confidentiality undertaking rescues nothing, because the breach lies in one person receiving the information first, not in whether they keep it to themselves.",
+  "diagram": [
+    {
+      "label": "A question about unpublished information"
+    },
+    {
+      "label": "Decline + state the principle"
+    },
+    {
+      "label": "Log the question"
+    },
+    {
+      "label": "If many people ask it → put it into the next disclosure"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An investor meeting at a listed company",
+    "description": "At many Vietnamese companies the investor deck is still a sales presentation: achievements, growth, expansion plans. The decks institutional investors rate highly usually contain something rarer - what did not go as planned during the period, and how the company adjusted."
+  },
+  "quiz": [
+    {
+      "question": "Asked for an unpublished figure in a private meeting, what is the correct handling?",
+      "options": [
+        "Provide it together with a confidentiality undertaking",
+        "Answer in general terms and avoid giving any specific number",
+        "Decline and state the principle of fair disclosure",
+        "Pass the question to the CFO so they can answer it directly"
+      ],
+      "explanation": "A general answer is still a transmission of information - a professional listener reads a great deal from how confidently it is delivered. A confidentiality undertaking does not help either, because the breach is that one investor now holds something the rest do not. Handing the question to the CFO changes only who is speaking, not what may be said, so the same line applies whoever is in the room."
+    },
+    {
+      "question": "Which part of an investor deck do institutional investors read most carefully?",
+      "options": [
+        "The section comparing growth metrics with sector peers",
+        "The strategy and long-term vision section",
+        "The leadership team introduction and their backgrounds",
+        "The section on what did not go as planned"
+      ],
+      "explanation": "The achievements are already in the financial statements. How the company handles the part that missed plan is what reveals whether management sees its own operations clearly. Strategy slides are written to be flattering and management biographies are static, so neither one distinguishes a company that understands itself from one that does not."
+    },
+    {
+      "question": "Where should preparation for a meeting start?",
+      "options": [
+        "By listing the most hostile questions that could be asked",
+        "By finishing the deck and rehearsing until the delivery is smooth",
+        "By reviewing every financial figure from the last four quarters",
+        "By researching the fund you are about to sit down with"
+      ],
+      "explanation": "The presentation is the part the company controls, so it rarely goes wrong. The Q&A is not, and it is the part that determines the impression left behind. Rehearsing delivery and researching the fund are both useful, but they are refinements - neither one prepares you for the question about the margin that has fallen for three quarters running."
+    },
+    {
+      "question": "Several different investors ask the same unpublished question. What does that mean?",
+      "options": [
+        "The information has already leaked into the market through some channel",
+        "There is an information gap that belongs in the next disclosure",
+        "The investors are coordinating in order to apply pressure",
+        "The deck is too long, so readers are missing things in it"
+      ],
+      "explanation": "A repeated question is the most valuable data IR collects. It points precisely at the place where the market is having to guess, and that is the place to fill in proactively. Coordination is vanishingly rare and a leak would show up as a price move rather than as polite questions, so neither explanation fits the pattern."
+    },
+    {
+      "question": "What should you do when you do not know the answer?",
+      "options": [
+        "Redirect to a different metric the company is performing well on",
+        "Give your own estimate and make clear it is only an estimate",
+        "Say plainly that you do not have it and follow up through a public channel",
+        "Answer using the most recent figures that have been officially published"
+      ],
+      "explanation": "An estimate given in a closed room is still information released to one group. Following up through a public channel preserves both fairness and the relationship. Redirecting is transparent to anyone experienced and makes the gap look worse, while quoting old published figures answers a question nobody asked."
+    }
+  ],
+  "practicePrompt": {
+    "question": "In a private meeting a fund asks for this quarter's gross margin - an unpublished figure. What is the correct answer?",
+    "options": [
+      "Decline, and state the principle of only discussing published figures",
+      "Answer in general, positive terms to protect the relationship with the fund",
+      "Give the direction of travel but not the specific figure for the quarter",
+      "Answer fully, since this fund has signed a confidentiality agreement"
+    ],
+    "explanation": "A reasoned refusal is a legitimate answer and nobody loses points for it - institutional investors understand disclosure rules and usually respect an IR function with clear boundaries, because it means the company is not briefing anyone else either. Saying 'the trend but not the number' still conveys material information, just in a form that is harder to prove; so does a general, positive answer. And a confidentiality agreement does not rescue it: the problem is not whether that fund keeps quiet, it is that other investors do not have the same information at the same time."
+  },
+  "keyTakeaways": [
+    "Decline to give unpublished figures, and state the principle - a reasoned refusal is not evasion.",
+    "A general, positive answer is still a transmission of information.",
+    "Preparation starts from the list of hostile questions, not from the deck.",
+    "A question asked repeatedly is a map of what you should be disclosing proactively."
+  ],
+  "summary": {
+    "keyIdea": "Declining to give an unpublished figure is a legitimate answer, and nobody loses points when the principle is stated",
+    "commonMistake": "Answering in general, positive terms to avoid causing offence - that is still a transmission of unpublished information.",
+    "action": "Before a meeting, write down the five questions you least want to be asked and prepare a three-part answer to each."
+  },
+  "application": {
+    "title": "Keep a question log",
+    "message": "Record every question from every meeting. When the same one appears for the third time, that is a gap in how the company is telling its own story, and the fix is to add it to the standard deck.",
+    "secondary": "That log is usually the most valuable thing the IR function brings back to the executive team."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The presentation is the part the company controls, so it rarely goes wrong. Whether an investor meeting is remembered well or badly is decided in the second half, where someone else picks the questions."
+    },
+    {
+      "type": "heading",
+      "text": "What the deck should contain"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The business model told in numbers: where revenue comes from, at what margin, and what is changing.",
+        "This period's results against the published plan - the parts met and the parts missed.",
+        "What did not go as expected, and how the company adjusted.",
+        "Risks specific to this business, not generic industry risks.",
+        "Operating metrics defined the same way period after period, so they can be compared."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "The line in a closed room"
+    },
+    {
+      "type": "callout",
+      "label": "The standard refusal",
+      "text": "\"We do not comment on unpublished figures. When we publish, every investor receives it at the same moment.\" That sentence offends nobody - a professional fund understands it immediately, and in fact they are testing whether you hold the line, because a company that leaks to you today will leak to someone else on the day you are on the other side."
+    },
+    {
+      "type": "paragraph",
+      "text": "Log every question asked. When the same one comes up in three different meetings, it has stopped being three investors' question - it is a gap in what the company discloses, and filling it proactively is always cheaper than letting the market guess."
+    },
+    {
+      "type": "heading",
+      "text": "Preparing for hostile questions is the real work"
+    },
+    {
+      "type": "paragraph",
+      "text": "The presentation is the part the company controls, so it rarely goes wrong. Whether the meeting is remembered well or badly is decided in the Q&A. The most effective preparation is to sit down beforehand and write out the five questions you least want to be asked - usually a falling margin, a large customer that has just left, a third consecutive quarter of negative cash flow, or a promise from last year that was not delivered. For each one, prepare a three-part answer: acknowledge the actual problem, state the real number, say what is being done. An evasive answer convinces the questioner that the problem is worse than they thought."
+    },
+    {
+      "type": "callout",
+      "label": "The line in a closed room",
+      "text": "In a private meeting the pressure to say a little more is very real - the person opposite is engaged, the relationship matters, and one small disclosure feels harmless. But any unpublished material information said there creates an information advantage for one group of investors. The standard refusal should be memorised and used verbatim: we do not comment on unpublished figures, and when we publish, every investor receives it at the same moment. It offends nobody, because a professional questioner knows exactly why you have to say it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Log every question asked, at every meeting. When the same one appears in three different meetings it has stopped being one investor's concern and become a gap in how the company tells its own story - and the correct fix is to add it to the standard deck, not to answer it better at the fourth meeting. That question log is the most valuable product the investor relations function delivers back to the executive team."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Nobody loses points for saying \"we have not published that figure\".",
+        "People lose points for answering a question they should have declined."
+      ]
+    }
+  ]
+}

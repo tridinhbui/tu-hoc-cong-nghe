@@ -1,0 +1,188 @@
+{
+  "slug": "chong-ai-bia-so-lieu",
+  "title": "Finance AI, Lesson 13: Stopping AI from inventing figures",
+  "subtitle": "Locking the source and making the AI say 'data not found'.",
+  "duration": "15 min",
+  "whyItMatters": "A wrong number that slips into your memo or your spreadsheet travels on into everything built on top of it, and it is usually only caught far too late.",
+  "openingQuestion": "When the AI cannot find a figure, what is the correct answer?",
+  "openingOptions": [
+    "Say the data could not be found",
+    "Estimate a reasonable-looking figure itself",
+    "Take the figure from another company",
+    "Invent something that sounds plausible"
+  ],
+  "explanation": "The most dangerous risk in using AI for finance is not the model saying 'I don't know' - it is the model producing a wrong number in a completely confident voice. This happens because the model is optimised to produce fluent answers, and a specific number always looks more fluent than a refusal. The defence is not telling it 'don't make things up', which barely works at all - it is locking the source, requiring page citations, and giving the AI a legitimate way out to say the data is not there.",
+  "diagram": [
+    { "label": "Lock the source: use only the attached document" },
+    { "label": "Require page, unit and reporting period" },
+    { "label": "Provide an escape: 'Not found' instead of a guess" },
+    { "label": "Spot-check two figures yourself" }
+  ],
+  "realWorldExample": {
+    "company": "Why 'please don't make things up' does not work",
+    "description": "Plenty of people tell the AI not to invent numbers and then use the output with confidence. The problem is that the model has no mechanism for knowing where it is inventing - to it, a number read off a document and a number inferred from a familiar pattern are equally high-probability strings of characters. A general instruction cannot change that. Three specific constraints, on the other hand - use only the attached file, every number carries a page reference, write 'Not found' when it is missing - work very well, because they make citation a mandatory part of the answer's format, and a number with no page beside it stands out the moment you look at the table."
+  },
+  "quiz": [
+    {
+      "question": "What does hallucination mean?",
+      "options": [
+        "The AI responds far more slowly than it normally does",
+        "The AI invents or misstates things, but very confidently",
+        "The AI cites too many different sources for the same claim",
+        "The AI refuses to answer the question that was asked"
+      ],
+      "explanation": "In this lesson, hallucination means the AI conjuring information that is not there. Note what it is not: slowness is a performance issue, over-citation is a formatting habit, and a refusal to answer is actually the behaviour you want when the data is missing. The defining feature is the mismatch between how confident the output sounds and how well grounded it is."
+    },
+    {
+      "question": "Which instruction reduces invented figures?",
+      "options": [
+        "Please answer briefly, in no more than three short sentences",
+        "Please state a confident approximate estimate of the figure",
+        "If you cannot find it, write Not found in the document",
+        "Please answer in as much detail and as fully as you can"
+      ],
+      "explanation": "This instruction stops the model from filling gaps on its own by giving it a legitimate alternative. Asking for brevity or for exhaustive detail changes the shape of the answer without changing where the numbers come from, and explicitly inviting a confident estimate is the opposite of what you want - it authorises exactly the behaviour you are trying to prevent."
+    },
+    {
+      "question": "Which form of invented figure is most dangerous because it is hardest to detect?",
+      "options": [
+        "Recording a wrong currency unit in the results table",
+        "Recording a number wildly different from the real figure",
+        "Writing that nothing was found when it actually was",
+        "Citing a page number that does not contain that figure"
+      ],
+      "explanation": "A citation creates the feeling that something has already been verified, so readers rarely reopen the page to check. A wrong unit shows up when the totals fail to reconcile, a wildly wrong number is caught by eye, and a false 'not found' costs you time but never puts a bad figure into your model. This is exactly why spot-checking two figures at random is not optional."
+    },
+    {
+      "question": "You ask the same question in two separate conversations and get two different numbers. What does that suggest?",
+      "options": [
+        "The AI is running on two different versions of the model",
+        "At least one of the two figures is guesswork",
+        "The source document changed between the two questions",
+        "Both are right and only the rounding convention differs"
+      ],
+      "explanation": "A number genuinely read off a document does not change between attempts. The file did not change, and a difference in rounding would leave the figures close rather than distinct. The variation is the signal that the model is generating the number rather than extracting it, which means the answer rests on pattern-matching instead of on the source."
+    },
+    {
+      "question": "Which kind of fabricated figure is hardest to catch in financial work?",
+      "options": [
+        "An unusually large figure, far outside the company's scale",
+        "A near-correct figure, slightly off from the reported one",
+        "A figure that belongs to another company in the same sector",
+        "A figure taken from a reporting period several years back"
+      ],
+      "explanation": "A large discrepancy is caught by eye immediately, and a figure from the wrong company or the wrong year usually clashes with something else on the page. A number that is off by a few percent slides past every skim, enters the model, and becomes the basis for a recommendation. That is why reconciliation has to be a procedure rather than a matter of whether a number feels plausible."
+    }
+  ],
+  "keyTakeaways": [
+    "AI can be wrong in a very confident voice - certainty in the prose says nothing about accuracy.",
+    "Telling it 'don't make things up' achieves almost nothing; a format constraint that requires citations works.",
+    "Always give the AI a legitimate way out: 'Not found in the document'.",
+    "Check four things for every number: which page, what unit, which period, computed with what formula."
+  ],
+  "practicePrompt": {
+    "question": "When the AI cannot find a figure, what is the correct answer?",
+    "options": [
+      "Say the data could not be found",
+      "Work out an estimate on its own",
+      "Take the number from another company",
+      "Invent something that sounds plausible"
+    ],
+    "explanation": "In finance, missing data has to be reported as missing."
+  },
+  "summary": {
+    "keyIdea": "AI can fabricate very confidently, so lock the source and require citations.",
+    "commonMistake": "Only saying 'don't make things up' without demanding a specific source.",
+    "action": "Add the line: use only the attached document, and write not found where it is missing."
+  },
+  "application": {
+    "title": "Practise right now",
+    "message": "Add the line: use only the attached document, and write not found where it is missing.",
+    "secondary": "Start small, verify clearly, and only then increase the difficulty."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "One of the most dangerous failures in using AI for finance is the AI inventing a number while sounding entirely certain."
+    },
+    {
+      "type": "callout",
+      "label": "Terminology",
+      "text": "Hallucination: the phenomenon of AI inventing or misstating something while sounding very confident. Locking the source: allowing the AI to use only the documents you supply."
+    },
+    {
+      "type": "heading",
+      "text": "A safe prompt"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use only the figures in the attached document. If you cannot find something, write 'Not found'. For every number, give the source page and the unit."
+    },
+    {
+      "type": "heading",
+      "text": "Four checks"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Which page is the number on?",
+        "What is the unit?",
+        "Which reporting period?",
+        "How was it calculated?"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "An example"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the AI says borrowings are 2,000bn but does not point to a page, you should not use that number yet. Ask it to look again and cite the source."
+    },
+    {
+      "type": "heading",
+      "text": "The four most common forms of fabrication"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Inventing a number outright: producing a metric for a period the document does not cover at all.",
+        "Inventing a source: giving a page number that does not contain that figure - dangerous precisely because it looks cited.",
+        "Inventing an assumption: when forward-looking data is missing, picking a growth rate or a return that 'looks reasonable' without saying it chose it.",
+        "Inventing a relationship: joining two genuine facts into a causal claim the document never makes."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The second form - inventing a source - is why you cannot simply trust output because it carries page numbers. You have to actually open two pages at random and reconcile them. It is a two-minute step that a great many people skip, and it is exactly the step that separates disciplined use of AI from using it on instinct."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Weak constraints",
+        "text": "\"Read this report and give me the key metrics. Please don't make up any numbers.\" No source lock, no page citation, no way out when data is missing."
+      },
+      "right": {
+        "label": "Strong constraints",
+        "text": "\"Use only the attached file. Every number must carry a page, a unit, a reporting period, and a note on whether it is consolidated or parent-only. If you cannot find it, write 'Not found' and stop - never estimate or interpolate.\""
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Four questions for every number",
+      "text": "Before using any figure the AI gives you, ask all four: which page is it on? What is the unit? Which reporting period? And if it is a derived number, what formula produced it, from which inputs? A number that cannot answer all four is a number you cannot use yet."
+    },
+    {
+      "type": "callout",
+      "label": "A cross-checking trick",
+      "text": "Ask the same question again in a fresh conversation, with no reference to the earlier answer. If two attempts give two different numbers while the document has not changed, at least one of them is almost certainly a guess."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An AI that knows how to say 'not found' is the one worth trusting.",
+        "A figure without a source is a dangerous figure."
+      ]
+    }
+  ]
+}

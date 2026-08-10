@@ -1,0 +1,163 @@
+{
+  "slug": "fintech-duong-toi-hoa-von-va-dot-tien",
+  "title": "FinTech, Lesson 6: The road to breakeven - how long can you keep burning cash",
+  "subtitle": "Burn rate, runway, and how to read a growth plan to tell whether it leads to breakeven or to the next funding round",
+  "duration": "11 min",
+  "whyItMatters": "Everything in the previous five lessons converges on one question the management team has to be able to answer: at the current rate, how many months until the money runs out, and by then will the company be paying for itself. The product finance person is the one who builds that number.",
+  "openingQuestion": "A company has 120bn of cash left, spends 8bn a month more than it takes in, and that monthly shortfall is shrinking by 5% a month. Roughly how long is the runway?",
+  "openingOptions": [
+    "Longer than 15 months, because the burn is falling",
+    "Exactly 15 months",
+    "Shorter than 15 months, since costs always creep up",
+    "Indeterminate without knowing the next funding round"
+  ],
+  "explanation": "The crude division 120/8 gives 15 months, but that is the runway if the burn stands still. If the burn falls 5% each month, the total cash needed for the next 15 months is less than 120bn, so the company lasts longer - and if the trend holds long enough it may never hit the floor at all. This is the difference between two very different questions: 'how many months of cash are left' and 'where is the burn curve heading'. The first is a division; the second is what an investor actually wants to see, because it tells them whether the company is heading towards paying for itself or merely towards the next funding round.",
+  "diagram": [
+    { "label": "Net revenue" },
+    { "label": "− variable cost per transaction" },
+    { "label": "Contribution margin" },
+    { "label": "− fixed costs (team, infrastructure)" },
+    { "label": "Monthly burn → runway" }
+  ],
+  "realWorldExample": {
+    "company": "The Southeast Asian venture capital market after 2022",
+    "description": "When global interest rates rose, venture funding tightened and the question from investors changed completely: from 'what is the growth rate' to 'when do you break even'. A long list of companies had to cut costs to extend runway, and the ones with a positive contribution margin already in place were the ones that survived without raising at a valuation below their previous round."
+  },
+  "quiz": [
+    {
+      "question": "What is the contribution margin of a product?",
+      "options": [
+        "Net profit divided by the total number of currently active customers",
+        "Net revenue less every cost the business incurs in the period",
+        "Net revenue less the variable costs of each transaction",
+        "The revenue left over after deducting the cost of acquiring new customers"
+      ],
+      "explanation": "Contribution margin deducts variable costs only. It answers the question: does one additional transaction cover any of the fixed costs - and if it is negative, then selling more means losing more. Deducting every cost gives you operating profit, which mixes the fixed base back in and hides exactly the signal you were looking for; deducting acquisition cost alone answers a different question about payback."
+    },
+    {
+      "question": "What does a negative contribution margin mean?",
+      "options": [
+        "The product needs a price rise of around 10% to reach a safe level",
+        "The company is not yet at scale and will break even once it is larger",
+        "Fixed costs are too high relative to the current scale",
+        "Every additional unit sold makes the loss bigger"
+      ],
+      "explanation": "Scale only rescues fixed costs. If each transaction already loses money then doing more transactions simply makes the loss larger - this is the 'we will be profitable once we are big' trap. A specific price rise might fix it, but 10% is a number pulled from nowhere, and high fixed costs are precisely the diagnosis that a negative contribution margin rules out."
+    },
+    {
+      "question": "What does runway measure?",
+      "options": [
+        "The number of months the cash lasts at the current burn rate",
+        "The number of months needed to reach breakeven under the approved plan",
+        "The number of months left until the next committed funding round closes",
+        "The number of months of revenue that cover the company's fixed costs"
+      ],
+      "explanation": "Runway = cash / monthly burn. It says nothing about when the company breaks even - that is a separate question and has to be answered separately. Conflating the two is the most common misuse of the metric, because a company can have a comfortable runway and no path to breakeven at all, and a short runway while running a model that works."
+    },
+    {
+      "question": "Why does cutting marketing spend always extend the runway immediately?",
+      "options": [
+        "Because marketing is the only cost the company can stop at any moment it chooses",
+        "Because it is spent up front, while revenue from existing customers keeps arriving",
+        "Because customers acquired through marketing usually churn in the first month",
+        "Because marketing spend is normally more than half of the company's total costs"
+      ],
+      "explanation": "Stop spending on acquisition and the cash outflow drops at once, while the existing customer base keeps generating revenue. The trade-off is that growth stops - so this buys time, it does not fix the model. Note that marketing is not the only discretionary cost, and its share of total costs varies widely by company, so neither of those is what makes the effect immediate."
+    },
+    {
+      "question": "Which plan shows a company moving towards paying for itself?",
+      "options": [
+        "Monthly active users rising steadily across four consecutive quarters",
+        "Revenue growing faster than the growth rate of total costs",
+        "A positive contribution margin that is widening quarter by quarter",
+        "Runway extended after the most recent funding round closed"
+      ],
+      "explanation": "Only with a positive contribution margin does growth actually bring the company closer to breakeven. Revenue growing faster than costs may just be the result of cost cutting, which stops working once there is nothing left to cut, and raising capital changes nothing inside the model at all. Rising active users is an engagement signal that says nothing about whether each of those users is profitable."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A company has 480bn of cash, burns 40bn a month with the burn rising, and its contribution margin is still negative. What is the first thing to do?",
+    "options": [
+      "Fix the negative contribution margin before growing any further",
+      "Cut marketing to extend the runway to 18 months",
+      "Raise capital now, since the runway is exactly 12 months",
+      "Grow faster to reach the scale needed for breakeven"
+    ],
+    "explanation": "A negative contribution margin means every additional unit sold makes the loss bigger, so anything that relies on scale is pointed the wrong way - which is why 'grow to reach breakeven scale' is the most dangerous of the four options. The runway of 480/40 = 12 months is correct arithmetic, but it only measures time remaining and says nothing about when breakeven arrives. Cutting marketing buys time and fixes nothing; it is worth doing after the contribution margin turns positive, to buy time for something that is running in the right direction."
+  },
+  "keyTakeaways": [
+    "A positive contribution margin is the necessary condition: if it is negative, growth only enlarges the loss.",
+    "Runway = cash / burn, and it does not answer the question of when breakeven arrives.",
+    "A falling burn matters more than the current burn - that is the shape of the path.",
+    "Cutting marketing buys time but does not fix the model."
+  ],
+  "summary": {
+    "keyIdea": "A positive contribution margin is the necessary condition - if it is negative, growth only enlarges the loss",
+    "formula": "Runway = cash on hand / monthly burn",
+    "commonMistake": "Treating runway as the answer to when breakeven arrives. It only answers how long until the money runs out.",
+    "action": "For any growth plan, check the contribution margin first, and only then look at scale."
+  },
+  "application": {
+    "title": "Read the shape, not the level",
+    "message": "Take the burn of the last four quarters and see whether it is falling, flat or rising. That shape tells you more than the number for the most recent quarter.",
+    "secondary": "Cutting marketing lowers the burn immediately but does not fix the model - that is buying time, not moving towards breakeven."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous five lessons all lead here. Where the revenue comes from, what each customer costs, where the customers' money sits, how much is lost to credit and to fraud - together they add up to one question: can this company pay for itself, and when."
+    },
+    { "type": "heading", "text": "Two layers of cost" },
+    {
+      "type": "paragraph",
+      "text": "Variable costs follow each transaction: bank fees, risk cost, processing cost. Fixed costs do not: salaries, infrastructure, licences. Net revenue less the first layer gives the contribution margin, and only when that number is positive does selling more mean anything."
+    },
+    {
+      "type": "formula",
+      "title": "Breakeven volume",
+      "equation": "Breakeven volume = fixed costs / contribution margin per unit",
+      "variables": [
+        {
+          "symbol": "contribution margin",
+          "name": "what is left per transaction",
+          "description": "net revenue less the variable costs of that same transaction"
+        },
+        {
+          "symbol": "fixed costs",
+          "name": "the costs that do not move with volume",
+          "description": "salaries, infrastructure, compliance, licences"
+        }
+      ],
+      "example": {
+        "title": "When the contribution margin is negative",
+        "calculation": "Fixed costs / a negative number",
+        "result": "no breakeven point",
+        "explanation": "The division does not produce a volume at all. That is the mathematics telling you this model does not break even at any scale."
+      }
+    },
+    { "type": "heading", "text": "Runway and its shape" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Flat burn",
+        "text": "Runway is a simple division, and the day the money runs out is a fixed date on the calendar."
+      },
+      "right": {
+        "label": "Falling burn",
+        "text": "Runway is longer than the division suggests, and if the trend holds the curve reaches the axis before the cash reaches the floor."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The question that separates two kinds of plan",
+      "text": "A plan that leads to breakeven has a positive contribution margin and it is widening. A plan that only leads to the next funding round has all its attractive numbers in the growth section, while the margin does not move. Look at the margin first and the growth second."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Raising capital buys time. It does not fix the contribution margin.",
+        "And the contribution margin is the only thing that determines whether the company can ever stop burning cash."
+      ]
+    }
+  ]
+}

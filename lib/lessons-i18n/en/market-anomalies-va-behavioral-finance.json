@@ -1,0 +1,141 @@
+{
+  "slug": "market-anomalies-va-behavioral-finance",
+  "title": "Market Anomalies: the market patterns the Efficient Market Hypothesis cannot explain",
+  "subtitle": "Momentum, the value premium, the size effect - the widely documented anomalies and how behavioural finance accounts for them",
+  "duration": "8 min",
+  "openingQuestion": "The 'value premium' - the tendency of value stocks (low P/E or P/B) to outperform growth stocks over the long run - is a famous market anomaly. Which explanation fits the behavioural finance framework better than a pure Efficient Market Hypothesis?",
+  "openingOptions": [
+    "The value premium does not exist at all; it is a statistical illusion",
+    "Value stocks are pushed too cheap because investors overreacted to recent bad news",
+    "The value premium is purely compensation for higher risk, with no behavioural element",
+    "Growth stocks always beat value stocks in every phase of the market"
+  ],
+  "explanation": "The behavioural school (notably the work of Lakonishok, Shleifer and Vishny) explains the value premium not only through risk - the Fama-French risk-based account - but through overreaction bias: investors tend to extrapolate a company's recent poor performance far into the future, marking the stock below its true intrinsic value. That creates the opportunity a patient value investor harvests when the excessively pessimistic expectations fail to materialise.",
+  "realWorldExample": {
+    "company": "The Fama-French three-factor model and the risk versus behaviour debate",
+    "description": "Eugene Fama (who proposed the Efficient Market Hypothesis and won the Nobel in 2013) and Kenneth French built a three-factor model that explains the value premium mainly through RISK - value stocks are riskier, so they must offer higher returns. Behavioural finance researchers such as Richard Thaler (also a Nobel laureate in economics) and Robert Shiller argue it is largely the product of COGNITIVE BIAS. The academic debate has never been fully settled, and the reality may well be that both forces - risk-based and behavioural - contribute to the phenomenon in differing measure."
+  },
+  "quiz": [
+    {
+      "question": "The 'small-cap effect' - small capitalisation stocks tending to outperform large caps over the long run - can be partly explained by which behavioural bias among large institutional investors?",
+      "options": [
+        "Small caps are less exposed to macro swings",
+        "Small firms always grow profits far faster",
+        "Large institutions avoid them on liquidity limits",
+        "Small caps are exempt from the exchange's trading tax"
+      ],
+      "explanation": "The 'neglect effect' is a key behavioural explanation for the small-cap effect: when a stock is followed by few professional analysts and held by few large institutions, the chance that the market has mispriced it rises, because nobody has done the work. That creates a genuine opening for an investor willing to research the overlooked names, though it comes with higher liquidity risk and higher volatility. Small caps are in fact more sensitive to macro swings, not less, and there is no evidence that small firms grow earnings faster as a class - many simply fail. Exchange trading tax applies to every listed stock regardless of size."
+    },
+    {
+      "question": "The 'January effect' - stocks, and small caps in particular, tending to outperform in January - was once widely documented but has WEAKENED SUBSTANTIALLY over time. What broader principle about market anomalies does that illustrate?",
+      "options": [
+        "New rules now ban trading on these anomalies",
+        "An anomaly strengthens over time as more people learn it",
+        "Anomalies exist only in the US market, nowhere else",
+        "Many anomalies weaken once they are widely published"
+      ],
+      "explanation": "'Anomaly decay' is one of the most interesting and pleasantly self-referential findings in behavioural and quantitative finance: publishing research about an anomaly can itself help kill it, because funds - quant funds above all - quickly build strategies to harvest it and push prices back towards the efficient level. Some researchers read that as evidence markets tend TOWARDS efficiency over time without ever reaching it absolutely. No regulator has banned trading on published research, the pattern has been documented in markets well beyond the United States, and the direction of travel is decay rather than reinforcement."
+    },
+    {
+      "question": "Why is 'limits to arbitrage' such an important concept for explaining how market anomalies can PERSIST, when in theory smart investors ought to harvest and erase them immediately?",
+      "options": [
+        "Real arbitrage is not riskless the way theory assumes",
+        "Arbitrage is outlawed across most developed markets",
+        "Only retail investors can execute arbitrage",
+        "Arbitrage always erases any price gap instantly"
+      ],
+      "explanation": "'Limits to Arbitrage' (Shleifer and Vishny, 1997) is the bridge between efficient-market theory and the anomalies actually observed: even when an investor correctly identifies a mispriced asset, harvesting it takes capital, tolerance of short-term risk (the price can move further away before it converges), and the ability to withstand pressure from investors or lenders while the position is underwater. Those frictions explain why the market cannot automatically and instantly erase every mispricing. Arbitrage is legal and heavily practised, it is dominated by institutions rather than retail, and the notion that it clears gaps instantly is exactly the assumption the concept overturns."
+    },
+    {
+      "question": "Why do professional investors fail to erase a market anomaly the moment it is published?",
+      "options": [
+        "Because regulations bar funds from trading on published academic research",
+        "Because arbitrage has limits: capital can run out before prices correct",
+        "Because anomalies appear only in markets where institutions do not operate",
+        "Because large funds lack the analytical resources to spot these anomalies"
+      ],
+      "explanation": "Arbitrage is not a riskless money printer: a mispricing can get more mispriced, clients redeem at the worst possible moment, and the cost of borrowing stock to short is punishing. Keynes put it best - the market can stay irrational longer than you can stay solvent. Nothing in the rulebook stops a fund reading a journal, and quant desks do exactly that as a matter of routine. Institutions are present in almost every liquid market, so the idea that anomalies hide only where they are absent does not survive contact with the data. And the largest funds employ more analysts than anyone, so a shortage of research capacity is the opposite of the problem."
+    },
+    {
+      "question": "The January effect faded substantially after it was widely published. What phenomenon does that demonstrate?",
+      "options": [
+        "Regulators issued rules banning seasonal trading in the first month of the year",
+        "Market anomalies are statistical illusions that never really existed at all",
+        "The anomaly is eroded by the very flows that trade it once published",
+        "Retail investors stopped selling losers in December to harvest tax losses"
+      ],
+      "explanation": "Once enough people buy earlier to get ahead of the pattern, that very behaviour drags the excess return back to zero. This is the strongest argument in favour of efficient markets: the anomaly was real, but publishing it is usually the first step towards killing it. No regulator has banned seasonal trading. Calling the effect a pure illusion ignores decades of data in which it was measurable and profitable. And tax-loss selling in December is one of the causes originally proposed for the effect, not an explanation of why it faded - retail investors have not stopped doing it."
+    }
+  ],
+  "keyTakeaways": [
+    "The value premium can be explained through risk (Fama-French) and through behaviour (overreaction bias) alike - the academic debate continues, and both forces may well contribute",
+    "The small-cap effect is partly the 'neglect effect' - a stock nobody analyses is a stock more likely to be mispriced",
+    "Anomaly decay: many market anomalies weaken once widely published, because funds move quickly to harvest and arbitrage the edge away",
+    "Limits to arbitrage explains how an anomaly can persist even though theory says it should be erased at once - risk, transaction costs and capital constraints are real barriers"
+  ],
+  "practicePrompt": {
+    "question": "An analyst finds that a quant strategy built on an anomaly published in a well-known academic paper 15 years ago still backtests impressively across a FULL 20 years of history. Given what you know about anomaly decay, what deserves careful scrutiny before this strategy is run with real money?",
+    "options": [
+      "A strong backtest over 20 years of data is evidence enough to deploy size right away",
+      "Compare performance before and after publication to expose the decay",
+      "The anomaly has survived 15 years since publication, so it is proven durable",
+      "Simply backtest as many years as possible; no need to split by period"
+    ],
+    "explanation": "This is the practical lesson for a quant or portfolio analyst: one of the commonest errors in evaluating a strategy built on a published anomaly is failing to separate performance BEFORE and AFTER the anomaly became public knowledge. If the edge lived entirely in the pre-publication window, when few people knew or traded it, the headline backtest can badly overstate what new capital should expect today, after a queue of other funds has already eaten most of the advantage."
+  },
+  "summary": {
+    "keyIdea": "Market anomalies (the value premium, the small-cap effect and many other patterns) challenge a pure Efficient Market Hypothesis, and behavioural finance supplies a complementary explanation through cognitive bias - but you need anomaly decay and limits to arbitrage to judge how durable any anomaly-based strategy really is.",
+    "commonMistake": "Believing an anomaly proven in the past will always work in the future, ignoring the possibility that it has been arbitraged away since it was widely published",
+    "action": "When assessing any anomaly-based strategy, always break performance down by period, and above all compare the windows before and after the anomaly was published in academic research"
+  },
+  "application": {
+    "title": "Applying this in equity research and quant analysis",
+    "message": "When you research a factor or anomaly to build a strategy on, always establish two things: when it was discovered and published, and whether there is evidence of its performance decaying afterwards (out-of-sample performance).",
+    "secondary": "The next lesson looks at how professional portfolio managers build systems to guard against their own behavioural biases while running real money."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "If markets were genuinely as efficient as the Efficient Market Hypothesis assumes, no mispricing pattern should survive for long. Yet observation shows a good many 'anomalies' persisting - and behavioural finance offers an important part of the explanation."
+    },
+    { "type": "heading", "text": "Three classic anomalies" },
+    {
+      "type": "conceptTable",
+      "title": "The most widely documented market anomalies",
+      "concepts": [
+        {
+          "def": "Value stocks (low P/E, low P/B) outperform growth stocks over the long run - explained through both risk and overreaction bias"
+        },
+        {
+          "def": "Small capitalisation stocks outperform large ones - partly the neglect effect, since a stock nobody analyses is easier to misprice"
+        },
+        {
+          "def": "Stocks that have risen recently keep rising over the medium term - driven by initial underreaction to new information"
+        }
+      ]
+    },
+    { "type": "heading", "text": "Anomaly decay - when knowledge destroys its own edge" },
+    {
+      "type": "paragraph",
+      "text": "One of the most striking findings in anomaly research is that the performance of many factor strategies tends to WEAKEN once they are widely published in academic work - the phenomenon known as 'anomaly decay' or the post-publication effect. As more and more funds read and apply the same strategy, their collective trading gradually removes the original mispricing edge."
+    },
+    { "type": "heading", "text": "Limits to arbitrage - why anomalies do not vanish at once" },
+    {
+      "type": "paragraph",
+      "text": "If an asset is plainly mispriced, why does smart money not harvest the gap immediately and close it? Shleifer and Vishny (1997) showed that arbitrage in practice is not riskless: prices can drift further out of line in the short run (noise trader risk), transaction and borrowing costs are real, and funds are often forced to close positions early under pressure from investors or a margin call, even when they are right about the long run."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Understanding market anomalies is not just academic knowledge - it is a practical tool for telling a genuinely durable opportunity apart from a pattern that was arbitraged away long ago.",
+        "The most important question to ask of any anomaly-based strategy: does this edge still exist in today's market, or is it a historical artefact that has already been harvested to nothing?"
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Document the anomaly: momentum, value, size" },
+    { "label": "Behavioural finance explains its psychological roots" },
+    { "label": "Limits to arbitrage keep the anomaly alive" },
+    { "label": "But as more investors harvest it, the edge decays" }
+  ]
+}

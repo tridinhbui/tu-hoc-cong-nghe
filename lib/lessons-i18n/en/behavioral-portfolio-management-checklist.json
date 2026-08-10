@@ -6,7 +6,7 @@
   "openingQuestion": "'Pre-mortem analysis' - a technique developed by the psychologist Gary Klein and increasingly common in professional portfolio management - works how, exactly, to improve the quality of investment decisions?",
   "openingOptions": [
     "Analyse the company's financial statements in detail after investing",
-    "Imagine the investment has failed, then list every reason it did",
+    "Imagine the investment has already failed, then list every reason it did",
     "Apply it only after the investment has truly failed, to learn from it",
     "A pre-mortem is just marketing with no real analytical value at all"
   ],
@@ -22,14 +22,14 @@
         "Against anchoring: fixating on the initial reference price",
         "Against loss aversion: fearing loss more than liking gain",
         "Against herding: following the crowd instead of analysing",
-        "Against hindsight bias: believing you knew the outcome"
+        "Against hindsight bias: believing you knew the outcome all along"
       ],
       "explanation": "Hindsight bias - 'I knew it all along!' - is among the most dangerous biases for LEARNING from investment experience. Without an objective record made at the moment of the decision, the brain quietly rewrites history to fit the outcome it now knows, so the manager cannot tell whether the original PROCESS was actually sound or whether it was simply luck. Anchoring, loss aversion and herding all distort the decision itself and are better handled by valuation discipline, pre-set exit rules and independent research; the journal's specific power is that it creates a time-stamped record that memory cannot bend after the fact."
     },
     {
       "question": "Why do many professional funds appoint a formal 'Devil's Advocate' - someone whose job is to attack every large investment proposal - rather than trusting team members to raise objections naturally when they have them?",
       "options": [
-        "Because in a group people hesitate to object openly",
+        "Because inside a cohesive group people hesitate to object openly",
         "Because someone must carry the blame if the call is wrong",
         "Because a view from outside the investment industry helps",
         "Because risk-governance rules mandate that this role exists"
@@ -40,7 +40,7 @@
       "question": "What advantage do systematic rules - scheduled automatic rebalancing, automatic stop-losses - have over letting the portfolio manager decide each case by judgement?",
       "options": [
         "Because they remove all risk of loss from the portfolio entirely",
-        "Because they are set in advance, while thinking is objective",
+        "Because they are set in advance, while the thinking is still objective",
         "Because they always produce better outcomes than manual calls",
         "Because a computer executes very much faster than a human can"
       ],

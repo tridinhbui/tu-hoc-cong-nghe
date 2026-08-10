@@ -126,16 +126,20 @@
       "subtitle": "Priorities shift structurally, not by preference",
       "concepts": [
         {
-          "def": "Income is still low but the horizon is the longest it will ever be. Priorities: build the emergency fund, clear high-interest debt, form a steady saving habit, and use that long horizon to accept higher volatility."
+          "def": "Income is still low but the horizon is the longest it will ever be. Priorities: build the emergency fund, clear high-interest debt, form a steady saving habit, and use that long horizon to accept higher volatility.",
+          "en": "Roughly ages 22-32"
         },
         {
-          "def": "Income rises but obligations rise faster: a mortgage, young children, supporting parents. This is the stage where the need for protection peaks, and also the stage where over-borrowing is easiest."
+          "def": "Income rises but obligations rise faster: a mortgage, young children, supporting parents. This is the stage where the need for protection peaks, and also the stage where over-borrowing is easiest.",
+          "en": "Roughly ages 32-45"
         },
         {
-          "def": "Income is usually at its highest, the mortgage is largely paid down, the children are becoming independent. Priorities: accelerate retirement saving, begin easing portfolio risk down, and review the estate plan."
+          "def": "Income is usually at its highest, the mortgage is largely paid down, the children are becoming independent. Priorities: accelerate retirement saving, begin easing portfolio risk down, and review the estate plan.",
+          "en": "Roughly ages 45-58"
         },
         {
-          "def": "The shift from accumulation to withdrawal. Priorities: protect the spending needs of the first few years, manage sequence-of-returns risk, and balance volatility risk against inflation risk over two or three decades."
+          "def": "The shift from accumulation to withdrawal. Priorities: protect the spending needs of the first few years, manage sequence-of-returns risk, and balance volatility risk against inflation risk over two or three decades.",
+          "en": "From around age 58"
         }
       ]
     },

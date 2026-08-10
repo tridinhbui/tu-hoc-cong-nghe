@@ -1,0 +1,123 @@
+{
+  "slug": "frm-stress-test-thanh-khoan",
+  "title": "FRM Liquidity, Lesson 9: Liquidity stress testing",
+  "subtitle": "One question only: if funding stops flowing today, how many days does the institution last",
+  "duration": "9 min",
+  "whyItMatters": "Regulatory ratios such as the LCR apply one standard scenario to every bank. Internal testing exists to answer each institution's own question, covering the weaknesses a common formula cannot see.",
+  "openingQuestion": "What is the most important output a liquidity stress test needs to produce?",
+  "openingOptions": [
+    "Survival horizon: the number of days before cash runs out",
+    "The profit the institution expects to earn in the stressed scenario",
+    "The credit rating the institution would receive after the crisis passes",
+    "The number of staff to cut in order to save on operating costs"
+  ],
+  "explanation": "A liquidity stress test places the institution in a specific stressed scenario - deposits running off, the interbank market shut, credit lines withdrawn - and then works out how long the cash lasts. The most important output is the survival horizon, because that is the number you can act on: it tells you how many days you have to execute the contingency funding plan. A scenario that leads to no concrete action is just a spreadsheet.",
+  "diagram": [
+    { "label": "Build the scenarios: idiosyncratic, market-wide, and the combination of both" },
+    { "label": "Apply runoff assumptions and asset haircuts per scenario" },
+    { "label": "Compute the survival horizon" },
+    { "label": "Wire it into the contingency funding plan with concrete trigger levels" }
+  ],
+  "realWorldExample": {
+    "company": "Why the combined scenario is the hardest one",
+    "description": "An idiosyncratic shock is survivable if the market still works normally: assets sell at a price and alternative funding sources stay open. A market-wide shock leaves every institution struggling but usually attracts official support. The most severe scenario is both at once - the institution's own reputation under question at the very moment the market freezes - and this is the actual shape of most bank failures."
+  },
+  "quiz": [
+    {
+      "question": "Why is the deposit runoff assumption the most sensitive parameter in a liquidity stress test?",
+      "options": [
+        "Because deposits are usually the largest single source of a bank's funding",
+        "Because deposits do not appear anywhere on the bank's published balance sheet",
+        "Because using historical data for the estimate is forbidden by the rules",
+        "Because the deposit runoff rate is fixed for all banks by regulation"
+      ],
+      "explanation": "For a retail bank, deposits make up most of the funding base. The gap between assuming a 5% runoff and a 15% runoff over thirty days can be the difference between comfort and insolvency - and both numbers can be defended with a straight face. Deposits are plainly on the balance sheet as liabilities, historical data is the usual starting point for calibration rather than something prohibited, and supervisors set floors for regulatory ratios without fixing an internal assumption."
+    },
+    {
+      "question": "What does a contingency funding plan need in order to be more than a document?",
+      "options": [
+        "A written commitment from the central bank that support will always be available",
+        "Concrete triggers, clear role assignment and tested backup funding sources",
+        "A full list of the largest depositors with contact phone numbers attached",
+        "A three-year profit forecast covering the recovery scenario in detail"
+      ],
+      "explanation": "In a crisis there is no time left to work out who decides what. The plan is only usable if the trigger levels are set in advance, the roles are assigned, and the backup sources have actually been tested rather than merely assumed to exist. No central bank writes an advance commitment of that kind, a depositor contact list is an operational detail rather than a funding source, and a profit forecast answers a question nobody is asking on the day."
+    },
+    {
+      "question": "Why does using historical data to set stress assumptions have limits?",
+      "options": [
+        "Because past crises never involved liquidity in any meaningful way",
+        "Because usable data can only be retained for about five years",
+        "Because today's runoff speeds can exceed every precedent",
+        "Because all institutions have the same liquidity profile in the data"
+      ],
+      "explanation": "Recent deposit runs show that speed can far exceed the precedents used to calibrate the models, now that customers move money with a few taps and a rumour spreads within hours. An assumption calibrated on history can be structurally out of date. Liquidity has been central to essentially every banking crisis, retention periods are far longer than five years, and institutions differ enormously in their funding mix, which is exactly why data can distinguish them."
+    },
+    {
+      "question": "Why is the assumed speed of deposit runoff the most sensitive parameter in a liquidity stress test?",
+      "options": [
+        "Because deposits are the only funding that can be withdrawn early without penalty",
+        "Because deposits make up most of a bank's assets on the balance sheet",
+        "Because runoff speed is fixed by the supervisor identically for every bank",
+        "Because it drives nearly all the outflow in the scenario, yet has no real data behind it"
+      ],
+      "explanation": "No institution holds data on its own bank run - if it did, it would not have survived to use it. So the most important parameter is precisely the one that has to be assumed, and the Silicon Valley Bank episode showed that the old assumptions were far too optimistic. Deposits sit on the liability side rather than the asset side, other funding such as callable wholesale lines can also leave early, and supervisors set ratio floors rather than a single mandated runoff speed."
+    },
+    {
+      "question": "What does a contingency funding plan need so that it does not stop at being a document?",
+      "options": [
+        "Concrete triggers, a named owner, and funding sources that have been tested",
+        "A board signature on the approval page and an annual refresh of the text",
+        "A complete list of every stress scenario that could conceivably occur to the firm",
+        "A written commitment from the central bank on liquidity support"
+      ],
+      "explanation": "A plan that does not say who presses the button, at what level, and which source gets called will be read for the first time in the middle of the crisis. Backup funding also has to be exercised in calm conditions - a facility that has never been drawn is often unavailable when it is needed most. Board approval and annual refresh are governance hygiene rather than operational readiness, an exhaustive scenario list is unachievable, and central banks do not pre-commit."
+    }
+  ],
+  "practicePrompt": {
+    "question": "Stress scenario: unencumbered liquid assets of 45,000bn, estimated net outflow of 9,000bn per day. Which number is the result to report?",
+    "options": [
+      "A survival horizon of 5 days, because that is the actionable number",
+      "A coverage ratio of 500%, because it compares to the regulatory standard",
+      "The 9,000bn outflow, because it is the directly measured quantity",
+      "The 45,000bn of assets, because those are the real resources held"
+    ],
+    "explanation": "Dividing 45,000 by 9,000 gives five days, and that is the core output of any liquidity stress test because it is the only number that connects directly to action: five days determines what day the contingency funding plan must be triggered, who calls whom, and which sources have been verified as genuinely drawable. A percentage cannot say that. And remember that the 9,000bn denominator is the most sensitive part of the whole model: it comes from an assumption about deposit runoff speed, and recent history shows that speed can far exceed anything calibrated from the past."
+  },
+  "keyTakeaways": [
+    "The core output is the survival horizon, because that is the number you can act on",
+    "Three scenario types: idiosyncratic, market-wide, and combined - the third is the most severe",
+    "The deposit runoff assumption is the most sensitive parameter in the whole model",
+    "A contingency funding plan needs triggers, assigned roles and tested funding sources"
+  ],
+  "summary": {
+    "keyIdea": "Liquidity stress testing turns an abstract question about safety into a concrete number - how many days are left - and ties it to a plan prepared in advance",
+    "commonMistake": "Picking comfortable runoff assumptions so the result looks good, turning the test into a procedure that confirms what you already believed",
+    "action": "For every stress result, ask immediately: if the runoff rate doubled, how many days would be left"
+  },
+  "application": {
+    "title": "Stress testing yourself",
+    "message": "If your income stopped today, how many months would your quickly saleable assets cover? That is your own survival horizon.",
+    "secondary": "And just as with a bank, the answer depends on the price you assume you can sell those assets for."
+  },
+  "sections": [
+    { "type": "lead", "text": "Regulatory ratios apply one common scenario to every bank. Internal testing exists because each institution has its own shape of weakness that a common formula cannot see." },
+    { "type": "heading", "text": "Three types of scenario" },
+    { "type": "list", "items": [
+      "Idiosyncratic: reputation questioned, a downgrade, deposits leaving while the market carries on normally",
+      "Market-wide: money markets freeze, asset prices fall sharply, every institution is short of cash at once",
+      "Combined: both at the same time - the actual shape of most failures"
+    ]},
+    { "type": "heading", "text": "The assumptions that must be stated" },
+    { "type": "paragraph", "text": "Deposit runoff rates by customer segment, rollover rates on wholesale funding, haircuts applied to each asset class in a forced sale, and the share of undrawn commitments that customers pull. The result is most sensitive to the first group, because deposits are usually the largest funding component." },
+    { "type": "callout", "label": "The limit of calibrating on history", "text": "Digital banking and social media have changed the speed of a deposit run in a way historical data has never recorded. An assumption carefully calibrated on decades of figures can still be out of date, because the mechanism of the run itself has changed." },
+    { "type": "heading", "text": "Counting out a number of days" },
+    { "type": "paragraph", "text": "The whole exercise reduces to comparing two lines. The first is the cumulative outflow under the scenario: assume 2 units of wholesale funding mature each day and none of it is rolled; deposits run off 3 units a day for the first 5 days and then slow to 1; and on day one customers draw 10 units from committed credit lines. The second line is the offsetting capacity - unencumbered high-quality assets, after haircut, assume 40." },
+    { "type": "callout", "label": "Result: six days of survival", "text": "Cumulative outflow: day 1 is 15, day 2 is 20, day 3 is 25, day 4 is 30, day 5 is 35, day 6 is 38, day 7 is 41. The offsetting capacity of 40 is exhausted during day seven, so the survival horizon is 6 days. That is the useful output, not a percentage: it answers the question management actually has - how many days are there to act, and how long does each option in the contingency plan take to produce cash. An option that takes 10 days to sell a portfolio is useless here." },
+    { "type": "paragraph", "text": "Change one assumption and the number of days moves immediately, and that is the crux: undrawn committed credit lines are not on the balance sheet, yet in this scenario they account for 10 of the total 41 - the largest single piece of day one. A stress test that ignores off-balance-sheet obligations will produce a much longer survival horizon, wrong in exactly the dangerous direction." },
+    { "type": "closing", "lines": [
+      "A stress test that does not connect to a plan of action is just a nice number in a report.",
+      "Next lesson: collateral - a source of liquidity and also a channel for transmitting stress."
+    ]}
+  ]
+}

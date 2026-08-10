@@ -36,7 +36,7 @@
     {
       "question": "How does Treasury Stock affect equity?",
       "options": [
-        "It increases the company's liabilities",
+        "It increases the total liabilities on the balance sheet",
         "It increases equity, because the company owns more shares",
         "No effect, since it's just an internal transaction",
         "It decreases equity, as a deduction adjustment"
@@ -46,7 +46,7 @@
     {
       "question": "Why might a company with large positive Retained Earnings still need to raise capital by issuing new shares?",
       "options": [
-        "Only a loss-making company would ever issue new shares",
+        "Only a loss-making company would ever need to issue new shares",
         "Because retained earnings is an accounting figure, not cash",
         "This can't happen, since positive retained earnings always comes with matching cash",
         "Because retained earnings is always exactly equal to the current cash balance"
@@ -58,7 +58,7 @@
       "options": [
         "The cumulative profit the company has retained",
         "The gap between the issue price and the par value of the shares",
-        "The value of treasury shares the company bought back from the market",
+        "The value of treasury shares bought back from the market",
         "The total long-term bank borrowing the company currently has"
       ],
       "explanation": "APIC records the real amount a company raises above its nominal par value - for example, a par value of 10,000 dong but an IPO price of 50,000 dong puts the 40,000 dong difference per share into APIC."
@@ -66,7 +66,7 @@
     {
       "question": "A company just IPO'd, raising 1,000 billion dong. Where does this money mainly show up in Shareholders' Equity?",
       "options": [
-        "Retained Earnings, since it's new cash flowing into the company",
+        "Retained Earnings, since it's new cash flowing in",
         "Treasury Stock, since shares were just issued",
         "Common Stock and APIC, since this is new contributed capital",
         "Not in Equity at all, only in the cash flow statement"
@@ -78,7 +78,7 @@
       "options": [
         "No effect, since the dividend is paid out of available cash",
         "It increases Retained Earnings because shareholders receive money",
-        "It increases Treasury Stock by an equivalent amount",
+        "It increases Treasury Stock by an equivalent amount of cash",
         "It decreases Retained Earnings, lowering total Equity"
       ],
       "explanation": "Paying a dividend redistributes part of accumulated profit to shareholders - Retained Earnings falls by exactly the dividend paid, pulling total Equity down along with it, while Cash also falls on the asset side."
@@ -87,7 +87,7 @@
       "question": "Two companies in the same industry have equal total Equity, but Company X's equity is 80% Retained Earnings while Company Y's is 80% APIC. What does this difference tell you?",
       "options": [
         "X built its equity from profit, Y relies on outside contributed capital",
-        "No real difference at all, since having equal total Equity is really all that matters",
+        "No real difference, since equal total Equity is all that matters",
         "Company X must have been losing money for several years in a row",
         "Company Y must be carrying more debt than Company X"
       ],
@@ -106,10 +106,10 @@
     {
       "question": "Why is Treasury Stock recorded as a NEGATIVE item within Equity, instead of simply cancelling (removing) the repurchased shares?",
       "options": [
-        "Because accounting law requires every asset-repurchase transaction to be recorded as negative",
+        "Because accounting law requires every repurchase to be recorded as negative",
         "Because treasury stock always carries a negative market value",
         "Because the company can reissue it or use it for ESOP grants",
-        "Because it's really a liability owed back to shareholders"
+        "Because it is really a liability owed back to the shareholders"
       ],
       "explanation": "Treasury stock isn't cancelled right away - the company can reuse it (as ESOP grants for employees, or resell it when it needs capital) - so accounting records it as a deduction from Equity, correctly reflecting the cash spent to reacquire ownership rather than writing it off entirely."
     },

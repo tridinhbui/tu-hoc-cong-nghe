@@ -1,0 +1,140 @@
+{
+  "slug": "cach-danh-gia-esg-cua-doanh-nghiep",
+  "title": "How to assess a company's ESG: from indicator to score",
+  "subtitle": "15 common ESG indicators, how an ESG score is built, and the red flags to watch for in a report",
+  "duration": "8 min",
+  "openingQuestion": "Two manufacturers in the same sector have almost identical ESG scores from one rating house (MSCI, Sustainalytics). Does that mean their ESG risk is the same?",
+  "openingOptions": [
+    "Yes, an ESG score is an absolute, objective measure, so equal scores mean identical risk",
+    "Not necessarily - each rating house uses quite a different methodology and weighting",
+    "ESG scores only apply to companies listed on exchanges in the United States",
+    "An ESG score is always 100% accurate and needs no further verification at all"
+  ],
+  "explanation": "This is the key limitation to hold in mind when using ESG scores: different rating houses (MSCI ESG Ratings, Sustainalytics, ISS ESG and others) use different methodologies, different indicator weights and different data sources - and academic research has shown the correlation between their scores for the SAME company can be surprisingly low. A professional analyst should not lean on a single ESG number but should understand the methodology behind it and independently assess the specific indicators that matter for that sector.",
+  "realWorldExample": {
+    "company": "Tesla - the contested ESG score",
+    "description": "Tesla, despite building electric cars (a clear positive on the Environmental side through lower transport emissions), was dropped from S&P Global's ESG index in 2022 over Social issues (factory working conditions, workplace accidents) and Governance issues (weak transparency, disputes with regulators). The episode caused a storm and illustrates the point neatly: a company can be strong on one pillar (Environmental) and weak on another (Social/Governance) - and rating houses can reach opposite conclusions depending on how they weight each pillar."
+  },
+  "quiz": [
+    {
+      "question": "Why is 'board independence' - the share of directors with no ties to management - such an important Governance indicator?",
+      "options": [
+        "Because the law requires at least half the board to be independent",
+        "Because they have deeper financial expertise than management does",
+        "Because independent members can oversee management objectively",
+        "Because they represent the minority shareholders on the board"
+      ],
+      "explanation": "Board independence is among the most closely tracked Governance indicators: when most directors have ties to management - former employees, relatives, business partners - their capacity to supervise objectively and defend shareholder interests falls sharply, and that has been a root cause of many of the largest corporate financial scandals on record. Legal minimums vary by jurisdiction and are usually well below half; independent directors are not selected for superior financial expertise; and while they should act for all shareholders, they are not specifically minority representatives."
+    },
+    {
+      "question": "How do Scope 1, Scope 2 and Scope 3 differ in carbon emissions reporting?",
+      "options": [
+        "Scope 1 is mandatory to report; Scopes 2 and 3 are entirely voluntary",
+        "Scope 1 is CO2; Scope 2 is methane; Scope 3 is every other gas",
+        "Scope 1 is domestic; Scope 2 regional; Scope 3 global in reach",
+        "Scope 1 direct; Scope 2 purchased energy; Scope 3 the value chain"
+      ],
+      "explanation": "This is the international standard classification under the GHG Protocol: Scope 1 is emitted directly by the company's own operations, Scope 2 indirectly through purchased energy, and Scope 3 indirectly across the entire value chain - typically 70-90% of many companies' total footprint, and by far the hardest to measure because it depends on data from hundreds or thousands of suppliers and on how customers use the product. The split is not by gas type, not by geography, and reporting obligations differ by jurisdiction rather than by scope. An ESG analyst should check whether all three scopes are disclosed or only the easier Scopes 1 and 2."
+    },
+    {
+      "question": "An unusually high employee turnover rate relative to the sector average is a red flag on which ESG dimension?",
+      "options": [
+        "A Social warning: working conditions and company culture",
+        "A Governance warning: the board is short of independence",
+        "An Environmental warning: the plant pollutes its own interior",
+        "Not ESG at all, merely an ordinary human resources metric"
+      ],
+      "explanation": "Abnormally high turnover is one of the most widely used proxy indicators for the Social dimension - it can reflect a toxic culture, poor management, uncompetitive pay, or excessive workload. ESG analysts routinely track proxies like this, alongside Glassdoor data and employee surveys, to assess the Social pillar when a company does not disclose enough detail directly. It says nothing about board composition, it is not a workplace pollution measure, and treating it as a routine HR statistic is exactly the mistake: the whole point of the Social pillar is that how a company treats its people is financially material."
+    },
+    {
+      "question": "Scenario: for the same company, MSCI rates ESG highly while Sustainalytics rates it poorly. How should that be read?",
+      "options": [
+        "One of the two has certainly made a calculation error",
+        "The two houses weight the same criteria differently",
+        "ESG scores carry no reference value of any kind whatsoever",
+        "Take the simple average of the two figures as the standard"
+      ],
+      "explanation": "No common standard obliges rating houses to use the same criteria with the same weights, so divergence is normal rather than a mistake by either of them. The right response is to read the methodology behind the score instead of treating the number as an objective fact. Dismissing both throws away real information about where each house sees the risk. And averaging two numbers produced by incompatible methodologies creates a figure that means nothing at all - it is not a compromise, it is a category error."
+    },
+    {
+      "question": "How do Scope 3 emissions differ from Scope 1 and Scope 2?",
+      "options": [
+        "Scope 3 is the electricity the business buys in",
+        "Scope 3 counts only emissions from plants it owns",
+        "Scope 3 sits in the supply chain and in product use",
+        "Scope 3 must be disclosed while the other two need not"
+      ],
+      "explanation": "Scope 1 is direct emissions, Scope 2 is purchased electricity, and Scope 3 gathers everything outside the company's ownership: suppliers, transport, and customers using the product. For many sectors Scope 3 makes up the bulk of the total footprint while being the hardest to measure. Purchased electricity is Scope 2 by definition, owned plants are Scope 1, and if anything the disclosure position runs the other way - Scope 3 is the one most often left out."
+    }
+  ],
+  "keyTakeaways": [
+    "Different rating houses (MSCI, Sustainalytics, ISS) can score the same company very differently because their methodologies differ - never rely on a single number",
+    "Board independence is a key Governance indicator - a board short of independence is a warning sign of weak stewardship",
+    "Carbon emissions split into Scope 1 (direct), Scope 2 (purchased energy) and Scope 3 (the whole value chain - usually the largest and the hardest to measure)",
+    "Proxy indicators such as employee turnover reveal Social problems when a company does not disclose enough detail directly"
+  ],
+  "practicePrompt": {
+    "question": "You are comparing ESG scores for an oil and gas company: MSCI rates it AA (high), but Sustainalytics puts it in the 'high risk' band. What is the right way to handle the contradiction?",
+    "options": [
+      "Trust MSCI's score only, because it is the larger organisation",
+      "MSCI scores relative to the sector; Sustainalytics scores absolute risk",
+      "Ignore both scores, because ESG ratings are not trustworthy",
+      "Conclude the ESG risk is low, since at least one house rated it highly"
+    ],
+    "explanation": "This is a real and important limitation of ESG ratings that professional analysts have to understand: some houses rate best-in-class, comparing a company only with its own sector peers - so the 'best oil company among oil companies' can still score highly even though the sector carries high ESG risk - while others assess ABSOLUTE risk regardless of sector. Understanding the methodology behind the number matters far more than the final score itself."
+  },
+  "summary": {
+    "keyIdea": "Assessing ESG means understanding the specific indicators (board independence, Scope 1-2-3 emissions, employee turnover) and the rating houses' methodologies, not just reading a single ESG score.",
+    "commonMistake": "Treating one house's ESG score as an absolute, objective number rather than the output of one specific methodology that other houses do not share",
+    "action": "Whenever you look at a company's ESG score, check three things: which house produced it, what methodology it uses (absolute or sector-relative), and how it compares with at least one other source"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Look up the ESG score of a listed company you follow from at least 2 different sources (say, the company's own IR page and a public rating house), compare them for contradictions, and work out why they differ.",
+    "secondary": "The next lesson moves to practical application: how to use ESG data to build a portfolio (ESG screening and portfolio construction)."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Knowing what ESG stands for is only the start - the real skill of an ESG specialist is reading the individual indicators, understanding how the score is computed, and recognising when an ESG number deserves trust or suspicion."
+    },
+    { "type": "heading", "text": "15 common ESG indicators by pillar" },
+    {
+      "type": "list",
+      "items": [
+        "Environmental: carbon emissions (Scopes 1-2-3), energy and water consumption, waste recycling rate, Net Zero targets, physical risk from climate change",
+        "Social: employee turnover, workplace accident rate, gender diversity in management, minimum pay against living-wage benchmarks, customer satisfaction, number of data breaches",
+        "Governance: board independence, share of women on the board, CEO-to-median-employee pay ratio, litigation and regulatory breaches, anti-bribery and anti-corruption policy"
+      ]
+    },
+    { "type": "heading", "text": "How rating houses compute an ESG score" },
+    {
+      "type": "paragraph",
+      "text": "The large rating houses (MSCI ESG Ratings, Sustainalytics, ISS ESG) gather data from company disclosures, news and third-party sources, then apply their own indicator weights by sector - an oil company carries a far heavier Environmental weight than a financial services firm, where Governance usually dominates. The final score is typically RELATIVE within the sector rather than absolute across the whole market, which is why an oil company can still earn a high ESG score even though oil carries far more environmental risk than technology."
+    },
+    { "type": "heading", "text": "Red flags to watch for in an ESG report" },
+    {
+      "type": "list",
+      "items": [
+        "Vague language with no quantified data ('committed to sustainable development' with no target, no deadline and no progress figures)",
+        "Only Scope 1-2 emissions reported, with Scope 3 - usually the largest - quietly avoided and no explanation given",
+        "No independent third-party assurance over the ESG figures being published",
+        "A management team and board short on independence, while the company claims a high Governance score for itself",
+        "A history of regulatory breaches or litigation that goes unmentioned in the ESG report"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Read an ESG score the way you read a financial ratio - understanding the method behind the number matters more than the number itself.",
+        "The ability to spot greenwashing and red flags is what separates a professional ESG specialist from someone who reads reports at face value."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Collect disclosed data pillar by pillar" },
+    { "label": "Select the indicators material to that sector" },
+    { "label": "Normalise and weight → the ESG score" },
+    { "label": "Hunt red flags: vague pledges, missing data, greenwashing" }
+  ]
+}

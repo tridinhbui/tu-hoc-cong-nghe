@@ -1,0 +1,164 @@
+{
+  "slug": "lbo-model-co-che-co-ban",
+  "title": "IB & Analysis, Lesson 6: The LBO model - the basic mechanics of a leveraged buyout",
+  "subtitle": "Why a Private Equity fund can buy a company with very little equity of its own",
+  "duration": "8 min",
+  "openingQuestion": "A Private Equity fund buys a company for 1,000bn using 700bn of debt and 300bn of its own equity. After 5 years it sells the company for 1,500bn, having paid the debt down to 400bn. Why does the fund's return on equity rise so sharply when the value of the company only rose 50%?",
+  "openingOptions": [
+    "Because the value of the company is not really related to the fund's return",
+    "Leverage magnifies the return: 300bn of equity becomes 1,100bn net",
+    "Because Private Equity funds do not pay tax",
+    "Because the borrowing rate is always below the company's growth rate"
+  ],
+  "explanation": "This is the core mechanism of an LBO: use leverage (borrowed money) to buy most of the enterprise value, putting in only a small slice of equity. When enterprise value rises AND debt is paid down out of the cash flow the business generates, the equity slice (enterprise value less remaining debt) grows far faster than enterprise value itself - this is the leverage 'magic' that PE funds exploit.",
+  "diagram": [
+    { "label": "Buy the company: mostly debt, little equity" },
+    { "label": "Use the company's cash flow to pay debt down over time" },
+    { "label": "Enterprise value rises + debt falls" },
+    { "label": "Equity value jumps against the original investment" }
+  ],
+  "realWorldExample": {
+    "company": "The classic LBO deals of the Private Equity funds",
+    "description": "The large PE funds (KKR, Blackstone, Carlyle) typically use leverage of 60-80% of deal value when buying a business, then concentrate on improving operating cash flow both to service the debt and to raise enterprise value, before exiting (a resale or an IPO) after 3-7 years."
+  },
+  "quiz": [
+    {
+      "question": "Beyond buying at a good price, what matters most for an LBO to succeed?",
+      "options": [
+        "The current management team is willing to leave after the deal closes",
+        "The industry is the fastest-growing sector in the entire economy right now",
+        "Cash flow stable enough to service the debt on the agreed schedule",
+        "Large fixed assets that can be pledged as collateral for the borrowing"
+      ],
+      "explanation": "Because an LBO creates a heavy debt burden the moment it closes, the target has to have stable and predictable operating cash flow to make the repayments on time - which is why sectors with steady cash flow (staple consumer goods, subscription services) are favoured by PE funds over strongly cyclical ones. Collateral helps to price the debt but does not repay it, growth alone does not either, and management leaving is usually a problem rather than a feature."
+    },
+    {
+      "question": "Why do PE funds work to improve the operating performance of the business after buying it, rather than just 'sitting back' and letting financial leverage do its work?",
+      "options": [
+        "Because improving operations reduces the corporate income tax payable",
+        "Because regulation obliges a PE fund to take part in running the company",
+        "Because the lending banks require the entire management team to be replaced",
+        "Because operational improvement directly raises the value of the business"
+      ],
+      "explanation": "Financial leverage magnifies returns but does not CREATE new value - the most successful PE funds combine leverage with genuine improvement in the business (growing revenue, tightening costs, more professional governance), creating real value rather than just 'borrowing to buy and then reselling'."
+    },
+    {
+      "question": "You buy a business for 1,000bn with 300bn of equity and 700bn of debt. After 5 years enterprise value is 1,300bn and debt is down to 400bn. What is the equity worth now?",
+      "options": [
+        "900bn (= 1,300 − 400), three times the equity put in",
+        "1,500bn, five times the equity put in at the start",
+        "300bn, exactly the equity put in at the start",
+        "600bn, double the equity put in at the start"
+      ],
+      "explanation": "1,300 − 400 = 900. Two sources produce that increase: the rise in enterprise value and the portion of debt repaid out of the cash flow the business generated. Enterprise value only rose 30%, yet the equity tripled - which is the whole point of the structure. The 1,500bn answer forgets to deduct the remaining debt, and the 300bn and 600bn answers credit only one of the two sources."
+    },
+    {
+      "question": "Why is a business with heavy capital spending needs usually unsuitable for a leveraged buyout?",
+      "options": [
+        "Because large fixed assets mean depreciation eats up all of the profit",
+        "Because cash goes into maintaining assets, leaving none for debt",
+        "Because banks will not lend to capital-intensive businesses at all",
+        "Because heavy capital spending raises the corporate income tax bill"
+      ],
+      "explanation": "A leveraged buyout structure lives on free cash flow available to repay debt. Heavy capital spending drains exactly that cash flow, and the repayment schedule turns risky. Depreciation is non-cash so it is not the binding constraint, banks lend to capital-intensive businesses all the time, and capex reduces taxable profit rather than raising it."
+    },
+    {
+      "question": "What are the three main sources of return in a leveraged buyout?",
+      "options": [
+        "Raising fresh debt, paying a special dividend, and relisting on the stock exchange",
+        "Cutting headcount, selling assets, and reducing capex to the bare minimum",
+        "Paying down debt, improving operating profit, and exiting at a higher multiple",
+        "Raising prices, expanding markets, and signing long-term customer contracts"
+      ],
+      "explanation": "These three are broken out separately in the return attribution of every fund. The most dependable is debt paydown, because it needs only steady cash flow; the riskiest is the exit multiple, because it depends on the market at the time of sale, which nobody controls."
+    }
+  ],
+  "keyTakeaways": [
+    "An LBO uses financial leverage (large borrowings) to magnify the return on equity",
+    "An LBO target needs stable cash flow so the debt can be serviced after the deal",
+    "Successful PE funds combine financial leverage with genuine improvement in operating performance"
+  ],
+  "practicePrompt": {
+    "question": "A PE fund buys a company worth 1,000bn, putting in only 250bn of its own equity and borrowing the remaining 750bn against the target's assets and cash flow. After 5 years the company is sold for 1,800bn and, once the debt is repaid, the fund takes back 1,050bn. Why does this heavily-borrowed structure deliver such an outsized return on equity?",
+    "options": [
+      "An LBO uses leverage to magnify the return on equity: 250bn becomes 1,050bn",
+      "This is a random outcome with nothing to do with the borrowing structure of the deal",
+      "The high return comes purely from the company growing well, with no connection to the financial leverage that was used",
+      "A heavily-borrowed structure actually lowers the fund's return compared with using all equity"
+    ],
+    "explanation": "An LBO uses financial leverage to magnify the Private Equity fund's return on its own capital. Because it put in only a small slice (250 of 1,000bn) but captures the whole increase in company value, the return on equity (MOIC) is magnified considerably against an unlevered investment."
+  },
+  "application": {
+    "title": "Split the IRR into three sources",
+    "message": "With a simple LBO model, work out where the return comes from: debt paydown, EBITDA growth, or an exit multiple above the entry multiple. The third one is the part you do not control, and a deal that leans mainly on it is a bet on the market at exit.",
+    "secondary": "Set the exit multiple equal to the entry multiple and run it again. If the IRR collapses below the fund's threshold, the real thesis is about price expectations rather than operations."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Why can a Private Equity fund buy a company with very little equity of its own, and still take back several times that money a few years later?"
+    },
+    { "type": "heading", "text": "Leverage magnifies the return on equity" },
+    {
+      "type": "paragraph",
+      "text": "An LBO uses mostly borrowed money to buy the business, putting in only a small slice of equity. When enterprise value rises and debt is paid down out of the cash flow the business itself generates, the equity slice (value less remaining debt) grows far faster than enterprise value. What decides success is not only buying at a good price: the target needs stable cash flow to service the debt - and a good PE fund always pairs leverage with genuine operational improvement, not just 'borrowing to buy and then reselling'."
+    },
+    {
+      "type": "list",
+      "items": [
+        "An LBO uses financial leverage to magnify the return on equity",
+        "An LBO target needs stable cash flow so the debt can be serviced",
+        "Successful PE funds combine leverage with real improvement in operating performance"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Why leverage magnifies the return on equity",
+      "equation": "Equity value = Enterprise value − Remaining debt",
+      "example": {
+        "title": "A 1,000bn deal with 300bn of equity",
+        "calculation": "After 5 years: enterprise value 1,300bn, debt down from 700 to 400",
+        "result": "Equity from 300 → 900bn, three times over",
+        "explanation": "Enterprise value rose only 30%, but the equity tripled. Two sources produce that: the rise in value and the debt repaid out of the cash the business itself made. The mechanism also runs in reverse - if enterprise value fell 30%, the equity would be all but wiped out."
+      }
+    },
+    { "type": "heading", "text": "Four characteristics of a suitable target" },
+    {
+      "type": "list",
+      "items": [
+        "Stable, predictable cash flow - because the debt obligation is fixed and does not wait for a favourable cycle.",
+        "Low capital spending needs - the cash has to go to the debt rather than being drained into maintaining assets.",
+        "Collateral or a solid market position, helping raise debt at a lower cost.",
+        "Room left for operational improvement - if the business is already fully optimised, the only remaining source of value is leverage, and that is the riskiest source there is."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Creating durable value",
+        "text": "Improving margins, expanding into new markets, optimising working capital, bolting on smaller companies in the same sector. These genuinely leave the business better when it is sold."
+      },
+      "right": {
+        "label": "Relying on leverage and the multiple",
+        "text": "Expecting to sell at a higher multiple than the purchase price without improving anything operationally. This depends entirely on market conditions at the moment of exit - that is, on luck."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The other side of leverage",
+      "text": "The very mechanism that magnifies returns magnifies risk too. After the buyout the business carries a heavy repayment obligation, so there is little cushion left for mistakes: one poor trading season, one rise in interest rates, or one large customer walking away can push it into breaching its loan covenants."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Financial leverage magnifies the outcome, but it does not by itself create new value.",
+        "The real value comes from the business operating better during the holding period."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "An LBO uses financial leverage (large borrowings) to magnify the return on equity",
+    "commonMistake": "Easy to overlook: an LBO target needs stable cash flow so the debt can be serviced after the deal",
+    "action": "Successful PE funds combine financial leverage with genuine improvement in the operating performance of the business"
+  }
+}

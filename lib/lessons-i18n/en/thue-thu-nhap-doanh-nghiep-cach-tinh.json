@@ -1,0 +1,156 @@
+{
+  "slug": "thue-thu-nhap-doanh-nghiep-cach-tinh",
+  "title": "Standards & Tax, Lesson 3: Corporate income tax - from accounting profit to tax payable",
+  "subtitle": "Deductible costs, non-deductible costs, loss carry-forward and tax incentives",
+  "duration": "12 min",
+  "whyItMatters": "The effective tax rate is one of the lines you have to forecast in every financial model, and it is almost never equal to the headline rate. If you do not understand why they differ, you will forecast the bottom line of the income statement wrongly.",
+  "openingQuestion": "Why is a company's effective tax rate usually different from the headline rate?",
+  "openingOptions": [
+    "Because the tax authority sets a separate rate for each company based on its revenue size",
+    "Because taxable income is not the same thing as accounting profit",
+    "Because a company may choose whatever rate suits the industry it happens to operate in",
+    "Because the headline rate only applies to companies that carry foreign investment capital"
+  ],
+  "explanation": "There are three sources of difference. First, some costs are recorded in the books but are not deductible for tax, which pushes taxable income above accounting profit. Second, the company may be enjoying an incentive tied to its industry, its location or a specific investment project, pulling the rate down. Third, losses from earlier years can be set against this year's income within the permitted time limit, reducing the tax actually due.",
+  "diagram": [
+    { "label": "Accounting profit before tax" },
+    { "label": "Add back non-deductible costs, deduct exempt income" },
+    { "label": "Deduct losses carried forward from earlier years" },
+    { "label": "Taxable income × the applicable rate" }
+  ],
+  "realWorldExample": {
+    "company": "A manufacturer enjoying an investment incentive",
+    "description": "A plant located in an area targeted for investment may be exempt from tax for the first few years and then pay half the rate for several more. Through that window the effective tax rate is very low and after-tax profit looks excellent. A modeller who does not read the incentive conditions carefully will extend that low rate indefinitely in the forecast, and end up with a valuation well above reality - because when the incentive expires, after-tax profit drops even though revenue keeps growing."
+  },
+  "quiz": [
+    {
+      "question": "What does a non-deductible cost actually mean?",
+      "options": [
+        "An outlay that is never recorded in the company's own accounting records",
+        "An outlay deducted gradually across several years rather than all in one year",
+        "An outlay that has to be approved by the tax authority before it is incurred",
+        "An outlay that appears in the books but is stripped out of taxable income"
+      ],
+      "explanation": "Spending without valid supporting documents, spending above a regulated cap, and administrative fines are the textbook examples. They are genuine costs that reduce accounting profit, but they do not reduce the tax bill. The first option describes something that is simply unrecorded, the second describes a timing difference rather than a permanent one, and no rule requires pre-approval of ordinary business spending."
+    },
+    {
+      "question": "How does loss carry-forward work?",
+      "options": [
+        "A prior year's loss is set against taxable income in the following years",
+        "The loss is refunded in cash by the tax authority in the year it arises",
+        "The loss is allocated to shareholders in proportion to their holdings for personal relief",
+        "The loss is carried back against earlier years and the tax already paid is reclaimed"
+      ],
+      "explanation": "The carry-forward mechanism runs forward and has a statutory time limit. For a company emerging from a period of heavy losses, this is why the effective tax rate is very low for the first few profitable years - and a model has to reflect the fact that the accumulated loss pool will eventually run dry. Cash refunds and shareholder allocation are not features of corporate income tax here, and carry-back is a different regime altogether."
+    },
+    {
+      "question": "How is the effective tax rate calculated?",
+      "options": [
+        "Tax paid in cash divided by total net revenue recognised during the period",
+        "The tax charge divided by accounting profit before tax for the same period",
+        "The headline rate multiplied by the ratio of profit to shareholders' equity",
+        "The tax charge divided by the company's average total assets over the period"
+      ],
+      "explanation": "This is the number you actually use in a model. Comparing effective rates across several years reveals whether the company is enjoying an incentive, running down a loss pool, or carrying a lot of non-deductible spending. Dividing by revenue or by assets produces a ratio that mixes two unrelated bases, and multiplying the headline rate by a return measure is not a tax calculation at all."
+    },
+    {
+      "question": "Why must you read the conditions and expiry of a tax incentive carefully when forecasting?",
+      "options": [
+        "Because the incentive has to be renewed at the start of each new financial year",
+        "Because the company must repay the whole benefit if it later disposes of the asset",
+        "Because incentives expire, and after-tax profit drops when they do",
+        "Because incentives only apply to the share of revenue that is exported to foreign markets"
+      ],
+      "explanation": "This is a common forecasting error with manufacturers and technology companies. A model that keeps the low effective rate running forever will overvalue the business, sometimes by tens of per cent. Incentives are granted for a defined term rather than renewed annually, they are not clawed back on disposal, and they attach to the qualifying project rather than to export sales specifically."
+    },
+    {
+      "question": "How should tax be forecast sensibly inside a financial model?",
+      "options": [
+        "Always apply the headline rate in every forecast year to keep the model simple",
+        "Assume the company pays no tax at all until the accumulated losses are fully used",
+        "Take the industry average effective rate observed in the most recent year",
+        "Start from the current effective rate and let it converge towards the headline rate"
+      ],
+      "explanation": "This approach reflects both the position today and the fact that incentives and loss pools are finite. In the terminal value of a valuation model you almost always have to use the headline rate. Applying it from year one ignores what is actually happening now, assuming zero tax ignores the limits on loss relief, and an industry average tells you nothing about this company's own incentives."
+    }
+  ],
+  "keyTakeaways": [
+    "Taxable income differs from accounting profit because of non-deductible costs and exempt income",
+    "Three sources push the effective rate away from the headline rate: non-deductible costs, incentives, loss carry-forward",
+    "Tax incentives always have an expiry - a forecast must let the rate converge back to the headline level",
+    "Effective tax rate = tax charge / accounting profit before tax, and it should be read across several years"
+  ],
+  "practicePrompt": {
+    "question": "A company has run an effective tax rate of 5% for three consecutive years while the headline rate is 20%. What should you do next?",
+    "options": [
+      "Use the 5% figure across the whole forecast period, since it is the observed reality",
+      "Check the notes to see whether this is an incentive or a loss pool, and how long it lasts",
+      "Conclude that the company has a problem with its tax filing and compliance",
+      "Immediately restate profit at a 20% rate for all the past years already published"
+    ],
+    "explanation": "The two causes lead to completely different forecasts. If it is an incentive with seven years left, the model holds the low rate for seven years and only then steps up. If it is a loss pool about to run out, the rate jumps next year. The tax note in the financial statements always contains a reconciliation between tax at the headline rate and the actual tax charge."
+  },
+  "summary": {
+    "keyIdea": "Tax in a model has to be built on a time-limited effective rate, not on one fixed number",
+    "formula": "Effective tax rate = Tax charge / Accounting profit before tax",
+    "commonMistake": "Extending an incentive tax rate indefinitely through the forecast",
+    "action": "Calculate the effective tax rate for five consecutive years at one company and explain why it moves."
+  },
+  "application": {
+    "title": "Read the tax note",
+    "message": "The notes contain a reconciliation from tax at the headline rate down to the actual tax charge, itemising every adjustment. This is where you find out why the company pays less or more than usual, and how long the incentive still runs.",
+    "secondary": "Tax rates and incentive conditions change with every amendment to the law - always verify the rules in force at the moment you are doing the analysis."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Track 2 taught you to read carefully from revenue down to profit before tax, and then stopped at exactly the interesting point. The tax line is not a simple multiplication, and it is one of the easiest lines in a financial model to get wrong."
+    },
+    {
+      "type": "formula",
+      "title": "From accounting profit to taxable income",
+      "label": "The bridge between two different recognition systems",
+      "equation": "Taxable income = Accounting profit before tax + Non-deductible costs − Exempt income − Losses carried forward",
+      "variables": [
+        {
+          "symbol": "Non-deductible costs",
+          "name": "Items stripped out",
+          "description": "Spending without adequate documentation, spending above regulated caps, administrative fines"
+        },
+        {
+          "symbol": "Exempt income",
+          "name": "Items outside the charge",
+          "description": "Certain categories of income the rules specify as not subject to tax"
+        },
+        {
+          "symbol": "Losses carried forward",
+          "name": "Losses from earlier years",
+          "description": "Set against income of later years, within the statutory time limit"
+        }
+      ],
+      "example": {
+        "title": "A worked illustration",
+        "calculation": "100 + 8 − 0 − 30 = 78, then multiplied by the 20% rate",
+        "result": "Tax of 15.6 on accounting profit of 100, an effective rate of 15.6%",
+        "explanation": "The gap against the 20% rate comes from the 30 units of loss carried forward, and it disappears once the loss pool is exhausted. The model has to reflect the effective rate jumping close to 20% next year."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A warning about specific figures",
+      "text": "The headline rate, the time limit on loss carry-forward, and the lists of qualifying industries and locations all change with each amendment to the law. This lesson teaches the mechanism; the specific numbers have to be verified against the rules in force at the time you are doing the analysis."
+    },
+    { "type": "heading", "text": "Loss carry-forward and why it affects valuation" },
+    {
+      "type": "paragraph",
+      "text": "A loss from one year may be deducted from taxable income of later years within a limited window. For a company emerging from a period of heavy losses, that means the first profitable years carry almost no tax - and real cash flow is markedly higher than a model applying the headline rate would produce. This is why the tax section of a valuation model has to follow the company's specific position rather than borrowing a general ratio."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Tax is the last line, but forecast it wrongly and the whole valuation is wrong.",
+        "The next lesson covers two taxes that affect cash flow and selling prices rather than profit: value added tax and foreign contractor tax."
+      ]
+    }
+  ]
+}

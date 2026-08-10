@@ -1,0 +1,173 @@
+{
+  "slug": "ke-hoach-nhan-su-va-chi-phi-luong",
+  "title": "Planning, Part 2: Headcount planning - the largest cost line and the hardest to reverse",
+  "subtitle": "Why payroll has to be built role by role and month by month, not as a single annual figure",
+  "duration": "11 min",
+  "whyItMatters": "For most service businesses, people cost more than half of total spending. It is also the hardest line to reverse: cutting marketing takes effect within the month, while reducing headcount costs money, time and reputation. A mistake here is far more expensive than a mistake on any other line.",
+  "openingQuestion": "Why should the annual payroll figure not be built by multiplying year-end headcount by an average salary?",
+  "openingOptions": [
+    "Because an average salary misrepresents the pay structure of each individual role",
+    "Because someone hired mid-year only incurs cost for the remaining months",
+    "Because accounting standards require payroll cost to be recognised month by month",
+    "Because salaries always rise in the middle of the year"
+  ],
+  "explanation": "A role filled in October generates three months of cost in that year but twelve months of cost in the next one. Taking closing headcount times an average salary both inflates this year's cost and hides next year's step up - and that step is what blows the following year's budget in its very first month, even if nobody else is hired.",
+  "diagram": [
+    {
+      "label": "List each role, not a headcount total"
+    },
+    {
+      "label": "Attach the expected start month"
+    },
+    {
+      "label": "Add the on-costs beyond base pay"
+    },
+    {
+      "label": "Compute the annualisation effect into next year"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A technology company and the following year's step up",
+    "description": "A company hired 20 people during the year, most of them in the fourth quarter. Actual payroll that year rose only about 15% on the prior year, and the leadership saw it as entirely under control. The next year payroll rose a further 30% without a single additional hire - simply because those 20 people now counted for twelve full months. That is the annualisation effect, and it appears nowhere in last year's accounts."
+  },
+  "quiz": [
+    {
+      "question": "What is the annualisation effect in headcount planning?",
+      "options": [
+        "The cost of someone hired mid-year counting for twelve full months next year",
+        "The cost incurred when an employee resigns and a replacement has to be recruited for the role",
+        "The portion of payroll spending that exceeds the budget approved at the start of the financial year",
+        "The extra pay owed when staff work beyond the prescribed administrative hours"
+      ],
+      "explanation": "This is why next year's budget can break even under a complete hiring freeze. It has to be computed while this year's plan is being written, not discovered in January. The other options describe real payroll items - replacement hiring, budget overruns, overtime - but none of them is a mechanical consequence of the calendar in the way annualisation is."
+    },
+    {
+      "question": "Beyond gross salary, what does an employee actually cost?",
+      "options": [
+        "Only mandatory insurance, since everything else is booked to general administrative overheads",
+        "Employer social insurance contributions, bonuses, equipment and the initial recruitment cost",
+        "Nothing further, provided the employment contract already states total remuneration in full",
+        "Only the year-end bonus, since that is the one item not included in the monthly salary"
+      ],
+      "explanation": "The full cost usually runs 20 to 30 per cent above gross salary depending on sector and location. Planning on gross salary alone omits a material chunk from the very start. And the omission is systematic rather than random: it understates every role, in the same direction, in the largest cost line the business has."
+    },
+    {
+      "question": "Why plan headcount role by role rather than by total headcount?",
+      "options": [
+        "Because current HR software cannot accept aggregate figures as an input at all",
+        "Because the labour authorities require every company to register a detailed recruitment plan first",
+        "Because a headcount total hides the pay differences between roles and each person's start date",
+        "Because doing it this way reduces total people cost compared with planning by headcount"
+      ],
+      "explanation": "Ten engineers and ten support staff are both ten heads, but the cost difference can be threefold. The same headcount total also produces very different costs depending on the month people start. Planning role by role does not make the cost lower - it makes the number correct, which is a different and more useful thing."
+    },
+    {
+      "question": "When the budget is cut, why is cancelling planned hires preferred over reducing existing headcount?",
+      "options": [
+        "Because reducing existing headcount saves nothing within the financial year already under way",
+        "Because a role not yet filled has incurred no cost, so it does not affect the accounts",
+        "Because current labour regulations do not permit companies to cut staff already employed",
+        "Because not hiring costs far less, in money and in organisational damage, than cutting does"
+      ],
+      "explanation": "Not hiring is a decision you can reverse when conditions improve; a redundancy is not. That is why planned hires should always be separated out and clearly marked in the budget. The other options overstate the case: redundancies do save money eventually, and the law does permit them - they are simply expensive in ways the budget line does not show."
+    },
+    {
+      "question": "Why is planning headcount role by role better than planning by total headcount?",
+      "options": [
+        "Because start dates and the pay of each role determine the real cost",
+        "Because HR needs a specific list of roles in order to advertise for them",
+        "Because a headcount total cannot capture attrition during the year",
+        "Because each role attracts a different insurance contribution rate"
+      ],
+      "explanation": "Ten roles starting in January are nothing like ten roles starting in October in this year's cost, and different again in next year's step up. A single total flattens both effects, so the plan looks right until the following year's budget breaks. A single total also hides the fact that the same headcount can cost very different amounts depending on seniority mix."
+    }
+  ],
+  "keyTakeaways": [
+    "Plan role by role with a start month, not by total headcount",
+    "Annualisation: fourth-quarter hires create next year's step up even with no further hiring",
+    "Real cost runs 20-30% above gross salary: insurance, bonuses, equipment, recruitment",
+    "Separate planned hires in the budget - that is the part you can reverse when you have to cut"
+  ],
+  "practicePrompt": {
+    "question": "A company freezes hiring completely from 1 January next year. What happens to next year's payroll compared with this year?",
+    "options": [
+      "Unchanged, because headcount does not change",
+      "Still rises, from annualisation plus pay increases",
+      "Falls, because there is no recruitment cost",
+      "Cannot be predicted without knowing the attrition rate"
+    ],
+    "explanation": "This is the situation that surprises many leadership teams. A hiring freeze stops new growth in cost, but it does not touch the two sources of increase already committed: the missing months of people hired this year, and pay adjustments under existing policy. Attrition offsets part of it, but usually not enough."
+  },
+  "summary": {
+    "keyIdea": "People cost is driven as much by when someone starts as by how many people there are",
+    "commonMistake": "Taking closing headcount times an average salary, ignoring start months and annualisation",
+    "action": "Build a headcount plan with a column for expected start month, then compute the cost month by month rather than for the year as a whole."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take this year's recruitment plan and calculate two figures: the cost falling in this year, and the full twelve-month cost of that same group of people. The difference between them is the part of next year's budget already committed before next year begins.",
+    "secondary": "Put the second figure in front of the leadership at the same time as the first - do not let it appear for the first time in January."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In most service businesses, people are the largest cost line. They are also the line with the longest lag between making a decision and being able to reverse it."
+    },
+    {
+      "type": "heading",
+      "text": "Why the start month matters as much as the number of people"
+    },
+    {
+      "type": "conceptTable",
+      "title": "The three layers of cost in a headcount plan",
+      "subtitle": "Omit any layer and the budget tilts in the optimistic direction",
+      "concepts": [
+        {
+          "def": "Gross salary times the months actually worked in the period. This is the only layer most plans contain."
+        },
+        {
+          "def": "Employer insurance contributions, bonuses, equipment, recruitment fees. Typically adds 20-30% on top of gross salary."
+        },
+        {
+          "def": "The missing months of anyone hired mid-period, all of which land next year. It appears on no line of this year's accounts."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Separate what is committed from what is still a choice",
+      "text": "A people budget should read as two blocks: the cost of those already employed - effectively fixed in the short run - and the cost of roles planned but not yet filled, which is still a decision. When leadership asks for cuts, that boundary is the first thing they need to see, and if the budget does not already draw it, the discussion loses several days to reconstructing it."
+    },
+    {
+      "type": "heading",
+      "text": "The same ten people, 1.1bn apart"
+    },
+    {
+      "type": "paragraph",
+      "text": "The plan is to hire 10 people at an average of 20m a month. Budgeted the familiar way - 10 people times 20m times 12 months - you get 2.4bn. But that figure is only right if all ten start in January. In practice, hiring one person a month from February to November gives 65 person-months, that is 1.3bn. The same headcount plan, 1.1bn apart - and the entire difference sits in one column that many budget sheets do not have: the start month."
+    },
+    {
+      "type": "callout",
+      "label": "The figure has to be grossed up for mandatory contributions",
+      "text": "Gross salary is not the real cost. The employer's share of social, health and unemployment insurance puts the true cost roughly a fifth above gross pay - the exact rate follows current regulation and should be rechecked each year. A people budget that forgets this layer is short by exactly that proportion, and since this is the largest spending line in most service businesses, that error alone is enough to wreck the plan."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The committed part",
+        "text": "The cost of those already working, plus those who have signed and are about to start. Barely reducible in the short run, because redundancy carries its own cost and its own lag. This is the part to treat as fixed when building a downside case."
+      },
+      "right": {
+        "label": "The part still open",
+        "text": "Roles approved but not yet filled. This is the fastest adjustment lever a business has - deferring ten roles by three months saves exactly 30 person-months. A people budget should read as these two blocks, because that is how leadership uses it when conditions change."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "How many people is the easy question. When they start is the question that decides the number.",
+        "The next lesson moves from the annual plan to what you need when liquidity is tight: a weekly cash flow forecast."
+      ]
+    }
+  ]
+}

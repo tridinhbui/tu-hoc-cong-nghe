@@ -1,0 +1,143 @@
+{
+  "slug": "lap-ke-hoach-theo-yeu-to-dan-dat",
+  "title": "Planning, Lesson 1: Driver-based planning - instead of adding 10% to last year",
+  "subtitle": "Tie revenue and cost back to operating quantities, so that when the plan slips you know where it slipped",
+  "duration": "11 min",
+  "whyItMatters": "A budget built by multiplying last year's number by a growth rate always produces a figure, but when reality diverges from the plan nobody can explain why. Driver-based planning costs more effort and gives back exactly that: the ability to point at where it slipped.",
+  "openingQuestion": "Why is budgeting by multiplying last year's revenue by a growth rate a weak method?",
+  "openingOptions": [
+    "Because past growth rates never repeat themselves in the future",
+    "Because the number tells you nothing about which factor caused the gap",
+    "Because the method breaches the accounting standards on reporting",
+    "Because it always produces a figure lower than the actual outcome"
+  ],
+  "explanation": "Both methods produce a number, and the one from the growth-rate method is sometimes closer to reality. The difference lies elsewhere: when revenue comes in 12% short, a single-block plan only tells you that you are 12% short. A plan split into customers times average order value times purchase frequency tells you whether the shortfall came from fewer customers or from customers buying less - and those two causes call for completely different actions.",
+  "diagram": [
+    { "label": "Pick 2-4 real operating drivers" },
+    { "label": "Tie the financial targets back to them" },
+    { "label": "Give each driver an owner" },
+    { "label": "When it misses: examine driver by driver" }
+  ],
+  "realWorldExample": {
+    "company": "A retail chain planning its revenue",
+    "description": "Single-block method: revenue this year 500bn, plan for next year 550bn. Driver-based method: number of stores times revenue per store per month times 12, where revenue per store splits further into footfall times conversion rate times average basket. At the end of the second quarter, revenue is 8% below plan. The single-block version only states the number. The driver-based version shows footfall running ahead of plan while basket size fell - the problem sits in the sales mix, not in marketing, and the marketing budget was nearly cut by mistake."
+  },
+  "quiz": [
+    {
+      "question": "What does a good driver need to have?",
+      "options": [
+        "Finance can compute it on its own without any figures from the operating units",
+        "It is measured in currency so it can be added straight onto the financial statements",
+        "It has at least five years of history so that the forecast model is reliable",
+        "Someone in the organisation can genuinely move it and is accountable for it"
+      ],
+      "explanation": "A driver nobody can move is an observed indicator, not a lever. A budget built on it still looks fine on paper but leads to no action. The other three options describe conveniences rather than requirements: a driver computed inside finance with no operating input is exactly the kind nobody owns, a driver does not have to be denominated in money to be planned against, and demanding five years of history rules out every new product line."
+    },
+    {
+      "question": "How many drivers should you pick for one revenue line?",
+      "options": [
+        "Two to four, enough to separate causes while staying diagnosable when the figures miss",
+        "As many as possible, since every driver you add makes the model more accurate than before",
+        "Exactly one, to avoid any confusion when the drivers interact with each other",
+        "Exactly the number of departments involved in producing that revenue line"
+      ],
+      "explanation": "Ten drivers sound more rigorous but they are not diagnosable: when the result misses you have ten suspects and not enough data to convict any of them. One driver has the opposite defect - it cannot separate causes at all - and counting departments confuses an organisational chart with a causal structure."
+    },
+    {
+      "question": "What does driver-based planning do for variance analysis?",
+      "options": [
+        "It removes the gap between actual and budget that was set at the start of the period",
+        "It splits the total variance into per-driver variances, so it points at the cause",
+        "It lets the plan be updated every month without going back for a fresh approval",
+        "It shortens the variance report because only one summary line is left"
+      ],
+      "explanation": "This is the link back to the variance analysis lesson in the CFO & Operations stage: variance is only useful once it can be decomposed, and whether it can be decomposed is decided by the structure of the plan from the outset. No planning method removes variance itself, and the approval process and report length are governance questions, not analytical ones."
+    },
+    {
+      "question": "What is the biggest risk when moving to driver-based planning?",
+      "options": [
+        "Finance loses control of the budget to the operating departments",
+        "The forecast turns out consistently more optimistic than under the traditional method",
+        "The model becomes so complex that nobody but its builder can understand or check it",
+        "Operating figures are not audited, so they cannot be used in a plan"
+      ],
+      "explanation": "A model only one person understands is an operational risk in itself. Capping the number of drivers and writing down the definition of each one is how you keep it checkable by somebody else. Driver-based planning has no built-in optimism, it does not hand budget authority anywhere, and unaudited operating data is used in planning everywhere - the audit requirement applies to published statements, not to internal levers."
+    },
+    {
+      "question": "Revenue splits into stores × footfall per store × order value. Footfall falls 5%, order value rises 4%, store count is unchanged - how much does revenue change?",
+      "options": [
+        "Up 1.2% (= 0.95 × 1.04 − 1, with the sign flipped)",
+        "Down 1% (= 5% − 4%, subtracting the two rates directly)",
+        "Down 9% (= 5% + 4%, adding the two changes together)",
+        "Down 1.2% (= 0.95 × 1.04 − 1, multiplying the two rates together)"
+      ],
+      "explanation": "Drivers multiply rather than add, so the percentages have to be multiplied too: 0.95 × 1.04 = 0.988, that is a fall of 1.2%. This is also where the method pays for itself: knowing that revenue is 1.2% short because of footfall and not because of price tells you what to fix."
+    }
+  ],
+  "keyTakeaways": [
+    "The value of a driver-based plan is not its accuracy, it is its ability to point at where things slipped",
+    "A driver must have someone who can move it and is accountable for it - otherwise it is only an observed indicator",
+    "Two to four drivers per line: any more and it stops being diagnosable",
+    "The structure of the plan decides how far the later variance analysis can be decomposed"
+  ],
+  "practicePrompt": {
+    "question": "Quarterly revenue is 8% below plan. The plan was built as a single block. What can you conclude?",
+    "options": [
+      "The sales team failed to do its job",
+      "Only that it is 8% short - there is not enough data to say where the cause sits",
+      "The market is contracting",
+      "The original plan was set too high"
+    ],
+    "explanation": "The other three answers are all things that get said very often in meeting rooms, and not one of them is supported by the figures. That is the real price of a single-block plan: it forces the discussion from data onto guesswork, and the loudest voice usually wins."
+  },
+  "summary": {
+    "keyIdea": "A plan exists so that when it misses you know where it missed, not so that it guesses the number right",
+    "commonMistake": "Multiplying last year's number by a rate and calling it a budget",
+    "action": "Take your largest revenue line and split it into the product of two or three measurable operating quantities."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "For each driver you have just separated out, answer two questions: who in the organisation can move it, and which system the actual figures come from. Any driver that fails either question is not yet usable as a planning lever.",
+    "secondary": "The second question is the one usually skipped, and it is why so many beautiful models are never reconciled against reality."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The CFO & Operations stage taught budgets, rolling forecasts and variance analysis - the outputs of FP&A. This stage handles what comes before them: where the numbers in that budget came from in the first place."
+    },
+    { "type": "heading", "text": "Two ways to build the same budget line" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Single-block plan",
+        "text": "Next year's revenue = this year's revenue × 1.1. Fast, easy to get approved, and when it misses all you can say is that it missed. Every discussion after that rests on guesswork."
+      },
+      "right": {
+        "label": "Driver-based plan",
+        "text": "Revenue = customers × purchase frequency × average order value. More effort, needs figures from operations, and when it misses it points straight at the driver that moved."
+      }
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three screening questions for a driver",
+      "subtitle": "Failing any one of them means the driver is not usable yet",
+      "concepts": [
+        { "def": "Someone in the organisation has to be able to change it. Exchange rates and interest rates are important variables but they are not planning levers." },
+        { "def": "Some system has to record the actual figure, otherwise there is nothing to reconcile at period end and the plan becomes a promise." },
+        { "def": "A driver that belongs to nobody gets watched by nobody. This is an organisational condition, not a technical one." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Do not mistake detail for accuracy",
+      "text": "A fifteen-driver model looks far more serious than a three-driver one, but every extra driver is an extra assumption, and every assumption is a place where it can be wrong. More to the point: when the result misses, fifteen suspects cannot be judged. Stop at the number of drivers you genuinely have actual data to reconcile one by one."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A good budget is not one that guesses right, it is one that can explain why it guessed wrong.",
+        "The next lesson goes into the largest and least reversible cost line in most businesses: people."
+      ]
+    }
+  ]
+}

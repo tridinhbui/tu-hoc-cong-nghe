@@ -1,0 +1,133 @@
+{
+  "slug": "chung-khoan-hoa-va-cau-truc-cdo",
+  "title": "FRM Credit Risk, Lesson 2: Securitization and structured credit risk (CDOs)",
+  "subtitle": "How thousands of individual loans become a AAA-rated security - and why the tranching decides everything",
+  "duration": "10 min",
+  "whyItMatters": "Securitization is a legitimate financial tool - it frees up bank capital so lending can continue - but its tranching structure is where risk was most subtly concealed in the 2008 crisis. Understanding the waterfall is the condition for not being fooled by a high credit rating attached to a product carrying very large real risk.",
+  "openingQuestion": "In a CDO (Collateralized Debt Obligation) structure, what characterises the senior tranche?",
+  "openingOptions": [
+    "Takes the first losses when the underlying pool defaults, in exchange for the highest yield",
+    "Has priority on the first cash flows and absorbs losses last of all",
+    "Carries exactly the same risk and yield as every other tranche in the same structure",
+    "Receives no cash flow whatsoever from the underlying pool of the assets"
+  ],
+  "explanation": "A CDO structure divides the cash flows from a pool of assets (usually loans or bonds) into several tranches ranked by priority: Senior is paid first, Mezzanine next, and Equity - the lowest tranche - is paid last and takes the first losses. The mechanism is called a \"waterfall\": cash flows down from the top, losses are absorbed from the bottom up. The senior tranche is safer not because the underlying assets are less risky, but because the tranches below it act as a cushion absorbing losses first.",
+  "diagram": [
+    { "label": "Pool hundreds or thousands of loans into a single asset pool" },
+    { "label": "Slice the cash flows into tranches: Senior → Mezzanine → Equity" },
+    { "label": "Cash flows run from the top down (Senior is paid first)" },
+    { "label": "Losses are absorbed from the bottom up (Equity takes them first)" }
+  ],
+  "realWorldExample": {
+    "company": "Subprime mortgage CDOs, 2004-2007",
+    "description": "Many CDOs were structured out of the Mezzanine tranches of other CDOs (known as CDO-squared), making it nearly impossible to trace where the real risk sat, even for the buyer. The senior tranches of these structures were still rated AAA because the rating models assumed low correlation among the original subprime loans - exactly the model error covered in the Foundations stage. When house prices fell everywhere at once, even the tranche thought safest lost value severely."
+  },
+  "quiz": [
+    {
+      "question": "Why does the Equity tranche - the lowest one - in a CDO carry the highest yield?",
+      "options": [
+        "Because the Equity tranche is fully government-guaranteed whenever defaults occur in the underlying pool, much as bank deposits are insured",
+        "Because the Equity tranche bears no risk at all from the underlying asset pool, whatever happens to it",
+        "Because the Equity tranche takes the first losses when the pool starts defaulting, so investors demand a higher yield to compensate",
+        "Because the law requires the Equity tranche to carry the highest yield in every structure of this kind"
+      ],
+      "explanation": "This is the risk-return principle applied inside a tranched structure: the tranche standing first in line for losses has to be paid more to compensate, while the Senior tranche is protected by the layers beneath it and therefore accepts a much lower yield. Nothing about the arrangement is mandated by statute, no government stands behind the first-loss piece, and the idea that it bears no risk inverts the entire point of the structure."
+    },
+    {
+      "question": "What especially dangerous risk does a CDO-squared - a CDO built from the Mezzanine tranches of other CDOs - create?",
+      "options": [
+        "No special risk at all - this is just a simple technical variant of an ordinary CDO, one that any ordinary retail investor can easily understand and price accurately",
+        "A CDO-squared always yields less than an ordinary CDO, because the extra layer of structure is treated as making it safer",
+        "A CDO-squared may only be traded by government entities and cannot be sold to private investors under any circumstances",
+        "Tracing where the risk actually sits becomes nearly impossible, even for the buyer, because risk is shuffled and repooled through stacked layers of structure"
+      ],
+      "explanation": "Every added layer of structure increases opacity: an investor buying the senior tranche of a CDO-squared has almost no way of knowing which original loans ultimately stand behind their investment, or how correlated those loans really are. Nothing restricts these instruments to public bodies, and the extra layer did not make them cheaper to hold - it made them more expensive to understand."
+    },
+    {
+      "question": "Why were the senior tranches of many subprime mortgage CDOs still rated AAA before 2008 despite large real risk?",
+      "options": [
+        "Because the rating models assumed low correlation among the underlying subprime loans, so the tranche structure counted as enough protection - wrong once house prices fell nationwide",
+        "Because the rating agencies used a completely different methodology that had nothing whatsoever to do with any assumption about correlation between the loans",
+        "Because the US government directly guaranteed the Senior tranche of every privately issued CDO on the market, in exactly the same way that US Treasury bonds are guaranteed by the sovereign",
+        "Because the Senior tranche is not affected in any way by movements in the value or the performance of the underlying collateral pool, whatever happens"
+      ],
+      "explanation": "This is precisely the model error covered in the Foundations stage (LTCM, subprime MBS): an assumption of low correlation that held under \"normal\" historical conditions stopped holding once a systemic shock arrived - house prices falling everywhere at once - so even the tranche regarded as safest lost value severely. Correlation was the central input to the rating, not an irrelevance, and no sovereign guarantee ever stood behind private CDOs."
+    },
+    {
+      "question": "How does the \"waterfall\" mechanism in a CDO work?",
+      "options": [
+        "Cash flows and losses both run from the top downward in the same single direction in every CDO structure, with no difference at all in how the two are allocated",
+        "Cash flows run top down (Senior paid first) while losses are absorbed bottom up (Equity hit first) - two opposite directions within the same structure",
+        "Each tranche receives an equal share of the cash flow and an equal share of the losses, split pro rata by the face value held",
+        "The Equity tranche always receives its cash flow ahead of every other tranche in the structure, under all circumstances"
+      ],
+      "explanation": "This is what the name \"waterfall\" captures: picture cash as water falling from the top, filling the Senior basin first, then overflowing into Mezzanine, and only then reaching Equity. Losses run the other way - like water draining from the bottom, Equity empties first, then Mezzanine, and Senior is touched only once both layers beneath it have been wiped out entirely. Pro rata sharing would describe an untranched pass-through, not a CDO."
+    },
+    {
+      "question": "Why was the most senior tranche of many subprime structured products still given the highest rating before 2008?",
+      "options": [
+        "Because an insurer stepped in and guaranteed the whole tranche",
+        "Because the rating agencies had no access to the underlying loan data",
+        "Because the models assumed the loans would hardly ever default together",
+        "Because most loans in the pool were backed by high-value collateral"
+      ],
+      "explanation": "The whole conjuring trick rests on the low-correlation assumption: if defaults are scattered, the lower tranches absorb them all and the top layer is nearly safe. Monoline insurance covered only part of the market and the agencies did have loan-level data, so neither explains the ratings. When house prices fell across the country, the loans defaulted together and the cushion beneath evaporated in a matter of months."
+    }
+  ],
+  "keyTakeaways": [
+    "A CDO slices the cash flows of an asset pool into tranches: Senior is paid first and takes losses last, Equity is paid last and takes losses first",
+    "The higher yield on the lower tranche compensates for standing first in line for losses - the risk-return principle applied inside a tranched structure",
+    "A CDO-squared (built from the Mezzanine tranches of other CDOs) makes risk almost impossible to trace, even for the buyer",
+    "The AAA rating on senior tranches before 2008 rested on a mistaken low-correlation assumption - the same model error seen at LTCM and in subprime MBS"
+  ],
+  "practicePrompt": {
+    "question": "A 1,000bn asset pool is split into three tranches: Equity 50bn, Mezzanine 150bn, Senior 800bn. The pool loses 180bn. Who bears what?",
+    "options": [
+      "Equity loses its full 50, Mezzanine loses 130, Senior is untouched",
+      "All three tranches lose 18% of value pro rata to their holdings",
+      "Senior absorbs the 180 first because it is the largest tranche",
+      "Equity loses 50 and the remaining 130 splits evenly across the two above"
+    ],
+    "explanation": "The loss waterfall runs bottom up: Equity absorbs until its 50bn is gone, then Mezzanine carries the next 130bn and loses 87% of its value, while Senior is not touched at all. Tranching does not make risk disappear, it redistributes it - and the high yield on the Equity tranche is precisely the payment for standing at the front of the loss queue. Note the sensitivity: an 18% loss on the pool nearly wipes out a whole tranche. That is also why the rating on the Senior tranche depends entirely on the correlation assumption across the loans in the pool - high correlation means losses arrive in a clump and eat through the cushions far faster."
+  },
+  "summary": {
+    "keyIdea": "Tranching does not make risk disappear, it only redistributes it: the lower tranche takes the first losses and is paid more for exactly that.",
+    "commonMistake": "Believing the AAA rating on the senior tranche without asking what correlation assumption sits behind it. That is precisely what broke in 2008."
+  },
+  "application": {
+    "title": "The question to ask of any structured product",
+    "message": "Ask what percentage of pool losses this tranche starts absorbing at, and which correlation assumption produced that number."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Securitization is not a bad thing in itself - it lets a bank free up the capital tied to loans already made so it can lend again, and it lets investors pick exactly the level of risk they want. The problem lies in how tranching was abused to turn high risk into a AAA label."
+    },
+    {
+      "type": "heading",
+      "text": "Tranching"
+    },
+    {
+      "type": "conceptTable",
+      "title": "The three basic tranches of a CDO",
+      "subtitle": "The priority order for receiving cash flow is the reverse of the order for absorbing losses",
+      "concepts": [
+        { "def": "Receives cash flow first, absorbs losses last. Highest credit rating, lowest yield." },
+        { "def": "In the middle - paid after Senior, hit by losses after Equity. Medium risk and medium yield." },
+        { "def": "Paid last, hit by losses first. Highest yield, and often partly retained by the originator to create an incentive for careful underwriting." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why \"safe\" does not mean \"risk-free\"",
+      "text": "The Senior tranche is safer than Equity under normal conditions, but \"safer\" is not the same as \"risk-free\". When losses in the underlying pool exceed what the lower tranches can absorb - exactly what happened in 2008 as house prices fell across the entire country - even the Senior tranche loses value severely, however close to zero the original rating model put that possibility."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A high credit rating is only as good as the assumption behind it - and the correlation assumption is always the weakest point in any tranched structure.",
+        "The next lesson closes out Credit Risk: counterparty credit risk (CVA) and measuring credit risk at the level of the whole portfolio."
+      ]
+    }
+  ]
+}

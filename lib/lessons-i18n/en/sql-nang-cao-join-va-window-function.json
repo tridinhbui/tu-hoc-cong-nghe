@@ -1,0 +1,181 @@
+{
+  "slug": "sql-nang-cao-join-va-window-function",
+  "title": "Data, Lesson 6: Advanced SQL - joining tables and computing over windows",
+  "subtitle": "The four kinds of JOIN, the row-duplication trap, and the family of functions that solves ranking and running totals",
+  "duration": "12 min",
+  "whyItMatters": "Basic SQL is enough to pull data out. Advanced SQL is what separates the person who exports to Excel and carries on there from the person who gets the final answer straight out of the query. In data analyst interviews, window functions are the single most frequently asked topic.",
+  "openingQuestion": "After joining two tables, total revenue is higher than in the original table. What does that mean?",
+  "openingOptions": [
+    "The JOIN picked up revenue that was missing from the original table",
+    "The join key is not unique on the right-hand table",
+    "INNER JOIN was used by mistake instead of LEFT JOIN",
+    "A GROUP BY clause is needed to collapse the rows again"
+  ],
+  "explanation": "A JOIN does not create new data. When a total goes up, the cause is almost always a key value appearing more than once on the right-hand table, so each left-hand row gets multiplied accordingly. The classic case: joining an orders table to a customers table where one customer has three address rows - and every order of that customer becomes three rows. This is the most dangerous silent bug in SQL, because the result is still a table that looks entirely normal.",
+  "diagram": [
+    {
+      "label": "INNER: only rows that match on both sides"
+    },
+    {
+      "label": "LEFT: keep everything on the left"
+    },
+    {
+      "label": "Check the row count before and after"
+    },
+    {
+      "label": "Window: compute per group, keep every row"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Ranking customers by revenue within each branch",
+    "description": "A very common problem: for each branch, find the three customers with the highest revenue. Without window functions you either write a fairly tangled set of nested subqueries, or export everything to Excel and filter branch by branch. With a window function the ranking is computed separately inside each branch while every detail row survives, so filtering on rank less than or equal to three finishes the job in a single query."
+  },
+  "quiz": [
+    {
+      "question": "How does LEFT JOIN differ from INNER JOIN?",
+      "options": [
+        "LEFT JOIN keeps every row of the left table, even with no match on the right",
+        "LEFT JOIN performs faster because the database scans only one table instead of two",
+        "LEFT JOIN requires the key column on the left table to be that table's primary key",
+        "LEFT JOIN automatically drops rows with a null in the right table's key column"
+      ],
+      "explanation": "This difference decides the answer you get. If you want to know which customers have never bought anything, only a LEFT JOIN can tell you - an INNER JOIN removed them from the result before you started. Neither form is faster by construction, neither needs a primary key on the left, and nulls in the right-hand key are exactly what LEFT JOIN preserves rather than discards."
+    },
+    {
+      "question": "What is the core difference between GROUP BY and a window function?",
+      "options": [
+        "Window functions work only on integer or floating-point columns",
+        "GROUP BY collapses many rows into one; a window function keeps every row",
+        "GROUP BY always gives a more accurate result than a window function on nulls",
+        "A window function must always appear alongside a JOIN clause in the same query"
+      ],
+      "explanation": "This is the reason window functions exist. When you need to see each individual transaction and the total of the group it belongs to at the same time, GROUP BY cannot help because it has already collapsed the detail away. Window functions apply to dates and text as happily as to numbers, they handle nulls no worse than GROUP BY does, and they need no JOIN to work."
+    },
+    {
+      "question": "Which problem is a window function best suited to?",
+      "options": [
+        "Delete every row that duplicates another across all columns of a table",
+        "Count the total number of rows currently held in a large database table",
+        "Compute cumulative revenue by month while keeping each month's detail row",
+        "Rename the result columns into Vietnamese before exporting the report"
+      ],
+      "explanation": "Running totals, ranking within a group, and comparison with the previous row are the three classic families. What they share: a calculation over a group is needed while every detail row must survive. Deleting duplicates, counting rows and renaming columns are all things plain SQL already does without any window at all."
+    },
+    {
+      "question": "How do you quickly check whether a JOIN has duplicated rows?",
+      "options": [
+        "Count the result's columns and compare with both source tables' columns added up",
+        "Check whether the join key column has been indexed in the database or not",
+        "Run exactly the same query a second time and check the two results match",
+        "Compare the result's row count with the left table's row count before the join"
+      ],
+      "explanation": "With a LEFT JOIN on a unique key, the row count must stay the same. More rows means the right-hand key is duplicated - confirm it by counting the distinct values of that key column. Column counts, indexes and re-running the query all stay identical whether the duplication happened or not, so none of them can detect it."
+    },
+    {
+      "question": "What is the fastest way to tell whether a table merge has multiplied rows?",
+      "options": [
+        "Compare row counts before and after, plus the total of a value column",
+        "Check whether the two tables contain the same number of rows before merging",
+        "Re-run the query with a different join type and compare the two results",
+        "Count how many distinct values there are in the left table's join key column"
+      ],
+      "explanation": "A merge does not create data, so total revenue after the merge must equal total revenue before it. A discrepancy means some key appears more than once on the right-hand table - and this bug is nasty precisely because the result still looks perfectly normal. The two tables having different row counts is entirely normal, and it is the right-hand key, not the left one, whose duplication does the damage."
+    }
+  ],
+  "keyTakeaways": [
+    "INNER keeps rows matching on both sides; LEFT keeps the whole left table - that difference changes the answer outright",
+    "A JOIN creates no data: a total going up means the right-hand key is duplicated",
+    "Always compare the row count before and after a JOIN",
+    "GROUP BY collapses rows, a window function keeps them - that is why it exists",
+    "Running totals, ranking within a group, comparison with the previous row: the three classic window function problems"
+  ],
+  "practicePrompt": {
+    "question": "You need to know what percentage of its branch's total revenue each transaction represents, while still keeping the list of individual transactions. What do you use?",
+    "options": [
+      "GROUP BY branch, then join the result back onto the transaction table",
+      "A window function totalling by branch, then divide each row by that total",
+      "Export to Excel and use a pivot table",
+      "Run a separate query per branch and union the results"
+    ],
+    "explanation": "GROUP BY followed by a join back does produce the right answer, but it takes two steps and opens one more chance to join incorrectly. A window function does exactly this in one step: the total is computed over the branch partition yet attached to every row, so the division happens right there."
+  },
+  "summary": {
+    "keyIdea": "Window functions let you compute over a group without losing the detail of each row",
+    "commonMistake": "Finishing a JOIN without checking the row count, letting a duplication bug walk straight into the report",
+    "action": "Every time you JOIN, run one extra count of the rows before and after. The habit costs five seconds."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Write a query that answers: in each month, which customer produced the most revenue and what share of that month's revenue was it. This one needs a JOIN, a ranking window function and a window function totalling over a partition, all at once.",
+    "secondary": "If you can do this exercise, you have covered most of the SQL asked in data analysis interviews."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The basic SQL lesson back in the Excel stage stopped at pulling data out of one table. Real work almost always needs several tables, and often needs calculations that an ordinary grouping clause cannot express at all."
+    },
+    {
+      "type": "heading",
+      "text": "Four kinds of JOIN and the question each one answers"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Pick the JOIN by the question you are asking",
+      "subtitle": "Picking the wrong one is the quietest way to get a wrong answer",
+      "concepts": [
+        {
+          "def": "Keeps rows present in both tables. Use it when only the overlap matters - but remember it silently discards anything that does not match.",
+          "en": "Matching rows only"
+        },
+        {
+          "def": "Keeps the whole left table and adds information from the right where it exists. This is the workhorse of analysis.",
+          "en": "Keeps the whole left side"
+        },
+        {
+          "def": "Keeps every row from both sides. Useful when reconciling two sources to find where they disagree.",
+          "en": "Keeps both sides"
+        },
+        {
+          "def": "Pairs every row on one side with every row on the other. Rarely used on purpose - if the result balloons unexpectedly, you may have created one by accident.",
+          "en": "Every possible pair"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The row-duplication trap",
+      "text": "This is the most expensive SQL bug in practice because it raises no error. You join the orders table to the customers table to pick up customer names, but the customers table has several rows per customer code - one per address, say. The result: every order turns into several rows, and every total downstream is inflated. The defence: before joining, count the rows and the distinct key values on the right-hand table. Those two numbers must be equal."
+    },
+    {
+      "type": "heading",
+      "text": "Window functions: compute per group without losing rows"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "GROUP BY",
+        "text": "Collapses many rows into one result row per group. The detail of each transaction disappears. Right choice when all you need is the aggregate figure."
+      },
+      "right": {
+        "label": "Window function",
+        "text": "Computes a value over the group but attaches the result to each row, leaving the row count untouched. Right choice when you need the detail and the context of its group together."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Ranking within a group: who is top in each branch, each month, each product family",
+        "Running totals over time: revenue accumulated from the start of the year to each month",
+        "Comparison with the previous row: this month's growth against last month's, right inside the query",
+        "Share within a group: what percentage of its branch's total each transaction represents"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A well-written query replaces an entire routine of exporting to a spreadsheet and finishing by hand.",
+        "The next stage moves from tools to judgement: which metric to measure, and how not to fool yourself."
+      ]
+    }
+  ]
+}

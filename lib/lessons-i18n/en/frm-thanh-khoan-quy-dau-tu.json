@@ -1,0 +1,121 @@
+{
+  "slug": "frm-thanh-khoan-quy-dau-tu",
+  "title": "FRM Liquidity, Lesson 11: Liquidity risk in investment funds and the defences against it",
+  "subtitle": "Promising daily redemption while holding assets that take weeks to sell is a promise that only survives calm markets",
+  "duration": "9 min",
+  "whyItMatters": "An open-ended fund has no balance sheet in the way a bank does, yet it performs the same liquidity transformation - and supervisors increasingly treat its risk as a systemic matter rather than a private concern of the fund's own investors.",
+  "openingQuestion": "Where does the core liquidity risk of an open-ended fund sit?",
+  "openingOptions": [
+    "In promising daily redemption while the assets take time to sell",
+    "Open-ended funds are barred by current rules from holding any cash",
+    "Open-ended funds must pay investors a fixed rate whatever the returns",
+    "Open-ended funds are forbidden from using any form of borrowing"
+  ],
+  "explanation": "This is liquidity transformation, the same thing in substance as a bank funding long-term lending with short-term deposits. As long as redemption flows stay normal there is no problem; when many investors redeem at once, the fund is forced to sell illiquid assets at bad prices and whoever redeems later takes the loss.",
+  "diagram": [
+    { "label": "The fund commits to daily redemption" },
+    { "label": "The assets it holds need several days to sell at a fair price" },
+    { "label": "Heavy redemptions → sell the easy assets first → the rest is less liquid" },
+    { "label": "Which gives the remaining investors a reason to redeem early" }
+  ],
+  "realWorldExample": {
+    "company": "Corporate bond and property funds forced to suspend redemptions",
+    "description": "Several markets have seen funds invested in corporate bonds or property suspend redemptions when the wave of withdrawals outran their ability to sell assets. The common feature is a structure promising daily liquidity while the underlying assets need weeks or months to sell at a fair price - a promise that holds only as long as too many people do not ask it to be honoured at once."
+  },
+  "quiz": [
+    {
+      "question": "Why does selling the easiest assets first create unfairness between a fund's investors?",
+      "options": [
+        "Because the fund is required by rule to pay later redeemers a higher price",
+        "Because early redeemers are charged a higher fee than late ones",
+        "Early redeemers receive cash before liquidation costs are deducted",
+        "Because easily sold assets always yield less than hard-to-sell ones"
+      ],
+      "explanation": "Liquidation costs are spread across the whole fund while the benefit of redeeming early belongs to the person who redeemed. That creates a first-mover incentive - whoever spots the problem sooner gets out sooner, and that very incentive turns an ordinary wave of redemptions into a run. No rule pays later redeemers more, early redeemers usually pay less rather than more, and yield has nothing to do with the mechanism."
+    },
+    {
+      "question": "What problem is swing pricing designed to solve?",
+      "options": [
+        "Letting investors redeem in assets rather than receiving cash payment",
+        "Letting the fund change strategy when markets turn volatile",
+        "Helping the fund revalue all holdings at cost instead of at market",
+        "Passing the transaction costs caused by redemptions to the redeemer"
+      ],
+      "explanation": "By adjusting the net asset value against whichever side is creating the net flow, the mechanism internalises the transaction cost and removes most of the incentive to redeem early - which addresses the root of the problem rather than its symptoms. Redemption in kind is a separate tool with different mechanics, a strategy change is a portfolio decision, and valuing at cost would hide losses instead of allocating costs."
+    },
+    {
+      "question": "Why is investment fund liquidity risk increasingly seen as a systemic issue?",
+      "options": [
+        "Because the industry is large enough that a joint sell-off moves market prices",
+        "Because central banks fully guarantee the money investors place in funds",
+        "Because fund investors rank ahead of bank depositors in a resolution",
+        "Because investment funds are not subject to supervision of any kind"
+      ],
+      "explanation": "When funds hold a large share of an asset market, their selling together to meet redemptions is no longer an internal matter - it creates the price fall itself, and that spreads to every other institution holding similar assets. There is no central bank guarantee behind a fund, the ranking claim confuses two entirely separate legal regimes, and funds are in fact supervised, just under a different framework from banks."
+    },
+    {
+      "question": "Why does an open-ended corporate bond fund show liquidity transformation most clearly?",
+      "options": [
+        "Because corporate bonds carry more credit risk than other asset classes do",
+        "The fund allows daily redemption while its assets take days to sell",
+        "Because rules force bond funds to hold less cash than equity funds hold",
+        "Because corporate bond prices swing harder than equity prices in a crisis"
+      ],
+      "explanation": "This is exactly a bank's mechanism: promising daily liquidity on a portfolio that is not daily-liquid. The difference is that the fund has no deposit insurance and no lender of last resort standing behind it. Credit risk and price volatility are real features of corporate bonds but neither creates a maturity mismatch, and there is no rule setting a lower cash floor for bond funds than for equity funds."
+    },
+    {
+      "question": "How do redemption gates and swing pricing address two different problems?",
+      "options": [
+        "Gates are for crises; swing pricing is used in normal conditions",
+        "Gates apply to institutional investors; swing pricing applies to retail",
+        "Gates block outsized redemption flows; swing pricing makes redeemers bear their own cost",
+        "Gates are triggered by the supervisor, while swing pricing is decided by the fund's board"
+      ],
+      "explanation": "Swing pricing shifts the transaction cost onto the redeemer, which erases the advantage of getting out first. A gate is a blunter tool: it blocks the flow so the fund does not have to dump assets, but it is also the thing most likely to trigger panic at similar funds. Both are used in stress rather than split by market condition, neither is segmented by investor type, and both are fund-level decisions rather than supervisory ones."
+    }
+  ],
+  "practicePrompt": {
+    "question": "An open-ended corporate bond fund faces a wave of redemptions. The manager sells the government bonds first because they are the easiest to move. What does that mean for the remaining investors?",
+    "options": [
+      "The remaining portfolio is less liquid, so they should redeem sooner",
+      "The remaining portfolio yields more, so they end up rather better off",
+      "Nothing changes, since net asset value per unit is unchanged",
+      "Transaction costs are shared evenly, so everyone bears the same"
+    ],
+    "explanation": "Selling the easy part first is the cheapest choice at that moment and it shifts the cost onto whoever stays: the remaining portfolio is denser in the hard-to-sell holdings, so the next wave of redemptions has to sell into a thin market and absorb a larger price impact. Whoever redeems today gets a good price; whoever redeems next week gets a bad one. Once an investor sees that, the rational individual action is to redeem BEFORE everybody else - which is to say the structure itself manufactures a run incentive. Swing pricing exists to remove that incentive, by making redeemers bear the transaction costs they create."
+  },
+  "keyTakeaways": [
+    "Open-ended funds perform the same liquidity transformation as banks but have no balance sheet to absorb it",
+    "Selling the easiest assets first leaves a less liquid portfolio and creates an incentive to redeem early",
+    "Swing pricing puts the transaction cost back on the person who caused it",
+    "The fund industry is large enough that this risk has become systemic"
+  ],
+  "summary": {
+    "keyIdea": "The gap between the liquidity promised to investors and the real liquidity of the assets is the root of the risk, and every defensive mechanism aims to remove the incentive to redeem early",
+    "commonMistake": "Judging a fund's liquidity by its cash weighting while ignoring how long the rest of the portfolio would take to sell",
+    "action": "Before investing in a fund, compare its redemption frequency with the time it actually takes to sell the kind of assets it holds"
+  },
+  "application": {
+    "title": "Checking a fund before you buy",
+    "message": "Read the prospectus and find two things: how often the fund allows redemption, and what kind of assets it invests in. If the assets take weeks to sell while the fund promises daily redemption, that gap is the risk you are carrying.",
+    "secondary": "Look too for the defensive tools available - a redemption fee, swing pricing, or the right to suspend."
+  },
+  "sections": [
+    { "type": "lead", "text": "An open-ended fund takes no deposits and has no capital ratio, but it does exactly one thing a bank does: it promises more liquidity than its assets genuinely have." },
+    { "type": "heading", "text": "The root: a liquidity mismatch" },
+    { "type": "paragraph", "text": "A corporate bond fund allows daily redemption while holding bonds that take days or weeks to sell at a fair price. In normal conditions inflows and outflows offset each other so nobody notices. When outflows run well ahead of inflows, the mismatch shows itself in full." },
+    { "type": "heading", "text": "Why the first-mover incentive appears" },
+    { "type": "paragraph", "text": "To meet redemptions quickly, a fund usually sells its most liquid holdings first. The remaining portfolio is therefore less liquid than before, while the transaction costs are spread across everyone who stayed. Any investor who works this out will redeem early - and that individually rational behaviour turns an ordinary wave of redemptions into a run." },
+    { "type": "list", "items": [
+      "A buffer of cash and highly liquid assets inside the portfolio",
+      "An anti-dilution redemption levy, passing the cost to the redeemer",
+      "Swing pricing: adjusting net asset value against whichever side creates the net flow",
+      "Caps on the redemption share per period, and the right to suspend in exceptional conditions"
+    ]},
+    { "type": "callout", "label": "From an individual risk to a systemic one", "text": "When the fund management industry holds a large share of an asset market, many funds selling at once to meet redemptions creates the price fall itself. This is why supervisors in several countries have brought fund liquidity risk inside the macroprudential perimeter." },
+    { "type": "closing", "lines": [
+      "Every promise about liquidity holds right up until too many people ask for it at once.",
+      "This is the final lesson of the extended Liquidity and Treasury Risk section."
+    ]}
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "slug": "phan-tich-cvp-va-diem-hoa-von",
+  "title": "Cost-Volume-Profit (CVP) analysis & the breakeven point",
+  "subtitle": "The core management accounting tool for answering: how much do we have to sell to make money, and what does a change in price do to profit",
+  "duration": "7 min",
+  "openingQuestion": "A manufacturer has fixed costs of 500m a month, sells each unit at 200,000d, and incurs variable costs of 120,000d per unit. What is the monthly breakeven point in units?",
+  "openingOptions": [
+    "500m / 200,000d = 2,500 units",
+    "500m / (200,000 - 120,000) = 6,250 units",
+    "500m / 120,000d = 4,167 units",
+    "Breakeven cannot be found without expected total revenue"
+  ],
+  "explanation": "Breakeven point = Fixed costs / Contribution margin per unit, where Contribution margin = Selling price − Variable cost per unit. This matters because each unit sold does not contribute its ENTIRE selling price towards covering fixed costs - the direct variable cost has to come off first, and only what remains (the contribution margin) genuinely 'contributes' to covering fixed costs and then to generating profit.",
+  "realWorldExample": {
+    "company": "Deciding whether to expand plant capacity",
+    "description": "When the management of a manufacturer weighs an investment in expanding the plant (raising fixed costs through depreciation on new machinery and additional rent), CVP analysis answers the crucial question: how far does the new breakeven point rise, and is the company genuinely confident it can sell above that new breakeven so the investment pays off? It is an analytical tool used widely in expansion decisions, new product launches, and assessing the impact of a change in selling price."
+  },
+  "quiz": [
+    {
+      "question": "How does 'operating leverage' - the ratio of fixed to variable costs in a company's cost structure - affect how much profit swings when revenue changes?",
+      "options": [
+        "Heavy fixed costs keep profit steady right through the cycle",
+        "The heavier the fixed costs, the more violently profit swings",
+        "Operating leverage only bites while revenue is truly falling",
+        "The cost structure has no bearing on how profit fluctuates"
+      ],
+      "explanation": "This is the key link between cost structure and business risk: a company with high operating leverage has its profit 'amplified' in both directions - rising sharply when revenue grows past breakeven, but falling just as sharply when revenue drops, because the fixed costs still have to be paid. It is why airlines, with their very heavy fixed costs in aircraft, crew and airport charges, show far more cyclical profit swings than service companies whose costs are mostly variable."
+    },
+    {
+      "question": "How does the 'contribution margin ratio' differ from 'gross margin' in the way costs are classified?",
+      "options": [
+        "Contribution margin is the measure used for reporting outside the company",
+        "Contribution margin is measured pre-tax while gross margin is measured post-tax",
+        "Contribution margin splits costs by behaviour, gross margin splits them by function",
+        "The two measures are identical and differ only in name between reporting standards"
+      ],
+      "explanation": "This is the key distinction between financial accounting (used for external reporting, classifying costs by FUNCTION) and management accounting (used for internal decisions, classifying costs by BEHAVIOUR): the contribution margin format separates fixed from variable costs explicitly, which is what makes CVP analysis and decision-making possible - breakeven, the impact of a volume change - in a way a conventional gross margin presentation cannot show directly."
+    },
+    {
+      "question": "When a business is weighing a 10% price cut to lift sales, which crucial question does CVP analysis answer before the decision is made?",
+      "options": [
+        "Whether customers will even notice that the selling price has changed",
+        "Whether competitors will follow with discounts of their own once we move first",
+        "Whether fixed costs can be cut by an amount matching the price reduction",
+        "How many more units must be sold to replace the margin the cut gives away"
+      ],
+      "explanation": "This is an extremely important practical application of CVP in pricing decisions: because contribution margin per unit is sensitive to a change in price (variable cost stays put), an apparently small price cut can reduce contribution margin by a MUCH LARGER proportion - especially where the starting margin is thin - demanding a very large volume increase just to break even on the cut. The analysis routinely exposes discount strategies that look attractive on paper but are not realistic once the arithmetic is done."
+    },
+    {
+      "question": "Price 100,000d, variable cost 60,000d, fixed costs 400m. What is the breakeven volume?",
+      "options": [
+        "10,000 units (= 400m ÷ 40,000 contribution margin)",
+        "4,000 units (= 400m ÷ 100,000, dividing by the price)",
+        "6,667 units (= 400m ÷ 60,000, dividing by variable cost)",
+        "40,000 units (= 400m ÷ 10,000, wrong contribution margin)"
+      ],
+      "explanation": "Contribution margin = 100,000 − 60,000 = 40,000d per unit. Breakeven = 400,000,000 / 40,000 = 10,000 units. Dividing by the selling price instead of by the contribution margin is the single most common error here, and it understates the requirement badly: it says 4,000 units when the true figure is two and a half times that. Dividing by variable cost has no economic meaning at all."
+    },
+    {
+      "question": "Same example, but now the price is cut by 10%. By what percentage must volume rise to break even?",
+      "options": [
+        "10%, exactly matching the percentage taken off the price",
+        "33% (contribution margin falls from 40,000 to 30,000)",
+        "25%, because revenue per unit drops by a quarter",
+        "No extra volume, since fixed costs are unchanged"
+      ],
+      "explanation": "A 10% cut takes away 10,000d, but it takes it out of the 40,000 contribution margin rather than out of the 100,000 price - so a quarter of the margin is gone. Breakeven jumps from 10,000 to 13,333 units, a rise of 33%. This is why discount strategies so often collapse once the arithmetic is done properly."
+    }
+  ],
+  "keyTakeaways": [
+    "Breakeven = Fixed costs / Contribution margin per unit (Selling price − Variable cost per unit) - the foundational CVP formula",
+    "High operating leverage (heavy fixed costs) amplifies profit swings in both directions as revenue moves - risk and opportunity travel together",
+    "Contribution margin classifies costs by behaviour (fixed/variable) for management purposes, unlike gross margin which classifies by function for external reporting",
+    "CVP is essential for testing whether a price change is workable - the volume increase required to offset a discount is usually far larger than intuition suggests"
+  ],
+  "practicePrompt": {
+    "question": "Your business sells a product at 500,000d with variable costs of 350,000d per unit and fixed costs of 300m a month, and currently sells 2,500 units a month at a profit. Management proposes a 10% price cut (to 450,000d) to lift volume. What volume is needed for profit to be UNCHANGED?",
+    "options": [
+      "A 10% volume increase (2,750 units) is enough to cover it",
+      "3,750 units, a rise of 50% rather than of 10%",
+      "No calculation needed - a discount always pays if volume rises",
+      "Volume actually needs to fall, not to rise at all"
+    ],
+    "explanation": "This is the classic illustration of why the simple intuition ('cut the price 10%, just sell 10% more') is so badly wrong: because variable cost does not move when the price falls, contribution margin per unit is eroded by a far larger proportion than the discount itself - here it drops 33% (from 150,000 to 100,000), requiring volume to rise by 50% simply to hold profit where it is, a very ambitious growth target that needs a realistic assessment before the decision is made."
+  },
+  "summary": {
+    "keyIdea": "CVP analysis, through contribution margin and the breakeven point, is the foundation for major business decisions: pricing, capacity expansion, and assessing the risk that comes with a fixed/variable cost structure (operating leverage).",
+    "commonMistake": "Judging the impact of a price change by simple intuition (an x% price move needs an x% volume move), ignoring the non-linear effect on contribution margin",
+    "action": "Before proposing any price change or any investment that raises fixed costs, always compute the new breakeven point and assess how realistic the required volume actually is"
+  },
+  "application": {
+    "title": "Applying this in a management accounting role",
+    "message": "Pick a product or service of your own company that you know well, try classifying the related costs into fixed and variable, then compute the contribution margin and the breakeven point - this is the foundational exercise behind every real CVP analysis.",
+    "secondary": "A solid grasp of operating leverage also sharpens your reading of listed companies' financial statements, particularly when forecasting how much profit will swing across different points of the economic cycle."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "'How many units do we have to sell to make money?' - one of the most basic questions in business, and CVP analysis provides a precise, mathematically grounded answer."
+    },
+    { "type": "heading", "text": "Contribution margin - the foundation of CVP analysis" },
+    {
+      "type": "paragraph",
+      "text": "Contribution margin = Selling price − Variable cost per unit. It is the MONEY LEFT from each unit sold after the direct variable cost has been taken off, available first to cover fixed costs, with anything beyond that becoming profit. The formula breakeven = Fixed costs / Contribution margin per unit tells you exactly how many units must be sold to 'break even' (no profit, no loss)."
+    },
+    { "type": "heading", "text": "Operating leverage - a double-edged sword" },
+    {
+      "type": "paragraph",
+      "text": "A business with a high proportion of fixed costs (high operating leverage) has its profit 'amplified' in both directions: above breakeven, most of each additional dong of revenue converts into profit (because fixed costs do not rise with it); but when revenue falls, profit drops faster than the percentage fall in revenue, because the fixed costs still have to be carried. Understanding operating leverage is what lets you judge the business risk embedded in a company's cost structure."
+    },
+    { "type": "heading", "text": "Practical application: testing a pricing decision" },
+    {
+      "type": "paragraph",
+      "text": "One of the most valuable uses of CVP is testing whether a price change is workable: because contribution margin responds non-linearly to a change in price (variable cost being fixed per unit), a small discount can demand a far larger volume increase to hold profit steady - and that analysis is what keeps management from taking discount decisions that look attractive on paper but do not survive a careful calculation."
+    },
+    {
+      "type": "formula",
+      "title": "Breakeven point in units",
+      "label": "Break-even",
+      "numerator": "Fixed costs",
+      "denominator": "Contribution margin per unit",
+      "variables": [
+        { "symbol": "Contribution margin", "name": "Selling price less variable cost per unit" },
+        { "symbol": "Operating leverage", "name": "The weight of fixed costs - the higher it is, the more profit swings with sales" }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A double-edged sword",
+      "text": "High operating leverage amplifies in both directions. A fixed-cost-heavy business makes money very quickly once it clears breakeven, and loses money just as quickly once it falls below - the same structure, two very different outcomes."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "CVP analysis is among the most frequently used management accounting tools in real business - from everyday pricing decisions to major strategic investments.",
+        "Mastering it is what moves a management accountant from 'recording the numbers' into being a genuine strategic partner supporting business decisions."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Separate fixed costs from variable costs" },
+    { "label": "Compute the contribution margin per unit" },
+    { "label": "Fixed costs divided by contribution margin → breakeven point" },
+    { "label": "Operating leverage amplifies profit in both directions" }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "slug": "thien-kien-hanh-vi-trong-phan-tich-equity",
+  "title": "Behavioural bias in equity research: when the experts are wrong too",
+  "subtitle": "Overconfidence, herding and analyst optimism bias - why professional analysts' forecasts are still systematically skewed",
+  "duration": "8 min",
+  "openingQuestion": "What does long-run academic research on the EPS forecasts of professional Wall Street equity analysts show to be systematic?",
+  "openingOptions": [
+    "Analysts' forecasts are almost perfectly accurate thanks to their high level of professional training",
+    "Forecasts are systematically skewed optimistic, most of all in long-horizon estimates",
+    "Forecasts are always more pessimistic than the outcome because analysts are excessively cautious",
+    "There is no meaningful difference between the forecasts and the actual results"
+  ],
+  "explanation": "This is one of the most thoroughly studied findings in applied behavioural finance: sell-side analysts' long-horizon EPS forecasts skew optimistic SYSTEMATICALLY rather than randomly. The cause is not purely psychological bias (overconfidence, wishful thinking) but also the INCENTIVE STRUCTURE: keeping good relations with company management for access to information, and generating 'buy' recommendations that drive trading through an affiliated brokerage arm.",
+  "diagram": [
+    {
+      "label": "Optimism skew in sell-side forecasts"
+    },
+    {
+      "label": "Career pressure → herding behaviour"
+    },
+    {
+      "label": "Forecasts converge on the consensus, few dissenting views"
+    },
+    {
+      "label": "Creating exploitable market anomalies"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The overwhelming share of 'Buy' ratings on Wall Street",
+    "description": "Study after study across decades has found that 'Buy' recommendations from sell-side analysts vastly outnumber 'Sell' recommendations - even though, statistically, a balanced market ought to produce roughly equal numbers of each. The imbalance reflects both psychological bias (a reluctance to displease the management of the company being covered) and commercial incentive (a Buy is easier to turn into trading volume than a Sell, especially with large institutional clients)."
+  },
+  "quiz": [
+    {
+      "question": "How does herding show up in equity analysts' forecasts, and why does it happen even though each analyst has an incentive to stand out with a distinctive number?",
+      "options": [
+        "Analysts always forecast above consensus to attract notice",
+        "Analysts only forecast after the company has issued guidance",
+        "Forecasts tend to converge close to the market consensus",
+        "Forecasts spread widely because each side uses its own model"
+      ],
+      "explanation": "This is a subtle case of herding with a PROFESSIONAL INCENTIVE behind it rather than pure psychology: career risk, or reputational risk, makes analysts prefer being wrong WITH the crowd (safe - 'everyone got that wrong') to being wrong DIFFERENTLY from the crowd (risky - 'only I got it wrong'), even though in theory an accurate independent forecast is what creates real value for clients. It is why consensus forecasts cluster more tightly than any reasonable dispersion would suggest."
+    },
+    {
+      "question": "Post-Earnings Announcement Drift (PEAD) is a market anomaly tied directly to which behavioural bias in investors and analysts?",
+      "options": [
+        "Prices only react once the audit report has been published",
+        "Prices reflect it fully and instantly in the session itself",
+        "The market overreacts and then reverses the move later on",
+        "The market underreacts, so the price keeps drifting afterwards"
+      ],
+      "explanation": "PEAD is among the most heavily researched anomalies and challenges the Efficient Market Hypothesis head-on. Conservatism bias - updating beliefs too slowly on new information, the opposite of representativeness bias, which overreacts - explains part of why the market underreacts to earnings news at first, after which the price keeps adjusting over the following weeks, creating room for short-horizon momentum strategies built on earnings surprise."
+    },
+    {
+      "question": "Why do investment banks and brokerages set up a 'Chinese Wall' between Research and Investment Banking, and how does that relate to behavioural bias in equity analysis?",
+      "options": [
+        "To reduce conflicts of interest between research and investment banking",
+        "To stop staff in different divisions exchanging personal information",
+        "To meet customer data confidentiality requirements under current law",
+        "To separate the IT systems used by the different branch offices"
+      ],
+      "explanation": "The Chinese Wall is a structural safeguard designed specifically against the kind of behavioural bias that arises from incentive - motivated reasoning - where the firm's financial interest in IB fees can unconsciously distort what is meant to be an 'objective' judgement by a research analyst. It is a concrete example of the industry building rules and organisational structures to counter behavioural finance rather than merely acknowledging it in theory."
+    },
+    {
+      "question": "Why do sell-side recommendations skew so heavily toward 'buy'?",
+      "options": [
+        "Because most stocks on the market really are trading below their true value",
+        "Because company relationships and the IB arm press on the recommendation",
+        "Because regulators restrict the public publication of sell recommendations",
+        "Because analysts lack the data they would need to issue a sell call"
+      ],
+      "explanation": "A sell recommendation costs the analyst access to management and damages the relationship with a potential investment banking client. That skew comes from the incentive structure, so telling analysts to 'be more objective' does not fix it - it has to be fixed through information walls and how people are paid."
+    },
+    {
+      "question": "Post-Earnings Announcement Drift (PEAD) contradicts which form of market efficiency?",
+      "options": [
+        "The strong form, since it shows inside information being traded on",
+        "The weak form, since it shows past prices predicting future prices",
+        "The semi-strong form, since prices do not absorb public news at once",
+        "It contradicts none of them, because PEAD is a random statistical artefact"
+      ],
+      "explanation": "Earnings are public information, yet the price keeps drifting in the direction of the surprise for weeks afterwards - meaning the market did not react fully at once. That is exactly what the semi-strong form rules out, and it is one of the most persistent anomalies ever documented."
+    }
+  ],
+  "practicePrompt": {
+    "question": "You head Research at a brokerage and notice that 90% of the team's recommendations last quarter were 'Buy' and only 2% were 'Sell'. Given what you know about behavioural bias in equity analysis, what is the most appropriate action?",
+    "options": [
+      "Do nothing - a high Buy share proves the market is growing nicely",
+      "Check whether this is a genuine bull market or herding and IB conflict",
+      "Immediately flip every 'Buy' to 'Sell' to balance the ratio mechanically",
+      "Fire the whole analyst team, since they are plainly biased"
+    ],
+    "explanation": "This is behavioural risk management applied at the organisational level: an unbalanced Buy/Sell ratio does not AUTOMATICALLY prove a problem (it may genuinely reflect market conditions), but nor should it be left uninvestigated - the head of research has to separate a genuine signal from a systematic bias, and consider whether the firm's own incentive structure is quietly amplifying the optimism."
+  },
+  "keyTakeaways": [
+    "Sell-side analysts' long-horizon EPS forecasts skew systematically optimistic - psychological bias and professional or commercial incentive combined",
+    "Herding in forecasts happens because of career risk: being wrong with the crowd is safer than being wrong apart from it, even though an accurate independent forecast is what creates real value",
+    "PEAD (Post-Earnings Announcement Drift) reflects conservatism bias - the market updates its beliefs too slowly after a surprise in earnings news",
+    "The Chinese Wall is a structural mechanism against bias rooted in conflict of interest and institutional incentive, not merely in individual psychology"
+  ],
+  "summary": {
+    "keyIdea": "Even professional equity analysts display systematic behavioural bias (optimism bias, herding) in their forecasts, partly from individual psychology and partly from the incentive structure and conflicts of interest inside financial institutions.",
+    "commonMistake": "Assuming expertise and experience automatically remove behavioural bias - in reality many biases persist systematically even at expert level",
+    "action": "When you read a research report or a consensus estimate, always weigh the incentive structure behind it (IB relationships, career risk) alongside the analysis itself"
+  },
+  "application": {
+    "title": "Applying it to real analytical work",
+    "message": "When you read a consensus estimate for a stock, check the dispersion between the individual forecasts - unusually low dispersion can be a sign of herding rather than a well-founded agreement.",
+    "secondary": "The next lesson extends this to behavioural bias in corporate finance decisions - from M&A to capital budgeting."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "One of the more surprising findings of applied behavioural finance: even the most rigorously trained experts, with the best data and the best models, still display behavioural bias that can be measured and predicted."
+    },
+    {
+      "type": "heading",
+      "text": "Optimism bias in sell-side forecasts"
+    },
+    {
+      "type": "paragraph",
+      "text": "Long-run academic studies tracking tens of thousands of forecasts across decades confirm it: sell-side analysts' long-horizon EPS forecasts skew systematically optimistic, most visibly in long-term growth rate estimates. The cause combines purely psychological factors (wishful thinking, anchoring on management guidance) with commercial incentive (keeping the relationship that grants access to information, and generating trading activity)."
+    },
+    {
+      "type": "heading",
+      "text": "Herding and career risk"
+    },
+    {
+      "type": "paragraph",
+      "text": "Herding in analyst forecasts is not simply 'copying' in the classic psychological sense; it has a clear economic foundation. Career risk creates a rational incentive to hide inside the crowd. An analyst who is WRONG in line with consensus attracts far less criticism than one who is WRONG apart from it, even though the independent forecast - riskier though it is - is the one that actually produces informational value, or alpha, for the investor."
+    },
+    {
+      "type": "heading",
+      "text": "Market anomalies linked to behavioural bias"
+    },
+    {
+      "type": "paragraph",
+      "text": "Post-Earnings Announcement Drift (PEAD) is the classic example of an anomaly with a clearly behavioural origin: the share price keeps adjusting in the direction of the earnings surprise for weeks or months after the announcement rather than adjusting instantly as the Efficient Market Hypothesis predicts - reflecting conservatism bias, the too-slow updating of beliefs, in analysts and investors alike."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three biases that live inside the analytical job itself",
+      "subtitle": "They come not from a lack of expertise but from the incentive structure of the profession",
+      "concepts": [
+        {
+          "def": "Sell-side forecasts skew positive systematically, because a sell recommendation damages the relationship with the company being covered."
+        },
+        {
+          "def": "Being wrong with the crowd is safe; being wrong alone costs you the job. That is why forecasts cluster around the consensus instead of spreading out."
+        },
+        {
+          "def": "Momentum, the post-earnings drift - gaps that persist precisely because they originate in behaviour rather than in a momentary mispricing."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The trap",
+      "text": "A forecast sitting close to consensus is no evidence that it is right - it may only be avoiding career risk. The report most worth reading is the one that departs from consensus and states exactly which assumption it departs on."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Recognising behavioural bias at expert level is not about diminishing the value of professional analysis; it is about building better review and cross-checking processes.",
+        "Leading financial institutions now build 'behavioural checks' - forecast dispersion analysis, tracking the Buy/Sell ratio over time - into their research quality management."
+      ]
+    }
+  ]
+}

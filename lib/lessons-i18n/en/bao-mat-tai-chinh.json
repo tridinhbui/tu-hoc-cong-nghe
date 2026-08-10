@@ -12,9 +12,17 @@
   ],
   "explanation": "Deepfake is AI technology that can generate fake images and voices identical to a real person, increasingly exploited by scammers to impersonate company executives, relatives, and even police/bank staff to demand an urgent money transfer from the victim. The common trait of this kind of scam is creating a sense of URGENCY and TIME PRESSURE so the victim doesn't have time to think or verify through another channel. The safety principle: always verify through an independent communication channel (call the person's known number directly, message them through a different app) before transferring any large amount, no matter how familiar the requester seems.",
   "diagram": [
-    { "label": "Deepfake fakes voice and image", "arrow": true },
-    { "label": "Impersonates an executive, relative, or bank", "arrow": true },
-    { "label": "Tricks you into transferring money or leaking information" }
+    {
+      "label": "Deepfake fakes voice and image",
+      "arrow": true
+    },
+    {
+      "label": "Impersonates an executive, relative, or bank",
+      "arrow": true
+    },
+    {
+      "label": "Tricks you into transferring money or leaking information"
+    }
   ],
   "realWorldExample": {
     "company": "Warnings from the State Bank of Vietnam and the Ministry of Public Security",
@@ -29,7 +37,6 @@
         "They always present a notarized contract to build trust",
         "They create a sense of urgency, leaving no time to verify"
       ],
-      "correct": 3,
       "explanation": "Scammers typically manufacture a fake emergency (an account frozen, a relative in an accident, an investment opportunity about to expire) so the victim acts hastily, skipping careful verification."
     },
     {
@@ -40,7 +47,6 @@
         "Because an OTP is single-use, so reading it out is harmless anyway",
         "Because reading out the OTP will freeze the account for 24 hours"
       ],
-      "correct": 0,
       "explanation": "The OTP code is the final security layer confirming that the actual account holder is making the transaction. A real bank employee doesn't need it and never asks for it - anyone who asks is a clear sign of a scam."
     },
     {
@@ -51,18 +57,16 @@
         "Accept it if the offering party has a valid business license",
         "Invest a small amount first to test whether the promise is real"
       ],
-      "correct": 1,
       "explanation": "No legitimate investment channel (not even the best-performing growth stock) can guarantee a high, stable, risk-free return over a long period - this is a classic sign of a Ponzi scheme, paying earlier investors with later investors' money, and it collapses once new money stops coming in."
     },
     {
       "question": "You get a video call from a relative, with the exact face and voice, asking for an urgent transfer of 50 million. What's the safest way to handle it?",
       "options": [
         "Ask a few private questions right in that same call and decide whether to transfer",
-        "Transfer half the amount first to test it, then verify the rest afterward",
+        "Transfer half the amount first to test it, then verify before sending the rest",
         "Call back using a number saved beforehand, or ask a third party to verify",
         "Ask the caller to record another video confirming it before transferring the money"
       ],
-      "correct": 2,
       "explanation": "Deepfake can render both face and voice in real time, so any verification done inside that same call could also be faked. The reliable method is switching to a channel the impersonator doesn't control: calling back a number you already saved, or asking a third party."
     },
     {
@@ -73,7 +77,6 @@
         "Because every money transfer requires a confirmation code sent to your inbox",
         "Because email is usually the password-recovery point for every other financial account"
       ],
-      "correct": 3,
       "explanation": "Taking over an email is taking over a master key: the attacker uses 'forgot password' to take over other accounts one by one. Protecting this root layer is usually worth more than setting a complex password on each separate service."
     }
   ],
@@ -91,7 +94,6 @@
       "Call back the exact number that sent the message to ask for more details before giving them the OTP",
       "Ignore this message entirely, with no further verification needed, since your bank account is always absolutely safe"
     ],
-    "correct": 0,
     "explanation": "The general rule: don't act under time pressure, always verify through an independent channel (an official hotline you already know) instead of trusting a link or phone number in a suspicious message."
   },
   "summary": {
@@ -104,7 +106,6 @@
     "message": "Check whether anyone has recently messaged or called urging you to transfer money urgently - if so, try contacting that person again through a different channel to verify.",
     "secondary": "A 2-minute verification call can save you a large sum of money."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

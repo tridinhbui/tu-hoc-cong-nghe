@@ -1,0 +1,147 @@
+{
+  "slug": "quy-trinh-hoach-dinh-tai-chinh-6-buoc",
+  "title": "The six-step financial planning process: the standard framework of every financial advisor",
+  "subtitle": "From gathering information to monitoring the plan - the systematic process behind every piece of professional financial advice",
+  "duration": "8 min",
+  "openingQuestion": "Under the international standard financial planning process (as applied by bodies such as the CFP Board), what is the FIRST step before a financial advisor makes any product recommendation to a client?",
+  "openingOptions": [
+    "Introduce the firm's available investment and insurance products straight away",
+    "Establish the advisory relationship, then gather comprehensive data before proposing any solution",
+    "Have the client sign a service agreement before discussing anything at all",
+    "Assess the client's means immediately to see whether they can afford the product"
+  ],
+  "explanation": "The international standard financial planning process (standardised by the CFP Board and comparable professional bodies) always begins with ESTABLISHING THE RELATIONSHIP and GATHERING comprehensive DATA - not with selling a product. Jumping straight to a product recommendation before fully understanding the client's financial context, goals and risk appetite runs directly against the role of an 'advisor' - and this is exactly the line that separates professional financial planning from ordinary financial product selling.",
+  "realWorldExample": {
+    "company": "The CFP (Certified Financial Planner) professional standard",
+    "description": "The CFP certification - one of the most respected credentials in personal financial advice worldwide - requires candidates to master not only financial product knowledge but the ENTIRE systematic financial planning process, including non-financial aspects such as decision psychology and client communication. The CFP Board (the certifying body in the US) builds this six- to seven-step process into its compulsory training and examinations, reflecting how much more a systematic process matters than simply 'knowing a lot of products'."
+  },
+  "quiz": [
+    {
+      "question": "After the 'gather data' step, the next step in the financial planning process is 'analyse and assess the financial situation'. What specific analysis does this step cover?",
+      "options": [
+        "The individual's credit history and their credit bureau score",
+        "Cash flow, net worth, and the level of risk protection in place",
+        "The list of products best suited to that particular client",
+        "The detailed written plan for each of the financial goals"
+      ],
+      "explanation": "The analysis step is where the advisor genuinely adds professional value: not merely listing figures, but assessing financial health COMPREHENSIVELY - from cash flow, net worth and the level of risk protection, through to the gap between the current position and the stated goals. It is the foundation for the specific recommendations that come next, and it is why a quality financial plan usually runs to many pages of analysis rather than a list of proposed products. A credit score is a lending input, a product list belongs to the recommendation step, and the written plan is the output of that step, not of this one."
+    },
+    {
+      "question": "Why is the final step of the process - 'monitor and update the plan' - no less important than the initial analysis and recommendation, even though many clients (and inexperienced advisors) tend to skip it?",
+      "options": [
+        "Because regulation requires an annual review of every client file",
+        "Because new financial products are launched onto the market constantly",
+        "Because the client's circumstances and goals keep changing",
+        "Because the advice fee has to be recalculated on the new asset value"
+      ],
+      "explanation": "This is the difference between 'writing a financial plan once' and an ongoing financial planning relationship - the real value of a professional advisor lies not only in the initial plan but in walking alongside the client and adjusting it through life stages and market swings, keeping the plan aligned with a reality that keeps moving. A review triggered by regulation, a new product launch or a fee recalculation may all happen too, but each of those is a reason to open the file, not a reason the plan itself needs to change."
+    },
+    {
+      "question": "What does 'fiduciary duty' mean in financial advice, and why is it importantly different from the lower 'suitability' standard?",
+      "options": [
+        "Keeping absolutely confidential all the information the client provides",
+        "Recommending only products that match the client's risk profile",
+        "Being liable to compensate the client whenever the investment loses money",
+        "Putting the client's interest ahead of the advisor's own interest"
+      ],
+      "explanation": "The gap between the fiduciary standard and the suitability standard is one of the most important arguments in modern financial advice: fiduciary duty (which applies to registered investment advisers and to CFP professionals in many markets) demands the highest level of responsibility - always placing the client's interest first - while the suitability standard (applied to many broker-dealers) only requires the product to be 'not obviously harmful' and 'suitable', which still lets the advisor favour the product that pays them better as long as it technically fits. Confidentiality is a separate obligation, and no standard makes an advisor the guarantor of investment outcomes."
+    },
+    {
+      "question": "Scenario: an advisor meets a client for the first time and immediately proposes a life insurance contract. Where does the process go wrong?",
+      "options": [
+        "The data gathering and analysis steps have been skipped",
+        "The monitoring and updating of the plan has been skipped",
+        "Several alternative options have not been presented",
+        "Nothing is wrong, as long as the product suits the client"
+      ],
+      "explanation": "Recommending a product is one of the last steps, not the first. Without knowing the client's cash flow, net worth, obligations and goals, there is no way to know what they need protecting against - and a product that is right for someone else can still be wrong for this person. Skipping the presentation of alternatives and skipping the monitoring step are both real failures too, but they come later in the sequence than the one that has already been broken here."
+    },
+    {
+      "question": "What does fiduciary duty require a financial advisor to do?",
+      "options": [
+        "Guarantee that the client's investment will not lose money",
+        "Put the client's interest ahead of the advisor's own",
+        "Recommend only products issued by the advisor's own firm",
+        "Report every transaction to the market regulator"
+      ],
+      "explanation": "This standard is well above the level of 'the product is suitable': where two options both fit and one pays a larger commission, fiduciary duty compels the advisor to choose the one that is better for the client. It exists because the client has no way of verifying the advice independently. Guaranteeing against loss is something no advisor can honestly offer, and restricting the recommendation to in-house products is close to the opposite of the duty."
+    }
+  ],
+  "keyTakeaways": [
+    "The standard financial planning process always begins with establishing the relationship and gathering comprehensive data - BEFORE proposing any specific product",
+    "The comprehensive analysis step (cash flow, net worth, risk protection, the gap to the goals) is where an advisor creates genuine professional value",
+    "Monitoring and updating the plan periodically matters as much as writing the initial plan, because the client's circumstances always change over time",
+    "Fiduciary duty (putting the client's interest first) is a higher professional standard than suitability (which only requires 'a fit') - understanding the difference matters to both advisor and client"
+  ],
+  "practicePrompt": {
+    "question": "A new client, aged 35, comes to you (the advisor) and says immediately: 'I want to invest 500m in an open-ended fund, please advise me which fund is best.' Applying the six-step financial planning process, what should your first professional response be, rather than answering the fund question directly?",
+    "options": [
+      "Name the 'best' fund straight away, on your own judgement, to satisfy the client",
+      "Fact-finding first: goals, horizon, emergency fund, high-interest debt, risk appetite",
+      "Recommend the fund whose management fee pays the advisor the largest commission",
+      "Decline to advise, since the client has already decided and the advisor adds nothing"
+    ],
+    "explanation": "This situation tests adherence to the standard process directly: even though the client appears to have 'decided' (they want an open-ended fund), a responsible advisor still needs to do the fact-finding before making a specific recommendation - it may emerge that the client has no emergency fund yet (which should be built before long-term investing), or that their real goal (buying a house in 2 years) does not suit a volatile long-horizon fund - and this is precisely the value of a genuine advisor over someone who simply executes the client's surface request."
+  },
+  "summary": {
+    "keyIdea": "The professional financial planning process is a systematic framework (establish the relationship → gather data → analyse → recommend → implement → monitor) that ensures every recommendation rests on a full understanding of the client, rather than on their surface request.",
+    "commonMistake": "Jumping straight to a specific product recommendation as soon as the client mentions a need, skipping the data gathering and comprehensive analysis steps",
+    "action": "With every new client, however specific their request already is, always take the time to complete a full fact-finding before making any recommendation"
+  },
+  "application": {
+    "title": "Applying it in financial advisory work",
+    "message": "Build a fill-in-the-blank fact-finding form that follows the six steps of the financial planning process, and use it in every first meeting with a new client so no important information is missed before a recommendation is made.",
+    "secondary": "The next lesson, on risk tolerance assessment, goes deeper into one of the most important steps of the fact-finding process - how to determine a client's genuine level of risk acceptance."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Good financial advice does not come from 'knowing a lot of products', but from following a systematic process that ensures every recommendation genuinely fits the particular circumstances of each client."
+    },
+    {
+      "type": "heading",
+      "text": "The six steps of the standard financial planning process"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Step 1 - Establish the relationship: define the scope of service, the expectations on both sides, and the professional commitment (such as fiduciary duty where it applies)",
+        "Step 2 - Gather data: comprehensive fact-finding on assets, debts, income, spending, goals, risk appetite and family circumstances",
+        "Step 3 - Analyse and assess: evaluate overall financial health and identify the gap between the current position and the goals",
+        "Step 4 - Build and present recommendations: propose specific solutions, explaining clearly the reasoning and the trade-offs of each option",
+        "Step 5 - Implement the plan: carry out the specific actions (opening accounts, buying products, adjusting the budget)",
+        "Step 6 - Monitor and update: review periodically (usually annually or on a major life change) and adjust the plan to the new reality"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Fiduciary duty versus the suitability standard"
+    },
+    {
+      "type": "paragraph",
+      "text": "An important aspect of modern financial advice is knowing which STANDARD OF RESPONSIBILITY the advisor is operating under: fiduciary duty demands that the client's interest always comes absolutely first, while the suitability standard only requires the product to be 'suitable' - a gap that can create latent conflicts of interest if it is not recognised and managed properly."
+    },
+    {
+      "type": "heading",
+      "text": "The value of continuous monitoring"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many advisors new to the profession put most of their energy into 'closing' the initial plan, but the real long-term value of an advisory relationship lies in WALKING ALONGSIDE the client through life stages - a financial plan is not a static document but a living process, needing adjustment when the client marries, has children, changes job, or when markets move sharply."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "These six steps are not rigid administrative procedure - they are a way of thinking that ensures every piece of financial advice comes from genuine understanding, not from assumption or sales pressure.",
+        "This is the foundation that separates a professional, trustworthy financial advisor from someone who simply sells financial products."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Establish the scope of the advisory relationship" },
+    { "label": "Gather the client's data and goals" },
+    { "label": "Analyse the current situation" },
+    { "label": "Build and present the recommendations" },
+    { "label": "Implement, then monitor and adjust periodically" }
+  ]
+}

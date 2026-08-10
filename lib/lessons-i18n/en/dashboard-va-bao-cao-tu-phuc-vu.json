@@ -1,0 +1,143 @@
+{
+  "slug": "dashboard-va-bao-cao-tu-phuc-vu",
+  "title": "Data, Lesson 5: Dashboards - and why most of them go unused",
+  "subtitle": "From static report to decision tool: design around the question, not around the data you happen to have",
+  "duration": "11 min",
+  "whyItMatters": "A dashboard is the most visible thing a data analyst produces, and also the thing most often abandoned. The reason is almost never technical. It is that the dashboard was built around the numbers that happened to be available rather than around the decision the viewer has to make.",
+  "openingQuestion": "Why do so many dashboards stop being opened after a few weeks?",
+  "openingOptions": [
+    "Because the data refreshes far too slowly to be useful",
+    "Because it answers a question that leads to no action",
+    "Because it lacks colour and visually appealing presentation",
+    "Because users were never trained how to use it"
+  ],
+  "explanation": "A simple test of whether a dashboard will survive: ask the viewer what they would do differently if this number went up or down. If the answer is nothing, it is just good to know, that dashboard will die no matter how well it is engineered. Conversely, a dashboard carrying only three numbers, each tied to a specific action, gets opened every day.",
+  "diagram": [
+    { "label": "Who is looking, and what do they have to decide?", "arrow": true },
+    { "label": "Which metric, if it moves, changes the decision?", "arrow": true },
+    { "label": "Layout: the most important thing at the top", "arrow": true },
+    { "label": "Filters so viewers can dig in themselves" }
+  ],
+  "realWorldExample": {
+    "company": "A finance team's receivables dashboard",
+    "description": "The first version had fourteen charts, showing every possible slice of the receivables data, and almost nobody opened it after the first month. The second version had only three blocks: the list of customers more than 90 days overdue, the trend in average days to collect, and the invoices falling due in the next two weeks. Those three blocks tie directly to the three things the collections team has to do every week, and it became the first thing opened every Monday morning."
+  },
+  "quiz": [
+    {
+      "question": "What question should be asked before starting to build a dashboard?",
+      "options": [
+        "Which data sources are already available and can be connected to the tool fastest",
+        "Which colour palette and layout best fit the company's brand identity guidelines",
+        "Which visualisation tool is most widely used by other companies in the industry",
+        "What decision the viewer has to make, and which number changes that decision"
+      ],
+      "explanation": "Starting from the data you already have almost always produces a dashboard full of charts that nobody uses, because availability is not a reason for something to be on screen. Brand colours and tool choice are downstream implementation details; they change how it looks, not whether it earns a second visit. Starting from the decision tells you exactly which metrics are needed and, just as usefully, which ones are not."
+    },
+    {
+      "question": "Why does adding more charts to a dashboard usually make it less effective?",
+      "options": [
+        "Attention gets divided, and when everything is emphasised nothing is",
+        "Each extra chart adds substantially to the whole dashboard's page load time",
+        "Most dashboard tools impose a technical limit on charts per single page",
+        "Viewers tend to look only at the chart placed lowest on the page"
+      ],
+      "explanation": "A good dashboard has a clear hierarchy: one or two headline numbers at the top and the detail below. The viewer needs to know where to look first within the first three seconds. Load time is real but marginal and easily engineered away. Tools do not cap the number of charts in any meaningful way. And reading order runs top-down, not bottom-up, which is precisely why the ordering decision matters so much."
+    },
+    {
+      "question": "What does an interactive filter add compared with a static report?",
+      "options": [
+        "The data shown updates in real time instead of on a fixed refresh schedule",
+        "Viewers answer the next question themselves without waiting for the analyst to rebuild it",
+        "Report size shrinks because only the filtered slice needs downloading",
+        "The number of people with access to the report is controlled far more tightly"
+      ],
+      "explanation": "This is the essential difference between a report and a dashboard. A second question always appears once you have looked at the first number - a good dashboard lets the viewer follow it themselves instead of raising a new request. Filtering has nothing to do with refresh frequency, which is set by the pipeline. Nor does it govern access rights, which are a permissions matter. File size is a side effect at best, not the point."
+    },
+    {
+      "question": "Why should each metric's definition be written directly on the dashboard?",
+      "options": [
+        "Because today's dashboard tools all require definitions before publishing",
+        "Because a written definition helps the dashboard load faster under load",
+        "Because two departments often compute the same metric name in different ways",
+        "Because viewers need to know which system the data came from to reach it"
+      ],
+      "explanation": "Revenue booked at invoice date or at cash receipt, with tax or without - each convention gives a different number. Most arguments around a dashboard are arguments about definitions rather than about the data itself. No tool enforces a definition field, and text on a page has no bearing on performance. Knowing the source system is occasionally useful, but it does not settle what the number actually counts."
+    },
+    {
+      "question": "Which test tells you a dashboard will be used over the long run?",
+      "options": [
+        "The dashboard is approved by leadership before company-wide rollout",
+        "The dashboard shows every single metric that the various departments asked for",
+        "The data refreshes automatically in real time with no manual step",
+        "The viewer can say what they would do differently if this number moved"
+      ],
+      "explanation": "Dashboards die because they lead to no action, rarely because they are badly built. Approval from leadership gets it launched but does not make anyone open it in week twelve. Showing everything requested is usually the cause of death rather than a cure. And real-time refresh on a metric reviewed quarterly is wasted engineering. If the answer is just good to know, what you have is a nice-looking report - and nice-looking reports get opened a few times and then forgotten."
+    }
+  ],
+  "keyTakeaways": [
+    "Design around the decision the viewer has to make, not around the data you already have",
+    "The test: if this number changed, what would you do differently? No answer means drop the metric",
+    "Fewer blocks with a clear hierarchy beat many charts spread evenly",
+    "Filters let the viewer answer the next question themselves",
+    "Write metric definitions onto the dashboard - most arguments are about definitions"
+  ],
+  "practicePrompt": {
+    "question": "The sales director asks for a dashboard showing every sales metric the company has. What is the most appropriate response?",
+    "options": [
+      "Build exactly what was asked, since they will be the user",
+      "Ask back: what decisions do you have to make each week?",
+      "Refuse, because the request is not clearly specified",
+      "Build two versions and let the user pick between them"
+    ],
+    "explanation": "A request to show everything is almost always a sign that the requester has not yet pinned down what they need, not that they genuinely need everything. Asking about the weekly decisions both clarifies the requirement and makes the user feel heard - and the result is usually a far leaner dashboard than the one originally asked for."
+  },
+  "summary": {
+    "keyIdea": "A dashboard is a decision tool, not a display case for numbers",
+    "commonMistake": "Building the dashboard around the data you already have instead of around the question to be answered",
+    "action": "For each metric you plan to put up, ask: if this number changed, who would do what differently? If there is no answer, drop it."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Pick one recurring report from your work and write down three decisions the reader has to make after looking at it. Then list exactly the metrics that serve those three decisions. That list is almost always shorter than the current report.",
+    "secondary": "A three-block dashboard used daily is worth far more than a twenty-block dashboard nobody remembers."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A dashboard is easy to build and hard to build well. Today's tools make producing twenty charts an afternoon's work - and that is exactly the problem, because the hard part was never the drawing."
+    },
+    { "type": "heading", "text": "Why dashboards die" },
+    {
+      "type": "list",
+      "items": [
+        "It answers the question 'what is happening' rather than 'what do I do next'",
+        "Too many blocks, no hierarchy, so the viewer does not know where to look first",
+        "Metrics have no clear definition, so each department reads them differently and argues instead of acting",
+        "No filters, so the second question still has to go back to the analyst",
+        "The refresh cadence does not match the decision cadence: daily decisions against monthly data"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "The three layers of a usable dashboard",
+      "subtitle": "Hierarchy matters more than the number of charts",
+      "concepts": [
+        { "def": "One to three numbers at the very top, answering the question 'is there anything to deal with right now'. Readable in three seconds." },
+        { "def": "The main metrics over time, answering the question 'where is this heading'. Readable in thirty seconds." },
+        { "def": "A detail table with filters, answering the question 'why'. Used only when the two layers above show there is a problem." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The refresh cadence must match the decision cadence",
+      "text": "A metric serving a daily decision but refreshed monthly is useless. Conversely, real-time refresh on a metric only reviewed in a quarterly meeting wastes engineering effort and creates noise. Ask about the decision cadence before designing the data pipeline."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The only measure of a dashboard is whether anyone opens it in week twelve.",
+        "The next lesson returns to the technical side: pulling exactly the data you need with advanced SQL."
+      ]
+    }
+  ]
+}

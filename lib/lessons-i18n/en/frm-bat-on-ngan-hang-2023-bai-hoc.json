@@ -1,0 +1,125 @@
+{
+  "slug": "frm-bat-on-ngan-hang-2023-bai-hoc",
+  "title": "FRM Current Issues, Lesson 9: The 2023 banking stress and three lessons",
+  "subtitle": "Interest rate risk in the banking book, uninsured deposits, and the speed of a digital run",
+  "duration": "10 min",
+  "whyItMatters": "This was the largest banking stress since 2008, and what makes it notable is that it did not come from credit risk. It was a live examination of almost every chapter of FRM Part II at once.",
+  "openingQuestion": "What was the direct cause of the 2023 banking stress in the United States?",
+  "openingOptions": [
+    "Unrealised losses on bond portfolios as interest rates rose very sharply",
+    "A jump in non-performing loans across commercial real estate lending",
+    "Large-scale internal fraud inside a proprietary trading desk",
+    "A prolonged technology failure disrupting the interbank payment system"
+  ],
+  "explanation": "The 2023 stress differed from 2008 in that the loss did not come from borrowers failing to repay. It came from government bonds - assets with no credit risk at all - losing value as rates rose, while most of the deposit base was uninsured and therefore highly sensitive. Three lessons follow: interest rate risk in the banking book can rival credit risk in size; the composition of the depositor base matters as much as the total balance; and the speed of a run in the digital banking era has far outrun the assumptions the liquidity standards were built on.",
+  "diagram": [
+    { "label": "Rates rise fast → unrealised losses on the bond portfolio" },
+    { "label": "Deposits largely uninsured and concentrated in one client group" },
+    { "label": "News spreads on social media, withdrawals run through apps within hours" },
+    { "label": "Assets sold at a loss to fund them → losses realised → insolvency" }
+  ],
+  "realWorldExample": {
+    "company": "How accounting classification hid the problem for a while",
+    "description": "Bonds classified as held to maturity are not remeasured to market on the reported statements, so the unrealised loss never appeared in published equity. On paper the bank remained well capitalised. But once it was forced to sell to meet withdrawals, the accounting classification rescued nobody - the loss became real at exactly the worst possible moment."
+  },
+  "quiz": [
+    {
+      "question": "Why is a high share of uninsured deposits an amplifying factor?",
+      "options": [
+        "Because depositors above the cap have reason to run before everyone else",
+        "Because uninsured deposits pay higher rates, raising funding cost",
+        "Because regulators require extra capital against uninsured deposits",
+        "Because this deposit type is excluded from the liquidity coverage ratio"
+      ],
+      "explanation": "Deposit insurance exists precisely to kill the incentive to run first: if the money is guaranteed, there is no reason to hurry. Once most of the balance sits above the cap that brake disappears, and running becomes the rational individual response. Uninsured funding does tend to cost more, and it is treated less favourably in liquidity ratios, but neither of those turns a doubt into a run in a single afternoon - the run-first incentive is what does."
+    },
+    {
+      "question": "What lesson about speed did this episode leave behind?",
+      "options": [
+        "Regulators need to shorten the quarterly reporting timetable",
+        "App withdrawals plus social media outrun every precedent",
+        "Banks need more physical branches to spread out the queues",
+        "The interbank market needs to be open twenty-four hours a day"
+      ],
+      "explanation": "Liquidity models are calibrated on past runs, from an era when depositors had to queue at a counter. This episode showed the speed assumption to be structurally obsolete rather than merely mis-parameterised: the withdrawal volume that once took days now clears in hours. More branches would slow nothing, since almost none of the money moved through a branch, and neither faster reporting nor longer interbank hours helps a deposit base that can leave overnight."
+    },
+    {
+      "question": "Why is this episode treated as a test of asset-liability management?",
+      "options": [
+        "Because the cause was a currency mismatch between foreign-currency assets and funding",
+        "Because none of the banks involved had a credit risk function at all",
+        "Because the failure was unhedged rate risk between long assets and short funding",
+        "Because the banks had lent beyond the limit to one connected group"
+      ],
+      "explanation": "This is the textbook duration-matching problem: long-dated fixed-rate assets funded by short-term deposits withdrawable at any moment, with no matching interest rate hedge. The ALM and IRRBB chapters describe this exact scenario years before it happened. Credit risk functions existed and found nothing wrong, because the loan book was not the problem. There was no currency mismatch and no single-name concentration breach - the exposure was to the level of rates itself."
+    },
+    {
+      "question": "Why did the unrealised loss on the held-to-maturity portfolio become a real problem in 2023?",
+      "options": [
+        "Because regulators forced a sale of the whole portfolio",
+        "Because a 2023 accounting standard imposed mark-to-market",
+        "Because the bonds in the portfolio were downgraded",
+        "Mass withdrawals forced sales, turning paper losses real"
+      ],
+      "explanation": "The held-to-maturity classification allows price movements to go unrecognised - defensible if the bonds really are held to the end. But when depositors withdraw en masse the bank has to sell early, and no accounting category survives that. No regulator ordered the portfolios sold, no new standard imposed fair value in 2023, and the holdings were largely government paper with no downgrade in sight. The loss had been there all along; the run is what made it visible."
+    },
+    {
+      "question": "A bond portfolio of 100,000bn has duration 6. If rates rise 300 basis points, roughly how large is the unrealised loss?",
+      "options": [
+        "18,000bn (= 100,000 × 6 × 3%, the duration rule)",
+        "6,000bn (= 100,000 × 6%, duration read as a percentage)",
+        "1,800bn (= 100,000 × 6 × 0.3%, misreading basis points)",
+        "3,000bn (= 100,000 × 3%, ignoring portfolio duration)"
+      ],
+      "explanation": "Duration multiplied by the change in rates gives the percentage loss of value: 6 × 3% = 18%, that is 18,000bn on a 100,000bn portfolio. The figure needs no bad loan to appear - which is precisely the difference from 2008, and also the reason that inspecting the credit quality of the book would have shown nothing unusual."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A bank holds a 90,000bn held-to-maturity portfolio carrying an unrealised loss of 12,000bn, while book equity is 10,000bn. Which statement is correct?",
+    "options": [
+      "Economic capital is already negative, though the report shows it solvent",
+      "Still safe, because an unrealised loss is not a real loss",
+      "Only a problem if credit quality in the loan book worsens",
+      "Adequately capitalised, since held to maturity returns par"
+    ],
+    "explanation": "The held-to-maturity classification keeps price movements out of equity, so the published statement still shows 10,000bn of capital. But sold today, the 12,000bn loss becomes real and equity is negative 2,000bn. The argument that holding to maturity returns par is arithmetically correct and useless in liquidity terms: it only holds if the bank NEVER HAS TO SELL, and what forces the sale is the depositors withdrawing. This is the difference from 2008 - the loss came from unhedged interest rate risk rather than from credit, so examining loan quality would have shown nothing."
+  },
+  "keyTakeaways": [
+    "The loss came from interest rate risk, not credit risk - the opposite of 2008",
+    "Held-to-maturity classification hides the loss on the report but rescues nobody in a forced sale",
+    "Concentrated uninsured deposits create a very strong incentive to run first",
+    "Run speed in the age of apps and social media outruns every historically calibrated model"
+  ],
+  "summary": {
+    "keyIdea": "A bank can be well capitalised on its published report and still collapse within days, when unhedged interest rate risk meets funding that can evaporate in hours",
+    "commonMistake": "Reading published equity as a measure of resilience without checking the unrealised loss in the held-to-maturity book",
+    "action": "When analysing a bank, hunt for two numbers: the unrealised loss on the bond portfolio and the share of deposits that are uninsured"
+  },
+  "application": {
+    "title": "Two numbers to hunt for",
+    "message": "In the notes to a bank's financial statements, find the fair value of the held-to-maturity portfolio and compare it with the carrying value. That gap is the loss that has not yet reached equity.",
+    "secondary": "Set it beside the share of uninsured deposits and you have the picture the 2023 episode taught the whole industry."
+  },
+  "sections": [
+    { "type": "lead", "text": "The most instructive thing about the 2023 stress is not its scale but the fact that it happened with almost no bad loans anywhere in sight." },
+    { "type": "heading", "text": "The causal chain" },
+    { "type": "paragraph", "text": "Rates rose fast and long-dated bond portfolios lost value. That loss stayed off the reported statements thanks to the held-to-maturity classification. But the funding was deposits that were largely uninsured and concentrated in a single similar client group. When doubt appeared, the withdrawals ran through apps within hours, forcing bond sales and turning a paper loss into a real one." },
+    { "type": "list", "items": [
+      "Lesson one: interest rate risk in the banking book is enough to bring a bank down, with no bad loans required",
+      "Lesson two: deposit composition matters as much as deposit size - uninsured and concentrated is the most fragile combination",
+      "Lesson three: run-speed assumptions calibrated from history are structurally obsolete"
+    ]},
+    { "type": "callout", "label": "Why the accounting classification rescues nobody", "text": "Held to maturity is an intention, not an ability. That intention holds only as long as nobody forces you to sell - and the moment depositors withdraw together is exactly when you are forced to sell. At that point the unrealised loss becomes a realised one instantly." },
+    { "type": "heading", "text": "Three numbers that explain why this time was different" },
+    { "type": "conceptTable", "title": "Not the scale, but the structure and the speed", "subtitle": "All three were readable in public filings before the event", "concepts": [
+      { "def": "At the first bank to fail, the great majority of deposits sat above the insurance cap - reportedly around 90% or more. Depositors above the cap have no reason to stay and watch, so the whole group behaves as a single block." },
+      { "def": "Fast-rising rates devalued the long-dated bond portfolio, but held-to-maturity classification allowed that loss to stay out of capital. The hidden figure was large enough to wipe out most of shareholders' equity if a sale was forced." },
+      { "def": "In 2008 a large run took roughly ten days to play out. In 2023 an equivalent volume left in a single day - because the transfer instructions went through apps and the news travelled through social media rather than through a queue at a counter." }
+    ]},
+    { "type": "callout", "label": "Why the chain closes on itself", "text": "The three numbers above are not independent; they trigger one another. Uninsured depositors can read the unrealised loss, so they withdraw. Heavy withdrawals force the bank to sell the portfolio, and selling turns the hidden loss into a real one that eats into capital. Falling capital makes the remaining depositors leave faster. No step in that loop requires a single bad loan, and that is the most instructive part: a bank can meet every regulatory ratio and still not survive the week." },
+    { "type": "closing", "lines": [
+      "Being well capitalised on the report and surviving this week are two different questions.",
+      "This is the final lesson of the extended Current Issues section."
+    ]}
+  ]
+}

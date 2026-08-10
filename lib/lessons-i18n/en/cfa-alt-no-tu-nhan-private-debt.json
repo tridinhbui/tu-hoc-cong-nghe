@@ -3,6 +3,7 @@
   "title": "CFA Alternatives 3: Private debt - direct lending, mezzanine and distressed",
   "subtitle": "The fastest-growing asset group after the crisis, and why the banks gave up the field",
   "duration": "11 min",
+  "whyItMatters": "Private debt has been the fastest-growing area of alternatives over the past decade and has a Learning Module of its own, yet most learners only know private equity. The two share a fund structure but carry opposite risk profiles.",
   "openingQuestion": "Why did private debt funds expand so strongly after the 2008 financial crisis?",
   "openingOptions": [
     "Because falling interest rates made lending cheaper to do",
@@ -67,7 +68,7 @@
       "options": [
         "It shifted from credit risk across to market interest rate risk",
         "It leaves the bank balance sheet for a fund, where investors bear it",
-        "It shifted from mid-sized businesses across to larger ones",
+        "It shifted from mid-sized business borrowers across to much larger ones",
         "It was transferred entirely across to the credit insurance companies"
       ],
       "explanation": "A bank has deposit insurance and close supervision; a fund does not. The same loan, but who bears the consequence of a default has changed. The nature of the risk did not change at all - it is still credit risk on the same kind of borrower - and no insurer absorbed it."

@@ -1,0 +1,109 @@
+{
+  "slug": "frm-thi-truong-chi-tra-cho-rui-ro-he-thong",
+  "title": "FRM Foundations, Lesson 13: Why the market only pays for systematic risk",
+  "subtitle": "Carrying extra idiosyncratic risk is working for free - and that is the foundation of every asset pricing model",
+  "duration": "10 min",
+  "whyItMatters": "This is the idea that joins the risk measurement half of FRM to the asset pricing half. Without it, beta is just a number in a formula; with it, you finally see why a wildly volatile stock can still have a low expected return, and why diversification is called the only free lunch.",
+  "openingQuestion": "Stock X is extremely volatile but almost uncorrelated with the broad market. According to asset pricing theory, where should its expected return sit?",
+  "openingOptions": [
+    "High, since a large standard deviation must be compensated",
+    "Low, close to the risk-free rate despite the volatility",
+    "Equal to the market average, since every equity is risky",
+    "Impossible to say without the market's standard deviation"
+  ],
+  "explanation": "An investor holding a diversified portfolio does not feel the idiosyncratic part of a single stock's volatility, because other positions cancel it out. The only thing left that cannot be cancelled is the part that moves with the market. So the risk premium pays for beta and not for standard deviation. A highly volatile stock with a beta near zero therefore has an expected return near the risk-free rate - carrying its idiosyncratic risk is working for free.",
+  "diagram": [
+    { "label": "Total risk = systematic risk + idiosyncratic risk" },
+    { "label": "Diversification cancels the idiosyncratic part and cannot touch the systematic part" },
+    { "label": "Everyone can diversify, so nobody is paid for the part that cancels" },
+    { "label": "The risk premium attaches to beta, not to standard deviation" }
+  ],
+  "realWorldExample": {
+    "company": "A concentrated equity fund",
+    "description": "A fund that puts all its capital into five stocks in one sector will have a very high standard deviation, but most of that height is idiosyncratic risk. The market pays nothing extra for it - the fund carries the volatility of a concentrated portfolio while receiving only the premium that matches its beta. That is why the Sharpe ratios of concentrated portfolios are usually much lower even when the raw returns occasionally look spectacular."
+  },
+  "quiz": [
+    {
+      "question": "Why does the market pay no premium for idiosyncratic risk?",
+      "options": [
+        "Because it is always smaller than systematic risk in every stock",
+        "Because anyone can remove it at almost no cost",
+        "Because supervisors forbid pricing it into an asset's value",
+        "Because it only shows up in small-capitalisation companies"
+      ],
+      "explanation": "A risk premium is the price paid to persuade somebody to carry what they would rather not carry. If holding a few dozen more names makes that risk disappear, nobody will pay to have someone else carry it - and whoever volunteers to carry it receives nothing. The relative size of the two components varies by stock and by period, no regulation touches this, and idiosyncratic risk exists in large companies just as it does in small ones."
+    },
+    {
+      "question": "Scenario: A portfolio has a beta of 0.6, the risk-free rate is 4%, and the market risk premium is 6%. What is the expected return under CAPM?",
+      "options": [
+        "3.6% (= 0.6 × 6, forgetting the risk-free rate)",
+        "10% (= 4 + 6, ignoring beta completely)",
+        "7.6% (= 4 + 0.6 × 6, following the CAPM formula)",
+        "6.4% (= 4 + 0.6 × 4, using the wrong risk-free rate)"
+      ],
+      "explanation": "CAPM gives E[R] = Rf + β × market premium = 4 + 0.6 × 6 = 7.6%. A beta below 1 means the portfolio is less sensitive to the market than average, so the premium it earns is smaller than the market premium. Dropping the risk-free term treats a low-beta portfolio as if it earned nothing at all in a flat market, ignoring beta prices every portfolio identically, and substituting 4 for 6 in the premium term confuses the two inputs."
+    },
+    {
+      "question": "Why is diversification called the only free lunch in finance?",
+      "options": [
+        "Because it incurs no transaction costs of any kind",
+        "Because it always lifts the portfolio's expected return",
+        "Because it removes systematic and idiosyncratic risk",
+        "Because it cuts risk without sacrificing expected return"
+      ],
+      "explanation": "Everything else in finance is a trade-off: a higher return demands accepting a higher risk. Diversification is the exception because it discards the part of the risk that was never being paid for - expected return stays where it was while volatility falls. It does cost something in transaction terms, it does not raise expected return, and it cannot touch the systematic component, which is exactly why the effect stops at a floor."
+    },
+    {
+      "question": "What sets a limit on the benefit of diversification?",
+      "options": [
+        "Correlations between assets are never genuinely zero",
+        "Transaction costs grow exponentially with the number of holdings",
+        "The number of listed stocks in the market is finite",
+        "Regulation caps the maximum weight of any single name"
+      ],
+      "explanation": "As the number of names rises, the idiosyncratic part tends to zero but the covariance between the names does not. Portfolio risk therefore converges to a floor equal to the average covariance - and that floor is systematic risk, which there is no way of splitting up further. Transaction costs grow roughly linearly and are a practical nuisance rather than a limit, and neither the size of the listed universe nor position limits binds anywhere near this floor."
+    },
+    {
+      "question": "Scenario: Two stocks share a standard deviation of 40%, but A has a beta of 1.4 and B has a beta of 0.3. Which statement is correct?",
+      "options": [
+        "Both have the same expected return, as standard deviations match",
+        "A has the higher expected return, even though total risk is equal",
+        "B has the higher return because its idiosyncratic part is larger",
+        "No comparison is possible without the correlation of A and B"
+      ],
+      "explanation": "Equal standard deviations means equal total risk, but the composition differs: A is mostly systematic risk, B is mostly idiosyncratic. The market pays only for the systematic part, so A receives the larger premium. Whoever holds B is carrying exactly the same amount of volatility for less in return. Correlation between the two stocks is irrelevant here because CAPM prices each one against the market rather than against the other, and a larger idiosyncratic share earns nothing at all."
+    }
+  ],
+  "practicePrompt": {
+    "question": "Two stocks share a standard deviation of 45%. A has a beta of 1.3; B has a beta of 0.2. The risk-free rate is 4% and the market premium is 6%. Which statement is correct?",
+    "options": [
+      "A deserves 11.8% and B only 5.2%, though total risk is equal",
+      "Both deserve the same return, since the standard deviations match",
+      "B deserves more, because a low beta means more idiosyncratic risk",
+      "No conclusion is possible without the correlation between A and B"
+    ],
+    "explanation": "CAPM gives A 4 + 1.3 × 6 = 11.8% and B 4 + 0.2 × 6 = 5.2%. The same 45% standard deviation, yet the premiums differ by more than a factor of two, because the market pays only for the risk that cannot be diversified away. B's idiosyncratic component is very large - that is why its standard deviation is high despite the low beta - but an investor holding a broad portfolio has already cancelled almost all of it, so nobody pays for it. Carrying idiosyncratic risk without compensation is working for free, and it is the central argument for diversification."
+  },
+  "keyTakeaways": [
+    "Total risk splits into a systematic part and an idiosyncratic part; diversification cancels only the idiosyncratic one",
+    "The risk premium pays for beta alone - carrying idiosyncratic risk is working for free",
+    "Diversification is a free lunch because it cuts volatility without cutting expected return",
+    "The limit of diversification is the average covariance between assets, not the number of names"
+  ],
+  "summary": {
+    "keyIdea": "A wildly volatile stock is not therefore worth paying more for. The question the market asks is not how much this asset swings, but how much it swings together with everything else."
+  },
+  "application": {
+    "message": "When somebody shows off a volatile investment that made a lot of money, ask whether the gain came from beta or from luck with idiosyncratic risk. Only the first kind repeats systematically."
+  },
+  "sections": [
+    { "type": "lead", "text": "Intuition says that carrying more risk should pay more. The intuition is half right - and the wrong half is where most concentrated portfolios lose without ever understanding why." },
+    { "type": "heading", "text": "Two kinds of risk inside one number" },
+    { "type": "paragraph", "text": "A stock's standard deviation bundles two very different things: the part that moves with the whole market, and the part that belongs to that company alone - a lawsuit, a broken production line, a chief executive resigning. Bundling them into one number makes them look alike, but the market treats them completely differently." },
+    { "type": "heading", "text": "Why only half of it gets paid" },
+    { "type": "paragraph", "text": "A risk premium exists to persuade somebody to carry what they would rather not carry. The idiosyncratic part can be shed by anyone simply by holding a few dozen more names, at almost no cost. Nobody will pay for something everyone can do for themselves free of charge - so the premium survives only for the part nobody escapes, the part that moves with the market." },
+    { "type": "heading", "text": "The floor diversification cannot break" },
+    { "type": "paragraph", "text": "Adding names shrinks the idiosyncratic part towards zero, but the covariance between the names stays. Portfolio risk therefore converges to a floor equal to the average covariance rather than to zero. That is why in a crisis a thirty-name portfolio still shows thirty names in red: what is acting on it is the part that was never divisible." },
+    { "type": "callout", "label": "Worth remembering", "text": "Sharpe uses standard deviation in the denominator, Treynor uses beta. For a well-diversified portfolio the two rank identically. For a concentrated portfolio they differ - and the gap between them is exactly the risk being carried without being paid for." }
+  ]
+}

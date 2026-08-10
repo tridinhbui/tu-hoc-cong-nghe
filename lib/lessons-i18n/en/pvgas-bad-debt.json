@@ -1,0 +1,152 @@
+{
+  "slug": "pvgas-bad-debt",
+  "title": "PVGas bad debt, Q1/2026",
+  "subtitle": "Receivables, concentration risk and the quality of revenue",
+  "duration": "6 min",
+  "openingQuestion": "What do bad debts and large receivables usually affect first?",
+  "openingOptions": [
+    "Quality of earnings",
+    "The dividend payout ratio",
+    "The number of shares outstanding",
+    "Market capitalisation"
+  ],
+  "explanation": "Large receivables and high customer concentration can make revenue look attractive while cash flow deteriorates and credit risk rises. If a handful of large customers account for most of the revenue and they run into financial trouble, the business may have to book a large and unexpected bad-debt provision.",
+  "diagram": [
+    { "label": "Receivables" },
+    { "label": "Concentration risk" },
+    { "label": "Bad debt" },
+    { "label": "Cash conversion" }
+  ],
+  "realWorldExample": {
+    "company": "PVGas",
+    "description": "A business selling to a small number of large customers needs its collectability and its concentration risk examined especially closely."
+  },
+  "quiz": [
+    {
+      "question": "What does receivables growing faster than revenue suggest?",
+      "options": [
+        "The business is certainly getting healthier",
+        "The two figures have nothing to do with each other",
+        "The business is collecting its cash more slowly",
+        "This year's dividend will be higher than last year's"
+      ],
+      "explanation": "When receivables jump, accounting profit can look better than the actual cash flow. Sales are being recognised while the money sits with the customer. The two figures are tightly linked, since receivables are simply the revenue that has not been collected yet; and nothing about a slower collection cycle points to a bigger dividend - if anything the cash to pay one is exactly what is missing."
+    },
+    {
+      "question": "A company earns 70% of its revenue from 3 large customers. How does this concentration risk affect the valuation of the business?",
+      "options": [
+        "No effect, since revenue has been stable year after year",
+        "Always valued higher, because large customers are more reliable",
+        "Only an accounting matter, with no bearing on the valuation",
+        "Value it more conservatively - losing one customer costs a lot"
+      ],
+      "explanation": "Concentration risk is a genuine business risk: losing one large customer can cause an immediate revenue loss the business cannot easily replace, quite unlike losing one of thousands of small customers. Investors normally demand a larger margin of safety, or pay a lower multiple, for businesses with high concentration risk. Past stability says nothing about the risk, and size makes a customer's failure more damaging rather than less."
+    },
+    {
+      "question": "Revenue up 8%, receivables up 40%. What is the most accurate reading?",
+      "options": [
+        "This is a sign that the business is growing very healthily",
+        "Receivables outpacing revenue always means accounting fraud",
+        "The debt ageing and customer concentration need checking",
+        "Nothing to worry about here, since both figures are positive"
+      ],
+      "explanation": "A large gap between the growth rate of receivables and of revenue is a warning sign that calls for further investigation, not yet a final conclusion - but it is not something to wave through either. Fraud is one possible explanation among several, and far more often the cause is looser credit terms or a customer paying more slowly. That both numbers are positive tells you nothing: it is the difference between them that carries the information."
+    },
+    {
+      "question": "Why is high customer concentration more worrying than a large receivable spread across many small customers?",
+      "options": [
+        "Because concentration risk does not affect the cash flow",
+        "Because losing one big customer drives a large bad-debt provision",
+        "Because small customers hardly ever pay their invoices late",
+        "Because a spread-out receivable is always audited more closely"
+      ],
+      "explanation": "This is the essence of concentration risk: the damage does not spread out but lands in a single event, making the financial impact far greater than with a diversified exposure. Small customers do pay late, but their defaults arrive as a predictable rate rather than one shock, and audit scope is driven by materiality thresholds rather than by how many customers a balance is spread over."
+    },
+    {
+      "question": "A company books a provision for doubtful receivables. How does this affect the statements?",
+      "options": [
+        "No impact on profit at all, since this is only a balance sheet entry",
+        "Cuts both profit and cash by exactly the amount of the provision recorded",
+        "Cuts profit in the period but does not reduce cash at that point",
+        "Recorded in the notes only, and never in the primary financial statements"
+      ],
+      "explanation": "A provision is a non-cash expense: the money had already failed to arrive, and the accounting is merely acknowledging it. That is why it is added back when computing operating cash flow - and it is also why provisioning late or provisioning short is such a convenient way to smooth reported profit."
+    }
+  ],
+  "keyTakeaways": [
+    "Receivables are the line to examine when judging quality of earnings",
+    "Concentration risk can drive bad debt higher",
+    "Revenue is not the same thing as cash received"
+  ],
+  "summary": {
+    "keyIdea": "Receivables are the line to examine when judging quality of earnings",
+    "commonMistake": "Easy to miss: concentration risk can drive bad debt higher",
+    "action": "Revenue is not the same thing as cash received"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A business showing attractive revenue growth on paper can still carry a serious risk if most of that revenue depends on a handful of customers."
+    },
+    { "type": "heading", "text": "Concentration risk and the quality of earnings" },
+    {
+      "type": "paragraph",
+      "text": "Large receivables concentrated in a few customers can make revenue look attractive while carrying high credit risk - if one large customer runs into financial trouble, the business may have to book a large and unexpected bad-debt provision. Investors normally demand a larger margin of safety, or value the business more conservatively at a lower multiple, where customer concentration risk is high."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Receivables growing faster than revenue suggests collection is slowing down",
+        "High concentration risk (dependence on a few large customers) is a real business risk, not merely an accounting issue",
+        "Receivables are one of the lines to examine most closely when assessing quality of earnings"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Comparing receivables growth with revenue growth",
+      "equation": "Warning ratio = % growth in receivables ÷ % growth in revenue",
+      "example": {
+        "title": "Worked illustration",
+        "calculation": "Revenue up 10%, receivables up 45%",
+        "result": "A ratio of 4.5 times - a clear warning sign",
+        "explanation": "Receivables growing nearly five times faster than revenue means the business is selling on credit far more than before, or customers are paying more slowly. Either possibility calls for a careful look at the debt ageing and at customer concentration before you trust the revenue growth figure."
+      }
+    },
+    { "type": "heading", "text": "Three questions when you find high customer concentration" },
+    {
+      "type": "list",
+      "items": [
+        "What percentage of revenue comes from the largest customer, and from the top three combined?",
+        "Is the ageing of receivables from that customer group stretching out or holding steady?",
+        "Has the doubtful-debt provision risen in line with this concentration risk, or is it oddly unchanged?"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why the market pays less for customer concentration risk",
+      "text": "A business with thousands of small customers barely notices losing one. A business where a single customer is 40% of revenue can lose almost half its revenue on one decision by a third party it does not control, should that customer hit financial trouble. This is why investors typically demand a larger margin of safety, or accept a lower multiple, for businesses with high concentration risk."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Attractive revenue does not mean the cash has actually arrived.",
+        "Always ask the follow-up: how many customers does that revenue come from, and are they good for it?"
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "When PVGas's trade receivables are heavily concentrated in a few power and fertiliser corporations (concentration risk), what is the biggest financial risk?",
+    "options": [
+      "Late payment risk, or bad debt spreading down the chain",
+      "No impact at all, because PVGas is a large company",
+      "Revenue will certainly double",
+      "Gas prices automatically fall 50%"
+    ],
+    "explanation": "Concentration risk arises when most of the revenue or receivables depend on a few large customers. If one counterparty pays late, the cash flow of the whole business is affected."
+  },
+  "application": {
+    "title": "In practice: PVGas bad debt, Q1/2026",
+    "message": "When PVGas's trade receivables are heavily concentrated in a few power and fertiliser corporations (concentration risk), what is the biggest financial risk?",
+    "secondary": "Getting this principle right raises your professional financial analysis skills."
+  }
+}

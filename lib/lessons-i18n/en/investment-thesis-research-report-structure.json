@@ -1,0 +1,191 @@
+{
+  "slug": "investment-thesis-research-report-structure",
+  "title": "Investment Thesis & Research Report - how to convince an investor",
+  "subtitle": "A good investment thesis is not just 'this company will go up' - it needs an explicit chain of logic.",
+  "duration": "7 min",
+  "openingQuestion": "What is an investment thesis?",
+  "openingOptions": [
+    "A forecast of where the share price will trade in the future",
+    "An explicit statement: why this is worth owning, and at what price",
+    "A list of the historical events in the company's past"
+  ],
+  "explanation": "An investment thesis is a chain of logic: (1) why the underlying business or industry will grow; (2) why the current price does not reflect intrinsic value - the mispricing; (3) what catalyst will trigger the re-rating; (4) what risks could break the story. A good thesis does not predict the price precisely, it explains why the price should rise.",
+  "realWorldExample": {
+    "company": "Tesla, 2010",
+    "description": "The thesis: 'Electric vehicles will replace petrol cars, Tesla leads on battery technology and control systems, and $17 a share is far too cheap against future revenue potential. Catalyst: Model S production in 2012, rising manufacturing scale, customers who love the product. **Risk:** battery technology is unproven and large incumbents may compete hard.' That thesis explains the logic - it does not predict 'the price will go up 900x'."
+  },
+  "quiz": [
+    {
+      "question": "What are the main components of an investment thesis?",
+      "options": [
+        "Executive summary, industry analysis, valuation, and a buy or sell call",
+        "Claim, evidence, why it is mispriced, catalyst, risk",
+        "Price history, trading volume, and the key technical levels to watch",
+        "Three years of audited financials plus a five-year forecast model"
+      ],
+      "explanation": "A complete thesis has to answer: what do I believe, on what evidence, WHY is the market mispricing this today (variant perception - if everyone already thought this, the price would reflect it), what will make the market see it, and if I am wrong, where exactly am I wrong. Drop the catalyst and you have a view that can stay correct forever without ever making money. Drop the risk section and you have marketing copy, not analysis."
+    },
+    {
+      "question": "What is a catalyst in investing?",
+      "options": [
+        "A technical indicator signalling that the price trend is about to reverse",
+        "The target price an analyst publishes for the stock in a research note",
+        "An event that will trigger the market to re-rate the stock",
+        "The factor that caused the security to be mispriced in the first place"
+      ],
+      "explanation": "A catalyst answers the question 'why now'. A cheap stock can stay cheap for years - the market is under no obligation to agree with you on your schedule. A catalyst is an event with a reasonably defined date that forces the price to react: quarterly results, a product launch, the sale of a loss-making division, a change of CEO, a court ruling, a regulatory change. It is also what sets your position size and holding period: with no catalyst, you have no idea how long to wait."
+    },
+    {
+      "question": "What is the structure of a research report?",
+      "options": [
+        "Introduction, body, conclusion, and an appendix of supporting data tables",
+        "Summary, historical figures, forecasts, and a sector comparison table",
+        "Company overview, a SWOT analysis, and an investment recommendation",
+        "Summary, thesis, industry, company, valuation, risk, recommendation"
+      ],
+      "explanation": "The order runs from CONCLUSION down to evidence, because professional readers read in that order and usually stop part-way. Each section has one job: industry sets the frame, company states the competitive advantage, valuation produces the number, risk proves you argued against yourself, and the recommendation states the action and the target price. A report with a target price but no path to it is one nobody can trade on."
+    },
+    {
+      "question": "Which of these qualifies as a catalyst in an investment thesis?",
+      "options": [
+        "The new plant comes online in Q3, on a stated timeline",
+        "The industry should improve over the next several years",
+        "Management has a better long-term vision than its rivals do",
+        "The stock is cheap, so sooner or later it has to go up"
+      ],
+      "explanation": "A catalyst has to be a specific event with an expected date, because that is what turns an undervaluation into a realised return. Without one, the thesis only says the stock is cheap - and cheap can stay cheap indefinitely, while capital sitting idle is itself a loss."
+    },
+    {
+      "question": "What are the three pillars of an investment thesis?",
+      "options": [
+        "Technical analysis, sentiment, and flow of funds",
+        "Fundamentals, valuation, and catalyst",
+        "Revenue, earnings, and dividend payout",
+        "Sector, market capitalisation, and liquidity"
+      ],
+      "explanation": "Fundamentals answer whether the business is getting better, valuation answers whether the current price already reflects that, and the catalyst answers when the market will notice. Miss any one of the three and the thesis can still be right while the investment still loses money - a great business bought at the wrong price, or a genuine mispricing that nobody ever gets around to correcting."
+    }
+  ],
+  "sections": [
+    {
+      "type": "heading",
+      "text": "Investment thesis - a chain of logic"
+    },
+    {
+      "type": "paragraph",
+      "text": "An investment thesis is the story: 'why this company will create value' (or destroy it, if you are short). It needs three elements: (1) Fundamentals: why the business will grow - a better product, a growing market, a competitive advantage. (2) Valuation: how the current price compares with intrinsic value - under or over? (3) Catalyst: what specific event will make investors recognise that value and re-rate the stock."
+    },
+    {
+      "type": "heading",
+      "text": "Fundamental analysis - is this business actually any good?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Now go deeper: (1) Product or service: where is it better than the competition? Do customers actually love it? (2) Market: is the industry growing or shrinking? How large is the addressable market? (3) Competitive advantage: why does the company not lose its customers to rivals? (4) Profitability: does the company earn a profit or only revenue? Will that profit rise or fall?"
+    },
+    {
+      "type": "heading",
+      "text": "Valuation - is the price reasonable?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use DCF, comparable companies, or precedent transactions to value the business. Then compare: the current market price against fair value. If the market price is $50 but fair value is $100 → the company is undervalued, which is the opportunity. If the reverse → be careful, the price is too high."
+    },
+    {
+      "type": "heading",
+      "text": "Catalyst - the event that lifts the price"
+    },
+    {
+      "type": "paragraph",
+      "text": "A catalyst is not 'hope' but a specific event with a timeline: (1) a product launch coming up (a new iPhone, the Tesla Cybertruck); (2) quarterly earnings beating expectations; (3) a merger, an IPO, or another form of combination; (4) a regulatory change that favours the company; (5) a technological breakthrough. The catalyst must carry a timeline - 'within the next six months Apple will announce the iPhone 16 and unit sales will beat expectations'."
+    },
+    {
+      "type": "heading",
+      "text": "Risk - why the thesis could be wrong"
+    },
+    {
+      "type": "paragraph",
+      "text": "A good thesis has to admit its risks: (1) Operational risks: the company misses production targets, or product quality slips. (2) Market risks: the market does not grow as forecast, or a rival turns out to be stronger. (3) Regulatory risks: the government changes policy or bans the product. (4) Valuation risks: even if the company executes, the value may not rise if the market loses interest. (5) Downside risk: in the worst case, how far can the price fall?"
+    },
+    {
+      "type": "heading",
+      "text": "Structure of a research report"
+    },
+    {
+      "type": "paragraph",
+      "text": "1. Executive summary (1-2 pages): the investment thesis, the target price, the rating (Buy/Hold/Sell). 2. Investment thesis (1 page): the central claim and the evidence. 3. Industry analysis: the state of the sector and its trends. 4. Company analysis: the business in detail. 5. Valuation (1-2 pages): DCF, comparables, target price. 6. Risk assessment: the principal risks. 7. Catalysts: upcoming events. 8. Conclusion: the summary."
+    },
+    {
+      "type": "heading",
+      "text": "Tying it together - the 'what if' analysis"
+    },
+    {
+      "type": "paragraph",
+      "text": "The last part of a research note is the 'what if' analysis: what if the catalyst does not happen? What if a rival ships a better product? What if the economy falls into recession? What does the target price become? This is what tells an investor the downside risk - or in plainer words, 'how much can I lose at most if the thesis turns out to be wrong'."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The four pieces of an investment thesis",
+      "subtitle": "Drop any one of them and the report still reads smoothly while still being useless for a decision",
+      "concepts": [
+        {
+          "def": "Is this a good business, and how durable is its advantage?"
+        },
+        {
+          "def": "What expectations is the current price paying for - a great business at too high a price is still a bad investment."
+        },
+        {
+          "def": "What will make the market close the gap, and over what period of time."
+        },
+        {
+          "def": "What would make this thesis wrong. If you cannot write this part, you do not yet understand your own thesis."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The trap",
+      "text": "A thesis with no catalyst is not a thesis, only a correct observation. A cheap stock can go on being cheap for years, and 'the market will eventually see it' is not a date."
+    }
+  ],
+  "keyTakeaways": [
+    "An investment thesis is a chain of logic: fundamentals (the business will grow), valuation (it is mispriced), catalyst (the event that triggers the re-rating)",
+    "A catalyst must be specific and dated, not a vague hope",
+    "A research report contains: executive summary, thesis, industry and company analysis, valuation, risk, catalysts",
+    "A good thesis identifies its risks and the downside if the thesis turns out wrong"
+  ],
+  "practicePrompt": {
+    "question": "A technology company: strong product, market price $100 (estimated fair value $150), catalyst is an IPO in six months. Which investment thesis is the most complete?",
+    "options": [
+      "\"Strong product, $100 against $150 of value, the IPO in six months is the catalyst, risk is IPO delay.\"",
+      "\"This stock is certain to go up, so buy it now.\" - no claim and no specific evidence at all",
+      "\"The current price is $100.\" - states a fact only, with no investment argument attached",
+      "\"The company's product is fairly good.\" - fundamentals only, missing valuation and catalyst"
+    ],
+    "explanation": "A complete investment thesis needs all three elements: fundamentals (why the company is good), valuation (why the current price does not reflect value), and a catalyst (the specific event that will make the market re-rate it) - while also acknowledging the risks that could make the thesis wrong."
+  },
+  "summary": {
+    "keyIdea": "An investment thesis is not a prediction but a chain of logic built on fundamentals, valuation, and a catalyst. A good thesis explains 'why' and 'when', and admits its risks."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "As an analyst or a portfolio manager you will write investment theses every day. Every buy or sell decision has to rest on an explicit thesis, not on 'a feeling' or 'short-term momentum'. When you are challenged, you have to be able to walk through the logic."
+  },
+  "diagram": [
+    {
+      "label": "Investment claim: why the market is mispricing this"
+    },
+    {
+      "label": "Fundamental evidence from the company's numbers"
+    },
+    {
+      "label": "Valuation: current price against intrinsic value"
+    },
+    {
+      "label": "Catalyst: the event that closes the gap"
+    },
+    {
+      "label": "Risks and the conditions that would make the claim wrong"
+    }
+  ]
+}

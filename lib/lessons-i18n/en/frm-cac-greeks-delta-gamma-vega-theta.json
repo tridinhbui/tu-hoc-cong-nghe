@@ -1,0 +1,198 @@
+{
+  "slug": "frm-cac-greeks-delta-gamma-vega-theta",
+  "title": "FRM Valuation, Lesson 4: The Greeks - delta, gamma, vega, theta, rho",
+  "subtitle": "Five versions of the question \"if this moves, how much does my position move?\"",
+  "duration": "10 min",
+  "whyItMatters": "Nobody manages option risk by looking at the price. They manage it through the Greeks, because those answer the question that actually arises: if the market shifts a little in this direction, how much do I lose?",
+  "openingQuestion": "What does the gamma of an option position measure?",
+  "openingOptions": [
+    "How fast delta changes as the price of the underlying moves",
+    "How much the option price changes when implied volatility rises one percentage point",
+    "How much value the option loses with each day that passes",
+    "How sensitive the option price is to a change in the risk-free rate"
+  ],
+  "explanation": "The Greeks break the risk of an option position into separate dimensions. Delta says how sensitive the position is to the underlying price; gamma says how quickly that delta itself changes as the price moves. Vega measures sensitivity to volatility, theta the value lost to the passage of time, rho the sensitivity to interest rates. The important thing when reading them is that the dimensions are connected: a position collecting theta steadily almost always carries negative gamma, meaning losses accelerate when the market moves hard.",
+  "diagram": [
+    {
+      "label": "Delta: change with the underlying price"
+    },
+    {
+      "label": "Gamma: how fast delta itself changes"
+    },
+    {
+      "label": "Vega: change with implied volatility"
+    },
+    {
+      "label": "Theta: change with time passing · Rho: change with interest rates"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Why selling options is likened to picking up coins in front of a steamroller",
+    "description": "A short option position has positive theta - each day that passes brings a small steady credit - but negative gamma, meaning every large move in the price makes the loss grow faster than linearly. The strategy produces a beautiful run of profits over a long stretch and then loses everything in a single session. A Greeks report sees that structure in advance; a track record of past returns does not."
+  },
+  "quiz": [
+    {
+      "question": "What sign does the vega of a purchased option position carry, and what does it mean?",
+      "options": [
+        "Positive - the position gains when implied volatility rises",
+        "Negative - it loses when markets become more unsettled",
+        "Zero - volatility does not affect a purchased option",
+        "Positive for calls and negative for puts held"
+      ],
+      "explanation": "Both calls and puts become more expensive when volatility rises, because the chance of ending up in the favourable region widens. Anyone who has BOUGHT an option therefore carries positive vega, whether the contract is a call or a put - the sign follows from being long the option, not from its type. A short position is the one with negative vega, and vega is never zero for an option with time left on it."
+    },
+    {
+      "question": "What is the usual relationship between gamma and theta in an option position?",
+      "options": [
+        "Opposite signs - positive gamma usually comes with negative theta",
+        "The same sign, since both are second derivatives of the option price",
+        "No relationship; they measure two entirely independent things",
+        "Always equal in magnitude but expressed in different units"
+      ],
+      "explanation": "This is the central trade of options trading: to benefit from large moves (positive gamma) you must pay for it with the time value that bleeds away each day (negative theta). The option seller takes the opposite side of the same bargain. Only gamma is a second derivative - theta is a first derivative with respect to time - and their magnitudes are linked through the pricing equation rather than equal, so they are anything but independent."
+    },
+    {
+      "question": "Why can a delta-neutral position still lose heavily?",
+      "options": [
+        "Because setting the position up always costs more in fees than it earns back",
+        "Because delta neutrality only holds during the morning session",
+        "Because delta is zero at one price, and gamma shifts it once price moves",
+        "Because regulators do not recognise delta neutrality as a hedge"
+      ],
+      "explanation": "Delta neutrality is a snapshot taken at one price level. The larger the gamma, the faster that snapshot goes stale, so a hedge built on delta alone breaks down exactly when the price runs - the moment it most needs to work. Transaction costs matter but do not by themselves cause a heavy loss, delta neutrality has no session boundaries, and regulators do treat delta hedging as risk mitigation. The failure here is geometric rather than legal."
+    },
+    {
+      "question": "Why does an option seller usually have positive theta but negative gamma?",
+      "options": [
+        "Because a short option position is unaffected by implied volatility",
+        "Because they take the whole premium upfront, so every Greek is positive for them",
+        "Because theta and gamma are always opposite in every option position",
+        "Because they collect time value daily and take fast losses on big moves"
+      ],
+      "explanation": "This is the central trade in every option position: steady income from time decay bought with non-linear losses when the market moves hard. That profit shape - many small gains and an occasional very large loss - makes every standard-deviation-based measure misjudge the position. A short option is highly sensitive to implied volatility, carrying negative vega, so its Greeks are certainly not all positive; receiving the premium upfront says nothing about which way the sensitivities point."
+    },
+    {
+      "question": "Why does rho attract less attention than the other Greeks in normal conditions?",
+      "options": [
+        "Because rates move far more slowly than the underlying price",
+        "Because rho applies to American options rather than European ones",
+        "Because the interest rate effect is already inside the position's delta",
+        "Because rho stays tiny whatever maturity the option happens to carry"
+      ],
+      "explanation": "Within a single day the underlying can move several percent while rates barely budge, so delta and gamma dominate the risk report. But for long-dated options, or in a period when a central bank is shifting rates quickly, rho becomes a quantity worth watching again. Rho applies to both exercise styles, it is not folded into delta - delta measures sensitivity to the underlying price only - and its size grows with maturity rather than staying small."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A short option position was delta-hedged at the close. Overnight the stock jumps 12%. Why is the position still heavily loss-making?",
+    "options": [
+      "Negative gamma: delta drifts fast once price runs from the hedge point",
+      "Negative vega, so the position loses when implied volatility falls",
+      "Positive theta, so the position loses value as time passes",
+      "Negative rho, so the overnight interest rate eats into the position"
+    ],
+    "explanation": "Delta neutrality only holds AT ONE PRICE, and gamma tells you how fast it breaks once the price leaves that point. An option seller has negative gamma, so whichever way the price runs, delta drifts unfavourably, and the larger the jump the more the loss grows with the square of the move rather than in proportion to it. That is the flip side of positive theta: the seller is paid for the passage of time, and the price of that payment is bearing the whole non-linear component when the price gaps. Negative vega and positive theta in the other options describe a short position correctly, they just do not explain a loss caused by an overnight jump in the price."
+  },
+  "keyTakeaways": [
+    "Delta measures sensitivity to price, gamma measures how fast delta itself changes",
+    "Vega is positive for any long option position, whether the contract is a call or a put",
+    "Gamma and theta usually carry opposite signs - that is the core trade of options",
+    "Delta neutrality only holds at one price; gamma decides how fast it drifts"
+  ],
+  "summary": {
+    "keyIdea": "The Greeks turn a non-linear position into a readable table of sensitivities, and that is the only practical way option risk gets managed",
+    "commonMistake": "Treating delta neutrality as a finished hedge and ignoring gamma and vega",
+    "action": "For every option position, read gamma and vega before you read the profit and loss - they tell you where the risk lives"
+  },
+  "application": {
+    "title": "Reading a Greeks table",
+    "message": "If your brokerage account holds derivatives, find the Greeks for one position: the signs of gamma and theta tell you which side of the volatility-versus-time trade you are standing on.",
+    "secondary": "Negative gamma with positive theta is the structure that has emptied many accounts in a single session."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The price of an option is one number. Its risk needs five, because that value responds non-linearly to five different things."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Delta: how much the option price moves when the underlying moves one unit",
+        "Gamma: how fast delta changes as the underlying price shifts",
+        "Vega: how much the option price moves when implied volatility rises a point",
+        "Theta: how much time value is lost with each day that passes",
+        "Rho: how much the option price moves when interest rates change"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why gamma is the most frightening Greek"
+    },
+    {
+      "type": "paragraph",
+      "text": "Delta gives you a hedge position for right now. Gamma tells you how fast that position falls apart. Large gamma means every price step demands a fresh adjustment, and every adjustment costs a fee - so gamma is both a risk and a cost."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Buying options",
+        "text": "Positive gamma, negative theta. You pay every day for the right to profit if the price runs hard in either direction."
+      },
+      "right": {
+        "label": "Selling options",
+        "text": "Negative gamma, positive theta. You collect steadily every day, and in exchange you carry losses that grow faster than linearly when the price runs."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Greeks add up; prices do not",
+      "text": "The biggest practical advantage: the delta of a whole portfolio is the sum of the deltas of its positions, and the same holds for gamma and vega. That is how a desk holding thousands of contracts still summarises its risk into a handful of numbers watched daily."
+    },
+    {
+      "type": "heading",
+      "text": "One concrete position, and what happens when the price moves 2"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose a call option has delta 0.50, gamma 0.05, vega 0.15 and theta −0.02 per day. The stock rises by 2. The option value changes by roughly 0.50 × 2 + ½ × 0.05 × 2² = 1.00 + 0.10 = 1.10. The 1.00 is delta, the 0.10 is gamma - and it is that second piece which explains why a delta-only estimate is always wrong in one direction: it omits the curvature. More importantly, delta is now no longer 0.50 but 0.50 + 0.05 × 2 = 0.60."
+    },
+    {
+      "type": "callout",
+      "label": "Gamma is what turns hedging into a continuous job",
+      "text": "If you have sold 50 shares to hedge 100 options at delta 0.50, then after the 2-point rise you need to sell 10 more shares to get back to neutral. Then the price moves again, and you adjust again. That is the whole content of dynamic hedging, and it shows why hedging cost scales with gamma rather than with delta: delta tells you how many shares you need, gamma tells you how fast that number has to change."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Five derivatives, five different questions",
+      "subtitle": "One option, but each Greek answers a distinct kind of risk",
+      "concepts": [
+        {
+          "def": "How much the option moves when the price moves 1. Also approximately the number of shares needed to hedge, and approximately the risk-neutral probability of finishing in the money.",
+          "en": "To the underlying price"
+        },
+        {
+          "def": "How fast delta changes. Largest when the price sits near the strike and expiry is close - exactly when hedging is hardest and most expensive.",
+          "en": "To delta itself"
+        },
+        {
+          "def": "A one-percentage-point rise in implied volatility lifts the value by 0.15 in the example above. This is the only Greek measuring sensitivity to something that cannot be observed directly.",
+          "en": "To volatility"
+        },
+        {
+          "def": "A loss of 0.02 a day purely from time passing, even when nothing happens. The option seller collects this, and it is the compensation for the negative gamma they are carrying.",
+          "en": "To time"
+        },
+        {
+          "def": "The smallest of the five for short-dated options, so it gets ignored - but it grows with maturity and cannot be ignored on multi-year contracts.",
+          "en": "To interest rates"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Managing option risk means managing derivatives, not managing the price.",
+        "Next lesson: the equivalent set of sensitivities for the bond world."
+      ]
+    }
+  ]
+}

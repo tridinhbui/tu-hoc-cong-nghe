@@ -1,0 +1,180 @@
+{
+  "slug": "sql-co-ban-cho-dan-tai-chinh",
+  "title": "Excel, Lesson 6: Basic SQL for finance people - getting exactly the data you need",
+  "subtitle": "SELECT, WHERE, GROUP BY, JOIN: enough to query for yourself instead of waiting on the data team",
+  "duration": "12 min",
+  "whyItMatters": "When the data outgrows a spreadsheet, or when every change of filter means waiting three days on the data team, SQL is what puts you back in control. The first four statements already cover most of what a financial analyst needs.",
+  "openingQuestion": "What is GROUP BY used for in SQL?",
+  "openingOptions": [
+    "Sorting the whole result set into ascending or descending order",
+    "Collapsing rows sharing a value so you can sum, count or average by group",
+    "Filtering out the rows that fail a condition",
+    "Joining two tables together"
+  ],
+  "explanation": "GROUP BY is the SQL equivalent of a PivotTable: it collapses detailed data into groups and then computes over each group - total revenue by branch and by month, for instance. It is the statement a financial analyst reaches for most often, because nearly every report is transaction data aggregated along some dimension.",
+  "diagram": [
+    {
+      "label": "SELECT: pick the columns"
+    },
+    {
+      "label": "FROM + JOIN: from which tables"
+    },
+    {
+      "label": "WHERE: filter the rows"
+    },
+    {
+      "label": "GROUP BY + HAVING: group, then filter the groups"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Credit portfolio analysis at a bank",
+    "description": "A credit analyst needs outstanding balances and overdue ratios broken down by industry and by region. The data sits in two tables - the loan table and the customer table - running to millions of rows, far beyond what a spreadsheet can hold. A query of about ten lines returns exactly the summary table needed in a few seconds, and the filter conditions can be adjusted and re-run immediately."
+  },
+  "quiz": [
+    {
+      "question": "How do WHERE and HAVING differ?",
+      "options": [
+        "There is no real difference; the two clauses are interchangeable",
+        "HAVING may only be used inside a query that has a JOIN in it",
+        "WHERE applies to numeric columns and HAVING to text columns",
+        "WHERE filters rows before grouping; HAVING filters groups after aggregation"
+      ],
+      "explanation": "To keep only 2025 transactions you use WHERE. To keep only branches whose total revenue exceeds 10bn you use HAVING, because that condition does not exist until the rows have been grouped and summed. They are not interchangeable and the distinction has nothing to do with the data type of the column or with whether a JOIN is present - it is entirely about the point in the pipeline at which each clause runs."
+    },
+    {
+      "question": "How do INNER JOIN and LEFT JOIN differ?",
+      "options": [
+        "INNER JOIN keeps only rows matching on both sides; LEFT JOIN keeps the whole left table",
+        "LEFT JOIN runs faster than INNER JOIN because it does not check both directions",
+        "INNER JOIN can only combine exactly two tables, while LEFT JOIN can combine more",
+        "There is no difference at all in the actual result, only in how the query is written down"
+      ],
+      "explanation": "This is the single most important distinction in practice. Using INNER JOIN to attach price data to a portfolio silently drops every ticker with no price, so the portfolio total comes out short and nothing tells you. Both kinds of join chain across any number of tables, neither is systematically faster, and the results are emphatically not the same - which is precisely why the choice matters."
+    },
+    {
+      "question": "Why does SQL suit large data better than a spreadsheet?",
+      "options": [
+        "Because SQL ships with far more specialised financial functions already built into it",
+        "Because SQL automatically detects and flags anomalous values found in the data",
+        "Because the data is processed where it is stored and only the summary comes back",
+        "Because a SQL result is always correct, so no verification step is needed"
+      ],
+      "explanation": "The general principle is to send the computation to the data rather than dragging the data to the computation. Pulling ten million rows into a spreadsheet and only then filtering them is both slow and fragile. SQL has fewer built-in financial functions than a spreadsheet rather than more, it flags nothing on its own, and a query that runs successfully can still answer the wrong question entirely."
+    },
+    {
+      "question": "After running an aggregate query, what is the necessary check?",
+      "options": [
+        "Delete the query as soon as the figure needed for the report has been taken out",
+        "Run exactly the same query a second time to confirm the result is fully stable",
+        "Print the result out on paper and file it away as evidence for a later review",
+        "Reconcile the row count and total against a known source for the same period"
+      ],
+      "explanation": "A wrong filter condition or the wrong kind of join produces a result that looks entirely normal. Reconciling against a total you already know is the only way to catch it, and it should be mandatory before the numbers feed any decision. Re-running the same query reproduces the same mistake, printing preserves it, and deleting the query destroys the only record of how the figure was produced."
+    },
+    {
+      "question": "What is the logical execution order of a basic query?",
+      "options": [
+        "FROM and JOIN first, then WHERE, then GROUP BY, then HAVING, and only then SELECT and ORDER BY",
+        "SELECT first, then FROM, and then WHERE, in the order they are written on the page",
+        "WHERE always runs first, ahead of any other clause in the whole of the query",
+        "GROUP BY runs before WHERE does, so that every filter applies to the groups"
+      ],
+      "explanation": "Understanding this order explains why you cannot use an alias defined in SELECT inside the WHERE clause - at the moment WHERE runs, that column does not yet exist. It is the most common error among people new to SQL, and it is a direct consequence of the fact that the order a query is written in is not the order it executes in."
+    }
+  ],
+  "practicePrompt": {
+    "question": "You join a 200-ticker portfolio table to a price table with INNER JOIN and the result comes back with only 187 rows. What should you do?",
+    "options": [
+      "Accept the 187 rows, since the difference looks fairly small",
+      "Switch to LEFT JOIN to see the 13 tickers missing a price",
+      "Scale the result by 200 divided by 187 to compensate",
+      "Re-run the query repeatedly until all 200 rows appear"
+    ],
+    "explanation": "This is the most dangerous kind of silent error in data analysis: the portfolio total is short by 13 tickers and every weight is wrong, yet no error message appears anywhere. A LEFT JOIN forces the missing data into view so you have to deal with it deliberately."
+  },
+  "keyTakeaways": [
+    "Four clauses - SELECT, WHERE, GROUP BY, JOIN - cover most financial analysis needs",
+    "WHERE filters rows before grouping; HAVING filters groups after aggregation",
+    "LEFT JOIN keeps the whole left table; INNER JOIN can silently drop unmatched rows",
+    "Always reconcile a query result against a known total before using it"
+  ],
+  "summary": {
+    "keyIdea": "SQL gives you the power to pull exactly the data you need, instead of waiting on someone else and receiving something approximate",
+    "formula": "SELECT columns, aggregate_function FROM table JOIN ... WHERE condition GROUP BY column HAVING group_condition",
+    "commonMistake": "Using INNER JOIN where LEFT JOIN is needed, silently losing rows of data",
+    "action": "Write a query that totals by group over any dataset and reconcile the result against a PivotTable of the same data."
+  },
+  "application": {
+    "title": "How much is enough",
+    "message": "In a financial analysis role you do not need to master query optimisation or database design. The four clauses in this lesson plus a few aggregate functions cover most of the work. The rest can be picked up as real needs arise.",
+    "secondary": "The goal is not to become a data engineer, but to stop waiting on anyone for the number you need."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "There is a threshold every analyst eventually meets: the data is too large for a spreadsheet, or the questions change faster than the data team can answer them. SQL is the tool for crossing that threshold, and there is far less to learn than most people expect."
+    },
+    {
+      "type": "formula",
+      "title": "The shape of an analytical query",
+      "label": "The order you write it in is not the order it runs in",
+      "equation": "SELECT ... FROM ... JOIN ... WHERE ... GROUP BY ... HAVING ... ORDER BY ...",
+      "variables": [
+        {
+          "symbol": "FROM/JOIN",
+          "name": "Where it comes from",
+          "description": "Runs first - establishes the source dataset"
+        },
+        {
+          "symbol": "WHERE",
+          "name": "Filter rows",
+          "description": "Runs before grouping"
+        },
+        {
+          "symbol": "GROUP BY",
+          "name": "Group",
+          "description": "The equivalent of a PivotTable"
+        },
+        {
+          "symbol": "HAVING",
+          "name": "Filter groups",
+          "description": "Runs after the aggregates have been computed"
+        },
+        {
+          "symbol": "SELECT",
+          "name": "Choose the columns shown",
+          "description": "Written first but executed near the end"
+        }
+      ],
+      "example": {
+        "title": "Reading a real query",
+        "calculation": "Total outstanding balance by industry, active loans only, showing only industries above 100bn",
+        "result": "WHERE filters the loans, GROUP BY groups by industry, HAVING filters industries by total",
+        "explanation": "Three layers of filtering at three different moments. Confusing WHERE with HAVING is the most common error, and it produces a wrong answer rather than an error message."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Pull the data down, then filter",
+        "text": "Download millions of rows into a spreadsheet and only then process them. Slow, prone to freezing, and usually past the row limit."
+      },
+      "right": {
+        "label": "Filter at the source, then pull",
+        "text": "The database does the work and returns a summary table of a few hundred rows. Fast, light, and repeatable."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The verification discipline does not change",
+      "text": "Every principle from the earlier lessons still applies: reconcile totals against a known source, check the row count before and after a join, and always ask whether a filter condition has quietly excluded data. A more powerful tool does not replace checking the answer."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "End of the stage: you now have a complete execution toolkit, from keyboard shortcuts to database queries.",
+        "All six lessons share one principle: every number must be traceable back to its source, and every process must be repeatable."
+      ]
+    }
+  ]
+}

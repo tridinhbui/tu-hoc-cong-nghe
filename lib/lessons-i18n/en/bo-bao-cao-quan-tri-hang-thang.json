@@ -1,0 +1,143 @@
+{
+  "slug": "bo-bao-cao-quan-tri-hang-thang",
+  "title": "Planning, lesson 6: the FP&A monthly rhythm - close, explain, and sit with the business",
+  "subtitle": "What goes into a management reporting pack, how to write the commentary, and why most of the value lies outside the numbers",
+  "duration": "11 min",
+  "whyItMatters": "A budget is built once a year; the monthly rhythm repeats twelve times. The quality of an FP&A function shows up in that rhythm far more than in the budget document, and it is also the part of the job a new joiner will be doing from their first month.",
+  "openingQuestion": "Which part of the monthly management reporting pack creates the most value?",
+  "openingOptions": [
+    "The full numbers table, accurate to the last dong",
+    "The commentary explaining why the numbers moved as they did",
+    "The charts that visualise the underlying trends",
+    "The comparison against the same period last year"
+  ],
+  "explanation": "Anyone can export the numbers from the system, and with modern tooling that step is increasingly automatic. What cannot be automated is the answer to why: revenue missed because one large customer left, or because the whole market slowed - and those two causes call for two different actions. A pack that has numbers but no commentary pushes the entire job of interpretation onto the reader, who has less time and less data than you do.",
+  "diagram": [
+    { "label": "Close the books and lock the numbers" },
+    { "label": "Compare actual with plan, split out the causes" },
+    { "label": "Ask the business what sits behind the numbers" },
+    { "label": "Write the commentary and update the forecast" }
+  ],
+  "realWorldExample": {
+    "company": "Two kinds of commentary on the same variance",
+    "description": "The first kind: selling costs are 12% over plan, or 3.2bn dong. That is a restatement of the number the reader has just looked at. The second kind: selling costs are 3.2bn over, of which 2.5bn comes from the September promotion being extended by two weeks on the decision of 8 September, and the rest from freight costs rising with fuel prices. The promotion brought in an extra 9bn of revenue, so on its own terms it worked, but the overspend was not in the Q4 forecast and needs additional approval. The second kind costs two more phone calls and produces a decision."
+  },
+  "quiz": [
+    {
+      "question": "Why does FP&A need to talk to the business directly before writing the commentary?",
+      "options": [
+        "Because the real cause behind a variance sits in no data system anywhere",
+        "Because departments must sign off on the numbers before the pack is issued externally",
+        "Because the accounting system often books things wrongly and needs line-by-line checking",
+        "Because most companies mandate this step in their internal control procedures"
+      ],
+      "explanation": "The system records that costs rose by 3.2bn. That a promotion was extended on a verbal decision taken in a meeting is recorded by no system at all, and it is precisely that fact which turns a number into a story a reader can act on. Sign-off is a control step that happens after the analysis, not a source of insight; assuming the ledger is wrong is the wrong starting point, since posting errors are the exception rather than the rule; and no rulebook requires the conversation - it is worth having on its own merits."
+    },
+    {
+      "question": "What does a good variance commentary contain beyond the variance figure itself?",
+      "options": [
+        "A comparison with the same period across at least three prior years to show the long trend",
+        "The specific cause, whether it is one-off or recurring, and what to do next",
+        "A complete list of every line item showing any variance at all, large or small, in the period",
+        "The variance percentage computed against both the plan and the prior period actuals"
+      ],
+      "explanation": "The one-off versus recurring judgement is the most important element and the one most often left out: it decides whether the forecast for later periods has to be changed. Three years of history is context, not explanation, and it rarely tells you what happened this month. Listing every line buries the few that matter. And expressing the same variance as two more percentages adds arithmetic, not understanding - the reader still has no idea why the number moved or what anyone should do about it."
+    },
+    {
+      "question": "Why set a materiality threshold for explaining variances?",
+      "options": [
+        "To cut the pack down to the maximum page count management asks for",
+        "Because accounting standards set a mandatory materiality level for internal reporting",
+        "To focus on items big enough to act on, rather than explaining every line",
+        "Because small variances are usually system errors and need no explanation"
+      ],
+      "explanation": "Explaining a hundred lines makes the three that genuinely matter disappear. Thresholds are usually set on both an absolute amount and a percentage, because a small item off by 80% is also worth a look. Page count is a symptom, not the reason: a shorter pack that still explains trivia has not solved anything. Accounting standards govern external financial statements, not internal management reporting, which each company designs for itself. And small variances are usually genuine small variances, not system errors."
+    },
+    {
+      "question": "After analysing the month, how should the forecast for the remaining periods be handled?",
+      "options": [
+        "Update only at each quarter end, following management's approval calendar",
+        "Always hold to the approved plan to keep the full-year comparison consistent",
+        "Always rebuild the whole forecast off the latest actuals of the month just closed",
+        "Update if the cause is still running, hold it if the item was one-off"
+      ],
+      "explanation": "This is exactly the rolling forecast mechanism covered in the CFO & Operations stage, and it is where the one-off versus recurring judgement earns its keep. Waiting for a quarterly calendar means carrying a forecast you already know is wrong for up to three months. Freezing the plan preserves a comparison at the cost of usefulness. And mechanically re-basing everything off one month's actuals treats a one-off timing item as though it were permanent, which is just as wrong in the other direction."
+    },
+    {
+      "question": "Having analysed the month's results, how should the forecast for the remaining periods be treated?",
+      "options": [
+        "Update it if the cause of the variance still affects later periods",
+        "Hold it unchanged to preserve comparability with the approved plan",
+        "Adjust the remaining periods to make up exactly what the month missed",
+        "Update once at mid-year, following the budget review calendar"
+      ],
+      "explanation": "Losing a large customer is not an event confined to this month. The question to answer after every close is whether the cause persists. Holding the plan unchanged keeps a tidy comparison against a number everyone knows is stale. Topping up later periods so the full year still ties to plan is the worst of the three - it does not fix anything, it simply moves the problem into December, where it arrives with no time left to respond."
+    }
+  ],
+  "keyTakeaways": [
+    "Anyone can export the numbers; the commentary explaining why is the part that cannot be automated",
+    "The real cause usually is not in any system - you have to ask the business",
+    "Good commentary names the cause, says whether it is one-off or recurring, and proposes an action",
+    "Set a materiality threshold so the three lines that matter are not lost among a hundred",
+    "If the cause persists, the forecast for later periods has to change"
+  ],
+  "practicePrompt": {
+    "question": "Monthly revenue beat plan by 15% because a large contract was signed a quarter earlier than expected. How should the commentary read?",
+    "options": [
+      "Revenue beat plan by 15%, a positive result for the month",
+      "Up 15% on contract X signed a quarter early, so Q4 will fall short",
+      "Revenue beat plan, so raise the targets for the remaining quarters",
+      "More time is needed before the trend can be properly assessed"
+    ],
+    "explanation": "This is the most dangerous shape of variance because it looks like good news. No extra revenue was created at all - it simply moved from next quarter into this one. Commentary that fails to say so leads straight to raising targets for the remaining quarters, at exactly the moment next quarter is about to fall short because of the very contract that was recognised early."
+  },
+  "summary": {
+    "keyIdea": "The value of FP&A lies in the explanation and in the time spent with the business, not in the numbers table",
+    "commonMistake": "Writing commentary by restating in words the number the reader has just looked at",
+    "action": "For every variance above the threshold, write all three parts: why, one-off or recurring, and what to do."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take the most recent monthly report and rewrite the commentary for the three largest variances. For each one, call the person responsible before you write. Compare the new version with the old and see what information you gained that the system did not have.",
+    "secondary": "If the call produced nothing new, the odds are you have not yet spoken to the right person."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The budget is a once-a-year event. The monthly rhythm repeats twelve times, and that is where an FP&A function is actually judged."
+    },
+    { "type": "heading", "text": "The four steps of a monthly cycle" },
+    {
+      "type": "list",
+      "items": [
+        "Close and lock the numbers: work with accounting to reach the final figures, usually within the first 3 to 7 working days of the month",
+        "Compare and split out the causes: actual against plan and against the latest forecast, decomposed by driver as built in the first lesson of this stage",
+        "Ask the business: the most time-consuming step and the one that creates the most value, because the real cause is not in the system",
+        "Write the commentary and update the forecast: fix it in a document, and revise the remaining periods if the cause persists"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Weak commentary",
+        "text": "The number restated in words: costs are 12% over. No cause, no distinction between one-off and recurring, no action. The reader still has to go and find out."
+      },
+      "right": {
+        "label": "Strong commentary",
+        "text": "The variance broken into specific causes with names and dates, an explicit statement of which part will recur, and a closing recommendation that needs a decision."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Business partnering is part of the craft, not part of the software",
+      "text": "A good FP&A person gets called by the business before decisions are made, rather than being seen as the department that chases numbers and cuts budgets. That difference comes not from the model or the tooling but from being present enough to understand the actual operation, and from arriving with an answer to their problem rather than only a question about a variance."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The numbers table is the necessary condition. Someone changing a decision because of it is the result.",
+        "This stage closes the planning arc: building the numbers, testing what they can withstand, and explaining them when they move."
+      ]
+    }
+  ]
+}

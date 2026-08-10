@@ -1,0 +1,135 @@
+{
+  "slug": "cfa-economics-co-che-truyen-dan-tien-te",
+  "title": "CFA Economics: The monetary policy transmission mechanism",
+  "subtitle": "From the central bank changing a rate to the economy feeling it: the route, and the lag",
+  "duration": "8 min",
+  "openingQuestion": "A central bank cuts its policy rate today. How long before the full effect on inflation and output shows up?",
+  "openingOptions": [
+    "Immediately, since markets react the same day",
+    "Usually 12-24 months, because of the policy lag",
+    "About a week, once commercial banks reprice their loans",
+    "Never - the policy rate only affects financial markets"
+  ],
+  "explanation": "Monetary policy works through several channels and each one has its own lag. Market interest rates react almost instantly, but corporate decisions on borrowing, investment and hiring take several quarters to change, and only then does the effect reach output and prices. This is why central banks say they set policy on an inflation forecast rather than on the inflation that has already happened - by the time the data confirms it, it is far too late.",
+  "realWorldExample": {
+    "company": "The Fed's 2022-2023 tightening",
+    "description": "The Fed began raising rates in March 2022, but inflation only cooled clearly from the middle of 2023 - a lag of more than a year. During that gap, plenty of people concluded prematurely that the policy was not working. Property reacted first, being highly sensitive to mortgage rates, while the labour market was the slowest part of the economy to respond."
+  },
+  "quiz": [
+    {
+      "question": "Which of these is NOT a channel through which monetary policy reaches the real economy?",
+      "options": [
+        "The interest rate channel: cheap borrowing stimulates investment and durable consumption",
+        "The tax channel: the central bank adjusts corporate income tax to influence investment",
+        "The exchange rate channel: low rates weaken the currency and stimulate exports",
+        "The asset price channel: low rates lift equity and property prices, so households spend more"
+      ],
+      "explanation": "Tax is an instrument of FISCAL policy, sitting with the government and the legislature rather than with the central bank. The other three - interest rates, asset prices, the exchange rate - are all standard monetary transmission channels, alongside the credit channel (how able and how willing banks are to lend) and the expectations channel. A central bank influences the tax base only indirectly, through growth, and never sets the rate."
+    },
+    {
+      "question": "What situation does a liquidity trap describe?",
+      "options": [
+        "Commercial banks do not hold enough cash to meet the depositors queueing to withdraw",
+        "An investor cannot sell an asset because the market has stopped producing buyers",
+        "Nominal rates are near zero yet the economy stays flat, so cutting no longer stimulates",
+        "Inflation runs so high that households refuse to hold any cash whatsoever now"
+      ],
+      "explanation": "A liquidity trap arises when interest rates hit the zero lower bound. At that point cutting further is close to impossible, and people still do not borrow or spend because they are pessimistic. The central bank has to move to unconventional tools: quantitative easing, forward guidance, or yield curve control. Japan after the 1990s is the classic case. The other three options describe a bank run, a market liquidity failure and a flight from cash - three entirely different problems."
+    },
+    {
+      "question": "Why is central bank independence considered important?",
+      "options": [
+        "So that the central bank can decide the appropriate level of taxation for itself",
+        "Because international law obliges every central bank in the world to operate independently",
+        "Because a central bank needs the freedom to invest its reserves for a profit",
+        "Because an independent central bank keeps a credible commitment that anchors expectations"
+      ],
+      "explanation": "The core issue is time inconsistency: politicians always have an incentive to stimulate before an election, even knowing that inflation follows. If the public anticipates this, inflation expectations run high from the outset. An independent central bank with a clear mandate creates a credible commitment that anchors expectations - and anchored expectations are precisely what makes controlling inflation cheap. Taxation is not the central bank's decision, no international law requires independence, and reserve management is a separate function entirely."
+    },
+    {
+      "question": "Why does the policy lag make monetary policy hard to run?",
+      "options": [
+        "Because the full effect only lands quarters later, when conditions have changed",
+        "Because a central bank is not permitted to change interest rates more than once a year",
+        "Because financial markets react far more slowly than the real economy does",
+        "Because the lag means the policy rate no longer reaches lending rates at all"
+      ],
+      "explanation": "The central bank has to act on a forecast of where things will stand in a year or two, not on today's data. That is why over-tightening, or easing too late, is a permanent risk - and it is also why forward guidance became an instrument in its own right. Nothing restricts how often rates may be changed; financial markets react fastest of all rather than slowest; and the lag delays transmission rather than severing the link between policy and lending rates."
+    },
+    {
+      "question": "How does the exchange rate channel work when a central bank cuts rates?",
+      "options": [
+        "The currency strengthens, since low rates spur growth and attract foreign capital",
+        "The currency tends to weaken, helping exports but making imports dearer",
+        "The exchange rate is unchanged, depending only on the trade balance",
+        "Exports fall, because domestic goods become dearer than foreign ones"
+      ],
+      "explanation": "Lower rates make domestic-currency assets less attractive, capital flows out and the currency weakens. This channel is powerful in an open economy such as Vietnam, but it also pushes up the price of imports - so easing to support growth can collide with the inflation objective. Low rates do not attract capital, the exchange rate responds to the capital account as much as to trade, and a weaker currency makes exports cheaper abroad rather than dearer."
+    }
+  ],
+  "keyTakeaways": [
+    "Five transmission channels: interest rates, credit, asset prices, the exchange rate, and expectations",
+    "Long and variable lags (12-24 months) force a central bank to set policy on a forecast rather than on past data",
+    "At the zero lower bound, conventional policy stops working - QE and forward guidance take over",
+    "Central bank independence solves the time inconsistency problem and helps anchor inflation expectations"
+  ],
+  "practicePrompt": {
+    "question": "A central bank has raised rates four times in six months and inflation is still high. A commentator concludes the policy has failed. Assess that claim.",
+    "options": [
+      "Correct - if inflation has not fallen in six months, rates are clearly not working",
+      "Too hasty: monetary policy usually needs 12-24 months to transmit fully",
+      "Correct - the central bank should have raised far harder straight away",
+      "Impossible to judge, since inflation has nothing to do with interest rates"
+    ],
+    "explanation": "This is the most common mistake made when reading monetary policy: judging its effectiveness by the slowest-reacting variable of all. Inflation is a lagging indicator. To see whether policy is transmitting, you have to look at earlier links in the chain: market interest rates, credit growth, property activity, and above all inflation expectations. If those have already turned, the policy is working even though inflation has not yet fallen."
+  },
+  "summary": {
+    "keyIdea": "Monetary policy works through five channels with a 12-24 month lag, so it has to be judged on early indicators rather than on today's inflation.",
+    "commonMistake": "Concluding that policy has failed because inflation has not fallen within a few months - ignoring the transmission lag",
+    "action": "Track credit growth and inflation expectations as the early indicators of whether policy is biting"
+  },
+  "application": {
+    "title": "Applying this in CFA analysis",
+    "message": "Understanding the transmission lag lets you position a portfolio before the policy effect appears in the data - which is exactly the principle behind investing on leading indicators.",
+    "secondary": "It also explains why the bond market reacts to EXPECTATIONS about policy rather than to the decision once it is announced."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A central bank directly controls exactly one number: its policy rate. Everything else is an indirect consequence, travelling through several links and taking a great deal of time."
+    },
+    { "type": "heading", "text": "The five transmission channels" },
+    {
+      "type": "list",
+      "items": [
+        "The interest rate channel: the policy rate pulls market rates with it, changing the cost of borrowing and so affecting corporate investment and consumption of durable goods",
+        "The credit channel: lower rates improve borrowers' balance sheets and make banks more willing to lend, expanding the credit actually extended",
+        "The asset price channel: lower rates lift equity and property prices, households feel wealthier and spend more (the wealth effect)",
+        "The exchange rate channel: lower rates send capital out, the currency weakens, exports become more competitive and imports dearer",
+        "The expectations channel: what the central bank says shapes expectations of inflation and growth, changing behaviour before any transaction takes place"
+      ]
+    },
+    { "type": "heading", "text": "Why the lag is both long and unpredictable" },
+    {
+      "type": "paragraph",
+      "text": "Every link in the transmission chain moves at its own speed. Interbank rates change within the day. Corporate lending rates change within a few weeks. But a company weighing up a new factory will not reverse the decision over 0.25 points - it waits to see the trend. Hiring and firing are slower still. By the time all of that reaches the price of goods and services, one to two years have passed. Milton Friedman called this 'long and variable lags', and it is the single main reason running monetary policy is as hard as it is."
+    },
+    { "type": "heading", "text": "When the conventional tools run out of ammunition" },
+    {
+      "type": "paragraph",
+      "text": "Once nominal rates approach zero, they cannot be cut much further, because people will hold cash rather than accept a negative deposit rate. The central bank switches to unconventional instruments: quantitative easing (buying long-dated assets to pull long rates down), forward guidance (committing to keep rates low for an extended period in order to move expected rates), and yield curve control. How well these work is still debated in the academic literature."
+    },
+    {
+      "type": "callout",
+      "label": "A note for the CFA exam",
+      "text": "Keep the monetary instruments (policy rates, the reserve requirement, open market operations - all central bank) clearly separate from the fiscal ones (taxation and public spending - government). Exam questions routinely mix the two groups together in the answer options."
+    }
+  ],
+  "diagram": [
+    { "label": "The central bank adjusts the policy rate" },
+    { "label": "Transmitted through five channels: rates, credit, asset prices, FX, expectations" },
+    { "label": "Household and corporate spending and investment change" },
+    { "label": "Output and inflation respond, with a long and unpredictable lag" },
+    { "label": "At the lower bound, unconventional tools take over" }
+  ]
+}

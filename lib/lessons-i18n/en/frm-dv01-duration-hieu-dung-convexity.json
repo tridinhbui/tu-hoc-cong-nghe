@@ -1,0 +1,141 @@
+{
+  "slug": "frm-dv01-duration-hieu-dung-convexity",
+  "title": "FRM Valuation, Lesson 5: DV01, effective duration and convexity",
+  "subtitle": "The delta and gamma of the bond world, under different names",
+  "duration": "9 min",
+  "whyItMatters": "A bond desk does not talk about duration in years - it talks in money: one basis point of rate movement and how much the book loses. DV01 is that language, and it adds up across positions.",
+  "openingQuestion": "What does the DV01 of a bond measure?",
+  "openingOptions": [
+    "The change in value in money terms when the yield moves one basis point",
+    "The weighted average number of years to receive all of the bond's cash flows",
+    "The percentage change in the bond's price when the yield rises one percent",
+    "The yield difference between a corporate bond and a government bond"
+  ],
+  "explanation": "DV01 answers the question of how much money the book loses when rates rise one basis point. It is measured in money rather than in percent or in years, and that is exactly its advantage: two positions of very different maturity and size can have their DV01s added together to give the interest rate risk of the whole book. Duration measures the same thing in percentage terms, while convexity describes the non-linear part duration misses - and that part only matters once rates move a long way.",
+  "diagram": [
+    { "label": "Duration: a first-order approximation, percentage price change per unit of yield" },
+    { "label": "DV01: the same idea expressed in money, so it can be summed" },
+    { "label": "Convexity: adds back the curvature the first-order term drops" },
+    { "label": "A callable bond means you have to use effective duration" }
+  ],
+  "realWorldExample": {
+    "company": "Why effective duration exists",
+    "description": "Duration is usually computed from the bond's own contractual cash flows. But with a callable bond, or a loan carrying a prepayment option, the cash flows themselves move with interest rates - rates fall, the issuer calls, and the cash flows disappear. Effective duration is measured by shifting the whole curve up and down and revaluing, so it captures that effect; a formula built on fixed cash flows cannot."
+  },
+  "quiz": [
+    {
+      "question": "What benefit does positive convexity give the holder of a bond?",
+      "options": [
+        "The bond pays a coupon above the prevailing market rate",
+        "The price falls less and rises more than duration alone predicts",
+        "The issuer is barred from calling the bond before maturity",
+        "The bond's price stops depending on interest rate movements"
+      ],
+      "explanation": "The price-yield relationship is a convex curve, and duration is only the tangent to it. That curvature helps in both directions, which is why a bond with high convexity generally has to be paid for with a lower yield. A high coupon is a separate feature, call protection is a contractual term rather than a consequence of curvature, and nothing makes a bond price independent of rates."
+    },
+    {
+      "question": "Why can a callable bond carry negative convexity?",
+      "options": [
+        "Because the issuer has to pay the holder an additional premium",
+        "Because this kind of bond always has a much shorter maturity than a plain vanilla one",
+        "Because as rates fall the chance of being called rises and the price is capped",
+        "Because its coupon is reset to the market rate at every period"
+      ],
+      "explanation": "The holder has sold an option to the issuer. That option gets exercised precisely when rates fall and the bond would otherwise be gaining most - so the upside is truncated and the price curve bends the other way. A call premium is compensation on exercise rather than a cause of curvature, callable bonds are not inherently short-dated, and a floating coupon describes a different instrument entirely."
+    },
+    {
+      "question": "What limitation do duration and convexity share?",
+      "options": [
+        "Both assume the yield curve shifts in parallel across every maturity",
+        "Both can only be applied to government bonds, never to corporate issues",
+        "Both require the bond to have more than ten years left to maturity",
+        "Both become impossible to compute when market yields turn negative"
+      ],
+      "explanation": "In reality the curve usually changes slope: the short end and the long end move by different amounts, sometimes in opposite directions. So a large book needs sensitivity measured across maturity buckets as well - a single total duration figure is not enough on its own. Both measures apply to corporate bonds, to short maturities, and to negative yields without any difficulty at all."
+    },
+    {
+      "question": "How does effective duration differ from Macaulay duration?",
+      "options": [
+        "It revalues the bond at two different rate levels, so it copes with embedded options",
+        "It is measured in units of money per basis point rather than in units of years",
+        "It applies only to bonds that pay no coupon at any point during the holding period at all",
+        "It ignores the effect of coupons entirely and counts only the final maturity date"
+      ],
+      "explanation": "With a callable or puttable bond, the future cash flows themselves change with interest rates - so a formula built on fixed cash flows simply cannot be used. The only way is to shift rates up and down and revalue, and that is exactly what effective duration is. Money units describe DV01 rather than effective duration, and neither zero-coupon status nor ignoring coupons has anything to do with it."
+    },
+    {
+      "question": "A desk has a long position with DV01 of 18m dong and a short with DV01 of 7m dong. If the curve shifts up 10 basis points in parallel, what is the profit or loss?",
+      "options": [
+        "A loss of 11m dong (= 18 − 7, forgetting the basis points)",
+        "A loss of 110m dong (= (18 − 7) × 10 basis points)",
+        "A loss of 250m dong (= (18 + 7) × 10, adding the short position)",
+        "A gain of 110m dong (= (18 − 7) × 10, sign flipped as rates rise)"
+      ],
+      "explanation": "DV01 converts sensitivity into money per basis point, so long and short positions net directly against each other: 18 − 7 = 11m per basis point, times 10 basis points gives 110m. Duration cannot be netted the same way because it is a percentage applied to a different position value in each case."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A bond portfolio worth 500bn has an effective duration of 6.2. Rates rise 25 basis points. Approximately how much value is lost?",
+    "options": [
+      "7.75bn (= 500 × 6.2 × 0.25%)",
+      "3.1bn (= 500 × 6.2 × 0.1%)",
+      "31bn (= 500 × 6.2 × 1%)",
+      "1.55bn (= 500 × 6.2 × 0.05%)"
+    ],
+    "explanation": "Effective duration times portfolio value times the change in rates gives the approximate loss: 500 × 6.2 × 0.0025 = 7.75bn. This is a FIRST-ORDER approximation, meaning it treats the price-rate relationship as a straight line. At 25 basis points the error is small; at a 200 basis point move convexity starts to matter, and it always leans in favour of the holder of a plain bond: the price falls by less than duration predicts when rates rise, and rises by more when rates fall. Both figures also assume the curve shifts in parallel, which it rarely does."
+  },
+  "keyTakeaways": [
+    "DV01 converts interest rate sensitivity into money, so it can be summed across positions",
+    "Convexity is the curvature that duration's first-order approximation leaves out",
+    "A callable bond can carry negative convexity - the upside is capped",
+    "Both assume the curve shifts in parallel, which it rarely does in practice"
+  ],
+  "summary": {
+    "keyIdea": "DV01 and convexity are the delta and gamma of bonds; understand them as a pair and the derivatives world and the fixed income world share one framework",
+    "commonMistake": "Using duration computed from contractual cash flows on a callable bond, where the cash flows themselves depend on rates",
+    "action": "For each fixed income instrument, ask first: are its cash flows fixed - if not, effective duration is the only option"
+  },
+  "application": {
+    "title": "A quick estimate with duration",
+    "message": "A bond portfolio with a duration of 6 facing a 1 percentage point rise in rates loses roughly 6% of its value. It is a calculation you can do in your head, as long as you remember it is an approximation and that convexity makes the real loss a little smaller.",
+    "secondary": "For large moves, the gap between the approximation and reality starts to matter."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Options people say delta and gamma. Bond people say DV01 and convexity. Both pairs describe the same thing: first-order sensitivity and the second-order curvature."
+    },
+    {
+      "type": "formula",
+      "title": "The two-term approximation",
+      "equation": "% price change ≈ − Duration × Δr + ½ × Convexity × (Δr)²",
+      "variables": [
+        { "symbol": "Δr", "name": "Change in yield" },
+        { "symbol": "Duration", "name": "First-order sensitivity" },
+        { "symbol": "Convexity", "name": "The second-order correction, always additive when convexity is positive" }
+      ]
+    },
+    { "type": "heading", "text": "Why a desk prefers DV01 to duration" },
+    {
+      "type": "paragraph",
+      "text": "Duration is a percentage, and percentages of two positions of different size cannot be added. DV01 converts to money: how many dong each position contributes per basis point. Add them up and you have the interest rate risk of the whole book; subtract and you have the hedge size required."
+    },
+    { "type": "heading", "text": "Effective duration for cash flows that are not fixed" },
+    {
+      "type": "paragraph",
+      "text": "When a bond is callable or a loan carries a prepayment option, the cash flows themselves move with rates. Effective duration is not computed from a cash flow formula but measured empirically: shift the whole curve up and down a little, revalue, and take the difference."
+    },
+    {
+      "type": "callout",
+      "label": "Both assume a parallel shift",
+      "text": "This is the shared limitation that gets mentioned least. The yield curve usually rotates rather than translating - the short and long ends can move in opposite directions. For a large book, sensitivity has to be measured by maturity bucket instead of trusting a single number."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "One duration figure for a whole book is convenient, and convenience always has a price.",
+        "Next lesson: credit ratings - the input to every credit risk model."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "slug": "ir-guidance-va-ky-vong-thi-truong",
+  "title": "IR, Part 3: Guidance - put out a number and then live with it",
+  "subtitle": "Why companies publish targets, what missing one costs, and how to give a range instead of a point",
+  "duration": "11 min",
+  "whyItMatters": "The guidance number is the only promise a company makes that the market grades every quarter. Set it high and you lose credibility when you miss; set it low and you lose credibility a different way - and both land on IR before they land on anyone else.",
+  "openingQuestion": "A company guides to 500bn of profit and delivers 495bn. The stock falls 8%. Why?",
+  "openingOptions": [
+    "Because missing guidance lowers the market's trust in every future number too",
+    "Because a 5bn shortfall is a large sum relative to the size of this business",
+    "Because investors routinely sell after every earnings announcement anyway",
+    "Because brokers are obliged to downgrade whenever a target is not met"
+  ],
+  "explanation": "A 5bn gap on 500bn is 1%, nowhere near enough to change what the business is worth. What changed is the reliability of every future number. Investors build models on the assumption that management understands its own company; missing guidance, even by 1%, is evidence against that - and it forces them to discount every forward estimate, not only this quarter. That is why a company that misses by 1% can lose more value than a company whose profit falls 15% after warning about it a quarter earlier.",
+  "diagram": [
+    {
+      "label": "Guidance is published"
+    },
+    {
+      "label": "The market builds models around that number"
+    },
+    {
+      "label": "Actual results against guidance"
+    },
+    {
+      "label": "Met → trust compounds · Missed → every later forecast gets discounted"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The business plan put to the AGM of a listed Vietnamese company",
+    "description": "Unlike markets where guidance is voluntary, listed Vietnamese companies put a business plan to shareholders for approval - so the number is simultaneously a commitment to shareholders and the benchmark the market grades. Many companies therefore set deliberately conservative plans, and investors have learned to read each company's plan with its own adjustment factor attached."
+  },
+  "quiz": [
+    {
+      "question": "Why can a 1% guidance miss knock the price down sharply?",
+      "options": [
+        "Because the rules require an explanation when a target is missed",
+        "Because it lowers confidence in every future forecast, not only this quarter",
+        "Because index funds are forced to sell when a company misses its plan",
+        "Because the shortfall is the highest quality part of the profit"
+      ],
+      "explanation": "The market is not pricing that 1%. It is re-pricing the probability that the next numbers are wrong too - and that probability applies to the entire stream of future cash flows, which is why the value lost bears no relation to the size of the gap. Index funds do not trade on plan misses, and no regulator forces a downgrade; the mechanism is entirely about credibility."
+    },
+    {
+      "question": "What is the consequence of setting guidance too conservatively?",
+      "options": [
+        "Large shareholders will simply vote the plan down at the AGM",
+        "The regulator will require the company to justify how the plan was built",
+        "The market discounts it, so the number loses its power to guide",
+        "The company will be forced to revise the plan upwards mid-year"
+      ],
+      "explanation": "If you beat the plan by 40% every year, investors simply apply their own multiplier and the published figure stops conveying information. Nothing formally goes wrong - no shareholder revolt, no regulatory challenge - which is exactly why the habit persists. The cost is quiet: the company gives up its only channel for shaping expectations."
+    },
+    {
+      "question": "Why give a range rather than a single number?",
+      "options": [
+        "Because international practice requires two scenarios",
+        "Because a range avoids having to explain away a miss",
+        "Because institutions will only accept guidance given as a range",
+        "Because a range reflects the real uncertainty in forecasting"
+      ],
+      "explanation": "A single point implies a precision nobody has. A range tells the truth about the uncertainty, and the width of that uncertainty is itself information - a narrow range says the business is predictable, a wide one says which assumptions are still open. It is not a device for dodging accountability: you are still graded on whether the outcome lands inside the range."
+    },
+    {
+      "question": "Once a miss is certain, what should IR do?",
+      "options": [
+        "Revise the guidance and disclose as soon as there is a proper basis",
+        "Wait until the next scheduled reporting date comes around",
+        "Keep the guidance and emphasise other operating metrics that look good",
+        "Speak to analysts in advance so they lower their forecasts gradually"
+      ],
+      "explanation": "Revising early is bad news; staying silent and then missing is bad news plus a loss of credibility. Waiting for the scheduled date only makes the surprise larger, and emphasising other metrics reads as evasion. The last option is worse than all of them - guiding a few analysts privately is selective disclosure, which turns a disappointing quarter into a regulatory matter."
+    },
+    {
+      "question": "What makes the market forgive a bad quarter?",
+      "options": [
+        "A decline smaller than the average for peers in the same sector",
+        "It was flagged in advance and the cause matches what the company warned about",
+        "Management commits to making up the entire shortfall in the next quarter",
+        "The company simultaneously announces a large share buyback programme"
+      ],
+      "explanation": "Investors accept that companies run into difficulty. What they do not accept is discovering that management did not see it coming, because that says something about every quarter ahead rather than only this one. A promise to make it back next quarter usually makes matters worse, since it adds a second commitment to the one just broken."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A company guides to 1,000bn of profit and reports 990bn - a 1% miss. The share price falls 14%. What is the most reasonable explanation?",
+    "options": [
+      "The market is re-pricing the reliability of every future number",
+      "An overreaction, since a 1% gap is ordinary forecasting error",
+      "Leveraged investors were forced out by margin calls",
+      "Because 990bn is still below the company's profit in the same period last year"
+    ],
+    "explanation": "Ten billion dong is not worth 14% of the enterprise value - what is being re-priced is not this quarter but every quarter after it. Guidance is the company declaring that it can see its own near future; missing it means that declaration was wrong, so every forward number the company publishes from now on carries an extra layer of discount. That is why, once a miss is certain, you revise EARLY and publicly: an early revision costs one round of pain on the number, while letting it surface on results day costs the credibility as well - far more expensive, and it takes years to earn back."
+  },
+  "keyTakeaways": [
+    "A guidance miss is punished for the loss of trust in future forecasts, not for the size of the gap.",
+    "Too conservative and the market discounts it, so the number stops working.",
+    "Give a range rather than a point: the uncertainty is itself information.",
+    "If a miss is certain, revise early; briefing a few analysts privately is a breach."
+  ],
+  "summary": {
+    "keyIdea": "A guidance miss is punished for the loss of trust in the forecast, not for the size of the gap",
+    "commonMistake": "Setting a deliberately conservative plan to be sure of beating it - the market discounts it and the number stops working.",
+    "action": "Give a range rather than a point, and say which assumption decides each end of the range."
+  },
+  "application": {
+    "title": "Compare guidance with results over three years",
+    "message": "Take a company's guidance and its actual results for the last three years. If it beats slightly every single year, that is not forecasting skill but a plan set deliberately low.",
+    "secondary": "If a miss is certain, revise early and publicly; briefing a few analysts privately is a breach."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Guidance is the only promise a company makes that the market grades four times a year. And like every promise, its value lies not in the making but in the run of times it was kept."
+    },
+    {
+      "type": "heading",
+      "text": "Why missing by a little costs so much"
+    },
+    {
+      "type": "paragraph",
+      "text": "Investors build models on the assumption that management understands its own company better than outsiders do. A miss is evidence against that, so it does not merely correct this quarter's number - it forces a discount on every future number. A company that misses by 1% can lose more value than a company whose profit falls 15% after warning about it."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Setting it high",
+        "text": "You get the rating in the short run, and lose more than that on the day you miss. The cost is deferred, but it is paid in something hard to buy back."
+      },
+      "right": {
+        "label": "Setting it low",
+        "text": "Beating the plan looks good every year, until the market applies its own multiplier and the published number stops saying anything at all."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "When you know you will miss"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Revise and disclose as soon as there is a proper basis - do not wait for the reporting date.",
+        "Give the specific cause, not 'challenging market conditions'.",
+        "Say plainly which part is temporary and which is a structural change.",
+        "Never hint to a handful of analysts so they can lower forecasts gradually - that is selective disclosure."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "What actually gets forgiven",
+      "text": "The market accepts a bad quarter if it was flagged and the cause matches what the company had said. What is not forgiven is discovering that management never saw it coming - because that speaks to every quarter after this one, not only to this one."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A number you publish is a number you live with for four quarters.",
+        "So the hard part of guidance is not the day you announce it, but every day after."
+      ]
+    }
+  ]
+}

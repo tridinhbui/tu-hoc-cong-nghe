@@ -12,10 +12,21 @@
   ],
   "explanation": "This track revolves around one core idea: earning and investing well (covered in earlier tracks) isn't enough - you also need layers of PROTECTION (emergency fund, insurance, security against fraud) and ORGANIZATION (budgeting, a financial statement, an estate plan, knowing when to seek advice) to ensure your financial gains aren't destroyed by an unexpected risk, a lack of discipline, or a lack of preparation. The final destination is financial freedom - a state where money serves the life you want, instead of you having to worry about money every day.",
   "diagram": [
-    { "label": "Earning and investing well", "arrow": true },
-    { "label": "+ Protective layers (emergency fund, insurance)", "arrow": true },
-    { "label": "+ Organization (budgeting, discipline)", "arrow": true },
-    { "label": "= A solid financial foundation" }
+    {
+      "label": "Earning and investing well",
+      "arrow": true
+    },
+    {
+      "label": "+ Protective layers (emergency fund, insurance)",
+      "arrow": true
+    },
+    {
+      "label": "+ Organization (budgeting, discipline)",
+      "arrow": true
+    },
+    {
+      "label": "= A solid financial foundation"
+    }
   ],
   "realWorldExample": {
     "company": "A complete personal finance journey",
@@ -30,7 +41,6 @@
         "Because insurance exempts all subsequent investments from tax",
         "Because an emergency fund always earns more than a long-term portfolio"
       ],
-      "correct": 0,
       "explanation": "The safety foundation (emergency fund, appropriate insurance) acts as a 'cushion' absorbing unexpected shocks, keeping the long-term investment portfolio from being interrupted or drawn down at a bad time."
     },
     {
@@ -41,7 +51,6 @@
         "Having enough cash to buy anything you want",
         "Reaching a net worth above one billion VND"
       ],
-      "correct": 1,
       "explanation": "Financial freedom doesn't have one fixed number that applies to everyone - it's a relative state, depending on each person's spending level and life goals, as seen through the 4% rule formula."
     },
     {
@@ -52,7 +61,6 @@
         "Earning and investing well isn't enough - you have to protect what you've built",
         "Insurance and estate planning are only things to worry about once past sixty"
       ],
-      "correct": 2,
       "explanation": "A health event, a scam, or an inheritance dispute can take away more than a decade of good investing. Protection doesn't create wealth, but it decides whether wealth stays."
     },
     {
@@ -63,7 +71,6 @@
         "Years worked and the amount accumulated in a bank account",
         "Passive income relative to spending, not total assets held"
       ],
-      "correct": 3,
       "explanation": "Someone spending 20 million/month needs far less than someone spending 100 million/month to reach the same state. That's why controlling spending affects financial freedom in two directions at once."
     },
     {
@@ -74,7 +81,6 @@
         "Because extra income always gets eaten up by inflation within a few years",
         "Because cutting spending is far easier to do than raising income"
       ],
-      "correct": 0,
       "explanation": "Cutting 5 million a month in spending both gives you 5 million more to invest and lowers your savings target by 1.5 billion under the 25-times rule. Raising income by 5 million only does the first half."
     },
     {
@@ -85,7 +91,6 @@
         "Losing eligibility for voluntary social insurance once income exceeds a threshold",
         "Getting refused a bank loan because your spending-to-income ratio is too high"
       ],
-      "correct": 1,
       "explanation": "Lifestyle creep is why many high earners still live paycheck to paycheck. If income doubles and spending doubles right along with it, the gap to financial freedom never shrinks."
     }
   ],
@@ -103,7 +108,6 @@
       "Financial freedom simply means stopping work entirely the moment you have 10 billion VND in the bank",
       "Financial freedom is a concept that only applies to very high earners, unrelated to people with average income"
     ],
-    "correct": 0,
     "explanation": "Financial freedom is a relative state (enough to cover your living needs and serve your goals), not one absolute number the same for everyone, unlike the 'more is always better' idea."
   },
   "summary": {
@@ -116,7 +120,6 @@
     "message": "Check whether you already have all 3 layers of protection: an emergency fund, basic insurance, and a recently updated net worth statement.",
     "secondary": "Whichever layer is missing is exactly what to prioritize next."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

@@ -1,0 +1,157 @@
+{
+  "slug": "frm-rui-ro-gian-lan-va-kiem-soat",
+  "title": "FRM Operational, Lesson 12: Fraud risk and control design",
+  "subtitle": "The fraud triangle: pressure, opportunity and rationalisation - controls can only reach one side",
+  "duration": "9 min",
+  "whyItMatters": "Internal fraud is the event category with the fewest incidents and the largest loss per incident, and almost every bank failure caused by unauthorised trading shares one very basic control design flaw.",
+  "openingQuestion": "In the fraud triangle, which side does the internal control system reach most directly?",
+  "openingOptions": [
+    "Opportunity, because separating duties makes fraud hard to conceal",
+    "Pressure, because the firm can entirely remove an employee's personal financial difficulties",
+    "Rationalisation, because an internal policy document can change what an individual believes",
+    "All three sides equally, because internal control reaches each of them to exactly the same degree"
+  ],
+  "explanation": "Pressure usually comes from personal circumstances beyond the reach of the organisation, and rationalisation is a matter of psychology. Opportunity is the one side that process design touches directly - which is why almost every anti-fraud control is aimed at narrowing it.",
+  "diagram": [
+    { "label": "Pressure: financial strain or a sales target" },
+    { "label": "Opportunity: a process that allows the act and its concealment" },
+    { "label": "Rationalisation: convincing yourself the behaviour is acceptable" },
+    { "label": "Controls target opportunity: segregation of duties, independent reconciliation, mandatory leave" }
+  ],
+  "realWorldExample": {
+    "company": "The common pattern in unauthorised trading cases",
+    "description": "The large unauthorised trading losses in banking history repeat a striking structure: the person responsible had often worked in the back office before moving to the desk, so understood exactly how the reconciliation systems operated and where something could be slipped past. This is why many institutions enforce mandatory block leave - during it somebody else takes the book, and any concealment that needs daily attention comes to light."
+  },
+  "quiz": [
+    {
+      "question": "Why is mandatory block leave an effective anti-fraud measure?",
+      "options": [
+        "Because the organisation suspends trading for the duration of the absence",
+        "Because a properly rested employee is less inclined to commit a fraudulent act",
+        "Because most methods of concealment need constant attention",
+        "Because labour law obliges every role to take two unbroken weeks off each year"
+      ],
+      "explanation": "Concealing an unauthorised position almost always requires repeated intervention: rolling fictitious trades forward, amending confirmations, intercepting queries. Forcing someone out of the systems for long enough interrupts the maintenance of that concealment. Nothing is suspended while they are away - the point is that somebody else is running the book. Statutory leave entitlement says nothing about taking it in one block, and tiredness is a source of error rather than of deliberate fraud."
+    },
+    {
+      "question": "What does segregation of duties mean in a trading context?",
+      "options": [
+        "Every trade has to be executed by at least two people pressing the button together",
+        "Each employee may only trade one single asset class over the course of a day",
+        "The trading desk and risk team must sit in different buildings",
+        "Whoever executes a trade does not also confirm or reconcile it"
+      ],
+      "explanation": "The principle is that nobody holds a whole cycle from initiation through recording to checking. When one person both executes and confirms, they can create a trade that never happened without needing an accomplice. Dual execution is a different control aimed at authority limits, physical separation is theatre rather than control, and restricting an individual to one asset class does nothing at all to break the initiation-to-confirmation chain."
+    },
+    {
+      "question": "Why can an over-stretched sales target increase fraud risk?",
+      "options": [
+        "Because it creates pressure and at the same time supplies a ready rationalisation",
+        "Because a high target reduces the number of controls the firm can maintain",
+        "Because supervisors prohibit setting sales targets for front-line staff",
+        "Because a high target leaves no time to perform the reconciliation steps"
+      ],
+      "explanation": "An unreachable target pushes on two sides at once: it applies the pressure, and it hands over the self-justifying story that everyone has to do this to make the number. This is why incentive design is treated as a risk control and not merely as a human resources matter. Targets are not prohibited anywhere, and the control budget is set independently of them - the damage runs through the person's motivation, not through the resourcing of the control function."
+    },
+    {
+      "question": "Why is independent reconciliation between the trading desk and the back office such an important check?",
+      "options": [
+        "Because it lets the back office re-approve trades that have already been executed",
+        "Because the figures must match an external confirmation, not just match internally",
+        "Because regulation requires every trade to be recorded in parallel by two functions",
+        "Because the back office usually has more product experience than the trading desk"
+      ],
+      "explanation": "Most large trading frauds depend on the same person both dealing and confirming. Reconciling against a counterparty's external confirmation breaks that, because the fraudster does not control the other side of the trade. The back office does not re-approve anything - approval happens before execution - and it is not generally more expert in the product; its authority comes from independence rather than from expertise."
+    },
+    {
+      "question": "Why does collusion defeat the principle of segregation of duties?",
+      "options": [
+        "Because fraud of this kind always falls below the materiality threshold for testing",
+        "Because the colluding party is usually a member of senior management",
+        "Because the principle assumes two people are checking each other independently",
+        "Because segregation of duties can only be applied to processes with few steps"
+      ],
+      "explanation": "Segregation works because two people have no shared interest. When they cooperate, the mechanism itself becomes the cover - every step carries a valid signature and the file looks impeccable. This is why controls that do not rely on people have to be added alongside it, such as job rotation and mandatory leave. Collusion has no characteristic size and no characteristic seniority, and the number of steps in a process is unrelated to whether two of them can be captured."
+    }
+  ],
+  "practicePrompt": {
+    "question": "One dealer places the order, confirms the trade with the counterparty, and enters the result into the system. Which side of the fraud triangle is open?",
+    "options": [
+      "Opportunity, because nobody else would see an invented trade",
+      "Pressure, because the volume of work creates psychological strain",
+      "Rationalisation, because the person feels they deserve better treatment",
+      "All three at once, so no single side can be isolated from the others"
+    ],
+    "explanation": "Holding the whole cycle from initiation to recording means a trade that never happened can be entered, confirmed and reconciled to a match - by the same person. That is opportunity in its purest form, and it is the ONLY side of the triangle that process design reaches: pressure lives in personal circumstances, rationalisation lives inside someone's head, and opportunity lives in the segregation matrix. It is also why mandatory block leave works so well: a concealment of this shape needs daily maintenance, and two weeks of absence is enough for it to surface."
+  },
+  "keyTakeaways": [
+    "The fraud triangle: pressure, opportunity, rationalisation - controls aim mainly at opportunity",
+    "Segregation of duties: nobody holds a whole cycle from initiation through recording to checking",
+    "Mandatory block leave breaks concealment that has to be maintained daily",
+    "The design of targets and incentives is part of the fraud control framework"
+  ],
+  "summary": {
+    "keyIdea": "Anti-fraud control works best by narrowing opportunity, because that is the only side of the triangle that process design can reach",
+    "commonMistake": "Relying on ethics training and personal undertakings while leaving open the gaps that let one person hold several roles in the same cycle",
+    "action": "For every process that moves money, check whether anyone both initiates and approves, or both initiates and reconciles"
+  },
+  "application": {
+    "title": "Look at a process you know",
+    "message": "Think about the payment process where you work: are the person who requests the spend, the person who approves it and the person who releases the money three different people?",
+    "secondary": "If two of the three roles fall to one person, that is the most typical opportunity gap there is."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Internal fraud is far rarer than ordinary operational error, but a single case can be large enough to wipe out years of profit - or the institution itself."
+    },
+    { "type": "heading", "text": "The fraud triangle" },
+    {
+      "type": "paragraph",
+      "text": "Three elements usually appear together: financial strain or a target creating the pressure, a gap in the process creating the opportunity, and a self-justifying story that lets the person see their own behaviour as acceptable. The organisation can barely touch the first and the third, so the whole weight of control falls on the middle one."
+    },
+    { "type": "heading", "text": "Four controls aimed at opportunity" },
+    {
+      "type": "list",
+        "items": [
+        "Segregation of duties: nobody holds the whole cycle of initiation, approval, recording and reconciliation",
+        "Independent reconciliation: the figures are confirmed by a function that does not benefit from the result",
+        "Mandatory block leave: forced out of the systems long enough for concealment to be interrupted",
+        "Job rotation and periodic review of access rights"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Incentive design is a control too",
+      "text": "Unreachable targets and bonuses tied tightly to short-term results push on the pressure side and the rationalisation side at the same time. This is why a modern risk framework treats the design of incentives as a risk question rather than only a human resources one."
+    },
+    { "type": "heading", "text": "Why mandatory leave catches more cases than audit does" },
+    {
+      "type": "paragraph",
+      "text": "Most long-running internal fraud is not a single act but a state that has to be maintained: every day or every period, the person has to add another adjusting entry, another manual reconciliation, another explanation for the same discrepancy. Concealment is continuous work. That is why two weeks of unbroken leave and job rotation catch more cases per unit of cost than anything else - during those two weeks the stand-in sees the discrepancy with nobody there to explain it away."
+    },
+    {
+      "type": "callout",
+      "label": "Controls reach only one side of the triangle",
+      "text": "Pressure sits in personal circumstances - debt, illness, an impossible target - and the organisation can barely intervene. Rationalisation sits inside the person's head, usually as some version of I am only borrowing it, or the firm owes me this. The only side control design reaches is OPPORTUNITY. Which is why the right question when reviewing a process is not who here could commit fraud, but where could one person both create a transaction and hide it without needing an accomplice."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Four controls aimed at opportunity",
+        "text": "Segregation of duties so nobody holds the whole cycle of initiation, approval, recording and reconciliation. Independent reconciliation performed by someone not party to the trade. Limits and dual approval by value. Mandatory leave and job rotation."
+      },
+      "right": {
+        "label": "Incentive design is a control too",
+        "text": "Unreachable targets and bonuses tied tightly to short-term results push on the pressure side and the rationalisation side at once - they create the strain and supply the ready excuse that everyone has to do this to make the number. It is the only measure that reaches the other two sides, and it does not sit in the internal control function."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "No design eliminates fraud; the aim is to make it hard to commit and hard to hide for long.",
+        "Next lesson: converting the whole of operational risk into a single capital number."
+      ]
+    }
+  ]
+}

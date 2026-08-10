@@ -1,0 +1,183 @@
+{
+  "slug": "dcf-trong-mo-hinh-fcf-wacc-terminal-value",
+  "title": "Financial Modelling, Lesson 6: DCF inside the model - FCF, WACC and terminal value",
+  "subtitle": "Turning a forecast into a single valuation number",
+  "duration": "10 min",
+  "whyItMatters": "The DCF is where the whole model converges into one number: enterprise value. It is also where small assumptions produce enormous differences - knowing which inputs are most sensitive tells you what is actually worth arguing about.",
+  "openingQuestion": "In a typical 5-year DCF model, which part usually accounts for the largest share of total value?",
+  "openingOptions": [
+    "The cash flow of the very first year",
+    "The total of the 5 forecast years' cash flow",
+    "Terminal value, usually 60-80% of the total",
+    "The fixed asset value on the balance sheet"
+  ],
+  "explanation": "Terminal value represents every cash flow from year 6 to infinity, so it usually accounts for 60-80% of total enterprise value in a 5-year DCF. This is the paradox of the DCF: the part you forecast in the most detail contributes the least, while the part resting on a single long-term growth assumption dominates the result.",
+  "diagram": [
+    {
+      "label": "FCF for each forecast year",
+      "arrow": true
+    },
+    {
+      "label": "+ Terminal value",
+      "arrow": true
+    },
+    {
+      "label": "Discount back to today at the WACC",
+      "arrow": true
+    },
+    {
+      "label": "= Enterprise Value (EV)"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The sensitivity of the long-term growth assumption",
+    "description": "With a WACC of 10% and long-term growth of g = 2%, the terminal value multiplier is 1/(0.10−0.02) = 12.5 times. Lift g to just 3% and the multiplier becomes 1/(0.10−0.03) = 14.3 times - more than 14% added to terminal value from a single percentage point. This is why every serious DCF comes with a sensitivity table across WACC and g."
+  },
+  "quiz": [
+    {
+      "question": "How is Free Cash Flow to Firm (FCFF) calculated?",
+      "options": [
+        "EBIT × (1 − tax) + D&A − CapEx − the change in working capital",
+        "Net income plus the depreciation expense for the period",
+        "Revenue minus every operating expense incurred in the period",
+        "Cash flow from operations minus the dividends paid out"
+      ],
+      "explanation": "FCFF is the cash left for both lenders and shareholders, so it starts from after-tax EBIT, before interest is deducted, adds back non-cash depreciation, then subtracts CapEx and the cash tied up in working capital. Starting from net income gives cash flow to equity instead, because interest has already been taken out. Revenue less operating costs is just EBIT, with no cash adjustments at all. And subtracting dividends removes a distribution to shareholders, which is a use of free cash flow rather than part of its definition."
+    },
+    {
+      "question": "What does the WACC represent?",
+      "options": [
+        "The target return set by the management team",
+        "The weighted average cost of debt and equity",
+        "The prevailing lending rate at commercial banks",
+        "The long-term growth rate used in terminal value"
+      ],
+      "explanation": "WACC combines the after-tax cost of debt and the cost of equity in proportion to the capital structure. It is the minimum return needed to avoid destroying value. A management target is an internal ambition that may sit above or below the true cost of capital. A bank lending rate is only the cost of one component, and pre-tax at that. And the long-term growth rate is a separate input that appears in the denominator alongside WACC, not a substitute for it."
+    },
+    {
+      "question": "What condition must the long-term growth assumption g satisfy?",
+      "options": [
+        "The higher the better, to reflect true long-term potential",
+        "Exactly equal to the growth rate in the final forecast year",
+        "It must be below WACC and not exceed economic growth",
+        "Equal to the inflation target announced by the central bank"
+      ],
+      "explanation": "If g ≥ WACC the formula returns a negative or infinite result, which is mathematically meaningless. Economically, a company cannot grow faster than the economy forever, because it would eventually become larger than the economy itself. The final forecast year's growth is usually still elevated and does not belong in a perpetuity. And the inflation target is a floor to think about rather than a rule, since real growth may be above or below zero."
+    },
+    {
+      "question": "How do you get from Enterprise Value to Equity Value?",
+      "options": [
+        "EV + cash − debt, that is, both signs flipped",
+        "EV plus the closing net working capital balance",
+        "EV multiplied by one minus the corporate tax rate",
+        "EV − debt + cash, giving the equity market capitalisation"
+      ],
+      "explanation": "Enterprise Value is the value belonging to all capital providers. Subtracting debt, which is the lenders' claim, and adding surplus cash gives the portion belonging to shareholders. Flipping the signs does the opposite and rewards a heavily indebted company. Working capital is already inside the operating cash flows the EV was built from, so adding it double counts. And a tax multiplier has no meaning here at all - tax was already applied inside the FCFF."
+    },
+    {
+      "question": "Why should a terminal value be checked against the multiple it implies?",
+      "options": [
+        "Because the implied multiple shows whether that growth assumption is absurd for the sector it sits in",
+        "Because the exit multiple method always gives a more accurate answer than perpetuity growth",
+        "Because valuation standards require both terminal value methods to be presented",
+        "Because the implied multiple reduces terminal value's weight in the total"
+      ],
+      "explanation": "A perpetuity growth rate that sounds very modest can still imply an EBITDA multiple twice what the market is currently paying for the whole sector. Working back to a multiple is the fastest way to catch that, because multiples are comparable across companies while growth rates are not. Neither method is inherently more accurate; they are two ways of expressing the same assumption. No standard mandates showing both. And the check is diagnostic - it changes nothing about how much weight terminal value carries."
+    }
+  ],
+  "keyTakeaways": [
+    "FCFF = EBIT×(1−t) + D&A − CapEx − Δ Working capital",
+    "Terminal value usually accounts for 60-80% of total value in a 5-year DCF",
+    "g must be below WACC, and should be no greater than the long-term growth of the economy",
+    "Equity Value = Enterprise Value − Debt + Cash"
+  ],
+  "practicePrompt": {
+    "question": "The final forecast year's FCF is 100bn, WACC is 10%, and long-term growth is 2%. What is the terminal value under the Gordon model?",
+    "options": [
+      "1,000bn dong (= 100 / 0.10, forgetting to subtract g)",
+      "1,275bn dong (= 100 × 1.02 / 0.08, the Gordon formula)",
+      "1,250bn dong (= 100 / 0.08, forgetting to multiply by (1+g))",
+      "5,000bn dong (= 100 / 0.02, dividing by g instead of WACC − g)"
+    ],
+    "explanation": "The Gordon formula: TV = final-year FCF × (1 + g) / (WACC − g) = 100 × 1.02 / (0.10 − 0.02) = 102 / 0.08 = 1,275bn dong. Note that you must multiply by (1+g) because the formula discounts the cash flow of the FOLLOWING year, not the final year. Skipping that step is a very common error and understates value by 2%."
+  },
+  "summary": {
+    "keyIdea": "DCF = the present value of forecast FCF plus the present value of terminal value",
+    "formula": "TV = FCF_final × (1+g) / (WACC − g)",
+    "commonMistake": "Forgetting the (1+g) multiplier in the Gordon formula, or setting g too high so the value is inflated.",
+    "action": "Compute the total value at g = 2% and again at g = 3% to see the sensitivity for yourself."
+  },
+  "application": {
+    "title": "Check the weight of terminal value",
+    "message": "In any DCF model you come across, work out what percentage of total value the terminal value represents. If it exceeds 85%, the model depends almost entirely on a single assumption.",
+    "secondary": "At that point, arguing about the 5-year forecast is nearly pointless - argue about g and WACC instead."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The DCF is where every line of the model converges into one number. But it is also exactly where a small change in an assumption can move enterprise value by tens of percent."
+    },
+    {
+      "type": "heading",
+      "text": "The three steps of a DCF"
+    },
+    {
+      "type": "formula",
+      "title": "From forecast to value",
+      "equation": "EV = Σ [FCF_t / (1+WACC)^t] + TV / (1+WACC)^n",
+      "variables": [
+        {
+          "symbol": "FCF",
+          "name": "Free cash flow",
+          "description": "EBIT×(1−t) + D&A − CapEx − Δ Working capital"
+        },
+        {
+          "symbol": "WACC",
+          "name": "Weighted average cost of capital",
+          "description": "The discount rate, reflecting the risk of the business"
+        },
+        {
+          "symbol": "TV",
+          "name": "Terminal value",
+          "description": "Final-year FCF × (1+g) / (WACC − g)"
+        }
+      ],
+      "example": {
+        "title": "Terminal value with FCF of 100bn, WACC 10%, g 2%",
+        "calculation": "TV = 100 × 1.02 / (0.10 − 0.02) = 102 / 0.08",
+        "result": "1,275bn dong",
+        "explanation": "This figure still has to be discounted back to today by (1+WACC)^n before being added into total value."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The paradox of the DCF",
+      "text": "You put the most effort into forecasting five years in detail, yet that part usually contributes only 20-40% of value. The rest comes from terminal value - which rests on just two numbers: g and WACC. So a sensitivity table across those two variables matters more than fine-tuning any individual forecast year."
+    },
+    {
+      "type": "conceptTable",
+      "title": "DCF valuation terminology",
+      "concepts": [
+        {
+          "def": "The cash flow left over for both lenders and shareholders"
+        },
+        {
+          "def": "The minimum return that has to be earned, used as the discount rate"
+        },
+        {
+          "def": "The present value of all cash flows beyond the detailed forecast period"
+        },
+        {
+          "def": "The value of the entire operating business, before debt is deducted"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A DCF does not give you the right number - it gives you a range of values attached to explicit assumptions.",
+        "Next lesson: sharpening that range with sensitivity and scenario analysis."
+      ]
+    }
+  ]
+}

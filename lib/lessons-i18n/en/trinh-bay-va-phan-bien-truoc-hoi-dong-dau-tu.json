@@ -1,0 +1,155 @@
+{
+  "slug": "trinh-bay-va-phan-bien-truoc-hoi-dong-dau-tu",
+  "title": "Professional Skills, Lesson 2: Defending your thesis before the investment committee",
+  "subtitle": "Answering hard questions, admitting limits, and telling being challenged apart from being rejected",
+  "duration": "11 min",
+  "whyItMatters": "The committee session is where your analysis is tested under fire, and how you react to a hard question affects your professional reputation more than the content of the analysis does. It is also precisely the skill tested in the final interview round for almost every investment role.",
+  "openingQuestion": "You are asked for a number you cannot remember precisely. What is the best way to handle it?",
+  "openingOptions": [
+    "Give an approximate figure to keep the presentation moving and avoid an awkward pause",
+    "Say clearly you do not remember exactly and undertake to check",
+    "Redirect to another aspect where you are on firmer ground with the figures",
+    "Explain that the number does not really matter to your main argument"
+  ],
+  "explanation": "The people across the table almost always notice when you are guessing, and being caught guessing once puts every other number in your work under suspicion. Admitting the limit together with a range shows you can tell what you know for certain from what you are estimating - which is exactly the quality the committee is looking for. The one thing that is never permitted is inventing a figure, and the second thing not to do is dodge the question.",
+  "diagram": [
+    { "label": "Hear the whole question without interrupting" },
+    { "label": "Identify the real question behind it" },
+    { "label": "Answer directly first, explain afterwards" },
+    { "label": "Separate what you know from what you are assuming" }
+  ],
+  "realWorldExample": {
+    "company": "An investment committee meeting",
+    "description": "In a typical defence, the presentation takes ten minutes and the questions run three times as long. Committee members usually ask not to make life difficult but to find the weakest point in the thesis, because that is their job. Experienced analysts understand this and do not get defensive; they raise the weak points themselves before being asked, and doing so almost always increases credibility rather than reducing it."
+  },
+  "quiz": [
+    {
+      "question": "Why raise the weaknesses in your thesis before anyone asks about them?",
+      "options": [
+        "It shifts responsibility for the investment decision onto the committee",
+        "It shortens the question period because nobody will raise that point again",
+        "It shows you have already challenged yourself, and pre-empts others finding it",
+        "It makes the presentation better balanced between supporting and opposing arguments"
+      ],
+      "explanation": "If the committee finds a hole you never mentioned, they start wondering what else you missed. Raising it first shows you have walked the whole road and weighed the argument, so the rest of the analysis becomes more credible. It does not transfer responsibility, it rarely shortens the discussion, and balance for its own sake is not the point - credibility is."
+    },
+    {
+      "question": "What do the hardest questions usually target?",
+      "options": [
+        "The data sources used and how recently each of those figures was updated",
+        "Technical details of the formulas and the layout of the whole spreadsheet",
+        "The history and the shareholder structure of the company being analysed",
+        "The single most important assumption that the whole valuation rests on"
+      ],
+      "explanation": "Experienced people do not audit every cell of a formula; they look for the assumption that would bring the whole conclusion down if it were wrong. So before the session, identify that assumption yourself and prepare a sensitivity table specifically for it. Sources, formulas and company history are all checkable in writing afterwards, which is why nobody spends committee time on them."
+    },
+    {
+      "question": "When the committee pushes back on your thesis, what is the right response?",
+      "options": [
+        "Separate factual objections from interpretive ones, and handle each of them separately",
+        "Defend it to the end, because changing your view mid-meeting damages your standing",
+        "Withdraw the recommendation immediately to avoid prolonging an unnecessary argument",
+        "Ask to postpone the decision to a later meeting so you have more time to prepare"
+      ],
+      "explanation": "If they point out a fact you got wrong, take it on board immediately and say how it affects the conclusion. If they read the same facts differently, that is a legitimate debate and you should say why your reading is the stronger one. Merging the two kinds of objection is what makes these meetings needlessly tense, and neither stubborn defence nor instant capitulation resolves anything."
+    },
+    {
+      "question": "Why does it matter to answer directly first and explain afterwards?",
+      "options": [
+        "Because presentation conventions in the industry cap every answer at three sentences",
+        "Because listeners need the answer before they have the patience for the reasoning",
+        "Because a long explanation will expose other weak points in your analysis",
+        "Because the committee usually only has time for the answer, not the explanation"
+      ],
+      "explanation": "This is the pyramid principle applied to speech. Starting with a long build-up before the answer forces the listener to wait, and in a tense meeting that gets read as evasion. There is no three-sentence convention, the explanation is wanted and expected, and a good explanation strengthens rather than exposes the rest of the work."
+    },
+    {
+      "question": "You are asked for a number you cannot remember exactly. What is the best way to handle it?",
+      "options": [
+        "Move to another section and come back to this question at the end",
+        "Give the closest figure you can recall in order to keep the flow going",
+        "State a range and undertake to send the precise figure",
+        "Say the number is in the appendix of the pack already circulated"
+      ],
+      "explanation": "The people across the table almost always notice when you are guessing, and being caught once puts every other number of yours under suspicion. Stating a range shows you can tell what you know for certain from what you are only approximating. Deferring the question and pointing at the appendix both read as avoidance when the questioner wanted an answer now."
+    }
+  ],
+  "keyTakeaways": [
+    "Never guess a number - admitting the limit with a range is far more credible",
+    "Raising a weakness before you are asked increases the credibility of everything else",
+    "Separate factual objections from interpretive ones and handle each kind separately",
+    "Answer directly first and explain afterwards - the pyramid applies to speech too"
+  ],
+  "practicePrompt": {
+    "question": "A committee member says: your 15% growth assumption is too optimistic. What is the best response?",
+    "options": [
+      "Defend the 15% figure by restating the whole argument you already presented",
+      "Ask what level they consider reasonable, then present the valuation at that level",
+      "Accept a lower figure so that the meeting does not run on any longer",
+      "Explain that the assumption comes from a report by a reputable research house"
+    ],
+    "explanation": "This moves the debate from right-versus-wrong to a quantity. If the recommendation still stands at 10%, arguing about the number has become unimportant. If the thesis collapses at 10%, that is extremely valuable information for you and for the committee alike, and a sensitivity table prepared in advance answers it in seconds."
+  },
+  "summary": {
+    "keyIdea": "The committee is judging how you think under pressure more than it is judging your conclusion",
+    "commonMistake": "Guessing a number to fill a silence, and losing credibility for everything that follows",
+    "action": "Before your next defence, identify the most attackable assumption and prepare a sensitivity table just for it."
+  },
+  "application": {
+    "title": "Prepare by attacking yourself",
+    "message": "Before every defence, write out the five hardest questions you are afraid of being asked, then answer them in writing. Most of the questions that actually come up will be among those five, and you will have a considered answer rather than an instant reaction.",
+    "secondary": "If there is a question you cannot answer on paper, that is where the work still needs doing before you walk into the room."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The memo gets you into the room. The question session decides whether your recommendation is acted on. And unlike the presentation, this part cannot be prepared by memorising - only by challenging yourself first."
+    },
+    { "type": "heading", "text": "Three kinds of question and three ways to handle them" },
+    {
+      "type": "conceptTable",
+      "title": "Identify the real question behind the question",
+      "subtitle": "The same question can carry three different intentions",
+      "concepts": [
+        {
+          "vi": "Hỏi để kiểm tra dữ kiện",
+          "en": "Fact check",
+          "def": "The asker wants a number confirmed. Answer briefly, precisely, and name the source. If you do not remember, say you do not remember."
+        },
+        {
+          "vi": "Hỏi để thử độ chắc",
+          "en": "Stress test",
+          "def": "The asker wants to know whether the thesis survives a change in assumptions. Answer with a sensitivity, not with an assertion."
+        },
+        {
+          "vi": "Hỏi vì bất đồng",
+          "en": "Disagreement",
+          "def": "The asker holds a different view. Pinpoint exactly where the two of you diverge, then argue at that point rather than repeating the whole case."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The one thing that is never permitted",
+      "text": "Inventing a number. In this profession credibility is built very slowly and lost in a single sentence. Saying I do not remember precisely, it is somewhere between here and here, I will check and come back to you this afternoon - that sentence never costs you anything."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Defensive",
+        "text": "Treating every question as an attack and repeating the old argument more loudly. Result: the committee concludes you never challenged yourself."
+      },
+      "right": {
+        "label": "Collaborative",
+        "text": "Treating the question as a free test of your own thesis. Acknowledge it, quantify it, and say clearly what would change your mind."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The goal of a defence is not to win the argument but to reach the right decision.",
+        "The next lesson turns to the most concrete test in hiring: the modelling exercise."
+      ]
+    }
+  ]
+}

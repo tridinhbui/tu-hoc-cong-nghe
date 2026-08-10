@@ -1,0 +1,151 @@
+{
+  "slug": "frm-phan-tich-quy-ket-hieu-qua-danh-muc",
+  "title": "FRM Investment, Lesson 1: Performance attribution - where did that return come from",
+  "subtitle": "Separating the part from asset allocation, the part from stock selection, and the part from luck",
+  "duration": "9 min",
+  "whyItMatters": "A fund beating its benchmark by 3% may owe it to stock picking skill, to one correct sector bet, or to carrying risk the index does not. Those three causes repeat at very different rates, so separating them is the precondition for judging a fund manager.",
+  "openingQuestion": "A fund beats its index by 3% over the year. What question does attribution analysis answer?",
+  "openingOptions": [
+    "Whether the excess came from sector allocation, stock selection or interaction",
+    "Whether the fund should change its benchmark index for the following year",
+    "The management fee the fund is entitled to charge on the excess return",
+    "Whether the fund has complied with the investment limits it committed to"
+  ],
+  "explanation": "Attribution analysis splits the difference against the index into distinct sources. The allocation effect measures the part that comes from holding sector weights different from the index. The selection effect measures the part that comes from picking better-than-average stocks within each sector. The interaction term is the overlap of the two. This split matters because they are two different skills, exercised by different people, and they repeat at very different rates.",
+  "diagram": [
+    { "label": "The return difference against the benchmark index" },
+    { "label": "Allocation effect: sector weights different from the index" },
+    { "label": "Selection effect: picking better than the sector average" },
+    { "label": "What is left is interaction - and it needs explaining too" }
+  ],
+  "realWorldExample": {
+    "company": "An equity fund that beat its index on one sector alone",
+    "description": "A fund beats its index by 4% over the year, and attribution shows that the entire excess came from an overweight position in one single sector, while the selection effect was negative in almost every sector. The conclusion is very different from the headline 4%: the manager was right once about the macro picture and consistently wrong about companies."
+  },
+  "quiz": [
+    {
+      "question": "What does the allocation effect in attribution analysis measure?",
+      "options": [
+        "The return coming from the fee difference between fund and index",
+        "The return coming from picking good stocks within each sector",
+        "The return coming from the timing of purchases and sales in the year",
+        "The return coming from holding sector weights different from the index"
+      ],
+      "explanation": "The allocation effect answers whether the right sector bets were made, independently of which stocks were picked inside those sectors. A fund can allocate well and select badly, or the reverse - blending the two into one number destroys the information entirely. Fee differences are handled outside attribution, on a gross-versus-net basis, and trade timing shows up as a separate timing effect in the models that measure it rather than inside the allocation term."
+    },
+    {
+      "question": "Why does excess return have to be risk-adjusted before any conclusion about skill?",
+      "options": [
+        "Because the excess may come purely from carrying more risk than the index",
+        "Because excess return is always mis-stated when the fund has inflows and outflows",
+        "Because the benchmark index does not account for any transaction costs",
+        "Because excess return only means anything measured over many years"
+      ],
+      "explanation": "A fund running a beta of 1.3 will beat its index in a rising market without any skill at all. The Information Ratio and alpha exist precisely to separate the reward for risk from the reward for skill, and only the second of those repeats. Cash flow distortion is solved by using time-weighted returns, and index transaction costs move the comparison by a few basis points - neither of them explains a systematic excess the way a raised beta does."
+    },
+    {
+      "question": "Scenario: A fund beats its index by 4%, made up of a +5% allocation effect and a −1% selection effect. What is the most accurate reading?",
+      "options": [
+        "The manager has good stock picking skill, since the total is positive",
+        "The manager is strong on sector bets and weak on picking companies",
+        "The two effects cancel out, so no conclusion can be drawn at all here",
+        "The benchmark index chosen is not appropriate for this kind of fund"
+      ],
+      "explanation": "The headline 4% hides two opposing stories. If the fund describes itself as a stock picker, this result says that what they sell is not what generated the return - and the part that did generate it is much harder to repeat. The two effects do not cancel out into silence; they are reported separately for exactly this reason. Nothing here points at the wrong benchmark either: a mismatched index would distort both effects, not push them in opposite directions."
+    },
+    {
+      "question": "Why does it take many years of data to judge a fund manager's skill?",
+      "options": [
+        "Because the benchmark index changes its constituents every single year",
+        "Because management fees are only fully counted after several years",
+        "Because volatility is so high that separating them takes many years",
+        "Because a fund needs time to build the portfolio to its strategy"
+      ],
+      "explanation": "At the volatility typical of equities, a modest Information Ratio needs a great many years to reach statistical significance. This is why ranking funds on one-year or three-year results is largely ranking luck. Index reconstitution and portfolio ramp-up are real effects that wash out within a year or two, and fees are known from day one - none of them is the reason the signal takes so long to emerge from the noise."
+    },
+    {
+      "question": "What does the interaction term in attribution analysis capture?",
+      "options": [
+        "The gap caused by differences in valuation timing between the fund and the index",
+        "The part of the return that is not explained by any decision at all",
+        "The transaction costs incurred whenever the portfolio is rebalanced",
+        "The overlap between the allocation decision and the selection decision"
+      ],
+      "explanation": "Picking well inside precisely the sector you are also overweight produces a compounding piece that belongs to neither effect on its own. It is usually small, but if it is unusually large that is a sign the two kinds of decision are not as independent as the model assumes. It is a defined residual rather than an unexplained one, and costs and valuation timing are reconciliation items handled before attribution begins."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A fund beats its index by 6% in a year of strong market gains. The fund's beta is 1.4 against the index at 1.0. Which conclusion is reasonable?",
+    "options": [
+      "Most of the 6% comes from the high beta, so it is not yet evidence of skill",
+      "The fund has clear stock picking skill, demonstrated by the 6% excess",
+      "The 1.4 beta is irrelevant, since attribution has stripped out all the risk",
+      "Nothing can be said until the fund is compared against its peer group"
+    ],
+    "explanation": "A beta of 1.4 means the portfolio is built to rise 40% faster than the market, so in a year of strong gains the excess appears without a single stock selection decision behind it. Market leverage is not skill - an investor can create it themselves at close to zero cost. Risk has to be adjusted for first, and only then can you ask whether the remainder came from allocation or from selection. And that same beta will produce a correspondingly larger loss in a falling market, so one year of data cannot separate skill from luck whether it is risk-adjusted or not."
+  },
+  "keyTakeaways": [
+    "Attribution splits the excess into an allocation effect, a selection effect and an interaction term",
+    "Adjust for risk before concluding anything about skill - a high beta produces excess return on its own in a rising market",
+    "A positive total can hide two opposing stories; only the split shows where the fund is actually good",
+    "Skill takes many years to separate from luck, so one-year and three-year rankings are largely rankings of luck"
+  ],
+  "summary": {
+    "keyIdea": "The right question is not whether the fund beat its index, but where the excess came from and whether that source can repeat."
+  },
+  "application": {
+    "message": "When you look at a fund's performance report, find the attribution table before you look at the headline number. If the report has no such table, the headline says nothing about skill."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Beating the index by 3% is a fact, not a conclusion. Three very different causes produce exactly that number, and they repeat at completely different rates."
+    },
+    { "type": "heading", "text": "Two decisions, two skills" },
+    {
+      "type": "paragraph",
+      "text": "Holding sector weights different from the index is a macro decision. Choosing which company to hold within a sector is a micro decision. The two are usually made by different people, demand different capabilities, and a fund can be very good at one while being consistently weak at the other."
+    },
+    { "type": "heading", "text": "Risk first, skill second" },
+    {
+      "type": "paragraph",
+      "text": "A fund running a higher beta than the index will beat it in every rising year, without a single intelligent decision. So the first step is always to subtract the reward for risk. What remains is where skill can be discussed, and it is usually far smaller than the raw number."
+    },
+    { "type": "heading", "text": "Why three years says nothing" },
+    {
+      "type": "paragraph",
+      "text": "Equity returns are highly volatile, so the skill signal sits deep inside the noise. At a decent Information Ratio it takes a great many years before it can be distinguished from zero in any statistically meaningful way. Fund league tables built on one-year or three-year results are therefore mostly ranking luck."
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "If a fund describes itself as a stock picker but attribution shows the entire excess coming from sector allocation, then what they sell is not what generated the return."
+    },
+    { "type": "heading", "text": "Splitting 2.6 percentage points of excess into three parts" },
+    {
+      "type": "paragraph",
+      "text": "The benchmark has two sectors at 50% each, returning 10% and 4% respectively, so the benchmark returns 7%. The portfolio puts 70% into the first sector and 30% into the second, achieving 12% and 4% within those sectors, so the total is 0.7 × 12% + 0.3 × 4% = 9.6%. That is 2.6 percentage points of excess. The question attribution asks is not whether that number is large or small, but where it came from."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three sources, adding up to exactly 2.6",
+      "subtitle": "Each source corresponds to a different decision by the portfolio manager",
+      "concepts": [
+        {
+          "def": "Comes from setting a higher-than-benchmark weight in the sector whose return beat the benchmark average. This is the sector decision, and it has nothing to do with which stocks were held inside that sector."
+        },
+        {
+          "def": "Comes from the portfolio achieving 12% in the first sector while the benchmark for that sector achieved only 10%. This is the stock decision, computed at BENCHMARK weights so as to separate it from the allocation effect."
+        },
+        {
+          "def": "The compounding piece: picking well inside precisely the sector you are also overweight. It corresponds to no single decision, so many reports fold it into the selection effect - and when they do, they need to say so."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why this split matters more than the total",
+      "text": "Two managers who both beat the benchmark by 2.6 points, one through stock selection and the other through a bet on a single sector, are two entirely different profiles, with different repeatability and different risk. If a fund describes itself as a stock picking specialist and attribution shows almost all of the return coming from sector allocation, then what they sell is not what generated the return - and that is a conclusion no headline number can reveal."
+    }
+  ]
+}

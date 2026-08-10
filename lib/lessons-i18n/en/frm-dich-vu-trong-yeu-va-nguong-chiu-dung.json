@@ -1,0 +1,125 @@
+{
+  "slug": "frm-dich-vu-trong-yeu-va-nguong-chiu-dung",
+  "title": "FRM Operational, Lesson 7: Important business services and impact tolerances",
+  "subtitle": "The question is not whether the system will fail, but how long it can be down before customers are really harmed",
+  "duration": "10 min",
+  "whyItMatters": "This is how crisis-management thinking has shifted over the past decade: from trying to prevent every incident to accepting that incidents happen and asking how long the organisation can absorb one. Major regulators have turned the concept into a formal requirement, and it changes both how systems are designed and how budgets are allocated.",
+  "openingQuestion": "What is the core difference between an 'impact tolerance' and a traditional recovery time objective?",
+  "openingOptions": [
+    "A tolerance is set by the harm done to customers and markets",
+    "Impact tolerances cover technology systems only, while recovery objectives cover the whole business",
+    "Impact tolerances are committed to by suppliers, while recovery objectives are set by the firm itself",
+    "The two concepts are identical and only the name differs from one regulator to the next"
+  ],
+  "explanation": "A traditional recovery time objective answers the question of how quickly we can restore service - a question about capability. An impact tolerance answers something quite different: how long a disruption can run before the harm to customers, to the market, and to the safety of the firm itself becomes unacceptable. It is set from the outside in rather than from existing capability, which means it can - and usually does - expose the fact that current capability is not enough.",
+  "diagram": [
+    { "label": "Identify the important business services from the customer's point of view" },
+    { "label": "Set the impact tolerance: how long before the harm is unacceptable" },
+    { "label": "Map the whole dependency chain: people, process, systems, suppliers" },
+    { "label": "Test with severe but plausible scenarios - and close what breaches the tolerance" }
+  ],
+  "realWorldExample": {
+    "company": "The payment service of a retail bank",
+    "description": "Viewed as systems, there are dozens of applications, each with its own owner. Viewed as a customer service, there is one question: can the customer move money or not. The dependency chain behind that question runs through the mobile app, the authentication system, the account core, the interbank connection and one external supplier - and the impact tolerance has to apply to the whole chain, not to each link separately."
+  },
+  "quiz": [
+    {
+      "question": "From whose point of view is an important business service defined?",
+      "options": [
+        "An accounting view, based on the revenue the service generates",
+        "The technology function's view, based on how many systems are involved",
+        "The customer's view, not the internal organisation chart",
+        "A people view, based on how many staff are needed to run it"
+      ],
+      "explanation": "Customers do not care which application failed; they care whether the money moved. Defining the service from the internal chart produces a list of systems, each with its own owner, and nobody accountable for the end-to-end experience - which is precisely the gap this concept was invented to fill. Revenue, system count and headcount all describe the firm's own structure rather than what the customer is trying to do."
+    },
+    {
+      "question": "Why must an impact tolerance be set independently of current capability?",
+      "options": [
+        "Because the tolerance has to be identical across every firm in the sector",
+        "Because regulators do not permit a firm to set its own tolerance",
+        "Because system capability changes from one quarter to the next",
+        "Because setting it from capability makes the test pass by construction"
+      ],
+      "explanation": "If the tolerance equals the recovery time you already have, the test always passes and the whole exercise becomes paperwork. Its value lies exactly in the distance between what can be tolerated and what you can currently deliver - and that distance is the list of work to be done. Firms do set their own tolerances, they differ by business model, and quarterly drift in capability is a reason to review rather than a reason to anchor on capability."
+    },
+    {
+      "question": "Why map the whole dependency chain instead of listing the main systems?",
+      "options": [
+        "Because one minor link failing stops the entire service",
+        "Because regulators require a minimum number of diagrams",
+        "Because the main systems usually have their own contingency plans already",
+        "Because the dependency chain determines the insurance premium payable"
+      ],
+      "explanation": "The service only runs when every link runs, so the weakest link defines real resilience - even when it is only a small authentication service or a supplier nobody thinks about. A list of the main systems leaves out exactly the places disruption most often starts. Contingency plans for the big systems do not help if the failure sits elsewhere, and none of this is driven by a diagram count or an insurance calculation."
+    },
+    {
+      "question": "Scenario: the impact tolerance for the payment service is 4 hours, but the exercise shows recovery takes 11 hours. What is the right conclusion?",
+      "options": [
+        "The tolerance is too tight and should be relaxed to 11 hours",
+        "There is a 7-hour gap to close rather than a tolerance to relax",
+        "The exercise is unreliable because test conditions differ from reality",
+        "Log it as an accepted risk, since remediation would cost too much"
+      ],
+      "explanation": "The gap is the output the exercise exists to produce. Relaxing the tolerance to fit capability is a return to the very mistake this concept replaced. Closing it might mean infrastructure investment, or it might mean a temporary manual workaround - but it has to be an action, not a line in a register. Dismissing the exercise because conditions were artificial simply throws away the only evidence available."
+    },
+    {
+      "question": "How should the scenarios used to test resilience be chosen?",
+      "options": [
+        "As extreme as can be imagined, even where the scenario is implausible",
+        "Mild enough that the service always passes the test comfortably",
+        "Severe but still within the range of what could plausibly happen",
+        "A repeat of the last incident the firm actually experienced"
+      ],
+      "explanation": "A scenario that is too mild always passes and tells you nothing; one that is impossible always fails and tells you nothing either. The informative zone is in between: events serious enough to expose the breaking points but still inside the range of what could really occur. Replaying the last incident is a special case of too mild - it tests the one failure mode you have already fixed."
+    }
+  ],
+  "practicePrompt": {
+    "question": "The impact tolerance for the transfer service is 4 hours. The main system can be recovered in 3 hours, but the external authentication supplier commits to 6 hours. What is the real resilience?",
+    "options": [
+      "6 hours, because the weakest link defines the whole chain",
+      "3 hours, because the main system is what the bank controls",
+      "4 hours, because that is the tolerance the board approved",
+      "4.5 hours, the weighted average of the two figures above"
+    ],
+    "explanation": "The customer cannot move money until the WHOLE chain is back, so the only meaningful number is the slowest link: 6 hours. That is why the full dependency chain has to be mapped rather than the internal systems listed - most of the gap sits in links the firm does not own. And the 4-hour tolerance was set by the harm acceptable to customers, independently of current capability, so it is not a description of the state of things but a target. The 2-hour gap between the two numbers is the work to be done, and it only appears once the second question is asked."
+  },
+  "keyTakeaways": [
+    "Important services are defined from the customer's point of view, not from the internal systems map",
+    "The impact tolerance is set by acceptable harm, independently of current capability - the gap between the two is the work",
+    "Map the whole dependency chain: the weakest link defines real resilience",
+    "Test scenarios must be severe but plausible; too mild or impossible both carry no information"
+  ],
+  "summary": {
+    "keyIdea": "Move from asking how do we avoid going down to asking how long can we be down before real harm starts. The second question can be answered and verified; the first cannot."
+  },
+  "application": {
+    "message": "For a service you are responsible for, try writing one sentence describing it from the customer's point of view, then list everything that has to be working for that sentence to be true. The list is almost always longer than expected, and the extra length is where the risk lives."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Traditional contingency planning asks how quickly we can recover. The newer question inverts it: how long can the customer absorb this before the damage becomes unacceptable?"
+    },
+    { "type": "heading", "text": "Changing the unit of analysis: from systems to services" },
+    {
+      "type": "paragraph",
+      "text": "A bank has hundreds of applications, each with an owner and an availability metric of its own. Customers have only a few questions: can I move money, can I take money out, can I borrow. Measured system by system, everything can be green while the customer still cannot do what they came to do - because nobody owns the chain."
+    },
+    { "type": "heading", "text": "The tolerance comes from outside, not from capability" },
+    {
+      "type": "paragraph",
+      "text": "The key point is that an impact tolerance is not derived from current recovery times. Set that way, every test passes and the process becomes paperwork. It has to come from the question of how long before customers are genuinely harmed - and if current capability does not meet it, that is exactly the finding the exercise exists to produce."
+    },
+    { "type": "heading", "text": "The dependency chain, and the link nobody looks at" },
+    {
+      "type": "paragraph",
+      "text": "Mapping the chain means working backwards from the customer experience to every component: the interface, authentication, the account core, external connections, and the people who have to be present to handle exceptions. Real disruptions very often begin at a small link that no diagram of the main systems ever lists."
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "If the exercise shows recovery takes 11 hours while the tolerance is 4, do not move the tolerance to 11. That 7-hour gap is the product of the exercise, and it is a list of work to be done."
+    }
+  ]
+}

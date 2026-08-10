@@ -3,6 +3,7 @@
   "title": "CFA Alternatives 1: What puts an asset in the 'alternative' group",
   "subtitle": "Not because it is exotic, but because four characteristics appear together: illiquidity, sparse valuation, leverage, and two tiers of fees",
   "duration": "10 min",
+  "whyItMatters": "Naming this group by listing it - PE, hedge funds, real estate, commodities - can be memorised but cannot be used. Only understanding the four shared characteristics lets you handle a new asset that nobody has classified yet.",
   "openingQuestion": "What most fundamentally separates alternative assets from listed equities and bonds?",
   "openingOptions": [
     "Alternative assets always have a distinctly higher expected return",

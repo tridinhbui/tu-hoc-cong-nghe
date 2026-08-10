@@ -56,7 +56,7 @@
     {
       "question": "What is the discount rate made up of?",
       "options": [
-        "The bank lending rate plus the corporate tax rate",
+        "The bank lending rate plus the corporate income tax rate",
         "The risk-free opportunity cost plus a risk premium",
         "The inflation rate plus the firm's growth rate",
         "The cost of equity minus the tax shield from debt"

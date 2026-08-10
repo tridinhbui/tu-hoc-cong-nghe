@@ -1,0 +1,175 @@
+{
+  "slug": "ffo-affo-chi-so-loi-nhuan-cua-reit",
+  "title": "FFO and AFFO: why you do not value a REIT on accounting profit",
+  "subtitle": "Property depreciation makes a REIT's earnings look worse than reality - here are the two measures that replace them",
+  "duration": "9 min",
+  "openingQuestion": "A real estate investment trust (REIT) owns rental buildings with high occupancy, steadily rising rents and strongly positive operating cash flow - yet its net profit is very thin, in some years close to zero. What is usually the main cause?",
+  "openingOptions": [
+    "The REIT is genuinely lossmaking and the positive cash flow is temporary, from asset sales",
+    "Property depreciation is a non-cash charge while the asset itself holds its value",
+    "A REIT is not permitted to recognise rental income in its profit figure",
+    "A REIT's interest expense is always higher than the rent it collects"
+  ],
+  "explanation": "Depreciation spreads the cost of an asset over many years, on the assumption that it loses value as it is used. That assumption is reasonable for machinery or equipment, but for a well-located building the market value usually does not decline that way - in many cases it rises. Because property makes up almost the entire asset base of a REIT, this very large depreciation charge distorts accounting profit to the point where it no longer reflects real earning power. That is why the real estate industry uses FFO and AFFO instead of net profit and the P/E ratio.",
+  "realWorldExample": {
+    "company": "Why real estate needs a measure of its own",
+    "description": "Picture a building bought for 1,000bn and depreciated evenly over 40 years - 25bn charged to expenses each year. If the building generates 60bn of net rent a year and interest expense is 30bn, the real cash left over is 30bn - but accounting profit is only 5bn once depreciation is deducted. Judged on P/E the trust looks extraordinarily expensive; judged on real cash flow it is entirely ordinary. Meanwhile the building holds or gains market value every year. That gap between the two views is exactly what pushed the industry to build its own measure - and it is also why comparing a REIT to a normal company on P/E almost always leads to the wrong conclusion."
+  },
+  "quiz": [
+    {
+      "question": "What is the basic formula for FFO (Funds From Operations)?",
+      "options": [
+        "Pre-tax profit plus interest expense and depreciation for the period",
+        "Net profit + depreciation − maintenance capital expenditure on the assets",
+        "Net profit + property depreciation − gains on the sale of assets",
+        "Operating cash flow less the dividends actually paid out in the period"
+      ],
+      "explanation": "FFO adds depreciation back because it is a non-cash charge, and strips out gains and losses on asset sales because they are one-off items that say nothing about the repeatable earning power of the rental operation. Deducting maintenance capex is the step that turns FFO into AFFO, so putting it here confuses the two. Adding back interest would produce something closer to EBITDA, and operating cash flow minus dividends answers a different question entirely."
+    },
+    {
+      "question": "How does AFFO differ from FFO, and why does that difference matter?",
+      "options": [
+        "AFFO is measured pre-tax while FFO is measured after income tax",
+        "AFFO adds back the gain from selling property during the period",
+        "AFFO applies only to listed REITs, whereas FFO applies to every REIT of any kind",
+        "AFFO further deducts the maintenance capex needed to keep the space rentable"
+      ],
+      "explanation": "FFO ignores the fact that a building needs recurring cash to replace lifts, repair air conditioning and fit out space for new tenants. AFFO deducts those amounts, which makes it the more conservative measure of whether a dividend is sustainable. Note that both measures start from after-tax profit, both apply to listed and unlisted trusts alike, and both remove sale gains rather than adding them back - the single distinguishing step is the maintenance capex deduction."
+    },
+    {
+      "question": "Why is it inappropriate to compare a REIT with a manufacturing company on the P/E ratio?",
+      "options": [
+        "Because very large property depreciation distorts the denominator of the P/E",
+        "Because REIT share prices move with interest rates rather than with their earnings",
+        "Because REITs do not report accounting profit under the normal standards",
+        "Because REITs are tax exempt so their earnings are not comparable at all"
+      ],
+      "explanation": "The problem is in the denominator. On identical cash flows, a REIT will show far lower accounting profit than an asset-light business, so comparing the two P/E figures is comparing two numbers computed on different bases. REITs do report profit under the normal standards, and while rate sensitivity and tax treatment are genuine features of the asset class, neither is what breaks the comparison - the depreciation charge is."
+    },
+    {
+      "question": "A REIT has a dividend payout ratio of 115% of AFFO. What does that suggest?",
+      "options": [
+        "The REIT is retaining too little earnings to reinvest in the portfolio",
+        "The dividend now exceeds the real cash available to distribute",
+        "The REIT is running very efficiently and can afford to pay out heavily",
+        "This is a normal level, since a REIT must distribute over 90% anyway"
+      ],
+      "explanation": "A payout ratio above 100% of AFFO sustained over time is a sign the dividend is not being funded by the rental operation at all - it is coming from new borrowing or from asset sales. The 90% distribution requirement is measured on taxable income, not on AFFO, so it does not explain a figure above 100%. This is one of the most important early warning indicators when analysing a REIT."
+    },
+    {
+      "question": "Scenario: a REIT reports accounting profit of 100bn, property depreciation of 180bn and a gain on asset sales of 30bn. What is FFO?",
+      "options": [
+        "310bn (= 100 + 180 + 30, adding the sale gain in)",
+        "280bn (= 100 + 180, forgetting to strip the sale gain)",
+        "250bn (= 100 + 180 − 30 gain on asset sales)",
+        "100bn (= simply taking accounting profit as it stands)"
+      ],
+      "explanation": "FFO adds depreciation back because it is a non-cash charge, and deducts the gain on asset sales because it is a one-off that will not repeat: 100 + 180 − 30 = 250bn. Leaving the sale gain in would inflate the recurring earning power of the property portfolio."
+    }
+  ],
+  "keyTakeaways": [
+    "Property depreciation is a very large non-cash charge that makes a REIT's accounting profit a poor guide to real earning power.",
+    "FFO adds depreciation back and removes gains and losses on sales; AFFO further deducts maintenance capex, so it sits closer to distributable cash.",
+    "Using P/E to compare a REIT with a normal company almost always gives the wrong answer, because the denominator is distorted.",
+    "A dividend payout ratio above 100% of AFFO, sustained, is a sign the dividend is not sustainable."
+  ],
+  "practicePrompt": {
+    "question": "A REIT reports net profit of 120bn, property depreciation of 300bn, a gain of 80bn on the sale of one building, and recurring maintenance capex of 60bn. What are FFO and AFFO, approximately?",
+    "options": [
+      "FFO = 340bn and AFFO = 280bn",
+      "FFO = 500bn and AFFO = 440bn",
+      "FFO = 120bn and AFFO = 60bn",
+      "FFO = 420bn and AFFO = 360bn"
+    ],
+    "explanation": "FFO = 120 + 300 − 80 = 340bn (add depreciation, deduct the sale gain because it is a one-off). AFFO = 340 − 60 = 280bn (deduct maintenance capex). It is the 280bn figure, not the 340bn one, that is the benchmark for judging whether the dividend is sustainable."
+  },
+  "summary": {
+    "keyIdea": "A REIT needs its own measure because property depreciation distorts accounting profit; FFO and AFFO bring the picture back close to real cash flow.",
+    "commonMistake": "Concluding a REIT is expensive because its P/E is high, or using FFO to judge dividend capacity while ignoring maintenance capex.",
+    "action": "Take a REIT's report, compute FFO and then AFFO yourself, then compare the dividend paid against AFFO to see what the payout ratio really is."
+  },
+  "application": {
+    "title": "Apply it to your analysis",
+    "message": "When looking at a REIT, replace P/E with price over FFO or price over AFFO, and always check the dividend-to-AFFO ratio across three to five years.",
+    "secondary": "Add two context metrics: occupancy and the weighted average remaining lease term - together they tell you how long the current cash flow can hold."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "For most companies, net profit is the natural starting point of any analysis. For a real estate investment trust it is the single most misleading number on the statements - and the reason sits in one line item: depreciation."
+    },
+    { "type": "heading", "text": "Why depreciation distorts the picture at a REIT" },
+    {
+      "type": "paragraph",
+      "text": "Depreciation rests on the assumption that an asset loses value as it is used. That assumption holds for a production line or a truck. But for a well-located, well-maintained building, market value usually does not decline along the accounting schedule, and in many cases rises with land and rental values. Because property makes up almost the entire asset base of a REIT, this enormous depreciation charge pulls accounting profit away from real earning power."
+    },
+    {
+      "type": "formula",
+      "title": "From accounting profit to FFO and AFFO",
+      "equation": "FFO = Net profit + Property depreciation − Gains on asset sales · AFFO = FFO − Maintenance capex",
+      "variables": [
+        {
+          "symbol": "Property depreciation",
+          "name": "Non-cash charge",
+          "description": "Added back because it costs the company no cash in the period, and because the assumed loss of value usually does not hold for good property."
+        },
+        {
+          "symbol": "Gains on asset sales",
+          "name": "One-off item",
+          "description": "Stripped out because selling a building is a non-recurring event that says nothing about the earning power of the rental operation."
+        },
+        {
+          "symbol": "Maintenance capex",
+          "name": "Recurring capex",
+          "description": "The cash that has to be spent regularly to keep space rentable: replacing lifts, repairing air conditioning, fitting out space for new tenants."
+        }
+      ],
+      "example": {
+        "title": "Worked example",
+        "calculation": "120 + 300 − 80 = 340bn (FFO), then 340 − 60 = 280bn (AFFO)",
+        "result": "Accounting profit of 120bn, but distributable cash flow of 280bn",
+        "explanation": "A gap of more than two times between accounting profit and AFFO shows why every conclusion drawn from a REIT's net profit needs rechecking. At the same time, AFFO sitting 60bn below FFO is the reminder that not all of FFO is free cash."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "FFO",
+        "text": "Brings profit back close to the cash flow of the rental operation. It is the standard measure for comparing REITs and for computing a price-to-FFO multiple. But it ignores the recurring cash needed to keep the assets in service."
+      },
+      "right": {
+        "label": "AFFO",
+        "text": "Deducts maintenance spending as well, so it sits closer to the cash genuinely available to investors. It is the better measure for judging dividend sustainability, but the calculation involves estimates, which makes cross-company comparison harder than with FFO."
+      }
+    },
+    { "type": "heading", "text": "Four metrics to read together when analysing a REIT" },
+    {
+      "type": "list",
+      "items": [
+        "Price over AFFO instead of P/E: this is the valuation multiple that fits the economics of the model.",
+        "Dividend as a share of AFFO: above 100% for a sustained period means the dividend is being funded by extra borrowing or by asset sales.",
+        "Occupancy and the weighted average remaining lease term: these tell you how long current cash flow is contracted for, and what share of the space is about to be renegotiated.",
+        "Debt relative to asset value, plus the maturity schedule: REITs typically run high leverage, so refinancing risk when rates rise is a material risk rather than a footnote."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Be careful with self-defined AFFO",
+      "text": "Unlike FFO, which has a fairly consistent industry definition, AFFO has no binding standard, so each trust can decide for itself which spending counts as maintenance and which counts as expansion. A trust that wants AFFO to look better only has to classify more of its spending as expansion. So when comparing trusts, read the notes on the calculation and restate them consistently before drawing any conclusion."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "For a REIT, net profit is the least useful number on the statements - not because it is wrong, but because it answers a different question.",
+        "FFO tells you how much the rental operation generates; AFFO tells you how much of that can genuinely be distributed."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Net profit - distorted by property depreciation" },
+    { "label": "Add depreciation back, strip out gains and losses on sales → FFO" },
+    { "label": "Deduct recurring maintenance capex → AFFO" },
+    { "label": "Compare the dividend against AFFO to judge sustainability" },
+    { "label": "Read alongside occupancy, lease terms and the debt maturity schedule" }
+  ]
+}

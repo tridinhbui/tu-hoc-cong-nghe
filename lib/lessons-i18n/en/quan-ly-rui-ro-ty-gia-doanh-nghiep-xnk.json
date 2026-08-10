@@ -1,0 +1,163 @@
+{
+  "slug": "quan-ly-rui-ro-ty-gia-doanh-nghiep-xnk",
+  "title": "CFO & Operations, Lesson 7: Managing FX risk for import-export businesses",
+  "subtitle": "An exchange rate move can wipe out the entire margin on a large order",
+  "duration": "7 min",
+  "openingQuestion": "A Vietnamese business signs an export contract worth 1 million USD, payable in 6 months. If the VND appreciates sharply against the USD over those 6 months (the USD/VND rate falls), what happens to the business with no hedge in place?",
+  "openingOptions": [
+    "No effect, because the contract was signed at a fixed amount in USD",
+    "The business receives fewer VND when it converts at payment",
+    "The business always benefits, whichever way the rate moves",
+    "It affects only the importing counterparty, not the exporter"
+  ],
+  "explanation": "An exporter earns revenue in foreign currency (USD) while its costs - labour, domestic inputs - are mostly in VND. If the VND appreciates (the USD/VND rate falls) during the wait for payment, the same number of USD converts into FEWER VND, directly eroding the margin that was calculated when the contract was signed, even though nothing has changed operationally.",
+  "diagram": [
+    { "label": "Sign the export contract in USD" },
+    { "label": "Wait for payment (the FX risk arises during this window)" },
+    { "label": "The rate moves → the VND value of the receipt changes" },
+    { "label": "Direct impact on the margin actually earned" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnamese textile and seafood exporters",
+    "description": "Large Vietnamese exporters routinely sign forward FX contracts with their banks to 'lock' the conversion rate on foreign currency revenue they will receive in the future, protecting the margin they calculated when quoting the overseas buyer from an adverse rate move during the wait for payment."
+  },
+  "quiz": [
+    {
+      "question": "How does an FX forward contract help an exporter manage currency risk?",
+      "options": [
+        "Locks the rate in advance, forfeiting the gain if it moves your way",
+        "Guarantees the business always receives a better rate than the market",
+        "Gives the right to perform or not, in exchange for paying a premium",
+        "Transfers the entire currency risk across to the partner bank involved"
+      ],
+      "explanation": "The forward is the classic hedging instrument: the business agrees a fixed rate with the bank for a future transaction in exchange for cash flow certainty - which also means giving up any benefit if the actual rate moves further in its favour than the locked rate. It cannot guarantee a better-than-market outcome, since the forward rate is set by the interest differential; the right-not-obligation description belongs to an option; and the bank prices the risk it takes rather than absorbing it for free."
+    },
+    {
+      "question": "A business that both exports and imports in the same foreign currency (say USD) may have a partial 'natural hedge'. What does that mean?",
+      "options": [
+        "The business holds the foreign currency in the account rather than converting",
+        "Revenue and costs in the same currency partly offset each other",
+        "The bank automatically nets the two sides of the flow for the customer",
+        "The rate is fixed under a long-term contract with the counterparty"
+      ],
+      "explanation": "A natural hedge is a smart and inexpensive risk management strategy: when the inflow (foreign currency revenue) and the outflow (foreign currency costs) are in the same currency and of similar size, an exchange rate move affects both in offsetting directions, reducing the need to pay for a derivative on anything but the remaining net exposure. Simply holding the currency defers the conversion without removing the exposure, and no bank nets flows on your behalf unless you ask it to."
+    },
+    {
+      "question": "A business receives 8m USD from exports and pays 5m USD for imported inputs in the same period. What is the net FX exposure?",
+      "options": [
+        "8m USD, since only the inflow is exposed",
+        "13m USD, adding the inflow and outflow together",
+        "3m USD, since the overlapping part cancels out",
+        "0 USD, as the natural hedge removes all risk"
+      ],
+      "explanation": "This is the natural hedge. Only the difference is genuinely at risk, and hedging that figure instead of the whole revenue line saves most of the cost."
+    },
+    {
+      "question": "What is the fundamental difference between a forward contract and an option?",
+      "options": [
+        "A forward has an upfront premium; an option costs nothing",
+        "A forward trades on an exchange; an option trades OTC",
+        "A forward is for currency; an option is for interest rates",
+        "A forward creates an obligation; an option a right, for a premium"
+      ],
+      "explanation": "The option premium is the price of flexibility: you keep the benefit when the rate moves in your favour, while the forward trades that benefit away for a lower cost. The premium sits on the option rather than the forward, both instruments trade over the counter in this market, and each of them exists for currencies, interest rates and commodities alike."
+    },
+    {
+      "question": "An exporter borrows in USD to fund working capital. How does that affect its FX risk?",
+      "options": [
+        "Reduces risk, since the USD repayment obligation matches USD revenue",
+        "Raises risk, since the business takes on currency volatility on the loan",
+        "No effect, since the loan and the revenue are accounted for separately",
+        "Raises risk, since USD borrowing rates are always above VND rates"
+      ],
+      "explanation": "This is a natural hedge, and usually cheaper than a derivative: when the inflow and the outflow are in the same currency, whichever way the rate moves the two offset. The general principle is to match the currency of the obligation to the currency of the revenue. Separate accounting does not separate the economics, and the relative level of USD and VND rates is a funding cost question rather than an exposure one."
+    }
+  ],
+  "keyTakeaways": [
+    "Exporters carry FX risk because revenue is in foreign currency while costs are mostly domestic",
+    "A forward contract locks the conversion rate in advance, at the price of giving up the benefit of a favourable move",
+    "A natural hedge (inflows and outflows in the same currency) cuts the net FX exposure with no derivative premium to pay"
+  ],
+  "practicePrompt": {
+    "question": "A Vietnamese exporter will receive 1 million USD in 6 months and is worried the VND will appreciate against the USD in the meantime, leaving fewer VND on conversion. Which instrument lets the company lock the conversion rate today?",
+    "options": [
+      "A forward contract lets the business lock the conversion rate in advance",
+      "An interest rate swap, which handles every kind of corporate financial risk including FX",
+      "Nothing needs doing, since exporters are unaffected by exchange rate moves",
+      "Buying shares in other exporting companies as a hedge against currency risk"
+    ],
+    "explanation": "A forward contract lets a business lock the conversion rate for a future transaction. It is the most widely used instrument for managing import-export FX risk, letting a business with future foreign currency cash flow know exactly what it will convert into."
+  },
+  "application": {
+    "title": "Find the part that cancels before buying an instrument",
+    "message": "List the foreign currency inflows and outflows month by month for the same currency. The overlapping part cancels itself and needs no hedge; only the remaining net exposure is worth paying for. Plenty of businesses buy forwards covering their whole export revenue while half their input costs are in that very currency.",
+    "secondary": "The cheapest way to increase the part that cancels usually lies outside the finance department: move some input purchasing into the same currency you sell in, or borrow in that currency."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An exchange rate move can wipe out the entire margin on a large export order, even when everything on the commercial side has gone exactly to plan."
+    },
+    { "type": "heading", "text": "Forward contracts and the natural hedge" },
+    {
+      "type": "paragraph",
+      "text": "An exporter earns revenue in foreign currency while its costs are mostly domestic - if the home currency appreciates while payment is outstanding, the same foreign currency receipt converts into less, eroding the margin calculated at signing. A forward contract locks the conversion rate in advance, at the price of giving up the benefit of a favourable move. A business that both exports and imports in the same currency may have a partial 'natural hedge', reducing the need for a paid derivative."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Exporters carry FX risk because revenue is in foreign currency while costs are mostly domestic",
+        "A forward contract locks the conversion rate in advance for a future transaction",
+        "A natural hedge (inflows and outflows in the same currency) cuts net exposure without a derivative"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The risk lives in the lag between signing and being paid",
+      "equation": "Impact = Foreign currency contract value × Movement in the rate",
+      "example": {
+        "title": "An export order of 500,000 USD, payable in 90 days",
+        "calculation": "Signed at a rate of 25,500 → received at 24,700, a gap of 800 dong per USD",
+        "result": "400 million dong short of plan",
+        "explanation": "If the margin on this order is 5% of revenue of roughly 12.75bn, that is about 640 million - so the exchange rate move alone has taken nearly two thirds of the profit, even though production and delivery both went to plan."
+      }
+    },
+    { "type": "heading", "text": "Three layers of hedging, to be taken in order" },
+    {
+      "type": "list",
+      "items": [
+        "The natural hedge first: if the business has both revenue and costs in the same foreign currency, the overlapping part cancels itself at no cost whatsoever. Calculate the net exposure rather than the gross foreign currency revenue.",
+        "Contract terms: agree a price adjustment when the rate moves beyond a set band, or shorten the payment terms to reduce the window of exposure.",
+        "Derivatives last: a forward or an option for whatever net exposure remains. This is the most expensive layer, so use it only for the part the first two cannot handle."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Forward contract",
+        "text": "Locks the rate hard for the settlement date. Little or no upfront cost, but the obligation runs both ways: if the rate moves in your favour, you must still deal at the locked level."
+      },
+      "right": {
+        "label": "Option",
+        "text": "Pay a premium for a right rather than an obligation. If the rate goes against you, exercise; if it goes your way, let it lapse and sell at market. More flexible, but it costs money from day one."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The common mistake",
+      "text": "Hedging the whole foreign currency revenue instead of the net exposure. A business receiving 10m USD and paying 7m USD is genuinely exposed on only 3m USD; hedging all 10m costs more than three times as much and creates a new position that can itself lose money when the rate moves the other way."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An export contract that looks good on paper can still lose money if the rate goes the wrong way.",
+        "FX risk management is a step no import-export business can afford to skip."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Exporters carry FX risk because revenue is in foreign currency while costs are mostly domestic",
+    "commonMistake": "Easy to miss: a forward contract locks the conversion rate in advance, at the price of giving up the benefit of a favourable move",
+    "action": "A natural hedge (inflows and outflows in the same currency) cuts the net FX exposure with no derivative premium to pay"
+  }
+}

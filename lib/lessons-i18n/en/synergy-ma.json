@@ -1,128 +1,124 @@
 {
   "slug": "synergy-ma",
   "title": "Estimating synergy soberly: why most deals fall short",
-  "subtitle": "The number on the slide, the premium paid, and five ways to cut the optimism back",
+  "subtitle": "The number on the slide, the premium paid, and five ways to cut the optimism out",
   "duration": "8 min",
   "openingQuestion": "The buyer pays 30% above the market price. What has to be true for the deal to create value?",
   "openingOptions": [
-    "Combined revenue must exceed the sum of the two",
-    "Discounted synergy is larger than the premium paid",
-    "Earnings per share must rise in the first year",
-    "The target must have a higher profit margin"
+    "Combined revenue has to exceed the sum of the two sides",
+    "Discounted synergy has to exceed the premium paid",
+    "Earnings per share must rise in the very first year",
+    "The target must carry the higher profit margin"
   ],
-  "explanation": "The premium over the market price goes straight to the seller's shareholders, so the buyer has only the synergy left to make it back. If the present value of the synergy is smaller than the premium already paid, value transfers from the buyer's shareholders to the seller's - the deal still completes, the business is still larger, and the buyer's shareholders are poorer. Combined revenue being larger is a given when you add two companies together and says nothing about value. A rise in earnings per share is not conclusive either, because it depends on whether the deal is paid in cash or in shares rather than on whether the deal is worth doing.",
+  "explanation": "The premium over the market price goes straight to the seller's shareholders, so the buyer has only the synergy left to make it back. If the present value of the synergy is smaller than the premium already paid, value moves from the buyer's shareholders to the seller's - the deal still closes, the company is still bigger, and the buyer's shareholders are poorer. Higher combined revenue is automatic when you add two companies together and says nothing about value. A rise in earnings per share settles nothing either, because it depends on whether you paid in cash or in stock rather than on whether the deal was worth doing.",
   "diagram": [
     {
-      "label": "Market price of the target",
-      "arrow": true
+      "label": "Market price of the target"
     },
     {
-      "label": "Add the premium of 20-40%",
-      "arrow": true
+      "label": "Add the 20-40% premium"
     },
     {
-      "label": "Compare against the present value of the synergy",
-      "arrow": true
+      "label": "Compare with the present value of the synergy"
     },
     {
-      "label": "Only synergy larger than that creates value",
-      "arrow": false
+      "label": "Only synergy larger than the premium creates value"
     }
   ],
   "realWorldExample": {
     "company": "A bank merger",
-    "description": "The cost savings from closing overlapping branches usually come in as calculated, because they depend on an internal decision. The part from cross-selling products to each other's customer base often falls short, because it depends on whether the customers stay and whether they buy more - two things nobody in the deal controls."
+    "description": "The cost savings from closing overlapping branches usually land close to the plan, because they turn on an internal decision. The cross-selling of products into each other's customer bases tends to fall short, because it turns on whether the customers stay and whether they buy more - two things nobody inside the deal controls."
   },
   "quiz": [
     {
       "question": "How do cost synergy and revenue synergy differ in how certain they are?",
       "options": [
-        "Cost synergy is the more certain of the two",
-        "Revenue synergy is easier to compute",
-        "The two are equally certain",
-        "It depends on the industry and its kind of synergy"
+        "Cost synergy is the more reliable of the two",
+        "Revenue synergy is more reliable, being easier to size",
+        "The two carry equal certainty in practice",
+        "It depends on the sector and its kind of overlap"
       ],
-      "explanation": "Cost synergy (cutting duplicated roles, closing duplicate branches, consolidating IT systems) is internal work, and therefore manageable. Revenue synergy (cross-selling and upselling into each other's customer base) depends on customer behaviour, which is far harder to predict. Being easier to compute is not the same as being more certain - a revenue synergy number is easy to write down and hard to collect."
+      "explanation": "Cost synergy - removing duplicated headcount, closing overlapping branches, consolidating IT systems - is internal and therefore manageable. Revenue synergy - cross-selling and upselling into each other's customer base - depends on customer behaviour and is far harder to predict. Revenue synergy is not easier to size, the two are plainly not equally certain, and the industry changes the size of the prize rather than which type is more dependable."
     },
     {
-      "question": "What is an acquisition premium usually justified by?",
+      "question": "What is an acquisition premium normally justified by?",
       "options": [
-        "The book value of the target",
-        "The present value of the expected synergy",
-        "The emotions and ego of the acquirer's management",
-        "Pressure from the advising bank to close the deal"
+        "The book value of the target company",
+        "The present value of the expected synergies",
+        "The ego and emotion of the buyer's management",
+        "Pressure to close from the advising bank"
       ],
-      "explanation": "The acquisition premium (20-40% over the market price) has to be justified by synergy. If the present value of the synergy exceeds the premium paid, the deal creates value; if not, the M&A destroys value - which is why 50-70% of deals are judged failures. Ego and banker pressure are real forces that produce premiums, but they are causes of overpaying, not justifications for it."
+      "explanation": "The acquisition premium - typically 20-40% over the market price - has to be justified by synergy. If PV(synergy) exceeds the premium paid, the deal creates value; if it does not, the M&A destroys value, which is why so large a share of deals disappoint. Book value is a historical accounting figure with no bearing on it, and ego or banker pressure explain why premiums get paid, not why they are defensible."
     },
     {
-      "question": "Why is synergy usually overestimated?",
+      "question": "Why does synergy tend to get overestimated?",
       "options": [
-        "Bankers and management have an incentive to make the deal happen",
-        "It is hard to compute precisely so everyone rounds it up",
-        "Integration always takes longer than expected",
-        "All three of the reasons above contribute to it"
+        "Bankers and management are paid to make the deal happen",
+        "It is hard to compute exactly, so everyone rounds upward",
+        "Integration always takes longer than anybody planned for",
+        "All three of the reasons above contribute together"
       ],
-      "explanation": "Bankers earn an advisory fee and management want a larger empire, so both have an incentive to overstate synergy. And integration really is more complex than expected: culture clash, IT systems, customer retention. Each of the first three is true on its own, which is exactly why none of them alone is the complete answer."
+      "explanation": "Bankers earn advisory fees and management want a larger empire, so both sides have an incentive to overstate synergy. On top of that, integration is genuinely harder than the model assumes: culture clash, IT systems to merge, customers who may leave while it is happening. Each of the first three answers is real on its own; the mistake is treating any one of them as the whole explanation."
     },
     {
       "question": "What is run-rate synergy?",
       "options": [
-        "The synergy achieved in the first year",
-        "Revenue synergy from cross-selling",
-        "Synergy coming from operations rather than revenue",
-        "The annualised synergy level once fully achieved"
+        "The synergy actually achieved in the first year",
+        "Revenue synergy that comes from cross-selling",
+        "Synergy arising from operations rather than from sales",
+        "The annualised synergy level once fully implemented"
       ],
-      "explanation": "Run-rate synergy is the annual synergy once fully implemented. For example: closing 10 offices saves VND 100bn a year, but it takes 18 months to close them all, so the run rate is VND 100bn while year one only realises VND 50bn. That gap between the run rate and the first year is exactly what the term is there to distinguish."
+      "explanation": "Run-rate synergy is the annual synergy once the programme is fully implemented. Example: closing 10 offices saves 100bn a year, but it takes 18 months to close them all, so the run rate is 100bn while year one delivers only 50bn. That gap between the run rate and the first year is exactly what the first option confuses, and the source of the saving is a separate question from when it arrives."
     },
     {
       "question": "In synergy analysis, what is 'dis-synergy'?",
       "options": [
-        "Negative synergy - value lost after the merger",
-        "Synergy that is hard to measure in concrete numbers",
-        "Synergy that takes many years to achieve",
-        "Synergy that is delayed rather than lost"
+        "Negative synergy - value destroyed after the merger",
+        "Synergy that is hard to put a specific number on",
+        "Synergy that takes several years to be achieved",
+        "Synergy that is merely delayed rather than lost"
       ],
-      "explanation": "Dis-synergy is negative synergy. For example: acquiring a luxury brand and destroying its exclusive image, so revenue falls; or a culture clash driving key talent out, so value is lost. It has to be netted off the synergy estimate. Delay and difficulty of measurement are separate problems - dis-synergy is value that does not come back."
+      "explanation": "Dis-synergy is negative synergy. Buying a luxury brand and diluting its exclusive image cuts revenue; a culture clash that makes key talent leave destroys value the same way. It has to be netted off the synergy estimate. Being hard to measure, arriving late, or being delayed are all timing and precision problems - dis-synergy is a loss that never comes back."
     }
   ],
   "keyTakeaways": [
     "The premium goes to the seller's shareholders immediately; the buyer has only synergy left to make it back",
-    "Cost savings are more reliable than revenue growth, because they are in the buyer's own hands",
+    "Cost savings are more dependable than revenue growth, because they sit in the buyer's own hands",
     "Whoever builds the number has an incentive for the deal to happen, so the first figure is almost always optimistic",
-    "One-off integration costs are usually one to two years of synergy and are often left out of the model"
+    "One-off integration costs usually equal one to two years of synergy and are routinely left out of the model"
   ],
   "practicePrompt": {
-    "question": "The banker presents synergy of VND 100bn a year. You cut it to 60%, and the one-off integration cost equals one year of the cut synergy. What is left in the first year?",
+    "question": "The banker puts synergy at 100bn a year. You haircut it to 60%, and the one-off integration cost equals one year of the haircut synergy. What is left in year one?",
     "options": [
-      "VND 0bn: 60 synergy less 60 of integration cost",
-      "VND 60bn: integration costs fall in the later years",
-      "VND 40bn: 100bn less 60bn of integration cost",
-      "VND 100bn: integration cost does not belong here"
+      "0bn: 60 of synergy less 60 of integration cost",
+      "60bn: integration cost falls into the later years",
+      "40bn: 100bn less 60bn of integration cost",
+      "100bn: integration cost does not belong here"
     ],
-    "explanation": "Cutting VND 100bn to 60% gives VND 60bn, and a one-off integration cost equal to one year of the cut synergy is also VND 60bn - so the first year comes to zero. That is why a deal that looks handsome on a slide can still contribute nothing in year one, and why synergy has to be looked at year by year rather than only at the run rate. The VND 40bn option makes the mistake of deducting the cost from the UNCUT figure. The other two push the integration cost out of the first year, when it arises exactly at the moment of integration."
+    "explanation": "Haircutting 100bn to 60% gives 60bn, and a one-off integration cost equal to one year of the haircut synergy is also 60bn - so year one comes to nothing. That is why a deal that looks handsome on the slide can still contribute nothing in its first year, and why synergy has to be viewed year by year rather than only at the full run rate. The 40bn answer makes the mistake of deducting the cost from the figure BEFORE the haircut. The other two push integration cost out of year one, when it lands precisely at the moment of integration."
   },
   "summary": {
-    "keyIdea": "A deal creates value when the synergy brought back to present value exceeds the premium - everything else is just size",
-    "commonMistake": "Taking the synergy number off the slide as it stands, leaving out integration costs, and assuming the synergy arrives in full in year one",
-    "action": "Cut the synergy number to between a half and seven tenths, deduct the integration cost, and see whether the deal still stands"
+    "keyIdea": "A deal creates value when synergy discounted to today exceeds the premium paid - the rest is only scale",
+    "commonMistake": "Taking the synergy figure straight off the slide, ignoring integration costs, and assuming it all arrives in year one",
+    "action": "Haircut the synergy figure to between a half and seven tenths, deduct integration costs, then see whether the deal still stands"
   },
   "application": {
     "title": "Try it on an announced deal",
-    "message": "Find the premium against the price before the news broke, then find the synergy figure the buyer published. Discount the synergy to present value and compare the two - most deals sit very close to the line.",
-    "secondary": "If the buyer only quotes synergy at the run rate without saying how long it takes to get there, that number is not yet comparable."
+    "message": "Find the premium over the price before the news broke, then find the synergy figure the buyer published. Discount the synergy to today and compare the two - most deals sit very close to the line.",
+    "secondary": "If the buyer quotes synergy only at the full run rate without saying how long it takes to get there, that number is not yet comparable."
   },
   "sections": [
     {
       "type": "lead",
-      "text": "The two kinds of synergy, and why the revenue part has to be discounted hard - that is covered in the lesson on synergy in M&A. Here is the next question: where the number on the slide comes from, why it is almost always optimistic, and how to cut it back to something usable."
+      "text": "Two kinds of synergy, and why the revenue half has to be discounted hard - that part was covered in the lesson on synergy in M&A. Here comes the next question: where the number on the slide comes from, why it is almost always optimistic, and how to cut it back to something usable."
     },
     {
       "type": "heading",
-      "text": "The premium is the measuring stick"
+      "text": "The premium is the yardstick"
     },
     {
       "type": "paragraph",
-      "text": "A buyer usually pays 20-40% above the market price. That goes straight to the seller's shareholders, so the buyer has only synergy left to make it back. The neat rule: the present value of the synergy has to exceed the premium, otherwise the deal transfers value from the buyer's shareholders to the seller's. That is the right way to read the often-quoted figure that most mergers fall short of expectations - they do not collapse, they simply overpay."
+      "text": "Buyers typically pay 20-40% over the market price. That amount goes straight to the seller's shareholders, so the buyer has only synergy left to make it back. The compact rule: the present value of the synergy must exceed the premium, or the deal simply transfers value from the buyer's shareholders to the seller's. That is the right way to read the much-quoted finding that most mergers disappoint - they do not collapse, they overpay."
     },
     {
       "type": "heading",
@@ -131,35 +127,35 @@
     {
       "type": "list",
       "items": [
-        "Whoever builds the number has an incentive for the deal to happen: the adviser earns a fee, the management get a larger business to run",
-        "Synergy is hard to compute precisely, and what is hard to compute tends to get rounded up",
-        "Integration always takes longer than planned - cultural differences, information systems to be joined, and customers who may leave while it happens"
+        "Whoever builds the number has an incentive for the deal to happen: the adviser earns a fee, management gets a bigger business to run",
+        "Synergy is hard to compute precisely, and anything hard to compute tends to get rounded upward",
+        "Integration always takes longer than planned - culture differences, IT systems to merge, and customers who may leave in the meantime"
       ]
     },
     {
       "type": "heading",
-      "text": "Five ways to cut the optimism back"
+      "text": "Five ways to cut the optimism out"
     },
     {
       "type": "list",
       "items": [
-        "Cut the number you are given to between a half and seven tenths before using it",
-        "Separate cost savings from revenue growth, and give the cost part more weight - it is in the buyer's hands, the revenue part is in the customers'",
-        "Build a curve over time: synergy does not arrive in full in the first year, it usually takes two to three",
-        "Add the one-off integration cost into the model - it is usually one to two years of synergy and often left out",
-        "Test the sensitivity: if the synergy only reaches seven tenths of plan, does the deal still stand"
+        "Haircut the number you were given to between a half and seven tenths before using it",
+        "Separate cost savings from revenue gains, and weight the cost half more heavily - it sits in the buyer's hands, the revenue half sits with the customers",
+        "Build a curve over time: synergy does not arrive in full in year one, it usually takes two to three years",
+        "Add the one-off integration cost into the model - it typically equals one to two years of synergy and is routinely left out",
+        "Run the sensitivity: if synergy reaches only seven tenths of plan, does the deal still stand up"
       ]
     },
     {
       "type": "callout",
-      "label": "The run rate is not the first year",
-      "text": "The synergy figure is usually published at the run rate - the level reached once everything has settled. If the announcement does not say how long it takes to get there, that figure cannot yet be compared with the premium, because the premium is paid now while the synergy comes later."
+      "label": "The full run rate is not year one",
+      "text": "Synergy figures are usually announced at the full run rate - the level reached once everything has settled. If the announcement does not say how long it takes to get there, that number cannot yet be compared with the premium, because the premium is paid today while the synergy arrives later."
     },
     {
       "type": "closing",
       "lines": [
-        "Deals rarely fail because the wrong target was chosen; they fail because the right price was paid for a synergy that never happened.",
-        "So the most debatable part of the model is not the multiple, it is the synergy figure and the timing of its arrival."
+        "Deals rarely fail because the wrong target was picked; they fail because the right price was paid for a synergy that never showed up.",
+        "So the most arguable part of the model is not the multiple - it is the synergy number and the date it lands."
       ]
     }
   ]

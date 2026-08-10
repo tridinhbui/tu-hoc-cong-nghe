@@ -1,0 +1,164 @@
+{
+  "slug": "maple-leaf-leverage",
+  "title": "Maple Leaf - Leverage Ratio",
+  "subtitle": "Net Debt/EBITDA: how to read debt properly",
+  "duration": "6 min",
+  "openingQuestion": "What does Net Debt/EBITDA tell you first?",
+  "openingOptions": [
+    "Ability to service debt out of operating cash flow",
+    "Gross margin",
+    "How fast the company's revenue is growing each year",
+    "The number of shares outstanding"
+  ],
+  "explanation": "Net debt divided by EBITDA restates the debt burden as the number of years it would take to clear it out of today's cash flow, which is far easier to read than an absolute balance. What counts as acceptable depends entirely on how stable that cash flow is: three times is unremarkable for a utility and very tight for a steel maker. Remember too that EBITDA ignores capital spending, so for a capital-intensive business it overstates the true capacity to repay.",
+  "diagram": [
+    { "label": "Net debt" },
+    { "label": "Divide by EBITDA" },
+    { "label": "Gives the leverage ratio" },
+    { "label": "Compare against the safe threshold" }
+  ],
+  "realWorldExample": {
+    "company": "Why the ratio deteriorates when the cycle turns",
+    "description": "A cyclical business carries net debt of 3,000bn against EBITDA of 1,000bn - a ratio of 3 times, which looks unremarkable at a glance. When the cycle turns and EBITDA drops to 400bn, the ratio jumps to 7.5 times without the company borrowing a single dong more. That is what makes the measure so easy to misread: the denominator swings far harder than the numerator. The right way to read it is to recompute the ratio using the worst EBITDA of the previous cycle, rather than looking only at the current year's figure."
+  },
+  "quiz": [
+    {
+      "question": "What does an excessively high net debt/EBITDA ratio usually imply?",
+      "options": [
+        "Dividend payments to shareholders will be higher",
+        "Next year's revenue is certain to grow",
+        "Liquidity risk is higher if EBITDA falls",
+        "The book value of the company's assets rises"
+      ],
+      "explanation": "High leverage leaves a thinner safety margin: if EBITDA slips, the same debt suddenly takes far more years of cash flow to clear, and refinancing becomes hardest exactly when it is most needed. The other options confuse leverage with unrelated things. A heavily indebted company usually has less room to pay dividends, not more, because lenders take priority over shareholders. The ratio says nothing at all about next year's revenue, which is driven by demand rather than by the balance sheet. And book value is an accounting figure that does not move simply because a leverage ratio does."
+    },
+    {
+      "question": "A cyclical business (steel, oil and gas) shows net debt/EBITDA of 3x at the peak of its cycle. Why is that figure more worrying than the same ratio at a defensive business such as food retail?",
+      "options": [
+        "Because steel companies always borrow in foreign currency, adding FX risk",
+        "Because cyclical EBITDA collapses at the turn, so the ratio spikes fast",
+        "Because steel is simply a worse industry than food retail in every respect",
+        "There is no meaningful difference; the same ratio means the same risk"
+      ],
+      "explanation": "Net debt/EBITDA is measured against today's EBITDA, and for a cyclical business that denominator is exactly the number that swings hardest with the industry cycle - so the same debt load can be safe at a defensive company and dangerous at a cyclical one once earnings drop away. Borrowing currency is a separate question and plenty of cyclical firms fund entirely in dong. Calling one industry worse than another in every respect is not an analytical statement and tells you nothing about repayment capacity. And treating the two as equivalent is precisely the mistake the question is testing."
+    },
+    {
+      "question": "A company borrows nothing more, yet its net debt to EBITDA ratio rises from 3 to 7.5 times. What caused that?",
+      "options": [
+        "EBITDA fell sharply, shrinking the denominator while debt stayed put",
+        "The company changed its depreciation policy, writing the asset base down",
+        "The company spent its cash pile on a dividend, so net debt rose",
+        "Interest expense rose, making the net debt obligation larger"
+      ],
+      "explanation": "For a cyclical business the denominator moves far more violently than the numerator, which is why the ratio can more than double with the debt untouched. A change in depreciation policy moves the asset base and reported profit but leaves EBITDA alone by construction, since depreciation sits below it. Paying a dividend out of cash would raise net debt, but the question states borrowings did not change and a dividend of that size would be visible. Interest expense affects the income statement, not the principal outstanding that net debt measures."
+    },
+    {
+      "question": "Why can EBITDA overstate the repayment capacity of a capital-intensive business?",
+      "options": [
+        "Because EBITDA has already deducted interest expense twice over",
+        "Because it ignores depreciation while the assets still have to be replaced",
+        "Because EBITDA leaves out financial income and dividends received",
+        "Because EBITDA is always smaller than after-tax profit in this group"
+      ],
+      "explanation": "Depreciation is a non-cash charge in the period, but it stands in for the real cash a company must spend to keep its asset base running. Strip it out and the cash genuinely available to service debt looks larger than it is. EBITDA does not deduct interest at all, let alone twice - the I in the acronym is precisely what is added back. Whether financial income is included is a presentation detail that does not change the capital spending problem. And EBITDA sits above every deduction, so it is larger than after-tax profit, not smaller."
+    },
+    {
+      "question": "Why do lenders typically care more about the maturity schedule than about total borrowings?",
+      "options": [
+        "Because debt maturing sooner always carries a higher rate than longer-dated debt",
+        "Because total borrowings are not disclosed in detail in the notes to the accounts",
+        "Because the risk sits in which slice falls due before cash flow comes back",
+        "Because the maturity schedule determines the credit rating the company is given"
+      ],
+      "explanation": "Companies rarely fail because the total is large; they fail because one specific tranche comes due at the moment they cannot raise the cash. Debt spread evenly over several years is far easier to handle than the same balance bunched into a single year, especially if capital markets are shut that year. Short-dated debt is often cheaper, not dearer, since the lender takes less duration risk. Total borrowings are in fact disclosed in the notes. And the rating agencies weigh the schedule as one input among many rather than deriving the rating from it."
+    }
+  ],
+  "keyTakeaways": [
+    "Net debt/EBITDA is the most widely used leverage measure",
+    "It has to be compared within an industry, never read on its own",
+    "High leverage comes with refinancing risk"
+  ],
+  "summary": {
+    "keyIdea": "Net debt/EBITDA is the most widely used leverage measure",
+    "commonMistake": "Easy to miss: it has to be compared within an industry, never read on its own",
+    "action": "High leverage comes with refinancing risk"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Net Debt/EBITDA is one of the most closely watched leverage measures there is - yet the very same number can carry wildly different risk depending on the industry."
+    },
+    { "type": "heading", "text": "What Net Debt/EBITDA measures" },
+    {
+      "type": "paragraph",
+      "text": "The ratio tells you how many years a company would need to clear its net debt if it put every dong of current EBITDA towards repayment. The higher it is, the thinner the financial safety margin. For a cyclical business (steel, oil and gas) the risk is far greater than for a defensive one at the same debt ratio, because their EBITDA can drop sharply when the cycle turns, sending the ratio up very fast."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A high Net Debt/EBITDA means greater liquidity risk if EBITDA falls",
+        "Always compare within an industry - the same debt ratio can be safe in a defensive sector and dangerous in a cyclical one",
+        "High leverage brings refinancing risk when the debt comes due"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The formula and how to read it",
+      "equation": "Net debt ÷ EBITDA = (Borrowings − Cash) ÷ EBITDA",
+      "variables": [
+        {
+          "symbol": "Net debt",
+          "name": "Net debt",
+          "description": "Total short-term and long-term borrowings less cash and cash equivalents."
+        },
+        {
+          "symbol": "EBITDA",
+          "name": "Earnings before interest, tax, depreciation and amortisation",
+          "description": "A rough proxy for operating cash flow before investment - used as the assumed source of repayment."
+        }
+      ],
+      "example": {
+        "title": "Same debt, two points in the cycle",
+        "calculation": "3,000 ÷ 1,000 against 3,000 ÷ 400",
+        "result": "3.0 times against 7.5 times",
+        "explanation": "The company has not borrowed a single dong more, yet measured leverage rises by a factor of 2.5 purely because EBITDA fell. The real risk has risen exactly as the number says - and this is the moment when covenants in loan agreements are most likely to be breached."
+      }
+    },
+    { "type": "heading", "text": "Three things to read alongside it" },
+    {
+      "type": "list",
+      "items": [
+        "Maturity profile: 3 times with most of it falling due within twelve months is far riskier than 4 times spread evenly over seven years.",
+        "Interest cover: EBIT divided by interest expense shows how much cushion is left before the company can no longer pay its interest.",
+        "Covenants in the loan agreements: many set a ceiling on net debt to EBITDA, and breaching it can trigger a demand for early repayment at the worst possible moment."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The limits of EBITDA",
+      "text": "EBITDA ignores depreciation, so for a capital-intensive business that must reinvest continuously it overstates the cash genuinely available to service debt. In those sectors, cross-check against operating cash flow less maintenance capex."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A Net Debt/EBITDA figure means nothing torn out of its industry context.",
+        "Always ask: how stable is this company's EBITDA across the cycle?"
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "What do banks and credit rating agencies use the Net Debt / EBITDA ratio to measure?",
+    "options": [
+      "The years of EBITDA cash flow a company needs to clear its net borrowings",
+      "The share of net profit handed back to ordinary shareholders as cash dividends",
+      "How fast the company's share price is growing on the market",
+      "How efficiently the company is turning over its inventory"
+    ],
+    "explanation": "Net Debt / EBITDA measures repayment capacity. Below 2.0x points to a comfortable financial position; above 4.0x is a warning sign of high debt leverage."
+  },
+  "application": {
+    "title": "In practice: Maple Leaf - Leverage Ratio",
+    "message": "What do banks and credit rating agencies use the Net Debt / EBITDA ratio to measure?",
+    "secondary": "Getting this principle right lifts your financial analysis to a professional standard."
+  }
+}

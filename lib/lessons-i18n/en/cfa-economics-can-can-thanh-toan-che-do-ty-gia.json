@@ -1,0 +1,133 @@
+{
+  "slug": "cfa-economics-can-can-thanh-toan-che-do-ty-gia",
+  "title": "CFA Economics: The balance of payments and exchange rate regimes",
+  "subtitle": "Is a current account deficit a bad sign, and why no country can hold all three objectives at once",
+  "duration": "8 min",
+  "openingQuestion": "A country runs a current account deficit. Does that necessarily mean the economy is in trouble?",
+  "openingOptions": [
+    "Yes - a deficit is always a sign of a weak economy",
+    "Not necessarily: a current account deficit comes with a capital surplus",
+    "Yes - it always leads to a currency crisis within a few years",
+    "No, because the current account has nothing to do with economic health"
+  ],
+  "explanation": "The balance of payments always balances by accounting definition: a current account deficit has to be offset by a surplus on the capital and financial account. That means the country is a net recipient of foreign capital. Whether this is good or bad depends on what the capital is used for - if it flows into factories and infrastructure that raise future productive capacity, it is healthy; if it flows into consumption or an asset bubble, it is dangerous.",
+  "realWorldExample": {
+    "company": "The US and China - two sides of one balance",
+    "description": "The US has run a current account deficit for decades, meaning it is a net recipient of the world's capital - much of it in the form of foreigners buying US Treasuries. China sits on the other side: a current account surplus and an exporter of capital. These are not two independent phenomena but two halves of the same global equation - the world's current account balances in theory sum to zero."
+  },
+  "quiz": [
+    {
+      "question": "What are the main accounts making up the balance of payments?",
+      "options": [
+        "The export account, the import account and capital transfers",
+        "The trade account and the foreign exchange reserve account",
+        "The current account and the capital and financial account",
+        "The government budget account and the private sector account"
+      ],
+      "explanation": "The balance of payments has three components: the current account, recording trade in goods and services, investment income and unilateral transfers such as remittances; the capital and financial account, recording direct investment, portfolio flows and international borrowing; and the change in the central bank's foreign exchange reserves. In principle those three sum to zero, which is what makes this an identity rather than a scoreboard."
+    },
+    {
+      "question": "What does the impossible trinity say in international economics?",
+      "options": [
+        "A country's interest rate, exchange rate and inflation always move together",
+        "No country can grow and keep inflation under control at the same time",
+        "Reserves, the trade balance and public debt cannot all improve at once",
+        "You get at most 2 of 3: fixed rate, free capital, monetary independence"
+      ],
+      "explanation": "The impossible trinity (also called the Mundell-Fleming trilemma) is one of the most important results in international economics. Fix the exchange rate and let capital move freely, and domestic interest rates have to follow foreign ones - monetary independence is lost. Keep monetary independence alongside free capital and the exchange rate has to float. Insist on both a fixed rate and independence, and capital controls become unavoidable."
+    },
+    {
+      "question": "Under purchasing power parity, what happens over the long run to the currency of a country with higher inflation?",
+      "options": [
+        "The currency weakens in line with the inflation differential",
+        "The currency strengthens, since domestic goods have become cheaper",
+        "The nominal exchange rate holds steady over the long run",
+        "The central bank is forced into an outright devaluation"
+      ],
+      "explanation": "Relative PPP states that long-run exchange rate movement is approximately the inflation differential between two countries. If country A runs 8% inflation and country B runs 2%, A's currency should lose roughly 6% against B's so that the same basket still costs the same. PPP works reasonably well over long horizons and badly over short ones, where capital flows and sentiment dominate. It describes a market outcome, not a decision any central bank makes."
+    },
+    {
+      "question": "A country pegs its currency and allows capital to move freely. Under the trilemma, what must it give up?",
+      "options": [
+        "The ability to intervene in the FX market using its reserves of currency",
+        "Monetary independence: domestic rates must track the anchor currency",
+        "Autonomy over fiscal policy and the size of the budget deficit it runs",
+        "The ability to keep the current account in surplus year after year"
+      ],
+      "explanation": "You get two of the three: a fixed exchange rate, free capital movement, monetary independence. Pegging with an open capital account forces domestic interest rates to follow those of the anchor currency - Hong Kong is the clearest illustration of what that costs. The peg says nothing about fiscal policy, which remains with the government, and intervention is precisely the tool kept in order to defend the peg rather than the one surrendered."
+    },
+    {
+      "question": "When is a persistent current account deficit genuinely worrying?",
+      "options": [
+        "In every case, because a current account deficit always weakens an economy",
+        "When the country simultaneously runs a capital and financial account surplus",
+        "When the borrowed foreign capital funds consumption rather than investment",
+        "When exports as a share of that country's GDP rise year after year"
+      ],
+      "explanation": "A current account deficit means spending more than you produce and funding the gap with foreign capital. If that capital builds factories and infrastructure, it creates the capacity to repay later; if it flows into consumption or asset speculation, the debt remains and the capacity to repay does not. The capital account surplus is the accounting identity itself, which holds in every case and therefore signals nothing, and rising exports point the other way entirely."
+    }
+  ],
+  "keyTakeaways": [
+    "The balance of payments always balances: a current account deficit comes with a capital and financial account surplus",
+    "Whether a current account deficit is healthy depends on whether the inbound capital funds productive investment or consumption",
+    "The impossible trinity: you get 2 of 3 - fixed exchange rate, free capital, monetary independence",
+    "PPP explains the long-run direction of exchange rates from inflation differentials, but is close to useless over short horizons"
+  ],
+  "practicePrompt": {
+    "question": "An emerging economy pegs to the USD and is fully open to capital flows. The Fed begins raising rates sharply. What choice does the country face?",
+    "options": [
+      "Unaffected, since the exchange rate is pegged so capital flows will stay stable",
+      "The trilemma: having chosen a peg and open capital, it loses monetary independence",
+      "Print more money to offset the outflow, keeping both the peg and cheap credit at home",
+      "Raise import tariffs, since that is the only policy instrument still available"
+    ],
+    "explanation": "This is the impossible trinity operating in the real world. Having chosen two sides (a fixed rate plus free capital), the country loses the third: monetary independence. When the Fed raises rates, capital leaves in search of higher yield, putting downward pressure on the domestic currency. To hold the peg, the central bank must either raise rates in step or sell reserves - both painful if the domestic economy is already weak. This scenario has replayed itself through many emerging market crises."
+  },
+  "summary": {
+    "keyIdea": "The balance of payments always balances as an accounting matter, and the impossible trinity forces every country to sacrifice one of three objectives: a stable exchange rate, free capital movement, or an independent monetary policy.",
+    "commonMistake": "Treating a current account deficit as a bad sign in itself, without asking what the offsetting capital flow is being used for",
+    "action": "When assessing the risk of an emerging market, work out which two sides of the trilemma that country has chosen"
+  },
+  "application": {
+    "title": "Applying this in CFA analysis",
+    "message": "The exchange rate regime determines how much currency risk sits in an international portfolio, and how far a country can absorb an external shock without sacrificing domestic growth.",
+    "secondary": "It is also the foundation for understanding why the Fed's rate cycle transmits so powerfully into emerging markets that peg their currencies."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The balance of payments is not a scoreboard of who is beating whom - it is an accounting identity, and reading it correctly heads off a great many wrong conclusions about the health of an economy."
+    },
+    { "type": "heading", "text": "The three components of the balance of payments" },
+    {
+      "type": "list",
+      "items": [
+        "The current account: imports and exports of goods and services, income from foreign investment, and unilateral transfers such as remittances",
+        "The capital and financial account: foreign direct investment, portfolio investment in equities and bonds, and international lending and borrowing",
+        "The change in foreign exchange reserves: the central bank's intervention in the currency market"
+      ]
+    },
+    { "type": "heading", "text": "Why the total always comes to zero" },
+    {
+      "type": "paragraph",
+      "text": "If a country imports more than it exports, it has to settle the difference somehow - by borrowing abroad, by selling assets to foreign investors, or by running down its reserves. Each route creates a credit entry in the capital account or in reserves. That is why a current account deficit and a capital account surplus are two obligatory sides of one coin, not two phenomena that could exist independently."
+    },
+    { "type": "heading", "text": "The spectrum of exchange rate regimes" },
+    {
+      "type": "paragraph",
+      "text": "From the most rigid to the most flexible: full dollarisation (abandoning the domestic currency), a currency board (a hard commitment to convert at a fixed rate with full reserve backing), a conventional fixed peg, a crawling peg, a managed float, and a free float. The more rigid the regime, the more stable it is for trade and investment, but the less able the country is to use monetary policy to absorb a domestic shock. No single choice is optimal for every country - it depends on trade openness, how developed the financial market is, and how closely the business cycle tracks that of the main trading partners."
+    },
+    {
+      "type": "callout",
+      "label": "A note for the CFA exam",
+      "text": "The impossible trinity is a very common question type. A way to remember it: draw a triangle whose three corners are a fixed exchange rate, free capital movement and monetary independence - each country gets to pick one SIDE, that is two corners, and the remaining corner is sacrificed."
+    }
+  ],
+  "diagram": [
+    { "label": "Current account + capital account + financial account" },
+    { "label": "The total is always zero: a current deficit means a financial surplus" },
+    { "label": "So a deficit alone is not a bad sign - it depends how it is funded" },
+    { "label": "Choose a regime on the spectrum from fixed to floating" },
+    { "label": "The impossible trinity: only two of the three objectives survive" }
+  ]
+}

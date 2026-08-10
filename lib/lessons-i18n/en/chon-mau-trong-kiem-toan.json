@@ -1,0 +1,136 @@
+{
+  "slug": "chon-mau-trong-kiem-toan",
+  "title": "Audit, Lesson 4: Sampling - why nobody tests everything, and whether that is acceptable",
+  "subtitle": "Statistical and non-statistical sampling, projecting errors, and how a small sample still supports a defensible conclusion",
+  "duration": "11 min",
+  "whyItMatters": "Sampling is where the whole audit profession places its bet: a conclusion about hundreds of thousands of transactions is drawn from a few dozen items. Understanding the mechanism explains both the real power and the real limits of an audit, and it rests on the same statistical foundation as the Quantitative stage.",
+  "openingQuestion": "An auditor tests 60 invoices out of 40,000 and finds no errors. What is the correct conclusion?",
+  "openingOptions": [
+    "All 40,000 of the invoices are entirely free of any error",
+    "There is a reasonable basis to believe the error rate is below the threshold",
+    "The sample is far too small to conclude anything at all here",
+    "At least 10% of all the invoices must be tested before concluding"
+  ],
+  "explanation": "This is exactly the statistical inference covered in the Quantitative stage, placed in an audit setting. The sample does not prove the population is clean; it lets you say that if the true error rate were above the tolerable threshold, the sample would very likely have surfaced at least one error. The striking and counter-intuitive part: the sample size required barely depends on how large the population is. Testing 40,000 invoices or 400,000 invoices calls for a comparable sample, given the same confidence level and the same threshold.",
+  "diagram": [
+    { "label": "Set the tolerable error threshold" },
+    { "label": "Choose the confidence level" },
+    { "label": "Compute the sample size, select the sample" },
+    { "label": "Project the errors found onto the population" }
+  ],
+  "realWorldExample": {
+    "company": "Projecting a small error into a material number",
+    "description": "An auditor selects 50 invoices from a population of 5,000 invoices worth 500bn in total, and finds two invoices misstated by 30m between them. That error is not material in itself. But the sample stands for the whole population, so it has to be projected: if the error rate holds across the population, the estimated misstatement rises to roughly 3bn. It is that projected figure, not the one found directly, that gets compared with materiality - and it may be large enough to require an adjustment or to widen the scope of testing."
+  },
+  "quiz": [
+    {
+      "question": "Why must errors found in a sample be projected onto the population?",
+      "options": [
+        "Because companies deliberately place their largest errors outside the scope of the sample selected for testing",
+        "Because auditing standards require every error found to be multiplied by a fixed safety factor set by the regulator",
+        "Because the sample represents the population, so its error rate implies a matching level in the untested part",
+        "Because the value of items left out of the sample is always greater than the value of those selected"
+      ],
+      "explanation": "This is the most frequently skipped step and also the most important one. No standard prescribes a blanket safety multiplier, and there is no reason for unselected items to be worth more than selected ones - in monetary unit sampling the opposite tends to hold. A 30m error in the sample can correspond to several billion across the population, and it is that projected figure that gets compared with materiality."
+    },
+    {
+      "question": "What does the required sample size mainly depend on?",
+      "options": [
+        "The number of staff the audit firm can assign to the engagement in that reporting period",
+        "The size of the population, as a fixed percentage prescribed by current international auditing standards",
+        "The total monetary value of all the items contained in the population selected for sampling",
+        "The confidence level wanted and the tolerable error rate, almost regardless of population size"
+      ],
+      "explanation": "This counter-intuitive result comes straight from inferential statistics: the standard error depends on sample size, not on population size, once the population is large enough. No standard sets a fixed percentage, and neither the total value of the population nor the headcount available changes the statistics - budget affects what an engagement can afford, not what the mathematics requires."
+    },
+    {
+      "question": "What characterises monetary unit sampling?",
+      "options": [
+        "The larger an item's value, the higher its chance of selection, so material risk is better covered",
+        "Every item in the population has exactly the same probability of selection regardless of value",
+        "Only items whose value exceeds the overall materiality threshold set in advance are selected",
+        "Items are selected in chronological order, starting with the first transaction of the period"
+      ],
+      "explanation": "This method ties selection probability to value, so attention is automatically concentrated where a misstatement could do the most damage - which fits the objective of materiality. Equal probability describes simple random sampling instead, testing only items above materiality is not sampling at all but full examination of the large items, and chronological picking is not random and leaves the rest of the year untested."
+    },
+    {
+      "question": "What is sampling risk?",
+      "options": [
+        "The chance the auditor picks a sampling method unsuited to that class of transaction",
+        "The chance the conclusion drawn from the sample differs from testing the whole population",
+        "The chance the company works out which items were selected and doctors those files",
+        "The chance the computed sample size exceeds the time and budget set for the audit"
+      ],
+      "explanation": "This risk cannot be eliminated, only reduced by increasing the sample size, and it forms part of detection risk in the risk model from the previous lesson. Choosing an unsuitable method is a design failure rather than sampling risk, a client tampering with selected files is a fraud risk, and a sample that will not fit the budget is a planning problem - none of the three is what the term means."
+    },
+    {
+      "question": "What does the required audit sample size mainly depend on?",
+      "options": [
+        "The scale of revenue and of total assets on the balance sheet",
+        "The number of transactions the company generated in the year",
+        "The level of risk accepted and the expected level of error",
+        "The number of auditors assigned to take part in the engagement"
+      ],
+      "explanation": "The counter-intuitive point is that population size barely affects the sample size, exactly as in statistics: testing a hundred thousand transactions does not demand a much larger sample than testing ten thousand. Revenue, total assets and the size of the audit team are all irrelevant to the calculation. What decides it is how much error you are willing to accept."
+    }
+  ],
+  "keyTakeaways": [
+    "A sample does not prove the population is clean; it supports a conclusion at a stated confidence level",
+    "Errors found in a sample must be projected onto the population before being compared with materiality",
+    "Sample size depends on the confidence level and the threshold, almost not at all on population size",
+    "Monetary unit sampling gives higher-value items a greater chance of being selected",
+    "Sampling risk cannot be eliminated, only reduced by increasing the sample size"
+  ],
+  "practicePrompt": {
+    "question": "Company A has 5,000 transactions, Company B has 50,000 of the same kind. At the same confidence level and threshold, how do the sample sizes compare?",
+    "options": [
+      "Company B needs a sample fully ten times as large as Company A's",
+      "Both need roughly the same sample size, as it is not proportional to population",
+      "Company B needs a larger sample, but nowhere near ten times as large as A's",
+      "No comparison is possible without first knowing the value of each individual transaction"
+    ],
+    "explanation": "This is the result that surprises newcomers most, and it is the same reason a poll of 1,000 people can represent a whole country. The standard error depends on the square root of the sample size, not on the population - provided the population is large relative to the sample. It is also why audit fees do not rise in proportion to company size."
+  },
+  "summary": {
+    "keyIdea": "An audit draws conclusions about a population from a small sample, on exactly the foundation of inferential statistics",
+    "commonMistake": "Treating the absence of errors in a sample as evidence that the population has no errors",
+    "action": "Reread the lesson on samples and confidence intervals in the Quantitative Methods stage - the entire basis of this lesson lives there."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Suppose you test 40 vouchers out of a population of 4,000 worth 200bn, and find a 5m error. Compute the projected figure for the population, then compare it with the materiality you calculated in the previous lesson. Decide what should happen next.",
+    "secondary": "If the projected figure exceeds materiality, the auditor has to extend testing or request an adjustment."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This is where the audit profession places its largest bet: a conclusion about hundreds of thousands of transactions drawn from a few dozen items. The basis for that is not experience but statistics - the very toolkit from the Quantitative Methods stage."
+    },
+    {
+      "type": "heading",
+      "text": "Two ways of selecting a sample"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Statistical and non-statistical sampling",
+      "subtitle": "Standards permit both; they differ in whether the risk can be quantified",
+      "concepts": [
+        { "def": "Sample size is computed from the confidence level and the threshold, and items are selected at random. This allows sampling risk to be quantified as a number." },
+        { "def": "The auditor selects on professional judgement: unusual transactions, items near the cut-off date, dealings with related parties." },
+        { "def": "The probability of selection is proportional to an item's value. It concentrates attention where a misstatement would do the most damage." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The step people forget: projection",
+      "text": "Finding a 30m error in the sample and concluding that the misstatement is immaterial is wrong in principle. The sample stands for the population, so the error rate in the sample implies a corresponding block of error in the untested part. The number to compare with materiality is the projected one, not the one found directly. This is where an error that looks small turns into a reason to widen the scope of the audit."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Finding no errors does not mean there are none - it means that if there were many, we would have seen them.",
+        "The next lesson covers the kind of misstatement designed not to show up in a sample: fraud."
+      ]
+    }
+  ]
+}

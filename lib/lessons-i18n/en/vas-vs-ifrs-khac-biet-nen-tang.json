@@ -1,0 +1,162 @@
+{
+  "slug": "vas-vs-ifrs-khac-biet-nen-tang",
+  "title": "Standards & Tax, Lesson 1: Where VAS and IFRS differ",
+  "subtitle": "Historical cost versus fair value: one philosophical difference that drags a long list of numerical differences behind it",
+  "duration": "11 min",
+  "whyItMatters": "When you compare a Vietnamese business with a regional peer in the same sector, most of the gap in the ratios comes not from the operating business but from the different accounting standards. Without knowing that, every cross-border valuation comparison is wrong.",
+  "openingQuestion": "What is the biggest philosophical difference between VAS and IFRS?",
+  "openingOptions": [
+    "VAS reports in dong while IFRS requires translation into US dollars",
+    "VAS leans on historical cost, IFRS uses fair value",
+    "VAS applies only to state-owned enterprises and IFRS to private ones",
+    "VAS does not require a cash flow statement in the annual reporting package"
+  ],
+  "explanation": "VAS is built on the historical cost principle: assets are recorded at the amount actually paid and are rarely revalued. IFRS accepts fair value for many classes of asset, and at the same time weights economic substance above the legal form of a transaction. That philosophical difference drags along a whole list of specific differences in fixed assets, investment property, financial instruments, impairment and revenue recognition - and it makes ratios such as ROE, leverage or profit margin not directly comparable between the two systems.",
+  "diagram": [
+    {
+      "label": "VAS: historical cost, legal form"
+    },
+    {
+      "label": "IFRS: fair value, economic substance"
+    },
+    {
+      "label": "Differences in assets, revenue, impairment"
+    },
+    {
+      "label": "Financial ratios are not directly comparable"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A listed real estate business",
+    "description": "A business holding a land bank bought many years ago records it at historical cost under VAS, even though the market value of that land has multiplied. The same business, reporting under IFRS and electing the fair value model for investment property, would show markedly larger total assets and equity, which drags ROE down and makes leverage look safer - while the operating business has not changed in the slightest."
+  },
+  "quiz": [
+    {
+      "question": "Under VAS, how is a fixed asset treated after initial recognition?",
+      "options": [
+        "Revalued to market price at the close of each annual accounting period",
+        "Carried at cost less accumulated depreciation and impairment",
+        "Recorded at the estimated recoverable amount of the unit that uses it",
+        "Recorded at the present value of the cash flows that the asset generates"
+      ],
+      "explanation": "VAS holds to the historical cost principle and permits revaluation only in specific circumstances set out in the regulations. IFRS allows a revaluation model to be elected for a class of fixed assets, so the two systems can produce very different asset figures. Recoverable amount is used in an impairment test rather than as the ongoing carrying basis, and discounted cash flow is a valuation technique, not a recognition rule."
+    },
+    {
+      "question": "How does the concept of impairment under IFRS differ from VAS?",
+      "options": [
+        "IFRS forbids the reversal of any impairment recognised in an earlier period",
+        "VAS requires an asset to be written down whenever its market price moves",
+        "IFRS has a systematic impairment framework covering many classes of asset",
+        "VAS requires a goodwill impairment test to be performed at each quarter end"
+      ],
+      "explanation": "IFRS obliges a business to compare carrying amount with recoverable amount periodically and write down when required. VAS handles the same issue more piecemeal through specific provisions, so an underperforming asset can sit on the balance sheet for longer. IFRS in fact permits reversal for most assets other than goodwill, VAS does not react to every market price move, and it has no quarterly goodwill test."
+    },
+    {
+      "question": "Why do differences in standards distort a valuation comparison between two businesses?",
+      "options": [
+        "Because valuation multiples are computed in different currencies in each system",
+        "Because the two systems use two entirely different financial year calendars",
+        "Because IFRS requires a target share price to be disclosed and VAS does not",
+        "Because the denominator of a multiple, such as book value or profit, is measured differently"
+      ],
+      "explanation": "P/B, P/E and EV/EBITDA all take their denominator from the financial statements. When the denominator is measured with two different rulers, the multiple is no longer comparable, even if the two businesses are economically identical. Currency is a presentation choice that can be converted, financial year ends vary by company rather than by standard, and neither framework has anything to say about target prices."
+    },
+    {
+      "question": "What does the substance over form principle mean in practice?",
+      "options": [
+        "A transaction is recognised according to its true economic content, not the shape of the contract",
+        "A transaction is recognised according to the exact wording of the legal contract the parties have signed",
+        "A business may choose whichever presentation is most flattering to its ratios",
+        "The auditor decides the accounting treatment in place of the management team"
+      ],
+      "explanation": "The classic example is leasing: a contract labelled an operating lease that in substance transfers almost all the risks and rewards to the lessee has to be recorded as a purchase funded by debt, meaning both an asset and a liability appear on the balance sheet. Following the legal label is exactly what the principle overrides, presentation is not a free choice, and the treatment remains management's responsibility with the auditor forming an opinion on it."
+    },
+    {
+      "question": "Why does the difference between the two frameworks affect the comparison of valuation multiples?",
+      "options": [
+        "Because valuation multiples are computed with a different formula in each framework",
+        "Because the same business can report two different profit and equity figures",
+        "Because IFRS reporters are always awarded a higher multiple by the market",
+        "Because the two frameworks prescribe different financial reporting periods in a year"
+      ],
+      "explanation": "A multiple is a fraction, and both the numerator and the denominator depend on the standard. Asset revaluation, impairment recognition, cost capitalisation - each difference shifts profit or equity, so two P/E figures sitting side by side may be measuring two different things. The formula for a multiple is the same everywhere, the market awards no premium for a framework, and reporting periods are set by the company."
+    }
+  ],
+  "keyTakeaways": [
+    "VAS leans toward historical cost and legal form; IFRS leans toward fair value and economic substance",
+    "The differences concentrate in fixed assets, investment property, financial instruments, impairment and revenue recognition",
+    "The same business can produce different ROE, leverage and profit margins under the two frameworks",
+    "Before comparing ratios across borders, always ask which framework the statements were prepared under"
+  ],
+  "practicePrompt": {
+    "question": "Vietnamese business A has an ROE of 18%, regional sector peer B has an ROE of 11%. What is the most cautious conclusion?",
+    "options": [
+      "A is clearly more efficient than B and deserves a markedly higher valuation",
+      "Check whether both use the same framework before comparing ROE at all",
+      "B has a cost control problem, which is why its return is so much lower",
+      "No comparison is possible because the two businesses are in different countries"
+    ],
+    "explanation": "If B reports under IFRS and has revalued its assets to fair value, B's equity is artificially larger than A's, which drags B's ROE down. The 7 percentage point gap may be mostly a difference in accounting standards rather than a difference in operating capability."
+  },
+  "summary": {
+    "keyIdea": "An accounting framework is a ruler; change the ruler and the numbers change even though the business has not",
+    "commonMistake": "Comparing ratios across two sets of statements prepared under two different frameworks without adjusting",
+    "action": "Open the notes to the financial statements of a listed business and find the section stating the basis of preparation."
+  },
+  "application": {
+    "title": "The first question when you pick up a set of statements",
+    "message": "Which framework were these prepared under, and are the largest balance sheet items measured at historical cost or at fair value? Answer those two before computing any ratio at all.",
+    "secondary": "The basis of preparation section in the notes is always on the first few pages and is the most commonly skipped."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You have learned to read the three financial statements on general principles. But general principles are realised through a specific set of standards, and Vietnam uses a different set from most of the world. Without grasping that difference, every cross-border comparison is off."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Where the two frameworks diverge most",
+      "subtitle": "This is the checklist to run when reading the statements of a Vietnamese business",
+      "concepts": [
+        {
+          "def": "VAS holds cost less depreciation. IFRS permits a revaluation model at fair value, so total assets and equity can differ enormously."
+        },
+        {
+          "def": "The largest divergence for Vietnamese property businesses: a land bank at a cost from many years ago against its current market value."
+        },
+        {
+          "def": "IFRS has a detailed classification and measurement framework based on fair value; VAS handles this more narrowly, especially for investments and derivatives."
+        },
+        {
+          "def": "IFRS requires periodic review and a write-down when recoverable amount falls below carrying amount; VAS handles it piecemeal through provisions."
+        },
+        {
+          "def": "IFRS brings almost every lease onto the balance sheet as a right-of-use asset and a lease liability, which raises leverage visibly against the old presentation."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The strength of historical cost",
+        "text": "Objective, verifiable against source documents, and little exposed to the subjective estimates of the management team."
+      },
+      "right": {
+        "label": "The strength of fair value",
+        "text": "Closer to current economic reality and more useful for an investment decision - but it opens the door to subjective estimation."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Neither framework is absolutely right",
+      "text": "Historical cost is reliable but can be decades out of date. Fair value is current but depends on the business's own valuation assumptions. The analyst's job is not to pick a side, but to know how the number in front of them was produced."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Accounting standards are not a technical detail - they decide the number you use to value a business.",
+        "The next lesson covers the roadmap for converting to IFRS and what will change on the statements when it happens."
+      ]
+    }
+  ]
+}

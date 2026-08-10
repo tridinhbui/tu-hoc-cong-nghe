@@ -12,12 +12,22 @@
   ],
   "explanation": "Bond prices and market interest rates always move in opposite directions, and the reason lies in the coupon being fixed at issuance. When rates rise, new bonds pay more, so old bonds can only be sold if their price falls enough for the buyer to earn the same yield. How much the price moves depends on the remaining term: the further out the cash flows sit, the more sensitive they are - which is exactly what the concept of duration measures.",
   "diagram": [
-    { "label": "Market interest rates rise", "arrow": true },
-    { "label": "Newly issued bonds pay a higher coupon", "arrow": true },
-    { "label": "Old bonds with a lower coupon become less attractive", "arrow": true },
-    { "label": "Their price must fall until yields become equal" }
+    {
+      "label": "Market interest rates rise",
+      "arrow": true
+    },
+    {
+      "label": "Newly issued bonds pay a higher coupon",
+      "arrow": true
+    },
+    {
+      "label": "Old bonds with a lower coupon become less attractive",
+      "arrow": true
+    },
+    {
+      "label": "Their price must fall until yields become equal"
+    }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "The 2022 US bond market",
     "description": "When the Fed raised rates sharply in 2022 to fight inflation, the value of long-term US bond funds fell by tens of percent - one of the worst years in history for bond investors, and a clear demonstration of the inverse relationship between rates and bond prices."
@@ -49,7 +59,7 @@
         "Because the fixed coupon must compete with new, higher yields",
         "Because the issuer actively lowers the price when rates rise",
         "Because investors sell off every time the central bank meets",
-        "Because a bond's face value is adjusted with the policy rate"
+        "Because a bond's face value is adjusted along with the policy rate"
       ],
       "explanation": "An old bond paying 4% while new issues pay 7% means no one will buy it at the original price. The price must fall until the yield on the purchase price equals 7% - that is the entire mechanism."
     },
@@ -104,12 +114,18 @@
       "type": "lead",
       "text": "This is an iron rule of the debt market: bond prices and market interest rates always move in opposite directions. Understanding this mechanism is key to reading any news about the Fed, the State Bank of Vietnam, or bond funds rising or falling in value."
     },
-    { "type": "heading", "text": "Why price and interest rates move oppositely" },
+    {
+      "type": "heading",
+      "text": "Why price and interest rates move oppositely"
+    },
     {
       "type": "paragraph",
       "text": "Suppose you're holding an old bond with a 5%/year coupon. If market interest rates rise to 7%, newly issued bonds will pay 7% - far more attractive than your old bond. To sell your old bond, you have to cut the sale price below face value, enough for the buyer's real yield to match the market's 7%. Conversely, if market interest rates fall to 3%, your old 5% coupon bond suddenly becomes much more attractive - investors are willing to pay above face value to own it. That is the inverse relationship: rates rise → bond price falls; rates fall → bond price rises."
     },
-    { "type": "heading", "text": "Duration: longer term, larger swings" },
+    {
+      "type": "heading",
+      "text": "Duration: longer term, larger swings"
+    },
     {
       "type": "paragraph",
       "text": "Not every bond reacts to interest rates the same way. The longer a bond's term, the more distant future coupon cash flows there are that must be discounted at the new rate - so the more sensitive its price. Roughly speaking: for a 10-year bond, a 1% rate rise means the price falls about 10%; for a 1-year bond, a 1% rate rise means the price falls only about 1%. The number that precisely measures this sensitivity is called duration, which will be studied in detail later. This is why in 2022, when the Fed raised rates sharply to fight inflation, long-term bond funds in the US lost tens of percent in value - one of the worst years in history for bond investors."

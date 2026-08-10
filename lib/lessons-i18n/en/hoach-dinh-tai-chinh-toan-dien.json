@@ -1,0 +1,198 @@
+{
+  "slug": "hoach-dinh-tai-chinh-toan-dien",
+  "title": "Comprehensive financial planning: fitting six pieces into one plan",
+  "subtitle": "Why optimising each piece on its own can still produce a poor overall plan",
+  "duration": "9 min",
+  "openingQuestion": "A client holds an emergency fund worth one month of spending, carries a consumer loan at 22%/year, has no life cover despite being the main earner for two young children, and wants advice on a stock portfolio to 'maximise long-term returns'. Where should the planner start?",
+  "openingOptions": [
+    "Build the stock portfolio straight away exactly as asked, since that is the question and the client decides",
+    "Deal with the emergency fund and the 22% loan first, then risk protection, and only then long-term investing",
+    "Split the money evenly across all six areas so that not one of them ends up neglected",
+    "Decline to advise at all until the client has sorted out the debt and the insurance alone"
+  ],
+  "explanation": "Comprehensive planning differs from selling a product precisely because it forces you to rank the areas against each other. Paying down a 22% loan is a certain 22%/year benefit, higher than the expectation of almost any portfolio and carrying no risk at all. Risk protection for the main earner generates no return, but it stops one single event from collapsing the whole plan. Investing while both of those foundations are still weak means optimising one area while leaving open the gap that can break everything else.",
+  "realWorldExample": {
+    "company": "Why the order of priority matters more than any individual choice",
+    "description": "Picture two clients on the same income with the same monthly surplus. The first puts everything into a very carefully chosen portfolio but keeps no emergency fund. When they lose their job for four months, they are forced to sell into a falling market, and the damage from that forced sale is larger than every point of excess return the careful stock picking ever delivered. The second holds a more ordinary portfolio but keeps six months of expenses in deposits - when the job goes, they sell nothing. Five years on, the second one usually has the higher net worth, not because they invested better but because their plan had no breaking point."
+  },
+  "quiz": [
+    {
+      "question": "Why is paying down a consumer loan at 22%/year usually prioritised ahead of investing more?",
+      "options": [
+        "Because it is a certain 22%/year benefit, carrying no risk",
+        "Because consumer loan interest compounds daily, so it grows fast",
+        "Because the law requires debts to be cleared before a brokerage account is opened",
+        "Because the bank will cut your credit score while any card balance remains unpaid"
+      ],
+      "explanation": "This is the core comparison: every dong repaid avoids interest at that rate with complete certainty. Setting a certain 22% against an uncertain and lower expected return makes the choice fairly obvious. Daily compounding is a detail of how the interest accrues, not the reason for the ranking - a 22% loan compounded monthly deserves the same priority. No law ties debt repayment to opening an investment account, and a credit score falls on missed payments rather than on the mere existence of a balance."
+    },
+    {
+      "question": "What are the six areas of a comprehensive financial plan?",
+      "options": [
+        "Goal setting, analysis, recommendation, execution, monitoring, reporting",
+        "Cash flow, debt, protection, investment, retirement, estate transfer",
+        "Income, spending, saving, borrowing, insurance, and inheritance rules",
+        "Budget, emergency fund, stocks, bonds, gold, and housing"
+      ],
+      "explanation": "These six areas span the whole financial life cycle of an individual, and the important point is that they are linked: a change in one always produces consequences in the others. The first option lists the steps of the planning process rather than the areas being planned. The third mixes cash-flow line items with two of the areas. The fourth is a list of asset classes, which sits entirely inside just one of the six."
+    },
+    {
+      "question": "A client wants to put every spare dong into investing and skip insurance because it is 'not needed yet'. What is the appropriate way for the planner to handle this?",
+      "options": [
+        "Offer the cheapest insurance package so the client accepts it easily",
+        "Refuse to keep advising until the client buys a policy",
+        "Lay out, in numbers, what happens if the breadwinner is hit",
+        "Go along with the client, since the decision is theirs to make"
+      ],
+      "explanation": "The planner's role is not to decide for the client but to make sure the client decides while understanding the consequences, which is why quantifying the downside is the right move. Steering to the cheapest policy substitutes price for suitability and often buys cover that does not match the gap. Refusing to advise abandons a client who still needs help on the other five areas. Simply agreeing skips the warning, and recording that the warning was given also protects the planner later."
+    },
+    {
+      "question": "Why can optimising one area on its own damage the whole plan?",
+      "options": [
+        "Because optimising one area always raises the tax bill",
+        "Because a different specialist is responsible for each area",
+        "Because regulation requires all six areas to be balanced equally",
+        "Because all six areas draw on the same limited cash flow"
+      ],
+      "explanation": "All six areas draw from one finite pool of money, so pushing the maximum into investing means pulling it out of risk protection or the emergency fund. An optimal portfolio standing beside an insurance gap is not a good plan, it is a fragile one. Tax is a real consideration but not a universal consequence of focusing on one area. Who does the work is an organisational question, not a reason the areas interact. And no regulation demands equal weighting - the right weighting depends on where the plan is weakest."
+    },
+    {
+      "question": "What is the standard order of priority when building a financial plan?",
+      "options": [
+        "Emergency fund first, then high-interest debt, protection, investing",
+        "Growth investing first, then deal with whatever is left over",
+        "Insurance above all else, and only afterwards an emergency fund",
+        "Clear every single debt before doing anything else at all"
+      ],
+      "explanation": "The order runs from certain to uncertain: the emergency fund absorbs shocks, repaying high-interest debt delivers a certain return, risk protection blocks catastrophe, and only then comes investing. Putting growth investing first leaves the shock absorbers missing. Insurance ahead of any buffer means a small event still forces expensive borrowing. And clearing every debt is an overshoot - an 8% mortgage does not belong in the same bucket as 22% card debt."
+    }
+  ],
+  "keyTakeaways": [
+    "The six areas of a comprehensive plan are linked; optimising one of them alone can wreck the whole.",
+    "The standard order of priority: cash flow and emergency fund, high-interest debt, risk protection, and only then growth investing.",
+    "Paying down high-interest debt is a certain benefit, and should be compared directly against the uncertain expected return of investing.",
+    "The planner's role is to make sure the client understands the consequences, not to decide on their behalf."
+  ],
+  "practicePrompt": {
+    "question": "A client has a 15m monthly surplus, an emergency fund covering 2 months of expenses, 80m of credit card debt at 30%/year, no insurance, and wants to start investing. What is the most sensible allocation over the first six months?",
+    "options": [
+      "All 15m into an investment portfolio, to put compounding to work as early as possible",
+      "Clear the 30% debt first, while buying pure protection cover and topping up the emergency fund",
+      "Split it evenly, 5m to each goal, so that everything stays balanced",
+      "Keep the whole amount in bank deposits for the sake of safety"
+    ],
+    "explanation": "The 30%/year debt is the largest and most certain cost in this picture. Pure protection cover carries a low premium, so it need not wait - it plugs exactly the gap that could break the plan. Delaying the investing by a few months is a small price against those two benefits."
+  },
+  "summary": {
+    "keyIdea": "Comprehensive planning is a problem about the order of priority across six linked areas, not the sum of six independent decisions.",
+    "commonMistake": "Starting from the area the client asks about (usually investing) rather than from the area that is the plan's weakest point.",
+    "action": "Draw the six-area picture for yourself, mark the weakest area, and name one concrete thing you will do for it this month."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "List the six areas, score each one from 1 to 5, then work on the lowest-scoring area first - not the one you find most interesting.",
+    "secondary": "A financial plan breaks at its weakest link, not its strongest - so resources should go where the weakness is."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Most people who seek financial advice ask about investing. But if the planner only answers the question that was asked, they are skipping the most important part of the job: looking at where the weakest point of the entire plan actually sits."
+    },
+    {
+      "type": "heading",
+      "text": "The six areas and the central question of each"
+    },
+    {
+      "type": "conceptTable",
+      "title": "The structure of a comprehensive financial plan",
+      "subtitle": "Each area answers a different question",
+      "concepts": [
+        {
+          "def": "How much is genuinely left over each month, and is that surplus stable? This is the foundation area - with no surplus cash flow, the other five have no resources to work with."
+        },
+        {
+          "def": "What is owed, at what rate, and which balance should be repaid first? High-interest debt is a certain cost, so it competes directly with every investment opportunity."
+        },
+        {
+          "def": "If income stops, a serious illness strikes, or assets are damaged, does the plan collapse? This covers the emergency fund and insurance - two things that generate no return but prevent large losses."
+        },
+        {
+          "def": "How should the surplus be allocated across goals and risk appetite? This is the most-discussed area, but it should only start once the three above are solid."
+        },
+        {
+          "def": "How much is needed to sustain the desired standard of living once work stops, and how far along the way are you right now?"
+        },
+        {
+          "def": "If the worst happens, where do the assets go, and will those left behind face disputes or complicated procedures?"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why the six areas cannot be optimised separately"
+    },
+    {
+      "type": "paragraph",
+      "text": "Every decision in one area creates consequences in the others. Borrowing more to buy a house reduces the monthly surplus, which simultaneously slows retirement progress and shrinks the capacity to pay insurance premiums. Pouring the entire surplus into long-term investments drains the emergency fund, so when something goes wrong you have to sell assets at exactly the wrong moment. Buying an insurance contract with a premium far too high for the income eats into the money that should have gone to high-interest debt. This is why a good plan is always looked at as a system."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Optimising each part",
+        "text": "You end up with a very good portfolio, a very complete insurance contract and a very ambitious retirement plan - but added together they exceed the real surplus cash flow, so no single area gets carried out fully."
+      },
+      "right": {
+        "label": "Optimising the system",
+        "text": "You accept each area at a moderate level but balanced within the real cash-flow limit, plug the most dangerous gap first, and lift each area gradually over time as income grows."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The order of priority when resources are limited"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Step 1 - Positive cash flow and a minimum emergency fund: with no buffer, every small event forces either expensive borrowing or an ill-timed asset sale.",
+        "Step 2 - Deal with high-interest debt: every dong repaid is a certain benefit equal to exactly that rate, with no risk attached.",
+        "Step 3 - Protect against large risks: insure the events capable of breaking the plan, favouring low-premium pure protection products so they do not crowd out the other areas.",
+        "Step 4 - Raise the emergency fund to a level that matches how stable the income is: volatile income needs a thicker buffer.",
+        "Step 5 - Invest and accumulate for the long term against specific goals, starting with the goal that has the most distant deadline.",
+        "Step 6 - Estate transfer: review it once assets are substantial or when family circumstances change."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "This order is not rigid",
+      "text": "There are reasonable exceptions. If an employer matches contributions into a retirement fund, the matched portion should usually be taken immediately, because it is an extremely high immediate benefit. Likewise, if pure protection cover costs very little relative to income, it need not wait until step 3 - plugging a large gap at a small cost is always a good choice. The general principle is to compare a certain benefit against an expected one, and to prioritise closing the gaps capable of breaking the entire plan."
+    },
+    {
+      "type": "paragraph",
+      "text": "Finally, a comprehensive plan has to be revisited periodically. Marriage, a child, a change of job, buying a home, a significant rise in income - each of these events shifts the order of priority across the six areas. A plan drawn up once and then left alone drifts away from the real circumstances, and it usually drifts furthest in exactly the area that is becoming the most important."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A financial plan breaks at its weakest link, not its strongest.",
+        "So the opening question should not be 'where do I invest' but 'where is this plan most exposed'."
+      ]
+    }
+  ],
+  "diagram": [
+    {
+      "label": "Surplus cash flow and a minimum emergency fund"
+    },
+    {
+      "label": "Deal with high-interest debt - a certain benefit"
+    },
+    {
+      "label": "Protect against risks that could break the plan"
+    },
+    {
+      "label": "Invest and accumulate against goals"
+    },
+    {
+      "label": "Retirement and estate transfer → revisit when circumstances change"
+    }
+  ]
+}

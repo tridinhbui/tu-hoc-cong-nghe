@@ -1,0 +1,183 @@
+{
+  "slug": "valuation-report-tinh-hop-ly-dinh-gia",
+  "title": "Valuation Reports & Reasonableness - Presenting a valuation convincingly",
+  "subtitle": "A valuation is a number, but a valuation report has to explain why that number is reasonable.",
+  "duration": "7 min",
+  "openingQuestion": "What sections should a valuation report contain?",
+  "openingOptions": [
+    "A single valuation figure is enough, with no explanation needed",
+    "Summary, analysis, valuation, recommendation",
+    "Only a list of the loans and the costs"
+  ],
+  "explanation": "A professional valuation report needs a clear structure: Executive Summary (the main conclusion), Industry Analysis (what the sector looks like), Financial Analysis (what the company or asset looks like), Valuation Methods (why this method was chosen), Sensitivity Analysis (how the number moves if the assumptions move), Recommendations. This is what lets the reader - a regulator, a client, a court - understand the valuation and trust it.",
+  "realWorldExample": {
+    "company": "The independent auditor",
+    "description": "When a company is audited, and it carries large goodwill or hard-to-value assets, the audit firm has to engage independent valuation specialists to write a valuation report. That report has to be robust, because it may be challenged in court or disputed by the tax authority."
+  },
+  "quiz": [
+    {
+      "question": "What should the Executive Summary of a valuation report contain?",
+      "options": [
+        "The conclusion: what the value is, by which method, on which assumptions",
+        "The credentials and licences of whoever performed the valuation",
+        "The complete detailed workings of each method that was applied",
+        "The list of documents and data sources that were consulted"
+      ],
+      "explanation": "The Executive Summary is written for the reader who reads exactly one page - usually a CFO, an investment committee, or a judge. It has to answer three things in full: what the value is (ideally a RANGE, not a single figure), by which method, and on which assumptions. Enough for the reader to decide without turning to the technical section. Stuffing method detail in here turns it into a second body section and destroys the very function it exists to serve."
+    },
+    {
+      "question": "Why does Sensitivity Analysis matter?",
+      "options": [
+        "It re-checks the arithmetic across the whole valuation model",
+        "It shows how the value moves as the assumptions move",
+        "It compares the result against other valuation reports",
+        "It picks out the assumption most likely to actually hold"
+      ],
+      "explanation": "A valuation is a function of its assumptions, so a single number always looks more precise than reality warrants. A two-way sensitivity table - usually WACC against long-run growth - exposes that: what range the value moves through, and more importantly WHICH assumption really drives the result. The paradox is that it makes the report more credible rather than weaker, because the reader can see you know where the fragile parts are. A report that hides its sensitivities is always the first one demolished in a dispute."
+    },
+    {
+      "question": "When a valuation report is challenged, for instance in court, what gets examined first?",
+      "options": [
+        "The fee paid to the firm that carried out the valuation work",
+        "The final figure compared against the current market price",
+        "The methods, the assumptions and the data that were used",
+        "The reputation and track record of the valuation firm"
+      ],
+      "explanation": "In a dispute nobody can prove the final number is 'right' - fair value is an estimate, not an observable fact. What gets dissected is the PROCESS: whether the method suits this class of asset, whether the assumptions have a source and are consistent with one another, whether the comparable transactions are genuinely comparable, whether the valuation date is correct. A well-argued USD 50 million valuation will stand against a USD 50 million valuation that cannot explain why it chose a WACC of 9%."
+    },
+    {
+      "question": "Why is Sensitivity Analysis an indispensable part of a valuation report?",
+      "options": [
+        "Because it helps identify the correct valuation method to apply",
+        "Because it can stand in for the whole industry analysis section",
+        "Because the regulator requires this section to be present",
+        "Because it shows how far the result depends on the assumptions"
+      ],
+      "explanation": "A single valuation figure conceals the fact that it is built on assumptions that may be wrong. Showing how the value moves when growth is off by 1% or WACC is off by 0.5% turns the report from an assertion into a range - more honest, and usable in a negotiation. Sensitivity does not choose the method, cannot replace industry analysis, and no regulator mandates it; it earns its place on the merits."
+    },
+    {
+      "question": "When a valuation report is disputed in court, what comes under the closest scrutiny?",
+      "options": [
+        "Whether the assumptions are reasonable and evidenced",
+        "How long the report is and the way it has been laid out",
+        "Whether the final figure is a round and memorable one",
+        "The reputation of the advisory firm that signed off on it"
+      ],
+      "explanation": "Valuation methods are published standards, so they are rarely attacked; the vulnerable point is the input figures. A 15% annual growth assumption with no sector data behind it will bring down the entire conclusion even when the arithmetic that follows is flawless. Length and formatting are presentation choices, roundness of a number carries no information, and a firm's reputation cannot rescue an assumption nobody can source."
+    }
+  ],
+  "sections": [
+    {
+      "type": "heading",
+      "text": "The structure of a professional valuation report"
+    },
+    {
+      "type": "paragraph",
+      "text": "1. Executive Summary (1-2 pages): conclusion, method, headline figures. 2. Introduction: the purpose of the valuation (a purchase, a sale, tax, and so on) and what company or asset is being valued. 3. Industry & Market Analysis: how the business sector is doing, trends, competition. 4. Company/Asset Analysis: history, financials, strengths and weaknesses. 5. Valuation Methods & Analysis: which methods, why, and the results. 6. Sensitivity & Scenario Analysis: how the number moves. 7. Conclusion & Recommendation: the final valuation and the reasonable range. 8. Appendix: detailed data and references."
+    },
+    {
+      "type": "heading",
+      "text": "Executive Summary - the most important section"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Executive Summary has to answer 3 questions: (1) What is the valuation? (2) What is the primary method? (3) What is the most important assumption? It must be readable by non-specialists - a CFO, a lawyer, or a judge should be able to read these 2 pages and grasp most of the conclusion."
+    },
+    {
+      "type": "heading",
+      "text": "Industry & Market Analysis - why the sector matters"
+    },
+    {
+      "type": "paragraph",
+      "text": "Every company is shaped by its sector: sector growth, competition, regulation, technology trends. This section has to analyse the current and forecast market size, the growth rate, the main competitors, and regulatory risk. If you are valuing a technology company, for example, you have to analyse the AI market, startup trends, and data regulation."
+    },
+    {
+      "type": "heading",
+      "text": "Financial Analysis - starting from the raw numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "This section analyses the historical financials: revenue, profit, cash flow. It computes the ratios: ROE, ROIC, profit margins. And it looks at the trends: is revenue rising or falling? Is profit stable or volatile? That is the basis on which the forecast is built."
+    },
+    {
+      "type": "heading",
+      "text": "Valuation Methods - why DCF rather than Comparables?"
+    },
+    {
+      "type": "paragraph",
+      "text": "There is no single 'most correct method'. This section has to explain: (1) which method was chosen (DCF, Comparable Companies, Precedent Transactions, and so on); (2) why it suits this company; (3) the main assumptions (growth rate, discount rate); (4) the result from each method. **Example:** 'DCF was chosen because the cash flows are forecastable; Comparable Companies does not fit because there are few similar companies'."
+    },
+    {
+      "type": "heading",
+      "text": "Sensitivity Analysis - how will the number move?"
+    },
+    {
+      "type": "paragraph",
+      "text": "A valuation is highly sensitive to its assumptions. Sensitivity Analysis shows that: if the discount rate is 5% the valuation is $100M, if it is 7% the valuation is $70M. A two-way table is the usual format: rows are the discount rate (5%-9%), columns are the growth rate (2%-6%), cells are the valuation. This shows the number is not a certainty but a reasonable range."
+    },
+    {
+      "type": "heading",
+      "text": "The reasonableness check"
+    },
+    {
+      "type": "paragraph",
+      "text": "Before concluding, you have to check: (1) Is the valuation high relative to the sector? (2) What is valuation over revenue (the P/S ratio)? (3) Valuation over EBITDA? (4) Does the comparison with Comparable Companies make sense? For example, if a startup is valued at $1B on revenue of only $1M, P/S = 1000x - very high, and it needs an explanation."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Executive Summary - the conclusion and the value range, written last but read first",
+        "Industry and market analysis - why this sector is growing or contracting",
+        "Financial analysis - three to five years of history, separating the recurring from the one-off",
+        "Valuation methods - and why that method rather than the other one",
+        "Sensitivity analysis - how far the number moves when the key assumptions move",
+        "The reasonableness check - testing the result against the market and against common sense"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "The reasonableness check is the section most often skipped and also the one that rescues the most reports. A model that runs correctly can still produce an EV/EBITDA multiple three times the sector average - and the question at that point is not where the model went wrong, but which assumption is claiming that this business is unlike every other business in its sector."
+    }
+  ],
+  "keyTakeaways": [
+    "A valuation report must contain: Executive Summary, Industry Analysis, Financial Analysis, Valuation Methods, Sensitivity Analysis, Recommendations",
+    "The Executive Summary is the most important part - it must answer: what is the value, what is the method, what are the assumptions",
+    "Sensitivity Analysis shows how the number moves if the assumptions move - this increases credibility",
+    "Reasonableness is the final step - compare the valuation against the sector, P/S, P/E and Comparable Companies to make sure it is neither too high nor too low"
+  ],
+  "practicePrompt": {
+    "question": "You need to write the Executive Summary for the valuation of a tech company (DCF, result $500M, discount rate 8%, growth 15%). Which is the best Executive Summary?",
+    "options": [
+      "\"Using DCF with an 8% discount rate and 15% long-run growth, we value the company at $500 million; sensitivity analysis gives a range of $420-580 million.\" - states the conclusion, the method, the key assumptions and the range",
+      "\"This company is worth $500 million.\" - just the number, with no explanation of method or assumptions",
+      "\"We applied a free cash flow to equity discount model after adjusting for CAPEX, working capital, and terminal value on a Gordon Growth basis with g=15%...\" (continues for 3 pages of technical detail) - too technical for a non-specialist reader",
+      "\"The company has good growth potential in the technology sector.\" - contains no valuation figure and no specific method"
+    ],
+    "explanation": "A proper Executive Summary answers 3 questions in 1-2 short paragraphs: what the valuation is, by which method, and on which key assumptions - enough for a CFO or a judge without deep technical background to grasp the conclusion, while also giving a range from the sensitivity analysis to convey appropriate caution."
+  },
+  "summary": {
+    "keyIdea": "A valuation report is not just a number - it is an argument. That argument has to be clear, logical, and challengeable. A good report has a strong Executive Summary, a well-justified method, and a Sensitivity Analysis that shows the reasonable range around the number."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "In M&A work, asset valuation, or audit, you will have to write or review valuation reports. Such a report may be criticised by the tax authority, a court, or investors - so it has to be robust and explainable step by step."
+  },
+  "diagram": [
+    {
+      "label": "Executive summary - conclusion first"
+    },
+    {
+      "label": "Industry and market analysis"
+    },
+    {
+      "label": "Historical financial analysis"
+    },
+    {
+      "label": "Choose the method and explain the choice"
+    },
+    {
+      "label": "Sensitivity table + reasonableness check"
+    }
+  ]
+}

@@ -56,7 +56,7 @@
       "question": "A business reports a 500 million profit and still goes under. What is the most plausible reason?",
       "options": [
         "Corporate income tax came to more than the profit itself",
-        "The profit was miscalculated and the company is really loss-making",
+        "The profit was miscalculated and the company is really making a loss",
         "High profit always drags a matching negative cash flow with it",
         "The profit sits in receivables, with no cash for debts falling due"
       ],
@@ -66,7 +66,7 @@
       "question": "Scenario: That month you sell 100 million, the customer pays 70 million and owes 30 million. You pay out 80 million in cash. What was that month's cash flow?",
       "options": [
         "Minus 10 million (= 70 − 80), despite 100 million of revenue",
-        "Plus 20 million (= 100 − 80, counting the unpaid amount)",
+        "Plus 20 million (= 100 − 80, counting the unpaid 30 million too)",
         "Plus 70 million (= counting only what the customer has paid)",
         "Minus 30 million (= treating the unpaid 30 as written off)"
       ],

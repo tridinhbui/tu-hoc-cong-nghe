@@ -1,0 +1,151 @@
+{
+  "slug": "frm-chuyen-doi-libor-sang-lai-suat-tham-chieu-moi",
+  "title": "FRM Current Issues, Lesson 6: From LIBOR to the new reference rates",
+  "subtitle": "Replacing one number sitting inside hundreds of trillions of dollars of contracts - and what it teaches about benchmark risk",
+  "duration": "9 min",
+  "whyItMatters": "This is the largest piece of infrastructure surgery financial markets have ever attempted, and it leaves a general lesson: a benchmark built on judgement rather than on real transactions is a weakness already sitting inside the system.",
+  "openingQuestion": "What was the core problem that forced LIBOR to be replaced?",
+  "openingOptions": [
+    "It rested on banks' estimated quotes rather than on real transactions",
+    "It was published only for the US dollar, so other currencies could not use it",
+    "Its methodology was so complex that the market could not verify it",
+    "It only had an overnight tenor, which does not suit long-dated contracts"
+  ],
+  "explanation": "LIBOR asked banks what rate they estimated they could borrow at - a judgement, not a trade. The unsecured interbank market shrank after 2008, which left that judgement resting on less and less, and a quote-based structure is also what opened the door to the manipulation cases found later.",
+  "diagram": [
+    { "label": "LIBOR: estimated quotes, bank credit risk embedded, several tenors" },
+    { "label": "New rates: real transactions, near risk-free, overnight" },
+    { "label": "A structural gap, so a spread adjustment is needed on transition" },
+    { "label": "Legacy contracts need fallback language or they fall into a legal void" }
+  ],
+  "realWorldExample": {
+    "company": "Legacy contract risk in a benchmark transition",
+    "description": "The hard part was never picking a new rate; it was the mass of long-dated contracts already signed, many of which had fallback language written for LIBOR being unavailable for a few days - not for it disappearing permanently. Left unamended, some of those contracts would have had their rate frozen at the last published fixing, or no determinable rate at all, and both roads lead to litigation."
+  },
+  "quiz": [
+    {
+      "question": "Why does a new reference rate need a spread adjustment when it replaces LIBOR?",
+      "options": [
+        "Because the new rate is published a day later",
+        "Because LIBOR embeds the credit risk of the banks quoting it",
+        "Because the two use different day-count conventions",
+        "Because policymakers wanted to cut costs for small firms"
+      ],
+      "explanation": "LIBOR is an unsecured interbank borrowing rate, so it always sits above a near risk-free rate by the size of that credit premium. Switching one series for the other with no spread added quietly moves value from one side of every contract to the other. Publication timing and day-count conventions are real operational differences but they do not shift economic value, and no part of the transition was designed to subsidise any class of borrower."
+    },
+    {
+      "question": "What is the biggest structural difference between LIBOR and the new reference rates?",
+      "options": [
+        "LIBOR is for derivatives only, the new rates only for corporate loans",
+        "LIBOR is set by the central bank, the new rates are agreed between banks",
+        "LIBOR is term and forward-looking, the new rates are overnight and backward-looking",
+        "LIBOR was refreshed hourly, whereas the new rates are published once a week"
+      ],
+      "explanation": "This is the difference that generates the most work in practice: a borrower on LIBOR knew the interest for the period on the first day of it, whereas with a compounded overnight rate the figure only settles at the end of the period - and the whole operational and accounting stack has to be rebuilt around that. Both benchmarks span derivatives and loans alike, LIBOR was a panel submission rather than a central bank fixing, and both publish daily."
+    },
+    {
+      "question": "What is the general risk-management lesson of this transition?",
+      "options": [
+        "Regulators should publish every reference rate themselves",
+        "Financial contracts should run under five years so they are easy to amend",
+        "A benchmark resting on judgement rather than real trades is fragile",
+        "Floating rates should be avoided altogether in long-dated contracts"
+      ],
+      "explanation": "A number referenced by hundreds of trillions of dollars of contracts, yet built from the estimates of a small panel, is a concentration risk in two ways at once: it can be manipulated, and the underlying market it claims to describe can quietly wither away beneath it. Handing publication to regulators does not fix the underlying data problem, and capping contract tenor or abandoning floating rates would break far more than it repairs."
+    },
+    {
+      "question": "Why was the spread adjustment fixed once rather than left to float with the market?",
+      "options": [
+        "Because a floating spread would recreate exactly what was just removed",
+        "Because a five-year median always produces a higher figure than the alternatives",
+        "Because regulators forbid any financial index changing after its publication date",
+        "Because the parties to legacy contracts had agreed the spread on the day they signed"
+      ],
+      "explanation": "The spread was computed as the median of the historical difference over five years and then fixed in March 2021 - for the three-month tenor it came out around 26 basis points. Letting it drift with the market would have left contracts hanging off a volatile estimate again, which is exactly the thing this transition existed to remove. The choice of median was about robustness rather than about producing a high number, and legacy parties had agreed nothing of the sort."
+    },
+    {
+      "question": "When LIBOR stops being published for good, which contracts carry the most risk?",
+      "options": [
+        "Derivatives written after the new reference rates were already in force",
+        "Long-dated contracts whose fallback was written for a few days' outage",
+        "Short-term loans that mature well before LIBOR formally ceases publication",
+        "Contracts paying a fixed rate throughout, so they reference no index at all"
+      ],
+      "explanation": "Most legacy fallback language was drafted for LIBOR being unavailable for a few days, not for it disappearing entirely. Left unamended, the contract either freezes at the last published fixing or has no determinable rate at all - and both of those are disputes. New derivatives already reference the replacement, short loans mature before the problem arrives, and a fixed-rate contract never looks at the index in the first place."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A legacy contract pays 3-month LIBOR plus 1.2%. When it moves to a backward-looking new reference rate, why must a spread adjustment be added?",
+    "options": [
+      "Because LIBOR carries bank credit risk and the new rate does not",
+      "Because the new rate is always above LIBOR at every tenor",
+      "Because there is no three-month equivalent of the new rate",
+      "Because regulators require every contract to move by the same amount"
+    ],
+    "explanation": "LIBOR is the rate a bank estimated it would have to pay to borrow unsecured, so it sits above a risk-free rate by exactly the bank credit premium. The new reference rates are built on real transactions, mostly secured or overnight, and so carry no such premium. Swapping one series straight for the other quietly cuts tens of basis points out of one party's interest and hands it to the other - the spread adjustment exists to make the transition neutral in economic value, not to make the two numbers equal."
+  },
+  "keyTakeaways": [
+    "LIBOR rested on estimated quotes; the new rates rest on real transactions",
+    "LIBOR embeds bank credit risk, so transition requires a spread adjustment",
+    "The new rates are backward-looking overnight rates, forcing operational and accounting rework",
+    "The biggest risk sits in legacy contracts with no fallback for permanent cessation"
+  ],
+  "summary": {
+    "keyIdea": "Replacing a benchmark is a contractual and operational problem far more than a choice of number, and the lesson left behind is that a benchmark must be anchored in real transactions",
+    "commonMistake": "Treating this as a technical matter for the operations team, when it shifts economic value between the two sides of every contract",
+    "action": "For any long-dated contract, read the fallback clause and ask: was it written for a temporary outage or for permanent disappearance"
+  },
+  "application": {
+    "title": "Check one loan agreement",
+    "message": "If you have a floating-rate loan, find which rate the contract references and what it says should happen if that rate stops being published. A great many contracts say nothing at all about that case.",
+    "secondary": "That gap is precisely what generated the enormous volume of work in the transition just completed."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "There was a point when LIBOR was referenced by a stock of contracts larger than global GDP. It was produced by asking a few dozen banks: if you were borrowing, what rate do you think you could borrow at?"
+    },
+    { "type": "heading", "text": "How one question became a systemic risk" },
+    {
+      "type": "paragraph",
+      "text": "The answer is an estimate, not a trade. After 2008 the unsecured interbank market contracted sharply, so that estimate rested on less and less actual activity. At the same time, a quote-based structure created the opening for the manipulation cases uncovered later."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "LIBOR",
+        "text": "Estimated quotes, forward-looking term tenors, bank credit risk embedded - so the interest was known on the first day of the period."
+      },
+      "right": {
+        "label": "The new reference rates",
+        "text": "Built on real transactions, overnight, near risk-free - the rate for the period only settles at the end, once the daily rates are compounded."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The hard part is the legacy book",
+      "text": "A great many long-dated contracts had fallback language written for LIBOR being unavailable for a few days, not for it disappearing entirely. Unamended, the contract either freezes at the last fixing or has no determinable rate - and both of those are disputes."
+    },
+    { "type": "heading", "text": "Two gaps to bridge, not one" },
+    {
+      "type": "paragraph",
+      "text": "LIBOR is an unsecured interbank rate with a term structure. The new reference rates are near risk-free, largely secured, and overnight only. Those two differences have to be handled separately. The credit difference is handled with a fixed adjustment per tenor, computed as the median of the historical spread over 5 years and locked in during March 2021 - for the 3-month tenor, around 26 basis points. Fixing it was deliberate: a floating adjustment would recreate the very problem being removed."
+    },
+    {
+      "type": "callout",
+      "label": "The tenor difference creates an entirely new operational problem",
+      "text": "With LIBOR, the rate for an interest period was known on its first day, so a borrower knew what was owed in advance. With an overnight rate, the rate for the period can only be produced by compounding the daily fixings through to the end - meaning the amount payable is only clear on the final day. The market handles this by looking back a few business days so notices can be issued in time. It is a small change in the formula that reaches into accounting systems, payment systems and the drafting of contracts."
+    },
+    {
+      "type": "paragraph",
+      "text": "The general lesson lies elsewhere: the risk was not that LIBOR was manipulated, but that a number referenced by hundreds of trillions of dollars of contracts rested on estimated answers about a market that had withered. The question worth asking of any benchmark in use is: how many real transactions a day does it sit on, and what happens to my contract if it stops being published."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A benchmark has to be anchored in real transactions, or it is a weakness waiting to surface.",
+        "Next lesson: a new form of money, and the question it puts to the banking system."
+      ]
+    }
+  ]
+}

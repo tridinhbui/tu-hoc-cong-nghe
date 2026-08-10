@@ -1,0 +1,174 @@
+{
+  "slug": "fintech-so-du-vi-float-va-tien-cua-khach",
+  "title": "FinTech, Lesson 3: Wallet balances and float - where the customers' money sits, and who earns the interest",
+  "subtitle": "Why money in a wallet is not revenue, is not the company's asset, and why regulation requires it to be held separately",
+  "duration": "10 min",
+  "whyItMatters": "The balance customers leave in their wallets is the largest item on the balance sheet of many fintech companies, and also the most misunderstood. Misreading it leads to two very different consequences: valuing the company wrongly, or breaching the rules on the payment guarantee account.",
+  "openingQuestion": "Users hold a combined 2,000bn in their wallets. How is that recognised?",
+  "openingOptions": [
+    "A liability - it is the customers' money and must be returned on demand",
+    "Deferred revenue, recognised gradually over the time the money is held",
+    "Equity, because the money sits in an account belonging to the company",
+    "An asset, because the company is the named holder of the bank account"
+  ],
+  "explanation": "A wallet balance is a liability. The company is holding the money for someone else, and the customer can withdraw at any time - essentially the same thing as a demand deposit at a bank, except that a fintech company is not permitted to lend it out. In Vietnam, the State Bank requires the entire wallet balance to be backed by a separate account at a commercial bank, and the balance in that account may never fall below the total customer balance at any moment. Which means the company cannot use this money to pay salaries, run advertising or plug a loss - even when it is desperately short of cash.",
+  "diagram": [
+    {
+      "label": "The customer tops up the wallet"
+    },
+    {
+      "label": "Asset: cash in the payment guarantee account"
+    },
+    {
+      "label": "Liability: the customer's balance - the two always match"
+    },
+    {
+      "label": "Interest earned on that account = the company's income"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Circular 23/2019 and its amendments, from the State Bank of Vietnam",
+    "description": "The rules require e-wallet providers to open a separate payment guarantee account and keep its balance no lower than the total of customer wallet balances. This is a fence built after failures in other markets, where payment intermediaries spent their customers' money and then could not pay out when a wave of withdrawals arrived."
+  },
+  "quiz": [
+    {
+      "question": "Where is a customer's wallet balance recognised on the balance sheet?",
+      "options": [
+        "Equity, in the surplus line",
+        "Revenue booked in the current period",
+        "A current asset of the company",
+        "A liability owed to the customer"
+      ],
+      "explanation": "The company holds the money on the customer's behalf and is obliged to return it at any moment, which makes it a liability. The matching cash sits on the asset side as the balance in the payment guarantee account, so both sides of the balance sheet move together. It is never revenue - no service has been performed by the act of topping up - and it never belongs to equity, because it was never the shareholders' money."
+    },
+    {
+      "question": "How does the float of an e-wallet generate income?",
+      "options": [
+        "Interest earned on the customer balances held at the bank",
+        "Fees the customer pays when withdrawing money from the wallet",
+        "The difference between what was topped up and what the customer has spent",
+        "Balances that customers abandon for long enough to be booked as revenue"
+      ],
+      "explanation": "Money sitting in the payment guarantee account still earns interest, and that interest belongs to the company. At scale this can be a meaningful income stream without selling anything extra. Withdrawal fees are ordinary fee revenue rather than float income, the gap between top-ups and spending is simply the float itself rather than an income, and abandoned balances remain a liability until the law says otherwise."
+    },
+    {
+      "question": "Why can an e-wallet company not spend the customer balances?",
+      "options": [
+        "Because most customers will withdraw all of their money on the same day",
+        "Because regulation requires a guarantee account no lower than total wallet balances",
+        "Because the commercial bank does not permit any withdrawal from that account",
+        "Because the cost of moving money between accounts outweighs the benefit"
+      ],
+      "explanation": "This is a legal constraint, not a business choice. The fence was built after cases where payment intermediaries spent their customers' money and then could not pay out. Customer behaviour is irrelevant to the rule - it would apply even if nobody ever withdrew anything - and the bank does allow movement in and out of the account, provided the floor is respected at all times."
+    },
+    {
+      "question": "Why does a large float not make the company proportionally more valuable?",
+      "options": [
+        "Because float is excluded from total assets when a company is valued",
+        "Because float is taxed at a higher rate than other sources of income",
+        "Because every unit of float comes with exactly one unit of obligation to repay",
+        "Because float moves with the season and so cannot be built into a forecast model"
+      ],
+      "explanation": "Float inflates both sides of the balance sheet at once, so net worth is unchanged. What has value is the stream of interest it generates, not the number itself. Float is very much included in total assets, it carries no special tax treatment, and while it does move seasonally that is a forecasting nuisance rather than the reason it fails to add value."
+    },
+    {
+      "question": "Wallet balances double in a quarter. What does that tell you?",
+      "options": [
+        "Profit will rise proportionally in the next reporting period as a result",
+        "The company's revenue in that quarter also roughly doubled alongside it",
+        "The company has just been granted additional credit lines by a partner bank, lifting the balances",
+        "Customers are leaving money in longer, or user numbers are up - it says nothing yet about revenue"
+      ],
+      "explanation": "Float is an indicator of user behaviour, not a revenue line. Revenue only rises if that money is actually transacted, or indirectly through the extra interest earned. A doubling of balances is entirely compatible with flat revenue, which is exactly why the two have to be read as separate series rather than as one."
+    }
+  ],
+  "practicePrompt": {
+    "question": "User wallet balances rise from 3,000bn to 6,000bn in one quarter. How does the wallet company's net worth change at that moment?",
+    "options": [
+      "Unchanged: assets and liabilities rise by the same amount",
+      "Up 3,000bn, since the money is now in the company's account",
+      "Up by the interest earned on the additional 3,000bn",
+      "Down, because the obligation to users has doubled"
+    ],
+    "explanation": "When users top up, the company receives 3,000bn into the payment guarantee account and simultaneously books 3,000bn of liability owed to them. Both sides expand equally and net worth stands still. The 'up by the interest earned' option is nearly right but wrong on timing: interest is income of LATER periods, accruing as the money stays, rather than appearing the moment the balance rises. This is where float gets misread in both directions - it does not make the company richer when it swells, and it is not a frightening debt while the money is still sitting there."
+  },
+  "keyTakeaways": [
+    "A wallet balance is a liability - it is not revenue and it is not an asset belonging to the company.",
+    "The matching cash sits in a separate payment guarantee account, and regulation forbids using it for company operations.",
+    "The real income from float is the interest earned, not the balance itself.",
+    "A swelling float inflates both sides of the balance sheet, leaving net worth unchanged."
+  ],
+  "summary": {
+    "keyIdea": "A wallet balance is a liability owed to users - not revenue, and not the company's own capital",
+    "commonMistake": "Reading a swelling total asset figure as a sign of health, when most of it is an obligation to customers.",
+    "action": "Open the accounts of a wallet company, separate user balances from the company's own assets, and see how large the remainder actually is."
+  },
+  "application": {
+    "title": "Separate the two income streams",
+    "message": "For a fintech you follow, separate the interest earned on customer balances from the income earned in service fees. Then ask: if interest rates halved, would this model still be profitable.",
+    "secondary": "Many wallet models are only profitable in a high interest rate environment, and that does not show up in the headline revenue line."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "For many fintech companies, the largest number on the balance sheet is not their own asset. It is the customers' money, and the entire craft of product finance is never confusing the two."
+    },
+    {
+      "type": "heading",
+      "text": "What float is"
+    },
+    {
+      "type": "paragraph",
+      "text": "Float is the total amount users have left in their wallets, unspent and unwithdrawn. It appears on both sides of the balance sheet at once: on the asset side as the balance in the payment guarantee account, on the funding side as the obligation to return it. The two always match, so a large float does not by itself make the company any richer."
+    },
+    {
+      "type": "heading",
+      "text": "Why regulation requires separation"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Customer money must not sit alongside the company's operating money.",
+        "The guarantee account balance must always be at least the total of every customer's wallet balance.",
+        "It cannot be lent out - that is the boundary that separates an e-wallet from a bank.",
+        "It is inspected and reconciled periodically, because this is the easiest rule to break when a company runs short of cash."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Where float genuinely has value",
+      "text": "Not in the number, but in the interest it earns and in the fact that money already sitting in the wallet makes the next transaction more likely. Someone holding VND 500,000 in their wallet will pay with the wallet rather than opening a banking app - and each of those transactions is what actually generates revenue."
+    },
+    {
+      "type": "heading",
+      "text": "Why float deserves more attention than its own number"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose an e-wallet holds 1,000bn of user balances and deposits all of it at a bank earning 4% a year. That interest alone is 40bn a year, without a single additional transaction. If the company charges 0.5% on transaction value, it would have to process 8,000bn of transactions to generate the same revenue. In many wallet models, income from float exceeds income from fees - so reading the accounts without separating the two lines gives a badly wrong picture of where the profit comes from."
+    },
+    {
+      "type": "callout",
+      "label": "And why regulation requires separation",
+      "text": "A wallet balance appears in two places on the balance sheet at once: an asset, the deposit at the bank, and a LIABILITY to users of exactly the same size. It is not revenue and it is not the company's capital. Regulation therefore imposes three things: customer money must not sit with operating money, the guarantee account balance must always equal or exceed the total obligation to users, and it cannot be lent out or invested at risk. The reason is very concrete - if the company fails, that money has to still be there and must not be pooled with the assets divided among creditors."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Reading a fintech properly",
+        "text": "Separate wallet balances from the company's own assets, separate float income from fee income, then ask: if interest rates halved, would this model still be profitable. Many are profitable only in a high-rate environment."
+      },
+      "right": {
+        "label": "The trap when reading quickly",
+        "text": "Total assets look very large and are growing fast, but most of that is a liability to users. Its growth rate measures how popular the product is, not how financially healthy it is - and it can drain away faster than any other source of funding."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Float is other people's money passing through your hands.",
+        "When reading a fintech company's accounts, separating wallet balances from revenue already avoids most of the ways this model gets misunderstood."
+      ]
+    }
+  ]
+}

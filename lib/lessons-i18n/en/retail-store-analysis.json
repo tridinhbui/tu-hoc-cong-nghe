@@ -12,10 +12,18 @@
   ],
   "explanation": "Analysing a retail chain means splitting growth into two parts: the part from opening more outlets and the part from the existing stores themselves. Total revenue up thirty percent because stores were opened while the old stores stood still is an entirely different story from growth that came from efficiency. The third measure to look at is the payback period on each new outlet - if it is lengthening over the years, the expansion model is running out of room.",
   "diagram": [
-    { "label": "Store productivity", "arrow": true },
-    { "label": "Same-store sales", "arrow": true },
-    { "label": "Payback period", "arrow": true },
-    { "label": "Expanding the chain", "arrow": false }
+    {
+      "label": "Store productivity"
+    },
+    {
+      "label": "Same-store sales"
+    },
+    {
+      "label": "Payback period"
+    },
+    {
+      "label": "Expanding the chain"
+    }
   ],
   "realWorldExample": {
     "company": "A retail chain",
@@ -25,12 +33,12 @@
     {
       "question": "What does same-store sales growth tell you?",
       "options": [
-        "Sales through the online channel",
-        "The net profit of the whole chain",
-        "The headcount across the whole chain",
+        "Sales made through the chain's online sales channel",
+        "The net profit reported by the whole chain of stores",
+        "The total headcount employed across the whole chain",
         "Whether sales at the existing stores are rising or falling"
       ],
-      "explanation": "Same-store sales growth measures the health of the existing stores, undistorted by new openings. The other three all mix in the new stores or describe something else entirely - which is precisely the distortion this measure exists to strip out."
+      "explanation": "Same-store sales growth measures the health of the existing stores, undistorted by new openings. The other three all mix in the new stores or describe something else entirely - which is precisely the distortion this measure exists to strip out. Net profit and headcount are chain-level figures that say nothing about whether demand at an individual store is improving."
     },
     {
       "question": "What does a long payback period usually imply?",
@@ -40,14 +48,14 @@
         "The store recovers its capital very quickly",
         "The risk of expanding has gone down"
       ],
-      "explanation": "If it takes too long to recover the capital, the pace of expansion may not create the value expected. A longer payback means capital is tied up for longer before it can be reinvested, which makes the risk of expansion higher rather than lower."
+      "explanation": "If it takes too long to recover the capital, the pace of expansion may not create the value expected. A longer payback means capital is tied up for longer before it can be reinvested, which makes the risk of expansion higher rather than lower. Saying it does not matter ignores the fact that payback is the single measure deciding whether the next opening is worth the capital."
     },
     {
       "question": "Two stores both have 200m² of floor space; store A has revenue of VND 20bn, store B has VND 12bn. How far apart is their revenue per square metre?",
       "options": [
         "The two stores are equally efficient because the floor area is the same",
         "A is about 1.67 times B (VND 100m against 60m per m²)",
-        "They cannot be compared without knowing the headcount at each",
+        "They cannot be compared without the headcount at each",
         "B is higher because it reaches that revenue on the same floor area"
       ],
       "explanation": "VND 100m per m² against VND 60m per m², so A is about 1.67 times more efficient per unit of area - this is the key measure for deciding which model to replicate when expanding. Equal floor area is exactly what makes the two comparable, not what makes them equal."
@@ -55,7 +63,7 @@
     {
       "question": "A retail chain's payback period on new stores is much longer than the industry average. What does that suggest?",
       "options": [
-        "This is always a positive sign because it is a long-term investment",
+        "This is always a positive sign, because it is a long-term brand investment",
         "It has nothing to do with the quality of the chain's expansion",
         "It may be opening in poor locations or at too high an investment cost",
         "This only reflects the accounting policy on depreciation"
@@ -103,7 +111,10 @@
       "type": "lead",
       "text": "This lesson is not only about reading a retail chain's revenue. The aim is to know whether a store is genuinely worth opening."
     },
-    { "type": "heading", "text": "Three core KPIs" },
+    {
+      "type": "heading",
+      "text": "Three core KPIs"
+    },
     {
       "type": "list",
       "items": [

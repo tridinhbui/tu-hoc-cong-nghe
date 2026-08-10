@@ -1,0 +1,166 @@
+{
+  "slug": "due-diligence-quy-trinh-tham-dinh",
+  "title": "IB & Analysis, Lesson 8: Due Diligence - the review that runs before an M&A deal",
+  "subtitle": "Why so many deals fall apart at the 'check carefully before signing' stage",
+  "duration": "7 min",
+  "openingQuestion": "What is Due Diligence in M&A mainly for?",
+  "openingOptions": [
+    "Only to confirm that the audited financial statements are correct",
+    "Independently verify the seller's information and surface undisclosed risk",
+    "A purely formal legal requirement with no bearing on the decision to buy",
+    "It only applies to transactions worth less than 100bn dong"
+  ],
+  "explanation": "Due Diligence is the process in which the buyer (and its advisers: auditors, lawyers, sector specialists) examines every aspect of the target in depth - financial, legal, tax, operational, people, technology - to surface hidden risk (contingent liabilities, litigation, dangerously concentrated customers) and to test whether the assumptions used to value the deal have any basis in reality, rather than resting on what the seller chose to present.",
+  "diagram": [
+    { "label": "Sign the letter of intent (LOI)" },
+    { "label": "Due Diligence: financial, legal, operational, tax" },
+    { "label": "Findings surface / price is adjusted" },
+    { "label": "Renegotiate or complete the transaction" }
+  ],
+  "realWorldExample": {
+    "company": "M&A deals that collapsed after Due Diligence",
+    "description": "Plenty of large M&A transactions have been cancelled or repriced significantly after the Due Diligence phase, once the buyer found serious undisclosed problems - contingent liabilities, litigation, or earnings quality that did not match the initial reporting."
+  },
+  "quiz": [
+    {
+      "question": "Why are contingent liabilities (a pending lawsuit, a guarantee not yet called) among the most important risks to surface in Due Diligence?",
+      "options": [
+        "Because contingent liabilities usually sit only in the notes",
+        "Because contingent liabilities always exceed recorded debt",
+        "Because contingent liabilities must be settled right after the deal",
+        "Because contingent liabilities are never looked at by auditors"
+      ],
+      "explanation": "Contingent liabilities - a lawsuit awaiting judgment, a guarantee given for a subsidiary, an unfavourable long-term contract commitment - are usually only noted in the disclosures rather than shown in full on the balance sheet, and thorough legal Due Diligence is the only way to find them all before committing to buy. They are not necessarily larger than recorded debt, they may never crystallise at all, and auditors do consider them - the auditor's job simply stops at disclosure rather than at pricing the risk for a buyer."
+    },
+    {
+      "question": "A target draws 70% of its revenue from a single customer. Why is that an important Due Diligence finding that can move the purchase price?",
+      "options": [
+        "Large customers usually demand deeper discounts",
+        "Concentration risk: lose that customer and most revenue goes",
+        "Revenue from one customer is harder to audit and to verify",
+        "Regulation caps revenue from one single customer"
+      ],
+      "explanation": "Customer concentration is one of the most consequential Due Diligence findings - all the more because a change of ownership is sometimes precisely what prompts a large customer to reconsider the relationship. It usually leads to a price adjustment or to a conditional payment structure (an earnout) tied to retaining that customer. Discount pressure is a margin issue rather than an existential one, one large customer is easier to audit rather than harder, and no rule caps concentration."
+    },
+    {
+      "question": "Due Diligence finds normalised profit is 20bn below the reported figure. At a valuation multiple of 8 times, how should the purchase price be adjusted?",
+      "options": [
+        "No change, this is only a technical accounting adjustment",
+        "Down by exactly 20bn, the amount profit was adjusted by",
+        "Down by about 160bn, since price is a multiple of profit",
+        "Down about 80bn, applying the multiple to half the gap"
+      ],
+      "explanation": "20 × 8 = 160bn. This multiplier effect is why the cost of Due Diligence, substantial as it is, is almost always worth it against the risk of overpaying. Leaving the price unchanged treats a lower sustainable earnings base as a presentational matter, which it is not - the buyer is paying for that earnings stream. Cutting only 20bn confuses the profit adjustment with the value adjustment, and halving the multiple has no basis at all: the same multiple that set the price has to be applied to the corrected profit."
+    },
+    {
+      "question": "Why are contingent obligations dangerous for a buyer?",
+      "options": [
+        "Because the law makes the buyer carry every contingent obligation",
+        "Because sellers always conceal them during the negotiation",
+        "Because they always crystallise within the first year after close",
+        "Because they sit in the notes and are very easy to miss"
+      ],
+      "explanation": "A pending lawsuit or a guarantee commitment does not appear as a line of debt. Only thorough legal Due Diligence finds them all, which is why this workstream cannot be done superficially. Whether the buyer inherits them depends on the deal structure rather than on any blanket rule, most sellers disclose them when asked rather than actively hiding them, and the timing of when one crystallises is exactly what nobody can predict."
+    },
+    {
+      "question": "Why does Due Diligence usually recompute a normalised EBITDA rather than using the reported figure?",
+      "options": [
+        "Because one-off items and the old owner's costs disappear after the deal",
+        "Because accounting standards do not permit EBITDA in published financial statements",
+        "Because sellers always understate EBITDA deliberately to reduce their tax bill",
+        "Because reported EBITDA follows the fiscal year rather than the calendar year"
+      ],
+      "explanation": "What the buyer is paying for is the earning power it will hold after taking over, not a historical figure. So you strip out the gain on an asset sale, strip out an abnormally high owner's salary, and add back the costs that will arise once the business becomes a subsidiary - and every one of those adjustments, multiplied by the valuation multiple, turns into real money. EBITDA is a non-statutory measure freely disclosed, sellers have every incentive to flatter it rather than understate it, and a fiscal-year boundary changes the period rather than the quality of the number."
+    }
+  ],
+  "keyTakeaways": [
+    "Due Diligence independently verifies what the seller has provided and surfaces hidden risk before completion",
+    "Contingent liabilities rarely appear in full in standard financial statements; a separate legal review is needed to find them",
+    "High customer concentration is a significant finding that can directly affect the price or the deal structure"
+  ],
+  "practicePrompt": {
+    "question": "Before completing an M&A transaction worth thousands of billions, the buyer hires a team of lawyers, accountants and financial analysts to comb through contracts, contingent liabilities, and the accuracy of the numbers the target has published. What is this step called, and why does it matter?",
+    "options": [
+      "Due Diligence: surfacing hidden risk and testing the valuation assumptions before signing",
+      "This is Post-merger Integration, the step where the two companies are combined after closing",
+      "This is a purely formal legal requirement, and it does not really affect the buyer's decision",
+      "This is Comps Analysis, the step that benchmarks the target against comparable companies"
+    ],
+    "explanation": "Due Diligence surfaces hidden risk and tests the valuation assumptions before an M&A deal is completed. It is the step that protects the buyer from risks not fully disclosed in the published financial statements."
+  },
+  "application": {
+    "title": "Go looking for what is not in the data room",
+    "message": "List the things financial statements do not show: an employment dispute in progress, cross-guarantees for related companies, a lease with a change-of-control clause, warranty commitments. Each item needs an independent source of verification, not an answer from the seller.",
+    "secondary": "Work out what share of revenue the five largest customers represent and how long their contracts still run. If one customer is 40% and the contract expires in six months, that is a price term, not a footnote."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Many M&A deals fall apart not at the negotiating table but at the 'check carefully before signing' stage - Due Diligence."
+    },
+    { "type": "heading", "text": "Surfacing hidden risk before you commit" },
+    {
+      "type": "paragraph",
+      "text": "Due Diligence independently verifies what the seller has provided and surfaces undisclosed risk. Contingent liabilities (a lawsuit awaiting judgment, for instance) are usually only noted in the disclosures rather than shown in full on the balance sheet - thorough legal Due Diligence is the only way to find them all. High customer concentration (one customer accounting for most of revenue) is another significant finding, usually leading to a price adjustment or a conditional payment structure."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Due Diligence surfaces hidden risk and tests the valuation assumptions before completion",
+        "Contingent liabilities rarely appear in full in standard financial statements; a separate legal review is needed",
+        "High customer concentration can directly affect the purchase price or the deal structure"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Five workstreams and the question each is really asking",
+      "concepts": [
+        {
+          "def": "Is reported profit sustainable? You need to rebuild a normalised EBITDA after stripping out one-off items and the former owner's costs."
+        },
+        {
+          "def": "Is there a pending lawsuit, an intellectual property dispute, or a guarantee commitment that does not sit on the balance sheet?"
+        },
+        {
+          "def": "Are customers concentrated in a handful of names? How long do the large contracts still run, and do they terminate on a change of control?"
+        },
+        {
+          "def": "Can the systems, processes and supply chain be integrated, and what will the integration actually cost?"
+        },
+        {
+          "def": "Who genuinely creates the value here, what do their employment contracts say, and do they have any reason to stay after the deal?"
+        }
+      ]
+    },
+    { "type": "heading", "text": "Three findings that commonly change the price or the structure" },
+    {
+      "type": "list",
+      "items": [
+        "Normalised profit below the reported figure, once one-off items are stripped out and costs are restated at market rates - leading to a lower price, because price is usually a multiple of profit.",
+        "High customer concentration: one customer holding most of revenue turns the entire value of the deal into a bet on keeping that relationship - usually leading to conditional payments.",
+        "Contingent obligations: litigation, disputed tax, guarantees given to third parties - usually leading to part of the price being held back in escrow."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why normalising profit matters this much",
+      "text": "If the purchase price is a multiple of profit, then every unit of profit adjusted downward pulls the price down by that same multiple. At 8 times, finding that real profit is 20bn below the reported figure means the price should fall by 160bn - which is why the financial workstream usually returns the most value relative to its cost."
+    },
+    {
+      "type": "paragraph",
+      "text": "One point about framing: Due Diligence is not a hunt for reasons to cancel. Most findings do not lead to walking away, they lead to adjustment - a lower price, a different payment structure, or additional protections. Deals collapse outright only when something is found that breaks the original reason for buying in the first place."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Due Diligence is not a formality to be gone through for appearance's sake.",
+        "It is the last chance to avoid paying a high price for risks nobody has told you about."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Due Diligence independently verifies what the seller has provided and surfaces hidden risk before completion",
+    "commonMistake": "Easy to miss: contingent liabilities rarely appear in full in standard financial statements, and need a separate legal review to find",
+    "action": "High customer concentration is a significant finding that can directly affect the purchase price or the deal structure"
+  }
+}

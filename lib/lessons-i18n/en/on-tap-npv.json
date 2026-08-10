@@ -1,0 +1,193 @@
+{
+  "slug": "on-tap-npv",
+  "title": "NPV review - Net Present Value",
+  "subtitle": "The single most important tool in capital budgeting and company valuation",
+  "duration": "7 min",
+  "openingQuestion": "A project comes out with an NPV of exactly zero. What does that mean?",
+  "openingOptions": [
+    "The project loses money and should be dropped",
+    "The project earns exactly its cost of capital",
+    "Nominal cash in equals cash out, before discounting",
+    "The discount rate is set wrong, so the result is unusable"
+  ],
+  "explanation": "NPV = 0 is not break-even in the everyday sense, and this is the most common confusion of all. Discounting has already charged the cost of capital: every future cash flow is divided by (1+r)^t, where r is precisely the minimum return that shareholders and lenders demand. So NPV = 0 means the project pays for the whole capital base at exactly what that capital costs - not a dong more, not a dong less. Investors still receive the return they asked for; what is missing is the extra value on top. That is why NPV = 0 is the acceptance boundary, not a loss threshold.",
+  "diagram": [
+    {
+      "label": "Cash flow for each year"
+    },
+    {
+      "label": "Discounted back to today at WACC"
+    },
+    {
+      "label": "Summed up, then the initial outlay subtracted"
+    },
+    {
+      "label": "NPV > 0 means accept the project"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Hoa Phat",
+    "description": "A decision to fire up a new blast furnace is an NPV problem: the capital is spent entirely in year 0, while the cash flows stretch across decades. The further out you go, the larger the share of value sitting in the tail years, so the accept-or-drop conclusion turns on the two assumptions that get skipped most often: the long-run growth rate and the cost of capital."
+  },
+  "keyTakeaways": [
+    "NPV > 0 means accept, NPV < 0 means drop, NPV = 0 is the acceptance boundary rather than a loss threshold",
+    "IRR is the discount rate that makes NPV equal zero",
+    "Terminal value usually accounts for 60-80% of the total value in a DCF, so its sensitivity must be tested",
+    "A higher WACC means a lower NPV - the relationship is inverse"
+  ],
+  "summary": {
+    "keyIdea": "NPV pulls every cash flow back to a single point in time and then asks: after the cost of capital has been paid in full, how much is left?",
+    "formula": "NPV = Σ [CF_t / (1+r)^t] − C₀",
+    "commonMistake": "Reading NPV = 0 as a loss, or picking the project with the higher IRR when the two are mutually exclusive",
+    "action": "Before trusting an NPV figure, move terminal growth and WACC by one percentage point each and see whether the conclusion changes"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "NPV answers the question every investment decision reduces to: if you put money in today, will the cash coming back later cover what that capital costs? Because money at two different dates cannot be compared directly, everything has to be pulled back to the present first."
+    },
+    {
+      "type": "heading",
+      "text": "The NPV formula"
+    },
+    {
+      "type": "formula",
+      "title": "Net Present Value",
+      "equation": "NPV = Σ [CF_t / (1+r)^t] − C₀",
+      "variables": [
+        {
+          "symbol": "CF_t",
+          "name": "Cash Flow",
+          "description": "The cash flow generated at time t"
+        },
+        {
+          "symbol": "r",
+          "name": "Discount Rate",
+          "description": "WACC, or the required rate of return"
+        },
+        {
+          "symbol": "C₀",
+          "name": "Initial Cost",
+          "description": "The upfront investment, spent at t = 0"
+        }
+      ],
+      "example": {
+        "title": "A two-year project",
+        "calculation": "PV = 120/1.1 + 120/1.21 = 109.1 + 99.2 = 208.3 → NPV = 208.3 − 200",
+        "result": "+8.3m",
+        "explanation": "You spend 200m today to receive 120m a year for two years, discounted at 10%. The nominal total of 240m looks like a 40m gain, but after discounting the value actually created is only 8.3m."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "NPV and IRR - when to use which"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "NPV",
+        "text": "Measures absolute value in money terms. With two mutually exclusive projects, picking the higher NPV is correct. It assumes cash received is reinvested at WACC - closer to reality."
+      },
+      "right": {
+        "label": "IRR",
+        "text": "Measures the rate of return as a percentage. It can point the wrong way when two projects differ in size. It assumes reinvestment at the IRR itself, which is usually too optimistic."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "For independent projects the two measures give the same answer: NPV > 0 is equivalent to IRR > WACC. They only diverge when you must choose one project over another, and that is exactly where IRR misleads most easily, because a small project can post a beautiful percentage while creating far less money."
+    },
+    {
+      "type": "heading",
+      "text": "Four things to remember"
+    },
+    {
+      "type": "list",
+      "items": [
+        "NPV > 0 means accept, NPV < 0 means drop, NPV = 0 means the project pays exactly the cost of capital",
+        "IRR is the discount rate that makes NPV equal zero",
+        "Terminal value usually accounts for 60-80% of total DCF value, so this assumption always needs a sensitivity check",
+        "A higher WACC means a lower NPV - an inverse relationship, and the sensitivity grows the further out the cash flows sit"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Check before you trust it",
+      "text": "A DCF model that reports a figure to two decimal places can still be entirely wrong if terminal growth is off by half a percentage point. The number worth trusting is not the NPV, but the range of NPVs as the key assumptions move within a reasonable band."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "NPV does not tell you whether a project is good - it tells you whether it beats leaving that capital somewhere else at the same level of risk.",
+        "That is why the discount rate matters as much as the cash flows: changing r changes the benchmark you are comparing against."
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "An expansion project needs 500m of upfront capital and is expected to bring in 150m of cash flow a year for 5 years. WACC is 12%. What do you conclude?",
+    "options": [
+      "Accept: NPV ≈ +40.7m (= 150 × 3.605 − 500)",
+      "Reject: 750m discounted once back to t=5 is only 426m",
+      "Reject - payback takes 3.3 years, past the 3-year limit",
+      "Cannot conclude without a salvage value"
+    ],
+    "explanation": "A level 150m a year for 5 years at 12% carries an annuity factor of (1 − 1.12⁻⁵)/0.12 = 3.605, so PV = 150 × 3.605 = 540.7m and NPV = 540.7 − 500 = +40.7m. The second option makes exactly the classic mistake: bundling the whole 750m into a single amount and discounting it once back to year 5, when in fact the money arrives spread out year by year. Payback period is not the deciding criterion because it ignores every cash flow after the payback point and ignores the cost of capital entirely."
+  },
+  "application": {
+    "title": "Apply it to a real decision",
+    "message": "Take a large spending decision you or your company is weighing up, write out the cash flow for each year, then discount it at the return you demand - the final number tells you whether to go ahead.",
+    "secondary": "Move the discount rate two percentage points up and down: if the conclusion flips, the decision rests on an assumption rather than on the cash flows."
+  },
+  "quiz": [
+    {
+      "question": "A project needs 200m invested today and generates 120m a year for 2 years. Discount rate 10%. NPV is?",
+      "options": [
+        "+40m (= 240 − 200, discounting left out entirely)",
+        "0 - the project earns exactly its 10% cost of capital",
+        "−8.3m (the signs on cash in and cash out flipped)",
+        "NPV = +8.3m, so the investment goes ahead"
+      ],
+      "explanation": "PV(120m, Y1) = 120/1.1 = 109.1m. PV(120m, Y2) = 120/1.21 = 99.2m. Total PV = 208.3m, so NPV = 208.3 − 200 = +8.3m and the project should go ahead. The +40m option simply adds the nominal cash flows and never discounts them, which is the whole point of the exercise. A result of zero would require the two discounted inflows to sum to exactly 200m, and −8.3m comes from treating the 200m outflow as an inflow and vice versa."
+    },
+    {
+      "question": "If a project's IRR is 15% and WACC is 18%, you should:",
+      "options": [
+        "Do not invest - IRR below WACC means NPV is negative",
+        "Invest: a positive IRR already means the project makes money",
+        "Invest if there is unused capital budget left",
+        "It depends on the industry - each sets its own IRR hurdle rate"
+      ],
+      "explanation": "IRR < WACC implies NPV < 0: the project earns a return below what the capital costs, so it destroys value. A positive IRR is not the test - the test is IRR against the cost of capital, and 15% against 18% fails it. Having budget left over is not a reason either, since spending it on a value-destroying project is worse than not spending it. The hurdle rate does vary by industry, but here the hurdle is already given as 18%."
+    },
+    {
+      "question": "Mutually exclusive projects: Project A has NPV = 50m, IRR = 30%. Project B has NPV = 80m, IRR = 20%. Which do you pick?",
+      "options": [
+        "Project A, because its IRR percentage is higher",
+        "Project B - the higher NPV, i.e. more value created",
+        "It depends on how much capital is available",
+        "Need the payback period of each before choosing"
+      ],
+      "explanation": "For mutually exclusive projects the NPV rule gives the right answer. Project B creates 80m of absolute value against A's 50m, even though its percentage return is lower - and shareholders bank money, not percentages. IRR misleads whenever the projects differ in scale, since a small project can post a spectacular rate on a small base. Payback period would not settle it either, because it ignores everything happening after the payback date."
+    },
+    {
+      "question": "Roughly what share of total DCF value does terminal value usually account for?",
+      "options": [
+        "10-20% - most of the value sits in the forecast period",
+        "50%, since the two parts usually split value evenly",
+        "60-80% - most of the value sits past the forecast",
+        "100% - the forecast period contributes nothing"
+      ],
+      "explanation": "In practice terminal value tends to be 60-80% of total enterprise value in a DCF. That means the model is extremely sensitive to the terminal growth rate and the exit multiple, which is why those two assumptions deserve a sensitivity table rather than a single point estimate. The forecast period does contribute real value, so neither the 10-20% figure nor the 100% figure holds, and an even split at 50% would require a forecast horizon far longer than the five to ten years typically modelled."
+    },
+    {
+      "question": "WACC = 10%, risk-free rate = 4%, equity risk premium = 6%, beta = 1.5, Kd = 7%, tax = 20%, D/(D+E) = 40%. The correctly calculated WACC is?",
+      "options": [
+        "Not enough information: the debt-to-equity split is missing",
+        "Ke = 4% + 1.5×6% = 13%; WACC = 13%×0.6 + 7%×0.4 = 10.6%, tax shield left out",
+        "Ke = 10% (beta not applied); WACC = 10%×0.6 + 7%×0.8×0.4 = 8.24%",
+        "Ke = 4% + 1.5×6% = 13%; WACC = 13%×0.6 + 7%×(1-20%)×0.4 = 10%"
+      ],
+      "explanation": "Ke = Rf + β×ERP = 4% + 1.5×6% = 13%. WACC = Ke×We + Kd×(1-t)×Wd = 13%×0.6 + 7%×0.8×0.4 = 7.8% + 2.24% = 10.04%, which rounds to 10%. The 10.6% answer applies the cost of debt gross, dropping the tax shield that makes debt cheaper than its coupon. The 8.24% answer uses the risk-free-style 10% as the cost of equity and never runs beta through CAPM. And the split is given: D/(D+E) = 40% fixes both weights."
+    }
+  ]
+}

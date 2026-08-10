@@ -1,0 +1,172 @@
+{
+  "slug": "put-call-parity-va-nguyen-ly-khong-arbitrage",
+  "title": "Derivatives, Lesson 1: Put-call parity - pricing options before you have any formula",
+  "subtitle": "The no-arbitrage principle and the binding relationship between calls, puts, stock and bonds",
+  "duration": "11 min",
+  "whyItMatters": "Long before any pricing model existed, there was already a constraint forcing call and put prices to line up. Understanding put-call parity lets you sanity-check an option price with nothing but addition and subtraction, and more importantly it teaches the foundational way of thinking in all derivative pricing: replicate the payoff with other instruments.",
+  "openingQuestion": "You buy a call option and simultaneously short the underlying stock, holding cash equal to the present value of the strike. Which instrument does this portfolio resemble?",
+  "openingOptions": [
+    "A put option with the same strike and the same expiry date",
+    "A long futures contract",
+    "A plain government bond",
+    "A bank deposit with a term fixed in advance"
+  ],
+  "explanation": "This is put-call parity: a long call, plus the present value of the strike held in cash, minus the stock, replicates exactly the payoff of a put with the same strike and expiry. Because the two portfolios produce the same cash flow in every future price scenario, they must carry the same price today - otherwise anyone could buy the cheap side, sell the expensive one, and pocket the difference risk-free.",
+  "diagram": [
+    { "label": "Call + cash of PV(K)" },
+    { "label": "Has the same payoff in every scenario as" },
+    { "label": "Put + stock" },
+    { "label": "So they must cost the same today" }
+  ],
+  "realWorldExample": {
+    "company": "The derivatives desk",
+    "description": "On a trading desk, put-call parity is not theory but an instant sanity check. When markets move violently, listed option prices can drift out of this relationship for a few seconds; arbitrage algorithms exist precisely to close that gap. A retail investor will almost never be fast enough to capture it, but is always fast enough to use it to spot a price that makes no sense."
+  },
+  "quiz": [
+    {
+      "question": "What is the put-call parity formula for European options on a non-dividend-paying stock?",
+      "options": [
+        "C + K = P + S",
+        "C + PV(K) = P + PV(S)",
+        "C − P = K − S",
+        "C + PV(K) = P + S"
+      ],
+      "explanation": "C + PV(K) = P + S. The left side: buy the call and hold enough cash to exercise. The right side: buy the put and hold the stock. Both deliver a payoff of max(S_T, K) at expiry. Using K rather than PV(K) forgets that the cash only needs to grow to K by expiry, so it overstates the left side by the interest. Discounting S as well double-counts, since the stock price is already a present value. And C − P = K − S has the sign of the relationship reversed."
+    },
+    {
+      "question": "What does the no-arbitrage principle say?",
+      "options": [
+        "Two portfolios with the same future cash flows must cost the same today",
+        "No investor can beat the market consistently over the long run",
+        "Asset prices always fully reflect all information available in the market",
+        "The expected return on every asset equals the risk-free rate"
+      ],
+      "explanation": "This is the foundation of all derivative pricing. If two things with identical cash flows carry different prices, a strategy exists that makes money with no capital and no risk - something the market erases immediately. The other three statements are claims about efficiency or about equilibrium returns; they may or may not hold, and none of them is needed to derive parity."
+    },
+    {
+      "question": "If the stock pays a dividend during the period, how does put-call parity change?",
+      "options": [
+        "Unchanged, because options also receive the dividend",
+        "Subtract the present value of the dividend from S",
+        "Add the dividend to the strike price on the right",
+        "Multiply both sides by the dividend yield"
+      ],
+      "explanation": "The option holder does not receive the dividend while the stockholder does. The present value of the dividend therefore has to come off the stock price for the two sides to be genuinely equivalent in cash flow terms. Adding it to the strike moves the adjustment to the wrong side of the equation, and scaling by the yield changes the units of everything rather than the timing of one cash flow."
+    },
+    {
+      "question": "You observe: S = 100, K = 100, one-year term, risk-free rate 5%, C = 12, P = 6. What is wrong?",
+      "options": [
+        "Nothing is wrong here; all four prices are consistent with each other",
+        "The left side is below the right, so the put looks too cheap",
+        "The left side at 107.2 exceeds the right at 106, breaking parity",
+        "Nothing can be concluded without knowing the stock's volatility"
+      ],
+      "explanation": "PV(K) = 100/1.05 ≈ 95.2. The left side is roughly 107.2 and the right side is 106. The gap of about 1.2 shows parity is violated: sell the call, buy the put, buy the stock and borrow, and the difference is locked in. Notice that this conclusion needs no knowledge of volatility - that is the power of the no-arbitrage argument."
+    },
+    {
+      "question": "Why is the no-arbitrage principle strong enough to price an option before any formula exists?",
+      "options": [
+        "Because every option can be replicated with a risk-free bond",
+        "Because option markets are efficient, so option prices are right",
+        "Because the stock's up and down probabilities are assumed equal",
+        "Because two portfolios with identical cash flows must cost the same"
+      ],
+      "explanation": "The argument needs no view on where the stock is going, only the fact that two portfolios pay out identically. If their prices differ, a sequence of trades exists that makes a certain profit with no risk - and that does not survive long in a market. A bond alone cannot replicate an option's convex payoff, market efficiency is a separate and much stronger claim, and no assumption about up or down probabilities enters anywhere."
+    }
+  ],
+  "keyTakeaways": [
+    "Put-call parity: C + PV(K) = P + S (subtract the present value of dividends where they exist)",
+    "All derivative pricing rests on one idea: replicate the payoff with other instruments, then force the two sides to the same price",
+    "Parity lets you sanity-check an option price without knowing the volatility",
+    "It follows from parity that a long call plus a short put at the same strike is equivalent to holding the stock on leverage"
+  ],
+  "practicePrompt": {
+    "question": "Why can you check parity without knowing the stock's volatility?",
+    "options": [
+      "Because volatility does not affect the price of an option",
+      "Because the two portfolios pay the same in every scenario",
+      "Because volatility is already inside the risk-free rate",
+      "Because parity only holds when the volatility is exactly zero"
+    ],
+    "explanation": "This is the deepest point in the lesson. When two portfolios match in every future state, you do not need to know which state is more likely. Volatility becomes necessary only when you want to price a single option on its own, not when you are comparing two things that are already equivalent."
+  },
+  "summary": {
+    "keyIdea": "Derivative prices are constrained by replicability, not by a market forecast",
+    "formula": "C + PV(K) = P + S",
+    "commonMistake": "Thinking you must know which way the stock will go before you can price an option",
+    "action": "Take any index option chain and check parity for two or three strikes."
+  },
+  "application": {
+    "title": "Use parity as a filter",
+    "message": "Before trading any option, check parity against the matching put or call. If it is materially out of line after transaction costs and dividends, you are usually misreading the data rather than looking at free money.",
+    "secondary": "Parity also gives you a way to synthesise a position: if you cannot buy the put, you can build one from a call plus a short stock position."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Newcomers to options usually imagine that pricing an option is a forecasting problem: will the stock rise or fall, and with what probability. In reality the whole derivatives industry rests on a different and far less intuitive idea: if I can assemble available instruments to produce exactly the option's payoff, then the option's price must equal the cost of that assembly."
+    },
+    { "type": "heading", "text": "No arbitrage: the only rule this lesson needs" },
+    {
+      "type": "paragraph",
+      "text": "If two portfolios produce identical cash flows in every future scenario, they must carry the same price today. Otherwise a money machine exists: buy the cheap portfolio, sell the expensive one, and whatever the market does you collect the difference with no capital at risk. There are enough people hunting for such machines that they do not last long."
+    },
+    {
+      "type": "formula",
+      "title": "Put-Call Parity",
+      "label": "European options, same strike and same expiry",
+      "equation": "C + PV(K) = P + S",
+      "variables": [
+        {
+          "symbol": "C",
+          "name": "Call option price",
+          "description": "The right to buy the stock at K"
+        },
+        {
+          "symbol": "P",
+          "name": "Put option price",
+          "description": "The right to sell the stock at K"
+        },
+        {
+          "symbol": "S",
+          "name": "Current stock price",
+          "description": "Less the present value of dividends if the stock pays any during the period"
+        },
+        {
+          "symbol": "PV(K)",
+          "name": "Present value of the strike",
+          "description": "K discounted back to today at the risk-free rate"
+        }
+      ],
+      "example": {
+        "title": "Checking both sides at expiry",
+        "calculation": "If S_T = 120 and K = 100: left side = 20 + 100 = 120; right side = 0 + 120 = 120",
+        "result": "The two sides are equal in every scenario",
+        "explanation": "Try S_T = 80: left side = 0 + 100 = 100; right side = 20 + 80 = 100. Because they match at every future price, the two portfolios must cost the same today."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The practical corollary",
+      "text": "From parity, a long call plus a short put at the same strike is equivalent to holding the stock with borrowed money. This is how funds build synthetic equity positions when they are restricted from buying directly, and it is also why option premiums reflect the cost of borrowing rather than price expectations alone."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The wrong instinct",
+        "text": "Pricing an option = estimate the probability the stock rises, then multiply by the expected gain."
+      },
+      "right": {
+        "label": "The right instinct",
+        "text": "Pricing an option = find the portfolio that replicates the payoff, then work out what it costs to build."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Put-call parity is the foundational lesson: derivative prices come from replicability, not from forecasting.",
+        "The next lesson shows that Black-Scholes is only this same idea pushed to its limit, with a replicating portfolio rebalanced continuously through time."
+      ]
+    }
+  ]
+}

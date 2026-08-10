@@ -3,6 +3,7 @@
   "title": "CFA Alternatives 2: Why ordinary performance measures give the wrong answer for this group",
   "subtitle": "Return smoothing, stale prices, and three biases that make hedge fund indices look better than reality",
   "duration": "11 min",
+  "whyItMatters": "In practical terms this is the most important lesson in the whole topic: every alternative-asset performance number you see is distorted in a flattering direction, and mostly nobody did it on purpose. Without adjusting for that, you allocate capital on the basis of a risk lower than the real one.",
   "openingQuestion": "A property fund reports a standard deviation of returns far below listed equities. Which conclusion is correct?",
   "openingOptions": [
     "Property really is less risky than listed equities",
@@ -67,7 +68,7 @@
       "question": "Why is IRR hard to compare between a private equity fund and a listed equity fund?",
       "options": [
         "Because IRR can only be computed once the fund has fully exited",
-        "Because IRR does not account for the management fee the fund charges annually",
+        "Because IRR does not account for the management fee and carry the fund charges yearly",
         "Because listed funds are not permitted to publish an IRR figure",
         "Because IRR depends on when capital is called and returned, decided by the GP"
       ],

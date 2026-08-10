@@ -1,0 +1,137 @@
+{
+  "slug": "quant-strategies-momentum-mean-reversion",
+  "title": "Quant strategies, the basics: momentum, mean reversion and statistical arbitrage",
+  "subtitle": "The three most common families of quantitative strategy - and the mathematical or psychological logic behind each",
+  "duration": "8 min",
+  "openingQuestion": "The 'momentum' strategy in quant trading rests on which core assumption about share price behaviour?",
+  "openingOptions": [
+    "Share prices always return to their own long-run average value",
+    "A stock that has risen strongly of late tends to keep rising in the near term",
+    "Share prices are entirely random and contain no exploitable pattern whatsoever",
+    "Momentum applies only to foreign exchange markets and not to equities"
+  ],
+  "explanation": "The momentum strategy (Jegadeesh and Titman, 1993 - one of the most heavily researched findings in quantitative finance) rests on an empirical observation: stocks that rose strongly over the past 3-12 months tend to keep outperforming over the following few months. Behaviourally, part of this relates to underreaction (the market does not react enough to positive news at first, so the price keeps adjusting gradually) and to herding (other investors see the price rising and buy in, creating a self-reinforcing pull over the short to medium term).",
+  "realWorldExample": {
+    "company": "AQR Capital Management and factor investing",
+    "description": "AQR Capital, one of the largest quantitative funds in the world, founded by Cliff Asness (a student of Eugene Fama), builds many of its investment strategies on 'factors' that have been widely researched in the academic literature, including momentum, value and quality. Rather than trying to forecast one particular stock, these funds construct portfolios systematically from quantitative characteristics shown to be statistically significant across decades of historical data in many different markets."
+  },
+  "quiz": [
+    {
+      "question": "How does the 'mean reversion' strategy differ from momentum in its basic assumption, and when does each tend to work better?",
+      "options": [
+        "Mean reversion assumes the current trend will extend further from here",
+        "Mean reversion works off news flow rather than off historical price data",
+        "Mean reversion assumes the price returns to its historical average",
+        "Mean reversion applies only to the market in basic commodities"
+      ],
+      "explanation": "These are two OPPOSING assumptions about price behaviour, and the fact that both survive (with empirical evidence behind each) shows that markets are more complicated than any single simple model: mean reversion works well when price movement is mostly random 'noise' around fair value, especially over very short horizons, while momentum works well when there is a genuine change in fundamental information working its way through, over medium horizons. A professional quant has to know WHICH MARKET CONDITION suits which strategy. Note that mean reversion is a price-data strategy, not a news strategy, and nothing about it is specific to commodities."
+    },
+    {
+      "question": "'Statistical arbitrage' (stat arb) - pairs trading being the common example - works on what principle?",
+      "options": [
+        "Forecasting prices with a machine learning model built on news data",
+        "Buying the cheapest stock and shorting the most expensive in a sector",
+        "Trading on two exchanges at once to capture the price difference",
+        "Finding two assets with a stable price relation and trading the gap"
+      ],
+      "explanation": "Statistical arbitrage is a more refined variant of mean reversion, applied at the level of the RELATIVE RELATIONSHIP between two assets rather than to the absolute price of a single asset. The 'market neutral' property is a large part of the appeal: by going long one asset and short another that is highly correlated with it, the strategy in theory removes exposure to broad market moves, leaving only the question of whether the relative gap between the two converges as expected. Trading the same instrument on two exchanges is pure arbitrage, not statistical arbitrage - there the profit is riskless and known in advance."
+    },
+    {
+      "question": "Why do factor-based quant strategies (such as momentum or value) tend to go through periods of 'crowding', and what happens when a factor becomes too crowded?",
+      "options": [
+        "Because many participants exploit it at once, so the margin thins out",
+        "Because transaction costs rise as more participants enter the market",
+        "Because regulators impose restrictions on quantitative strategies",
+        "Because the historical data used for testing is usually biased"
+      ],
+      "explanation": "This is one of the most important practical risks in modern quant investing: the 'Quant Quake' of August 2007 is the classic example - many large quant funds were simultaneously running similar strategies (built on the same well-known factors), and when some of them had to liquidate positions fast (from margin calls or redemptions), the coordinated selling of stocks with similar factor exposure caused extreme price moves over a few days, hitting almost every other quant fund even though there was nothing wrong with the logic of their strategies. Costs and data bias are real problems too, but neither is what crowding means."
+    },
+    {
+      "question": "Momentum and mean reversion give opposite signals. Where does the main difference lie?",
+      "options": [
+        "In which of the two strategies leans more on fundamental data",
+        "In the time horizon over which each strategy is applied",
+        "In the fact that only one of the two has any academic basis",
+        "In the asset class, one for equities and the other for bonds"
+      ],
+      "explanation": "The two strategies do not contradict each other because they speak about two different horizons: prices tend to continue over a medium horizon of several months, and tend to revert over very short or very long horizons. The same data, read at two different resolutions. Both have a substantial academic literature behind them, both are applied across equities, bonds, currencies and commodities alike, and neither is a fundamental-data strategy - the signal in each case is built from the price series itself."
+    },
+    {
+      "question": "Why do factor-based strategies often go through long stretches of poor performance?",
+      "options": [
+        "Because trading costs consume the entire return the factor earns",
+        "Because the mathematics breaks down after a few years of use",
+        "Because the factor premium does not arrive evenly year by year",
+        "Because factors only work in developed markets, not elsewhere"
+      ],
+      "explanation": "A factor premium is a long-run average, and a positive average is entirely compatible with several consecutive negative years. That is precisely why the factor still exists: if it paid out reliably every single year, arbitrage would have competed it away long ago. The maths does not decay with time, the premia have been documented in emerging markets as well as developed ones, and while trading costs do bite, they are a steady drag rather than an explanation for multi-year droughts."
+    }
+  ],
+  "keyTakeaways": [
+    "Momentum: stocks that have risen recently tend to keep rising over the medium term - built on underreaction and herding behaviour",
+    "Mean reversion: prices tend to return to an average level after moving too far from it - more effective over short horizons and in sideways markets",
+    "Statistical arbitrage (pairs trading): trading the relative gap between two highly correlated assets, with a market-neutral character",
+    "Crowding is a real risk: when too much capital chases the same factor, the edge is arbitraged away and extreme moves can follow when many funds exit at once"
+  ],
+  "practicePrompt": {
+    "question": "You find a pair of bank stocks, A and B, with a very high historical correlation (same sector, similar size), but A is currently about 15% above B relative to their historical average gap (normally around 3-5%). Applying statistical arbitrage logic, what should you do?",
+    "options": [
+      "Buy both A and B in equal size, paying no attention to the gap at all",
+      "Pairs trade: short A, long B, expecting the gap to converge back to 3-5%",
+      "Buy only A, because its momentum is stronger and will carry on",
+      "Sell both A and B, since both of them look expensively valued"
+    ],
+    "explanation": "This is the standard application of statistical arbitrage and pairs trading: when the relative gap between two assets with a tight historical relationship moves far from its normal level, trading the pair (short the 'expensive' one, long the 'cheap' one) creates a market-neutral position that expects to profit from the convergence - without any forecast of where the banking sector as a whole is heading, up or down."
+  },
+  "summary": {
+    "keyIdea": "The three common families of quant strategy - momentum, mean reversion and statistical arbitrage - rest on different, even opposing, assumptions about price behaviour; each suits a different market condition and time horizon, and all of them face crowding risk once they become too popular.",
+    "commonMistake": "Believing that a strategy which is theoretically 'right' will work in every market condition, ignoring crowding risk and shifts in the market regime",
+    "action": "Before applying any factor strategy, research how widely it has already been published (the level of crowding) and whether it suits current market conditions"
+  },
+  "application": {
+    "title": "Applying it in quant analysis work",
+    "message": "Try a simple backtest: take the 10 strongest-rising stocks over the past 6 months on one exchange and track how they perform over the next 1-3 months against the broad market - this is the basic empirical test of a momentum strategy.",
+    "secondary": "The next lesson goes into one of the most dangerous traps in quant trading: backtesting and overfitting."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Quant investing is not 'using a computer to guess share prices' - it is building systematic strategies on behavioural and statistical patterns that have been researched and tested against large bodies of historical data."
+    },
+    {
+      "type": "heading",
+      "text": "Momentum - the trend continues"
+    },
+    {
+      "type": "paragraph",
+      "text": "A momentum strategy buys stocks that have risen strongly in the recent past (typically 3-12 months), on the empirical evidence that trends tend to persist over the medium term before reversing. The behavioural basis: markets often 'underreact' to new positive information (the initial response is not strong enough), and the price keeps adjusting as more and more investors notice and respond to that information."
+    },
+    {
+      "type": "heading",
+      "text": "Mean reversion - back towards the average"
+    },
+    {
+      "type": "paragraph",
+      "text": "The opposite of momentum, mean reversion assumes prices oscillate around a 'fair value' level and correct back when they move too far from it - particularly effective over very short horizons (a few days), where most of the movement is random 'noise' rather than a genuine change in fundamentals."
+    },
+    {
+      "type": "heading",
+      "text": "Statistical arbitrage - relative, not absolute"
+    },
+    {
+      "type": "paragraph",
+      "text": "Rather than forecasting the direction of a single asset, stat arb concentrates on the RELATIVE RELATIONSHIP between two (or more) assets with a stable historical correlation - pairs trading being the most common application, and the market-neutral character being what attracts funds looking to strip out broad market risk."
+    },
+    {
+      "type": "callout",
+      "label": "Crowding risk",
+      "text": "The 'Quant Quake' of August 2007 is an important warning: when too many funds run similar factor strategies, the market becomes vulnerable to simultaneous liquidations - a systemic risk that a professional quant has to keep in view, rather than focusing only on the statistical logic of one strategy in isolation."
+    }
+  ],
+  "diagram": [
+    { "label": "Momentum - a trend has some probability of continuing" },
+    { "label": "Mean reversion - a price far from its average returns to it" },
+    { "label": "Statistical arbitrage - trading relative value between assets" },
+    { "label": "Test on historical data and manage risk before deploying" }
+  ]
+}

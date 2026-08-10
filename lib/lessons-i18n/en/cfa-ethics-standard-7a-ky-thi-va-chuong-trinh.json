@@ -1,0 +1,151 @@
+{
+  "slug": "cfa-ethics-standard-7a-ky-thi-va-chuong-trinh",
+  "title": "CFA Ethics 34: Standard VII(A) - protecting the very exam you are sitting",
+  "subtitle": "Exam confidentiality, honest applications, and why sharing 'exam experience' can be a breach",
+  "duration": "9 min",
+  "whyItMatters": "This is the Standard candidates are most likely to breach and least likely to think about, because the breaching act - describing the paper to your study group - looks exactly like ordinary helpfulness.",
+  "openingQuestion": "After sitting Level I you message your study group: 'Ethics leaned heavily on Standard III, revise that part carefully.' How would you assess this?",
+  "openingOptions": [
+    "Fine, since you did not name any specific question content",
+    "A breach: exam structure is covered by confidentiality",
+    "Fine, since you are helping friends study more effectively",
+    "Only a breach if you were paid for that information"
+  ],
+  "explanation": "The confidentiality undertaking every candidate signs before the exam covers the content of the paper, and content is not only the wording of individual questions. Knowing which areas were heavily tested, what form the questions took, or which topics did not appear at all is information about the paper - and it hands the recipient an advantage over other candidates sitting the same exam. That is what Standard VII(A) protects: not CFA Institute's ownership of the questions, but fairness between candidates and the value of a credential everyone has to earn the same way.",
+  "summary": {
+    "keyIdea": "Exam confidentiality covers structure and emphasis as well as wording - saying 'it was heavy on derivatives this year' is already a breach.",
+    "commonMistake": "Assuming only verbatim reproduction counts. Any information that gives a later candidate an advantage falls inside this Standard."
+  },
+  "application": {
+    "title": "Why it is drawn so tightly",
+    "message": "The value of the designation comes from everyone passing to the same standard. A leak damages the very thing the exam produces."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard VII(A) requires every candidate and member not to compromise the integrity of the CFA Program. What it protects is far more specific than it looks."
+    },
+    { "type": "heading", "text": "Exam confidentiality goes wider than wording" },
+    {
+      "type": "paragraph",
+      "text": "The confidentiality undertaking covers the content of the paper, and content is not only the wording of each question. Which areas were heavily tested, what form the questions took, which topics never appeared - all of that is information about the paper, and it hands the recipient an advantage over other candidates in the same sitting."
+    },
+    {
+      "type": "callout",
+      "label": "What is being protected",
+      "text": "Not CFA Institute's ownership of the questions, but fairness between candidates and the value of a credential everyone has to earn in the same way."
+    },
+    { "type": "heading", "text": "Three points about scope" },
+    {
+      "type": "list",
+      "items": [
+        "It applies from registration onwards: falsifying your application is already a breach, with no need to wait for exam day.",
+        "The confidentiality duty has no expiry, because many questions are reused in later sittings.",
+        "The scope includes people who grade papers and build the exam, not only candidates."
+      ]
+    },
+    { "type": "heading", "text": "Where sharing turns into a breach" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A breach",
+        "text": "After the exam you post on a forum that the ethics section leaned heavily on Standard III this year, that VII barely appeared at all, and that the vignettes ran noticeably longer than in the mock papers. Not a word of the paper has been copied, but information about weighting and question format is exam content - and whoever reads it holds an advantage other candidates do not."
+      },
+      "right": {
+        "label": "Not a breach",
+        "text": "You write that you studied ethics by working carefully through the cases in the Standards of Practice Handbook rather than memorising the names of the Standards, and that this suited you. That is study experience, drawn entirely from public material, and it says nothing about the paper you sat."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The duty starts earlier and lasts longer than you think",
+      "text": "Earlier: falsifying your registration - work experience, qualifications, disciplinary history - breaches Standard VII(A) before exam day has even arrived. Longer: the confidentiality duty has no expiry, because the question bank is reused across many sittings. An item you describe this year may still be in circulation three years from now."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "You protect the exam not because it belongs to someone.",
+        "You protect it because the value of your own charter rests on it being equally hard for everyone."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Confidentiality covers structure and emphasis, not just wording" },
+    { "label": "Your registration application must be truthful" },
+    { "label": "No cheating of any kind inside the exam hall" },
+    { "label": "It protects fairness between candidates, not exam copyright" }
+  ],
+  "realWorldExample": {
+    "company": "The scope runs before, during and after the exam",
+    "description": "Standard VII(A) applies from registration - falsifying work experience or academic qualifications on the application is a breach before you ever sit down in the hall. During the exam it is obvious. After the exam the confidentiality duty remains fully in force, with no expiry date. It also covers other CFA Institute activities such as grading papers or building the exam - anyone taking part must keep the process confidential."
+  },
+  "quiz": [
+    {
+      "question": "What does the exam confidentiality undertaking cover?",
+      "options": [
+        "Only the questions in the Ethics section of the exam",
+        "Only the verbatim wording of each individual question",
+        "Structure, emphasis and question format, not just the wording",
+        "Only material marked confidential in the exam documents"
+      ],
+      "explanation": "Information about where the paper placed its weight still confers an advantage on whoever receives it, and that advantage is precisely what the Standard prevents. Restricting the duty to verbatim text would leave the most useful leak of all - what to revise and what to skip - entirely permitted. Nor is any one section singled out, and nothing about the paper needs a confidentiality stamp for the duty to attach."
+    },
+    {
+      "question": "What is Standard VII(A) mainly protecting?",
+      "options": [
+        "The personal reputation of those who help write the exam",
+        "CFA Institute's intellectual property in the exam papers",
+        "The revenue earned from selling official prep material",
+        "Fairness among candidates and the value of the charter"
+      ],
+      "explanation": "A credential is only worth something when everyone earns it the same way, and that is what a leak damages. Copyright in the questions does exist, but framing the Standard that way makes it sound like a commercial protection that a candidate has no personal stake in - when in fact the person most harmed by a leak is the next holder of the charter. Prep-material revenue is not part of the picture at all."
+    },
+    {
+      "question": "From what point does Standard VII(A) start to apply?",
+      "options": [
+        "From registration, including the honesty of your application",
+        "From the moment you enter the exam hall on exam day",
+        "From when the results arrive and you become a valid candidate",
+        "From completing all three levels of the programme"
+      ],
+      "explanation": "Overstating work experience on the registration form is a breach before you have set foot in the exam hall. Reading the duty as starting on exam day would leave the whole application process outside the Standard, and tying it to results or to completing the programme gets the direction backwards - the obligations of the programme attach when you enter it, not when you finish."
+    },
+    {
+      "question": "How long does the exam confidentiality duty last after the exam?",
+      "options": [
+        "No time limit, even after you have passed that level",
+        "Three months, until results are officially released",
+        "Until the next sitting, when the paper is fully replaced",
+        "One year from the date you sat that level of the exam"
+      ],
+      "explanation": "The question bank is reused across many sittings, so an item you disclose can still be affecting candidates years later. Each of the fixed periods offered here rests on the same wrong assumption - that a paper is retired once the results are out or once the next sitting has run. Passing the level does not release you either; if anything it makes the duty more clearly yours."
+    },
+    {
+      "question": "What duty falls on people who grade papers or help build the exam?",
+      "options": [
+        "Only what their contract with CFA Institute imposes",
+        "None at all, because they are not exam candidates",
+        "Keep the process confidential; VII(A) covers them too",
+        "They may share general information without any specifics"
+      ],
+      "explanation": "The Standard reaches every activity within the CFA Program, not only the candidate role, so graders and item writers are inside it. A contract may add obligations but cannot be the whole of them. And the 'general information only' carve-out is exactly the reasoning the first question in this quiz rejects: general information about weighting and format is still exam content."
+    }
+  ],
+  "keyTakeaways": [
+    "Confidentiality covers structure and emphasis, not merely the wording",
+    "It applies from registration - a falsified application is already a breach",
+    "The confidentiality duty never expires, because questions are reused",
+    "It protects fairness between candidates rather than copyright in the paper",
+    "The scope includes graders and the people who build the exam"
+  ],
+  "practicePrompt": {
+    "question": "You find a forum reposting several questions that look like the exam you have just sat. What should you do?",
+    "options": [
+      "Ignore it, since you were not the person who posted any of that material online",
+      "Report it to CFA Institute, and never confirm which items match the real exam",
+      "Post a comment warning everyone that this content is a serious breach",
+      "Save it for reference, since the content is already out in public online"
+    ],
+    "explanation": "The second half matters as much as the first and is the part people skip: confirming which items are genuine is itself an act of disclosure, however good your intentions. Even a warning comment can inadvertently point to which parts are real. And the fact that the material is already circulating online does nothing to release you from your own obligation."
+  }
+}

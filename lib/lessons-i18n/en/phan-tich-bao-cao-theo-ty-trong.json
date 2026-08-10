@@ -1,0 +1,147 @@
+{
+  "slug": "phan-tich-bao-cao-theo-ty-trong",
+  "title": "Common-size analysis - comparing a trillion-dong business with a hundred-billion one",
+  "subtitle": "Restate every line as a percentage of a shared base, before you compare anything at all",
+  "duration": "9 min",
+  "whyItMatters": "You cannot put a business with 10,000bn of revenue next to one with 500bn and compare them directly - every number on the larger side is larger. Common-size analysis is the normalisation step that has to come first, and it is also the fastest way to see a cost structure drifting year by year.",
+  "openingQuestion": "Company A has selling costs of 200bn, company B has 40bn. Is A spending more on selling?",
+  "openingOptions": [
+    "Not yet - you have to restate both of them as a percentage of revenue",
+    "Yes, 200bn is more than 40bn so A is the more expensive one",
+    "No, a larger business has scale advantages so A is more efficient",
+    "Yes, absolute spend reflects how much is committed to the market"
+  ],
+  "explanation": "If A earns 10,000bn of revenue, then 200bn is 2%; if B earns 500bn, then 40bn is 8%. On a common-size basis it is B that spends four times as much for every dong of revenue. The absolute figure tells you about size, not about efficiency. Scale advantage is a hypothesis to be tested with exactly this kind of percentage comparison, not a conclusion you can assume in advance.",
+  "diagram": [
+    { "label": "Pick the base: revenue for the income statement, total assets for the balance sheet" },
+    { "label": "Divide every line by that base" },
+    { "label": "Compare across companies, or across years for the same company" }
+  ],
+  "realWorldExample": {
+    "company": "Comparing a national retail chain with a regional one",
+    "description": "Restating both statements as a percentage of revenue is the only way to see which one has the higher gross margin, which one spends more to run its operations, and which one is letting administrative costs balloon - all things the absolute numbers hide completely, because the two are two orders of magnitude apart in size."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Every line item of a large business is larger than the same line at a small one. That is obvious to the point of being useless, and it means two tables set side by side say nothing at all until both are restated over the same denominator."
+    },
+    { "type": "heading", "text": "Two bases, two questions" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Income statement: the base is revenue",
+        "text": "Every line becomes a percentage of revenue. It answers: out of every 100 dong sold, how much becomes cost of goods, how much becomes selling cost, and how much is left as profit."
+      },
+      "right": {
+        "label": "Balance sheet: the base is total assets",
+        "text": "Every line becomes a percentage of total assets. It answers: what form does the business hold its wealth in, and how much of that belongs to creditors rather than owners."
+      }
+    },
+    { "type": "heading", "text": "One table, read in two directions" },
+    {
+      "type": "paragraph",
+      "text": "The first direction is ACROSS companies in the same year: our gross margin is 32% while the sector average is 38% - six points of gap, and that gap is the question to answer. The second is DOWN the same company over several years: administrative costs go from 6% of revenue to 7% and then 8.5% in three years, while revenue keeps growing. The absolute administrative cost rising is normal as a business grows; its share rising is not - it means the overhead is expanding faster than the business."
+    },
+    {
+      "type": "callout",
+      "label": "Where common-size misleads",
+      "text": "When the denominator swings hard, the percentages move even though the numerators have not. A business whose revenue drops 30% will see every fixed cost jump as a share - not because it is spending more but because it is selling less. So always read the common-size table alongside the absolute one; never let one replace the other."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The base for the income statement is revenue; the base for the balance sheet is total assets",
+        "Compare across companies, compare down the years - two different questions",
+        "A cost rising in absolute terms is normal; a cost rising as a share needs explaining",
+        "A volatile denominator makes shares jump while the numerator has not moved at all"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Normalising to a common denominator is what you do before comparing, not an advanced technique.",
+        "Next lesson: the first line of a set of accounts worth reading - the auditor's opinion."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Company A: revenue 10,000bn, selling costs 200bn. Company B: revenue 500bn, selling costs 40bn. Which one spends more on selling?",
+      "options": [
+        "Neither can be compared, because the two revenue bases are too far apart",
+        "A - 200bn is five times the 40bn that company B has to lay out each year",
+        "The same, since both selling cost ratios sit below the 10% of revenue mark",
+        "B - 40/500 = 8% of revenue against 200/10,000 = 2% for A, four times as much"
+      ],
+      "explanation": "200/10,000 = 2%; 40/500 = 8%. B spends four times what A does for every dong of revenue, and comparing the absolute figures gives you the opposite conclusion. The gap in scale is precisely the reason to normalise rather than a reason to give up - that is the entire purpose of common-size analysis."
+    },
+    {
+      "question": "What is the normalisation base for a balance sheet?",
+      "options": [
+        "Total assets - the one denominator covering every line of the balance sheet",
+        "Net revenue for the period, so that each line sits on a common activity measure",
+        "Shareholders' equity, since that is the value genuinely belonging to the owners",
+        "Profit after tax, since that is the line summarising the result for the period"
+      ],
+      "explanation": "The balance sheet uses total assets as its base and the income statement uses revenue. Putting revenue underneath a balance sheet mixes a flow measure with a stock measure taken at a single date. Equity and profit after tax are each a single item, one on the balance sheet and one on the income statement - neither is the whole that the other lines divide into."
+    },
+    {
+      "question": "A company's administrative costs move from 6% to 8.5% of revenue over three years while revenue keeps rising. What does that tell you?",
+      "options": [
+        "The business is investing well, since higher admin spend buys better capability",
+        "The overhead is expanding faster than the underlying business itself is",
+        "Perfectly normal - every cost line rises when revenue rises as well",
+        "Nothing can be concluded without the absolute figure for each year"
+      ],
+      "explanation": "Administrative costs rising in absolute terms as a company grows is entirely normal - which is exactly why you look at the share instead. A rising share means the cost is growing FASTER than revenue, so the overhead is eating into the margin. The absolute figure adds nothing here, because the share was computed from it in the first place."
+    },
+    {
+      "question": "When is common-size analysis most likely to lead you to a wrong conclusion?",
+      "options": [
+        "When a company runs several business lines that belong to quite different sectors",
+        "When two companies are so close in revenue that their percentages nearly coincide",
+        "When the denominator swings hard, moving the shares while the numerator has not",
+        "When the accounts are prepared under IFRS rather than the domestic standards"
+      ],
+      "explanation": "A 30% fall in revenue makes every fixed cost leap as a share of revenue even though the company has not spent an extra dong - which is why the common-size table has to be read next to the absolute one. Similar scale creates no distortion at all, the method has no limit on the number of business lines, and no reporting standard forbids presenting percentages."
+    },
+    {
+      "question": "How do reading across and reading down differ in common-size analysis?",
+      "options": [
+        "Reading across is the investor's job, while reading down belongs to the auditor",
+        "Reading across uses revenue as its base, while reading down must use total assets instead",
+        "Reading across applies to the income statement, reading down to the balance sheet",
+        "Reading across compares companies in one year; reading down compares years for one"
+      ],
+      "explanation": "The two directions answer two different questions: where do we stand against our rivals, and where are we heading compared with our own past. Both use whichever base the statement calls for, both apply to the income statement and the balance sheet alike, and both are tools for anyone reading a set of accounts rather than the property of one profession."
+    }
+  ],
+  "practicePrompt": {
+    "question": "This year total assets are 4,000bn with inventory of 900bn; last year total assets were 2,500bn with inventory of 700bn. What does the common-size table show?",
+    "options": [
+      "The inventory share fell from 28% down to 22.5% this year",
+      "Inventory rose by 200bn, so it is taking up more room than before",
+      "The inventory share rose from 22.5% to 28% this year",
+      "Nothing can be concluded without both years of revenue"
+    ],
+    "explanation": "700/2,500 = 28% and 900/4,000 = 22.5%, so inventory grew by 200bn in absolute terms but shrank as a share - total assets grew faster than it did. That is exactly the kind of conclusion the absolute table will not give you and the common-size table gives you immediately. Reading it as 'up 200bn, so it takes up more room' skips the normalisation step this lesson is about. And revenue is not needed here: the base for a balance sheet is total assets, while revenue is the base for the income statement."
+  },
+  "keyTakeaways": [
+    "Restate every line as a percentage of a shared base before you compare anything",
+    "The income statement takes revenue as its base; the balance sheet takes total assets",
+    "Compare across companies, compare down the years",
+    "Read the common-size table alongside the absolute one, not instead of it"
+  ],
+  "summary": {
+    "keyIdea": "Normalising to a common denominator is a required step before any comparison",
+    "formula": "Common-size % = Line item / Base (revenue or total assets)",
+    "commonMistake": "Comparing absolute costs across two businesses of different size and drawing a conclusion about efficiency.",
+    "action": "Take the last three income statements of one company and restate every line as a percentage of that year's revenue."
+  },
+  "application": {
+    "title": "Build a three-year common-size table",
+    "message": "Pick a company, take the last three income statements, and divide every line by that same year's revenue. Look for the column that is drifting steadily in one direction.",
+    "secondary": "A line that drifts across all three years is the one worth investigating, even when the absolute figure still looks unremarkable."
+  }
+}

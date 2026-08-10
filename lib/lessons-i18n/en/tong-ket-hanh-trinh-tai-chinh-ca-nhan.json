@@ -12,9 +12,17 @@
   ],
   "explanation": "Financial knowledge, however complete, only has value once turned into consistent action and habit: budgeting and tracking spending, investing on a regular schedule (dollar-cost averaging) instead of waiting for the 'perfect moment', maintaining an emergency fund, reviewing the portfolio on a sensible schedule, and updating the plan as life changes (marriage, having children, changing jobs). This is the thread running through the entire 262-day program: the gap from understanding to doing is the one that matters most.",
   "diagram": [
-    { "label": "Complete financial knowledge", "arrow": true },
-    { "label": "Turned into consistent action", "arrow": true },
-    { "label": "Budgeting, DCA, sustainable habits" }
+    {
+      "label": "Complete financial knowledge",
+      "arrow": true
+    },
+    {
+      "label": "Turned into consistent action",
+      "arrow": true
+    },
+    {
+      "label": "Budgeting, DCA, sustainable habits"
+    }
   ],
   "realWorldExample": {
     "company": "A personal learning journey - the program's final review",
@@ -29,7 +37,6 @@
         "Money mindset, stocks/ETFs, bonds, portfolios/retirement",
         "Budgeting, consumer loans, insurance, and real estate investing"
       ],
-      "correct": 2,
       "explanation": "The program is designed in a logical sequence: building the basic mindset and habits first, then expanding into investment tools (stocks, bonds), then bringing it all together into a complete portfolio with protective layers around it."
     },
     {
@@ -40,7 +47,6 @@
         "Because the theory will be forgotten entirely after about six months",
         "Because results come from consistent, repeated action"
       ],
-      "correct": 3,
       "explanation": "Compounding, investing discipline, and risk management - the factors that determine long-term financial results - only take effect when applied continuously over many years, not from reading it once and stopping."
     },
     {
@@ -51,7 +57,6 @@
         "Move to a CFA track, since that's the mandatory next step",
         "Start trading derivatives to practice faster"
       ],
-      "correct": 0,
       "explanation": "The 'professional' track is built to go deeper for anyone who wants to advance further in business analysis and valuation, and fits well once you have a solid personal foundation from the 'personal' track."
     },
     {
@@ -62,7 +67,6 @@
         "Finish learning every business valuation method before buying the first stock",
         "Wait until the market has a deep correction for the best possible entry point"
       ],
-      "correct": 1,
       "explanation": "Credit debt at over twenty percent interest is a guaranteed 'return' once paid off, higher than any reasonable investment expectation. An emergency fund keeps you from having to sell assets right when the market is bad. Both are conditions for a long-term strategy to survive."
     },
     {
@@ -73,7 +77,6 @@
         "Because it removes the point where market emotion could interfere with the decision",
         "Because automating means you no longer have to care about the portfolio's results at all"
       ],
-      "correct": 2,
       "explanation": "A month when the market is deep red is also the month it's hardest to hit the buy button - exactly when buying matters most. Turning that decision into an automatic order means you decide once while calm, instead of deciding twelve times in twelve different moods."
     }
   ],
@@ -91,7 +94,6 @@
       "You need to study an entirely different program first before you can start applying any of the knowledge learned",
       "Just memorizing every formula learned with perfect accuracy is enough to produce a better financial outcome in the future"
     ],
-    "correct": 0,
     "explanation": "Real financial results come from action repeated consistently over time, not from just understanding the theory without applying it to life."
   },
   "summary": {
@@ -104,7 +106,6 @@
     "message": "Pick one financial habit you're still missing (budgeting, regular investing, an emergency fund) and set a specific date this week to start doing it.",
     "secondary": "Knowledge only has value once it becomes repeated action."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

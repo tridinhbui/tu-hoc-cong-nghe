@@ -38,7 +38,7 @@
       "question": "What does rebalancing force an investor to do, with discipline?",
       "options": [
         "Leave everything alone and simply record the new weights",
-        "Sell the weak assets and buy more of the rising ones",
+        "Sell the weakest assets and buy more of the ones already rising",
         "Sell some of what has risen, and buy more of what lagged",
         "Add new money into whichever asset class is rising"
       ],
@@ -80,7 +80,7 @@
         "Only a drift of more than thirty percentage points calls for any adjustment",
         "Any drift at all, however small, should be corrected back immediately",
         "About five percentage points from target is the level commonly used",
-        "There is no threshold - rebalance only on the last day of each year"
+        "There is no threshold - rebalance only on the last day of every calendar year"
       ],
       "explanation": "Too sensitive and you pay fees and tax on adjustments that were never needed; too infrequent and the portfolio drifts far from the risk level you chose. Around five percentage points is the level much of the literature recommends."
     },

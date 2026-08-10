@@ -1,0 +1,155 @@
+{
+  "slug": "danh-gia-du-an-npv-irr",
+  "title": "Appraising an internal investment project: NPV, IRR and Payback",
+  "subtitle": "An $80m project - how long until it breaks even, and is it worth doing?",
+  "duration": "7 min",
+  "openingQuestion": "A project requires $80m of investment and is expected to generate level cash flow of $25m a year for 5 years. The company's WACC is 12%. Is the project worth doing?",
+  "openingOptions": [
+    "No - it takes 3.2 years to pay back, which is too long",
+    "Yes - NPV is positive at about +$10m and the IRR (~17%) beats the 12% WACC",
+    "No conclusion can be drawn from these three metrics on their own",
+    "Yes - total cash flow of $125m exceeds the $80m invested"
+  ],
+  "explanation": "PV of the annuity ($25m × the 5-year annuity factor at 12% ≈ 3.605) = 25 × 3.605 ≈ $90.1m. NPV = 90.1 − 80 = +$10.1m - positive, so it creates value. The IRR (the discount rate that makes NPV = 0) on this cash flow stream is approximately 17%, above the 12% WACC, so the IRR agrees that the project should go ahead. The payback period = 80/25 = 3.2 years - that only tells you how fast the capital comes back, not whether the project creates value, so it should not be used alone to decide.",
+  "diagram": [
+    { "label": "Forecast the project's cash flow year by year", "arrow": true },
+    { "label": "Discount at the WACC to get NPV", "arrow": true },
+    { "label": "Find the rate that makes NPV zero to get the IRR", "arrow": true },
+    { "label": "Payback tells you only recovery speed - when you must pick one project, follow NPV" }
+  ],
+  "realWorldExample": {
+    "company": "Vinamilk",
+    "description": "When weighing an investment in a new plant, large manufacturers like Vinamilk usually present all three metrics - NPV, IRR and payback - in the project approval file: NPV and IRR to judge whether the project creates value, payback to gauge liquidity risk (how long before the money put in comes back)."
+  },
+  "quiz": [
+    {
+      "question": "NPV and IRR sometimes reach opposite conclusions when comparing mutually exclusive projects (only one can be chosen). In that case, which metric should take priority?",
+      "options": [
+        "NPV, because it directly measures value created in money",
+        "IRR, because it shows that project's rate of return",
+        "Payback, because it shows how fast capital comes back",
+        "All three are equivalent, so it does not matter which you pick"
+      ],
+      "explanation": "NPV measures absolute value created in money, while IRR measures a percentage return and can mislead when projects differ in capital size - a project with a 40% IRR on $1m of capital creates less value than one with a 15% IRR on $100m. IRR is useful as a hurdle test but it has no sense of scale. Payback answers a different question entirely, about liquidity rather than value. And the three are plainly not equivalent, since they disagree in exactly the case being asked about. Because the corporate objective is to maximise value in money terms, NPV is the metric to prefer whenever the two conflict."
+    },
+    {
+      "question": "What does a payback period of 3.2 years mean for the project above, and why should it not be used alone to decide?",
+      "options": [
+        "The point where the project first turns accounting-profit positive",
+        "It measures the average rate of return over the first 3.2 years",
+        "It shows how much value the project creates after 3.2 years",
+        "It measures only recovery speed and ignores later cash flow"
+      ],
+      "explanation": "Payback answers only the question 'how long until I get my money back'. It does not discount cash flows to the present, so it ignores the time value of money, and it disregards everything that happens after the payback point. Two projects can both pay back in 3.2 years while one keeps producing large cash flows in years 4 and 5 and the other stops dead - and their NPVs will be very different despite identical paybacks. It is a cash recovery measure, not an accounting-profit milestone and not a rate of return."
+    },
+    {
+      "question": "Project A needs 10bn, has a 40% IRR and an NPV of 3bn. Project B needs 100bn, has an 18% IRR and an NPV of 12bn. Only one can be chosen and the company has the capital. Which do you pick?",
+      "options": [
+        "Project B, because it adds 12bn of value rather than only 3bn",
+        "Project A, because a 40% IRR is far above project B's",
+        "Project A, because it needs less capital so risk is lower",
+        "Neither, because the payback period is not yet known"
+      ],
+      "explanation": "The objective is to maximise absolute value, not to maximise a percentage rate. A high rate on a small pool of capital enriches shareholders less than a moderate rate on a large one. The IRR argument confuses efficiency with amount; smaller capital is a constraint, not automatically a lower risk, and here the capital is available anyway; and payback would only add a liquidity view without changing which project creates more value. When the two metrics conflict on mutually exclusive projects, NPV is the deciding one."
+    },
+    {
+      "question": "Why should the payback period not be used alone to make an investment decision?",
+      "options": [
+        "Because it always contradicts what the NPV rule says",
+        "Because it ignores time value and cash flow past the mark",
+        "Because it can only be applied to projects lasting under five years",
+        "Because it cannot be computed if cash flow changes sign"
+      ],
+      "explanation": "A project that pays back fast and then produces nothing can be far worse than one that pays back slowly but keeps generating large cash flows for years. Payback does not contradict NPV as a rule - the two agree often enough, which is part of why the flaw goes unnoticed. It applies to projects of any length, and a sign change in the cash flows is a problem for IRR rather than for payback. The metric is useful as a supplementary risk measure, not as the deciding criterion."
+    },
+    {
+      "question": "A project's cash flow changes sign several times across the years. What problem does that create for the IRR?",
+      "options": [
+        "IRR cannot be computed, as the formula needs one consistent sign",
+        "IRR will always fall below WACC, so the project is wrongly rejected",
+        "The equation can have several roots, so IRR is no longer unique",
+        "IRR reflects only the cash flows of the project's earliest years"
+      ],
+      "explanation": "IRR is the root of a polynomial, and the number of sign changes determines how many roots there can be. The equation still solves, so it is not that IRR cannot be computed; it produces several answers, none of which carries a meaning. There is no reason for those roots to sit below the WACC in particular, and the calculation uses every year's cash flow, not just the early ones. Mining projects, or any project with a large end-of-life restoration cost, typically fall into this case - and there NPV is the only measure still readable."
+    }
+  ],
+  "keyTakeaways": [
+    "A positive NPV and an IRR above the WACC are both signals to invest - with conventional cash flows, the two metrics usually agree",
+    "When comparing mutually exclusive projects, prefer NPV because it measures absolute value, matching the goal of maximising firm value",
+    "Payback should only supplement the analysis as a liquidity risk measure; it cannot replace NPV/IRR because it ignores the time value of money and everything after the payback point"
+  ],
+  "sections": [
+    {
+      "type": "lead",
+      "text": "NPV, IRR and payback period - three metrics usually used together to appraise an investment project, though sometimes they reach opposite conclusions."
+    },
+    { "type": "heading", "text": "When the three agree - and when they conflict" },
+    {
+      "type": "paragraph",
+      "text": "For the $80m project, a positive NPV (+$10.1m) and an IRR (~17%) above the WACC (12%) both agree that the investment should go ahead - the normal outcome with level cash flows. But when comparing mutually exclusive projects, NPV and IRR can conflict: NPV measures the absolute value created, while IRR measures a percentage return and can mislead across projects of different capital size. The payback period (3.2 years) only measures recovery speed, ignoring the time value of money and every cash flow after the payback point - it should not be used alone to decide."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A positive NPV and an IRR above the WACC are both signals to invest when cash flows are conventional",
+        "When comparing mutually exclusive projects, prefer NPV because it measures absolute value, matching the goal of maximising firm value",
+        "Payback should only supplement the liquidity risk assessment; it does not replace NPV/IRR"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three metrics, three questions",
+      "concepts": [
+        { "def": "How much absolute value does the project add once the cost of capital has been deducted? Positive means it is worth doing. This is the metric that lines up directly with the goal of maximising firm value." },
+        { "def": "What percentage does the project return each year? Easy to compare against the cost of capital, but it says nothing about the size of the value created." },
+        { "def": "How long until the capital invested comes back? It gauges liquidity risk and exposure to uncertainty, but ignores the time value of money and every cash flow after the payback point." }
+      ]
+    },
+    { "type": "heading", "text": "Which one to trust when two metrics conflict" },
+    {
+      "type": "paragraph",
+      "text": "The classic situation: project A needs 10bn and has a 40% IRR, creating an NPV of 3bn. Project B needs 100bn with an 18% IRR, creating an NPV of 12bn. If only one can be chosen and the company is not short of capital, project B is the better choice despite the lower rate, because it makes the company 12bn richer rather than 3bn. A high percentage on a small amount of capital is worth less than a moderate percentage on a large amount - which is why NPV is the deciding metric when you must pick one project out of several mutually exclusive ones."
+    },
+    {
+      "type": "callout",
+      "label": "Two technical limitations of IRR",
+      "text": "One: if cash flow changes sign several times - say there is a large reinvestment mid-life - the equation can yield several different IRR values, and none of them means anything. Two: IRR implicitly assumes cash received is reinvested at the IRR itself, an assumption that is usually far too optimistic for projects with very high IRRs."
+    },
+    { "type": "heading", "text": "Three things to do before presenting a project" },
+    {
+      "type": "list",
+      "items": [
+        "Set out the assumptions on revenue, cost and cash flow timing explicitly, along with the source of each one.",
+        "Run a sensitivity table on the two most important variables, and state how far an assumption has to move before the NPV turns negative.",
+        "Check whether the discount rate in use genuinely reflects the risk of this specific project, rather than defaulting to the company's average cost of capital."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "No single metric tells the whole story of an investment project.",
+        "NPV, IRR and payback each answer a different question - they need to be read together."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "A positive NPV and an IRR above the WACC are both signals to invest - with conventional cash flows the two metrics usually agree",
+    "commonMistake": "Easily missed: when comparing mutually exclusive projects, prefer NPV because it measures absolute value, matching the goal of maximising firm value",
+    "action": "Payback should only supplement the liquidity risk assessment; it cannot replace NPV/IRR because it ignores the time value of money and everything after the payback point"
+  },
+  "practicePrompt": {
+    "question": "When appraising an internal investment project worth $80m, what is the decision rule based on Net Present Value (NPV) and Internal Rate of Return (IRR)?",
+    "options": [
+      "Accept it if NPV > 0 and IRR is above the WACC",
+      "Accept the project if payback exceeds 50 years",
+      "Accept the project when NPV is below zero",
+      "Only invest if the IRR comes out at exactly 0%"
+    ],
+    "explanation": "The project appraisal rule: NPV > 0 means the project creates surplus value for shareholders; IRR > WACC ensures the project's return clears the opportunity cost of capital."
+  },
+  "application": {
+    "title": "In practice: appraising an internal investment project with NPV, IRR and payback",
+    "message": "When appraising an internal investment project worth $80m, what is the decision rule based on Net Present Value (NPV) and Internal Rate of Return (IRR)?",
+    "secondary": "Getting this principle straight raises the level of your professional financial analysis."
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "cfa-ethics-bo-may-tuan-thu-thuc-te",
+  "title": "CFA Ethics 36: How a compliance function actually works - walls, lists and pre-clearance",
+  "subtitle": "From principles on paper to the concrete mechanisms that stop a violation before it happens",
+  "duration": "10 min",
+  "whyItMatters": "The Standards describe an obligation; the compliance machinery is what turns that obligation into daily behaviour. Understanding these mechanisms tells you where you are protected - and where you are not.",
+  "openingQuestion": "How does a restricted list differ from a watch list?",
+  "openingOptions": [
+    "Two different names for one and the same internal control mechanism",
+    "The restricted list is circulated internally; the watch list never is",
+    "The restricted list applies to staff, the watch list to clients",
+    "The watch list bans trading, the restricted list only warns you"
+  ],
+  "explanation": "The two mechanisms solve opposite problems, which is exactly why a firm needs both. A restricted list has to be circulated widely so everyone knows what to avoid - but circulating it reveals which companies the firm is doing deals with, which is sensitive in itself. The watch list solves that by staying confidential within compliance: nobody is barred from anything, but every trade touching a name on the list is closely monitored. Many firms run both, with the watch list covering the early stage and the name moving onto the restricted list once the deal is public.",
+  "summary": {
+    "keyIdea": "The information wall, the restricted list and pre-clearance of personal trades are three different mechanisms for three different problems - none of them substitutes for another.",
+    "commonMistake": "Building the wall on the org chart but not in how the place actually operates. Two departments sharing a floor and having lunch together do not have a wall between them."
+  },
+  "application": {
+    "title": "How to test it",
+    "message": "Ask who has access to which system. A real wall is a wall around access rights, not a wall in a policy document."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An ethical standard only bites when there is machinery running it. The four tools below are how financial institutions turn a principle into a daily process."
+    },
+    {
+      "type": "heading",
+      "text": "The information wall"
+    },
+    {
+      "type": "paragraph",
+      "text": "Separate the departments holding inside information - deal advisory, underwriting - from trading and research. Separate them by system, by physical workspace, and by reporting line. The purpose is not to stop people talking, but to make any crossing of the boundary a deliberate act that leaves a trace."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Watch list",
+        "text": "Held confidentially within compliance. Nobody is barred from anything, but every trade touching a name on the list is closely monitored. Used at the early stage of a deal."
+      },
+      "right": {
+        "label": "Restricted list",
+        "text": "Circulated internally and trading is prohibited. Circulating it is itself a disclosure of who the firm is dealing with - so it is only used once the information is public."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why both are needed",
+      "text": "The two lists solve opposite problems: one needs everybody to know so they can steer clear, the other needs secrecy so the very existence of the deal does not leak."
+    },
+    {
+      "type": "heading",
+      "text": "Pre-clearance of personal trades"
+    },
+    {
+      "type": "paragraph",
+      "text": "Staff must obtain approval before dealing in their own accounts. This is the only one of the four tools that can stop harm from occurring at all - the other three merely detect or deter. Post-trade review is still needed, but its main role is checking whether the upstream controls are actually running."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The Standard says what ought to happen.",
+        "The compliance machinery decides whether it does."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Information wall: block the flow between departments" },
+    { "label": "Watch list: confidential, monitors without prohibiting" },
+    { "label": "Restricted list: circulated internally, trading prohibited" },
+    { "label": "Pre-clearance: stop the trade before it happens" }
+  ],
+  "realWorldExample": {
+    "company": "Why a preventive control beats a detective one",
+    "description": "Pre-clearance of personal trades is a preventive control: it stops a problem order before the order is placed. The month-end trade review is a detective control: it finds the violation after it has happened. Both are needed, but only the first prevents harm. That is why most modern compliance systems concentrate resources on the gates that sit in front of the behaviour, and use the after-the-fact review chiefly to verify that those gates are working."
+  },
+  "quiz": [
+    {
+      "question": "What is the difference between a watch list and a restricted list?",
+      "options": [
+        "The watch list is secret and bans nothing; the restricted list bans",
+        "The watch list bans trading while the restricted list only issues a warning",
+        "The watch list applies to employees while the restricted list covers clients",
+        "The two lists hold the same names but are updated on different cycles"
+      ],
+      "explanation": "A restricted list has to be circulated to work at all, but circulating it discloses the deal - and the watch list exists precisely to resolve that paradox. So the prohibition sits on the restricted list, not the watch list, which reverses the second option. Neither list is defined by whom it applies to; both cover securities, not people. And they do not hold the same names: a name typically starts on the watch list and moves across once the deal becomes public."
+    },
+    {
+      "question": "What is the purpose of an information wall in a securities firm?",
+      "options": [
+        "To stop staff in different departments discussing their work at all",
+        "To block inside information flowing from the advisory side into trading",
+        "To protect the technology systems from access from outside",
+        "To limit how many people can see the firm's research reports"
+      ],
+      "explanation": "The same organisation both holds material non-public information and trades in the market - the wall is what separates those two roles. It is not a ban on conversation, which no firm could operate under; it is a boundary that makes any crossing deliberate and traceable. Nor is it a cybersecurity measure against outsiders, which is a different discipline with different tools. Controlling research distribution matters too, but that is a separate policy about published output rather than about inside information."
+    },
+    {
+      "question": "What type of control is pre-clearance of personal trades?",
+      "options": [
+        "Corrective - dealing with the damage after a violation has done harm",
+        "Detective - finding the violation after the trade has been completed",
+        "Preventive - blocking a problem order before it can be placed",
+        "Compensating - standing in for another control that has failed"
+      ],
+      "explanation": "This is the distinction that matters most: only a preventive control can stop the harm, while a detective control merely records it afterwards. Pre-clearance sits in front of the order, so nothing has happened yet when it acts. The month-end trade review is the detective control in this pair. A corrective control comes later still, cleaning up after damage. And pre-clearance is not compensating - it is a primary gate in its own right, not a stand-in for something broken."
+    },
+    {
+      "question": "What is the main value of a periodic post-period trade review?",
+      "options": [
+        "Meeting the requirement to file periodic reports with the regulator",
+        "Standing in for pre-clearance at firms that are small in scale",
+        "Setting the year-end bonus for staff with a clean compliance record",
+        "Checking whether the upstream controls actually ran"
+      ],
+      "explanation": "Catching a violation that slipped through matters, but the more valuable information is knowing which gate failed to stop it. Regulatory filing is a reporting obligation that happens to use the same data, not the reason the review exists. It cannot substitute for pre-clearance at any size of firm, because a detective control never prevents the harm. And tying it to bonus decisions turns a diagnostic tool into a performance measure, which is how people learn to keep it quiet."
+    },
+    {
+      "question": "Why do many firms run both kinds of list at the same time?",
+      "options": [
+        "Watch list early on, switching to restricted once it is public",
+        "Because regulation requires both lists to be maintained in parallel",
+        "Because the two lists apply to two different classes of securities",
+        "Because each department keeps a separate list of its own"
+      ],
+      "explanation": "The need for secrecy is at its highest in the early phase, and once the deal is public an explicit prohibition works better. So the same name moves between the lists as the deal matures - it is one process in two stages, not two parallel obligations. Regulation sets the outcome required rather than prescribing both lists. The lists are not split by asset class. And a per-department list would defeat the point, since the whole purpose is a single firmwide view of what is sensitive."
+    }
+  ],
+  "keyTakeaways": [
+    "The information wall separates the departments holding inside information from those trading",
+    "Watch list: confidential, monitors without prohibiting",
+    "Restricted list: circulated internally and trading prohibited",
+    "Pre-clearance is a preventive control - the only kind that stops harm",
+    "The post-period review is mostly there to verify the upstream gates are running"
+  ],
+  "practicePrompt": {
+    "question": "You work in research and want to buy shares in a company. The ticker is not on the restricted list. Are you free to buy?",
+    "options": [
+      "Yes, not being on the restricted list means it is not prohibited",
+      "Not yet - you still have to pre-clear it through the proper process",
+      "Yes, provided you are not the analyst who covers that company",
+      "No, you must wait until the company's most recent reporting period ends"
+    ],
+    "explanation": "This is exactly why the watch list exists and why it has to be confidential: you cannot check it yourself. The absence of a ticker from the circulated restricted list tells you nothing, and the pre-clearance process is the only way for compliance to check your order against information only they hold."
+  }
+}

@@ -12,12 +12,22 @@
   ],
   "explanation": "High inflation erodes purchasing power: 1 million today buys less than 1 million did last year. Assets that hedge inflation well: real estate (prices track inflation), stocks (businesses adjust prices), gold, TIPS, commodities. Cash and long-term bonds are the weakest.",
   "diagram": [
-    { "label": "Inflation makes every unit of currency buy less", "arrow": true },
-    { "label": "Deposits and long-term bonds suffer the most", "arrow": true },
-    { "label": "Businesses with pricing power raise their prices accordingly", "arrow": true },
-    { "label": "So stocks and real estate hold up better long-term" }
+    {
+      "label": "Inflation makes every unit of currency buy less",
+      "arrow": true
+    },
+    {
+      "label": "Deposits and long-term bonds suffer the most",
+      "arrow": true
+    },
+    {
+      "label": "Businesses with pricing power raise their prices accordingly",
+      "arrow": true
+    },
+    {
+      "label": "So stocks and real estate hold up better long-term"
+    }
   ],
-  "interactiveType": "inflation-calculator",
   "realWorldExample": {
     "company": "Real estate as an inflation hedge in Vietnam",
     "description": "Many Vietnamese investors view real estate as a traditional inflation shelter - property prices tend to rise with or above the inflation rate over the long term, unlike savings deposits, which can have their purchasing power eroded by inflation over time."
@@ -104,12 +114,18 @@
       "type": "lead",
       "text": "1 million VND today doesn't buy as much as 1 million VND did ten years ago - that is the direct result of inflation eroding purchasing power over time. The key question for every investor: which assets actually protect purchasing power when inflation rises high?"
     },
-    { "type": "heading", "text": "Ranking asset classes by inflation resistance" },
+    {
+      "type": "heading",
+      "text": "Ranking asset classes by inflation resistance"
+    },
     {
       "type": "paragraph",
       "text": "Real estate is usually seen as a good shelter because property prices tend to rise with or above the inflation rate over the long term - this is also why many Vietnamese investors view real estate as a traditional inflation hedge. Stocks also hedge inflation fairly well because businesses can adjust their selling prices with inflation, preserving their margins. Gold and commodities also tend to rise in price along with inflation. At the opposite extreme, cash and long-term fixed-coupon bonds are the two weakest assets against inflation."
     },
-    { "type": "heading", "text": "Why long-term bonds suffer double damage" },
+    {
+      "type": "heading",
+      "text": "Why long-term bonds suffer double damage"
+    },
     {
       "type": "paragraph",
       "text": "A long-term, fixed-coupon bond gets hurt twice when inflation rises unexpectedly high: first, the real purchasing power of the fixed coupon falls sharply because the coupon doesn't rise with inflation; second, the bond's market price also falls because market interest rates usually rise to combat inflation (following the inverse price-rate relationship you've already learned). This is why investors often proactively reduce their long-term bond holdings when they forecast rising inflation ahead."

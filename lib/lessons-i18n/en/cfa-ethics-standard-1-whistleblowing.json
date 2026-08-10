@@ -1,0 +1,155 @@
+{
+  "slug": "cfa-ethics-standard-1-whistleblowing",
+  "title": "CFA Ethics 11: Standard I(D) - Misconduct and what you owe when you spot wrongdoing",
+  "subtitle": "Staying silent in the face of wrongdoing is also a choice, and it carries ethical consequences",
+  "duration": "7 min",
+  "whyItMatters": "In most of the large financial scandals, someone knew beforehand and chose to say nothing. Understanding Standard I(D) and the mechanisms that protect whistleblowers tells you what options you actually have when you meet wrongdoing at work.",
+  "openingQuestion": "An employee discovers that a colleague is manipulating reported figures to hit a KPI, but takes no part in it. What does Standard I(D) require of that person?",
+  "openingOptions": [
+    "Nothing at all, because they are not the one carrying out the wrongdoing",
+    "Standard I(D) binds the person committing it, not the person who knows",
+    "They must report it immediately to the state regulatory authority",
+    "They must correct the figures themselves before the report is sent out"
+  ],
+  "explanation": "Standard I(D) - Misconduct - directly prohibits fraud and deception by the charterholder themselves; it does not create a general legal duty to report on other people. Many firms, however, run internal policies that do require reporting, and in professional-ethics terms silence in the face of clear wrongdoing still carries reputational consequences and shared responsibility if the matter comes out later.",
+  "diagram": [
+    { "label": "Signs of wrongdoing are spotted" },
+    { "label": "Assess: is the evidence clear enough?" },
+    { "label": "Report through internal channels, following firm policy" }
+  ],
+  "realWorldExample": {
+    "company": "Whistleblower protection in developed markets",
+    "description": "Many securities regulators around the world (the SEC in the United States, for example) run programmes that protect and even financially reward those who report financial fraud, recognising how large a part they play in surfacing scandals early that a firm might otherwise conceal internally for years."
+  },
+  "quiz": [
+    {
+      "question": "What does Standard I(D) - Misconduct - prohibit directly?",
+      "options": [
+        "Any failure to report someone else's misconduct to the regulator, even with no evidence",
+        "The charterholder's own fraud, deception, or damage to professional standing",
+        "Only conduct a court has already concluded amounts to a criminal offence",
+        "Only conduct connected directly to trading securities on an exchange floor"
+      ],
+      "explanation": "Standard I(D) focuses on the conduct of the CFA charterholder themselves - prohibiting fraud, deception, or anything reflecting badly on their own honesty and professional standing, whether or not the conduct relates directly to investment work. Waiting for a criminal conviction sets the bar far too high, since the professional standard and the criminal standard are not the same test. Restricting it to exchange trading gets the scope backwards: falsified credentials on a personal application are squarely in scope. And converting it into a duty to report others is the single most common misreading of this standard."
+    },
+    {
+      "question": "Why do many organisations build an independent whistleblower channel rather than relying on staff reporting to their direct manager?",
+      "options": [
+        "Purely to satisfy a regulator's formal requirement, with no real effect on detection",
+        "Because the law obliges every company to set up an independent reporting channel",
+        "It reduces the risk of retaliation when the wrongdoer is the direct manager",
+        "To cut the headcount needed for the internal control department to run"
+      ],
+      "explanation": "An independent channel - usually reporting straight to the audit committee or the board, anonymously if needed - solves exactly the core problem: if the wrongdoer is the manager, a report travelling up the normal chain risks being blocked or drawing retaliation. Calling it a box-ticking exercise ignores the cases these channels do surface. The legal-obligation answer is wrong on the facts in most jurisdictions, where such channels are recommended rather than mandated for every firm. And headcount is not the motivation: an independent channel usually adds cost rather than saving it."
+    },
+    {
+      "question": "What does Standard I(D) - Misconduct - actually govern?",
+      "options": [
+        "Requires disclosing every conflict of interest to clients before advising",
+        "The duty to report any misconduct committed by colleagues at the firm",
+        "How trades are allocated fairly across the firm's clients",
+        "The practitioner's own fraudulent or deceptive conduct at work"
+      ],
+      "explanation": "Standard I(D) is about your own conduct: no fraud, no deception, nothing that damages your professional standing. It does not by itself create a duty to report other people. Conflict-of-interest disclosure lives in Standard VI, and fair allocation of trades among clients lives in Standard III(B) - both are real obligations, but neither is this one. Mixing them up matters in an exam, where the question usually turns on identifying which standard the fact pattern engages rather than on whether anything was wrong at all."
+    },
+    {
+      "question": "On discovering that a colleague has committed misconduct, what is the sensible first step?",
+      "options": [
+        "Report through the organisation's internal process before going outside",
+        "Publish the information to the mass media straight away without delay",
+        "Ignore it, since Standard I(D) governs only your own personal conduct",
+        "Confront the colleague directly and demand they fix the damage themselves"
+      ],
+      "explanation": "The internal process is the recommended first step. Only when the organisation fails to deal with it, or where the organisation itself is the offender, does reporting externally come into consideration. Going straight to the media skips every mechanism designed to fix the problem and may itself breach confidentiality duties. Confronting the colleague privately tips them off and lets evidence disappear. And treating it as none of your business ignores that your firm's own policy very likely requires a report regardless of what Standard I(D) says."
+    },
+    {
+      "question": "Why can staying silent about serious wrongdoing still breach ethical standards?",
+      "options": [
+        "Because every member has a legal duty to report within twenty-four hours",
+        "Because continuing to take part, or concealing it, makes it your own conduct",
+        "Because silence is always treated as complicity under current criminal law",
+        "Because the professional body automatically revokes the charter of anyone who knew"
+      ],
+      "explanation": "The line falls on whether you continue to have a hand in it. Knowing and still signing, still executing, or actively concealing turns the conduct into your own. The twenty-four-hour deadline is invented - no such universal clock exists. Silence is not automatically criminal complicity either; criminal liability turns on participation and intent, which is a narrower test. And no professional body strips a charter automatically on knowledge alone: there is an investigation and a process, and mere awareness without participation is usually not the trigger."
+    },
+    {
+      "question": "Why do professional ethical rules put the industry's reputation so high?",
+      "options": [
+        "Because the law requires every profession to publish a code of ethics",
+        "Because professional bodies need to protect their annual membership fee income",
+        "Because the whole industry runs on the trust of people who hand over assets",
+        "Because the industry's reputation directly determines practitioners' pay levels"
+      ],
+      "explanation": "Clients hand money to people they cannot supervise day by day. When that trust breaks, the damage does not stop at one firm - it spreads across the industry, and that is why the standards are as strict as they are. No law requires a profession to publish a code of ethics, which is precisely why these bodies write their own. Membership fees would be a motive for having a body at all, not for setting standards above the legal minimum. Pay levels do follow reputation loosely, but that is a consequence of the trust mechanism rather than the reason for it."
+    }
+  ],
+  "keyTakeaways": [
+    "Standard I(D) directly prohibits fraud and deception by the charterholder themselves; it does not impose a legal duty to report others",
+    "Many firms run their own internal policies requiring wrongdoing to be reported - know the policy where you work",
+    "An independent reporting channel reduces the risk of retaliation when the wrongdoer sits higher up",
+    "Silence in the face of clear wrongdoing still carries ethical and professional-reputation consequences over time"
+  ],
+  "practicePrompt": {
+    "question": "What does Standard I(D) - Misconduct - mainly govern?",
+    "options": [
+      "The CFA charterholder's own conduct in professional life",
+      "A legal duty to report every instance of a colleague's misconduct",
+      "It applies only to conduct connected with securities trading",
+      "It applies to managers only, not to ordinary staff"
+    ],
+    "explanation": "Standard I(D) focuses on the individual's own conduct rather than on a duty to report other people. The reporting answer is the classic misreading - that obligation, where it exists, comes from firm policy or from local law, not from this standard. Limiting it to securities trading is too narrow, since falsified personal credentials are in scope even though they touch no trade. And limiting it to managers has it backwards: the standard binds every member and candidate regardless of seniority."
+  },
+  "summary": {
+    "keyIdea": "Standard I(D) prohibits fraud and deception by the charterholder themselves; responsibility for other people's wrongdoing is usually handled through firm policy and the organisation's own reporting channel",
+    "commonMistake": "Assuming that staying silent about someone else's wrongdoing carries no professional-ethics consequence at all",
+    "action": "Find out the whistleblower policy where you work before you need it, not once the situation has already arisen"
+  },
+  "application": {
+    "title": "Prepare before you need it",
+    "message": "If you work in finance, find out whether your firm has an independent reporting channel and how it protects the person who reports - knowing in advance makes you far steadier if the situation actually arises.",
+    "secondary": "It is also a question worth asking when you assess an organisation's culture before applying to work there."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard I(D) - Misconduct - is often misread as imposing a duty to report other people, when in substance it focuses on the conduct of the charterholder themselves."
+    },
+    {
+      "type": "heading",
+      "text": "The real scope of Standard I(D)"
+    },
+    {
+      "type": "paragraph",
+      "text": "Standard I(D) prohibits fraud, deception, or any conduct reflecting badly on the honesty, trustworthiness and professional competence of the CFA charterholder themselves - even where that conduct has no direct connection to investment work (falsifying a personal application or misstating qualifications, for example)."
+    },
+    {
+      "type": "heading",
+      "text": "So where does responsibility for other people's wrongdoing sit?"
+    },
+    {
+      "type": "paragraph",
+      "text": "CFA Institute does not impose a general legal duty on every member to report a colleague. That responsibility is usually established through three layers: the firm's internal policy (many make reporting mandatory), each country's own law on reporting financial fraud, and personal ethical judgement about the long-run consequences of staying silent."
+    },
+    {
+      "type": "callout",
+      "label": "Why silence is not the \"safe option\"",
+      "text": "Even without breaching Standard I(D) directly, someone who knows about wrongdoing and chooses silence can face serious consequences if the matter later breaks open: loss of professional standing, being treated as complicit in practice, and in many legal contexts a share of the liability."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Standard I(D) governs the person's own conduct, not a duty to report other people",
+        "The duty to report usually comes from the firm's internal policy, not directly from Standard I(D)",
+        "An independent reporting channel reduces the risk of retaliation",
+        "Silence in the face of clear wrongdoing still carries long-run ethical consequences"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Professional ethics is not only about what you are forbidden to do - it is also about the choices you make when nobody is compelling you to act.",
+        "In the next lesson we look at conflicts of interest in the particular setting of M&A transactions."
+      ]
+    }
+  ]
+}

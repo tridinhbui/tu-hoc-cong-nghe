@@ -1,0 +1,197 @@
+{
+  "slug": "greeks-delta-gamma-vega-theta",
+  "title": "Derivatives, Lesson 3: the Greeks - measuring the sensitivity of an option position",
+  "subtitle": "Delta, Gamma, Vega, Theta and Rho: the risk map of any derivatives book",
+  "duration": "12 min",
+  "whyItMatters": "Nobody manages an options book by looking at the price of each individual contract. They look at the Greeks, because that is the only way to answer the question that actually matters: if the market falls 3%, or volatility rises 5 points, or simply tomorrow arrives, how much does my book lose?",
+  "openingQuestion": "You hold an options book with a delta of zero. Does that mean the book is safe?",
+  "openingOptions": [
+    "Yes, a delta of zero means there is no risk left",
+    "No, gamma, vega and theta risk are all still there",
+    "Yes, because delta is the only measure of risk that matters",
+    "It cannot be determined without knowing the strike price"
+  ],
+  "explanation": "A delta of zero only means that for a very small move in the underlying price, the value of the book barely changes. But delta itself moves as the price moves - that is gamma. The book is also sensitive to changes in volatility (vega) and bleeds value as time passes (theta). A great many of the large losses in market history came from books described as delta-neutral that carried an enormous negative gamma - perfectly safe right up until the market moved hard.",
+  "diagram": [
+    {
+      "label": "Delta: sensitivity to the underlying price"
+    },
+    {
+      "label": "Gamma: how fast delta itself changes"
+    },
+    {
+      "label": "Vega: sensitivity to volatility"
+    },
+    {
+      "label": "Theta: value lost as time passes"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A bank's options trading desk",
+    "description": "The end-of-day risk report of an options desk barely lists individual contracts at all. It lists total delta, gamma, vega and theta, broken out by maturity and by strike. The risk limits are set on those numbers too. A trader may hold thousands of contracts but manages only four or five aggregate figures."
+  },
+  "quiz": [
+    {
+      "question": "What range does the delta of a call option lie in?",
+      "options": [
+        "From −1 to 0, the range a put option's delta sits in",
+        "From 0 to 1, moving in step with the underlying price",
+        "From −1 to 1, lumping both option types together",
+        "Unbounded, since the option price has no ceiling"
+      ],
+      "explanation": "A call's delta lies between 0 and 1: deep out of the money it is near 0, deep in the money it is near 1. A put's delta lies between −1 and 0, so the first option describes the wrong contract. Delta is also roughly the number of shares you need to hold to hedge one option, which is why it cannot exceed 1 per share of exposure - the option can never move faster than the stock itself. Lumping calls and puts into a single −1 to 1 range hides exactly the sign convention that tells you which way the position leans, and nothing about delta is unbounded, however unbounded the option's own price may look."
+    },
+    {
+      "question": "What does a high gamma mean for someone running a hedge?",
+      "options": [
+        "The position is stable and needs less adjusting",
+        "The option is close to expiry, so the residual risk is small",
+        "Delta shifts fast with price, so hedging costs more",
+        "The underlying stock's volatility is on a downward trend"
+      ],
+      "explanation": "Gamma is the second derivative: it measures how fast delta changes. Gamma is highest for options around the money and close to expiry - exactly when hedging is most expensive and easiest to get wrong, because the hedge has to be re-struck constantly and each adjustment carries transaction costs. High gamma therefore means the opposite of a stable position. Being close to expiry does not make the risk small either; it concentrates it, since the delta can flip between 0 and 1 on a small move. And gamma says nothing directly about the trend in the underlying's volatility - that is what vega measures."
+    },
+    {
+      "question": "What gamma and theta does the seller of an option carry?",
+      "options": [
+        "Positive gamma along with positive theta",
+        "Positive gamma and negative theta, as a buyer",
+        "Negative gamma along with negative theta",
+        "Negative gamma and positive theta"
+      ],
+      "explanation": "This is the central trade-off in selling options: each day that passes you collect a little (positive theta), but one large move produces a loss that grows with the square of the move (negative gamma). Picking up pennies in front of a steamroller is the image usually reached for. Positive gamma with positive theta does not exist in a single position - it would be a free lunch, gaining from both movement and stillness. Positive gamma with negative theta is precisely the buyer's profile, the mirror image of the seller's. And negative gamma with negative theta would mean losing on both counts, which is what nobody would ever sell."
+    },
+    {
+      "question": "What does vega measure?",
+      "options": [
+        "How much an option's price moves when volatility rises a point",
+        "How much an option's price moves when the risk-free rate rises a point",
+        "The number of days left to expiry, expressed as a fraction of a year",
+        "The probability the option finishes worth exercising"
+      ],
+      "explanation": "Vega is highest for at-the-money options with long maturities. An option buyer is always vega-positive: they gain when the market becomes more uncertain, even if the underlying price has not moved at all. The sensitivity to the risk-free rate is rho, a separate Greek and usually a far smaller one for short-dated contracts. Time to expiry expressed in years is simply an input to the pricing model, not a sensitivity at all, and the probability of finishing in the money is closer to what N(d2) describes in Black-Scholes - related to delta, but not the same measure."
+    },
+    {
+      "question": "Why is an option buyer's theta always negative?",
+      "options": [
+        "Because holding the position every day incurs a custody fee",
+        "Because the time left for a favourable move keeps shrinking",
+        "Because the risk-free rate is positive, so opportunity cost grows with time",
+        "Because the seller collects the premium at the moment the contract is signed"
+      ],
+      "explanation": "An option is a right with a deadline. Each day that passes shortens the window in which the favourable scenario can happen, so the time-value component erodes - and the rate of erosion accelerates sharply in the final weeks before expiry. Custody fees are a trivial operating cost and have nothing to do with theta, which is embedded in the option's own value. Opportunity cost on the risk-free rate is measured by rho, not theta. And the fact that the seller received the premium up front is a cash-flow timing matter; the buyer's theta would still be negative even if the premium were paid at expiry."
+    }
+  ],
+  "keyTakeaways": [
+    "Delta: sensitivity to the underlying price, and at the same time the hedge ratio; 0 to 1 for a call, −1 to 0 for a put",
+    "Gamma: the rate at which delta changes - highest around the money and near expiry, and what determines hedging cost",
+    "Vega: sensitivity to volatility - an option buyer is always vega-positive",
+    "Theta: the erosion of time value - the buyer carries negative theta, the seller enjoys positive theta but takes negative gamma in exchange"
+  ],
+  "practicePrompt": {
+    "question": "A fund sells out-of-the-money puts every month to collect premium, and keeps the book delta-neutral. What is the biggest risk?",
+    "options": [
+      "Negative theta eroding the profit month after month",
+      "Negative gamma plus negative vega, doubling up the loss",
+      "Rising interest rates dragging rho lower over the period",
+      "No meaningful risk at all, since the book is delta-neutral"
+    ],
+    "explanation": "This is the risk profile that has wiped out several short-volatility funds. The strategy delivers steady returns for dozens of months, then loses more than all of it in a matter of days. Delta-neutrality offers no protection whatsoever against gamma and vega: as the market falls, the short puts pick up delta and volatility spikes at the same time, so both Greeks work against the position simultaneously. Note that a premium seller has positive theta, not negative - time decay is the one thing working in their favour."
+  },
+  "summary": {
+    "keyIdea": "The Greeks are a risk map: each letter answers a different if-then question",
+    "formula": "Change in value ≈ Delta×ΔS + ½·Gamma×(ΔS)² + Vega×Δsigma + Theta×Δt",
+    "commonMistake": "Treating delta-neutral as safe, when the real risk sits in gamma and vega",
+    "action": "For every derivatives position you are considering, write down the four Greeks before you place the order."
+  },
+  "application": {
+    "title": "Test a position with four questions",
+    "message": "If the underlying falls 5%, how much do I lose (delta and gamma)? If volatility rises 10 points, do I gain or lose (vega)? If a week passes and nothing happens, do I gain or lose (theta)? Being able to answer all four means you genuinely understand the position you are holding.",
+    "secondary": "The approximation in the summary lets you estimate quickly without re-running the model."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An option does not carry a single risk. It is sensitive to the underlying price, to how uncertain the market is, and to the mere passage of time. The Greeks are the way to break something complex into a handful of independent numbers, each one answering a different if-then question."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The four Greeks you have to know",
+      "subtitle": "Each letter is a different question about the same position",
+      "concepts": [
+        {
+          "def": "How much the option price changes when the underlying moves by one unit. It is also the number of shares you need to hold to hedge. Call: 0 to 1. Put: −1 to 0."
+        },
+        {
+          "def": "How fast delta changes as the price moves. Highest around the money and near expiry. It determines how often, and how expensively, the hedge has to be adjusted."
+        },
+        {
+          "def": "How much the option price changes when volatility rises by one percentage point. An option buyer is always vega-positive: more uncertainty makes the option dearer."
+        },
+        {
+          "def": "The value lost each day as expiry approaches. Negative for the buyer, positive for the seller, and it accelerates sharply in the last few weeks of the option's life."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Gamma: where the disasters are born"
+    },
+    {
+      "type": "paragraph",
+      "text": "Delta gives you a false sense of safety. A delta-neutral book really is insensitive to small moves - but only at this moment, at this price. When the price moves, delta changes, and the speed of that change is gamma. An option seller has negative gamma: the further the price travels, the faster the position deteriorates, by the square of the move rather than in a straight line."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Buying options",
+        "text": "Positive gamma, positive vega, negative theta. You pay a little every day in exchange for the right to a large gain if the market moves hard."
+      },
+      "right": {
+        "label": "Selling options",
+        "text": "Negative gamma, negative vega, positive theta. You collect a little every day, and take on large tail risk when the market moves hard in exchange."
+      }
+    },
+    {
+      "type": "formula",
+      "title": "Approximating the change in the value of a book",
+      "label": "A second-order expansion - good enough for most real situations",
+      "equation": "ΔV ≈ Delta×ΔS + ½·Gamma×(ΔS)² + Vega×Δsigma + Theta×Δt",
+      "variables": [
+        {
+          "symbol": "ΔS",
+          "name": "Change in the underlying price",
+          "description": "In currency units"
+        },
+        {
+          "symbol": "Δsigma",
+          "name": "Change in volatility",
+          "description": "In percentage points"
+        },
+        {
+          "symbol": "Δt",
+          "name": "Time elapsed",
+          "description": "In days or years, matching the units theta is quoted in"
+        }
+      ],
+      "example": {
+        "title": "A quick read of the risk",
+        "calculation": "Delta 0, Gamma −500, the market falls 4 points: ½ × (−500) × 16",
+        "result": "A loss of around 4,000 even though the book is delta-neutral",
+        "explanation": "If the market falls twice as far, 8 points, the loss is not doubled but quadrupled: around 16,000. That is the nature of the non-linear risk that negative gamma creates."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A rule for practice",
+      "text": "Never describe a derivatives position in words alone. Write down the four numbers. If you cannot compute them, you do not understand that position well enough to be holding it."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The Greeks turn a hazy position into a handful of concrete answers.",
+        "One last variable governs all of them, and it is the only one you cannot observe: volatility. That is the subject of the final lesson in this stage."
+      ]
+    }
+  ]
+}

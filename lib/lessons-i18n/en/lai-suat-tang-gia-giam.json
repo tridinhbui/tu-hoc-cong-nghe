@@ -1,193 +1,185 @@
 {
- "slug": "lai-suat-tang-gia-giam",
- "title": "Why a rate rise makes bond prices fall",
- "subtitle": "Inverse relationship explained",
- "duration": "6 min",
- "openingQuestion": "A zero-coupon bond (no periodic interest, a single payment at maturity) pays 110 million dong exactly 1 year from now. If the market discount rate is 10%/year, what is this bond's fair price today?",
- "openingOptions": [
-  "90 million dong, a randomly estimated figure",
-  "110 million dong, because that's the amount to be received",
-  "121 million dong, because interest has to be added on",
-  "100 million dong, because 110 million / (1 + 10%) = 100 million, which is also exactly the price a lender would demand for a two-year loan at the same rate"
- ],
- "explanation": "A bond's price today is precisely the present value (PV) of its future cash flow, discounted at the market rate: PV = Future amount / (1 + rate) = 110 million / 1.10 = 100 million dong. This is the mathematical essence of bond pricing, and it is exactly why a higher market rate always pulls a bond's price down, and a lower one pushes it back up.",
- "diagram": [
-  {
-   "label": "A bond is a series of payments to be received in the future",
-   "arrow": true
-  },
-  {
-   "label": "Today's price is the present value of that series",
-   "arrow": true
-  },
-  {
-   "label": "Discounted at the current market interest rate",
-   "arrow": true
-  },
-  {
-   "label": "A higher rate in the denominator lowers the present value"
-  }
- ],
- "interactiveType": "interest-rate",
- "realWorldExample": {
-  "company": "Vietnamese State Treasury bills (short-term, discount-issued)",
-  "description": "Treasury bills with a term under 1 year in Vietnam are usually issued at a discount: investors buy below face value and receive the full face value at maturity, with no periodic coupon. This type of instrument shows the PV = FV / (1+r) formula most clearly: when the auction rate on the primary market rises, the price investors are willing to pay for the same bill (same face value, same term) falls, because the denominator (1+r) in the formula is larger."
- },
- "quiz": [
-  {
-   "question": "An amount of 105 million dong will be received after 1 year. If the discount rate rises from 5% to 10%, how does the present value (PV) of that amount change?",
-   "options": [
-    "PV falls from 100 million (105/1.05) to about 95.45 million (105/1.10)",
-    "It doesn't change, since the future amount to be received stays exactly the same",
-    "PV rises from 100 million to about 105.26 million",
-    "PV doubles when the discount rate rises"
-   ],
-   "correct": 0,
-   "explanation": "At 5%: PV = 105/1.05 = 100 million. At 10%: PV = 105/1.10 ≈ 95.45 million. The higher the discount rate, the lower the present value of the same future cash flow - this is exactly why bond prices fall when rates rise."
-  },
-  {
-   "question": "In the formula PV = FV / (1+r), why does r sitting in the denominator explain the inverse relationship between rates and bond prices?",
-   "options": [
-    "Because it's purely a mathematical convention with no real-world meaning whatsoever",
-    "Because when the denominator (1+r) grows larger as r rises, the division result PV falls, with FV held constant, and this arithmetic only works out cleanly when the future value happens to be a round number",
-    "Because in practice the discount rate r is always exactly zero in every present-value calculation",
-    "Because the future value (FV) will always change to match whatever discount rate r is used"
-   ],
-   "correct": 1,
-   "explanation": "This is basic arithmetic: holding the numerator constant (FV - a fixed future cash flow) while the denominator (1+r) grows, the division result (PV) must fall. That's the purely mathematical reason bond prices fall when the discount rate rises."
-  },
-  {
-   "question": "Why does 100 million received in 5 years have a lower present value than 100 million received in 1 year?",
-   "options": [
-    "Because the farther out the payment, the higher the chance the payer defaults",
-    "Because inflation each year gradually shrinks the nominal amount over time",
-    "Because it's discounted over more periods, so the denominator is raised to a higher power, and this exponent effect only shows up once the discount rate itself exceeds ten percent",
-    "Because banks charge a custody fee for every year a payment hasn't been received"
-   ],
-   "correct": 2,
-   "explanation": "PV = FV / (1+r)^n. With n = 5, the denominator is (1+r) multiplied by itself five times, so PV is much smaller than at n = 1. This exponent is exactly why long-term bonds are more sensitive to rates than short-term ones."
-  },
-  {
-   "question": "A bond pays an annual coupon over 10 years. What is its price, mathematically?",
-   "options": [
-    "The sum of all coupon payments to be received, with no discounting to the present needed",
-    "Face value multiplied by the coupon rate, then multiplied again by the years remaining to maturity",
-    "Exactly the face value printed on the bond, independent of market interest rates, a point that trips up many beginners",
-    "The total present value of the 10 coupon payments plus the present value of the face value"
-   ],
-   "correct": 3,
-   "explanation": "Each future cash flow is discounted separately, then summed. When market rates change, every denominator changes at once - which is why the price reacts immediately, and reacts more strongly for a bond with more periods still ahead."
-  },
-  {
-   "question": "Where does the discount rate used to price a bond come from?",
-   "options": [
-    "From the market yield level of bonds with the same risk and term",
-    "From the coupon rate printed on that same bond at issuance, something worth double-checking in practice",
-    "From the target inflation rate the State Bank announces each year",
-    "From the demand deposit interest rate of the bank where the account is held"
-   ],
-   "correct": 0,
-   "explanation": "The discount rate must reflect the return you could earn elsewhere at the same risk level - that's the opportunity cost. The coupon is what the bond pays; the discount rate is what the market demands. When the two diverge, the price has to adjust."
-  },
-  {
-   "question": "How is a zero-coupon bond (no interim interest) priced?",
-   "options": [
-    "It can't be priced at all since there's no coupon stream to discount to the present",
-    "By discounting only the single face-value payment received on the maturity date to the present, and this framing only applies once the bond's remaining term has dropped below one year",
-    "Exactly at face value, since the investor receives no additional interest in between",
-    "At face value minus the total interest that would have been paid over the term"
-   ],
-   "correct": 1,
-   "explanation": "A zero-coupon bond has only a single cash flow at the end, so it's sold at a deep discount below face value, and the entire return comes from that gap. Because all the value is concentrated on the final day, it's also the most rate-sensitive type of bond."
-  }
- ],
- "keyTakeaways": [
-  "A bond's price is essentially the present value (PV) of its future cash flows (coupons and face value), discounted at the market rate",
-  "The simple formula PV = FV / (1+r) shows: the larger r is, the smaller PV is - this is the mathematical root of the inverse relationship between rates and bond prices",
-  "For a bond with multiple interest periods, the price is the sum of the PV of each cash flow at each point in time, but the discounting principle stays the same"
- ],
- "practicePrompt": {
-  "question": "A zero-coupon bond pays 200 million dong in exactly 2 years. The market discount rate suddenly rises from 8% to 12%. How does this bond's fair price today change?",
-  "options": [
-   "The fair price falls, because PV = FV / (1+r)^n has a larger denominator with r higher, shrinking the division result while FV stays the same",
-   "The fair price rises, because a higher discount rate always means a higher present value for a bond, a relationship that reverses itself entirely once the bond's term drops under one year",
-   "The fair price doesn't change at all, since the 200 million dong to be received in the future stays exactly the same",
-   "It can't be determined without knowing this zero-coupon bond's exact original face value"
+  "slug": "lai-suat-tang-gia-giam",
+  "title": "Why a rate rise makes bond prices fall",
+  "subtitle": "Inverse relationship explained",
+  "duration": "6 min",
+  "openingQuestion": "A zero-coupon bond (no periodic interest, a single payment at maturity) pays 110 million dong exactly 1 year from now. If the market discount rate is 10%/year, what is this bond's fair price today?",
+  "openingOptions": [
+    "90 million dong, a randomly estimated figure",
+    "110 million dong, because that's the amount to be received",
+    "121 million dong, because interest has to be added on",
+    "100 million dong, because 110 million / (1 + 10%) = 100 million, which is also exactly the price a lender would demand for a two-year loan at the same rate"
   ],
-  "correct": 0,
-  "explanation": "When the discount rate rises, the larger denominator (1+r)^n makes PV fall - this is the mathematical root of the inverse relationship between rates and bond prices."
- },
- "summary": {
-  "keyIdea": "A bond's price is essentially the present value (PV) of its future cash flows (coupons and face value), discounted at the market rate",
-  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
-  "action": "The simple formula PV = FV / (1+r) shows: the larger r is, the smaller PV is - this is the mathematical root of the inverse relationship between rates and bond prices"
- },
- "application": {
-  "title": "Calculate a bond's price yourself",
-  "message": "For a bond that pays 110 million dong after 1 year, calculate its present value (PV) yourself at two different discount rates, say 8% and 12%, then compare the two results.",
-  "secondary": "Working the calculator once yourself sticks longer than reading the theory ten times."
- },
- "sections": [
-  {
-   "type": "lead",
-   "text": "The previous lesson showed you that when rates rise, bond prices fall. This lesson goes into the mathematical root of that rule, using a simple formula that needs no complex financial tools."
-  },
-  {
-   "type": "heading",
-   "text": "What is a bond's price, at its core?"
-  },
-  {
-   "type": "paragraph",
-   "text": "A bond's price today is exactly the present value (PV) of every payment you'll receive in the future - including periodic coupons and the face value at maturity - after being 'discounted' at the market rate. Discounting means: 1 dong received in the future is always worth less than 1 dong received right now, because with money in hand right now, you could put it in a savings deposit or invest it for a return."
-  },
-  {
-   "type": "callout",
-   "label": "The simplest formula",
-   "text": "PV = FV / (1 + r), where FV is the amount received in the future, r is the discount rate (the market rate), and PV is the present value (today's bond price)."
-  },
-  {
-   "type": "heading",
-   "text": "A specific numerical example"
-  },
-  {
-   "type": "paragraph",
-   "text": "Suppose you have a bond that pays a single amount of 110 million dong exactly 1 year from now (no interim coupon). If the market rate is currently 10%/year, this bond's fair price today is: PV = 110 / (1 + 0.10) = 100 million dong. Now suppose the market rate suddenly jumps to 15%/year. Applying the formula again: PV = 110 / (1 + 0.15) = 95.65 million dong. The same future cash flow (110 million), but because the denominator (1+r) is larger, the present value falls from 100 million to 95.65 million - the bond's price has dropped nearly 4.4 million dong purely because the rate rose by 5 percentage points."
-  },
-  {
-   "type": "list",
-   "items": [
-    "For a bond with periodic coupons, the bond's price is the sum of several PVs: PV(year-1 coupon) + PV(year-2 coupon) + ... + PV(final-year coupon + face value)",
-    "The longer the term, the more discounting periods there are, and the higher the power the denominator (1+r) is raised to - this is why long-term bonds are more sensitive to rate changes (covered in more depth in the lesson on Duration)",
-    "The formula PV = FV/(1+r) isn't only for bonds - it's the foundation of valuing any financial asset with future cash flows, including stocks and rental real estate"
-   ]
-  },
-  {
-   "type": "conceptTable",
-   "title": "Three variables in the pricing formula",
-   "concepts": [
+  "explanation": "A bond's price today is precisely the present value (PV) of its future cash flow, discounted at the market rate: PV = Future amount / (1 + rate) = 110 million / 1.10 = 100 million dong. This is the mathematical essence of bond pricing, and it is exactly why a higher market rate always pulls a bond's price down, and a lower one pushes it back up.",
+  "diagram": [
     {
-     "vi": "Future cash flow",
-     "en": "Future Value (FV)",
-     "def": "The specific amount to be received at a point in the future, such as a coupon or the face value at maturity."
+      "label": "A bond is a series of payments to be received in the future",
+      "arrow": true
     },
     {
-     "vi": "Discount rate",
-     "en": "Discount rate (r)",
-     "def": "The current market rate, used to convert the value of a future cash flow into today's terms."
+      "label": "Today's price is the present value of that series",
+      "arrow": true
     },
     {
-     "vi": "Present value",
-     "en": "Present Value (PV)",
-     "def": "The amount, in today's terms, equivalent to a future cash flow, after discounting at the market rate."
+      "label": "Discounted at the current market interest rate",
+      "arrow": true
+    },
+    {
+      "label": "A higher rate in the denominator lowers the present value"
     }
-   ]
+  ],
+  "realWorldExample": {
+    "company": "Vietnamese State Treasury bills (short-term, discount-issued)",
+    "description": "Treasury bills with a term under 1 year in Vietnam are usually issued at a discount: investors buy below face value and receive the full face value at maturity, with no periodic coupon. This type of instrument shows the PV = FV / (1+r) formula most clearly: when the auction rate on the primary market rises, the price investors are willing to pay for the same bill (same face value, same term) falls, because the denominator (1+r) in the formula is larger."
   },
-  {
-   "type": "closing",
-   "lines": [
-    "A bond's price is simply a present-value calculation of future cash flows, discounted at the market rate - nothing mysterious about it.",
-    "Remember the formula PV = FV/(1+r), and you'll always understand why interest rates and bond prices move opposite each other in every situation."
-   ]
-  }
- ]
+  "quiz": [
+    {
+      "question": "An amount of 105 million dong will be received after 1 year. If the discount rate rises from 5% to 10%, how does the present value (PV) of that amount change?",
+      "options": [
+        "PV falls from 100 million (105/1.05) to about 95.45 million (105/1.10)",
+        "It doesn't change, since the future amount to be received stays exactly the same",
+        "PV rises from 100 million to about 105.26 million",
+        "PV doubles when the discount rate rises"
+      ],
+      "explanation": "At 5%: PV = 105/1.05 = 100 million. At 10%: PV = 105/1.10 ≈ 95.45 million. The higher the discount rate, the lower the present value of the same future cash flow - this is exactly why bond prices fall when rates rise."
+    },
+    {
+      "question": "In the formula PV = FV / (1+r), why does r sitting in the denominator explain the inverse relationship between rates and bond prices?",
+      "options": [
+        "Because it's purely a mathematical convention with no real-world meaning whatsoever",
+        "Because when the denominator (1+r) grows larger as r rises, the division result PV falls, with FV held constant, and this arithmetic only works out cleanly when the future value happens to be a round number",
+        "Because in practice the discount rate r is always exactly zero in every present-value calculation",
+        "Because the future value (FV) will always change to match whatever discount rate r is used"
+      ],
+      "explanation": "This is basic arithmetic: holding the numerator constant (FV - a fixed future cash flow) while the denominator (1+r) grows, the division result (PV) must fall. That's the purely mathematical reason bond prices fall when the discount rate rises."
+    },
+    {
+      "question": "Why does 100 million received in 5 years have a lower present value than 100 million received in 1 year?",
+      "options": [
+        "Because the farther out the payment, the higher the chance the payer defaults",
+        "Because inflation each year gradually shrinks the nominal amount over time",
+        "Because it's discounted over more periods, so the denominator is raised to a higher power, and this exponent effect only shows up once the discount rate itself exceeds ten percent",
+        "Because banks charge a custody fee for every year a payment hasn't been received"
+      ],
+      "explanation": "PV = FV / (1+r)^n. With n = 5, the denominator is (1+r) multiplied by itself five times, so PV is much smaller than at n = 1. This exponent is exactly why long-term bonds are more sensitive to rates than short-term ones."
+    },
+    {
+      "question": "A bond pays an annual coupon over 10 years. What is its price, mathematically?",
+      "options": [
+        "The sum of all coupon payments to be received, with no discounting to the present needed",
+        "Face value multiplied by the coupon rate, then multiplied again by the years remaining to maturity",
+        "Exactly the face value printed on the bond, independent of market interest rates, a point that trips up many beginners",
+        "The total present value of the 10 coupon payments plus the present value of the face value"
+      ],
+      "explanation": "Each future cash flow is discounted separately, then summed. When market rates change, every denominator changes at once - which is why the price reacts immediately, and reacts more strongly for a bond with more periods still ahead."
+    },
+    {
+      "question": "Where does the discount rate used to price a bond come from?",
+      "options": [
+        "From the market yield level of bonds with the same risk and term",
+        "From the coupon rate printed on that same bond at issuance, something worth double-checking in practice",
+        "From the target inflation rate the State Bank announces each year",
+        "From the demand deposit interest rate of the bank where the account is held"
+      ],
+      "explanation": "The discount rate must reflect the return you could earn elsewhere at the same risk level - that's the opportunity cost. The coupon is what the bond pays; the discount rate is what the market demands. When the two diverge, the price has to adjust."
+    },
+    {
+      "question": "How is a zero-coupon bond (no interim interest) priced?",
+      "options": [
+        "It can't be priced at all since there's no coupon stream to discount to the present",
+        "By discounting only the single face-value payment received on the maturity date to the present, and this framing only applies once the bond's remaining term has dropped below one year",
+        "Exactly at face value, since the investor receives no additional interest in between",
+        "At face value minus the total interest that would have been paid over the term"
+      ],
+      "explanation": "A zero-coupon bond has only a single cash flow at the end, so it's sold at a deep discount below face value, and the entire return comes from that gap. Because all the value is concentrated on the final day, it's also the most rate-sensitive type of bond."
+    }
+  ],
+  "keyTakeaways": [
+    "A bond's price is essentially the present value (PV) of its future cash flows (coupons and face value), discounted at the market rate",
+    "The simple formula PV = FV / (1+r) shows: the larger r is, the smaller PV is - this is the mathematical root of the inverse relationship between rates and bond prices",
+    "For a bond with multiple interest periods, the price is the sum of the PV of each cash flow at each point in time, but the discounting principle stays the same"
+  ],
+  "practicePrompt": {
+    "question": "A zero-coupon bond pays 200 million dong in exactly 2 years. The market discount rate suddenly rises from 8% to 12%. How does this bond's fair price today change?",
+    "options": [
+      "The fair price falls, because PV = FV / (1+r)^n has a larger denominator with r higher, shrinking the division result while FV stays the same",
+      "The fair price rises, because a higher discount rate always means a higher present value for a bond, a relationship that reverses itself entirely once the bond's term drops under one year",
+      "The fair price doesn't change at all, since the 200 million dong to be received in the future stays exactly the same",
+      "It can't be determined without knowing this zero-coupon bond's exact original face value"
+    ],
+    "explanation": "When the discount rate rises, the larger denominator (1+r)^n makes PV fall - this is the mathematical root of the inverse relationship between rates and bond prices."
+  },
+  "summary": {
+    "keyIdea": "A bond's price is essentially the present value (PV) of its future cash flows (coupons and face value), discounted at the market rate",
+    "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+    "action": "The simple formula PV = FV / (1+r) shows: the larger r is, the smaller PV is - this is the mathematical root of the inverse relationship between rates and bond prices"
+  },
+  "application": {
+    "title": "Calculate a bond's price yourself",
+    "message": "For a bond that pays 110 million dong after 1 year, calculate its present value (PV) yourself at two different discount rates, say 8% and 12%, then compare the two results.",
+    "secondary": "Working the calculator once yourself sticks longer than reading the theory ten times."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous lesson showed you that when rates rise, bond prices fall. This lesson goes into the mathematical root of that rule, using a simple formula that needs no complex financial tools."
+    },
+    {
+      "type": "heading",
+      "text": "What is a bond's price, at its core?"
+    },
+    {
+      "type": "paragraph",
+      "text": "A bond's price today is exactly the present value (PV) of every payment you'll receive in the future - including periodic coupons and the face value at maturity - after being 'discounted' at the market rate. Discounting means: 1 dong received in the future is always worth less than 1 dong received right now, because with money in hand right now, you could put it in a savings deposit or invest it for a return."
+    },
+    {
+      "type": "callout",
+      "label": "The simplest formula",
+      "text": "PV = FV / (1 + r), where FV is the amount received in the future, r is the discount rate (the market rate), and PV is the present value (today's bond price)."
+    },
+    {
+      "type": "heading",
+      "text": "A specific numerical example"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose you have a bond that pays a single amount of 110 million dong exactly 1 year from now (no interim coupon). If the market rate is currently 10%/year, this bond's fair price today is: PV = 110 / (1 + 0.10) = 100 million dong. Now suppose the market rate suddenly jumps to 15%/year. Applying the formula again: PV = 110 / (1 + 0.15) = 95.65 million dong. The same future cash flow (110 million), but because the denominator (1+r) is larger, the present value falls from 100 million to 95.65 million - the bond's price has dropped nearly 4.4 million dong purely because the rate rose by 5 percentage points."
+    },
+    {
+      "type": "list",
+      "items": [
+        "For a bond with periodic coupons, the bond's price is the sum of several PVs: PV(year-1 coupon) + PV(year-2 coupon) + ... + PV(final-year coupon + face value)",
+        "The longer the term, the more discounting periods there are, and the higher the power the denominator (1+r) is raised to - this is why long-term bonds are more sensitive to rate changes (covered in more depth in the lesson on Duration)",
+        "The formula PV = FV/(1+r) isn't only for bonds - it's the foundation of valuing any financial asset with future cash flows, including stocks and rental real estate"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three variables in the pricing formula",
+      "concepts": [
+        {
+          "vi": "Future cash flow",
+          "en": "Future Value (FV)",
+          "def": "The specific amount to be received at a point in the future, such as a coupon or the face value at maturity."
+        },
+        {
+          "vi": "Discount rate",
+          "en": "Discount rate (r)",
+          "def": "The current market rate, used to convert the value of a future cash flow into today's terms."
+        },
+        {
+          "vi": "Present value",
+          "en": "Present Value (PV)",
+          "def": "The amount, in today's terms, equivalent to a future cash flow, after discounting at the market rate."
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A bond's price is simply a present-value calculation of future cash flows, discounted at the market rate - nothing mysterious about it.",
+        "Remember the formula PV = FV/(1+r), and you'll always understand why interest rates and bond prices move opposite each other in every situation."
+      ]
+    }
+  ]
 }

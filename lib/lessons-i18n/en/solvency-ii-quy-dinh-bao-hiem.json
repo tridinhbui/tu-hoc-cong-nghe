@@ -1,0 +1,151 @@
+{
+  "slug": "solvency-ii-quy-dinh-bao-hiem",
+  "title": "Solvency II and insurance regulation: making sure the insurer is still there",
+  "subtitle": "SCR, MCR, and the framework that keeps the insurance industry from repeating the solvency crises in its own history",
+  "duration": "7 min",
+  "openingQuestion": "Solvency II - the European capital framework for insurers, used as a reference by many other jurisdictions - requires an insurer to hold capital at what level?",
+  "openingOptions": [
+    "Only enough to settle the obligations that have already arisen in the past",
+    "Enough to be 99.5% likely to still be solvent one year from now",
+    "Only an amount equal to the premiums collected during the year",
+    "No specific capital requirement at all, provided the company is profitable"
+  ],
+  "explanation": "The Solvency Capital Requirement (SCR) is the core capital rule of Solvency II: an insurer must hold enough capital to remain solvent with 99.5% probability over the coming year - which means it must be able to absorb a severe adverse scenario, one that occurs on average once in 200 years, and still meet its obligations to policyholders.",
+  "realWorldExample": {
+    "company": "AIG and the 2008 financial crisis",
+    "description": "AIG (American International Group), one of the largest insurance groups in the world, came close to collapse during the 2008 crisis because its Financial Products division had written far too much credit protection (CDS) without holding capital proportionate to the real risk - the US government had to inject 182bn USD to rescue it. That episode was one of the main forces behind supervisors worldwide, including the EU with Solvency II, tightening capital requirements across the insurance sector."
+  },
+  "quiz": [
+    {
+      "question": "What is the difference between the SCR (Solvency Capital Requirement) and the MCR (Minimum Capital Requirement) under Solvency II?",
+      "options": [
+        "The SCR is set by the company; the MCR is imposed by the supervisor",
+        "The SCR is computed annually; the MCR is recomputed every quarter",
+        "The SCR is the target level; the MCR is the absolute floor",
+        "The SCR applies to life business; the MCR to non-life business"
+      ],
+      "explanation": "This is the two-tier structure of Solvency II. The SCR is the desired safety zone - a soft threshold, where a breach brings enhanced supervision and a requirement to submit a recovery plan within a set period. The MCR is the survival line - a hard threshold, where a breach can trigger emergency intervention and even immediate withdrawal of the licence to protect the policyholders who have already bought cover. Both are set by the same framework, both apply across life and non-life, and reporting frequency is not what separates them."
+    },
+    {
+      "question": "How do the three pillars of Solvency II mirror the structure of Basel III in banking?",
+      "options": [
+        "Minimum capital, technical provisions, and reinsurance",
+        "Operating licence, financial statements, and independent audit",
+        "Pricing, asset investment, and claims management",
+        "Quantitative capital, governance supervision, and disclosure"
+      ],
+      "explanation": "Solvency II is built on three pillars deliberately mirroring Basel III: Pillar 1 covers quantitative capital requirements (SCR and MCR), Pillar 2 covers the supervisory review process and the firm's own risk management system (ORSA, the Own Risk and Solvency Assessment), and Pillar 3 covers disclosure (the Solvency and Financial Condition Report). The parallel reflects a shared philosophy of financial risk regulation: quantify the capital, supervise the process, publish the result. Provisions, licensing and pricing are all regulated too, but none of them is the organising structure."
+    },
+    {
+      "question": "Why do rules like Solvency II matter far more in insurance than in most other industries?",
+      "options": [
+        "Because the money comes in first and the obligation falls due long after",
+        "Because insurance carries higher profit margins than other industries",
+        "Because a single insurer has a very large number of customers",
+        "Because insurers hold very large investment portfolios"
+      ],
+      "explanation": "The inverted production cycle - cash in first, payment out later, sometimes decades later - is the core reason insurance capital rules matter. Without strong provisioning and capital requirements, an insurer can look financially healthy for years, collecting premiums steadily and paying few claims, while actually selling contracts priced below the cost of the future obligation. That risk only detonates years afterwards, when many policyholders claim at once and the resources are no longer there. Customer count and portfolio size follow from the model rather than causing the problem."
+    },
+    {
+      "question": "An insurer falls below the MCR. How is that more serious than falling below the SCR?",
+      "options": [
+        "It only has to file an additional periodic explanatory report with its supervisor",
+        "It can face emergency intervention or the withdrawal of its operating licence",
+        "It is granted five further years in which to make up the shortfall in capital",
+        "There is no difference at all, since both thresholds carry the same consequence"
+      ],
+      "explanation": "The SCR is the desired level of capital: falling below it means submitting a recovery plan while continuing to trade normally. The MCR is the absolute floor, and falling below it means the ability to pay policyholders is already in question, so the supervisor steps in immediately rather than waiting. That is the whole point of having two thresholds instead of one - the first buys time to fix the problem, the second does not, and neither carries a five-year grace period."
+    },
+    {
+      "question": "Why do capital rules matter so much in insurance specifically?",
+      "options": [
+        "Because an insurance contract cannot be cancelled part-way",
+        "Because the industry runs unusually high margins",
+        "Because customers pay now and receive the service years later",
+        "Because insurers are not supervised by a central bank"
+      ],
+      "explanation": "Someone buying life cover hands over money today in exchange for a promise to be honoured in thirty years, and they have no way of checking for themselves whether the company will still be able to keep it. Capital rules stand in place of that check - this is consumer protection first and systemic stability second. Contracts can normally be surrendered, margins in insurance are not remarkable, and who supervises the sector varies by country without changing the underlying timing problem."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A life insurer has an SCR of 500bn but current capital of only 480bn - below the SCR, yet still above an MCR of 200bn. What follows under Solvency II?",
+    "options": [
+      "Nothing at all, because the company is still above the MCR floor",
+      "An SCR breach while still above the MCR: a recovery plan must be filed",
+      "The company has its operating licence withdrawn with immediate effect",
+      "The company continues to trade freely with no additional reporting at all"
+    ],
+    "explanation": "This is exactly what the two-tier SCR/MCR structure is for: breaching the SCR while remaining above the MCR is an EARLY WARNING, triggering enhanced supervision and a requirement to submit a capital recovery plan - giving the company a chance to fix the position itself before it deteriorates to an MCR breach, the survival threshold that can bring emergency intervention. It is a deliberate early-warning design meant to stop a crisis before it becomes one."
+  },
+  "keyTakeaways": [
+    "SCR (Solvency Capital Requirement): the capital level giving a 99.5% probability of remaining solvent over one year, derived from severe stress scenarios",
+    "MCR (Minimum Capital Requirement): the absolute capital floor - a breach can lead to emergency intervention or withdrawal of the licence",
+    "Solvency II has a three-pillar structure mirroring Basel III: quantitative capital, supervision of risk governance, and transparent disclosure",
+    "The inverted production cycle of insurance - money in first, payment out years later - is why capital rules matter so much more in this industry"
+  ],
+  "summary": {
+    "keyIdea": "Solvency II, and comparable frameworks worldwide, require insurers to hold enough capital to absorb severe adverse scenarios, using a two-threshold structure of SCR (the target) and MCR (the absolute floor) to give early warning and head off a solvency crisis.",
+    "commonMistake": "Judging an insurer's financial health from its reported annual profit alone, while ignoring the far more important SCR and MCR coverage ratios",
+    "action": "When analysing a listed insurer, find its Solvency and Financial Condition Report (SFCR) to see actual capital against the SCR and MCR requirements"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Look up the solvency ratio of a listed insurer in Vietnam and compare it against the minimum required by the Ministry of Finance to judge how much financial safety margin there is.",
+    "secondary": "Vietnam is in the process of moving its insurance capital framework towards a risk-based approach along Solvency II lines - the common direction of travel across emerging insurance markets."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After a series of financial crises brought large insurers to the brink, the world learned one thing: annual profit alone says nothing reliable about how healthy an insurance company really is."
+    },
+    {
+      "type": "heading",
+      "text": "Solvency II - a modern capital framework for insurance"
+    },
+    {
+      "type": "paragraph",
+      "text": "Solvency II is the capital framework the European Union has applied since 2016, replacing the looser Solvency I system that preceded it. The core difference: Solvency II takes a RISK-BASED approach - the capital requirement is not a fixed figure but is computed from the RISK ACTUALLY CARRIED by the company across market risk, credit risk, underwriting risk and operational risk, which is the same philosophy Basel III applies in banking."
+    },
+    {
+      "type": "heading",
+      "text": "SCR and MCR - the two capital thresholds"
+    },
+    {
+      "type": "paragraph",
+      "text": "The SCR (Solvency Capital Requirement) is computed with a Value-at-Risk model at 99.5% confidence over a one-year horizon - meaning the company must hold enough capital to absorb an adverse scenario with only a 0.5% probability of occurring, equivalent to a one-in-200-year event. The MCR (Minimum Capital Requirement) sits lower and functions as a red line: breaching it is a serious signal that the company is at risk of being unable to pay in the near term."
+    },
+    {
+      "type": "heading",
+      "text": "The three pillars of Solvency II"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Pillar 1 - Quantitative capital requirements: computing SCR and MCR from a risk model, either the standard formula or an approved internal model",
+        "Pillar 2 - Supervision of risk governance: the company must run an ORSA (Own Risk and Solvency Assessment), assessing its own risk and solvency position periodically rather than leaning on the standard formula alone",
+        "Pillar 3 - Transparent disclosure: periodic publication of the Solvency and Financial Condition Report (SFCR), so the market and the supervisor can monitor independently"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Insurance capital rules are not administrative overhead - they are the last line of defence ensuring millions of customers actually receive the claim payment they trusted and paid premiums for over many years.",
+        "For an actuary or an insurance risk professional, understanding Solvency II deeply is not just compliance - it is the core tool for assessing and managing the long-run financial health of the company."
+      ]
+    }
+  ],
+  "diagram": [
+    {
+      "label": "Value assets and liabilities at market value"
+    },
+    {
+      "label": "Compute the SCR - capital required for the level of risk"
+    },
+    {
+      "label": "Compare actual capital against the SCR, then against the MCR"
+    },
+    {
+      "label": "Below the MCR: the supervisor intervenes directly"
+    }
+  ]
+}

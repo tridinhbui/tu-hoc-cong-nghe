@@ -1,0 +1,157 @@
+{
+  "slug": "chi-phi-duoc-tru-va-khong-duoc-tru",
+  "title": "Standards & Tax, Lesson 6: Deductible and non-deductible expenses",
+  "subtitle": "Why accounting profit and taxable profit are never the same number",
+  "duration": "10 min",
+  "whyItMatters": "Reading a set of financial statements without knowing why the tax charge does not equal pre-tax profit times the tax rate means missing one of the most misread lines on the page. That gap is not an accounting error - it is two different rule books measuring the same business.",
+  "openingQuestion": "Why is taxable profit usually different from accounting profit?",
+  "openingOptions": [
+    "Because accountants and the tax authority use different reporting periods within the year",
+    "Because tax law disallows some expenses that accounting records",
+    "Because a company gets to pick whichever figure is more favourable to declare",
+    "Because accounting profit is always rounded under public disclosure rules"
+  ],
+  "explanation": "Accounting measures business performance and records every expense actually incurred. Tax law measures a tax base and accepts only the costs that meet its own conditions - valid invoices and supporting documents, a genuine link to the business, and no breach of a statutory cap. A disallowed expense does not disappear from the financial statements; it is simply added back when taxable income is computed. That is why tax actually paid almost never equals pre-tax profit multiplied by the statutory rate.",
+  "diagram": [
+    {
+      "label": "Accounting profit before tax"
+    },
+    {
+      "label": "Add back non-deductible expenses"
+    },
+    {
+      "label": "Subtract exempt income"
+    },
+    {
+      "label": "Taxable income × tax rate"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A profitable company with an unusually heavy tax charge",
+    "description": "A company reports 10bn of pre-tax profit but pays tax equivalent to a rate above 30%. The cause is usually not an error but a set of add-backs: costs without valid invoices, spending above a statutory cap, administrative penalties, or interest above the cap that applies to related-party transactions. For an analyst, an effective tax rate far from the statutory rate is a signal worth digging into, not a technicality."
+  },
+  "quiz": [
+    {
+      "question": "How is an expense without valid invoices or supporting documents treated?",
+      "options": [
+        "It is accepted if the company explains itself in a written submission",
+        "It is erased from both the financial statements and the tax return",
+        "Still recorded in the financial statements but disallowed for tax",
+        "It is deducted across the following three years instead of at once"
+      ],
+      "explanation": "The two systems run independently: accounting records what actually happened, while tax law decides what may be deducted. A written explanation cannot substitute for the documentation the law requires, nothing is erased from the published accounts, and there is no mechanism that spreads a disallowed cost over later years. The add-back raises taxable income while leaving reported accounting profit exactly where it was."
+    },
+    {
+      "question": "How is an administrative penalty treated when tax is computed?",
+      "options": [
+        "Deductible if the fine was paid by the statutory deadline",
+        "Fully deductible, since it is a real cash cost the firm bore",
+        "Half deductible, under a risk-sharing principle with the tax authority",
+        "Not deductible - allowing it would make the state fund the fine"
+      ],
+      "explanation": "The logic here is policy, not accounting: every dong of deductible expense reduces tax payable, so deducting a fine would mean the state refunds part of the penalty it has just imposed, cancelling the deterrent. Paying on time changes nothing about deductibility, the fact that cash genuinely left the company is not the test, and no partial risk-sharing deduction exists."
+    },
+    {
+      "question": "What is a company's effective tax rate?",
+      "options": [
+        "Tax actually paid divided by accounting profit before tax",
+        "The statutory rate the law sets for that particular industry",
+        "Tax actually paid divided by total revenue in the reporting period",
+        "The average tax rate of the countries the company operates in"
+      ],
+      "explanation": "This is the figure that tells you what the company genuinely pays, rather than what the law prescribes. Dividing by revenue instead of pre-tax profit produces a ratio that moves with margins and cannot be compared to any statutory rate. The gap between the effective and the statutory rate is the combined effect of disallowed expenses, exempt income and any tax incentives in force."
+    },
+    {
+      "question": "Pre-tax profit is 20bn, disallowed expenses are 3bn, the tax rate is 20%. What is the tax payable?",
+      "options": [
+        "4bn (= 20 × 20%, the statutory rate applied to accounting profit)",
+        "4.6bn (= (20 + 3) × 20%, adding back the disallowed expenses)",
+        "3.4bn (= (20 − 3) × 20%, subtracting the disallowed expenses)",
+        "0.6bn (= 3 × 20%, tax computed only on the disallowed portion)"
+      ],
+      "explanation": "Disallowed expenses are added back to the tax base, not taken out of it. Taxable income is 23bn and tax is 4.6bn - which puts the effective tax rate at 23%, not 20%."
+    },
+    {
+      "question": "Why should an analyst pay attention when the effective tax rate swings sharply between years?",
+      "options": [
+        "Because a company is allowed to pick whichever tax rate suits it each year",
+        "Because the statutory rate is reindexed every year in line with inflation",
+        "Because it can signal an expiring incentive or a large disallowance",
+        "Because the effective tax rate caps the dividend a company may pay"
+      ],
+      "explanation": "Tax incentives run for a fixed term, and in the year one expires net profit drops even though the business has not changed at all. None of the other explanations describe a real mechanism: the rate is not a matter of choice, statutory rates are not indexed to inflation, and dividend capacity is governed by distributable earnings rather than by a tax ratio. Forecasting profit without checking the incentive schedule is one of the most common errors in valuing Vietnamese companies."
+    }
+  ],
+  "keyTakeaways": [
+    "Accounting and tax are two independent rule books measuring the same business, so the two profit figures differ",
+    "Disallowed expenses are added back to taxable income; they are not erased from the financial statements",
+    "The effective tax rate shows what a company actually pays, which differs from the statutory rate",
+    "A sharply moving effective tax rate usually signals a change in incentives or a large disallowance"
+  ],
+  "practicePrompt": {
+    "question": "You are forecasting the net profit of a company whose tax incentive is about to expire. What is most easily overlooked?",
+    "options": [
+      "Revenue will fall once the tax incentive period comes to an end",
+      "The effective tax rate jumps to the standard rate, cutting net profit",
+      "The company must repay every dong of tax saved under the incentive",
+      "Non-deductible expenses will increase once the tax incentive expires"
+    ],
+    "explanation": "This is one of the most predictable profit hits there is, and still one of the most frequently missed: the operating business does not change by a single dong, but the tax line in the model has to. The incentive schedule is normally set out in the notes to the financial statements."
+  },
+  "summary": {
+    "keyIdea": "Accounting profit and taxable income answer two different questions",
+    "formula": "Taxable income = Accounting profit + Non-deductible expenses − Exempt income",
+    "commonMistake": "Multiplying pre-tax profit by the tax rate to estimate tax payable",
+    "action": "Compute the effective tax rate of a listed company for the last three years and find the explanation for the gap."
+  },
+  "application": {
+    "title": "Reading the tax line properly",
+    "message": "What is this company's effective tax rate, and how far is it from the standard rate? Does the gap come from incentives or from disallowed expenses? How long does the incentive still run?",
+    "secondary": "The notes to the financial statements usually carry a reconciliation between tax at the standard rate and the tax actually charged."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "There are two legitimate sets of books for the same company, and they do not contradict each other. One answers the question of how the business is performing, the other answers the question of how much it owes. Understanding where the two part company is understanding a line that a great many forecast models get wrong."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four categories of commonly disallowed expenses",
+      "subtitle": "The mechanism is durable; the specific caps change with the regulations in force at the time",
+      "concepts": [
+        {
+          "def": "A genuine payment that lacks an invoice or documentation meeting the requirements. This is the most common disallowance in practice."
+        },
+        {
+          "def": "Some categories of expense are deductible only up to a set threshold; the excess is disallowed. The threshold is fixed by the regulations in force at the time."
+        },
+        {
+          "def": "Administrative penalties are not deductible, because allowing the deduction would make the state budget bear part of the fine."
+        },
+        {
+          "def": "Spending that is personal in nature or unconnected to the company's production and business activity."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why this is the analyst's job, not just the accountant's",
+      "text": "The effective tax rate is one of the most frequently mis-forecast lines in a financial model. A company enjoying an incentive shows a far prettier net profit than its underlying capability, and the adjustment when that incentive expires is an event whose date is already known - it is right there in the notes."
+    },
+    {
+      "type": "heading",
+      "text": "Why the gap between the two sets of books matters to an analyst"
+    },
+    {
+      "type": "paragraph",
+      "text": "Accounting profit and taxable income differ because two rule books serve two different purposes, and that difference surfaces in the accounts as deferred tax. For anyone reading the statements this is worth scrutinising: a company with an unusually low effective tax rate over several years is either enjoying a time-limited incentive or carrying temporary differences that will reverse - and both make the tax forecast for later years wrong if you simply project today's ratio forward."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Tax is not a fixed percentage applied to profit; it is the output of its own rule book.",
+        "The next lesson covers the two mechanisms that shape the tax position of FDI companies in Vietnam: incentives and transfer pricing."
+      ]
+    }
+  ]
+}

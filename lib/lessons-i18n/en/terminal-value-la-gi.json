@@ -12,12 +12,22 @@
   ],
   "explanation": "Since it's impossible to forecast cash flow in detail forever, a DCF model typically forecasts in detail for 5-10 years, then calculates a Terminal Value representing all remaining value after that. Terminal Value usually accounts for 60-80% of the total DCF value - it is the most SENSITIVE and important part of the entire model, even though it sits in the 'most distant future'.",
   "diagram": [
-    { "label": "Forecast in detail through the final year", "arrow": true },
-    { "label": "Everything after is bundled into terminal value", "arrow": true },
-    { "label": "Calculated with perpetual growth or an exit multiple", "arrow": true },
-    { "label": "Discount to today - usually 60-80% of total value" }
+    {
+      "label": "Forecast in detail through the final year",
+      "arrow": true
+    },
+    {
+      "label": "Everything after is bundled into terminal value",
+      "arrow": true
+    },
+    {
+      "label": "Calculated with perpetual growth or an exit multiple",
+      "arrow": true
+    },
+    {
+      "label": "Discount to today - usually 60-80% of total value"
+    }
   ],
-  "interactiveType": "interest-rate",
   "realWorldExample": {
     "company": "The sensitivity of a DCF model",
     "description": "A small change in the long-term growth assumption (from 2% to 3%) can shift Terminal Value - and therefore the total DCF value - by tens of percent, illustrating how extremely sensitive this part of the model is."
@@ -104,12 +114,18 @@
       "type": "lead",
       "text": "A surprising fact for many new to DCF: the largest share of the entire valuation usually doesn't come from the 5-10 years of detailed forecast, but from a single number representing 'everything after that' - Terminal Value."
     },
-    { "type": "heading", "text": "Why Terminal Value is needed" },
+    {
+      "type": "heading",
+      "text": "Why Terminal Value is needed"
+    },
     {
       "type": "paragraph",
       "text": "It's impossible to forecast a company's cash flow in detail forever, so a DCF model typically forecasts in detail for 5-10 years, then calculates a Terminal Value representing all remaining value after that - from the final forecast year to infinity. Notably: Terminal Value usually accounts for 60-80% of total DCF value, despite sitting in the 'most distant future' and hardest-to-forecast part of the model."
     },
-    { "type": "heading", "text": "Extreme sensitivity and its consequences" },
+    {
+      "type": "heading",
+      "text": "Extreme sensitivity and its consequences"
+    },
     {
       "type": "paragraph",
       "text": "A small change in the long-term growth assumption - say from 2% to 3% - can shift Terminal Value, and therefore total DCF value, by tens of percent. This is why sensitivity analysis on Terminal Value is mandatory, not optional. A common mistake is shortening the explicit forecast period (for example, just 2 years instead of 5-10) to 'simplify' the model - but this doesn't solve the uncertainty of the future, it just shifts the forecasting burden onto Terminal Value SOONER, making the result depend more heavily on the least certain long-term assumptions."

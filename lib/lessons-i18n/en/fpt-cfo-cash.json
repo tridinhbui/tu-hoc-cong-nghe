@@ -1,0 +1,174 @@
+{
+  "slug": "fpt-cfo-cash",
+  "title": "FPT's CFO and 8,500bn of cash",
+  "subtitle": "Balancing liquidity, financial income and capital allocation",
+  "duration": "6 min",
+  "openingQuestion": "When a company holds a lot of cash, what is the most important question?",
+  "openingOptions": [
+    "How to keep as much cash in the vault as possible",
+    "Where the cash will go: investment, acquisitions or dividends",
+    "Whether the cash should be hidden",
+    "Plenty of cash means no planning is needed"
+  ],
+  "explanation": "A mountain of cash on the balance sheet is not a strength in itself - it is an unanswered question about capital allocation. The five usual options are investing for growth, acquiring another business, paying down debt, buying back shares, or holding it as a safety buffer. Rank them on one yardstick: the expected return of each option against the cost of capital. Cash that sits still for years with no plan attached is a quiet form of value destruction.",
+  "diagram": [
+    {
+      "label": "Cash"
+    },
+    {
+      "label": "Growth investment"
+    },
+    {
+      "label": "Buyback / dividend"
+    },
+    {
+      "label": "Capital allocation"
+    }
+  ],
+  "realWorldExample": {
+    "company": "FPT",
+    "description": "A company with strong cash flow is better judged through the lens of capital allocation than by the size of its cash balance alone."
+  },
+  "quiz": [
+    {
+      "question": "What can an ample cash balance do for shareholders?",
+      "options": [
+        "Create a safety buffer and flexibility on capital",
+        "Force an immediate full payout to shareholders",
+        "Make the financial statements look worse",
+        "Nothing of any real significance either way"
+      ],
+      "explanation": "Cash earns its keep when it buys optionality: the company can fund an opportunity the moment it appears without asking the market for money, and can absorb a shock without a forced sale. That is not the same as being obliged to hand it all back - a payout is one use among several, and the right one only if nothing internal clears the cost of capital. A large balance does not damage the statements either; what damages value is cash sitting idle for years with no plan attached to it."
+    },
+    {
+      "question": "Between using cash for a buyback and paying a dividend, what decides which is better for shareholders?",
+      "options": [
+        "Dividends are always better because holders get cash now",
+        "There is no difference in value between the two routes",
+        "It depends on whether the shares are undervalued",
+        "Buybacks always beat dividends in every circumstance"
+      ],
+      "explanation": "A buyback only creates value for the shareholders who stay if the company buys its own shares below intrinsic value; bought above it, the same transaction is poor capital allocation dressed up as a return of capital. Dividends are simpler and more predictable, but they cannot take advantage of a cheap share price. That is why neither route is universally better, and why 'no difference' is wrong as well - the price paid relative to value is precisely what makes the difference."
+    },
+    {
+      "question": "Why does a buyback only genuinely create value when the shares are undervalued?",
+      "options": [
+        "Because the law only permits buybacks when the price is low",
+        "Because the company is then buying an asset below its worth",
+        "Because a buyback done at a high price is taxed more heavily",
+        "Because a buyback lifts EPS whatever price is paid for it"
+      ],
+      "explanation": "The rise in EPS comes from cutting the share count and happens at any purchase price, so EPS is not the test. The test is the price paid against intrinsic value: below it, value transfers from the sellers to the holders who stay; above it, the transfer runs the other way. No jurisdiction ties permission to buy back to the share price being low, and an expensive repurchase is not penalised with a higher tax rate - the damage is economic rather than fiscal."
+    },
+    {
+      "question": "What is the usual order of priority when allocating surplus cash?",
+      "options": [
+        "Liquidity buffer, then high-ROIC projects, then payouts",
+        "There is no order; it rests entirely on management instinct",
+        "Always M&A first, to add scale as fast as possible",
+        "Always buybacks ahead of every other allocation option"
+      ],
+      "explanation": "Safety first, then the highest-returning opportunity, and only the remainder goes back to shareholders - that is the disciplined allocation logic a good CFO tends to follow. Any rule that pins one option permanently at the top skips the comparison that matters: the expected return of each use against the cost of capital. M&A done to spend surplus cash rather than to earn a return is the classic way that discipline fails, and a standing buyback preference has the same defect at a different price."
+    },
+    {
+      "question": "A company buys back shares while the market price sits above intrinsic value. What happens to the shareholders who stay?",
+      "options": [
+        "They gain, because the market always cheers a buyback announcement",
+        "They gain, because fewer shares outstanding lifts earnings per share",
+        "No effect, since a buyback is only a technical balance-sheet entry",
+        "They lose, because company cash bought an asset at too high a price"
+      ],
+      "explanation": "A buyback is an investment decision: the company is buying itself. Buy cheap and value moves from the sellers to the holders who stay; buy dear and it moves the other way - even though earnings per share rises in both cases, because the share count falls either way. That is exactly why EPS is the wrong test here. The market's reaction to the announcement says nothing about the price paid against value, and the transaction is anything but technical: real cash leaves the business."
+    }
+  ],
+  "keyTakeaways": [
+    "What matters is not having cash but what the cash is used for",
+    "Capital allocation is a survival skill for management",
+    "Do not confuse a large cash pile with high capital efficiency"
+  ],
+  "summary": {
+    "keyIdea": "What matters is not having cash but what the cash is used for",
+    "commonMistake": "Easily missed: capital allocation is a survival skill for management",
+    "action": "Do not confuse a large cash pile with high capital efficiency"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When a company holds a lot of cash, the important question is not 'how much' but 'what will it be used for'."
+    },
+    {
+      "type": "heading",
+      "text": "Capital allocation - the CFO's survival skill"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cash is only genuinely useful once it is allocated well: reinvested for growth, spent on a buyback, deployed in M&A, used to cut debt, or held as a safety buffer. Between a buyback and a dividend, the better choice depends on whether the shares are undervalued - a buyback only creates value for the remaining shareholders when the purchase price is below intrinsic value; otherwise it is poor capital allocation."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Cash is good when it creates a safety buffer and flexibility against opportunity and shock",
+        "A buyback only creates value when the shares trade below what they are worth",
+        "Capital allocation is the single most important skill of a strong CFO"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Five uses for cash, and the test for each",
+      "concepts": [
+        {
+          "def": "The priority while the company still has internal projects earning a ROIC clearly above WACC."
+        },
+        {
+          "def": "Only creates value while the shares trade below intrinsic value - buying at a high price is poor capital allocation."
+        },
+        {
+          "def": "Sensible when the target is fairly priced and the synergies are real, not merely a way of spending surplus cash.",
+          "en": "Acquiring other businesses"
+        },
+        {
+          "def": "The priority when the cost of debt exceeds the expected return on the alternatives, or when financial risk needs cutting.",
+          "en": "Paying down borrowings"
+        },
+        {
+          "def": "Necessary for liquidity safety, but holding more than that turns into an opportunity cost."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why a buyback is only good while the shares are cheap"
+    },
+    {
+      "type": "paragraph",
+      "text": "A share repurchase is, in substance, a company spending cash to buy itself. If the market price is below intrinsic value, every share bought back creates surplus value for the remaining shareholders - the equivalent of a high-return investment. If the purchase happens above intrinsic value, the reverse occurs: cash is burned to buy an expensive asset, which lowers value for the remaining shareholders even though EPS still rises in accounting terms because the share count has fallen."
+    },
+    {
+      "type": "callout",
+      "label": "The usual order of priority in practice",
+      "text": "Many CFOs follow the same sequence: secure a sufficient liquidity buffer first, then fund the internal projects with the highest ROIC, and only then consider M&A or returning capital to shareholders through dividends or buybacks with whatever is left."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Do not confuse 'holding a lot of cash' with 'using capital efficiently'.",
+        "What matters is not how much you hold, but how much extra value you create with it."
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "FPT's CFO manages over 8,500bn dong of cash and term deposits. Which strategic aim does that serve?",
+    "options": [
+      "Liquidity buffer, deposit income, and dry powder for M&A",
+      "To leave idle money sitting there doing nothing at all",
+      "To buy high-yield junk bonds carrying serious risk",
+      "To withdraw the cash and split it among the staff"
+    ],
+    "explanation": "A large cash balance gives FPT a solid liquidity buffer, earns financial income from deposit interest, and keeps equity capital ready for technology acquisitions in the US and Japan."
+  },
+  "application": {
+    "title": "In practice: FPT's CFO and 8,500bn of cash",
+    "message": "FPT's CFO manages over 8,500bn dong of cash and term deposits. Which strategic aim does that serve?",
+    "secondary": "Getting this principle straight sharpens your professional financial analysis."
+  }
+}

@@ -113,7 +113,7 @@
       "options": [
         "No, and they do not require anything else either",
         "Yes, the regulator must be told as soon as it is discovered",
-        "Yes, if the harm exceeds a certain value threshold",
+        "Yes, once the harm to clients exceeds a stated value threshold",
         "No, but they require dissociation and raising it internally"
       ],
       "explanation": "In many places external reporting is restricted by law, and a wrong accusation does real damage - so the standard stops at the internal duty."
@@ -133,7 +133,7 @@
       "options": [
         "Reporting to the compliance department",
         "Dissociating yourself from the violation",
-        "Notifying the affected clients",
+        "Notifying the clients affected by the violation",
         "Preserving the evidence of the violation"
       ],
       "explanation": "You may not yet know whom to report to, but you can always stop doing it - so this duty has no precondition at all."

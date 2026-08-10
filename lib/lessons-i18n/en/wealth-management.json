@@ -1,7 +1,7 @@
 {
   "slug": "wealth-management",
   "title": "What is wealth management?",
-  "subtitle": "Net worth, asset allocation and the portfolio you expect",
+  "subtitle": "Net worth, asset allocation and the portfolio you should expect",
   "duration": "6 min",
   "openingQuestion": "What does wealth management actually manage first?",
   "openingOptions": [
@@ -10,128 +10,118 @@
     "Just holding cash",
     "Just buying insurance"
   ],
-  "explanation": "Wealth management is broader than portfolio management: it starts from the personal balance sheet, from goals with specific dates attached, from cash coming in and going out, and from the capacity to bear volatility. Investing is only one part, and usually not the decisive one. The two areas most often skipped, yet far more influential, are liquidity for short-term needs and protection against large risks - because one unhedged event can wipe out years of accumulation.",
+  "explanation": "Wealth management is broader than portfolio management: it starts from the personal balance sheet, from goals with specific dates attached, from cash coming in and going out, and from the capacity to absorb volatility. Investing is only one part of it, and usually not the decisive part. The two areas most often skipped but far more consequential are liquidity for short-term needs and protection against large risks - because one unhedged accident can erase years of accumulation.",
   "diagram": [
-    { "label": "Net worth", "arrow": true },
-    { "label": "Asset allocation", "arrow": true },
-    { "label": "Goal planning", "arrow": true },
-    { "label": "Rebalancing", "arrow": false }
+    {
+      "label": "Net worth"
+    },
+    {
+      "label": "Asset allocation"
+    },
+    {
+      "label": "Goal planning"
+    },
+    {
+      "label": "Rebalancing"
+    }
   ],
   "realWorldExample": {
     "company": "An individual / a family",
-    "description": "A good wealth management plan does not only maximise returns; it also makes sure the money is there for education, a home, retirement, and protection against risk."
+    "description": "A good wealth management plan does not only maximise return; it also makes sure the money is there for education, a home, retirement, and protection against risk."
   },
   "quiz": [
     {
       "question": "Where does wealth management start?",
       "options": [
-        "The target return you want to achieve each year",
+        "The return target you would like to hit each year",
         "The list of stocks and funds currently recommended",
-        "The minimum capital needed to start investing",
-        "Net worth, goals, cash flow and risk appetite"
+        "The minimum capital needed to start investing at all",
+        "Net worth, goals, cash flow and risk appetite together"
       ],
-      "explanation": "Investing is only one part of the picture. Picking products before you know what you have, when you will need the money and how much volatility you can bear is doing it in the wrong order - the portfolio then serves itself rather than any goal. A target return chosen first is a wish, not a plan, because nothing has yet said what risk is acceptable to reach it."
+      "explanation": "Investing is only one part of the picture. Choosing products before you know what you own, when you will need the money and how much volatility you can live with is doing the sequence backwards - the portfolio then serves itself rather than any goal. A return target with no horizon attached is a wish, a recommendation list is a product menu, and a minimum capital figure is a sales threshold, not a plan."
     },
     {
-      "question": "Why does asset allocation matter more than picking the right single name?",
+      "question": "Why does asset allocation matter more than picking the right single stock?",
       "options": [
-        "Because the weights between asset classes drive most of the volatility",
-        "Because trading fees on individual names are far higher than on funds",
-        "Because names within the same asset class always move alike",
+        "Because the weights between asset classes drive most of the variation",
+        "Because trading costs on individual names are far higher than on funds",
+        "Because names within one asset class always move in exactly the same way",
         "Because picking the right name is something nobody can actually do"
       ],
-      "explanation": "The ratio between equities, bonds and cash determines most of how much the portfolio moves. One big winner in a small part of the portfolio struggles to make up for an allocation that is wrong for your risk appetite and time horizon. Names in one class are correlated but far from identical, and some people do pick well - the point is that it matters less than the allocation."
+      "explanation": "The split between equities, bonds and cash determines most of a portfolio's swing. One big winner inside a small slice of the portfolio rarely offsets an allocation that is out of line with your risk appetite and your time horizon. Trading costs are real but second order, names inside a class are correlated rather than identical, and skilled selection is difficult rather than impossible."
     },
     {
-      "question": "Which asset is usually in the most liquid group?",
+      "question": "Which asset usually sits in the most liquid group?",
       "options": [
-        "Unlisted growth shares",
+        "Unlisted growth company shares",
         "Cash and bank deposits",
         "Long-term rental property",
         "Collectibles and precious metals"
       ],
-      "explanation": "Liquidity is the first thing to establish when building a personal balance sheet. The other three all take time to convert: unlisted shares need a buyer and often a transfer approval, property takes months, and a collectible can only be sold at a fair price to the narrow set of people who want it."
+      "explanation": "Liquidity is the first thing to settle when building a personal balance sheet, because it decides what you can reach without selling something at a bad price. Cash and deposits convert at face value on demand. Unlisted shares may take months to sell and often at a discount, rental property takes months at best, and collectibles depend entirely on finding a particular buyer."
     },
     {
-      "question": "A family will need the house fund in 3 years. Which priority is right?",
+      "question": "A family needs to use a house-purchase fund in 3 years. Which priority is right?",
       "options": [
-        "Prioritise equities because 3 years is long term",
-        "Prioritise the highest liquidity achievable",
-        "Prioritise capital safety over growth",
-        "Prioritise growth to reach the amount in time"
+        "Favour equities, 3 years counts as long term",
+        "Favour the highest liquidity obtainable",
+        "Favour capital safety over growth",
+        "Favour growth so the money arrives in time"
       ],
-      "explanation": "The same family can have three different risk appetites for three different pots: the emergency fund needs liquidity, the 3-year house fund needs capital safety, the 25-year retirement fund can bear more risk. The time horizon decides, not the age of the owner. Maximum liquidity is not the aim either - the money is not needed tomorrow, it is needed on a known date."
+      "explanation": "The same family can hold three different risk appetites for three different pots of money: the emergency fund needs liquidity, the 3-year house fund needs capital safety, and the 25-year retirement fund can carry more risk. It is the time horizon that decides, not the age of the owner. Three years is far too short to wait out a drawdown, and maximum liquidity matters more for money you might need tomorrow."
     },
     {
       "question": "What is the point of rebalancing a portfolio?",
       "options": [
-        "Shifting gradually into safer assets",
-        "Selling the poor assets and keeping the good ones",
+        "Shifting gradually into safer assets over time",
+        "Selling the weak assets and keeping the good ones",
         "Raising the expected return of the whole portfolio",
-        "Keeping the risk level chosen at the outset"
+        "Holding the risk level you chose at the outset"
       ],
-      "explanation": "Without rebalancing, a portfolio drifts away from the risk appetite it started with, because whatever has risen most now occupies the largest weight. It is not a judgement about which asset is good or poor - rebalancing usually means selling some of the winner - and it is a discipline about risk rather than a way to lift returns."
+      "explanation": "Without rebalancing, a portfolio drifts away from its original risk appetite - the assets that rose take up a larger share, so the risk level quietly climbs above what you chose. Rebalancing is not a glide path into safety, which is a separate decision tied to a horizon; it is not a judgement about which assets are good; and it typically trims expected return slightly in exchange for holding risk steady."
     },
     {
-      "question": "Why does a good plan not aim only at maximising returns?",
+      "question": "Why does a good plan not aim purely at maximising return?",
       "options": [
-        "Because short-term liquidity and sudden risks still need covering",
-        "Because maximising returns only applies to institutional investors",
-        "Because regulators cap the return an investor is allowed to enjoy",
-        "Because a high return always brings a higher tax bill with it"
+        "Because it also has to cover near-term liquidity and unexpected risk",
+        "Because return maximisation applies only to institutional investors",
+        "Because the regulator caps the return an investor is allowed to earn each year",
+        "Because a high return always brings a higher tax bill along with it"
       ],
-      "explanation": "A high-returning portfolio with no cash for the next six months' needs will force a sale at exactly the wrong moment. Protection against events and enough liquidity are the conditions that let the long-term investment run undisturbed. Tax is a real cost but it is a deduction from a good outcome, not a reason to avoid one."
+      "explanation": "A high-returning portfolio with no cash for the next six months will force a sale at exactly the wrong moment. Protection against a shock and enough liquidity are the conditions under which the long-term investment portion is left alone to run. Institutions face the same constraint, no regulator caps returns, and tax is a consequence of gains rather than a reason to avoid them."
     }
   ],
   "keyTakeaways": [
     "Wealth management looks at net worth first, and only then at investing",
-    "Asset allocation matters more than picking one winning name",
-    "Rebalancing keeps the risk discipline in place"
+    "Asset allocation matters more than picking one winning stock",
+    "Rebalancing is what keeps risk discipline in place"
   ],
-  "practicePrompt": {
-    "question": "What is the core goal of the wealth management industry for an individual client?",
-    "options": [
-      "Preserving capital, sustainable growth, optimal asset allocation",
-      "Advising the client to bet their whole net worth on one momentum stock",
-      "Promising a fixed 50% annual return with no risk",
-      "Selling insurance products at any cost"
-    ],
-    "explanation": "Wealth management focuses on managing the whole financial picture: retirement planning, diversified asset allocation (equities, bonds, property) and protecting wealth across generations."
-  },
   "summary": {
     "keyIdea": "Wealth management looks at net worth first, and only then at investing",
-    "commonMistake": "Easy to miss: asset allocation matters more than picking one winning name",
-    "action": "Rebalancing keeps the risk discipline in place"
-  },
-  "application": {
-    "title": "Map out your net worth",
-    "message": "List your assets, debts, cash, investments and upcoming goals in one simple table, so you know which part needs protecting first.",
-    "secondary": "Usually liquidity and a safety buffer matter more than the maximum return."
+    "commonMistake": "Easily overlooked: asset allocation matters more than picking one winning stock",
+    "action": "Rebalancing is what keeps risk discipline in place"
   },
   "sections": [
     {
       "type": "lead",
-      "text": "Wealth management is not something 'you only need once you have a lot of money'. It is how you organise assets, risk and goals so that money serves your life."
+      "text": "Wealth management is not something 'only people with a lot of money need'. It is how you organise assets, risk and goals so that money serves your life."
     },
-    { "type": "heading", "text": "Three layers to manage" },
+    {
+      "type": "heading",
+      "text": "Three layers to manage"
+    },
     {
       "type": "conceptTable",
-      "title": "The wealth management framework",
-      "subtitle": "Read left to right as a process",
+      "title": "The wealth management frame",
+      "subtitle": "Read it left to right as a process",
       "concepts": [
         {
-          "vi": "Tài sản ròng",
-          "en": "Net worth",
-          "def": "Total assets less total debts - the starting point of every plan."
+          "def": "Total assets minus total liabilities - the starting point of every plan."
         },
         {
-          "vi": "Phân bổ tài sản",
-          "en": "Asset allocation",
-          "def": "Dividing money across cash, bonds, equities, property and so on, according to the goals."
+          "def": "Splitting money across cash, bonds, equities, property and so on according to the goal."
         },
         {
-          "vi": "Tái cân bằng",
-          "en": "Rebalancing",
           "def": "Bringing the portfolio back to its target weights as markets move."
         }
       ]
@@ -140,58 +130,67 @@
       "type": "comparison",
       "left": {
         "label": "The common mistake",
-        "text": "Seeing one high-returning channel and pouring money into it without considering the goal, the liquidity or the time frame."
+        "text": "Spotting one high-returning channel and pouring money into it without considering the goal, the liquidity or the time horizon."
       },
       "right": {
         "label": "The right approach",
-        "text": "Dividing assets by goal: money for the near term, money for protection, money for growth, money for the long term."
+        "text": "Split assets by goal: near-term money, protection money, growth money and long-term money."
       }
     },
     {
       "type": "paragraph",
-      "text": "A concrete example: a family with a net worth of VND 5bn, with goals including an emergency fund (highly liquid, 6 months of spending), a house fund for the next 3 years (safety first), and a retirement fund 25 years out (able to bear more risk for growth). Wealth management properly done means allocating that VND 5bn into three different 'pots' according to the time frame and goal of each, instead of pooling it and investing all of it on a single strategy."
+      "text": "A concrete example: a family with a net worth of 5bn, whose goals include an emergency fund (high liquidity, 6 months of spending), a house purchase in the next 3 years (safety first), and retirement 25 years away (able to accept more risk for growth). Wealth management properly done means allocating that 5bn into three separate 'buckets' matched to the horizon and goal of each, rather than pooling it and investing all of it under a single strategy."
     },
     {
       "type": "heading",
-      "text": "Splitting that VND 5bn into three pots, each with its own risk appetite"
+      "text": "Splitting that 5bn into three buckets, each with its own risk appetite"
     },
     {
       "type": "paragraph",
-      "text": "The family spends VND 30m a month, so a 6-month emergency fund is VND 180m - 3.6% of their assets. The house deposit needs VND 1.5bn in 3 years, which is 30%. The remaining VND 3.32bn, or 66.4%, is retirement money with a 20-year horizon. These three pots cannot share one equity weighting, because what decides it is not how adventurous the family is but when the money has to be there."
+      "text": "The family spends 30m a month, so a 6-month emergency fund is 180m - 3.6% of assets. The house deposit needs 1.5bn in 3 years, or 30%. The remaining 3.32bn, equivalent to 66.4%, is retirement money on a 20-year horizon. These three buckets cannot share one equity weighting, because what decides it is not the family's taste for risk but the date the money has to be there."
     },
     {
       "type": "conceptTable",
-      "title": "One family, three different levels of risk",
+      "title": "One family, three different risk levels",
       "subtitle": "The time horizon decides, not the personality",
       "concepts": [
         {
-          "vi": "Emergency fund - VND 180m, needed at any moment",
-          "en": "0% equities",
-          "def": "The only criterion is being able to withdraw immediately without losing value. Short-term deposits or a money market fund. Putting a single dong of equity in here means accepting you may have to sell at a loss precisely when you lose your job."
+          "def": "The only criterion is being able to withdraw immediately without losing value. Short-term deposits or a money market fund. Putting a single dong of equity in here means accepting you might have to sell at a loss on the day you lose your job."
         },
         {
-          "vi": "House deposit - VND 1.5bn, needed in 3 years",
-          "en": "Very little equity or none",
-          "def": "Three years is too short to wait out a recovery from a fall. If the market drops 30% in the third year, the plan to buy is postponed - and that is a real failure, not a temporary fluctuation."
+          "def": "Three years is far too short to wait out a recovery after a fall. If the market drops 30% in year three, the house purchase is postponed - and that is a real failure, not a temporary fluctuation."
         },
         {
-          "vi": "Retirement - VND 3.32bn, needed in 20 years",
-          "en": "High equity weighting",
-          "def": "This is the only pot long enough for volatility risk to become something you are paid for. Keeping this pot too safe is the biggest risk of all, because 20 years of inflation erodes purchasing power more certainly than any market fall."
+          "def": "This is the only bucket long enough for volatility risk to become something you are paid for. Keeping this bucket too safe is the biggest risk of all, because 20 years of inflation erodes purchasing power more surely than any drawdown."
         }
       ]
     },
     {
       "type": "callout",
-      "label": "Why asking what your risk appetite is out of ten is usually meaningless",
-      "text": "The same person, on the same day, has three different answers for the three pots above. Collapsing them into one number and applying a single allocation to the whole VND 5bn puts the emergency fund somewhere too risky and the retirement money somewhere too safe - wrong at both ends at once. That is why asset allocation starts from a list of goals with dates attached, not from a personality questionnaire."
+      "label": "Why 'what is your risk appetite out of ten' is usually a meaningless question",
+      "text": "The same person, on the same day, has three different answers for the three buckets above. Collapsing them into one number and applying a single allocation to the whole 5bn puts the emergency fund somewhere too risky and the retirement money somewhere too safe - wrong at both ends simultaneously. That is why asset allocation starts from a list of goals with dates attached, and not from a personality questionnaire."
     },
     {
       "type": "closing",
       "lines": [
-        "Good wealth management is there to make life hold fewer surprises.",
-        "Not to chase the prettiest return figure."
+        "Managing wealth well is about making life hold fewer surprises.",
+        "It is not about chasing the prettiest return figure."
       ]
     }
-  ]
+  ],
+  "application": {
+    "title": "Draw your own net worth",
+    "message": "List your assets, debts, cash, investments and upcoming goals in a simple table so you can see which part needs protecting first.",
+    "secondary": "Usually liquidity and a safety buffer matter more than maximising return."
+  },
+  "practicePrompt": {
+    "question": "What is the core objective of the wealth management industry for individual clients?",
+    "options": [
+      "Capital preservation, sustainable growth, optimal asset allocation",
+      "Advising the client to bet their whole net worth on 1 stock to trade",
+      "Promising a fixed 50%/year return with no risk attached",
+      "Selling insurance products at any cost"
+    ],
+    "explanation": "Wealth management focuses on managing the whole financial picture: retirement planning, diversified asset allocation (equities, bonds, property) and protecting wealth across generations."
+  }
 }

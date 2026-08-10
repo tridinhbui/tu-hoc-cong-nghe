@@ -1,0 +1,156 @@
+{
+  "slug": "thue-hoan-lai-deferred-tax",
+  "title": "Standards & Tax, Lesson 5: Deferred tax - the hardest line on the balance sheet",
+  "subtitle": "Temporary differences between accounting and tax, and why they tell you about the future",
+  "duration": "11 min",
+  "whyItMatters": "Deferred tax is the line most learners skip because it looks difficult, yet it is the bridge between the previous two lessons and the whole accounting section you have already worked through. Read it properly and you know how much tax the company will owe in future, and how confident management is about the profits ahead.",
+  "openingQuestion": "Where does deferred tax come from?",
+  "openingOptions": [
+    "From the company asking the authorities to extend its tax payment deadline",
+    "From temporary differences between how accounting and the tax rules recognise things",
+    "From tax the company is currently disputing and has not yet paid into the budget",
+    "From tax overpaid in earlier years that is still sitting there waiting to be refunded"
+  ],
+  "explanation": "Accounting and tax look at the same transaction on two different schedules. Depreciation is the classic case: the books write an asset off evenly over ten years, while the tax rules may allow a faster deduction. Total expense over the asset's whole life is identical - only the timing differs. That temporary difference creates tax that will have to be paid, or relief that will be received, in future - and the accounts recognise it today as a deferred tax asset or a deferred tax liability.",
+  "diagram": [
+    { "label": "Accounting recognises on schedule A" },
+    { "label": "Tax recognises on schedule B" },
+    { "label": "Temporary difference" },
+    { "label": "Deferred tax asset or liability" }
+  ],
+  "realWorldExample": {
+    "company": "A company that has just invested heavily in fixed assets",
+    "description": "A company that has just finished building a plant will usually show a sharp rise in deferred tax liabilities, because the tax rules allow faster depreciation than the straight-line treatment in the books. In the first few years it pays less tax than its accounting profit would imply, and the gap is booked as a deferred tax liability. In later years the direction reverses: the tax-deductible depreciation has run out while the books are still charging it, so the actual tax bill comes in higher."
+  },
+  "quiz": [
+    {
+      "question": "How does a temporary difference differ from a permanent one?",
+      "options": [
+        "Temporary differences only arise at companies that carry foreign investment capital",
+        "Temporary differences reverse in later periods; permanent differences never reverse",
+        "Permanent differences come from depreciation, temporary ones from administrative fines",
+        "Temporary differences are booked into equity while permanent ones hit the income statement"
+      ],
+      "explanation": "Only a temporary difference creates deferred tax, because it cancels itself out over time. An administrative fine is a permanent difference: it is never deductible in any period, so it produces no deferred item at all. Depreciation is the textbook temporary difference, not a permanent one, which is why that pairing is reversed. Nothing about foreign ownership creates or removes a timing gap, and both types of difference run through the tax charge in the income statement rather than being posted straight to equity."
+    },
+    {
+      "question": "What does a deferred tax asset represent?",
+      "options": [
+        "Cash the company has already overpaid and will get refunded by the tax authority",
+        "The value of the tax-exempt assets the company currently happens to hold on its books",
+        "A future tax benefit, usually from carried-forward losses or provisions",
+        "Tax the company expects to save thanks to an investment incentive scheme it qualifies for"
+      ],
+      "explanation": "It is an economic benefit that lands in the future, not a receivable for cash already handed over - an overpayment is a current tax receivable and sits somewhere else entirely. Nor is it a measure of exempt assets held, and it is broader than any single incentive scheme. But it only has value if the company genuinely earns taxable profit later on to use it against, which is the whole point of the next question."
+    },
+    {
+      "question": "Why is recognising a deferred tax asset a signal worth paying attention to?",
+      "options": [
+        "Because it shows the company is running into trouble with its tax filings",
+        "Because it reduces equity and therefore limits the ability to pay a cash dividend",
+        "Because it forces the company to publish a detailed business plan for the following year",
+        "Because recognising it requires management to believe future taxable profit will be enough"
+      ],
+      "explanation": "The standards only allow recognition when it is probable that taxable profit will exist to absorb the benefit. Booking or writing off a large deferred tax asset is therefore an indirect statement by management about the profit outlook, and a write-off is a strong negative signal. It has nothing to do with filing difficulties, it increases rather than reduces equity, and no disclosure of next year's plan is triggered by it."
+    },
+    {
+      "question": "What does a large deferred tax liability that grows steadily year after year tell you?",
+      "options": [
+        "The company is investing heavily and gaining on the timing of its tax payments",
+        "The company owes overdue tax to the budget and risks penalties for paying late",
+        "The company is under a tax inspection and has provided for an expected assessment",
+        "The company is gradually shifting profit into subsidiaries registered in other countries"
+      ],
+      "explanation": "This is not an overdue debt to the state but the consequence of tax-deductible costs arriving earlier than accounting costs. For a company that keeps reinvesting, the balance can be maintained or grow almost indefinitely - in practice it works like an interest-free source of funding. An overdue liability would sit in current taxes payable, a disputed assessment would be a provision, and profit shifting shows up in the effective tax rate rather than here."
+    },
+    {
+      "question": "Why does a company with several loss-making years still recognising a deferred tax asset deserve a closer look?",
+      "options": [
+        "Because a deferred tax asset may only be recognised while the company is profitable",
+        "Because recognising it implicitly asserts they expect enough profit to absorb the losses",
+        "Because the item increases the tax liability payable in the next few reporting periods",
+        "Because the tax authority might refuse to let the losses be carried forward into later years"
+      ],
+      "explanation": "Recognising a deferred tax asset is a statement about the future: there will be taxable profit to set the loss against. When that forecast fails, the item has to be written off, and the write-off lands directly in the following year's profit. The rules do not require current profitability, the item reduces rather than increases future tax, and carry-forward is a legal entitlement rather than a discretionary approval."
+    }
+  ],
+  "keyTakeaways": [
+    "Only temporary differences create deferred tax; permanent differences never do",
+    "A deferred tax asset is a future tax benefit, worth something only if the company actually earns profit",
+    "Booking or writing off a large deferred tax asset is a signal about the profit outlook",
+    "At a company that keeps investing, a deferred tax liability behaves much like interest-free funding"
+  ],
+  "practicePrompt": {
+    "question": "A company writes off most of the deferred tax asset it had recognised. How should you read that?",
+    "options": [
+      "The tax authority has just refunded the company the corresponding amount in cash",
+      "Management no longer believes future profits will be enough to use that tax benefit",
+      "The company has settled its tax obligations for all prior years with nothing outstanding",
+      "This is a routine periodic accounting step and carries no information about the outlook"
+    ],
+    "explanation": "This is one of the strongest warning signals a set of financial statements can send, and it usually appears before the company admits to any difficulty in words. The write-off also cuts reported profit sharply even though not a single unit of cash leaves the business."
+  },
+  "summary": {
+    "keyIdea": "Deferred tax is where accounting and tax meet, and where management lets slip what it expects from the future",
+    "commonMistake": "Skipping the line because it looks hard, and losing the early warning signal it carries",
+    "action": "Find the deferred tax line on a manufacturer's balance sheet and read the note that explains where it came from."
+  },
+  "application": {
+    "title": "Three questions to ask when you see deferred tax",
+    "message": "Which difference does this come from - depreciation, provisions or carried-forward losses? When will it reverse? And if it is a deferred tax asset, does the company have a profit outlook strong enough to use it?",
+    "secondary": "Those three questions turn a confusing line item into a source of information about the company's future."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "On the balance sheet of almost every manufacturer there is a line most learners skim past because they do not understand it: deferred tax. It is hard not because it is complicated, but because nobody told you beforehand that accounting and tax are two parallel record-keeping systems running on two different schedules."
+    },
+    {
+      "type": "formula",
+      "title": "Where deferred tax comes from",
+      "label": "The temporary difference times the tax rate",
+      "equation": "Deferred tax = Temporary difference × Tax rate expected on reversal",
+      "variables": [
+        {
+          "symbol": "Temporary difference",
+          "name": "A difference in timing",
+          "description": "The carrying amount in the books against the tax base of the same item"
+        },
+        {
+          "symbol": "Tax rate",
+          "name": "The rate that will apply",
+          "description": "The tax rate expected to be in force when the difference reverses"
+        }
+      ],
+      "example": {
+        "title": "A depreciation example",
+        "calculation": "Carrying amount 700, tax base 500, difference 200, tax rate 20%",
+        "result": "Deferred tax liability of 40",
+        "explanation": "The company has already deducted more for tax than it charged in the books, so in future it will pay an extra 40 when the difference reverses. Recognising it today is precisely what lets the reader of the statements see that coming."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Deferred tax asset",
+        "text": "Tax relief to come in future. Usually from carried-forward losses and provisions. Recognised only when profits are believed likely enough to use it."
+      },
+      "right": {
+        "label": "Deferred tax liability",
+        "text": "Extra tax to be paid in future. Usually from accelerated depreciation and asset revaluations."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why this lesson closes the stage",
+      "text": "Deferred tax exists only because accounting and tax measure the same thing in two different ways. That is the thread running through this whole stage: every number you read is the output of a specific set of measurement rules, and understanding those rules matters as much as understanding the business."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The hardest line on the balance sheet turns out to be the one that says the most about the future.",
+        "End of the stage: you now have the tools to read a Vietnamese report in the context of its own standards and tax rules."
+      ]
+    }
+  ]
+}

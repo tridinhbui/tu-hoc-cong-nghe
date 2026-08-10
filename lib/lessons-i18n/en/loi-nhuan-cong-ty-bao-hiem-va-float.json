@@ -1,0 +1,154 @@
+{
+  "slug": "loi-nhuan-cong-ty-bao-hiem-va-float",
+  "title": "Pricing, Lesson 5: Where an insurer makes its money - underwriting or investing",
+  "subtitle": "The combined ratio, float, and why a company losing money on underwriting can still be a good company",
+  "duration": "11 min",
+  "whyItMatters": "Reading an insurer's accounts without separating underwriting profit from investment profit is not reading them at all. The two sources differ completely in nature, in risk and in how durable they are.",
+  "openingQuestion": "What does a combined ratio of 105% mean?",
+  "openingOptions": [
+    "A loss of 5 dong on underwriting for every 100 dong of premium collected",
+    "A profit of 5 dong on underwriting for every 100 dong of premium collected",
+    "The company's total assets exceed its total obligations by 5%",
+    "The company has used 105% of the reinsurance capacity granted for the year"
+  ],
+  "explanation": "The combined ratio is the loss ratio plus the expense ratio, measured against premiums earned. Above 100% means the pure insurance business is losing money. But this is where insurance differs from every other industry: a company with a combined ratio of 105% can still be highly profitable, because it holds the premium money from the moment it is collected until the moment a claim is paid, and invests it throughout that gap. That temporarily held money is called float, and in long-tail lines it can stay with the company for years. Put another way, the 5% underwriting loss is exactly the price the company pays to hold a pool of interest-free capital - and if the investment yield beats that price, this is a very good model.",
+  "diagram": [
+    { "label": "Loss ratio + expense ratio = combined ratio" },
+    { "label": "Below 100% → underwriting profit" },
+    { "label": "Above 100% → underwriting loss, i.e. the cost of the float" },
+    { "label": "+ investment return on the float = the real result" }
+  ],
+  "realWorldExample": {
+    "company": "The Berkshire Hathaway insurance model",
+    "description": "Warren Buffett describes float as other people's money the company gets to hold and invest, and he treats keeping the combined ratio below 100% as the goal - meaning being paid to hold someone else's capital. But he is equally clear about the other side: a company chasing premium growth by cutting price pushes the combined ratio up, and the float is then expensive capital rather than cheap."
+  },
+  "quiz": [
+    {
+      "question": "What does the combined ratio consist of?",
+      "options": [
+        "The loss ratio plus the profit from investment activity",
+        "The loss ratio plus the operating expense ratio",
+        "Total obligations divided by the company's total assets",
+        "Technical reserves over total premiums written in the period"
+      ],
+      "explanation": "It measures the insurance operation on its own, deliberately excluding investment profit so that two sources of very different character do not get mixed together. That is also why the other options fail: bringing investment income in defeats the purpose of the ratio, assets over obligations is a solvency measure rather than a performance one, and reserves over premiums says something about prudence, not about whether the year's underwriting made money."
+    },
+    {
+      "question": "What is an insurer's float?",
+      "options": [
+        "The cash reserve the regulator requires the company to hold",
+        "The shareholders' equity the company uses for investing",
+        "Premiums already collected but not yet paid out in claims",
+        "The gap between premiums written and premiums ceded"
+      ],
+      "explanation": "It is other people's money that the company gets to hold and invest during the gap - and in long-tail lines that gap runs to many years. It is not the regulatory reserve, which is a constraint on capital rather than a pool of it, and it is not shareholders' equity, which the company owns outright and which carries no obligation to pay it back to a policyholder."
+    },
+    {
+      "question": "Why can a company losing money on underwriting still be a good company?",
+      "options": [
+        "Because the underwriting loss is offset against corporate income tax",
+        "Because investment profit is always steadier than underwriting profit",
+        "Because the combined ratio does not reflect true operating performance",
+        "Because the underwriting loss is the price paid to hold investable capital"
+      ],
+      "explanation": "If the investment yield on the float exceeds that cost, the model still works. The right question is whether the float is cheap or expensive, not whether underwriting made a profit or a loss. Tax relief does not turn a loss into a gain, investment income is the more volatile of the two sources rather than the steadier one, and the combined ratio measures the underwriting operation exactly as intended - the mistake is reading it as a verdict on the whole company."
+    },
+    {
+      "question": "What is the risk of leaning heavily on investment profit?",
+      "options": [
+        "Insurance obligations are fixed while investment markets move",
+        "The regulator caps the share of profit that may come from investing",
+        "Investment profit is taxed at a higher rate than underwriting profit",
+        "Reinsurers raise their rates once they see the reliance on investing"
+      ],
+      "explanation": "The promise made to the policyholder is fixed. A bad year in the markets does not reduce that obligation, so the two sides diverge at precisely the hardest moment. There is no rule capping investment income and no penal tax rate on it; the exposure is purely the mismatch between a fixed liability and a variable asset."
+    },
+    {
+      "question": "What happens to a company that grows premiums fast by cutting price?",
+      "options": [
+        "Float grows, so investment income makes up the difference",
+        "The combined ratio rises and the float becomes expensive capital",
+        "Market share grows, cutting the admin cost per policy sold",
+        "Risk falls because a larger book makes the law of large numbers work better"
+      ],
+      "explanation": "This is the classic cycle of the industry: buy share with price, watch the combined ratio deteriorate, and then the whole market has to raise rates after one heavy loss year. The float does grow and the expense ratio does improve with scale, but neither offsets underpriced risk: the extra premium arrives with more claims attached to it, and a bigger book of badly priced policies makes the law of large numbers converge on a loss rather than on a profit."
+    }
+  ],
+  "practicePrompt": {
+    "question": "Premiums earned 2,000bn, loss ratio 72%, expense ratio 31%. Float 5,000bn, investment yield 6%. What is the total pre-tax result?",
+    "options": [
+      "A profit of 240bn (= 300 investment − 60 underwriting loss)",
+      "A loss of 60bn (= counting the underwriting result only)",
+      "A profit of 300bn (= counting the investment income only)",
+      "A profit of 360bn (= adding the 60 loss onto the 300 profit)"
+    ],
+    "explanation": "The combined ratio is 72% + 31% = 103%, an underwriting loss of 3% on 2,000bn, which is 60bn. The 5,000bn of float earns 300bn. Together that leaves a pre-tax profit of 240bn. The number worth looking at is not the 240 but the combined ratio of 103%: it says this float costs 60bn a year, about 1.2% - still cheaper than borrowing, so the model is sound. If the combined ratio were below 100% the company would be paid to hold the float, and that is the best state an insurer can be in. The 360bn option gets the sign wrong, turning a loss into income."
+  },
+  "keyTakeaways": [
+    "Combined ratio = loss ratio + expense ratio. Above 100% is an underwriting loss.",
+    "Float is premium collected but not yet paid out - the company invests it during the gap.",
+    "The underwriting loss is the cost of the float; the right question is whether the float is cheap or expensive.",
+    "Leaning on investment profit is a mismatch: the obligations are fixed, the markets are not."
+  ],
+  "summary": {
+    "keyIdea": "An insurer makes money in two places: the underwriting result and the investment income on the money held between the two dates",
+    "formula": "Combined ratio = (claims + expenses) / premiums earned",
+    "commonMistake": "Reading the bottom line without separating the two sources. A company losing money on underwriting for years can still report a profit thanks to investing.",
+    "action": "Work out the combined ratio first, and only then look at the investment income. Above 100% means underwriting is losing money."
+  },
+  "application": {
+    "title": "Separate the two sources of profit",
+    "message": "Take an insurer's accounts, compute the combined ratio, then see how much of pre-tax profit the investment income contributes.",
+    "secondary": "If the combined ratio has been above 100% for several years, that model depends on interest rates rather than on pricing skill."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An insurer has two money-making engines running side by side, and they differ so much that collapsing them into a single profit figure throws away most of the information."
+    },
+    { "type": "heading", "text": "Engine one: underwriting" },
+    {
+      "type": "formula",
+      "title": "The combined ratio",
+      "equation": "Combined ratio = loss ratio + expense ratio",
+      "variables": [
+        { "symbol": "loss ratio", "name": "claims ratio", "description": "claims paid and reserved, divided by premiums earned" },
+        { "symbol": "expense ratio", "name": "cost ratio", "description": "commission, administration and selling costs, divided by premiums earned" }
+      ],
+      "example": {
+        "title": "Reading a figure of 105%",
+        "calculation": "72% claims + 33% expenses",
+        "result": "a loss of 5 dong on every 100 dong of premium",
+        "explanation": "The pure insurance operation is losing money. But that is not yet a conclusion about the company - only about one of the two engines."
+      }
+    },
+    { "type": "heading", "text": "Engine two: the float" },
+    {
+      "type": "paragraph",
+      "text": "Between collecting a premium and paying a claim there is an interval, and during it the company holds other people's money. For motor insurance the interval is a few months. For liability or life cover it can be decades. That temporarily held money is invested, and at many companies it is the main source of profit."
+    },
+    {
+      "type": "callout",
+      "label": "The right question when reading the accounts",
+      "text": "Not \"did underwriting make a profit\" but \"is this float cheap or expensive\". A combined ratio of 105% means the company pays 5% a year to hold that capital - cheaper than almost any other way of raising it. A combined ratio of 130% makes it very expensive capital, and the model only holds up if investment markets stay favourable."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Underwriting profit",
+        "text": "Comes from pricing correctly and managing claims well. Durable, repeatable, and within the company's control."
+      },
+      "right": {
+        "label": "Investment profit",
+        "text": "Comes from the market. It can be very large in a good year and vanish in a bad one - while the obligation to policyholders does not change."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An insurer with a mild underwriting loss and disciplined investing can be a very good company.",
+        "One showing an underwriting profit built on under-reserving is not - and on this year's accounts the two look identical."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "slug": "duration-va-convexity-do-nhay-gia-trai-phieu",
+  "title": "Duration and Convexity: measuring a bond's price sensitivity to interest rates",
+  "subtitle": "Duration gives the first-order estimate, convexity corrects the error - and why that difference matters when rates move sharply",
+  "duration": "10 min",
+  "openingQuestion": "A bond has a modified duration of 7. Market rates rise by one percentage point. What is the quick estimate of the price change, and is that estimate exactly right?",
+  "openingOptions": [
+    "The price rises about 7%, and that figure is exactly right",
+    "The price falls about 7%, though slightly less in reality thanks to convexity",
+    "The price falls exactly 7% in all cases, whatever the size of the rate move",
+    "You cannot estimate it without knowing the bond's remaining term"
+  ],
+  "explanation": "Modified duration tells you the approximate percentage price change when yields move by one percentage point, in the opposite direction. But it is a first derivative - it approximates the price/yield relationship with a straight line, while the true relationship is a convex curve. Because of that curvature, when yields rise the price falls by less than duration predicts, and when yields fall the price rises by more than duration predicts. The error is small for small moves and grows with large ones, and convexity is precisely the quantity that measures it.",
+  "realWorldExample": {
+    "company": "Why convexity is worth something to a bond investor",
+    "description": "Take two bonds with the same modified duration of 8 but different convexity. For small rate moves the two behave almost identically, so convexity makes virtually no difference. But when rates move sharply - either way - the higher-convexity bond always does better: it falls less when rates rise and gains more when rates fall. Put differently, high convexity is an asymmetrically favourable property, so in normal market conditions it usually has to be paid for with a slightly lower yield. That is why bond portfolio managers do not just match duration to the benchmark but also watch convexity, especially when they expect rates to move sharply."
+  },
+  "quiz": [
+    {
+      "question": "What does modified duration measure?",
+      "options": [
+        "The time still remaining until the bond reaches maturity",
+        "The percentage price change per one percentage point of yield",
+        "How sensitive the yield is to a change in the bond's price",
+        "The average number of years to recover all principal cash flows"
+      ],
+      "explanation": "This is the point most often confused with time to maturity. A 10-year bond with a high coupon has a shorter duration than a 10-year zero-coupon bond, because the cash flows arrive earlier and the price is therefore less sensitive to rates. The causality also runs the other way round from option three: price responds to yield, not yield to price. And duration weights all the cash flows, coupons included, not only principal."
+    },
+    {
+      "question": "Which factor SHORTENS a bond's duration?",
+      "options": [
+        "A higher credit rating on the part of the issuer",
+        "A larger issue size for that particular bond offering",
+        "A higher coupon together with a higher market yield",
+        "A lower coupon combined with an even longer remaining term"
+      ],
+      "explanation": "Duration is fundamentally the weighted average time of the cash flows. A high coupon pushes more value into the early periods, and a high yield discounts the distant cash flows more heavily - both pull the weight forward. A lower coupon on a longer term does the opposite and lengthens duration. Credit rating and issue size affect the price and the liquidity of a bond, but neither changes when its cash flows arrive."
+    },
+    {
+      "question": "What benefit does positive convexity give a bond investor?",
+      "options": [
+        "Yield to maturity is guaranteed unchanged until maturity",
+        "The price always rises whichever way rates move",
+        "The bond's duration stays constant as rates move",
+        "The price falls less and rises more than duration predicts"
+      ],
+      "explanation": "It is exactly this asymmetry that makes convexity a desirable property, and exactly why it usually has to be paid for with a slightly lower yield than a bond of the same duration but lower convexity. Convexity does not stop the price falling when rates rise - it only softens the fall - and it is the very thing that makes duration change as rates move, since duration is the slope of a curve rather than of a line."
+    },
+    {
+      "question": "Why does a callable bond typically show negative convexity when rates fall?",
+      "options": [
+        "Because if rates fall far enough, the issuer calls the bond back",
+        "Because a callable bond always carries a lower coupon than a plain bond",
+        "Because the investor holds the right to sell the bond back to the issuer",
+        "Because a callable bond's term is always shorter than five years"
+      ],
+      "explanation": "The call option sits with the issuer, so it works against the investor at precisely the most favourable moment. That ceiling on the price is what creates negative convexity, and it is why callable bonds usually have to compensate investors with a higher yield. The right to sell back belongs to a putable bond, which is a different instrument, and neither the coupon nor the term is fixed by the call feature."
+    },
+    {
+      "question": "Scenario: a bond has a modified duration of 6. Market rates rise 0.5%. Roughly how much does the price change?",
+      "options": [
+        "Up about 3%, since rates and prices move together",
+        "Down about 3% (= 6 × 0.5%, first order)",
+        "Down about 0.5%, matching the rate rise exactly",
+        "Down about 12% (= 6 ÷ 0.5, dividing not multiplying)"
+      ],
+      "explanation": "Modified duration multiplied by the change in yield gives the estimated percentage price move, in the opposite direction: 6 × 0.5% = a 3% fall. This is only a first-order approximation - for large rate moves convexity corrects it and the actual fall is a little gentler than this figure."
+    }
+  ],
+  "keyTakeaways": [
+    "Modified duration is a first-order estimate of price sensitivity to rates, not the bond's remaining term.",
+    "A higher coupon and a higher yield both shorten duration because cash flows arrive earlier in weighted terms.",
+    "Convexity corrects duration's error; positive convexity is an asymmetric benefit, so it usually comes with a lower yield.",
+    "Callable bonds show negative convexity when rates fall, because the price has a ceiling."
+  ],
+  "practicePrompt": {
+    "question": "A bond has modified duration 6 and convexity 80. Rates rise by 2 percentage points. What is the fuller estimate of the price change?",
+    "options": [
+      "Down exactly 12%, since 6 times 2 percentage points",
+      "Down about 10.4%: duration −12%, convexity +1.6%",
+      "Down about 13.6% because convexity deepens the fall",
+      "Unchanged because the two effects fully cancel out"
+    ],
+    "explanation": "The two-term estimate: the price change is approximately minus duration times the yield move, plus one half of convexity times the square of the yield move. The convexity term always adds when convexity is positive, so it reduces the loss when rates rise and increases the gain when rates fall."
+  },
+  "summary": {
+    "keyIdea": "Duration gives a first-order estimate of price sensitivity to rates; convexity corrects the error and becomes important when rates move sharply.",
+    "commonMistake": "Confusing duration with time to maturity, or using duration alone to predict prices when rates move a long way.",
+    "action": "Take a specific bond, compute the price change from duration and then add the convexity adjustment, and compare the two results at a 0.5 point move and a 3 point move."
+  },
+  "application": {
+    "title": "Applying it in portfolio management",
+    "message": "When building a bond portfolio, set duration according to your view on the direction of rates and to the benchmark's duration, then use convexity to shape how the portfolio responds when rates move sharply.",
+    "secondary": "If you expect large rate moves but are unsure of the direction, a portfolio with the same duration but higher convexity is usually the better choice."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The most practical question a bond trader asks is: if rates move, how much does this bond's price change? Duration answers it approximately, and convexity tells you where that approximation goes wrong."
+    },
+    { "type": "heading", "text": "Duration: the first-order estimate" },
+    {
+      "type": "formula",
+      "title": "Estimating the price change from duration",
+      "equation": "% price change ≈ − Modified Duration × Δ yield",
+      "variables": [
+        {
+          "symbol": "Modified Duration",
+          "name": "Price sensitivity",
+          "description": "Tells you the percentage price change per one percentage point move in yields. A duration of 7 means a 1 point rise in rates cuts the price by about 7%."
+        },
+        {
+          "symbol": "Δ yield",
+          "name": "Size of the rate move",
+          "description": "Measured in percentage points. The minus sign in the formula reflects the inverse relationship between bond prices and yields."
+        }
+      ],
+      "example": {
+        "title": "A worked illustration",
+        "calculation": "− 7 × 1% = −7% · but if rates rise 3%: −7 × 3% = −21%",
+        "result": "The −21% estimate will be materially off",
+        "explanation": "For small moves the duration estimate is fairly close. At a 3 percentage point move, duration's straight line has pulled well away from the true curve, and the actual fall will be appreciably smaller than 21% - which is exactly what convexity explains."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Duration is not time to maturity",
+      "text": "This is the most common confusion of all. A 10-year bond with an 8% coupon has a distinctly shorter duration than a 10-year zero-coupon bond, because the investor receives most of the value sooner. Duration is the weighted average time of the cash flows, so it depends on the term, the coupon and the market yield together - and only coincides with time to maturity in the zero-coupon case."
+    },
+    { "type": "heading", "text": "Three things that determine duration" },
+    {
+      "type": "list",
+      "items": [
+        "Remaining term: longer means longer duration, because the largest cash flow sits further into the future.",
+        "Coupon level: a higher coupon shortens duration, because more value is received in the early periods.",
+        "Market yield: a higher yield shortens duration, because distant cash flows are discounted more heavily and so carry less weight."
+      ]
+    },
+    { "type": "heading", "text": "Convexity: correcting the error" },
+    {
+      "type": "formula",
+      "title": "A fuller two-term estimate",
+      "equation": "% price change ≈ − Duration × Δr + ½ × Convexity × (Δr)²",
+      "example": {
+        "title": "Duration 6, convexity 80, rates up 2 percentage points",
+        "calculation": "− 6 × 2% = −12% · then ½ × 80 × (0.02)² = +1.6%",
+        "result": "Fuller estimate ≈ −10.4% rather than −12%",
+        "explanation": "The convexity term always adds when convexity is positive, whether rates rise or fall - because the term contains the square of the move. That is the source of the favourable asymmetry."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Positive convexity",
+        "text": "The property of an ordinary bond. When rates rise, the price falls less than duration predicts; when rates fall, it rises more than duration predicts. Beneficial in both directions, so it usually has to be paid for with a lower yield."
+      },
+      "right": {
+        "label": "Negative convexity",
+        "text": "Found in callable bonds and in some products with embedded options. When rates fall, the price hits a ceiling because the issuer has an incentive to call - working against the investor at exactly the moment it should have been working for them."
+      }
+    },
+    { "type": "heading", "text": "Applications in portfolio management" },
+    {
+      "type": "list",
+      "items": [
+        "Match duration to the benchmark to control interest rate exposure relative to the comparison index.",
+        "Deliberately lengthen or shorten duration when you have a clear view on the direction of rates - longer if you expect rates to fall, shorter if you expect them to rise.",
+        "Use convexity when you are unsure of the direction but expect large moves: at the same duration, the higher-convexity portfolio does better in both directions.",
+        "For future payment obligations, match the duration of assets to the duration of liabilities to reduce interest rate risk - the founding principle of liability-driven investment."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "What both duration and convexity assume",
+      "text": "Both assume the yield curve shifts in parallel - every maturity rising or falling by the same amount. In practice the curve usually changes shape: short and long maturities can move by different amounts, or even in opposite directions. So for a large portfolio, total duration alone is not enough; you also need exposure measured by maturity bucket to capture the risk when the slope of the curve changes."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Duration gives you a fast answer, and a good enough one for small moves.",
+        "Convexity tells you how far off that answer is - and the gap widens exactly when markets move most."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Market interest rates move" },
+    { "label": "Duration gives the first-order estimate: −Duration × Δr" },
+    { "label": "Convexity corrects the error: +½ × Convexity × (Δr)²" },
+    { "label": "Positive convexity → asymmetric benefit; negative convexity → price hits a ceiling" },
+    { "label": "Portfolio management: match duration, use convexity to shape the response to large moves" }
+  ]
+}

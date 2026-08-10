@@ -1,0 +1,144 @@
+{
+  "slug": "cfa-economics-fiscal-policy",
+  "title": "CFA Economics: Fiscal Policy",
+  "subtitle": "How governments use taxation and public spending to steer an economy",
+  "duration": "7 min",
+  "openingQuestion": "What does expansionary fiscal policy consist of?",
+  "openingOptions": [
+    "The central bank cutting interest rates to encourage borrowing",
+    "Raising public spending and/or cutting taxes",
+    "The government raising taxes and cutting spending to restrain inflation",
+    "The central bank buying government bonds in the open market"
+  ],
+  "explanation": "Fiscal policy is an instrument of the GOVERNMENT (not the central bank), operating through taxation and public spending. EXPANSIONARY fiscal policy = higher public spending (infrastructure, subsidies) and/or lower taxes, injecting money into the economy during a downturn. CONTRACTIONARY fiscal policy is the reverse - lower spending, higher taxes - used when the economy is overheating or inflation is high. Note that interest rates and open market bond purchases are instruments of MONETARY policy, run by the central bank, and are entirely distinct from fiscal policy.",
+  "realWorldExample": {
+    "company": "COVID-19 stimulus packages in Vietnam and the US (2020-2021)",
+    "description": "Governments launched enormous fiscal support packages during the pandemic: the US spent trillions of dollars through the CARES Act (unemployment support, direct stimulus cheques), while Vietnam cut and deferred taxes for businesses and household enterprises and raised budget spending on healthcare and social protection - a textbook case of expansionary fiscal policy answering a recession caused by an external shock."
+  },
+  "quiz": [
+    {
+      "question": "What is the fiscal multiplier, and why does it matter when judging fiscal policy?",
+      "options": [
+        "How much public debt rises for each extra unit spent",
+        "How much GDP rises for each extra unit the state spends",
+        "How much extra tax is collected per unit of public spending",
+        "The ratio of public spending to the economy's total GDP"
+      ],
+      "explanation": "The fiscal multiplier measures the ripple effect of government spending: when the state spends one unit, whoever receives it (a contractor, a worker) spends part of that income in turn, creating income for someone else, and so it spreads. A multiplier above 1 means fiscal policy amplifies its effect on GDP - which is precisely why economists argue about how effective stimulus packages really are. Debt raised and tax recouped are consequences of the spending, not measures of the multiplier."
+    },
+    {
+      "question": "What is the crowding out effect in expansionary fiscal policy?",
+      "options": [
+        "State-owned enterprises take market share from the private sector",
+        "Public spending entirely replaces household consumption",
+        "Heavy state borrowing lifts rates, so private firms borrow less",
+        "Cheaper imports push domestic producers out to the margins"
+      ],
+      "explanation": "Crowding out is the classic objection to expansionary fiscal policy: the government borrows more, demand for loanable funds rises, interest rates tend to rise, private firms and households borrow more expensively and invest less, and part of the stimulus to GDP is 'crowded out' again. CFA Level I expects you to understand this in order to judge the net effect. Import competition and state enterprise market share are industrial questions, not the crowding-out channel."
+    },
+    {
+      "question": "How does a budget deficit differ from public debt?",
+      "options": [
+        "The deficit comes from current spending, the debt from investment",
+        "The deficit is measured against GDP, and the debt in absolute terms",
+        "The deficit is domestic borrowing, the debt is foreign borrowing",
+        "The deficit is one year's flow; the debt is the accumulated stock"
+      ],
+      "explanation": "This is the classic flow versus stock distinction: the budget deficit is ONE YEAR's flow (spending exceeding revenue within that year), whereas public debt is the CUMULATIVE TOTAL of every past deficit and surplus - much as a household's monthly income minus outgoings (a flow) differs from the total credit balance it has built up (a stock). Both are usually reported in absolute terms and as a share of GDP, and both can be domestic or foreign."
+    },
+    {
+      "question": "The government raises public spending while the economy is already near full capacity. What is the most likely result?",
+      "options": [
+        "Inflationary pressure rises rather than much being added to real output",
+        "Real output rises exactly by the multiplier times the extra spending",
+        "Unemployment falls further still, without creating any price pressure",
+        "Interest rates fall, because more money has been pumped into the economy"
+      ],
+      "explanation": "The fiscal multiplier is large when there are idle resources to draw on. Once the economy is running near capacity, extra demand mostly pushes prices rather than output - which is why the timing of a stimulus matters as much as its size. The multiplier is a conditional estimate rather than an arithmetic guarantee, unemployment cannot keep falling without wage pressure, and funding the spending by borrowing pushes rates up rather than down."
+    },
+    {
+      "question": "How does an automatic stabiliser work when the economy weakens?",
+      "options": [
+        "The central bank automatically cuts the policy rate to a preset formula",
+        "Tax receipts fall and benefit payments rise with no new decision needed",
+        "The legislature passes a new package as soon as GDP falls for two quarters",
+        "The government automatically cuts spending to keep the budget balanced"
+      ],
+      "explanation": "Progressive income tax and unemployment benefits respond immediately to the cycle without waiting for any legislative process - which is exactly how they escape the policy lag. That is why countries with broad social safety nets tend to have smoother business cycles. A central bank formula would be monetary rather than fiscal, a new package requires a decision and therefore carries a lag, and automatic spending cuts would destabilise rather than stabilise."
+    }
+  ],
+  "keyTakeaways": [
+    "Fiscal policy (taxation + public spending) is run by the GOVERNMENT, unlike monetary policy (interest rates, money supply) which is run by the CENTRAL BANK",
+    "The fiscal multiplier measures the ripple effect of government spending on GDP - it can be above or below 1",
+    "Crowding out effect: heavy government borrowing can push interest rates up, reducing private investment and cancelling part of the stimulus",
+    "A budget deficit (a flow, annual) is not the same as public debt (a stock, accumulated over years)"
+  ],
+  "practicePrompt": {
+    "question": "The government announces a $100bn fiscal stimulus (higher public spending), with an estimated fiscal multiplier of 1.3, while market interest rates edge up on concerns about public debt. What is happening, and how should the net effect on GDP be read?",
+    "options": [
+      "GDP rises by exactly $130bn ($100bn × 1.3), because the multiplier is precise",
+      "GDP tends to rise by about $130bn, but less than that because of crowding out",
+      "GDP will fall, because government spending always harms the economy",
+      "The rate rise is unrelated to fiscal policy; it is a pure coincidence"
+    ],
+    "explanation": "This is the core lesson in analysing fiscal policy: the multiplier gives a theoretical estimate ($100bn × 1.3 = $130bn), but the crowding out effect (rates rising as the government borrows more) reduces private sector investment, so the NET effect on GDP is usually below the pure theoretical figure. Analysing economic policy means weighing both forces, which pull in opposite directions."
+  },
+  "summary": {
+    "keyIdea": "Fiscal policy uses taxation and public spending to steer the economy; its real effect depends on the fiscal multiplier and is partly cancelled by the crowding out effect.",
+    "commonMistake": "Confusing fiscal policy (the government) with monetary policy (the central bank) - the most common error when starting Economics",
+    "action": "When you read about a 'stimulus package', establish whether it is a fiscal measure (spending or tax) or a monetary one (rates or money supply), so you read the mechanism correctly"
+  },
+  "application": {
+    "title": "Applying this in CFA analysis",
+    "message": "When analysing a country's macro picture, always separate out how fiscal and monetary policy are working together - or against each other - which is a classic question in CFA Economics.",
+    "secondary": "Expansionary fiscal policy alongside contractionary monetary policy (as in the US in 2022-2023) produces a complex net effect that an analyst has to assess on its own terms."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When a government 'pumps money' into an economy through public spending or tax cuts, that is fiscal policy - a distinct instrument, and sometimes one at odds with the central bank's monetary policy."
+    },
+    { "type": "heading", "text": "The two main instruments of fiscal policy" },
+    {
+      "type": "list",
+      "items": [
+        "Government spending: infrastructure investment, social transfers, defence spending, public sector pay",
+        "Taxation: personal income tax, corporate tax, VAT and excise duties"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Expansionary",
+        "text": "Higher public spending + lower taxes → money into the economy, used in a downturn or when unemployment is high"
+      },
+      "right": {
+        "label": "Contractionary",
+        "text": "Lower public spending + higher taxes → money out of the economy, used when inflation is high or the economy is overheating"
+      }
+    },
+    { "type": "heading", "text": "The fiscal multiplier - the ripple effect" },
+    {
+      "type": "paragraph",
+      "text": "When the government spends one unit on an infrastructure project, the contractor receives it and pays wages, the workers spend on food and shopping, that creates income for retailers, and so it spreads through the economy. The fiscal multiplier measures the total of this effect: a multiplier of 1.5 means each unit of public spending generates 1.5 units of GDP. The multiplier depends on several things: the marginal propensity to consume, how open the economy is (imports leak the effect abroad), and how much slack there is in economic resources."
+    },
+    { "type": "heading", "text": "The crowding out effect - the downside of expansionary fiscal policy" },
+    {
+      "type": "paragraph",
+      "text": "When the government raises spending, it usually has to borrow (issuing government bonds) to fund it, which increases demand for loanable funds. If the supply of funds does not rise to match, interest rates tend to rise - making borrowing dearer for private firms and households, and reducing their investment and consumption. This effect 'crowds out' part of the positive impact of public spending, leaving net GDP growth below what the pure multiplier would suggest."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Fiscal policy is a powerful instrument but not a perfect one - the real effect is always the outcome of a tug of war between the fiscal multiplier (positive) and the crowding out effect (negative).",
+        "CFA Level I asks you to understand the mechanism well enough to analyse how policy affects asset markets, not merely to memorise definitions."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "The government changes taxes or public spending" },
+    { "label": "Aggregate demand shifts × the fiscal multiplier" },
+    { "label": "Output and employment respond" },
+    { "label": "But public borrowing lifts rates → crowding out private investment" }
+  ]
+}

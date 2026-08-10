@@ -1,0 +1,161 @@
+{
+  "slug": "frm-cbdc-va-he-thong-ngan-hang",
+  "title": "FRM Current Issues, Lesson 7: Central bank digital currency and the banking system",
+  "subtitle": "If anyone can hold a deposit straight at the central bank, what is left for commercial banks",
+  "duration": "9 min",
+  "whyItMatters": "A great many central banks are researching or piloting a CBDC. The risk question is not the technology but the structure: it goes straight at the cheapest and stickiest funding a commercial bank has.",
+  "openingQuestion": "What is the biggest risk a retail CBDC poses to the commercial banking system?",
+  "openingOptions": [
+    "Deposits drain out of commercial banks, taking away their cheapest and most stable funding",
+    "Commercial banks would have to replace their entire core technology stack",
+    "Anti-money-laundering compliance costs rise because there is one more payment channel",
+    "The central bank would start competing directly in corporate lending"
+  ],
+  "explanation": "Retail deposits are the cheapest and stickiest funding a bank has. A balance held at the central bank carries virtually no credit risk, so absent a holding cap it is a plainly better substitute - most of all when markets are under stress, which is exactly when a bank can least afford its deposit base to walk out of the door. That is why every serious CBDC design carries some brake on how much one person may hold.",
+  "diagram": [
+    {
+      "label": "Retail CBDC: a direct liability of the central bank"
+    },
+    {
+      "label": "Safer than a commercial bank deposit in credit-risk terms"
+    },
+    {
+      "label": "Deposit flight becomes a real risk, above all in a crisis"
+    },
+    {
+      "label": "The design needs holding caps or tiered rates to slow it down"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Why CBDC designs usually come with a holding cap",
+    "description": "Retail CBDC proposals that have been studied seriously almost always carry a brake: a cap on the balance any one person may hold, or a tiered rate that penalises the portion above a threshold. The reason is the crisis-run scenario - when depositors start doubting their bank, being able to move into an asset with no credit risk in a couple of taps would make a wave of withdrawals move faster than any historical precedent."
+  },
+  "quiz": [
+    {
+      "question": "Why can a CBDC make bank runs happen faster?",
+      "options": [
+        "Because CBDC pays a much higher rate than bank deposits",
+        "Because the central bank publishes a list of weak banks",
+        "Because moving into a risk-free asset takes only a few taps",
+        "Because the payment rails halt when transfers surge"
+      ],
+      "explanation": "Bank runs have always been slowed by friction - you had to queue at a branch, and the place you moved the money to was another bank carrying risk of its own. A CBDC removes both frictions at once, so the speed of withdrawal can outrun any model calibrated on historical data. A higher rate is not the point: most designs pay zero or less. No central bank publishes a distress list, and the rails not working is a different failure entirely from a run."
+    },
+    {
+      "question": "How does a two-tier CBDC model work?",
+      "options": [
+        "Users have to open two separate accounts to hold it",
+        "Each country issues two CBDCs, one retail and one corporate",
+        "It is issued jointly by the central bank and the largest banks",
+        "The central bank issues, the private sector distributes"
+      ],
+      "explanation": "This model keeps the central bank in the role of issuer and ledger operator, while everything customer-facing - opening accounts, identity checks, support and disputes - stays with the private sector. It avoids putting the central bank in the position of serving tens of millions of retail customers, which it has no machinery to do. It is one currency, not two, and the largest banks do not share the issuing power."
+    },
+    {
+      "question": "Why do stablecoins and CBDCs raise two different kinds of risk question?",
+      "options": [
+        "A stablecoin depends on the quality of its reserve assets",
+        "Stablecoins may not be used for any cross-border settlement",
+        "A CBDC exists only in physical form and a stablecoin only in digital form",
+        "A CBDC is not subject to supervision by any authority at all"
+      ],
+      "explanation": "A CBDC is a direct liability of the central bank, so its credit risk is close to zero and the question it raises is one about the structure of the system. A stablecoin is only as good as the assets backing it, which gives it run risk of the same shape as a money market fund. Nothing bars stablecoins from cross-border use, both instruments are digital, and CBDCs sit squarely inside the supervisory perimeter."
+    },
+    {
+      "question": "Why do CBDC designs usually include a holding limit per individual?",
+      "options": [
+        "To stop a CBDC being used for high-value transactions",
+        "So deposits do not move en masse from commercial banks to the central bank",
+        "Because central bank systems cannot process large balances",
+        "Because anti-money-laundering rules cap the balance of every electronic account"
+      ],
+      "explanation": "Retail deposits are the cheapest and stickiest funding a commercial bank has. An account at the central bank carries virtually no credit risk, so with no cap it pulls funding away - most of all when markets are stressed, which is exactly when the bank needs that funding most. High-value payments are a separate policy question, the processing capacity claim is simply false, and no AML rule imposes a blanket balance cap."
+    },
+    {
+      "question": "How does a two-tier CBDC model differ from a direct one?",
+      "options": [
+        "A two-tier CBDC is wholesale only and never reaches retail users",
+        "Commercial banks issue the CBDC themselves under central bank supervision",
+        "The central bank issues it, while banks keep the end-user relationship",
+        "The two-tier model lets every user open an account at the central bank"
+      ],
+      "explanation": "The model preserves the commercial bank's role in customer identification, service and dispute handling - work the central bank has no apparatus to take on. It also softens, at least partly, the pull of funding out of the banking system. Retail reach is the whole point of the design rather than an exclusion, issuance stays with the central bank, and direct accounts for everyone describes the model this one was built to avoid."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A country issues a retail CBDC with no holding cap per individual. In a period of stress, what is the biggest risk to commercial banks?",
+    "options": [
+      "Deposits move into CBDC instantly, with no queue to slow them",
+      "The technology cost of connecting to the CBDC system jumps",
+      "The central bank competes directly on deposit rates",
+      "Customers lose confidence because deposits are no longer insured"
+    ],
+    "explanation": "In a traditional run, a depositor has to move to another bank - which may itself be under suspicion - or withdraw cash, which the branch and the ATM network limit. Both create friction, and that friction is what buys the authorities time. A CBDC removes it: it is a liability of the central bank, safe by definition, and moving into it takes seconds on a phone. That is why nearly every CBDC design carries a holding cap or a tiered rate - not because of the technology, but to rebuild exactly the friction that was just removed."
+  },
+  "keyTakeaways": [
+    "The main risk of a retail CBDC is that it pulls deposits out of commercial banks",
+    "Designs usually add a holding cap or tiered rates to slow the run risk down",
+    "The two-tier model keeps the private sector in distribution and customer identification",
+    "Stablecoins carry reserve-asset risk; CBDCs raise a question about system structure"
+  ],
+  "summary": {
+    "keyIdea": "The risk question about a CBDC is not technological - it is that the instrument competes directly with the foundation of commercial bank funding",
+    "commonMistake": "Judging a CBDC as a payments technology project and ignoring what it does to the funding structure of the whole system",
+    "action": "When you read a CBDC proposal, go straight to the brake - the holding cap or the tiered rate - because that is where the real risk is handled"
+  },
+  "application": {
+    "title": "Compare the three kinds of money you already hold",
+    "message": "Cash is a liability of the central bank. Money in your account is a liability of a commercial bank. Money in an e-wallet is a liability of a private company. Three different levels of credit risk for something that looks identical.",
+    "secondary": "A CBDC would be the fourth kind, and where it sits in that table is precisely why it is contested."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The money in your bank account is not central bank money - it is a debt the commercial bank owes you. A CBDC erases that distinction, and the entire debate is about the consequences of erasing it."
+    },
+    {
+      "type": "heading",
+      "text": "Why this is a structural question"
+    },
+    {
+      "type": "paragraph",
+      "text": "Commercial banks work because deposits are cheap and stable. If the public can hold an asset with equivalent usefulness for payments but no credit risk at all, most of the reason to keep money at a commercial bank disappears - and funding costs rise while lending capacity falls."
+    },
+    {
+      "type": "callout",
+      "label": "The scenario to worry about is a run",
+      "text": "A traditional bank run is slowed by friction: you have to queue, and the place you are moving to is another bank with risk of its own. A CBDC removes both frictions at once, so the speed of withdrawal can outrun any model calibrated on history - which is why a holding cap appears in almost every proposal."
+    },
+    {
+      "type": "heading",
+      "text": "The numbers that make this structural"
+    },
+    {
+      "type": "paragraph",
+      "text": "A typical commercial bank raises most of its funding from deposits, and demand deposits are the cheapest slice of it - paying close to 0% while the loan assets earn several percent. That spread is most of the profit in the banking model. If the public can shift part of their deposits into an account at the central bank, the bank has to replace that funding with something dearer - issuing paper or raising term deposits - and its cost of funds rises. That cost does not vanish; it goes into lending rates."
+    },
+    {
+      "type": "callout",
+      "label": "The holding limit is not a technical detail",
+      "text": "It is why nearly every CBDC design under trial caps the balance each person may hold, or pays 0% with a negative tier above a threshold. Both do the same job: keep the CBDC as a means of payment and stop it becoming a bolt-hole when trouble starts. That cap is the dial that decides how much deposit funding commercial banks lose - and it is a policy choice, not a technical parameter."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The old-style bank run",
+        "text": "Slowed by friction: you had to reach a branch or wait for a transfer, and the destination was another bank carrying risk. That time was enough for the authorities to step in."
+      },
+      "right": {
+        "label": "A run with a CBDC in place",
+        "text": "No friction and no need to pick a substitute bank: the destination is the central bank itself, safe by definition. Speed is measured in minutes, and that changes the crisis-management problem outright."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Designing money is designing the structure of the financial system, not picking a technology.",
+        "Next lesson: when shared infrastructure becomes a shared point of failure."
+      ]
+    }
+  ]
+}

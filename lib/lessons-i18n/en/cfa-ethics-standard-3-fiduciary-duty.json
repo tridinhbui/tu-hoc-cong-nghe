@@ -1,0 +1,139 @@
+{
+  "slug": "cfa-ethics-standard-3-fiduciary-duty",
+  "title": "CFA Ethics 10: Standard III - Duties to Clients and the fiduciary duty",
+  "subtitle": "Why \"put the client's interest above your own\" is easy to say and the hardest thing to apply",
+  "duration": "8 min",
+  "whyItMatters": "Anyone who manages money or advises other people - fund managers, wealth managers, brokers - carries a fiduciary duty. Knowing where the line falls keeps you clear of conflicts that look harmless and are in fact serious breaches.",
+  "openingQuestion": "An investment adviser recommends a mutual fund with a materially higher management fee than equivalent options, because that fund pays the adviser a higher referral commission. What is the breach?",
+  "openingOptions": [
+    "No breach, provided the fund has a good performance record behind it",
+    "A breach of Standard III(A) - Loyalty, Prudence, and Care",
+    "No breach, because the client is still free to say no to it",
+    "A breach only if the client finds out and files a complaint"
+  ],
+  "explanation": "Standard III(A) requires the client's interest to be placed above your own. Recommending a product because it pays a higher commission - rather than because it is the best choice for the client - is a direct breach, and especially so where the conflict of interest is not disclosed transparently to the client.",
+  "diagram": [
+    { "label": "Loyalty - loyal to the client's interest" },
+    { "label": "Prudence - care in deciding on the client's behalf" },
+    { "label": "Care - diligence, within your professional competence" }
+  ],
+  "realWorldExample": {
+    "company": "The global debate over \"suitability\" versus \"fiduciary\" in personal financial advice",
+    "description": "Many financial markets have argued hard over two standards: the suitability standard (the product need only suit the client) and the fiduciary standard (it must be the best choice for the client, not merely a fitting one). CFA Standard III sets a far stricter bar than ordinary suitability - a product that \"suits\" does not necessarily discharge the full fiduciary duty."
+  },
+  "quiz": [
+    {
+      "question": "What is the core difference between the \"suitability standard\" and the \"fiduciary standard\" that Standard III requires?",
+      "options": [
+        "Fiduciary requires the best option for the client; suitability only requires a fit",
+        "They are the same idea - both merely require a product that does the client no clear harm",
+        "Fiduciary applies only to investment funds, never to advice given to individuals",
+        "Suitability is the higher, stricter threshold of the two, sitting above fiduciary"
+      ],
+      "explanation": "The fiduciary standard sets a much higher bar: a product that merely \"suits\" is not enough, and you must actively search out the best option, putting the client's interest above your own - commissions and fees included. The two are not synonyms, the fiduciary bar sits above suitability rather than below it, and it attaches to the advisory relationship itself rather than to any particular vehicle."
+    },
+    {
+      "question": "What does prudence in Standard III(A) require of an asset manager deciding on a client's behalf?",
+      "options": [
+        "Always pick the safest asset available, whatever the client's real risk appetite",
+        "Reasonable care, matched to each client's own objectives and risk appetite",
+        "Simply follow the client's specific instructions without assessing anything",
+        "Invest identically for every client, so that all of them are treated equally"
+      ],
+      "explanation": "Prudence does not mean avoiding risk at all costs - it means acting with reasonable care, matched to the particular objectives and risk appetite of each client. A young client saving for long-term growth needs a different strategy from one close to retirement. Following instructions without assessment abandons the duty, and investing identically for everyone confuses equal treatment with appropriate treatment."
+    },
+    {
+      "question": "If a portfolio manager has an unavoidable conflict of interest - say the firm holds a stake in an asset they intend to recommend - what does Standard III require as a minimum?",
+      "options": [
+        "Decline every recommendation touching that asset, with no exception at all",
+        "Nothing needs doing if the recommendation really is good for the client",
+        "Disclose the conflict fully and clearly before the client decides",
+        "Note the conflict in internal records without telling the client"
+      ],
+      "explanation": "Transparency runs through the standards: a conflict is not always prohibited outright, but it must be disclosed fully and clearly so the client can weigh it and decide, rather than being kept from them. A blanket refusal would rule out a great deal of legitimate business, and an internal note serves the firm's records rather than the person whose money is at stake."
+    },
+    {
+      "question": "On what principle does Standard III require trades to be allocated between clients?",
+      "options": [
+        "Allocate the whole fill to whichever client the strategy best suits then",
+        "Favour the largest accounts, since they pay the higher management fees",
+        "Favour the oldest accounts, in the order the clients originally joined",
+        "Fairly, under a published policy, with no priority for larger accounts"
+      ],
+      "explanation": "Block orders must be allocated pro rata at a single average price, under a policy written in advance and disclosed to clients. Favouring the higher-fee accounts - or worse, the firm's own account - is the classic breach. Seniority of the relationship and a judgement made after the fill are equally unworkable, because both let the allocator choose once the outcome is already known."
+    },
+    {
+      "question": "Where a conflict of interest cannot be eliminated, what minimum step do Standards III and VI require?",
+      "options": [
+        "Full, clear disclosure, and made before the client takes a decision",
+        "Move every affected client to a different adviser inside the firm",
+        "Log the conflict internally for compliance to keep and review",
+        "Refuse the investment entirely until the conflict is resolved"
+      ],
+      "explanation": "The standards do not demand that conflicts never arise - that is impossible - but that the client knows about them beforehand and can weigh the advice for themselves. Disclosure after the client has signed serves no purpose, because the whole point is to inform the decision. Internal logging and reshuffling advisers may be sensible housekeeping, but neither reaches the person the duty is owed to."
+    }
+  ],
+  "keyTakeaways": [
+    "The fiduciary standard (Standard III) sits above suitability: the best choice, not merely a fitting one",
+    "Loyalty - Prudence - Care are the three pillars: loyal, careful, diligent",
+    "Prudence does not mean avoiding risk; it means care matched to a client's specific objectives",
+    "Unavoidable conflicts of interest must be disclosed fully and transparently to the client"
+  ],
+  "practicePrompt": {
+    "question": "How does the fiduciary standard differ from the suitability standard?",
+    "options": [
+      "Fiduciary requires the best available option for the client, not merely a suitable one",
+      "They are one and the same idea, differing only in the name each goes by",
+      "Suitability is the stricter threshold of the two, by a considerable distance",
+      "Fiduciary applies only where the client has asked for it in writing"
+    ],
+    "explanation": "The fiduciary standard sets the higher bar: you must actively seek out the best option in the client's interest, not stop at something that merely \"suits\"."
+  },
+  "summary": {
+    "keyIdea": "Standard III places the fiduciary duty above self-interest through three pillars - Loyalty, Prudence, Care - and requires transparent disclosure of every conflict that cannot be avoided",
+    "commonMistake": "Assuming \"a product that suits the client\" already meets the ethical bar, when the fiduciary standard demands considerably more",
+    "action": "When you receive a financial recommendation, ask directly: is the adviser paid differently depending on the product? If so, that conflict has to be clearly disclosed"
+  },
+  "application": {
+    "title": "Assessing a financial adviser",
+    "message": "When working with an investment or insurance adviser, ask about their fee and commission structure - someone who genuinely acts in the fiduciary spirit will be ready to be open about it.",
+    "secondary": "This is an important self-protection skill for anyone who uses, or will use, financial advice."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard III - Duties to Clients - is the foundation of every advisory and asset management relationship: when someone decides on your behalf with your money, they carry a far heavier responsibility than an ordinary salesperson."
+    },
+    { "type": "heading", "text": "Three pillars: Loyalty, Prudence, Care" },
+    {
+      "type": "paragraph",
+      "text": "Loyalty requires the client's interest to come above the manager's or adviser's own. Prudence requires reasonable care matched to the particular objectives and risk appetite of each client - not one rigid formula applied to everyone. Care requires diligence, exercised within your professional competence."
+    },
+    { "type": "heading", "text": "How fiduciary differs from suitability" },
+    {
+      "type": "paragraph",
+      "text": "The suitability standard requires only that the recommended product \"suits\" the client profile - a relatively low bar, which can permit a product that fits BUT is not optimal (an unnecessarily high fee, for instance). The fiduciary standard that Standard III requires sits higher: you must actively seek out and recommend the best option in the client's interest."
+    },
+    {
+      "type": "callout",
+      "label": "Conflicts of interest: not prohibited, but they must be transparent",
+      "text": "Many conflicts cannot be eliminated entirely in real commercial life. Standard III does not require every conflict to be removed, but it does require full, clear disclosure so the client has enough information to judge for themselves how objective the recommendation is."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Loyalty: the client's interest above your own",
+        "Prudence: care matched to each specific client, not one general formula",
+        "Care: diligence, within your professional competence",
+        "Conflicts of interest must be disclosed transparently, not necessarily eliminated"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The fiduciary duty is not a slogan - it is a concrete, testable standard of conduct.",
+        "Next lesson, we look at the duty to report misconduct - a standard rarely discussed and enormously important."
+      ]
+    }
+  ]
+}

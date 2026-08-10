@@ -1,0 +1,148 @@
+{
+  "slug": "uu-dai-thue-va-chuyen-gia",
+  "title": "Standards & Tax, Lesson 7: Tax incentives and related-party transactions",
+  "subtitle": "Two mechanisms that shape the tax burden of a foreign-invested business",
+  "duration": "10 min",
+  "whyItMatters": "Vietnam is an economy with a very large FDI share, so these two topics decide the after-tax profit of a substantial slice of domestic companies. For an analyst they are also where reported profit most easily diverges from real operating capability.",
+  "openingQuestion": "How do tax incentives affect the valuation of a business?",
+  "openingOptions": [
+    "They have no effect, since incentives are only a temporary administrative policy",
+    "They lift after-tax profit while they last, so they must be modelled separately",
+    "They reduce the value of the business because it depends on state policy",
+    "They only affect businesses with foreign investment capital"
+  ],
+  "explanation": "Tax incentives are time-limited: typically some years exempt, then some years at a reduced rate, then back to the standard rate. After-tax profit during the incentive period does not reflect long-run capability, and any valuation model that takes the current year's tax rate and extends it forever will systematically inflate the value of the business. The right approach is to model the tax line along the actual incentive schedule, and only then discount.",
+  "diagram": [
+    {
+      "label": "Tax-exempt period"
+    },
+    {
+      "label": "Reduced-rate period"
+    },
+    {
+      "label": "Back to the standard rate"
+    },
+    {
+      "label": "After-tax profit steps down along the schedule"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An FDI business at the end of its incentive",
+    "description": "An FDI manufacturer reports steadily rising after-tax profit for several years, then a sudden sharp fall even though revenue and gross margin are unchanged. The cause sits in the tax line: the exempt period ended and the business moved into the reduced-rate period, then a few years later back to the standard rate. To an investor looking only at past after-tax profit growth, the drop looks like a deteriorating business - while the operations have not changed at all."
+  },
+  "quiz": [
+    {
+      "question": "What is a related-party transaction?",
+      "options": [
+        "A transaction settled through an intermediary commercial bank rather than directly",
+        "A transaction between the business and the local tax authority that handles it",
+        "A transaction whose value exceeds the threshold requiring public disclosure",
+        "A transaction between parties linked by common ownership or control over each other"
+      ],
+      "explanation": "A parent selling raw materials to a subsidiary, or charging royalties to a branch, are the standard examples. The problem is not that such transactions exist - every group has them - but that the price is set by two parties under the same owner. Using an intermediary bank is a settlement detail with no bearing on pricing, disclosure thresholds concern reporting rather than the relationship, and the tax authority is a counterparty to nobody's trade."
+    },
+    {
+      "question": "What does the arm's length principle require in related-party transactions?",
+      "options": [
+        "Prices between related parties must match prices between independent ones",
+        "Every related-party transaction must be pre-approved in advance by the tax authority",
+        "The business must transfer its entire profit back to the parent company",
+        "Related-party prices must sit at least 10% below the open market price"
+      ],
+      "explanation": "This is the arm's length principle, the foundation of transfer pricing rules everywhere in the world. It does not prohibit intra-group transactions; it only requires them to be priced as if the two parties had no relationship. There is no pre-approval regime for ordinary transactions, no requirement to repatriate profit, and certainly no mandated discount - a fixed 10% gap would itself be a departure from market pricing."
+    },
+    {
+      "question": "Why is transfer pricing a major concern for an economy with heavy FDI?",
+      "options": [
+        "Because related-party transactions always carry higher prices than ordinary transactions do",
+        "Because internal prices can shift profit toward jurisdictions with lower tax rates",
+        "Because FDI businesses pay no tax at all during their first years of operation",
+        "Because transfer pricing reduces the flow of foreign currency into the domestic economy"
+      ],
+      "explanation": "Marking up materials imported from the parent, or charging a high royalty, pushes cost up and profit down where the tax rate is high. A business reporting perpetual losses in Vietnam while continuously expanding its factories is the familiar picture of this problem. Related-party prices are not systematically higher - the direction is chosen to suit the tax outcome - and the exemption period is a separate mechanism from pricing."
+    },
+    {
+      "question": "A business enjoys 4 years exempt then a 50% reduction for 9 years. What should the valuation model do?",
+      "options": [
+        "Ignore the incentive, because it does not affect operating cash flow at all",
+        "Apply the current year's effective tax rate across the whole forecast period",
+        "Model the tax line stage by stage along the actual incentive schedule",
+        "Apply the standard statutory rate to every year as a conservative measure"
+      ],
+      "explanation": "Extending the current year's rate to infinity inflates the value; applying the standard rate to every year throws away the genuine value of the incentive. The right answer is to model each step correctly, even when it makes the spreadsheet more complicated. And the incentive certainly does reach cash flow - tax paid is a cash outflow, so a schedule that changes the tax rate changes free cash flow directly."
+    },
+    {
+      "question": "What is the purpose of transfer pricing documentation?",
+      "options": [
+        "To register the level of tax incentive the business is entitled to",
+        "To obtain tax authority approval before the transaction takes place",
+        "To declare all profit remitted to the parent company in the period",
+        "To show internal prices match those between independent parties"
+      ],
+      "explanation": "The burden of proof sits with the business: it must hold a comparability analysis showing that its internal prices fall inside the market range. Without the file, the tax authority may re-determine the price and collect the difference. Registration of incentives is a separate filing, there is no advance approval requirement for ordinary transactions, and profit remittance is reported elsewhere entirely."
+    }
+  ],
+  "keyTakeaways": [
+    "Tax incentives run on a stepped schedule, so after-tax profit during the incentive does not reflect long-run capability",
+    "The arm's length principle requires internal transactions to be priced as if between independent parties",
+    "Internal prices can shift profit across borders, which is why this is a focus in an FDI-heavy economy",
+    "The burden of proving prices are reasonable sits with the business, not with the tax authority"
+  ],
+  "practicePrompt": {
+    "question": "An FDI business reports losses for several consecutive years yet keeps expanding capacity. Which hypothesis deserves to be checked first?",
+    "options": [
+      "The business is accepting losses to win long-term market share",
+      "The related-party structure may be shifting profit out of the country",
+      "The accounting figures are erroneous and need a full re-audit",
+      "The business is about to exit the market and is liquidating assets"
+    ],
+    "explanation": "Nobody funds genuine losses with fresh expansion capital year after year. The contradiction between a reported loss and the investment behaviour is the classic signal that leads tax authorities and analysts alike to look at the internal transaction structure."
+  },
+  "summary": {
+    "keyIdea": "The tax burden of an FDI business is shaped by its incentive schedule and by how its internal transactions are priced",
+    "commonMistake": "Extending the current year's effective tax rate across the whole forecast period",
+    "action": "Find the tax incentive note in the report of a listed FDI business and build the tax schedule year by year."
+  },
+  "application": {
+    "title": "When analysing an FDI business",
+    "message": "Which stage of the incentive schedule is the business in? What share of its transactions are with related parties? And is the profit margin unusual compared with peers in the same sector that have no related-party relationships?",
+    "secondary": "The notes to the financial statements must disclose related-party transactions - that is where to start."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Neither mechanism in this lesson shows up on the income statement as a line of its own, yet both can decide most of a company's after-tax profit. Ignoring them when analysing an FDI-heavy economy means ignoring half the story."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Tax incentives",
+        "text": "Entirely legal and deliberately designed to attract investment. The analyst's problem is not legality but impermanence: there is an expiry date written into the file."
+      },
+      "right": {
+        "label": "Transfer pricing",
+        "text": "Intra-group transactions are themselves normal in every corporate group. The line is drawn at the price: priced at market level it is valid, priced away from market to shift profit it is not."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Signals worth noticing when reading a report",
+      "text": "An unusually low margin compared with sector peers, a very high share of related-party transactions, or a run of loss-making years alongside continued investment - each signal alone may be harmless, but all three together make the related-party note worth reading closely."
+    },
+    {
+      "type": "heading",
+      "text": "Why these two mechanisms are hard to see from the statements"
+    },
+    {
+      "type": "paragraph",
+      "text": "Tax incentives and internal transfer prices both fail to appear as a separate line on the income statement - they sit hidden inside the effective tax rate and the profit margin. The practical way to read them is to compare those two figures against sector peers: an unusually low effective tax rate usually traces back to a time-limited incentive, while an unusually low margin at a business with heavy related-party dealings is where you should read the notes carefully."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Reported profit is the product of both the operating business and the tax structure standing behind it.",
+        "The final lesson of this stage covers where everything gets tested: tax finalisation and tax inspection."
+      ]
+    }
+  ]
+}

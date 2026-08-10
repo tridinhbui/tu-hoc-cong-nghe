@@ -1,0 +1,153 @@
+{
+  "slug": "financial-risk",
+  "title": "The categories of financial risk",
+  "subtitle": "Credit, liquidity, interest rate, market and concentration risk",
+  "duration": "6 min",
+  "openingQuestion": "What are the usual categories of financial risk?",
+  "openingOptions": [
+    "Credit, liquidity, interest rate, market, concentration",
+    "Market risk only",
+    "Currency risk only",
+    "Only operational risk really matters for a bank"
+  ],
+  "explanation": "A portfolio or a company can face several distinct layers of risk, not just price movement. Many new investors look only at market risk - prices going up and down - and miss the quieter ones such as liquidity or concentration risk, which can do far more damage.",
+  "diagram": [
+    { "label": "Credit risk" },
+    { "label": "Liquidity risk" },
+    { "label": "Interest rate risk" },
+    { "label": "Market / concentration risk" }
+  ],
+  "realWorldExample": {
+    "company": "An investment portfolio / a company",
+    "description": "Concentration risk or high leverage can turn a small shock into a large liquidity problem."
+  },
+  "quiz": [
+    {
+      "question": "Which risk arises when you cannot sell assets fast enough to meet an obligation?",
+      "options": ["Growth risk", "Liquidity risk", "Market risk", "Tax rate risk"],
+      "explanation": "Low liquidity can put a company or an investor in serious difficulty even though the assets are still there on paper. Market risk is about the price moving against you, which is a separate question from whether you can transact at all; tax risk concerns changes in the rate or its treatment; and growth risk is about the business plan rather than about settling an obligation on time."
+    },
+    {
+      "question": "An investor holds a portfolio that is 100% technology shares, diversified across 20 different names. Which risk is NOT reduced by that diversification?",
+      "options": [
+        "The credit risk of each individual company in the portfolio",
+        "Only the general market risk of the whole market remains",
+        "Sector concentration risk - all 20 names sit in one group",
+        "No risk remains at all once 20 names have been held"
+      ],
+      "explanation": "Diversifying by number of holdings does not automatically remove sector concentration risk - if all 20 names are technology, they tend to move together whenever a shock hits the whole sector, such as rising rates compressing the valuation of growth shares. Real diversification requires assets with low correlation to each other, not simply many differently named holdings. Note also that no portfolio ever reaches zero risk, which is what makes the last option a giveaway."
+    },
+    {
+      "question": "A portfolio holds 20 shares but every one of them is in real estate. Why is that still concentration risk despite the number of names?",
+      "options": [
+        "Because 20 names is too few for diversification to work effectively",
+        "Because diversification only means anything for a bond portfolio",
+        "Because real estate shares are always riskier than every other sector",
+        "Because names in the same sector tend to move in the same direction"
+      ],
+      "explanation": "Real diversification is measured by the correlation between assets, not by the count. Many names in one sector are highly correlated, so the concentration risk survives intact even though the portfolio looks diversified. The count itself is not the problem - 20 names spread across uncorrelated sectors would work - and diversification is not a bond-only idea, nor is real estate categorically the riskiest sector."
+    },
+    {
+      "question": "Why do investors tend to underrate liquidity risk relative to market risk?",
+      "options": [
+        "Because it is invisible in normal times and only shows up in a forced sale",
+        "Because liquidity risk only affects the bond market rather than listed shares",
+        "Because liquidity risk does not really exist in modern practice",
+        "Because regulators have eliminated this risk from the market entirely"
+      ],
+      "explanation": "This is exactly what makes liquidity risk dangerous: it does not appear on the daily price chart, and it becomes visible at the worst possible moment, when the investor most needs cash. It is not confined to bonds - unlisted equity, property and small-cap shares all carry it - and no regulator has removed it, because it is a property of how many buyers show up rather than of the rulebook."
+    },
+    {
+      "question": "How does counterparty risk differ from market risk?",
+      "options": [
+        "It is the risk that asset prices move more violently than the model predicted",
+        "It is the risk that the other side of the trade fails to meet its obligation",
+        "It is the risk of finding no buyer when you need to sell an asset urgently",
+        "It is the risk that an internal process or a technology system breaks down"
+      ],
+      "explanation": "You can be entirely right about the direction of the market and still lose money because the other side cannot pay. The 2008 crisis is the classic lesson: a hedge is only worth as much as the ability of the party who sold it to settle. The other options describe market risk, liquidity risk and operational risk respectively - real categories, but each answering a different question."
+    }
+  ],
+  "keyTakeaways": [
+    "Risk has several layers, not just price",
+    "Liquidity and concentration are usually underweighted",
+    "Diversification only removes part of the risk"
+  ],
+  "summary": {
+    "keyIdea": "Risk has several layers, not just price",
+    "commonMistake": "Easy to overlook: liquidity and concentration are usually underweighted",
+    "action": "Diversification only removes part of the risk"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When people talk about 'risk' in investing, most think immediately of asset prices going up and down - but that is only one of several layers of financial risk worth attention."
+    },
+    { "type": "heading", "text": "Five layers of financial risk" },
+    {
+      "type": "paragraph",
+      "text": "Beyond market risk (price movement), a portfolio or a company also faces credit risk (a counterparty failing to repay), liquidity risk (not being able to sell fast enough when cash is needed), interest rate risk (rates moving), and concentration risk (too much exposure to one asset or sector). Diversifying by number of holdings does not automatically remove sector concentration risk - if the whole portfolio sits in one sector, the names still move together when a shock hits the sector."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Financial risk has several layers: credit, liquidity, interest rate, market, concentration - not just price",
+        "Liquidity risk and concentration risk are usually taken less seriously than market risk by newer investors",
+        "Diversifying by number of holdings does not remove sector concentration risk if those holdings are highly correlated"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Five layers of financial risk",
+      "concepts": [
+        {
+          "def": "Asset prices move on macroeconomic factors and market sentiment. The most easily recognised category of risk."
+        },
+        {
+          "def": "A counterparty or a bond issuer fails to repay on time or in full."
+        },
+        {
+          "def": "Not being able to sell an asset fast enough at a fair price when cash is urgently needed - usually underrated until the day you actually have to sell."
+        },
+        {
+          "def": "Interest rate movements affect the value of bonds held or the cost of borrowing."
+        },
+        {
+          "def": "A portfolio or a revenue base depends too heavily on one asset, one sector, or one customer."
+        }
+      ]
+    },
+    { "type": "heading", "text": "Why diversifying by count is not enough" },
+    {
+      "type": "paragraph",
+      "text": "A portfolio holding 20 shares sounds well diversified, but if all 20 are in real estate or banking they still tend to move together when a shock hits the whole sector - a sudden rate rise, a tightening of credit policy. Real diversification means looking at the correlation between the assets, not just counting the names in the portfolio."
+    },
+    {
+      "type": "callout",
+      "label": "Liquidity risk is the easiest one to miss",
+      "text": "In normal market conditions an illiquid asset still sells, so the risk is almost invisible. It reveals itself precisely when markets are stressed and everyone wants to sell at once - and at that moment the gap between the price you want and the price you get can be very large, exactly when the investor most needs cash."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Risk is not only 'the price might fall'.",
+        "Understanding all the layers prepares you for the shocks the market rarely announces in advance."
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "When does liquidity risk materialise for a commercial bank?",
+    "options": [
+      "When the bank lacks the cash to meet withdrawals",
+      "When the bank holds too much cash in the vault",
+      "When deposit interest rates fall towards 0%",
+      "When the bank's share price rises sharply"
+    ],
+    "explanation": "Liquidity risk is the existential risk for a bank. Even a bank that is profitable on paper can collapse if it faces a run and cannot convert assets into cash quickly enough. Holding excess cash and falling deposit rates hurt profitability rather than solvency, and a rising share price is not a risk event at all."
+  },
+  "application": {
+    "title": "Practical application: the categories of financial risk",
+    "message": "When does liquidity risk materialise for a commercial bank?",
+    "secondary": "Getting this principle firmly in place strengthens your professional financial analysis."
+  }
+}

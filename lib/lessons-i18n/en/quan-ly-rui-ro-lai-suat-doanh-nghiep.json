@@ -1,0 +1,163 @@
+{
+  "slug": "quan-ly-rui-ro-lai-suat-doanh-nghiep",
+  "title": "CFO & Operations, Lesson 6: Managing corporate interest rate risk",
+  "subtitle": "A heavily borrowed business has to manage rate volatility actively, not just 'wait and see'",
+  "duration": "7 min",
+  "openingQuestion": "A company holds a large floating-rate loan. When the central bank signals sharp rate rises ahead, which instrument should Treasury consider to manage the risk?",
+  "openingOptions": [
+    "Nothing needs doing; just wait and see how rates actually move",
+    "An interest rate swap, converting the floating obligation to fixed",
+    "Repay the entire loan immediately, whatever the prepayment penalty costs",
+    "Borrow more to lock in today's rate before it rises"
+  ],
+  "explanation": "An interest rate swap is the standard derivative for converting a floating rate obligation into a fixed one (or the reverse) without restructuring the underlying loan. For a business carrying large floating-rate debt and worried about rising rates, swapping to fixed 'locks in' the interest cost, improves cash flow predictability, and protects the margin from an adverse move in rates.",
+  "diagram": [
+    { "label": "Floating-rate borrowing - cost rises as rates rise" },
+    { "label": "Interest rate swap: floating exchanged for fixed" },
+    { "label": "Interest cost is 'locked', and far easier to forecast" }
+  ],
+  "realWorldExample": {
+    "company": "A highly leveraged business",
+    "description": "Real estate and infrastructure companies typically carry large long-term borrowings at floating rates. In a rising rate environment, many of them use an interest rate swap or an interest rate cap to protect the margin from a sudden jump in interest cost - which matters especially for projects with predictable cash flows but high leverage."
+  },
+  "quiz": [
+    {
+      "question": "Why does a business with STABLE, PREDICTABLE operating cash flow need tighter interest rate risk management than one with volatile cash flow?",
+      "options": [
+        "Because banks apply floating rates to this customer group",
+        "Because a stable business usually borrows more than others",
+        "Because a stable cash flow cannot absorb any volatility whatsoever",
+        "Because the plan is built on an assumption of stable funding cost"
+      ],
+      "explanation": "An interesting paradox: precisely because operating cash flow is forecast tightly and the entire financial plan - debt service commitments, capital spending, dividends - is built on a relatively stable cost of capital, an unexpected rate move can break the whole structure of that plan even though the operating cash flow itself remains stable. Banks price by credit quality rather than by cash flow stability, and the stable business is if anything better placed to carry debt, not automatically carrying more."
+    },
+    {
+      "question": "Why should a business not mechanically hedge 100% of every floating-rate loan, but instead weigh the appropriate hedge ratio?",
+      "options": [
+        "Because hedging costs money and forfeits the gain if rates fall",
+        "Because regulation caps the hedge ratio at 80% of the balance",
+        "Because hedging instruments are not available for every loan tenor",
+        "Because a full hedge would be classified as speculative activity"
+      ],
+      "explanation": "Hedging is a risk management tool, not a speculative one for maximising profit - a 100% hedge removes the risk entirely but also removes any benefit if rates move favourably, and it carries its own transaction cost. The right hedge ratio depends on the risk appetite and financial structure of the specific business. No rule caps the ratio at 80%, swaps are available across the usual tenors, and a full hedge of a real exposure is the opposite of speculation."
+    },
+    {
+      "question": "Floating-rate balance of 500bn, rates rise 3 percentage points. How much does the annual interest cost rise?",
+      "options": [
+        "15bn dong (= 500bn × 3 percentage points)",
+        "150bn dong (= 500 × 30%, one zero too many)",
+        "1.5bn dong (= 500 × 0.3%, one zero too few)",
+        "Cannot be determined without knowing the tenor"
+      ],
+      "explanation": "500 × 3% = 15bn. Setting that number beside pre-tax profit is the fastest way to know whether the exposure is worth worrying about."
+    },
+    {
+      "question": "What separates risk management from speculation when hedging interest rates?",
+      "options": [
+        "Board approval obtained before the transaction is executed",
+        "Using exchange-listed instruments rather than OTC contracts",
+        "Protecting the plan against a bad scenario, not calling direction",
+        "Hedging under 50% of the balance; beyond that it is speculation"
+      ],
+      "explanation": "The same transaction can be a hedge or a speculation depending on why it was done. The test question is: if you removed this transaction, would the business be carrying a real exposure? Board approval is governance rather than substance, the venue of the contract says nothing about intent, and no percentage threshold separates the two."
+    },
+    {
+      "question": "A company enters a swap converting floating debt to fixed. Rates then fall sharply. What happens?",
+      "options": [
+        "The counterparty bank must compensate for the difference in rates",
+        "The contract terminates automatically as the hedge is no longer needed",
+        "The company enjoys a lower rate in line with market moves",
+        "The company pays above market, and gets certainty in exchange"
+      ],
+      "explanation": "A hedge locks in both directions: you escape the risk of rates rising but you also give up the benefit when they fall. Judging a hedge by what happened afterwards is the wrong test - it should be judged on whether the business needed that certainty at the moment it was signed."
+    }
+  ],
+  "keyTakeaways": [
+    "An interest rate swap lets a business convert a floating obligation to fixed so interest cost can be forecast better",
+    "A business with stable cash flow still needs tight interest rate management, because its financial plan rests on an assumption of stable funding cost",
+    "Do not hedge 100% mechanically - balance the certainty you want against the cost and the upside forgone"
+  ],
+  "practicePrompt": {
+    "question": "A company has borrowed 500bn at a floating rate, fears a sharp rise over the next 3 years, and wants to 'lock' its interest cost at a fixed level without restructuring the underlying loan. Which financial instrument lets Treasury do this?",
+    "options": [
+      "An interest rate swap moving the obligation from floating to fixed",
+      "A forward contract, which is used only for managing exchange rate risk",
+      "There is no instrument for this beyond repaying the loan immediately",
+      "Buying bank shares as a hedge against future increases in interest rates"
+    ],
+    "explanation": "An interest rate swap lets a business convert a floating-rate obligation into a fixed one. It is the standard Treasury instrument for managing interest rate risk without restructuring the underlying loan."
+  },
+  "application": {
+    "title": "Measure first, hedge second",
+    "message": "Work out how much the interest cost rises if rates go up 2 percentage points, and set it beside last year's pre-tax profit. If the increase eats a meaningful share of the profit, that is the moment to discuss hedging - and the hedge ratio should come out of that same number.",
+    "secondary": "Hedging part of the balance rather than all of it is a sensible default: it keeps the core predictable while avoiding a total commitment to one direction for rates."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A heavily borrowed business should not simply 'wait and see' what rates do - there are active tools for managing this risk."
+    },
+    { "type": "heading", "text": "Interest rate swap: locking the interest cost in advance" },
+    {
+      "type": "paragraph",
+      "text": "An interest rate swap lets a business convert a floating obligation into a fixed one, improving the forecast of interest cost - in exchange for giving up any benefit if rates later fall. An interesting paradox: it is precisely the business with STABLE cash flow that needs tight interest rate management, because its whole financial plan rests on an assumption of stable funding cost. Do not hedge 100% mechanically - balance the certainty you want against the upside forgone."
+    },
+    {
+      "type": "list",
+      "items": [
+        "An interest rate swap lets a business convert a floating rate obligation into a fixed one",
+        "A business with stable cash flow still needs interest rate management, because the plan rests on a stable cost of capital",
+        "Do not hedge 100% mechanically - balance the certainty wanted against the opportunity cost"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Measure the exposure before discussing instruments",
+      "equation": "Profit impact = Floating-rate balance × Rate increase",
+      "example": {
+        "title": "Worked illustration",
+        "calculation": "Floating-rate balance of 800bn × a 2 percentage point rise",
+        "result": "= 16bn of additional interest cost each year",
+        "explanation": "If the business earns 60bn of pre-tax profit, a 2 percentage point rate move has taken more than a quarter of it. This figure has to be worked out first, because it decides whether hedging is worth doing at all."
+      }
+    },
+    { "type": "heading", "text": "Four ways to manage it, from simple to complex" },
+    {
+      "type": "list",
+      "items": [
+        "Adjust the debt structure: deliberately move part of the balance onto fixed-rate borrowing at refinancing - no derivative required.",
+        "Stagger the maturities: avoid having several large tranches fall due in the same window, so you are not forced to refinance everything just as rates peak.",
+        "Interest rate swap: convert the floating obligation to fixed on part of the balance, locking the cost but paying a spread and losing the benefit if rates fall.",
+        "Interest rate cap: buy the right to be compensated above a set rate - an upfront premium, but the benefit of falling rates is retained."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Hedging the whole balance",
+        "text": "Complete certainty about interest cost, and a financial plan that is very easy to build. But if rates fall sharply the business is stuck at the high level for years and loses ground to competitors who did not hedge."
+      },
+      "right": {
+        "label": "Hedging part of it",
+        "text": "Lock the portion of the balance matching the interest cost the business absolutely must be able to carry, and leave the rest floating. This balances certainty against opportunity cost, and is far more common in practice."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Hedging is not forecasting",
+      "text": "If a business hedges because it believes rates will rise, that is speculation rather than risk management. Genuine risk management starts from a different question altogether: if rates move in the least favourable direction, does the financial plan still stand up?"
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Interest rate risk management is not about 'calling the direction of rates'.",
+        "It is about making sure the financial plan is not broken by a variable you do not control."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "An interest rate swap lets a business convert a floating obligation to fixed so interest cost can be forecast better",
+    "commonMistake": "Easy to miss: a business with stable cash flow still needs tight interest rate management, because the financial plan rests on an assumption of stable funding cost",
+    "action": "Do not hedge 100% mechanically - balance the certainty you want against the cost and the upside forgone"
+  }
+}

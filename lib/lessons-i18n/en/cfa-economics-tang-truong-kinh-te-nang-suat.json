@@ -1,0 +1,143 @@
+{
+  "slug": "cfa-economics-tang-truong-kinh-te-nang-suat",
+  "title": "CFA Economics: Economic growth & productivity",
+  "subtitle": "Why, over the long run, only productivity makes a country richer",
+  "duration": "8 min",
+  "openingQuestion": "Which source of economic growth is the most sustainable over the long run?",
+  "openingOptions": [
+    "Raising hours worked - having everybody work longer",
+    "Raising total factor productivity (TFP)",
+    "Expanding the money supply to spur spending",
+    "Growing the population as fast as possible"
+  ],
+  "explanation": "Growth can come from several sources, but labour and capital both run into diminishing returns - keep adding them and each extra unit contributes less than the last. Only rising total factor productivity (TFP), meaning more output from the same inputs thanks to better technology, better organisation of production and better institutions, has no ceiling on it. Expanding the money supply produces no real growth over the long run.",
+  "realWorldExample": {
+    "company": "South Korea 1960-2000 and the middle-income trap",
+    "description": "Korea's explosive early growth came mostly from accumulating capital and shifting workers out of agriculture into industry - the easy sources. When those ran out, the country moved into heavy R&D and education spending to lift TFP, and escaped the middle-income trap. Many countries stop at the first stage and get stuck because they never manage to switch the engine of growth."
+  },
+  "quiz": [
+    {
+      "question": "What does the law of diminishing marginal returns to capital imply for growth?",
+      "options": [
+        "Each extra unit of capital adds less and less to total output",
+        "The more capital you invest, the faster growth becomes",
+        "Capital and labour must grow in step for growth to occur",
+        "Capital investment stops working once a country is rich"
+      ],
+      "explanation": "Diminishing returns means the tenth machine in a workshop adds less than the first did. It does not mean the effect ever reaches zero, so investment still works in a rich country, only less powerfully. Nor does it require the two inputs to move in step - either can rise alone. The important consequence is that a poor country holding little capital has a high marginal return and grows quickly once investment starts, which is the basis of the convergence hypothesis. And by the same logic, growth built on capital accumulation alone must slow down and eventually stop."
+    },
+    {
+      "question": "In the growth production function, what does TFP (Total Factor Productivity) measure?",
+      "options": [
+        "Total output divided by the economy's total workforce",
+        "The part of growth capital and labour cannot explain",
+        "Investment as a share of gross domestic product each year",
+        "The average growth rate of every sector added together"
+      ],
+      "explanation": "TFP is the Solow residual: take output growth, subtract the contributions of labour growth and capital growth, and what remains is TFP. Output per worker is labour productivity, a related but narrower measure that ignores how much capital each worker has. The investment ratio is an input measure, not a productivity one. What TFP captures is everything hard to measure directly - technological progress, more efficient production organisation, better institutions and rule of law, better allocation of resources. It is the single most important variable explaining why some countries are rich and others are not."
+    },
+    {
+      "question": "Why is GDP per capita a better measure of living standards than total GDP?",
+      "options": [
+        "Because GDP per head has stripped out income inequality",
+        "Because total GDP does not account for inflation in the period",
+        "Because a large total GDP may just mean a large population",
+        "Because total GDP only counts the formal part of the economy"
+      ],
+      "explanation": "A country with a very large total GDP but an enormous population may have a far lower standard of living than a small, highly productive one. GDP per capita normalises for population size. Inflation is handled separately by using real rather than nominal GDP, and it applies to both measures equally. The informal economy is missing from both as well. Note that per capita GDP still has limits of its own: it says nothing about how income is distributed, omits non-market activity, and ignores environmental cost."
+    },
+    {
+      "question": "Under the neoclassical growth model, why can a poor country grow faster than a rich one for many years?",
+      "options": [
+        "Because a poor country is exempt from diminishing returns to capital",
+        "Because population growth is faster in poor countries, giving a bigger workforce",
+        "Because technology in poor countries advances faster than in developed ones",
+        "Because capital per worker is low, so each extra dollar invested earns more"
+      ],
+      "explanation": "The marginal return on capital is high while capital is still scarce, so the early phase of accumulation delivers very fast growth. No country is exempt from diminishing returns - that is exactly what slows the catch-up down. Faster population growth raises total output but not output per head, which is what living standards depend on. And poor countries usually adopt existing technology rather than advancing the frontier faster. To keep growing past the catch-up phase, a country has to switch to raising total factor productivity."
+    },
+    {
+      "question": "What situation does the middle-income trap describe?",
+      "options": [
+        "A country has lost its cheap labour edge but cannot yet compete on productivity",
+        "A country whose income per head hovers around the global average level",
+        "A country growing fast while its income distribution grows steadily more unequal",
+        "A country so dependent on exports that it is fragile when foreign demand falls"
+      ],
+      "explanation": "The cheap-labour model runs out of room once wages have risen, while institutions, education and innovation capacity are not yet strong enough to compete in higher-value segments. Simply sitting near the world average income is a statistical description, not a trap. Rising inequality and export dependence are real problems but separate ones, and both occur at every income level. Escaping this particular trap is a total factor productivity problem, not a matter of investing more capital."
+    }
+  ],
+  "keyTakeaways": [
+    "Three sources of growth: more labour, more capital, and higher total factor productivity (TFP)",
+    "Labour and capital face diminishing returns; only TFP has no long-run ceiling as a source of growth",
+    "TFP is the Solow residual - the growth inputs cannot explain, reflecting technology and institutions",
+    "GDP per capita reflects living standards better than total GDP, but still ignores distribution and environmental cost"
+  ],
+  "practicePrompt": {
+    "question": "A country's GDP has grown 7% a year for a decade, of which labour contributed 2 percentage points and capital accumulation contributed 4.5 percentage points. How should an analyst read its long-run prospects?",
+    "options": [
+      "Very positive - 7% growth is high and can be sustained indefinitely",
+      "Cautious: TFP is only 0.5 points, growth is mostly input pumping",
+      "Wholly negative - capital-driven growth always ends in a crisis",
+      "Impossible to judge without knowing the rate of inflation first"
+    ],
+    "explanation": "Decomposing 7% = 2% (labour) + 4.5% (capital) + 0.5% (TFP) shows growth that is mostly extensive - more inputs poured in rather than inputs used better. Since both labour and capital face diminishing returns, that model must slow down eventually. This is the classic diagnosis applied to the East Asian economies before the 1997 crisis, and it is a warning sign of the middle-income trap."
+  },
+  "summary": {
+    "keyIdea": "Sustainable long-run growth comes from productivity, not from pouring in more labour or capital - because both of those face diminishing returns.",
+    "commonMistake": "Treating a high GDP growth rate as good long-run prospects without decomposing where that growth actually came from",
+    "action": "When you assess an economy, always decompose growth into its three sources and see how much TFP contributes"
+  },
+  "application": {
+    "title": "Applying this in CFA analysis",
+    "message": "Long-run potential growth feeds directly into the terminal growth assumption in a valuation model and into strategic asset allocation across markets.",
+    "secondary": "It is also the basis for judging whether the expected return on an emerging market is worth the risk you take to get it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Why did South Korea become many times richer over four decades while other countries starting from the same place did not? The answer is productivity."
+    },
+    {
+      "type": "heading",
+      "text": "The production function and the three sources of growth"
+    },
+    {
+      "type": "paragraph",
+      "text": "An economy's output is a function of three things: the quantity of labour, the stock of capital, and total factor productivity. Output growth can therefore be decomposed into three corresponding contributions. That decomposition - growth accounting - is the standard tool for diagnosing the quality of a country's growth: two countries both growing 6% but with completely different source mixes have completely different prospects."
+    },
+    {
+      "type": "heading",
+      "text": "Why diminishing returns is the crux of it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold labour and technology fixed and keep adding machines: output still rises, but by less each time - the second machine is more useful than the twentieth. That has two consequences. First, a poor country with little capital has a high marginal return and can grow very fast in the early phase, which is the basis of the convergence hypothesis. Second, no country gets rich forever simply by investing more; at some point only productivity can push growth along."
+    },
+    {
+      "type": "heading",
+      "text": "What actually lifts TFP"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Technological progress, and the capacity to absorb technology from abroad",
+        "Human capital quality: the education, skills and health of the workforce",
+        "Institutions: rule of law, protection of property rights, low corruption, competitive markets",
+        "Efficient allocation of resources: capital and labour able to flow from low-productivity to high-productivity sectors",
+        "Openness to trade and investment, which creates competitive pressure and a channel for technology transfer"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Watch for this in the CFA exam",
+      "text": "Keep extensive growth (pouring in more inputs) clearly separate from intensive growth (raising productivity). Exam items often give you a growth decomposition and ask whether the model is sustainable - and the answer always turns on how much of it TFP contributes."
+    }
+  ],
+  "diagram": [
+    { "label": "Three sources of growth: labour · capital · total factor productivity" },
+    { "label": "More capital delivers growth but runs into diminishing returns" },
+    { "label": "So over the long run only total factor productivity is sustainable" },
+    { "label": "Productivity rises with technology, institutions, education and openness" }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "van-hoa-rui-ro-va-dao-duc-nghe-quan-tri-rui-ro",
+  "title": "FRM Foundations, Lesson 2: Risk culture - why the right structure can still fail",
+  "subtitle": "Misaligned incentives, behavioural bias, and the GARP Code of Conduct",
+  "duration": "9 min",
+  "whyItMatters": "An organisation can have all three lines of defence on paper and still collapse, if the culture in practice rewards silence and punishes whoever reports bad risk news. Risk culture is the invisible layer that decides whether the governance structure actually runs or merely exists on the org chart.",
+  "openingQuestion": "What usually makes second-line staff (Risk/Compliance) hesitate to report a serious risk, even when they can see it clearly?",
+  "openingOptions": [
+    "Because they have not been trained enough in risk measurement techniques",
+    "Because their bonus and their career are tied to business results",
+    "Because the IT systems are too slow to aggregate the reports",
+    "Because they have no access to the transaction data"
+  ],
+  "explanation": "This is incentive misalignment - the most common cultural reason risk warnings get ignored. If the bonus, the appraisal or the promotion prospects of the person doing the monitoring depend on keeping the unit they monitor happy, the natural incentive is silence rather than confrontation.",
+  "diagram": [
+    {
+      "label": "Bonus and appraisal tied to short-term business results"
+    },
+    {
+      "label": "Whoever spots the risk hesitates, fearing relationships and career damage"
+    },
+    {
+      "label": "Risk accumulates quietly, nobody is punished for staying silent"
+    },
+    {
+      "label": "It breaks as a crisis, too late to fix cheaply"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Wells Fargo, 2016",
+    "description": "Branch staff were set extremely high cross-selling targets tied directly to their pay and to the threat of dismissal. Thousands of employees opened up to 3.5 million fake accounts that customers had never asked for, in order to hit those targets. This was not a failure of risk measurement technique - the control system had been recording an unusual volume of complaints since 2011 - but the company's culture rewarded sales volume and punished missed targets far more forcefully than any whistleblowing channel."
+  },
+  "quiz": [
+    {
+      "question": "How does a healthy risk culture differ from simply having a full set of written risk policies?",
+      "options": [
+        "There is no difference at all, having written policies is quite sufficient",
+        "Only small banks need this; large banks already have adequate systems in place",
+        "Staff dare to report and are heard, not just rules sitting on paper",
+        "Risk culture is the sole responsibility of the human resources function"
+      ],
+      "explanation": "Written policy is a necessary condition but not a sufficient one. Risk culture shows up in actual behaviour: whether the person who reports bad news suffers retaliation, and whether leadership responds seriously to a warning or treats it as an obstacle to business. Size does not exempt anyone - the largest institutions have produced the largest cultural failures - and HR owns the training, not the incentives that decide what people actually do."
+    },
+    {
+      "question": "In the Wells Fargo case, why did the problem run for years even though the internal control system had logged complaints early?",
+      "options": [
+        "Because the bank's complaint-logging technology suffered continuous technical faults for years on end, so nobody was able to read the data",
+        "Because target pressure and pay outweighed the incentive to report, so the early warnings never turned into corrective action",
+        "Because the law in force at that time did not require any bank to report customer complaints to the regulator",
+        "Because the customers involved did not have enough evidence to file a formal complaint against the bank"
+      ],
+      "explanation": "This is the classic example of warning data existing while the organisational culture fails to produce a matching response - the short-term financial incentive of hitting cross-sell targets was stronger than the long-term incentive to comply. The data was recorded and readable throughout, complaint reporting obligations already existed, and thousands of customers did file complaints; none of those were the binding constraint."
+    },
+    {
+      "question": "Why is tying a risk controller's bonus to the profit of the unit they oversee a dangerous design?",
+      "options": [
+        "Because it drives up the bank's overall salary and bonus costs across the control functions",
+        "Because accounting standards do not permit compensation to be designed in that way",
+        "Because it gives the controller an incentive to overlook risk that threatens profit they share in",
+        "Because it makes the bank's financial statements considerably harder to audit each year"
+      ],
+      "explanation": "When the monitor's income rises with the profit of the party being monitored, they have a direct financial incentive not to obstruct profitable activity - even when that activity is accumulating excessive risk. Salary cost is a rounding error beside the losses this produces, no accounting rule prohibits the structure, and auditability is unaffected; the damage is to judgement, not to the books."
+    },
+    {
+      "question": "What does 'speaking up' actually mean in practice within a risk culture?",
+      "options": [
+        "Junior staff have no standing to raise risk issues at all; only senior leadership may put concerns on the agenda of a formal board meeting",
+        "It is an internal communications slogan with no enforcement mechanism of any kind attached to it in practice",
+        "It applies only to the Internal Audit function, and only when it is preparing the year-end report to the board",
+        "Any employee who spots an unusual risk is encouraged to report it without fear of retaliation, and that report is genuinely acted on"
+      ],
+      "explanation": "An effective speaking-up culture needs two conditions: psychological safety (no retaliation for reporting) and a real enforcement mechanism (the report leads to action rather than being noted and shelved). Restricting the right to raise issues by seniority defeats the purpose, since the people closest to the risk are usually the most junior; and a slogan without a mechanism is exactly what fails."
+    },
+    {
+      "question": "What sign shows an organisation's risk culture is in trouble despite a complete set of policies?",
+      "options": [
+        "Whoever raises a warning is treated as an obstacle to the business",
+        "The number of risk policies keeps growing with each annual review cycle",
+        "Risk meetings are held on schedule but no minutes are ever written up",
+        "The risk function has fewer people in it than the business units do"
+      ],
+      "explanation": "Policies are measurable, so it is easy to have enough of them. What is not measurable is what happens to the first person who says this number does not look right. If that person is pushed aside, nobody says it next time - and every remaining policy is just paper. Growing policy counts, missing minutes and a smaller headcount are all normal or fixable; none of them tells you what happens to the messenger."
+    }
+  ],
+  "keyTakeaways": [
+    "Risk culture is the invisible layer that decides whether a governance structure that is right on paper actually runs",
+    "Incentive misalignment (bonuses tied to the short-term results of the monitored party) is the most common cultural reason warnings get ignored",
+    "Having early warning data is not enough - you need a culture that turns the data into action (Wells Fargo had complaints from 2011 and it still ran to 2016)",
+    "A real speaking-up culture needs both psychological safety and a working enforcement mechanism, not just a slogan"
+  ],
+  "practicePrompt": {
+    "question": "A risk officer finds that a trading desk is breaching its VaR limit, but that desk is producing 40% of the whole division's quarterly profit. What would show the organisation's risk culture is healthy?",
+    "options": [
+      "The officer stays silent for fear of hurting the whole division's year-end bonus",
+      "The warning is reported, taken seriously regardless of the profit being generated, and nobody is punished for having reported it",
+      "Leadership asks the officer to recalibrate the VaR model until the limit is no longer breached",
+      "The issue is only put on the table after the desk has taken a large loss"
+    ],
+    "explanation": "A healthy culture shows up in warnings being handled on the substance of the risk, not on whether the activity is currently profitable. The other three options are all signals of a weak risk culture - from silence, through manipulating the model, to acting only once it is too late."
+  },
+  "summary": {
+    "keyIdea": "A governance structure that is right on paper only runs if the person who sees the problem can say so at no cost to themselves. That is what culture decides, and no org chart substitutes for it.",
+    "commonMistake": "Treating risk culture as a matter of slogans and training. It is a matter of incentives: pay tied to short-term results beats any written rule."
+  },
+  "application": {
+    "title": "A quick test of an organisation",
+    "message": "Ask when the risk function last blocked a large deal. No answer for several years does not mean there was nothing worth blocking.",
+    "secondary": "Then ask the follow-up: is the person who raised it still working there?"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Two organisations can have the same ERM framework on paper and the same three lines of defence, yet in one risk gets found and dealt with early while in the other it accumulates quietly until it breaks. The difference lies in culture, not in structure."
+    },
+    {
+      "type": "heading",
+      "text": "Misaligned incentives: the most common root cause"
+    },
+    {
+      "type": "paragraph",
+      "text": "When someone's income, performance rating or promotion prospects are tightly tied to the short-term results of the unit they monitor or serve, they have a direct financial incentive not to disturb that revenue stream - even when they have found a genuine risk."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Weak risk culture",
+        "text": "Whoever reports a risk is seen as an obstacle to the business; bonuses are tied to the short-term profit of the monitored party; warnings are ignored as long as revenue holds up."
+      },
+      "right": {
+        "label": "Healthy risk culture",
+        "text": "Risk reports are handled on their substance rather than on current profitability; the people doing the monitoring are paid independently of the results of what they monitor."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The spirit of the GARP Code of Conduct",
+      "text": "GARP's Code of Conduct, binding on FRM charterholders, centres on integrity, objectivity and professional responsibility - not merely complying with the law but proactively reporting when behaviour or decisions push risk beyond the accepted level, even when doing so is politically uncomfortable inside the organisation."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The right governance structure is the necessary condition; the culture that makes people actually use it is the sufficient one.",
+        "Next lesson: revisiting the classic financial disasters to see the shared pattern repeat across the decades."
+      ]
+    }
+  ]
+}

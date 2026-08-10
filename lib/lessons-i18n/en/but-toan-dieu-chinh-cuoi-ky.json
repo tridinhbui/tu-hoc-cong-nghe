@@ -1,0 +1,145 @@
+{
+  "slug": "but-toan-dieu-chinh-cuoi-ky",
+  "title": "The books, lesson 3: adjusting entries - why there is still work at period end",
+  "subtitle": "Accruals, prepayments, depreciation, provisions: four families of entry that no document ever reminds you to make",
+  "duration": "12 min",
+  "whyItMatters": "Every entry during the period has a piece of paper pushing you to make it. Adjusting entries do not - nobody sends you an invoice reminding you to book depreciation. This is what separates a bookkeeper from an accountant, and it is also the easiest place in the ledger to manage profit.",
+  "openingQuestion": "A company pays 120m of office rent in advance on 1 January, covering 12 months. What must be booked at the end of January?",
+  "openingOptions": [
+    "Dr rent expense 10m, Cr prepaid rent expense 10m each month",
+    "Nothing further, it was all booked when paid in January",
+    "Dr rent expense 120m, Cr cash 120m, in January itself",
+    "Dr prepaid rent expense 10m, Cr office rent expense 10m"
+  ],
+  "explanation": "When the money went out, the 120m went into prepaid expenses - an asset, the right to use the office for 12 months. As each month passes, part of that right is consumed, so 10m moves from asset to expense. No invoice arises during January, nobody prompts you, and that is exactly the character of an adjusting entry: it exists because time has passed, not because a transaction occurred. Skip it and January shows a phantom 10m of profit while December absorbs a 120m pile-up - every monthly report is wrong even though the full year still adds up.",
+  "diagram": [
+    { "label": "During the period: book from documents" },
+    { "label": "At period end: ask what was consumed but not booked" },
+    { "label": "Four families: accrual, prepayment, depreciation, provision" },
+    { "label": "Post the adjustment → the report lands in the right period" }
+  ],
+  "realWorldExample": {
+    "company": "The gap between self-prepared and audited accounts",
+    "description": "Most of that gap sits in precisely these four families of entry - above all in the allowance for doubtful receivables and the provision for inventory write-downs. They are figures built on estimates, so they are the widest space in which profit can be steered, and correspondingly the place auditors examine hardest."
+  },
+  "quiz": [
+    {
+      "question": "What do all adjusting entries have in common?",
+      "options": [
+        "No external document ever arises to prompt you to book any of them",
+        "They all reduce the profit of the period being reported",
+        "They all involve amounts already received or paid in cash",
+        "They all need the chief accountant's approval before posting"
+      ],
+      "explanation": "They arise because time has passed or because an estimate has changed, not because a transaction took place. That is why nobody prompts you and why omitting one is so common. They do not all reduce profit - accruing unbilled revenue increases it, and releasing a provision does too. They are frequently made before any cash has moved at all, which is the whole point of accrual accounting. And an approval workflow is a company's own control choice, not a defining feature of the entry."
+    },
+    {
+      "question": "What is an accrued expense?",
+      "options": [
+        "Booking a cost already incurred but not yet invoiced by the supplier",
+        "Booking in advance a cost expected to arise next period",
+        "Spreading one large payment evenly across several periods",
+        "Setting up a reserve against risks that cannot yet be identified"
+      ],
+      "explanation": "December's electricity has been consumed; the invoice only arrives in January. The cost belongs to December and must be booked in December, paperwork or no paperwork. Booking a cost that has not yet been incurred is the opposite error and would overstate this period's expenses. Spreading a large payment over several periods is a prepayment, the mirror image where cash goes out first. And setting aside for unidentified risks is a provision, which rests on an estimate rather than on something already consumed."
+    },
+    {
+      "question": "Why are provisions the family most easily used to manage reported profit?",
+      "options": [
+        "Because the standards say nothing about how provisions are to be measured",
+        "Because it rests on an estimate rather than on a figure already given",
+        "Because provisions never appear on the income statement at all",
+        "Because auditors have no power to require an adjustment to this line"
+      ],
+      "explanation": "Booking a larger provision lowers this year's profit and creates room to release it next year. Because the number is an estimate, the range of defensible answers is genuinely wide - and choosing within that range is a decision about this year's profit, not merely a calculation. Standards do address provisions, but they set principles rather than a single answer. Provisions run straight through the income statement as an expense. And auditors very much can and do require adjustments here; it is exactly why they look hardest at this line."
+    },
+    {
+      "question": "What happens if a month's depreciation entry is left out?",
+      "options": [
+        "No effect at all, because over the full year the figure still ties out",
+        "It hits the balance sheet only; the income statement is still right",
+        "Profit that month is artificially high and assets are overstated",
+        "Tax payable falls, because the expense is recognised later than it should be"
+      ],
+      "explanation": "Both statements are wrong at once - that is the nature of double entry, since the missing credit leaves the asset carried too high while the missing debit leaves the expense too low. 'It ties out over the full year' does nothing for anyone reading the quarterly accounts, which is who reads them. And while the timing does shift tax within the year, framing that as the consequence misses the point: the reported position is simply inaccurate in both statements until the entry is made."
+    },
+    {
+      "question": "How should revenue that has been earned but not yet invoiced be treated?",
+      "options": [
+        "Recognise it only once the customer has paid the invoice in full",
+        "Wait for the invoice, and recognise it in the period the invoice is issued",
+        "Book half in this period and half in the next so the two balance out",
+        "Recognise it in the period performed, without waiting for the invoice"
+      ],
+      "explanation": "The accrual principle: recognise when the transaction occurs, not when the paperwork appears or the cash moves. An invoice is a document, not a condition. Waiting for payment is cash accounting, which would make every business with credit terms report its revenue a month or two late. Waiting for the invoice has the same defect in milder form. And splitting the amount arbitrarily across two periods is not a principle at all - it simply puts half the revenue in a period where nothing was performed."
+    }
+  ],
+  "practicePrompt": {
+    "question": "On 1 October a business pays 120m of office rent in advance for a full 12 months. How much does the adjusting entry on 31 December charge to expense?",
+    "options": [
+      "30m (= 120m × 3 months / 12)",
+      "120m (= expensed in full when paid)",
+      "10m (= 120/12, just one month)",
+      "90m (= the portion not yet used)"
+    ],
+    "explanation": "Paying and incurring an expense are two different moments. When the 120m went out, the business bought a 12-month right of use - an asset (prepaid expense), not yet a cost. By 31 December three months have been consumed, so 30m moves from asset to expense and the remaining 90m stays on the balance sheet. Expensing the whole 120m at payment is the classic error of someone who books only when a payment voucher appears: it drags all of next year's cost into this quarter. Booking 10m forgets that a quarter-end adjustment has to cover all three months that have passed."
+  },
+  "keyTakeaways": [
+    "Adjusting entries have no document to prompt them - they arise because time has passed.",
+    "Four families: accruals, amortising prepayments, depreciation, provisions.",
+    "Provisions rest on estimates, which makes them the widest space for managing profit.",
+    "Omitting one adjusting entry puts both financial statements wrong at the same time."
+  ],
+  "summary": {
+    "keyIdea": "Adjusting entries arise because time has passed, so no document ever reminds you to make them",
+    "commonMistake": "Booking only when an invoice or a payment voucher appears, and so missing the entire period-end family.",
+    "action": "At every period end, run through the four families: accruals, prepayments, depreciation, provisions."
+  },
+  "application": {
+    "title": "Find the entry you missed",
+    "message": "At month end, list what has been consumed without an invoice - electricity, rent, loan interest - and what has been paid in advance for several months. Every line on those two lists is an adjusting entry.",
+    "secondary": "Omitting one adjusting entry puts both the income statement and the balance sheet wrong at the same time."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "During the period, every entry has a piece of paper pushing you to make it: the invoice arrives, you book it; the money goes out, you book it. At period end there is no piece of paper at all, and yet there is still work to do - and that is the hard part of the craft."
+    },
+    { "type": "heading", "text": "The four families" },
+    {
+      "type": "conceptTable",
+      "title": "Period-end adjusting entries",
+      "concepts": [
+        {
+          "def": "Consumed, not yet invoiced. December utilities, loan interest not yet due, the final month's payroll still unpaid."
+        },
+        {
+          "def": "Paid up front for several periods. Each period moves a slice from asset to expense: rent, insurance, small tools and equipment."
+        },
+        {
+          "def": "Long-lived assets wearing out gradually. Nobody sends a depreciation invoice - it exists only because time has passed."
+        },
+        {
+          "def": "An estimate of what will be lost: doubtful receivables, inventory written down. Built on judgement, which makes it the widest space."
+        }
+      ]
+    },
+    { "type": "heading", "text": "Why the accrual principle forces this work" },
+    {
+      "type": "paragraph",
+      "text": "Accrual accounting recognises transactions when they occur, not when the cash moves. December's electricity was used in December, so the cost belongs to December, even though the invoice arrives in January and the money leaves in February. Without adjusting entries every individual period is wrong, even though the full year still adds up - and whoever is reading the quarterly accounts does not have the full year to add up."
+    },
+    {
+      "type": "callout",
+      "label": "Why auditors look hardest at provisions",
+      "text": "The first three families rest on fairly hard evidence: a lease contract, a depreciation schedule, next month's invoice. A provision rests on an estimate about the future, so the range of defensible answers is very wide - and within that range, provisioning more or less is a choice about this year's profit rather than merely a calculation."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Booking from documents is work that can be laid out step by step.",
+        "Sitting down at period end and asking what has been consumed that nobody has recorded - that is the profession."
+      ]
+    }
+  ]
+}

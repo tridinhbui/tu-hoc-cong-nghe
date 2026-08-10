@@ -1,0 +1,154 @@
+{
+  "slug": "cap-table-va-vesting-cau-truc-von-startup",
+  "title": "Cap table & vesting: the startup capital structure every PE/VC analyst must be able to read",
+  "subtitle": "A complex cap table is the first tool you need to master when analysing a startup investment",
+  "duration": "8 min",
+  "openingQuestion": "A startup's cap table shows the founder owning 40% of common stock, VC fund A owning 30% of Series A preferred with a '1x liquidation preference', and the ESOP at 15%. If the company sells for $50 million, what is the minimum VC A receives, regardless of whether their 30% holding corresponds to that sum?",
+  "openingOptions": [
+    "VC A receives exactly 30% × 50 million = 15 million, no more and no less",
+    "VC A gets back at least its original investment before the rest is split pro rata",
+    "VC A receives nothing, because preferred always ranks below common stock",
+    "Liquidation preference only applies in a bankruptcy, never in a sale at a good price"
+  ],
+  "explanation": "This is the CORE concept every PE/VC analyst has to understand: a liquidation preference lets preferred holders - usually the VC - take back AT LEAST the amount they invested (or a multiple of it, such as '2x') BEFORE the remaining value is divided among common holders by ownership share. It protects the VC from losing capital in exits that fall short of expectations, and it is precisely why reading a cap table can never stop at the ownership percentages.",
+  "realWorldExample": {
+    "company": "Down rounds and the bite of liquidation preference",
+    "description": "In down rounds - where a later round prices below the previous one, common when markets correct - liquidation preference becomes decisive: many founders and employees holding common stock or ESOP options discover that when the company sells for less than hoped, most or all of the proceeds flow to the later-round VCs with their senior, higher preferences, leaving founders and staff - nominally holding a much larger percentage - with very little or nothing at all."
+  },
+  "quiz": [
+    {
+      "question": "How does the standard 4-year vesting schedule with a '1 year cliff' work for employee and founder equity?",
+      "options": [
+        "Half after two years and the other half at the end of year four",
+        "The full grant lands the moment the employment contract is signed",
+        "It vests evenly every month starting from the very first month",
+        "Nothing for the first 12 months, then monthly vesting after that"
+      ],
+      "explanation": "Four years with a one-year cliff is the global startup standard: the cliff protects the company from handing equity to someone who leaves before contributing meaningful value, while the monthly vesting that follows creates a long-run retention incentive. Vesting from month one gives away equity to a three-month hire; a lump at signing gives away everything to someone who may never show up; and a two-tranche schedule creates a second cliff at year two, with the same all-or-nothing distortion around the date. This is basic knowledge for any PE/VC analyst assessing the ownership structure and the team's incentives."
+    },
+    {
+      "question": "What specific risk does 'anti-dilution protection' in a VC term sheet protect the investor against?",
+      "options": [
+        "The risk that a later funding round prices below the earlier one",
+        "The risk that the company issues more shares to new employees",
+        "The risk that a founder leaves before vesting is complete",
+        "The risk that preferred stock is converted into common stock"
+      ],
+      "explanation": "Anti-dilution protection is among the most intricate and important clauses in a VC term sheet: it does not prevent dilution outright - dilution still occurs whenever new shares are issued - but it adjusts the CONVERSION RATIO of the older preferred stock to partly compensate when a later round prices lower. Ordinary ESOP issuance is normally carved out of the calculation entirely; a departing founder is handled by vesting; and conversion to common is the investor's own choice, not a risk. Understanding the mechanism - particularly weighted average versus full ratchet, the two common variants with very different strength - is essential when modelling how a new round hits existing investors."
+    },
+    {
+      "question": "Why is reading a cap table in detail - rather than glancing at the ownership percentages - especially important when a PE/VC analyst evaluates a new investment in a startup that has already raised several rounds?",
+      "options": [
+        "Because the ownership percentages change with every new funding round",
+        "Because the stacked preferences can swallow nearly all the exit proceeds",
+        "Because founder shares are not fully vested and cannot yet be counted",
+        "Because the valuations of earlier rounds need re-auditing from scratch"
+      ],
+      "explanation": "This is the core analytical skill of the job: the liquidation preference stack built up over Seed, Series A, B and C creates a structure a new investor MUST model across different exit scenarios - waterfall analysis - to understand what they would actually receive in each. A merely respectable exit valuation can still leave the newest round with very little if the accumulated preferences from earlier rounds absorb most of the value. Percentages shifting with each round is arithmetic anyone can do; unvested founder shares and historic valuations are side issues by comparison."
+    },
+    {
+      "question": "A startup exits at $20m. The VC holds 20% with a 1x liquidation preference on an $8m investment. How much does the VC receive?",
+      "options": [
+        "$12m, the preference plus a pro rata share on top",
+        "$4m, exactly 20% of the $20m exit value",
+        "$8m (takes the preference, larger than 20% of $20m)",
+        "$20m, since preferred holders are paid first in full"
+      ],
+      "explanation": "A preferred holder takes whichever route pays more: reclaim the $8m invested, or convert and take 20% × 20 = $4m. They take the $8m, and only the remaining $12m is divided among everyone else - which is exactly why headline ownership percentages mislead."
+    },
+    {
+      "question": "Why can a 'moderately successful' exit still leave the founder with very little?",
+      "options": [
+        "Because founders must repay the salary drawn during the loss years",
+        "Because founder equity is always diluted below 5% by the end",
+        "Because tax on the gain from the sale price is extremely high",
+        "Because the rounds' total preference nearly equals the exit value"
+      ],
+      "explanation": "Raise $60m across several rounds at 1x preference and then exit at $70m: $60m goes to the investors first, leaving only $10m for everybody else. The headline exit number sounds large, but the waterfall decides who gets what. Salary is never repayable, dilution below 5% is a possible outcome rather than a rule, and tax applies to whatever is actually received - it cannot explain a distribution that was small before tax."
+    }
+  ],
+  "keyTakeaways": [
+    "Liquidation preference (usually '1x' or '2x') lets preferred holders take back at least their invested capital, or a multiple of it, before the rest is split by ownership - more decisive than headline percentages in many exit scenarios",
+    "The standard vesting schedule (4 years, 1-year cliff) protects the company from granting equity to early leavers and creates a long-run retention incentive",
+    "Anti-dilution protection partly shields an investor from a down round by adjusting the conversion ratio of their preferred stock",
+    "For a startup several rounds in, a full waterfall analysis is needed to understand each class of investor's real priority at exit - percentages alone will not tell you"
+  ],
+  "practicePrompt": {
+    "question": "A startup has raised 3 rounds: Seed ($1M, 1x preference), Series A ($5M, 1x preference) and Series B ($10M, 1x preference) - a $16M preference stack in total. The company sells for $20M. After the $16M of preference is paid to the three preferred rounds, $4M remains for the common holders (founders plus ESOP). What does that tell you about the risk of raising many rounds?",
+    "options": [
+      "Common holders split the full $20M pro rata, preference comes afterwards",
+      "The $16M preference stack eats 80% of the exit; common is left $4M",
+      "The founder holds 60% of the cap table so takes $12M, then preference",
+      "Liquidation preference is a theoretical figure with no effect on cash"
+    ],
+    "explanation": "This is the single most important practical lesson about raising round after round: preference stacking can leave even a respectable-looking exit ($20M) with very little for founders and employees, because most of the proceeds go to preference obligations accumulated across earlier rounds. It is why founders should negotiate preference terms carefully from the very first round, and why a PE/VC analyst should always model the waterfall before calling a deal attractive."
+  },
+  "summary": {
+    "keyIdea": "A cap table is not a simple table of ownership percentages - it encodes a complex structure of rights (liquidation preference, vesting, anti-dilution) that decides who actually receives how much money in each exit scenario.",
+    "commonMistake": "Valuing an investment or a shareholding on the ownership percentage alone, ignoring preference terms that can completely change what is actually received",
+    "action": "When analysing a startup deal, always ask for the full cap table and run a waterfall analysis across several exit valuations (low, middle, high) before drawing a conclusion"
+  },
+  "application": {
+    "title": "Apply it in PE/VC analysis work",
+    "message": "Practise building a simple waterfall: assume a startup with 2 funding rounds carrying different liquidation preferences, and compute what each party receives at 3 different exit prices (low/middle/high) to see the preference structure bite.",
+    "secondary": "The next lesson goes into reading a term sheet - the legal document summarising the most important investment terms before the definitive agreement is signed."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In PE/VC, a 20% stake is not always a 20% stake - the cap table structure behind the headline percentage is what actually determines the value you receive."
+    },
+    {
+      "type": "heading",
+      "text": "Liquidation preference - the most important concept in a cap table"
+    },
+    {
+      "type": "paragraph",
+      "text": "The preferred stock a VC receives on investing always carries a liquidation preference - the right to take back a minimum amount first (usually 1 to 2 times the capital invested) BEFORE any remaining value is split among common holders. It protects the investor against losing capital, but it also means that in a less-than-ideal exit most of the value can flow to preferred holders before founders and employees receive anything meaningful."
+    },
+    { "type": "heading", "text": "Vesting - the retention mechanism" },
+    {
+      "type": "paragraph",
+      "text": "Neither founders nor employees receive their common stock all at once - the standard schedule (4 years, 1-year cliff) makes the equity theirs only gradually as they stay, protecting the company and the other shareholders from someone leaving early while keeping a large stake they are no longer earning."
+    },
+    { "type": "heading", "text": "Waterfall analysis - the indispensable tool" },
+    {
+      "type": "paragraph",
+      "text": "For a startup several rounds in, each round usually carries its own liquidation preference and its own seniority (later rounds typically rank ahead of earlier ones - 'stacked' - or occasionally rank equally, 'pari passu'). A waterfall analysis models exactly who receives what at each exit price, and mastering it is compulsory before drawing any conclusion about the real value of a startup investment."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three terms that decide who gets what",
+      "subtitle": "The percentages on a cap table cannot tell you the cash anyone receives in a liquidity event",
+      "concepts": [
+        {
+          "def": "The investor takes their slice first. With 1x participating, they get their capital back AND THEN share in the remainder - so a founder can own 60% and receive very little."
+        },
+        {
+          "def": "Equity arrives gradually over time, usually four years with a one-year cliff at the start. Leaving before the cliff means receiving nothing."
+        },
+        {
+          "def": "Working out where the money actually goes at each sale price. It is the only tool that answers 'if we sell for X, what do I actually get'."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The trap",
+      "text": "The percentage on a cap table is the easiest number to look at and the least informative. Only a waterfall across several sale prices shows how the capital structure really divides the money."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Reading a cap table is the foundational skill that separates a real PE/VC analyst from someone reading ownership percentages off a page.",
+        "Every clause in a cap table - liquidation preference, vesting, anti-dilution - can completely change the actual financial outcome of a deal, even when the headline valuation looks identical."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Ownership structure round by round" },
+    { "label": "Each investor's liquidation preference" },
+    { "label": "Vesting schedules for founders and key staff" },
+    { "label": "Waterfall analysis: at exit, who gets paid first" }
+  ]
+}

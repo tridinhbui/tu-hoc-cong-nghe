@@ -1,0 +1,133 @@
+{
+  "slug": "dataframe-bang-du-lieu-trong-code",
+  "title": "Data, Lesson 2: The DataFrame - a spreadsheet with no cells",
+  "subtitle": "Why working by column instead of by row completely changes how you think about data",
+  "duration": "11 min",
+  "whyItMatters": "People moving from Excel to code make the same mistake: they write a loop that walks row by row, exactly the way they used to drag a formula down a sheet. The code runs, but it is dozens of times slower and five times longer. Learning to think in columns is the real turning point, and it is a way of thinking rather than a matter of syntax.",
+  "openingQuestion": "What is the biggest conceptual difference between a spreadsheet and a data table in code?",
+  "openingOptions": [
+    "A data table in code can hold far more rows than a spreadsheet can",
+    "A spreadsheet thinks in cells; code thinks in whole columns",
+    "A data table in code does not require column names at all",
+    "A spreadsheet cannot store a proper date data type"
+  ],
+  "explanation": "In a spreadsheet, the unit of thought is a cell: you write a formula for the first one and drag it down. In code, the unit of thought is the whole column: you say 'take the revenue column minus the cost column' and that subtraction applies to every row at once. It sounds like a difference in syntax, but it changes how you express the problem - and once you can express it by column, the code is both shorter and many times faster.",
+  "diagram": [
+    { "label": "Select the columns you need", "arrow": true },
+    { "label": "Filter rows by a condition", "arrow": true },
+    { "label": "Group and aggregate", "arrow": true },
+    { "label": "Join with another table" }
+  ],
+  "realWorldExample": {
+    "company": "Computing the margin on twenty thousand orders",
+    "description": "The spreadsheet way of thinking: walk through each order, subtract cost of goods from revenue, append the result to a list. About seven lines of code and a few seconds to run. The column way of thinking: write a single line saying the margin column equals the revenue column minus the cost column. It runs almost instantly. The speed difference comes from the whole-column operation being executed at a lower level, instead of iterating element by element up at the language layer."
+  },
+  "quiz": [
+    {
+      "question": "What does working by column mean?",
+      "options": [
+        "Applying one calculation to a whole column at once instead of looping row by row",
+        "Reordering the columns in the table before starting to perform any calculation at all",
+        "Each table may contain exactly one numeric column and no more than that",
+        "Transposing the table so rows become columns before computing anything on them"
+      ],
+      "explanation": "This is the natural way to express most data transformations, and it is also the fastest, because the operation is executed below the language layer. Reordering columns is cosmetic and changes nothing about how a calculation runs. A table can obviously hold many numeric columns. And transposing is a specific reshaping operation, not a general style of computation. A row-by-row loop should be the last resort, not the first."
+    },
+    {
+      "question": "Why should each column's data type be declared correctly from the start?",
+      "options": [
+        "Because declaring types correctly reduces the file size on disk",
+        "A date column read as text will sort wrongly and raise no error message at all",
+        "Because analysis libraries refuse to run on a column with no declared type",
+        "Because the data type decides the order columns print in on screen"
+      ],
+      "explanation": "Type errors are dangerous precisely because they are silent. Dates stored as text sort alphabetically, so October comes before February and nothing warns you. Memory footprint does change with type, but that is a convenience rather than a correctness issue. Libraries happily infer types and run without complaint, which is the whole problem. And print order follows the column order in the table, not the type."
+    },
+    {
+      "question": "Grouping and then aggregating corresponds to which spreadsheet operation?",
+      "options": [
+        "Freezing the header row so it stays visible when you scroll down the sheet",
+        "Conditional formatting, colouring cells by thresholds the user sets in advance",
+        "A pivot table, where you drag one field into rows and one into values",
+        "Data validation on entry, restricting input to a list of permitted values"
+      ],
+      "explanation": "If you already know pivot tables, you already understand grouping. Freezing panes is a display convenience, conditional formatting changes appearance without summarising anything, and validation constrains what can be typed in. None of those reduce many rows to one row per group. The difference in code is that the grouped result is itself an ordinary data table, so you can keep filtering, joining or calculating on top of it."
+    },
+    {
+      "question": "What risk does joining two tables on a shared key carry that a spreadsheet never warns you about?",
+      "options": [
+        "The join automatically drops every column name appearing in both source tables",
+        "The two tables must have the same number of rows before they can be joined",
+        "The joined result always gets re-sorted alphabetically by the chosen key column",
+        "If the key is duplicated on one side, the result can gain rows unexpectedly"
+      ],
+      "explanation": "This is the error that makes total revenue suddenly double. Duplicate column names are normally suffixed rather than dropped, row counts need not match at all (that is the point of a join), and result ordering depends on the join type rather than being sorted alphabetically. The good habit is to check the row count before and after a join - if it changes unexpectedly, your key is not as unique as you assumed."
+    },
+    {
+      "question": "A date column is read as text instead of as a date type. How does the error show up?",
+      "options": [
+        "Sorting and filtering follow alphabetical order rather than chronological order, silently",
+        "The program stops and reports a data type error the moment the file is read in",
+        "The entire column is replaced with empty values, so a glance reveals the problem",
+        "Only the calculation of the gap between two dates breaks; sorting still works"
+      ],
+      "explanation": "String comparison works character by character from the left, so \"02/01/2023\" sorts before \"11/12/2019\" - correct alphabetically, wrong chronologically. There is no error message, because to the machine this is a perfectly valid comparison of two strings, and the values are all still there to look at. Everything computed downstream inherits that silent mistake, including any filter on a date range."
+    }
+  ],
+  "keyTakeaways": [
+    "The unit of thought is the whole column, not the individual cell - this is a shift in thinking, not in syntax",
+    "The wrong data type causes silent errors, especially a date column read as text",
+    "Group-and-aggregate is exactly a pivot table, except the result can keep being processed",
+    "Always check the row count before and after joining tables"
+  ],
+  "practicePrompt": {
+    "question": "After joining the orders table with the customer table, total revenue rises from 50bn to 63bn. What is the most likely cause?",
+    "options": [
+      "The customer table holds additional revenue not present in the orders table",
+      "The key is duplicated in the customer table, multiplying some orders",
+      "The join automatically converted currencies during the operation",
+      "Rounding during the summation of the totals produced the difference"
+    ],
+    "explanation": "A join does not create new revenue. When the total rises, it is almost always because one customer code appears several times in the right-hand table - because the customer has multiple addresses, for instance - so each order gets duplicated once per address. The way to check: count the distinct values of the key column and compare that against the row count of the table."
+  },
+  "summary": {
+    "keyIdea": "Express the problem by column, and reach for a loop only when there is genuinely no other way",
+    "commonMistake": "Carrying the spreadsheet habit of dragging a formula row by row straight over into code",
+    "action": "Next time you are about to write a row-by-row loop, stop and ask whether the calculation can be expressed for the whole column."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take a data table you already have and perform exactly four operations: select a few columns, filter rows on one condition, group by a field and sum, and join it to a second table. Those four operations make up most of everyday data analysis work.",
+    "secondary": "After each operation, print the row count. That habit catches most errors at the point where they are created."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A data table in code looks exactly like an Excel sheet: rows, columns, headers. But the way you talk to it is completely different, and that difference decides whether your code is short or long, fast or slow."
+    },
+    { "type": "heading", "text": "Four operations that cover most of the work" },
+    {
+      "type": "conceptTable",
+      "title": "The foundational operation set",
+      "subtitle": "Almost every analysis is a combination of these four",
+      "concepts": [
+        { "def": "Keep only the columns you need. A leaner table means fewer errors, and whoever reads the code later immediately sees what you care about." },
+        { "def": "Keep the rows meeting a condition. Equivalent to a spreadsheet filter, but written down as text, so it is reproducible." },
+        { "def": "Split the data by a field and aggregate each group. This is exactly a pivot table, except the result is still a table you can keep working on." },
+        { "def": "Connect two tables on a shared key. The most powerful of the four operations and also the one that produces the most errors." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The data type trap",
+      "text": "The most common error when reading data in is not a wrong formula but a column whose type is misread. A date column read as text sorts in the wrong order. A numeric column with thousands separators read as text makes every addition fail. The dangerous part is that there is no error message - only a wrong result. Checking each column's type immediately after loading the data is a habit worth forming early."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A data table in code is not a faster spreadsheet; it is a different way of thinking about the same table.",
+        "The next lesson covers the part that takes up the most time in any data project: cleaning."
+      ]
+    }
+  ]
+}

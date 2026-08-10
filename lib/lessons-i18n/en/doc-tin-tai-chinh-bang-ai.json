@@ -1,0 +1,183 @@
+{
+  "slug": "doc-tin-tai-chinh-bang-ai",
+  "title": "AI for finance, lesson 4: reading financial news with AI",
+  "subtitle": "Turning a long article into the key point, the impact, and the questions to check.",
+  "duration": "13 min",
+  "whyItMatters": "News is the information you are exposed to most often, and it is where emotion most easily takes the place of a decision. A fixed reading structure is the cheapest way to cut down on mistakes.",
+  "openingQuestion": "When reading a piece of financial news with AI, what is the most important question?",
+  "openingOptions": [
+    "Does it affect revenue, cost or cash flow, or is it just sentiment?",
+    "Does the piece have a lot of words and figures in it?",
+    "Is the headline appealing enough to be worth clicking on?",
+    "Should I go and buy this stock straight away, today?"
+  ],
+  "explanation": "A financial article usually mixes three things: an event that happened, figures used to illustrate it, and the writer's own judgement. Beginners tend to read all three as one general feeling of 'good news' or 'bad news'. Using AI to split the article into event - impact - risk - questions to verify forces you to see which part is fact and which part is opinion, and that is the single most important skill in reading news.",
+  "summary": {
+    "keyIdea": "AI turns a long article into the key point, the financial impact, and the questions to verify.",
+    "commonMistake": "Seeing positive news and concluding the stock must be good.",
+    "action": "Paste an article in and ask AI to split it into event, impact, risk, questions to verify."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "News can sweep a beginner along on emotion. AI helps you read it with more structure."
+    },
+    {
+      "type": "heading",
+      "text": "Reading news through four boxes"
+    },
+    {
+      "type": "list",
+      "items": [
+        "What is the main event?",
+        "Who benefits, and who is affected?",
+        "Does it hit revenue, cost, debt or cash flow?",
+        "What else needs verifying?"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Terminology",
+      "text": "Short-term impact: an effect over days or weeks. Long-term impact: an effect on profit, cash flow or competitive position over several quarters or years."
+    },
+    {
+      "type": "heading",
+      "text": "A sample prompt"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the article below. Answer with a table containing: Main event, Positive impact, Negative impact, Short-term or long-term impact, Questions to verify."
+    },
+    {
+      "type": "heading",
+      "text": "What does a good output look like?"
+    },
+    {
+      "type": "paragraph",
+      "text": "A good output does not just say 'good news'. It has to explain where the good is: higher revenue, lower cost, reduced risk, or merely a lift in market mood."
+    },
+    {
+      "type": "heading",
+      "text": "Four questions a headline never answers"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Which line does this figure land on - revenue, gross profit or profit after tax?",
+        "Is it a one-off or does it recur every year?",
+        "Over how many years is it spread, and how much is recognised this year?",
+        "To achieve it, how much extra cost or extra borrowing does the company take on?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Those four turn a piece of 'good' news into a number you can estimate. If the article does not carry enough data to answer them, that is precisely your list of things to look up in the financial statements or the company's disclosures - and AI can help you find the right place, in the next lesson."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Reading on emotion",
+        "text": "\"The company won a trillion-dong tender - great news, the stock will surely rise.\" The conclusion arrives before the data, and there is nothing to check back against in three months."
+      },
+      "right": {
+        "label": "Reading with structure",
+        "text": "\"A 1,200bn contract recognised over 4 years, so roughly 300bn a year. Current revenue is 5,000bn, so the impact is about 6%. Need to check the margin on this segment in the segment note.\""
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A full prompt to reuse",
+      "text": "\"You are a cautious analyst. Use only the article below, and add no outside knowledge. Build a 4-column table: Event | Which financial line it hits | One-off or recurring | Questions to verify. At the end of the table, list the information the article does NOT provide but which is needed to assess it. Give no buy or sell recommendation.\""
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Reading news with AI means reading with structure.",
+        "Do not let the headline stand in for the analysis."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Positive news with no concrete figures should be treated as what?",
+      "options": [
+        "A signal worth watching and verifying further",
+        "Noise, so it should be ignored altogether",
+        "A sure sign the price will keep climbing",
+        "Evidence enough to make a buy decision"
+      ],
+      "explanation": "Good news has to be connected to figures before it becomes an investment case. Ignoring it entirely throws away a genuine lead; treating it as proof the price will keep rising assumes the market has not already priced it in; and treating it as sufficient for a buy decision skips the step where you find out how large the effect actually is. Watching and verifying is the only reading that keeps the next step open."
+    },
+    {
+      "question": "Which columns should a summary table for a piece of good news contain?",
+      "options": [
+        "Sentiment, spread reach, and the number of reposts of the story",
+        "The event, the impact, the horizon, the checks to run",
+        "Company name, ticker code, price and volume traded on the day",
+        "Headline, publication date, outlet name and view count"
+      ],
+      "explanation": "These columns separate emotion from financial impact. The other three all describe the article rather than the company: reach and reposts measure how widely a story travelled, the ticker and the traded volume are already on your screen, and the outlet's name and its view count say nothing about revenue, cost or cash flow."
+    },
+    {
+      "question": "Why is it necessary to distinguish a 'one-off' item from one that 'recurs every year' when reading news?",
+      "options": [
+        "Because only recurring items have to appear in the financial statements",
+        "Because a one-off gain is tax-free, a recurring one is not",
+        "Because a one-off item does not change long-run earning power",
+        "Because a one-off item is always many times larger than a recurring one"
+      ],
+      "explanation": "An unusual gain can make this year's profit look good while saying nothing at all about next year. Confusing the two is the most common valuation error a beginner makes. One-off items are of course recorded in the accounts like anything else, they carry no tax exemption, and they are not systematically larger - plenty of them are trivial. What distinguishes them is simply whether they repeat."
+    },
+    {
+      "question": "What should the end product of reading a piece of financial news with AI be?",
+      "options": [
+        "A brief summary of what the news item actually reported",
+        "A clear, decisive recommendation to buy or to sell",
+        "A share price forecast for the next three months",
+        "A list of checks to run and an estimate of the impact"
+      ],
+      "explanation": "News rarely carries enough data to support a decision on its own. Its role is to tell you where to go and look next. A summary merely compresses the article without adding anything you can check; a buy or sell recommendation skips the arithmetic entirely; and a three-month price forecast asks the article for something it never contained in the first place."
+    },
+    {
+      "question": "A report says a company posted record profit thanks to selling one of its business lines. How is this information best classified?",
+      "options": [
+        "A one-off item, to be kept out of forward earnings estimates",
+        "Good news on operating efficiency, showing margins are improving",
+        "Neutral, since selling an asset does not change enterprise value",
+        "Bad news, since a gain on an asset sale always means cash is short"
+      ],
+      "explanation": "A gain on disposal flatters the bottom line exactly once, and it also removes the revenue that division used to contribute. Separating one-off from recurring is the first step in reading any profit story - and it is something AI will not do unless you ask it to. It is not an operating efficiency result, selling a division at a price genuinely does change the business, and a disposal is often strategic rather than a sign of distress."
+    }
+  ],
+  "diagram": [
+    { "label": "The article (event + figures + judgement, all mixed)" },
+    { "label": "AI splits it: event · impact · risk · questions to verify" },
+    { "label": "You check the figures against their source" },
+    { "label": "Add it to the watchlist, do not trade on it straight away" }
+  ],
+  "realWorldExample": {
+    "company": "The 'signed a big contract' story",
+    "description": "A very common type of news: a company announces a contract worth a thousand billion and the stock jumps in the same session. Reading with structure, you would ask what the headline never answers: over how many years is the contract value recognised, what is the margin on that segment, has it actually been signed or is it only a memorandum of understanding, and does the company need to borrow more to deliver it. In many cases a thousand-billion contract spread evenly over 5 years at a thin margin has a far smaller effect on profit than the price reaction on announcement day suggests."
+  },
+  "keyTakeaways": [
+    "Split the article into event - impact - risk - questions to verify, rather than reading it as one general feeling.",
+    "Always ask where the impact flows: revenue, cost, margin or cash flow.",
+    "Separate a one-off impact from one that recurs annually - this is what headlines blur most.",
+    "The result of reading the news is a list of things to verify, not an order to buy."
+  ],
+  "practicePrompt": {
+    "question": "When reading a piece of financial news with AI, what is the most important question?",
+    "options": [
+      "Does it affect the company's cash flow?",
+      "Does this piece have a lot of words in it?",
+      "Is the headline appealing enough?",
+      "Should I go and buy it right now?"
+    ],
+    "explanation": "News has to be connected to a real financial impact."
+  },
+  "application": {
+    "title": "Try it now",
+    "message": "Paste an article in and ask AI to split it into event, impact, risk, questions to verify.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

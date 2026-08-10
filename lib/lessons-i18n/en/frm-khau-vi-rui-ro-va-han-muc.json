@@ -1,0 +1,136 @@
+{
+  "slug": "frm-khau-vi-rui-ro-va-han-muc",
+  "title": "FRM Foundations, Lesson 5: Risk appetite, tolerance and the limit framework",
+  "subtitle": "From one sentence signed off by the board down to the limit on a trader's screen",
+  "duration": "9 min",
+  "whyItMatters": "Risk management is not about reducing risk to zero - a firm that accepts no risk also generates no profit. Risk appetite is the answer to how much, and the limit framework is how that answer becomes a constraint you can enforce day by day.",
+  "openingQuestion": "What does a firm's risk appetite statement have to be translated into before it has any practical effect?",
+  "openingOptions": [
+    "A general commitment signed by the executive team and circulated to all staff by internal email",
+    "A measurable limit framework allocated down to each unit",
+    "A cash reserve equal in size to the level of risk the firm has agreed to accept",
+    "An insurance contract transferring everything above the threshold to an insurer"
+  ],
+  "explanation": "A statement along the lines of we accept risk at a prudent level binds nobody. It only takes effect once it is decomposed into measurable limits at each level - a maximum VaR for a desk, a maximum exposure to an industry, an operational loss threshold - so that every day a comparison can be made and a breach detected.",
+  "diagram": [
+    { "label": "The board states the overall risk appetite" },
+    { "label": "Decompose into tolerances for each risk type" },
+    { "label": "Allocate down to specific limits per unit and per desk" },
+    { "label": "Monitor daily, with a defined process for handling breaches" }
+  ],
+  "realWorldExample": {
+    "company": "Risk appetite statement requirements after the 2008 crisis",
+    "description": "After the global financial crisis, regulators in a number of countries began requiring large banks to hold a formal risk appetite statement approved by the board, together with a limit framework decomposed down to each unit. The direct cause was that post-crisis investigations found many firms could not answer a basic question: how much risk are you running, and who agreed to that level."
+  },
+  "quiz": [
+    {
+      "question": "How does risk appetite differ from risk capacity?",
+      "options": [
+        "They are the same concept, and only the name given to them differs",
+        "Risk appetite is always larger than risk capacity at every financial firm",
+        "Capacity is the maximum that can be borne, appetite is the level actively chosen",
+        "Risk capacity is set by the regulator while appetite is set by the shareholders"
+      ],
+      "explanation": "Capacity is a physical ceiling set by capital, liquidity and regulation. Appetite always sits below capacity, leaving a buffer - choosing an appetite right up against capacity means there is no room left for error or for an unexpected shock. They are distinct concepts, appetite below capacity is the whole point of the pair, and both are set by the firm rather than handed down by regulators or shareholders."
+    },
+    {
+      "question": "Why is a limit set only on total firm-wide risk insufficient?",
+      "options": [
+        "Because total firm-wide risk cannot be computed by any model at all",
+        "Because regulators prohibit the use of aggregate limits in any form",
+        "Because an aggregate limit always yields a smaller figure than its components",
+        "Because positions offset in aggregate while risk concentrates locally"
+      ],
+      "explanation": "Diversification makes the aggregate figure look comfortable while one industry, one country or one counterparty carries a dangerous concentration. Limits have to exist across several cuts - by unit, industry, region and counterparty - rather than on a single total. Aggregate risk is entirely computable, aggregate limits are standard practice, and the sum of the parts exceeding the total is exactly the diversification the aggregate figure reflects."
+    },
+    {
+      "question": "When a limit is breached, what is the right response under a risk governance framework?",
+      "options": [
+        "Trigger the escalation process that was defined in advance",
+        "Raise the limit up to match the position that is currently held",
+        "Ignore it while no loss has yet appeared in the accounts",
+        "Wait until the annual limit review comes around"
+      ],
+      "explanation": "What gives a limit framework its value is not the number itself but the process that runs when it is breached. Raising the limit to fit the position is the most common way a limit framework becomes meaningless while remaining complete on paper. Waiting for a loss to appear means acting only once the damage is done, and deferring to the annual review leaves the breach live for months."
+    },
+    {
+      "question": "Why should a limit framework include a warning threshold below the hard limit?",
+      "options": [
+        "To give the business unit some additional room to operate in",
+        "To leave time to act before a position must be cut in a hurry",
+        "Because regulation requires every limit to have at least two levels",
+        "Because a warning threshold replaces the need for daily monitoring"
+      ],
+      "explanation": "Hitting a hard limit usually forces an immediate reduction in position, and selling in a hurry happens at the worst prices. A warning threshold turns an emergency into a decision with time attached - that is its entire value, rather than the granting of extra room. Nothing in regulation prescribes two levels, and a warning threshold is an addition to daily monitoring rather than a substitute for it."
+    },
+    {
+      "question": "Why do limits need periodic review rather than being set once and left?",
+      "options": [
+        "Because the business may demand a higher limit whenever it meets its plan",
+        "Because old limits automatically expire at the end of each financial year by rule",
+        "Because capital, liquidity and strategy all change over time",
+        "Because a periodic review is the only way to detect breaches that have occurred"
+      ],
+      "explanation": "A limit set when equity was half its current size is far too tight; one set when markets were liquid is far too loose in present conditions. A limit that is never reviewed gradually becomes either meaningless or something to be worked around. Meeting a plan is not an argument for more room, limits do not lapse by rule, and breaches are detected by daily monitoring rather than by an annual review."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A bank has 20,000bn of equity, and the maximum loss it can absorb before breaching the minimum capital ratio is 6,000bn. The executive team states a risk appetite of 7,000bn. Where is the problem?",
+    "options": [
+      "The appetite exceeds capacity, so it cannot be enforced",
+      "No problem, since appetite is the executive team's decision",
+      "The appetite is far too cautious against 20,000bn of equity",
+      "There is no warning threshold below the stated 7,000bn"
+    ],
+    "explanation": "Risk capacity is a physical ceiling - cross it and the firm breaches its capital rules, whoever decided what. Appetite is the level CHOSEN, and it has to sit below capacity, usually well below so that a buffer remains. Setting an appetite of 7,000bn above a capacity of 6,000bn means the limit framework decomposed from it will permit positions the firm is not allowed to hold, and every limit beneath inherits that error. The 20,000bn of equity is not the loss-absorbing capacity: most of it is already supporting existing risk-weighted assets."
+  },
+  "keyTakeaways": [
+    "Risk capacity is a physical ceiling; appetite is the level actively chosen and always sits below capacity",
+    "An appetite statement only takes effect once it is decomposed into measurable limits at each level",
+    "Limits are needed across several cuts, because an aggregate figure hides local concentration",
+    "The value of a limit framework lies in the escalation process on breach, not in the number"
+  ],
+  "summary": {
+    "keyIdea": "Risk appetite is the decision about how much to accept, and the limit framework is the mechanism that turns that decision into a constraint enforceable day by day",
+    "commonMistake": "Raising a limit to fit the position already held, which turns the limit framework into a formality",
+    "action": "When reading a limit framework, go straight to the section on handling breaches - that is where you find out whether the framework is real"
+  },
+  "application": {
+    "title": "Apply it to a personal portfolio",
+    "message": "Try writing your own risk appetite as a number: what is the maximum drawdown you would accept over one year, and what is the maximum weight in any single name?",
+    "secondary": "An appetite that has not been written as a number will stretch and shrink with your emotions the moment markets move."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The central question in risk management is not how to remove risk, but how much to accept - and how to make that answer bind everyday behaviour."
+    },
+    { "type": "heading", "text": "Three layers of concept" },
+    {
+      "type": "paragraph",
+      "text": "Risk capacity is the maximum that capital, liquidity and regulation permit before the firm can no longer operate. Risk appetite is the level the firm actively chooses, always below capacity so that a buffer remains. Risk tolerance is the permitted variation around the appetite in day-to-day operation."
+    },
+    { "type": "heading", "text": "From the statement down to the limits" },
+    {
+      "type": "paragraph",
+      "text": "An appetite statement is only worth having once it decomposes into numbers measured daily: maximum VaR per trading desk, maximum exposure to an industry or a counterparty, an operational loss threshold, a minimum liquidity ratio. This is where most risk frameworks fail - an elegant statement that never connects down to the desk."
+    },
+    {
+      "type": "callout",
+      "label": "An aggregate limit is no substitute for local limits",
+      "text": "Thanks to diversification, the total risk figure can look very comfortable while the portfolio is heavily concentrated in one industry or one country. The limit framework therefore has to cut along several dimensions at once, and each cut needs a named person responsible for monitoring it."
+    },
+    { "type": "heading", "text": "Breaching a limit: the most important part" },
+    {
+      "type": "paragraph",
+      "text": "A limit framework is judged not by its numbers but by what happens when a number is breached. Is there a clear escalation path, an approval level for exceptions, a time limit on that exception, and an audit trail - or is the limit simply raised to fit the position already held."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A risk appetite not written as a number will stretch to fit the pressure for profit.",
+        "Next lesson: once risk has been accepted, how to measure the return earned per unit of it."
+      ]
+    }
+  ]
+}

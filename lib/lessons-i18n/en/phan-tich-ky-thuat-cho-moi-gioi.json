@@ -1,0 +1,157 @@
+{
+  "slug": "phan-tich-ky-thuat-cho-moi-gioi",
+  "title": "Technical analysis for stockbrokers",
+  "subtitle": "Support, resistance and moving averages - the simplest tools for forming a market view",
+  "duration": "7 min",
+  "openingQuestion": "What is technical analysis?",
+  "openingOptions": [
+    "Analysing the financial statements of companies listed on the exchange",
+    "Analysing price and volume on a chart in order to forecast the price trend",
+    "Analysing the technical condition of machinery and equipment",
+    "Using AI to forecast future prices with 100% accuracy"
+  ],
+  "explanation": "Technical analysis reads price and volume on a chart to identify the trend along with areas of support and resistance. It does not tell you what a business is worth - that is the job of fundamental analysis - it tells you how the market is behaving towards that stock. The single most important thing when using it is accepting that every signal is only a probability, so the stop-loss has to be set before the trade is entered rather than decided after the price has moved against you.",
+  "diagram": [
+    { "label": "Look at the price and volume chart" },
+    { "label": "Identify the trend, the support and the resistance" },
+    { "label": "Set the entry point and the stop-loss in advance" },
+    { "label": "This is probability, not prophecy - so there must always be a stop" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnamese equities",
+    "description": "An investor sees the VN-Index break through 1300 (the old resistance) on heavy volume → technical analysis points to an uptrend ahead. The broker will issue a 'BUY' so the client can join the early part of the move."
+  },
+  "quiz": [
+    {
+      "question": "What are support and resistance?",
+      "options": [
+        "Support: the 50-day average price; resistance: the 200-day one",
+        "Support: an area of heavy volume; resistance: an area of light volume",
+        "Support: the floor price set by the exchange for the session",
+        "Support: where price tends to bounce; resistance: where it tends to stall"
+      ],
+      "explanation": "Technical analysis reads price and volume on a chart to identify the trend along with areas of support and resistance. It does not tell you what a business is worth - that is the job of fundamental analysis - it tells you how the market is behaving towards that stock. The single most important thing when using it is accepting that every signal is only a probability, so the stop-loss has to be set before the trade is entered rather than decided after the price has moved against you."
+    },
+    {
+      "question": "What is a moving average (MA)?",
+      "options": [
+        "The average price over the last N sessions, rolling through time",
+        "The average price weighted by the trading volume of each session",
+        "A line joining the peaks and troughs of price over a period",
+        "The price at which the majority of investors are holding positions"
+      ],
+      "explanation": "MA 50: the average price over the last 50 days. MA 200: the average over the last 200 days. When the MA 50 crosses above the MA 200 you get a golden cross (a buy signal); when the MA 50 crosses below the MA 200 you get a death cross (a sell signal). It is a plain average, not a volume-weighted one and not a line drawn through the highs and lows - and it says nothing about where holders actually bought."
+    },
+    {
+      "question": "At what level is the RSI (Relative Strength Index) considered 'overbought'?",
+      "options": [
+        "Above 50",
+        "Above 70",
+        "Above 80",
+        "Above 100"
+      ],
+      "explanation": "RSI above 70 = overbought → the stock may reverse downwards. RSI below 30 = oversold → it may reverse upwards. RSI between 30 and 70 is the normal zone. The 50 line is simply the midpoint of the range and marks momentum direction rather than an extreme, 80 is a stricter threshold some traders prefer but is not the convention, and the RSI is bounded at 100 so it can never exceed that."
+    },
+    {
+      "question": "You enter at 1,250, stop at 1,200, target 1,350. What is the risk-to-reward ratio?",
+      "options": [
+        "2:1 (dividing the profit by the risk)",
+        "1:3 (measured from the stop to the target)",
+        "1:2 (risk of 50, profit of 100)",
+        "1:1 (risk of 50, profit of 50)"
+      ],
+      "explanation": "The risk is 50 and the expected profit is 100, which is 1:2. At that ratio you only need to be right about 40% of the time to break even - which is exactly why the structure of the trade matters more than the hit rate. Measuring from the stop to the target (150) confuses the span of the trade with the two legs either side of the entry."
+    },
+    {
+      "question": "Why are moving average crossover signals inherently lagging?",
+      "options": [
+        "Because they only update once per trading session",
+        "Because the exchange publishes its data behind real time",
+        "Because they need enough volume before they confirm",
+        "Because they are computed from past price data"
+      ],
+      "explanation": "An average is a function of the past, so by construction the signal arrives after the move has begun. This is the inherent trade-off: the longer the averaging window, the less noisy the signal and the later it comes. Publication delay is not the issue - the data arrives in real time - the calculation does not wait on volume, and updating intraday would not remove the lag either."
+    }
+  ],
+  "keyTakeaways": [
+    "TA analyses price & volume on a chart to identify the trend",
+    "Support: the floor (a level price does not fall through); resistance: the ceiling (a level it does not rise through)",
+    "MA 50/200: moving averages, used to identify the longer-term trend",
+    "TA is never 100% accurate, only a higher probability → combine it with risk management"
+  ],
+  "practicePrompt": {
+    "question": "You are a broker. A client asks: 'The VN-Index is at 1250, should I buy or sell?' How do you go about the analysis?",
+    "options": [
+      "Guess: 'Just buy, it will probably go up'",
+      "Identify support and resistance first, then recommend",
+      "Skip technical analysis and go on the news alone",
+      "Tell the client not to invest in equities at this moment"
+    ],
+    "explanation": "A professional broker uses TA to produce a specific BUY/SELL recommendation with a price target and a stop loss, rather than simply guessing."
+  },
+  "summary": {
+    "keyIdea": "TA is a tool for identifying trends and buy/sell opportunities from price & volume",
+    "commonMistake": "Trusting TA 100% and forgetting that it only raises the probability, it does not forecast with certainty",
+    "action": "Open TradingView, pick a stock, and draw support & resistance on the daily chart"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Pick one stock you like. Draw support & resistance on the daily chart. Compute the MA 50 & MA 200. On that basis, write one BUY/SELL recommendation with a target and a stop loss.",
+    "secondary": "If you work as a broker, this is how you advise a client professionally instead of going on gut feel."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Technical analysis is not 100% accurate, but it improves your odds over guessing. For a broker, that is the difference between professional advice and guesswork."
+    },
+    { "type": "heading", "text": "3 basic TA tools" },
+    {
+      "type": "list",
+      "items": [
+        "Support & resistance: floor & ceiling - the key levels where buying or selling volume is heavy",
+        "Moving average (MA): the rolling average - helps identify the longer-term trend",
+        "RSI (Relative Strength Index): measures how overbought or oversold a stock is"
+      ]
+    },
+    { "type": "heading", "text": "Golden cross & death cross" },
+    {
+      "type": "paragraph",
+      "text": "Golden cross: the MA 50 (short term) crosses above the MA 200 (long term) → a strong buy signal, an uptrend is about to begin. Death cross: the MA 50 crosses below the MA 200 → a strong sell signal, a downtrend is about to begin. These are signals brokers use very widely when advising clients."
+    },
+    { "type": "heading", "text": "TA + risk management = the formula that works" },
+    {
+      "type": "paragraph",
+      "text": "TA is not 100% accurate; there is always a chance of being wrong. So every BUY recommendation has to come with a target (the price objective) and a stop loss (where you cut if you are wrong). **Example:** 'BUY at 1250, target 1300 (profit of 50), stop loss 1200 (loss of 50)' → risk equals reward, a risk/reward ratio of 1:1 (an even bet)."
+    },
+    {
+      "type": "formula",
+      "title": "Risk to expected reward ratio",
+      "equation": "R/R = (Entry − Stop loss) ÷ (Target − Entry)",
+      "example": {
+        "title": "A worked example",
+        "calculation": "Enter at 1,250, stop at 1,200, target 1,350 → 50 ÷ 100",
+        "result": "= 1:2",
+        "explanation": "Risking 50 to aim at 100. At that ratio you only need to be right about 40% of the time to break even - which is why risk management matters more than the hit rate. A 2:1 ratio, by contrast, requires being right more than two thirds of the time simply to avoid losing money."
+      }
+    },
+    { "type": "heading", "text": "Four limitations to state plainly to the client" },
+    {
+      "type": "list",
+      "items": [
+        "A technical signal describes past price behaviour; it is not a promise about the future. Every signal has a failure rate.",
+        "Moving average crossovers lag by construction - they confirm a trend that has already formed rather than predicting where it starts.",
+        "Illiquid stocks give markedly less reliable signals, because a handful of large orders is enough to create a false pattern.",
+        "A strong enough fundamental event - results, a change of management, a sector development - can invalidate every support and resistance level in a single session."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Professional responsibility",
+      "text": "A recommendation given to a client needs a reasonable basis and must suit that particular client's circumstances and risk appetite, not rest on a single signal on a chart. The same signal can be right for someone experienced with money to spare and entirely wrong for a beginner committing most of their savings."
+    },
+    {
+      "type": "paragraph",
+      "text": "Finally, every recommendation should be written down: the reason for entering, the target, the stop loss and the basis for each of those numbers. It is both professional discipline and the only way to look back later and know where you went wrong - the original view, the choice of entry, or failing to honour the stop you had already set."
+    }
+  ]
+}

@@ -1,183 +1,175 @@
 {
- "slug": "lai-suat-trai-phieu",
- "title": "Interest rates and bond prices",
- "subtitle": "Bond pricing basics",
- "duration": "6 min",
- "openingQuestion": "You're holding a bond with a fixed 6%/year coupon. Market interest rates on newly issued bonds suddenly rise to 8%/year. What happens to your 6% bond's price on the secondary market?",
- "openingOptions": [
-  "It falls, because the new 8% bonds are more attractive",
-  "Your bond will automatically mature early the moment market rates rise",
-  "The bond's price won't change at all, because the coupon rate was fixed at issuance",
-  "The price will rise, because a bond issued earlier is always worth more than a newly issued one"
- ],
- "explanation": "When market rates rise, an older bond with a lower coupon becomes less attractive relative to a new one. To still be sold, the older bond's holder has to accept a price below face value, so the actual yield a new buyer earns matches the market's 8%. This is the inverse relationship between interest rates and bond prices.",
- "diagram": [
-  {
-   "label": "Market rates rise to 8%",
-   "arrow": true
-  },
-  {
-   "label": "The old bond still pays a fixed 6% coupon",
-   "arrow": true
-  },
-  {
-   "label": "To sell, its price must drop below face value",
-   "arrow": true
-  },
-  {
-   "label": "The new buyer thereby still earns an 8% yield"
-  }
- ],
- "interactiveType": "interest-rate",
- "realWorldExample": {
-  "company": "US Government bonds as the Fed raised rates in 2022-2023",
-  "description": "During 2022-2023, the US Federal Reserve raised its policy rate repeatedly to fight inflation. 10-year US government bonds issued earlier with a low coupon (around 1.5-2%) fell sharply in price on the secondary market, at times losing 15-20% of their value, because investors could buy new bonds at a much higher rate (up to 4-5%). Several US banks, including Silicon Valley Bank, held large amounts of these low-coupon, long-term bonds and recorded huge unrealized losses as prices fell - one of the causes behind that bank's collapse in 2023."
- },
- "quiz": [
-  {
-   "question": "Market interest rates fall from 6% to 4%. What happens to the price of an outstanding bond with a fixed 6% coupon?",
-   "options": [
-    "The bond's price doesn't change at all from when it was issued",
-    "The bond's price falls below the original price it was issued at",
-    "The bond gets cancelled and the issuer must immediately return all the principal to the investor",
-    "The price rises, because a 6% coupon is now more attractive than the current 4% rate"
-   ],
-   "correct": 3,
-   "explanation": "When market rates fall, an older bond with the higher coupon (6%) becomes relatively more attractive than a new bond (only 4%). Investors are willing to pay above face value to own that higher interest stream, pushing the bond's price up."
-  },
-  {
-   "question": "Why is the relationship between market interest rates and bond prices always inverse?",
-   "options": [
-    "Because the coupon is fixed, so the price must adjust for the yield to match, and this rule holds no matter which currency the bond happens to be denominated in",
-    "Because a bond's price only depends on its remaining term",
-    "Because it's an administrative rule set by the State Bank",
-    "Because interest rates and bond prices have no direct link at all"
-   ],
-   "correct": 0,
-   "explanation": "Since a fixed coupon cannot change after issuance, the only way for a bond's actual yield to reflect the new interest-rate level is by adjusting its trading price on the secondary market - the price falls when rates rise, and rises when rates fall."
-  },
-  {
-   "question": "A bond has a 100-million face value and a 6% coupon. Market rates rise to 8%. What happens to this bond's price now?",
-   "options": [
-    "Below 100 million, so the yield a new buyer earns reaches 8%",
-    "Still exactly 100 million, because face value is fixed, something easy to get backwards at first",
-    "Above 100 million, because higher rates make every bond more valuable",
-    "Can't be determined without knowing whether the issuer is the Government or a company"
-   ],
-   "correct": 0,
-   "explanation": "No one will pay 100 million for a bond paying 6 million/year when 100 million elsewhere buys 8 million/year. The only way the old bond can sell is by lowering its price, so the 6 million in interest plus the price discount to maturity together equal an 8% yield."
-  },
-  {
-   "question": "You're holding a bond to maturity. How does the bond's price rising and falling in the meantime affect you?",
-   "options": [
-    "Partly, because the coupon is adjusted each period based on the bond's price",
-    "Directly, because the principal returned is calculated based on the market price",
-    "Not at all - you still receive the full coupon and face value at maturity",
-    "Not at all, because the issuer compensates for the price difference, a factor that changes the calculation meaningfully"
-   ],
-   "correct": 2,
-   "explanation": "Price swings only become real if you sell. Holding to maturity locks in your cash flow from the day you bought: regular coupons plus face value at the end. This is why an investor buying bonds for steady income cares little about the day-to-day price."
-  },
-  {
-   "question": "Why do long-term bonds swing in price more sharply than short-term bonds when rates change?",
-   "options": [
-    "Because long-term bonds are usually issued by higher-risk companies, even though this company operates in an industry regulators consider unusually low-risk",
-    "Because long-term bonds have a higher coupon, so the price gap is also larger",
-    "Because long-term bonds have lower liquidity, so their price is easier to push around",
-    "Because there are more future coupon periods, farther out, that must be discounted at the new rate"
-   ],
-   "correct": 3,
-   "explanation": "A bond's price is the sum of its future cash flows, discounted. A 20-year bond has 20 coupon periods plus a principal payment far in the future, all affected by the new discount rate; a 1-year bond has almost just one period. This sensitivity is measured by duration."
-  },
-  {
-   "question": "If you expect interest rates to fall sharply soon, which bond strategy fits?",
-   "options": [
-    "Buy long-term bonds, since the price rise will be larger when rates fall",
-    "Sell all your bonds and move entirely into short-term savings deposits",
-    "Only buy bonds with a term under three months",
-    "Stop buying bonds altogether, since falling rates always drag bond prices down with them"
-   ],
-   "correct": 0,
-   "explanation": "The inverse relationship runs both ways: when rates fall, bond prices rise, and rise the most at long terms. But this is a bet on the direction of rates - if the guess is wrong, that same long term is exactly what makes the loss the heaviest."
-  }
- ],
- "keyTakeaways": [
-  "Bond prices and market interest rates always move in opposite directions: rates up means bond prices down, and vice versa",
-  "The reason: the coupon on an already-issued bond never changes, so the price must adjust for the actual yield to match the new interest-rate level",
-  "If you hold a bond to maturity, price swings in between don't affect the principal and interest you receive - they only matter if you want to sell early"
- ],
- "practicePrompt": {
-  "question": "You're holding a corporate bond with a 7%/year coupon, 4 years left to maturity. Market rates have just fallen from 7% to 5%. If you want to sell this bond right now on the secondary market, what is the selling price likely to look like?",
-  "options": [
-   "Above the original face value, because the fixed 7% coupon is now more attractive than the current 5% rate, so new buyers are willing to pay more to own this bond",
-   "Below the original face value, because falling market rates always devalue every outstanding bond, even when market interest rates have not moved from where they stood at issuance",
-   "Exactly the same as the original face value, because secondary-market bond prices aren't affected by interest rates",
-   "Impossible to determine, because secondary-market bond prices don't follow any predictable pattern"
+  "slug": "lai-suat-trai-phieu",
+  "title": "Interest rates and bond prices",
+  "subtitle": "Bond pricing basics",
+  "duration": "6 min",
+  "openingQuestion": "You're holding a bond with a fixed 6%/year coupon. Market interest rates on newly issued bonds suddenly rise to 8%/year. What happens to your 6% bond's price on the secondary market?",
+  "openingOptions": [
+    "It falls, because the new 8% bonds are more attractive",
+    "Your bond will automatically mature early the moment market rates rise",
+    "The bond's price won't change at all, because the coupon rate was fixed at issuance",
+    "The price will rise, because a bond issued earlier is always worth more than a newly issued one"
   ],
-  "correct": 0,
-  "explanation": "When market rates fall, a bond with a higher fixed coupon becomes more attractive, pushing its price up on the secondary market."
- },
- "summary": {
-  "keyIdea": "Bond prices and market interest rates always move in opposite directions: rates up means bond prices down, and vice versa",
-  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
-  "action": "The reason: the coupon on an already-issued bond never changes, so the price must adjust for the actual yield to match the new interest-rate level"
- },
- "application": {
-  "title": "Try simulating a price swing",
-  "message": "Suppose you hold an 8%-coupon bond. Work out for yourself what happens to its price if market rates rise to 10% - would you have to sell below or above face value?",
-  "secondary": "Reasoning through it once yourself sticks far better than memorizing the inverse rule."
- },
- "sections": [
-  {
-   "type": "lead",
-   "text": "This is one of the most important rules of the bond market, and also what confuses many newcomers: when interest rates rise, bond prices fall, and when interest rates fall, bond prices rise."
+  "explanation": "When market rates rise, an older bond with a lower coupon becomes less attractive relative to a new one. To still be sold, the older bond's holder has to accept a price below face value, so the actual yield a new buyer earns matches the market's 8%. This is the inverse relationship between interest rates and bond prices.",
+  "diagram": [
+    {
+      "label": "Market rates rise to 8%",
+      "arrow": true
+    },
+    {
+      "label": "The old bond still pays a fixed 6% coupon",
+      "arrow": true
+    },
+    {
+      "label": "To sell, its price must drop below face value",
+      "arrow": true
+    },
+    {
+      "label": "The new buyer thereby still earns an 8% yield"
+    }
+  ],
+  "realWorldExample": {
+    "company": "US Government bonds as the Fed raised rates in 2022-2023",
+    "description": "During 2022-2023, the US Federal Reserve raised its policy rate repeatedly to fight inflation. 10-year US government bonds issued earlier with a low coupon (around 1.5-2%) fell sharply in price on the secondary market, at times losing 15-20% of their value, because investors could buy new bonds at a much higher rate (up to 4-5%). Several US banks, including Silicon Valley Bank, held large amounts of these low-coupon, long-term bonds and recorded huge unrealized losses as prices fell - one of the causes behind that bank's collapse in 2023."
   },
-  {
-   "type": "heading",
-   "text": "Why does this inverse relationship exist?"
+  "quiz": [
+    {
+      "question": "Market interest rates fall from 6% to 4%. What happens to the price of an outstanding bond with a fixed 6% coupon?",
+      "options": [
+        "The bond's price doesn't change at all from when it was issued",
+        "The bond's price falls below the original price it was issued at",
+        "The bond gets cancelled and the issuer must immediately return all the principal to the investor",
+        "The price rises, because a 6% coupon is now more attractive than the current 4% rate"
+      ],
+      "explanation": "When market rates fall, an older bond with the higher coupon (6%) becomes relatively more attractive than a new bond (only 4%). Investors are willing to pay above face value to own that higher interest stream, pushing the bond's price up."
+    },
+    {
+      "question": "Why is the relationship between market interest rates and bond prices always inverse?",
+      "options": [
+        "Because the coupon is fixed, so the price must adjust for the yield to match, and this rule holds no matter which currency the bond happens to be denominated in",
+        "Because a bond's price only depends on its remaining term",
+        "Because it's an administrative rule set by the State Bank",
+        "Because interest rates and bond prices have no direct link at all"
+      ],
+      "explanation": "Since a fixed coupon cannot change after issuance, the only way for a bond's actual yield to reflect the new interest-rate level is by adjusting its trading price on the secondary market - the price falls when rates rise, and rises when rates fall."
+    },
+    {
+      "question": "A bond has a 100-million face value and a 6% coupon. Market rates rise to 8%. What happens to this bond's price now?",
+      "options": [
+        "Below 100 million, so the yield a new buyer earns reaches 8%",
+        "Still exactly 100 million, because face value is fixed, something easy to get backwards at first",
+        "Above 100 million, because higher rates make every bond more valuable",
+        "Can't be determined without knowing whether the issuer is the Government or a company"
+      ],
+      "explanation": "No one will pay 100 million for a bond paying 6 million/year when 100 million elsewhere buys 8 million/year. The only way the old bond can sell is by lowering its price, so the 6 million in interest plus the price discount to maturity together equal an 8% yield."
+    },
+    {
+      "question": "You're holding a bond to maturity. How does the bond's price rising and falling in the meantime affect you?",
+      "options": [
+        "Partly, because the coupon is adjusted each period based on the bond's price",
+        "Directly, because the principal returned is calculated based on the market price",
+        "Not at all - you still receive the full coupon and face value at maturity",
+        "Not at all, because the issuer compensates for the price difference, a factor that changes the calculation meaningfully"
+      ],
+      "explanation": "Price swings only become real if you sell. Holding to maturity locks in your cash flow from the day you bought: regular coupons plus face value at the end. This is why an investor buying bonds for steady income cares little about the day-to-day price."
+    },
+    {
+      "question": "Why do long-term bonds swing in price more sharply than short-term bonds when rates change?",
+      "options": [
+        "Because long-term bonds are usually issued by higher-risk companies, even though this company operates in an industry regulators consider unusually low-risk",
+        "Because long-term bonds have a higher coupon, so the price gap is also larger",
+        "Because long-term bonds have lower liquidity, so their price is easier to push around",
+        "Because there are more future coupon periods, farther out, that must be discounted at the new rate"
+      ],
+      "explanation": "A bond's price is the sum of its future cash flows, discounted. A 20-year bond has 20 coupon periods plus a principal payment far in the future, all affected by the new discount rate; a 1-year bond has almost just one period. This sensitivity is measured by duration."
+    },
+    {
+      "question": "If you expect interest rates to fall sharply soon, which bond strategy fits?",
+      "options": [
+        "Buy long-term bonds, since the price rise will be larger when rates fall",
+        "Sell all your bonds and move entirely into short-term savings deposits",
+        "Only buy bonds with a term under three months",
+        "Stop buying bonds altogether, since falling rates always drag bond prices down with them"
+      ],
+      "explanation": "The inverse relationship runs both ways: when rates fall, bond prices rise, and rise the most at long terms. But this is a bet on the direction of rates - if the guess is wrong, that same long term is exactly what makes the loss the heaviest."
+    }
+  ],
+  "keyTakeaways": [
+    "Bond prices and market interest rates always move in opposite directions: rates up means bond prices down, and vice versa",
+    "The reason: the coupon on an already-issued bond never changes, so the price must adjust for the actual yield to match the new interest-rate level",
+    "If you hold a bond to maturity, price swings in between don't affect the principal and interest you receive - they only matter if you want to sell early"
+  ],
+  "practicePrompt": {
+    "question": "You're holding a corporate bond with a 7%/year coupon, 4 years left to maturity. Market rates have just fallen from 7% to 5%. If you want to sell this bond right now on the secondary market, what is the selling price likely to look like?",
+    "options": [
+      "Above the original face value, because the fixed 7% coupon is now more attractive than the current 5% rate, so new buyers are willing to pay more to own this bond",
+      "Below the original face value, because falling market rates always devalue every outstanding bond, even when market interest rates have not moved from where they stood at issuance",
+      "Exactly the same as the original face value, because secondary-market bond prices aren't affected by interest rates",
+      "Impossible to determine, because secondary-market bond prices don't follow any predictable pattern"
+    ],
+    "explanation": "When market rates fall, a bond with a higher fixed coupon becomes more attractive, pushing its price up on the secondary market."
   },
-  {
-   "type": "paragraph",
-   "text": "Imagine you're holding a bond with a 100-million-dong face value and a fixed 6%/year coupon, bought last year. This year, market rates rise and newly issued bonds pay an 8%/year coupon. If you want to sell your 6% bond to someone else, they'll compare: why buy a bond paying only 6% when a new one pays 8%? To convince a buyer, you have to lower your selling price below 100 million dong, so that the 6% interest plus the discount from buying below face value together match the market's 8% yield."
+  "summary": {
+    "keyIdea": "Bond prices and market interest rates always move in opposite directions: rates up means bond prices down, and vice versa",
+    "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+    "action": "The reason: the coupon on an already-issued bond never changes, so the price must adjust for the actual yield to match the new interest-rate level"
   },
-  {
-   "type": "callout",
-   "label": "A simplified example",
-   "text": "A bond with a 100-million face value, a 6%/year coupon (6 million dong/year), and 1 year left to maturity. If market rates rise to 8%, for a new buyer to earn an equivalent 8% yield, this bond's market price will have to fall to about 98.1 million dong instead of 100 million - because then (6 million interest + 1.9 million price discount) / 98.1 million ≈ 8%."
+  "application": {
+    "title": "Try simulating a price swing",
+    "message": "Suppose you hold an 8%-coupon bond. Work out for yourself what happens to its price if market rates rise to 10% - would you have to sell below or above face value?",
+    "secondary": "Reasoning through it once yourself sticks far better than memorizing the inverse rule."
   },
-  {
-   "type": "heading",
-   "text": "What does this mean for an ordinary bond buyer?"
-  },
-  {
-   "type": "list",
-   "items": [
-    "If you buy a bond and hold it to maturity, price swings in between don't matter - you still receive the full periodic interest and the full face value at maturity",
-    "Price swings only really matter if you need to sell before maturity, or if you invest through a bond fund - where net asset value (NAV) moves with the market price of the bonds inside the fund",
-    "The longer a bond's term, the more sensitive its price is to interest-rate swings - covered in more detail in a separate lesson on interest rate risk"
-   ]
-  },
-  {
-   "type": "comparison",
-   "left": {
-    "label": "Market rates rise",
-    "text": "An older bond (with the lower coupon) becomes relatively less attractive → its price falls on the secondary market."
-   },
-   "right": {
-    "label": "Market rates fall",
-    "text": "An older bond (with the higher coupon) becomes relatively more attractive → its price rises on the secondary market."
-   }
-  },
-  {
-   "type": "paragraph",
-   "text": "Understanding this rule keeps you from panicking when you see the value of a bond fund you hold fall during a period when the State Bank or the Fed is raising rates - that's normal market movement, not a sign the bonds are 'bad' or the issuer is about to default."
-  },
-  {
-   "type": "closing",
-   "lines": [
-    "Bond prices and market interest rates always move in opposite directions - this is the rule, not the exception.",
-    "If you hold a bond to maturity, temporary price swings don't change the final amount you receive."
-   ]
-  }
- ]
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This is one of the most important rules of the bond market, and also what confuses many newcomers: when interest rates rise, bond prices fall, and when interest rates fall, bond prices rise."
+    },
+    {
+      "type": "heading",
+      "text": "Why does this inverse relationship exist?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Imagine you're holding a bond with a 100-million-dong face value and a fixed 6%/year coupon, bought last year. This year, market rates rise and newly issued bonds pay an 8%/year coupon. If you want to sell your 6% bond to someone else, they'll compare: why buy a bond paying only 6% when a new one pays 8%? To convince a buyer, you have to lower your selling price below 100 million dong, so that the 6% interest plus the discount from buying below face value together match the market's 8% yield."
+    },
+    {
+      "type": "callout",
+      "label": "A simplified example",
+      "text": "A bond with a 100-million face value, a 6%/year coupon (6 million dong/year), and 1 year left to maturity. If market rates rise to 8%, for a new buyer to earn an equivalent 8% yield, this bond's market price will have to fall to about 98.1 million dong instead of 100 million - because then (6 million interest + 1.9 million price discount) / 98.1 million ≈ 8%."
+    },
+    {
+      "type": "heading",
+      "text": "What does this mean for an ordinary bond buyer?"
+    },
+    {
+      "type": "list",
+      "items": [
+        "If you buy a bond and hold it to maturity, price swings in between don't matter - you still receive the full periodic interest and the full face value at maturity",
+        "Price swings only really matter if you need to sell before maturity, or if you invest through a bond fund - where net asset value (NAV) moves with the market price of the bonds inside the fund",
+        "The longer a bond's term, the more sensitive its price is to interest-rate swings - covered in more detail in a separate lesson on interest rate risk"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Market rates rise",
+        "text": "An older bond (with the lower coupon) becomes relatively less attractive → its price falls on the secondary market."
+      },
+      "right": {
+        "label": "Market rates fall",
+        "text": "An older bond (with the higher coupon) becomes relatively more attractive → its price rises on the secondary market."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Understanding this rule keeps you from panicking when you see the value of a bond fund you hold fall during a period when the State Bank or the Fed is raising rates - that's normal market movement, not a sign the bonds are 'bad' or the issuer is about to default."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bond prices and market interest rates always move in opposite directions - this is the rule, not the exception.",
+        "If you hold a bond to maturity, temporary price swings don't change the final amount you receive."
+      ]
+    }
+  ]
 }

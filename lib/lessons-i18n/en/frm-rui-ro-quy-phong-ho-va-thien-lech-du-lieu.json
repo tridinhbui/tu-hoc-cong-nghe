@@ -1,0 +1,139 @@
+{
+  "slug": "frm-rui-ro-quy-phong-ho-va-thien-lech-du-lieu",
+  "title": "FRM Investments, Lesson 2: Hedge fund risk - leverage, liquidity and data that lies",
+  "subtitle": "Why the average return of the hedge fund industry is always higher than what investors actually received",
+  "duration": "10 min",
+  "whyItMatters": "Hedge funds carry risks the standard measures do not capture: leverage, restrictions on withdrawal, and the valuation of assets that have no market price. Add three biases in the industry data itself and an attractive Sharpe ratio can be a pure statistical illusion.",
+  "openingQuestion": "Hedge fund industry indices usually show higher returns than investors actually received. What is the main reason?",
+  "openingOptions": [
+    "Because the index is computed as an average weighted by assets under management",
+    "Because funds that close stop reporting, so only the survivors remain in the data",
+    "Because management fees are not deducted from the returns that are published",
+    "Because the index is computed in a currency other than the one the investor uses"
+  ],
+  "explanation": "Reporting to industry databases is voluntary, so a poorly performing fund stops reporting or closes down, and the data is left with the survivors. This survivorship bias comes with two others: a fund joining a database is usually allowed to backfill its own attractive history, and it chooses to start reporting only once the results already look good. All three push the average return upwards, and the common estimate of the total overstatement is several percentage points a year.",
+  "diagram": [
+    { "label": "Survivorship bias: the weak funds disappear from the data" },
+    { "label": "Backfill bias: new entrants arrive carrying an attractive history" },
+    { "label": "Self-selection bias: reporting only starts once results are good" },
+    { "label": "All three push the industry average above what was actually earned" }
+  ],
+  "realWorldExample": {
+    "company": "Funds holding assets with no market price",
+    "description": "A fund holding hard-to-value assets usually marks them to a model. Model prices are smoother than market prices, so the reported returns show artificially low volatility and positive autocorrelation - two things that both flatter the Sharpe ratio. The simple check is to look at the autocorrelation of the return series: an unusually high figure is the signature of smoothed pricing."
+  },
+  "quiz": [
+    {
+      "question": "What is backfill bias in hedge fund data?",
+      "options": [
+        "A fund joining a database gets its earlier history added to it",
+        "A fund restates the returns it has already published for prior periods",
+        "A fund reports its returns gross of fees rather than net of them",
+        "A fund changes strategy but keeps the old return series in place"
+      ],
+      "explanation": "A fund only joins a database once it has a record worth showing, and the history filled in behind it is a history that has already been selected. A fund with a poor start never joins at all, so the industry's recorded history looks considerably better than the actual experience of investors. Restating published figures, reporting gross of fees and carrying a series across a strategy change are all genuine data problems, but each of them is a separate one with a separate remedy."
+    },
+    {
+      "question": "Why is positive autocorrelation in a return series a suspicious sign?",
+      "options": [
+        "Because it proves the fund is running leverage beyond its limit",
+        "Because it suggests that model pricing has smoothed away the volatility",
+        "Because it shows the fund has been trading far too frequently in the period",
+        "Because it means the fund is tracking its reference benchmark far too closely"
+      ],
+      "explanation": "Genuine market prices show almost no meaningful autocorrelation. When assets are marked to a model, today's value clings to yesterday's, so the return series is smoothed - reported volatility comes out below the truth and the Sharpe ratio above it. Leverage magnifies returns without making them cling to one another, frequent trading affects costs rather than the shape of the series, and close benchmark tracking would show up as high correlation with the index, which is a different statistic entirely."
+    },
+    {
+      "question": "Why are lock-up periods and redemption notice periods a risk for the investor?",
+      "options": [
+        "Because they prevent the fund from using any leverage at all",
+        "Because they reduce the expected return of the fund over the long run",
+        "Because you cannot get out when you need to, just as the fund struggles too",
+        "Because they force the fund to publish its full portfolio every month"
+      ],
+      "explanation": "Redemption restrictions exist to protect the fund from being forced into a fire sale, which is a legitimate purpose. For the investor, though, they mean the ability to exit disappears at exactly the moment exiting is most desirable - and that exposure appears in no return-based measure at all. They neither constrain leverage nor lower expected returns; if anything the illiquidity is what the strategy is being paid to bear, and disclosure requirements are set independently of them."
+    },
+    {
+      "question": "Why can the Sharpe ratio mislead for a strategy with steady profits and large tail risk?",
+      "options": [
+        "Because the Sharpe ratio requires returns to follow a uniform distribution",
+        "Because the Sharpe ratio does not subtract the risk-free rate from the return",
+        "Because it can only be computed for a portfolio with fewer than 50 positions",
+        "Because standard deviation cannot separate volatility from tail loss"
+      ],
+      "explanation": "Selling tail insurance produces small, steady gains for years, so the standard deviation is low and the Sharpe ratio looks excellent - right up to the day the tail arrives. This is why skewness, kurtosis and maximum drawdown have to be examined alongside it rather than stopping at Sharpe. The ratio does subtract the risk-free rate by construction, it needs no assumption of a uniform distribution, and the number of positions is irrelevant to the arithmetic."
+    },
+    {
+      "question": "Which effect of leverage on hedge fund risk is least visible in the return series?",
+      "options": [
+        "It creates the risk of being forced out of a position by a margin call",
+        "It lowers the expected return through the cost of the borrowing",
+        "It obliges the fund to publish its leverage ratio every quarter",
+        "It raises the management fee that the investor has to pay"
+      ],
+      "explanation": "A return series drawn from ordinary years reveals nothing about where the fund would be forced to close a position. Leverage risk is risk about the path: the fund can be right about the long-run direction and still be pushed out of the trade before that direction arrives. Borrowing costs already show up in the reported net return, fees are set in the contract rather than by leverage, and disclosure requirements are a matter of the fund's terms, not of its risk profile."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A private credit fund reports very steady monthly returns, and the first-order autocorrelation of the series is 0.45. What does that suggest?",
+    "options": [
+      "Model pricing is smoothing the series, so the real risk is higher",
+      "The strategy is genuinely very stable, exactly as the fund markets it",
+      "The fund runs low leverage, so its natural volatility is low",
+      "The sample is too short for the autocorrelation figure to be reliable"
+    ],
+    "explanation": "Returns on assets priced by the market show almost no autocorrelation - today's price already reflects everything known. An autocorrelation of 0.45 says that this month's valuation still carries most of last month's, the signature of assets with no market price that are marked to a model or to the last observed transaction. That smooths the series, pulls the standard deviation down and pushes the Sharpe ratio up without changing the underlying risk at all. The stability being observed is a property of the valuation method rather than of the strategy - and it disappears at the moment the assets have to be sold for real."
+  },
+  "keyTakeaways": [
+    "Three biases inflate industry returns together: survivorship, backfill, and self-selected reporting start dates",
+    "Positive autocorrelation in returns is the signature of model pricing smoothing away volatility",
+    "Redemption restrictions protect the fund and push the risk onto the investor exactly when they want out",
+    "An attractive Sharpe on a tail-insurance strategy is an illusion - look at skewness, kurtosis and maximum drawdown too"
+  ],
+  "summary": {
+    "keyIdea": "With hedge funds, the largest risk usually sits not in the return series but in how that series was produced: who got into the data, how the assets were valued, and when you cannot get out."
+  },
+  "application": {
+    "message": "Before looking at a fund's Sharpe ratio, ask three questions: are the assets priced by the market or by a model, does the return series show autocorrelation, and what are the redemption terms."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The average return of the hedge fund industry looks very good. Most of the gap between that number and the actual experience of investors is not about fees - it is about who gets to be in the data at all."
+    },
+    { "type": "heading", "text": "Three biases pushing the same way" },
+    {
+      "type": "paragraph",
+      "text": "Reporting is voluntary, so weak funds stop reporting and vanish. A new entrant gets its attractive history filled in behind it, while a fund with a poor start never joins. And funds choose to begin reporting once the results are already good. Three independent mechanisms, all pushing the average upwards."
+    },
+    { "type": "heading", "text": "Model pricing smooths everything" },
+    {
+      "type": "paragraph",
+      "text": "Assets with no market price are valued by a model, and models tend to cling to the previous period's value. The return series therefore comes out smoother than reality: reported volatility is low, correlation with the market is low, and the Sharpe ratio is high. All three follow from the valuation method rather than from the quality of the management."
+    },
+    { "type": "heading", "text": "Risk about the path, not about the destination" },
+    {
+      "type": "paragraph",
+      "text": "Leverage and lock-up terms create a kind of risk the return series cannot describe: the fund can be right about the long-run direction and still be forced out of the position along the way, or the investor cannot redeem at the moment they want to. No measure computed on monthly returns captures that."
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "Unusually high autocorrelation in a return series is one of the cheapest and most reliable signals that the prices are being smoothed."
+    },
+    { "type": "heading", "text": "How much smoothing inflates the Sharpe ratio, and you can compute it" },
+    {
+      "type": "paragraph",
+      "text": "Suppose the reported return each month is a blend of this month's true return and last month's, with weights of 0.6 and 0.4 - which is exactly how a valuation model that clings to the prior period behaves. The variance of the reported series is then 0.6² + 0.4² = 0.52 times the true variance, so the reported standard deviation is only 72% of the real one. The mean return is unchanged, because the weights sum to 1. The result: the reported Sharpe ratio is about 1.39 times the true one, and not a single number in the report is fabricated."
+    },
+    {
+      "type": "callout",
+      "label": "The cheapest signal to look for",
+      "text": "The autocorrelation of the monthly return series. A strategy trading liquid listed assets has autocorrelation close to 0 - this month's return says almost nothing about next month's. A series with autocorrelation of 0.3 to 0.5 in a fund that still describes itself as liquid is either a strategy with unusually strong momentum or a set of prices being smoothed. This test needs no internal data at all, only the return series the fund has already published."
+    },
+    {
+      "type": "paragraph",
+      "text": "The three biases in the industry data all push the number the same way, so they compound rather than offset. Reporting is voluntary, so weak funds stop reporting and drop out of the sample. New entrants get their earlier history filled in - and nobody joins in order to show a bad one. And funds that close because of losses usually never report the final month, which is the worst one. Add the smoothing effect above, and the gap between the industry's average return and the real experience of an investor who picked a fund at the start is systematic rather than a matter of luck."
+    }
+  ]
+}

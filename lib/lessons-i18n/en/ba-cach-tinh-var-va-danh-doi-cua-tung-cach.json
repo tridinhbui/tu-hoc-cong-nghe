@@ -1,0 +1,156 @@
+{
+  "slug": "ba-cach-tinh-var-va-danh-doi-cua-tung-cach",
+  "title": "Market Risk, Lesson 1: three ways to compute VaR - and what each one costs you",
+  "subtitle": "Historical, parametric and Monte Carlo: which assumption breaks, and which direction it skews the number",
+  "duration": "12 min",
+  "whyItMatters": "The same portfolio produces three different VaR numbers under three methods, sometimes tens of percent apart. Knowing which method is in use, and which of its assumptions is being violated, is what separates someone who reads a risk report from someone who only looks at the final number.",
+  "openingQuestion": "Parametric VaR assumes returns are normally distributed. In a crisis, which way does that assumption push the number?",
+  "openingOptions": [
+    "Too high, because the normal distribution exaggerates volatility",
+    "Too low, because the normal distribution has thin tails",
+    "Not wrong at all, since the central limit theorem guarantees normality",
+    "Wrong in a random direction that cannot be predicted"
+  ],
+  "explanation": "This error is dangerous because it skews systematically to one side. Financial asset returns have fatter tails than the normal distribution - extreme shocks occur far more often than a normal distribution predicts. Using a normal distribution therefore means the model understates risk on exactly the days when risk matters. The VaR number looks most reassuring at precisely the moment it deserves the least trust, which is why the opening lesson of the Quantitative stage begins with the fact that tails are always fatter than we think.",
+  "diagram": [
+    {
+      "label": "Historical simulation: no distributional assumption"
+    },
+    {
+      "label": "Parametric: assumes normality, computes fast"
+    },
+    {
+      "label": "Monte Carlo: choose your distribution, costs compute"
+    },
+    {
+      "label": "Three different numbers on the same portfolio"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Why historical simulation stays silent before an unprecedented shock",
+    "description": "Historical simulation sorts every past return and takes a percentile - assuming nothing about the shape of the distribution, which is its strength. But it also knows only what happened inside the data window. A portfolio using a 250-day window through a calm market will produce a very low VaR, and be right up until the day an event occurs that has no precedent in those 250 days. The model is not wrong arithmetically; it is simply answering a different question from the one the user thinks they are asking."
+  },
+  "quiz": [
+    {
+      "question": "What is the core strength of the historical simulation method?",
+      "options": [
+        "It always yields a more conservative number than the parametric method in any market condition",
+        "It runs far faster than the other two methods because it needs only one matrix multiplication",
+        "It can forecast even events that have never appeared in the portfolio's historical data",
+        "It requires no assumption that returns follow any theoretical distribution at all"
+      ],
+      "explanation": "In exchange, it is entirely bounded by its data window: an event that has never occurred is one the model has no way of knowing about. It is not systematically more conservative either - in a calm window it will read lower than parametric - and the matrix-multiplication speed advantage belongs to the parametric method, which needs only a covariance matrix rather than a full sorted return series."
+    },
+    {
+      "question": "How does Monte Carlo differ from historical simulation?",
+      "options": [
+        "It generates scenarios from a distribution the user chooses, rather than replaying actual data",
+        "It applies only to portfolios of derivatives and cannot be used for ordinary equity holdings",
+        "It ignores historical data and rests only on the risk manager's own judgement",
+        "It produces a single number rather than a distribution of the outcomes that could occur"
+      ],
+      "explanation": "That flexibility cuts both ways: you can model fat tails and non-linear relationships, but the result is only as good as the distribution you picked. Monte Carlo works on any asset class, and its parameters are typically calibrated from historical data rather than pulled from judgement - and like every simulation method, what it produces is a full distribution of outcomes from which a percentile is then read."
+    },
+    {
+      "question": "Why is parametric VaR still widely used even though its assumption is violated?",
+      "options": [
+        "Because banking regulators mandate this method for periodic regulatory capital reporting",
+        "Because it is computationally cheap and adequate for linear portfolios in normal markets",
+        "Because it is the only method that handles portfolios containing options and other non-linear products",
+        "Because its accuracy has been empirically demonstrated to exceed that of the other two methods"
+      ],
+      "explanation": "It needs only a covariance matrix, so it can run across a book of thousands of positions in seconds. The trouble arrives exactly when the market stops being normal. Non-linear products are the one thing it handles worst, since it approximates the portfolio linearly, and no regulator mandates it - the empirical evidence in the tail runs the other way."
+    },
+    {
+      "question": "How does a longer data window affect historical simulation VaR?",
+      "options": [
+        "No effect, because the percentile is computed on a share not a count of observations",
+        "The number becomes both more stable and more responsive to recent change, so it is always better",
+        "The number is more stable but slower to react when the market's volatility regime has just shifted",
+        "The number swings harder because more extreme values from old crisis periods get pulled into it"
+      ],
+      "explanation": "This is a trade-off with no absolutely right answer, and it is why the next lesson on EWMA exists: assigning decaying weights to older data is one way out of this binary choice. Note that stability and responsiveness pull against each other - no window length delivers both - and a longer window dampens the number rather than making it swing harder, since each extreme observation carries less weight."
+    },
+    {
+      "question": "The same portfolio produces three different VaR numbers under three methods. How should you read that?",
+      "options": [
+        "The gap comes only from rounding error, so it makes no difference which one you pick",
+        "The highest figure is the right one; the other two have missed part of the risk",
+        "The average of the three is the most reliable estimate for that portfolio",
+        "Each figure follows from its own assumptions, so state which method you used"
+      ],
+      "explanation": "There is no 'true' VaR against which the other two are deviations. Parametric assumes normality, historical simulation assumes the future resembles the data window, Monte Carlo assumes the distribution its builder chose. Reporting a VaR number without the method attached is reporting half the information - and averaging three numbers built on incompatible assumptions produces a figure that answers no question at all."
+    }
+  ],
+  "keyTakeaways": [
+    "Three methods produce three different numbers on the same portfolio - you have to know which one is in use",
+    "Parametric assumes normality, so it understates risk exactly when risk matters most",
+    "Historical simulation assumes no distribution, but is blind to any event outside the data window",
+    "Monte Carlo is the most flexible, and its result is only as good as the distribution chosen",
+    "A long window is stable but slow to react; a short window is the reverse"
+  ],
+  "practicePrompt": {
+    "question": "A portfolio holds a lot of options. Which VaR method is the least suitable, and why?",
+    "options": [
+      "Historical simulation, because the price history for those options is rarely long enough",
+      "Parametric, because it assumes a linear relationship between the underlying price and portfolio value",
+      "Monte Carlo, because the computational cost of running it across the book is too large",
+      "All three are equally suitable for a portfolio built largely around options"
+    ],
+    "explanation": "Options have a curved payoff: when the underlying moves a lot, the value of the position does not move proportionately. The parametric method approximates the portfolio with a linear relationship - essentially using delta alone - so it misses exactly that curvature, and the curvature is largest at big moves, which is precisely the region VaR is trying to measure. Monte Carlo's computational cost is real, but that is a resource problem rather than a methodological distortion."
+  },
+  "summary": {
+    "keyIdea": "There is no correct VaR method, only a method whose failure mode you understand",
+    "commonMistake": "Comparing VaR across two units without checking which method and which window each of them used",
+    "action": "Take a risk report you have access to and find out which method its VaR was computed with and over how many days."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take one year of returns for a single stock and compute the one-day 99% VaR two ways: the 1% percentile of the actual data, and 2.33 times the standard deviation. Compare the two - the gap is exactly what the normality assumption is leaving out.",
+    "secondary": "Repeat it on data from a period of high market volatility and the gap will widen noticeably."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Value at Risk & Stress Testing lesson answered what VaR is. This stage starts at the next question, and it is the one GARP actually tests: how was that number produced, and where is that method wrong?"
+    },
+    {
+      "type": "heading",
+      "text": "Three methods, three ways of being wrong"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Comparing the three VaR methods",
+      "subtitle": "None is absolutely right - pick the one whose weakness matters least to your portfolio",
+      "concepts": [
+        {
+          "vi": "Mô phỏng lịch sử",
+          "en": "Historical simulation",
+          "def": "Sort past returns, take a percentile. Assumes no distribution and handles non-linearity. Completely blind to any event outside the data window."
+        },
+        {
+          "vi": "Tham số",
+          "en": "Parametric / variance-covariance",
+          "def": "Assumes normality, needs only standard deviations and correlations. Very fast. Systematically wrong in the tail, and its linear approximation breaks on options."
+        },
+        {
+          "vi": "Monte Carlo",
+          "en": "Monte Carlo simulation",
+          "def": "Generates tens of thousands of scenarios from a chosen distribution. The most flexible, handling fat tails and non-linearity. Computationally expensive, and entirely dependent on the distribution chosen."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Three numbers, one portfolio",
+      "text": "What confuses newcomers most is that the three methods do not converge on one answer. They answer three slightly different questions: historical asks what if tomorrow looks like some day in the past, parametric asks what if the world were normally distributed, Monte Carlo asks what if the world matched the model I just built. When two units report different VaRs, the first question is not who is right but how each of them computed it."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "VaR is not a number; it is a number plus the method and the window that produced it.",
+        "The next lesson asks the question every model has to answer: how do you know it is right?"
+      ]
+    }
+  ]
+}

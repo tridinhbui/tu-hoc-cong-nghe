@@ -122,7 +122,7 @@
         "The assistant's store of source documents",
         "A store of reusable prompts"
       ],
-      "explanation": "This is where you keep good prompts for reuse."
+      "explanation": "A prompt library is your own store of prompts that have already worked, kept so you can run them again instead of rewriting them each time. It is not a catalogue of the model's mistakes, not the system rules that govern how the assistant behaves, and not the documents you feed it - those are the assistant's inputs, while the library is yours."
     },
     {
       "question": "What should each entry carry besides the prompt itself?",
@@ -132,7 +132,7 @@
         "The author's name and the date the prompt was created",
         "The number of times used and the success rate"
       ],
-      "explanation": "Inputs and a checklist are what make a prompt behave consistently."
+      "explanation": "A prompt on its own is only half the recipe: without knowing what to prepare beforehand and how to check the answer afterwards, the same prompt gives a different result each time. The model name dates quickly, the author and date say nothing about whether it works, and a usage count tells you a prompt is popular rather than that it is reliable."
     },
     {
       "question": "Which part of a library entry is most often forgotten and yet most important?",
@@ -166,10 +166,18 @@
     }
   ],
   "diagram": [
-    { "label": "A prompt produces a good result" },
-    { "label": "Record all 5 parts, including how to check it" },
-    { "label": "Reuse it - note the faults you find" },
-    { "label": "Revise the prompt, number the version" }
+    {
+      "label": "A prompt produces a good result"
+    },
+    {
+      "label": "Record all 5 parts, including how to check it"
+    },
+    {
+      "label": "Reuse it - note the faults you find"
+    },
+    {
+      "label": "Revise the prompt, number the version"
+    }
   ],
   "realWorldExample": {
     "company": "The first five prompts worth having",

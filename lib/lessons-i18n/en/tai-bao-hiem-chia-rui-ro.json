@@ -1,0 +1,152 @@
+{
+  "slug": "tai-bao-hiem-chia-rui-ro",
+  "title": "Pricing, Lesson 3: Reinsurance - who does an insurer buy insurance from",
+  "subtitle": "Proportional and excess-of-loss reinsurance, the real reason risk gets ceded, and where it stops working",
+  "duration": "10 min",
+  "whyItMatters": "No insurance company keeps all of the risk it writes. Understanding reinsurance is understanding why a company with 2,000bn of capital can still write cover on a 10,000bn factory, and why risk in this industry is far more tightly linked than it appears from outside.",
+  "openingQuestion": "What is the main reason an insurer cedes part of its risk?",
+  "openingOptions": [
+    "To cap the maximum loss from any single event",
+    "To reduce the number of policies it has to administer in the book",
+    "To shift some of its administrative costs onto the reinsurer instead",
+    "To meet a mandatory regulatory requirement on the cession ratio"
+  ],
+  "explanation": "An insurer's problem is not the average loss - the premium was priced to cover that. The problem is a single event large enough to wipe out capital, or a storm that causes simultaneous losses across thousands of policies in the same region. Reinsurance cuts that tail off: the company trades away part of its expected profit in exchange for knowing its maximum loss for certain. It is also what lets a modestly capitalised company write cover many times its own capital, because the part beyond its retention passes to the reinsurer from the moment of signing.",
+  "diagram": [
+    {
+      "label": "The insurer writes the original cover for the customer"
+    },
+    {
+      "label": "It keeps the portion within its own tolerance"
+    },
+    {
+      "label": "It cedes the excess to a reinsurer"
+    },
+    {
+      "label": "Trading part of the profit for a defined loss ceiling"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The global reinsurance market",
+    "description": "Natural catastrophe risk in Vietnam usually ends up on the books of a handful of large reinsurers in Europe and Bermuda. The good side of that is risk being spread out of a single economy; the bad side is that when the reinsurance market tightens after a heavy global catastrophe year, premiums rise even in countries that suffered no catastrophe at all."
+  },
+  "quiz": [
+    {
+      "question": "How does proportional reinsurance work?",
+      "options": [
+        "The ceding company pays a fixed annual fee regardless of losses",
+        "The reinsurer pays only the part of a loss above a set threshold",
+        "The reinsurer takes on the entire risk of one specific block of policies",
+        "Premiums and losses are split in the same agreed proportion"
+      ],
+      "explanation": "Cede 40% and the reinsurer takes 40% of the premium and pays 40% of every loss. Simple, but it does not cut the tail specifically - it cuts everything evenly. A fixed annual fee describes no reinsurance structure at all, paying only above a threshold is the excess-of-loss form, and taking the whole risk of a block is a full cession rather than a proportional one."
+    },
+    {
+      "question": "How is excess-of-loss reinsurance different?",
+      "options": [
+        "The reinsurer pays only the portion above a defined threshold",
+        "The reinsurer takes a fixed proportional share of everything",
+        "The ceding company chooses which individual policies to cede",
+        "The treaty applies only when losses come from a widespread natural disaster"
+      ],
+      "explanation": "This is the right tool for catastrophe risk: the company carries the small frequent losses itself and buys protection for exactly the tail that could wipe out its capital. A fixed share of everything is the proportional form, picking policies one by one is facultative reinsurance, and the treaty responds to any loss above the threshold whatever caused it."
+    },
+    {
+      "question": "Why does reinsurance let an insurer write cover larger than its own capital?",
+      "options": [
+        "Because regulators let the ceded portion count toward shareholders' equity",
+        "Because the part beyond its retention is transferred at signing",
+        "Because the reinsurer guarantees all obligations of the ceding company",
+        "Because premiums from a large contract cover the extra risk taken on"
+      ],
+      "explanation": "The ceding company remains responsible to its customer, but the risk genuinely sitting on its books is only the retained layer. Cession is not an addition to equity, the reinsurer guarantees only what the treaty covers rather than every obligation, and a bigger premium does nothing to change the size of the loss that could arrive."
+    },
+    {
+      "question": "What risk remains after reinsurance has been arranged?",
+      "options": [
+        "The portion below the threshold the company keeps itself",
+        "Customers complaining they were not told about the cession",
+        "The reinsurer failing to pay - counterparty risk on the treaty",
+        "The regulator declining to approve the signed treaty"
+      ],
+      "explanation": "The ceding company still has to pay its customer whether or not the reinsurer pays. That is why the reinsurer's credit rating is a genuine selection criterion rather than a line in the file. The retained layer is a known, priced exposure rather than a residual surprise, and neither customer notification nor regulatory approval leaves an open obligation behind."
+    },
+    {
+      "question": "Why can insurance premiums in Vietnam rise after a heavy storm year somewhere else?",
+      "options": [
+        "Because reinsurance costs are billed in foreign currency, adding FX risk",
+        "Because domestic insurers must cover losses on their international investments",
+        "Because regulations force annual repricing to the regional average",
+        "Because reinsurance is a global market and its capital is depleted together"
+      ],
+      "explanation": "This is the other face of spreading risk globally: it also transmits price from one place to another, including places that suffered no loss at all. Currency billing is a separate and much smaller effect, domestic insurers are not absorbing foreign investment losses here, and no rule ties local premiums to a regional average."
+    }
+  ],
+  "practicePrompt": {
+    "question": "An excess-of-loss treaty: the ceding company keeps the first 5bn, the reinsurer takes the layer above that up to 50bn. On a 62bn loss, how much does the ceding company pay?",
+    "options": [
+      "12bn (= 5 retained + 7 above the reinsurance ceiling)",
+      "5bn (= only the original retained layer)",
+      "62bn (= the reinsurer does not cover large losses)",
+      "7bn (= only the part above 55bn)"
+    ],
+    "explanation": "Excess-of-loss reinsurance has a floor and a ceiling. The reinsurer covers from 5bn up to 55bn, which is exactly the 50bn layer in the middle; anything above 55bn falls back on the ceding company. A 62bn loss splits into 5bn retained, 50bn paid by the reinsurer, and 7bn above the ceiling returning to the ceding company - 12bn in total. Answering 5bn means forgetting the ceiling, and that is precisely the error that leaves a company believing it has bought certainty about its maximum loss when it has not. Reinsurance does cap the maximum loss, but only inside the layer that was bought."
+  },
+  "keyTakeaways": [
+    "Reinsurance buys certainty about the maximum loss; it does not buy a lower average loss.",
+    "Proportional splits premiums and losses evenly; excess-of-loss pays only above the threshold.",
+    "It is what allows a company to write cover many times the size of its own capital.",
+    "The residual risk is counterparty risk - the ceding company still pays the customer even if the reinsurer does not."
+  ],
+  "summary": {
+    "keyIdea": "Reinsurance buys certainty about the maximum loss, not a reduction in the average loss",
+    "commonMistake": "Treating a cession as the end of the obligation. The ceding company still has to pay the customer even when the reinsurer does not pay.",
+    "action": "For any reinsurance programme, ask two things: what is the retention threshold, and what is the reinsurer's credit rating."
+  },
+  "application": {
+    "title": "Compare the two structures",
+    "message": "Assume a loss of 10bn. Work out the ceding company's share under a 60/40 proportional treaty, then under an excess-of-loss treaty with a 2bn retention.",
+    "secondary": "The two structures give very different risk shapes, and only the second one puts a ceiling on the maximum loss."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An insurance company also has a level of loss it cannot survive. Reinsurance is how it buys certainty about that number, and the price is a slice of its expected profit."
+    },
+    {
+      "type": "heading",
+      "text": "Two forms"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Proportional",
+        "text": "Cede 40% and you receive 40% of the premium and pay 40% of every loss. Simple, suited to large homogeneous books - but it cuts evenly rather than cutting the tail specifically."
+      },
+      "right": {
+        "label": "Excess of loss",
+        "text": "The reinsurer only steps in once a loss passes a threshold. The ceding company carries the small frequent claims itself and buys protection for precisely the layer that could wipe out its capital."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The real reason"
+    },
+    {
+      "type": "paragraph",
+      "text": "The average loss is not the problem - the premium was already priced to cover it. The problem is two things: a single event that is simply too large, and simultaneous losses across thousands of policies in one region when a storm or a flood arrives. Both are questions about the tail of the distribution rather than about the mean, which is why the right tool is excess-of-loss reinsurance."
+    },
+    {
+      "type": "callout",
+      "label": "Risk does not vanish, it moves",
+      "text": "The ceding company is still the party that has to pay the customer. If the reinsurer becomes unable to pay, the obligation remains with the ceding company - so the reinsurer's credit rating is a real selection criterion, not a line in a file. And because risk ultimately concentrates in a handful of large global reinsurers, this industry is far more tightly linked than it appears."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Reinsurance does not make the risk smaller.",
+        "It only decides who is standing where when the tail of the distribution arrives."
+      ]
+    }
+  ]
+}

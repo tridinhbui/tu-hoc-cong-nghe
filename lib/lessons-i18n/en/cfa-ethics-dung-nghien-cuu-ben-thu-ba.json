@@ -11,7 +11,6 @@
     "Only citing the source clearly in your own report",
     "Redoing the entire analysis yourself from raw data"
   ],
-  "correctOption": 1,
   "explanation": "Standard V(A) permits relying on someone else's research, but not transferring responsibility to them. How much diligence is needed depends on the circumstances: a house with a proven process you have used many times requires less than a new source, or one with an obvious conflict of interest. The minimum questions must always be answerable: what assumptions does the research rest on, where does the data come from, is anyone paying for this research, and is the conclusion consistent with what you know about the business. If you cannot answer them, you are issuing a recommendation with no basis of your own.",
   "summary": {
     "keyIdea": "Citing the source and having a reasonable basis are two separate duties: the first handles who wrote it, the second handles why it can be believed.",
@@ -79,10 +78,21 @@
     }
   ],
   "diagram": [
-    { "label": "You may rely on third-party research", "arrow": true },
-    { "label": "You may not transfer responsibility to them", "arrow": true },
-    { "label": "Diligence varies with the source: familiar or new, conflicted or not", "arrow": true },
-    { "label": "Unable to answer the minimum questions means no basis at all" }
+    {
+      "label": "You may rely on third-party research",
+      "arrow": true
+    },
+    {
+      "label": "You may not transfer responsibility to them",
+      "arrow": true
+    },
+    {
+      "label": "Diligence varies with the source: familiar or new, conflicted or not",
+      "arrow": true
+    },
+    {
+      "label": "Unable to answer the minimum questions means no basis at all"
+    }
   ],
   "realWorldExample": {
     "company": "Three questions that quickly filter a research source",

@@ -1,0 +1,161 @@
+{
+  "slug": "doc-thuyet-minh-bao-cao-tai-chinh",
+  "title": "Reading the notes - the longest section, and the least read",
+  "subtitle": "The three statements say how much the company earned; the notes say how that number was produced",
+  "duration": "10 min",
+  "whyItMatters": "The three main statements run to about three pages; the notes are typically ten times longer. Almost everything that makes a number questionable sits in the longer part, and it was written precisely because the statements had no room to say it.",
+  "openingQuestion": "Two companies in the same industry, both with 1,000bn of revenue and 80bn of profit. Where do you read to find out whether those two 80bn figures are comparable at all?",
+  "openingOptions": [
+    "The notes - the accounting policy is what decides the number",
+    "The balance sheet, since total assets show the true scale of the firm",
+    "The cash flow statement, since cash is unaffected by policy",
+    "No need to read on - same industry means same recognition"
+  ],
+  "explanation": "Two companies in the same industry can still choose different depreciation methods, different revenue recognition points, different inventory costing - and every one of those choices is legitimate. They are disclosed in the notes, not in the three statements. The balance sheet and the cash flow statement are both outcomes of those choices, so reading them without reading the accounting policy means comparing two figures that may not share a unit of measure. This is also why professional analysts read the notes first and only then return to the statements.",
+  "diagram": [
+    { "label": "Accounting policy: same event, which number?" },
+    { "label": "Line item notes: what that figure is made of" },
+    { "label": "Contingent liabilities and commitments: obligations off the balance sheet" },
+    { "label": "Related parties: who this revenue was sold to" }
+  ],
+  "realWorldExample": {
+    "company": "A property developer recognising apartment sales revenue",
+    "description": "Recognising on handover versus recognising progressively as construction advances are two different choices, and the difference can move a thousand billion of revenue into this year rather than next. Two neighbouring developers may choose differently, and the only place that says so plainly is the accounting policy section of the notes."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The three main statements answer 'how much'. The notes answer 'by what means' - and for almost every argument about earnings quality, the answer lies in the second question."
+    },
+    {
+      "type": "heading",
+      "text": "Four places to read first"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Read in this order, not front to back",
+      "subtitle": "The notes run to dozens of pages; the four items below hold most of the value",
+      "concepts": [
+        {
+          "def": "Straight-line or accelerated depreciation, when revenue is recognised, which method values inventory. Read this section first because it determines every number that follows. A company changing policy mid-stream must say so, and that is always worth asking about."
+        },
+        {
+          "def": "Guarantees given for associates, litigation in progress, long-term lease and purchase commitments. These are real obligations that do not yet qualify for the balance sheet, so a company that looks lightly indebted may still be carrying a great deal."
+        },
+        {
+          "def": "Sales to a company the chairman owns, borrowings from a major shareholder, renting premises from a family member. Their presence is not automatically bad, but revenue from a related party is not the same quality as revenue sold into the market - it does not prove the product sells."
+        },
+        {
+          "def": "The line reading 'Other expenses 200bn' on the income statement is broken out here. An unusually large item that the notes describe in a single vague sentence is a sign you need to ask more."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "The same machine, two profit figures"
+    },
+    {
+      "type": "paragraph",
+      "text": "Companies A and B both buy the same 100bn production line, ten-year life, no residual value. A depreciates straight-line: 10bn a year, evenly. B uses double declining balance: year one is (2/10) × 100 = 20bn. Same asset, same year, a 10bn difference in expense - and if both earn 50bn before depreciation, A reports 40bn of profit and B reports 30bn. Neither has done anything wrong. To compare them you have to read each side's depreciation policy and restate them onto one method, and that policy exists only in the notes."
+    },
+    {
+      "type": "callout",
+      "label": "Signs worth stopping on",
+      "text": "The notes change their presentation from last year with no explanation; a large item is lumped into 'other'; the accounting policy changes in exactly the year the company needed to hit some target; or the related party section grows faster than revenue. None of these is on its own evidence of wrongdoing - they are the places to read more carefully than the rest."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Read the accounting policy BEFORE reading the statements, not the other way round",
+        "Contingent liabilities are real obligations; the balance sheet has no place for them",
+        "Revenue from related parties does not prove the product sells into the market",
+        "Two companies in one industry are comparable only after restating onto one accounting policy"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The statements are the conclusion; the notes are how that conclusion was reached.",
+        "Next lesson: restating two companies of different size onto one scale so they can be compared."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why should you read the accounting policy in the notes before comparing the profits of two companies in the same industry?",
+      "options": [
+        "Because a listed company must use the same policy as its sector leader",
+        "Because the notes already give figures restated onto a common basis",
+        "Because the same event can be booked as two different numbers, both valid",
+        "Because the accounting policy determines the tax rate payable that year"
+      ],
+      "explanation": "Straight-line or accelerated depreciation, revenue recognised on handover or on progress - all legitimate, and all producing different profit figures. The notes do not compute a restated figure for you, nor do they bind a company to follow its rival; and tax is determined by tax law rather than by accounting policy. Putting the two sides onto one basis is work the reader has to do."
+    },
+    {
+      "question": "How does a contingent liability differ from a liability on the balance sheet?",
+      "options": [
+        "It carries a floating rate, so the amount payable is not yet determined",
+        "It has already been settled but still has to be tracked for three more years",
+        "It is short-term borrowing, so it is presented separately in the notes",
+        "It depends on a future event that may not happen, so it cannot be booked"
+      ],
+      "explanation": "A guarantee for an associate becomes an obligation only if that company fails to pay; litigation becomes an obligation only if the company loses. It is exactly that uncertainty that keeps the item in the notes rather than on the balance sheet - not the maturity, not a floating rate, and certainly not the fact that it has been settled."
+    },
+    {
+      "question": "A company earns 60% of its revenue from companies owned by its chairman. Why is that worth noting?",
+      "options": [
+        "Because that revenue has not shown the product sells to outside buyers",
+        "Because related party transactions are illegal, so the report breaches rules",
+        "Because revenue from related parties must all be eliminated on consolidation",
+        "Because those amounts are certainly fictitious entries to flatter the books"
+      ],
+      "explanation": "Related party transactions are legal and must be disclosed, not prohibited. The issue is information quality: the price can be set between the two parties themselves, and the demand can vanish when the ownership relationship changes. Calling it certainly fictitious goes too far, and saying it must all be eliminated is wrong too - only transactions within the same consolidated group are eliminated."
+    },
+    {
+      "question": "Company A depreciates straight-line, B uses double declining balance, on the same 100bn line with a ten-year life. In year one, how far apart is the depreciation expense?",
+      "options": [
+        "0bn (= the lifetime total is identical under both methods, so each year matches)",
+        "10bn (A: 100/10 = 10bn; B: (2/10) × 100 = 20bn, exactly one year's straight-line charge)",
+        "20bn (= 30 − 10, from using a factor of 3 times straight-line instead of 2)",
+        "5bn (= 15 − 10, from applying the double factor to half the original cost)"
+      ],
+      "explanation": "Straight-line: 100/10 = 10bn. Double declining balance in year one: (2/10) × 100 = 20bn. A gap of 10bn. The lifetime total is indeed the same under both methods, but that is precisely the point - the method only moves expense between years, so comparing ONE year's profit across two companies on different methods compares two different things. The factor in the double declining method is 2, not 3."
+    },
+    {
+      "question": "Which of these is a sign in the notes that deserves closer reading than the rest?",
+      "options": [
+        "The company discloses related party transactions at the end of the notes",
+        "The notes run longer than the three main statements combined, so it is verbose",
+        "The accounting policy changed in exactly the year a target had to be met",
+        "There is a contingent liability section, since a healthy firm would have none"
+      ],
+      "explanation": "Changing policy is legitimate but must be explained, and a change timed to coincide with a target that had to be hit is a reason to read closely. Notes running longer than the three statements is normal at every company. Disclosing related parties and stating contingent liabilities are both transparency obligations - having them is compliance, and their absence would be the odd thing."
+    }
+  ],
+  "practicePrompt": {
+    "question": "The notes state that the company is guaranteeing a 900bn loan for an associate, while its own equity is 1,200bn. How should you read that?",
+    "options": [
+      "A contingent obligation equal to 75% of equity - treat it as real risk",
+      "Not yet a concern, since the guarantee does not appear on the balance sheet",
+      "Moderately concerning, as the associate must still pay its own share first",
+      "Only worth tracking if the auditor has raised it as a qualified opinion"
+    ],
+    "explanation": "A guarantee is a conditional obligation: it only becomes a real liability if the guaranteed party cannot pay, which is why it stays off the balance sheet and appears only in the notes. But that condition is the kind that breaks at exactly the worst moment, and 900bn against 1,200bn of equity means one default by the other party could wipe out most of this company's equity. The argument 'it is not on the balance sheet, so it is not yet a concern' inverts the very purpose of the notes. And waiting for the auditor to raise a qualification is too late: a qualification is about whether the auditor could verify a figure, not about whether the risk is large or small."
+  },
+  "keyTakeaways": [
+    "The three statements say 'how much', the notes say 'by what means'",
+    "Read the accounting policy first, because it determines every number that follows",
+    "Contingent liabilities and commitments are real obligations sitting off the balance sheet",
+    "Revenue from related parties is not the same quality as revenue sold into the market"
+  ],
+  "summary": {
+    "keyIdea": "The notes are where the making of the three statements is explained",
+    "commonMistake": "Comparing the profits of two companies without checking whether both use the same accounting policy.",
+    "action": "Open the latest annual report of a company you follow and read the accounting policy section on its own."
+  },
+  "application": {
+    "title": "Read one note in the accounts",
+    "message": "Pick a listed company, find the accounting policy section in the notes, and write down its depreciation method and its revenue recognition point. Then do exactly the same for a competitor in the same industry.",
+    "secondary": "If the two differ, you have just found the reason their profits cannot be compared directly."
+  }
+}

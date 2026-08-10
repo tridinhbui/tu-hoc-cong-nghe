@@ -1,0 +1,166 @@
+{
+  "slug": "ir-cong-viec-that-su-la-gi",
+  "title": "IR, Part 1: What investor relations actually does - and why it is not PR",
+  "subtitle": "The three audiences IR serves, what they are really buying, and the line between corporate communications and disclosure",
+  "duration": "10 min",
+  "whyItMatters": "People new to IR usually think the job is to make the company look good. That belief breaks in the first quarter with bad news, because investors do not buy a flattering story - they buy predictability, and a company that hides bad news is not predictable.",
+  "openingQuestion": "What is the core difference between IR and PR?",
+  "openingOptions": [
+    "IR speaks to the people putting up capital and is bound by strict disclosure rules",
+    "IR only deals with the financial press while PR deals with the general media",
+    "IR reports into finance while PR sits inside the company's marketing department",
+    "IR works with numbers while PR works with imagery and brand storytelling"
+  ],
+  "explanation": "The difference is not the reporting line, nor whether you work with numbers or words. It is the audience and the consequence: IR's audience is deciding whether to put money in or take it out, and everything IR says falls under disclosure rules. A PR mistake costs brand credibility; an IR statement made at the wrong moment is a disclosure breach, and telling one group before telling the market is selective disclosure. That is why IR cannot do the thing PR does every day: pick the most flattering moment to tell a story.",
+  "diagram": [
+    {
+      "label": "Numbers and plans from inside the business"
+    },
+    {
+      "label": "IR turns them into verifiable messages"
+    },
+    {
+      "label": "Released SIMULTANEOUSLY to the whole market"
+    },
+    {
+      "label": "Investors re-price"
+    },
+    {
+      "label": "Market feedback flows back to the executive team"
+    }
+  ],
+  "realWorldExample": {
+    "company": "IR functions at companies listed on HOSE",
+    "description": "At most Vietnamese companies IR reports to the CFO rather than to the communications department - precisely because the substance of the work is numbers and disclosure obligations, not image. Where IR sits under marketing it usually shows up in an annual report that reads like an advertisement, and institutional investors will ask directly about whatever that document avoided."
+  },
+  "quiz": [
+    {
+      "question": "Who is IR's primary audience?",
+      "options": [
+        "The press and mass-market media channels",
+        "Customers and end consumers of the products",
+        "Employees and the company's job candidates",
+        "Investors and sell-side analysts"
+      ],
+      "explanation": "IR speaks to the people supplying capital. The press is a channel, not the destination - and information reaching journalists before it reaches the market is a problem, not an achievement. Employees and customers matter, but internal communications and marketing own those audiences, and they operate under nothing like the same disclosure obligations. The distinguishing feature of IR's audience is that they are pricing the company in real time."
+    },
+    {
+      "question": "Why can IR not choose a flattering moment to release bad news?",
+      "options": [
+        "Because the rules require disclosure once the information arises",
+        "Because a delayed disclosure will be uncovered and reported by journalists first",
+        "Because the executive team normally wants to disclose early to relieve internal pressure",
+        "Because institutional investors always know in advance through their own channels"
+      ],
+      "explanation": "Material information must be disclosed within a defined window from the moment it arises. Choosing the moment is a privilege of brand communications, not of IR. The other answers all describe things that might happen, but none of them is the reason: the obligation exists whether or not journalists are looking, whether or not management is comfortable, and whether or not any fund already suspects something."
+    },
+    {
+      "question": "What do institutional investors value most in an IR function?",
+      "options": [
+        "Polished visual design and a well-produced investor deck",
+        "Consistency from one reporting quarter to the next",
+        "Fast email replies and a high number of investor meetings each year",
+        "A good relationship with the broker currently rating the stock a buy"
+      ],
+      "explanation": "Changing your measures between periods is the fastest way to lose credibility, because it stops outsiders comparing anything and everyone can guess why the measure was changed. Design, responsiveness, and broker relationships are all pleasant, but none of them helps a fund build a model it can rely on. Consistency is what makes last year's disclosures usable this year."
+    },
+    {
+      "question": "What is it called when material information is given to one large fund before it is disclosed?",
+      "options": [
+        "A communications risk, but not yet a rule breach",
+        "Looking after a big investor, which is accepted",
+        "Selective disclosure of material information",
+        "Acceptable if the recipient signs a confidentiality deed"
+      ],
+      "explanation": "This is the gravest error in the profession. Material information has to reach every investor at the same moment, whatever the size of their account. A confidentiality undertaking does not fix it, because the harm is not that the recipient might trade - it is that part of the market held information the rest did not, and every trade struck in that window happened on an uneven field."
+    },
+    {
+      "question": "Which sign suggests IR is being run like PR?",
+      "options": [
+        "The executive team answers questions instead of IR",
+        "The company holds more investor meetings than it did last year",
+        "The investor deck has been redesigned around the new brand",
+        "The annual report does not name a single specific risk"
+      ],
+      "explanation": "A filing with no risks in it is a filing that is selling something. Professional investors read the risk section first, and an empty one means they have to go and find the risks themselves - which they will, with less information than you have. The other three signs are neutral: management can speak, meeting counts vary with the calendar, and a redesign says nothing about substance."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A company holds a private meeting with its five largest funds and shares, in advance, the strategic direction it will announce next week. What is this?",
+    "options": [
+      "Selective disclosure, the gravest error in the IR profession",
+      "Good practice, because major shareholders deserve to know first",
+      "Acceptable if those five funds undertake not to trade on it",
+      "A legal department matter rather than something within IR's remit"
+    ],
+    "explanation": "Telling one group before the market is the gravest error in the profession, and it does not depend on whether that group trades: the harm lies in part of the market holding information the rest does not, so every trade struck in that window happens on an uneven field. An undertaking not to trade does not solve it either, because information that has left the company cannot be recalled. A large shareholder's rights lie in their vote and in access to management, not in knowing first - and IR is the function that has to say no, not the legal team."
+  },
+  "keyTakeaways": [
+    "IR speaks to the people supplying capital, and every statement falls under disclosure rules.",
+    "You do not get to pick the moment: material information is disclosed when it arises, not when it suits.",
+    "Telling one group before the market is the gravest error in the profession.",
+    "What investors buy is consistency and predictability, not a flattering story."
+  ],
+  "summary": {
+    "keyIdea": "IR speaks to the people supplying capital, and every statement falls under disclosure rules",
+    "commonMistake": "Treating IR as a branch of communications, and so choosing the moment that suits the story.",
+    "action": "Before any statement, ask: if only one group of investors heard this, would anyone be worse off."
+  },
+  "application": {
+    "title": "Audit a corporate announcement",
+    "message": "Take any announcement from a listed company and split it in two: the part that is a fact with a number attached, and the part that is adjectives. The ratio between them tells you whether it is disclosure or advertising.",
+    "secondary": "What long-term investors are buying is consistency and predictability, not a flattering story."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This job is misunderstood in exactly one place: people assume IR exists to make the company look attractive. IR exists to make the company predictable - and those two goals conflict more often than not."
+    },
+    {
+      "type": "heading",
+      "text": "The three audiences"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Who IR speaks to, and what each of them needs",
+      "concepts": [
+        {
+          "def": "Funds and insurers. They need a model they can forecast with: they build a spreadsheet about your company and need their assumptions not to be broken every quarter."
+        },
+        {
+          "def": "They write research for other people to read. If you do not give them enough, they still write - just using assumptions of their own."
+        },
+        {
+          "def": "They read news and social media. This group is the most exposed to rumour, so whatever IR leaves unsaid gets filled in by something else."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "The line against communications"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "PR",
+        "text": "Chooses the moment, chooses the angle, leans on the strengths. A mistake costs reputation."
+      },
+      "right": {
+        "label": "IR",
+        "text": "Discloses when it arises, says the weak parts too, tells everyone at once. A mistake is a legal issue and a long-term loss of trust."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "One test of an IR function",
+      "text": "Read the risk section of the annual report. If it lists generic risks that every company has - macro volatility, intense competition - the function is filling a box. A risk section written seriously always names something specific that only this company faces."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Investors do not punish a company for a bad quarter. They punish a company for a bad quarter that arrived as a surprise.",
+        "The whole of IR lives in the distance between those two things."
+      ]
+    }
+  ]
+}

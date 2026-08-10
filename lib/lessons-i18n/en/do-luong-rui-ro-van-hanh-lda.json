@@ -1,0 +1,140 @@
+{
+  "slug": "do-luong-rui-ro-van-hanh-lda",
+  "title": "FRM Operational, lesson 1: measuring operational risk with the Loss Distribution Approach (LDA)",
+  "subtitle": "Frequency × severity: how to quantify a risk long treated as \"unmeasurable\"",
+  "duration": "10 min",
+  "whyItMatters": "Operational risk - human error, systems, processes, external events - was once treated as something you could only list, never quantify. The Loss Distribution Approach (LDA) is the method Basel accepts for turning it into a specific capital number, and it underpins every modern operational risk model.",
+  "openingQuestion": "The Loss Distribution Approach models operational losses by combining which two distributions?",
+  "openingOptions": [
+    "Equity return distribution and interest rate distribution",
+    "A frequency distribution and a severity distribution",
+    "A normal and a binomial distribution, both always fixed",
+    "Exchange rate distribution and commodity price distribution"
+  ],
+  "explanation": "LDA splits operational risk into two independent questions: how many times a year does this kind of incident occur (the frequency distribution, usually Poisson), and how much does each occurrence cost (the severity distribution, usually fat-tailed such as Lognormal). Combining the two through Monte Carlo simulation produces the aggregate loss distribution, from which operational VaR is read at a high confidence level (typically 99.9%).",
+  "diagram": [
+    { "label": "Collect historical loss data by event type" },
+    { "label": "Estimate the frequency distribution (how many times a year)" },
+    { "label": "Estimate the severity distribution (loss per occurrence)" },
+    { "label": "Monte Carlo simulation combining both → operational VaR" }
+  ],
+  "realWorldExample": {
+    "company": "Knight Capital, 2012",
+    "description": "A faulty deployment of automated trading software caused the system to send millions of erroneous orders over 45 minutes, costing USD 440m - almost wiping out the firm's capital in under an hour. This is the textbook case of \"low frequency, extremely high severity\" operational risk - exactly the kind of event the tail of the severity distribution in LDA has to capture, rather than dismiss because it happens rarely."
+  },
+  "quiz": [
+    {
+      "question": "Why is the severity distribution in LDA usually modelled with a fat-tailed distribution (such as Lognormal) rather than a normal one?",
+      "options": [
+        "Because the normal distribution only works for market risk",
+        "Because the normal distribution allows negative values, meaningless for losses",
+        "Because most incidents are small but occasionally one is enormous",
+        "Because Basel mandates the Lognormal for every category of risk"
+      ],
+      "explanation": "Real operational loss data shows that the great majority of incidents cost little (a data entry error, a short outage), while a small number of rare incidents cost an enormous amount. The normal distribution understates the probability of those tail events; a fat-tailed distribution describes them better. Basel does not prescribe a specific family, and the normal distribution is used for plenty of non-market risks - the objection here is about the shape of the tail."
+      },
+    {
+      "question": "In LDA, how do \"frequency\" and \"severity\" differ?",
+      "options": [
+        "Frequency and severity are the same mathematical idea renamed",
+        "Severity is always directly proportional to how often the event occurs",
+        "Frequency applies only to internal fraud, severity only to system failure",
+        "Frequency answers how many times a year; severity answers how much each time"
+      ],
+      "explanation": "This is the core of LDA: the two distributions are estimated independently from the data and then combined by simulation to produce the aggregate loss distribution - rather than trying to model total annual losses directly, which is far harder to estimate accurately. They are not two names for one quantity, they are not proportional to each other, and neither is restricted to a particular category of event type."
+    },
+    {
+      "question": "What kind of operational risk does the Knight Capital incident illustrate, the kind LDA must pay special attention to?",
+      "options": [
+        "Low frequency but extremely high severity",
+        "High frequency, low severity on each occasion",
+        "Risk arising only from external fraud",
+        "Risk that does not arise in automated trading"
+      ],
+      "explanation": "Knight Capital took 45 minutes to lose USD 440m from a single software deployment error - and this rare but extreme kind of event is precisely the tail an LDA model has to capture, because it drives most of the operational capital figure. It is the opposite of the high-frequency, low-severity errors that fill a loss log, it did not involve fraud, and automation was the mechanism rather than a protection against it."
+    },
+    {
+      "question": "Why is a single bank's internal loss data usually insufficient to estimate the tail of the severity distribution accurately?",
+      "options": [
+        "Because internal loss data is always falsified to reduce capital",
+        "Because tail events are rare for any single bank on its own",
+        "Because banks are not permitted to keep loss data beyond one year",
+        "Because Basel forbids the use of internal loss data within LDA"
+      ],
+      "explanation": "This is why the Basel framework permits and encourages combining three sources: internal loss data, industry-wide external loss data, and expert-driven scenario analysis - to make up for the missing observations in the rare tail region. Internal data is in fact the mandatory starting point rather than something forbidden, retention requirements run to several years, and the issue is scarcity of observations rather than dishonesty."
+    },
+    {
+      "question": "Why is internal loss data usually not enough to estimate the tail of the operational risk distribution?",
+      "options": [
+        "Because major incidents are often not fully logged at all",
+        "Because internal data is only retained for five years by regulation",
+        "Because extreme incidents are so rare a firm may never have seen one",
+        "Because operational losses are not separable from credit losses"
+      ],
+      "explanation": "The tail is what determines the capital that must be held, and that is exactly the region where a single institution has almost no observations in its own history. This is why industry data and scenario analysis have to be added - two sources that are both less certain, but indispensable. Retention rules and logging quality matter, but even a perfectly kept twenty-year log at one firm would still contain very few genuinely extreme events."
+    }
+  ],
+  "keyTakeaways": [
+    "LDA splits operational risk into a frequency distribution (how many times a year) and a severity distribution (loss per occurrence), combined by Monte Carlo simulation",
+    "The severity distribution needs a fat tail because most incidents are small but occasionally one is enormous (Knight Capital: USD 440m in 45 minutes)",
+    "Internal loss data usually lacks observations in the rare tail region - it has to be supplemented with industry data and scenario analysis",
+    "Operational VaR is normally computed at a very high confidence level (99.9%) because understating a tail event can threaten the firm's survival"
+  ],
+  "practicePrompt": {
+    "question": "A bank uses only three years of internal loss data to estimate its operational risk capital, and no extreme incident occurred in that window. What is the risk of doing it this way?",
+    "options": [
+      "No risk at all, three years of data is accurate enough",
+      "It understates the tail, because a three-year window is too short",
+      "The model will overstate the capital buffer that is actually required",
+      "The only problem is the data is stale and needs refreshing"
+    ],
+    "explanation": "This is the core limitation set out in the lesson: tail events are rare, so a short data window almost certainly contains no observations in the tail region, leaving the estimated capital buffer below the real risk."
+  },
+  "summary": {
+    "keyIdea": "LDA splits operational risk into two dimensions - how many times, and how much each time - because one kind of incident can be rare and severe while another is frequent and mild.",
+    "formula": "Annual loss = Frequency (Poisson) compounded with Severity (usually lognormal)",
+    "commonMistake": "Fitting a distribution to internal data and then extrapolating out to the 99.9% level. There are no observations there, so the final number is decided by the shape of the distribution rather than by the data."
+  },
+  "application": {
+    "title": "When reading an operational risk model",
+    "message": "Ask where the tail came from. If it came only from internal data, the model is extrapolating into a region it has never seen."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "For many years operational risk was treated as the kind of risk you cannot put a number on, only list and control through process. LDA is how the Basel framework turns it into a specific capital figure, rigorous enough for regulators to accept."
+    },
+    {
+      "type": "heading",
+      "text": "Two independent questions"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Frequency and severity",
+      "subtitle": "Estimated separately, combined by simulation",
+      "concepts": [
+        {
+          "def": "How many times a given type of loss event occurs in a year. Usually modelled with a Poisson distribution."
+        },
+        {
+          "def": "The financial loss each time the event occurs. Usually modelled with a fat-tailed distribution such as Lognormal, because most losses are small but the rare tail is enormous."
+        },
+        {
+          "def": "Combining the two distributions above through tens of thousands of Monte Carlo runs to produce the full-year loss distribution, from which operational VaR is read."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The three data sources Basel allows you to combine",
+      "text": "Internal loss data on its own is not enough to estimate the tail accurately. The Basel framework allows it to be supplemented with industry-wide external loss data (usually through pooled databases) and with scenario analysis built by in-house experts for events that have not happened but could."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "LDA does not remove the subjectivity from operational risk, but it forces the firm to quantify it rather than merely list it.",
+        "Next lesson: operational risk is not only financial loss but the firm's ability to keep running when disrupted - operational resilience."
+      ]
+    }
+  ]
+}

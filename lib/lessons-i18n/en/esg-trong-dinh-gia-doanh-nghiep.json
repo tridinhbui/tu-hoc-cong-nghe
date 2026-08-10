@@ -1,0 +1,133 @@
+{
+  "slug": "esg-trong-dinh-gia-doanh-nghiep",
+  "title": "ESG in company valuation: into the WACC or into the cash flows?",
+  "subtitle": "How to build ESG into a model without turning it into an arbitrary number",
+  "duration": "9 min",
+  "openingQuestion": "Which way of building ESG into a valuation model is the most rigorous?",
+  "openingOptions": [
+    "Add an 'ESG bonus' amount on top of the final enterprise value",
+    "Put it into a specific model assumption: revenue, costs, CapEx",
+    "Cut the WACC by 1% for every company with a high ESG score",
+    "Multiply enterprise value by a factor matching the ESG score"
+  ],
+  "explanation": "The most common mistake is bolting an arbitrary adjustment onto a composite ESG score. The rigorous approach forces every adjustment to travel through a specific variable in the model and to come with a mechanism you can state out loud: this ESG risk cuts revenue by how much, raises costs by how much, adds how much CapEx. If you cannot describe the mechanism, you do not yet understand the risk well enough to quantify it.",
+  "realWorldExample": {
+    "company": "The diesel emissions scandal and the real cost of a G risk",
+    "description": "A large carmaker was found in 2015 to have rigged its emissions test results. The financial consequences did not arrive through a 'low ESG score' but through specific lines: tens of billions of euros in fines and settlements, recall costs, falling unit sales, and a higher cost of borrowing once the credit rating was cut. Every effect was measurable in cash flow terms - which is exactly how a governance risk shows up in the financial statements."
+  },
+  "quiz": [
+    {
+      "question": "What does the empirical evidence say about the relationship between ESG and financial performance?",
+      "options": [
+        "ESG has no connection whatsoever to a company's financial results",
+        "It is mixed; the strongest evidence sits on the risk-reduction side of the question",
+        "A high ESG score always leads to share returns that beat the wider market",
+        "A high ESG score always reduces profit because compliance costs money"
+      ],
+      "explanation": "This is a place to be honest. Thousands of studies point in conflicting directions, partly because the ESG ratings themselves disagree, so the input variable is already unreliable. The most consistent finding is on tail-risk reduction: well-governed companies suffer fewer scandals, lawsuits and environmental accidents, the events that destroy value suddenly. The G pillar has the strongest evidence; E and S are weaker and far more industry-dependent. Claiming a guaranteed outperformance in either direction goes well past what the data supports."
+    },
+    {
+      "question": "When is it legitimate to adjust the cost of capital (WACC) for an ESG factor?",
+      "options": [
+        "Never - the WACC depends only on the company's capital structure",
+        "Always - every company with weak ESG should carry a higher WACC",
+        "Only when the risk is undiversifiable or the effect is directly observable",
+        "Only for companies in the energy and the extractive industries"
+      ],
+      "explanation": "Standard finance principle: idiosyncratic risk can be diversified away, so in theory it is not compensated by a higher cost of capital - it belongs in the cash flow scenarios instead. Only systematic risk belongs in the discount rate. There is a practical exception: if you can observe the company genuinely paying a higher borrowing rate, or being excluded by a large investor group, that is an observed cost of capital rather than an assumption. Industry alone never settles the question, and capital structure is not the only input to a WACC."
+    },
+    {
+      "question": "Why do ESG scores from different providers contradict each other?",
+      "options": [
+        "Because the data companies disclose is always distorted relative to what is really happening",
+        "Because each provider only assesses one of the three ESG pillars in depth",
+        "Because some providers score badly on purpose in order to sell consulting",
+        "Because they differ in which metrics they pick, how they measure and how they weight them"
+      ],
+      "explanation": "Academic work puts the correlation between the major providers' ESG scores at roughly 0.4 to 0.6 - far below the near-perfect agreement between credit rating agencies. The gap decomposes into three sources: scope (what is measured), measurement (how it is measured), and weighting (which items count for more). The practical consequence is that a composite ESG score is a poor model input; go to the specific metrics that are material for that industry instead. Disclosure quality and pillar coverage are real issues but neither explains a divergence this systematic."
+    },
+    {
+      "question": "What is the most rigorous way to build a specific ESG risk into a valuation model?",
+      "options": [
+        "Route it through a specific cash flow variable or through the cost of capital",
+        "Add a percentage point to the WACC in line with the company's composite ESG score",
+        "Discount the final enterprise value by a percentage matching the ESG rating band",
+        "Drop low-scoring companies from the portfolio rather than adjusting the model at all"
+      ],
+      "explanation": "An ESG risk only has financial meaning when it touches revenue, costs, invested capital or cash flow risk - so every adjustment has to name the mechanism and the number behind it. Adding an arbitrary margin to the WACC sounds rigorous but is in practice an unverifiable figure: a reader cannot check where it came from or argue with it. Screening the company out is a portfolio decision, not a valuation one, and a blanket haircut on the final value hides the assumption instead of stating it."
+    },
+    {
+      "question": "Why do the ESG scores of different rating organisations correlate so weakly with each other?",
+      "options": [
+        "Because the rating agencies deliberately stay different to protect their commercial edge",
+        "Because each organisation picks its own criteria, weights and measurement methods",
+        "Because companies hand different numbers to each ESG rating organisation they deal with",
+        "Because most rating organisations only assess the environmental pillar and skip the other two"
+      ],
+      "explanation": "A credit rating measures one thing that has already been defined clearly: the ability to repay debt. ESG has no shared definition, so each provider chooses what to measure and how heavily it counts. The pragmatic response is to use the component data for your own analysis rather than treating the composite score as a fact. Commercial differentiation and inconsistent company disclosure exist but are second-order: the divergence persists even where the underlying disclosures are identical."
+    }
+  ],
+  "keyTakeaways": [
+    "Integrating ESG properly means adjusting specific assumptions inside the model, not adding or subtracting a number from the final answer",
+    "Company-specific ESG risk belongs in the cash flows and scenarios; only systematic risk or an observed cost of capital belongs in the WACC",
+    "The strongest empirical evidence is on reducing tail risk, not on generating outperformance",
+    "Composite ESG scores contradict each other across providers - use the specific metrics that are material for the industry instead"
+  ],
+  "practicePrompt": {
+    "question": "You are valuing a food company that has been found to have serious workplace safety violations at one of its plants. Which is the most reasonable way to reflect that in a DCF?",
+    "options": [
+      "Raise the WACC by 2 points to reflect the higher ESG risk",
+      "Model it explicitly: fines, remediation CapEx, a lost-revenue scenario",
+      "Cut the final enterprise value by 15%, the usual convention for ESG scandals",
+      "Reflect nothing, since labour violations do not affect the cash flows"
+    ],
+    "explanation": "Every consequence of this event lands on a specific line you can estimate and argue about: the fine is a one-off cash outflow, fixing the plant is CapEx, losing a contract is a revenue scenario. Adding 2% to the WACC or taking 15% off the value are both numbers with no traceable origin - a reader of the model cannot test them or push back on them. The rule: every adjustment must be able to answer the question 'where did this number come from'."
+  },
+  "summary": {
+    "keyIdea": "ESG enters a valuation model through specific assumptions about revenue, costs, CapEx and risk - not through an arbitrary adjustment factor tied to a composite ESG score.",
+    "commonMistake": "Adjusting the WACC by ESG score without separating idiosyncratic risk (which belongs in cash flows) from systematic risk (which belongs in the cost of capital)",
+    "action": "For every ESG risk you identify, write down the mechanism: which line of the model it hits, and by roughly how much"
+  },
+  "application": {
+    "title": "Apply it to analytical work",
+    "message": "When presenting a valuation with an ESG element, always separate out the adjustment and explain the mechanism - this is what distinguishes serious ESG analysis from ESG as decoration.",
+    "secondary": "A sensitivity table across severity levels of the ESG risk is usually more persuasive than a single score."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Plenty of analyst reports write 'the company has good ESG so we value it higher' and stop there. That is not analysis - it is an opinion wearing the costume of arithmetic."
+    },
+    { "type": "heading", "text": "Three routes ESG takes into a model" },
+    {
+      "type": "list",
+      "items": [
+        "Cash flows: carbon and compliance costs, fines, remediation spending, energy savings, revenue from green products, or revenue lost when customers walk away",
+        "Assets and CapEx: mandatory investment to meet regulation, the possibility of writing down stranded assets, and a shortened economic life for existing assets",
+        "Cost of capital: only where there is evidence the company genuinely pays a higher rate, has been downgraded, or is excluded from the portfolios of a large enough investor group"
+      ]
+    },
+    { "type": "heading", "text": "Why you should not fiddle with the WACC at will" },
+    {
+      "type": "paragraph",
+      "text": "In theory the cost of capital compensates only for risk that cannot be diversified away. A scandal at one company is idiosyncratic - an investor holding a broad portfolio can spread it - so in principle it commands no premium. Putting it into the WACC is both theoretically wrong and a way of hiding the assumption: an extra 2% tells nobody how large a fine you are assuming or how many customers you expect to lose. Putting it into the cash flows forces you to say so, and lets the reader argue with each number."
+    },
+    { "type": "heading", "text": "Industry materiality is the key" },
+    {
+      "type": "paragraph",
+      "text": "Not every ESG metric matters to every industry. For a bank, governance and data security are material while water consumption is close to meaningless. For a beverage company, water is an existential risk. The SASB framework builds a separate set of material metrics for each industry precisely for this reason. When analysing, start with the question: for this business model, which three to five ESG factors could genuinely change the cash flows? The rest is noise."
+    },
+    {
+      "type": "callout",
+      "label": "A test of analytical quality",
+      "text": "A good ESG integration has to pass this test: delete the word 'ESG' from the report, and does the remaining analysis still stand up as an ordinary financial argument about risk and cash flow?"
+    }
+  ],
+  "diagram": [
+    { "label": "Identify the ESG factors material to this specific industry" },
+    { "label": "Put them into the cash flows: revenue, costs, required investment" },
+    { "label": "Or into the discount rate, if systematic risk is genuinely affected" },
+    { "label": "Or into terminal value, if long-run sustainability is affected" },
+    { "label": "State the assumptions and run a sensitivity table - avoid arbitrary adjustment" }
+  ]
+}

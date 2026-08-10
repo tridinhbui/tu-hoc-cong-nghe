@@ -1,0 +1,138 @@
+{
+  "slug": "expected-shortfall-va-thuoc-do-rui-ro-nhat-quan",
+  "title": "Market Risk, Lesson 3: Expected Shortfall - and why Basel dropped VaR",
+  "subtitle": "The four properties of a coherent risk measure, the subadditivity VaR violates, and what ES costs you",
+  "duration": "12 min",
+  "whyItMatters": "Basel's move from VaR to Expected Shortfall is the biggest change in market risk measurement of the decade, and it did not come from taste - it came from a specific mathematical defect in VaR. Understanding that defect is also understanding why aggregating risk across trading desks can produce nonsense.",
+  "openingQuestion": "Portfolio A has a VaR of 10 and portfolio B has a VaR of 10. Combine the two portfolios - what can the VaR be?",
+  "openingOptions": [
+    "Always 20 or less, because diversification always reduces risk",
+    "It can be more than 20 - VaR does not guarantee subadditivity",
+    "Always exactly 20",
+    "Always 20 times the correlation coefficient"
+  ],
+  "explanation": "This is the crux. A sensible risk measure has to satisfy subadditivity: the risk of the whole is never greater than the sum of the parts, because combining portfolios can at worst deliver no diversification benefit at all. VaR can violate that property with skewed-tail distributions - two separate bond portfolios each with a default probability below 1%, so the 99% VaR of each is zero, but combined the probability of at least one default exceeds 1% and the VaR jumps. The practical consequence: splitting a portfolio up can reduce total VaR on paper while the real risk is unchanged.",
+  "diagram": [
+    { "label": "VaR: the loss threshold at a quantile" },
+    { "label": "ES: the average loss once the threshold is breached" },
+    { "label": "ES is subadditive, VaR is not" },
+    { "label": "The trade-off: ES is far harder to backtest" }
+  ],
+  "realWorldExample": {
+    "company": "Two different questions about the same tail",
+    "description": "99% VaR answers: what is the loss threshold that 99% of days stay below. 97.5% Expected Shortfall answers something else: across the worst days, what is the average loss. The difference matters enormously when the tail is very fat - two portfolios can share a VaR while one of them, every time it breaches, loses three times as much as the other. VaR cannot tell those two portfolios apart, because it looks at exactly one point on the distribution and ignores everything lying beyond it."
+  },
+  "quiz": [
+    {
+      "question": "What does Expected Shortfall measure that VaR does not?",
+      "options": [
+        "The probability that a loss exceeding the stated threshold occurs at some point over the horizon being considered",
+        "The average loss across the scenarios that already breached the threshold, so the whole tail rather than one point",
+        "The average length of time between two consecutive breaches of the loss threshold by the portfolio",
+        "The minimum amount of capital the regulator requires the desk to hold against that particular portfolio"
+      ],
+      "explanation": "Two portfolios can share a VaR while their ES figures differ wildly, and that gap is precisely the information about tail thickness that VaR throws away. VaR is a quantile, not a probability, so reading it as the chance of a breach inverts the definition. The gap between breaches is a frequency statistic that neither measure produces, and required capital is a regulatory output computed from a risk measure rather than the measure itself."
+    },
+    {
+      "question": "What does subadditivity of a risk measure mean?",
+      "options": [
+        "Portfolio risk always rises in exact proportion to the number of assets held inside that portfolio",
+        "The risk of the combined portfolio must equal the sum of the risks of each component portfolio",
+        "The risk of the combined portfolio must not exceed the sum of the risks of the components",
+        "Risk has to be computed separately per asset class before being added into the aggregate report"
+      ],
+      "explanation": "Subadditivity is the mathematical way of stating that diversification is never harmful. Note the inequality: risk of the whole is at most the sum, not exactly the sum - requiring equality would forbid any diversification benefit at all, which is the opposite of what happens. A measure that violates the inequality can reward splitting a portfolio up on paper, which is why the property is a requirement rather than a nicety."
+    },
+    {
+      "question": "What is the practical consequence of VaR violating subadditivity?",
+      "options": [
+        "The reported VaR number will always sit below the true worst possible loss the portfolio could ever suffer",
+        "Splitting one portfolio into several smaller units can lower the total reported VaR while the real risk is unchanged",
+        "It becomes impossible to compute a VaR for any portfolio holding several different asset classes at once",
+        "The VaR result changes every single time it is recomputed, even when the input data has been left completely unchanged"
+      ],
+      "explanation": "This is a very real perverse incentive: restructure the books to lower the reported number without lowering any risk. VaR sitting below the worst possible loss is true of every quantile measure by construction and is not a violation of anything. Mixed asset classes are computable, and recomputation instability on fixed data is a simulation-noise issue rather than a property of the measure."
+    },
+    {
+      "question": "What is the main drawback of Expected Shortfall relative to VaR?",
+      "options": [
+        "Backtesting is far harder, because it is no longer a simple count of threshold breaches",
+        "It only applies to equity portfolios and cannot be used for bonds or for derivatives",
+        "It always produces a smaller number than VaR and so understates the risk of the portfolio",
+        "It requires returns to follow a normal distribution, an assumption VaR does not need at all"
+      ],
+      "explanation": "VaR is easy to test because you only need to count breaches versus non-breaches. ES is a conditional average, so testing it needs far more tail data - exactly the data that is scarcest. Note that ES is always at least as large as VaR at the same level rather than smaller, applies to any asset class, and requires no distributional assumption that VaR escapes; the cost is statistical, not conceptual."
+    },
+    {
+      "question": "Out of 100 scenarios, the five worst losses are 8, 9, 10, 12 and 21bn. What are the 95% VaR and the 95% ES?",
+      "options": [
+        "VaR 21bn and ES 12bn (taking the worst scenario as the VaR)",
+        "VaR 8bn and ES 12bn (the average of the five tail scenarios)",
+        "VaR 8bn and ES 21bn (taking the largest loss instead of the average)",
+        "VaR 12bn and ES 8bn (the roles of the two measures swapped)"
+      ],
+      "explanation": "The 95% VaR is the threshold breached in the worst 5% of scenarios, so 8bn. The 95% ES is the average of exactly those five scenarios: (8 + 9 + 10 + 12 + 21) / 5 = 12bn. Two portfolios can share a VaR of 8bn while their ES figures sit far apart - and that gap lies precisely where VaR never looks."
+    }
+  ],
+  "keyTakeaways": [
+    "VaR looks at a single point on the distribution and ignores everything beyond it",
+    "ES measures the average loss once the threshold is breached, so it can separate two portfolios sharing a VaR",
+    "Subadditivity: the risk of the whole is never more than the sum of the parts - VaR can violate this",
+    "Consequence: splitting a portfolio can lower reported VaR without lowering real risk",
+    "The price of ES: backtesting is much harder because it needs tail data"
+  ],
+  "practicePrompt": {
+    "question": "Two portfolios share a 99% VaR of 10bn. When portfolio A breaches, it loses 12bn on average; portfolio B loses 40bn on average. Which measure tells them apart?",
+    "options": ["VaR, since it is computed at 99%", "Expected Shortfall, which covers the tail", "Both of the measures separate them", "Neither of the measures separates them"],
+    "explanation": "This is the tightest illustration of why Basel changed the measure. The two VaR figures are equal because VaR only asks where the threshold sits, and the thresholds are indeed equal. But portfolio B is far worse on the thing people actually care about: when the bad thing happens, how bad is it. A's ES is 12 and B's is 40 - a number that reflects exactly that difference."
+  },
+  "summary": {
+    "keyIdea": "VaR answers where the threshold sits; ES answers how bad it is once you are past it",
+    "commonMistake": "Assuming a lower VaR always means a safer portfolio",
+    "action": "For any return distribution, compute both the 99% VaR and the 97.5% ES and compare the two - the gap tells you how fat the tail is."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take 500 return observations. Compute the 99% VaR as the 1% quantile. Then average every observation below that quantile - that is the ES. Repeat on a series containing a few large shocks and compare the ES-to-VaR ratio between the two series.",
+    "secondary": "That ratio is a way of measuring tail thickness without assuming any distribution at all."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous lesson showed how to test a VaR model. This one is about a weakness no test can catch, because it sits inside the definition of the measure itself."
+    },
+    { "type": "heading", "text": "The four properties of a coherent risk measure" },
+    {
+      "type": "list",
+      "items": [
+        "Monotonicity: a portfolio that always performs worse must be measured as riskier",
+        "Translation invariance: adding cash to a portfolio must reduce the risk by exactly that amount",
+        "Positive homogeneity: doubling every position doubles the risk",
+        "Subadditivity: the risk of the combined portfolio is no greater than the sum of the parts - this is the one VaR can violate"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "VaR",
+        "text": "One point on the distribution: the loss threshold at the chosen quantile. Easy to explain, easy to backtest by counting. Says nothing about what lies beyond the threshold, and can violate subadditivity."
+      },
+      "right": {
+        "label": "Expected Shortfall",
+        "text": "The average of the entire tail beyond the threshold. Always satisfies all four properties above. In exchange, backtesting is far harder because it needs enough observations in the scarcest region of the data."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why Basel picked 97.5% for ES",
+      "text": "It is not an arbitrary number. ES at 97.5% comes out at roughly the same magnitude as VaR at 99% under a normal distribution, so capital requirements do not jump when the measure changes. At the same time 97.5% leaves more tail observations than 99%, so the ES estimate is more stable and less dependent on a handful of extreme data points. It is a deliberate balance between theoretical correctness and being estimable on real data."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A risk measure needs to be right about its mathematical properties, not only about intuition - otherwise people will optimise straight into the place where it is wrong.",
+        "The next lesson returns to the input behind every model above: how volatility itself is estimated."
+      ]
+    }
+  ]
+}

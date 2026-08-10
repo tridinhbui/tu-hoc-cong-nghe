@@ -1,0 +1,120 @@
+{
+  "slug": "frm-xac-suat-va-dinh-ly-bayes",
+  "title": "FRM Quant, Lesson 4: Conditional probability and Bayes' theorem in risk management",
+  "subtitle": "Why a warning system that is 99% accurate can still be wrong almost every time it fires",
+  "duration": "9 min",
+  "whyItMatters": "Every fraud detection system, credit score and early-warning tool is a conditional probability problem. Without Bayes it is very easy to misread the reliability of the very system you are running.",
+  "openingQuestion": "A fraud detection system is 99% accurate and the true fraud rate is one in a thousand transactions. When the system fires, roughly what is the probability that the transaction really is fraudulent?",
+  "openingOptions": [
+    "About 9%, because false alerts from the huge legitimate pool dominate",
+    "Exactly 99%, matching the accuracy figure the system publishes for itself",
+    "About 50%, since each alert can only be either right or wrong",
+    "About one in a thousand, the same as the underlying rate of fraud"
+  ],
+  "explanation": "In a million transactions there are about 1,000 fraud cases and the system catches 990 of them. Among the 999,000 legitimate transactions it misfires on about 1%, roughly 9,990 cases. That is about 10,980 alerts in total, of which only 990 are real - around 9%. The low base rate is what drives the result, not the accuracy of the system.",
+  "diagram": [
+    { "label": "Base rate: how rare the event actually is" },
+    { "label": "Sensitivity and false alert rate of the system" },
+    { "label": "Bayes combines the two" },
+    { "label": "Out comes the posterior probability - the number you actually need" }
+  ],
+  "realWorldExample": {
+    "company": "The false alert paradox in transaction monitoring",
+    "description": "Bank compliance teams live with this situation constantly: an anti-money-laundering monitoring system generates thousands of alerts a month, and the share that ends up producing a genuine suspicious activity report is usually very low. The cause is not a weak system but the arithmetic of rare events - and the consequence is an enormous manual review headcount, plus the risk that staff gradually stop taking alerts seriously because most of them are wrong."
+  },
+  "quiz": [
+    {
+      "question": "How does the base rate affect how reliable a warning signal is?",
+      "options": [
+        "Base rates only matter when a system's accuracy falls below 50%",
+        "The base rate has no bearing at all on how reliable an alert is",
+        "The rarer the event, the more trustworthy each alert becomes",
+        "The rarer the event, the more false alerts swamp the true ones"
+      ],
+      "explanation": "This is the most counter-intuitive point in the lesson. The number of false alerts scales with the size of the no-event group, which is enormous precisely when the event is rare, so it easily swamps the true alerts even from a very accurate system. Accuracy below 50% is not a special threshold - the arithmetic is the same at any accuracy level. And the claim that rarity makes alerts more trustworthy has the relationship exactly backwards: rarity is what destroys the reliability of an alert."
+    },
+    {
+      "question": "In credit risk measurement, which quantity is a conditional probability?",
+      "options": [
+        "The chance a counterparty defaults given that a related one already has",
+        "The total outstanding balance a bank has lent to one large corporate client",
+        "The average lending rate the bank charged over the reporting period",
+        "The time remaining until the loan reaches its maturity date"
+      ],
+      "explanation": "Conditional default probability is the foundation of every portfolio credit risk model. Treating loans as independent badly understates tail risk, because defaults tend to cluster by economic cycle and by industry. The other three quantities are all perfectly real numbers a bank tracks, but none of them is conditional on anything: an outstanding balance, an average rate and a remaining maturity are single-number descriptions of a position, not statements about how one event changes the odds of another."
+    },
+    {
+      "question": "How does the Bayesian approach differ from classical frequentist statistics?",
+      "options": [
+        "It uses no observed data at all and relies purely on expert judgement",
+        "It starts from a prior belief and then updates it with new data",
+        "It only applies once the sample exceeds thirty separate observations",
+        "It always returns exactly the same answer as the frequentist method"
+      ],
+      "explanation": "The strength of Bayes in risk management is that it copes with very sparse data - exactly the character of operational risk and tail events - by combining structured expert judgement with the handful of observations available. It does not discard the data, which is the whole point of the updating step. There is no thirty-observation threshold; that rule of thumb belongs to a different question entirely. And the two approaches agree only in the limit of abundant data."
+    },
+    {
+      "question": "Why can a warning system that is 99% accurate still produce mostly false alarms?",
+      "options": [
+        "Because alert systems are always tuned low so that no case is ever missed",
+        "Because the 99% figure is measured on training data, not on live data",
+        "Because when true events are rare, false hits on a huge base outnumber them",
+        "Because the false-hit rate creeps up over time as fraud behaviour shifts"
+      ],
+      "explanation": "One percent of nine hundred and ninety-nine thousand legitimate transactions is still close to ten thousand alerts, while the real cases number only about a thousand. The low base rate drives the result, and intuition almost always ignores it. Threshold tuning changes the split between misses and false alerts but cannot rescue a rare-event base rate, an in-sample accuracy figure would be a measurement problem rather than an arithmetic one, and drift in fraud behaviour is a slow effect that would not explain the very first day of operation."
+    },
+    {
+      "question": "What does the Bayesian approach contribute to risk management when data is very sparse?",
+      "options": [
+        "It guarantees the result does not depend on the analyst's subjective assumptions",
+        "It removes any need to estimate parameters from past data",
+        "It yields a narrower confidence interval than the frequentist route on the same data",
+        "It combines expert judgement with the few observations available"
+      ],
+      "explanation": "In the tail of operational risk, data is so thin that frequentist estimation is close to meaningless. Bayes offers a formal way to bring expert judgement in as a prior distribution and then update it as observations arrive - the price being that the prior has to be stated openly rather than hidden. So it does not remove subjectivity, it makes it explicit. It still estimates parameters from data, and an honest posterior interval is often wider, not narrower, than a frequentist one."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A fraud detection system is right 99% of the time on fraudulent transactions and misfires on 1% of normal ones. The true fraud rate is 0.1%. When the system fires, roughly what is the probability the transaction is genuinely fraudulent?",
+    "options": [
+      "About 9% (= 0.099 divided by 1.098)",
+      "About 99%, exactly the stated accuracy",
+      "About 50%, since the two error types offset",
+      "About 0.1%, exactly the base rate"
+    ],
+    "explanation": "In 100,000 transactions there are 100 genuine frauds and the system catches 99. Of the 99,900 normal transactions, 1% misfire, which is 999 false alerts. That is 1,098 alerts in total, of which only 99 are real - about 9%. Nine times out of ten the bell rings for nothing, even though the system is 99% accurate. The base rate drives the reliability of an alert far more strongly than the accuracy of the system, and the rarer the event the higher the false alert share. This is why an operations team learns to ignore the bell, and why the answer is to raise the threshold or stack several independent signals."
+  },
+  "keyTakeaways": [
+    "The base rate drives the reliability of an alert more strongly than the accuracy of the system",
+    "The rarer the event, the higher the share of false alerts within total alerts",
+    "Conditional default probability is the foundation of portfolio credit risk models",
+    "Bayes is useful with sparse data because it combines a prior judgement with observations"
+  ],
+  "summary": {
+    "keyIdea": "Bayes' theorem answers the question the operator actually needs: when the system fires, how likely is it that the event really happened",
+    "commonMistake": "Confusing a system's headline accuracy with the probability that any particular alert is correct",
+    "action": "For every warning system, ask for the base rate of the event before you judge the accuracy figure"
+  },
+  "application": {
+    "title": "Reading a test result or an alert",
+    "message": "The same logic applies outside finance: a test that is 99% accurate for a disease present in one person in ten thousand still returns mostly false positives.",
+    "secondary": "The question is always: how rare was this event before the signal arrived?"
+  },
+  "sections": [
+    { "type": "lead", "text": "People who operate warning systems usually ask what percentage of the time the system is accurate. But the question that actually needs answering is: when it fires, how likely is it that something is really wrong - and those two numbers can be very far apart." },
+    { "type": "formula", "title": "Bayes' theorem", "equation": "P(A|B) = P(B|A) × P(A) / P(B)", "variables": [
+      { "symbol": "P(A)", "name": "Prior probability - the belief held before the new data arrives" },
+      { "symbol": "P(B|A)", "name": "Likelihood of observing B if A is true" },
+      { "symbol": "P(A|B)", "name": "Posterior probability - what you actually need to know" }
+    ]},
+    { "type": "heading", "text": "Why the base rate dominates" },
+    { "type": "paragraph", "text": "The number of false alerts scales with the size of the group in which the event did not occur. When the event is rare, that group is nearly the whole population, so even a 1% false alert rate produces many times more false alerts than the true cases the system catches." },
+    { "type": "callout", "label": "The practical consequence: alert fatigue", "text": "When most alerts are wrong, the people handling them gradually lose faith and start skipping. This is how an expensive monitoring system becomes useless while working exactly as designed - the problem lies in the arithmetic of rare events, not in the software." },
+    { "type": "heading", "text": "Application in credit risk" },
+    { "type": "paragraph", "text": "Conditional default probability - the chance counterparty B defaults given that A already has - is the foundation of every portfolio model. An independence assumption produces a dangerously thin-tailed loss distribution, because in practice defaults cluster by industry and by cycle." },
+    { "type": "closing", "lines": [
+      "The number you need is not what percentage of the time the system is right, but how much this particular alert is worth trusting.",
+      "Next lesson: how to estimate the parameters of a distribution from observed data."
+    ]}
+  ]
+}

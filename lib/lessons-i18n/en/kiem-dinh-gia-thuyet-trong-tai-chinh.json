@@ -1,0 +1,143 @@
+{
+  "slug": "kiem-dinh-gia-thuyet-trong-tai-chinh",
+  "title": "Quant, Lesson 3: Hypothesis testing - and the p-hacking trap in backtests",
+  "subtitle": "The null hypothesis, the p-value, Type I and Type II errors, and why trying 100 strategies always turns up a pretty one",
+  "duration": "12 min",
+  "whyItMatters": "Hypothesis testing is the standard language for saying that this is reliably different from that. In finance it is badly abused: every backtest is the product of trying many times, and a p-value has no idea how many times you tried.",
+  "openingQuestion": "You test 100 randomly generated trading strategies, all of them completely worthless. At a 5% significance level, how many would you expect to look statistically significant?",
+  "openingOptions": [
+    "None of them, because they are worthless",
+    "Roughly 5 strategies",
+    "Roughly 50 strategies",
+    "All 100 of them"
+  ],
+  "explanation": "A 5% significance level means accepting a 5% chance of a Type I error on each individual test. Run 100 tests on random data and you expect around 5 results that look attractive purely by luck. This is the root of the problem across the whole backtesting industry: people try thousands of variants, publish only the best one, and then present its p-value as though it had been the only test performed.",
+  "diagram": [
+    { "label": "Null hypothesis: no effect" },
+    { "label": "Compute the test statistic from the data" },
+    { "label": "Compare against the threshold, get a p-value" },
+    { "label": "Then ask: how many attempts came before this result" }
+  ],
+  "realWorldExample": {
+    "company": "The replication crisis in academic finance",
+    "description": "Several studies have re-examined hundreds of published return factors from leading journals and found that most stopped working after the paper was published. Part of that is the market absorbing the information, but the larger part is that those factors never existed in the first place - they were the product of thousands of researchers searching the same finite set of historical data."
+  },
+  "quiz": [
+    {
+      "question": "What does a p-value actually mean?",
+      "options": [
+        "The probability the null hypothesis is true, given the data observed",
+        "The share of observations outside the confidence interval",
+        "The probability the strategy keeps making money in the period ahead",
+        "The probability of seeing data this extreme if the null is true"
+      ],
+      "explanation": "This is the most widely misunderstood definition in statistics. A p-value is not the probability that a hypothesis is true or false; it is the probability of the data, conditional on the null hypothesis being true. Those two are different in kind, and the conditioning runs the opposite way. Nor is it a share of observations, which is a descriptive statistic, and it says nothing whatsoever about what the strategy will do next year - the test looks backwards at the sample you already have."
+    },
+    {
+      "question": "How do Type I and Type II errors differ?",
+      "options": [
+        "Type I only happens with small samples, Type II with large ones",
+        "Type I is a calculation error, Type II a data collection error",
+        "Type I rejects a true null hypothesis; Type II keeps a false one",
+        "No practical difference; both lead to the same wrong conclusion"
+      ],
+      "explanation": "Type I is the false alarm: concluding there is an effect when there is none. Type II is the miss: a real effect that the test fails to detect. Lowering the significance threshold reduces Type I errors but raises Type II errors - it is always a trade-off. Neither one is tied to sample size in the way the first option suggests, and neither is a mistake in arithmetic or data handling: both are correct calculations reaching the wrong conclusion, which is precisely why they need names."
+    },
+    {
+      "question": "Why is statistical significance not the same thing as economic significance?",
+      "options": [
+        "Because statistical tests take no account of the data's currency units",
+        "Because with a large enough sample a tiny effect still turns significant",
+        "Because statisticians rarely understand how markets actually operate",
+        "Because an effect's economic significance always exceeds its statistical one"
+      ],
+      "explanation": "A strategy generating 0.05% excess return per month can have a very small p-value across 50 years of data, and nothing left at all after transaction costs. Conversely, a large effect observed on only 20 data points can be well worth attention even though it has not cleared a statistical threshold. Currency units cancel out of a t-statistic entirely, and the relationship between the two kinds of significance runs in both directions rather than always one way."
+    },
+    {
+      "question": "What is the best defence against p-hacking?",
+      "options": [
+        "Raise the significance level to 10% to miss fewer real effects",
+        "Add more explanatory variables so the model covers more of reality",
+        "State the hypothesis first, hold out data, count the attempts",
+        "Use only the most recent data, since it reflects today's market"
+      ],
+      "explanation": "Out-of-sample validation is the strongest barrier there is: if the effect is real, it has to survive on data you never used to search for it. If it disappears, you were almost certainly fitting noise. Raising the significance level makes the problem worse rather than better, adding explanatory variables is the mechanism of overfitting rather than a defence against it, and restricting yourself to recent data shrinks the sample exactly when you need it largest."
+    },
+    {
+      "question": "A strategy shows a Sharpe ratio of 1.5 in a 5-year backtest. Which statement is correct?",
+      "options": [
+        "The strategy is certainly valuable, since a Sharpe above 1 is already very good",
+        "Leverage should be raised to amplify the returns of so strong a strategy",
+        "A Sharpe of 1.5 always reaches significance with five years of data",
+        "You need to know how many variants were tried and how it does out of sample"
+      ],
+      "explanation": "A backtest Sharpe is almost always the best number out of many attempts, which makes it a systematically upward-biased estimate. Realised Sharpe after deployment is usually materially lower - the phenomenon known as out-of-sample decay. Significance depends on the sample size and the volatility of the returns, so no fixed Sharpe level always clears it, and adding leverage to an estimate that is biased upward multiplies the error rather than the edge."
+    }
+  ],
+  "keyTakeaways": [
+    "A p-value is the probability of the data given the null, not the probability that the null is true",
+    "Type I is the false alarm, Type II the miss; reducing one always increases the other",
+    "Try often enough and a pretty result appears by chance - the p-value has no idea how many times you tried",
+    "Statistical significance is not economic significance: always ask how much of the effect survives transaction costs"
+  ],
+  "practicePrompt": {
+    "question": "A signal vendor presents a backtest with p below 0.01 and says the result is very unlikely to be chance. What is the sharpest question to ask?",
+    "options": [
+      "Which software package was used to run the backtest",
+      "How many combinations were tried before this one",
+      "Where the data came from",
+      "How much the subscription costs"
+    ],
+    "explanation": "A p-value only means something for a test that was specified in advance. If this is the best result out of 500 attempts, the effective significance level has to be adjusted sharply, and p below 0.01 stops being impressive at all."
+  },
+  "summary": {
+    "keyIdea": "A p-value has no idea how many times you tried - but you do",
+    "formula": "t = (estimate − hypothesised value) / standard error",
+    "commonMistake": "Presenting the best result out of many attempts as though it were the only attempt",
+    "action": "For every backtest you run yourself, record how many variants you tried and always hold back the last 30% of the data for validation."
+  },
+  "application": {
+    "title": "A rule for being honest with yourself",
+    "message": "Before you look at the data, write down the hypothesis and the evaluation criteria. After you find a result, validate it on the portion of data you never touched. If the effect disappears out of sample, accept that it never existed.",
+    "secondary": "The quant world's rule of thumb: halve the backtest Sharpe ratio to get a realistic expectation."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Hypothesis testing was designed for a world in which the researcher asks the question first and gathers the data afterwards. Finance works the other way round: the data has been sitting there for decades, and thousands of people are searching the same set. Understanding that mismatch matters more than memorising any formula in this lesson."
+    },
+    { "type": "heading", "text": "The four steps of a test" },
+    {
+      "type": "list",
+      "items": [
+        "Step 1: state the null hypothesis (usually no effect) and the alternative",
+        "Step 2: pick the significance level before you look at the result, typically 5%",
+        "Step 3: compute the test statistic, most often the t-ratio, the estimate divided by its standard error",
+        "Step 4: compare against the threshold and conclude - and record which attempt number this was"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Type I error",
+        "text": "Concluding a strategy has value when it is useless. Consequence: real money lost believing in noise."
+      },
+      "right": {
+        "label": "Type II error",
+        "text": "Passing over a genuinely good strategy because the data was not strong enough. Consequence: opportunity lost, but not capital."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why this is the most serious problem in quantitative investing",
+      "text": "In medicine, clinical trials must pre-register the hypothesis before data is collected, precisely to stop the searching. Finance has no equivalent mechanism. So the responsibility sits entirely with the analyst: hold out data, count the attempts, and be sceptical of your own attractive results."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The most impressive number in a backtest is usually the least reliable one, precisely because it was selected for being impressive.",
+        "The next three lessons move on to the tool for explaining relationships between variables: regression."
+      ]
+    }
+  ]
+}

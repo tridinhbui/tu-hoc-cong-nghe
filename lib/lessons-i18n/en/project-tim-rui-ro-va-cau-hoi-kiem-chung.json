@@ -1,0 +1,174 @@
+{
+  "slug": "project-tim-rui-ro-va-cau-hoi-kiem-chung",
+  "title": "AI in Finance, Lesson 17: A small project - finding risks and verification questions",
+  "subtitle": "Turning AI into an assistant that points out where to dig deeper.",
+  "duration": "16 min",
+  "whyItMatters": "This is the skill that separates someone who reads a report with a method from someone who skims it - and it transfers to every kind of document, not just financial statements.",
+  "openingQuestion": "When is a risk raised by an AI actually worth using?",
+  "openingOptions": [
+    "When it carries evidence or a clear verification question",
+    "When it sounds frightening and serious on first hearing",
+    "When it has no source",
+    "When it is very long"
+  ],
+  "explanation": "The second project raises the difficulty: from summarising to finding where to dig. The crux is telling a generic risk apart from a verifiable one. 'The business faces competitive risk' is true of every business, so it leaves you nothing to do next. 'Receivables rose 40% while revenue rose 10%; check the ageing in note 8' is true only of this business and tells you exactly what to do next. The four-column table in this lesson forces every risk to meet the second standard.",
+  "summary": {
+    "keyIdea": "AI finds risks well when you demand evidence and a verification question.",
+    "commonMistake": "Listing generic risks with no data attached.",
+    "action": "Build a risk table with: risk, evidence, source, verification question."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A generic risk does not help the analysis. A good risk has to be verifiable."
+    },
+    { "type": "heading", "text": "The 4-column risk table" },
+    {
+      "type": "list",
+      "items": [
+        "What is the risk?",
+        "Where is the evidence?",
+        "How severe is it?",
+        "What needs asking next?"
+      ]
+    },
+    { "type": "heading", "text": "Sample prompt" },
+    {
+      "type": "paragraph",
+      "text": "Based on this document, find 5 risks. Do not raise generic risks. For each one, record the evidence, the source, and the verification question."
+    },
+    { "type": "heading", "text": "Example" },
+    {
+      "type": "paragraph",
+      "text": "A good risk: receivables rose 40% while revenue rose 10%; the ageing and the largest customers need checking. A weak risk: the company may run into difficulties."
+    },
+    { "type": "heading", "text": "The test: does your risk carry information?" },
+    {
+      "type": "list",
+      "items": [
+        "Try swapping in another company in the same industry. If the sentence still holds, it carries no information.",
+        "Try deleting the numerical evidence. If what remains still sounds reasonable, the evidence was never tied to the conclusion.",
+        "Try asking 'which page do I open next?'. If you cannot answer, that risk is not yet usable."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A generic risk",
+        "text": "\"The business is exposed to liquidity risk and competitive risk in a volatile market environment.\" No numbers, no source, and no indication of what to do next."
+      },
+      "right": {
+        "label": "A verifiable risk",
+        "text": "\"Short-term borrowings of 1,800bn fall due within 12 months (p.53) while cash and cash equivalents stand at 240bn and 2024 operating cash flow was 310bn (p.61). The refinancing plan in note 15 needs reading.\""
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The prompt for this project",
+      "text": "\"Use only the attached document, including the notes. Find at most 5 risks. Present a 4-column table: Risk | Numerical evidence (with period, unit, page) | Severity and the reason for it | What to check next (name the specific note or question). Discard any risk for which you cannot pull a number out of the document. If you find fewer than 5, give fewer and explain why.\""
+    },
+    { "type": "heading", "text": "How to rate severity on some basis" },
+    {
+      "type": "list",
+      "items": [
+        "High: directly affects the ability to service debt or keep operating over the next 12 months.",
+        "Medium: affects profit or cash flow, but the business still has a buffer to absorb it.",
+        "Low: affects a small segment, or is a one-off event that has already been dealt with."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Write down the reason for the rating; do not just write 'high'. The reason is the part the reader - and you, next period - will need in order to reassess when circumstances change."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The more specific the risk, the more useful it is.",
+        "AI supplies the suggestion; you turn it into an investigative question."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which risk is the better one?",
+      "options": [
+        "The business faces competitive risk within its industry",
+        "Receivables growing faster than revenue - check the debt ageing",
+        "Macro volatility could have an effect on the results",
+        "Management needs to improve its governance effectiveness"
+      ],
+      "explanation": "A good risk is tied to data and points to a direction for checking. The other three are true of almost any company in almost any year, which is precisely why they are useless: they cannot be confirmed, they cannot be refuted, and they leave you with no page to open next. A statement that survives having the company name swapped out is describing the environment, not the business."
+    },
+    {
+      "question": "What should the risk table contain?",
+      "options": [
+        "Risk, plus a severity score the AI assigns on its own",
+        "Risk, probability, and the estimated loss in money terms",
+        "Risk, evidence, source, verification question",
+        "Risk plus a concrete recommended action"
+      ],
+      "explanation": "This table is what turns a risk into work to be done. A severity score with no reasoning behind it cannot be reassessed later by anyone. Probability and expected loss in money terms sound rigorous but are usually invented from nothing at this stage of the analysis. And jumping straight to a recommended action skips the step where you establish whether the risk is real at all."
+    },
+    {
+      "question": "Which quick test tells you a risk statement carries no information?",
+      "options": [
+        "Ask the AI whether the sentence is specific enough",
+        "Count the words; under twenty is not enough detail",
+        "Check whether the sentence cites a page number",
+        "Swap in another company's name and it still holds"
+      ],
+      "explanation": "A risk worth having must be tied to that particular company's own data. A sentence that applies to the whole industry is describing the context, not making a finding. Asking the model to judge its own output puts you back inside the thing you are testing, word counts measure verbosity rather than substance, and a page citation only proves the sentence came from somewhere - not that it says anything specific."
+    },
+    {
+      "question": "When rating the severity of a risk, what matters most?",
+      "options": [
+        "State the reason, grounded in the impact on cash flow",
+        "Rank them in the order they appear in the document",
+        "Compare against the industry's standard scale",
+        "Let the AI score it, to be more objective"
+      ],
+      "explanation": "A severity label is worth nothing without the reasoning behind it. The reason is what lets you and the reader reassess when new data arrives, instead of having to trust the original impression. Document order reflects how the drafter organised the disclosure, not how much anything matters; there is no standard industry severity scale to compare against; and a machine score is not objectivity, only opacity."
+    },
+    {
+      "question": "Which of these risk statements is verifiable?",
+      "options": [
+        "The business is under increasingly fierce competitive pressure in its industry",
+        "Receivables rose 40% while revenue over the same period rose only 8%",
+        "Management may not yet have a clear enough long-term strategy for the period ahead",
+        "Macro volatility could weigh negatively on the business results in the period ahead"
+      ],
+      "explanation": "The quick test: is the sentence true of nearly every company? If it is, it carries no information. A usable risk is always tied to a specific figure belonging to this particular business, and for that reason it points straight at what needs checking next."
+    }
+  ],
+  "diagram": [
+    { "label": "What is the risk (be specific)" },
+    { "label": "Where is the evidence (figure + page)" },
+    { "label": "How severe is it" },
+    { "label": "What to ask or look up next" }
+  ],
+  "realWorldExample": {
+    "company": "The same company, two ways of writing a risk",
+    "description": "Say you are looking at a retailer. The first way: 'Fierce competitive risk, input price volatility risk, risk of changing consumer habits.' Those three lines apply to any retailer anywhere in the world, so they carry no information. The second way: 'Inventory rose 35% while revenue was flat, and days inventory rose from 62 to 84; the inventory mix by product group in the notes and the write-down provisioning policy both need checking.' That line is true only of this specific company, carries numerical evidence, and points directly at two things to do next. That is the difference between listing risks and analysing them."
+  },
+  "keyTakeaways": [
+    "A risk is only usable when it has numerical evidence, a page source, and one concrete thing to check next.",
+    "Quick check: if the risk statement applies to every company in the industry, it carries no information.",
+    "Severity should be judged by the impact on cash flow and debt service, not by how it feels.",
+    "A risk you cannot conclude on should be written down for next period - a multi-period trend is the stronger evidence."
+  ],
+  "practicePrompt": {
+    "question": "When is a risk raised by an AI actually worth using?",
+    "options": [
+      "When it comes with evidence or a clear verification question",
+      "When it sounds alarming enough",
+      "When it has no source",
+      "When it is very long"
+    ],
+    "explanation": "A risk needs either evidence or a direction in which it can be verified."
+  },
+  "application": {
+    "title": "Practise it now",
+    "message": "Build a risk table with: risk, evidence, source, verification question.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

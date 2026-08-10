@@ -1,0 +1,151 @@
+{
+  "slug": "cfa-economics-dieu-hanh-ty-gia-vnd",
+  "title": "CFA Economics: Case - managing the dong through a period of volatility",
+  "subtitle": "The central parity and the fluctuation band - how Vietnam runs a currency that neither floats freely nor is rigidly fixed",
+  "duration": "8 min",
+  "whyItMatters": "Movements in the VND exchange rate hit importers and exporters directly, along with the cost of servicing foreign-currency debt and even foreign investment decisions - understanding the policy mechanism lets you analyse currency risk on evidence rather than on market sentiment.",
+  "openingQuestion": "Which exchange rate regime does Vietnam use, and what does that mean against a free float or a rigid peg?",
+  "openingOptions": [
+    "A free float, set entirely by market supply and demand with no intervention",
+    "A central parity with a fluctuation band, plus intervention where needed",
+    "A completely fixed rate that does not change over time",
+    "Set entirely by the commercial banks, with no role for the central bank"
+  ],
+  "explanation": "Vietnam runs a central parity regime (a managed crawling peg) - a hybrid between floating and fixed: the State Bank publishes a central rate each day, referenced to a basket of the currencies of major trading partners; the rate actually traded in the market is allowed to move within a permitted band around that central rate; and the State Bank can intervene (selling or buying foreign currency from reserves) where necessary to steady the market.",
+  "diagram": [
+    {
+      "label": "The central bank publishes a daily central rate, against a currency basket"
+    },
+    {
+      "label": "The market rate moves within a permitted band around the central rate"
+    },
+    {
+      "label": "The central bank intervenes with reserves when pressure builds"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Pressure on the dong when the Fed raises rates sharply",
+    "description": "In periods when the Fed raises rates fast and hard, the dollar usually appreciates against most currencies, creating downward pressure on the dong. The State Bank has responded with a combination of measures: adjusting the central rate, drawing on foreign exchange reserves to sell dollars and steady the market, and adjusting policy rates alongside - an illustration of how closely exchange rate policy and monetary policy have to be coordinated in practice."
+  },
+  "quiz": [
+    {
+      "question": "Why has Vietnam chosen a managed central parity rather than a free float or a rigid peg?",
+      "options": [
+        "Because international law requires developing countries to adopt this exact regime",
+        "Because a hybrid flexes with the market while retaining the ability to intervene",
+        "Because it is the simplest regime to operate from a technical standpoint",
+        "Because the central bank lacks the reserves to sustain a fixed rate"
+      ],
+      "explanation": "A hybrid (a managed float or crawling peg) balances the two extremes: more flexible than a fixed rate, so large imbalances do not accumulate until they have to be corrected abruptly, but steadier than a free float, so businesses can still plan their finances. No international rule prescribes it; it is technically more demanding to operate than either extreme rather than less; and the size of Vietnam's reserves limits how long intervention can last rather than explaining the choice of regime."
+    },
+    {
+      "question": "When the dong comes under heavy depreciation pressure, what direct intervention is available to the central bank?",
+      "options": [
+        "It can only urge firms to voluntarily limit FX purchases, with no direct tool",
+        "Printing more dong to make up the shortfall of foreign currency in the market",
+        "Selling foreign currency from reserves to add USD supply and ease the pressure",
+        "It can only wait for the market to settle at a new equilibrium by itself"
+      ],
+      "explanation": "Selling foreign currency out of reserves is the most common direct intervention: when the central bank sells dollars, the supply of dollars rises and the upward pressure on USD against the dong eases - but the tool is bounded by the size of the national reserve and cannot be used indefinitely. Printing dong would add to the pressure rather than relieve it, since the shortage is of dollars, and the central bank has plenty of instruments short of simply waiting."
+    },
+    {
+      "question": "How should a Vietnamese exporter respond to currency risk, given how the managed regime works?",
+      "options": [
+        "No need to worry, since the central bank will always hold the rate perfectly steady",
+        "Only importers need to concern themselves with exchange rate risk at all",
+        "Convert all export revenue into USD holdings to remove every last trace of currency risk",
+        "Still hedge actively, because the rate moves and the central parity can be reset"
+      ],
+      "explanation": "Even with a managed regime damping the extreme moves, the dong still moves inside its band and the central rate itself can be adjusted over time - so an importer or exporter still has to manage currency risk actively and should not assume that 'managed' means risk-free. Holding everything in dollars does not remove the exposure either; it simply relocates it, because the company's costs are still denominated in dong."
+    },
+    {
+      "question": "An exporter earns in USD and pays costs in dong. What is the most appropriate hedge?",
+      "options": [
+        "Use forward contracts to fix the rate on revenue that is already committed",
+        "Hold all USD revenue on account and wait to sell at the very top of the rate",
+        "Borrow more USD to raise the currency holding and offset the exposure",
+        "Move every export contract onto dong settlement with foreign counterparties"
+      ],
+      "explanation": "Hedging means matching the timing and the currency of money coming in against money going out, for the portion that is already certain. Sitting on dollars waiting for a good rate is currency speculation - a different activity from the core business, and not one a manufacturer has any edge in. Borrowing dollars adds exposure rather than offsetting it, and forcing dong settlement simply hands the risk to the customer, who prices it straight back in."
+    },
+    {
+      "question": "What limits intervention by selling dollars out of reserves?",
+      "options": [
+        "Selling USD raises the dong money supply and pushes inflation higher",
+        "Reserves are a finite resource, so they hold the rate only for a time",
+        "The central bank may only sell foreign currency twice in a fiscal year",
+        "Reserves cannot be used to intervene, only to settle external debt"
+      ],
+      "explanation": "Selling reserves fends off temporary pressure, but if the pressure comes from a persistent interest rate gap or from inflation, it only buys time. Selling dollars also absorbs dong, so it is itself a tightening move arriving alongside the intervention rather than a loosening one. No rule limits interventions to a set number per year, and reserves exist precisely to be deployed in the market, not only to service external debt."
+    }
+  ],
+  "keyTakeaways": [
+    "Vietnam runs a managed central parity - a hybrid of floating and fixed, referenced to a currency basket",
+    "The traded rate moves within a permitted band around the central rate",
+    "The central bank intervenes with reserves when pressure builds, but that tool has limits",
+    "Importers and exporters still have to manage currency risk actively despite the managed regime"
+  ],
+  "practicePrompt": {
+    "question": "What characterises Vietnam's exchange rate regime?",
+    "options": [
+      "A central parity with a band, plus scope to intervene",
+      "A pure float with no intervention of any kind at all",
+      "A rigid fixed rate that is never changed at any point",
+      "Determined entirely by the commercial banks themselves"
+    ],
+    "explanation": "Vietnam operates a hybrid: a central parity with a fluctuation band, alongside the ability to intervene when needed. It is not a pure float, because the State Bank publishes a reference rate each day and steps in with reserves; it is not a rigid peg, because the central rate is reset as conditions change; and commercial banks quote inside the band rather than setting it themselves."
+  },
+  "summary": {
+    "keyIdea": "Vietnam's managed central parity balances the flexibility of the market against the central bank's ability to steady it, but it does not remove currency risk for businesses",
+    "commonMistake": "Assuming a managed exchange rate regime means a perfectly stable rate that needs no risk management",
+    "action": "If a business or an individual has foreign currency flows (imports, exports, foreign currency debt), learn the basic hedging instruments rather than leaving it entirely to the market"
+  },
+  "application": {
+    "title": "Following the exchange rate with some understanding",
+    "message": "When you see USD/VND moving in the news, try to distinguish: is this ordinary movement inside the band, or a signal that the central rate itself is being adjusted? The two mean quite different things in policy terms.",
+    "secondary": "The perspective is especially useful for anyone working in import-export, treasury, or macro analysis."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The dong does not float freely on market supply and demand the way some major currencies do, nor is it rigidly fixed as under some earlier arrangements - Vietnam runs a hybrid regime designed to balance stability against flexibility."
+    },
+    {
+      "type": "heading",
+      "text": "How the central parity regime works"
+    },
+    {
+      "type": "paragraph",
+      "text": "Each day the State Bank publishes a central rate, calculated from the movement of a reference basket of currencies (typically those of major trading partners), domestic supply and demand for foreign currency, and other macroeconomic balances. The rate actually traded on the interbank market and at commercial banks is allowed to move within a set percentage band around that central rate."
+    },
+    {
+      "type": "heading",
+      "text": "The role of reserves in intervention"
+    },
+    {
+      "type": "paragraph",
+      "text": "When pressure on the dong builds (because capital is flowing out sharply, say, or because the rate gap against major currencies has widened), the State Bank can intervene directly by selling foreign currency out of the national reserves to add dollar supply and ease the pressure. This is not an unlimited tool, however - the size of the reserve sets a practical limit on how large and how long an intervention can be."
+    },
+    {
+      "type": "callout",
+      "label": "A managed regime is not the same as no risk",
+      "text": "A common misunderstanding: because the central bank 'manages' the rate, the risk is thought to be gone. In reality the central rate is adjusted over time to reflect economic balances, and the fluctuation band creates genuine risk for any business with large foreign currency flows - managing currency risk remains a necessary skill."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The central parity regime: a hybrid of floating and fixed, referenced to a currency basket",
+        "The market rate moves within a permitted band around the central rate",
+        "The central bank intervenes with reserves when needed, but the tool has limits",
+        "Businesses still have to manage currency risk actively"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Understanding the exchange rate regime lets you read macro news with more depth, telling ordinary movement apart from a genuine policy signal.",
+        "This lesson also connects directly to the module on corporate currency risk management already in the Treasury track."
+      ]
+    }
+  ]
+}

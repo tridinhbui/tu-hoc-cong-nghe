@@ -1,0 +1,145 @@
+{
+  "slug": "cfa-ethics-gips-esg-greenwashing",
+  "title": "CFA Ethics 13: GIPS extended - ESG ethics and the risk of greenwashing",
+  "subtitle": "When \"sustainable investing\" becomes a marketing device rather than a real commitment",
+  "duration": "8 min",
+  "whyItMatters": "ESG investing (Environmental, Social, Governance) has grown fast, and it has brought a new ethical risk with it: greenwashing. Understanding the transparency instinct behind GIPS gives you the same instrument for judging an ESG claim.",
+  "openingQuestion": "A fund markets itself as a \"leading ESG fund\", but the actual portfolio only excludes a few controversial sectors (tobacco, weapons) with no other clear positive ESG criteria, and the marketing material overstates how \"green\" the holdings are. What is the problem here?",
+  "openingOptions": [
+    "No problem at all, since excluding controversial sectors is itself a valid form of ESG",
+    "Signs of greenwashing - the ESG claim is overstated against the real portfolio",
+    "Just ordinary marketing, with nothing to do with professional ethics as such",
+    "Perfectly acceptable as long as the management fee is no higher than a normal fund"
+  ],
+  "explanation": "Greenwashing - overstating or creating a misleading impression of how far an ESG commitment actually goes - breaches the transparency and honesty in presenting an investment product that both GIPS (on performance) and Standard I(C) / III(D) (on truthful disclosure) insist on. Excluding a few controversial sectors is a perfectly valid ESG strategy; the problem is a marketing claim pitched far above what is actually being done.",
+  "summary": {
+    "keyIdea": "The GIPS instinct - transparent, honest, verifiable - extends naturally to ESG disclosure, and greenwashing breaches that principle whenever the marketing claim runs far ahead of what is actually applied",
+    "commonMistake": "Judging a product to be \"genuinely ESG\" from its name or its marketing material alone, without checking the methodology and the actual holdings",
+    "action": "When you assess an ESG product, always look for the specific methodology - screening criteria, data sources, weightings - instead of trusting the label"
+  },
+  "application": {
+    "title": "Reading an ESG fund document",
+    "message": "Next time you look at a fund marketed as \"ESG\" or \"sustainable\", find the section describing the actual methodology - a genuine ESG fund sets out its screening criteria and how it measures them, rather than relying on general language.",
+    "secondary": "This critical-reading skill matters more every year as the number of ESG-labelled products on the market keeps climbing."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "ESG investing has grown strongly over the past decade, and with it has come a new ethical risk that the traditional CFA standards never named directly: greenwashing."
+    },
+    {
+      "type": "heading",
+      "text": "What greenwashing is, and why it is dangerous"
+    },
+    {
+      "type": "paragraph",
+      "text": "Greenwashing happens when an organisation or an investment product advertises a level of ESG commitment above what it actually applies. The danger is that it misleads investors not only about financial performance but about the non-financial value they were trying to obtain by choosing that product - which erodes trust in the whole idea of responsible investing."
+    },
+    {
+      "type": "heading",
+      "text": "The GIPS instinct reaches further than performance"
+    },
+    {
+      "type": "paragraph",
+      "text": "GIPS was designed so that investment performance is presented honestly, completely and verifiably, without cherry-picking the flattering figures. Exactly the same instinct can and should apply to disclosing the ESG characteristics of a product - not selecting only the \"green\" aspects while staying silent about the less attractive parts of the portfolio."
+    },
+    {
+      "type": "callout",
+      "label": "Sector exclusion is not comprehensive ESG",
+      "text": "An ESG strategy that stops at excluding a few controversial sectors (tobacco, weapons, coal) is a valid approach, but it is a long way from a positive, comprehensive ESG strategy that assesses corporate governance, environmental impact and labour practices. The ethical problem arises when the level of marketing does not match the level of substance."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Greenwashing is the gap between the ESG marketing and the actual portfolio",
+        "The transparency instinct of GIPS applies to ESG disclosure as well",
+        "Sector exclusion is a valid strategy, but must be presented at its true level",
+        "Judging substance means looking at methodology and holdings, not the name"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Responsible investing only means anything when the commitment is matched by action that can actually be verified.",
+        "The last lesson in this series pulls the Standards together through a real case carrying several layers of breach at once."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "The ESG commitment as disclosed" },
+    { "label": "Compared with the portfolio's real investment criteria" },
+    { "label": "A large gap = a sign of greenwashing" }
+  ],
+  "realWorldExample": {
+    "company": "The wave of greenwashing investigations by financial regulators worldwide",
+    "description": "Securities regulators in several markets have begun investigating and fining asset managers for attaching an \"ESG\" or \"sustainable\" label to products that do not meet a matching standard of substance. It reflects a growing concern that ESG is being turned into a marketing device rather than a genuine commitment to responsible investing."
+  },
+  "quiz": [
+    {
+      "question": "What is \"greenwashing\" in ESG investing?",
+      "options": [
+        "A rule that binds manufacturing companies only and never investment funds",
+        "A legal strategy investing wholly in renewable energy and clean-tech stocks",
+        "A management fee charged only on funds that carry an ESG label of some kind",
+        "Overstating the ESG commitment relative to what the portfolio actually applies"
+      ],
+      "explanation": "Greenwashing is communication or marketing that misleads by overstating how green or sustainable a product or organisation is compared with reality - the core problem is the gap between the claim and the substance behind it. The renewable-energy option describes a thematic fund, which is a legitimate strategy and not a form of deception at all. The fee option confuses a pricing question with a disclosure one, and the manufacturing option draws a scope line that does not exist: the term applies to any entity making a sustainability claim, funds very much included."
+    },
+    {
+      "question": "Why does the instinct behind GIPS (Global Investment Performance Standards) - a framework built for presenting investment performance - bear on greenwashing at all?",
+      "options": [
+        "Because the transparency instinct of GIPS carries over into ESG disclosure too",
+        "Because GIPS itself sets out the specific ESG criteria funds must report on",
+        "Because GIPS was written for, and applies only to, funds with an ESG mandate",
+        "They are unrelated: performance reporting and ESG claims are separate matters"
+      ],
+      "explanation": "GIPS is focused on presenting financial performance, but its core instinct - transparent, honest, not misleading, capable of being verified - is a universal principle that can and should apply to any disclosure about an investment product, ESG commitments included. Two of the distractors misdescribe the standard's own scope in opposite directions: GIPS contains no ESG criteria whatever, and it applies to any firm claiming compliance rather than only to ESG funds. Treating the two as unrelated misses that both concern the same act of presenting a product truthfully."
+    },
+    {
+      "question": "An investor wanting to test whether an \"ESG\" fund is genuine should look at what first?",
+      "options": [
+        "Whether the fund's name contains the words ESG, Sustainable or Green anywhere in it",
+        "The fund's specific ESG methodology, then check it against the real holdings",
+        "Whether the management fee of the fund is higher than for ordinary index funds",
+        "The ESG rating that the management company itself publishes about its products"
+      ],
+      "explanation": "Judging substance requires looking at the specific methodology and the actual holdings, not the product's name or its marketing material - this is exactly the \"trust but verify\" principle that matches the transparency instinct of GIPS. The name test is the weakest of all, since the label is the very thing under suspicion. A fee is a pricing decision that tells you nothing about screening rigour. And a self-published rating begs the question: it is the claimant grading their own claim."
+    },
+    {
+      "question": "An investor wanting to test whether an ESG-labelled fund is genuine should look at what first?",
+      "options": [
+        "The composite ESG score the fund published in its most recent annual report",
+        "The fund's name and the ESG strategy described in the marketing material",
+        "The actual holdings, checked against the screening criteria the fund disclosed",
+        "The management fee, since a genuine ESG fund usually charges more than other funds"
+      ],
+      "explanation": "The portfolio is evidence; everything else is a statement. Plenty of \"ESG\" funds turn out to have excluded a few sensitive sectors and kept most of the old portfolio intact - comparing the disclosed criteria against the tickers actually held is the fastest check there is. A self-published score and a marketing description are both the claimant's own account of the claim. The fee premium is a real market phenomenon, but it measures what the manager can charge, not what the manager screens."
+    },
+    {
+      "question": "Why does the instinct behind GIPS bear on greenwashing, when the standard was written for presenting performance?",
+      "options": [
+        "Because the performance of ESG funds must be presented separately under GIPS",
+        "Because GIPS has added a dedicated chapter on how funds disclose their ESG metrics",
+        "Because a firm that complies with GIPS is exempt from ESG disclosure requirements",
+        "Because both target selective presentation designed to create a false impression"
+      ],
+      "explanation": "GIPS exists to stop a firm picking the flattering numbers and presenting those. Greenwashing is the same behaviour on a different dimension: naming a few prominent sustainability initiatives and staying silent about the rest of the portfolio. The first two distractors invent content the standard does not contain - GIPS has no ESG chapter and no separate-presentation rule for ESG funds. The exemption option inverts the relationship completely: complying with a transparency standard has never released anyone from any other disclosure duty."
+    }
+  ],
+  "keyTakeaways": [
+    "Greenwashing is the gap between the ESG commitment advertised and what the portfolio actually applies",
+    "The transparency and honesty instinct of GIPS reaches wider than financial performance, into ESG disclosure too",
+    "Excluding controversial sectors is a valid ESG strategy, but it has to be presented at its true level",
+    "Investors should check the methodology and the real holdings, not rely on the name of the product"
+  ],
+  "practicePrompt": {
+    "question": "What is greenwashing in ESG investing?",
+    "options": [
+      "Overstating or misleading about the level of ESG commitment compared with what is actually applied",
+      "A perfectly legitimate investment strategy that has no bearing on any question of professional ethics",
+      "Purely a question of what brand colours an investment fund chooses to use in its material",
+      "A form of tax levied on industries whose operations cause significant environmental pollution"
+    ],
+    "explanation": "Greenwashing is conduct that misleads about the real level of ESG commitment - the core problem is the gap between the marketing and the substance. The other three options all move the term somewhere it does not belong: to a strategy label, to branding, and to taxation. Each of those is a real thing in its own right, which is exactly why they read plausibly, but none of them involves the mismatch between claim and practice that defines the term."
+  }
+}

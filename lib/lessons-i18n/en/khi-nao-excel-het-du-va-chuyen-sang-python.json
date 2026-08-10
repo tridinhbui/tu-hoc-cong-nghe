@@ -1,0 +1,160 @@
+{
+  "slug": "khi-nao-excel-het-du-va-chuyen-sang-python",
+  "title": "Data, Part 1: When Excel runs out - and why the answer is not row count",
+  "subtitle": "The three real limits of a spreadsheet, and how to tell which problems belong in code",
+  "duration": "10 min",
+  "whyItMatters": "Plenty of people learn Python because they heard Excel is slow, then go back to Excel two weeks later because their problem never needed Python. Plenty of others force Excel through the same monthly job and lose a day to it every time. Knowing the boundary saves more time than learning another function does.",
+  "openingQuestion": "What is the most reliable sign that a problem should move from Excel to code?",
+  "openingOptions": [
+    "The table has passed a hundred thousand rows",
+    "The same sequence of steps repeats on a schedule",
+    "The company has bought a licence for analytics software",
+    "Your manager wants the charts to look more professional"
+  ],
+  "explanation": "Row count is the most visible signal, which is why people treat it as the standard, but it is the least important one. A five hundred thousand row table you open exactly once is still an Excel job. Meanwhile a two thousand row table that has to be redone every Monday, through twelve manual steps, will almost certainly have one step done wrong by the fourth week with nobody noticing. Repetition - not size - is what makes code win.",
+  "diagram": [
+    {
+      "label": "One-off, moderate data: Excel"
+    },
+    {
+      "label": "Repeats on a schedule: a script"
+    },
+    {
+      "label": "Several sources to join: a script"
+    },
+    {
+      "label": "Someone else has to verify it: a script"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The monthly consolidated cash flow report",
+    "description": "A finance team joins figures from four branches, each exporting a file with slightly different column names. The Excel process took about four hours a month and had twice produced a wrong figure from pasting into the wrong range. Written as a script, the run takes minutes - but the larger benefit is elsewhere: every transformation step now sits in a readable code file, so when the auditor asks where a number came from, the answer takes thirty seconds instead of a reconstruction from memory."
+  },
+  "quiz": [
+    {
+      "question": "Why does repetition matter more than data size when choosing a tool?",
+      "options": [
+        "Because data libraries were in fact designed specifically for tables with very few rows",
+        "Because large data is really always easier to handle than small data with the right tool",
+        "Because a spreadsheet slows down automatically each time the same file is reopened",
+        "Because every manual run is another chance to diverge, and errors compound with repetition"
+      ],
+      "explanation": "A twelve-step manual process has a non-trivial error rate on every run. A script does not make you better at the work, it only guarantees that the twentieth run is identical to the first. The other three options invert the actual relationships: libraries exist for scale, large data is harder rather than easier, and a spreadsheet does not degrade on reopening."
+    },
+    {
+      "question": "Which strength of Excel is hard for code to replace?",
+      "options": [
+        "Seeing and editing any individual cell while you are still thinking about the problem",
+        "Handling datasets far larger than the memory available on the machine you are using",
+        "Automatically recording the full change history of every cell as edits happen in real time",
+        "Re-running an entire calculation pipeline without any manual intervention at any step"
+      ],
+      "explanation": "This is why valuation models still live in spreadsheets: the reader needs to click a cell and see immediately where it came from. A model written in code may be more correct and is harder to defend in front of an investment committee. The other options describe things code does better, or things Excel does not do at all."
+    },
+    {
+      "question": "A table of three hundred thousand rows, used exactly once to answer one question. What should you use?",
+      "options": [
+        "Code is required, because a spreadsheet cannot open a dataset of this size at all",
+        "Excel is still reasonable, since nothing repeats and learning a new tool will not pay back",
+        "Split it into six separate files and process each one in sequence inside the spreadsheet",
+        "Load it into a database first, because that is always the correct opening move regardless"
+      ],
+      "explanation": "The cost of learning a tool and setting up an environment is real. It only pays back while the work keeps repeating - and for a single question asked once, it almost never does. Splitting the file adds manual steps to a job that has none, and reaching for a database first is a rule that ignores what the question actually needs."
+    },
+    {
+      "question": "Why does a script make results easier to verify afterwards?",
+      "options": [
+        "Because a programming language always calculates more accurately than a spreadsheet formula",
+        "Because scripts run on a server so the results are stored and cannot be altered afterwards",
+        "Because the transformation steps exist as readable text rather than in the analyst's memory",
+        "Because every analytics library automatically cross-checks its results before returning them"
+      ],
+      "explanation": "This is the most undervalued benefit of the lot. \"Where did this number come from\" is the question auditors and managers ask most often, and a manual process is close to unable to answer it after a few months. The alternatives credit code with properties it does not have: the arithmetic is the same, nothing is immutable, and no library checks your logic for you."
+    },
+    {
+      "question": "Why does repetition matter more than data size when choosing between a spreadsheet and code?",
+      "options": [
+        "Because large datasets contain more errors and so need a stronger tool",
+        "Because a spreadsheet cannot handle a dataset beyond one million rows",
+        "Because code runs faster than a spreadsheet at any size of data",
+        "Because work redone every week is what accumulates the time and the error risk"
+      ],
+      "explanation": "A three hundred thousand row table opened once is still an Excel job. A two thousand row table redone every Monday through twelve manual steps gives you a fresh chance to diverge every week - and a year later nobody can reproduce the March figure. Size matters eventually, but it arrives long after repetition has already made the process unverifiable."
+    }
+  ],
+  "keyTakeaways": [
+    "Repetition, not row count, is the main signal to move to code",
+    "Excel wins where you need to see and edit individual cells - which is why valuation models still live there",
+    "A script turns a process into readable text, so it can answer where a number came from",
+    "The cost of learning a new tool only pays back while the work keeps repeating"
+  ],
+  "practicePrompt": {
+    "question": "You have to join sales data from three systems, each naming its columns differently, and this repeats every week. What should the first step be?",
+    "options": [
+      "Open all three files and paste them into one shared sheet, which is quickest",
+      "Write down the column mapping rules between the three sources, then choose a tool",
+      "Buy a dedicated data integration product straight away",
+      "Ask the three systems to rename their columns to match"
+    ],
+    "explanation": "The hard part of joining data is almost always the mapping rules, not the tool. Writing the rules down first shows how complex the problem really is - and it often reveals that two sources are defining the same measure in two different ways, which no tool will detect for you."
+  },
+  "summary": {
+    "keyIdea": "Choose the tool by how often the work repeats, not by how large the data is",
+    "commonMistake": "Learning Python for a one-off problem, then concluding that Python is not useful",
+    "action": "List the work you repeat every week and count the manual steps in each - the one with the most steps is the first candidate for automation."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Pick a report you have to produce on a schedule. Write down every action from opening the file to producing the result. If the list runs past ten steps, that is a problem worth moving into a script - not because it is slow, but because it cannot be verified.",
+    "secondary": "Do not start with the hardest problem. Start with the most tedious one."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Excel stage stopped at basic SQL, and it stopped in the right place. For a valuation model, the spreadsheet is still the best tool there is. This stage is about the rest of the work - the part where a spreadsheet starts being a burden rather than a tool."
+    },
+    {
+      "type": "heading",
+      "text": "The three real limits of a spreadsheet"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Where Excel genuinely struggles",
+      "subtitle": "Ordered by how much they matter in practice, not by how often they get mentioned",
+      "concepts": [
+        {
+          "def": "A sequence of manual actions cannot re-run itself and cannot be verified by anyone else. This is the most serious limit and the least discussed."
+        },
+        {
+          "def": "Joining three or four sources with different column names and date formats by hand is error-generating work. Code does it once and then keeps doing it."
+        },
+        {
+          "def": "Real, but it arrives last. Most users hit the two limits above long before they get anywhere near the row ceiling."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Excel is strong when",
+        "text": "The job is one-off, you need to see individual cells, someone else has to open and edit it directly, or the result has to be presented to people who do not read code. A valuation model is the classic case."
+      },
+      "right": {
+        "label": "Code is strong when",
+        "text": "The work repeats on a schedule, several sources have to be joined, the same run has to be repeated exactly on new data, or every transformation step has to be explainable to a reviewer."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "You do not have to pick a side",
+      "text": "The most common arrangement in practice uses both: a script pulls and cleans the data and writes out one tidy table, then the spreadsheet handles the model and the presentation. The people who lose the most time are usually the ones forcing a single tool to do both jobs."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The right question is not Excel or Python, but how many more times am I going to do this.",
+        "The next lesson goes into the central data structure of all analytical work: the dataframe in code."
+      ]
+    }
+  ]
+}

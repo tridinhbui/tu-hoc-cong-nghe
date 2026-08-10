@@ -1,0 +1,141 @@
+{
+  "slug": "trai-phieu-doanh-nghiep-rieng-le-bai-hoc",
+  "title": "Vietnam Markets, Lesson 3: Privately placed corporate bonds - anatomy of a crisis",
+  "subtitle": "Private placement, professional investors, and the lesson about refinancing risk",
+  "duration": "12 min",
+  "whyItMatters": "This was the largest credit event in Vietnam's capital market in a decade, and every mechanism behind it is something you have already studied: refinancing risk, maturity mismatch, and the gap between a high coupon and the real risk being taken.",
+  "openingQuestion": "What was the immediate cause of so many companies being unable to repay their bonds?",
+  "openingOptions": [
+    "Their operating profits fell away suddenly in the very quarter the problem emerged",
+    "Refinancing risk: the window for new issuance closed",
+    "The coupon rate was raised abruptly under the terms written into the contracts",
+    "Investors all demanded at once that their bonds be converted into ordinary shares"
+  ],
+  "explanation": "Many companies, particularly in real estate, used short-dated bonds to fund projects with a life of several years. That model only works while a new issue can always be sold to repay the old one. When the rules tightened and market confidence fell away at the same time, the issuance window closed, and the maturing debt became an obligation payable in real cash - something a half-finished project cannot generate. This is precisely a maturity mismatch between assets and funding.",
+  "diagram": [
+    { "label": "A long-dated project whose cash arrives years later" },
+    { "label": "Funded with short-dated bonds" },
+    { "label": "Dependent on new issues repaying the old ones" },
+    { "label": "The window closes: inability to pay" }
+  ],
+  "realWorldExample": {
+    "company": "The private placement market through the tightening period",
+    "description": "Before the crisis, privately placed bonds were distributed widely to individual investors through advisory channels, and many people bought purely on a coupon a few percentage points above a bank deposit. Most never read the disclosure document, did not know what the collateral was, and could not tell the difference between a bank distributing a bond and a bank guaranteeing payment on it. When the issuers could no longer pay, the gap between those two concepts became the entire amount they lost."
+  },
+  "quiz": [
+    {
+      "question": "What is the core difference between a private placement and a public offering?",
+      "options": [
+        "A private placement must by law carry a higher coupon rate than a public offering does",
+        "A private placement is sold only to qualifying investors, with lighter disclosure",
+        "A public offering does not need approval from the regulator before it can be marketed",
+        "A private placement must always be secured while a public offering never needs to be"
+      ],
+      "explanation": "The logic of a private placement is that a professional investor has the capacity to do their own due diligence and therefore does not need retail-level protection. The problem arises when the test for who counts as a professional investor becomes a formality that is easy to satisfy. A public offering needs approval rather than avoiding it, coupons are set by the market rather than mandated, and collateral is a commercial term in both cases."
+    },
+    {
+      "question": "Why is a high coupon not evidence of a good investment?",
+      "options": [
+        "Because a high coupon always comes with a clause letting the issuer redeem early",
+        "Because the coupon gets reduced if the issuing company runs into financial trouble",
+        "Because the high coupon is the compensation for a higher chance of losing capital",
+        "Because the yield above a bank deposit is subject to a higher rate of tax"
+      ],
+      "explanation": "This is a principle from the bonds stage, and the one most often ignored in practice. A rate a few percentage points above a deposit is not a gift but the price the market demands for the risk of losing the whole principal. Coupons are fixed by contract and do not fall when the issuer weakens, call provisions are not tied to the coupon level, and tax treatment is not what drives the spread."
+    },
+    {
+      "question": "Does a bank distributing a bond mean the bank guarantees payment on it?",
+      "options": [
+        "Yes, because a bank only distributes bonds it has appraised and formally stood behind",
+        "No, but the bank must compensate part of the principal under the current rules",
+        "Yes, if the investor bought it directly at that bank's own transaction counter",
+        "No, distribution is only brokerage; the repayment obligation stays with the issuer"
+      ],
+      "explanation": "This is the misunderstanding that caused the greatest losses in the whole episode. Underwriting an issue and guaranteeing payment on it are two entirely different concepts, and only the second creates an obligation to repay on someone else's behalf. Where the bond was purchased makes no difference to that, and no rule imposes partial compensation on a distributor."
+    },
+    {
+      "question": "What is wrong with collateral consisting of the issuer's own shares?",
+      "options": [
+        "The collateral value collapses at the same moment the issuer's ability to pay does",
+        "Shares are not legally recognised as a valid form of security interest",
+        "Enforcing collateral of this kind requires the consent of every single shareholder involved",
+        "The share value is fixed at par as at the date the security agreement is signed"
+      ],
+      "explanation": "Collateral is only meaningful when its value is independent of the borrower's health. When the company gets into difficulty its own shares become nearly worthless - exactly when the bondholders need them. That correlation makes the security worthless in precisely the scenario it was designed to protect against. Shares are perfectly valid security in law, enforcement follows the security agreement rather than shareholder consent, and nothing fixes the value at par."
+    },
+    {
+      "question": "What is the transferable lesson for corporate credit analysis?",
+      "options": [
+        "Only invest in bonds issued by large state-owned enterprises and banks",
+        "Always match the repayment schedule against self-generated cash, not against new borrowing",
+        "Prefer the shortest possible maturity in order to minimise interest rate risk",
+        "Only buy bonds distributed through the large domestic commercial banks"
+      ],
+      "explanation": "This is the central question of any credit analysis: if nobody would lend this company another unit of currency, could it meet everything falling due over the next two years out of the cash it generates itself? A company that answers no and is still being lent to is living on market confidence, and confidence can disappear within weeks. Ownership, maturity and distribution channel are all weaker proxies than the cash test."
+    }
+  ],
+  "keyTakeaways": [
+    "The root cause is maturity mismatch: long-dated projects funded with short-dated debt",
+    "A high coupon is the price of risk, not evidence of the quality of the investment",
+    "Distribution is not a payment guarantee - this is the misunderstanding that cost the most",
+    "Collateral correlated with the borrower's health is nearly worthless exactly when it is needed"
+  ],
+  "practicePrompt": {
+    "question": "A company has 5,000bn of bonds maturing within 12 months, generates 800bn of operating cash flow a year, and has projects still unfinished. How do you assess it?",
+    "options": [
+      "Safe, provided the company has collateral with a book value above the debt outstanding",
+      "Refinancing risk is very high: the gap has to be covered by new borrowing or asset sales",
+      "Safe, because completing the projects will generate cash sufficient to repay all of it",
+      "Impossible to assess without knowing the coupon rate on the individual bond tranches"
+    ],
+    "explanation": "Self-generated cash covers roughly one sixth of the maturing obligation. The rest depends entirely on whether the market keeps lending, or whether the company can sell assets in time and at a reasonable price - both conditions outside the company's control, and both of which tend to disappear at the same moment."
+  },
+  "summary": {
+    "keyIdea": "A credit crisis rarely starts with losses; it starts with the inability to refinance",
+    "commonMistake": "Judging a bond by its coupon rather than by the issuer's ability to repay",
+    "action": "Pick a company with bonds outstanding and build a maturity schedule against its operating cash flow for the last three years."
+  },
+  "application": {
+    "title": "Four questions before buying any corporate bond",
+    "message": "Who carries the obligation to repay and how financially healthy are they? Does the repayment money come from self-generated cash or from new borrowing? What is the collateral and is its value independent of the borrower? And what exactly is the institution selling it to me guaranteeing, in which document?",
+    "secondary": "If you cannot answer all four, no coupon is high enough to compensate for what you do not know."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The bonds stage taught you about default risk, credit ratings and yield spreads. This lesson shows how all of those concepts played out in a real event, on the very market you are investing in."
+    },
+    { "type": "heading", "text": "Three mechanisms reinforcing each other" },
+    {
+      "type": "list",
+      "items": [
+        "Maturity mismatch: a real estate project needs years to produce cash, while the bonds funding it mature far sooner",
+        "Distribution beyond the target: a product designed for professional investors reaching buyers who judged it on a single coupon figure",
+        "Security in name only: collateral consisting of the issuer's own shares or projects, which lose value exactly when enforcement is needed"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "What the investor thought they were buying",
+        "text": "A savings product paying a few percentage points more than a bank, with a bank standing behind it and collateral attached."
+      },
+      "right": {
+        "label": "What they actually bought",
+        "text": "A loan with no third-party payment guarantee, dependent on an unfinished project and on the issuer's ability to keep borrowing."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "On the legal framework",
+      "text": "Since the crisis, the rules on issuance conditions, the professional investor test, mandatory credit ratings and disclosure have all been amended several times, together with measures allowing extensions and renegotiation. Because that framework keeps changing, look up the text in force at the time of your analysis; what does not change are the risk mechanisms described in this lesson."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Every credit crisis is the same story: short-dated obligations attached to long-dated assets.",
+        "The final lesson of the stage covers the investor's first layer of protection: disclosure and corporate governance."
+      ]
+    }
+  ]
+}

@@ -10,13 +10,23 @@
     "Keep the current split, since stocks are on a roll - just let it keep rising without adjusting anything",
     "Sell every single stock immediately to lock in the entire gain earned over the past year"
   ],
-  "explanation": "Rebalancing means adjusting the portfolio back to its original target weighting after the market has thrown that ratio off. When stocks rise faster than bonds, the stock weighting automatically balloons beyond what was intended, leaving the portfolio riskier than the level Mai decided was right for her. Selling some of what rose a lot and buying more of what rose little brings risk back to the intended level."
-  ,
+  "explanation": "Rebalancing means adjusting the portfolio back to its original target weighting after the market has thrown that ratio off. When stocks rise faster than bonds, the stock weighting automatically balloons beyond what was intended, leaving the portfolio riskier than the level Mai decided was right for her. Selling some of what rose a lot and buying more of what rose little brings risk back to the intended level.",
   "diagram": [
-    { "label": "Stocks rise faster than bonds", "arrow": true },
-    { "label": "The stock weighting balloons automatically", "arrow": true },
-    { "label": "Sell some stocks, buy more bonds", "arrow": true },
-    { "label": "Back to the original target ratio" }
+    {
+      "label": "Stocks rise faster than bonds",
+      "arrow": true
+    },
+    {
+      "label": "The stock weighting balloons automatically",
+      "arrow": true
+    },
+    {
+      "label": "Sell some stocks, buy more bonds",
+      "arrow": true
+    },
+    {
+      "label": "Back to the original target ratio"
+    }
   ],
   "realWorldExample": {
     "company": "Automatic rebalancing at pension funds and multi-asset open funds in Vietnam",
@@ -31,7 +41,6 @@
         "Selling the entire old portfolio and buying an entirely new one",
         "Shifting the whole portfolio into whichever asset class is currently rising"
       ],
-      "correct": 0,
       "explanation": "Rebalancing isn't about guessing the market's top or bottom - it's simply maintaining discipline: bringing the portfolio back to the risk weighting you decided was right for you, regardless of how the market has just behaved."
     },
     {
@@ -42,7 +51,6 @@
         "It guarantees the portfolio posts a positive return every single year",
         "It avoids every tax owed when buying and selling"
       ],
-      "correct": 1,
       "explanation": "Rebalancing controls risk (keeping one asset class from unintentionally growing too large a share) and, as a side effect, builds good investing discipline: sell some of what rose in price, buy more of what's now relatively cheaper."
     },
     {
@@ -53,7 +61,6 @@
         "Sell some stocks and buy more bonds to get back to the 70/30 level",
         "Contribute new money until the ratio drifts back to the old level on its own"
       ],
-      "correct": 2,
       "explanation": "An 80/20 portfolio is noticeably riskier than 70/30, and you never actually decided that - the market decided for you. Rebalancing takes back that decision, while also forcing you to sell what just got expensive and buy what's now cheap."
     },
     {
@@ -64,7 +71,6 @@
         "Only a drift threshold, since schedule-based rebalancing is always too late",
         "Neither - just decide case by case based on how the market is behaving"
       ],
-      "correct": 0,
       "explanation": "A fixed schedule (every 6-12 months) is simple and easy to stick to; a drift threshold (5-10% off target) reacts faster to big market moves. The worst option is having no rule at all - because then you'll rebalance exactly when your emotions are strongest."
     },
     {
@@ -75,7 +81,6 @@
         "Yes, but the cost is always smaller than the benefit, so frequency doesn't matter",
         "No, brokerages waive fees on rebalancing orders"
       ],
-      "correct": 0,
       "explanation": "Every sale means paying a fee and a transfer tax. That's why rebalancing every month is usually counterproductive: the costs eat up the benefit. Prefer using new cash contributions to buy the underweight asset before selling the overweight one."
     },
     {
@@ -86,7 +91,6 @@
         "Because it requires selling every asset in the portfolio that currently shows a profit",
         "Because it only applies when the market is in a downward trend"
       ],
-      "correct": 1,
       "explanation": "It feels wrong every time - and that's exactly its strength. It fights the instinct to pile more money into whatever just went up, the instinct that has individual investors buying high and selling low on a regular basis."
     }
   ],
@@ -104,7 +108,6 @@
       "Sell all the bonds to move fully into stocks, taking advantage of the stock group's temporary price dip",
       "Do nothing at all, since rebalancing is only needed when stocks rise, not when bonds rise"
     ],
-    "correct": 0,
     "explanation": "Rebalancing always brings the portfolio back to its original target weighting, no matter which asset just rose - here that means selling some bonds (which just rose) and buying more stocks (whose weighting just fell)."
   },
   "summary": {
@@ -117,7 +120,6 @@
     "message": "Compare your current stock-bond weighting against your original target weighting (if you set one) - if it's off by more than 5-10%, that's the moment to consider rebalancing.",
     "secondary": "Rebalancing doesn't need to be constant - just timely, once the drift is large enough."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

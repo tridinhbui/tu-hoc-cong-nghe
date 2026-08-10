@@ -12,9 +12,17 @@
   ],
   "explanation": "With several financial goals happening at once (children's education in the near/medium term, retirement in the long term), the principle is to not pour all resources into one goal while neglecting another - especially retirement, since a longer accumulation horizon means starting early captures a big compounding advantage, while delaying it requires a much higher catch-up contribution later. At the same time, the children's education fund (10-13 years) should have a rising share of safe assets as its deadline approaches, unlike the retirement portfolio (22 years), which can maintain a higher growth weighting in its early stage.",
   "diagram": [
-    { "label": "Near/medium-term goal (children's education)", "arrow": true },
-    { "label": "Long-term goal (retirement)", "arrow": true },
-    { "label": "Allocate resources separately for each goal" }
+    {
+      "label": "Near/medium-term goal (children's education)",
+      "arrow": true
+    },
+    {
+      "label": "Long-term goal (retirement)",
+      "arrow": true
+    },
+    {
+      "label": "Allocate resources separately for each goal"
+    }
   ],
   "realWorldExample": {
     "company": "A composite case: a two-child family in Hanoi/Ho Chi Minh City",
@@ -29,7 +37,6 @@
         "Because the law doesn't allow withdrawing a pension fund to pay tuition",
         "Because retirement has a longer accumulation horizon, and children can borrow"
       ],
-      "correct": 3,
       "explanation": "A common principle in family financial planning: don't fully sacrifice retirement for children's education, since there are several ways to fund education (scholarships, student loans) but no 'retirement loan' can make up for a shortfall in savings in old age."
     },
     {
@@ -40,7 +47,6 @@
         "Because money set aside for children must always be kept much safer than money set aside for retirement",
         "Because education funds are legally capped in how much stock they can hold"
       ],
-      "correct": 0,
       "explanation": "The time-horizon allocation principle: the closer a goal, the more volatility needs to be reduced to avoid the risk of having to sell assets right when the market is down, with no time left to wait for recovery."
     },
     {
@@ -51,7 +57,6 @@
         "Pour everything into the nearer goal first, then worry about the far one",
         "Keep everything sitting in a bank deposit until each goal's deadline arrives, then figure out what to do"
       ],
-      "correct": 1,
       "explanation": "Money needed in 5 years shouldn't sit in the same place as money needed in 25 years - a 30% drop in year four would wreck the tuition goal while having no impact on retirement at all."
     },
     {
@@ -62,7 +67,6 @@
         "Before any investment at all, since it prevents having to sell assets in a bad market",
         "Not necessary at all, as long as the family already carries health insurance and life insurance"
       ],
-      "correct": 2,
       "explanation": "Without an emergency fund, an incident forces you to sell the portfolio right when it's down - turning a temporary loss into a permanent one. This is why it comes before even the very first investment."
     },
     {
@@ -73,7 +77,6 @@
         "Simply follow the risk tolerance of whichever spouse happens to earn the higher income",
         "Pick a risk level the more cautious spouse can still sleep with, then revisit periodically"
       ],
-      "correct": 3,
       "explanation": "A portfolio that keeps one person up at night gets sold at the bottom - and the seller doesn't care what averaging method set the weighting. The starting point is a level both can tolerate, then adjust gradually."
     },
     {
@@ -84,7 +87,6 @@
         "Unnecessary if the family already has a six-month emergency fund",
         "Even before the emergency fund, since insurance matters more than a cash buffer"
       ],
-      "correct": 0,
       "explanation": "The emergency fund covers small shocks; insurance covers shocks that can wipe out the entire plan. For a family with dependent children, a gap in insurance is a far bigger risk than investing a few months late."
     }
   ],
@@ -102,7 +104,6 @@
       "Sensible, since retirement is still 22 years away, so it's entirely fine to start saving for it later with no effect on the final result",
       "The order doesn't matter, since children can always borrow for tuition and aging parents can similarly borrow to retire"
     ],
-    "correct": 0,
     "explanation": "Resources should be split between both goals in parallel - delaying retirement to prioritize children's education would require a much higher catch-up contribution later, while children can borrow for tuition but aging parents can't 'borrow' to retire."
   },
   "summary": {
@@ -115,7 +116,6 @@
     "message": "If you have several financial goals (buying a home, tuition, retirement), write down the time horizon for each and estimate the safe/growth weighting each one should have.",
     "secondary": "It doesn't need to be perfect right away - just start separating each goal out."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

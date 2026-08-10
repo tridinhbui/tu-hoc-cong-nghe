@@ -1,0 +1,167 @@
+{
+  "slug": "cfa-ethics-gips-kiem-chung-va-composite",
+  "title": "CFA Ethics 35: GIPS at the operating level - who may claim compliance, and what verification actually is",
+  "subtitle": "Compliance at firm level, the rules for building a composite, and the difference between verification and a performance examination",
+  "duration": "10 min",
+  "whyItMatters": "GIPS is usually taught at the level of 'there is a voluntary set of standards'. What decides anything in practice is three operating details: at what level compliance is claimed, by what rules a composite is built, and what the words 'has been verified' actually confirm.",
+  "openingQuestion": "An asset manager states that 'our growth equity fund complies with GIPS'. Where is the problem?",
+  "openingOptions": [
+    "No problem at all, provided that fund really does comply in full",
+    "GIPS can only be claimed firm-wide, never for a single product",
+    "The problem is that no period of compliance has been specified",
+    "The problem is that no third party has verified the claim yet"
+  ],
+  "explanation": "This is the founding rule of GIPS, and it exists to stop exactly the behaviour above. If compliance could be claimed product by product, a firm would attach the label to whichever product looked attractive and stay silent about the rest - using GIPS to do the very thing GIPS was created to prevent. Firm-wide compliance means every discretionary portfolio has to sit in at least one composite, and every composite has to be presented on request. There is nowhere left to hide a failed strategy.",
+  "summary": {
+    "keyIdea": "GIPS forces a firm to show the losses too, because a composite pools every portfolio running the same strategy - that is the entire reason the standard exists.",
+    "commonMistake": "Confusing verification with certification of results. The verifier confirms the process; it does not confirm that each individual performance figure is correct."
+  },
+  "application": {
+    "title": "Why the composite is the centre of it",
+    "message": "It forces every portfolio running the same strategy to be pooled together, so a firm cannot show off the winners and stay quiet about the rest."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "GIPS is easy to agree with at the level of principle. At the operating level, the three rules below are what decide whether the standard does any work at all."
+    },
+    {
+      "type": "heading",
+      "text": "Compliance can only be claimed firm-wide"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the founding rule, and it exists to block one specific behaviour: if compliance could be claimed product by product, a firm would attach the compliance label to whatever performed well and stay silent about the rest - using GIPS to do the very thing GIPS was created to prevent."
+    },
+    {
+      "type": "callout",
+      "label": "What that means operationally",
+      "text": "Every portfolio over which the firm has investment discretion must sit in at least one composite, and every composite must be presented when someone asks for it. There is nowhere left to hide a failed strategy."
+    },
+    {
+      "type": "heading",
+      "text": "Composites are grouped by strategy, not by outcome"
+    },
+    {
+      "type": "paragraph",
+      "text": "A portfolio is assigned to a composite on the basis of its investment strategy, and that assignment is made before the outcome is known. Assigning it after the outcome is known is cherry-picking, and cherry-picking is the core behaviour the standard prohibits."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Compliance",
+        "text": "A claim made by the firm itself, carrying the obligation to apply every requirement of the standard across the whole firm."
+      },
+      "right": {
+        "label": "Verification",
+        "text": "An independent third party assessing the firm's PROCESS. It does not confirm each individual performance figure for each composite."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Verification and a performance examination are not the same thing"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Verification - firm-wide in scope",
+        "text": "An independent third party checks two things: whether the firm has assigned every discretionary portfolio to a composite in line with the rules, and whether its processes for calculating, presenting and retaining data conform to GIPS. Verification does NOT assert that any particular composite presentation is accurate - this is the point most often misread in a fund's marketing material."
+      },
+      "right": {
+        "label": "Performance examination - one composite in scope",
+        "text": "It goes into one specific composite and checks the figures of that composite itself. It can only be done once the firm has been verified, and it speaks only about the composite examined - it says nothing about any of the others."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why grouping composites before the outcome is known is the most important rule of all",
+      "text": "Suppose a firm has ten portfolios all running the same growth equity strategy. At year end, three of them are heavily down because of a single stock. If those three could be split out into a different composite for a reason that sounds entirely sensible - different size, different client constraints - the headline composite's figures improve without anyone telling a single lie. The standard blocks that by requiring the grouping criteria to be written down in advance, and by requiring closed portfolios to remain in the composite's history rather than disappearing from it. Without that second rule, a firm that closed all its weak portfolios would end up with a track record of nothing but winners."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The standard does not make the numbers look better.",
+        "It makes them comparable - and that is a great deal harder."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Compliance is claimed firm-wide only" },
+    { "label": "Every discretionary portfolio must sit in a composite" },
+    { "label": "Composites group by strategy, not by outcome" },
+    { "label": "Nowhere left to hide a failed strategy" }
+  ],
+  "realWorldExample": {
+    "company": "Verification is not an audit of each individual figure",
+    "description": "GIPS verification is an independent party checking two things at firm level: whether the process for constructing composites complies with the standard, and whether the process for calculating and presenting performance conforms to it. It does not confirm that the performance figures of any particular composite are accurate - that is the scope of a separate performance examination, a different service altogether. Confusing the two leads a reader to believe that 'has been verified' means every number has been checked, when what it speaks about is the process."
+  },
+  "quiz": [
+    {
+      "question": "At what level is compliance with GIPS claimed?",
+      "options": [
+        "At the level of each geographic region where the firm operates",
+        "At the level of each individual fund or specific investment strategy",
+        "At the level of each composite the firm chooses to publish externally",
+        "Firm-wide, rather than for any one individual product on its own"
+      ],
+      "explanation": "Allowing a claim product by product would turn GIPS into an instrument of cherry-picking - the very thing it was created to prevent. The regional option fails for the same reason at a larger scale: a firm could then present its strongest market and say nothing about the others. Claiming at composite level is the same defect once more, because the firm would choose which composites to publish. Each of the three wrong answers describes a partition the firm gets to draw itself, and that is precisely the discretion the firm-wide rule removes."
+    },
+    {
+      "question": "Which rule guarantees that no strategy stays hidden?",
+      "options": [
+        "Every discretionary portfolio has to sit inside a composite",
+        "Every composite must have at least five years of track record",
+        "Every firm must publish its full client list to the wider market",
+        "Every performance report must be independently audited each year"
+      ],
+      "explanation": "No portfolio may stand outside, so no failed strategy can vanish from the picture. A five-year minimum would do the opposite of what is claimed: it would give a firm a reason to keep a new or weak strategy out of the presentation altogether. Publishing a client list reveals who the clients are, not what happened to the money, and it would breach confidentiality obligations besides. Independent audit is a check on the numbers already presented - it says nothing about the portfolios that never made it into a presentation."
+    },
+    {
+      "question": "On what criterion are composites grouped?",
+      "options": [
+        "By the asset size of each individual account in the portfolio",
+        "By investment strategy or objective, and not by the outcome",
+        "By the level of fee that the client is currently paying the firm",
+        "By the date on which each account began its relationship with the firm"
+      ],
+      "explanation": "Grouping by outcome would recreate the very cherry-picking that the composite structure is designed to eliminate. Size, fee level and start date all look like neutral administrative facts, and that is what makes them dangerous: each one correlates loosely enough with performance that a firm could use it to move a losing portfolio out of the headline composite with an explanation that sounds entirely reasonable. Strategy is the only criterion that can be fixed in writing before the outcome is known."
+    },
+    {
+      "question": "What does GIPS verification confirm?",
+      "options": [
+        "That the firm has achieved performance above the industry average",
+        "The accuracy of each individual performance figure in every composite presented",
+        "The firm-wide process for constructing composites and calculating performance",
+        "That the firm's entire set of financial statements has been audited"
+      ],
+      "explanation": "A performance examination of an individual composite is a separate service - confusing the two leads a reader to believe far more than the words support. Verification makes no claim about the level of performance at all, so the above-average option misreads what is being tested rather than its scope. Checking every figure is the scope of that separate examination, and only for the one composite examined. And a financial statement audit answers a different question entirely: whether the firm's own accounts are fairly stated, not how it presents client returns."
+    },
+    {
+      "question": "Why can GIPS compliance not be applied selectively, in part?",
+      "options": [
+        "Because the composites are closely linked to one another in calculation",
+        "Because verifying part of a firm costs more than verifying all of it",
+        "Because regulators demand compliance in full or else not at all",
+        "Because selecting the flattering part is the very thing that GIPS prevents"
+      ],
+      "explanation": "A standard about honest presentation that permitted selective application would contradict its own purpose. The calculation-linkage answer is simply untrue: composites are computed independently of one another, so nothing technical prevents partial application - what prevents it is the purpose. The cost answer treats an economic inconvenience as though it were the rule. And the regulatory answer misplaces the source of the obligation: GIPS is a voluntary standard, so the requirement comes from the standard itself, not from any regulator."
+    }
+  ],
+  "keyTakeaways": [
+    "GIPS compliance can only be claimed at the level of the whole firm",
+    "Every discretionary portfolio must sit in at least one composite",
+    "Composites group by strategy, not by outcome",
+    "Verification speaks about the process; it does not confirm each performance figure",
+    "Selective application is not allowed, because selection is the very thing GIPS prevents"
+  ],
+  "practicePrompt": {
+    "question": "A firm writes in its offering material: 'Performance has been GIPS verified'. What should you understand to have been confirmed?",
+    "options": [
+      "Every performance figure in the material has been checked and found accurate",
+      "That the composite construction process conforms to the standard, not each figure",
+      "That the firm has achieved performance clearly superior to that of its competitors",
+      "That the whole of the firm's financial statements have been through an audit"
+    ],
+    "explanation": "This phrasing is very common and it leads a reader straight to the first option. Verification operates at firm level and at the level of process; whether any particular composite has been examined separately is something you have to ask about, because that is a distinct service and not every firm buys it. Verification also makes no claim about the level of returns, so the competitor comparison has no basis in it, and an audit of the financial statements answers a different question altogether."
+  }
+}

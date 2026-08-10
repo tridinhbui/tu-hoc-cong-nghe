@@ -1,0 +1,178 @@
+{
+  "slug": "xay-dung-ngan-sach-doanh-nghiep",
+  "title": "CFO & Operations, Lesson 1: Building a corporate budget",
+  "subtitle": "Top-down, bottom-up, or a mix - each approach carries its own trade-off",
+  "duration": "7 min",
+  "openingQuestion": "How does a 'bottom-up' budget (each unit proposes its own numbers and they are consolidated) differ from a 'top-down' one (leadership sets the overall target and allocates it downward), and what is the biggest risk in each?",
+  "openingOptions": [
+    "There is no real difference between the two methods",
+    "Bottom-up is closer to reality but invites sandbagging; top-down easily becomes unrealistic",
+    "Top-down is always more accurate than bottom-up in every case",
+    "Bottom-up only suits small companies and cannot be applied in a large group"
+  ],
+  "explanation": "Bottom-up (units propose their own budgets and they are consolidated upward) exploits the detailed knowledge of the people running the operation, but it carries the risk of 'sandbagging' - units deliberately setting targets low or costs high so they are easy to beat and leave headroom. Top-down (leadership sets the overall target and allocates it down) guarantees consistency with company strategy but can be unrealistic if it does not understand the specific operating constraints of each unit. Many companies use a mix: top-down sets the frame, bottom-up fills in the detail.",
+  "diagram": [
+    {
+      "label": "Top-down: overall target → allocated downward"
+    },
+    {
+      "label": "Bottom-up: each unit proposes → consolidated upward"
+    },
+    {
+      "label": "Mixed: an overall frame + detail from below"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The annual budgeting cycle at a large group",
+    "description": "Many groups use a mixed model: leadership announces an overall revenue and profit growth target (top-down), each unit then builds a detailed plan to deliver its share of that target (bottom-up), and FP&A consolidates and adjusts through several negotiation rounds before the budget is finally locked."
+  },
+  "quiz": [
+    {
+      "question": "Why is 'sandbagging' (setting targets low so they are easy to beat) a serious problem for budget quality?",
+      "options": [
+        "The unit gets penalised for beating its plan too many times over",
+        "The independent auditor will refuse to sign the financial statements",
+        "The consolidated budget no longer reflects the true potential",
+        "Actual costs always exceed the approved budget figure"
+      ],
+      "explanation": "Sandbagging distorts the whole information system used to make decisions - leadership may allocate capital to the wrong place, set shareholder expectations off the mark, or appraise managers incorrectly (rewarding whoever 'beat a low plan' instead of whoever genuinely performed). Beating plan is not penalised anywhere, auditors opine on reported results rather than internal budgets, and costs are as likely to come in under an inflated budget as over it."
+    },
+    {
+      "question": "How does zero-based budgeting (every cost justified again from scratch each period) differ from traditional budgeting (last period's budget plus or minus an adjustment)?",
+      "options": [
+        "The budget is rebuilt from zero at the end of every single quarter",
+        "All costs are cut to zero and then reissued in order of priority",
+        "It applies only to newly founded businesses with no history yet",
+        "Every item of spending has to be justified again from the start each period"
+      ],
+      "explanation": "Traditional incremental budgeting tends to produce 'budget inertia' - costs are carried year after year simply because they existed before, and are never reassessed for effectiveness. Zero-based budgeting fixes that by requiring fresh justification, at the price of considerably more time and analytical resource. It is a justification exercise rather than an actual cut to zero, it is not quarterly by definition, and established businesses are precisely where it pays off most."
+    },
+    {
+      "question": "Why does a unit deliberately setting a low target cause harm beyond that unit itself?",
+      "options": [
+        "Because the budget is the basis on which capital is allocated across the whole company",
+        "Because the external auditors will widen the scope of their testing to cover other units too",
+        "Because the tax payable by the entire group would then be computed incorrectly",
+        "Because the other units will notice and start copying the same behaviour themselves"
+      ],
+      "explanation": "A budget is not only a target; it is an input into how resources get allocated. An artificially low figure can lead the company to underinvest exactly where the opportunity is. Auditors work from reported results rather than internal plans, tax is computed on actual profit rather than on budget, and imitation by other units is a downstream effect rather than the mechanism of the harm."
+    },
+    {
+      "question": "What is the main advantage of zero-based budgeting over building on last period?",
+      "options": [
+        "It takes less time to prepare than the traditional method does",
+        "It cuts spending that is only being carried by inertia",
+        "It guarantees next year's total cost is below this year's",
+        "It needs no historical data so it can be applied immediately"
+      ],
+      "explanation": "Building on last period assumes every existing cost is still justified and only adjusts the percentage. Starting from zero destroys that assumption, in exchange for a great deal more work, which is why it is usually applied on a rotating basis. It takes considerably longer rather than less time, it guarantees no particular total, and it still relies on historical data to judge what each item delivers."
+    },
+    {
+      "question": "Why does tying bonuses directly to hitting the budget damage the quality of that budget?",
+      "options": [
+        "Because the human resources function would then have to take part in preparing the financial budget",
+        "Because bonus payments raise staff costs so the expense budget gets overrun",
+        "Because whoever prepares the budget is motivated to set a target that is easy rather than right",
+        "Because the budget has to be revised every time the bonus scheme is changed"
+      ],
+      "explanation": "A budget serves two conflicting purposes: an honest forecast and a performance yardstick. When the second purpose comes with money attached, it always wins - which is why many companies separate the forecast entirely from the bonus target. HR involvement is administrative, the bonus accrual is a small line inside the budget rather than a distortion of it, and scheme changes do not require the plan to be rebuilt."
+    }
+  ],
+  "keyTakeaways": [
+    "Bottom-up is close to reality but invites sandbagging; top-down is strategically consistent but can miss operating reality",
+    "Many companies use a mix: a top-down overall frame plus bottom-up detail",
+    "Zero-based budgeting removes costs that are no longer effective but takes far more time than traditional budgeting"
+  ],
+  "practicePrompt": {
+    "question": "A sales director deliberately submits a revenue forecast below what they can actually achieve when preparing next year's budget, so as to 'beat target' easily and collect a bonus. What does this behaviour (sandbagging) do to the company as a whole?",
+    "options": [
+      "It causes no meaningful harm, since this is just a personal tactic for hitting KPIs better",
+      "Sandbagging distorts the information used to make capital allocation decisions in the company",
+      "The behaviour actually helps the company, because it motivates staff to work better",
+      "Sandbagging only affects an individual bonus and has nothing to do with leadership decisions"
+    ],
+    "explanation": "Sandbagging distorts the information used to make capital allocation decisions in the company. When budget figures do not reflect true potential, the strategic decisions built on them - investment, hiring, expansion - can all be skewed as a result."
+  },
+  "application": {
+    "title": "The frame from above, the detail from below",
+    "message": "Lock the overall target and the strategic constraints at leadership level first, then let the units build the detail inside that frame. Push a challenge back upward when the frame is not feasible, rather than letting each side build its own version and then negotiating an even trim.",
+    "secondary": "The easiest sandbagging signal to spot is a unit that beats plan by the same few percent every single year. Compare plan against actual for the last three years before approving."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A corporate budget can be built from the top down or from the bottom up - each approach has its own strengths and its own risks."
+    },
+    {
+      "type": "heading",
+      "text": "Top-down, bottom-up, and the sandbagging trap"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bottom-up (units propose their own numbers) is close to operating reality but is exposed to sandbagging - setting targets low so they are easy to beat. Top-down (leadership sets the target and allocates it) is consistent with strategy but can be unrealistic without a detailed grasp of operations. Zero-based budgeting forces every item of spending to be justified again from scratch each period, which removes costs that are no longer effective and that traditional budgeting (built on the prior period) tends to carry along by inertia."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Bottom-up is close to reality but invites sandbagging; top-down is strategically consistent but can miss operating reality",
+        "Sandbagging distorts the information used to make capital allocation decisions",
+        "Zero-based budgeting removes costs that are no longer effective but takes far more time"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four ways to build a budget and their trade-offs",
+      "concepts": [
+        {
+          "def": "Units propose and the numbers are consolidated upward. Close to operating reality and it builds commitment, but targets are easily set low to make the bonus easy."
+        },
+        {
+          "def": "Leadership sets the target and allocates it downward. Consistent with strategy, but if it is detached from operating reality the units will not believe the number from day one."
+        },
+        {
+          "def": "Every item of spending is justified again from scratch each period. It removes costs carried by inertia, but it is very time-consuming, so it is usually rotated across cost groups."
+        },
+        {
+          "def": "The target frame and resource limits come down from above, the allocation detail comes up from the units. The most common approach in practice."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why setting a low target is more dangerous than it looks"
+    },
+    {
+      "type": "paragraph",
+      "text": "When bonuses are tied to hitting plan, units have an incentive to propose targets that are easy to reach. The consequence does not stop at a low target: the budget is the basis on which capital and people are allocated across the whole company. If one unit understates its needs to stay safe, the company may underallocate resources to exactly the place that is growing, while overallocating to whichever unit reported more optimistically. Distort the numbers at the input and every decision downstream tilts with them."
+    },
+    {
+      "type": "callout",
+      "label": "How to weaken the incentive to distort",
+      "text": "Detach the bonus from hitting the self-proposed plan figure and move it to a comparison against the market, against the same period last year, or against comparable units. Once a unit no longer benefits from setting a low target, the budget returns to its proper role: a planning tool rather than a negotiating table."
+    },
+    {
+      "type": "heading",
+      "text": "Three outputs of a good budgeting cycle"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A monthly or quarterly P&L plan, tied to explicit assumptions about volume and price.",
+        "A cash flow plan - the part most often forgotten, even though it is what decides whether the business survives.",
+        "A list of key assumptions with warning thresholds: if an assumption drifts past this level, the plan gets revisited."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "No budgeting method is perfect.",
+        "Many companies use a mix: a top-down overall frame with bottom-up detail."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Bottom-up is close to reality but invites sandbagging; top-down is strategically consistent but can miss operating reality",
+    "commonMistake": "Easily overlooked: many companies use a mix - a top-down overall frame plus bottom-up detail",
+    "action": "Zero-based budgeting removes costs that are no longer effective but takes far more time than traditional budgeting"
+  }
+}

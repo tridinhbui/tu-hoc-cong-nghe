@@ -22,7 +22,7 @@
         "The real rate is the nominal rate net of the bank's conversion fee",
         "The real rate is the rate actually traded on the open market",
         "The real rate is the one the central bank publishes each day",
-        "The real rate has been adjusted for the inflation differential"
+        "The real rate has been adjusted for the inflation gap between the two"
       ],
       "explanation": "The nominal rate is the number on the bank's board each morning. The real rate adjusts it for the inflation gap between the two countries, so it tracks purchasing power over actual goods. The bank fee is a transaction cost, not part of either definition. The market-traded rate is simply the nominal rate under another name, and a published central bank rate is a reference or a peg, which again says nothing about inflation. That matters because if Vietnamese inflation runs far above US inflation, VND has lost real purchasing power over US goods even when the headline VND/USD quote has not moved."
     },

@@ -1,0 +1,151 @@
+{
+  "slug": "trong-yeu-va-mo-hinh-rui-ro-kiem-toan",
+  "title": "Audit, Lesson 2: Materiality and risk - deciding what to test",
+  "subtitle": "How materiality is set, the three components of audit risk, and why the risky areas get the deepest testing",
+  "duration": "12 min",
+  "whyItMatters": "Materiality decides which misstatements are worth caring about, and the risk model decides where the effort goes. Together these two concepts explain why two companies of the same size get audited very differently, and why audit fees vary so widely.",
+  "openingQuestion": "How is materiality usually determined on an audit?",
+  "openingOptions": [
+    "A fixed figure issued by the regulator for each industry",
+    "A percentage of a benchmark such as profit before tax",
+    "Exactly the smallest balance on the balance sheet",
+    "Proposed by the company being audited itself"
+  ],
+  "explanation": "The auditor picks a benchmark that suits the nature of the business and applies a percentage to it. A company with stable profits usually takes profit before tax as the benchmark; a company making losses or with volatile profits has a poor benchmark in profit, so revenue or total assets are used instead. Choosing the benchmark is professional judgement, and it feeds straight through into the workload: the lower materiality is set, the more items have to be tested.",
+  "diagram": [
+    { "label": "Choose the benchmark" },
+    { "label": "Apply the percentage → overall materiality" },
+    { "label": "Assess risk for each balance" },
+    { "label": "Higher risk → more testing" }
+  ],
+  "realWorldExample": {
+    "company": "Why a loss-making company is hard to set materiality for",
+    "description": "For a company with profit before tax of 100bn, stable across the years, materiality computed on the profit benchmark gives a sensible figure. But if profit this year drops to 2bn because of one unusual cost, applying the same percentage produces a materiality so small as to be absurd - almost every journal entry becomes material and the audit workload explodes. This is why the standards permit changing the benchmark, and it is also the point of professional judgement that gets scrutinised most closely when an audit file is reviewed."
+  },
+  "quiz": [
+    {
+      "question": "What are the three components of audit risk?",
+      "options": [
+        "Inherent risk, control risk and detection risk",
+        "Market risk, credit risk and liquidity risk at the client",
+        "Fraud risk, error risk, and risk from new accounting standards",
+        "Legal risk, reputational risk and the risk of losing the client"
+      ],
+      "explanation": "The first two belong to the company and the auditor cannot change them. Only the third sits within the auditor's control, through doing more or less testing. The other three lists describe risks that a business or a firm genuinely faces, but none of them is the framework used to plan the scope of an audit, which is what this model is for."
+    },
+    {
+      "question": "Which component of risk can the auditor actually influence?",
+      "options": [
+        "Detection risk, by increasing or decreasing the volume of substantive testing done",
+        "Inherent risk, by requiring the company to change the nature of its business operations",
+        "Control risk, by redesigning the internal control system directly for the client",
+        "All three, since the auditor bears final responsibility for the quality of the audit"
+      ],
+      "explanation": "Redesigning internal controls for the very client you are auditing would breach independence - that is why the third option is wrong, not because it would be impossible. Inherent risk follows from the nature of the business and its balances, and while the auditor is responsible for audit quality overall, responsibility is not the same thing as the ability to move each component."
+    },
+    {
+      "question": "Where is inherent risk highest?",
+      "options": [
+        "In the balances that are largest in total assets at the reporting date",
+        "In cash on hand, because it is the most liquid asset on the balance sheet",
+        "In balances requiring estimation and judgement, such as bad debt provisions or intangibles",
+        "In balances that arose for the first time in the period and had never appeared before"
+      ],
+      "explanation": "The more judgement involved, the more room there is to be wrong - whether accidentally or deliberately. This is also why the big frauds tend to sit in estimates rather than in cash. Size alone is not risk, cash is the easiest balance to verify against a third party, and a new balance is only risky when it also happens to require judgement."
+    },
+    {
+      "question": "What follows from setting materiality lower?",
+      "options": [
+        "The audit opinion will certainly be unqualified for that period's financial statements",
+        "Audit risk falls to zero because every misstatement will now be detected in full",
+        "The audit fee falls, because the scope narrows down to the larger balances only",
+        "Audit workload rises, because many more balances now cross the threshold and must be tested"
+      ],
+      "explanation": "This is the direct link between a judgement made at the start of an audit and the cost of the whole engagement - and the reason the choice of benchmark gets reviewed carefully. Lower materiality never eliminates risk, it does not narrow the scope, and it has no bearing on which opinion is ultimately issued."
+    },
+    {
+      "question": "What happens inside the audit when materiality is set lower?",
+      "options": [
+        "The volume of testing work and the sample sizes rise in proportion",
+        "Inherent risk on the balances gets reassessed at a higher level",
+        "The auditor has to issue a qualified rather than an unqualified opinion",
+        "The company has to restate the financial statements of the prior period"
+      ],
+      "explanation": "Materiality is the threshold below which things are passed over: set it low and less gets passed over, so more has to be tested. This is why materiality directly determines the cost and the duration of the entire audit. Inherent risk is a property of the balance rather than of the threshold, and neither the opinion nor any restatement follows from where the threshold is set."
+    }
+  ],
+  "keyTakeaways": [
+    "Materiality = a percentage applied to a benchmark, and choosing the benchmark is professional judgement",
+    "A loss-making company or one with volatile profits cannot use profit as the benchmark",
+    "Audit risk = inherent × control × detection",
+    "Only detection risk is within the auditor's control",
+    "Inherent risk is highest in balances requiring estimation, not in the largest balances"
+  ],
+  "practicePrompt": {
+    "question": "A company has weak internal controls. What should the auditor do?",
+    "options": [
+      "Decline the engagement because there is no adequate basis to work from",
+      "Increase substantive testing, because high control risk means detection risk has to come down",
+      "Keep the audit plan unchanged, as with a company that has good controls",
+      "Require the company to hire a consultant to rebuild its controls before the audit"
+    ],
+    "explanation": "This is how the risk model is used in practice. Overall audit risk has to be held at an acceptable level; the first two components are determined by the company, so when they are high the only remaining move is to push detection risk down - that is, to do more testing. It is also why a company with good internal controls pays a lower audit fee."
+  },
+  "summary": {
+    "keyIdea": "Materiality decides what is worth caring about, the risk model decides where the effort goes",
+    "commonMistake": "Assuming the largest balance is automatically the riskiest balance",
+    "action": "For a company you know, try listing the three balances that need the most estimation - that is where inherent risk is highest."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take the financial statements of a listed company and compute materiality three ways: 5% of profit before tax, 0.5% of revenue, and 1% of total assets. Compare the three figures and decide for yourself which benchmark fits this company best.",
+    "secondary": "If the three figures differ by several times, that is exactly why choosing the benchmark counts as a significant judgement."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous lesson ended on the word materiality. This one opens it up, together with the framework that decides where an auditor spends time - because time is the scarcest resource on any audit."
+    },
+    { "type": "heading", "text": "The audit risk model" },
+    {
+      "type": "formula",
+      "title": "Three components multiplied together",
+      "equation": "Audit risk = Inherent risk × Control risk × Detection risk",
+      "variables": [
+        {
+          "symbol": "Inherent",
+          "name": "Inherent risk",
+          "description": "The balance's own susceptibility to misstatement, before controls are considered. Highest where estimation is required."
+        },
+        {
+          "symbol": "Control",
+          "name": "Control risk",
+          "description": "The chance that the internal control system fails to prevent or detect that misstatement."
+        },
+        {
+          "symbol": "Detection",
+          "name": "Detection risk",
+          "description": "The chance that the audit procedures miss the misstatement. This is the only component the auditor can adjust."
+        }
+      ],
+      "example": {
+        "title": "How it is used in practice",
+        "calculation": "The first two components are high",
+        "result": "Detection risk has to be pushed down",
+        "explanation": "Which means more testing, larger samples, or testing at the period end rather than at an interim date."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why estimates are riskier than cash",
+      "text": "Intuition says cash is the most dangerous balance because it is easy to lose. In practice cash is the easiest thing to verify: there is a bank statement that can be reconciled with a third party. The big financial reporting frauds have almost always sat somewhere else - provisions, percentage-of-completion revenue, intangible asset values - because there the right number is a range rather than a point, and management can choose which end of the range to take."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An audit does not spread effort evenly. It concentrates where the numbers depend on judgement.",
+        "The next lesson covers what the auditor goes out to gather: evidence, and which evidence carries more weight."
+      ]
+    }
+  ]
+}

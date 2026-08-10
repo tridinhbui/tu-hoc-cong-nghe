@@ -1,0 +1,173 @@
+{
+  "slug": "lo-trinh-ifrs-tai-viet-nam",
+  "title": "Standards & Tax, Lesson 2: Converting to IFRS - what changes on the statements",
+  "subtitle": "Why a change of standards makes the ratios jump while the business itself is no different",
+  "duration": "10 min",
+  "whyItMatters": "When a company publishes its first set of IFRS statements, its ratios jump against the comparable period. Anyone who does not understand what is happening reads that as good or bad news about the business, when in truth it is only a change of measuring stick.",
+  "openingQuestion": "When a company converts to IFRS for the first time, what usually happens to the prior-period comparatives?",
+  "openingOptions": [
+    "The prior period is left exactly as published, for the sake of consistency",
+    "The prior period is restated under IFRS so the two periods are comparable",
+    "The company publishes only the current period and drops the comparative column",
+    "The prior period is multiplied by a conversion factor issued by the regulator"
+  ],
+  "explanation": "Converting standards requires the comparative period to be restated on the same basis, together with a reconciliation explaining each difference between the two frameworks. That reconciliation is the most valuable document there is for an analyst: it tells you exactly how much money each difference in standards is worth at that particular company.",
+  "diagram": [
+    {
+      "label": "Statements under VAS"
+    },
+    {
+      "label": "Conversion reconciliation"
+    },
+    {
+      "label": "Statements under IFRS"
+    },
+    {
+      "label": "Ratios change while the business does not"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A listed company publishing two sets of statements in parallel",
+    "description": "Several large Vietnamese companies have published VAS statements for compliance alongside IFRS statements for foreign investors. Having two sets of figures for the same operating year is a rare learning opportunity for an analyst: every difference between them is purely a difference in standards, with no change in the business mixed in."
+  },
+  "quiz": [
+    {
+      "question": "Why does financial leverage usually rise on conversion to IFRS?",
+      "options": [
+        "Because the company has to borrow more to cover the cost of the conversion",
+        "Because IFRS requires all shareholders' equity to be reclassified as debt",
+        "Because lease obligations come onto the balance sheet as liabilities",
+        "Because interest is capitalised into assets instead of expensed in the period"
+      ],
+      "explanation": "Many leases used to sit off the balance sheet. IFRS brings them on as a right-of-use asset and a matching lease liability, which lifts total debt materially at companies that lease a lot of space, such as retailers and airlines. Nothing in the conversion requires new borrowing, equity is not reclassified, and capitalising interest is a separate question that affects assets rather than leverage."
+    },
+    {
+      "question": "What is the conversion reconciliation worth to an analyst?",
+      "options": [
+        "It lists the auditors who took part in the conversion process",
+        "It tells you how much profit the company will make next year",
+        "It replaces the notes to the financial statements in the conversion year",
+        "It breaks each individual standards difference out into a specific number"
+      ],
+      "explanation": "This is the rare document that lets you quantify precisely what each difference in standards does to the equity and the profit of that particular company, instead of reasoning in generalities. It is not a forecast, it does not replace the notes - it sits inside them - and the audit team involved tells you nothing about the size of any adjustment."
+    },
+    {
+      "question": "Does converting standards change the company's actual cash flow?",
+      "options": [
+        "No, actual cash flow is unchanged; only classification and presentation change",
+        "Yes, because the new measurement basis changes the cash actually received and paid",
+        "Yes, because the company must pay extra tax on the revalued assets",
+        "No, and no line on the cash flow statement moves position either"
+      ],
+      "explanation": "Cash in and cash out do not depend on the accounting standard. What changes is which category those amounts fall into - operating, investing or financing. Lease payments, for instance, can move from operating into financing, which makes operating cash flow look better."
+    },
+    {
+      "question": "What is the right way to read a company reporting a jump in profit in its conversion year?",
+      "options": [
+        "Treat it as evidence that the business improved markedly during the year",
+        "Separate the increase caused by the standards change from the increase caused by trading",
+        "Ignore the whole year's report because the figures can no longer be trusted",
+        "Compare it directly against sector peers that have not converted yet, for a more objective view"
+      ],
+      "explanation": "The reconciliation is what makes this possible. An increase arising from revaluing assets or from a change in recognition is a one-off that does not repeat, so it must not be carried into the base used to forecast later years. Nor is the answer to discard the report: it is more informative than usual, not less, precisely because it shows the same year measured two ways."
+    },
+    {
+      "question": "Two companies in the same sector, one already on IFRS and one still on VAS. How do you compare their valuation multiples?",
+      "options": [
+        "Average the two ratios to cancel out the difference between the standards",
+        "Compare them directly, since both of them reflect exactly the same underlying business",
+        "One side has to be restated onto the same basis before they are set side by side",
+        "Only cash-based ratios are comparable; earnings-based ones are not"
+      ],
+      "explanation": "Lease debt sits on one balance sheet and not on the other, so the EV, the EBITDA and the leverage ratio of the two are measuring different things. The last option is nearly right and still wrong: the business is the same, the bookkeeping is not - and it is the bookkeeping that feeds every ratio."
+    }
+  ],
+  "keyTakeaways": [
+    "Converting standards makes the ratios jump while the business is unchanged",
+    "Leverage usually rises because lease obligations come onto the balance sheet",
+    "The conversion reconciliation is the most valuable document: it quantifies each difference in standards",
+    "Actual cash flow does not change, only how it is classified on the statements"
+  ],
+  "practicePrompt": {
+    "question": "A retail chain leasing 300 sites converts to IFRS. Which measures are most affected?",
+    "options": [
+      "Gross margin, because cost of goods sold is recomputed on a new basis",
+      "Debt-to-equity and EBITDA, because lease debt and lease expense are reclassified",
+      "Inventory turnover, because inventory is remeasured at fair value",
+      "The closing cash balance, because rent is reclassified on the balance sheet"
+    ],
+    "explanation": "Lease liabilities appearing on the balance sheet send leverage sharply higher. At the same time rent expense turns into depreciation plus interest, and both of those sit below the EBITDA line - so EBITDA rises considerably. The consequence: EV/EBITDA and debt/EBITDA move at the same time in two directions, and neither is comparable with prior years unless those are restated."
+  },
+  "summary": {
+    "keyIdea": "Changing the standard changes the measuring stick, not the company",
+    "commonMistake": "Reading the profit increase from a standards conversion as business growth and carrying it into the forecast",
+    "action": "Find a company that publishes both sets of statements and build your own line-by-line comparison of the major captions."
+  },
+  "application": {
+    "title": "The rule for comparing across a conversion year",
+    "message": "Only compare two periods once both have been presented on the same basis. If only the current period is on the new standard, use the reconciliation to bring the prior period onto the same basis before calculating any growth rate at all.",
+    "secondary": "It is also a skill you reuse every time a company changes an accounting policy or restructures a business segment."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A change of standards is one of the few events that moves every ratio a company has while nothing in its operations moves at all. It is also the easiest moment to misread, because the new number looks exactly like news about the business."
+    },
+    {
+      "type": "heading",
+      "text": "Three main areas of impact"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The balance sheet swells: right-of-use assets and lease liabilities appear; some assets are remeasured at fair value",
+        "The income statement changes shape: rent expense splits into depreciation and interest, lifting EBITDA without generating a single extra dong",
+        "Opening equity is adjusted: differences accumulated in the past are booked straight into retained earnings at the conversion date"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The forecasting trap",
+      "text": "If you take conversion-year EBITDA as your forecast base and compare it against historical EV/EBITDA multiples computed on the old basis, you are dividing two numbers measured in different units. The valuation comes out biased towards making the company look cheaper than it is."
+    },
+    {
+      "type": "heading",
+      "text": "One retail chain, two sets of standards, the same store"
+    },
+    {
+      "type": "paragraph",
+      "text": "The company leases 100 sites at 300bn of rent a year. Under the old standard the whole 300bn is an operating expense: EBITDA of 700bn, and the leases never appear on the balance sheet. Move to IFRS 16 and the right of use becomes an asset while the lease obligation becomes a liability - say a present value of 1,200bn. The 300bn splits into 240bn of depreciation and 60bn of interest. EBITDA jumps to 1,000bn because both of those sit BELOW the EBITDA line, while debt rises by 1,200bn."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The same company, three ratios telling three different stories",
+      "subtitle": "Not one dong moved between the two columns",
+      "concepts": [
+        {
+          "def": "Up 43% without selling a single extra item. The jump is largest in the sectors that lease the most space - retail, airlines, F&B chains.",
+          "en": "VND 700bn → VND 1,000bn"
+        },
+        {
+          "def": "Debt/EBITDA goes from 0 to 1.2 times. Loan covenants written under the old standard can be breached overnight on conversion, which is why credit agreements usually freeze the definitions as at signing.",
+          "en": "0 → VND 1,200bn"
+        },
+        {
+          "def": "EV picks up the lease debt so the numerator rises by 1,200bn while the denominator rises by 300bn. The new multiple is not comparable with the historical multiple, nor with a peer that has not yet converted.",
+          "en": "Denominator up, numerator up too"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to read two periods on different standards",
+      "text": "The conversion-year report always carries a reconciliation note: a table showing each caption under the old standard, the adjustment, and the figure under the new one. It is the only place where the two periods can be brought onto one measuring stick, and it is also the least-read page in the whole report. Without it, every growth calculation spanning the conversion date compares two different units of measurement."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Every time the measuring stick changes, the first job is to bring both periods onto the same stick.",
+        "The next three lessons move to the piece missing entirely from Track 2: corporate tax."
+      ]
+    }
+  ]
+}

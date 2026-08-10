@@ -6,7 +6,7 @@
   "openingQuestion": "A profit-maximising firm picks its output at which point?",
   "openingOptions": [
     "The highest output the plant can make, to use full capacity",
-    "The point where marginal revenue equals marginal cost (MR = MC)",
+    "The point where marginal revenue exactly equals marginal cost (MR = MC)",
     "The point of lowest average cost, since that is the most efficient",
     "The point of highest revenue, since revenue measures scale"
   ],
@@ -77,7 +77,7 @@
     "question": "A garment workshop has put 20bn into its production line. The current selling price is 90k per item, average variable cost is 75k, and total average cost is 110k. The workshop is loss-making. What should it do in the short run?",
     "options": [
       "Stop now, since 90k is below the 110k average cost per unit",
-      "Keep going: 90k still beats variable cost of 75k, adding 15k",
+      "Keep going: 90k still beats variable cost of 75k, contributing 15k",
       "Raise the price to 110k to break even, whatever the market does",
       "Push output to the maximum so average cost drops below 90k"
     ],

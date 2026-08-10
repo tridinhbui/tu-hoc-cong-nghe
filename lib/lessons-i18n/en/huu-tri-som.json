@@ -12,9 +12,17 @@
   ],
   "explanation": "The 4% safe withdrawal rule is based on the Trinity Study: if you withdraw 4% of the portfolio's value each year (inflation-adjusted), the portfolio has a high probability of surviving 30 years without running out, since the remainder keeps earning a return. Working backward: the amount needed = annual spending x 25 (since 1/4% = 25). For Hoa spending 180 million/year, that's 180 million x 25 = 4.5 billion VND. This is a starting point for FIRE (Financial Independence, Retire Early) calculations, not an absolute number - it needs adjusting for risk tolerance and retirement age.",
   "diagram": [
-    { "label": "Determine your desired annual spending", "arrow": true },
-    { "label": "Apply the 4% rule in reverse", "arrow": true },
-    { "label": "= The capital needed to retire early" }
+    {
+      "label": "Determine your desired annual spending",
+      "arrow": true
+    },
+    {
+      "label": "Apply the 4% rule in reverse",
+      "arrow": true
+    },
+    {
+      "label": "= The capital needed to retire early"
+    }
   ],
   "realWorldExample": {
     "company": "The FIRE movement in Vietnam",
@@ -29,7 +37,6 @@
         "Investing so the portfolio grows at least 4% a year",
         "Withdrawing 4% of the initial portfolio each year, inflation-adjusted"
       ],
-      "correct": 3,
       "explanation": "The 4% rule is a guideline for a safe withdrawal rate, based on historical market data - it isn't a requirement about returns or fees."
     },
     {
@@ -40,7 +47,6 @@
         "Because spending at age 40 is always far higher than at age 65",
         "Because early retirees don't receive a BHXH pension"
       ],
-      "correct": 0,
       "explanation": "The 4% rule was originally tested over a roughly 30-year horizon. Retiring much earlier means the portfolio has to 'survive' much longer, so it needs a lower withdrawal rate or a bigger portfolio."
     },
     {
@@ -51,7 +57,6 @@
         "Just investing in exactly the right high-growth stocks is enough on its own to shorten the timeline needed",
         "The number of years of work needed always equals your current age minus your desired early retirement age exactly"
       ],
-      "correct": 1,
       "explanation": "Saving 10% of income takes about 40 years; saving 50% takes about 17 years; 70% takes under 10 years. Notably, this figure doesn't depend on salary level, since spending is both what you save and what you have to sustain."
     },
     {
@@ -62,7 +67,6 @@
         "Because the portfolio has to last 40-50 years instead of the original 30-year assumption",
         "Because the tax rate applied to early withdrawals is higher"
       ],
-      "correct": 2,
       "explanation": "The longer the horizon, the higher the chance of hitting a bad stretch of years, with no pension to cushion it. Many FIRE followers use 3-3.5%, meaning the savings target has to be about 15-30% higher."
     },
     {
@@ -73,7 +77,6 @@
         "Banks refusing to open an investment account for someone without a job",
         "Medical and insurance costs once you're no longer covered by mandatory insurance"
       ],
-      "correct": 3,
       "explanation": "Retiring early means losing the health insurance an employer used to pay for, right at the start of 40 more years of health risk ahead. This is the line item FIRE spreadsheets often leave blank, and the one that can blow up the whole plan."
     },
     {
@@ -84,7 +87,6 @@
         "Putting your entire life savings into opening a coffee shop business to generate passive income streams",
         "Retiring early with full FIRE savings, then being forced back into full-time work once the money unexpectedly runs out"
       ],
-      "correct": 0,
       "explanation": "A more practical middle-ground option: the portfolio covers most of your spending, and a light part-time job covers the rest, usually along with health insurance. It lowers the savings target considerably compared to full FIRE."
     }
   ],
@@ -102,7 +104,6 @@
       "Because a 3-3.5% withdrawal rate always guarantees a higher return than 4% in every market condition",
       "There's nothing to consider, since the 4% rule is a fixed formula that applies identically to every retirement age"
     ],
-    "correct": 0,
     "explanation": "The earlier you retire, the longer your portfolio has to sustain you, so you need a bigger safety margin (withdrawing 3-3.5% instead of 4%) to guard against running out of money over a much longer stretch."
   },
   "summary": {
@@ -115,7 +116,6 @@
     "message": "Take your total annual spending (a quick estimate is monthly spending x 12), multiply by 25 - that's the figure you'd need to retire under the 4% withdrawal rule.",
     "secondary": "Don't panic if the number looks huge - this is just a starting point for planning."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

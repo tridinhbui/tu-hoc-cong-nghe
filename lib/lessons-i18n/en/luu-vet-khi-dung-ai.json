@@ -1,0 +1,172 @@
+{
+  "slug": "luu-vet-khi-dung-ai",
+  "title": "AI in Finance, Lesson 14: Keeping an audit trail when you use AI",
+  "subtitle": "Keep the prompts, the sources and the edited versions so you can trace it back when you need to.",
+  "duration": "13 min",
+  "whyItMatters": "Without a trail, every error is just a piece of bad luck; with one, every error becomes a lesson you can fix in the prompt.",
+  "openingQuestion": "What is an audit trail good for when you use AI?",
+  "openingOptions": [
+    "It lets you trace back the source, the prompt, the output and the edits",
+    "It makes the report look longer and considerably more thorough",
+    "It replaces verification",
+    "It makes the AI always right"
+  ],
+  "explanation": "In financial work you can always be asked 'where did this number come from' - by your boss, by the client, by the auditor, or by yourself three months later. If AI sits in the middle of the process and you only kept the final result, you will not be able to answer. Keeping a trail means holding on to four things: the prompt you used, the input documents, the raw unedited output, and the final version after your corrections. That set of four both lets you explain yourself and is the best study material there is on how you brief work out.",
+  "summary": {
+    "keyIdea": "Financial work has to be traceable: what you asked, which sources you used, what you changed.",
+    "commonMistake": "Keeping only the final result without knowing where it came from.",
+    "action": "Create a folder holding the prompt, the source documents, the raw output and the final version."
+  },
+  "sections": [
+    { "type": "lead", "text": "If somebody later asks 'where did this number come from?', you need to be able to answer." },
+    {
+      "type": "callout",
+      "label": "Terminology",
+      "text": "Audit trail: the trace of the work. In plain terms: a record of how the work was done, covering the prompt, the sources, the output and the edits."
+    },
+    { "type": "heading", "text": "What should you keep?" },
+    {
+      "type": "list",
+      "items": [
+        "The prompt you used",
+        "The input documents",
+        "The raw output from the AI",
+        "The version you edited",
+        "The final decision"
+      ]
+    },
+    { "type": "heading", "text": "Why does a beginner need to keep it?" },
+    {
+      "type": "paragraph",
+      "text": "A trail makes you learn faster. When the output is wrong, you look back at the prompt to see what you left out of the brief."
+    },
+    { "type": "heading", "text": "A simple way to do it" },
+    {
+      "type": "paragraph",
+      "text": "For each exercise, create a note containing: the objective, the prompt, the sources, the result, the errors you found, and a better version of the prompt."
+    },
+    { "type": "heading", "text": "A one-page note template for each time you use AI" },
+    {
+      "type": "list",
+      "items": [
+        "Date and objective: what you needed to produce that day.",
+        "Input documents: file name, reporting period, audited or not, where you downloaded it from.",
+        "Prompt: paste it verbatim, including the follow-up questions you asked along the way.",
+        "Raw output: paste it as it came, with no edits at all.",
+        "Errors found: list each one and how you spotted it.",
+        "Final version and the reasons for each change: what you changed and why."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "It sounds like a lot, but in practice each note takes about five minutes and you only need it for work you will send to someone else. For your own exercises, the first three items are enough."
+    },
+    {
+      "type": "callout",
+      "label": "A note on document versions",
+      "text": "Save the actual file you gave to the AI, not just the link. A report on a company website can be replaced by the audited version or by a corrected one, and the old link will then lead to a different document from the one you actually used."
+    },
+    { "type": "heading", "text": "A trail turns an error into a better prompt" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "No trail",
+        "text": "You notice the output is missing units, fix it by hand and forget about it. A month later the same error appears and you fix it by hand again. It repeats forever because the cause sits in the prompt, which you never look at again."
+      },
+      "right": {
+        "label": "With a trail",
+        "text": "You write 'error: missing units' in the note, then add a line to your prompt template: 'every figure must carry its unit'. The error stops appearing, and the improvement applies to every later use."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A trail does not slow you down; it stops you repeating the same mistakes.",
+        "Finance needs to be able to explain where a conclusion came from."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What does an audit trail mean in plain terms?",
+      "options": [
+        "An audit report prepared by an independent third party",
+        "A backup copy of the original source document",
+        "A trail recording the process you worked through",
+        "An error log the system writes automatically"
+      ],
+      "explanation": "An audit trail lets you trace back the prompt, the sources and the output. It is not the auditor's report, which is an opinion on financial statements rather than a record of your own work, and it is not a backup, which preserves the file but says nothing about what you did with it. A system error log is written by software about software; the trail here is written by you about your own judgements."
+    },
+    {
+      "question": "When an AI output is wrong, what does the trail give you?",
+      "options": [
+        "It automatically corrects the wrong result for you straight away",
+        "It prevents a similar error from occurring on the next run",
+        "It makes the AI itself accountable for that mistake",
+        "It shows where the prompt or the source went wrong, so you can fix it"
+      ],
+      "explanation": "A trail improves the way you use AI. It corrects nothing by itself and prevents nothing by itself - what it does is let you see which of the two inputs failed, the brief or the document, so that you can change the one that actually caused the error. And accountability never moves: the person who signs the analysis owns it, whatever produced the draft."
+    },
+    {
+      "question": "Among the four things worth keeping, why does the unedited raw output matter?",
+      "options": [
+        "Because it shows which parts the AI wrote and which parts you changed",
+        "Because the original is used to compare against other runs",
+        "Because the regulator requires originals to be kept for five years",
+        "Because the original is always more accurate than the version you edited"
+      ],
+      "explanation": "The final version blends what the AI wrote with what you corrected. Only by comparing it against the raw output can you see where you had to intervene, and that list is exactly the list of improvements your prompt needs. The raw version is not more accurate than your edited one - you edited it because it was wrong - and no rule anywhere obliges you to keep it for five years. You keep it because it marks the boundary between the machine's work and your own."
+    },
+    {
+      "question": "Why keep the document file itself rather than just the link?",
+      "options": [
+        "Because the link will not open when you have no internet connection",
+        "Because a document online can be swapped for a different version",
+        "Because links always expire after about six months have passed",
+        "Because saving the file takes up less storage space overall"
+      ],
+      "explanation": "A trail is only worth anything if it can reproduce the exact input. A link pointing at content that has since changed reproduces nothing. Offline access and storage size are conveniences rather than reasons, and links do not expire on a schedule - the danger is the opposite one, a link that still works and quietly serves a different document."
+    },
+    {
+      "question": "Why should you save the AI's raw result before you edit it?",
+      "options": [
+        "Because the record-keeping rules require every intermediate version to be kept",
+        "Because the raw version is usually more accurate than the user's edited one",
+        "Because it tells you what came from the AI and what you added yourself",
+        "Because you can fall back on the raw version if the edited one gets lost"
+      ],
+      "explanation": "Three months later, when someone asks where a number came from, you need to be able to separate what you verified yourself from what you left as the draft had it. Without the raw version that boundary disappears, and the whole document is only as trustworthy as its weakest part."
+    }
+  ],
+  "diagram": [
+    { "label": "The prompt you used" },
+    { "label": "Input documents (right period, right version)" },
+    { "label": "Raw output from the AI (unedited)" },
+    { "label": "Final version + notes on what you changed and why" }
+  ],
+  "realWorldExample": {
+    "company": "Three months later, your boss asks about a number",
+    "description": "A very real situation: you submit an analysis, and three months later your boss asks why the debt figure in it differs from the latest report. If you only kept the final file, the only answer is 'I don't remember'. If you kept all four things, you open them in two minutes and see it at once: the input was the unaudited Q2 report, the prompt asked for consolidated figures, and the raw output cited the page. So the difference comes from a different period and a different audit status, not from a mistake. What separates the two situations is not analytical ability, only the habit of keeping a trail."
+  },
+  "keyTakeaways": [
+    "Keep all four: the prompt, the input documents, the raw unedited output, and the final version.",
+    "The raw output matters most - it shows which part the AI wrote and which part you changed.",
+    "Record the reason for each edit, not just the edit; that is the part that teaches you to write better prompts.",
+    "The trail is both for explaining yourself to others and for stopping yourself repeating the same error."
+  ],
+  "practicePrompt": {
+    "question": "What is an audit trail good for when you use AI?",
+    "options": [
+      "It lets you trace back the source, the prompt, the output and the edits",
+      "It makes the report longer",
+      "It replaces verification",
+      "It makes the AI always right"
+    ],
+    "explanation": "A trail lets you explain the process and fix the errors when you need to."
+  },
+  "application": {
+    "title": "Practise it now",
+    "message": "Create a folder holding the prompt, the source documents, the raw output and the final version.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

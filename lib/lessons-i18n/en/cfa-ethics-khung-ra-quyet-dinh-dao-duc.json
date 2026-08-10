@@ -1,0 +1,145 @@
+{
+  "slug": "cfa-ethics-khung-ra-quyet-dinh-dao-duc",
+  "title": "CFA Ethics 15: The ethical decision-making framework - the tool for when no Standard is obvious yet",
+  "subtitle": "The exam gives you a situation it has never shown before, not the name of a Standard - this framework is where you start",
+  "duration": "10 min",
+  "whyItMatters": "Memorising the seven groups of Standards is still not enough, because real situations rarely label themselves. The decision-making framework is what you use when something feels wrong and you cannot yet name it - and that is the hardest kind of question in the exam.",
+  "openingQuestion": "Your boss asks you to change a recommendation from \"Neutral\" to \"Buy\" on a stock your firm is about to underwrite. What should the first step be?",
+  "openingOptions": [
+    "Refuse on the spot and hand in your resignation to preserve your integrity",
+    "Work out who is actually affected and which of your duties are engaged",
+    "Do as asked, because the boss carries final responsibility for the report",
+    "Change the rating but add a small footnote at the end to protect yourself"
+  ],
+  "explanation": "Most learners' first reflex is to jump straight to an action - refuse, comply, or find a way around it. The decision-making framework inserts a step before that: describe the situation fully before judging it. Who is genuinely affected here - the clients reading the report, the employer, the market at large? Which duty is in conflict with which other duty? Is there a fact you do not yet know that would change the conclusion if you did? A great many situations that look like violations turn out to be missing nothing but a disclosure, and conversely, many that look harmless do violate something once seen from the perspective of the person affected.",
+  "summary": {
+    "keyIdea": "The four-step framework exists for exactly those situations no Standard covers cleanly - where you have to decide for yourself rather than look it up.",
+    "commonMistake": "Going straight to the action step and skipping the step that weighs the affected parties. Most bad decisions are not wrong in their conclusion; they are wrong because nobody asked who bears the consequences."
+  },
+  "application": {
+    "title": "The step that gets dropped most",
+    "message": "The review step. Without it, the same situation next time costs exactly the same effort again, and you have accumulated nothing."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Most real ethical situations do not arrive with a label saying which Standard applies. The decision-making framework is the tool you use when you do not yet know what you are facing."
+    },
+    {
+      "type": "heading",
+      "text": "Four steps"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Identify: what the facts are, who is affected, and which duty is in conflict with which.",
+        "Consider: the available courses of action and what each one means for each party.",
+        "Act: choose, carry it out, and record the reasoning.",
+        "Reflect: whether the outcome matched what was expected, and what should differ next time."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The most common mistake",
+      "text": "Jumping straight to the action - refuse, comply, or find a way around it. Looking up a Standard too early belongs to the same group: when the situation has not been described fully, it is very easy to look up the wrong Standard and then reason immaculately on a false foundation."
+    },
+    {
+      "type": "heading",
+      "text": "Why the describing step matters so much"
+    },
+    {
+      "type": "paragraph",
+      "text": "A great many situations that look like violations turn out to be missing nothing but a disclosure. Conversely, many that look harmless do violate something once seen from the perspective of the person affected. Three open questions unlock most cases: who is genuinely affected, which duty is set against which, and whether there is a fact you do not yet know that would change the conclusion if you did."
+    },
+    {
+      "type": "paragraph",
+      "text": "Asking someone else's view is there to cover your own blind spots, not to share the responsibility - the responsibility stays with the person who decides. And the review step is the one dropped most often because nobody pushes you to do it, even though it is the only step that turns an incident into experience."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Professional ethics is not a memory for the Standards.",
+        "It is the habit of describing a situation fully before acting on it."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Identify: facts, parties involved, duties, conflicts" },
+    { "label": "Consider: seek views, gather facts, weigh the options" },
+    { "label": "Act: do it, or escalate to a higher level" },
+    { "label": "Reflect: did the outcome match what was expected" }
+  ],
+  "realWorldExample": {
+    "company": "Why the \"reflect\" step is the one most often skipped",
+    "description": "The first three steps happen under pressure and everybody remembers to do them. The fourth happens after everything is over, nobody pushes for it, and there is no immediate consequence for dropping it. But it is the only step that turns one handled case into experience that can be reused - and it is what separates the person who handles the second situation well from the person who repeats the same mistake under a different name."
+  },
+  "quiz": [
+    {
+      "question": "What is the first step in the ethical decision-making framework?",
+      "options": [
+        "Assess whether the conduct would actually be penalised under the law",
+        "Look up which Standard applies, then check its wording clause by clause",
+        "Report the matter to the firm's compliance department immediately",
+        "Identify the facts, the parties affected, and the conflicting duties"
+      ],
+      "explanation": "Looking up a Standard is a later step. Without describing the situation fully, the lookup returns the wrong Standard, and a correct answer to the wrong question is still a wrong answer. Starting from whether the law would punish it substitutes the legal threshold for the professional one, which sits lower and reaches further. And going straight to compliance is an action, not an identification: compliance still has to be told who is affected and which duties collide, so the work of the first step gets done either way - the only question is whether you did it before deciding or after."
+    },
+    {
+      "question": "Why is \"asking someone else's view\" written into the framework as a step of its own?",
+      "options": [
+        "Because someone inside the situation cannot see their own blind spots",
+        "Because the rules require two people to sign off on the decision",
+        "Because responsibility is shared once several people decide together",
+        "Because a superior always has authority to decide for a subordinate"
+      ],
+      "explanation": "Pressure and personal interest distort judgment in ways the person inside the situation does not notice. Asking for a view is not a way of sharing responsibility - responsibility stays with whoever acts. That is the error in both the shared-responsibility answer and the deferring-to-a-superior answer: consultation changes what you know, never who is accountable. The countersignature answer imports a control procedure some firms happen to run and treats it as the reason the step exists, which inverts the logic - the step exists because of the blind spot, and the procedure is one possible response to it."
+    },
+    {
+      "question": "In the opening situation, which option fits the \"act\" step of the framework?",
+      "options": [
+        "Change the rating as asked and add a small footnote at the end of it",
+        "Raise it with the boss, and escalate to compliance if that fails",
+        "Comply quietly, since the boss is the one who carries final responsibility",
+        "Resign immediately so as to have no involvement with that report at all"
+      ],
+      "explanation": "The framework does not demand an extreme action. Escalating internally is a reasonable step and is usually sufficient; resigning is the last option, for when every internal channel has closed. The footnote answer is the most tempting wrong one because it feels like a disclosure, but a buried note does not correct a recommendation the analyst does not hold - the reader still sees \"Buy\". And complying quietly misplaces the duty: the report carries your analysis, so the boss's seniority does not transfer your responsibility for it."
+    },
+    {
+      "question": "What is the point of the \"reflect\" step once the matter has been handled?",
+      "options": [
+        "It shifts responsibility to compliance when the outcome goes badly",
+        "It allows the decision to be withdrawn if the result turns out badly",
+        "It turns one handled case into experience usable the next time",
+        "It satisfies a record-keeping requirement imposed by the professional standards"
+      ],
+      "explanation": "This is the step nobody pushes for and that carries no immediate consequence if dropped, which is why it is dropped most often - and it is also the only step that makes the next time different from this one. It cannot withdraw a decision, because the decision has already been acted on; reviewing an outcome is not the same as reversing it. It does not move responsibility anywhere, and it is not a filing obligation: the recording happens in the act step, while reflection is about what you learn from what the record shows."
+    },
+    {
+      "question": "Why is this framework useful for the situational questions in the exam?",
+      "options": [
+        "Because Ethics questions ask about process rather than about content",
+        "Because each question has one framework answer and three wrong ones",
+        "Because the framework lets you eliminate options fast without reading it all",
+        "Because the exam describes a situation and never names a Standard"
+      ],
+      "explanation": "Moving from a description of a situation to the name of a Standard is precisely the part being marked. The framework is the tool that makes that transition systematic instead of a guess by feel. It is not a shortcut that lets you skip reading the vignette - skipping the facts defeats the identify step that the whole framework rests on. Nor do Ethics questions test process instead of content: they test content reached through a process, and the answer options name Standards and outcomes, not steps."
+    }
+  ],
+  "keyTakeaways": [
+    "Four steps: identify, consider, act, reflect",
+    "Describe the situation before judging it - looking up a Standard too early tends to return the wrong Standard",
+    "Ask for a view to cover your blind spots, not to share responsibility",
+    "Escalating internally is a reasonable action; resigning is the last option",
+    "The reflect step is dropped most because nobody pushes for it, yet it is the only step that creates experience"
+  ],
+  "practicePrompt": {
+    "question": "You discover a colleague regularly rounds performance figures upward in material sent to clients. Applying the framework, what is the next step?",
+    "options": [
+      "Report the matter immediately to a regulator outside the firm",
+      "Establish how large the misstatement is before choosing a response",
+      "Leave it alone, because it belongs to the compliance department",
+      "Tell that colleague's own clients directly about what has been happening"
+    ],
+    "explanation": "Rounding by 0.1 of a percentage point in an internal draft and rounding by 3 points in a client pitch are entirely different situations, even though the initial description of them is the same. The identify step exists to separate those two cases before an action is chosen - and both of the extreme options above skip exactly that step."
+  }
+}

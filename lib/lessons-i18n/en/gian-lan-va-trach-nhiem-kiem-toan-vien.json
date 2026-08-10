@@ -1,0 +1,161 @@
+{
+  "slug": "gian-lan-va-trach-nhiem-kiem-toan-vien",
+  "title": "Auditing, Lesson 5: Fraud - the fraud triangle and the limits of the auditor's responsibility",
+  "subtitle": "Why fraud is harder to detect than error, the three conditions that produce it, and the warning signs on the face of the accounts",
+  "duration": "12 min",
+  "whyItMatters": "Fraud differs from error in one decisive respect: it is designed not to be found. Understanding how it works is both the core of the audit profession and the sceptical financial-statement reading skill every investor needs.",
+  "openingQuestion": "Why is fraud harder to detect than an ordinary accounting error?",
+  "openingOptions": [
+    "Because fraud usually involves larger amounts than error does",
+    "Because it is deliberate and somebody is actively concealing it",
+    "Because auditing standards do not require the auditor to look for fraud",
+    "Because fraud only happens at large companies"
+  ],
+  "explanation": "An error leaves natural traces: an entry that does not balance, a reconciliation that does not tie out. Fraud is the opposite - the person doing it knows what the auditor will test and prepares for exactly that. The most dangerous form is fraud involving collusion, because once two or more people are in on it the internal control system itself - which rests on the principle of segregation of duties - is neutralised. The standards concede this openly: a properly designed audit may still fail to detect collusive fraud at senior level.",
+  "diagram": [
+    {
+      "label": "Pressure: targets, debt, market expectations"
+    },
+    {
+      "label": "Opportunity: weak controls, concentrated power"
+    },
+    {
+      "label": "Rationalisation: talking yourself into it being acceptable"
+    },
+    {
+      "label": "All three present → high fraud risk"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Why revenue recognition is where fraud happens most",
+    "description": "Statistics on financial reporting fraud show that most of it sits in revenue, and the reason maps perfectly onto the fraud triangle. Pressure: executive bonuses and market expectations are both tied to revenue growth. Opportunity: the timing of revenue recognition is a matter of judgement, especially for multi-stage contracts or sales with a right of return. Rationalisation: booking a few days early is easily framed as merely pulling something forward rather than inventing revenue. That is why the standards treat revenue fraud risk as a default presumption to be rebutted rather than something to be proved."
+  },
+  "quiz": [
+    {
+      "question": "What are the three elements of the fraud triangle?",
+      "options": [
+        "A large company, a widely dispersed ownership structure and operations in many countries",
+        "Financial motive, professional competence and a management position in the company",
+        "Weak internal control, an inexperienced auditor and loose accounting standards",
+        "Pressure, opportunity and the rationalisation of the person committing it"
+      ],
+      "explanation": "The auditor can only act on one of the three - opportunity - through the assessment of internal control. The other two lie outside reach but still have to be identified. Company size, ownership structure and cross-border operations are risk indicators, not the elements of the triangle. Competence and seniority describe who is able to commit a fraud, not why it happens. And an inexperienced auditor or loose standards may fail to catch a fraud; they are not part of what motivates one."
+    },
+    {
+      "question": "Why is fraud involving collusion especially dangerous?",
+      "options": [
+        "It disables segregation of duties, which is the foundation of internal control",
+        "The amounts taken in collusive cases are always larger than in solo cases",
+        "Collusive cases run for years, so the original documents are all destroyed",
+        "Auditing standards bar an auditor from investigating several people at once"
+      ],
+      "explanation": "Segregation of duties works on the assumption that the person approving and the person executing are not on the same side. Collusion breaks precisely that assumption, so the control still runs while having no effect whatsoever. Amounts vary case by case and are not what makes collusion dangerous; document destruction is a possible symptom rather than the mechanism; and nothing in the standards prevents an auditor from examining the conduct of several people together."
+    },
+    {
+      "question": "What is the auditor's responsibility with respect to fraud?",
+      "options": [
+        "To detect every fraud that occurred at the company in the audited period",
+        "Reasonable assurance of no material misstatement, from fraud or from error",
+        "No responsibility at all for fraud, since that belongs to specialist investigators",
+        "Responsible only for fraud by junior staff, never for fraud by the executive board"
+      ],
+      "explanation": "The words material and reasonable bind here exactly as they did in the opening lesson of this section. An audit is not an investigation, but nor is the auditor permitted to walk past a warning sign. Detecting every fraud is not achievable and has never been the standard. Disclaiming responsibility outright is equally wrong: the auditor must plan and perform the audit to address fraud risk. And the responsibility does not stop at junior staff - management override is treated as a risk in every audit."
+    },
+    {
+      "question": "Which sign on the financial statements is the most suspicious?",
+      "options": [
+        "Administrative expenses growing faster than revenue over the same reporting period",
+        "The company changed its depreciation policy after buying new fixed assets",
+        "Profit rising steadily for years while operating cash flow fails to keep up",
+        "The company issued additional shares to raise capital in the financial year just ended"
+      ],
+      "explanation": "Profit is an accounting opinion, cash is a fact - and a sustained gap between the two is the single most cited red flag in forensic analysis. Administrative costs outgrowing revenue is a margin problem, visible and usually explainable. A change in depreciation policy after an asset purchase may well be appropriate and is disclosed in the notes. And a share issue is a financing decision that says nothing about whether the reported earnings are real."
+    },
+    {
+      "question": "Why is collusive fraud particularly hard to detect?",
+      "options": [
+        "Because documents in these cases are forged much more skilfully",
+        "Because those colluding usually hold senior management roles",
+        "Because this kind of fraud is usually below the materiality threshold",
+        "Because control checkpoints rely on several people cross-checking"
+      ],
+      "explanation": "Segregation of duties is the foundation of internal control: the approver is not the executor, the bookkeeper is not the custodian of cash. When two people shake hands, that very mechanism becomes a protective shell for the fraud instead of a barrier against it. Better forgery is a consequence rather than the cause; collusion is common at operational level too, not only in the boardroom; and collusive frauds are frequently large rather than immaterial."
+    }
+  ],
+  "keyTakeaways": [
+    "Fraud differs from error in being deliberate and actively concealed",
+    "The fraud triangle: pressure, opportunity, rationalisation - the auditor can act only on opportunity",
+    "Collusion disables segregation of duties, so the control runs but stops working",
+    "Revenue fraud risk is a default presumption to be rebutted, not one to be proved",
+    "Profit rising steadily while cash flow lags is the strongest warning sign there is"
+  ],
+  "practicePrompt": {
+    "question": "A company's profit has risen 25% a year for four straight years, but operating cash flow has barely moved. What should you think?",
+    "options": [
+      "The company is growing strongly and the numbers confirm it",
+      "Worth working out why the profit never turns into cash",
+      "This is perfectly normal for a fast-growing company",
+      "The company is investing heavily in fixed assets right now"
+    ],
+    "explanation": "A one-year gap between profit and cash flow is normal, particularly while a company is expanding. A gap running four years in a row is not - it means profit is being recognised while the cash never arrives. The next step is to look at days sales outstanding across those years: if it is climbing steadily, revenue may be getting booked on amounts that will never be collected."
+  },
+  "summary": {
+    "keyIdea": "Fraud is designed to survive precisely the procedures it knows will be performed",
+    "commonMistake": "Believing that an unqualified opinion rules out the possibility of fraud",
+    "action": "For a company you follow, plot profit and operating cash flow side by side over five years."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Pick a listed company and check three signs: the gap between profit and operating cash flow across the years, the trend in days sales outstanding, and the share of revenue booked in the final quarter against the first three.",
+    "secondary": "These three signs do not prove fraud; they only tell you where to read the notes carefully."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous lesson was about misstatements that leave natural traces. This one is about the kind where somebody is actively erasing the traces - and why the standards openly concede that it will not always be caught."
+    },
+    {
+      "type": "heading",
+      "text": "The fraud triangle"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three conditions appearing together",
+      "subtitle": "Remove one element and the risk drops sharply - which is what makes this framework useful for assessment",
+      "concepts": [
+        {
+          "def": "Profit targets, loan covenants tied to financial ratios, market expectations, bonuses linked to results. Outside the auditor's power to influence."
+        },
+        {
+          "def": "Weak internal control, power concentrated in one person, line items requiring heavy judgement. This is the only element the auditor assesses and can act on."
+        },
+        {
+          "def": "Talking yourself into the behaviour being acceptable: only borrowing it, only pushing it into the next period, everyone does this. The psychological element, and the hardest to observe."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Error",
+        "text": "Unintentional. Leaves natural traces: a reconciliation that does not tie out, an unbalanced entry, an odd balance. Ordinary audit procedures are enough to find it."
+      },
+      "right": {
+        "label": "Fraud",
+        "text": "Deliberate and concealed. The perpetrator knows what the auditor will test and prepares in advance. This calls for professional scepticism, not just procedure."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Professional scepticism",
+      "text": "The standards require the auditor to maintain professional scepticism throughout the audit, meaning neither assuming that management is honest nor assuming that they are dishonest. That sounds simple and is hard to sustain in practice: an auditor works with the same client for years, the relationship becomes friendly, and an explanation from someone you have trusted for years is very easily accepted without demanding evidence. This is why rules exist requiring rotation of the lead audit partner after a set number of years."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An audit does not promise to catch every fraud. It promises not to walk past a sign that a sceptical person would have to see.",
+        "The final lesson of this section covers the lines of defence that sit inside the company, before the external auditor arrives."
+      ]
+    }
+  ]
+}

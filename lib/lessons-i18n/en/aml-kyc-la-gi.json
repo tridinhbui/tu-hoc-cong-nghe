@@ -1,0 +1,224 @@
+{
+  "slug": "aml-kyc-la-gi",
+  "title": "What AML and KYC are: the foundation of a compliance officer's work",
+  "subtitle": "Why a bank has to know exactly who its customer is before it accepts their money",
+  "duration": "9 min",
+  "openingQuestion": "A customer opens a bank account, declaring their occupation as owner of a small restaurant with income of roughly 30m dong a month. Three months later the account has received over 40bn dong across hundreds of incoming transfers from many different people, and nearly all of it is moved out the same day. From a compliance standpoint, what is the core problem here?",
+  "openingOptions": [
+    "There is no problem, since every transaction settled successfully and none was rejected by the bank's systems",
+    "The activity on the account does not match the customer profile the customer themselves declared",
+    "As long as the customer pays the full transfer fees, the bank has no reason to take an interest",
+    "The only issue is that the bank should charge a higher fee on an account with this many transactions"
+  ],
+  "explanation": "The heart of anti-money-laundering work is not checking whether each transaction is technically valid, but comparing the account's actual behaviour against the customer profile established at onboarding. A small restaurant with tens of billions of dong flowing through each month, money in and straight back out the same day and no balance retained, is the classic pattern of an account being used as a conduit - often called a pass-through account. This is exactly why KYC is not a one-off paperwork exercise at account opening, but the foundation that lets the monitoring system know what 'unusual' even means later on.",
+  "realWorldExample": {
+    "company": "The Vietnamese legal framework and international standards",
+    "description": "Anti-money-laundering work in Vietnam is governed by the Anti-Money Laundering Law and the State Bank's implementing guidance, which require financial institutions to identify their customers, report large-value transactions and report suspicious transactions. Internationally, the framework rests on the recommendations of the Financial Action Task Force (FATF), the intergovernmental body that sets the common standards against which countries are periodically assessed. A country placed on FATF's increased-monitoring list finds its banks subjected to additional layers of checking on international transactions, raising the cost and the time for the whole economy - which is why compliance is not merely an internal matter for each bank."
+  },
+  "quiz": [
+    {
+      "question": "What is the basic difference between AML (anti-money laundering) and KYC (know your customer)?",
+      "options": [
+        "The two terms are synonymous, just named differently",
+        "AML is the overall objective; KYC is one component of it",
+        "KYC applies to retail clients while AML covers corporate ones",
+        "AML is the investigator's job, KYC is the bank's job"
+      ],
+      "explanation": "AML is both the objective and the whole control system that stops a financial institution being used to legitimise illicit money. KYC is the foundation of that system: without knowing who the customer is, what they do for a living and where their money comes from, there is no basis on which to call any transaction unusual. Both apply to retail and corporate clients alike, and both sit with the institution rather than with an investigating authority."
+    },
+    {
+      "question": "What are the three classic stages of money laundering, in order?",
+      "options": [
+        "Invest the funds - take a loan - then repay the debt",
+        "Deposit savings - collect interest - withdraw at maturity",
+        "Placement - layering - integration into the economy",
+        "Open an account - pay the tax - transfer the money abroad"
+      ],
+      "explanation": "These three stages are the foundational mental model. Placement is the easiest to detect because cash has to touch the system, so criminals invest heavily in layering to sever the link between the money and its criminal origin. Knowing the three stages tells a compliance officer which kind of signal to look for and where - the other options describe ordinary banking or investing sequences with no laundering logic in them at all."
+    },
+    {
+      "question": "Why can KYC not simply be a one-off procedure carried out at account opening?",
+      "options": [
+        "Because identity documents only need renewing once every few years",
+        "Because the rules require a customer branch visit each year",
+        "Because the bank wants more chances to cross-sell its products",
+        "Because a customer's circumstances and behaviour change over time"
+      ],
+      "explanation": "If the customer profile is frozen at the moment of onboarding, every later comparison against it becomes meaningless. That is why compliance frameworks require periodic refresh of the information, at a higher frequency for higher-risk customers. Document expiry is a clerical detail rather than the reason, no framework mandates an annual branch visit, and cross-selling is a commercial motive that has nothing to do with why the profile has to stay current."
+    },
+    {
+      "question": "Which group of customers is typically subject to Enhanced Due Diligence?",
+      "options": [
+        "PEPs, clients from high-risk countries, multi-layered ownership",
+        "Every client whose account balance exceeds a set threshold",
+        "Only clients another bank has previously refused to take on as customers",
+        "Clients under 25 because they have no credit history yet"
+      ],
+      "explanation": "High-risk classification is not driven by balance size but by susceptibility to abuse: political power can come with elevated corruption risk, multi-layered ownership structures obscure the true beneficial owner, and cash-intensive models make the origin of funds hard to trace. A large balance held by a transparent, well-understood customer carries less risk than a modest balance in an opaque structure, and credit history is a lending question, not a laundering one."
+    },
+    {
+      "question": "Scenario: a large sum of cash is broken up and paid into many accounts, then cycled through several countries. Which stage of money laundering is this?",
+      "options": [
+        "Placement, when the cash first enters into the financial system",
+        "Layering, aimed at severing the trail back to the source",
+        "Integration, when the money returns in a lawful guise",
+        "None of the three stages of the process covers this"
+      ],
+      "explanation": "Placement is the step of getting the cash into the system and has already happened here. Layering is the chain of transactions across multiple entities and jurisdictions whose entire purpose is to make the money untraceable back to its origin - and it is also the stage that leaves the most evidence behind in transaction data. Integration comes later, when the money reappears as an apparently legitimate investment or business revenue."
+    }
+  ],
+  "keyTakeaways": [
+    "KYC is the foundation of AML: without knowing the customer well, there is no basis on which to call a transaction unusual.",
+    "Money laundering runs through three stages - placement, layering, integration - and each leaves a different kind of trail.",
+    "The customer profile must be refreshed continuously, not frozen at the moment the account was opened.",
+    "Risk classification rests on susceptibility to abuse, not on the size of the customer's balance."
+  ],
+  "practicePrompt": {
+    "question": "A company incorporated three months ago, with charter capital of 100m dong and a registered activity of management consulting, receives a 25bn dong transfer from a foreign entity described as a 'consulting service fee'. What is the most appropriate first step for the compliance officer?",
+    "options": [
+      "Freeze the account at once and tell the client the reason is a money-laundering suspicion",
+      "Enhanced due diligence: verify the beneficial owner and the nature of the transaction",
+      "Ignore it because the transfer narrative clearly states it is a service fee",
+      "Ask the client to route the money through another bank to avoid liability"
+    ],
+    "explanation": "A transaction so far out of proportion to the actual capacity of a newly incorporated company is a signal that calls for deeper verification, not a basis for an immediate conclusion. At the same time, the customer must never be told that they are under review or being reported - this is the prohibition on tipping off, covered in detail in the next lesson."
+  },
+  "summary": {
+    "keyIdea": "AML is the system that stops a financial institution being used to legitimise illicit money; KYC is the foundation that supplies the benchmark against which anything unusual can be recognised.",
+    "commonMistake": "Treating KYC as one-off paperwork at account opening rather than a living profile that has to be kept current.",
+    "action": "Pick a type of customer you deal with often and write down three signs that their activity has drifted away from the original profile."
+  },
+  "application": {
+    "title": "Apply it at work",
+    "message": "For each customer you are responsible for, answer three questions: where does their money come from, does the account activity match the business they declared, and who really benefits behind the structure.",
+    "secondary": "If you cannot answer any one of those three, your customer due diligence file is incomplete - regardless of whether the paperwork is all there."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "For a compliance officer the daily question is not 'is this transaction technically valid' but 'is this transaction plausible given what we know about this customer'. The whole profession lives in the gap between those two questions."
+    },
+    {
+      "type": "heading",
+      "text": "What money laundering is, and the three stages it runs through"
+    },
+    {
+      "type": "paragraph",
+      "text": "Money laundering is the process of making money that came from crime look like legitimate income. The criminal's problem is not earning the money but being able to explain where it came from - and the formal financial system is the only place that can supply that explanation. Financial institutions are therefore both the target of the abuse and the first line of defence against it."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The three stages of money laundering",
+      "subtitle": "Each stage leaves a different kind of trail",
+      "concepts": [
+        {
+          "vi": "Sắp xếp",
+          "en": "Placement",
+          "def": "Getting illicit money into the financial system - cash deposits, asset purchases, cash-intensive front businesses. This is the easiest stage to detect because the money has to touch the system directly."
+        },
+        {
+          "vi": "Phân tán",
+          "en": "Layering",
+          "def": "Breaking the money up and cycling it through many transactions, accounts, legal entities and countries to sever the link between the funds and their criminal origin. This is where criminals invest the most effort."
+        },
+        {
+          "vi": "Hợp nhất",
+          "en": "Integration",
+          "def": "Returning the money to the economy under a legitimate cover - property investment, buying shares in a company, or presenting it as revenue of a genuine trading business."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "KYC: building the benchmark before there is anything to compare"
+    },
+    {
+      "type": "paragraph",
+      "text": "Customer due diligence is usually understood as collecting the right documents. Its actual purpose is to build a profile: who is this customer, how do they earn money, roughly what scale do they operate at, which counterparties are normal for them. That profile is the benchmark - and without a benchmark, the concept of 'unusual' does not exist."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Identify and verify identity: who the customer is, and whether the documents are genuine and still valid.",
+        "Establish the true beneficial owner: who ultimately controls and benefits, particularly where the customer is an entity with layers of ownership.",
+        "Understand the nature of the business: sector, revenue scale, main counterparties, expected money in and out.",
+        "Establish the purpose of the relationship: what the customer needs this product for, and whether that fits their activity.",
+        "Assign a risk rating and set the corresponding frequency for refreshing the information."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "KYC done for the file",
+        "text": "Collect copies of the documents, file them, mark it complete. Six months later, when odd money moves through the account, nobody knows what normal was supposed to look like for this customer."
+      },
+      "right": {
+        "label": "KYC done for its purpose",
+        "text": "Record what the customer does, roughly what they turn over, who they usually deal with, what the expected flows are. When something unusual happens, both the system and the human have a reference point."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The risk-based approach"
+    },
+    {
+      "type": "paragraph",
+      "text": "You cannot apply the same level of scrutiny to every customer - it is both wastefully expensive and it dilutes resources away from where the real risk sits. Modern compliance frameworks are therefore built on risk classification: low-risk customers get simplified due diligence, high-risk customers get enhanced measures with more layers of verification and a tighter review cycle."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Typical high-risk categories",
+      "concepts": [
+        {
+          "vi": "Cá nhân có ảnh hưởng chính trị",
+          "en": "PEP - Politically Exposed Person",
+          "def": "Someone holding a prominent public position, along with close family and associates. It does not imply wrongdoing, but the position carries elevated corruption risk, so more layers of verification are needed."
+        },
+        {
+          "vi": "Chủ sở hữu hưởng lợi bị che",
+          "en": "Complex ownership",
+          "def": "An entity held by other entities through several layers, often across multiple countries. This is a common structure in the layering stage of money laundering."
+        },
+        {
+          "vi": "Mô hình nhiều tiền mặt",
+          "en": "Cash-intensive business",
+          "def": "Restaurants, karaoke venues, gold and jewellery dealing, currency exchange, car washes. Cash revenue is very hard to verify independently, which makes it easy to blend illicit funds into genuine takings."
+        },
+        {
+          "vi": "Quốc gia rủi ro cao",
+          "en": "High-risk jurisdiction",
+          "def": "A country on an international body's increased-monitoring list, or one with a weak anti-money-laundering framework."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why this is not merely procedural",
+      "text": "The consequences of weak compliance do not stop at a fine. A bank that loses its correspondent relationships with foreign banks will struggle to settle international payments for every one of its customers. At the national level, being placed on an increased-monitoring list means every cross-border transaction by domestic banks is examined more closely, more slowly and at greater cost. This is why compliance exists as an independent function rather than a step inside the sales process."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "KYC is not a folder of paperwork - it is the benchmark that lets you recognise something unusual later on.",
+        "The central question of the compliance profession is always: is this activity plausible given what we know about this customer?"
+      ]
+    }
+  ],
+  "diagram": [
+    {
+      "label": "Identify and verify the customer's identity"
+    },
+    {
+      "label": "Establish the true beneficial owner"
+    },
+    {
+      "label": "Understand the business and the source of funds → build the profile"
+    },
+    {
+      "label": "Assign a risk rating: simplified · standard · enhanced"
+    },
+    {
+      "label": "Monitor continuously and compare real behaviour against the profile"
+    }
+  ]
+}

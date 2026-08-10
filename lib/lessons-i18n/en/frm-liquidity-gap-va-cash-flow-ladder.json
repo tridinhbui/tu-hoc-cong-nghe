@@ -1,0 +1,150 @@
+{
+  "slug": "frm-liquidity-gap-va-cash-flow-ladder",
+  "title": "FRM Liquidity, Lesson 7: The liquidity gap and the cash flow ladder",
+  "subtitle": "The simplest tool for seeing which day the institution runs short of cash, before that day arrives",
+  "duration": "9 min",
+  "whyItMatters": "Before any of the complicated regulatory ratios, liquidity management starts from one simple table: how much cash comes in and goes out in each maturity bucket, and at what point the running total turns negative.",
+  "openingQuestion": "What does a cash flow ladder show in liquidity management?",
+  "openingOptions": [
+    "Expected cash inflows and outflows arranged by maturity bucket",
+    "A list of every asset the institution holds, ranked by book value from largest down",
+    "Expected profit for each business line over the coming twelve months",
+    "Credit ratings for all of the counterparties the institution currently trades with"
+  ],
+  "explanation": "A cash flow ladder cuts the time axis into maturity buckets and drops every expected inflow and outflow into the bucket it belongs to. The gap in an individual bucket shows a local shortfall, but the number that really matters is the cumulative gap: it points to the moment the institution starts running short of cash. The place to be careful is the behavioural assumptions - which bucket demand deposits land in is a judgement call, and that judgement drives the result.",
+  "diagram": [
+    { "label": "Cut the time axis into maturity buckets" },
+    { "label": "Place expected inflows and outflows in each bucket" },
+    { "label": "Compute the gap per bucket and the cumulative gap" },
+    { "label": "Any bucket where the cumulative gap is negative needs a standby source" }
+  ],
+  "realWorldExample": {
+    "company": "Why bucketing by behaviour is harder than bucketing by contract",
+    "description": "Contractually, demand deposits can be withdrawn at any moment, so putting all of them in the overnight bucket produces an enormous and meaningless gap. In practice most of that balance is stable across many years. In the other direction, a five-year loan with a prepayment option can come back earlier than the contract says. So institutions build behavioural models alongside the contractual schedule, and the quality of that model decides whether the cash flow ladder is usable at all."
+  },
+  "quiz": [
+    {
+      "question": "Why is placing the entire demand deposit book in the overnight bucket a distorting way to build the ladder?",
+      "options": [
+        "Because a cash flow ladder is not permitted to use any maturity bucket shorter than one full calendar month",
+        "Because demand deposits are excluded from modelled outflows under liquidity regulation",
+        "Because most of that balance is stable for years even though it is contractually withdrawable on demand",
+        "Because demand deposits carry a full central bank guarantee that removes the withdrawal risk"
+      ],
+      "explanation": "Bucketing by contract produces an enormous gap that every bank in the system shows, so it cannot separate the institutions that are genuinely at risk from the ones that are not. The stable core of the deposit book is modelled and placed in longer buckets using historical behavioural data. The regulatory answers are wrong in both directions: deposits are very much counted as outflows, and no supervisor bans short buckets - the overnight bucket is the one everybody watches most closely. Deposit insurance covers balances up to a cap for retail depositors, which is not the same thing as a full guarantee, and it is precisely the uninsured wholesale balances that run first."
+    },
+    {
+      "question": "How does the cumulative gap differ from the gap in an individual bucket?",
+      "options": [
+        "The cumulative gap applies only to the bucket running beyond one year",
+        "It counts only the inflow side and ignores the scheduled outflows",
+        "The cumulative gap is measured on a discounted present value basis",
+        "The cumulative gap adds each bucket to the ones before it"
+      ],
+      "explanation": "A single bucket can be negative and still be covered by a surplus carried over from the bucket before it. Only the cumulative number answers the question that actually matters: at what point does the institution run out of cash. It is a plain running sum of both sides, undiscounted, computed across every bucket rather than only the long end - discounting would be the wrong operation here, because the question is whether cash is physically available on the day, not what those flows are worth today."
+    },
+    {
+      "question": "Why does the cash flow ladder have to be built for a stressed scenario as well as a normal one?",
+      "options": [
+        "Because the behavioural assumptions collapse exactly when a crisis hits",
+        "Because two separate regulatory reports have to be filed each quarter",
+        "Because a stress scenario redefines the maturity buckets completely",
+        "Because the normal ladder leaves out cash flows from the lending book"
+      ],
+      "explanation": "The very assumptions that make the normal ladder look comfortable - core deposits stay put, assets can be sold at market prices, wholesale funding rolls over - are the first things to break in a crisis. The bucket definitions do not change between the two runs; that is the point, because holding the structure fixed is what lets you read the difference between them. And the normal ladder does include lending flows, both the interest and the repayments; the stressed version simply assumes fewer of them arrive on schedule."
+    },
+    {
+      "question": "Why do off-balance-sheet flows have to be brought into the cash flow ladder?",
+      "options": [
+        "Because accounting standards require these commitments to be disclosed in the notes",
+        "Because undrawn committed lines can all be drawn at once under stress",
+        "Because these flows are usually larger than on-balance-sheet flows",
+        "Because off-balance-sheet commitments always fall due within the first thirty days"
+      ],
+      "explanation": "A committed credit line is a real obligation: when markets sour, customers draw everything at the same time, because they are short of cash too. Leaving those lines out of the ladder means leaving out exactly the obligation that spikes in the bad scenario. Disclosure in the notes is an accounting requirement and has nothing to do with whether the cash flow appears in the ladder. The size claim and the thirty-day claim are both false as general statements - the point is not that these flows are big or short-dated, but that they are correlated with the stress itself."
+    },
+    {
+      "question": "Why does the cumulative gap matter more than the gap in any single bucket?",
+      "options": [
+        "Because single-bucket gaps swing too much for a trend to be read",
+        "Because the regulator only ever asks for the cumulative number",
+        "Because a surplus in an earlier bucket can cover a shortfall in a later one",
+        "Because the cumulative gap removes the behavioural assumptions' effect"
+      ],
+      "explanation": "One negative bucket does not mean the institution is short of cash, provided the bucket before it produced enough surplus to carry forward. The number to look at is the point where the running total turns negative - that is the day the institution genuinely runs out. Nothing about summing removes the behavioural assumptions; the cumulative figure inherits every one of them, since it is built from the same bucketed flows. Supervisors ask for both views, and single-bucket gaps are read closely at the short end."
+    }
+  ],
+  "practicePrompt": {
+    "question": "The liquidity gaps of four consecutive maturity buckets, in bn dong: +200, −350, +100, −180. What does the cumulative gap tell you?",
+    "options": [
+      "Cash runs out at the second bucket, cumulative gap −150bn",
+      "No shortfall, because the four buckets only sum to −230bn",
+      "Runs out at the fourth bucket, where the cumulative gap is deepest",
+      "No shortfall, because bucket one's +200bn covers what follows"
+    ],
+    "explanation": "The running totals are +200, −150, −50, −230, so the institution turns negative right at the second bucket and stays negative for the rest of the ladder. That is what the individual bucket gaps cannot tell you: read on its own, the +100 in bucket three looks like a recovery, but it only narrows a shortfall rather than erasing it. Bucket one's +200bn surplus does cover part of the deficit - the running sum has already credited it, and the remaining shortfall is still 150bn. The day cash runs out is bucket two, and that is the date funding has to be arranged for."
+  },
+  "keyTakeaways": [
+    "The ladder buckets inflows and outflows by maturity, and the cumulative gap points to the day cash runs out",
+    "Bucketing by contract gives a meaningless result; deposits and prepayments need a behavioural model",
+    "One bucket's gap can be covered by the bucket before it, so only the cumulative figure answers the question",
+    "The normal scenario and the stressed scenario have to be built side by side"
+  ],
+  "summary": {
+    "keyIdea": "The cash flow ladder is the foundational tool of liquidity management, and its quality depends entirely on the quality of the behavioural assumptions behind it",
+    "commonMistake": "Bucketing flows on the pure contractual schedule, which produces an enormous gap that looks identical at every institution and so distinguishes nothing",
+    "action": "When you read a cash flow ladder, ask straight away: what are the behavioural assumptions, and how often are they back-tested"
+  },
+  "application": {
+    "title": "Build your own cash flow ladder",
+    "message": "Try listing what you have to pay over the next three, six and twelve months alongside the income you can count on, then take the running difference. Any month that turns negative is a month to arrange funding for now.",
+    "secondary": "This is exactly the logic a bank uses - only the scale and the level of detail differ."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Before the complicated regulatory ratios, liquidity management starts from a very simple table: when cash comes in, when it goes out, and at what point there is not enough."
+    },
+    { "type": "heading", "text": "The structure of a cash flow ladder" },
+    {
+      "type": "paragraph",
+      "text": "The time axis is cut into buckets: overnight, under one week, under one month, under three months, under one year, beyond one year. Every expected inflow and outflow is placed in the right bucket. The gap of a bucket is the difference within that bucket; the cumulative gap adds up across buckets and is the number that decides."
+    },
+    { "type": "heading", "text": "The hard part: bucketing by behaviour rather than by contract" },
+    {
+      "type": "list",
+      "items": [
+        "Demand deposits: the contract allows immediate withdrawal, in practice the core balance is stable for years",
+        "Loans with a prepayment option: long contractual life, but they can come back early when rates fall",
+        "Undrawn credit lines: not an outflow yet, but they can be drawn precisely when conditions are tight",
+        "Wholesale funding: short contractual maturity, and in a crisis it is close to certain that it will not roll"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Two scenarios, not one",
+      "text": "A cash flow ladder is only worth anything when it is built side by side for normal conditions and for stressed conditions, because the very assumptions that keep the normal version looking comfortable are the ones that break first when a crisis arrives."
+    },
+    { "type": "heading", "text": "What a cash flow ladder looks like" },
+    {
+      "type": "paragraph",
+      "text": "Place every inflow and outflow by remaining maturity, then take the running sum. For example: the 0-7 day bucket has 20 in and 50 out, a gap of −30, cumulative −30. The 8-30 day bucket has 40 in and 30 out, a gap of +10, cumulative −20. The 1-3 month bucket has 60 in and 40 out, a gap of +20, cumulative back to 0. The 3-12 month bucket has 80 in and 100 out, a gap of −20, cumulative −20. Read bucket by bucket, only two are negative and neither by much; read down the cumulative column, this institution is 30 short in the very first week."
+    },
+    {
+      "type": "callout",
+      "label": "The cumulative column is the one to read",
+      "text": "A negative gap in the first bucket cannot be covered by a surplus in a later one, because second-month cash does not settle a first-week obligation. This is the most common way the table is misread: add up all the buckets, see a total of 0, and conclude there is no problem. Time does not commute - and that −30 in the first bucket is exactly the amount of liquid assets the institution has to be holding from today."
+    },
+    {
+      "type": "paragraph",
+      "text": "The hard part of a cash flow ladder is not the addition but deciding which bucket a line item belongs in. Demand deposits sit contractually in the first bucket, yet most of the balance stays for years - put all of it in the 0-7 day bucket and the table is useless, because it screams every single day. The same goes for loans with a prepayment option, undrawn credit lines, and assets that are in theory saleable but in practice take days to move. Which means every number in the table is a behavioural assumption, and the table is only as trustworthy as those assumptions are."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A liquidity gap you can see three months ahead is a management problem; one you can see three days ahead is a crisis.",
+        "Next lesson: how to allocate the cost of liquidity back to whatever created it."
+      ]
+    }
+  ]
+}

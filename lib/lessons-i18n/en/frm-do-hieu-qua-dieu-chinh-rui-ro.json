@@ -1,0 +1,153 @@
+{
+  "slug": "frm-do-hieu-qua-dieu-chinh-rui-ro",
+  "title": "FRM Foundations, Lesson 6: Risk-adjusted performance - Sharpe, Treynor, Jensen, IR",
+  "subtitle": "Four measures answering one question, but the denominators differ so the conclusions differ too",
+  "duration": "10 min",
+  "whyItMatters": "A bare return says nothing about skill: doubling the leverage doubles the expected return too. Risk-adjusted measures are how you separate the return that came from taking more risk from the return that came from genuine ability.",
+  "openingQuestion": "Where does the core difference between the Sharpe ratio and the Treynor ratio lie?",
+  "openingOptions": [
+    "Sharpe divides by standard deviation, Treynor divides by beta",
+    "Sharpe uses past returns, whereas Treynor uses expected future returns",
+    "Sharpe applies only to equities, whereas Treynor applies only to bonds",
+    "Sharpe is computed monthly, whereas Treynor must be computed annually"
+  ],
+  "explanation": "Both divide excess return by a measure of risk, and they differ in the denominator. Sharpe uses standard deviation - total risk. Treynor uses beta - only the systematic part. That drives different domains of use: Sharpe fits when the portfolio is the investor's entire wealth, Treynor fits when it is one slice of an already well-diversified whole.",
+  "diagram": [
+    { "label": "Excess return over the risk-free rate" },
+    { "label": "Divide by standard deviation → Sharpe (total risk)" },
+    { "label": "Divide by beta → Treynor (systematic risk)" },
+    { "label": "Divide by tracking error → Information Ratio (against a benchmark)" }
+  ],
+  "realWorldExample": {
+    "company": "The debate over performance measures in asset management",
+    "description": "The global fund management industry has argued for a long time about which measure should be shown to investors. A heavily leveraged fund can advertise a very high absolute return, and only dividing by standard deviation reveals that most of that return came from taking more risk rather than from skill in picking assets. This is why performance presentation standards require a risk measure to be published alongside, not just the return figure."
+  },
+  "quiz": [
+    {
+      "question": "What does a positive Jensen's alpha tell you about a portfolio?",
+      "options": [
+        "The portfolio has a beta greater than one against the broad market",
+        "The portfolio had a lower standard deviation than its benchmark",
+        "The portfolio achieved an absolute return above the risk-free rate",
+        "It returned more than CAPM predicts for the beta it actually carried"
+      ],
+      "explanation": "Alpha is what is left of the return once the part explained by systematic risk exposure has been removed. A positive alpha means the portfolio won even after beta is accounted for - which makes it the closest thing we have to a measure of skill. A high beta explains return rather than excusing it, a low standard deviation says nothing about return at all, and beating the risk-free rate is a bar that any equity exposure clears in an average year."
+    },
+    {
+      "question": "Which kind of manager is the Information Ratio best suited to assessing?",
+      "options": [
+        "An active manager running against a benchmark",
+        "A passive index manager, who has no excess return at all",
+        "A manager holding a portfolio entirely in cash deposits",
+        "A manager investing only in short-dated government bonds"
+      ],
+      "explanation": "The IR asks a very specific question: for every unit of deviation from the benchmark the manager is willing to take, how much return above that benchmark do they get back. For a passive fund both the numerator and the denominator sit close to zero, so the measure loses all meaning. A cash portfolio and a short government bond portfolio have the same problem from the other direction - there is no benchmark deviation being taken at all."
+    },
+    {
+      "question": "Why is using Treynor for a poorly diversified portfolio misleading?",
+      "options": [
+        "Because the beta of an undiversified portfolio is always zero, so you cannot divide",
+        "Because beta ignores the idiosyncratic risk the investor is actually carrying",
+        "Because Treynor requires a portfolio to hold at least a hundred separate stocks",
+        "Because Treynor can only be computed when the return happens to be negative"
+      ],
+      "explanation": "Treynor implicitly assumes idiosyncratic risk has been diversified away and therefore counts only what is left. Applied to a portfolio concentrated in a handful of names it produces a flatteringly good number, because the largest risk the investor is bearing never enters the denominator. Beta is perfectly well defined for a concentrated portfolio, there is no minimum holding count, and the sign of the return is irrelevant to the arithmetic."
+    },
+    {
+      "question": "How does the Sortino ratio differ from the Sharpe ratio?",
+      "options": [
+        "The denominator uses beta instead of the portfolio's standard deviation",
+        "The numerator uses the absolute return, not the excess",
+        "The denominator counts only the returns falling below a target",
+        "The numerator subtracts the benchmark return rather than the risk-free rate"
+      ],
+      "explanation": "Sharpe penalises upside volatility exactly as much as downside, even though an investor only minds one direction. Sortino counts only the downside deviation, which makes it fairer to strategies with a fat right tail - but for the same reason it needs more data before it settles down. It keeps Sharpe's numerator, so neither the absolute return nor a benchmark return replaces the risk-free rate there."
+    },
+    {
+      "question": "Why does every risk-adjusted performance measure need a long enough period to mean anything?",
+      "options": [
+        "Because the standard deviation of a portfolio always falls as the measurement window lengthens",
+        "Because these measures are only defined for return series of three years or more",
+        "Because management fees are only fully reflected after several years of operation",
+        "Because a short sample has a large standard error, so luck and skill cannot be separated"
+      ],
+      "explanation": "This follows straight from statistics rather than from anything peculiar to finance: the standard error falls with the square root of the number of observations. At the volatility typical of equity markets, telling a few percentage points of outperformance apart from noise takes several decades of data. Standard deviation does not shrink with the window, the measures are defined for any sample length, and fees show up in the very first period."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A fund returns 14% with a standard deviation of 20% and a beta of 0.8. The risk-free rate is 4% and the benchmark returned 11%. An investor puts THEIR ENTIRE wealth into this fund. Which measure is right, and what is it?",
+    "options": [
+      "Sharpe 0.50, because total risk is the risk they actually run",
+      "Treynor 12.5, because beta measures the risk that gets rewarded",
+      "Information Ratio 3%, since a benchmark has been given",
+      "Jensen's alpha 4.4%, because it strips out the part beta explains"
+    ],
+    "explanation": "All four measures divide the same excess return and differ only in how risk is defined underneath, so choosing a measure means choosing the definition of risk that fits the investor's situation. Here the fund is the investor's ENTIRE wealth, so the idiosyncratic risk goes nowhere and the risk they actually run is total risk: Sharpe = (14 − 4)/20 = 0.50. The other three are all computed correctly - Treynor 10/0.8 = 12.5 and Jensen 14 − (4 + 0.8 × 7) = 4.4% - but both measure risk with beta, which quietly assumes the idiosyncratic part has vanished, and for this person it has not."
+  },
+  "keyTakeaways": [
+    "All four measures divide the same excess return and differ in how the denominator defines risk",
+    "Sharpe uses total risk, which fits when the portfolio is the investor's entire wealth",
+    "Treynor uses beta, which only fits once idiosyncratic risk has been diversified away",
+    "Jensen's alpha measures the outperformance left after removing what beta explains",
+    "The Information Ratio measures return above the benchmark per unit of tracking error"
+  ],
+  "summary": {
+    "keyIdea": "Choosing a measure means choosing the definition of risk that fits the investor's situation, not choosing the prettiest number",
+    "commonMistake": "Using Treynor on a concentrated portfolio, which makes the largest risk the investor carries vanish from the arithmetic",
+    "action": "Before choosing a measure, ask: is this portfolio the investor's entire wealth, or one piece of a larger picture"
+  },
+  "application": {
+    "title": "Compare two funds",
+    "message": "Take any two open-ended funds, find their published return and standard deviation, and compute the Sharpe ratio yourself. The fund with the higher return is not necessarily the fund with the higher Sharpe.",
+    "secondary": "It is a quick check that stops you being led around by an absolute return figure."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Is a manager who returned 30% better than one who returned 15%? There is no answer until you know how much risk each of them took to get there."
+    },
+    {
+      "type": "formula",
+      "title": "Sharpe Ratio",
+      "equation": "Sharpe = (Rp − Rf) / σp",
+      "variables": [
+        { "symbol": "Rp", "name": "Portfolio return" },
+        { "symbol": "Rf", "name": "Risk-free rate" },
+        { "symbol": "σp", "name": "Standard deviation of the portfolio's returns" }
+      ]
+    },
+    { "type": "heading", "text": "Same numerator, different denominator" },
+    {
+      "type": "paragraph",
+      "text": "Sharpe divides by standard deviation, so it counts systematic and idiosyncratic risk alike. Treynor replaces the denominator with beta, counting only the risk that cannot be diversified away. That difference decides where each belongs: Sharpe for a portfolio standing alone, Treynor for a portfolio that is one piece of an already diversified whole."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Sharpe",
+        "text": "The denominator is total risk. Use it when this is the investor's entire wealth, or when comparing standalone funds against one another."
+      },
+      "right": {
+        "label": "Treynor",
+        "text": "The denominator is beta. It is only right once idiosyncratic risk has been diversified away; applied to a concentrated portfolio it flatters."
+      }
+    },
+    { "type": "heading", "text": "Alpha and the Information Ratio" },
+    {
+      "type": "paragraph",
+      "text": "Jensen's alpha measures the return above what CAPM predicts for the portfolio's beta - the part not explained by accepting market risk. The Information Ratio changes the frame of reference to a benchmark instead: return above the benchmark divided by tracking error, which is what each unit of willingness to deviate bought you."
+    },
+    {
+      "type": "callout",
+      "label": "The trap all four share",
+      "text": "They are all computed on past data, and they all assume risk is captured by the dispersion of returns. A strategy selling far out-of-the-money options shows a beautiful Sharpe for years and then loses everything in a month - standard deviation cannot see the tail risk building up."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "No measure is right for every situation; choosing a measure is choosing a definition of risk.",
+        "Next lesson: the models standing behind beta and alpha - CAPM and the multifactor models."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "kiem-toan-noi-bo-va-ba-tuyen-phong-ve",
+  "title": "Audit, Lesson 6: Internal audit and the three lines of defence - who guards what",
+  "subtitle": "How it differs from external audit, why it reports straight to the audit committee, and the three lines model",
+  "duration": "11 min",
+  "whyItMatters": "Internal audit is a profession with its own logic, not a scaled-down version of external audit. The three lines of defence model is also the shared risk management framework used by banks, insurers and any organisation of size.",
+  "openingQuestion": "Who should internal audit report directly to?",
+  "openingOptions": [
+    "The CEO, as the most senior executive in the company",
+    "The audit committee of the board of directors",
+    "The CFO, since most of what is checked is financial",
+    "The external auditors from outside the company"
+  ],
+  "explanation": "Internal audit examines the executive machine itself, so reporting to the head of that machine destroys independence immediately: a finding that is unfavourable to the CEO would cross the CEO's own desk before it reached the board. Good governance practice therefore splits the two lines: administratively it can sit under management, but functionally, and for reporting findings, it goes straight to the audit committee - a body made up of independent board members.",
+  "diagram": [
+    {
+      "label": "Line 1: operating units control themselves"
+    },
+    {
+      "label": "Line 2: risk management, compliance"
+    },
+    {
+      "label": "Line 3: internal audit"
+    },
+    {
+      "label": "Outside: the external auditor"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Why banks are required to have three lines",
+    "description": "In a bank, the first line is the business units themselves - the person granting credit has to appraise it under the process. The second line is risk management and compliance, setting limits and monitoring independently of the business. The third line is internal audit, checking whether the first two really work as designed. This structure is a regulatory requirement rather than a choice, because the repeated lesson from bank failures is that when the second line reports to the person accountable for sales volume, the risk limits always get loosened."
+  },
+  "quiz": [
+    {
+      "question": "What is the fundamental difference between internal audit and external audit?",
+      "options": [
+        "Internal audit serves the board and management; external audit serves outside users of the statements",
+        "Internal audit checks only accounting figures while external audit checks processes too",
+        "Internal audit is performed quarterly while external audit happens once at year end",
+        "Internal audit is done by employees so it need not follow any professional standard"
+      ],
+      "explanation": "Every other difference flows out of who each one serves: the scope, the frequency, and even how findings are handled. Scope runs the opposite way to the second option, since internal audit reaches well beyond the accounting records. Frequency varies by risk rather than following a fixed quarterly rhythm. And internal audit has its own professional standards, the IIA framework, which apply precisely because the auditors are employees."
+    },
+    {
+      "question": "How does internal audit's scope compare with external audit's?",
+      "options": [
+        "Narrower: focused only on checking that the recorded accounting figures are accurate and complete",
+        "Broader: it covers operational efficiency, internal compliance and risk management too",
+        "Equivalent, since both apply the same set of international auditing standards",
+        "Broader, but only across subsidiaries and not the parent company of the group"
+      ],
+      "explanation": "An internal audit engagement can examine whether the procurement process is wasteful - a question entirely outside the scope of a financial statement audit. The two follow different standards, the IIA framework and the ISAs respectively, so they are not equivalent, and nothing about the model excludes the parent company from review; if anything, group-level processes are usually the highest priority."
+    },
+    {
+      "question": "Which functions make up the second line of defence?",
+      "options": [
+        "Internal audit, the first dedicated oversight function in the organisational structure",
+        "The business units themselves, since they understand their own risks best",
+        "Risk management, compliance and financial control - oversight independent of the business",
+        "The independent external auditor together with the state regulators that supervise the sector"
+      ],
+      "explanation": "The crucial point is that the second line must be independent in its reporting from the first. When it reports to the person accountable for sales volume, the oversight function stops working. Internal audit is the third line rather than the second, the business units are the first, and the external auditor and the regulator sit outside the model entirely because they are not part of the organisation's own structure."
+    },
+    {
+      "question": "Why is the external auditor not counted as one of the three lines of defence?",
+      "options": [
+        "Because the company pays their fee, so they are not independent enough to count as a line",
+        "Because they only work once a year, too infrequently to count as a genuine line of defence",
+        "Because their scope is much narrower than the three internal lines, so they are not equivalent",
+        "Because they sit outside the organisation, providing supplementary assurance rather than internal control"
+      ],
+      "explanation": "The model describes how an organisation governs its own risk. The external auditor and the regulator are an outside layer, usually drawn beyond all three lines. Fee payment is a real independence concern that the profession manages through rotation and service restrictions, but it is not the reason for the exclusion, and neither frequency nor narrowness of scope would keep an internal function out of the model."
+    },
+    {
+      "question": "Why is the external auditor left out of the three lines of defence model?",
+      "options": [
+        "Because they sit outside the organisation and only opine on the financial statements",
+        "Because they work only periodically rather than monitoring continuously through the year",
+        "Because their scope is narrower than the scope of the internal audit function",
+        "Because they report to executive management rather than to the board of directors"
+      ],
+      "explanation": "The three lines are an internal structure and belong to the company's own governance responsibility. The external auditor is an outside assurance layer serving the readers of the report - two different roles, so collapsing them together misunderstands both. Their reporting line in fact runs to the audit committee rather than to executive management, and periodic working is a consequence of the role, not the reason for the exclusion."
+    }
+  ],
+  "keyTakeaways": [
+    "Internal audit serves the board; external audit serves the outside readers of the statements",
+    "It reports straight to the audit committee, because it examines the executive machine itself",
+    "Broader scope: operational efficiency and risk management, not only the financial statements",
+    "Three lines: operations control themselves, risk management oversees, internal audit checks both",
+    "The second line stops working the moment it reports to the person accountable for sales volume"
+  ],
+  "practicePrompt": {
+    "question": "The head of internal audit reports directly and solely to the CEO. Where is the problem?",
+    "options": [
+      "There is no problem at all; that is the usual reporting structure",
+      "Independence is lost: findings pass through the person audited",
+      "The head of internal audit will be overloaded with work",
+      "The cost of running the internal audit function will rise"
+    ],
+    "explanation": "This is a structural governance fault rather than a problem with any individual - it exists even when everyone involved acts in good faith. The standard remedy is a dual reporting line: administratively under management for day-to-day matters, but functionally, and for every finding, reporting straight to the board's audit committee."
+  },
+  "summary": {
+    "keyIdea": "Internal audit's independence comes from its reporting line, not from anyone's personal qualities",
+    "commonMistake": "Treating internal audit as a scaled-down version of external audit",
+    "action": "Find the corporate governance section in a listed company's annual report and see who internal audit reports to."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "For a listed company, look up the annual report and answer: is there an audit committee, how many of its members are independent, and who does the internal audit function report to. Those three answers tell you a good deal about the quality of governance.",
+    "secondary": "A company that cannot answer all three from its published documents has already answered."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous five lessons were about external audit - the outsider who comes in once a year. This one is about the line of defence that sits permanently inside, and why its reporting structure matters more than its competence."
+    },
+    {
+      "type": "heading",
+      "text": "The three lines of defence model"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Who guards what",
+      "subtitle": "Each line oversees the one before it, and independence between the lines is what makes the model work",
+      "concepts": [
+        {
+          "def": "The business units themselves own and control their own risk under the published process. This is where risk arises and where it is dealt with first.",
+          "en": "Operating units"
+        },
+        {
+          "def": "Sets the framework and the limits, and monitors the first line. It must be independent in its reporting from the first line, or the limits always get loosened.",
+          "en": "Risk management & compliance"
+        },
+        {
+          "def": "Checks whether the first two lines really operate as designed. Reports straight to the audit committee to stay independent of executive management.",
+          "en": "Internal audit"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Independence is structural, not a matter of character",
+      "text": "A head of internal audit of complete integrity still cannot be independent if their pay, bonus and appointment are decided by the very people they audit. This is why every governance recommendation focuses on structure: who appoints, who evaluates, where findings go. The same argument applies to external audit - and is the reason for rules on rotating the lead partner and limits on the non-audit services that may be sold to the same client."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The right question about an oversight function is not whether they are any good, but who they report to.",
+        "That closes the audit stage: from reading an opinion to understanding the machine that produced it."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "slug": "cfa-ethics-standard-4c-trach-nhiem-giam-sat",
+  "title": "CFA Ethics 31: Standard IV(C) - 'I didn't know' is not a defence",
+  "subtitle": "The reasonable steps a supervisor must take, and liability when the control system does not exist",
+  "duration": "10 min",
+  "whyItMatters": "This is the only standard that makes you answerable for someone else's conduct, and it applies the moment you have your first subordinate - far earlier than most people ever think about it.",
+  "openingQuestion": "An employee under your supervision breaches the trading rules. You had no idea. Are you liable?",
+  "openingOptions": [
+    "No, because you took no part in it and knew nothing about it",
+    "Possibly yes, if you were not running a control system",
+    "Yes, in every case, because you are the supervisor",
+    "Only if you personally benefited from the breach"
+  ],
+  "explanation": "Standard IV(C) does not require a supervisor to detect every breach - that is impossible. It requires reasonable steps: written control procedures, communicated to staff, a mechanism for periodic monitoring, and action when a warning sign appears. If those four exist and are running and a breach still slips through, the supervisor is usually not held responsible. If they do not exist, 'I didn't know' becomes the evidence against you rather than the defence - because not knowing is the direct consequence of never having built the means to know.",
+  "summary": {
+    "keyIdea": "Supervisory responsibility cannot be handed on: you do not have to detect every breach, but you do have to build a system capable of detecting one.",
+    "commonMistake": "Assuming a compliance procedure on paper is enough. If you know it is not being enforced and leave it in place, you have breached."
+  },
+  "application": {
+    "title": "On finding a breach in your team",
+    "message": "Investigate and stop it immediately, rather than merely reporting it upward. Supervisory responsibility does not transfer by email."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard IV(C) places responsibility on the supervisor when a subordinate breaches. It does not require you to detect every breach - that is impossible - but it does require you to have built enough machinery to be capable of detecting one."
+    },
+    { "type": "heading", "text": "Four reasonable steps" },
+    {
+      "type": "list",
+      "items": [
+        "Written control procedures, not tacit understandings.",
+        "Communicate those procedures to staff and make sure they are understood.",
+        "Monitor periodically rather than waiting for an incident.",
+        "Act as soon as a warning sign appears, without waiting for complete proof."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If those four exist and genuinely operate and a breach still slips through, the supervisor is usually not held responsible. The standard here is the process, not the outcome."
+    },
+    {
+      "type": "callout",
+      "label": "When 'I didn't know' becomes the evidence against you",
+      "text": "When not knowing is the direct consequence of never having built the means to know. At that point the sentence stops being a defence - it is a description of the breach."
+    },
+    { "type": "heading", "text": "When the system is inadequate and you cannot fix it" },
+    {
+      "type": "paragraph",
+      "text": "The duty is to raise the issue in writing with the level that has authority. If you are refused and still carry supervisory responsibility over a system you know to be inadequate, the standards permit - and in many cases recommend - declining that role."
+    },
+    {
+      "type": "paragraph",
+      "text": "One step is routinely missed after a breach: dealing with the person who breached is not enough. The system has to be reviewed, because one person managing it means there is a gap in the controls, and the next person will manage it too."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Supervision is not a job title.",
+        "It is a set of things that must be done - and not doing them carries liability."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Written control procedures in place" },
+    { "label": "Communicated and taught to staff" },
+    { "label": "Monitored periodically, not only after incidents" },
+    { "label": "Acted on at the first sign - and the system itself reviewed" }
+  ],
+  "realWorldExample": {
+    "company": "When the controls are inadequate and you take the supervisory role anyway",
+    "description": "If the firm lacks controls sufficient for you to discharge the supervisory duty, Standard IV(C) requires you to raise it and ask for them to be established. If the request is refused, you have to consider declining the supervisory role - because accepting a role you know you cannot discharge puts you in breach from the first day. This is one of the few places where the standards say outright that refusing an assignment is the right answer."
+  },
+  "quiz": [
+    {
+      "question": "What does Standard IV(C) require of a supervisor?",
+      "options": [
+        "Report every activity of their subordinates to the compliance function",
+        "Detect every breach that occurs anywhere within their own department",
+        "Sign off on each employee trade individually before it is executed",
+        "Take reasonable steps to detect and prevent breaches from occurring"
+      ],
+      "explanation": "The test is reasonable steps rather than an absolute outcome - but where those steps do not exist, there is nothing left to point to. Requiring detection of every breach would set a standard nobody could meet, while individual sign-off and blanket reporting substitute volume of process for a system designed to catch anything."
+    },
+    {
+      "question": "When does 'I didn't know' become the evidence against you?",
+      "options": [
+        "When not knowing follows from having no mechanism to know",
+        "When the breach caused a financial loss to the firm's clients",
+        "When the supervisor has a personal relationship with the employee",
+        "When the breach ran for more than six months before discovery"
+      ],
+      "explanation": "This is the core point: ignorance manufactured by the failure to set up any supervision protects nobody. Client loss, duration and personal relationships may all aggravate a case once it is brought, but none of them is what converts the claim of ignorance into an admission - only the absence of the machinery does that."
+    },
+    {
+      "question": "If the firm lacks adequate controls, what should a supervisor do?",
+      "options": [
+        "Build a control system themselves out of their own personal resources",
+        "Raise it, ask for controls, and consider declining the role if refused",
+        "Accept the role while recording that the issue was raised",
+        "Report the matter directly to a regulator outside the firm"
+      ],
+      "explanation": "Accepting a role you know you cannot discharge puts you in breach from day one. A written record of having raised the issue is a necessary part of the process but is not by itself a discharge of the duty, building a private system is not within one person's means, and escalating to a regulator jumps a step the firm has not yet been given."
+    },
+    {
+      "question": "When does Standard IV(C) start to apply?",
+      "options": [
+        "When you are formally appointed as the firm's compliance officer",
+        "When you reach the level of departmental management or above",
+        "As soon as you have your first subordinate",
+        "When the number of staff under you passes a set threshold"
+      ],
+      "explanation": "Far earlier than most people assume - and that is why so many breaches of this kind come from someone who never thought of themselves as a supervisor at all. Titles, headcount thresholds and formal compliance appointments all arrive later, and none of them is what creates the duty: the first person reporting to you does."
+    },
+    {
+      "question": "On spotting signs of a breach, which step is most often missed?",
+      "options": [
+        "Notifying the clients who were affected by the breach",
+        "Taking disciplinary action against the employee who caused it",
+        "Reporting the matter to the firm's compliance department",
+        "Reviewing the control system that let the breach through"
+      ],
+      "explanation": "Dealing with the person is the natural reflex; asking why the system failed to catch them is not - so the next breach of the same shape gets through as well. Client notification and compliance reporting are also usually done, precisely because they are prescribed steps. The system review is the one nobody is formally required to remember."
+    }
+  ],
+  "keyTakeaways": [
+    "The test is reasonable steps, not detecting every breach",
+    "Four steps: written procedures, communication, periodic monitoring, action on warning signs",
+    "Not knowing because you built no way of knowing is the evidence against you",
+    "Inadequate system: raise it, and consider declining the role if refused",
+    "After every breach, review the system, not only the person who breached"
+  ],
+  "practicePrompt": {
+    "question": "You supervise three employees. The firm has a personal trading policy but nobody has ever checked compliance with it. What should you do?",
+    "options": [
+      "Nothing needs doing, since the policy already exists in writing",
+      "Set up periodic checking, rather than relying on the policy alone",
+      "Wait until a sign of a breach appears and then check",
+      "Report it upward and treat the duty as discharged"
+    ],
+    "explanation": "A written policy is necessary but not sufficient - and the first option is the commonest misunderstanding of this standard. Waiting for a warning sign is a detective control rather than a preventive one, and the duty here is prevention. Reporting upward does not transfer responsibility for the three people who report to you."
+  }
+}

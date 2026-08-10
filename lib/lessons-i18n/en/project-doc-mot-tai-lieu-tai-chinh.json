@@ -1,0 +1,165 @@
+{
+  "slug": "project-doc-mot-tai-lieu-tai-chinh",
+  "title": "AI in Finance, Lesson 16: A small project - reading one financial document",
+  "subtitle": "Practice, from a real document to a sourced summary.",
+  "duration": "16 min",
+  "whyItMatters": "The feel of checking a number against its source cannot be learned by reading about it - you have to do it once yourself before the reflex forms.",
+  "openingQuestion": "What is the most important output this project asks for?",
+  "openingOptions": [
+    "A summary with main points, figures and verifiable sources",
+    "A really long, really detailed answer covering every angle",
+    "An immediate recommendation to buy",
+    "A passage with no source given"
+  ],
+  "explanation": "The first project of the stage is deliberately tiny: one short document, five main points, three sourced figures, three questions to verify. The aim is not to produce an impressive piece of analysis, but to run the read - extract - reconcile loop end to end at least once, so you get a real feel for checking output rather than reading theory about it. There is only one pass criterion: every number in what you hand in can be reopened at exactly the right place in the original document.",
+  "summary": {
+    "keyIdea": "The first project: use AI to read a real document and produce a verifiable summary.",
+    "commonMistake": "Picking a document that is far too long to start with.",
+    "action": "Choose a short article or report and work through all 4 steps."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Once you have the theory you have to try it. This project is kept very small so anyone can start."
+    },
+    { "type": "heading", "text": "Choosing the document" },
+    {
+      "type": "paragraph",
+      "text": "Pick a financial news article, or 5-10 pages of a report. Do not pick something too long on your first attempt."
+    },
+    { "type": "heading", "text": "The 4 practice steps" },
+    {
+      "type": "list",
+      "items": [
+        "Summarise 5 main points",
+        "Extract 3 important figures",
+        "Record the source of each figure",
+        "Write 3 questions that need further checking"
+      ]
+    },
+    { "type": "heading", "text": "Submission template" },
+    {
+      "type": "paragraph",
+      "text": "Document name, 5 main points, a table of 3 sourced figures, 3 risks or questions, and what you are still unsure about."
+    },
+    { "type": "heading", "text": "Three suggested documents to start with" },
+    {
+      "type": "list",
+      "items": [
+        "A news article on a listed company's quarterly results - concrete figures, a manageable length.",
+        "The note on borrowings or receivables in the latest quarterly financial statements of a company you know.",
+        "A company's AGM resolution - short, with the plan and the dividend stated as numbers."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The prompt for this project",
+      "text": "\"Use only the attached document. (1) Summarise 5 main points, one sentence each. (2) Extract the 3 most important figures, each with its page or paragraph, its unit, and its reporting period. (3) State 3 questions requiring further verification that this document does not answer. If you cannot find a piece of information, write 'Not found' rather than inferring it. Do not give a buy or sell recommendation.\""
+    },
+    { "type": "heading", "text": "Self-marking checklist before you call it done" },
+    {
+      "type": "list",
+      "items": [
+        "Can all 3 figures be reopened at exactly the right place in the original document? (must pass)",
+        "Does every figure have a clear unit and reporting period? (must pass)",
+        "Are any of the 5 main points the writer's judgement rather than fact? Have you flagged them?",
+        "Are the 3 verification questions specific enough that you know where to look, or still vague?",
+        "Have you written down the places where you are not certain?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If on the first item you find even one figure that does not match, do not just fix that figure - recheck all three. An error in the output rarely travels alone, and this is the main lesson of the first project."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A small project builds a beginner's confidence.",
+        "What matters most is having the sources, not writing at length."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What sort of document should a beginner pick?",
+      "options": [
+        "As long as possible, to cover more ground",
+        "Short, clearly sourced, easy to check",
+        "Something with no stated source at all",
+        "A confidential file you may not use yet"
+      ],
+      "explanation": "A small document lets you practise the process safely. Length is the enemy on a first attempt: you run out of time before finishing a single reconciliation, and the habit never forms. A document with no stated source defeats the whole exercise, because there is nothing to check the extracted figures against, and using confidential material you have no permission for creates a problem the exercise was never meant to raise."
+    },
+    {
+      "question": "What does the project summary need to contain?",
+      "options": [
+        "Main points plus your own personal opinion about the business",
+        "Main points, figures, sources, and questions to check",
+        "The full document condensed down to half its length",
+        "A glossary of the technical terms you came across"
+      ],
+      "explanation": "That is what makes the output verifiable. An opinion cannot be checked against the document, so adding one dilutes exactly the property the exercise is building. Condensing the whole document by half is compression rather than analysis - it leaves you with less text and no more certainty. And a glossary is a useful side product, but it tells the reader nothing about what the document actually said."
+    },
+    {
+      "question": "Why should the first project use a short document?",
+      "options": [
+        "Because long documents always exceed the AI tool's limit",
+        "Because a short document is usually more accurate than a long one",
+        "Because the goal is to run the full read-extract-verify loop",
+        "Because long documents contain too many difficult technical terms"
+      ],
+      "explanation": "The process for a 5-page document and a 150-page one is identical; only the number of loops differs. Learning the process on something small makes it far more likely you reach the end. Modern tools handle long documents fine, so the limit is your attention rather than the model's. Length has no bearing on accuracy either - a short press release can be as misleading as a prospectus."
+    },
+    {
+      "question": "You reconcile and find that one of the three figures does not match its source. What should you do?",
+      "options": [
+        "Ask the AI again to say where it pulled that number from",
+        "Drop that figure entirely from the final summary",
+        "Fix that one number and carry on with the work",
+        "Recheck all three, because errors rarely travel alone"
+      ],
+      "explanation": "One wrong number tells you the extraction run itself was unreliable, not merely that this particular figure had a problem. Rechecking the lot is the correct response. Asking the model where it got the number keeps you inside the same unreliable output, fixing only that one leaves the other two unexamined, and deleting the figure hides the error rather than resolving it."
+    },
+    {
+      "question": "Why does the first project ask for only three sourced figures instead of a full analysis?",
+      "options": [
+        "Because the goal is to run the reconciliation loop through at least once",
+        "Because three is the maximum an AI extracts accurately at one time",
+        "Because a short document rarely holds more than three key figures",
+        "Because a beginner lacks the knowledge to read other financial metrics"
+      ],
+      "explanation": "The habit of reconciling only forms once you have genuinely taken it all the way through a single time. Three figures is few enough that you will not abandon it halfway and many enough that you will run into at least one discrepancy - which is the real lesson of the project. There is no fixed limit on how many figures a model extracts, and a short document usually holds far more than three."
+    }
+  ],
+  "diagram": [
+    { "label": "Pick a short document (one article, or 5-10 pages)" },
+    { "label": "AI summarises 5 points and extracts 3 figures with pages" },
+    { "label": "You reopen the source and check each figure" },
+    { "label": "Submit the summary plus 3 questions to verify" }
+  ],
+  "realWorldExample": {
+    "company": "Choosing a document you can handle",
+    "description": "The most common mistake on a first project is picking something far too large - a 150-page annual report, or a prospectus. The learner spends a whole session without finishing a single reconciliation, gives up, and concludes the method is impractical. A manageable first document is a financial news article with concrete figures, or the note explaining one line item in a quarterly report - roughly five to ten pages. Once the loop is familiar, document size stops mattering much, because the process is identical, just repeated more often."
+  },
+  "keyTakeaways": [
+    "Pick a short document for the first attempt - the goal is to complete the process, not to handle a large file.",
+    "Three sourced figures are worth more than ten summary points you cannot verify.",
+    "Reopening the original document yourself to reconcile is a mandatory step, never one to skip.",
+    "The final product includes the places you are still unsure about - that is the most honest part of the submission."
+  ],
+  "practicePrompt": {
+    "question": "What is the most important output this project asks for?",
+    "options": [
+      "A summary with main points, figures and verifiable sources",
+      "An answer that runs very long",
+      "An immediate recommendation to buy",
+      "A passage with no source given"
+    ],
+    "explanation": "The project exists to practise the habit of reading with sources attached."
+  },
+  "application": {
+    "title": "Practise it now",
+    "message": "Choose a short article or report and work through all 4 steps.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

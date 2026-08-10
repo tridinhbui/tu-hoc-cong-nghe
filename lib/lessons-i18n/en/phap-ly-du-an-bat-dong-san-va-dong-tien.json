@@ -1,0 +1,138 @@
+{
+  "slug": "phap-ly-du-an-bat-dong-san-va-dong-tien",
+  "title": "Property Projects, Lesson 1: Permits - why the cash flow starts with a piece of paper",
+  "subtitle": "Four legal milestones decide when money is allowed to flow in, and why slipping one costs more than a construction overrun",
+  "duration": "11 min",
+  "whyItMatters": "In the financial model of a property project, the most sensitive variable is not the selling price or the construction cost - it is the date the project becomes eligible to sell. Anyone building the model without knowing what that date depends on is forecasting a cash flow that will never happen.",
+  "openingQuestion": "The project has land use rights and construction has started. Can the developer take money from buyers yet?",
+  "openingOptions": [
+    "Not yet - it still has to meet the pre-sale eligibility rules",
+    "Yes, because starting work means the building permit is in hand",
+    "Yes, if the two sides agree it privately through a deposit contract",
+    "Not yet - it has to wait until the works are finished and handed over"
+  ],
+  "explanation": "Holding the land and holding a construction permit is still not enough. The real estate business law imposes separate conditions on selling homes to be formed in the future - among them completing the foundation for an apartment building and obtaining written confirmation from the regulator that the conditions are met. In cash flow terms this is the single most important milestone in the whole life of a project: before it, every dong going out is equity or debt; after it, buyers' money starts coming in and becomes the cheapest funding the developer has. Missing this date by three months raises the interest cost on the entire amount already committed, not on one line item.",
+  "diagram": [
+    { "label": "Investment policy approval" },
+    { "label": "Land allocation and land use rights" },
+    { "label": "Construction permit → work starts" },
+    { "label": "Pre-sale eligibility → buyers' money starts coming in" },
+    { "label": "Completion, handover, and title for the buyers" }
+  ],
+  "realWorldExample": {
+    "company": "The stalled projects of Ho Chi Minh City and Hanoi",
+    "description": "Most projects that sit still for years are not stuck because the construction money ran out, but because one legal milestone is blocked - the land use levy has not been determined, the master plan is being revised, or the origin of the land is disputed. Throughout that time interest keeps accruing on everything already committed, so a project that is profitable on paper can make a real loss simply by standing still."
+  },
+  "quiz": [
+    {
+      "question": "Which legal milestone determines when buyers' money is allowed to flow in?",
+      "options": [
+        "The day the regulator grants investment policy approval for the project",
+        "The day the developer formally starts construction work on the project site",
+        "The day the land use right certificate is issued for the project land",
+        "Meeting the pre-sale conditions for homes to be formed in the future"
+      ],
+      "explanation": "The other three are all necessary but none of them permits taking money. Only this one opens the inflow - and that inflow is the cheapest funding the developer will ever get. Approval and land title are prerequisites that come earlier in the sequence, and breaking ground says nothing at all about whether the sales conditions have been satisfied."
+    },
+    {
+      "question": "Why does a legal delay cost more than a construction overrun of the same size?",
+      "options": [
+        "Because interest accrues on everything already committed, not just the delayed part",
+        "Because construction costs can be renegotiated with the contractor while permits cannot",
+        "Because a legal delay always brings a financial penalty imposed by the state regulator",
+        "Because investors pull their capital the moment a project falls behind schedule"
+      ],
+      "explanation": "An overrun is a one-off amount. A delay is the cost of capital multiplied by time, applied to the entire sum sitting inside the project. No penalty is levied for waiting on a permit, contractor renegotiation is a separate lever that does not change the arithmetic, and investors rarely have the ability to withdraw mid-project even when they want to."
+    },
+    {
+      "question": "What does an undetermined land use levy do to a project?",
+      "options": [
+        "Nothing much - work proceeds and the amount is settled later",
+        "The total investment is unknown, so the selling price cannot be fixed",
+        "It only affects the tax obligations of the developer company",
+        "A provisional amount is paid and then settled afterwards"
+      ],
+      "explanation": "This is the largest and most uncertain cost item in many projects. Until you know what it is, every number downstream is an assumption. It is not merely a tax question - it feeds straight into the total investment figure - and while provisional payment arrangements exist in some cases, they leave the final amount, and therefore the pricing, still open."
+    },
+    {
+      "question": "How should legal risk be built into a financial model?",
+      "options": [
+        "Raise the discount rate for the whole project by a few percentage points",
+        "Add a fixed contingency amount into the project budget",
+        "Run scenarios across several different lengths of delay",
+        "A qualitative note in the appraisal report commentary section"
+      ],
+      "explanation": "This risk shows up as time rather than as money, so it has to be modelled as time. A fixed contingency cannot distinguish a six-month slip from a two-year one, and those two have very different effects on the NPV. Lifting the discount rate spreads the adjustment evenly across a risk that is not evenly distributed, and a written note changes no number in the model at all."
+    },
+    {
+      "question": "Why is money paid up front by buyers the cheapest source of funding?",
+      "options": [
+        "Because banks lend at a preferential rate once buyer money is in",
+        "Because it goes straight into revenue as soon as it is received",
+        "Because buyers cannot reclaim it if handover is delayed",
+        "Because it carries no interest and needs no security"
+      ],
+      "explanation": "But it is not free: the price is the obligation to hand over on time, and the late-handover penalties written into these contracts are usually substantial. The money is recorded as a liability rather than as revenue until handover, and buyers retain contractual rights to compensation and in some cases to cancel."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A developer has committed 800bn at a cost of capital of 12% a year. The pre-sale eligibility milestone slips 9 months behind plan. What does that delay alone cost?",
+    "options": [
+      "72bn (= 800bn × 12% × 9/12 of a year)",
+      "96bn (= 800 × 12%, a full year)",
+      "Nothing, since no building work has happened yet",
+      "9bn (= 800 × 12% divided by 9 months)"
+    ],
+    "explanation": "A legal delay generates no invoice, which makes it the one project cost nobody has to approve - and that is exactly why it gets overlooked. But the 800bn already committed still carries its cost of capital throughout the wait: 800 × 12% × 9/12 = 72bn, close to a tenth of the total capital deployed. That is why a legal delay costs more than a construction overrun of the same size: an overrun is a one-off amount, while a delay is the cost of capital multiplied by time, applied to everything already sitting in the project."
+  },
+  "keyTakeaways": [
+    "Four milestones: investment policy approval, land use rights, construction permit, pre-sale eligibility.",
+    "The fourth one governs the cash inflow - before it, every dong is equity or debt.",
+    "A legal delay costs the cost of capital multiplied by time, applied to all the capital committed.",
+    "Model legal risk with time scenarios, not with a fixed contingency amount."
+  ],
+  "summary": {
+    "keyIdea": "The pre-sale eligibility milestone determines the day buyers' money is allowed to flow in",
+    "commonMistake": "Treating legal risk as a fixed contingency. It shows up as time, so it has to be modelled as time.",
+    "action": "In your project model, make the pre-sale eligibility date a variable and run scenarios at 6, 12 and 24 months of delay."
+  },
+  "application": {
+    "title": "Find a project's most sensitive variable",
+    "message": "For any project, try each in turn: selling price down 10%, construction cost up 10%, and legal timeline delayed 12 months. Compare the three results to see which one eats furthest into the profit.",
+    "secondary": "In most projects the third one wins - because interest accrues on everything already committed, not just on the part that is delayed."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In every other industry, legal work is an appendix to the investment file. In property it is the first variable of the model - because it determines the day money is allowed to flow in."
+    },
+    { "type": "heading", "text": "Four milestones and what each means for cash" },
+    {
+      "type": "conceptTable",
+      "title": "The legal path of a project",
+      "concepts": [
+        { "def": "The state agrees this project can be built here. There is nothing to build yet, but spending has begun: consultants, planning, site clearance." },
+        { "def": "It comes with the land use levy - the largest and most uncertain item in many projects, and one that is usually determined late." },
+        { "def": "Work can start. From here construction costs flow out against progress, a fresh amount every month." },
+        { "def": "The only milestone that opens an INFLOW. For an apartment building it also requires a completed foundation and written confirmation from the regulator." }
+      ]
+    },
+    { "type": "heading", "text": "Why time is the most expensive cost here" },
+    {
+      "type": "paragraph",
+      "text": "A 50bn construction overrun is a one-off amount. A one-year legal delay with 500bn sitting in the project at a 12% cost of capital is 60bn too - but it does not appear on any line of the budget, so it is very easy for nobody to be tracking it. That is why, in the appraisal file for a property project, the legal timeline gets more scrutiny than the unit rates for materials."
+    },
+    {
+      "type": "callout",
+      "label": "How to put it in the model",
+      "text": "Do not add a fixed contingency for legal risk. This risk shows up as TIME, so build three scenarios: on schedule, six months late, two years late - and look at the NPV of all three. The gap between them is usually wider than the gap between a high and a low selling price scenario."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A property project does not lose money because building it was expensive. It loses money because it stood still.",
+        "And while it stands still, the only thing still running to schedule is the interest."
+      ]
+    }
+  ]
+}

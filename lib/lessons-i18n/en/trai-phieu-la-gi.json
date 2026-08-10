@@ -12,12 +12,22 @@
   ],
   "explanation": "A bond is a loan that has been divided into tradable units: the issuer receives the money and commits to paying periodic interest and returning the face value at maturity. The buyer is a creditor, not an owner, so they get paid before shareholders if the business goes bankrupt, but they don't share in any growth upside. Three elements shape every bond - face value, coupon rate, and maturity - and every concept that follows revolves around these three.",
   "diagram": [
-    { "label": "The issuer needs capital, sells a bond", "arrow": true },
-    { "label": "The investor pays for it, becomes a creditor", "arrow": true },
-    { "label": "Receives periodic coupons throughout the term", "arrow": true },
-    { "label": "Maturity: gets back the face value - and is paid before shareholders in bankruptcy" }
+    {
+      "label": "The issuer needs capital, sells a bond",
+      "arrow": true
+    },
+    {
+      "label": "The investor pays for it, becomes a creditor",
+      "arrow": true
+    },
+    {
+      "label": "Receives periodic coupons throughout the term",
+      "arrow": true
+    },
+    {
+      "label": "Maturity: gets back the face value - and is paid before shareholders in bankruptcy"
+    }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "Vietnam Government Bonds",
     "description": "When the Vietnam State Treasury issues a government bond, it is essentially the state borrowing money from investors (including banks, investment funds, and individuals) with a commitment to pay periodic interest and return the principal at maturity - one of the government's largest capital-raising tools."
@@ -104,12 +114,18 @@
       "type": "lead",
       "text": "A bond is a standardised debt contract: the issuer - which could be a government or a business - borrows a fixed amount of money from investors, committing to pay periodic interest (the coupon) and repay the full principal (face value) on a set date (maturity). Unlike a stock - where you buy a share of company ownership - buying a bond is lending money, and the buyer becomes a creditor, not an owner."
     },
-    { "type": "heading", "text": "The three core numbers of a bond" },
+    {
+      "type": "heading",
+      "text": "The three core numbers of a bond"
+    },
     {
       "type": "paragraph",
       "text": "Every bond is defined by three elements: face value (the amount received back at maturity, typically 1 million or 100 million VND per lot), coupon rate (the fixed nominal interest rate calculated on face value), and maturity (the time until it comes due). **Example:** a bond with a face value of 1,000,000 VND, a coupon rate of 5%, and a 5-year term. Each year the investor receives 5% × 1,000,000 VND = 50,000 VND in interest, and after 5 years gets back exactly 1,000,000 VND in principal. If interest is paid semi-annually (common in the US), each 6-month period receives 25,000 VND."
     },
-    { "type": "heading", "text": "Why bondholders rank ahead of shareholders" },
+    {
+      "type": "heading",
+      "text": "Why bondholders rank ahead of shareholders"
+    },
     {
       "type": "paragraph",
       "text": "When a company goes bankrupt, remaining assets are distributed in a strict legal order: secured creditors first, then unsecured creditors (including most bondholders), then preferred shareholders, and finally common shareholders. A bondholder is a creditor - with a legal right to claim repayment first. A shareholder is a residual claimant - only receiving what's left after all debt obligations are settled, and in many bankruptcies, that residual amount is zero. This is exactly why bonds are considered a safer investment channel than stocks, even though the potential return in exchange is usually much lower."

@@ -1,0 +1,147 @@
+{
+  "slug": "mo-hinh-cham-diem-tin-dung-credit-scoring",
+  "title": "Credit Scoring Models: from data to a lending decision",
+  "subtitle": "The 5C framework is the qualitative approach - a credit scoring model is the systematic quantitative approach the large banks actually run",
+  "duration": "8 min",
+  "openingQuestion": "A credit scoring model uses statistics to predict a customer's probability of default (PD). Why do large banks prefer this quantitative method over relying on each credit officer's qualitative judgement?",
+  "openingOptions": [
+    "Because the qualitative judgement of a human credit officer is entirely unreliable in every case",
+    "It assesses thousands of applications against one objective standard, cutting personal bias",
+    "A quantitative model is always 100% accurate and never gets anything wrong",
+    "Credit scoring has nothing to do with the actual lending decision"
+  ],
+  "explanation": "A credit scoring model delivers three core benefits over purely qualitative assessment: CONSISTENCY (every application is judged against the same standard, so an individual officer's bias matters less), TESTABILITY AND IMPROVEMENT (the model can be back-tested against actual default data and its weights adjusted over time), and SCALE (thousands of consumer loan applications a day, at speed and with stable reliability). None of that means the quantitative model is perfect - it still needs oversight, and human judgement still has to supplement it in unusual cases.",
+  "realWorldExample": {
+    "company": "The FICO Score and the US credit scoring system",
+    "description": "The FICO Score - the most widely used credit scoring system in the United States - runs a statistical model over five groups of factors (payment history 35%, amounts currently owed 30%, length of credit history 15%, credit mix 10%, recently opened credit 10%) to produce a number between 300 and 850. The system was built from statistical analysis of millions of historical credit files, letting lenders decide quickly and consistently - though it remains contested how fully a single score can capture an individual's real 'creditworthiness' in every circumstance."
+  },
+  "quiz": [
+    {
+      "question": "How does 'probability of default' (PD) differ from 'loss given default' (LGD), and why are both needed for a complete view of credit risk?",
+      "options": [
+        "PD is the probability of default; LGD is the loss once default occurs",
+        "PD applies to individuals; LGD applies to corporate borrowers",
+        "PD is computed by the bank; LGD is set by the regulator",
+        "PD is the expected loss; LGD is the chance a customer pays late"
+      ],
+      "explanation": "This is the foundation formula of modern credit risk management under the Basel framework: Expected Loss = PD × LGD × EAD (exposure at default). An unsecured loan can carry the same PD as a mortgage while its LGD is far higher - close to a total write-off on default, against a mortgage where most of the balance is recovered by selling the property. That is exactly why unsecured lending rates sit well above secured rates at the same PD. Both measures apply to retail and corporate borrowers alike, both are estimated by the bank within regulatory guidance, and neither is itself the expected loss - that is the product of the two with exposure."
+    },
+    {
+      "question": "What technical challenge does 'reject inference' describe in building and improving a credit scoring model over time?",
+      "options": [
+        "Rejected applicants usually go and borrow from another bank",
+        "You only have outcome data for applications that were approved",
+        "Rejected applications usually lack the information needed to score",
+        "The model is not permitted to use data from rejected applications"
+      ],
+      "explanation": "Reject inference is one of the subtlest technical problems in building a credit scoring model: because the model only 'learns' from customers who WERE APPROVED, it risks becoming steadily more conservative with each retraining, reinforcing the criteria that granted approval last time. Good customers wrongly declined never get the chance to prove they would have repaid, so their performance is unobservable. Where those applicants borrow next is irrelevant to the bank's own data. Rejected files usually contain plenty of application data - what is missing is the outcome. And no rule bars using that data; the difficulty is that the label does not exist."
+    },
+    {
+      "question": "Why must modern credit scoring models built on machine learning be especially careful about algorithmic bias before being used for real lending decisions?",
+      "options": [
+        "Because machine learning models run slower than older statistical models",
+        "Because they need far more data than banks normally collect on customers",
+        "Because historical data can carry social bias already baked into it",
+        "Because the law forbids using machine learning in credit scoring"
+      ],
+      "explanation": "This is an increasingly important ethical and legal issue in modern finance: a machine learning model learns from historical data, and if that data reflects past injustices - even unintentionally - the model risks automating and amplifying them at a far larger scale than any individual officer's decisions ever could. That is why responsible institutions run periodic fairness audits on their scoring models rather than optimising predictive accuracy alone. Runtime is not the constraint; these models score in milliseconds. Banks already hold ample data on borrowers. And machine learning in credit scoring is legal in most jurisdictions, subject to explainability requirements."
+    },
+    {
+      "question": "Scenario: a loan has PD of 2%, LGD of 40% and EAD of 10bn dong. What is the expected loss?",
+      "options": [
+        "42m (= 2% and 40% added, then multiplied by the balance)",
+        "200m (= 2% × 10bn, leaving LGD out of the product)",
+        "4bn (= 40% × 10bn, leaving PD out of the product)",
+        "80m (= 2% × 40% × 10bn, all three multiplied)"
+      ],
+      "explanation": "Expected loss is the product of all three: 0.02 × 0.4 × 10bn = 80m. Dropping LGD out of the multiplication assumes default means losing everything, whereas most loans carry security and lose only part of the balance."
+    },
+    {
+      "question": "What exactly is the reject inference problem when a credit scoring model is being built?",
+      "options": [
+        "The model only learns from applications that were approved",
+        "The model rejects far too many applicants who were actually good",
+        "The model cannot explain the reason behind a rejection",
+        "The model is skewed by demographic data in the sample"
+      ],
+      "explanation": "Only approved applications produce a repayment outcome to learn from, so the training data has already been filtered by the old policy. The model therefore ranks well within the population that was once accepted and knows nothing about the rejected group - including the people who would have repaid perfectly. Excessive rejection is a possible consequence of the problem rather than the problem itself. Explainability is a separate regulatory concern that applies equally to models trained on complete data. And demographic skew is algorithmic bias, a different failure with a different remedy."
+    }
+  ],
+  "keyTakeaways": [
+    "A credit scoring model brings consistency, continuous testability and improvement, and scale compared with purely qualitative assessment - but it still needs human oversight",
+    "Expected Loss = PD (probability of default) × LGD (loss given default) × EAD (exposure at default) - the foundation formula of modern credit risk management",
+    "Reject inference: the model only learns from customers who WERE APPROVED, creating selection bias at every retraining and a drift towards conservatism",
+    "Algorithmic bias is a real risk to monitor: a model can unwittingly reproduce social and historical bias from its training data, which is why periodic fairness audits are needed"
+  ],
+  "practicePrompt": {
+    "question": "You are assessing two loans: Loan A ($100m, PD 2%, LGD 80% - unsecured) and Loan B ($100m, PD 5%, LGD 20% - well secured). Which carries the higher expected loss, and what does that mean for pricing the interest rate?",
+    "options": [
+      "Loan A has the higher expected loss because PD always matters more than LGD",
+      "Loan A: EL = 2% × 80% × $100m = $1.6m, above Loan B at 5% × 20% × $100m = $1m",
+      "Both loans carry exactly the same expected loss because both are $100m of exposure",
+      "The two loans cannot be compared because they are different product types"
+    ],
+    "explanation": "This exercise shows directly why looking at PD alone - as most people do when they think about 'credit risk' - is misleading. Expected loss, combining PD and LGD, is what reflects the real financial risk. It is also why unsecured lending is priced well above secured lending, even when the probability of default is similar or lower."
+  },
+  "summary": {
+    "keyIdea": "A modern credit scoring model combines quantitative statistics (PD, LGD, expected loss) to assess risk consistently and at scale, while facing technical challenges (reject inference) and ethical ones (algorithmic bias) that need careful oversight.",
+    "commonMistake": "Looking only at the probability of default (PD) and ignoring how much would actually be lost if default happened (LGD) when judging the real risk of a loan",
+    "action": "When assessing the risk of a loan, always compute expected loss (PD × LGD × EAD) rather than relying on a single PD figure"
+  },
+  "application": {
+    "title": "Applying this in consumer credit analysis",
+    "message": "Look at how a lender - a bank or a consumer finance company - publishes its credit scoring criteria, where it does so publicly, and compare that with the traditional 5C framework to see how the qualitative and the quantitative combine in practice.",
+    "secondary": "Understanding both the technical side (PD/LGD) and the ethical side (algorithmic bias) of credit scoring is an increasingly important skill as consumer finance moves heavily towards AI and machine learning models."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Behind every 'approved' or 'declined' on a consumer loan, delivered in seconds, sits a complex statistical model built from millions of historical credit files - understanding that machinery is a core skill for a modern credit analyst."
+    },
+    { "type": "heading", "text": "From qualitative 5C to quantitative credit scoring" },
+    {
+      "type": "paragraph",
+      "text": "The 5C framework (character, capacity, capital, collateral, conditions) gives a comprehensive qualitative structure for thinking, but processing large volumes of consumer applications - credit cards, car loans, small personal loans - requires an approach that can be AUTOMATED and kept CONSISTENT. That is why credit scoring models exist: they turn the 5C factors into quantitative variables a statistical model can work with."
+    },
+    { "type": "heading", "text": "PD, LGD and expected loss - the core trio" },
+    {
+      "type": "paragraph",
+      "text": "Modern credit risk management under the Basel framework does not stop at predicting the probability of default (PD); it also has to estimate the ACTUAL loss if default happens (LGD - which depends on the security taken and the ability to recover). Combining both with the size of the exposure (exposure at default, or EAD) gives expected loss, the number that most fully reflects the real financial risk of a loan."
+    },
+    { "type": "heading", "text": "Two major challenges: reject inference and algorithmic bias" },
+    {
+      "type": "paragraph",
+      "text": "A credit scoring model is not a perfect, self-running tool. Reject inference is the technical challenge - the model never knows exactly what would have happened to the applications it declined. Algorithmic bias is the ethical one - the model can unwittingly relearn and amplify social bias from historical data. Both demand continuous human oversight rather than pure optimisation of predictive accuracy."
+    },
+    {
+      "type": "formula",
+      "title": "The expected loss of a loan",
+      "label": "Expected Loss",
+      "equation": "EL = PD × LGD × EAD",
+      "variables": [
+        { "symbol": "PD", "name": "Probability of default within one year" },
+        { "symbol": "LGD", "name": "The share genuinely lost after security has been realised" },
+        { "symbol": "EAD", "name": "The amount outstanding at the moment of default" }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Two challenges",
+      "text": "Reject inference: the model can only learn from approved applications, so it ranks well within the population once accepted and is blind to the rejected group - including the people who would have repaid perfectly. And algorithmic bias: a model trained on the past will reproduce whatever discriminatory treatment the past contained."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Modern credit scoring sits at the meeting point of data science and ethical responsibility - a good credit analyst has to be fluent in both.",
+        "As finance keeps moving towards more complex AI models, the ability to understand and audit their fairness will increasingly be a core skill rather than a purely technical one."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Application data and credit history" },
+    { "label": "The model produces a probability of default (PD)" },
+    { "label": "Combine LGD and exposure → expected loss" },
+    { "label": "Decide approval, limit and interest rate" },
+    { "label": "Control for reject inference and algorithmic bias" }
+  ]
+}

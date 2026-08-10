@@ -1,0 +1,139 @@
+{
+  "slug": "cfa-ethics-standards-of-conduct",
+  "title": "CFA Ethics 2: the 7 Standards of Professional Conduct",
+  "subtitle": "From abstract principle to the concrete rules of conduct the CFA exam keeps testing",
+  "duration": "9 min",
+  "whyItMatters": "The Code of Ethics (previous lesson) states general principles, but the CFA exam mostly builds its scenarios on these 7 specific Standards. Knowing all seven lets you identify the right kind of breach in the case studies you meet on the real paper.",
+  "openingQuestion": "An analyst receives unpublished internal information about a listed company's results from a friend who works there, and then uses it to recommend the stock to clients. Which Standard group does this breach fall under?",
+  "openingOptions": [
+    "Standard III - Duties to Clients (duties owed to clients)",
+    "Standard II - Integrity of Capital Markets breach",
+    "Standard VII - Responsibilities as a CFA Member",
+    "No breach, since the aim is to make the client a good return"
+  ],
+  "explanation": "Using material nonpublic information (MNPI) to trade or to recommend a trade breaches Standard II(A), inside the 'Integrity of Capital Markets' group - because the conduct destroys the market's principle of equal access to information, regardless of whether the purpose was to help a client.",
+  "diagram": [
+    { "label": "Standard I: Professionalism" },
+    { "label": "Standard II: Integrity of Capital Markets" },
+    { "label": "Standards III-VII: specific duties owed to each party" }
+  ],
+  "realWorldExample": {
+    "company": "The well-known insider trading cases in the fund industry",
+    "description": "Many of the largest insider trading cases worldwide have involved hedge fund managers receiving material nonpublic information (MNPI) through unofficial channels - a friend inside a listed company, an investment banker working on an M&A deal - and then trading on it before the information became widely available. This is the textbook illustration of a Standard II(A) breach."
+  },
+  "quiz": [
+    {
+      "question": "What logic orders the 7 Standards of Professional Conduct?",
+      "options": [
+        "From broad principles to duties owed to each specific group",
+        "By severity of the sanction, from the lightest to the heaviest",
+        "In alphabetical order of each Standard's English name",
+        "Randomly, with no particular organising logic behind it"
+      ],
+      "explanation": "The structure runs from the overarching principles - Professionalism, Integrity of Capital Markets - down to duties defined by professional relationship: to clients, to employers, in analytical work, where conflicts arise, and as a CFA member. Sanctions are not graded by Standard number, alphabetical order would scatter related duties across the list, and the ordering is anything but arbitrary once you see the movement from general to particular."
+    },
+    {
+      "question": "What does Standard III(A) - Loyalty, Prudence, and Care - require of a manager acting for a client?",
+      "options": [
+        "No need to consider each client's individual risk appetite",
+        "Put the client's interest ahead of your own and the firm's",
+        "Simply complying with the law is enough; nothing further",
+        "Simply beating the broad market return is enough on its own"
+      ],
+      "explanation": "Loyalty, prudence and care mean the manager must always place the client's interest ahead of their own or the firm's, and must act prudently in line with that particular client's objectives and risk tolerance. Legal compliance is a floor rather than the duty itself, performance against an index says nothing about whether the portfolio suited the client, and ignoring individual risk appetite is precisely what 'prudence and care' forbids."
+    },
+    {
+      "question": "An analyst issues an investment recommendation with no reasonable analytical basis, working purely on personal instinct. Which Standard might this breach?",
+      "options": [
+        "Standard VII - applies only to CFA Institute exams",
+        "No breach; investment calls are inherently subjective",
+        "Standard V(A) - Diligence and Reasonable Basis rule",
+        "Standard IV(A) - the duty of loyalty to your employer"
+      ],
+      "explanation": "Standard V(A) requires reasonable diligence and a sound foundation, supported by appropriate research and analysis, before any recommendation or investment action - instinct alone will not do. Judgement is certainly part of investing, but that is different from having no basis at all. Nothing here touches the employer relationship, and Standard VII reaches the whole CFA Program rather than only the exams."
+    },
+    {
+      "question": "Why does Standard VI - Conflicts of Interest - require disclosure rather than banning conflicts outright?",
+      "options": [
+        "Because conflicts of interest do not matter enough to police",
+        "Because the law forbids banning conflicts anywhere in the finance industry",
+        "Because disclosing a conflict is only an administrative formality",
+        "Because many conflicts are unavoidable; transparency works better"
+      ],
+      "explanation": "Standard VI accepts the reality that some conflicts cannot be fully eliminated in finance - an analyst holding shares in a company they cover, for instance. The remedy is transparent disclosure, so that clients and investors have enough information to judge how far to trust the recommendation. That is the opposite of treating conflicts as unimportant, and no law prevents a firm from banning them where it can."
+    },
+    {
+      "question": "What does Standard I(B) - Independence and Objectivity - prohibit?",
+      "options": [
+        "Letting outside factors erode your professional objectivity",
+        "Accepting any gift at all, under any circumstances whatsoever",
+        "Issuing a recommendation that contradicts your colleagues",
+        "Working for more than one firm at the same time"
+      ],
+      "explanation": "Standard I(B) requires independence and objectivity in professional judgement, free from the influence of gifts of meaningful value, pressure from third parties such as the management of a covered company, or private interests that could bend the analysis. It does not ban gifts as a category, it does not require agreement with colleagues - disagreement is often the evidence of independence - and outside employment is governed by Standard IV(B) instead."
+    }
+  ],
+  "keyTakeaways": [
+    "The 7 Standards run from broad principles (Professionalism, Integrity of Capital Markets) to specific duties by relationship: clients, employers, analysis, conflicts, membership",
+    "Standard III(A) requires the client's interest always to come before your own or the firm's (Loyalty, Prudence, Care)",
+    "Standard V(A) requires every investment recommendation to rest on a reasonable analytical basis rather than instinct",
+    "Standard VI handles conflicts through transparent disclosure rather than an outright ban, because some conflicts cannot be fully avoided"
+  ],
+  "practicePrompt": {
+    "question": "Which statement matches what this lesson taught?",
+    "options": [
+      "The seven Standards are arranged in a random order that follows no organising logic at all",
+      "Standard V(A) requires every investment recommendation to rest on reasonable research, never on instinct",
+      "A conflict of interest is absolutely prohibited in every single circumstance without any exception at all",
+      "Standard III(A) applies only to fund managers and never to an individual research analyst anywhere"
+    ],
+    "explanation": "Standard V(A) requires every investment recommendation to rest on reasonable research and analysis rather than on instinct. The Standards are ordered from the general to the particular rather than at random, Standard VI manages conflicts through disclosure instead of an absolute ban, and Standard III(A) binds anyone acting for a client, whatever their job title."
+  },
+  "summary": {
+    "keyIdea": "The 7 Standards of Professional Conduct turn the Code of Ethics into concrete rules of conduct organised around each specific professional relationship",
+    "commonMistake": "Confusing Standards that resemble each other - Standard III on duties to clients and Standard IV on duties to employers, for instance. The exam repeatedly tests whether you can tell precisely which Standard applies to which situation.",
+    "action": "When you meet a case study, work out first who the conduct touches - the client, the employer, the market, or the analyst themselves - so you can narrow down to the right Standard group"
+  },
+  "application": {
+    "title": "Practise classifying Standards",
+    "message": "Go back over three of the situations in the quiz above and try explaining in your own words why each belongs to the Standard you chose rather than to another one that sounded plausible.",
+    "secondary": "Classifying a situation under the right Standard is the core skill the CFA Level I ethics section is testing."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Code of Ethics (previous lesson) sets out 6 orienting principles. But the actual CFA exam revolves mostly around the 7 Standards of Professional Conduct - the version turned into rules of conduct you can apply directly to a given situation."
+    },
+    { "type": "heading", "text": "The 7 Standards at a glance" },
+    {
+      "type": "paragraph",
+      "text": "Standard I - Professionalism: requirements on professional conduct, independence and objectivity, competence, and freedom from fraud or misrepresentation. Standard II - Integrity of Capital Markets: prohibits the use of material nonpublic information (MNPI) and market manipulation. Standard III - Duties to Clients: loyalty, prudence, fair dealing, and confidentiality of client information. Standard IV - Duties to Employers: loyalty to the employer and compliance with firm policy. Standard V - Investment Analysis: a reasonable analytical basis and honest communication. Standard VI - Conflicts of Interest: transparent disclosure of conflicts. Standard VII - Responsibilities as a CFA Member: responsibilities toward the CFA Program and membership."
+    },
+    { "type": "heading", "text": "Why telling the Standards apart matters" },
+    {
+      "type": "paragraph",
+      "text": "Many exam scenarios look alike on the surface while falling under different Standards. **Example:** an analyst who discloses a client's confidential information to a third party (Standard III - Duties to Clients) is doing something different from disclosing the confidential business strategy of the firm they work for (Standard IV - Duties to Employers). Identifying who the conduct actually affects - the client, the employer, or the market at large - is the first step toward picking the right Standard."
+    },
+    {
+      "type": "callout",
+      "label": "An exam technique",
+      "text": "When you meet a case study, ask yourself: who does this conduct affect directly? If it is the client -> think Standard III. If it is the employer or the firm -> Standard IV. If it is the fairness of the market at large -> Standard II. This narrows the field quickly before you work through the detail."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Standards I and II are the overarching principles, applying broadly across all professional activity",
+        "Standards III through VI are specific duties by relationship: clients, employers, investment analysis, conflicts of interest",
+        "Standard VII covers responsibilities as a member or candidate of the CFA Program specifically",
+        "A real situation can breach several Standards at once - the exam usually tests whether you can identify the principal, most important one"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The 7 Standards are not a list to memorise mechanically; they are a thinking tool for analysing real situations.",
+        "In the next lesson we apply these Standards to a set of concrete case studies, in the style of the questions that appear on the real CFA Level I paper."
+      ]
+    }
+  ]
+}

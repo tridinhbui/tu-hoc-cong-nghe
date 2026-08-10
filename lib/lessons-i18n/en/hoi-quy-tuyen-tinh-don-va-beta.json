@@ -1,0 +1,177 @@
+{
+  "slug": "hoi-quy-tuyen-tinh-don-va-beta",
+  "title": "Quant, Lesson 4: Simple linear regression - where beta actually comes from",
+  "subtitle": "The slope, R-squared, residuals, and how to read a regression output table",
+  "duration": "11 min",
+  "whyItMatters": "Beta in CAPM, a fund's tracking error, a stock's sensitivity to the oil price - every one of them is a regression coefficient. Being able to read a regression output table is the minimum skill required not to be talked into a meaningless number.",
+  "openingQuestion": "In a regression of stock returns on market returns, what is the slope coefficient?",
+  "openingOptions": [
+    "The stock's alpha",
+    "The stock's beta",
+    "R-squared",
+    "The standard error of the residuals"
+  ],
+  "explanation": "The slope of a regression of stock returns on market returns is beta - it measures how sensitive the stock is to broad market movements. The intercept is alpha, the part of the return the market cannot explain. R-squared tells you what share of the stock's movement the market accounts for, and for a single stock that figure is usually only around 20 to 40%.",
+  "diagram": [
+    {
+      "label": "Independent variable X: the market return"
+    },
+    {
+      "label": "Estimate the best-fitting straight line"
+    },
+    {
+      "label": "Slope = beta, intercept = alpha"
+    },
+    {
+      "label": "Residual = whatever the model cannot explain"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The betas published on data websites",
+    "description": "Two financial data websites can publish materially different betas for the same stock, because they use different windows (2 years or 5 years), different frequencies (weekly or monthly) and different reference indices. Beta is not a physical constant but the output of a methodological choice - always ask how the number was estimated before you feed it into a valuation model."
+  },
+  "quiz": [
+    {
+      "question": "What does R-squared measure?",
+      "options": [
+        "The share of the dependent variable's variance explained in-sample",
+        "How accurately the model will predict on future out-of-sample data",
+        "The probability that the regression just estimated is the correct model",
+        "The standard error of the slope, rescaled onto a 0-to-1 range"
+      ],
+      "explanation": "R-squared is a measure of in-sample fit, not of forecasting power. A model with a high R-squared can still predict badly out of sample, especially if it has been overfitted. It is not a probability that the model is correct - a regression makes no such statement - and it is not the standard error of the slope, which is a separate number reported beside the coefficient and is what tells you whether the slope can be relied on at all."
+    },
+    {
+      "question": "Why must you look at a coefficient's standard error and not only at the coefficient itself?",
+      "options": [
+        "Because the standard error decides the sign of the coefficient when you read it",
+        "Because it tells you whether the coefficient really differs from zero",
+        "Because the standard error can replace R-squared when you judge the fit",
+        "Because statistics software is required to report both numbers together"
+      ],
+      "explanation": "A coefficient always comes out with some estimated value, even when the true relationship does not exist at all. The t-ratio - the coefficient divided by its standard error - is what tells you whether to believe it. The standard error says nothing about the sign, which the coefficient itself carries; it is no substitute for R-squared, which answers a different question about fit; and no software convention is what makes it matter."
+    },
+    {
+      "question": "In a CAPM context, what do the regression residuals represent?",
+      "options": [
+        "Systematic risk, the portion of movement shared by the whole market",
+        "The equity cost of capital demanded for holding it",
+        "Firm-specific risk, the portion that can be diversified away",
+        "Measurement error arising from the price data the exchange publishes"
+      ],
+      "explanation": "This is the bridge between statistics and portfolio theory: the variation explained by the market is systematic risk, while the residual is firm-specific risk that can be cancelled out through diversification - and for that reason the market pays no extra return for carrying it. The residual is not the cost of equity, which CAPM derives from beta, and it is not exchange measurement error."
+    },
+    {
+      "question": "Does a strong correlation between two variables prove causation?",
+      "options": [
+        "Yes, as long as the model's R-squared clears the 0.8 threshold",
+        "Yes, as long as the data series is long enough to rule out chance",
+        "Yes, as long as the coefficient's p-value is below the usual 0.01",
+        "No - it can be coincidence, a third variable, or reverse causation"
+      ],
+      "explanation": "No level of R-squared and no p-value turns correlation into causation. In finance the omitted third variable is very often the economic cycle, which makes a great many pairs of variables look as though they are related to each other. A longer data series only estimates a spurious relationship more precisely, and a p-value below 0.01 measures how unlikely the pattern is under the null, never the direction of cause."
+    },
+    {
+      "question": "A beta estimated by regression has a large standard error. What does that mean in practice?",
+      "options": [
+        "That beta is not reliable enough to drop straight into a cost of equity",
+        "The stock swings more violently than the overall market does over the period",
+        "The regression has left out an important explanatory variable",
+        "You should extend the estimation window until the beta comes out equal to one"
+      ],
+      "explanation": "Beta is only an estimate, and estimates carry confidence intervals. A beta of 1.2 with a standard error of 0.4 means the true value could sit anywhere between roughly 0.4 and 2.0, and putting that number straight into CAPM pushes the uncertainty into the valuation where nobody can see it. A wide standard error is a statement about precision, not about volatility, and it is not on its own evidence of an omitted variable."
+    }
+  ],
+  "keyTakeaways": [
+    "Beta is the slope of a regression of stock returns on market returns; alpha is the intercept",
+    "Always read a coefficient together with its standard error - a coefficient without one is half a number",
+    "R-squared measures in-sample fit, not forecasting power",
+    "Beta depends on the window, the frequency and the reference index you choose - it is an estimate, not a constant"
+  ],
+  "practicePrompt": {
+    "question": "A regression gives beta = 1.4 with a standard error of 0.6 and an R-squared of 0.18. What should you conclude?",
+    "options": [
+      "The stock is clearly 40% more volatile than the market",
+      "The beta estimate is imprecise: the confidence interval is far too wide",
+      "The low R-squared proves the regression used the wrong method",
+      "The dependent variable should be the price rather than returns"
+    ],
+    "explanation": "The confidence interval is roughly 1.4 plus or minus 1.96 times 0.6. With a range that wide, feeding a beta of 1.4 into the CAPM formula to produce a cost of capital precise to the decimal place is an illusion of precision. An R-squared of 0.18 is entirely normal for a single stock and is not a sign of a methodological error."
+  },
+  "summary": {
+    "keyIdea": "A regression gives you a number together with a degree of uncertainty - you have to read both",
+    "formula": "R_i = alpha + beta × R_m + e",
+    "commonMistake": "Feeding an estimated beta into CAPM as though it were exact",
+    "action": "Run a beta regression for one stock using 3 years of data and then 5 years, and compare the two results."
+  },
+  "application": {
+    "title": "The four numbers to read in any regression table",
+    "message": "The coefficient (the size of the relationship), the standard error (how much to trust it), R-squared (how much is explained), and the number of observations. If any one of those four is missing, the output table is not enough to conclude anything.",
+    "secondary": "One more step where you can take it: plot the residuals to spot a non-linear relationship the model has missed."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Regression is the most heavily used tool in applied finance, and also the one people most easily misuse - because the software always returns a result, whether or not the data fits."
+    },
+    {
+      "type": "formula",
+      "title": "The market model",
+      "label": "The statistical foundation of CAPM",
+      "equation": "R_i = alpha + beta × R_m + e",
+      "variables": [
+        {
+          "symbol": "R_i",
+          "name": "Stock return",
+          "description": "The dependent variable"
+        },
+        {
+          "symbol": "R_m",
+          "name": "Market return",
+          "description": "The independent variable"
+        },
+        {
+          "symbol": "beta",
+          "name": "Slope",
+          "description": "Sensitivity to the market - systematic risk"
+        },
+        {
+          "symbol": "alpha",
+          "name": "Intercept",
+          "description": "Excess return the market does not explain"
+        },
+        {
+          "symbol": "e",
+          "name": "Residual",
+          "description": "Firm-specific risk, which can be diversified away"
+        }
+      ],
+      "example": {
+        "title": "Reading the output in words",
+        "calculation": "beta = 1.2 means that if the market rises 1%, the stock is expected to rise 1.2%",
+        "result": "But that is only an average expectation, not a rule",
+        "explanation": "With an R-squared of 0.3, fully 70% of the stock's movement has nothing to do with the market. Beta describes an average tendency; it does not forecast any particular day."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The illusion of precision",
+      "text": "The most common professional error is to take an imprecisely estimated beta, put it into CAPM, get a cost of equity of 11.37%, then discount ten years of cash flow with it and report a target price accurate to the last dong. All of that precision is manufactured. The honest alternative: run the valuation with beta at each end of the confidence interval and present a range of values."
+    },
+    {
+      "type": "heading",
+      "text": "Reading a regression output properly"
+    },
+    {
+      "type": "paragraph",
+      "text": "Three numbers have to be read together, and each answers a different question. The slope gives you the sensitivity - beta. Its standard error tells you how firm that estimate is, and this is the part most often ignored. R-squared tells you how much of the movement the market explains; the rest is the firm's own specific risk. A beta of 1.2 with a standard error of 0.4 means the true value could sit across a very wide range, and putting it straight into CAPM transfers all of that uncertainty into the valuation where nobody can see it."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A regression coefficient always exists; the question is whether it deserves to be believed.",
+        "The next lesson extends this to several explanatory variables - where the pitfalls multiply quickly."
+      ]
+    }
+  ]
+}

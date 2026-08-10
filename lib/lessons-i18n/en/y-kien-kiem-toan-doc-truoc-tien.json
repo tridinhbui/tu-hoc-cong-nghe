@@ -1,52 +1,60 @@
 {
   "slug": "y-kien-kiem-toan-doc-truoc-tien",
-  "title": "The audit opinion - the line worth reading before any of the numbers",
-  "subtitle": "Four kinds of opinion, and why three of them are a reason to stop",
+  "title": "The audit opinion - the line worth reading before the numbers",
+  "subtitle": "Four types of opinion, and why three of them are reasons to stop",
   "duration": "9 min",
-  "whyItMatters": "The auditor read this set of accounts before you did and wrote a page saying how far they believe it. That page sits at the very front, takes under two minutes to read, and decides whether any of the analysis behind it means anything.",
-  "openingQuestion": "The audit report states an \"unqualified opinion\". What does that guarantee?",
+  "whyItMatters": "The auditor read this set of statements before you did and wrote a page saying how much they believe it. That page sits right at the front, takes under two minutes to read, and decides whether everything you do afterwards means anything.",
+  "openingQuestion": "The audit report says 'unqualified opinion'. What does that guarantee?",
   "openingOptions": [
-    "The accounts give a true and fair view in all material respects",
+    "The statements give a true and fair view in all material respects",
     "The business is financially healthy and trading profitably",
-    "Every figure in the accounts is exact to the last dong",
-    "There was no fraud during the period audited"
+    "Every figure in the statements is accurate to the last dong",
+    "There was no fraud during the period that was audited"
   ],
-  "explanation": "An unqualified opinion speaks to the quality of the PRESENTATION, not to the health of the business: a company deep in losses and heading for insolvency can still receive one, provided it presents those losses truthfully. Auditing also works on materiality and sampling, so it does not guarantee every dong, and it is not a fraud investigation - detecting fraud is a secondary objective rather than the main one.",
+  "explanation": "An unqualified opinion speaks to the quality of the PRESENTATION, not to the health of the business: a company deep in losses and heading for bankruptcy can still receive one, provided it presents its losses truthfully. An audit also works on materiality and sampling, so it does not guarantee every last dong, and it is not a fraud investigation - detecting fraud is a secondary objective, not the primary one.",
   "diagram": [
-    { "label": "Unqualified: trustworthy, read on as normal" },
-    { "label": "Qualified: trustworthy EXCEPT one named item" },
-    { "label": "Adverse: does not give a true and fair view - stop" },
-    { "label": "Disclaimer: no basis for an opinion at all - stop" }
+    {
+      "label": "Unqualified: trustworthy, read on as normal"
+    },
+    {
+      "label": "Qualified: trustworthy EXCEPT one named item"
+    },
+    {
+      "label": "Adverse: does not give a true view - stop"
+    },
+    {
+      "label": "Disclaimer: no basis for an opinion - stop"
+    }
   ],
   "realWorldExample": {
-    "company": "The \"material uncertainty about going concern\" paragraph",
-    "description": "This is not a kind of opinion but an emphasis paragraph that can accompany an unqualified one. It says the auditor believes the accounts are presented truthfully, and simultaneously believes the business may not survive the next twelve months. Skipping this paragraph means skipping the strongest warning a set of accounts can issue."
+    "company": "The 'material uncertainty about going concern' paragraph",
+    "description": "This is not a type of opinion but an emphasis paragraph that can accompany an unqualified opinion. It says the auditor believes the statements are presented truthfully, and at the same time believes the business may not survive the next twelve months. Skipping this paragraph means skipping the strongest warning a set of financial statements can issue."
   },
   "sections": [
     {
       "type": "lead",
-      "text": "Before analysing a single figure, there is a question cheaper than any calculation: what did the person who checked these accounts say about them? The answer is on the first page and takes under two minutes to read."
+      "text": "Before analysing a single number, there is a question cheaper than any calculation: what did the person who checked this set of statements say about it? The answer is on the first page and takes under two minutes to read."
     },
     {
       "type": "heading",
-      "text": "Four kinds of opinion, in order of severity"
+      "text": "Four types of opinion, ordered by severity"
     },
     {
       "type": "conceptTable",
-      "title": "Only the first lets you read on as normal",
-      "subtitle": "The other three all change how you must treat every figure that follows",
+      "title": "Only the first type lets you read on as normal",
+      "subtitle": "The other three all change how you have to treat every number that follows",
       "concepts": [
         {
-          "def": "The accounts give a true and fair view in all material respects. This is the ordinary outcome rather than a compliment - it speaks to presentation, not to the business trading well."
+          "def": "The statements give a true and fair view in all material respects. This is the normal outcome, not a compliment - it speaks to presentation, not to whether the business is doing well."
         },
         {
-          "def": "Trustworthy, EXCEPT one specifically named item. The rest remains usable, but the excepted item has to be reassessed yourself - and if it is large, much of your analysis rests on it."
+          "def": "Trustworthy, EXCEPT one specifically named item. The rest is still usable, but the excepted item has to be reassessed yourself - and if it is large, much of your analysis rests on it."
         },
         {
-          "def": "The auditor concludes the accounts do NOT give a true and fair view. Very rare, because companies usually correct things before it reaches this point. When it appears, none of the figures can be used for analysis."
+          "def": "The auditor concludes the statements do NOT give a true view. Very rare, because companies usually correct things before it reaches this point. If you see one, nothing in there can be analysed."
         },
         {
-          "def": "The auditor could not gather enough evidence to conclude anything. Usually because the scope of their work was restricted - and that restriction is itself information."
+          "def": "The auditor could not gather enough evidence to conclude anything. Usually because the scope of work was restricted - and the restriction is itself information."
         }
       ]
     },
@@ -56,27 +64,27 @@
     },
     {
       "type": "paragraph",
-      "text": "A qualified opinion always names the item and the reason. For example: the auditor could not observe the opening inventory count because they were appointed after that date, so they cannot confirm inventory of 800 billion. That means everything derived from inventory - cost of sales, gross margin, turnover, profit - carries that same uncertainty. The thing to do is read the basis-for-qualification paragraph, see how large the item is against total assets, and then decide whether your analysis still stands."
+      "text": "A qualified opinion always names the item and the reason. For example: the auditor could not observe the opening inventory count because they were appointed after that date, so they cannot confirm the inventory balance of 800bn. That means everything derived from inventory - cost of sales, gross margin, turnover, profit - carries that same uncertainty. What you have to do is read the basis for qualification paragraph, see how large that item is relative to total assets, and then decide whether your analysis still stands."
     },
     {
       "type": "callout",
       "label": "Three things an audit opinion does NOT guarantee",
-      "text": "It does not guarantee the business is healthy: a chronically loss-making company still receives an unqualified opinion if it presents those losses truthfully. It does not guarantee every figure is exact: auditing works on materiality and sampling, so small errors fall outside its scope. And it is not a fraud investigation: detecting fraud is a responsibility but not the main objective, and a fraud involving collusion by management can pass through entirely."
+      "text": "It does not guarantee the business is healthy: a chronically loss-making company still gets an unqualified opinion if it presents its losses truthfully. It does not guarantee every number is exactly right: an audit works on materiality and sampling, so small errors fall outside its scope. And it is not a fraud investigation: detecting fraud is a responsibility but not the main objective, and a fraud with management collusion can pass through entirely undetected."
     },
     {
       "type": "list",
       "items": [
-        "Read the audit opinion first - two minutes that decide all the analysis behind it",
-        "An unqualified opinion speaks to presentation, not to the business trading well",
-        "A qualification always names the item - find out how large it is",
+        "Read the audit opinion first - it takes two minutes and decides everything that follows",
+        "An unqualified opinion speaks to presentation, not to whether the business is doing well",
+        "A qualification always names the item - go and find out how large it is",
         "A going concern paragraph can accompany an unqualified opinion"
       ]
     },
     {
       "type": "closing",
       "lines": [
-        "The audit opinion does not say whether the business is good or bad - it says whether this set of numbers is worth your effort.",
-        "Having read these three lessons, you now have the framework to return to the Apple and Vinamilk cases with a different eye."
+        "An audit opinion does not say whether a business is good or bad - it says whether this set of numbers is worth the effort of analysing.",
+        "Having finished these three lessons, you have the frame to return to the Apple and Vinamilk cases with a different eye."
       ]
     }
   ],
@@ -84,78 +92,78 @@
     {
       "question": "What does an unqualified opinion guarantee?",
       "options": [
-        "The accounts give a true and fair view in all material respects",
-        "The business is healthy and able to continue trading normally",
-        "Every figure has been checked and is exact to the last dong",
-        "No fraud existed in the period, since the auditor reviewed every transaction arising"
+        "The statements give a true and fair view in all material respects",
+        "The business is sound and able to continue operating normally",
+        "Every figure has been checked and is accurate to the last dong",
+        "No fraud exists in the period, since the auditor reviewed every transaction"
       ],
-      "explanation": "This opinion speaks to the quality of presentation, not to health: a heavily loss-making company still receives one if it presents those losses truthfully. Auditing works on materiality and sampling so it does not cover every transaction, and detecting fraud is not the main objective of a financial statement audit."
+      "explanation": "This opinion speaks to the quality of presentation, not to health: a heavily loss-making business still receives one if it presents its losses truthfully. An audit works on materiality and sampling, so it does not cover every transaction, and detecting fraud is not the primary objective of an audit of financial statements."
     },
     {
-      "question": "The auditor issues a qualified opinion because they could not confirm inventory of 800 billion. What should you do?",
+      "question": "The auditor issues a qualified opinion because they could not confirm an inventory balance of 800bn. What should you do?",
       "options": [
-        "Discard the whole set of accounts, since anything other than an unqualified opinion voids every figure",
-        "See how large that item is against total assets, then reassess the analysis depending on it",
-        "Read on as normal, since a qualification is an administrative formality between company and auditor",
-        "Wait for next period's interim review, since inventory will be fully confirmed by then"
+        "Discard the whole report, because any opinion other than unqualified makes every figure worthless",
+        "See how large that item is relative to total assets, then reassess the part of your analysis that rests on it",
+        "Read on as normal, because a qualification is only an administrative formality between company and auditor",
+        "Wait for the interim review report of the next period, since inventory will be fully confirmed by then"
       ],
-      "explanation": "A qualification has a limited scope and names the item, so the rest of the accounts remains usable - discarding everything is an overreaction. But it is not a formality: cost of sales, gross margin and turnover all derive from inventory and so all carry that uncertainty. Waiting for the next period does not resolve this period's problem."
+      "explanation": "A qualification has a limited scope and names the item specifically, so the rest of the report is still usable - discarding everything is an overreaction. But it is not an administrative formality: cost of sales, gross margin and turnover all derive from inventory and so all carry that uncertainty. Waiting for the next period does not solve the problem of this one."
     },
     {
-      "question": "How does a \"disclaimer of opinion\" differ from an \"adverse opinion\"?",
+      "question": "How does a 'disclaimer of opinion' differ from an 'adverse opinion'?",
       "options": [
-        "A disclaimer is milder than a qualification, while adverse is the most severe of the four",
-        "A disclaimer applies to unlisted companies while adverse applies only to public ones",
-        "A disclaimer means not enough evidence to conclude; adverse means they concluded the accounts are wrong",
-        "A disclaimer is issued at the company's request, while adverse is the auditor's own decision"
+        "A disclaimer is milder than a qualification, while an adverse opinion is the most severe of the four types available",
+        "A disclaimer applies to unlisted businesses, while adverse is used only for public companies",
+        "A disclaimer means not enough evidence to conclude; adverse means a conclusion that the statements are wrong",
+        "A disclaimer is requested by the business itself, while adverse is decided by the auditor alone"
       ],
-      "explanation": "The two differ on whether evidence exists: adverse means the auditor saw enough and concluded the accounts are not true and fair; a disclaimer means they did not see enough to conclude. Both are more serious than a qualification, neither depends on listing status, and a company cannot choose which opinion it receives."
+      "explanation": "The two differ on whether evidence exists: adverse means the auditor saw enough and concluded the statements are not true and fair; a disclaimer means they did not see enough and so could conclude nothing. Both are more severe than a qualification, neither depends on whether the business is listed, and a business has no right to request which type of opinion it receives."
     },
     {
-      "question": "The accounts carry an unqualified opinion with an emphasis paragraph on material uncertainty about going concern. How do you read that?",
+      "question": "A report carries an unqualified opinion together with an emphasis paragraph on material uncertainty about going concern. How do you read it?",
       "options": [
-        "The paragraph is a formality appearing in most reports and carries no notable information",
-        "This is a contradiction in the audit report, so the audit firm should be asked to explain it",
-        "The emphasis paragraph automatically downgrades the opinion to qualified under current standards",
+        "This paragraph is a formality appearing in most reports and carries no real information",
+        "This is a contradiction within the audit report, so the audit firm should be asked to explain it",
+        "The emphasis paragraph automatically downgrades the opinion to a qualification under current standards",
         "Presented truthfully, and at the same time at risk of not surviving the next twelve months"
       ],
-      "explanation": "The two are not contradictory: the auditor believes the business has truthfully presented its BAD SITUATION. An emphasis paragraph does not change the type of opinion, and it is not routine - it appears only where there is genuine doubt, which makes it the strongest warning a set of accounts can issue."
+      "explanation": "The two are not in contradiction: the auditor believes the business has truthfully presented its BAD SITUATION. An emphasis paragraph does not change the type of opinion, and it is not routine - it appears only where there is genuine doubt, which makes it the strongest warning a set of statements can issue."
     },
     {
-      "question": "Why read the audit opinion before analysing the numbers?",
+      "question": "Why should you read the audit opinion before analysing the numbers?",
       "options": [
-        "Because it decides whether this set of numbers is worth analysing at all",
-        "Because the audit opinion already sets out the most important financial ratios, pre-calculated",
-        "Because reading in page order is a mandatory requirement of the presentation standards",
-        "Because auditors rank companies on a scale so investors can compare them quickly"
+        "Because it decides whether this set of numbers is worth analysing",
+        "Because the audit opinion already sets out the most important financial ratios",
+        "Because reading a report in page order is required by the presentation standards",
+        "Because the auditor grades businesses on a scale for quick comparison"
       ],
-      "explanation": "An adverse opinion or a disclaimer leaves every subsequent calculation without a basis, so two minutes of reading first saves an afternoon of analysis. An audit report calculates no ratios, ranks no companies, and no rule requires reading in page order."
+      "explanation": "An adverse opinion or a disclaimer leaves every subsequent calculation without a foundation, so two minutes of reading up front saves a whole session of analysis. An audit report computes no ratios, awards no grades, and no rule requires you to read the pages in order."
     }
   ],
   "practicePrompt": {
-    "question": "The accounts carry a qualified opinion relating to a receivable of 12 billion. Total assets are 6,000 billion and profit after tax is 480 billion. What is the sensible conclusion?",
+    "question": "A report carries a qualified opinion relating to a receivable of 12bn. Total assets are 6,000bn and profit after tax is 480bn. What is the reasonable conclusion?",
     "options": [
-      "The qualification is small against both, so the analysis can continue",
-      "Discard this set of numbers entirely, since a qualification means nothing is trustworthy",
-      "Deduct the 12 billion straight from profit before starting any analysis",
-      "Wait for the next period's review before drawing any conclusion at all"
+      "The qualified item is small against both bases, so the analysis can continue",
+      "Discard this set of numbers entirely, since a qualification makes them untrustworthy",
+      "Deduct the 12bn straight from profit before starting any analysis at all",
+      "Wait for next period's review report before drawing any conclusion"
     ],
-    "explanation": "A qualification names the item, so the thing to do is measure it: 12 billion is 0.2% of total assets and 2.5% of profit after tax. At that size, even a total write-off would not change the analytical conclusion, so the numbers remain usable. Discarding the whole report is an overreaction and throws away the very advantage a qualification has over a disclaimer - it fences the damage rather than denying everything. Deducting the 12 billion outright is also wrong: the auditor said they could not confirm it, not that it is worth nothing."
+    "explanation": "A qualification names the item specifically, so the job is to measure it: 12bn is 0.2% of total assets and 2.5% of profit after tax. At that size, even if the receivable were written off entirely the analytical conclusion would not change, so the numbers remain usable. Discarding the whole report is an overreaction and throws away the very advantage a qualification has over a disclaimer - it fences off the damage instead of denying everything. Deducting the 12bn is also wrong: the auditor said they could not confirm it, not that it is worth zero."
+  },
+  "keyTakeaways": [
+    "Read the audit opinion before the numbers - two minutes decides everything that follows",
+    "An unqualified opinion speaks to presentation, not to whether the business is healthy",
+    "A qualification names the item specifically; measure how large it is before moving on",
+    "Material uncertainty about going concern is an emphasis paragraph, not a type of opinion"
+  ],
+  "summary": {
+    "keyIdea": "An audit opinion tells you whether a set of numbers is worth analysing, not whether the business is good or bad",
+    "commonMistake": "Reading an unqualified opinion as a certificate that the business is in good health.",
+    "action": "Open any company's audit report and find the exact paragraph stating the type of opinion."
   },
   "application": {
     "title": "Find the opinion paragraph in two minutes",
-    "message": "Open the audited financial statements of a listed company, find the \"Auditor's opinion\" section in the opening pages, and identify which of the four kinds it is.",
-    "secondary": "If an emphasis paragraph accompanies it, read that too - it is usually more important than the type of opinion itself."
-  },
-  "keyTakeaways": [
-    "Read the audit opinion before the numbers - two minutes that decide all the analysis behind it",
-    "An unqualified opinion speaks to presentation, not to the business being healthy",
-    "A qualification names the item; measure how large it is before setting it aside",
-    "Going concern doubt is an emphasis paragraph, not a kind of opinion"
-  ],
-  "summary": {
-    "keyIdea": "The audit opinion says whether the numbers are worth analysing, not whether the business is good or bad",
-    "commonMistake": "Reading an unqualified opinion as a certificate that the business is healthy.",
-    "action": "Open any company's audit report and find the paragraph stating the type of opinion."
+    "message": "Open the audited financial statements of a listed business, find the 'Auditor's Opinion' section in the first few pages, and identify which of the four types it is.",
+    "secondary": "If there is an emphasis paragraph alongside it, read that too - it is often more important than the type of opinion itself."
   }
 }

@@ -1,0 +1,180 @@
+{
+  "slug": "ngan-sach-va-du-bao-tai-chinh",
+  "title": "Budgeting & financial forecasting - planning in order to steer",
+  "subtitle": "From forecast to replanning when reality moves",
+  "duration": "8 min",
+  "openingQuestion": "What is a budget actually for inside a business?",
+  "openingOptions": [
+    "Only for filing the required annual report with the regulator",
+    "Set revenue and cost targets, then compare actual to plan",
+    "To hand out spending money to each department",
+    "To work out how much corporate tax is owed"
+  ],
+  "explanation": "A budget is not a prediction, it is a management tool: it turns targets into concrete monthly numbers so that when the period closes there is something to compare against. The real value sits in that comparison - a variance points to the assumption that was wrong, and it points far earlier than waiting for the year-end financial statements. A budget that is built and then filed away is no different from no budget at all.",
+  "diagram": [
+    {
+      "label": "Turn the annual target into monthly numbers"
+    },
+    {
+      "label": "At period close, match actual against plan"
+    },
+    {
+      "label": "The variance shows which assumption was wrong"
+    },
+    {
+      "label": "Update the forecast and adjust course within the year"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A sales-driven business",
+    "description": "Q1 budget: 100bn of revenue, 60bn of cost, so 40bn of profit. January actual: 30bn of revenue, 70bn short of plan. FP&A spots it early, and the CEO has to decide: raise advertising spend, or wait and see what February brings?"
+  },
+  "quiz": [
+    {
+      "question": "What is the difference between bottom-up and top-down budgeting?",
+      "options": [
+        "Bottom-up covers costs, while top-down covers revenue targets",
+        "Bottom-up is built quarter by quarter; top-down covers a full year",
+        "Bottom-up: departments estimate and report up; top-down: the CEO hands it down",
+        "Bottom-up is drafted by the accounting team; top-down is signed off by auditors"
+      ],
+      "explanation": "Bottom-up: the sales team reports 'we need 50bn to reach 100bn of revenue' and IT reports 'we need 5bn to keep the systems running'. Top-down: the CEO decides 'this year we have a 30bn cost budget, how do you want to split it?' Both directions cover revenue and cost alike, so the split is not by line item. Nor is it a calendar difference or a question of which function drafts the file - the distinction is purely about which end of the org chart the number originates from."
+    },
+    {
+      "question": "What is a flexible budget?",
+      "options": [
+        "A budget that lets money be shifted freely between line items",
+        "A budget that places no ceiling on essential spending lines",
+        "A budget that gets re-approved halfway through the fiscal year",
+        "A budget that flexes with the actual level of activity"
+      ],
+      "explanation": "Flexible budget: plan for 100bn of revenue with 40bn of variable cost. If actual revenue comes in at 80bn, the variable cost benchmark drops proportionally to 32bn, which makes the comparison fair. Being allowed to move money between line items is a transfer rule, not flexing. Removing a ceiling is no budget at all, and a mid-year re-approval is a reforecast that happens on the calendar rather than in response to volume."
+    },
+    {
+      "question": "What does scenario planning give you?",
+      "options": [
+        "Forecasts three scenarios so bad outcomes are prepared for",
+        "Picks the single most likely scenario and builds the whole plan on it",
+        "Simulates thousands of random scenarios by computer",
+        "Plans each department separately, then merges the pieces"
+      ],
+      "explanation": "Scenario planning sets a base case (up 10% a year), a worst case (down 20% if the market turns) and a best case (up 50% if a large order lands). That is what lets a CEO have plan B and plan C ready before the situation changes. Committing to one most-likely path is the very habit scenario planning exists to break. Running thousands of random draws is Monte Carlo simulation, a different technique, and merging departmental plans is just bottom-up consolidation."
+    },
+    {
+      "question": "A business budgets for 1,000 units but actually sells 1,400. How does a flexible budget handle the gap?",
+      "options": [
+        "Keeps the 1,000-unit budget; the excess is waste",
+        "Rebuilds variable cost at 1,400 units, then compares",
+        "Multiplies the whole budget by 1.4, fixed costs included",
+        "Scraps the old budget and rebuilds the whole year from scratch"
+      ],
+      "explanation": "Selling more obviously means more spending on materials and freight, so comparing straight against the original budget would wrongly conclude that production overspent. A flexible budget rebuilds what the cost should have been at the actual volume, and only then measures the variance. Scaling the entire budget by 1.4 is wrong because fixed costs do not move with volume, and rebuilding the year from scratch throws away the benchmark that makes the comparison possible."
+    },
+    {
+      "question": "What is the main drawback of a top-down budget?",
+      "options": [
+        "The people executing it never committed, since they had no say",
+        "It takes a very long time to consolidate across departments",
+        "It cannot be applied at companies with over 100 staff",
+        "It always yields numbers below what the company can do"
+      ],
+      "explanation": "Top-down is fast and stays tied to strategy, but the number is handed down rather than negotiated, so a department head treats it as the boss's target rather than their own commitment. Slow consolidation is the drawback of bottom-up, the opposite direction. Headcount is irrelevant - if anything, large organisations lean on top-down more heavily. And the numbers usually land above what departments believe they can deliver, not below."
+    }
+  ],
+  "keyTakeaways": [
+    "A budget is a management tool, not just a report",
+    "Bottom-up: from the ground up, with departments estimating; top-down: from the top, with the CEO deciding",
+    "Flexible budget: a budget that flexes with the actual level of activity",
+    "Scenario planning: three forecast scenarios so the 'what if' is already prepared"
+  ],
+  "practicePrompt": {
+    "question": "You run FP&A at a company. This year's budget: 100bn of revenue, 60bn of cost. Actual for January-June: 45bn of revenue, 5bn behind plan. What should you report?",
+    "options": [
+      "Report the actual figures accurately and stop there",
+      "Update the full-year forecast and propose adjustments",
+      "Log the variance internally but hold off on reporting it",
+      "Wait until year-end and report everything at once"
+    ],
+    "explanation": "FP&A has to spot early when a forecast has drifted, update the full-year expectation, and put corrective action in front of the CEO in time to fix things before it is too late."
+  },
+  "summary": {
+    "keyIdea": "A budget is a management tool: set the target, compare with actual, adjust the plan",
+    "commonMistake": "Building a budget and then forgetting it, never comparing actual against plan month by month",
+    "action": "Build a personal spending budget for next month, then compare against actual every week"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Build a budget for this month (estimated income, committed costs, savings target). Each week, record what you actually spent. At month end, compare and analyse: where did the plan go off?",
+    "secondary": "If you work in FP&A, make sure the monthly variance report is genuinely analysed rather than just a set of numbers."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A budget is not only there to be reported. It is the instrument you steer the company with - forecast the future, compare against the present, correct course in time."
+    },
+    {
+      "type": "heading",
+      "text": "The budget → actual → variance → adjustment cycle"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Budget (the plan): forecast revenue and cost for each month or quarter",
+        "Actual: record what revenue and cost really came in",
+        "Variance: compare actual against budget and work out the percentage gap",
+        "Adjustment: revise the plan ahead if needed, or take corrective action (push sales, cut costs, and so on)"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Bottom-up vs top-down budgeting"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bottom-up: each department estimates its own needs and reports them upward. Sales: 'we need 20bn of advertising spend to hit 100bn of revenue'. IT: 'we need 3bn to maintain and upgrade the systems'. FP&A consolidates everything into a company-wide budget. Advantage: departments understand their own needs. Drawback: it tends to come in over-budgeted."
+    },
+    {
+      "type": "paragraph",
+      "text": "Top-down: the CEO decides 'this year the company has a 150bn cost budget', then allocates it across departments. Sales: 50bn, IT: 10bn, and so on. Advantage: tight budget discipline. Drawback: departments feel the numbers are being forced on them."
+    },
+    {
+      "type": "heading",
+      "text": "Scenario planning"
+    },
+    {
+      "type": "paragraph",
+      "text": "Instead of forecasting a single number, forecast three scenarios: base case (the most likely), best case (if things go well), worst case (if a crisis hits). **Example:** base = 100bn of revenue; best = 120bn (if a large order lands); worst = 70bn (if inflation runs high and customers cut back). The CEO has plan B ready if the situation changes."
+    },
+    {
+      "type": "heading",
+      "text": "Variance analysis: splitting one bad number into two causes"
+    },
+    {
+      "type": "paragraph",
+      "text": "The plan was 1,000 units at a price of 100, i.e. revenue of 100,000. Actual was 900 units at a price of 105, i.e. 94,500. The gap is negative 5,500. On its own that number cannot tell you what to do. Split it: the volume variance is (900 − 1,000) × 100 = −10,000, and the price variance is (105 − 100) × 900 = +4,500, which add back to exactly −5,500. Now the story is clear: the sales team did push price up, but the units they missed cost more than the price increase brought back."
+    },
+    {
+      "type": "callout",
+      "label": "Those two causes lead to two different actions",
+      "text": "If the whole shortfall comes from price, the problem lies in competition or in discounting policy. If it comes from volume, the problem lies in demand, in the distribution channel or in sales capacity. A report that only says revenue was 5.5% short forces the reader to guess, and people generally guess along whatever bias they already hold. That is the entire value of the variance step in the cycle: it turns a number into a specific question that can be handed to a specific person."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Built from the bottom up",
+        "text": "Each department estimates its own needs and the totals roll upward. It stays close to how operations actually run, and the people delivering commit to numbers they set themselves. Drawback: the total usually far exceeds what the company can afford, because nobody has an incentive to ask for less."
+      },
+      "right": {
+        "label": "Set from the top down",
+        "text": "Leadership fixes the total budget and allocates it downward. Total spend stays under control and tied to financial targets, but the allocated numbers may not match operational reality, and the people delivering treat them as an imposed quota rather than their own plan. Most companies run both directions and negotiate in the middle."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A budget is not a prediction of the future; it is a set of markers that tell you where you have drifted.",
+        "A variance you can break into causes becomes work to be done - otherwise it is just bad news."
+      ]
+    }
+  ]
+}

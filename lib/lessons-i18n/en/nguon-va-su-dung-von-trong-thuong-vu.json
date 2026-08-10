@@ -1,0 +1,169 @@
+{
+  "slug": "nguon-va-su-dung-von-trong-thuong-vu",
+  "title": "Deals, part 2: sources and uses - where the money comes from and where it goes",
+  "subtitle": "The sources & uses table, why enterprise value differs from cash required, and the items that get forgotten",
+  "duration": "11 min",
+  "whyItMatters": "The sources and uses table is the first page of every deal file, and the earliest place a financing structure reveals itself as unworkable. It is also where the commonly forgotten outlays surface - advisory fees, financing arrangement fees, and the repayment of the seller's existing debt.",
+  "openingQuestion": "A buyer agrees to acquire 100% of the equity for 500bn. Is 500bn the total amount of money that has to be lined up?",
+  "openingOptions": [
+    "Yes, that is the price the two sides agreed on",
+    "No: the seller's debt falling due immediately must be added",
+    "No, because the seller's cash on hand still has to be netted off",
+    "Only if the whole deal is settled entirely in cash"
+  ],
+  "explanation": "The equity purchase price is what goes to the seller's shareholders. But most loan agreements carry a change-of-control clause forcing full repayment when the company changes hands, so that amount belongs in the table too. Add advisory fees, legal fees and financing arrangement fees - typically a few percent of deal value. The seller's cash does reduce the net amount payable, but it appears in the sources column rather than as a deduction from the price.",
+  "diagram": [
+    {
+      "label": "Uses: the equity purchase price"
+    },
+    {
+      "label": "+ repaying existing debt + transaction fees"
+    },
+    {
+      "label": "Sources: new borrowing + equity contributed"
+    },
+    {
+      "label": "+ cash on hand. The two columns must be equal"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The gap between the headline price and the cash required",
+    "description": "A deal is announced at an equity value of 500bn. The actual sources and uses table: 500bn to shareholders, 180bn to clear the seller's outstanding borrowings because of the change-of-control clause, 22bn of advisory and legal fees, and 8bn of arrangement fees on the new loan - 710bn in total. The buyer arranges 400bn of new debt, puts in 250bn of its own cash, and uses 60bn of cash sitting on the seller's balance sheet. The 500bn in the press and the 710bn that has to be lined up are two different quantities."
+  },
+  "quiz": [
+    {
+      "question": "Why does the seller's borrowing usually appear in the uses column?",
+      "options": [
+        "Because the old lender always refuses to extend credit any further",
+        "Because accounting standards bar the seller's debt from the buyer's consolidated accounts",
+        "Because loan agreements usually force repayment on a change of control",
+        "Because the debt is added to the equity price by international deal convention"
+      ],
+      "explanation": "This is what a change-of-control clause does. If the borrowing is allowed to stay in place it does not sit in the uses column at all, and the financing requirement drops accordingly. Lenders often would roll the facility over, so a blanket refusal is not the reason. Consolidation is an accounting question that has nothing to do with cash at closing, and nothing in market convention adds debt to the negotiated equity price - the two are agreed separately."
+    },
+    {
+      "question": "How is the seller's cash on hand treated in the table?",
+      "options": [
+        "In the uses column, since it is an asset the buyer has to pay to acquire",
+        "Deducted straight off the equity price to get what shareholders are paid",
+        "It does not appear, because that cash belongs to the seller",
+        "In the sources column: after closing the buyer can use that cash"
+      ],
+      "explanation": "Many people slip into netting it off the price instead. The net result is the same, but placing it in the sources column shows the picture correctly: it is a source of funding, not a discount on the price. It cannot go in uses, because the buyer is not spending money to obtain it. And it certainly does not vanish - once the deal closes, the cash on the target's balance sheet is the buyer's to deploy."
+    },
+    {
+      "question": "What relationship must hold between the sources and uses columns?",
+      "options": [
+        "Always equal, since every dong spent must be funded from somewhere",
+        "Sources must exceed uses by a 10% contingency reserve",
+        "No constraint - the columns cover two different stages of execution",
+        "Uses must be larger, to reflect the synergies expected after the merger"
+      ],
+      "explanation": "This is a simple but useful accounting constraint: when the two columns do not tie, it means some outlay has no funding behind it, and that is the moment you discover the financing structure is short. A contingency buffer may be prudent practice but it is not a rule of the table, both columns describe the same instant at closing, and synergies are a post-deal operating expectation that never enters a funding schedule."
+    },
+    {
+      "question": "Which cost is most often left out when the table is first built?",
+      "options": [
+        "The equity purchase price the buyer pays to the seller's shareholders",
+        "Financing arrangement fees plus the advisory and legal costs of the deal",
+        "The cash sitting on the target company's balance sheet",
+        "The inventory and receivables the buyer takes on after the deal"
+      ],
+      "explanation": "Fees typically run to a few percent of deal value, large enough to change the financing structure yet absent from every conversation about price. The purchase price is the headline number and never gets forgotten. The target's cash is a source rather than a use, and inventory and receivables come across with the business itself - they are not separately paid for on top of the equity price."
+    },
+    {
+      "question": "Which outlay is most often missed on a first draft of the sources and uses table?",
+      "options": [
+        "The seller's existing debt that must be cleared on a change of control",
+        "The equity price paid over to the shareholders of the seller",
+        "Transaction fees and arrangement fees on the new debt",
+        "The buyer's own equity contribution used to fund the deal"
+      ],
+      "explanation": "The other three items are large and obvious, so nobody forgets them. Advisory fees, legal fees and financing arrangement fees are scattered and individually small, yet together they usually come to a few percent of deal value - enough to leave the table out of balance and enough to change the whole funding structure."
+    }
+  ],
+  "keyTakeaways": [
+    "The equity purchase price is not the total amount of money that has to be lined up",
+    "The seller's existing debt usually has to be repaid at once because of the change-of-control clause",
+    "The seller's cash belongs in the sources column, not as a deduction from the price",
+    "The two columns must be equal - a gap means some outlay has no funding behind it",
+    "Advisory, legal and arrangement fees run to a few percent and are easily forgotten"
+  ],
+  "practicePrompt": {
+    "question": "Equity price 300bn, existing debt to repay 100bn, fees 15bn. The seller holds 40bn of cash. The buyer raises 250bn of debt. How much additional equity is needed?",
+    "options": [
+      "110bn (= 400 − 290, the 15bn of fees left out of uses)",
+      "125bn (= 415 − 250 of new debt − 40 of seller cash)",
+      "165bn (= 415 − 250, forgetting the 40bn of cash on hand)",
+      "50bn (= 300 − 250, netting the price against new debt only)"
+    ],
+    "explanation": "Total uses come to 300 + 100 + 15 = 415bn. Sources already include 250bn of new debt and 40bn of the seller's cash on hand, or 290bn. The 125bn shortfall is exactly the equity the buyer has to put in. The 165bn answer is what you get by forgetting the 40bn of cash - the most common mistake on this question."
+  },
+  "summary": {
+    "keyIdea": "The sources and uses table shows the real amount of cash required, not the figure that runs in the press",
+    "commonMistake": "Netting the seller's cash off the purchase price instead of placing it in the sources column",
+    "action": "Build the table for a hypothetical deal, and check that the two columns tie before doing anything else."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Find an announced M&A deal in the Vietnamese market, take the deal value from the press coverage, then look up the seller's most recent financial statements for outstanding borrowings and the cash balance. Build your own estimated sources and uses table.",
+    "secondary": "The gap between the number you calculate and the number that was reported is usually far wider than you first expect."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Before running any model, a deal practitioner builds a two-column table. It is simple enough to get dismissed, and it is the earliest place you find out that the financing structure will not stand up."
+    },
+    {
+      "type": "heading",
+      "text": "The two columns of a deal"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Uses",
+        "text": "The equity purchase price. Full repayment of the seller's existing borrowings where a change-of-control clause applies. Advisory, legal and audit fees. Arrangement fees on the new loan. Sometimes an escrow amount held back against the warranties."
+      },
+      "right": {
+        "label": "Sources",
+        "text": "The new debt arranged. The buyer's equity contribution. Cash already sitting on the seller's balance sheet. In some structures there is also the stake the seller's management rolls over instead of taking in cash."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why enterprise value and equity price differ",
+      "text": "Enterprise value equals equity value plus debt minus cash - the formula from the valuation section. The sources and uses table is that same formula playing out in real money: the debt you add appears in uses because it has to be repaid, and the cash you subtract appears in sources because it can be used. Anyone who once mixed these two quantities up while learning valuation will find this table clears it up faster than any definition."
+    },
+    {
+      "type": "heading",
+      "text": "A sources & uses table, with the numbers filled in"
+    },
+    {
+      "type": "paragraph",
+      "text": "The target is valued at 1,000. It carries 250 of debt and 50 of cash, so net debt is 200. The price paid to shareholders is therefore 1,000 − 200 = 800 - and that is the number that shows up in the press. But the cash required is more than that: 800 to buy the equity, plus 200 to clear the existing borrowings because loan agreements typically fall due on a change of control, plus 30 of advisory, arrangement and legal fees. Total USES: 1,030."
+    },
+    {
+      "type": "callout",
+      "label": "Sources must come to exactly 1,030",
+      "text": "For example: 600 of new borrowing, 380 of equity put in by the buyer, and the 50 of cash already sitting on the target's own balance sheet - because once the deal closes that cash belongs to the buyer and can immediately go toward part of the price. Together that is exactly 1,030. This 50 of cash is precisely why enterprise value subtracts CASH and not only debt: buying a company with money already in the till means you do not have to pay that part again."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Three items most often forgotten in uses",
+        "text": "Transaction fees, typically 2-3% of deal value and far from trivial. The cost of clearing the old debt, including any prepayment penalty. And the working capital that has to be injected right after closing, since a target is usually handed over with working capital below its normal operating level."
+      },
+      "right": {
+        "label": "Why this table comes before any model",
+        "text": "It forces you to answer where the money comes from before anyone discusses profit. A deal with an attractive valuation but insufficient funding simply does not exist, and this two-column table finds that out in ten minutes - before someone spends three weeks building a discounted cash flow model."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The number in the press is what shareholders get paid. The number in this table is what has to be in the account.",
+        "The next lesson covers what happens the moment the money moves: how the seller's assets get restated."
+      ]
+    }
+  ]
+}

@@ -12,10 +12,21 @@
   ],
   "explanation": "Many investors look at each fee type in isolation and forget to add up the ENTIRE cost of the whole portfolio. When you add fund fees, trading fees, and advisory fees together, the total annual cost can reach 2-3% or more - large enough to meaningfully erode returns compounded over many years.",
   "diagram": [
-    { "label": "Fund fee", "arrow": true },
-    { "label": "+ Trading fee", "arrow": true },
-    { "label": "+ Advisory fee", "arrow": true },
-    { "label": "= Total portfolio cost (can reach 2-3%/year)" }
+    {
+      "label": "Fund fee",
+      "arrow": true
+    },
+    {
+      "label": "+ Trading fee",
+      "arrow": true
+    },
+    {
+      "label": "+ Advisory fee",
+      "arrow": true
+    },
+    {
+      "label": "= Total portfolio cost (can reach 2-3%/year)"
+    }
   ],
   "realWorldExample": {
     "company": "The fee structure facing individual investors using multiple financial services in Vietnam",
@@ -30,7 +41,6 @@
         "Because custody fees always make up the largest share of total cost",
         "Because the law requires investors to calculate their own total annual fee"
       ],
-      "correct": 1,
       "explanation": "The compounding effect of several small fees is easy to underestimate. An investor paying 1.8% fund fee + 1% advisory fee could be losing 2.8%/year - large enough to meaningfully shrink accumulated wealth after 20-30 years."
     },
     {
@@ -41,7 +51,6 @@
         "Favoring low-cost passive ETFs and limiting unnecessary trading",
         "Choosing the fund with the highest management fee because it's managed better"
       ],
-      "correct": 2,
       "explanation": "Combining low-cost passive ETFs for most of the portfolio, limiting frequent trading (to cut trading fees), and paying for advice only when truly needed is a practical way to keep total cost reasonable while still achieving the diversification you need."
     },
     {
@@ -52,7 +61,6 @@
         "Nothing at all if the portfolio earns zero return that year",
         "25 million VND, deducted gradually from assets rather than appearing on a statement"
       ],
-      "correct": 3,
       "explanation": "The fee is charged on assets, not on profit - meaning in a loss year you still pay the full amount. And because it's deducted from the NAV rather than shown as a line on a statement, most investors never actually see that 25-million figure."
     },
     {
@@ -63,7 +71,6 @@
         "The custody fee, since it's the single largest item in total annual cost",
         "Personal income tax, since it's collected directly by the tax authority"
       ],
-      "correct": 0,
       "explanation": "Hidden costs don't appear in any fee table: every trade costs you the gap between the buy price and the sell price, and a large order can even push the price against you. The more you trade, the bigger this cost gets - and nobody sends you an invoice for it."
     },
     {
@@ -74,7 +81,6 @@
         "Negligible, since investment returns are always far larger than the fee",
         "About 25 million VND, i.e. 1% times the number of years held"
       ],
-      "correct": 1,
       "explanation": "Every dong of fee isn't lost just once - it also loses all the growth that dong would have earned in every remaining year. That's why a fee gap that sounds small ends up deciding most of the difference between two otherwise identical investors."
     },
     {
@@ -85,7 +91,6 @@
         "Yes, if in exchange you get something you genuinely need and can't do yourself",
         "No, unless the investor has a portfolio worth more than ten billion VND"
       ],
-      "correct": 2,
       "explanation": "An advisor who kept you from selling out in 2022 has already paid back more than their fee. But that has to be real, specific value - a high fee paid for a promise to 'beat the market' is money thrown away most of the time."
     }
   ],
@@ -103,7 +108,6 @@
       "The only concerning item is the advisory fee - the 2%/year open fund fee is a completely normal level that doesn't need examining",
       "There's no issue at all, since total fees are always automatically deducted from returns before any calculation, with no further effect"
     ],
-    "correct": 0,
     "explanation": "A 3%/year total cost eats up nearly 40% of the 8%/year gross return - this is exactly why you need to assess the whole portfolio's total cost, instead of looking at each fee in isolation."
   },
   "summary": {
@@ -116,7 +120,6 @@
     "message": "List every fee you're paying for investing - fund fees, trading fees, custody fees, advisory fees if any - then add them into a single %/year figure.",
     "secondary": "Seeing the total fee at once is usually far more surprising than looking at each item separately."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

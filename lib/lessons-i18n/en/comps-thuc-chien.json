@@ -37,7 +37,7 @@
       "options": [
         "Use the non-comparable set anyway; something beats nothing",
         "Take a single business as the entire basis for comparison",
-        "Abandon the valuation, since the data is not reliable enough",
+        "Abandon the valuation entirely, since the data is not reliable enough",
         "Widen to similar models and cross-check against other methods"
       ],
       "explanation": "When direct comps are scarce, a good analyst looks for companies sharing the core business characteristics (revenue model, cost structure, growth drivers) even under a different official industry code, and always cross-checks against other valuation methods - rather than leaning entirely on a weak comparable set just because that is the data to hand."

@@ -1,0 +1,141 @@
+{
+  "slug": "frm-garp-code-of-conduct",
+  "title": "FRM Foundations, Lesson 8: The GARP Code of Conduct - ethics for the risk professional",
+  "subtitle": "Someone who warns about risk is only worth having if they dare say what nobody wants to hear",
+  "duration": "8 min",
+  "whyItMatters": "The risk professional sits in a structural conflict: the job is to constrain the very thing that generates profit and bonuses for colleagues. The GARP code exists to answer the question of what to do when commercial pressure meets professional judgement.",
+  "openingQuestion": "A risk analyst is told by their manager to loosen a model assumption so that a large deal clears the approval threshold. What does the GARP code require?",
+  "openingOptions": [
+    "Do as instructed, because the manager carries final responsibility for the decision",
+    "Keep the independent assessment intact and document it clearly",
+    "Resign immediately to avoid being implicated later on",
+    "Simply notify internal audit and then carry out the instruction anyway"
+  ],
+  "explanation": "The central principle is professional integrity: a risk assessment has to reflect honest professional judgement and must not be bent by internal pressure. Loosening an assumption to reach a desired result corrupts the one thing the organisation is paying for - a warning it can rely on.",
+  "diagram": [
+    { "label": "Commercial pressure appears" },
+    { "label": "Hold the professional judgement independent, and document it fully" },
+    { "label": "Disclose any conflict of interest" },
+    { "label": "Escalate through the appropriate channel if pressed to change the conclusion" }
+  ],
+  "realWorldExample": {
+    "company": "Where the risk function sits in the three lines of defence",
+    "description": "The three lines of defence model puts the business in the first line, risk management and compliance in the second, and internal audit in the third - with a requirement that the second line reports independently of the first. The reason is entirely practical: investigations after a number of failures found that the risk function had reported correctly, but that the report was stopped at the head of the very business it was warning about."
+  },
+  "quiz": [
+    {
+      "question": "Why is reporting independence a necessary condition for the risk management function?",
+      "options": [
+        "Because the law forbids risk staff from talking to the business",
+        "Because a warning can be stopped where it most needs hearing",
+        "Because the risk function ought to be paid more than the desk",
+        "Because independent reporting lines cut overall operating costs"
+      ],
+      "explanation": "The reporting line decides who has the power to stop a warning. If the head of risk depends on the head of the business for pay and promotion, independence exists only on the organisation chart. Risk and the business are meant to talk to each other constantly - that is the job - pay levels have nothing to do with the principle, and an independent line adds cost rather than saving it."
+    },
+    {
+      "question": "What does the professional competence principle require when you meet something outside your expertise?",
+      "options": [
+        "Refuse any assignment containing an element you have not met",
+        "Research it yourself and reach a conclusion regardless, to avoid delay",
+        "Acknowledge the limits of your competence and find the right specialist",
+        "Hand the whole responsibility over to the internal audit function"
+      ],
+      "explanation": "Producing a risk number for a product you do not genuinely understand is more dangerous than producing none, because the organisation will then act as though the risk has been measured. Admitting the limit is part of professional integrity. Refusing everything unfamiliar would end the profession, working it out under time pressure is how the false number gets produced, and internal audit is a third line, not a substitute for expertise."
+    },
+    {
+      "question": "On finding a serious flaw in a risk model currently in use, what is the appropriate step?",
+      "options": [
+        "Disclose the flaw publicly before reporting it internally at all",
+        "Wait until the annual model validation cycle comes round",
+        "Quietly correct the model yourself without telling anyone",
+        "Report it promptly through internal channels with evidence"
+      ],
+      "explanation": "A model in use that is wrong means every decision resting on it may be wrong too. Prompt reporting through internal channels is the first step; correcting it quietly breaks model change control and erases the trail needed for any later review. Going outside first skips the channel that can actually fix it, and waiting for the annual cycle leaves wrong numbers in circulation for months."
+    },
+    {
+      "question": "Why does the code stress setting out a model's limitations when reporting risk results?",
+      "options": [
+        "Because a number given without its limits reads as more certain than it is",
+        "Because regulation requires every risk report to carry a full technical annex",
+        "Because readers of the report usually lack the background in quantitative models",
+        "Because the limits of the model determine the minimum capital that must be held"
+      ],
+      "explanation": "Model output looks more objective than an opinion, so it gets challenged less. Stating the underlying assumptions and the conditions under which the model performs poorly is the only way a decision-maker can know how far to trust the number. No rule mandates a technical annex, the audience is often highly numerate, and capital requirements follow prescribed rules rather than the modeller's caveats."
+    },
+    {
+      "question": "Where does the risk professional's duty to the public in the code come from?",
+      "options": [
+        "From the regulator's requirement for periodic risk disclosure",
+        "From the fact that a risk failure spreads beyond the firm itself",
+        "From the fact that shareholders are mostly retail investors",
+        "From the contractual duty between a financial firm and its depositors"
+      ],
+      "explanation": "A bank collapsing takes depositors, counterparties and the payment system down with it - the cost does not stop at the shareholders. That is why the risk professional is given a duty broader than the duty owed to their own employer. Disclosure rules are a consequence of that duty rather than its source, the shareholder register is irrelevant to it, and a contractual duty binds the firm rather than the individual professional."
+    }
+  ],
+  "practicePrompt": {
+    "question": "You discover that the VaR model in use omits a group of exposures, so the reported number is lower than reality. The head of the business asks you to hold the report until after the period close. What is the right course?",
+    "options": [
+      "Report it at once through internal channels, not waiting for the close",
+      "Delay until after the close if the omission is below the materiality threshold",
+      "Fix the model yourself and report once you have a more accurate number",
+      "Wait for internal audit to find it, to preserve the relationship with that desk"
+    ],
+    "explanation": "The request to delay until after the period close is precisely the form of commercial pressure that the independence principle exists to resist: the timing is chosen because it flatters a reported number, not for any technical reason. Fixing it quietly sounds more responsible but is in fact worse - it erases the trail showing that the published figure was ever wrong, and denies other people the right to know which number they made their decisions on. Materiality does not rescue the delay either: until you report, nobody independent of you has confirmed how small the omission really is."
+  },
+  "keyTakeaways": [
+    "Professional integrity: a risk assessment must not be bent to fit commercial pressure",
+    "Reporting independence is a necessary condition, or a warning can be stopped at the very place that needs to hear it",
+    "Admitting the limits of your competence is safer than producing a number for something you do not understand",
+    "A model flaw must be reported promptly through internal channels, never quietly corrected"
+  ],
+  "summary": {
+    "keyIdea": "The value of the risk function lies in the reliability of its warnings, so every ethical principle here turns on protecting the independence of professional judgement",
+    "commonMistake": "Treating a manager's request to loosen a model assumption as an ordinary technical matter rather than an ethical one",
+    "action": "When asked to change a risk conclusion, ask directly: is this because a new technical argument exists, or because the old result was inconvenient for the deal"
+  },
+  "application": {
+    "title": "Check an organisation chart",
+    "message": "If you work in a financial firm, look at who the head of risk management reports to. If the reporting line runs through the head of the business, independence exists only on paper.",
+    "secondary": "It is also a question worth asking about an organisation before you apply to join it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A risk professional is paid to say inconvenient things. The entire value of the function rests on their warnings being credible - and that only holds if professional judgement is not bent."
+    },
+    { "type": "heading", "text": "The conflict is built into the job" },
+    {
+      "type": "paragraph",
+      "text": "The business generates revenue, the risk function constrains it. The person approving the limit sits in the same building, eats in the same canteen, and at year end depends on the same collective result. The code exists because individual goodwill is not enough to withstand a conflict that is structural."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Integrity: the assessment reflects honest judgement, not the desired result",
+        "Independence and objectivity: gifts, relationships and internal pressure do not shape the conclusion",
+        "Professional competence: take on work you genuinely understand, and admit the limit when you do not",
+        "Confidentiality: information obtained at work is not used for personal benefit",
+        "Compliance with the law, and no conduct that damages the standing of the profession"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Reporting independence is a hard constraint",
+      "text": "The three lines of defence model requires the second line to report independently of the first, usually straight to the board risk committee. Without that constraint, a warning can be stopped at exactly the person it is warning about - a pattern that recurs again and again in post-failure investigations."
+    },
+    { "type": "heading", "text": "When the model is wrong" },
+    {
+      "type": "paragraph",
+      "text": "Finding a serious error in a model currently in use creates a duty to report promptly, not to wait for the scheduled review. Correcting it quietly sounds quick and tidy but breaks model change control, erases the trail needed for later inspection, and leaves one question nobody can answer: what about the decisions already taken on the old version."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A risk function that is not independent is just a department that ratifies decisions already made.",
+        "Next lesson: data quality - what decides whether any risk number means anything at all."
+      ]
+    }
+  ]
+}

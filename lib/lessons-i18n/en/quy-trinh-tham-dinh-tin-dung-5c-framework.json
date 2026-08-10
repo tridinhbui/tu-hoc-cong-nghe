@@ -1,0 +1,184 @@
+{
+  "slug": "quy-trinh-tham-dinh-tin-dung-5c-framework",
+  "title": "The credit appraisal process: the 5C framework - do not lend bad money",
+  "subtitle": "Before lending, you have to examine the borrower carefully - the 5Cs let you do it systematically.",
+  "duration": "7 min",
+  "openingQuestion": "What does the 5C framework in credit appraisal consist of?",
+  "openingOptions": [
+    "Checking how much cash the customer currently holds is enough",
+    "Character, Capacity, Capital, Collateral, Conditions",
+    "The CIC score on its own is enough"
+  ],
+  "explanation": "The 5C framework is the comprehensive method for assessing a loan: (1) Character: the borrower's ethics and repayment history; (2) Capacity: the ability to repay (income, cash flow); (3) Capital: the borrower's own assets and equity; (4) Collateral: the security pledged (property, shares); (5) Conditions: the state of the economy, the industry, the regulation. Weakness in any one of the Cs makes the loan risky.",
+  "realWorldExample": {
+    "company": "A Vietnamese bank",
+    "description": "The owner of a textile workshop wants to borrow $1M. Her CIC score is good (6.5/10), but the workshop's sales are down 30% because customers are ordering less → Capacity is weak. The collateral is an old house worth $500K (Collateral only 50%) → risky. Although Character is good, the bank will decline or lend a smaller amount."
+  },
+  "quiz": [
+    {
+      "question": "What is Character in the 5Cs?",
+      "options": [
+        "How transparent the audited financial statements are",
+        "The business owner's personal standing in the local community",
+        "Willingness to repay, measured by credit history and days past due",
+        "The management capability of the borrowing company's leadership"
+      ],
+      "explanation": "This is exactly where the translation traps people. 'Character' is not personality in the everyday sense but willingness to repay MEASURED BY EVIDENCE - the CIC credit history, days past due, how the borrower handled earlier debts when times were hard, their standing with suppliers. The key distinction in credit: willingness to pay (Character) sits apart from ability to pay (Capacity). Someone with ample means can still choose not to repay, and the past record is the best available indicator of that choice. Statement transparency, community reputation and management capability all feed the file, but none of them is what the C measures."
+    },
+    {
+      "question": "What is Capacity?",
+      "options": [
+        "The maximum credit limit the bank is willing to extend",
+        "The value of the security the customer is able to pledge",
+        "The amount of shareholders' equity the business already holds",
+        "Ability to repay, measured by D/E, Interest Coverage, DSCR"
+      ],
+      "explanation": "Capacity is the base the loan stands on: where the money to repay comes from. For a company, the focus is cash flow from operations rather than accounting profit, read through Debt/EBITDA, Interest Coverage (EBIT over interest) and DSCR (available cash flow over debt service). For an individual it is the debt service to income ratio. Keep the order of priority straight: collateral is the fallback, CASH FLOW is the source of repayment - a bank lends to earn interest, not to go and foreclose on houses. Credit limit, security value and equity are each a separate C or a separate decision."
+    },
+    {
+      "question": "Why do Conditions (the economic environment) matter?",
+      "options": [
+        "Because a recession or a sector shock still leaves the customer unable to pay",
+        "Because regulators require a macro assessment in every single loan file",
+        "Because economic conditions determine the interest rate the bank may charge",
+        "Because the other four Cs apply only to corporate borrowers and not to individuals"
+      ],
+      "explanation": "The other four Cs are all measured at the level of the INDIVIDUAL borrower; Conditions is the only C that looks outward. It matters because credit risk is correlated: when an industry or the economy deteriorates, a whole basket of previously sound customers runs into difficulty AT THE SAME TIME - at exactly the moment collateral values are also falling, so the fallback fails at the same moment as the primary source of repayment. That is the mechanism that has broken many portfolios that looked perfectly safe file by file, and it is why banks set limits by industry and not only by customer."
+    },
+    {
+      "question": "Scenario: a loan file has good Capacity, Capital and Collateral, but Character is questionable. How should it be handled?",
+      "options": [
+        "Approve, since the other three Cs together cover the risk in full",
+        "Decline, because assets cannot rescue a missing intent to repay",
+        "Approve but raise the rate to compensate for that risk",
+        "Approve if the collateral value exceeds 150% of the loan"
+      ],
+      "explanation": "Character is a necessary condition, not a plus point that can be traded away. A borrower who can repay but does not intend to will turn the loan into a lawsuit running for years, and recovering the collateral almost always costs both value and time. Repricing the risk assumes the risk is measurable and bounded, which is exactly what a willingness problem is not."
+    },
+    {
+      "question": "Why do Conditions still matter when the other four Cs all look good?",
+      "options": [
+        "Because Conditions substitute for Collateral when there is no security",
+        "Because Conditions determine the rate ceiling set by regulation",
+        "Because an industry downturn can break the ability to repay",
+        "Because the other Cs can only be measured at a point in time"
+      ],
+      "explanation": "The other four Cs describe the borrower as they are today, while the loan lives in the future. A healthy transport business can still lose the ability to service its debt when fuel prices double - that risk sits in the environment rather than in the file. Note that Conditions never stands in for security, and it is not a pricing rule."
+    }
+  ],
+  "sections": [
+    {
+      "type": "heading",
+      "text": "Character - ethics and repayment history"
+    },
+    {
+      "type": "paragraph",
+      "text": "Character assesses: (1) Repayment history: has this borrower ever defaulted or paid late? (2) CIC score: the credit score from the credit bureau (6.0/10 is ordinary, below 5 is high risk). (3) Reputation: does this person have a name for playing dirty, are there legal disputes? (4) Willingness to pay: does this person intend to repay, or plan to 'run' once the money is drawn? This is assessed through interaction and transaction history."
+    },
+    {
+      "type": "heading",
+      "text": "Capacity - ability to repay"
+    },
+    {
+      "type": "paragraph",
+      "text": "Capacity assesses the ability to generate profit: (1) Income: borrowing $1M over 5 years at 8% a year means total repayment of $1.46M. Annual income has to cover roughly $292K a year and still leave money to live on. Banks usually only lend if debt payments stay under 40% of income. (2) EBITDA (for a company): earnings before interest, tax, depreciation and amortisation. If EBITDA is $200K a year, a loan demanding $300K a year is hard to service. (3) Interest Coverage Ratio = EBITDA / interest: below 1.5x is dangerous."
+    },
+    {
+      "type": "heading",
+      "text": "Capital - the borrower's own assets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Capital assesses: (1) Owner's equity: if the borrower has no money of their own in it, they are not sharing the risk. (2) Debt/Equity ratio: if the borrower already carries too much debt (D/E above 2), lending more is too risky. (3) Net assets: how much does this person own net of debt? If net assets are negative, they can walk away with nothing to lose. (4) Scale of capital: a start-up with $50K of capital asking to borrow $1M is dangerous."
+    },
+    {
+      "type": "heading",
+      "text": "Collateral - the security pledged"
+    },
+    {
+      "type": "paragraph",
+      "text": "Collateral is the 'last resort' if the borrower loses the ability to repay. The bank seizes and sells the collateral to recover the money. Types of collateral: (1) Real estate (house, land): easy to value, easy to sell, but slow. (2) Shares and bonds: easy to sell but volatile in price. (3) Inventory: hard to value, hard to sell, and the realised price is usually below the appraised value. Banks typically lend only 60-80% of collateral value, to keep a safety margin."
+    },
+    {
+      "type": "heading",
+      "text": "Conditions - the economy and the industry"
+    },
+    {
+      "type": "paragraph",
+      "text": "Even a good borrower struggles if the economic backdrop turns bad: (1) Recession: sales fall, goods are hard to sell. (2) An affected industry: aviation was hit by COVID-19, textiles were hit by US tariffs. (3) Regulatory change: the government issues new rules, bans an export, and so on. The bank has to assess whether the customer might still be unable to repay if global conditions deteriorate."
+    },
+    {
+      "type": "heading",
+      "text": "CIC score - a supporting input"
+    },
+    {
+      "type": "paragraph",
+      "text": "CIC (the Credit Information Centre - similar to a credit bureau in the US) is the agency that collects the borrowing and repayment history of everyone in Vietnam. CIC scores run from 1 to 10: 8-10 is excellent (low risk), 6-8 is ordinary, below 5 is high risk. The CIC score is only one part, though - the 5C framework is what gives you the full picture."
+    },
+    {
+      "type": "heading",
+      "text": "The appraisal process from start to finish"
+    },
+    {
+      "type": "paragraph",
+      "text": "1. Receive the application: the customer files the papers (documents, financials). 2. Preliminary check: CIC, Character, transaction history. 3. Analyse the 5Cs: each C in detail. 4. On-site visit (if needed): visit the company, inspect the assets. 5. Decision: approve, decline, or propose different terms (a smaller loan, a higher rate, more collateral). 6. Sign the contract: set the term, the rate, and the penalties for late payment."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The five Cs, and which one cannot be traded away",
+      "subtitle": "Four describe the borrower today; the fifth describes the world the loan will live in",
+      "concepts": [
+        {
+          "def": "A NECESSARY condition, not a plus point that can be traded away. A borrower who can repay but does not intend to turns the loan into a lawsuit lasting years."
+        },
+        {
+          "def": "Whether cash flow is enough to service the debt - measured through income, EBITDA and the interest coverage ratio."
+        },
+        {
+          "def": "How much of the borrower's own money is in it. With no equity of their own, they share no risk, and walking away costs them nothing."
+        },
+        {
+          "def": "The last resort, not the main plan. Seizing and selling almost always costs both value and time."
+        },
+        {
+          "def": "The four above measure today, but the loan lives in the future. A healthy business still loses the ability to repay when fuel prices double."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The trap",
+      "text": "Good collateral does not rescue bad Character. A bank lends to receive interest, not to go and sell houses - every foreclosure is a loan that has already failed, whether or not the money is eventually recovered in full."
+    }
+  ],
+  "keyTakeaways": [
+    "5C: Character (ethics), Capacity (ability to repay), Capital (own assets), Collateral (security), Conditions (the economic environment)",
+    "Character is the foundation - if the borrower does not intend to repay, nothing else saves the loan",
+    "Capacity is assessed through income, profit and the interest coverage ratio",
+    "Even with the other Cs good, if Conditions turn bad the loan is still at risk"
+  ],
+  "practicePrompt": {
+    "question": "Assess a $500K loan to a restaurant owner: CIC 7.0, sales $5M a year, existing debt $200K, real estate collateral of $800K. Which decision fits the 5C framework best?",
+    "options": [
+      "Approve: Character, Capacity and Collateral all pass, with the existing debt to monitor",
+      "Decline immediately because CIC 7.0 falls short of the absolute 8-10 level",
+      "Approve the whole amount at once without considering any further factor at all",
+      "Decline because sales are under $10m a year, below the lending threshold"
+    ],
+    "explanation": "Applying the 5Cs: Character (CIC 7.0 - ordinary to good), Capacity (sales of $5M far exceed the $500K loan, so the ability to repay is sound), Capital and Collateral (real estate of $800K exceeds the loan, a loan-to-collateral ratio of 62.5% - safe), but the existing debt of $200K needs to be counted into total leverage before approval. There is no rigid CIC or revenue threshold applied mechanically - the whole of the 5Cs has to be read together."
+  },
+  "summary": {
+    "keyIdea": "The 5C framework is the comprehensive method for assessing credit risk. A bank never looks at one C alone - all five have to be read before the lending decision."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "If you work as a credit officer, you will use the 5C framework every day. Nobody wants to lend 'bad' money - the 5Cs help you screen out the loans that will lose it. You can also use the 5Cs to negotiate terms: if one C is weak, you ask for a higher rate or more collateral to cover the risk."
+  },
+  "diagram": [
+    { "label": "Character - repayment history, CIC" },
+    { "label": "Capacity - cash flow to service the debt" },
+    { "label": "Capital - the borrower's own equity" },
+    { "label": "Collateral - the security pledged" },
+    { "label": "Conditions - industry and macroeconomy → the credit decision" }
+  ]
+}

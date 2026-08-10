@@ -1,0 +1,166 @@
+{
+  "slug": "khau-hao",
+  "title": "Depreciation: three methods and the path through three statements",
+  "subtitle": "Which method to pick, and everywhere a dong of depreciation touches",
+  "duration": "7 min",
+  "openingQuestion": "How much does 50m of depreciation in a period reduce the cash in the till?",
+  "openingOptions": [
+    "By 50m, because it is a cost of the period",
+    "By nothing at all during the period",
+    "By 50m multiplied by the tax rate in force",
+    "Gradually month by month until the year ends"
+  ],
+  "explanation": "The cash left the till when the asset was bought, not when it is depreciated. Depreciation is only a way of splitting that purchase price across several periods so each one carries a share, so it lowers reported profit without a single dong leaving the till. That is exactly why the indirect cash flow statement adds depreciation straight back on the first line: profit has been charged with it, and the cash has not. Put another way, depreciation moves the profit figure and not the money - and it touches cash only indirectly, through a smaller tax bill.",
+  "diagram": [
+    {
+      "label": "Buy the asset, cash out once"
+    },
+    {
+      "label": "Divide the purchase price by the years of use"
+    },
+    {
+      "label": "Book one share as an expense each period"
+    },
+    {
+      "label": "Profit falls, the cash balance does not move"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An airline",
+    "description": "Asset-heavy industries carry large depreciation charges, so their margins look markedly thinner than a software company's even where cash flow may be perfectly healthy. That is why people compare on EBITDA - adding depreciation back to put two different capital models on the same scale."
+  },
+  "keyTakeaways": [
+    "Straight-line spreads evenly; declining balance pushes cost into the early years; units of production ties cost to actual usage",
+    "Total depreciation over the asset's life does not change with the method - only the timing of the charge does",
+    "Depreciation lowers profit on the P&L, lowers net asset value on the balance sheet, and is added back in operating cash flow",
+    "Capex roughly equal to depreciation means the business is holding its size; capex above depreciation means it is expanding"
+  ],
+  "summary": {
+    "keyIdea": "Depreciation divides an amount already paid across the periods that will use it - it is not a new outlay",
+    "formula": "Straight-line: (Cost − Salvage value) / Years of useful life",
+    "commonMistake": "Treating depreciation as cash going out, or assuming that changing the method changes the total charge",
+    "action": "Take a real set of accounts and compare capex with depreciation in the same period to read whether the business is expanding or merely holding steady"
+  },
+  "application": {
+    "title": "Reading it in a real set of accounts",
+    "message": "Find the depreciation line in the cash flow statement, then find accumulated depreciation on the balance sheet. The first is this period's share, the second is everything charged since the beginning.",
+    "secondary": "If accumulated depreciation is close to original cost, most of the asset base has reached the end of its book life - and a replacement cycle is usually not far off."
+  },
+  "practicePrompt": {
+    "question": "A machine costs 600m, has a ten-year life and no salvage value. Under double-declining balance, what is the depreciation charge in year two?",
+    "options": [
+      "96m (= 480 × 20%, after 120 booked in year 1)",
+      "120m (= 600 × 20%, reusing the original cost)",
+      "60m (= 600 / 10, that is straight-line)",
+      "108m (= 540 × 20%, netting off half of year one)"
+    ],
+    "explanation": "Double the straight-line rate is 2/10 = 20%, and it applies to the remaining book value rather than to the original cost. Year 1: 600 × 20% = 120m, leaving 480. Year 2: 480 × 20% = 96m. The 120 answer makes the classic mistake of applying the rate to original cost every year, which would write the asset off in exactly 5 years instead of declining indefinitely. The 60 answer is the straight-line result, not declining balance."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "What depreciation is and why it is not cash going out - that was covered in the lesson What is depreciation. This one takes the next two questions: which method suits which kind of asset, and everywhere a dong of depreciation touches across the statements."
+    },
+    {
+      "type": "heading",
+      "text": "Three methods"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Straight-line: (Cost − Salvage value) / Years. Even, simple, by far the most common - a 600m machine with a ten-year life carries 60m a year",
+        "Double-declining balance: Remaining book value × (2 / Years). Pushes cost into the early years, which suits assets that lose value quickly such as technology equipment - year 1 is 600 × 20% = 120m, year 2 is 480 × 20% = 96m",
+        "Units of production: (Cost − Salvage value) / Total output × Output used. Ties cost to actual usage, which suits trucks and machinery - a 500m truck good for 500,000 km that runs 60,000 km in its first year carries 60m"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The total does not change, only the timing",
+      "text": "All three methods produce the same total depreciation over the life of the asset. Choosing a method is choosing which year carries more of it, not choosing how much is spent - so switching methods changes each year's profit without making the business any richer or poorer."
+    },
+    {
+      "type": "heading",
+      "text": "The path through the three statements"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Income statement: the depreciation charge lowers operating profit and then net profit",
+        "Balance sheet: accumulated depreciation grows and is deducted from cost, so net asset value shrinks period by period",
+        "Cash flow: under the indirect method, depreciation is added back to operating cash flow, because it was deducted from profit without any cash leaving the till"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Four things the depreciation figure tells you"
+    },
+    {
+      "type": "list",
+      "items": [
+        "EBITDA = operating profit + depreciation: added back so that two businesses with different levels of asset investment can be put on the same scale",
+        "Asset-heavy sectors such as manufacturing or aviation carry large depreciation, so margins look thinner than in asset-light sectors even where cash flow is no worse",
+        "In steady state, replacement capex is roughly equal to depreciation; capex above depreciation is a sign of expansion",
+        "Tax depreciation is usually faster than book depreciation, and that gap creates a deferred tax liability"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Depreciation is where accounting and cash separate most visibly: a large number on the statements while the cash balance does not move.",
+        "Which is why it only means anything read alongside capex - on its own it says only that the assets are getting older."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "A machine is bought for 600m with a ten-year life and salvage value of zero. What is the straight-line depreciation each year?",
+      "options": [
+        "It depends on how much revenue the asset generates",
+        "600m in year one, expensing the whole purchase price",
+        "6m a year (= 600/100, misreading the useful life)",
+        "60m a year, the purchase price spread evenly over ten years"
+      ],
+      "explanation": "Straight-line: D&A = (Cost − Salvage value) / Useful life = (600 − 0) / 10 = 60m a year. After ten years, book value is 0."
+    },
+    {
+      "question": "Why is D&A added back in the cash flow statement under the indirect method?",
+      "options": [
+        "D&A is a non-cash expense - it lowers net income without any cash leaving",
+        "To make the reported profit figure look larger than it really is",
+        "Because D&A is a capital investment cost paid out in the period",
+        "To reduce the tax charge the company owes for the period"
+      ],
+      "explanation": "The indirect method starts from net income (which is already after D&A) and adds D&A back because no cash actually left. D&A is a non-cash entry - it affects the P&L only, not the bank account. The tax answer confuses cause with effect: the tax shield is real but it comes from the charge on the P&L, not from the add-back, and the add-back would be needed even at a zero tax rate."
+    },
+    {
+      "question": "What is the book value of an asset after 3 years, given cost of 900m, a 15-year life, zero salvage and straight-line depreciation?",
+      "options": [
+        "600m (= 900 − 300, applying a ten-year useful life)",
+        "720m, the cost less three years of depreciation",
+        "180m (= 3 × 60, the accumulated depreciation itself)",
+        "900m, the original cost carried unchanged"
+      ],
+      "explanation": "Annual D&A = 900/15 = 60m a year. After 3 years, accumulated depreciation = 3 × 60 = 180m. Book value = 900 − 180 = 720m."
+    },
+    {
+      "question": "The same 600m machine with a ten-year life, but now with an estimated salvage value of 100m. What is the annual straight-line charge?",
+      "options": [
+        "60m (= 600/10, forgetting the salvage value entirely)",
+        "70m (= (600+100)/10, adding the salvage instead)",
+        "50m, depreciating cost less salvage value",
+        "10m (= 100/10, depreciating only the salvage part)"
+      ],
+      "explanation": "Straight-line = (cost − salvage value) / years = (600 − 100) / 10 = 50m. Salvage value is the portion that is NOT depreciated, because it is the amount you still expect to recover when the asset is sold on; depreciation only allocates the value genuinely consumed."
+    },
+    {
+      "question": "Depreciation rises by 100m in the period and the tax rate is 20%. How does closing cash change?",
+      "options": [
+        "Falls by 100m, since that is a cost",
+        "Falls by 80m, the after-tax profit lost",
+        "Unchanged, depreciation moves no cash",
+        "Rises by 20m from the tax saved"
+      ],
+      "explanation": "Depreciation of +100 takes pre-tax profit down by 100, so tax payable falls by 20. The depreciation itself never leaves the till, so the only thing that genuinely touches cash is the tax saved: cash RISES by 20m. This is the depreciation tax shield, and it is why two otherwise identical businesses with different depreciation charges will have different cash flows."
+    }
+  ]
+}

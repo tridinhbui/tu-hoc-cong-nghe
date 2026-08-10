@@ -1,0 +1,151 @@
+{
+  "slug": "dinh-gia-bat-dong-san-tai-san-vo-hinh",
+  "title": "Valuing real estate & intangible assets - when DCF is not enough",
+  "subtitle": "Valuing a building or a brand is different from valuing a share - you need other methods.",
+  "duration": "8 min",
+  "openingQuestion": "Why can't you use DCF (discounted cash flow) to value a property or a brand?",
+  "openingOptions": [
+    "DCF works perfectly well here; it is the only method there is",
+    "Because property and brands do not generate cash flow",
+    "Because their cash flows are hard to forecast and unstable"
+  ],
+  "explanation": "DCF works best for companies with forecastable cash flow. But property is easily affected by the local market, tax policy and demographic shifts. A brand (an intangible asset) is even harder to attach a separate cash flow to. That is why you need 'market comparison' or 'cost-based' valuation methods instead.",
+  "realWorldExample": {
+    "company": "WeChat",
+    "description": "If Tencent wanted to acquire or value WeChat, DCF would be very difficult, because the app's value rests on users, engagement and government licensing - none of which can be forecast with a mathematical formula. Instead you would use 'recent precedents' (comparable transactions) or a 'profit per user' measure."
+  },
+  "quiz": [
+    {
+      "question": "What are the three main methods for valuing real estate?",
+      "options": [
+        "DCF, Comparable Company, Precedent Transaction",
+        "Cost Approach, Replacement Approach, Salvage Value",
+        "Income Approach, DCF Approach, Book Value Approach",
+        "Income Approach, Cost Approach, Market Approach"
+      ],
+      "explanation": "These three answer three different questions about the same asset: the Income Approach asks 'how much cash does it produce', the Market Approach asks 'what did someone just pay for something similar', and the Cost Approach asks 'what would it cost to rebuild'. A serious valuation runs all three and explains why they differ - the gap between Income and Market usually reveals what the market expects that current cash flow does not yet show. A single number standing alone is very hard to defend under challenge."
+    },
+    {
+      "question": "What does the Income Approach base a property valuation on?",
+      "options": [
+        "Discounting the rental cash flow (NOI) back to today",
+        "Land price plus the construction cost of the building on it",
+        "Comparison with transaction prices of similar properties",
+        "Rebuild cost today minus the depreciation already taken"
+      ],
+      "explanation": "The Income Approach is DCF wearing a real estate coat: take NOI (rental revenue less operating costs, before interest and depreciation) and either divide by the cap rate to get a value, or discount several years of NOI back to today. That makes it most sensitive to exactly two assumptions: occupancy and the cap rate. Land plus build cost is the Cost Approach, and comparison with recent sales is the Market Approach. A cap rate moving 0.5 percentage points can shift a valuation by ten percent or more - which is why a property valuation report must carry a sensitivity table, not for decoration."
+    },
+    {
+      "question": "What is goodwill?",
+      "options": [
+        "The gap between the book value and the market value",
+        "The purchase price in excess of the fair value of the net assets",
+        "A competitive advantage recognised as an intangible asset",
+        "Brand value as assessed by an independent third party"
+      ],
+      "explanation": "The standard definition uses the FAIR VALUE of identifiable net assets rather than book value - and 'identifiable' already includes separable intangibles such as brands, customer contracts and patents. What remains is exactly what cannot be detached from the business: the team, network effects, expected synergies. A gap between book and market value is a broader observation about the whole company, and a third-party brand appraisal produces a separately identifiable intangible rather than goodwill. Goodwill is not amortised but must be tested for impairment annually - and a large goodwill write-down is usually a belated admission that the deal was overpriced."
+    },
+    {
+      "question": "Scenario: a rental house generates 240m a year in net income and the local market cap rate is 8%. What value does the Income Approach give?",
+      "options": [
+        "19.2bn (= 240 ÷ 0.8%, decimal place error)",
+        "1.92bn (= 240 × 8, multiplying instead of dividing)",
+        "3bn (= 240m ÷ 8%, capitalising the income)",
+        "240m (= just taking one year's income)"
+      ],
+      "explanation": "The Income Approach capitalises net income by the cap rate: 240 ÷ 0.08 = 3bn. A higher cap rate means a lower price, because it reflects the yield a buyer demands - a riskier area demands a higher cap rate, and the same cash flow fetches less money."
+    },
+    {
+      "question": "Scenario: a company is acquired for 500bn while the fair value of its net assets is 380bn. How much goodwill is recognised?",
+      "options": [
+        "0bn (= goodwill only arises when buying below value)",
+        "500bn (= the whole purchase price booked as goodwill)",
+        "380bn (= simply the net asset value itself)",
+        "120bn (= 500 − 380, the excess over net assets)"
+      ],
+      "explanation": "Goodwill is the purchase price above the fair value of net assets: 500 − 380 = 120bn. It represents the things not on the balance sheet - the brand, the customer relationships, the team - and it is also the item that has to be tested for impairment every year."
+    }
+  ],
+  "sections": [
+    { "type": "heading", "text": "Three asset valuation approaches (Income, Cost, Market)" },
+    {
+      "type": "paragraph",
+      "text": "Income Approach: value based on the cash flow generated - for example, a rental building taking in $500K a year at a required yield of 5% is worth roughly $10M. Cost Approach: value = the cost of rebuilding the asset + the land, less depreciation - well suited to older property. Market Approach: comparison with similar recent transactions - if a comparable building sold on $12M of annual rent and yours produces $9M a year, the valuation is roughly $9M/$12M × $12M."
+    },
+    { "type": "heading", "text": "Why can't real estate use DCF?" },
+    {
+      "type": "paragraph",
+      "text": "DCF relies on: (1) an accurate 5-10 year cash flow forecast; (2) a stable discount rate. Real estate: (1) cash flow depends on the local market and on policy (rents can stay flat or double); (2) maintenance and repair costs are hard to forecast; (3) land prices move with history. So the Income Approach is the 'real estate' version of DCF - simpler, and using only the rental cash flow."
+    },
+    { "type": "heading", "text": "Intangible assets - brands, patents, customers" },
+    {
+      "type": "paragraph",
+      "text": "Intangible assets have no physical form but create value: brands (Apple), patents (technology), customer lists, long-term contracts. They are hard to value because: (1) their separate cash flow is hard to measure; (2) the risk is high; (3) they change fast."
+    },
+    { "type": "heading", "text": "Methods for valuing intangible assets" },
+    {
+      "type": "paragraph",
+      "text": "Relief from Royalty: 'if I had to pay a royalty to use this brand, how much would I pay?' For example, Nike would have to pay 5% of revenue to use its own logo. Multiply 5% × forecast sales → brand value. Incremental Earnings: compare the profit of a company with a strong brand against an otherwise identical company with a weak one - the difference is the value of the intangible."
+    },
+    { "type": "heading", "text": "Goodwill - when you pay extra to buy a company" },
+    {
+      "type": "paragraph",
+      "text": "Goodwill = purchase price − the book value of the assets. For example, Facebook bought WhatsApp for $19B while its real assets (servers, offices) were only about $500M. Goodwill = $18.5B, representing users, customers, technology and market share. Goodwill appears on the balance sheet and must be amortised (or tested to see whether it has lost value)."
+    },
+    { "type": "heading", "text": "Impairment - when an intangible asset loses value" },
+    {
+      "type": "paragraph",
+      "text": "If a brand or a patent suddenly loses value (a scandal hits the brand, a patent is ruled invalid), the goodwill has to be written down as an impairment loss. For example, if Facebook bought TikTok for $100B and two years later TikTok were banned in the US, with the value falling to $10B → a $90B loss is recognised."
+    },
+    { "type": "heading", "text": "In practice - M&A (mergers and acquisitions)" },
+    {
+      "type": "paragraph",
+      "text": "When a company wants to buy another, or to value an asset for sale, all three approaches have to be combined. The results usually differ - say the Market Approach gives $50M, the Income Approach $45M and the Cost Approach $40M. The valuer then settles on a 'fair price' somewhere among these three numbers, depending on context (a hot or cold market, how urgent the sale is, and so on)."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three approaches to valuing an asset",
+      "subtitle": "Which one to use depends on whether the asset produces cash flow, can be rebuilt, or has comparable transactions",
+      "concepts": [
+        { "def": "Discount the future cash flow the asset generates. Right when the asset has a separable, predictable cash flow, such as a building on long leases." },
+        { "def": "The cost of rebuilding an equivalent asset, less wear and tear. Used when there is no income and no comparable transaction - usually a floor on value." },
+        { "def": "Compare against transactions in equivalent assets. Strongest when there are many recent deals, and much weaker when the market is thin." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The trap",
+      "text": "Goodwill is not an asset you can buy - it is the gap between the price paid and the fair value of the net assets received. Which means it records a DECISION, not a thing. That is why testing goodwill for impairment is really testing whether the deal was too expensive at the time."
+    }
+  ],
+  "keyTakeaways": [
+    "Three asset valuation approaches: Income Approach (cash flow), Cost Approach (rebuild cost), Market Approach (market comparison)",
+    "Real estate does not use DCF because its cash flow is hard to forecast - the Income Approach is the simpler version",
+    "Intangible assets (brands, patents) use Relief from Royalty or Incremental Earnings",
+    "Goodwill is the purchase price above book value - it arises when a company is bought for more than its asset value"
+  ],
+  "practicePrompt": {
+    "question": "A rental building will generate $500K of revenue next year, growing steadily at 2% a year forever, at a required yield of 6%. Using the Income Approach (a growing perpetuity), what is the building worth?",
+    "options": [
+      "≈ $12.75 million, using the growing perpetuity V = CF1/(r-g) = 500K/(0.06-0.02)",
+      "≈ $8.33 million, using V = CF/r = 500K/0.06 (wrong: ignores growth)",
+      "≈ $25 million, using V = CF/g = 500K/0.02 (wrong: growth rate used as denominator)",
+      "≈ $2.4 million, using V = CF×(r-g) = 500K×0.04 (wrong: multiplying instead of dividing)"
+    ],
+    "explanation": "The growing perpetuity model: V = CF1/(r-g) = 500,000/(0.06-0.02) = 500,000/0.04 = $12,500,000 ≈ $12.5 million (using next year's CF of 500K directly is the standard treatment when the question supplies year 1 cash flow). The spread between discount rate and growth (r-g) = 4% is the denominator that drives the value - a small error in g can change the valuation considerably."
+  },
+  "summary": {
+    "keyIdea": "Real estate and intangible assets need valuation methods other than DCF. The Income, Cost and Market approaches each have their own strengths and weaknesses - usually they have to be combined to reach a sensible valuation."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "In M&A work, asset valuation or financial reporting, you will have to apply these three approaches to assess an acquisition, a building or a brand. Understanding goodwill also matters when reading the accounts of companies that acquire heavily."
+  },
+  "diagram": [
+    { "label": "Identify the type of asset to be valued", "arrow": true },
+    { "label": "Choose the approach: income · cost · market", "arrow": true },
+    { "label": "For intangibles: isolate the cash flow that asset generates", "arrow": true },
+    { "label": "Reconcile the results across the approaches", "arrow": true },
+    { "label": "Test periodically for impairment", "arrow": false }
+  ]
+}

@@ -12,10 +12,21 @@
   ],
   "explanation": "Professional financial advice isn't for every situation - for everyday spending and simple saving, self-education is entirely enough. But when several major, complex decisions with long-term trade-offs happen at the same time (an inheritance, starting a business, retirement/education planning, tax optimization), an experienced independent expert can help you see the whole picture, avoid emotional mistakes, and save more than the advisory fee costs. The important thing is choosing an advisor with a clear fee structure (hourly or a fixed service package - a 'fee-only' model), rather than someone who only earns commission selling insurance/investment products, since a commission model easily creates a conflict of interest.",
   "diagram": [
-    { "label": "Simple spending and saving", "arrow": true },
-    { "label": "-> self-study is enough", "arrow": true },
-    { "label": "Major, complex, long-term decisions", "arrow": true },
-    { "label": "-> professional advice is needed" }
+    {
+      "label": "Simple spending and saving",
+      "arrow": true
+    },
+    {
+      "label": "-> self-study is enough",
+      "arrow": true
+    },
+    {
+      "label": "Major, complex, long-term decisions",
+      "arrow": true
+    },
+    {
+      "label": "-> professional advice is needed"
+    }
   ],
   "realWorldExample": {
     "company": "The personal financial advisory market in Vietnam",
@@ -30,7 +41,6 @@
         "When your savings account balance exceeds 100 million VND",
         "When you need someone else to hold a brokerage account on your behalf"
       ],
-      "correct": 1,
       "explanation": "Professional advice delivers the most value when a situation is complex, with many variables and long-term trade-offs - that's when the benefit of an expert's perspective usually far exceeds the advisory fee."
     },
     {
@@ -41,7 +51,6 @@
         "Because a commission-based model on products easily creates a conflict of interest",
         "Because commission-based advisors aren't legally allowed to give individual advice"
       ],
-      "correct": 2,
       "explanation": "When an advisor's income depends on selling a specific product (insurance, an open fund), there's a natural incentive to recommend whichever product pays the highest commission, not necessarily the one that best fits the client's needs - this is the conflict of interest to watch for."
     },
     {
@@ -52,7 +61,6 @@
         "Deciding whether to open a 6-month or 12-month term deposit at a bank",
         "A major, complex decision: an inheritance, selling a business, a retirement plan"
       ],
-      "correct": 3,
       "explanation": "Advice is worth paying for when a decision is large, rarely repeated, and hard to undo if wrong. A monthly budget or picking a deposit term are things you can do well yourself after a few lessons."
     },
     {
@@ -63,7 +71,6 @@
         "Because an advisor with higher credentials usually charges above the market average",
         "Because the payment method determines how much time the advisor spends per client"
       ],
-      "correct": 0,
       "explanation": "Someone living off insurance commissions will see every solution shaped like an insurance contract - not necessarily because they're dishonest, but because that's what they're paid to sell. Ask 'how are you paid' before you ask anything else."
     },
     {
@@ -74,7 +81,6 @@
         "They always charge a fee that works out much lower than the commission a product agent would earn",
         "They guarantee a minimum return for whatever portfolio they advise on"
       ],
-      "correct": 1,
       "explanation": "Whoever pays them is who they serve. A direct fee looks more expensive because you see the number, while a commission is hidden inside the product - but the hidden amount is usually larger."
     },
     {
@@ -85,7 +91,6 @@
         "Dodging questions about fees, or pushing for a fast decision with no time to think",
         "Suggesting a full review of your financial goals before discussing any product"
       ],
-      "correct": 2,
       "explanation": "The other three options are all signs of a good advisor. Dodging the fee question and creating time pressure are two red flags - an advisor working in your interest isn't afraid of you taking a few more days to think."
     }
   ],
@@ -103,7 +108,6 @@
       "Never needs an advisor under any circumstance, since self-education is always the optimal solution for every financial situation",
       "Yes, but she should only choose a commission-based advisor, since they're always the most motivated to give the best advice for the client"
     ],
-    "correct": 0,
     "explanation": "Not everyone needs a professional financial advisor - with simple needs and existing self-taught knowledge, self-management is enough; seek advice when several major, complex decisions happen at the same time."
   },
   "summary": {
@@ -116,7 +120,6 @@
     "message": "The lesson gave a real example with 3 specific situations that call for an advisor - review the 'A real example' section above. Now list out the major financial decisions you're currently facing.",
     "secondary": "Not everyone needs one, but knowing when you do is an important skill."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

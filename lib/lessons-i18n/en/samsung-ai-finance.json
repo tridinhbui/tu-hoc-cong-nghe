@@ -12,10 +12,18 @@
   ],
   "explanation": "The wave of investment for artificial intelligence is a familiar cyclical problem in new clothes. Heavy capital spending today reduces free cash flow immediately and only produces revenue several years later, while depreciation starts eating into margins from the moment the plant runs. The risk particular to semiconductors is that every manufacturer reads the same price signal and expands at the same time, so the new capacity tends to hit the market all at once.",
   "diagram": [
-    { "label": "AI demand", "arrow": true },
-    { "label": "Capex", "arrow": true },
-    { "label": "Memory cycle", "arrow": true },
-    { "label": "Pricing power", "arrow": false }
+    {
+      "label": "AI demand"
+    },
+    {
+      "label": "Capex"
+    },
+    {
+      "label": "Memory cycle"
+    },
+    {
+      "label": "Pricing power"
+    }
   ],
   "realWorldExample": {
     "company": "Samsung",
@@ -35,7 +43,7 @@
     {
       "question": "A chip company doubles capex to catch the AI wave, but the margin in the latest quarter falls. How should an investor react?",
       "options": [
-        "Comparing the margin against the prior period is enough",
+        "Comparing the margin against the prior quarter alone is quite enough",
         "Conclude at once that the business manages costs poorly",
         "Sell the shares because a falling margin is a bad signal",
         "Look at whether this is the investment phase before capacity runs"

@@ -1,0 +1,148 @@
+{
+  "slug": "kiem-tra-va-do-loi-mo-hinh-excel",
+  "title": "Excel, Lesson 4: Checking and debugging - turning a model into something that reports its own errors",
+  "subtitle": "Trace precedents, partial F9, check cells, conditional formatting and the review routine before you send it",
+  "duration": "11 min",
+  "whyItMatters": "A wrong model never reports an error; it just produces a plausible-looking number. Debugging skill is the thing standing between you and an investment recommendation built on a formula that is one row out.",
+  "openingQuestion": "You suspect a result cell is wrong but the formula looks correct. What is the most effective checking technique?",
+  "openingOptions": [
+    "Delete the formula and type it again from scratch",
+    "Select part of the formula and press F9",
+    "Switch to a handheld calculator and redo the sum",
+    "Copy the formula across into a new file"
+  ],
+  "explanation": "Partial evaluation with F9 lets you dissect a long formula piece by piece and see exactly what each piece returns. It narrows an error down in seconds rather than making you reread the whole chain. Remember to press Esc to exit, not Enter - otherwise you replace the formula with a static value and create a brand new error.",
+  "diagram": [
+    { "label": "Suspect a number" },
+    { "label": "Trace precedents: see where the data comes from" },
+    { "label": "Partial F9: narrow the error down" },
+    { "label": "Fix the cause, not the symptom" }
+  ],
+  "realWorldExample": {
+    "company": "Model errors in real transactions",
+    "description": "There have been large transactions repriced by hundreds of millions of dollars because of a simple spreadsheet formula error - usually a sum range missing a few rows, or a hidden row left out of the total. None of them was a sophisticated financial error; every one of them was the kind a ten-minute review routine would have caught."
+  },
+  "quiz": [
+    {
+      "question": "What is trace precedents for?",
+      "options": [
+        "Finding and deleting formulas that no other cell refers to",
+        "Reordering the sheet's calculation to avoid circular references",
+        "Drawing arrows to the cells the current formula pulls data from",
+        "Turning the current cell's formula into a static value that stops updating"
+      ],
+      "explanation": "Combined with trace dependents (the cells that rely on this one), you build a map of how data flows and spot orphan cells - cells that feed nothing anywhere, usually leftovers from an earlier version. Excel decides its own calculation order and cannot be reordered this way, and converting a formula to a static value is Paste Special, which is the opposite of what you want while investigating."
+    },
+    {
+      "question": "Why turn on show formulas while reviewing a model?",
+      "options": [
+        "To print the model with its formulas for someone to check by hand",
+        "To protect the model from other people editing the formula cells",
+        "To speed up calculation by pausing the refresh of the result cells",
+        "To spot a hardcode buried in a row that should be nothing but formulas"
+      ],
+      "explanation": "A row that should be all formulas with a single hard number wedged into it is an extremely common error, particularly when somebody once patched a cell to tie to a published figure. Show formulas exposes it immediately. It is a display mode, so it protects nothing, it does not change calculation speed, and printing is a side use rather than the reason to reach for it during a review."
+    },
+    {
+      "question": "What does a sanity check mean in the context of a model?",
+      "options": [
+        "Reconciling the result against what you know of the industry",
+        "Checking whether the file contains malware or an unsafe macro",
+        "Reviewing the headings and row labels for spelling mistakes there",
+        "Comparing the file size against the last version that was saved"
+      ],
+      "explanation": "This is the strongest and also the cheapest layer of defence. A model producing a 95% gross margin for a retailer is wrong somewhere, however smoothly every formula runs. Malware scanning is a security question, spelling is presentation, and file size tells you about the file rather than about the numbers inside it - none of them tests whether the output could be true."
+    },
+    {
+      "question": "Why are hidden rows and columns a dangerous source of error?",
+      "options": [
+        "Because Excel ignores hidden cells altogether when it calculates any formula",
+        "Because the reviewer cannot see them while the formulas still use them",
+        "Because hidden rows and columns bloat the file and slow the sheet down",
+        "Because hidden rows and columns do not appear when the sheet is printed"
+      ],
+      "explanation": "The good convention in the industry is to group rather than hide, because grouping leaves a visible marker in the margin while hiding is completely invisible to whoever receives the file. Excel does not ignore hidden cells - that is exactly the danger, since they still feed every total. File size and printing are real but minor annoyances by comparison."
+    },
+    {
+      "question": "Why put check cells somewhere always visible instead of hiding them on a separate sheet?",
+      "options": [
+        "Because presentation standards put checks on the first sheet",
+        "Because check cells on a separate sheet will not update when the model changes",
+        "Because an error only gets fixed if the user sees it as it arises",
+        "Because Excel only recalculates check cells while their sheet is displayed"
+      ],
+      "explanation": "A check cell tucked out of sight is only useful to someone who remembers to go and look at it. Put it at the top of the main sheet, colour it when it drifts, and the error surfaces on the next keystroke rather than in the meeting. Excel recalculates every sheet whether or not it is on screen, so the two answers about stale or suspended calculation are simply not how the application works."
+    }
+  ],
+  "keyTakeaways": [
+    "Partial F9 narrows an error down inside a long formula - remember Esc, not Enter",
+    "Trace precedents and dependents to map the data flow and find orphan cells",
+    "Show formulas exposes hardcodes buried in a row of formulas",
+    "A sanity check against industry knowledge is the cheapest and strongest layer of defence"
+  ],
+  "practicePrompt": {
+    "question": "Before you send the model up to your manager, what should the ten-minute review routine cover?",
+    "options": [
+      "Reformat the colours and fonts so the model looks tidy",
+      "Check the check cells, hardcodes, errors and extremes",
+      "Compress the file to reduce its size before sending",
+      "Password-protect every sheet before sending it out"
+    ],
+    "explanation": "Running an extreme scenario is the step most often skipped and one of the most effective: set revenue growth to minus 50% and see whether the model still behaves sensibly. A wrong model usually looks fine in the base case and only shows itself at the boundary values."
+  },
+  "summary": {
+    "keyIdea": "The goal is not to hunt for errors when you suspect one, but to design the model so errors reveal themselves",
+    "commonMistake": "Fixing the symptom by typing a number over the wrong cell instead of finding the cause",
+    "action": "Build a fixed check block at the top of every model you construct from here on."
+  },
+  "application": {
+    "title": "The standard check block",
+    "message": "Put this at the top of the summary sheet: does the balance sheet balance, do the two cash figures agree, are there any error cells, are there negative values where negatives are not allowed, and does any ratio breach a plausible threshold. Use conditional formatting so the cell turns red the moment it is breached.",
+    "secondary": "The aim: someone opening the file for the first time can look at one area and know whether the model is healthy."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A beginner finishes building a model and is pleased that it runs. Someone experienced finishes building it and starts looking for ways to prove it wrong. That difference in attitude is what this lesson is about."
+    },
+    { "type": "heading", "text": "Three tiers of defence" },
+    {
+      "type": "conceptTable",
+      "title": "From prevention to detection",
+      "subtitle": "Each tier catches a different kind of error",
+      "concepts": [
+        { "def": "A clear structure, one kind of logic per row, no hardcodes, no merged cells, no hidden rows - catching the error before it appears." },
+        { "def": "Check cells and conditional formatting. The model changes colour on its own when something is wrong, without depending on the user remembering to look." },
+        { "def": "Partial F9, trace precedents, show formulas. The tools you use once you know there is an error and need to find where it lives." }
+      ]
+    },
+    { "type": "heading", "text": "The check row: what catches errors while you build, not after you finish" },
+    {
+      "type": "paragraph",
+      "text": "The most effective technique is also the simplest: every schedule gets its own row computing the difference between two things that ought to be equal, and one cell aggregating every check row in the file. Balance sheet: total assets less total liabilities and equity. Debt schedule: closing balance less (opening + drawdowns − repayments). Cash flow: closing cash on the cash flow statement less closing cash on the balance sheet. All of them must come to 0. Set conditional formatting to turn red on anything else, and keep that aggregate cell in the top corner of every sheet - the error announces itself the moment you mistype, not when you send the file out."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four debugging tools, and the kind of error each one catches",
+      "subtitle": "None of them replaces another - they catch different things",
+      "concepts": [
+        { "def": "Catches logic errors: a missing item, a sign added the wrong way, a formula dragged one row short. The only safety net running continuously while you build." },
+        { "def": "Catches reference errors: where is this cell taking its number from. The fastest way to find a formula pointing at last year's column or at an old sheet nobody deleted." },
+        { "def": "Catches errors inside a long formula: select one segment, F9 to see what it returns, Esc to undo. The only way to dissect a five-level nested IF without pulling it apart." },
+        { "def": "Catches human errors: the convention that blue is a manual input, black is a formula, green is a link to another sheet. One black cell among the blue means somebody has just overwritten a formula with a hard number - the most common and most silent error in a model with several users." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The final test",
+      "text": "Give the model to someone who has never seen it and explain nothing. If they can find which cells are assumptions, which are results, and run a different scenario themselves within five minutes, your model meets the handover standard. If not, the problem is in the structure and not in the reader."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A model is a tool for making decisions, so the standard is not that it runs but that it can be trusted.",
+        "The last two lessons of this stage go beyond Excel: handling data larger than a spreadsheet."
+      ]
+    }
+  ]
+}

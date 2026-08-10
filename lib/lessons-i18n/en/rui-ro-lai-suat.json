@@ -1,193 +1,185 @@
 {
- "slug": "rui-ro-lai-suat",
- "title": "Interest rate risk: how bond prices change",
- "subtitle": "Interest rate risk",
- "duration": "6 min",
- "openingQuestion": "Between a 2-year bond and a 20-year bond (same type, same issuer), which one will swing in price more sharply when market rates change by 1%?",
- "openingOptions": [
-  "The 20-year bond, because its cash flows are locked at the old rate for much longer",
-  "The 2-year bond, because a shorter term intuitively means a sharper price swing to any market change",
-  "Both bonds will swing by exactly the same amount, since they're issued by the same party with the same credit quality",
-  "It's impossible to compare without knowing the exact face value of each bond being considered"
- ],
- "explanation": "The longer a bond's term, the more sensitive its price is to interest-rate swings. The intuition: if you're 'stuck' with the old rate for 20 years instead of just 2, that unfavorable rate gap accumulates for much longer, so the price must fall (or rise) more sharply to compensate.",
- "diagram": [
-  {
-   "label": "Market interest rates change",
-   "arrow": true
-  },
-  {
-   "label": "The coupon on a held bond stays fixed",
-   "arrow": true
-  },
-  {
-   "label": "The longer the remaining term, the longer the gap accumulates",
-   "arrow": true
-  },
-  {
-   "label": "So the price swings harder - unless held to maturity"
-  }
- ],
- "interactiveType": "interest-rate",
- "realWorldExample": {
-  "company": "Silicon Valley Bank and the lesson on long-term bonds",
-  "description": "In 2023, Silicon Valley Bank (SVB) in the US collapsed partly because it held large amounts of long-term US government bonds, bought when rates were still low (2020-2021). When the Fed raised rates sharply in 2022-2023, the value of these long-term bonds fell much more than comparable short-term bonds - some lots lost up to 20% of their value. When the bank was forced to sell to meet customer withdrawal demand, the paper loss turned into a real one, contributing to the collapse. This is a textbook example of long-term bonds being far more sensitive to rate swings than short-term ones."
- },
- "quiz": [
-  {
-   "question": "If you're worried market rates will rise sharply soon, which strategy helps reduce the risk of bond price swings in your portfolio?",
-   "options": [
-    "Move all your capital into stocks, since stocks are entirely unaffected by any market rate swing",
-    "Switch into much longer-term bonds to try to 'lock in' the high coupon rate for a very long time",
-    "Prioritize shorter-term bonds, since their prices are less sensitive to rate swings than long-term bonds, provided both bonds carry identical face value and were originally sold at par",
-    "There's no way to reduce this kind of risk at all; investors simply must accept the full swing"
-   ],
-   "correct": 2,
-   "explanation": "When expecting rates to rise (which pushes bond prices down), shifting into short-term bonds reduces the price 'damage', since short-term bonds are less sensitive to rate changes. This is a common interest-rate risk hedging strategy."
-  },
-  {
-   "question": "Which of these groups of investors does interest rate risk affect most severely?",
-   "options": [
-    "Someone holding a long-term bond who needs to sell before maturity",
-    "Someone holding a short-term bond to maturity",
-    "Someone who only invests in physical gold and holds no bonds",
-    "Someone who owns no bonds at all"
-   ],
-   "correct": 0,
-   "explanation": "Interest rate risk only causes real damage when you're forced to sell a bond before maturity at a lowered price. If held to maturity, you still receive the full principal and interest originally promised, no matter how the market price fluctuates in between."
-  },
-  {
-   "question": "What happened to Silicon Valley Bank in 2023?",
-   "options": [
-    "The bank was found to have falsified its books, causing a mass customer withdrawal",
-    "The bank held long-term bonds; rates rose, prices fell, and it was forced to sell at a loss, and this gap only appears once the coupon difference between them exceeds five percentage points",
-    "The bank made too many subprime loans and borrowers couldn't repay",
-    "The bank put its entire capital into tech stocks and the market collapsed"
-   ],
-   "correct": 1,
-   "explanation": "SVB didn't buy bad assets - it bought US government bonds, the safest thing there is in terms of repayment. But when rates rose quickly, the price of those long-term bonds fell sharply; when customers withdrew en masse, the bank was forced to sell at a loss. Interest rate risk, not credit risk."
-  },
-  {
-   "question": "What does a bond's duration tell you?",
-   "options": [
-    "The number of years remaining until the bond's contractual maturity date",
-    "The minimum period an investor is required to hold the bond, a nuance that matters more than it first appears",
-    "How much the bond's price changes when market rates move by 1%",
-    "The number of coupon payments the issuer commits to over the full term"
-   ],
-   "correct": 2,
-   "explanation": "A duration of 7 means a 1% rate rise causes about a 7% price drop. It's close to the term but not the same as it: the higher the coupon, the sooner money comes back, so duration is shorter than the nominal term."
-  },
-  {
-   "question": "Two bonds share a 10-year term, one with an 8% coupon and one with a 2% coupon. Which is more sensitive to interest rates?",
-   "options": [
-    "Can't be compared without knowing each bond's issuer, and only when the shorter bond happens to carry a materially higher coupon rate",
-    "The 8%-coupon bond, because the annual interest paid is much larger",
-    "Both are equally sensitive, since sensitivity only depends on the 10-year term",
-    "The 2%-coupon bond, because most of its cash flow arrives late, giving it a longer duration"
-   ],
-   "correct": 3,
-   "explanation": "A higher coupon returns money to you sooner, so the average time to receive cash is shorter - lower duration, less price sensitivity. A zero-coupon bond is the extreme case: all the money arrives on the final day, making it the most sensitive."
-  },
-  {
-   "question": "How does interest rate risk differ from credit risk?",
-   "options": [
-    "Interest rate risk is price swings; credit risk is the borrower failing to pay",
-    "The two concepts are the same, just named differently for government vs. corporate bonds",
-    "Interest rate risk only exists in corporate bonds, and credit risk only in government bonds",
-    "Credit risk is a price fall when rates rise, and interest rate risk is default risk"
-   ],
-   "correct": 0,
-   "explanation": "A government bond carries virtually no credit risk but is still full of interest rate risk - exactly the SVB case. Conversely, a short-term corporate bond may be less sensitive to rates but can still be a total loss if the issuer defaults."
-  }
- ],
- "keyTakeaways": [
-  "The longer a bond's term, the more sensitive (the more sharply its price swings) to changes in market rates compared with a short-term bond",
-  "Interest rate risk only causes real 'damage' if you have to sell a bond before maturity at an unfavorable price - holding to maturity means it doesn't affect you",
-  "The 2023 Silicon Valley Bank case is a real-world lesson: holding too much in long-term bonds without planning for a sudden need for liquidity can lead to large losses when rates swing sharply"
- ],
- "practicePrompt": {
-  "question": "You're worried market rates will rise sharply over the next 6 months, and you need to sell part of your bond holdings for cash. You hold both a 3-year bond and a 15-year bond of the same credit quality. Which should you prioritize selling first to minimize the risk of a price loss?",
-  "options": [
-   "Keep the 15-year bond and sell the 3-year bond first, since the shorter-term bond is less sensitive to rate swings, so the risk of a price loss on the sale is lower",
-   "Sell the 15-year bond first, since a longer term gets you back the cash you need more quickly, and this stays true no matter what direction market interest rates end up moving in",
-   "It doesn't matter which one you sell first, since both are affected in exactly the same way by market rate swings",
-   "You shouldn't sell either bond at all, since interest rate risk only affects newly issued bonds, not ones already held"
+  "slug": "rui-ro-lai-suat",
+  "title": "Interest rate risk: how bond prices change",
+  "subtitle": "Interest rate risk",
+  "duration": "6 min",
+  "openingQuestion": "Between a 2-year bond and a 20-year bond (same type, same issuer), which one will swing in price more sharply when market rates change by 1%?",
+  "openingOptions": [
+    "The 20-year bond, because its cash flows are locked at the old rate for much longer",
+    "The 2-year bond, because a shorter term intuitively means a sharper price swing to any market change",
+    "Both bonds will swing by exactly the same amount, since they're issued by the same party with the same credit quality",
+    "It's impossible to compare without knowing the exact face value of each bond being considered"
   ],
-  "correct": 0,
-  "explanation": "The longer a bond's term, the more sensitive its price is to rate swings - so if you must sell early ahead of a rate rise, selling the shorter-term bond first causes less damage."
- },
- "summary": {
-  "keyIdea": "The longer a bond's term, the more sensitive (the more sharply its price swings) to changes in market rates compared with a short-term bond",
-  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
-  "action": "Interest rate risk only causes real 'damage' if you have to sell a bond before maturity at an unfavorable price - holding to maturity means it doesn't affect you"
- },
- "application": {
-  "title": "Compare short-term and long-term bonds",
-  "message": "This lesson already gave a real example with the 2-year and 10-year government bond yields - see the 'Real example' section above. Now look up two other terms of the same type of bond yourself to compare.",
-  "secondary": "Predicting first and checking afterward helps this rule stick in your memory longer."
- },
- "sections": [
-  {
-   "type": "lead",
-   "text": "You already know that when rates rise, bond prices fall. But there's a more practical question: what determines whether that drop is large or small? The answer lies in the bond's remaining term."
+  "explanation": "The longer a bond's term, the more sensitive its price is to interest-rate swings. The intuition: if you're 'stuck' with the old rate for 20 years instead of just 2, that unfavorable rate gap accumulates for much longer, so the price must fall (or rise) more sharply to compensate.",
+  "diagram": [
+    {
+      "label": "Market interest rates change",
+      "arrow": true
+    },
+    {
+      "label": "The coupon on a held bond stays fixed",
+      "arrow": true
+    },
+    {
+      "label": "The longer the remaining term, the longer the gap accumulates",
+      "arrow": true
+    },
+    {
+      "label": "So the price swings harder - unless held to maturity"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Silicon Valley Bank and the lesson on long-term bonds",
+    "description": "In 2023, Silicon Valley Bank (SVB) in the US collapsed partly because it held large amounts of long-term US government bonds, bought when rates were still low (2020-2021). When the Fed raised rates sharply in 2022-2023, the value of these long-term bonds fell much more than comparable short-term bonds - some lots lost up to 20% of their value. When the bank was forced to sell to meet customer withdrawal demand, the paper loss turned into a real one, contributing to the collapse. This is a textbook example of long-term bonds being far more sensitive to rate swings than short-term ones."
   },
-  {
-   "type": "heading",
-   "text": "The longer the term, the bigger the price swing"
+  "quiz": [
+    {
+      "question": "If you're worried market rates will rise sharply soon, which strategy helps reduce the risk of bond price swings in your portfolio?",
+      "options": [
+        "Move all your capital into stocks, since stocks are entirely unaffected by any market rate swing",
+        "Switch into much longer-term bonds to try to 'lock in' the high coupon rate for a very long time",
+        "Prioritize shorter-term bonds, since their prices are less sensitive to rate swings than long-term bonds, provided both bonds carry identical face value and were originally sold at par",
+        "There's no way to reduce this kind of risk at all; investors simply must accept the full swing"
+      ],
+      "explanation": "When expecting rates to rise (which pushes bond prices down), shifting into short-term bonds reduces the price 'damage', since short-term bonds are less sensitive to rate changes. This is a common interest-rate risk hedging strategy."
+    },
+    {
+      "question": "Which of these groups of investors does interest rate risk affect most severely?",
+      "options": [
+        "Someone holding a long-term bond who needs to sell before maturity",
+        "Someone holding a short-term bond to maturity",
+        "Someone who only invests in physical gold and holds no bonds",
+        "Someone who owns no bonds at all"
+      ],
+      "explanation": "Interest rate risk only causes real damage when you're forced to sell a bond before maturity at a lowered price. If held to maturity, you still receive the full principal and interest originally promised, no matter how the market price fluctuates in between."
+    },
+    {
+      "question": "What happened to Silicon Valley Bank in 2023?",
+      "options": [
+        "The bank was found to have falsified its books, causing a mass customer withdrawal",
+        "The bank held long-term bonds; rates rose, prices fell, and it was forced to sell at a loss, and this gap only appears once the coupon difference between them exceeds five percentage points",
+        "The bank made too many subprime loans and borrowers couldn't repay",
+        "The bank put its entire capital into tech stocks and the market collapsed"
+      ],
+      "explanation": "SVB didn't buy bad assets - it bought US government bonds, the safest thing there is in terms of repayment. But when rates rose quickly, the price of those long-term bonds fell sharply; when customers withdrew en masse, the bank was forced to sell at a loss. Interest rate risk, not credit risk."
+    },
+    {
+      "question": "What does a bond's duration tell you?",
+      "options": [
+        "The number of years remaining until the bond's contractual maturity date",
+        "The minimum period an investor is required to hold the bond, a nuance that matters more than it first appears",
+        "How much the bond's price changes when market rates move by 1%",
+        "The number of coupon payments the issuer commits to over the full term"
+      ],
+      "explanation": "A duration of 7 means a 1% rate rise causes about a 7% price drop. It's close to the term but not the same as it: the higher the coupon, the sooner money comes back, so duration is shorter than the nominal term."
+    },
+    {
+      "question": "Two bonds share a 10-year term, one with an 8% coupon and one with a 2% coupon. Which is more sensitive to interest rates?",
+      "options": [
+        "Can't be compared without knowing each bond's issuer, and only when the shorter bond happens to carry a materially higher coupon rate",
+        "The 8%-coupon bond, because the annual interest paid is much larger",
+        "Both are equally sensitive, since sensitivity only depends on the 10-year term",
+        "The 2%-coupon bond, because most of its cash flow arrives late, giving it a longer duration"
+      ],
+      "explanation": "A higher coupon returns money to you sooner, so the average time to receive cash is shorter - lower duration, less price sensitivity. A zero-coupon bond is the extreme case: all the money arrives on the final day, making it the most sensitive."
+    },
+    {
+      "question": "How does interest rate risk differ from credit risk?",
+      "options": [
+        "Interest rate risk is price swings; credit risk is the borrower failing to pay",
+        "The two concepts are the same, just named differently for government vs. corporate bonds",
+        "Interest rate risk only exists in corporate bonds, and credit risk only in government bonds",
+        "Credit risk is a price fall when rates rise, and interest rate risk is default risk"
+      ],
+      "explanation": "A government bond carries virtually no credit risk but is still full of interest rate risk - exactly the SVB case. Conversely, a short-term corporate bond may be less sensitive to rates but can still be a total loss if the issuer defaults."
+    }
+  ],
+  "keyTakeaways": [
+    "The longer a bond's term, the more sensitive (the more sharply its price swings) to changes in market rates compared with a short-term bond",
+    "Interest rate risk only causes real 'damage' if you have to sell a bond before maturity at an unfavorable price - holding to maturity means it doesn't affect you",
+    "The 2023 Silicon Valley Bank case is a real-world lesson: holding too much in long-term bonds without planning for a sudden need for liquidity can lead to large losses when rates swing sharply"
+  ],
+  "practicePrompt": {
+    "question": "You're worried market rates will rise sharply over the next 6 months, and you need to sell part of your bond holdings for cash. You hold both a 3-year bond and a 15-year bond of the same credit quality. Which should you prioritize selling first to minimize the risk of a price loss?",
+    "options": [
+      "Keep the 15-year bond and sell the 3-year bond first, since the shorter-term bond is less sensitive to rate swings, so the risk of a price loss on the sale is lower",
+      "Sell the 15-year bond first, since a longer term gets you back the cash you need more quickly, and this stays true no matter what direction market interest rates end up moving in",
+      "It doesn't matter which one you sell first, since both are affected in exactly the same way by market rate swings",
+      "You shouldn't sell either bond at all, since interest rate risk only affects newly issued bonds, not ones already held"
+    ],
+    "explanation": "The longer a bond's term, the more sensitive its price is to rate swings - so if you must sell early ahead of a rate rise, selling the shorter-term bond first causes less damage."
   },
-  {
-   "type": "paragraph",
-   "text": "Picture it this way: if you're 'stuck' with a below-market rate for just 6 more months until maturity, the damage isn't large - only 6 months of disadvantage before you get your principal back to reinvest at the new rate. But if you're stuck with that rate for 20 years, the accumulated 'damage' is far larger, so the market will re-price that bond down much more sharply to compensate a new buyer."
+  "summary": {
+    "keyIdea": "The longer a bond's term, the more sensitive (the more sharply its price swings) to changes in market rates compared with a short-term bond",
+    "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+    "action": "Interest rate risk only causes real 'damage' if you have to sell a bond before maturity at an unfavorable price - holding to maturity means it doesn't affect you"
   },
-  {
-   "type": "callout",
-   "label": "A visual comparison",
-   "text": "When market rates rise by 1 percentage point: a bond with 2 years left to maturity might fall in price by only about 2%, while a bond with 20 years left could fall by as much as 15-18%. The same rate move, but a very different price impact depending on the remaining term."
+  "application": {
+    "title": "Compare short-term and long-term bonds",
+    "message": "This lesson already gave a real example with the 2-year and 10-year government bond yields - see the 'Real example' section above. Now look up two other terms of the same type of bond yourself to compare.",
+    "secondary": "Predicting first and checking afterward helps this rule stick in your memory longer."
   },
-  {
-   "type": "heading",
-   "text": "Why this matters to someone invested in a bond fund"
-  },
-  {
-   "type": "paragraph",
-   "text": "If you invest through a bond fund (rather than buying individual bonds directly), the fund's net asset value (NAV) will move with the market price of the bonds it holds. A fund specializing in long-term bonds will see its NAV swing much more than a fund holding short-term bonds when market rates change - even though both are generically called 'bond funds'."
-  },
-  {
-   "type": "list",
-   "items": [
-    "Short-term bonds (under 3 years): less sensitive to rates, suited if you need high stability and might need to withdraw money at any time",
-    "Medium-term bonds (3-10 years): moderate sensitivity, balancing coupon income against price-swing risk",
-    "Long-term bonds (over 10 years): most sensitive to rates, only suited if you're certain to hold to maturity or can accept large price swings in the meantime"
-   ]
-  },
-  {
-   "type": "paragraph",
-   "text": "The 2023 Silicon Valley Bank lesson is worth remembering: even a large bank, holding what's supposed to be a 'safe asset' - government bonds - can run into crisis if it concentrates too heavily on long-term bonds without planning for the chance of needing to sell suddenly when rates swing sharply. This had nothing to do with US government bonds carrying default risk - it was purely interest rate risk hitting the price."
-  },
-  {
-   "type": "heading",
-   "text": "A real example: the 2-year and 10-year Vietnamese government bond"
-  },
-  {
-   "type": "list",
-   "items": [
-    "2-year term: yield around 3.27%/year (2026)",
-    "10-year term: yield around 4.11%/year (2026)",
-    "The 10-year bond has a much longer duration than the 2-year one, so when market rates move, the 10-year bond's price will swing several times more sharply than the 2-year bond's, even though the yield gap between the two terms is only about 0.84 percentage points"
-   ]
-  },
-  {
-   "type": "callout",
-   "label": "How to compare for yourself",
-   "text": "Look up the auction-winning yields of two different terms of the same type of bond (government, or the same corporate issuer) on VBMA or HNX - the longer the term, the greater the price sensitivity to rates."
-  },
-  {
-   "type": "closing",
-   "lines": [
-    "The longer the term, the more sensitive a bond's price is to rate swings - a rule worth remembering when choosing a bond or bond fund.",
-    "Interest rate risk only becomes a real loss when you're forced to sell before maturity at an unfavorable price."
-   ]
-  }
- ]
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You already know that when rates rise, bond prices fall. But there's a more practical question: what determines whether that drop is large or small? The answer lies in the bond's remaining term."
+    },
+    {
+      "type": "heading",
+      "text": "The longer the term, the bigger the price swing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Picture it this way: if you're 'stuck' with a below-market rate for just 6 more months until maturity, the damage isn't large - only 6 months of disadvantage before you get your principal back to reinvest at the new rate. But if you're stuck with that rate for 20 years, the accumulated 'damage' is far larger, so the market will re-price that bond down much more sharply to compensate a new buyer."
+    },
+    {
+      "type": "callout",
+      "label": "A visual comparison",
+      "text": "When market rates rise by 1 percentage point: a bond with 2 years left to maturity might fall in price by only about 2%, while a bond with 20 years left could fall by as much as 15-18%. The same rate move, but a very different price impact depending on the remaining term."
+    },
+    {
+      "type": "heading",
+      "text": "Why this matters to someone invested in a bond fund"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you invest through a bond fund (rather than buying individual bonds directly), the fund's net asset value (NAV) will move with the market price of the bonds it holds. A fund specializing in long-term bonds will see its NAV swing much more than a fund holding short-term bonds when market rates change - even though both are generically called 'bond funds'."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Short-term bonds (under 3 years): less sensitive to rates, suited if you need high stability and might need to withdraw money at any time",
+        "Medium-term bonds (3-10 years): moderate sensitivity, balancing coupon income against price-swing risk",
+        "Long-term bonds (over 10 years): most sensitive to rates, only suited if you're certain to hold to maturity or can accept large price swings in the meantime"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The 2023 Silicon Valley Bank lesson is worth remembering: even a large bank, holding what's supposed to be a 'safe asset' - government bonds - can run into crisis if it concentrates too heavily on long-term bonds without planning for the chance of needing to sell suddenly when rates swing sharply. This had nothing to do with US government bonds carrying default risk - it was purely interest rate risk hitting the price."
+    },
+    {
+      "type": "heading",
+      "text": "A real example: the 2-year and 10-year Vietnamese government bond"
+    },
+    {
+      "type": "list",
+      "items": [
+        "2-year term: yield around 3.27%/year (2026)",
+        "10-year term: yield around 4.11%/year (2026)",
+        "The 10-year bond has a much longer duration than the 2-year one, so when market rates move, the 10-year bond's price will swing several times more sharply than the 2-year bond's, even though the yield gap between the two terms is only about 0.84 percentage points"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to compare for yourself",
+      "text": "Look up the auction-winning yields of two different terms of the same type of bond (government, or the same corporate issuer) on VBMA or HNX - the longer the term, the greater the price sensitivity to rates."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The longer the term, the more sensitive a bond's price is to rate swings - a rule worth remembering when choosing a bond or bond fund.",
+        "Interest rate risk only becomes a real loss when you're forced to sell before maturity at an unfavorable price."
+      ]
+    }
+  ]
 }

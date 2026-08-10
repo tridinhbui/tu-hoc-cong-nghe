@@ -1,0 +1,156 @@
+{
+  "slug": "phan-tich-variance-thuc-te-vs-ke-hoach",
+  "title": "CFO & Operations, Lesson 3: Variance analysis - actual against plan",
+  "subtitle": "Missing the plan is not automatically bad - what matters is understanding why",
+  "duration": "7 min",
+  "openingQuestion": "This month's actual revenue came in 10% below plan, yet actual profit came in 5% ABOVE plan. What could explain that apparent contradiction?",
+  "openingOptions": [
+    "This must be an error in the financial reporting",
+    "Actual costs were controlled better than planned",
+    "This situation cannot arise in a real business",
+    "Revenue and profit always have to move in the same direction"
+  ],
+  "explanation": "Variance analysis does not stop at spotting a number that missed the plan; it has to BREAK OUT each specific cause (revenue variance, cost variance, price variance, volume variance and so on) to see the full picture. Revenue below plan while costs are controlled much better than planned can still leave final profit ahead of plan - a result that looks contradictory but is perfectly coherent once it is analysed properly.",
+  "diagram": [
+    { "label": "Compare actual against plan" },
+    { "label": "Break the variance out by cause: price, volume, cost" },
+    { "label": "Identify the root cause, not just the headline number" }
+  ],
+  "realWorldExample": {
+    "company": "The monthly FP&A variance report",
+    "description": "An FP&A team typically presents a monthly variance report to management that does not simply say 'profit was X% above or below plan' but explains specifically: how much came from the selling price, how much from volume, how much from raw material or staff costs - so management knows exactly where action is needed."
+  },
+  "quiz": [
+    {
+      "question": "Why does splitting a variance into 'price variance' and 'volume variance' matter more than looking at the total revenue gap?",
+      "options": [
+        "Because the two causes call for completely different corrective action",
+        "Because the accounting standards require the two to be presented apart",
+        "Because only the price variance has any effect on the gross profit line",
+        "Because leaving them combined makes the total gap arithmetically wrong"
+      ],
+      "explanation": "This is the core value of detailed variance analysis: the same total revenue gap can come from entirely different causes demanding entirely different responses - separating price variance from volume variance tells management whether to focus on pricing or on the selling effort. No standard prescribes the split, it is a management tool; both variances feed gross profit; and the total is the same however you decompose it."
+    },
+    {
+      "question": "A division comes in 'right on plan' (variance close to zero) for several quarters running. Should that automatically be read as excellent management?",
+      "options": [
+        "Not really - every industry carries large random swings from period to period",
+        "Not really - it can be a sign the numbers are being smoothed to fit",
+        "Yes, it is clear evidence of a strong forecasting capability",
+        "Yes, as long as the plan was approved by senior management"
+      ],
+      "explanation": "This is a subtle red flag experienced financial analysts watch for: real results rarely match a plan precisely for several consecutive periods by chance - that unusual accuracy sometimes suggests management is 'smoothing' the numbers (earnings management) to avoid having to explain large variances, and it deserves a closer look. Industry volatility is the reason the pattern is suspicious rather than an answer in itself, and board approval of a plan says nothing about how the actuals were produced."
+    },
+    {
+      "question": "Plan: 100,000 units at 50k. Actual: 80,000 units at 55k. Which statement is correct?",
+      "options": [
+        "Ahead by 400m: the 10% price rise covers the 20% volume fall",
+        "On plan: the price rise and the volume fall cancel each other out",
+        "Short by 600m: the volume fall outweighs the price gain",
+        "Short by 1bn: counting only the 20,000-unit volume shortfall"
+      ],
+      "explanation": "4.4bn against 5bn is a shortfall of 600m. But because the units were sold at a higher price, the margin per unit rose, so profit may well be ahead - which is precisely why the causes have to be separated rather than reading the total alone. Counting only the missing 20,000 units gives 1bn and ignores the 400m the price rise brought back."
+    },
+    {
+      "question": "A company hits 99-101% of plan for eight consecutive quarters in a highly volatile industry. What is the cautious reading?",
+      "options": [
+        "This is clear evidence of an outstanding management team",
+        "It is worth examining whether results are being smoothed between periods",
+        "It is a sign the plan itself was drawn up very accurately",
+        "There is nothing here that is particularly worth noting"
+      ],
+      "explanation": "In a volatile environment, forecast error is the normal state of affairs. Unusually consistent accuracy more often reflects revenue or cost recognition being shifted between periods than genuine forecasting skill. A plan cannot be drawn up that accurately eight times running when the underlying market is moving, and treating the pattern as unremarkable is precisely the omission the analyst is being tested on."
+    },
+    {
+      "question": "When can a favourable variance on a cost line actually be a bad sign?",
+      "options": [
+        "When it comes from cutting maintenance spend that ought to have been made",
+        "When it appears consistently across several consecutive quarters of the same year",
+        "When the division achieves it without notifying the finance function beforehand",
+        "When the variance exceeds ten percent of the original budget figure"
+      ],
+      "explanation": "Spending less than planned is not always a saving - it can be a necessary cost deferred into next year. That is why variance analysis has to ask about the cause rather than simply labelling a number favourable or unfavourable by its sign. Repetition, size and process breaches are all worth noting, but none of them turns an underspend into a problem the way a deferred, genuinely needed cost does."
+    }
+  ],
+  "keyTakeaways": [
+    "Variance analysis has to be broken out by specific cause (price, volume, cost) rather than stopping at the total gap",
+    "Missing the plan is not automatically bad - what matters is understanding the root cause behind it",
+    "Results that are 'too close' to plan for several periods running can be a warning about smoothing, not simply good news"
+  ],
+  "practicePrompt": {
+    "question": "Actual revenue is 10% below budget. Looking at that total gap alone, a manager has no idea what to do. What approach turns the 10% into information that supports a decision?",
+    "options": [
+      "Knowing that the gap is 10% is enough on its own to assess how the sales division performed in the period",
+      "Break the variance out by specific cause: a price variance is not the same thing as a volume variance",
+      "Report the 10% up to senior management without carrying out any further detailed analysis of it",
+      "A gap between actual and budget is always a planning error, so no other cause needs looking for"
+    ],
+    "explanation": "Variance analysis has to be broken out by specific cause such as price and volume, not stopped at the total gap. Separating price variance from volume variance identifies the real issue - pricing strategy or selling capability - so the corrective action fits the problem."
+  },
+  "application": {
+    "title": "Split the variance into price and volume",
+    "message": "When revenue misses the plan, separate the part caused by a different selling price from the part caused by a different volume, and only then look for the cause. Revenue that hits plan because you sold more units at a lower price is a bad result recorded as a green line.",
+    "secondary": "Set a threshold for what has to be explained - say, a gap of more than 5% or more than an absolute amount - so the meeting discusses a few real items instead of reading through the whole table."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Revenue below plan but profit above it - it sounds contradictory, but variance analysis done properly explains exactly how that happens."
+    },
+    { "type": "heading", "text": "Separate the causes, do not just read the total" },
+    {
+      "type": "paragraph",
+      "text": "Variance analysis has to be broken out by specific cause - a price variance and a volume variance demand completely different corrective action. Missing the plan is not automatically bad; what matters is understanding the root cause. Conversely, results that sit 'too close' to plan for several periods running are sometimes a sign the numbers are being smoothed, not simply good news."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Variance analysis has to be broken out by specific cause (price, volume, cost), not stopped at the total gap",
+        "Missing the plan is not automatically bad - what matters is understanding the root cause",
+        "Results too close to plan for several periods running can be a warning sign about smoothing"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Splitting the revenue variance into its two causes",
+      "equation": "Price variance = (Actual price − Plan price) × Actual volume · Volume variance = (Actual volume − Plan volume) × Plan price",
+      "example": {
+        "title": "Revenue short but profit ahead",
+        "calculation": "Plan: 100,000 units × 50k = 5bn. Actual: 80,000 × 55k = 4.4bn",
+        "result": "Price variance +400m · Volume variance −1bn",
+        "explanation": "Revenue is short by 600m, but the cause is selling fewer units at a higher price. If the margin per unit rose enough, profit can be ahead of plan even though revenue missed - and the action required is completely different from the case where the price fell."
+      }
+    },
+    { "type": "heading", "text": "Each type of variance points to a different action" },
+    {
+      "type": "list",
+      "items": [
+        "Price variance: about pricing power, product mix sold, or discount policy. The work sits with sales and marketing.",
+        "Volume variance: about market demand, production capacity, or distribution. The work sits with operations and the supply chain.",
+        "Unit cost variance: about input prices and production efficiency. It needs a further split between input price and usage rate.",
+        "Mix variance: total volume was met but skewed towards lower-margin products - this one is very often missed, because total revenue still looks fine."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "When results sit too close to plan",
+      "text": "Hitting 99-101% of plan for several consecutive periods in a volatile market is not a sign of outstanding management but usually a sign the numbers are being smoothed: pushing revenue into the next period once you are ahead, or pulling it forward when you are about to fall short. Real businesses are rarely that smooth."
+    },
+    {
+      "type": "paragraph",
+      "text": "One last principle: variance analysis is only worth anything if it ends in action. A report listing every category of variance but saying nothing about who needs to do what before the next period is just an expensive arithmetic exercise."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A single variance figure does not tell the whole story.",
+        "Always ask the follow-up: where did this gap come from, and what does it mean for what we do next?"
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Variance analysis has to be broken out by specific cause (price, volume, cost) rather than stopping at the total gap",
+    "commonMistake": "Easily missed: missing the plan is not automatically bad - what matters is understanding the root cause behind it",
+    "action": "Results that are 'too close' to plan for several periods running can be a warning sign about smoothing, not simply good news"
+  }
+}

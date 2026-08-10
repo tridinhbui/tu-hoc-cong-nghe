@@ -1,0 +1,140 @@
+{
+  "slug": "quy-mo-etf-noi-va-chung-chi-quy",
+  "title": "The Vietnamese market, Lesson 7: open-ended funds, domestic ETFs and fund certificates",
+  "subtitle": "How to reach diversification while your capital is still small",
+  "duration": "10 min",
+  "whyItMatters": "Diversification is the only free lunch in investing, but buying thirty individual stocks with a few tens of millions of dong means fees and effort eat the whole benefit. A fund is how that problem is solved - if you pick the right kind and can read the fees.",
+  "openingQuestion": "Why is it hard for a small investor to diversify on their own?",
+  "openingOptions": [
+    "Because regulation caps the number of stocks an individual may hold",
+    "Because trading costs and the effort of monitoring are near fixed per stock",
+    "Because large-cap shares are sold only to institutional investors",
+    "Because you need at least thirty stocks to open a brokerage account"
+  ],
+  "explanation": "Splitting ten million dong across thirty stocks produces positions too small for trading fees not to erode, and thirty companies is far too many for one person to follow seriously. A fund solves both: it pools the capital of many people to reach scale, and it concentrates the monitoring in one team. The price is an annual management fee - and with an index fund, that fee is what determines most of the performance difference between the options in front of you.",
+  "diagram": [
+    { "label": "The small capital of many investors" },
+    { "label": "Pooled into a fund of meaningful size" },
+    { "label": "Buys a diversified basket of assets" },
+    { "label": "Each person owns a slice of the whole basket" }
+  ],
+  "realWorldExample": {
+    "company": "An index fund against an active fund",
+    "description": "Two funds both invest in Vietnamese equities: one tracks an index at a low fee, the other picks stocks actively at a materially higher fee. The fee gap sounds small each year, but it is a certain deduction while the outperformance is only a possibility. Over twenty years the compounded fee difference can take away a substantial share of the final wealth - and international data shows most active funds do not make it back."
+  },
+  "quiz": [
+    {
+      "question": "What is the main difference between an open-ended fund and an ETF?",
+      "options": [
+        "An ETF is only for institutions while an open-ended fund is for individuals",
+        "An ETF trades on exchange like a share, an open-ended fund deals at end-of-day NAV",
+        "An open-ended fund always charges less than an ETF because it is not listed",
+        "An ETF must be held for a minimum of one year before it can be sold again"
+      ],
+      "explanation": "The dealing mechanism decides the practical experience: an ETF can be bought and sold intraday, which is more flexible but also makes it easy to trade too much. An open-ended fund deals at a single price each day - less convenient, and for many people that is the better outcome. Neither structure is reserved for one type of investor, neither carries a lock-up, and fee levels follow the investment approach rather than the listing status: a listed index ETF is often cheaper than an unlisted active fund."
+    },
+    {
+      "question": "Why do management fees matter more for an index fund than for an active fund?",
+      "options": [
+        "Because an index fund's fee is charged on the profit rather than on the assets",
+        "Because regulation forbids an index fund from charging any performance fee at all",
+        "Because two index funds tracking the same index differ mainly in fee",
+        "Because an index fund incurs far higher dealing costs than an active fund"
+      ],
+      "explanation": "Two funds tracking VN30 will hold almost identical portfolios, so the only thing you actually control when choosing is the fee. With an active fund, a high fee can in principle be justified by the result - the problem is that in most cases it is not. Note also that a management fee is charged on assets, not on profits, in both structures, and that an index fund trades less than an active one, so its dealing costs are lower rather than higher."
+    },
+    {
+      "question": "A fund of 100bn charges 2% a year in management fees and the portfolio rises 10%. What does the investor receive?",
+      "options": [
+        "About 5%, because the fee is charged twice during the year",
+        "Exactly 10%, because the fee is deducted from the fund's assets",
+        "About 12% (= 10% + 2%, the fee refunded at the year end)",
+        "About 8% (= 10% return − 2% management fee, charged on assets)"
+      ],
+      "explanation": "The management fee is deducted straight from net asset value, so the investor receives what is left. The point worth noting is that the fee is charged on assets rather than on profits - in a year when the fund loses money, the fee is still collected in full."
+    },
+    {
+      "question": "What risk is specific to an ETF in a market with thin liquidity?",
+      "options": [
+        "The traded price can drift away from the fund's net asset value",
+        "The fund is forced to wind up when liquidity falls below a regulatory threshold",
+        "Investors are not permitted to sell while markets are falling",
+        "The management fee automatically rises as market liquidity declines"
+      ],
+      "explanation": "The mechanism that keeps an ETF's price close to its true value depends on market makers buying and selling to capture the difference. When the underlying assets are illiquid, that mechanism works less well and the gap can widen at exactly the moment markets are under stress. The other three describe things that do not happen: the fee is set in the fund documents, there is no ban on selling in a falling market, and a liquidity threshold does not trigger a wind-up."
+    },
+    {
+      "question": "What is the core difference between a fund certificate and a share?",
+      "options": [
+        "It cannot be freely bought and sold on the secondary market",
+        "It represents a slice of a basket of assets, not a single business",
+        "It always carries a guarantee of principal when the fund matures",
+        "It gives the investor a vote at the general meetings of the underlying companies"
+      ],
+      "explanation": "Buying a share is a bet on one business; buying a fund certificate is buying a slice of many businesses at once. This is exactly why a fund is the most effective route to diversification while capital is still small. Fund certificates are freely tradable, they carry no principal guarantee at all, and the voting rights attached to the underlying shares are exercised by the fund manager rather than by the individual holder."
+    }
+  ],
+  "keyTakeaways": [
+    "A fund solves the scale problem: pooling capital to reach a level of diversification an individual cannot easily reach alone",
+    "An ETF trades intraday, an open-ended fund deals at one price a day - a difference in experience rather than in nature",
+    "For an index fund, the fee is the most important variable because the portfolios are almost identical",
+    "The management fee is charged on assets, so it is deducted steadily even in the years the fund loses money"
+  ],
+  "practicePrompt": {
+    "question": "Two funds track the same index, one charging 0.5% a year and the other 1.8% a year. After twenty years, what is the difference?",
+    "options": [
+      "Negligible, since both of them track the same reference index",
+      "The compounded fee gap takes away a substantial share of the final wealth",
+      "The higher-fee fund makes it back through better results from tighter management",
+      "They differ only in the first year, after which the two converge on the same result"
+    ],
+    "explanation": "A gap of 1.3 percentage points a year sounds tiny, but compounding magnifies a fee exactly the way it magnifies a return. This is one of the rare variables in investing that you control completely, before any money goes in."
+  },
+  "summary": {
+    "keyIdea": "A fund buys you diversification; the fee is the price, and it is the only part that is certain",
+    "commonMistake": "Comparing funds by last year's performance instead of by fee and portfolio composition",
+    "action": "Look up the total expense ratio of the funds you are considering and compare them directly against each other."
+  },
+  "application": {
+    "title": "Four questions when choosing a fund",
+    "message": "Does this fund track an index or pick stocks actively? What is the total expense ratio? Does the actual portfolio match what the fund says about itself? And can I buy in, and get out, when I need to?",
+    "secondary": "A fund's periodic report discloses its holdings - that is how you verify whether an active fund is genuinely active."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The whole of portfolio theory assumes you hold many assets at once. With a few tens of millions of dong, doing that with individual shares is impossible on cost grounds alone. Funds exist precisely to close that gap."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Index fund",
+        "text": "Tracks a ready-made basket and needs no research team to pick stocks, so the fee is low. The result is near certain to be the index minus the fee - dull and predictable."
+      },
+      "right": {
+        "label": "Active fund",
+        "text": "Picks stocks aiming to beat the index, with a higher fee to pay the team. It may outperform, and it may also trail the index after fees - the long-run data leans towards the latter."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Reading the fees properly",
+      "text": "The headline management fee is usually not the whole cost. There are also subscription fees, redemption fees if you sell early, and the dealing costs inside the fund itself. The figure to compare is the total expense ratio, and it usually sits in the prospectus rather than on the marketing page."
+    },
+    {
+      "type": "heading",
+      "text": "The gap between price and net asset value"
+    },
+    {
+      "type": "paragraph",
+      "text": "An ETF certificate trades on exchange, so its price is set by supply and demand, while net asset value is computed from the portfolio inside. The two figures usually sit close together thanks to the creation and redemption mechanism run by the authorised participants, but they can diverge when liquidity is thin or markets are moving violently. An open-ended fund has no such problem - you always deal at net asset value - but in exchange the order fills at the periodic dealing point rather than during the session."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Diversification does not demand large capital, only the right instrument and the ability to read a fee.",
+        "This also closes the stage: the Vietnamese market has its own rules of play, but the principles of investing do not change."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "slug": "quan-ly-tai-san-no-alm-irrbb",
+  "title": "FRM Liquidity, Lesson 3: Asset-Liability Management (ALM) and interest rate risk in the banking book",
+  "subtitle": "Why a bank can lose heavily without trading at all - purely because the maturity structure of its assets and liabilities do not line up",
+  "duration": "10 min",
+  "whyItMatters": "ALM is the core treasury function of every bank: balancing maturity, interest rate and currency between assets (mostly loans) and liabilities (mostly deposits). Interest rate risk in the banking book (IRRBB) - as distinct from interest rate risk in the trading book - is the quietest risk in banking, because it does not appear in the daily profit and loss report until it is already too late.",
+  "openingQuestion": "How does interest rate risk in the banking book (IRRBB) differ from interest rate risk in the trading book?",
+  "openingOptions": [
+    "There is no difference, the two concepts are one and the same",
+    "IRRBB comes from the maturity mismatch between assets and liabilities in the banking book",
+    "IRRBB applies only to government bonds and does not apply to loans",
+    "Interest rate risk in the trading book is always larger than IRRBB at every bank"
+  ],
+  "explanation": "The trading book holds positions that are actively bought and sold and marked to market daily. The banking book holds loans and deposits that are kept to maturity and are not traded regularly. IRRBB measures the risk that when market interest rates move, the economic value of the banking book and future net interest income will swing with them - a quiet risk, accumulating slowly but capable of becoming very large.",
+  "diagram": [
+    { "label": "Assets (long-dated fixed-rate lending) have a long maturity" },
+    { "label": "Liabilities (deposits) usually have a much shorter maturity" },
+    { "label": "Market rates rise → funding cost rises faster than the yield on legacy assets" },
+    { "label": "Net interest income is squeezed, the economic value of equity falls" }
+  ],
+  "realWorldExample": {
+    "company": "Silicon Valley Bank, 2023 (the IRRBB view)",
+    "description": "Beyond the funding concentration risk covered in the previous lesson, the deeper root of SVB was interest rate risk in the banking book: SVB held a large volume of long-dated fixed-rate Treasuries and MBS, bought while rates were still low. When the Fed raised rates fast and hard in 2022-2023, the market value of those bonds fell sharply (though they were classified as \"held to maturity\", so the loss did not have to be booked to the P&L straight away). That unrealised loss is why confidence collapsed once the rumours spread - a demonstration that IRRBB can accumulate quietly for years before it becomes a liquidity crisis."
+  },
+  "quiz": [
+    {
+      "question": "Why is IRRBB considered the \"quiet risk\" compared with risk in the trading book?",
+      "options": [
+        "Because no quantitative method for measuring IRRBB has ever been formally recognised by a banking regulator",
+        "Because banking book items are not marked to market daily, so real economic damage builds for years without reaching the P&L",
+        "Because this risk exists only as a textbook abstraction and never touches a real bank's balance sheet",
+        "Because regulators do not require banks to report their IRRBB, so the exposure is never measured in the first place"
+      ],
+      "explanation": "Unlike the trading book, which is marked to market daily so gains and losses show up immediately, banking book items are usually carried at cost or classified as \"held to maturity\". That keeps the real economic loss - the fall in present value when rates rise - off the financial statements until the asset has to be sold or matures, exactly what happened at SVB. Regulators do in fact require IRRBB reporting, and the measurement methods are long established, so the two options claiming otherwise fail on the facts rather than on the logic."
+    },
+    {
+      "question": "In the SVB example, why did holding long-dated fixed-rate bonds become a problem when the Fed raised rates?",
+      "options": [
+        "Because US Treasuries themselves carry a default risk that jumps whenever the Fed lifts its policy rate above the level of the prior period",
+        "Because the Fed had banned banks from holding Treasury securities on the balance sheet once the tightening cycle started",
+        "Because the market value of fixed-rate bonds falls when rates rise (the inverse price-yield relation), creating unrealised losses",
+        "Because rising rates made those bonds completely illiquid, so there was no price at which SVB could have sold them"
+      ],
+      "explanation": "This is the basic inverse relationship between bond price and yield (covered in the Duration and Convexity lesson in the Valuation and Risk Models stage): when market rates rise, the present value of fixed future cash flows falls. Long-dated bonds are far more sensitive than short-dated ones to the same rate move, because their duration is higher. Note what did not happen: Treasuries kept paying coupon and principal in full, so credit risk was never the issue, and the market for them stayed deep and liquid - SVB could sell, it just had to sell at a loss."
+    },
+    {
+      "question": "What is the Asset-Liability Management (ALM) function in a bank mainly responsible for?",
+      "options": [
+        "Managing the relationships with the bank's most valuable private clients across the branch network",
+        "Running the marketing campaigns behind the bank's range of term and demand deposit products",
+        "Approving every large corporate loan that comes through the credit committee before the money is disbursed to the borrowing company",
+        "Balancing maturity, interest rate and currency structure between assets and liabilities across the whole balance sheet"
+      ],
+      "explanation": "ALM (usually sitting inside Treasury) looks at the entire balance sheet as one portfolio to be risk managed: keeping asset and liability maturities from drifting too far apart, using derivatives such as interest rate swaps to adjust the sensitivity to rates, and holding enough liquidity - exactly the intersection of IRRBB and liquidity risk from the previous two lessons. The other three options describe real jobs inside a bank, but they are relationship, credit and marketing roles: none of them owns the balance-sheet-wide risk position."
+    },
+    {
+      "question": "What links the three lessons in the Liquidity and Treasury Risk stage together (LCR/NSFR, CFP, and IRRBB/ALM)?",
+      "options": [
+        "There is no link at all; GARP grouped three entirely separate topics into one exam purely for reasons of syllabus organisation rather than any technical similarity",
+        "All three revolve around the maturity structure and stability of bank funding - LCR/NSFR measures it, CFP prepares the response, ALM/IRRBB manages it daily",
+        "All three apply only to investment banks and have no application at all to commercial banks that take retail deposits",
+        "All three are ratios produced by one and the same underlying regulatory formula set out by the Basel Committee"
+      ],
+      "explanation": "This is the whole picture of Liquidity and Treasury Risk: LCR/NSFR is the measure, CFP is the action plan for when the measure signals trouble, and ALM/IRRBB is the daily work of structuring the balance sheet so it never reaches the point where the CFP is needed. All three come from the same underlying risk: mismatched maturities and mismatched rate sensitivity between assets and liabilities. That shared root is also why the commercial bank, not the investment bank, is the natural home for all three."
+    },
+    {
+      "question": "Why is interest rate risk in the banking book called a quiet risk?",
+      "options": [
+        "Because it only arises at banks that run a derivatives trading business",
+        "Because these items are not revalued, so the loss has not yet surfaced",
+        "Because accounting standards do not require any disclosure of banking book rate risk",
+        "Because interest rates usually move so slowly that the cumulative effect is hard to notice"
+      ],
+      "explanation": "The trading book is revalued daily, so a loss shows up straight away. A bond held to maturity is not, so the loss sits quietly on the balance sheet until the bank is forced to sell to raise cash - exactly the 2023 sequence. Derivatives are not needed for the exposure to exist: plain fixed-rate lending funded by short deposits creates it. Disclosure is required. And rates in 2022 moved anything but slowly, yet the risk was still quiet, which shows the quietness comes from the accounting treatment rather than from the pace of the move."
+    }
+  ],
+  "keyTakeaways": [
+    "IRRBB is the quiet risk because the banking book is not marked to market daily like the trading book, so real economic losses can build for years before they surface",
+    "Long-dated fixed-rate bonds lose market value when rates rise (the inverse price-yield relation) - the deeper root cause at SVB, ahead of the deposit run itself",
+    "ALM/Treasury owns the balance of maturity, interest rate and currency between assets and liabilities across the whole balance sheet",
+    "LCR/NSFR (measurement), CFP (action plan) and ALM/IRRBB (daily strategic management) are three tightly linked lines of defence against one underlying risk"
+  ],
+  "practicePrompt": {
+    "question": "A bank funds 20-year fixed-rate mortgages with demand deposits that can be withdrawn at any time. When market rates rise sharply, which risks appear at the same time?",
+    "options": [
+      "Only the credit risk of the mortgage borrowers",
+      "Both interest rate risk in the banking book and liquidity risk if depositors withdraw",
+      "Only operational risk, because loan processing is slower than it should be",
+      "No meaningful risk, since demand deposits are usually cheap and stable funding"
+    ],
+    "explanation": "This is the classic case of a double mismatch: interest rate risk (long-dated fixed-rate assets that do not reprice to the new market rate) and liquidity risk (demand depositors can withdraw at any moment to chase a higher rate elsewhere) appear together, out of one and the same balance sheet structure."
+  },
+  "summary": {
+    "keyIdea": "IRRBB is the quiet risk because the banking book is not revalued daily - the economic loss has been real for a long time before it appears in the accounts.",
+    "commonMistake": "Feeling safe because the accounts have not recognised a loss. Not recognised is not the same as not there."
+  },
+  "application": {
+    "title": "Three layers of liquidity defence",
+    "message": "LCR and NSFR measure, the CFP plans the response, ALM manages it day to day. Take one layer away and the other two have to carry work they were never designed to do."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The three lessons in this stage all circle one question from different angles: is a bank's maturity structure sustainable. LCR/NSFR measures it at a point in time, the CFP prepares the response when it deteriorates, and ALM is the work of managing it every day so the CFP never has to be used."
+    },
+    {
+      "type": "heading",
+      "text": "Why interest rate risk in the banking book is dangerous"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Trading book",
+        "text": "Marked to market daily; gains and losses appear immediately in the accounts; the risk is tracked closely by trading desk VaR."
+      },
+      "right": {
+        "label": "Banking book",
+        "text": "Usually carried at cost or held to maturity; the real economic loss can accumulate quietly for years without ever appearing in the profit and loss report."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "This is precisely why IRRBB was underrated for years by many investors and even by some supervisors: it is not \"loud\" the way a trading loss is. SVB is the clearest demonstration - the unrealised loss on the bond portfolio existed quietly throughout 2022, and only became a crisis when confidence collapsed and the bank was forced to sell those assets at a real loss."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The most dangerous risk is usually not the loudest one, but the one that appears on no report at all until the day it is forced to appear.",
+        "This is the last lesson of the FRM Foundations - Operational Resilience - Liquidity and Treasury Risk stage. The full FRM path still has large areas unbuilt (particularly GARP's case studies and finer learning objectives), but three subjects that were once empty now have real foundations."
+      ]
+    }
+  ]
+}

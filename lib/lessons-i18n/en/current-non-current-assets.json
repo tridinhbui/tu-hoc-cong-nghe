@@ -38,8 +38,8 @@
       "options": [
         "The single highest-value asset category on the entire balance sheet, usually plant and equipment",
         "An asset that will turn into cash within 12 months: cash, receivables, inventory",
-        "A fixed asset used for production, depreciated gradually over the years",
-        "An asset the company is pledging to a bank for a short-term loan"
+        "A fixed asset used for production and depreciated gradually over its whole useful life",
+        "An asset that the company has pledged to a bank as collateral for a short-term loan"
       ],
       "explanation": "Current Assets = will be used/sold/consumed within 1 year. Includes: Cash, Receivables, Inventory."
     },
@@ -67,7 +67,7 @@
       "question": "Working Capital = ?",
       "options": [
         "Current Assets - Current Liabilities = ability to pay short-term debt",
-        "Current Assets + Current Liabilities = total short-term funding for the period",
+        "Current Assets + Current Liabilities = total short-term funding",
         "Revenue - COGS = gross profit used to fund operations",
         "Charter capital divided by headcount, i.e. capital per employee"
       ],
@@ -78,7 +78,7 @@
       "options": [
         "Rising revenue, since higher revenue always pulls working capital down",
         "Inventory or receivables growing fast, current liabilities rising, or cash falling",
-        "Rising profit, since profit is always recorded straight into the current liabilities a company owes",
+        "Rising profit, since profit is always recorded into current liabilities",
         "Paying a stock dividend, which reduces equity accordingly"
       ],
       "explanation": "Falling WC means a weaker ability to pay short-term debt. Check: is cash flow OK, is inventory stuck, are receivables not overdue."
@@ -96,8 +96,8 @@
     {
       "question": "Is Inventory a current or non-current asset?",
       "options": [
-        "Non-current - inventory is an asset the company holds for long-term production",
-        "Intangible - because its value depends on demand",
+        "Non-current - inventory is held for long-term production use",
+        "Intangible - because its value depends on how demand moves",
         "Fixed - inventory must always be maintained at some minimum level",
         "Current - most inventory is sold within less than a year"
       ],
@@ -116,7 +116,7 @@
     {
       "question": "If a company has a Current Ratio of 0.8 (Current Liabilities > Current Assets), what does that signal?",
       "options": [
-        "Normal - most businesses sit around 0.8",
+        "Normal - most healthy businesses run a Current Ratio near 0.8 or lower",
         "Dangerous - not enough current assets to cover current liabilities",
         "Very good - a ratio below 1 shows the company is using capital very efficiently",
         "No effect, since the Current Ratio is only a formal accounting metric"
@@ -127,16 +127,16 @@
       "question": "Between Cash Ratio (Cash ÷ Current Liabilities) and Current Ratio, which is more conservative?",
       "options": [
         "Current Ratio - since it combines all three types of current asset",
-        "They're equal, since both use Current Liabilities as the denominator",
+        "They're equal, since both share the same denominator",
         "Cash Ratio - it counts only cash, ignoring receivables and inventory",
-        "They can't be compared, since the two ratios measure completely different things"
+        "They can't be compared - the two ratios measure different things"
       ],
       "explanation": "Cash Ratio is ultra-conservative. Current Ratio is more conservative than the Acid-Test Ratio is aggressive. Acid-Test sits in between. Pick based on your risk tolerance."
     },
     {
       "question": "When does Goodwill appear on a company's Balance Sheet, and why doesn't it appear naturally for a company that grew its brand entirely in-house?",
       "options": [
-        "When the company achieves consistently high profit for many years, the brand itself gets recognised",
+        "When the company earns high profit for many years, the brand gets recognised",
         "Every company automatically gains goodwill after 5 stable years of operation",
         "When a company builds a strong brand itself, its value is revalued annually",
         "Only when a company acquires another business for more than its net asset value"

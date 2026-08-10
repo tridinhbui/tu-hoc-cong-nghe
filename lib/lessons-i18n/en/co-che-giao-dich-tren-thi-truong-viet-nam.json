@@ -1,0 +1,140 @@
+{
+  "slug": "co-che-giao-dich-tren-thi-truong-viet-nam",
+  "title": "Vietnam Market, Lesson 1: Trading mechanics - settlement cycle, price bands and order types",
+  "subtitle": "The rules of the game that decide what you can trade, when, and at what price",
+  "duration": "11 min",
+  "whyItMatters": "All portfolio theory assumes you can trade instantly at the market price. In practice the settlement cycle, the price band and the matching mechanism decide whether you can exit a position at the moment you most need to - and that is the gap between a model and real money.",
+  "openingQuestion": "How does the settlement cycle affect an investor?",
+  "openingOptions": [
+    "No impact at all, since a matched order transfers ownership on the spot immediately",
+    "It decides when the shares or the cash actually reach your account for reuse",
+    "It sets the matching price for the next trading session of the day",
+    "It concerns only foreign institutional investors and never retail investors"
+  ],
+  "explanation": "Matching and settlement are two different things. A matched order fixes the price and the quantity, but the shares only arrive in your account - and become available to sell again - once clearing and settlement have completed. That lag means you cannot trade continuously through the day as in some other markets, and in a violently moving session it is the difference between cutting a loss and watching it happen. The cycle has been shortened through several rounds of reform, so always check the rules currently in force rather than relying on a number you remember.",
+  "diagram": [
+    { "label": "Place the order" },
+    { "label": "Matching: price and quantity are fixed" },
+    { "label": "Clearing and settlement" },
+    { "label": "Securities or cash reach the account and become usable" }
+  ],
+  "realWorldExample": {
+    "company": "A session with widespread limit-down moves",
+    "description": "In a sell-off, two mechanisms reinforce each other against anyone trying to exit. Prices hit the floor so the bid side disappears and sell orders pile up unmatched; at the same time, shares bought in earlier sessions have not yet arrived in the account and cannot be sold. An investor using margin leverage is caught between the two: falling asset values force a margin top-up, while the assets themselves cannot be sold to raise the cash."
+  },
+  "quiz": [
+    {
+      "question": "What does the intraday price band do?",
+      "options": [
+        "It guarantees every investor can trade at a fair price during the session",
+        "It sets the maximum volume an investor may place in a single order",
+        "It determines the price at which brokers may extend margin lending",
+        "It caps the maximum move against the reference price in one session"
+      ],
+      "explanation": "The band exists to limit extreme moves within a single session, and its width differs between exchanges. It has nothing to do with order size limits or with margin eligibility, and it certainly does not guarantee anyone a fill. The downside is that when large bad news arrives, the price cannot adjust fully within one session, so liquidity vanishes - the price sits at the floor with nobody buying."
+    },
+    {
+      "question": "Why is a floor price not the same as a bargain?",
+      "options": [
+        "Because the floor often reflects bad news not yet absorbed, and can go lower",
+        "Because the rules do not accept buy orders placed at the floor price",
+        "Because you must wait for the close to know the official floor price",
+        "Because a stock that hits the floor is suspended for the next session"
+      ],
+      "explanation": "The band delays, but does not remove, the requirement that prices reflect information. Buy orders at the floor are perfectly legal, the floor price is known in advance from the reference price, and hitting it does not trigger a suspension. A stock carrying serious bad news can go limit-down for several sessions in a row; sitting at the floor says nothing about whether it has become cheap."
+    },
+    {
+      "question": "How does a market order differ from a limit order?",
+      "options": [
+        "A market order always fills at exactly the reference price for that session",
+        "A market order takes priority and fills at the best available opposite price",
+        "A limit order always fills ahead of other orders at the same price level",
+        "A limit order is only for institutions and professional investment funds"
+      ],
+      "explanation": "A market order trades certainty about price for certainty about execution. It has no connection to the reference price, and within a price level the queue is ordered by time rather than by order type. For an illiquid stock this is the fastest way to buy far higher or sell far lower than you intended - which is why a limit order is almost always the right choice in those names."
+    },
+    {
+      "question": "Why does a stock's liquidity matter as much as its valuation?",
+      "options": [
+        "Because high liquidity always comes with distinctly better business quality",
+        "Because rules require investors to buy only stocks meeting a liquidity floor",
+        "Because an illiquid stock may not sell at the price currently displayed",
+        "Because liquidity determines the price band applied to that stock"
+      ],
+      "explanation": "Valuation tells you what something is worth; liquidity tells you whether you can turn that worth into cash. There is no regulatory liquidity floor for buyers, the price band is set by the exchange rather than by turnover, and plenty of poor businesses trade heavily. An investment that is right on valuation but impossible to exit can still become a real loss if you need the money exactly when the market is bad."
+    },
+    {
+      "question": "Why does the settlement cycle affect how an investor manages cash?",
+      "options": [
+        "Because a stock bought today can be resold in that same trading session",
+        "Because a buy order may only be placed once the cash has fully settled in",
+        "Because the settlement cycle determines the brokerage fee that is charged",
+        "Because sale proceeds are only usable once clearing has been completed"
+      ],
+      "explanation": "Getting a fill is not the same as getting the money. Fees are set by the broker's schedule and have nothing to do with settlement timing, and the whole point is that the same-session round trip is not available. The lag means you cannot recycle capital continuously, and if you have a payment due on a fixed date you have to work the sale date backwards - a small detail that causes a real cash squeeze."
+    }
+  ],
+  "keyTakeaways": [
+    "Matching and settlement are two different things; the lag between them limits your room to manoeuvre",
+    "The price band limits intraday moves but also makes liquidity vanish when large bad news arrives",
+    "A market order trades price certainty for execution certainty - dangerous in an illiquid name",
+    "Liquidity is part of risk, not a technical detail of order entry"
+  ],
+  "practicePrompt": {
+    "question": "You want to build a large position in a stock with very low average matched volume. What is the main risk?",
+    "options": [
+      "You cannot buy because the system caps the volume per investor",
+      "Your own buying pushes the price up, and no bid is there when you sell",
+      "Illiquid stocks get a narrower price band, making the target return harder",
+      "Rules require a minimum holding period before you are allowed to sell"
+    ],
+    "explanation": "This is market impact risk, and it works asymmetrically in both directions: you raise your own cost basis on the way in, then push the price down on the way out. For a large position in an illiquid name, that cost can exceed the entire return your investment thesis was counting on."
+  },
+  "summary": {
+    "keyIdea": "The rules of the exchange decide whether you can actually implement an investment idea",
+    "commonMistake": "Treating liquidity as a technical detail rather than as a component of risk",
+    "action": "Look up the 30-session average matched volume for the names you hold and compare it with the size of your positions."
+  },
+  "application": {
+    "title": "Check before you place the order",
+    "message": "How many days of average trading volume does my position represent? If I had to exit within three sessions, how much price concession would I have to accept? And if the stock goes limit-down repeatedly, what is my plan?",
+    "secondary": "A rough rule at many funds: a position should not exceed a few days of average trading volume."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The whole investing portion of Track 2 assumes an ideal market: you can trade instantly, at the displayed price, in whatever size you like. No market works that way, and knowing where the real market departs from the model is the practical half of portfolio theory."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four mechanisms to know",
+      "subtitle": "They determine how your order actually gets executed",
+      "concepts": [
+        { "def": "The interval from the moment an order matches to the moment securities or cash actually land in the account. It has been shortened through several reforms - always check the rules currently in force." },
+        { "def": "The limit on how far the price may move from the reference price within a session; it differs between the listed exchanges and the market for unlisted shares." },
+        { "def": "The minimum size of an order in the ordinary matching session; odd lots are handled under a separate mechanism." },
+        { "def": "A periodic auction sets the opening and closing price at a single level; continuous trading matches by price priority and then time priority." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why the band both protects and harms",
+      "text": "The band stops prices from collapsing within a session on momentary panic. But when the bad news is real and large, it merely stretches the adjustment out into several consecutive limit-down sessions with no liquidity. For anyone who needs to exit a position, a banded session is sometimes worse than a deep decline in which trading still happens."
+    },
+    {
+      "type": "heading",
+      "text": "What the settlement cycle actually affects"
+    },
+    {
+      "type": "paragraph",
+      "text": "Matching and receiving the money are separate events. After a sale, the shares and the cash only genuinely change hands once clearing is complete, so you cannot recycle capital continuously through the day as in some other markets. The practical consequence has two parts: if a payment falls due on a specific date you have to work the sale schedule backwards, and in a sharply falling session that lag is time during which you can do nothing with the money you just raised."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An investment idea is only worth something if it can be executed within the real rules of the game.",
+        "The next lesson covers a different constraint, one that shapes foreign capital flows into this market: foreign ownership limits and the market upgrade story."
+      ]
+    }
+  ]
+}

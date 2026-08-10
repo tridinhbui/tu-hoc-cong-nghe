@@ -1,0 +1,161 @@
+{
+  "slug": "giao-dich-ky-quy-va-call-margin",
+  "title": "Vietnam Market, Lesson 6: Margin trading and the call-margin spiral",
+  "subtitle": "The mechanism that turns one down session into a run of limit-down sessions",
+  "duration": "11 min",
+  "whyItMatters": "Most of the deep drawdowns on the Vietnamese market have the same amplifying mechanism behind them. Understanding it lets you see why prices fall faster than the bad news warrants, and why the bottom usually arrives once forced selling is exhausted rather than when good news returns.",
+  "openingQuestion": "What does margin trading do to an investor's risk?",
+  "openingOptions": [
+    "Reduces risk, because the broker shares part of any loss with you",
+    "Amplifies both gains and losses, and adds the risk of a forced sale",
+    "Leaves risk unchanged, it just lets you buy more shares",
+    "Only raises risk if the investor borrows beyond the permitted ratio"
+  ],
+  "explanation": "Margin means borrowing from your broker to buy more shares, with those same shares pledged as collateral. It doubles - or more - both the gain and the loss, and that is the part everyone knows. The more dangerous part is a second risk that buying with your own cash simply does not carry: once the price falls to a threshold, you are forced to sell at exactly the worst price, not at a moment of your choosing. You lose control over timing - the most valuable thing a long-term investor has.",
+  "diagram": [
+    {
+      "label": "The share price falls"
+    },
+    {
+      "label": "The margin ratio hits the threshold"
+    },
+    {
+      "label": "Call margin: add cash or be sold out"
+    },
+    {
+      "label": "Forced selling pushes the price down further"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A run of consecutive limit-down sessions",
+    "description": "This script repeats in every deep drawdown: bad news knocks the price down, margin accounts hit their threshold and get liquidated, the forced selling pushes the price lower still, which drags the next cohort of margin accounts to their own threshold. This self-feeding loop needs no further bad news to continue - it stops only once the margin book has been flushed out. The daily price band makes it harder, because a limit-down stock has no buyers, liquidation orders cannot be filled and pile over into the following session."
+  },
+  "quiz": [
+    {
+      "question": "When does a margin call happen?",
+      "options": [
+        "When the ratio of net assets to total assets falls below the maintenance level",
+        "When the investor wants to increase the margin borrowing limit already in place",
+        "When a stock in the portfolio is suspended from trading on the exchange",
+        "When the broker changes the interest rate charged on margin borrowing"
+      ],
+      "explanation": "A falling price shrinks the value of the collateral while the loan stays exactly where it was, so the safety ratio drops. Hit the threshold and you must add cash or cut the debt - and if you do not do it in time, the broker sells on your behalf. Asking for a bigger limit is a credit application, not a call. A trading suspension freezes the position rather than triggering one, and a change in the margin interest rate raises your carrying cost without touching the ratio."
+    },
+    {
+      "question": "Why does forced liquidation tend to happen at exactly the worst price?",
+      "options": [
+        "Because the broker deliberately sells low in order to collect a higher fee",
+        "Because it is triggered by the price having already fallen sharply",
+        "Because a forced-sale order must be placed at the floor price",
+        "Because the rules require the whole portfolio sold in one session"
+      ],
+      "explanation": "This is what separates margin from disciplined leverage you control yourself: the moment of sale is not chosen by you, it is decided by the price level. The mechanism guarantees you always sell after the price has fallen and never before. The broker earns no more from a low price than a high one, so fee incentives are not the driver. Nothing requires the order to be placed at the floor, and nothing requires the entire portfolio to be cleared in a single session."
+    },
+    {
+      "question": "An investor puts in 100m of cash and borrows another 100m. The stock falls 30%. How much equity is left?",
+      "options": [
+        "140m (= 200 × 0.7, before the loan is deducted)",
+        "70m (= 100 × 0.7, falling in line with the price)",
+        "40m (= 200 × 0.7 − 100 of debt, so a 60% loss)",
+        "100m, because the borrowing offset the price fall"
+      ],
+      "explanation": "The assets are worth 140m, less 100m of debt leaves 40m of equity. The price fell 30% but the equity fell 60% - two times leverage doubles the damage, and that is before any interest on the loan is counted. Option one stops at the asset value and forgets the debt is still owed in full. Option two applies the fall only to the cash put in, ignoring the borrowed half. And borrowed money never absorbs a loss; it is a fixed claim that sits ahead of your equity."
+    },
+    {
+      "question": "Why does a market bottom usually appear while the news is still very bad?",
+      "options": [
+        "Because the price band narrows automatically in a deep market fall",
+        "Because the regulator intervenes directly to halt the market's fall",
+        "Because foreign investors always buy in when the news is at its worst",
+        "Because forced selling runs out before the news turns positive"
+      ],
+      "explanation": "Liquidation selling is supply that has nothing to do with what the seller thinks about value - they are obliged to sell. Once the margin book has been flushed, that forced supply disappears and the price can stabilise even with no good news at all. The price band is a fixed percentage that does not narrow on the way down; regulators rarely intervene in prices directly and cannot be relied on to; and foreign flows are as capable of selling into weakness as buying it."
+    },
+    {
+      "question": "What is the soundest way to manage margin risk?",
+      "options": [
+        "Work out in advance the price that triggers a call, and keep a buffer",
+        "Borrow the maximum limit granted to use all the leverage available",
+        "Use margin only on large caps, since they never hit the floor price",
+        "Add more cash whenever a call comes, so as to keep the position open"
+      ],
+      "explanation": "Knowing in advance the price at which you get called turns a shock into a number you already calculated. Borrowing the full limit does the opposite: it sets the call price as close to today's price as the rules allow. Large caps go limit-down too, often in exactly the sessions when everyone needs to sell. And topping up cash to hold a losing position is the fastest way to turn a loss you could survive into one you cannot."
+    }
+  ],
+  "keyTakeaways": [
+    "Margin amplifies gains and losses, but the real risk is losing control over when you sell",
+    "Forced liquidation always happens after the price has fallen, so by design it sells at a bad price",
+    "Forced selling feeds on itself and needs no further bad news to continue",
+    "Managing margin means calculating the call price in advance, not hoping you never reach it"
+  ],
+  "practicePrompt": {
+    "question": "You are on margin and the stock goes limit-down three sessions in a row, with no buyers so you cannot sell. What is the core problem?",
+    "options": [
+      "The broker granted a margin limit higher than the regulations allow",
+      "The debt is fixed while the collateral loses both value and liquidity",
+      "The price band bars you from placing any sell order during those sessions",
+      "Margin interest rates rise when the market becomes more volatile"
+    ],
+    "explanation": "Two risks resonate at exactly the same moment: the value of the collateral shrinks and the ability to sell it disappears too, while the loan does not change by a single dong. This is why the size of a margin position should be decided on the liquidity of the stock, not merely on the limit you have been granted."
+  },
+  "summary": {
+    "keyIdea": "Leverage does not just double the loss, it also strips away your right to decide when to act",
+    "formula": "Remaining equity = Portfolio value after the fall − Margin debt outstanding",
+    "commonMistake": "Treating the margin limit you were granted as the amount you should use",
+    "action": "Work out the price that would trigger a margin call on your current position, then compare it with how far that stock has fallen over the past three years."
+  },
+  "application": {
+    "title": "Three questions before borrowing on margin",
+    "message": "How far does the price have to fall before I get called? Has this stock ever fallen further than that? And if the call comes at a moment when I have no cash, what happens then?",
+    "secondary": "A stock that has fallen 50% in the past is perfectly capable of doing it again."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Margin is introduced as a tool for using capital more efficiently, and arithmetically that is exactly what it is. But it adds to the portfolio a completely new risk that appears in no investment model: the possibility that you are forced to sell at the worst possible moment, regardless of what you think the business is worth."
+    },
+    {
+      "type": "formula",
+      "title": "How much leverage multiplies the damage",
+      "equation": "% lost on equity = % price fall × (Total assets ÷ Equity)",
+      "variables": [
+        {
+          "symbol": "Total assets",
+          "name": "Portfolio value",
+          "description": "Your own equity plus the margin borrowing"
+        },
+        {
+          "symbol": "Equity",
+          "name": "The part that is your real money",
+          "description": "What is left once all the debt has been deducted"
+        }
+      ],
+      "example": {
+        "title": "100m of your own, 100m borrowed, the stock falls 30%",
+        "calculation": "Leverage = 200 ÷ 100 = 2 times · Loss on equity = 30% × 2 = 60%",
+        "result": "Equity left: 40m",
+        "explanation": "And that is before interest on the loan. The price has to rise 150% off the bottom for your equity to get back to where it started - while the stock itself only needs to rise 43% to return to its original price."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why the spiral feeds itself",
+      "text": "Forced liquidation is not an investment decision, it is a contractual obligation. The cohort being sold out pushes the price down, the new price drags the next cohort to its threshold, and so on. No additional bad news is needed for the loop to keep running - which explains why the fall so often dwarfs the scale of the news that started it."
+    },
+    {
+      "type": "heading",
+      "text": "Why the spiral feeds on itself"
+    },
+    {
+      "type": "paragraph",
+      "text": "Forced liquidation is a contractual obligation rather than an investment decision, so it happens regardless of what the seller thinks the business is worth. What makes it dangerous is that it is simultaneous: many accounts pledging the same stock as collateral hit their thresholds at almost the same time, that selling pushes the price down, and the lower price pulls the next cohort into its own threshold. No new bad news is required for the second round to happen."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Leverage trades away the ability to wait in exchange for the ability to amplify - and the ability to wait is the biggest single advantage a retail investor has.",
+        "The next lesson goes the other way: the tools that let an individual investor diversify without needing a large amount of capital."
+      ]
+    }
+  ]
+}

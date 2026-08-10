@@ -12,9 +12,17 @@
   ],
   "explanation": "The 4% rule suggests withdrawing 4% of the portfolio's value in the first year of retirement, then adjusting the withdrawal amount for inflation in subsequent years to preserve purchasing power. This comes from the Trinity study, based on a long stretch of US market data - applying it in Vietnam calls for caution, since Vietnam's historical inflation has had periods significantly higher than the US, and Vietnam's capital market is younger, which could mean the actual safe withdrawal rate is lower than 4%.",
   "diagram": [
-    { "label": "Withdraw 4% of portfolio value in year one", "arrow": true },
-    { "label": "Adjust for inflation in later years", "arrow": true },
-    { "label": "Based on the Trinity Study - use caution in Vietnam" }
+    {
+      "label": "Withdraw 4% of portfolio value in year one",
+      "arrow": true
+    },
+    {
+      "label": "Adjust for inflation in later years",
+      "arrow": true
+    },
+    {
+      "label": "Based on the Trinity Study - use caution in Vietnam"
+    }
   ],
   "realWorldExample": {
     "company": "The Trinity study (US) and Vietnam's inflation context",
@@ -29,7 +37,6 @@
         "Withdraw 4% every year until the portfolio is completely depleted",
         "Withdraw exactly 4% of the portfolio's current value every single year"
       ],
-      "correct": 1,
       "explanation": "The key point that's easy to misunderstand: the year-one withdrawal is 4% x the initial portfolio value, and in later years only the AMOUNT is adjusted FOR INFLATION (not recalculated as 4% of the portfolio's fluctuating value each year), so as to keep purchasing power stable over time."
     },
     {
@@ -40,7 +47,6 @@
         "Because the Trinity study is based on US market data",
         "Because Vietnamese inflation is lower than the US, making 4% too little"
       ],
-      "correct": 2,
       "explanation": "The original study is based on US market and inflation history over a specific period. Vietnam has a history of much sharper inflation swings (once exceeding 20%/year) and a stock market far younger than the US's, so mechanically applying the 4% figure may not fit - it calls for a more cautious adjustment or flexible tracking."
     },
     {
@@ -51,7 +57,6 @@
         "200 million VND, then adjusted for inflation in later years",
         "Impossible to determine without knowing what assets the portfolio holds"
       ],
-      "correct": 2,
       "explanation": "5 billion x 4% = 200 million for year one. In later years, you don't recalculate 4% of the new balance - you keep purchasing power stable: 200 million plus inflation. That's the most commonly misunderstood part of this rule."
     },
     {
@@ -60,9 +65,8 @@
         "The Trinity Study, using a stock-bond portfolio over a 30-year period",
         "A World Bank study on retirement in developing countries",
         "A social insurance agency recommendation applied to every country",
-        "The real-world experience of major pension funds over the past decade"
+        "The real-world experience of major pension funds over the past two decades"
       ],
-      "correct": 0,
       "explanation": "The Trinity Study examined decades of US market data and asked: which withdrawal rate survives 30 years across most historical periods. That condition matters - the portfolio has to stay invested in the market."
     },
     {
@@ -73,7 +77,6 @@
         "Because a young person's investment returns are always lower than an older person's",
         "Because a 45-year-old's spending is always much lower than a 65-year-old's"
       ],
-      "correct": 1,
       "explanation": "The rule was tested for 30 years. Retiring at 45 means the portfolio has to last 45 years or more, and at that horizon the recommended safe withdrawal rate is usually lowered to around 3-3.5%."
     },
     {
@@ -84,7 +87,6 @@
         "A sharp market drop right in the early retirement years causes far more damage",
         "Average returns over 30 years don't depend on the order of the up and down years"
       ],
-      "correct": 2,
       "explanation": "Two people with the same 30-year average return can still end up with very different outcomes if one hits a downturn in the very first year. Withdrawing from a portfolio that's down means selling more units, and that capital is no longer there to recover."
     }
   ],
@@ -102,7 +104,6 @@
       "It doesn't fit at all, since the 4% rule is just a theory with no basis in reality and shouldn't be applied anywhere",
       "It fits partially, but only because Uncle Hai's portfolio is larger than 3 billion VND compared to the average American retiree's"
     ],
-    "correct": 0,
     "explanation": "The Trinity study is based on US data - Vietnam's inflation and capital market differ considerably, so caution and a lower-than-4% withdrawal rate are worth considering rather than mechanically applying the rule."
   },
   "summary": {
@@ -115,7 +116,6 @@
     "message": "Take the retirement savings target you just estimated, and calculate 4% and 3.5% of that figure to compare how different annual withdrawal rates play out given Vietnam's inflation context.",
     "secondary": "A small difference in withdrawal rate can decide how long your retirement fund actually lasts."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

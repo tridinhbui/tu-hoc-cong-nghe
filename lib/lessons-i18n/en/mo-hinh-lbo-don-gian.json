@@ -1,0 +1,141 @@
+{
+  "slug": "mo-hinh-lbo-don-gian",
+  "title": "Financial Modelling, Lesson 8: a simple LBO model",
+  "subtitle": "Why leverage creates returns for a private equity fund",
+  "duration": "10 min",
+  "whyItMatters": "The LBO is the standard model of private equity and a frequent test in investment banking recruitment. Understanding its mechanics also means understanding, at a deeper level, the role leverage and cash flow play in generating returns.",
+  "openingQuestion": "In an LBO, what are the three main sources of return for the fund?",
+  "openingOptions": [
+    "Only reselling that very company at a higher price than the one originally paid at entry",
+    "Paying down debt with cash flow, improving profit, and multiple spread at exit",
+    "Only cutting headcount costs",
+    "Only issuing additional shares"
+  ],
+  "explanation": "Three drivers: (1) Debt paydown - the company's cash flow reduces the debt, and the equity slice grows by the same amount even if enterprise value is unchanged; (2) EBITDA improvement - higher revenue or better margins; (3) Multiple spread - buy at a low multiple, sell at a high one. The first of those is what makes an LBO an LBO.",
+  "diagram": [
+    { "label": "Buy with debt plus a thin equity cheque" },
+    { "label": "Cash flow pays the debt down" },
+    { "label": "Improve EBITDA" },
+    { "label": "Exit → IRR for the fund" }
+  ],
+  "realWorldExample": {
+    "company": "How debt paydown creates value",
+    "description": "Suppose a fund buys a business for 1,000bn with 300bn of equity and 700bn of debt. Over five years the company uses its cash flow to repay 300bn, leaving 400bn outstanding. If it is then sold for exactly the same 1,000bn, the equity is now 1,000 − 400 = 600bn. The equity has doubled from 300bn to 600bn even though enterprise value has not moved at all - that is the power of repaying debt out of cash flow."
+  },
+  "quiz": [
+    {
+      "question": "Why does an LBO target usually have stable cash flow?",
+      "options": [
+        "Because banks only lend to companies that are listed",
+        "Because regulations require the target to be profitable",
+        "Because it has to service a very large pile of debt",
+        "Because steady cash flow makes valuation more precise"
+      ],
+      "explanation": "High leverage brings a fixed schedule of interest and principal that has to be met on time. A company with lumpy cash flow will breach its covenants the moment it hits a weak trading period, and lenders then take control of the situation. Banks lend to private companies routinely, so listing is irrelevant. No rule requires a target to be profitable - plenty of turnaround deals start from losses. And while stable cash flow does help valuation, that is a convenience for the modeller rather than the reason the structure demands it."
+    },
+    {
+      "question": "What does IRR measure in an LBO?",
+      "options": [
+        "The average interest rate on the debt used in the deal",
+        "The total interest earned on all the capital committed",
+        "The multiple of capital returned against the initial outlay",
+        "The rate of return, taking the timing of the exit into account"
+      ],
+      "explanation": "IRR is sensitive to time. Doubling your money in three years gives a far higher IRR than doubling it in seven, even though the cash multiple is identical. The cost of the debt is an input to the deal, not a measure of the fund's return. Interest earned describes a lender's economics rather than an equity sponsor's. And the money multiple is precisely the measure that ignores timing - which is why funds report both numbers side by side rather than either one alone."
+    },
+    {
+      "question": "What happens when an LBO company breaches a loan covenant?",
+      "options": [
+        "Lenders can demand early repayment or renegotiate",
+        "The company is immediately declared bankrupt by law",
+        "The PE fund must inject fresh equity straight away",
+        "The loan converts automatically into equity for lenders"
+      ],
+      "explanation": "A covenant breach hands the lenders leverage. That is the single biggest risk in a highly geared structure, and the reason an LBO model has to track the covenant ratios period by period. Bankruptcy is not automatic - it is one outcome of a negotiation that usually ends in a waiver or an amendment instead. An equity injection is often what the sponsor offers to buy that waiver, but nothing compels it. And debt-for-equity conversion is a negotiated restructuring, not a mechanical consequence of a breach."
+    },
+    {
+      "question": "If the fund buys at 8x EBITDA and sells at 8x five years later, where does the profit come from?",
+      "options": [
+        "From the multiple spread between purchase and exit",
+        "From paying down debt and the growth in EBITDA",
+        "From the dividends received over the five-year hold",
+        "From selling off the company's non-core assets"
+      ],
+      "explanation": "Even with the multiple unchanged, the other two engines are still running: lower debt means a larger equity slice, and a higher EBITDA multiplied by the same multiple gives a larger enterprise value. There is by definition no multiple spread when entry and exit are both 8x. Dividends are rare in an LBO, since the cash is committed to the debt schedule. And asset disposals can help, but they shrink the earnings base at the same time, so they are a financing tactic rather than a source of return."
+    },
+    {
+      "question": "Why do funds favour companies with low capital expenditure needs when doing a leveraged deal?",
+      "options": [
+        "Because low capex makes it easier to get bank approval for the loan",
+        "Because a company that invests little usually has far higher margins",
+        "Because cash not spent on assets is available to repay debt",
+        "Because a large fixed asset base is hard to sell on later"
+      ],
+      "explanation": "In a highly leveraged structure, every unit of cash flow is already earmarked for the repayment schedule. A company that must keep replacing machinery to stay in business does not have that cash - which is why deals gravitate towards software, services and consumer brands. Capex intensity is a modest input to a credit decision rather than the decisive one. Asset-light companies are not systematically higher margin; many are not. And a large fixed asset base is usually easier to sell, because it can be pledged as security."
+    }
+  ],
+  "keyTakeaways": [
+    "Three sources of LBO return: debt paydown, EBITDA improvement, multiple spread at exit",
+    "Repaying debt from cash flow grows the equity slice even when enterprise value is unchanged",
+    "The ideal LBO target: stable, predictable cash flow and low capex",
+    "IRR is sensitive to the holding period - an earlier exit gives a higher IRR at the same money multiple"
+  ],
+  "practicePrompt": {
+    "question": "A fund buys a business for 1,000bn (300bn equity, 700bn debt). Over five years it repays 300bn of debt and sells for exactly 1,000bn. What money multiple does the fund receive?",
+    "options": [
+      "1.0x - no gain, since exit price equals entry price",
+      "2.0x - equity rises from 300bn to 600bn",
+      "3.3x (= 1,000 ÷ 300, forgetting the debt left)",
+      "0.5x - a loss, because the debt had to be repaid"
+    ],
+    "explanation": "At exit: enterprise value of 1,000bn less remaining debt of 400bn = 600bn attributable to equity. Against the 300bn originally committed, the multiple is 600/300 = 2.0x. The entire return comes from paying down debt, with no increase in the sale price whatsoever - that is the core mechanism of an LBO."
+  },
+  "summary": {
+    "keyIdea": "An LBO generates its return mainly by using the company's cash flow to repay debt, transferring value across to the equity",
+    "commonMistake": "Believing an LBO only makes money if the exit price beats the entry price.",
+    "action": "Work out the equity multiple yourself for a hypothetical deal at several different levels of debt repayment."
+  },
+  "application": {
+    "title": "Try a minimal LBO model",
+    "message": "Build a five-year schedule: EBITDA, less interest, less tax, less capex and the change in working capital to reach free cash flow; then use that cash flow to repay debt. At the end, value the business off a multiple and subtract the remaining debt.",
+    "secondary": "Twenty rows is enough to have the core mechanism."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An LBO is the acquisition of a company financed mainly with borrowed money, using the target's own cash flow and assets as the source of repayment. The way it generates a return is quite unlike ordinary equity investing."
+    },
+    { "type": "heading", "text": "The three sources of return" },
+    {
+      "type": "list",
+      "items": [
+        "**Debt paydown:** the company's cash flow reduces the debt; the equity slice grows by the same amount even with enterprise value unchanged",
+        "**Operational improvement:** higher revenue or better margins, giving a larger EBITDA at exit",
+        "**Multiple spread:** buying at a low multiple and selling at a high one - the least controllable source, since it depends on the market"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Equity value at exit",
+      "equation": "Exit equity = (Final EBITDA × Multiple) − Remaining debt",
+      "example": {
+        "title": "Buy for 1,000bn with 300bn of equity, repay 300bn of debt over five years",
+        "calculation": "Enterprise value 1,000bn − remaining debt 400bn = 600bn of equity; against 300bn at the start",
+        "result": "Equity multiple = 2.0x",
+        "explanation": "The money doubles without the sale price being a single dong higher than the purchase price. All of it comes from transferring value from the lenders to the owners by repaying debt."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Leverage amplifies in both directions",
+      "text": "The same mechanism that doubles the equity when things go well can wipe it out when they do not. If EBITDA falls far enough that the company cannot cover its interest, the fund can lose the entire investment. That is why an LBO only suits a business with genuinely stable cash flow."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An LBO converts steady cash flow into equity returns through leverage.",
+        "Next lesson: how to check a model before you hand it to anyone else."
+      ]
+    }
+  ]
+}

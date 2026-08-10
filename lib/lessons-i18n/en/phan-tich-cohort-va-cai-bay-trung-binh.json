@@ -1,0 +1,177 @@
+{
+  "slug": "phan-tich-cohort-va-cai-bay-trung-binh",
+  "title": "Data Thinking, Lesson 2: Cohort analysis - when the average hides the truth",
+  "subtitle": "Why splitting data by start date exposes trends the aggregate keeps buried",
+  "duration": "11 min",
+  "whyItMatters": "A headline metric that sits flat can be hiding two opposing trends that cancel each other out. Cohort analysis is the simplest tool there is for seeing that, and it frequently reverses the conclusion you would draw from the average.",
+  "openingQuestion": "A company's repeat-customer rate has held at 40% all year. Does that mean things are stable?",
+  "openingOptions": [
+    "Yes, an unchanged number means service quality has held up",
+    "Not necessarily: older customers improve while newer ones worsen",
+    "Yes, because the rate is calculated across the whole customer base",
+    "No, a rate of 40% is always an alarmingly low level to be at"
+  ],
+  "explanation": "This is the most dangerous situation in analysis: the headline number stands still because two opposing forces are in balance. If long-standing customers keep getting stickier while new ones churn out earlier and earlier, the average stays at 40% right up to the moment the older group is no longer large enough to compensate - and then the metric falls very fast and nobody understands why. Splitting by cohort - that is, by the month each customer started - makes this visible from the beginning.",
+  "diagram": [
+    {
+      "label": "Split by joining month"
+    },
+    {
+      "label": "Track each group through time"
+    },
+    {
+      "label": "Compare groups at the same age"
+    },
+    {
+      "label": "Are the newer groups better or worse?"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A finance app and the growth that hides the problem",
+    "description": "An app grows its user base quickly, the monthly active share of total users holds steady, and management is relaxed. Split by cohort, the picture is completely different: the January cohort still has 45% active after six months, while the June cohort has only 22% at that same six-month mark. The quality of new users is deteriorating steadily, but because new sign-ups are growing fast the aggregate ratio still looks fine. That is accumulated debt: when growth slows, the entire problem surfaces at once."
+  },
+  "quiz": [
+    {
+      "question": "What is a cohort in data analysis?",
+      "options": [
+        "A group split at random so that two competing approaches can be compared fairly",
+        "A group whose transaction values all fall inside one predefined band of amounts",
+        "A group that all started at the same point in time and is tracked in parallel",
+        "A group drawn from the same geographic region or the same single sales channel"
+      ],
+      "explanation": "The defining feature is the shared starting point. That is what makes it possible to compare groups at the same age, rather than comparing a six-month-old group with a one-month-old one. Random assignment describes an A/B test, and slicing by transaction size, region or channel gives you segments - useful, but a segment has no shared clock, so it cannot answer whether things are getting better or worse over time."
+    },
+    {
+      "question": "Why compare cohorts at the same age rather than at the same calendar date?",
+      "options": [
+        "Because data from different calendar dates is usually collected by different methods",
+        "Because the number of members in each group keeps changing, so no direct comparison works",
+        "Because different calendar periods are affected by quite different rates of inflation",
+        "Because a newly joined group always shows higher activity, so a same-date comparison is skewed"
+      ],
+      "explanation": "The comparison has to be fair: a three-month-old group against a three-month-old group. Measuring at the same calendar date makes whichever cohort joined most recently look artificially good, because it is being observed at the top of its own retention curve. Collection method, group size and inflation are real issues elsewhere, but none of them is what makes a same-date cohort comparison misleading."
+    },
+    {
+      "question": "The headline metric is flat while newer cohorts get steadily worse. What does that mean?",
+      "options": [
+        "New-customer quality is falling but older cohorts hide it, and it surfaces when growth slows",
+        "The data must be wrong, because these two results cannot mathematically happen together",
+        "Older customers are leaving faster than the rate at which new customers are being acquired",
+        "The cohorts have been cut by joining month at a resolution that is far too coarse to be useful"
+      ],
+      "explanation": "This is the classic shape of accumulated debt. As long as new arrivals keep growing quickly the aggregate still looks fine; the moment growth flattens, everything appears at once. There is no contradiction to resolve - a flat average is exactly what two opposing forces in balance produce. And the resolution of the cut is not the issue: a monthly cohort is fine, since the problem is visible the moment you cut at all."
+    },
+    {
+      "question": "Besides joining date, what else can cohorts be built on?",
+      "options": [
+        "By the alphabetical order of customer names, to guarantee each group is properly random",
+        "By acquisition channel, to see which channel brings in the customers who stay longest",
+        "By group size, so that each cohort ends up with exactly the same number of members",
+        "By how complete the data is, giving priority to the groups with the fewest missing values"
+      ],
+      "explanation": "Cohorts by acquisition channel are one of the most valuable analyses you can run on marketing spend: the cheapest channel very often brings in the customers who churn first. Alphabetical splitting gives you randomness with no meaning attached, forcing equal group sizes throws away the natural structure, and selecting on data completeness introduces a bias towards whichever segment happens to be best instrumented."
+    },
+    {
+      "question": "Why can a flat average retention rate still be concealing a serious problem?",
+      "options": [
+        "Because the metric leaves out the customers who have already left entirely",
+        "Because an average always lags the underlying reality by a few reporting periods",
+        "Because improving older cohorts can be offsetting newer ones that churn faster",
+        "Because each department calculates retention in a slightly different way from the rest"
+      ],
+      "explanation": "Two opposing forces in balance produce a flat line, and nobody interrogates a flat line. Splitting customers by the month they joined is the only way to see it - before the older cohort stops being large enough to do the hiding. The average is not lagging and it is not excluding churned customers; it is faithfully reporting a mix whose composition is quietly changing underneath it."
+    }
+  ],
+  "keyTakeaways": [
+    "A cohort is a group with a shared starting point, tracked in parallel through time",
+    "Always compare cohorts at the same age, never at the same calendar date",
+    "A flat aggregate can be hiding two opposing trends that cancel each other out",
+    "Deteriorating cohorts are accumulated debt: they only surface once growth slows",
+    "Cohorts by acquisition channel tell you which channel brings customers who really stay"
+  ],
+  "practicePrompt": {
+    "question": "A company's average revenue per customer is falling, yet no customer group is spending less. What is the most likely explanation?",
+    "options": [
+      "Revenue is being under-recorded at several branches, so the reported total is understated",
+      "The share of low-spending customers in the total is rising, pulling the average down",
+      "Inflation is eroding the real value of every dong of revenue collected",
+      "Long-standing customers have started leaving in unusually large numbers"
+    ],
+    "explanation": "This is Simpson's paradox in its most common form: every group holds steady or improves, but the weights between groups shift, so the aggregate moves the other way. A successful campaign to acquire cheaper customers can drag average revenue down while nothing has actually got worse - and the right response is to look at the groups individually, not to panic about the average."
+  },
+  "summary": {
+    "keyIdea": "Split the data by starting period to see what the average is hiding",
+    "commonMistake": "Drawing a conclusion from the aggregate without checking whether the mix underneath has shifted",
+    "action": "For every headline metric that matters, build a monthly cohort table as well - it usually takes an afternoon and changes how you read the metric entirely."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take your customer data and build a cohort table: rows are joining months, columns are months since joining, and each cell is the share still active. Read it down the columns to compare groups at the same age - that is the direction that tells you whether things are getting better or worse.",
+    "secondary": "If the numbers within a single column fall as you move down it, the quality of new customers is deteriorating."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The average is a convenient summarising tool and an effective concealing tool. It compresses everything into one number, and in the compression most of the interesting information disappears."
+    },
+    {
+      "type": "heading",
+      "text": "A cohort table reads in two directions"
+    },
+    {
+      "type": "conceptTable",
+      "title": "How to read a cohort table",
+      "subtitle": "The same table, two reading directions, two different questions",
+      "concepts": [
+        {
+          "def": "Follow one cohort through time: how the March joiners fall away month by month. It gives you the shape of the customer lifecycle.",
+          "en": "Within one cohort"
+        },
+        {
+          "def": "Compare cohorts at the same age: the March group against the September group after three months each. This is the direction that shows the trend.",
+          "en": "Across cohorts"
+        },
+        {
+          "def": "Cells on a diagonal all belong to the same calendar month. Useful when you want to isolate the effect of a shared event such as a price or product change.",
+          "en": "Same calendar moment"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Simpson's paradox",
+      "text": "There are cases where every subgroup improves and yet the aggregate gets worse, purely because the weights between the groups shifted. This is not an arithmetic error; it is a genuine property of pooled data. The practical consequence: when an aggregate metric moves unexpectedly, the first thing to check is whether the mix underneath has changed - before you go hunting for a cause inside any individual group."
+    },
+    {
+      "type": "heading",
+      "text": "Every group improves, the total gets worse"
+    },
+    {
+      "type": "paragraph",
+      "text": "In year one there are two customer groups: 100 people from referrals with a 50% retention rate, and 100 people from advertising with a 20% rate. The blended rate is 35%. In year two both groups do better: referrals go to 55% and advertising to 25%. But the company has pushed advertising spend hard, so the mix changes - 50 people from referrals and 250 from advertising. The blended rate for year two is (50×55% + 250×25%)/300 = 30%. Both groups improved, and the aggregate still fell from 35% to 30%."
+    },
+    {
+      "type": "callout",
+      "label": "Nothing is wrong with the arithmetic - the question is wrong",
+      "text": "The 30% correctly answers the question 'what share of my customers stayed this year'. It does not answer 'is my product retaining better than last year', and the second is what people actually mean when they look at it. This is Simpson's paradox, and the operational lesson is very concrete: if an aggregate is deteriorating while every subgroup improves, the problem is in the MIX, not in the quality - and the fix is to revisit the acquisition channels, not the product."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Reading a cohort table across the rows",
+        "text": "How one specific group of customers changes over time: what share is left after the first month, the third, the sixth. This is the retention curve, and it tells you how the product performs with a fixed set of people."
+      },
+      "right": {
+        "label": "Reading a cohort table down the columns",
+        "text": "Comparing groups that joined at different times at the same age: the January cohort at month three against the June cohort at month three. This is the direction that shows whether the product or the customer quality is improving or deteriorating - and it is the direction the average can never reveal."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Before you trust an average, ask which groups it is averaging over.",
+        "The next lesson is about comparing two options without fooling yourself: A/B testing."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "slug": "frm-thanh-khoan-noi-ngay",
+  "title": "FRM Liquidity, Lesson 4: Intraday liquidity - the risk that never appears on the balance sheet",
+  "subtitle": "A bank can be perfectly liquid at close of business and still unable to settle at ten in the morning",
+  "duration": "9 min",
+  "whyItMatters": "The LCR and the NSFR measure liquidity over a day and over a year, so both are blind to anything happening within a few hours. But payment systems run by the hour, and a bank that cannot settle mid-morning starts a chain reaction long before any end-of-day report records it.",
+  "openingQuestion": "Why can a bank with an LCR above 130% still hit an intraday liquidity problem?",
+  "openingOptions": [
+    "Because the LCR measures a daily position while obligations fall hourly",
+    "Because the LCR leaves out the deposits placed by individual retail customers",
+    "Because the LCR applies only to banks with international operations",
+    "Because the LCR is computed at book value rather than at market value"
+  ],
+  "explanation": "The LCR answers whether the institution holds enough liquid assets for thirty days of stress - a question about the position at the close of business. Large-value payment systems work in real time: obligations fall due at specific hours, and incoming funds arrive at specific hours too. If outflows cluster in the morning while inflows land in the afternoon, the bank needs a buffer of liquidity during the day that no end-of-day measure can see.",
+  "diagram": [
+    {
+      "label": "Settlement obligations arrive hour by hour through the day"
+    },
+    {
+      "label": "Incoming funds usually land later than outgoing ones"
+    },
+    {
+      "label": "The gap must be buffered by a balance or an intraday overdraft line"
+    },
+    {
+      "label": "Without that buffer, payments queue and the queue spreads to other banks"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Real-time gross settlement systems",
+    "description": "In a system that settles transaction by transaction, every transfer needs enough funds at that precise moment. If many banks wait to receive before they pay, the whole system can drift into a state where everyone is waiting on everyone else - and one bank holding onto its funds longer than usual lengthens the queue everywhere else."
+  },
+  "quiz": [
+    {
+      "question": "Why does the LCR fail to capture intraday liquidity risk?",
+      "options": [
+        "Because it excludes transactions settled on the interbank system",
+        "Because it measures a position over 30 days, not hour by hour",
+        "Because it counts only level one high-quality liquid assets",
+        "Because it is reported monthly and so always lags reality"
+      ],
+      "explanation": "A ratio computed on total outflows over thirty days does not care whether those outflows arrive at nine in the morning or four in the afternoon. Intraday risk is born precisely from the timing mismatch within the day, so it needs its own set of hourly indicators. Interbank flows are included in the LCR, level two assets are counted with haircuts, and reporting frequency is a separate issue from what the measure is designed to capture."
+    },
+    {
+      "question": "What are a bank's main sources of intraday liquidity?",
+      "options": [
+        "Shareholders' equity and the retained earnings not yet distributed",
+        "Highly liquid assets together with term deposits placed by customers",
+        "The central bank balance, incoming funds, and an overdraft line",
+        "Long-term credit facilities granted by partner banks"
+      ],
+      "explanation": "These three sources differ in how certain they are: the balance is something you already hold, incoming funds depend on somebody else paying on time, and the overdraft line usually requires collateral. Leaning too heavily on the second is where concentration risk sits. Equity and term deposits fund the balance sheet over long horizons and cannot be turned into settlement funds at eleven o'clock, and a long-term facility answers a different question entirely."
+    },
+    {
+      "question": "How does the everyone-waiting-on-everyone state arise in a payment system?",
+      "options": [
+        "Customers withdraw from many banks simultaneously in a single session",
+        "The central bank pauses the system in order to reconcile its figures",
+        "Banks all pull their collateral out of the settlement system at once",
+        "Each side delays paying in order to receive first, so everything slows"
+      ],
+      "explanation": "Holding funds back is rational for any individual bank because it economises on liquidity, but if everyone does it then nobody receives anything and the queue lengthens everywhere. This is why modern systems include queue-offsetting mechanisms and incentives to settle early. A customer run and a collateral withdrawal are different events with different mechanics, and a reconciliation pause is a scheduled operational matter rather than a gridlock."
+    },
+    {
+      "question": "Which indicator is suitable for monitoring intraday liquidity risk?",
+      "options": [
+        "Peak intraday liquidity usage and usage at times of congestion",
+        "Liquid assets over total assets measured at the end of each quarter",
+        "The average maturity gap between the assets and the liabilities",
+        "The loan-to-deposit ratio measured at the close of the business day"
+      ],
+      "explanation": "You need an indicator with a within-day time axis: when demand peaks, whether any payment has ever had to queue, and for how long. Every measure computed on a period-end balance discards exactly the time dimension that creates this risk. A quarterly asset ratio, an average maturity gap and a closing loan-to-deposit ratio are all useful for other purposes and all blind to the hour of the day."
+    },
+    {
+      "question": "Why does intraday risk spread so readily from one bank to another?",
+      "options": [
+        "Because the banks all run on one shared payment technology platform",
+        "Because the money one side has not paid is what the other is waiting for",
+        "Because supervisors publish liquidity positions in real time to the market",
+        "Because customers can watch a bank's balance change during the day"
+      ],
+      "explanation": "Payments during the day form a chain: the funds received from A are used to pay B. One link stopping halts the whole chain behind it, and that effect travels far faster than any other contagion channel in the financial system. A shared technology platform would be an operational dependency rather than a liquidity one, supervisors do not publish real-time positions, and customers cannot observe a bank's settlement account at all."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A bank has an LCR of 145% and closes every day with a positive balance at the central bank. At 10 a.m. one day, a large payment instruction cannot be executed. Is that a contradiction?",
+    "options": [
+      "No: the LCR measures a day, so it is blind to a few-hour mismatch",
+      "Yes: an LCR of 145% guarantees settlement at any moment",
+      "Yes: a positive closing balance rules out any shortfall in the day",
+      "No: this is an operational risk event rather than a liquidity one"
+    ],
+    "explanation": "The LCR asks whether the bank has enough liquid assets for thirty days of stress, and the answer is computed across the whole day. The payment system asks a completely different question: at 10 a.m., does this account hold enough funds for this instruction. Incoming funds from counterparties tend to cluster in the afternoon while obligations fall due in the morning, so a bank that is comfortable across the day can still be short for a few hours. The closing balance cannot see that, because it is a snapshot taken after everything has settled. An indicator for this risk must have a within-day time axis."
+  },
+  "keyTakeaways": [
+    "The LCR and the NSFR measure across a day and across a year; both are blind to a mismatch of a few hours",
+    "Three intraday sources: the central bank balance, incoming funds from counterparties, and a collateralised overdraft line",
+    "Holding funds back is rational for one bank and damaging for the system - the queue lengthens everywhere",
+    "Monitoring indicators must carry a within-day time axis; period-end balances will not do"
+  ],
+  "summary": {
+    "keyIdea": "Having enough liquidity at the close and settling on time are two different questions. The payment system only cares about the second."
+  },
+  "application": {
+    "message": "If an institution reports only the LCR and the NSFR with no intraday indicator at all, it is failing to measure the risk that can spread fastest through the system."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A balance sheet is a photograph taken at the close of business. The payment system runs all day, and it does not care what the final photograph looks like."
+    },
+    {
+      "type": "heading",
+      "text": "A mismatch of a few hours"
+    },
+    {
+      "type": "paragraph",
+      "text": "Settlement obligations do not arrive evenly: many large ones fall in the morning, while incoming funds tend to come later. The gap between those two lines has to be buffered by an available balance or an intraday overdraft line. This is a genuine liquidity need, and it appears on no line of the balance sheet."
+    },
+    {
+      "type": "heading",
+      "text": "Three sources, three degrees of certainty"
+    },
+    {
+      "type": "paragraph",
+      "text": "The central bank balance is the most certain because you already hold it. Incoming funds depend on somebody else paying on time - reliable on a normal day and much less so under stress. An overdraft line usually requires collateral, and collateral is scarce at precisely the same moment."
+    },
+    {
+      "type": "heading",
+      "text": "When holding funds is rational and damaging at once"
+    },
+    {
+      "type": "paragraph",
+      "text": "For a single bank, delaying payment while waiting to receive is a sensible way to economise on liquidity. If everyone does it, nobody receives anything to pay onward, and the queue lengthens everywhere. This is a classic coordination problem, and it is why modern payment systems need queue-offsetting mechanisms."
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "The money one bank has not yet paid is the money another bank is waiting on to pay onward. No contagion channel in the financial system moves faster than this one."
+    },
+    {
+      "type": "heading",
+      "text": "Enough cash all day, short of it at ten o'clock"
+    },
+    {
+      "type": "paragraph",
+      "text": "A bank opens with a balance of 20 at the central bank. It has settlement obligations of 60 due before 10 a.m. Expected inflows are 50, but spread from 11 a.m. through to late afternoon. Viewed across the whole day the bank is in surplus: 20 + 50 − 60 = +10. Viewed at 10 a.m. it is short by 40, and the closing balance sheet records not one word about that shortfall. This is the entire content of intraday liquidity risk: it appears in no report built from an end-of-day snapshot."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three sources to cover the gap, three degrees of certainty",
+      "subtitle": "Only the first is something you already hold; the other two are things you are counting on",
+      "concepts": [
+        {
+          "def": "Already in the account, usable immediately, dependent on nobody's decision. This is why banks hold balances well above the required minimum even though they earn almost nothing.",
+          "en": "Certain"
+        },
+        {
+          "def": "On schedule across thousands of normal days. But if the counterparty is also short and also holding funds back, this one arrives late on exactly the day you needed it early.",
+          "en": "Depends on someone else"
+        },
+        {
+          "def": "Requires eligible collateral that is not already encumbered. Which means real intraday capacity depends on how much free collateral you hold, not on the size of the balance sheet.",
+          "en": "Conditional"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why holding funds back is both rational and damaging",
+      "text": "For a single bank, delaying a payment while waiting for money to arrive is an entirely rational way to economise on liquidity. If several banks do it during one stressed morning, the system moves into gridlock: the money one bank has not yet paid is the money another bank is waiting on to pay onward. No contagion channel in the financial system moves faster than this one, because it runs in hours rather than days - and it is why the large payment systems set rules requiring a given share of the day's obligations to be completed by set times."
+    }
+  ]
+}

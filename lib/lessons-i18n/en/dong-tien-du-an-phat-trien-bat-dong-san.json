@@ -1,0 +1,167 @@
+{
+  "slug": "dong-tien-du-an-phat-trien-bat-dong-san",
+  "title": "Property projects, lesson 2: the J-curve - money out first, money in later",
+  "subtitle": "A development project's cash flow, the peak funding requirement, and why a handsome IRR can still kill the developer",
+  "duration": "11 min",
+  "whyItMatters": "The number that decides whether a project can be done is usually not the IRR but the peak funding requirement - the largest amount the developer has to raise at one time. A project with a 25% IRR that needs 800bn in month 18 cannot be done by someone who has 500bn.",
+  "openingQuestion": "A project has a positive NPV and a 25% IRR. Peak funding is 800bn; the developer can raise at most 500bn. What do you conclude?",
+  "openingOptions": [
+    "Not feasible for this developer, however good the metrics look",
+    "Still feasible, since a positive NPV means the project creates value",
+    "Still feasible, since a 25% IRR is high enough to borrow the rest",
+    "Recompute it, since a positive NPV and a funding gap cannot coexist"
+  ],
+  "explanation": "NPV and IRR say whether a project is worth doing; peak funding says whether it can be done at all. Two entirely different questions, and the second is skipped far more often. A good project that runs out of money halfway stops, and stopping is the worst outcome in property: the cash is already buried in land and foundations, the interest keeps running, and there is nothing to sell. That is why project lenders look at the cumulative cash flow chart before they look at the IRR, and why the capital structure of a property project is always designed around exactly that low point.",
+  "diagram": [
+    { "label": "Phase 1: land, permits, design - money out only" },
+    { "label": "Phase 2: construction - the heaviest outflow, the peak funding point" },
+    { "label": "Phase 3: sales launch - buyer money starts coming in" },
+    { "label": "Phase 4: handover, final collections, settlement" }
+  ],
+  "realWorldExample": {
+    "company": "How a bank appraises a property project",
+    "description": "A project loan application always comes with a monthly cash flow table, and the lender's first question is which month the peak funding requirement falls in and how large it is. That figure determines the credit limit, not the IRR - because the bank takes no share of the profit, it only needs to be sure the project does not stop halfway."
+  },
+  "quiz": [
+    {
+      "question": "What is a project's peak funding requirement?",
+      "options": [
+        "The largest amount the developer must put up at one time",
+        "Total investment cost of the project across its whole life cycle",
+        "The largest accumulated loss recognised in the income statement",
+        "The maximum loan the bank has agreed to extend to the project"
+      ],
+      "explanation": "It is the lowest point of the cumulative cash flow. Total investment cost is a different figure and says nothing about whether the developer can raise the money in time. It is not an accounting loss either - a project can be deeply cash-negative while its income statement shows nothing at all, because the spending sits in work in progress rather than in expense."
+    },
+    {
+      "question": "Why does a bank look at peak funding before it looks at IRR?",
+      "options": [
+        "Because IRR is an unreliable measure in the property sector",
+        "Because the bank shares no profit; it just needs the project finished",
+        "Because rules require credit institutions to appraise absolute cash flow",
+        "Because peak funding is easier to compute than IRR, so it screens files"
+      ],
+      "explanation": "A high IRR only means anything if the project reaches the finish line. The lender cares about the probability of reaching it, and the bottleneck on that probability is the funding peak. IRR is a perfectly sound measure in property, no rule forces the order of appraisal, and ease of computation is not the reason - the two figures simply answer different questions."
+    },
+    {
+      "question": "Why is stopping halfway the worst outcome for a property project?",
+      "options": [
+        "Because construction cost always doubles when the site is restarted",
+        "Because the authorities reclaim the land if a project stalls six months",
+        "Because money is buried in land and foundations, interest runs, nothing sells",
+        "Because buyers get their money back with a penalty rate of interest"
+      ],
+      "explanation": "A half-finished project has almost no liquidation value. That is why liquidity risk here is more serious than profitability risk. Restart costs are real but not automatically double, land is not reclaimed on a six-month clock, and buyer refunds depend entirely on what the contracts say - none of those is the structural problem."
+    },
+    {
+      "question": "How does launching sales three months earlier affect peak funding?",
+      "options": [
+        "It affects the IRR only, not the funding requirement",
+        "No effect, the revenue is the same either way",
+        "It deepens the peak, as selling costs arrive earlier",
+        "It lifts the peak, because the cash comes in sooner"
+      ],
+      "explanation": "This is why the legal milestones are pursued so relentlessly: every month of earlier sales is a month less that the project has to fund itself. The total revenue may well be unchanged, but its timing is exactly what the peak measures, and the selling costs brought forward are far smaller than the buyer deposits brought forward with them."
+    },
+    {
+      "question": "Why does a development project's cash flow trace a J?",
+      "options": [
+        "Because costs come first and revenue only after sales are permitted",
+        "Because property prices usually rise as construction goes on",
+        "Because interest is capitalised into the value of the work in progress",
+        "Because the developer holds back the last units to sell later"
+      ],
+      "explanation": "Land, permits and foundations all have to be paid for before the first unit of buyer money may be taken. The J shape is a direct consequence of that sequence. Price appreciation and capitalised interest both affect how deep the curve goes, and holding units back shifts the tail, but none of the three creates the shape - the legal ordering of spending and selling does."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A project's cumulative cash flow by quarter, in billions: −120, −310, −480, −390, −150, +220. What is the peak funding requirement, and what does it tell you?",
+    "options": [
+      "480bn - the funding line that has to be arranged",
+      "1,450bn - adding up every quarter with a negative figure",
+      "220bn - the project's net result at the end",
+      "170bn - the sharpest fall between two adjacent quarters"
+    ],
+    "explanation": "The peak funding requirement is the LOWEST point of the cumulative cash flow, here −480 in quarter 3. It answers a completely different question from NPV and IRR: not 'is this project worth doing' but 'can the developer arrange 480bn at one time'. A project with a 30% IRR still dies if peak funding exceeds what can be raised, which is why the bank looks at this number first. Adding the negative quarters up to 1,450bn confuses cumulative cash flow with period cash flow - the figures are already cumulative, so adding them again counts the same money twice."
+  },
+  "keyTakeaways": [
+    "NPV and IRR say whether a project is worth doing; peak funding says whether it can be done.",
+    "Peak funding is the lowest point of the cumulative cash flow, and it determines the credit limit.",
+    "Stopping halfway is the worst outcome: a half-finished asset has almost no liquidation value.",
+    "Launching sales earlier lifts the funding peak - which is why the legal milestones are chased to the end."
+  ],
+  "summary": {
+    "keyIdea": "NPV and IRR say whether a project is worth doing; peak funding says whether it can be done",
+    "commonMistake": "Approving a project on IRR without looking at the lowest point of the cumulative cash flow - where the required credit limit is decided.",
+    "action": "Plot the cumulative cash flow by month and mark the lowest point. That is the money that has to be arranged before you start."
+  },
+  "application": {
+    "title": "Find a project's funding peak",
+    "message": "Build a quarterly cash flow table for a hypothetical project, accumulate it across the quarters, and find the quarter with the deepest negative cumulative figure. Compare that number with the equity plus the credit line you actually have.",
+    "secondary": "If the peak exceeds what you can arrange, a project with a positive NPV still cannot be done - and stopping halfway is the worst outcome."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Plot a development project's cumulative cash flow on paper and you get a J: down very deep, for a very long time, and only then back up. The whole craft of project finance lies in managing the bottom of that J."
+    },
+    {
+      "type": "heading",
+      "text": "Four phases"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Land and permits: money out only, of unpredictable duration, and the riskiest phase.",
+        "Construction: steady and heavy outflow. The funding peak usually falls at the end of this phase.",
+        "Sales launch: money starts coming in, usually on the buyers' payment schedule.",
+        "Handover and settlement: collect the balance, repay the debt, close the books on profit or loss."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Two different questions"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Is it worth doing",
+        "text": "NPV, IRR. Answered in rates and values. This is the question the developer and the equity investors ask."
+      },
+      "right": {
+        "label": "Can it be done",
+        "text": "Peak funding, and when the trough falls. Answered as an absolute amount in a specific month. This is the lender's question."
+      }
+    },
+    {
+      "type": "formula",
+      "title": "The funding requirement at the trough",
+      "equation": "Peak funding = min(cumulative monthly cash flow)",
+      "variables": [
+        {
+          "symbol": "cumulative cash flow",
+          "name": "accumulated from the first month",
+          "description": "including interest accrued during the construction period"
+        }
+      ],
+      "example": {
+        "title": "Why interest has to be included",
+        "calculation": "500bn of capital + 18 months of capitalised interest",
+        "result": "a trough deeper than the pure investment figure",
+        "explanation": "Interest during construction is usually capitalised into the value of the works, so it never appears on the income statement - but it is still real money that has to be paid out."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A common flaw in project submissions",
+      "text": "Presenting the IRR in great detail and leaving the monthly cash flow in an appendix. An experienced appraiser opens the appendix first - because the IRR is the conclusion, while the monthly cash flow is where you can see whether the project can be funded at all."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A good project still dies if it runs out of money in month 18.",
+        "So before asking how much it returns, ask how deep the trough is and when it falls."
+      ]
+    }
+  ]
+}

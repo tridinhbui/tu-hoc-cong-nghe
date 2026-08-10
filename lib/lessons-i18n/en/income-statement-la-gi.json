@@ -69,7 +69,7 @@
         "Operating has already subtracted depreciation, Net has not",
         "Operating has not yet subtracted interest and tax, Net has subtracted both",
         "Operating is measured on a cash basis, Net on an accrual basis",
-        "Operating counts only core revenue, while Net also adds in secondary and non-operating revenue"
+        "Operating counts only core revenue, Net also adds non-operating revenue"
       ],
       "explanation": "Operating = profit from core operations before interest/tax. Net = profit after interest/tax. Operating reflects business performance; Net reflects shareholder profit."
     },
@@ -77,7 +77,7 @@
       "question": "A company has a 20% Operating Margin but only a 12% Net Margin. What explains the gap?",
       "options": [
         "Selling and administrative costs are above the industry average",
-        "Rising cost of goods sold has squeezed the gross margin",
+        "Rising cost of goods sold has squeezed the gross margin down",
         "Interest expense and tax have eaten up 8 percentage points",
         "Revenue is recognised on an accrual basis, so cash hasn't been collected yet"
       ],
@@ -87,8 +87,8 @@
       "question": "What is EBITDA?",
       "options": [
         "Gross profit after subtracting selling and administrative expenses",
-        "After-tax profit with dividends paid added back on top",
-        "Net cash flow generated from operations during the period",
+        "After-tax profit with all dividends paid added back on top of it",
+        "Net cash flow generated from operations during the whole period",
         "Earnings before interest, tax, depreciation, and amortisation"
       ],
       "explanation": "EBITDA = Operating Income + Depreciation/Amortisation. It strips out non-cash expenses and the effects of financing and tax, making it useful for comparing companies."
@@ -97,9 +97,9 @@
       "question": "If you want to compare the profitability of two companies with different capital structures, which metric should you use?",
       "options": [
         "Operating Income or EBITDA",
-        "Each company's Net Income",
+        "Each company's own Net Income",
         "Net Margin, expressed as a percentage",
-        "After-tax profit divided by average shareholders' equity"
+        "After-tax profit over average equity"
       ],
       "explanation": "Net Income is affected by capital structure and tax. Operating Income/EBITDA give a cleaner comparison of the actual businesses."
     },
@@ -116,10 +116,10 @@
     {
       "question": "How does seasonality affect the Income Statement?",
       "options": [
-        "It only affects the balance sheet, not the income statement",
+        "It only affects the balance sheet, never the income statement itself",
         "Revenue between quarters always stays stable for a good business",
         "Revenue swings with the season, so you must compare against the same period last year",
-        "Comparing only against the immediately preceding quarter is enough to see the real trend"
+        "Comparing only against the immediately preceding quarter shows the trend"
       ],
       "explanation": "A company that sells Tet goods sees high Q1 and low Q3 sales. You need a year-over-year (YoY) comparison to understand the real trend."
     },
@@ -127,9 +127,9 @@
       "question": "Between Operating Income and Net Income, which one do investors usually care about more?",
       "options": [
         "Operating Income, because it reflects core business strength before any debt effects",
-        "Net Income, because it's the final figure left after every single expense and tax is subtracted",
-        "EBITDA, because it strips out the effect of depreciation policy",
-        "Both equally, since they always move in the same direction"
+        "Net Income, because it's the final figure left after every expense and tax",
+        "EBITDA, because it strips out the effect of depreciation policy choices",
+        "Both equally, since the two always move in the same direction anyway"
       ],
       "explanation": "Operating = core business health. Net = also depends on debt/tax. Investors prefer a high Operating figure, since that reflects real growth potential."
     },

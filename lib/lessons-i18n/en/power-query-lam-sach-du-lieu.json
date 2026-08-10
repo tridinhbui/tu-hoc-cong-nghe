@@ -1,0 +1,163 @@
+{
+  "slug": "power-query-lam-sach-du-lieu",
+  "title": "Excel, Lesson 5: Power Query - clean the data once, reuse it forever",
+  "subtitle": "A repeatable cleaning process instead of copying and hand-fixing every month",
+  "duration": "11 min",
+  "whyItMatters": "Recurring reporting is most of what an analysis team does, and most of the time spent on a report goes into cleaning data by hand - repeating exactly the same steps every month. Power Query turns that manual routine into a sequence of steps that reruns itself.",
+  "openingQuestion": "What is the biggest advantage of Power Query over cleaning data by hand?",
+  "openingOptions": [
+    "It handles more data than Excel's row limit allows",
+    "The steps are recorded into a reusable process",
+    "It automatically detects errors in the data",
+    "It calculates faster than ordinary formulas"
+  ],
+  "explanation": "The crux of it is repeatability. When you clean by hand, the result depends on your memory of the order you did things in, and each month you may do it slightly differently - which quietly makes the numbers across periods not truly comparable. Power Query records every step into a list you can see and check, and it reruns that list identically each time new data arrives.",
+  "diagram": [
+    { "label": "Connect to the data source" },
+    { "label": "Record each cleaning step" },
+    { "label": "Load into the sheet or the data model" },
+    { "label": "Next period: just hit refresh" }
+  ],
+  "realWorldExample": {
+    "company": "The monthly management report",
+    "description": "An in-house analyst typically receives sales data exported from the system in a messy shape: repeated header rows, dates stored as text, product codes padded with stray spaces. Cleaning it by hand takes about two hours a month, and each month a different thing goes wrong. Building the Power Query process takes about three hours exactly once, after which each month costs a few minutes."
+  },
+  "quiz": [
+    {
+      "question": "What does Power Query preserve that manual work does not?",
+      "options": [
+        "A full copy of the original data as it was before any cleaning",
+        "The intermediate result of every formula used in each step",
+        "A log recording everyone who has opened and edited this data file",
+        "An ordered, rerunnable list of the transformation steps that were applied"
+      ],
+      "explanation": "The step list is the documentation of the process. Someone taking over the work can read through each step and understand how the data was handled - which is essentially impossible with a copy-and-hand-fix routine. Power Query does not archive the source file for you, it does not store intermediate formula results, and it keeps no record of who touched the workbook; that is a file-server or version-control concern, not a query one."
+    },
+    {
+      "question": "When do you use the unpivot operation in Power Query?",
+      "options": [
+        "When you need to turn a matrix-shaped table into a vertical list",
+        "When you need to find and remove duplicated rows from the source data table",
+        "When you need to rename a batch of columns to match a shared naming convention",
+        "When you need to append rows from several identically structured files into one table"
+      ],
+      "explanation": "Data laid out by a human is usually in a matrix so it reads nicely, but every analysis tool wants a vertical list. Unpivot is the bridge between those two shapes and is the single most-used operation in practice. Removing duplicates, renaming columns and appending files are all separate operations in Power Query - useful, but none of them change the orientation of the table the way unpivot does."
+    },
+    {
+      "question": "Why clean data in Power Query rather than with formulas in the worksheet?",
+      "options": [
+        "Because worksheet formulas cannot handle data stored as text",
+        "Because the process reapplies itself however the row count changes",
+        "Because Power Query always produces a more accurate result than formulas",
+        "Because formulas corrupt the file structure past one million rows of data"
+      ],
+      "explanation": "A changing row count between periods is the leading cause of errors in recurring reports. A Power Query process does not depend on the row count, so it eliminates that class of error entirely. Formulas handle text perfectly well, neither approach is inherently more accurate than the other, and nothing about a formula corrupts a file - Excel simply refuses more rows than the sheet holds."
+    },
+    {
+      "question": "What is the important principle when designing a data process?",
+      "options": [
+        "Merge every transformation into one single step to keep things tidy",
+        "Delete the source data as soon as cleaning is done, to save storage space",
+        "Never edit the source data; every change lives in a reversible step",
+        "Keep only the most recent period and delete older ones to lighten the table"
+      ],
+      "explanation": "The source data is your single source of truth. When a result is questioned, you have to be able to go back to the unprocessed data and reconcile against it - and if you have overwritten it, there is no way left to verify anything. Collapsing every transformation into one step destroys exactly the auditability that makes the process worth building, and deleting either the source or the older periods trades an irreplaceable record for storage that costs almost nothing."
+    },
+    {
+      "question": "Why does cleaning data through a recorded process matter so much for recurring reports?",
+      "options": [
+        "Because the tool shrinks the size of the workbook file for long-term storage",
+        "Because an automated process will always spot the rows that contain errors",
+        "Because manual work cannot handle a dataset larger than one million rows",
+        "Because periods are only comparable if they were processed the same way"
+      ],
+      "explanation": "Cleaning by hand means processing things slightly differently each month, and the difference between periods may come from the handling rather than from the business. Recording the process turns cleaning into a constant instead of a variable. Nothing here shrinks the file, no tool can tell a wrong number from a right one without a rule you wrote, and Excel's row ceiling is a limit of the sheet rather than of manual work."
+    }
+  ],
+  "keyTakeaways": [
+    "Power Query records the cleaning steps into a rerunnable process, replacing manual work each period",
+    "Unpivot turns a matrix-shaped table into the vertical list every analysis tool needs",
+    "The process does not depend on the row count, so it removes the most common error in recurring reports",
+    "Never overwrite the source data - every transformation must be reviewable and reversible"
+  ],
+  "practicePrompt": {
+    "question": "You spend two hours every month cleaning the same kind of report. What is the right approach?",
+    "options": [
+      "Go faster by dropping a few of the checking steps",
+      "Build a Power Query process to reuse each period",
+      "Hire somebody else to do this part of the work",
+      "Move to quarterly reporting so it happens less often"
+    ],
+    "explanation": "This is a simple investment calculation: three hours spent once buys back roughly twenty hours a year, plus the far larger benefit that every period is processed identically and therefore genuinely comparable."
+  },
+  "summary": {
+    "keyIdea": "Cleaning data is a process to be documented, not manual labour to be repeated",
+    "commonMistake": "Copy, hand-fix, paste over - nobody, including you six months later, knows how the data was transformed",
+    "action": "Take the recurring report that costs you the most time and rebuild it once in Power Query."
+  },
+  "application": {
+    "title": "The single-source-of-truth principle",
+    "message": "Keep the source data in one place nobody edits. Every transformation happens in steps you can review. The final result loads out to its own table. Those three separated layers make every number in the report traceable back to its source.",
+    "secondary": "This is exactly the input - calculation - output separation of financial modelling, applied to data."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "There is a paradox in analytical work: the most time-consuming part is not the analysis but preparing the data so analysis is possible. And most of that preparation time goes into repeating exactly what was done last period."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Manual cleaning",
+        "text": "Fast the first time. Repeated every period, undocumented, dependent on memory, and something different goes wrong each time."
+      },
+      "right": {
+        "label": "A Power Query process",
+        "text": "Slower the first time. Later periods need only a refresh, the process shows every step clearly, someone else can take it over, and the result is perfectly consistent."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Connect to the source: an Excel file, a CSV, a folder of files, or a database",
+        "Clean: drop junk rows, promote the right header row, set data types, trim whitespace",
+        "Transform: unpivot, split columns, group and aggregate, add calculated columns",
+        "Combine: append rows from several files, or merge columns from several tables on a key",
+        "Load the result to a worksheet or the data model for the report to use"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Signs it is time to move to an automated process",
+      "text": "If you have done the same operation on data three times or more, or if somebody else has to do exactly that operation too, it is time to make it a process. The switching cost pays back faster than it first feels like it will."
+    },
+    { "type": "heading", "text": "The real difference is that the steps are recorded" },
+    {
+      "type": "paragraph",
+      "text": "Cleaning by hand is a sequence of actions that leaves no trace: delete the first four rows, split the name column, change the date format, filter out the totals row, swap the decimal separator. Next month a new file arrives and you have to remember and repeat that order exactly. If somebody else covers for you, they do it their way and the result shifts without anyone noticing. Power Query writes each step into a readable list, so the process becomes something that exists independently of the person running it - and next month there is one action left, refresh."
+    },
+    {
+      "type": "callout",
+      "label": "The biggest benefit is not the time saved",
+      "text": "It is being able to check the work. When the final number looks odd, a hand-built routine gives you no way to trace back - you can only start over and hope it is right this time. With a recorded step list you click each step and see what the data looked like immediately afterwards, pinpointing exactly where things broke. That is also why this process can be handed to somebody else, while a sequence of manual actions cannot."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Signs to move to a recorded process",
+        "text": "You have done the same operation on data three times or more. Or somebody else has to do the same thing. Or the source data arrives on a schedule with the same structure. Any one of those three is enough for the upfront learning cost to pay back."
+      },
+      "right": {
+        "label": "When doing it by hand is still fine",
+        "text": "A one-off, a small dataset, nobody else needs to repeat it, and that file structure will never appear again. This case is real and not rare - the problem only arises when people assume this is the only time, and it turns out to be monthly."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Clean data is not the product of being careful; it is the product of a good process.",
+        "The last lesson of the stage steps outside the spreadsheet: when the data outgrows Excel, you need SQL."
+      ]
+    }
+  ]
+}

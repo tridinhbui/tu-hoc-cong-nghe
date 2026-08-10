@@ -1,0 +1,172 @@
+{
+  "slug": "frm-xep-hang-tin-nhiem-noi-bo-va-ben-ngoai",
+  "title": "FRM Valuation, Lesson 6: Internal ratings, external ratings and sovereign risk",
+  "subtitle": "Three letters standing behind trillions of dong in lending decisions - and what they do not say",
+  "duration": "9 min",
+  "whyItMatters": "Credit ratings are an input to capital models, to fund investment limits and to loan covenants. One wrong letter propagates through the whole system, and the 2008 crisis is the most expensive example of that.",
+  "openingQuestion": "What does an external credit rating measure?",
+  "openingOptions": [
+    "The relative likelihood that the issuer fails to pay its debts on time",
+    "The expected return an investor will earn from holding the bond",
+    "The fair market value of the bonds that issuer has put out",
+    "How liquid the bond is in the secondary market"
+  ],
+  "explanation": "A credit rating is an ordinal measure, not an absolute probability: it says this issuer is safer than that one, not that the chance of default is such-and-such a percentage. It also says nothing about fair value or liquidity - two things investors routinely read into it. An internal rating differs in that it is calibrated on the institution's own portfolio and updates faster, but in exchange it is not comparable across firms and it sits under pressure from the business side.",
+  "diagram": [
+    {
+      "label": "External rating: a relative ordering, published by a rating agency"
+    },
+    {
+      "label": "Internal rating: the bank's own grade, tied to its own estimated PD"
+    },
+    {
+      "label": "Sovereign ceiling: caps the rating of companies based in that country"
+    },
+    {
+      "label": "All three feed capital models and investment limits"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The conflict of interest in the issuer-pays model",
+    "description": "Rating agencies are paid by the very issuers they assess - a very blunt conflict of interest, because the agency has a commercial incentive to keep the client. Combine that with structured-finance models built on default-correlation assumptions that were far too low, and the result was a wave of AAA ratings collapsing during the 2008 crisis. Since then, regulation in many countries has pushed back on the mechanical use of external ratings."
+  },
+  "quiz": [
+    {
+      "question": "What does the sovereign ceiling mean in credit ratings?",
+      "options": [
+        "A rating agency must hold a separate licence in each country before it may operate",
+        "Each country is only allowed a certain fixed number of AAA-rated companies at a time",
+        "A company is normally not rated above the sovereign where it operates",
+        "Government bonds always yield less than corporate bonds of the same maturity"
+      ],
+      "explanation": "The argument is that a company shares the risks of the environment it operates in - capital controls, a currency crisis, sudden policy intervention. This is why an extremely strong company in an emerging market still runs into the ceiling. A licensing requirement is a regulatory matter and has nothing to do with the grade assigned; there is no quota on how many AAA issuers a country may have; and the relative yield of government versus corporate paper is a pricing observation, not the definition of a ceiling. Exceptions to the ceiling exist, but they have to be demonstrated."
+    },
+    {
+      "question": "What is the most important way an internal rating differs from an external one?",
+      "options": [
+        "An internal rating does not need to be validated or approved by the banking regulator",
+        "Internal ratings apply only to retail customers, never to corporate borrowers",
+        "Internal ratings are published openly for the whole market to consult",
+        "An internal rating is usually tied to a specific estimated default probability"
+      ],
+      "explanation": "A bank needs a number to feed into its capital model, so the internal system has to map every grade onto an estimated PD. External ratings deliberately stay ordinal and commit to no specific probability. The first option has it backwards: internal rating systems used for regulatory capital are precisely the ones supervisors validate and approve. Internal grades cover corporate exposures as much as retail ones, and they are confidential inputs to the bank's own models rather than market disclosures."
+    },
+    {
+      "question": "Why is relying entirely on external ratings risky for an institution?",
+      "options": [
+        "Ratings react slowly, and many holders become forced sellers on a downgrade",
+        "Rating agencies are not permitted to assess corporate bonds, only sovereign ones",
+        "A published rating stays valid for only thirty days from issue",
+        "Every rating agency is required to use one single shared assessment model"
+      ],
+      "explanation": "A downgrade usually arrives after the market has already repriced. Worse, many funds carry mandates forcing them to sell once an asset drops out of investment grade, so a single downgrade triggers a simultaneous wave of selling - and an individual credit risk turns into a systemic one. Agencies rate corporate issuers as their core business; ratings carry no thirty-day expiry, they are reviewed on the agency's own cycle; and each agency runs its own methodology, which is exactly why two agencies can disagree on the same issuer."
+    },
+    {
+      "question": "Do two bonds both rated BBB, ten years apart, carry the same probability of default?",
+      "options": [
+        "Yes, each rating grade is defined as one fixed default probability",
+        "No, a rating is a relative ordering rather than a hard-wired probability",
+        "Yes, if the two bonds share the same maturity and sector the probabilities match",
+        "No, because agencies must republish their entire rating scale every single year"
+      ],
+      "explanation": "A rating scale sorts issuers by risk order and commits to no absolute number - the realised default rate for a given grade swings sharply with the economic cycle. That is exactly why a bank has to map each grade onto its own estimated PD before feeding it into a capital model. Matching maturity and sector narrows the comparison but does not pin the probability either, since the cycle still moves it. And agencies do not republish the scale annually; the scale is stable, it is the default experience behind it that varies."
+    },
+    {
+      "question": "What must a company usually demonstrate to be rated above the sovereign ceiling?",
+      "options": [
+        "That a second rating agency has assessed it and arrived at the same grade",
+        "That its market capitalisation exceeds most domestic peers in its sector",
+        "That its revenue and assets sit offshore, beyond the reach of transfer controls",
+        "That it borrows only in local currency and so carries no exchange-rate risk"
+      ],
+      "explanation": "The reasoning behind the sovereign ceiling is convertibility and transfer risk: a government under stress can restrict moving foreign currency out of the country, and at that point a perfectly healthy company still cannot service foreign-currency debt. Exceptions exist, but the company has to show that its receipts sit beyond the reach of such measures. A second opinion or a large market capitalisation says nothing about transfer risk, and borrowing only in local currency avoids the exposure rather than piercing the ceiling."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A company has financial metrics consistent with an A rating, but its home country is rated BB. What will its foreign-currency rating usually look like?",
+    "options": [
+      "Capped around BB, because the sovereign ceiling applies to it",
+      "Still A, because a rating measures the company's own strength",
+      "The average of A and BB, which lands somewhere around BBB",
+      "Above A, because the company is financially stronger than its sovereign"
+    ],
+    "explanation": "The sovereign ceiling reflects a risk the company's balance sheet cannot speak to: when a country hits a foreign-currency crisis, the government may restrict conversion or transfers abroad, and at that point a completely healthy company still cannot pay foreign-currency debt on time. That is why the ceiling applies to the FOREIGN-CURRENCY rating and not the local-currency one. Exceptions above the ceiling do exist - a company with offshore foreign-currency receipts, or a guarantee from a foreign parent - but those are exceptions that must be demonstrated, not the default."
+  },
+  "keyTakeaways": [
+    "An external rating is a relative ordering, not an absolute default probability",
+    "An internal rating must map to a specific PD to enter the capital model",
+    "The sovereign ceiling usually caps the rating of domestic companies",
+    "Mechanical reliance on ratings creates simultaneous forced selling on a downgrade"
+  ],
+  "summary": {
+    "keyIdea": "A rating is a structured opinion about risk ordering, not a measurement, and the issuer-pays fee model puts a conflict of interest inside that opinion by design",
+    "commonMistake": "Reading a rating as a default probability, or as a judgement on whether the bond is a good investment",
+    "action": "When you see a rating, ask two more questions: who paid for this assessment, and when was it last updated"
+  },
+  "application": {
+    "title": "Reading a rating",
+    "message": "When you come across an issuer's rating, look for two more things: the outlook attached to it (positive, stable, negative) and the date of the last update. The letter tells you the current state; only the outlook tells you the direction of travel.",
+    "secondary": "A high grade with a negative outlook says more than the letter itself."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Three letters decide what interest rate a company can borrow at, which funds are allowed to hold its bonds, and how much capital a bank must hold against that loan."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "External rating",
+        "text": "Published by a rating agency, and relative by nature. It commits to no specific default probability and deliberately holds steady through the cycle."
+      },
+      "right": {
+        "label": "Internal rating",
+        "text": "The bank's own grade, which must map to a specific PD to enter the capital model, and which is subject to supervisory validation."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The sovereign ceiling"
+    },
+    {
+      "type": "paragraph",
+      "text": "A company is normally not rated above the country where it operates, because it shares the risks of that environment: capital controls, currency crises, abrupt policy changes. The principle has exceptions, but it explains why a very strong company in an emerging market still runs into the ceiling."
+    },
+    {
+      "type": "callout",
+      "label": "Why dependence on ratings is dangerous at the system level",
+      "text": "Many funds carry mandates forcing them to sell once an asset drops out of investment grade. A downgrade is therefore not merely information - it is a simultaneous sell order issued to a great many holders at once, and that wave of selling manufactures the very price fall the rating had just warned about."
+    },
+    {
+      "type": "heading",
+      "text": "Two kinds of rating answer two different questions"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "External rating - through the cycle",
+        "text": "Deliberately stable across the economic cycle: a company is not downgraded merely because this quarter was hard. The advantage is that it manufactures no false volatility; the drawback is that it reacts slowly, and by the time it reacts it is usually late."
+      },
+      "right": {
+        "label": "Internal rating - point in time",
+        "text": "An estimate of default probability over the next 12 months under current conditions, so it is sensitive and moves with the cycle. This is the kind that expected-credit-loss accounting standards require, and also the kind that makes provisioning swing hard through the cycle."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The investment-grade cliff",
+      "text": "A great many funds carry mandates forcing them to sell once an asset drops out of the investment-grade band. A single-notch downgrade across exactly that line is therefore not just a change of opinion - it triggers forced selling from many holders at once, pushes the price down, raises the company's cost of borrowing, and makes the very credit risk that was just assessed worse. This is where dependence on ratings turns an opinion into a system-level amplifier, and it is why post-2008 regulation has worked to reduce hard-wired references to ratings in contracts."
+    },
+    {
+      "type": "paragraph",
+      "text": "The sovereign ceiling is a little-noticed constraint that carries a lot of weight: a company is normally not rated above the country where it operates, because it shares that country's capital-control risk, currency-convertibility risk and policy-intervention risk. That means a superbly run company with strong cash flow and low debt can still be capped by a factor entirely outside management's control - and when the sovereign is downgraded, the whole cohort of domestic companies is downgraded alongside it."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A rating is the opinion of someone paid by the party being assessed - useful, but it has to be read with that in mind.",
+        "This is the final lesson of the extended Valuation and Risk Models section."
+      ]
+    }
+  ]
+}

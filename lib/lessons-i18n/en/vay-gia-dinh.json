@@ -12,10 +12,21 @@
   ],
   "explanation": "Lending between relatives and friends is a common cause of damaged relationships - not because of a lack of trust, but because a lack of clarity leads to misunderstanding when the two sides remember things differently. Drafting a simple loan document (even just a few lines, signed by both sides) isn't a sign of suspicion - it's a way of protecting the RELATIONSHIP from later disputes ('I never said that,' 'I forget which month you promised to repay'). At the same time, only lend an amount you can ACCEPT LOSING entirely, never touching your emergency fund or retirement money.",
   "diagram": [
-    { "label": "Lending to relatives or friends", "arrow": true },
-    { "label": "No clear paperwork", "arrow": true },
-    { "label": "Misunderstanding between both sides", "arrow": true },
-    { "label": "Draft a simple loan document to prevent it" }
+    {
+      "label": "Lending to relatives or friends",
+      "arrow": true
+    },
+    {
+      "label": "No clear paperwork",
+      "arrow": true
+    },
+    {
+      "label": "Misunderstanding between both sides",
+      "arrow": true
+    },
+    {
+      "label": "Draft a simple loan document to prevent it"
+    }
   ],
   "realWorldExample": {
     "company": "A survey of family disputes in Vietnam",
@@ -30,7 +41,6 @@
         "Because the law requires every personal loan to be in writing",
         "Because a loan document exempts the loan from personal income tax"
       ],
-      "correct": 1,
       "explanation": "Paperwork isn't about showing distrust - it's so both sides share the same 'truth' about the agreement, avoiding later disputes caused by differing memories or misunderstandings."
     },
     {
@@ -41,7 +51,6 @@
         "Only lend an amount you can accept losing entirely",
         "Lend any amount at all, as long as there's full paperwork"
       ],
-      "correct": 2,
       "explanation": "Lending to relatives always carries the risk of never being repaid, even with paperwork. The safe principle is to only lend within what you can accept losing without threatening your own financial safety net."
     },
     {
@@ -52,7 +61,6 @@
         "The law doesn't recognize loans made between family members",
         "A lack of clarity from the start about amount, term, and repayment leads to misunderstanding"
       ],
-      "correct": 3,
       "explanation": "Most breakdowns don't come from bad intent - they come from both sides remembering the same agreement differently. Writing it down feels cold toward a relative, but it's exactly what protects the relationship."
     },
     {
@@ -63,7 +71,6 @@
         "Lend your entire savings so the relative can resolve their problem completely",
         "Only lend if the relative agrees to pay a higher rate than a bank loan"
       ],
-      "correct": 0,
       "explanation": "If losing that amount still lets you sleep at night and still lets you face each other normally, the relationship survives regardless of the outcome. If not, say no - refusing once is far easier than chasing a debt for years."
     },
     {
@@ -74,7 +81,6 @@
         "The borrower's entire income and assets, as a basis for assessment",
         "Nothing at all, since paperwork destroys trust between both sides"
       ],
-      "correct": 1,
       "explanation": "Those four items eliminate nearly every source of misunderstanding. The hardest one is the last - stating upfront what happens if payment is late - but that's exactly the moment the relationship gets tested."
     },
     {
@@ -85,7 +91,6 @@
         "You're liable for the full amount if the borrower defaults, even if you never handed over any money",
         "The bank pays you a guarantee fee, making this a beneficial transaction for you"
       ],
-      "correct": 2,
       "explanation": "Signing as a guarantor means taking on debt without receiving any money. It also eats into your own credit limit, which can block your own home loan years later - a consequence almost nobody thinks about at the time of signing."
     }
   ],
@@ -103,7 +108,6 @@
       "Refuse every borrowing request from friends entirely, since this is always the wrong financial decision in every case",
       "Lend the entire 300 million in savings to show absolute trust, regardless of whether it's your emergency fund or not"
     ],
-    "correct": 0,
     "explanation": "The core principle is to only lend an amount you can accept losing entirely, without touching your emergency fund - protecting your own financial safety before helping someone else."
   },
   "summary": {
@@ -116,7 +120,6 @@
     "message": "If you currently have a loan with a relative with no paperwork, write a few lines right now stating the amount, the date, the repayment schedule, and get both signatures.",
     "secondary": "A few minutes today can prevent a major argument later."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

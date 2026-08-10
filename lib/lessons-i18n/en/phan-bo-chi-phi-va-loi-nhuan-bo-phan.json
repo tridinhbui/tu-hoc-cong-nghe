@@ -1,0 +1,150 @@
+{
+  "slug": "phan-bo-chi-phi-va-loi-nhuan-bo-phan",
+  "title": "Planning, part 5: cost allocation - why segment profit is always contested",
+  "subtitle": "Direct costs, overheads and the allocation basis: when a number decides whose budget gets cut",
+  "duration": "11 min",
+  "whyItMatters": "The moment a business starts measuring profit by segment or by product line, allocating overheads becomes the most political subject in finance. A different allocation basis can turn a product line from profitable to loss-making without a single thing changing in the actual operation.",
+  "openingQuestion": "Why does the choice of overhead allocation basis matter so much?",
+  "openingOptions": [
+    "Because it changes the total profit of the whole business",
+    "Because different bases produce different results",
+    "Because accounting standards mandate one single basis",
+    "Because the tax authority asks firms to justify the split"
+  ],
+  "explanation": "The company's total profit does not change at all, whatever the allocation - allocation only re-slices a pie that is already there. But decisions get made on the segment numbers: a unit assigned a lot of overhead looks less efficient, and in a round of budget cuts it is the first candidate. That is why an apparently neutral technical choice drags very real consequences behind it.",
+  "diagram": [
+    {
+      "label": "Separate out the direct costs first"
+    },
+    {
+      "label": "Identify the overheads that remain"
+    },
+    {
+      "label": "Pick a basis that reflects actual usage"
+    },
+    {
+      "label": "Publish the basis to every unit"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A bank allocating technology costs",
+    "description": "Data centre and core system costs are allocated across the business divisions. Allocate by revenue and the retail division, with its large revenue, carries most of the cost. Allocate by number of transactions processed and the result reverses substantially, because retail has many transactions but each one is tiny, while the corporate division consumes a lot of system resource on complex transactions. One pool of cost, two bases, two completely different pictures of efficiency - and two different conclusions about which division deserves more investment."
+  },
+  "quiz": [
+    {
+      "question": "How do direct costs differ from overheads?",
+      "options": [
+        "Direct costs vary with volume while overheads are always fixed",
+        "Direct costs are always far larger than overheads in the total",
+        "Direct costs are paid in cash while overheads are paid later",
+        "Direct costs trace to one unit without any allocation basis"
+      ],
+      "explanation": "This boundary decides which part of the report is fact and which part is the outcome of a choice. The salary of a division's own sales staff is direct; the salary of the HR department is overhead. Some overheads vary with volume and some direct costs are fixed, the relative size of the two pools differs by industry, and both are settled in cash on ordinary terms."
+    },
+    {
+      "question": "What makes a good allocation basis?",
+      "options": [
+        "It reflects how much the unit actually uses the shared resource",
+        "It is the easiest to compute from what the ledger already gives you",
+        "It splits overheads evenly across units, which is the fair way",
+        "It gives stable results across periods so years can be compared"
+      ],
+      "explanation": "Splitting evenly sounds fair but is usually the most wrong: a three-person unit and a three-hundred-person unit do not use the HR department in the same way. Ease of computation is a convenience rather than a justification, and stability across periods is exactly the wrong property if usage itself has shifted - the basis should follow the resource consumption, not smooth it away."
+    },
+    {
+      "question": "Why report segment profit both before and after the allocation of overheads?",
+      "options": [
+        "Because the two are prepared under different accounting standards, so both must be presented",
+        "Pre-allocation measures what the unit controls, post-allocation the full contribution",
+        "Because the post-allocation number is always more accurate, so the other is only indicative",
+        "Because the tax authority requires profit to be presented on both bases"
+      ],
+      "explanation": "Judging a segment manager should rest on the part they control. Deciding whether to keep a whole product line needs the post-allocation number. Neither figure comes from a separate accounting standard, neither is inherently more accurate than the other, and tax reporting does not require the split at all - the two figures exist because they answer two different management questions."
+    },
+    {
+      "question": "What is the risk of allocating overheads in too much detail?",
+      "options": [
+        "Units lose the ability to check the number allocated to them",
+        "Total allocated cost ends up exceeding actual total overhead",
+        "Upkeep effort grows fast while no decision actually changes",
+        "The result always tilts toward the units with the largest revenue"
+      ],
+      "explanation": "More detailed allocation is only worth doing when it changes some decision. If both approaches lead to the same conclusion, the simpler one wins. Finer detail does not make the numbers less checkable - if anything the opposite - the total allocated always ties back to the actual overhead pool by construction, and the direction of any bias depends on the basis chosen rather than on the level of detail."
+    },
+    {
+      "question": "Why publish the allocation basis to the units instead of just sending the final number?",
+      "options": [
+        "Because each unit may pick whichever basis suits it best",
+        "Because accounting standards require the basis disclosed per unit",
+        "Because publishing the basis lowers the total overhead allocated",
+        "Because most disputes come from nobody knowing how the number was built"
+      ],
+      "explanation": "A division head objecting to an allocated number is rarely objecting to its size - they object because they cannot check where it came from. Put the basis on the table and the argument shifts from 'I refuse to accept this' to 'this square-metre figure is wrong', which is the kind of argument that can be settled, and which occasionally uncovers a genuinely wrong basis."
+    }
+  ],
+  "keyTakeaways": [
+    "Allocation does not change total profit, but it changes the numbers decisions rest on",
+    "Separate the direct costs first - that part is not up for debate",
+    "A good basis reflects real usage; splitting evenly is usually the worst choice",
+    "Report both before and after allocation: one for judging people, one for deciding about products",
+    "Publish the basis - most disputes come from nobody knowing how the number was built"
+  ],
+  "practicePrompt": {
+    "question": "A product line is profitable before overhead allocation but loss-making after it. Should the line be dropped?",
+    "options": [
+      "Drop it, because once the full cost is counted the line is losing money",
+      "Not yet: check whether that overhead really goes away if the line goes",
+      "Keep it, since it is still profitable before the overhead allocation",
+      "Raise the price to cover the overhead being allocated to the line"
+    ],
+    "explanation": "This is the classic trap of cost allocation. If you drop the product line and the head office rent and the executive salaries stay exactly the same, that overhead simply shifts onto the remaining lines - and the business has just given up the pre-allocation profit this line was contributing. The right question is always which costs genuinely disappear."
+  },
+  "summary": {
+    "keyIdea": "Allocation re-slices a fixed pie, but decisions get made on those slices",
+    "commonMistake": "Treating post-allocation profit as objective fact rather than the outcome of a chosen basis",
+    "action": "On your current segment report, write down which basis each overhead is being allocated on and why."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take your largest overhead pool and try allocating it on two different bases, say by revenue and by headcount. Compare the two resulting tables: which units change places in the efficiency ranking? That difference is exactly how much your conclusion depends on a technical choice.",
+    "secondary": "If both approaches give the same conclusion, you can relax. If not, the basis needs to be discussed openly before someone uses the number to cut a budget."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This lesson sits where technique meets internal politics. The arithmetic is simple; the difficulty is that every choice inside it produces winners and losers."
+    },
+    {
+      "type": "heading",
+      "text": "The three layers of a segment profit report"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Reading a segment report layer by layer",
+      "subtitle": "Each layer answers a different management question",
+      "concepts": [
+        {
+          "def": "What the unit contributes. There is no subjective choice at this level, which makes it the least contested number in the report."
+        },
+        {
+          "def": "Deducts the costs the unit's own manager can decide about. This is the figure that should be used to assess that manager."
+        },
+        {
+          "def": "Deducts the allocated overhead on the chosen basis. Use it for decisions about a product or a unit, never for assessing a person."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The only question worth asking when considering closing a unit",
+      "text": "Not whether the unit is profitable or loss-making after allocation, but: if it goes, which costs genuinely disappear from the business? Head office rent, executive salaries and core system costs barely fall when a product line is closed - they simply get reallocated onto what remains. Plenty of closure decisions have reduced total profit for exactly this reason."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The post-allocation number is not objective fact, it is the outcome of a choice that ought to be stated out loud.",
+        "The final lesson of the stage puts it all together into the monthly working rhythm of an FP&A professional."
+      ]
+    }
+  ]
+}

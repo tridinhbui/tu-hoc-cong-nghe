@@ -1,0 +1,155 @@
+{
+  "slug": "cfa-ethics-standard-3e-bao-mat-thong-tin",
+  "title": "CFA Ethics 29: Standard III(E) - client confidentiality and its three exceptions",
+  "subtitle": "A duty that outlives the relationship, and when disclosure is permitted",
+  "duration": "9 min",
+  "whyItMatters": "This is the shortest standard, but it has three exceptions, and misremembering them produces two opposite errors: disclosing what you may not, or staying silent in exactly the situation where the duty requires you to speak.",
+  "openingQuestion": "A former client ended the relationship two years ago. Do you still owe them a duty of confidentiality?",
+  "openingOptions": [
+    "No, the duty ends at the same moment the service contract does",
+    "Yes, the confidentiality duty survives the end of the relationship",
+    "Only where the contract contained a separate confidentiality clause",
+    "Only for one year from the date the relationship ended"
+  ],
+  "explanation": "The confidentiality duty has no time limit and does not depend on whether a contract remains in force. The reason is practical: a person's private financial information does not stop being sensitive because they changed adviser. Standard III(E) has exactly three exceptions. First, where the law requires disclosure. Second, where the information concerns illegal activity by the client themselves. Third, where the client permits it. Outside those three, every other reason - helping a colleague analyse better, or warning another client - falls short.",
+  "summary": {
+    "keyIdea": "Client information is not something you borrow for the duration of the engagement but something you never own - so ending the relationship does not end the duty.",
+    "commonMistake": "Assuming a former client is no longer covered. The only three exceptions are a legal requirement, illegal activity by the client, and the client's permission."
+  },
+  "application": {
+    "title": "A common situation when changing jobs",
+    "message": "A list of former clients falls inside this duty. Remembering it in your head does not make it your information."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard III(E) requires client information to be kept confidential. Two features set this duty apart from the everyday sense of discretion: it has no time limit, and it has exactly three exceptions."
+    },
+    { "type": "heading", "text": "No time limit" },
+    {
+      "type": "paragraph",
+      "text": "The confidentiality duty survives the end of the relationship, and does not depend on whether a contract remains in force. The reason is practical: a person's private financial information does not stop being sensitive because they changed adviser."
+    },
+    { "type": "heading", "text": "Three exceptions" },
+    {
+      "type": "list",
+      "items": [
+        "Where the law requires disclosure.",
+        "Where the information concerns illegal activity by the client themselves.",
+        "Where the client permits it."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "There is no fourth exception",
+      "text": "Every other reason - to help a colleague analyse better, to warn another client, to protect the firm's reputation - falls short. A good purpose does not create an exception."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two limits in the second exception need reading carefully. It applies only to illegal conduct by the client themselves, not by a third party you happen to learn about through the client. And it permits reporting to the competent authority, not sharing widely or taking the matter to the press."
+    },
+    { "type": "heading", "text": "The three exceptions, word by word" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Inside the exception",
+        "text": "In the course of managing the portfolio you find that the client is using the account to launder money. That is illegal conduct by the client themselves, so the second exception applies. Where the law of your jurisdiction directly requires a report, the first exception applies as well - and then it stops being a choice."
+      },
+      "right": {
+        "label": "Outside the exception",
+        "text": "The client tells you their business partner is evading tax. That is conduct by a third party rather than by the client, so the second exception does not apply. Your view that it is serious, or the fact that disclosure might help someone, does not create a new exception."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why the duty has no time limit",
+      "text": "A person's financial information does not lose its value when the contract ends. The portfolio, the debts, the succession plan, the reason they sold an asset - all of it is still sensitive ten years later. The practical consequence: when you move to a new firm you may not take former client information with you, not even to demonstrate your own track record. That is where Standard III(E) is breached most often, and usually without intent."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Clients tell you these things because the work requires them to.",
+        "That is why this duty is tighter than an ordinary sense of discretion."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Default: confidential, with no time limit" },
+    { "label": "Exception 1: the law requires disclosure" },
+    { "label": "Exception 2: illegal activity by the client" },
+    { "label": "Exception 3: the client permits it" }
+  ],
+  "realWorldExample": {
+    "company": "Which way the second exception runs",
+    "description": "The illegal activity exception applies only to conduct by the client themselves, not to conduct by someone else that the client happens to know about. And it permits disclosure to a competent authority rather than wider sharing. This is where people overreach: finding signs of money laundering in a client account and reporting it is the duty being discharged; repeating it to another client so they can be on their guard has already gone past the exception."
+  },
+  "quiz": [
+    {
+      "question": "How long does the confidentiality duty last?",
+      "options": [
+        "Indefinitely, including after the relationship has ended",
+        "Until the service contract formally ceases to be in force",
+        "For five years from the date of the last transaction",
+        "Until the client moves to a different service provider"
+      ],
+      "explanation": "Private financial information does not lose its sensitivity because the person changed adviser. The other three options all tie the duty to an administrative event - a contract expiry, a transaction date, a transfer - and none of those events changes anything about the information itself or about the trust under which it was given to you."
+    },
+    {
+      "question": "Which of these does NOT fall within the three exceptions to Standard III(E)?",
+      "options": [
+        "Reporting on discovering illegal activity by the client themselves",
+        "Disclosing where a competent authority requires it under the rules",
+        "Sharing with a colleague so that they can analyse the case better",
+        "Providing it where the client has given their own permission"
+      ],
+      "explanation": "A good purpose does not create an exception. This is why the three exceptions are set out as a specific list rather than described by a general principle - a principle such as 'disclose where the benefit outweighs the harm' would swallow the duty within a year, since almost every disclosure has some plausible benefit behind it."
+    },
+    {
+      "question": "The illegal activity exception applies to conduct by whom?",
+      "options": [
+        "By a regulator, where it has exceeded the powers granted to it",
+        "By anyone with whom the client does business on a regular basis",
+        "By employees of the firm managing the client's assets",
+        "By the client themselves, not by others the client knows about"
+      ],
+      "explanation": "The narrow scope is deliberate: extending it to third-party conduct would turn this exception into a way out of the duty in almost any case, since clients discuss other people constantly. Misconduct by colleagues or by a regulator raises real obligations of its own under other standards, but they are not reasons to disclose a client's confidential information."
+    },
+    {
+      "question": "When an exception applies, to whom may you disclose?",
+      "options": [
+        "To the competent authority, rather than sharing it more widely",
+        "To every party with an interest connected to the transaction",
+        "To other clients, so that they can take precautions of their own",
+        "To anyone, since the exception has lifted the duty entirely"
+      ],
+      "explanation": "An exception opens a narrow door for a specific purpose; it does not remove the duty. This is the most common way of overreaching in practice - the disclosure itself is correct, and then it travels further than the reason that justified it. Warning other clients feels protective and is precisely the step outside the exception."
+    },
+    {
+      "question": "Why does Standard III(E) exist, when sharing information could improve the analysis?",
+      "options": [
+        "Because client information always has commercial value that can be sold",
+        "Because clients share private information on the basis of trust",
+        "Because data protection law prohibits every form of sharing",
+        "Because analysis using client data is never sufficiently objective"
+      ],
+      "explanation": "The foundation of any advisory relationship is that the client is willing to tell you the truth - and they only do so while they believe it goes nowhere else. Data protection law reinforces this in many jurisdictions but is not the source of the professional duty, and the objection has nothing to do with the quality of the analysis that sharing might produce."
+    }
+  ],
+  "keyTakeaways": [
+    "The confidentiality duty has no time limit and survives the relationship",
+    "Exactly three exceptions: the law requires it, the client acts illegally, the client permits it",
+    "A good purpose does not create a fourth exception",
+    "The illegal activity exception covers conduct by the client themselves only",
+    "The exception permits reporting to a competent authority, not wide sharing"
+  ],
+  "practicePrompt": {
+    "question": "In a client's file you see signs that they are receiving money from an unexplained source. How do you handle it?",
+    "options": [
+      "Keep it strictly confidential, since it is client information",
+      "Report it internally under the anti-money-laundering procedure",
+      "Ask the client directly and decide based on the answer you get",
+      "End the relationship without giving anyone a reason for it"
+    ],
+    "explanation": "This is exactly the case where the second exception applies, so absolute silence is wrong. But the scope stays narrow: go through the internal procedure and the competent authority, do not investigate yourself and do not tell anyone else. Ending the relationship without reporting simply leaves the problem for the next institution."
+  }
+}

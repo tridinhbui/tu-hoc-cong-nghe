@@ -1,0 +1,139 @@
+{
+  "slug": "ma-cau-truc-earnout",
+  "title": "Advanced M&A: The earnout structure in deal valuation",
+  "subtitle": "When buyer and seller cannot agree on what the company is worth, an earnout is the way to \"pay later, based on actual results\"",
+  "duration": "8 min",
+  "whyItMatters": "Earnouts turn up constantly in M&A involving high-growth companies or startups, where the valuation rests on an uncertain future - understanding the structure lets you analyse and negotiate the more complex terms of a deal.",
+  "openingQuestion": "Buyer and seller cannot agree on valuation: the seller believes the company will grow strongly over the next 2 years, the buyer is more cautious. How does an earnout resolve the disagreement?",
+  "openingOptions": [
+    "By taking the simple average of the two sides' prices",
+    "By splitting it into an amount paid now and an amount paid later if milestones are met",
+    "By calling off the deal and waiting 2 years to see the actual results",
+    "By making the seller cut the price as the buyer demands"
+  ],
+  "explanation": "An earnout is a mechanism for sharing valuation risk: the seller receives an upfront payment, and the remainder (the earnout) depends on whether the company hits the agreed performance milestones within a defined period after closing - narrowing the gap between the two sides' expectations without either side having to capitulate.",
+  "diagram": [
+    { "label": "Valuation disagreement between buyer and seller" },
+    { "label": "Agreement: part paid upfront + an earnout tied to performance milestones" },
+    { "label": "After 1-3 years: measure the actual results, pay the corresponding earnout" }
+  ],
+  "realWorldExample": {
+    "company": "Earnouts are common in technology and startup M&A",
+    "description": "Acquisitions of startups or high-growth technology companies often use an earnout, because traditional valuation based on financial history is hard to apply to a company with an uncertain future but large potential. The earnout lets the buyer pay a cautious price at the outset while giving the seller the chance to \"prove\" the value of the company through actual results and collect a further payment."
+  },
+  "quiz": [
+    {
+      "question": "What is the biggest risk to the seller in accepting an earnout structure?",
+      "options": [
+        "There is no meaningful risk; the seller always gets paid in full at signing",
+        "Dependence on how the buyer runs the business, after control has already passed",
+        "An earnout is always worth less than the upfront payment by law",
+        "The seller has to repay the money if the milestones are missed"
+      ],
+      "explanation": "This is the core structural risk of an earnout: once the deal closes, operating control usually passes to the buyer, yet the seller still depends on the results of that operation to collect the earnout in full - creating a conflict of interest if the buyer has any incentive (even unintentionally) to make decisions that reduce the chance of hitting the milestones."
+    },
+    {
+      "question": "Why are earnout terms usually negotiated in great detail, right down to the measurement method and the seller's monitoring rights after closing?",
+      "options": [
+        "Because the law requires this clause in every contract with deferred payment terms",
+        "Only to keep the legal teams on both sides of the transaction satisfied",
+        "Because an earnout is always more complex than other payment forms in tax terms",
+        "To cut disputes over milestone measurement and the conflict of interest once control passes"
+      ],
+      "explanation": "Spelling out the measurement terms (the calculation formula, the data source, the right to inspect the books) and giving the seller a degree of oversight over operations is how the conflict-of-interest risk described above gets managed, and it reduces the chance of a legal dispute after the deal has completed."
+    },
+    {
+      "question": "What does an earnout do for the BUYER compared with paying the full value at closing?",
+      "options": [
+        "None at all; an earnout exists only to protect the seller's interests",
+        "It lets the buyer unilaterally cancel the deal at any point in time",
+        "It lets the buyer avoid every tax liability arising from the deal",
+        "It cuts the risk of overpaying for unproven growth forecasts"
+      ],
+      "explanation": "The core benefit for the buyer: less risk of paying a high price based on growth forecasts that have never been tested. If the company does not reach the milestones the seller expected, the buyer does not pay the corresponding earnout - sharing valuation risk more evenly between the two sides."
+    },
+    {
+      "question": "What problem between buyer and seller does an earnout solve?",
+      "options": [
+        "A lack of cash to pay the full value of the deal at closing",
+        "A disagreement about the future prospects of the target business",
+        "A regulatory requirement on transparency of the transaction price",
+        "A dispute over ownership of intellectual property after the merger"
+      ],
+      "explanation": "The seller believes revenue will double, the buyer does not. The earnout lets the actual results settle it instead of forcing the two sides to agree on one forecast - it turns the disagreement into a contract term. A shortage of cash is solved by borrowing or by paying in shares, not by an earnout; disclosure requirements are set by the regulator whatever the payment shape; and intellectual property ownership is settled in the sale agreement itself, not by a performance milestone."
+    },
+    {
+      "question": "Why do earnout targets usually use revenue rather than profit?",
+      "options": [
+        "Because profit is only audited once per financial year",
+        "Because revenue always reflects business value more accurately",
+        "Because revenue is harder for the buyer to influence than profit",
+        "Because accounting rules forbid using profit as a payment milestone"
+      ],
+      "explanation": "After the merger the buyer controls how shared costs are allocated, what is invested and who is hired - all of which affect profit. Revenue is harder to interfere with, so there are fewer disputes. The trade-off is real: revenue can be bought with discounts that destroy margin, which is why revenue milestones are often paired with a floor on price or on gross margin. No accounting rule bans profit-based milestones, and nothing about the audit calendar makes profit unusable."
+    }
+  ],
+  "keyTakeaways": [
+    "An earnout splits the payment into an upfront amount + a later amount tied to future performance milestones",
+    "Common in M&A with high-growth companies and startups where traditional valuation is hard to apply",
+    "The core risk: the seller depends on the buyer's operation to hit the milestones, without full control any more",
+    "Earnout terms need detailed negotiation on measurement and oversight to reduce disputes"
+  ],
+  "practicePrompt": {
+    "question": "What is the core structural risk of an earnout for the seller?",
+    "options": [
+      "The seller depends on the buyer's operating decisions",
+      "An earnout is always worth less than the upfront payment by rule",
+      "The seller must repay the entire amount if the milestones are missed",
+      "There is no meaningful risk"
+    ],
+    "explanation": "The core risk is the dependence on how the buyer runs the business, while the seller no longer holds full control."
+  },
+  "summary": {
+    "keyIdea": "An earnout is a mechanism for sharing valuation risk between buyer and seller, paying part of the price on actual post-closing performance, but carrying a conflict-of-interest risk over operating control",
+    "commonMistake": "Treating an earnout as just a number on paper without examining the measurement terms and the operating oversight rights that come with it",
+    "action": "When analysing a deal with an earnout, always find out how the performance milestone is measured, and how much oversight or say the seller retains over operations after closing"
+  },
+  "application": {
+    "title": "Analysing an earnout clause",
+    "message": "If you have ever read M&A news mentioning an \"earnout\" or \"deferred consideration\", try to find the specific performance milestones and the time frame - these are the details that decide what the deal is really worth.",
+    "secondary": "This skill is useful for anyone working in M&A Advisory, Private Equity, or advising a startup founder negotiating a sale."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Not every M&A deal can be priced in a single stroke - when buyer and seller disagree deeply about future prospects, the earnout is the tool that lets them find common ground."
+    },
+    { "type": "heading", "text": "The core mechanism: pay upfront + pay later on conditions" },
+    {
+      "type": "paragraph",
+      "text": "A typical earnout structure splits the payment in two: a fixed amount paid at closing, and a variable amount (the earnout) paid over the following 1-3 years, only if the company reaches the specific performance milestones agreed in advance - usually revenue, EBITDA, or other operating measures depending on the sector."
+    },
+    { "type": "heading", "text": "The latent conflict of interest after closing" },
+    {
+      "type": "paragraph",
+      "text": "The biggest structural problem with an earnout: once the deal completes, operating control of the company usually passes largely or entirely to the buyer. But the seller still depends on the results of that operation to collect the agreed earnout in full - which creates the possibility of a conflict of interest if the buyer's operating decisions (even for perfectly sound strategic reasons) accidentally or deliberately reduce the chance of hitting the milestones."
+    },
+    {
+      "type": "callout",
+      "label": "Why detailed terms matter",
+      "text": "To minimise the risk of a dispute, deals with an earnout are usually negotiated very carefully: the formula for the milestone, the data source and accounting method to be used, the seller's right to inspect the books, and sometimes constraints on how the buyer may run the company during the earnout period (for example, not cutting the marketing budget beyond a set level)."
+    },
+    {
+      "type": "list",
+      "items": [
+        "An earnout splits the payment into an upfront amount + a conditional later amount",
+        "It narrows the gap between the two sides' valuation expectations",
+        "The risk: the seller depends on the buyer's operation but no longer holds full control",
+        "The measurement and oversight terms need to be spelled out to reduce disputes"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The earnout shows that M&A is not only a one-off valuation problem but also a problem of designing a sensible risk-sharing mechanism.",
+        "In the next lesson we widen the view beyond the border, to cross-border M&A."
+      ]
+    }
+  ]
+}

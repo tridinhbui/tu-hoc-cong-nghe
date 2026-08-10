@@ -1,0 +1,170 @@
+{
+  "slug": "index-match-xlookup-va-sumifs",
+  "title": "Excel, Lesson 2: Looking data up - INDEX/MATCH, XLOOKUP and SUMIFS",
+  "subtitle": "Why finance people abandon VLOOKUP, and how to join data from several sources without getting a single row wrong",
+  "duration": "11 min",
+  "whyItMatters": "Most real analytical work is not calculation but joining data: matching a ticker to a filing, a customer code to an outstanding balance, a month to a sales figure. A lookup function that gets one row wrong will invalidate the whole conclusion without ever raising an error.",
+  "openingQuestion": "Why is INDEX/MATCH preferred over VLOOKUP in financial modelling?",
+  "openingOptions": [
+    "Because INDEX/MATCH calculates many times faster",
+    "Because it does not depend on column position",
+    "Because Excel has removed VLOOKUP",
+    "Because INDEX/MATCH does not need the data sorted"
+  ],
+  "explanation": "VLOOKUP refers to a column by its position number, so when someone inserts an extra column in the middle of the source table, the formula still runs but pulls the wrong column and never flags an error. This is the most dangerous kind of mistake precisely because it is silent. INDEX/MATCH refers to a specific range, so it stays correct when the table structure changes, and it can look up to the left of the key column - something VLOOKUP cannot do.",
+  "diagram": [
+    {
+      "label": "MATCH: find the position of the key"
+    },
+    {
+      "label": "INDEX: return the value at that position"
+    },
+    {
+      "label": "Combine them into a lookup that survives changes"
+    },
+    {
+      "label": "SUMIFS for aggregating on several conditions"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Joining portfolio data to market data",
+    "description": "A very common situation: you have a list of 200 tickers in the portfolio and a market price file covering 1,500 tickers. Joining the two tables with a lookup function takes a minute, but if a ticker in one file carries a stray space or a different data type, the result comes back as an error or, worse, as a wrong match. Counting the rows that matched against the total number of rows is always a mandatory step after every join."
+  },
+  "quiz": [
+    {
+      "question": "What does MATCH with a third argument of 0 mean?",
+      "options": [
+        "Exact match - always the right choice for codes and names",
+        "The largest approximate value that does not exceed the lookup key",
+        "The smallest approximate value that is still larger than the key",
+        "Skip any blank cells in the key range before running the lookup"
+      ],
+      "explanation": "Approximate-match mode requires the data to be sorted and will silently return a wrong result when it is not. For tickers, customer codes or account names, always use exact match. The two approximate behaviours described in the other options belong to match types 1 and -1 respectively, and no match type skips blank cells - a blank in the key range is simply a value that never matches."
+    },
+    {
+      "question": "How does SUMIFS differ from SUMIF?",
+      "options": [
+        "SUMIFS runs faster but trades away some accuracy in the total it returns",
+        "SUMIFS can only add whole numbers and cannot handle decimal values",
+        "SUMIFS lets you filter on several conditions at the same time",
+        "The two functions are identical; the S is only a naming convention"
+      ],
+      "explanation": "SUMIFS is the aggregation function used most often in real analytical work, because business data almost always needs filtering on several dimensions at once. It is not faster than SUMIF and gives up no accuracy; it handles decimals exactly as SUMIF does; and the trailing S is not cosmetic - the criteria arrive in range-and-condition pairs, and you can supply as many pairs as the question needs."
+    },
+    {
+      "question": "What is XLOOKUP's main advantage over VLOOKUP?",
+      "options": [
+        "It automatically re-sorts the source data before performing the lookup",
+        "You need not specify a range because the function detects the source table",
+        "It looks both directions, defaults to exact match, and handles errors",
+        "It runs on every version of Excel, including the older releases"
+      ],
+      "explanation": "XLOOKUP folds the strengths of INDEX/MATCH into a syntax that reads more easily: it searches to the left as well as to the right, defaults to exact match, and takes a built-in if-not-found argument. It never re-sorts your source data and it cannot guess which table you meant. Its one real limitation is that older Excel versions do not have it, so INDEX/MATCH remains a required skill when you work in someone else's file."
+    },
+    {
+      "question": "After joining two tables with a lookup function, what is the mandatory check?",
+      "options": [
+        "Print both tables out and compare them line by line by eye",
+        "Convert all the formulas into static values so the results stop shifting",
+        "Re-sort the result table alphabetically by the lookup key column",
+        "Count the rows that matched and compare with the rows that should"
+      ],
+      "explanation": "Lookup functions fail very quietly. Counting the rows that matched is the cheapest possible check and catches almost every problem caused by stray spaces, mismatched data types, or a key that simply is not in the source table. Reading by eye does not scale beyond a few dozen rows, converting to static values only freezes the error in place, and re-sorting the output changes nothing about which rows matched."
+    },
+    {
+      "question": "Why is a VLOOKUP column-index error more dangerous than an #N/A error?",
+      "options": [
+        "Because the formula still runs and returns a plausible-looking number",
+        "Because this error corrupts every other formula in the same workbook",
+        "Because Excel has no tool for tracing where this error came from",
+        "Because it appears only when the source table has over ten columns"
+      ],
+      "explanation": "A noisy error gets fixed immediately. A silent one goes into the model, then into the report, and then becomes the basis of a decision - and nobody knows until somebody happens to cross-check. That is why INDEX/MATCH is preferred even though it takes more typing. The error does not damage other formulas, Excel's tracing tools can follow it, and the width of the source table has nothing to do with it."
+    }
+  ],
+  "keyTakeaways": [
+    "INDEX/MATCH is more durable than VLOOKUP because it does not depend on column position and can look up to the left",
+    "Always use exact match for codes and names; approximate match is a source of silent errors",
+    "SUMIFS is the multi-condition aggregation tool used most in real work",
+    "After every data join, always count the rows that matched before you analyse anything further"
+  ],
+  "practicePrompt": {
+    "question": "Your lookup formula returns a not-found error for around 10% of the rows, even though the code is clearly present in the source table. What is the most likely cause?",
+    "options": [
+      "Excel is broken and needs reinstalling",
+      "Stray spaces, or numbers and text mixed together",
+      "The source table has too many rows",
+      "The source table needs re-sorting in ascending order"
+    ],
+    "explanation": "This is the number one cause of lookup failures in practice, and it turns up whenever data has been exported from several different systems. The fix: standardise the data with a trim function and make the data types consistent before joining, rather than repairing one row at a time."
+  },
+  "summary": {
+    "keyIdea": "A bad data join does not raise an error - it just produces a wrong number that looks entirely reasonable",
+    "formula": "INDEX(return_range, MATCH(key, key_range, 0))",
+    "commonMistake": "Using VLOOKUP with a column index number, then someone inserts a column and everything shifts in silence",
+    "action": "Join two real tables yourself using both INDEX/MATCH and XLOOKUP, then deliberately insert a column to see how VLOOKUP breaks."
+  },
+  "application": {
+    "title": "A safe data-joining routine",
+    "message": "Standardise the key first (trim spaces, make data types consistent); join with INDEX/MATCH or XLOOKUP on exact match; count the rows that matched; review the failed rows and look for a common cause rather than patching each one by hand.",
+    "secondary": "Fixing failed rows by hand is a sign you are covering the wound rather than treating the cause - and at the next data refresh it will be back."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In real analytical work, the time spent joining and cleaning data is usually far greater than the time spent calculating. The lookup family is the main tool for that part of the job, and it is also where the worst kind of error is born: the error that raises no error."
+    },
+    {
+      "type": "formula",
+      "title": "The structure of INDEX/MATCH",
+      "label": "Read it from the inside out",
+      "equation": "INDEX(return_range, MATCH(key, key_range, 0))",
+      "variables": [
+        {
+          "symbol": "MATCH",
+          "name": "Find the position",
+          "description": "Returns which row of the key range the key sits in"
+        },
+        {
+          "symbol": "INDEX",
+          "name": "Return the value",
+          "description": "Returns the value at exactly that position in the range you want"
+        },
+        {
+          "symbol": "0",
+          "name": "Exact match",
+          "description": "Always use it for codes, names and any identifier-type data"
+        }
+      ],
+      "example": {
+        "title": "Why it is more durable than VLOOKUP",
+        "calculation": "VLOOKUP(key, table, 7, 0) versus INDEX(price_column, MATCH(key, ticker_column, 0))",
+        "result": "Insert one extra column: VLOOKUP pulls the wrong data, INDEX/MATCH stays correct",
+        "explanation": "The 7 inside VLOOKUP is a buried assumption about the table's structure. Anyone editing the source table can break it without ever knowing, and the formula will not raise an error."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A noisy error",
+        "text": "The formula returns an error code. Annoying but harmless - you see it straight away and you can fix it."
+      },
+      "right": {
+        "label": "A silent error",
+        "text": "The formula returns a plausible-looking number taken from the wrong row or the wrong column. This is the kind of error that goes straight into the report you send your boss."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The control-total principle",
+      "text": "After every join or aggregation, there should be at least one cross-check: the total of the result table must equal the total of the source table, or the number of rows matched must equal the number of rows that needed matching. Without that check, you are only hoping."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Lookup functions are where data from different sources meets, so they are also where the discrepancies begin.",
+        "The next lesson puts these skills into a real context: building a three-statement model in Excel."
+      ]
+    }
+  ]
+}

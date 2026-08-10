@@ -1,0 +1,138 @@
+{
+  "slug": "room-ngoai-va-nang-hang-thi-truong",
+  "title": "The Vietnamese market, Lesson 2: foreign ownership room and market reclassification - where foreign capital comes from",
+  "subtitle": "Foreign ownership limits, market classification criteria, and what they mean for valuation",
+  "duration": "11 min",
+  "whyItMatters": "The market reclassification story appears in almost every strategy report, but few people can explain the mechanism behind it. Understanding the classification criteria lets you separate expectations already in the price from the capital that will genuinely flow in.",
+  "openingQuestion": "Why does a market being reclassified pull foreign capital in behind it?",
+  "openingOptions": [
+    "Because foreign investors are exempt from tax when trading in an emerging market",
+    "Because many index funds are obliged to allocate to the index basket of that classification",
+    "Because domestic interest rates fall immediately after a market is formally reclassified",
+    "Because listed companies may issue shares abroad once the reclassification takes effect"
+  ],
+  "explanation": "An enormous pool of capital worldwide is managed passively, tracking the index families of the large classification providers. A fund replicating an emerging market index is not permitted to buy shares in a frontier market, however much the manager might like to. When a market changes classification, its shares enter the new index basket, and the whole passive group has to buy to weight - a mechanical flow rather than an investment decision.",
+  "diagram": [
+    { "label": "The classification provider assesses the criteria" },
+    { "label": "The market is added to a new index basket" },
+    { "label": "Passive funds are obliged to buy to weight" },
+    { "label": "A mechanical flow, independent of any investment view" }
+  ],
+  "realWorldExample": {
+    "company": "Shares that have run out of foreign room",
+    "description": "Several high-quality Vietnamese shares sit regularly in a state where foreign investors have already bought all the ownership permitted to them. A foreigner wanting to buy then has to wait for another foreigner to sell, and in practice the market forms a price above the exchange price for negotiated blocks. The consequence for an analyst: the same share can carry two price levels, and that gap is a direct measure of the pent-up foreign demand."
+  },
+  "quiz": [
+    {
+      "question": "What is foreign ownership room?",
+      "options": [
+        "The maximum ownership share foreign investors may hold in a business",
+        "A separate trading segment for foreign investors on the exchange",
+        "The foreign currency quota a foreign investor may bring in within one year",
+        "The number of trading accounts a foreign institution is permitted to open"
+      ],
+      "explanation": "The limit varies by sector, with conditional sectors such as banking capped more tightly. It is both a policy instrument and one of the points the market classification providers raise when they assess accessibility. The other three describe things that do not exist in this form: there is no separate foreign trading segment, capital inflows are not rationed by an annual quota, and account numbers are not what the limit is about."
+    },
+    {
+      "question": "Which criterion do the classification providers usually emphasise most?",
+      "options": [
+        "The growth rate of the main index over the past three to five years",
+        "The practical accessibility of the market to a foreign investor",
+        "The number of new companies listing in each financial year overall",
+        "The average market capitalisation of the largest listed companies"
+      ],
+      "explanation": "Size and liquidity are necessary conditions, but what usually holds a market back is the operational issues: the requirement to prefund a trade, the extent of English-language disclosure, the account opening procedures, and the mechanism for handling failed trades. Index growth is not a criterion at all - a classification is about whether foreign money can get in and out reliably, not about how well the market has performed."
+    },
+    {
+      "question": "Why might the expectation of reclassification already sit in the price before it happens?",
+      "options": [
+        "Because the provider announces the result long before the effective date",
+        "Because passive funds are permitted to buy before the reclassification formally takes effect",
+        "Because the market prices expectations rather than the moment of announcement",
+        "Because listed companies publish new business plans as soon as the reclassification news breaks"
+      ],
+      "explanation": "This is the general lesson of any anticipated event. Most of the return accrues to those who buy early, while expectations are forming, and the buyer on the day of the official news is sometimes the one providing the liquidity for them to exit. Note that a passive fund cannot buy ahead of the effective date - its mandate is to track the index as it stands, which is precisely why the mechanical flow arrives late."
+    },
+    {
+      "question": "What consequence does a share sitting at its foreign ownership cap create for an analyst?",
+      "options": [
+        "The share is excluded from every international index basket until the cap is raised",
+        "The company is obliged to issue new shares in order to widen the remaining room",
+        "Domestic investors also become subject to a matching cap on their own ownership",
+        "Two price levels can exist, and the gap reflects the pent-up demand"
+      ],
+      "explanation": "The spread between the negotiated price for foreign buyers and the exchange price is a rare quantitative signal: it says how much extra a foreign investor is willing to pay to own that business, and it usually narrows when the market turns down. None of the other three follows from a full room - index inclusion is decided on free float and liquidity, no issuance is compelled, and domestic ownership is untouched."
+    },
+    {
+      "question": "Once a share has run out of foreign room, what follows for the analysis of it?",
+      "options": [
+        "The price can trade above value because foreign demand cannot be met",
+        "The share will be dropped from the international index families",
+        "Domestic investors face a matching limit on their own ownership",
+        "The company must issue additional shares in order to widen the room"
+      ],
+      "explanation": "Demand is blocked at exactly the group of investors willing to pay the most, so a negotiated off-exchange market forms at a premium to the quoted price. For analysis, the listed price at that point no longer reflects the full amount a genuine buyer is prepared to pay. The exchange price and the negotiated price are answering two different questions, and only one of them is visible on the screen."
+    }
+  ],
+  "keyTakeaways": [
+    "Reclassification creates a mechanical flow from passive index-tracking funds, independent of any investment view",
+    "The classification criteria emphasise practical accessibility: prefunding, disclosure, account opening procedures",
+    "Foreign ownership room caps ownership by sector, and a share at its cap can develop two price levels",
+    "The expectation of reclassification is usually in the price well before the official announcement"
+  ],
+  "practicePrompt": {
+    "question": "An analyst says this share will rise because the market is about to be reclassified. What is the sharpest challenge to that?",
+    "options": [
+      "Which classification provider makes the decision and where its head office is",
+      "Does this share qualify for the index basket, is there foreign room left, and how much is already in the price",
+      "Will the reclassification increase the number of newly listed companies or not",
+      "How far has the main index risen since the start of the year to this point"
+    ],
+    "explanation": "Three conditions all have to hold for the argument to stand. If the share lacks the market capitalisation and liquidity to enter the basket, passive money never reaches it. If the room is already full, foreign investors cannot buy more on the exchange. And if the expectation has been in the price for the past two years, the return has already gone to somebody else."
+  },
+  "summary": {
+    "keyIdea": "Reclassification is a story about mechanical capital flow, not about the quality of the companies",
+    "commonMistake": "Buying a share on the reclassification theme without checking whether it can actually enter the index basket",
+    "action": "Pick three shares you follow, and look up the current foreign ownership level and the cap that applies to each."
+  },
+  "application": {
+    "title": "Read foreign flows as data",
+    "message": "Track three numbers: the room remaining in the shares you hold, the weekly net foreign buying and selling, and the negotiated price premium on shares at their cap. Together they tell you whether foreign capital is coming in or going out, and with what urgency.",
+    "secondary": "A market's classification status and the assessment criteria are updated periodically - look up the provider's latest publication rather than relying on memory."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "There are two kinds of buyer in a market: the one who buys because they believe in the business, and the one who buys because they have to. The second group - the index-replicating funds - is why the reclassification theme appears in every strategy report, and also why it is the most misunderstood theme there is."
+    },
+    {
+      "type": "heading",
+      "text": "The mechanism: why a classification creates a flow of money"
+    },
+    {
+      "type": "paragraph",
+      "text": "The classification providers sort markets into several tiers, and each tier has its own index family. A passive fund commits to replicating a specific index, so its portfolio is determined entirely by the index constituents. When a market changes tier, its shares are added to the new basket at a given weight, and every fund tracking that index has to buy exactly that weight, whatever it thinks of the market's prospects."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Necessary conditions: enough market capitalisation and liquidity across a given number of shares",
+        "The condition that usually causes trouble: the requirement to have the money in place before placing a buy order, a practice at odds with international convention",
+        "Other conditions: the extent of English-language disclosure, account opening procedures for foreign investors, the mechanism for handling failed trades",
+        "The long-term condition: how open the foreign ownership limits are by sector"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Separating the two stories",
+      "text": "Passive flow is mechanical and can be estimated from the size of the index-tracking funds and the expected weight. Active flow cannot: it depends on whether fund managers see an opportunity. A serious report separates those two figures rather than merging them into one impressive-sounding multi-billion-dollar estimate."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The mechanical flow can be estimated; the expectation has been in the price for a long time.",
+        "The next lesson deals with the less cheerful part of Vietnam's capital market: the private corporate bond crisis and what it teaches about credit risk."
+      ]
+    }
+  ]
+}

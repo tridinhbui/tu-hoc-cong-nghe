@@ -1,0 +1,138 @@
+{
+  "slug": "dung-mo-hinh-ba-bao-cao-trong-excel",
+  "title": "Excel, Lesson 3: Building a real three-statement model - links, circularity and check cells",
+  "subtitle": "From sheet layout to a balance check of zero: how to build a model that actually runs",
+  "duration": "13 min",
+  "whyItMatters": "The financial modelling track taught the logic that links the three statements. This lesson is the execution: what goes on which sheet, how to handle the interest circularity, and where to put check cells so the model flags its own errors instead of leaving you to find them late.",
+  "openingQuestion": "In a three-statement model, which is the most important check cell?",
+  "openingOptions": [
+    "The revenue cell for the final year of the forecast period",
+    "The gap between total assets and total funding - must always be 0",
+    "The net profit after tax cell in the income statement",
+    "The growth rate cell on the assumptions sheet"
+  ],
+  "explanation": "A balance sheet that balances is the necessary condition for a model to be free of linking errors. When it goes out, it is close to certain that something has gone into the balance sheet without passing through the cash flow statement, or the other way round. Put this cell somewhere permanently visible, colour it loudly, and check it after every change - that habit is what separates a disciplined modeller from someone stitching numbers together.",
+  "diagram": [
+    { "label": "Assumptions sheet" },
+    { "label": "Historical statements sheet" },
+    { "label": "Forecast sheet + supporting schedules" },
+    { "label": "Balance check cell = 0" }
+  ],
+  "realWorldExample": {
+    "company": "The layout convention used across the industry",
+    "description": "A model fit to hand over usually has a fixed sheet order: Cover and instructions, Assumptions, Historicals, Supporting schedules (depreciation, working capital, debt), the Three statements, Valuation, and finally a Summary of outputs. Whoever receives it can tell from the sheet names alone where to start reading, and knows the Assumptions sheet is the only one they are allowed to change."
+  },
+  "quiz": [
+    {
+      "question": "Where does circularity in a financial model come from?",
+      "options": [
+        "From using far too many nested lookup functions in one place",
+        "From interest: interest depends on debt, debt depends on interest",
+        "From linking data back and forth across too many sheets",
+        "From inconsistent number formatting across the same sheet"
+      ],
+      "explanation": "This is the classic circularity and very nearly the only one that is accepted in a financial model. The fix is to enable iterative calculation in Excel's options, along with a switch that breaks the loop when the model hangs. Nested lookups and inconsistent formatting make a model slow or ugly but never circular, and cross-sheet links only create circularity when the values genuinely feed back - which is the interest case again."
+    },
+    {
+      "question": "Why should a model have a circuit breaker?",
+      "options": [
+        "To make the whole model recalculate a good deal faster than before",
+        "Because auditing standards require every model to have a calculation break",
+        "To force interest to 0, break the loop and find the cause of the error",
+        "To shrink the file by limiting the number of formulas that get saved"
+      ],
+      "explanation": "Without a switch, one small error inside the loop makes the entire model display errors and you can no longer see which figures are right and which are wrong. The switch is what returns the model to a state you can diagnose. It does nothing for calculation speed or file size, and no auditing standard governs the internal construction of a management model at all."
+    },
+    {
+      "question": "What principle should govern formulas that run between sheets?",
+      "options": [
+        "The more cross-links there are, the more flexible the model",
+        "Each formula should reference at least three sheets to use the data",
+        "Put the entire model on one sheet so nothing needs linking at all",
+        "Data flows one way; avoid links running back between two sheets"
+      ],
+      "explanation": "A one-way flow of data - from assumptions to supporting schedules to statements - is what makes tracing an error feasible. Links running back and forth between two sheets create hidden circularity that is extremely hard to find. More cross-links is the opposite of flexibility, referencing three sheets per formula is a rule with no purpose, and cramming everything onto one sheet trades a linking problem for an unreadable one."
+    },
+    {
+      "question": "What purpose does a supporting schedule serve?",
+      "options": [
+        "Pull complex logic out of the main statements so it can be checked on its own",
+        "Purely to make the model look presentable to the reader",
+        "To keep a backup copy of the source data in case the model breaks",
+        "To replace the cash flow statement in a multi-year forecast model"
+      ],
+      "explanation": "Pack all the logic into the main statements and every cell holds a formula so long that nobody can check it. A schedule keeps the statements clean and lets each piece of logic be verified on its own. It is not a backup - the source data still lives on the historicals sheet - and nothing in a model replaces the cash flow statement, which is where the balance check gets its other half."
+    },
+    {
+      "question": "What is usually the final balancing item (the plug) in a model?",
+      "options": [
+        "Forecast revenue in the final year",
+        "Excess cash or the revolving credit facility",
+        "Equity, flexed to make total assets tie",
+        "Selling costs, estimated as a percent of revenue"
+      ],
+      "explanation": "When the business has surplus money, the excess flows into cash. When it is short, the model draws on the revolver. That is the mechanism that keeps the balance sheet balancing, and it is also where you read off how much funding the business needs under the scenario you are running. Flexing equity to make assets tie is the one thing you must never do - it buries a linking error permanently."
+    }
+  ],
+  "keyTakeaways": [
+    "Lay the sheets out as a one-way flow: assumptions, historicals, supporting schedules, three statements, valuation, summary",
+    "The interest circularity is the only accepted one - enable iterative calculation and always pair it with a circuit breaker",
+    "Supporting schedules keep the main statements clean and let each piece of logic be checked on its own",
+    "The balance check cell must always be visible and always be zero; check it after every change"
+  ],
+  "practicePrompt": {
+    "question": "The balance sheet in your model is out by exactly 1,200 in every forecast year. What is the most efficient way to find the error?",
+    "options": [
+      "Add 1,200 to the equity line so the balance sheet ties",
+      "Find the 1,200 that got dropped from one of the two statements",
+      "Delete the model and rebuild it from scratch to be safe",
+      "Turn off iterative calculation in Excel options"
+    ],
+    "explanation": "Forcing a balance by pushing a number into equity is the single worst mistake in modelling: it hides the error instead of fixing it. A constant discrepancy across years is a strong clue - compare each movement line on the balance sheet with the corresponding line on the cash flow statement to find the item that was left out."
+  },
+  "summary": {
+    "keyIdea": "A good model is one that finds its own errors for you",
+    "formula": "Check: Total assets − Total funding = 0 in every period",
+    "commonMistake": "Forcing the balance sheet to balance by pushing a number into equity, burying a linking error for good",
+    "action": "Rebuild a three-statement model for a small business and put in at least three automatic check cells."
+  },
+  "application": {
+    "title": "The three minimum check cells",
+    "message": "One: total assets minus total funding equals zero. Two: closing cash on the cash flow statement equals cash on the balance sheet. Three: net profit after tax on the income statement equals the first line of the cash flow statement. All three should sit in one area and be colour-coded so a break is obvious.",
+    "secondary": "Add a single roll-up cell reporting overall status so you only ever have to glance at one place."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Knowing how the three statements link is one thing; making them actually link inside an Excel file while staying checkable is another. This lesson walks through exactly that execution."
+    },
+    { "type": "heading", "text": "Layout: a one-way flow" },
+    {
+      "type": "list",
+      "items": [
+        "Assumptions sheet: the only place with hand-entered numbers, coloured blue by convention",
+        "Historicals sheet: audited past figures, never edited",
+        "Supporting schedules sheet: depreciation, working capital, debt and interest",
+        "Three statements sheet: aggregation only, every cell a short formula",
+        "Valuation and Summary sheets: the final outputs and the sensitivity tables"
+      ]
+    },
+    { "type": "heading", "text": "The interest circularity and how to live with it" },
+    {
+      "type": "paragraph",
+      "text": "Interest is charged on average debt, debt depends on how much the business needs to borrow, and that in turn depends on profit after interest has been deducted. Excel will report a circular reference. The standard fix: enable iterative calculation with a high enough iteration count, and add a switch cell that when flipped forces interest to zero, letting you break the loop whenever the model falls into an error state."
+    },
+    {
+      "type": "callout",
+      "label": "Never do this",
+      "text": "Never force the balance sheet to balance by pushing a number into equity or into some payable. That turns a visible error into a permanent one nobody will ever find - and it travels with the model all the way to the final report."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A model that runs is not the same as a model that is right.",
+        "The next lesson is devoted entirely to making that difference visible: checking and debugging."
+      ]
+    }
+  ]
+}

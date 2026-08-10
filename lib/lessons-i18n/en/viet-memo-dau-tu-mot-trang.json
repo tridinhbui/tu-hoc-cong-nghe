@@ -1,169 +1,163 @@
 {
   "slug": "viet-memo-dau-tu-mot-trang",
-  "title": "Professional skills, Lesson 1: The one-page investment memo - conclusion first, evidence after",
-  "subtitle": "The pyramid structure, falsifiable arguments, and writing for someone who reads three lines",
+  "title": "Professional Skills, Lesson 1: The one-page investment memo - conclusion first, evidence after",
+  "subtitle": "The pyramid structure, testable claims, and writing for a reader who only gets through three lines",
   "duration": "11 min",
-  "whyItMatters": "Good analysis presented badly does not exist. Decision-makers read ten memos a week and stop at the first three lines of each; if those three lines do not say what you recommend and why, nobody reads the analysis behind them.",
-  "openingQuestion": "What should an investment memo open with?",
+  "whyItMatters": "Good analysis presented badly does not exist. Decision-makers read ten memos a week and stop after the first three lines of each; if those three lines do not say what you recommend and why, nobody reads the analysis behind them.",
+  "openingQuestion": "How should an investment memo open?",
   "openingOptions": [
-    "The industry context and the history of the business being analysed",
-    "A specific recommendation with its three main reasons, in the first paragraph",
-    "The methodology and the data sources used through the analysis",
-    "A list of the main risks, so that the reader understands the limits of the analysis"
+    "The sector background and the founding history of the business being analysed",
+    "A specific recommendation with three main reasons, in the very first paragraph",
+    "The methodology and the data sources used during the analysis",
+    "A list of the main risks so the reader understands the limits of the analysis"
   ],
-  "explanation": "This is the pyramid principle: conclusion first, argument second, data last. It runs opposite to how you were taught to write at school, where you lead gradually towards a conclusion. The reason is entirely practical: the reader of your memo is a decision-maker with ten minutes, not an examiner with an afternoon. If they agree after the first paragraph, the rest is there for them to check when needed. If they disagree, they know immediately where to push back.",
+  "explanation": "This is the pyramid principle: conclusion first, argument second, data last. It is the opposite of how you were taught to write at school, where you lead the reader gradually toward the conclusion. The reason is entirely practical: the person reading your memo is a decision-maker with ten minutes, not a marker with a whole afternoon. If they agree after the first paragraph, the rest is there for them to check when needed. If they disagree, they know immediately where to push back.",
   "diagram": [
-    { "label": "The recommendation and its three main reasons" },
-    { "label": "The argument: what the market is missing" },
-    { "label": "The evidence and the valuation" },
-    { "label": "Risks, and what would prove me wrong" }
+    { "label": "The recommendation and three main reasons" },
+    { "label": "The thesis: what the market is missing" },
+    { "label": "Evidence and valuation" },
+    { "label": "Risks and what would prove me wrong" }
   ],
   "realWorldExample": {
-    "company": "The memo on a chief investment officer's desk",
-    "description": "A typical CIO receives several memos a week from analysts. They almost all read them the same way: skim the opening for the recommendation, jump to the risk section to see whether the writer is self-aware, and only then return to the argument if it looks worth it. A memo that leads at length before reaching its conclusion is usually put down in the second paragraph - not because the analysis is poor but because the reader could not find what they came for."
+    "company": "A memo on the CIO's desk",
+    "description": "A typical chief investment officer receives many memos a week from analysts. They almost all read them the same way: skim the opening paragraph for the recommendation, jump to the risk section to see whether the writer is self-aware, then go back to the argument if it looks worth it. A memo that meanders before reaching its conclusion usually gets put down at the second paragraph - not because the analysis is weak but because the reader could not find what they needed."
+  },
+  "quiz": [
+    {
+      "question": "How does an investment thesis differ from a description of a business?",
+      "options": [
+        "A thesis gives a fuller account of the history and business model of the company",
+        "A thesis states what the market is mispricing and why you see it differently",
+        "A thesis uses more quantitative data than an ordinary descriptive section does",
+        "A thesis is written at the end of the memo once all the evidence has been laid out"
+      ],
+      "explanation": "Saying a business has a strong brand and good growth is not a thesis, because the market knows that too and has already paid for it. A thesis has to answer: what do I see that the person selling me this stock does not. More history is description at greater length, more figures without a claim is still description, and placing it last inverts the pyramid the whole memo depends on."
+    },
+    {
+      "question": "Why should the risk section not be written in generic terms?",
+      "options": [
+        "Because the risk section is the legal cover protecting the writer if the call is wrong",
+        "Because internal rules require every conceivable risk to the investment to be listed in full",
+        "Because the reader uses this section to judge how self-aware the writer is",
+        "Because generic risks make the memo run past the one-page limit allowed"
+      ],
+      "explanation": "Writing that the market may be volatile says nothing at all. Writing that if the gross margin falls below 18% this thesis is wrong is a real risk: specific, testable, and it tells the reader what to watch. A risk section is not legal cover, no rule demands exhaustiveness - an exhaustive list is itself a way of saying nothing - and length is a consequence rather than the reason."
+    },
+    {
+      "question": "How does the pyramid principle apply inside a memo?",
+      "options": [
+        "Start with the longest section and narrow down to the shortest one at the end",
+        "Present the data first, the analysis second, and the conclusion in the final part",
+        "Split the memo into three sections of equal length to keep the content balanced",
+        "The conclusion sits on top, the main arguments support it, the detailed data sits underneath"
+      ],
+      "explanation": "This structure lets the reader stop at any level and still hold the most important thing. It also forces the writer to know exactly what they are concluding - something many people only discover they are unclear about when they try to write the first sentence. Ordering by length is arbitrary, data-first is the school essay the pyramid replaces, and equal sections balance nothing that matters."
+    },
+    {
+      "question": "Why should you state explicitly what would prove you wrong?",
+      "options": [
+        "Because it makes the thesis testable and creates the discipline to exit",
+        "Because the reader will appreciate the writer's humility in argument",
+        "Because it is a mandatory requirement in every research report published to the market",
+        "Because it reduces the writer's responsibility if the recommendation turns out badly"
+      ],
+      "explanation": "Without a falsification criterion, a wrong thesis can be justified indefinitely by swapping reasons - exactly the confirmation bias mechanism covered in the behavioural finance stage. Writing the failure condition in advance is the only way you will later be able to admit it. Humility is a side effect, no rule mandates it, and it increases rather than reduces your accountability."
+    },
+    {
+      "question": "Why should a memo state explicitly what would prove the thesis wrong?",
+      "options": [
+        "Because the investment committee requires a full risk section in every memo",
+        "Because it turns the thesis into something testable rather than a belief",
+        "Because it shields the writer if the investment performs badly later on",
+        "Because this section replaces the need to list the risks"
+      ],
+      "explanation": "A thesis that cannot say what would make it wrong cannot be wrong - and it cannot be right in any useful way either. Writing the condition down in advance also helps you recognise when to exit, instead of reinterpreting every piece of bad news as neutral news. It is not committee policy, offers no protection, and sits alongside the risk section rather than replacing it."
+    }
+  ],
+  "keyTakeaways": [
+    "Conclusion first, argument second, data last - the opposite of how you were taught to write",
+    "A thesis must say what the market is missing, not merely describe the business",
+    "Risks must be specific and testable, with a clear numerical threshold",
+    "Always state in advance what would prove you wrong - that is discipline, not weakness"
+  ],
+  "practicePrompt": {
+    "question": "Which opening sentence works best for a memo recommending a buy?",
+    "options": [
+      "Company X is one of the leading players in Vietnamese retail",
+      "Buy X, target price 35% higher, because the market is valuing the new segment at zero",
+      "This report analyses the outlook for company X over the next three years",
+      "Vietnamese retail is going through a transition with many new opportunities"
+    ],
+    "explanation": "Only this option contains all three components: a specific recommendation, an expected return, and a thesis about what the market is missing. The other three are all true but carry no information - the reader still does not know what you want them to do."
+  },
+  "summary": {
+    "keyIdea": "The reader gives you three lines; spend them on the conclusion, not on the background",
+    "commonMistake": "Meandering at length before arriving at the recommendation, so the reader gives up part way",
+    "action": "Take an analysis you have already done and rewrite it as one page in the pyramid structure."
+  },
+  "application": {
+    "title": "The one-sentence test",
+    "message": "Before writing anything, write one single sentence: what I recommend doing, and why. If you cannot write that sentence, you are not ready to write the memo - the problem is in the analysis, not in the prose.",
+    "secondary": "That sentence later becomes the first line of the memo, and usually the only line anyone remembers."
   },
   "sections": [
     {
       "type": "lead",
-      "text": "There is a rarely discussed gap between analysing something correctly and getting other people to act on your analysis. That gap is called presentation, and in financial analysis it has a fairly specific set of rules."
+      "text": "There is a rarely discussed gap between analysing something correctly and getting other people to act on your analysis. That gap is called presentation, and in financial analysis it comes with a fairly specific set of rules."
     },
-    {
-      "type": "heading",
-      "text": "The four parts of a one-page memo"
-    },
+    { "type": "heading", "text": "The four parts of a one-page memo" },
     {
       "type": "list",
       "items": [
-        "The recommendation: buy or sell, target price, time horizon - in two or three sentences",
-        "The argument: what the market is mispricing and why you think differently - the most valuable part",
-        "The evidence: two or three key facts and a summarised valuation",
-        "Risks and falsification criteria: what would have to happen for you to admit you were wrong"
+        "Recommendation: buy or sell, the target price, the time horizon - in two or three sentences",
+        "Thesis: what the market is mispricing and why you see it differently - this is the most valuable part",
+        "Evidence: two or three key facts along with a summarised valuation",
+        "Risks and falsification criteria: what has to happen for you to admit you were wrong"
       ]
     },
     {
       "type": "comparison",
       "left": {
         "label": "Description",
-        "text": "The business has a strong brand, good margins and experienced management. All true, and the market knows it and has already paid for it."
+        "text": "The business has a strong brand, good margins, and an experienced management team. True, but the market already knows all of this and has already paid for it."
       },
       "right": {
-        "label": "An argument",
-        "text": "The market is valuing the new division at zero because it is not yet profitable, while contribution margin turned positive last quarter and break-even is expected within four quarters."
+        "label": "Thesis",
+        "text": "The market is valuing the new segment at zero because it is not yet profitable, while contribution margin turned positive last quarter and break-even is expected within four quarters."
       }
     },
     {
       "type": "callout",
-      "label": "The severe test",
-      "text": "Reread your memo and ask: which sentence here could an intelligent person legitimately disagree with? If every sentence is an obvious truth nobody would contest, you have not made an argument - you have written a summary."
+      "label": "The harsh test",
+      "text": "Read your memo again and ask: which sentence here could an intelligent person legitimately disagree with? If every sentence is an obvious truth nobody would contest, you have not made a case at all - you have written a summary."
     },
-    {
-      "type": "heading",
-      "text": "A falsifiable argument looks different from one that merely sounds good"
-    },
+    { "type": "heading", "text": "A testable claim looks different from a claim that sounds good" },
     {
       "type": "comparison",
       "left": {
         "label": "Sounds good but cannot be tested",
-        "text": "The business leads its industry, management is experienced, and there is large growth potential amid digital transformation. Nobody can argue with that sentence, and that is exactly the problem - a sentence nobody can argue with carries no information."
+        "text": "The business has a leading position in its sector, an experienced management team and large growth potential amid digital transformation. Nobody can argue with that sentence, and that is exactly the problem - a sentence nobody can argue with is a sentence carrying no information."
       },
       "right": {
-        "label": "Can be tested",
-        "text": "Gross margin will rise from 32% to 38% over the next 8 quarters, because the high-priced raw material contracts signed in 2023 expire next quarter and market prices are now 20% lower. That sentence can be wrong, and you will know when it is wrong - which is what makes it valuable."
+        "label": "A testable claim",
+        "text": "Gross margin will rise from 32% to 38% over the next 8 quarters, because the high-price raw material contract signed in 2023 expires next quarter and the current market price is 20% lower. This sentence can be wrong, and you will know when it is - which is what makes it valuable."
       }
     },
     {
       "type": "callout",
-      "label": "The severe test",
-      "text": "Reread the memo sentence by sentence and ask: is this a sentence an intelligent person reading the same data could legitimately disagree with. If every sentence draws a nod, you have made no recommendation - you are describing a business. A good memo always contains at least one sentence that makes the reader pause and think I am not sure that is right, because that is exactly where you are saying something the market has not priced in."
+      "label": "The harsh test",
+      "text": "Read the memo again and ask of each sentence in turn: is this a sentence that an intelligent person, reading the same data, could legitimately disagree with? If every sentence is one everyone nods along to, you have made no recommendation - you are describing the business. A good memo always contains at least one sentence that makes the reader stop and think I am not sure that is right, because that is exactly where you are saying something the market has not yet priced in."
     },
     {
       "type": "paragraph",
-      "text": "The pyramid structure has a very practical reason behind it: whoever receives the memo usually reads three lines and then decides whether to read on. So the recommendation has to sit on the first line, with the target price and horizon - not at the end as a conclusion arriving after the argument. That order runs against how we were taught to write, and against how you actually reached the conclusion. But a memo is not a record of your thinking; it is a tool for somebody else's decision."
+      "text": "The pyramid structure has a very practical reason behind it: the person receiving the memo usually reads three lines and then decides whether to keep going. So the recommendation has to sit on the first line, along with the target price and the horizon - not at the end as a conclusion arriving after the argument. That order is the opposite of how we were taught to write at school, and also the opposite of how you actually reached the conclusion. But a memo is not a record of your thinking process; it is a tool for somebody else to make a decision."
     },
     {
       "type": "closing",
       "lines": [
-        "Writing clearly follows from thinking clearly; a tangled sentence almost always betrays an argument that is not finished.",
-        "The next lesson covers the harder part: defending that memo in front of an investment committee."
+        "Writing clearly is a consequence of thinking clearly; muddled prose almost always betrays an argument that is not finished.",
+        "The next lesson covers the harder part: defending that memo while sitting in front of the investment committee."
       ]
     }
-  ],
-  "quiz": [
-    {
-      "question": "How does an investment argument differ from a description of a business?",
-      "options": [
-        "An argument gives a fuller account of the history and business model",
-        "An argument states what the market is mispricing and why you think differently",
-        "An argument uses more quantitative data than an ordinary description",
-        "An argument is written at the end of the memo, once all the evidence has been laid out"
-      ],
-      "explanation": "Saying a business has a strong brand and good growth is not an argument, because the market knows that too and has paid for it. An argument has to answer: what do I see that the person selling me this share does not."
-    },
-    {
-      "question": "Why should the risk section not be written in general terms?",
-      "options": [
-        "Because the risk section is the legal basis protecting the writer if the call is wrong",
-        "Because internal rules require every possible risk to the investment to be listed",
-        "Because readers use this section to judge how self-aware the writer is",
-        "Because generic risks make the memo run past the one-page limit"
-      ],
-      "explanation": "Writing that markets may be volatile says nothing at all. Writing that if gross margin falls below 18% this argument is wrong is a real risk: specific, testable, and it tells the reader what to watch."
-    },
-    {
-      "question": "How does the pyramid principle apply in a memo?",
-      "options": [
-        "Start with the longest section and narrow gradually to the shortest at the end",
-        "Present the data first, the analysis second, and the conclusion at the very end",
-        "Split the memo into three equal parts by length to keep the content balanced",
-        "Conclusion at the top, the main arguments supporting it, detail underneath"
-      ],
-      "explanation": "This structure lets the reader stop at any level and still have the most important thing. It also forces the writer to know exactly what they are concluding - something many people only discover they do not, when they try to write the first sentence."
-    },
-    {
-      "question": "Why state explicitly what would prove you wrong?",
-      "options": [
-        "Because it makes the argument testable and creates the discipline to exit",
-        "Because readers appreciate the modesty of the writer's reasoning",
-        "Because it is mandatory in every research report published to the market",
-        "Because it reduces the writer's responsibility if the call turns out badly"
-      ],
-      "explanation": "Without a falsification criterion, a wrong argument can be defended indefinitely by changing the reason - exactly the confirmation bias mechanism from the behavioural finance stage. Stating the failure condition in advance is the only way you will later be able to admit it."
-    },
-    {
-      "question": "Why should a memo state clearly what would prove the argument wrong?",
-      "options": [
-        "Because the investment committee requires every memo to carry a full risk assessment",
-        "Because it turns the argument into something testable rather than a belief",
-        "Because it helps the writer avoid responsibility if the investment goes badly",
-        "Because this section replaces listing the risks"
-      ],
-      "explanation": "An argument that cannot say what would make it wrong cannot be wrong - and cannot be right in any useful way either. Writing it down in advance also helps you recognise when to exit, rather than reinterpreting every piece of bad news as neutral."
-    }
-  ],
-  "keyTakeaways": [
-    "Conclusion first, argument second, data last - the reverse of how you were taught to write",
-    "The argument has to say what the market is missing, not merely describe the business",
-    "Risks must be specific and testable, with a clear numeric threshold",
-    "Always state in advance what would prove you wrong - that is discipline, not weakness"
-  ],
-  "practicePrompt": {
-    "question": "Which opening sentence works best for a memo recommending a buy?",
-    "options": [
-      "Business X is one of the leading players in Vietnamese retail",
-      "Recommend buying X, target price 35% higher, because the market values the new division at zero",
-      "This report analyses the outlook for business X over the next three years",
-      "Vietnamese retail is going through a period of change that is opening up many new opportunities"
-    ],
-    "explanation": "Only this option contains all three components: a specific recommendation, the expected return, and an argument about what the market is missing. The other three are all true and carry no information - the reader still does not know what you want them to do."
-  },
-  "application": {
-    "title": "The one-sentence test",
-    "message": "Before writing anything, write one single sentence: what I recommend doing, and why. If you cannot write that sentence, you are not ready to write the memo - the problem is in the analysis rather than in the prose.",
-    "secondary": "That sentence becomes the memo's first line, and usually the only line anyone remembers."
-  },
-  "summary": {
-    "keyIdea": "The reader gives you three lines; spend them on the conclusion, not on context",
-    "commonMistake": "Leading at length before reaching the recommendation, so the reader gives up part-way",
-    "action": "Take an analysis you have done and rewrite it as one page in the pyramid structure."
-  }
+  ]
 }

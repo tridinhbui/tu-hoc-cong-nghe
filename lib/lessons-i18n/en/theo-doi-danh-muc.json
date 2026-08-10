@@ -12,9 +12,17 @@
   ],
   "explanation": "Many behavioral finance studies show that the more often an investor checks their portfolio, the more susceptible they become to short-term swings (called 'myopic loss aversion'), leading to emotional decisions like selling out during a temporary drop or chasing prices during a hot rally - both of which run counter to a disciplined long-term strategy. For a long-term goal (retirement, a child's education fund), a sensible checking frequency is usually monthly or quarterly - enough to track progress and rebalance when needed, without being so frequent that it triggers overreacting to short-term noise.",
   "diagram": [
-    { "label": "Checking the portfolio too often", "arrow": true },
-    { "label": "Getting swayed by short-term swings", "arrow": true },
-    { "label": "Making emotional decisions (myopic loss aversion)" }
+    {
+      "label": "Checking the portfolio too often",
+      "arrow": true
+    },
+    {
+      "label": "Getting swayed by short-term swings",
+      "arrow": true
+    },
+    {
+      "label": "Making emotional decisions (myopic loss aversion)"
+    }
   ],
   "realWorldExample": {
     "company": "Individual investor behavior in Vietnam, 2022",
@@ -29,7 +37,6 @@
         "Because looking often slows down the account's order execution speed",
         "Because every time you check the portfolio, a query fee is charged"
       ],
-      "correct": 0,
       "explanation": "The phenomenon of 'myopic loss aversion' makes someone who tracks fluctuations frequently feel more risk and worry than the reality warrants, easily leading to a mistaken, emotion-driven decision instead of sticking to the long-term plan."
     },
     {
@@ -40,7 +47,6 @@
         "Once a day at market close",
         "Just once, after 10 years"
       ],
-      "correct": 1,
       "explanation": "Checking monthly/quarterly lets an investor track progress and rebalance when the weighting drifts too far from target, without getting swept up in daily price noise."
     },
     {
@@ -51,7 +57,6 @@
         "Because seeing a lot of short-term swings raises the chance of selling out of fear",
         "Because checking often is assumed to lower the recorded investment performance shown in the account"
       ],
-      "correct": 2,
       "explanation": "The more often you look, the more red sessions you see - even though the long-term trend hasn't changed. This is 'myopic loss aversion': the frequency of looking determines the feeling of risk more than the portfolio itself does."
     },
     {
@@ -62,7 +67,6 @@
         "Exactly once, on the last day before retiring",
         "Every few months, enough to rebalance without getting swept up in the news"
       ],
-      "correct": 3,
       "explanation": "Sparse enough to avoid reacting to noise, frequent enough not to miss a needed rebalance or a genuine change in your own circumstances. Six months to a year is what most long-term plans actually need."
     },
     {
@@ -73,7 +77,6 @@
         "Will the market go up or down next week, so I can time a trade",
         "How many percentage points is my portfolio lagging my friends and colleagues by"
       ],
-      "correct": 0,
       "explanation": "Those two questions are about you, not about the market - and they're the only two things you actually control. The other questions all lead to acting on something nobody can predict."
     },
     {
@@ -84,7 +87,6 @@
         "The two are the same thing, just called differently depending on the market situation",
         "Checking lowers returns while reacting quickly to news raises them"
       ],
-      "correct": 1,
       "explanation": "A pre-set schedule separates the decision from the emotion: you decide before you know what the market will do. Reacting to news is the opposite - and it's how most individual investors end up buying high and selling low."
     }
   ],
@@ -102,7 +104,6 @@
       "Stop tracking the portfolio entirely for the next 20 years, with no review needed until the exact day she retires",
       "Switch to checking the portfolio hourly instead of daily, to react even faster to small fluctuations"
     ],
-    "correct": 0,
     "explanation": "Turning off notifications and lowering the frequency to monthly/quarterly is still enough to track progress and rebalance when needed, while reducing the temptation to react emotionally to short-term swings."
   },
   "summary": {
@@ -115,7 +116,6 @@
     "message": "Open your investing app, turn off all daily price-movement notifications, and set yourself a reminder to only check the portfolio again at the start of next month.",
     "secondary": "You'll be surprised how much less anxious you feel once you stop watching the price every day."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

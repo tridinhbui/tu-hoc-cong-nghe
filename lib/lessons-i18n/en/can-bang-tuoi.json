@@ -12,10 +12,21 @@
   ],
   "explanation": "The classic rule of '100 (or 110/120) minus your age' suggests your stock weighting should decline as you get older. At 28 with a 30-year horizon, Long has plenty of time for his portfolio to recover from short-term drops, so he can accept higher volatility in exchange for better long-term growth.",
   "diagram": [
-    { "label": "How many years until you need to withdraw?", "arrow": true },
-    { "label": "Many years left: enough time to recover from drops", "arrow": true },
-    { "label": "Should hold a higher stock weighting", "arrow": true },
-    { "label": "Close to the goal: shift gradually into bonds to cut volatility" }
+    {
+      "label": "How many years until you need to withdraw?",
+      "arrow": true
+    },
+    {
+      "label": "Many years left: enough time to recover from drops",
+      "arrow": true
+    },
+    {
+      "label": "Should hold a higher stock weighting",
+      "arrow": true
+    },
+    {
+      "label": "Close to the goal: shift gradually into bonds to cut volatility"
+    }
   ],
   "realWorldExample": {
     "company": "Age-based model portfolios at Vietnam's voluntary supplementary pension funds",
@@ -28,9 +39,8 @@
         "Calculating the savings interest rate appropriate for your age",
         "Calculating the monthly social insurance contribution you owe",
         "Estimating the stock weighting a portfolio should hold",
-        "Calculating how many years remain until retirement age"
+        "Calculating how many years remain until the retirement age"
       ],
-      "correct": 2,
       "explanation": "This is a quick rule of thumb: take 100, 110, or 120 and subtract your current age to get a suggested stock weighting, with the remainder going to bonds and other safer assets."
     },
     {
@@ -41,7 +51,6 @@
         "Because the law requires older people to lower this weighting",
         "Because there's less time for the portfolio to recover if the market drops"
       ],
-      "correct": 3,
       "explanation": "The biggest risk for someone near retirement is 'sequence-of-returns risk': if the market drops sharply right when they need to withdraw, the portfolio doesn't have enough time to recover. So the weighting in stable assets (bonds, deposits) should rise gradually as retirement approaches."
     },
     {
@@ -52,7 +61,6 @@
         "Because the number depends on the inflation rate announced in each particular year",
         "Because the three versions apply to low-, middle-, and high-income groups respectively"
       ],
-      "correct": 0,
       "explanation": "The original rule dates from a time when lifespans were shorter and bonds paid higher yields. Living longer means the portfolio needs to keep growing after retirement, while low interest rates mean bonds alone can no longer support anyone - so newer versions push the stock weighting higher."
     },
     {
@@ -63,7 +71,6 @@
         "No, the self-employed person should put their entire wealth into growth stocks",
         "Yes, because occupation isn't a factor considered in asset allocation"
       ],
-      "correct": 1,
       "explanation": "Stable income acts like an invisible 'bond' within your total wealth - it lets the investment portion take on more risk. Someone with irregular income needs a bigger cash buffer and a less volatile portfolio, even at the same age."
     },
     {
@@ -74,7 +81,6 @@
         "Sticking to the plan through a deep downturn, instead of selling out right at the bottom",
         "Changing the portfolio weighting the moment you hit a round-number birthday"
       ],
-      "correct": 2,
       "explanation": "A 60/40 portfolio you actually hold through a crash beats a 'perfectly optimized' 90/10 portfolio you dump after a 30% drop. The right weighting is the one you can live with on the worst day."
     },
     {
@@ -85,7 +91,6 @@
         "Whenever pundits in the press forecast the market is about to enter a new cycle",
         "When your life circumstances change, or on a scheduled rebalance back to target"
       ],
-      "correct": 3,
       "explanation": "Two legitimate reasons: your life changes (having a child, changing careers, approaching retirement), or the weighting has drifted from your target because of market moves. Adjusting based on market forecasts is a form of market timing - something even professionals routinely get wrong."
     }
   ],
@@ -103,7 +108,6 @@
       "Increase the stock weighting compared to age 30 to try to make up for the shrinking accumulation period before retirement",
       "Move the entire portfolio into physical gold, since it's the only vehicle suited to someone near retirement under the allocation rule"
     ],
-    "correct": 0,
     "explanation": "The closer you get to retirement, the less time there is to recover from a drop - so lowering the stock weighting and raising the stable-asset weighting makes sense, the exact opposite of the portfolio at age 30."
   },
   "summary": {
@@ -116,7 +120,6 @@
     "message": "Take your age, apply the '100 minus age' formula to get a suggested stock percentage, then compare it with your actual current weighting and note the gap, if there is one.",
     "secondary": "Knowing the gap between theory and reality is the first step toward adjusting it."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

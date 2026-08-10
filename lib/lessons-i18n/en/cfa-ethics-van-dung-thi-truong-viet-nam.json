@@ -6,12 +6,11 @@
   "whyItMatters": "Standard I(A) says follow whichever is stricter, the law or the Code. For a practitioner in Vietnam the common direction is the Code being stricter - and that is the direction nobody enforces but you.",
   "openingQuestion": "A personal contact tells you company X is about to announce an exceptional set of results. That person does not work at X but heard it from a friend who does. May you trade?",
   "openingOptions": [
-    "Yes, because it reached you through several layers and is no longer inside information",
-    "No: the information is still material and not yet public",
-    "Yes, provided you paid nothing to obtain it",
+    "Yes, it passed through several people so it is no longer inside information",
+    "No: the information is still material and still not yet public",
+    "Yes, provided that you paid nothing at all to obtain it",
     "Yes, provided you disclose the source in your research note"
   ],
-  "correctOption": 1,
   "explanation": "The number of intermediaries does not launder the information. Two conditions remain: it is material, and it is not yet broadly public. The third condition - that it originated with someone breaching a duty of confidentiality - also remains, and not knowing exactly who was first does not remove it where the circumstances show the information could only have come from inside. In a market where personal relationships play a large part in the flow of information, this arises far more often than the classic insider dealing scenario - and it is harder to recognise, because it arrives in an ordinary conversation.",
   "summary": {
     "keyIdea": "In a market with dense personal relationships and gaps in the law, the Code is not a supplementary layer but the binding constraint actually applying to you.",
@@ -60,10 +59,18 @@
     }
   ],
   "diagram": [
-    { "label": "Material + not yet public = do not trade", "arrow": true },
-    { "label": "The number of intermediaries does not launder the information", "arrow": true },
-    { "label": "Looser domestic law does not release the duty under the Code", "arrow": true },
-    { "label": "The \"Code is stricter\" direction has no enforcer but you" }
+    {
+      "label": "Material + not yet public = do not trade"
+    },
+    {
+      "label": "The number of intermediaries does not launder the information"
+    },
+    {
+      "label": "Looser domestic law does not release the duty under the Code"
+    },
+    {
+      "label": "The \"Code is stricter\" direction has no enforcer but you"
+    }
   ],
   "realWorldExample": {
     "company": "Three areas where the Code usually runs ahead of domestic rules",
@@ -78,7 +85,7 @@
         "Still material and still not public, so it cannot be traded on",
         "Usable provided you paid nothing to obtain the information"
       ],
-      "explanation": "The two conditions - material and not yet public - do not depend on the route the information took."
+      "explanation": "The two conditions - material, and not yet broadly public - do not depend on the route the information travelled. Passing through three people changes who told you and nothing else; the market still has not been informed. Nor does the price you paid matter: paying nothing makes the tip a gift rather than a purchase, and a gift of material non-public information is no more tradeable than a purchased one."
     },
     {
       "question": "Why is the \"Code is stricter than the law\" direction so often overlooked?",
@@ -88,37 +95,37 @@
         "Because domestic law always takes precedence in application",
         "Because no authority enforces it except the practitioner themselves"
       ],
-      "explanation": "No external sanction means compliance rests entirely on that person's own decision."
+      "explanation": "No external sanction means compliance rests entirely on that person's own decision, which is precisely why this direction quietly erodes. The Code binds a charterholder wherever they work, so geography does not release it, and CFA Institute can and does discipline conduct outside the United States. And Standard I(A) never says the local law prevails - it says follow whichever of the two is stricter."
     },
     {
       "question": "Where does Standard VI(A) go beyond an ordinary ownership declaration rule?",
       "options": [
-        "It requires disclosing anything that could affect judgment",
+        "It requires disclosing anything that could affect your judgment",
         "It requires declaring to the regulator instead of to clients",
         "It requires disclosing the analyst's entire personal portfolio",
         "It requires quarterly disclosure rather than disclosure on arising"
       ],
-      "explanation": "An ownership threshold is a number; Standard VI(A)'s test is effect on judgment, and it covers far more ground."
+      "explanation": "An ownership threshold is a number; Standard VI(A)'s test is whether something could reasonably be expected to affect judgment, which covers far more ground. The duty also runs to clients rather than only to a regulator, it attaches when the conflict arises rather than at a quarterly filing date, and it asks about relevant interests rather than demanding the whole of your personal portfolio be published."
     },
     {
       "question": "Why is information arriving through personal relationships harder to recognise?",
       "options": [
         "Because information through personal relationships is usually inaccurate",
-        "Because it arrives in an ordinary conversation, with no signal",
+        "Because it arrives in an ordinary conversation, with no signal at all",
         "Because current law has no definition for this form of information",
         "Because the listener has no way of verifying the information"
       ],
-      "explanation": "Classic insider dealing has an obvious setting; a story over dinner does not - and that is what makes it more common."
+      "explanation": "Classic insider dealing has an obvious setting; a story told over dinner does not, and that is exactly what makes it common. Accuracy is not the issue - if anything the tips that turn out correct are the dangerous ones. And the inability to verify is not what creates the problem either: verifying it successfully would only confirm that you are holding material non-public information."
     },
     {
       "question": "Does GIPS have binding legal force in Vietnam?",
       "options": [
         "Yes, for fund management companies with foreign ownership",
         "Yes, it has been written into domestic regulation as mandatory",
-        "No, GIPS is voluntary in every market including Vietnam",
+        "No, GIPS remains voluntary in every market including Vietnam",
         "No, and it has no relevance to the domestic market at all"
       ],
-      "explanation": "Voluntary does not mean unimportant - large institutional investors treat it as a screening condition, and once claimed it must be complied with fully."
+      "explanation": "Voluntary does not mean unimportant: large institutional investors treat GIPS compliance as a screening condition, and once you claim it you must comply in full. It has not been written into domestic regulation anywhere, and it does not switch on for foreign-owned managers - the standard is the same everywhere, which is the point of having one at all."
     }
   ],
   "keyTakeaways": [
@@ -132,7 +139,7 @@
     "question": "Over a meal you hear that a listed company is about to make a major change to its leadership. The speaker is a friend of a board member. What should you do?",
     "options": [
       "Trade as normal, since you are not an insider at the company",
-      "Do not trade that security, and report it to compliance",
+      "Do not trade that security at all, and report it to compliance",
       "Verify the information first, and then decide whether to trade",
       "Share it with colleagues so you can assess its reliability together"
     ],

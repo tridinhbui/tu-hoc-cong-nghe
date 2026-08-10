@@ -45,7 +45,7 @@
     {
       "question": "You want 60 million for a trip in 12 months' time. How much should go into the sinking fund each month (ignoring interest)?",
       "options": [
-        "6 million a month over 10 months",
+        "6 million a month over 10 months (= 60 / 10)",
         "5 million a month over 10 months (2 short)",
         "5 million a month over 12 months",
         "60 million in the very first month"

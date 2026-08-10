@@ -1,0 +1,164 @@
+{
+  "slug": "ir-khung-hoang-va-tin-xau",
+  "title": "IR, Part 5: Bad news and crisis - say it before you are asked",
+  "subtitle": "The sequence to follow when something goes wrong, how to write a bad-news announcement, and why drip-feeding is the worst option",
+  "duration": "11 min",
+  "whyItMatters": "Every IR function performs well when things are going smoothly. The value of the job is proved in the week the bad news lands, and what is done in that week decides whether the company loses a quarter or loses trust for years.",
+  "openingQuestion": "You find an accounting error that overstated profit in the past three quarters. What is the first step?",
+  "openingOptions": [
+    "Determine the full scope of the error, then disclose all of it at once",
+    "Disclose what is known now and update as the review continues",
+    "Correct it quietly in the next report with an explanatory note",
+    "Wait for the auditor's opinion and disclose with the audited accounts"
+  ],
+  "explanation": "You need a short window to establish how far the error reaches, then you disclose it completely in one go. This is a rare exception to the disclose-as-early-as-possible principle, and the reason lies in how the market reacts to drip-fed news: with each update revealing another piece of the error, investors do not add the new piece, they reopen the question of how much is still unknown - so three small disclosures do far more damage than one full disclosure with the same content. But that window must be measured in days, not weeks, and during it absolutely nobody may trade the stock.",
+  "diagram": [
+    {
+      "label": "The incident is discovered"
+    },
+    {
+      "label": "Close the insider trading window immediately"
+    },
+    {
+      "label": "Establish the scope - in days, not weeks"
+    },
+    {
+      "label": "Disclose it whole, once: what, how much, why, how it is being fixed"
+    },
+    {
+      "label": "Follow up and answer, without changing the story"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Retrospective restatements on the Vietnamese market",
+    "description": "When audited accounts differ materially from the company's own unaudited figures, the price reaction is usually far larger than the size of the difference. The reason is that investors read that gap as a signal about the quality of internal control - and once that is in doubt, every other number gets discounted as well."
+  },
+  "quiz": [
+    {
+      "question": "Why does drip-feeding bad news do more damage than one full disclosure?",
+      "options": [
+        "Because the cost of disclosure rises with the number of releases",
+        "Because the rules forbid disclosing one matter across several separate releases",
+        "Because journalists will report it repeatedly and amplify how serious it looks",
+        "Because each update makes investors ask how much is still unknown"
+      ],
+      "explanation": "The market does not add up the pieces of bad news; it re-prices uncertainty. Drip-feeding means that uncertainty never closes, so each update resets the question rather than answering it. Media amplification and disclosure costs are real but trivial by comparison, and no rule forbids staged releases - the damage is entirely in how the reader updates."
+    },
+    {
+      "question": "What is the very first thing to do on discovering a material incident?",
+      "options": [
+        "Close the trading window for insiders",
+        "Draft a press release to control the message",
+        "Inform the largest shareholders first",
+        "Review the internal control processes involved"
+      ],
+      "explanation": "From the moment you know, insiders are holding unpublished information. A single trade in that window turns one incident into two separate matters, one of which is far harder to explain than the other. Drafting takes time and reviewing controls takes longer, but closing the window takes minutes and needs no knowledge of the scope."
+    },
+    {
+      "question": "What does a good bad-news announcement contain that a poor one usually lacks?",
+      "options": [
+        "An apology addressed to the shareholders of the company",
+        "Specific figures and dates already known, even if incomplete",
+        "A commitment that this will never happen again in the future",
+        "A comparison showing that peer companies face the same problem"
+      ],
+      "explanation": "A poor announcement is full of adjectives and commitments. Investors need to know how large the impact is, which period it lands in, and who is dealing with it - the rest is words. Apologies cost nothing and prove nothing, and pointing at peers reads as deflection at exactly the moment credibility is most fragile."
+    },
+    {
+      "question": "Why should you not promise that 'it will never happen again'?",
+      "options": [
+        "Because investors will demand compensation if it does recur",
+        "Because the rules do not allow companies to make forward commitments",
+        "Because it is a promise you cannot control, and a recurrence costs double",
+        "Because the promise forces auditors to widen the scope of their review"
+      ],
+      "explanation": "Naming the specific control you have changed is far stronger than an absolute promise - that promise only creates one more place to fail. There is no rule against forward-looking statements and no automatic compensation claim; the reason is simply that you have handed the market a second thing to hold you to, on top of the incident itself."
+    },
+    {
+      "question": "After the disclosure, what matters most in the following weeks?",
+      "options": [
+        "Meeting each large shareholder privately to walk through the background",
+        "Pushing out other positive news to change the subject",
+        "Limiting comment so the matter is not kept alive in the press",
+        "Keeping the story unchanged and updating on the dates you promised"
+      ],
+      "explanation": "Changing the story part-way does more damage than the original bad news, because it says the first version was incomplete. Private explanations to large shareholders recreate the selective disclosure problem, and burying the matter under good news is transparent to anyone watching - both of which cost more than they save."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A material incident is discovered at 8am and the extent of the damage is not yet established. What must be done first?",
+    "options": [
+      "Close the insider trading window, before drafting anything at all",
+      "Draft an announcement immediately and release it within the first hour",
+      "Wait until the scope is established, then inform the executive team",
+      "Sound out a few friendly analysts first to gauge the likely reaction"
+    ],
+    "explanation": "From the moment one person inside the company knows, every trade by an insider happens on information the market does not have - and closing the window is something you can do in minutes without knowing the extent of the damage. Drafting an announcement takes time, and establishing the scope takes longer still, but neither may happen while the trading window is open. Only then does the second principle apply: establish the scope and disclose it COMPLETELY in one go, because drip-feeding means the uncertainty never closes and every update becomes a fresh shock."
+  },
+  "keyTakeaways": [
+    "Close the insider trading window the moment you know - before drafting anything.",
+    "Establish the scope and disclose it whole; drip-feeding means the uncertainty never closes.",
+    "A good announcement carries figures and dates, not adjectives and absolute promises.",
+    "After disclosure, keep the story unchanged and update on the dates you promised."
+  ],
+  "summary": {
+    "keyIdea": "Establish the scope and disclose it whole in one go - drip-feeding means the uncertainty never closes",
+    "commonMistake": "Disclosing the certain part first to reassure people, then revealing another piece each week. Every extra piece resets trust from the beginning.",
+    "action": "When an incident occurs, the first task is to close the insider trading window - before drafting anything at all."
+  },
+  "application": {
+    "title": "Draft a bad-news announcement as practice",
+    "message": "Pick a hypothetical incident and write the announcement for it: what happened, the scope in figures, what is being done, and when the next update comes. Then delete every adjective and read it again.",
+    "secondary": "An announcement that still stands up once the adjectives are gone is an announcement with substance."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Every IR function looks good in a favourable quarter. The job is proved in the week the bad news lands - and most of the damage in that week comes from how it was handled, not from the news itself."
+    },
+    {
+      "type": "heading",
+      "text": "The sequence"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Close the trading window for insiders immediately. This comes first, before you even know how large the matter is.",
+        "Establish the scope: how large the impact, which periods, what has not yet been reviewed.",
+        "Disclose it whole, once, with dates attached to whatever is still outstanding.",
+        "After that, update only on the dates you promised - nothing added, nothing changed."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why drip-feeding is the worst option"
+    },
+    {
+      "type": "paragraph",
+      "text": "The market does not add up the fragments of bad news. Each time another fragment arrives, investors reopen the question of how much is still unknown - and that question has no floor. Three small disclosures with the same content do far more damage than one complete disclosure, because after a complete disclosure the uncertainty closes."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A poor announcement",
+        "text": "Full of adjectives, apologies, and promises that it will not recur. No figures, no dates, no statement of who is handling it."
+      },
+      "right": {
+        "label": "A good announcement",
+        "text": "How large the impact is, which period it belongs to, what caused it, which control has changed, and when the next update will come."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The sentence not to promise",
+      "text": "\"This will never happen again\" is a promise nobody can control, and if it does recur the second time costs double because the promise is standing there. Replace it with something you can state specifically: which control has just been added, and who now approves which step."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Bad news destroys value once. Badly handled bad news destroys value repeatedly.",
+        "And what is lost the second time cannot be bought back with one good quarter."
+      ]
+    }
+  ]
+}

@@ -50,7 +50,7 @@
       "question": "Why must an actuary combine mortality probability with the time value of money when pricing?",
       "options": [
         "Because premiums arrive today while the obligation falls due in future",
-        "Because a mortality table is only valid after it is discounted to today",
+        "Because a mortality table is only valid once it is discounted",
         "Because inflation shifts the underlying probability of dying",
         "Because the regulator requires both figures to be reported"
       ],
@@ -59,10 +59,10 @@
     {
       "question": "What is the core difference between life and non-life insurance?",
       "options": [
-        "Non-life carriers do not have to set aside any claims reserves",
+        "Non-life carriers do not have to set aside any claims reserves at all",
         "Life runs over long horizons and is priced off mortality tables",
         "Life insurers are not subject to minimum capital requirements",
-        "Non-life always runs a lower loss ratio than life insurance does"
+        "Non-life always runs a lower loss ratio than life does"
       ],
       "explanation": "A life contract lasts decades, so its dominant risks are longevity and interest rates, both handled through the mortality table. Non-life policies are typically rewritten each year, so the dominant risks are the frequency and the severity of losses. These are two different mathematical problems and they need two different specialisms. Both branches carry reserves and both face minimum capital rules, and loss ratios vary by line rather than by branch."
     }

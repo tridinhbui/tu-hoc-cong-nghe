@@ -1,0 +1,156 @@
+{
+  "slug": "frm-rui-ro-hanh-vi-va-tuan-thu",
+  "title": "FRM Operational, Lesson 14: Conduct, legal and compliance risk",
+  "subtitle": "Selling within the law can still be wrong - when the product does not suit the person buying it",
+  "duration": "9 min",
+  "whyItMatters": "Fines relating to how customers were treated have become the largest source of operational risk loss at many global banks, ahead of both fraud and technology failure - and they usually arise from activity that was entirely lawful at the time it was carried out.",
+  "openingQuestion": "How does conduct risk differ from compliance risk?",
+  "openingOptions": [
+    "Compliance asks whether a rule was broken, conduct asks how people were treated",
+    "Conduct risk applies only to employees while compliance risk applies only to the executive board",
+    "Compliance risk is measured in money while conduct risk cannot be expressed in any unit at all",
+    "The two terms mean exactly the same thing and differ only by market convention"
+  ],
+  "explanation": "Many of the largest fines arose from products sold in full accordance with the legal process of the day but unsuited to the needs and the understanding of the buyer. Supervisors then reassessed the sales against a fair treatment standard, and the fine arrived years after the revenue had been booked.",
+  "diagram": [
+    { "label": "The product is designed and sold" },
+    { "label": "Revenue is booked immediately while the risk accumulates quietly" },
+    { "label": "Years later: complaints and a supervisory review" },
+    { "label": "Fines, customer redress and reputational damage" }
+  ],
+  "realWorldExample": {
+    "company": "Cross-selling under target pressure",
+    "description": "A pattern repeated across many markets: a bank sets a target for products per customer and ties bonuses to it; branch staff meet the target by opening additional products the customer does not really need or does not properly understand. Revenue rises exactly as designed for several years, until a review uncovers the problem and the institution has to pay redress, pay a fine and rebuild its whole incentive structure."
+  },
+  "quiz": [
+    {
+      "question": "Why is conduct risk usually detected so late?",
+      "options": [
+        "Because the revenue arrives now and the consequence arrives years later",
+        "Because supervisors only review a firm's sales activity once every ten years",
+        "Because conduct risk leaves no trace in any record the firm holds",
+        "Because these products are all written with a ten-year contractual term"
+      ],
+      "explanation": "This is a risk with a long lag between the action and its consequence. Through that lag every business metric looks healthy, and the sales model causing the problem is often rolled out more widely because it appears to be working. The records exist in full - the sales files, the call recordings, the commission data - which is precisely how the review reconstructs it later. Supervisory cycles are annual or continuous, and the products involved span every possible maturity."
+    },
+    {
+      "question": "What role does the new product approval process play in controlling conduct risk?",
+      "options": [
+        "It confirms that the margin is wider than on the products already sold",
+        "It asks what need the product serves, and whose need that is",
+        "It verifies that the intellectual property has been properly registered",
+        "It checks whether a competitor already offers something comparable"
+      ],
+      "explanation": "The cheapest control is the one at the design stage. A product so complex that the salesperson cannot explain it to the customer is the clearest early warning there is, and catching that here costs a fraction of what mass redress costs afterwards. Margin, registration and competitor coverage are all commercial questions that belong in the same paper, but none of them asks whether the buyer is the right buyer - which is the only question conduct risk turns on."
+    },
+    {
+      "question": "Why are incentives treated as central to conduct risk?",
+      "options": [
+        "Because supervisors cap the earnings of front-line financial sales staff",
+        "Because high pay makes employees careless about following the process",
+        "Because bonuses tied to volume create pressure to push the product regardless of suitability",
+        "Because share-based pay always creates a conflict of interest with customers"
+      ],
+      "explanation": "People optimise for what is measured and rewarded. A pure volume target turns customer suitability into an obstacle to be overcome rather than an objective to be met - which is why every post-crisis reform reached into bonus structures. Pay levels do not by themselves loosen process discipline, no supervisor caps sales earnings outright, and share-based pay is one of the standard tools for aligning staff with the long term rather than a source of conflict."
+    },
+    {
+      "question": "Why is conduct risk hard to measure from historical loss data?",
+      "options": [
+        "Because supervisors do not publish the fines that relate to conduct risk",
+        "Because conduct fines are not recorded within operational loss data at all",
+        "Because sales behaviour leaves no trace in any of the firm's own systems",
+        "Because the loss arrives as a fine years after the behaviour has stopped"
+      ],
+      "explanation": "The lag between the behaviour and its consequence can run from five to ten years. Through that period the loss data shows everything as normal, and a model built on it reports low risk exactly while the risk is accumulating fastest. Conduct fines are very much recorded in operational loss data once they arrive - that is the problem, they arrive too late to steer by - and supervisors publish enforcement notices in detail, so absence of disclosure is not the constraint."
+    },
+    {
+      "question": "Why is complying with the rules in force not enough to control conduct risk?",
+      "options": [
+        "Because supervisors can reassess the sales against a fair treatment standard",
+        "Because the rules change too fast for the compliance function to keep up",
+        "Because most current rules do not yet address newer financial products",
+        "Because compliance is the legal function's responsibility, not the business's"
+      ],
+      "explanation": "Many of the largest fines came from products sold in full accordance with the legal process of the day but unsuited to the needs and understanding of the buyer. The real test is not whether this was lawful but whether the customer understood what they were buying. The pace of rule change and the coverage of new products are genuine operational difficulties for a compliance team, but a firm that kept perfectly current with every rule would still face this exposure."
+    }
+  ],
+  "practicePrompt": {
+    "question": "An investment-linked insurance product is sold in accordance with the rules, with every signature and every disclosure document in place. Three years later most customers cancel and lose most of the premiums paid. What is this?",
+    "options": [
+      "Conduct risk: lawful, but the customers were not suitable for it",
+      "Compliance risk: the file must be missing a document somewhere",
+      "Market risk: the underlying investment has simply performed badly",
+      "No risk at all: the customers signed, so the outcome is on them"
+    ],
+    "explanation": "Compliance asks 'was a rule broken' and the answer here is no. Conduct risk asks a different question: was this product suitable for the people who bought it. A contract with heavy early-surrender penalties sold to people with unstable income is lawful and almost certain to end in cancellation. The lag is what makes this class of risk so hard to stop: revenue and commission are booked immediately while the consequence lands three years later, so every business metric in the first two years says the product is excellent. The cheapest control point is new product approval."
+  },
+  "keyTakeaways": [
+    "Compliance asks whether a rule was broken; conduct asks whether the customer was treated fairly",
+    "Conduct risk has a long lag: revenue now, consequences many years later",
+    "New product approval is the cheapest control point in the whole chain",
+    "Incentives tied to sales volume are the most common origin of conduct risk"
+  ],
+  "summary": {
+    "keyIdea": "Conduct risk arises in the gap between what is lawful and what is fair, and its long lag means short-term business metrics cannot detect it",
+    "commonMistake": "Treating compliance with today's rules as sufficient, when the standard supervisors apply later may be considerably stricter",
+    "action": "For every product, ask: if the customer fully understood every term, would they still buy it"
+  },
+  "application": {
+    "title": "Protecting yourself as a customer",
+    "message": "When you are offered a financial product, ask the seller directly: is your commission different across products, and in what way is this one suitable for me?",
+    "secondary": "The answer, and the reaction to being asked, usually tells you more than the product literature does."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "At many global banks, the largest operational risk losses of the past decade came not from hackers or rogue traders but from fines for the way the firm treated its own customers."
+    },
+    { "type": "heading", "text": "Three neighbouring concepts that are not the same" },
+    {
+      "type": "list",
+      "items": [
+        "Legal risk: exposure arising from disputes, loose contracts and litigation",
+        "Compliance risk: breaching the rules in force, usually found through inspection",
+        "Conduct risk: treating customers unfairly, which can happen even when every rule has been followed"
+      ]
+    },
+    { "type": "heading", "text": "Why the lag is the biggest problem" },
+    {
+      "type": "paragraph",
+      "text": "Revenue from a product sold to the wrong customers is booked in the current period, while the complaints, the review and the fine arrive years afterwards. In between, every business metric looks healthy and the problematic sales model tends to be rolled out across the whole network because it appears so effective."
+    },
+    {
+      "type": "callout",
+      "label": "The cheapest control point is at the design stage",
+      "text": "The most effective control on conduct risk is not at the point of sale but in the new product approval process: what need does this product meet, for which group of customers, and can a front-line employee explain it in five minutes."
+    },
+    { "type": "heading", "text": "Why the lag makes conduct risk harder to stop than any other kind" },
+    {
+      "type": "paragraph",
+      "text": "The mis-selling of payment protection insurance in the UK is the clearest illustration of the shape this risk takes. The product was sold widely from the 1990s until around 2010, largely to people who either did not need it or could not have claimed under the terms of the policy itself. There was no cyber attack and no rogue trader - only sales commission and a product unsuited to its buyers. The industry's eventual redress bill came to around £38bn, paid out over close to a decade from 2011."
+    },
+    {
+      "type": "callout",
+      "label": "Ten years between the revenue and the cost",
+      "text": "The sellers had taken their bonuses, been promoted, and in many cases retired or moved on long before the bill arrived. The management that paid was not the management that created the problem. No measurement system built around the financial year catches that, and it is exactly why conduct risk has to be stopped through product design and pay structure rather than through loss reporting - loss reporting always arrives after it is too late to matter."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The questions at product approval",
+        "text": "What need does this meet, and whose; which customers should NOT buy it; if it is sold to the wrong people, how much do they lose; and is the seller paid on volume or on suitability. All four are close to free at this point."
+      },
+      "right": {
+        "label": "The questions at post-sale review",
+        "text": "How many contracts were sold to unsuitable customers, over how many years, and what does the redress come to. The same subject matter, several orders of magnitude more expensive - and by this point the damage to trust has already been done."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "People optimise for what is measured and rewarded - so the pay structure is itself a risk control.",
+        "This is the final lesson of the extended Operational Resilience section."
+      ]
+    }
+  ]
+}

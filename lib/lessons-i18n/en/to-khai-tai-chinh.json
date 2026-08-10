@@ -12,9 +12,17 @@
   ],
   "explanation": "A personal net worth statement is a snapshot of your entire financial situation at a point in time, calculated as: Net worth = Total assets - Total debts. For Mai: total assets = 150 (cash) + 200 (savings) + 100 (stocks) = 450 million; total debt = 300 million (car loan); actual net worth = 450 - 300 = 150 million VND. Looking only at the bank balance risks misjudging the situation - the 150-million balance in the account doesn't reflect the 300-million debt hanging over it. A financial statement gives an honest, complete view, and is a mandatory starting point before drawing up any financial plan.",
   "diagram": [
-    { "label": "Total assets", "arrow": true },
-    { "label": "Minus total debt", "arrow": true },
-    { "label": "= Personal net worth" }
+    {
+      "label": "Total assets",
+      "arrow": true
+    },
+    {
+      "label": "Minus total debt",
+      "arrow": true
+    },
+    {
+      "label": "= Personal net worth"
+    }
   ],
   "realWorldExample": {
     "company": "Building a personal balance sheet in practice",
@@ -29,7 +37,6 @@
         "Total assets minus total debts (Assets - Liabilities)",
         "The balances of every bank account added together"
       ],
-      "correct": 2,
       "explanation": "Net worth is the figure that most accurately reflects a person's true 'financial value', by taking everything they own and subtracting everything they owe."
     },
     {
@@ -40,7 +47,6 @@
         "Because the bank balance already includes real estate value",
         "Because the balance doesn't reflect other debts and other assets"
       ],
-      "correct": 3,
       "explanation": "A complete financial picture needs to account for ALL assets and ALL debts, not just one single account - this is why a personal financial statement matters more than just checking one account's balance."
     },
     {
@@ -51,7 +57,6 @@
         "A list of profitable investments only, excluding losing ones",
         "A monthly income/expense report submitted to the tax authority at year-end"
       ],
-      "correct": 0,
       "explanation": "This is your own balance sheet: a snapshot at one point in time. Unlike an income/expense statement - which describes a period of time - it answers the question 'where do I stand'."
     },
     {
@@ -62,7 +67,6 @@
         "Just record the 1.5 billion debt, since a home you live in isn't an investment",
         "Record nothing at all, since the house hasn't been sold so it has no real value yet"
       ],
-      "correct": 1,
       "explanation": "Recording both sides is what shows the real picture. Someone who only records the home's value and forgets the loan will think they're exactly 1.5 billion richer than they actually are - the most common mistake in self-assessing finances."
     },
     {
@@ -73,7 +77,6 @@
         "Once a year, or after every major event like changing jobs or buying a home",
         "Only when a bank requires it during a loan application review"
       ],
-      "correct": 2,
       "explanation": "What's worth tracking isn't the absolute number but the trend across years: is net worth rising, and is it rising because of saving or because of the market. Once a year is enough to see that trend."
     },
     {
@@ -84,7 +87,6 @@
         "Because consumption assets aren't counted toward personal net worth",
         "Because only the first group can support you once you no longer have income from work"
       ],
-      "correct": 3,
       "explanation": "Someone with 5 billion in net worth but with all of it tied up in the home they live in and the car they drive has nothing to live on once they stop working. High net worth doesn't equal financial freedom."
     }
   ],
@@ -102,7 +104,6 @@
       "400 million VND, calculated as the sum of all assets without subtracting any current debt at all",
       "330 million VND, calculated as the sum of all current debts without adding any asset at all"
     ],
-    "correct": 0,
     "explanation": "Net worth = Total assets (400 million) - Total debt (330 million) = 70 million VND - a figure far lower than the feeling of being 'rich' from looking only at the 200-million bank balance."
   },
   "summary": {
@@ -115,7 +116,6 @@
     "message": "Open your bank/brokerage app, add up the balances of every account and asset, subtract your total current debt - that's your real net worth today.",
     "secondary": "It doesn't need to be perfectly precise, just honest with yourself."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

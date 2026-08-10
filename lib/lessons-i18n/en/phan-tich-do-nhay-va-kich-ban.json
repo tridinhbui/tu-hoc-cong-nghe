@@ -1,0 +1,148 @@
+{
+  "slug": "phan-tich-do-nhay-va-kich-ban",
+  "title": "Financial Modelling, Lesson 7: Sensitivity and scenario analysis",
+  "subtitle": "From a single number to a range that actually means something",
+  "duration": "8 min",
+  "whyItMatters": "A model that produces exactly one number is always wrong. The real value of a model is showing how the result moves when the assumptions move - and which assumption is most worth arguing about.",
+  "openingQuestion": "What is the core difference between sensitivity analysis and scenario analysis?",
+  "openingOptions": [
+    "There is no real difference, they are two names for one thing",
+    "Sensitivity moves one variable; a scenario moves several",
+    "Sensitivity is for revenue, scenarios are for costs",
+    "Scenarios only apply to a DCF model"
+  ],
+  "explanation": "Sensitivity answers 'if WACC rises by 1%, how much does the value change' - isolating one variable at a time. A scenario answers 'what happens in a recession' - where revenue falls, margins compress and interest rates rise all at once, because those things are related to one another. Scenarios reflect reality better; sensitivity tells you which variable matters most.",
+  "diagram": [
+    { "label": "The base case model" },
+    { "label": "Sensitivity: move 1-2 variables" },
+    { "label": "Scenario: move many variables consistently" },
+    { "label": "A range of values to decide on" }
+  ],
+  "realWorldExample": {
+    "company": "The sensitivity table in a valuation report",
+    "description": "Almost every broker valuation report carries a two-way table: WACC along one axis, long-term growth along the other, and the target price in the cells where they meet. It lets the reader judge for themselves how sensitive the result is to the two hardest assumptions in the model, instead of having to take a single number on trust."
+  },
+  "quiz": [
+    {
+      "question": "What is a two-way sensitivity table mainly for?",
+      "options": [
+        "Checking that every formula in the model has been built correctly",
+        "Showing how the result moves as two key assumptions vary",
+        "Presenting the final result as a table so it is easier to read",
+        "Finding the combination of assumptions that gives the highest value"
+      ],
+      "explanation": "A sensitivity table shifts the message from 'the value is X' to 'the value sits in this range depending on the assumptions', which is far more honest. It is not a formula audit - that is a separate discipline - and it is certainly not a device for hunting the combination that flatters the answer. Presentation is a side effect, not the purpose."
+    },
+    {
+      "question": "What does a good set of scenarios usually contain?",
+      "options": [
+        "Three different valuation methods run alongside one another",
+        "Three target prices matching three different valuation multiples",
+        "A base case, an upside and a downside, each with its own story",
+        "Three forecast horizons: one year, three years and five years"
+      ],
+      "explanation": "Three scenarios is the common convention. What matters is not the count but that each scenario is internally consistent - the variables move in the same direction as the narrative behind it. Running three methods or three multiples gives you a valuation cross-check, which is useful but answers a different question, and three horizons vary the period rather than the state of the world."
+    },
+    {
+      "question": "Why should a recession scenario not simply cut revenue and leave everything else alone?",
+      "options": [
+        "Because revenue and profit margin are always inversely related to one another",
+        "Because the model will throw an error if only one input is changed at a time",
+        "Because the standards require every assumption to be adjusted simultaneously",
+        "Because a recession usually drags the profit margin down at the very same time"
+      ],
+      "explanation": "A scenario only means something when it hangs together internally. Cutting revenue while holding margin and DSO unchanged describes a situation that does not occur in practice: fixed costs do not fall in proportion, so the margin compresses, and customers under pressure pay later. There is no accounting standard governing this, no inverse law linking revenue to margin, and a model that only tolerates simultaneous changes would be a broken model."
+    },
+    {
+      "question": "If a sensitivity table shows values ranging from 80bn to 400bn, what does that tell you?",
+      "options": [
+        "The result depends too heavily on the assumptions and needs narrowing",
+        "The model has been built correctly, since it covers a wide set of outcomes",
+        "You should pick the mid-point of the range as the official value",
+        "The sensitivity table should be dropped, since it does not aid the decision"
+      ],
+      "explanation": "A wide range is a useful warning signal: it points precisely at where more research effort is worth spending, instead of pretending some particular number is trustworthy. Coverage is not the same as correctness, taking the mid-point restores the very false precision the table was built to expose, and dropping the table hides the problem rather than solving it."
+    },
+    {
+      "question": "Why pick variables for a sensitivity table by how much they matter rather than by how uncertain they are?",
+      "options": [
+        "Because a high-impact variable is usually also the easiest one to estimate precisely",
+        "Because a variable that is very uncertain but low-impact changes no conclusion",
+        "Because a sensitivity table can only display two variables at any one time",
+        "Because the degree of uncertainty in an assumption cannot actually be measured"
+      ],
+      "explanation": "A sensitivity table exists to show where the conclusion could flip. The tax rate may well be uncertain, but moving it a couple of points changes nothing; WACC and long-term growth are the opposite - and they are the two that almost always have to be on the axes. The two-axis limit is a constraint on the format rather than the reason for the selection rule, and uncertainty is perfectly measurable."
+    }
+  ],
+  "keyTakeaways": [
+    "Sensitivity isolates 1-2 variables; a scenario moves several together along one consistent story",
+    "The two-way table (WACC × g) is the convention in valuation reports",
+    "A scenario has to be internally consistent - you cannot cut revenue and hold the margin",
+    "A very wide range is a signal that more data is needed, not a reason to take the average"
+  ],
+  "practicePrompt": {
+    "question": "You are building a downside scenario for a retailer. Which set of assumptions is the most internally consistent?",
+    "options": [
+      "Revenue −20%, margin unchanged, DSO unchanged, WACC unchanged",
+      "Revenue −20%, margin lower, DSO longer, WACC higher",
+      "Revenue −20%, margin higher on cost cuts, everything else better",
+      "Only the terminal value cut, the 5-year forecast left alone"
+    ],
+    "explanation": "A realistic downside has the variables deteriorating together: revenue falls while fixed costs do not fall in proportion, so the margin compresses; customers under pressure pay later, so DSO lengthens; perceived risk rises, so investors demand a higher return and WACC goes up. The first option ignores all of these links and therefore describes a situation that does not happen."
+  },
+  "summary": {
+    "keyIdea": "A good model produces a range with conditions attached, not a single number",
+    "commonMistake": "Building a scenario by changing one variable, which creates an economically inconsistent situation.",
+    "action": "Add a two-way sensitivity table to the most recent model you built."
+  },
+  "application": {
+    "title": "Find the most sensitive variable",
+    "message": "Move each key assumption by ±10% in turn and record how much the result changes. Whichever variable moves the result most is the one deserving most of your research time.",
+    "secondary": "It is usually long-term growth, WACC and the profit margin - not the small details."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A model that produces exactly one number always creates a false sense of confidence. Its real value lies in showing what the result depends on, and how sensitive it is to each of those things."
+    },
+    { "type": "heading", "text": "Two tools, two different questions" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Sensitivity analysis",
+        "text": "'If WACC rises by one percentage point, how much does the value change?' Isolate each variable in turn to find which one matters most."
+      },
+      "right": {
+        "label": "Scenario analysis",
+        "text": "'What happens if there is a recession?' Move several variables at once along one consistent economic story."
+      }
+    },
+    { "type": "heading", "text": "The principle of internal consistency" },
+    {
+      "type": "paragraph",
+      "text": "The most common mistake in scenario building is changing only one variable. In reality the variables are linked: when revenue falls sharply, fixed costs do not fall in proportion, so the margin compresses; customers under strain pay later; perceived risk rises, so the cost of capital rises. A scenario is only credible when it reflects those links."
+    },
+    {
+      "type": "callout",
+      "label": "A wide range is information, not failure",
+      "text": "If the sensitivity table produces a very wide range of values, that is not a sign the model is poor - it is a sign the problem is genuinely uncertain. The right response is to invest research effort in the most sensitive variables, not to take the average and pretend to certainty."
+    },
+    { "type": "heading", "text": "Which two variables belong on the table" },
+    {
+      "type": "paragraph",
+      "text": "A two-way sensitivity table has only two axes, so the real question is which variables to pick. The method is to run a first pass: change each assumption in turn by ±10%, record how much the valuation moves, and rank by the size of the swing - that ranking chart is called a tornado because the longest bars sit at the top. The top two variables become the axes. In a DCF the answer is almost always the same: WACC and the long-term growth rate, because both sit in the denominator of the terminal value, which is 70-80% of the total. Putting margin or year-2 revenue on an axis wastes the table."
+    },
+    {
+      "type": "callout",
+      "label": "A wide range is not the model's fault",
+      "text": "WACC ±1% and g ±0.5% can produce a valuation range that doubles from bottom to top. The wrong response is to narrow the bands so the report looks tidier. The right response is to say it plainly: this business's valuation is that sensitive to two assumptions nobody knows for certain, so the mid-point is no more trustworthy than the rest of the range. An honest range can still be used to make a decision; a number pretending to precision cannot."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Presenting a range with its conditions attached is far more credible than a number with no context.",
+        "Next lesson: the LBO model - when leverage moves to the centre of the picture."
+      ]
+    }
+  ]
+}

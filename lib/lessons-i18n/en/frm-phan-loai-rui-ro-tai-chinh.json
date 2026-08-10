@@ -1,0 +1,143 @@
+{
+  "slug": "frm-phan-loai-rui-ro-tai-chinh",
+  "title": "FRM Foundations, Lesson 4: Classifying financial risk - the map before the measurement",
+  "subtitle": "Market, credit, operational, liquidity, strategic, reputational - and why the boundaries between them always leak",
+  "duration": "9 min",
+  "whyItMatters": "Every measurement tool in FRM is tied to a specific risk type - VaR for market risk, PD/LGD for credit risk, LDA for operational risk. Misclassifying at the outset means picking the wrong instrument, and the final number, however correctly computed, answers the wrong question.",
+  "openingQuestion": "A bank takes a large loss because a trader breached limits and then hid the position. What kind of risk is this?",
+  "openingOptions": [
+    "Purely market risk, since the loss arose from movements in asset prices",
+    "Operational risk - caused by people and systems",
+    "Credit risk, since the trader has no means of making good the loss caused",
+    "Liquidity risk, since the bank has to sell assets to cover the loss"
+  ],
+  "explanation": "The loss surfaces through market prices, but the root cause is a failure of internal control - limits were not monitored and the position could be concealed. Basel classifies this as operational risk (internal fraud). Classifying by root cause rather than by the channel the loss travels through is the founding principle of the whole framework.",
+  "diagram": [
+    { "label": "A loss appears" },
+    { "label": "Ask: what is the ROOT cause, not which channel the loss surfaced through" },
+    { "label": "Assign the risk type → pick the matching measurement tool" },
+    { "label": "Record the channels through which it spreads into other risk types" }
+  ],
+  "realWorldExample": {
+    "company": "Rogue trading losses in the history of banking",
+    "description": "A series of large losses across global banking share the same structure: the loss is recorded on the trading book, so at first glance it looks like market risk, but the subsequent investigation always identifies the same root cause - the control function performed no independent reconciliation, limits were not enforced, and the trader also handled trade confirmation. This is why Basel carves internal fraud out as its own operational risk event category."
+  },
+  "quiz": [
+    {
+      "question": "Why is liquidity risk often described as a secondary or amplifying risk?",
+      "options": [
+        "Because its losses are always smaller than market risk losses",
+        "Because it is usually the consequence of another risk type",
+        "Because it only happens at institutions of a very small size",
+        "Because Basel requires no capital charge for this risk type"
+      ],
+      "explanation": "A credit shock makes counterparties suspicious, short-term funding is withdrawn, assets have to be sold at poor prices - and the initial loss multiplies through the liquidity channel. Liquidity is rarely the first cause but it is often what turns an incident into a collapse. The size claim runs the wrong way: the largest institutions are the most funding-dependent. And liquidity is very much a supervisory concern, with the LCR and NSFR sitting alongside the capital ratios."
+      },
+    {
+      "question": "How does strategic risk differ from operational risk?",
+      "options": [
+        "Strategic risk is always measurable with a quantitative model, operational risk is not",
+        "Strategic risk applies only to non-financial firms, operational risk only to banks",
+        "Strategic risk comes from a wrong business decision, operational risk from failed execution",
+        "Strategic risk arises only at board level, so it needs no ongoing monitoring"
+      ],
+      "explanation": "Choosing the wrong market to enter is strategic risk - the decision was wrong from the start. Entering the right market and then having the settlement system fail is operational risk - the intent was right, the execution broke. Both are hard to quantify, but the remedies are entirely different. Of the two, operational risk is the one with an established quantitative apparatus, so the claim that strategic risk is the measurable one is backwards, and both apply to any firm rather than to one industry."
+    },
+    {
+      "question": "Why does a risk classification framework need rules for cases that sit between two types?",
+      "options": [
+        "Because risk classification serves reporting purposes and nothing else",
+        "Because the rules force events into two or more classes",
+        "Because every risk type carries the same capital charge",
+        "Because double counting and gaps both distort total capital"
+      ],
+      "explanation": "Blurred boundaries are routine: a credit loss caused by a falsified underwriting file is both credit and fraud. Without a clear rule the event is either counted twice or falls into the gap - and nobody steps forward to own it. Classification is not a reporting exercise; it decides which tool measures the exposure and which function fixes it. Nor do the risk types carry equal charges, which is exactly why placing an event in the wrong one moves the capital number."
+    },
+    {
+      "question": "Why should a risk classification framework sort by root cause rather than by the channel the loss surfaces through?",
+      "options": [
+        "Because the remedy attaches to the cause, not to where the loss surfaces",
+        "Because Basel standards require every loss to be classified by its cause",
+        "Because a market loss is always harder to measure than an operational one",
+        "Because the root cause is usually easier to identify than the channel"
+      ],
+      "explanation": "Barings surfaced as a trading loss, but the cause was a failure of internal control - and the fix was to repair limits and segregation of duties, not to cut market positions. Put an event in the wrong bucket and the money spent on remediation goes to the wrong place too. The root cause is in fact the harder of the two to establish, which is why it takes an investigation, and no rulebook can supply that judgement in advance."
+    },
+    {
+      "question": "How is reputational risk usually handled in a classification framework?",
+      "options": [
+        "A risk type of its own, measured by the volatility of the firm's share price",
+        "A consequence of the other risk types rather than an independent class",
+        "A sub-branch sitting underneath the strategic risk category",
+        "A form of market risk, because it acts through asset prices"
+      ],
+      "explanation": "Reputation rarely fails on its own - it fails because an event in another category has already occurred: fraud, a system outage, or poor crisis handling. It is therefore tracked as an amplifying channel, and the preventive measures sit in the risk types that generate it. Share price volatility measures the market's reaction rather than the risk itself, and treating reputation as a branch of strategy misplaces it: a strategic decision can damage reputation, but so can an operational failure with no strategy involved."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A dealer keys in the wrong order size, the bank has to dump the position intraday and loses 80bn. Which risk type does this loss belong to?",
+    "options": [
+      "Operational risk, because the root cause is an execution error",
+      "Market risk, because the loss surfaces through price movement",
+      "Liquidity risk, because it only became a loss on the forced sale",
+      "Split evenly across all three, since all three contributed"
+    ],
+    "explanation": "The loss TRAVELS THROUGH market prices and is amplified by thin liquidity, but the root cause is a mis-keyed action - without that entry there would have been nothing to dump. Classifying by the channel the loss surfaces through would push it into market risk, and the consequence is that the institution goes off recalibrating its VaR model while the thing that needs fixing is order-entry control. Splitting it evenly across three types sounds fair but destroys the point of classifying at all: this is the step that picks the measurement tool and the place to remediate, so a loss split three ways is three half-measures."
+  },
+  "keyTakeaways": [
+    "Classify by root cause, not by the channel the loss surfaces through",
+    "Liquidity risk is usually the consequence and the amplifier of another risk type",
+    "Strategic risk is a wrong decision, operational risk is broken execution",
+    "The framework needs rules for the boundary zone, to avoid double counting or gaps"
+  ],
+  "summary": {
+    "keyIdea": "Classifying risk is the step that picks the measurement tool, so it has to follow the root cause rather than the channel the loss travels through",
+    "commonMistake": "Assigning a loss to market risk simply because it appeared on the trading book, ignoring the internal control failure behind it",
+    "action": "For every incident, ask two separate questions: where did the loss surface, and what allowed it to happen"
+  },
+  "application": {
+    "title": "Re-read a collapse",
+    "message": "Pick a financial loss you have heard about and classify it yourself: which risk type was the root cause, and which other types did it spread into before it became a crisis?",
+    "secondary": "This is the foundational exercise for the whole remainder of the FRM programme."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Before risk can be measured, it has to be named correctly. The entire FRM toolbox is organised by risk type, so a misclassification at the first step drags a wrong model choice through every step after it."
+    },
+    { "type": "heading", "text": "The six main groups" },
+    {
+      "type": "list",
+      "items": [
+        "Market risk: adverse moves in prices, interest rates, exchange rates and commodities",
+        "Credit risk: a counterparty fails to meet its payment obligation",
+        "Operational risk: people, processes, systems, and external events",
+        "Liquidity risk: being unable to raise cash, or to sell assets at a fair price",
+        "Strategic risk: a business decision pointed in the wrong direction from the start",
+        "Reputational risk: losing the confidence of customers, counterparties and regulators"
+      ]
+    },
+    { "type": "heading", "text": "The principle: follow the root cause" },
+    {
+      "type": "paragraph",
+      "text": "The same loss can surface through several channels. A derivatives position taken past its limit, then hidden, then heavily loss-making will sit on the trading book, but assigning it to market risk leads to the wrong conclusion: tightening the VaR model when the real problem is that the control function performed no independent reconciliation."
+    },
+    {
+      "type": "callout",
+      "label": "Why the boundary zone matters",
+      "text": "Basel requires clear rules for events sitting between two types - a credit loss arising because the underwriting file was falsified, for instance. Without a rule, the event is either capitalised twice or falls into the gap between two functions, and in practice nobody takes responsibility for managing it."
+    },
+    { "type": "heading", "text": "Risk spreads between the groups" },
+    {
+      "type": "paragraph",
+      "text": "The groups are not independent. A credit shock makes counterparties suspicious, funding is pulled, assets are dumped - credit risk turns into liquidity risk and then into market risk. This is why an ERM framework puts all of the groups under one roof instead of letting each function measure its own piece."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The classification map is not an administrative formality - it decides which tool you pick up.",
+        "Next lesson: once you know which risk types exist, the institution decides how much of them is enough."
+      ]
+    }
+  ]
+}

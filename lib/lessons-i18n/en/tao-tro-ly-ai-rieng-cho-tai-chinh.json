@@ -1,0 +1,196 @@
+{
+  "slug": "tao-tro-ly-ai-rieng-cho-tai-chinh",
+  "title": "AI in Finance, Lesson 9: Building your own AI assistant for finance",
+  "subtitle": "Set the ground rules so the AI answers the way you want and stops inventing numbers.",
+  "duration": "16 min",
+  "whyItMatters": "When you do the same kind of work over and over, pasting the constraints in every time is slow and easy to forget - and the time you forget is the time the output is wrong.",
+  "openingQuestion": "What does a custom AI assistant need most?",
+  "openingOptions": [
+    "Clear rules: which sources, what to do, what never to invent",
+    "A really good name",
+    "The longer and more detailed the answer, the better it is",
+    "No documents at all"
+  ],
+  "explanation": "A custom AI assistant is not a cleverer model - it is the same tool you already use, with three things loaded into it in advance: a document base you trust, a fixed set of working rules, and a standard answer format. The real benefit is consistency: you no longer rewrite the source constraint on every question, and every answer comes back in the same shape so gaps are easy to spot. The single most important test of a good assistant is whether it dares to answer 'Not found'.",
+  "diagram": [
+    {
+      "label": "A clean document base (known source, period and units)"
+    },
+    {
+      "label": "Working rules: sources only · cite the page · say so when data is missing"
+    },
+    {
+      "label": "A fixed answer format"
+    },
+    {
+      "label": "Test it with a question that has data and one that does not"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The trap test",
+    "description": "Checking whether an AI assistant is trustworthy is simple and anyone can do it. Ask two questions: one whose answer you know for certain sits in the documents you loaded, and one about information you know for certain is not there - a metric from a year whose report you never uploaded, say. If on the second question it still produces a plausible-sounding number instead of saying 'Not found in the documents', then none of its other answers can be trusted either, including the ones that happen to be right. Re-run this test every time you change the rules or add documents."
+  },
+  "quiz": [
+    {
+      "question": "What does a document base mean?",
+      "options": [
+        "A set of saved prompt templates to reuse later",
+        "The document set the AI assistant is built on",
+        "A list of reputable financial data sources online",
+        "The history of your past conversations with the AI"
+      ],
+      "explanation": "The document base is the body of material the assistant is grounded in and allowed to draw from. Saved prompts are instructions rather than knowledge, a bookmark list of external sources is not loaded into the assistant at all, and the chat history records what was asked rather than what the assistant is permitted to cite as evidence."
+    },
+    {
+      "question": "Why should you ask the assistant a question the data cannot answer?",
+      "options": [
+        "To measure how quickly the assistant responds",
+        "To let the assistant learn a topic missing from the base",
+        "To see whether it says not found or invents an answer",
+        "To expand the document base with the new question"
+      ],
+      "explanation": "A financial assistant has to be capable of refusing to invent data. Response speed says nothing about reliability, asking a question does not teach the assistant anything or add material to the base, and only its behaviour when the answer is genuinely absent tells you whether the rules are working."
+    },
+    {
+      "question": "What is the best test of whether an AI assistant can be trusted?",
+      "options": [
+        "Ask the single hardest question in all of finance",
+        "Ask the same question several times and see if it shifts",
+        "Ask something you know the answer to and compare",
+        "Ask something certainly absent from the document base"
+      ],
+      "explanation": "An assistant answering correctly where the data exists proves nothing, because that is the easy half. The distinguishing behaviour is whether it refuses when the data is not there. Hard questions and repeated questions test fluency and stability rather than grounding, and a question you can check yourself only confirms what you already knew."
+    },
+    {
+      "question": "When the assistant keeps making the same mistake, what is the best fix?",
+      "options": [
+        "Add one rule that blocks exactly that mistake",
+        "Switch to a different and more powerful AI model",
+        "Ask again repeatedly until it gets it right",
+        "Delete the whole document base and reload it"
+      ],
+      "explanation": "The rule set is where your experience accumulates. Correcting by hand means the time you forget is the time it goes wrong; putting it in the rules applies the constraint automatically to every question afterwards. A bigger model repeats the same mistake without a rule against it, and the document base is rarely what was at fault."
+    },
+    {
+      "question": "Why write into the assistant's rules that it must answer 'not found' when data is missing?",
+      "options": [
+        "Because that answer helps it remember which documents are missing",
+        "Because the model's default is to answer anyway, even when it must guess",
+        "Because without this rule it would refuse every hard question asked",
+        "Because it is a precondition for reaching the document base"
+      ],
+      "explanation": "Silence in the right place is worth more than a plausible answer with no source behind it. The best test for a freshly built assistant is a question you know for certain the document base cannot answer - if it answers anyway, the rules are not working."
+    }
+  ],
+  "practicePrompt": {
+    "question": "What does a custom AI assistant need most?",
+    "options": [
+      "Clear rules: which sources, what to do, what never to invent",
+      "A really good name",
+      "The longer the answer, the better",
+      "No documents at all"
+    ],
+    "explanation": "A custom assistant needs clear instructions and a clean document base."
+  },
+  "keyTakeaways": [
+    "A custom assistant has three parts: a clean document base, a clear rule set, and a fixed answer format.",
+    "The main value is not being smarter but being more consistent - the same constraints applied to every question.",
+    "The most important rules are: use only the loaded documents, always cite the source, and write 'Not found' where the data is missing.",
+    "Re-run the trap test every time you change the rules or add documents."
+  ],
+  "summary": {
+    "keyIdea": "A custom AI assistant is useful when it has clear rules, clear sources and a stable answer format.",
+    "commonMistake": "Uploading plenty of documents without writing any system instructions.",
+    "action": "Write 10 lines of rules for your assistant: scope, sources, prohibitions, format, and how to report missing data."
+  },
+  "application": {
+    "title": "Practise it now",
+    "message": "Write 10 lines of rules for your assistant: scope, sources, prohibitions, format, and how to report missing data.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A custom AI assistant is not magic. It is a chatbot you have taught how to work."
+    },
+    {
+      "type": "heading",
+      "text": "A custom assistant has 3 parts"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A clean document base",
+        "Clear working rules",
+        "A fixed answer format"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Terminology",
+      "text": "Custom AI assistant: an assistant you configure yourself. Knowledge base: the store of documents it may draw on. System instructions: the assistant's working rules."
+    },
+    {
+      "type": "heading",
+      "text": "A sample rule set"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use only the data I provide. Where data is missing, write 'Not found'. Every conclusion must carry its evidence. Always state the risks before any recommendation. Never invent figures."
+    },
+    {
+      "type": "heading",
+      "text": "How to test the assistant"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask one question the documents can answer and one they cannot. If the assistant invents something on the second, the rules need fixing."
+    },
+    {
+      "type": "heading",
+      "text": "Ten rules worth having"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Use only the documents in the loaded base; do not draw on outside knowledge.",
+        "Every figure must carry the document name, page number, units and reporting period.",
+        "Where the data is absent, write 'Not found in the documents' and stop - do not estimate.",
+        "Distinguish clearly between facts quoted from the documents and your own inference; label inference as inference.",
+        "Never give a buy, sell or hold recommendation under any circumstances.",
+        "Where two documents contradict each other, present both and point out the contradiction rather than picking one.",
+        "Always state whether the figures are consolidated or parent-company only.",
+        "Answer in Vietnamese, prefer tables, 300 words maximum unless asked for more.",
+        "End each answer with a 'Missing data' section where one applies.",
+        "If the question falls outside the scope of the documents, say so plainly rather than answering partially."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "On the document base",
+      "text": "A clean base matters more than a large one. An assistant loaded with exactly three reports you have checked carefully is far more reliable than one holding thirty files mixing drafts, superseded versions and material of unclear origin. Name your files with the period and the report type, and remove duplicates before loading."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "An untrustworthy assistant",
+        "text": "Ask for a metric from a year whose report was never loaded and it still produces a number with a fluent explanation. You have no way to tell which sentence is quoted and which is guessed."
+      },
+      "right": {
+        "label": "A trustworthy assistant",
+        "text": "It replies: 'No 2022 data found in the loaded documents. The base currently holds the 2023 and 2024 reports.' It refuses correctly and tells you what to load next."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Finally, do not forget that your rule set is itself a document that needs maintaining. Every time you catch the assistant making a repeated mistake, add one rule that blocks exactly that mistake instead of correcting it by hand on every question. After a few rounds the rule set will mirror the errors you personally tend to hit - and that makes it an asset of your own."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A good custom assistant is one that knows how to say 'not found'.",
+        "Clean sources and clear rules matter more than the name."
+      ]
+    }
+  ]
+}

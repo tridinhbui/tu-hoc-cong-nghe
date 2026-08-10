@@ -12,12 +12,22 @@
   ],
   "explanation": "Professional valuation practice always combines MULTIPLE methods (P/E, EV/EBITDA, DCF...) for a complete picture, called a 'valuation football field'. If the methods produce similar results, confidence rises. If the gap is large (as in this case: 60,000 VND vs 45,000 VND), it's worth investigating why: is the whole industry being priced above its intrinsic value by the market (an inflated P/E), or are the DCF assumptions too conservative (growth and WACC not properly reflecting real prospects)?",
   "diagram": [
-    { "label": "Value using P/E", "arrow": true },
-    { "label": "Value using DCF", "arrow": true },
-    { "label": "Compare the two results", "arrow": true },
-    { "label": "Conclude with a reasonable value range" }
+    {
+      "label": "Value using P/E",
+      "arrow": true
+    },
+    {
+      "label": "Value using DCF",
+      "arrow": true
+    },
+    {
+      "label": "Compare the two results",
+      "arrow": true
+    },
+    {
+      "label": "Conclude with a reasonable value range"
+    }
   ],
-  "interactiveType": "multiples",
   "realWorldExample": {
     "company": "The valuation football field",
     "description": "When advising on an IPO or M&A deal, investment banks always present a 'football field' chart - a range of values from different valuation methods (Comps, Precedent Transaction, DCF) stacked on top of each other, helping the client see the full picture instead of a single number."
@@ -104,12 +114,18 @@
       "type": "lead",
       "text": "No professional analyst relies on just one valuation method. This mini case illustrates how to combine P/E (relative valuation) and DCF (absolute valuation) to make a well-grounded investment decision, instead of clinging to a single number."
     },
-    { "type": "heading", "text": "When two methods give two different results" },
+    {
+      "type": "heading",
+      "text": "When two methods give two different results"
+    },
     {
       "type": "paragraph",
       "text": "Suppose a P/E valuation gives 60,000 VND/share, while DCF gives 45,000 VND/share - a significant gap. When a market-based method (P/E, relative) is significantly higher than an intrinsic-based method (DCF, absolute), this is usually a sign that the whole industry is being priced by the market above its true intrinsic value - due to excessive optimism or speculative capital flowing into the sector. This is exactly the kind of warning signal a value investor should stay alert to."
     },
-    { "type": "heading", "text": "The valuation football field" },
+    {
+      "type": "heading",
+      "text": "The valuation football field"
+    },
     {
       "type": "paragraph",
       "text": "Professional valuation practice always combines MULTIPLE methods (P/E, EV/EBITDA, DCF, Comps, Precedent Transaction...) for a complete picture, called a 'valuation football field'. When advising on an IPO or M&A deal, investment banks always present a football field chart - a range of values from multiple methods stacked on top of each other, helping the client see the full picture instead of a single number. The most mature approach in this case isn't choosing the higher number or taking a simple average, but presenting both results as a reasonable value range (45,000-60,000 VND), clearly explaining the assumptions behind each method, and making a recommendation based on where the current market price sits within that range."

@@ -11,7 +11,6 @@
     "It is only a problem if the simulated period produced the higher result",
     "The only problem is not stating whether fees have been deducted"
   ],
-  "correctOption": 1,
   "explanation": "A single figure spanning both periods sends the message that the strategy has been running continuously for six years, when in the first four not a single dong was actually invested and the parameters were chosen after the results were known. Standard III(D) requires fair, accurate and complete presentation - and all three are breached here: not fair, because simulation and live results are not the same kind of evidence; not complete, because the reader cannot tell which is which; and not accurate in what it implies, however correct each individual figure may be.",
   "summary": {
     "keyIdea": "Merging simulated results with live results breaches all three of III(D)'s requirements at once - complete, fair, and not misleading.",
@@ -64,10 +63,21 @@
     }
   ],
   "diagram": [
-    { "label": "III(D): merging simulation with live results is misrepresentation", "arrow": true },
-    { "label": "VII(B): the team's designations must describe their actual status", "arrow": true },
-    { "label": "V(B): the benchmark must be the same asset class", "arrow": true },
-    { "label": "I(C): every claim about capability must be verifiable" }
+    {
+      "label": "III(D): merging simulation with live results is misrepresentation",
+      "arrow": true
+    },
+    {
+      "label": "VII(B): the team's designations must describe their actual status",
+      "arrow": true
+    },
+    {
+      "label": "V(B): the benchmark must be the same asset class",
+      "arrow": true
+    },
+    {
+      "label": "I(C): every claim about capability must be verifiable"
+    }
   ],
   "realWorldExample": {
     "company": "The benchmark is the easiest place to mislead and the hardest to catch",

@@ -1,0 +1,145 @@
+{
+  "slug": "quyet-toan-va-thanh-tra-thue",
+  "title": "Standards & Tax, Lesson 8: tax finalisation and tax audits",
+  "subtitle": "What happens when the tax authority re-examines what has already been declared",
+  "duration": "9 min",
+  "whyItMatters": "A tax reassessment is a contingent liability that sits off the balance sheet until it becomes real. For an analyst, knowing the mechanism makes readable a line in the notes that most readers skim past - and it is sometimes larger than a full year of profit.",
+  "openingQuestion": "Why does tax risk not appear in full on the balance sheet?",
+  "openingOptions": [
+    "Because an obligation is only recognised once it is sufficiently certain",
+    "Because the tax authority forbids companies from disclosing audit information",
+    "Because reassessed tax is always charged directly against equity",
+    "Because tax risk applies only to companies that are not listed"
+  ],
+  "explanation": "Accounting standards require a provision to be recognised when an obligation is probable and can be reliably estimated. Tax risk usually meets neither condition until the audit conclusion is issued - so it sits in the notes as a contingent liability rather than as a figure on the balance sheet. This is why a business can look perfectly healthy right up to the day the reassessment is announced.",
+  "diagram": [
+    { "label": "The company files and pays its tax" },
+    { "label": "The tax authority audits within the statutory period" },
+    { "label": "Tax is reassessed if a discrepancy is found" },
+    { "label": "Additional tax, late payment interest and penalties" }
+  ],
+  "realWorldExample": {
+    "company": "The unexpected reassessment",
+    "description": "A company announces the conclusion of a tax audit with additional tax plus late payment interest and penalties running to hundreds of billions, covering financial years that were closed and whose profits were reported long ago. The shares react sharply not only because of the amount but because of the new information: if the filing treatment is rejected for the years examined, then the filing treatment for the years not yet examined is also being called into question. The risk is therefore larger than the figure just announced."
+  },
+  "quiz": [
+    {
+      "question": "What does the statutory tax audit period mean?",
+      "options": [
+        "The window in which the tax authority may still examine and reassess",
+        "The time the company has to finish paying tax after it has filed",
+        "The deadline for the company to appeal against an audit conclusion",
+        "The mandatory cycle within which every company must be audited once"
+      ],
+      "explanation": "Closing the books and publishing the accounts does not mean the tax obligation is settled. Within the statutory period, years already past can be reopened - so tax risk lives far longer than most people assume. The payment deadline, the appeal window and the audit cycle are all real dates in the tax calendar, but each of them starts from a different event: filing, the conclusion notice, and the authority's own risk selection respectively."
+    },
+    {
+      "question": "What does a tax reassessment usually consist of?",
+      "options": [
+        "The shortfall in tax alone, with every other component waived",
+        "The tax shortfall, late payment interest and a penalty for the breach",
+        "The tax shortfall plus the profit that has to be returned to the state",
+        "The tax shortfall doubled, under a deterrence principle set out in tax law"
+      ],
+      "explanation": "The three components together usually come to far more than the original tax shortfall, particularly where the period examined is several years back - because late payment interest accrues daily. That daily accrual is also what makes the timing matter as much as the amount: the same disputed treatment costs far more when it is found five years later than when it is found in the current year. Nothing in the law doubles the tax, and profit is not clawed back as a separate item."
+    },
+    {
+      "question": "Where is a contingent tax liability presented in the financial statements?",
+      "options": [
+        "Under current liabilities on the face of the balance sheet",
+        "In the notes rather than on the face of the balance sheet",
+        "In the financing section of the cash flow statement",
+        "Nowhere, until a formal conclusion has been issued"
+      ],
+      "explanation": "The notes are where a risk that does not yet meet the recognition criteria gets stated. This is also why reading the notes matters as much as reading the primary statements - the largest risk is usually sitting there. It only moves onto the balance sheet once the obligation becomes probable and measurable, and no cash has moved, so the cash flow statement has nothing to show either."
+    },
+    {
+      "question": "Why does an audit conclusion for an old year affect the valuation today?",
+      "options": [
+        "Because shareholders can be required to return the dividends they received in those years",
+        "Because the company has to restate the financial statements of all of the earlier years",
+        "Because the tax authority will suspend the company's operations until it has paid in full",
+        "Because the filing treatment in the unexamined years may also be rejected"
+      ],
+      "explanation": "The market reacts to information, not only to the amount. A tax treatment rejected for 2020 was usually applied identically in the years that followed, so the potential reassessment is far larger than the figure just announced. Dividends already paid are not clawed back from shareholders, operations are not suspended over a disputed assessment, and while the current year's accounts carry the charge, the earlier statements are not routinely restated."
+    },
+    {
+      "question": "A company is reassessed 50bn for three earlier years, and its most recent net profit was 80bn. What is the most sensible reading?",
+      "options": [
+        "Check whether that filing treatment is still being applied this year",
+        "Treat it as a one-off and ignore it when valuing the business",
+        "Conclude the company committed fraud and drop it from the watchlist",
+        "Wait until the company has finished paying before reassessing the situation"
+      ],
+      "explanation": "The important question is not that 50bn has gone but whether the mechanism that produced it has stopped. If the same filing treatment is still in use, this is a recurring cost that has not been recognised, not a one-off event. Waiting for the payment to be made adds no information, and jumping to fraud confuses a disputed technical treatment with deliberate evasion - most reassessments are the former."
+    }
+  ],
+  "keyTakeaways": [
+    "Closing the books does not settle the tax obligation - within the statutory period, earlier years can still be reopened",
+    "A reassessment includes the tax shortfall, late payment interest and penalties, so the total is usually far larger than the original tax",
+    "Tax risk sits in the notes as a contingent liability, not as a line on the balance sheet",
+    "A conclusion for an old year is information about the years not yet examined, so the impact goes far beyond the announced figure"
+  ],
+  "practicePrompt": {
+    "question": "You read the notes and see that the company is under a tax audit with no conclusion yet. How should you handle it in a valuation model?",
+    "options": [
+      "Ignore it, since there is no official figure to put into the model",
+      "Build a scenario with an estimated reassessment and see how far the valuation moves",
+      "Assume a reassessment equal to a full year of profit, to be maximally prudent",
+      "Drop the company from the watchlist until a conclusion has been issued"
+    ],
+    "explanation": "The absence of an official figure does not mean nothing can be estimated. Building a scenario tells you how large a reassessment the investment case can survive - and that is far more useful than either waiting or ignoring it."
+  },
+  "summary": {
+    "keyIdea": "A tax obligation is only truly settled when the statutory audit period expires, not when the books are closed",
+    "commonMistake": "Treating a reassessment as a one-off event without asking whether the mechanism that produced it has stopped",
+    "action": "Find the contingent liabilities note in a listed company's accounts and see whether anything in it concerns tax."
+  },
+  "application": {
+    "title": "Read the notes before you read the numbers",
+    "message": "Is the company under a tax audit? Is there any contingent liability relating to tax? And if there was a reassessment in the past, has the filing treatment that caused it been changed?",
+    "secondary": "Contingent liabilities are usually in the last group of notes, after the detailed schedules."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Filing a return is not the end of a tax obligation but the beginning of a period in which the tax authority still has the right to re-examine it. For an analyst, that period is a zone of risk that shows up in no figure on the balance sheet."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The three layers of an audit conclusion",
+      "subtitle": "The mechanism is durable; the interest rate and the penalty bands change with the regulations of the time",
+      "concepts": [
+        {
+          "def": "The tax the authority considers still owed, after disallowing non-deductible items or reassessing transfer prices."
+        },
+        {
+          "def": "Accrued daily from the original due date, so the further back the period examined, the larger this becomes - sometimes exceeding the tax itself."
+        },
+        {
+          "def": "Applied according to the severity of the breach, from misfiling through to evasion. This is the part that reflects the authority's view of the nature of the failure."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why the announced figure is usually not the whole risk",
+      "text": "An audit normally examines only certain periods. If a treatment is rejected for those periods while the company continues to apply the same treatment afterwards, the reassessment just announced is a sample rather than a total. The right question is always whether the mechanism has stopped, not what the number is."
+    },
+    {
+      "type": "heading",
+      "text": "Why the documentation matters more than the argument"
+    },
+    {
+      "type": "paragraph",
+      "text": "In an audit, most of the argument is not about whether a treatment complies with the law but about whether the company can prove what it did. Contracts, acceptance minutes and payment records through a bank are what turn an expense into a deductible one. This is also why record keeping has to be done at the moment the transaction occurs - reconstructing it a few years later almost always leaves gaps, and the gaps are disallowed."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Tax risk is a contingent liability: invisible on the balance sheet until the day it becomes real.",
+        "Closing the stage: the standards decide how something is recognised, tax law decides how much is payable, and the audit decides whether that stands."
+      ]
+    }
+  ]
+}

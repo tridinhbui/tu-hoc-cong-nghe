@@ -1,0 +1,156 @@
+{
+  "slug": "do-bien-dong-ham-y-va-nu-cuoi-bien-dong",
+  "title": "Derivatives, lesson 4: implied volatility and the volatility smile",
+  "subtitle": "Historical volatility, implied volatility, and why the market does not believe in the normal distribution",
+  "duration": "11 min",
+  "whyItMatters": "If Black-Scholes were exactly right, every option on the same stock with the same expiry would carry the same implied volatility. In practice they do not - and the shape of that discrepancy is how the market tells you what it is afraid of. Reading it is what separates someone who understands derivatives from someone who has memorised the formula.",
+  "openingQuestion": "Why do deep out-of-the-money puts on an equity index usually carry a higher implied volatility than at-the-money options?",
+  "openingOptions": [
+    "Because the exchange charges a higher fee on out-of-the-money options",
+    "Because investors pay extra for insurance against a crash",
+    "Because out-of-the-money options are always more liquid",
+    "Because the risk-free rate affects out-of-the-money options more"
+  ],
+  "explanation": "This phenomenon is called volatility skew, and it became pronounced in equity markets after the 1987 crash. Two causes stack on top of one another: first, real market returns have fatter tails than the normal distribution, meaning extreme falls happen more often than the model predicts; second, there is a permanent one-way demand for insurance from equity holders looking to hedge, which pushes the price of out-of-the-money puts above what the simple model would suggest.",
+  "diagram": [
+    { "label": "Option prices quoted in the market" },
+    { "label": "Invert them through Black-Scholes" },
+    { "label": "Implied volatility at each strike price" },
+    { "label": "Plot it: the volatility smile or skew" }
+  ],
+  "realWorldExample": {
+    "company": "The VIX volatility index",
+    "description": "The VIX is computed from the prices of a basket of options on the S&P 500 index, so it measures the market's own priced expectation of volatility over the next 30 days. It is called the fear gauge because it spikes whenever the market falls sharply. The point worth noting for an analyst: the VIX reflects the price of insurance rather than a neutral forecast, so it usually sits above the volatility that actually turns up afterwards - and that gap is the volatility risk premium."
+  },
+  "quiz": [
+    {
+      "question": "What is the difference between historical volatility and implied volatility?",
+      "options": [
+        "There is no real difference, they are two names for the same quantity",
+        "Historical is published by the exchange, implied is computed by each broker",
+        "Historical comes from past prices; implied is backed out of option prices",
+        "Implied always equals the 30-session moving average of historical volatility"
+      ],
+      "explanation": "One looks backwards, the other looks forwards. The gap between them carries real information: implied sitting well above historical usually means the market is waiting for an event, such as an earnings release or a policy decision. Neither figure is published by the exchange as a fixed number, and implied volatility is not a moving average of anything - it is whatever level makes the pricing formula reproduce the traded price."
+    },
+    {
+      "question": "What is the volatility smile?",
+      "options": [
+        "Implied volatility is identical across every strike price on the chain",
+        "Call option prices rise whenever the underlying market moves higher",
+        "Implied volatility rises steadily as the maturity gets further out",
+        "Implied volatility is higher at both ends, forming a U shape"
+      ],
+      "explanation": "If Black-Scholes described reality accurately, this curve would be flat. That it bends upward at both ends shows the market prices the probability of extreme outcomes above what the assumed normal distribution allows. A flat line across strikes is exactly the prediction the smile contradicts; the pattern across maturities is a separate object, the term structure of volatility."
+    },
+    {
+      "question": "In equity markets, what shape do you usually see?",
+      "options": [
+        "A skew: implied is high at low strikes and falls as strikes rise",
+        "A perfectly symmetric smile either side of the at-the-money strike",
+        "A flat horizontal line across strikes, exactly as Black-Scholes predicts",
+        "Implied volatility peaks at the highest strike price listed on the chain"
+      ],
+      "explanation": "Stocks and equity indices show a clear skew because crash risk is asymmetric: a market falling 20% in a week does happen, whereas rising 20% in a week essentially does not. The demand for insurance also runs in only one direction. The symmetric smile is closer to what foreign exchange markets show, and the flat line is precisely the model prediction that observed prices reject."
+    },
+    {
+      "question": "If implied volatility is running well above the volatility that actually materialises, who gains?",
+      "options": [
+        "The option buyer, who has already paid the premium up front",
+        "The option seller running a delta-hedged position",
+        "Neither side, since the two effects cancel out",
+        "Only the exchange and the brokers, from fees"
+      ],
+      "explanation": "The positive gap between implied and realised volatility is called the volatility risk premium, and it persists stubbornly in historical data. But harvesting it means accepting tail risk - collecting steadily, then losing a great deal in the rare shock. The buyer who paid an inflated premium is on the losing side of that gap, and the two sides do not cancel: one of them is systematically compensated for bearing the risk."
+    },
+    {
+      "question": "Why is the implied volatility curve in equity markets skewed rather than symmetric?",
+      "options": [
+        "Because the pricing model computes low strike prices incorrectly",
+        "Because calls always have deeper liquidity than puts do",
+        "Because investors pay extra to be hedged against deep falls",
+        "Because equities statistically rise more often than fall"
+      ],
+      "explanation": "Demand for portfolio insurance runs one way: almost everyone wants protection when the market collapses, and very few need protection when it rallies. That lopsided demand lifts the price of puts at low strikes, and the implied volatility derived from those prices tilts with it. The model is not miscomputing low strikes - it is being fed prices that reflect a demand imbalance it never assumed."
+    }
+  ],
+  "keyTakeaways": [
+    "Implied volatility is the price of insurance, not a neutral forecast of future volatility",
+    "If Black-Scholes were right, implied volatility across strikes would be flat; in practice it curves or skews",
+    "Equity markets show a clear skew: out-of-the-money puts are relatively expensive because of crash risk and one-way hedging demand",
+    "Implied minus realised is the volatility risk premium - harvestable, but with very large tail risk attached"
+  ],
+  "practicePrompt": {
+    "question": "Ahead of an earnings release, the implied volatility on a stock's options spikes and then collapses right after the news, even though the share price barely moves. Why?",
+    "options": [
+      "A pricing system fault at the exchange that day",
+      "Volatility crush: once the news is out, the uncertainty is gone",
+      "Because the risk-free rate moved during the trading day",
+      "Because theta ate the option's entire value in a single day"
+    ],
+    "explanation": "This is the most common trap for people new to trading options around earnings season: they get the direction right and still lose money, because they bought the option at an inflated implied volatility and that portion of the value evaporates the moment the uncertainty is resolved."
+  },
+  "summary": {
+    "keyIdea": "Implied volatility is the market price of uncertainty, and its shape reveals what the market is afraid of",
+    "commonMistake": "Buying an option right before a major event without checking how far implied volatility has already been bid up",
+    "action": "Before buying any option, compare current implied volatility with its range over the past 12 months."
+  },
+  "application": {
+    "title": "Three questions before buying an option",
+    "message": "Where is implied volatility now relative to its own last 12 months? Is there an event coming up that has inflated it? And if I am right about direction but volatility collapses after the event, am I still in profit?",
+    "secondary": "If the answer to the last one is no, you are not trading direction - you are buying volatility at the top."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Four of the five inputs to Black-Scholes can simply be looked up. The fifth - future volatility - is unknown to everyone. The paradox is that this unobservable variable is precisely what is actually bought and sold in the options market."
+    },
+    {
+      "type": "heading",
+      "text": "Inverting the model"
+    },
+    {
+      "type": "paragraph",
+      "text": "Since the option price is observable and so are the other four inputs, we can solve backwards for the volatility level that makes the formula match the market price. That number is the implied volatility. It is not a statistician's forecast; it is the price that buyer and seller have agreed for uncertainty."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Historical volatility",
+        "text": "Computed from past returns. Objective and verifiable, but always backward-looking and blind to the event just ahead."
+      },
+      "right": {
+        "label": "Implied volatility",
+        "text": "Backed out of current option prices. Forward-looking, and reflects both expectations and the premium hedgers are willing to pay."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Smile and skew: evidence the model is not enough"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the normal-distribution assumption in Black-Scholes held, every option with the same expiry would produce the same implied volatility regardless of strike. Plot the real data and you get a curve. In foreign exchange the curve is often symmetric, like a smile. In stocks and indices it tilts sharply: the lower the strike, the higher the implied volatility."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Fat tails: real markets produce more extreme falls than the normal distribution predicts",
+        "One-way hedging demand: equity holders buy puts as insurance, pushing prices up on that side",
+        "Leverage and correlation: when prices fall, corporate leverage rises and stocks fall together, so real risk genuinely increases"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Reading the market through the skew",
+      "text": "A skew that steepens abruptly signals that the market is buying insurance hard against some specific risk, even while the index is still setting highs. This is one of the few indicators that reflects real anxiety in real money rather than in an opinion survey."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Every argument about the price of an option ultimately reduces to one question: is the volatility the market is charging reasonable?",
+        "End of the stage: you now have the replication principle, the model, the sensitivity measures, and the central variable. What remains is risk management discipline, in the lessons that follow."
+      ]
+    }
+  ]
+}

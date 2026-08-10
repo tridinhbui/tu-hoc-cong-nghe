@@ -53,7 +53,7 @@
         "Margin stays constant across the entire forecast period",
         "Forecast revenue grows faster than the industry average",
         "The balance sheet doesn't balance after changing one assumption",
-        "Free cash flow is negative in the first two years of a project"
+        "Free cash flow is negative in the first two years of the project's life"
       ],
       "explanation": "Assets must always equal liabilities plus equity in every scenario. Being off by even one unit means some line hasn't been linked correctly - and every number downstream, including the valuation result, becomes unusable."
     },

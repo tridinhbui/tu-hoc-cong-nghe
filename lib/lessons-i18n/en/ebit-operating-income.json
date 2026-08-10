@@ -36,7 +36,7 @@
     {
       "question": "What is EBIT?",
       "options": [
-        "Net profit left after subtracting all interest and tax owed for the reporting period",
+        "Net profit left after subtracting all interest and tax for the period",
         "EBIT = Earnings Before Interest & Tax - operating profit before interest and tax",
         "The cash a company generates from operations during the reporting period",
         "The company's total operating cost before calculating tax"
@@ -46,7 +46,7 @@
     {
       "question": "How does EBIT differ from Net Income?",
       "options": [
-        "EBIT is always larger than Net Income because it also includes all financial income",
+        "EBIT is always larger than Net Income because it includes financial income",
         "Net Income is always larger than EBIT because a tax refund is added back",
         "EBIT hasn't subtracted interest and tax yet; Net Income has subtracted both",
         "The two metrics are identical, just different names used across standards"
@@ -67,8 +67,8 @@
       "question": "What is EBIT Margin?",
       "options": [
         "EBIT / Revenue - pure operating efficiency, equal to Operating Margin",
-        "EBIT / Total Assets - the return earned on all assets",
-        "Gross Profit / Revenue - the gross profit left per dong of revenue",
+        "EBIT / Total Assets - the operating return earned across all assets held",
+        "Gross Profit / Revenue - the gross profit left per dong of net revenue",
         "EBIT / Shareholders' Equity - operating profit per dong of paid-in equity"
       ],
       "explanation": "EBIT Margin = EBIT / Revenue. An EBIT Margin of 15% means every 100 of revenue produces 15 of operating profit."
@@ -87,7 +87,7 @@
       "question": "To compare the operations of two companies with different interest expense and tax structures, what should you use?",
       "options": [
         "Net Income, since it's the final figure after every cost has been subtracted",
-        "Revenue, since revenue isn't affected by capital structure",
+        "Revenue, since revenue is not affected by capital structure at all",
         "EBIT or EBITDA - they strip out the effect of interest and tax",
         "Gross Profit, since it sits above both interest and operating expense"
       ],
@@ -96,7 +96,7 @@
     {
       "question": "What is the difference between EBITDA and EBIT?",
       "options": [
-        "EBIT adds D&A back while EBITDA leaves depreciation expense as-is",
+        "EBIT adds D&A back while EBITDA leaves depreciation expense untouched",
         "EBITDA has subtracted tax while EBIT hasn't subtracted tax owed yet",
         "The two metrics are the same, EBITDA is just an American term for it",
         "EBITDA adds D&A back; EBIT still counts depreciation as an expense"
@@ -109,7 +109,7 @@
         "COGS grew faster than revenue, or operating costs increased",
         "An accounting error, since selling more should always raise EBIT",
         "Interest expense rose, since interest is subtracted before reaching EBIT",
-        "The tax rate rose, cutting the company's operating profit"
+        "The tax rate rose, cutting into the company's operating profit"
       ],
       "explanation": "EBIT = Revenue - COGS - OpEx. If it falls while Revenue rises, COGS or OpEx grew too fast."
     },
@@ -126,10 +126,10 @@
     {
       "question": "Which important ratio is EBIT used to calculate?",
       "options": [
-        "Gross Margin = EBIT divided by the company's total net revenue for the current reporting period",
-        "It's only used to forecast revenue for the next period",
+        "Gross Margin = EBIT divided by the company's total net revenue",
+        "It's only used to forecast revenue for the next reporting period",
         "Interest Coverage Ratio = EBIT / Interest Expense - the ability to pay interest",
-        "None - EBIT is only ever presented, never used in a ratio"
+        "None - EBIT is only ever presented, never used inside a ratio"
       ],
       "explanation": "ICR = EBIT / Interest Expense. Banks look at ICR to decide whether to extend a loan."
     },

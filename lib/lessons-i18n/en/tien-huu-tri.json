@@ -12,9 +12,17 @@
   ],
   "explanation": "The '25 times annual spending' rule comes from the idea of withdrawing about 4%/year from a portfolio without running out of money too fast. With spending of 180 million/year, the reference savings target is 180 million x 25 = 4.5 billion VND. This figure does NOT include the BHXH pension, and needs adjusting for inflation since it's estimated in today's terms.",
   "diagram": [
-    { "label": "Annual spending in retirement", "arrow": true },
-    { "label": "x 25 (the 4% safe withdrawal rule)", "arrow": true },
-    { "label": "= Retirement savings target" }
+    {
+      "label": "Annual spending in retirement",
+      "arrow": true
+    },
+    {
+      "label": "x 25 (the 4% safe withdrawal rule)",
+      "arrow": true
+    },
+    {
+      "label": "= Retirement savings target"
+    }
   ],
   "realWorldExample": {
     "company": "Estimating retirement costs for urban workers in Vietnam",
@@ -29,7 +37,6 @@
         "Calculating the maximum amount that can be withdrawn from the fund each month",
         "Calculating the monthly BHXH pension you'll receive"
       ],
-      "correct": 0,
       "explanation": "The 25-times rule comes from the inverse of a 4%/year withdrawal rate (100/4 = 25) - a rate some studies suggest can be sustained for decades, though it should be applied cautiously in Vietnam given different inflation dynamics."
     },
     {
@@ -40,7 +47,6 @@
         "Because the BHXH pension isn't subject to personal income tax",
         "Because the BHXH pension always rises faster than inflation"
       ],
-      "correct": 1,
       "explanation": "If expected annual spending is 180 million and the BHXH pension is estimated to cover 60 million/year, the amount your personal portfolio has to cover is only 120 million/year, so the reference savings target drops to about 120 million x 25 = 3 billion VND instead of 4.5 billion VND."
     },
     {
@@ -51,7 +57,6 @@
         "3.5 billion VND, taking the 140 million difference times 25",
         "It can't be calculated without knowing the person's expected lifespan"
       ],
-      "correct": 2,
       "explanation": "Only the portion of spending the portfolio has to carry gets multiplied by 25: (200 - 60) x 25 = 3.5 billion. Ignoring the pension sets a target roughly one and a half billion higher than reality is - enough to discourage plenty of people out of planning altogether."
     },
     {
@@ -62,7 +67,6 @@
         "Inflation is zero throughout the person's retirement",
         "The portfolio keeps being invested and earning a return after retirement"
       ],
-      "correct": 3,
       "explanation": "The 4% figure assumes the portfolio stays invested in the market and keeps growing - if it's all moved into a savings deposit, the safe withdrawal rate is much lower. This is why the advice to 'sell all your stocks once you retire' usually backfires."
     },
     {
@@ -73,7 +77,6 @@
         "Because inflation raises the BHXH pension faster than spending",
         "Because the 25-times rule is only correct when inflation stays exactly at 4%"
       ],
-      "correct": 0,
       "explanation": "At 4% annual inflation, the standard of living equivalent to 200 million today would cost about 440 million after 20 years. Calculating the target at today's prices and leaving it unchanged is the most common way a retirement plan ends up half-funded."
     },
     {
@@ -84,7 +87,6 @@
         "Transportation, since retirees travel more than they did while working",
         "Housing, since rents always rise faster than retirement income"
       ],
-      "correct": 1,
       "explanation": "Many expenses fall in retirement - commuting, work clothes, raising children. Medical costs go the other way, and they're the one category that can hit with a single very large expense. This is why health insurance and a separate medical reserve fund aren't optional extras."
     }
   ],
@@ -102,7 +104,6 @@
       "About 2.4 billion VND, calculated as 96 million x 25, since only the expected BHXH pension itself needs to be calculated",
       "It can't be calculated without knowing Hung's exact statutory retirement age"
     ],
-    "correct": 0,
     "explanation": "(240 million - 96 million) x 25 = 144 million x 25 = 3.6 billion VND. You need to subtract the portion BHXH already covers before multiplying by 25, since that part of spending is already handled by another source."
   },
   "summary": {
@@ -115,7 +116,6 @@
     "message": "Estimate the annual spending you want in retirement, subtract your expected BHXH pension, then multiply by 25 to get a reference savings target for yourself.",
     "secondary": "This is only a starting point - review it periodically as your income and goals change."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

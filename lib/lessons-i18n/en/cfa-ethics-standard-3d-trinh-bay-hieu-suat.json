@@ -1,0 +1,158 @@
+{
+  "slug": "cfa-ethics-standard-3d-trinh-bay-hieu-suat",
+  "title": "CFA Ethics 23: Standard III(D) - what an honest performance number looks like",
+  "subtitle": "Survivorship bias, cherry-picked periods, and backtested performance",
+  "duration": "10 min",
+  "whyItMatters": "Performance is the number that drives most of the money, which makes it the number under the heaviest pressure to be distorted - and most of the ways of distorting it require telling no lie at all. Learning to spot them helps both when you present numbers and when you read someone else's.",
+  "openingQuestion": "A firm advertises 'our funds returned an average of 14% a year over the past 10 years', calculated across the funds currently operating. Where is the problem?",
+  "openingOptions": [
+    "There is no problem if every figure is accurate and can be verified",
+    "Survivorship bias: the closed funds have been dropped out",
+    "The problem is that ten years is too long to mean anything to a new investor",
+    "The problem is that it does not say whether management fees are deducted"
+  ],
+  "explanation": "This is the subtlest form of distortion, because no single number is wrong. Every surviving fund really did earn that return, and the average really is calculated correctly. What is wrong is the sample: weak funds tend to be closed or merged away, and when they vanish from the list they vanish from the calculation too. The advertised figure therefore describes a group that an investor ten years ago could not have chosen, because nobody knew then which funds would survive. Standard III(D) requires fair and complete presentation, and that is exactly why GIPS requires every account running a strategy to be pooled into one composite rather than letting the firm choose.",
+  "summary": {
+    "keyIdea": "The three commonest ways of distorting performance all require no false number at all - choosing the period, choosing the portfolios, and blending simulation with live operation.",
+    "commonMistake": "Presenting the return of a 'representative' portfolio as though it stood for all of them. Selected after the results were known, it stands for nothing."
+  },
+  "application": {
+    "title": "Checking a performance table",
+    "message": "Ask three questions: how was the period chosen, which portfolios were left out, and which part is simulated."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard III(D) demands three things of every performance figure: fair, accurate and complete. What is striking is that the commonest ways of distorting one require no false number at all."
+    },
+    { "type": "heading", "text": "Survivorship bias" },
+    {
+      "type": "paragraph",
+      "text": "The advertisement gives the average return of the funds in the range. Every surviving fund really did earn that, and the average really is calculated correctly. What is wrong is the sample: weak funds tend to be closed or merged away, and when they vanish from the list they vanish from the calculation too."
+    },
+    {
+      "type": "callout",
+      "label": "Why that is a breach",
+      "text": "The advertised figure describes a group that an investor ten years ago could not have chosen, because nobody knew then which funds would survive. It is not wrong arithmetically, but it is wrong about what it implies."
+    },
+    { "type": "heading", "text": "The other two distortions" },
+    {
+      "type": "list",
+      "items": [
+        "Cherry-picking the period: starting the measurement at the market bottom improves every number without any change in skill.",
+        "Presenting simulated results as real ones: backtesting is permitted, but it must be labelled as simulation and labelled somewhere visible, not buried in a footnote."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "This is precisely why GIPS requires every account running the same strategy to be pooled into one composite: the rule exists to remove the possibility of sample selection at the root, rather than relying on the goodwill of whoever is presenting."
+    },
+    { "type": "heading", "text": "Survivorship bias, put in numbers" },
+    {
+      "type": "paragraph",
+      "text": "A firm launched 10 funds ten years ago. Four performed poorly and have been closed, having lost an average of 8% a year while they existed. The remaining six averaged 12% a year. The advertisement reads: our funds have averaged 12% a year over the past ten years. Every word is true and the average is correctly computed. But what an investor picking at random back then actually received is (6 × 12 + 4 × −8) / 10 = 4.0% a year - one third of the advertised figure."
+    },
+    {
+      "type": "callout",
+      "label": "Why this breaches even though no sentence is false",
+      "text": "The 12% figure describes a group an investor ten years ago could not have chosen, because nobody knew then which four funds would close. It answers the question of what the survivors achieved, while the reader believes it answers the question of what to expect from investing with this firm. That is the word COMPLETE in the standard's three requirements - and the hardest of the three, because breaching it requires saying nothing false."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cherry-picking the period",
+        "text": "Starting the measurement exactly at the March 2009 market bottom improves every number with no change in skill. The defence against it is presenting continuous calendar years, so the reader can see the bad ones for themselves."
+      },
+      "right": {
+        "label": "Backtested performance",
+        "text": "Applying an investment rule to historical data and presenting the output as a track record. Not wrong if it is clearly labelled as a simulation; wrong if it sits beside real results undistinguished - because the rule was chosen after the data had already been seen."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Fair, accurate, complete.",
+        "Those three words carry the whole standard - and the hardest is the last."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Survivorship bias: weak funds drop out of the sample" },
+    { "label": "Cherry-picked period: start just after the bottom" },
+    { "label": "Backtested performance: a strategy optimised on the past" },
+    { "label": "All three are accurate number by number and still mislead" }
+  ],
+  "realWorldExample": {
+    "company": "Backtested performance",
+    "description": "A strategy optimised on historical data almost always produces a handsome result, because the parameters were chosen after the outcome was known. Standard III(D) does not prohibit presenting a backtest, but it does require it to be labelled clearly as a simulation rather than the performance of real money - and labelled where the reader will see it, not in a footer. Blending the simulated period with the live period into one continuous line is plainly misleading presentation."
+  },
+  "quiz": [
+    {
+      "question": "How does survivorship bias distort a performance figure?",
+      "options": [
+        "By using nominal returns instead of returns adjusted for inflation",
+        "By double-counting the return of one account across several funds",
+        "By ignoring management fees when computing the net return to investors",
+        "By dropping weak funds from the sample, lifting the surviving average"
+      ],
+      "explanation": "No number is wrong; only the sample is - which is why this distortion is so hard to catch by checking the arithmetic. Fee treatment, inflation adjustment and double counting are all real presentation problems, but each of them shows up as a figure that fails to reconcile. Survivorship bias reconciles perfectly, because everything that would contradict it has already left the table."
+    },
+    {
+      "question": "Why does GIPS require every account running a strategy to be pooled into one composite?",
+      "options": [
+        "So the firm cannot select only the accounts with attractive results",
+        "To reduce the cost of computing performance for the operations team",
+        "So investors can compare firms that manage similar amounts of capital",
+        "So the regulator has only one figure to check each quarter"
+      ],
+      "explanation": "The composite is the direct answer to sample selection: if you are obliged to include everything, there is nothing left to select. Computational cost, cross-firm comparison and regulatory convenience are all downstream conveniences at best, and none of them would require the pooling rule - a firm could report a single cherry-picked number just as cheaply."
+    },
+    {
+      "question": "Is it permitted to present backtested results?",
+      "options": [
+        "No, Standard III(D) prohibits every form of simulated performance",
+        "Yes, if labelled as a simulation and labelled where readers see it",
+        "Yes, and no label is needed if the methodology is fully published",
+        "No, unless the strategy has been running live for at least three years"
+      ],
+      "explanation": "The problem is not the simulation itself but letting the reader believe it was real money. A footnote does not meet the 'fair and complete' bar, because placement is part of the presentation. A blanket prohibition would rule out legitimate research communication, and a three-year live minimum invents a threshold the standard does not contain."
+    },
+    {
+      "question": "What is choosing a start date immediately after a crash in order to compute performance?",
+      "options": [
+        "Legitimate if the start date coincides with the fund's own launch date",
+        "Standard practice, since it excludes an abnormal market episode",
+        "A cherry-picked period - a form of misleading presentation",
+        "Only a problem where the chosen period is shorter than three years"
+      ],
+      "explanation": "A quick test: try shifting the start date a few months earlier or later. If the number changes materially, it is describing the period rather than the skill. A genuine inception date is a legitimate start, but that is a coincidence when it occurs rather than a defence; and calling a crash abnormal is exactly how a period gets excluded for being inconvenient."
+    },
+    {
+      "question": "What is the core duty Standard III(D) imposes?",
+      "options": [
+        "Only presenting performance that an independent audit has verified",
+        "Ensuring the performance reported beats the industry benchmark",
+        "Publishing performance at a minimum frequency of once a quarter",
+        "Presenting performance fairly, accurately and completely"
+      ],
+      "explanation": "These three words carry the whole standard: accuracy blocks the lie, fairness blocks the selected sample, and completeness blocks the quiet removal of the inconvenient part. Audit and reporting frequency are useful controls that some regimes require, and beating a benchmark is an outcome no standard of conduct could sensibly demand."
+    }
+  ],
+  "keyTakeaways": [
+    "The three common distortions all require no false number at all",
+    "Survivorship bias: weak funds drop out, so the average is pushed up",
+    "The GIPS composite exists to remove sample selection at the root",
+    "Backtests are permitted, but must be labelled as simulation, somewhere visible",
+    "Fair, accurate, complete - three words carrying the whole standard"
+  ],
+  "practicePrompt": {
+    "question": "An offering document says: 'The strategy returned 22% a year over 2015-2024', where 2015-2019 is simulated and 2020-2024 is live, drawn as one continuous line. Assessment?",
+    "options": [
+      "Legitimate, since both periods were computed by the correct method",
+      "Misleading presentation: it blends simulation and live operation into one line",
+      "Only a problem if the simulated period outperformed the live period",
+      "Legitimate provided a small note about the simulated period appears at the end"
+    ],
+    "explanation": "The continuous line is the problem itself, whatever the footnote says. It sends the message that a strategy has operated for ten unbroken years, when for half that time no real money was invested and the parameters were chosen after the results were known. The last option is what real offering documents often do, and it does not meet the 'fair and complete' bar."
+  }
+}

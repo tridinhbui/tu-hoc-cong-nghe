@@ -1,0 +1,149 @@
+{
+  "slug": "esg-investing-screening-den-portfolio",
+  "title": "ESG Investing: from screening to portfolio construction",
+  "subtitle": "Exclusionary screening, best-in-class, impact investing - the different ESG investing strategies and when to use which",
+  "duration": "8 min",
+  "openingQuestion": "A fund decides to remove tobacco, weapons and coal stocks from its portfolio entirely, regardless of how those companies perform financially. Which ESG investing strategy is this?",
+  "openingOptions": [
+    "Impact investing - investing directly to create measurable social impact",
+    "Exclusionary screening - removing entire sectors judged to be harmful",
+    "Best-in-class selection - picking the best ESG company in each sector",
+    "Thematic investing - investing along a specific growth theme"
+  ],
+  "explanation": "This is Exclusionary Screening (also called negative screening) - the oldest and simplest ESG investing strategy: excluding ENTIRELY the sectors or companies judged to be harmful (tobacco, weapons, coal, gambling and so on) from the portfolio from the outset, without regard to how any individual company in the excluded group performs financially.",
+  "realWorldExample": {
+    "company": "Norway Government Pension Fund Global",
+    "description": "Norway's sovereign pension fund - one of the largest investment funds in the world, at over $1.4 trillion - applies a strict exclusion policy: no investment in companies producing nuclear weapons, tobacco or coal (above a revenue threshold), and none in companies committing serious human rights violations - which shows the scale and real-world influence of exclusionary screening at sovereign fund level."
+  },
+  "quiz": [
+    {
+      "question": "How does the 'best-in-class' strategy in ESG investing differ from 'exclusionary screening'?",
+      "options": [
+        "Best-in-class excludes polluting industries entirely",
+        "Best-in-class only invests in the absolute top ESG scorers",
+        "Best-in-class applies to bonds only, not to equities",
+        "Best-in-class picks the best ESG company in each sector"
+      ],
+      "explanation": "This is the key strategic difference: best-in-class lets an investor keep exposure to sectors with high ESG risk (energy, mining) by selecting the companies LEADING on ESG practice within that sector - an oil and gas company investing heavily in renewables with strong safety standards, for example - whereas exclusionary screening removes the possibility of investing in that sector at all. It compares scores within a sector rather than against an absolute threshold, and it applies to every asset class."
+    },
+    {
+      "question": "In what important respect does impact investing differ from ordinary ESG investing?",
+      "options": [
+        "It sets a measurable impact target alongside financial return",
+        "It accepts a lower return in exchange for a better image",
+        "It only invests in listed companies holding the very top ESG scores",
+        "It excludes every harmful industry from the portfolio"
+      ],
+      "explanation": "Impact investing makes a specific MEASURABLE IMPACT requirement (tonnes of CO2 avoided, households given access to finance) a goal that sits ALONGSIDE financial return - usually through direct investment in projects or businesses with an explicit social mission (renewable energy, microfinance, affordable housing). Other ESG strategies (exclusionary, best-in-class) mostly stay in ordinary listed equities, using ESG as an extra layer of risk analysis without requiring direct measurement of social outcomes."
+    },
+    {
+      "question": "How does a green bond work as a sustainable finance instrument?",
+      "options": [
+        "A bond exempt from tax if the money goes into clean energy",
+        "An ordinary bond whose proceeds are committed to green projects",
+        "A bond whose coupon is tied to emissions reduction results",
+        "A bond issued by an international environmental body of some kind"
+      ],
+      "explanation": "A green bond has exactly the same financial structure as a conventional bond (coupon, maturity, credit risk) - the one difference is a COMMITMENT ON THE USE OF PROCEEDS for specified environmental projects, with regular transparent reporting (usually under ICMA's Green Bond Principles) on whether the money really went where it was promised. A coupon linked to emissions outcomes describes a sustainability-linked bond, which is a different instrument, and the issuer is normally an ordinary corporate or sovereign."
+    },
+    {
+      "question": "Scenario: a fund wants to keep the oil and gas sector in its portfolio but only hold the sector's best ESG performers. Which strategy is this?",
+      "options": [
+        "Impact investing, measuring specific outcomes",
+        "Exclusionary screening, cutting bad sectors out",
+        "Best-in-class, excluding no sector at all",
+        "Green bonds, financing environmental projects"
+      ],
+      "explanation": "Best-in-class leaves the portfolio's sector structure intact and selects only within each sector, avoiding the sector drift a fund would otherwise run against its benchmark. The reasoning behind it is to reward the companies doing better than their peers, rather than withdrawing capital from the whole sector at once."
+    },
+    {
+      "question": "What is the main drawback of exclusionary screening?",
+      "options": [
+        "It works only with bonds and never with equities at all",
+        "It cannot be applied by a fund of any real scale",
+        "It requires impact measurement that is very costly",
+        "Cutting whole sectors skews the portfolio versus the index"
+      ],
+      "explanation": "Removing whole sectors creates a structural deviation from the benchmark index, so performance will diverge materially in years when those sectors run well. That is a price paid knowingly, and it is exactly why best-in-class emerged as an alternative. Norway's sovereign fund demonstrates that scale is no obstacle, and it is impact investing rather than exclusion that carries the heavy measurement cost."
+    }
+  ],
+  "keyTakeaways": [
+    "Exclusionary screening: removing certain sectors or companies entirely (tobacco, weapons, coal) regardless of individual financial performance - the oldest and simplest ESG strategy",
+    "Best-in-class: selecting the best ESG company within EACH sector (including sensitive ones), excluding no sector outright",
+    "Impact investing: requiring a MEASURABLE social or environmental outcome alongside financial return - usually through direct investment in specific projects",
+    "Green bonds: the financial structure of an ordinary bond, but with the proceeds committed to environmental projects and reported on transparently"
+  ],
+  "practicePrompt": {
+    "question": "An investor wants to build an ESG portfolio but still wants exposure to the energy sector (believing it will transform substantially toward clean energy over the next 10 years) rather than excluding it. Which ESG investing strategy fits best?",
+    "options": [
+      "Exclusionary screening - remove the energy sector from the portfolio entirely",
+      "Best-in-class selection: pick the sector's best ESG names, exclude nothing",
+      "No ESG strategy is a good fit for this particular objective",
+      "Impact investing is the only suitable option in this situation"
+    ],
+    "explanation": "Best-in-class selection is exactly the right strategy for this objective: it lets the investor keep exposure to the energy sector (rather than excluding it as screening would) while concentrating on the companies leading on ESG practice within it - which fits the investment thesis that the sector will transform and the leaders of that transformation will benefit most."
+  },
+  "summary": {
+    "keyIdea": "ESG investing covers several distinct strategies (exclusionary screening, best-in-class, impact investing) with different degrees of intervention and different aims - choosing the right one depends on what the investor actually wants (avoiding ethical exposure, managing financial risk, or creating measurable impact).",
+    "commonMistake": "Treating every ESG investing strategy as the same thing, without being able to say when to exclude a sector outright and when to pick the best companies inside it",
+    "action": "Before building an ESG portfolio, be clear about the objective: do you want to avoid certain sectors entirely on ethical grounds, or manage ESG risk while keeping sector diversification?"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Take an ETF or open-ended fund on the market labelled 'ESG' or 'Sustainable' and read the prospectus to work out which strategy it actually applies (exclusionary, best-in-class, or a combination).",
+    "secondary": "This is an important practical skill for an ESG Analyst role - telling genuine ESG funds apart from funds carrying an ESG label for marketing purposes, which is greenwashing at fund level."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Understanding what ESG is and how to assess it is not enough - the real job of an ESG Analyst is turning that analysis into a concrete portfolio construction strategy."
+    },
+    { "type": "heading", "text": "The main ESG investing strategies" },
+    {
+      "type": "conceptTable",
+      "title": "Comparing the ESG investing strategies",
+      "concepts": [
+        {
+          "def": "Removing entirely from the portfolio any sector or company judged harmful (tobacco, weapons, coal), regardless of financial performance"
+        },
+        {
+          "def": "Selecting the company with the best ESG score within EACH sector, excluding no sector outright"
+        },
+        {
+          "def": "Building ESG analysis in as an extra data layer inside a conventional valuation or financial analysis model, without excluding or favouring anything separately"
+        },
+        {
+          "def": "Investing directly in projects or businesses with a MEASURABLE social or environmental objective, alongside financial return"
+        }
+      ]
+    },
+    { "type": "heading", "text": "Sustainable finance instruments: green bonds and beyond" },
+    {
+      "type": "paragraph",
+      "text": "Green bonds are the most widely used instrument in sustainable finance - a bond with a conventional structure whose proceeds are committed to specified environmental projects. Variants include social bonds (proceeds for social projects such as affordable housing or healthcare) and sustainability-linked bonds (where the coupon changes according to whether the issuer hits specific ESG targets - a direct financial incentive attached to an ESG commitment)."
+    },
+    { "type": "heading", "text": "Building an ESG portfolio in practice - four steps" },
+    {
+      "type": "list",
+      "items": [
+        "Step 1: Define the objective (avoiding ethical exposure, managing financial risk, or creating measurable impact?)",
+        "Step 2: Choose the fitting strategy (exclusionary, best-in-class, ESG integration, or a combination)",
+        "Step 3: Set concrete screening criteria (minimum ESG score threshold, excluded sectors, priority metrics)",
+        "Step 4: Monitor regularly - ESG scores and corporate practice change over time, so the portfolio needs reassessing on a cycle"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "ESG investing is not one single approach - it is a toolkit of different strategies, suited to different objectives and different risk appetites.",
+        "The core skill of an ESG Analyst is choosing the right strategy for the right objective, and spotting when an 'ESG' product is only a marketing wrapper."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Screen by exclusion, or pick the best within each sector" },
+    { "label": "Integrate ESG factors into the financial analysis" },
+    { "label": "Choose the instrument: equities, green bonds, impact investments" },
+    { "label": "Build the portfolio and track both returns and ESG metrics" }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "slug": "prospect-theory-khung-ly-thuyet-chinh-thuc",
+  "title": "Prospect Theory: the formal framework behind every behavioural bias",
+  "subtitle": "The asymmetric value function, the reflection effect, and how Kahneman and Tversky put human irrationality into mathematics",
+  "duration": "8 min",
+  "openingQuestion": "On what core point does Prospect Theory differ from Expected Utility Theory, the foundation of classical economics?",
+  "openingOptions": [
+    "Prospect Theory only applies to investments of very large size",
+    "It evaluates gains and losses against a reference point, with an asymmetric value function",
+    "Prospect Theory only holds in the laboratory and cannot be applied to real financial markets",
+    "The two theories are identical and differ only in name"
+  ],
+  "explanation": "This is the core breakthrough of Kahneman and Tversky (1979): instead of evaluating FINAL wealth as classical utility theory does, people evaluate GAINS AND LOSSES AGAINST A REFERENCE POINT (usually the status quo, or the purchase price). The value function in Prospect Theory is an asymmetric S-shape: concave (risk-averse) in the gain domain, convex (risk-seeking) in the loss domain, and MUCH STEEPER on the loss side than the gain side - this is the mathematical formula behind loss aversion.",
+  "realWorldExample": {
+    "company": "The 2002 Nobel Prize in Economics and its use in risk management",
+    "description": "Daniel Kahneman received the 2002 Nobel Prize in Economics - as a psychologist rather than an economist - precisely for Prospect Theory, one of the most cited theories in the history of modern economics. Quant funds today build the parameters of Prospect Theory (the loss aversion coefficient, the curvature of the value function) directly into their risk models to forecast investor behaviour under different market scenarios, rather than relying on classical expected utility theory alone."
+  },
+  "quiz": [
+    {
+      "question": "How can the 'reference point' in Prospect Theory change, and why does that matter to a portfolio manager?",
+      "options": [
+        "Set by the fund management company in the discretionary mandate",
+        "Usually the status quo or the purchase price, and it can shift",
+        "Always the average return of the broad market over the period",
+        "Always fixed at the investor's original purchase price"
+      ],
+      "explanation": "Understanding the reference point is a practical tool for a PM: clients do not judge portfolio performance in a vacuum, but against a specific reference - usually the benchmark, the recent account high, or their original expectation. A portfolio down 10% can be 'relatively successful' if the benchmark fell 20%, or a 'failure' if the benchmark fell 2%. Effective communication with a client means framing the right reference point rather than leaving it to chance."
+    },
+    {
+      "question": "What does the 'reflection effect' in Prospect Theory predict about risk-taking in the face of GAINS versus the face of LOSSES?",
+      "options": [
+        "Risk-seeking in both the gain and the loss domain",
+        "Risk-averse when in losses and risk-seeking when in gains",
+        "Risk-averse when in gains, risk-seeking when in losses",
+        "Risk-averse in both the gain and the loss domain"
+      ],
+      "explanation": "The reflection effect explains the disposition effect directly at the level of theory: facing a GAIN, the mind turns risk-averse and prefers to bank it early; facing a LOSS, the mind turns risk-seeking and prefers to gamble on a recovery rather than accept a certain loss. This is why simply 'knowing about' loss aversion is not enough to explain why behaviour flips so completely between the two domains - you need the mechanism of the reflection effect."
+    },
+    {
+      "question": "What does the probability weighting function in Prospect Theory say about how people handle LOW and HIGH probabilities relative to the true ones?",
+      "options": [
+        "Evaluates every probability exactly at its mathematical value",
+        "Underweights low probabilities and overweights high ones",
+        "Cares only about probability and ignores the size of the outcome",
+        "Overweights low probabilities, underweights high ones"
+      ],
+      "explanation": "This is one of the subtlest parts of Prospect Theory: the probability weighting function is not linear - it inflates low probabilities into feeling more 'possible' than they are, and deflates high probabilities into feeling less certain than they are. It explains a paradox: the same person buys insurance (paying a premium to avoid a low-probability, high-consequence risk) and buys lottery tickets (paying to chase a low-probability, large-reward outcome) - both behaviours are consistent with overweighting small probabilities."
+    },
+    {
+      "question": "Under the reflection effect, how do people behave when they are in the loss domain relative to the reference point?",
+      "options": [
+        "Markedly more risk-tolerant, willing to bet bigger to win back what was lost",
+        "Markedly more cautious, prioritising locking in the capital that remains",
+        "Unchanged, because risk tolerance is a fixed trait of each individual",
+        "Stops making any decision at all until the price returns to the old reference point"
+      ],
+      "explanation": "The value function is convex in the loss domain: losing a little more barely hurts any extra, while the chance of getting back to even is very attractive. This is the mechanism behind doubling down on losing positions and behind the classic rogue-trading cases - the loser tries to win it back with a bigger bet."
+    },
+    {
+      "question": "What does the probability weighting function in Prospect Theory say about how people handle very low probabilities?",
+      "options": [
+        "Underweighted versus reality, so rare risks are ignored completely",
+        "Overweighted versus reality, so the same person buys lottery tickets and insurance",
+        "Judged exactly at the true probability once a concrete figure is given",
+        "Overweighted for gains but underweighted for an equivalent loss"
+      ],
+      "explanation": "Small probabilities are inflated in perception and large ones are deflated. That explains a contradiction that looks absurd on the surface: the same person buys lottery tickets and buys insurance - betting on the rare and hedging against the rare, both for the same distortion."
+    }
+  ],
+  "keyTakeaways": [
+    "Prospect Theory: people evaluate gains and losses AGAINST A REFERENCE POINT, not absolute final wealth - the core departure from classical Expected Utility Theory",
+    "The asymmetric value function: steeper in the loss domain than the gain domain - the mathematical formula behind loss aversion",
+    "The reflection effect: risk-averse in gains, risk-seeking in losses - a direct explanation of the disposition effect",
+    "The non-linear probability weighting function: overweights low probabilities (explaining both insurance and lottery tickets), underweights high ones"
+  ],
+  "practicePrompt": {
+    "question": "A client's portfolio is down 15% from its peak (their psychological reference point), although it is still up 20% on the original capital invested three years ago. The client is very anxious and wants to sell everything. Using Prospect Theory, how do you explain this behaviour and advise well?",
+    "options": [
+      "The client is wholly irrational given they are still up 20%, so the anxiety can be set aside",
+      "They have anchored on the recent peak, so the 15% drop reads to them as a loss",
+      "Agree to sell immediately as the client asks, without any further analysis",
+      "Prospect Theory says losses hurt twice as much, so advising a sale is right"
+    ],
+    "explanation": "This is an important practical application of Prospect Theory in portfolio management and wealth advisory: recognising that the client's reference point (the recent peak) differs from the 'objective' one (original capital) lets a PM communicate better - not to manipulate the client's emotions, but to help them see the situation with full context and avoid an irrational decision driven by a short-term psychological reference point."
+  },
+  "summary": {
+    "keyIdea": "Prospect Theory is the formal mathematical framework describing how people actually decide under risk - gains and losses against a reference point, with an asymmetric value function and a non-linear probability weighting function, in place of classical expected utility theory.",
+    "commonMistake": "Assuming clients and investors always judge wealth in absolute terms, ignoring the decisive role a psychological reference point plays in real behaviour",
+    "action": "When analysing a client's or the market's behaviour, always identify the REFERENCE POINT in use (original capital, recent peak, benchmark) before judging the decision 'rational' or 'irrational'"
+  },
+  "application": {
+    "title": "Applying it in analysis and portfolio management",
+    "message": "When building a performance report for a client, consider presenting several different reference points (original capital, benchmark, recent peak) so the client sees the full picture, instead of leaving them to anchor on whichever one is most emotive.",
+    "secondary": "The next lesson applies Prospect Theory and its related biases to the behaviour of professional equity analysts - because even experts are not immune to these biases."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Every behavioural bias covered in the Personal Finance stage rests on one shared mathematical foundation - Prospect Theory. Understanding the framework lets a finance professional not merely recognise biases but predict and model them."
+    },
+    { "type": "heading", "text": "From Expected Utility Theory to Prospect Theory" },
+    {
+      "type": "paragraph",
+      "text": "Classical economics rests on Expected Utility Theory: people maximise expected utility based on FINAL WEALTH, with a consistently concave utility function (risk-averse at every level of wealth). Kahneman and Tversky (1979) challenged that assumption with a series of experiments showing that people actually evaluate GAINS AND LOSSES AGAINST A REFERENCE POINT rather than absolute wealth - a difference that looks small and completely changes how you predict human behaviour under risk."
+    },
+    { "type": "heading", "text": "Three core features of the value function" },
+    {
+      "type": "list",
+      "items": [
+        "Reference-dependent: the evaluation runs on gains and losses, not on absolute wealth",
+        "Loss aversion: the value function is steeper in the loss domain than the gain domain - a loss 'hurts' more than an equal gain 'pleases'",
+        "Diminishing sensitivity: the difference between a gain of 100 and 200 feels larger than the difference between 1,100 and 1,200, although both are 100 - producing a concave shape in gains and a convex one in losses"
+      ]
+    },
+    { "type": "heading", "text": "The probability weighting function" },
+    {
+      "type": "paragraph",
+      "text": "The less well-known but equally important part of Prospect Theory: people do not process probability linearly. A low probability (say 1%) is psychologically 'priced' above its true value, while a high one (say 99%) is priced below it. This is why tail events - however rare - still weigh heavily on human decisions, an important insight for risk management and for designing insurance and investment products."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Prospect Theory is not merely an academic theory - it is a practical forecasting tool built into the risk models of the world's leading quant funds.",
+        "Understanding this mathematical foundation moves a finance professional from merely 'recognising' biases to genuinely predicting and quantifying their effect on investment decisions."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "From the reference point, not from absolute wealth" },
+    { "label": "Value function convex in losses, concave in gains" },
+    { "label": "The loss side is steeper than the gain side (loss aversion)" },
+    { "label": "Probability weighting function: very small probabilities are inflated" }
+  ]
+}

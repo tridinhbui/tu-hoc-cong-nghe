@@ -1,0 +1,150 @@
+{
+  "slug": "stress-testing-va-kich-ban-nguoc",
+  "title": "Market Risk, Lesson 6: Stress testing and reverse scenarios - when the model is no longer enough",
+  "subtitle": "Historical and hypothetical scenarios, the reverse stress test, and why stress testing supplements VaR rather than replacing it",
+  "duration": "11 min",
+  "whyItMatters": "Every measure in the previous five lessons is estimated from historical data, so all of them only know what has already happened. Stress testing is the one tool in the kit that answers the question about what has never happened, and that is why regulators require it alongside VaR.",
+  "openingQuestion": "In what fundamental way does stress testing differ from VaR?",
+  "openingOptions": [
+    "Stress testing is more accurate because it uses more recent data",
+    "Stress testing carries no probability; it only asks how much is lost",
+    "Stress testing applies only to bond portfolios",
+    "Stress testing entirely replaces VaR under the current Basel framework"
+  ],
+  "explanation": "This difference decides how you read the result. VaR is a probability statement: at 99% confidence, the loss will not exceed this level. A stress test is a conditional statement: if rates rise 300 basis points while equities fall 30%, the portfolio loses roughly this much. It says nothing about how likely that scenario is, and dropping the probability is precisely its strength - it lets you consider scenarios for which the historical data has too few observations to estimate a probability you could trust.",
+  "diagram": [
+    {
+      "label": "Historical scenario: replay a crisis that happened"
+    },
+    {
+      "label": "Hypothetical scenario: a combination of shocks never yet seen"
+    },
+    {
+      "label": "Reverse scenario: work back from the loss to its causes"
+    },
+    {
+      "label": "Results tied to limits and to a plan of action"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The reverse scenario asks the question the other way round",
+    "description": "An ordinary stress test runs from cause to consequence: suppose the market falls 30%, how much do we lose. A reverse scenario turns that around: what level of loss would push our capital below the minimum threshold, and what combination of moves would produce that loss. Asking it this way is useful because it does not require anyone to think of the right scenario in advance - which is the single biggest weakness of the traditional stress test. It often exposes combinations of risk nobody in the room had considered, such as a moderate fall combined with the loss of one specific funding source."
+  },
+  "quiz": [
+    {
+      "question": "What is a historical scenario in stress testing?",
+      "options": [
+        "Re-apply the actual moves of a crisis that happened to today's portfolio",
+        "Compute the largest loss the portfolio has ever really taken in its history",
+        "Use all available history to estimate the return distribution of the portfolio",
+        "Compare today's portfolio performance with its own performance in past years"
+      ],
+      "explanation": "The advantage is that the scenario is certainly feasible, because it already happened. The drawback is that the next crisis is rarely an exact copy of the last one. Estimating a distribution from all available history is what VaR does, and comparing performance across years is attribution rather than stress testing."
+    },
+    {
+      "question": "Why does a reverse scenario add something an ordinary stress test cannot?",
+      "options": [
+        "Because it is more accurate, using more historical data than the usual approach",
+        "Because it needs no guess at the scenario, working back from the loss instead",
+        "Because regulators accept it as a substitute for all other stress scenarios",
+        "Because it only has to be computed once and reused for every later reporting period"
+      ],
+      "explanation": "The biggest weakness of a traditional stress test is that you only test what you managed to think of. A reverse scenario slips past exactly that limit. It is not more accurate in a statistical sense, it substitutes for nothing in the regulatory set, and it has to be redone as the portfolio changes."
+    },
+    {
+      "question": "Why does stress testing supplement VaR rather than replace it?",
+      "options": [
+        "Because its results change on every re-run, the scenarios being generated at random",
+        "Because it can only be computed position by position, never at portfolio level",
+        "Because it attaches no probability, so it cannot size capital or set limits",
+        "Because it needs far more historical data than VaR requires to be computed"
+      ],
+      "explanation": "The two tools answer two different questions and the regulatory framework demands both, rather than treating either as a better version of the other. Scenarios are chosen deliberately, not drawn at random; results aggregate to portfolio level perfectly well; and a stress test typically needs less history than VaR, not more."
+    },
+    {
+      "question": "When does a stress test result actually have value?",
+      "options": [
+        "When its result matches the VaR figure computed at the same confidence level",
+        "When the loss it produces sits below the minimum capital the regulator sets",
+        "When the scenario used has occurred at least once in financial market history",
+        "When it is tied to a concrete action: cut positions, add capital, trigger the plan"
+      ],
+      "explanation": "A set of stress test results presented and then filed away makes the institution no safer at all - it only creates the feeling that things are under control. Matching VaR would be a coincidence rather than a validation, a loss inside the capital threshold is a comfortable result rather than a useful one, and hypothetical scenarios that never happened are exactly the ones worth running."
+    },
+    {
+      "question": "A resilience test's results are only worth having under what condition?",
+      "options": [
+        "When it leads to a concrete action should the scenario actually happen",
+        "When the scenario is built on an event that has already occurred in history",
+        "When the loss it produces stays inside the approved risk appetite limit",
+        "When the scenario has been approved by the regulator before it is run"
+      ],
+      "explanation": "A table showing how much is lost, with no accompanying statement of what must then be done, is just a number. The value sits in the part that follows: which positions get cut, how much extra capital is needed, at what threshold the contingency funding plan is activated."
+    }
+  ],
+  "keyTakeaways": [
+    "A stress test carries no probability: it asks how much is lost if this happens, not how likely it is",
+    "A historical scenario is certainly feasible, but the next crisis rarely resembles the last one",
+    "A reverse scenario works back from the loss to its causes, so it needs no correct guess up front",
+    "It supplements rather than replaces VaR - the two tools answer two different questions",
+    "The result is only worth having when it is attached to a concrete action"
+  ],
+  "practicePrompt": {
+    "question": "The board sees a stress test showing a loss of 800bn in the bad scenario, then concludes the scenario is unlikely so nothing needs doing. What is wrong here?",
+    "options": [
+      "Nothing, provided the probability really is low",
+      "A stress test states no probability",
+      "More scenarios need to be run",
+      "VaR should be used instead"
+    ],
+    "explanation": "This is the most common way a stress test gets neutralised in practice. The test deliberately says nothing about probability - that is the design, not an omission. The question to answer is not how likely this scenario is, but whether we survive if it happens, and if the answer is no, a low probability does not help."
+  },
+  "summary": {
+    "keyIdea": "A stress test asks what happens if, not how likely - and that is its strength",
+    "commonMistake": "Dismissing a stress test result with the argument that the scenario is unlikely",
+    "action": "For a portfolio you follow, write down three scenarios and an estimated loss for each, then attach an action to every one."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Pick a portfolio and build three scenarios: one historical, one hypothetical, one reverse. For the reverse one, start from the question of what loss would make this portfolio unsustainable, then work back to the combination of moves that produces it.",
+    "secondary": "The reverse scenario usually yields the most surprising finding, because it is not bounded by the imagination of whoever built it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous five lessons built a statistical toolkit estimated from the past. The stage closes with the tool that exists precisely because that kit has one limit it cannot cross: data only contains what has already happened."
+    },
+    {
+      "type": "heading",
+      "text": "Three kinds of scenario"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three ways to build a scenario",
+      "subtitle": "Each one handles a weakness of the others",
+      "concepts": [
+        {
+          "def": "Re-apply the moves of a crisis that actually happened to today's portfolio. Certainly feasible, easy to explain, but the next crisis rarely repeats exactly."
+        },
+        {
+          "def": "A combination of shocks constructed by the analyst, including combinations that have never occurred. Flexible, and bounded by precisely the imagination of whoever builds it."
+        },
+        {
+          "def": "Start from the loss the institution could not survive, then search backwards for the combination that produces it. No advance guess is required, so it often exposes risks nobody had considered."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How a stress test gets neutralised",
+      "text": "The most common failure mode is not technical but in the meeting room: the result is presented, somebody remarks that the scenario is unlikely, and no action follows. But a stress test deliberately states nothing about probability, so that argument uses information the test never supplied. The defence is to require every scenario to arrive with a threshold and an action agreed in advance, so the decision is not made after the number has been seen."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A model tells you what usually happens. A stress test tells you what would end the institution.",
+        "This stage closes the market risk block: from computing a number to knowing when not to believe it."
+      ]
+    }
+  ]
+}

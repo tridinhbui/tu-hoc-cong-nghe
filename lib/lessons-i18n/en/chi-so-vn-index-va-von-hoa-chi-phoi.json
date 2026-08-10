@@ -1,0 +1,139 @@
+{
+  "slug": "chi-so-vn-index-va-von-hoa-chi-phoi",
+  "title": "Vietnam Market, Lesson 5: What the VN-Index says and what it hides",
+  "subtitle": "Why the index can be green while most portfolios are red",
+  "duration": "10 min",
+  "whyItMatters": "The index is the first number everyone looks at and the easiest one to misread. Knowing how it is computed explains a familiar phenomenon - the index gains while most stocks fall - and helps you pick the right yardstick for measuring your own performance.",
+  "openingQuestion": "What does a 1% rise in the VN-Index actually tell you about the market?",
+  "openingOptions": [
+    "That most stocks on the exchange rose in price during that session",
+    "That the basket's total market cap rose 1%, not how many stocks rose",
+    "That every stock in the basket rose 1% from its reference price",
+    "That market-wide trading volume rose 1% against the previous session"
+  ],
+  "explanation": "The VN-Index is a market-cap weighted index: each stock contributes in proportion to its market value, not one vote per ticker. A single very large company hitting its ceiling can pull the index green while hundreds of small caps fall together. That is not a flaw in the index - it measures market value, not the proportion of stocks that rose. But if you use it to judge whether today was good or bad for your own portfolio, it may be answering a different question from the one you are asking.",
+  "diagram": [
+    { "label": "The price of each stock" },
+    { "label": "Multiplied by its market capitalisation" },
+    { "label": "Summed into the basket's total market cap" },
+    { "label": "Compared with the base period to give the index" }
+  ],
+  "realWorldExample": {
+    "company": "A green index on red breadth",
+    "description": "A scenario that repeats itself in the Vietnamese market: the VN-Index closes higher, the press reports a recovery, but decliners outnumber advancers two to one. The cause is a handful of the largest-cap names - usually banks and property developers - with enough weight to carry the whole index on their own. Retail investors holding mid- and small-cap portfolios lost money that day, whatever the index said."
+  },
+  "quiz": [
+    {
+      "question": "Why can the index rise while most stocks fall?",
+      "options": [
+        "Because stocks hitting the floor are excluded from that day's calculation",
+        "Because the index only counts the stocks that rose during the session",
+        "Because the index is smoothed using data from several prior sessions",
+        "Because it is cap-weighted, so a few large stocks can carry the basket"
+      ],
+      "explanation": "Cap weighting means a stock making up 10% of the basket has a hundred times the influence of one making up 0.1%. Nothing is excluded from the calculation for falling, no stock is left out for declining, and the index is computed from live prices rather than smoothed across sessions. The index answers the question of how total market value changed, not the question of how many stocks went up."
+    },
+    {
+      "question": "What extra information does market breadth - advancers versus decliners - add?",
+      "options": [
+        "It shows whether the rally comes from the whole market or just a few large caps",
+        "It shows whether trading volume rose or fell against the previous session",
+        "It shows whether foreign investors are net buyers or net sellers today",
+        "It shows the price band that will apply in the following trading session"
+      ],
+      "explanation": "The index and breadth answer two different questions, so you only get the full picture by reading them together. Volume, foreign flows and price bands are all published separately and none of them is what a decliner count measures. A rally with narrow breadth - the index carried by a few names - is typically less durable than one in which the majority of stocks participate."
+    },
+    {
+      "question": "How does the VN30 differ from the VN-Index?",
+      "options": [
+        "VN30 counts advancing versus declining stocks instead of market cap",
+        "VN30 holds only the 30 largest, most liquid stocks, with weight caps",
+        "VN30 includes only the listed stocks of banks and real estate developers",
+        "VN30 is computed once at the close while VN-Index runs continuously"
+      ],
+      "explanation": "The weight cap is the detail worth noting: it stops any single oversized name from dominating the whole index. Both indices are cap-weighted and both are computed continuously through the session, and the VN30 basket spans several sectors rather than two. The cap is also why the VN30, rather than the VN-Index, is normally the reference for derivatives and index funds."
+    },
+    {
+      "question": "Which index should an investor measure portfolio performance against?",
+      "options": [
+        "Whichever index rose the least, which makes outperformance easier to claim",
+        "Always VN-Index, since it is the benchmark representing the whole market",
+        "The index whose composition is closest to the portfolio actually held",
+        "No comparison is needed because every portfolio has its own objectives"
+      ],
+      "explanation": "Comparing an all mid- and small-cap portfolio with the VN-Index is comparing two different things. Picking the benchmark that flatters you defeats the point of benchmarking, and skipping the comparison entirely leaves you with no way to tell skill from a rising tide. The wrong reference makes you praise or blame yourself for the wrong reasons, and it hides the real question - whether the portfolio earned the risk it took."
+    },
+    {
+      "question": "Why can a large newly listed stock make the index jump oddly?",
+      "options": [
+        "Because the index must be recomputed from the base period for each new listing",
+        "Because a newly listed stock gets a wider price band on its first session",
+        "Because foreign investors always buy heavily into stocks that have just listed",
+        "Because it enters the basket at full market cap with no price history"
+      ],
+      "explanation": "How new entrants are handled is a technical detail with a real effect on the printed index level. The base period is not recomputed, and neither a wider first-day band nor foreign buying would move the index by itself. This is why comparing index levels across long stretches of time requires knowing how the basket changed, not just looking at the line on the chart."
+    }
+  ],
+  "keyTakeaways": [
+    "The VN-Index is cap-weighted: a few of the largest names can decide the direction of the whole index",
+    "The index measures market value, breadth measures participation - two different questions",
+    "The VN30 caps each stock's weight, so it is less easily dominated by one company",
+    "Choosing the wrong benchmark means misjudging the performance of your own portfolio"
+  ],
+  "practicePrompt": {
+    "question": "Your portfolio is entirely mid-cap stocks. The VN-Index rose 8% over the year while your portfolio rose 5%. What is the most reasonable conclusion?",
+    "options": [
+      "The portfolio underperformed and should be rotated into large-cap stocks",
+      "Nothing can be concluded yet - compare against a mid-cap index first",
+      "The portfolio did well because it still posted a positive return this year",
+      "VN-Index has been inflated, so the 8% figure is not to be trusted"
+    ],
+    "explanation": "If mid-caps rose only 2% that year, then 5% is outperformance rather than a shortfall. The wrong benchmark leads to the wrong decision: selling the thing that is working in order to buy the thing that has just run."
+  },
+  "summary": {
+    "keyIdea": "An index answers one specific question, and often not the one you are asking",
+    "commonMistake": "Using the VN-Index as the yardstick for every portfolio regardless of composition",
+    "action": "Look up the weights of the five largest names in the VN-Index and work out what share of the index they represent."
+  },
+  "application": {
+    "title": "Reading a session properly",
+    "message": "How many stocks drove today's index gain? How do advancers compare with decliners? And which basket does my portfolio resemble - the large caps or the mid and small caps?",
+    "secondary": "Many data platforms publish advancer and decliner counts along with each stock's point contribution to the index."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The index is the most quoted and most misread number in the market. It is not a thermometer for investor mood, nor an average of the stocks - it is the total value of one specific basket, computed by one specific formula."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three ways an index can be computed",
+      "subtitle": "The formula decides what the index actually reflects",
+      "concepts": [
+        { "def": "Each stock contributes in proportion to its market cap. The VN-Index works this way, so the largest few names carry overwhelming influence." },
+        { "def": "Each stock contributes in proportion to its absolute share price, regardless of company size. The Dow Jones is the classic example and the classic target of criticism for it." },
+        { "def": "Every stock contributes equally. It tracks the average stock more closely, but requires constant rebalancing, so it is rarely used as a headline index." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Breadth is the part the index does not tell you",
+      "text": "A session where the index gains 1.5% on 120 advancers and 280 decliners tells a completely different story from a session gaining 1.5% on 300 advancers. The first is a few heavyweights pulling; the second is the whole market moving up. Look only at the index number and the two sessions are indistinguishable."
+    },
+    {
+      "type": "heading",
+      "text": "Why a handful of stocks can carry the whole index"
+    },
+    {
+      "type": "paragraph",
+      "text": "In a cap-weighted index, a stock's contribution is proportional to its size. When a few of the largest companies account for most of the exchange's market cap, a single up session in those names is enough to lift the index while most of the remaining stocks fall. That is not a defect in the method - it is exactly what the index is designed to measure, namely total market value. The error lies in reading it as though it represented the average stock."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The index is one measure, not the whole truth about a session.",
+        "The next lesson covers a mechanism that amplifies moves in both directions in this market: margin trading."
+      ]
+    }
+  ]
+}

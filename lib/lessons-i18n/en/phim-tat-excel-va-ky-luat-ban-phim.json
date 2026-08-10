@@ -1,0 +1,153 @@
+{
+  "slug": "phim-tat-excel-va-ky-luat-ban-phim",
+  "title": "Excel, Lesson 1: Keyboard discipline - why a modelling test bans the mouse",
+  "subtitle": "The core shortcut groups, navigating a data range, and the working habits of a professional modeller",
+  "duration": "10 min",
+  "whyItMatters": "A modelling test for an analyst role usually allows 60 to 90 minutes for a model you will not finish if you use the mouse. Speed here is not about looking impressive: it decides whether you have any time left to check your work.",
+  "openingQuestion": "Why do modelling tests usually assess keyboard speed as well as the answer?",
+  "openingOptions": [
+    "Because employers want staff who work fast enough to hit deadlines",
+    "Because working with the mouse is several times slower",
+    "Because shortcuts make the file smaller",
+    "Because Excel calculates faster when shortcuts are used"
+  ],
+  "explanation": "A mouse user takes roughly three to five times as long for the same operation. In a 90-minute test, that gap is precisely the budget available for reviewing the model and running scenarios - the part that actually separates a correct model from one that merely produces numbers. Put differently, keyboard discipline is not a performance skill; it is the condition for having any time left to think.",
+  "diagram": [
+    {
+      "label": "Navigate: Ctrl + arrow key"
+    },
+    {
+      "label": "Select a range: add Shift"
+    },
+    {
+      "label": "Enter and copy formulas"
+    },
+    {
+      "label": "Check: F2, Ctrl + [ , F9"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The modelling test in analyst recruitment",
+    "description": "A common format: you are given a printed page of financial statements and asked to build a three-statement linked model with a five-year forecast in 90 minutes. Candidates who fail almost never fail because they do not know the accounting - they fail because time runs out before the three statements are linked, most of it spent on manual operations that should have taken seconds."
+  },
+  "quiz": [
+    {
+      "question": "What does Ctrl + arrow key do?",
+      "options": [
+        "Moves the cursor one cell at a time in the direction of the arrow pressed",
+        "Applies number formatting to the selected range of data cells",
+        "Inserts an extra row or column at the position the cursor is currently in",
+        "Jumps straight to the last cell of the contiguous data range in that direction"
+      ],
+      "explanation": "Adding Shift makes it jump and select at the same time. This is the foundational pair of operations: almost every range-selection shortcut in a financial model is built on top of it. Formatting and inserting rows have their own shortcuts, and single-cell movement is what the arrow key does on its own - Ctrl is exactly what turns that into a jump to the edge of the block."
+    },
+    {
+      "question": "What is F2 for, and why does it matter when hunting for an error?",
+      "options": [
+        "Enters edit mode and colours the cells the formula refers to",
+        "Quickly saves the open file without going through the system save dialog",
+        "Clears the contents of the current cell while keeping the formatting applied",
+        "Switches across to the next worksheet in the workbook file"
+      ],
+      "explanation": "When you doubt a number, F2 shows you immediately where the formula is pulling its data from. A great many off-by-one-row or off-by-one-column errors are caught by nothing more than this. Saving, clearing and sheet navigation all have their own keys; none of them tells you anything about where a figure came from, which is the specific job F2 does."
+    },
+    {
+      "question": "What does F4 do while you are writing a formula?",
+      "options": [
+        "Repeats the last action performed on the selected cell or range",
+        "Cycles between absolute and relative reference forms",
+        "Recalculates every formula in the entire workbook",
+        "Opens the cell formatting dialog for number style, font and borders"
+      ],
+      "explanation": "A firm grasp of absolute and relative references is what lets you write one formula and drag it across a whole table - the core technique that keeps a model consistent and sharply reduces the scope for error. F4 does repeat the last action, but only outside formula editing; inside a formula it is the reference toggle, which is where it earns its place."
+    },
+    {
+      "question": "Why should merged cells be avoided in a financial model?",
+      "options": [
+        "Because a merged cell materially increases the size of the saved workbook file",
+        "Because Excel is unable to print a merged cell out to a PDF file",
+        "Because it breaks range selection, copying and keyboard navigation",
+        "Because a merged cell only accepts typed values and will not accept a formula"
+      ],
+      "explanation": "Professional modellers almost never merge cells. To centre a heading across several columns, use centre across selection instead - it achieves the same presentation without breaking the structure of the grid. Merged cells accept formulas perfectly well and print without difficulty; the file-size effect is negligible. The real cost is entirely in navigation and selection."
+    },
+    {
+      "question": "Why does a modelling test mark the speed of your operations and not just the result?",
+      "options": [
+        "Because the employer needs to measure how a candidate copes under time pressure",
+        "Because typing speed reflects how fluent a candidate is with financial formulas",
+        "Because a model built quickly tends to contain fewer formula errors than a slow one",
+        "Because the time saved is the time available for review and scenario testing"
+      ],
+      "explanation": "Across ninety minutes, the gap created by using the mouse is roughly the same amount of time a fast worker spends checking the model and trying a few scenarios. Same model, and the one with time to review hands in something correct while the other hands in something unchecked. Speed does not reduce errors by itself and it says nothing about formula knowledge; it buys the review that catches them."
+    }
+  ],
+  "keyTakeaways": [
+    "Ctrl + arrow key to jump, add Shift to select - the foundation of every fast operation",
+    "F2 to see where a formula points; F4 to switch reference form while writing a formula",
+    "Do not merge cells: it breaks range selection, copying and navigation",
+    "Keyboard speed is not for show, it is to free up time for checking the logic"
+  ],
+  "practicePrompt": {
+    "question": "You need to sum a column of 500 rows but do not know where the last row is. What is the quickest way?",
+    "options": [
+      "Scroll down with the mouse to find the last row, then type the range",
+      "Ctrl + Shift + down arrow, and then autosum the range",
+      "Select the entire column and sum it, blank cells included",
+      "Enter a formula for each block of 50 rows and add them up"
+    ],
+    "explanation": "This takes about two seconds and always lands exactly on the last row containing data. Watch for one trap: if there is a blank cell partway down the column, Ctrl + Shift + arrow will stop there - which is also how you discover gaps in the data that the eye would never catch."
+  },
+  "summary": {
+    "keyIdea": "Fast operation exists so that you have time to check, not so that you look impressive",
+    "commonMistake": "Merging cells to make it look tidy, and losing the ability to navigate and copy by keyboard",
+    "action": "For one week, unplug the mouse whenever you work in a spreadsheet - it is the only method that really builds the habit."
+  },
+  "application": {
+    "title": "A compulsory exercise",
+    "message": "Open any data table and perform five operations using the keyboard alone: jump to the end of the data range, select the whole range, insert a row, copy a formula to the right, and inspect a cell's references with F2. Repeat until you no longer have to think about it.",
+    "secondary": "Only the shortcuts you do not have to think about save you time; a shortcut you have to recall before using does not count yet."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The financial modelling track taught you the structure and the thinking behind a good model. This track adds the missing piece, and the one tested directly in recruitment: turning that thinking into a finished file, inside a time limit."
+    },
+    {
+      "type": "heading",
+      "text": "Four shortcut groups that cover 90% of the work"
+    },
+    {
+      "type": "conceptTable",
+      "title": "The core shortcut set",
+      "subtitle": "You do not need hundreds of combinations - these four groups cover most of the real work",
+      "concepts": [
+        {
+          "def": "Jump to the edge of a data range. Add Shift to jump and select at once. Ctrl + Home returns to the first cell of the sheet.",
+          "en": "Ctrl + arrow keys"
+        },
+        {
+          "def": "F2 enters edit mode and colours the referenced cells. F4 cycles between absolute and relative reference forms."
+        },
+        {
+          "def": "Paste values only, formatting only, or paste transposed. Pasting values is mandatory when breaking a circular link or freezing a result."
+        },
+        {
+          "def": "Ctrl + [ jumps to the source cell of a formula. Ctrl + ` shows every formula instead of its result - the fastest way to review a model."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Layout rules that support speed",
+      "text": "Good layout and fast operation go together. A model with a single consistent time axis, where each row holds only one kind of logic, lets you write one formula and drag it across the whole row. A patched-together model forces you to retype cell by cell, and every retype is another chance for an error."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Nobody looks up shortcuts during a test. The operations have to live in your hands, not in your head.",
+        "The next lesson moves to the most important function group of all: lookup and aggregation."
+      ]
+    }
+  ]
+}

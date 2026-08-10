@@ -12,12 +12,22 @@
   ],
   "explanation": "A credit rating is a third party's assessment of an issuer's ability to repay debt on time, split into two broad groups: investment grade and speculative grade. The boundary between the two groups matters more than the gaps between notches within a group, because many funds' charters forbid holding the lower group - so a company pushed across that line loses a large pool of buyers all at once, and the bond price falls further than the actual change in risk would justify.",
   "diagram": [
-    { "label": "The rating agency assesses repayment ability", "arrow": true },
-    { "label": "Assigns a grade from AAA down to D", "arrow": true },
-    { "label": "The lower the grade, the higher the yield investors demand", "arrow": true },
-    { "label": "Downgraded: bond price falls and new borrowing costs rise" }
+    {
+      "label": "The rating agency assesses repayment ability",
+      "arrow": true
+    },
+    {
+      "label": "Assigns a grade from AAA down to D",
+      "arrow": true
+    },
+    {
+      "label": "The lower the grade, the higher the yield investors demand",
+      "arrow": true
+    },
+    {
+      "label": "Downgraded: bond price falls and new borrowing costs rise"
+    }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "Sovereign and corporate credit downgrades",
     "description": "When agencies like S&P or Moody's downgrade the credit rating of a country or a large company, their future borrowing costs rise immediately - an event closely watched because of its direct impact on the entire economy or industry involved."
@@ -104,12 +114,18 @@
       "type": "lead",
       "text": "Before lending anyone money, you want to know the odds they'll repay it on time. For bonds, that assessment is done professionally by rating agencies like Moody's, S&P, and Fitch, packaged into an easy-to-read letter grade."
     },
-    { "type": "heading", "text": "The rating scale: from AAA to D" },
+    {
+      "type": "heading",
+      "text": "The rating scale: from AAA to D"
+    },
     {
       "type": "paragraph",
       "text": "The common S&P/Fitch scale runs from AAA (safest) down to D (already in default): AAA, AA, A, BBB sit within the Investment Grade (IG) group - considered safe enough for pension and insurance funds. From BB downward (BB, B, CCC, CC, C) is High-Yield, also called Junk bonds - much higher default risk, in exchange for a higher yield to compensate. Moody's uses an equivalent scale: Aaa, Aa, A, Baa (Investment Grade) and Ba, B, Caa and below (High-Yield). The lower the rating, the wider the credit spread - the extra rate charged over a government bond of the same term."
     },
-    { "type": "heading", "text": "Fallen Angel: when a bond 'falls in grade'" },
+    {
+      "type": "heading",
+      "text": "Fallen Angel: when a bond 'falls in grade'"
+    },
     {
       "type": "paragraph",
       "text": "A notable phenomenon is the Fallen Angel: a bond once in the Investment Grade group gets downgraded to High-Yield (for example, from BBB to BB). The problem isn't just the added risk - many large institutional funds (pension, insurance) are bound by regulations to hold only Investment Grade bonds. Once downgraded, these funds must sell immediately regardless of price, creating a sell-off that goes far beyond the newly increased real credit risk. For an investor who understands this mechanism, this can sometimes be a buying opportunity if the downgrade is overdone relative to the company's actual financial health."

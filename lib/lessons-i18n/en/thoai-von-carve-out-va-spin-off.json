@@ -1,0 +1,152 @@
+{
+  "slug": "thoai-von-carve-out-va-spin-off",
+  "title": "Deals, Lesson 4: Divestment - why selling one unit is harder than buying a whole company",
+  "subtitle": "Carve-outs, spin-offs, stranded costs, and financial statements for something that has never existed on its own",
+  "duration": "11 min",
+  "whyItMatters": "Most M&A material is about buying, but every purchase has a seller, and a good number of those sellers are groups trimming a division away. Pulling a unit out of the parent body raises questions that buying a whole company never meets.",
+  "openingQuestion": "Why is preparing financial statements for a business unit about to be sold so much harder than for a standalone company?",
+  "openingOptions": [
+    "Because such units are usually small, so the figures are less reliable",
+    "Because the unit has never stood alone; everything is shared",
+    "Because accounting standards contain no rules for this situation",
+    "Because the historical data has usually been deleted from the systems"
+  ],
+  "explanation": "A unit inside a group shares the HR department, the IT systems, the brand, the purchasing contracts and even the banking relationships. Pulling it out means answering the question: if this unit stood alone, what would it actually cost to run? The answer is almost always higher than the current internal allocation, because the group buys at greater scale. The statements built for this situation rest on assumptions about an entity that has never existed, so they are a reasoned estimate rather than a history.",
+  "diagram": [
+    {
+      "label": "Separate the direct revenue and costs"
+    },
+    {
+      "label": "Estimate the standalone cost base"
+    },
+    {
+      "label": "Identify the stranded costs"
+    },
+    {
+      "label": "Transitional services agreement"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The costs left behind after selling a unit",
+    "description": "A group sells a division accounting for 20% of revenue and books a gain on the deal. But general overhead does not fall by 20%: the head office lease is unchanged, the executive team is still fully staffed, the core systems still run. The overhead previously allocated to the sold unit now piles onto the remaining ones, and their margins deteriorate in the very first quarter. The phenomenon has its own name - stranded costs - and it is why many divestments that look profitable on paper leave group profit lower the following year."
+  },
+  "quiz": [
+    {
+      "question": "What are stranded costs in a divestment?",
+      "options": [
+        "Overhead once allocated to the sold unit that does not leave with it",
+        "Costs arising during negotiation that the seller bears if the deal collapses",
+        "Redundancy payments for staff of the unit transferring to the new owner",
+        "Interest still due on the borrowings used to invest in that unit earlier"
+      ],
+      "explanation": "This is why group profit often deteriorates after a profitable divestment. It has to be quantified in advance rather than discovered the following quarter. Broken-deal costs, redundancy payments and interest on old borrowings are all real amounts, but each of them leaves the group along with the transaction instead of staying behind on the remaining units."
+    },
+    {
+      "question": "What is a transitional services agreement for?",
+      "options": [
+        "So the buyer may defer part of the price until the data split is done",
+        "So the parent keeps supplying shared services to the sold unit for a limited period",
+        "So both sides agree how to handle disputes arising after completion",
+        "So the unit's key managers stay for at least two years after transfer"
+      ],
+      "explanation": "Without this agreement, the unit just sold could lose its ability to operate on day one, because payroll, accounting or IT still sit inside the parent. Deferred consideration, dispute resolution and management retention are each handled by their own clauses in the sale agreement, and none of them keeps the lights on the morning after completion."
+    },
+    {
+      "question": "How does a spin-off differ from a carve-out?",
+      "options": [
+        "A spin-off needs prior regulatory approval while a carve-out only notifies after",
+        "A spin-off applies only to loss-making units, a carve-out to profitable ones",
+        "A spin-off hands the unit's shares to existing shareholders; a carve-out sells for cash",
+        "A spin-off happens inside one group while a carve-out must involve a foreign party"
+      ],
+      "explanation": "The core difference is where the cash goes: a spin-off brings no money back to the parent, it simply separates an asset into its own listed shares held by the same body of shareholders. Neither form is restricted to profitable or loss-making units, and neither requires a foreign counterparty."
+    },
+    {
+      "question": "Why are the financial statements prepared for a unit about to be sold treated as an estimate rather than a history?",
+      "options": [
+        "Because it is always prepared before completion, so the figures are not yet final",
+        "Because the unit's historical figures are usually not independently audited",
+        "Because accounting standards require projections instead of actuals here",
+        "Because it assumes costs the unit would bear standalone, which never happened"
+      ],
+      "explanation": "This is what the buyer should examine most closely in diligence: whether the standalone cost assumptions were built conservatively, or set optimistically to push the sale price up. Timing, audit status and disclosure rules affect how much confidence to place in the numbers, but none of them is what makes the statements hypothetical."
+    },
+    {
+      "question": "A unit is allocated 30bn of group overhead a year, but running those functions itself would cost 45bn. What happens to its standalone EBITDA?",
+      "options": [
+        "About 15bn a year lower than the internal figure",
+        "About 15bn a year higher, thanks to standalone control",
+        "Unchanged; allocation is an internal entry",
+        "Exactly 45bn lower, the old allocation no longer counting"
+      ],
+      "explanation": "Standalone costs are almost always higher than the internal allocation: the unit has never paid for its own HR department, IT systems or banking relationships. The 45 − 30 = 15bn difference is what the buyer will deduct straight from the valuation, and it is the item most heavily challenged in diligence."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A group sells a unit above its book value and records a gain. Why can profit still fall the following year?",
+    "options": [
+      "Because the gain on the deal is recognised only once",
+      "Recurring profit is lost while overhead stays behind",
+      "Because tax has to be paid on the gain",
+      "Because the buyer will compete directly"
+    ],
+    "explanation": "Two effects compound and both persist, while the recognised gain appears only once. This is why analysts always strip divestment gains out of recurring profit when they assess a trend - otherwise a year of selling assets looks like a year of good trading."
+  },
+  "keyTakeaways": [
+    "A unit inside a group has never stood alone, so its statements are an estimate rather than a history",
+    "Standalone costs are almost always higher than the current internal allocation",
+    "Stranded costs: selling 20% of revenue does not cut group overhead by 20%",
+    "A transitional services agreement is what keeps the sold unit running after day one",
+    "A spin-off distributes shares to existing shareholders and brings no cash; a carve-out is a sale for cash"
+  ],
+  "summary": {
+    "keyIdea": "Pulling a unit out of the parent body creates costs that appeared on no previous report",
+    "commonMistake": "Assuming overhead falls in proportion to the revenue of the unit being sold",
+    "action": "Take a diversified group and try estimating the true cost if their smallest division had to stand alone."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Pick a group with several business units and assume they sell the smallest one. List the functions that unit shares with the parent, then estimate the cost of doing each itself. Compare that figure with the overhead currently allocated to the unit.",
+    "secondary": "The gap between those two numbers is exactly what the buyer will negotiate over, and what the seller would rather not discuss."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Every purchase has a seller. When the seller is a group trimming away a division, the problem changes completely: the thing being sold has never existed as an independent business."
+    },
+    {
+      "type": "heading",
+      "text": "Three ways to separate a unit"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Sell, separate or distribute",
+      "subtitle": "They differ in where the cash goes and who holds the shares at the end",
+      "concepts": [
+        {
+          "def": "Separate the unit and sell it to a buyer. The parent receives cash. This is the most common form and also the most complex to disentangle.",
+          "en": "Sold to a third party"
+        },
+        {
+          "def": "The unit becomes its own company and the shares go to the existing shareholders. No cash arrives; the purpose is to let the market value each part separately.",
+          "en": "Distributed to shareholders"
+        },
+        {
+          "def": "Only specific assets are sold rather than the legal entity itself. Legally the simplest route, but the buyer does not receive the attached contracts and licences."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The most important diligence question in a carve-out",
+      "text": "Not how much profit this unit makes, but: on what assumptions was the cost figure in these statements built, and who verified them. The seller has every incentive to set standalone cost assumptions optimistically, because each dong of assumed cost removed pushes the sale price up by the valuation multiple. This is where the buyer should spend most of its diligence time, and it is also where attention most often fails, because it sits in the notes rather than in the main tables."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Buying joins two things that already exist. Selling a unit means creating something that never existed and only then joining it on.",
+        "The next lesson moves from the numbers to the process: from signing a letter of intent to being permitted to close."
+      ]
+    }
+  ]
+}

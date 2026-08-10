@@ -1,0 +1,155 @@
+{
+  "slug": "tuong-quan-copula-va-phu-thuoc-duoi",
+  "title": "Market Risk, Lesson 5: Correlation, copulas and tail dependence",
+  "subtitle": "Why a correlation coefficient does not describe enough, how dependence separates from the marginal distributions, and the lesson of 2008",
+  "duration": "12 min",
+  "whyItMatters": "Diversification rests on the assumption that assets do not fall together. A correlation coefficient measures the average relationship, but what decides a portfolio's fate is the relationship on the worst days - and those two quantities differ far more than most people assume.",
+  "openingQuestion": "Two assets have a correlation coefficient of 0.3. What does that guarantee about their behaviour in a crisis?",
+  "openingOptions": [
+    "It guarantees they fall together in only 30% of all cases",
+    "Nothing: correlation only measures a linear relationship",
+    "It guarantees a portfolio of the two falls by at most 30%",
+    "It guarantees they are independent in normal markets"
+  ],
+  "explanation": "A correlation coefficient is a single number summarising the entire relationship between two series, and it is dominated by the most crowded region of the data - the ordinary days. It is entirely possible for two assets to be weakly correlated in normal conditions and yet almost always fall together in large shocks. That property is called tail dependence, and the correlation coefficient cannot measure it. This is why a portfolio that looks well diversified in a spreadsheet can still lose value across the board on precisely the day diversification was supposed to earn its keep.",
+  "diagram": [
+    { "label": "Correlation: one number for the whole distribution" },
+    { "label": "Copula: dependence separated from the marginals" },
+    { "label": "Gaussian copula: no tail dependence" },
+    { "label": "t copula: tail dependence present" }
+  ],
+  "realWorldExample": {
+    "company": "The Gaussian copula in structured credit pricing",
+    "description": "Before 2008, structured credit products were widely priced with a Gaussian copula model to describe the chance of many loans defaulting together. The Gaussian copula has a specific mathematical property: zero tail dependence - meaning that however high the correlation parameter, the probability of two variables landing in the extreme region together still tends to zero far out in the tail. For mortgage loans in a nationwide house-price collapse, that assumption was wrong in the most dangerous possible direction, and the senior tranches - which only lose money when defaults arrive all at once - turned out to be far riskier than their ratings said."
+  },
+  "quiz": [
+    {
+      "question": "What two things does a copula separate from each other?",
+      "options": [
+        "The data actually observed, and the values a model produces while it is being simulated",
+        "The short-run fluctuation in a data series, and the long-run trend sitting underneath it",
+        "Risk that can be diversified away, and systematic risk that diversification cannot remove",
+        "The marginal distribution of each variable, and the dependence structure that links them together"
+      ],
+      "explanation": "Because of this separation, each asset can be modelled with whatever distribution fits it best, and the assets are then joined together by a dependence function chosen on its own merits. The first option confuses a copula with a simulation engine, which is a delivery mechanism rather than a model of dependence. The second describes a time-series decomposition into trend and cycle, which says nothing about how two assets move together. The third is the classic portfolio-theory split, and it lives one level up: you still need a dependence structure before you can compute it."
+    },
+    {
+      "question": "What does tail dependence mean?",
+      "options": [
+        "The tendency of variables to land in extreme regions together, beyond what correlation suggests",
+        "The degree to which today's value of a series depends on that same series' value on the previous day",
+        "The phenomenon of a return distribution having fatter tails than the matching normal distribution",
+        "The relationship between the length of the historical sample and the reliability of a correlation estimate"
+      ],
+      "explanation": "This is the quantity that decides whether the benefit of diversification still exists in a crisis, and it does not appear anywhere in a correlation coefficient. The second option describes autocorrelation, a property of one series through time rather than of two series together. The third describes fat tails, which is a property of each marginal distribution taken alone - two assets can both have fat tails and still never crash on the same day. The fourth is an estimation question, not a property of the joint distribution."
+    },
+    {
+      "question": "In what important respect does a Gaussian copula differ from a t copula?",
+      "options": [
+        "A Gaussian copula only works for two variables while a t copula handles any number of them",
+        "A Gaussian copula has no tail dependence while a t copula does, so t describes joint shocks better",
+        "A Gaussian copula requires the variables to share the same marginal distribution and a t copula does not",
+        "A Gaussian copula gives a more accurate answer in every case but costs far more computing time to run"
+      ],
+      "explanation": "This very technical-sounding difference is exactly what produced the large gap in price and risk on structured credit products before 2008. Both copulas extend to any number of variables, so dimensionality is not the dividing line. Neither imposes any condition on the marginals - separating the marginals from the dependence is the whole point of a copula. And the Gaussian version is the cheaper one to compute, not the dearer, which is part of why it spread so widely."
+    },
+    {
+      "question": "Why does correlation between asset classes tend to rise in a crisis?",
+      "options": [
+        "Because trading volumes fall sharply, so asset prices become less volatile than they normally are",
+        "Because regulators intervene in all markets simultaneously during the whole length of a crisis period",
+        "Because investors sell everything to raise cash, so prices are driven by a common demand for liquidity",
+        "Because the pricing models used by large institutions all share one fixed set of correlation parameters"
+      ],
+      "explanation": "When the reason for selling is no longer anything about the asset itself but a need for cash, everything gets sold together - and diversifying by sector or region does not help at all. Volumes in a crisis typically spike rather than dry up, and volatility rises with them. Regulatory intervention usually arrives after the correlation has already moved, not as its cause. Shared model parameters can amplify a move, but institutions calibrate their own matrices, and the effect is a second-order one."
+    },
+    {
+      "question": "Why did Gaussian-copula models understate credit portfolio risk before 2008?",
+      "options": [
+        "Because it needed a longer run of history than institutions had",
+        "Because it assumed every loan carried the same probability of defaulting",
+        "Because it only applied to portfolios holding fewer than a hundred assets",
+        "Because it creates no tail dependence, so it ignores simultaneous defaults"
+      ],
+      "explanation": "A Gaussian copula lets you set a correlation parameter, but the tails remain asymptotically independent - meaning the model very nearly rules out the scenario in which every loan defaults at once. That is precisely the scenario that occurred, and it sat outside the set of outcomes the model was able to generate. Data length was never the binding constraint, the model does not require equal default probabilities, and it scales to portfolios of any size."
+    }
+  ],
+  "keyTakeaways": [
+    "Correlation measures the average relationship and is dominated by ordinary days",
+    "Tail dependence is the tendency to land in the extremes together - correlation cannot measure it",
+    "A copula separates the dependence structure from each asset's marginal distribution",
+    "The Gaussian copula has zero tail dependence; the t copula does not",
+    "Correlation rises in a crisis because the reason for selling is a need for cash, not the asset itself"
+  ],
+  "practicePrompt": {
+    "question": "A portfolio holds 10 stocks from different sectors with an average pairwise correlation of 0.25. What is the biggest risk being missed?",
+    "options": [
+      "The portfolio does not yet hold enough stocks to be diversified",
+      "A correlation of 0.25 can approach 1 in a common shock",
+      "The stocks are all listed on the same exchange",
+      "Rebalancing transaction costs have not been counted"
+    ],
+    "explanation": "This is the gap between spreadsheet risk and real risk. Ten different sectors protect against a shock specific to one sector, but they do not protect against a shock common to the whole market - exactly the sort of event people buy diversification to guard against. The way to check is to recompute the correlation using only the worst 5% of days and compare it with the 0.25 figure."
+  },
+  "summary": {
+    "keyIdea": "Diversification is measured by the relationship on the worst day, not by the average relationship",
+    "commonMistake": "Concluding a portfolio is safe because the correlation matrix looks low",
+    "action": "Recompute pairwise correlations using only the days the market fell hardest and compare them with the full-sample figure."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take five years of data for two indices or two stocks. Compute the correlation coefficient over the whole sample, then recompute it using only the worst 5% of days for the market. Compare the two numbers.",
+    "secondary": "The gap between them is the risk that the correlation matrix in the report is not telling you about."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The last lesson estimated the volatility of a single asset. A portfolio depends instead on how its assets move together - and this is where risk models go wrong most often, always in the optimistic direction."
+    },
+    { "type": "heading", "text": "Why one number is not enough" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Correlation coefficient",
+        "text": "One number for the entire distribution, measuring a linear relationship. Dominated by the most crowded part of the data, which is the ordinary days. Simple, familiar, and silent about exactly the tail you care about."
+      },
+      "right": {
+        "label": "Dependence structure",
+        "text": "Describes how the variables move together in each region of the distribution, including the extremes. A copula is the tool that pulls this piece out so it can be modelled on its own."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Diversification disappears exactly when it is needed",
+      "text": "This observation returns in every crisis: assets that are weakly correlated in normal conditions fall together in a large shock. The mechanism is no mystery - when investors need cash they sell whatever can be sold, so the reason for selling has nothing to do with the asset. The consequence for risk management is that a correlation matrix estimated on normal data will understate portfolio risk in precisely the scenarios the number exists to warn about."
+    },
+    { "type": "heading", "text": "Same correlation, two different dependence structures" },
+    {
+      "type": "paragraph",
+      "text": "A correlation coefficient is a single number describing the average relationship across the whole distribution. Two pairs of assets can both show 0.3 and still behave completely differently in the tail: the first pair holds at 0.3 even on the worst days, while the second sits near 0 in normal conditions and jumps to 0.7 among the worst 5% of days. The average still comes out at 0.3. For a risk manager only the second number matters - because those are the days the portfolio needs diversification."
+    },
+    {
+      "type": "callout",
+      "label": "A copula separates dependence from the marginals",
+      "text": "The idea behind a copula is to split the problem into two independent pieces: each asset has its own distribution, and a separate function describes how they travel together. That lets you combine fat-tailed marginals with a dependence structure that is also fat in the tails, instead of being forced into one multivariate family for everything. It is the right tool for the job - the problem in 2008 was not the copula idea but the choice of copula function."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Gaussian copula - zero tail dependence",
+        "text": "However high you set the correlation parameter, it still assigns a probability tending to zero to both assets landing in the extreme region. That means a structured credit model built on it implicitly asserts that the loans cannot default en masse - which is exactly what happened."
+      },
+      "right": {
+        "label": "Student-t copula - positive tail dependence",
+        "text": "It allows extreme events to occur simultaneously with meaningful probability, tunable through the degrees of freedom. At the same correlation coefficient, these two choices produce economic capital numbers that are far apart - and the difference lives in the assumption, not in the data."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Diversification is not a fixed property of a portfolio; it is a property that depends on the state of the market.",
+        "The last lesson of this stage covers a tool that leans on no distribution at all: building scenarios directly."
+      ]
+    }
+  ]
+}

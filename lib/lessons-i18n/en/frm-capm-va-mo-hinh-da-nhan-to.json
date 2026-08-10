@@ -1,0 +1,126 @@
+{
+  "slug": "frm-capm-va-mo-hinh-da-nhan-to",
+  "title": "FRM Foundations, Lesson 7: CAPM and multi-factor models in risk management",
+  "subtitle": "One factor is not enough - why APT and the multi-factor models appeared",
+  "duration": "9 min",
+  "whyItMatters": "CAPM gives the shared language for talking about systematic risk and underpins beta, alpha and the cost of capital. But the evidence shows one factor does not explain returns, and for a risk manager, knowing where a model is wrong matters as much as knowing what it says.",
+  "openingQuestion": "What is CAPM's central assumption about which risk the market compensates?",
+  "openingOptions": [
+    "Only systematic risk is compensated",
+    "All of an asset's risk is compensated in proportion to its standard deviation",
+    "Only liquidity risk is compensated; other risk types do not affect returns",
+    "No risk is compensated, because markets sit in perfect equilibrium at all times"
+  ],
+  "explanation": "CAPM rests on a single argument: the market does not pay for risk an investor can remove for free through diversification. Only the systematic component, measured by beta, is therefore compensated. Multi-factor models extend the idea by admitting that other sources of systematic risk exist - size, value, momentum - and in risk management, decomposing a portfolio by factor reveals what it is genuinely betting on.",
+  "diagram": [
+    { "label": "Total risk = systematic risk + idiosyncratic risk" },
+    { "label": "Idiosyncratic risk is diversified away and therefore not compensated" },
+    { "label": "CAPM: expected return = Rf + β × the market risk premium" },
+    { "label": "The evidence departs → add size, value, momentum, quality factors" }
+  ],
+  "realWorldExample": {
+    "company": "From single-factor CAPM to multi-factor models",
+    "description": "Decades of empirical testing showed that beta alone cannot explain the return gaps between groups of stocks: small-capitalisation names and low price-to-book names systematically returned more than CAPM predicted. That finding led to models adding size and value factors, and later momentum, profitability and investment - each addition an admission that the previous model was still missing something."
+  },
+  "quiz": [
+    {
+      "question": "How does arbitrage pricing theory differ from CAPM at its core?",
+      "options": [
+        "It allows many factors and needs no defined market portfolio",
+        "It claims every asset earns the same expected return in the long run",
+        "It applies only to derivatives markets rather than to equities",
+        "It removes the risk-free rate from the pricing model entirely"
+      ],
+      "explanation": "APT starts from the absence of arbitrage opportunities, so it needs no assumption about a market portfolio or about investor utility functions. In exchange, it does not tell you what the factors are - factor selection becomes an empirical question with no settled answer. It makes no claim that expected returns converge, it is a general asset pricing argument rather than a derivatives one, and the risk-free rate remains in the pricing relation as the intercept."
+    },
+    {
+      "question": "What problem does Roll's critique of CAPM testing identify?",
+      "options": [
+        "CAPM cannot be applied to assets with a negative beta",
+        "The true market portfolio cannot be observed",
+        "The risk-free rate varies over time, so CAPM is void",
+        "Beta cannot be estimated from data at all"
+      ],
+      "explanation": "The theoretical market portfolio has to contain every investable asset - property, human capital, unlisted holdings. All anyone has is an equity index as a proxy, so a test result reflects both the quality of that proxy and the truth of the model, with no way to separate the two. CAPM handles negative betas perfectly well, a time-varying risk-free rate is dealt with by using the current one, and beta is estimated from data routinely - the objection concerns what it is estimated against."
+    },
+    {
+      "question": "For a risk manager, where does the practical value of a multi-factor model lie?",
+      "options": [
+        "It removes the need to run stress tests on the portfolio at all",
+        "It guarantees the portfolio beats its benchmark in every period",
+        "It decomposes where the portfolio's risk comes from, factor by factor",
+        "It allows regulatory capital to be computed in place of Basel models"
+      ],
+      "explanation": "The value here is diagnostic rather than predictive: the model tells you how much of the portfolio's variance comes from the value factor, how much from size, how much from sector. A portfolio that looks diversified can turn out to be a concentrated bet on a single factor. It replaces neither stress testing, which explores scenarios outside the estimated relationships, nor the regulatory capital framework, and no model guarantees outperformance."
+    },
+    {
+      "question": "What is the limitation of a stock beta estimated from the last three years of data when it is used for valuation?",
+      "options": [
+        "It cannot be computed if the stock paid out a dividend during the period",
+        "It always sits below the true beta, because three years is far too short",
+        "It only works for stocks whose beta happens to be greater than one",
+        "It describes the past, while the capital structure may have changed"
+      ],
+      "explanation": "Beta is a statistical estimate from a past window, while valuation looks forward. A company that has just taken on large debt, or just sold a division, has a different sensitivity to the market than it used to - and three years of data has not caught up with that. Dividends cause no computational difficulty, since returns are measured on a total return basis. There is no systematic downward bias from a short window, and beta is estimated for high-beta and low-beta stocks alike."
+    },
+    {
+      "question": "What purpose does factor decomposition of a portfolio serve in risk management?",
+      "options": [
+        "Showing what the portfolio is really betting on, however varied the names",
+        "Computing precisely the expected return of every single holding it contains",
+        "Replacing the measurement of standard deviation and of correlation entirely",
+        "Identifying which holding to sell in order to lift the portfolio Sharpe ratio"
+      ],
+      "explanation": "A thirty-stock portfolio can look thoroughly diversified and still be a single bet on the value factor or on the interest rate cycle. Factor decomposition reveals that, while counting the number of holdings does not. It does not replace variance and correlation measurement, since it is built on top of them; it makes no claim to price individual holdings precisely; and deciding what to sell is a portfolio construction step rather than something the diagnosis itself delivers."
+    }
+  ],
+  "practicePrompt": {
+    "question": "An equity portfolio has a market beta of 0.9. Over the quarter the market rose 5% while the portfolio fell 3%. What is a multi-factor model for in this situation?",
+    "options": [
+      "Showing which factor pulled against the beta contribution",
+      "Forecasting next quarter's return better than plain CAPM",
+      "Proving the beta of 0.9 was mis-estimated from the start",
+      "Replacing the market portfolio with an observable proxy"
+    ],
+    "explanation": "For a risk manager, the value of a multi-factor model is DIAGNOSING exposure rather than forecasting return. A beta of 0.9 should have delivered roughly +4.5%, so the 7.5 percentage point gap has to come from somewhere: value exposure, size, momentum, or a sector factor. Decomposing it says what this portfolio is genuinely betting on - usually bets nobody on the team deliberately placed. Roll's critique is correct but beside the point here: it says CAPM tests are inconclusive, not that multi-factor models exist to replace the market portfolio."
+  },
+  "keyTakeaways": [
+    "CAPM: only systematic risk is compensated, because idiosyncratic risk can be diversified away",
+    "APT allows many factors and needs no defined market portfolio, but does not say which factors matter",
+    "Roll's critique: the market portfolio is unobservable, so CAPM tests are inconclusive",
+    "For risk management, a multi-factor model is worth more as exposure diagnosis than as return forecast"
+  ],
+  "summary": {
+    "keyIdea": "CAPM supplies the base language of systematic risk; multi-factor models extend it to decompose where a portfolio's risk actually comes from",
+    "commonMistake": "Treating beta as the whole risk story, when the portfolio may be heavily exposed to factors beta does not capture",
+    "action": "When assessing a portfolio, ask one more question: beyond market beta, which factor is this portfolio leaning on?"
+  },
+  "application": {
+    "title": "Re-examine your portfolio by factor",
+    "message": "Look at the equities you hold and ask: do these names share a characteristic - all small caps, all one sector, all growth stocks?",
+    "secondary": "If the answer is yes, the portfolio is concentrated in a single factor however diversified it looks on the surface."
+  },
+  "sections": [
+    { "type": "lead", "text": "CAPM is a model simple enough to be almost certainly wrong in several places, and it still underpins beta, alpha and the cost of capital - so understanding where it is wrong is compulsory work." },
+    { "type": "formula", "title": "CAPM", "equation": "E(Ri) = Rf + βi × [E(Rm) − Rf]", "variables": [
+      { "name": "Sensitivity of asset i to the market portfolio" },
+      { "name": "The market risk premium" }
+    ]},
+    { "type": "heading", "text": "The founding argument: only pay for what cannot be avoided" },
+    { "type": "paragraph", "text": "If an investor can eliminate idiosyncratic risk simply by holding more assets, the market has no reason to pay extra for bearing it. What remains - the common risk acting on every asset - is what gets compensated, and beta measures exactly the exposure to that component." },
+    { "type": "heading", "text": "Where the model breaks" },
+    { "type": "list", "items": [
+      "Empirically: small-cap and low-valuation groups return more than CAPM predicts, systematically",
+      "Roll's critique: the true market portfolio is unobservable, so every test is indirect",
+      "The assumption of free borrowing and lending at the risk-free rate does not hold for most investors",
+      "Beta is estimated from the past and is unstable over time"
+    ]},
+    { "type": "callout", "label": "APT: trading assumptions for flexibility", "text": "Arbitrage pricing theory only needs the assumption that no riskless profit opportunity exists, so it sidesteps the entire argument about the market portfolio. The price is that the model does not say which factors matter - that becomes an empirical question with no conclusive answer." },
+    { "type": "heading", "text": "Use it to diagnose, not to forecast" },
+    { "type": "paragraph", "text": "For a risk manager, a multi-factor model is most useful run backwards: not to forecast returns but to decompose where the portfolio's volatility is coming from. A thirty-stock portfolio that looks thoroughly diversified can still be a single bet on the growth factor." },
+    { "type": "closing", "lines": [
+      "Every model is wrong; the useful question is in which direction, and what that does to the decision.",
+      "Next lesson: the professional code of conduct written specifically for risk managers."
+    ]}
+  ]
+}

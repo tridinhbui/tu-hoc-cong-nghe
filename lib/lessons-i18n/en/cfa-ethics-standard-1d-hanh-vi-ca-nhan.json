@@ -11,7 +11,6 @@
     "None, because private life sits outside the standards",
     "Only conduct already convicted by a court in a final judgment"
   ],
-  "correctOption": 1,
   "explanation": "Standard I(D) is not a code of personal morality in general. It draws a circle around three things bearing directly on whether you deserve to be trusted with other people's money: honesty, trustworthiness, and professional competence. Cheating in a university exam, falsifying an application, or defrauding someone in a private transaction all fall within scope - not because they are bad in general but because they say something about how this person behaves when there is an opportunity and nobody is watching. An ordinary civil dispute or a traffic incident, by contrast, does not.",
   "summary": {
     "keyIdea": "Three criteria - honesty, trustworthiness, professional competence - apply to conduct outside work as well, whenever that conduct says something about those three qualities.",
@@ -110,7 +109,7 @@
         "Professional competence, seniority, and investment results",
         "Obeying the law, confidentiality, and avoiding conflicts"
       ],
-      "explanation": "All three bear directly on whether other people's money should be entrusted to this person."
+      "explanation": "All three bear directly on whether other people's money should be entrusted to this person. Obeying the law is narrower, since conduct can be lawful and still dishonest. Community contribution and seniority say nothing about how someone behaves unobserved. And confidentiality and conflicts of interest are real duties under other standards, but they govern conduct inside the work rather than the character the work has to rest on."
     },
     {
       "question": "Is a court conviction required for a Standard I(D) violation?",
@@ -120,7 +119,7 @@
         "No, the conduct is enough without any criminal conviction",
         "No, but a formal complaint from the injured party is required"
       ],
-      "explanation": "The professional standard and the criminal standard differ - conduct can fall short of an offence and still show dishonesty."
+      "explanation": "The professional standard and the criminal standard differ - conduct can fall short of an offence and still show dishonesty. The duty here runs to the profession rather than to the state, so it does not wait on a prosecutor's decision, a judgment in force, or a complaint from anyone who was harmed. The reverse also holds: an acquittal does not clear the matter if the evidence of the conduct remains."
     },
     {
       "question": "Does an ordinary civil dispute fall under Standard I(D)?",
@@ -130,7 +129,7 @@
         "Yes, if the amount in dispute exceeds a certain threshold",
         "No, unless it says something about honesty or competence"
       ],
-      "explanation": "The standard does not judge the existence of a dispute; it examines whether conduct within it shows dishonesty."
+      "explanation": "The standard does not judge the existence of a dispute; it examines whether conduct within it shows dishonesty. Having a disagreement with a neighbour or a supplier is ordinary life, and the sum at stake measures the argument rather than the character. Nor is the scope limited to criminal conduct - a civil matter that involves concealing assets or misleading a counterparty falls squarely inside it."
     },
     {
       "question": "Why does cheating in a university exam fall in scope?",
@@ -140,17 +139,17 @@
         "Because academic results form part of a professional record",
         "Because CFA Institute requires the academic history declared"
       ],
-      "explanation": "This is the logic of the whole standard: behaviour in one context predicts behaviour in another where the structure of temptation is the same."
+      "explanation": "This is the logic of the whole standard: behaviour in one context predicts behaviour in another where the structure of temptation is the same. It is not that the law treats all cheating alike - it mostly does not - nor that a transcript forms part of a professional record, nor that anyone requires the academic history to be declared. The exam simply happens to reproduce the situation the profession worries about."
     },
     {
       "question": "When does substance misuse fall in scope?",
       "options": [
-        "In every case, since it is conduct falling below standards",
+        "In every case, since it is conduct falling below the standards",
         "When it affects the capacity to perform professional duties",
         "Only when an authority has imposed a penalty",
         "Never, since it is entirely a matter of private life"
       ],
-      "explanation": "The standard does not judge a lifestyle - it asks whether the conduct leaves you unable to perform your duties."
+      "explanation": "The standard does not judge a lifestyle - it asks whether the conduct leaves you unable to perform your duties. That is why it is neither always in scope nor never in scope: making investment decisions while impaired reaches the competence criterion directly, while private habits that never touch the work do not. An administrative penalty is evidence of the conduct, not the thing that brings it into scope."
     }
   ],
   "keyTakeaways": [

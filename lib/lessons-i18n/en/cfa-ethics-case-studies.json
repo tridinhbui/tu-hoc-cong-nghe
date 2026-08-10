@@ -1,0 +1,146 @@
+{
+  "slug": "cfa-ethics-case-studies",
+  "title": "CFA Ethics 3: Case studies applying the Standards to real situations",
+  "subtitle": "Practising the classification skill through CFA Level I style scenarios",
+  "duration": "9 min",
+  "whyItMatters": "The CFA Level I exam rarely asks for the theory of a Standard on its own - most Ethics questions are case studies asking which Standard a specific situation breaches. This lesson drills exactly that skill.",
+  "openingQuestion": "A fund manager receives expensive tickets to a cup final from the board of a listed company, immediately before writing a research note recommending a 'Buy' on that company's stock. What is the main ethical problem here?",
+  "openingOptions": [
+    "No problem at all, since gifts are a normal part of doing business",
+    "A large gift from a company you cover undermines analytical independence",
+    "The only issue is that the gift is worth more than 1 million dong",
+    "Only an issue if that company later turns out to lose money"
+  ],
+  "explanation": "This is a potential breach of Standard I(B) - Independence and Objectivity. The issue is not whether the 'Buy' recommendation is analytically right or wrong, but that accepting a valuable gift from the company you cover immediately before issuing a recommendation creates an obvious conflict of interest and raises a legitimate doubt about objectivity - whatever the analyst's actual intentions were.",
+  "diagram": [
+    { "label": "Read the situation" },
+    { "label": "Identify who is affected" },
+    { "label": "Narrow it to the right Standard group" },
+    { "label": "Check it back against the Code of Ethics principles" }
+  ],
+  "realWorldExample": {
+    "company": "The 'Chinese Wall' process at large investment banks",
+    "description": "Major investment banks worldwide build strict internal information barriers - the 'Chinese Wall' - between the investment banking side (which sees inside information through M&A and IPO work) and the research side (which publishes investment recommendations). That barrier is how Standard II (Integrity of Capital Markets) and Standard I(B) (Independence and Objectivity) get implemented at institutional scale."
+  },
+  "quiz": [
+    {
+      "question": "An analyst built a proprietary valuation model for her former employer. On moving to a new firm she takes the model with her and uses it there without asking permission. Which Standard does this breach?",
+      "options": [
+        "No breach - knowledge in your head is your own personal property",
+        "Standard IV(A) Loyalty, the duty owed to the former employer",
+        "Standard V(A) on having a reasonable basis for a recommendation",
+        "Standard VI on disclosing conflicts of interest to the client"
+      ],
+      "explanation": "This is the classic Standard IV(A) - Loyalty problem. Proprietary models and documents built in the course of employment generally belong to the firm unless the employment contract says otherwise, so taking them to a new employer without permission breaches the duty of loyalty to the old one. The distinction being tested is between the skill an analyst carries in her head, which does travel with her, and a specific artefact she built on the firm's time. No client is disadvantaged and no recommendation is at issue, which rules out the other two."
+    },
+    {
+      "question": "A portfolio manager allocates an attractive investment opportunity (an IPO likely to jump) to his own account first, then allocates what remains to client accounts. Which principle does this breach?",
+      "options": [
+        "A breach only if the self-allocated share exceeds 50% of the total",
+        "No breach, since the manager is entitled to invest personally",
+        "Standard III(B) Fair Dealing - treating clients fairly",
+        "Standard VII, because it concerns the CFA exam programme"
+      ],
+      "explanation": "This breaches Standard III(B) - Fair Dealing. The industry principle is that client accounts must get access to an attractive opportunity such as a hot IPO before, or at the same time as, the manager's own account, so the manager cannot take the best part for himself first. Personal investing is not prohibited in itself - what is prohibited is going ahead of the people whose money you manage. And no size threshold turns the rule on: the ordering is what breaches it."
+    },
+    {
+      "question": "A CFA candidate studying for Level I posts detailed content of several questions from the exam on personal social media straight after sitting it, having signed the exam confidentiality undertaking beforehand. Which Standard does this seriously breach?",
+      "options": [
+        "No breach - it is only sharing a personal experience",
+        "Standard II, since it concerns the integrity of capital markets",
+        "A breach only if what was posted is entirely untrue",
+        "Standard VII(A) Conduct as Candidate - exam confidentiality"
+      ],
+      "explanation": "This is a serious breach of Standard VII(A) - Conduct as Participants in CFA Institute Programs, which prohibits any conduct that compromises the integrity, reliability or confidentiality of CFA Institute exams and programmes. Disclosing exam content, even framed as sharing an experience, directly breaks the confidentiality undertaking every candidate signs before sitting. Accuracy makes it worse rather than better, since true content is what actually damages future exams. It can lead to a voided result or a permanent ban."
+    },
+    {
+      "question": "When working through an Ethics case study in the exam, which approach works best?",
+      "options": [
+        "Identify who is affected, what was done, and whether it was disclosed",
+        "Pick the strictest answer, since Ethics errs on the safe side",
+        "Skip the detail and recall the answer to similar past questions",
+        "Always pick 'no violation', since most situations are fairly mild"
+      ],
+      "explanation": "A systematic approach - identify the affected party, the nature of the conduct, and whether disclosure or permission was obtained - lets you classify the Standard accurately rather than guessing. Blanket heuristics fail in exactly the nuanced situations the exam is built around: the strictest answer is often an overreach the Standards do not require, and defaulting to 'no violation' fails the majority of items. Pattern-matching to a remembered question is the most dangerous of all, because the examiners vary one detail precisely to catch it."
+    },
+    {
+      "question": "Which approach gets you to a fast, correct answer on an ethics scenario in the exam?",
+      "options": [
+        "Pick the strictest option, since ethical standards always demand the most",
+        "Work out who is being disadvantaged and what should have been disclosed",
+        "Find the matching local statute and apply exactly what that provision says",
+        "Eliminate any option that mentions reporting to internal compliance staff"
+      ],
+      "explanation": "Nearly every breach reduces to two questions: has someone been placed behind the decision-maker's own interest, and has something been concealed. Asking those two usually pins the Standard without having to recall its code by heart. The strictest option is not automatically right, since the Standards sometimes require less than instinct suggests. Local statute is a separate test that only matters under Standard I(A). And reporting internally is very often the correct step rather than a wrong one."
+    }
+  ],
+  "keyTakeaways": [
+    "An Ethics case study on the CFA exam requires identifying the affected party (client, employer, market) before you pick the Standard",
+    "Standard III(B) - Fair Dealing requires attractive opportunities to be allocated to clients before or alongside the manager's own account",
+    "Standard IV(A) - Loyalty extends to intellectual property, including proprietary models built while working for the former employer",
+    "Standard VII(A) protects the confidentiality and integrity of the CFA exam programme itself - a breach can void your result"
+  ],
+  "practicePrompt": {
+    "question": "A fund manager learns of an attractive investment opportunity. Before allocating any of it to clients, he buys a large parcel of the stock for his personal account and only then places the client orders. Which Standard does this breach, and why?",
+    "options": [
+      "No breach, since a manager is free to invest personally alongside running client money",
+      "A breach of Standard III(B) Fair Dealing: this is front-running",
+      "A breach only if the personal purchase exceeds 50% of the total order size",
+      "A breach of Standard VII, since it relates to the CFA certification exams"
+    ],
+    "explanation": "Standard III(B) - Fair Dealing requires attractive opportunities to be allocated to clients before, or at the same time as, the manager's own account. This is textbook front-running: the personal purchase profits from the price move the client orders are about to cause, which breaches the duty to deal fairly with clients regardless of how large the personal parcel was."
+  },
+  "summary": {
+    "keyIdea": "An Ethics case study calls for systematic thinking: identify the affected party, the nature of the conduct, and the transparency element - before choosing the Standard",
+    "commonMistake": "Guessing by which answer 'sounds most serious' instead of working through each element of the situation systematically.",
+    "action": "Always ask the same three questions: who is affected, what exactly was done, and was it disclosed or approved beforehand"
+  },
+  "application": {
+    "title": "Practise the case study reflex",
+    "message": "Next time you read a news story about a financial scandal, try running the three-step framework (affected party - nature of the conduct - transparency) and predicting which of the seven Standard groups it comes closest to.",
+    "secondary": "Practising on real situations builds the reflex you need when a case study appears in the actual exam."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The two previous lessons gave you the Code of Ethics (the principles) and the seven Standards of Professional Conduct (the specific rules). This one focuses on the skill that matters most in the exam itself: applying the right Standard to a specific case study."
+    },
+    {
+      "type": "heading",
+      "text": "A three-step framework for an Ethics case study"
+    },
+    {
+      "type": "paragraph",
+      "text": "Step 1: identify who is directly affected by the conduct - the client, the employer, the capital markets generally, or the CFA programme itself. Step 2: describe the nature of the conduct precisely - is this a conflict of interest, a misuse of information, a lack of analytical basis, or a confidentiality breach? Step 3: check the transparency element - was the conduct disclosed, approved in advance, or concealed? These three steps narrow the field of candidate Standards quickly before you go into detail."
+    },
+    {
+      "type": "heading",
+      "text": "The situations that most often confuse people"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many CFA case studies deliberately stack several layers of problem on top of each other, or build a situation that looks like one Standard but really belongs to another. A classic example: allocating an opportunity unfairly between clients and a personal account looks like a 'conflict of interest' issue under Standard VI, but it is really a matter of dealing fairly with the client directly, so Standard III(B) - Fair Dealing is the more precise answer."
+    },
+    {
+      "type": "callout",
+      "label": "An important reminder",
+      "text": "The eventual outcome of an action - whether the investment made money or lost it - almost never determines whether the conduct was ethical. CFA exam items routinely present a good financial result reached by a wrong process, to test whether the candidate is fooled by the outcome."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Always keep 'the financial result' and 'the ethical validity' of an action apart - the two are independent of one another",
+        "When a situation has several elements, work out which Standard is the core issue, not merely the first one that comes to mind",
+        "Whether something was disclosed or approved in advance is very often the pivot separating legitimate conduct from a breach",
+        "The more varied the situations you practise on, the faster and more accurate your instinct becomes in the real exam"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Ethics is not a subject for memorising seven Standard names by rote - it is a subject for building a genuine professional reflex.",
+        "These three Ethics lessons are only a starting point - the official CFA curriculum has far more detailed case studies, and this is the subject you should return to most often before the real exam."
+      ]
+    }
+  ]
+}

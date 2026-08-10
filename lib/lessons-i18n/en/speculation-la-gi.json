@@ -56,7 +56,7 @@
         "The type of derivative used in the transaction",
         "Whether or not there is an underlying risk being protected",
         "The size of capital and leverage applied to the position",
-        "Whether trading is on a centralized exchange or bilateral"
+        "Whether trading is on a centralized exchange or done bilaterally"
       ],
       "explanation": "The same oil futures contract: an airline buying it is a hedge, a fund buying it is speculation. The instrument is identical, the difference is whether there is an existing exposure to cancel out or not."
     },

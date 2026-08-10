@@ -11,7 +11,6 @@
     "Answer only with a lawyer representing you present",
     "Provide information only once a violation has been proved"
   ],
-  "correctOption": 1,
   "explanation": "Failing to cooperate with an investigation is a violation independent of the one under investigation, and in many cases it leads to a heavier sanction. The reason is practical: CFA Institute has none of the state's coercive powers - it cannot subpoena and it cannot search - so the entire enforceability of the system rests on members cooperating voluntarily. Ignoring the letter, supplying misleading information, or destroying relevant documents each turn a matter that might have ended in a caution into a suspension of membership.",
   "summary": {
     "keyIdea": "The disciplinary process measures how you react more than it measures the original violation - which is why non-cooperation is usually treated more severely than the thing under investigation.",
@@ -88,10 +87,18 @@
     }
   ],
   "diagram": [
-    { "label": "Source: self-report, complaint, monitoring or the press", "arrow": true },
-    { "label": "Investigation: a request for information the member must answer", "arrow": true },
-    { "label": "Conclusion: no violation, or a proposed sanction", "arrow": true },
-    { "label": "Sanctions: from a caution to permanent revocation" }
+    {
+      "label": "Source: self-report, complaint, monitoring or the press"
+    },
+    {
+      "label": "Investigation: a request for information the member must answer"
+    },
+    {
+      "label": "Conclusion: no violation, or a proposed sanction"
+    },
+    {
+      "label": "Sanctions: from a caution to permanent revocation"
+    }
   ],
   "realWorldExample": {
     "company": "Self-reporting is a real source, not a theoretical one",
@@ -106,17 +113,17 @@
         "As a separate violation, potentially heavier than the one investigated",
         "As a mitigating factor, since it demonstrates caution"
       ],
-      "explanation": "The whole enforceability of the system rests on members cooperating, so breaking that is treated severely."
+      "explanation": "The whole enforceability of the system rests on members cooperating, so breaking that is treated severely. The other three all read the duty as derivative of the original matter, which it is not. It does not wait for the underlying violation to be proved, so it cannot shrink to a caution conditional on that proof. A right to silence runs against the state, not against a professional body whose membership you hold voluntarily. And silence is the opposite of caution here - the record it leaves is the record the panel then has to judge."
     },
     {
       "question": "Why does the system depend on members cooperating?",
       "options": [
         "Because the process is designed to keep investigation costs down",
-        "Because cases often span several different countries",
-        "Because members may choose not to take part in the disciplinary programme at all",
+        "Because cases often span several different countries and legal systems",
+        "Because members may opt out of the disciplinary programme entirely",
         "Because CFA Institute has no coercive power like a state authority"
       ],
-      "explanation": "It cannot subpoena and cannot search - so voluntary cooperation is the condition for the system working at all."
+      "explanation": "It cannot subpoena and cannot search - so voluntary cooperation is the condition for the system working at all. Cost is not the constraint: an unlimited investigation budget still would not create a power to compel evidence. Nor is geography, though cases do cross borders - a state regulator with the same international reach still holds subpoena powers this body does not. And membership being voluntary is why the duty binds for as long as you hold it, not a licence to step outside the programme once a letter arrives."
     },
     {
       "question": "What is the annual professional conduct statement for?",
@@ -126,7 +133,7 @@
         "Updating your contact details and current place of work",
         "Rating how satisfied you are with the organisation's services"
       ],
-      "explanation": "This is an important detection source, and answering it untruthfully is itself a Standard I(C) violation."
+      "explanation": "This is an important detection source, and answering it untruthfully is itself a Standard I(C) violation. The other three describe real administrative touchpoints that are handled elsewhere entirely: continuing-education hours, contact details captured at renewal, and member satisfaction surveys. Confusing the statement with any of them is what leads people to treat it as a form to click through, which is exactly how a minor workplace matter that would have been dealt with lightly becomes a second and heavier violation."
     },
     {
       "question": "What is the heaviest sanction in the disciplinary process?",
@@ -136,17 +143,17 @@
         "Referring the file to a state investigative authority",
         "Publishing the individual's name on the organisation's site"
       ],
-      "explanation": "CFA Institute's sanctions sit within professional standing - they neither replace nor exclude action at law."
+      "explanation": "CFA Institute's sanctions sit within professional standing - they neither replace nor exclude action at law. That is what rules the other three out. It cannot impose a fine, because it has no statutory power to levy one. It does not refer files to state investigators as a sanction; a regulator may act in parallel, but that is the state's decision rather than a rung on this ladder. And publication is real, yet it sits below revocation, because a public censure still leaves you holding the designation."
     },
     {
       "question": "What does destroying relevant documents during an investigation lead to?",
       "options": [
-        "Action only if an intent to conceal can be proved",
-        "No effect at all if the documents were already past their retention period",
+        "Action only where a deliberate intent to conceal can be proved",
+        "No effect if the documents were already past their retention period",
         "Turning a matter that could have ended lightly into a suspension",
         "Acceptance, if it follows the firm's retention policy"
       ],
-      "explanation": "Reacting wrongly during an investigation usually does more damage than the original violation - the most practical point in this lesson."
+      "explanation": "Reacting wrongly during an investigation usually does more damage than the original violation - the most practical point in this lesson. Intent does not have to be established separately, because destroying documents after a request has arrived is itself the conduct being judged. And a retention policy governs what you discard in the ordinary course of business; it stops governing the moment a specific matter is opened, which is equally true of documents whose retention period has already run."
     }
   ],
   "keyTakeaways": [

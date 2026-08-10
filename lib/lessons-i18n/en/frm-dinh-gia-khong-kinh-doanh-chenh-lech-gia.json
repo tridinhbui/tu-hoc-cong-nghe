@@ -1,0 +1,146 @@
+{
+  "slug": "frm-dinh-gia-khong-kinh-doanh-chenh-lech-gia",
+  "title": "FRM Valuation, Lesson 1: The no-arbitrage principle",
+  "subtitle": "The first brick of every valuation model - and why valuation does not need to know where you think the price is going",
+  "duration": "9 min",
+  "whyItMatters": "The whole FRM valuation section stands on one assumption: there is no free lunch. Once you have the principle, the binomial tree, Black-Scholes and swap valuation are the same idea wearing three different suits.",
+  "openingQuestion": "What does the no-arbitrage principle state?",
+  "openingOptions": [
+    "Two identical future cash flow streams must have the same price today",
+    "Every financial asset must earn more than the risk-free rate over the long run",
+    "Asset prices always reflect the intrinsic value of the issuing business correctly",
+    "Investors always act rationally and never make mistakes when pricing an asset"
+  ],
+  "explanation": "The absence of arbitrage opportunities is the foundation of all derivative valuation: if two identical bundles of cash flows trade at different prices, everyone buys the cheap one and sells the dear one until the difference disappears. What is striking is that this requires neither rational investors nor efficient markets - only enough greedy people to pick money up off the floor. Because the assumption is so light, the conclusions drawn from it are far more durable than those resting on the efficient markets hypothesis.",
+  "diagram": [
+    { "label": "Build a replicating portfolio that matches the asset's cash flows exactly" },
+    { "label": "The price of that replicating portfolio is observable in the market" },
+    { "label": "No arbitrage means the asset must trade at exactly that price" },
+    { "label": "No knowledge of the true probabilities of the scenarios is needed" }
+  ],
+  "realWorldExample": {
+    "company": "Why derivative pricing needs no price forecast",
+    "description": "The thing that surprises newcomers most about option pricing is that the formula contains no expected return for the stock. Two analysts who disagree completely about whether the stock will rise or fall still have to agree on the option price, because both agree that nobody may earn a riskless profit. Their forecasts are already inside the current stock price."
+  },
+  "quiz": [
+    {
+      "question": "What is the role of the replicating portfolio in derivative valuation?",
+      "options": [
+        "Diversifying the portfolio to bring down its standard deviation",
+        "Reproducing the derivative's cash flows from assets that already have market prices",
+        "Forecasting the future price of the underlying asset from past data",
+        "Guaranteeing the holder a minimum level of return whatever happens"
+      ],
+      "explanation": "If you can combine the stock and borrowing so that the cash flows match the option in every scenario, the option price has to equal the cost of building that combination - otherwise there is a riskless profit available. Diversification lowers dispersion but says nothing about a fair price, no forecast enters the argument at all, and nothing in the construction guarantees the holder any return: the replicating portfolio can lose money exactly as the derivative does."
+    },
+    {
+      "question": "Why are risk-neutral probabilities not the market's true probabilities?",
+      "options": [
+        "Because there is no way to estimate true probabilities from historical price data",
+        "Because markets systematically misprice the odds of future scenarios",
+        "They are a set of mathematical weights that make the discounting work",
+        "Because regulators prohibit the use of true probabilities in valuation models"
+      ],
+      "explanation": "A risk-neutral probability is a computational device, not a belief. It folds the risk premium inside itself, which is what earns you the right to discount at the risk-free rate - an algebraic trick rather than a statement about the world. True probabilities can in fact be estimated, though noisily; the market is not assumed to be wrong about them; and no rule bars anyone from using them where they are the right input."
+    },
+    {
+      "question": "In practice, why do small arbitrage spreads persist in the market?",
+      "options": [
+        "Because they only appear in markets that have not yet been digitised or automated",
+        "Because professional traders have no tools able to detect them at all",
+        "Because the law prohibits every form of arbitrage trading outright",
+        "Because transaction costs and limited capital make exploiting them not worth it"
+      ],
+      "explanation": "No-arbitrage is a limiting assumption, not an exact description. A spread smaller than the cost of executing it will simply sit there untouched - which is why pricing models always show some error against observed prices. Detection is not the constraint: the tooling is excellent and the spreads are visible. Arbitrage is legal and in fact is the mechanism that enforces prices, and digitisation shrank the spreads without removing the costs."
+    },
+    {
+      "question": "Why does the no-arbitrage principle not require investors to be rational?",
+      "options": [
+        "Because a few greedy participants are enough to erase the spread",
+        "Because the principle only holds in markets that have market makers",
+        "Because irrational investors get driven out of the market in the long run",
+        "Because every valuation model assumes investors are neutral towards risk"
+      ],
+      "explanation": "That is the strength of the argument: it does not need the majority to behave rationally, only a handful with capital and a motive. Which is why it survives where conclusions resting on the efficient markets hypothesis do not. Market makers help but are not necessary, the claim that irrational investors get selected out is a much stronger and much shakier assumption, and risk-neutrality is a pricing device rather than a description of investors."
+    },
+    {
+      "question": "Why do small arbitrage spreads persist in real markets?",
+      "options": [
+        "Because the largest investors have a tacit understanding not to exploit the small spreads",
+        "Because transaction costs, capital and funding risk make exploiting them not worth it",
+        "Because regulation forbids trading undertaken to exploit price differences",
+        "Because modern pricing models have already eliminated every meaningful spread"
+      ],
+      "explanation": "Theory assumes costless trading and unlimited capital. In practice, a few basis points of spread needs heavy leverage to be worth doing, and heavy leverage brings the risk of being margin-called before prices converge - which is exactly what finished LTCM. There is no cartel holding spreads open, arbitrage trading is entirely legal, and models describe prices rather than remove the frictions that keep spreads alive."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A stock trades at 100,000 dong, the risk-free rate is 6% a year, and there is no dividend. A one-year forward is quoted at 104,000 dong. What should you do?",
+    "options": [
+      "Buy the forward and short the stock, locking in 2,000 dong",
+      "Sell the forward and buy the stock, locking in 2,000 dong",
+      "Nothing, because 104,000 is still above the spot price",
+      "Buy both, since a low forward price signals a rising stock"
+    ],
+    "explanation": "The fair forward price is 100,000 × 1.06 = 106,000 dong, so the quoted contract is 2,000 dong cheap. How to take it: short the stock for 100,000 dong, place the proceeds at the risk-free rate so they grow to 106,000 dong after a year, and simultaneously buy the forward committing you to repurchase the stock at 104,000 dong. After a year you return the stock and 2,000 dong is left over, with no price risk at all - whether the stock rose or fell. Selling the forward and buying the stock is the same trade in reverse, and it loses exactly 2,000 dong. Note that the arithmetic needs nothing at all about the stock's prospects."
+  },
+  "keyTakeaways": [
+    "Two identical cash flow streams must have the same price, or there is money on the floor",
+    "The replicating portfolio turns a valuation problem into an addition of component prices",
+    "Risk-neutral probabilities are a computational tool, not a forecast about the world",
+    "Transaction costs and limited capital are what let small spreads survive in practice"
+  ],
+  "summary": {
+    "keyIdea": "Derivative valuation needs no forecast of the future price, only the assumption that nobody gets to earn a riskless profit",
+    "commonMistake": "Reading risk-neutral probabilities as the market's genuine forecast of the odds of a rise or a fall",
+    "action": "For every pricing formula you meet, ask: what does the replicating portfolio consist of here"
+  },
+  "application": {
+    "title": "Try it on a simple example",
+    "message": "A contract promises to pay exactly 100m in a year, with no risk. Its price today has to be 100m discounted at the risk-free rate - if anyone sells it cheaper, you buy it, borrow exactly that amount, and the profit is certain.",
+    "secondary": "All of derivative valuation is a more elaborate version of that one comparison."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "One question puzzles people learning derivatives for a long time: why does the option pricing formula contain no view of ours about whether the stock will rise or fall?"
+    },
+    { "type": "heading", "text": "The single assumption" },
+    {
+      "type": "paragraph",
+      "text": "No arbitrage means there exists no strategy requiring zero capital, carrying no risk, that still yields a certain profit. It does not require clever investors or efficient markets - only enough people willing to pick money up when they see it lying on the floor."
+    },
+    { "type": "heading", "text": "From the assumption to the formula" },
+    {
+      "type": "paragraph",
+      "text": "If you can build a portfolio out of already-priced assets whose cash flows match the derivative in every scenario, the two must cost the same. The valuation problem therefore becomes the problem of constructing a replicating portfolio - and that is the entire content of both the binomial tree and Black-Scholes."
+    },
+    {
+      "type": "callout",
+      "label": "Why your forecast never appears in the formula",
+      "text": "Your view on where the stock is heading is already inside the current stock price - which is what the formula takes as an input. Putting the forecast in a second time is counting the same information twice."
+    },
+    { "type": "heading", "text": "Rebuilding an option out of stock and borrowing" },
+    {
+      "type": "paragraph",
+      "text": "The stock is at 100 and after one period can only go to 120 or down to 90. The risk-free rate is 5%. A call struck at 100 pays 20 on the upper branch and 0 on the lower. Buy Δ shares and borrow B, choosing Δ and B so that the portfolio pays exactly 20 and 0: Δ = (20 − 0)/(120 − 90) = 0.667, and B = −57.14. Check it: upper branch 0.667×120 − 57.14×1.05 = 20; lower branch 0.667×90 − 57.14×1.05 = 0. This portfolio is identical to the option in EVERY scenario, so today it must cost the same: 0.667×100 − 57.14 = 9.52."
+    },
+    {
+      "type": "callout",
+      "label": "If the option does not trade at 9.52 there is free money",
+      "text": "Suppose the market quotes 11. Sell the option for 11 and buy the replicating portfolio for 9.52 - pocketing 1.48 today. Next period, whether the price goes to 120 or to 90, the portfolio pays exactly what the option you sold owes, so that 1.48 is a riskless profit requiring no capital. Because anyone can do it, the price of 11 does not survive long - and that is the whole power of an assumption that sounds very weak."
+    },
+    { "type": "heading", "text": "Risk-neutral probability is just another way of writing the same arithmetic" },
+    {
+      "type": "paragraph",
+      "text": "From the same numbers, set π = [(1 + 0.05)×100 − 90] / (120 − 90) = 0.5. The option price = (0.5×20 + 0.5×0) / 1.05 = 9.52 - identical to the figure just built from the replicating portfolio. π is NOT the true probability of a rise; it is the number that makes the stock, discounted at the risk-free rate, worth exactly 100 today. Put differently, the true probability has been replaced by the stock price - and that is why your view on direction appears nowhere in the formula."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Valuation does not ask where the price is going; it only asks which price leaves nobody free money.",
+        "Next lesson: applying the principle to a two-branch tree."
+      ]
+    }
+  ]
+}

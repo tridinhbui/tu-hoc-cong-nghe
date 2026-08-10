@@ -1,0 +1,125 @@
+{
+  "slug": "frm-frtb-so-giao-dich",
+  "title": "Market Risk, Lesson 7: FRTB - redrawing the boundary between the trading book and the banking book",
+  "subtitle": "Why Basel had to rewrite the entire market risk capital framework after 2008",
+  "duration": "10 min",
+  "whyItMatters": "FRTB is the largest change to the market risk capital framework in two decades, and it appears heavily in FRM Part II. More to the point, the reason it exists explains precisely what broke in 2008 - so understanding FRTB is understanding why the old framework failed.",
+  "openingQuestion": "Before FRTB, what was the biggest problem with the boundary between the trading book and the banking book?",
+  "openingOptions": [
+    "The boundary was so rigid that banks could not classify new products",
+    "Banks could move positions across it to obtain a far lower capital charge",
+    "The boundary applied only to internationally active banks",
+    "Both books used the same capital methodology, so they were indistinguishable"
+  ],
+  "explanation": "The two books have very different capital treatments, so if the bank decides where the boundary sits, the boundary becomes an optimisation choice: move the position to whichever side is currently cheaper. During the crisis, many firms moved illiquid assets from the trading book into the banking book to escape mark-to-market recognition. FRTB therefore tightens the boundary: it prescribes what belongs where, requires approval for any reclassification, and forbids that reclassification from reducing capital.",
+  "diagram": [
+    { "label": "The boundary is prescribed, and moving across it requires approval" },
+    { "label": "The measure moves from VaR at 99% to Expected Shortfall at 97.5%" },
+    { "label": "Liquidity horizons vary by risk factor class" },
+    { "label": "IMA must pass a P&L attribution test per desk, or fall back to SA" }
+  ],
+  "realWorldExample": {
+    "company": "The 2008 crisis and the limits of the old framework",
+    "description": "The old framework computed capital from a 10-day VaR, with the implicit assumption that any position could be exited within ten days. In 2008 several markets simply had no buyer at any price for weeks at a time. FRTB answers that with liquidity horizons graded by risk factor class - from 10 days for major currencies out to 120 days for the least liquid credit factors."
+  },
+  "quiz": [
+    {
+      "question": "Why does FRTB replace VaR at 99% with Expected Shortfall at 97.5%?",
+      "options": [
+        "Because ES measures the tail beyond the threshold, where VaR is silent",
+        "Because ES always produces a lower capital number and is easier to comply with",
+        "Because VaR cannot be computed for a book containing derivatives",
+        "Because the 97.5% level is very much easier to backtest than the 99% level"
+      ],
+      "explanation": "VaR states a threshold and says nothing about the size of the loss once that threshold is breached - which is exactly the region that decides whether a firm survives. ES averages the tail, so it captures the shape of that region, and it is also a coherent measure whereas VaR can violate subadditivity. It generally raises capital rather than lowering it, derivatives are no obstacle, and backtesting ES is in fact harder, not easier."
+    },
+    {
+      "question": "What does a liquidity horizon mean in FRTB?",
+      "options": [
+        "The maximum time a bank may hold a position in the trading book",
+        "The assumed time to exit a factor, varying by factor class",
+        "The minimum span of historical data used to calibrate the model",
+        "The number of days within which positions must be reported to the regulator"
+      ],
+      "explanation": "The old framework assumed ten days for everything. FRTB grades the assumption by risk factor class, from 10 days for highly liquid currencies out to 120 days for credit factors that are hard to sell - because the lesson of 2008 was that liquidity does not disappear evenly across markets. It is not a holding period limit, a data requirement, or a reporting deadline."
+    },
+    {
+      "question": "What does the P&L attribution test check?",
+      "options": [
+        "How often actual losses exceeded the VaR threshold in the last 250 days",
+        "How accurately profit is split between the trading desks",
+        "How closely the model's predicted P&L matches the actual P&L",
+        "What share of trades are priced using observable market data inputs"
+      ],
+      "explanation": "If a desk's risk model cannot explain the actual P&L variation of that same desk, it is missing a risk factor somewhere. The test runs at desk level rather than across the whole bank, and a desk that fails is pushed back to the standardised approach with its higher capital charge. Counting VaR exceptions is backtesting, which is a separate test, and neither profit allocation nor input observability is what this one measures."
+    },
+    {
+      "question": "How are non-modellable risk factors (NMRF) treated under FRTB?",
+      "options": [
+        "Moved to the banking book so that no market risk capital is needed",
+        "Excluded from the calculation entirely, since the data is not reliable",
+        "Folded into the ES at half the weight of a normal factor",
+        "Capitalised separately by stress scenario, outside the ES"
+      ],
+      "explanation": "A factor without enough real transaction data is not reliable enough to sit inside the model, but ignoring it makes the risk vanish from the books. FRTB separates them out and capitalises them by their own scenario - usually more expensively, which gives the bank an incentive to hold only products for which it has genuine data. Reclassifying them or halving their weight would both be ways of hiding the same gap."
+    },
+    {
+      "question": "Scenario: a trading desk fails the P&L attribution test in two consecutive quarters. What follows?",
+      "options": [
+        "The desk must close its positions and stop trading until it is fixed",
+        "The entire bank immediately loses the right to use internal models",
+        "That desk reverts to the standardised approach, usually costing more capital",
+        "Nothing beyond a written explanation owed to the supervisor"
+      ],
+      "explanation": "The consequence sits at desk level rather than spreading across the bank, and it is economic rather than prohibitive: the desk is pushed back to the standardised approach and its capital rises. That capital difference is what creates the incentive to keep the model honest, in place of a ban. Closing the desk would be a supervisory intervention of a quite different kind, and a written explanation alone would leave no incentive at all."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A trading desk fails the P&L attribution test in two consecutive quarters. Under FRTB, what happens to that desk?",
+    "options": [
+      "It reverts to the standardised approach, with materially higher capital",
+      "It is closed until the internal model has been recalibrated",
+      "Nothing, because this test is only indicative",
+      "The whole bank loses internal model permission on every desk"
+    ],
+    "explanation": "The P&L attribution test compares the P&L predicted by the risk model with the actual P&L recorded by the accounting system. Too large a divergence means the model is describing a different portfolio from the one the desk actually holds, so the risk numbers it produces are unusable. The consequence is that the desk loses internal model permission and moves to the standardised approach, which usually costs materially more capital - that is the deterrent. What is notable is that the test runs at DESK level rather than bank level: before FRTB, an aggregate model could pass validation while several desks inside it were entirely wrong."
+  },
+  "keyTakeaways": [
+    "FRTB tightened the boundary because banks had been moving positions across it to pick the cheaper capital treatment",
+    "The measure moved from VaR at 99% to Expected Shortfall at 97.5% in order to capture the tail",
+    "Liquidity horizons are graded by risk factor class, from 10 to 120 days, replacing a flat 10-day assumption",
+    "The P&L attribution test runs per desk; a failing desk reverts to the standardised approach with higher capital"
+  ],
+  "summary": {
+    "keyIdea": "FRTB is a point-by-point answer to what broke in 2008: a boundary that was gamed, a measure blind in the tail, a uniform liquidity assumption, and internal models nobody could verify at desk level."
+  },
+  "application": {
+    "message": "When reading a bank's market risk capital disclosures, look for how many desks are on internal models and how many have fallen back to the standardised approach. That ratio says more about model quality than any narrative description."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After 2008, Basel did not patch the market risk capital framework - it rewrote it. Every major change in FRTB points directly at something that broke, so reading it as a list of causes is the fastest way to understand it."
+    },
+    { "type": "heading", "text": "The boundary used to be a choice" },
+    {
+      "type": "paragraph",
+      "text": "The trading book is marked to market and capitalised for market risk; the banking book is not. When the bank decides where a position sits, the boundary becomes an optimisation tool - and during the crisis, plenty of illiquid assets travelled from the trading book to the banking book to avoid recognising a loss. FRTB prescribes what belongs on each side and does not allow a reclassification to reduce capital."
+    },
+    { "type": "heading", "text": "Liquidity does not disappear evenly" },
+    {
+      "type": "paragraph",
+      "text": "The old assumption was ten days to exit any position. The reality of 2008 was that major currency pairs kept trading while some credit markets had no price at all for weeks. FRTB replaces the uniform assumption with liquidity horizons by risk factor class, running out to 120 days for the hardest places to sell."
+    },
+    { "type": "heading", "text": "Internal models have to prove themselves at desk level" },
+    {
+      "type": "paragraph",
+      "text": "Internal models used to be approved at whole-bank level, so a weak model on one desk could hide behind good results elsewhere. FRTB pushes the verification down to each desk: if the risk model cannot explain the actual P&L variation of that desk, the desk loses the right to use an internal model."
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "The consequence of failing the test is economic rather than prohibitive: capital gets more expensive. A capital difference is what creates an incentive, and it lasts longer than any ban."
+    }
+  ]
+}

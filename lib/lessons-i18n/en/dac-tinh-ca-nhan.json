@@ -12,9 +12,17 @@
   ],
   "explanation": "Risk tolerance isn't just a financial number (how much you CAN lose without affecting your life) - it's also a psychological factor (how much volatility you can WITHSTAND without making a panicked decision). Selling out of fear, against your original plan, is a sign the portfolio carries more risk than you can actually handle.",
   "diagram": [
-    { "label": "Financial capacity: how much you can afford to lose", "arrow": true },
-    { "label": "+ Psychological capacity: tolerance for volatility", "arrow": true },
-    { "label": "= Your personal risk appetite" }
+    {
+      "label": "Financial capacity: how much you can afford to lose",
+      "arrow": true
+    },
+    {
+      "label": "+ Psychological capacity: tolerance for volatility",
+      "arrow": true
+    },
+    {
+      "label": "= Your personal risk appetite"
+    }
   ],
   "realWorldExample": {
     "company": "Risk-profile questionnaires from fund managers in Vietnam",
@@ -29,7 +37,6 @@
         "The number of years of investing experience an investor has built up",
         "Both financial capacity and psychological tolerance"
       ],
-      "correct": 3,
       "explanation": "Risk tolerance has two sides: risk capacity (objective financial ability) and risk attitude (subjective psychological reaction to volatility). Someone with a high income can still have poor psychological tolerance for risk, and vice versa."
     },
     {
@@ -40,7 +47,6 @@
         "Because your risk tolerance determines the tax you'll owe later",
         "Because high expected returns always come with high management fees"
       ],
-      "correct": 0,
       "explanation": "A portfolio that is 'optimal on paper' but panics you into selling at the market bottom is actually worse than a more conservative portfolio you can hold onto with discipline. Sticking to the plan matters more than theoretical optimization."
     },
     {
@@ -51,7 +57,6 @@
         "Their financial capacity actually wasn't the same to begin with",
         "The different reaction is only because one of them checks prices more"
       ],
-      "correct": 1,
       "explanation": "The two halves of risk tolerance are separate: financial capacity is measured in numbers, psychological capacity is measured by what you actually do at 2am when the market is red. Someone who can afford the loss can still sell out because they can't sleep."
     },
     {
@@ -62,7 +67,6 @@
         "The portfolio that person can actually hold through a long, deep downturn",
         "The portfolio with the lowest management fee available in the market today"
       ],
-      "correct": 2,
       "explanation": "A theoretically optimal portfolio that you dump at the bottom is far worse than a modest one you hold onto the whole way through. Your real return depends on how long you stay invested, not the expected number you started with."
     },
     {
@@ -73,7 +77,6 @@
         "Yes, because it's determined once when you open an investment account",
         "No - it changes with income, family, and market experience"
       ],
-      "correct": 3,
       "explanation": "Having a child, losing a job, or simply living through your first crash can all change how much you can actually handle. That's why it's worth revisiting your risk tolerance after every major life event, not just once when opening an account."
     },
     {
@@ -84,7 +87,6 @@
         "The questionnaire only measures financial capacity and nothing else",
         "It's only valid for investors with more than three years of experience"
       ],
-      "correct": 0,
       "explanation": "On paper, everyone picks 'I can handle a 30% drop.' The real answer only shows up the first time you actually see that number in your own account - and for a lot of people, it's completely different."
     }
   ],
@@ -102,7 +104,6 @@
       "Because assessing your own risk tolerance is a mandatory regulatory requirement before opening a brokerage account",
       "Because the portfolio with the highest expected return on paper always guarantees the best real-world outcome in the long run"
     ],
-    "correct": 0,
     "explanation": "A suitable portfolio is one you can actually hold through downturns - exceeding your real psychological tolerance easily leads to selling out and turning a temporary loss into a permanent one."
   },
   "summary": {
@@ -115,7 +116,6 @@
     "message": "Picture your portfolio specifically dropping 25% in value over a month - write down your real reaction (sell, hold, buy more) to honestly assess your actual psychological tolerance.",
     "secondary": "Being honest with yourself here matters more than any theoretical number you once picked."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

@@ -1,0 +1,159 @@
+{
+  "slug": "cfa-ethics-standard-3b-doi-xu-cong-bang",
+  "title": "CFA Ethics 22: Standard III(B) - fair does not mean identical",
+  "subtitle": "Trade allocation, report distribution, and the right to different service levels for different fees",
+  "duration": "10 min",
+  "whyItMatters": "This standard is often read as 'every client must be treated exactly alike', which leads to wrong conclusions in both directions. Knowing where fairness parts company with uniformity is what shapes how you design allocation and distribution processes.",
+  "openingQuestion": "Your firm sells a premium service tier at a higher fee. May those clients receive research reports earlier than standard-tier clients?",
+  "openingOptions": [
+    "No, every client must receive information at exactly the same moment",
+    "Yes, provided the difference is disclosed in advance",
+    "Yes, because a client paying more naturally receives more in return",
+    "No, unless the standard-tier clients agree to it in writing first"
+  ],
+  "explanation": "The word in the standard is fair, not identical - and the difference is deliberate. The investment industry sells service at several levels, and offering a premium tier is not in itself a breach. Two conditions make it legitimate: the difference must be disclosed in advance, so standard-tier clients know what they are buying and what they are not; and within a single service tier nobody may be favoured over anyone else. What is prohibited is the undisclosed preference - giving a familiar client the recommendation early while both pay the same fee, or telephoning a few large clients before the report goes out to everyone.",
+  "summary": {
+    "keyIdea": "Fair does not mean identical. Tiered service is legitimate; what is not legitimate is letting one group learn and act on the same recommendation ahead of another.",
+    "commonMistake": "Believing everything must go to every client simultaneously. Different service tiers are permitted, as long as clients know which tier they are in."
+  },
+  "application": {
+    "title": "Where breaches happen most",
+    "message": "The interval between the report reaching one group and the next. It has to be short enough that nobody can trade ahead."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard III(B) requires fair dealing with every client. The word in the standard is fair, not identical - and the difference is deliberate."
+    },
+    { "type": "heading", "text": "Tiered service is legitimate" },
+    {
+      "type": "paragraph",
+      "text": "The investment industry sells service at several levels, and offering a premium tier is not in itself a breach. Two conditions make it legitimate: the difference must be disclosed in advance, so standard-tier clients know what they are buying and what they are not; and within a single service tier nobody may be favoured over anyone else."
+    },
+    {
+      "type": "callout",
+      "label": "What is prohibited is the undisclosed preference",
+      "text": "Giving a familiar client the recommendation early while both pay the same fee. Telephoning a few large clients before the report is released to everyone. Nobody was told there was a queue, and that is exactly the problem."
+    },
+    { "type": "heading", "text": "Trade allocation" },
+    {
+      "type": "list",
+      "items": [
+        "Block orders are allocated pro rata, at a single average price.",
+        "The process must be written down and disclosed to clients.",
+        "The process must exist BEFORE the order does - decided after you see the fill, it is not a process, it is a choice."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "This duty is tested hardest when you reverse a recommendation: knowing a few hours earlier can be the difference between getting out in time and not. That is when a process written in advance is worth the most."
+    },
+    { "type": "heading", "text": "What pro rata allocation looks like on a partial fill" },
+    {
+      "type": "paragraph",
+      "text": "Three accounts running the same strategy want 10,000 shares between them: A orders 5,000, B orders 3,000, C orders 2,000. The block goes to market and only 6,000 fill. The correct allocation is pro rata to the orders: A receives 3,000, B receives 1,800, C receives 1,200 - and all three receive a single average price. Nobody is filled in full first, not the largest account, not the firm's own account, and not the portfolio manager's."
+    },
+    {
+      "type": "callout",
+      "label": "The shared average price matters as much as the quantity",
+      "text": "If the 6,000 shares fill at several different prices through the day, assigning the good prices to one account and the poor ones to another is a breach even where the quantities split correctly pro rata. This is the hardest form of favouritism to see, because the quantity report looks perfectly fair. The process must be written in advance, disclosed to clients, and applied consistently - written in advance is the condition, because a rule chosen after the fills are known is no longer a rule."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Legitimate tiering",
+        "text": "The premium tier receives reports four hours earlier. The conditions: the tiering is publicly disclosed, and any client can buy that tier. Standard-tier clients know where they stand in the queue and decide for themselves whether to upgrade."
+      },
+      "right": {
+        "label": "Undisclosed preference",
+        "text": "Telephoning a few large clients before the report is released, while they pay the same fee as everyone else. Nobody knows there is a queue, so nobody can choose. This is what Standard III(B) actually prohibits - and it is tested hardest at exactly the moment you reverse a recommendation."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Clients can accept that paying less means receiving less.",
+        "What they cannot accept is not knowing there was a queue at all."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Fair is not identical: several service tiers are legitimate" },
+    { "label": "Condition 1: the difference is disclosed in advance" },
+    { "label": "Condition 2: within one tier, nobody is favoured" },
+    { "label": "What is prohibited is undisclosed preference, not tiering" }
+  ],
+  "realWorldExample": {
+    "company": "Allocating when there is not enough to go round",
+    "description": "An attractive IPO, or a large order that only partly fills, poses the problem of dividing the spoils. The approach accepted in the industry is allocation pro rata to the orders, decided by a process written in advance rather than judged on the spot, and at a single average price for every account in the group. The crucial part is that the process must exist BEFORE the order does - a rule invented once you know who benefits is no longer a rule."
+  },
+  "quiz": [
+    {
+      "question": "Why does Standard III(B) use the word 'fair' rather than 'identical'?",
+      "options": [
+        "Because institutional clients always take priority over individuals",
+        "Because it is technically impossible to serve every client at once",
+        "Because several service tiers are legitimate if disclosed in advance",
+        "Because 'identical' applies only to the allocation of trade orders"
+      ],
+      "explanation": "Prohibiting tiered service would prohibit a legitimate business model along with it. The standard bars undisclosed preference, not the sale of different packages. Institutional size confers no priority of its own, the technical difficulty of simultaneous delivery is not the reason for the wording, and the fairness duty covers distribution of research as much as allocation of trades."
+    },
+    {
+      "question": "What is it to telephone a few large clients before releasing the report to everyone?",
+      "options": [
+        "A breach only if those clients actually trade before the report goes out",
+        "Legitimate, since large clients account for most of the firm's revenue",
+        "Legitimate if what is said on the call matches the report's content",
+        "A breach, because it is undisclosed preference within one service tier"
+      ],
+      "explanation": "This is the commonest form of breach of this standard, and it usually carries no bad intent at all - it is simply the habit of looking after important clients. Whether they traded is beside the point, because the advantage was conferred when the call was made. Matching content does not help either: the advantage was the timing, not the wording."
+    },
+    {
+      "question": "When a large order only partly fills, which allocation approach is appropriate?",
+      "options": [
+        "Pro rata to the orders, at one average price, under an existing process",
+        "Favour the largest account, in order to optimise total dealing costs",
+        "Allocate to whichever account placed its order earliest that day",
+        "Hold everything back and allocate once the order has filled in full"
+      ],
+      "explanation": "Three elements have to be present together: pro rata quantities, a shared average price, and a process written in advance. Without the last one the first two can still be bent, because whoever applies them is choosing after the outcome is visible. Order timing and account size are exactly the criteria the standard was written to keep out of the decision."
+    },
+    {
+      "question": "Why must the allocation process exist before the order does?",
+      "options": [
+        "Because the rules require it to be filed with the regulator each quarter",
+        "Because a rule invented once you know who benefits is not a rule",
+        "Because the trading system has to be configured before the session opens",
+        "Because clients may demand to see the process before placing an order"
+      ],
+      "explanation": "This is the general principle behind every anti-favouritism mechanism: the rules of the game must be settled before anyone knows whom they favour. Regulatory filing, system configuration and client inspection rights may all exist in a given market, but none of them is the reason - each would be satisfied by a policy written after the fact."
+    },
+    {
+      "question": "How should a change of recommendation from 'Buy' to 'Sell' be communicated?",
+      "options": [
+        "Tell the clients with the largest positions first so they can act",
+        "Simply update it in the firm's next scheduled periodic report",
+        "Notify every client holding the old recommendation simultaneously",
+        "Publish it publicly first, then send the detail to clients afterwards"
+      ],
+      "explanation": "A reversal is the most time-sensitive information there is, which makes it the point where the fair dealing duty is tested hardest. Position size is precisely the wrong sorting criterion, waiting for the next periodic report leaves clients holding a view the firm no longer has, and publishing first inverts the relationship clients are paying for."
+    }
+  ],
+  "keyTakeaways": [
+    "Fair is not identical - tiered service is legitimate",
+    "Two conditions: disclose the difference in advance, and no undisclosed preference within a tier",
+    "Trade allocation: pro rata, one average price, under a written process",
+    "The process must exist BEFORE the order, or it is not a process at all",
+    "Reversing a recommendation is when this duty is tested hardest"
+  ],
+  "practicePrompt": {
+    "question": "You discover a colleague regularly calls three familiar clients as soon as a report is approved, before its official release. What is this?",
+    "options": [
+      "Ordinary client care, unconnected to any standard in particular",
+      "A breach of Standard III(B): those three receive undisclosed preference over clients in the same service tier",
+      "A breach of Standard II, since it involves unreleased information",
+      "A breach only if those three pay lower fees than the other clients"
+    ],
+    "explanation": "The first option is how the person breaching usually describes their own conduct, and it is why this form of breach survives so long without anyone raising it. The third names the wrong standard: the firm's own research report is not inside information belonging to the issuer, so this is a fair dealing problem rather than an insider dealing one."
+  }
+}

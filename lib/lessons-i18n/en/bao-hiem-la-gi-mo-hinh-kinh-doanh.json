@@ -22,7 +22,7 @@
         "An amount set aside to cover future claim obligations",
         "Retained profit not yet distributed to the company's shareholders",
         "A provision against investments that have fallen in value",
-        "A mandatory deposit held at a bank under regulation"
+        "A mandatory deposit held at a bank under a regulatory rule"
       ],
       "explanation": "Technical reserves are the backbone of the insurance industry. Because policies often run for many years - decades, in life insurance - the company has to set aside enough today to meet obligations that fall due far in the future, even if new premium income dries up. Retained earnings belong to shareholders and can be paid out; an investment write-down provision sits on the asset side and says nothing about policyholder promises; a regulatory bank deposit is a liquidity rule, not a measure of what is owed. Under-reserving is the single most common route to insurer insolvency in history."
     },
@@ -31,8 +31,8 @@
       "options": [
         "An agent sells cover to an unsuitable client to earn commission",
         "High-risk people tend to buy insurance more than low-risk ones",
-        "Someone who has bought cover then behaves more carelessly",
-        "The insurer screens applicants and accepts only low-risk ones"
+        "Someone who has already bought cover then behaves more carelessly",
+        "The insurer screens applicants and accepts only the low-risk ones"
       ],
       "explanation": "Adverse selection is the classic problem in the economics of insurance, and it comes from asymmetric information: the buyer usually knows far more about their own health and risk profile than the insurer does, so people who know they are high-risk have a much stronger incentive to buy. Mis-selling for commission is an agency problem, not a selection one; behaving more carelessly after buying is moral hazard, which happens later; and an insurer screening applicants is underwriting - the defence against adverse selection, not the phenomenon itself."
     },
@@ -59,7 +59,7 @@
     {
       "question": "Why is under-reserving such a common cause of failure in the insurance industry?",
       "options": [
-        "Because claims fall due long after the premium has been spent",
+        "Because claims fall due long after the premium has already been spent",
         "Because the regulator imposes very heavy fines once it finds out",
         "Because thin reserves cut the credit rating almost immediately",
         "Because premiums would then have to rise for new customers only"

@@ -1,0 +1,113 @@
+{
+  "slug": "frm-rui-ro-tap-trung-danh-muc-tin-dung",
+  "title": "FRM Credit Risk, Lesson 6: Concentration and correlation in a credit portfolio",
+  "subtitle": "A hundred loans to the same industry is not a diversified portfolio",
+  "duration": "10 min",
+  "whyItMatters": "A portfolio's expected loss is just the sum of the individual expected losses, so it says nothing about concentration. All of the concentration risk sits in the tail, and the tail is what decides capital - misread this and you will never understand why two portfolios with identical expected loss need very different amounts of capital.",
+  "openingQuestion": "Two portfolios have the same total exposure and the same expected loss. Portfolio A spreads across 20 industries, portfolio B piles into one. Where does the difference show up?",
+  "openingOptions": [
+    "In expected loss, because concentration lifts the average PD upward",
+    "In the tail of the loss distribution, so it shows up in capital",
+    "Nowhere at all, since both portfolios carry the same expected loss",
+    "In the average lending rate the two portfolios manage to earn"
+  ],
+  "explanation": "Expected loss adds up linearly: the sum of the individual expected losses does not depend in the slightest on whether the loans are correlated. Unexpected loss does. In a concentrated portfolio a single industry shock pushes many loans into default at once, so the tail of the distribution is much fatter. Since provisions cover expected loss and capital covers the unexpected part, these two portfolios need the same provisions and very different capital.",
+  "diagram": [
+    { "label": "Expected loss: adds linearly, blind to correlation" },
+    { "label": "Unexpected loss: depends heavily on correlation" },
+    { "label": "Concentration by industry, by region, or in one large client group" },
+    { "label": "Shows up in the tail, so it shows up in capital rather than provisions" }
+  ],
+  "realWorldExample": {
+    "company": "A real estate lending book",
+    "description": "A hundred loans to a hundred different borrowers looks nicely spread on a report. If all hundred are secured on property in the same region, they share exactly one factor: house prices. When that factor turns, PD rises across the book at the same time and LGD deteriorates at the same time too, because the collateral loses value at precisely the moment it has to be sold."
+  },
+  "quiz": [
+    {
+      "question": "Why does a portfolio's expected loss fail to reflect concentration risk?",
+      "options": [
+        "Because expectations add linearly whatever the correlation between loans",
+        "Because expected loss is computed only for the single largest exposure",
+        "Because concentration affects LGD but leaves PD completely unchanged",
+        "Because expected loss is measured after collateral has been deducted"
+      ],
+      "explanation": "The expectation of a sum always equals the sum of the expectations, a mathematical property that does not care about the dependence structure. Correlation acts only on the variance and the higher moments - that is, on the shape of the tail, not on the mean. Expected loss covers every exposure rather than the largest one, concentration works through PD and LGD together rather than through LGD alone, and collateral enters via the LGD term without changing the linearity of the sum."
+    },
+    {
+      "question": "In a single-factor model, where does asset correlation between loans come from?",
+      "options": [
+        "From direct commercial relationships between the borrowers themselves",
+        "From the fact that every borrower is exposed to one common factor",
+        "From the loans all having been granted by the same lending bank",
+        "From the loans sharing a common maturity and a common interest rate"
+      ],
+      "explanation": "The standard model assumes each borrower's asset value depends on one common factor - the state of the economy - plus an idiosyncratic part. It is the common part that generates correlation, and it explains why defaults cluster into recessions rather than arriving evenly through time. Trade links between borrowers exist but are far too sparse to drive portfolio behaviour, sharing a lender is an accounting fact rather than an economic one, and identical terms create no shared exposure by themselves."
+    },
+    {
+      "question": "Why do PD and LGD tend to deteriorate at the same time in a secured portfolio?",
+      "options": [
+        "Because the LGD formula has the PD term sitting inside it by construction",
+        "Because banks revalue the collateral only after default",
+        "Because one shock makes repayment harder and collateral worth less",
+        "Because borrowers dump their assets the moment financial trouble appears"
+      ],
+      "explanation": "A recession strips revenue from companies and simultaneously pushes property prices down. Assuming PD and LGD are independent understates losses precisely in the worst scenario - which is why capital models require a downturn LGD rather than an average one. The two are not linked by formula but by a shared driver, revaluation practice is a timing detail that does not create the correlation, and distressed asset sales are a symptom of the same shock rather than its cause."
+    },
+    {
+      "question": "How does name concentration differ from industry concentration?",
+      "options": [
+        "Name concentration affects LGD alone and leaves PD entirely untouched",
+        "Name concentration only ever arises with very large corporate borrowers",
+        "Industry concentration needs no additional regulatory capital add-on",
+        "One is a single counterparty, the other is a shared factor"
+      ],
+      "explanation": "The two kinds of concentration need two different treatments. Name concentration is handled with limits on each individual counterparty; industry or geographic concentration is handled with limits on groups - and a portfolio can be beautifully spread by name while being heavily concentrated by sector. Name concentration works through PD as much as LGD, it arises in retail books too once a single obligor grows large enough, and supervisors do require add-ons for sector concentration."
+    },
+    {
+      "question": "Why is stress testing particularly well suited to assessing concentration risk?",
+      "options": [
+        "Because it strikes directly at the common factor the whole book shares",
+        "Because it completely replaces the need to estimate correlation between loans",
+        "Because it always produces a lower loss figure than a statistical model does",
+        "Because it only needs data on the single largest loan held"
+      ],
+      "explanation": "Concentration is the property that many exposures respond to one thing. A stress scenario hits exactly that thing - house prices down 30%, oil down by half - and shows the simultaneous losses that a single correlation parameter struggles to convey. It complements correlation modelling rather than replacing it, it typically produces larger losses rather than smaller ones because the scenario is deliberately severe, and it needs the whole book because the point is what happens across it."
+    }
+  ],
+  "practicePrompt": {
+    "question": "Portfolio A holds 500 loans spread across ten industries. Portfolio B holds 500 loans, all to suppliers of a single conglomerate. Same PD, same LGD, same size. Where do they differ?",
+    "options": [
+      "Expected loss is identical, but B's tail is far fatter",
+      "B has higher expected loss because its concentration is larger",
+      "Nowhere, since 500 loans is already enough diversification",
+      "B is safer, because knowing one industry means better underwriting"
+    ],
+    "explanation": "Expected loss adds linearly loan by loan, so it is completely blind to whether those loans share a fate: two portfolios with the same PD and LGD have the same expected loss, no exceptions. The difference appears only in the tail. In portfolio A, when one industry struggles the other nine keep paying. In portfolio B, all 500 loans hang on exactly one factor - that conglomerate - so the loss distribution is close to one large coin flip. Counting loans does not measure diversification; counting independent factors does."
+  },
+  "keyTakeaways": [
+    "Expected loss adds linearly and is therefore blind to concentration; concentration shows only in the tail",
+    "Correlation in a single-factor model comes from the common systematic factor, not from direct links between borrowers",
+    "PD and LGD deteriorate together in a downturn - assuming independence understates exactly the worst scenario",
+    "Name concentration and industry concentration are two different things and need two different kinds of limit"
+  ],
+  "summary": {
+    "keyIdea": "A portfolio that looks spread by number of clients can still ride on exactly one factor. Counting loans does not measure diversification; counting independent factors does."
+  },
+  "application": {
+    "message": "For any credit portfolio, try listing the factors that several exposures share: industry, region, collateral type, one common supplier. The number of genuinely independent factors is usually far smaller than the client count suggests."
+  },
+  "sections": [
+    { "type": "lead", "text": "A hundred loans to a hundred borrowers sounds spread out. If all hundred are secured on property in the same region, what you really hold is a single bet." },
+    { "type": "heading", "text": "Why expected loss sees nothing" },
+    { "type": "paragraph", "text": "The expectation of a sum equals the sum of the expectations, always, regardless of how the variables depend on one another. That means two portfolios with the same total expected loss can be one well spread and one heavily piled up, and the expected loss figure reveals nothing about which is which. The entire difference lives in the variance and in the shape of the tail." },
+    { "type": "heading", "text": "A common factor, not a direct link" },
+    { "type": "paragraph", "text": "Borrowers rarely trade with one another, so correlation does not come from there. It comes from all of them living in the same economy: when the cycle turns down, revenues fall together. The single-factor model encodes exactly that idea, and it explains why defaults arrive in clusters instead of being spread evenly." },
+    { "type": "heading", "text": "Two measures deteriorating together" },
+    { "type": "paragraph", "text": "What makes the tail heavier still is that PD and LGD are not independent. A recession makes borrowers less able to repay and at the same time knocks value off the collateral, so the two bad factors meet in exactly the worst scenario. This is why regulation requires a downturn LGD rather than a multi-year average." },
+    { "type": "callout", "label": "Worth remembering", "text": "The number of loans does not measure diversification. The number of independent factors the portfolio genuinely rides on does - and that number is usually much smaller than it feels." },
+    { "type": "heading", "text": "Same expected loss, two entirely different tails" },
+    { "type": "paragraph", "text": "A hundred loans, each of exposure 1, default probability 2%, loss given default 50%. Expected loss is 100 × 2% × 50% = 1.0 - and that figure does NOT change whether the loans are fully independent or tightly correlated, because the expectation of a sum always equals the sum of the expectations. So two portfolios with entirely different risk profiles report the same expected loss number, and that is why the measure cannot detect concentration risk." },
+    { "type": "callout", "label": "Only the tail tells them apart", "text": "If the loans are independent, the number of defaults has a standard deviation of about 1.4, the probability of five or more is only about 5%, and ten or more is essentially impossible - under three in a hundred thousand. Introduce a common factor, say all of them secured on property in one province, and defaults no longer land at random: either almost nobody defaults, or a great many do at once. Expected loss is still 1.0, but the capital needed to survive the bad scenario is many times larger." },
+    { "type": "paragraph", "text": "What makes the tail heavier still is that default probability and loss given default are not independent of each other. A recession makes borrowers less able to repay and at the same time knocks value off the collateral - so in exactly the scenario with many defaults, each default also costs more. Both quantities worsen at once, and any model that multiplies a high PD by a long-run average LGD will understate the tail systematically. This is also why the number of loans does not measure diversification - only the number of independent factors the portfolio genuinely rides on does." }
+  ]
+}

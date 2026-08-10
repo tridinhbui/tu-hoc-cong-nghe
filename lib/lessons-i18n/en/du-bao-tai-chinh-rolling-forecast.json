@@ -1,0 +1,155 @@
+{
+  "slug": "du-bao-tai-chinh-rolling-forecast",
+  "title": "CFO & Operations, Lesson 2: Financial forecasting - the rolling forecast",
+  "subtitle": "Why many modern businesses are abandoning the fixed one-year budget",
+  "duration": "7 min",
+  "openingQuestion": "How does a rolling forecast (continuously updated, always covering the next 12-18 months) differ from a fixed budget drawn up once at the start of the year?",
+  "openingOptions": [
+    "There is no difference at all, they are just two names for one thing",
+    "A fixed budget stays put all year; a rolling forecast is updated regularly",
+    "Rolling forecasts are only used by small companies under 50 employees",
+    "A fixed budget is always more accurate than any rolling forecast is"
+  ],
+  "explanation": "A traditional budget is built once at the start of the year on the assumptions available at that moment, and usually stays fixed for the whole year even as market conditions move. A rolling forecast is refreshed on a cycle (typically quarterly) and always looks a fixed distance ahead - for example always the next 12 months, not 'until the end of the calendar year'. That lets a business respond faster to what is actually happening instead of clinging to assumptions that went stale in the first quarter.",
+  "diagram": [
+    { "label": "Fixed budget: built once at the start of the year, unchanged all year" },
+    { "label": "Rolling forecast: refreshed on a cycle, always 12-18 months ahead" }
+  ],
+  "realWorldExample": {
+    "company": "Businesses in fast-moving industries",
+    "description": "Technology and retail companies, and any sector strongly exposed to market swings, tend to favour a rolling forecast over a fixed budget, because trading conditions can change materially in a matter of months - a budget written in January can be entirely out of date by June if nobody refreshes it."
+  },
+  "quiz": [
+    {
+      "question": "Why is a rolling forecast especially useful for businesses in fast-moving industries (technology, fast fashion) rather than stable ones (utilities)?",
+      "options": [
+        "Because stable industries no longer need an annual financial forecast",
+        "Because fast-moving industries are not permitted to set a fixed budget",
+        "Because a rolling forecast needs fewer people than a fixed budget",
+        "Because a fixed budget set at the start of the year loses relevance fast"
+      ],
+      "explanation": "In a fast-moving industry, the assumptions made in January - about market trends, customer behaviour, competitors - can be entirely obsolete within a few months. A rolling forecast lets the business keep updating the plan on the newest information rather than running on one that no longer describes reality. Stable industries still forecast; nothing forbids a fixed budget anywhere; and rolling forecasts cost more analyst time, not less, which is their main drawback."
+    },
+    {
+      "question": "What is a common drawback of a rolling forecast compared with a fixed budget?",
+      "options": [
+        "It eats time and keeps moving the target the team is aiming at",
+        "It cannot be used by a business with seasonal revenue",
+        "It only forecasts one quarter ahead, so the horizon is too short",
+        "It is not compatible with current accounting standards"
+      ],
+      "explanation": "The cost of running it is the real trade-off: refreshing every quarter or every month takes far more analytical effort than budgeting once a year, and some businesses still need a reasonably stable anchor target to assess performance and motivate a team, rather than a target that keeps moving. Seasonality is handled fine by a rolling forecast, the horizon is longer than a quarter by definition, and no accounting standard governs an internal management forecast."
+    },
+    {
+      "question": "Why should the role of a budget and the role of a forecast be kept apart?",
+      "options": [
+        "Because accounting standards require the two documents kept separate",
+        "Because a budget is a commitment for review; a forecast must be honest",
+        "Because two different departments are responsible for preparing them",
+        "Because a budget is set annually while a forecast is drawn up each quarter"
+      ],
+      "explanation": "When one number is both the yardstick someone is measured against and an estimate of what will happen, whoever prepares it is under pressure to make it look good. Separating the two roles keeps the forecast worth using for decisions. Who prepares each document, and how often, are practical details that follow from the split rather than the reason for it - and no accounting standard reaches internal management documents at all."
+    },
+    {
+      "question": "Which sign shows that the forecast's problem lies in its assumptions or its incentives rather than in market uncertainty?",
+      "options": [
+        "Forecast error grows in step with the company's revenue scale",
+        "Forecast error swings widely around zero from period to period",
+        "Forecast error leans the same way period after period",
+        "Forecast error is larger in newly established business units"
+      ],
+      "explanation": "Market uncertainty produces error in both directions. Error that consistently leans one way is the signature of a systematic bias in how the forecast is built - optimism, or an incentive to look good. Wide swings around zero are exactly what genuine uncertainty looks like, and larger error in new units or in bigger revenue lines is a matter of sample size and volatility, not of bias."
+    },
+    {
+      "question": "What usually makes a rolling forecast fail in practice?",
+      "options": [
+        "It only works for revenue and cannot be applied to costs",
+        "It removes any way to compare actuals against an approved plan",
+        "It needs specialised software that most businesses do not have",
+        "It becomes a full budget rebuild every quarter - costly, low value"
+      ],
+      "explanation": "A rolling forecast only works when it is done at an aggregate level, focused on a handful of driver variables. Carrying the full line-item detail of the annual budget into it and redoing all of it every quarter is the surest way to exhaust the organisation until it quietly stops. Costs forecast as readily as revenue, a spreadsheet is enough to run one, and the approved budget stays available as a comparison point alongside it."
+    }
+  ],
+  "keyTakeaways": [
+    "A rolling forecast is refreshed on a cycle and always looks a fixed distance ahead, unlike a fixed budget built once at the start of the year",
+    "Especially useful in fast-moving industries, where the start-of-year assumptions go stale quickly",
+    "The trade-off: more time and resource, and it can be harder to hold a stable target for assessing performance"
+  ],
+  "practicePrompt": {
+    "question": "Instead of budgeting once for the whole year and leaving it alone (even as markets move), a company refreshes its financial forecast every quarter, and each refresh looks exactly 12 months ahead from that point. What is this method called, and what is its advantage over a traditional fixed budget?",
+    "options": [
+      "This is Zero-based budgeting, which requires every line of spend to be justified afresh",
+      "Rolling forecast: updated periodically, always looking a fixed horizon ahead",
+      "This is Top-down budgeting, where targets are imposed by senior management downward",
+      "The method has no advantage over a traditional fixed budget, it just costs more effort"
+    ],
+    "explanation": "A rolling forecast is refreshed on a cycle and always looks a fixed distance into the future. Its biggest advantage is flexibility - it carries the newest market information, avoiding the state where a fixed budget has become obsolete because trading conditions moved."
+  },
+  "application": {
+    "title": "Separate the forecast from the target you assess people against",
+    "message": "If you are moving to a rolling forecast, decide first which number bonuses are paid on. When one figure is both the forecast and the target, whoever prepares it will give you the number that is safe for them rather than the number that is most likely to be right.",
+    "secondary": "Start narrow - revenue and cash flow, refreshed quarterly, four quarters ahead - and only then widen the scope. Rolling it out everywhere at once usually dies under its own workload."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Many modern businesses are gradually dropping the fixed budget written once at the start of the year, in favour of something more flexible."
+    },
+    { "type": "heading", "text": "Rolling forecast: always looking a fixed distance ahead" },
+    {
+      "type": "paragraph",
+      "text": "A fixed budget is drawn up once at the start of the year and held for the whole year even as market conditions move. A rolling forecast is refreshed on a cycle and always looks 12-18 months ahead - which is especially useful in fast-moving industries, where the start-of-year assumptions go stale quickly. The trade-off: continual refreshing costs more time and resource, and it can make it harder to hold a stable target for assessing performance."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A rolling forecast is refreshed on a cycle and always looks a fixed distance ahead",
+        "Especially useful in fast-moving industries, where the start-of-year assumptions go stale quickly",
+        "The trade-off: it takes more time, and a stable performance target is harder to maintain"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Fixed budget",
+        "text": "Built once at the start of the year and held all year. Upside: a stable benchmark, easy performance assessment, less work. Downside: by the third quarter the start-of-year assumptions may be entirely obsolete while the plan stands unchanged."
+      },
+      "right": {
+        "label": "Rolling forecast",
+        "text": "Refreshed every quarter, always looking 12-18 months ahead. Upside: always reflects the latest reality and supports timely decisions. Downside: it costs resource, and you lose the fixed benchmark for assessing performance."
+      }
+    },
+    { "type": "heading", "text": "Two roles that are easily conflated" },
+    {
+      "type": "paragraph",
+      "text": "Most of the internal argument about this comes from packing two different roles into one document. A budget is a commitment - it states what the business will try to achieve and serves as the yardstick. A forecast is the most honest estimate available - it states what the business thinks will actually happen. When the two roles are merged, whoever prepares the forecast has an incentive to shade the number toward what looks good rather than what is right. The common answer is to keep the budget as the commitment benchmark and run a rolling forecast alongside it for running the business."
+    },
+    { "type": "heading", "text": "Three things that make a rolling forecast work" },
+    {
+      "type": "list",
+      "items": [
+        "Focus on a small set of driver variables rather than forecasting every detailed line - if each refresh takes three weeks, the cycle will be dead within a few quarters.",
+        "Have the discipline to record the assumptions behind each refresh, so that next time you know which assumption was wrong rather than only that the forecast missed.",
+        "Management must actually use the refreshed numbers to decide things. If a new forecast changes no action, the cycle only creates work and no value."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Measuring forecast quality",
+      "text": "Track forecast error over time: the average gap between forecast and actual for each period, and more importantly whether that error tends to lean one way. If the forecast is consistently more optimistic than reality, the problem is in the assumptions or in the incentives of whoever prepares it, not in market uncertainty."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A financial plan is only useful while it still describes the present.",
+        "The rolling forecast is how you keep the plan current, at the cost of more work."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "A rolling forecast is refreshed on a cycle and always looks a fixed distance ahead, unlike a fixed budget built once at the start of the year",
+    "commonMistake": "Easy to miss: it is especially useful in fast-moving industries, where the start-of-year assumptions go stale quickly",
+    "action": "The trade-off: more time and resource, and it can be harder to hold a stable target for assessing performance"
+  }
+}

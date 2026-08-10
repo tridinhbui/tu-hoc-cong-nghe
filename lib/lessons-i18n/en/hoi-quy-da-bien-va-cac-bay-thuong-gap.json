@@ -1,0 +1,157 @@
+{
+  "slug": "hoi-quy-da-bien-va-cac-bay-thuong-gap",
+  "title": "Quantitative, Lesson 5: Multiple regression and its traps - multicollinearity, overfitting, omitted variables",
+  "subtitle": "Adding variables always makes the model look better in sample and usually worse out of sample",
+  "duration": "12 min",
+  "whyItMatters": "Multi-factor models, credit scoring models and every forecasting tool in finance are multiple regressions. Without knowing the traps, you will believe models that fit history perfectly and fail the first time they meet new data.",
+  "openingQuestion": "Why does adding an explanatory variable to a model almost always raise R-squared?",
+  "openingOptions": [
+    "Because a new variable always carries useful information",
+    "Because adding a variable can never make the fit any worse",
+    "Because the software automatically drops the useless variables",
+    "Because R-squared does not depend on the number of variables"
+  ],
+  "explanation": "This is a mathematical property rather than evidence of quality: the model can always assign a coefficient of zero to a useless variable, so the fit cannot fall. On finite data it almost always rises slightly, even with a purely random variable. That is why adjusted R-squared is needed, and much more importantly, why you have to validate out of sample.",
+  "diagram": [
+    {
+      "label": "Add an explanatory variable"
+    },
+    {
+      "label": "In-sample R-squared always rises"
+    },
+    {
+      "label": "But estimation variance rises too"
+    },
+    {
+      "label": "Result: overfitting, worse out-of-sample forecasts"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Risk models before 2008",
+    "description": "Many of the models used to price mortgage-backed securities before the 2008 crisis were estimated on data from a period when house prices only went up. The single most important variable - the possibility of house prices falling simultaneously across the whole country - was not in the sample, so it was not in the model. The models fitted history almost perfectly and were completely wrong about the future, because the history used to train them had never contained that scenario."
+  },
+  "quiz": [
+    {
+      "question": "What does multicollinearity cause?",
+      "options": [
+        "It pushes R-squared far below that of a simple one-variable regression",
+        "It inflates standard errors, so individual coefficients lose significance",
+        "The model will not run and the software reports a singular matrix",
+        "Every residual becomes zero, so no test statistic can be computed"
+      ],
+      "explanation": "When two explanatory variables are highly correlated, the model cannot separate the contribution of each one. The classic sign is an overall model that is significant while not one individual coefficient is, with coefficients flipping sign as a variable is added or removed. R-squared is not pushed down - the joint explanatory power survives, which is exactly what makes the problem easy to miss. A singular matrix only appears under perfect collinearity, and residuals of zero would be a sign of a saturated model, not of correlated regressors."
+    },
+    {
+      "question": "What does the omitted variable problem cause?",
+      "options": [
+        "It raises the minimum number of observations needed before a model is significant",
+        "It lowers R-squared only, and leaves the accuracy of each coefficient untouched",
+        "It biases coefficients if the omitted variable correlates with an included one",
+        "It causes nothing once the sample is large enough for the central limit theorem"
+      ],
+      "explanation": "This is the most dangerous form of error precisely because it does not reveal itself in any diagnostic statistic. The model still looks healthy; it is simply that the coefficients are absorbing the effect of the missing variable as well as their own. A larger sample does not rescue it - the bias does not shrink with more observations, it converges to the wrong number, which is what distinguishes bias from noise. And the harm is to the coefficients, not merely to the fit."
+    },
+    {
+      "question": "How does overfitting show up?",
+      "options": [
+        "The model runs too slowly because so many parameters are estimated at once",
+        "The model gives a low R-squared on both the training and the test set",
+        "The model works only with a single explanatory variable",
+        "It fits superbly in sample but forecasts badly on new data"
+      ],
+      "explanation": "With enough variables you can fit any dataset perfectly, including completely random data. The gap between in-sample and out-of-sample performance is precisely the measure of how badly a model is overfitted. A low R-squared on both sets is the opposite problem, underfitting. Computation time is irrelevant on the sample sizes finance works with, and nothing restricts a well-specified model to one regressor."
+    },
+    {
+      "question": "What does autocorrelation of the residuals cause in time-series data?",
+      "options": [
+        "Standard errors are understated, so results look more reliable than they are",
+        "The estimated coefficients become severely and systematically biased downward",
+        "R-squared collapses towards zero even though the true relationship still holds",
+        "It has no material consequence for financial data measured over successive periods"
+      ],
+      "explanation": "This is a very common trap with financial time-series data. The coefficients remain unbiased, but you end up more confident than you have any right to be, because the effective number of independent observations is smaller than the raw count suggests. The usual fix is robust standard errors such as Newey-West. Since the bias runs through the standard errors rather than the estimates, neither systematic coefficient bias nor a collapsing R-squared is the right description."
+    },
+    {
+      "question": "Which practical principle helps most in avoiding overfitting?",
+      "options": [
+        "Put in as many variables as possible so no information is missed",
+        "Keep the model simple, prefer variables with an economic reason, test out of sample",
+        "Use only the most recent year of data, as it reflects today's market",
+        "Raise the significance level to 20% so more variables survive the cut"
+      ],
+      "explanation": "The best filtering question before putting a variable into a model is whether you can explain in words why it affects the outcome. If you cannot, it is very likely just a coincidental correlation inside the sample. Adding every available variable is the definition of the problem rather than a defence against it. A single recent year shrinks the sample when the estimation variance is already the issue, and loosening the significance threshold to 20% deliberately lets more noise through."
+    }
+  ],
+  "keyTakeaways": [
+    "Adding variables always raises in-sample R-squared - use adjusted R-squared and validate out of sample",
+    "Multicollinearity strips individual coefficients of significance even while the overall model still works",
+    "An omitted variable creates bias that no diagnostic statistic will detect",
+    "Every variable entering a model needs an economic reason expressible in words before there is any statistical evidence"
+  ],
+  "practicePrompt": {
+    "question": "A model forecasting corporate earnings has 15 explanatory variables, an R-squared of 0.92, and is built on 40 quarterly observations. What is the biggest problem?",
+    "options": [
+      "R-squared is still not high enough",
+      "Too many variables relative to the observations, so the R² is illusory",
+      "It should switch to monthly data to get more observations",
+      "There is no problem if every coefficient is significant"
+    ],
+    "explanation": "The rough rule is that you need at least 10 to 20 observations per explanatory variable. With 40 observations, the model should have no more than two to four variables. Switching to monthly data does not solve it, because monthly observations are strongly autocorrelated, so the effective number of independent observations does not rise proportionally."
+  },
+  "summary": {
+    "keyIdea": "A more complex model always fits history better and usually forecasts the future worse",
+    "formula": "Adjusted R² penalises the number of variables; always compare in-sample against out-of-sample performance",
+    "commonMistake": "Choosing a model on R-squared rather than on out-of-sample performance",
+    "action": "Take a model you trust, cut off the last 30% of the data, re-estimate on the remaining 70% and check the forecast error."
+  },
+  "application": {
+    "title": "A filter to run before adding any variable",
+    "message": "Three questions: is there an economic reason that explains this relationship? Is this variable highly correlated with one already in the model? And after adding it, does out-of-sample performance improve? Only three yes answers justify adding the variable.",
+    "secondary": "In practice, a three-variable model with a clear economic rationale is almost always more durable than a fifteen-variable model picked by an algorithm."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Multiple regression is appealing because it lets you say holding everything else constant. But in finance, everything else is almost never independent of everything else, and that is where all the trouble starts."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four traps you have to check",
+      "subtitle": "Each one breaks the model in a different way",
+      "concepts": [
+        {
+          "def": "The explanatory variables are highly correlated with one another. Individual coefficients lose significance and flip sign erratically, even though the overall forecast may still be fine."
+        },
+        {
+          "def": "An important factor is absent from the model but correlated with a variable that is included, which biases the coefficients. The most dangerous one, because it cannot be diagnosed."
+        },
+        {
+          "def": "The model learns the noise in the sample as well. The symptom: excellent in sample, terrible out of sample. The more variables per observation, the more severe it gets."
+        },
+        {
+          "def": "Residuals in consecutive periods are related to each other. It does not bias the coefficients but it understates the standard errors, creating a false sense of reliability."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why simple wins"
+    },
+    {
+      "type": "paragraph",
+      "text": "Every added variable consumes a degree of freedom and brings its own estimation error. With financial data, which is noisy and limited in length, this cost usually outweighs the informational benefit. That is why the most durable models in practice - the three-factor model, reduced-form credit scoring - are all extremely simple compared with what an automated algorithm would select."
+    },
+    {
+      "type": "callout",
+      "label": "The golden rule",
+      "text": "Economic theory must come before the data. If you cannot explain in one sentence why this variable affects the outcome, do not put it in the model - however beautiful the p-value."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The purpose of a model is not to explain the past but to be useful about the future.",
+        "The final lesson of this stage handles the most distinctive data type in finance: time series."
+      ]
+    }
+  ]
+}

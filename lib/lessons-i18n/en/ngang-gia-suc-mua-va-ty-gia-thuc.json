@@ -1,0 +1,149 @@
+{
+  "slug": "ngang-gia-suc-mua-va-ty-gia-thuc",
+  "title": "International finance, part 2: purchasing power parity and the real exchange rate - the long-run anchor",
+  "subtitle": "Inflation, the real effective exchange rate, and how to judge whether a currency is expensive or cheap",
+  "duration": "10 min",
+  "whyItMatters": "Interest rate parity constrains today's price; purchasing power parity is the long-run pull. This is the framework for answering whether a currency is overvalued or undervalued, and for understanding why domestic inflation running above your trading partners' erodes export competitiveness.",
+  "openingQuestion": "Under purchasing power parity, what happens to the currency of the country with higher inflation?",
+  "openingOptions": [
+    "It tends to depreciate against the currency of the lower-inflation country",
+    "It appreciates, because domestic nominal rates are correspondingly higher",
+    "The rate holds, since inflation hits exports and imports alike",
+    "The rate moves at random, as inflation has no bearing on FX markets"
+  ],
+  "explanation": "If domestic goods prices rise faster than foreign ones while the exchange rate stays put, home-made goods become relatively more expensive, exports fall and imports rise. That pressure pushes the domestic currency down until the purchasing power of the two currencies is comparable again. This is a long-run pull and a very weak one in the short run - an exchange rate can sit away from its purchasing power parity level for years at a stretch, which makes it a reference framework rather than a trading tool.",
+  "diagram": [
+    {
+      "label": "Domestic inflation runs higher"
+    },
+    {
+      "label": "Home-made goods become relatively expensive"
+    },
+    {
+      "label": "Exports fall, imports rise"
+    },
+    {
+      "label": "Downward pressure on the domestic currency"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An exporter during a period of exchange rate stability",
+    "description": "When the nominal exchange rate is held steady for years but domestic inflation runs above that of competitors, exporters come under quiet pressure: local labour and material costs rise with inflation while international selling prices do not. The real exchange rate is appreciating even though the nominal rate has not moved, and export margins get worn away with no clear event to pin it on."
+  },
+  "quiz": [
+    {
+      "question": "How does the real exchange rate differ from the nominal exchange rate?",
+      "options": [
+        "The real rate is the official figure the central bank posts daily",
+        "The real rate applies only to trade in tangible physical goods",
+        "The real rate adjusts for the price-level gap between the two economies",
+        "The real rate is net of the currency conversion fee on the transaction"
+      ],
+      "explanation": "The nominal rate tells you how many units of money you can swap; the real rate tells you how many goods you can buy. For competitiveness, only the real rate carries meaning. What a central bank posts is a nominal quote, and the real rate covers services and non-tradables just as much as physical merchandise, since the price indices behind it are economy-wide. Conversion fees are a dealing cost that has nothing to do with the price-level adjustment at the heart of the concept."
+    },
+    {
+      "question": "How is the real effective exchange rate constructed?",
+      "options": [
+        "The real rate adjusted for the country's foreign exchange reserves",
+        "A simple average of the nominal rates of every quoted currency",
+        "The real rate against the largest trading partner only",
+        "A trade-weighted average of the real rates against trading partners"
+      ],
+      "explanation": "An economy trades with many partners, so looking at a single currency pair falls short. The effective index shows overall competitiveness, and it can be deteriorating even while the most-watched pair holds steady. Reserves do not enter the calculation at all. An unweighted average of nominal rates drops both the price adjustment and the weighting, and taking only the largest partner is exactly the single-pair blind spot the index exists to remove."
+    },
+    {
+      "question": "Why can purchasing power parity not be used for short-term trading?",
+      "options": [
+        "Because the rate can sit away from PPP for years on end",
+        "Because national inflation data is not published promptly enough",
+        "Because it only holds for economies of similar size and structure",
+        "Because FX transaction costs wipe out any gap that appears"
+      ],
+      "explanation": "Capital flows, interest rate differentials and market sentiment drive the exchange rate over short horizons far more powerfully than the price relationship does. Purchasing power parity is a long-run anchor, useful for judging valuation rather than for choosing a moment to trade. Inflation data is in fact published on a regular monthly schedule, the relationship is not restricted to similarly sized economies, and the gaps involved are far too large to be closed by transaction costs."
+    },
+    {
+      "question": "Why does an index comparing one identical product's price across countries have limits?",
+      "options": [
+        "Because that product is not on sale in every country in the world",
+        "Because price also reflects non-tradables such as local rent and pay",
+        "Because the official rate differs from the free-market rate in many places",
+        "Because the retail price already includes each country's own taxes"
+      ],
+      "explanation": "Most of what a meal or a service costs is made up of things that cannot be imported or exported. That is why lower-income countries tend to have systematically lower price levels, and that does not mean their currencies are undervalued. A dual exchange rate exists only in a handful of economies, tax differences are real but small relative to the gaps observed, and the availability of the product is a sampling nuisance rather than the structural flaw."
+    },
+    {
+      "question": "What is the weakness of a single-product cross-country price index?",
+      "options": [
+        "Firms adjust their prices continuously, so the figures cannot be compared",
+        "The product is not sold everywhere, so the sample is too small",
+        "Price reflects local wages and rent too, not just the exchange rate",
+        "The index only works for exported goods and never for services"
+      ],
+      "explanation": "Most of the price of a fast-food meal is made up of things that are not traded across borders: the rent on the premises, the staff wages, the cost of local distribution. Purchasing power parity only applies to goods bought and sold across borders, so an index like this is a nice illustration rather than a measurement. Prices are surveyed at a point in time so continuous adjustment is not the issue, and the index covers a prepared meal, which is itself largely a service."
+    }
+  ],
+  "keyTakeaways": [
+    "Purchasing power parity is a long-run pull: higher inflation tends to mean a depreciating currency",
+    "Only the real exchange rate reflects competitiveness; a stable nominal rate can still hide a real appreciation",
+    "The real effective exchange rate looks at a weighted basket of trading partners, not just one pair",
+    "The relationship is for judging long-run valuation, not for timing a trade"
+  ],
+  "practicePrompt": {
+    "question": "The nominal exchange rate has been stable for three years while domestic inflation runs about 3 percentage points a year above that of trading partners. What does this mean for exporters?",
+    "options": [
+      "No effect at all, since the rate goods are sold abroad at has not moved",
+      "The real rate appreciates nearly 10%: local costs rise, world prices do not",
+      "The firm gains, because a stable rate makes business planning far easier to do",
+      "It hits importers only, and leaves exporters entirely untouched"
+    ],
+    "explanation": "This is the hardest form of competitiveness erosion to notice, because there is no event to point at. Export margins contract gradually over many quarters, and management usually blames fierce competition rather than the real exchange rate."
+  },
+  "summary": {
+    "keyIdea": "A stable nominal exchange rate does not mean stable competitiveness",
+    "formula": "Real exchange rate = Nominal exchange rate × (Foreign price level / Domestic price level)",
+    "commonMistake": "Judging the exchange rate by the nominal figure while ignoring the accumulated inflation gap",
+    "action": "Find Vietnam's real effective exchange rate index and look at the trend over the last five years."
+  },
+  "application": {
+    "title": "Add one more variable to your exporter model",
+    "message": "When forecasting an exporter's margin, do not just assume a nominal exchange rate. Ask how fast domestic costs rise with inflation, whether international selling prices rise to match, and how that gap accumulates across the forecast period.",
+    "secondary": "This is also why durable exporters tend to have an edge in technology or brand, rather than resting on low costs alone."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous lesson showed that the forward rate is tightly bound by interest rates. But what about the spot rate over the long run - is there any force pulling it anywhere? There is, and it comes from goods rather than from capital flows."
+    },
+    {
+      "type": "heading",
+      "text": "From the law of one price to purchasing power parity"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the same item can be shipped freely between two countries, its price converted into a single currency has to be equal, or someone will buy where it is cheap and sell where it is dear. Extend that from one item to a whole basket and you get purchasing power parity: the exchange rate has to adjust so that the same amount of money buys a comparable quantity of goods in either place. In reality most of an economy's value sits in services and other non-tradables, so the relationship only holds approximately and very slowly."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Nominal exchange rate",
+        "text": "The number you see on the board. It tells you how much money you can swap, not how many goods you can buy."
+      },
+      "right": {
+        "label": "Real exchange rate",
+        "text": "Adjusted for the price-level gap. This is the actual measure of how competitive domestic goods are."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Two anchors, two time horizons",
+      "text": "Interest rate parity is a tight relationship, true to a very close approximation, and it governs forward prices today. Purchasing power parity is a loose relationship, true over a span of years, and it governs the long-run trend. Confusing the scope of these two is the most common error in exchange rate analysis."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "In the short run the exchange rate follows capital; in the long run it is pulled toward prices.",
+        "The next lesson brings exchange rates and country risk into your valuation model itself."
+      ]
+    }
+  ]
+}

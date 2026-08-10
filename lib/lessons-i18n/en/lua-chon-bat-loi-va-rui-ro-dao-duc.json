@@ -1,0 +1,141 @@
+{
+  "slug": "lua-chon-bat-loi-va-rui-ro-dao-duc",
+  "title": "Pricing, Lesson 4: Adverse selection and moral hazard - two forces pulling opposite ways",
+  "subtitle": "Why the people who buy the most insurance are the ones who need it most, and why having cover makes people a little less careful",
+  "duration": "11 min",
+  "whyItMatters": "These two phenomena explain nearly every clause in an insurance policy that the buyer finds irritating: medical underwriting, waiting periods, deductibles, benefit caps. Without them, every one of those clauses looks like arbitrary harshness.",
+  "openingQuestion": "A company sells health cover with no underwriting: anyone can buy at the same premium. What happens?",
+  "openingOptions": [
+    "The healthy find it expensive and leave, the remaining pool worsens, and the premium has to rise again",
+    "The number of policies rises sharply so the law of large numbers works better",
+    "Underwriting costs fall, so the company can cut the premium for every customer",
+    "The claims ratio stays stable because the healthy and the sick offset each other"
+  ],
+  "explanation": "This is the adverse selection spiral, and it can destroy an entire product. The common premium is priced on the average risk, so it is expensive for the healthy and cheap for those with an existing condition. The healthy leave first, the remaining pool is worse, the company is forced to raise the premium, and the new premium is now expensive for the healthiest of those who remain - so they leave too. Each turn of the loop makes the pool worse. This is not theory: it is why medical underwriting, waiting periods and pre-existing condition exclusions exist in every policy, and why universal health schemes usually have to make participation compulsory.",
+  "diagram": [
+    { "label": "One premium for everyone" },
+    { "label": "The healthy find it expensive → they leave" },
+    { "label": "The remaining pool is riskier → the premium must rise" },
+    { "label": "The healthiest of those left now leave → repeat" }
+  ],
+  "realWorldExample": {
+    "company": "Waiting periods in health insurance policies",
+    "description": "Almost every health product carries a 30-day waiting period for ordinary illness and a much longer one for specified conditions or maternity. The clause is not there to inconvenience the customer: without it, people would buy cover on the very day they learned they needed surgery, and the product would not survive a year."
+  },
+  "quiz": [
+    {
+      "question": "When does adverse selection occur?",
+      "options": [
+        "High-risk people buy more of it than low-risk people do",
+        "Customers become more careless after they have bought cover",
+        "The insurer picks the wrong target segment to sell to",
+        "The agent sells a product that does not fit the customer's need"
+      ],
+      "explanation": "It happens BEFORE the policy is signed and it originates in asymmetric information: the customer knows more about their own health than the company does. Careless behaviour after purchase is the other force entirely, and mis-selling by an agent is a conduct problem rather than a structural one - it can be fixed by supervision, whereas adverse selection is built into the information gap itself."
+    },
+    {
+      "question": "What is moral hazard in insurance?",
+      "options": [
+        "The customer is not truthful when applying for cover",
+        "Once people have cover, they take a little less care",
+        "The agent promises benefits the policy does not contain",
+        "The insurer declines a claim by invoking an exclusion clause"
+      ],
+      "explanation": "It happens AFTER signing, and it is not necessarily deliberate - behaviour simply changes once the financial consequence has been transferred elsewhere. Dishonesty on the application form is a different thing again: that is misrepresentation, dealt with by underwriting and by the contract, while moral hazard needs the buyer to keep some of the loss."
+    },
+    {
+      "question": "Which problem does a deductible address?",
+      "options": [
+        "Administration cost - fewer small claims to process",
+        "Adverse selection - screening out the higher-risk customers",
+        "Moral hazard - the buyer still bears part of the loss",
+        "Correlated risk - limiting simultaneous losses from one event"
+      ],
+      "explanation": "Leaving the buyer with a slice of the damage is the most direct way of giving them a reason to stay careful. It also cuts down small claims, but that is a side effect rather than the purpose, and a deductible does nothing to tell a high-risk applicant apart from a low-risk one before the policy is written."
+    },
+    {
+      "question": "What is medical underwriting before issuing a policy meant to address?",
+      "options": [
+        "Counterparty risk - making sure the customer can keep paying premiums",
+        "Moral hazard - making the customer more responsible after buying",
+        "Correlated risk - spreading exposure geographically",
+        "Adverse selection - narrowing the information asymmetry"
+      ],
+      "explanation": "Underwriting narrows the information gap between the two sides before signing, so it is the tool for the first problem and not the second. Nothing about a medical exam changes how carefully the policyholder behaves afterwards, which is the part deductibles and co-payments have to carry."
+    },
+    {
+      "question": "Why do universal health schemes usually have to make participation compulsory?",
+      "options": [
+        "Because on a voluntary basis the healthy stay out and the remaining pool deteriorates",
+        "Because compulsion lowers the administration and collection cost for the agency",
+        "Because the law requires every citizen to hold basic health cover",
+        "Because compulsion helps the state control treatment costs better"
+      ],
+      "explanation": "Compulsion is the most direct way to stop the adverse selection spiral: nobody gets to choose, so the participating pool is exactly the population. Lower collection costs and better control of treatment prices may follow, but neither is the reason for compulsion; and pointing at the law simply restates the rule instead of explaining why the rule has to exist in the first place."
+    }
+  ],
+  "practicePrompt": {
+    "question": "After the 30-day waiting period was removed from a dental product, the claims ratio in the first two months of each policy jumped. Which problem is this, and how do you fix it?",
+    "options": [
+      "Adverse selection - restore the waiting period and the underwriting",
+      "Moral hazard - raise the deductible on new policies",
+      "Moral hazard - cut the commission paid to agents on this product",
+      "Adverse selection - raise the premium evenly across the whole book"
+    ],
+    "explanation": "Claims concentrated in the first two months are the signature of buyers who already knew they needed treatment before they signed - that is adverse selection, which happens BEFORE the contract, not moral hazard, which happens after. The waiting period exists precisely to block it, so removing it opened the door. The deductible is the tool for the other side: it makes an insured person more careful, but it does nothing to stop someone with toothache buying a policy today. And raising the premium evenly is how the spiral starts - the healthy leave first, and the pool that remains gets worse."
+  },
+  "keyTakeaways": [
+    "Adverse selection happens before signing: high-risk people buy more.",
+    "Moral hazard happens after signing: once covered, people take less care.",
+    "Underwriting, waiting periods and exclusions address the first problem.",
+    "Deductibles and co-payments address the second."
+  ],
+  "summary": {
+    "keyIdea": "Adverse selection happens before signing, moral hazard after - two different forces needing two different tools",
+    "commonMistake": "Using one tool for both. Underwriting before signing cannot stop behaviour changing after signing.",
+    "action": "For each clause in an insurance policy, ask which of the two forces it is blocking."
+  },
+  "application": {
+    "title": "Spot the two forces in one product",
+    "message": "Take an insurance product and sort its clauses into two groups: those that screen before signing, and those that keep the incentives right afterwards.",
+    "secondary": "Deductibles and co-payments belong to the second group - they exist so the insured still has a share of the loss of their own."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "These two forces pull in opposite directions and both erode an insurance product. They differ on one very simple point: one happens before the contract is signed, the other after."
+    },
+    { "type": "heading", "text": "Before signing: adverse selection" },
+    {
+      "type": "paragraph",
+      "text": "The customer knows more about their own risk than the company does. At a common premium priced on the average risk, the healthy find it expensive and those with an existing condition find it cheap - so the second group buys more. The pool deteriorates, the premium has to rise, and each rise pushes the healthiest of those remaining out. This loop can kill a product in a few years."
+    },
+    { "type": "heading", "text": "After signing: moral hazard" },
+    {
+      "type": "paragraph",
+      "text": "Once the financial consequence has been transferred to someone else, behaviour changes - usually not deliberately. Someone with motor cover does not try to crash, but they may park somewhere slightly less safe. Someone with health cover visits the doctor more often, partly because they genuinely need to and partly because they are not paying."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Every irritating clause addresses one of the two problems",
+      "concepts": [
+        { "def": "Against adverse selection - narrowing the information gap between the two sides before the contract is signed." },
+        { "def": "Against adverse selection - blocking the purchase of cover on the very day you learn you are about to need it." },
+        { "def": "Against moral hazard - the buyer still bears the first slice of the loss, so they still have a reason to be careful." },
+        { "def": "Against moral hazard - sharing a percentage on every use, effective for services used repeatedly such as medical visits." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why neither can be eliminated",
+      "text": "No amount of underwriting rigour will ever tell you everything the customer knows about themselves, and no deductible can be set high enough without stripping the product of its reason to exist. Both tools are trade-offs: tighter means lower risk but fewer buyers. Pricing is the job of finding that balance, not of eliminating the problem."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Every clause in an insurance policy that the buyer finds irritating is answering one of these two questions.",
+        "Drop them and the product becomes far easier to sell - and does not survive more than a few years."
+      ]
+    }
+  ]
+}

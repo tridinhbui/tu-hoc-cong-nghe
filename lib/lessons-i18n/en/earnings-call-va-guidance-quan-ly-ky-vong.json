@@ -1,0 +1,143 @@
+{
+  "slug": "earnings-call-va-guidance-quan-ly-ky-vong",
+  "title": "Earnings Calls & Guidance: how IR prepares for and manages market expectations",
+  "subtitle": "Why a company growing well can still see its stock sold off the moment earnings land",
+  "duration": "7 min",
+  "openingQuestion": "A company reports quarterly profit up 20% year on year - a very impressive growth number - and the share price falls sharply straight afterwards. What most commonly explains that paradox?",
+  "openingOptions": [
+    "The market always reacts irrationally to every earnings report, with no logic to it",
+    "The result still came in below expectations already priced into the stock",
+    "Share prices are never related to actual business performance at all",
+    "The company must have published fraudulent financial statements"
+  ],
+  "explanation": "This is the core principle every IR professional has to internalise: a share price reflects EXPECTATIONS that the market has already priced in, so the price reaction after earnings depends mainly on how the ACTUAL result compares with those EXPECTATIONS, not on the absolute growth figure alone. A company growing 20% where the market expected 30% is treated as a miss, while a company growing only 5% where the market expected 2% is treated as a beat and is usually rewarded with a higher share price.",
+  "realWorldExample": {
+    "company": "Netflix and its post-earnings price swings",
+    "description": "Netflix is the classic illustration of how sensitive a share price is to expectations: on several occasions the company reported positive net subscriber growth - a good number in absolute terms - that was still materially below the guidance the company itself had given or below what analysts expected, and the stock fell by double digits in a single session. It shows why an IR team has to be extremely careful with the guidance it issues in the first place, because that guidance becomes the yardstick the market later uses to judge the actual result."
+  },
+  "quiz": [
+    {
+      "question": "What role does the guidance a company gives the market about future results play in IR's expectation management strategy, and why do many companies tend to guide conservatively?",
+      "options": [
+        "A forecast compiled by outside analysts covering the stock",
+        "A figure that listing rules require the company to publish",
+        "A legal commitment the company is obliged to hit exactly",
+        "It sets the reference point the market judges results against"
+      ],
+      "explanation": "The 'beat and raise' pattern is a common expectation-management technique: by issuing initial guidance that is slightly conservative, the company leaves room to report results that beat expectations in later quarters - a run of positive market reactions, rather than the risk of guiding too optimistically and then having to guide down, which the market punishes far more heavily than simply growing slowly. Guidance comes from the company itself rather than from analysts, is voluntary in most markets, and is a forecast rather than a legal promise."
+    },
+    {
+      "question": "What is the quiet period before results are published, and why must an IR team observe it strictly?",
+      "options": [
+        "A period when the company limits contact with investors",
+        "A period when insiders may not trade the company's shares",
+        "A period when the shares are suspended from trading",
+        "A period when the auditors are working on site"
+      ],
+      "explanation": "The quiet period embodies a core legal principle of capital markets: fair disclosure. Rules such as Regulation FD in the US require material information to be released SIMULTANEOUSLY to ALL investors, with no selective disclosure to favoured analysts or large holders ahead of the public. The IR team is the gatekeeper for that principle, and it matters most in the window immediately before results. Insider trading blackouts are a related but separate rule, and trading in the shares carries on normally throughout."
+    },
+    {
+      "question": "When actual results come in BELOW the guidance previously issued (a 'miss'), what should IR's message to investors focus on in order to preserve long-term trust?",
+      "options": [
+        "Delay publishing the results until performance improves",
+        "Explain clearly whether the cause is temporary or structural",
+        "Issue higher new guidance to reassure investors",
+        "Say nothing about the old guidance to avoid drawing attention"
+      ],
+      "explanation": "This is the central principle of managing long-term investor trust: the market will usually forgive a weak result if it is explained transparently, with evidence and with a clear action plan - but it reacts very badly to vagueness, shifting explanations quarter after quarter, or an unexplained silence, because all of those erode confidence in management's ability to forecast and to run the business, which is an intangible asset of enormous importance to the long-run valuation. Reassuring the market with higher guidance you have just failed to hit makes that worse, not better."
+    },
+    {
+      "question": "Scenario: a company reports profit up 20% year on year and the stock still drops immediately afterwards. Why?",
+      "options": [
+        "Because an earnings report always pushes the price down short term",
+        "Because 20% growth is a weak number in almost any industry",
+        "Because the market had already expected more than 20%",
+        "Because investors take profits after every piece of good news"
+      ],
+      "explanation": "The current price already contains the market's expectations, so what moves the price is the gap between reality and those expectations. Up 20% when consensus wanted 28% is bad news, while up 5% when consensus wanted 2% is good news. Earnings reports move prices in both directions rather than always down, 20% is strong growth in most industries, and profit-taking would not explain why some good results are rewarded and others are not."
+    },
+    {
+      "question": "How does the 'beat and raise' strategy in expectation management work?",
+      "options": [
+        "Only raise guidance after the share price has already fallen",
+        "Set guidance high to signal confidence to the market",
+        "Give no guidance at all so as to avoid being compared",
+        "Set guidance conservatively, then beat it and raise"
+      ],
+      "explanation": "Setting an achievable bar and then repeatedly beating it and raising the forecast creates a run of good news and builds a reputation for management being reliable. Setting the bar high and then having to guide down costs many times more, because the market will discount every number the company puts out afterwards. Giving no guidance does not remove the comparison - analysts simply build their own consensus and you judge against that instead, with less influence over it."
+    }
+  ],
+  "keyTakeaways": [
+    "The share price reaction to earnings depends mainly on the result versus EXPECTATIONS (consensus), not on the absolute growth figure",
+    "The 'beat and raise' strategy: guide conservatively at the start to leave room to beat, avoiding the risk of repeated guide-downs",
+    "The quiet period enforces fair disclosure (as under Regulation FD) - no selective release of material information ahead of the official announcement",
+    "When guidance is missed, transparency and a clear explanation matter far more than concealment or vagueness for preserving long-term trust"
+  ],
+  "practicePrompt": {
+    "question": "Your company (you are the IR professional) is about to report the quarter: revenue up 15% (exactly in line with the guidance given), but margins slightly down because input material costs spiked unexpectedly (an external, temporary factor). How should you prepare the earnings call message?",
+    "options": [
+      "Focus only on the strong revenue growth and avoid mentioning the margin decline",
+      "Cover both: revenue met guidance, margin fell on temporary input costs",
+      "Delay publishing the results until input costs have stabilised again",
+      "Blame the raw material suppliers entirely without offering any remedy of your own"
+    ],
+    "explanation": "This is balanced transparency applied in practice: hiding the bad news (the margin decline) while talking only about the good news (revenue growth) is a high-risk strategy, because professional analysts and investors will find it themselves in the detailed statements - and at that point, not having raised it will be read as a lack of transparency, doing more damage to trust than explaining it clearly upfront ever would."
+  },
+  "summary": {
+    "keyIdea": "Managing market expectations through guidance and earnings calls is the core of the IR job - the price reaction depends on results versus expectations rather than on absolute figures, and transparent communication matters more than presenting only good news.",
+    "commonMistake": "Judging the success of an earnings report on the absolute growth figure alone, ignoring the comparison with the market expectations already priced in",
+    "action": "Before every earnings call, prepare a message that covers both the good and the bad, with a clear explanation of causes and a concrete action plan for whatever has gone wrong"
+  },
+  "application": {
+    "title": "Applying it in an Investor Relations role",
+    "message": "Read through an earnings call transcript for a listed company you follow - analyse how the CEO or CFO handled questions about results that missed expectations (if any), and judge how transparent their explanation was.",
+    "secondary": "Managing expectations and communicating transparently through a difficult stretch is what separates an outstanding IR professional from someone who simply reads numbers off the financial statements."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "'Beat the number' or 'miss the number' - those two phrases decide most of the market's reaction after every earnings report, and managing that expected number is the central craft of Investor Relations."
+    },
+    { "type": "heading", "text": "Consensus estimate - the yardstick that actually matters" },
+    {
+      "type": "paragraph",
+      "text": "A share price does not react to absolute results; it reacts to the GAP between the actual result and the expectations the market had already priced in (the consensus estimate - the average forecast of the analysts covering the stock). That is why a company growing impressively in absolute terms can still be sold off if it fails to meet the expectations that were already set."
+    },
+    { "type": "heading", "text": "Guidance - the tool that sets expectations" },
+    {
+      "type": "paragraph",
+      "text": "Guidance is the company's official forecast of future results (usually quarterly or annual), and it becomes the formal yardstick against which later performance is judged. The 'beat and raise' strategy - issuing conservative guidance and then reporting results that beat it - is a common expectation-management technique for sustaining positive momentum across several consecutive quarters."
+    },
+    { "type": "heading", "text": "The quiet period and the fair disclosure principle" },
+    {
+      "type": "paragraph",
+      "text": "Ahead of official results, a company observes a quiet period - restricting the exchange of undisclosed material information with any particular group of investors or analysts, in order to comply with rules such as Regulation FD that exist to stop some parties holding an unfair information advantage over the public."
+    },
+    {
+      "type": "callout",
+      "label": "The biggest trap",
+      "text": "The share price reacts to the gap against CONSENSUS, not to the absolute number. Profit up 30% still sends the price down if the market expected 40% - and that is why companies manage guidance so carefully."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Consensus: the median of analyst forecasts, not any one analyst's number",
+        "Guidance: the company setting the expectation itself, usually conservatively so there is room to beat",
+        "Quiet period: the window before publication when the company stops private conversations, so every investor gets the news at the same moment"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Investor Relations demands a rare combination of financial skill (understanding the numbers deeply), communication skill (delivering a clear, persuasive message), and professional ethics (strict compliance with disclosure rules).",
+        "A good IR professional does not simply report numbers - they build and defend the market's confidence in the company's management and transparency across many business cycles."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Market consensus forms before the report" },
+    { "label": "Actual results are judged against consensus, not against last year" },
+    { "label": "Guidance resets expectations for the periods ahead" },
+    { "label": "Beating the plan while cutting guidance can still trigger a sell-off" }
+  ]
+}

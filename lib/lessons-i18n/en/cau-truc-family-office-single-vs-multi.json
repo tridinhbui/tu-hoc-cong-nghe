@@ -1,0 +1,180 @@
+{
+  "slug": "cau-truc-family-office-single-vs-multi",
+  "title": "Family office structures: single-family, multi-family, and when to choose which",
+  "subtitle": "Why a very wealthy family may still be better off without an office of its own",
+  "duration": "9 min",
+  "openingQuestion": "A family with roughly 300bn dong of assets is weighing up its own family office with a dedicated team - a chief investment officer, an accountant and a legal assistant. What should be the decisive factor?",
+  "openingOptions": [
+    "The prestige and image that a dedicated office confers on the family",
+    "Comparing the fixed annual running cost against shared-service fees",
+    "How many family members would want to be involved in running it",
+    "Whether the family already has a relative working in finance"
+  ],
+  "explanation": "The cost of running a dedicated family office - salaries for a specialist team, systems, compliance, audit, premises - is fixed and does not shrink with the size of the assets. Above a certain asset base that cost is a small percentage and entirely reasonable against the benefits of control, confidentiality and bespoke service. Below it, the same cost becomes a substantial percentage and usually exceeds the extra value created, which makes a shared model the better answer. This comparison comes first, ahead of any question about staffing or image.",
+  "realWorldExample": {
+    "company": "Why fixed costs decide the structure",
+    "description": "Suppose a dedicated family office needs roughly 8bn dong a year to operate professionally. For a family with 3,000bn of assets that is about 0.27% a year - fully competitive with the management fees of outside providers, and in return the family gets complete control and the highest level of confidentiality. For a family with 300bn, that same 8bn is about 2.7% a year - a fee level very few investment strategies can sustainably beat. The same operating model, the same quality of team, and yet the conclusion about whether it makes sense is completely reversed, purely because the denominator differs."
+  },
+  "quiz": [
+    {
+      "question": "What is the fundamental difference between a single-family office and a multi-family office?",
+      "options": [
+        "An SFO manages far smaller assets than an MFO does",
+        "An SFO only handles investing; an MFO also does legal and tax",
+        "An SFO is run by a bank, while an MFO is set up by the family itself",
+        "An SFO serves one family with a dedicated, more tailored team"
+      ],
+      "explanation": "This is the core trade-off: control and tailoring in exchange for cost and breadth of expertise. Neither model is absolutely better - the choice depends on the size of the assets and the complexity of the needs. If anything an SFO is associated with larger, not smaller, wealth, since it has to carry the whole fixed cost alone. Both models cover investment, legal and tax work. And the ownership is the other way round from the third option: an SFO is the family's own entity, while an MFO is an outside firm serving several families."
+    },
+    {
+      "question": "Why is family governance a compulsory component of a family office rather than just investment management?",
+      "options": [
+        "Because most failures come from conflict between members",
+        "Because regulators require a written family governance charter",
+        "Because inheritance tax relief depends on clear rules",
+        "Because someone must sign the large investment contracts"
+      ],
+      "explanation": "This is what distinguishes a family office from an ordinary wealth management firm. Without a mechanism for making decisions and settling disputes, a perfectly good portfolio can still be broken up when it passes to the next generation. No regulator mandates a family charter, tax relief turns on the legal structures used rather than on internal governance documents, and authorising signatories are a routine corporate arrangement that any entity has. Governance addresses the actual cause of failure, which is human rather than financial."
+    },
+    {
+      "question": "Which of these services falls within a family office's remit but is usually NOT offered by a conventional asset management firm?",
+      "options": [
+        "Portfolio management plus detailed asset allocation advice",
+        "Succession planning, conflict governance, financial education",
+        "Tax advice and legal structuring for offshore assets",
+        "Lending secured against the securities portfolio held"
+      ],
+      "explanation": "The other three are standard wealth management services that any large private bank will provide. What is distinctive about a family office lies in the non-investment functions tied to the family as a multi-generational entity: preparing heirs, agreeing how decisions get made across branches, and educating the next generation about both the money and the responsibility. Those functions have no product to sell and no fee attached, which is precisely why an ordinary firm does not offer them."
+    },
+    {
+      "question": "Scenario: a family has $200 million, and running a single-family office would cost about $2 million a year. What is the first test when choosing a structure?",
+      "options": [
+        "The tax payable once a separate legal entity is set up",
+        "The number of staff the office would need to hire",
+        "Cost as a share of assets, which here is 1%",
+        "The reputation of the multi-family offices available"
+      ],
+      "explanation": "A family office's cost is essentially fixed, so it only makes sense once the assets are large enough to spread it thinly: 2 against 200 million is 1%, in line with external management fees. The same apparatus applied to $50 million becomes 4%, a level no asset class can reliably make up."
+    },
+    {
+      "question": "Why is family governance compulsory rather than optional in a family office?",
+      "options": [
+        "Because it lowers the office's own service fees",
+        "Because the tax authority requires a written charter",
+        "Because it can replace the need for investment management entirely",
+        "Because wealth usually dissolves in conflict within generations"
+      ],
+      "explanation": "Family wealth rarely disappears across generations because of poor investment performance; it disappears through disagreement about decisions and through heirs nobody prepared. Family governance - decision rules, a mechanism for resolving disputes, education for the next generation - addresses that actual cause. It does not reduce fees, no tax authority requires it, and it complements investment management rather than replacing it: the portfolio still has to be run."
+    }
+  ],
+  "keyTakeaways": [
+    "A family office's running cost is fixed, so cost as a percentage of assets is the first test when choosing a structure.",
+    "Single-family gives the highest control and confidentiality; multi-family gives shared cost and broader expertise.",
+    "Family governance is compulsory, because failure across generations usually comes from conflict rather than from investment.",
+    "A family office differs from an asset manager in its non-investment functions: succession, education, philanthropy."
+  ],
+  "practicePrompt": {
+    "question": "A family has 800bn of assets, three family branches with different needs, an operating business, and property in two countries. Which structure best balances cost against complexity?",
+    "options": [
+      "Manage it entirely in-house using family members, to save cost",
+      "Set up a full single-family office with a complete dedicated team at once",
+      "A hybrid: outsource the technical work, keep governance in-house",
+      "Hand everything to the bank the family has banked with for decades"
+    ],
+    "explanation": "At this size the cost of a full office is still heavy, while the complexity is already too great to outsource entirely. A hybrid keeps in-house the parts that need control and family context, while sharing the cost of the purely technical work."
+  },
+  "summary": {
+    "keyIdea": "Choosing a family office structure is a comparison of fixed cost against asset size and the complexity of the needs - it is not a question of status.",
+    "commonMistake": "Setting up a dedicated office for image, or because another family did, without first computing running cost as a percentage of assets.",
+    "action": "For a specific family, estimate the annual running cost and divide it by total assets - then compare that figure with the fee on an equivalent shared service."
+  },
+  "application": {
+    "title": "Apply it in advisory work",
+    "message": "Before discussing structure, answer three questions: how large are the total assets, how many family branches have genuinely different needs, and are there assets requiring specialist expertise such as an operating business or property in several countries.",
+    "secondary": "Those three questions settle the structure far more clearly than comparing the service menus providers put in front of you."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The family office is usually spoken of as a symbol of wealth. Financially, though, it is simply a decision about cost structure and degree of control - and like every structural decision, it has a size threshold below which it does not make sense."
+    },
+    { "type": "heading", "text": "Three models and the trade-off in each" },
+    {
+      "type": "conceptTable",
+      "title": "From fully outsourced to a dedicated office",
+      "subtitle": "The main axis of the trade-off is control against cost",
+      "concepts": [
+        {
+          "def": "No dedicated team; the family uses a bank's or an asset manager's services. The cheapest and most flexible option, but tailoring is limited and there is a latent conflict of interest when the provider also sells its own products."
+        },
+        {
+          "def": "One firm serving several families, sharing the team and the infrastructure. Far cheaper than a dedicated office and with access to broader expertise, but lower priority and confidentiality because resources are spread across many clients."
+        },
+        {
+          "def": "A dedicated team serving one family only. The highest control, confidentiality and tailoring; suited to complex assets and several family branches. In exchange, the family bears the entire fixed cost and depends on a handful of key people."
+        }
+      ]
+    },
+    { "type": "heading", "text": "The first test: cost as a share of assets" },
+    {
+      "type": "formula",
+      "title": "Comparing structural costs",
+      "equation": "Cost ratio = annual running cost ÷ total assets under management",
+      "example": {
+        "title": "The same 8bn a year, two different asset bases",
+        "calculation": "8bn ÷ 3,000bn against 8bn ÷ 300bn",
+        "result": "About 0.27% against about 2.7%",
+        "explanation": "At 0.27% a dedicated office competes directly with external service fees and adds the benefit of control on top. At 2.7% the cost is far above the alternatives, and very few investment strategies beat that margin sustainably enough to make it back."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "The key point is that running costs are not very elastic to the size of the assets: a capable chief investment officer does not accept a lower salary because the family has less money. That is why asset size is almost always the first decisive variable, ahead of every other consideration."
+    },
+    { "type": "heading", "text": "Family governance - the part most often skipped" },
+    {
+      "type": "paragraph",
+      "text": "A family office differs from an asset manager in that it serves a family as a multi-generational entity rather than an investment account. That brings functions with nothing to do with picking assets: building a decision mechanism for when the branches disagree, preparing the next generation in both knowledge and responsibility, coordinating the succession plan, and organising philanthropy."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "No governance mechanism",
+        "text": "Big decisions rest on one person, usually from the founding generation. Once they step back, the branches have no rules for settling disagreements, and assets are typically divided or sold under pressure rather than to plan."
+      },
+      "right": {
+        "label": "With a governance mechanism",
+        "text": "Written rules on who decides what, which thresholds require consensus, how to handle a branch wanting to take its share out, and a path for preparing the next generation. Wealth transfers by design rather than by circumstance."
+      }
+    },
+    { "type": "heading", "text": "Four questions before choosing a structure" },
+    {
+      "type": "list",
+      "items": [
+        "How large are the total assets, and what percentage of them would the expected running cost consume?",
+        "How many family branches are there, and how different are their needs - the more branches with divergent goals, the greater the need for a governance mechanism of its own.",
+        "Are there assets requiring specialist expertise: an operating business, property across several countries, or private investments needing close monitoring.",
+        "How much confidentiality is genuinely required - some families have legitimate reasons not to route information about their wealth through a firm serving many clients."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The hybrid is usually the practical answer",
+      "text": "Many mid-sized families keep a very lean in-house team - often one or two people - handling coordination, family governance and overall allocation decisions, while outsourcing the technical functions such as portfolio management, accounting, tax and legal. That keeps in-house the work that needs family context and control, while still sharing the cost of everything that can be standardised."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A dedicated family office is not the inevitable next step as wealth grows - it is a decision about cost structure with a size threshold of its own.",
+        "And whichever structure is chosen, what determines whether wealth survives across generations is usually the governance mechanism, not portfolio performance."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Establish total assets and the complexity of the needs" },
+    { "label": "Estimate the fixed annual running cost" },
+    { "label": "Compare cost as a share of assets with alternative service fees" },
+    { "label": "Pick the structure: outsourced · shared · hybrid · dedicated office" },
+    { "label": "Set up family governance alongside investment management" }
+  ]
+}

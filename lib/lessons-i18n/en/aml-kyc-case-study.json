@@ -1,0 +1,173 @@
+{
+  "slug": "aml-kyc-case-study",
+  "title": "AML/KYC in practice: four situations and how to handle them",
+  "subtitle": "Building the reflex to spot the signals and decide, on situations close to the real job",
+  "duration": "10 min",
+  "openingQuestion": "An individual customer owns a chain of three retail shops, has five years of steady transaction history, and pays in roughly 800m to 1bn dong of takings each month. This month, on top of the usual flows, the account receives a further 6bn dong from 14 different individuals, each between 300m and 500m, and the customer explains that friends have pooled money to buy a plot of land together. What is the most appropriate way to handle this?",
+  "openingOptions": [
+    "Close the alert now, since this is a long-standing customer with a clean history who has given a reasonable explanation",
+    "Ask for specific supporting documents and also verify the identities of all 14 people who sent the money in",
+    "File a suspicious transaction report immediately, without asking anything further",
+    "Ask the customer to move this money to a different bank so the risk sits somewhere other than here"
+  ],
+  "explanation": "A good history raises confidence but does not displace the duty to verify - not least because criminals seek out accounts with clean histories for precisely that reason. The explanation that friends pooled money to buy land could well be true, and it is also one of the most common covers for aggregating funds from many sources. The only thing that separates the two is documentary evidence: does the pooling agreement exist, is the plot real, did the purchase actually go through afterwards. If the documents are complete and consistent, the alert is closed on a clear basis; if not, this is a reportable case no matter how long the relationship has run.",
+  "realWorldExample": {
+    "company": "The pass-through account - the most common link in practice",
+    "description": "In many cases published by the authorities, the intermediate link is not an elaborate financial structure but the account of an ordinary person: a student, a low-income worker, a pensioner - hired or induced to open an account and then sell the use of it for a few million dong. The identifying features are usually fairly clear in the data: an account largely dormant for a long period that suddenly sees large flows; money in and almost all of it out within hours; an end-of-day balance always close to zero; and a login IP or device that does not match the declared residence. Precisely because this pattern is distinctive, it is usually where monitoring systems deliver the most result for the effort spent."
+  },
+  "quiz": [
+    {
+      "question": "Situation: an import-export company pays a foreign supplier a price for goods that is markedly above the market price for the same goods. What behaviour might this signal?",
+      "options": [
+        "The supplier is extending deferred payment credit at a soft rate",
+        "The company negotiates poorly and so pays above market price",
+        "A signal the company is about to scale up its import volume",
+        "Trade-based laundering through invoice price mismatching"
+      ],
+      "explanation": "Declaring an invoice value above or below the true value is a common technique for moving value across borders. For import-export customers, therefore, comparing the invoiced price against the market price of comparable goods at the same date is a high-yield review step. Poor negotiation and expansion plans do occur, but neither produces a persistent, one-directional gap against market price the way a value-transfer scheme does."
+    },
+    {
+      "question": "A new customer is identified as a close family member of a politically exposed person. What does that mean?",
+      "options": [
+        "No implication of wrongdoing, but enhanced due diligence applies",
+        "The relationship must be refused because the risk is too high",
+        "Procedures can be relaxed since the client has standing",
+        "Only note it if the client holds office; their relatives do not count"
+      ],
+      "explanation": "Close family and associates of a politically exposed person also fall within the enhanced-measures category, precisely because assets of unclear origin are often held in a relative's name. The focus of the verification is the source of wealth, not the standing itself. Nothing here requires refusing the relationship, and standing is a reason for more scrutiny rather than less."
+    },
+    {
+      "question": "Situation: the sales team is pressing to complete account opening for a large customer while the beneficial ownership file is still incomplete. What is the correct course?",
+      "options": [
+        "Open the account first to keep the client, complete the file later",
+        "Withhold transacting and escalate through the compliance line",
+        "Move the file to another branch so they can handle it instead",
+        "Open with a low limit and skip the verification step entirely"
+      ],
+      "explanation": "Establishing the beneficial owner is a precondition, not a step that can be completed afterwards. The second important thing in this situation is to record the pressure coming from the sales side - which is exactly why the compliance function is designed with an independent reporting line to the most senior level. Passing the file elsewhere or capping the limit changes who is exposed, not whether the requirement has been met."
+    },
+    {
+      "question": "After filing a suspicious transaction report about a customer, is the institution obliged to close that customer's account?",
+      "options": [
+        "Yes, close it at once to sever ties and avoid liability",
+        "Close if an individual, keep it open if a company",
+        "Not automatically; it depends on the risk assessment",
+        "Only if the client asks to end the relationship"
+      ],
+      "explanation": "Closing the account immediately can inadvertently tip off the subject and cause the money trail to be lost. That is why this decision should be weighed together with the competent authority rather than being an automatic reflex after every report. Nothing in the framework distinguishes individuals from companies here, and waiting for the customer to ask would leave the institution with no exit at all."
+    },
+    {
+      "question": "Scenario: a customer with five years of clean transactions suddenly receives a very large transfer from abroad. How do you handle it?",
+      "options": [
+        "Wait for a few more transactions before reassessing",
+        "Ignore it; 5 years of history is grounds enough to trust",
+        "Close the account at once and tell the client why",
+        "Verify anyway - good history waives no obligation"
+      ],
+      "explanation": "An account with a clean history is exactly what criminals go looking for, so a long relationship raises confidence without replacing the need to verify the source of funds. Waiting for more transactions lets the money move on in the meantime, and closing the account while explaining the reason breaches the prohibition on tipping off - a strict legal boundary rather than a matter of style."
+    }
+  ],
+  "keyTakeaways": [
+    "A good customer history raises confidence but does not displace the duty to verify - criminals go looking for clean accounts for precisely that reason.",
+    "A verbal explanation is only worth anything when accompanied by documents that match what was said.",
+    "Pass-through accounts have a fairly distinctive pattern: dormant then explosive, money in and out the same day, an end-of-day balance close to zero.",
+    "The compliance function must be independent of the business; pressure to skip a verification step should be recorded and escalated through its own channel."
+  ],
+  "practicePrompt": {
+    "question": "A personal account has generated almost no transactions for 14 months. This week it received 47 incoming transfers from 47 different people, each between 5m and 20m dong, and all of it was moved out within a few hours to three destination accounts. What is the most accurate assessment?",
+    "options": [
+      "The customer may be running a charitable fundraiser, so a file note is enough",
+      "A pass-through account pattern: review it and file a suspicious transaction report",
+      "Nothing unusual here, since every individual amount sits below the reporting threshold",
+      "Just have the customer confirm in writing that the money is lawful, then close it"
+    ],
+    "explanation": "Three factors together make a very distinctive pattern: a long-dormant account suddenly exploding, a many-sources-in and few-destinations-out structure, and money that does not stay. That each amount sits below the threshold does not reduce the suspicion - on the contrary, that is exactly the signature of structuring to evade the threshold."
+  },
+  "summary": {
+    "keyIdea": "The core skill of the compliance profession is reading the pattern of a whole transaction chain, not judging whether each transaction on its own is valid.",
+    "commonMistake": "Accepting an explanation that is plausible as a form of words without asking for documents that prove it, especially from a long-standing customer.",
+    "action": "Take one of the situations in this lesson and write out the specific list of documents you would ask for to verify the customer's explanation."
+  },
+  "application": {
+    "title": "Build the reflex",
+    "message": "For each situation, answer in this order: what exactly is the unusual signal, which document would confirm or refute the explanation, and what is the conclusion if that document does not exist.",
+    "secondary": "This is the structure of reasoning a good alert-review file needs - practising it on hypothetical cases lets you write faster and tighter on real ones."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The two previous lessons built the concepts and the process. This one puts that frame into four situations close to the real job, because compliance skill only forms through repeating one shape of reasoning: what is the signal, which document verifies it, and what do you conclude if the document is not there."
+    },
+    { "type": "heading", "text": "Situation 1: a personal account used as a conduit" },
+    {
+      "type": "paragraph",
+      "text": "A personal account sits quiet for months, then suddenly receives dozens of transfers from people with no connection to one another, and moves nearly all of it out within hours. Three features to examine: the time profile (dormant then explosive), the flow structure (many sources in, few destinations out), and the residual balance (close to zero). The most important question is not where the money came from but whether the account holder is genuinely in control of their own account."
+    },
+    {
+      "type": "list",
+      "items": [
+        "What to do: compare the login device and address against the declared residence; contact the account holder directly to verify; screen the identities of the senders and of the three destination accounts.",
+        "Signals that confirm the suspicion: the holder does not know about the transactions, cannot explain the source of funds, or logins always come from a device and location unrelated to their residence.",
+        "Conclusion: file a suspicious transaction report and consider restricting the account under internal policy - but do not disclose the real reason to the customer."
+      ]
+    },
+    { "type": "heading", "text": "Situation 2: a new company with flows far beyond its capacity" },
+    {
+      "type": "paragraph",
+      "text": "A company incorporated a few months ago, with small charter capital and a registered activity of consulting services - a model with almost no assets and very little verifiable output - receives large transfers from a foreign entity described as service fees. The problem is not whether the transaction is valid but the gap between the scale of the flows and the actual capacity of the business."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Signals pointing toward legitimate",
+        "text": "A service contract with a specific scope of work, evidence that the work was performed, staff and capability proportionate to the contract value, and a payer with verifiable business activity."
+      },
+      "right": {
+        "label": "Signals pointing toward suspicious",
+        "text": "A contract described in generic terms, no evidence of work done, no matching headcount, money arriving and moving straight on, and a payer incorporated in a jurisdiction with weak supervision."
+      }
+    },
+    { "type": "heading", "text": "Situation 3: trade-based money laundering" },
+    {
+      "type": "paragraph",
+      "text": "For import-export customers, the value declared on the invoice is the easiest point to abuse. Over-declaring the price moves value out of the country; under-declaring moves value in. There are further variants: invoicing the same shipment more than once, misdeclaring the type or quantity of goods, or paying for goods that are never delivered at all."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Compare the invoiced price against the market price for the same goods at the same date.",
+        "Check consistency across the invoice, bill of lading, customs declaration and payment documents - particularly on quantity and description of goods.",
+        "Ask whether the shipping route and the intermediaries make economic sense, or whether they run through jurisdictions with no connection to the trade.",
+        "Compare the size of the transaction against the company's actual capacity, warehousing and operating history."
+      ]
+    },
+    { "type": "heading", "text": "Situation 4: internal pressure from the business side" },
+    {
+      "type": "paragraph",
+      "text": "This is the situation least talked about and most frequently encountered, and it is the real test of the compliance function's independence. A commercially valuable customer, a sales team wanting it done fast, and a verification file that is still incomplete. The principle here has no grey area: establishing the beneficial owner is a precondition of entering the relationship, not something to be finished later."
+    },
+    {
+      "type": "callout",
+      "label": "Why an independent reporting line is a technical component, not a formality",
+      "text": "If the person approving alerts also carries sales targets, or is appraised by the business unit itself, then a conflict of interest is a certainty rather than a risk. This is why governance frameworks require the compliance function to have its own reporting line to the most senior executive or to the board - so that a decision to turn away a large customer does not depend on someone with a direct interest in onboarding them."
+    },
+    {
+      "type": "paragraph",
+      "text": "One note running through all four situations: the purpose of a review is not to prove the customer guilty. A great many alerts end with being closed on reasonable grounds, and that is a normal outcome. What is mandatory is that the decision - whichever way it goes - rests on the evidence gathered and is recorded well enough that someone reading it later still understands why."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The pattern of a whole transaction chain says more than the validity of any single transaction.",
+        "An explanation is only worth something when documents match it - and that holds for the longest-standing customer of all."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "An alert or unusual signal appears" },
+    { "label": "Identify the pattern: timing · flow structure · residual balance" },
+    { "label": "Request documents that support the explanation" },
+    { "label": "Compare the documents against actual capacity and the profile" },
+    { "label": "Close the alert on evidence, or report it and record the full trail" }
+  ]
+}

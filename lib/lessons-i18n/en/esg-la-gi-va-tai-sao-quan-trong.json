@@ -1,0 +1,140 @@
+{
+  "slug": "esg-la-gi-va-tai-sao-quan-trong",
+  "title": "What ESG is and why it matters to investors",
+  "subtitle": "Environmental, Social, Governance - the three pillars reshaping how the world judges a company",
+  "duration": "7 min",
+  "openingQuestion": "What does ESG stand for, and why do large investment funds increasingly weigh it when making an investment decision?",
+  "openingOptions": [
+    "Economic, Social, Government - a measure of how politically stable a country is",
+    "Environmental, Social, Governance - a framework for long-term non-financial risk",
+    "Equity, Securities, Growth - the three main asset classes inside a portfolio",
+    "Earnings, Sales, Growth - the three most basic financial metrics of a business"
+  ],
+  "explanation": "ESG (Environmental - Social - Governance) is a non-financial assessment framework that sits alongside traditional financial statement analysis. The reason investors care: risks such as climate change, a labour scandal or a governance fraud usually do NOT show up clearly in today's financial statements, yet they can inflict severe financial damage later - fines, brand destruction, supply-chain disruption, litigation. ESG is the attempt to put a number on those hidden risks before they arrive.",
+  "realWorldExample": {
+    "company": "Volkswagen Dieselgate (2015) and BP Deepwater Horizon (2010)",
+    "description": "Volkswagen was found to have rigged its emissions testing devices; the shares lost nearly 40% of their value within days and the company paid out more than USD 30bn in fines and settlements - an Environmental and Governance risk that appeared nowhere in the prior financial statements. BP's Deepwater Horizon spill likewise cost more than USD 65bn. Both are textbook cases of an ESG risk converting into enormous financial damage that conventional financial analysis never saw coming."
+  },
+  "quiz": [
+    {
+      "question": "How do GRI (Global Reporting Initiative) and SASB (Sustainability Accounting Standards Board) differ in their approach to ESG reporting?",
+      "options": [
+        "GRI is legally mandatory while SASB is only a voluntary recommendation",
+        "GRI reports to every stakeholder group; SASB follows financial materiality",
+        "GRI measures the environment while SASB measures governance and social factors",
+        "GRI is the standard used in Europe and SASB the one used in North America"
+      ],
+      "explanation": "This is the single most important distinction in ESG reporting. GRI is written for ALL stakeholders - broader coverage, but not every item it asks for moves financial value. SASB is written for INVESTORS and keeps only the ESG factors with financial materiality, meaning a genuine capacity to affect cash flows or risk. Neither is a legal mandate, neither owns a continent, and both cover all three pillars rather than splitting them up. Many large companies publish under both frameworks precisely because the two audiences want different things."
+    },
+    {
+      "question": "What does 'materiality' mean in ESG investing?",
+      "options": [
+        "The minimum ESG score required for inclusion in a sustainability index",
+        "Only those ESG factors an independent auditor has confirmed and signed off",
+        "Which ESG factor is material depends on the industry the company operates in",
+        "The ESG factor carrying the largest weight in the scoring framework applied"
+      ],
+      "explanation": "The core principle of professional ESG analysis is that not every ESG factor matters equally in every industry. This is exactly why SASB builds separate, industry-specific standards: a mining company has to report in detail on environmental impact and worker safety, while a bank has to report in detail on data security and responsible lending. Materiality is not an index cut-off, it is not the same thing as audit assurance, and it is not the heaviest line in a scoring model - it is a judgement about which risks can actually move this particular business."
+    },
+    {
+      "question": "What is 'greenwashing' in ESG and why should investors be alert to it?",
+      "options": [
+        "Removing every polluting industry from the investment portfolio entirely",
+        "Investing in genuinely green projects but never disclosing any of it to the outside world",
+        "Applying ESG standards that are stricter than what the regulation requires",
+        "Exaggerating or fabricating ESG commitments to make the corporate image look better"
+      ],
+      "explanation": "Greenwashing is a real risk in ESG investing: many companies publish vague ESG pledges with no concrete figures and no independent assurance, purely for marketing and PR. A professional ESG investor has to separate a SUBSTANTIVE commitment - quantified targets, a specific pathway, transparent progress reporting, third-party audit - from a statement that exists only to be quoted. Note that excluding polluting sectors is a portfolio construction choice, and exceeding a regulatory standard is the opposite of greenwashing rather than an example of it."
+    },
+    {
+      "question": "Scenario: an oil and gas company publishes a thick report on its charitable activities but gives no emissions figures. What is that a sign of?",
+      "options": [
+        "GRI compliance, because the GRI framework puts stakeholder interests first",
+        "Good materiality judgement, because the right social metric was chosen",
+        "Greenwashing - steering attention away from the issue that matters most",
+        "No issue at all, as long as every figure disclosed is entirely accurate"
+      ],
+      "explanation": "For an oil and gas company emissions are the material metric and philanthropy is not, so reporting fully on the second while staying silent on the first is choosing the pitch to play on. The charity figures may be completely accurate and the overall picture still misleading, which is why accuracy is not the test. Nor does GRI licence the omission: reporting to a wide stakeholder group means covering more, not swapping the central topic for a peripheral one."
+    },
+    {
+      "question": "Why do GRI and SASB both exist instead of being merged into a single standard?",
+      "options": [
+        "Because SASB applies only to companies listed in the United States",
+        "Because the two standards are written for two different groups of readers",
+        "Because GRI measures the environment while SASB measures the governance side",
+        "Because SASB has replaced GRI for reporting periods from 2020 onwards"
+      ],
+      "explanation": "GRI is written for the full set of stakeholders - communities, workers, customers - so it covers a wide surface. SASB is written for investors, so it keeps only the metrics with a clear financial consequence, which makes it far thinner but immediately usable inside a valuation. Neither has replaced the other, and neither confines itself to one pillar; SASB in particular is organised by industry rather than by geography, so a US listing is not what triggers it."
+    }
+  ],
+  "keyTakeaways": [
+    "ESG = Environmental + Social + Governance - a non-financial framework that sits alongside traditional financial statement analysis",
+    "GRI addresses all stakeholders (comprehensive); SASB addresses investors (focused on financial materiality) - two approaches serving two audiences",
+    "The materiality of an ESG factor depends on the industry - not every factor matters equally to every business",
+    "Greenwashing is the risk to watch for - separate a substantive commitment (figures, independent audit) from shallow marketing"
+  ],
+  "practicePrompt": {
+    "question": "You are an ESG analyst assessing two companies: (A) a mining company publishing a 100-page ESG report with no concrete emissions-reduction figures, just pictures of trees and general pledges; (B) a technology company publishing a short report with a specific target (cut carbon emissions 30% by 2030, audited by a third party). Which is more credible on ESG?",
+    "options": [
+      "Company A, because the report is long and full of attractive illustrations",
+      "Company B, because it sets a quantified target and is independently audited",
+      "Neither can be judged better without first knowing which industry each is in",
+      "Both companies are equally credible on ESG once the reports are compared"
+    ],
+    "explanation": "This is the core practical lesson of ESG analysis: report length and illustrations say nothing about the quality of a commitment. The genuine credibility signals are a QUANTIFIED target rather than a vague one, INDEPENDENT ASSURANCE rather than self-declaration, and DIRECT RELEVANCE to the core business rather than a side PR initiative. Industry does determine which metrics are material, but it does not make the two reports uncomparable on that basic test."
+  },
+  "summary": {
+    "keyIdea": "ESG is a non-financial framework (Environmental, Social, Governance) that helps investors spot long-term risks the traditional financial statements do not fully reflect, with two main reporting standards: GRI (comprehensive) and SASB (financially material).",
+    "commonMistake": "Judging a company's ESG commitment by the length and polish of the report rather than by how specific and verifiable the figures are",
+    "action": "When reading a company's ESG report, look for three signals: a quantified target, independent third-party assurance, and direct relevance to the core business"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "Pick a company you follow, find its ESG or sustainability report (usually on the Investor Relations section of the website), and judge whether it is a substantive commitment or shows signs of greenwashing.",
+    "secondary": "The next lesson goes deeper into how ESG scores are constructed and which metrics matter industry by industry."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "ESG is not a passing fashion, and it is not reserved for investors with a conscience - it has become a mainstream risk management tool, built into the core analytical process of funds running trillions of dollars."
+    },
+    { "type": "heading", "text": "The three pillars of ESG" },
+    {
+      "type": "conceptTable",
+      "title": "Environmental - Social - Governance",
+      "concepts": [
+        {
+          "def": "Carbon emissions, energy and water use, waste management, climate change exposure, biodiversity protection"
+        },
+        {
+          "def": "Working conditions, diversity and equality, community relations, product safety, customer data security, responsible supply chains"
+        },
+        {
+          "def": "Board structure, financial transparency, anti-corruption and anti-bribery, shareholder rights, business ethics, executive pay"
+        }
+      ]
+    },
+    { "type": "heading", "text": "Why ESG matters for financial performance, not just ethics" },
+    {
+      "type": "paragraph",
+      "text": "Many people misread ESG as 'ethical investing' - giving up returns in order to do good. In practice the central argument for ESG investing is different: E, S and G factors are often EARLY indicators of financial risk that has not yet reached the statements. A badly governed company is more prone to accounting fraud; a high-emitting company faces rising legal and carbon-tax exposure; a company with poor labour conditions is more likely to face strikes and litigation. ESG is the attempt to quantify those hidden risks before they turn into real financial damage."
+    },
+    { "type": "heading", "text": "GRI vs SASB - the two main reporting standards" },
+    {
+      "type": "paragraph",
+      "text": "GRI (Global Reporting Initiative) is the most widely used ESG reporting standard in the world and addresses ALL stakeholders - investors, employees, communities, governments. That gives it great breadth, but it can be hard to tell which items actually move financial value. SASB (Sustainability Accounting Standards Board, now part of the IFRS Foundation) is aimed specifically at INVESTORS, with INDUSTRY-SPECIFIC standards across 77 industries, reporting only the ESG factors carrying financial materiality - which makes it the better fit when ESG has to go into a valuation model."
+    },
+    {
+      "type": "callout",
+      "label": "Watch for greenwashing",
+      "text": "Not every ESG report deserves trust. The warning signs: vague language ('committed to sustainability', 'towards a green future') with no figures attached; no independent assurance; ESG initiatives that are side PR activities rather than anything touching the core operations that create the largest ESG impact in the first place."
+    }
+  ],
+  "diagram": [
+    { "label": "Environmental - environmental impact" },
+    { "label": "Social - relations with workers and communities" },
+    { "label": "Governance - the quality of how the company is run" },
+    { "label": "Tied to long-term risk and to company value" },
+    { "label": "Disclosed under the GRI or the SASB standard" }
+  ]
+}

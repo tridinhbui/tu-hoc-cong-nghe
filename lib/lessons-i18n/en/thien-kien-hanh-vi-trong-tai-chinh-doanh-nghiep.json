@@ -1,0 +1,152 @@
+{
+  "slug": "thien-kien-hanh-vi-trong-tai-chinh-doanh-nghiep",
+  "title": "Behavioural bias in corporate finance: M&A, capital budgeting and CEO overconfidence",
+  "subtitle": "Why 70% of M&A deals create no value for the buyer's shareholders - and what that has to do with psychology",
+  "duration": "8 min",
+  "openingQuestion": "Long-run academic research shows that most M&A transactions do NOT create positive value for the shareholders of the ACQUIRER (while usually creating value for the seller's shareholders through the premium). How does Richard Roll's 'Hubris Hypothesis' (1986) explain this?",
+  "openingOptions": [
+    "M&A always fails for purely technical financial reasons, with nothing to do with psychology",
+    "The acquiring CEO is too confident in the synergies and overpays relative to true value",
+    "M&A always succeeds financially and fails only as a matter of public communication",
+    "The hypothesis applies only to cross-border M&A transactions"
+  ],
+  "explanation": "Roll's Hubris Hypothesis is one of the earliest and most influential applications of behavioural finance to corporate finance: CEOs tend to believe their own assessment of the target's value is more accurate than the market's (which the current share price already reflects), and are therefore willing to pay a premium above the defensible level in order to 'win' the deal - a direct expression of overconfidence bias at leadership level rather than a simple arithmetic error.",
+  "diagram": [
+    {
+      "label": "An overconfident CEO estimates synergies too high"
+    },
+    {
+      "label": "Pays above the target's true value in the M&A"
+    },
+    {
+      "label": "A losing project keeps getting funded (escalation of commitment)"
+    },
+    {
+      "label": "The defences: an independent committee, pre-set stopping points"
+    }
+  ],
+  "realWorldExample": {
+    "company": "AOL-Time Warner (2000) - the classic M&A failure",
+    "description": "The 165bn USD AOL-Time Warner merger is regarded as one of the largest M&A failures on record: within a few years the company had to book an enormous write-down as the expected synergy value never materialised. Later analysis pointed to the excessive confidence of both management teams in the 'convergence' of the internet and traditional media, and to a serious underestimate of how hard it is to integrate different corporate cultures and business models."
+  },
+  "quiz": [
+    {
+      "question": "How does the sunk cost fallacy show up in capital budgeting, and why is it especially dangerous inside a large organisation?",
+      "options": [
+        "Approving only projects with a payback period under three years",
+        "Counting money already spent into the next stage's NPV figure",
+        "Halting a project the moment costs exceed the initial budget set",
+        "Adding capital to a failing project because so much was spent"
+      ],
+      "explanation": "Escalation of commitment is the organisational variant of the sunk cost fallacy: whoever approved the project originally, usually a senior executive, has powerful psychological AND political motives to keep defending that decision even when new data says it should be cancelled. The standard corporate finance rule - NPV and IRR measured from today forward, ignoring what has already been spent - gets overridden by the decision-maker's need to protect a personal reputation."
+    },
+    {
+      "question": "Why do companies set up an independent Investment Committee to approve large capital budgeting decisions, instead of letting one individual such as the CFO or CEO decide alone?",
+      "options": [
+        "Collective approval dilutes the effect of one person's bias",
+        "It satisfies a requirement set by corporate governance standards",
+        "It shortens approval time compared with a single decision-maker",
+        "It spreads the legal liability if the project should later fail"
+      ],
+      "explanation": "The Investment Committee is a structural safeguard, much like the Chinese Wall, aimed at behavioural bias at the point where big decisions are made - though note that a group or committee is itself prone to groupthink, a collective form of herding, if it is not carefully designed. Well-run organisations therefore build in a formal challenge process, such as appointing someone to play devil's advocate and actively hunt for holes in the proposal."
+    },
+    {
+      "question": "How does confirmation bias affect the due diligence on an M&A deal once management has already 'committed' to pursuing it?",
+      "options": [
+        "The team leans too heavily on figures supplied by the seller",
+        "The team hunts for evidence supporting the deal already chosen",
+        "The team looks only at historical figures, ignoring projections",
+        "The team misses data because the timetable was far too rushed"
+      ],
+      "explanation": "This is a serious practical risk in M&A: once the CEO or the board has publicly committed to a transaction - sometimes before due diligence even begins - the whole organisation, professional diligence teams included, feels psychological and sometimes internal-political pressure to find reasons CONFIRMING the decision was right rather than genuinely challenging it. That is why many practitioners recommend keeping diligence insulated from 'deal momentum' and avoiding an early public announcement of intent."
+    },
+    {
+      "question": "Under Roll's hubris hypothesis, why do acquirers so often pay too large a premium in M&A?",
+      "options": [
+        "Because rules force the buyer to bid a set percentage over market",
+        "Because the seller always holds more inside information and extracts more",
+        "Because leaders believe their valuation beats the market's valuation",
+        "Because advisory fees on the deal are charged as a percentage of value"
+      ],
+      "explanation": "Hubris turns into a concrete number: the premium in the offer. Add the winner's curse from any auction - the highest bidder is usually the most optimistic estimator - and the result is that most of the synergy value ends up with the seller's shareholders."
+    },
+    {
+      "question": "Why is the sunk cost fallacy more dangerous at organisational level than at individual level?",
+      "options": [
+        "Because sunk cost in a company is charged to the next period's profit",
+        "Because companies have no accounting tool to track what has been spent",
+        "Because each further outlay at a company is smaller than the sunk sum",
+        "Because the next approver is usually the person who approved the previous one"
+      ],
+      "explanation": "Stopping a project is a public admission that the earlier decision was wrong, and the person who has to make that admission is usually the same person who holds the authority to continue. That is why companies move approval of the later stages to a committee separate from whoever originally sponsored the project."
+    }
+  ],
+  "practicePrompt": {
+    "question": "Your CEO has just announced publicly to the press an intention to acquire a competitor, BEFORE the due diligence team has finished its assessment. As head of corporate finance, what risk do you see and what should you propose?",
+    "options": [
+      "The announcement is only communications and does not bind the diligence conclusion",
+      "The announcement creates confirmation bias and escalation of commitment in diligence",
+      "Ask the CEO to withdraw the statement at once - the only way to remove this risk",
+      "Accelerate diligence to finish as fast as possible, skipping the detailed checks"
+    ],
+    "explanation": "This is a common real situation in M&A: correctly identifying the behavioural risk - not in order to block the deal, but to protect the objectivity of the assessment process - is a core responsibility of the corporate finance team. The answer is not to cancel the deal or criticise the CEO, but to set up structural mechanisms (an independent veto, a devil's advocate) so diligence stays objective despite the political and psychological pressure of a public commitment."
+  },
+  "keyTakeaways": [
+    "Hubris Hypothesis: the CEO is too confident of valuing synergy better than the market does, and overpays in M&A - part of the explanation for why most deals create no value for the acquirer's shareholders",
+    "Escalation of commitment: the organisational variant of the sunk cost fallacy - leaders keep defending a failing project for political and reputational reasons, not because the financial analysis was wrong",
+    "An Investment Committee reduces individual bias but can fall into groupthink without a formal challenge mechanism (a devil's advocate)",
+    "Confirmation bias in due diligence: a public commitment to pursue a deal before the assessment is complete creates pressure to 'confirm' rather than to evaluate"
+  ],
+  "summary": {
+    "keyIdea": "Behavioural bias (overconfidence, sunk cost, confirmation bias) shapes large corporate finance decisions such as M&A and capital budgeting directly, usually dressed up as a 'strategic' decision justified by surface-level financial reasoning.",
+    "commonMistake": "Judging a failed deal or project purely as an error of financial calculation, ignoring the role behavioural bias played in how the decision was made in the first place",
+    "action": "When you work on a large deal or project appraisal, actively look for signs of escalation of commitment or confirmation bias, especially where leadership has shown a strong commitment before the analysis was finished"
+  },
+  "application": {
+    "title": "Applying it in corporate finance work",
+    "message": "When you build a capital budgeting proposal or join an M&A due diligence, make 'what could cause this deal or project to fail' a compulsory scenario rather than focusing only on the success case.",
+    "secondary": "The next lesson extends this to how market anomalies reflect behavioural bias at the scale of the whole market, not just at the individual or single-institution level."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Corporate finance is usually taught as an exact science - NPV, IRR, WACC. But behind each number is a human being making a decision, and that human is not immune to precisely the biases covered in the earlier lessons."
+    },
+    {
+      "type": "heading",
+      "text": "The hubris hypothesis and M&A failure"
+    },
+    {
+      "type": "paragraph",
+      "text": "Richard Roll's Hubris Hypothesis (1986) is one of the earliest contributions of behavioural finance to M&A theory. Rather than assuming the M&A market is fully efficient, Roll proposed that CEOs commonly fall into hubris - believing their personal assessment of synergy value is more accurate than the market's collective one - and are therefore willing to pay an excessive premium to 'win' a competitive auction, or simply to take too optimistic a view of the synergy potential."
+    },
+    {
+      "type": "heading",
+      "text": "Escalation of commitment in capital budgeting"
+    },
+    {
+      "type": "paragraph",
+      "text": "Standard financial doctrine says the decision to continue or cancel a project should rest ENTIRELY on expected NPV FROM TODAY FORWARD, disregarding sunk cost altogether. What organisations actually show is escalation of commitment - leaders keep pouring capital into a failing project for PSYCHOLOGICAL AND POLITICAL reasons (protecting a reputation, not wanting to admit an error to shareholders or the board) rather than because an NPV analysis genuinely supports carrying on."
+    },
+    {
+      "type": "heading",
+      "text": "Structural defences against bias at organisational level"
+    },
+    {
+      "type": "list",
+      "items": [
+        "An independent Investment Committee: collective approval instead of one individual deciding alone",
+        "A formal devil's advocate: someone explicitly charged with hunting for holes and risks in every large proposal",
+        "Mandatory post-mortem review: reassessing completed projects and deals against the original forecast, creating a feedback loop that improves future forecasting",
+        "Avoiding a public commitment before due diligence is complete, to reduce confirmation bias pressure"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Understanding behavioural finance inside corporate finance is not about doubting every decision management makes; it is about building better governance - where natural human biases are balanced by suitable structural mechanisms.",
+        "That is why the best-governed companies do not rely on 'good people' alone but invest seriously in 'good process' to protect the quality of their decisions."
+      ]
+    }
+  ]
+}

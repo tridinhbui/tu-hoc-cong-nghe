@@ -1,0 +1,150 @@
+{
+  "slug": "phan-phoi-xac-suat-trong-tai-chinh",
+  "title": "Quant, Lesson 1: Probability distributions in finance - and why the tails are always fatter than you think",
+  "subtitle": "Normal, lognormal, skewness and kurtosis: four numbers that describe a return series",
+  "duration": "11 min",
+  "whyItMatters": "Almost every risk model you will meet - VaR, Black-Scholes, portfolio optimisation - starts from an assumption about the distribution of returns. If that assumption is wrong, every number downstream is wrong in a systematic way, and it is always wrong in the direction of understating risk.",
+  "openingQuestion": "Why is assuming that equity returns follow a normal distribution dangerous in risk management?",
+  "openingOptions": [
+    "Because the normal distribution is hard to compute",
+    "Because real returns have fatter tails than normal",
+    "Because the normal only applies to bond returns",
+    "Because the normal always gives a pessimistic answer"
+  ],
+  "explanation": "Under a normal distribution, a five standard deviation move happens roughly once in several million trading days - which is to say almost never. In real markets, moves like that show up several times in one investing lifetime. The phenomenon is called fat tails, and the direct consequence is that every risk model built on the normal distribution systematically understates the probability of disaster - exactly when you need it to be accurate.",
+  "diagram": [
+    { "label": "A price series" },
+    { "label": "Convert it into log returns" },
+    { "label": "Describe it with 4 moments: mean, standard deviation, skewness, kurtosis" },
+    { "label": "Test the assumption before you model anything" }
+  ],
+  "realWorldExample": {
+    "company": "19 October 1987",
+    "description": "The Dow Jones fell more than 22% in a single session. Under a normal model calibrated to the volatility of the time, the probability of such an event was so small that it would not have been expected to occur even if markets had existed for longer than the age of the universe. It happened anyway. That is the strongest empirical evidence there is that the normal distribution does not describe the tails of financial markets."
+  },
+  "quiz": [
+    {
+      "question": "Why are share prices usually modelled with a lognormal distribution rather than a normal one?",
+      "options": [
+        "Because a lognormal model runs faster on a computer than a normal one",
+        "Because prices cannot go negative and growth is multiplicative",
+        "Because the accounting standards require presentation on a log scale",
+        "Because a lognormal distribution always has a variance equal to zero"
+      ],
+      "explanation": "If log returns are normally distributed, then prices are lognormally distributed, and that fits two facts about the world: a price is always positive, and growth compounds rather than adds. Computational speed has nothing to do with it - both are trivial to evaluate. No accounting standard has an opinion about which distribution you model with. And a distribution with zero variance would describe a price that never moves at all."
+    },
+    {
+      "question": "What does negative skewness in a return series mean?",
+      "options": [
+        "The average return over the whole observation window is a negative number",
+        "The variance of the return series takes a negative value over that period",
+        "The left tail is longer: extreme falls are larger than extreme rises",
+        "The data is corrupt, as a return series cannot have negative skew"
+      ],
+      "explanation": "Equity indices are typically negatively skewed. This matters because standard deviation treats an up move and a down move identically, so it hides exactly the kind of risk investors care about most. Skewness is a shape parameter, not a level: a series can have a strongly positive average and still be negatively skewed. Variance is a sum of squares and cannot be negative, and negative skew is normal data rather than broken data."
+    },
+    {
+      "question": "What does positive excess kurtosis tell you?",
+      "options": [
+        "The variance of the series is zero, meaning returns barely move at all",
+        "The mean of the distribution is above that of the matching normal one",
+        "The series has a pronounced upward trend across the observation period",
+        "Tails fatter than the normal: extremes happen more often than it predicts"
+      ],
+      "explanation": "The normal distribution has kurtosis of 3, so excess kurtosis is kurtosis minus 3. Almost every financial return series has clearly positive excess kurtosis, especially at daily frequency. Kurtosis says nothing about the mean, nothing about trend, and it certainly does not imply zero variance - it describes how much of the probability mass sits far away from the centre, which is a statement about the tails alone."
+    },
+    {
+      "question": "Why is standard deviation on its own an incomplete measure of risk?",
+      "options": [
+        "Because it treats up moves and down moves alike, so it misses tail risk",
+        "Because it needs far too much history before it can be estimated well",
+        "Because it always produces a figure above the risk an investor actually bears",
+        "Because it can only be applied to a portfolio holding a hundred names or more"
+      ],
+      "explanation": "An option-selling portfolio can post a very low standard deviation for years and then lose half its value in a week. Standard deviation simply cannot see that shape of risk; you need skewness, kurtosis and explicit tail measures alongside it. It is in fact one of the more stable statistics to estimate, it has no minimum portfolio size, and it understates rather than overstates the loss an investor can actually suffer."
+    },
+    {
+      "question": "In finance, why are log returns generally used instead of arithmetic returns?",
+      "options": [
+        "Because a log return is always the larger number and so looks better",
+        "Because log returns add up cleanly across consecutive periods",
+        "Because the exchange only publishes prices on a log scale",
+        "Because taking logs removes the tail risk from the series"
+      ],
+      "explanation": "Log returns over consecutive periods sum to the log return of the whole span, whereas arithmetic returns have to be multiplied together. That additivity is what makes the entire statistical machinery built on the normal distribution usable here. A log return is smaller than the matching arithmetic return for a gain, exchanges publish plain prices, and no transformation can remove tail risk - taking logs changes the units, not the danger."
+    }
+  ],
+  "keyTakeaways": [
+    "Four moments describe a return series: mean, standard deviation, skewness, kurtosis - stopping at the first two misses tail risk",
+    "Prices are modelled as lognormal because they cannot go negative and growth is multiplicative",
+    "Real market returns have fat tails and negative skew, clearly unlike a normal distribution",
+    "Every risk model that assumes normality systematically understates the probability of disaster"
+  ],
+  "practicePrompt": {
+    "question": "A fund boasts that over five years it has had only three losing months and a very low standard deviation. What should you ask next?",
+    "options": [
+      "How many investment staff the fund employs today",
+      "Whether the returns are negatively skewed and fat-tailed",
+      "Whether the fund is properly licensed and regulated to operate",
+      "What the management fee and the other charges add up to"
+    ],
+    "explanation": "A return stream that is too smooth is a warning sign, not a selling point. Selling volatility, margin lending and credit arbitrage all produce exactly this shape: dozens of small steady gains, then a single month that erases them. The low standard deviation is concealing the risk rather than measuring it."
+  },
+  "summary": {
+    "keyIdea": "Mean and standard deviation tell only half the story; the real risk lives in the tails",
+    "formula": "Log return = ln(P_t / P_t−1)",
+    "commonMistake": "Using the normal distribution for everything because it is convenient, then being surprised when the impossible event happens",
+    "action": "Take one year of daily VN-Index returns, compute the four moments, and compare the actual tails against what the normal distribution predicts."
+  },
+  "application": {
+    "title": "Test the assumption before you trust the model",
+    "message": "Before you use any risk number somebody else hands you, ask what distribution the model assumes. If the answer is the normal distribution, treat the tail risk estimate as automatically too optimistic and ask the follow-up: what would the result look like under the worst scenario that has actually happened in history.",
+    "secondary": "The cheapest test there is: count how often returns exceeded 3 standard deviations in the real data, then compare that with the number the normal distribution predicts."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Statistics in finance does not begin with a formula but with a modest question: what shape is this series of numbers? Get that wrong and everything sophisticated built on top of it only makes the mistake look more credible."
+    },
+    { "type": "heading", "text": "Four numbers that describe a return series" },
+    {
+      "type": "conceptTable",
+      "title": "The four moments",
+      "subtitle": "Each moment answers a different question about the same data series",
+      "concepts": [
+        { "def": "The expected return. It takes an enormous amount of data to estimate precisely, which makes it almost always the least reliable number in any model." },
+        { "def": "The spread around the mean. Far more stable to estimate than the mean, but it treats an up move and a down move the same way." },
+        { "def": "Which side the distribution leans towards. Negative means the left tail is longer - the signature of equity indices and of risk-selling strategies." },
+        { "def": "How fat the tails are. Positive excess kurtosis means extreme events occur more often than the normal distribution predicts." }
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Why log returns",
+      "label": "Additive through time",
+      "equation": "r_t = ln(P_t / P_t−1)",
+      "variables": [
+        { "symbol": "P_t", "name": "Price at time t", "description": "Adjusted for dividends and splits" },
+        { "symbol": "r_t", "name": "Log return for period t", "description": "Additive: the return for the year equals the sum of the daily returns" }
+      ],
+      "example": {
+        "title": "A quick check",
+        "calculation": "A price goes from 100 to 110 and back to 100: log return = ln(1.1) + ln(0.909) = 0.0953 − 0.0953",
+        "result": "The sum is zero, exactly as it should be",
+        "explanation": "With arithmetic returns you get +10% then −9.09%, which adds to +0.91% - a meaningless figure. That is why multi-period analysis always uses log returns."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The uncomfortable truth",
+      "text": "The mean is the hardest parameter to estimate. To tell an asset with an 8% expected return apart from one with 10%, at typical equity volatility, you need decades of data. That is why every portfolio optimisation model is so sensitive to its expected-return inputs - and why they so often fail out of sample."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Before you calculate, look at the shape of the data.",
+        "The next lesson answers the question that follows: given a finite sample, how confident are you entitled to be about the number you just computed?"
+      ]
+    }
+  ]
+}

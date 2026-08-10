@@ -1,0 +1,185 @@
+{
+  "slug": "cfa-ethics-standard-7b-dung-danh-xung-cfa",
+  "title": "CFA Ethics 26: Standard VII(B) - using the CFA designation properly, and why the rules are this tight",
+  "subtitle": "Charterholder, candidate, and the harmless-sounding phrasings that are breaches",
+  "duration": "9 min",
+  "whyItMatters": "This is the Standard a candidate can breach before they even know which Standards exist - with a single line on a CV or a professional network profile. CFA Institute treats this family of breaches severely because it goes straight to the value of the designation.",
+  "openingQuestion": "You have passed all three levels but do not yet have the required work experience. What may you put on your CV?",
+  "openingOptions": [
+    "'CFA' - because all three of the exams have been completed",
+    "State accurately that you passed three levels but lack experience",
+    "'CFA (pending)' - since only an administrative step remains",
+    "Your choice, as long as no employer is actually misled by it"
+  ],
+  "explanation": "The CFA designation belongs only to someone who has passed all three exams, met the work experience requirement, applied and been awarded the charter - and who maintains membership. Miss any one of those and you may not use it, even with every exam behind you. Variants such as 'CFA (pending)' or 'CFA Level III passed' placed beside your name are breaches, because they create the impression that you hold the designation. The accepted approach is to describe your status in a sentence, inside the experience or education section, rather than as a suffix after your name.",
+  "summary": {
+    "keyIdea": "A designation is worth exactly as much as it is hard to fake, so rules tight enough to be irritating are the price of it meaning anything at all.",
+    "commonMistake": "Writing 'CFA Level II candidate' as though it were a title. You may say you are enrolled in the programme and which level you have passed - there is no designation for someone still taking exams."
+  },
+  "application": {
+    "title": "Check your email signature",
+    "message": "The designation follows the name, is not run together with it, and is never used as an adjective. 'Nguyen A, CFA' is right; 'CFA Nguyen A' is not."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard VII(B) governs how the CFA designation may be used. The rules are tight enough that many people find them fussy - and the reason for the fussiness lies in the very value the designation carries."
+    },
+    {
+      "type": "heading",
+      "text": "Four conditions; miss one and you may not use it"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Pass all three exams.",
+        "Meet the required work experience.",
+        "Apply for and be awarded the charter.",
+        "Maintain your membership - the condition most often forgotten, because it is continuing rather than one-off."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Every variant is a breach",
+      "text": "'CFA (pending)', 'CFA Level III passed' beside your name, or any phrasing that creates the impression you already hold the designation. The accepted approach is to describe the status in a sentence inside the education or experience section, not as a suffix after your name."
+    },
+    {
+      "type": "paragraph",
+      "text": "The valid phrasing while you are still working through the programme is 'CFA Level II candidate', and it may only be used if you are validly registered for that exam - never by someone who merely intends to sit it."
+    },
+    {
+      "type": "paragraph",
+      "text": "The underlying reason for the strictness: the levels are stages of one programme, not separate qualifications. If each level could be presented as a designation, the labour market would lose the ability to tell someone who has finished from someone still halfway through - and the value of the whole system falls with it."
+    },
+    {
+      "type": "conceptTable",
+      "title": "One person, six ways of writing it - two of them correct",
+      "subtitle": "The rules go into this much detail because every variant creates an impression slightly different from the truth",
+      "concepts": [
+        {
+          "def": "The standard form. The designation follows the name, is set in full capitals with no full stops between the letters, and may not be displayed more prominently than the person's own name.",
+          "en": "Correct"
+        },
+        {
+          "def": "The full stops make it wrong. It sounds like pedantry, but it is a formal marker that helps distinguish the genuine designation from self-invented abbreviations.",
+          "en": "Incorrect"
+        },
+        {
+          "def": "The designation is a modifier, not a noun. The correct phrasing is CFA charterholder. Using it as a noun turns an individual certification into a category of profession.",
+          "en": "Incorrect"
+        },
+        {
+          "def": "There is no qualification called CFA Level II. This phrasing suggests you already hold part of the designation, when the levels are only stages of the same single programme.",
+          "en": "Incorrect"
+        },
+        {
+          "def": "Valid if and only if you are validly registered for that exam. Once the registration lapses, or before you register for the next sitting, it can no longer be used.",
+          "en": "Correct, conditionally"
+        },
+        {
+          "def": "Passing all three exams is still not enough - the work experience, the application and the membership all remain. During that waiting period no phrasing may suggest the designation is already yours.",
+          "en": "Incorrect"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Maintaining it is a condition too, not just earning it",
+      "text": "The designation is not something you win once and keep forever. Stop paying membership dues or fail to file the annual professional conduct statement and your status is suspended - and continuing to write CFA after your name during that period breaches Standard VII(B), even if you passed all three exams twenty years ago. This breach is common and almost always unintentional."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The designation is valuable because it says exactly one thing.",
+        "Every phrasing that makes it say something approximate makes it cheaper."
+      ]
+    }
+  ],
+  "diagram": [
+    {
+      "label": "Pass all three exams"
+    },
+    {
+      "label": "Meet the required work experience"
+    },
+    {
+      "label": "Apply, be awarded the charter, maintain membership"
+    },
+    {
+      "label": "All four before you may use the CFA designation"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Why there is no such title as 'CFA Level II'",
+    "description": "The accepted phrasing is 'CFA Level II candidate' - and only if you are genuinely registered for the Level II exam. There is no title 'CFA Level II' as something achieved, because the levels are stages of one programme rather than separate certifications. Passing a level may not be phrased as a standalone qualification either: it is progress, not a final result."
+  },
+  "quiz": [
+    {
+      "question": "Which condition is NOT required in order to use the CFA designation?",
+      "options": [
+        "Meeting the required years of relevant work experience",
+        "Passing all three exams of the CFA Program",
+        "Working at a firm registered with CFA Institute",
+        "Holding current CFA Institute membership in good standing"
+      ],
+      "explanation": "The conditions attach to the individual, not to the employer; no register of approved firms exists, and moving to a firm outside the industry does not strip a charterholder of the designation. The other three are all mandatory, and missing any one of them means the designation may not be used - including the membership condition, which people forget because it is continuing rather than one-off."
+    },
+    {
+      "question": "You have passed all three exams but lack the work experience. How may you write it?",
+      "options": [
+        "Write 'CFA Level III' as a separate qualification you have earned",
+        "Write 'CFA', since the hardest part of the programme is done",
+        "Write 'CFA (pending)' to show you are at the final stage",
+        "Describe the status in a sentence, not as a suffix after your name"
+      ],
+      "explanation": "Any variant placed beside your name creates the impression that you hold the designation, and that impression is exactly what is prohibited. Difficulty is not the test - the experience requirement exists precisely because exams alone were never meant to be sufficient. And 'pending' is the most tempting of the three because it sounds honest, while still occupying the position on the page that only the real designation may occupy."
+    },
+    {
+      "question": "What phrasing is acceptable for someone currently sitting Level II?",
+      "options": [
+        "'CFA Level II candidate', if validly registered for that exam",
+        "'CFA Level I' as a qualification earned at the first level",
+        "'CFA (in progress)' placed right after your name on a profile",
+        "'CFA candidate' alone, with no need to state which level you sit"
+      ],
+      "explanation": "The word 'candidate' is mandatory, and it has to be true - validly registered, not merely intending to sit. A passed level is progress rather than a qualification, so it cannot stand alone as one. And 'in progress' after the name repeats the same error as any other suffix: it puts a status that is not a designation where a designation would go."
+    },
+    {
+      "question": "Why is there no such title as 'CFA Level II'?",
+      "options": [
+        "Because CFA Institute only certifies Level I and Level III",
+        "Because the levels are stages of a programme, not qualifications",
+        "Because per-level results are not retained after the exam",
+        "Because the level names are trademarked by a third party"
+      ],
+      "explanation": "This is why every phrasing that turns a level into a standalone credential is wrong: it presents progress as if it were a final result. Results are of course retained - that is how you advance to the next level - and no level is separately certified, at Level I or anywhere else. The trademark question is real but belongs to CFA Institute itself and is not what makes the phrasing improper."
+    },
+    {
+      "question": "Why does CFA Institute treat this family of breaches so severely?",
+      "options": [
+        "Because many countries criminalise misuse of a professional title",
+        "Because this group of breaches costs clients the most money",
+        "Because the charter is worth something only when it is earned",
+        "Because it is the only breach a system can detect automatically"
+      ],
+      "explanation": "The designation is a quality signal, and a signal only carries information if nobody can emit it without meeting the conditions. Direct financial damage to clients is usually far larger in the trading and misappropriation Standards, and while misuse may occasionally be picked up automatically that is a detection convenience rather than a reason for severity. Some jurisdictions do criminalise title misuse, but the Standard would apply just as firmly where none does."
+    }
+  ],
+  "keyTakeaways": [
+    "Four conditions: pass three exams, meet the experience requirement, be awarded the charter, maintain membership",
+    "Miss one condition and you may not use it, even with every exam behind you",
+    "'CFA (pending)' and 'CFA Level III' beside your name are both breaches",
+    "'CFA Level II candidate' is acceptable if you are validly registered",
+    "The levels are stages of one programme, not separate qualifications"
+  ],
+  "practicePrompt": {
+    "question": "On a professional networking site you put the suffix 'CFA Level II Candidate' directly after your name. How would you assess this?",
+    "options": [
+      "Fine, since writing the word Candidate makes it clear enough to a reader",
+      "Not advisable: candidate status belongs in the body, not after your name",
+      "Fine, provided you really have registered for the Level II exam",
+      "A breach, because there is no such thing as a CFA Level II Candidate"
+    ],
+    "explanation": "This is where two true things get mixed up. 'CFA Level II candidate' is a valid phrasing - so the last option is wrong. But where you place it is also governed: the suffix position after a name is the place reserved for a designation you already hold, so putting candidate status there creates precisely the impression the rules exist to avoid, even though every word of it is accurate."
+  }
+}

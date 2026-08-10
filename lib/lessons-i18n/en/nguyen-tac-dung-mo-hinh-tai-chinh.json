@@ -1,0 +1,187 @@
+{
+  "slug": "nguyen-tac-dung-mo-hinh-tai-chinh",
+  "title": "Financial modelling, part 1: modelling principles - structure before formulas",
+  "subtitle": "Why a broken model is usually a layout problem rather than an arithmetic one",
+  "duration": "8 min",
+  "whyItMatters": "Most real-world financial modelling errors do not come from a wrong formula but from a messy structure that stops anyone from spotting the error. Knowing the modelling conventions before you write your first formula is what separates a professional from someone stitching numbers together.",
+  "openingQuestion": "What is the single most important principle when laying out a financial model?",
+  "openingOptions": [
+    "Use as many sheets as possible to break the content up",
+    "Keep assumptions, calculations and outputs strictly apart",
+    "Hide the intermediate rows so the sheet looks tidy",
+    "Write formulas as long as possible to save on rows"
+  ],
+  "explanation": "A good model separates three distinct layers: INPUT (the assumptions, usually coloured blue, and the only thing ever typed by hand), CALCULATION (formulas, never containing a hardcoded number), and OUTPUT (reports and charts). Once those three layers blur together, nobody - not even the person who built it - can tell which number is an assumption and which is a result.",
+  "diagram": [
+    {
+      "label": "INPUT: assumptions (typed by hand)"
+    },
+    {
+      "label": "CALCULATION: formulas only"
+    },
+    {
+      "label": "OUTPUT: reports & charts"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The investment banking convention",
+    "description": "Investment banks apply an almost universal colour convention: a blue cell is a typed number, a black cell is a formula within the same sheet, and a green cell is a link to another sheet. That way someone taking over a model can tell at a glance which cells they are allowed to change - without reading a single formula."
+  },
+  "quiz": [
+    {
+      "question": "Why should you never type a hardcoded number in the middle of a formula?",
+      "options": [
+        "Because it slows the whole spreadsheet file down",
+        "Because typed numbers are always mathematically off",
+        "Because Excel does not allow numbers mixed with cell references",
+        "Because the assumption is buried where nobody can check it"
+      ],
+      "explanation": "A hardcoded number inside a formula is a 'buried' assumption. Nobody knows it is there, so nobody can question it or update it - the most common source of error in real models. It has no meaningful effect on calculation speed, a typed number is not wrong in itself, and Excel is perfectly happy to mix constants with references. The problem is entirely one of visibility."
+    },
+    {
+      "question": "What is the standard colour convention in a financial model?",
+      "options": [
+        "Red = important, yellow = to check, green = approved",
+        "Blue = typed input, black = formula, green = link",
+        "There is no shared convention; it depends on the builder",
+        "Leave everything default so printouts stay easy to read"
+      ],
+      "explanation": "This convention is close to universal across the industry, which means anyone opening the model immediately knows which cells they are allowed to edit. A traffic-light scheme describes review status rather than cell type, and it is precisely because the convention is shared rather than personal that a handover works at all. Leaving everything in the default colour throws away the only signal a reader has."
+    },
+    {
+      "question": "What does it mean for a model to be auditable?",
+      "options": [
+        "It has been signed off by an independent audit firm",
+        "Someone else can trace a result back to its assumptions",
+        "It is password-protected against unintended edits",
+        "It uses only figures taken from audited financial statements"
+      ],
+      "explanation": "Auditability is traceability: every output number must be traceable back through a clear chain of formulas to the input assumptions. It has nothing to do with an audit firm's signature, which concerns historical statements rather than a forecast. Password protection stops edits but does nothing to make the logic followable, and sourcing inputs from audited accounts improves the inputs without making the model itself easier to trace."
+    },
+    {
+      "question": "Why should a model keep one consistent timeline throughout?",
+      "options": [
+        "So the file is lighter and opens faster on a weak machine",
+        "Because Excel requires every sheet to have the same columns",
+        "So sheets share one period axis and columns cannot slip",
+        "So it prints to a page without rescaling anything by hand"
+      ],
+      "explanation": "When each sheet carries its own time axis, a link between them can easily land one column out - the kind of error that is very hard to catch because the model still runs and still produces numbers. File size is unaffected, Excel imposes no such requirement on sheet layout, and printing is a formatting concern that has nothing to do with whether year 3 on one sheet lines up with year 3 on another."
+    },
+    {
+      "question": "Why should a model have one central assumptions area rather than assumptions scattered across sheets?",
+      "options": [
+        "Because a central input block stops formulas being overwritten",
+        "Because Excel calculates faster when input cells sit close together",
+        "Because presentation standards demand every assumption on sheet one",
+        "Because someone else must change inputs without reading every formula"
+      ],
+      "explanation": "A model gets used by other people far more than by the person who built it. Assumptions scattered around mean that every change of scenario turns into a hunt for individual cells - and missing one produces a wrong answer that nobody notices. Grouping inputs does not protect formulas from being overwritten, calculation speed is unaffected by cell proximity, and no presentation standard mandates a particular sheet."
+    }
+  ],
+  "keyTakeaways": [
+    "Separate the three layers: INPUT (typed) - CALCULATION (formulas only) - OUTPUT (reporting)",
+    "Never bury a hardcoded number inside a formula; every assumption belongs in the input area",
+    "Colour convention: blue = typed input, black = formula, green = link to another sheet",
+    "Use one consistent time axis across the whole model"
+  ],
+  "practicePrompt": {
+    "question": "You take over a model and find that the revenue formula reads `=B12*1.08`. What is the biggest problem here?",
+    "options": [
+      "The formula is too simple and needs more variables",
+      "The 8% growth rate is buried inside the formula",
+      "Nothing is wrong here as long as 8% is the right figure",
+      "It should use SUM rather than a multiplication"
+    ],
+    "explanation": "The 1.08 is an important assumption that is currently invisible. The right approach: put 8% in its own assumption cell in the input area, then have the formula reference that cell. When you need to run a 5% or 12% growth scenario, you change one cell instead of combing through the whole model."
+  },
+  "summary": {
+    "keyIdea": "Structure determines model quality more than formulas do",
+    "commonMistake": "Burying assumptions inside formulas, which leaves the model impossible to check and impossible to run scenarios on.",
+    "action": "Open a model you built once and mark up how many hardcoded numbers are sitting inside formulas."
+  },
+  "application": {
+    "title": "Build the frame before filling in numbers",
+    "message": "Open a blank file and create three clear areas: Assumptions, Calculations, Outputs. Put one consistent time axis along the top row. Only then start writing your first formula.",
+    "secondary": "The habit costs ten minutes up front and saves hours of debugging later."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Beginners tend to think financial modelling is about mastering Excel functions. In reality most models fail not because a formula is wrong but because the layout stops anyone from spotting the error - including the person who built it."
+    },
+    {
+      "type": "heading",
+      "text": "The three layers that must stay separate"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**INPUT** - every assumption: revenue growth, margins, interest rates, tax rates. This is the ONLY place a number is ever typed by hand.",
+        "**CALCULATION** - the intermediate schedules and the three statements. Formulas only, absolutely no hardcoded numbers.",
+        "**OUTPUT** - the summary table, the charts, and the metrics used to make the decision."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The golden rule",
+      "text": "If you have to change one number in two or more places to run a scenario, your model's structure is already wrong. Each assumption may exist exactly once, in a single cell."
+    },
+    {
+      "type": "heading",
+      "text": "The colour convention - the industry's shared language"
+    },
+    {
+      "type": "conceptTable",
+      "title": "The common convention",
+      "concepts": [
+        {
+          "def": "A typed number, i.e. an assumption - editing is allowed"
+        },
+        {
+          "def": "A calculation within the same sheet - do not edit directly"
+        },
+        {
+          "def": "A link to another sheet in the same file"
+        },
+        {
+          "def": "The ability to trace a result back to its assumptions without asking anyone"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "What one hardcoded number inside a formula actually costs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose a 20% tax rate is typed straight into the after-tax profit formula, across 5 forecast years × 3 scenarios = 15 cells. When you need to test 17%, you have to find and change exactly 15 places, and missing a single cell leaves the model running, producing perfectly presentable numbers, and simply wrong. There is no way for Excel to tell you. Put the same assumption in ONE cell on the assumptions sheet with every formula pointing at it: change it once, every scenario updates, and there is no cell left to miss. That is the entire reason for the one-assumption-one-place rule - it is not about tidiness, it is about whether something can be missed."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four structural rules, and the kind of error each one prevents",
+      "subtitle": "All convention rather than technique - but this is where models break",
+      "concepts": [
+        {
+          "def": "Skip it: changing a scenario means editing several places, and the error enters the model through the exact cell that got forgotten."
+        },
+        {
+          "def": "Skip it: a year 3 formula points back at year 5, and nobody can follow the order of calculation - also the origin of most unintended circular references."
+        },
+        {
+          "def": "Skip it: one cell in the middle of a row has been edited on its own. This is the hardest error to see because the row still looks perfectly uniform; only Ctrl+' or formula view exposes it."
+        },
+        {
+          "def": "Skip it: billions and millions sit in the same row, and the total comes out as a meaningless number that still adds up."
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Good structure makes errors reveal themselves; bad structure lets them hide.",
+        "Next lesson: revenue forecasting - the most important assumption in any model."
+      ]
+    }
+  ]
+}

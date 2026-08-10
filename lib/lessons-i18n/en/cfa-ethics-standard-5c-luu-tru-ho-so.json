@@ -1,0 +1,179 @@
+{
+  "slug": "cfa-ethics-standard-5c-luu-tru-ho-so",
+  "title": "CFA Ethics 32: Standard V(C) - the file is all that is left when someone asks again",
+  "subtitle": "What to keep, how long to keep it, and why the records belong to the firm rather than to you",
+  "duration": "9 min",
+  "whyItMatters": "This Standard looks like paperwork right up until the first time you have to explain a recommendation you made three years ago. Without the file, a sound argument and a bare denial sound exactly alike.",
+  "openingQuestion": "Beyond regulatory compliance, why does Standard V(C) require research records to be retained?",
+  "openingOptions": [
+    "So colleagues can reuse the research findings later on",
+    "It is the only evidence the recommendation ever had a basis",
+    "So the firm can allocate research costs to each client",
+    "Because regulators require a filing every quarter"
+  ],
+  "explanation": "Standard V(A) requires every recommendation to rest on a reasonable basis. Standard V(C) is what makes that requirement verifiable afterwards. When an investment goes badly and a client or a regulator comes back, the question is not 'were you right' but 'what were you relying on at the time'. The file - the data used, the assumptions made, the alternatives weighed and rejected - is what answers it. Without one, a serious analytical process and a decision made on a whim leave behind exactly the same trace: none at all.",
+  "summary": {
+    "keyIdea": "V(C) is what turns V(A)'s reasonable-basis requirement into something verifiable - with no records there is no way to show you ever had a basis.",
+    "commonMistake": "Treating retention as clerical work. When you are asked again years later the file is all that remains, and memory is not evidence."
+  },
+  "application": {
+    "title": "The part people forget",
+    "message": "The records belong to the employer, not to you. You cannot take them when you change jobs, so the copy has to stay where it belongs."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard V(A) requires every recommendation to rest on a reasonable basis. Standard V(C) is what makes that requirement verifiable afterwards - and it is usually dismissed as paperwork right up to the moment it is needed."
+    },
+    {
+      "type": "heading",
+      "text": "The real question when someone asks again"
+    },
+    {
+      "type": "paragraph",
+      "text": "When an investment goes badly and a client or a regulator comes back, the question is not 'were you right' - a bad outcome does not by itself prove the analysis was wrong. The question is what you were relying on at the time. The file is the only thing that can answer it."
+    },
+    {
+      "type": "callout",
+      "label": "Keep what you rejected too",
+      "text": "Not only the final report, but the data used, the assumptions made, and the alternatives you weighed and then set aside. It is the rejected part that proves a genuine process of deliberation took place."
+    },
+    {
+      "type": "heading",
+      "text": "Three operational points"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The minimum period is usually seven years, or longer where local law says so.",
+        "The records belong to the employer; they do not follow you to a new job.",
+        "Changing firms means rebuilding the analytical basis at the new one, not leaning on a copy you brought along."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The most memorable thing about this Standard: with no records, a serious analytical process and a decision made on a whim leave behind identical traces - which is to say none at all. And when you are being challenged, the absence of a trace is always read the unfavourable way."
+    },
+    {
+      "type": "heading",
+      "text": "The rejected alternatives are what prove the process"
+    },
+    {
+      "type": "paragraph",
+      "text": "When an investment goes badly and a client or regulator comes back to ask, the question is not whether you were right - everyone is wrong some of the time and that breaches nothing. The question is what you were relying on at the moment of decision. The file answers that only if it holds the alternatives you weighed and rejected, together with why you rejected them. A folder containing only the final report proves you wrote a report; it does not prove you deliberated."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three operational points that get overlooked",
+      "subtitle": "All three surface only when it is too late to fix them",
+      "concepts": [
+        {
+          "def": "Or longer where local law requires it - and under the stricter-rule principle, if the law is longer then the law governs. Seven years is long enough for a market cycle to run its course and for disputes to surface.",
+          "en": "Seven years minimum"
+        },
+        {
+          "def": "Records do not follow you when you change jobs, not even the ones you created yourself. That means at the new firm you must build the reasonable basis for every recommendation from scratch - you may not lean on research done at the old one.",
+          "en": "Belongs to the employer"
+        },
+        {
+          "def": "Call notes, a dated version of the model, email exchanges. What matters is that they were created at the time rather than reconstructed afterwards - a file written after someone started asking cannot prove the thing it is meant to prove.",
+          "en": "Dated records"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "You do not keep records for today.",
+        "You keep them for the version of yourself who gets asked again in three years."
+      ]
+    }
+  ],
+  "diagram": [
+    {
+      "label": "V(A) requires a reasonable basis for every recommendation"
+    },
+    {
+      "label": "V(C) makes that requirement verifiable afterwards"
+    },
+    {
+      "label": "Keep: the data, the assumptions, the rejected alternatives"
+    },
+    {
+      "label": "Records belong to the firm; they do not follow you out"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The retention period and who owns the file",
+    "description": "CFA Institute recommends keeping records for at least seven years where local law does not require longer - and Standard I(A)'s stricter-rule principle applies here. The second point matters just as much: the records belong to the employer. You cannot take them when you change jobs, which is why an analyst at a new firm has to rebuild the analytical basis for their own recommendations instead of invoking old research they no longer hold."
+  },
+  "quiz": [
+    {
+      "question": "Which Standard does Standard V(C) most directly support?",
+      "options": [
+        "V(A) - Diligence and Reasonable Basis",
+        "III(E) - Preservation of Confidentiality",
+        "IV(A) - Loyalty to Employer",
+        "VI(A) - Disclosure of Conflicts"
+      ],
+      "explanation": "A reasonable-basis requirement that cannot be verified afterwards is only an assertion; V(C) is what turns it into something demonstrable. The others touch retention at the edges but do not explain it: confidentiality governs who may see a record rather than whether one exists, loyalty to the employer explains who owns the file, and conflict disclosure is a separate duty entirely."
+    },
+    {
+      "question": "What has to be retained under Standard V(C)?",
+      "options": [
+        "Only the final report that was sent to the client",
+        "Data, assumptions, and the options weighed and discarded",
+        "Only the emails exchanged about that recommendation",
+        "Only the actual returns after the recommendation was acted on"
+      ],
+      "explanation": "The discarded alternatives are usually the most valuable part of the file: they show the decision was the outcome of deliberation rather than the only idea anyone had. A final report on its own proves you wrote a report, correspondence proves who talked to whom, and the realised return says nothing at all about what you knew when you made the call."
+    },
+    {
+      "question": "What is the recommended minimum retention period?",
+      "options": [
+        "Until the client ends their relationship with the firm",
+        "Three years from the date the recommendation was issued",
+        "Seven years, or longer where the local law requires it",
+        "No set period; it is left to each firm's own policy"
+      ],
+      "explanation": "Standard I(A)'s stricter-rule principle applies, so where local law demands a longer period the law governs. Tying retention to the client relationship would let the evidence disappear at exactly the moment a departing client is most likely to complain, three years is short of a full market cycle, and leaving it entirely to firm policy would put the Standard's whole purpose at the discretion of the party being questioned."
+    },
+    {
+      "question": "Who owns the research records?",
+      "options": [
+        "The analyst and the firm jointly own the research records",
+        "The analyst who created them through their own effort",
+        "The client who paid the fee for the analysis concerned",
+        "The employer, so it cannot travel with you to a new job"
+      ],
+      "explanation": "This is where V(C) meets IV(A): the material belongs to the firm, including material you produced yourself on firm time. Effort does not confer ownership here, a fee buys the advice rather than the working papers behind it, and there is no shared claim that would let you carry a copy out of the building. That is precisely why a new employer requires a fresh basis for every call you carry over."
+    },
+    {
+      "question": "Why does a missing file make a serious process and a whim look the same?",
+      "options": [
+        "Because neither of them leaves any trace at all to check against",
+        "Because the returns from the two approaches often look alike",
+        "Because regulators do not distinguish the two situations",
+        "Because clients only care about the final outcome anyway"
+      ],
+      "explanation": "That is exactly why retention is not clerical: the file is the only thing that tells apart two practices that are in fact completely different. Regulators do distinguish them - and will, which is the problem. Returns are noisy enough that they prove nothing either way over any one call. And clients care about outcomes right up until a bad one arrives, at which point they care about process."
+    }
+  ],
+  "keyTakeaways": [
+    "V(C) is what makes V(A)'s reasonable-basis requirement verifiable",
+    "Keep the alternatives you weighed and rejected, not just the final report",
+    "At least seven years, or longer where local law requires it",
+    "Records belong to the employer; they do not follow you to a new job",
+    "With no file, serious analysis and a bare denial sound exactly alike"
+  ],
+  "practicePrompt": {
+    "question": "You move to a new firm and want to keep recommending a stock you covered at the old one. What do you have to do?",
+    "options": [
+      "Cite the research you did at your former firm as the basis",
+      "Rebuild the basis using data available at the new firm",
+      "Ask your old firm for a copy of the research file",
+      "Issue the call and note that the basis sits at the prior firm"
+    ],
+    "explanation": "Two Standards converge on the same conclusion. IV(A) says the records belong to the former firm, so you cannot bring them with you. V(A) says a recommendation needs a reasonable basis that you can actually demonstrate - and a basis sitting in a filing cabinet you no longer have access to does not satisfy that requirement."
+  }
+}

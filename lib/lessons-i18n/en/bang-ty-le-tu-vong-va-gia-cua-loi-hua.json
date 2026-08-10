@@ -1,0 +1,176 @@
+{
+  "slug": "bang-ty-le-tu-vong-va-gia-cua-loi-hua",
+  "title": "Pricing, Lesson 1: the mortality table - putting a price on a long-term promise",
+  "subtitle": "How a table of probabilities becomes a premium, why it has to be discounted to today, and which assumption carries the risk",
+  "duration": "12 min",
+  "whyItMatters": "This is the founding calculation of the entire life insurance industry. Every complex product that came later is a variation on it, and every large loss the industry has taken traces back to one assumption in this calculation being wrong.",
+  "openingQuestion": "A one-year term policy with a sum insured of 1bn, where the probability of death during the year is 0.2%. What is the net premium?",
+  "openingOptions": [
+    "2m",
+    "20m",
+    "200 thousand",
+    "It cannot be computed without knowing the buyer's age and health status"
+  ],
+  "explanation": "The net premium is the expected value of the payout: 1bn × 0.2% = 2m. This is what the company needs to collect from each person so that, averaged across the whole pool, it collects enough to pay those who die - before administration costs, commission and profit margin. The point to grasp is that the company is not betting on any one person: for a single life the outcome can only be 0 or 1bn, never 2m. The whole business model rests on the law of large numbers - pool enough people whose risks are independent of one another and the actual rate converges on the expected rate. That is also why insurance does not work for a risk that hits everyone at the same time.",
+  "diagram": [
+    {
+      "label": "Mortality table by age"
+    },
+    {
+      "label": "× sum insured = expected payout"
+    },
+    {
+      "label": "Discount to today = net premium"
+    },
+    {
+      "label": "+ costs, commission, safety margin = gross premium"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The mortality tables used in Vietnam",
+    "description": "Life insurers work from a mortality table approved by the regulator, adjusted using their own book's data. That adjustment matters: people who buy life insurance are typically healthier than the general population, because they have to pass medical underwriting - using the population table straight would price above what is needed and lose customers to competitors."
+  },
+  "quiz": [
+    {
+      "question": "What is the net premium on an insurance policy?",
+      "options": [
+        "The premium the customer actually pays under the policy signed",
+        "The expected value of what the company will have to pay out",
+        "What is left of the premium after the agent's commission",
+        "What the company retains after ceding a share to reinsurance"
+      ],
+      "explanation": "The net premium covers the risk and nothing else. Add administration costs, commission and a safety margin and you get the gross premium - the figure the customer sees. Commission and reinsurance cessions are deductions applied later in the chain; neither defines the risk charge itself, which is computed before any of them exists."
+    },
+    {
+      "question": "Why does insurance need the law of large numbers?",
+      "options": [
+        "Because a large pool lowers the administrative cost per policy",
+        "Because regulation requires insurers to hold a minimum policy count",
+        "Because for one person the outcome is either 0 or the whole sum insured",
+        "Because reinsurers will only accept transfers from a sufficiently large pool"
+      ],
+      "explanation": "An expected value is only meaningful across a large pool. On a single policy, the figure of 2m is an outcome that can never actually occur. Spreading fixed costs across more policies is a genuine benefit of scale, but it is not why the mathematics works - the pooling is what makes the realised rate converge on the expected rate at all."
+    },
+    {
+      "question": "Why is insurance hard to operate against a risk that hits everyone at the same time?",
+      "options": [
+        "Because international reinsurers refuse to accept these risks at all",
+        "Because regulators prohibit insuring broad systemic events of this kind",
+        "Because the premium that would have to be charged is so high nobody would buy it",
+        "Because the risks are no longer independent, so the law of large numbers fails"
+      ],
+      "explanation": "An earthquake or a pandemic strikes the whole pool at once. Adding more people no longer reduces the variance; it simply increases the total loss. Such cover does exist and is not banned - it is written with catastrophe reinsurance and capacity limits - but the underlying reason it is difficult is the loss of independence, not price or prohibition."
+    },
+    {
+      "question": "Why must you discount when pricing a long-term contract?",
+      "options": [
+        "Because premiums collected today are invested and earn until the payout",
+        "Because inflation erodes the value of the sum insured over time",
+        "Because accounting standards require obligations to be shown at present value",
+        "Because the probability of death increases as the insured ages"
+      ],
+      "explanation": "The gap between collecting the premium and paying the claim can be decades, so the investment return earned over that period is a real part of the calculation. Rising mortality with age is already captured in the table itself, the sum insured is a fixed nominal amount unaffected by inflation, and the accounting presentation follows the economics rather than causing it."
+    },
+    {
+      "question": "Why is it wrong to use the general population mortality table directly?",
+      "options": [
+        "Because the general population table is not broken down finely enough by age",
+        "Because insurance buyers pass underwriting, so they are healthier than average",
+        "Because population data is updated far more slowly than reality moves",
+        "Because the general population table does not separate men and women by age band"
+      ],
+      "explanation": "Using it directly produces a mortality rate higher than the insurer's actual book experiences, which means pricing above what is needed and losing customers to competitors. Population tables are in fact broken down by age and by gender and are revised on a regular cycle - the problem is not their granularity but the fact that they describe a different population from the one being insured."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A one-year term policy with a sum insured of 1bn dong, a tabled probability of death of 0.2%, and a discount rate of 6%. What is the net premium, approximately?",
+    "options": [
+      "1.89m (= 2m / 1.06, discounted to today)",
+      "2m (= not yet discounted back to present value)",
+      "2.12m (= 2m × 1.06, compounded the wrong way)",
+      "0.2m (= mistaking 0.2% for 0.02% in the table)"
+    ],
+    "explanation": "The net premium is the probability of the event times the sum insured, discounted to today: 0.2% × 1,000m = 2m of expected claims, paid at the end of the year, so the present value is 2/1.06 = 1.89m. Multiplying by 1.06 instead of dividing runs time in the wrong direction - the company collects the premium first and pays the claim later, so the cash flow has to be pulled back, not pushed forward. And this is only the net premium: the gross premium the customer actually pays adds administration costs, commission and a safety margin on top."
+  },
+  "keyTakeaways": [
+    "Net premium = probability of the event × sum insured, discounted to today.",
+    "Gross premium = net premium + administration costs + commission + safety margin.",
+    "The law of large numbers is the foundation of the whole model - and it requires the risks to be independent of each other.",
+    "An insured pool is healthier than the general population, so the mortality table has to be adjusted."
+  ],
+  "summary": {
+    "keyIdea": "The net premium is the probability of the event times the sum insured, discounted to today",
+    "formula": "Gross premium = net premium + administration costs + commission + safety margin",
+    "commonMistake": "Using the general population mortality table directly, when the insured pool is healthier than average.",
+    "action": "For any insurance product, split the premium into the net premium and the loading so you know what you are paying for."
+  },
+  "application": {
+    "title": "Compute the net premium on a one-year policy",
+    "message": "Assume a 0.2% probability of death during the year and a sum insured of 1bn. The net premium is 2m, and slightly less once discounted back to the start of the year. Compare that with the premium actually being quoted.",
+    "secondary": "The gap between the two figures is administration costs, commission and safety margin - and it is usually much larger than people expect."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Insurance sells a promise: if this happens, we pay. Pricing is putting a number on that promise - and the price of a promise is the probability it has to be honoured multiplied by the amount that would have to be paid."
+    },
+    {
+      "type": "heading",
+      "text": "The underlying calculation"
+    },
+    {
+      "type": "formula",
+      "title": "One-year net premium",
+      "equation": "Net premium = probability of the event × sum insured",
+      "variables": [
+        {
+          "symbol": "probability",
+          "name": "taken from the mortality table",
+          "description": "by age and gender, adjusted for the company's own book of customers"
+        },
+        {
+          "symbol": "sum insured",
+          "name": "the amount payable when the event occurs",
+          "description": "as agreed in the contract"
+        }
+      ],
+      "example": {
+        "title": "One-year term",
+        "calculation": "1bn × 0.2%",
+        "result": "2m",
+        "explanation": "Nobody in the pool receives exactly 2m. Some receive 0, some receive 1bn. The figure of 2m exists only as the average across the whole pool."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Why the model needs independent risks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pool ten thousand people whose risks are independent and the realised rate swings within a very narrow band around the expected rate - that is what makes insurance viable. But if the risks are correlated, adding more people does not reduce the variance; it simply increases the total loss when the event arrives. That is why earthquakes, widespread flooding and pandemics are the hardest risks to insure, and it is why reinsurance exists."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Net premium",
+        "text": "Covers the risk alone. This is the actuary's number, and it is an absolute floor - selling below it is a guaranteed loss."
+      },
+      "right": {
+        "label": "Gross premium",
+        "text": "Adds administration costs, agent commission and a safety margin. This is the number the customer sees, and it is usually considerably higher than the net premium."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Where the assumption most often goes wrong",
+      "text": "Not the mortality table - that rests on large, stable datasets. The usual failure is the investment return assumption on long-dated contracts: a product priced in 2007 assuming 9% a year will lose money across its entire life once the rate environment falls, and the contract cannot be cancelled."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Every complex insurance product is a variation on one multiplication.",
+        "And every large loss in the industry traces back to one assumption inside that multiplication."
+      ]
+    }
+  ]
+}

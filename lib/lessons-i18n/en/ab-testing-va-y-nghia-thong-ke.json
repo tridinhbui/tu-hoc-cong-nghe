@@ -3,6 +3,7 @@
   "title": "Data Thinking, Lesson 3: A/B testing - and why stopping early is the most common way to fool yourself",
   "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
   "duration": "12 min",
+  "whyItMatters": "A controlled experiment is the most reliable way to know whether a change actually caused an outcome - every other method only shows correlation. But a flawed design or a misread result produces conclusions that are confident and wrong, and that is worse than running no experiment at all.",
   "openingQuestion": "You are running an A/B test, and after three days group B is clearly ahead of group A. Should you stop and roll it out now?",
   "openingOptions": [
     "Yes, the result is already clear, so running it longer only adds cost",
@@ -55,7 +56,7 @@
     {
       "question": "Why does running many experiments at once raise the risk of a wrong conclusion?",
       "options": [
-        "Because parallel tests share one control group, so the results bleed into each other",
+        "Because parallel tests share one control group, so results bleed together",
         "Because the platform cannot assign users randomly across that many groups at once",
         "Because the more comparisons you run, the higher the chance one looks good by luck",
         "Because the sample size each test needs grows exponentially when run in parallel"

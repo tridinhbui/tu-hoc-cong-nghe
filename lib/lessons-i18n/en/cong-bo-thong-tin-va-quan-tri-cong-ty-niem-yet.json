@@ -1,0 +1,135 @@
+{
+  "slug": "cong-bo-thong-tin-va-quan-tri-cong-ty-niem-yet",
+  "title": "Vietnam Market, Lesson 4: Disclosure and corporate governance - the small investor's first line of defence",
+  "subtitle": "Related-party transactions, cross-ownership, major shareholders and the signals to read in AGM documents",
+  "duration": "11 min",
+  "whyItMatters": "In a market with highly concentrated ownership, the biggest risk to a minority shareholder is usually not a weak business but value being moved out through related-party transactions. If you cannot read those signals, every valuation model is meaningless.",
+  "openingQuestion": "Why are related-party transactions the item in the notes that deserves the closest scrutiny?",
+  "openingOptions": [
+    "Because these transactions are always prohibited by law and must be reported to the regulator in full",
+    "Because it is the channel through which value can move to the major shareholder, quite legally",
+    "Because they distort the calculation of corporate income tax payable for the period",
+    "Because accounting standards require all such transactions to be stripped from the accounts"
+  ],
+  "explanation": "Related-party transactions are entirely legal in themselves and are often necessary to how a group operates. The problem is the price: when a listed company buys raw materials above market from a company owned by its major shareholder, or sells an asset below market to a related party, value quietly leaves the minority shareholders without a single illegal transaction taking place. This is why the related-party note matters as much as the financial statements themselves.",
+  "diagram": [
+    { "label": "A major shareholder controls the business" },
+    { "label": "Transactions with companies they own" },
+    { "label": "Prices that are not at market" },
+    { "label": "Value moves outside, minority shareholders bear the loss" }
+  ],
+  "realWorldExample": {
+    "company": "A group structure with many related companies",
+    "description": "A common pattern: the listed company is the manufacturing arm, but its raw materials are bought through a trading company owned by the major shareholder's family, and its output is sold through a distribution company in the same group. The listed company still turns a profit; it is simply squeezed on margin at both ends, with the difference sitting in the companies outside. The financial statements are entirely clean, the audit opinion is unqualified, and a minority shareholder can only detect it through the related-party note and by comparing margins with peers in the same industry."
+  },
+  "quiz": [
+    {
+      "question": "Which signal in the notes is the most noteworthy?",
+      "options": [
+        "The company has a great many subsidiaries operating across different provinces",
+        "The company changed its auditors after many years of continuous work together",
+        "A large share of revenue or costs comes from related-party transactions",
+        "Management holds a low equity stake compared with the norm for the industry"
+      ],
+      "explanation": "A high share is not evidence of wrongdoing in itself, but it tells you where to look. Geographic spread of subsidiaries is a normal operating fact, an auditor change is worth a question but has many benign explanations, and low insider ownership is a weak governance signal at best. The next step is to compare the company's margins with peers that do not have a similar structure."
+    },
+    {
+      "question": "Why does a cross-ownership structure make analysis difficult?",
+      "options": [
+        "Because it means the consolidated statements are not fully audited",
+        "Because the regulator forbids foreign investors from owning companies like these",
+        "Because companies in this structure need not make periodic disclosures",
+        "Because it is hard to tell who truly controls and which capital is double-counted"
+      ],
+      "explanation": "When companies hold stakes in each other, the same unit of capital can be counted several times across different balance sheets, and real control is buried under several layers. None of the other statements is true: consolidation is audited, foreign ownership rules are unrelated, and listed entities disclose on the normal schedule. Consolidated equity in that situation does not reflect the group's genuine capacity to absorb losses."
+    },
+    {
+      "question": "Which part of the AGM documents should be read closely?",
+      "options": [
+        "The resolutions on new share issues, remuneration and major transactions",
+        "The results section, since it is already in the annual financial statements",
+        "The section on company history and the achievements the business has reached",
+        "The list of advisers and auditors the company currently works with"
+      ],
+      "explanation": "This is where decisions directly affecting minority ownership percentages and cash flows are put to a vote. The other sections are either duplicative of the published accounts or purely descriptive. A private placement below market price to a specific group of shareholders is a common form of dilution, and perfectly lawful once approved."
+    },
+    {
+      "question": "What is the role of an independent board member?",
+      "options": [
+        "Running the day-to-day operations of the business in place of management",
+        "Representing the common interest, especially against the controlling holder",
+        "Performing the internal audit and signing off the accounts before publication",
+        "Representing employees in negotiations over pay and benefit arrangements"
+      ],
+      "explanation": "Independence is the condition that makes the mechanism meaningful. A board member does not run operations, does not perform the internal audit, and is not an employee representative - conflating those roles is precisely what hollows the protection out. Where the independent member is in reality a relative or a long-standing business partner of the controlling shareholder, the safeguard exists only on paper - something the biography disclosures in the annual report let you check."
+    },
+    {
+      "question": "In the notes to the financial statements, which related-party signal is the most noteworthy?",
+      "options": [
+        "That the company has many subsidiaries and associates in the same sector",
+        "That the number of related-party transactions rises across reporting years",
+        "That transaction prices sit clearly away from the market rate for the goods",
+        "That the transactions are with a company controlled by the major shareholder"
+      ],
+      "explanation": "Transacting inside a group is normal and often necessary, so neither the existence of related companies nor a rising count of dealings tells you anything by itself. What turns it into a problem is the price: buying dear and selling cheap relative to the market is exactly how value leaves a listed company while every procedure is followed correctly."
+    }
+  ],
+  "keyTakeaways": [
+    "In a concentrated-ownership market, the biggest risk to a minority holder is value being moved out, not weak operations",
+    "Related-party transactions are lawful, but must be examined on whether the prices are at market",
+    "Cross-ownership makes consolidated equity a poor reflection of real loss-absorbing capacity",
+    "AGM documents contain the dilution decisions and major transactions - read them before you vote"
+  ],
+  "practicePrompt": {
+    "question": "A company has a gross margin well below its industry peers and also buys most of its raw materials from a company owned by its major shareholder. What should you conclude?",
+    "options": [
+      "The company negotiates considerably less effectively with suppliers than its rivals",
+      "A sign that value may be moving out through internal purchase prices - dig deeper",
+      "The company is accepting a thin margin to win market share in the short run",
+      "Nothing can be concluded, since gross margin depends on many different factors"
+    ],
+    "explanation": "Not yet evidence, but a signal strong enough to switch into sceptical mode. Next steps: look at the share of related-party transactions across several years, compare purchase prices with market prices for the input where data exists, and check whether margins recovered in any year when the ownership structure changed."
+  },
+  "summary": {
+    "keyIdea": "In a concentrated-ownership market, corporate governance is a valuation variable rather than an ethics topic",
+    "commonMistake": "Valuing a company with a flawless model without asking whether that profit reaches the minority shareholders",
+    "action": "Read the related-party section of the notes for a company you hold and work out its share of revenue."
+  },
+  "application": {
+    "title": "Three documents to read before you buy",
+    "message": "The note on related-party transactions; the shareholder structure and related persons section of the annual report; and every resolution from the most recent AGM. These three take about an hour and answer the most important question: does the profit flow through to minority shareholders?",
+    "secondary": "However elegant the valuation model, it means nothing if the answer to that question is no."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Every valuation method you have learned quietly assumes one thing: that the profit a business generates will belong to shareholders in proportion to their holdings. In a market with highly concentrated ownership, that assumption is not automatically true, and testing it is work no model can do for you."
+    },
+    {
+      "type": "heading",
+      "text": "Three channels through which value leaves minority shareholders"
+    },
+    {
+      "type": "conceptTable",
+      "title": "What to look for in the disclosures",
+      "subtitle": "All lawful, and all leaving a paper trail",
+      "concepts": [
+        { "def": "Purchases and sales of goods, services, assets or loans between the listed company and parties controlled by the major shareholder. The problem lies in the price, not in the transaction itself." },
+        { "def": "A private placement below market price to a specific group, or bonus shares issued to management on conditions that are easy to meet." },
+        { "def": "Companies within the group holding stakes in one another, so the same unit of capital is counted several times and real control is obscured." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why this is a valuation variable",
+      "text": "The market prices corporate governance in hard money: two companies with the same profit and the same growth rate but different governance quality always trade on different multiples. That discount is not prejudice - it is the market's estimate of the share of profit that will never reach minority shareholders."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The final question in any analysis is not how much the business earns, but how much of it reaches you.",
+        "End of the stage: you now have the toolkit to read the Vietnamese market according to its actual rules."
+      ]
+    }
+  ]
+}

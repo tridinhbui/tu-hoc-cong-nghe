@@ -1,0 +1,148 @@
+{
+  "slug": "thue-gtgt-va-thue-nha-thau",
+  "title": "Standards & Tax, Lesson 4: VAT and foreign contractor tax - a cash flow effect, not a profit effect",
+  "subtitle": "Why a business that merely collects a tax on someone else's behalf can still be killed by it",
+  "duration": "10 min",
+  "whyItMatters": "Value added tax never appears on the income statement, so newer readers of financial statements skip past it. But it occupies working capital, and at an exporter or a company in heavy investment the tax awaiting refund can exceed a full year's profit.",
+  "openingQuestion": "Why does value added tax not reduce a company's profit?",
+  "openingOptions": [
+    "Because the rate on this tax is too low to affect after-tax profit",
+    "Because the business only collects it from buyers and remits it on, rather than bearing it",
+    "Because the tax authority refunds the whole amount at the end of each financial year",
+    "Because this tax is charged directly to equity instead of passing through the income statement"
+  ],
+  "explanation": "It is the final consumer who bears value added tax. The business collects output tax from its customers, deducts the input tax it paid its suppliers, and remits the difference. So this tax passes through the balance sheet rather than the income statement. But it is entirely real in cash terms: input tax is held back until it is deducted or refunded, and that stretch of time is capital buried.",
+  "diagram": [
+    {
+      "label": "Output tax collected from customers"
+    },
+    {
+      "label": "Less input tax paid to suppliers"
+    },
+    {
+      "label": "Remit the difference to the state budget"
+    },
+    {
+      "label": "If input exceeds output: wait for deduction or refund"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An exporter and a company building a factory",
+    "description": "An exporter has very little output tax but still pays input tax when it buys materials domestically, so it sits permanently in a refund-pending position. Likewise, a company investing in a new factory pays input tax on the entire construction and equipment spend while it has no revenue at all. In both cases the tax awaiting refund sits in current assets and is real money held outside the operating business."
+  },
+  "quiz": [
+    {
+      "question": "Where does undeducted input VAT sit on the financial statements?",
+      "options": [
+        "In current assets, as a receivable or deductible tax balance",
+        "In general administrative expenses on the income statement",
+        "In equity, reducing the retained earnings of the current period",
+        "In long-term liabilities, since it is owed back to the state budget"
+      ],
+      "explanation": "It is a receivable from the state budget. It occupies genuine working capital, so when you analyse the cash cycle of an exporter or a company in a heavy investment phase, this line has to be counted alongside inventory and trade receivables rather than left out. It is not an expense, it does not touch equity, and the state owes the company rather than the other way round."
+    },
+    {
+      "question": "In what situation does foreign contractor tax apply?",
+      "options": [
+        "When a domestic company hires a local construction contractor",
+        "When a company pays a foreign entity with income arising in Vietnam",
+        "When a company pays wages to employees who are foreign nationals",
+        "When a company imports goods through customs to resell them domestically"
+      ],
+      "explanation": "Payments to foreign counterparties such as software royalties, technical service fees and interest on foreign borrowings typically fall into this category. The Vietnamese side is obliged to withhold and remit on the counterparty's behalf, so it feeds straight into the true cost of the contract. Domestic contractors, employee wages and imported goods are each covered by their own separate taxes."
+    },
+    {
+      "question": "Why does foreign contractor tax matter when negotiating an international contract?",
+      "options": [
+        "Because it decides whether regulators will approve the contract at all",
+        "Because it replaces the Vietnamese side's corporate income tax that year",
+        "Because without agreeing who bears it, the true cost exceeds the price",
+        "Because it only applies once the contract value passes a set threshold"
+      ],
+      "explanation": "When a contract states that the foreign counterparty receives a net sum, the Vietnamese side has to gross the figure back up to compute the tax it remits on their behalf, making the total cost larger than the number written in the contract. This is the detail most often missed when a budget is drawn up."
+    },
+    {
+      "question": "For an exporter, what is the cash flow risk associated with value added tax?",
+      "options": [
+        "Having to pay a very large output tax the moment goods leave the port",
+        "Not being allowed to deduct any input tax at all on export activity",
+        "The rate applied to exported goods exceeding the domestic rate",
+        "Capital sitting locked in input tax awaiting a refund for a long period"
+      ],
+      "explanation": "The larger the scale, the larger the refund pending, so the paradox is that a fast-growing exporter is the one most likely to strain its liquidity. When reading the accounts, compare the deductible tax balance against operating cash flow to see how much capital is being held."
+    },
+    {
+      "question": "Why can an exporter face cash flow pressure from VAT even while enjoying a 0% rate?",
+      "options": [
+        "Because they already paid input tax and must wait for the refund",
+        "Because exported goods still bear output tax at a lower rate than usual",
+        "Because input tax on exported goods cannot be deducted at any point",
+        "Because they prepay the whole year's tax before any final settlement"
+      ],
+      "explanation": "A 0% rate does not mean no cash movement: the input tax has already been paid to suppliers and stays there until the refund comes through. At a large exporter, that pending refund can be the size of a working capital loan. Exported goods carry no output tax at all rather than a reduced one, the input tax on them is fully deductible, and there is no scheme requiring a year's tax to be paid up front."
+    }
+  ],
+  "practicePrompt": {
+    "question": "An exporter reports profit up 30% but negative operating cash flow. Which line item is the first suspect?",
+    "options": [
+      "Depreciation rising because a new production line has just come on stream",
+      "Trade receivables and input VAT awaiting refund, both growing with revenue",
+      "Interest expense rising because the company just took on more long-term debt",
+      "Selling costs rising as the company expanded into new countries this year"
+    ],
+    "explanation": "Depreciation and interest cannot explain negative operating cash flow in this way. At a fast-growing exporter, the two largest consumers of capital are usually trade receivables and input tax awaiting refund - both swell with revenue and both are real money sitting outside the business."
+  },
+  "keyTakeaways": [
+    "Value added tax passes through the balance sheet, not the income statement - but it occupies real working capital",
+    "Exporters and companies in a heavy investment phase routinely carry very large refund-pending balances",
+    "Foreign contractor tax applies to payments made to foreign counterparties, and makes the true cost of a contract higher than the stated price",
+    "When you analyse working capital, count the deductible tax balance too, not just inventory and receivables"
+  ],
+  "summary": {
+    "keyIdea": "Some taxes never touch profit and yet decide liquidity",
+    "commonMistake": "Leaving the deductible tax balance out when sizing working capital needs",
+    "action": "Open an exporter's balance sheet, find the deductible tax line, and compare it against the full year's profit."
+  },
+  "application": {
+    "title": "Add one more row to the working capital schedule",
+    "message": "When you build the working capital support schedule in a model, do not stop at inventory, receivables and payables. For an exporter or a company in heavy investment, add a deductible tax row and drive it off revenue or off the corresponding capital spend.",
+    "secondary": "The actual refund turnaround time is an assumption worth stating explicitly too, because it feeds directly into the funding requirement."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "There is a tax the business does not bear, does not see on its income statement, and which can still squeeze its liquidity to the point of having to borrow. That is value added tax, and how it works is worth understanding properly."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Corporate income tax",
+        "text": "Charged on profit, plainly visible on the income statement, and it reduces after-tax profit."
+      },
+      "right": {
+        "label": "Value added tax",
+        "text": "Collected on behalf of the buyer, passes through the balance sheet, does not reduce profit but does occupy working capital."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Foreign contractor tax: the hidden cost inside an international contract"
+    },
+    {
+      "type": "paragraph",
+      "text": "When a Vietnamese company pays a foreign entity with income arising in Vietnam - software royalties, technical service fees, loan interest - the Vietnamese side usually has an obligation to withhold and remit the corresponding tax on its behalf. If the contract commits the counterparty to receive a net sum, that tax becomes an additional cost for the Vietnamese side. This is why a foreign services contract can end up materially more expensive than the figure the two parties just shook hands on."
+    },
+    {
+      "type": "callout",
+      "label": "Check the rules in force",
+      "text": "The rates, the calculation methods and the exemptions for both of these taxes change with every legislative amendment, and double taxation treaties can alter the outcome. Use this lesson to know what to ask, then look up the rules in force at the time you apply them."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Not every tax shows up on the profit line - but every tax shows up in the cash flow.",
+        "The final lesson of the stage ties tax back to accounting: why the balance sheet carries an item called deferred tax."
+      ]
+    }
+  ]
+}

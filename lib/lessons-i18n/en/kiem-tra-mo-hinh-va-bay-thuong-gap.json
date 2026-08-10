@@ -1,0 +1,153 @@
+{
+  "slug": "kiem-tra-mo-hinh-va-bay-thuong-gap",
+  "title": "Financial Modelling, Lesson 9: Checking the model and the traps you will meet",
+  "subtitle": "The review checklist to run before you hand a model to anyone else",
+  "duration": "9 min",
+  "whyItMatters": "A modelling error caught late can drive an investment decision that is wrong by hundreds of billions. A systematic checking routine is what separates a careful practitioner from someone who assembles formulas until a number comes out.",
+  "openingQuestion": "What is the fastest sanity check on a model you have just finished building?",
+  "openingOptions": [
+    "Check whether the fonts and the formatting look attractive",
+    "Compare the forecast against history and the industry",
+    "Count how many formulas the file contains",
+    "Run the file again on a different machine"
+  ],
+  "explanation": "The best sanity check is a comparison with reality: are the forecast margins consistent with history, is working capital turnover plausible, does growth exceed anything the industry has ever achieved? A model can balance perfectly in technical terms and still describe a business that does not exist.",
+  "diagram": [
+    { "label": "Technical check: balance sheet balances, no errors" },
+    { "label": "Logic check: trace the formulas" },
+    { "label": "Reality check: compare against history and peers" },
+    { "label": "Model ready to hand over" }
+  ],
+  "realWorldExample": {
+    "company": "The dragged formula",
+    "description": "One of the most expensive and most common errors is dragging a formula one column short or one row long when totalling. The model still runs, still produces attractive numbers, and the balance sheet can still balance if the error sits somewhere that does not affect the balance. It only surfaces when the total is reconciled against an independent check figure."
+  },
+  "quiz": [
+    {
+      "question": "Why can a model whose balance sheet balances still be wrong?",
+      "options": [
+        "Because the balance sheet says nothing about the company's cash flow",
+        "Because in Excel the balance sheet always balances itself through formulas",
+        "Because the spreadsheet rounds numbers and hides the discrepancy",
+        "Because balancing only proves the accounting links were wired correctly"
+      ],
+      "explanation": "Balancing is a necessary condition, not a sufficient one. A model forecasting an 80% gross margin for a retailer can balance perfectly while being entirely implausible. Excel does not balance a balance sheet for you - if it does, someone has put a plug in there, which is a worse problem. Rounding does not hide differences of any size that matters, and the cash flow statement is derived from the same links rather than being outside them."
+    },
+    {
+      "question": "What does a check for persistently negative free cash flow tell you?",
+      "options": [
+        "The business needs to raise more capital, and the model must reflect that",
+        "The model was built wrongly, since free cash flow cannot stay negative",
+        "The business will certainly go bankrupt within the next few years",
+        "The revenue growth assumption should be raised to make it plausible"
+      ],
+      "explanation": "Sustained negative cash flow has to come with an assumption of new borrowing or an equity issue. A model that lets cash go negative with no financing source is describing something that cannot happen. Free cash flow can legitimately stay negative for years in a business that is investing heavily, so it is not itself evidence of a build error, and raising the growth assumption to close the gap solves the symptom by making the model less realistic."
+    },
+    {
+      "question": "Why should a model carry check cells that are clearly visible?",
+      "options": [
+        "So other people can tell who built the model file",
+        "To raise an alarm when the balance sheet drifts",
+        "To make the spreadsheet run faster with many formulas",
+        "To meet the presentation requirements of auditing standards"
+      ],
+      "explanation": "Check cells surface an error the moment you change an assumption. Without them, a small change can break the model and nobody notices. Authorship belongs in a cover sheet rather than in a control, extra formulas make a file slower rather than faster, and no auditing standard prescribes the layout of a working model - the discipline exists because it catches errors, not because a rule requires it."
+    },
+    {
+      "question": "Which of these traps is the hardest to detect?",
+      "options": [
+        "A manual entry typed over a formula that was already sitting there",
+        "A balance sheet that fails to balance because an entire line item is missing",
+        "A formula dragged one column out of line while the number still looks right",
+        "A circular reference that makes the spreadsheet throw an error immediately"
+      ],
+      "explanation": "Errors that announce themselves are easy to fix. The dangerous ones are the silent ones that produce a number looking perfectly normal - they can survive several rounds of review with nobody noticing. A missing line item shows up in the balance check, a circular reference throws a warning on the spot, and an overwritten formula is at least visible to anyone using a colour convention or the show-formulas view."
+    },
+    {
+      "question": "Which trap in a financial model is the hardest to spot?",
+      "options": [
+        "A hidden sheet holding old assumptions that are no longer in use",
+        "A balance sheet that drifts and turns the check cell red",
+        "A formula referencing the wrong cell so the result looks abnormally large",
+        "A hardcoded number typed into the middle of a forecast formula"
+      ],
+      "explanation": "The other three all announce themselves: the check cell turns red, the number looks absurd, the hidden sheet can be found. A hardcoded number sitting inside a formula announces nothing at all - the model still balances, still runs, and quietly ignores every change of assumption on exactly that row."
+    }
+  ],
+  "keyTakeaways": [
+    "Three layers of checking: technical (balances, no errors), logic (trace the formulas), reality (compare against history and peers)",
+    "A balancing balance sheet is a NECESSARY but not SUFFICIENT condition for a correct model",
+    "Build check cells that raise an alarm automatically when a changed assumption breaks the model",
+    "The most dangerous error is the silent one that produces a plausible-looking number"
+  ],
+  "practicePrompt": {
+    "question": "A model forecasts gross margin rising from 22% to 38% over 3 years for a retailer, while the industry average is 20-25%. What is the right reaction?",
+    "options": [
+      "Accept it, since the model balances and reports no errors",
+      "Ask what exactly produces that scale of improvement",
+      "Raise it to 45% for consistency with the revenue growth",
+      "Ignore it, because margins do not affect the valuation"
+    ],
+    "explanation": "A 16 percentage point jump in margin that runs far ahead of the entire industry is a very strong warning sign. The model runs smoothly because Excel does not know how retail works. This is exactly the kind of error only a reality check can catch - and without a convincing explanation, the assumption has to be corrected."
+  },
+  "summary": {
+    "keyIdea": "Check on three layers - technical, logic and reality; miss any one of them and errors get through",
+    "commonMistake": "Checking only whether the balance sheet balances and then treating the model as correct.",
+    "action": "Add a block of automatic check cells at the top of your model."
+  },
+  "application": {
+    "title": "Build an automatic check block",
+    "message": "Put a small block at the top of the model containing: the balance sheet difference (must be zero), minimum cash (must not be negative), and the key binding ratios. Have it turn red on any breach.",
+    "secondary": "This block catches errors the moment you change an assumption, rather than in the middle of a presentation."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A model that runs is not the same as a model that is right. Excel will happily compute a business with a 90% margin, 150% market share or permanently negative cash flow without a word of warning."
+    },
+    { "type": "heading", "text": "Three layers of checking" },
+    {
+      "type": "list",
+      "items": [
+        "**Technical:** the balance sheet balances in every period, no #REF!/#DIV/0! cells, no unintended circular references",
+        "**Logic:** trace the formulas of a few important rows from the result back to the underlying assumptions; check that no hardcodes are buried",
+        "**Reality:** reconcile margins, capital turnover and growth against the company's own history and the industry norm"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "The traps you will meet",
+      "concepts": [
+        { "def": "A formula short or long by one column or row, but still producing a plausible-looking number" },
+        { "def": "An assumption sitting inside a formula, invisible to everyone and impossible to test" },
+        { "def": "A line added to force the balance sheet to agree, hiding the real error" },
+        { "def": "The model lets cash go negative with no financing source - a situation that cannot occur" }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The handover principle",
+      "text": "Before you send a model to someone else, ask yourself: if the recipient changes any assumption, does the model tell them when it breaks? If not, you have not finished the job."
+    },
+    { "type": "heading", "text": "Five plausibility tests, each with a concrete threshold" },
+    {
+      "type": "conceptTable",
+      "title": "Excel will never flag any of these - you have to ask",
+      "subtitle": "Each row is a question with a clear right or wrong answer",
+      "concepts": [
+        { "def": "Take final-year forecast revenue and divide by the market size. Above 100% is absurd; so is more than double the current share with no specific reason." },
+        { "def": "Must be below long-run GDP growth. Higher means the business eventually outgrows the whole economy - the mathematics allows it, reality does not." },
+        { "def": "A forecast margin far above every peer in the industry has to answer: on the strength of what, and why can competitors not do the same." },
+        { "def": "Competition pulls ROIC back toward WACC over time. A model with ROIC at 25% over a 10% WACC forever assumes nobody ever enters this industry." },
+        { "def": "In a steady state the two figures should be close. Capex permanently below depreciation means the asset base is shrinking while revenue keeps growing." }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A trustworthy model is not one with no errors, it is one that makes its errors show themselves.",
+        "Final lesson: assembling all of it into one complete case."
+      ]
+    }
+  ]
+}

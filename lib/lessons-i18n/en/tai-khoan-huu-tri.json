@@ -12,9 +12,17 @@
   ],
   "explanation": "In Vietnam, mandatory BHXH is the main foundation for a pension, but the benefit typically replaces only part of a worker's income while employed. To supplement it, workers can join a voluntary supplementary pension fund (under Decree 88/2016/ND-CP, offered by life insurers or licensed fund managers) and build their own long-term personal investment portfolio.",
   "diagram": [
-    { "label": "Mandatory BHXH: the pension foundation", "arrow": true },
-    { "label": "Replaces only part of your income", "arrow": true },
-    { "label": "Voluntary supplementary pension fund: fills the gap" }
+    {
+      "label": "Mandatory BHXH: the pension foundation",
+      "arrow": true
+    },
+    {
+      "label": "Replaces only part of your income",
+      "arrow": true
+    },
+    {
+      "label": "Voluntary supplementary pension fund: fills the gap"
+    }
   ],
   "realWorldExample": {
     "company": "Vietnam Social Security and voluntary supplementary pension funds",
@@ -29,7 +37,6 @@
         "Mandatory social insurance (BHXH), funded by both sides",
         "Investment-linked life insurance bought through an agent"
       ],
-      "correct": 2,
       "explanation": "Mandatory BHXH is the main pillar of Vietnam's pension system, playing a role similar to social security systems in other countries, but operating under Vietnam's own specific regulations."
     },
     {
@@ -40,7 +47,6 @@
         "It's fully funded by the State, with no contribution from the worker",
         "It's voluntary, contributed on top of BHXH, and comes with personal income tax relief"
       ],
-      "correct": 3,
       "explanation": "This is a supplementary program - not mandatory and not a replacement for BHXH. Its purpose is to help participants build an extra pension pot beyond their BHXH pension, similar in role to tax-advantaged retirement accounts in other countries (like 401(k)s or IRAs in the US), but under Vietnam's own separate legal framework."
     },
     {
@@ -51,7 +57,6 @@
         "Because the BHXH pension is taxed at a very high personal income tax rate",
         "Because a worker only receives it after having contributed for at least thirty-five years"
       ],
-      "correct": 0,
       "explanation": "The benefit is calculated on the average salary used as the contribution base - usually lower than actual income, especially for people with income outside their salary. The gap between the benefit and the standard of living you want is the part you have to cover yourself."
     },
     {
@@ -62,7 +67,6 @@
         "No option at all is available to them - they are required to save entirely on their own with no support",
         "Only the supplementary pension fund that happens to be set up specifically by an employer for staff"
       ],
-      "correct": 1,
       "explanation": "Voluntary BHXH is open to people not covered by the mandatory scheme, letting them choose the contribution level and schedule, with the State subsidizing part of it. The key difference: its benefits are narrower than mandatory BHXH, covering mainly retirement and death benefits."
     },
     {
@@ -73,7 +77,6 @@
         "You lose a lifetime income stream and the portion the employer contributed on your behalf",
         "You get fined administratively and can't rejoin the BHXH system"
       ],
-      "correct": 2,
       "explanation": "A lump-sum withdrawal trades a lifetime income stream for one tidy sum - and gives up the portion your employer contributed for you as well. For someone who lives a long life, this is often the single most expensive decision in their entire financial plan."
     },
     {
@@ -84,7 +87,6 @@
         "It can be withdrawn at any time without losing the tax benefit",
         "It carries a tax benefit and restricts withdrawal before retirement age"
       ],
-      "correct": 3,
       "explanation": "The tax benefit comes with a restriction - that's the design on purpose: the money gets favorable tax treatment because it has to stay put until retirement. In exchange for giving up flexibility, you get the tax savings right in the year you contribute."
     }
   ],
@@ -102,7 +104,6 @@
       "He shouldn't, since the voluntary supplementary pension fund would automatically fully replace his mandatory BHXH obligation",
       "He should only join if he's a state civil servant, since by regulation this program doesn't apply to private-company employees"
     ],
-    "correct": 0,
     "explanation": "The voluntary supplementary pension fund is an add-on beyond mandatory BHXH, not a replacement for it - it helps build extra savings and comes with tax relief within the prescribed limit."
   },
   "summary": {
@@ -115,7 +116,6 @@
     "message": "Look up your current number of years of BHXH contributions (via the VssID app) and estimate what percentage of your current income your future pension will replace.",
     "secondary": "Knowing the specific number helps you decide whether you need a voluntary supplementary fund."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

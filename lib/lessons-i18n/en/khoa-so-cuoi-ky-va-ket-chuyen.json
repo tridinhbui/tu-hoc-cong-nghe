@@ -1,0 +1,144 @@
+{
+  "slug": "khoa-so-cuoi-ky-va-ket-chuyen",
+  "title": "Bookkeeping, Lesson 5: Closing the books - the closing entry, and why revenue restarts at zero",
+  "subtitle": "Temporary and permanent accounts, the order of the closing entries, and how an accounting period actually shuts",
+  "duration": "11 min",
+  "whyItMatters": "The close is the moment profit leaves the income statement and becomes a single line on the balance sheet. Understand this step and you understand why those two statements connect at all, and why retained earnings is the running total of every year that came before.",
+  "openingQuestion": "Why does revenue always restart at zero in a new year while cash does not?",
+  "openingOptions": [
+    "Because revenue measures a span of time and cash a moment",
+    "Because accounting rules require closing revenue accounts yearly",
+    "Because last year's revenue all moved into accounts receivable",
+    "Because cash is a real asset while revenue is only a recorded figure"
+  ],
+  "explanation": "This is the difference between two kinds of account, and it comes straight from the question each statement answers. Revenue, expenses and profit are temporary accounts: they measure activity over a span of time, so asking \"what is revenue?\" without naming a span is a meaningless question. At period end they are closed back to zero so they can start measuring a fresh span. Cash, assets and liabilities are permanent accounts: they measure a state at a point in time, and the state at the end of 31 December is exactly the state at the start of 1 January - there is no reason for it to reset. None of the period's profit disappears in the close: it flows into retained earnings, which is a permanent account.",
+  "diagram": [
+    { "label": "Period end: close revenue and expenses" },
+    { "label": "Profit for the period falls out" },
+    { "label": "Subtract the dividend declared" },
+    { "label": "What remains is added to retained earnings (permanent)" },
+    { "label": "Temporary accounts back to zero, new period begins" }
+  ],
+  "realWorldExample": {
+    "company": "The retained earnings line on the balance sheet",
+    "description": "That figure is not this year's profit - it is the sum of every year's profit since the company was founded, less every dividend it has ever paid. A company that has earned steadily for ten years but distributed all of it will show retained earnings near zero, and that says nothing bad about the company - it only says the profit went into shareholders' pockets rather than staying inside the business."
+  },
+  "quiz": [
+    {
+      "question": "Which account is a temporary account?",
+      "options": [
+        "Trade payables owed to suppliers at year-end",
+        "Sales revenue recognised during the period",
+        "Closing inventory held in the warehouse",
+        "Long-term borrowings drawn from a bank"
+      ],
+      "explanation": "Revenue, expenses and other income measure activity across a span of time, so they have to be reset to zero every period. The other three measure a state at a single moment. Trade payables, closing inventory and bank borrowings all carry their closing balance straight into the next year, because what a company owes on 31 December it still owes on 1 January, and goods sitting in the warehouse do not vanish overnight."
+    },
+    {
+      "question": "Where does profit go once it has been closed out?",
+      "options": [
+        "The development fund, at the ratio the AGM set",
+        "The cash account held at the company's bank",
+        "Retained earnings, a component of equity",
+        "Receivables, waiting until the cash arrives"
+      ],
+      "explanation": "Profit makes equity bigger, and it lands in retained earnings rather than in cash - profit on the books does not mean money in the account. The cash answer is the most common confusion and the most expensive one: a company can close a very profitable year while the corresponding cash still sits in receivables and inventory. Nor does profit route through a development fund or through receivables; those are appropriations and assets, not the destination of the closing entry."
+    },
+    {
+      "question": "What is the retained earnings figure on the balance sheet?",
+      "options": [
+        "Cash the company is holding back and has not spent",
+        "After-tax profit for the year just ended",
+        "Profit set aside to reinvest in next year",
+        "Every year's profit less every dividend ever paid out"
+      ],
+      "explanation": "It accumulates from the founding date onward. A company that earns steadily but distributes everything will show a figure near zero, and that says nothing bad about it. Reading the line as this year's profit alone ignores every prior year still sitting inside it; reading it as cash confuses a claim on equity with an asset; and reading it as next year's reinvestment budget turns a historical total into a plan that has not happened yet."
+    },
+    {
+      "question": "Why is the cash account not closed back to zero?",
+      "options": [
+        "Because the balance on 31/12 is the balance on 1/1",
+        "Because cash sits outside the income statement",
+        "Because closing cash would unbalance the accounting equation",
+        "Because only accounts with activity need to be closed off"
+      ],
+      "explanation": "Permanent accounts measure a state at a point in time, and that state does not vanish because the calendar rolls over. The scope answer is close but backwards: plenty of balance sheet accounts never touch the income statement and the reason they stay open is the point-in-time measure, not their absence from another statement. Activity is not the test either - revenue with no activity is still closed, at zero."
+    },
+    {
+      "question": "After the close, you find an entry that was missed and belongs to the period just closed. What do you do?",
+      "options": [
+        "Reopen the closed ledger and post it on its original entry date",
+        "Post it to the current period if small, restate if material",
+        "Ignore it, since that period has already been closed off",
+        "Post it to the current period always, leaving old figures"
+      ],
+      "explanation": "Materiality decides. A small error is dealt with in the current period; a material one has to be corrected retrospectively, with the comparative figures restated. Reopening a closed ledger as a matter of course defeats the point of closing it and breaks the audit trail. Always posting to the current period regardless of size is the error that lets a material misstatement sit permanently in the wrong year."
+    }
+  ],
+  "practicePrompt": {
+    "question": "Retained earnings at the start of the year are 500m. During the year the business earns 180m and declares a dividend of 60m. What are retained earnings at year-end?",
+    "options": [
+      "620m (= 500 + 180 − 60)",
+      "680m (= 500 + 180, forgetting the dividend)",
+      "180m (= the year's profit only)",
+      "440m (= 500 − 60, before the closing entry)"
+    ],
+    "explanation": "Retained earnings is a running total from the founding date, so it takes on the profit of the period just closed and then loses the part paid out to shareholders: 500 + 180 − 60 = 620. Picking 180 confuses it with a temporary account - profit for the period does reset to zero after the close, but retained earnings does not, because it measures a point in time rather than a span. Forgetting the dividend is the most common slip of all, and it overstates equity by exactly the amount that has already left the business."
+  },
+  "keyTakeaways": [
+    "Temporary accounts (revenue, expenses) measure a span of time, so they reset to zero each period.",
+    "Permanent accounts (assets, liabilities, equity) measure a point in time, so they carry their balance forward.",
+    "Profit is closed into retained earnings, not into cash.",
+    "Retained earnings is the running total since founding, less every dividend ever paid."
+  ],
+  "summary": {
+    "keyIdea": "Temporary accounts measure a span of time so they reset each period; permanent accounts measure a point in time so they carry forward",
+    "commonMistake": "Thinking profit is closed into cash. It goes into retained earnings, inside equity.",
+    "action": "Take any account and ask: does it measure a span of time or a point in time? The answer decides whether it gets closed."
+  },
+  "application": {
+    "title": "Classify ten accounts",
+    "message": "Write down any ten accounts and sort them into temporary or permanent using nothing but that one question. Then check your work: every line item on the income statement must land in the temporary group.",
+    "secondary": "Retained earnings is the running total since founding less every dividend paid, not this year's profit alone."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Closing the books sounds like an administrative formality, but it is the join between two financial statements. Profit leaves the income statement here, and reappears on the balance sheet under a different name."
+    },
+    { "type": "heading", "text": "Two kinds of account" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Temporary",
+        "text": "Revenue, expenses. They measure activity over a span of time. Asking \"what is revenue?\" without naming a span is a meaningless question - so at period end they must go back to zero."
+      },
+      "right": {
+        "label": "Permanent",
+        "text": "Assets, liabilities, equity. They measure a state at a point in time. The closing balance on 31 December is the opening balance on 1 January, so there is no reason to reset."
+      }
+    },
+    { "type": "heading", "text": "The closing sequence" },
+    {
+      "type": "list",
+      "items": [
+        "Close all revenue and other income into the profit-and-loss summary account.",
+        "Close all expenses into that same account.",
+        "The difference is the profit (or loss) for the period.",
+        "Close that profit into retained earnings; any dividend declared is deducted from retained earnings."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Profit does not mean cash",
+      "text": "Profit is closed into retained earnings - a line inside equity - not into cash. A company can earn 100bn and still be short of next month's payroll, if that 100bn is sitting in receivables and inventory. This is exactly the question the cash flow statement exists to answer."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The period shuts, the temporary accounts go to zero, and the balance sheet carries everything else into the new one.",
+        "That is why the balance sheet can tell the story of the whole company while the income statement can only tell one year."
+      ]
+    }
+  ]
+}

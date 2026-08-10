@@ -1,0 +1,155 @@
+{
+  "slug": "kpi-tai-chinh-doanh-nghiep-chon-dung-chi-so",
+  "title": "CFO & Operations, Lesson 4: Corporate financial KPIs - choosing the right metrics to track",
+  "subtitle": "Tracking too many metrics is as dangerous as tracking too few",
+  "duration": "7 min",
+  "openingQuestion": "Which KPIs should a SaaS company (subscription software) watch most closely, rather than just looking at monthly revenue?",
+  "openingOptions": [
+    "Tracking total monthly revenue is enough, and this is widely treated as the standard approach applied right across the industry",
+    "Subscription metrics like churn rate, customer acquisition cost and lifetime value, because SaaS lives on long-term retention",
+    "Tracking quarterly net profit is enough, whatever the scale or the specific field each individual business operates in",
+    "No KPI tracking is needed, just the annual financial statements - a view many finance experts are said to agree on"
+  ],
+  "explanation": "KPIs have to be chosen to fit the SPECIFICS OF THE BUSINESS MODEL, not taken from one common set applied to every company. For SaaS, this month's revenue matters far less than the ability to RETAIN customers over the long run (a low churn rate) and the efficiency of winning new ones against the value they bring (the LTV/CAC ratio) - those metrics predict long-run financial health far better than a single month of revenue.",
+  "diagram": [
+    { "label": "Identify what is specific about the business model" },
+    { "label": "Pick KPIs that reflect the real value drivers of that model" },
+    { "label": "Track the few that matter most, do not spread thin" }
+  ],
+  "realWorldExample": {
+    "company": "SaaS and subscription companies",
+    "description": "Investors valuing a SaaS company usually care more about the LTV/CAC ratio (customer lifetime value against customer acquisition cost) than about short-term profit - a SaaS business can lose money in the short run because it is spending heavily on marketing, but if LTV/CAC is high and churn is low, the model is still regarded as healthy and worth a great deal over the long run."
+  },
+  "quiz": [
+    {
+      "question": "Why can 'tracking too many KPIs at once' actually harm decision-making, rather than simply meaning 'more information is better'?",
+      "options": [
+        "The leadership team lacks the time to read the whole monthly report",
+        "It becomes hard to tell what the real priority for action is",
+        "The metrics will automatically contradict each other mathematically",
+        "The cost of the KPI tracking software rises with each metric added"
+      ],
+      "explanation": "The key principle in designing a KPI system is 'few but on point' - a dashboard with 30 metrics leaves the reader unsure where to focus, while 3-5 KPIs that genuinely reflect the core value drivers of the business make decisions clearer and much faster. Reading time and software licences are real costs but minor ones, and metrics do not contradict one another as a matter of arithmetic; the confusion comes from having no ranking, not from the numbers themselves."
+    },
+    {
+      "question": "A traditional retailer adopts exactly the SaaS KPI set (churn rate, LTV/CAC) for its own operations. What is the underlying problem?",
+      "options": [
+        "Subscription model KPIs only work for foreign-owned businesses",
+        "Churn and LTV/CAC are marketing metrics rather than financial ones",
+        "Subscription KPIs do not reflect what really drives retail sales",
+        "Retail lacks the customer data needed to compute these metrics at all"
+      ],
+      "explanation": "This is the classic mistake of adopting KPIs mechanically without understanding the nature of the business model - KPIs have to be designed around the REAL value drivers of each type of business, not copied wholesale from whichever industry's metric set is currently fashionable. Retailers with loyalty schemes often do have the data, and both metrics are financial rather than merely marketing, so neither of those is what makes the transplant fail."
+    },
+    {
+      "question": "Why does a retailer need to track same-store sales growth rather than just total revenue?",
+      "options": [
+        "Because older stores always run a higher profit margin",
+        "Because accounting standards require the two revenue types split",
+        "Because total revenue excludes revenue earned online",
+        "Because opening new stores always raises total revenue"
+      ],
+      "explanation": "This is the textbook example of a counter-metric: a growth number paired with a quality number, so that growth by expansion cannot hide decline in the existing base. Older stores do not automatically earn better margins, no accounting standard requires the split, and total revenue includes online sales - the split exists for management insight rather than for compliance."
+    },
+    {
+      "question": "What does the counter-metric principle mean?",
+      "options": [
+        "Every growth metric comes paired with a quality metric",
+        "Every metric must have a backup metric to replace it",
+        "Each department tracks exactly one single metric",
+        "Every metric must be compared with the industry average"
+      ],
+      "explanation": "Almost every metric standing on its own can be pushed up by doing damage somewhere else. A pair makes local optimisation visible immediately. A backup metric answers a measurement problem rather than an incentive one, restricting a department to one metric is the opposite of pairing, and industry benchmarking is a separate useful practice that does nothing about gaming."
+    },
+    {
+      "question": "How does a leading indicator differ from a lagging indicator?",
+      "options": [
+        "A leading indicator measures financial outcomes while a lagging one measures operations",
+        "A leading indicator measures the action that predicts the result; a lagging one measures what has happened",
+        "Leading indicators are set by the leadership while lagging ones are proposed by the team",
+        "Leading indicators are tracked monthly while lagging indicators are tracked quarterly"
+      ],
+      "explanation": "Quarterly revenue is a lagging indicator - by the time you know it, it is too late to change it. The number of customer meetings and the conversion rate are leading: they can be changed today and they shape next quarter's figure. A dashboard made up entirely of lagging indicators is a dashboard facing backwards. Neither who proposes the metric nor how often it is reported has anything to do with the distinction."
+    }
+  ],
+  "keyTakeaways": [
+    "KPIs have to be chosen to fit the specifics of each business model, not taken from one common set for every company",
+    "Tracking too many KPIs at once scatters attention and clouds decisions, so prioritise the few that reflect the core value drivers",
+    "Copying KPIs from a different business model without understanding it is a common mistake"
+  ],
+  "practicePrompt": {
+    "question": "A SaaS company watches customer churn rate and LTV/CAC closely, while a retailer focuses on inventory turnover and same-store sales growth. Why do the two companies not use the same KPI set?",
+    "options": [
+      "KPIs have to match the business model; there is no single set for every industry",
+      "Both companies are wrong; they should have used one standard KPI set for every industry",
+      "KPIs differ only because company size differs, nothing to do with the business model",
+      "There is no real difference; both companies are in fact tracking the same information"
+    ],
+    "explanation": "KPIs have to be chosen to fit the specifics of each business model, not taken from one common set for every company. Only metrics that reflect the core value drivers of that particular industry let a manager track the business and make decisions effectively."
+  },
+  "application": {
+    "title": "Pick five metrics, drop the rest",
+    "message": "Write out the formula that produces profit in the model you work in, then pick the metrics that sit on that formula. SaaS measures revenue retention and acquisition cost against lifetime value; retail measures inventory turnover and revenue per square metre. Swap the two sets over and both become meaningless.",
+    "secondary": "For every KPI you plan to keep, ask: if this number gets worse, who does something different this week. If you cannot answer, it is a metric for reporting, not for running the business."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Tracking too many KPIs at once can damage decision-making just as much as tracking too few."
+    },
+    { "type": "heading", "text": "KPIs must fit the specifics of the business model" },
+    {
+      "type": "paragraph",
+      "text": "A SaaS company should prioritise churn rate, CAC and LTV rather than just looking at monthly revenue - because a subscription model lives on retaining customers over the long run. Copying KPIs from a different business model (a retailer adopting the whole SaaS metric set, say) without understanding the nature of it is a common mistake. Too many metrics leave the leadership team unable to identify the real priority - the key principle is 'few but on point'."
+    },
+    {
+      "type": "list",
+      "items": [
+        "KPIs have to be chosen to fit the specifics of each business model, not taken from one common set",
+        "Tracking too many KPIs at once scatters attention and clouds decisions",
+        "Copying KPIs from a different business model without understanding it is a common mistake"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Different business model, different metrics",
+      "subtitle": "All of them are businesses, but the value drivers are not the same",
+      "concepts": [
+        { "def": "Churn rate, customer acquisition cost, customer lifetime value, recurring revenue. Monthly revenue on its own hides existing customers walking away." },
+        { "def": "Revenue per square metre, same-store growth, inventory turnover, gross margin. Opening new stores always lifts total revenue, so the existing base has to be separated out." },
+        { "def": "Capacity utilisation, scrap rate, cash conversion cycle, operating leverage. This is where fixed costs decide profit and loss." },
+        { "def": "Net interest margin, non-performing loan ratio, provisioning cost, capital adequacy. Fast loan book growth without watching credit quality is the single most dangerous metric there is." }
+      ]
+    },
+    { "type": "heading", "text": "Three tests for whether a metric deserves tracking" },
+    {
+      "type": "list",
+      "items": [
+        "Someone can act on it: if no department can change this metric through a specific action, it is background information rather than an operating metric.",
+        "It arrives in time: a metric that only exists three months after the close cannot be used to adjust anything within that quarter.",
+        "It is hard to flatter meaninglessly: if the metric can be improved by damaging something elsewhere - pushing sales through deep discounting, say - it needs a counter-metric alongside it."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The counter-metric principle",
+      "text": "Every growth metric should come paired with a quality metric: revenue with margin, new customers with retention rate, loan book growth with the non-performing ratio, output volume with scrap rate. A metric standing on its own can always be pushed up by sacrificing something else."
+    },
+    {
+      "type": "paragraph",
+      "text": "On quantity, the practical rule is one page: if the operating dashboard does not print on a single page, the leadership team will not really follow all of it, and when everything is important nothing is actually prioritised."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The best KPI is not the one most widely used in the industry.",
+        "It is the one that reflects the real value drivers of your own business."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "KPIs have to be chosen to fit the specifics of each business model, not taken from one common set for every company",
+    "commonMistake": "Easy to overlook: tracking too many KPIs at once scatters attention and clouds decisions, so prioritise the few that reflect the core value drivers",
+    "action": "Copying KPIs from a different business model without understanding it is a common mistake"
+  }
+}

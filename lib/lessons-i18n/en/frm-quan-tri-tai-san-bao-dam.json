@@ -1,0 +1,152 @@
+{
+  "slug": "frm-quan-tri-tai-san-bao-dam",
+  "title": "FRM Liquidity, Lesson 10: Collateral management and haircuts",
+  "subtitle": "Collateral is a source of liquidity in calm markets and a channel that spreads stress when they turn",
+  "duration": "9 min",
+  "whyItMatters": "Most short-term funding at a financial institution is secured. That sounds safer than lending unsecured, but it builds in an amplifier: falling asset prices push haircuts up, and higher haircuts force more assets to be sold.",
+  "openingQuestion": "What is a haircut in a collateralised transaction?",
+  "openingOptions": [
+    "A discount deducted from the market value of the collateral",
+    "A fee the borrower pays the lender when a secured facility is signed",
+    "The spread between the rate on a secured loan and an unsecured one",
+    "The maximum time the collateral may be held at the lender"
+  ],
+  "explanation": "Collateral is never credited at its full market value: the lender applies a discount to protect itself against a price fall over the window between the borrower failing and the asset being sold. The size of that discount depends on the volatility and the liquidity of the asset. The dangerous part is that it is not fixed - in a crisis the discount is raised exactly when the borrower needs cash most, which turns it into a liquidity spiral.",
+  "diagram": [
+    { "label": "Market value of the collateral" },
+    { "label": "Less the haircut for asset type and volatility" },
+    { "label": "Gives the amount that can be borrowed" },
+    { "label": "Prices fall or volatility rises, haircuts rise, more collateral has to be posted" }
+  ],
+  "realWorldExample": {
+    "company": "The haircut amplifier in a crisis",
+    "description": "In periods of market stress, haircuts across secured funding markets are raised at the same time because every lender fears prices have further to fall. Against the same portfolio, a borrower can suddenly raise far less cash and has to sell assets to make up the difference. Selling by everyone at once pushes prices down further, which justifies an even higher haircut - a self-reinforcing loop in which no single party has behaved irrationally."
+  },
+  "quiz": [
+    {
+      "question": "Why is a haircut increase during market stress a systemic problem rather than a private one?",
+      "options": [
+        "Because a higher haircut strips the lender of its claim over the collateral posted",
+        "Because every borrower has to post more collateral or sell assets at the same time",
+        "Because supervisors prohibit any change to haircut levels while markets are volatile",
+        "Because a higher haircut lowers the interest rate charged on the secured borrowing"
+      ],
+      "explanation": "Each lender raising its haircut is a perfectly prudent act seen on its own. All of them doing it in the same week produces exactly the price fall they are protecting against - a textbook fallacy of composition. The lender keeps its claim on the collateral throughout; raising the haircut strengthens that position rather than weakening it. No supervisor freezes haircuts in a volatile market, and a higher haircut has nothing to do with the loan's interest rate: it changes how much can be borrowed, not what the borrowing costs."
+    },
+    {
+      "question": "What does unencumbered collateral mean in liquidity management?",
+      "options": [
+        "Assets a lender has already seized following a breach of the loan agreement",
+        "The part of the balance sheet the bank is legally barred from selling",
+        "The assets not yet pledged, which can be turned into cash immediately",
+        "Assets with no observable market price and so no reliable valuation at all"
+      ],
+      "explanation": "Total assets say nothing about liquidity capacity; the unpledged portion does. A bank with a large balance sheet that has already pledged most of its high-quality assets has almost no room left to raise cash in a hurry. Seized collateral is a credit outcome, not a category of the balance sheet, and nothing in the definition turns on whether a sale is permitted or whether a price can be observed - an asset can be perfectly saleable and still be encumbered, which is precisely the trap."
+    },
+    {
+      "question": "Why does the reuse of collateral increase risk at the level of the system?",
+      "options": [
+        "Because reused collateral stops counting in the total assets of any party at all",
+        "Because collateral that has been reused loses its legal standing after the second use",
+        "Because the same asset now stands behind a chain of transactions, so one break freezes all of them",
+        "Because reuse is prohibited outright in every developed financial market today"
+      ],
+      "explanation": "A reuse chain creates hidden leverage: one pool of original collateral supports several layers of transactions stacked on top of each other. When one party in the chain fails, working out who actually has a claim on the asset becomes a legal question, and the whole chain freezes while it is answered. Reuse is legal and routine in most markets, subject to disclosure and limits rather than prohibition, and the collateral keeps both its legal standing and its place in someone's asset total at every step."
+    },
+    {
+      "question": "Why does the discount applied to the same collateral differ from one lender to another?",
+      "options": [
+        "Because each one judges the volatility and the time needed to sell it differently",
+        "Because regulation lets each lender pick any discount inside a published range",
+        "Because a larger lender always applies a lower discount to the same collateral",
+        "Because the discount is set by the credit rating of the borrowing counterparty"
+      ],
+      "explanation": "The discount is an estimate of how much value can be lost between the borrower defaulting and the sale completing. Two lenders differ in liquidation experience and in their capacity to hold an asset and wait for a better price, so they reach two different numbers for the same security. Size does not settle it - a large lender with a thin trading desk in that asset may well ask for more. And the discount is a property of the collateral, not of the borrower; borrower quality is priced in the rate and in the credit limit instead."
+    },
+    {
+      "question": "A 500bn bond portfolio is financed at an 8% haircut. The haircut is raised to 15%. How much extra collateral must be posted?",
+      "options": [
+        "7bn (= 15% − 8%, reading the percentage difference straight as money)",
+        "35bn (= 500 × (15% − 8%), the increase in the discount applied)",
+        "75bn (= 500 × 15%, recomputing the whole of the new discount)",
+        "115bn (= 500 × (15% + 8%), adding the two haircut levels together)"
+      ],
+      "explanation": "At an 8% haircut, 500bn of assets supports 460bn of borrowing; at 15% it supports only 425bn. To keep the loan the same size the borrower has to post another 35bn - precisely when markets are stressed and unencumbered assets are at their scarcest. That is the mechanism that turns a technical parameter into a self-reinforcing amplifier."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A bank has 500,000bn of total assets, of which 120,000bn is already pledged as collateral against existing borrowing. Which figure measures its liquidity capacity?",
+    "options": [
+      "The unencumbered portion of the assets, not the total balance sheet",
+      "Total assets of 500,000bn, since all of it can be sold if it has to be",
+      "The 120,000bn already pledged, because the market has accepted it",
+      "The average of the two figures, roughly 310,000bn of usable assets"
+    ],
+    "explanation": "Assets already pledged cannot raise another dong - they were exchanged for cash once already. So when liquidity is needed urgently, the figure worth asking about is the UNENCUMBERED portion, and it is always smaller than total assets, sometimes very much smaller. What makes this measure uncomfortable is that it deteriorates exactly when conditions tighten: rising haircuts force more collateral to be posted against loans already outstanding, so the unencumbered pool shrinks at the moment it is most needed. The total on the balance sheet tells you nothing about any of this."
+  },
+  "keyTakeaways": [
+    "A haircut is the discount that protects the lender against price moves in the collateral",
+    "Haircuts rising across the market at once creates a self-reinforcing amplifier",
+    "Unencumbered assets measure liquidity capacity; total assets do not",
+    "Reusing collateral creates hidden leverage and links institutions into a chain"
+  ],
+  "summary": {
+    "keyIdea": "Secured funding is safer for each individual lender but builds an amplifier at the level of the system, through haircuts and through the reuse of collateral",
+    "commonMistake": "Measuring liquidity capacity by total assets rather than by the high-quality assets that are not yet pledged",
+    "action": "When you assess an institution, look for the asset encumbrance ratio rather than stopping at the size of the balance sheet"
+  },
+  "application": {
+    "title": "The same thing happens on a margin account",
+    "message": "The mechanism turns up in equity margin lending too: share prices fall, the value of the collateral falls, the broker calls for more, you have to sell - and many people selling at once pushes prices down further.",
+    "secondary": "This is exactly what sits behind a cascade of forced liquidations."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Moving from unsecured to secured lending lowers the risk carried by each individual lender. At the level of the system, it swaps one kind of risk for another."
+    },
+    { "type": "heading", "text": "How a haircut is set" },
+    {
+      "type": "paragraph",
+      "text": "The haircut depends on the price volatility of the asset, the liquidity of the market for it, and the expected time to liquidate. Short-dated government bonds carry very low haircuts; low-rated corporate bonds or structured products carry much higher ones."
+    },
+    { "type": "heading", "text": "The amplifier" },
+    {
+      "type": "paragraph",
+      "text": "A falling price or rising volatility makes lenders raise their haircuts. Against the same portfolio, the borrower can raise less cash and has to sell assets to close the gap. Many borrowers selling at once pushes prices down further, volatility rises again, and an even higher haircut is justified."
+    },
+    {
+      "type": "callout",
+      "label": "Unencumbered assets are the number that counts",
+      "text": "When you assess the liquidity capacity of an institution, total assets are almost meaningless. The figure to look for is the high-quality assets that have not been pledged - the only part that can be turned into cash in an emergency."
+    },
+    { "type": "heading", "text": "The only number worth looking at: unencumbered high-quality assets" },
+    {
+      "type": "paragraph",
+      "text": "A bank has 1,000 of total assets. Of that, 550 is customer loans - nobody will take those as collateral on a stressed morning. The other 450 is high-quality bonds, but 300 of it is already pledged against existing loans and open derivative positions. The real liquidity capacity of this institution is not 1,000 and not 450 but 150 - and less than that after haircuts. Which is why a large balance sheet says nothing about the ability to survive a week."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Why the same portfolio attracts several different haircuts",
+      "subtitle": "Three factors decide it, and they all deteriorate together",
+      "concepts": [
+        {
+          "def": "The haircut has to cover the price fall that could happen over the time the lender needs to sell. If volatility doubles, the haircut has to follow it up - and that is exactly the moment the borrower is least able to make up the difference."
+        },
+        {
+          "def": "Government bonds can be sold in size within minutes; a block of low-rated corporate paper can take days. A longer liquidation window means a wider price range that has to be defended against."
+        },
+        {
+          "def": "If the collateral loses value at the same moment the borrower gets into trouble - a bank pledging the bonds of other banks, say - then the protection disappears precisely when it is needed, so the haircut has to be materially higher."
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Taking collateral converts credit risk into liquidity risk and price risk.",
+        "Next lesson: liquidity risk on the fund side, where the problem takes a different shape."
+      ]
+    }
+  ]
+}

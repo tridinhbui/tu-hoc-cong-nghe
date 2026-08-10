@@ -1,0 +1,155 @@
+{
+  "slug": "bang-chung-kiem-toan-va-thu-tuc",
+  "title": "Audit, Lesson 3: audit evidence - what is more reliable than what",
+  "subtitle": "The reliability hierarchy of evidence, tests of controls versus substantive tests, and the main procedures",
+  "duration": "11 min",
+  "whyItMatters": "An audit opinion is only as strong as the evidence behind it. Understanding the hierarchy of evidence reliability is a skill that travels well beyond auditing: anyone verifying a number produced by someone else is doing the same job.",
+  "openingQuestion": "Which type of evidence is the most reliable in an audit?",
+  "openingOptions": [
+    "A verbal explanation from the company's board of directors",
+    "A confirmation received directly from an independent third party",
+    "Internal accounting records that have been fully reconciled",
+    "A report produced by the internal audit department"
+  ],
+  "explanation": "The reliability hierarchy runs along two axes. The first is source: evidence from an independent outsider beats evidence the company produced itself. The second is how the auditor obtained it: observing or recomputing it yourself beats receiving it from someone else. A bank confirmation sent straight to the auditor sits high on both axes. A verbal explanation from the board sits lowest - it is still collected, but it is never enough to carry a conclusion on its own.",
+  "diagram": [
+    {
+      "label": "A third party sends it straight to the auditor"
+    },
+    {
+      "label": "The auditor recomputes or observes it personally"
+    },
+    {
+      "label": "External documents held by the company"
+    },
+    {
+      "label": "Internal records and verbal explanations"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Why confirmations must be sent straight to the auditor",
+    "description": "The standard procedure is for the auditor to send the confirmation request to the bank and to the company's customers themselves, and to require the reply to come back to the auditor's own address. It sounds like a formality, but that step is exactly what protects the value of the evidence: if the letter passes through the company's hands, it is no longer independent evidence. Many of the largest frauds in the profession's history share one detail - forged confirmations, or genuine ones intercepted and replaced on the way back."
+  },
+  "quiz": [
+    {
+      "question": "How does a test of controls differ from a substantive test?",
+      "options": [
+        "Control testing is carried out by the internal audit department while substantive testing is done by the external auditor",
+        "Control testing asks whether the process operates effectively; substantive testing checks the number itself",
+        "Control testing applies only to listed companies, while unlisted companies have no need for it at all",
+        "Control testing is performed at the period end while substantive testing runs throughout the fiscal year"
+      ],
+      "explanation": "If controls are operating well, the auditor can reduce the volume of substantive testing. That is the direct link between the quality of a company's governance and the cost of its audit. Both types of test are performed by the external auditor, both apply regardless of listing status, and both are scheduled across the year according to risk rather than being fixed to the period end."
+    },
+    {
+      "question": "Why is a verbal explanation from the board weak evidence?",
+      "options": [
+        "Because the directors often do not know the detail of individual accounting entries arising in the period",
+        "Because a spoken statement is not recognised anywhere in the auditing standards as valid evidence",
+        "Because it comes from the very party responsible for preparing the accounts, so it is not independent",
+        "Because a verbal explanation cannot be retained in the audit file to support any later review"
+      ],
+      "explanation": "It is still collected and still filed, sometimes as a written representation letter. The crux is that it supplements independent evidence rather than replacing it. Management representations are explicitly recognised by the standards and are recorded in the file - the weakness is entirely about the source, not about the format or about how much detail the directors happen to know."
+    },
+    {
+      "question": "What are analytical procedures in an audit?",
+      "options": [
+        "Assessing the professional competence of the accounting staff working at the audited company",
+        "Analysing the company's profitability to advise management on strategy after the audit",
+        "Checking every single transaction arising in the period in chronological order across the whole year",
+        "Comparing figures against the prior period, the budget or the industry to find unusual movements"
+      ],
+      "explanation": "This is a cheap, fast procedure, usually run early to point at where deeper work is needed. A movement that cannot be explained then pulls detailed testing behind it. Testing every transaction in sequence is the opposite approach and is prohibitively expensive, while competence assessment and strategy advice are not evidence-gathering procedures at all."
+    },
+    {
+      "question": "Why does the auditor recompute a figure themselves rather than watch the company compute it?",
+      "options": [
+        "Because evidence the auditor generates themselves is more reliable than evidence received from others",
+        "Because the standards require every calculation in the financial statements to be performed twice",
+        "Because companies often do not retain the detailed workings behind the figures they have published",
+        "Because the auditor's method of calculation differs from the method the company's accounting team applies"
+      ],
+      "explanation": "This is the second axis of the evidence hierarchy: how the auditor came by it. Recomputing sits high because it removes any possibility that the figure was adjusted along the way. The auditor uses the same method the company should have used - a different method would test nothing - and the point holds even when the company's workings are complete and available."
+    },
+    {
+      "question": "Why is a confirmation sent directly from the bank to the auditor more reliable than a statement provided by the company?",
+      "options": [
+        "Because the bank is legally liable for the accuracy of the confirmation letter",
+        "Because it comes from an independent outsider and never passes through the company",
+        "Because a confirmation letter contains considerably more detail than an ordinary statement",
+        "Because a bank statement is not treated as a valid accounting record at all"
+      ],
+      "explanation": "Two axes determine the reliability of evidence: whether the source is independent, and whether the auditor obtained it directly. A confirmation satisfies both; a statement handed over by the company satisfies the first but not the second. A bank statement is a perfectly valid document and is often less, not more, detailed than a confirmation - the difference is who carried it."
+    }
+  ],
+  "keyTakeaways": [
+    "Two axes determine reliability: whether the source is external or internal, and whether the auditor obtained it directly or received it",
+    "Confirmations must come straight back to the auditor - passing through the company destroys their value",
+    "Tests of controls ask whether the process runs properly; substantive tests check the number itself",
+    "Good controls let you reduce substantive testing - which is why audit fees differ between companies",
+    "Board representations supplement independent evidence; they never replace it"
+  ],
+  "practicePrompt": {
+    "question": "The auditor needs to confirm a receivable balance from a large customer. Which approach gives the strongest evidence?",
+    "options": [
+      "Inspect the contracts and invoices provided by the company",
+      "Send a confirmation to that customer and receive the reply directly",
+      "Ask the company's chief accountant about the balance",
+      "Reconcile the balance against the detailed receivables ledger"
+    ],
+    "explanation": "The other three options are all evidence the company created or holds, so they only prove that the records are consistent with themselves - which remains true even if the receivable is fictitious. Only a confirmation from the third party answers the question of whether this debt actually exists."
+  },
+  "summary": {
+    "keyIdea": "The reliability of evidence is determined by its source and by how it was obtained, not by its volume",
+    "commonMistake": "Treating internal records that agree with each other as sufficiently strong evidence",
+    "action": "For a figure you need to verify, ask: where did this evidence come from, and who could have adjusted it along the way."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Pick a large line item in a company's financial statements and list the types of evidence that could verify it. Rank them along the two axes you have just learned, then judge which tier the strongest evidence in your possession belongs to.",
+    "secondary": "This exercise works for verifying any figure, not only in an audit."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "An audit opinion is only as strong as the evidence behind it. And not all evidence is equal - there is a clear hierarchy that people outside the profession are rarely shown."
+    },
+    {
+      "type": "heading",
+      "text": "The reliability hierarchy"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Strongest: an independent third party sends it straight to the auditor - bank confirmations, receivable confirmations",
+        "Very strong: the auditor generates it - attending the inventory count, recomputing depreciation",
+        "Middling: documents issued externally but held by the company - contracts, supplier invoices",
+        "Weaker: internal documents the company prepared itself - goods issue notes, allocation schedules",
+        "Weakest: representations from the board - always collected, never sufficient on their own"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Test of controls",
+        "text": "Checks whether the process operates as designed: is every payment above a threshold approved at the right level? A good result allows the substantive testing behind it to be reduced."
+      },
+      "right": {
+        "label": "Substantive test",
+        "text": "Checks the number itself: reconciling, recomputing, confirming with third parties, physical counts. This part is never dropped entirely, only scaled up or down."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "This skill works outside the audit profession",
+      "text": "Anyone receiving a figure from someone else - an analyst reading numbers a company supplied, a buyer assessing a target, a manager receiving a report from a subordinate - faces the same question: where did this evidence come from, and who had an opportunity to adjust it. The hierarchy above is that answer, systematised over decades, and it applies intact well beyond the boundaries of an audit."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Records that agree with themselves prove nothing beyond the fact that they agree with themselves.",
+        "The next lesson answers the most practical question of all: how much testing is enough."
+      ]
+    }
+  ]
+}

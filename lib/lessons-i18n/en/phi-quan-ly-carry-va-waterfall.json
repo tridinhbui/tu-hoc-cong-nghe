@@ -1,0 +1,142 @@
+{
+  "slug": "phi-quan-ly-carry-va-waterfall",
+  "title": "Private markets, Lesson 2: Management fees, carry and the waterfall - how a fund manager gets paid",
+  "subtitle": "The hurdle rate, the catch-up mechanism and the order in which money is distributed",
+  "duration": "12 min",
+  "whyItMatters": "Compensation drives behaviour. Understanding the waterfall tells you why a fund manager is willing to run high leverage, why they hold on to a failing investment longer than they should, and why two funds with the same gross return hand back different amounts of money to their investors.",
+  "openingQuestion": "What does the hurdle rate in a fund agreement do?",
+  "openingOptions": [
+    "Investors receive a minimum return before the manager does",
+    "It caps the maximum loss an investor can suffer over the whole life of the fund",
+    "It sets the interest rate at which the fund is permitted to borrow for its deals",
+    "It is the minimum return the fund contractually guarantees to pay its investors"
+  ],
+  "explanation": "This is an investor protection mechanism: the manager only shares in the profit after the investors have received all of their capital back plus a minimum return. Note that it is not a promise - if the fund does not reach that level, the manager simply does not share in any profit, and nobody makes the investors whole. Mistaking a hurdle rate for a guarantee is the most common misunderstanding there is about fund fee structures.",
+  "diagram": [
+    { "label": "Return the investors' capital" },
+    { "label": "Pay the hurdle return in full" },
+    { "label": "The catch-up for the manager" },
+    { "label": "Split whatever is left at the agreed ratio" }
+  ],
+  "realWorldExample": {
+    "company": "The industry's conventional fee structure",
+    "description": "The long-standing industry convention is a management fee of about 2% a year plus 20% of the profit above a hurdle of around 8%. The precise numbers have shifted with the balance of power between funds and investors: large managers with a strong record still hold the traditional terms, while newer funds usually have to concede. What matters to an analyst is not the headline rate but the fee base and the distribution order - those two details move the money reaching investors more than the percentage does."
+  },
+  "quiz": [
+    {
+      "question": "What is the management fee normally charged on during the investment period?",
+      "options": [
+        "On total committed capital, including the part not yet called or invested",
+        "On the market value of the portfolio as measured at the end of each quarter",
+        "On the realised profit from the deals that have already been exited successfully",
+        "On the cash the fund is currently holding while it waits to deploy into new deals"
+      ],
+      "explanation": "This detail has a large effect on the net return. Charging on committed capital means investors pay a fee on money that has not yet been put to work, and after the investment period the fee base usually switches to remaining invested capital. Charging on portfolio value would make the fee move with unrealised marks, charging on realised profit would duplicate the carry, and undeployed cash is only a fraction of the commitment."
+    },
+    {
+      "question": "How does the catch-up mechanism in a waterfall work?",
+      "options": [
+        "Investors take priority on all profit until they have doubled their capital",
+        "Once investors have their hurdle, the manager takes most of the next cash",
+        "The manager has to repay carry already received if later deals lose money",
+        "The fund suspends distributions until the whole portfolio has been exited"
+      ],
+      "explanation": "The purpose of the mechanism is to bring the split back to the agreed ratio across the WHOLE profit, not just the slice above the hurdle. It turns the band of returns immediately above the hurdle into a zone where the manager captures almost all of the incremental cash. Repaying carry is a clawback, a different clause, and holding back distributions until full exit describes a whole-of-fund waterfall rather than a catch-up."
+    },
+    {
+      "question": "What risk does a clawback provision protect investors against?",
+      "options": [
+        "The risk that the manager leaves the firm before the fund's investment life ends",
+        "The risk that the fund fails to raise the capital it originally announced it would",
+        "The risk that the manager takes carry on an early deal and later deals then lose",
+        "The risk that portfolio value falls because of general financial market volatility"
+      ],
+      "explanation": "Without this clause the manager has an incentive to sell the best deal early, lock in the carry, and leave the rest to fend for themselves. Distributing on a whole-of-fund basis rather than deal by deal addresses exactly the same problem from the other direction. A clawback does nothing about key-person departures, fundraising shortfalls, or ordinary market drawdowns - those are covered by entirely different provisions."
+    },
+    {
+      "question": "Why does the carry structure encourage the use of high leverage?",
+      "options": [
+        "Because leverage reduces the management fee investors pay during the holding period",
+        "Because interest expense is deducted before the hurdle is calculated",
+        "Because borrowings count towards committed capital, lifting the fee base",
+        "Because carry behaves like an option: all of the upside, none of the loss below zero"
+      ],
+      "explanation": "This is the core asymmetry of every performance-sharing arrangement. The manager's carry resembles a call option on the fund's performance, and an option is worth more the more volatile the underlying is. The practical counterweight is reputation and the ability to raise the next fund, not anything inside the carry formula itself. Leverage does not change the fee base and does not lower the fee investors pay."
+    },
+    {
+      "question": "Why can two funds with the same gross return hand back different amounts to investors?",
+      "options": [
+        "Because the fee base, the distribution order and the catch-up all differ between them",
+        "Because the tax rate applying to each fund depends on its country of registration",
+        "Because different exit timings lead to different exchange rates on distribution",
+        "Because fund size differs, so operating cost per dong of capital differs as well"
+      ],
+      "explanation": "The gap between gross and net return can be very large, and it lives in the contractual details rather than in investment skill. That is why institutional investors always compare on a net return basis after all fees. Domicile, currency and scale do move the number at the margin, but none of them explains a gap of the size these three structural terms can produce."
+    }
+  ],
+  "keyTakeaways": [
+    "A hurdle rate is a condition for the manager to share in profit, not a guaranteed return",
+    "The management fee base - committed capital or invested capital - matters greatly for the net return",
+    "The catch-up restores the agreed split across the whole profit, not just the part above the hurdle",
+    "Carry behaves like an option and so encourages risk; clawback and whole-of-fund distribution are the counterweights"
+  ],
+  "practicePrompt": {
+    "question": "A fund has a hurdle of 8% and a carry of 20%. It returns 8.5% gross. What does the manager receive?",
+    "options": [
+      "Nothing, because the return has not risen far above the agreed hurdle rate",
+      "20% of the 0.5% above the hurdle, a very small sum relative to the fund size",
+      "It depends on the catch-up: with one, most of that 0.5% goes to the manager",
+      "20% of the whole 8.5%, because the fund cleared the hurdle rate in the end"
+    ],
+    "explanation": "This is exactly why the catch-up clause has to be read carefully. Without it, the manager receives only 20% of the excess above the hurdle. With it, almost all of the cash immediately above the hurdle flows to the manager until the share of total profit reaches the agreed 20%. Same gross return, two structures, two very different outcomes for the investor."
+  },
+  "summary": {
+    "keyIdea": "The mechanism for distributing money drives behaviour, and it lives in the details rather than in the headline percentage",
+    "commonMistake": "Treating the hurdle rate as a guaranteed level of profit",
+    "action": "Redraw one fund's waterfall as four tiers and work out the split at three different return levels."
+  },
+  "application": {
+    "title": "Four questions about a fee structure",
+    "message": "What is the management fee charged on, and how does that change after the investment period? What is the hurdle rate, and does it compound? Is there a catch-up, and at what rate? And is the distribution made deal by deal or across the whole life of the fund?",
+    "secondary": "Those four questions determine the gap between the gross return a fund advertises and the net return you actually receive."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In finance, if you want to predict how someone will behave, look at how they are paid. The profit distribution mechanism of a private equity fund is one of the clearest illustrations of that principle, and it is more complicated than the two-and-twenty everybody has heard about."
+    },
+    { "type": "heading", "text": "The four tiers of a waterfall" },
+    {
+      "type": "list",
+      "items": [
+        "Tier 1 - return of capital: investors get back everything they contributed, including the part spent on fees",
+        "Tier 2 - hurdle return: investors receive more until they have reached the agreed rate of return",
+        "Tier 3 - catch-up: the manager takes most of the next cash so that the share of total profit returns to the agreed level",
+        "Tier 4 - the split: everything after that is divided between the two sides at the agreed ratio"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Whole-of-fund distribution",
+        "text": "The manager only shares in profit once all capital and the hurdle return for the entire fund have been paid. Safer for the investor."
+      },
+      "right": {
+        "label": "Deal-by-deal distribution",
+        "text": "Carry is paid as soon as each individual deal exits profitably. A clawback clause is needed to deal with later deals that lose money."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "An asymmetry that cannot be removed",
+      "text": "The manager takes the upper part of the outcome but does not share in losses beyond the capital they put into the fund themselves. That structure, like every performance-based incentive, encourages more risk than the investor would choose. Contract terms reduce the problem but cannot eliminate it - the real counterweight lies in whether the manager still wants to raise another fund."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Reading a waterfall is reading incentives, and incentives predict behaviour better than any statement of intent.",
+        "The next lesson turns to the hardest question in private markets: how do you measure performance honestly."
+      ]
+    }
+  ]
+}

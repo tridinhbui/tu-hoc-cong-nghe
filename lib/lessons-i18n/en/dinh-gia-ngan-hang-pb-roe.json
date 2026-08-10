@@ -1,0 +1,198 @@
+{
+  "slug": "dinh-gia-ngan-hang-pb-roe",
+  "title": "Banking, Lesson 2: Valuing a bank - P/B, ROE and the residual income model",
+  "subtitle": "Why P/B is the right multiple for a bank, and the mathematical link between P/B and ROE",
+  "duration": "12 min",
+  "whyItMatters": "The classic interview question for a banking analyst role is: why does this bank trade at 2.0x book while that one trades at 0.8x? If all you can say is that the market likes one more, you do not yet understand bank valuation. There is a formula connecting P/B to ROE, and it explains almost all of the valuation spread in the sector.",
+  "openingQuestion": "In theory, when should a bank trade above 1.0x book value?",
+  "openingOptions": [
+    "When the bank has the largest total assets in the market",
+    "When ROE exceeds the cost of equity capital",
+    "When the bank pays a steady cash dividend every year",
+    "When the non-performing loan ratio is below 1%"
+  ],
+  "explanation": "Book value is the capital shareholders have put into the bank. If the bank earns a return on that capital (ROE) above the return investors demand (the cost of equity, ke), then every unit of equity is creating excess value and the market will pay more than one unit for it - that is, P/B above 1. If ROE falls below ke, the bank is destroying value and deserves a P/B below 1. Size and dividends are secondary factors.",
+  "diagram": [
+    {
+      "label": "Sustainable ROE",
+      "arrow": true
+    },
+    {
+      "label": "Compared with the cost of equity (ke)",
+      "arrow": true
+    },
+    {
+      "label": "The spread ROE − ke = value created",
+      "arrow": true
+    },
+    {
+      "label": "Determines the fair P/B"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The P/B spread across listed banks",
+    "description": "Within one market, banks can trade anywhere from about 0.7 times book to more than 2 times, all at the same moment. The high P/B group is almost always the one with sustainable ROE above 20%, a high CASA ratio and low non-performing loans. The low P/B group usually has ROE around 10% or below, or the market doubts the quality of the book value figure itself because bad debt has not been fully recognised."
+  },
+  "quiz": [
+    {
+      "question": "What is the formula linking P/B to ROE under a sustainable growth model?",
+      "options": [
+        "P/B = ROE × ke, multiplying the return by the cost of equity",
+        "P/B = ke / ROE, cost of capital divided by the return",
+        "P/B = (ROE − g) / (ke − g), the Gordon formula",
+        "P/B = ROE + g − ke, adding growth and subtracting cost of capital"
+      ],
+      "explanation": "Starting from the dividend discount model with a sustainable payout ratio, you derive P/B = (ROE − g) / (ke − g). When ROE = ke the formula gives P/B = 1, exactly as intuition suggests: earning precisely the required return means the business is worth precisely the capital put into it. Multiplying ROE by ke has no economic meaning and rises when either rises. Dividing ke by ROE inverts the relationship, so a better bank would look cheaper. And adding the terms loses the ratio structure entirely."
+    },
+    {
+      "question": "Why might the market value a bank below book value even though the bank is still reporting a profit?",
+      "options": [
+        "Because that bank has paid no cash dividend for many years",
+        "Because accounting rules record equity at historical cost",
+        "Because that bank has a large branch network and high running costs",
+        "Because the market doubts the bank's own book value"
+      ],
+      "explanation": "A P/B below 1 is usually the market declaring that book value is overstated, or that future ROE will fall short of the cost of capital. For a bank, the biggest risk always sits in assets not yet written down to their true value. A missing dividend affects the payout ratio rather than the value of the equity base. Bank equity is not carried at pure historical cost, since financial assets are marked in various ways. And a costly branch network shows up in ROE rather than casting doubt on the balance sheet."
+    },
+    {
+      "question": "How does the residual income model value a bank?",
+      "options": [
+        "Book value plus the present value of profit above the cost of equity",
+        "Total expected dividends times the number of years an investor holds",
+        "Total assets minus total liabilities, then multiplied by an industry average factor",
+        "The bank's EBITDA times the multiple paid in recent transactions"
+      ],
+      "explanation": "Residual income each year equals net profit minus (cost of equity × opening equity). Adding the present value of that stream to today's book value gives the value of the equity. Multiplying dividends by a holding period ignores discounting entirely and makes value depend on the investor rather than the bank. Net assets times an industry factor is just a P/B rule of thumb, not a model. And EBITDA is meaningless for a bank, because interest is core revenue rather than a financing cost. The residual income approach fits banks particularly well, because a bank's book value tracks the economic value of financial assets fairly closely."
+    },
+    {
+      "question": "Why is it wrong to value a bank using free cash flow (FCF)?",
+      "options": [
+        "Because banks barely incur any fixed asset capital expenditure",
+        "Because loan and deposit swings are core activity, not free cash flow",
+        "Because banks need not prepare a consolidated cash flow statement",
+        "Because rates move constantly, so long-run cash flow cannot be discounted"
+      ],
+      "explanation": "A bank growing its loan book fast will show hugely negative operating cash flow while trading extremely well. The FCF concept cannot separate investment from core activity in this setting, so it is useless. Low capex is true but is not what breaks the model. Banks do publish consolidated cash flow statements. And moving rates affect every discounted valuation, including the equity-side models that do work here, so that cannot be the distinguishing reason."
+    },
+    {
+      "question": "Which factor most sustainably justifies a high P/B?",
+      "options": [
+        "Total asset size ranking among the leaders of the whole banking system",
+        "The number of retail customers and current accounts currently open",
+        "A high ROE sustained across an entire credit cycle, good years and bad",
+        "Profit growth in the most recent quarter against the same period last year"
+      ],
+      "explanation": "The ROE of one favourable year says little. What the market pays for is through-the-cycle ROE: a bank that holds a high ROE even when industry-wide bad debt is rising genuinely has a structural advantage. Size brings scale but says nothing about return on equity. A customer count is an input that may or may not convert into profitable relationships. And a single quarter's growth is far too short a window to distinguish an advantage from a favourable comparison base."
+    }
+  ],
+  "keyTakeaways": [
+    "Banks are valued from the equity side: P/B, P/E, the dividend discount model and residual income - not EV/EBITDA or an FCFF-based DCF",
+    "The foundational relationship: P/B = (ROE − g) / (ke − g); when ROE equals ke, P/B equals 1",
+    "A P/B below 1 is usually a sign the market doubts the quality of the book value itself",
+    "Through-the-cycle ROE matters more than the ROE of one favourable year"
+  ],
+  "practicePrompt": {
+    "question": "Bank C has a sustainable ROE of 18%, long-term growth of 8% and a cost of equity of 13%. What is the fair P/B under the model?",
+    "options": [
+      "About 0.7 times (= if ROE were below the cost of equity)",
+      "About 1.0 times (= if ROE were exactly equal to ke)",
+      "About 2.0 times (= 0.10 / 0.05, the model result)",
+      "About 3.5 times (= 0.18 / 0.05, forgetting to subtract g)"
+    ],
+    "explanation": "P/B = (ROE − g) / (ke − g) = (0.18 − 0.08) / (0.13 − 0.08) = 0.10 / 0.05 = 2.0 times. If this bank is actually trading at 1.2x book, then either the market does not believe the 18% ROE is sustainable, or it doubts asset quality - and that is exactly what you need to go and verify next."
+  },
+  "summary": {
+    "keyIdea": "A bank's P/B is a function of the gap between its ROE and its cost of equity",
+    "formula": "P/B = (ROE − g) / (ke − g)",
+    "commonMistake": "Concluding a bank is cheap simply because P/B is low, without checking why the market does not believe the book value",
+    "action": "Compute the fair P/B from the formula for three banks and compare it against the P/B the market is paying; the gap is the market's implicit assumption."
+  },
+  "application": {
+    "title": "Turn P/B into a question you can verify",
+    "message": "Instead of asking whether this bank share is expensive or cheap, invert the formula: given the P/B the market is paying and the cost of equity you estimate, what sustainable ROE is the market implicitly assuming? Then answer for yourself whether that assumption is reasonable.",
+    "secondary": "This is exactly the technique of reverse valuation - asking what the market believes, rather than guessing a target price."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous lesson showed why all the familiar metrics fail for a bank. This one answers the next question, which is also the classic sector interview question: how do you value a bank, and why do two banks in the same industry trade twice as far apart on P/B?"
+    },
+    {
+      "type": "heading",
+      "text": "Why P/B rather than P/E or EV/EBITDA"
+    },
+    {
+      "type": "paragraph",
+      "text": "A bank's assets are almost entirely financial instruments, carried far closer to their economic value than the plant or the brand of a manufacturer. That means a bank's book value carries real economic meaning - a rare property, and the reason P/B becomes the primary multiple. P/E is still used but is more sensitive to swings in provisioning between quarters, while EV/EBITDA is entirely meaningless because debt cannot be separated from a bank's operations."
+    },
+    {
+      "type": "formula",
+      "title": "The bridge between P/B and ROE",
+      "label": "From the dividend discount model, with a sustainable retention ratio",
+      "equation": "P/B = (ROE − g) / (ke − g)",
+      "variables": [
+        {
+          "symbol": "ROE",
+          "name": "Return on equity",
+          "description": "Sustainable through the cycle, not the figure from one good year"
+        },
+        {
+          "symbol": "g",
+          "name": "Long-term growth",
+          "description": "Constrained by ROE and the retention ratio: g = ROE × retention ratio"
+        },
+        {
+          "symbol": "ke",
+          "name": "Cost of equity",
+          "description": "The return investors demand, estimated via CAPM"
+        }
+      ],
+      "example": {
+        "title": "Two banks, both with a 13% cost of equity",
+        "calculation": "A: (0.20 − 0.09)/(0.13 − 0.09) = 2.75  |  B: (0.11 − 0.05)/(0.13 − 0.05)",
+        "result": "A ≈ 2.75 times; B ≈ 0.75 times",
+        "explanation": "The near fourfold P/B gap between the two banks is not a matter of market taste; it is the mathematical consequence of one earning far above its cost of capital while the other earns below it."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The residual income model: a more rigorous way to value"
+    },
+    {
+      "type": "paragraph",
+      "text": "One year's residual income is the net profit above the minimum shareholders demand: RI = Net profit − (ke × opening equity). The value of the equity equals today's book value plus the present value of the whole future stream of residual income. This approach forces you to state how many years you believe the bank can sustain its advantage, instead of burying every assumption inside a single multiple."
+    },
+    {
+      "type": "callout",
+      "label": "The risk sits in the denominator of P/B itself",
+      "text": "For an ordinary company, valuation mistakes usually sit in the growth assumption. For a bank, the fatal mistake is that book value may not be real: if bad debt has not been fully recognised, actual equity is lower than reported, and the P/B you computed is artificially low. Value traps in banking almost always take this shape."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Low P/B because it is mispriced",
+        "text": "Stable ROE, low bad debt, thick provisioning coverage, credible equity. This is an opportunity."
+      },
+      "right": {
+        "label": "Low P/B because it is a value trap",
+        "text": "Group 2 loans ballooning, thin coverage, ROE sliding, a capital raise needed. The equity on paper will shrink."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Step 1: estimate sustainable ROE across at least one full credit cycle, not from the most favourable year",
+        "Step 2: estimate ke via CAPM using a banking sector beta, which is usually above 1",
+        "Step 3: check the quality of book value before trusting the P/B",
+        "Step 4: invert the formula to read out the market's implicit assumption and argue against it yourself"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Valuing a bank does not need a more complex model, it needs the right model.",
+        "The final question is always a single one: does this bank earn more or less on equity than investors demand, and how long can that last?"
+      ]
+    }
+  ]
+}

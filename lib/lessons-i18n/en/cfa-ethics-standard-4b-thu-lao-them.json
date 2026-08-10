@@ -1,0 +1,155 @@
+{
+  "slug": "cfa-ethics-standard-4b-thu-lao-them",
+  "title": "CFA Ethics 24: Standard IV(B) - every payment outside your salary has to reach your employer",
+  "subtitle": "Side work, payments from clients, and why a verbal yes is not enough",
+  "duration": "9 min",
+  "whyItMatters": "This is the shortest standard and the easiest to breach without noticing, because most additional income starts from goodwill - teaching a class, helping an acquaintance, accepting a bonus from a happy client.",
+  "openingQuestion": "A satisfied client offers you a personal bonus if their portfolio beats 15% next year. What should you do?",
+  "openingOptions": [
+    "Refuse, because every bonus from a client is absolutely prohibited",
+    "Accept if the employer consents in writing, after full disclosure",
+    "Accept, since it is a reward for results you produced yourself",
+    "Accept, but a verbal word to your line manager is enough"
+  ],
+  "explanation": "Standard IV(B) does not prohibit additional compensation - it prohibits accepting it without your employer knowing. The reason is concrete: a bonus tied to one client's portfolio performance creates an incentive to favour that client over the others, and an incentive to take extra risk in order to reach the threshold. The employer is the only party who can see your whole book of clients, so they must be the party who assesses this conflict. Writing is mandatory rather than ceremonial: if a dispute arises later, a verbal yes is indistinguishable from never having asked.",
+  "summary": {
+    "keyIdea": "Earning outside your salary is not prohibited - earning it without your employer knowing is, because they cannot assess a conflict they cannot see.",
+    "commonMistake": "Assuming only cash has to be disclosed. Any benefit capable of competing with the employer's interest falls within this standard."
+  },
+  "application": {
+    "title": "The practical rule",
+    "message": "Disclose in writing and obtain consent beforehand, not notification afterwards. That sequence is the whole content of this standard."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard IV(B) does not prohibit accepting compensation beyond your salary. It prohibits accepting it without your employer knowing - and the reason lies in who is able to assess the conflict."
+    },
+    { "type": "heading", "text": "Why the employer has to be the assessor" },
+    {
+      "type": "paragraph",
+      "text": "A bonus tied to one client's portfolio performance creates two distortions at once: favouring that client over the others, and taking extra risk to reach the threshold. The employer is the only party who can see your whole book of clients, so only they can assess this conflict at its real scale."
+    },
+    {
+      "type": "callout",
+      "label": "What has to be disclosed",
+      "text": "The nature of the compensation, the amount or the formula, the duration, and who is paying. Missing any one of the four leaves the employer without the basis to assess it."
+    },
+    { "type": "heading", "text": "Why it has to be in writing" },
+    {
+      "type": "paragraph",
+      "text": "This is not a formality. If a dispute arises later, a verbal yes is indistinguishable from never having asked - and the person who loses out in that situation is always you."
+    },
+    {
+      "type": "paragraph",
+      "text": "The standard reaches further than cash: a board seat, shares or options, a weekend consulting contract, even non-monetary benefits of significant value all have to be disclosed. A quick test for the borderline cases: if the employer knew about this, would they want to have been told."
+    },
+    { "type": "heading", "text": "What is in scope and what is not" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Requires written permission",
+        "text": "A seat on the board of an unlisted company, even in an unrelated industry - because it creates a duty of loyalty to another legal person and takes up time. Shares or options received from an outside party. A weekend consulting contract in the same field. And a bonus a client proposes to pay you directly out of their portfolio's performance."
+      },
+      "right": {
+        "label": "Out of scope",
+        "text": "Income from activity that does not compete with the employer and creates no conflict with their interests - teaching a weekend cookery class, letting out a house. Standard IV(B) is aimed at conflicts of interest and competition for professional time, not at controlling your personal life."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Four pieces of information, and one missing leaves the employer unable to assess",
+      "text": "The nature of the compensation, the amount or the formula behind it, how long it runs for, and who is paying. Without the formula the employer cannot tell how strong the incentive is; without the duration they cannot tell how long it will bear on your work. A general statement along the lines of 'I do some work outside' does not satisfy the standard, because it gives the assessing party nothing to assess."
+    },
+    {
+      "type": "paragraph",
+      "text": "The written requirement is not procedural theatre. When a dispute arises three years later, a verbal yes is indistinguishable from never having asked - and the person who bears the cost of that ambiguity is you, not the employer. It is also why an arrangement already approved has to be disclosed again when the amount or the structure changes: what the employer agreed to was one specific arrangement, not an open-ended right."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The question is not whether this will skew your judgement.",
+        "It is whether you are letting someone else be the judge of that."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Every payment beyond salary, non-cash included" },
+    { "label": "Disclose: the nature, the amount, the duration, the payer" },
+    { "label": "The employer consents IN WRITING" },
+    { "label": "Only then may you accept" }
+  ],
+  "realWorldExample": {
+    "company": "Why the scope is wider than money",
+    "description": "Standard IV(B) covers anything capable of creating a conflict with the employer's interests, not only cash. A seat on another company's board, a weekend consulting engagement, shares in a start-up you also happen to cover as an analyst - all of it is in scope. The quick test is: if the employer knew about this, would they have wanted to be told? If the answer is yes, the duty to disclose has already arisen."
+  },
+  "quiz": [
+    {
+      "question": "What does Standard IV(B) prohibit?",
+      "options": [
+        "Accepting additional compensation without the employer's knowledge and consent",
+        "Accepting any payment at all beyond the salary from your primary employer",
+        "Taking a second role in the same field of finance and investment work",
+        "Accepting client gifts with a value above a specified regulatory cap"
+      ],
+      "explanation": "The focus is transparency with the employer, not a ban on earning more. Many arrangements are perfectly acceptable once disclosed, which is precisely why the standard asks for consent rather than abstinence. Nor does it turn on a monetary cap or on the field of the second role - those are tests that would let a large conflict through if it happened to be unpaid."
+    },
+    {
+      "question": "Why is a manager's verbal agreement not enough?",
+      "options": [
+        "Because a line manager has no authority to approve additional compensation",
+        "Because in a dispute it cannot be distinguished from never having asked",
+        "Because the standard requires the legal department to confirm it",
+        "Because a verbal agreement has no force under employment law"
+      ],
+      "explanation": "The written requirement is not administrative housekeeping - it is the only thing left when the two parties remember the conversation differently two years later. Authority and legal validity are separate questions that vary by firm and jurisdiction, whereas the evidentiary problem arises everywhere and is what the standard is actually addressing."
+    },
+    {
+      "question": "What does 'additional compensation' cover under Standard IV(B)?",
+      "options": [
+        "Only items worth more than one percent of your annual salary",
+        "Only cash received directly from the firm's own clients",
+        "Any benefit that could conflict with the employer, cash or not",
+        "Only amounts arising from work in the same financial industry"
+      ],
+      "explanation": "A board seat, start-up shares, a weekend consulting contract - all in scope, even where no cash changes hands immediately. Thresholds and industry tests both fail the same way: an unpaid directorship at a company your employer is negotiating with creates a serious conflict and would clear every one of them."
+    },
+    {
+      "question": "Why does a bonus tied to one client's performance create a conflict?",
+      "options": [
+        "It forces the manager to disclose the portfolio to that client",
+        "It makes the firm's other clients pay a higher management fee",
+        "It causes the whole fund's reported performance to be miscalculated",
+        "It creates an incentive to favour that client and take extra risk"
+      ],
+      "explanation": "Two conflicts at once: attention gets pulled towards one client and away from the others, and risk appetite drifts above the level the client actually chose. Other clients' fees do not change, and nothing about the arithmetic of reported performance is affected - the damage is to the decisions, not to the reporting."
+    },
+    {
+      "question": "What is the quick test for whether something has to be disclosed?",
+      "options": [
+        "If the employer knew about this, would they have wanted to be told",
+        "Does the payment exceed one month of your current salary",
+        "Does the activity take place during official working hours",
+        "Is the party paying an existing client of the firm"
+      ],
+      "explanation": "This test catches the cases with no money involved and the cases outside working hours - which are exactly the ones most often overlooked. The other three each draw a bright line somewhere convenient, and the conflicts that matter tend to sit on the far side of it: unpaid, out of hours, and with a party the firm has never dealt with."
+    }
+  ],
+  "keyTakeaways": [
+    "Earning more is not prohibited - earning it without the employer knowing is",
+    "Disclose the nature, the amount, the duration and the paying party",
+    "Consent must be written; verbal is indistinguishable from never asking",
+    "Scope includes non-cash benefits: board seats, shares, weekend consulting",
+    "Quick test: if the employer knew, would they have wanted to be told"
+  ],
+  "practicePrompt": {
+    "question": "You are invited to teach a paid weekend course on financial analysis, unconnected to any of the firm's clients. Do you have to disclose it?",
+    "options": [
+      "No, because it has nothing at all to do with the firm's clients",
+      "Yes: it is still compensation beyond salary that the firm may know of",
+      "No, because it takes place outside official working hours",
+      "Only if the fee exceeds one month of your own salary"
+    ],
+    "explanation": "Both 'no' options rest on criteria the standard does not use: connection to clients, and inside or outside working hours. The real criterion is whether it creates a potential conflict, and the party who assesses that is the employer rather than you. They may well say yes immediately - but the decision has to be theirs."
+  }
+}

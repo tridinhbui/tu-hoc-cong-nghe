@@ -1,0 +1,175 @@
+{
+  "slug": "treasury-management-quan-ly-dong-tien",
+  "title": "CFO & Operations, Lesson 5: Treasury management - running corporate cash flow",
+  "subtitle": "Making sure the company is never short of cash at the moment it matters most",
+  "duration": "7 min",
+  "openingQuestion": "A company with positive profit and a large asset base can still go under for what reason, the very reason the Treasury function exists to guard against?",
+  "openingOptions": [
+    "Because positive profit always guarantees a company can never go under",
+    "Running out of liquidity while still profitable on paper",
+    "Because a large asset base always means enough cash on hand",
+    "Only loss-making companies are ever at risk of going under"
+  ],
+  "explanation": "This is one of the most important lessons in corporate finance: being profitable and being liquid are two entirely different things. A company can report positive accounting profit while its cash is trapped in receivables, in inventory, or in long-lived assets - and if it does not have the cash to meet obligations as they fall due, it still ends up insolvent. Treasury management exists precisely to manage and forecast cash flow so that liquidity is always there.",
+  "diagram": [
+    { "label": "Forecast cash in and cash out" },
+    { "label": "Ensure liquidity for obligations falling due" },
+    { "label": "Manage surplus cash (safe short-term investments)" },
+    { "label": "Balance safety against efficient use of capital" }
+  ],
+  "realWorldExample": {
+    "company": "Insolvencies caused by liquidity crises",
+    "description": "Plenty of large companies with positive accounting profit have still fallen into crisis or insolvency through a sudden loss of liquidity - typically because a major customer paid late, inventory would not sell, or a maturing loan could not be refinanced just as credit markets tightened."
+  },
+  "quiz": [
+    {
+      "question": "Why does Treasury keep a liquidity buffer even when the cash flow forecast shows enough money for every obligation ahead?",
+      "options": [
+        "Because idle cash improves the reported liquidity ratios",
+        "Because the rules require holding 5% of revenue in cash",
+        "Because cash flow forecasts always carry unexpected error",
+        "Because the bank demands a minimum account balance"
+      ],
+      "explanation": "Every forecast carries error - good treasury management is not only about forecasting accurately but about PREPARING for the forecast being wrong. The buffer is insurance against shocks nobody can predict with certainty: a customer paying late, an unbudgeted cost, an interruption to trading. Dressing up a ratio, a statutory percentage and a bank covenant are all secondary considerations at best."
+    },
+    {
+      "question": "Is holding a large surplus of cash that earns nothing, rather than just the buffer you need, always the optimal financial strategy?",
+      "options": [
+        "Not really - because cash is subject to its own separate tax",
+        "Yes, as long as the deposit rate is running above inflation",
+        "Yes, because cash is the safest asset a company can hold",
+        "Not really - idle cash carries an opportunity cost"
+      ],
+      "explanation": "This is Treasury's central balancing problem: too little cash creates liquidity risk, but too much idle cash - not placed in safe short-term instruments, not used for growth, not returned to shareholders - creates an opportunity cost, with capital that could have generated value sitting still instead. Safety and a positive real deposit rate do not change that arithmetic, and cash is not taxed separately."
+    },
+    {
+      "question": "Inventory days 70, receivable days 50, payable days 40. What is the cash conversion cycle?",
+      "options": ["80 days", "160 days", "60 days", "20 days"],
+      "explanation": "70 + 50 − 40 = 80 days. This is how long the company has to fund itself before the cash comes back, and it grows in line with revenue."
+    },
+    {
+      "question": "Why can a fast-growing company be short of cash while still profitable?",
+      "options": [
+        "Because accounting profit always exceeds real cash flow in every single industry",
+        "Because the cash cycle is positive, so rising revenue raises working capital",
+        "Because a growing company has to pay its tax before it collects the cash",
+        "Because interest expense grows faster than the rate of revenue growth"
+      ],
+      "explanation": "Every extra unit of revenue drags inventory and receivables up with it. Growth therefore consumes cash before it produces cash - and that is why treasury management exists. Profit does not automatically exceed cash flow in every industry, tax timing is a second-order effect, and interest expense is a consequence of the funding rather than the cause of the squeeze."
+    },
+    {
+      "question": "Why does an undrawn credit facility matter to the treasury function as much as the cash balance?",
+      "options": [
+        "Because the company pays interest on the whole facility as soon as it is granted",
+        "Because the undrawn portion still counts as an asset on the balance sheet",
+        "Because it is a standby source of liquidity that can be drawn down quickly",
+        "Because the size of the facility determines the company's credit rating"
+      ],
+      "explanation": "Liquidity is not only the cash you hold but the cash you can get hold of immediately. The risk is that facilities usually carry financial covenants, so they are easy to withdraw exactly when the company needs them most - which is why they cannot be treated as equivalent to cash. Undrawn amounts are not assets, interest accrues on drawings, and the causation with ratings runs the other way."
+    }
+  ],
+  "keyTakeaways": [
+    "Profitable and liquid are two different things - a profitable company can still run out of the ability to pay",
+    "The liquidity buffer is protection against error in the cash flow forecast, not a sign of distrust in the forecast",
+    "Treasury has to balance liquidity safety against holding too much idle capital that earns nothing"
+  ],
+  "practicePrompt": {
+    "question": "A company reports profit of 200bn for the quarter, but Treasury warns it may not have the cash to pay salaries and suppliers next month. How can a company that is 'profitable' face a cash crisis?",
+    "options": [
+      "This cannot happen: if the company is profitable it must by definition hold matching cash",
+      "Profitable and liquid are different things: the profit may be sitting in receivables",
+      "This is certainly a sign of accounting fraud somewhere in the company's financial statements",
+      "The Treasury function is raising a false alarm, because profit always means enough cash"
+    ],
+    "explanation": "Being profitable and being liquid are two different things - a profitable company can still lose the ability to pay. This is exactly why the Treasury role, managing actual cash flow, matters alongside tracking accounting profit."
+  },
+  "application": {
+    "title": "A weekly cash forecast, thirteen weeks out",
+    "message": "Build a table of cash in and cash out week by week for the next thirteen weeks, including the lumpy items: the thirteenth-month salary, tax payments and loan principal falling due. This is the tool that shows you the week you run short, which a quarterly profit and loss statement never displays.",
+    "secondary": "Set the buffer as a number of weeks of fixed costs, not as an absolute figure - an absolute figure does not grow when the business grows."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A company with positive profit can still go under - it sounds absurd, but this is the single most important lesson that treasury management exists to guard against."
+    },
+    { "type": "heading", "text": "Profitable is not the same as liquid" },
+    {
+      "type": "paragraph",
+      "text": "A company can report positive accounting profit while its cash is trapped in receivables, inventory or long-lived assets - and if it cannot meet obligations as they fall due, it still becomes insolvent. The liquidity buffer is protection against forecast error, not a sign of distrust in the forecast. Treasury has to balance liquidity safety against holding too much idle capital that earns nothing - both extremes carry a cost."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Profitable and liquid are two different things - a profitable company can still lose the ability to pay",
+        "The liquidity buffer protects against cash flow forecast error, which is always present",
+        "Treasury has to balance liquidity safety against holding too much idle capital"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The cash conversion cycle",
+      "equation": "CCC = Inventory days + Receivable days − Payable days",
+      "variables": [
+        {
+          "symbol": "Inventory days",
+          "name": "DIO",
+          "description": "On average, how many days goods sit in the warehouse before they are sold."
+        },
+        {
+          "symbol": "Receivable days",
+          "name": "DSO",
+          "description": "On average, how many days after a sale the cash is actually collected from the customer."
+        },
+        {
+          "symbol": "Payable days",
+          "name": "DPO",
+          "description": "On average, how many days of credit the company gets from its suppliers."
+        }
+      ],
+      "example": {
+        "title": "A worked illustration",
+        "calculation": "60 inventory days + 45 receivable days − 30 payable days",
+        "result": "= 75 days",
+        "explanation": "The company has to fund 75 days of operations out of its own pocket. The more revenue grows, the larger the working capital requirement becomes - which is exactly why a fast-growing company can be short of cash while profitable."
+      }
+    },
+    { "type": "heading", "text": "The three jobs of the treasury function" },
+    {
+      "type": "list",
+      "items": [
+        "Securing liquidity: always having enough cash for obligations falling due, even when cash comes in more slowly than expected.",
+        "Optimising idle balances: money left doing nothing has a cost, because inflation erodes it and it forgoes a return. But placing it on too long a maturity breaks the first objective.",
+        "Managing financial risk: interest rate risk on floating-rate borrowings, FX risk for importers and exporters, and concentration risk from leaving too much money with a single institution."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How thick should the liquidity buffer be",
+      "text": "There is no universal number, but there is a way of thinking about it: the buffer has to be enough to survive the worst stretch the business could plausibly face - a large customer paying late, a low season running longer than expected, or a loan not being rolled over. A business with revenue concentrated in a few customers needs a markedly thicker buffer than one with thousands of small accounts."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Buffer too thin",
+        "text": "A single small setback - one large customer paying a month late - forces the business to borrow at short notice at a high rate, or to sell assets from a position of weakness."
+      },
+      "right": {
+        "label": "Buffer too thick",
+        "text": "Capital sits idle earning nothing, dragging down the return on capital employed. For a listed company this is also the question shareholders regularly ask about capital allocation."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Profit on paper does not pay the payroll at the end of the month.",
+        "Only real cash does that - which is why the treasury function exists."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Profitable and liquid are two different things - a profitable company can still lose the ability to pay",
+    "commonMistake": "Easy to miss: the liquidity buffer is protection against error in the cash flow forecast, not a sign of distrust in the forecast",
+    "action": "Treasury has to balance liquidity safety against holding too much idle capital that earns nothing"
+  }
+}

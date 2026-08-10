@@ -25,7 +25,7 @@
       "question": "Right on the expiration date, what will an option's Time Value equal?",
       "options": [
         "The initial premium minus the current intrinsic value",
-        "Exactly the difference between the market price and the strike",
+        "Exactly the difference between the market price and the strike price",
         "Zero, because there is no longer time for price to move further",
         "It cannot be determined without knowing the stock's volatility"
       ],

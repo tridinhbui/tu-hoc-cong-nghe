@@ -1,0 +1,133 @@
+{
+  "slug": "dao-duc-du-lieu-va-thien-lech-thuat-toan",
+  "title": "Data Thinking, Lesson 6: Data ethics - privacy, bias and accountability",
+  "subtitle": "Why a credit scoring model can discriminate without using any sensitive data at all",
+  "duration": "11 min",
+  "whyItMatters": "In finance, a data model decides who gets a loan, who is turned down, and who is flagged as risky. A mistake here does not stop at a number being off - it lands directly on real people, and usually hardest on the group that was already at a disadvantage.",
+  "openingQuestion": "A credit scoring model does not use gender as an input variable at all. Can it still discriminate by gender?",
+  "openingOptions": [
+    "No, because the gender variable was removed from the model",
+    "Yes, because other variables can correlate with gender",
+    "No, unless the model builder deliberately intervenes",
+    "Yes, but only if the training data is too small"
+  ],
+  "explanation": "Removing the sensitive variable is a necessary step and nowhere near a sufficient one. Occupation, gaps in employment history, area of residence, even spending habits can correlate strongly with gender or ethnicity, and the model will learn exactly that boundary through them. This is called a proxy variable, and the only way to detect it is to measure the outputs group by group - not to inspect the list of input variables.",
+  "diagram": [
+    { "label": "Is the historical data biased?", "arrow": true },
+    { "label": "Which variable is standing in for a sensitive one?", "arrow": true },
+    { "label": "Measure outcomes group by group", "arrow": true },
+    { "label": "Can the decision be explained?" }
+  ],
+  "realWorldExample": {
+    "company": "An application approval model learning from historical data",
+    "description": "A model trained on past approval decisions will relearn exactly the biases already present in those decisions. If a group of applicants was previously turned down more often because of an underwriter's prejudice, the model sees that group with a low approval rate and reproduces the same pattern - this time at greater scale, faster, and wearing the objectivity of a number. The model does not invent bias; it only automates what was already there."
+  },
+  "quiz": [
+    {
+      "question": "What is a proxy variable in a model?",
+      "options": [
+        "A variable used temporarily when the main one has too many missing values",
+        "A variable built by combining several original ones to reduce the data's dimensions",
+        "A seemingly neutral variable that correlates tightly with a sensitive trait",
+        "A variable that appears only in the test set and not in the training data"
+      ],
+      "explanation": "The postcode is the classic example: entirely neutral on paper, yet in many places it almost determines the demographic composition of an area. An imputation stand-in for missing values is a data-cleaning device, not a fairness problem. A combination of variables that reduces dimensionality is a feature engineering technique such as PCA. And a variable present only in the test set is a data leakage or schema error. A proxy is defined by correlation with a protected trait, not by how it was constructed."
+    },
+    {
+      "question": "Why can a model trained on historical data reproduce past injustice?",
+      "options": [
+        "Because historical data is stored in older formats and carries more technical errors",
+        "Because the rules in force when the data was collected differ from today's rules",
+        "Because the older data gets, the less accurate its individual fields become",
+        "Because the model learns patterns in old decisions, including prejudiced ones"
+      ],
+      "explanation": "A model cannot tell which patterns reflect genuine risk and which reflect the prejudice of whoever made the decisions before. It learns both the same way, with the same weight. Storage formats and field accuracy are data quality issues that would produce noise rather than a systematic skew against one group. And a change in regulation would alter which decisions were legal, not which patterns the model extracts. The bias is in the labels themselves - the outcomes the model is being taught to predict."
+    },
+    {
+      "question": "What is the most reliable way to test for bias?",
+      "options": [
+        "Measure approval rates and error rates separately for each group of concern",
+        "Review the input variable list to be sure no sensitive variable was left in",
+        "Enlarge the training set until every group has enough observations in it",
+        "Choose a simpler algorithm, since a more complex model is harder to keep in check"
+      ],
+      "explanation": "Bias lives in the outputs, not in the list of variables. Reviewing inputs feels reassuring but cannot see a proxy, which is neutral by construction. More training data fixes sampling noise, but if the historical labels are skewed, more of them only make the skew more confidently learned. And a simpler algorithm is easier to inspect without being any fairer, since a linear model will happily fit a proxy too. Only group-level measurement finds it, and that is also what a regulator will ask for."
+    },
+    {
+      "question": "Why does the ability to explain a decision matter so much in finance?",
+      "options": [
+        "Because explainable models tend to predict more accurately than complex ones",
+        "Because a rejected customer has a right to know why, and you must answer",
+        "Because an explainable model runs faster once deployed on a live system",
+        "Because current machine learning libraries only interpret certain model types"
+      ],
+      "explanation": "This is a legal requirement in many markets and an ethical one everywhere. 'The model decided so' is not an acceptable explanation to a person who has just been refused credit. Explainability is not a performance property: simpler models often give up some accuracy, and interpretability has nothing to do with execution speed. Library support is also not the constraint, since model-agnostic explanation methods exist. The reason is accountability - and it is also what lets you correct a model once it goes wrong."
+    },
+    {
+      "question": "Why does dropping the gender variable from a credit scoring model still fail to remove gender bias?",
+      "options": [
+        "Because historical datasets must always retain the gender field for validity checks",
+        "Because the model retains gender information from earlier training runs",
+        "Because many of the remaining variables correlate strongly with gender and proxy for it",
+        "Because regulation requires that outcomes be tracked and reported by gender"
+      ],
+      "explanation": "Occupation, career gaps, even spending habits can redraw the very boundary you have just erased. A model does not carry information across training runs; it is refitted from the data each time. And regulation requiring outcomes to be monitored by gender is a reason to measure, not the mechanism by which bias survives. The only trustworthy check is to measure approval rates and error rates by group at the output, rather than reviewing the list of inputs again."
+    }
+  ],
+  "keyTakeaways": [
+    "Removing sensitive variables is necessary but not sufficient - proxy variables still carry that information into the model",
+    "A model learning from old decisions automates the prejudices inside those decisions too",
+    "Bias has to be measured at the output, group by group, not by inspecting the variable list",
+    "Someone who is refused has a right to know why - 'the model decided so' is not an explanation",
+    "Collect the minimum: data you never collected is data that cannot leak"
+  ],
+  "practicePrompt": {
+    "question": "A new model has higher overall accuracy than the old one, but the false rejection rate for low-income customers has doubled. What should you do?",
+    "options": [
+      "Deploy it, since overall accuracy is now better than it was before",
+      "Fix it before deployment, because error costs fall unevenly across groups",
+      "Keep the old model, because the new one clearly has a technical defect",
+      "Collect more data about the low-income group first, then deploy it right away"
+    ],
+    "explanation": "Overall accuracy is an average, and as the cohort lesson showed, an average hides the structure underneath it. A model that improves for the majority group while getting worse for a minority one can still produce a better headline number. The question that has to be answered is who bears the cost of the errors, not what the average error rate happens to be."
+  },
+  "summary": {
+    "keyIdea": "Bias lives in the outputs group by group, not in the list of input variables",
+    "commonMistake": "Assuming that removing sensitive variables from the model settles the discrimination question",
+    "action": "For each model in use, measure approval rates and error rates separately for each of your main customer groups."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Pick one automated decision process in your organisation and answer four questions: which past decisions the training data came from, which variable might be standing in for a sensitive trait, how the outcomes differ across groups, and how a rejected customer would have the decision explained to them.",
+    "secondary": "If the last question has no answer, the first three matter less than it does."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This stage ends on the part that is taught least and has the most real consequences. In finance, a data model does not stop at describing the world - it decides who gets to borrow money and who does not."
+    },
+    { "type": "heading", "text": "Three responsibilities when working with data" },
+    {
+      "type": "conceptTable",
+      "title": "What has to be checked before a model is used for real",
+      "subtitle": "These three areas cover most of the ethical risk in applying data in finance",
+      "concepts": [
+        { "def": "The minimum collection principle: take only the data genuinely needed for the stated purpose. Data you never collected is data that cannot leak." },
+        { "def": "Measure outcomes group by group, not just overall accuracy. A model improving for the majority group may be getting worse for a minority one." },
+        { "def": "You must be able to answer why a specific application was rejected. This is a legal requirement in many markets and the precondition for fixing a model when it goes wrong." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why removing the sensitive variable is not enough",
+      "text": "A model that does not use gender can still learn the gender boundary through occupation, employment gaps or spending habits. A model that does not use ethnicity can still learn it through the postcode. This is not a programming error but the natural consequence of social data being interwoven. Reviewing the list of input variables feels safe but detects nothing; only measuring outcomes by group finds it."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A number is not neutral. It carries with it how it was collected, how the sample was chosen, and the past decisions that produced it.",
+        "These two stages close out the data section: you have the tools to find an answer, and the discipline to make that answer trustworthy."
+      ]
+    }
+  ]
+}

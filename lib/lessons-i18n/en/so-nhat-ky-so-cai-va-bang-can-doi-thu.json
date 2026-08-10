@@ -1,0 +1,186 @@
+{
+  "slug": "so-nhat-ky-so-cai-va-bang-can-doi-thu",
+  "title": "Bookkeeping, Lesson 2: From journal to statements - the path a transaction takes",
+  "subtitle": "General journal, general ledger, trial balance: three stages that turn thousands of entries into four pages of accounts",
+  "duration": "10 min",
+  "whyItMatters": "Knowing this path means knowing where to look when a number in the accounts looks wrong. Someone who does not know it stares at the statements and guesses; someone who does traces back to the exact entry that produced the figure.",
+  "openingQuestion": "How does the general ledger differ from the general journal?",
+  "openingOptions": [
+    "The journal is ordered by date, the ledger groups entries by account",
+    "The journal is written by a bookkeeper while the ledger is prepared by the chief accountant at period end",
+    "The journal records cash transactions and the ledger records non-cash transactions",
+    "The journal is an internal book while the ledger is the one filed with the tax authority"
+  ],
+  "explanation": "The same data, arranged two ways to answer two different questions. The general journal answers \"what happened on 12 March\" - it runs in date order and is where an entry is first recorded. The ledger answers \"how did the cash account move this period\" - it gathers every entry touching cash in one place to produce a closing balance. Without that gathering step, finding the cash balance would mean re-reading the whole journal from the start of the year. The financial statements take balances from the ledger, never from the journal.",
+  "diagram": [
+    {
+      "label": "Source documents (invoices, payment vouchers)"
+    },
+    {
+      "label": "General journal - ordered by date"
+    },
+    {
+      "label": "General ledger - grouped by account, producing balances"
+    },
+    {
+      "label": "Trial balance - checking total debits equal total credits"
+    },
+    {
+      "label": "Financial statements"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Accounting software and the trap inside it",
+    "description": "Misa, Fast or any other package does all three steps automatically: type in one entry and the ledger and the trial balance update instantly. Convenient - but it means a beginner never sees the path, so when a figure comes out wrong they have no idea where to start looking. Someone who knows the path opens the ledger for the suspect account and traces back to the original entry."
+  },
+  "quiz": [
+    {
+      "question": "What does the general journal order entries by?",
+      "options": [
+        "Transaction value, from the largest down to the smallest",
+        "The account number assigned to each account",
+        "The date on which the transaction occurred",
+        "The type of source document attached to each entry"
+      ],
+      "explanation": "The journal answers the question \"what happened that day\". To see how a single account moved you have to go to the ledger, which is the same data regrouped by account rather than by date. Ordering by value would make it impossible to reconstruct a day's activity, account number is precisely the ledger's arrangement rather than the journal's, and the document type is an attribute recorded against each entry rather than the sequence they sit in."
+    },
+    {
+      "question": "What is a trial balance for?",
+      "options": [
+        "Reconciling recorded balances against bank confirmations",
+        "Presenting assets and funding sources to outside readers",
+        "Comparing actual results against the budgeted plan",
+        "Checking whether total debit balances equal total credit balances"
+      ],
+      "explanation": "This is an internal check run before the statements are prepared. It is not the balance sheet - the names are similar enough to confuse, but the purposes are entirely different. External confirmations are a separate reconciliation exercise against third-party evidence, presenting the position to outsiders is what the balance sheet does, and comparing actual against plan is management reporting rather than bookkeeping."
+    },
+    {
+      "question": "If the trial balance balances, does that mean the books are correct?",
+      "options": [
+        "No - posting to the wrong account still leaves both sides equal",
+        "Yes, because any error at all would push the two sides apart",
+        "No, because an independent audit still has to confirm the figures",
+        "Yes, provided the balances agree with the source document for each entry"
+      ],
+      "explanation": "Debiting the wrong account still leaves the two totals equal to each other. A trial balance catches arithmetic errors only; it cannot catch a classification error, an omitted transaction, a duplicated entry or a reversed one. An audit is a separate assurance question rather than the reason the check is weak, and agreeing to source documents is exactly the work the trial balance does not do."
+    },
+    {
+      "question": "A figure in the accounts looks wrong. Where do you start?",
+      "options": [
+        "By comparing the figure against the same line last period",
+        "By opening the ledger for that account and tracing back to the entry",
+        "By reading the entire general journal from the start of the period in date order",
+        "By rebuilding the trial balance and checking whether the two totals still agree"
+      ],
+      "explanation": "The ledger gathers every entry touching that one account, so it is the shortest route from a suspect figure back to the document that created it. A prior-period comparison tells you something changed but not what; reading the journal in date order means filtering a whole month by hand to find a few lines; and rebuilding a trial balance that already balanced proves nothing, since a misposting leaves it balanced."
+    },
+    {
+      "question": "Where do the balances in the financial statements come from?",
+      "options": [
+        "The collected source documents for the whole period",
+        "The general journal, taken in date order",
+        "The ledger account for each individual account",
+        "The subsidiary ledger kept for each debtor and creditor"
+      ],
+      "explanation": "The ledger is where each account's closing balance is struck. The journal holds only loose entries that have not yet been added into a balance, source documents are the evidence behind those entries rather than a total, and a subsidiary ledger breaks one control account down by counterparty - useful for chasing a debtor, but not what the statements are assembled from."
+    }
+  ],
+  "practicePrompt": {
+    "question": "The trial balance agrees, but this month's revenue looks unusually high against previous months. What is the right first step?",
+    "options": [
+      "Open the revenue ledger account and trace back through the entries",
+      "Re-read the whole general journal from the start of the month in date order",
+      "Re-add the trial balance to rule out the possibility of an arithmetic error",
+      "Reconcile against the bank statement to see whether the cash has arrived"
+    ],
+    "explanation": "The ledger gathers every entry for one account in one place, so when you suspect a figure you open the ledger for exactly that account - the shortest route from the statements back to the documents. The general journal runs in date order rather than by account, so reading it means filtering a whole month by hand to find a few lines. Re-adding the trial balance helps nothing: it already agreed, and agreement only proves total debits equal total credits, not that the postings went to the right accounts - revenue booked to a different revenue account still balances. And the bank statement answers a question about cash, while revenue recognition does not move in step with cash."
+  },
+  "keyTakeaways": [
+    "Documents → journal (by date) → ledger (by account) → trial balance → statements.",
+    "A trial balance catches arithmetic errors only, never a posting to the wrong account.",
+    "Statement balances come from the ledger, not from the journal.",
+    "Suspect a figure and you open the ledger for that account and trace back - the shortest route there is."
+  ],
+  "summary": {
+    "keyIdea": "Documents → journal by date → ledger by account → trial balance → statements",
+    "commonMistake": "Believing that a trial balance which agrees means the books are right. It only catches arithmetic errors.",
+    "action": "When a figure in the statements looks doubtful, open the ledger for that very account and trace back to the journal."
+  },
+  "application": {
+    "title": "Tracing one figure back",
+    "message": "Pick a line from a small company's income statement, open the corresponding ledger account, and find the three largest entries that make it up.",
+    "secondary": "That is the shortest route from an aggregate figure back to the real transactions behind it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A mid-sized business generates a few thousand entries a month, and at year end it has to produce four pages of accounts. The path between those two points has three stages, and knowing them is knowing where to look when something is wrong."
+    },
+    {
+      "type": "heading",
+      "text": "Three stages"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "General journal",
+        "text": "Ordered by date. Answers: which transactions happened on 12 March. This is where an entry is first recorded."
+      },
+      "right": {
+        "label": "General ledger",
+        "text": "Grouped by account. Answers: how cash moved this period and how much is left. This is where the statements take their figures."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "The third stage is the trial balance: list the balance of every account and add up both sides to see whether they agree. It is the check run before the statements are prepared, and its name is close enough to the balance sheet to cause confusion - but one is an internal control tool and the other is a report published to outsiders."
+    },
+    {
+      "type": "heading",
+      "text": "Balancing does not mean correct"
+    },
+    {
+      "type": "callout",
+      "label": "Four errors a trial balance cannot catch",
+      "text": "Posting to the wrong account with the right amount; omitting a transaction entirely; recording both sides twice; reversing debit and credit. All four leave the two totals equal - so a trial balance that agrees proves only that no addition went wrong, not that the books reflect reality."
+    },
+    {
+      "type": "heading",
+      "text": "Why equal totals prove so little"
+    },
+    {
+      "type": "paragraph",
+      "text": "The trial balance adds up the debit side and the credit side of every account and compares the two figures. If they agree, it proves exactly one thing: every entry was recorded on both sides for the same amount. It does not prove those entries were right. Four kinds of error pass this test without leaving a trace - and all four are more common than an amount typed differently on the two sides."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four errors a trial balance cannot catch",
+      "subtitle": "Each leaves both totals unchanged, so the balance still agrees",
+      "concepts": [
+        {
+          "def": "Office rent posted to the marketing expense account. Both sides still agree and profit still comes out right, but every analysis by line item is now wrong.",
+          "en": "Misclassification"
+        },
+        {
+          "def": "Neither side is recorded, so nothing is out of balance. This is why reconciling to outside evidence - bank statements, warehouse records - is mandatory rather than optional.",
+          "en": "Omission"
+        },
+        {
+          "def": "The same invoice entered twice in full. The trial balance still agrees, and revenue or expense is inflated by exactly the value of that invoice.",
+          "en": "Duplication"
+        },
+        {
+          "def": "Debit and credit swapped within one entry. The two totals are unchanged, but the balances of the two accounts involved are out by twice the amount.",
+          "en": "Wrong direction"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Software does all three stages in one click, which makes it very easy never to see them at all.",
+        "But on the day a figure looks wrong, someone who knows the path finds it in ten minutes and someone who does not sits and guesses."
+      ]
+    }
+  ]
+}

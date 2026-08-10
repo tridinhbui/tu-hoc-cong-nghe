@@ -1,215 +1,207 @@
 {
- "slug": "rui-ro-vo-no",
- "title": "Default risk: bond credit ratings",
- "subtitle": "Credit ratings for bonds",
- "duration": "6 min",
- "openingQuestion": "What does a bond's credit rating tell you?",
- "openingOptions": [
-  "It tells you exactly whether that bond's price will rise or fall in the near future on the secondary market",
-  "It tells you the exact coupon rate that bond will pay investors on a periodic basis",
-  "It tells you the number of investors currently holding that bond at a given point in time",
-  "An independent assessment of the ability to repay on time"
- ],
- "explanation": "A credit rating is an independent assessment, based on analyzing the issuer's finances, cash flow, industry, and repayment history, meant to estimate how likely they are to repay on time. The higher the rating, the lower the default risk - but it is not an absolute guarantee, only an important reference.",
- "diagram": [
-  {
-   "label": "The rating agency analyzes cash flow, debt, industry",
-   "arrow": true
-  },
-  {
-   "label": "Assigns a credit grade to the issuer",
-   "arrow": true
-  },
-  {
-   "label": "A lower grade must pay a higher rate to sell",
-   "arrow": true
-  },
-  {
-   "label": "But a rating is only a reference, not a guarantee"
-  }
- ],
- "interactiveType": "bond",
- "realWorldExample": {
-  "company": "FiinRatings and VIS Rating in the Vietnamese market",
-  "description": "Globally, the three biggest rating agencies are S&P, Moody's, and Fitch, using scales like AAA (highest), AA, A, BBB (investment grade) down to BB, B, CCC (high risk, called 'junk bonds'). In Vietnam, after the 2022 corporate bond incidents, regulators began encouraging and gradually requiring credit ratings for some types of publicly issued bonds. Two licensed domestic rating agencies are FiinRatings (part of FiinGroup) and VIS Rating (Vietnam Investors Service, partnered with Moody's), playing a role similar to S&P/Moody's but focused on assessing Vietnamese companies."
- },
- "quiz": [
-  {
-   "question": "A bond rated BBB versus a bond rated AAA - what is true?",
-   "options": [
-    "A BBB-rated bond is actually considerably safer than an AAA-rated bond",
-    "Both rating levels carry an essentially identical degree of risk for the investor",
-    "AAA is by rule reserved solely for government bonds, while BBB is always a corporate bond",
-    "BBB carries higher default risk than AAA, so it usually pays a higher rate to compensate investors, even when both bonds sit at the exact same rung of the credit-rating scale"
-   ],
-   "correct": 3,
-   "explanation": "AAA is the highest rating, reflecting the lowest default risk. BBB, while still in the 'investment grade' group, sits many notches below AAA, so its issuer must pay a higher rate to attract investors willing to take on the correspondingly higher risk."
-  },
-  {
-   "question": "Is a credit rating an absolute guarantee that a bond will never default?",
-   "options": [
-    "Yes, the rating agency must pay compensation if its assessment turns out wrong",
-    "No, a rating is only a probability assessment made at a given point in time",
-    "Yes, a high rating means the issuing company cannot possibly default",
-    "No, a rating is only used for income tax calculation purposes"
-   ],
-   "correct": 1,
-   "explanation": "A credit rating is a probability assessment at a given point in time, based on information the company provides and the rating agency's analysis. A company's situation can change, and even major rating agencies have gotten it wrong before (for example, many US mortgage-related bonds carried high ratings before the 2008 financial crisis and then defaulted en masse)."
-  },
-  {
-   "question": "Where does the line sit between the 'investment grade' group and the 'high yield' (junk) group?",
-   "options": [
-    "The line is set individually by each investor; there's no common benchmark at all",
-    "From AAA down to AA is investment grade, and everything else is high yield",
-    "BBB- and above is investment grade, and below that is high yield",
-    "A and above is investment grade, and any grade containing the letter B is high yield"
-   ],
-   "correct": 2,
-   "explanation": "BBB- (S&P/Fitch) or Baa3 (Moody's) is the dividing line. It matters for more than naming: many pension and insurance funds are restricted by rule to holding only investment grade, so a bond that falls below this line faces forced selling."
-  },
-  {
-   "question": "Why do businesses agree to pay a fee to get a credit rating?",
-   "options": [
-    "Because the law requires every company issuing bonds to hold a rating, a distinction worth checking before relying on it",
-    "Because having a rating exempts a company from periodic financial disclosure",
-    "Because the rating agency commits to compensating investors if the company defaults",
-    "Because a good rating lets them borrow at a significantly lower interest rate"
-   ],
-   "correct": 3,
-   "explanation": "The rate gap between AA and BB can be several percentage points a year - on a loan worth trillions, those savings dwarf the rating fee many times over. This is also a point of controversy: the rated party is the one paying the rating agency."
-  },
-  {
-   "question": "Which weakness of the credit-rating system did the 2008 crisis expose?",
-   "options": [
-    "Many AAA-rated products still collapsed - a model-based rating can be wrong",
-    "Ratings were updated too often for investors to keep track, which happened during a period when interest rates were rising rather than falling",
-    "Rating agencies stopped operating entirely during that period",
-    "Ratings only apply to government bonds, not to private products"
-   ],
-   "correct": 0,
-   "explanation": "A wave of AAA-rated mortgage-backed securities lost nearly all their value. The lesson isn't to discard ratings, but to understand them for what they are: an opinion based on a model and past data, not a guarantee."
-  },
-  {
-   "question": "In Vietnam, what characterized most privately-placed corporate bonds issued before 2022?",
-   "options": [
-    "All of them were rated by two international agencies",
-    "Most had no independent credit rating at all",
-    "All of them were required to have a bank fully guarantee payment to investors",
-    "They were sold only to institutional investors, so individuals carried no risk"
-   ],
-   "correct": 1,
-   "explanation": "The domestic credit-rating market (FiinRatings, VIS Rating) was newly formed, so individual investors buying privately placed bonds had almost no independent assessment to rely on - they went only on the interest rate. That was the backdrop to the 2022 collapses."
-  }
- ],
- "keyTakeaways": [
-  "A credit rating assesses a bond issuer's ability to repay on time, from AAA (safest) down to high-risk levels such as CCC",
-  "Globally there are S&P, Moody's, and Fitch; in Vietnam there are FiinRatings and VIS Rating assessing domestic companies",
-  "A higher rating usually comes with a lower rate (lower risk), and a lower rating with a higher rate (higher risk) - but a rating isn't an absolute guarantee, only a reference tool"
- ],
- "practicePrompt": {
-  "question": "Company A's bond was rated AAA when issued 2 years ago. The company has since run into business trouble, and the rating agency just downgraded it to BB. What does this mean for you, as someone holding that bond?",
-  "options": [
-   "Company A's default risk has risen significantly; a rating only reflects the assessment made at the time of issuance",
-   "Nothing has changed, because a bond rated AAA at issuance keeps that same level of safety forever, and this stays true no matter how the company's financial situation later develops",
-   "The issuer is required to immediately return the full principal to you the moment the rating is downgraded",
-   "The downgrade only affects new investors buying in the future and has nothing to do with existing holders, though the reasoning behind it is easy to miss"
+  "slug": "rui-ro-vo-no",
+  "title": "Default risk: bond credit ratings",
+  "subtitle": "Credit ratings for bonds",
+  "duration": "6 min",
+  "openingQuestion": "What does a bond's credit rating tell you?",
+  "openingOptions": [
+    "It tells you exactly whether that bond's price will rise or fall in the near future on the secondary market",
+    "It tells you the exact coupon rate that bond will pay investors on a periodic basis",
+    "It tells you the number of investors currently holding that bond at a given point in time",
+    "An independent assessment of the ability to repay on time"
   ],
-  "correct": 0,
-  "explanation": "A credit rating reflects an assessment made at a specific point in time, not a permanent guarantee - when a company's financial situation worsens, its rating can be downgraded, signaling rising default risk even for existing bondholders."
- },
- "summary": {
-  "keyIdea": "A credit rating assesses a bond issuer's ability to repay on time, from AAA (safest) down to high-risk levels such as CCC",
-  "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
-  "action": "Globally there are S&P, Moody's, and Fitch; in Vietnam there are FiinRatings and VIS Rating assessing domestic companies"
- },
- "application": {
-  "title": "Look up a credit rating",
-  "message": "This lesson already gave a real figure on the share of Vietnamese corporate bonds with a credit rating (only 1.6%) - see the section above. Now look up for yourself whether a company you're interested in has been rated.",
-  "secondary": "A rating isn't an absolute guarantee, but ignoring it means ignoring an important clue."
- },
- "sections": [
-  {
-   "type": "lead",
-   "text": "How do you know whether a corporate bond is 'trustworthy' when you don't have the time or expertise to analyze the issuer's financial statements yourself? That is exactly why credit ratings exist."
-  },
-  {
-   "type": "heading",
-   "text": "What is a credit rating?"
-  },
-  {
-   "type": "paragraph",
-   "text": "Credit rating agencies are companies specializing in analyzing an issuer's (company or government) financial position, cash flow, debt level, industry, and repayment history, then assigning a score or symbol representing their ability to repay on time. The three largest agencies in the world are S&P, Moody's, and Fitch, using a common rating scale as follows."
-  },
-  {
-   "type": "conceptTable",
-   "title": "Common credit rating scale",
-   "subtitle": "Following the S&P/Fitch standard (Moody's uses equivalent symbols)",
-   "concepts": [
+  "explanation": "A credit rating is an independent assessment, based on analyzing the issuer's finances, cash flow, industry, and repayment history, meant to estimate how likely they are to repay on time. The higher the rating, the lower the default risk - but it is not an absolute guarantee, only an important reference.",
+  "diagram": [
     {
-     "vi": "AAA / AA / A",
-     "en": "Investment Grade (high)",
-     "def": "Very low default risk, usually government bonds or leading corporations, low interest rate"
+      "label": "The rating agency analyzes cash flow, debt, industry",
+      "arrow": true
     },
     {
-     "vi": "BBB",
-     "en": "Investment Grade (borderline)",
-     "def": "Still considered safe to invest in, but at the lowest tier of this group"
+      "label": "Assigns a credit grade to the issuer",
+      "arrow": true
     },
     {
-     "vi": "BB / B / CCC and below",
-     "en": "High-Yield / Junk Bond",
-     "def": "Significantly higher default risk, and interest must be much higher to compensate for it"
+      "label": "A lower grade must pay a higher rate to sell",
+      "arrow": true
+    },
+    {
+      "label": "But a rating is only a reference, not a guarantee"
     }
-   ]
+  ],
+  "realWorldExample": {
+    "company": "FiinRatings and VIS Rating in the Vietnamese market",
+    "description": "Globally, the three biggest rating agencies are S&P, Moody's, and Fitch, using scales like AAA (highest), AA, A, BBB (investment grade) down to BB, B, CCC (high risk, called 'junk bonds'). In Vietnam, after the 2022 corporate bond incidents, regulators began encouraging and gradually requiring credit ratings for some types of publicly issued bonds. Two licensed domestic rating agencies are FiinRatings (part of FiinGroup) and VIS Rating (Vietnam Investors Service, partnered with Moody's), playing a role similar to S&P/Moody's but focused on assessing Vietnamese companies."
   },
-  {
-   "type": "heading",
-   "text": "Credit ratings in Vietnam"
+  "quiz": [
+    {
+      "question": "A bond rated BBB versus a bond rated AAA - what is true?",
+      "options": [
+        "A BBB-rated bond is actually considerably safer than an AAA-rated bond",
+        "Both rating levels carry an essentially identical degree of risk for the investor",
+        "AAA is by rule reserved solely for government bonds, while BBB is always a corporate bond",
+        "BBB carries higher default risk than AAA, so it usually pays a higher rate to compensate investors, even when both bonds sit at the exact same rung of the credit-rating scale"
+      ],
+      "explanation": "AAA is the highest rating, reflecting the lowest default risk. BBB, while still in the 'investment grade' group, sits many notches below AAA, so its issuer must pay a higher rate to attract investors willing to take on the correspondingly higher risk."
+    },
+    {
+      "question": "Is a credit rating an absolute guarantee that a bond will never default?",
+      "options": [
+        "Yes, the rating agency must pay compensation if its assessment turns out wrong",
+        "No, a rating is only a probability assessment made at a given point in time",
+        "Yes, a high rating means the issuing company cannot possibly default",
+        "No, a rating is only used for income tax calculation purposes"
+      ],
+      "explanation": "A credit rating is a probability assessment at a given point in time, based on information the company provides and the rating agency's analysis. A company's situation can change, and even major rating agencies have gotten it wrong before (for example, many US mortgage-related bonds carried high ratings before the 2008 financial crisis and then defaulted en masse)."
+    },
+    {
+      "question": "Where does the line sit between the 'investment grade' group and the 'high yield' (junk) group?",
+      "options": [
+        "The line is set individually by each investor; there's no common benchmark at all",
+        "From AAA down to AA is investment grade, and everything else is high yield",
+        "BBB- and above is investment grade, and below that is high yield",
+        "A and above is investment grade, and any grade containing the letter B is high yield"
+      ],
+      "explanation": "BBB- (S&P/Fitch) or Baa3 (Moody's) is the dividing line. It matters for more than naming: many pension and insurance funds are restricted by rule to holding only investment grade, so a bond that falls below this line faces forced selling."
+    },
+    {
+      "question": "Why do businesses agree to pay a fee to get a credit rating?",
+      "options": [
+        "Because the law requires every company issuing bonds to hold a rating, a distinction worth checking before relying on it",
+        "Because having a rating exempts a company from periodic financial disclosure",
+        "Because the rating agency commits to compensating investors if the company defaults",
+        "Because a good rating lets them borrow at a significantly lower interest rate"
+      ],
+      "explanation": "The rate gap between AA and BB can be several percentage points a year - on a loan worth trillions, those savings dwarf the rating fee many times over. This is also a point of controversy: the rated party is the one paying the rating agency."
+    },
+    {
+      "question": "Which weakness of the credit-rating system did the 2008 crisis expose?",
+      "options": [
+        "Many AAA-rated products still collapsed - a model-based rating can be wrong",
+        "Ratings were updated too often for investors to keep track, which happened during a period when interest rates were rising rather than falling",
+        "Rating agencies stopped operating entirely during that period",
+        "Ratings only apply to government bonds, not to private products"
+      ],
+      "explanation": "A wave of AAA-rated mortgage-backed securities lost nearly all their value. The lesson isn't to discard ratings, but to understand them for what they are: an opinion based on a model and past data, not a guarantee."
+    },
+    {
+      "question": "In Vietnam, what characterized most privately-placed corporate bonds issued before 2022?",
+      "options": [
+        "All of them were rated by two international agencies",
+        "Most had no independent credit rating at all",
+        "All of them were required to have a bank fully guarantee payment to investors",
+        "They were sold only to institutional investors, so individuals carried no risk"
+      ],
+      "explanation": "The domestic credit-rating market (FiinRatings, VIS Rating) was newly formed, so individual investors buying privately placed bonds had almost no independent assessment to rely on - they went only on the interest rate. That was the backdrop to the 2022 collapses."
+    }
+  ],
+  "keyTakeaways": [
+    "A credit rating assesses a bond issuer's ability to repay on time, from AAA (safest) down to high-risk levels such as CCC",
+    "Globally there are S&P, Moody's, and Fitch; in Vietnam there are FiinRatings and VIS Rating assessing domestic companies",
+    "A higher rating usually comes with a lower rate (lower risk), and a lower rating with a higher rate (higher risk) - but a rating isn't an absolute guarantee, only a reference tool"
+  ],
+  "practicePrompt": {
+    "question": "Company A's bond was rated AAA when issued 2 years ago. The company has since run into business trouble, and the rating agency just downgraded it to BB. What does this mean for you, as someone holding that bond?",
+    "options": [
+      "Company A's default risk has risen significantly; a rating only reflects the assessment made at the time of issuance",
+      "Nothing has changed, because a bond rated AAA at issuance keeps that same level of safety forever, and this stays true no matter how the company's financial situation later develops",
+      "The issuer is required to immediately return the full principal to you the moment the rating is downgraded",
+      "The downgrade only affects new investors buying in the future and has nothing to do with existing holders, though the reasoning behind it is easy to miss"
+    ],
+    "explanation": "A credit rating reflects an assessment made at a specific point in time, not a permanent guarantee - when a company's financial situation worsens, its rating can be downgraded, signaling rising default risk even for existing bondholders."
   },
-  {
-   "type": "paragraph",
-   "text": "Before 2022, Vietnam's corporate bond market had almost no mandatory credit-rating requirement - one of the reasons investors found it hard to assess risk accurately, leading to incidents like Tan Hoang Minh and Van Thinh Phat. Regulators have since gradually tightened rules, encouraging and moving toward requiring ratings for certain public issuances. The two licensed domestic credit-rating agencies are FiinRatings and VIS Rating (in technical partnership with Moody's), specializing in assessing domestically listed and bond-issuing companies."
+  "summary": {
+    "keyIdea": "A credit rating assesses a bond issuer's ability to repay on time, from AAA (safest) down to high-risk levels such as CCC",
+    "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
+    "action": "Globally there are S&P, Moody's, and Fitch; in Vietnam there are FiinRatings and VIS Rating assessing domestic companies"
   },
-  {
-   "type": "callout",
-   "label": "Important note",
-   "text": "A high rating doesn't mean 'cannot default'. During the 2008 financial crisis, many US real-estate-related bonds were once rated AAA by major agencies but later lost nearly all their value. A rating is a reference tool based on the information and analysis available at the time it was made, not an absolute promise."
+  "application": {
+    "title": "Look up a credit rating",
+    "message": "This lesson already gave a real figure on the share of Vietnamese corporate bonds with a credit rating (only 1.6%) - see the section above. Now look up for yourself whether a company you're interested in has been rated.",
+    "secondary": "A rating isn't an absolute guarantee, but ignoring it means ignoring an important clue."
   },
-  {
-   "type": "list",
-   "items": [
-    "The higher the rating → the lower the rate the issuer needs to pay (lower risk, investors don't demand as much compensation)",
-    "The lower the rating → the higher the rate needed to compensate investors for the default risk they're accepting",
-    "When a bond is downgraded mid-way, its price on the secondary market usually falls sharply as investors reassess the risk"
-   ]
-  },
-  {
-   "type": "paragraph",
-   "text": "For a beginner, there's no need to read a detailed rating report yourself. What matters is understanding the principle: if you see a corporate bond offering a rate far above the common market level, ask why - the likely answer is that the issuer's credit risk is correspondingly high."
-  },
-  {
-   "type": "heading",
-   "text": "A notable fact: very few Vietnamese corporate bonds carry a credit rating"
-  },
-  {
-   "type": "list",
-   "items": [
-    "Only about 1.6% of the total value of corporate bonds issued in Vietnam (2025) carries an independent credit rating - most investors buy bonds with no third-party risk assessment at all",
-    "5 agencies are licensed to provide credit ratings in Vietnam: FiinRatings, VIS Rating, Saigon Ratings, S&I, and Thien Minh - all have only been operating since around 2021",
-    "This is one reason the 2022 corporate bond crisis (Tan Hoang Minh, Van Thinh Phat) caused such heavy damage: most individual investors had no independent tool at all to assess default risk before buying"
-   ]
-  },
-  {
-   "type": "callout",
-   "label": "How to look it up yourself",
-   "text": "Go to visrating.com or fiinratings.vn, find the public credit-rating results section, and check whether the company whose bond you're interested in has been rated - if not, that alone is a risk signal worth caution."
-  },
-  {
-   "type": "closing",
-   "lines": [
-    "A credit rating helps you quickly estimate a bond's default risk, even though it isn't an absolute guarantee.",
-    "A high interest rate always comes with higher risk - this principle has no exception in the bond market."
-   ]
-  }
- ]
+  "sections": [
+    {
+      "type": "lead",
+      "text": "How do you know whether a corporate bond is 'trustworthy' when you don't have the time or expertise to analyze the issuer's financial statements yourself? That is exactly why credit ratings exist."
+    },
+    {
+      "type": "heading",
+      "text": "What is a credit rating?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Credit rating agencies are companies specializing in analyzing an issuer's (company or government) financial position, cash flow, debt level, industry, and repayment history, then assigning a score or symbol representing their ability to repay on time. The three largest agencies in the world are S&P, Moody's, and Fitch, using a common rating scale as follows."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Common credit rating scale",
+      "subtitle": "Following the S&P/Fitch standard (Moody's uses equivalent symbols)",
+      "concepts": [
+        {
+          "vi": "AAA / AA / A",
+          "en": "Investment Grade (high)",
+          "def": "Very low default risk, usually government bonds or leading corporations, low interest rate"
+        },
+        {
+          "vi": "BBB",
+          "en": "Investment Grade (borderline)",
+          "def": "Still considered safe to invest in, but at the lowest tier of this group"
+        },
+        {
+          "vi": "BB / B / CCC and below",
+          "en": "High-Yield / Junk Bond",
+          "def": "Significantly higher default risk, and interest must be much higher to compensate for it"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Credit ratings in Vietnam"
+    },
+    {
+      "type": "paragraph",
+      "text": "Before 2022, Vietnam's corporate bond market had almost no mandatory credit-rating requirement - one of the reasons investors found it hard to assess risk accurately, leading to incidents like Tan Hoang Minh and Van Thinh Phat. Regulators have since gradually tightened rules, encouraging and moving toward requiring ratings for certain public issuances. The two licensed domestic credit-rating agencies are FiinRatings and VIS Rating (in technical partnership with Moody's), specializing in assessing domestically listed and bond-issuing companies."
+    },
+    {
+      "type": "callout",
+      "label": "Important note",
+      "text": "A high rating doesn't mean 'cannot default'. During the 2008 financial crisis, many US real-estate-related bonds were once rated AAA by major agencies but later lost nearly all their value. A rating is a reference tool based on the information and analysis available at the time it was made, not an absolute promise."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The higher the rating → the lower the rate the issuer needs to pay (lower risk, investors don't demand as much compensation)",
+        "The lower the rating → the higher the rate needed to compensate investors for the default risk they're accepting",
+        "When a bond is downgraded mid-way, its price on the secondary market usually falls sharply as investors reassess the risk"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "For a beginner, there's no need to read a detailed rating report yourself. What matters is understanding the principle: if you see a corporate bond offering a rate far above the common market level, ask why - the likely answer is that the issuer's credit risk is correspondingly high."
+    },
+    {
+      "type": "heading",
+      "text": "A notable fact: very few Vietnamese corporate bonds carry a credit rating"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Only about 1.6% of the total value of corporate bonds issued in Vietnam (2025) carries an independent credit rating - most investors buy bonds with no third-party risk assessment at all",
+        "5 agencies are licensed to provide credit ratings in Vietnam: FiinRatings, VIS Rating, Saigon Ratings, S&I, and Thien Minh - all have only been operating since around 2021",
+        "This is one reason the 2022 corporate bond crisis (Tan Hoang Minh, Van Thinh Phat) caused such heavy damage: most individual investors had no independent tool at all to assess default risk before buying"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "How to look it up yourself",
+      "text": "Go to visrating.com or fiinratings.vn, find the public credit-rating results section, and check whether the company whose bond you're interested in has been rated - if not, that alone is a risk signal worth caution."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A credit rating helps you quickly estimate a bond's default risk, even though it isn't an absolute guarantee.",
+        "A high interest rate always comes with higher risk - this principle has no exception in the bond market."
+      ]
+    }
+  ]
 }

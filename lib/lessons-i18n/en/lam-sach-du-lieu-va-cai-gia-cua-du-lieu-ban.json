@@ -1,0 +1,185 @@
+{
+  "slug": "lam-sach-du-lieu-va-cai-gia-cua-du-lieu-ban",
+  "title": "Data, Lesson 3: Cleaning data - the part that takes the most time and gets talked about the least",
+  "subtitle": "Missing, duplicated, wrong type, wrong unit: four kinds of dirt, and why deleting is not always right",
+  "duration": "12 min",
+  "whyItMatters": "Newcomers picture analytical work as building models and drawing charts. In reality most of the time goes into making the data usable. It is also where the worst mistakes are born, because a bad cleaning decision raises no error - it just quietly shifts your conclusion.",
+  "openingQuestion": "An income column has 15% of its values missing. Which treatment is safest?",
+  "openingOptions": [
+    "Delete every row with a gap so the data set is completely clean",
+    "Fill the gaps with the mean so the figures are complete again",
+    "Find out why they are missing first",
+    "Put a zero in the empty cells"
+  ],
+  "explanation": "The first question to answer is whether the data is missing at random or missing systematically. If the gaps come from random data-entry slips, deleting the rows is usually acceptable. But if high earners tend to decline to state their income, deleting those rows drags the average income below the truth - and filling in the mean is worse still, because it both gets the value wrong and artificially narrows the dispersion. The missingness itself is information.",
+  "diagram": [
+    {
+      "label": "Missing: at random or systematic?"
+    },
+    {
+      "label": "Duplicates: real, or created by a join?"
+    },
+    {
+      "label": "Wrong type: dates, numbers, strings"
+    },
+    {
+      "label": "Outliers: an entry error, or a genuine value?"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An income survey and the systematic-missingness trap",
+    "description": "A household income survey has a high non-response rate in the top income bracket - that group is reluctant to disclose. If you simply average the answers you do have, the figure comes out materially below the truth, and every policy conclusion built on it tilts the same way. What makes it dangerous is that the data looks perfectly normal: no error cells, no warnings, just a wrong number."
+  },
+  "quiz": [
+    {
+      "question": "Why is filling missing cells with the mean a risky treatment?",
+      "options": [
+        "Because computing a mean requires the data set to be completely free of gaps first",
+        "Because it artificially narrows the dispersion, making the data look firmer than it is",
+        "Because the mean is higher than the median in most financial data sets anyway",
+        "Because modern statistical packages have dropped this method from their libraries entirely"
+      ],
+      "explanation": "Every filled cell sits exactly at the centre, so the standard deviation falls. The confidence intervals you compute afterwards come out narrower than the truth, and you end up more confident than you have any right to be. The other options fail on the facts: a mean can be computed on whatever values are present, the mean-versus-median relationship depends on the skew of each particular data set, and mean imputation is still shipped in every mainstream statistical library precisely because it is sometimes defensible."
+    },
+    {
+      "question": "Before deleting duplicate rows, what do you need to check?",
+      "options": [
+        "That the duplicate rows sit next to each other once the table is sorted by its key column",
+        "That the duplicates account for no more than five percent of all the rows in the table",
+        "That they are true duplicates, not rows a previous join multiplied out",
+        "That the table has been backed up to a separate file before the deletion is run"
+      ],
+      "explanation": "Duplicates created by a bad join are a symptom, not the disease. Delete them and you hide the join error, and you will meet it again somewhere else, harder to find. Sorting tells you nothing about the cause, a five-percent rule of thumb is arbitrary, and a backup is sensible housekeeping but it does not answer the question of whether these rows were ever supposed to exist."
+    },
+    {
+      "question": "A very large outlier appears in the revenue column. What should you do first?",
+      "options": [
+        "Remove it immediately, since outliers always distort every statistic downstream",
+        "Move the whole column onto a log scale so the value no longer stands out",
+        "Replace it with the second-largest value in the column to preserve the ranking",
+        "Check whether it is a data-entry error or a large transaction that genuinely happened"
+      ],
+      "explanation": "In finance the outlier is usually the most interesting thing in the column rather than something to strip out. An unusually large contract may be the whole story, and deleting it deletes the finding. Log-scaling and capping at the second-largest value both make the chart look calmer without answering the only question that matters, which is whether the number is real."
+    },
+    {
+      "question": "Why should you log the cleaning steps rather than editing the raw data directly?",
+      "options": [
+        "Because each cleaning step is a decision that can be wrong, and has to be reviewable later",
+        "Because raw data is usually stored read-only so it cannot be edited in place",
+        "Because logging the steps makes the final data file many times smaller",
+        "Because the analysis tools in use today simply do not permit overwriting the original source file"
+      ],
+      "explanation": "Cleaning is not a neutral technical operation, it is a chain of judgements. Three months later, when the result is challenged, you need to be able to read back what you decided. The other three answers all describe a technical constraint that does not exist - raw files are usually perfectly writable, the log adds size rather than saving it, and every common tool will happily overwrite a source file if you let it."
+    },
+    {
+      "question": "The income column is blank mostly for high-income customers. What happens if you delete those rows?",
+      "options": [
+        "It only shrinks the sample size; the shape of the income distribution stays exactly the same",
+        "The remaining sample skews low, so every conclusion drawn from it skews with it",
+        "It inflates the dispersion artificially because the upper tail is given extra weight",
+        "Conclusions are unchanged as long as fewer than 5% of observations are dropped"
+      ],
+      "explanation": "This is the difference between missing at random and missing systematically. Missing at random costs you only sample size; missing systematically means the deletion is a filter on one group - here the high earners, so the average income comes out below the truth, with nothing in the data to tell you so."
+    }
+  ],
+  "keyTakeaways": [
+    "Ask why the data is missing before deciding how to treat it - systematic gaps bend the conclusion",
+    "Mean imputation narrows dispersion artificially, leaving you more confident than you should be",
+    "Duplicates from a bad join are a symptom: deleting them hides the real error",
+    "In finance an outlier is usually a finding, not garbage",
+    "Log your cleaning steps, because each one is a judgement that can be wrong"
+  ],
+  "practicePrompt": {
+    "question": "The transaction date column has three formats mixed together in one file. What is the right treatment?",
+    "options": [
+      "Delete the rows whose format differs from the majority format",
+      "Standardise all three onto a single format, and re-check a few sample rows from each group",
+      "Leave it as is because the software will work it out",
+      "Convert the whole column to text so it is at least consistent"
+    ],
+    "explanation": "Re-checking a few sample rows is the most important step and the one most often skipped. The danger sits with dates where both readings are valid: 03/04 could be 3 April or 4 March, and no error is ever raised. Only cross-checking against another source will tell you which."
+  },
+  "summary": {
+    "keyIdea": "Cleaning data is a chain of business judgements, not a technical operation",
+    "commonMistake": "Deleting or filling to make the data look clean, without asking why it is dirty",
+    "action": "For each cleaning decision, write one line of reasoning beside it. Three months from now you will need it."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take a real data set and answer four questions before you analyse anything: which columns have missing values and what kind of missingness, whether there are duplicate rows and why, which columns are the wrong type, and whether the minimum and maximum of each numeric column are plausible.",
+    "secondary": "Those four questions cost fifteen minutes and save you days of rework."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Nobody mentions this part when they describe data analysis as a career, but it takes most of the real time. And unlike model building, bad cleaning raises no error - it just quietly walks you to a different conclusion."
+    },
+    {
+      "type": "heading",
+      "text": "Four kinds of dirt and the question that goes with each"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Recognising dirty data",
+      "subtitle": "Each kind carries a question you must answer before you touch anything",
+      "concepts": [
+        {
+          "def": "The question: missing at random or missing systematically? If one group is missing far more than the others, that alone is a finding."
+        },
+        {
+          "def": "The question: duplicated in the source data, or multiplied out by a join? Those two causes need entirely different treatments."
+        },
+        {
+          "def": "The question: what is this column being read as? Dates read as text, numbers with separators read as text - both cause silent errors."
+        },
+        {
+          "def": "The question: an entry error or a genuine value? In finance most are genuine, and often the most worthwhile part of the analysis."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Wrong units: the hardest dirt to see",
+      "text": "A column that mixes dong with thousands of dong, or mixes rates written as 0.15 with rates written as 15, passes every automated check because both are valid numbers. The only way to spot it is to look at the distribution: if a margin column has values clustered both around 0.2 and around 20, two units are almost certainly mixed together."
+    },
+    {
+      "type": "heading",
+      "text": "Deleting rows with missing data is a decision, not an operation"
+    },
+    {
+      "type": "paragraph",
+      "text": "A survey data set has 20% of its rows missing the income column. Deleting them all is the fastest route and usually the wrong one - because the reason people leave the income box blank is rarely random. Very high earners and very low earners are both more likely to skip that question than the people in the middle. Once they are deleted the sample looks tidy, every calculation runs smoothly, and the average income no longer describes the population you started with. Cleaner data, worse conclusion."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three treatments for missing data, three different assumptions",
+      "subtitle": "None of them is neutral - each asserts something about why the data is missing",
+      "concepts": [
+        {
+          "def": "Only valid when the missingness has nothing to do with the missing value or with the other variables. Testable: compare the other characteristics of the missing group against the complete group, and if they differ the assumption has already failed.",
+          "en": "Assumes missing completely at random"
+        },
+        {
+          "def": "Every filled value sits at the centre, so dispersion is artificially compressed and every confidence interval computed afterwards is narrower than reality. Acceptable when the missing share is small, dangerous when it is 20%.",
+          "en": "Keeps sample size, loses variance"
+        },
+        {
+          "def": "Keep the row, fill in a conventional value, and add a column recording that this cell was originally blank. If the non-response itself carries meaning - and it usually does - this is the only approach that does not throw that meaning away.",
+          "en": "Treats missingness as information"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Wrong units are the hardest dirt to see",
+      "text": "A column mixing dong with thousands of dong, or rates written as 0.15 with rates written as 15, passes every data-type check - they are all valid numbers. It passes the missing-value check and the duplicate check too. The only way to catch it is the distribution: a histogram with two clusters exactly a thousand times apart is unmistakable. This is why the first step with a new data set should be plotting the distribution of every numeric column, not running the first calculation."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Every cleaning decision is an assumption about the real world. Write it down.",
+        "The next lesson moves to the part people do see: presenting data visually."
+      ]
+    }
+  ]
+}

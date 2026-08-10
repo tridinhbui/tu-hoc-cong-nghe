@@ -1,0 +1,161 @@
+{
+  "slug": "cfa-ethics-case-standard-3-4",
+  "title": "CFA Ethics 6: In-depth case studies - Standard III & IV",
+  "subtitle": "Duties to Clients and Duties to Employers, worked through real situations",
+  "duration": "9 min",
+  "whyItMatters": "Standard III (duties to clients) and Standard IV (duties to employers) are routinely confused on the exam because both are framed around 'loyalty' - this lesson makes it clear which one applies when.",
+  "openingQuestion": "A fund manager is planning to resign and set up his own firm. Before formally leaving, he quietly contacts his current firm's clients to invite them to move across to his new venture. What does this breach?",
+  "openingOptions": [
+    "No violation, since clients are free to choose their own fund manager",
+    "A breach of Standard IV(A) Loyalty to the current employer",
+    "A breach of Standard III, because it involves the firm's clients",
+    "A breach only if the new firm operates in the same field as the old"
+  ],
+  "explanation": "This is a textbook breach of Standard IV(A) - Loyalty. While still an employee, the fund manager owes a duty of loyalty to his current employer, and quietly soliciting clients for a new venture BEFORE formally resigning is unfair competition - even though, once he has actually left, ordinary competition for those same clients is generally legitimate.",
+  "diagram": [
+    { "label": "Standard III: pointed at the CLIENT" },
+    { "label": "Standard IV: pointed at the EMPLOYER" },
+    { "label": "The test: who is the party the conduct affects?" }
+  ],
+  "realWorldExample": {
+    "company": "Disputes over 'poaching' clients when staff leave",
+    "description": "In asset management, disputes between a former firm and a departing employee over solicited clients are common. The ethical and legal line usually falls on TIMING: contacting clients BEFORE formally resigning, while still drawing a salary from the old firm, is generally treated as a breach of the duty of loyalty, whereas competing for those clients AFTER leaving outright is usually treated as ordinary market competition - unless a non-compete clause says otherwise."
+  },
+  "quiz": [
+    {
+      "question": "What does Standard III(C) - Suitability require of an investment manager making a recommendation to a specific client?",
+      "options": [
+        "The recommendation must fit each client's goals and risk appetite",
+        "Always recommend the product carrying the highest fee for the firm",
+        "Simply recommend whatever product has performed best in the past",
+        "Risk can be ignored once the client has signed a waiver form"
+      ],
+      "explanation": "Standard III(C) is about suitability: a recommendation that is right for one client can be entirely wrong for another, depending on objectives, risk tolerance, time horizon and financial circumstances. Applying one recommendation mechanically across a book of clients breaches it. Steering clients into high-fee products puts the firm's interest first, which is a further conflict rather than a defence. Past performance describes one dimension only. And a signed waiver does not transfer the suitability obligation onto the client."
+    },
+    {
+      "question": "A departing analyst takes a copy of internal research (not a model she built herself, but a document produced by the whole team) to use for reference at her new firm. What does this breach?",
+      "options": [
+        "A breach of Standard III, since it bears directly on clients",
+        "A breach of Standard IV(A) Loyalty - the material belongs to the firm",
+        "A breach only if that material is then sold on to some third party",
+        "No breach - it is personal professional knowledge accumulated"
+      ],
+      "explanation": "This is again Standard IV(A) - Loyalty, the same issue as the proprietary valuation model from the earlier lesson, but extended: even a document representing the whole team's effort, rather than one person's intellectual output, normally belongs to the firm. Taking it to a new employer without permission is a breach, and selling it on would simply be an aggravating factor rather than the trigger. What an analyst carries away legitimately is skill and understanding, not files. Clients are not the injured party here, which is why this is Standard IV rather than III."
+    },
+    {
+      "question": "Why does Standard III(E) - Preservation of Confidentiality exist, when sharing information might help colleagues analyse better?",
+      "options": [
+        "Because client information always has saleable commercial value",
+        "It only applies to institutional clients, not private individuals",
+        "Because clients share private information on trust",
+        "Because data protection law makes it mandatory in every case"
+      ],
+      "explanation": "Confidentiality is the foundation of trust in a financial advisory relationship. Clients disclose private financial information expecting it to be used only in their own interest, and that expectation is the reason for the rule - not the resale value of the data, which most client information does not have. It protects individuals and institutions alike. Data protection law reinforces the duty in many jurisdictions but is not its source, since the Standard applies wherever a member works. Standard III(E) does allow reasonable exceptions, such as a legal requirement or suspected illegal activity, but confidentiality is the default."
+    },
+    {
+      "question": "Who does Standard IV(C) - Responsibilities of Supervisors apply to, and what does it require?",
+      "options": [
+        "It applies only to the chief executive of a fund management firm",
+        "It applies only once there is clear evidence a breach has occurred",
+        "It does not apply if the supervisor took no direct part in it",
+        "It applies to every supervisor, who must act to prevent breaches"
+      ],
+      "explanation": "Standard IV(C) applies to anyone in a supervisory role and requires them to take reasonable steps in advance - control procedures, training, monitoring - to detect and prevent breaches by those they supervise. So it reaches middle managers and team leads, not only the chief executive. It is a proactive duty, which means waiting for evidence of a breach is itself the failure. And 'I did not know my staff were doing it' is no defence where the supervisor never put a reasonable monitoring system in place."
+    },
+    {
+      "question": "An employee is preparing to resign and start their own firm. Which of these is permissible while still employed?",
+      "options": [
+        "Handling incorporation paperwork after hours, without approaching clients",
+        "Contacting existing clients in advance so they are ready to move across later",
+        "Copying the client list to use once the resignation has taken effect",
+        "Winding down your current workload to free time for your own venture"
+      ],
+      "explanation": "Standard IV(A) does not prohibit preparing to leave - it prohibits using the current employer's resources and relationships to compete against them while still drawing their salary. The line falls on whether you touch the clients, the data, or the paid working hours. Contacting clients early and copying the client list both cross it directly, and quietly reducing your workload is taking paid time for your own benefit. Setting up a company in your own time, with none of the firm's property involved, does not."
+    }
+  ],
+  "keyTakeaways": [
+    "Tell Standard III (pointed at clients) from Standard IV (pointed at employers) by working out who the conduct principally affects",
+    "Standard III(C) - Suitability requires a recommendation to fit EACH individual client, not one formula applied mechanically",
+    "Standard IV(A) - Loyalty prohibits unfair competition (soliciting clients, taking internal material) while still an employee",
+    "Standard IV(C) puts a proactive duty on the supervisor - not knowing is not the same as not being at fault"
+  ],
+  "practicePrompt": {
+    "question": "Which of the following is correct according to this lesson?",
+    "options": [
+      "Standard III(C) Suitability allows one recommendation for every client as long as its returns are good",
+      "Standard IV(A) Loyalty bans soliciting clients or taking internal material while still an employee",
+      "Standard III(E) on client confidentiality admits of no exception whatsoever in any circumstances",
+      "Standard IV(C) applies only to the chief executive and never to managers in the middle ranks"
+    ],
+    "explanation": "Standard IV(A) - Loyalty prohibits unfair competition such as soliciting the firm's clients or removing internal material while you are still employed there. The other three each reverse something the lesson establishes: suitability is assessed client by client rather than by returns alone, confidentiality does admit reasonable exceptions such as a legal requirement, and supervisory responsibility falls on anyone supervising others."
+  },
+  "summary": {
+    "keyIdea": "Standards III and IV both speak of 'loyalty' but point at two different parties - clients (III) and employers (IV) - so identifying the affected party correctly is the key to classifying the situation",
+    "commonMistake": "Confusing Standards III and IV when both appear in the same situation - you have to work out which one is the PRINCIPAL issue.",
+    "action": "Always ask: does this conduct directly and principally affect the client, or the employer?"
+  },
+  "application": {
+    "title": "Practise telling III from IV apart",
+    "message": "For each situation in the quiz above, try explaining out loud which party - client or employer - is most directly affected, to sharpen your classification speed.",
+    "secondary": "This skill matters especially because Standards III and IV are the most easily confused pair on the CFA Level I exam."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard III (Duties to Clients) and Standard IV (Duties to Employers) are the pair most often confused on the CFA exam, because both turn on the idea of 'loyalty' - what differs is who it is owed to."
+    },
+    {
+      "type": "heading",
+      "text": "Standard III(C) - Suitability: one size fits nobody"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suitability requires every investment recommendation to fit the SPECIFIC circumstances of the individual client - financial objectives, risk tolerance, time horizon, current financial position. An aggressive portfolio may be entirely appropriate for a young investor with a long horizon and completely inappropriate for someone approaching retirement who needs to preserve capital."
+    },
+    {
+      "type": "heading",
+      "text": "Standard III(E) - Confidentiality: trust is the foundation"
+    },
+    {
+      "type": "paragraph",
+      "text": "Clients disclose private financial information in the belief that it will serve only their own interest. Standard III(E) requires that information to be kept confidential, with a few reasonable exceptions such as a binding legal requirement or suspected illegal activity - but confidentiality is always the default."
+    },
+    {
+      "type": "heading",
+      "text": "Standard IV(A) - Loyalty: the line between before and after"
+    },
+    {
+      "type": "paragraph",
+      "text": "While still an employee, even one already planning to leave, a person owes a duty of loyalty to the current employer. Quietly soliciting clients or removing internal material - including work produced by the whole team, not just your own - before formally resigning is a breach. Once you have left outright, ordinary competition for those clients is generally treated as legitimate market competition, unless a non-compete clause in the employment contract says otherwise."
+    },
+    {
+      "type": "callout",
+      "label": "The question that separates III from IV",
+      "text": "When a situation involves 'loyalty', ask: does this conduct directly harm the CLIENT (→ Standard III) or the EMPLOYER (→ Standard IV)? Sometimes both appear, but the exam usually asks you to identify the PRINCIPAL issue."
+    },
+    {
+      "type": "heading",
+      "text": "Standard IV(C) - the supervisor's responsibility"
+    },
+    {
+      "type": "paragraph",
+      "text": "Anyone supervising other staff carries a proactive responsibility: establish reasonable control procedures, train people, and monitor in order to detect and prevent breaches by subordinates. 'I did not know my staff were doing it' is no defence where the supervisor never established a reasonable monitoring system in the first place."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Standard III always points at the client: loyalty, prudence, fair dealing, suitability, confidentiality",
+        "Standard IV always points at the employer: loyalty, compliance with firm policy, supervisory responsibility",
+        "The timing line (before or after formally resigning) is decisive in assessing a Standard IV(A) breach",
+        "Supervisory responsibility (IV-C) is proactive, not merely a reaction once evidence of a breach appears"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Getting the difference between Standards III and IV firmly in mind stops you losing marks on questions that look alike but test two different things.",
+        "In the next lesson we go deeper into Standard V - ethics in investment research and analysis."
+      ]
+    }
+  ]
+}

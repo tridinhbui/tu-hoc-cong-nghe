@@ -1,0 +1,129 @@
+{
+  "slug": "frm-black-scholes-gia-dinh-va-gioi-han",
+  "title": "FRM Valuation, Lesson 3: Black-Scholes-Merton - assumptions and limits",
+  "subtitle": "The most famous formula in finance, and the five assumptions real markets violate every day",
+  "duration": "10 min",
+  "whyItMatters": "FRM does not test whether you remember the formula - it tests whether you know where the formula is wrong. Every large derivatives failure is one of this model's assumptions breaking in practice.",
+  "openingQuestion": "Which Black-Scholes input cannot be observed directly in the market?",
+  "openingOptions": [
+    "The volatility of the underlying over the remaining life",
+    "The strike price written into the option contract",
+    "The time remaining until the expiry date",
+    "The current market price of the underlying asset"
+  ],
+  "explanation": "Black-Scholes needs five inputs, four of which are read straight off the contract and the screen: asset price, strike, time remaining, risk-free rate. Future volatility alone is unknown to everyone. That is why in practice the formula is run backwards - the option's market price is used to back out an implied volatility. The model is therefore used as a converter between price and volatility, not as a machine that computes the correct price.",
+  "diagram": [
+    { "label": "Five inputs: spot, strike, time, rate, volatility" },
+    { "label": "The first four are observable; volatility is not" },
+    { "label": "In practice: run backwards from market price to implied volatility" },
+    { "label": "Implied volatility differs by strike → the volatility smile" }
+  ],
+  "realWorldExample": {
+    "company": "The volatility smile: evidence that the market does not believe the model",
+    "description": "If Black-Scholes described the world correctly, every option on the same stock with the same expiry would produce a single implied volatility. In reality options far from the money always imply higher volatility - the market is adding its own premium for extreme outcomes to which the model's normality assumption assigns a probability near zero. That smile is the market correcting the model in public."
+  },
+  "quiz": [
+    {
+      "question": "Which Black-Scholes assumption do real markets violate most clearly?",
+      "options": [
+        "The underlying asset trades on an organised market",
+        "The option can only be exercised on the expiry date",
+        "The strike is fixed in the contract from the outset",
+        "Returns are normal and volatility is constant"
+      ],
+      "explanation": "Financial returns have tails far fatter than the normal distribution allows, and volatility clusters rather than sitting at a constant level. Both assumptions break daily, and the volatility smile is the fingerprint the market leaves behind. Tradability and a fixed strike are conditions the contract simply satisfies, and European-style exercise is a feature of the instrument the formula was written for rather than an assumption markets violate - the American case is handled with a tree instead."
+    },
+    {
+      "question": "What is implied volatility, understood correctly?",
+      "options": [
+        "The volatility that makes the formula match the market price",
+        "The standard deviation of returns measured from history",
+        "The highest volatility level a regulator will permit",
+        "The gap between the bid and the ask on the option"
+      ],
+      "explanation": "It is the output of running the formula backwards, so it reflects what the market believes rather than a quantity anyone has measured. That is also why it is treated as a gauge of fear: it embeds the premium sellers demand for bearing the risk. Historical volatility is a different number computed from realised returns, the bid-ask spread is a liquidity cost rather than a model input, and no regulator sets a ceiling on the figure."
+    },
+    {
+      "question": "Why is the continuous-hedging assumption the model's practical weak point?",
+      "options": [
+        "Because rules cap the number of rebalances",
+        "Because real hedging is discrete and costly",
+        "Because the underlying is not always available",
+        "Because you would have to hold every share issued"
+      ],
+      "explanation": "The argument that produces the formula assumes the replicating portfolio is rebalanced continuously and at no cost. In practice every adjustment carries a fee and happens at discrete moments, so the hedge is always slightly off - and it is furthest off exactly when the market jumps. No regulation limits rebalancing frequency, the underlying is normally available in the liquid names where options trade, and a delta hedge needs a fraction of the shares outstanding rather than all of them."
+    },
+    {
+      "question": "Why is Black-Scholes still used everywhere despite its assumptions being violated?",
+      "options": [
+        "Because its assumptions only break for options beyond one year",
+        "Because every alternative model is more wrong in every situation",
+        "Because it is the shared language turning price into comparable volatility",
+        "Because regulators require this model for reporting option values"
+      ],
+      "explanation": "The market does not actually believe the model is right - it uses the model as a converter between price and implied volatility. That is exactly why the smile exists: it is the trace of the market compensating for where the model is wrong. The assumptions break at every maturity rather than only beyond a year, alternative models do better in specific situations rather than worse in all of them, and no regulator prescribes this particular formula."
+    },
+    {
+      "question": "In which direction does the normality assumption bias option prices?",
+      "options": [
+        "It distorts only puts and leaves calls entirely unaffected",
+        "It overstates the odds of extreme moves, so far-out options are priced dear",
+        "It creates no systematic bias, as errors cancel in both directions",
+        "It understates the odds of extreme moves, so far-out options look cheap"
+      ],
+      "explanation": "Real returns carry fatter tails than the normal distribution, so extreme shocks arrive more often than the model predicts. The bias is systematic and runs one way - out-of-the-money options are worth more than the formula says - which is what makes it far more dangerous than random error, and what the volatility smile prices back in. It affects calls and puts alike, since both gain value when the tail is heavier, so the errors do not cancel."
+    }
+  ],
+  "practicePrompt": {
+    "question": "On the same stock and the same expiry, the low-strike option implies 34% volatility while the high-strike option implies 22%. What does that tell you?",
+    "options": [
+      "The market prices the left tail as fatter than a normal distribution",
+      "There is an arbitrage opportunity between these two options",
+      "One of the two options is clearly mispriced by the market",
+      "Realised volatility will land somewhere between 22% and 34%"
+    ],
+    "explanation": "Black-Scholes assumes a single volatility across all strikes, so if that assumption held the implied volatility line would be flat. It is not flat, and its slope toward the low strikes says the market pays extra for downside protection - that is, believes a sharp fall happens more often than the normal distribution allows. That is a statement about the distribution rather than a mispricing, so there is no spread to capture. And implied volatility is a price expressed in a comparable unit, not a forecast of the volatility that will actually be realised."
+  },
+  "keyTakeaways": [
+    "Four inputs are observable; future volatility alone is not",
+    "In practice the formula is run backwards to extract implied volatility from market prices",
+    "The volatility smile is evidence the normality assumption does not hold",
+    "Real hedging is discrete and costly, leaving an error the model ignores"
+  ],
+  "summary": {
+    "keyIdea": "The value of Black-Scholes today lies in being the shared language that converts price into implied volatility, not in producing the correct price",
+    "commonMistake": "Treating implied volatility as a forecast of future volatility, when it also contains the option seller's risk premium",
+    "action": "With any pricing model, list the assumptions first and then ask which is weakest in this particular situation"
+  },
+  "application": {
+    "title": "Look at the volatility smile",
+    "message": "If you can reach an option chain, pull the implied volatility at several strikes on the same expiry. The line joining them is almost never flat.",
+    "secondary": "The curvature of that line tells you which direction the market fears more."
+  },
+  "sections": [
+    { "type": "lead", "text": "Black-Scholes is the most famously wrong model in finance, and the whole industry still uses it every day. Understanding why both of those are true is the real content of this lesson." },
+    { "type": "heading", "text": "The five inputs" },
+    { "type": "list", "items": [
+      "Current price of the underlying - read off the screen",
+      "Strike price - written in the contract",
+      "Time remaining - count the calendar",
+      "Risk-free rate - observable in the market",
+      "Volatility over the remaining life - unknown to everyone"
+    ]},
+    { "type": "heading", "text": "Why the industry keeps a wrong model" },
+    { "type": "paragraph", "text": "Because it became the conversion language. Instead of arguing about option prices in money, people speak in implied volatility - and that number is comparable across maturities, across strikes, across assets. The model is wrong but it is a consistent ruler, and a consistent ruler remains extremely useful." },
+    { "type": "callout", "label": "The first assumption to break when markets collapse", "text": "The model assumes prices move continuously and never jump. On exactly the days that matter most - a surprise headline, the open after an overnight shock - the price gaps in one step, the hedge portfolio cannot be adjusted in time, and hedging error erupts precisely when it is most expensive." },
+    { "type": "conceptTable", "title": "Five assumptions, and how markets violate them", "subtitle": "None of them holds; the question is in which direction and by how much", "concepts": [
+      { "def": "The clearest violation, and a measurable one: if it held, implied volatility would be equal at every strike. In reality it traces a smile - options far from the money cost more than the model says. That smile is the evidence the market does not accept this assumption." },
+      { "def": "Fails exactly on the days that matter most: earnings releases, surprise headlines, the open after an overnight shock. The model assumes dynamic hedging always keeps up; an overnight gap is where it does not." },
+      { "def": "Nobody borrows at the Treasury rate. The gap is small for short-dated options and grows with maturity." },
+      { "def": "Dynamic hedging requires continuous trading. With fees, hedging more finely costs more, so in practice people hedge to a threshold - and accept the error." },
+      { "def": "The real tails are fatter than the normal distribution. Declines the model treats as effectively impossible occur several times in a working lifetime." }
+    ]},
+    { "type": "callout", "label": "Why a wrong model has not been replaced", "text": "Because the whole industry agreed to use it as the unit of conversion. Nobody says 'this option costs $4.20' and compares it with another at $6.80 - those two numbers are not comparable, since the strikes and maturities differ. Say '22% implied against 28%' and the comparison is immediate. The formula is used in reverse: plug in the market price, solve for volatility. In that direction, whether the assumptions hold matters less than everyone using the same ruler." },
+    { "type": "closing", "lines": [
+      "A model does not need to be right to be useful, but the user needs to know where it is wrong.",
+      "Next lesson: the derivatives of this formula - the Greeks."
+    ]}
+  ]
+}

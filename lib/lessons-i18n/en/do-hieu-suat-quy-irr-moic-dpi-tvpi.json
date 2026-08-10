@@ -1,0 +1,153 @@
+{
+  "slug": "do-hieu-suat-quy-irr-moic-dpi-tvpi",
+  "title": "Private markets, lesson 3: measuring fund performance - IRR, MOIC, DPI, TVPI and the J-curve",
+  "subtitle": "Why IRR can mislead, and which set of metrics actually tells you the money has come back",
+  "duration": "12 min",
+  "whyItMatters": "Private funds market themselves on IRR, and IRR is the most easily influenced measure in all of finance. Reading all four metrics together is the only way to separate real performance from performance that has been presented skilfully.",
+  "openingQuestion": "How can a fund's IRR be pushed up without creating any additional value?",
+  "openingOptions": [
+    "Because IRR is very sensitive to the timing of cash flows",
+    "Because IRR is computed on committed capital rather than drawn capital",
+    "Because IRR ignores management fees and the manager's carried interest",
+    "Because IRR measures only the gains already realised in cash"
+  ],
+  "explanation": "IRR measures return per unit of time, so a deal that doubles the money in one year gives an IRR of 100%, while one that triples it over six years gives roughly 20% - even though the second deal produced more money. So a fund can improve its IRR by selling good deals early, or by using a short-term credit line to delay calling capital from investors, which starts the IRR clock later. Neither move produces a single extra unit of profit for the investor.",
+  "diagram": [
+    { "label": "IRR: return per unit of time" },
+    { "label": "MOIC: how many times the money multiplied" },
+    { "label": "DPI: cash actually back in hand" },
+    { "label": "TVPI: total value including what is still unexited" }
+  ],
+  "realWorldExample": {
+    "company": "The J-curve in a fund's early years",
+    "description": "Investors new to private funds are often alarmed to see a negative return in the year-two report. That is entirely normal: management fees are charged from day one while the investments have not yet appreciated and nothing has been exited. The performance line therefore falls before it rises, tracing a J. Judging a fund in year two is close to meaningless, and any league table of young funds should be treated with suspicion."
+  },
+  "quiz": [
+    {
+      "question": "What does MOIC measure?",
+      "options": [
+        "The average annual return on the investment over the whole holding period",
+        "Total value received divided by total capital invested, ignoring time",
+        "Realised profit divided by the profit still sitting on paper",
+        "Current portfolio value divided by its value at the original investment date"
+      ],
+      "explanation": "MOIC answers a simple question: for every unit put in, how many come back. It ignores time entirely, so it has to be read alongside IRR - a high MOIC with a low IRR means the money was locked up for a very long stretch. It is not an annualised figure, it does not compare realised against unrealised profit, and it is measured against capital invested rather than against an opening portfolio value."
+    },
+    {
+      "question": "How does DPI differ from TVPI?",
+      "options": [
+        "DPI applies to a wound-up fund while TVPI applies to one still in its investment period",
+        "DPI is measured at book value while TVPI is at current market value",
+        "DPI counts only cash actually distributed; TVPI adds the residual portfolio",
+        "DPI is net of management fees and carry while TVPI is the gross figure"
+      ],
+      "explanation": "DPI is the most honest measure because it counts only money that has genuinely reached the investor's account. The gap between TVPI and DPI is value the fund manager has estimated for holdings not yet sold - and that is the part to be sceptical about. Both figures are reported for funds at every stage of life, both are normally quoted net of fees, and neither is a book-versus-market distinction."
+    },
+    {
+      "question": "Why should unrealised value be viewed with scepticism?",
+      "options": [
+        "Because that value is not independently audited until the fund winds up",
+        "Because unexited holdings are always worth less than the reported carrying value",
+        "Because the rules do not permit a fund to carry a value on an unexited holding",
+        "Because the manager values it, and the manager is paid on that value"
+      ],
+      "explanation": "This is a structural conflict of interest rather than an accusation about honesty. With no market price available, the valuation rests on comparable-company multiples and on assumptions the fund itself chooses. Institutional investors therefore prioritise DPI when assessing funds that have been running long enough. Carrying a value on an unexited holding is required, not forbidden, and such holdings are not automatically overstated - they are simply unverifiable from outside."
+    },
+    {
+      "question": "What does the J-curve describe?",
+      "options": [
+        "Negative returns in the early years, from fees charged before any exits",
+        "Portfolio value rising fast then flattening late in the fund's life",
+        "The relationship between fund size and average industry performance",
+        "The gap between gross and net returns over the fund's life"
+      ],
+      "explanation": "Understanding the J-curve stops you panicking at a negative year-two report and, more importantly, stops you being persuaded by a league table of young funds - a position in that table mainly reflects how far along the curve a fund has travelled rather than any skill. It is not a statement about fund size, nor about the fee drag between gross and net, nor about how value behaves at the end of a fund's life."
+    },
+    {
+      "question": "What is the fairest way to compare private fund performance with listed markets?",
+      "options": [
+        "Compare the fund's IRR with the index's average return over the same period",
+        "Replicate the fund's exact cash flows as if invested in a listed index",
+        "Compare the fund's MOIC with the index's rise over the same years",
+        "Compare the fund's DPI with the average dividend yield of listed companies"
+      ],
+      "explanation": "This method addresses exactly what makes IRR awkward: it takes the fund's own schedule of capital calls and distributions and asks what the same cash flows would have produced in the index. Comparing an IRR directly with an index return compares two measures built on different bases, since the index return assumes a single lump sum held throughout while the fund's money went in and out on the manager's timetable."
+    }
+  ],
+  "keyTakeaways": [
+    "IRR is highly sensitive to the timing of cash flows and can be improved without creating any value",
+    "MOIC measures how many times the money multiplied and ignores time - it must be read alongside IRR",
+    "DPI is the most honest measure because it counts only cash that has reached the investor's account",
+    "The gap between TVPI and DPI is value the manager has estimated - treat it with scepticism"
+  ],
+  "practicePrompt": {
+    "question": "Fund A: IRR 28%, DPI 0.4, TVPI 1.9, currently in year seven. Which reading is most reasonable?",
+    "options": [
+      "The fund is performing superbly, as the IRR well above the market shows",
+      "Most of the value is still on paper; check how the unexited holdings are valued",
+      "The fund has already returned nearly double the committed capital in cash",
+      "No judgement is possible without knowing the fund's hurdle rate"
+    ],
+    "explanation": "In year seven, a DPI of only 0.4 means the investor has had just 40% of the committed capital back in real cash, while a TVPI of 1.9 shows that most of the attractive figure comes from valuations of unsold holdings. The 28% IRR is computed partly on those same valuations. The next question has to be: on what multiples are the remaining holdings carried, and how much time does the fund have left to sell them."
+  },
+  "summary": {
+    "keyIdea": "Read all four metrics together; reading IRR alone is the surest way to be led astray",
+    "formula": "DPI = Cash distributed / Capital paid in; TVPI = (Distributed + Residual value) / Capital paid in",
+    "commonMistake": "Ranking young funds by IRR, when that mostly reflects their position on the J-curve",
+    "action": "For any fund, compute DPI over TVPI to see what share of the performance is real cash."
+  },
+  "application": {
+    "title": "Three questions when reading a fund report",
+    "message": "What share of the performance has turned into real cash - that is, DPI over TVPI? Which year of its life is the fund in? And how are the unexited holdings valued, by what method and by whom?",
+    "secondary": "Those three questions turn a performance page full of attractive numbers into a picture you can actually read."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Measuring the performance of a closed-end fund is much harder than an open-ended one, because you control neither the timing of money in and out nor the pricing of most of the assets. The industry has developed its own set of metrics for this situation, and each one answers only part of the question."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four metrics, four different questions",
+      "subtitle": "No single one of them is enough on its own",
+      "concepts": [
+        {
+          "def": "Return per unit of time. Sensitive to the timing of cash flows, so it can be improved by selling early or delaying capital calls."
+        },
+        {
+          "def": "For every unit put in, how many come back. Ignores time, so a high MOIC with a low IRR means the money was locked up a long while."
+        },
+        {
+          "def": "Counts only cash that has genuinely reached the account. The most honest measure, and also the slowest-moving one."
+        },
+        {
+          "def": "DPI plus the value of the portfolio not yet exited. That added portion is estimated by the manager."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Three entirely legitimate ways to flatter an IRR"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Sell the best deal early: shortening the holding period lifts IRR sharply even though the total cash received is lower than if it had been held longer",
+        "Use a short-term credit line instead of calling capital: the IRR clock only starts when the investor actually transfers money",
+        "Value unexited holdings optimistically: unrealised value still feeds into the IRR calculation"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why DPI is your friend",
+      "text": "None of the three moves above can raise DPI, because DPI counts only money that has been transferred to the investor's account. That is why experienced institutional investors ask about DPI first, and listen to the IRR afterwards."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The most attractive number on a performance page is usually the one that depends most heavily on assumptions.",
+        "The final lesson of this stage covers the step that determines every metric above: the exit."
+      ]
+    }
+  ]
+}

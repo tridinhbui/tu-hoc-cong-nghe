@@ -1,0 +1,153 @@
+{
+  "slug": "cfa-economics-market-structures",
+  "title": "CFA Economics: Market structures",
+  "subtitle": "From perfect competition to monopoly - market structure decides how much pricing power a firm has",
+  "duration": "7 min",
+  "openingQuestion": "In a perfectly competitive market, can an individual firm decide the price of its own product?",
+  "openingOptions": [
+    "Yes, each firm is entirely free to set whatever price it wants",
+    "No - the firm is a price taker and sells at the market price",
+    "Only the largest firm in the industry gets to set the price",
+    "Prices are set by the government in every kind of market"
+  ],
+  "explanation": "This is the defining feature that separates perfect competition from every other structure. In a perfectly competitive market - many sellers, a homogeneous product, full information, free entry and exit - each firm is far too small to move the market price. It is a price taker: it can only choose HOW MUCH to sell at the going price. It cannot charge more (it would lose every customer) and has no reason to charge less (it can sell everything at the market price anyway).",
+  "realWorldExample": {
+    "company": "Agricultural markets (rice, coffee) and airlines (oligopoly)",
+    "description": "The rice market comes close to perfect competition: thousands of farmers selling a near-identical product, none of them large enough to shift the world price. Vietnam's domestic airline industry is the opposite - a textbook oligopoly, where a handful of carriers (Vietnam Airlines, Vietjet, Bamboo) dominate, each able to move fares and each watching its rivals' reactions closely when it prices."
+  },
+  "quiz": [
+    {
+      "question": "How does an oligopoly differ from a pure monopoly?",
+      "options": [
+        "Monopoly has one seller; oligopoly has a few large firms",
+        "Monopoly sells one product; oligopoly sells many products",
+        "Monopoly is state-owned; oligopoly is privately owned",
+        "Monopoly has high barriers; oligopoly has none at all"
+      ],
+      "explanation": "The count of sellers is what the definitions turn on. Ownership does not enter into it - plenty of monopolies are private and plenty of oligopolists are state-owned. Both structures have high entry barriers, so that is a similarity rather than a difference. And a monopolist can sell a whole product range. What really sets oligopoly apart from both monopoly and perfect competition is strategic interdependence: when one airline cuts fares, the others must decide how to respond, which produces price wars and tacit collusion. That is why game theory is the standard tool for analysing oligopoly."
+    },
+    {
+      "question": "What makes monopolistic competition different from perfect competition, given that both have many sellers?",
+      "options": [
+        "High entry barriers make it hard for a new firm to enter",
+        "Differentiated products give each firm a little pricing power",
+        "There are far fewer sellers than in perfect competition",
+        "The firms tacitly agree among themselves on one common price level"
+      ],
+      "explanation": "Monopolistic competition - restaurants, coffee shops, branded consumer goods - has many sellers just as perfect competition does, so a smaller seller count is not the distinction. Entry is free here too, which rules out the barriers answer. And with that many independent firms, agreeing a common price is not enforceable. What is left is differentiation: brand, quality, location or service, which earns some customer loyalty and leaves each firm with a little pricing power rather than being a pure price taker."
+    },
+    {
+      "question": "High barriers to entry are typical of which market structures?",
+      "options": [
+        "Perfect competition and pure monopoly",
+        "Monopolistic competition and oligopoly",
+        "Pure monopoly and oligopoly markets",
+        "Every market structure has them"
+      ],
+      "explanation": "Entry barriers are what determine market structure in the first place. Perfect competition has barriers near zero - anyone can join - and monopolistic competition is much the same, which is why free entry erodes profit there over time. Monopoly and oligopoly are where barriers are very high: enormous capital requirements in airlines or telecoms, patents in pharmaceuticals, licensing regimes in banking. That strictly limits how many rivals can appear, which is exactly what lets incumbents hold prices above competitive levels."
+    },
+    {
+      "question": "In the long run, what economic profit does a firm in perfect competition earn?",
+      "options": [
+        "Equal to the industry average, because firms tacitly agree among themselves",
+        "Zero, because new firms enter until price equals cost",
+        "Above zero, since the most efficient firm keeps an excess return",
+        "Indeterminate, since perfect competition does not exist in reality"
+      ],
+      "explanation": "Free entry is the decisive condition: as long as economic profit is positive, new firms keep arriving and push price down to average cost. Accounting profit can still be positive - what goes to zero is the part above the opportunity cost of capital. Coordination is impossible with that many sellers, an efficient firm's edge is copied rather than protected, and the fact that the model is an idealisation does not make its long-run prediction undefined."
+    },
+    {
+      "question": "Why does a firm under monopolistic competition still have some pricing power despite many rivals?",
+      "options": [
+        "Because their product is differentiated and not a perfect substitute",
+        "Because the number of firms in the industry is capped by licensing",
+        "Because they can agree prices with rivals, the industry being a small one",
+        "Because entry barriers here are nearly as high as under monopoly"
+      ],
+      "explanation": "Differentiation - brand, quality, location, service - makes each firm's demand curve slope down rather than lie flat. Raise the price and you lose some customers, not all of them. Nothing caps the number of firms here, entry is easy rather than barriered, and there are far too many independent sellers for any price agreement to hold. And because entry is free, that excess profit still gets competed away over the long run."
+    }
+  ],
+  "keyTakeaways": [
+    "Four main market structures: perfect competition (price taker) → monopolistic competition (differentiated products) → oligopoly (a few large firms, strategically interdependent) → pure monopoly (a single seller)",
+    "Pricing power rises steadily as you move from perfect competition toward pure monopoly",
+    "Oligopoly has a feature of its own: each firm's decision depends directly on how it expects rivals to react (strategic interdependence)",
+    "Barriers to entry (capital, patents, regulation) decide which market structure an industry ends up with"
+  ],
+  "practicePrompt": {
+    "question": "An analyst is valuing a pharmaceutical company holding an exclusive patent on a new drug for the next 15 years. How does understanding market structure help value this company?",
+    "options": [
+      "Irrelevant - valuation only needs the historical financial statements",
+      "Near-monopoly for 15 years thanks to the patent, so model the patent cliff",
+      "The patent has no bearing on the company's ability to set its price",
+      "The patent guarantees high margins forever, so value it as steady growth"
+    ],
+    "explanation": "Market structure feeds straight into the valuation model. A company in a temporary monopoly position thanks to a patent deserves to be valued on high margins and stable cash flow for the protected period, BUT the analyst has to adjust the DCF for the patent cliff - the sharp fall in revenue and profit once protection lapses and the market flips from monopoly to competition against cheap generics. This is Economics applied directly to Equity Valuation."
+  },
+  "summary": {
+    "keyIdea": "The four market structures (perfect competition, monopolistic competition, oligopoly, pure monopoly) determine how much pricing power a firm has, driven by the number of sellers, how differentiated the product is, and how high the barriers to entry are.",
+    "commonMistake": "Skipping market structure analysis when valuing a company, and so extrapolating today's margin into the future without asking whether the entry barrier is durable",
+    "action": "When you analyse a company, always ask: how many genuine competitors does this industry have, and how durable is this company's moat?"
+  },
+  "application": {
+    "title": "Applying this in CFA analysis",
+    "message": "Market structure is the theoretical basis for the 'economic moat' - the durable competitive advantage equity analysts look for whenever they value a business over the long term.",
+    "secondary": "Combined with ROIC and margin analysis (from Corporate Issuers and FSA), understanding market structure tells you whether today's high profit is sustainable or will be competed away."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The market structure a company operates in directly determines its pricing power, its sustainable margin, and how an analyst ought to value it."
+    },
+    {
+      "type": "heading",
+      "text": "Four market structures, from most competitive to monopoly"
+    },
+    {
+      "type": "conceptTable",
+      "title": "The four market structures compared",
+      "concepts": [
+        {
+          "vi": "Cạnh tranh hoàn hảo",
+          "en": "Perfect Competition",
+          "def": "Countless sellers, a homogeneous product, a pure price taker, entry barriers near zero (e.g. agricultural commodities)"
+        },
+        {
+          "vi": "Cạnh tranh độc quyền",
+          "en": "Monopolistic Competition",
+          "def": "Many sellers, differentiated products through branding, a small amount of pricing power (e.g. restaurants and coffee shops)"
+        },
+        {
+          "vi": "Độc quyền nhóm",
+          "en": "Oligopoly",
+          "def": "A few large firms, pricing decisions that depend on one another, high entry barriers (e.g. airlines, telecoms)"
+        },
+        {
+          "vi": "Độc quyền hoàn toàn",
+          "en": "Monopoly",
+          "def": "A single seller, maximum pricing power, entry barriers close to absolute (e.g. a pharmaceutical patent, a local utility monopoly)"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "In practice: the 'economic moat' in company valuation"
+    },
+    {
+      "type": "paragraph",
+      "text": "A professional equity analyst always asks: where on the market structure spectrum does this business sit, and is that position durable? A company with a strong economic moat - through patents, network effects, brand, or high customer switching costs - can hold a high margin for years and deserves a higher valuation than a company in a brutally competitive industry, even when the two report identical profit today."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Market structure is not abstract economic theory - it is a practical tool for judging how durable a company's profit really is.",
+        "Combining Economics (market structure) with Equity Investments (valuation) and Corporate Issuers (competitive advantage analysis) is how CFA Level I builds integrated analytical thinking rather than a set of disconnected subjects."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Perfect competition - no pricing power at all" },
+    { "label": "Monopolistic competition - mild differentiation" },
+    { "label": "Oligopoly - firms that depend on one another" },
+    { "label": "Monopoly - the most pricing power, which decides how durable the competitive advantage is" }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "slug": "rui-ro-tai-tro-va-ke-hoach-tai-tro-du-phong",
+  "title": "FRM Liquidity, Lesson 2: Funding risk and the Contingency Funding Plan (CFP)",
+  "subtitle": "Measuring liquidity risk is not enough - the playbook has to exist before the crisis does",
+  "duration": "9 min",
+  "whyItMatters": "LCR and NSFR tell you whether a bank is inside the safe zone, but neither of them tells anyone what to do when the ratio starts deteriorating. The Contingency Funding Plan (CFP) is the mandatory next step: a concrete, pre-approved playbook, so that nobody has to improvise in the middle of a run.",
+  "openingQuestion": "What is funding concentration risk?",
+  "openingOptions": [
+    "The risk of having too many branches clustered in one geographic region",
+    "Depending too heavily on a small number of funding sources or counterparties",
+    "The risk that deposit funding rates rise across the entire market at once",
+    "A risk that applies only to banks with small market capitalisation"
+  ],
+  "explanation": "If most of a bank's funding comes from one small group of institutional investors, one market (the domestic interbank market, say), or one tenor (all of it short), then a single confidence shock aimed at that group, market or tenor can drain liquidity all at once - which is precisely what happened to Northern Rock and to Silicon Valley Bank.",
+  "diagram": [
+    {
+      "label": "Define the early warning indicators"
+    },
+    {
+      "label": "Grade the severity: normal, then stressed, then crisis"
+    },
+    {
+      "label": "Each tier carries a specific action list: who decides, who executes"
+    },
+    {
+      "label": "Rehearse regularly to check the plan is still workable"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Silicon Valley Bank, March 2023",
+    "description": "SVB's customer base was heavily concentrated in technology companies and startups, most of its deposits sat above the insurance limit, and all of them could be moved out through a banking app in seconds. When rumours about losses on its bond book spread across social media, 42bn USD of deposits left in a single day - a speed with no precedent in banking history and far beyond any standard Basel LCR stress scenario. It is the clearest illustration there is that funding concentration risk - one homogeneous customer group plus an instant withdrawal channel - can outrun the assumptions inside even the most sophisticated liquidity model."
+  },
+  "quiz": [
+    {
+      "question": "Why did Silicon Valley Bank collapse so much faster than a traditional bank run such as Northern Rock in 2007, which took several days?",
+      "options": [
+        "Because a highly concentrated deposit base combined with instant app withdrawals and rumours moving on social media pushed the outflow rate far past anything in the record",
+        "Because SVB was carrying the highest non-performing loan ratio in its corporate lending book of any commercial bank anywhere in the United States banking system at the time",
+        "Because SVB held no high-quality liquid assets of any kind on its balance sheet at the moment the pressure on its deposit base first began",
+        "Because the supervisor closed the bank down before any of its customers had a chance to move their deposits somewhere else"
+      ],
+      "explanation": "This is the most important lesson SVB left behind: funding concentration risk - a homogeneous customer base, most of it uninsured - combined with modern digital banking produces an outflow speed that traditional LCR models, calibrated on the much slower withdrawal behaviour of earlier crises, had simply never contemplated. SVB did hold liquid assets, and its loan book was not the problem; nor did the supervisor pre-empt the run, since the closure came after the outflow, not before it."
+    },
+    {
+      "question": "What is the main purpose of a Contingency Funding Plan (CFP)?",
+      "options": [
+        "It is purely a compliance document to be filed with the supervisor once a year",
+        "A pre-approved set of actions for each severity tier of a funding crisis",
+        "A replacement for calculating LCR and NSFR at each reporting period",
+        "Something that only applies once the bank has formally entered insolvency"
+      ],
+      "explanation": "A CFP works as an emergency manual: it fixes in advance the early warning indicators, names the decision-maker at each level, and lists the specific actions - sell HQLA, draw a committed backup facility, restrict new lending - that belong to each level of stress. That is what lets a firm move quickly instead of convening a meeting mid-crisis. It supplements the ratios rather than replacing them, it is written to prevent insolvency rather than to manage it, and a plan produced only to satisfy a filing requirement is exactly the failure mode the rehearsal cycle exists to catch."
+    },
+    {
+      "question": "Why is funding concentration treated as a distinct risk rather than as part of general liquidity risk?",
+      "options": [
+        "Because it arises out of broad movements in the capital markets as a whole rather than out of anything specific to one bank",
+        "Because no supervisor anywhere has yet brought it into a formal framework, so it has no agreed definition to work from",
+        "Because its origin lies in the structure of the customer base itself, so a single event can move every depositor in the same direction at the same moment",
+        "Because it only affects banks capitalised at under 1bn USD in total equity, which is where deposit bases are narrowest"
+      ],
+      "explanation": "Funding concentration is a structural property, not a market one: if 80% of deposits come from one industry or one investor group whose behaviour is highly correlated, a single event touching that group - a rumour circulating inside SVB's startup community, for instance - can trigger a simultaneous run far faster than dispersed withdrawals from a diverse base. That is why it does not show up as a market variable, why supervisors do track it explicitly, and why the size of the bank is beside the point."
+    },
+    {
+      "question": "After SVB, which assumption inside traditional LCR models came under question?",
+      "options": [
+        "That LCR does not apply to banks holding under 250bn USD in total assets",
+        "That the formula used to compute HQLA has been demonstrably wrong since 2010",
+        "That supervisors have now withdrawn the LCR requirement altogether from the rulebook",
+        "That the assumed rate of deposit outflow still holds in a digital deposit base"
+      ],
+      "explanation": "SVB lost 42bn USD of deposits in a single day - a pace the 30-day stress assumption behind the traditional LCR had never allowed for, because the model was calibrated on withdrawal behaviour from crises that predate mobile banking and social media. It is a clear case of a risk model needing to be updated as customer behaviour and technology change, which links this lesson directly back to model risk from the previous stage. The HQLA formula was not the flaw, the requirement was not withdrawn, and the applicability threshold is a separate policy debate."
+    },
+    {
+      "question": "Why did Silicon Valley Bank force a rethink of the assumptions about withdrawal speed?",
+      "options": [
+        "Because social media and banking apps compressed the outflow into hours",
+        "Because most of the depositors at this particular bank were small retail savers",
+        "Because the bank had concealed its true liquidity position in its published accounts",
+        "Because the supervisor stepped in more slowly than it had in any previous crisis"
+      ],
+      "explanation": "The foundational assumption of the liquidity standard is that an outflow is spread across thirty days. When the news travels on social media and moving the money takes a few taps, a whole month of cushion is compressed into one afternoon - and no quantity of liquid assets can be sold fast enough to meet it. SVB's depositors were overwhelmingly corporate rather than retail, its bond losses were disclosed rather than hidden, and the supervisory response was not unusually slow; the speed of the depositors was unprecedented."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A bank draws 90% of its deposits from venture capital funds and technology companies inside a single ecosystem. Its LCR stands at 160%. Where does the main risk sit?",
+    "options": [
+      "Funding concentration: one confidence shock moves the whole group at once",
+      "Nowhere material at all, since an LCR of 160% is well above the 100% minimum",
+      "Interest rate risk, because technology clients are more rate-sensitive",
+      "Operational risk, because serving one industry demands bespoke processes"
+    ],
+    "explanation": "LCR assumes an outflow spread over thirty days, and a homogeneous customer base does not behave that way: they read the same sources, they know each other, and they get the same advice to move their money on the same afternoon. SVB lost 42bn USD in ONE day - a speed no model calibrated on history could have forecast, because history contains no banking apps and no social media. That is why funding concentration is carved out as its own risk type: it does not appear in any liquidity ratio, it only appears when you ask how many independently behaving groups this funding actually comes from."
+  },
+  "keyTakeaways": [
+    "Funding concentration risk arises when funding depends too heavily on one homogeneous customer group, tenor or market, so a single confidence shock triggers a simultaneous run",
+    "SVB (2023): 42bn USD withdrawn in one day - far beyond the traditional 30-day LCR stress assumption, because of a concentrated customer base and instant withdrawal technology",
+    "A CFP is a concrete, pre-approved set of actions graded by severity tier, so the firm can move quickly instead of improvising mid-crisis",
+    "Liquidity models need updating as customer behaviour and technology change - this is where liquidity risk meets model risk"
+  ],
+  "summary": {
+    "keyIdea": "SVB showed the 30-day stress assumption has aged badly: 42bn USD left in a single day, because information and payment instructions now travel faster than any model calibrated before them.",
+    "commonMistake": "Leaving customer behaviour parameters untouched for years. This is where liquidity risk meets model risk."
+  },
+  "application": {
+    "title": "A contingency funding plan you can actually use",
+    "message": "A good CFP states who decides what at each severity tier, approved in advance. If the process has to be debated mid-crisis, the speed contest was already lost."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "LCR and NSFR tell a bank where it sits on the liquidity safety scale. But knowing you are in danger and knowing exactly what to do next are two different things - the CFP exists to close that gap."
+    },
+    {
+      "type": "heading",
+      "text": "Funding concentration risk - the lesson from SVB"
+    },
+    {
+      "type": "paragraph",
+      "text": "Silicon Valley Bank did not fail for want of high-quality liquid assets in the technical sense; it failed because the withdrawal speed outran every historical assumption. A homogeneous customer base - mostly technology startups, mostly holding deposits above the insurance limit - turned a rumour circulating on social media into a simultaneous wave of withdrawals over a few hours rather than a few days."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The structure of a Contingency Funding Plan",
+      "subtitle": "Three mandatory components",
+      "concepts": [
+        {
+          "def": "Concrete thresholds - LCR falling below X%, a spike in interbank funding cost, a rating downgrade - that trigger the move into a tighter monitoring regime."
+        },
+        {
+          "def": "From normal to stressed to crisis, each with an explicit trigger level and a named decision-maker, so nobody hesitates to act as the situation deteriorates."
+        },
+        {
+          "def": "Sell HQLA, draw committed backup facilities, restrict new lending, raise emergency funding - each one already quantified for impact and execution time."
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The best plan is the one you never have to use, but you only get that if it was built and rehearsed before it was needed.",
+        "The next lesson closes the Liquidity Risk stage: asset-liability management (ALM) and interest rate risk in the banking book - a longer-horizon view of the same problem."
+      ]
+    }
+  ]
+}

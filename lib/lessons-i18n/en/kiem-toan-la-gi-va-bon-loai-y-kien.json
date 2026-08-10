@@ -1,0 +1,134 @@
+{
+  "slug": "kiem-toan-la-gi-va-bon-loai-y-kien",
+  "title": "Audit, Lesson 1: What an audit opinion asserts - and what it does not",
+  "subtitle": "The four types of opinion, the line between management and auditor, and the most common misreading",
+  "duration": "11 min",
+  "whyItMatters": "Every analysis you have learned so far starts from a set of audited financial statements. But most readers do not know what an audit opinion actually asserts, so they trust it too much where they should not, and skip over the exact place where it is warning them.",
+  "openingQuestion": "A set of financial statements receives an unqualified audit opinion. Does that mean the figures certainly contain no errors?",
+  "openingOptions": [
+    "Yes, that is the purpose of an audit",
+    "No: it says only that no material misstatement remains",
+    "Yes, if a large audit firm performed it",
+    "No, because the auditor only examines the revenue figures"
+  ],
+  "explanation": "The word material carries the entire assertion. An auditor does not examine every transaction - that is impossible on cost grounds - but gives reasonable assurance that the statements contain no misstatement large enough to change a reader's decision. An error of a few tens of millions in a company measured in thousands of billions can exist while the opinion remains unqualified. It is also why a fraud coming to light does not automatically prove the auditor did anything wrong.",
+  "diagram": [
+    { "label": "Unqualified" },
+    { "label": "Qualified: wrong in one part" },
+    { "label": "Adverse: pervasively wrong" },
+    { "label": "Disclaimer: not enough evidence to conclude" }
+  ],
+  "realWorldExample": {
+    "company": "The expectation gap",
+    "description": "After every large corporate collapse the same question comes back: where were the auditors. The phenomenon has its own name in the profession - the expectation gap, the distance between what the public believes an auditor must do and what the standards actually require. The public reads an unqualified opinion as an assurance that the business is healthy. The standards only require an opinion on whether the statements give a true and fair view under the applicable accounting framework. A company can truthfully report that it is on the brink."
+  },
+  "quiz": [
+    {
+      "question": "Who is responsible for preparing the financial statements?",
+      "options": [
+        "The internal accounting team; the board only signs off once the audit is done",
+        "The independent auditor, since they have the deepest technical expertise",
+        "Both parties equally, under international auditing standards",
+        "Company management; the auditor only gives an independent opinion on it"
+      ],
+      "explanation": "This boundary is the foundation of the whole profession. The auditor does not prepare the numbers, does not correct the numbers, and in many circumstances is not permitted to do it on the company's behalf - doing so destroys independence. The accounting team prepares the statements under management's responsibility rather than in place of it, and there is no standard anywhere that makes the responsibility joint, precisely because a shared responsibility would make the opinion worthless."
+    },
+    {
+      "question": "What does a qualified audit opinion mean?",
+      "options": [
+        "True and fair, except for one or a few items named in it",
+        "The auditor cannot conclude at all, having had no access to the books",
+        "The whole set of statements fails to reflect the company's position",
+        "The company is exempted by law from auditing certain line items"
+      ],
+      "explanation": "This is the opinion most often skimmed past. An analyst should read the basis for qualification paragraph closely, because it points at exactly where the figures cannot be relied on. Being unable to conclude at all is a disclaimer, a whole set of statements failing is an adverse opinion, and no legal exemption from auditing individual line items is involved - the word qualified refers to a limitation on the opinion, not on the company's obligations."
+    },
+    {
+      "question": "When does an auditor issue a disclaimer of opinion?",
+      "options": [
+        "When they find signs of fraud in how revenue has been recognised",
+        "When they cannot gather enough evidence to conclude, not when the report is wrong",
+        "When the company has not paid the audit fee agreed in the contract",
+        "When the statements contain pervasive material misstatements throughout"
+      ],
+      "explanation": "Contrast this with an adverse opinion: adverse means knowing the report is wrong, a disclaimer means not being able to know. A disclaimer is often more serious for the company, because it shows the books cannot be verified at all. Suspected fraud leads to further procedures and possibly a qualification, unpaid fees are a contractual matter rather than an opinion type, and pervasive misstatement is the definition of an adverse opinion."
+    },
+    {
+      "question": "What does an emphasis of matter paragraph about going concern tell you?",
+      "options": [
+        "The statements are materially misstated in how the short-term liabilities are shown",
+        "The company has formally filed for bankruptcy with the competent court",
+        "The auditor is flagging significant doubt about the company's ability to continue",
+        "The auditor has changed audit methodology compared with the prior year report"
+      ],
+      "explanation": "This is the strongest signal an audit report can send while the opinion itself remains unqualified - and it is also the paragraph most often skipped in a fast read. It is not a misstatement, because the disclosure is precisely what makes the statements fair; it is not a bankruptcy filing, which is a legal event reported elsewhere; and a change of audit approach would appear in a different part of the report altogether."
+    },
+    {
+      "question": "Why is an unqualified audit opinion not an assurance that the business is doing well?",
+      "options": [
+        "Because it is only valid for the financial year that was audited",
+        "Because auditors are not permitted to comment on business performance",
+        "Because the opinion covers only the balance sheet of the company",
+        "Because it says the statements are fair, not the business sound"
+      ],
+      "explanation": "A company making heavy losses can still receive an unqualified opinion - as long as those losses are presented truthfully. The audit asserts something about the quality of the report, not about the quality of the business. The period point is true but beside the question, the auditor's mandate is not a prohibition on commenting so much as a different mandate entirely, and the opinion covers the complete set of statements rather than the balance sheet alone."
+    }
+  ],
+  "keyTakeaways": [
+    "Reasonable assurance about material misstatement, not absolute assurance about every figure",
+    "Management prepares the statements, the auditor only gives an opinion - doing it for them destroys independence",
+    "Qualified: wrong in one part. Adverse: pervasively wrong. Disclaimer: not enough evidence to know",
+    "A going concern emphasis is a strong signal even while the opinion stays unqualified",
+    "The expectation gap: the public reads the opinion as an assurance the business is healthy; the standards say no such thing"
+  ],
+  "practicePrompt": {
+    "question": "You are reading a report with an unqualified opinion, alongside an emphasis of matter paragraph about going concern. How should you read that?",
+    "options": [
+      "The report is fine; the emphasis paragraph is a formality",
+      "The figures are reliable, but survival is in doubt",
+      "The statements contain a material misstatement",
+      "The auditor lacked the evidence to reach a conclusion"
+    ],
+    "explanation": "The two halves do not contradict each other and are often confused. The unqualified opinion is about the quality of the figures - they reflect the situation accurately. The emphasis paragraph is about that situation itself - and the situation is bad. A company can truthfully report that it is about to run out of money, and that is exactly what is being said here."
+  },
+  "summary": {
+    "keyIdea": "An audit confirms the statements are not materially wrong; it does not confirm the business is healthy",
+    "commonMistake": "Reading an unqualified opinion as an assurance that there are no errors at all",
+    "action": "Open the audit report of a listed company and read the opinion section in full, emphasis paragraphs included."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Find the audited financial statements of three listed companies and for each one identify: which type of opinion it is, whether there are any emphasis paragraphs, and what the key audit matters are. That last section tells you where the auditor spent the most effort.",
+    "secondary": "The list of key audit matters is where an analyst should start reading, not the conclusion."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Every lesson in this app about reading financial statements quietly assumes the figures can be trusted. This stage covers the mechanism that produces that trust, its limits, and how to read the assurance itself."
+    },
+    { "type": "heading", "text": "Four types of opinion, ordered by severity" },
+    {
+      "type": "conceptTable",
+      "title": "Reading an audit opinion",
+      "subtitle": "The last three are all signals, and the order of severity is not the intuitive one",
+      "concepts": [
+        { "def": "The statements give a true and fair view in all material respects. This is the outcome of the great majority of audits." },
+        { "def": "True and fair, except for one or a few named items. The basis paragraph points at exactly where the figures cannot be relied on." },
+        { "def": "The statements do not give a true and fair view. The misstatement is pervasive rather than localised. Rare and very serious." },
+        { "def": "Not enough evidence to conclude. It differs from adverse in this: adverse is knowing it is wrong, a disclaimer is being unable to know." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Two words that carry the whole limit of the profession",
+      "text": "Reasonable assurance, not absolute assurance. Material misstatement, not every misstatement. Auditors work by sampling within limits of time and cost, so there is always a risk that an error slips through. The standards admit this openly. A reader needs to understand that what they are receiving is a high level of confidence, not certainty."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An audit does not say the company is good. It says the numbers tell the story accurately, even when that story is a bad one.",
+        "The next lesson goes into the two words that limited everything above: how much is material."
+      ]
+    }
+  ]
+}

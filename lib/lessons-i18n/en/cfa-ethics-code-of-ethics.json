@@ -81,7 +81,7 @@
       "options": [
         "Only people employed directly by CFA Institute itself",
         "Only during working hours, and never outside the job",
-        "Only those who already hold the full CFA charter",
+        "Only those who have already been awarded the full CFA charter",
         "Both charterholders and candidates, across a career"
       ],
       "explanation": "The Code binds anyone registered to sit a CFA exam as well as anyone who already holds the charter, and it covers professional conduct plus personal conduct that can damage professional standing, so it does not stop at the end of the working day. The option limiting it to CFA Institute staff inverts the point entirely: employees of the institute are not the population the Code governs. Limiting it to full charterholders would leave every candidate free of any obligation while they study, which is precisely when misconduct in an exam room does the most reputational damage."
@@ -89,7 +89,7 @@
     {
       "question": "One of the six components of the Code requires members to 'act with integrity, competence, diligence and ethics'. What does that mean in day-to-day work?",
       "options": [
-        "The process and the competence must both hold, not just the result",
+        "The process and the competence must both hold, not only the result achieved",
         "It applies only to large decisions; small trades are exempt from it",
         "It is a formal slogan only, with no real sanction behind it in practice",
         "Strong investment results are enough, whatever the process was"

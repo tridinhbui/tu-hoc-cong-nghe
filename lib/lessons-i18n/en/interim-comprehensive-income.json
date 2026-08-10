@@ -1,0 +1,174 @@
+{
+  "slug": "interim-comprehensive-income",
+  "title": "Interim Statement & OCI",
+  "subtitle": "Comprehensive Income = Net Income + OCI",
+  "duration": "6 min",
+  "openingQuestion": "How does comprehensive income differ from net income?",
+  "openingOptions": [
+    "It is just another name for it",
+    "It includes OCI on top of net income",
+    "It is only used by banks and insurers",
+    "It is always smaller"
+  ],
+  "explanation": "Comprehensive income = net income + OCI, meaning you add back the unrealised gains and losses and the currency translation differences. These items have not passed through the income statement, so they do not affect EPS, but they still change the carrying value of shareholders' equity on the balance sheet.",
+  "diagram": [
+    {
+      "label": "Net income"
+    },
+    {
+      "label": "+ OCI"
+    },
+    {
+      "label": "Comprehensive income"
+    },
+    {
+      "label": "A fuller picture"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An exporter with an overseas subsidiary",
+    "description": "A Vietnamese company has a subsidiary operating in foreign currency. Each period, when the subsidiary's accounts are translated back into dong for consolidation, the resulting exchange difference does not pass through the income statement - it is booked straight into other comprehensive income. The result is that profit after tax and EPS are untouched by the currency move, while shareholders' equity on the balance sheet still rises or falls materially. Anyone who follows EPS alone never sees that movement at all."
+  },
+  "quiz": [
+    {
+      "question": "What does OCI typically contain?",
+      "options": [
+        "Foreign currency translation differences and unrealised gains or losses",
+        "Employee salary costs and the insurance contributions paid on them",
+        "Sales revenue and the cost of goods sold recognised inside the trading period",
+        "Bank interest expense and the other financing costs of the period"
+      ],
+      "explanation": "OCI captures items that sit outside net income yet still move shareholders' equity: translation differences from consolidating a foreign subsidiary, fair-value swings on certain financial assets, and some pension-related amounts. Salary and insurance costs, sales revenue and cost of goods sold, and interest expense all run through the income statement instead - they are realised operating or financing items, so they land in net income and feed EPS directly."
+    },
+    {
+      "question": "A multinational reports a large negative OCI from currency translation while net income is still positive. What does that mean?",
+      "options": [
+        "Next period's net income will fall automatically by the negative OCI amount",
+        "The company is hiding an FX loss by pushing it down into the OCI line",
+        "The core business still profits, but FX is eroding shareholders' equity",
+        "It means nothing, because OCI sits outside the reported profit figure"
+      ],
+      "explanation": "A large negative OCI from translation says currency risk is eating book value even though it has not touched reported profit - for a group with substantial foreign assets or liabilities, that is a signal to track alongside net income. It does not mechanically reduce next period's profit: translation differences accumulate in equity and only recycle on disposal. Nor is it concealment - that classification is exactly what the standards require. And calling it meaningless ignores equity that genuinely moved."
+    },
+    {
+      "question": "Why is the translation difference from consolidating a foreign subsidiary put into OCI rather than profit?",
+      "options": [
+        "Because the amount always washes back to zero by the year-end date",
+        "Because the amount does not change the company's shareholders' equity",
+        "Because it is unrealised and does not reflect operating performance",
+        "Because the tax authority does not permit it to be recorded in profit"
+      ],
+      "explanation": "The point is to keep the profit line reflecting how the business actually traded. But the amount still changes real shareholders' equity, so it cannot be ignored when you value the company. It does not reliably reverse by year-end - rates can drift in the same direction for years. It is not a tax rule either; the treatment comes from the accounting standards. And the claim that equity is unaffected is precisely backwards."
+    },
+    {
+      "question": "Which kind of company most needs its OCI read carefully?",
+      "options": [
+        "A newly founded company with no accumulated retained earnings yet",
+        "A small domestic retailer with no foreign-currency borrowing at all",
+        "A company with no debt that operates purely inside the home market",
+        "A group with foreign subsidiaries or a large financial portfolio"
+      ],
+      "explanation": "For these groups, currency moves and the remeasurement of financial assets can exceed a period's entire operating profit, so skipping OCI means skipping a large slice of the picture. A start-up with no accumulated earnings, a small domestic retailer with no FX borrowing, and a debt-free domestic operator all lack the two ingredients that make OCI large: assets denominated in another currency, and a portfolio carried at fair value."
+    },
+    {
+      "question": "Why does a large gain sitting in other comprehensive income not raise earnings per share?",
+      "options": [
+        "Because it has not passed through the income statement, though it has already raised equity",
+        "Because earnings per share counts only profit that has been paid out as dividends",
+        "Because items in other comprehensive income are always treated as one-off gains",
+        "Because the amount is deferred and only recognised in the annual reporting period"
+      ],
+      "explanation": "These are unrealised gains and losses - asset remeasurements, consolidation translation differences - so they go straight to equity and never enter the EPS numerator. EPS is computed on profit attributable to ordinary shareholders, not on the portion distributed as dividends. OCI items are not one-off by definition; translation differences recur every single period. And nothing waits for the annual report - interim statements present OCI too. The practical consequence: equity can swing hard while EPS looks perfectly flat."
+    }
+  ],
+  "keyTakeaways": [
+    "Comprehensive income is broader than net income",
+    "OCI can move shareholders' equity materially",
+    "Read it when analysing international groups or large financial portfolios"
+  ],
+  "summary": {
+    "keyIdea": "Comprehensive income is broader than net income",
+    "commonMistake": "Easy to miss: OCI can move shareholders' equity materially",
+    "action": "Read it when analysing international groups or large financial portfolios"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Net income is the most familiar figure on the financial statements, but it does not tell the whole story of how shareholders' equity changed over the period."
+    },
+    {
+      "type": "heading",
+      "text": "Comprehensive Income = Net Income + OCI"
+    },
+    {
+      "type": "paragraph",
+      "text": "Other Comprehensive Income (OCI) records UNREALISED gains and losses - most commonly the translation difference that arises when consolidating a foreign subsidiary's accounts, or fair-value movements on certain financial assets. These items have not passed through the income statement, so they do not affect EPS, but they still change the carrying value of shareholders' equity on the balance sheet."
+    },
+    {
+      "type": "list",
+      "items": [
+        "OCI usually contains currency translation differences and other unrealised gains or losses",
+        "Comprehensive income is broader than net income and reflects the change in equity value more fully",
+        "It matters most when analysing multinational groups or companies holding large financial assets"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The two layers of a period's result",
+      "equation": "Comprehensive income = Profit after tax + Other comprehensive income (OCI)",
+      "variables": [
+        {
+          "symbol": "Profit after tax",
+          "name": "Net income",
+          "description": "The part that has passed through the income statement; it is the numerator of EPS."
+        },
+        {
+          "symbol": "OCI",
+          "name": "Other comprehensive income",
+          "description": "Unrealised gains and losses: consolidation translation differences, remeasurement of certain financial assets, and some pension-fund items."
+        }
+      ],
+      "example": {
+        "title": "A worked illustration",
+        "calculation": "Profit after tax of 500bn + OCI of (−180bn)",
+        "result": "Comprehensive income = 320bn",
+        "explanation": "EPS is still computed on the 500bn and looks perfectly healthy, but the value genuinely added for shareholders over the period is only 320bn. The 180bn gap shows up only if you read as far as the statement of comprehensive income."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Why some items go to OCI instead of profit"
+    },
+    {
+      "type": "paragraph",
+      "text": "The general principle is to keep items that are unrealised and outside the control of the trading business away from the measure of operating performance. Currency moves and the fair value of financial assets can reverse in the following period; routing all of it through profit would make the profit figure swing violently for reasons that say nothing about how well the business is run. The trade-off is that the reader has to open one more statement before the picture is complete."
+    },
+    {
+      "type": "callout",
+      "label": "When OCI deserves the most attention",
+      "text": "Three cases: groups with several foreign subsidiaries, companies holding large portfolios of financial assets (banks and insurers), and companies with material pension obligations. For these three, reading profit after tax alone leaves out a large part of the story."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Net income is not the whole picture of how equity value is changing.",
+        "OCI is the quiet part, and it can be very large - especially for international groups."
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "Which of the following items belongs in Other Comprehensive Income (OCI)?",
+    "options": [
+      "Currency translation differences and the remeasurement of AFS assets",
+      "Revenue from selling goods and providing services during the period",
+      "General and administrative expenses together with selling expenses",
+      "Cash proceeds received from issuing new shares to investors"
+    ],
+    "explanation": "Comprehensive Income = Net Income + OCI. OCI holds the unrealised gains and losses arising from currency movements, financial instruments and asset remeasurements."
+  },
+  "application": {
+    "title": "In practice: Interim Statement & OCI",
+    "message": "Which of the following items belongs in Other Comprehensive Income (OCI)?",
+    "secondary": "Getting this principle right raises your professional financial analysis ability."
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "slug": "du-phong-nghiep-vu-bao-hiem",
+  "title": "Actuarial pricing, Lesson 2: Technical reserves - why an insurer's profit is an estimate",
+  "subtitle": "Three kinds of reserve, the IBNR held for losses nobody has reported yet, and why reported profit can be wrong for years before anyone notices",
+  "duration": "12 min",
+  "whyItMatters": "In every other industry, profit is a measured number. In insurance, profit depends on an estimate of amounts not yet paid out - so reading an insurer's accounts without understanding reserves is reading a number somebody else chose.",
+  "openingQuestion": "IBNR is a reserve for which kind of loss?",
+  "openingOptions": [
+    "Incurred but not yet reported to the company",
+    "Reported but the claim process is not yet complete",
+    "Not yet occurred but expected during the next financial year",
+    "Currently disputed and awaiting a court ruling"
+  ],
+  "explanation": "IBNR stands for incurred but not reported - losses that have already happened while the company still knows nothing about them. An accident on 28 December may not be notified until March of the following year, but the obligation to pay belongs to the old year. Without a reserve, the company reports the old year's profit higher than it really was and absorbs that loss in the following year instead. This is the hardest estimate on an insurer's accounts, because it is an estimate of things nobody has seen - and it rests entirely on statistical models built from historical data about reporting delay. For long-tail lines such as professional liability, that delay is measured in years rather than months.",
+  "diagram": [
+    { "label": "Premium collected" },
+    { "label": "− unearned premium reserve" },
+    { "label": "− reserve for reported claims" },
+    { "label": "− IBNR: incurred, not yet reported" },
+    { "label": "= underwriting profit - an estimate, not a measurement" }
+  ],
+  "realWorldExample": {
+    "company": "Liability and occupational disease lines",
+    "description": "A claim for an occupational disease can surface twenty years after the policy expired. The international insurance industry has suffered enormous losses because this kind of long-tail exposure was under-reserved for decades - nobody lied, it is simply that the historical data available at the time did not yet show how long the tail ran."
+  },
+  "quiz": [
+    {
+      "question": "What does the unearned premium reserve represent?",
+      "options": [
+        "Premium refundable to the customer if the policy is cancelled mid-term",
+        "Premium the company expects to collect in the periods ahead",
+        "Premium already collected but belonging to the remaining cover period",
+        "Premium collected but not yet approved for recognition by the regulator"
+      ],
+      "explanation": "Collect a full year's premium in July and by 31 December only half of it has been earned; the other half is still an obligation, so it is not yet revenue. It is not a refund figure - a mid-term cancellation is a separate event that may or may not happen. Premium expected in future periods has not been collected at all, so it is not on the balance sheet. And no regulator approves revenue recognition policy by policy."
+    },
+    {
+      "question": "Why is IBNR the hardest estimate on an insurer's accounts?",
+      "options": [
+        "Because it swings constantly with market interest rates",
+        "Because every customer with a loss has to confirm it first",
+        "Because accounting standards prescribe no method for computing it",
+        "Because it estimates losses that nobody has seen yet"
+      ],
+      "explanation": "It rests entirely on statistical models of reporting delay, and for long-tail lines that delay runs into years. Confirmation with customers is impossible by definition - the whole point is that these losses have not been reported. Interest rates affect discounting rather than the size of the underlying loss estimate, and actuarial methods for IBNR are well established; the difficulty is in the data, not in the absence of a method."
+    },
+    {
+      "question": "What are the consequences of under-reserving?",
+      "options": [
+        "This year's profit is artificially high and the loss lands in later years",
+        "The company must pay extra income tax on the difference in profit",
+        "The regulator will suspend the company's licence for that line",
+        "Policyholders receive compensation beyond what the contract says"
+      ],
+      "explanation": "This is how an insurer can report profit for several years running and then post a sudden loss - the money was never there, it was simply recognised late. Extra tax may follow as a second-order effect but it is not the harm being described. Suspension is a regulatory response to insolvency rather than to an estimate that turns out low. And policyholders are paid what their contract says regardless of what the insurer reserved."
+    },
+    {
+      "question": "What does a long-tail line of business mean?",
+      "options": [
+        "An insurance contract with a term of more than twenty years",
+        "A loss can be reported long after the policy has expired",
+        "A loss is paid in instalments over several consecutive years",
+        "A line whose claims ratio rises with each year the policy is in force"
+      ],
+      "explanation": "Motor insurance is reported within days; professional liability and occupational disease can surface twenty years later. The tail describes the delay before a loss is known, not the length of the contract, and not the schedule on which a known loss is settled - a claim can be paid over years and still be short-tail because it was reported immediately. A rising claims ratio over the policy term is a pricing question, not a reporting-delay one."
+    },
+    {
+      "question": "Why is an insurer's profit different in nature from an ordinary company's?",
+      "options": [
+        "Because claims do not go into cost of goods sold",
+        "Because revenue is only recognised when the policy term ends",
+        "Because it depends on an estimate of amounts not yet paid",
+        "Because most of the profit comes from investing, not underwriting"
+      ],
+      "explanation": "An ordinary business knows its costs and then sets a price. An insurer sets the price first and only learns the real cost years later. Where claims sit in the presentation is a labelling matter, revenue is earned across the cover period rather than at its end, and investment income - real as it is - would not make profit an estimate; the reserve for what has not yet been paid is what does."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A one-year policy collects 240m of premium and incepts on 1 September. What is the unearned premium reserve at 31 December?",
+    "options": [
+      "160m (= 240 × 8/12 remaining)",
+      "80m (= 240 × 4/12 already elapsed)",
+      "240m (= the entire premium collected)",
+      "20m (= 240/12, one month)"
+    ],
+    "explanation": "The premium is collected in one go but the insurance obligation runs evenly across 12 months, so at 31 December the company has earned only 4 months and still owes the customer 8 months of cover. That unearned portion is 240 × 8/12 = 160m and it sits in liabilities, not in revenue. Picking 80m takes the earned part instead - answering the opposite question. Leaving the whole 240m recognises revenue the moment cash arrives, and it inflates this year's profit by exactly the obligation still hanging over into next year."
+  },
+  "keyTakeaways": [
+    "Three kinds: unearned premium reserve, reserve for reported claims, and IBNR.",
+    "IBNR covers losses that have happened and the company does not yet know about - the hardest estimate on the accounts.",
+    "Under-reserving makes this year's profit artificially high and pushes the loss into later years.",
+    "Long-tail lines have reporting delays measured in years, not months."
+  ],
+  "summary": {
+    "keyIdea": "IBNR is losses that have already happened and the company does not know about, and it is the hardest estimate on the accounts",
+    "commonMistake": "Reading an insurer's profit as a settled number. It is an estimate that can be wrong for years.",
+    "action": "Look at the loss development table across years: are prior-year reserves being revised up or down?"
+  },
+  "application": {
+    "title": "Read the loss development table",
+    "message": "Find the loss development table in an insurer's report and see which way prior-year reserves have been revised over time.",
+    "secondary": "Consistent upward revision means the company was under-reserving and the profit reported in those years was artificially high."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Ask a manufacturer how much it made this year and you get a measured number. Ask an insurer the same question and the answer depends on how much they estimated for amounts not yet paid."
+    },
+    { "type": "heading", "text": "Three kinds of reserve" },
+    {
+      "type": "conceptTable",
+      "title": "An insurer's obligations that have not yet fallen due",
+      "concepts": [
+        {
+          "def": "Collect a full year's premium in July and by 31 December only half is earned. The other half is still an obligation, not yet revenue."
+        },
+        {
+          "def": "A loss already reported, still being handled, not yet fully paid. The easiest to estimate, because the incident is known."
+        },
+        {
+          "def": "Incurred, and nobody has reported it. Estimated with statistical models built on historical data about reporting delay."
+        }
+      ]
+    },
+    { "type": "heading", "text": "Why IBNR is the hard part" },
+    {
+      "type": "paragraph",
+      "text": "An accident on 28 December may not be notified until March, but the obligation belongs to the old year. For motor, the delay is measured in days and the model is fairly firm. For professional liability or occupational disease, a claim can appear twenty years later - and no historical data available in that first year could have shown how long the tail would run."
+    },
+    {
+      "type": "callout",
+      "label": "Why this is the easiest place in the industry to manage profit",
+      "text": "Reserve a few percent light and this year's profit rises by the same amount, and it takes years for the shortfall to surface. Nobody has to tell a single lie - it is enough to pick the optimistic assumption inside a range where every assumption is defensible."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An ordinary business knows its costs and then sets its price.",
+        "An insurer sets the price first and finds out the real cost years later. The whole difficulty of the industry sits in that inversion."
+      ]
+    }
+  ]
+}

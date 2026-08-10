@@ -1,0 +1,200 @@
+{
+  "slug": "tong-ket-chang-ai-trong-tai-chinh",
+  "title": "AI in Finance, Lesson 20: Wrap-up - an AI workflow in finance for beginners",
+  "subtitle": "Putting it all together into a daily working and learning routine.",
+  "duration": "15 min",
+  "whyItMatters": "A workflow you can reuse is worth far more over time than remembering a few clever prompts - the tools will change, the workflow will not.",
+  "openingQuestion": "What should a learner have produced by the end of this stage?",
+  "openingOptions": [
+    "A small AI workflow with prompts, sources, outputs and a verification step",
+    "A belief that AI is always right",
+    "An unchecked buy or sell decision",
+    "Nothing worth keeping"
+  ],
+  "explanation": "What you take away from this stage is not a list of tricks but a repeatable five-step workflow: read and summarise, extract figures with sources, find verifiable risks, write a one-page memo, and challenge and verify. Running through all five is a single principle - everything the AI produces has to be traceable back to a source, and wherever it cannot be traced you say so explicitly. Hold to that and you can use AI on almost any financial document; drop it and every other technique loses its value.",
+  "summary": {
+    "keyIdea": "The AI stage ends with a workflow: read, extract figures, find risks, write the memo, verify.",
+    "commonMistake": "Collecting scattered tricks without ever building a reusable workflow.",
+    "action": "Save the set of five prompts and try them on a real document this week."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You do not need to memorise every term. You need a safe workflow for using AI in finance."
+    },
+    { "type": "heading", "text": "The five-step workflow" },
+    {
+      "type": "list",
+      "items": [
+        "Read and summarise the document",
+        "Extract the figures with their sources",
+        "Find risks and questions to verify",
+        "Write a one-page memo",
+        "Challenge and recheck"
+      ]
+    },
+    { "type": "heading", "text": "The five prompts worth saving" },
+    {
+      "type": "list",
+      "items": [
+        "The summarising prompt",
+        "The figure-extraction prompt",
+        "The risk-finding prompt",
+        "The memo-writing prompt",
+        "The challenge and verification prompt"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Terms",
+      "text": "Verification: rechecking facts and figures. Workflow: a repeatable sequence of working steps. Prompt library: where you keep the prompts you reuse."
+    },
+    { "type": "heading", "text": "How to keep learning" },
+    {
+      "type": "paragraph",
+      "text": "Each week pick one real document and run the five-step workflow on it. After each pass, edit the prompts so the output is clearer, better sourced and shorter."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The five steps and what counts as passing each one",
+      "subtitle": "Do not move to the next step until the current one passes",
+      "concepts": [
+        {
+          "vi": "Đọc & tóm tắt",
+          "en": "Read & summarize",
+          "def": "Passes when facts are separated from judgements and every main point can be traced to a part of the document."
+        },
+        {
+          "vi": "Trích số",
+          "en": "Extract",
+          "def": "Passes when every figure has a page, a unit and a reporting period, states whether it is consolidated or parent-only, and you have spot-checked two of them."
+        },
+        {
+          "vi": "Tìm rủi ro",
+          "en": "Flag risks",
+          "def": "Passes when every risk has numerical evidence, a source page, and one specific thing to check next."
+        },
+        {
+          "vi": "Viết bản ghi nhớ",
+          "en": "Write the memo",
+          "def": "Passes when someone with no background reads it in two minutes and repeats back the right conclusion and the right risks."
+        },
+        {
+          "vi": "Phản biện & kiểm chứng",
+          "en": "Challenge & verify",
+          "def": "Passes when every weak point has been either evidenced or cut, and three key figures have been checked against the source."
+        }
+      ]
+    },
+    { "type": "heading", "text": "Four principles to carry into every AI tool you meet later" },
+    {
+      "type": "list",
+      "items": [
+        "Lock the sources first, ask afterwards - no source means no usable conclusion.",
+        "Always give the AI a valid way out so it can say 'not found' instead of guessing.",
+        "Separate facts from judgements in every output, even when you are the only reader.",
+        "Every error you catch has to come back as a constraint in the template prompt."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "One thing that will not change",
+      "text": "AI will keep getting stronger and the tools will keep changing. But responsibility for a number in a report with your name on it cannot be transferred to a machine, in any version. That is why this whole stage is built around citing sources and verifying rather than around tool tricks."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you keep only one thing from this stage, keep the habit of asking four questions about every figure: which page, which unit, which period, and computed with what formula. Those four filter out most of the risk, and they hold whether you are using AI or reading somebody else's analysis."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "AI in finance is not a bag of tricks; it is a way of working.",
+        "Beginners improve when they learn to ask precisely, verify carefully, and write down how they did it."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which step should an AI workflow in finance end with?",
+      "options": [
+        "Challenging the findings and rechecking",
+        "Writing the final one-page memo",
+        "Extracting figures from the report",
+        "Finding the risks in the statements"
+      ],
+      "explanation": "Verification is the step that protects quality, so it has to come last. Extraction and risk-finding both feed the memo, and the memo itself is the deliverable rather than the safeguard. Putting any of the other three at the end leaves the output unchecked, which is precisely the failure mode this whole stage exists to prevent."
+    },
+    {
+      "question": "How many groups should a minimum prompt set contain?",
+      "options": [
+        "7 groups: one for each type of financial document you handle",
+        "5 groups: summarise, extract, find risk, write, verify",
+        "3 groups: read the document, write the report, recheck it",
+        "2 groups: one group for asking and one group for checking"
+      ],
+      "explanation": "These five groups form one complete workflow. Splitting by document type multiplies the library without adding any new step, and collapsing to three or two hides the steps that are easiest to skip - extracting figures with their sources, and finding risks that can be verified. A prompt library is organised around the steps of the process, not around the paperwork."
+    },
+    {
+      "question": "What is the principle that runs through all five steps?",
+      "options": [
+        "Every document has to be stored as a file",
+        "Every conclusion has to come with a recommendation",
+        "Everything has to be traceable back to a source",
+        "Every step has to involve the AI in some way"
+      ],
+      "explanation": "This is the condition that makes all the remaining steps meaningful. Drop the sourcing principle and the summary, the extracted figures and the memo all become things nobody can check. Storing files is housekeeping, not every analysis ends in a recommendation, and several steps in the workflow are better done by hand than by the model."
+    },
+    {
+      "question": "Why does the workflow matter more than memorising particular prompts?",
+      "options": [
+        "Because the workflow is formally recognised by the regulator",
+        "Because each AI tool uses its own distinct syntax",
+        "Because specific prompts are usually too long to memorise",
+        "Because tools change, while the order of the steps does not"
+      ],
+      "explanation": "A prompt is how the workflow is expressed on one tool at one moment. When the tool changes you rewrite the prompt in a few minutes if you still have the workflow; without it you start learning from scratch. No regulator certifies workflows, syntax differences are minor across modern tools, and length is not the reason memorisation fails."
+    },
+    {
+      "question": "Which principle runs through all five steps of using AI in finance?",
+      "options": [
+        "Every figure must be traceable to a source and confirmed by the user",
+        "Every step must be carried out using one single AI tool throughout",
+        "Every result must be converted into a table before it can be used",
+        "Every prompt must be long enough to describe the full context of the task"
+      ],
+      "explanation": "The five steps differ in what they do but agree on this: the AI proposes and the person takes responsibility for confirming. Using one tool throughout is a convenience rather than a principle, tables suit some outputs and not others, and prompt length is no substitute for a constraint. Drop the confirmation habit and the workflow only helps you be wrong faster."
+    }
+  ],
+  "diagram": [
+    { "label": "1. Read and summarise with structure" },
+    { "label": "2. Extract figures with page, unit and period" },
+    { "label": "3. Find risks backed by evidence" },
+    { "label": "4. Write a one-page memo" },
+    { "label": "5. Challenge and verify, keeping a trail" }
+  ],
+  "realWorldExample": {
+    "company": "A four-week plan to make the workflow automatic",
+    "description": "Reading a stage does not create a skill; repetition does. One simple way to run it: in week 1 pick a financial news article and do only steps 1-2, with the goal of verifying three figures. In week 2 move to a quarterly report from a company you follow and do steps 1-3. In week 3 do all five steps on the same company and give the memo to someone else to read in two minutes. In week 4 take that same memo, compare it against newly published information, and edit your template prompts based on the errors you hit. After four weeks you have a workflow you have actually run, a prompt library revised a few times, and above all the reflex of checking sources."
+  },
+  "keyTakeaways": [
+    "The five-step workflow matters more than any particular prompt - when the tool changes, the workflow still works.",
+    "The principle running through it: everything must be traceable to a source, and where it cannot be, say so.",
+    "A prompt library and a trail of notes are two assets that accumulate over time.",
+    "The skill only forms through repetition on real documents, not through reading more theory."
+  ],
+  "practicePrompt": {
+    "question": "What should a learner have produced by the end of this stage?",
+    "options": [
+      "A small AI workflow with prompts, sources, outputs and a verification step",
+      "A belief that AI is always right",
+      "An unchecked buy or sell decision",
+      "Nothing worth keeping"
+    ],
+    "explanation": "The best output is a workflow you can use again and check as you go."
+  },
+  "application": {
+    "title": "Practise now",
+    "message": "Save the set of five prompts and try them on a real document this week.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

@@ -12,9 +12,17 @@
   ],
   "explanation": "The lesson isn't about picking the right or wrong stock - it's about putting all your eggs in one basket. A portfolio is the collection of different investments you hold at the same time. When one investment drops sharply, the others can hold steady or even rise, making your overall wealth less volatile.",
   "diagram": [
-    { "label": "Getting one stock right or wrong", "arrow": true },
-    { "label": "Matters less than dumping everything into one ticker", "arrow": true },
-    { "label": "Splitting across many investments = a Portfolio" }
+    {
+      "label": "Getting one stock right or wrong",
+      "arrow": true
+    },
+    {
+      "label": "Matters less than dumping everything into one ticker",
+      "arrow": true
+    },
+    {
+      "label": "Splitting across many investments = a Portfolio"
+    }
   ],
   "realWorldExample": {
     "company": "Vietnamese retail investors, 2022",
@@ -29,7 +37,6 @@
         "A bank account holding all of someone's savings",
         "A single stock with a much larger market cap than the others"
       ],
-      "correct": 1,
       "explanation": "A portfolio is the entire 'basket of assets' you hold. Managing it well means looking at the risk and return of the WHOLE basket, not each holding on its own."
     },
     {
@@ -40,7 +47,6 @@
         "Because one asset's own risk can drag the whole portfolio down",
         "Because the more assets you hold, the closer risk gets to zero"
       ],
-      "correct": 2,
       "explanation": "Diversification doesn't guarantee a higher return - it reduces unnecessary risk (the risk specific to one asset, company, or industry), while the risk of the market as a whole can never be fully removed."
     },
     {
@@ -51,7 +57,6 @@
         "Yes, as long as those ten banks are headquartered in different provinces around the country",
         "No - all 10 face the same interest-rate risk and the same industry policy shifts"
       ],
-      "correct": 3,
       "explanation": "Diversification is measured by how differently assets move, not by how many you hold. When interest rates rise or industry rules change, all ten tickers react the same way - you hold ten assets but only one real bet."
     },
     {
@@ -62,7 +67,6 @@
         "Meeting a mandatory rule on portfolio composition for individual investors",
         "Guaranteeing that at least one asset class turns a profit every single year"
       ],
-      "correct": 0,
       "explanation": "An asset's value in a portfolio isn't just its own return - it's how it behaves when everything else is falling. A middling-return asset that moves the opposite way can be more useful than a high-return asset that moves in step."
     },
     {
@@ -73,7 +77,6 @@
         "No, diversification always raises return and lowers risk at the same time",
         "Yes, because trading fees across many assets eat up any extra return"
       ],
-      "correct": 1,
       "explanation": "This is why diversification is called finance's only free lunch: if assets don't move in lockstep, the portfolio's volatility falls below the weighted average of the individual volatilities, while expected return stays the weighted average."
     },
     {
@@ -84,7 +87,6 @@
         "Systemic risk - a recession, a rate shock, a crisis that hits everything at once",
         "Diversification removes every kind of risk if you hold enough assets"
       ],
-      "correct": 2,
       "explanation": "Spreading capital across many companies removes each company's own risk. But when the whole economy turns down, everything falls together - in 2022 stocks and bonds fell at the same time. That's the risk you're paid to carry."
     }
   ],
@@ -102,7 +104,6 @@
       "Unrelated to the concept of a portfolio, since that term only applies to professional investment funds",
       "Partly a fit, but only if Mr. Nam holds at least 5 or more different investments in his account"
     ],
-    "correct": 0,
     "explanation": "A portfolio needs to be viewed and managed as one unit - assessing overall risk, weightings, and the correlation between holdings, rather than looking at each holding in isolation."
   },
   "summary": {
@@ -115,7 +116,6 @@
     "message": "List every investment you currently hold, and check whether they're tightly correlated with each other (for example, all bank stocks) - if they are, that's a sign you aren't truly diversified yet.",
     "secondary": "Holding many tickers doesn't mean diversification if they all move the same direction."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

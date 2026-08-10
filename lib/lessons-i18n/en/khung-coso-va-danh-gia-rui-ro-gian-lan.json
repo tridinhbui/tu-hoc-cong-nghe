@@ -1,0 +1,137 @@
+{
+  "slug": "khung-coso-va-danh-gia-rui-ro-gian-lan",
+  "title": "The COSO Internal Control Framework and fraud risk assessment",
+  "subtitle": "The 5 components of the COSO Framework - the foundational tool every internal auditor has to master",
+  "duration": "8 min",
+  "openingQuestion": "The COSO Internal Control Framework (Committee of Sponsoring Organizations) has 5 main components. Which one is treated as the FOUNDATION, shaping how well the other 4 work?",
+  "openingOptions": [
+    "Control Activities - the specific approval and reconciliation steps",
+    "Control Environment - culture, ethics and the example from the top",
+    "Monitoring Activities - periodic review of how well controls work",
+    "All five components matter equally; none of them is the foundation"
+  ],
+  "explanation": "The COSO Framework treats the Control Environment as the foundation of the whole internal control system - it covers the organisation's integrity and ethical values, management's philosophy, the organisational structure, and above all the 'tone at the top' (the example set by senior leadership). If that environment is weak (leaders who do not take compliance seriously, a culture that tolerates small breaches), even the most detailed and sophisticated control procedures are easily disabled or worked around in practice.",
+  "realWorldExample": {
+    "company": "The Enron scandal and the birth of the Sarbanes-Oxley Act (SOX)",
+    "description": "The collapse of Enron in 2001 - one of the largest accounting frauds in history - happened even though the company had control procedures on paper, because the real control environment was extremely weak: a corporate culture that encouraged excessive risk, a leadership team that pushed targets at any cost, and an independent auditor (Arthur Andersen) with a serious conflict of interest. The case led to the Sarbanes-Oxley Act (SOX) of 2002, which requires US public companies to formally assess and report on the effectiveness of internal control - a turning point for the internal audit profession worldwide."
+  },
+  "quiz": [
+    {
+      "question": "The 'Fraud Triangle' - the classic model in fraud risk assessment - names 3 elements that generally have to be present together for fraud to become likely. Which three?",
+      "options": [
+        "Weak controls, poor oversight, and penalties that are too light",
+        "Pressure, opportunity, and the severity of the damage caused",
+        "Pressure, opportunity, and the ability to rationalise it",
+        "Motive, means, and the moment chosen to carry the act out"
+      ],
+      "explanation": "The Fraud Triangle (Donald Cressey) is the foundational model in fraud risk assessment: all 3 elements generally need to be present at once - an honest employee may be under financial pressure but have no opportunity (tight controls); someone with opportunity but no pressure or rationalisation is unlikely to act. Internal auditors concentrate mainly on REDUCING OPPORTUNITY through strong internal control, because that is the element an organisation can act on directly, unlike personal pressure and psychological rationalisation. Note that weak controls are one route to opportunity, not a third element of their own, and the damage caused sits after the act rather than before it."
+    },
+    {
+      "question": "'Segregation of duties' - one of the most basic control activities of all - reduces fraud risk on what underlying principle?",
+      "options": [
+        "Departments report to two different management levels",
+        "Each employee may handle only one single type of transaction",
+        "Staff must rotate positions after every two years of work",
+        "No one person controls a transaction from start to finish"
+      ],
+      "explanation": "Segregation of duties is one of the strongest preventive controls against both deliberate fraud and unintentional error: by splitting incompatible functions (authorising, executing, recording, reconciling) across different people, the organisation raises the bar from 'one person can act alone' to 'several people have to collude' - a substantially harder threshold in most real situations. It is not about limiting anyone to a single transaction type, nor about rotation or dual reporting lines, which are different controls answering different risks."
+    },
+    {
+      "question": "When an internal auditor finds a 'material weakness' in internal control but management argues the cost of fixing it outweighs the real risk, what is the most professional way for the auditor to proceed?",
+      "options": [
+        "Present a cost-benefit analysis of that risk",
+        "Halt every related process until it has been fixed",
+        "Report it straight to the state regulator immediately",
+        "Note it in the file and leave it to the next audit cycle"
+      ],
+      "explanation": "This situation comes up constantly in internal audit work, and it demands a balance between professional independence and the realities of running a business: internal audit's role is not to 'decide instead of' management, but to make sure THE RISK IS PROPERLY UNDERSTOOD AND THE DECISION IS TRANSPARENTLY RECORDED - and for genuinely material risks, professional standards (such as the IIA Standards) generally require escalation to a higher level (the Audit Committee) if executive management does not deal with it adequately, so that accountability ultimately rests somewhere."
+    },
+    {
+      "question": "Scenario: one accountant prepares the payment voucher, approves it, and reconciles the bank statement. Which control principle is being broken?",
+      "options": [
+        "Control Environment - leadership sets a poor example",
+        "Segregation of Duties - one person owns the entire cycle",
+        "Risk Assessment - fraud risk was never identified",
+        "Monitoring - no periodic internal audit is done"
+      ],
+      "explanation": "Preparing, approving and reconciling must sit with three different people, because combined in one pair of hands they let someone create a fictitious transaction and then hide the trail. Segregation of duties raises the bar from one person deciding to collusion being required. The other components are all real parts of COSO, but none of them is what this specific arrangement breaks: the failure here is in the design of the control activity itself."
+    },
+    {
+      "question": "Which side of the Fraud Triangle does internal control mainly act on?",
+      "options": [
+        "Pressure, by raising salaries and benefits",
+        "Opportunity, the only side the organisation controls",
+        "Rationalisation, through professional ethics training",
+        "All three sides at once and to the same degree"
+      ],
+      "explanation": "An employee's financial pressure comes out of their private life, and rationalisation happens inside their head - the organisation can reach both only marginally. Opportunity is the opposite: it is created by the design of the process itself, so that is where internal control puts all of its weight. Ethics training and pay do have some effect on the other two sides, which is why they exist, but treating all three as equally controllable overstates what a control system can actually reach."
+    }
+  ],
+  "keyTakeaways": [
+    "The COSO Framework has 5 components, with the Control Environment (culture and tone at the top) as the foundation - detailed controls fail easily when the culture does not value compliance",
+    "Fraud Triangle: Pressure + Opportunity + Rationalisation - all 3 usually need to be present at once; internal control concentrates on reducing Opportunity",
+    "Segregation of duties raises the bar from 'one person can act alone' to 'several people must collude' - a basic preventive control with a high payoff",
+    "When a material weakness is found and management refuses to fix it, the auditor is responsible for making the decision transparent and escalating it where the risk is material"
+  ],
+  "practicePrompt": {
+    "question": "During an internal audit you find that in the current supplier payment process, one single employee (the chief accountant) can CREATE a new supplier in the system, APPROVE the invoice, and EXECUTE the bank transfer. Is this a serious internal control risk, and why?",
+    "options": [
+      "No risk here, because the chief accountant is trusted and experienced",
+      "One person creates the vendor, approves the invoice and pays it",
+      "The risk is theoretical and rare in practice, so it needs no attention",
+      "The chief accountant should be dismissed at once without investigation"
+    ],
+    "explanation": "This is the textbook case of a serious segregation of duties breach - personal trustworthiness (however genuine) is not a reason to skip structural control design, because: (1) personal circumstances can change over time (a sudden financial pressure); (2) the missing control creates opportunity even where there was no initial intent; (3) it is also a compliance weakness in its own right (under SOX, for instance) whether or not any fraud actually occurs. The standard recommendation: split supplier creation, approval and payment execution across at least 2-3 different people."
+  },
+  "summary": {
+    "keyIdea": "The COSO framework gives a complete structure for assessing internal control, with the Control Environment as the foundation that decides how effective every other control really is; the Fraud Triangle and segregation of duties are the core practical tools for assessing and reducing fraud risk.",
+    "commonMistake": "Assessing internal control purely by checking whether a procedure exists on paper, without assessing the organisation's culture and the real tone at the top",
+    "action": "Whenever you assess fraud risk in any role or process, always check whether there is a clear split between the authorising, executing, and recording/reconciling functions"
+  },
+  "application": {
+    "title": "Applying this to internal audit work",
+    "message": "Pick a process you know well in your organisation (procurement, payments, or hiring) and try applying the Fraud Triangle: identify the points that could create Pressure, Opportunity, or Rationalisation for fraud, and propose the additional controls that follow.",
+    "secondary": "This is a foundational skill for the CIA (Certified Internal Auditor) qualification - the most respected certification in internal audit worldwide."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Internal audit is not just 'checking the books' - it is a systematic assessment of whether the organisation has enough defences against fraud and error, starting from the international standard framework, COSO."
+    },
+    { "type": "heading", "text": "The 5 components of the COSO Framework" },
+    {
+      "type": "list",
+      "items": [
+        "Control Environment: culture, ethical values, tone at the top - the foundation for every other component",
+        "Risk Assessment: identifying and analysing the risks that could affect the organisation's objectives",
+        "Control Activities: the specific policies and procedures such as approval, reconciliation, segregation of duties",
+        "Information & Communication: making sure relevant information is passed on accurately and in time",
+        "Monitoring Activities: periodic assessment of how well the control system works, internal audit's own role included"
+      ]
+    },
+    { "type": "heading", "text": "The Fraud Triangle - the model for assessing fraud risk" },
+    {
+      "type": "paragraph",
+      "text": "Donald Cressey, a criminologist, developed the Fraud Triangle after studying hundreds of embezzlement cases: fraud generally requires 3 elements at once - Pressure (the personal motive that drives it), Opportunity (weak controls that make it possible), and Rationalisation (the ability to convince yourself the act is 'acceptable'). Internal audit concentrates mainly on reducing Opportunity, because that is the element it can control directly through process design, unlike the other two, which belong to individual psychology and circumstance."
+    },
+    { "type": "heading", "text": "Segregation of duties - the foundational control" },
+    {
+      "type": "paragraph",
+      "text": "The segregation principle makes sure no single individual controls a whole sensitive transaction - from initiation, through approval, to execution and recording. This is not about distrusting anyone personally; it is because good control design has to work independently of whether a given person is trustworthy, protecting the organisation against both fraud and honest error."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "After Enron and the other large financial scandals, internal audit shifted from 'a supporting administrative job' to a strategic function reporting directly to the Board's Audit Committee.",
+        "Mastering the COSO Framework and thinking clearly about fraud risk is indispensable groundwork for anyone building a career in this field."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Control environment" },
+    { "label": "Risk assessment" },
+    { "label": "Control activities" },
+    { "label": "Information and communication" },
+    { "label": "Monitoring → examine the fraud triangle: motive, opportunity, rationalisation" }
+  ]
+}

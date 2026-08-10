@@ -12,11 +12,21 @@
   ],
   "explanation": "Transition risk is usually far larger than physical risk for carbon-intensive businesses. Coal reserves are valued on the assumption that they will be extracted and sold. If a carbon tax rises or solar power becomes cheaper than coal power, part of those reserves will never be profitable to extract - their value goes to zero even though the physical asset is entirely intact. That is the definition of a stranded asset.",
   "diagram": [
-    { "label": "Physical risk - direct damage from disasters and long-term change", "arrow": true },
-    { "label": "Transition risk - from policy, technology, markets, reputation", "arrow": true },
-    { "label": "Reduce to the impact on cash flow and asset value", "arrow": true },
-    { "label": "Stranded assets: losing value before the economic life is up", "arrow": true },
-    { "label": "Quantify through scenarios instead of a vague qualitative view", "arrow": false }
+    {
+      "label": "Physical risk - direct damage from disasters and long-term change"
+    },
+    {
+      "label": "Transition risk - from policy, technology, markets, reputation"
+    },
+    {
+      "label": "Reduce to the impact on cash flow and asset value"
+    },
+    {
+      "label": "Stranded assets: losing value before the economic life is up"
+    },
+    {
+      "label": "Quantify through scenarios instead of a vague qualitative view"
+    }
   ],
   "realWorldExample": {
     "company": "Coal power and the write-downs of 2018-2023",
@@ -27,7 +37,7 @@
       "question": "Physical risk is divided into which two types?",
       "options": [
         "Acute (storms, floods) and chronic (sea level, temperature)",
-        "Risk to tangible assets and risk to intangible assets",
+        "Risk to tangible assets and risk to intangible brand goodwill",
         "Risk within national borders and cross-border risk",
         "Risk already insured and risk not yet insured"
       ],
@@ -38,8 +48,8 @@
       "options": [
         "Because new clean technology always appears entirely unexpectedly",
         "Because the market reprices immediately on policy expectations",
-        "Transition risk is never sudden, it always happens gradually",
-        "Because regulators always issue rules without any warning"
+        "Transition risk is never sudden, it always happens gradually over time",
+        "Because regulators always issue new rules without any warning at all"
       ],
       "explanation": "This is the most important point in assessing climate risk financially. An asset is valued on expected future cash flow. When the market changes its expectations about carbon policy or the speed of clean technology adoption, the price adjusts at once rather than waiting for the physical impact. The Bank of England calls this a 'climate Minsky moment' - the possibility of a sudden, simultaneous repricing."
     },
@@ -113,7 +123,10 @@
       "type": "paragraph",
       "text": "Physical risk is damage caused by the climate phenomenon itself: a flooded plant, a failed harvest, a supply chain broken by a storm. It splits into acute (extreme events) and chronic (long-term shifts). Transition risk is damage caused by society's own move to a low-carbon economy: carbon taxes, prohibitions, cheaper substitute technology, customers changing behaviour, and investors withdrawing capital. The paradox is that these two run in opposite directions - if the world acts decisively, physical risk falls but transition risk jumps, and vice versa."
     },
-    { "type": "heading", "text": "Four sources of transition risk" },
+    {
+      "type": "heading",
+      "text": "Four sources of transition risk"
+    },
     {
       "type": "list",
       "items": [

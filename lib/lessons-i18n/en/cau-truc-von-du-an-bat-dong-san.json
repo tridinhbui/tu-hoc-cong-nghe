@@ -3,6 +3,7 @@
   "title": "Property Projects 3: Three sources of capital - equity, the construction loan, and buyers' money",
   "subtitle": "Where each one ranks, the real cost of pre-sale proceeds, and why high leverage bites harder here than elsewhere",
   "duration": "10 min",
+  "whyItMatters": "The capital structure of a property project decides who absorbs the loss when it runs late - and of the three sources of funding, there is one whose provider has almost no tool to protect itself. Knowing that is knowing why the rules on raising capital keep getting tighter.",
   "openingQuestion": "Which source of capital for a property project carries the lowest nominal cost?",
   "openingOptions": [
     "Progress payments made by home buyers",
@@ -35,8 +36,8 @@
     {
       "question": "Where does the real cost of buyers' progress payments sit?",
       "options": [
-        "The brokerage commission paid when each contract is signed",
-        "The implicit interest inside the discount given for early payment",
+        "The brokerage commission paid at the moment each contract is signed",
+        "The implicit rate inside the discount for early payment",
         "The obligation to hand over on time and the penalty for delay",
         "The tax due as soon as each progress payment is received"
       ],
@@ -45,8 +46,8 @@
     {
       "question": "Who carries the largest risk when a project falls behind schedule?",
       "options": [
-        "The co-investors who put equity in alongside the developer",
-        "The bank that lent against the project's assets",
+        "The co-investors holding equity with the developer",
+        "The bank that lent against the assets of the project",
         "The contractor currently carrying out the works",
         "The home buyers who have already paid by instalment"
       ],
@@ -56,9 +57,9 @@
       "question": "Why is high leverage more dangerous in a property project than in a manufacturer?",
       "options": [
         "Because a project has no cash flow at all until it may legally sell",
-        "Because interest rates on property lending run higher than average",
+        "Because interest rates on property lending run well above the average",
         "Because property collateral is inherently hard to value precisely",
-        "Because rules cap the loan share of a project's total investment cost"
+        "Because rules cap the loan share of a project's total cost"
       ],
       "explanation": "A manufacturer has monthly revenue with which to service its interest. A project that has not opened for sale earns nothing, so every coupon has to be funded out of capital. Property lending rates are not systematically higher; collateral valuation is a pricing question rather than a solvency one; and a regulatory cap limits how much debt can be raised rather than explaining why that debt bites harder here."
     },
@@ -67,8 +68,8 @@
       "options": [
         "Home buyers take the first loss of any party",
         "Equity absorbs the loss first, secured lenders only after",
-        "Losses are split pro rata across everyone who funded it",
-        "The contractor loses first, having built without being paid"
+        "Losses are split pro rata across every party that funded it",
+        "The contractor loses first, having built without payment"
       ],
       "explanation": "In theory equity stands last in line and takes the first loss. In practice, recovery from a half-finished project rarely covers what is owed, so the parties behind equity lose money too. Nothing is split pro rata - the entire point of a capital structure is that claims are ranked - and the contractor's unpaid work ranks ahead of equity but behind the secured lender."
     }

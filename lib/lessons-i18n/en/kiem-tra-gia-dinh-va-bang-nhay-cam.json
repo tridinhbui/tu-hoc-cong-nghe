@@ -1,0 +1,169 @@
+{
+  "slug": "kiem-tra-gia-dinh-va-bang-nhay-cam",
+  "title": "AI in Finance, Lesson 12: Testing assumptions and the sensitivity table",
+  "subtitle": "Understanding why a single valuation number is never enough.",
+  "duration": "15 min",
+  "whyItMatters": "The most expensive mistake in valuation is not an arithmetic slip - it is trusting a handsome number produced by assumptions that were never challenged.",
+  "openingQuestion": "What does a sensitivity table give you in a valuation?",
+  "openingOptions": [
+    "Shows how the result changes when the assumptions change",
+    "Makes the share price certain to rise at some point in future",
+    "Removes risk",
+    "Replaces the financial statements"
+  ],
+  "explanation": "A single valuation number creates a sense of certainty the model does not have. A sensitivity table fixes exactly that: it shows you how the result moves as each assumption shifts across a reasonable range. Once the table exists, the right question is no longer 'what is the value' but 'how wrong does an assumption have to be before my conclusion changes' - and that is the question that makes you humble in the right place.",
+  "summary": {
+    "keyIdea": "A single valuation number invites false confidence; a sensitivity table shows you the range of outcomes.",
+    "commonMistake": "Looking only at the prettiest scenario.",
+    "action": "Ask the AI to build 3 scenarios: conservative, base, optimistic."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A valuation is not one answer. It is a range of outcomes that depends on the assumptions behind it."
+    },
+    {
+      "type": "callout",
+      "label": "Terms",
+      "text": "Assumption: an input number you believe is reasonable. Sensitivity table: a table showing how the result changes as the assumptions change."
+    },
+    { "type": "heading", "text": "A simple example" },
+    {
+      "type": "paragraph",
+      "text": "If you assume the business grows at 10%, you get one value. If it only grows 5%, the value is lower. A sensitivity table lets you see both instead of a single answer."
+    },
+    { "type": "heading", "text": "A sample prompt" },
+    {
+      "type": "paragraph",
+      "text": "Build 3 scenarios - conservative, base, optimistic. For each one, state the assumptions, the result, the conditions under which the scenario holds, and the risk that would break it."
+    },
+    { "type": "heading", "text": "How to use this as a beginner" },
+    {
+      "type": "paragraph",
+      "text": "Do not chase an absolutely precise number. Ask instead: if I am slightly wrong about an assumption, does my conclusion still stand?"
+    },
+    { "type": "heading", "text": "Choosing which assumptions to examine" },
+    {
+      "type": "paragraph",
+      "text": "Not every assumption is worth examining. Two criteria for choosing: does it have a large effect on the result, and are you confident about it. An assumption that both matters a lot and is hard to be sure of is the one that belongs in the sensitivity table. Conversely, an assumption that matters a lot but that you can look up with confidence needs no examination - just cite the source."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The three scenarios you should have",
+      "subtitle": "Each scenario has to state the conditions under which it happens",
+      "concepts": [
+        { "def": "Assumptions that are bad but still plausible, not catastrophic. The question to answer: could I live with this one?" },
+        { "def": "The assumptions you genuinely believe, based on historical figures and published plans. This is the scenario you must be able to explain most thoroughly." },
+        { "def": "Assumptions that are good but still plausible. Be explicit about what has to happen to get there, rather than only writing the number." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A full prompt you can reuse",
+      "text": "\"For the model just built, identify the 2 assumptions with the largest effect on the result. Then build a 3×3 sensitivity table for those two assumptions. For each conservative / base / optimistic scenario, state clearly: the specific assumption, the real-world conditions that would have to hold for it to be true, and the corresponding result. Finally, state how far an assumption has to move before the conclusion reverses. Do not give a buy or sell recommendation.\""
+    },
+    { "type": "heading", "text": "How to read a sensitivity table" },
+    {
+      "type": "list",
+      "items": [
+        "If the conclusion holds in all 9 cells, your conclusion is fairly robust - but check that the assumption range is not too narrow.",
+        "If the conclusion only holds in the optimistic corner, treat that as a warning: you are betting on everything going well at the same time.",
+        "If the result flips with a very small change, the model is too sensitive to be your only basis - you need a second method to cross-check."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch out for one trap: do not pick an artificially narrow assumption range to make the table look stable. If actual industry growth has swung between 2% and 15% over the past five years and you only examine 7% to 9%, the sensitivity table is reflecting your confidence back at you rather than testing it."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A sensitivity table makes you humble about your model.",
+        "A range of values beats one handsome number."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What is a sensitivity table?",
+      "options": [
+        "A table showing how the result moves when the assumptions move",
+        "A table recording the change history of the valuation model",
+        "A table listing every assumption used inside the model",
+        "A table comparing the result against peers in the industry"
+      ],
+      "explanation": "It is there to test how robust your conclusion is. A version history tells you what changed in the file, not what changes in the answer. A list of assumptions documents your inputs without saying which of them the result actually depends on. And a peer comparison is a separate valuation method entirely - useful, but it tells you nothing about how fragile your own model is."
+    },
+    {
+      "question": "What is the more cautious way to use a valuation?",
+      "options": [
+        "Take the arithmetic average of every model you have run",
+        "Look at several scenarios instead of one number",
+        "Pick the most optimistic scenario as your target",
+        "Round the result downward to be on the safer side"
+      ],
+      "explanation": "Several scenarios protect you against overconfidence. Averaging every model you ran mixes good methods with bad ones and hides the disagreement between them, which is often the most informative part. Choosing the optimistic case as a target is the opposite of caution. And rounding down is an arbitrary haircut that neither tells you where the uncertainty lies nor how large it is."
+    },
+    {
+      "question": "Which assumption most deserves a place in the sensitivity table?",
+      "options": [
+        "The assumption with the smallest effect on the result",
+        "The assumption easiest to estimate from historical data",
+        "The one that matters a lot and is hard to be sure of",
+        "The assumption most widely used across this industry today"
+      ],
+      "explanation": "An assumption that matters a lot but is easy to verify only needs a citation. One that is hard to be sure of but barely moves the result is not worth the space. The intersection of the two conditions is where examination pays off. Popularity across the industry is no test at all - a widely shared assumption can be widely wrong, and often is at exactly the wrong moment."
+    },
+    {
+      "question": "The sensitivity table shows the conclusion only holds in the most optimistic scenario. What does that mean?",
+      "options": [
+        "The table was built wrongly and needs running again",
+        "A strong conclusion - at least one scenario supports it",
+        "The optimistic case should be the basis of the recommendation",
+        "A weak conclusion - it needs many favourable things at once"
+      ],
+      "explanation": "This is exactly what a sensitivity table is for: it exposes what a single number hides - that the conclusion depends on a combination of favourable assumptions that rarely occur together. Nothing is wrong with the table; it is doing its job. And treating one supporting corner out of nine as strength inverts the finding, which is what makes this the most tempting wrong answer here."
+    },
+    {
+      "question": "Once the sensitivity table is built, what is the right question to answer?",
+      "options": [
+        "How wrong does an assumption have to be before my conclusion changes",
+        "Which scenario in the table has the highest probability of actually occurring",
+        "What the average value of all the cells in the table comes to",
+        "Whether the table has enough scenarios for the review process"
+      ],
+      "explanation": "A sensitivity table is not there to produce a better number, it is there to measure how robust the conclusion is. If a half-point move in long-term growth reverses the recommendation, you do not have a recommendation - you have an assumption. Averaging the cells throws away the very spread the table was built to reveal, and counting scenarios against a checklist answers a procedural question rather than an analytical one."
+    }
+  ],
+  "diagram": [
+    { "label": "Pick the 2 most sensitive assumptions" },
+    { "label": "Give each one 3 levels: conservative · base · optimistic" },
+    { "label": "Build the 3×3 result table" },
+    { "label": "Ask: in which cell does the conclusion change?" }
+  ],
+  "realWorldExample": {
+    "company": "A range of values instead of one number",
+    "description": "In professional research reports, the valuation section rarely stops at a single figure. Analysts present a range, with a table showing the result across different discount rates and growth rates, and they state what the base case assumes. The reason is not to avoid accountability but because that is the honest description: a valuation model is a function of assumptions about the future, and nobody knows the future for certain. A report that quotes a number down to the last unit without stating a range is usually a report more confident than its data allows."
+  },
+  "keyTakeaways": [
+    "A valuation produces a range of values, not a number - present it that way.",
+    "Examining the 2 most sensitive assumptions is enough; examining 10 clutters the table without adding information.",
+    "The right question is 'how wrong does the assumption have to be before the conclusion changes', not 'what is the precise number'.",
+    "If the conclusion only holds in the most optimistic scenario, it is a weak conclusion however handsome the number."
+  ],
+  "practicePrompt": {
+    "question": "What does a sensitivity table give you in a valuation?",
+    "options": [
+      "Shows how the result changes when assumptions change",
+      "Makes the share price certain to rise over the coming year",
+      "Removes risk",
+      "Replaces the financial statements"
+    ],
+    "explanation": "A valuation is highly sensitive to its assumptions, so you need to look at several scenarios."
+  },
+  "application": {
+    "title": "Practise it now",
+    "message": "Ask the AI to build 3 scenarios: conservative, base, optimistic.",
+    "secondary": "Start small, verify clearly, then increase the difficulty."
+  }
+}

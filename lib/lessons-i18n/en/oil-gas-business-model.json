@@ -1,0 +1,176 @@
+{
+  "slug": "oil-gas-business-model",
+  "title": "The 4 oil & gas business models",
+  "subtitle": "Production, services, transport, refining",
+  "duration": "7 min",
+  "openingQuestion": "What mainly separates the four business models in the oil & gas industry?",
+  "openingOptions": [
+    "The geographic location of the operations they run",
+    "The value chain segment and commodity price sensitivity",
+    "Headcount and the size of the fields currently being produced",
+    "The price-to-book ratio the stock trades on"
+  ],
+  "explanation": "Oil & gas is not one industry but four different business models sitting on the same chain. Upstream produces, so its profit tracks the oil price closely. Midstream moves and stores under fixed-fee contracts, so it is much less sensitive. Downstream refining earns on the spread between product prices and crude, so it can do better when the oil price falls. Lumping the whole sector together when analysing the impact of an oil price move is therefore wrong from the very first step.",
+  "diagram": [
+    {
+      "label": "Upstream"
+    },
+    {
+      "label": "Midstream"
+    },
+    {
+      "label": "Downstream"
+    },
+    {
+      "label": "Services / logistics"
+    }
+  ],
+  "realWorldExample": {
+    "company": "PV GAS / refining and petrochemicals",
+    "description": "Some businesses gain when commodity prices rise, while others depend on the investment cycle and on production volumes."
+  },
+  "quiz": [
+    {
+      "question": "Which segment is usually most sensitive to the commodity price?",
+      "options": [
+        "Upstream (exploration and production of crude)",
+        "Downstream (refining and petrochemicals)",
+        "Midstream (pipeline transport and storage)",
+        "The internal corporate accounting department"
+      ],
+      "explanation": "Production takes the most direct hit from commodity price swings, because the barrel it sells is priced at the market. Downstream earns on a spread rather than on the absolute level, so a falling crude price can even help it. Midstream runs on contracted fees that do not move with the barrel. And an accounting function is a cost centre inside the business, not a segment of the value chain at all."
+    },
+    {
+      "question": "When the oil price falls sharply, how are midstream businesses (pipeline transport and storage, usually on long-term fixed-fee contracts) affected compared with upstream producers?",
+      "options": [
+        "No company along the chain is affected by the oil price",
+        "Midstream is less affected, as fees are contracted",
+        "Midstream is always hit many times harder than upstream",
+        "Both are hit equally hard, in the same industry"
+      ],
+      "explanation": "This is exactly why investors distinguish between segments of the oil and gas value chain: midstream operates more like fee-earning infrastructure than like a commodity trading business, so its cash flow is far steadier than upstream, where revenue is tied directly to the market price of crude. The volume shipped can soften, but the fee per unit does not track the barrel."
+    },
+    {
+      "question": "Why are midstream businesses (transport and storage) usually less sensitive to the oil price than upstream ones?",
+      "options": [
+        "Because the government subsidises them under a price cap",
+        "Because they do not use oil in their business at all",
+        "Because their fees are contracted, not tied to crude",
+        "Because they carry virtually no fixed costs at all"
+      ],
+      "explanation": "The midstream business model looks much more like fee-earning infrastructure than like a commodity trading business - the most important structural distinction in the oil and gas value chain. There is no price-cap subsidy behind it, oil is very much the thing they handle, and pipelines and storage tanks are in fact among the most fixed-cost-heavy assets in the whole sector."
+    },
+    {
+      "question": "Why is it a mistake to lump every 'oil and gas company' together when analysing the impact of the oil price?",
+      "options": [
+        "Because there is no such thing as a value chain in oil and gas",
+        "Because the oil price does not affect any company in the sector",
+        "Because every oil and gas company shares one single business model",
+        "Because the four segments react differently, even oppositely"
+      ],
+      "explanation": "This is the core point of the lesson: an oil price shock can badly damage upstream, be close to neutral for midstream, and actually benefit downstream. The value chain is precisely what defines the sector, the oil price affects every participant in some way, and the four models differ so much that treating them as one is what produces the wrong conclusion."
+    },
+    {
+      "question": "Why can a refinery's margin improve even when the crude price is falling sharply?",
+      "options": [
+        "Because their profit is the spread between product and crude prices",
+        "Because they have locked in crude purchases at a fixed price for years",
+        "Because retail fuel prices are state-set and do not follow crude",
+        "Because refinery running costs fall when production volumes fall"
+      ],
+      "explanation": "Downstream businesses earn on the refining spread, not on the absolute price level. When crude falls faster than finished fuel prices, that spread widens - which is exactly why you cannot say the oil and gas sector wins or loses when the oil price moves. Refiners buy crude at prevailing market prices rather than on multi-year fixed contracts, and their running costs are largely fixed."
+    }
+  ],
+  "keyTakeaways": [
+    "Oil and gas is a value chain with several layers",
+    "Risk and margin change from one segment to the next",
+    "It has to be read against the commodity cycle"
+  ],
+  "summary": {
+    "keyIdea": "Oil and gas is a value chain with several layers",
+    "commonMistake": "Easy to miss: risk and margin change from one segment to the next",
+    "action": "It has to be read against the commodity cycle"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Oil and gas is not one homogeneous block - four different business models within the same value chain are affected very differently when the oil price moves."
+    },
+    {
+      "type": "heading",
+      "text": "Upstream, midstream, downstream and services"
+    },
+    {
+      "type": "paragraph",
+      "text": "Upstream (exploration and production) takes the most direct and most severe impact from oil price swings, because revenue is tied straight to the price of the crude it sells. Midstream (pipeline transport and storage) usually runs on long-term fixed-fee contracts, so its cash flow is far steadier, operating more like fee-earning infrastructure than a commodity trading business. Downstream (refining, petrochemicals, distribution) and services have their own sensitivities, often moving opposite to upstream over certain stretches."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The risk and margin of an oil and gas business vary enormously from one segment of the chain to the next",
+        "Upstream is the most directly sensitive to the oil price; midstream is far steadier thanks to fixed-fee contracts",
+        "Do not lump every 'oil and gas company' together when analysing the impact of the oil price"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four segments, four levels of oil price sensitivity",
+      "concepts": [
+        {
+          "def": "Revenue is tied directly to the crude price. Profit swings the most across the price cycle.",
+          "en": "Upstream - extraction"
+        },
+        {
+          "def": "Usually on long-term fixed-fee contracts with customers, so cash flow is as steady as fee-earning infrastructure and barely sensitive to the oil price.",
+          "en": "Midstream - transport, storage"
+        },
+        {
+          "def": "Margin depends on the spread between the crude going in and the products coming out, so it sometimes benefits when the oil price falls.",
+          "en": "Downstream - refining, distribution"
+        },
+        {
+          "def": "Revenue depends on how much the upstream customers are investing, which usually lags moves in the oil price."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why lumping 'oil and gas stocks' together is a common mistake",
+      "text": "When the oil price falls sharply, upstream businesses typically take immediate and heavy damage because revenue is tied straight to the selling price. Midstream businesses may be almost unaffected if their transport contracts are fixed-fee. Downstream businesses sometimes benefit outright, because input costs fall faster than product prices. An investor who folds all four groups into a single judgement that 'oil and gas is doing badly' misses these important differences."
+    },
+    {
+      "type": "heading",
+      "text": "Questions to answer before analysing an oil and gas business"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Which of the four segments is this business in, or does it operate across several at once?",
+        "Are its main revenue contracts at floating market prices or at long-term fixed prices?",
+        "If the oil price fell 30%, by what percentage would this particular company's revenue and profit move?"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A rise or fall in the oil price does not hit every business in the sector equally.",
+        "Always establish which part of the value chain a company sits in before drawing a conclusion."
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "Within the oil & gas value chain, what is the standout financial risk characteristic of the Upstream (exploration and production) segment?",
+    "options": [
+      "Heavy exploration capex, oil price sensitivity, dry wells",
+      "Fixed costs of exactly zero across the operation",
+      "Profit is always stable regardless of the oil price",
+      "No need for modern machinery or equipment at all"
+    ],
+    "explanation": "Upstream (exploration & production) carries the highest risk in the oil and gas sector, because of its heavy capex and its exposure to the world oil price (Brent/WTI)."
+  },
+  "application": {
+    "title": "Practical application: the 4 oil & gas business models",
+    "message": "Within the oil & gas value chain, what is the standout financial risk characteristic of the Upstream (exploration and production) segment?",
+    "secondary": "Getting this principle straight raises your professional financial analysis capability."
+  }
+}

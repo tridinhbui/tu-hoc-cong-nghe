@@ -1,0 +1,164 @@
+{
+  "slug": "ke-chuyen-bang-du-lieu",
+  "title": "Data Thinking, Part 5: Telling a story with data - from a table to a decision",
+  "subtitle": "How to structure an analytical presentation, and why the conclusion belongs on the first slide rather than the last",
+  "duration": "11 min",
+  "whyItMatters": "An analysis that is correct but that nobody acts on creates no value at all. Most data people spend almost all of their effort finding the answer and almost none on making that answer heard and believed.",
+  "openingQuestion": "When presenting analytical results to senior management, where should you start?",
+  "openingOptions": [
+    "With the method and data sources, so the audience trusts the reliability first",
+    "With the conclusion and the recommendation, and only then the evidence",
+    "With the most striking chart, to capture attention",
+    "With the broad market context, narrowing down from there"
+  ],
+  "explanation": "The order in which you build an analysis and the order in which you present it are two different things, and confusing them is the most common mistake there is. You worked from data to method to conclusion, so you tend to retell it in exactly that order. But the audience needs the conclusion first in order to have a frame for everything that follows. In many meetings you genuinely have only three minutes - and if those three minutes go on method, the conclusion never gets heard at all.",
+  "diagram": [
+    {
+      "label": "Conclusion and recommendation"
+    },
+    {
+      "label": "Three principal pieces of evidence"
+    },
+    {
+      "label": "Limitations and risks"
+    },
+    {
+      "label": "Appendix for anyone who wants to dig"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Two ways of presenting the same receivables analysis",
+    "description": "The first: fifteen slides opening with data sources, cleaning method, distribution charts, and a recommendation only on the last slide. The meeting ran out of time at slide nine. The second: the first slide carries one sentence - propose tightening credit limits for the customer group more than 60 days past due, estimated to cut bad debt by 12bn a year. Three slides of evidence follow. The method becomes an appendix. The decision was made in twenty minutes."
+  },
+  "quiz": [
+    {
+      "question": "Why should the conclusion go at the front of a presentation?",
+      "options": [
+        "Because a conclusion is usually short, which suits the opening of a long presentation",
+        "Because the audience needs a frame in order to judge the evidence that follows",
+        "Because detailed evidence presented too early will cause the audience to lose focus",
+        "Because arranging it this way reduces the total number of slides you have to build"
+      ],
+      "explanation": "Without a conclusion to lead the way, listeners have to guess which argument each number is serving. That is an unnecessary burden and it usually ends in a misreading. The other explanations describe side effects rather than reasons: brevity and slide count are not why the order works, and a well-chosen piece of evidence does not cost you attention when the audience already knows what it is for."
+    },
+    {
+      "question": "Why state the limitations of an analysis instead of hiding them?",
+      "options": [
+        "Because professional standards require every analytical report to include a limitations section",
+        "Because a limitations section usefully pads out a presentation when the evidence is thin",
+        "Because the audience will find them anyway, and naming them first strengthens everything else",
+        "Because stating limitations lets the analyst avoid responsibility if the conclusion is later wrong"
+      ],
+      "explanation": "Experienced listeners always hunt for the weak point. If they find one you did not mention, everything else is immediately suspect - including the parts that were sound. No professional standard mandates the section, it is not padding, and it certainly does not transfer responsibility: naming a limitation is how you keep authority over the argument, not how you give it away."
+    },
+    {
+      "question": "How many main messages should a single slide carry?",
+      "options": [
+        "Three to five, to use the available space fully and cut the total number of slides needed",
+        "Exactly one, and the slide title should be that message rather than the chart type",
+        "As many as possible, provided each message comes with specific supporting figures",
+        "There is no rule, because this depends entirely on the habits of each organisation"
+      ],
+      "explanation": "Making the title the message instead of a description of the chart is the smallest change with the largest effect. People skimming a deck read only the titles, so written that way they still receive the whole argument. Packing several messages onto one slide forces the reader to work out which is the point, and 'it depends on the organisation' is how decks end up with no standard at all."
+    },
+    {
+      "question": "When the recommendation runs against what the audience expects, what should you do?",
+      "options": [
+        "State the conclusion clearly, and also present the evidence for the old view and why it falls short",
+        "Soften the conclusion so as to avoid a direct confrontation with an existing view",
+        "Present all the raw figures and let the audience draw their own conclusions",
+        "Postpone the presentation until more data supporting the new conclusion is available"
+      ],
+      "explanation": "Showing that you genuinely weighed their position is the condition for the conclusion being heard at all. Skip the opposing argument and the audience concludes you never considered it, which is a cheaper objection than engaging with your evidence. Softening, stalling, and dumping raw data all avoid the confrontation rather than winning it."
+    },
+    {
+      "question": "Your recommendation runs against what the audience expects. What is the right way to present it?",
+      "options": [
+        "Lead with the recommendation, exactly as in any other presentation",
+        "Build the strongest evidence first, then state the recommendation",
+        "Present both options and let the audience choose between them",
+        "Send the material in advance so they can prepare themselves"
+      ],
+      "explanation": "Conclusion-first is the general rule, but it has an exception: when the audience already holds the opposite belief, stating the conclusion first triggers rebuttal before they have heard any evidence. Build the evidence first so they arrive at the conclusion alongside you rather than defending a position against it."
+    }
+  ],
+  "keyTakeaways": [
+    "The order you built the analysis in is not the order to present it - do not retell it as you did it",
+    "Conclusion and recommendation first, method moved to the appendix",
+    "The slide title is the message, not the name of the chart",
+    "State the limitations before the audience finds them",
+    "Present the opposing argument too, especially when the conclusion runs against expectations"
+  ],
+  "practicePrompt": {
+    "question": "You have 30 seconds in a lift to report your analysis to the director. What should you say?",
+    "options": [
+      "Describe the method and data sources used, to establish that it is reliable",
+      "One sentence of conclusion with the impact figure, and one on what needs deciding",
+      "Propose scheduling a separate meeting to present the full findings",
+      "Recount the most surprising thing you found during the analysis"
+    ],
+    "explanation": "The lift test is the best way to find out whether you actually understand your own result. If you cannot compress it into two sentences, it is usually because you have not decided what the most important thing is. The second sentence - what needs deciding - is the one that turns a piece of information into an action."
+  },
+  "summary": {
+    "keyIdea": "The audience needs the conclusion first in order to have a frame for the evidence that follows",
+    "commonMistake": "Retelling the analysis in the order you did it, leaving the conclusion on the last slide",
+    "action": "Write the conclusion as a single sentence before building any slides. If you cannot, the analysis is not finished."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take a report you once produced and rewrite it in four parts: one sentence of conclusion with a figure, three principal pieces of evidence, the limitations, and an appendix. Compare it against the original to see which parts were actually necessary.",
+    "secondary": "Then retitle every chart, from the name of the chart type to the message that chart proves."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Most of a data person's effort goes into finding the right answer. But the value only appears at the final step: when somebody changes a decision because of your result."
+    },
+    {
+      "type": "heading",
+      "text": "The inverted pyramid"
+    },
+    {
+      "type": "conceptTable",
+      "title": "The four layers of an analytical presentation",
+      "subtitle": "Ordered as you present them, which is the reverse of the order you worked in",
+      "concepts": [
+        {
+          "def": "One sentence, with a figure and a recommended action. This is the only part guaranteed to be heard if the meeting gets cut short."
+        },
+        {
+          "def": "Three main supports, one slide each, with the title as the message rather than the name of the chart. Three is the number people can hold."
+        },
+        {
+          "def": "What this analysis cannot answer, and which assumptions are holding the conclusion up. Volunteering them is far stronger than being asked."
+        },
+        {
+          "def": "Method, data sources, alternative cuts of the data. For anyone who wants to verify - and it has to exist, because someone will ask."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The title is the message",
+      "text": "Changing a slide title from Revenue by quarter to Q4 revenue fell 8% on the enterprise customer segment is the smallest change with the largest payoff. The reason is simple: a great many people only skim a deck and read the titles. If those titles join up into a complete argument, they get the whole thing without you standing there to explain it."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A weak presentation",
+        "text": "Starts with the method. Slide titles describe the chart type. Every finding is given equal weight. Nothing is said about limitations. It ends with a call for further analysis."
+      },
+      "right": {
+        "label": "A strong presentation",
+        "text": "Conclusion on the first slide with the impact figure. Three pieces of evidence in clear priority. Limitations and assumptions stated upfront. It ends with a specific proposal that needs a decision."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An analysis nobody acts on produces, in outcome terms, exactly what an analysis never done would have produced.",
+        "The last lesson of this stage covers the obligations that come with the work: ethics and risk in working with data."
+      ]
+    }
+  ]
+}

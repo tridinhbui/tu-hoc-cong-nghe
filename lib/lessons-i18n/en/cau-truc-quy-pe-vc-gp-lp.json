@@ -1,0 +1,148 @@
+{
+  "slug": "cau-truc-quy-pe-vc-gp-lp",
+  "title": "Private markets, lesson 1: PE/VC fund structure - GP, LP and the ten-year life",
+  "subtitle": "Capital commitments, drawdowns, the investment period, and why a closed-end fund must have an end date",
+  "duration": "11 min",
+  "whyItMatters": "Everything a private fund does - from why it rushes to deploy at the end of the investment period to why it forces the sale of a company that is doing well - comes out of the fund structure. Understanding the structure is understanding the incentives of the person across the negotiating table.",
+  "openingQuestion": "How does an investor's capital commitment to a private fund actually work?",
+  "openingOptions": [
+    "The investor transfers the whole committed amount as soon as the fund closes",
+    "A commitment ceiling; money moves only when the fund calls capital",
+    "The investor buys listed fund units and can sell them again at any time",
+    "The investor pays in on a fixed quarterly schedule across the fund's life"
+  ],
+  "explanation": "This is the single most important structural difference from an open-ended fund. The investor commits an amount, but the money only moves when the manager finds a deal and issues a capital call. Because the uncalled portion still has to be available on demand, the investor must hold liquidity against it - and managing that uncalled commitment is a discipline of its own for large institutional investors.",
+  "diagram": [
+    { "label": "The LP commits a capital ceiling" },
+    { "label": "The GP finds deals and calls capital in tranches" },
+    { "label": "The investment period, then the holding period" },
+    { "label": "Exit and distribute the proceeds back to LPs" }
+  ],
+  "realWorldExample": {
+    "company": "Deployment pressure at the end of the investment period",
+    "description": "A fund typically has an investment period of around five years. If, by year four, most of the committed capital is still undeployed, the manager faces an uncomfortable choice: release the unused commitments and give up the corresponding management fees, or accept deals they would not have looked at in year one. This is why funds raised in the same vintage tend to show declining deal quality towards the end of the cycle, and it is one of the better-evidenced explanations for why funds from peak fundraising years tend to underperform."
+  },
+  "quiz": [
+    {
+      "question": "How do the roles of the general partner and the limited partners differ?",
+      "options": [
+        "The LPs pick the portfolio while the GP merely executes the trades",
+        "Both vote on every deal the fund intends to make during the period",
+        "The GP makes the investment decisions; the LPs fund it and stay out of management",
+        "The GP has unlimited liability while LPs guarantee the fund's borrowings"
+      ],
+      "explanation": "This separation is the condition on which limited partners keep their limited liability - an LP who involves themselves in management can lose that protection. In exchange they have almost no ability to intervene in any individual investment decision, which is precisely why diligence on the manager matters more than diligence on any single deal. LPs do not select the portfolio, they do not vote deal by deal, and while the GP does bear unlimited liability, LPs certainly do not guarantee the fund's borrowings."
+    },
+    {
+      "question": "Why does a private fund have a defined end date?",
+      "options": [
+        "Because investors need to know when capital comes back, having no easy resale",
+        "Because the law caps how long any type of investment fund may exist",
+        "Because after that term the GP must convert to an open-ended structure",
+        "Because tax on investment gains rises if the fund runs on beyond its stated term"
+      ],
+      "explanation": "There is no convenient secondary market for a limited partnership interest, so the mechanism protecting investors is an end date that obliges the fund to sell everything and return the money. No law imposes a universal life cap on funds, no rule forces a conversion to open-ended form, and taxation does not escalate with the fund's age. It is exactly this contractual constraint that creates exit pressure which may not coincide with the best moment commercially."
+    },
+    {
+      "question": "What problem does the uncalled portion of a commitment create for the investor?",
+      "options": [
+        "A penalty is owed to the fund if no capital is called in the first full year",
+        "Liquidity has to be held ready, dragging the return on total allocation",
+        "The uncalled commitment accrues interest at the market rate on call",
+        "The investor loses access to the manager's subsequent funds entirely"
+      ],
+      "explanation": "Money waiting to be called is usually parked in low-yielding liquid assets. This is the hidden cost rarely mentioned when comparing private fund performance with listed markets, because reported fund returns are computed only on the capital actually deployed. No penalty applies for slow calls - the pace is the manager's choice, not the investor's - uncalled amounts do not bear interest, and access to future funds is a relationship matter unrelated to the mechanics of a drawdown."
+    },
+    {
+      "question": "Why does diligence on the manager matter more than diligence on any specific deal?",
+      "options": [
+        "Because every deal is independently audited before the fund commits",
+        "Because the first deal always drives most of the fund's lifetime return",
+        "Because investors commit before knowing which companies get bought",
+        "Because investors can withdraw from any individual deal they dislike"
+      ],
+      "explanation": "Committing capital is a blind decision: you hand money to a team with a strategy, not to a specific portfolio. That is why the diligence concentrates on track record, the consistency of the team, and how closely the deals actually done match the strategy that was pitched. Deals are not independently audited before commitment, returns are spread across the portfolio rather than concentrated in the first investment, and an LP has no opt-out from an individual deal once committed."
+    },
+    {
+      "question": "How does a fund's defined end date affect the price of investments sold late in its life?",
+      "options": [
+        "No effect, since price depends only on the business's own results",
+        "The fund can extend indefinitely, so there is almost no price pressure",
+        "Prices are usually higher after years of improving the business",
+        "Buyers know the fund must sell, which hands them negotiating leverage"
+      ],
+      "explanation": "A fixed life turns the fund into a seller on a calendar rather than on an opportunity, and that cannot be hidden: a counterparty who reads the vintage year knows how much window is left. This is the downside of the very structure that creates exit discipline - it also creates a moment when the other side of the table knows you have to sell. Extensions exist but are limited and require LP consent, and operational improvement raises value without erasing the timing disadvantage."
+    }
+  ],
+  "keyTakeaways": [
+    "Investors commit a capital ceiling; money only moves when the fund calls it, deal by deal",
+    "A fund has a defined life and an end date, creating exit pressure driven by the calendar rather than by opportunity",
+    "A limited investment period creates deployment pressure, so deal quality tends to fall towards the end",
+    "Committing capital is a blind decision - diligence on the team matters more than diligence on one deal"
+  ],
+  "practicePrompt": {
+    "question": "A fund is in year four of a five-year investment period and has deployed only 40% of committed capital. What is the main risk to the investor?",
+    "options": [
+      "The fund returns all unused capital and the investor loses the upside",
+      "Deployment pressure lowers the fund's screening bar to use the capital",
+      "Management fees rise to compensate for capital not yet put to work",
+      "The fund must extend the investment period and stretch its life for years"
+    ],
+    "explanation": "The incentive here is transparent: management fees are typically charged on deployed capital after the investment period, and the large reward only comes from deals actually done. Not deploying means having nothing to earn on. This is the moment for an investor to look hard at the fund's most recent deals against its earliest ones."
+  },
+  "summary": {
+    "keyIdea": "The fund structure shapes a manager's behaviour more than their investment views do",
+    "commonMistake": "Assessing a fund as though it were an equity portfolio, ignoring the fund life and the deployment pressure",
+    "action": "Find a fund's marketing materials and identify the investment period, the fund life and the capital call mechanism."
+  },
+  "application": {
+    "title": "Read the incentives before you read the pitch",
+    "message": "When you sit across from a fund in a deal, ask: which year of its life is this fund in? If they are at the end of the investment period, they need to deploy more than you need the capital. If the fund is approaching its end date, they need to sell more than you need to buy.",
+    "secondary": "Negotiating position in private markets depends on the fund's calendar far more than people admit."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Track 2 taught what private equity is and how an LBO works - that is, the deal side. But the person deciding on that deal operates inside a structure with rules of its own, and that structure explains almost all of the behaviour that otherwise looks baffling."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The life of a closed-end fund",
+      "subtitle": "Four phases, each generating a different kind of incentive",
+      "concepts": [
+        {
+          "def": "The manager persuades institutions to commit capital on the strength of past performance and a stated strategy. Not a single dong has moved yet."
+        },
+        {
+          "def": "Over the first few years the fund sources deals and calls capital in tranches. The closer to the end of the period, the greater the pressure to deploy."
+        },
+        {
+          "def": "Improving operations at the portfolio companies, funding follow-on investments, and preparing the exit route."
+        },
+        {
+          "def": "Selling the businesses and distributing proceeds to investors before the fund's end date. That calendar may not coincide with the best moment to sell."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why this is practical knowledge",
+      "text": "If you work at a company raising capital, or advise on a deal, or are interviewing at a fund yourself, the first question to answer is which phase of its life the fund across the table is in. It tells you whether they have time, what they need, and where they will concede."
+    },
+    {
+      "type": "heading",
+      "text": "Why the uncalled commitment is the hardest part for an investor"
+    },
+    {
+      "type": "paragraph",
+      "text": "The investor signs up for an amount, but the money only moves when the manager finds a deal. That means carrying an obligation of known size and unknown timing, and holding liquidity ready against it for years. What makes the obligation harder than it looks is that it is correlated: funds call capital most aggressively when markets fall and opportunities multiply - exactly when the rest of your portfolio is losing value too."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Structure creates incentives, and incentives create behaviour at the negotiating table.",
+        "The next lesson goes to the money: how the manager gets paid, and what that mechanism encourages."
+      ]
+    }
+  ]
+}

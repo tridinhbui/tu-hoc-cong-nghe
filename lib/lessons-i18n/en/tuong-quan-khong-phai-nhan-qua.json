@@ -1,0 +1,161 @@
+{
+  "slug": "tuong-quan-khong-phai-nhan-qua",
+  "title": "Data Thinking, Lesson 4: Correlation is not causation - and three ways to be fooled",
+  "subtitle": "Confounding, reverse causality, survivorship bias: three mechanisms that turn real data into a wrong conclusion",
+  "duration": "11 min",
+  "whyItMatters": "Everyone knows the slogan that correlation is not causation, and it still gets violated constantly in practice, because in any specific situation the causal story looks obvious. Knowing the names of the three common mechanisms lets you spot them at the moment they matter, rather than merely reciting the slogan.",
+  "openingQuestion": "The data shows that customers who use the bank's mobile app hold markedly higher balances. Which conclusion is reasonable?",
+  "openingOptions": [
+    "Push app installations hard, because the app raises customer balances",
+    "No conclusion yet: high-balance customers already differ",
+    "The mobile app is the bank's most profitable channel",
+    "The app should be redesigned to serve low-balance customers"
+  ],
+  "explanation": "This is reverse causality in its classic form. It is far more likely that customers with large assets and frequent transactions naturally use the app more, rather than the app making them wealthy. There may also be a confounder standing behind both: young high earners like technology and accumulate quickly at the same time. The only way to separate the two is a controlled experiment, or at minimum a comparison of the same customer before and after installing the app.",
+  "diagram": [
+    {
+      "label": "A and B move together"
+    },
+    {
+      "label": "Does A cause B? Does B cause A?"
+    },
+    {
+      "label": "Or does C cause both?"
+    },
+    {
+      "label": "Or is it just how the sample was picked?"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Survivorship bias in fund data",
+    "description": "When you average the performance of the investment funds currently in operation, the result usually beats the market index. The reason is not that funds are better managers: the poor performers were closed or merged away and have disappeared from the database. What remains is the sample of survivors. This is why serious data vendors maintain a separate dataset that includes terminated funds, and the gap between the two ways of counting often exceeds one percentage point per year."
+  },
+  "quiz": [
+    {
+      "question": "What is a confounding variable?",
+      "options": [
+        "A third factor acting on both variables, creating a correlation between them",
+        "A variable whose values swing so widely that the whole analysis becomes less stable",
+        "A variable missing so many values that it has to be dropped before any analysis",
+        "A variable measured in units different from the others in the same dataset"
+      ],
+      "explanation": "The classic example: ice-cream sales and drowning incidents are tightly correlated, but temperature is what causes both. No ice cream ever drowned anybody. The second option describes a high-variance measurement, which affects precision rather than creating a spurious relationship. The third is a missing-data problem, handled by imputation or exclusion. The fourth is a units problem, fixed by rescaling - none of the three can manufacture a correlation out of nothing."
+    },
+    {
+      "question": "When does survivorship bias arise?",
+      "options": [
+        "When the data is collected over a window too short to reflect the underlying trend properly",
+        "When the sample contains only those subjects that already passed through some earlier filter",
+        "When the sample size is so small that the statistical result never reaches significance",
+        "When whoever collects the data unconsciously favours recording the positive outcomes"
+      ],
+      "explanation": "The part that vanished from the sample is the part carrying the information. Studying successful companies to find their secret is meaningless if the failed companies did exactly the same things. A short window is a coverage problem, not a selection one. Small samples give you noise, not systematic bias in a direction. And biased recording by the collector is a different failure - measurement bias - which can occur even when nothing has been filtered out."
+    },
+    {
+      "question": "What is the most reliable way to establish a causal relationship?",
+      "options": [
+        "Gather more observational data until the correlation between the two variables becomes large enough",
+        "Add more control variables to the regression until the coefficient of interest stops moving around",
+        "A controlled trial with random assignment between the treatment group and the control group",
+        "Check whether the causing variable always occurs before the resulting variable in time"
+      ],
+      "explanation": "Random assignment is what balances every confounder, including the ones you never thought of. That is why it ranks above every observational method. More data makes a spurious correlation more precisely estimated, not less spurious. Adding controls only handles the confounders you can name and measure. And temporal order is necessary but not sufficient, because a confounder can act on the two variables at two different moments."
+    },
+    {
+      "question": "Why is temporal order not enough to prove causation?",
+      "options": [
+        "Because the timestamp recorded in the data often differs from when the event truly happened",
+        "Because time-series data always contains a seasonal component that scrambles the order of events",
+        "Because in many economic systems the effect can genuinely appear before its own cause",
+        "Because a confounder can still act on the two variables at two different points in time"
+      ],
+      "explanation": "Temporal order is a necessary condition but not a sufficient one. Advertising runs before sales rise, but the shopping season may be the thing standing behind both. Recording lags are a data-quality issue that can be fixed and would not rescue the inference even if it were. Seasonality is itself usually the confounder rather than a scrambler of order. And effects preceding causes is not something that happens - the option sounds technical while asserting something false."
+    },
+    {
+      "question": "Why is A happening before B still not enough to conclude that A caused B?",
+      "options": [
+        "Because a third cause can act on both of them in exactly that order",
+        "Because the gap between the two events is rarely measured with any precision",
+        "Because causation only exists when the two events occur at the same moment",
+        "Because the pattern has to repeat at least three times before it counts"
+      ],
+      "explanation": "Temporal order is a necessary condition, not a sufficient one. Ice-cream sales rise before drowning incidents do, but summer is the cause of both - and it arrives before both, in exactly the order you observe. Simultaneity is not required for causation and in fact almost never holds. And there is no threshold number of repetitions that converts a correlation into a cause; repeating an observational pattern repeats the confounder along with it."
+    }
+  ],
+  "keyTakeaways": [
+    "Confounding: a third factor creates a correlation between two variables with no causal link",
+    "Reverse causality: the direction of the effect runs opposite to what you assumed",
+    "Survivorship bias: the part that disappeared from the sample is the part carrying the information",
+    "Random assignment balances even the confounders you never thought of",
+    "Temporal order is a necessary but not sufficient condition for concluding causation"
+  ],
+  "practicePrompt": {
+    "question": "A study shows that employees who attend the in-house training programme are promoted at a much higher rate. What must be checked before concluding the programme works?",
+    "options": [
+      "Whether enough employees attended for the result to be statistically significant",
+      "Who gets selected to attend: if managers pre-pick their high-potential people, the result was decided in advance",
+      "Whether the course content actually matches the work people do",
+      "How much the training costs per employee"
+    ],
+    "explanation": "This is selection bias, and it is the strongest confounder in almost every evaluation of an internal programme. If managers send the people they already rated highly, the attending group will be promoted more even if the course teaches nothing at all. The correct way to test it is to select at random from among everyone equally eligible."
+  },
+  "summary": {
+    "keyIdea": "Before concluding A causes B, rule out the reverse direction, a third variable, and how the sample was picked",
+    "commonMistake": "Reciting that correlation is not causation and then concluding causation anyway when it looks obvious",
+    "action": "Every time you see two variables moving together, write down three alternative explanations before accepting the first one."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Find a causal claim in a recent internal report or financial article. For that claim, try to answer: is the reverse direction plausible, is there a third variable that explains both, and what filtered the sample before it reached the analyst.",
+    "secondary": "The third question is the one fewest people ask and usually produces the largest finding."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This is the lesson everybody thinks they already know. The problem is that in a specific situation, with real data and a mechanism that sounds entirely reasonable, the causal relationship almost always looks obvious - and that is precisely when people get it wrong."
+    },
+    {
+      "type": "heading",
+      "text": "Three common mechanisms that fool you"
+    },
+    {
+      "type": "conceptTable",
+      "title": "When correlation is not causation",
+      "subtitle": "These three mechanisms account for most of the wrong causal conclusions in business analysis",
+      "concepts": [
+        {
+          "def": "A third factor acting on both variables. Ice-cream sales and drowning incidents correlate tightly because temperature stands behind both."
+        },
+        {
+          "def": "The direction of the effect runs opposite to your assumption. Wealthy customers use the app heavily, rather than the app making customers wealthy."
+        },
+        {
+          "def": "The sample contains only survivors. Average performance of operating funds looks better than reality because weak funds closed and vanished from the data."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Weak evidence",
+        "text": "Two variables correlate in observational data. There is a plausible-sounding mechanism that explains it. The result repeats across several periods. All of this remains fully compatible with all three fooling mechanisms above."
+      },
+      "right": {
+        "label": "Strong evidence",
+        "text": "A randomised controlled trial. Or an exogenous shock nobody could choose into - a policy change, a natural event - that hits one group and leaves another group untouched."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "When you cannot run the experiment",
+      "text": "A great many business questions do not permit random assignment: you cannot randomly pick half your customers and raise their prices. In those cases the most honest approach is to state that the conclusion is correlational, list the alternative explanations you have not been able to rule out, and avoid verbs that imply causation such as drives or lifts."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The discipline here is not in the arithmetic but in bothering to list the explanations you do not like.",
+        "The next lesson moves from finding the conclusion to getting it heard: telling a story with data."
+      ]
+    }
+  ]
+}

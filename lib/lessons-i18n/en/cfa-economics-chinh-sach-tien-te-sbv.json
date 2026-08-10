@@ -1,0 +1,151 @@
+{
+  "slug": "cfa-economics-chinh-sach-tien-te-sbv",
+  "title": "CFA Economics: Monetary policy at the State Bank of Vietnam",
+  "subtitle": "The refinancing rate, reserve requirements and open market operations - the SBV's three main instruments",
+  "duration": "8 min",
+  "whyItMatters": "Understanding how the State Bank of Vietnam runs monetary policy lets you explain why deposit and lending rates move, and anticipate the effect on the stock market, on property and on the exchange rate.",
+  "openingQuestion": "When inflation starts running high, which instrument does the State Bank of Vietnam usually reach for first?",
+  "openingOptions": [
+    "Printing more money to raise the supply available to the economy",
+    "Raising policy rates and draining liquidity through OMO",
+    "Ordering commercial banks to stop lending altogether",
+    "It can only intervene by adjusting the exchange rate"
+  ],
+  "explanation": "When inflation runs high, the SBV usually tightens: it raises policy rates to increase the cost of funds across the banking system (which then feeds through into lending rates in the wider economy), and it can use open market operations to drain surplus liquidity out of the system, easing the upward pressure on prices.",
+  "diagram": [
+    {
+      "label": "Inflation rises"
+    },
+    {
+      "label": "SBV raises policy rates and drains liquidity through OMO"
+    },
+    {
+      "label": "Funding costs rise → credit demand falls → inflation cools"
+    }
+  ],
+  "realWorldExample": {
+    "company": "SBV policy through periods of global rate volatility",
+    "description": "In periods when the US Federal Reserve raises rates sharply, the SBV has to balance two objectives at once: controlling domestic inflation and keeping the dong stable. At times that has meant adjusting policy rates while using instruments such as bills and open market operations flexibly, both to drain dong liquidity and to support the currency - a clear illustration of how closely monetary and exchange rate policy have to be coordinated."
+  },
+  "quiz": [
+    {
+      "question": "How does the reserve requirement work as a monetary policy instrument?",
+      "options": [
+        "The share of deposits a bank must hold back and cannot lend out",
+        "Printing money to raise the supply in circulation so firms have more to spend",
+        "The rate the central bank charges banks that are short of liquidity",
+        "It applies only to deposits and loans denominated in foreign currency"
+      ],
+      "explanation": "The reserve requirement sets a minimum share of total deposits that a commercial bank must keep at the central bank and cannot lend out. Raising it directly reduces how much the banks can lend into the economy, tightening the money supply; cutting it does the reverse. It is not a rate the central bank charges - that is the refinancing rate - and it is not confined to foreign currency, since the requirement applies across the deposit base."
+    },
+    {
+      "question": "How do open market operations regulate liquidity?",
+      "options": [
+        "It is the rate the central bank charges banks that are short of cash",
+        "The central bank buys or sells securities with banks to add or drain VND liquidity",
+        "It is purely trading between commercial banks, with the central bank taking no part",
+        "It is an exchange rate instrument, unrelated to VND liquidity at all"
+      ],
+      "explanation": "OMO is the most flexible and most frequently used instrument: the central bank buys securities to inject dong liquidity into the banking system when it wants to ease, or sells them to drain liquidity when it wants to tighten - adjusting almost daily as market conditions change. It is not a lending rate, the central bank is one of the two counterparties by definition, and while it has knock-on effects on the currency, its direct object is dong liquidity."
+    },
+    {
+      "question": "Why does monetary policy work with a lag before its full effect reaches the real economy?",
+      "options": [
+        "Because banks deliberately delay implementing rate guidance to protect short-term profits",
+        "Because monetary policy has no real effect on the real economy at all",
+        "Because it takes time to spread through banks to corporate decisions",
+        "Because the lag only occurs in developing countries, not developed ones"
+      ],
+      "explanation": "Policy lag is a universal phenomenon: a change in the policy rate needs time to work through several layers (interbank rates, then deposit and lending rates, then investment and consumption decisions, then output, employment and prices) before the full effect shows up - typically anywhere from a few months to more than a year. Banks pass changes through as competition allows rather than sabotaging them, the effect on the real economy is well documented, and the lag is present in developed economies too."
+    },
+    {
+      "question": "What kind of instrument is a credit growth quota?",
+      "options": [
+        "An open market operation applied only to state-owned banks",
+        "A price control, since a quota pushes each bank's lending rate upward",
+        "A standby instrument, activated only when inflation exceeds target",
+        "Direct control of credit volume, rather than working through its price"
+      ],
+      "explanation": "Instead of changing the price of money and letting the market settle the quantity, a quota sets the growth in each bank's loan book directly. It works quickly in a bank-dominated financial system, but it distorts the allocation of capital because the quotas are handed out administratively. It is not an open market operation, it applies across the banking system rather than to state banks alone, and it runs continuously rather than being held in reserve."
+    },
+    {
+      "question": "Why is it hard for the SBV to hold rates low and the exchange rate steady at the same time when the Fed is raising rates?",
+      "options": [
+        "Because a narrower rate differential tends to push capital out of the dong",
+        "Because higher USD rates raise Vietnam's import costs by a corresponding amount",
+        "Because the central bank must match whatever rate the Fed has announced",
+        "Because most of Vietnam's reserves are deposited with US banks"
+      ],
+      "explanation": "Holding rates low while USD rates rise makes holding dong less attractive and creates depreciation pressure. The central bank then has to choose: sell reserves to defend the rate, raise rates, or accept a weaker dong - the impossible trinity applied to Vietnam. Import costs move with the exchange rate rather than directly with the US policy rate, no rule obliges matching the Fed, and where reserves are held is a custody question rather than a policy constraint."
+    }
+  ],
+  "keyTakeaways": [
+    "Three main instruments: policy rates, the reserve requirement, and open market operations",
+    "Tightening (higher rates, a higher reserve ratio, selling securities through OMO) aims to restrain inflation",
+    "The SBV has to balance controlling inflation and keeping the dong stable at the same time",
+    "Monetary policy works with a lag - the full effect on the real economy takes time to spread through several layers"
+  ],
+  "practicePrompt": {
+    "question": "When the SBV wants to tighten monetary policy to restrain inflation, which instrument would NOT fit?",
+    "options": [
+      "Raising the policy interest rate on refinancing",
+      "Selling securities through OMO to drain liquidity",
+      "Raising the required reserve ratio for banks",
+      "Cutting the policy rate to encourage lending"
+    ],
+    "explanation": "Cutting the policy rate is an EASING instrument, the exact opposite of tightening to restrain inflation. The other three all withdraw money or make it dearer: a higher policy rate raises the cost of funds across the banking system, selling securities through open market operations pulls dong out of that system, and a higher reserve requirement shrinks the amount each bank is able to lend. Direction is what this question tests, not magnitude."
+  },
+  "summary": {
+    "keyIdea": "The SBV runs monetary policy through three main instruments - policy rates, the reserve requirement, and open market operations - while balancing the control of inflation against the stability of the dong",
+    "commonMistake": "Expecting monetary policy to affect the economy immediately, when in reality there is always a substantial lag",
+    "action": "When you read news about an SBV rate decision, set it in the context of both objectives (inflation and the exchange rate) rather than looking at one in isolation"
+  },
+  "application": {
+    "title": "Reading monetary policy news",
+    "message": "Next time you see the SBV adjust a policy rate, try to work out: is this a tightening or an easing move, and is the main objective likely to be controlling inflation or supporting growth and the currency?",
+    "secondary": "The skill lets you read daily macro coverage properly, rather than skimming past the numbers."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Monetary policy is the set of tools the SBV uses to steer the money supply and interest rates in the economy, with two large objectives that constantly have to be balanced: controlling inflation and keeping the dong stable."
+    },
+    {
+      "type": "heading",
+      "text": "The three main instruments"
+    },
+    {
+      "type": "paragraph",
+      "text": "Policy rates (refinancing and rediscount) drive the cost of funds across the banking system. The reserve requirement sets the share of deposits a bank must hold back rather than lend. Open market operations are the most flexible instrument of the three, adjusting liquidity almost daily by buying and selling securities with the banking system."
+    },
+    {
+      "type": "heading",
+      "text": "The dual balancing act: inflation and the exchange rate"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is a particular challenge for an open economy like Vietnam: monetary policy has to target not only domestic inflation but also the effect on the dong, especially when a major central bank such as the Fed moves rates sharply and pushes capital between currencies."
+    },
+    {
+      "type": "callout",
+      "label": "Policy lag - why patience is required",
+      "text": "A decision to change interest rates has no immediate effect on inflation or growth - it needs time to spread through several layers of the economy. That is why policymakers generally have to act on a forecast of the future rather than simply reacting to today's data."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Three instruments: policy rates, the reserve requirement, open market operations",
+        "Tighten to restrain inflation, ease to support growth",
+        "Both the inflation and the exchange rate objective have to be balanced at once",
+        "Monetary policy works with a lag; the full effect takes time"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Understanding monetary policy lets you connect the interest rate figures in the news with what actually happens to your money and your portfolio.",
+        "In the next lesson we look more concretely at how the dong's exchange rate is managed, through a real case."
+      ]
+    }
+  ]
+}

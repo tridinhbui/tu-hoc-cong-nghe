@@ -12,12 +12,22 @@
   ],
   "explanation": "Vietnamese corporate bonds (VCB): the market grew rapidly from 2018-2021, then ran into major problems in 2022: Tan Hoang Minh, Van Thinh Phat - thousands of billions became unable to be repaid. The causes: uncontrolled private placements, no credit rating, sold through banks as if they were deposits.",
   "diagram": [
-    { "label": "A company privately places a bond, paying more than a deposit", "arrow": true },
-    { "label": "No mandatory credit rating", "arrow": true },
-    { "label": "Retail investors buy through a distribution channel like a deposit", "arrow": true },
-    { "label": "2022: cash flow dries up, many tranches default" }
+    {
+      "label": "A company privately places a bond, paying more than a deposit",
+      "arrow": true
+    },
+    {
+      "label": "No mandatory credit rating",
+      "arrow": true
+    },
+    {
+      "label": "Retail investors buy through a distribution channel like a deposit",
+      "arrow": true
+    },
+    {
+      "label": "2022: cash flow dries up, many tranches default"
+    }
   ],
-  "interactiveType": "bond",
   "realWorldExample": {
     "company": "Van Thinh Phat",
     "description": "The 2022 Vietnamese corporate bond crisis: Van Thinh Phat issued tens of thousands of billions in corporate bonds, many of which were ineligible or fraudulent. Retail investors lost money when they couldn't distinguish corporate bonds from bank deposits."
@@ -104,12 +114,18 @@
       "type": "lead",
       "text": "Vietnam's corporate bond market boomed during 2018-2021, becoming an important capital-raising channel for real estate and manufacturing businesses. But in 2022, a series of major cases exposed serious gaps in how this market operates."
     },
-    { "type": "heading", "text": "The structural problem of early-stage Vietnamese corporate bonds" },
+    {
+      "type": "heading",
+      "text": "The structural problem of early-stage Vietnamese corporate bonds"
+    },
     {
       "type": "paragraph",
       "text": "Unlike a developed corporate bond market like the US - where almost every bond has a credit rating from Moody's, S&P, or Fitch - most Vietnamese corporate bonds during 2018-2021 were privately placed with no mandatory credit rating. Many bonds were distributed through bank channels in a way that made it easy for retail investors to confuse them with safe savings deposit products - when in reality this was a direct loan to a business, carrying the full credit risk of the issuer."
     },
-    { "type": "heading", "text": "Lessons from the major defaults" },
+    {
+      "type": "heading",
+      "text": "Lessons from the major defaults"
+    },
     {
       "type": "paragraph",
       "text": "In 2022, cases like Tan Hoang Minh and Van Thinh Phat showed that tens of thousands of billions of VND in corporate bonds were issued without meeting requirements or even showing signs of fraud, causing many retail investors to lose money when the issuers became unable to pay. After these events, regulators tightened the conditions for private placements, required more transparent disclosure, and increased oversight - a familiar pattern repeated in financial history: a crisis exposes a gap, and then regulation tightens to prevent a repeat, sometimes at the cost of a temporary market contraction."

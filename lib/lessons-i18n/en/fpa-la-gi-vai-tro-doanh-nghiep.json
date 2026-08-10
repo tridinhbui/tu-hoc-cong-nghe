@@ -1,0 +1,132 @@
+{
+  "slug": "fpa-la-gi-vai-tro-doanh-nghiep",
+  "title": "What FP&A is, and what it does inside a company",
+  "subtitle": "From an accounting department to the CEO's strategic partner",
+  "duration": "7 min",
+  "openingQuestion": "How does FP&A (Financial Planning & Analysis) differ from accounting?",
+  "openingOptions": [
+    "They are the same function, only the name is different",
+    "Accounting records the past; FP&A plans the future",
+    "FP&A works on domestic numbers, accounting on international ones",
+    "Accounting costs more, so small businesses do not need it"
+  ],
+  "explanation": "Accounting closes the book on what has already happened; financial planning and analysis takes those numbers and answers the question of what to do next. The work turns on three repeating beats: build the budget and the forecast, compare actuals against plan to find what caused the gap, then update the forecast for the periods still ahead. The real value is not the table of numbers - a system can produce that - but the answer to the question of why.",
+  "diagram": [
+    { "label": "Accounting closes the actuals for the period just ended" },
+    { "label": "FP&A compares actuals with plan and finds the cause of the gap" },
+    { "label": "The forecast for the coming quarters is updated" },
+    { "label": "That number feeds investment and resource allocation decisions" }
+  ],
+  "realWorldExample": {
+    "company": "A technology company",
+    "description": "Accounting reports: 'personnel cost this month was 500m'. FP&A forecasts: 'if we hire ten more people next year, personnel cost becomes 700m a month, and revenue has to grow 50% to hold the margin' - which is what lets the CEO decide whether to hire at all."
+  },
+  "quiz": [
+    {
+      "question": "What is the main role of FP&A?",
+      "options": [
+        "Preparing financial statements in line with accounting standards",
+        "Building the budget, forecasting, and analysing variances",
+        "Managing daily cash flow and the company's liquidity position",
+        "Filing tax returns and dealing with the tax authorities"
+      ],
+      "explanation": "FP&A looks forward rather than recording what has already happened. Preparing statutory financial statements and filing tax returns are both accounting functions, judged on accuracy and compliance. Daily cash management sits with treasury. What FP&A owns is the budget, the forecast, and the explanation of why actual results differ from plan - the information a CEO needs before committing to a strategic decision."
+    },
+    {
+      "question": "What is variance analysis in FP&A?",
+      "options": [
+        "Comparing share prices across companies in the same industry",
+        "Measuring the level of risk carried by an investment portfolio",
+        "Comparing actual results with plan and finding the causes",
+        "Calculating the interest expense payable during the plan period"
+      ],
+      "explanation": "Variance analysis is the loop that makes a budget useful: the plan said 100m of profit, the actual came in at 80m, so where did the 20m go - lower volume, weaker price, or higher cost? The name misleads anyone who has met variance in statistics; here it means the gap between plan and actual, not the second moment of a distribution. Comparing valuations across peers is benchmarking, and interest expense is a single line inside the plan rather than a way of testing it."
+    },
+    {
+      "question": "What is a rolling forecast?",
+      "options": [
+        "A forecast made once at the start of the year and left unchanged",
+        "A forecast the external auditor re-runs at the end of each quarter",
+        "A forecast built only from prior years' historical data",
+        "A forecast that always looks 12 months ahead, updated monthly"
+      ],
+      "explanation": "A rolling forecast keeps the horizon fixed at twelve months rather than counting down to December. In January it covers months 1-12, in February months 2-13, and so on. That is what stops the plan going stale: a static annual budget has almost no forward view left by November, which is exactly when next year's decisions are being made. It is management's own tool rather than an audit deliverable, and it leans on forward drivers rather than on history alone."
+    },
+    {
+      "question": "What is the core difference between accounting and the financial planning and analysis function?",
+      "options": [
+        "Accounting records the past; FP&A estimates the future",
+        "Accounting deals with substantially larger numbers",
+        "FP&A does not need to read financial statements",
+        "Accounting only works during the year-end close"
+      ],
+      "explanation": "The two functions are judged by different standards: accounting on accuracy and compliance, FP&A on usefulness and timeliness for a decision. The size of the numbers has nothing to do with it, since both look at the same company. And FP&A depends on the financial statements more heavily than almost anyone, because the forecast is built on top of them. Accounting is also continuous rather than a year-end event; the monthly close is what gives FP&A its actuals."
+    },
+    {
+      "question": "Why can an analysis that is perfectly accurate still create no value?",
+      "options": [
+        "Because high precision always takes far too long to produce",
+        "Because it does not lead to any decision or action",
+        "Because managers rarely read finance reports",
+        "Because all forecasts are wrong, so precision is moot"
+      ],
+      "explanation": "The value of an analysis lies in changing what someone does. An analysis that is exactly right and changes nothing has the same effect on the business as no analysis at all. That is why the ability to interpret and to recommend matters as much as the ability to build the model. Precision is not the problem in itself, and management does read the numbers - what they cannot use is a figure handed over with no 'so what'. And forecasts being imprecise is a reason to state ranges, not to stop forecasting."
+    }
+  ],
+  "keyTakeaways": [
+    "FP&A = planning + forecasting + analysis (unlike accounting, which records the past)",
+    "Variance analysis: compare actual against plan to find what caused the gap",
+    "Rolling forecast: twelve months ahead at all times, refreshed every month",
+    "FP&A supports the CEO's strategic calls - invest, cut, or expand"
+  ],
+  "practicePrompt": {
+    "question": "Company X forecast 100bn of revenue this year, but the first nine months came in at only 60bn. What should FP&A do?",
+    "options": [
+      "Nothing beyond reporting the numbers upward to management",
+      "Cut the full-year forecast to 80bn and find the cause",
+      "Raise prices to make up the shortfall in revenue",
+      "The target is missed, so drop the forecast entirely"
+    ],
+    "explanation": "FP&A has to spot early when the forecast has drifted away from reality, reset expectations, and help the CEO adjust the strategy - cutting cost, finding new revenue - while there is still time to act."
+  },
+  "summary": {
+    "keyIdea": "FP&A = planning + forecasting + analysis, feeding the CEO's strategic decisions",
+    "commonMistake": "Confusing FP&A with accounting. Accounting records the past; FP&A forecasts the future.",
+    "action": "Today, compare your own budget plan (if you have one) with what actually happened - that is variance analysis in its simplest form"
+  },
+  "application": {
+    "title": "Put it to work",
+    "message": "Build a personal spending plan for the next three months, then compare actual against plan every month. That is FP&A at personal scale.",
+    "secondary": "If you work inside a company, pull up the budget and compare it with actuals - look for the large gaps."
+  },
+  "sections": [
+    { "type": "lead", "text": "Accounting records the money that has been spent. FP&A forecasts the money that will be spent, so the CEO can decide how best to spend it." },
+    { "type": "heading", "text": "What is FP&A?" },
+    { "type": "paragraph", "text": "FP&A (Financial Planning & Analysis) is the function that plans corporate finances: forecasting revenue and cost under different scenarios, analysing the variance between actual and plan, and preparing the information that supports the CEO's strategic decisions." },
+    { "type": "heading", "text": "Accounting vs FP&A" },
+    { "type": "list", "items": [
+      "Accounting: records the past (money already received and spent), prepares the financial statements",
+      "FP&A: forecasts the future (what revenue and cost will look like), builds the budget",
+      "Accounting: high precision, final numbers",
+      "FP&A: forecasts carry uncertainty, but they let you decide early"
+    ]},
+    { "type": "heading", "text": "The main functions of FP&A" },
+    { "type": "list", "items": [
+      "Budgeting: forecast revenue and cost by department and by month",
+      "Variance analysis: compare actual against plan and find what caused the gap",
+      "Scenario planning: forecast under three to five different scenarios - conservative, base, optimistic",
+      "Rolling forecast: refresh the twelve-month forward view every month",
+      "KPI tracking: follow the metrics that matter (revenue, cost, net profit and so on)"
+    ]},
+    { "type": "heading", "text": "A month in the life of the planning and analysis function" },
+    { "type": "list", "items": [
+      "Start of the month: close last month's numbers, compare with plan, and split the variance into price, volume and cost.",
+      "Mid-month: work with each department to understand what sits behind the numbers, and refresh the forecast for the remaining months.",
+      "End of the month: present to the leadership team - not by reading the numbers back, but by answering three questions: what is happening, why, and what needs deciding.",
+      "Throughout: analysis for specific decisions - does another branch pay for itself, how should the discount policy change, which project gets the capital."
+    ]},
+    { "type": "comparison", "left": { "label": "Accounting", "text": "The central question: what happened, and how is it recorded to standard? The highest requirement is accuracy and compliance. The output is a final number, not open to negotiation." }, "right": { "label": "Planning and analysis", "text": "The central question: what is about to happen, and what should we do? The highest requirement is usefulness and timeliness. The output is an estimate with a range around it, updated continuously." } },
+    { "type": "callout", "label": "The most important skill is not the technical one", "text": "Building models is the entry ticket. What separates a strong analyst is the ability to ask the operators the right question and to turn the numbers into a recommendation. An analysis that is perfectly accurate and leads to no decision creates no value." },
+    { "type": "paragraph", "text": "For anyone heading this way, the usual path is to master the three-statement model first, then to understand the business model of your own industry deeply, then to practise presenting concisely to people who are not finance specialists. All three can be learned, and the order matters." }
+  ]
+}

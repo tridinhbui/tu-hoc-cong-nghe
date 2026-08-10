@@ -6,9 +6,9 @@
   "openingQuestion": "When Basel III says a bank must have a 'Tier 1 capital ratio of 10.5%', what does that actually mean?",
   "openingOptions": [
     "The bank must hold 10.5% in strong equity capital",
-    "The bank may only lend 10.5% of its total capital",
+    "The bank may only lend 10.5% of its total capital base",
     "The bank must earn a 10.5% profit every single year",
-    "The bank's return on capital must reach 10.5%"
+    "The bank's return on capital must reach 10.5% a year"
   ],
   "explanation": "The Tier 1 capital ratio is equity capital - the best kind of buffer, the kind that cannot simply walk away - divided by risk-weighted assets. A higher ratio means a safer bank, because it has a bigger cushion to absorb losses before it fails. Basel III sets a 10.5% minimum to protect the financial system.",
   "realWorldExample": {
@@ -20,7 +20,7 @@
       "question": "What is the difference between Tier 1 capital and Tier 2 capital?",
       "options": [
         "Tier 1 is contributed by shareholders; Tier 2 by the central bank",
-        "Tier 1 is customer deposits; Tier 2 is interbank borrowing",
+        "Tier 1 is customer deposits; Tier 2 is interbank market borrowing",
         "Tier 1 is equity and retained earnings, and absorbs losses first",
         "Tier 1 is short-term funding; Tier 2 is funding beyond five years"
       ],
@@ -29,7 +29,7 @@
     {
       "question": "What are RWA (risk-weighted assets)?",
       "options": [
-        "The highest-risk assets sitting in the bank's portfolio",
+        "The highest-risk assets sitting in the bank's lending portfolio",
         "Total assets less the loan-loss provisions already booked",
         "Assets remarked to their market value at the period end",
         "Assets weighted by the risk attaching to each asset class"
@@ -41,8 +41,8 @@
       "options": [
         "Forced to raise capital, cut risk assets and stop dividends",
         "Forced to merge into a larger bank hand-picked by the regulator",
-        "Fined a percentage of the capital shortfall it is carrying",
-        "Its banking licence is revoked within thirty days flat"
+        "Fined a percentage of the capital shortfall it is still carrying",
+        "Its banking licence is revoked inside thirty days, no appeal"
       ],
       "explanation": "Capital requirements are not recommendations. When the ratio slips below the buffer threshold the bank enters a restricted zone, and Basel III blocks DISTRIBUTIONS first - dividends, bonuses and buybacks are cut, because that is the fastest way to retain capital without raising new money. Alongside it runs a supervised plan to raise capital or shrink risk assets. A forced merger, a fine or a licence withdrawal are not the first-line mechanism: they are last resorts, and only if the bank still cannot fix the shortfall does the regulator intervene directly, up to special administration or resolution."
     },
@@ -153,7 +153,7 @@
   "practicePrompt": {
     "question": "A bank has $50bn of Tier 1 capital and $400bn of RWA. What is its Tier 1 capital ratio, and does it meet the Basel III minimum of 10.5%?",
     "options": [
-      "12.5% - meets Basel III, above the 10.5% minimum",
+      "12.5% - meets Basel III, comfortably above the 10.5% minimum",
       "8% - falls short, below the required minimum level",
       "12.5% - still short, Basel III requires a 15% minimum",
       "800% - hugely in excess (RWA/Tier 1 inverted by mistake)"

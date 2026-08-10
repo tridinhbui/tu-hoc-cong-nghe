@@ -1,0 +1,167 @@
+{
+  "slug": "kha-nang-phuc-hoi-van-hanh-bcp-cyber",
+  "title": "FRM Operational, Part 2: Operational resilience - BCP, DR and technology risk",
+  "subtitle": "Why \"measuring the loss\" is not enough - the firm also has to survive the disruption",
+  "duration": "9 min",
+  "whyItMatters": "After the 2008 crisis and a long run of major technology and cyber incidents, regulators shifted their focus from merely measuring operational losses to resilience - whether the firm can keep delivering essential services through a severe disruption, whatever the cause happens to be.",
+  "openingQuestion": "How does a Business Continuity Plan (BCP) differ from a Disaster Recovery (DR) plan?",
+  "openingOptions": [
+    "The two plans are identical, only the name differs",
+    "BCP keeps critical business functions running; DR restores IT systems and data",
+    "DR applies only to natural disasters, BCP only to cyber attacks",
+    "BCP is the IT department's job, DR belongs to human resources"
+  ],
+  "explanation": "BCP is the firm-wide plan: if head office is unusable, key staff are unavailable, or a core process is interrupted, what is done to keep critical business functions running. DR is a subset of BCP, technically focused on restoring information technology systems and data within target timeframes (RTO/RPO).",
+  "diagram": [
+    {
+      "label": "Identify the critical business functions"
+    },
+    {
+      "label": "Set the recovery time objective (RTO) and recovery point objective (RPO)"
+    },
+    {
+      "label": "Build the alternatives: people, sites, standby systems"
+    },
+    {
+      "label": "Exercise regularly - an untested plan may as well not exist"
+    }
+  ],
+  "realWorldExample": {
+    "company": "CrowdStrike, July 2024",
+    "description": "A faulty software update from the security vendor CrowdStrike triggered mass \"blue screen of death\" failures across Windows systems worldwide, disrupting airlines, hospitals, banks and exchanges simultaneously - even though the affected organisations had done nothing wrong themselves. It is the clearest example of third-party risk: a firm's resilience depends on a supplier it does not directly control."
+  },
+  "quiz": [
+    {
+      "question": "How do RTO (Recovery Time Objective) and RPO (Recovery Point Objective) differ?",
+      "options": [
+        "They are the same idea, abbreviated differently by region",
+        "RTO is recovery time; RPO is the data loss",
+        "RPO must always be larger than RTO in every case",
+        "RTO applies to hardware, RPO applies to software"
+      ],
+      "explanation": "RTO answers \"how long can we accept the system being down\" (four hours, say). RPO answers \"how much of the most recent data can we accept losing\" (fifteen minutes, if backups run every fifteen minutes). Together the two figures determine how much has to be invested in standby infrastructure."
+    },
+    {
+      "question": "Why is the 2024 CrowdStrike incident the classic example of third-party risk?",
+      "options": [
+        "Because it was a deliberate cyber attack carried out by hackers",
+        "Because every affected organisation shared one internal misconfiguration",
+        "Because the root cause sat with an external supplier",
+        "Because the incident hit one company only and did not spread"
+      ],
+      "explanation": "Third-party risk arises when a firm depends on an external supplier or partner for a critical function, and that party's failure - unintentional, and not a cyber attack at all - directly disrupts the firm itself. The end customer does not care where the fault originated."
+    },
+    {
+      "question": "Why is \"a plan that has never been exercised\" close to equivalent to \"no plan\" in BCP terms?",
+      "options": [
+        "Because a plan on paper does not carry any legal standing at all",
+        "Because the regulations require the plan to be exercised at least once a decade",
+        "Because exercises are the only thing that auditors actually check on",
+        "Because without an exercise you do not know whether the assumptions hold"
+      ],
+      "explanation": "A BCP written on paper rests on assumptions (\"the standby team can operate from office B within 2 hours\") that can be wholly wrong in execution - missing system access, nobody who knows the process, or a standby site without the capacity. Exercising is the only way to find those gaps before a real crisis does."
+    },
+    {
+      "question": "A bank designates \"interbank payment processing\" a critical business function with an RTO of 2 hours. What does that mean?",
+      "options": [
+        "The bank accepts the system being down for at most 2 hours, and must invest in standby infrastructure sufficient to meet that target",
+        "The bank will lose exactly 2 hours of the most recent transaction data whatever the cause and whatever the backup frequency actually in place",
+        "This function only matters during the first 2 hours of each working day, and can be left down outside that window",
+        "An RTO of 2 hours means the system has to run for 2 hours every day so that maintenance can be performed"
+      ],
+      "explanation": "An RTO of 2 hours is a commitment on maximum recovery time. For a function with an RTO this short, such as interbank payment processing, the firm normally has to invest in hot or warm standby infrastructure that fails over almost instantly - considerably more expensive than what a function with a longer RTO (measured in days) would require."
+    },
+    {
+      "question": "Why is a contingency plan that has never been exercised close to having no plan at all?",
+      "options": [
+        "Because regulation requires an annual exercise before a plan counts as valid",
+        "Because only an exercise exposes the dependencies no document records",
+        "Because the plan document becomes out of date unless it is revised after each exercise",
+        "Because staff will not read the plan unless they are compelled to take part in an exercise"
+      ],
+      "explanation": "An exercise is where you discover that the standby system needs a password only one person knows, or that the sub-supplier shares the data centre that just lost power. Those dependencies are not written down anywhere. No regulation confers validity by frequency alone, a document does not go stale on its own, and attendance is not the point - the point is that the hidden dependencies only surface when the plan is actually run."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A payment service sets an RTO of 2 hours and an RPO of 15 minutes. An incident occurs at 14:00, the system is running again at 15:30, but all transactions since 13:00 are lost. What is the outcome?",
+    "options": [
+      "RTO met but RPO missed, because 60 minutes of data was lost against a 15-minute threshold",
+      "Both met, because the system was running again within the two hours allowed",
+      "Both missed, because the incident lasted longer than the fifteen-minute threshold",
+      "Cannot be concluded without knowing how many transactions were actually lost"
+    ],
+    "explanation": "RTO and RPO are two different questions and have to be scored separately. RTO asks how long you can tolerate being DOWN: an hour and a half, under the two-hour threshold, met. RPO asks how much DATA you can tolerate losing: the most recent backup was 13:00, so 60 minutes of transactions were lost, four times the 15-minute threshold, missed. The two measures demand different investments - RTO needs fast failover infrastructure, RPO needs more frequent backups - so merging them into one target is a reliable way to spend money in the wrong place. The number of transactions does not change the conclusion: the threshold is set in time."
+  },
+  "keyTakeaways": [
+    "BCP is the firm-wide plan for maintaining critical business functions; DR is the technical subset that restores IT systems and data",
+    "RTO = maximum tolerable downtime; RPO = maximum tolerable data loss - together these two figures determine how much standby investment is required",
+    "Third-party risk (CrowdStrike 2024) shows that a firm's resilience depends partly on suppliers it does not directly control",
+    "An unexercised plan is close to worthless, because its assumptions are only tested when they are actually executed"
+  ],
+  "summary": {
+    "keyIdea": "RTO and RPO are two different questions - how long you can be down, and how much data you can lose. Both must be set from the harm to customers, not from the capability you happen to have.",
+    "commonMistake": "Having a plan that has never been exercised. The assumptions inside a plan are only tested when it is run for real, and most of them turn out to be wrong."
+  },
+  "application": {
+    "title": "One question for every critical service",
+    "message": "When was the recovery scenario last run against real data, and how long did it take compared with the figure written in the document."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After a series of large-scale technology and cyber incidents, the focus of operational risk management has widened: not only \"how large is the financial loss\" but also \"can the firm keep operating, and for how long.\""
+    },
+    {
+      "type": "heading",
+      "text": "BCP and DR: the whole and the technical part"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Business Continuity Plan (BCP)",
+        "text": "The firm-wide plan: identify critical business functions, alternative staffing and sites, and the operating procedure when disruption occurs from any cause at all."
+      },
+      "right": {
+        "label": "Disaster Recovery (DR)",
+        "text": "The technical subset of BCP: restoring IT systems, data and technology infrastructure within the RTO/RPO targets that have been set."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Third-party risk - the additional layer",
+      "text": "A modern bank depends on hundreds of technology, data and payment providers. An effective BCP has to extend to the critical ones: assess their resilience, hold an alternative if they fail, and never treat \"the fault was not ours\" as an acceptable answer to a customer or a regulator."
+    },
+    {
+      "type": "heading",
+      "text": "The two numbers that make a plan testable"
+    },
+    {
+      "type": "conceptTable",
+      "title": "RTO and RPO answer two different questions",
+      "subtitle": "A plan without these two numbers has nothing that can be verified",
+      "concepts": [
+        {
+          "def": "How long the service may be down. Setting an RTO of 4 hours means the whole standby estate, the failover procedure and the on-call staff have to complete inside 4 hours - including at 2am on a Sunday."
+        },
+        {
+          "def": "How much data may be lost. An RPO of 15 minutes forces backup or replication at least every 15 minutes; an RPO of zero forces synchronous replication, and the cost steps up sharply at exactly that point."
+        },
+        {
+          "def": "The newer question regulators ask: the maximum disruption a critical service can cause before customers and the market are actually harmed. It is set for the service, not for a system - so answering it requires knowing which systems a service runs through."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The gap only shows up in an exercise",
+      "text": "Suppose the payment service has an impact tolerance of 2 hours, but the exercise takes 6 hours to move to the standby centre because systems have to be restarted in dependency order. That 4-hour gap is the most valuable output of the whole exercise - and it never appears in a BCP document that has not been run. This is why regulation now requires exercises under severe but plausible scenarios rather than the submission of a written plan."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Resilience is not about avoiding every disruption - that is impossible - but about being prepared so that a disruption does not become a crisis.",
+        "Next: a category of operational risk that is often overlooked - the risk sitting inside the very models used to measure other risks."
+      ]
+    }
+  ]
+}

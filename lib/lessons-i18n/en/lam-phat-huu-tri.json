@@ -12,10 +12,21 @@
   ],
   "explanation": "Inflation quietly erodes the purchasing power of money over time. At an average inflation rate of 3.5%/year, purchasing power falls to about half after 20 years (the rule of 72: 72/3.5 is about 20 years for value to halve). Holding cash or a no-term deposit (very low interest) barely offsets that erosion, leaving Mr. Son retiring with far less real purchasing power than he originally planned for.",
   "diagram": [
-    { "label": "Setting cash aside for retirement", "arrow": true },
-    { "label": "A few percent of inflation a year erodes purchasing power", "arrow": true },
-    { "label": "After twenty years, purchasing power is roughly halved", "arrow": true },
-    { "label": "To keep real value, long-term money has to be invested" }
+    {
+      "label": "Setting cash aside for retirement",
+      "arrow": true
+    },
+    {
+      "label": "A few percent of inflation a year erodes purchasing power",
+      "arrow": true
+    },
+    {
+      "label": "After twenty years, purchasing power is roughly halved",
+      "arrow": true
+    },
+    {
+      "label": "To keep real value, long-term money has to be invested"
+    }
   ],
   "realWorldExample": {
     "company": "Vietnam's inflation history, 2000-2024",
@@ -30,7 +41,6 @@
         "Because inflation erodes purchasing power faster than the no-term rate earns",
         "Because cash is subject to annual personal income tax"
       ],
-      "correct": 2,
       "explanation": "This is called 'inflation risk' - a quiet but real kind of risk, different from a stock's short-term price swings. Money sitting still at a low interest rate still 'loses value' over time because of inflation."
     },
     {
@@ -41,7 +51,6 @@
         "Because they're automatically and precisely repriced every single month according to the CPI index",
         "Because over the long run they typically grow faster than inflation"
       ],
-      "correct": 3,
       "explanation": "No asset guarantees a return, but historically over long periods, stocks and some other growth assets tend to deliver a positive real return (after subtracting inflation), while cash almost always has a real return near zero or negative."
     },
     {
@@ -49,10 +58,9 @@
       "options": [
         "About 20 years, using the rule of 72 divided by the inflation rate",
         "About 50 years, since inflation only acts slowly and accumulates very gradually",
-        "About 10 years, since inflation compounds exponentially every year",
+        "About 10 years, since inflation compounds exponentially every single year",
         "It can't be determined since inflation varies differently from year to year"
       ],
-      "correct": 0,
       "explanation": "The rule of 72: 72 divided by 3.5 gives about 20 years. That means 100 million today buys only what 50 million buys today, twenty years from now - and someone retiring at 60 has to live with that for the rest of their life."
     },
     {
@@ -63,7 +71,6 @@
         "Because savings deposits are taxed at a very high personal income tax rate",
         "Because savings interest is only ever paid once, at the deposit's maturity"
       ],
-      "correct": 1,
       "explanation": "Nominal safety isn't real safety. If a deposit pays 5% while inflation is 4%, your purchasing power only grows 1% a year - and in many periods, that figure has even been negative."
     },
     {
@@ -74,7 +81,6 @@
         "Stocks, since a business can raise its selling prices as input costs rise",
         "Gold bars, since the gold price always rises exactly in line with inflation each year"
       ],
-      "correct": 2,
       "explanation": "A business is a bundle of real assets with pricing power - when overall prices rise, its nominal revenue and profit tend to rise too. That's why stocks are still needed even inside a retirement portfolio."
     },
     {
@@ -85,7 +91,6 @@
         "Withdraw all the cash and keep it at home to spend freely as prices rise",
         "Keep a portion in stocks so the portfolio keeps growing throughout retirement"
       ],
-      "correct": 3,
       "explanation": "Retiring at 60 means the portfolio still has to work for another 25-30 years. Moving everything into a non-growing asset trades volatility risk for the risk of running out of money - and the second risk is the one that can't be undone."
     }
   ],
@@ -103,7 +108,6 @@
       "The only risk is that the cash could be stolen, completely unrelated to inflation or purchasing power",
       "There's no meaningful risk, since inflation in Vietnam is always 0% and doesn't affect the value of cash"
     ],
-    "correct": 0,
     "explanation": "Holding cash for 15 years lets inflation erode its purchasing power with nothing to offset it - this is a quiet but real risk, even though the nominal figure stays 1.5 billion VND."
   },
   "summary": {
@@ -116,7 +120,6 @@
     "message": "Take the retirement savings figure you're targeting and divide it by 2 - that's roughly the real purchasing power after about 20 years if you hold only cash/a no-term deposit at 3.5%/year inflation.",
     "secondary": "This number is usually more shocking than you'd expect - that's exactly why you need to invest."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

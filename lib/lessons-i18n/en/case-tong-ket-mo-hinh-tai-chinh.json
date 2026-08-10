@@ -1,0 +1,150 @@
+{
+  "slug": "case-tong-ket-mo-hinh-tai-chinh",
+  "title": "Financial modelling, lesson 10: wrap-up - the full model-building process",
+  "subtitle": "Assembling the previous nine lessons into one working process",
+  "duration": "10 min",
+  "whyItMatters": "Knowing the parts separately is not enough - the value lies in being able to get from a blank page to a finished model in a sensible order. This lesson gives you that order as a checklist you can use immediately.",
+  "openingQuestion": "What is the most sensible order for building a three-statement model from scratch?",
+  "openingOptions": [
+    "Build the balance sheet first, then work back to the P&L",
+    "Historicals → assumptions → P&L → balance sheet and cash flow",
+    "Start from the DCF and work back to the statements",
+    "Build all three statements at the same time from scratch"
+  ],
+  "explanation": "The standard sequence: (1) enter the historicals so you have a reference base; (2) lay out an assumptions block; (3) build the P&L down to EBITDA; (4) build the supporting schedules - depreciation, working capital, debt; (5) complete the P&L, balance sheet and cash flow; (6) wire up the circular links; (7) check it and run scenarios. Each step depends on the one before it, so working out of order means rebuilding several times over.",
+  "diagram": [
+    { "label": "History → assumptions" },
+    { "label": "P&L → supporting schedules" },
+    { "label": "BS + CF → wire up the loop" },
+    { "label": "Check → scenarios → valuation" }
+  ],
+  "realWorldExample": {
+    "company": "How the process actually runs in practice",
+    "description": "Experienced modellers spend most of their time at the two ends: collecting and cleaning the historical data at the input end, and checking plus running scenarios at the output end. Writing the formulas in the middle is usually the fastest part - because the structure was decided beforehand and the links are already clear."
+  },
+  "quiz": [
+    {
+      "question": "Why should you enter the historical figures before forecasting?",
+      "options": [
+        "Because history is the reference for setting sensible assumptions",
+        "Because the standards require three years of historical data",
+        "Because without history the balance sheet will never balance",
+        "Because the historical figures dictate the forecast outcome anyway"
+      ],
+      "explanation": "History tells you the business's actual margins, capital turnover and growth - the only basis on which to judge whether a forecast assumption is reasonable at all. No accounting standard governs what goes into a private model, so a three-year rule is a convention rather than a requirement. A balance sheet balances because the links are correct, not because history is present. And history does not dictate the forecast: the whole point of the exercise is deciding which historical patterns continue and which do not."
+    },
+    {
+      "question": "Which part of the process usually takes the most time?",
+      "options": [
+        "Writing the forecast formulas across the three statements",
+        "Gathering and cleaning the data, and checking the output",
+        "Formatting the spreadsheet nicely before sending it on",
+        "Running sensitivity analysis on the most important assumptions"
+      ],
+      "explanation": "Given a clear structure, writing the formulas goes fairly quickly - the decisions have already been made and each cell has an obvious home. It is the input data and the output checking that determine quality and consume the effort: reconciling historicals from filings that restate, normalising one-offs, and then testing whether the model behaves sensibly. Formatting matters for readability but is quick, and sensitivity analysis is fast once the assumptions block is properly separated from the calculations."
+    },
+    {
+      "question": "Once the model balances and runs, what should the next step be?",
+      "options": [
+        "Lock every formula cell so nothing gets overwritten later",
+        "Send it straight to your manager for approval right away",
+        "Run scenarios and sensitivities to see what drives it",
+        "Add charts to illustrate the final valuation output"
+      ],
+      "explanation": "A single number is not enough to decide anything. Scenarios and sensitivities turn the model from a calculator into a decision tool, by showing which assumptions the answer actually hangs on and how wide the range of defensible values is. Locking cells is a housekeeping step for later, charts are presentation, and sending it up for approval before you know what drives the output means being unable to answer the first question you will be asked."
+    },
+    {
+      "question": "What is the mark of a genuinely good model?",
+      "options": [
+        "The model runs without needing any assumptions entered",
+        "The model has as many sheets and formulas as possible",
+        "The valuation output matches today's market price closely",
+        "Someone else can open it, follow it and change scenarios"
+      ],
+      "explanation": "A model is a communication tool. If only the person who built it can use it, it has failed at its most important purpose. A model with no assumptions to enter is not a model at all; more sheets and more formulas usually make it harder to follow rather than better; and matching the market price is not a target - if the model could only ever agree with the market it would have nothing to tell you."
+    },
+    {
+      "question": "What signals that a model is genuinely good?",
+      "options": [
+        "Someone else changes an assumption and immediately sees why the result moved",
+        "The model has many detailed sheets and covers every line of the statements",
+        "The valuation output sits very close to the share's current market price today",
+        "The model runs without errors and the balance sheet balances in every year"
+      ],
+      "explanation": "Balancing and running without errors is the minimum condition, not the measure. The real value of a model is that it explains: change one assumption, watch the result move, and understand the mechanism connecting the two - at that point it becomes a decision tool. Exhaustive detail often obscures that mechanism rather than revealing it, and agreement with the market price tells you only that you have reverse-engineered today's consensus."
+    }
+  ],
+  "keyTakeaways": [
+    "The order: history → assumptions → P&L → supporting schedules → BS & CF → wire up the loop → check → scenarios",
+    "The time goes at the two ends: preparing the data and checking the result, not writing the formulas",
+    "A good model is one someone else can use without asking the person who built it",
+    "Always finish with scenarios and sensitivities; never stop at a single number"
+  ],
+  "practicePrompt": {
+    "question": "You have 2 days to build a valuation model for a listed company. How should you allocate the time?",
+    "options": [
+      "Spend both days writing the formulas out in full detail",
+      "Day 1: data and assumptions. Day 2: build, check and run scenarios",
+      "Day 1: build the whole thing. Day 2: make it look good",
+      "Spend most of the time on the DCF, since it is the output"
+    ],
+    "explanation": "The historical data and the structure determine the quality of everything downstream - rush them and the rest has to be rebuilt. Writing the formulas is fairly fast once the structure is clear. And the checking and scenario steps must never be cut, because they are exactly what turns the model into something usable for a decision."
+  },
+  "summary": {
+    "keyIdea": "A good model = clear structure + verifiable assumptions + thorough checking + a full set of scenarios",
+    "commonMistake": "Jumping straight into formulas before the historical data and the structure are in place.",
+    "action": "Build a complete three-statement model for a listed company you follow."
+  },
+  "application": {
+    "title": "End-of-stage project",
+    "message": "Pick a listed company with public financial statements. Build a 5-year three-statement model in the order taught here, finishing with a DCF and a WACC × g sensitivity table.",
+    "secondary": "This is a concrete piece of work you can put in your portfolio when applying for financial analyst roles."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous nine lessons gave you the components: structure, revenue, the three statements, supporting schedules, debt, DCF, scenarios, LBO and checking. This lesson assembles them into a process you can repeat for any company."
+    },
+    { "type": "heading", "text": "The seven-step process" },
+    {
+      "type": "list",
+      "items": [
+        "**1. Enter the historicals:** at least 3 years of actuals to give you a reference base",
+        "**2. Lay out an assumptions block:** every variable in one place, never buried inside formulas",
+        "**3. Build the P&L down to EBITDA:** revenue by driver, costs as a ratio or by their own driver",
+        "**4. Build the supporting schedules:** depreciation, working capital, the debt schedule",
+        "**5. Complete the three statements:** feed the schedules into the P&L, balance sheet and cash flow",
+        "**6. Wire up the loop:** retained earnings, closing cash - then check the balance sheet balances",
+        "**7. Check and run scenarios:** three layers of checks, a sensitivity table, base/upside/downside cases"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Where the time actually goes",
+      "text": "Beginners usually assume most of the effort sits in writing formulas. In reality, with a clear structure, steps 3 to 6 go fairly fast. The time goes into step 1 (cleaning the data) and step 7 (checking and running scenarios) - the two steps that decide whether the model is usable at all."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A calculation model",
+        "text": "Produces one number. Only its author understands the structure. Changing an assumption means editing in several places."
+      },
+      "right": {
+        "label": "A decision-support model",
+        "text": "Produces a range of values with the conditions attached. Someone else can open it and use it. Changing scenario means editing the assumptions block only."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "On the limits of this stage",
+      "text": "These are written lessons, focused on structure, the logic of the links and the assumption decisions - the part that carries through reading. Spreadsheet craft only forms through practice. Rebuild each concept in a file of your own; that is where knowledge turns into skill."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A financial model does not predict the future - it makes clear what you are betting on.",
+        "And its greatest value is forcing every assumption out into the open as a number people can argue about."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "quy-trinh-thuong-vu-va-phe-duyet-canh-tranh",
+  "title": "Deals, Lesson 5: from the letter of interest to closing day - the process and the gates to pass",
+  "subtitle": "The document milestones, the gap between signing and closing, conditions precedent and competition approval",
+  "duration": "11 min",
+  "whyItMatters": "A signed deal can still never close. The gap between those two moments runs from a few months to more than a year, and what happens in it - competition approval, swings in the business, conditions precedent that are not met - decides whether the deal survives.",
+  "openingQuestion": "Are signing the sale and purchase agreement and closing the deal the same moment?",
+  "openingOptions": [
+    "Yes, once it is signed the deal is complete",
+    "No: conditions precedent still sit between the two",
+    "No, but the gap is only a few working days",
+    "It depends on whether payment is in cash or in shares"
+  ],
+  "explanation": "Signing is the moment the two sides commit to the agreed terms. Closing is the moment ownership and money actually change hands. Between them lies the period for satisfying conditions precedent: merger control clearance, shareholder approval, consent from lenders, or licences for regulated activities. During this period the seller is bound to run the business as usual, and any material adverse change can allow the buyer to walk away.",
+  "diagram": [
+    { "label": "Letter of interest and confidentiality agreement" },
+    { "label": "Due diligence and negotiating the agreement" },
+    { "label": "Signing: committing to the terms" },
+    { "label": "Closing: conditions satisfied, money transferred" }
+  ],
+  "realWorldExample": {
+    "company": "The gap between signing and closing in large deals",
+    "description": "Deals large enough to require merger control clearance usually take from six months to more than a year between signing day and closing day. In that window the market can turn, the seller's results can deteriorate, and the buyer sometimes wants out. That is why the agreement always carries a material adverse change clause and a break fee - the sum one side pays if it terminates unilaterally. These two clauses are often negotiated as fiercely as the price itself."
+  },
+  "quiz": [
+    {
+      "question": "Is the initial letter of interest legally binding?",
+      "options": [
+        "Fully binding, because it is the first document the two sides sign in the deal process",
+        "Most of it is not binding, except for a few clauses such as confidentiality and exclusivity",
+        "None of it is binding at all, not even the commitments on confidentiality of the information exchanged",
+        "It binds only the seller, while the buyer may withdraw at any point without paying any fee at all"
+      ],
+      "explanation": "This split matters: the exclusivity clause is short but genuinely binding, and it locks the seller out of negotiating with anyone else for the stated period. Confidentiality is binding for the same reason - the seller is about to open its data room, and the protection has to bite before the information moves. What is not binding is the commercial core: price, structure and the decision to proceed at all, which is exactly what leaves room for the price to be renegotiated after due diligence."
+    },
+    {
+      "question": "What are conditions precedent in a sale and purchase agreement?",
+      "options": [
+        "The list of assets which the buyer may exclude from the deal perimeter before the signing date",
+        "The commitments the seller must perform within one year after the deal has been fully completed",
+        "Things that must be done before closing; if they are not met the deal need not complete",
+        "Additional payments the buyer makes if the business hits the performance targets that were agreed"
+      ],
+      "explanation": "Clearance from the competition authority is the most common condition precedent in large deals, and also the one that takes the longest. The point of the mechanism is that it converts an external uncertainty into a defined gate: either the condition is satisfied by the long-stop date or the parties are released. The other three options describe real deal mechanics - perimeter exclusions, post-closing covenants and an earn-out - but each of them operates at a different point in the timeline."
+    },
+    {
+      "question": "Who does a material adverse change clause protect, and against what?",
+      "options": [
+        "It protects the target company's employees against redundancy in the first year after the merger",
+        "It protects the seller against the buyer delaying payment once the conditions precedent are satisfied",
+        "It protects both sides against general market movements occurring between signing and closing",
+        "It protects the buyer from having to complete when the target deteriorates seriously before closing"
+      ],
+      "explanation": "The scope of this clause is negotiated very carefully, particularly over whether it carves out movements affecting the whole industry - because without that carve-out, a buyer could walk simply because the market fell. That is also why the option describing it as protection for both sides against general market movements has it backwards: the standard drafting removes general market movements from the clause rather than covering them."
+    },
+    {
+      "question": "What does the competition authority examine when it reviews a deal?",
+      "options": [
+        "Whether the deal would significantly reduce the level of competition in the relevant market",
+        "Whether the price the parties agreed reflects the fair value of the target business properly",
+        "Whether the buyer has the financial capacity to meet its payment obligations under the agreement",
+        "Whether the employees of the target business will have their rights protected after the merger"
+      ],
+      "explanation": "The focus is the effect on competition, not the effect on the two parties. In some cases a deal is cleared subject to conditions - being required to divest a division, for instance, to reduce market share. Price, financing capacity and employee protection are all real concerns in a transaction, but they belong to the parties, their lenders and employment law respectively; none of them is what a merger control review is for."
+    },
+    {
+      "question": "Why is the period between signing day and closing day the riskiest phase of a deal?",
+      "options": [
+        "Because the seller is allowed to keep negotiating with other buyers during this phase",
+        "Because both sides have committed but the deal can still fail on unsatisfied conditions",
+        "Because the purchase price is recalculated against each month's trading results",
+        "Because the buyer has not yet been given access to any internal information"
+      ],
+      "explanation": "Publicly committed but not yet in control: key staff can leave, large customers can wait and see, and the regulator may not have cleared it. This is why the agreement always carries a material adverse change clause and a break fee. Exclusivity has bound the seller since the letter of interest, the buyer has already seen the internal information in due diligence, and the price is fixed at signing subject only to the agreed adjustment mechanism."
+    }
+  ],
+  "keyTakeaways": [
+    "Signing and closing are two different moments, separated by anything from a few months to more than a year",
+    "A letter of interest is mostly non-binding, except for confidentiality and exclusivity",
+    "If a condition precedent is not satisfied, the deal does not have to complete",
+    "A material adverse change clause gives the buyer a way out when the target deteriorates before closing",
+    "The competition authority looks at the effect on the market, not at the price or the capacity of the parties"
+  ],
+  "practicePrompt": {
+    "question": "The deal is signed and awaiting clearance. Four months later the seller's profit is down 40% because of a general market downturn. Can the buyer walk away?",
+    "options": [
+      "Yes, because the trading results have clearly deteriorated",
+      "It depends on how the MAC clause is drafted",
+      "No, because once signed it must be completed",
+      "Yes, but only on paying the full deal value"
+    ],
+    "explanation": "This is exactly why the scope of that clause is negotiated so hard. The common drafting carves out factors affecting the whole industry, on the argument that the buyer accepted market risk when it signed. If the decline comes from something specific to the business - losing a large customer, say - the conclusion is different."
+  },
+  "summary": {
+    "keyIdea": "A signed deal is not a done deal; the gap in between is where many deals collapse",
+    "commonMistake": "Treating the signing date as the date the deal is complete",
+    "action": "Find an announced deal and look up how long the gap between signing and closing was, and why."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Pick a large completed deal and rebuild its timeline: the announcement date, the approval milestones, the closing date. For each waiting period, work out which condition precedent was being dealt with at that point.",
+    "secondary": "This timeline is what M&A interview candidates are often asked about and few can answer with any specificity."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The four previous lessons were about the numbers. This one is about time and the gates to pass - the part a financial model cannot show, and the part that decides whether the deal exists at all."
+    },
+    {
+      "type": "heading",
+      "text": "The document milestones in order"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Confidentiality agreement: the condition for the seller to open its data, signed before anything else",
+        "Letter of interest or term sheet: the price range and structure, mostly non-binding except for confidentiality and exclusivity",
+        "Due diligence: financial, legal, tax, commercial - run in parallel, and usually turning up something that gets the price renegotiated",
+        "Sale and purchase agreement: the fully binding document, covering covenants, warranties, conditions precedent and the price adjustment mechanism",
+        "Closing: once every condition precedent is satisfied, ownership and money change hands"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "At signing",
+        "text": "Price and structure are fixed. Both sides are legally bound. But no money has moved, no ownership has changed, and the business is still run by the seller."
+      },
+      "right": {
+        "label": "At closing",
+        "text": "The conditions precedent are satisfied. Money moves, shares move, the board changes. This is the moment from which the post-merger milestones are counted."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why the gap is risky",
+      "text": "During the waiting period the seller is still running a business the buyer has already committed to pay for, so the agreement has to bind them to operate as usual and to refrain from major decisions. At the same time good staff start looking elsewhere because the future is uncertain, large customers reconsider the relationship, and competitors make use of the window. The real value of the target can fall during precisely the phase in which nobody is allowed to do anything."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The model tells you what the deal is worth. The process decides whether it happens.",
+        "The last lesson of the stage is about the person who has to sign the final decision, and on what basis they sign it."
+      ]
+    }
+  ]
+}

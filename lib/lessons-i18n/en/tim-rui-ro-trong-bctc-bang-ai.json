@@ -1,0 +1,194 @@
+{
+  "slug": "tim-rui-ro-trong-bctc-bang-ai",
+  "title": "AI in Finance, Lesson 6: Finding risk in financial statements with AI",
+  "subtitle": "Focus on cash flow, receivables, inventory, borrowings and the notes.",
+  "duration": "16 min",
+  "whyItMatters": "Most of a company's problems surface in the cash flow statement and the notes rather than on the profit line - which is exactly the part beginners read least.",
+  "openingQuestion": "Which sign is usually a warning about earnings quality?",
+  "openingOptions": [
+    "Positive profit alongside persistently negative operating cash flow",
+    "Cash rising steadily",
+    "Borrowings falling",
+    "Revenue and cash flow rising together"
+  ],
+  "explanation": "Once you can pull the basic figures, the next step is to look for what is out of place. AI scans familiar patterns very quickly - receivables running ahead of revenue, inventory swelling, positive profit with negative cash flow - but it is also very prone to producing generic warnings that would fit any company at all. So the rule for this lesson is: every flag must come with numerical evidence, a page reference, and a specific question to check next. A flag missing any of those three gets thrown away.",
+  "summary": {
+    "keyIdea": "AI helps you scan for risk quickly, but every flag has to carry numerical evidence.",
+    "commonMistake": "Reading only the profit line and skipping the cash flow statement and the notes.",
+    "action": "Ask the AI to build a red flag table with columns for Flag, Evidence, Source page and Question to ask."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Once you can pull the basic figures, the next step is to look for what is out of place."
+    },
+    { "type": "heading", "text": "Five risks worth scanning for" },
+    {
+      "type": "list",
+      "items": [
+        "Positive profit but weak cash flow",
+        "Receivables growing faster than revenue",
+        "An unusual build-up of inventory",
+        "Short-term borrowings high relative to cash",
+        "Related-party transactions that are hard to follow"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Terms",
+      "text": "Red flag: a warning sign. Receivables: money customers still owe the company. Inventory: goods still sitting in the warehouse unsold."
+    },
+    { "type": "heading", "text": "A sample prompt" },
+    {
+      "type": "paragraph",
+      "text": "Read the financial statements and find five warning signs. For each one, record the numerical evidence, the source page, the severity, and the question to put to management."
+    },
+    { "type": "heading", "text": "Do not conclude too fast" },
+    {
+      "type": "paragraph",
+      "text": "One warning sign does not mean the company is bad. It only says you need to check more deeply before trusting the profit figure or the growth story."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Five warning patterns and what they mean",
+      "subtitle": "None of them is a conclusion on its own - every one of them is a question",
+      "concepts": [
+        {
+          "vi": "Lãi nhưng không có tiền",
+          "en": "Earnings without cash",
+          "def": "Positive profit for several years but weak or negative operating cash flow. Find whether the gap sits in receivables, inventory or prepaid expenses."
+        },
+        {
+          "vi": "Phải thu chạy trước doanh thu",
+          "en": "Receivables outpacing revenue",
+          "def": "Receivables growing markedly faster than revenue. Read the ageing analysis, the bad debt provision and the degree of customer concentration."
+        },
+        {
+          "vi": "Tồn kho phình",
+          "en": "Inventory build-up",
+          "def": "Inventory rising sharply while revenue moves sideways. Check whether the company is stocking up for a peak season or the goods are simply not selling."
+        },
+        {
+          "vi": "Nợ vay tăng nhanh",
+          "en": "Rising leverage",
+          "def": "Borrowings rising without a matching rise in earning assets. Check what the money was used for and how much of profit the interest is consuming."
+        },
+        {
+          "vi": "Thay đổi trong thuyết minh",
+          "en": "Note changes",
+          "def": "A changed depreciation policy, a changed revenue recognition method, a changed auditor, a large new related-party transaction. This is the least-read part of the report."
+        }
+      ]
+    },
+    { "type": "heading", "text": "Why insist that the AI cite a source for every flag?" },
+    {
+      "type": "paragraph",
+      "text": "A language model knows the common warning patterns extremely well, so it can list the five groups above without reading your document at all. The output looks professional and may have nothing to do with the company in front of you. Requiring a figure and a page number is the only way to tell a flag read out of the document from a flag remembered out of general knowledge."
+    },
+    {
+      "type": "callout",
+      "label": "A full prompt to reuse",
+      "text": "\"Use only the attached financial statements, including the notes. Find at most 5 warning signs. Present them as a four-column table: Sign | Numerical evidence (with period and unit) | Source page | Question to verify next. Do not raise any sign for which you cannot quote a figure from the document. If the document does not support five signs, give fewer and say clearly why.\""
+    },
+    { "type": "heading", "text": "What to do once you have the table" },
+    {
+      "type": "list",
+      "items": [
+        "Pick the two most serious signs and open the source page yourself to check them.",
+        "For each sign that still stands, look up the related note to find the company's own explanation.",
+        "Where the notes offer no explanation, that becomes a question for the shareholders' meeting or for investor relations.",
+        "Log any sign you cannot yet resolve and revisit it at the next quarterly report - a trend across periods is the strong evidence."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The best kind of risk is one written down clearly and capable of being verified.",
+        "AI helps you find the signs; you decide what needs digging into."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What does red flag mean?",
+      "options": [
+        "A metric that must be disclosed publicly",
+        "Firm proof that the company is committing fraud",
+        "A warning sign that needs further checking",
+        "A limit set by the regulatory authority"
+      ],
+      "explanation": "A red flag is a place to dig deeper, not a final conclusion. Treating it as proof of fraud is the error that gets analysts into trouble, because most flags have an innocent explanation once you read the relevant note. It is not a mandatory disclosure item and no regulator publishes a list of them - the term describes a habit of reading, not a rule that anyone enforces."
+    },
+    {
+      "question": "Why does persistently negative operating cash flow deserve attention?",
+      "options": [
+        "Because the company is certainly making heavy losses",
+        "Because the company will no longer be allowed to pay a dividend",
+        "Because the depreciation charge is being recorded far too high",
+        "Because profit may not yet have turned into real cash"
+      ],
+      "explanation": "Weak cash flow means earnings quality needs checking. Profit can be positive while cash is negative, so heavy losses are not implied at all. Dividend rules depend on retained earnings and liquidity rather than on this single line, and an overstated depreciation charge would actually make operating cash flow look better than profit rather than worse."
+    },
+    {
+      "question": "Why can AI list the right warning signs and still be unhelpful?",
+      "options": [
+        "Because it recalls generic patterns rather than reading your actual document",
+        "Because it lists so many signs at once that the reader gets confused",
+        "Because it can only read documents that have been written in English",
+        "Because it puts the signs into an order that is not especially logical"
+      ],
+      "explanation": "This is exactly why quoting figures and page numbers is mandatory: it forces every flag to originate in the specific document rather than in general industry knowledge. Modern models read Vietnamese perfectly well, and neither the number of items nor their ordering is the real problem - a beautifully ordered list of five flags that were never in your report is still useless."
+    },
+    {
+      "question": "You have found a warning sign with clear evidence. What is the best next step?",
+      "options": [
+        "Compare with other companies and drop it if they look the same",
+        "Read the notes to see how the company explains it",
+        "Ask the AI how serious it thinks this particular sign is",
+        "Conclude immediately and write it into the final memo"
+      ],
+      "explanation": "A sign is the start of an investigation, not a conclusion. The notes are usually where the first explanation lives, and the place where they offer no explanation is the most valuable question you have. Peers looking similar may simply mean the whole industry shares the problem, asking the model to rate severity invites exactly the generic answer you were trying to avoid, and concluding straight away skips the check entirely."
+    },
+    {
+      "question": "Why should you require specific numerical evidence for every risk flag the AI produces?",
+      "options": [
+        "Because a flag needs at least three separate figures before it counts as valid",
+        "Because AI can only find genuine risks when it is asked to quote figures",
+        "Because a generic warning fits every company and so cannot be acted on",
+        "Because numerical evidence lets the AI rank the risks by how severe they are"
+      ],
+      "explanation": "A list along the lines of 'liquidity risk, customer concentration risk' is true of almost any company and therefore changes no decision. Tying each line to a figure immediately filters out everything that is not actually in this report. There is no threshold of three figures, evidence does not improve the model's ability to find risk in the first place, and ranking severity is a separate judgement you make yourself."
+    }
+  ],
+  "diagram": [
+    { "label": "Scan the five groups of signs" },
+    { "label": "Each sign: numerical evidence plus source page" },
+    { "label": "Turn it into a question to verify" },
+    { "label": "Check the notes or ask management" }
+  ],
+  "realWorldExample": {
+    "company": "Receivables running ahead of revenue",
+    "description": "This is the classic warning pattern and also the easiest for a beginner to check. If revenue is up 10% while trade receivables are up 40%, the company is selling on credit far more than before. That can be an acceptable expansion strategy, or it can be a sign of channel stuffing at period end to hit a plan. You separate the two by reading the receivables note: is the ageing profile stretching or holding, has the bad debt provision risen in step, and is the share taken by a few large customers unusual?"
+  },
+  "keyTakeaways": [
+    "A flag is only usable when it has all three: numerical evidence, a source page, and a follow-up question.",
+    "Comparing the growth of receivables and inventory against the growth of revenue is the fastest and most effective screen.",
+    "The notes hide most of the important information, and they are also the part AI skips unless you ask explicitly.",
+    "One warning sign does not make a company bad - it only tells you where to check further."
+  ],
+  "practicePrompt": {
+    "question": "Which sign is usually a warning about earnings quality?",
+    "options": [
+      "Positive profit alongside persistently negative operating cash flow",
+      "Cash rising steadily",
+      "Borrowings falling",
+      "Revenue and cash flow rising together"
+    ],
+    "explanation": "Accounting profit can look attractive while the real money has not yet arrived."
+  },
+  "application": {
+    "title": "Practise now",
+    "message": "Ask the AI to build a red flag table with columns for Flag, Evidence, Source page and Question to ask.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "slug": "aml-kyc-quy-trinh-chi-tiet",
+  "title": "The AML/KYC process in detail: from screening to the suspicious transaction report",
+  "subtitle": "The concrete steps a compliance officer takes, and the legal lines that cannot be crossed",
+  "duration": "10 min",
+  "openingQuestion": "After reviewing, you conclude a customer shows suspicious indicators and decide to file a suspicious transaction report with the competent authority. The customer calls to ask why their transaction is delayed. What are you permitted to do?",
+  "openingOptions": [
+    "Explain plainly that the transaction is under review for suspicious indicators and has been reported, so the customer can respond",
+    "Under no circumstances disclose that a report has been filed",
+    "Transfer the call to the investigating authority so they can deal with the customer directly",
+    "Refuse to answer any questions and close the account immediately without giving any notice"
+  ],
+  "explanation": "The prohibition on tipping off is among the strictest principles in the anti-money-laundering framework: if the subject learns they are being reported, they will move assets and erase the trail in time, voiding the entire value of the report. The compliance officer therefore has to hold a fine line - continuing to request further documents under the ordinary customer due diligence process, while never revealing that a suspicious report exists. Breaching this can create legal liability for the individual as well as the institution.",
+  "realWorldExample": {
+    "company": "Why a high volume of reports does not mean a good system",
+    "description": "A common mistake in compliance teams under pressure is to drop alert thresholds very low to guarantee that 'nothing is missed'. The result is a system generating thousands of alerts a month, most of them false positives, a review team without the hours to work through them, and the genuinely suspicious cases buried among the harmless ones. Regulators in many countries have recorded this pattern and stressed that the quality of the analysis matters more than the number of reports. This is why tuning alert thresholds per customer segment, and recording the basis for each adjustment, is real compliance work rather than a side task for the technology team."
+  },
+  "quiz": [
+    {
+      "question": "What is the purpose of list screening in the customer due diligence process?",
+      "options": [
+        "Checking whether the client qualifies for a lending limit",
+        "Scoring how satisfied the customer is with the service",
+        "Matching the client against sanctions and PEP lists",
+        "Deciding which segment to assign a salesperson from"
+      ],
+      "explanation": "Screening is a mandatory step and has to be repeated, because sanctions lists are updated continuously - a client who is entirely clear today may appear on a list next month, and it is the institution's obligation to detect that change. Credit assessment, satisfaction scoring and segmentation are all legitimate bank activities, but none of them touches the sanctions or politically-exposed-person question at all."
+    },
+    {
+      "question": "What is the difference between a large-value transaction report and a suspicious transaction report?",
+      "options": [
+        "The two are identical, named differently at each bank",
+        "Large-value is self-declared; suspicious is filed by the bank",
+        "Suspicious reports only apply to foreign national clients",
+        "One rests on a monetary threshold, the other on judgement"
+      ],
+      "explanation": "This is the crux: a chain of small transactions below the threshold but showing a deliberate splitting pattern still has to be reported as suspicious, while a single large transaction by a company with clear, well-understood operations is reported on the threshold alone and implies nothing unusual at all. Both report types are filed by the institution, and neither is restricted to any nationality of customer."
+    },
+    {
+      "question": "What is structuring, and why is it a suspicious indicator?",
+      "options": [
+        "Splitting transactions to stay under the reporting threshold",
+        "Restructuring the client's portfolio to lower its risk",
+        "The bank splitting a credit limit into several smaller tranches",
+        "Routing money through several banks to save on fees"
+      ],
+      "explanation": "The key point is that the act of evading the threshold is itself suspicious. A customer depositing cash just under the reporting threshold, repeatedly through a week, across several different branches, is demonstrating knowledge of the threshold and an intention to avoid it. Portfolio restructuring and credit tranching are ordinary banking activities that have nothing to do with reporting limits."
+    },
+    {
+      "question": "Why can setting alert thresholds very low actually weaken a compliance system?",
+      "options": [
+        "Because the cost of running the technology rises substantially",
+        "Because false alerts pile up and the review team is swamped",
+        "Because the regulator fines firms that file too many reports",
+        "Because customers complain about the delays and then leave"
+      ],
+      "explanation": "This is the important paradox of the profession: review capacity is finite, so an over-sensitive alerting system actually reduces detection. Quality of analysis and thresholds tuned per customer segment matter more than the raw number of alerts generated. Technology cost and customer friction are real consequences too, but neither is what causes genuine cases to go unfound."
+    },
+    {
+      "question": "Scenario: a customer splits 500m dong into five deposits of 99m dong each, all in the same week. What should compliance do?",
+      "options": [
+        "File only a large-value report based on the total amount",
+        "Do nothing, since each deposit is below the threshold",
+        "File a suspicious report - this signals structuring",
+        "Ask the client to combine it into a single transaction"
+      ],
+      "explanation": "It is precisely the fact that every deposit sits just under the threshold that is the signal: ordinary people do not design their transactions around a regulatory figure. A suspicious report rests on the behavioural pattern, not on whether any single amount exceeded a limit - and asking the customer to consolidate would both destroy the evidence and edge toward tipping them off."
+    }
+  ],
+  "keyTakeaways": [
+    "The standard process has five stages: customer due diligence, list screening, transaction monitoring, alert investigation, and reporting where the basis exists.",
+    "A suspicious transaction report rests on analysis of the indicators, regardless of whether any amount exceeded a monetary threshold.",
+    "The prohibition on tipping off is an absolute legal line: the subject must never learn that they are being reported.",
+    "An over-sensitive alert threshold weakens the system, because the real alerts get buried among the false positives."
+  ],
+  "practicePrompt": {
+    "question": "The monitoring system raises an alert on a corporate customer: this month's flows are 8 times the average of the preceding 12 months. What is the correct sequence for handling it?",
+    "options": [
+      "File a suspicious transaction report at once because the jump is so very large",
+      "Review the file and the context first, report only if it stays unexplained",
+      "Close the alert now since corporate clients often have volatile flows",
+      "Call the customer to say the system has flagged them so they can explain"
+    ],
+    "explanation": "An alert is the starting point of analysis, not a conclusion. Just as important is recording the full basis for both the decision to report and the decision to close - that file is what demonstrates the institution discharged its obligation when the regulator inspects later."
+  },
+  "summary": {
+    "keyIdea": "The compliance process is a closed loop from customer due diligence through to reporting, in which every decision - to report or not to report - must rest on a basis that is written down.",
+    "commonMistake": "Treating a system alert as a conclusion, or filing reports by volume to feel safe rather than by quality of analysis.",
+    "action": "Take an alert you once handled and rewrite the basis for closing or reporting it in this structure: the indicator, the evidence gathered, the customer's explanation, the conclusion and the reason."
+  },
+  "application": {
+    "title": "Apply it at work",
+    "message": "For every alert you handle, make sure the file answers three questions: what exactly was the unusual indicator, what evidence and explanation were obtained, and why is the final conclusion reasonable on what you have.",
+    "secondary": "A complete file protects you: it shows the decision had a basis at the time it was made, even if new information later makes the conclusion look different."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous lesson answered why. This one answers how: the five concrete stages of the compliance process, the suspicious patterns to recognise, and the legal lines a compliance officer cannot cross."
+    },
+    { "type": "heading", "text": "The five stages of the process" },
+    {
+      "type": "conceptTable",
+      "title": "From onboarding to reporting",
+      "subtitle": "Each stage has its own output and must leave a record",
+      "concepts": [
+        {
+          "vi": "Nhận biết khách hàng",
+          "en": "CDD - Customer Due Diligence",
+          "def": "Verify identity, establish the beneficial owner, understand the nature of the business and the purpose of the relationship, assign a risk rating. High-risk cases get enhanced measures (EDD) with additional layers of verification."
+        },
+        {
+          "vi": "Sàng lọc danh sách",
+          "en": "Screening",
+          "def": "Match the customer and related parties against sanctions lists, politically exposed person lists and adverse media. Must be repeated periodically because the lists are updated continuously."
+        },
+        {
+          "vi": "Giám sát giao dịch",
+          "en": "Transaction monitoring",
+          "def": "The system watches transactions against configured rules and thresholds, comparing actual behaviour with the customer profile and with that customer's own history."
+        },
+        {
+          "vi": "Rà soát cảnh báo",
+          "en": "Alert investigation",
+          "def": "A human analyses the alerts the system produced: gathering further documents, asking the customer to explain where needed, then concluding to close the alert or move to reporting."
+        },
+        {
+          "vi": "Báo cáo",
+          "en": "Reporting",
+          "def": "Large-value transaction reports under the prescribed threshold, and suspicious transaction reports where the analysis shows unusual indicators that cannot be explained."
+        }
+      ]
+    },
+    { "type": "heading", "text": "Suspicious patterns to recognise" },
+    {
+      "type": "list",
+      "items": [
+        "Structuring: multiple amounts just under the reporting threshold, repeated, across several branches - the intent to evade the threshold is itself the indicator.",
+        "Money in and straight out: an account receives funds and moves nearly all of them on the same day, holding no balance and serving no clear economic purpose.",
+        "Activity out of line with the profile: the scale or type of transaction does not match the declared business and capacity.",
+        "Transactions with no economic rationale: money routed through several intermediary accounts and back close to the starting point, or unusually high costs accepted for no corresponding benefit.",
+        "Counterparties in high-risk jurisdictions: flows involving places with weak anti-money-laundering frameworks, especially where they bear no relation to the declared business.",
+        "A customer who avoids providing information: refusing to clarify the beneficial owner, or pressing to complete a transaction before verification is finished."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "An alert handled badly",
+        "text": "Closed with a one-line note: 'long-standing customer, nothing unusual'. When the regulator inspects two years later, there is nothing to show any analysis was actually done."
+      },
+      "right": {
+        "label": "An alert handled properly",
+        "text": "Records the specific indicator, the documents requested and received, the customer's explanation, the comparison against sector and seasonality, then the conclusion with its reasons. The file stands up independently of who wrote it."
+      }
+    },
+    { "type": "heading", "text": "Three legal lines that cannot be crossed" },
+    {
+      "type": "list",
+      "items": [
+        "The tipping-off prohibition: the customer, or any party without authority, must not learn that a suspicious report has been or is being filed. You may keep requesting further documents under the ordinary process, but never reveal the real reason.",
+        "Customer data confidentiality: data collected for compliance purposes may be used only for those purposes, and not passed to the business side to be mined for sales.",
+        "No conducting your own criminal investigation: the institution's role is to detect, record and report to the competent authority, not to conclude that an offence occurred or to gather evidence toward that conclusion."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why the record matters as much as the detection",
+      "text": "When the regulator inspects, they ask not only what the institution detected but whether the process was followed properly and consistently. A file setting out the basis - including for alerts that were closed - demonstrates the obligation was discharged. Conversely, a correct decision with no record to prove it can still be treated as a control deficiency."
+    },
+    {
+      "type": "paragraph",
+      "text": "The final point, and the one most easily overlooked: a compliance system only works if the compliance function is genuinely independent of the business. If the person with authority to approve alerts also carries sales targets, a conflict of interest is unavoidable - which is why every governance framework requires the compliance function to have its own reporting line to the most senior level."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A system alert is the starting point of analysis, not a conclusion.",
+        "The quality of the written record determines the value of the whole process - for the cases reported and the cases closed alike."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Customer due diligence and risk rating" },
+    { "label": "Screen against sanctions, PEP and adverse media lists" },
+    { "label": "Monitor transactions against thresholds and patterns" },
+    { "label": "Investigate alerts: gather evidence, request explanations" },
+    { "label": "Close on evidence, or file a suspicious report - never tip off" }
+  ]
+}

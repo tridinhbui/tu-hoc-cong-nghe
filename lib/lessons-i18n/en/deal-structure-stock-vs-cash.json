@@ -1,0 +1,149 @@
+{
+  "slug": "deal-structure-stock-vs-cash",
+  "title": "IB & Analysis, Lesson 7: Deal structure - is the deal paid in cash or in stock?",
+  "subtitle": "How an M&A deal is paid for decides who carries the risk and who captures the upside",
+  "duration": "7 min",
+  "openingQuestion": "Company A acquires company B by issuing new A shares to B's shareholders (a stock deal) rather than paying cash. What is the fundamental difference in risk compared with a cash deal?",
+  "openingOptions": [
+    "There is no difference in risk at all between the two payment forms, and this is widely treated as the industry standard",
+    "In a stock deal B's shareholders become A's shareholders and share future risk; a cash deal ends their exposure",
+    "A cash deal is always riskier for company B's shareholders, whatever the size or the sector of the businesses",
+    "A stock deal is always better for company B's shareholders in every case, a point analysts broadly agree on"
+  ],
+  "explanation": "This is the core difference in how risk is allocated: in a stock deal, the selling shareholders of company B receive the buyer's shares instead of cash - they retain an interest in, and exposure to, the future performance of the combined company. In a cash deal, the selling shareholders exit future risk entirely the moment they take the money, but they also give up the upside if the deal succeeds beyond expectations.",
+  "diagram": [
+    { "label": "Cash deal: selling shareholders take cash and exit future risk", "arrow": false },
+    { "label": "Stock deal: selling shareholders take shares and keep sharing risk and reward", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "Payment structures in large M&A deals",
+    "description": "Many large M&A deals use a mixed structure - part cash, part stock - to balance giving the selling shareholders immediate liquidity (the cash portion) against keeping them invested in the success of the combined company (the stock portion)."
+  },
+  "quiz": [
+    {
+      "question": "Why does a buyer sometimes prefer to pay in stock rather than cash, even when it has plenty of cash available?",
+      "options": [
+        "Because shares are always a cheaper payment method than cash",
+        "Because selling shareholders always prefer shares over cash",
+        "Because regulation gives preference to settlement in shares over cash",
+        "Keep the cash, and pay in shares while the shares are expensive"
+      ],
+      "explanation": "This is a sophisticated financial strategy: if the buyer's management believes the market is valuing their shares above intrinsic worth, using stock - a currency they consider expensive - to buy a real asset exploits the valuation gap in favour of their existing shareholders. Shares are not intrinsically cheaper than cash; they carry a cost of equity that is usually higher than debt. Sellers frequently prefer cash for the certainty. And no regulation privileges one settlement form over the other."
+    },
+    {
+      "question": "If you are a shareholder in the target company and you believe strongly in the deal's synergy potential, which form of payment should you prefer?",
+      "options": [
+        "Always take cash, since it is absolutely safe in every case",
+        "Consider taking shares to participate in the synergy",
+        "There is no meaningful difference between the two forms",
+        "Demand payment in gold rather than in shares or in cash"
+      ],
+      "explanation": "This is the essential trade-off: cash gives immediate certainty but caps the upside; shares carry risk if the deal disappoints, but open the door to the synergy benefit if your conviction turns out to be well founded. Cash is not risk-free in any absolute sense either - it simply moves the risk to what you do with the money next. The choice depends on how much you genuinely believe in the deal's potential, which is exactly the premise of the question."
+    },
+    {
+      "question": "Why does the buyer's share price often fall when a stock-funded deal is announced?",
+      "options": [
+        "Because issuing additional shares is restricted by law",
+        "Because the market reads it as a signal the shares are expensive",
+        "Because settling a deal in shares always causes it to fail eventually",
+        "Because the seller immediately dumps the shares received"
+      ],
+      "explanation": "Management knows more about its own business than the market does. Choosing to pay in stock rather than cash is a signal about how they view the current price. Share issuance is a routine corporate action rather than something the law restricts. Payment form does not determine whether integration succeeds. And lock-up provisions typically prevent the seller from selling immediately, so a rush of supply is rarely the mechanism at work."
+    },
+    {
+      "question": "When buyer and seller disagree sharply about the future prospects of the business, which structure helps close the gap?",
+      "options": [
+        "Cancel the deal and renegotiate roughly a year from now",
+        "Pay entirely in cash on the day the contract is signed",
+        "Contingent payment tied to performance milestones",
+        "Pay entirely in convertible preferred shares"
+      ],
+      "explanation": "Rather than forcing both sides to agree on one forecast, this structure lets actual results settle the disputed portion of value - so it turns a disagreement into a contract clause instead of a deadlock. Walking away and returning later resolves nothing and risks losing the deal. Paying all cash up front requires the buyer to accept the seller's forecast in full. And convertible preferred changes the seniority of the instrument without linking anything to performance."
+    },
+    {
+      "question": "What does an exchange ratio adjustment clause in a stock-funded deal protect the seller against?",
+      "options": [
+        "The buyer's business performance deteriorating after the merger completes",
+        "The buyer walking away after the heads of terms have been signed",
+        "The risk that regulators refuse to approve the merger at all",
+        "The buyer's share price falling while the deal waits to close"
+      ],
+      "explanation": "Several months usually pass between signing and closing, and the real value the seller receives drifts with the buyer's share price over that window. The clause fixes the value rather than the number of shares - so it shifts the volatility risk onto the buyer. It does nothing about performance after completion, which the seller accepts by holding shares at all. Walk-away risk is handled by break fees, and regulatory failure by conditions precedent."
+    }
+  ],
+  "keyTakeaways": [
+    "Cash deal: selling shareholders take cash and exit the future risk and reward of the combined company",
+    "Stock deal: selling shareholders keep sharing both the risk and the reward of the combined company",
+    "A buyer may prefer to pay in stock when it believes its own shares are richly valued"
+  ],
+  "practicePrompt": {
+    "question": "In an M&A deal, the target's shareholders can receive cash (a cash deal) or shares in the acquirer (a stock deal). If a shareholder is worried the combined company may struggle later, which form should they prefer, and why?",
+    "options": [
+      "Prefer a cash deal: the selling shareholder escapes future risk entirely",
+      "Prefer a stock deal, because the merged company's shares always rise afterwards",
+      "Both forms carry exactly the same level of risk for the selling shareholder",
+      "The form of payment has no bearing on the risk the selling shareholder carries"
+    ],
+    "explanation": "In a cash deal, the selling shareholder exits the future risk of the combined company entirely, because they receive money immediately. In a stock deal, they continue to hold the risk - and the potential upside - of the company after the merger."
+  },
+  "application": {
+    "title": "Ask why the buyer chose that form of payment",
+    "message": "When you see a deal paid in stock, look at where the buyer's shares sit against their two-year range. Paying with your own paper while that paper is expensive is a rational decision for the buyer, and valuable information for the seller.",
+    "secondary": "A seller taking shares still carries the full risk that integration fails. If you still want to accept, ask about the lock-up provisions - they decide when you can actually get out."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "How an M&A deal is paid for - cash or stock - decides who carries the risk and who captures the benefit if the deal succeeds beyond expectations."
+    },
+    { "type": "heading", "text": "A cash deal exits the risk; a stock deal keeps sharing it" },
+    {
+      "type": "paragraph",
+      "text": "In a cash deal, the selling shareholders take money and step out of the future risk and reward of the combined company entirely. In a stock deal, they become shareholders of the buyer and continue to share both. A buyer sometimes prefers stock when it believes the market is valuing its shares richly - a way of exploiting the valuation gap in favour of existing shareholders."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Cash deal: selling shareholders exit the future risk of the combined company entirely",
+        "Stock deal: selling shareholders keep sharing both the risk and the reward of the combined company",
+        "A buyer may prefer to pay in stock when it believes its own shares are richly valued"
+      ]
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three questions the payment form answers",
+      "concepts": [
+        { "def": "Paying cash: the buyer carries the whole risk if synergies fall short. Paying stock: the seller carries part of it too, because they are now a shareholder." },
+        { "def": "Choosing to pay in stock is usually read by the market as a signal that management thinks the shares are richly valued - which is why the buyer's price often falls when a stock deal is announced." },
+        { "def": "Paying cash usually means borrowing or draining reserves, raising leverage. Paying stock costs no money but dilutes existing shareholders." }
+      ]
+    },
+    { "type": "heading", "text": "Intermediate structures" },
+    {
+      "type": "list",
+      "items": [
+        "Combining cash and stock: the most common structure in practice, balancing the seller's need for liquidity against the buyer's wish to share risk.",
+        "Contingent payment: part of the purchase price is paid only if the business hits agreed performance milestones. Very useful when the two sides disagree about future prospects.",
+        "Holding part of the price in escrow: used to cover problems discovered after completion, particularly where legal exposures are still unclear.",
+        "Requiring the seller's management to reinvest part of their proceeds into the new business: a way of tying their interests to the post-merger period."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why contingent payment is useful",
+      "text": "When the seller believes the business will grow strongly and the buyer is sceptical, the two sides struggle to meet on a price. Contingent payment solves it by letting actual results decide: hit the milestones and the seller receives more; miss them and the buyer has not paid for a prospect that never materialised."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "How an M&A deal is paid for is not merely a technical detail.",
+        "It reveals what both sides genuinely believe about the future of the combined company."
+      ]
+    }
+  ],
+  "summary": {
+    "keyIdea": "Cash deal: selling shareholders take cash and exit the future risk and reward of the combined company",
+    "commonMistake": "Easily missed: in a stock deal, the selling shareholders keep sharing both the risk and the reward of the combined company",
+    "action": "A buyer may prefer to pay in stock when it believes its own shares are richly valued"
+  }
+}

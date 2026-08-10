@@ -1,0 +1,139 @@
+{
+  "slug": "mo-hinh-tc-nganh-dac-thu",
+  "title": "Modelling Special Topics: adapting the model for banks and real estate",
+  "subtitle": "Why the standard three-statement model cannot be applied directly to a bank or a property company",
+  "duration": "9 min",
+  "whyItMatters": "Once you have mastered the standard three-statement model (Financial Modelling lessons 1-10), the important next step is understanding why some industries demand a completely different structure - the skill that separates someone who has learned Excel from someone who genuinely understands an industry.",
+  "openingQuestion": "Why can the standard three-statement model (revenue less costs, working capital, capex and so on) not be applied directly to a commercial bank?",
+  "openingOptions": [
+    "Because a bank does not produce financial statements",
+    "A bank runs on net interest income as its core",
+    "Because a bank has no need for financial forecasts",
+    "Because the law forbids building financial models for banks"
+  ],
+  "explanation": "A bank model is structured quite differently from a manufacturing or trading company model: the main driver is net interest income (net interest margin) rather than product sales, there is no working capital or capex in the ordinary sense, and capital adequacy (CAR) sits at the centre of the model in a way an ordinary corporate model never has to consider.",
+  "diagram": [
+    { "label": "Identify what makes the industry different (bank / property / other)" },
+    { "label": "Adapt the revenue drivers and the balance sheet structure" },
+    { "label": "Add the industry-specific metrics (CAR for banks, NAV for property)" }
+  ],
+  "realWorldExample": {
+    "company": "Valuing a bank with a dividend discount model or P/B rather than a pure DCF",
+    "description": "In valuation practice, bank analysts usually prefer a dividend discount model or a P/B comparison (price to book value) over a free-cash-flow DCF of the kind used for ordinary companies. A bank's cash flow is hard to separate cleanly - deposits and loans are the core business rather than 'free' cash flow in the traditional sense - and it is equity and the capital adequacy ratio that determine how fast the bank can grow."
+  },
+  "quiz": [
+    {
+      "question": "Net interest margin (NIM) in a bank model corresponds to which concept in an ordinary corporate model?",
+      "options": [
+        "There is no equivalent at all; the metric is specific to banking and insurance alone",
+        "It is equivalent to the selling and administrative expenses of the business",
+        "Roughly the gross profit margin of a manufacturing or trading business",
+        "It is equivalent to the corporate income tax payable for the period"
+      ],
+      "explanation": "NIM plays the same role as gross margin: it measures the spread between the income earned on earning assets (mainly lending) and the cost of funding them (mainly deposit interest) - the core profit driver of a bank, exactly as gross margin is the core profit driver of a manufacturer or retailer. Treating it as a purely sector-specific curiosity misses that parallel and makes bank models harder to read than they need to be. Operating expenses sit below NIM in the same way SG&A sits below gross profit, and tax is further down still, so neither maps onto it."
+    },
+    {
+      "question": "Why does property valuation - particularly for rental and investment property - lean on NAV (net asset value) as a key method rather than relying only on a DCF of operating cash flow?",
+      "options": [
+        "Because property generates no rental operating cash flow, so discounting cannot apply",
+        "Because NAV always produces a higher valuation than the DCF method does",
+        "Because accounting law requires NAV across the whole property sector",
+        "Because the value sits mainly in the market price of the asset portfolio"
+      ],
+      "explanation": "NAV suits property because the company's value is tied largely to specific assets - land, projects, rental buildings - that can each be valued individually at today's market prices. That approach often reflects underlying value better than discounting projected rents alone, especially for assets that appreciate over time. Rental property plainly does produce operating cash flow, which is why a DCF is run alongside rather than abandoned. NAV can come out below a DCF just as easily as above it. And no accounting rule mandates the method; it is an analytical choice."
+    },
+    {
+      "question": "How important is the capital adequacy ratio (CAR) in a bank model compared with an ordinary corporate model?",
+      "options": [
+        "CAR is a legal constraint capping the credit a bank can build on its equity base",
+        "It is no more important than any of the other ordinary financial ratios",
+        "CAR is only a periodic reporting requirement, not a real business limit",
+        "CAR applies only to foreign banks operating inside Vietnam"
+      ],
+      "explanation": "CAR acts as a constraint peculiar to banking: regulation requires equity to reach a minimum proportion of risk-weighted assets, so an accurate bank model has to compute CAR in order to establish how far the bank can expand lending without breaching the rules. Treating it as one ratio among many misses that it binds the forecast rather than merely describing it. It is enforced with real consequences, including forced capital raising, so it is far more than a reporting line. And it applies to every licensed bank, domestic institutions very much included."
+    },
+    {
+      "question": "Why does bank valuation usually work with free cash flow to equity rather than to the firm?",
+      "options": [
+        "Because a bank has no fixed asset capex, so free cash flow cannot be computed",
+        "Because for a bank, debt is the raw material of the business, not funding",
+        "Because accounting rules bar banks from publishing detailed operating cash flow",
+        "Because a bank's equity is always a small share of its total funding"
+      ],
+      "explanation": "Deposits and borrowings are the inputs to the lending business, so the notion of 'enterprise value before debt' loses its meaning for a bank. The model therefore goes straight to the shareholders' slice, and the common multiple is P/B alongside ROE rather than EV/EBITDA. Banks do have capex, on branches and technology, it is simply small. They publish cash flow statements like any other company. And while bank equity is indeed a thin share of the balance sheet, that is a consequence of the same fact rather than the reason for the choice of method."
+    },
+    {
+      "question": "Why does the capital adequacy ratio directly constrain how fast a bank can grow?",
+      "options": [
+        "Because a bank with a higher ratio is granted a larger credit growth quota",
+        "Because the ratio sets the maximum deposit rate a bank is allowed to offer",
+        "Because every extra unit of risk-weighted assets demands matching own capital",
+        "Because the ratio is used to compute the annual credit risk provisioning charge"
+      ],
+      "explanation": "Risk-weighted assets cannot expand while own capital stands still. Credit growth is therefore capped by retained earnings or by the ability to issue new shares - a binding variable a bank model has to simulate, quite unlike an ordinary company. Credit growth quotas are set by the regulator on a range of criteria and are a separate mechanism. Deposit rates are a pricing decision, not a function of capital. And provisioning is driven by loan classification and expected loss, which affects capital as an outcome rather than being computed from it."
+    }
+  ],
+  "keyTakeaways": [
+    "A bank model runs on net interest margin as its core profit driver, the role gross margin plays in an ordinary company",
+    "A bank has no working capital or capex in the traditional sense; the balance sheet and CAR are the centre of the model",
+    "A property model usually runs NAV (assets valued at market prices) alongside or in place of a pure DCF",
+    "CAR is the industry-specific constraint on how far a bank can expand lending, and has to be modelled as a constraint"
+  ],
+  "practicePrompt": {
+    "question": "What is the core distinction between a bank model and an ordinary corporate model?",
+    "options": [
+      "The bank runs on NIM as its driver and is constrained by CAR",
+      "A bank does not need to prepare financial statements of any kind",
+      "A bank model is simpler than an ordinary corporate model",
+      "There is no meaningful difference between the two"
+    ],
+    "explanation": "Three core differences: the profit driver (NIM), the absence of traditional working capital and capex, and the CAR constraint."
+  },
+  "summary": {
+    "keyIdea": "A financial model is not one formula applied to every industry - understanding the structure of each business (banking, real estate) is what makes a model genuinely meaningful rather than merely correct as Excel",
+    "commonMistake": "Applying the standard three-statement framework mechanically to every type of company without adapting it to the industry",
+    "action": "Before building a model for a company, always ask: what is the core profit driver of this industry, and is there a constraint or metric (like CAR for a bank) that has to be modelled separately?"
+  },
+  "application": {
+    "title": "Identify what makes the industry different before you build",
+    "message": "Before opening Excel on a new company, spend 15 minutes on the question: how does this industry differ from the standard three-statement model you learned? What is the core profit driver?",
+    "secondary": "This is the thinking step new modellers routinely skip, and it is what separates a superficial model from a genuinely useful one."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The Financial Modelling series (lessons 1-10) equipped you with the standard three-statement framework - a foundation that works well for most manufacturing, trading and service businesses. But some industries require a fundamentally different adaptation."
+    },
+    { "type": "heading", "text": "Banks: the balance sheet is the centre, not the income statement" },
+    {
+      "type": "paragraph",
+      "text": "For an ordinary company, the model usually starts with a revenue forecast on the income statement. For a bank, the centre of gravity shifts to the balance sheet: the size of earning assets (loans outstanding, investments), the size of funding raised, and the capital adequacy ratio - and only from there do net interest income and profit follow."
+    },
+    { "type": "heading", "text": "Real estate: NAV complements the DCF" },
+    {
+      "type": "paragraph",
+      "text": "For a property company, particularly one holding long-term rental assets, most of the enterprise value sits in the market value of the portfolio it owns. The NAV method - valuing each asset at current market prices, adding them up and deducting debt - is usually run alongside a DCF to give a fuller valuation picture."
+    },
+    {
+      "type": "callout",
+      "label": "CAR: the constraint the model has to respect",
+      "text": "A common mistake in a first bank model: forecasting strong credit growth without checking whether the bank has enough equity to keep CAR above the regulatory minimum. A sound bank model computes CAR in every forecast period as a binding condition, not as a reference figure."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Banks: NIM is the core profit driver and the balance sheet is the centre of the model",
+        "Banks: CAR is the constraint limiting how far lending can grow",
+        "Real estate: NAV complements or replaces the DCF when asset values dominate",
+        "Always adapt the framework to the structure of the industry being modelled"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A good financial model is not the most complex one, but the one that reflects the real economics of the industry being analysed.",
+        "This is the final extension of the Financial Modelling topic - combine it with lessons 1-10 for a complete modelling foundation."
+      ]
+    }
+  ]
+}

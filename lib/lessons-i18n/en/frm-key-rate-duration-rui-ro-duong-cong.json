@@ -1,0 +1,139 @@
+{
+  "slug": "frm-key-rate-duration-rui-ro-duong-cong",
+  "title": "Market Risk, Lesson 8: Key rate duration - when the curve does not shift in parallel",
+  "subtitle": "A portfolio with zero duration can still lose heavily when the curve rotates",
+  "duration": "10 min",
+  "whyItMatters": "Duration assumes the whole curve moves up or down by the same amount. Real curves rarely do that - they rotate, they kink, and the short and long ends go in opposite directions. Hedging on duration while ignoring that produces a feeling of safety while the risk merely changes shape.",
+  "openingQuestion": "A portfolio is long the 2-year bond and short the 10-year bond, with total duration of exactly zero. What is the biggest remaining risk?",
+  "openingOptions": [
+    "There is no interest rate risk left, since duration is zero",
+    "The risk that the curve changes shape rather than shifting in parallel",
+    "The credit risk of the issuers of the two bonds",
+    "Liquidity risk when the short position has to be closed"
+  ],
+  "explanation": "Zero duration only says the portfolio is immune to a parallel shift. If the 2-year rate rises 50 basis points while the 10-year rate rises only 10 - a flattening move that happens all the time - the two legs no longer offset and the portfolio loses. This is exactly the risk key rate duration was built to measure: instead of one number, it tells you how sensitive the portfolio is to each individual point on the curve.",
+  "diagram": [
+    { "label": "Duration: assumes the whole curve moves by the same amount" },
+    { "label": "Reality: the curve steepens, flattens, or kinks in the middle" },
+    { "label": "Key rate duration: sensitivity measured at each key maturity separately" },
+    { "label": "The key rate durations sum to approximately the effective duration" }
+  ],
+  "realWorldExample": {
+    "company": "A bond fund hedged on duration",
+    "description": "The common way to hedge is to offset duration with bond futures, which are usually anchored to a single point on the curve. When the curve rotates, the hedge moves with its anchor point while the portfolio moves with its own real maturity distribution - and the loss shows up exactly where the duration report said the risk was zero."
+  },
+  "quiz": [
+    {
+      "question": "What does key rate duration measure that ordinary duration cannot?",
+      "options": [
+        "Price sensitivity to a change in the credit spread",
+        "Price sensitivity to each individual maturity point on the curve",
+        "The convexity of the relationship between bond price and yield",
+        "The effect of reinvesting coupons at the new prevailing rate"
+      ],
+      "explanation": "Duration collapses every maturity into one number and implicitly assumes they all move together. Key rate duration splits it into several numbers, one per key point - and that is what makes it visible whether the portfolio is exposed at the short end or the long end of the curve. Credit spread sensitivity, convexity and reinvestment are three separate measures answering three separate questions."
+    },
+    {
+      "question": "Scenario: a portfolio has key rate duration of +4 at the 2-year point and −4 at the 10-year point. The curve flattens: the 2-year rate rises 40bp and the 10-year is unchanged. What happens?",
+      "options": [
+        "The portfolio gains about 1.6% thanks to the short 10-year leg",
+        "The portfolio breaks even, since the two key rate durations sum to zero",
+        "The portfolio loses about 1.6%, since only the 2-year leg is affected",
+        "It cannot be computed without knowing the convexity of both legs"
+      ],
+      "explanation": "The effect is computed point by point: −4 × 0.40% = −1.6% from the 2-year leg, and 0 from the 10-year leg because that rate did not move. Key rate durations summing to zero only protects you when both points move by the same amount, and that is precisely what did not happen here."
+    },
+    {
+      "question": "What are the three main shapes of yield curve movement?",
+      "options": [
+        "A short-end shift, a mid-curve shift, and a long-end shift by maturity",
+        "A shift up, a shift down, and staying put within a narrow band",
+        "A shift driven by inflation, by growth, and by monetary policy",
+        "A parallel shift, a change in slope, and a change in curvature"
+      ],
+      "explanation": "Principal component analysis on curve data typically returns three components explaining most of the variation: level, slope and curvature. Duration captures only the first of them, so the other two are risk that a single duration figure cannot see. The alternatives describe either the drivers behind the moves or a re-labelling of the level component alone."
+    },
+    {
+      "question": "Why do the key rate durations sum to approximately the effective duration?",
+      "options": [
+        "Because moving every key point by the same amount is a parallel shift",
+        "Because key rate durations are normalised so the sum always matches duration",
+        "Because effective duration is computed as the mean of the key rate durations",
+        "Because both of them ignore the effect of convexity on the bond price"
+      ],
+      "explanation": "Adding all the key rate durations together simulates the case where every key point moves by the same amount - which is the definition of a parallel shift, and that is what duration measures. The relationship serves as a quick check on whether a set of key rate durations has been computed correctly. It is an arithmetic consequence rather than a normalisation, and it is a sum rather than a mean."
+    },
+    {
+      "question": "What is the limitation of hedging with a single bond futures contract?",
+      "options": [
+        "It cannot be applied to a portfolio holding several different bond types",
+        "It neutralises a parallel shift only, not a rotation of the curve",
+        "It requires a larger initial margin than using an interest rate swap",
+        "It only works when the portfolio has a duration below five years or so"
+      ],
+      "explanation": "An instrument anchored to one point on the curve only offsets the risk at that point. A portfolio spread across many maturities needs several instruments at several points - and whatever difference remains is the basis risk of the hedge itself. Mixed bond types are not the obstacle, margin is a funding question rather than a hedging one, and the portfolio's duration level does not change the argument."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A portfolio has an effective duration of zero, but key rate durations of +6 at the 2-year point and −6 at the 10-year point. The curve steepens by a further 30 basis points at the 10-year end. What happens?",
+    "options": [
+      "The portfolio loses, because zero duration only immunises a parallel shift",
+      "The portfolio breaks even, because zero duration means there is no risk",
+      "The portfolio gains, because the negative long-end position benefits as rates rise",
+      "It cannot be determined without knowing the portfolio's convexity"
+    ],
+    "explanation": "An effective duration of zero says exactly one thing: if the whole curve moves up or down by the same amount, the portfolio's value does not change. It says nothing about the case where the curve ROTATES, and that is the case here - the 10-year end rises 30 basis points while the 2-year end stands still. A position of −6 at the 10-year point means every basis point of increase there costs money, and there is nothing to offset it because the 2-year end has not budged. This is shape risk, and duration - whether zero or anything else - is entirely blind to it."
+  },
+  "keyTakeaways": [
+    "Duration assumes a parallel shift; real curves also rotate and kink",
+    "Key rate duration measures sensitivity at each maturity point, so shape risk becomes visible",
+    "The three main components of curve movement are level, slope and curvature - duration captures only the first",
+    "The key rate durations sum to approximately the effective duration, because summing them simulates a parallel shift"
+  ],
+  "summary": {
+    "keyIdea": "Zero duration is not the absence of interest rate risk, only the absence of risk to one particular kind of movement. Key rate duration shows what is left."
+  },
+  "application": {
+    "message": "When a report says a portfolio has been duration-neutralised, ask at which maturity points. An answer naming a single point means the shape risk of the curve is still entirely intact."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A portfolio with zero duration sounds immune to interest rates. It is immune to exactly one scenario - the scenario the market rarely delivers."
+    },
+    { "type": "heading", "text": "The curve does not travel by lift" },
+    {
+      "type": "paragraph",
+      "text": "Duration measures how the price responds when the entire yield curve moves up or down by the same amount. In practice, when the central bank raises short-term rates the short end jumps while the long end may stand still, or even fall if the market believes growth will slow. That is a flattening move, and duration cannot see it."
+    },
+    { "type": "heading", "text": "Splitting one number into several" },
+    {
+      "type": "paragraph",
+      "text": "Key rate duration picks a set of key points - typically 2, 5, 10 and 30 years - and measures separately how the portfolio responds when only one of them moves while the others are held fixed. The result is a vector rather than a single number, and it says what one number cannot: which end of the curve the risk is concentrated at."
+    },
+    { "type": "heading", "text": "The relationship used as a check" },
+    {
+      "type": "paragraph",
+      "text": "Adding all the key rate durations together gives approximately the effective duration, because every point moving by the same amount is the definition of a parallel shift. It makes a quick check: if the sum is far from the duration computed another way, one of the two calculations has a problem."
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "An instrument anchored to a single point only offsets the risk at that point. A portfolio spread over many maturities needs several instruments, and whatever difference remains is the basis risk of the hedge itself."
+    },
+    { "type": "heading", "text": "Two portfolios with duration 5, two different outcomes" },
+    {
+      "type": "paragraph",
+      "text": "Portfolio A puts everything into the 5-year bond, giving duration 5. Portfolio B is a barbell: 62.5% in the 2-year bond and 37.5% in the 10-year, which also gives duration 2 × 0.625 + 10 × 0.375 = 5. A single duration number says they are the same. If the whole curve shifts up 100 basis points in parallel, they are indeed the same: both lose about 5%."
+    },
+    {
+      "type": "callout",
+      "label": "But the curve rarely shifts in parallel",
+      "text": "Suppose the curve steepens: the 2-year rate is unchanged, the 5-year rises 50 basis points, and the 10-year rises 100. Portfolio A loses 5 × 0.50% = 2.5%. Portfolio B loses 0.375 × 10 × 1% = 3.75% - the 2-year part loses nothing because the rate there did not move. Same duration, 1.25 percentage points apart. The total duration cannot see the difference because it collapses every maturity into one number."
+    },
+    {
+      "type": "paragraph",
+      "text": "Key rate duration splits that number by maturity point. Portfolio A has a 5-year KRD of 5 and zero everywhere else. Portfolio B has a 2-year KRD of 1.25 and a 10-year KRD of 3.75. The KRDs always sum to the total duration - 1.25 + 3.75 = 5 - so no information is lost, it is only separated out. And it is precisely because the sums match that a single total figure can completely conceal two very different risk profiles."
+    }
+  ]
+}

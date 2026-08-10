@@ -1,0 +1,153 @@
+{
+  "slug": "chuoi-thoi-gian-va-kiem-chung-ngoai-mau",
+  "title": "Quantitative, Lesson 6: Time series and out-of-sample validation - why a backtest always looks better than reality",
+  "subtitle": "Stationarity, autoregression, volatility clustering, and the quiet biases that wreck every backtest",
+  "duration": "12 min",
+  "whyItMatters": "Financial data is almost always a time series, and time series violate most of the assumptions of basic statistics. This lesson also closes the stage: it turns all the preceding theory into a validation procedure you can apply to any model, yours or anyone else's.",
+  "openingQuestion": "Why should you not run a regression directly on a stock price series, but on returns instead?",
+  "openingOptions": [
+    "Because a price series usually holds far too many data points for the software to process at once",
+    "Because a price series is non-stationary, giving spurious regressions between unrelated series",
+    "Because a price series always contains negative values somewhere in it",
+    "Because statistical software cannot handle a raw price series at all"
+  ],
+  "explanation": "Any two non-stationary series - say the price of a Vietnamese stock and the number of cars sold in Norway - both trend upward over time, so a regression between them will produce a high R-squared and statistically significant coefficients even though they have nothing to do with one another. This is called spurious regression. Differencing the series, or converting to returns, makes it stationary and removes most of the problem.",
+  "diagram": [
+    {
+      "label": "Price series: non-stationary"
+    },
+    {
+      "label": "Take returns: approximately stationary"
+    },
+    {
+      "label": "Test for autocorrelation and volatility clustering"
+    },
+    {
+      "label": "Validate out of sample in chronological order"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Why a strategy that wins in backtest loses in production",
+    "description": "A familiar finding across the industry: quantitative strategies put into live operation typically achieve around half the Sharpe ratio of their backtest. In order of how often they are to blame, the causes are survivorship bias in the data, use of information not available at the moment of the decision, ignoring transaction costs and market impact, and finally searching across too many variants on the same dataset."
+  },
+  "quiz": [
+    {
+      "question": "What does stationarity of a time series mean?",
+      "options": [
+        "The series keeps exactly the same value across every period",
+        "The series trends steadily upward and never reverses over the long run",
+        "The mean and variance of the series are stable over time",
+        "The series has no missing observations anywhere in the sample period"
+      ],
+      "explanation": "Stationarity is the condition that makes statistical inference meaningful. A steady trend is the opposite of stationarity rather than an example of it, a constant value would be a degenerate case, and completeness of data is a separate matter entirely. Price series are non-stationary; return series are roughly stationary in the mean, though the variance still moves over time."
+    },
+    {
+      "question": "What is volatility clustering?",
+      "options": [
+        "Many different stocks all move sharply within the same trading session",
+        "The volatility of every asset converges towards zero over time",
+        "Volatility always rises at the end of the year and then falls back",
+        "Volatile days tend to arrive next to each other, forming clusters"
+      ],
+      "explanation": "This is the most consistently documented feature of financial data and the reason the GARCH family of models exists. It is about time, not about breadth across stocks, and it has nothing to do with the calendar - a year-end pattern would be seasonality, a different phenomenon altogether. It also explains why volatility is forecastable to some degree while the direction of prices is not."
+    },
+    {
+      "question": "What is survivorship bias in backtest data?",
+      "options": [
+        "The data holds only firms alive today; the bankrupt ones are gone",
+        "The data covers only companies that have listed recently",
+        "Some sessions are randomly missing because of a vendor error",
+        "Prices are not adjusted for dividends and for stock splits"
+      ],
+      "explanation": "A dataset containing only companies still alive today makes every strategy look better than it was, because the worst investments - the firms that disappeared - were removed from the sample before testing began. Randomly missing sessions and unadjusted prices are real data problems, but they distort in no particular direction, whereas survivorship bias always flatters the result."
+    },
+    {
+      "question": "What is look-ahead bias?",
+      "options": [
+        "Forecasting too far ahead relative to the length of history available",
+        "Using information not yet published at the moment the decision is made",
+        "Using data at a frequency higher than the strategy's trading cycle",
+        "Ignoring transaction costs and slippage when computing returns"
+      ],
+      "explanation": "This is a subtle and very common error. Annual financial statements are usually published two to three months after the year end; using them as of 31 December means your strategy is seeing the future. The other three describe genuine problems - forecast horizon, sampling frequency and cost modelling - but none of them involves knowing something before it was knowable."
+    },
+    {
+      "question": "What is the correct way to validate a time series out of sample?",
+      "options": [
+        "Split all observations randomly into a training set and a test set",
+        "Use the whole dataset for both estimation and for validating the result",
+        "Split chronologically: train on the earlier period, test on the later",
+        "Test only on a rising market to gauge the strategy's profit potential"
+      ],
+      "explanation": "A random split lets future data leak into the training set, creating a subtle form of look-ahead bias. Reusing all the data for both steps is not validation at all, and testing only on rising markets measures the market rather than the strategy. For a time series, the boundary between the two sets always has to be a point in time."
+    }
+  ],
+  "keyTakeaways": [
+    "Price series are non-stationary - regressing prices on prices produces spurious relationships; use returns instead",
+    "Financial returns cluster in volatility: volatility is partly forecastable, the direction of prices is not",
+    "Four biases wreck a backtest: survivorship, look-ahead, ignoring transaction costs, and searching too many variants",
+    "Out-of-sample validation must split by time, never at random"
+  ],
+  "practicePrompt": {
+    "question": "You are handed a backtest with a Sharpe of 2.0 over the 2015 to 2024 period. Which three checking questions come first?",
+    "options": [
+      "What software, what hardware, and who wrote the code",
+      "Delistings, look-ahead, and transaction costs",
+      "Whether the strategy has an appealing name and any backers",
+      "Whether the most recent year's result was good"
+    ],
+    "explanation": "These three test, in order, for survivorship bias, look-ahead bias and implementation costs - the three causes that explain most of the gap between a backtest and reality. The fourth question should be: how many variants were tried before this one was chosen."
+  },
+  "summary": {
+    "keyIdea": "A backtest is not evidence; it is a hypothesis that still needs out-of-sample validation",
+    "formula": "Test for stationarity first, then regress; split the sample by time, not at random",
+    "commonMistake": "Believing an attractive backtest without asking how the data was built",
+    "action": "Write out the list of four biases and stick it next to your screen when you assess any strategy."
+  },
+  "application": {
+    "title": "A seven-step validation procedure",
+    "message": "Test for stationarity; convert to returns; test for autocorrelation and volatility clustering; state the hypothesis in advance; split the sample by time; deduct realistic transaction costs; and finally record how many variants were tried. These seven steps protect you from most of the quantitative errors made in the profession.",
+    "secondary": "If a result only survives when one of those seven steps is skipped, it is not a result."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous three lessons assumed observations were independent of one another. Financial data is not like that: today depends on yesterday, volatility arrives in clusters, and the structure of the market itself shifts across decades. This lesson deals with that, and closes the stage with a validation procedure you can use immediately."
+    },
+    {
+      "type": "heading",
+      "text": "Three features of financial time series"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Non-stationary in levels: prices trend, so regressing price on price produces a spurious relationship with a very high R-squared",
+        "Weak autocorrelation in returns but strong autocorrelation in squared returns: price direction is nearly unforecastable, volatility is not",
+        "Structure changes over time: a relationship estimated over a period of continuously falling rates may no longer hold once rates turn"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Backtest",
+        "text": "Knows the entire history in advance. No slippage, no market impact, no psychological pressure, and selected from many attempts."
+      },
+      "right": {
+        "label": "Reality",
+        "text": "Decisions made with the information available at the time. Costs, slippage, and no chance to rerun from the start when the outcome is bad."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The four biases to eliminate",
+      "text": "Survivorship bias (the data holds only the firms that survived), look-ahead bias (using information not published at that point), ignoring implementation costs, and searching across too many variants. These four explain nearly the whole gap between the result on paper and the result in reality."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Statistics in finance is not a tool for proving yourself right; it is the discipline of discovering you are wrong sooner.",
+        "End of the stage: you now have enough tools to read, challenge and independently verify any quantitative figure someone hands you."
+      ]
+    }
+  ]
+}

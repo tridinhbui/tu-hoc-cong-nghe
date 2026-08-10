@@ -1,0 +1,173 @@
+{
+  "slug": "project-viet-ban-ghi-nho-mot-trang",
+  "title": "AI in Finance, Lesson 18: A small project - writing a one-page memo",
+  "subtitle": "From document and risks to a short, readable memo.",
+  "duration": "16 min",
+  "whyItMatters": "This is the most common output format in real work - from the report you send your boss to the personal investment note you reread six months later.",
+  "openingQuestion": "What should a good one-page memo let the reader do?",
+  "openingOptions": [
+    "Grasp the conclusion, the evidence, the risks and what to check next",
+    "Read for as long as possible",
+    "Not see any risks",
+    "Believe it immediately without ever needing to ask anything further"
+  ],
+  "explanation": "The third project packages the previous two into one finished product: a one-page memo. The length constraint is not cosmetic - it forces you to choose, and choosing is the analysis. With only one page you cannot retell the whole document and state a conclusion, so you have to decide which three pieces of evidence genuinely matter. A good memo is measured by whether a reader with two minutes can restate the conclusion and the risks correctly.",
+  "summary": {
+    "keyIdea": "The one-page memo is the real output of a great deal of analytical work.",
+    "commonMistake": "Writing at length with no clear conclusion.",
+    "action": "Use the document from the previous project to write a one-page memo."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Having read the document and found the risks, package it all into a memo."
+    },
+    { "type": "heading", "text": "The one-page frame" },
+    {
+      "type": "list",
+      "items": [
+        "A 2-sentence conclusion",
+        "3 main pieces of evidence",
+        "2 major risks",
+        "Data still missing",
+        "What to do next"
+      ]
+    },
+    { "type": "heading", "text": "Sample prompt" },
+    {
+      "type": "paragraph",
+      "text": "Based on the table of main points and the risk table, write a one-page memo in plain language. Do not add new figures unless they have a source."
+    },
+    { "type": "heading", "text": "How to check your own work" },
+    {
+      "type": "paragraph",
+      "text": "If the reader has only 2 minutes, do they understand the conclusion and the risks? If not, the memo is still too tangled."
+    },
+    { "type": "heading", "text": "The order of presentation, and why" },
+    {
+      "type": "list",
+      "items": [
+        "Conclusion first - the reader may stop anywhere, so the most important information has to sit at the top.",
+        "Evidence after the conclusion - one line each, with a figure and a source, never written up as long paragraphs.",
+        "Risks next - specific enough that the reader knows what to watch.",
+        "Missing data near the end - this section sets the boundary around the conclusion above.",
+        "What to do next at the end - so the reader knows what action follows."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The prompt for this project",
+      "text": "\"Working entirely from the table of main points and the risk table I supply below, write a memo of at most 500 words, in this exact order: Conclusion (2-3 sentences) | 3 pieces of evidence, one line each with the figure and its source | 2 specific risks | Data still missing | What to do next. Do not use evaluative adjectives unless a figure accompanies them. Do not add information beyond the data I supply. Do not give a buy or sell recommendation.\""
+    },
+    { "type": "heading", "text": "Three mistakes that ruin a memo" },
+    {
+      "type": "list",
+      "items": [
+        "Retelling the document instead of concluding: the reader gets a long summary rather than an answer.",
+        "Mixing fact and judgement in the same sentence, so the reader cannot tell which numbers are real.",
+        "Dropping the missing-data section to make the work look more solid - the fastest way to lose credibility once the reader notices."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Fact and judgement mixed together",
+        "text": "\"The business grew impressively, with revenue of 8,200bn and an outlook that remains very positive.\" The reader has no idea what 'impressively' and 'positive' rest on."
+      },
+      "right": {
+        "label": "The two kept clearly apart",
+        "text": "\"Fact: 2024 revenue reached 8,200bn, up 18% on 2023 (p.12). My judgement: this rate is unlikely to repeat in 2025 because most of it came from a single contract that has now been fully recognised.\""
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A good memo is clear, short and evidenced.",
+        "AI writes the draft; you edit it to be readable and trustworthy."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What should a one-page memo avoid?",
+      "options": [
+        "Putting the conclusion right at the top",
+        "Citing the page number for each figure",
+        "Adding new figures with no source attached",
+        "Spelling out which data is still missing"
+      ],
+      "explanation": "An unsourced figure makes the whole memo less trustworthy, because the reader has no way to tell which of the other numbers were checked either. The other three are exactly what a good memo does: leading with the conclusion serves a reader who may stop after three lines, page citations make every figure reopenable, and naming the gaps sets the boundary around what the conclusion can claim."
+    },
+    {
+      "question": "What should a good memo open with?",
+      "options": [
+        "Colours",
+        "A long appendix",
+        "A glossary of terms",
+        "A short conclusion"
+      ],
+      "explanation": "The reader needs the conclusion first. A memo is written for someone who is busy and reads from the top down, so anything placed above the conclusion is competing with it for the attention that matters most. An appendix, a glossary or presentation styling are all supporting material - useful once someone has decided to keep reading, useless before that."
+    },
+    {
+      "question": "Why must the conclusion sit at the very top of the memo?",
+      "options": [
+        "Because the reader may stop at any point",
+        "Because the presentation standard requires it",
+        "Because the opening part is easier for AI to check",
+        "Because that makes the memo shorter overall"
+      ],
+      "explanation": "A memo is written for busy people. Conclusion first, evidence after, guarantees that even if they read only three lines they receive the most important part. No presentation standard mandates the order; where the conclusion sits has nothing to do with how easily anything is checked; and moving a paragraph does not remove a single word from the total."
+    },
+    {
+      "question": "Why should you keep the 'data still missing' section even though it makes the work look less solid?",
+      "options": [
+        "Because it makes the memo slightly longer",
+        "Because it draws the boundary around the conclusion",
+        "Because the template makes it a requirement",
+        "Because it shows you did the research thoroughly"
+      ],
+      "explanation": "A conclusion that says plainly what it does not know is verifiable, and the reader knows where to be careful. Hiding the unknown is the fastest way to lose credibility once it surfaces. Length is beside the point, no template compels it, and it is not a display of thoroughness - it is the statement of how far the evidence actually reaches."
+    },
+    {
+      "question": "Why does the one-page limit make a memo better rather than merely shorter?",
+      "options": [
+        "Because a shorter version reduces the chance of a numerical error",
+        "Because readers have no time for more than a page",
+        "Because it forces you to choose, and choosing is the analysis",
+        "Because industry standards require a memo not to exceed one page"
+      ],
+      "explanation": "Writing at length is a way of avoiding the decision about what matters. When you have only one page, every line has to compete with every other for its place - and the priority order that emerges is your analysis. A shorter memo is no less error-prone, and no industry standard sets the page count."
+    }
+  ],
+  "diagram": [
+    { "label": "Conclusion (2-3 sentences)" },
+    { "label": "3 pieces of evidence with figures and sources" },
+    { "label": "2 specific risks" },
+    { "label": "Data still missing + what to do next" }
+  ],
+  "realWorldExample": {
+    "company": "The two-minute test",
+    "description": "The way to judge a memo is surprisingly simple: hand it to someone who knows nothing about the company, give them exactly two minutes, then ask three questions - what is the conclusion, what evidence is it based on, and what is the biggest risk. If they answer wrongly or have to reread, the problem is in the memo, not in the reader. Most of the time the cause is a conclusion buried in the middle, or evidence mixed with judgement so the reader cannot tell which numbers are real. A good memo is not the best-written one; it is the one hardest to misread."
+  },
+  "keyTakeaways": [
+    "The one-page limit is a tool that forces you to choose - and choosing is the analysis.",
+    "Put the conclusion at the top, never buried in the middle; a busy reader works top down and may stop at any moment.",
+    "Keep sourced facts clearly separate from your own judgement, so the reader knows where to form their own view.",
+    "Measure quality with the two-minute test, not by how the writer feels about it."
+  ],
+  "practicePrompt": {
+    "question": "What should a good one-page memo let the reader do?",
+    "options": [
+      "Grasp the conclusion, the evidence, the risks and what to check next",
+      "Read for as long as possible",
+      "Not see any risks",
+      "Believe it at once, no questions"
+    ],
+    "explanation": "A good memo lets the reader understand and decide on the next step."
+  },
+  "application": {
+    "title": "Practise it now",
+    "message": "Use the document from the previous project to write a one-page memo.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

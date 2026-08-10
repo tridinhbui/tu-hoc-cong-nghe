@@ -1,0 +1,146 @@
+{
+  "slug": "needs-analysis-tu-van-bao-hiem",
+  "title": "Needs Analysis in Insurance Advice: pinning down what a client actually needs protecting",
+  "subtitle": "Human Life Value and Capital Needs Analysis - the two ways of working out how much life cover is genuinely required",
+  "duration": "7 min",
+  "openingQuestion": "A 35-year-old client is the sole earner for his family (his wife does not work, two young children) on 30m a month, and asks you what sum assured makes sense. How does the 'Human Life Value' method approach the question?",
+  "openingOptions": [
+    "Always recommend a fixed figure such as 1bn dong for every client regardless of circumstances",
+    "Estimate the total economic value that person creates for the family, discounted to today",
+    "The sum assured should equal the client's total existing assets",
+    "No calculation is needed; just buy the most popular policy on the market"
+  ],
+  "explanation": "The Human Life Value (HLV) method quantifies a person's economic value from the stream of income they will produce for their family in future - much as you would value any cash-generating asset with a DCF. The basic formula: estimate net annual income (after tax, less that person's own consumption), multiply by the expected remaining working years, and discount to present value. The result reflects how much financial protection the family genuinely needs if that income disappears.",
+  "realWorldExample": {
+    "company": "HLV against Capital Needs Analysis in advisory practice",
+    "description": "In professional practice, many advisers use both methods together: Human Life Value gives a first estimate from an 'income replacement' angle, while Capital Needs Analysis works in more detail from the family's SPECIFIC GOALS (clearing the mortgage, a university fund for the children, monthly living costs until the children are grown, a retirement fund for the surviving spouse) less the assets and cover already in place. The second method usually produces a more detailed and more realistic figure for any particular family."
+  },
+  "quiz": [
+    {
+      "question": "How does 'Capital Needs Analysis' differ from Human Life Value in the way it computes the sum assured required?",
+      "options": [
+        "Capital needs applies only to large corporate clients",
+        "Capital needs starts from the total lifetime income left",
+        "Capital needs is a fixed percentage of income",
+        "Capital needs starts from the family's actual spending"
+      ],
+      "explanation": "These are two complementary philosophies: HLV answers 'how much economic value does this person create', while Capital Needs Analysis answers the more concrete question 'how much does this family ACTUALLY NEED to keep living and meet its financial goals if this earner is gone'. The second is generally preferred in modern practice because it ties directly to a family's circumstances and goals rather than resting on an abstract income formula. It is used for individuals far more than for corporates, it does not run off lifetime income, and it is never a flat percentage of anything."
+    },
+    {
+      "question": "Why does a comprehensive needs analysis matter so much more than simply selling an off-the-shelf policy at a 'standard' sum assured for the client's age and income?",
+      "options": [
+        "Because every family's circumstances and needs differ",
+        "Because the insurer requires it before issuing a policy",
+        "Because regulation obliges advisers to keep full files",
+        "Because enough data is needed to compute commission"
+      ],
+      "explanation": "This is the core principle of responsible insurance advice: one-size-fits-all sits badly with the nature of life cover, whose purpose is to protect specific dependants with specific needs. A full needs analysis - income, debt, assets, education goals and protection already in place - is what stops a client being underinsured (leaving the family in serious financial danger) or overinsured (wasting premium that could serve another financial goal). Insurer requirements and record-keeping rules are administrative by-products of the process, and commission calculation has nothing to do with the client's interest."
+    },
+    {
+      "question": "When running a needs analysis, why should a client's existing assets and cover be deducted before recommending how much extra insurance to buy?",
+      "options": [
+        "Because existing assets count towards the premium payable",
+        "Because the aim is to close the gap, not to sell more",
+        "Because insurers refuse clients who hold another policy",
+        "Because the law caps the total cover one person may buy"
+      ],
+      "explanation": "This is the step inexperienced advisers skip, sometimes under sales pressure to write a larger sum assured. A proper needs analysis is a GAP ANALYSIS: total financial need less existing resources (employer cover, savings, assets that can be liquidated quickly) equals the additional sum assured genuinely required. Existing assets have no bearing on the premium rate, insurers are perfectly happy to add cover on top of an existing policy, and while very large sums assured attract underwriting scrutiny, no legal cap drives this calculation."
+    },
+    {
+      "question": "In what respect does Capital Needs Analysis differ from Human Life Value?",
+      "options": [
+        "It applies only to clients with very high incomes",
+        "It discounts future income back to present value",
+        "It starts from the family's specific needs, not income",
+        "It does not deduct assets and cover already in place"
+      ],
+      "explanation": "Human Life Value prices a person as a cash-generating asset, which produces a large and fairly abstract number. Capital needs works from the other end: how much does the family need to clear its debts, get the children through school and go on living. That is easier to explain and usually closer to reality. It suits every income level, discounting future income is the HLV step rather than the capital needs one, and deducting existing resources is a step both methods share."
+    },
+    {
+      "question": "Why must a needs analysis deduct the client's existing assets and insurance cover?",
+      "options": [
+        "Because existing assets lose value when they are needed",
+        "To bring the premium below the regulatory minimum",
+        "Because the regulator forbids overlapping cover",
+        "To avoid paying twice for cover already in place"
+      ],
+      "explanation": "The sum assured to buy is the shortfall, not the total need. Skip the deduction and you produce a larger number than reality - convenient for the seller, but the client pays premium for protection they already hold and the protection budget is wasted. Existing assets do not evaporate at the moment of a claim; that is precisely why they count. There is no regulatory premium minimum to duck under. And holding overlapping cover is entirely legal, merely wasteful."
+    }
+  ],
+  "keyTakeaways": [
+    "Human Life Value: estimate a person's economic value from the future income stream they create for their family, discounted to today - much like valuing any cash-generating asset",
+    "Capital Needs Analysis: work from the family's specific goals (debt, school fees, living costs, the survivor's retirement) - usually more concrete and realistic than HLV for a given family",
+    "A comprehensive needs analysis avoids both risks: underinsurance (financial danger for the family) and overinsurance (wasted premium)",
+    "Always deduct existing assets and cover before recommending an additional sum assured - this is gap analysis, not just totalling up the need"
+  ],
+  "practicePrompt": {
+    "question": "A 40-year-old client has net income of 400m a year with 20 working years left, already holds 500m of employer life cover, and has 800m of savings and investments that could be liquidated. Applying a simple Human Life Value (no discounting, for ease) and then a gap analysis, roughly what additional sum assured should you recommend?",
+    "options": [
+      "8bn dong (400m × 20 years) with nothing deducted at all",
+      "About 6.7bn dong (= 8bn HLV − 1.3bn already in place)",
+      "Zero, since the client already holds enough assets",
+      "500m dong, exactly the cover the employer provides"
+    ],
+    "explanation": "This exercise applies both concepts directly: Human Life Value for the first estimate (simplified here - in practice you discount the future income stream and deduct the person's own consumption), then GAP ANALYSIS, deducting existing assets and cover, to reach a recommendation that genuinely fits - avoiding both an under-recommendation, which is dangerous, and an over-recommendation, which is waste."
+  },
+  "summary": {
+    "keyIdea": "A professional needs analysis (Human Life Value and/or Capital Needs Analysis) makes sure the recommended sum assured reflects a particular family's real financial need, rather than a generic formula off age and income.",
+    "commonMistake": "Skipping the deduction of existing assets and cover (the gap analysis), which produces an inflated sum assured and wastes the client's premium",
+    "action": "For every client, run the full process: estimate the total need (through HLV or Capital Needs Analysis), then deduct existing resources to reach the additional cover genuinely required"
+  },
+  "application": {
+    "title": "Applying this in insurance advice",
+    "message": "Build a simple needs analysis spreadsheet (net income × remaining working years, less existing assets and cover) and use it as the first step with every new life insurance client.",
+    "secondary": "Professional needs analysis skill is what separates an adviser worth trusting from someone simply selling product for commission."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The question 'how much cover should I buy' has no universal answer - a needs analysis is the systematic process for finding the figure that genuinely fits one family's circumstances."
+    },
+    { "type": "heading", "text": "Human Life Value - pricing the 'human asset'" },
+    {
+      "type": "paragraph",
+      "text": "Human Life Value applies financial valuation thinking to a person: a family's breadwinner produces an income stream over many years, much as an asset produces cash flow. The basic formula: estimate net annual income (after tax and personal consumption), multiply by the expected remaining working years, and ideally discount to present value - producing a figure that reflects that person's real 'economic value' to the family."
+    },
+    { "type": "heading", "text": "Capital Needs Analysis - working from specific goals" },
+    {
+      "type": "paragraph",
+      "text": "Rather than computing from an abstract income figure, Capital Needs Analysis lists the SPECIFIC FINANCIAL NEEDS that arise if the earner dies: clearing debts (mortgage, car loan), an education fund for the children through to adulthood, monthly living costs for the family over a defined period, an emergency reserve, and a retirement fund for the surviving spouse. This method usually produces a figure that is both more realistic and easier to explain to the client."
+    },
+    { "type": "heading", "text": "Gap analysis - the step you cannot skip" },
+    {
+      "type": "paragraph",
+      "text": "Whichever method gives you the total need, the final step is always to DEDUCT the financial resources already in place: life cover already held (through an employer or bought earlier), savings and investments that can be liquidated, and other household income such as a spouse's earnings. Only the figure after that deduction is the ADDITIONAL sum assured worth recommending."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Human life value",
+        "text": "Converts a lifetime of remaining income into present value. Gives a large, general figure, useful for seeing the scale of the problem."
+      },
+      "right": {
+        "label": "Capital needs analysis",
+        "text": "Adds up each specific obligation: debt, school fees, the family's living costs. Gives a smaller figure and protects each line item."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The step that gets skipped",
+      "text": "Gap analysis is where you subtract what is already there - employer cover, savings, social insurance benefits. Skip it and every need figure is inflated, and advisers skip it easily because it always makes the policy smaller."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A professional insurance adviser does not sell an off-the-shelf product - they solve a specific financial problem for one family, starting from a serious needs analysis.",
+        "It is also how long-term trust is built: when a client sees a figure with clear reasoning behind it, rather than a round number picked by feel, they believe the advice and stay in the relationship."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Human life value - the value of future income" },
+    { "label": "Capital needs - specific obligations and goals" },
+    { "label": "Deduct existing assets and cover" },
+    { "label": "The shortfall = the protection genuinely needed" }
+  ]
+}

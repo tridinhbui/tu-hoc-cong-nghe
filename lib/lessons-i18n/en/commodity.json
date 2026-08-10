@@ -12,10 +12,22 @@
   ],
   "explanation": "Jet fuel (from crude oil) makes up 20-30% of an airline's operating costs - the largest share of its cost structure, higher than personnel costs at many carriers. Because oil is a globally traded commodity, an airline has no pricing power over this input and has to actively hedge the risk with futures contracts.",
   "diagram": [
-    { "label": "Standardized goods", "arrow": true },
-    { "label": "Spot market", "arrow": true },
-    { "label": "Futures / hedging", "arrow": true },
-    { "label": "Cost driver for many industries", "arrow": false }
+    {
+      "label": "Standardized goods",
+      "arrow": true
+    },
+    {
+      "label": "Spot market",
+      "arrow": true
+    },
+    {
+      "label": "Futures / hedging",
+      "arrow": true
+    },
+    {
+      "label": "Cost driver for many industries",
+      "arrow": false
+    }
   ],
   "realWorldExample": {
     "company": "Vietnam Airlines",
@@ -30,7 +42,6 @@
         "It can only be traded domestically, never exported",
         "The seller sets the price freely because the product is highly distinctive"
       ],
-      "correct": 1,
       "explanation": "Because it's standardized and traded on global exchanges (like CME, ICE), a commodity's price is set by worldwide supply and demand, leaving individual sellers/buyers almost no ability to influence the price - this is the 'price taker' trait."
     },
     {
@@ -41,7 +52,6 @@
         "Airlines, transportation, and manufacturers that use a lot of fuel",
         "Domestic oil and gas exploration and refining companies"
       ],
-      "correct": 2,
       "explanation": "A rising commodity price is a double-edged sword: it benefits producers/extractors of that commodity, but it's a cost burden for industries using it as a main input, like aviation (fuel), transportation, or manufacturing (raw materials)."
     },
     {
@@ -52,7 +62,6 @@
         "To speculate for profit from future oil price differences",
         "To hedge against the risk of fuel price volatility"
       ],
-      "correct": 3,
       "explanation": "Hedging with futures lets a business with a large input cost (like flight fuel making up 20-30% of operating costs) actively manage price-volatility risk, instead of leaving profit entirely dependent on the unpredictable movements of the commodity market."
     },
     {
@@ -63,7 +72,6 @@
         "They earn a large gain on the contract since hedging always benefits from market volatility",
         "They only pay the price difference and get the entire fee refunded"
       ],
-      "correct": 0,
       "explanation": "Hedging buys certainty, not profit: it cuts off both the bad tail and the good tail. In exchange, the airline can plan ticket prices and costs for the whole year - worth more to an industry where fuel makes up most of its operating costs."
     },
     {
@@ -74,7 +82,6 @@
         "Because commodity sales contracts are always signed at a permanently fixed price",
         "Because their production costs never change meaningfully from year to year"
       ],
-      "correct": 1,
       "explanation": "A barrel of the same grade oil is identical no matter who sells it, so the buyer only looks at price. Businesses in this industry are price takers: their profit depends on how low their extraction cost is, not on any pricing power."
     }
   ],
@@ -91,7 +98,6 @@
       "Because international aviation law requires every airline to use futures contracts to buy fuel",
       "Because the futures price is always lower than the spot price, so futures always save money in every case"
     ],
-    "correct": 0,
     "explanation": "Hedging with futures fixes the fuel cost - the airline's largest input cost - in advance, to make profit more predictable, not to speculate for gains from price swings."
   },
   "summary": {
@@ -104,7 +110,6 @@
     "message": "The lesson gave a real example of fuel costs at Vietnam Airlines - review the 'A real example' section above. Now look up a different transportation company yourself and apply that same reading approach.",
     "secondary": "This is the most intuitive way to see how a commodity affects a business's profit."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

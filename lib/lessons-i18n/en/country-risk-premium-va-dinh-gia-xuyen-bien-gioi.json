@@ -1,0 +1,135 @@
+{
+  "slug": "country-risk-premium-va-dinh-gia-xuyen-bien-gioi",
+  "title": "International Finance, Lesson 3: Cross-border valuation - discount in the right currency, add the right country risk",
+  "subtitle": "Country risk premium, currency-consistent discounting and the errors that double-count risk",
+  "duration": "12 min",
+  "whyItMatters": "Valuing a business in an emerging market always runs into the same three questions: which currency to discount in, where to take the risk-free rate from, and how much to add for country risk. Get any one of them wrong and the value moves by tens of percent.",
+  "openingQuestion": "If cash flows are projected in Vietnamese dong, what should they be discounted at?",
+  "openingOptions": [
+    "A cost of capital measured in US dollars, so it is comparable internationally",
+    "The cost of capital measured in Vietnamese dong",
+    "The US Treasury yield matching the length of the forecast period",
+    "A blend of the two currencies' costs weighted by revenue per market"
+  ],
+  "explanation": "Currency consistency is the foundational rule and also the one most often broken. Whatever currency the cash flows are in, the discount rate must be built in that same currency, because that currency's inflation sits in both the numerator and the denominator. Discounting nominal local-currency cash flows from a high-inflation economy at a dollar cost of capital produces a value far above reality. If you want a dollar valuation, you must first convert the cash flows into dollars at expected exchange rates, and only then discount at a dollar cost of capital.",
+  "diagram": [
+    { "label": "Cash flows in currency X", "arrow": true },
+    { "label": "Discount at the cost of capital in currency X", "arrow": true },
+    { "label": "Or: convert into currency Y at expected exchange rates", "arrow": true },
+    { "label": "Then discount at the cost of capital in currency Y" }
+  ],
+  "realWorldExample": {
+    "company": "Valuation reports from international research desks",
+    "description": "In valuation reports on emerging-market companies, the note explaining the cost of capital is often longer than the revenue forecast itself, because every choice is contested: which market's risk-free rate to use, whether to estimate the country risk premium from a sovereign bond yield spread or by scaling it with a volatility factor, and whether to apply that premium to every company or only to those with domestic revenue. There is no standard answer, but there is a mandatory requirement: state clearly what you chose."
+  },
+  "quiz": [
+    {
+      "question": "How is a country risk premium usually estimated?",
+      "options": [
+        "By the ratio of foreign exchange reserves to total annual import turnover",
+        "By the inflation gap between the two countries in the most recent fiscal year",
+        "By that country's average GDP growth rate over the past ten years",
+        "By the sovereign bond yield spread against a developed market"
+      ],
+      "explanation": "The most common approach takes the yield on a government bond issued in hard currency and subtracts the developed-market treasury yield, sometimes scaling the result by a factor reflecting that equities move more than bonds. Reserves cover import capacity, not default risk priced by investors; an inflation gap belongs in the exchange-rate forecast, not the risk premium; and GDP growth measures the size of the economy rather than the risk of holding a claim on it. Because the estimate itself is contested, the method has to be stated explicitly."
+    },
+    {
+      "question": "Why should the same country risk premium not be added to every domestic company?",
+      "options": [
+        "Because exposure differs: an exporter bears less domestic risk",
+        "Because a large company always carries less risk than a small one in the same country",
+        "Because the premium applies only to companies with foreign investment capital",
+        "Because the regulator sets a separate premium for each industry group"
+      ],
+      "explanation": "A company earning most of its revenue by exporting into developed markets depends far less on domestic economic risk than a company running a retail chain at home. Size is not a proxy for this: a large domestic retailer is fully exposed while a small exporter is barely exposed. Foreign ownership of the share register does not change where the cash flows come from either, and no regulator publishes an industry premium table. The careful treatment is to allocate the premium by the share of revenue or assets earned in each geography."
+    },
+    {
+      "question": "What is the double-counting-of-risk error in cross-border valuation?",
+      "options": [
+        "Using two different data sources for the same parameter in one valuation model",
+        "Cutting projected cash flows for risk and adding a premium to the discount rate",
+        "Discounting the same forecast year twice because of a copied formula in the spreadsheet",
+        "Adding both FX risk and interest rate risk into the same cost of capital input"
+      ],
+      "explanation": "If you have already cut the revenue scenario to reflect policy or macro risk, and then add a country risk premium on top of the cost of capital, the same risk is charged twice. Two sources for one parameter is an inconsistency, not a double count; a duplicated spreadsheet formula is a mechanical bug, not a modelling judgement; and FX and rate risk are genuinely different exposures that can both sit in a cost of capital. Pick one of the two treatments and say which one you picked."
+    },
+    {
+      "question": "When valuing a company with revenue in several currencies, what is the correct treatment?",
+      "options": [
+        "Convert all revenue into the reporting currency from year one, then discount once",
+        "Pick the currency with the largest revenue share and ignore the rest",
+        "Forecast per currency, convert at expected rates, then discount consistently",
+        "Discount each currency at its own cost of capital, then average the results"
+      ],
+      "explanation": "This keeps both the economic structure and currency consistency intact. Converting everything up front at a single rate hides the different inflation paths embedded in each stream; dropping the smaller currencies simply throws away cash flow; and averaging discounted results across currencies mixes values that were never expressed in the same unit. What matters most is that the expected exchange rates used for conversion stay consistent with the inflation differential you already assumed inside the cash flows themselves."
+    },
+    {
+      "question": "To value a Vietnamese company using dong cash flows, how must the discount rate be built?",
+      "options": [
+        "From the international risk-free rate plus a country risk premium",
+        "In US dollars, then convert the final result back into dong",
+        "As the average of the two currencies' rates weighted by revenue",
+        "In dong, meaning it embeds this currency's own inflation"
+      ],
+      "explanation": "A currency's inflation sits in both the numerator and the denominator, so mixing two currencies into one discounting step either counts inflation twice or leaves it out altogether. An international risk-free rate carries the wrong inflation base even with a premium bolted on; building the rate in dollars and translating the answer at the end skips the conversion of the cash flows themselves; and a revenue-weighted average of two rates belongs to neither currency. The rule is short: cash flows in a currency, discount rate in that currency, convert at the last step."
+    }
+  ],
+  "keyTakeaways": [
+    "Consistency rule: whatever currency the cash flows are in, discount at the cost of capital of that currency",
+    "The country risk premium is usually estimated from a sovereign bond yield spread, and the method always needs to be disclosed",
+    "Do not add the same premium to every company - exposure differs with the revenue mix",
+    "Avoid double-counting risk: if you already cut the cash flows, do not add to the discount rate as well"
+  ],
+  "practicePrompt": {
+    "question": "An analyst projects cash flows in local currency with 4% annual inflation, then discounts them at a dollar-based WACC of 9%. What is wrong?",
+    "options": [
+      "A 9% WACC is too low against today's emerging-market cost of capital",
+      "The numerator carries local inflation while the denominator does not, inflating value",
+      "Nothing is wrong, since the dollar is the standard reference currency for every valuation model",
+      "The mistake is failing to add an FX risk premium to the discount rate"
+    ],
+    "explanation": "Nominal local-currency cash flows already include local inflation, while a dollar WACC reflects only dollar inflation. The inflation differential is missing from the denominator, which systematically pushes present value above reality - and the distortion grows the longer the forecast period runs."
+  },
+  "summary": {
+    "keyIdea": "Currency consistency is the minimum condition for a valuation model to mean anything",
+    "commonMistake": "Discounting local-currency cash flows at a foreign-currency cost of capital",
+    "action": "Open a valuation model you once built and check whether the numerator and the denominator share the same currency and the same inflation basis."
+  },
+  "application": {
+    "title": "Three lines that must be written into every cross-border valuation",
+    "message": "Which currency the model runs in; where the risk-free rate comes from; and how large the country risk premium is, by what method it was computed, and whether it applies to all revenue or only part of it. Write these three lines at the top of the assumptions sheet.",
+    "secondary": "Whoever challenges your model will ask exactly those three questions first."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The two previous lessons were theory about exchange rates. This one puts that theory where it does the most damage: the valuation model. The three errors described here appear constantly in real reports, and each one is enough to move the value by tens of percent."
+    },
+    { "type": "heading", "text": "Error 1: a currency mismatch between numerator and denominator" },
+    {
+      "type": "paragraph",
+      "text": "This is the most serious error and also the easiest to make, because international cost-of-capital data is always more readily available than domestic data. If cash flows grow with local inflation while the discount rate reflects only the inflation of a more stable currency, the model is comparing two things measured in different units. The error compounds over time, so it hits the terminal value hardest - the part that usually makes up more than half of the total valuation."
+    },
+    { "type": "heading", "text": "Errors 2 and 3: country risk either forgotten or counted twice" },
+    {
+      "type": "list",
+      "items": [
+        "Forgotten: using a developed market's cost of capital unchanged for a company entirely dependent on the domestic economy",
+        "Counted twice: cutting the cash flow scenario for policy risk and also adding a country risk premium to the cost of capital",
+        "Applied uniformly: adding the same premium to an exporter and to a domestic retailer, even though their exposure is very different"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A rule of presentation",
+      "text": "No method for the country risk premium commands industry-wide agreement. So the professional standard is not to pick the right number, but to state clearly where the number came from and to show how sensitive the result is to it. A valuation with a sensitivity table on the risk premium is always more credible than a valuation that offers a single figure."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Cross-border valuation needs no new tools, only discipline about units of measurement.",
+        "The final lesson of this stage moves from valuation to accounting: how exchange rates show up in consolidated financial statements."
+      ]
+    }
+  ]
+}

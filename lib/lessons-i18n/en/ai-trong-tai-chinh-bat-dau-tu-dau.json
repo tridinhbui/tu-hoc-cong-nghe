@@ -1,0 +1,224 @@
+{
+  "slug": "ai-trong-tai-chinh-bat-dau-tu-dau",
+  "title": "AI in Finance, Lesson 1: AI in finance - where do you start?",
+  "subtitle": "Understand what AI does for a finance learner, with no programming required.",
+  "duration": "12 min",
+  "whyItMatters": "People new to finance often give up because the material is too long and too full of jargon. AI handles exactly that part, freeing your time for the genuinely hard work: understanding and deciding.",
+  "openingQuestion": "You have one long report and only 15 minutes. What should AI help with first?",
+  "openingOptions": [
+    "Summarise the key points, gather the figures, and suggest questions to verify",
+    "Buy and sell shares on your behalf with no further instruction needed",
+    "Guarantee that every single figure it produces is always correct",
+    "Replace, entirely, the financial knowledge that any user still needs"
+  ],
+  "explanation": "AI is most useful when it helps you read fast, gather information and produce a draft - the three jobs that eat most of a finance learner's time. But AI does not guarantee that any number is right: it reads the document you give it and paraphrases, so if you supply the wrong source or ask a vague question, it will still answer very fluently. The correct workflow therefore always has two halves: brief AI clearly, then check the sources and the logic yourself before using the result.",
+  "summary": {
+    "keyIdea": "AI is like a very fast assistant: it reads, summarises, gathers figures and drafts; you are still the one who checks.",
+    "commonMistake": "Assuming AI knows everything and can make the decision for you.",
+    "action": "Try giving AI a short financial article and asking for a 3-point summary."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This first lesson answers one question only: how should someone new to finance use AI safely and usefully?"
+    },
+    {
+      "type": "heading",
+      "text": "Put simply"
+    },
+    {
+      "type": "paragraph",
+      "text": "AI is an assistant that reads and writes very fast. It helps you get through long documents, but it does not guarantee that every figure is correct. So using AI well means knowing how to brief it clearly and how to check its work."
+    },
+    {
+      "type": "callout",
+      "label": "Terminology",
+      "text": "AI: artificial intelligence. Prompt: the instruction or request you give the AI. Workflow: a repeatable sequence of steps you can run again."
+    },
+    {
+      "type": "heading",
+      "text": "What is AI good at?"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Condensing long text into a handful of key points",
+        "Extracting figures from a document when the source is clear",
+        "Suggesting questions that need further checking",
+        "Drafting a report or an email"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Where does AI not replace you?"
+    },
+    {
+      "type": "paragraph",
+      "text": "AI does not carry responsibility for an investment decision. It can also misread a document or speculate if you have not pinned the source down. The learner has to check the figures, the units, the reporting period and the financial logic."
+    },
+    {
+      "type": "heading",
+      "text": "Three levels of AI use, taken in order"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Level 1 - Read for me: summarise an article or a chapter of a report. Very easy to check because you can go back to the original.",
+        "Level 2 - Gather the figures: extract the metrics into a table with the source page. Check by opening exactly those pages.",
+        "Level 3 - Draft: a memo, a risk list, questions to ask. Check by testing each claim for evidence behind it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not jump straight to level 3. Beginners typically start with the biggest question - 'should I buy this stock' - which is also the hardest one to verify, so if AI is wrong you will not know. Do level 1 a few times until reconciling against a source feels natural, then move on."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A vague prompt",
+        "text": "\"Analyse this company for me.\" AI will produce something that reads very professionally, including judgements it inferred on its own. You have no way to check it because you do not know what it drew on."
+      },
+      "right": {
+        "label": "A clear prompt",
+        "text": "\"From the attached report only, extract revenue and net profit for the last 3 years into a table, with a page number for every figure. If a figure cannot be found, write 'Not found'.\" You can check that output in 2 minutes."
+      }
+    },
+    {
+      "type": "conceptTable",
+      "title": "Terms worth remembering",
+      "subtitle": "These four words recur throughout stage 13",
+      "concepts": [
+        {
+          "vi": "Câu lệnh",
+          "en": "Prompt",
+          "def": "The request you write for the AI. The clearer it is about role, data, task and format, the more usable the output."
+        },
+        {
+          "vi": "Bịa số / ảo giác",
+          "en": "Hallucination",
+          "def": "When AI produces information that sounds plausible but is not in the source. This is the single biggest risk in using AI for finance."
+        },
+        {
+          "vi": "Khóa nguồn",
+          "en": "Grounding",
+          "def": "Constraining AI to use only the documents you supply, and to write 'Not found' when the data is not there."
+        },
+        {
+          "vi": "Lưu vết",
+          "en": "Audit trail",
+          "def": "A record of the prompt, the source documents and the edits, so you can later explain where a figure came from."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Three beginner mistakes"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Asking far too big a question straight away - 'which stock should I buy' - and then believing the answer.",
+        "Asking for specific figures without attaching any document, which forces the AI to speculate.",
+        "Copying the output straight to someone else without reopening the source to check even one number."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Start small: one article, one table of figures, one summary.",
+        "The most important skill is briefing clearly and checking afterwards."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What should a beginner use AI for first?",
+      "options": [
+        "Forecasting where the share price lands over the next six months",
+        "Summarising a short document and checking the key points",
+        "Making the buy and sell decisions on your behalf",
+        "Building a complete valuation model from scratch"
+      ],
+      "explanation": "A small task that is easy to verify is the safest way to begin, because you can hold the output against the original in a couple of minutes and see exactly where it drifted. A price forecast cannot be checked until the period is over, a full valuation model has too many moving parts to audit at a glance, and a trading decision hands over the one thing that has to stay yours."
+    },
+    {
+      "question": "Which part of a finance learner's work does AI not replace?",
+      "options": [
+        "Condensing long passages of text into their key points",
+        "Rendering specialist jargon into plain everyday language",
+        "Verifying the figures and owning the conclusion drawn",
+        "Arranging figures you already have into table form"
+      ],
+      "explanation": "AI supports speed; the learner remains responsible for quality and for the decision. The other three are language and formatting jobs done on material you supply, so any error is visible against the source. Verification is different in kind: it is a reconciliation against an original document, and the responsibility for the conclusion cannot be delegated to a tool at all."
+    },
+    {
+      "question": "At what level should you start using AI in finance?",
+      "options": [
+        "The forecasting level - let AI guess next period's price",
+        "The decision level - let AI pick the stocks for you",
+        "The replacement level - hand over the whole workflow",
+        "The reading level - summarising a short document"
+      ],
+      "explanation": "Start with the task that is easiest to verify. Once reconciling an output against its source has become a reflex, you have the instincts to catch errors on harder tasks. The other three levels all share one defect: you cannot tell a good answer from a bad one at the moment you receive it, which is exactly when you would need to."
+    },
+    {
+      "question": "Why is the prompt 'analyse this company for me' risky?",
+      "options": [
+        "Because with no source pinned down, AI easily speculates",
+        "Because the prompt is so long that AI drops some requirements",
+        "Because AI refuses to answer an open question like that",
+        "Because the company name must be capitalised to be found"
+      ],
+      "explanation": "The problem is not the length of the prompt but the absence of grounding. With no source, the output cannot be verified, and a conclusion that cannot be verified is unusable in finance. The model will not refuse an open question - it answers fluently, which is what makes this failure mode hard to notice - and capitalisation has nothing to do with it."
+    },
+    {
+      "question": "Why read a document carefully yourself before asking AI to summarise it, rather than the other way round?",
+      "options": [
+        "Because AI only summarises accurately those documents the user has already read",
+        "Because you need to know what is in the document to spot what AI left out",
+        "Because a long document exceeds the processing limit so AI always skips the end",
+        "Because the AI summary will shape how you come to read the original document"
+      ],
+      "explanation": "A summary always looks reasonable, even when it has dropped exactly the paragraph that mattered most. Only someone who has read the original will notice the gap - so for a document you are deciding on, the right order is to read first, then use AI to check whether you missed anything. Processing limits are a real constraint on very long files but they are not why the order matters."
+    }
+  ],
+  "diagram": [
+    {
+      "label": "You brief clearly (role · data · task · format)"
+    },
+    {
+      "label": "AI reads, summarises, gathers figures, drafts"
+    },
+    {
+      "label": "You check the source, the unit, the reporting period"
+    },
+    {
+      "label": "A result you can use and can explain"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An evening spent with an annual report",
+    "description": "You download a 120-page annual report from a listed company and have one hour. The old way: read from page one, get tired around page 30 and give up. The AI way: ask for a summary of the letter to shareholders, extract three years of revenue, profit and operating cash flow with page numbers, then open exactly those three pages and check. You still read the original report - you just read the right parts of it. This is the most common real-world use of AI: not to replace the reading, but to know which page to read first."
+  },
+  "keyTakeaways": [
+    "AI is a very fast reading and writing assistant, not the party responsible for your financial conclusions.",
+    "The biggest value of AI for a beginner is cutting the time to get into a long document, not producing a buy or sell recommendation.",
+    "Any figure AI produces is only trustworthy with a source attached: which document, which page, what unit, which period.",
+    "Start with small tasks that are easy to check, then raise the difficulty - that is the safest way to learn."
+  ],
+  "practicePrompt": {
+    "question": "You have one long report and only 15 minutes. What should AI help with first?",
+    "options": [
+      "Summarise the key points, gather the figures, and suggest questions to verify",
+      "Buy and sell shares on your behalf with no further instruction needed",
+      "Guarantee that every single figure it produces is always correct",
+      "Replace, entirely, the financial knowledge that any user needs"
+    ],
+    "explanation": "AI is most useful when it helps you read fast, gather information and produce a draft. The learner still has to check the sources and understand the conclusion."
+  },
+  "application": {
+    "title": "Practise it now",
+    "message": "Try giving AI a short financial article and asking for a 3-point summary.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "slug": "phan-bo-gia-mua-va-loi-the-thuong-mai",
+  "title": "Deals, Lesson 3: Purchase price allocation - where goodwill comes from and why it gets written down",
+  "subtitle": "Fair value step-ups, identifiable intangibles, and the amortisation trap that follows a deal",
+  "duration": "12 min",
+  "whyItMatters": "Purchase price allocation drives the buyer's reported profit for years after a deal closes, through the amortisation of the intangibles it newly recognises. It is also where the goodwill figure is born - the largest single line on many groups' balance sheets, and the line that gets written down every time a deal disappoints.",
+  "openingQuestion": "A buyer pays 500bn for a company whose book equity is 200bn. Where does the 300bn difference go?",
+  "openingOptions": [
+    "All of it is recorded as goodwill on day one",
+    "It is allocated to revalued assets first",
+    "Straight to expense in the year it arises",
+    "Into the buyer's share premium account"
+  ],
+  "explanation": "Goodwill is the final residual, not the starting point. The sequence runs in order: revalue the existing assets to fair value - property bought long ago usually carries a market value well above its book amount; identify intangibles that were never recognised, such as brands, customer relationships and technology; then record the deferred tax that those revaluations create. Only what is left at the end is goodwill, and that residual is in substance the price paid for everything that cannot be pinned to a specific asset.",
+  "diagram": [
+    { "label": "Purchase price" },
+    { "label": "− Fair value of the net assets already on the books" },
+    { "label": "− Identifiable intangible assets" },
+    { "label": "= Goodwill (the residual)" }
+  ],
+  "realWorldExample": {
+    "company": "Why the buyer's profit falls for years after a deal",
+    "description": "After allocation, a large slice of the price is often assigned to customer relationships with an estimated useful life of eight years. That amount is amortised into expense every year, pulling down the buyer's accounting profit for eight straight years even though the underlying business has not deteriorated at all. That is why serial acquirers usually report a parallel earnings measure that strips out deal-related intangible amortisation - and why an investor needs to know exactly what that measure adjusts for before comparing it across companies."
+  },
+  "quiz": [
+    {
+      "question": "Why is goodwill described as a residual?",
+      "options": [
+        "Because it is the only line a buyer is allowed to revisit within one year of the acquisition date",
+        "Because it is recorded inside the surplus section of equity on the consolidated balance sheet",
+        "Because its carrying amount is usually far smaller than the other asset lines in the same deal",
+        "Because it is what remains of the price once every identifiable asset has been allocated"
+      ],
+      "explanation": "The sequence is what matters: the more specific intangibles you can identify, the smaller goodwill becomes and the heavier the annual amortisation charge. The one-year measurement window applies to every line in the allocation, not to goodwill alone, so it is not what makes goodwill a residual. Goodwill never sits inside equity - it is an asset. And in large deals it is frequently the biggest asset on the balance sheet rather than the smallest."
+    },
+    {
+      "question": "How do goodwill and identifiable intangibles differ in accounting treatment?",
+      "options": [
+        "Goodwill is not amortised and is written down only on impairment; intangibles are amortised over their useful life",
+        "Both are amortised over the same useful life, estimated by the company at the moment the transaction completes",
+        "Goodwill is amortised evenly each year, while an identifiable intangible is written down only when an indicator appears",
+        "Both are written off in full during the first year after the transaction completes, as the standards require"
+      ],
+      "explanation": "This difference is what makes the allocation choice so consequential for reported profit in later years. Allocating heavily to intangibles creates a predictable annual charge; leaving more in goodwill creates no charge at all until an impairment test fails, and then the hit arrives in one lump. Goodwill has never been amortised under current standards, and nothing is written off in full in year one - the deal would not have been done at that price if it were."
+    },
+    {
+      "question": "Why does revaluing acquired assets create deferred tax?",
+      "options": [
+        "Because the tax authority requires tax to be paid immediately on the uplift in the value of the asset",
+        "Because the new carrying amount now exceeds the tax base, creating a temporary difference to recognise",
+        "Because revaluing the assets changes the tax rate that applies to the combined company after the merger",
+        "Because a revalued asset becomes subject to transfer tax under the property tax rules currently in force"
+      ],
+      "explanation": "Depreciation on the higher new carrying amount goes through the accounting books but is not deductible for tax, so the difference has to be recognised on the acquisition date itself. No cash tax falls due on the step-up at that moment, the applicable tax rate does not change because of an accounting revaluation, and no transfer tax is triggered - the asset has not changed legal owner in the way that levy contemplates."
+    },
+    {
+      "question": "What does a goodwill write-down actually tell you?",
+      "options": [
+        "The auditor has found an error in the way the purchase price was determined at completion",
+        "The acquired business has ceased operating entirely, or has been sold on to a third party",
+        "The buyer is conceding that the deal did not deliver the value that was expected when it was priced",
+        "The goodwill has reached the end of the useful life management originally estimated for it"
+      ],
+      "explanation": "This is one of the rare lines where the financial statements themselves concede that a past decision was wrong. It moves no cash, but it does considerable damage to management's credibility. It is not an audit finding about the price paid, it does not require the acquired business to have shut down, and goodwill has no useful life to run out - that is precisely why it is tested rather than amortised."
+    },
+    {
+      "question": "A group writes goodwill down. What does that say about the deal that created it?",
+      "options": [
+        "Accounting standards now require goodwill to be amortised over a fixed number of years",
+        "The acquired business has been resold, or has stopped trading altogether since then",
+        "The fair value of the tangible assets was misjudged at the original acquisition date",
+        "The future cash flows expected at the time of purchase no longer support the figure"
+      ],
+      "explanation": "Goodwill is not amortised; it is written down only when an impairment test shows the expected cash flows no longer carry the amount sitting on the books. In other words it is a public admission that the price paid back then was too high. A misjudged tangible fair value would have surfaced during the one-year measurement period instead, and a write-down says nothing about whether the business has been resold or closed."
+    }
+  ],
+  "keyTakeaways": [
+    "Goodwill is the final residual, not the whole gap between price paid and book value",
+    "The order: revalue assets, identify intangibles, record deferred tax, and only then goodwill",
+    "Goodwill is not amortised and is written down only on impairment; intangibles are amortised",
+    "Intangible amortisation depresses reported profit for years even when the business is fine",
+    "A goodwill write-down is an on-the-record admission that the buyer overpaid"
+  ],
+  "practicePrompt": {
+    "question": "Two buyers each pay 500bn for two identical companies. Buyer A allocates 250bn to intangibles with a ten-year life; buyer B allocates only 50bn. Which one reports higher profit over the next ten years?",
+    "options": [
+      "Buyer A, because its allocation recognised a larger pool of identifiable assets",
+      "Buyer B, because the annual intangible amortisation charge is smaller",
+      "The same, since the price the two buyers paid was identical",
+      "No comparison is possible without knowing each buyer's revenue line"
+    ],
+    "explanation": "One deal, two allocations, two different profit pictures for a decade - while the real cash flows are identical. Buyer B carries the larger goodwill balance, which means the larger risk of a lump-sum write-down later if the deal disappoints. That is why an analyst always reads the purchase price allocation note rather than stopping at the profit line."
+  },
+  "summary": {
+    "keyIdea": "Purchase price allocation drives reported profit for years afterwards, even though cash flow is unchanged",
+    "commonMistake": "Treating the whole gap between price paid and book value as goodwill",
+    "action": "Find the purchase price allocation note in the financial statements of a group that has just closed a deal, and read the detailed table."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Open the consolidated financial statements of a listed company that has just acquired another business, find the business combination note, and list: the price paid, the fair value of net assets, each intangible identified together with its amortisation period, and the goodwill left over.",
+    "secondary": "Then work out what share of last year's pre-tax profit the intangible amortisation accounts for."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The money has moved and the deal is closed. The next accounting question sounds technical but sets the profit figure the buyer will publish for years: where on the balance sheet do the 500bn just paid out actually land."
+    },
+    { "type": "heading", "text": "Four allocation steps, in strict order" },
+    {
+      "type": "conceptTable",
+      "title": "From purchase price to goodwill",
+      "subtitle": "Each step takes a slice; only what survives the last one is goodwill",
+      "concepts": [
+        { "def": "Property and plant bought long ago usually carry a market value well above their remaining book amount. The difference is stepped up." },
+        { "def": "Brands, customer relationships, technology, long-term contracts - things the seller never recognised because they were built rather than bought." },
+        { "def": "The step-up is not recognised by the tax authority, which creates a temporary difference that has to be recorded on the acquisition date." },
+        { "def": "The price paid for everything that cannot be pinned to a specific asset: the team, the market position, and any overpayment there may have been." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why this number is a matter of judgement",
+      "text": "How many years does a customer relationship last? What is a brand worth? There is no objective answer, and every choice shifts reported profit for years afterwards. The buyer has an incentive to allocate less to intangibles so the amortisation charge stays small - in exchange it carries a larger block of goodwill and a larger risk of a lump-sum write-down. An analyst has to read this note rather than glance at the profit line."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Goodwill is not an asset in the ordinary sense; it is the remainder of a subtraction.",
+        "The next lesson runs in the opposite direction: selling off a piece of yourself, and why that is harder than buying."
+      ]
+    }
+  ]
+}

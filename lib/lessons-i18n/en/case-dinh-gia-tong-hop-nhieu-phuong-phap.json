@@ -45,7 +45,7 @@
     {
       "question": "Three valuation methods produce three very different numbers. What is the right way to read that?",
       "options": [
-        "The further apart the results, the more reliable the model is",
+        "The further apart the results, the more reliable the model must be",
         "The two furthest results must be removed from the table",
         "Trust only the method landing nearest the market price",
         "They answer three different questions, so divergence is normal"

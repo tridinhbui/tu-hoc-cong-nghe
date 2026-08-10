@@ -1,0 +1,159 @@
+{
+  "slug": "cfa-ethics-standard-3c-tinh-phu-hop",
+  "title": "CFA Ethics 28: Standard III(C) - suitable for whom, and what about client-directed orders",
+  "subtitle": "Judged at portfolio level rather than trade by trade, and how to handle a request that cuts against the IPS",
+  "duration": "10 min",
+  "whyItMatters": "This is the standard most often applied in the wrong direction: people assess the suitability of each individual holding, when the right question is what that holding does to the portfolio as a whole.",
+  "openingQuestion": "A retired client with a low risk appetite asks you to buy a highly volatile technology stock. What should you do?",
+  "openingOptions": [
+    "Refuse, because that stock does not match the client's risk appetite",
+    "Assess the effect on the whole portfolio's risk, then explain it to the client",
+    "Execute immediately, because clients decide what happens to their money",
+    "Have the client sign a waiver of liability, then execute the order"
+  ],
+  "explanation": "Standard III(C) judges suitability at portfolio level. A highly volatile stock at 2% of a portfolio may be entirely suitable; at 40% it is not - and the stock itself has not changed. For a client-directed order that cuts against the agreed objectives, the standard process has three steps: explain the effect on the portfolio, record that the order came from the client rather than from your recommendation, and if such orders recur until the portfolio has drifted away from the IPS altogether, either update the IPS or revisit the relationship. A signed waiver does not substitute for any of those three steps.",
+  "summary": {
+    "keyIdea": "No investment is suitable or unsuitable in itself - the question only has meaning beside the rest of the portfolio and the circumstances of the person who owns it.",
+    "commonMistake": "Refusing a holding because it is risky on its own, without considering how it interacts with the rest of the portfolio."
+  },
+  "application": {
+    "title": "When a client directs an unsuitable order",
+    "message": "You still have to give your view and record it. Executing the client's order is fine; staying silent so they think you agree is not."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard III(C) requires recommendations to suit the client's circumstances. The crucial point is that suitability is judged at portfolio level, not holding by holding."
+    },
+    { "type": "heading", "text": "Why portfolio level is the right level" },
+    {
+      "type": "paragraph",
+      "text": "A highly volatile stock at 2% of a portfolio may be entirely suitable; at 40% it is not - and the stock itself has not changed at all. Assessing each holding in isolation both rules out sensible investments at small weights and lets concentration risk through unnoticed."
+    },
+    { "type": "heading", "text": "When a client directs an order against the agreed objectives" },
+    {
+      "type": "list",
+      "items": [
+        "Explain what the order does to the whole portfolio, not merely that it is risky.",
+        "Record clearly that the order came from the client and not from your recommendation.",
+        "If such orders recur until the portfolio has drifted away from the investment policy statement, update that statement or revisit the relationship."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The point most often misunderstood",
+      "text": "A signed waiver of liability does not substitute for any of the three steps above. It offers legal protection; it does not erase a duty under the professional standards."
+    },
+    {
+      "type": "paragraph",
+      "text": "An investment policy statement is written in calm to be used in panic. That is the entire reason it exists, and it is also why amending it in the middle of a drawdown has to be a considered decision rather than a reaction."
+    },
+    { "type": "heading", "text": "One stock, two weights, two conclusions" },
+    {
+      "type": "paragraph",
+      "text": "A volatile technology stock at 2% of a portfolio belonging to someone near retirement: if it halves, the portfolio loses 1% - unpleasant, but nobody's retirement plan changes. The same stock at 40%: if it halves, the portfolio loses 20%, and for someone two years from retiring that is a plan to be rewritten. The stock itself is identical in both cases. That is why suitability is judged at portfolio level, and why the question 'is this stock suitable for the client' is an incomplete question."
+    },
+    {
+      "type": "callout",
+      "label": "Three steps when a client directs an order against agreed objectives",
+      "text": "One, explain what the order does to the WHOLE portfolio in concrete numbers rather than saying vaguely that it is risky - saying the portfolio loses 20% if this name halves carries entirely different weight. Two, record clearly in the file that the order came from the client rather than from your recommendation. Three, if orders like this recur until the investment policy statement no longer describes the portfolio, amend the statement itself or revisit the relationship - rather than carrying on under a document you know is wrong."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "What a waiver does do",
+        "text": "It is evidence that the client was warned, and it counts in a legal dispute. That is its real use, and its only one."
+      },
+      "right": {
+        "label": "What it does not do",
+        "text": "It does not replace the explanation, it does not erase the professional duty, and it does not turn an unsuitable portfolio into a suitable one. An investment policy statement is written in calm to be used in panic - that is the whole reason it exists, and a signature collected during the panic does not serve that purpose."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "No investment is suitable or unsuitable in itself.",
+        "Only suitable for this portfolio, this person, at this weight."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Judged at portfolio level, not holding by holding" },
+    { "label": "Client-directed orders: explain the effect first" },
+    { "label": "Record clearly that this is not your recommendation" },
+    { "label": "If recurrence drifts the IPS: update it or revisit the relationship" }
+  ],
+  "realWorldExample": {
+    "company": "The IPS is a tool, not a formality",
+    "description": "An investment policy statement sets out objectives, constraints, risk appetite and benchmarks. Its real value is not at signing but during market turmoil: it is the thing written while both parties were still calm, to be referred to when nobody is. Standard III(C) requires the IPS to be reviewed periodically, because a client's circumstances change - retirement, an inheritance, redundancy - and an IPS written five years ago may be describing a person who no longer exists."
+  },
+  "quiz": [
+    {
+      "question": "At what level does Standard III(C) judge suitability?",
+      "options": [
+        "The whole portfolio, rather than each investment in isolation",
+        "Each individual trade order, before it is executed on the market",
+        "Groups of clients sharing the same broad level of risk appetite",
+        "The product, based on the issuer's own risk classification of it"
+      ],
+      "explanation": "The same stock can be suitable at a 2% weight and unsuitable at 40% - the stock is unchanged, but what it does to the portfolio is not. Trade-level review misses that entirely, an issuer's own classification says nothing about a particular client, and grouping clients by broad risk appetite loses the constraints and obligations that distinguish them."
+    },
+    {
+      "question": "When a client directs an order that cuts against the IPS, what is the first step?",
+      "options": [
+        "Refuse to execute, because the order does not fit the client's profile",
+        "Explain the effect on the risk of the portfolio as a whole",
+        "Ask the client to sign a waiver of liability in your favour",
+        "Execute at once, because the decision belongs to the client"
+      ],
+      "explanation": "Clients decide, but you have a duty to make sure they decide in full knowledge - and that is exactly what a waiver cannot supply. Refusing outright takes the decision away from the person whose money it is; executing in silence lets them believe you agree; and collecting a signature before explaining anything reverses the order the standard requires."
+    },
+    {
+      "question": "What happens when repeated client-directed orders drift the portfolio well away from the IPS?",
+      "options": [
+        "Adjust the other holdings quietly to offset the drift that has built up",
+        "Carry on executing, since each order has been properly recorded",
+        "Update the IPS to match reality, or revisit the relationship",
+        "Report the client to the firm's internal compliance department"
+      ],
+      "explanation": "An IPS that no longer describes the actual portfolio has stopped working - leaving it in place only creates a false sense of safety. Quiet offsetting changes the whole portfolio without the client knowing, recording each order individually never confronts the cumulative drift, and compliance cannot fix a document that simply needs rewriting."
+    },
+    {
+      "question": "Why does the IPS need periodic review?",
+      "options": [
+        "Because the management fee is adjusted from one period to the next",
+        "Because the rules require a new IPS to be signed every twelve months",
+        "Because market benchmarks are reconstituted from one year to the next",
+        "Because the client's circumstances change: retirement, inheritance, redundancy"
+      ],
+      "explanation": "An IPS written five years ago may be describing a person who no longer exists - and the portfolio is still running to that description. Fees and benchmarks may well change too, but neither alters the objectives the portfolio exists to meet, and no fixed twelve-month signing cycle would catch a redundancy in month three."
+    },
+    {
+      "question": "At which moment is an IPS worth the most?",
+      "options": [
+        "During market turmoil, when neither party is thinking calmly",
+        "At signing, to establish the legal responsibilities of both sides",
+        "At the quarterly performance report delivered to the client",
+        "On transferring the client across to a different manager"
+      ],
+      "explanation": "The IPS is a document written in calm to be followed in panic - that is the entire reason it exists. The signing, the quarterly report and the handover all use it, but they are the easy moments; its value shows when it is the only thing in the room arguing against a decision everybody feels like making."
+    }
+  ],
+  "keyTakeaways": [
+    "Suitability is judged at portfolio level, not holding by holding",
+    "Client-directed orders: explain the effect, record where the order came from",
+    "A signed waiver does not replace the duty to explain",
+    "Prolonged drift from the IPS means updating it or revisiting the relationship",
+    "The IPS is written in calm to be used in panic"
+  ],
+  "practicePrompt": {
+    "question": "A 62-year-old client whose IPS states capital preservation asks you to put 30% of the portfolio into a stock that is running hot. How do you handle it?",
+    "options": [
+      "Refuse outright, since it contradicts the stated capital preservation aim",
+      "Explain the effect, record the client's own decision, revisit the IPS",
+      "Execute it, because clients have full authority over their own money",
+      "Execute the 30% but quietly de-risk the remainder to compensate"
+    ],
+    "explanation": "Refusing outright overrides the client's right to decide; executing immediately skips the duty to explain. The compensating option is the worst of the four, because it silently changes the whole portfolio without the client knowing. The key point comes at the end: if the client genuinely wants this level of risk, their objectives may have changed, and what needs updating is the IPS rather than being worked around."
+  }
+}

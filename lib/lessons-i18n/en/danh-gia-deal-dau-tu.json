@@ -1,0 +1,168 @@
+{
+  "slug": "danh-gia-deal-dau-tu",
+  "title": "Evaluating an investment deal",
+  "subtitle": "A framework for reading a buyout the way a private equity fund reads one",
+  "duration": "9 min",
+  "openingQuestion": "Why does a fund buying with debt need steady cash flow more than high growth?",
+  "openingOptions": [
+    "Because steady cash flow usually comes with much higher margins",
+    "Because debt service is fixed while growth is not guaranteed",
+    "Because lenders will not fund a fast-growing company at all",
+    "Because high-growth companies are almost always overpriced"
+  ],
+  "explanation": "When most of the purchase price comes from debt, the schedule of interest and principal becomes a fixed cost that falls due regardless of how the year went. Growth can arrive late or not at all; interest does not wait. So the first thing a lender looks at is not how fast the business can expand, but whether the cash flow is steady enough to cover its obligations even in bad years. Growth is still valuable, but in a leveraged deal it is the bonus, while the ability to service debt is the condition for the deal to survive at all.",
+  "diagram": [
+    { "label": "Buy with equity plus borrowed debt", "arrow": true },
+    { "label": "Company cash flow pays the debt down", "arrow": true },
+    { "label": "Debt shrinks, the equity slice thickens", "arrow": true },
+    { "label": "Sell on after 3-5 years", "arrow": false }
+  ],
+  "realWorldExample": {
+    "company": "A retail chain on long-term leases",
+    "description": "A store chain with repeat revenue and low capital investment needs is exactly the shape of business a fund looks for: predictable cash flow supports more borrowing, and there is usually still room left for operational improvement. A fast-growing but cash-burning software company, by contrast, is hard to lever at all, even though its prospects may be brighter."
+  },
+  "keyTakeaways": [
+    "In a leveraged deal, the ability to service debt is the condition and growth is the bonus",
+    "Returns come from three sources: higher operating profit, debt paid down, and exit at a higher multiple",
+    "MOIC measures how many times capital multiplied, IRR measures speed - reading one without the other misleads",
+    "Dependence on one large customer or one key individual is enough on its own to walk away from a deal"
+  ],
+  "summary": {
+    "keyIdea": "A good deal is not a good company; it is buying at the right price, servicing the debt, and having someone to sell to",
+    "commonMistake": "Looking only at business quality without asking at what multiple you buy and who you sell to",
+    "action": "For any deal, write down four numbers before discussing anything else: entry multiple, debt to operating profit, equity cheque, and assumed exit multiple"
+  },
+  "application": {
+    "title": "Apply it to a real deal",
+    "message": "Pick a recently announced acquisition, find the purchase price and the most recent operating profit, and compute the multiple. Compare it against deals in the same industry to see whether the buyer paid up or got a bargain.",
+    "secondary": "If you cannot identify a plausible buyer three to five years out, most of the returns assumed on paper have nowhere to be realised."
+  },
+  "practicePrompt": {
+    "question": "A fund puts in 100bn of equity and gets 250bn back four years later. Roughly what are the MOIC and the IRR?",
+    "options": [
+      "MOIC 2.5x, IRR ≈ 26% (= 2.5^(1/4) − 1)",
+      "MOIC 2.5x, IRR ≈ 37.5% (= 150%/4, split evenly)",
+      "MOIC 1.5x, IRR ≈ 11% (counting only the 150bn gain)",
+      "MOIC 2.5x, IRR ≈ 63% (= 250/100 then divided by 4 years)"
+    ],
+    "explanation": "MOIC is the multiple of capital: 250 divided by 100 is 2.5x. IRR is a compounded annual return, so you take the fourth root rather than dividing evenly: 2.5^(1/4) = 1.257, about 26% a year. The two options that divide 150% or 250% by 4 years make the same mistake - ignoring that prior years' gains keep earning. The MOIC 1.5x option confuses the gain with the total proceeds."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A good deal is not just a good company. The buyer has to answer four questions before signing: at what price, with how much debt, can the cash flow carry that debt, and after a few years who do you sell it to."
+    },
+    { "type": "heading", "text": "A five-step framework" },
+    {
+      "type": "list",
+      "items": [
+        "Understand the business model: how the company makes money, where revenue comes from, where the competitive advantage sits, whether the industry is rising or falling",
+        "Read the numbers: how revenue moved over three to five years, whether operating margin is rising or falling, whether profit converts into cash, how much working capital consumes",
+        "Deal structure: the purchase price as a multiple of operating profit, debt as a multiple, how much real equity the buyer puts up, whether management invests alongside",
+        "Value creation plan: where organic growth comes from, what operational improvements are available, whether bolt-on acquisitions are planned, who the eventual buyer will be",
+        "Risk: what the worst case looks like, whether headroom remains on debt service, what warning signs are already visible"
+      ]
+    },
+    { "type": "heading", "text": "Three sources of return" },
+    {
+      "type": "list",
+      "items": [
+        "Operating profit rises, through higher revenue or better margins",
+        "Debt shrinks: cash flow is used to repay it, so the equity share of value thickens even if enterprise value is unchanged",
+        "Selling at a higher multiple than the one paid on entry"
+      ]
+    },
+    { "type": "heading", "text": "MOIC and IRR: read both" },
+    {
+      "type": "paragraph",
+      "text": "MOIC tells you how many times capital multiplied; IRR tells you how fast. Neither replaces the other, and saying IRR matters more is a shortcut that misleads: because IRR depends on time, a fund can push it up by selling its good deals early, even though doing so brings in less money. Tripling capital over six years gives an IRR around 20%, lower than doubling it in a year, but it produces far more cash."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "MOIC",
+        "text": "The multiple of capital. It measures the absolute amount of money created regardless of how long it took - so it is not distorted by exit timing."
+      },
+      "right": {
+        "label": "IRR",
+        "text": "The annualised rate of return. It tells you how quickly capital turns over, but it is sensitive to time, so selling early pushes it up."
+      }
+    },
+    { "type": "heading", "text": "Warning signs" },
+    {
+      "type": "list",
+      "items": [
+        "One customer accounting for more than 30% of revenue",
+        "The business depends heavily on one key individual",
+        "Revenue is declining or market share is being lost",
+        "Interest coverage is already weak at the point of purchase",
+        "The industry is being displaced by a new model",
+        "The accounting numbers show signs of irregularity"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A common interview question",
+      "text": "Explain a leveraged buyout model in three steps: buy with equity plus debt, use free cash flow to repay the debt and improve operating profit, sell on after three to five years. The return comes from the equity slice thickening once debt has fallen and the business is worth more."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Leverage magnifies in both directions: it makes a good deal better and turns a mediocre one into a failure.",
+        "That is why the first question is always cash flow, not prospects."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "When presenting a leveraged buyout (LBO), what is the first question investors usually ask?",
+      "options": [
+        "What was the revenue figure last year?",
+        "At what multiple do you buy and exit?",
+        "How many employees does the company have?",
+        "What interest rate is the debt priced at?"
+      ],
+      "explanation": "An LBO is an acquisition funded largely with borrowed money, so investors scrutinise entry and exit valuation above everything else: how many times EBITDA you pay going in, and how many times EBITDA you assume coming out. EBITDA is earnings before interest, tax, depreciation and amortisation. A raw revenue figure says nothing about what was paid for it, headcount is an operating detail rather than a valuation input, and the interest rate matters only once the multiple and the amount of debt are already on the table."
+    },
+    {
+      "question": "What are the three main sources of return in an LBO?",
+      "options": [
+        "Grow revenue, cut costs, then refinance the debt",
+        "Sell off assets, pay a debt-funded dividend, then list the company",
+        "Raise profit, pay down debt, exit at a higher multiple",
+        "Organic growth, acquisitions, and market share gains"
+      ],
+      "explanation": "In an LBO, returns typically come from three places: the business earns more, cash flow is used to repay debt, and the company is sold on at a higher valuation than it was bought at. Cutting costs and refinancing are tactics inside the first two sources rather than sources in their own right. Asset sales and dividend recapitalisations are ways to pull cash out early, not the underlying engine. And market share gain is one route to higher profit, not a separate line of return."
+    },
+    {
+      "question": "Why do private equity funds like businesses with recurring revenue?",
+      "options": [
+        "Recurring revenue is always larger than one-off revenue",
+        "Investors simply prefer the subscription business model",
+        "Recurring revenue is tax-favoured, so more of it is kept",
+        "Predictable cash flow supports more borrowing"
+      ],
+      "explanation": "Recurring revenue is revenue likely to return steadily - a subscription contract or a long-term agreement, for example. Cash flow that is easy to forecast makes lenders more confident, so the deal can carry debt more safely. Recurring revenue is not inherently larger than one-off revenue, and it receives no special tax treatment; the tax code does not care whether a sale repeats. The preference is not aesthetic either - it is entirely about how much debt the cash flow can support."
+    },
+    {
+      "question": "Tripling capital over 5 years is equivalent to roughly what annual rate of return?",
+      "options": [
+        "~25% (= 3^(1/5) − 1, the compound annual rate)",
+        "~15% (= 300%/5 years, dividing evenly instead of compounding)",
+        "~50% (= 3 times divided by 6, using the wrong number of years)",
+        "~60% (= 300%/5, forgetting to subtract the original capital)"
+      ],
+      "explanation": "MOIC is the multiple of capital: putting in 1 and getting back 3 is a 3x MOIC. IRR is the compounded annual rate, so you take the fifth root of 3 rather than dividing 300% by 5. A 3x MOIC over 5 years is therefore equivalent to an IRR of about 25%, not the 15% that even splitting would suggest and not the 60% you get by forgetting that the original capital has to come back before anything counts as a return."
+    },
+    {
+      "question": "Which warning sign might make an investor pass on a deal immediately?",
+      "options": [
+        "An operating profit margin sitting below 20%",
+        "Total dependence on one or two key individuals",
+        "The company is not yet listed on a stock exchange",
+        "Revenue in the latest year below 500bn dong"
+      ],
+      "explanation": "Key-person risk means that if the CEO or founder leaves, the business can weaken sharply. Investors want a model that runs sustainably without leaning too heavily on one person. A margin under 20% is perfectly normal in plenty of industries and says nothing on its own; being unlisted is the usual state of a buyout target rather than a red flag; and a revenue threshold is a size filter, not a risk that can destroy value after the deal closes."
+    }
+  ]
+}

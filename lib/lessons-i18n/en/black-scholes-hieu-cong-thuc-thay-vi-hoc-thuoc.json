@@ -1,0 +1,192 @@
+{
+  "slug": "black-scholes-hieu-cong-thuc-thay-vi-hoc-thuoc",
+  "title": "Derivatives, lesson 2: Black-Scholes - understand the formula instead of memorising it",
+  "subtitle": "Five inputs, one idea about dynamic hedging, and the assumptions that make the model wrong in a crisis",
+  "duration": "13 min",
+  "whyItMatters": "Black-Scholes is the most used and the most misunderstood model in finance. You do not need to be able to derive it, but if you do not know what it assumes then you will not know when to stop trusting it - and every market collapse has been an occasion on which those assumptions broke.",
+  "openingQuestion": "In the Black-Scholes formula, which input cannot be observed directly in the market?",
+  "openingOptions": [
+    "The current market price of the share",
+    "The strike price written into the contract",
+    "The share's volatility over the future life",
+    "The time remaining until the contract expires"
+  ],
+  "explanation": "The other four inputs can all simply be read off: the share price, the strike, the time to expiry and the risk-free rate. Future volatility alone is unknown to everybody. That is why in practice people run the model backwards: take the market price of a traded option, solve back for the implied volatility, and trade on a view about that number. Put another way, the options market is really a market in volatility.",
+  "diagram": [
+    {
+      "label": "5 inputs: S, K, T, r, sigma"
+    },
+    {
+      "label": "Assumption: prices move randomly and continuously"
+    },
+    {
+      "label": "Dynamic hedging via delta"
+    },
+    {
+      "label": "Out comes a single no-arbitrage option price"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Long-Term Capital Management, 1998",
+    "description": "The fund, which counted among its partners the very Nobel laureates who built option pricing theory, collapsed in 1998. The cause was not that the formula was wrong, but that its underlying assumptions broke all at once: liquidity vanished, prices jumped discontinuously rather than moving smoothly, and correlations across markets spiked at precisely the moment those markets needed to be independent. The model still produced a number - the number just no longer meant anything."
+  },
+  "quiz": [
+    {
+      "question": "What is the core idea behind the Black-Scholes solution?",
+      "options": [
+        "Replicate the option with shares and borrowing, adjusted continuously",
+        "Estimate the probability the share rises, then take the expected payoff",
+        "Regress past option prices against a set of market factors",
+        "Interpolate from the prices of options at neighbouring strikes"
+      ],
+      "explanation": "This is dynamic hedging: hold delta shares, borrow the remainder, and rebalance continuously as the price moves. That portfolio reproduces the option's payoff exactly, so the option's price has to equal the cost of building and maintaining it. Notice what this is not: it is not an expected-value calculation over the probability of a rise, because the share's expected return never enters the formula; it is not a statistical fit to history, which would give a different answer for every estimation window; and interpolating between neighbouring strikes assumes the very prices the model exists to derive."
+    },
+    {
+      "question": "Why does the share's expected return not appear in the formula?",
+      "options": [
+        "Because every investor shares the same expectation of returns",
+        "Because hedging strips directional risk out of the portfolio",
+        "Because a share's expected return always converges to zero over the long run",
+        "Because it is already reflected indirectly in the contract's strike price"
+      ],
+      "explanation": "This is the model's most surprising result: two investors with completely opposite views on where the share is heading must still agree on the option's price, because the pricing argument rests on hedging rather than on forecasting. Once the position is delta hedged the directional risk is gone, so the risk-free rate is the only appropriate discount rate. It is certainly not because investors agree - they demonstrably do not - nor because long-run returns tend to zero, which is false, nor because the strike somehow encodes a forecast: the strike is simply a number written into the contract."
+    },
+    {
+      "question": "Which Black-Scholes assumption is most visibly violated during a crisis?",
+      "options": [
+        "Options have a fixed expiry and can only be exercised on that date",
+        "A risk-free rate exists for discounting all the future cash flows",
+        "Prices move continuously and volatility is constant over time",
+        "Every investor in the market knows what the strike price is set at"
+      ],
+      "explanation": "Real markets gap overnight, with no trading at all in between, which makes continuous delta hedging simply impossible - you cannot rebalance through a price you never got to trade at. Volatility also swings violently over time, spiking exactly when markets fall. The European exercise convention and the existence of a risk-free rate are simplifications that hold up reasonably even under stress, and the strike is public information at all times. This assumption is the root of the volatility smile covered in lesson 4."
+    },
+    {
+      "question": "What is implied volatility?",
+      "options": [
+        "The standard deviation of the returns realised over the past year",
+        "The gap between the bid and the offer quoted on the option contract",
+        "The average volatility the exchange publishes at each session's close",
+        "The volatility that makes the formula match the market price"
+      ],
+      "explanation": "Since the other four inputs are all observable, the formula is inverted to extract sigma from the traded price. What it captures is the market's expectation about volatility going forward, not what has already happened. That makes it fundamentally different from historical standard deviation, which looks only backwards; it has nothing to do with the bid-offer spread, which measures liquidity rather than expected movement; and it is not published by anyone - it is derived contract by contract from live prices."
+    },
+    {
+      "question": "What does it mean to say the options market is really a market in volatility?",
+      "options": [
+        "After delta hedging, what remains as the bet is volatility",
+        "An options trader has no interest at all in the underlying share price",
+        "The exchange lists a volatility index directly instead of option contracts",
+        "Only professional hedge funds are permitted to trade options at all"
+      ],
+      "explanation": "An options trader who hedges delta continuously makes money if realised volatility runs above the implied level they bought, and loses if it runs below - whichever way the share itself moves. The underlying price still matters enormously, because it drives the hedge that has to be rebalanced; the point is that the directional exposure is deliberately neutralised, leaving volatility as the position. Volatility indices exist but they are separate products, not replacements for options, and options are traded by retail and institutions alike."
+    }
+  ],
+  "keyTakeaways": [
+    "Five inputs: share price, strike, time, risk-free rate and volatility - only volatility cannot be observed",
+    "The share's expected return does not appear in the formula, because pricing rests on hedging rather than on forecasting",
+    "In practice the model is usually run backwards: from the market price, solve for implied volatility",
+    "The most dangerous assumptions are continuous price movement and constant volatility - both break exactly when markets are under stress"
+  ],
+  "practicePrompt": {
+    "question": "A call option is priced at an implied volatility of 45%, while you believe realised volatility will be nearer 25%. What is the corresponding trade?",
+    "options": [
+      "Buy the call, because its price is going to rise from here",
+      "Sell the option and delta hedge - you are selling dear volatility",
+      "Buy the underlying share and hold it through to expiry",
+      "Do nothing, because volatility has no bearing on the profit"
+    ],
+    "explanation": "This is the classic volatility trade. Selling the option and hedging delta continuously makes money if realised volatility comes in below the implied level. One thing has to be stressed: this strategy carries enormous tail risk if a price gap occurs, and the loss is unbounded."
+  },
+  "summary": {
+    "keyIdea": "Black-Scholes prices by the cost of replication, not by forecasting the price",
+    "formula": "C = S·N(d1) − K·e^(−rT)·N(d2)",
+    "commonMistake": "Believing the number the model produces without checking the assumptions behind the inputs, above all volatility",
+    "action": "Take the market price of one option, use an online calculator to solve back for implied volatility, and compare it with 30-day historical volatility."
+  },
+  "application": {
+    "title": "Read the model as a unit converter",
+    "message": "Do not treat Black-Scholes as a machine that computes the right price. Treat it as a machine that converts between two languages: option prices and implied volatility. Every argument about whether options are cheap or dear is ultimately an argument about that volatility number.",
+    "secondary": "When you see option prices jump while the share sits still, the market has almost certainly just raised its expectation of volatility."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous lesson showed that when a payoff can be replicated, the price is pinned down. But put-call parity only ties calls to puts; it does not give you the price of either one on its own. Black-Scholes answers the rest by pushing the replication idea to its limit: replicating continuously through time."
+    },
+    {
+      "type": "heading",
+      "text": "Dynamic hedging: the soul of the model"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose you sell a call option. You can protect yourself by holding a fraction of a share - specifically, delta shares for every option sold. When the share price moves, delta moves, and you adjust the position. If you can adjust continuously and pay no transaction costs, that portfolio replicates the option you sold exactly. The option's price must therefore equal the cost of building and maintaining that portfolio - no more, no less."
+    },
+    {
+      "type": "formula",
+      "title": "The Black-Scholes formula for a call",
+      "label": "European style, on a share paying no dividend",
+      "variables": [
+        {
+          "name": "Current share price",
+          "description": "Observable"
+        },
+        {
+          "name": "Strike price",
+          "description": "Written into the contract"
+        },
+        {
+          "name": "Time to expiry",
+          "description": "Measured in years"
+        },
+        {
+          "name": "Risk-free rate",
+          "description": "At the matching maturity"
+        },
+        {
+          "name": "Volatility",
+          "description": "The only unobservable input - and the centre of every argument"
+        },
+        {
+          "name": "Cumulative normal distribution function",
+          "description": "N(d2) approximates the probability of exercise in the risk-neutral world"
+        }
+      ],
+      "example": {
+        "title": "How to read the formula in words",
+        "calculation": "Option price = (the share value you expect to receive) − (the present value of what you will have to pay)",
+        "result": "A subtraction between a conditional benefit and a conditional cost",
+        "explanation": "S·N(d1) is the expected value of the share you receive if the option finishes in the money; K·e^(−rT)·N(d2) is the present value of the cash you must pay out, also only in that scenario."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The most surprising part",
+      "text": "The share's expected return is nowhere in the formula. A raging bull and a committed bear on the same stock must still agree on the option's price. The reason: once the portfolio is hedged, directional risk disappears, so the risk-free rate is the only appropriate discount rate left."
+    },
+    {
+      "type": "heading",
+      "text": "Four assumptions and four places the model breaks"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Prices move continuously with no jumps - broken by overnight shocks, which make dynamic hedging impossible",
+        "Volatility is constant - broken because volatility spikes precisely when markets fall hardest",
+        "Trading is costless and can be adjusted continuously - broken because transaction costs make continuous hedging expensive",
+        "You can borrow and short freely at the risk-free rate - broken when liquidity vanishes and funding costs jump"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "None of this is a reason to throw the model away. Black-Scholes remains the common language of the entire options market, in the same way everyone still quotes yield to maturity on bonds while knowing its reinvestment assumption is unrealistic. The problem only arises when someone forgets that it is a language rather than a truth."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The model does not tell you the right price. It translates the market price into a number you can argue about: volatility.",
+        "The next lesson opens the black box: the Greeks tell you what your position is sensitive to, and by how much."
+      ]
+    }
+  ]
+}

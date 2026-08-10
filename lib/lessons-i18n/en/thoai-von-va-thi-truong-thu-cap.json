@@ -1,0 +1,156 @@
+{
+  "slug": "thoai-von-va-thi-truong-thu-cap",
+  "title": "Private markets, Lesson 4: Exits and the secondary market - when paper money becomes money",
+  "subtitle": "The four exit routes, fund life pressure, and the role of the market in fund interests",
+  "duration": "11 min",
+  "whyItMatters": "The entire return on a private investment exists only on paper until the exit succeeds. Understanding the exit routes and the conditions under which each one opens is the difference between a complete investment thesis and one that stops halfway.",
+  "openingQuestion": "Why must the exit plan be stated in the original investment thesis?",
+  "openingOptions": [
+    "Because rules require a fund to publish its exit plan before deploying capital",
+    "Because the return only becomes real once you can sell",
+    "Because the future sale price is fixed at the moment the investment agreement is signed",
+    "Because the timing of the exit determines the tax the fund pays on the gain"
+  ],
+  "explanation": "A private investment has no ready market to sell into at any moment you choose. The exit window can close for reasons entirely outside the company's control: equity markets weaken and the listing route shuts, rates rise and other funds cannot borrow to buy it, or the sector loses its appeal to strategic buyers. That is why professional investors ask who the next buyer will be before signing rather than afterwards.",
+  "diagram": [
+    {
+      "label": "Sell to a strategic investor"
+    },
+    {
+      "label": "Sell to another fund"
+    },
+    {
+      "label": "List on a public market"
+    },
+    {
+      "label": "Sell the fund interest on the secondary market"
+    }
+  ],
+  "realWorldExample": {
+    "company": "When the listing window shuts",
+    "description": "In periods when equity markets are falling, the listing route closes almost entirely, while high rates make the arithmetic impossible for leveraged buyout funds. The chain of consequences follows: funds cannot exit, so they distribute no cash back to their investors; investors have no cash to commit to new funds; and fundraising across the whole industry slows down. That is why the secondary market in fund interests grows strongly in exactly such periods."
+  },
+  "quiz": [
+    {
+      "question": "Why does a sale to a strategic investor usually fetch a higher price than a sale to another fund?",
+      "options": [
+        "Because a strategic buyer always pays in cash while a fund relies on leverage",
+        "Because funds are capped by their own rules on the maximum price payable",
+        "Because a strategic buyer can pay for synergy with its existing operations",
+        "Because a deal with a strategic buyer skips the detailed diligence process"
+      ],
+      "explanation": "A strategic buyer can strip out duplicated costs, widen distribution or complete a product range - value a purely financial fund cannot generate. In exchange, a deal with a strategic buyer usually takes longer because of competition clearance and integration questions. Payment form, internal price caps and diligence depth vary case by case and none of them is the source of the higher price."
+    },
+    {
+      "question": "What trades on the secondary market in private markets?",
+      "options": [
+        "Options to buy fund interests in vehicles still in their fundraising stage",
+        "Shares in the companies a fund has already taken public on an exchange",
+        "The loans a fund uses to finance its acquisitions of portfolio companies",
+        "Investors' interests in a fund, or a whole fund's portfolio of assets"
+      ],
+      "explanation": "This market gives an investor a liquidity exit before the fund winds up, usually at a discount. It also lets a manager restructure assets that have not yet been sold as the fund's life runs out. Listed shares trade on the public market, and fund borrowings sit in the private credit market rather than here."
+    },
+    {
+      "question": "What is a continuation fund set up to do?",
+      "options": [
+        "Move one or several assets into a new fund to buy more holding time",
+        "Raise fresh capital for new deals once the current fund is fully invested",
+        "Separate loss-making investments out to improve the reported performance",
+        "Transfer management of the fund to a new team when the old one departs"
+      ],
+      "explanation": "The mechanism solves the problem of a good asset whose ideal sale date has not arrived while the fund is close to expiry. It also creates an obvious conflict of interest: the manager is on both sides of the trade, which is why an independent valuation and a genuine choice for the existing investors matter so much."
+    },
+    {
+      "question": "What is the biggest risk when an investment thesis depends on a public listing?",
+      "options": [
+        "The listing process forces the company to convert fully to international standards",
+        "The IPO window opens and shuts with the market cycle, wholly outside the company's control",
+        "Existing shareholders face a lock-up restricting sales for a period after listing",
+        "Advisory and underwriting fees materially reduce what the fund takes home"
+      ],
+      "explanation": "The other answers are all costs or constraints you can predict. The listing window closing is not: it depends on market sentiment at precisely the moment the fund needs to sell, and it usually shuts exactly when every other fund needs to sell as well."
+    },
+    {
+      "question": "If a thesis rests on the company going public, where does the danger lie?",
+      "options": [
+        "Existing shareholders get diluted when new shares are issued to the public",
+        "The company may not meet the charter capital requirement for listing",
+        "The IPO window can shut for reasons wholly outside the company",
+        "The advisory costs of a listing are substantial for the issuer"
+      ],
+      "explanation": "A company can do everything right and still fail to list because the market turns bad in exactly the year the fund needs its exit. That is why a thesis with only one way out is a fragile thesis - and it is why continuation funds came into existence at all."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A fund has two years left to run and still holds three companies it has not managed to sell. How does that affect its negotiating position?",
+    "options": [
+      "No effect, since a fund can always extend its life by several more years",
+      "Distinctly weaker: buyers know the fund has to sell inside that window",
+      "Stronger, since the fund can refuse any bid below its carrying valuation",
+      "It only affects the management fee investors pay over the two remaining years"
+    ],
+    "explanation": "This is public information to anyone following the sector, and professional buyers always factor it in. Extending the fund is possible but requires investor consent, and asking for it is itself a bad signal. The general lesson: whichever side faces the harder time constraint is the weaker side at the table."
+  },
+  "keyTakeaways": [
+    "Private markets returns are only real once the exit is done - the investment thesis has to name the next buyer",
+    "Four exit routes: a strategic investor, another fund, a listing, and a secondary sale of the fund interest",
+    "Exit windows open and shut with the market cycle, and usually shut when many funds need to sell at once",
+    "A continuation fund solves the fund life problem but creates a conflict of interest that needs handling transparently"
+  ],
+  "summary": {
+    "keyIdea": "Without an exit plan there is no investment thesis, only money locked up",
+    "commonMistake": "Building a thesis on a future listing with no alternative route",
+    "action": "For any deal, write down three specific potential buyers and the conditions under which each would pay."
+  },
+  "application": {
+    "title": "The question that ends every private investment thesis",
+    "message": "Who will buy this back, for what reason, at what price, and under what market conditions? If you cannot answer with specific names and numbers, the thesis is only half finished.",
+    "secondary": "It is also the first question the investment committee of any fund will put to you."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In listed investing, selling is the easy part - there is always a buyer at some price. In private markets, selling is the hard part and it decides the entire outcome. The previous three lessons covered structure, fees and performance measurement; this one covers turning all of that into actual cash."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The four exit routes",
+      "subtitle": "Each opens under different market conditions",
+      "concepts": [
+        {
+          "def": "A company in the same sector buys it. Usually the highest price thanks to synergy value, but the process is long and can run into competition issues."
+        },
+        {
+          "def": "Another fund buys it, usually with leverage. Heavily dependent on the level of interest rates and the appetite of the credit market."
+        },
+        {
+          "def": "Valuation is often good and the reputational effect is real, but this window opens and shuts with the cycle and the fund can only sell down gradually after the lock-up."
+        },
+        {
+          "def": "Selling a fund interest, or a whole portfolio, to someone else, usually at a discount. The pressure valve for liquidity when the other three routes are all narrow."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The worst correlation in the industry",
+      "text": "Exit routes tend to narrow all at once, and precisely when many funds need to sell together. This is the same shape of correlation risk as the lesson on collateral losing its value exactly when the borrower gets into trouble - and it is also why the liquidity premium in private markets exists at all."
+    },
+    {
+      "type": "heading",
+      "text": "What the secondary market solves"
+    },
+    {
+      "type": "paragraph",
+      "text": "An investor commits capital for ten years, but their own needs can change along the way - they need liquidity, they shift their allocation strategy, or they want less exposure to one manager. The secondary market lets them sell that interest to someone else, usually at a discount to carrying value. That discount is itself information: it tells you how the market values the unrealised portfolio, a number the fund's periodic reports never state."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "End of the stage: you have gone the full circle from fund structure to compensation mechanics to performance measurement to exit.",
+        "What all four lessons share: in private markets, liquidity is not a default - it is something that has to be planned from the start."
+      ]
+    }
+  ]
+}

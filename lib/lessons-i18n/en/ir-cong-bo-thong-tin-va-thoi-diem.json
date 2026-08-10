@@ -1,0 +1,174 @@
+{
+  "slug": "ir-cong-bo-thong-tin-va-thoi-diem",
+  "title": "IR, Part 2: Materiality and timing - what you must say, and when",
+  "subtitle": "How to recognise material information, how the deadline is counted, and why silence is a choice with consequences",
+  "duration": "11 min",
+  "whyItMatters": "Most disclosure penalties do not come from saying something false, they come from saying it late. Telling material from immaterial and counting the deadline correctly is the technical part of the IR job, and it is the part you cannot improvise on the spot.",
+  "openingQuestion": "Which of the following is almost certainly material and must be disclosed?",
+  "openingOptions": [
+    "Losing a customer that accounts for 30% of revenue",
+    "Switching stationery suppliers across the entire branch network",
+    "Launching a new brand identity after six months of preparation",
+    "Hiring 50 more customer service staff for the southern region"
+  ],
+  "explanation": "The test for materiality is: would a reasonable investor change a buy or sell decision on learning this. Losing a customer worth 30% of revenue certainly would, because it changes the revenue line in every model currently valuing the company. The other three would not - they may matter internally but they do not move value. Note that the test does not depend on whether the news is good or bad, nor on whether the company has a response ready yet. Waiting until the response is ready is the single most common way the deadline gets missed, and the reasoning sounds entirely sensible from the inside.",
+  "diagram": [
+    {
+      "label": "An event arises"
+    },
+    {
+      "label": "Would a reasonable investor change their decision?"
+    },
+    {
+      "label": "Yes → material → the disclosure clock starts"
+    },
+    {
+      "label": "Disclose within the required window, without waiting for a plan"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Disclosure rules on the Vietnamese securities market",
+    "description": "The disclosure circular sets deadlines in hours and days from the moment an event arises, category by category. What IR functions most often miss is not the list of events - that is published - but the moment the counting starts: the clock runs from when the event happened, not from when the executive team finished meeting about it."
+  },
+  "quiz": [
+    {
+      "question": "What is the test for materiality?",
+      "options": [
+        "Whether a reasonable investor would change a buy or sell decision",
+        "Whether reported profit moves by more than 10 per cent",
+        "Whether the executive team regards the matter as important",
+        "Whether the item appears in the periodic reporting schedule"
+      ],
+      "explanation": "A percentage threshold is a support tool, not the definition. An event well below any threshold can still be material if it changes how the future of the company is understood - losing a licence in the market that carried the whole growth story is small in this quarter's numbers and enormous in every model. Equally, management's own sense of importance is not the test: the question is always about the reasonable outside investor."
+    },
+    {
+      "question": "When does the disclosure clock start running?",
+      "options": [
+        "When the internal meeting about it finally ends",
+        "When the event arises, not when the meeting ends",
+        "When the legal department finishes reviewing the draft announcement",
+        "At the first trading session after the facts have been confirmed"
+      ],
+      "explanation": "This is where breaches happen most often, and always with a reason that sounds entirely sensible from the inside: wait until there is a plan so the disclosure is complete. If the clock started when internal process finished, any company could postpone any bad news indefinitely simply by keeping the process open, which is precisely why it does not start there."
+    },
+    {
+      "question": "Does unexpectedly good news have to be disclosed?",
+      "options": [
+        "Only if the company wants to support the price",
+        "No, the obligation applies only to adverse information",
+        "Yes, materiality does not distinguish good news from bad",
+        "Only when the exchange or the regulator specifically asks for it"
+      ],
+      "explanation": "An unexpectedly large contract moves value too, so it has to be disclosed as well. The obligation attaches to the size of the effect, not to the sign of the effect. Companies that disclose good news promptly and bad news slowly build exactly the reputation that pattern deserves, and analysts notice the asymmetry long before a regulator does."
+    },
+    {
+      "question": "The share price moves sharply with no news from the company. What should IR do?",
+      "options": [
+        "Buy back stock to signal that management believes in it",
+        "Issue a statement telling investors that operations are normal",
+        "Nothing, the company has no duty to explain price movements",
+        "Check internally for a leak, and be ready to answer the exchange"
+      ],
+      "explanation": "An unusual move usually means information has already got out. The first task is to find out what it is, because if something has leaked then the disclosure obligation arose before the price moved, not after. Issuing reassurance before you know is worse than saying nothing: if the leak turns out to be real, the company has now made a false statement on top of a late one."
+    },
+    {
+      "question": "Why is silence a choice with consequences?",
+      "options": [
+        "Because an information vacuum always gets filled with guesswork and rumour",
+        "Because the regulator will treat any period of silence as deliberate concealment",
+        "Because funds are obliged to sell out of the position immediately",
+        "Because journalists have a legal right to demand a reply from you"
+      ],
+      "explanation": "The market does not wait. Saying nothing does not mean nothing gets said - it means someone else says it, on worse data. Regulators do not in fact equate silence with concealment, funds do not automatically sell, and no journalist has a right to a reply; the cost of silence is simply that the gap is filled by whoever is willing to speculate."
+    }
+  ],
+  "practicePrompt": {
+    "question": "On Tuesday morning the company learns that a customer worth 30% of revenue has terminated its contract. Management wants to wait until Friday so the response plan can be announced at the same time. Right or wrong?",
+    "options": [
+      "Wrong: the clock runs from when the event arose, not from when a plan exists",
+      "Right: disclosing alongside a plan helps the market react more calmly",
+      "Right: disclosure is only required after the board has met and approved it",
+      "Wrong: it must wait for quarter end and go into the periodic financial report"
+    ],
+    "explanation": "Material means a reasonable investor would change their decision, and losing 30% of revenue certainly clears that bar. The clock starts when the company KNOWS, not when the company is ready - otherwise any bad news could be postponed indefinitely on the grounds that a plan is being prepared. Three days of silence also creates a second risk: information usually leaks in that window, the price moves oddly, and some people trade on information the rest do not have. The response plan can still be disclosed afterwards, as an update."
+  },
+  "keyTakeaways": [
+    "Material = a reasonable investor changes their decision. Independent of whether the news is good or bad.",
+    "The clock runs from when the event arose, not from when the meeting ended or a plan existed.",
+    "An unusual price move with no news is a sign of a leak and must be investigated at once.",
+    "Silence is not neutral: the vacuum gets filled with rumour."
+  ],
+  "summary": {
+    "keyIdea": "Material means a reasonable investor would change their decision - regardless of whether the news is good or bad",
+    "commonMistake": "Counting the deadline from when the disclosure team was told, while the clock has been running since the event arose.",
+    "action": "Review the internal process: from the moment an event happens to the moment the person responsible for disclosure hears about it, how many hours pass."
+  },
+  "application": {
+    "title": "Measure your own organisation's internal lag",
+    "message": "Pick three events disclosed during the year, find the date they actually arose and the date the announcement went out. That gap is your organisation's late-disclosure risk, measured with data rather than with a feeling.",
+    "secondary": "Very few penalties come from saying something wrong; almost all of them come from saying it late."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Very few disclosure penalties come from saying something false. Almost all of them come from saying it late, and nearly every time the internal reason sounded sensible: wait until we are sure, wait until we have a plan, wait until after the holiday."
+    },
+    {
+      "type": "heading",
+      "text": "Recognising materiality"
+    },
+    {
+      "type": "paragraph",
+      "text": "The only question is whether a reasonable investor learning this would change a buy or sell decision. Percentage thresholds on profit or revenue are support tools only - some events are tiny in the numbers and completely change the view of the future, such as losing a licence in the market that carries the whole growth expectation."
+    },
+    {
+      "type": "heading",
+      "text": "Counting from the right moment"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The clock runs from when the event arose, not from when IR was told.",
+        "You cannot wait until a response plan exists - the plan is the next disclosure, not a precondition of the first one.",
+        "You cannot wait for a favourable trading session.",
+        "If the information is incomplete, disclose the part that is certain and say plainly which part is still being verified."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "When the price moves and the company has said nothing",
+      "text": "An unusually sharp move normally means information has got out through some channel. The first task is not a reassuring statement but a check for what has leaked - because if something has, the disclosure obligation arose before the price started moving."
+    },
+    {
+      "type": "heading",
+      "text": "When exactly the clock starts"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is where most mistakes happen, and it is not an ethical failure but an arithmetic one. The disclosure clock runs from when the event AROSE, not from when investor relations was informed, and not from when the leadership finished meeting to decide how to phrase it. A major contract is cancelled on Wednesday afternoon, accounting hears on Thursday, the executive team meets on Friday, the disclosure team is told the following Monday - four days of the deadline are gone before the person responsible knows there is anything to do. That is why the hard part of this job lives in the internal process, not in drafting the announcement."
+    },
+    {
+      "type": "callout",
+      "label": "You cannot wait for complete information",
+      "text": "A material event whose consequences are not yet fully known still has to be disclosed, together with exactly that: this has happened, the impact is being assessed, we will update when we know more. Waiting until the number is exact is the most common route to a late disclosure, and it sounds highly responsible - which is what makes it dangerous. Very few penalties come from saying something wrong; almost all come from saying it late."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "When the price moves and the company has said nothing",
+        "text": "An unusually sharp move normally means information has got out somehow. The first task is not to draft a denial but to check internally for a real leak - because if there is one, the silence is prolonging a period in which one group trades with an information advantage."
+      },
+      "right": {
+        "label": "Why silence is itself a statement",
+        "text": "When the market is asking and the company says nothing, people fill the gap with the worst assumption available. No comment is a legitimate choice, but it has a price - and that price rises with every day of silence."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "This job runs on two clocks: the legal one and the rumour one.",
+        "The second one always runs faster."
+      ]
+    }
+  ]
+}

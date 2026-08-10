@@ -1,0 +1,139 @@
+{
+  "slug": "ma-phong-thu-thau-tom-thu-dich",
+  "title": "Advanced M&A: Defensive tactics against a hostile takeover",
+  "subtitle": "Poison pill, White Knight, Golden Parachute - the board's defensive weapons when a takeover arrives uninvited",
+  "duration": "9 min",
+  "whyItMatters": "A hostile takeover is a scenario any listed company can face - understanding the defensive tactics helps you analyse complex M&A situations and judge the decisions the target's board makes.",
+  "openingQuestion": "A company is having its shares quietly accumulated on the market by an investment fund intending to take it over without negotiating with the board. What can the target's board do to protect itself?",
+  "openingOptions": [
+    "Nothing, because shares are freely tradable property on the market",
+    "A poison pill, finding a White Knight, or negotiating directly",
+    "Only sue the bidder in court",
+    "It must accept the deal if the offer price is above the market price"
+  ],
+  "explanation": "The board of a target company has several lawful defensive tools: a poison pill makes the deal more expensive and difficult for the bidder, a White Knight is a friendlier alternative buyer, or it can negotiate to improve the terms for existing shareholders. Whether to accept the deal depends on many factors, not simply on the offer price.",
+  "diagram": [
+    { "label": "Spot the signs of a hostile takeover (quiet share accumulation)" },
+    { "label": "Assess the defensive tools: poison pill / White Knight / negotiation" },
+    { "label": "Deploy the tactic that fits the long-term shareholder interest" }
+  ],
+  "realWorldExample": {
+    "company": "The poison pill in global M&A history",
+    "description": "The poison pill (formally a \"shareholder rights plan\") was developed in the early 1980s in the United States and became the most widely used defensive tool: when a shareholder crosses a set ownership threshold (say 15-20%) without board approval, the other shareholders gain the right to buy additional shares cheaply, materially diluting the bidder's stake and making the deal far more expensive."
+  },
+  "quiz": [
+    {
+      "question": "By what mechanism does a poison pill obstruct a hostile takeover?",
+      "options": [
+        "Trading in the shares is suspended by a decision of the board",
+        "Other shareholders buy cheap shares, diluting the bidder",
+        "The bidder is forced to pay twice the latest closing price",
+        "The target automatically merges with a competing company"
+      ],
+      "explanation": "The core mechanism of a poison pill is dilution: on triggering, existing shareholders (other than the bidder) gain the right to buy shares cheaply, sharply increasing the shares in issue and cutting the bidder's relative stake, which makes the takeover far more expensive than originally planned. A board cannot halt trading in its own shares, no rule doubles the offer price, and nothing merges automatically."
+    },
+    {
+      "question": "What is a White Knight in M&A defensive tactics?",
+      "options": [
+        "A legal adviser hired specifically to represent the target company",
+        "A convertible bond issued to raise defensive capital",
+        "A friendlier third-party buyer, sought out by the board itself",
+        "The largest existing shareholder of the company being taken over"
+      ],
+      "explanation": "A White Knight is the tactic of finding an alternative buyer that the board and shareholders regard as friendlier, or as offering better value than the original hostile bidder, creating a competing option for shareholders to choose from. It is a rival bidder, not an adviser, a security, or an existing holder of the stock."
+    },
+    {
+      "question": "Why do some investors criticise takeover defences such as the poison pill?",
+      "options": [
+        "Because they always breach the securities law in every single market",
+        "Because they always cut the share price immediately upon announcement",
+        "Because they only apply to private companies that are not yet listed",
+        "Because they can be used to protect the board's seats rather than shareholders"
+      ],
+      "explanation": "This is the central corporate governance argument: do these defences genuinely protect long-term shareholder interests, or do they protect the incumbent board's position instead (a form of conflict of interest, the agency problem) when they can block a deal shareholders would actually have supported at an attractive price."
+    },
+    {
+      "question": "Why might a board resist a takeover even when the offer is above the market price?",
+      "options": [
+        "Because they may lose their seats once the deal completes",
+        "Because shareholders may not sell their stakes in a takeover",
+        "Because a high offer always comes with unfavourable conditions",
+        "Because the law obliges the board to reject any hostile approach"
+      ],
+      "explanation": "This is the classic agency conflict: the people deciding to defend are not the people who benefit from the offer price. That is exactly why defensive tactics are always examined closely for whose interest they are actually serving. Shareholders are free to sell into a tender offer, a premium price does not by itself imply bad terms elsewhere, and no law requires a board to refuse a hostile approach - the duty runs the other way, towards considering it on its merits."
+    },
+    {
+      "question": "How does a staggered board make life difficult for a bidder?",
+      "options": [
+        "It forces the bidder to buy every single share in issue at once",
+        "Only part of the board can be replaced each year, stretching it over years",
+        "It lets the board issue additional shares without any limit",
+        "It requires every board decision to be approved by the minority shareholders first"
+      ],
+      "explanation": "Holding a majority of the shares while still not controlling the board means control is deferred for years. The cost of capital during that wait is usually enough to make the bidder give up. Note what a staggered board does not do: it does not force anyone to buy the whole company, it grants no power to issue shares freely - that is the poison pill - and it gives minority holders no veto over board decisions."
+    }
+  ],
+  "keyTakeaways": [
+    "A poison pill dilutes the bidder's stake once it crosses the set threshold, making the deal more expensive",
+    "A White Knight is the tactic of finding a friendlier alternative buyer",
+    "A golden parachute is a generous severance package for the board if it is dismissed after a takeover, which also raises the cost of the deal",
+    "Defensive tools can be abused to protect the board's position rather than shareholder interests - an important governance question to assess"
+  ],
+  "practicePrompt": {
+    "question": "By what mechanism does a poison pill work?",
+    "options": [
+      "It dilutes the bidder's ownership stake",
+      "It bans all trading in the company's shares",
+      "It automatically merges the company with another",
+      "It legally forces the bidder to pay twice the market price"
+    ],
+    "explanation": "A poison pill works by dilution, through preferential rights to buy shares granted to shareholders other than the bidder."
+  },
+  "summary": {
+    "keyIdea": "The board of a target company has several lawful defences against a hostile takeover (poison pill, White Knight, golden parachute), but using them always requires weighing the protection of shareholder interests against the risk of protecting the board's own positions",
+    "commonMistake": "Assuming every defensive tactic is automatically good for shareholders - in practice each case has to be judged on its own facts",
+    "action": "When analysing an M&A situation with a hostile element, always ask: does this defence serve long-term shareholder interests or the interests of the incumbent board?"
+  },
+  "application": {
+    "title": "Analyse a hostile takeover case",
+    "message": "When you read about a contested takeover, try to identify: which tactic the bidder is using (tender offer, proxy fight), and which defensive tool the target's board is answering with?",
+    "secondary": "This is a useful analytical exercise for anyone pursuing a career in M&A, investment banking, or corporate governance."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Not every M&A deal is the outcome of friendly negotiation - a hostile takeover is the scenario where the buyer approaches the shareholders directly, going around the incumbent board."
+    },
+    { "type": "heading", "text": "The poison pill: the most common defensive weapon" },
+    {
+      "type": "paragraph",
+      "text": "The poison pill triggers automatically when a party not approved by the board crosses a pre-set ownership threshold, usually 15-20%. At that point every other shareholder gains the right to buy additional shares at a deep discount, sharply increasing the shares in issue and seriously diluting both the bidder's stake and the economics of its bid."
+    },
+    { "type": "heading", "text": "The White Knight and the other alternatives" },
+    {
+      "type": "paragraph",
+      "text": "Faced with a hostile takeover, the board can go looking for a different buyer (a White Knight) judged to offer better terms for shareholders and/or a better fit in culture and long-term strategy. A golden parachute (a large severance package for executives dismissed after a takeover) also indirectly raises the cost of the deal, making it less attractive to the bidder."
+    },
+    {
+      "type": "callout",
+      "label": "The central corporate governance problem",
+      "text": "The biggest argument around defensive tools: do they really protect shareholder interests, or are they protecting the position and the personal interests of the incumbent board? This is a classic \"agency problem\" in corporate finance - where the interests of the managers (the board) do not fully coincide with those of the owners (the shareholders)."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Poison pill: dilutes the ownership stake once the threshold is crossed",
+        "White Knight: find a friendlier alternative buyer",
+        "Golden parachute: raise the cost of the deal through executive severance",
+        "Assess whether the defence serves shareholders or shields the board"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "M&A defence is one of the areas where corporate finance and corporate governance overlap most visibly.",
+        "In the next lesson we look at a pricing structure that appears in deals with an uncertain future: the earnout."
+      ]
+    }
+  ]
+}

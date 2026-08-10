@@ -1,0 +1,178 @@
+{
+  "slug": "project-tu-phan-bien-va-kiem-chung",
+  "title": "AI in Finance, Lesson 19: A small project - self-critique and verification",
+  "subtitle": "Making AI pick holes in its own draft before you use it.",
+  "duration": "16 min",
+  "whyItMatters": "The cost of ten minutes of critique is always smaller than the cost of a wrong conclusion you have already sent to someone else.",
+  "openingQuestion": "Why put an AI draft through a critique of its own?",
+  "openingOptions": [
+    "To find weak assumptions, unsourced figures and overreaching conclusions",
+    "To make the document longer",
+    "To skip over the risks",
+    "To let the AI itself carry responsibility for the final result"
+  ],
+  "explanation": "The first draft always reads smoothly, and that is exactly the problem: fluency hides the places where the evidence is thin. This final project adds a mandatory step before you use anything - have the AI play critic against its own draft, then verify the three most important figures yourself against the source document. This is the step that separates a draft from a finished product, and it costs ten extra minutes.",
+  "summary": {
+    "keyIdea": "The critique step is what turns an AI draft into something usable.",
+    "commonMistake": "Treating the first draft as the final one.",
+    "action": "Ask the AI to play a demanding critic and find 5 faults."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The first draft usually reads smoothly, but it may be missing sources or sound far too confident."
+    },
+    { "type": "heading", "text": "5 faults to look for" },
+    {
+      "type": "list",
+      "items": [
+        "Figures with no source",
+        "Units left unclear",
+        "Conclusions stated too strongly",
+        "Risks written down too lightly",
+        "Missing data that is not acknowledged"
+      ]
+    },
+    { "type": "heading", "text": "The critique prompt" },
+    {
+      "type": "paragraph",
+      "text": "Play the role of a demanding critic. Find the 5 weakest points in this memo. For each one, state why it is weak and what data would need to be added."
+    },
+    { "type": "heading", "text": "The final verification" },
+    {
+      "type": "paragraph",
+      "text": "Pick the 3 most important figures, open the source document and check them. If one is wrong, recheck the whole table."
+    },
+    {
+      "type": "callout",
+      "label": "The full critique prompt",
+      "text": "\"Below is a financial memo together with the source document. Play the role of a demanding critic. Find the 5 weakest points, ranked by severity. For each one give: the problematic sentence quoted verbatim | what the problem is (no source, wrong unit, conclusion beyond the evidence, risk understated, missing data not acknowledged) | what data would need to be added to fix it. Do not praise anything. If any figure in the memo does not match the source document, say so at the very top.\""
+    },
+    { "type": "heading", "text": "Five kinds of weakness and how to handle them" },
+    {
+      "type": "conceptTable",
+      "title": "What to look for and how to fix it",
+      "concepts": [
+        {
+          "def": "A figure with no page, unit or reporting period. Fix: look the source up and add it, or drop the figure."
+        },
+        {
+          "def": "A conclusion stronger than the data supports. Fix: lower the confidence of the wording, or add evidence."
+        },
+        {
+          "def": "A real risk phrased as a minor note. Fix: restate it with the figures and the specific impact."
+        },
+        {
+          "def": "A gap in the data that the write-up glosses over as if known. Fix: move it into a 'Missing data' section."
+        },
+        {
+          "def": "A judgement written as though it were a verified fact. Fix: separate it out and mark it 'my judgement'."
+        }
+      ]
+    },
+    { "type": "heading", "text": "The final verification - the step you never skip" },
+    {
+      "type": "list",
+      "items": [
+        "Pick the 3 figures the conclusion leans on most, not the 3 that are easiest to look up.",
+        "Open the source document and check all four things: the value, the unit, the reporting period, and consolidated versus parent-only.",
+        "If one figure is wrong, sweep every number in the write-up - do not just fix the one you found.",
+        "Log the error in your running notes, then add a matching constraint to your prompt template."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "That last step - feeding the error back as a constraint in the prompt - is what closes the loop for the whole stage. Without it, each critique rescues exactly one draft. With it, each critique improves every draft that follows."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Critique does not slow you down; it avoids expensive mistakes.",
+        "A good draft has to survive verification."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which step does an AI draft usually need before you use it?",
+      "options": [
+        "Cut it down to a single page",
+        "Polish the wording so it flows better",
+        "Add charts and illustrative tables",
+        "Challenge it and verify the sources"
+      ],
+      "explanation": "This is the step that turns a draft into something trustworthy. Shortening it, smoothing the prose or adding charts all make the draft more pleasant to read without making a single claim in it more likely to be true - and fluency is precisely what hides thin evidence. Presentation work belongs after verification, never instead of it."
+    },
+    {
+      "question": "If an important figure turns out not to match its source, what should you do?",
+      "options": [
+        "Recheck the entire related table",
+        "Note it as a figure you could not verify",
+        "Just fixing that one number is enough",
+        "Remove the figure from the memo"
+      ],
+      "explanation": "A sourcing error on one figure can signal that the extraction process itself has a problem. The other three responses all treat the symptom: fixing the single number leaves its neighbours unchecked, flagging it as unverified passes the doubt to the reader, and deleting it quietly removes the evidence that something went wrong in the first place."
+    },
+    {
+      "question": "Why open a fresh conversation when asking an AI to critique a draft?",
+      "options": [
+        "Because the AI will then use an even newer model version",
+        "Because in the same context, the critique goes soft",
+        "Because the old conversation got long and slow",
+        "Because each conversation can only do one job"
+      ],
+      "explanation": "The prior context creates pressure to stay consistent. Dropping the context and not saying who wrote the draft usually produces a noticeably sharper critique. Starting a new chat does not change which model version you get, speed is irrelevant to the quality of the criticism, and nothing limits a conversation to a single task."
+    },
+    {
+      "question": "By what criterion should you pick the 3 figures for the final verification?",
+      "options": [
+        "The three figures appearing first in the draft",
+        "The three largest figures in absolute terms",
+        "The three figures the conclusion leans on the most",
+        "The three figures the AI seemed least sure about"
+      ],
+      "explanation": "The point of verification is to protect the conclusion. Checking figures the conclusion does not depend on costs time without reducing any risk. Order of appearance is arbitrary, absolute size says nothing about influence on the argument, and a model's expressed uncertainty is not calibrated to where the real errors are."
+    },
+    {
+      "question": "The critique flags a claim with no evidence behind it. How many valid ways are there to handle it?",
+      "options": [
+        "Two: leave it for the reader to judge for themselves, or move it to an appendix",
+        "Three: add evidence, cut it, or label it as a personal judgement",
+        "One: soften the sentence so it no longer firmly asserts anything",
+        "Two: add evidence to support it, or cut the claim from the write-up"
+      ],
+      "explanation": "The other answers sound like reasonable compromises but in substance they keep the claim and shift the risk onto the reader. A judgement with nothing behind it is not made truer by a \"personal opinion\" label or by a softer tone - it merely becomes harder to challenge, which is exactly what the critique step exists to prevent."
+    }
+  ],
+  "diagram": [
+    { "label": "The draft" },
+    { "label": "AI critiques it: the 5 weakest points" },
+    { "label": "You verify the 3 most important figures yourself" },
+    { "label": "Fix or cut → a usable version" }
+  ],
+  "realWorldExample": {
+    "company": "Why you open a new conversation to run the critique",
+    "description": "If you ask for the critique inside the same conversation that just wrote the draft, the criticism tends to be gentle - the whole earlier argument is still in context and the model leans toward staying consistent with what it just wrote. The more effective approach is to open a new conversation, paste in the draft together with the source document, and say nothing about who wrote it. The critique is usually far sharper, because there is no pressure to defend an earlier argument. A small trick that makes a large difference to quality."
+  },
+  "keyTakeaways": [
+    "A critique step is mandatory before you use any draft written by an AI.",
+    "Open a new conversation for the critique - a critique inside the same context tends to be gentler.",
+    "After the critique, verify the three most important figures yourself against the source; if one is wrong, sweep them all.",
+    "For each weakness there are only two valid choices: add the evidence, or cut the claim."
+  ],
+  "practicePrompt": {
+    "question": "Why put an AI draft through a critique of its own?",
+    "options": [
+      "To find weak assumptions, unsourced figures and overreaching conclusions",
+      "To make the document longer",
+      "To skip over the risks",
+      "To let the AI take responsibility"
+    ],
+    "explanation": "The critique is what makes the draft more trustworthy."
+  },
+  "application": {
+    "title": "Practise it now",
+    "message": "Ask the AI to play a demanding critic and find 5 faults.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

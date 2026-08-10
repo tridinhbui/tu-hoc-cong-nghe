@@ -3,6 +3,7 @@
   "title": "AI in Finance, Lesson 2: what AI can do and what it cannot",
   "subtitle": "Draw the boundary correctly and you use AI without illusions.",
   "duration": "12 min",
+  "whyItMatters": "Most accidents involving AI in finance do not come from the AI being weak, but from handing it work it was never designed to do.",
   "openingQuestion": "Which statement best describes AI in finance?",
   "openingOptions": [
     "AI helps you read, filter and draft; the user still has to verify everything",
@@ -104,7 +105,7 @@
       "question": "Why can AI write an analysis that reads convincingly and still get the figures wrong?",
       "options": [
         "Because AI optimises for plausible language, not for reconciliation",
-        "Because AI deliberately errs so that the user is forced to check it",
+        "Because AI deliberately errs so the user is forced to check",
         "Because AI always misses the final page of the source document",
         "Because AI is only ever trained on English-language material"
       ],

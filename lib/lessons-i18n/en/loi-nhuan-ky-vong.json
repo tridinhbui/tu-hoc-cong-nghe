@@ -27,7 +27,7 @@
       "options": [
         "Because it's a long-run average, not a figure for any single year",
         "Because the initial probability estimates are almost always wrong",
-        "Because the formula always contains some fixed rounding error",
+        "Because the formula always contains some fixed rounding error inside",
         "Because inefficient markets mean prices misprice risk"
       ],
       "explanation": "An expectation of 8% means an average across many repetitions. On any single occasion, you might get 20% or lose 10%. The spread around the expected value is exactly what risk is."
@@ -37,7 +37,7 @@
       "options": [
         "The total return a portfolio achieved during the year",
         "The excess return divided by the standard deviation",
-        "The standard deviation divided by the excess return",
+        "The standard deviation divided by the excess return earned",
         "The probability a portfolio loses money in any given year"
       ],
       "explanation": "Sharpe Ratio = (portfolio return − the risk-free rate) / standard deviation. It measures the return earned per unit of risk taken on. A higher Sharpe means greater efficiency."

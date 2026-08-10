@@ -39,7 +39,7 @@
         "A snapshot at one point in time: Assets = Liabilities + Equity",
         "A profit report for the whole period, from revenue down to net income",
         "A cash-flow report for the period, split into three activity groups",
-        "A list of assets valued at their current market price"
+        "A list of the company's assets valued at their current market price"
       ],
       "explanation": "Balance Sheet: Assets = Liabilities + Equity. As of 31/12, all assets and where they came from."
     },
@@ -48,7 +48,7 @@
       "options": [
         "Because it balances revenue against costs to find the period's profit",
         "Because A = L + E must always balance; if it doesn't, that's an error or fraud",
-        "Because it balances all cash inflows against all outflows recorded within the same reporting period",
+        "Because it balances cash inflows against outflows in the period",
         "Because the left and right columns always list the same number of rows"
       ],
       "explanation": "The word 'balance' means being in equilibrium. A Balance Sheet must balance, or there's an accounting error."
@@ -57,7 +57,7 @@
       "question": "What's the difference between the Balance Sheet and the P&L?",
       "options": [
         "The Balance Sheet covers the whole period; the P&L only captures its final day",
-        "The Balance Sheet uses market prices, the P&L uses historical cost",
+        "The Balance Sheet uses market prices, while the P&L uses only historical cost",
         "The Balance Sheet is at one point in time; the P&L is over a span of time",
         "The Balance Sheet is internal only; the P&L is the only report disclosed publicly"
       ],
@@ -68,7 +68,7 @@
       "options": [
         "It's normal - small gaps are always acceptable due to rounding",
         "The company is losing money, so equity has gone negative",
-        "The company has off-balance-sheet debt, and the gap is exactly that unrecorded debt",
+        "The company has off-balance-sheet debt equal to the gap",
         "A bookkeeping error or fraud - the accounting identity must hold"
       ],
       "explanation": "A Balance Sheet must balance. If it doesn't, that's a bookkeeping error or financial fraud."
@@ -78,7 +78,7 @@
       "options": [
         "Net Income adds into Retained Earnings within shareholders' equity",
         "Net Income adds straight into Cash, since profit is money the company collects",
-        "It's unrelated - the two statements are prepared independently",
+        "It's unrelated - the two statements are prepared from separate books",
         "Net Income reduces Liabilities, since profit is used to pay down debt first"
       ],
       "explanation": "If NI is 100 million this year, Retained Earnings rises by 100 million (minus any dividend paid). The P&L and Balance Sheet connect through Retained Earnings."
@@ -86,9 +86,9 @@
     {
       "question": "Why do investors look at the Balance Sheet?",
       "options": [
-        "Only to calculate the income tax owed",
+        "Only to calculate the income tax the company owes this year",
         "To understand the capital structure: debt, equity, and asset quality",
-        "To know whether the company is profitable, since profit sits inside equity",
+        "To see if the company is profitable, since profit sits in equity",
         "To forecast next year's revenue based on the current asset base"
       ],
       "explanation": "The Balance Sheet shows: is the company over-leveraged, does it have cash, are its assets healthy, is equity sufficient."
@@ -117,7 +117,7 @@
       "question": "To compare a company's financial position this year with last year, what should you check?",
       "options": [
         "Compare two years of Balance Sheets: how Assets, Equity, and leverage have changed",
-        "Only the P&L, since comparing two years of profit is enough to see the full picture",
+        "Only the P&L, since comparing two years of profit shows the full picture",
         "Only Cash Flow, since cash is the only thing accounting cannot distort",
         "It can't be compared, since a Balance Sheet is only valid on its reporting date"
       ],
@@ -126,10 +126,10 @@
     {
       "question": "If Assets grow but mostly from Goodwill (from acquiring a company), is that good or bad?",
       "options": [
-        "Very good - Goodwill is always the single most valuable intangible asset on the entire balance sheet",
+        "Very good - Goodwill is always the most valuable intangible asset a company owns",
         "A warning sign - Goodwill generates no cash flow and may later require an impairment write-down",
-        "Irrelevant - Goodwill is just a technical accounting entry",
-        "Good - high Goodwill shows the company bought a strong brand cheaply"
+        "Irrelevant - Goodwill is just a technical accounting entry with no real effect",
+        "Good - high Goodwill shows the company bought a strong brand at a cheap price"
       ],
       "explanation": "High Goodwill means an overpaid acquisition. If the M&A fails, an impairment loss hits next year's P&L, cutting Net Income."
     },

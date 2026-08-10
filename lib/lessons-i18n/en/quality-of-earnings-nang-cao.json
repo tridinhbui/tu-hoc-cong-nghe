@@ -37,7 +37,7 @@
         "Normal: FCF is always below profit everywhere",
         "A warning: profit is not converting into real cash",
         "Positive: the company invests heavily for growth",
-        "Meaningless: the two measure two different things"
+        "Meaningless: the two measure two quite different things"
       ],
       "explanation": "A persistent gap between net income and FCF is one of the most important earnings quality signals there is - it suggests reported profit may be inflated by revenue recognised early, provisions released, or working capital absorbing more and more without generating actual cash."
     },

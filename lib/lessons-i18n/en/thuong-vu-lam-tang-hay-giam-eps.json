@@ -1,0 +1,168 @@
+{
+  "slug": "thuong-vu-lam-tang-hay-giam-eps",
+  "title": "Deals, Lesson 1: Accretion or dilution - the first calculation of every transaction",
+  "subtitle": "The three costs of a deal, the P/E rule for all-stock transactions, and why it is not a measure of value",
+  "duration": "12 min",
+  "whyItMatters": "This is the opening question of almost every technical interview for an M&A role, and it is also the first calculation a buyer runs when weighing up a target. It does not tell you whether the deal creates value, but it decides whether the deal ever reaches the board.",
+  "openingQuestion": "An all-stock deal: the buyer trades at a P/E of 20, the seller at 15. What happens to EPS?",
+  "openingOptions": [
+    "Dilutive, because issuing new shares always reduces the buyer's earnings per share",
+    "Accretive, because the buyer is buying earnings more cheaply than its own",
+    "Unchanged, because the two are combined in proportion to their relative values",
+    "Impossible to say without knowing the revenue of each of the two companies"
+  ],
+  "explanation": "In an all-stock deal the rule is compact: a buyer with the higher P/E gets accretion, a buyer with the lower P/E gets dilution. The intuition is that you are paying 15 for every unit of earnings you acquire, while the market is paying 20 for every unit of your own. Note the condition: this rule only holds for all-stock deals. Pay in cash or with debt and the two P/E ratios stop being relevant, because no shares are issued at all.",
+  "diagram": [
+    { "label": "The seller's earnings are added in" },
+    { "label": "Subtract new interest expense and forgone deposit interest" },
+    { "label": "Divide by the new share count" },
+    { "label": "Compare new EPS against old EPS" }
+  ],
+  "realWorldExample": {
+    "company": "Why a good deal can still be dilutive",
+    "description": "The buyer targets a fast-growing company whose current earnings are still thin, so the seller's P/E is very high. The deal dilutes EPS in year one, and if the board looks only at that number it gets rejected. But most of the target's value sits in the cash flows of later years, which a year-one EPS calculation cannot see. This is why technology acquisitions are almost always dilutive at announcement, and why management has to present the year in which the deal breaks even on EPS rather than just the first-year figure."
+  },
+  "quiz": [
+    {
+      "question": "What are the three sources of EPS reduction for a buyer in a deal?",
+      "options": [
+        "Advisory fees payable to the investment bank, legal fees and taxes triggered at closing",
+        "Interest on new debt, forgone interest on cash used, and newly issued shares",
+        "Goodwill recognised on the balance sheet, post-merger restructuring costs and legal provisions",
+        "Currency movements, the cost of integrating IT systems and retention bonuses for key staff"
+      ],
+      "explanation": "The three map onto the three ways of paying: borrowing, spending cash on hand, and issuing shares. One-off fees are real but are usually stripped out when adjusted EPS is calculated, goodwill is a balance sheet entry rather than a charge against earnings, and integration and retention costs are treated as exceptional items rather than as part of the underlying accretion maths."
+    },
+    {
+      "question": "Why does the P/E comparison rule only apply to all-stock deals?",
+      "options": [
+        "Because the seller's P/E can only be established reliably when the deal is settled in shares",
+        "Because regulators only require a P/E disclosure in share exchanges between listed companies",
+        "Because paying in cash or debt issues no new shares, so the two P/E ratios stop mattering",
+        "Because a cash deal is always accretive, so no comparison of any kind needs to be made"
+      ],
+      "explanation": "In a cash deal the right comparison is between the after-tax yield on the cash or debt given up and the seller's earnings yield, not between two P/E ratios. The seller's P/E is observable regardless of how the deal is paid for, no disclosure rule creates the restriction, and a cash deal is only accretive when the earnings yield acquired beats the after-tax cost of the cash."
+    },
+    {
+      "question": "Why is accretion not the same thing as value creation?",
+      "options": [
+        "Because post-deal EPS is only fixed once the first financial year has been audited",
+        "Because EPS follows accounting standards and so is not used by institutional investors",
+        "Because the seller's earnings always have to be restated onto the buyer's accounting policies",
+        "Because EPS reflects year-one accounting profit and says nothing about price paid versus value received"
+      ],
+      "explanation": "Overpaying badly for a company can still raise EPS if the deal is funded with cheap debt. EPS measures an accounting effect, not the gap between the price paid and the value received. Auditing does not change the arithmetic, institutional investors watch EPS closely, and accounting policy alignment shifts the figure at the margin rather than determining whether value was created."
+    },
+    {
+      "question": "What does the EPS break-even point of a deal mean?",
+      "options": [
+        "The year in which post-deal EPS matches or beats what the buyer would have earned standalone",
+        "The point at which the debt raised to fund the transaction has been fully repaid",
+        "The purchase price at which the deal leaves the buyer's earnings per share unchanged",
+        "The year in which realised synergies match the number promised to the market"
+      ],
+      "explanation": "For deals that are dilutive at the outset, this is the figure management has to present alongside the first-year dilution, otherwise the board sees only half the picture. Debt repayment is a financing milestone rather than an earnings one, the break-even purchase price is a different calculation entirely, and synergy delivery is tracked separately from the EPS bridge."
+    },
+    {
+      "question": "Why can a deal that raises EPS still destroy value?",
+      "options": [
+        "Because EPS only rises in the first year and then falls back in the years after that",
+        "Because EPS takes no account of the price paid or of the risk the balance sheet absorbs",
+        "Because the EPS uplift from synergies is essentially never actually achieved in practice",
+        "Because post-merger EPS is calculated from figures that have not yet been audited"
+      ],
+      "explanation": "A ratio can improve simply because you used cheap debt to buy earnings. It says nothing about how far above intrinsic value you paid, or what risk the balance sheet has just absorbed - which is why this is the first calculation, not the deciding one. Synergies are often partly delivered, the uplift does not mechanically reverse, and audit status has no bearing on the arithmetic."
+    }
+  ],
+  "keyTakeaways": [
+    "Three sources of dilution: interest on new debt, forgone interest on cash, and newly issued shares",
+    "All-stock deal: the buyer with the higher P/E gets accretion, the lower P/E gets dilution",
+    "The P/E rule does not apply to cash or debt deals - there you compare yields, not multiples",
+    "Accretion is not value creation: overpaying can still be accretive if the debt is cheap enough",
+    "A deal dilutive in year one must be presented together with its EPS break-even year"
+  ],
+  "practicePrompt": {
+    "question": "The buyer pays entirely in cash currently earning 4% a year on deposit. The seller's earnings yield (E/P) is 6%. Is the deal accretive or dilutive?",
+    "options": [
+      "Dilutive, because the cash balance goes down",
+      "Accretive, because the 6% of earnings acquired exceeds the after-tax deposit interest given up",
+      "Unchanged, because no shares are issued",
+      "You need the buyer's P/E before you can answer"
+    ],
+    "explanation": "This is the right comparison for a cash deal: what you give up is after-tax deposit interest, what you gain is the seller's earnings, and the share count is unchanged so the whole difference lands in EPS. The buyer's P/E plays no part in the calculation because no shares are issued - which is exactly the trap in the last option."
+  },
+  "summary": {
+    "keyIdea": "EPS measures the accounting effect of how you paid, not the value the deal creates",
+    "commonMistake": "Applying the P/E comparison rule to deals paid for in cash",
+    "action": "Take a hypothetical deal and calculate new EPS in three steps: add the earnings, subtract the funding cost, divide by the new share count."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take two real listed companies and assume one buys the other at a 30% premium. Work out the EPS outcome in three scenarios: all cash, all debt at 8%, and all stock. The three numbers will differ substantially at the same purchase price.",
+    "secondary": "That spread is exactly why the payment structure is negotiated as fiercely as the price itself."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The IB & Analysis stage taught you why to buy, who to buy and what to pay with. This stage starts at the calculation a buyer runs the moment those three answers exist, and the one an interviewer asks first."
+    },
+    { "type": "heading", "text": "Three costs, matching the three ways of paying" },
+    {
+      "type": "conceptTable",
+      "title": "What pushes EPS down",
+      "subtitle": "Each payment method carries exactly one kind of cost",
+      "concepts": [
+        {
+          "vi": "Trả bằng nợ vay",
+          "en": "Debt",
+          "def": "Creates after-tax interest expense. The right comparison: the after-tax borrowing rate against the seller's earnings yield."
+        },
+        {
+          "vi": "Trả bằng tiền mặt",
+          "en": "Cash",
+          "def": "You give up the deposit interest you were earning, also measured after tax. Usually the cheapest route when deposit rates are low."
+        },
+        {
+          "vi": "Trả bằng cổ phiếu",
+          "en": "Stock",
+          "def": "New shares are issued so the denominator rises. This is where the P/E comparison rule applies, and only here."
+        }
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "EPS after the deal",
+      "equation": "New EPS = (Buyer earnings + Seller earnings − After-tax interest on new debt − After-tax forgone deposit interest) ÷ (Existing shares + Newly issued shares)",
+      "variables": [
+        {
+          "symbol": "Earnings",
+          "name": "Profit after tax",
+          "description": "Take each side's standalone profit before combining them"
+        },
+        {
+          "symbol": "Shares",
+          "name": "Shares outstanding",
+          "description": "Only rises when part of the consideration is paid in stock"
+        }
+      ],
+      "example": {
+        "title": "A quick check",
+        "calculation": "If the numerator grows faster than the denominator in percentage terms",
+        "result": "EPS rises",
+        "explanation": "The whole problem reduces to comparing the growth rate of the numerator against that of the denominator - which is also the intuition behind the P/E rule."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Why the metric survives even though everyone knows its limits",
+      "text": "EPS does not measure value, and people in the industry know that perfectly well. It is still the first number anyone looks at because the market reacts to it, because management bonuses are often tied to it, and because it can be calculated in minutes before any detailed model exists. Understanding its role correctly - a quick filter, not a conclusion - is what separates an analyst from someone running formulas."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Accretion is what gets a deal onto the table, not proof that it is worth doing.",
+        "The next lesson takes up the question that comes immediately before it: where does the money to pay for this deal come from."
+      ]
+    }
+  ]
+}

@@ -11,7 +11,6 @@
     "Yes, provided you disclose your participation to clients",
     "No, never, because this is a conflict of interest"
   ],
-  "correctOption": 1,
   "explanation": "The first question is not whether you may take part, but whether this opportunity belongs to clients. If it fits the investment objectives of one or more clients you serve, Standard VI(B) puts them ahead of you - even where the invitation names you personally, because you received it through your professional position rather than in a personal capacity. Small size is no reason to exclude clients: the correct handling is pro rata allocation under the existing process, not concluding that because there is not enough to go round you may as well take it. Only where the opportunity genuinely suits no client at all does your turn come - and even then it must be disclosed under VI(A) if it could affect your later recommendations.",
   "summary": {
     "keyIdea": "The first question is not whether you may buy, but whether this opportunity belongs to clients.",
@@ -88,10 +87,21 @@
     }
   ],
   "diagram": [
-    { "label": "Question 1: does this opportunity belong to clients", "arrow": true },
-    { "label": "If so: VI(B) puts clients ahead of you", "arrow": true },
-    { "label": "Small size means pro rata allocation, not exclusion", "arrow": true },
-    { "label": "If it suits no client: your turn comes, with disclosure" }
+    {
+      "label": "Question 1: does this opportunity belong to clients",
+      "arrow": true
+    },
+    {
+      "label": "If so: VI(B) puts clients ahead of you",
+      "arrow": true
+    },
+    {
+      "label": "Small size means pro rata allocation, not exclusion",
+      "arrow": true
+    },
+    {
+      "label": "If it suits no client: your turn comes, with disclosure"
+    }
   ],
   "realWorldExample": {
     "company": "Why \"the invitation named me personally\" is not an argument",
@@ -101,7 +111,7 @@
     {
       "question": "What is the first question when a private investment opportunity arrives?",
       "options": [
-        "Whether the amount exceeds the threshold",
+        "Whether the amount exceeds the firm's reporting threshold",
         "Whether this opportunity suits any of your clients",
         "Whether the invitation names you or the firm",
         "Whether you have the personal capital to take part"
@@ -123,7 +133,7 @@
       "options": [
         "Pass on the opportunity to avoid any allocation dispute",
         "Keep it for the personal account, since it will not divide",
-        "Give priority to the clients with the largest assets",
+        "Give priority to the clients with the largest assets under management",
         "Allocate pro rata under the process established in advance"
       ],
       "explanation": "This is exactly the situation Standard III(B) was written for, and the process has to exist before anyone knows who benefits."

@@ -1,0 +1,151 @@
+{
+  "slug": "cfa-ethics-standard-5-deep-dive",
+  "title": "CFA Ethics 7: Ethics in investment research - Standard V in detail",
+  "subtitle": "Diligence, Reasonable Basis and Communication - the three pillars of a research report anyone can trust",
+  "duration": "9 min",
+  "whyItMatters": "Standard V (Investment Analysis, Recommendations, and Actions) shapes the day-to-day quality of an analyst's work directly. Understanding it properly lets you judge for yourself whether a research report - your own or someone else's - meets professional ethical standards.",
+  "openingQuestion": "An analyst writes a 'Strong Buy' report on a stock but never mentions the major legal risk the company is facing, even though the analyst knows about it, for fear of worrying the client into not buying. What has been breached?",
+  "openingOptions": [
+    "Nothing, provided the stock does end up rising in price afterwards",
+    "Standard V(B) - material risks must be disclosed, not filtered out",
+    "It is only a breach if that risk has already been reported in the press",
+    "Standard III, since a client is involved and Standard V is not engaged"
+  ],
+  "explanation": "This is a direct breach of Standard V(B) - Communication. An analyst must present the full basis of the analysis, including material risk factors, and may not cherry-pick only the favourable information in order to steer a client toward the conclusion the analyst prefers. Hiding a known risk because it might discourage a purchase is a serious failure of transparency.",
+  "diagram": [
+    { "label": "V(A) Diligence & Reasonable Basis" },
+    { "label": "V(B) Communication - full transparency" },
+    { "label": "V(C) Record Retention - keep the evidence behind the analysis" }
+  ],
+  "realWorldExample": {
+    "company": "The research reports that failed investors before the 2008 financial crisis",
+    "description": "Many credit ratings and investment research reports published before the 2008 global financial crisis were later criticised for lacking a reasonable basis (the spirit of Standard V-A) on complex structured products, and for failing to communicate the embedded risks to investors (the spirit of Standard V-B). Many of those cases fell outside CFA Institute's disciplinary reach, but they remain the classic illustration of what happens when Standard V is treated lightly across an entire market."
+  },
+  "quiz": [
+    {
+      "question": "What does Standard V(A) - Diligence and Reasonable Basis - actually require when it asks for a 'reasonable basis' behind a recommendation?",
+      "options": [
+        "Quoting one other expert's opinion is enough, with no analysis of your own",
+        "The research must be proportionate to how bold the recommendation is",
+        "It is enough if the recommendation simply sounds intuitively right",
+        "There is no standard at all; it rests entirely on personal judgement"
+      ],
+      "explanation": "'Reasonable basis' has no fixed formula, but the governing principle is proportionality: the depth of research must match the complexity of the instrument and how far the call departs from market consensus. A 'Strong Sell' on a widely loved blue chip demands a far sturdier evidence base than a call that simply follows the crowd. Borrowing one expert's view is not analysis, intuition is not evidence, and the idea that no standard exists is precisely what Standard V(A) was written to reject."
+    },
+    {
+      "question": "An analyst uses a complex third-party valuation model without understanding how it works, simply taking its output into a recommendation. Is that a breach of Standard V(A)?",
+      "options": [
+        "Never a breach as long as the tool comes from an outside vendor",
+        "No, because a model from a reputable source always gives reliable output",
+        "Possibly - you must understand it well enough to vet the output",
+        "It is a breach only if the model charges an annual licence fee"
+      ],
+      "explanation": "Standard V(A) does not forbid third-party tools, but it does require the analyst to understand the methodology, assumptions and limits well enough to appraise the output critically rather than copy it out of a black box. Diligence extends to the instruments of the analysis, not just its conclusions. A vendor's reputation is not a substitute for your own review, the price of a licence has nothing to do with the duty, and 'someone else built it' has never transferred responsibility for what you publish."
+    },
+    {
+      "question": "What does Standard V(C) - Record Retention - require of an analyst, and why does it matter ethically?",
+      "options": [
+        "Standard V sets out no specific record-keeping requirement at all",
+        "It applies only to listed firms, never to an individual analyst",
+        "Only client emails need keeping, not the underlying analysis data",
+        "Keep the records and data showing the recommendation had a basis"
+      ],
+      "explanation": "Standard V(C) requires retaining the records that support investment analysis and recommendations. The deeper ethical point is that those records are the concrete evidence that Standard V(A) was genuinely met rather than merely asserted: if a call is questioned months later by a client, a regulator or a compliance officer, the analyst has to be able to reconstruct the original basis. Correspondence alone cannot do that, the duty attaches to the individual professional, and it is anything but unspecified."
+    },
+    {
+      "question": "An analyst makes a recommendation on sound data and reasoning at the time, but the investment then goes badly because of an event nobody could have foreseen. Has Standard V been breached?",
+      "options": [
+        "No - Standard V judges the decision process, not the outcome",
+        "Only if the analyst apologises to the client in writing",
+        "Always a breach when a client loses money, whatever the reason",
+        "Yes, any recommendation that later turns out wrong is a breach"
+      ],
+      "explanation": "This is the point most often misread. Standard V asks whether the decision process was reasonable given the information available at the time; it does not grade the analyst on hindsight. An analyst who fully satisfies V(A) can still be wrong when something unforeseeable happens - that is ordinary investment risk, not misconduct. Treating every loss as a breach would make the standard unmeetable, and an apology, however gracious, changes nothing about whether the original work was diligent."
+    },
+    {
+      "question": "An analyst relies on a third party's research findings inside their own report. What does Standard V require?",
+      "options": [
+        "Cite the source of the research in the report footnotes",
+        "Vet the research and check it is sound before relying on it",
+        "Obtain written permission from the firm that produced the research",
+        "Only use research produced by organisations holding a licence"
+      ],
+      "explanation": "Attribution solves a plagiarism problem; it does nothing for the reasonable-basis problem. Once you carry someone else's conclusion into your own report, you own that conclusion, so you must understand and test the method behind it even though another person did the work. Permission from the originating firm is a copyright or contract matter rather than an ethical one, and there is no licensing regime that certifies research as safe to borrow unexamined."
+    }
+  ],
+  "keyTakeaways": [
+    "Standard V(A) demands research proportionate to how complex a call is and how far it departs from market consensus",
+    "Third-party models and tools still require enough understanding of the methodology to vet them; never treat one as a black box",
+    "Standard V(B) requires full disclosure, including unfavourable information - selecting only the flattering facts is a breach",
+    "Standard V(C) record retention is the concrete evidence that a reasonable basis genuinely existed, not a filing formality",
+    "Standard V judges the reasonableness of the PROCESS at the moment of the decision, never the outcome seen in hindsight"
+  ],
+  "practicePrompt": {
+    "question": "Which statement matches what this lesson taught?",
+    "options": [
+      "Any investment recommendation that later goes the wrong way is automatically a breach of Standard V, whatever the analysis behind it",
+      "Standard V judges whether the analysis process was reasonable at the time of the decision, not by looking back at the outcome",
+      "Using a third-party valuation model always removes the duty to vet it, since a reputable vendor has already done that work",
+      "Standard V(C) requires keeping only the emails exchanged with clients, and never the analysis data behind a recommendation"
+    ],
+    "explanation": "Standard V measures the reasonableness of the analysis process at the moment the decision was made, not the outcome viewed in hindsight. A well-founded call can still lose money, and a lucky guess with no basis behind it is still a breach. That is also why V(A) keeps the duty to vet a third-party model with you, and why V(C) asks for the analysis data itself rather than a folder of client correspondence."
+  },
+  "summary": {
+    "keyIdea": "Standard V sets the bar for the whole investment analysis process: research deep enough, communicate fully and transparently, and retain the evidence - judged on process, never on hindsight",
+    "commonMistake": "Calling a recommendation 'unethical' simply because it turned out badly, instead of asking whether the analysis process was reasonable at the time the decision was made.",
+    "action": "When you appraise a research report, ask three questions: is the research proportionate to the call, is the unfavourable information disclosed in full, and is there retained evidence behind it?"
+  },
+  "application": {
+    "title": "Appraise a research report yourself",
+    "message": "Next time you read an investment recommendation - from a brokerage or an online commentator - apply the Standard V frame: does it present the risks and not just the upside? Is the analytical basis explained, or does it simply hand you a conclusion?",
+    "secondary": "This is critical-reading skill that matters to anyone consuming investment information, not only to professional analysts."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Standard V - Investment Analysis, Recommendations, and Actions - is the standard that shapes an analyst's daily work most directly: how you research, how you communicate, and how you preserve the evidence behind your own recommendation."
+    },
+    { "type": "heading", "text": "V(A): 'reasonable basis' is not a fixed bar" },
+    {
+      "type": "paragraph",
+      "text": "The amount of research needed for a 'reasonable basis' is not the same for every recommendation. The governing principle: the further a call departs from market consensus and the bolder it is, the sturdier the analytical foundation has to be. A 'Hold' that runs with the broad market trend does not need the level of proof required for a 'Strong Sell' on a stock most investors currently love."
+    },
+    { "type": "heading", "text": "Third-party tools: never a black box" },
+    {
+      "type": "paragraph",
+      "text": "In an era where valuation models, AI and automated analytics are everywhere, Standard V(A) imposes an important requirement: the analyst must understand the methodology, assumptions and limits of any tool well enough to appraise its output critically. You cannot treat a tool as a black box and copy out its result without grasping what it is doing."
+    },
+    { "type": "heading", "text": "V(B): Communication - transparent about the bad news too" },
+    {
+      "type": "paragraph",
+      "text": "Communicating with a client is not merely a matter of telling the truth; it means telling the WHOLE truth, including the risks and limitations that might give the client pause. Filtering down to the favourable facts in order to steer the client where you want them to go remains a serious transparency breach, even when the motive is kindly - a wish not to alarm them."
+    },
+    {
+      "type": "callout",
+      "label": "The distinction that matters: process vs. outcome",
+      "text": "One of the most common misreadings of Standard V is to judge a breach by what happened afterwards - whether the investment made or lost money - instead of asking whether the analysis PROCESS was reasonable when the decision was made. A well-founded, fully transparent recommendation can still be wrong because of something nobody could foresee. That is ordinary investment risk, not an ethical violation."
+    },
+    { "type": "heading", "text": "V(C): record retention - evidence, not paperwork" },
+    {
+      "type": "paragraph",
+      "text": "Retaining research records is not simply an administrative chore. It is the mechanism that makes Standard V(A) PROVABLE when it needs to be: if a recommendation is questioned later - by a client, a regulator or the firm itself - the analyst must be able to lay out the original basis again rather than fall back on memory or bare assertion."
+    },
+    {
+      "type": "list",
+      "items": [
+        "V(A): research depth must be proportionate to the complexity of the call and its distance from consensus",
+        "V(A) extended: understand the methodology of a third-party tool well enough to vet it; never use one as a black box",
+        "V(B): full transparency, unfavourable information included - no selecting only the positives",
+        "V(C): record retention is concrete evidence, not a procedural formality",
+        "Judge a breach by the reasonableness of the process at the time of the decision, never by hindsight"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Standard V is the compass for anyone who analyses and recommends - not only the professional analyst, but also the self-taught investor working for their own account.",
+        "In the next lesson we finish the deep-dive case study series with Standards VI and VII."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "slug": "cfa-ethics-standard-6-conflict-of-interest-ma",
+  "title": "CFA Ethics 12: Standard VI - conflicts of interest in M&A advisory",
+  "subtitle": "When an investment bank advises both the buyer and the seller - or something worse",
+  "duration": "8 min",
+  "whyItMatters": "M&A carries the densest concentration of conflicts of interest anywhere in corporate finance. Understanding Standard VI lets you spot the situations that look like \"just how deals work\" but are in fact serious ethical lines.",
+  "openingQuestion": "An investment bank has just delivered a valuation opinion for the seller in an M&A transaction, while an investment fund affiliated with that same bank wants to buy the very company being sold. What is this under Standard VI?",
+  "openingOptions": [
+    "No issue - these are two separate divisions of the same group",
+    "A serious conflict of interest, needing disclosure and a wall",
+    "It is only a problem if the two sides find out about it later",
+    "Reasonable, because it helps the deal complete more quickly"
+  ],
+  "explanation": "This is the textbook case of a structural conflict of interest. Standard VI(A) requires the conflict to be fully disclosed to the seller, and many institutions build a \"Chinese wall\" - a strict information barrier between the M&A advisory side and the investing side - to reduce the risk of bias, although such a barrier is not always enough to dispel the doubt entirely.",
+  "diagram": [
+    { "label": "Identify every party with an interest in the deal" },
+    { "label": "Assess the conflict: is there an incentive to be biased?" },
+    { "label": "Full disclosure plus a Chinese wall where needed" }
+  ],
+  "realWorldExample": {
+    "company": "The \"Chinese wall\" structure at full-service investment banks",
+    "description": "Large investment banks typically run an M&A advisory business alongside proprietary trading and asset management. To contain the conflict they build strict information barriers (Chinese walls) between the units - limiting how deal information is shared, and monitoring cross-unit trading. How well those barriers work in practice is still argued over constantly within the industry, particularly where the profit incentives of the different units are not fully separated."
+  },
+  "quiz": [
+    {
+      "question": "What is a \"Chinese wall\" in the M&A context, and what is it mainly for?",
+      "options": [
+        "A legal clause that every M&A contract is required to contain",
+        "An extra fee an investment bank charges on cross-border deals",
+        "An internal information barrier between conflicted divisions",
+        "A clause limiting the buyer's access to the seller's books"
+      ],
+      "explanation": "A Chinese wall is an internal apparatus - policies, systems, surveillance - that restricts the flow of information between units whose interests may conflict, in order to protect objectivity and prevent misuse of inside information. It is not a contractual term the parties negotiate, it is not a charge that appears on a fee schedule, and it has nothing to do with what the buyer is allowed to see during due diligence."
+    },
+    {
+      "question": "Why does Standard VI insist on disclosing a conflict even when the firm already has a Chinese wall?",
+      "options": [
+        "Because a Chinese wall carries no binding legal force at all",
+        "Because a Chinese wall works only for firms listed on an exchange",
+        "Because disclosure is a legal formality with no ethical content",
+        "Because a wall is internal; it cannot replace the client's right to know"
+      ],
+      "explanation": "Disclosure and internal controls complement each other rather than substitute for one another. The client is entitled to know a potential conflict exists so they can form their own judgement, whatever mitigation the firm has built. The wall does have real force inside the firm and applies regardless of listing status - and treating disclosure as an empty legal box is precisely the attitude Standard VI exists to correct."
+    },
+    {
+      "question": "In an M&A transaction, an adviser spots a conflict of interest partway through rather than at the outset. What does Standard VI require?",
+      "options": [
+        "Disclose the moment you find it - timeliness matters as much as content",
+        "Carry on to the signing, since stopping the deal halfway is simply not practical",
+        "Make a note and report it once the deal has completely closed",
+        "Cancel the entire deal immediately, in every case that arises"
+      ],
+      "explanation": "Standard VI stresses timely disclosure - as soon as the conflict is identified, not at the end of the process. Late disclosure destroys most of the value of disclosing at all, because the client may already have taken major decisions on incomplete information. Nor does the Standard demand that the deal be abandoned: managing and disclosing a conflict is the normal remedy, and abandonment would be a wildly disproportionate one."
+    },
+    {
+      "question": "Why must a conflict still be disclosed once an information wall is in place?",
+      "options": [
+        "Because the rules require every internal control measure to be disclosed",
+        "The wall blocks information; it cannot erase the firm's economics",
+        "Because an information wall only holds while the deal is live",
+        "Because a client may demand the wall be taken down at any time"
+      ],
+      "explanation": "A wall stops information travelling from one desk to another. It does nothing about the fact that the firm collects a large fee if the deal completes - and that incentive is exactly what the client needs to know in order to weigh the advice they are being given. The wall is not a temporary arrangement, no client can order it dismantled, and disclosing the existence of controls is not the point; disclosing the interest behind them is."
+    },
+    {
+      "question": "An adviser discovers a conflict of interest when the deal is already half executed. What does Standard VI require?",
+      "options": [
+        "Just tell internal compliance, since the deal is well past its early stage",
+        "Finish the work, then disclose in the closing report to the client",
+        "Disclose the moment you find it, without waiting for the deal to close",
+        "Withdraw at once and hand the mandate to a different advisory team"
+      ],
+      "explanation": "The duty to disclose runs continuously; it is not a one-off box ticked at the start of an engagement. As long as the client is still making decisions they still need that information, so deferring until closing strips them of exactly the protection the Standard was written to give. Routing it to compliance alone keeps it inside the firm, and withdrawing altogether goes further than the Standard asks while leaving the client mid-deal."
+    }
+  ],
+  "keyTakeaways": [
+    "Structural conflicts are common in M&A when one institution plays several roles at once - adviser, principal investor, fund manager",
+    "A Chinese wall reduces the internal risk but does not discharge the duty to disclose transparently to the client",
+    "Conflict disclosure must be timely - the moment it is identified, not at the end of the deal",
+    "The client needs enough information to judge for themselves how objective the advice they received really is"
+  ],
+  "practicePrompt": {
+    "question": "What role does a Chinese wall play in M&A under Standard VI?",
+    "options": [
+      "An internal measure that reduces conflict risk, complementing rather than replacing the duty to disclose",
+      "It replaces the duty to disclose a conflict of interest to the client entirely, so no disclosure is needed",
+      "It is a purely cosmetic formality inside the firm that has no practical effect on anything at all",
+      "It is mandatory only for cross-border transactions, and optional for purely domestic deals"
+    ],
+    "explanation": "A Chinese wall and transparent disclosure work together; the wall cannot stand in for the client's right to be fully informed. It is a real control rather than a cosmetic one, but it operates inside the firm, on the flow of information, and leaves the firm's own economic incentive untouched. Nothing about it is limited to cross-border deals."
+  },
+  "summary": {
+    "keyIdea": "Standard VI requires every conflict in an M&A transaction to be identified and disclosed fully and promptly - above all the structural conflicts that arise when one institution holds several roles in the same deal ecosystem",
+    "commonMistake": "Believing that an internal Chinese wall is enough to relieve the firm of its duty to disclose the conflict to the client",
+    "action": "Whenever you work on or assess an M&A transaction, ask: does the adviser have any interest beyond the advisory fee, and has that interest been fully disclosed?"
+  },
+  "application": {
+    "title": "Reading a conflict-of-interest disclosure",
+    "message": "When you read an information memorandum or an M&A advisory report, go looking for the conflicts section - it is an important signal for judging how objective the recommendation is.",
+    "secondary": "This skill matters especially for anyone pursuing a career in investment banking or M&A advisory."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "M&A is one of the most conflict-dense corners of finance - buyer, seller, advising bank and affiliated funds all take part in the same transaction, and each of them has its own financial motive."
+    },
+    { "type": "heading", "text": "What a structural conflict of interest is" },
+    {
+      "type": "paragraph",
+      "text": "Unlike a personal conflict, where one individual has a private interest, a structural conflict arises when the institution's own business model generates contradictory incentives - an investment bank that delivers the valuation opinion while housing an investment arm that wants to buy the very asset being valued."
+    },
+    { "type": "heading", "text": "The Chinese wall: a tool, not an absolute shield" },
+    {
+      "type": "paragraph",
+      "text": "An information barrier is an important internal control - it restricts the sharing of sensitive information between units whose interests conflict. But it is a risk-mitigation tool rather than an absolute guarantee, and more importantly it does not displace the client's right to know that the conflict exists at all."
+    },
+    {
+      "type": "callout",
+      "label": "The timeliness of disclosure",
+      "text": "A point that often gets missed: conflict disclosure has to happen promptly, as soon as the conflict is identified - not as a formality performed at the end of the deal, once every significant decision has already been taken."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Structural conflicts are common where one institution holds several roles in the same ecosystem",
+        "A Chinese wall is an internal risk control, not a substitute for the duty to disclose",
+        "Disclosure must be timely; do not wait until the end of the transaction",
+        "The client needs enough information to judge the objectivity for themselves"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "In M&A, professional ethics is not about eliminating every conflict of interest - that is close to impossible - but about managing and disclosing them honestly.",
+        "In the next lesson we move on to a standard the syllabus rarely names directly but which matters more every year: ethics in ESG investing."
+      ]
+    }
+  ]
+}

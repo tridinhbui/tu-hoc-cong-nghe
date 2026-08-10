@@ -1,0 +1,187 @@
+{
+  "slug": "modern-portfolio-theory",
+  "title": "Modern Portfolio Theory",
+  "subtitle": "Correlation, the efficient frontier and spreading risk",
+  "duration": "7 min",
+  "openingQuestion": "What question is MPT trying to answer?",
+  "openingOptions": [
+    "One good asset is enough",
+    "The optimal portfolio at each level of risk",
+    "Buy only absolutely safe assets",
+    "The more individual tickers you hold, the better"
+  ],
+  "explanation": "Modern portfolio theory makes a counterintuitive claim: the risk of an asset only means anything in the context of the whole portfolio, because what matters is how far it moves in step with everything else. Combining lightly correlated assets can lower total risk without a matching cut in expected return - close to the only free lunch in finance. Its limitation is that correlations rise exactly when a crisis hits.",
+  "diagram": [
+    { "label": "Expected return" },
+    { "label": "Volatility" },
+    { "label": "Correlation" },
+    { "label": "Efficient frontier" }
+  ],
+  "realWorldExample": {
+    "company": "A personal investment portfolio",
+    "description": "Someone holding 100% technology stocks carries a completely different risk from someone spread across bonds, cash and defensive equities."
+  },
+  "quiz": [
+    {
+      "question": "What is the core benefit of diversification under MPT?",
+      "options": [
+        "Lower portfolio risk without giving up expected return",
+        "More risk taken on in exchange for a higher management fee",
+        "It only works for large institutional funds and pension schemes",
+        "It wipes out every kind of risk held inside the portfolio"
+      ],
+      "explanation": "Combining lightly correlated assets reduces the overall volatility of the portfolio without a corresponding sacrifice in expected return. Diversification never buys extra risk, and a fee is a cost rather than a benefit. It works at any portfolio size - a retail investor with three funds gets the same mathematics as a pension scheme. And it cannot remove all risk: systematic risk, the part that hits every asset at once, survives however many holdings you add."
+    },
+    {
+      "question": "If two assets have low correlation, what happens to the portfolio?",
+      "options": [
+        "The portfolio is bound to lose because the two cancel out",
+        "Portfolio volatility can fall below that of either asset",
+        "Portfolio volatility is unchanged from before they were combined",
+        "The portfolio is forced to borrow to rebalance its weights"
+      ],
+      "explanation": "Low correlation is where MPT finds the largest diversification benefit, because the cross term in the variance formula shrinks. Low correlation does not mean the returns cancel - both assets keep their own expected return, which adds up by weight regardless. Volatility does change; that is the entire point of the covariance term. And no borrowing is involved - rebalancing weights is simply a matter of how the existing money is split."
+    },
+    {
+      "question": "What was the core contribution of Modern Portfolio Theory?",
+      "options": [
+        "The lowest-volatility asset should always be given the largest weight",
+        "The portfolio with the highest return is always the optimal one for every investor",
+        "Portfolio risk depends on the correlation between assets, not on each alone",
+        "The number of assets in the portfolio determines the entire level of risk"
+      ],
+      "explanation": "Before Markowitz, people picked investments one at a time. The breakthrough was that a high-risk asset can still lower total portfolio risk if it moves against the rest. Weighting by lowest volatility ignores exactly that interaction. The highest-return portfolio is optimal only for an investor indifferent to risk, which is nobody. And counting holdings is a crude proxy: thirty stocks in one sector are far less diversified than ten across uncorrelated markets."
+    },
+    {
+      "question": "What does the efficient frontier represent?",
+      "options": [
+        "A line tracing an asset's price through the phases of the cycle",
+        "The maximum return the market is capable of producing in a year",
+        "The boundary between safe assets and high-risk assets",
+        "The set of portfolios with the highest return at each level of risk"
+      ],
+      "explanation": "Every portfolio sitting below the line is suboptimal: another portfolio exists offering a higher return at the same risk. The goal is not to reach the highest return but to avoid standing below the frontier. It is drawn in risk-return space rather than through time, so it is not a price path. It says nothing about a market-wide maximum return. And it does not sort assets into safe and risky buckets - every point on it is a whole portfolio."
+    },
+    {
+      "question": "What is the biggest practical limitation of Modern Portfolio Theory?",
+      "options": [
+        "The theory only applies to portfolios of more than a hundred assets",
+        "Correlations spike in a crisis, exactly when they are needed most",
+        "The volatility of any asset is impossible to compute in practice",
+        "The theory requires the investor to hold every single asset in the market"
+      ],
+      "explanation": "Diversification works well in normal conditions and weakens exactly when markets collapse and everything is sold at once. That is the standard criticism after every major crisis. The mathematics works from two assets upward, so there is no minimum count. Volatility is straightforward to estimate from historical data, even if the estimate is imperfect. And holding the entire market is a conclusion of CAPM under strong assumptions, not a requirement of portfolio theory itself."
+    },
+    {
+      "question": "Why does MPT still have value despite the criticism?",
+      "options": [
+        "Because its assumptions have been proven correct under every market condition",
+        "Because it frames the right question: judge an asset inside the portfolio",
+        "Because it predicts the future return of a portfolio with precision",
+        "Because every investment fund is legally required to apply the theory"
+      ],
+      "explanation": "The input numbers may be wrong, but the question MPT teaches people to ask remains right: how does this asset affect the risk of the whole portfolio, rather than whether it is good or bad standing alone. Its assumptions - normal returns, stable correlations - are demonstrably violated in practice. It forecasts nothing precisely, since expected returns are the hardest input of all to estimate. And no law mandates it; it survives because the framing is useful."
+    }
+  ],
+  "keyTakeaways": [
+    "MPT builds portfolios from return, risk and correlation",
+    "Diversification done properly can lower total risk",
+    "The efficient frontier is the best portfolio at each level of risk"
+  ],
+  "summary": {
+    "keyIdea": "MPT builds portfolios from return, risk and correlation",
+    "commonMistake": "Easy to miss: diversification done properly can lower total risk",
+    "action": "The efficient frontier is the best portfolio at each level of risk"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "MPT does not teach you to pick the 'best ticker'. It teaches you to combine assets so that the whole portfolio becomes better."
+    },
+    { "type": "heading", "text": "Mini simulation" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Portfolio A",
+        "text": "100% growth equities: high return but high volatility too, and badly exposed to one bad cycle."
+      },
+      "right": {
+        "label": "Portfolio B",
+        "text": "60% equities + 30% bonds + 10% cash: slightly lower return but a far smoother ride."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "The crux of MPT is not choosing the 'best' asset in isolation, but the degree of correlation between them. If the equities and bonds in Portfolio B have low correlation - they do not always rise and fall together - combining them can reduce the portfolio's total volatility by more than a simple weighted average of their individual risks. This is the rare 'free lunch' in finance that Harry Markowitz proved mathematically."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The three variables in MPT",
+      "concepts": [
+        { "def": "The average return you hope to receive." },
+        { "def": "How far returns swing around that expectation - the higher, the more uncomfortable." },
+        { "def": "Measures whether assets move in the same direction or opposite ones." }
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Why risk does NOT add up the way return does",
+      "equation": "σ²ₚ = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρσ₁σ₂",
+      "variables": [
+        {
+          "symbol": "w",
+          "name": "The weight of each asset",
+          "description": "They sum to 1."
+        },
+        {
+          "symbol": "σ",
+          "name": "The standard deviation of each asset",
+          "description": "The measure of standalone risk."
+        },
+        {
+          "symbol": "ρ",
+          "name": "The correlation coefficient",
+          "description": "Lies in [−1, +1]. This is the only term in the formula describing the RELATIONSHIP between the two assets - and the whole benefit of diversification lives in it."
+        }
+      ],
+      "example": {
+        "title": "Two assets identical in risk, different in correlation",
+        "calculation": "Both at σ = 20%, split 50/50. If ρ = 1: σ_p = 20%. If ρ = 0: σ_p = 14.1%. If ρ = −0.5: σ_p = 10.0%.",
+        "result": "The same pair of assets, with portfolio risk running from 20% down to 10% and not one unit of expected return given up",
+        "explanation": "Expected return adds up straight by weight; risk does not, because of the 2w₁w₂ρσ₁σ₂ term. Only at ρ = 1 does σ_p equal the weighted average. Every ρ below 1 gives risk LOWER than that average, and that is exactly the 'free lunch' Markowitz was pointing at."
+      }
+    },
+    { "type": "heading", "text": "That free lunch has a limit" },
+    {
+      "type": "paragraph",
+      "text": "Adding stocks cuts risk quickly at first and then flattens out: going from 1 to 10 holdings removes most company-specific risk, while going from 30 to 100 removes almost nothing more. The reason is in the formula - as the number of assets rises, the individual variance terms (wᵢ²σᵢ²) shrink because w is squared, while the correlation terms do not disappear. What is left is systematic risk: when the whole market falls, no set of weights saves you. It is also why CAPM pays you for beta and not for total volatility."
+    },
+    {
+      "type": "callout",
+      "label": "Correlation does not stand still, and it betrays you exactly when it matters",
+      "text": "The ρ computed from historical data is the AVERAGE ρ over that period. In a crisis, correlations between most risky assets spike towards 1 - everybody sells everything to raise cash. So a portfolio that looks diversified in a spreadsheet can lose most of its diversification benefit in precisely the month you need it. This is not a reason to abandon diversification, but a reason not to compute portfolio risk from a single ρ and treat it as the truth."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The best portfolio is not the boldest one.",
+        "It is the one that best fits your goals and your temperament."
+      ]
+    }
+  ],
+  "application": {
+    "title": "Simulate a portfolio yourself",
+    "message": "Take three assets you are considering and ask: if one falls, do the other two soften the blow?",
+    "secondary": "This is the simplest way to feel the correlation effect inside a portfolio."
+  },
+  "practicePrompt": {
+    "question": "Modern Portfolio Theory (MPT) proves that combining assets with low correlation delivers what benefit?",
+    "options": [
+      "Lower total risk without lowering expected return",
+      "It doubles the return of the portfolio",
+      "It removes the risk of a global recession entirely",
+      "It ensures the portfolio never falls in value"
+    ],
+    "explanation": "Markowitz's MPT proved that the 'only free lunch in investing' is diversification: combining assets with negative or low correlation cancels out unsystematic risk."
+  }
+}

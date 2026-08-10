@@ -1,0 +1,161 @@
+{
+  "slug": "truc-quan-hoa-va-bieu-do-noi-doi",
+  "title": "Data, Lesson 4: Visualisation - picking the right chart, and spotting the one that lies",
+  "subtitle": "Four questions that decide the chart type, and the axis tricks that make true numbers tell the wrong story",
+  "duration": "11 min",
+  "whyItMatters": "A good chart shortens a meeting; a bad one drags it out. But more important than the skill of drawing is the skill of reading: you will constantly receive charts from other people - from broker reports to company presentations - and many of them are designed to lead you to a conclusion.",
+  "openingQuestion": "Why is a vertical axis that does not start at 0 a problem on a bar chart?",
+  "openingOptions": [
+    "Because charting software does not support the option",
+    "Because the eye reads bar height as an absolute value",
+    "Because the vertical axis must share the units of the horizontal one",
+    "Because it makes the chart hard to print on paper"
+  ],
+  "explanation": "On a bar chart the eye compares area and height, so a bar twice as tall is read as twice the value. Cutting the axis at 95 makes the step from 96 to 98 look like a tripling, when in reality it is barely two per cent. Note that the rule is different for line charts: a line represents a trend rather than a magnitude, so cutting the axis to make the movement visible is usually acceptable - as long as it is labelled clearly.",
+  "diagram": [
+    { "label": "Comparing across groups: bars" },
+    { "label": "Change over time: a line" },
+    { "label": "Relationship between two variables: a scatter" },
+    { "label": "Distribution of one variable: a histogram" }
+  ],
+  "realWorldExample": {
+    "company": "The growth chart in a fundraising deck",
+    "description": "One very common shape: monthly revenue plotted with a vertical axis starting just below the smallest value, so the line looks almost vertical. The data is entirely real and nothing is falsified, but the visual impression describes a growth rate quite different from the numbers. The fastest check when you receive a chart like this: read the vertical axis label before you look at the shape of the line."
+  },
+  "quiz": [
+    {
+      "question": "When should you use a scatter plot rather than a bar chart?",
+      "options": [
+        "When the data contains negative values that bars cannot represent clearly",
+        "When the number of groups to compare has passed ten and bars get crowded",
+        "When you need to show the relationship between two continuous variables",
+        "When you want to emphasise the single largest value in the dataset being presented"
+      ],
+      "explanation": "A scatter is the only tool for the question of how two variables move together. It also reveals things a correlation coefficient hides, such as a curved relationship or data splitting into two clusters. Bars handle negatives perfectly well, crowding is solved by a horizontal bar chart, and highlighting a maximum is a formatting choice rather than a reason to change chart type."
+    },
+    {
+      "question": "Why are pie charts usually discouraged?",
+      "options": [
+        "Because the slices in a pie chart do not always add up to exactly one hundred",
+        "Because a pie chart cannot represent percentage values below one per cent",
+        "Because a pie needs more colours and is harder to print on a black and white printer",
+        "Because the eye compares angles and areas far less accurately than lengths"
+      ],
+      "explanation": "With two or three clearly different slices a pie is fine. The problem appears when there are seven or eight nearly equal parts - at that point a horizontal bar chart sorted by size is far easier to read. Slices do sum to the whole by construction, small percentages can be shown with labels, and printing is a production concern rather than a perceptual one."
+    },
+    {
+      "question": "What question does a histogram answer that the mean does not?",
+      "options": [
+        "How the data is distributed: concentrated, skewed to one side, or split into clusters",
+        "Which value in the dataset is the largest and which one happens to be the smallest",
+        "How many observations were missing data in the column currently under examination",
+        "How strongly the two variables in the dataset are related to one another overall"
+      ],
+      "explanation": "Two datasets with the same mean can have entirely different shapes. Drawing a histogram before reporting any mean at all is a habit worth having. The maximum and minimum are two numbers rather than a shape, missing data is a data quality question, and any measure of association needs two variables where a histogram takes one."
+    },
+    {
+      "question": "You receive a line chart rising steeply. What is the first thing to do?",
+      "options": [
+        "Check whether the author used enough distinct colours to separate the lines",
+        "Read the label and the value range on the vertical axis before judging the shape",
+        "Count the data points on the line to be sure the sample is large enough to conclude",
+        "Ask the sender to supply an additional bar chart showing the same set of figures"
+      ],
+      "explanation": "The axis is the first place to look and the last place people look. A truncated axis or an unlabelled logarithmic scale is enough to change the story the picture tells completely. Colour is irrelevant on a single line, counting points does not tell you the scale, and asking for a second chart delays a check you can do in two seconds."
+    },
+    {
+      "question": "You receive a bar chart showing a very large gap. What should you check first?",
+      "options": [
+        "Whether every bar in the chart has been given a complete label",
+        "Which source the data came from and how recently it was updated",
+        "Whether the vertical axis starts at zero or has been cut",
+        "Whether there are enough bars to make the trend visible"
+      ],
+      "explanation": "On a bar chart the eye reads height as value, so truncating the axis is the cheapest and most common distortion. Note that this rule does not carry over to line charts - there the eye reads the slope, and forcing the axis to zero can make a real movement disappear. Labels and sourcing matter, but neither one changes what the picture appears to say."
+    }
+  ],
+  "keyTakeaways": [
+    "The question decides the chart type: comparison, trend, relationship or distribution",
+    "A bar chart must start at 0; a line chart need not, but say so clearly",
+    "A pie chart is only fine with few parts and clear differences between them",
+    "Draw a histogram before reporting any mean",
+    "When you receive someone else's chart, read the axis before you look at the shape"
+  ],
+  "practicePrompt": {
+    "question": "You need to present the revenue share of 9 product lines, several of them close in size. Which chart do you choose?",
+    "options": [
+      "A pie chart, since this is the share of a single whole",
+      "A horizontal bar chart sorted in descending order, with percentage labels",
+      "A line chart connecting the shares of the 9 product lines",
+      "A scatter plot with product names on the horizontal axis"
+    ],
+    "explanation": "It is share data, true, but with nine nearly equal parts the eye cannot rank the slices. Horizontal bars allow comparison by length - the thing the eye does best - and long product names remain readable. A line chart is wrong in substance: joining discrete products with a line implies a continuity between them that does not exist."
+  },
+  "summary": {
+    "keyIdea": "The question chooses the chart, not the other way round",
+    "commonMistake": "Choosing a chart type out of habit or because it looks attractive, then forcing the data into it",
+    "action": "Before you draw, write down the question you want this picture to answer. If you cannot write it, the chart is not needed yet."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take three charts from any analyst report and for each one answer: where does the vertical axis start, does the chart type suit the question, and if you switched to another type would the conclusion change with it?",
+    "secondary": "Reading other people's charts sceptically is the fastest way to draw better ones yourself."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Visualisation is not a decorative final step. It is the step where you decide what the reader will see first - and in many cases that is the only thing they will remember."
+    },
+    { "type": "heading", "text": "Four questions, four chart types" },
+    {
+      "type": "conceptTable",
+      "title": "Choose by the question, not by habit",
+      "subtitle": "Pin down the question first and the chart type more or less presents itself",
+      "concepts": [
+        {
+          "vi": "So sánh giữa các nhóm",
+          "en": "Comparison",
+          "def": "A bar chart. The value axis must start at 0, because the eye reads bar height as absolute magnitude."
+        },
+        {
+          "vi": "Thay đổi theo thời gian",
+          "en": "Trend",
+          "def": "A line chart. Here the axis need not start at 0, because what matters is direction and slope rather than magnitude."
+        },
+        {
+          "vi": "Quan hệ giữa hai biến",
+          "en": "Relationship",
+          "def": "A scatter plot. It reveals what a correlation coefficient conceals: curved relationships, separate clusters, dominant outliers."
+        },
+        {
+          "vi": "Phân bố của một biến",
+          "en": "Distribution",
+          "def": "A histogram or a box plot. It answers the question the mean cannot: how the data is actually spread out."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "An honest chart",
+        "text": "The axis states its units and its range clearly. Bars start at 0. Any logarithmic scale is spelled out. Just enough colours to distinguish the series, no more."
+      },
+      "right": {
+        "label": "Signs to be wary of",
+        "text": "A truncated vertical axis with no note. Two vertical axes on different scales side by side. A time window that conveniently starts at the bottom. Three-dimensional effects that distort the proportions."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Dual axes: the hardest trick to spot",
+      "text": "Putting two lines on one picture with two different scales lets the author manufacture almost any degree of apparent agreement between the two quantities - all it takes is adjusting the scales until the lines touch at a few points. The viewer sees a tight relationship the data itself never asserted. When you meet a dual-axis chart, redraw each line on its own before believing the connection."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Charts do not lie with wrong numbers. They lie with the axis, with the time window and with the type chosen.",
+        "The next lesson moves from a single chart to a collection of them: the dashboard."
+      ]
+    }
+  ]
+}

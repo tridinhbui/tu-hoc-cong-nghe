@@ -1,0 +1,163 @@
+{
+  "slug": "ky-quy-va-margin-call",
+  "title": "Margin & Margin Calls - Risk Management Is Priority Number One",
+  "subtitle": "Why does a client have to 'hand the money back' the moment the market turns against them?",
+  "duration": "8 min",
+  "openingQuestion": "What is margin?",
+  "openingOptions": [
+    "A securities trading fee paid to the brokerage on every single order",
+    "Money borrowed from the broker to buy more shares than your own cash allows (leverage)",
+    "Loan interest",
+    "Transaction tax"
+  ],
+  "explanation": "Margin means borrowing from your broker to buy more shares: you put in 10m, borrow another 10m, and buy 20m worth. What few people work through is that leverage magnifies in both directions - a 25% fall in the portfolio wipes out 50% of your own money. And unlike an ordinary loan, this creditor has the right to sell your assets once the margin ratio drops below a threshold, usually at exactly the moment prices are lowest.",
+  "diagram": [
+    { "label": "Put in your own capital, borrow the rest from the brokerage" },
+    { "label": "Buy a position larger than your own capital" },
+    { "label": "Price falls: the loss comes straight out of your own capital" },
+    { "label": "Margin ratio hits the threshold: top up or be force-sold" }
+  ],
+  "realWorldExample": {
+    "company": "An investor using margin",
+    "description": "Client A has 100m, borrows another 100m on margin (50% margin) → buys 200m of shares. The stock rises 10% → profit of 20m (on 100m of own capital = 20% return) instead of 10%. But if it falls 10% → a 20m loss (on principal plus borrowing). If it falls 50%+ → Margin Call (a demand for more cash)"
+  },
+  "quiz": [
+    {
+      "question": "What is the margin ratio?",
+      "options": [
+        "Your own equity divided by total capital, yours plus what the broker lent",
+        "The profit rate of the trade, the gain divided by the total position traded",
+        "The interest rate the broker charges on the borrowed portion every month",
+        "The trading fee the broker deducts from the value of each order placed"
+      ],
+      "explanation": "Margin Ratio = (equity) / (total capital). Example: you deposit 100m, borrow 100m, total 200m → Margin Ratio = 100/200 = 50%. When the Margin Ratio falls to the minimum level (say 30%), you get a Margin Call. Note what the ratio is not: it says nothing about whether the trade is profitable, and it is not the interest cost or the commission the broker charges. Those are costs measured against the position; the margin ratio is a solvency measure, and it is the only one the broker's risk desk watches."
+    },
+    {
+      "question": "What is a Margin Call?",
+      "options": [
+        "A phone call asking the broker for the current quote on a stock you hold",
+        "A demand that the client add cash (or sell shares) to restore the minimum margin ratio required",
+        "A call from the brokerage congratulating you on a profitable trading month",
+        "An automatic sell order triggered when the price reaches your stop-loss level"
+      ],
+      "explanation": "When the stock falls, your Margin Ratio falls with it. If it drops below the minimum (say 30%), the broker issues a Margin Call: you must deposit more cash or sell part of the position to lift the ratio back to a safe level. If you do not, the broker sells your shares itself (Force Sell). It is not the same thing as a stop-loss, which you set yourself and which fires on price alone; the margin call fires on the ratio, and the broker sets the threshold, not you."
+    },
+    {
+      "question": "If you deposit 100M, borrow 100M and buy 200M of shares, and the stock falls 50% (to 100M), what is the margin ratio now?",
+      "options": [
+        "100% (= 200M / 200M, the original position over itself)",
+        "25% (= 100M / 400M, original purchase value as denominator)",
+        "50% (= 100M / 200M, equity over current total assets)",
+        "0% because the entire equity stake has been wiped out"
+      ],
+      "explanation": "At the start: equity = 100M, total capital = 200M (100M own + 100M borrowed), margin ratio = 50%. After the 50% fall: assets = 100M, but the debt is still 100M (borrowing does not shrink), so equity = 100M - 100M = 0. Margin ratio = 0 / 100M = 0% → an immediate margin call!"
+    },
+    {
+      "question": "A 1bn portfolio with 500m of margin borrowing. If the portfolio falls 30%, by what percentage does the investor's own capital fall?",
+      "options": [
+        "50%, half the equity, matching the loan-to-portfolio ratio",
+        "30%, the same as the fall in the portfolio's market value",
+        "15%, the portfolio drop halved because only half is borrowed",
+        "60%, from 500m of equity down to 200m of equity"
+      ],
+      "explanation": "The portfolio is worth 700m, the debt is still 500m, so the investor's own capital is 200m. Two-times leverage turns a 30% fall into a 60% fall - and the same mechanism runs identically on the way up. The trap in the other answers is treating the debt as if it shared the loss: it does not, the loan amount is fixed, so the entire fall lands on the equity slice."
+    },
+    {
+      "question": "Why do heavy down sessions usually fall faster towards the close?",
+      "options": [
+        "Because forced-sale orders from margin accounts add selling pressure, driving prices down and triggering still more accounts",
+        "Because foreign investors concentrate their orders in the closing auction, and their flow sets the direction of the whole session",
+        "Because liquidity is always highest at the close, so every order moves the price further than it would earlier",
+        "Because brokerages only match margin client orders once a day, in a single batch after the close"
+      ],
+      "explanation": "This is a self-amplifying feedback loop: falling prices force liquidations, liquidations create selling pressure, and that pressure drives prices down again. Understanding the mechanism explains why leverage is at its most dangerous precisely when the market is most volatile."
+    }
+  ],
+  "keyTakeaways": [
+    "Margin: money borrowed from the broker for leverage (doubling both the opportunity and the risk)",
+    "Margin Ratio = equity / total capital → must stay above a minimum (say 30%)",
+    "Margin Call: a demand for more cash or a partial sale when the margin ratio gets too low",
+    "Force Sell: the broker sells your shares automatically if you do not meet the margin call"
+  ],
+  "practicePrompt": {
+    "question": "You are the broker. A client deposits 50M, borrows 50M and buys 100M of shares. The stock falls 30% (to 70M). What is the current margin ratio, and what should you do?",
+    "options": [
+      "Nothing, wait for the client to sort it out themselves",
+      "It is down to 29% → issue a margin call immediately",
+      "Tell the client the price will recover",
+      "Sell out all of the client's shares straight away"
+    ],
+    "explanation": "A broker has to watch each client's margin ratio daily. Once it falls below the minimum, the margin call must go out immediately - to protect the client (limiting the loss) and the broker itself (not letting the client run up further borrowing)."
+  },
+  "summary": {
+    "keyIdea": "Margin = leverage (doubling both opportunity and risk). Margin Call = risk control. Force Sell = the last line of defence",
+    "commonMistake": "Using margin without understanding the risk. Getting margin-called by surprise and reacting too late",
+    "action": "If you use margin, always set a stop loss + watch your margin ratio daily"
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "If your client uses margin, educate them: (1) what the Margin Ratio is; (2) the minimum level; (3) then let them decide; (4) monitor daily so you can margin-call early if needed",
+    "secondary": "If you are the client using margin, ALWAYS set a stop loss + never let your margin ratio fall below 40-50%."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Margin is a powerful tool: it can triple your profit, but it triples your losses too. The Margin Call is the mechanism that stops a client from losing everything."
+    },
+    { "type": "heading", "text": "Margin Ratio & the minimum level" },
+    {
+      "type": "paragraph",
+      "text": "Every brokerage sets its own minimum margin ratio (usually 30-50%). If yours is 50% and the ratio slips to 35%, you are still safe. But if it keeps falling to 30%, you get a margin call. If it falls further to 25%, the broker will force-sell your shares (no consent required)."
+    },
+    { "type": "heading", "text": "Why is the Margin Call a protective mechanism?" },
+    {
+      "type": "list",
+      "items": [
+        "It protects the client: it stops them digging themselves into a deeper hole",
+        "It protects the broker: it makes sure the client can still repay the borrowing",
+        "It protects the market: it prevents mass client defaults (a domino effect)"
+      ]
+    },
+    { "type": "heading", "text": "When you are margin-called, you have 3 choices" },
+    {
+      "type": "list",
+      "items": [
+        "Deposit more cash: raise equity to lift the margin ratio back to safety",
+        "Sell part of the position: fewer assets, but a higher margin ratio (because the debt falls proportionally)",
+        "Do nothing: the broker will force-sell (selling your shares for you)"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The margin ratio and the warning threshold",
+      "equation": "Margin ratio = (Asset value − Borrowing) ÷ Asset value",
+      "example": {
+        "title": "A 1bn portfolio with 500m borrowed",
+        "calculation": "At the start: (1,000 − 500) ÷ 1,000 = 50% · After a 30% fall: (700 − 500) ÷ 700",
+        "result": "= 28.6% — already below the warning threshold",
+        "explanation": "The portfolio fell 30% but the margin ratio dropped from 50% to under 29%, because the debt does not fall with it. The investor's own capital went from 500m to 200m - a 60% loss even though the market only fell 30%. That is exactly what it means for leverage to magnify in both directions."
+      }
+    },
+    { "type": "heading", "text": "Why leverage makes everything worse at the worst possible time" },
+    {
+      "type": "paragraph",
+      "text": "A demand for more margin always arrives while the market is falling - that is, exactly when the investor is least able to put up more cash and when selling is at its most unfavourable. If it is not dealt with, the forced sale goes through at whatever the market price is at that moment, with no waiting for a recovery. When many accounts are liquidated at once, that selling drives prices lower still and triggers yet more accounts. This is why heavy down sessions tend to fall so much faster in the final stretch."
+    },
+    {
+      "type": "callout",
+      "label": "Three numbers to know before you use margin",
+      "text": "One: how far does the portfolio have to fall before I hit the warning threshold? Two: if I am asked to top up, how much cash can I actually produce within a day or two? Three: what is the monthly interest on the borrowing, and how much does the portfolio have to earn just to cover it? If you cannot answer all three, you are not ready for leverage."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Handling it actively",
+        "text": "Track the margin ratio daily, cut the borrowing before it reaches the threshold, and sell what you choose at the moment you choose."
+      },
+      "right": {
+        "label": "Having it handled for you",
+        "text": "Wait until the top-up demand arrives before thinking about it. By then the choices have narrowed, and if you cannot act in time the brokerage sells whatever it finds most liquid, not the part you wanted to keep."
+      }
+    }
+  ]
+}

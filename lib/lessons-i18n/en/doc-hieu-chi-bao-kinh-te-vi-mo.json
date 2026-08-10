@@ -1,0 +1,160 @@
+{
+  "slug": "doc-hieu-chi-bao-kinh-te-vi-mo",
+  "title": "Reading the key macroeconomic indicators: PMI, CPI and GDP nowcasting",
+  "subtitle": "The daily toolkit a macro researcher uses to gauge the health of an economy before the official GDP figure is published",
+  "duration": "8 min",
+  "openingQuestion": "The PMI (Purchasing Managers' Index) is published monthly and is widely treated as an important 'leading indicator' of the economy. Why do macro researchers value it so much more than simply waiting for the official GDP figure?",
+  "openingOptions": [
+    "PMI measures the size of the economy more accurately than GDP",
+    "PMI is published 1-3 months before GDP, so it signals the trend first",
+    "PMI covers only manufacturing and says nothing about overall health",
+    "GDP and PMI measure exactly the same thing under two different names"
+  ],
+  "explanation": "The PMI's core advantage is TIMELINESS: compiled from a survey of purchasing managers about their firms' current activity (new orders, output, employment, inventories, prices), it can be published within days of the month closing - while official GDP (built from a comprehensive aggregation of many data sources) usually takes 1-3 months to appear at all, and is then revised repeatedly as fuller data arrives. PMI therefore acts as an 'early radar signal', even if its absolute accuracy is lower than GDP's.",
+  "realWorldExample": {
+    "company": "GDPNow from the Atlanta Fed - a GDP nowcasting model",
+    "description": "The Federal Reserve Bank of Atlanta built 'GDPNow', a nowcasting system that updates its estimate of the current quarter's GDP growth CONTINUOUSLY from indicators released weekly or monthly (PMI, retail sales, industrial production, labour market data), instead of waiting for the official GDP figure that only appears after the quarter has ended. Investors and policymakers follow it closely as a 'real-time radar' on the health of the US economy, illustrating how high-frequency indicators can be combined to 'nowcast' a series as heavily lagged as GDP."
+  },
+  "quiz": [
+    {
+      "question": "What does the '50' threshold in the PMI mean, and why is it the single most important reference level to remember when reading the monthly figure?",
+      "options": [
+        "Above 50 means high inflation, below 50 means deflation in the period",
+        "Above 50 means more than half of firms were profitable in the period",
+        "Above 50 is expansion, below 50 is contraction versus last month",
+        "Above 50 is the long-run historical average level for that economy"
+      ],
+      "explanation": "The PMI is a diffusion index, built from the share of survey respondents reporting 'better', 'unchanged' or 'worse' than the previous month - so by construction it measures the RATE OF CHANGE rather than an absolute level. A PMI of 52 means activity is expanding (if slowly), 65 means expanding very fast, and 48 means contracting. A macro analyst always watches both the POSITION relative to 50 and the TREND across consecutive months."
+    },
+    {
+      "question": "How does 'core CPI' (excluding food and energy prices) differ from 'headline CPI', and why do central banks usually focus on the core measure when setting monetary policy?",
+      "options": [
+        "Core covers goods, headline covers services too",
+        "Core is computed by the central bank, headline by statisticians",
+        "Core is computed annually, headline is computed month by month",
+        "Core strips food and energy prices out of the basket"
+      ],
+      "explanation": "This distinction matters in inflation analysis: food and energy prices are highly volatile because of temporary supply shocks (weather, geopolitical conflict, supply chain disruption) that do not reflect underlying inflation pressure - and if a central bank reacted with a rate move every time fuel prices wobbled, policy would become erratic and ineffective. Core CPI gives a cleaner signal about the underlying trend, though headline CPI still matters because it is the cost of living people actually face."
+    },
+    {
+      "question": "How does 'nowcasting' in macroeconomics differ from traditional 'forecasting' in its aim and method?",
+      "options": [
+        "Estimating the present value of an indicator published with a lag",
+        "Revising past figures once more accurate data arrives",
+        "Forecasting the indicator's value for the next quarter ahead",
+        "Computing the indicator in real time from transaction data"
+      ],
+      "explanation": "The distinction is about the TIME TARGET: nowcasting answers 'what is actually happening RIGHT NOW' (even though the official data has not been published yet) by aggregating the high-frequency indicators already available, while forecasting answers 'what will happen in the FUTURE' from a model and a set of assumptions. Both are essential tools for a macro researcher, but they serve different purposes: nowcasting supports a fast response to current conditions, forecasting supports longer-range planning."
+    },
+    {
+      "question": "Scenario: the manufacturing PMI has just been published at 47 points. What does that tell you?",
+      "options": [
+        "Manufacturing is expanding, but more slowly than had been expected",
+        "Manufacturing activity is contracting relative to last month",
+        "Inflation is running at 47% measured on a current annual basis",
+        "GDP next quarter will certainly fall 3%, being 3 points below 50"
+      ],
+      "explanation": "The PMI is a diffusion index: above 50 is expansion, below 50 is contraction, and the distance from 50 indicates how widely the change is spread rather than how fast output is moving. A reading of 47 means more firms reported deterioration than improvement; it does not mean output fell 3%, and it says nothing directly about the inflation rate."
+    },
+    {
+      "question": "Why do central banks watch core CPI rather than looking only at headline CPI?",
+      "options": [
+        "Because headline CPI is only published once every quarter",
+        "Because core CPI is always higher, which is safer to steer by",
+        "Because food and energy prices move for temporary reasons",
+        "Because core CPI reflects household spending more accurately"
+      ],
+      "explanation": "An oil price shock pushes headline CPI up and then unwinds on its own, and raising rates to chase it squeezes the economy just as the shock is passing. Core CPI filters out that noise to expose the underlying trend - even though headline CPI is what households actually pay. Core is not systematically higher than headline, headline is published monthly like core, and by construction core covers less of household spending, not more."
+    }
+  ],
+  "keyTakeaways": [
+    "PMI is the key leading indicator because of its timeliness (published far ahead of GDP), with 50 dividing expansion (>50) from contraction (<50)",
+    "Core CPI (excluding food and energy) reflects the underlying inflation trend better than headline CPI, helping central banks avoid overreacting to temporary price swings",
+    "GDP nowcasting (such as the Atlanta Fed's GDPNow) combines many high-frequency indicators to estimate current GDP in real time, instead of waiting for the heavily lagged official figure",
+    "Nowcasting (estimating the present) differs from forecasting (predicting the future) in its time target - both are essential tools for a macro researcher"
+  ],
+  "practicePrompt": {
+    "question": "A country's manufacturing PMI prints at 47.5 this month, down from 49.8 last month (below 50 for two consecutive months). At the same time core CPI is still elevated at 4.5% (against the central bank's 2% target). Why does this put the central bank in a difficult position?",
+    "options": [
+      "Raising rates fixes both: cut the inflation and PMI will recover on its own afterwards",
+      "PMI under 50 argues for easing while core CPI at 4.5% argues for tightening",
+      "PMI is only an opinion survey, so core CPI is the only data worth using",
+      "This only affects the manufacturing sector, not the wider economy at all"
+    ],
+    "explanation": "This is the composite 'policy dilemma' a macro researcher has to recognise: a weakening PMI (a growth indicator) combined with still-high core CPI (an inflation indicator) creates the classic conflict between 'price stability' and 'supporting growth and employment' - the dual mandate most modern central banks have to balance, with no simple formula that satisfies both objectives at once."
+  },
+  "summary": {
+    "keyIdea": "PMI, core CPI and GDP nowcasting are the essential toolkit for reading an economy's health in real time, compensating for the long publication lag on official GDP.",
+    "commonMistake": "Relying on a single indicator (watching only CPI and ignoring PMI, or the reverse) to judge conditions, instead of combining several sources of signal",
+    "action": "Build the habit of tracking at least 3 high-frequency indicators (PMI, CPI, labour market data) for an up-to-date picture of the economy, rather than waiting for the quarterly GDP report"
+  },
+  "application": {
+    "title": "Applying this in macro research",
+    "message": "Follow the PMI and CPI releases for Vietnam (or an economy you care about) for three consecutive months, note the trend, and try predicting what the quarterly GDP figure will look like from those signals before the official number lands.",
+    "secondary": "Turning several high-frequency indicators into one coherent 'picture' of the economy is the core skill that separates a good macro researcher from someone who merely reads out individual data points."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Official GDP appears only a few times a year and with a long lag, while financial markets need updated information daily - which is why high-frequency indicators like PMI and CPI have become indispensable to a macro researcher."
+    },
+    {
+      "type": "heading",
+      "text": "PMI - the economy's earliest radar"
+    },
+    {
+      "type": "paragraph",
+      "text": "The PMI is compiled from a direct survey of purchasing managers about actual operating conditions (new orders, output, inventories, employment, input prices), which lets it be published very soon after the month closes. The 50 threshold is the key reference: above 50 signals expansion, below 50 signals contraction - and how far the reading sits from 50 reflects how strong or weak the change is."
+    },
+    {
+      "type": "heading",
+      "text": "Core CPI vs headline CPI - filtering the noise to see the real trend"
+    },
+    {
+      "type": "paragraph",
+      "text": "Because food and energy prices swing sharply on temporary factors (weather, geopolitics), core CPI excludes both groups to show the underlying, longer-run inflation trend - which is the measure central banks tend to prioritise when setting policy, so as not to overreact to short-term price moves that do not reflect genuine inflation pressure."
+    },
+    {
+      "type": "heading",
+      "text": "GDP nowcasting - assembling the real-time pieces"
+    },
+    {
+      "type": "paragraph",
+      "text": "Modern nowcasting models (such as the Atlanta Fed's GDPNow) combine dozens of different high-frequency indicators (PMI, retail sales, industrial production, labour data) into a GDP estimate that is UPDATED CONTINUOUSLY in real time, instead of waiting for the official figure - a tool of growing importance to investors and policymakers alike."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three indicators and what each one really tells you",
+      "subtitle": "They differ in lag, so the picture only emerges when you read them together",
+      "concepts": [
+        {
+          "def": "A business survey, published early. Above 50 is expansion, below 50 is contraction - and the change matters more than the absolute level."
+        },
+        {
+          "def": "Strips out food and energy to reveal the trend. Headline says what people are actually paying; core says how the central bank is likely to respond."
+        },
+        {
+          "def": "Stitches high-frequency indicators together to estimate the current quarter's GDP, rather than waiting months for the official release."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "A single indicator on its own says almost nothing. The value lies in where they diverge: PMI falling while core inflation stays high is a very different situation from both falling together."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Modern macro research is no longer a matter of reading the quarterly GDP report - it is a continuous process of combining many high-frequency signals into the most current and accurate picture of the economy available.",
+        "Reading and interpreting PMI, CPI and nowcasting models fluently is a foundational skill for anyone pursuing a professional career in macroeconomic research."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "PMI - the earliest radar on manufacturing and services" },
+    { "label": "Core CPI - filtering out food and energy price noise" },
+    { "label": "Combine high-frequency indicators → nowcast GDP" },
+    { "label": "Check against the official GDP figure when it lands" }
+  ]
+}

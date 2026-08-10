@@ -1,0 +1,113 @@
+{
+  "slug": "frm-sai-so-chuan-vung-trong-hoi-quy",
+  "title": "FRM Quant, Lesson 2: Robust standard errors - when the coefficient is right and the conclusion is wrong",
+  "subtitle": "Heteroskedasticity and autocorrelation do not bias the coefficient, they bias your confidence in it",
+  "duration": "9 min",
+  "whyItMatters": "Financial data violates the constant-variance assumption almost all of the time - volatility clustering is a defining feature of markets. The consequence is not a wrong coefficient but a wrong t-test, and a useless variable can look significant at the 1% level.",
+  "openingQuestion": "A regression has error variance that changes through time. What is the most direct consequence?",
+  "openingOptions": [
+    "The estimated coefficients are biased, so the result must be discarded",
+    "The coefficients stay unbiased, but the standard errors are wrong",
+    "R² is inflated, so the model looks better than it really is",
+    "The model cannot be estimated by least squares at all"
+  ],
+  "explanation": "Changing variance does not destroy the unbiasedness of least squares - the coefficient is still right in expectation. What it destroys is the standard error formula, which assumes a constant variance. A wrong standard error drags a wrong t-statistic, a wrong confidence interval and a wrong p-value along with it. This is why a variable with no effect at all can still clear the significance threshold, and why robust standard errors are close to the default in empirical finance.",
+  "diagram": [
+    { "label": "Error variance changes, or residuals are autocorrelated" },
+    { "label": "Coefficients remain unbiased - this is the part people get wrong" },
+    { "label": "But standard errors are wrong, so t and p follow them" },
+    { "label": "Use White for changing variance, Newey-West for autocorrelation too" }
+  ],
+  "realWorldExample": {
+    "company": "Testing an asset pricing factor",
+    "description": "Many factors published as strongly significant have failed to replicate on new data. A meaningful part of that gap comes not from the data but from the standard errors: financial returns have clustered variance and autocorrelation, so t-statistics computed with the textbook formula are systematically inflated."
+  },
+  "quiz": [
+    {
+      "question": "What does heteroskedasticity affect in a least squares regression?",
+      "options": [
+        "Both the value of the coefficient and the standard error attached to it",
+        "The standard error of the coefficient, but not the coefficient itself",
+        "Only the intercept term, while every slope coefficient stays unaffected",
+        "Only the model's R², with no consequence for statistical inference"
+      ],
+      "explanation": "This is the most commonly misunderstood point in the topic. The estimate stays unbiased, so if all you need is the size of the coefficient the result remains usable. The trouble starts only once you begin hypothesis testing, because that is when you divide by the standard error. The intercept has no special status here, and R² is a description of fit that is not what inference rests on."
+    },
+    {
+      "question": "What problem do Newey-West standard errors handle that White standard errors do not?",
+      "options": [
+        "An important variable being omitted from the regression specification",
+        "Multicollinearity among the explanatory variables in the model",
+        "Autocorrelation in the residuals across time periods",
+        "Measurement error contained in the explanatory variables"
+      ],
+      "explanation": "White is robust to changing variance but still assumes the residuals are independent through time. Newey-West relaxes that assumption too, so it handles autocorrelation as well - which is why it is close to the default for financial time series. Omitted variables bias the coefficient itself and no standard error formula can repair that, multicollinearity is a property of the data rather than of the errors, and measurement error also attacks the estimate rather than its precision."
+    },
+    {
+      "question": "Why can multicollinearity not be cured with robust standard errors?",
+      "options": [
+        "Because multicollinearity only arises in cross-sectional data",
+        "Because multicollinearity biases the coefficient, not the standard error",
+        "Because robust standard errors apply only to single-variable regressions",
+        "Because it is a problem of data design, not of an assumption about the errors"
+      ],
+      "explanation": "Multicollinearity means two explanatory variables carry nearly the same information, so the data cannot separate their individual contributions. That is a limit of the data, and no standard error formula can create information that is not there. It appears in time series as readily as in cross sections, it leaves the estimates unbiased while inflating their variance, and robust formulas work perfectly well in multivariate settings - they simply have nothing to add here."
+    },
+    {
+      "question": "Which sign suggests the residuals are autocorrelated?",
+      "options": [
+        "A Durbin-Watson statistic sitting far away from the value of 2",
+        "The model's R² coming out clearly below 0.3 on the sample",
+        "A slope coefficient carrying the opposite sign to theory",
+        "An explanatory variable with more variance than the dependent one"
+      ],
+      "explanation": "A Durbin-Watson around 2 means no first-order autocorrelation; below 2 indicates positive correlation and above 2 negative. A low R² or a coefficient with the wrong sign are entirely different problems and say nothing about the structure of the residuals, and comparing the variances of the regressors with the variance of the dependent variable is not diagnostic of anything about the error term."
+    },
+    {
+      "question": "Why are robust standard errors close to the default in empirical finance?",
+      "options": [
+        "Because they always produce larger t-statistics, making results easier to publish",
+        "Because financial returns almost always show clustered volatility",
+        "Because modern statistical software no longer computes the old formula",
+        "Because they let you skip checking the distribution of the residuals"
+      ],
+      "explanation": "The constant-variance assumption is almost always false for market data, and robust standard errors remain valid even when it happens to hold. The cost of using them unnecessarily is a small loss of efficiency; the cost of not using them when needed is a wrong conclusion. They usually shrink t-statistics rather than inflate them, the classical formula remains available everywhere, and they say nothing at all about the distributional shape of the residuals."
+    }
+  ],
+  "practicePrompt": {
+    "question": "Regressing portfolio returns on three factors gives a coefficient of 0.8 with t = 3.2. The residuals show clear heteroskedasticity. What needs fixing?",
+    "options": [
+      "The standard error, so t = 3.2 cannot yet support a conclusion",
+      "The 0.8 coefficient, since changing variance biases it upward",
+      "Both the coefficient and the standard error, as the assumption broke",
+      "Nothing, since t = 3.2 already clears the usual significance bar"
+    ],
+    "explanation": "Heteroskedasticity does NOT bias the coefficient - least squares remains unbiased and consistent. What it breaks is the standard error, the denominator of the t-statistic. So 0.8 is still the best available number for the size of the effect, while 3.2 cannot be used to say whether that effect is statistically significant, and it is usually inflated. The fix is White's robust standard error; if the residuals are also autocorrelated you need Newey-West. With financial data the homoskedasticity assumption is almost always false, so robust standard errors should be the default rather than an emergency repair."
+  },
+  "keyTakeaways": [
+    "Heteroskedasticity and autocorrelation do not bias the coefficients, they make the standard errors wrong",
+    "White is robust to changing variance; Newey-West additionally handles autocorrelation",
+    "Multicollinearity is a limit of the data and no standard error formula can cure it",
+    "With financial data, robust standard errors should be the default because homoskedasticity is almost always false"
+  ],
+  "summary": {
+    "keyIdea": "The coefficient answers how large the effect is; the standard error answers whether you can believe it. The violations in this lesson break only the second question - and that is the one that decides the conclusion."
+  },
+  "application": {
+    "message": "When you read an empirical finance paper, check how the standard errors were computed. If the paper says nothing, they are probably the textbook formula - and the t-statistics are larger than they deserve to be."
+  },
+  "sections": [
+    { "type": "lead", "text": "A regression coefficient has two parts: the number, and your confidence in the number. The assumption violations in this lesson never touch the first and completely destroy the second." },
+    { "type": "heading", "text": "The part people get wrong" },
+    { "type": "paragraph", "text": "On hearing that the data violates homoskedasticity, the reflex is usually to throw the whole result away. That is not necessary: the least squares estimate is still unbiased. If all you need is the size of the sensitivity, the number still stands. The trouble begins exactly when you ask whether it is meaningfully different from zero." },
+    { "type": "heading", "text": "Two tools for two levels of relaxation" },
+    { "type": "paragraph", "text": "White standard errors drop the constant-variance assumption but still assume the observations are independent. Newey-West drops the independence assumption as well, allowing the residuals to correlate over a chosen number of lags. For financial time series, the second form is almost always the right choice." },
+    { "type": "heading", "text": "What this approach cannot fix" },
+    { "type": "paragraph", "text": "Multicollinearity looks like a standard error problem because it inflates standard errors. But the cause is entirely different: two variables carry nearly the same information, so the data cannot separate their individual contributions. The inflated standard error here is the correct message, not an error to be corrected." },
+    { "type": "callout", "label": "Worth remembering", "text": "The cost of using robust standard errors when you did not need them is a small loss of efficiency. The cost of not using them when you did is publishing a result that does not exist." },
+    { "type": "heading", "text": "The coefficient does not move, the conclusion flips entirely" },
+    { "type": "paragraph", "text": "The easiest thing to misunderstand about robust standard errors: they do NOT fix the regression coefficient. When the residuals have non-constant variance or autocorrelation, the coefficient estimate is still unbiased - 0.42 is still 0.42. What is wrong is the precision you attach to that number. Suppose the classical standard error comes out at 0.175, giving a t-statistic of 2.4 and a statistically significant result. Recompute robustly and you get 0.32, so the t-statistic falls to 1.3 - and the conclusion reverses completely while the coefficient has not moved at all." },
+    { "type": "callout", "label": "Why financial series almost always need them", "text": "Both conditions behind the classical standard error are routinely violated in financial data. Non-constant variance: volatility is not fixed through time, so residuals in stressed periods are markedly larger. Autocorrelation: returns, and especially the residuals of models built on overlapping data, are related to their own previous values. In panel data across firms and years there is the further problem that the residuals of the same firm across years correlate with one another - and there you need standard errors clustered by firm rather than merely robust to variance." },
+    { "type": "comparison", "left": { "label": "Cost of using them when unnecessary", "text": "Slightly wider standard errors, so you may miss a result that was genuinely significant. This is a small and symmetric price - you were more cautious than you needed to be." }, "right": { "label": "Cost of not using them when necessary", "text": "Publishing a result that does not exist, then building a strategy or a risk model on top of it. That price is not symmetric at all, and it is the entire reason standard practice in finance is to use robust standard errors by default." } }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "slug": "mau-sai-so-chuan-va-khoang-tin-cay",
+  "title": "Quant, Lesson 2: Samples, standard errors and confidence intervals - how precise is your number really",
+  "subtitle": "Why every estimate has to carry an interval, and why 36 months of data is nowhere near enough",
+  "duration": "11 min",
+  "whyItMatters": "Every number in finance is an estimate drawn from a sample: beta, expected return, correlation, a fund's alpha. If you do not know the standard error of that estimate, you will make decisions on noise and believe you are acting on signal.",
+  "openingQuestion": "How fast does the standard error of the sample mean fall as the sample grows?",
+  "openingOptions": [
+    "Inversely proportional to the sample size n",
+    "Inversely proportional to the square root of n",
+    "Inversely proportional to the square of the sample size n",
+    "It does not depend on the sample size at all"
+  ],
+  "explanation": "The standard error is the standard deviation divided by the square root of n. The consequence is intensely practical and fairly brutal: to halve your error you need four times the data. That is why judging a fund manager's skill on three years of performance is close to hopeless - the confidence interval around their alpha is wide enough to contain both skill and luck.",
+  "diagram": [
+    { "label": "The population, never observed" },
+    { "label": "A finite sample" },
+    { "label": "Point estimate + standard error" },
+    { "label": "Confidence interval - the plausible range of the truth" }
+  ],
+  "realWorldExample": {
+    "company": "Assessing an investment fund",
+    "description": "A fund posts alpha of 2% a year with tracking error of 6% a year. After three years the standard error of the alpha estimate is 6% divided by the square root of 3, roughly 3.5%. The 95% confidence interval therefore runs from about −5% to +9%. Put another way, three years of data cannot tell a skilful manager apart from a lucky one. It would take roughly 36 years for a 2% alpha to reach conventional statistical significance."
+  },
+  "quiz": [
+    {
+      "question": "What does the central limit theorem actually say?",
+      "options": [
+        "Every financial data series is normally distributed if it runs long enough",
+        "The returns of every asset converge to zero given enough time",
+        "The mean of a large enough sample is approximately normal",
+        "The larger the sample, the smaller the variance of the parent population"
+      ],
+      "explanation": "This is why inferential statistics still works on financial data with fat tails. But note the scope carefully: the theorem applies to the sample mean, not to individual observations - so it does nothing to rescue tail risk models. It says nothing about the shape of the underlying series itself, which can stay violently non-normal forever. It makes no claim that returns drift to zero over time. And the variance of the parent population is a fixed property of the process; collecting more data measures it more precisely rather than shrinking it."
+    },
+    {
+      "question": "What does a 95% confidence interval actually mean?",
+      "options": [
+        "There is exactly a 95% probability the true parameter lies in this interval",
+        "The estimate is 95% accurate relative to the true value of the parameter",
+        "Exactly 95% of the observations in the sample fall inside this interval",
+        "Repeat the procedure many times and 95% of the intervals cover the truth"
+      ],
+      "explanation": "This is a subtle distinction but an important one: the true parameter is a fixed number, and it is the interval that is random, because it depends on the sample you happened to draw. The first wording is the Bayesian reading, which requires an extra assumption about a prior distribution. The second confuses a coverage probability with an accuracy percentage, which is a different quantity entirely. And the third describes a prediction interval for the data points, not an interval for the parameter - those two are usually very different widths."
+    },
+    {
+      "question": "How much data do you need to halve the standard error?",
+      "options": [
+        "Twice as much, since the standard error is inversely proportional to n",
+        "Eight times as much, since the error falls with the cube root of n",
+        "Four times as much, since it falls with the square root of n",
+        "It cannot be reduced, since the standard error does not depend on n"
+      ],
+      "explanation": "Because the standard error is inversely proportional to the square root of n. This is a hard constraint, and it is why tests on financial data so rarely deliver the strong conclusions people want from them. Proportionality to n itself would be far kinder and is simply not what the algebra gives. The cube root belongs to no part of this formula. And the standard error clearly does depend on sample size - it is the whole reason more data is worth collecting at all."
+    },
+    {
+      "question": "Does moving from monthly to daily data give a more precise estimate of expected return?",
+      "options": [
+        "Yes, the observation count rises more than twentyfold against monthly data",
+        "No - precision depends on the length of the window, not the frequency",
+        "Yes, and the standard error falls linearly with the number of observations",
+        "No, because daily data carries only noise and no information at all"
+      ],
+      "explanation": "This is a surprising result: sampling more finely improves your estimate of variance but does almost nothing for your estimate of the mean. When you cut the period shorter, the average return per period shrinks by exactly the proportion the noise shrinks, so the signal-to-noise ratio is unchanged. Counting observations is therefore misleading here. The standard error never falls linearly in the number of observations in any case. And daily data is genuinely informative - it is the workhorse of volatility estimation - just not for the mean. The only way to pin down expected return is to wait more years."
+    },
+    {
+      "question": "Why are three years of performance almost never enough to conclude that a fund manager has skill?",
+      "options": [
+        "Because the fund may have changed its investment strategy over that window",
+        "Because three years of performance has not spanned a full economic cycle",
+        "Because the standard error is so large that luck and skill cannot be separated",
+        "Because the returns of the last three years are reduced by management fees"
+      ],
+      "explanation": "At the volatility typical of equity markets, it takes several decades of data to separate a few percentage points of outperformance from random noise. Strategy drift and cycle coverage are real concerns, but they are second-order: even a manager who never changed anything and traded across a full cycle would still fail the test on three years. Fees reduce the level of the return without widening or narrowing the interval around it. This is one of the most uncomfortable results of statistics applied to investing - and the most widely ignored."
+    }
+  ],
+  "keyTakeaways": [
+    "Standard error = standard deviation / square root of n; twice the precision costs four times the data",
+    "Every estimate must carry a confidence interval, or it is just a number with no context",
+    "Three years of performance is not enough to conclude anything about a fund manager's skill",
+    "Higher-frequency data improves volatility estimates but barely improves estimates of expected return"
+  ],
+  "practicePrompt": {
+    "question": "A strategy shows average excess return of 4% a year with a standard deviation of 20% a year, over 10 years of data. Which conclusion is correct?",
+    "options": [
+      "The strategy definitely generates alpha because the mean is positive",
+      "The standard error of 6.3% is larger than the 4% observed",
+      "Adding daily frequency data would be enough to settle the question",
+      "The strategy fails because its standard deviation is too high"
+    ],
+    "explanation": "The t-ratio is roughly 4 divided by 6.3, about 0.63 - a long way from statistical significance. This is exactly the position most investment strategy pitches are in: a handsome average, presented as evidence, that never actually clears the noise floor."
+  },
+  "summary": {
+    "keyIdea": "An estimate without a standard error is not yet information",
+    "formula": "SE = s / √n; 95% confidence interval ≈ estimate ± 1.96 × SE",
+    "commonMistake": "Judging investment skill on a few years of data, where the noise is many times larger than the signal",
+    "action": "For any performance figure you read, work out the standard error quickly before you believe it."
+  },
+  "application": {
+    "title": "The professional reflex",
+    "message": "When somebody hands you a number - beta of 1.2, alpha of 3%, correlation of 0.4 - the first question is always the same: computed over how many observations, and with what standard error. If the person presenting it cannot answer, the number is not yet fit to decide anything.",
+    "secondary": "A rough rule: it takes about 30 years of data for an alpha of 2% a year to reach conventional statistical significance."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In finance you never observe the truth. You have a sample - a few hundred observations drawn from a process that is still running and still changing. The whole of inferential statistics exists to answer one question: given this sample, how confident am I entitled to be?"
+    },
+    {
+      "type": "formula",
+      "title": "The standard error of the mean",
+      "label": "A measure of how uncertain the estimate itself is",
+      "equation": "SE = s / √n",
+      "variables": [
+        {
+          "symbol": "s",
+          "name": "Sample standard deviation",
+          "description": "How dispersed the data is"
+        },
+        {
+          "symbol": "n",
+          "name": "Number of observations",
+          "description": "With financial data this is usually the number of years rather than the number of days when you are estimating a mean"
+        }
+      ],
+      "example": {
+        "title": "Why the square root matters so much",
+        "calculation": "n = 100 → SE = s/10;  n = 400 → SE = s/20",
+        "result": "Four times the data for twice the precision",
+        "explanation": "This rule explains why the investment industry finds it so hard to prove anything with data: the cost of extra confidence rises exponentially, while the market keeps changing character over the very period you are measuring."
+      }
+    },
+    { "type": "heading", "text": "The paradox of sampling more finely" },
+    {
+      "type": "paragraph",
+      "text": "Intuition says daily data beats monthly data because there are more observations. That holds for variance and fails for the mean. The reason: as you cut the period shorter, the average return per period shrinks by exactly the proportion by which the noise shrinks, so the signal-to-noise ratio is unchanged. The only way to become more certain about expected return is to observe over more years."
+    },
+    {
+      "type": "callout",
+      "label": "What this means for the fund industry",
+      "text": "If three years of performance cannot separate skill from luck, then allocating capital off a three-year league table is acting on noise. This is one of the most robust empirical findings in asset management, and one of the most ignored."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A number without a confidence interval is an opinion in make-up.",
+        "The next lesson turns this into a formal procedure: hypothesis testing."
+      ]
+    }
+  ]
+}

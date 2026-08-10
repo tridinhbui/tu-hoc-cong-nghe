@@ -1,0 +1,161 @@
+{
+  "slug": "quy-trinh-dau-tu-quy-tu-thesis-den-portfolio",
+  "title": "A fund's investment process: from investment thesis to portfolio construction",
+  "subtitle": "A professional fund does not buy shares at random - this is the systematic process behind every decision",
+  "duration": "8 min",
+  "openingQuestion": "A portfolio manager (PM) at a fund receives an attractive investment idea on a stock from the research team. What is the next step before that stock actually goes into the portfolio?",
+  "openingOptions": [
+    "Buy immediately in large size if the idea is compelling enough",
+    "Assess how that stock fits alongside the whole existing portfolio",
+    "Wait for the opinion of every investor in the fund before deciding",
+    "Discard the idea entirely if the PM did not research it from scratch"
+  ],
+  "explanation": "This is the core difference between 'picking good stocks' and 'managing a portfolio' - two different skills: an excellent investment idea about a single company still has to be assessed IN THE CONTEXT OF THE WHOLE PORTFOLIO before the weight is decided - whether it pushes concentration risk too far, whether it correlates highly with existing positions (reducing the diversification benefit), or whether it breaches the sector and country allocation limits already set.",
+  "realWorldExample": {
+    "company": "The investment committee process at large funds",
+    "description": "At large professional funds, an investment idea usually passes through several layers of approval: the research team presents the thesis, the risk team assesses the effect on total portfolio risk, and the investment committee (including senior PMs) debates and challenges it before approving a final weight. This process is not unnecessary bureaucracy - it is the mechanism that ensures every investment decision is examined from several angles (return, risk, correlation, liquidity) before investors' money is actually put at risk."
+  },
+  "quiz": [
+    {
+      "question": "What does 'position sizing' in portfolio management rest on, beyond the PM's level of 'confidence' in the investment idea?",
+      "options": [
+        "The weight of that stock in the fund's reference benchmark index",
+        "Confidence in the thesis, volatility, and correlation with the portfolio",
+        "Only the expected rate of return calculated for each individual stock",
+        "Splitting the capital evenly across all positions to ensure diversification"
+      ],
+      "explanation": "Professional position sizing is a multi-dimensional problem, not just a matter of belief: a stock with an excellent thesis but extremely high volatility or thin liquidity (hard to sell quickly when needed) is usually held at a smaller weight to control total portfolio risk - which is why professional funds use quantitative tools (an adjusted Kelly criterion, or risk parity) rather than relying on one person's instinct. Benchmark weight and expected return each enter the calculation, but neither on its own tells you how much risk the position adds."
+    },
+    {
+      "question": "Why is a 'risk budget' an important concept in portfolio construction, as distinct from simply capping the amount of money invested in each stock?",
+      "options": [
+        "It caps the maximum number of positions allowed in a single portfolio",
+        "It sets a ceiling on the total amount that may be invested each month",
+        "It allocates by contribution to risk rather than by the amount of money",
+        "It sets the maximum stop-loss level for each individual position held"
+      ],
+      "explanation": "This is a subtle but important difference: a money cap ($10m per stock) does not control the risk actually contributed to the portfolio, because different stocks have wildly different volatility. A risk budget (allocating by risk contribution) ensures each position contributes a RELATIVELY BALANCED amount of risk to the whole, rather than letting a few high-volatility names dominate most of the portfolio's risk while holding no more money than the rest. A position count, a monthly cap and a stop-loss are all controls of a different kind, and none of them measures contribution to total risk."
+    },
+    {
+      "question": "Why might a fund decide NOT to invest in a stock even though the research team is very positive about the company's prospects, purely for liquidity reasons?",
+      "options": [
+        "Because the fund has exhausted its investment budget for that financial year",
+        "Because the stock is not a member of the fund's reference benchmark",
+        "Because the research team does not hold the final decision-making authority",
+        "Because liquidity is too thin for the size the fund would need to build"
+      ],
+      "explanation": "Liquidity risk is one of the factors most underrated by individual investors and most carefully weighed by professional funds: a position that is 'good' on fundamentals can become a burden if the fund has to exit quickly (from redemption pressure or a change in market conditions) and the market lacks the depth to absorb the sell order without a meaningful price impact - which is why many funds cap a position at a percentage of average daily volume. Budget, benchmark membership and internal authority are real constraints, but none of them is what liquidity means."
+    },
+    {
+      "question": "Scenario: the research team brings a very convincing idea, and the fund still decides not to buy. What is the most reasonable reason?",
+      "options": [
+        "The position duplicates a risk already held in the portfolio",
+        "Because the research team lacks the authority to decide",
+        "Because the fund only buys stocks in its benchmark index",
+        "Because a good idea is always fully reflected in the price"
+      ],
+      "explanation": "A good stock can still be a poor choice for this particular portfolio: if it carries the same risk as something already held, buying it is only a larger bet on the same thing. The final decision rests on contribution to risk, not on standalone quality. The other three are things that could in principle happen but describe a mandate or a philosophy rather than a portfolio-construction judgement."
+    },
+    {
+      "question": "What does professional position sizing rest on?",
+      "options": [
+        "Splitting capital evenly across every name on the list",
+        "Conviction, volatility, correlation and liquidity",
+        "The highest expected rate of return on each of the names",
+        "The order in which the research team proposed the ideas"
+      ],
+      "explanation": "Splitting evenly sounds fair but in practice lets the most volatile name drive the portfolio's outcome. Sizing a position means converting every holding into the same unit of risk first, and only then scaling it up by how much you believe in the idea. Chasing the highest expected return ignores the variance around it, and proposal order is not a fact about the investment at all."
+    }
+  ],
+  "keyTakeaways": [
+    "A good investment idea on its own (stock picking) does not automatically mean it should go into the portfolio at a large weight - it has to be assessed in the context of the whole portfolio (portfolio construction)",
+    "Professional position sizing combines several factors: conviction, volatility, correlation, liquidity, and the overall risk limits - not instinct alone",
+    "A risk budget (allocating by contribution to risk) controls portfolio risk far more precisely than an absolute cap on money invested",
+    "Liquidity risk is an important factor that is often ignored - a position that is hard to exit quickly can do serious damage when it has to be sold into unfavourable markets"
+  ],
+  "practicePrompt": {
+    "question": "The research team presents an excellent investment idea in a small-cap company whose average daily traded volume is only 500m dong. Your fund has 2,000bn dong under management and normally caps each position at 20% of average daily volume. What is the largest sensible weight for this position in the portfolio, and why?",
+    "options": [
+      "Any amount can be invested as long as the thesis is compelling, with no regard to liquidity",
+      "At most 20% × 500m = 100m a day, that is 0.005% of NAV - too small to be meaningful",
+      "Up to 5% of the fund's NAV (100bn dong) should be invested regardless of liquidity",
+      "Liquidity only affects BUYING and has no effect on selling later on"
+    ],
+    "explanation": "This is a practical illustration of the 'capacity' limit of an investment strategy: however excellent the thesis, a large fund cannot build a meaningful position in a stock this illiquid without breaching its liquidity risk limits - which is why large funds often cannot invest effectively in the attractive small-cap opportunities that a smaller fund can exploit far better."
+  },
+  "summary": {
+    "keyIdea": "Professional portfolio construction takes more than picking good stocks - it needs risk-based position sizing, a balanced risk budget, and a liquidity assessment so that every investment decision fits the context of the whole portfolio.",
+    "commonMistake": "Judging an investment idea purely on the quality of the standalone thesis, ignoring its effect on total risk and on the liquidity of the whole portfolio",
+    "action": "Before proposing a weight for a new position, always assess: its correlation with the current portfolio, its actual risk contribution (not just the money), and average daily volume against the intended size"
+  },
+  "application": {
+    "title": "Applying it in fund management work",
+    "message": "When analysing a fund, find out about its investment committee process - how many layers of approval, who assesses the risk, and how the position sizing and risk budget limits are set.",
+    "secondary": "The next lesson goes into how a fund's performance is measured and assessed once the portfolio has been built - Sharpe ratio, alpha, and tracking error."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Having a good investment idea is only the first step. Turning that idea into a real position in a portfolio - at the right size, the right risk, the right moment - is the core work that distinguishes a professional portfolio manager."
+    },
+    {
+      "type": "heading",
+      "text": "From investment thesis to portfolio construction"
+    },
+    {
+      "type": "paragraph",
+      "text": "A professional investment process usually runs through several steps: (1) idea generation - the research team finds and analyses investment opportunities; (2) due diligence - deep work on the company, the industry, the valuation; (3) portfolio fit analysis - how this idea interacts with the current portfolio (correlation, risk contribution); (4) position sizing - deciding the appropriate weight; (5) execution - trading with an optimal strategy that avoids large price impact; (6) monitoring - tracking and periodically reassessing."
+    },
+    {
+      "type": "heading",
+      "text": "Position sizing - more than 'belief'"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many individual investors size a position purely on how 'confident' they feel about a stock. Professional portfolio management is far more involved: it has to balance conviction in the thesis, the volatility of the asset, correlation with existing positions (a stock highly correlated with the rest of the portfolio offers less diversification benefit), and liquidity limits that ensure the position can be exited when needed without meaningful damage."
+    },
+    {
+      "type": "heading",
+      "text": "Risk budget - allocating by risk, not only by money"
+    },
+    {
+      "type": "paragraph",
+      "text": "A common mistake is to think that spreading money evenly across positions (say 5% of NAV each) produces a portfolio balanced on risk. In reality assets have very different volatility - a high-growth technology stock can contribute three or four times the risk of a stable utility, even at the same 5% of the money. The risk budget approach allocates by ACTUAL RISK CONTRIBUTION, ensuring no single position accidentally dominates the total risk of the portfolio."
+    },
+    {
+      "type": "conceptTable",
+      "title": "From thesis to position",
+      "subtitle": "Three steps, and skipping any of them means the final portfolio no longer reflects the thesis",
+      "concepts": [
+        {
+          "def": "Why this asset is mispriced, what will correct it, and over what period."
+        },
+        {
+          "def": "How much of the portfolio. This is a decision about risk, not about conviction - being surer does not make the loss smaller."
+        },
+        {
+          "def": "Allocate by contribution to total risk rather than by weight of capital. A 60/40 portfolio by money is usually 90/10 by risk."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "Two funds holding the same list of stocks still produce very different results if they size the positions differently. Picking the right names is half of it; the other half is how much goes into each."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The difference between 'good at picking stocks' and 'good at running a fund' lies in the ability to look past each individual idea and see the whole picture of the portfolio.",
+        "It is a skill that takes years of experience to master, and it is why the best portfolio managers are not necessarily the best stock pickers, but the people who build the best balance of risk and return."
+      ]
+    }
+  ],
+  "diagram": [
+    { "label": "Screening investment ideas" },
+    { "label": "Deep research and writing the thesis" },
+    { "label": "Sizing the position by conviction and risk" },
+    { "label": "Allocating the risk budget across the portfolio" },
+    { "label": "Monitoring, and exiting when the thesis no longer holds" }
+  ]
+}

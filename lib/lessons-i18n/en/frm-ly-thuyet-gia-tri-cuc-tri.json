@@ -1,0 +1,143 @@
+{
+  "slug": "frm-ly-thuyet-gia-tri-cuc-tri",
+  "title": "FRM Quant, Lesson 8: Fat tails and extreme value theory",
+  "subtitle": "How to say something defensible about events rarer than the data you hold",
+  "duration": "10 min",
+  "whyItMatters": "Financial returns have far heavier tails than the normal distribution, so risk numbers built on a normal assumption systematically understate exactly the events capable of destroying the institution.",
+  "openingQuestion": "How does extreme value theory differ from the conventional approach?",
+  "openingOptions": [
+    "It models the tail on its own",
+    "It removes the extreme observations from the sample to make the estimate steadier",
+    "It assumes the whole dataset is normal, only with a larger variance",
+    "It can only be applied when the dataset holds more than a million observations"
+  ],
+  "explanation": "Fitting one distribution to the whole dataset means the crowded body decides the parameters, and the tail becomes a by-product. EVT reverses that: it uses only the observations above a high threshold and fits them separately, using the family that theory identifies as the right limiting form.",
+  "diagram": [
+    { "label": "Pick a threshold high enough to keep only the tail region" },
+    { "label": "Fit a generalised Pareto distribution to the exceedances" },
+    { "label": "The shape parameter tells you how heavy the tail is" },
+    { "label": "Extrapolate to quantiles beyond every observation you hold" }
+  ],
+  "realWorldExample": {
+    "company": "Why normal-based models fail in the tail",
+    "description": "Under a normal distribution, a five-standard-deviation drop is an event you would expect to see a handful of times over a span longer than the age of the modern stock market. In reality, the major markets have recorded many sessions past that threshold in only a few decades. That gap between theory and observation is the direct reason extreme value theory found its way into the risk management curriculum."
+  },
+  "quiz": [
+    {
+      "question": "What does the shape parameter of the generalised Pareto distribution tell you?",
+      "options": [
+        "The length of the time series used in the estimation",
+        "The mean of the underlying distribution as a whole",
+        "How many observations in the sample exceed the threshold",
+        "How heavy the tail of the loss distribution is"
+      ],
+      "explanation": "The shape parameter is the single most important number in the model. It sorts tails into three classes, and with financial data the estimate lands almost invariably in the heavy-tailed class - confirming that the normal assumption does not fit. It is a property of the fitted tail, not a property of the sample: neither the number of exceedances nor the length of the history enters it, and both of those can change while the shape parameter stays put. The mean of the parent distribution belongs to the body, which is precisely the part EVT declines to model."
+    },
+    {
+      "question": "What is the trade-off in choosing the threshold in the peaks-over-threshold method?",
+      "options": [
+        "A higher threshold approximates better but leaves too few observations",
+        "A higher threshold is always better, whatever the sample size",
+        "A lower threshold is always better because more data goes into the fitting",
+        "The choice of threshold does not affect the parameter estimates at all"
+      ],
+      "explanation": "This is the bias-variance trade-off in a very concrete form. Theory only guarantees the approximation holds as the threshold goes very high, but the higher the threshold, the fewer observations remain to estimate from and the more unstable the result becomes. Neither direction is unconditionally better, which is why the answers claiming one always wins are wrong, and the threshold is anything but neutral - move it and the shape parameter moves with it. There is no mechanical rule; practitioners lean on diagnostic plots instead."
+    },
+    {
+      "question": "Why does Expected Shortfall fit the EVT approach better than VaR does?",
+      "options": [
+        "Because ES always comes out smaller than VaR and so is more prudent",
+        "Because ES takes the expectation of the whole tail beyond the threshold",
+        "Because VaR cannot be computed at all when the distribution is fat-tailed",
+        "Because ES requires no distributional assumption of any kind"
+      ],
+      "explanation": "VaR states a loss threshold at one quantile and says nothing about how bad things get once that threshold is crossed. Having gone to the trouble of modelling the tail separately, using ES to exploit the whole shape of that tail is the natural choice. ES is larger than VaR at the same confidence level, not smaller, since it averages the losses beyond the cut-off. VaR is perfectly computable under fat tails - it is just uninformative there - and ES leans on the fitted tail distribution rather than escaping distributional assumptions."
+    },
+    {
+      "question": "Why does extreme value theory use only the observations above a high threshold?",
+      "options": [
+        "Because Basel rules only allow above-threshold data when computing capital",
+        "Because observations below the threshold carry more measurement error",
+        "Because letting the crowded body in lets the normal range set the parameters",
+        "Because the body of the distribution is always normal and needs no model"
+      ],
+      "explanation": "Fitting one distribution across the whole dataset means thousands of ordinary observations drive the parameters while a few dozen extreme ones become a by-product. EVT reverses that by modelling the exceedances on their own. This is a statistical argument, not a regulatory one, and no rulebook prescribes it. Observations in the body are not noisier than the extremes - if anything the extremes are the ones prone to data errors - and the body is not reliably normal either; EVT simply declines to make any claim about it."
+    },
+    {
+      "question": "Why does Expected Shortfall suit the extreme value approach better than VaR?",
+      "options": [
+        "Because it only needs data from the body of the distribution to compute",
+        "Because it always comes out below VaR and so is prudent for capital",
+        "Because it does not require estimating the tail's shape parameter",
+        "Because it uses the whole modelled tail rather than a single cut-off point"
+      ],
+      "explanation": "VaR reads one quantile point, so most of the effort spent modelling the tail is wasted. Expected Shortfall averages everything beyond that point - exactly the region extreme value theory has just described. It relies on the fitted tail, so the shape parameter is a required input rather than something it avoids, and it draws nothing at all from the body. On the prudence point, ES sits above VaR at a given confidence level, which is the reason Basel moved capital charges onto it."
+    }
+  ],
+  "practicePrompt": {
+    "question": "On 3,000 observations, a team sets the EVT threshold at the 90th percentile instead of the 99th. What is the trade-off in that choice?",
+    "options": [
+      "More observations but biased, because body data is mixed in",
+      "Fewer observations, so estimation variance rises sharply",
+      "Nothing changes, since EVT normalises by the observation count",
+      "The tail is described more accurately thanks to the extra data"
+    ],
+    "explanation": "Dropping the threshold from the 99th to the 90th percentile takes the number of observations in the fit from 30 to 300, so estimation variance falls markedly - that is the gain. The cost is bias: the theorem underpinning EVT only says the generalised Pareto distribution approximates the exceedances ABOVE A SUFFICIENTLY HIGH THRESHOLD, and at the 90th percentile 9 of every 10 observations fed in are body observations. The fitted shape parameter then describes the body more than the tail, which is exactly what EVT exists to avoid. There is no mechanical rule for this choice, only a trade-off you have to see."
+  },
+  "keyTakeaways": [
+    "EVT models the tail on its own instead of letting the body decide the parameters",
+    "The shape parameter measures how heavy the tail is; financial data almost always comes out heavy-tailed",
+    "Choosing the threshold is a bias-variance trade-off with no mechanical rule",
+    "Expected Shortfall exploits the information in the tail shape better than VaR does"
+  ],
+  "summary": {
+    "keyIdea": "EVT gives a theoretically grounded way to speak about the region where you have almost no data, by fitting the tail separately rather than extrapolating from the body",
+    "commonMistake": "Using a standard deviation and a normal assumption to infer the probability of an extreme event, which understates it by orders of magnitude",
+    "action": "When a risk model rests on a normal distribution, immediately check how many threshold breaches actually occurred against how many the model predicted"
+  },
+  "application": {
+    "title": "Test for fat tails with real data",
+    "message": "Take ten years of daily returns on an index, count the days that moved more than three standard deviations, then compare that with the count the normal distribution predicts.",
+    "secondary": "The gap between those two numbers is the reason this entire lesson exists."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The hardest question in risk measurement is how to say something grounded about events rarer than the dataset you are holding."
+    },
+    { "type": "heading", "text": "Why the normal assumption fails" },
+    {
+      "type": "paragraph",
+      "text": "The normal distribution decays very quickly at both ends, so it assigns a probability near zero to events many standard deviations from the mean. Real financial data records those events orders of magnitude more often - a discrepancy that is not small but wrong by a whole scale."
+    },
+    { "type": "heading", "text": "The two EVT approaches" },
+    {
+      "type": "list",
+      "items": [
+        "Block maxima: split the data into time blocks and take the extreme value of each block",
+        "Peaks over threshold: keep every observation above a high threshold and fit a generalised Pareto distribution to the exceedances"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The second is the more common in finance because it uses data more efficiently: it retains every large event rather than just the single largest one per block."
+    },
+    {
+      "type": "callout",
+      "label": "Choosing the threshold is the hardest part",
+      "text": "Theory only guarantees the approximation as the threshold goes very high, but the higher the threshold the fewer observations remain and the less stable the estimate. This is the bias-variance trade-off in its purest form, and in practice people rely on diagnostic plots together with checks that the parameter stays stable across a range of threshold levels."
+    },
+    { "type": "heading", "text": "The link to Expected Shortfall" },
+    {
+      "type": "paragraph",
+      "text": "Once you have a model for the shape of the tail, computing the expected loss in the region beyond the threshold becomes natural. This is why EVT and Expected Shortfall usually travel together: one describes the shape of the tail, the other is the measure that exploits that whole shape rather than a single cut-off point."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "No model knows what has never happened; EVT only makes the extrapolation more disciplined than a guess.",
+        "Next lesson: when risk arrives from several factors at once, the dependence structure is what decides."
+      ]
+    }
+  ]
+}

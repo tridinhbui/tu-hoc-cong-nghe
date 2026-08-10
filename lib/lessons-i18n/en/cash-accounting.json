@@ -38,7 +38,7 @@
       "options": [
         "When an invoice is issued to the customer",
         "When the obligation to deliver arises",
-        "When the contract takes effect",
+        "When the contract is signed and takes effect",
         "When cash actually moves in or out"
       ],
       "explanation": "Issuing an invoice, incurring an obligation and signing a contract are all accrual triggers - each recognises the event before any money moves. Cash basis ignores all three and waits for the bank balance to change."
@@ -48,8 +48,8 @@
       "options": [
         "Household businesses and very small companies",
         "Companies listed on the stock exchange",
-        "Companies that have taken on foreign investment capital",
-        "Banks and credit institutions"
+        "Companies with foreign investment capital",
+        "Banks and other credit institutions"
       ],
       "explanation": "Small and simple → cash basis is enough. Large and complex → accrual is required."
     },
@@ -69,14 +69,14 @@
         "The actual cash balance is recorded incorrectly",
         "It cannot calculate the tax due for the period",
         "Credit sales aren't recognised as revenue",
-        "Depreciation expense gets double-counted"
+        "Depreciation expense ends up double-counted"
       ],
       "explanation": "Cash basis records the bank balance accurately - that is its whole point - and tax authorities accept it for small businesses. Depreciation never enters cash basis at all, so it cannot be double-counted. What it misses is the credit sale: goods delivered, revenue unrecorded."
     },
     {
       "question": "A small company on cash basis shows 10 million profit. In reality:",
       "options": [
-        "Exactly 10 million, no discrepancy",
+        "Exactly 10 million, because cash in equals profit",
         "Always lower than 10 million after adjustment",
         "Always higher than 10 million due to depreciation",
         "Could differ, depending on AR, AP and CapEx"
@@ -87,7 +87,7 @@
       "question": "Why doesn't everyone use accrual?",
       "options": [
         "Accrual is much more complex and costly",
-        "Accrual has a restricted scope of application",
+        "Accrual applies only in a narrow set of cases",
         "Accrual raises the corporate tax owed",
         "Accrual is only for foreign companies"
       ],
@@ -97,7 +97,7 @@
       "question": "A small company borrowing from a bank should prepare:",
       "options": [
         "Accrual, because the bank needs standardised figures",
-        "Cash basis, because it's simpler and more honest",
+        "Cash basis, because it is simpler and more honest to read",
         "Both books at once so the bank can cross-check itself",
         "No preparation needed, the bank only checks bank statements"
       ],

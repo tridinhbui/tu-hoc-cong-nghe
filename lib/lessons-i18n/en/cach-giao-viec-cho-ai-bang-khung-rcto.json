@@ -1,0 +1,176 @@
+{
+  "slug": "cach-giao-viec-cho-ai-bang-khung-rcto",
+  "title": "AI in finance, lesson 3: briefing AI with the R-C-T-O framework",
+  "subtitle": "A simple formula so the AI understands what you actually want.",
+  "duration": "14 min",
+  "whyItMatters": "Most poor results from AI come not from a weak model but from a prompt missing one of these four parts. Fixing the prompt is usually faster and more effective than switching tools.",
+  "openingQuestion": "What does R-C-T-O do for you when you ask an AI something?",
+  "openingOptions": [
+    "Role, data, task, and the format of the answer",
+    "It lets the AI always know future share prices",
+    "It removes the need to verify the answer at all",
+    "It makes the prompt as vague as possible"
+  ],
+  "explanation": "R-C-T-O is four questions you answer on the AI's behalf before it has to guess: Role - who the AI is playing; Context - what data it may use; Task - exactly what it has to do; Output - what format the answer should take. Every part you leave blank is a part the AI will fill in for itself, and in finance every self-filled blank is a risk. The framework barely lengthens the prompt, but it makes the result verifiable.",
+  "summary": {
+    "keyIdea": "R-C-T-O is 4 questions: who the AI is, what data it has, what it must do, and how it should answer.",
+    "commonMistake": "Asking something as broad as 'analyse this stock for me'.",
+    "action": "Rewrite one prompt you use often into the R-C-T-O template."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A prompt does not have to be elaborate. It only has to brief the work clearly enough."
+    },
+    { "type": "heading", "text": "What is R-C-T-O?" },
+    {
+      "type": "paragraph",
+      "text": "Role is the part it plays. Context is the background. Task is the job. Output is the answer format. In plain terms: who the AI is, what it knows, what it does, and how it should reply."
+    },
+    {
+      "type": "callout",
+      "label": "Terminology",
+      "text": "Prompt: the instruction you give the AI. Role: the part it plays. Context: the data and background. Task: the job to be done. Output: the answer you want back."
+    },
+    { "type": "heading", "text": "A fill-in-the-blanks template" },
+    {
+      "type": "paragraph",
+      "text": "You are [role]. Working from [data]. Please [task]. Answer as a [table / bullet list / checklist]. If the data is missing, write 'Not found in the document'."
+    },
+    { "type": "heading", "text": "A finance example" },
+    {
+      "type": "paragraph",
+      "text": "You are an equity analyst. Working from three years of revenue, profit and cash flow. Assess the quality of earnings. Answer in a table with the columns Observation, Evidence, Risk."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The four parts of R-C-T-O",
+      "subtitle": "Whichever part you leave out, the AI will fill in for itself",
+      "concepts": [
+        {
+          "def": "Tells the AI which perspective to answer from: equity analyst, auditor, personal financial adviser. It sets the register and the level of detail."
+        },
+        {
+          "def": "The data and the constraints: which file, which period, whether inference is permitted. This is the most important part and the most often forgotten."
+        },
+        {
+          "def": "The specific job: extract figures, find risks, draft text, compare two periods. One prompt should carry one main task."
+        },
+        {
+          "def": "Table, bullets, a word limit, whether there is a source column. A defined format lets you spot the gaps at a glance."
+        }
+      ]
+    },
+    { "type": "heading", "text": "Upgrading one prompt, step by step" },
+    {
+      "type": "list",
+      "items": [
+        "Version 0: \"Analyse stock ABC.\" - Nothing here can be checked.",
+        "Version 1 (add C): \"Using only the attached financial statements, analyse stock ABC.\" - The source is now locked.",
+        "Version 2 (add T): \"... compare revenue, gross margin and operating cash flow between 2023 and 2024.\" - The task is now measurable.",
+        "Version 3 (add O): \"... present it as a 4-column table: Metric | 2023 | 2024 | Source page.\" - Now you can see instantly which cell is empty.",
+        "Version 4 (add R): \"You are a careful analyst who does not infer beyond the document.\" - The register and the level of caution are now right."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "One tip to use today",
+      "text": "Always close the prompt with a fixed line: \"If the data is not in the document, write 'Not found' rather than inferring it.\" That single line removes most cases of the AI inventing numbers."
+    },
+    {
+      "type": "paragraph",
+      "text": "Once it becomes habit you no longer need to write all four parts in order - but you should still run through all four questions before you hit send. That is the difference between using AI on instinct and having a process."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A clear prompt makes the result easier to use.",
+        "A beginner only needs to remember: who, knowing what, doing what, answering how."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "In R-C-T-O, what does Output mean?",
+      "options": [
+        "The role you want the AI to play here",
+        "The data sources the AI is allowed to use",
+        "The specific task the AI must carry out",
+        "The format you want the answer delivered in"
+      ],
+      "explanation": "Output makes the AI answer in the shape you actually need: a table, a checklist, a memo. It is the last of the four letters and the one people most often leave to chance, which is why answers arrive as loose prose that has to be reformatted by hand. The role is R, the permitted data sources are C, and the specific job is T - each of those shapes the substance of the answer, whereas Output shapes how you receive it, and a defined shape is what lets you see at a glance which cell is empty."
+    },
+    {
+      "question": "Which prompt is clearer?",
+      "options": [
+        "Using this data, assess the risks and output a table",
+        "Tell me whether this company is worth investing in",
+        "Analyse this company for me in as much detail as you can",
+        "Give a comprehensive assessment of the company's finances"
+      ],
+      "explanation": "A clear prompt carries a role, the data, the task and the output format. This one names the data source, states a measurable job (assess the risks) and fixes the shape of the answer. The other three each ask for a judgement with no source locked down, no defined scope and no format - so the AI has to choose all of that itself, and you have no way of checking the answer against anything. 'Comprehensive' and 'detailed' sound demanding but specify nothing at all."
+    },
+    {
+      "question": "Of the four parts of R-C-T-O, which matters most when working with financial figures?",
+      "options": [
+        "Role - playing the right part is what makes the answer expert",
+        "Context - locking the sources is what makes output verifiable",
+        "Output - the right format is what makes it easy to drop into a report",
+        "Task - a clear task is what makes the AI do the right work"
+      ],
+      "explanation": "The other three improve the quality of the presentation, but Context is what determines whether the output can be reconciled against the underlying document - a hard requirement in finance. Role changes the register, Task changes what gets done, and Output changes how it is laid out; none of them tells you where a number came from. Without a locked source the AI will draw on whatever it remembers, which may be a different year or a company with a similar name."
+    },
+    {
+      "question": "What does adding \"if the data is missing, write 'Not found'\" at the end of a prompt achieve?",
+      "options": [
+        "It makes the answer much shorter and easier to read",
+        "It makes the AI answer faster and cost less to run",
+        "It sharply reduces guessing and invented figures in the answer",
+        "It forces the AI to cite a source for every number"
+      ],
+      "explanation": "When leaving a blank is not an option, an AI tends to fill it with something that reads plausibly. Giving it a legitimate way out - 'Not found' - is the simplest and most effective way to avoid invented figures. It does not shorten the answer, it has no bearing on speed or cost, and it does not by itself produce citations: if you want a source page against every number you have to ask for that separately, as a column in the Output specification."
+    },
+    {
+      "question": "Why is Context the most important part of R-C-T-O when working with financial figures?",
+      "options": [
+        "Because it tells the AI who will ultimately read the result",
+        "Because it determines how long the answer the AI gives will be",
+        "Because it helps the AI pick the right valuation method to apply",
+        "Because it confines the AI to exactly the sources you have verified"
+      ],
+      "explanation": "Role and Output affect presentation; Context decides where the numbers come from. Without a locked source the AI will use whatever it remembers - possibly figures from a different year, or from a company with a similar name. Naming the audience is part of Role, answer length belongs in Output, and choosing a valuation method is a Task instruction. Only Context restricts the AI to material you have actually checked, which is the condition for any output you intend to rely on."
+    }
+  ],
+  "diagram": [
+    { "label": "R - Role: who the AI is playing" },
+    { "label": "C - Context: which data it may use" },
+    { "label": "T - Task: exactly what it must do" },
+    { "label": "O - Output: what format to answer in" },
+    { "label": "= a prompt whose answer can be verified" }
+  ],
+  "realWorldExample": {
+    "company": "One document, two prompts",
+    "description": "Take the same quarterly report and try two ways of asking. The first: 'How is this company doing?' - back comes a bland paragraph with no page numbers and no clear basis. The second: 'You are an equity analyst. Use only the attached quarterly report. Build a table of revenue, gross profit, net profit and operating cash flow for this quarter and the same quarter last year, with a source page in every cell; where there is no data, write Not found.' - back comes a table you can reconcile in minutes. The whole difference is in the prompt, not in the AI."
+  },
+  "keyTakeaways": [
+    "R-C-T-O = Role, Context, Task, Output: the four parts every good prompt has.",
+    "Context matters most in finance - without a locked source the output cannot be verified.",
+    "Task should be one specific, measurable job, not an open question like 'give me an assessment'.",
+    "Fixing the Output as a table or bullet list lets you spot missing data immediately."
+  ],
+  "practicePrompt": {
+    "question": "What does R-C-T-O do for you when you ask an AI something?",
+    "options": [
+      "It assigns work clearly: role, data, task, answer format",
+      "It lets the AI always know future share prices in advance",
+      "It removes the need to verify the answer at all",
+      "It makes the prompt as vague as it can possibly be"
+    ],
+    "explanation": "R-C-T-O is a way of briefing the AI clearly."
+  },
+  "application": {
+    "title": "Practise it now",
+    "message": "Rewrite one prompt you use often into the R-C-T-O template.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

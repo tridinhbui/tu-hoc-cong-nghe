@@ -1,0 +1,153 @@
+{
+  "slug": "ngan-hang-ngam-shadow-banking",
+  "title": "FRM Current Issues, Lesson 1: shadow banking and systemic risk off the balance sheet",
+  "subtitle": "When banking functions are performed by institutions that are not supervised like banks",
+  "duration": "9 min",
+  "whyItMatters": "More and more credit activity - lending, maturity transformation, liquidity creation - happens outside the tightly supervised banking system, in private funds, money market funds and non-bank lending platforms. Because these institutions have no safety net (deposit insurance, a central bank discount window) of the kind traditional banks have, systemic risk can build up exactly where supervision is thinnest.",
+  "openingQuestion": "What does \"shadow banking\" refer to?",
+  "openingOptions": [
+    "Illegal banking activity, organised tax evasion or systematic money laundering",
+    "Non-bank entities doing bank-like functions outside the supervisory framework",
+    "Only foreign banks operating without a licence in a given country",
+    "An obsolete term no longer used by international financial regulators"
+  ],
+  "explanation": "Shadow banking does not mean illegal - most of it is entirely lawful: money market funds, private credit funds, peer-to-peer lending platforms. What they share is that they perform the same credit intermediation function as a bank (taking in short-dated money, lending long) without deposit insurance or access to emergency central bank liquidity when a crisis arrives.",
+  "diagram": [
+    { "label": "Investors put money into a money market or private credit fund" },
+    { "label": "The fund lends or buys assets with far longer maturities than its funding" },
+    { "label": "No deposit insurance and no central bank discount window" },
+    { "label": "When panic hits, mass redemptions with no \"lender of last resort\" behind them" }
+  ],
+  "realWorldExample": {
+    "company": "The Reserve Primary Fund, 2008",
+    "description": "After Lehman Brothers failed, the Reserve Primary Fund - a large money market fund holding Lehman commercial paper - \"broke the buck\", meaning its net asset value per share fell below one dollar, something that had almost never happened to a fund of that type. The event set off a wave of redemptions across the entire money market fund industry within days, forcing the US Treasury to launch an unprecedented emergency guarantee programme to stop the collapse spreading into the commercial paper market that funds the whole economy."
+  },
+  "quiz": [
+    {
+      "question": "Why are shadow banking institutions more vulnerable than traditional banks in a liquidity crisis?",
+      "options": [
+        "They have no deposit insurance and no access to the central bank discount window, so no lender of last resort stands behind them in a panic",
+        "Because shadow banks always carry higher bad debt ratios than traditional banks at every point in the economic cycle",
+        "Because shadow banking is banned outright in most developed economies, so only weak marginal players are left operating in it",
+        "Because shadow banks serve only individual retail customers, never businesses, so their funding base is thinner than a bank's"
+      ],
+      "explanation": "A traditional bank has two layers of protection when liquidity dries up: deposit insurance, which removes most of the incentive to run, and the central bank discount window, an emergency source of funding. Shadow banking institutions have neither, so a shock to confidence spreads far faster - exactly as it did at the Reserve Primary Fund. Their loan books are not systematically worse than a bank's; plenty perform well through a cycle. Most of what they do is entirely legal and heavily used. And they lend to businesses at scale - private credit funds exist largely to serve mid-sized corporates."
+    },
+    {
+      "question": "What systemic consequence followed the Reserve Primary Fund \"breaking the buck\" in 2008?",
+      "options": [
+        "It affected only that fund's own investors and never spread to any other institution or fund anywhere in the global money market industry",
+        "It triggered mass redemptions across the entire money market fund industry, forcing an unprecedented government guarantee programme",
+        "It led the US government to shut down the entire money market fund industry permanently and for good",
+        "It had no meaningful impact at all on the commercial paper market that funds the wider economy"
+      ],
+      "explanation": "This is the classic illustration of contagion risk in the shadow banking system: an event at one fund destroyed confidence in the whole product category, triggering redemptions far larger than the original problem. Containment to a single fund is precisely what did not happen, which is why the Treasury had to intervene at all. The industry was reformed rather than closed, and still runs trillions today. And the commercial paper market seized almost immediately, cutting off short-term funding for ordinary corporates."
+    },
+    {
+      "question": "Why do regulators treat shadow banking as a \"current issue\" to monitor continuously, rather than a risk settled once and for all after 2008?",
+      "options": [
+        "Because shadow banking vanished from the global system entirely after the post-2008 regulatory reforms, as the FSB reports every single year since",
+        "Because current law now prohibits every form of shadow banking everywhere in the world, leaving nothing at all left to monitor",
+        "Because the scale and shape of non-bank credit keeps changing and expanding, moving into precisely the gaps new rules have yet to cover",
+        "Because it is a purely historical matter with no bearing on modern financial markets or the risks they carry today"
+      ],
+      "explanation": "This is what makes something a \"current issue\" in FRM: risk is not static, it moves. As post-2008 rules tightened on traditional banks, part of the credit activity migrated to less supervised channels - private credit has grown enormously over the past decade - which means a risk manager has to keep tracking where risk is going rather than only where it once appeared. Far from vanishing, the sector is larger than before, the FSB measures it precisely because it persists, and no jurisdiction has outlawed non-bank lending."
+    },
+    {
+      "question": "What is the \"maturity transformation\" function performed by traditional banks and shadow banks alike?",
+      "options": [
+        "Converting transaction currency from the domestic unit into a strong foreign currency at prevailing market rates",
+        "Converting assets from a tangible physical form into a digital form recorded on a blockchain ledger for trading",
+        "Converting corporate bonds into ordinary shares through a conversion option written into the issue terms",
+        "Taking in short-dated funding (deposits withdrawable on demand, or money market fund shares) and lending far longer"
+      ],
+      "explanation": "This is the core economic function that traditional banks and shadow banks both perform, and the source of maturity mismatch - the same problem covered in the Liquidity and Treasury Risk material (Northern Rock, SVB), except that shadow banking performs it without the accompanying safety net. Currency conversion is an FX service with no maturity dimension. Tokenising assets changes the record of ownership, not the term structure. And bond conversion is an equity feature of a single instrument rather than a funding function."
+    },
+    {
+      "question": "Why are non-bank credit institutions more vulnerable in a liquidity crisis?",
+      "options": [
+        "They have neither a discount window nor deposit insurance",
+        "They are not permitted to hold high quality liquid assets at all",
+        "Their activities fall outside the existing legal framework",
+        "They raise funding only from small individual retail investors"
+      ],
+      "explanation": "They perform the same maturity transformation - borrowing short to lend long - with nothing standing behind them. When short-term funding closes, there is no lender of last resort, and they are forced to sell assets at the worst possible prices. Nothing stops them holding liquid assets, and prudent funds hold plenty. Their activities are lawful and largely regulated, just not as banks. And their money comes heavily from institutions - pension funds, insurers and corporate treasuries - rather than only from retail."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A money market fund allows daily redemptions while holding 90-day commercial paper. In what respect does it differ most importantly from a bank?",
+    "options": [
+      "The same maturity mismatch, but no deposit insurance and no discount window",
+      "No maturity mismatch at all, since 90-day paper is still a short-term instrument",
+      "Lower risk than a bank, because the fund's assets are of high credit quality",
+      "More tightly regulated than a bank, so its systemic risk is smaller"
+    ],
+    "explanation": "Promising daily redemption while holding 90-day assets is maturity transformation - the core business of a bank under another name. The difference is the safety net: a bank depositor is insured and therefore has no reason to run first, and the bank can borrow at the discount window when it needs cash urgently. The fund has neither, so a modest shock is enough to make everyone redeem at once and force selling into a falling market. The Reserve Primary Fund in 2008 showed that an event at one fund can trigger redemptions across the whole industry."
+  },
+  "keyTakeaways": [
+    "Shadow banking means non-bank institutions performing bank-like credit intermediation without deposit insurance or a central bank discount window",
+    "Reserve Primary Fund (2008): an event at one fund triggered mass redemptions across the whole money market fund industry",
+    "Maturity transformation creates the same mismatch risk covered in Liquidity Risk, but without the traditional bank's safety net",
+    "Shadow banking risk is not static - it moves to wherever new rules have yet to reach, which is why it needs continuous monitoring rather than being treated as solved"
+  ],
+  "summary": {
+    "keyIdea": "Shadow banking does exactly what a bank does - maturity transformation - without a bank's safety net, so the same mismatch risk sits there with nobody behind it.",
+    "commonMistake": "Treating it as a fixed list of institutions. It is a function, and it moves to wherever regulation has not reached."
+  },
+  "application": {
+    "title": "Look at the function, not the name",
+    "message": "Ask who in this system is borrowing short to lend long, and who catches them if the short-term lenders all withdraw at once."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After the 2008 crisis, rules such as Basel III tightened considerably on traditional banks. But the economy's demand for credit did not disappear - it found another route. That other route, operating outside the bank supervisory framework, is shadow banking."
+    },
+    { "type": "heading", "text": "Same function, different safety net" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Traditional bank",
+        "text": "Takes deposits, makes loans - with deposit insurance and the central bank discount window as a safety net when liquidity dries up."
+      },
+      "right": {
+        "label": "Shadow banking",
+        "text": "Money market funds, private credit funds, lending platforms - performing the same function with no equivalent safety net."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Private credit - the latest wave",
+      "text": "Over the past decade private credit funds have grown enormously, filling the gap in mid-market corporate lending that traditional banks stepped back from under tighter capital rules. It is the most current example of credit risk migrating to a less transparent and less supervised channel - exactly the kind of \"current issue\" GARP wants candidates tracking continuously rather than only looking back at the past."
+    },
+    { "type": "heading", "text": "The same three transformations, minus three layers of protection" },
+    {
+      "type": "conceptTable",
+      "title": "What a bank does, and what a non-bank does it without",
+      "subtitle": "The shared function is what makes this sector important; the difference in safety nets is what makes it dangerous",
+      "concepts": [
+        {
+          "def": "Borrowing short to lend long. A bank does this with deposit insurance behind it; a money market fund or a private credit fund does the same without that layer, so whoever redeems first is better off - and everybody knows it."
+        },
+        {
+          "def": "Taking money redeemable daily to hold assets that take weeks to sell. A bank can borrow from the central bank when it is stuck; a non-bank has to sell, and selling under stress pushes the price down for everyone."
+        },
+        {
+          "def": "Banks face minimum capital ratios and leverage limits under continuous supervision. Leverage outside the banking system is usually built through repo and derivatives, shows up in no single metric, and nobody holds the aggregate picture."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why tightening the banks made this sector grow",
+      "text": "The economy's demand for credit does not fall when capital rules tighten. It moves to where the regulatory cost of capital is lower - which is the design of the rules in one sense, but carries the consequence that risk leaves the closely supervised sector for one with far less public data. That is why the right supervisory question is not whether banks are safe, but how much maturity transformation and leverage exists across the whole system, and who will be selling first when something breaks."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Supervising systemic risk cannot mean looking only at bank balance sheets - it has to include wherever the functions of a bank are being performed by somebody else.",
+        "The final lesson of this stage: when financial institutions are so tightly interconnected that one failure can drag the system down - interconnectedness risk."
+      ]
+    }
+  ]
+}

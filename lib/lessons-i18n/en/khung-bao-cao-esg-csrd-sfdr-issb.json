@@ -1,0 +1,134 @@
+{
+  "slug": "khung-bao-cao-esg-csrd-sfdr-issb",
+  "title": "ESG reporting frameworks and rules: CSRD, SFDR, ISSB and TCFD",
+  "subtitle": "From voluntary disclosure to mandatory - what a Vietnamese exporter selling into the EU needs to know",
+  "duration": "9 min",
+  "openingQuestion": "Why do mandatory ESG frameworks such as the EU's CSRD matter to a Vietnamese company that is not listed in Europe?",
+  "openingOptions": [
+    "It does not matter - EU rules apply only to EU-registered companies",
+    "Because the CSRD makes EU firms report their whole supply chain",
+    "Because every company in the world must file a report with the EU",
+    "Because Vietnam signed up to apply the CSRD from 2024"
+  ],
+  "explanation": "This is the most important transmission mechanism in ESG regulation. The CSRD requires EU companies to disclose Scope 3 emissions - emissions across the entire value chain, suppliers included. An EU company cannot measure that part itself, so it pushes the requirement down to its suppliers through the contract. The result is that a textile mill in Vietnam selling to a European brand gets asked for environmental data, even though no EU rule applies to it directly.",
+  "realWorldExample": {
+    "company": "CBAM and steel and cement exports to the EU",
+    "description": "The EU's Carbon Border Adjustment Mechanism (CBAM) began its reporting phase in 2023 and starts charging in 2026, covering imported steel, cement, aluminium, fertiliser, electricity and hydrogen. Exporters must declare the emissions embedded in the goods; those who cannot measure them are assigned default values that are usually unfavourable. It is the clearest example yet of an environmental rule turning into a real trade barrier."
+  },
+  "quiz": [
+    {
+      "question": "What does 'double materiality' mean in the CSRD?",
+      "options": [
+        "The company must report twice a year instead of once",
+        "The company must report under both EU and national standards",
+        "The report must be signed off by two independent auditors",
+        "Disclose both directions: impact on finances and on society"
+      ],
+      "explanation": "Double materiality is the key difference between the EU's CSRD and the ISSB approach. The first direction - financial materiality - asks how climate change affects the company's cash flows and risks. The second - impact materiality - asks what effect the company's activity has on the environment and on society. The ISSB requires only the first, serving investors. The CSRD requires both, serving society as well. None of that has anything to do with filing frequency, with national standards, or with how many auditors sign the report."
+    },
+    {
+      "question": "How do Scope 1, Scope 2 and Scope 3 emissions differ?",
+      "options": [
+        "Scope 1 direct, Scope 2 bought energy, Scope 3 value chain",
+        "Scope 1 small, Scope 2 medium, Scope 3 large - split by volume",
+        "Three accuracy levels, from rough estimate to direct measurement",
+        "Scope 1 for manufacturing, Scope 2 for services, Scope 3 for finance"
+      ],
+      "explanation": "This is the GHG Protocol classification that underpins every reporting framework. Scope 1: fuel burned at the plant, company vehicles. Scope 2: electricity, steam and cooling bought in. Scope 3: input materials, transport, employee travel, and customers using the product. The split is by source, not by size and not by how precisely the number was measured - although in practice Scope 3 is both the largest share for most companies and the hardest to measure, which is the real bottleneck in every ESG programme."
+    },
+    {
+      "question": "SFDR classifies funds under Article 6, Article 8 and Article 9. What does Article 9 mean?",
+      "options": [
+        "A fund promoting environmental traits, but not as its objective",
+        "A fund whose core objective is sustainable investment - 'dark green'",
+        "A fund barred from distribution to retail investors in the EU",
+        "A fund allowed to hold only green government bonds"
+      ],
+      "explanation": "SFDR (the Sustainable Finance Disclosure Regulation) sets three levels: Article 6 - an ordinary fund with no sustainability factor in its process; Article 8 - a 'light green' fund that promotes environmental or social characteristics without making them the objective; Article 9 - a 'dark green' fund where sustainable investment is the objective. Notably, once the evidential standard tightened, many funds downgraded themselves from Article 9 to Article 8 because they could not meet it - a lesson in the gap between marketing and substance."
+    },
+    {
+      "question": "Why can a Vietnamese company outside the CSRD's scope still be asked to report its emissions?",
+      "options": [
+        "Because Vietnamese regulators have written the whole CSRD into law",
+        "Because the CSRD applies directly to every exporter selling into the EU",
+        "Because EU customers need that data to complete their own Scope 3",
+        "Because a non-reporting exporter faces the top EU carbon rate"
+      ],
+      "explanation": "A customer's supply chain emissions are the supplier's own direct emissions. The legal obligation stops at the EU border, but the data requirement travels on down the chain through commercial contracts - which is how an EU rule reaches beyond its own jurisdiction. It is not local law, because Vietnam has not transposed the CSRD; it is not direct application, because the regulation binds EU undertakings only; and the CBAM default rate is a separate mechanism covering a short list of goods."
+    },
+    {
+      "question": "How does an Article 8 fund under SFDR differ from an Article 9 fund?",
+      "options": [
+        "Article 8 is for EU-domiciled funds and Article 9 for non-EU funds",
+        "Article 8 covers open-ended funds, Article 9 closed-end and private ones",
+        "Article 8 discloses more data than Article 9 because its scope is wider",
+        "Article 8 only promotes sustainability; Article 9 makes it the goal"
+      ],
+      "explanation": "Article 9 is the strictest tier: the investment objective itself must be sustainable, and that has to be evidenced. Article 8 only requires that environmental or social characteristics be promoted. The distinction is about the fund's stated objective, not about where it is domiciled, whether it is open or closed-ended, or how much data it publishes - if anything the disclosure burden runs the other way. The gap between the two tiers is where greenwashing risk arises most easily."
+    }
+  ],
+  "keyTakeaways": [
+    "ESG rules travel down the supply chain: an EU company's Scope 3 duty becomes a data request to its Vietnamese supplier",
+    "Double materiality (CSRD) requires both directions of impact; the ISSB requires only the financial direction, for investors",
+    "Scope 1 direct, Scope 2 bought energy, Scope 3 the whole value chain - Scope 3 is usually the largest and hardest to measure",
+    "SFDR sorts funds into Articles 6/8/9; many downgraded themselves once the evidential standard tightened"
+  ],
+  "practicePrompt": {
+    "question": "A Vietnamese garment maker sends 60% of its revenue to the EU. A European customer has just asked for Scope 1 and 2 emissions data within six months. How should the board treat this?",
+    "options": [
+      "A formality to be answered loosely, since the EU has no direct sanction",
+      "A real commercial risk: failing to comply can cost the EU orders",
+      "Purely a matter for the environment team, unrelated to finance or strategy",
+      "It should be refused, because measuring costs far more than the benefit"
+    ],
+    "explanation": "It is true that the EU has no direct sanction against a Vietnamese company, but the enforcement runs through the commercial contract rather than through law. The EU customer is obliged to report Scope 3, and if a supplier cannot produce the numbers, the cheapest fix available to them is a different supplier. With 60% of revenue depending on the EU market, that is a serious concentration risk. Conversely, a business that can measure early has a clear negotiating advantage."
+  },
+  "summary": {
+    "keyIdea": "ESG reporting has moved from voluntary to mandatory in the EU, and it reaches Vietnamese companies through supply chain data requests rather than through law.",
+    "commonMistake": "Assuming EU ESG rules are irrelevant because the company is not registered in the EU - ignoring how Scope 3 and contracts transmit them",
+    "action": "If you export to the EU, start measuring Scope 1 and Scope 2 now - this is the data your customers will ask for"
+  },
+  "application": {
+    "title": "Applying this to company analysis",
+    "message": "When you analyse an exporter, ESG data readiness is now a quantifiable commercial risk factor - it is no longer a matter of image.",
+    "secondary": "For steel, cement and aluminium exporters selling into the EU, CBAM costs from 2026 belong directly in the margin forecast."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In ten years ESG has gone from a handsome voluntary report to a legal obligation with teeth. And the most striking part: European rules are reaching Vietnamese companies through contracts, not through law."
+    },
+    { "type": "heading", "text": "Four frameworks worth telling apart" },
+    {
+      "type": "list",
+      "items": [
+        "TCFD: recommendations for disclosing climate-related financial risk across four pillars - governance, strategy, risk management, metrics and targets. The foundation the later frameworks inherit from",
+        "ISSB (IFRS S1 and S2): the global sustainability disclosure standard, focused on what is material to INVESTORS - that is, the financial impact direction only",
+        "CSRD (EU): mandatory, far broader in scope, requires double materiality and must be independently assured",
+        "SFDR (EU): applies not to companies but to fund managers, forcing them to classify and disclose the sustainability level of their investment products"
+      ]
+    },
+    { "type": "heading", "text": "Why Scope 3 is the bottleneck" },
+    {
+      "type": "paragraph",
+      "text": "Scope 1 and 2 are relatively easy: count the fuel burned and read the electricity bill. Scope 3 covers fifteen categories spread across the value chain - from the emissions used to produce the materials you buy, to the emissions when your customer uses your product. For a bank, Scope 3 is mostly the emissions of the businesses it lends to. For a carmaker, most of it is customers filling the tank for ten years after the sale. No company can measure that part alone - it has to go and ask its partners, and that is why the regulation spreads."
+    },
+    { "type": "heading", "text": "CBAM - when the environment becomes a trade barrier" },
+    {
+      "type": "paragraph",
+      "text": "The EU's carbon border adjustment mechanism charges imports according to the emissions embedded in the product, to stop EU companies moving production to countries with looser rules. The reporting phase began in 2023, charging starts in 2026, and it covers steel, cement, aluminium, fertiliser, electricity and hydrogen. An exporter that cannot evidence its actual emissions is assigned a default value, usually higher than reality. For these sectors, CBAM is a new marginal cost that belongs in the financial model."
+    },
+    {
+      "type": "callout",
+      "label": "Easy to get wrong",
+      "text": "The ISSB and the CSRD do not replace one another. A large company operating in the EU may have to satisfy both, with the CSRD being the broader set. Do not assume that complying with one framework automatically means complying with the other."
+    }
+  ],
+  "diagram": [
+    { "label": "TCFD - recommended framework for disclosing climate risk" },
+    { "label": "ISSB - global reporting standard built on TCFD" },
+    { "label": "CSRD applies to EU companies · SFDR to financial institutions" },
+    { "label": "Scope 3 is the bottleneck: the emissions sit in the supply chain" },
+    { "label": "CBAM turns an environmental requirement into a real trade barrier" }
+  ]
+}

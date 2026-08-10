@@ -1,0 +1,139 @@
+{
+  "slug": "mo-hinh-hoa-do-bien-dong-ewma-garch",
+  "title": "Market Risk, Lesson 4: modelling volatility - EWMA and GARCH",
+  "subtitle": "Why volatility clusters, how to put decaying weight on old data, and what mean reversion to a long-run level actually means",
+  "duration": "12 min",
+  "whyItMatters": "Every VaR number rests on an estimate of volatility. Using a plain 250-day standard deviation treats yesterday and a day a year ago as equally important - an assumption that is plainly wrong, and the reason models react so slowly when the market changes regime.",
+  "openingQuestion": "Which feature of market volatility does a standard deviation computed over a fixed window fail to capture?",
+  "openingOptions": [
+    "Volatility always rises over time",
+    "Volatility clusters into distinct periods",
+    "Volatility is always proportional to trading volume",
+    "Every asset has the same volatility in the long run"
+  ],
+  "explanation": "The phenomenon is called volatility clustering, and it is one of the most reliable empirical regularities in financial markets: a violent day is very likely to be followed by another violent day. A standard deviation over a fixed window gives every observation inside that window equal weight, so it cannot reflect the fact that recent information says more about tomorrow. Worse still is the ghost effect: when a large shock drops out of the window, the estimate falls off a cliff without the market having changed at all.",
+  "diagram": [
+    { "label": "Volatility clusters into periods" },
+    { "label": "EWMA: weights decay with lambda" },
+    { "label": "GARCH: adds a pull towards the long-run mean" },
+    { "label": "Multi-period forecasts converge to the long-run level" }
+  ],
+  "realWorldExample": {
+    "company": "The ghost effect of a fixed window",
+    "description": "A model using a 250-day standard deviation lives through a large shock in March. For the next 250 days that shock sits inside the window and keeps the volatility estimate elevated. On the very day it drops out, the estimate collapses overnight - not because the market has calmed, but because an old observation has expired. The VaR of an entire trading division falls with it and risk limits widen, entirely from a technical artefact of the chosen window."
+  },
+  "quiz": [
+    {
+      "question": "What does the lambda parameter in EWMA control?",
+      "options": [
+        "The maximum number of observations fed into the model's calculation window at each update",
+        "The long-run level of volatility that the estimated series converges to after enough periods",
+        "How fast the weight on old observations decays, so how quickly the model reacts to new data",
+        "The significance level used when testing whether a volatility estimate is reliable"
+      ],
+      "explanation": "A low lambda keeps the model glued to the newest data but leaves it noisy; a high lambda is smooth but slow. Around 0.94 is the common choice for daily data. EWMA has no window at all - every observation stays in with a decaying weight, which is exactly what removes the ghost effect. The long-run level belongs to GARCH, which EWMA lacks entirely. And lambda is a weighting parameter, not a statistical significance threshold; nothing in EWMA is being hypothesis-tested."
+    },
+    {
+      "question": "What is the core difference between GARCH and EWMA?",
+      "options": [
+        "GARCH applies only to equity return series, not to FX or interest rates",
+        "GARCH uses only the immediately preceding day, while EWMA uses the entire history",
+        "GARCH needs no parameters estimated from data, using fixed standard values",
+        "GARCH adds a component pulling the estimate back to long-run average volatility"
+      ],
+      "explanation": "That component is precisely why a multi-period GARCH forecast converges to the long-run level, while EWMA forecasts every future period at exactly today's value. GARCH is applied across asset classes - FX and rates desks use it as heavily as equity desks do. Both models are recursive and therefore carry the whole history forward, not just yesterday. And GARCH parameters are estimated by maximum likelihood from the data; it is EWMA that is usually run with a fixed conventional lambda."
+    },
+    {
+      "question": "What is the ghost effect in volatility estimation?",
+      "options": [
+        "The estimate drops abruptly when an old shock leaves the window, though nothing changed",
+        "The estimate jumps every time a new observation with a large value enters the window",
+        "Two different models producing the same estimate on the same set of data",
+        "The distortion that arises when price data is missing on public holidays in the series"
+      ],
+      "explanation": "This is the direct consequence of giving every observation equal weight and then cutting hard at the edge of the window. EWMA does not suffer from it because weights decay smoothly rather than falling to zero overnight. A jump when a large new observation arrives is a genuine response to genuine news, not an artefact. Two models agreeing is a coincidence with no name. And missing holiday data is a data quality issue handled at the cleaning stage, unrelated to the weighting scheme."
+    },
+    {
+      "question": "Why does a multi-period GARCH volatility forecast converge to a fixed level?",
+      "options": [
+        "Because the model's parameters are constrained to sum to exactly one throughout the estimation",
+        "Because the model mean-reverts, so a recent shock matters less the further ahead you look",
+        "Because the model assumes market volatility decays towards zero over a long enough horizon",
+        "Because historical data always converges to its average as the number of observations grows"
+      ],
+      "explanation": "This property matters when you compute VaR over a longer horizon: you cannot simply multiply one-day volatility by the square root of the number of days if current volatility sits far from its long-run level. The GARCH coefficients must sum to strictly less than one, not to one - summing to one is the integrated case, which removes mean reversion entirely. The model converges to a positive long-run variance, never to zero. And the convergence is a property of the model's structure, not of the sample growing larger."
+    },
+    {
+      "question": "One-day volatility is estimated at 1.2%. What does the square root rule give for ten days?",
+      "options": [
+        "0.38% (= 1.2 / √10, dividing instead of multiplying by the root of days)",
+        "12% (= 1.2 × 10, multiplying by days rather than by the square root)",
+        "3.8% (= 1.2 × √10), but wrong when volatility is far from its long-run level",
+        "3.8% (= 1.2 × √10), and always usable because the rule carries no assumptions"
+      ],
+      "explanation": "The square root rule assumes daily volatility is independent and fluctuates around a stable level. Straight after a shock, today's volatility sits well above the long-run level and will pull itself back down - multiplying by the root of ten at that moment overstates the risk. GARCH is what tells you where that long-run level is, which makes it the tool for knowing when the rule still applies."
+    }
+  ],
+  "keyTakeaways": [
+    "Volatility clusters - this is the most reliable empirical regularity in return series",
+    "A fixed window weights every observation equally, producing the ghost effect when an old shock drops out",
+    "EWMA applies decaying weights through lambda: low is responsive, high is smooth",
+    "GARCH adds a pull towards the long-run mean, so multi-period forecasts converge",
+    "Never multiply one-day volatility by the square root of days when volatility sits far from its long-run level"
+  ],
+  "practicePrompt": {
+    "question": "The market has just been through a very violent week. Which model gives the fastest-reacting volatility estimate?",
+    "options": [
+      "A 250-day rolling standard deviation",
+      "EWMA with a low lambda",
+      "EWMA with a high lambda",
+      "All three react identically"
+    ],
+    "explanation": "Lambda decides how fast the weights decay, so a low lambda lets the last few days dominate the estimate. But fast is not the same as good: too low a lambda makes the estimate dance around day by day, and VaR becomes too unstable to set limits with. The 250-day window reacts slowest, because the past week is only 5 of 250 equally weighted observations."
+  },
+  "summary": {
+    "keyIdea": "A volatility estimate is the input to every risk model, and the weighting scheme is what decides it",
+    "commonMistake": "Using a fixed-window standard deviation and then being surprised when VaR falls while the market has not moved",
+    "action": "Compute a 250-day standard deviation and a lambda 0.94 EWMA side by side on the same series, and plot both lines on one chart."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Take two years of return data containing at least one violent stretch. Plot three volatility estimates: the 250-day standard deviation, EWMA at lambda 0.94, and EWMA at lambda 0.80. Watch both the speed of response and the moment the 250-day line drops off a cliff.",
+    "secondary": "That drop happens exactly 250 days after the shock, and nothing in the market explains it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous three lessons all assumed we knew the volatility of the portfolio. This one opens that assumption up, because every error in VaR starts here."
+    },
+    { "type": "heading", "text": "Three ways to estimate, one line of development" },
+    {
+      "type": "conceptTable",
+      "title": "From a fixed window to GARCH",
+      "subtitle": "Each step fixes exactly one weakness of the step before",
+      "concepts": [
+        {
+          "def": "Equal weight on every observation inside the window, zero on everything outside it. Simple, and the source of the ghost effect at the edge."
+        },
+        {
+          "def": "Weights decay exponentially with the lambda parameter. No hard edge any more, and it responds quickly to a shock. But it forecasts every future period at today's value."
+        },
+        {
+          "def": "Adds a component pulling towards a long-run volatility level. That makes multi-period forecasts converge rather than sit still - which is essential once VaR runs beyond one day."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why not just multiply by the square root of time",
+      "text": "The familiar rule multiplies one-day volatility by the square root of the number of days to get multi-day volatility. It only holds when returns are independent and volatility is constant - two conditions that clustering itself refutes. When current volatility sits well above the long-run level, the rule overstates the risk of the next ten days, because GARCH tells us volatility will drift back towards the mean over exactly that window."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The volatility number is never observed - it is always the output of a choice about how to weight the past.",
+        "The next lesson moves from a single asset to a whole portfolio: how assets fall together."
+      ]
+    }
+  ]
+}

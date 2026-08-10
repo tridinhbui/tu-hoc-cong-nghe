@@ -1,0 +1,170 @@
+{
+  "slug": "phan-tich-cam-xuc-tin-tuc-bang-ai",
+  "title": "AI in Finance, Lesson 8: News sentiment analysis with AI",
+  "subtitle": "Read whether the news is positive or negative, without mistaking mood for value.",
+  "duration": "15 min",
+  "whyItMatters": "This is where the line between 'what the market is thinking' and 'how the business is actually doing' gets blurred the most - and it is also where beginners lose the most money.",
+  "openingQuestion": "Is positive news sentiment enough on its own to buy a stock?",
+  "openingOptions": [
+    "No - check the financial impact and the valuation before buying",
+    "Yes, if the news is good then simply buy it",
+    "Yes, and there is no need to look at any financial figures",
+    "The price is certain to rise from here on"
+  ],
+  "explanation": "News sentiment is the positive or negative tone of what is being written about a business. It measures crowd mood, and crowd mood does move prices in the short run - that part is real. But sentiment is not value: a run of positive articles does not lift revenue by itself, and one negative story about a one-off incident does not break a business model. Using sentiment properly means using it to decide which stocks go on the watchlist, and only then opening the accounts to check.",
+  "summary": {
+    "keyIdea": "News sentiment measures market mood, but it has to be connected to a financial impact.",
+    "commonMistake": "Trading off headlines without checking revenue, profit and cash flow.",
+    "action": "Paste in 5 news items and ask the AI to classify them positive/negative, short-term/long-term, and what needs verifying."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "News carries a mood. The learner's job is to work out whether that mood turns into real money for the business."
+    },
+    { "type": "heading", "text": "What is news sentiment?" },
+    {
+      "type": "paragraph",
+      "text": "News sentiment is the positive or negative tone of an article. For example: signing a large contract is usually positive; being fined or losing a major customer is usually negative."
+    },
+    {
+      "type": "callout",
+      "label": "Terminology",
+      "text": "Sentiment: the tone or mood of the news. Catalyst: an event that can make the market pay attention. Fundamental: the real underpinning of the business - revenue, profit, debt, cash flow."
+    },
+    { "type": "heading", "text": "A sample prompt" },
+    {
+      "type": "paragraph",
+      "text": "Read the 5 news items below. Score the sentiment from -10 to +10. State the short-term impact, the long-term impact, and what has to be verified against the numbers."
+    },
+    { "type": "heading", "text": "How do you use the output?" },
+    {
+      "type": "paragraph",
+      "text": "A high sentiment score does not mean buy now. It only earns the stock a place on the watchlist, or a sharper question."
+    },
+    { "type": "heading", "text": "Three questions that turn a sentiment score into usable information" },
+    {
+      "type": "list",
+      "items": [
+        "If this story is true, which line does it flow into - revenue, cost, margin, or only brand image?",
+        "Is this a one-off event or a lasting structural change to the business model?",
+        "Does the market already know - has the price reacted, or has it not reacted yet?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The third question is the one beginners skip most often. If a piece of good news is already known to the whole market and the price is up 20%, where exactly is the opportunity? Reading the news later than the crowd and then acting as though you read it early is a very common way to lose money."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Negative sentiment, small impact",
+        "text": "A one-off incident, mostly covered by insurance, with no effect on long-term production capacity. Heavy coverage, a sharp fall in the price, and a business model that has not changed."
+      },
+      "right": {
+        "label": "Positive sentiment, small impact",
+        "text": "A large contract, but on a thin margin, recognised over several years and requiring more borrowing to deliver. A beautiful headline and a very modest contribution to profit."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A full prompt to reuse",
+      "text": "\"Read the news items below, using only what is in them. For each item, produce one row containing: sentiment score from -10 to +10 | the financial line affected | one-off or recurring | what information is missing before the impact can be judged. Finally, summarise: what the overall sentiment picture is, and which questions need to be checked in the financial statements. Do not give any buy or sell recommendation.\""
+    },
+    {
+      "type": "callout",
+      "label": "A note on sources",
+      "text": "A sentiment score is only as reliable as the sources you feed it. If all 5 articles are rewrites of the same company press release, you do not have 5 views - you have 1 view repeated 5 times. Record the source of each item in the table."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Good news is not necessarily a good investment.",
+        "AI helps you read the mood; you still have to read the numbers."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What does sentiment mean in this lesson?",
+      "options": [
+        "The positive or negative tone of a news item",
+        "How often the story appears over one week",
+        "How trustworthy the publishing outlet is here",
+        "How widely the story has spread on social media"
+      ],
+      "explanation": "Sentiment is the tone of the coverage - whether what is being written leans positive or negative. It is deliberately not a measure of volume, of reach, or of source quality: those are separate things you track alongside it. Confusing tone with spread is the mistake that turns one press release rewritten twenty times into what looks like twenty bullish signals."
+    },
+    {
+      "question": "The news is positive but there are no figures yet. What should you do?",
+      "options": [
+        "Buy the shares straight away now",
+        "Watch it and check the numbers",
+        "Conclude that profit will surely rise",
+        "Simply ignore the downside risk"
+      ],
+      "explanation": "A story has to be connected to a financial impact before it can support a decision. Buying on the headline alone is acting on mood; concluding that profit will rise assumes the very thing you have not yet checked; and ignoring the downside means you never asked what happens if the story turns out to be smaller than it sounds. The watchlist is the correct destination for a positive story with no numbers attached."
+    },
+    {
+      "question": "Five articles all rewrite the same company press release. What does the aggregate sentiment score tell you?",
+      "options": [
+        "It shows the story is more reliable than a typical one",
+        "A great deal - five independent sources all confirm it",
+        "Very little - that is a single view repeated five times over",
+        "It shows the market is paying close attention to this"
+      ],
+      "explanation": "This is the classic trap when aggregating sentiment: more articles does not mean more sources. The five pieces share a single origin, and that origin is the company itself, which has an interest in the tone. Volume of coverage measures distribution, not agreement, and it says nothing about reliability. Recording where each item came from is what stops you counting the same signal five times."
+    },
+    {
+      "question": "A negative story about a one-off incident, with the loss mostly covered by insurance. What is the right reading?",
+      "options": [
+        "Ignore it completely, since the insurer will pay for it",
+        "Conclude the business model now has a serious problem",
+        "Cut the long-term profit forecast by the size of the loss",
+        "Record a one-off impact and size the damage as a share"
+      ],
+      "explanation": "Separating a one-off event from a structural change is the most important step there is. The right move is to size the loss against total assets and capacity rather than react to the tone. Ignoring it entirely skips that sizing work, cutting the long-term forecast treats a single incident as permanent, and declaring the model broken is the same error in a stronger form. Both 'sell now' and 'buy now' are reactions to the price, not to a verified financial impact."
+    },
+    {
+      "question": "Why count independent sources rather than articles when measuring news sentiment?",
+      "options": [
+        "Because many articles can be reprints of a single press release",
+        "Because each outlet has a different reliability and must be scored separately",
+        "Because the number of articles changes daily so periods cannot be compared",
+        "Because an AI can only process a limited number of articles in one run"
+      ],
+      "explanation": "Twenty articles rewritten from one company statement are not twenty signals - they remain one signal, issued by the company itself. Counting independent sources is the cheapest way to avoid mistaking reach for consensus. Outlet reliability is a separate adjustment made after the count, the daily variation in article volume is precisely what source counting normalises away, and processing limits are a tooling constraint rather than a reason to change the measure."
+    }
+  ],
+  "diagram": [
+    { "label": "Several news items over one window of time" },
+    { "label": "Score the sentiment and tag short-term or long-term" },
+    { "label": "Connect each item to the financial line it affects" },
+    { "label": "Put it on the watchlist and check it against the accounts" }
+  ],
+  "realWorldExample": {
+    "company": "When bad news is not a long-term problem",
+    "description": "A company has a warehouse fire: heavy negative coverage for two weeks and a falling share price. Read by tone, this is plainly bad news. Read by financial impact, the questions become: what were the goods in that warehouse worth against total assets, was it insured and at what level of compensation, what share of capacity did the site represent, and how long will it take to restore. If the loss is mostly insured and the warehouse is a small share of the whole, this is a one-off event rather than a change to the business model - however negative the sentiment score. The reverse holds too: a run of positive stories about a thin-margin contract can score very high on sentiment while the real impact is tiny."
+  },
+  "keyTakeaways": [
+    "News sentiment measures market mood, not the value of a business - do not use the two interchangeably.",
+    "Always connect each story to a specific financial line: revenue, cost, margin or cash flow.",
+    "Separating a one-off event from a structural change is the most important step when reading bad news.",
+    "The output of sentiment analysis is a watchlist, not a buy order."
+  ],
+  "practicePrompt": {
+    "question": "Is positive news sentiment enough on its own to buy a stock?",
+    "options": [
+      "No - the financial impact and valuation need checking",
+      "Yes, good news is reason enough to buy it",
+      "Yes, and there is no need to look at the figures at all",
+      "The price is certain to go up from here"
+    ],
+    "explanation": "A positive story is only an opening signal, not yet an investment case."
+  },
+  "application": {
+    "title": "Practise right now",
+    "message": "Paste in 5 news items and ask the AI to classify them positive/negative, short-term/long-term, and what needs verifying.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

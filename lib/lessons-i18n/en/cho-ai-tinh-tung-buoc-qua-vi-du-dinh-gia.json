@@ -1,0 +1,196 @@
+{
+  "slug": "cho-ai-tinh-tung-buoc-qua-vi-du-dinh-gia",
+  "title": "Finance AI, Lesson 11: Making AI calculate step by step through a valuation example",
+  "subtitle": "DCF as the advanced example, explained in plain language.",
+  "duration": "16 min",
+  "whyItMatters": "The habit of demanding a step-by-step breakdown works for every financial calculation, not just valuation: loan interest, project returns, the amount you need for retirement.",
+  "openingQuestion": "What is the main goal of doing a valuation with AI?",
+  "openingOptions": [
+    "Make the AI lay out its assumptions, formulas and each calculation step",
+    "Take the target price at face value the moment it is produced",
+    "There is no need to understand the assumptions the model rests on",
+    "Always choose whichever of the options ends up producing the highest price"
+  ],
+  "explanation": "Valuation is advanced material, but it is the best example for learning an important habit: making the AI separate assumptions, formula, arithmetic and result rather than returning a single number. With those four parts kept apart you can check each stage and see immediately which assumption the final figure is sensitive to. Ask only for a 'target price' and you get back a number you cannot verify - and an unverifiable number is worse than no number at all.",
+  "diagram": [
+    { "label": "Input assumptions (each figure stated, with its reason)" },
+    { "label": "The formula being applied" },
+    { "label": "The arithmetic, step by step" },
+    { "label": "Result + the points to check again" }
+  ],
+  "realWorldExample": {
+    "company": "Why two analysts using the same DCF reach very different numbers",
+    "description": "This happens constantly, and not because someone made an arithmetic error. A DCF brings future cash flows back to today, so the result depends heavily on three assumptions: the growth rate of cash flow, the discount rate, and the long-term growth rate used for terminal value. A difference of one or two percentage points in the discount rate or in long-term growth can move the final value by tens of percent - especially because terminal value usually accounts for the bulk of the total. That is why in practice a DCF is presented with a sensitivity table rather than as a single published figure."
+  },
+  "quiz": [
+    {
+      "question": "What is a DCF?",
+      "options": [
+        "Estimating value from the most recent traded price on the exchange",
+        "Estimating value by comparing with peer companies in the industry",
+        "Estimating value based on the net book value of the assets held",
+        "Estimating value from future cash flows, discounted to today"
+      ],
+      "explanation": "DCF stands for discounted cash flow. The other three answers all describe real valuation methods, which is exactly why they are tempting: the last traded price is the market method, peer comparison is relative or multiples valuation, and net book value is an asset-based approach. None of them discounts anything, and discounting is the whole point of a DCF - it is what turns money arriving in five years into money you can compare with money today."
+    },
+    {
+      "question": "Why should you not trust a target price from AI straight away?",
+      "options": [
+        "Because the result depends heavily on the assumptions used",
+        "Because DCF can only be used for companies that are already listed",
+        "Because a target price is always above the market price",
+        "Because AI is not permitted to publish target prices"
+      ],
+      "explanation": "Wrong assumptions produce a wrong result even when every step of the arithmetic is correct. The alternatives are all false as stated: a DCF works perfectly well on a private company as long as you can estimate its cash flows, a target price can sit below the market price and often does, and nothing forbids a model from producing one. The question is never whether the number exists but what it was built on."
+    },
+    {
+      "question": "In a DCF model, why is the long-term growth assumption so sensitive?",
+      "options": [
+        "Because long-term growth also determines the discount rate",
+        "Because terminal value is a very large share of the total",
+        "Because the early-year cash flows depend on that assumption",
+        "Because that assumption is multiplied across every forecast year"
+      ],
+      "explanation": "The explicitly forecast years usually account for only part of the value; most of it sits in the terminal value. The discount rate is set separately from cost of capital and is not driven by growth, and the near-term cash flows come from the explicit forecast rather than from the long-term rate. So a small change in long-term growth or in the discount rate produces a very large change in the answer."
+    },
+    {
+      "question": "Why add the line \"ask me if I have not given you enough assumptions\" to the prompt?",
+      "options": [
+        "Because otherwise the AI will quietly reuse last year's assumptions instead",
+        "Because otherwise the AI will refuse to do the calculation at all",
+        "Because otherwise the AI picks assumptions that merely look sensible",
+        "Because otherwise the final result will be rounded far too heavily"
+      ],
+      "explanation": "This is the subtlest form of fabrication: not inventing historical data but inventing future assumptions. The model will not refuse the task and it is not reaching for an earlier year's figures - it simply fills the gap with plausible-looking numbers. The arithmetic on top of them is still correct, which makes the problem very hard to spot unless the assumptions are listed out."
+    },
+    {
+      "question": "Why ask AI to separate assumptions, formula and arithmetic instead of returning one number?",
+      "options": [
+        "Because one number alone is not enough to put in a client report",
+        "Because AI calculates more accurately when it must show each step",
+        "Because this layout shortens the time the AI needs to answer the question",
+        "Because only when it is split apart can you see which step went wrong"
+      ],
+      "explanation": "A bare final number cannot be checked: it is either right or wrong and you have no way of knowing why. Formatting does not make the model more accurate, it does not run faster, and the point is not presentation for a client. Split the four parts out and the error usually shows up in the assumptions - which is also the only part you can genuinely argue about."
+    }
+  ],
+  "keyTakeaways": [
+    "Always make the AI separate the four parts: assumptions, formula, arithmetic, result - never accept a bare number.",
+    "In a DCF, most of the value usually sits in the terminal value, so the long-term growth assumption is extremely sensitive.",
+    "AI can apply a formula correctly to a set of absurd assumptions; checking the assumptions matters more than checking the arithmetic.",
+    "Beginners should use this lesson to learn step-by-step thinking, not to make buy or sell decisions."
+  ],
+  "practicePrompt": {
+    "question": "What is the main goal of doing a valuation with AI?",
+    "options": [
+      "Make the AI show its assumptions, formulas and every calculation step",
+      "Take the target price on trust the moment the AI produces it",
+      "There is no need to understand the assumptions behind it",
+      "Always pick whichever of the results comes out the highest"
+    ],
+    "explanation": "The point is learning to control the process of calculation, not just collecting an answer."
+  },
+  "summary": {
+    "keyIdea": "This lesson does not expect a beginner to master valuation; it teaches how to ask AI to show every step.",
+    "commonMistake": "Asking for a single target price and then believing it.",
+    "action": "Ask the AI to always separate assumptions, formula, result and the checking step."
+  },
+  "application": {
+    "title": "Practise right now",
+    "message": "Ask the AI to always separate assumptions, formula, result and the checking step.",
+    "secondary": "Start small, verify clearly, and only then increase the difficulty."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Valuation is advanced material. If you are new to it, all you need is to understand how the AI presents each step."
+    },
+    {
+      "type": "callout",
+      "label": "Terminology",
+      "text": "DCF: the discounted cash flow method. FCF: free cash flow. WACC: the required return, or cost of capital. Terminal Value: the value of the far-future period."
+    },
+    {
+      "type": "heading",
+      "text": "Put as simply as possible"
+    },
+    {
+      "type": "paragraph",
+      "text": "A business has value because it generates cash in the future. But future cash has to be brought back to the present. A DCF is how that is done."
+    },
+    {
+      "type": "heading",
+      "text": "A sample prompt"
+    },
+    {
+      "type": "paragraph",
+      "text": "Calculate step by step. Separate out clearly: input assumptions, formula, arithmetic, result, points to check. If any assumption is unreasonable, flag it."
+    },
+    {
+      "type": "heading",
+      "text": "A warning"
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not use this lesson to buy or sell if you do not yet understand the assumptions. AI can apply the formula correctly and still be wrong if the inputs going in are wrong."
+    },
+    {
+      "type": "formula",
+      "title": "The core idea behind discounting",
+      "label": "The present value of a future sum of money",
+      "equation": "PV = FV ÷ (1 + r)^n",
+      "variables": [
+        { "symbol": "PV", "name": "Present value", "description": "What that future sum is worth to you as of today." },
+        { "symbol": "FV", "name": "Future value", "description": "The amount of money you will receive after n years." },
+        { "symbol": "r", "name": "Discount rate", "description": "The return you demand in exchange for taking the risk and for having to wait." },
+        { "symbol": "n", "name": "Number of years", "description": "The stretch of time between today and the moment you receive the money." }
+      ],
+      "example": {
+        "title": "A simple example",
+        "calculation": "110 ÷ (1 + 0.10)^1",
+        "result": "= 100",
+        "explanation": "110 dong received a year from now is worth only 100 dong today, if the return you demand is 10% a year. The whole of a DCF is just this calculation repeated for each year and then added up."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The four parts the output must contain"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Assumptions: list every input figure with the reason it was chosen and a source where there is one. This is the part you must scrutinise hardest.",
+        "Formula: write out the formula being used; do not leave it buried in prose.",
+        "Arithmetic: substitute the numbers into the formula and show each step, so you can trace where anything goes off.",
+        "Result and points to check: the final number, along with the assumptions that would change it most if they were wrong."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Output you cannot use",
+        "text": "\"The fair value of the business is around 45,000 dong per share.\" You do not know which assumptions produced this number, so you have no way to challenge it or update it when circumstances change."
+      },
+      "right": {
+        "label": "Output you can use",
+        "text": "\"Assumptions: year 1 free cash flow of 500bn, growing 8% a year for 5 years, discounted at 12%, long-term growth 3%. Formula, year-by-year arithmetic, result of 45,000 dong. Most sensitive to the discount rate and to long-term growth.\""
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A complete prompt to reuse",
+      "text": "\"Calculate step by step and present it in exactly four sections: (1) Assumptions - list every input figure and the reason for it; (2) The formula applied; (3) The arithmetic - substitute the numbers and show each step; (4) The result and the assumptions it is most sensitive to. Do not give me a single number without the first three sections. If I have not given you enough assumptions, ask me rather than choosing them for me.\""
+    },
+    {
+      "type": "paragraph",
+      "text": "The last line of the prompt - 'ask me rather than choosing them for me' - is the most important one. Without it, the AI will fill in the discount rate and the growth rate with numbers that 'look reasonable', and you will receive a result that appears serious but actually rests on the machine's assumptions rather than yours."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Valuation with AI is a tool for learning to think step by step.",
+        "The assumptions matter more than the final number."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "slug": "cfa-ethics-case-tong-hop-standards",
+  "title": "CFA Ethics 14: Composite case - spotting layered breaches in one real situation",
+  "subtitle": "A financial scandal rarely breaches only a single Standard",
+  "duration": "9 min",
+  "whyItMatters": "Real financial scandals are usually a chain of breaches across several Standards at once, accumulating over time - training yourself to see that layering is a more useful practical skill than memorising each Standard on its own.",
+  "openingQuestion": "A head of research: (1) receives inside information about upcoming results from a friend in investor relations, (2) buys the stock before the announcement, (3) then writes a 'Strong Buy' note that omits the legal risk the company is facing, (4) and does not disclose that he already bought the stock before publishing. How many Standards does this breach?",
+  "openingOptions": [
+    "Just 1 Standard, since these acts are all part of one connected chain",
+    "At least 3 Standards: II, V and VI are all breached",
+    "No breach at all if the stock did in fact go up afterwards",
+    "A breach only if the regulator happens to discover it"
+  ],
+  "explanation": "This is a textbook layered breach: (1) and (2) breach Standard II on trading using material non-public information; (3) breaches Standard V(A) and V(B), lacking an objective basis and failing to disclose a material risk; (4) breaches Standard VI, since a personal conflict of interest - an existing long position - was not disclosed alongside a recommendation to others. Real scandals are seldom a single isolated act - they are usually a chain of bad decisions, each following from the last.",
+  "diagram": [
+    { "label": "Root breach: using inside information (Standard II)" },
+    { "label": "Follows on: a recommendation lacking objectivity (Standard V)" },
+    { "label": "Follows on: concealing a personal conflict of interest (Standard VI)" }
+  ],
+  "realWorldExample": {
+    "company": "How securities regulators structure a layered investigation",
+    "description": "When a regulator investigates a suspected breach, it rarely examines the trade in isolation. It traces the whole chain: where the information came from, when the trade was placed, what the subsequent public recommendation said, and which disclosures were made or omitted around it - which is exactly the layered approach this case study illustrates."
+  },
+  "quiz": [
+    {
+      "question": "In the case above, which act is the 'root breach' that pulls the later ones along behind it?",
+      "options": [
+        "Receiving and trading on inside information - Standard II",
+        "Writing the Strong Buy note, the only public act in the chain",
+        "Failing to disclose the personal position already taken",
+        "The company publishing results that beat market expectations"
+      ],
+      "explanation": "The Standard II breach is the starting point: once you have traded on inside information, publishing a recommendation without disclosing the personal conflict becomes almost inevitable as a way of covering the original act, which is how the chain accumulates. The note and the non-disclosure are consequences rather than causes - remove the first breach and neither has any reason to happen. And the company publishing its own results is a normal corporate act, not a breach by anyone."
+    },
+    {
+      "question": "What is the most important lesson from analysing layered breach cases like this one?",
+      "options": [
+        "Just avoid the worst breach; the small ones can be let go",
+        "One initial breach usually drags a whole chain of others behind it",
+        "The Standards are wholly independent, with no causal links",
+        "A good lawyer is enough to avoid any later legal consequence"
+      ],
+      "explanation": "This is the core lesson about ethical conduct: a breach rarely stops at one act, because the pressure to conceal or rationalise the original one drives a further run of bad decisions, and the final damage ends up far worse than the root breach was. That is precisely why the Standards are not independent in practice. Letting the small ones go is how the chain forms in the first place, and legal advice addresses consequences rather than preventing the sequence."
+    },
+    {
+      "question": "If you were a colleague who spotted part of this chain - say you only knew about the trade placed before the announcement - what is the most sensible step, based on the earlier lessons in this series?",
+      "options": [
+        "Investigate it all yourself and post what you find on social media",
+        "Say nothing at all, since this falls outside your own job scope",
+        "Use the appropriate internal channel, on the evidence you hold",
+        "Confront the person directly in front of the whole department"
+      ],
+      "explanation": "Building on Standard I(D) and the reporting mechanisms covered earlier, the sensible approach is to use the appropriate reporting channel - internal first, and the regulator if that fails - on the specific evidence you actually have, rather than acting unilaterally in ways whose consequences you cannot control. Publishing it yourself and confronting the person publicly both do damage before anything is established, and silence makes you a bystander to a continuing harm."
+    },
+    {
+      "question": "You discover a colleague trading ahead of a material announcement. What is the sensible first step?",
+      "options": [
+        "Send the information straight to the securities market regulator",
+        "Speak privately to the colleague so they cancel the order themselves",
+        "Wait and gather more evidence until you are absolutely certain first",
+        "Report to compliance through the firm's own internal process first"
+      ],
+      "explanation": "The Standards require the internal channel first: compliance has the authority to investigate and the obligation to act. Going straight to the regulator skips a step the Standards specify, and a quiet word with the colleague leaves the matter with the person who has the strongest reason to bury it. Waiting for certainty is the most costly option, because the harm keeps accumulating while you wait and investigating is compliance's job, not yours. Only if the firm ignores the report does external reporting, or dissociating from the conduct, come into play."
+    },
+    {
+      "question": "What is the main lesson from analysing layered breach situations?",
+      "options": [
+        "One root breach usually drags a chain of others along just to cover it",
+        "Every ethical breach comes down to not knowing what the Standards say",
+        "Complying with the single most important standard avoids all the rest",
+        "Layered breaches only happen at large firms with many separate desks"
+      ],
+      "explanation": "Trading on inside information pulls a poorly-founded research note along to legitimise it, and then a failure to disclose the conflict. Stopping it at the first step is far cheaper than unwinding the whole chain, which is why controls are placed at the front of the process. Ignorance explains few of these cases - the people involved usually know. And a small firm with two people can produce exactly the same sequence, because the pressure to conceal does not depend on headcount."
+    }
+  ],
+  "keyTakeaways": [
+    "Real ethical breaches are rarely a single act - they are usually a chain of bad decisions following one another",
+    "The root breach (inside dealing, say) tends to pull further breaches along to conceal or rationalise it",
+    "Spotting and stopping at the first breach matters far more than dealing with the consequences of the whole chain",
+    "When you discover someone else's misconduct, use the appropriate reporting channel rather than acting unilaterally"
+  ],
+  "practicePrompt": {
+    "question": "What is the core lesson from layered ethical breach cases in finance?",
+    "options": [
+      "One wrong decision drags a chain of errors along to conceal it",
+      "Just avoid the worst breach; the small ones can be let go",
+      "The Standards are wholly independent and unrelated to each other",
+      "Ethical breaches only ever happen at senior management level"
+    ],
+    "explanation": "An initial breach creates pressure that leads to a run of further bad decisions - that is the core lesson of the composite case. The other options each miss it in a different way: tolerating small breaches is how the chain starts, the Standards are causally linked rather than independent in practice, and a junior analyst can begin exactly the same sequence as a department head."
+  },
+  "summary": {
+    "keyIdea": "The CFA Standards do not operate independently in practice - one initial breach tends to pull a chain of further breaches along as the person tries to conceal or rationalise the first",
+    "commonMistake": "Analysing ethical breaches as separate events rather than as a causally linked sequence of decisions",
+    "action": "When you assess a decision that sits in a grey area, ask yourself: could this create pressure to conceal or rationalise it later?"
+  },
+  "application": {
+    "title": "Wrapping up the Ethics series",
+    "message": "Across fourteen lessons on the Standards, the thread running through all of them is the same: transparency, honesty, and putting other people's interests (clients, the market, colleagues) ahead of your own short-term gain - whichever Standard you are under.",
+    "secondary": "This is not just material for the CFA exam; it is a way of thinking that applies to anyone working in finance, whether or not they pursue the charter."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Having worked through many Standards individually, this lesson brings them together in one real case that shows how breaches tend to layer on top of each other rather than standing alone."
+    },
+    {
+      "type": "heading",
+      "text": "Anatomy of a chain of breaches"
+    },
+    {
+      "type": "paragraph",
+      "text": "The case at the top of this lesson illustrates a pattern common to real financial scandals: a root breach - usually trading on inside information or an undisclosed conflict of interest - creates pressure that forces further acts of concealment or rationalisation, and the chain grows more complicated from there."
+    },
+    {
+      "type": "heading",
+      "text": "Why causal-chain thinking beats memorising each Standard"
+    },
+    {
+      "type": "paragraph",
+      "text": "At work the boundaries between Standards are nothing like as clean as they are in a textbook - a real situation usually touches several at once. The skill that matters is not recalling a Standard's exact number, but seeing whether this act creates pressure that will lead to the next wrong one."
+    },
+    {
+      "type": "callout",
+      "label": "The most important place to stop: the first breach",
+      "text": "If you can only intervene at one point in a chain of breaches, the first one is always where it counts - because everything that follows is usually the logical consequence of trying to conceal, or live with, the original act."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Real ethical breaches usually come as chains, not isolated events",
+        "The root breach creates the pressure that drives the later ones as cover",
+        "Spotting it early matters more than handling the fallout from the whole chain",
+        "Thinking about how the Standards connect matters more than memorising each provision separately"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Professional ethics is not a list of rules to memorise but a habit of mind: always asking who this action affects, and whether you are being transparent with them.",
+        "This is the last lesson in the extended CFA Ethics series - I hope this way of thinking serves you whether or not you pursue the charter."
+      ]
+    }
+  ]
+}

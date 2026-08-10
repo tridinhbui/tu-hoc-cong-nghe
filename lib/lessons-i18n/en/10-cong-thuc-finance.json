@@ -175,7 +175,7 @@
       "options": [
         "Market Cap plus total debt minus cash",
         "Total assets on the balance sheet",
-        "Market Cap plus total debt plus cash",
+        "Market Cap plus total debt plus cash on hand",
         "Net income times the market's P/E"
       ],
       "explanation": "EV = Market Cap + Total Debt − Cash. Whoever buys the whole business takes on the debt and gets to use the cash, so debt is added and cash is subtracted. Adding cash instead of subtracting it is a common sign flip, and it inflates the EV of any cash-rich business."

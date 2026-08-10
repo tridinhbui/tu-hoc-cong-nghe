@@ -1,0 +1,125 @@
+{
+  "slug": "frm-rui-ro-danh-tieng-va-chien-luoc",
+  "title": "FRM Foundations, Lesson 14: Reputational and strategic risk - the two with no model",
+  "subtitle": "Something that cannot be measured with a probability distribution can still be the thing that kills the firm fastest",
+  "duration": "9 min",
+  "whyItMatters": "The entire quantitative toolkit of the FRM rests on one assumption: that there is enough historical data to estimate a distribution. These two risks do not satisfy it, which is exactly why they get left out of risk reports - while history shows they can erase an institution faster than any market loss.",
+  "openingQuestion": "Why does reputational risk almost never appear in an economic capital model?",
+  "openingOptions": [
+    "Because its impact is usually small next to market and credit risk",
+    "Because there is no loss data series long enough to work with",
+    "Because supervisors do not permit it to be included in a capital requirement",
+    "Because it always follows from another risk type and would be counted twice"
+  ],
+  "explanation": "Economic capital is computed from a loss distribution, and a distribution needs data. Serious reputational events are rare, each one different from the last, and most of them are never disclosed - so there is no series to estimate from. That does not make the impact small: it usually shows up as deposit outflows, lost customers and a jump in funding costs. Leaving it out of the model because it cannot be measured, and then concluding it is immaterial, is an error of inference rather than a result of measurement.",
+  "diagram": [
+    { "label": "The originating event: a loss, a scandal, a bad decision" },
+    { "label": "Reputational risk: trust erodes among customers, counterparties and investors" },
+    { "label": "It surfaces financially: withdrawals, lost clients, higher funding costs" },
+    { "label": "Feedback loop: financial strain makes the reputation worse again" }
+  ],
+  "realWorldExample": {
+    "company": "An institution hit by a reputational event",
+    "description": "Reputational risk is almost always a secondary risk: it starts from an event of another type - a trading loss, a money laundering case, a product sold to the wrong customers. That is what makes it so easy to lose in the taxonomy: each function records the originating event under its own category, and the damage that spreads through lost trust belongs to no table at all."
+  },
+  "quiz": [
+    {
+      "question": "How does strategic risk differ from operational risk?",
+      "options": [
+        "It is always measured with the same loss distribution approach",
+        "It only affects financial institutions above a certain size",
+        "It comes from an active choice of direction, not from a failure to execute",
+        "It only arises when a supervisor changes the rules of the market"
+      ],
+      "explanation": "Operational risk is failing at something you set out to do; strategic risk is choosing the wrong thing to do - entering the wrong market, keeping a business model technology has overtaken, buying the wrong company. The same loss can belong to either category depending on the root cause, and classifying it wrongly leads to fixing the wrong thing. Neither size nor regulatory change defines it: a small firm choosing the wrong market carries it just as fully as a large one."
+    },
+    {
+      "question": "Why is reputational risk usually described as a secondary risk?",
+      "options": [
+        "Because it is only recognised in the following financial reporting period",
+        "Because it only occurs after the institution has become insolvent",
+        "Because the damage it causes is always smaller than the originating event",
+        "Because it almost always begins with a risk of another type"
+      ],
+      "explanation": "There is rarely a purely reputational event; it starts from a fraud, a loss or a product sold to the wrong buyer. Which is why it falls out of every taxonomy: the originating event has already been booked under its own category, and the damage that spreads afterwards is claimed by nobody. It very often exceeds the originating loss by a wide margin, it shows up immediately rather than in the next reporting cycle, and it typically precedes financial distress rather than following it."
+    },
+    {
+      "question": "What is the sensible way to handle a risk with too little data to model?",
+      "options": [
+        "Use scenario analysis and structured expert judgement",
+        "Leave it out of the risk report until enough data exists",
+        "Assign it the distribution used for operational risk instead",
+        "Transfer all of it to insurance, since it cannot be managed"
+      ],
+      "explanation": "With no distribution available there is still a question worth asking: if this happened, what would follow and what would we need ready. Scenarios do not give a precise capital number but they give a plan. Waiting for enough data on a rare event means only having data once the damage is done, and borrowing another category's distribution manufactures a precise-looking figure resting on nothing. Insurance covers some of the direct cost but never the loss of customer trust."
+    },
+    {
+      "question": "What is the feedback loop that makes a reputational event worse than first expected?",
+      "options": [
+        "Supervisors always escalate the size of the fine as time passes",
+        "Financial strain caused by lost trust erodes that trust further still",
+        "Crisis communication costs run far beyond the original loss itself",
+        "Strong employees leave, which reduces revenue in the same quarter"
+      ],
+      "explanation": "Customers withdraw, liquidity tightens, funding costs rise, news of the difficulty spreads and prompts another round of withdrawals. That loop explains why some institutions have collapsed within days while their balance sheet had looked adequately capitalised on every measure a few weeks earlier. Departing staff and communication costs are real consequences, but neither of them feeds back on itself, and fines are set by the conduct rather than by the calendar."
+    },
+    {
+      "question": "Why is organisational culture treated as the main control for these two risks?",
+      "options": [
+        "Because supervisors require a quarterly report on risk culture",
+        "Because culture is easier to measure quantitatively than either risk is",
+        "Because both of them arise where no procedure reaches",
+        "Because a good culture removes the possibility of an incident entirely"
+      ],
+      "explanation": "No procedure covers every situation, and these two risks live precisely in the uncovered part. What decides the outcome there is what people do when nobody is watching and no rule applies - which is culture rather than a checklist. Culture is notoriously hard to measure, so ease of measurement is not the argument, and no culture removes the possibility of an incident; it changes how early the problem is raised and how honestly it is handled."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A team wants to bring reputational risk into the capital model by fitting a distribution to ten years of media incident data. What is wrong with that?",
+    "options": [
+      "The sample is too thin and too heterogeneous for a fitted distribution to mean anything",
+      "Reputational risk causes no financial damage, so no capital is needed for it",
+      "Ten years is long enough; the only issue is choosing the right distribution family",
+      "External industry data should be used instead of ten years of internal data"
+    ],
+    "explanation": "Reputational risk is almost always secondary: it starts from an event of another type - a fraud, a product sold to the wrong customers, a systems failure - so the observations across ten years are not drawn from one population and there is no common distribution to fit. Not being measurable does not mean not being large, but forcing it into a statistical distribution produces a number that looks precise while resting on nothing, and that is more dangerous than admitting it cannot be measured. The right tool here is scenario analysis and expert judgement."
+  },
+  "keyTakeaways": [
+    "Reputational and strategic risk have no data series long enough to estimate a distribution - unmeasurable does not mean small",
+    "Reputational risk is almost always secondary, starting from an event of another type, so it falls out of every taxonomy",
+    "The right tool for them is scenario analysis and expert judgement, not a statistical distribution",
+    "The feedback loop between lost trust and financial strain is what makes these events move so unusually fast"
+  ],
+  "summary": {
+    "keyIdea": "The quantitative toolkit of the FRM is strong where there is data and weak where there is none. These two risks sit entirely inside the weak region, and the answer is not to force them into a model but to use a different class of tool."
+  },
+  "application": {
+    "message": "In any risk report you read, look at how these two are treated. If they appear only as a paragraph of description with no scenario attached, that organisation is acknowledging their existence rather than managing them."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Everything covered so far rests on one condition: enough historical data to build a distribution. The two risks in this lesson do not meet that condition - and that is precisely why they are dangerous."
+    },
+    { "type": "heading", "text": "Unmeasurable does not mean small" },
+    {
+      "type": "paragraph",
+      "text": "Economic capital comes from a loss distribution, and a distribution needs data. Serious reputational events are rare, each one different, and most are never disclosed. So they are usually absent from the model - and that absence gradually gets read as immateriality. This is an error of inference, not a result of measurement."
+    },
+    { "type": "heading", "text": "Strategy: choosing the wrong thing to do" },
+    {
+      "type": "paragraph",
+      "text": "Operational risk is failing at what you set out to do. Strategic risk is choosing wrongly in the first place: entering a market you do not understand, holding on to a business model technology is passing by, buying a company at the wrong price on the wrong assumptions. It does not appear in a single day but erodes over years, so it is rarely named while there is still time."
+    },
+    { "type": "heading", "text": "A different tool for a different kind of question" },
+    {
+      "type": "paragraph",
+      "text": "If you cannot build a distribution you can still build a scenario. If this happened, how much cash goes out in the first week, who speaks publicly, where does the standby funding come from. The output is not a capital number but a plan - and for a risk that plays out over a few days, having the plan ready is worth more than having the number."
+    },
+    {
+      "type": "callout",
+      "label": "Worth remembering",
+      "text": "The only control that covers both of them is organisational culture, because both arise where no procedure reaches - in what people do when nobody is watching and no rule applies."
+    }
+  ]
+}

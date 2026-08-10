@@ -1,0 +1,143 @@
+{
+  "slug": "du-bao-dong-tien-13-tuan",
+  "title": "Planning, Lesson 3: The 13-week cash flow forecast - the tool for when cash becomes the binding constraint",
+  "subtitle": "Why a profitable business still has to count cash week by week, and what goes into that sheet",
+  "duration": "12 min",
+  "whyItMatters": "Businesses do not go under because they made a loss; they go under because they ran out of cash. When liquidity is tight, the monthly report arrives too late and the annual budget becomes meaningless. The 13-week cash flow sheet is the standard tool in that situation, and it is also the first thing a bank or an investment fund will ask to see.",
+  "openingQuestion": "Why is a short-term cash forecast built by week rather than by month?",
+  "openingOptions": [
+    "Because accounting standards set a one-week minimum cash reporting period",
+    "Because within a month, cash can bottom out mid-period and then recover",
+    "Because weekly data is inherently more accurate than monthly data",
+    "Because banks will only accept reports prepared weekly"
+  ],
+  "explanation": "A business can close every single month with a positive cash balance and still be unable to pay on the 20th, when payroll and supplier payments land in the same week while customer money has not arrived. A monthly sheet flattens all of that into one tidy closing number. Thirteen weeks matches a quarter - long enough to see a problem before it happens, short enough that each individual week can still be forecast on evidence.",
+  "diagram": [
+    { "label": "Opening cash for the week" },
+    { "label": "Receipts: by invoice and by real due date" },
+    { "label": "Payments: payroll, suppliers, tax, debt service" },
+    { "label": "Closing cash versus the minimum level" }
+  ],
+  "realWorldExample": {
+    "company": "A profitable construction contractor that nearly ran out of cash",
+    "description": "The business booked positive profit in all four quarters, but customers paid against work certified on a progress schedule, usually 60 to 90 days late, while site wages and materials had to be paid every week. Looked at monthly, every month was fine. Looked at weekly, there were four weeks in the quarter when the cash balance dropped below the minimum needed to make payroll. The 13-week sheet showed that six weeks in advance - enough time to negotiate an advance with one large customer instead of taking emergency borrowing."
+  },
+  "quiz": [
+    {
+      "question": "Why is the 13-week sheet built on actual cash flow rather than on recognised revenue?",
+      "options": [
+        "Because recognised revenue is always lower than the cash actually received",
+        "Because revenue recognised on an accrual basis may not be collected yet",
+        "Because accounting standards forbid using revenue in a forecasting document",
+        "Because revenue figures are only closed at month-end, too late for a weekly report"
+      ],
+      "explanation": "This is the gap between profit and cash you met in the accounting section, but placed in the situation where that gap decides whether the business survives. Recognised revenue is not systematically lower than cash - a customer prepayment makes it higher. No standard forbids using revenue in an internal forecast, because a forecast is not a published statement. And month-end closing is beside the point: the sheet does not need closed revenue, it needs invoices and due dates, which are known the day they are issued."
+    },
+    {
+      "question": "What is the most reliable data source for the receipts side of a 13-week sheet?",
+      "options": [
+        "Average revenue for the same period last year, split evenly across the quarter's weeks",
+        "The annual revenue plan approved by management at the start of the financial year",
+        "The list of invoices issued, with due dates and each customer's paying habits",
+        "Sales' forecast of the contracts most likely to be signed in the coming quarter"
+      ],
+      "explanation": "An issued invoice is an obligation that already exists; an unsigned contract is only an expectation, and a sales forecast of likely signings is the weakest input of all in a liquidity squeeze. Last year's average spread evenly across the weeks destroys exactly the mid-period trough the sheet exists to find, and the approved annual plan is a statement of intent rather than of who owes what and when. Each customer's paying habits matter as much as the date printed on the invoice."
+    },
+    {
+      "question": "What is the role of the minimum cash level in a cash flow sheet?",
+      "options": [
+        "The minimum cash needed to earn a safe credit rating band",
+        "The amount the company must keep on hand under its lending bank's covenants",
+        "The target balance the annual financial plan sets for the end of the period",
+        "A warning line: touching it means you act now rather than wait"
+      ],
+      "explanation": "Without a threshold the sheet is just a row of numbers. With one, every week that touches the line automatically generates something that has to be done, and that is the entire purpose of the tool. A covenant floor or a rating band may exist alongside it, but those are external constraints someone else set; the minimum here is yours, and it is set by what the business needs to keep operating. A year-end target balance is a planning figure, not a trigger."
+    },
+    {
+      "question": "Why must the 13-week sheet be rebuilt every week rather than drawn up once for the whole quarter?",
+      "options": [
+        "Because each week that passes brings real information replacing an assumption",
+        "Because the old sheet expires after seven days by reporting convention",
+        "Because fixed costs such as payroll change constantly and must be re-entered weekly",
+        "Because the bank requires a fresh update to be filed at the start of each working week"
+      ],
+      "explanation": "The first week is close to certain, the thirteenth is almost entirely assumption. Every week that passes turns one assumed week into a known one, which is how the sheet holds its reliability. No reporting convention makes a management tool expire, and payroll is the most predictable line on the sheet rather than one that changes constantly. A bank may well ask for updates, but the reason to roll the sheet is that it stops being useful otherwise."
+    },
+    {
+      "question": "Why does the 13-week cash flow sheet need updating every week instead of being built once for the quarter?",
+      "options": [
+        "Because the actual cash balance always differs from the original forecast",
+        "Because each week that passes brings firmer information about the weeks ahead",
+        "Because the bank requires the company to file a weekly updated sheet",
+        "Because the old sheet misses newly arisen items of spend"
+      ],
+      "explanation": "The first week is close to a certainty; the thirteenth is still an estimate. Rolling the sheet forward each week means the certain part is always right in front of you - and when cash is the binding constraint, that is the difference between finding a solution in time and not. Forecast error and missed items of spend are real, but they are reasons to check the sheet, not reasons the horizon has to roll. A bank filing requirement is someone else's calendar, not the logic of the tool."
+    }
+  ],
+  "keyTakeaways": [
+    "Businesses fail because they run out of cash, not because they make a loss - two different things",
+    "By week, because the month-end number hides the mid-period trough",
+    "Receipts come from invoices already issued and from paying habits, not from the revenue plan",
+    "You need a minimum cash level, or the sheet is just a row of numbers that triggers nothing",
+    "Update weekly: each week one assumption turns into a known number"
+  ],
+  "practicePrompt": {
+    "question": "The 13-week sheet shows cash dropping below the minimum in week 7. What is the most sensible action now?",
+    "options": [
+      "Wait a few more weeks to see whether it improves on its own",
+      "Act now: stretch payables, pull in receivables, arrange credit",
+      "Cut headcount across the board to bring the total cost base down",
+      "Note it and raise it at the monthly management meeting"
+    ],
+    "explanation": "The whole value of this tool is the six weeks of warning you have just been given. Arranging a credit line takes weeks, and so does negotiating longer terms with suppliers - do it early and it is a negotiation, do it late and it is a rescue request. Cutting headcount is both too slow to solve a week-7 problem and hard to reverse."
+  },
+  "summary": {
+    "keyIdea": "When liquidity is tight, the reporting period has to shorten to match the speed of the problem",
+    "commonMistake": "Feeling reassured because every month closes positive, while the trough sits mid-month",
+    "action": "Build a 13-week sheet with your three largest receipt lines and five largest payment lines, then set a minimum cash level."
+  },
+  "application": {
+    "title": "What to do",
+    "message": "Build the sheet for next quarter: one column per week, the first row opening cash, receipts taken from the list of issued invoices by due date, payments covering payroll, suppliers, tax and debt service. Flag every week where the closing balance falls below the threshold you set.",
+    "secondary": "After four weeks, compare the first week's forecast with what actually happened - that error tells you how much your sheet can be trusted."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "This lesson is where the gap between profit and cash - the thing you met in the accounting section - stops being a theoretical point and becomes a survival question."
+    },
+    { "type": "heading", "text": "Why exactly 13 weeks" },
+    {
+      "type": "list",
+      "items": [
+        "13 weeks is a quarter, which matches both the reporting cycle and the cycle of negotiations with a bank",
+        "Long enough to see a problem before it happens: six to eight weeks is what it takes to arrange a credit line or renegotiate terms",
+        "Short enough that each week can still rest on invoices and obligations that already exist, rather than on expectations",
+        "Updated weekly, so there are always 13 weeks ahead of you, with the nearest one close to certain"
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The annual budget",
+        "text": "Answers the question of what we intend to do this year and what resources that needs. Built by month or quarter, based on the plan, and it loses meaning very quickly once liquidity is tight."
+      },
+      "right": {
+        "label": "The 13-week sheet",
+        "text": "Answers the question of which week we are short of cash and by how much. Built by week, based on obligations that already exist, and it is the only tool that works in a liquidity crisis."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Who will ask to see this sheet",
+      "text": "A bank considering granting or renewing a facility, an investment fund when the business raises money from a difficult position, and a restructuring adviser within their first week on the job. In all three cases, the fact that the business already keeps this sheet and updates it regularly says a great deal about the quality of its management, independently of the numbers on it."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Profit is an accounting opinion; the money in the account is a fact.",
+        "The next lesson returns to long-range planning, with the question: is a single number ever enough?"
+      ]
+    }
+  ]
+}

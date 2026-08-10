@@ -1,0 +1,152 @@
+{
+  "slug": "rui-ro-du-an-bat-dong-san-va-kich-ban",
+  "title": "Property projects, Lesson 5: three risks and how they compound on each other",
+  "subtitle": "Permitting delay, cost overrun, a market that turns - and why they never arrive on their own",
+  "duration": "11 min",
+  "whyItMatters": "The one-way sensitivity table is the standard tool in every project file, and it has one serious blind spot: it assumes the risks occur separately. In property they almost always travel together, which is why projects that fail tend to fail faster than any scenario that was modelled.",
+  "openingQuestion": "A project is delayed 18 months in permitting. What happens to construction cost and to the selling price?",
+  "openingOptions": [
+    "Cost usually rises and the selling price may already have moved",
+    "Only interest cost rises; construction cost and selling price hold steady",
+    "The selling price rises with inflation, which partly offsets the delay cost",
+    "Nothing changes if the contractor is already on a fixed unit price contract"
+  ],
+  "explanation": "This is the blind spot of the one-way sensitivity table. An 18-month delay does not just add interest: material and labour rates have moved, fixed-price contractor agreements usually carry an adjustment clause for extended programmes, and most importantly the market 18 months later may not be the market you planned for. These three risks are positively correlated, so the real bad case is always worse than the sum of three bad cases computed separately. The answer is not a larger contingency, but a scenario in which all three happen at once - and then asking whether the developer survives it.",
+  "diagram": [
+    { "label": "Permitting delay" },
+    { "label": "→ interest accrues + construction rates have already moved" },
+    { "label": "→ launching into a different market" },
+    { "label": "Three positively correlated risks, not a simple sum" }
+  ],
+  "realWorldExample": {
+    "company": "The Vietnamese property cycle, 2019-2023",
+    "description": "Many projects started while the market was hot, were held up in permitting for two or three years, and then became eligible to launch just as credit tightened and demand cooled. None of the three risks was a surprise on its own; the surprise was that they arrived together, and that is precisely what a one-way sensitivity table never shows."
+  },
+  "quiz": [
+    {
+      "question": "What is the blind spot of a one-way sensitivity table?",
+      "options": [
+        "It can only be used for a rental project, not a build-to-sell one",
+        "It cannot capture how interest rates affect the project's cash flow",
+        "It demands too much historical data to apply in practice",
+        "It assumes each variable changes on its own, one at a time"
+      ],
+      "explanation": "In reality the variables are correlated with each other. A one-way table produces a range of outcomes distinctly narrower than the real range of risk, because every cell holds everything else at plan. Interest rates can perfectly well be one of the variables in the table, no historical data is required to build one, and nothing about it is specific to rental or to build-to-sell - the limitation is structural, not a matter of what you feed it."
+    },
+    {
+      "question": "Why does a permitting delay drag construction cost up with it?",
+      "options": [
+        "Because material and labour rates have moved by the time the project restarts",
+        "Because the contractor charges a penalty fee for the suspension of works",
+        "Because the surrounding infrastructure degrades and has to be rebuilt again",
+        "Because a newer set of building standards then has to be applied to the design"
+      ],
+      "explanation": "A fixed unit price contract usually carries an adjustment clause once the programme runs beyond a threshold, so it does not protect the developer as much as people assume. Suspension fees and a change in building standards can both happen, but they are occasional and specific; the rate movement is the one that applies to every delayed project, every time, because it is simply the passage of time being priced in."
+    },
+    {
+      "question": "What is the right response when three risks are positively correlated?",
+      "options": [
+        "Raise the contingency to match the sum of the three separate risks",
+        "Build a scenario in which all three occur at once",
+        "Lift the discount rate to reflect the project's higher risk level",
+        "Shrink the project so that the total capital required is smaller"
+      ],
+      "explanation": "The question that has to be answered is whether the developer can survive that scenario. A larger contingency does not answer it - it changes one number in a model that still assumes the risks arrive one at a time. Raising the discount rate has the same defect at a different point: it lowers the present value without telling you anything about the peak funding requirement or the moment the developer runs out of money."
+    },
+    {
+      "question": "Which risk in a property project is the hardest to hedge?",
+      "options": [
+        "The contractor falling behind the programme",
+        "The construction budget being exceeded",
+        "The market turning at exactly the moment of launch",
+        "Borrowing rates rising during construction"
+      ],
+      "explanation": "The other three all have instruments: a fixed unit price contract, liquidated damages for delay, an interest rate hedge. The market cycle has no instrument at all. That asymmetry is the reason it deserves separate treatment in the project file rather than a line in the same sensitivity table as the others - it is the one variable you can only survive, never transfer."
+    },
+    {
+      "question": "Why does a failing project usually fail faster than the modelled scenario?",
+      "options": [
+        "Because buyers stop paying instalments when construction is late",
+        "Because the developer tends to conceal information until it can no longer be concealed",
+        "Because the banks all call in their loans as soon as an adverse sign appears",
+        "Because the risks arrive at the same time and amplify one another"
+      ],
+      "explanation": "Delay raises cost, higher cost drains the capital, and drained capital causes more delay. That is a loop, and a linear model cannot describe a loop. The other three things do happen in a failing project, but each of them is a consequence of the loop already running rather than the reason the collapse outruns the model."
+    }
+  ],
+  "practicePrompt": {
+    "question": "The sensitivity table shows: a 12-month delay pulls IRR from 22% to 15%; a 10% cost overrun pulls it to 16%; an 8% fall in selling price pulls it to 14%. How should this table be read?",
+    "options": [
+      "All three together give a result worse than any cell in the table",
+      "The largest risk is the selling price, since IRR falls furthest",
+      "The project survives all three because IRR stays above 14%",
+      "Average the three scenarios for an expected IRR of 15%"
+    ],
+    "explanation": "Each cell in a one-way sensitivity table changes exactly one variable and holds everything else constant, so the range it draws is narrower than the real range of risk. These three risks are positively correlated: a permitting delay extends the build programme, a longer programme lets material and labour costs run ahead, and a 12-month delay is enough on its own to land in a different phase of the market cycle. They arrive together, so the number you need is not 14% but the IRR when all three occur at once - usually negative. Reading it as 'survives all three because every cell is above 14%' is exactly the conclusion this table lures people into."
+  },
+  "keyTakeaways": [
+    "Three main risks: permitting delay, cost overrun, a market that turns - and they are positively correlated.",
+    "A one-way sensitivity table gives a range of outcomes narrower than the real range of risk.",
+    "Build a scenario in which all three occur together, then ask whether the developer survives it.",
+    "The market cycle is the only one of the risks with no contractual instrument to hedge it."
+  ],
+  "summary": {
+    "keyIdea": "The three main risks are positively correlated, so they never occur on their own",
+    "commonMistake": "Using a one-way sensitivity table and concluding the range of outcomes is narrow - it is narrow because only one variable moves at a time.",
+    "action": "Build a scenario with all three risks occurring together at a moderate level, then ask whether the developer survives it."
+  },
+  "application": {
+    "title": "The three-risks-at-once scenario",
+    "message": "Take a project and impose all at once: 12 months of permitting delay, a 10% construction cost overrun, and a 10% fall in the selling price. Recompute the peak funding requirement and the profit under that scenario.",
+    "secondary": "All three variables are driven by the same market cycle, so the probability of them all turning bad together is far higher than the product of the three separate probabilities."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Every project file has a sensitivity table: what if the selling price falls 10%, what if costs rise 10%. That table is useful, and it has a blind spot large enough to ruin the conclusion drawn from it."
+    },
+    {
+      "type": "heading",
+      "text": "The three risks"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Permitting delay: the duration cannot be forecast, and it is the only one of the three that can run for years.",
+        "Cost overrun: material rates, design variations, site clearance costs above the estimate.",
+        "The market turning: launching into a different phase of the cycle from the one you planned in."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why they cannot be added separately"
+    },
+    {
+      "type": "paragraph",
+      "text": "An 18-month delay accrues more interest, leaves construction rates different from the estimate, and pushes the launch date into a different market. The three variables in the sensitivity table turn out to be three expressions of one cause. Adding three separate bad cases still produces a number milder than reality, because reality also contains a loop: running out of capital causes further delay, and further delay drains the capital faster."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Sensitivity table",
+        "text": "Change one variable, hold the rest. It answers: how much can the project take if only one thing goes wrong."
+      },
+      "right": {
+        "label": "Scenario",
+        "text": "Change a whole group of variables at once along a story that could really happen. It answers: can the developer survive a bad year."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The risk you cannot insure",
+      "text": "A fixed unit price hedges the cost risk. Liquidated damages hedge the contractor risk. An interest rate hedge covers the borrowing risk. The market cycle has no instrument at all - the only defence is not to let the peak funding requirement fall at a moment when you have no room left to manoeuvre."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The final question of any project file is not how much it earns.",
+        "It is: if three things break at once, are we still standing."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "slug": "hedging-instruments-fx-derivatives",
+  "title": "Hedging instruments & FX derivatives - cutting exchange-rate risk",
+  "subtitle": "When you have to transact in foreign currency, use derivatives to 'lock in' the rate instead of carrying the risk.",
+  "duration": "8 min",
+  "openingQuestion": "What is a forward contract?",
+  "openingOptions": [
+    "A kind of bond issued by commercial banks into the domestic capital market",
+    "A contract committing you to buy or sell currency at a fixed rate on a specific future date",
+    "A type of insurance policy"
+  ],
+  "explanation": "FX hedging instruments let a company lock in a rate today for an obligation that falls due later. The forward contract is the simplest form: the two sides fix the rate and the settlement date, with no upfront cost - but equally no benefit if the rate moves in your favour. An option is the opposite: you pay a premium to keep the right not to exercise. The general principle is to hedge only the cash flow you are already certain of, because hedging beyond your actual need is speculation.",
+  "realWorldExample": {
+    "company": "A coffee exporter",
+    "description": "A Vietnamese company sells 100 tonnes of coffee to a US buyer and will receive 2M USD in three months. The problem: if the USD weakens (the VND strengthens), the company loses out when converting to VND. The fix: sign a forward contract now, committing to sell 2M USD at 24,000 VND/USD in three months. The rate today is 23,500 and in three months it is 22,000, but the company locked in 24,000 → the loss was avoided."
+  },
+  "quiz": [
+    {
+      "question": "What is the difference between forwards, futures and options?",
+      "options": [
+        "Forwards and options must be exercised; futures need not be",
+        "Forwards are for currencies; futures for commodities; options for equities",
+        "Forwards are margined daily; futures settle once at maturity",
+        "Forwards are customised OTC; futures exchange-traded; options a right"
+      ],
+      "explanation": "There are two axes here and they should not be mixed together. The first is WHERE IT TRADES: a forward is agreed bilaterally off-exchange (OTC), so the amount and the maturity can be tailored, at the cost of carrying counterparty risk; a future is standardised and traded through an exchange with a clearing house, so it requires margin and settles profit and loss daily - the exact reverse of the third option. The second axis is OBLIGATION: forwards and futures both MUST be settled at maturity, while an option confers only a RIGHT - which is why the option buyer pays a premium to keep the upside when the price moves their way and walk away when it does not. Instrument type does not map onto asset class either; currency futures and equity forwards both exist."
+    },
+    {
+      "question": "Why are swaps used to manage interest-rate risk?",
+      "options": [
+        "One side pays fixed, the other floating, exchanging interest flows",
+        "The two sides swap both the principal and the interest of two separate loans",
+        "A bank steps in and guarantees a fixed rate for the company",
+        "The company prepays all its interest to lock the rate in"
+      ],
+      "explanation": "An interest rate swap does not move principal at all; it exchanges only the INTEREST FLOWS calculated on a notional amount - which is exactly what makes the second option wrong, and why the credit exposure is far smaller than the notional suggests. Its practical use is to re-match the debt structure to the revenue structure: a company borrowing floating but earning stable revenue will pay fixed and receive floating to pin its interest cost down and stop guessing at rates; a bank uses the other direction to balance its book. Note too that a swap is a market contract between two parties, not a bank guarantee, and it does not make risk disappear - it moves the risk to a counterparty with the opposite appetite, and creates a new counterparty exposure in the process."
+    },
+    {
+      "question": "What is a call option on USD?",
+      "options": [
+        "The right to sell USD at a rate fixed in advance, no obligation",
+        "The right to buy USD at a rate fixed in advance, with no obligation",
+        "A commitment to buy USD at the average rate over the period",
+        "An obligation to buy USD at the agreed rate on the expiry date"
+      ],
+      "explanation": "A USD call is the right to buy USD at a rate fixed in advance (the strike). For a Vietnamese importer who has to pay USD in three months, it behaves exactly like an insurance policy on the exchange rate: if the USD rises above the strike, exercise and buy at the old rate; if it falls, walk away, buy in the market more cheaply, and the maximum loss is precisely the premium already paid. The right to SELL at a fixed rate is a put, not a call. An obligation to transact on the expiry date is a forward - the fundamental difference being that a forward locks the rate in both directions and costs nothing upfront, while an option leaves the upside open but has to be paid for. Which one you choose is a trade-off between cost and flexibility; neither is always better. An average rate over the period is an Asian option, a different structure again."
+    },
+    {
+      "question": "Scenario: an importer must pay USD in three months and fears the USD rising. Which instrument locks the rate in with no upfront cost?",
+      "options": [
+        "Short-selling USD on the spot market today",
+        "Buying a USD call option and paying the premium",
+        "A three-month forward contract to buy USD",
+        "An interest rate swap to move onto a fixed rate"
+      ],
+      "explanation": "A forward fixes the rate in advance for a date in the future and demands no upfront payment; in exchange, you give up the gain entirely if the USD falls. An option preserves that upside but the premium has to be paid at the outset - two ways of insuring the same exposure at two different prices, which is exactly why the option is the wrong answer to a question about zero upfront cost. Short-selling USD on the spot market does not lock in a future purchase rate at all; it creates a new short position that has to be funded and rolled. And an interest rate swap addresses interest-rate exposure, not currency exposure - the wrong risk entirely."
+    },
+    {
+      "question": "How does hedging differ from speculation, given that both use derivatives?",
+      "options": [
+        "Hedging is done by banks, speculation is done by funds",
+        "Hedging only uses forwards, speculation only uses options",
+        "Hedging always makes money while speculation can lose",
+        "Hedging offsets an existing risk, speculation creates a new one"
+      ],
+      "explanation": "The very same forward contract is a hedge for a company that already owes USD, and speculation for someone who owes nothing. The distinction lies in the underlying position, not in the instrument - which is why the split by institution type and the split by instrument type are both wrong: banks speculate, funds hedge, and both use every instrument on the list. Nor does hedging always make money; it very often shows a loss on the derivative leg, offset by a gain on the underlying exposure, which is the whole point. This is also why hedging beyond your actual exposure turns into speculation."
+    }
+  ],
+  "sections": [
+    {
+      "type": "heading",
+      "text": "What hedging is - reducing risk, not speculating"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hedging is the act of using derivatives to reduce the risk of a portfolio or a transaction. For example, if you export and receive USD, you want to 'lock in' the rate to avoid the risk of the USD weakening. Hedging is 'insurance', not speculation - you accept a small, known loss (the cost of hedging) to avoid a large loss you cannot size in advance."
+    },
+    {
+      "type": "heading",
+      "text": "Forward contract - the customised agreement"
+    },
+    {
+      "type": "paragraph",
+      "text": "A forward contract is an agreement between two parties (usually a bank and a company): 'I will sell you USD at 24,000 VND/USD on 30 September, for 1M USD.' A forward is 'customised' - the two sides can agree on any amount, any date, any rate. However, it is not listed on an exchange (OTC - Over The Counter), so it carries 'counterparty risk': if the bank fails, you are exposed."
+    },
+    {
+      "type": "heading",
+      "text": "Futures contract - the standardised version of a forward"
+    },
+    {
+      "type": "paragraph",
+      "text": "A futures contract is the standardised version of a forward: a fixed size (for example, 100,000 USD per contract), fixed delivery dates (March, June, September, December), and it is listed on an exchange (for example CBOT, CME). The advantages: you can buy or sell it at any time, and there is no counterparty risk (the exchange stands behind it). The drawback: less customisable than a forward."
+    },
+    {
+      "type": "heading",
+      "text": "Options - the right to choose"
+    },
+    {
+      "type": "paragraph",
+      "text": "An option is a contract giving you the 'right' (but not the obligation) to buy or sell an asset at a fixed price. Call option: the right to buy USD at 24,000 VND/USD. If the actual rate is 25,000, you exercise (buy at 24,000, sell at 25,000, make 1,000). If it is 23,000, you do not exercise (you lose the option cost but avoid the loss). Put option: the right to sell USD at a fixed rate. An option is dearer than a forward or a future (because you pay for the 'right'), but more flexible (you are not obliged)."
+    },
+    {
+      "type": "heading",
+      "text": "Interest rate swap - managing interest rates"
+    },
+    {
+      "type": "paragraph",
+      "text": "An interest rate swap: parties A and B exchange interest flows. **Example:** A has debt at a floating rate (LIBOR + 2%) and fears rates will rise. B has borrowed at a fixed rate (5%) and is not worried about rates rising. They sign a swap: A pays 5% fixed, B pays LIBOR + 2% to A. The result: A now pays 5% fixed (protected against rising rates), B pays LIBOR + 2% (flexible)."
+    },
+    {
+      "type": "heading",
+      "text": "Valuing hedges - pricing forwards and options"
+    },
+    {
+      "type": "paragraph",
+      "text": "The forward price is computed as F = S × (1 + r)^t, where S is the spot price (today's rate), r is the interest rate and t is time. For example, USD spot = 23,500 VND, VND interest rate = 5%/year, time 1 year → F ≈ 23,500 × 1.05 = 24,675. Options are more complex, priced with the Black-Scholes model or a binomial model. The volatility of the exchange rate has a very large effect on the option price."
+    },
+    {
+      "type": "heading",
+      "text": "In practice - treasury management"
+    },
+    {
+      "type": "paragraph",
+      "text": "In treasury work: (1) Cross-border: an importer buying from abroad uses a forward to lock in the rate on the invoice. (2) Investment: a foreign fund uses a currency forward to protect its portfolio from FX risk. (3) Interest rates: a bank uses interest rate swaps to manage the duration of its book. (4) Commodities: a power plant uses futures to lock in the price of oil or coal. The purpose is always to 'reduce risk', never to 'speculate'."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four hedging instruments and the price of each",
+      "subtitle": "None of them is free - they differ in whether you pay in cash or in forgone upside",
+      "concepts": [
+        {
+          "def": "Customisable, traded OTC, no upfront cost. In exchange you give up the gain entirely if the price moves your way, and you carry counterparty risk."
+        },
+        {
+          "def": "Standardised and listed, so counterparty risk is virtually nil. In exchange it settles daily, meaning you need liquidity on hand to meet margin calls."
+        },
+        {
+          "def": "You keep the upside when the price moves your way, and lose only the premium. That premium is precisely the price - real money paid at the outset."
+        },
+        {
+          "def": "Swaps a fixed interest flow for a floating one or the reverse. The notional principal is never exchanged, so the credit exposure is far smaller than the notional figure."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The trap",
+      "text": "Hedging does not erase risk, it SWAPS price risk for basis risk. And the very same forward contract is a hedge for a company that owes foreign currency and speculation for someone who does not - the distinction lies in the underlying position, not in the instrument."
+    }
+  ],
+  "keyTakeaways": [
+    "Hedging uses derivatives to reduce risk, not to speculate or to make a profit",
+    "Forward: customised, OTC, counterparty risk. Futures: standardised, exchange-traded, safe",
+    "Options give a right (but not an obligation) - more flexible but dearer than a forward",
+    "Interest rate swaps help manage interest-rate risk - one side pays fixed, the other floating"
+  ],
+  "practicePrompt": {
+    "question": "An importer needs to buy 1M USD in three months. The spot rate today is 24,000 VND/USD and the three-month forward rate is 24,300 VND/USD. What should the company do?",
+    "options": [
+      "Sign the forward at 24,300 now, accepting a 1.25% premium to remove the risk",
+      "Wait and buy at spot when the money is needed, since spot is below the forward - saving cost right now",
+      "Buy the 1M USD today at the spot rate and hold the USD for three months until it falls due",
+      "Do nothing, since the spot-forward gap is only 1.25% and not worth hedging"
+    ],
+    "explanation": "The purpose of hedging is to remove risk you cannot foresee, not to profit from a rate differential. Signing a forward at 24,300 means the company accepts a 1.25% premium over today's spot in exchange for knowing its USD cost with certainty over the next three months, whether the actual rate then jumps to 26,000 or falls to 23,000. 'Waiting to buy at spot' and 'not hedging because the gap is small' both leave the company carrying unlimited exchange-rate risk. Buying the USD today does lock in the cost, but it ties up the cash for three months and carries its own funding cost."
+  },
+  "summary": {
+    "keyIdea": "Hedging instruments (forwards, futures, options, swaps) help banks, companies and investors manage risk. The purpose is not to make a profit but to 'protect' the portfolio from changes you cannot foresee."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "If you work as a treasury officer, you will use these instruments every day. The golden rule: 'Hedge when you know you will face the risk in the future.' If the company exports and earns USD, hedge the rate. If it borrows abroad at a floating rate, hedge with an interest rate swap. The limit: do not 'over-hedge' or use derivatives to speculate - that is how money gets lost."
+  },
+  "diagram": [
+    {
+      "label": "Identify the net exposure (after natural offsets)"
+    },
+    {
+      "label": "Choose the instrument: forward · futures · options · swap"
+    },
+    {
+      "label": "Price the hedge and book the contract"
+    },
+    {
+      "label": "Track hedge effectiveness against the real exposure"
+    }
+  ]
+}

@@ -28,7 +28,7 @@
         "Inventory turned over 90 times during the financial year",
         "It takes 90 days on average to sell through a batch of stock",
         "The business needs 90 days to finish manufacturing a batch",
-        "The business holds enough stock to sell for another 90 days"
+        "The business holds enough stock to keep selling for another 90 days"
       ],
       "explanation": "DIO = 365 / inventory turnover. A high DIO means goods sell slowly and capital is tied up longer. Compare against the industry: 90 days is fine for furniture, poor for food."
     },

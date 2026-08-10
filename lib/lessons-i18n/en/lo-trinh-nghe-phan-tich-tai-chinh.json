@@ -1,0 +1,142 @@
+{
+  "slug": "lo-trinh-nghe-phan-tich-tai-chinh",
+  "title": "Professional Skills, Lesson 4: The career path - from analyst to decision maker",
+  "subtitle": "How the skills change by level, choosing between depth and management, and how to build a professional record",
+  "duration": "11 min",
+  "whyItMatters": "The skills that get you through a hiring process are not the skills that get you promoted, and this comes as a surprise to a great many people a few years into working life. Knowing the map in advance helps you invest in the right thing at the right stage.",
+  "openingQuestion": "What is the biggest difference between the work of an analyst and that of an investment decision maker?",
+  "openingOptions": [
+    "The analyst produces the analysis; the decision maker carries the responsibility",
+    "The analyst works with figures while the decision maker works only with people",
+    "The decision maker builds more complex models and uses more specialised tools",
+    "The analyst focuses on the short term while the decision maker only cares about the long term"
+  ],
+  "explanation": "The hardest transition in this profession is from producing analysis to being answerable for a decision taken on information that is never complete. A good analyst can always defer by asking for more data; a decision maker cannot, because not deciding is itself a decision. The skills the two roles need are therefore different in kind, and the best person in the first role is not automatically good at the second.",
+  "diagram": [
+    { "label": "Early level: accuracy and speed" },
+    { "label": "Middle level: judgement and prioritisation" },
+    { "label": "Senior level: deciding and owning the outcome" },
+    { "label": "Each step is a different kind of skill, not more of the same" }
+  ],
+  "realWorldExample": {
+    "company": "The stumble in year three",
+    "description": "A pattern that repeats across the industry: an analyst excels in the first two years by being fast, accurate and error-free. By year three they are expected to choose what is worth working on and to hold a view of their own, but they carry on optimising for accuracy and waiting to be given tasks. Their reviews flatten out and nobody explains clearly why. The problem is not ability, it is that they have not noticed the criteria changed."
+  },
+  "quiz": [
+    {
+      "question": "What matters most in the first two years of the job?",
+      "options": [
+        "Accuracy and speed - get it right, get it fast, let no error slip through",
+        "The ability to build relationships with clients and partners outside the firm",
+        "Experience making independent investment decisions with a small pool of capital",
+        "A strategic grasp of where the whole organisation is heading over the long run"
+      ],
+      "explanation": "At this stage the work you are given is well defined, and the value you add is doing it accurately and quickly. Reaching for the strategic layer too early while still leaving errors in the spreadsheet is a reliable way to lose credibility. Client relationships and independent decisions are real skills, but they are graded later, and nobody hands them to someone whose numbers still need checking."
+    },
+    {
+      "question": "What changes when you reach the middle level?",
+      "options": [
+        "You no longer have to work directly with figures and financial models at all",
+        "You have to work out for yourself what is worth doing and defend your view",
+        "You move entirely into managing people instead of doing technical work",
+        "You only review other people's work rather than producing anything new"
+      ],
+      "explanation": "This is the most common stumble. The work handed to you is less specific, and the value you add shifts from execution to judgement: choosing the right problem, prioritising correctly, and offering a view that other people can act on. The technical work does not go away, and management is a separate path rather than the automatic next step."
+    },
+    {
+      "question": "Why should a professional record show a point of view rather than just list skills?",
+      "options": [
+        "Because every technical skill can be tested directly during the interview rounds anyway",
+        "Because recruiters simply do not have the time to read the skills list on a CV",
+        "Because technical skill is a necessary condition many candidates meet; a view is what sets you apart",
+        "Because presentation conventions in the finance industry do not permit listing skills"
+      ],
+      "explanation": "Everybody writes down proficient in Excel and DCF valuation. Very few people can lay out an investment thesis they followed over time and the lesson they drew from it. The second is the evidence of judgement - the part that no test can measure. And the premise behind the other answers is wrong: an interview can probe technique but cannot manufacture a track record, recruiters do read the skills section and find it interchangeable, and nothing in the conventions of the industry stops you listing skills."
+    },
+    {
+      "question": "What should the choice between the specialist and the management path rest on?",
+      "options": [
+        "The advice of your direct line manager, since they understand your abilities best of all",
+        "The average pay of the two paths at the moment you make the choice",
+        "Whichever path has less competition inside the organisation you are in",
+        "Whether you want to create value through depth of expertise or through other people"
+      ],
+      "explanation": "These are two different jobs, not two rungs of one ladder. Someone strong technically being promoted into management and then discovering they dislike the new work is a common pattern, and it costs both the individual and the organisation. Pay levels and internal competition change from year to year and from firm to firm, so choosing on either one commits you to a decade of work on the basis of a number that will have moved by the time you get there."
+    },
+    {
+      "question": "What is the hardest transition in a financial analysis career?",
+      "options": [
+        "From producing analysis to owning a decision made without enough data",
+        "From working with financial statements to working with valuation models",
+        "From an analyst seat to managing a team of analysts",
+        "From covering one sector to covering several sectors at once"
+      ],
+      "explanation": "A good analyst can always ask for more time and more data. A decision maker cannot - the data is never sufficient and the window closes. This is where many excellent analysts stop, and it is a different skill rather than a higher grade of the same one."
+    }
+  ],
+  "keyTakeaways": [
+    "The early level is graded on accuracy and speed; the middle on judgement; the senior on decisions",
+    "The most common stumble is carrying on optimising for accuracy after the criteria moved to judgement",
+    "A strong professional record shows a view that was tested, not just a list of skills",
+    "Depth and management are two different jobs, not two rungs of a ladder"
+  ],
+  "practicePrompt": {
+    "question": "You have been an analyst for two years, always delivering what you are given, but your latest review says you need to be more proactive. How should you read that?",
+    "options": [
+      "The organisation wants you to work longer hours and take on a bigger workload",
+      "The criteria have changed: you are expected to pick problems and hold a view, not just execute",
+      "It is a formulaic comment that does not reflect any real issue",
+      "You should move to a firm where execution skill is valued more highly"
+    ],
+    "explanation": "Proactive here does not mean doing more, it means doing differently: bringing a problem nobody has raised, a view backed by evidence, or a better way of working. The most concrete practice is to send your manager a short note each week about something you noticed that nobody asked about."
+  },
+  "summary": {
+    "keyIdea": "Each level calls for a different kind of skill, not more of the same skill",
+    "commonMistake": "Continuing to optimise for the previous level's criteria after being held to the new ones",
+    "action": "Write down three things you do very well and ask yourself which level's criteria they belong to."
+  },
+  "application": {
+    "title": "Build the record with real work",
+    "message": "Pick two or three companies and follow them continuously for a year: write the initial thesis, log the checkpoints along the way, and sum up where you were right and where you were wrong. A document like that persuades far more than any line of a skills list.",
+    "secondary": "It is also exactly what you bring into the interview room when you are asked to talk about an investment you find interesting."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The previous three lessons were specific skills. This one steps back to the whole picture, because what decides a long career is not which skill you are good at today, but whether you notice when the criteria change."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three stages, three criteria",
+      "subtitle": "Every stage change is a change in the definition of doing well",
+      "concepts": [
+        { "def": "The first two or three years. The work is clearly defined. The value is in accuracy, speed and reliability. No margin for error." },
+        { "def": "The middle stage. The work handed to you is vaguer. The value is in choosing the right problem, prioritising correctly and holding a view you can defend." },
+        { "def": "Senior level. Answerable for the outcome on incomplete information. The value is in being able to decide and to live with the consequences." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why nobody tells you this",
+      "text": "Most organisations never spell out that the criteria have changed; they simply comment that you need to be more proactive or think more strategically. Those phrases are usually heard as do more, when what is meant is do differently. Having the map in advance lets you translate the comment correctly."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The specialist path",
+        "text": "The value comes from depth of understanding in one field. It suits people who like to take a problem all the way to the bottom themselves."
+      },
+      "right": {
+        "label": "The management path",
+        "text": "The value comes from multiplying the capability of other people. It suits those who find it energising when their team does something they could not have done alone."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "End of the stage: getting the analysis right is only half of it; the other half is making that analysis believed and acted on.",
+        "And the last skill, the one that lasts a whole career, is still the simplest: knowing exactly what you are sure of and what you are assuming."
+      ]
+    }
+  ]
+}

@@ -12,9 +12,17 @@
   ],
   "explanation": "The core advantage of tax-advantaged retirement accounts/funds is that contributions (within the limit) are deducted from taxable personal income, cutting the tax owed in the current year, while the money is invested and grows over many years before being withdrawn at retirement age.",
   "diagram": [
-    { "label": "Contribute to a voluntary pension fund", "arrow": true },
-    { "label": "Deducted from taxable income", "arrow": true },
-    { "label": "Lowers the personal income tax owed this year" }
+    {
+      "label": "Contribute to a voluntary pension fund",
+      "arrow": true
+    },
+    {
+      "label": "Deducted from taxable income",
+      "arrow": true
+    },
+    {
+      "label": "Lowers the personal income tax owed this year"
+    }
   ],
   "realWorldExample": {
     "company": "Tax relief under Decree 88/2016/ND-CP",
@@ -29,7 +37,6 @@
         "Every contribution is tax-exempt, with no limit at all",
         "The contribution, within the limit, is deducted from taxable income"
       ],
-      "correct": 3,
       "explanation": "The tax benefit works as a deduction: the contribution (within the limit) is subtracted from taxable income, lowering the personal income tax owed that year - not a permanent exemption or a refund of past taxes."
     },
     {
@@ -40,7 +47,6 @@
         "Because the pension fund guarantees a return higher than the market",
         "Because workers are fined with a tax penalty if they don't join the fund"
       ],
-      "correct": 0,
       "explanation": "Tax relief on contributions is a common policy tool worldwide (from the 401(k) in the US to similar programs elsewhere) for encouraging long-term saving: the participant gets an immediate tax benefit, in exchange for accepting that the money stays locked up until retirement age."
     },
     {
@@ -51,7 +57,6 @@
         "No reduction at all this year - the benefit only applies at retirement",
         "A reduction of about 600 thousand VND, since the deduction is calculated at a 5% rate"
       ],
-      "correct": 1,
       "explanation": "The contribution is deducted from taxable income, so the savings equal the contribution times your marginal rate: 12 million x 20% = 2.4 million. The higher your income, the bigger the benefit - which is exactly why there's a limit."
     },
     {
@@ -62,7 +67,6 @@
         "Because the money saved stays in the fund and earns returns for many years",
         "Because the contribution-time relief compounds and is paid out in a lump sum in the retirement year"
       ],
-      "correct": 2,
       "explanation": "The 2.4 million saved today, if left in the fund for 25 years earning 8%, grows to over 16 million. It's the same benefit, just received twenty-five years earlier - and that timing is the entire difference."
     },
     {
@@ -73,7 +77,6 @@
         "To force workers to split their contribution evenly across twelve months",
         "To cap the revenue lost and avoid the relief piling up for high earners"
       ],
-      "correct": 3,
       "explanation": "Because the value of the relief scales with your marginal tax rate, without a limit the highest earners would benefit the most - and the budget would bear most of the cost for the group that needs the help least. The limit is how that gets rebalanced."
     },
     {
@@ -84,7 +87,6 @@
         "They should contribute above the limit to make up for the smaller relief",
         "They should wait until their income moves into a higher bracket before starting"
       ],
-      "correct": 0,
       "explanation": "At a 5% rate, every 10 million contributed only saves 500 thousand in tax. But most of a pension fund's value doesn't come from the tax relief - it comes from the money being contributed steadily and not getting spent along the way."
     }
   ],
@@ -102,7 +104,6 @@
       "Because the voluntary supplementary pension fund automatically refunds all the personal income tax she paid in previous years",
       "Because the tax rate applied to pension fund participants is always lower than for non-participants regardless of income"
     ],
-    "correct": 0,
     "explanation": "The contribution, within the prescribed limit, is deducted from taxable personal income, directly lowering the tax owed in the year of contribution - this is the core tax advantage of the voluntary supplementary pension fund."
   },
   "summary": {
@@ -115,7 +116,6 @@
     "message": "Look up the current personal income tax deduction limit for joining a voluntary supplementary pension fund, and calculate the tax you could save by contributing the maximum allowed.",
     "secondary": "This is a legal tax saving that many people miss simply because they never looked into it."
   },
-  "track": "personal",
   "sections": [
     {
       "type": "lead",

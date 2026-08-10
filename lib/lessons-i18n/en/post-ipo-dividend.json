@@ -1,0 +1,158 @@
+{
+  "slug": "post-ipo-dividend",
+  "title": "Post-IPO: Should You Pay a Dividend?",
+  "subtitle": "FCF vs net income - when it makes sense to hand cash back to shareholders",
+  "duration": "6 min",
+  "openingQuestion": "After an IPO, when should a business start paying a dividend?",
+  "openingOptions": [
+    "Immediately, once the company has built up some name recognition",
+    "Once FCF is stable and the growth investment pipeline has been funded",
+    "Only when the share price falls",
+    "The more the better"
+  ],
+  "explanation": "Once it is listed, a company usually feels pressure to pay a dividend to prove it has grown up. But only one comparison actually matters: is there still a reinvestment opportunity earning more than the cost of capital? If there is, every dong paid out is a dong that would have created more value inside the business. Remember too that the market reads a dividend as a commitment, so starting early and then having to cut is a far worse signal than never having paid at all.",
+  "diagram": [
+    { "label": "FCF" },
+    { "label": "Opportunities" },
+    { "label": "Payout policy" },
+    { "label": "Dividend or reinvestment" }
+  ],
+  "realWorldExample": {
+    "company": "A newly listed company",
+    "description": "A business fresh from its IPO may still need the cash on its balance sheet to expand, rather than paying it all out to shareholders."
+  },
+  "quiz": [
+    {
+      "question": "Why should many growth companies avoid paying a large dividend straight away?",
+      "options": [
+        "Because that capital funds reinvestment opportunities that earn more",
+        "Because shareholders of a growth company have no interest in cash returns",
+        "Because listing rules forbid any dividend during the first three years",
+        "Because accounting standards do not permit a payout soon after an IPO"
+      ],
+      "explanation": "Capital kept inside the business can create more value when the new project's ROIC is high. The other three answers each fail on a factual point rather than a judgement call. Growth shareholders are not indifferent to cash - they simply prefer compounding at 25% inside the company to receiving 100 dong today. No listing rule anywhere imposes a three-year dividend ban, and accounting standards govern how a distribution is recorded, never whether the board is allowed to declare one."
+    },
+    {
+      "question": "A company that has just listed announces a large dividend immediately to reward shareholders, even though it still has expansion projects earning a ROIC above WACC. How should that decision be judged?",
+      "options": [
+        "It should be judged purely on how the share price reacts over the following weeks",
+        "Likely weak capital allocation, since reinvesting that cash creates more value",
+        "It does not matter, because dividend policy has no bearing on firm value at all",
+        "Always positive, because shareholders prefer receiving cash in hand right now"
+      ],
+      "explanation": "The basic capital allocation test applies: when a company holds projects with ROIC above WACC, retaining the capital to reinvest normally builds more value than paying it out. A newly listed business with a full growth pipeline that rushes into a high payout may be giving up the larger value it could have created for those very shareholders. A short-run price reaction measures sentiment, not allocation quality, and the dividend-irrelevance result only holds in a frictionless world with no taxes and no reinvestment opportunities on the table."
+    },
+    {
+      "question": "A newly listed company still has projects earning 25% ROIC while its WACC is 12%. Which decision creates more value for long-term shareholders?",
+      "options": [
+        "Pay a dividend now to thank the shareholders who joined the IPO book",
+        "There is no way to decide correctly without first knowing the industry",
+        "Split it evenly, half paid out and half retained, whatever the projects show",
+        "Retain and reinvest, because the 13-point spread is value forgone"
+      ],
+      "explanation": "When ROIC clearly exceeds WACC, retaining capital to reinvest almost always creates more value than paying it out immediately - this is the core logic of capital allocation policy. The industry matters for judging whether a 25% ROIC is durable, but it does not change the arithmetic once you accept that number. And a fixed half-and-half rule allocates by habit rather than by opportunity."
+    },
+    {
+      "question": "When should a business shift from retaining capital to paying dividends?",
+      "options": [
+        "As soon as it lists, regardless of what the remaining project pipeline looks like",
+        "Only once net profit after tax clears a fixed absolute threshold in dong terms",
+        "Never, as long as the company is still growing its revenue year after year",
+        "When the marginal ROIC of the remaining projects falls back toward the cost of capital"
+      ],
+      "explanation": "This is corporate life-cycle logic: as the supply of high-ROIC investment opportunities runs dry, holding cash with no purpose becomes an opportunity cost, and a dividend becomes the more sensible choice. Listing itself changes nothing about the pipeline. An absolute profit threshold ignores how much capital the business can still deploy well. And revenue growth alone is not the test - a company can grow revenue while every incremental dong earns less than it costs."
+    },
+    {
+      "question": "Why does the market usually read a growth company starting a regular dividend as a signal about its stage of development?",
+      "options": [
+        "It quietly says the pool of high-return reinvestment opportunities has thinned",
+        "Dividends may only be paid once a company has exhausted its investment pipeline",
+        "Paying out shrinks equity, so return-on-equity ratios mechanically look better",
+        "It is a mandatory condition for a stock to be admitted to the major indices"
+      ],
+      "explanation": "Management only sends cash back to shareholders when there is nowhere better to put it. That is not bad in itself - but it changes the investment story from growth to income, and the multiple the market pays changes with it. There is no rule requiring an exhausted pipeline before a payout, index inclusion turns on free float and liquidity rather than dividends, and while a payout does mechanically lift ROE, that is an artefact of a smaller denominator, not a signal about the business."
+    }
+  ],
+  "keyTakeaways": [
+    "Dividend policy has to be tied to the growth stage",
+    "FCF and the investment pipeline matter more than the urge to hand cash back",
+    "An IPO does not mean a dividend has to follow"
+  ],
+  "summary": {
+    "keyIdea": "Dividend policy has to be tied to the growth stage",
+    "commonMistake": "Easy to miss: FCF and the investment pipeline matter more than the urge to hand cash back",
+    "action": "An IPO does not mean a dividend has to follow"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "After an IPO many investors expect the company to start paying a dividend soon to 'reward shareholders' - but that is not always the best capital allocation decision."
+    },
+    { "type": "heading", "text": "The capital allocation principle: retain or pay out?" },
+    {
+      "type": "paragraph",
+      "text": "If the company still holds plenty of projects with a ROIC above WACC (the cost of capital), retaining capital to reinvest usually creates more long-term value for shareholders than an early dividend. A newly listed company normally still has a strong set of growth opportunities - rushing into a large payout may mean giving up far more value for those same shareholders."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A dividend only makes sense once FCF is stable and the high-ROIC investment opportunities have been funded",
+        "While projects with ROIC > WACC remain, retaining capital usually creates more value than paying it out",
+        "Dividend policy should track the company's growth stage, not the sentiment of 'rewarding shareholders'"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "When retaining capital beats paying it out",
+      "equation": "Retaining wins when: ROIC of the reinvestment project > WACC",
+      "example": {
+        "title": "Comparing the two choices",
+        "calculation": "Retain 1,000bn, invest at 25% ROIC, WACC of 12%",
+        "result": "Adds roughly 13% of net value on that capital every year",
+        "explanation": "If the company still has projects at that level of return, paying the whole 1,000bn out to shareholders means giving up that 13% spread every year - a very large opportunity cost that the balance sheet never shows directly."
+      }
+    },
+    { "type": "heading", "text": "The corporate life cycle and dividend policy" },
+    {
+      "type": "list",
+      "items": [
+        "High-growth stage: plenty of projects with ROIC above WACC, so retaining capital is almost always better than paying out.",
+        "Mature stage: fewer projects remain and the marginal ROIC drifts down toward WACC - this is when a dividend starts to make sense.",
+        "Saturated stage: high-ROIC projects have essentially run out and idle cash is pure opportunity cost - here a dividend or a buyback is the right choice for shareholders."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Pressure for an early dividend",
+        "text": "Investors used to receiving a steady dividend from their other holdings expect a newly listed company to do the same to 'prove its financial health' - even while the company still has better growth opportunities in front of it."
+      },
+      "right": {
+        "label": "Capital allocation that fits the stage",
+        "text": "Management explains clearly which high-ROIC projects need the capital, and commits to shifting toward a dividend as those reinvestment opportunities run out - this is the right way to talk to long-term investors."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An early dividend sounds generous, but it is not necessarily the best decision for shareholders.",
+        "The right question is: does the company still have an investment opportunity worth more than paying the cash out today?"
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "A business has just completed a successful IPO and is in a phase of rapid market expansion. Should it pay a large cash dividend?",
+    "options": [
+      "No - retain and reinvest in projects whose returns exceed the cost of capital",
+      "Yes, pay out 100% of profit as dividends to attract short-term momentum buyers",
+      "Yes, and borrow additional bank debt so the dividend can be funded in full",
+      "It is compulsory, because the Securities Law requires a payout after listing"
+    ],
+    "explanation": "In the growth stage, reinvesting retained earnings into projects that return more than the WACC creates far more value than paying a dividend."
+  },
+  "application": {
+    "title": "In practice: Post-IPO: Should You Pay a Dividend?",
+    "message": "A business has just completed a successful IPO and is in a phase of rapid market expansion. Should it pay a large cash dividend?",
+    "secondary": "Getting this principle right raises your professional financial analysis skills."
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "slug": "doi-chieu-va-tim-sai-sot-so-sach",
+  "title": "Bookkeeping, lesson 4: reconciliation - finding the error before anyone else does",
+  "subtitle": "Bank, receivables and inventory reconciliation, plus an arithmetic trick that finds a transposed digit in three seconds",
+  "duration": "10 min",
+  "whyItMatters": "Books containing errors is normal; books containing errors that nobody spots until the audit is the problem. Reconciliation is accounting's own error-catching mechanism, and it is a monthly job rather than a year-end one.",
+  "openingQuestion": "The cash book shows 250m, the bank statement shows 235m. What is the most likely cause?",
+  "openingOptions": [
+    "A cheque was issued but the payee has not cashed it yet",
+    "The bank has recorded the account balance wrongly",
+    "The bookkeeper double-recorded a cash receipt during the period",
+    "The company forgot to book an interest expense that had accrued"
+  ],
+  "explanation": "This is a timing difference, the most common cause in a bank reconciliation. The company reduces cash the moment the cheque is issued, while the bank reduces it only when the cheque is presented - and in between the two records differ without either being wrong. In the same family are money a customer transfers late in the day that the bank posts the next day, and a bank fee deducted automatically that the company does not yet know about. The other three causes are genuine errors and can certainly occur, but timing differences have to be eliminated before you go looking for an error.",
+  "diagram": [
+    {
+      "label": "Book balance"
+    },
+    {
+      "label": "± timing differences (cheques not presented, money in after cut-off)"
+    },
+    {
+      "label": "± items the bank has booked that the company does not know about (fees, interest)"
+    },
+    {
+      "label": "= statement balance. Still a gap → now it is a real error"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Year-end receivables confirmation",
+    "description": "Sending balance confirmation letters to customers and suppliers is a mandatory audit procedure, but a well-run business does it quarterly for its larger counterparties. The reason is very practical: a misstated receivable found after 12 months has usually become uncollectable, while the same error found after 3 months is still just a phone call."
+  },
+  "quiz": [
+    {
+      "question": "What does a timing difference between the cash book and the bank statement mean?",
+      "options": [
+        "Both sides recorded it correctly, just at different moments",
+        "One of the two sides has recorded the figure incorrectly",
+        "The bank has not refreshed its system, so the balance is lagging",
+        "The company must post an extra entry to make them agree"
+      ],
+      "explanation": "A cheque not yet presented is the classic example. This whole group has to be eliminated first; whatever gap survives is the error you are looking for. Nothing needs to be posted for a timing difference, because it clears itself within days, and neither side has made a mistake - which is exactly what makes it a different category from a real error."
+    },
+    {
+      "question": "Which item must the company post an additional entry for after a bank reconciliation?",
+      "options": [
+        "A cheque that has been issued but that nobody has cashed",
+        "A bank service fee already deducted but not yet booked",
+        "Money paid in late in the day that the bank posts tomorrow",
+        "An internal transfer between two accounts of the same company"
+      ],
+      "explanation": "Bank fees and interest are transactions that genuinely occurred and that the company did not know about, so they have to go into the books. Timing differences clear themselves and need no entry at all. An internal transfer between two of the company's own accounts nets to zero and does not change the total cash position either."
+    },
+    {
+      "question": "A difference that divides evenly by 9 is usually the sign of what kind of error?",
+      "options": [
+        "A transaction was omitted and never entered into the books",
+        "A transaction was recorded into the books twice over",
+        "Two digits were transposed when the figure was keyed in",
+        "Two accounts with similar reference numbers were confused"
+      ],
+      "explanation": "Writing 54 as 45 gives a gap of 9; writing 730 as 370 gives 360, which also divides by 9. This trick narrows the search in a few seconds. An omitted entry produces a difference equal to the amount itself, a duplicated entry produces the amount again, and a mixed-up account number usually leaves the total unchanged while misplacing it between two lines."
+    },
+    {
+      "question": "Why reconcile receivables quarterly instead of only at year-end?",
+      "options": [
+        "Because year-end receivable balances are larger and harder",
+        "Because the rules require reconciliation on a quarterly cycle",
+        "Because auditors charge less when a company reconciles regularly",
+        "Because an error found early is still collectable; left, it goes bad"
+      ],
+      "explanation": "This is an economic reason rather than a procedural one. A discrepancy discovered after three months is a phone call; the same discrepancy after twelve months is usually a loss. No rule mandates a quarterly cycle, audit fees are not set by how often you reconcile, and the year-end balance is not intrinsically harder to work through than any other."
+    },
+    {
+      "question": "An inventory count comes in below the book quantity. What is the right step?",
+      "options": [
+        "Find the cause first, and adjust the books afterwards",
+        "Adjust the books to match the physical count immediately",
+        "Leave the books alone and note the gap in a disclosure",
+        "Book an inventory write-down provision for the missing amount"
+      ],
+      "explanation": "Correcting the books to match first erases the trail. Missing stock may be a recording error, a wrong issue, or theft - three causes leading to three completely different treatments. A write-down provision addresses a fall in value rather than a missing quantity, and simply disclosing the gap leaves the books knowingly wrong."
+    }
+  ],
+  "practicePrompt": {
+    "question": "The cash book shows a balance of 45,360,000, the bank statement shows 45,630,000, a difference of exactly 270,000. Where should your first suspicion point?",
+    "options": [
+      "A transposition error, since the difference divides by 9",
+      "A bank service fee that has not yet been recorded in the cash book",
+      "A cheque issued that the payee has not yet cashed",
+      "Money in late in the day the bank has not yet posted"
+    ],
+    "explanation": "270,000 divides by 9, and a difference divisible by 9 is nearly always a transposition: here 45,360 and 45,630 differ only in that 36 has become 63. That is an arithmetic property rather than a rule of thumb - swapping two digits of the same number always produces a difference divisible by 9. The other three options are all timing differences or unrecorded items, and they are real, but there is no reason for any of them to land on a number divisible by 9. Eliminate timing differences first; whatever gap survives is the real error."
+  },
+  "keyTakeaways": [
+    "Eliminate timing differences first; whatever gap survives is the real error.",
+    "Bank fees and interest must be posted; a cheque not yet presented needs no entry.",
+    "A difference divisible by 9 is nearly always a transposed pair of digits.",
+    "Missing stock: find the cause first, correct the books second - correcting first erases the trail."
+  ],
+  "summary": {
+    "keyIdea": "Eliminate timing differences first; whatever gap survives is the real error",
+    "commonMistake": "Correcting the books to the physical figure the moment a gap appears - that erases the trail before you know what happened.",
+    "action": "Reconcile monthly, not at year-end. A three-month-old discrepancy is almost impossible to trace back."
+  },
+  "application": {
+    "title": "Run a bank reconciliation",
+    "message": "Take the latest month's statement and the cash book balance. Add and subtract the timing items on the bank side, post the fees and interest on the book side, and see whether the two meet.",
+    "secondary": "If the gap divides by 9, there is almost certainly a pair of digits transposed on entry."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Nobody keeps books for a whole year without a single mistake. The profession is not designed around the assumption of never erring - it is designed around catching your own errors before somebody else does."
+    },
+    {
+      "type": "heading",
+      "text": "Three reconciliations you cannot skip"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Bank: cash book against the statement, monthly. Catches omissions, duplicates, and payments nobody authorised.",
+        "Receivables and payables: send balance confirmations to major customers and suppliers, quarterly.",
+        "Inventory: the physical count against the books. This is the only reconciliation that requires standing up and counting."
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Reading a bank reconciliation"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start from the book balance, add and subtract the timing differences - cheques issued and not presented, money in after the cut-off - then add and subtract what the bank has recorded but the company has not, such as service fees and deposit interest. The second group must go into the books; the first must not, because it clears itself within days. If a gap remains after those two steps, that gap is the error."
+    },
+    {
+      "type": "callout",
+      "label": "The divisible-by-9 trick",
+      "text": "If the difference divides by 9, there is almost certainly a transposed pair of digits: 54 written as 45 gives 9, 730 written as 370 gives 360. Knowing this turns scanning a whole ledger page into scanning for numbers with two adjacent digits, and it usually takes under a minute."
+    },
+    {
+      "type": "heading",
+      "text": "One bank reconciliation, run from both sides"
+    },
+    {
+      "type": "paragraph",
+      "text": "The cash book shows a balance of 100. The bank statement shows 118.5. The 18.5 gap does not mean anyone is wrong - most of it is timing. On the bank side: add 8 for cash paid in that the bank has not yet recorded, subtract 15 for cheques issued that the payees have not presented, giving 111.5. On the book side: subtract 0.5 for a bank service fee already charged that the bookkeeper did not know about, add 12 for a customer payment made straight into the account that nobody has recorded, giving 111.5 as well. The two sides meet, and only then can you conclude there is no error."
+    },
+    {
+      "type": "callout",
+      "label": "Reading the table the right way round",
+      "text": "The adjustments on the bank side - cheques not presented, money in transit - will settle themselves next period and need no journal entry at all. The adjustments on the book side are the opposite: bank fees and direct customer payments both have to be recorded this period. Confusing the two groups is the most common beginner's error - and the consequence is that the books stay permanently out by a fixed amount."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three arithmetic tricks that find an error in seconds",
+      "subtitle": "Use them before scanning line by line, because each one rules out a whole class of cause",
+      "concepts": [
+        {
+          "def": "Almost certainly a transposed pair of digits: 54 entered as 45 gives 9; 730 entered as 370 gives 360, which is 9 × 40. Look among the numbers with two adjacent digits that could have swapped.",
+          "en": "Transposed digits"
+        },
+        {
+          "def": "An amount that should have been a debit was entered as a credit. Getting it wrong once puts you out by twice the value, so halve the difference and look for exactly that number in the ledger.",
+          "en": "Posted to the wrong side"
+        },
+        {
+          "def": "One leg of the entry was never recorded. This is the error accounting software blocks and a spreadsheet does not - and the reason books kept in Excel need reconciling more often.",
+          "en": "One side missing"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Reconciliation is a monthly job, not a year-end one.",
+        "A three-month-old discrepancy is a phone call. The same discrepancy at twelve months is usually a loss."
+      ]
+    }
+  ]
+}

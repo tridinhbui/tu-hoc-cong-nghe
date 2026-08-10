@@ -1,110 +1,118 @@
 {
   "slug": "y-kien-cong-bang-va-nghia-vu-hoi-dong",
-  "title": "Deals, Lesson 6: The fairness opinion and the board's duties",
-  "subtitle": "Who protects minority shareholders, what the investment bank actually signs, and why the conflict is structural",
+  "title": "Deals, Lesson 6: The fairness opinion and the duties of the board",
+  "subtitle": "Who protects minority shareholders, what the investment bank is actually signing, and why the conflict of interest is structural",
   "duration": "11 min",
-  "whyItMatters": "The seller's board decides on behalf of thousands of shareholders with no voice in the negotiation. A fairness opinion is the formal tool for showing they discharged that duty - and understanding the tool's limits matters as much as understanding the tool.",
+  "whyItMatters": "The seller's board decides on behalf of thousands of shareholders who have no voice in the negotiation. A fairness opinion is the formal instrument used to show they discharged that duty properly - and understanding the limits of the instrument matters just as much as understanding the instrument itself.",
   "openingQuestion": "What does a fairness opinion issued by an investment bank assert?",
   "openingOptions": [
-    "That this is the best price obtainable in the market",
-    "That the price falls within a range that is financially reasonable",
-    "That the deal will benefit both sides",
-    "That the target has been fully due-diligenced"
+    "That this is the best price obtainable anywhere in the market",
+    "That the price merely falls within a reasonable range financially",
+    "That the deal will benefit both parties to it",
+    "That the target business has been fully diligenced"
   ],
-  "explanation": "This is a document routinely read as saying more than it does. It does not say the price is the best available, does not say the deal should be done, and does not substitute for due diligence. It asserts one narrow thing: that from a financial point of view, this price falls within a reasonable range for shareholders at the date of issue, on the valuation methods and assumptions set out in the document itself. Its legal value lies in showing the board took independent advice before deciding.",
+  "explanation": "This is a document routinely read as saying more than it does. It does not say best price, it does not say the deal should be done, and it does not substitute for due diligence. It asserts one narrow thing: that from a financial point of view, this price falls within a reasonable range for shareholders as at the date of issue, based on the valuation methods and assumptions set out in the document itself. Its legal value lies in showing that the board took independent advice before deciding.",
   "diagram": [
-    { "label": "The board decides on shareholders' behalf" },
-    { "label": "An adviser is engaged to give an independent opinion" },
-    { "label": "The opinion: is the price within a reasonable range" },
-    { "label": "Shareholders vote on that record" }
+    {
+      "label": "The board decides on behalf of shareholders"
+    },
+    {
+      "label": "It engages an adviser to issue an independent opinion"
+    },
+    {
+      "label": "The opinion: is the price within a reasonable range"
+    },
+    {
+      "label": "Shareholders vote on the basis of that file"
+    }
   ],
   "realWorldExample": {
-    "company": "The conflict built into how advisers are paid",
-    "description": "An investment bank advising the seller usually takes a success fee - payable only if the deal completes, and scaled to deal value. If that same bank also issues the fairness opinion, it is being paid for the deal to happen while simultaneously being asked to judge objectively whether the price is fair. Good practice is to engage a different firm to issue the opinion on a fixed fee independent of the outcome. In shareholder litigation, the fee arrangement is among the first things challenged."
+    "company": "The conflict of interest in how advisory fees are paid",
+    "description": "An investment bank advising the seller is usually paid a success fee - payable only if the deal completes, and proportional to deal value. If that same bank also issues the fairness opinion, it is being paid for the deal to happen and simultaneously asked to judge objectively whether the price is fair. Good practice is to engage a different firm to issue the opinion on a fixed fee that does not depend on the outcome. In shareholder litigation, the fee arrangement is one of the first things put under question."
   },
   "quiz": [
     {
-      "question": "What is the seller's board's principal duty in a deal?",
+      "question": "What is the primary duty of the seller's board in a deal?",
       "options": [
-        "Preserving every employee's job for at least three years afterwards",
-        "Ensuring the deal completes on the timetable promised to the buyer in the heads of terms",
-        "Acting in shareholders' best interests, even where that differs from their own",
-        "Choosing the financially strongest bidder among those submitting valid offers"
+        "To preserve every employee's job at the business for at least three years afterwards",
+        "To ensure the deal completes on the timetable committed to the buyer in the term sheet",
+        "To act in the best interests of shareholders, even where that conflicts with their own interests",
+        "To choose the bidder with the strongest financial resources among all the valid offers received"
       ],
-      "explanation": "The second half is the important part: management may lose their jobs, or conversely gain a great deal from the deal, and this duty exists precisely because of those conflicts."
+      "explanation": "The second half is the important part: management may lose their jobs, or conversely benefit enormously from the deal, and this duty exists precisely because of those conflicts. Job preservation may be negotiated but is not the legal duty, sticking to a timetable serves the buyer rather than the shareholders, and the strongest balance sheet is only one input into deal certainty rather than the objective itself."
     },
     {
-      "question": "Why is the fairness opinion usually commissioned from a firm other than the deal adviser?",
+      "question": "Why is the fairness opinion usually commissioned from a different firm than the deal adviser?",
       "options": [
-        "Because engaging two firms usually costs less than giving everything to one",
-        "Because regulators prohibit one firm from both advising and issuing the opinion",
-        "Because issuing the opinion needs a separate licence investment banks do not hold",
-        "Because the deal adviser takes a success fee and so has a financial interest in completion"
+        "Because engaging two separate firms usually costs less than giving the whole mandate to a single firm",
+        "Because a single firm is barred by the regulator from both advising and issuing the opinion",
+        "Because the firm issuing the opinion needs a separate licence that investment banks do not hold",
+        "Because the deal adviser earns a success fee, so it has a financial interest in the deal completing"
       ],
-      "explanation": "This is a structural conflict rather than a matter of individual ethics, so the remedy has to be structural too: separate the roles and pay a fixed fee."
+      "explanation": "This is a structural conflict rather than a matter of individual ethics, so the remedy has to be structural too: split the roles and pay a fixed fee. Two firms cost more rather than less, no rule bars one firm from doing both in most jurisdictions, and issuing a fairness opinion requires no special licence beyond the advisory permissions the bank already has."
     },
     {
       "question": "What does a no-shop clause in the agreement do?",
       "options": [
-        "Stops the seller actively seeking other buyers once signed with the current one",
-        "Stops the buyer approaching the seller's key staff before completion",
-        "Stops both sides disclosing the deal externally before the announcement date",
-        "Stops the seller's shareholders transferring shares between signing and closing"
+        "It stops the seller actively looking for another buyer after signing with the current one",
+        "It stops the buyer approaching the seller's key personnel before the deal formally completes",
+        "It stops both sides disclosing information about the deal externally before announcement day",
+        "It stops the seller's shareholders transferring shares between signing and closing"
       ],
-      "explanation": "The clause usually comes with a carve-out letting the board consider a superior proposal if another party approaches unprompted - precisely because a duty to shareholders cannot be contracted away entirely."
+      "explanation": "The clause normally comes with a carve-out allowing the board to consider a superior proposal if another party approaches unsolicited - precisely because a duty owed to shareholders cannot be contracted away entirely. Non-solicitation of employees, confidentiality and transfer restrictions are all separate clauses that address different risks in the same agreement."
     },
     {
       "question": "What is the most important limitation of a fairness opinion?",
       "options": [
-        "It is valid only for thirty days from the date the adviser formally issues it",
-        "It assesses the price at one moment and does not assert this is the best option",
-        "It may not be used as evidence in litigation arising after the deal",
-        "It applies only to deals above a certain value threshold under current rules"
+        "It remains valid for only thirty days from the date on which the advisory firm formally issues it to the board",
+        "It assesses the price at one point in time and does not assert this is the best available option",
+        "It cannot be used as evidence in any legal dispute arising after the deal has completed",
+        "It applies only to deals whose value exceeds a certain threshold under the rules in force"
       ],
-      "explanation": "A price can be both within a reasonable range and below what a more competitive sale process would have achieved. This document does not answer the second question."
+      "explanation": "A price can be simultaneously within a reasonable range and lower than what a more competitive sale process would have achieved. The opinion does not answer that second question at all. There is no thirty-day statutory life, the document is routinely used as evidence in litigation, and no value threshold governs when one may be obtained."
     },
     {
-      "question": "Does holding a fairness opinion protect the board from a shareholder claim?",
+      "question": "Does holding a fairness opinion exempt the board from liability when shareholders sue?",
       "options": [
-        "Yes, because responsibility transfers to the firm issuing the opinion",
+        "Yes, because liability transfers to the firm that issued the opinion",
         "Yes, provided the opinion was issued before the board formally voted",
         "No, it is evidence of a careful process rather than a shield",
-        "No, because shareholders cannot challenge board decisions at all"
+        "No, because shareholders cannot sue over a board decision at all"
       ],
-      "explanation": "The board's duty of care remains the board's - a single document cannot buy it out. What is examined is the whole process: was the business shopped to others, were the adviser's conflicts handled, were alternatives to this deal considered. The fairness opinion is one link in that chain."
+      "explanation": "The board's duty of care remains the board's - a single document cannot buy it out. What gets examined is the whole process: was another party invited to bid, was the adviser's conflict of interest handled, were alternatives to this deal considered. The fairness opinion is one link in that chain. Liability does not transfer to the issuer, timing alone confers no protection, and shareholders can and regularly do sue."
     }
   ],
   "keyTakeaways": [
-    "A fairness opinion says only that the price is within a reasonable range at one moment, not that it is the best price",
-    "The board owes a duty to shareholders even where it runs against its own interests",
+    "A fairness opinion only says the price sits within a reasonable range at one point in time, not that it is the best price",
+    "The board owes a duty to shareholders even when it runs against their own interests",
     "A success fee creates a structural conflict: separate the opinion role and pay a fixed fee",
-    "A no-shop clause usually carries a carve-out for a superior unsolicited proposal",
+    "A no-shop clause usually comes with a carve-out for a superior proposal arriving from outside",
     "A fair price and the best price are two different questions - this document answers only the first"
   ],
   "practicePrompt": {
-    "question": "The board accepts the first offer it receives, supported by a fairness opinion. Shareholders sue on the basis that the business was never shopped competitively. Does the opinion protect the board?",
+    "question": "The board accepts the first offer it receives, supported by a fairness opinion. Shareholders sue, arguing there was no competitive process. Does that opinion protect the board?",
     "options": [
       "Yes, because an independent firm confirmed the price was fair",
-      "Not really: it shows the price was reasonable, not the best available",
-      "No, because a fairness opinion has no legal weight at all",
-      "Yes, if issued by a firm taking no success fee"
+      "Not really: it proves the price was reasonable, not the best",
+      "No, because the opinion carries no legal weight at all",
+      "Yes, if it was issued by a firm taking no success fee"
     ],
-    "explanation": "This is the most commonly confused boundary in the whole lesson. A fairness opinion speaks to the outcome - the price. The shareholders' complaint here speaks to the process - whether the board did enough to find a better price. The two are judged separately, and a supportive opinion does not automatically answer the process question."
+    "explanation": "This is the boundary most often confused in the whole lesson. A fairness opinion speaks to the outcome - the price. The shareholders' complaint here speaks to the process - whether the board did enough to find a better price. The two are assessed separately, and a supportive opinion does not automatically answer the question about process."
   },
   "summary": {
-    "keyIdea": "A fairness opinion assesses the price, not the quality of the process that arrived at it",
-    "commonMistake": "Reading the opinion as an assertion that the deal is the best available option for shareholders",
-    "action": "Find the fairness opinion section in a shareholder circular and read the limitations paragraph carefully."
+    "keyIdea": "A fairness opinion assesses the price, not the quality of the process that arrived at that price",
+    "commonMistake": "Treating the opinion as a statement that the deal is the best available option for shareholders",
+    "action": "Find the fairness opinion section in a shareholder proxy document and read the limitations paragraph closely."
   },
   "application": {
     "title": "What to do",
-    "message": "Open the shareholder circular for an announced deal. Find the section describing the fairness opinion and answer three questions: which firm issued it, how they were paid, and what limitations the document places on its own conclusion.",
-    "secondary": "The limitations section is usually longer than the conclusion, and it tells you exactly what the document does not assert."
+    "message": "Open the proxy document for a deal that has been announced. Find the section describing the fairness opinion and answer three questions: which firm issued it, how were they paid, and what limitations does the document itself set out on its conclusion.",
+    "secondary": "The limitations section is usually longer than the conclusion, and it tells you exactly what the document is not asserting."
   },
   "sections": [
     {
       "type": "lead",
-      "text": "This stage closes on the least technical question and the one with the most real consequences: who is responsible when a deal is agreed, and what they rely on when they sign."
+      "text": "This stage closes on the least technical question of all, and the one with the most real consequences: who is responsible when a deal is agreed, and what do they rely on when they sign."
     },
     {
       "type": "heading",
@@ -114,38 +122,38 @@
       "type": "comparison",
       "left": {
         "label": "The question about price",
-        "text": "Does this price fall within a range that is reasonable from a financial point of view. This is the question a fairness opinion answers, using the valuation methods covered in the valuation section."
+        "text": "Does this price fall within a reasonable range from a financial point of view. That is the question a fairness opinion answers, using the valuation methods covered in the valuation section."
       },
       "right": {
         "label": "The question about process",
-        "text": "Did the board do enough to find the best available option: was there a competitive sale, were conflicts of interest handled, were other proposals considered. The other document does not answer this."
+        "text": "Did the board do enough to find the best available option: was there a competitive sale, was the conflict of interest handled, were other offers considered. The other document does not answer this."
       }
     },
     {
       "type": "conceptTable",
-      "title": "The mechanisms protecting minority shareholders",
-      "subtitle": "None is sufficient alone; they compensate for each other",
+      "title": "The mechanisms that protect minority shareholders",
+      "subtitle": "No mechanism is sufficient alone; they compensate for one another",
       "concepts": [
         {
-          "def": "Confirms the price falls within a reasonable range. Strongest when issued by a firm taking no success fee."
+          "def": "Confirms the price sits within a reasonable range. Strongest when issued by a firm that takes no success fee."
         },
         {
-          "def": "Made up of directors with no interest in the deal, negotiating on behalf of the whole board. Most important where management is also the buyer."
+          "def": "Made up of directors with no interest in the deal, negotiating on behalf of the whole board. Most important when management is also the buyer."
         },
         {
-          "def": "Large deals must be approved by the shareholders in general meeting. This is the final mechanism, and the reason the circular sent to shareholders has to be complete."
+          "def": "A large deal has to be approved by the shareholders' meeting. This is the last line of defence and the reason the file sent to shareholders has to be complete."
         }
       ]
     },
     {
       "type": "callout",
-      "label": "When management sits on both sides",
-      "text": "The hardest case is where management itself takes part in buying the company it runs. They know the true value better than anyone and have a direct interest in buying cheaply. Here a fairness opinion is not enough: practice requires an independent committee with power to engage its own advisers and to refuse the deal, together with the interested parties being excluded from the vote."
+      "label": "When management stands on both sides",
+      "text": "The hardest case is when management itself takes part in buying the company it runs. They know the true value better than anyone and have a direct interest in buying cheaply. Here a fairness opinion is not enough: practice requires an independent committee with the authority to engage its own adviser and to refuse the deal, together with the exclusion of the interested parties from voting."
     },
     {
       "type": "closing",
       "lines": [
-        "A document confirming the price is fair does not replace a process that went looking for a better one.",
+        "A document confirming that a price is reasonable does not replace a process that goes looking for a better one.",
         "This stage closes the deal mechanics: from the first EPS calculation to the final signature."
       ]
     }

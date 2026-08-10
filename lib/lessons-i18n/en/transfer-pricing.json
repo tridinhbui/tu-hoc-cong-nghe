@@ -135,10 +135,10 @@
     {
       "question": "How do tax authorities usually test whether an internal price is reasonable?",
       "options": [
-        "Against production cost plus a fixed margin laid down by statute somewhere",
+        "Against production cost plus a fixed margin laid down by statute in each country",
         "Against the price of a similar transaction between two independent parties",
         "Against the price the group applied in the prior reporting period",
-        "Against the average tax rate of the countries involved"
+        "Against the average corporate tax rate of the two countries involved"
       ],
       "explanation": "The arm's length principle requires the price to match what two unrelated parties would have agreed. The hardest case is when no comparable transaction exists - precisely the case for brands and patents transferred internally."
     }

@@ -1,0 +1,180 @@
+{
+  "slug": "tom-tat-hop-va-dhdcd-bang-ai",
+  "title": "AI in Finance, Lesson 7: Summarising meetings and the AGM with AI",
+  "subtitle": "Turn a long document into plans, dividends, projects and shareholder questions.",
+  "duration": "14 min",
+  "whyItMatters": "Reading one AGM gives you information; reading and cross-checking three of them tells you whether management can be trusted - and that is hard to substitute for in investing.",
+  "openingQuestion": "Which part of an AGM is usually well worth reading?",
+  "openingOptions": [
+    "The question-and-answer session between shareholders and management",
+    "The slide background colour",
+    "The seating list",
+    "Photographs of the hall"
+  ],
+  "explanation": "AGM packs and meeting minutes are where management states its plans, its commitments and how it sees risk - none of which appears in the financial statements. The problem is that they are very long and the most valuable part, the Q&A, usually sits at the end. AI helps you compress them into four trackable groups: the plan, the dividend, new projects, and the hard questions with their answers. The real value arrives next period, when you reopen that table and check whether the promises came true.",
+  "summary": {
+    "keyIdea": "AI helps compress a long meeting into commitments, plans and questions to track.",
+    "commonMistake": "Reading only the resolutions and skipping the question-and-answer session.",
+    "action": "Build a post-meeting commitment table covering the target, the deadline, the risk and how you will check it."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Meeting documents tend to be long. AI helps you filter out the part that matters for tracking a company."
+    },
+    { "type": "heading", "text": "Four groups of information to extract" },
+    {
+      "type": "list",
+      "items": [
+        "The revenue and profit plan",
+        "The dividend",
+        "New projects or capital expenditure",
+        "Hard questions and management's answers"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Terms",
+      "text": "AGM: the annual general meeting of shareholders. Q&A: the question-and-answer session. Commitment: something management says it will do, usually with a target or a deadline attached."
+    },
+    { "type": "heading", "text": "A sample prompt" },
+    {
+      "type": "paragraph",
+      "text": "Summarise the meeting pack into a table covering: next year's plan, the dividend, new projects, shareholder questions, management's answers, and the commitments to track."
+    },
+    { "type": "heading", "text": "Following up after the meeting" },
+    {
+      "type": "paragraph",
+      "text": "After the meeting, do not leave the commitments sitting in your notes. Check them against the next quarterly report to see whether revenue, profit and project progress are matching what was promised."
+    },
+    { "type": "heading", "text": "What does an evasive answer look like?" },
+    {
+      "type": "list",
+      "items": [
+        "Answering with general direction and no figure at all, when the question asked for a figure.",
+        "Redirecting to past achievements instead of addressing the current problem.",
+        "Promising to 'provide it later' for information that should already have been disclosed.",
+        "Answering a small part of the question and stopping there, skipping the hardest part."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "None of these proves the company has a problem. But if you write them down and find the same question dodged across several periods, that is valuable information - and it only becomes visible when you have the table you kept from last time."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A commitment you cannot track",
+        "text": "\"The company will continue to grow sustainably and improve operating efficiency.\" No figure, no date - next period you have no way to say whether it was met or missed."
+      },
+      "right": {
+        "label": "A commitment you can track",
+        "text": "\"The 2025 plan is revenue of 8,000bn, profit after tax of 600bn, a cash dividend of 10%, and plant number 3 in commercial operation from the third quarter.\" All four can be checked next period."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A full prompt to reuse",
+      "text": "\"Use only the attached meeting pack, including the question-and-answer session. Build a four-column table: Commitment | Specific figure | Deadline | Source page, covering four groups: the business plan, the dividend, new projects and investment, and other commitments. After the table, list separately any shareholder question whose answer contained no figures or did not address the question directly, quoting the answer verbatim. Do not speculate beyond the document.\""
+    },
+    { "type": "heading", "text": "What to do next period" },
+    {
+      "type": "list",
+      "items": [
+        "Reopen last period's commitment table before you read the new report - reading in that order makes you much harder to lead.",
+        "Mark each commitment as met, missed, or no longer mentioned.",
+        "The 'no longer mentioned' category is the most interesting - silence is usually what stands in for an admission."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A good meeting summary turns words into things you have to follow up.",
+        "AI helps make sure you do not miss the important question."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "What should a post-AGM commitment table contain?",
+      "options": [
+        "The full text of every resolution that was passed",
+        "The names of the speakers and how long each part ran",
+        "The number of shareholders attending and the voting shares",
+        "The target, the deadline, the risk and how you will check it"
+      ],
+      "explanation": "Only a trackable commitment is useful for analysis. Attendance figures and voting percentages are procedural records that tell you nothing about performance, the speaking order is irrelevant, and the resolution text on its own carries no deadline against which you could later measure anything. The four fields above are the minimum that lets you reopen the table next period and reach a verdict."
+    },
+    {
+      "question": "Why does the question-and-answer session matter?",
+      "options": [
+        "Because it shows what shareholders care about and how management answers",
+        "Because the resolutions only take effect after the questions have been taken",
+        "Because it is the only part of the proceedings recorded in the minutes",
+        "Because this part usually runs longer than the main presentation itself"
+      ],
+      "explanation": "The Q&A tends to carry the most signal about governance and risk. Resolutions take effect on the terms set out in them rather than being conditional on the discussion, the minutes cover the whole meeting rather than the Q&A alone, and while the session is often long, its length is not the reason it is valuable - what management says under unscripted pressure is."
+    },
+    {
+      "question": "Why is the Q&A usually more valuable than the resolutions?",
+      "options": [
+        "Because the resolutions are a purely formal procedural requirement",
+        "Because management has to answer without preparing beforehand",
+        "Because the Q&A is recorded on tape while the resolutions are not",
+        "Because resolutions are always rewritten after the meeting has ended"
+      ],
+      "explanation": "A resolution is a document that has been drafted and carefully reviewed in advance. The Q&A is the only place where you see management reacting to a difficult question in real time. Resolutions are far from purely formal - they bind the company on dividends and capital - and rewriting them after the fact would be a serious governance breach rather than routine practice."
+    },
+    {
+      "question": "In next period's commitment review, which status deserves the most attention?",
+      "options": [
+        "A commitment whose deadline slipped with an explanation given",
+        "A commitment completed earlier than the deadline that was set",
+        "A commitment that has stopped being mentioned altogether",
+        "A commitment delivered exactly as originally planned"
+      ],
+      "explanation": "Missing a target and explaining why is a normal part of running a business. Total silence about an old commitment is a way of avoiding having to explain, and when that pattern repeats it says a great deal about the quality of governance. Delivery on plan and early delivery are both good outcomes that need no further investigation."
+    },
+    {
+      "question": "Why keep the management commitment table from every shareholders' meeting?",
+      "options": [
+        "Because the content of commitments is rarely republished in later periods",
+        "Because the regulator requires shareholders to keep meeting papers on file for five years",
+        "Because the table is legal grounds for claiming damages if targets are missed",
+        "Because comparing old commitments against real results measures how reliable they are"
+      ],
+      "explanation": "A management team that promises consistently and misses consistently is extremely valuable information, but you can only see it if you have the record from earlier periods. This is a kind of data no financial statement supplies and that you have to accumulate yourself. There is no retention rule for shareholders, a plan is not a contractual guarantee, and the fact that commitments are sometimes repeated is not the point."
+    }
+  ],
+  "diagram": [
+    { "label": "Meeting pack plus the Q&A minutes" },
+    { "label": "Compress into four groups: plan · dividend · projects · hard questions" },
+    { "label": "Save as a commitment table with deadlines" },
+    { "label": "Next period, compare: what was promised, what was delivered" }
+  ],
+  "realWorldExample": {
+    "company": "The annual plan against actual results",
+    "description": "Plenty of companies set ambitious revenue and profit plans at the AGM and then deliver only part of them at year end. Missing a plan does not by itself say much - the market may have shifted. What does say a lot is the repeating pattern: a company that sets a high plan every year, falls far short every year, and never explains why the following period, is telling you about its governance quality and about how much any number it publishes is worth. A 'promised versus delivered' table across three years is the cheapest way to see that pattern."
+  },
+  "keyTakeaways": [
+    "Four groups to extract: the business plan, the dividend policy, new projects and capex, and the Q&A.",
+    "The Q&A usually beats the resolutions in value, because that is where management answers without preparation.",
+    "A commitment only means something when it carries a figure and a deadline - record it exactly that way.",
+    "Comparing commitments against results in later periods is how you assess management's reliability."
+  ],
+  "practicePrompt": {
+    "question": "Which part of an AGM is usually well worth reading?",
+    "options": [
+      "The question-and-answer session between shareholders and management",
+      "The slide background colour",
+      "The seating list",
+      "Photographs of the hall"
+    ],
+    "explanation": "The Q&A usually reveals what shareholders are worried about and how management reacts."
+  },
+  "application": {
+    "title": "Practise now",
+    "message": "Build a post-meeting commitment table covering the target, the deadline, the risk and how you will check it.",
+    "secondary": "Start small, verify clearly, and only then raise the difficulty."
+  }
+}

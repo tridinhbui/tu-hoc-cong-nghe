@@ -1,0 +1,152 @@
+{
+  "slug": "value-at-risk-var-stress-testing",
+  "title": "Value at Risk (VaR) & Stress Testing - Measuring the maximum risk",
+  "subtitle": "When you cannot remove risk, the next best thing is to measure it accurately.",
+  "duration": "8 min",
+  "openingQuestion": "A fund says 'our VaR at the 95% level is $10 million'. What does that mean?",
+  "openingOptions": [
+    "The fund is certain to lose at least $10 million every day",
+    "There is a 95% chance of losing no more than $10 million in a day",
+    "The fund will make $10 million with 95% probability",
+    "The fund's risk is only $10 million and there is no other kind of risk"
+  ],
+  "explanation": "VaR (Value at Risk) at a 95% confidence level means: in normal market conditions, there is a 95% chance the daily loss will not exceed that figure. Conversely, there is a 5% chance (1 day in 20) that the loss exceeds it - which is exactly why stress testing matters: to prepare for those 'bad' days.",
+  "realWorldExample": {
+    "company": "J.P. Morgan",
+    "description": "The bank uses VaR to monitor trading risk daily. If VaR breaches the permitted limit, traders must cut positions or tighten controls - a policy that has helped contain losses through financial crises."
+  },
+  "quiz": [
+    {
+      "question": "A portfolio has a 1-day VaR at 95% confidence of USD 3 million, and a 1-day VaR at 99% of USD 5 million. Which conclusion is correct?",
+      "options": [
+        "There is a 95% chance of losing exactly 3 million and 99% of losing a full 5 million",
+        "About 5% of days the loss exceeds 3 million; on 1% of days it exceeds 5 million",
+        "The maximum loss that can possibly occur is 5 million in any situation whatsoever",
+        "The portfolio loses 3 million a day on average, with a maximum loss of 5 million"
+      ],
+      "explanation": "For a given portfolio, VaR always rises as the confidence level rises - cutting deeper into the loss tail requires a larger threshold. So 3 million at 95% and 5 million at 99% are consistent, not two risk levels to be ranked against each other. More important still: VaR tells you how OFTEN losses exceed the threshold, never how FAR. The worst day inside that 1% might lose 8 million, or it might lose 40 - VaR is silent on that, which is precisely why Expected Shortfall and stress testing are also needed."
+    },
+    {
+      "question": "What is a stress test and how does it differ from VaR?",
+      "options": [
+        "Stress tests are for credit risk; VaR is for market risk",
+        "Regulators run stress tests; banks run VaR themselves",
+        "A stress test simulates an extreme scenario; VaR attaches a probability",
+        "Stress tests are daily; VaR is computed over a full financial year"
+      ],
+      "explanation": "VaR answers a question with a probability attached: 'at confidence level X, what is the loss threshold', estimated from the return distribution (historical simulation, parametric, or Monte Carlo). A stress test drops the probability and asks something quite different: 'if this specific scenario happens, how much do we lose' - a repeat of September 2008, or the VND falling 15% in a week. Because crises are usually moves with no precedent in the historical data, VaR tends to understate risk exactly when it is needed most. The two tools complement each other rather than substitute."
+    },
+    {
+      "question": "Why do banks need VaR alongside their other risk management methods?",
+      "options": [
+        "It tells them the exact maximum loss that could possibly occur",
+        "It removes the need to hold any capital buffer against market risk",
+        "It is a complete substitute for having to run stress tests at all",
+        "It gives a single number for comparison and for Basel compliance"
+      ],
+      "explanation": "The practical value of VaR is that it compresses the risk of very different things - bonds, FX, derivatives, equities - into the SAME unit, money. That lets a risk committee compare one trading desk with another and set concrete limits, instead of arguing qualitatively. Basel also requires exactly this number for market risk capital. VaR is not a maximum loss, it increases rather than removes the capital requirement, and it explicitly does not replace stress testing."
+    },
+    {
+      "question": "A 1-day VaR at 95% confidence equals USD 3 million. Which reading is correct?",
+      "options": [
+        "On 5% of days, the loss will exceed 3 million dollars",
+        "The maximum possible loss is exactly 3 million dollars",
+        "On 95% of days the portfolio gains at least 3 million",
+        "In every case the loss will stay under 3 million dollars"
+      ],
+      "explanation": "VaR is a quantile threshold, not a ceiling. It says that on 95% of days the loss will fall below 3 million, and it is entirely silent about the remaining 5% - reading it as a 'maximum loss' is precisely the misunderstanding that caught many institutions out in the 2008 crisis. It also says nothing about gains, and offers no guarantee that holds in every case."
+    },
+    {
+      "question": "Why is stress testing still needed when VaR is already computed regularly?",
+      "options": [
+        "Because VaR can only be computed for equity portfolios",
+        "Because VaR is silent about the loss once the threshold is breached",
+        "Because a stress test gives a far more precise number than VaR does",
+        "Because Basel III has dropped the requirement to compute VaR regularly"
+      ],
+      "explanation": "The very tail of the distribution - where losses grow large enough to bring an institution down - is exactly where VaR says nothing. A stress test walks straight into that region by asking 'if 2008 repeated, how much would this portfolio lose', a question about a scenario rather than a probability. VaR applies to any asset class, gives no claim to precision that a scenario beats, and Basel still requires it."
+    }
+  ],
+  "sections": [
+    { "type": "heading", "text": "The concept of VaR (Value at Risk)" },
+    {
+      "type": "paragraph",
+      "text": "Value at Risk (VaR) is a simple but powerful measure: it answers the question 'how much can I lose over k days with probability X% without hitting anything worse?' VaR lets financial institutions quantify market risk. It is not a precise prediction but a probabilistic estimate."
+    },
+    { "type": "heading", "text": "Three ways to compute VaR" },
+    {
+      "type": "paragraph",
+      "text": "Historical method: take past market data and assume the pattern repeats. Simple, but it can miss rare events.\n\nParametric method (Variance-Covariance): assume returns follow a normal distribution and compute VaR from the standard deviation. Fast, but potentially inaccurate when markets are not normal.\n\nMonte Carlo: simulate thousands or millions of random market scenarios. The most flexible, and the most computationally expensive."
+    },
+    { "type": "heading", "text": "Strengths and limitations of VaR" },
+    {
+      "type": "paragraph",
+      "text": "Strengths: a single number, easy to understand, Basel III compliant, comparable across portfolios.\n\nLimitations: VaR says nothing about the loss once the VaR threshold is breached. A 99% VaR, for example, says nothing about what happens in the worst 1% of the time - the loss there could be far worse. That is why Conditional VaR (CVaR), or Expected Shortfall, was invented."
+    },
+    { "type": "heading", "text": "Stress Testing - when VaR is not enough" },
+    {
+      "type": "paragraph",
+      "text": "A stress test simulates extremely adverse market conditions: interest rates up 200 bps, equities down 30%, liquidity drying up. This prepares the institution for low-probability, high-impact events.\n\nExample: in the 2008 crisis many portfolios showed a 'green' VaR yet took heavy losses. A stress test would have warned."
+    },
+    { "type": "heading", "text": "Basel III and the VaR requirement" },
+    {
+      "type": "paragraph",
+      "text": "Basel III requires banks to compute VaR at least at the 95% and 99% levels and to monitor it regularly. If VaR breaches the permitted limit, the bank must raise its capital buffer or reduce risk. This is how regulators protect the financial system."
+    },
+    { "type": "heading", "text": "Backtesting - checking whether VaR is accurate" },
+    {
+      "type": "paragraph",
+      "text": "Backtesting compares forecast VaR against realised losses: if a 99% VaR is correct, it should not be breached on more than 1% of days. If backtesting shows VaR is too soft (breached too often), the model must be adjusted. This is an essential quality control step."
+    },
+    { "type": "heading", "text": "Practical uses of VaR and stress tests" },
+    {
+      "type": "paragraph",
+      "text": "VaR is used for: (1) daily risk reporting; (2) regulatory compliance; (3) deciding the capital buffer; (4) portfolio monitoring. Stress tests are used for: (1) preparing for a crisis; (2) finding the portfolio's 'weak points'; (3) setting trading limits."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three ways to compute VaR and what each one costs",
+      "subtitle": "The same portfolio, three methods, three different numbers - the gap comes from the assumptions, not the data",
+      "concepts": [
+        { "def": "Assumes normally distributed returns and a linear price relationship. The fastest, and the most wrong for a portfolio holding options, because gamma makes losses grow non-linearly precisely in the tail." },
+        { "def": "Replays past moves onto today's portfolio. It keeps the genuine fat tail, but it cannot generate a scenario that never occurred inside the observation window." },
+        { "def": "Generates a mass of scenarios from a distributional model. The most flexible and the most expensive; its own risk is model risk." }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The trap",
+      "text": "VaR is a QUANTILE THRESHOLD, not a maximum loss. It says that on 95% of days the loss falls below the threshold, and it is entirely silent about the other 5% - the region that decides whether an institution lives or dies. Reading it as a 'maximum loss' is the misunderstanding that caught many institutions out in 2008, and the reason Basel moved to Expected Shortfall."
+    }
+  ],
+  "keyTakeaways": [
+    "VaR is a probabilistic estimate of the maximum loss in normal conditions; it says nothing about the loss beyond the threshold",
+    "Three ways to compute VaR: historical, parametric, and Monte Carlo - each with its own strengths and weaknesses",
+    "Stress testing addresses VaR's limitation by simulating extremely adverse conditions",
+    "Basel III requires banks to compute VaR regularly; backtesting checks whether the model is accurate"
+  ],
+  "practicePrompt": {
+    "question": "Portfolio: 60% equities (volatility 15%/year), 40% bonds (volatility 5%/year), correlation 0.3. What are the portfolio standard deviation and the 1-year 95% VaR?",
+    "options": [
+      "σp ≈ 9.8%, VaR 95% ≈ 16.1% (using the portfolio variance formula with correlation, then multiplying by the 1.645 z-score)",
+      "σp = weighted average = 11%, VaR 95% ≈ 18.1% (wrong because it ignores the diversification benefit from a correlation below 1)",
+      "σp ≈ 9.8%, VaR 95% ≈ 9.8% (wrong because it forgets to multiply by the 1.645 z-score at the 95% confidence level)",
+      "σp ≈ 20%, VaR 95% ≈ 32.9% (wrong because it adds the two standard deviations directly instead of using the variance formula)"
+    ],
+    "explanation": "σp² = w1²σ1² + w2²σ2² + 2w1w2ρσ1σ2 = 0.36×0.0225 + 0.16×0.0025 + 2×0.6×0.4×0.3×0.15×0.05 = 0.00958 → σp ≈ 9.79%. VaR 95% = z95% × σp = 1.645 × 9.79% ≈ 16.1%. Note that the simple weighted average (11%) is always higher than the true σp when correlation is below 1, because the variance formula already accounts for the diversification effect."
+  },
+  "summary": {
+    "keyIdea": "Value at Risk is a powerful but imperfect risk measure. It produces an easily understood number that supports decisions and regulatory compliance. But VaR can mislead in an extreme crisis, which is why stress testing is the essential complement."
+  },
+  "application": {
+    "title": "Apply it now",
+    "message": "As a risk manager you will compute VaR daily, monitor backtesting, and use stress tests to prepare for surprises. VaR is not there to predict perfectly but to prepare you mentally and financially for the bad days."
+  },
+  "diagram": [
+    { "label": "Choose the confidence level and the horizon" },
+    { "label": "Compute VaR (historical · variance-covariance · Monte Carlo)" },
+    { "label": "Stress test the tail VaR does not cover" },
+    { "label": "Backtest: do the breaches match the theory?" },
+    { "label": "Set risk limits and report" }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "slug": "ke-toan-don-tich-vs-ke-toan-tien-mat",
+  "title": "Accrual vs cash accounting: the foundational distinction every accountant must hold",
+  "subtitle": "Why recognised revenue does not always coincide with money arriving in the bank",
+  "duration": "7 min",
+  "openingQuestion": "A company delivers goods on 28 December against an invoice of 100m, but the customer pays on 15 January the following year. Under accrual accounting, when is that 100m of revenue recognised?",
+  "openingOptions": [
+    "On 15 January, when the money actually reaches the company's account",
+    "On 28 December, when the goods were delivered and the right to payment arose",
+    "Split evenly across the two dates, recognising 50m on each of them",
+    "Not recognised as revenue until the customer confirms they are satisfied with the product"
+  ],
+  "explanation": "Accrual accounting - the foundation of every modern reporting framework (VAS, IFRS, US GAAP) - recognises revenue when the RIGHT TO PAYMENT arises (goods delivered, service performed), not when cash is actually received. The 100m is booked Dr Accounts Receivable, Cr Revenue on 28 December, and when the cash arrives on 15 January it is simply a move from receivables into cash, with no new revenue recognised.",
+  "realWorldExample": {
+    "company": "Construction companies and long-term contracts",
+    "description": "Construction companies typically sign contracts running for months or years but are paid by milestone or only on completion. Accrual accounting lets the company recognise revenue by PERCENTAGE OF COMPLETION even before the cash arrives, reflecting the work actually done in the reporting period - whereas cash accounting would make the financial statements look bizarre (zero revenue for months, then a sudden spike when a payment lands)."
+  },
+  "quiz": [
+    {
+      "question": "Why are most public and listed companies REQUIRED to use accrual accounting rather than cash accounting, when cash accounting is so much simpler?",
+      "options": [
+        "Because it matches revenue with the costs incurred in the same period",
+        "Because it shows the exact cash balance at any point in time",
+        "Because the tax authority only accepts accrual-basis figures",
+        "Because it is simpler and so reduces the annual cost of the audit"
+      ],
+      "explanation": "The matching principle is the core reason: accrual accounting pairs a period's revenue with the costs incurred to generate that revenue, whatever the timing of the cash - so the statements show the real OPERATING PERFORMANCE instead of being distorted by whether customers happened to pay early or late, which has nothing to do with how well the business actually ran."
+    },
+    {
+      "question": "How are prepaid expenses - office rent paid a year in advance, say - treated under accrual accounting?",
+      "options": [
+        "Charged in full to expense at the moment the payment leaves the account",
+        "Recorded as an asset when paid, then released to expense over time",
+        "Not recognised at all until the lease term has finished",
+        "Recorded as a liability and then reduced month by month"
+      ],
+      "explanation": "This is the matching principle applied directly: although the cash left at the start, the rent expense is genuinely 'incurred' month by month as the office is used - so accrual accounting records the prepayment as an ASSET and then amortises it into EXPENSE across the matching periods, so each month carries only the portion of cost that truly belongs to it."
+    },
+    {
+      "question": "A company shows positive accounting profit on an accrual basis but negative operating cash flow in the same period. What issue should an accountant or analyst be alert to?",
+      "options": [
+        "Depreciation charged in the period was unusually large",
+        "Revenue may be growing while the cash has not been collected",
+        "This cannot happen at all if the books have been kept correctly",
+        "It is certainly a sign of financial statement fraud"
+      ],
+      "explanation": "This is the single most important reason why accrual accounting - accurate as it is about recognising performance - still has to be read alongside the cash flow statement: positive accrual profit with negative cash flow is a common early warning sign that many corporate collapses in history ignored. A company can be 'profitable on paper' while genuinely running out of the cash it needs to operate."
+    },
+    {
+      "question": "Scenario: a business prepays 120m of office rent covering 12 months. What does accrual accounting record in the first month?",
+      "options": [
+        "10m of expense with the remaining 110m as a liability",
+        "120m of expense in the month the cash was paid",
+        "No expense at all until the 12 months have run",
+        "10m of expense, and the remaining 110m as an asset"
+      ],
+      "explanation": "The matching principle pairs cost with the period that receives the benefit: one month of office use means 10m of expense. The unused portion is a right to future use, which is an asset - not a liability, because the cash has already been paid out in full."
+    },
+    {
+      "question": "A company reports positive accounting profit alongside sustained negative operating cash flow. What is the most suspicious explanation?",
+      "options": [
+        "Revenue has been recognised but the cash has not been collected",
+        "The company is paying dividends in excess of its profit",
+        "The depreciation charge has been recognised at too low a level",
+        "The company borrowed long-term debt to expand production"
+      ],
+      "explanation": "A sustained gap between profit and cash almost always sits in a swelling receivables balance: the goods sold, the revenue booked, the customer not paying. Dividends and borrowing both sit in financing cash flow, so neither one can explain a shortfall in the operating section."
+    }
+  ],
+  "keyTakeaways": [
+    "Accrual accounting recognises revenue and expense when the right or obligation ARISES, not when cash changes hands - and it is mandatory for public companies",
+    "The matching principle: pair a period's revenue with the costs that generated that revenue in the same reporting period",
+    "Prepaid expenses are recorded as an asset and then released into expense over the period of actual use",
+    "Positive accrual profit with negative cash flow is an important warning sign - always read both statements together, never just one"
+  ],
+  "practicePrompt": {
+    "question": "Your company receives a 500m order in March, delivers and invoices in April, and the customer pays in June. Production costs for the order (materials, labour) were paid gradually from February to April and totalled 300m. Under accrual accounting, in which month should the 200m gross profit on this order be recognised?",
+    "options": [
+      "February, when the production spending began",
+      "April, when the goods were delivered and revenue recognised",
+      "June, when the money actually reached the account",
+      "Spread evenly across February, March, April, May and June"
+    ],
+    "explanation": "This is the matching principle applied directly: revenue recognised in April (when delivery occurred and the right to payment arose) has to be matched with ALL the costs incurred to generate it (300m of production cost from February to April), giving 200m of gross profit recognised in April - regardless of the actual cash movements (paid out from February, collected in June) spreading across several different months."
+  },
+  "summary": {
+    "keyIdea": "Accrual accounting recognises revenue and expense at the moment the right or obligation arises (not when cash moves), following the matching principle so that each reporting period shows the operating performance that belongs to it.",
+    "commonMistake": "Confusing accounting profit (accrual) with the cash actually in the bank - the two figures can differ substantially within the same period",
+    "action": "When analysing any company's financial statements, always reconcile profit (income statement) against operating cash flow (cash flow statement) to get the full picture"
+  },
+  "application": {
+    "title": "Applying this in day-to-day accounting work",
+    "message": "When you book a transaction, always ask yourself: 'has the right to receive or the obligation to pay actually arisen?' rather than only looking at whether the cash has moved - this is the skill that separates a competent accountant from a beginner.",
+    "secondary": "The next lesson goes deeper into adjusting entries and the closing cycle - the monthly and quarterly practice of every accountant."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The difference between accrual and cash accounting is one of the most fundamental concepts in the whole of accounting - and one of the most frequently misunderstood."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Cash basis",
+        "text": "Recognises revenue and expense when CASH ACTUALLY moves. Simple and easy to grasp, but it does not show performance by period - common among small owner-run businesses, and not permitted for public companies"
+      },
+      "right": {
+        "label": "Accrual basis",
+        "text": "Recognises revenue and expense when the RIGHT or OBLIGATION arises, whatever the cash. More complex, but it reflects the economic substance - mandatory under VAS/IFRS for listed companies"
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The matching principle"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the principle that governs the whole of accrual accounting: cost has to be recognised in the SAME PERIOD as the revenue it helped generate. For example, if a company manufactures goods in January to March but sells them all in April, the production cost (cost of goods sold) is recognised in April - alongside the sales revenue - even though the cash went out from January to March."
+    },
+    {
+      "type": "heading",
+      "text": "The typical items requiring accrual adjustment"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Accounts receivable: revenue recognised but cash not yet collected",
+        "Accounts payable: cost incurred but not yet paid",
+        "Prepaid expenses: cash already paid but the benefit spans several periods, so it is released gradually",
+        "Unearned revenue: cash already received but the corresponding goods or services not yet delivered"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "An important note for analysts",
+      "text": "Accounting profit (accrual) and actual cash are TWO DIFFERENT CONCEPTS and can diverge substantially in the short run. A company that is 'profitable' on the income statement can still hit a liquidity crisis if the cash does not come in fast enough - which is why the cash flow statement always has to be read alongside the income statement."
+    }
+  ],
+  "diagram": [
+    {
+      "label": "A transaction occurs"
+    },
+    {
+      "label": "Cash basis: record when the money moves in or out"
+    },
+    {
+      "label": "Accrual basis: record when it arises, matching revenue with cost"
+    },
+    {
+      "label": "The difference creates receivables, payables and prepayments"
+    },
+    {
+      "label": "This is why profit differs from cash"
+    }
+  ]
+}

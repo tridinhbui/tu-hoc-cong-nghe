@@ -1,0 +1,169 @@
+{
+  "slug": "dividend",
+  "title": "Dividends",
+  "subtitle": "FCF coverage and the quality of the cash behind the payout",
+  "duration": "6 min",
+  "openingQuestion": "What does a sustainable dividend depend on most?",
+  "openingOptions": [
+    "Revenue growing steadily every single year",
+    "Free cash flow and payout discipline",
+    "A low price-to-book ratio on the stock",
+    "The number of employees on the payroll"
+  ],
+  "explanation": "A dividend is only durable when it is paid out of free cash flow - what is left after the business has spent enough to maintain and expand its operating capacity. So the number to look at is not the payout against profit but the payout against free cash flow. Funding a dividend with borrowings, or out of an accumulated cash pile while free cash flow is negative, can be kept up for a few years, but it is a loan taken from the future rather than a result achieved.",
+  "diagram": [
+    { "label": "FCF" },
+    { "label": "Payout ratio" },
+    { "label": "Dividend" },
+    { "label": "Sustainability" }
+  ],
+  "realWorldExample": {
+    "company": "Mature businesses",
+    "description": "Mature companies tend to pay a more consistent dividend because their reinvestment needs are lower than those of a growth business."
+  },
+  "quiz": [
+    {
+      "question": "A business has high net income but negative FCF. How does it pay a dividend?",
+      "options": [
+        "Irrelevant, since dividends depend only on reported profit",
+        "It may have to borrow or draw down its cash reserves",
+        "It simply switches over to paying a stock dividend instead",
+        "Very sustainable, because accounting profit is still high"
+      ],
+      "explanation": "If the real cash is not there, the dividend can only come from somewhere other than current operations - new borrowing or the accumulated cash pile. Reported profit is not the binding constraint: it is an accrual figure that can stay high while cash goes the other way. Switching to a stock dividend does not fix the problem either, because it distributes no cash at all and simply divides the same equity into more shares."
+    },
+    {
+      "question": "A company holds its dividend flat for five straight years while FCF falls each year. What is the biggest risk?",
+      "options": [
+        "The share price is certain to rise on the back of a stable dividend policy",
+        "The payout ratio creeps up until the dividend must be cut abruptly",
+        "There is no risk at all, since the dividend level is held constant",
+        "Shareholders end up better off with each successive year that passes"
+      ],
+      "explanation": "Holding the dividend flat while FCF declines means the payout ratio is quietly rising - and at some threshold the company must either borrow to fund the dividend or cut it suddenly, which the market usually punishes hard because it had priced in a stable payout. A steady dividend does not make the share price certain to rise, and it is not risk-free: the risk is simply invisible until the cut arrives."
+    },
+    {
+      "question": "A business earns 500bn of profit, generates 300bn of FCF, and paid 350bn of dividends. Which reading is correct?",
+      "options": [
+        "The company is definitely falsifying its financial statements",
+        "You cannot judge without knowing which industry it operates in",
+        "The dividend is sustainable since payout ratio is under 100%",
+        "Payout on profit is 70% but the dividend has already exceeded FCF"
+      ],
+      "explanation": "This is the crux of the lesson: two ratios built on two different denominators give two different conclusions, and FCF is the one that reflects real cash. 350 against 500 of profit is 70%; 350 against 300 of FCF is 117%. The industry does not change that arithmetic, and a payout below 100% of profit is not the test - the test is what was paid out against the cash actually generated in the period."
+    },
+    {
+      "question": "Why is management usually reluctant to cut the dividend, even once FCF has clearly weakened?",
+      "options": [
+        "Because the market reads a dividend cut as a negative signal",
+        "Because shareholders always agree once it is explained",
+        "Because the law forbids a listed company from cutting its dividend",
+        "Because the dividend has no effect at all on the traded share price"
+      ],
+      "explanation": "Signalling is the real economic reason many companies delay a dividend cut for longer than their finances allow, until no alternative is left. Shareholders do not reliably accept the explanation - income funds sell out on the announcement itself. No law stops a listed company from cutting its dividend; the constraint is reputational. And the dividend plainly does affect the share price, which is exactly why the cut hurts."
+    },
+    {
+      "question": "How does a share buyback programme differ from a cash dividend in terms of commitment?",
+      "options": [
+        "It must be completed at exactly the volume announced to the regulator",
+        "It can be paused without the market reacting as it does to a cut",
+        "It can only be run when retained earnings are positive",
+        "It reduces market capitalisation by exactly the amount of cash spent"
+      ],
+      "explanation": "The market reads a dividend as a promise, so cutting it is a very strong negative signal that management avoids at almost any cost. A buyback is more flexible - which is why companies with volatile cash flow tend to prefer it. A buyback carries no obligation to complete the announced volume, is not gated on positive retained earnings for the period, and does not reduce market capitalisation one-for-one with the cash spent."
+    }
+  ],
+  "keyTakeaways": [
+    "A dividend must be read alongside FCF",
+    "A high payout ratio is not necessarily sustainable",
+    "A mature business usually fits a dividend better than a growth business"
+  ],
+  "summary": {
+    "keyIdea": "A dividend must be read alongside FCF",
+    "commonMistake": "Easy to miss: a high payout ratio is not necessarily sustainable",
+    "action": "A mature business usually fits a dividend better than a growth business"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A steady dividend is a sign of a stable business - but the dividend is only genuinely sustainable when it is paid out of real cash, rather than out of borrowings or reserves."
+    },
+    {
+      "type": "heading",
+      "text": "Free cash flow decides whether a dividend is sustainable"
+    },
+    {
+      "type": "paragraph",
+      "text": "A dividend only holds up when the business genuinely generates enough cash after CapEx and the reinvestment it needs. If net income is high but FCF is negative, the company can only pay by borrowing more or drawing down reserves - a pattern that is hard to keep up for long. Holding the dividend flat while FCF falls each year is a quiet warning signal: the payout ratio is climbing towards a level that cannot hold."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The dividend must always be read alongside FCF, not just net income",
+        "A high and rising payout ratio is a warning signal, even when the absolute dividend is unchanged",
+        "A mature business usually fits a dividend better than one still growing fast"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "The payout ratio and what is left over",
+      "equation": "Payout ratio = Dividends paid ÷ Profit after tax",
+      "example": {
+        "title": "Worked example",
+        "calculation": "Profit 500bn, FCF 300bn, dividends paid 350bn",
+        "result": "Payout ratio 70% on profit, but above 100% of FCF",
+        "explanation": "The business is paying out more than the free cash it generated in the period - the 50bn gap has to come from reserves or new borrowing. Measured on accounting profit the payout ratio still looks safe (70%), but measured against FCF it has already passed 100%."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A sustainable dividend",
+        "text": "FCF is stable and comfortably above the dividend paid, year after year, the payout ratio stays inside a safe range, and the business still has cash spare for the unexpected."
+      },
+      "right": {
+        "label": "A dividend eating into capital",
+        "text": "FCF is falling or negative but the absolute dividend is held flat - management fears the market's reaction to a cut, so it borrows or draws down reserves to keep the payout going."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Three signs a dividend is at risk"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The payout ratio measured on FCF stays above 100% for several years, even while the payout ratio on accounting profit still looks fine.",
+        "Borrowings rise steadily while the dividend is unchanged - the signature of borrowing to pay the dividend rather than to invest.",
+        "Cash and cash equivalents fall period after period while the dividend stays at its old level."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Why companies hate cutting the dividend",
+      "text": "A dividend cut is usually read by the market as management losing confidence in future cash flow, so the share price often reacts far more sharply than the size of the cut alone would justify. That fear is what sometimes keeps a company paying at any cost for longer than is healthy, until it is forced into an abrupt cut anyway."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A dividend that looks steady on paper is not thereby sustainable.",
+        "Always check: is there enough real cash to pay it?"
+      ]
+    }
+  ],
+  "practicePrompt": {
+    "question": "What is the single most important financial factor underwriting the sustainability of a cash dividend?",
+    "options": [
+      "Ample free cash flow, with the dividend-to-FCF ratio at a safe level (< 70%)",
+      "The share price hitting the daily limit up in several consecutive sessions",
+      "Total revenue last year, since a bigger top line funds a bigger payout",
+      "The chairman's personal will alone, with no look at the company's cash flow"
+    ],
+    "explanation": "A cash dividend is genuinely paid in cash. Solid free cash flow is the most durable source of that payment, and it does not depend on the accounting profit in the books."
+  },
+  "application": {
+    "title": "Applied: dividends",
+    "message": "What is the single most important financial factor underwriting the sustainability of a cash dividend?",
+    "secondary": "Getting this principle straight sharpens your professional financial analysis."
+  }
+}

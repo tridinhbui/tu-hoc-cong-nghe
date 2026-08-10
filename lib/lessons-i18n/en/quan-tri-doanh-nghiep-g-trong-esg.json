@@ -12,11 +12,21 @@
   ],
   "explanation": "E and S affect the finances through several intermediate steps and usually over the long run. G acts directly: a weak board fails to stop a value-destroying M&A deal, a controlling shareholder can move benefits out through related-party transactions, and loose internal controls create the conditions for fraud. Each of these mechanisms reduces the cash flow belonging to minority shareholders immediately.",
   "diagram": [
-    { "label": "Board structure - independence and professional capability", "arrow": true },
-    { "label": "Executive pay structure - tied to which measures, over what horizon", "arrow": true },
-    { "label": "Shareholder rights and ownership structure - who really controls decisions", "arrow": true },
-    { "label": "Related-party transactions - where value most easily moves out", "arrow": true },
-    { "label": "Read these signs before the risk shows up in the accounts", "arrow": false }
+    {
+      "label": "Board structure - independence and professional capability"
+    },
+    {
+      "label": "Executive pay structure - tied to which measures, over what horizon"
+    },
+    {
+      "label": "Shareholder rights and ownership structure - who really controls decisions"
+    },
+    {
+      "label": "Related-party transactions - where value most easily moves out"
+    },
+    {
+      "label": "Read these signs before the risk shows up in the accounts"
+    }
   ],
   "realWorldExample": {
     "company": "Delistings and illiquid shares on the Vietnamese market",
@@ -36,10 +46,10 @@
     {
       "question": "What is the agency problem in corporate governance?",
       "options": [
-        "A dispute between the company and the agents distributing its products",
+        "A dispute between the company and the agents selling its products",
         "A business hiring too many sales agents and driving up its costs",
-        "The company having to pay fees to financial intermediaries",
-        "The conflict when the manager is not the owner"
+        "The company having to pay fees to the financial intermediaries",
+        "The conflict that arises when the manager is not the owner"
       ],
       "explanation": "The agency problem is the theoretical foundation of the whole field of corporate governance. When ownership separates from management, the manager has more information and different incentives from the owner. The governance mechanisms - an independent board, pay tied to long-term performance, an independent audit, shareholder voting rights - are all tools for narrowing that gap. In a market with concentrated controlling shareholders, the main form of the conflict shifts to controlling shareholder against minority shareholder."
     },
@@ -56,7 +66,7 @@
     {
       "question": "What governance risk does a dual-class share structure create?",
       "options": [
-        "Minority shareholders do not receive dividends equal to the founder group",
+        "Minority shareholders do not receive dividends on the same terms as the founder group",
         "The group holding voting rights far beyond the capital they actually contributed",
         "The business is not permitted to issue further shares to new investors",
         "Every member of the board is required to be an insider of the company"
@@ -66,10 +76,10 @@
     {
       "question": "Why are related-party transactions a point to examine closely when analysing a business?",
       "options": [
-        "Because these transactions are always recorded outside the consolidated accounts",
+        "Because these transactions are always recorded outside the consolidated financial statements",
         "Because company law entirely forbids any transaction between a company and a related party",
         "Because this is the easiest channel for moving value out of minority shareholders' hands",
-        "Because they raise the audit cost and lengthen the time to publish the accounts"
+        "Because they raise the audit cost and lengthen the time needed to publish the annual accounts"
       ],
       "explanation": "Selling cheaply to a relative's company, renting an asset at a high price, lending without interest - each transaction can be legal and fully disclosed, but together they are a flow of value leaving the public company. What has to be checked is the size, the frequency and the pricing terms. They are disclosed in the notes, not hidden outside the accounts."
     }
@@ -105,7 +115,10 @@
       "type": "lead",
       "text": "Of the three letters in ESG, G is mentioned least in marketing reports - and yet it is the letter that loses investors money fastest when something is wrong with it."
     },
-    { "type": "heading", "text": "Board structure" },
+    {
+      "type": "heading",
+      "text": "Board structure"
+    },
     {
       "type": "list",
       "items": [

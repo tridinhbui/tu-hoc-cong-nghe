@@ -1,0 +1,213 @@
+{
+  "slug": "doc-bao-cao-tai-chinh-ngan-hang",
+  "title": "Banks, lesson 1: reading a bank's financial statements - why every ratio you learned stops working",
+  "subtitle": "NIM, CASA, LDR, NPL, CIR and the provisioning buffer - the private language of a bank's accounts",
+  "duration": "12 min",
+  "whyItMatters": "Banks make up roughly 40% of Vietnam's stock market capitalisation, yet the whole standard corporate analysis toolkit - working capital, EBITDA, free cash flow - is meaningless for a bank. Without this separate set of metrics you cannot analyse the largest group of stocks in the market you are investing in.",
+  "openingQuestion": "Why can't you value a bank using EV/EBITDA?",
+  "openingOptions": [
+    "Because banks are not required to disclose EBITDA",
+    "Because debt is a bank's raw material input",
+    "Because a bank's EBITDA figure is always negative",
+    "Because EBITDA only applies to companies listed abroad"
+  ],
+  "explanation": "For an ordinary company, borrowing is a way of financing operating assets, so we separate enterprise value (EV) from capital structure. For a bank the relationship is reversed: deposits and wholesale funding are the raw material, and the interest spread is the revenue. Stripping debt out of a bank's business is as illogical as stripping inventory out of a retailer. That is why banks are always analysed and valued from an equity perspective, with their own set of metrics.",
+  "diagram": [
+    { "label": "Funding: deposits and debt securities issued" },
+    { "label": "Lending and interest-earning investments" },
+    { "label": "Net interest income (NII) + non-interest income = TOI" },
+    { "label": "Less operating expense and provisioning expense" },
+    { "label": "Profit before tax" }
+  ],
+  "realWorldExample": {
+    "company": "Vietnam's listed banking sector",
+    "description": "Reading a Vietnamese bank's quarterly report follows an almost fixed order: credit growth (capped by the quota the State Bank grants), then NIM, then the CASA ratio, then bad debt and the NPL coverage ratio. Two banks both reporting 20% profit growth can mean entirely different things: one grew on an improving NIM, the other only by cutting provisioning - which is borrowing profit from the future."
+  },
+  "quiz": [
+    {
+      "question": "What does NIM (Net Interest Margin) measure?",
+      "options": [
+        "Profit after tax divided by average shareholders' equity",
+        "Net interest income divided by average interest-earning assets",
+        "Group 3 to group 5 loans divided by total customer lending",
+        "Operating expense divided by total operating income"
+      ],
+      "explanation": "NIM = net interest income / average interest-earning assets. It is a bank's core margin: the spread between lending rates and funding rates, expressed across the whole interest-earning asset base. Profit over equity is ROE, the loan-quality ratio is the NPL ratio, and cost over income is CIR - three different questions, each with its own metric."
+    },
+    {
+      "question": "What advantage does a high CASA ratio give a bank?",
+      "options": [
+        "It gets a higher credit growth quota from the central bank",
+        "It directly lowers the NPL ratio, since depositors are also borrowers",
+        "Cheaper funding cost, so a higher NIM at the same lending rate",
+        "It is exempt from provisioning on the corresponding loans"
+      ],
+      "explanation": "CASA is current account and demand savings balances - funding that pays almost no interest. A bank with high CASA buys its raw material more cheaply than its rivals, so it can both price loans more competitively and hold a better NIM. It buys nothing in terms of regulatory quota, has no mechanical link to loan quality, and gives no relief from provisioning rules."
+    },
+    {
+      "question": "A bank's bad debt is rising but its profit is still growing strongly. What should you check first?",
+      "options": [
+        "The cash dividend per share the bank paid out this year",
+        "Branches and transaction offices opened during the period",
+        "How the bank's share price moved over the same stretch",
+        "Provisioning expense and the NPL coverage ratio"
+      ],
+      "explanation": "Provisioning is the most discretionary expense line in a bank's accounts. Bad debt rising while provisioning expense falls is a sign that profit is being borrowed from later quarters. The NPL coverage ratio (provisions taken / bad debt) tells you whether the buffer is still thick or has worn thin. Dividends, branch counts and the share price are all downstream of this question, not substitutes for it."
+    },
+    {
+      "question": "What does a low CIR (Cost to Income Ratio) reflect?",
+      "options": [
+        "Generating a unit of total income with less operating cost",
+        "The bank is lending at rates above the market average",
+        "The bank's capital adequacy sits above the required minimum level",
+        "The bank is less exposed when interest rates turn"
+      ],
+      "explanation": "CIR = operating expense / total operating income. Heavily digitised banks tend to pull CIR down markedly, because they serve more customers without opening more branches or hiring proportionally more staff. Lending rates show up in NIM, capital adequacy in CAR, and rate sensitivity in the funding and asset mix - none of them is what CIR measures."
+    },
+    {
+      "question": "Why does the concept of working capital not apply to a bank?",
+      "options": [
+        "Because a bank's balance sheet holds no short-term assets",
+        "Because a bank's liquidity risk is measured by LDR and LCR",
+        "Because accounting standards forbid banks from presenting working capital",
+        "Because a bank's working capital is always negative, deposits exceeding loans"
+      ],
+      "explanation": "A bank's balance sheet is not split into current and non-current in the ordinary way. Its liquidity risk is measured with purpose-built tools instead: LDR, the ratio of short-term funding used for medium and long-term lending, and LCR - not with a current ratio. Banks certainly do hold short-term assets, no standard forbids the disclosure, and the sign of the notional figure is not the point."
+    }
+  ],
+  "keyTakeaways": [
+    "For a bank, deposits are raw material rather than capital structure - so EV, EBITDA, FCF and working capital are all unusable",
+    "The core metric set: NIM (interest margin), CASA (cheap funding), LDR (liquidity), NPL and coverage (asset quality), CIR (operating efficiency), CAR (capital adequacy)",
+    "Provisioning expense is the most discretionary profit lever - always read it alongside bad debt and the coverage ratio",
+    "Total operating income (TOI) = net interest income + non-interest income; a bank with large non-interest income is less sensitive to rate moves"
+  ],
+  "practicePrompt": {
+    "question": "Bank A: NIM 4.2%, CASA 35%, NPL 1.1%, NPL coverage 180%. Bank B: NIM 4.5%, CASA 12%, NPL 2.3%, NPL coverage 60%. Which reading is most reasonable?",
+    "options": [
+      "B is better, since its NIM is the higher one",
+      "A is better: NIM from cheap CASA, and a thick buffer",
+      "The two are equivalent because the metrics offset each other",
+      "They cannot be compared without knowing the share prices"
+    ],
+    "explanation": "A high NIM is not automatically good - the question is always where the NIM comes from. A NIM built on cheap funding (CASA) is a durable advantage. A NIM built on lending to riskier segments is risk recognised up front with the cost arriving later, and 60% NPL coverage shows that B has not prepared for that cost."
+  },
+  "summary": {
+    "keyIdea": "A bank's balance sheet is the inverse of an ordinary company's, so it needs its own metric set",
+    "formula": "NIM = Net interest income / Average interest-earning assets",
+    "commonMistake": "Reading a bank's profit without examining provisioning expense and the NPL coverage ratio",
+    "action": "Open the latest quarterly report of a bank you follow and compute all six metrics: NIM, CASA, LDR, NPL, coverage, CIR."
+  },
+  "application": {
+    "title": "Reading a bank in 15 minutes",
+    "message": "Order of reading: (1) credit and deposit growth, (2) NIM and the funding cost behind it via CASA, (3) non-interest income, (4) CIR, (5) bad debt, group 2 loans and the coverage ratio, (6) CAR. If profit rose while step (5) deteriorated, treat that increase as temporary.",
+    "secondary": "Group 2 loans are the early indicator: the bad debt of the next two quarters is usually sitting there today."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You have just learned to read the three statements, compute ratios and build a DCF. Then you open a bank's accounts and almost nothing fits: no revenue, no cost of goods sold, no working capital, and debt at ten times equity that nobody treats as dangerous. You are not reading it wrong - a bank is simply a different business model."
+    },
+    {
+      "type": "heading",
+      "text": "A bank sells money, and its balance sheet is upside down"
+    },
+    {
+      "type": "paragraph",
+      "text": "For a manufacturer, the assets are the plant and the inventory, and debt is how they were financed. For a bank, the assets are the loans, and the liabilities are customer deposits - which are the raw material. The bank buys money cheaply (deposit rates) and sells it dearer (lending rates). That spread is the core revenue."
+    },
+    {
+      "type": "paragraph",
+      "text": "The direct consequence: every tool that separates debt from operations becomes meaningless. No EV, no EBITDA, no free cash flow to the firm. All bank analysis stands in the shareholder's position, and all bank valuation is equity valuation."
+    },
+    {
+      "type": "conceptTable",
+      "title": "A bank's own metric set",
+      "subtitle": "Six numbers that decide whether you understand a bank or not",
+      "concepts": [
+        {
+          "def": "Net interest income / average interest-earning assets. The core margin. NIM is driven both by the cost of funding and by the risk appetite in lending."
+        },
+        {
+          "def": "The share of demand deposits in total funding. High CASA means buying raw material more cheaply than rivals - the most durable competitive advantage a retail bank has."
+        },
+        {
+          "def": "Loans / deposits. High means capital is well used but liquidity is thin. In Vietnam this ratio is capped by State Bank regulation."
+        },
+        {
+          "def": "Group 3-5 loans / total loans. Always read alongside group 2 loans (loans needing attention), which are tomorrow's bad debt, and alongside the coverage ratio, which shows how thick the buffer is."
+        },
+        {
+          "def": "Operating expense / total operating income. Lower is more efficient. Serious digitisation usually shows up as CIR falling year after year."
+        },
+        {
+          "def": "Own capital / risk-weighted assets. The real ceiling on a bank's growth: run out of capital headroom and you cannot lend more, however much demand is left."
+        }
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "From funding to profit",
+      "label": "The structure of a bank's income statement",
+      "equation": "Profit before tax = (Net interest income + Non-interest income) − Operating expense − Provisioning expense",
+      "variables": [
+        {
+          "name": "Net interest income",
+          "description": "Interest earned on loans less interest paid to depositors"
+        },
+        {
+          "name": "Non-interest income",
+          "description": "Service fees, bancassurance, foreign exchange, investment securities"
+        },
+        {
+          "name": "Operating expense",
+          "description": "Staff, branches, technology"
+        },
+        {
+          "name": "Provisioning expense",
+          "description": "The charge taken against loans that may not be recovered"
+        }
+      ],
+      "example": {
+        "title": "Worked example",
+        "calculation": "(10,000 + 3,000) − 5,200 − 2,800",
+        "result": "5,000bn of profit before tax",
+        "explanation": "If the bank provisions only 1,500bn next quarter instead of 2,800bn, profit jumps to 6,300bn without the underlying business improving at all. This is why provisioning expense has to be read side by side with asset quality."
+      }
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A manufacturer",
+        "text": "Debt is capital structure. Analysed through margins, working capital turnover, free cash flow, EV/EBITDA, DCF."
+      },
+      "right": {
+        "label": "A bank",
+        "text": "Liabilities (deposits) are raw material. Analysed through NIM, CASA, asset quality, CIR, CAR; valued on P/B anchored to ROE."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The most common trap",
+      "text": "A bank's profit can be managed almost legitimately through the timing and level of provisioning. A bank that cuts provisioning in a difficult quarter reports a handsome profit - and pays for it two to six quarters later. Always ask: if the NPL coverage ratio were held at the same level as a year ago, how much of this quarter's profit would be left?"
+    },
+    {
+      "type": "heading",
+      "text": "Three questions before concluding anything about a bank"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Where does the NIM come from: cheap funding through CASA and brand, or lending into riskier segments?",
+        "Is asset quality improving or deteriorating: look at group 2 loans first, bad debt second, and only then the coverage ratio.",
+        "Does the bank still have room to grow: is CAR comfortable, and how large is the credit quota it has been granted?"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Banks are not hard to analyse - they simply use a different vocabulary.",
+        "Once you have switched vocabulary, every principle you already learned still holds: the quality of the profit matters more than the profit figure."
+      ]
+    }
+  ]
+}
