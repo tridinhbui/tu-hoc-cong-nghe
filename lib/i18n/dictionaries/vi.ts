@@ -1415,6 +1415,7 @@ export const vi = {
     voteBullish: "🐂 Biển Xanh (Bullish - Tăng trưởng)",
     voteBearish: "🐻 Biển Đỏ (Bearish - Thận trọng)",
     spotlightQuestion: "Câu hỏi cần trả lời",
+    spotlightDiscussed: "Đang được bàn nhiều",
     spotlightAnalysis: "Phân tích đáng đọc",
     anonMember: "Thành viên",
     anonYou: "Bạn",
@@ -1580,8 +1581,6 @@ export const vi = {
     congrats: "Chúc mừng{name}!",
     allDone: "Bạn đã hoàn thành tất cả bài học",
     study: "▶ Học",
-    expandAria: "Mở rộng",
-    collapseAria: "Thu gọn",
 
     quickGuideTitle: "Hướng dẫn nhanh 3 bước",
     quickGuideIntro:

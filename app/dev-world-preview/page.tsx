@@ -12,6 +12,7 @@ import TechnicalInterviewPage from "@/app/(app)/phong-van-ky-thuat/page";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
 import CareerGoalWidget from "@/components/CareerGoalWidget";
 import ConnectMenuPreview from "./ConnectMenuPreview";
+import ArenaCardPreview from "./ArenaCardPreview";
 
 /* i18n-ignore-start: dev-only preview route, hard-blocked in production
    below via notFound() when NODE_ENV === "production" - never reachable by
@@ -133,6 +134,19 @@ export default async function WorldPreviewPage({
             <DailyMotivationWidget userId="00000000-0000-4000-8000-000000000000" compact />
             <CareerGoalWidget userId="00000000-0000-4000-8000-000000000000" compact />
           </div>
+        </div>
+      </div>
+    );
+  }
+  if (scene === "arena") {
+    // Thẻ "Thử sức" ở cột phải dashboard. Trang thật đòi đăng nhập nên không
+    // chụp được; ở đây nó đứng một mình trong một cột hẹp đúng bằng cột phải
+    // để soát bố cục ba dòng và độ dài chữ ở cả hai ngôn ngữ. Hai nút mở modal
+    // là hàm rỗng - cảnh này KHÔNG soát được hai modal đó.
+    return (
+      <div className="min-h-screen bg-stone-100 p-6 dark:bg-stone-950">
+        <div className="max-w-sm">
+          <ArenaCardPreview />
         </div>
       </div>
     );

@@ -56,6 +56,7 @@ import { gamesMetaVi, gamesMetaEn } from "./games-meta";
 import { avatarOptionsVi, avatarOptionsEn } from "./avatar-options";
 import { miscDataVi, miscDataEn } from "./misc-data";
 import { libStringsVi, libStringsEn } from "./lib-strings";
+import { dashboardArenaVi, dashboardArenaEn } from "./dashboard-arena";
 import { bespokeLessonsVi, bespokeLessonsEn } from "./bespoke-lessons";
 import { badgesCompetencyVi, badgesCompetencyEn } from "./badges-competency";
 import { wisdomCardsVi, wisdomCardsEn } from "./wisdom-cards";
@@ -112,6 +113,7 @@ export const viSections = {
   ...avatarOptionsVi,
   ...miscDataVi,
   ...libStringsVi,
+  ...dashboardArenaVi,
   ...bespokeLessonsVi,
   ...badgesCompetencyVi,
   ...wisdomCardsVi,
@@ -170,6 +172,7 @@ export const enSections: typeof viSections = {
   ...avatarOptionsEn,
   ...miscDataEn,
   ...libStringsEn,
+  ...dashboardArenaEn,
   ...bespokeLessonsEn,
   ...badgesCompetencyEn,
   ...wisdomCardsEn,

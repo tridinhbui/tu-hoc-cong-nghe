@@ -1336,6 +1336,7 @@ export const en: Dictionary = {
     voteBullish: "🐂 Blue Sea (Bullish - growth)",
     voteBearish: "🐻 Red Sea (Bearish - cautious)",
     spotlightQuestion: "Questions needing an answer",
+    spotlightDiscussed: "Most discussed",
     spotlightAnalysis: "Analysis worth reading",
     anonMember: "Member",
     anonYou: "You",
@@ -1482,8 +1483,6 @@ export const en: Dictionary = {
     congrats: "Congratulations{name}!",
     allDone: "You've completed every lesson",
     study: "▶ Learn",
-    expandAria: "Expand",
-    collapseAria: "Collapse",
 
     quickGuideTitle: "A quick 3-step guide",
     quickGuideIntro:

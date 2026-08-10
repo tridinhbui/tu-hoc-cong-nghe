@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
-import { ArrowRight, BookOpen, ChevronDown, ChevronUp, Map } from "lucide-react";
+import { ArrowRight, BookOpen, Map } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
@@ -13,7 +13,6 @@ import { XP_PER_LESSON } from "@/lib/levels";
 import RecallCard from "@/components/RecallCard";
 import type { RecallItem } from "@/lib/recall-schedule";
 import type { StageTopicId, TopicAdviceId } from "@/lib/stage-topics";
-import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
@@ -52,25 +51,17 @@ interface Greeting {
 // that actually summarizes where the learner is - which lesson, what it's
 // about in one line, and how many minutes they've put in so far - instead
 // of a generic label, plus a clear tap target to continue.
-const COLLAPSED_KEY = "thtcdn_resume_card_collapsed";
-/** Kênh báo khi người dùng thu gọn hoặc mở lại thẻ, trong cùng tab. */
-const COLLAPSED_CHANGED_EVENT = "thtcdn:resume-card-collapsed";
+// Thẻ này KHÔNG thu gọn được nữa, theo yêu cầu của chủ dự án 09/08/2026.
+// Trước đó nó nhớ trạng thái trong localStorage ("thtcdn_resume_card_collapsed")
+// và có ba nút chevron - một cho mỗi nhánh render. Nó là thứ đầu tiên trên
+// dashboard và là chỗ duy nhất nói "bạn đang dở bài nào", nên thu gọn được
+// nghĩa là người học có thể tự giấu mất lối quay lại bài đang học và không
+// có gì nhắc họ mở lại.
 
 export default function ResumeLearningButton({ activeTrack }: ResumeLearningButtonProps) {
   const { t } = useI18n();
   const [greeting, setGreeting] = useState<Greeting | null>(null);
   const [loading, setLoading] = useState(true);
-  // Trạng thái thu gọn thẻ đọc thẳng từ localStorage. Bản cũ luôn mở ra ở
-  // lần render đầu rồi mới thu lại trong effect, nên người đã thu gọn thẻ vẫn
-  // thấy nó bung ra một nhịp ở mỗi lần vào dashboard.
-  const collapsed = useLocalStorageValue(COLLAPSED_KEY, COLLAPSED_CHANGED_EVENT) === "1";
-
-  function toggleCollapsed(e: React.MouseEvent) {
-    e.preventDefault();
-    e.stopPropagation();
-    writeLocalStorageValue(COLLAPSED_KEY, collapsed ? "0" : "1", COLLAPSED_CHANGED_EVENT);
-  }
-
   useEffect(() => {
     const fetchGreeting = async () => {
       try {
@@ -174,43 +165,6 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
   const energeticGreeting = getEnergeticGreeting();
   const todayRecallItems = greeting?.todayRecallItems ?? [];
 
-  if (collapsed) {
-    return (
-      <div className="flex flex-col h-full justify-between">
-        <Link
-          href={`/bai-hoc/${nextLesson.slug}`}
-          onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-          className="group flex items-center gap-3 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl px-3 py-2.5 transition-all"
-        >
-          <div className="relative w-8 h-8 flex-shrink-0">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-emerald-100 dark:border-emerald-900/50 bg-stone-100 dark:bg-stone-800">
-              <TaiTaiAvatar size={32} />
-            </div>
-            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white dark:border-stone-900" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-[10px] font-bold uppercase tracking-wide text-stone-400 dark:text-stone-500">
-              {nextLessonLabel}
-            </p>
-            <p className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100 truncate">
-              {nextLessonShortTitle}
-            </p>
-          </div>
-          <span className="shrink-0 text-[11px] font-extrabold bg-emerald-600 group-hover:bg-emerald-500 text-white dark:bg-emerald-500 px-2.5 py-1.5 rounded-xl transition-all">
-            {t.resume.study}
-          </span>
-          <button
-            onClick={toggleCollapsed}
-            aria-label={t.resume.expandAria}
-            className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
-          >
-            <ChevronDown className="w-4 h-4" />
-          </button>
-        </Link>
-      </div>
-    );
-  }
-
   // Người mới hoàn toàn (0 bài đã học): thay giọng "chào mừng quay lại"
   // bằng hướng dẫn 3 bước cụ thể - chọn lộ trình, học bài đầu tiên (siêu
   // ngắn để tạo momentum), rồi chỉ thẳng vào bảng xếp hạng/streak để tạo
@@ -220,13 +174,6 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
     return (
       <div className="flex flex-col h-full justify-between">
         <div className="relative bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-4 sm:p-5">
-          <button
-            onClick={toggleCollapsed}
-            aria-label={t.resume.collapseAria}
-            className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
-          >
-            <ChevronUp className="w-4 h-4" />
-          </button>
 
           <div className="flex items-start gap-3.5 pr-6">
             <div className="relative w-11 h-11 flex-shrink-0 mt-0.5">
@@ -302,13 +249,6 @@ export default function ResumeLearningButton({ activeTrack }: ResumeLearningButt
         {/* Top accent bar */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-400" />
 
-        <button
-          onClick={toggleCollapsed}
-          aria-label={t.resume.collapseAria}
-          className="absolute top-3.5 right-3.5 z-10 w-7 h-7 rounded-full flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
-        >
-          <ChevronUp className="w-4 h-4" />
-        </button>
 
         <div className="flex items-start gap-3 sm:gap-4 relative z-10">
           {/* Avatar with soft energetic halo */}

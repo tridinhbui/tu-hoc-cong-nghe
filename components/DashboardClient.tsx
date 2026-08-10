@@ -26,6 +26,7 @@ import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
 import DashboardRecommendations from "@/components/DashboardRecommendations";
 import CommunityLearningNow from "@/components/CommunityLearningNow";
+import DashboardArenaCard from "@/components/DashboardArenaCard";
 import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
@@ -2240,12 +2241,29 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               </div>
             )}
             {user?.id && (
-              <div className={isLessonsView ? undefined : "xl:min-h-0 xl:overflow-y-auto"}>
+              // `space-y-4`: hai khối bên dưới là hai thẻ riêng, mỗi cái có nền
+              // và viền của mình, nhưng lớp bọc này trước đây không có khoảng
+              // cách nào - nên chúng dính liền thành một thẻ trông như bị vỡ ở
+              // giữa.
+              <div
+                className={`space-y-4 ${isLessonsView ? "" : "xl:min-h-0 xl:overflow-y-auto"}`}
+              >
                 <DashboardRecommendations />
                 {/* Người thật, dưới phần gợi ý. Cố ý đặt SAU băng chuyền bài
                     học: thứ tự đó nói rằng đây là bằng chứng cho những gợi ý
                     trên, không phải một mục để lướt qua trước khi học. */}
                 <CommunityLearningNow lessonsMeta={lessonsMeta} />
+                {/* Ba lối vào "thử sức", DƯỚI băng chuyền người đang học.
+                    Hai trong ba đã chết trong mã: BossBattleModal và
+                    PvpDuelModal vẫn được dựng ở cuối tệp này, nhưng
+                    setShowBossBattle(true)/setShowPvpModal(true) không được
+                    gọi ở đâu từ lúc thẻ mini-game bị gỡ. */}
+                {!isLessonsView && (
+                  <DashboardArenaCard
+                    onOpenBoss={() => setShowBossBattle(true)}
+                    onOpenPvp={() => setShowPvpModal(true)}
+                  />
+                )}
               </div>
             )}
             {/* CareerGoalWidget chuyển vào TRONG thẻ Bản đồ Cấp độ, cạnh góc yên tĩnh. */}
