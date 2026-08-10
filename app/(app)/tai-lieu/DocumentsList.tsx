@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { FileText, Download, FileSpreadsheet, FileImage, Archive, Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { trackFeatureClick } from "@/lib/feature-events";
@@ -167,11 +168,16 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                 {/* Cover image or icon */}
                 {doc.image_url ? (
                   <div className="relative w-full h-48 bg-stone-100 dark:bg-stone-800 overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    {/* Khung đã có kích thước cố định (h-48) và `relative`, nên
+                        `fill` là dạng đúng ở đây - không phải đoán tỉ lệ. Ảnh
+                        bìa nằm trong bucket "documents"; trang này là lưới thẻ
+                        nên một lượt xem kéo về cả chục tấm cùng lúc. */}
+                    <Image
                       src={doc.image_url}
                       alt=""
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                 ) : (
@@ -231,8 +237,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
           <div className="space-y-4">
             {openDoc.image_url ? (
               <div className="relative w-full h-56 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={openDoc.image_url} alt="" className="w-full h-full object-cover" />
+                <Image src={openDoc.image_url} alt="" fill sizes="(max-width: 640px) 100vw, 560px" className="object-cover" />
               </div>
             ) : (
               (() => {

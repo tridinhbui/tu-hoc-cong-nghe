@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { MessageCircle, Heart } from "lucide-react";
 import type { CommunityFeedPost } from "@/lib/supabase-community";
 import { getUserCommunityPosts } from "@/lib/supabase-follows";
@@ -61,14 +62,25 @@ export default function ProfileWallPosts({ userId }: { userId: string }) {
             </p>
           )}
           {post.metadata && typeof post.metadata === "object" && "image_url" in post.metadata && Boolean(post.metadata.image_url) && (
-            // Plain <img>, matching CommunityFeedClient.tsx: uploaded post
-            // images come from whatever storage bucket uploadChatImage()
-            // targets, which isn't in next.config.ts's remotePatterns
-            // allowlist, so next/image would 400 on it.
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            // Trước đây chỗ này là <img> trần, kèm chú thích nói rằng bucket
+            // của uploadChatImage() không nằm trong remotePatterns của
+            // next.config.ts nên next/image sẽ trả 400. Chú thích đó SAI, và
+            // nó đã giữ hai tệp (cả CommunityFeedClient.tsx) ở lại với ảnh
+            // gốc: uploadChatImage() ghi vào bucket "chat-images" của CHÍNH
+            // project Supabase này, tức host `<project>.supabase.co`, mà
+            // remotePatterns có sẵn `*.supabase.co` từ lâu. Không có gì để
+            // thêm vào allowlist cả.
+            //
+            // width/height ở đây chỉ là tỉ lệ giữ chỗ trước khi ảnh tải xong;
+            // `height: auto` trả quyền quyết định chiều cao thật lại cho tỉ lệ
+            // gốc của ảnh, nên khung hiển thị y như cũ.
+            <Image
               src={String(post.metadata.image_url)}
               alt=""
+              width={640}
+              height={360}
+              sizes="(max-width: 640px) 100vw, 640px"
+              style={{ height: "auto" }}
               className="mt-2 max-h-32 w-full rounded-lg object-cover"
             />
           )}

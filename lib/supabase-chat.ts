@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase";
 import { handleSupabaseError } from "@/lib/errors";
 import { uniqueRealtimeTopic } from "@/lib/supabase-realtime-topic";
 import { downscaleImage } from "@/lib/downscale-image";
+import { STORAGE_CACHE_CONTROL } from "@/lib/storage-cache";
 
 export interface ChatMessage {
   id: number;
@@ -70,7 +71,7 @@ export async function uploadChatImage(userId: string, file: File): Promise<strin
 
   const { error } = await supabase.storage
     .from("chat-images")
-    .upload(path, upload, { contentType: upload.type || "image/png" });
+    .upload(path, upload, { contentType: upload.type || "image/png", cacheControl: STORAGE_CACHE_CONTROL });
   if (error) throw handleSupabaseError(error);
 
   const { data } = supabase.storage.from("chat-images").getPublicUrl(path);
@@ -110,7 +111,7 @@ export async function uploadChatFile(userId: string, file: File): Promise<{ url:
 
   const { error } = await supabase.storage
     .from("chat-images")
-    .upload(path, file, { contentType: file.type || "application/octet-stream" });
+    .upload(path, file, { contentType: file.type || "application/octet-stream", cacheControl: STORAGE_CACHE_CONTROL });
   if (error) throw handleSupabaseError(error);
 
   const { data } = supabase.storage.from("chat-images").getPublicUrl(path);

@@ -28,6 +28,24 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    // Bao lâu Vercel giữ một BẢN ĐÃ TỐI ƯU trước khi đi hỏi lại Supabase.
+    //
+    // Đây là dòng cắt egress mạnh nhất trong tệp này, và lý do nằm ở chỗ nó
+    // KHÔNG trùng với `cacheControl` lúc tải lên. Hai thứ khác nhau:
+    //
+    //   - `cacheControl` (xem lib/admin/documents.ts, lib/supabase-chat.ts,
+    //     app/(app)/settings/page.tsx) chỉ áp cho object MỚI. Mọi tấm ảnh đã
+    //     nằm sẵn trong storage vẫn mang `max-age=3600` mặc định của Supabase
+    //     cho tới khi có ai tải nó lên lần nữa - tức là không bao giờ.
+    //   - `minimumCacheTTL` áp ngay cho TẤT CẢ, cũ lẫn mới, vì trình tối ưu lấy
+    //     max(minimumCacheTTL, max-age của nguồn). Không có nó thì header 1 giờ
+    //     kia thắng, và mỗi tấm ảnh cũ vẫn bị hỏi lại Supabase mỗi giờ.
+    //
+    // Một năm là an toàn vì mọi đường dẫn trong storage đều bất biến: đường dẫn
+    // nào cũng là `<timestamp>-<random>.<ext>` hoặc `<userId>-<timestamp>.<ext>`
+    // (avatar), nên đổi ảnh là sinh URL mới chứ không ghi đè URL cũ. Không có
+    // ảnh nào thay đổi nội dung dưới cùng một URL để mà bị cache lỗi thời.
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: "https",

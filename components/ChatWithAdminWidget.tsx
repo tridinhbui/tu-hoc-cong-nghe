@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Send,
@@ -607,10 +608,22 @@ export default function ChatWithAdminWidget({
                           )}
 
                           {msg.image_url && (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
+                            // `width`/`height` chỉ là gợi ý tỉ lệ; cặp
+                            // `width: auto, height: auto` trả kích thước hiển
+                            // thị về đúng cỡ tự nhiên của ảnh như thẻ <img> cũ,
+                            // để `max-h-40` vẫn là thứ quyết định khung.
+                            //
+                            // Bấm vào ảnh vẫn mở BẢN GỐC trong tab mới - đó là
+                            // chủ đích, và cũng là lý do bản gốc vẫn cần được
+                            // thu nhỏ lúc tải lên (lib/downscale-image.ts) chứ
+                            // không chỉ dựa vào trình tối ưu ở đây.
+                            <Image
                               src={msg.image_url}
                               alt={t.chat.attachmentAlt}
+                              width={320}
+                              height={240}
+                              sizes="320px"
+                              style={{ width: "auto", height: "auto" }}
                               className="max-w-full max-h-40 rounded-lg mb-2 object-contain cursor-pointer hover:opacity-95 transition-opacity"
                               onClick={() => window.open(msg.image_url!, "_blank")}
                             />

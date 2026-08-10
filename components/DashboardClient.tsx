@@ -1162,7 +1162,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                           className="flex items-center gap-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2.5 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-sm transition-all"
                                         >
                                           {isValidAvatar(m.avatarUrl) ? (
-                                            <img src={m.avatarUrl} alt={m.name} className="w-8 h-8 rounded-full object-cover shrink-0" />
+                                            // next/image chứ không phải <img>: đây là ảnh trong
+                                            // Supabase Storage (hoặc Google OAuth), và một thẻ <img>
+                                            // trần kéo về BẢN GỐC - tới 2MB - để vẽ ra 32 điểm ảnh,
+                                            // cho từng người xem, mỗi lần cache hết hạn.
+                                            <Image src={m.avatarUrl} alt={m.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover shrink-0" />
                                           ) : (
                                             <div className="w-8 h-8 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 flex items-center justify-center text-xs font-black shrink-0">
                                               {m.name.charAt(0).toUpperCase()}

@@ -14,9 +14,10 @@ import { createClient } from "@/lib/supabase";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import NotificationBell from "@/components/NotificationBell";
 import Logo from "@/components/Logo";
-import { getUnresolvedMistakeCount } from "@/lib/quiz-mistakes";
 import { claimPendingReferral } from "@/lib/referrals";
-import { claimDailyLoginChest } from "@/lib/chests";
+import { earnChest } from "@/lib/chests";
+import { getCurrentUser, metadataString } from "@/lib/current-user";
+import { getNavState } from "@/lib/supabase-nav-state";
 import { useLevelUpWatcher } from "@/lib/use-level-up-watcher";
 import { trackFeatureClick } from "@/lib/feature-events";
 import LevelUpModal from "@/components/LevelUpModal";
@@ -268,39 +269,43 @@ export default function AppNavbar() {
     };
   }, [userId]);
 
+  // Thanh này gắn ở mọi trang trong ứng dụng, nên mỗi request nó mở là một
+  // request nhân với số lượt tải trang của cả hệ thống. Trước đây là bốn:
+  // `auth.getUser()` (một vòng mạng ra Supabase Auth), rồi `user_profiles`,
+  // `quiz_mistakes`, `user_chests`.
+  //
+  // Giờ là một. `getCurrentUser()` đọc phiên đã lưu sẵn bằng `getSession()` và
+  // KHÔNG đi mạng - phân biệt getUser/getSession ở phía client không mua được
+  // gì, vì thứ thật sự chặn là RLS trên từng truy vấn (xem lib/current-user.ts).
+  // Ba truy vấn còn lại gộp vào `get_nav_state`.
   useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    void (async () => {
+      const user = await getCurrentUser();
       if (!user) return;
       setUserId(user.id);
       const fallback: NavProfile = {
-        full_name: user.user_metadata?.full_name || null,
+        full_name: metadataString(user, "full_name"),
         email: user.email || "",
-        avatar_url: user.user_metadata?.avatar_url || null,
+        avatar_url: metadataString(user, "avatar_url"),
         total_xp: 0,
         current_level: 1,
         lessons_completed: 0,
       };
-      try {
-        const { data } = await supabase
-          .from("user_profiles")
-          .select("full_name, email, avatar_url, total_xp, current_level, lessons_completed, coins")
-          .eq("id", user.id)
-          .single();
-        setProfile((data as NavProfile) || fallback);
-      } catch {
-        setProfile(fallback);
-      }
-      getUnresolvedMistakeCount(user.id)
-        .then(setMistakeCount)
-        .catch(() => {});
+      const nav = await getNavState(user.id).catch(() => null);
+      setProfile(nav?.profile ?? fallback);
+      setMistakeCount(nav?.unresolvedMistakes ?? 0);
       void claimPendingReferral();
-      claimDailyLoginChest(user.id)
-        .then((granted) => {
-          if (granted) toast.success(t.nav.dailyGiftReady);
-        })
-        .catch(() => {});
-    });
+      // Rương đăng nhập chỉ đổi trạng thái một lần mỗi ngày, nhưng phép kiểm
+      // của nó trước đây chạy ở MỌI lượt tải trang. Câu trả lời giờ đi kèm
+      // `get_nav_state`, nên phần ghi chỉ chạy đúng lần đầu trong ngày.
+      if (nav && !nav.dailyChestClaimed) {
+        earnChest(user.id, "daily_login", 1)
+          .then((granted) => {
+            if (granted) toast.success(t.nav.dailyGiftReady);
+          })
+          .catch(() => {});
+      }
+    })();
   }, []);
 
   // Keeps `profile` in sync with level/XP/Coin changes

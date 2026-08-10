@@ -2,6 +2,7 @@
 
 import { useState, useRef, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { toast } from "sonner";
 import { Upload, FileText, Trash2, Download, Plus, Pencil, Check, X, Eye } from "lucide-react";
 import type { DocumentRow } from "@/lib/admin/documents";
@@ -117,10 +118,11 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
             {documents.map((doc) => (
               <div key={doc.id} className="p-4 flex items-start gap-4">
                 {doc.image_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     src={doc.image_url}
                     alt=""
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-lg object-cover flex-shrink-0 bg-stone-100 dark:bg-stone-800"
                   />
                 ) : (
@@ -345,8 +347,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
             <div className="space-y-2">
               {toEdit.image_url && !removeImage ? (
                 <div className="flex items-center gap-3 p-3 rounded-lg border border-stone-200 dark:border-stone-700">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={toEdit.image_url} alt="" className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
+                  <Image src={toEdit.image_url} alt="" width={48} height={48} className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
                   <span className="flex-1 text-sm text-stone-600 dark:text-stone-400">{td.currentImageLabel}</span>
                   <button
                     type="button"

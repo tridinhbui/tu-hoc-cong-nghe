@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { toast } from "sonner";
 import { MessageCircle, Send, ImagePlus, X, Loader2, Trash2 } from "lucide-react";
 import type { ChatThread, ChatThreadMessage } from "@/lib/admin/chat";
@@ -225,8 +226,15 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                     >
                       {m.image_url && (
                         <a href={m.image_url} target="_blank" rel="noopener noreferrer">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={m.image_url} alt={tc.attachedImageAlt} className="max-w-full max-h-48 rounded-lg mb-1.5 object-cover" />
+                          <Image
+                            src={m.image_url}
+                            alt={tc.attachedImageAlt}
+                            width={320}
+                            height={240}
+                            sizes="320px"
+                            style={{ width: "auto", height: "auto" }}
+                            className="max-w-full max-h-48 rounded-lg mb-1.5 object-cover"
+                          />
                         </a>
                       )}
                       {m.content}

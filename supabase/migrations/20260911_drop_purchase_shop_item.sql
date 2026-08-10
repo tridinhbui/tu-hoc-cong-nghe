@@ -1,0 +1,30 @@
+-- Gỡ purchase_shop_item() - cửa hàng đổi XP chưa bao giờ được nối vào giao diện.
+--
+-- 20260805_shop_purchases.sql dựng hàm này cùng lib/shop.ts, và chú thích của nó
+-- ghi rằng "p_item_id values and prices must stay in sync with lib/shop.ts's
+-- SHOP_ITEMS array by hand". Vế kia của giao kèo đó không còn: lib/shop.ts đã bị
+-- xoá (6d8261a) vì không tệp nào import nó và bảy chuỗi của nó chỉ là bản sao
+-- nguyên văn của CHEST_REWARDS.
+--
+-- Cửa hàng THẬT là components/CosmeticStore.tsx, và nó không đi qua đây: nó mua
+-- bằng `coins` trong user_profiles, đọc catalog từ gamification_assets, ghi
+-- quyền sở hữu vào user_inventories. Khác đơn vị tiền, khác bảng, khác catalog.
+-- Không có đường nào trong repo gọi rpc("purchase_shop_item").
+--
+-- Vì sao xoá chứ không để đó: hàm là `security definer` và được `grant execute`
+-- cho `authenticated`, nên nó là một đầu ghi có đặc quyền vẫn gọi được từ
+-- PostgREST trong khi không giao diện nào phơi ra và không ai còn bảo trì bảng
+-- giá của nó. Thân hàm vẫn nằm trong git nếu sau này cần dựng lại.
+drop function if exists public.purchase_shop_item(text);
+
+-- KHÔNG đụng tới `user_chests_source_check` và `ChestSource`.
+--
+-- 'shop_purchase' PHẢI ở lại cả hai chỗ. Hàng đã mua được ghi thẳng vào
+-- user_chests dưới dạng đã mở, nên nếu có người từng mua thì quyền sở hữu của họ
+-- vẫn nằm ở đó và vẫn phải đọc được - xoá hàm không xoá hàng. Chú thích ở
+-- 20260816_bound_xp_ledger_sources.sql đã nói rõ ràng buộc ấy là HỢP của mọi
+-- nguồn từng được cho phép, đúng để một migration sau không lặng lẽ bỏ mất một
+-- giá trị. Đây là migration sau đó, và nó không bỏ.
+--
+-- user_stats.xp_spent cũng ở lại: lib/supabase-streak.ts còn ghi vào cột đó khi
+-- người học mua chuỗi ngày đã mất.

@@ -654,10 +654,16 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                           )}
 
                           {msg.image_url && (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
+                            // Cùng dạng với ChatWithAdminWidget.tsx - xem chú
+                            // thích ở đó. Chỗ này đắt hơn: ảnh trong phòng học
+                            // nhóm được mọi thành viên trong phòng tải về.
+                            <Image
                               src={msg.image_url}
                               alt={t.chat.attachmentAlt}
+                              width={320}
+                              height={240}
+                              sizes="320px"
+                              style={{ width: "auto", height: "auto" }}
                               className="max-w-full max-h-40 rounded-lg mb-2 object-contain cursor-pointer hover:opacity-95 transition-opacity"
                               onClick={() => window.open(msg.image_url!, "_blank")}
                             />

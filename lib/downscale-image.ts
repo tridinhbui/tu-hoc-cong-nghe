@@ -48,10 +48,22 @@ export function targetDimensions(
   };
 }
 
-/** Có nên bỏ qua tệp này không - và vì sao. */
-export function skipReason(file: { type: string; size: number }): string | null {
+/** Dưới ngưỡng này thì không đụng vào tệp - mã hoá lại một ảnh vốn đã nhỏ chỉ
+ *  làm nó xấu đi mà không tiết kiệm được gì đáng kể. */
+export const MIN_BYTES_TO_RESIZE = 300 * 1024;
+
+/** Có nên bỏ qua tệp này không - và vì sao.
+ *
+ *  `minBytes` hạ được cho những chỗ mà kích thước HIỂN THỊ nhỏ hơn hẳn ngưỡng
+ *  mặc định - avatar là ví dụ: một tấm 3000×3000 nặng 200KB lọt qua ngưỡng
+ *  300KB, nhưng nó vẫn được vẽ ra ở 28 điểm ảnh. Xem lời gọi trong
+ *  `app/(app)/settings/page.tsx`. */
+export function skipReason(
+  file: { type: string; size: number },
+  minBytes = MIN_BYTES_TO_RESIZE
+): string | null {
   if (file.type === "image/gif") return "gif-animation";
-  if (file.size <= 300 * 1024) return "already-small";
+  if (file.size <= minBytes) return "already-small";
   return null;
 }
 
@@ -80,16 +92,25 @@ async function loadBitmap(file: File): Promise<ImageBitmap | null> {
 /**
  * Trả về một File nhỏ hơn khi thu được, hoặc chính `file` khi không.
  * Không bao giờ ném lỗi.
+ *
+ * Hai tuỳ chọn cho phép chỗ gọi hạ ngưỡng xuống khi nó biết ảnh sẽ được vẽ ra
+ * nhỏ hơn nhiều so với mặc định 1600px của chat. Bỏ trống thì hành vi y hệt
+ * như trước.
  */
-export async function downscaleImage(file: File): Promise<File> {
+export async function downscaleImage(
+  file: File,
+  options: { maxEdge?: number; minBytes?: number } = {}
+): Promise<File> {
+  const { maxEdge = MAX_EDGE_PX, minBytes = MIN_BYTES_TO_RESIZE } = options;
+
   if (typeof document === "undefined") return file;
-  if (skipReason(file)) return file;
+  if (skipReason(file, minBytes)) return file;
 
   const bitmap = await loadBitmap(file);
   if (!bitmap) return file;
 
   try {
-    const target = targetDimensions(bitmap.width, bitmap.height);
+    const target = targetDimensions(bitmap.width, bitmap.height, maxEdge);
     if (!target) return file;
 
     const canvas = document.createElement("canvas");

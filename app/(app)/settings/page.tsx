@@ -12,6 +12,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import { getNotificationPreferences, saveNotificationPreferences } from "@/lib/notification-preferences";
 import { isPushSupported, subscribeToPush, unsubscribeFromPush } from "@/lib/push-notifications";
+import { downscaleImage } from "@/lib/downscale-image";
+import { STORAGE_CACHE_CONTROL } from "@/lib/storage-cache";
 
 
 interface CurrentUser {
@@ -197,12 +199,34 @@ export default function SettingsPage() {
     setFlash(null);
 
     try {
-      const fileExt = file.name.split(".").pop();
+      // Thu nhỏ TRƯỚC khi tải lên. Giới hạn 2MB ở trên là thứ người dùng được
+      // báo, và nó vẫn kiểm trên tệp gốc - nén sau khi kiểm sẽ biến một giới
+      // hạn rõ ràng thành một giới hạn tuỳ ảnh. Cùng cách xếp thứ tự với
+      // `uploadChatImage` trong lib/supabase-chat.ts.
+      //
+      // 512 chứ không phải 1600 của chat: chỗ vẽ avatar to nhất trong toàn app
+      // là trang hồ sơ ở `sm:w-28`, tức 112 điểm ảnh, nên 512 đã dư cho cả màn
+      // hình 2x. Mọi chỗ còn lại nhỏ hơn nhiều - thanh điều hướng 36, dải
+      // "đang học" ở dashboard 32, widget chuỗi ngày 28.
+      //
+      // `minBytes: 0` là phần dễ bỏ sót: ngưỡng mặc định 300KB được đặt cho ảnh
+      // chat, nơi tệp nhỏ thường cũng là ảnh nhỏ. Với avatar thì không - một
+      // tấm 3000×3000 nén tốt có thể chỉ 200KB, lọt qua ngưỡng, rồi được tải
+      // về nguyên vẹn để vẽ ra ở 28 điểm ảnh. `targetDimensions` vẫn trả null
+      // khi cạnh dài đã dưới 512, nên ảnh vốn nhỏ không bị mã hoá lại vô ích.
+      const upload = await downscaleImage(file, { maxEdge: 512, minBytes: 0 });
+
+      // Đuôi tệp lấy từ tệp SẮP tải lên, không phải tệp người dùng chọn:
+      // downscaleImage trả về .webp khi nó thu được, và giữ nguyên đuôi cũ thì
+      // đường dẫn nói .heic trong khi nội dung là WebP.
+      const fileExt = upload.name.split(".").pop();
       const fileName = `${user.id}-${Date.now()}.${fileExt}`;
       const filePath = `avatars/${fileName}`;
 
-      const { error: uploadError } = await supabase.storage.from("avatars").upload(filePath, file, {
+      const { error: uploadError } = await supabase.storage.from("avatars").upload(filePath, upload, {
         upsert: true,
+        contentType: upload.type || "image/jpeg",
+        cacheControl: STORAGE_CACHE_CONTROL,
       });
 
       if (uploadError) {

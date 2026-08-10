@@ -1,6 +1,7 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { generateExcelPreviewPng, isExcelFileName } from "@/lib/excel-preview";
+import { STORAGE_CACHE_CONTROL } from "@/lib/storage-cache";
 
 export type DocumentStatus = "pending" | "approved" | "rejected";
 
@@ -96,7 +97,7 @@ async function uploadCoverImage(
 
   const { error: uploadError } = await supabase.storage
     .from("documents")
-    .upload(path, image, { contentType: image.type || "image/jpeg" });
+    .upload(path, image, { contentType: image.type || "image/jpeg", cacheControl: STORAGE_CACHE_CONTROL });
 
   if (uploadError) throw new Error(uploadError.message);
 
@@ -125,7 +126,7 @@ async function uploadAutoExcelPreview(
     const path = `covers/${Date.now()}-${Math.random().toString(36).slice(2, 8)}-auto.png`;
     const { error: uploadError } = await supabase.storage
       .from("documents")
-      .upload(path, png, { contentType: "image/png" });
+      .upload(path, png, { contentType: "image/png", cacheControl: STORAGE_CACHE_CONTROL });
     if (uploadError) {
       console.error("Error uploading auto-generated Excel preview:", uploadError);
       return null;
@@ -231,7 +232,7 @@ export async function uploadDocument(params: {
 
   const { error: uploadError } = await supabase.storage
     .from("documents")
-    .upload(path, file, { contentType: file.type || "application/octet-stream" });
+    .upload(path, file, { contentType: file.type || "application/octet-stream", cacheControl: STORAGE_CACHE_CONTROL });
 
   if (uploadError) throw new Error(uploadError.message);
 
@@ -335,7 +336,7 @@ export async function updateDocument(params: {
 
     const { error: uploadError } = await supabase.storage
       .from("documents")
-      .upload(path, file, { contentType: file.type || "application/octet-stream" });
+      .upload(path, file, { contentType: file.type || "application/octet-stream", cacheControl: STORAGE_CACHE_CONTROL });
     if (uploadError) throw new Error(uploadError.message);
     uploadedPaths.push(path);
 

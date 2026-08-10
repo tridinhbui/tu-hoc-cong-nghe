@@ -2,6 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { isPreviewLessonPath } from "@/lib/preview-lessons";
 import { hasSupabaseAuthCookie } from "@/lib/has-auth-cookie";
+import { isSelfAuthenticatingPath } from "@/lib/self-authenticating-path";
 import routeSegments from "@/lib/route-segments.json";
 
 // Simple in-memory rate limiting for API endpoints
@@ -122,6 +123,7 @@ function isPublicPath(pathname: string): boolean {
   return PUBLIC_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
 
+
 // Also runs a Supabase session refresh on every request. Server Components
 // can't set cookies (Next.js forbids it - lib/supabase-server.ts's setAll
 // silently swallows those writes), so when a page's own getUser() call
@@ -150,6 +152,18 @@ export async function proxy(request: NextRequest) {
     }
   }
   
+  // Đường dẫn tự xác thực: thoát TRƯỚC khi dựng client và trước khi gọi
+  // getUser(). Đặt ở đây chứ không sau, vì phép kiểm đường dẫn công khai vốn
+  // nằm SAU getUser() - nên `/api/*` tuy đã nằm trong PUBLIC_PREFIXES vẫn phải
+  // trả tiền cho một vòng mạng trước khi tới được chỗ nói rằng nó công khai.
+  //
+  // Không đụng phần cổng mặc-định-từ-chối: mọi thứ ở đây đều công khai theo
+  // PUBLIC_PREFIXES, nên nhánh chuyển hướng bên dưới dù có chạy cũng không
+  // chuyển hướng cái nào.
+  if (isSelfAuthenticatingPath(pathname)) {
+    return NextResponse.next({ request });
+  }
+
   // Không mang cookie phiên nào thì không có phiên để làm mới, và câu trả lời
   // của getUser() chắc chắn là null - biết trước mà không phải hỏi Supabase.
   //

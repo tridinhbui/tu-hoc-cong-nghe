@@ -63,8 +63,11 @@ export function parseMigration(sql) {
   const functions = new Set();
   const droppedFunctions = new Set();
   const indexes = new Set();
+  const droppedIndexes = new Set();
   const policies = new Set();
+  const droppedPolicies = new Set();
   const triggers = new Set();
+  const droppedTriggers = new Set();
   const realtime = new Set();
 
   for (const m of s.matchAll(new RegExp(`create\\s+table\\s+(?:if\\s+not\\s+exists\\s+)?(?:public\\.)?${IDENT}`, "gi"))) {
@@ -89,11 +92,33 @@ export function parseMigration(sql) {
   for (const m of s.matchAll(/create\s+(?:unique\s+)?index\s+(?:concurrently\s+)?(?:if\s+not\s+exists\s+)?([a-z0-9_]+)/gi)) {
     indexes.add(m[1].toLowerCase());
   }
-  for (const m of s.matchAll(new RegExp(`create\\s+policy\\s+"([^"]+)"\\s+on\\s+(?:public\\.)?${IDENT}`, "gi"))) {
-    policies.add(`${pick(m, 2, 3)}|${m[1]}`);
+  // Policy và trigger mang theo SCHEMA.
+  //
+  // Cả hai từng bị coi như luôn nằm trong `public`, và câu kiểm sinh ra cũng lọc
+  // `schemaname = 'public'` - nên mọi policy trên `storage.objects` và trigger
+  // trên `auth.users` bị báo thiếu VĨNH VIỄN, trên mọi database, kể cả khi đã
+  // chạy đúng hết. Sáu dòng trong một lượt chạy thật là loại đó.
+  //
+  // `(?![a-z0-9_.])` là bản vá y hệt đã phải làm cho realtime, vì cùng một cái
+  // bẫy: với `on public.%I` trong một câu format(), phần `public\.` tuỳ chọn lùi
+  // về rỗng rồi IDENT khớp chính chữ "public", sinh ra một policy trên bảng tên
+  // "public". Chặn cả chữ lẫn dấu chấm thì câu format() không khớp gì cả - đúng
+  // ý muốn: tên bảng thật nằm trong biến, đọc tĩnh không thể biết được.
+  const QUALIFIED = `(?:${IDENT}\\s*\\.\\s*)?${IDENT}(?![a-z0-9_.])`;
+  for (const m of s.matchAll(new RegExp(`create\\s+policy\\s+"([^"]+)"\\s+on\\s+${QUALIFIED}`, "gi"))) {
+    policies.add(`${pick(m, 2, 3) || "public"}|${pick(m, 4, 5)}|${m[1]}`);
   }
-  for (const m of s.matchAll(/create\s+(?:or\s+replace\s+)?trigger\s+([a-z0-9_]+)/gi)) {
-    triggers.add(m[1].toLowerCase());
+  for (const m of s.matchAll(new RegExp(`drop\\s+policy\\s+(?:if\\s+exists\\s+)?"([^"]+)"\\s+on\\s+${QUALIFIED}`, "gi"))) {
+    droppedPolicies.add(`${pick(m, 2, 3) || "public"}|${pick(m, 4, 5)}|${m[1]}`);
+  }
+  for (const m of s.matchAll(new RegExp(`create\\s+(?:or\\s+replace\\s+)?trigger\\s+([a-z0-9_]+)[^;]*?\\son\\s+${QUALIFIED}`, "gi"))) {
+    triggers.add(`${pick(m, 2, 3) || "public"}|${m[1].toLowerCase()}`);
+  }
+  for (const m of s.matchAll(new RegExp(`drop\\s+trigger\\s+(?:if\\s+exists\\s+)?([a-z0-9_]+)\\s+on\\s+${QUALIFIED}`, "gi"))) {
+    droppedTriggers.add(`${pick(m, 2, 3) || "public"}|${m[1].toLowerCase()}`);
+  }
+  for (const m of s.matchAll(/drop\s+index\s+(?:concurrently\s+)?(?:if\s+exists\s+)?(?:public\.)?([a-z0-9_]+)/gi)) {
+    droppedIndexes.add(m[1].toLowerCase());
   }
   for (const m of s.matchAll(new RegExp(`alter\\s+table\\s+(?:only\\s+)?(?:if\\s+exists\\s+)?(?:public\\.)?${IDENT}([\\s\\S]*?);`, "gi"))) {
     const table = pick(m, 1, 2);
@@ -132,7 +157,19 @@ export function parseMigration(sql) {
     for (const m of arrayBlock[1].matchAll(/'([a-z0-9_]+)'/gi)) realtime.add(m[1].toLowerCase());
   }
 
-  return { tables, columns, functions, droppedFunctions, indexes, policies, triggers, realtime };
+  return {
+    tables,
+    columns,
+    functions,
+    droppedFunctions,
+    indexes,
+    droppedIndexes,
+    policies,
+    droppedPolicies,
+    triggers,
+    droppedTriggers,
+    realtime,
+  };
 }
 
 function readManifest() {
@@ -204,14 +241,34 @@ function emitSql(manifest) {
   // `manifest` đã sắp theo tên file, tức là theo thứ tự chạy, nên cộng-rồi-trừ
   // theo từng file cho ra trạng thái cuối. Phép trừ bỏ qua tên nào được tạo lại
   // ngay trong cùng file đó (dạng xoá-rồi-tạo-lại để đổi chữ ký).
+  //
+  // GIỚI HẠN ĐÃ BIẾT: tên file chỉ có NGÀY, nên hai migration cùng ngày được sắp
+  // theo thứ tự chữ cái chứ không theo thứ tự thật. Có đúng một chỗ trong repo
+  // bị: 20260713_badges_and_social_privacy_hardening.sql xoá policy "Users can
+  // earn their own badges", còn 20260713_user_badges.sql tạo nó - "b" đứng
+  // trước "u" nên ở đây thành tạo-sau-cùng, trong khi file hardening rõ ràng
+  // phải chạy SAU (nó siết lại thứ file kia vừa dựng, và revoke luôn quyền
+  // insert). Database thật không có policy đó, và như vậy là ĐÚNG; dòng bộ kiểm
+  // báo thiếu nó là dòng sai. Đổi tên file đã apply thì hại hơn, nên ghi lại ở
+  // đây. Nếu sau này có thêm ca cùng ngày ngược thứ tự, hãy thêm số thứ tự vào
+  // tên file MỚI thay vì sửa tên file cũ.
   for (const m of manifest) {
     for (const v of m.functions) functions.add(v);
     for (const v of m.droppedFunctions ?? []) {
       if (!m.functions.has(v)) functions.delete(v);
     }
     for (const v of m.indexes) indexes.add(v);
+    for (const v of m.droppedIndexes ?? []) {
+      if (!m.indexes.has(v)) indexes.delete(v);
+    }
     for (const v of m.policies) policies.add(v);
+    for (const v of m.droppedPolicies ?? []) {
+      if (!m.policies.has(v)) policies.delete(v);
+    }
     for (const v of m.triggers) triggers.add(v);
+    for (const v of m.droppedTriggers ?? []) {
+      if (!m.triggers.has(v)) triggers.delete(v);
+    }
     for (const v of m.realtime ?? []) realtime.add(v);
   }
 
@@ -232,13 +289,16 @@ with expected_functions(name) as (values
 ${values([...functions].sort().map(quote))}
 ), expected_indexes(name) as (values
 ${values([...indexes].sort().map(quote))}
-), expected_policies(tablename, policyname) as (values
+), expected_policies(schemaname, tablename, policyname) as (values
 ${values([...policies].sort().map((p) => {
-  const i = p.indexOf("|");
-  return `${quote(p.slice(0, i))}, ${quote(p.slice(i + 1))}`;
+  const [schema, table, ...rest] = p.split("|");
+  return `${quote(schema)}, ${quote(table)}, ${quote(rest.join("|"))}`;
 }))}
-), expected_triggers(name) as (values
-${values([...triggers].sort().map(quote))}
+), expected_triggers(schemaname, name) as (values
+${values([...triggers].sort().map((t) => {
+  const i = t.indexOf("|");
+  return `${quote(t.slice(0, i))}, ${quote(t.slice(i + 1))}`;
+}))}
 ), expected_realtime(name) as (values
 ${values([...realtime].sort().map(quote))}
 )
@@ -257,23 +317,25 @@ select 'index', name, null
      select 1 from pg_indexes i
       where i.schemaname = 'public' and i.indexname = expected_indexes.name)
 union all
-select 'policy', policyname, tablename
+select 'policy', policyname, schemaname || '.' || tablename
   from expected_policies
  where policyname is not null
    and not exists (
      select 1 from pg_policies p
-      where p.schemaname = 'public'
+      where p.schemaname = expected_policies.schemaname
         and p.tablename = expected_policies.tablename
         and p.policyname = expected_policies.policyname)
 union all
-select 'trigger', name, null
+select 'trigger', name, schemaname
   from expected_triggers
  where name is not null
    and not exists (
      select 1 from pg_trigger t
        join pg_class c on c.oid = t.tgrelid
        join pg_namespace n on n.oid = c.relnamespace
-      where n.nspname = 'public' and not t.tgisinternal and t.tgname = expected_triggers.name)
+      where n.nspname = expected_triggers.schemaname
+        and not t.tgisinternal
+        and t.tgname = expected_triggers.name)
 union all
 -- Bảng có tồn tại nhưng KHÔNG nằm trong publication. Lọc theo pg_class trước
 -- để một bảng thuộc migration chưa chạy không bị báo hai lần - phần thiếu bảng
