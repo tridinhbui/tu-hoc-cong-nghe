@@ -2018,6 +2018,7 @@ export const vi = {
   groupChat: {
     you: "bạn",
     openAria: "Chat nhóm học",
+    resizeHandle: "Kéo để đổi bề rộng",
     inputPlaceholder: "Nhắn gì đó cho nhóm... hoặc /taitai",
     roomTitle: "Nhóm {topic}",
     dragTitle: "Nhóm {topic} (Kéo thả để di chuyển)",

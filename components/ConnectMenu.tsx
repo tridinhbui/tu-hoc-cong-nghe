@@ -11,7 +11,11 @@ import {
   hasPending,
   type ConnectCounts,
 } from "@/lib/connect-menu-badge";
-import { getPendingFriendRequestCount, subscribeToSocialGraph } from "@/lib/supabase-social";
+import {
+  getPendingFriendRequestCount,
+  getUnreadDirectMessageCount,
+  subscribeToSocialGraph,
+} from "@/lib/supabase-social";
 import { getUnreadAdminReplyCount, subscribeToChatMessages } from "@/lib/supabase-chat";
 import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
 
@@ -65,8 +69,13 @@ export default function ConnectMenu({
     () =>
       Promise.all([
         getPendingFriendRequestCount().catch(() => 0),
+        getUnreadDirectMessageCount(userId).catch(() => 0),
         getUnreadAdminReplyCount(userId).catch(() => 0),
-      ]).then(([friendRequests, feedbackReplies]) => ({ friendRequests, feedbackReplies })),
+      ]).then(([friendRequests, directMessages, feedbackReplies]) => ({
+        friendRequests,
+        directMessages,
+        feedbackReplies,
+      })),
     [userId]
   );
 
@@ -100,8 +109,11 @@ export default function ConnectMenu({
       label: t.connectMenu.friends,
       sub: t.connectMenu.friendsSub,
       href: "/ban-be",
-      dot: hasPending(allCounts, "friendRequests"),
-      count: allCounts.friendRequests,
+      // Dòng này gộp hai việc, đúng như phụ đề của nó nói: lời mời kết bạn và
+      // tin nhắn riêng chưa đọc. Cộng lại chứ không hiện hai chấm - bấm vào
+      // đều ra cùng một trang.
+      dot: hasPending(allCounts, "friendRequests") || hasPending(allCounts, "directMessages"),
+      count: allCounts.friendRequests + allCounts.directMessages,
     },
     {
       key: "group" as const,

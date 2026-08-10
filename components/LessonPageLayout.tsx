@@ -1386,7 +1386,23 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           </aside>
         </div>
       </div>
-      <FloatingContact />
+      {/* Chỉ cho KHÁCH. Nút này ngồi ở `bottom-6 right-6` cỡ 64px, z-50 -
+          đúng ô của nút ba gạch (ConnectMenu, 56px, cũng z-50), nên nút ba
+          gạch lọt hẳn vào trong nó và chỉ thừa ra một viền chừng 8px ở cạnh
+          trên và cạnh trái. Bấm trúng viền đó là mở nhầm form liên hệ, trên
+          mọi trang bài học.
+
+          Không xoá hẳn, vì đây KHÔNG phải bản sao của "Góp ý": form này ghi
+          vào bảng `contact_messages` và có hộp thư quản trị riêng
+          (lib/admin/messages.ts), còn "Góp ý" là hội thoại hai chiều có trả
+          lời (lib/admin/chat.ts). Và GlobalChatWrapper trả về null khi chưa
+          đăng nhập, nên với khách thì đây là kênh phản hồi DUY NHẤT trên
+          trang bài học - xoá đi là mất nó.
+
+          `authState === "guest"` chứ không phải `!userId`: lúc mới mount thì
+          vòng getUser() chưa trả lời, và `!userId` lúc đó đúng với cả người
+          đã đăng nhập, nên nút sẽ nháy lên rồi biến mất ở mỗi lần vào bài. */}
+      {authState === "guest" && <FloatingContact />}
       <LessonTour userId={userId} />
     </div>
   );

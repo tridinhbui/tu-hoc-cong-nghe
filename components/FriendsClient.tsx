@@ -10,6 +10,7 @@ import { createClient } from "@/lib/supabase";
 import ReferralCard from "@/components/ReferralCard";
 import {
   getDirectMessages,
+  markDirectMessagesRead,
   getMySocialGraph,
   respondToFriendRequest,
   searchAccounts,
@@ -222,16 +223,27 @@ export default function FriendsClient() {
     };
 
     void loadMessages();
+    // Mở cuộc trò chuyện ra là đã đọc. Cột `read_by_recipient` tồn tại từ
+    // migration đầu tiên của tính năng này mà chưa từng có ai ghi vào - nên
+    // huy hiệu đếm "chưa đọc" chỉ có nghĩa khi có chỗ TẮT nó, và đây là chỗ
+    // đó. Xem 20260910_direct_message_read_state.sql cho policy và trigger.
+    if (user?.id) void markDirectMessagesRead(currentFriendshipId, user.id);
 
     const unsubscribe = subscribeToDirectMessages(currentFriendshipId, (message) => {
       setMessages((prev) => (prev.some((existing) => existing.id === message.id) ? prev : [...prev, message]));
+      // Tin đến trong lúc khung chat đang mở cũng là đã đọc: nếu không, mở sẵn
+      // cuộc trò chuyện rồi nhận tin sẽ bật huy hiệu cho một tin đang hiện
+      // ngay trước mắt.
+      if (user?.id && message.sender_id !== user.id) {
+        void markDirectMessagesRead(currentFriendshipId, user.id);
+      }
     });
 
     return () => {
       cancelled = true;
       unsubscribe();
     };
-  }, [currentFriendshipId]);
+  }, [currentFriendshipId, user?.id, t]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

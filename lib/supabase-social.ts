@@ -90,6 +90,64 @@ export async function getPendingFriendRequestCount(): Promise<number> {
   return connections.filter((c) => c.status === "pending" && c.direction === "incoming").length;
 }
 
+/** Số tin nhắn riêng chưa đọc, gộp mọi cuộc trò chuyện.
+ *
+ *  Nuôi huy hiệu của nút Kết nối. Trước đây huy hiệu chỉ đếm lời mời kết bạn,
+ *  trong khi dòng menu ngay bên cạnh ghi phụ đề "lời mời và tin nhắn riêng" -
+ *  nên tin nhắn riêng im lặng đúng như lời mời từng im lặng.
+ *
+ *  Lọc theo tập tình bạn của mình chứ không dựa vào RLS làm bộ lọc: RLS đã
+ *  chặn đúng, nhưng một truy vấn `count` không có `in()` sẽ quét cả bảng rồi
+ *  mới lọc, và số đó lớn dần theo toàn hệ thống chứ không theo số bạn của một
+ *  người.
+ *
+ *  `sender_id != mình` là phần không thể bỏ: cờ `read_by_recipient` chỉ có
+ *  nghĩa với tin NGƯỜI KHÁC gửi, còn tin mình vừa gửi thì cờ vẫn false cho tới
+ *  khi bên kia đọc - thiếu điều kiện này thì gửi tin cho bạn là tự bật huy
+ *  hiệu của chính mình. */
+export async function getUnreadDirectMessageCount(userId: string): Promise<number> {
+  const connections = await getMySocialGraph();
+  const friendshipIds = connections.filter((c) => c.status === "accepted").map((c) => c.friendship_id);
+  if (friendshipIds.length === 0) return 0;
+
+  const supabase = createClient();
+  const { count, error } = await supabase
+    .from("direct_messages")
+    .select("id", { count: "exact", head: true })
+    .in("friendship_id", friendshipIds)
+    .eq("read_by_recipient", false)
+    .neq("sender_id", userId);
+
+  if (error) {
+    if (isMissingTableError(error)) return 0;
+    throw handleSupabaseError(error);
+  }
+  return count ?? 0;
+}
+
+/** Đánh dấu đã đọc mọi tin của ĐỐI PHƯƠNG trong một cuộc trò chuyện.
+ *
+ *  Gọi lúc mở cuộc trò chuyện ra. Chỉ lật cờ, và policy cùng trigger ở
+ *  20260910_direct_message_read_state.sql giữ cho nó không làm được gì khác -
+ *  Postgres không giới hạn UPDATE theo cột trong policy được, nên phần đó nằm
+ *  ở trigger.
+ *
+ *  Nuốt lỗi thay vì ném: đây là việc phụ chạy kèm lúc mở hộp thoại, và một
+ *  môi trường chưa chạy migration thì đáng để huy hiệu sai hơn là để cả khung
+ *  chat không mở được. */
+export async function markDirectMessagesRead(friendshipId: number, userId: string): Promise<void> {
+  const supabase = createClient();
+  const { error } = await supabase
+    .from("direct_messages")
+    .update({ read_by_recipient: true })
+    .eq("friendship_id", friendshipId)
+    .eq("read_by_recipient", false)
+    .neq("sender_id", userId);
+  if (error && !isMissingTableError(error)) {
+    console.warn("markDirectMessagesRead:", error.message);
+  }
+}
+
 export async function sendFriendRequest(currentUserId: string, targetUserId: string) {
   const supabase = createClient();
   const pair = canonicalizePair(currentUserId, targetUserId);
@@ -224,6 +282,28 @@ export function subscribeToSocialGraph(userId: string, onChange: () => void) {
         table: "user_friendships",
         filter: `user_b=eq.${userId}`,
       },
+      onChange
+    )
+    // Tin nhắn riêng, KHÔNG lọc theo friendship_id. Huy hiệu cần biết có tin
+    // mới ở BẤT KỲ cuộc trò chuyện nào, mà `postgres_changes` chỉ lọc được
+    // theo một cột bằng một giá trị - đăng ký một kênh cho mỗi người bạn thì
+    // số kênh lớn dần theo danh sách bạn bè.
+    //
+    // Realtime áp RLS cho từng người đăng ký, và direct_messages có policy
+    // SELECT giới hạn trong tình bạn của chính mình, nên không lọc ở đây
+    // không có nghĩa là nhận tin của người lạ.
+    //
+    // Cả INSERT lẫn UPDATE: INSERT làm huy hiệu sáng, còn UPDATE là lúc
+    // markDirectMessagesRead lật cờ - thiếu nó thì huy hiệu chỉ tắt sau khi
+    // tải lại trang.
+    .on(
+      "postgres_changes",
+      { event: "INSERT", schema: "public", table: "direct_messages" },
+      onChange
+    )
+    .on(
+      "postgres_changes",
+      { event: "UPDATE", schema: "public", table: "direct_messages" },
       onChange
     )
     .subscribe();

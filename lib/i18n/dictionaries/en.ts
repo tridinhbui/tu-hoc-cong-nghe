@@ -1889,6 +1889,7 @@ export const en: Dictionary = {
   groupChat: {
     you: "you",
     openAria: "Study group chat",
+    resizeHandle: "Drag to resize",
     inputPlaceholder: "Say something to the group... or /taitai",
     roomTitle: "{topic} group",
     dragTitle: "{topic} group (drag to move)",

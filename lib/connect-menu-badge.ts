@@ -11,8 +11,14 @@
  *  Ba nguồn, ba nơi khác nhau, nên phép cộng phải nằm ở một chỗ đọc được:
  *
  *  - lời mời kết bạn đang chờ (bảng user_friendships, chiều "incoming")
+ *  - tin nhắn riêng chưa đọc (bảng direct_messages, cột read_by_recipient)
  *  - tin nhắn góp ý chưa đọc (admin trả lời, cột `read` của chat_messages)
  *  - tin nhắn nhóm học chưa đọc (so với mốc đọc cuối trong localStorage)
+ *
+ *  Tin nhắn riêng vào sau ba nguồn kia, và vì đúng lý do đã dựng file này.
+ *  Dòng "Bạn bè & kết nối" ghi phụ đề "lời mời và tin nhắn riêng" ngay từ đầu,
+ *  nhưng huy hiệu chỉ đếm lời mời - nên tin nhắn riêng im lặng y hệt cách lời
+ *  mời từng im lặng, chỉ khác là lần này có một cái nhãn nói rằng nó không im.
  *
  *  Không gộp trong component: một phép cộng nằm giữa ba lời gọi mạng thì
  *  không có cách nào kiểm nó cộng đúng, mà cộng sai theo chiều thiếu thì
@@ -21,6 +27,8 @@
 export interface ConnectCounts {
   /** Lời mời kết bạn đang chờ mình trả lời. */
   friendRequests: number;
+  /** Tin nhắn riêng từ bạn bè mà mình chưa mở ra đọc. */
+  directMessages: number;
   /** Tin admin trả lời trong luồng góp ý mà mình chưa đọc. */
   feedbackReplies: number;
   /** Tin nhắn mới trong nhóm học kể từ lần mình mở gần nhất. */
@@ -29,6 +37,7 @@ export interface ConnectCounts {
 
 export const EMPTY_CONNECT_COUNTS: ConnectCounts = {
   friendRequests: 0,
+  directMessages: 0,
   feedbackReplies: 0,
   groupMessages: 0,
 };
@@ -36,7 +45,12 @@ export const EMPTY_CONNECT_COUNTS: ConnectCounts = {
 /** Tổng số việc đang chờ. Số âm hoặc không phải số đều bị coi là 0. */
 export function totalConnectCount(counts: ConnectCounts): number {
   const safe = (n: number) => (Number.isFinite(n) && n > 0 ? Math.floor(n) : 0);
-  return safe(counts.friendRequests) + safe(counts.feedbackReplies) + safe(counts.groupMessages);
+  return (
+    safe(counts.friendRequests) +
+    safe(counts.directMessages) +
+    safe(counts.feedbackReplies) +
+    safe(counts.groupMessages)
+  );
 }
 
 /** Chữ trên huy hiệu, hoặc null khi không có gì để báo.

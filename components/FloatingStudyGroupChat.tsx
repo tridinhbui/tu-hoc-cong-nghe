@@ -14,6 +14,7 @@ import { toDownloadUrl } from "@/lib/storage-download";
 import EmojiPicker from "@/components/EmojiPicker";
 import { motion } from "framer-motion";
 import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
+import { useResizablePanel } from "@/lib/use-resizable-panel";
 import { useI18n } from "@/lib/i18n/context";
 import { renderBotMessage } from "@/lib/study-room-bot-messages";
 import { format, type Dictionary } from "@/lib/i18n";
@@ -93,6 +94,15 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   const [isBubbleDragging, setIsBubbleDragging] = useState(false);
   const bubbleRef = useRef<HTMLButtonElement>(null);
   const bubbleDrag = useDraggablePosition("thtcdn_study_group_chat_bubble_pos", bubbleRef);
+  // Bề rộng kéo tay, cùng hook và cùng hành vi với panel Góp ý: nhớ lại giữa
+  // các lần mở, co theo khi cửa sổ nhỏ đi, chạy bằng Pointer Events nên cả
+  // chuột, bút lẫn cảm ứng đều kéo được. Khoá lưu riêng để hai panel không
+  // giành nhau một con số.
+  const {
+    width: panelWidth,
+    dragging: panelDragging,
+    handleProps: panelHandleProps,
+  } = useResizablePanel("thtcdn_group_chat_panel_width", 380);
   const open = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   
   const setOpen = useCallback((openState: boolean | ((prev: boolean) => boolean)) => {
@@ -471,14 +481,32 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
       )}
 
       <div
-        className={`fixed z-50 transition-all duration-300 ease-out
+        className={`fixed z-50 ease-out
           bottom-0 left-0 right-0
-          sm:bottom-24 sm:right-[5.5rem] sm:left-auto sm:w-[380px]
+          sm:bottom-24 sm:right-[5.5rem] sm:left-auto sm:w-[var(--group-chat-w,380px)]
+          ${panelDragging ? "" : "transition-all duration-300"}
           ${open ? "translate-y-0 opacity-100 pointer-events-auto" : "translate-y-4 opacity-0 pointer-events-none"}
         `}
+        // Bề rộng đọc từ biến CSS nên nó chỉ áp từ sm trở lên; dưới sm panel
+        // vẫn là tấm trượt chiếm trọn bề ngang như cũ. 380px dự phòng là đúng
+        // cỡ thiết kế cũ, dùng cho lần dựng đầu trước khi hook đọc xong
+        // localStorage.
+        style={panelWidth !== null ? ({ "--group-chat-w": `${panelWidth}px` } as React.CSSProperties) : undefined}
       >
-        <div className="bg-white dark:bg-stone-900 sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl h-[72dvh] sm:h-[480px]">
-          
+        <div className="relative bg-white dark:bg-stone-900 sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-stone-100 dark:border-stone-800/80 flex flex-col overflow-hidden rounded-t-2xl sm:rounded-2xl h-[72dvh] sm:h-[480px]">
+          {/* Cạnh kéo, cùng hook với panel Góp ý. Chỉ hiện từ sm trở lên: dưới
+              đó panel đã chiếm trọn bề ngang, và một cạnh 6px trên cảm ứng là
+              bẫy chứ không phải điều khiển. */}
+          <div
+            {...panelHandleProps}
+            role="separator"
+            aria-orientation="vertical"
+            aria-label={t.groupChat.resizeHandle}
+            className="absolute inset-y-0 left-0 z-10 hidden w-1.5 cursor-col-resize sm:block group/resize"
+          >
+            <span className="absolute inset-y-0 left-0 w-px bg-stone-200 transition-colors group-hover/resize:bg-emerald-400 dark:bg-stone-800 dark:group-hover/resize:bg-emerald-500" />
+          </div>
+
           {/* Header */}
           <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-700 px-4.5 py-4 flex items-center gap-3 shrink-0 shadow-sm">
             <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 shadow-inner">

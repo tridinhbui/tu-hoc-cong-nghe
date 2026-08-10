@@ -19,16 +19,24 @@ const counts = (over: Partial<ConnectCounts> = {}): ConnectCounts => ({
   ...over,
 });
 
-describe("cộng đủ ba nguồn", () => {
-  it("cộng cả ba", () => {
-    expect(totalConnectCount(counts({ friendRequests: 2, feedbackReplies: 1, groupMessages: 3 }))).toBe(6);
+const SOURCES = Object.keys(EMPTY_CONNECT_COUNTS) as (keyof ConnectCounts)[];
+
+describe("cộng đủ mọi nguồn", () => {
+  it("cộng tất cả", () => {
+    expect(
+      totalConnectCount(counts({ friendRequests: 2, directMessages: 4, feedbackReplies: 1, groupMessages: 3 }))
+    ).toBe(10);
   });
 
-  it("mỗi nguồn một mình đều được báo", () => {
-    // Bỏ sót một nguồn là đúng lỗi đang sửa, nên kiểm từng cái riêng.
-    expect(totalConnectCount(counts({ friendRequests: 1 }))).toBe(1);
-    expect(totalConnectCount(counts({ feedbackReplies: 1 }))).toBe(1);
-    expect(totalConnectCount(counts({ groupMessages: 1 }))).toBe(1);
+  // Duyệt theo EMPTY_CONNECT_COUNTS chứ không liệt kê tay, và đó là điểm của
+  // bộ kiểm này. Bản đầu liệt kê ba nguồn; khi `directMessages` được thêm vào
+  // kiểu, cả bốn ca vẫn xanh vì helper `counts()` trải EMPTY vào - tức là bộ
+  // kiểm dựng lên để bắt "bỏ sót một nguồn" lại không bắt được đúng lần một
+  // nguồn bị thêm mà quên cộng. Duyệt thì lần sau không quên được nữa.
+  it.each(SOURCES)("nguồn %s một mình vẫn được báo", (source) => {
+    expect(totalConnectCount(counts({ [source]: 1 }))).toBe(1);
+    expect(connectBadgeLabel(counts({ [source]: 1 }))).toBe("1");
+    expect(hasPending(counts({ [source]: 1 }), source)).toBe(true);
   });
 
   it("không có gì thì là 0", () => {
