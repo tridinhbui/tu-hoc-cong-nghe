@@ -72,17 +72,26 @@ const TOP_LEVEL_LINKS: NavLink[] = [
   // bấm là quá xa; hai dòng đầu navbar là chỗ duy nhất luôn thấy.
   { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
   /* i18n-ignore-end */
-  // Thống kê và Tài liệu lên phẳng, và hai nhóm chứa chúng biến mất theo.
-  //
-  // "Tiến độ" từng có hai dòng, "Tài nguyên" chỉ có MỘT. Một tiêu đề gập được
-  // đặt trên đúng một dòng thì luôn lỗ: nó tốn một dòng để giấu một dòng, và
-  // bắt người đọc bấm một lần để thấy thứ lẽ ra đã thấy sẵn. Đây chính là lý
-  // lẽ mà 9e182fa dùng để gỡ nhóm "Cộng đồng" - lần đó nó sai vì ba dòng kia
-  // đáng được gập lại khi đang tập trung học, còn ở đây thì đúng, vì không ai
-  // muốn gập một dòng.
-  //
-  // Bảng xếp hạng không lên cùng: trang /bxh đã bị xoá và nội dung của nó nằm
-  // trong /analytics. Xem chú thích ở app/(app)/analytics/page.tsx.
+  // Thống kê và Tài liệu KHÔNG còn ở đây - chúng xuống BOTTOM_LEVEL_LINKS,
+  // dưới các nhóm. Xem chú thích ở đó.
+];
+
+/** Hai dòng phẳng nằm DƯỚI các nhóm, sau cùng trong thanh điều hướng.
+ *
+ *  Cả hai vẫn phẳng chứ không gập, và lý lẽ cũ giữ nguyên: một tiêu đề gập
+ *  được đặt trên đúng một dòng thì luôn lỗ - tốn một dòng để giấu một dòng, và
+ *  bắt người đọc bấm một lần để thấy thứ lẽ ra đã thấy sẵn.
+ *
+ *  Cái đổi là VỊ TRÍ. Trước đây chúng đứng ngay dưới Dashboard và FinSocial,
+ *  tức chen vào giữa hai dòng hay dùng nhất và các nhóm việc chính. Cả hai đều
+ *  là chỗ người ta ghé lại chứ không phải chỗ bắt đầu một buổi học, nên chúng
+ *  thuộc về cuối danh sách.
+ *
+ *  Thứ tự trong đây có nghĩa: Thống kê trước, Tài liệu sau cùng.
+ *
+ *  Bảng xếp hạng không có dòng riêng: trang /bxh đã bị xoá và nội dung của nó
+ *  nằm trong /analytics. Xem chú thích ở app/(app)/analytics/page.tsx. */
+const BOTTOM_LEVEL_LINKS: NavLink[] = [
   { href: "/analytics", labelKey: "stats", icon: BarChart3 },
   { href: "/tai-lieu", labelKey: "docsLong", icon: FileText },
 ];
@@ -713,6 +722,7 @@ export default function AppNavbar() {
           <nav className="mt-3 flex min-h-0 flex-1 flex-col overflow-y-auto scrollbar-none">
             {TOP_LEVEL_LINKS.map((link) => renderNavItem(link))}
             {renderNavSections()}
+            {BOTTOM_LEVEL_LINKS.map((link) => renderNavItem(link))}
           </nav>
 
           <div className="pt-4 space-y-2.5 shrink-0" ref={desktopDropdownRef}>
@@ -993,6 +1003,7 @@ export default function AppNavbar() {
 
               {TOP_LEVEL_LINKS.map((link) => renderNavItem(link, () => setMobileMenuOpen(false)))}
               {renderNavSections(() => setMobileMenuOpen(false), "mobile-nav")}
+              {BOTTOM_LEVEL_LINKS.map((link) => renderNavItem(link, () => setMobileMenuOpen(false)))}
             </div>
           </>
         )}
