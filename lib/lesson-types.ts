@@ -215,9 +215,21 @@ export interface LessonTranslation {
  * block types no longer line up has gone stale, and the merge drops it rather
  * than rendering an English heading where a formula should be.
  *
- * A `conceptTable`'s `vi`/`en` term pair is deliberately not translatable: it
- * is already bilingual by design - the Vietnamese term is the thing being
- * taught, so it stays visible in the English lesson - which leaves only `def`.
+ * A `conceptTable`'s `vi` term is deliberately not translatable: the table is
+ * already bilingual by design - the Vietnamese term is the thing being taught,
+ * so it stays visible in the English lesson.
+ *
+ * `en` is a different case, and the first cut of this type got it wrong by
+ * grouping the two together. That reasoning only holds while `en` really is
+ * the English term. It is not, in 112 of the corpus's concepts: a good number
+ * of tables repurpose the column as a verdict or a category and fill it with
+ * Vietnamese - `en: "Vi phạm ngay lúc chép"` in
+ * `cfa-ethics-case-chuyen-viec-va-khach-hang`, `en: "An toàn thanh khoản"` in
+ * `nvidia-cash-securities`. LessonSections renders `en` as a chip beside the
+ * term, so an English reader saw a Vietnamese term captioned in Vietnamese,
+ * and no patch could reach it. Optional for the same reason the formula fields
+ * are: omit it and a real English term passes through untouched, supply it and
+ * a repurposed column gets translated.
  *
  * A `formula`'s `equation`, `numerator`, `denominator`, `multiplier` and its
  * example's `calculation`/`result` ARE translatable, and every one of them is
@@ -241,7 +253,12 @@ export type TranslatedSectionBlock =
       left?: { label?: string; text?: string };
       right?: { label?: string; text?: string };
     }
-  | { type: "conceptTable"; title?: string; subtitle?: string; concepts?: { def?: string }[] }
+  | {
+      type: "conceptTable";
+      title?: string;
+      subtitle?: string;
+      concepts?: { en?: string; def?: string }[];
+    }
   | {
       type: "formula";
       title?: string;
