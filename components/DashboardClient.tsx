@@ -64,6 +64,7 @@ import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";
 import DailyMotivationWidget from "@/components/DailyMotivationWidget";
 import LearningPathSummary from "@/components/LearningPathSummary";
+import NotesShortcutCard from "@/components/NotesShortcutCard";
 import CommunityStreakWidget from "@/components/CommunityStreakWidget";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
@@ -1328,11 +1329,24 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 dưới đây - totalDone là mọi bài đã học ở cả hai track, đặt cạnh
                 totalLessons (chỉ track hiện tại) sẽ ra tỷ lệ vượt 100% cho ai
                 đã học cả hai. */}
-            <LearningPathSummary
-              track={activeTrack}
-              done={sorted.filter((l) => completed.includes(l.id)).length}
-              total={sorted.length}
-            />
+            {/* Lộ trình và sổ tay chia đôi hàng. Ghi chú rời khỏi navbar về
+                đây: nó là việc làm TRONG lúc học, ngay sau khi hiểu ra một
+                điều, chứ không phải một đích đến chọn từ menu trước khi bắt
+                đầu - nên chỗ của nó là ngay cạnh thứ người ta nhìn lúc chuẩn
+                bị vào bài.
+
+                `items-stretch` để hai thẻ cao bằng nhau: thẻ lộ trình có bốn
+                dòng chữ, thẻ sổ tay có hai, và không có nó thì thẻ ngắn hơn
+                treo lửng giữa hàng. Xếp chồng dưới `sm` - hai thẻ cạnh nhau ở
+                375px thì mỗi bên còn chưa tới 170px. */}
+            <div className="grid items-stretch gap-4 sm:grid-cols-2">
+              <LearningPathSummary
+                track={activeTrack}
+                done={sorted.filter((l) => completed.includes(l.id)).length}
+                total={sorted.length}
+              />
+              <NotesShortcutCard />
+            </div>
 
             {/* The recall / mistake / remediation widgets used to sit here, at
                 the top of this column. Now that the column is a fixed-height

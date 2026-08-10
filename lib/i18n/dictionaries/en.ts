@@ -70,7 +70,7 @@ export const en: Dictionary = {
     sectionLearn: "Learn",
     sectionPractice: "Practice",
     sectionCommunity: "Community",
-    quiz: "Quiz",
+    quiz: "Test",
     notes: "Notes",
     learningPath: "Learning path",
     studyGroup: "Study groups",

@@ -91,10 +91,20 @@ export const learningPathVi = {
 
     // Khối tóm tắt trên /hoc-bai - bản rút gọn của trang này, đặt đúng chỗ thẻ
     // "Chào mừng quay lại" trước đây đứng.
+    notesEyebrow: "GHI CHÉP",
+    notesTitle: "Sổ tay của bạn",
+    notesHint: "Ghi lại điều vừa hiểu, trước khi quên.",
+    notesCta: "Mở sổ tay ›",
+
     summaryEyebrow: "LỘ TRÌNH CỦA BẠN",
     summaryFull: "Xem lộ trình đầy đủ ›",
     summaryPace: "{perDay} bài/ngày · {days} ngày/tuần",
     summaryDone: "Đã học {done}/{total} bài",
+
+    // Nhãn cho nút gấp/mở của hai thẻ trên. Chỉ đọc được bằng trình đọc màn
+    // hình và tooltip - bản thân nút chỉ là một mũi tên.
+    cardCollapse: "Thu gọn",
+    cardExpand: "Mở rộng",
   },
 };
 
@@ -173,9 +183,17 @@ export const learningPathEn: typeof learningPathVi = {
     adjustNoData: "Take a few lessons and come back - this will tell you where you're strong and weak.",
     adjustEmptyGaps: "No topic is tripping you up yet. Keep going.",
 
+    notesEyebrow: "NOTES",
+    notesTitle: "Your notebook",
+    notesHint: "Write down what just clicked, before it fades.",
+    notesCta: "Open the notebook ›",
+
     summaryEyebrow: "YOUR PATH",
     summaryFull: "See the full path ›",
     summaryPace: "{perDay} lessons/day · {days} days/week",
     summaryDone: "{done} of {total} lessons done",
+
+    cardCollapse: "Collapse",
+    cardExpand: "Expand",
   },
 };

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, User, Settings, Globe, LogOut, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, User, Settings, Globe, LogOut, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -130,11 +130,14 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/cfa", label: "CFA Level I", icon: Award },
       { href: "/frm", label: "FRM", icon: ShieldAlert },
       /* i18n-ignore-end */
-      // Kiểm tra thuộc nhóm Học tập chứ không phải Thực hành: các bài kiểm tra
-      // ở đây chấm đúng phần kiến thức của những lối học ngay phía trên, không
-      // phải một trò để luyện tay như Game hay Phỏng vấn.
-      { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
-      { href: "/ghi-chu", labelKey: "notes", icon: StickyNote },
+      // Kiểm tra đã xuống nhóm Thực hành, đứng đầu nhóm. Lý lẽ cũ ở đây nói
+      // nó thuộc Học tập vì nó chấm đúng phần kiến thức của những lối học phía
+      // trên; lý lẽ đó đúng về NỘI DUNG nhưng sai về VIỆC ĐANG LÀM. Cả ba mục
+      // trong nhóm Thực hành đều là "ngồi xuống và tự thử sức", và làm bài
+      // kiểm tra cũng vậy - khác Game và Phỏng vấn ở đề bài, không khác ở việc.
+      // Ghi chú rời khỏi navbar: nó nằm cạnh thẻ Lộ trình trên /hoc-bai, vì
+      // ghi chép là việc làm TRONG lúc học chứ không phải một đích đến chọn
+      // từ menu trước khi bắt đầu. Xem components/NotesShortcutCard.tsx.
       // Mục "Sự nghiệp" (/su-nghiep) từng đứng ở đây. Nội dung của nó giờ
       // nằm ngay dưới các ô chọn nghề trong /nghe-nghiep-hoc ở nhóm trên, nên
       // hai dòng menu cho hai nửa của cùng một câu hỏi rút còn một.
@@ -176,6 +179,10 @@ const NAV_SECTIONS: NavSection[] = [
   {
     titleKey: "sectionPractice",
     links: [
+      // Đứng ĐẦU nhóm: đây là mục duy nhất trong nhóm chấm điểm vào tiến độ
+      // thật (avg_quiz_score, cổng mở bài), nên nó là lý do người ta mở nhóm
+      // này ra chứ không phải Game.
+      { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
       /* i18n-ignore-start: proper noun / product name, identical in both languages (Game) */
       { href: "/game", label: "Game", icon: Gamepad2 },
       /* i18n-ignore-end */
