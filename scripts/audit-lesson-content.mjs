@@ -581,12 +581,35 @@ function jaccard(a, b) {
 // mà AGENTS.md nói là sẽ bị người ta học cách phớt lờ.
 const OPTION_LETTER_RE = /(phương án|đáp án|lựa chọn|option|câu trả lời)\s*["']?([A-D])(?![\p{L}\p{M}])/giu;
 
+// Một chữ cái do CHÍNH CÂU HỎI đặt ra thì không phải tham chiếu vị trí.
+//
+// `ca-nhan-doanh-nghiep-chinh-phu` q2 dựng ba kịch bản ngay trong đề - "Lựa
+// chọn A: Giảm thuế 20%... Lựa chọn B: Tăng chi tiêu công... Lựa chọn C: Ngân
+// hàng trung ương giảm lãi suất" - rồi phần giải thích nhắc lại A và C. Chữ cái
+// ở đây là nhãn của kịch bản, đi cùng đề, và sống sót qua balanceLessonQuizzes
+// nguyên vẹn vì balance chỉ xáo mảng `options`. Đó là hai trong hai phát hiện
+// còn lại của cổng này, tức là toàn bộ phần dư của nó là dương tính giả.
+//
+// AGENTS.md: dương tính giả thuộc về LUẬT, không thuộc về một khối bỏ qua. Nên
+// điều kiện là chữ cái ấy phải được đề định nghĩa - cùng những từ dẫn, cùng
+// biên từ - chứ không phải "đề có chứa chữ A ở đâu đó".
+function lettersDefinedInStem(question) {
+  const stem = String(question?.question ?? "");
+  const defined = new Set();
+  OPTION_LETTER_RE.lastIndex = 0;
+  let match;
+  while ((match = OPTION_LETTER_RE.exec(stem))) defined.add(match[2].toUpperCase());
+  return defined;
+}
+
 function findOptionLetterRefs(question) {
   const explanation = String(question?.explanation ?? "");
+  const fromStem = lettersDefinedInStem(question);
   const found = [];
   OPTION_LETTER_RE.lastIndex = 0;
   let match;
   while ((match = OPTION_LETTER_RE.exec(explanation))) {
+    if (fromStem.has(match[2].toUpperCase())) continue;
     const index = "ABCD".indexOf(match[2].toUpperCase());
     // Cửa sổ quanh chỗ nhắc tới, không phải cả đoạn: một giải thích dài thường
     // có chữ "sai" ở chỗ khác hoàn toàn, và lấy cả đoạn thì câu nào cũng dính.
