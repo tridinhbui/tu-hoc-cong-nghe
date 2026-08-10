@@ -15,6 +15,7 @@ import EmojiPicker from "@/components/EmojiPicker";
 import { motion } from "framer-motion";
 import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
 import { useResizablePanel } from "@/lib/use-resizable-panel";
+import { resolveOpenChange } from "@/lib/controlled-open";
 import { useI18n } from "@/lib/i18n/context";
 import { renderBotMessage } from "@/lib/study-room-bot-messages";
 import { format, type Dictionary } from "@/lib/i18n";
@@ -105,14 +106,36 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
   } = useResizablePanel("thtcdn_group_chat_panel_width", 380);
   const open = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   
+  // So với trạng thái CÓ HIỆU LỰC, không phải `internalOpen`.
+  //
+  // Panel này chạy hai chế độ. Không điều khiển: `internalOpen` là sự thật.
+  // Có điều khiển (GlobalChatWrapper truyền `isOpen`): sự thật nằm ở cha, và
+  // `internalOpen` đứng yên ở `false` mãi mãi, vì cha mở panel bằng cách đổi
+  // `activeChatWidget` chứ không đụng vào state trong này.
+  //
+  // Bản cũ so `prev !== next` với `internalOpen`. Ở chế độ có điều khiển, bấm
+  // X gọi `setOpen(false)`: `prev` là `false`, `next` là `false`, không đổi -
+  // nên `onOpenChange` KHÔNG bao giờ được gọi, cha không biết gì, panel không
+  // đóng. Đúng triệu chứng "bấm tắt không tắt được".
+  //
+  // Dùng ref chứ không đưa `open` vào deps: `setOpen` được gọi từ một effect
+  // deps rỗng (onOtherWidgetOpened) và một effect deps `[room]`. Đổi định danh
+  // của nó là để lại closure cũ trong hai chỗ đó.
+  //
+  // Vẫn giữ phép so sánh thay vì gọi vô điều kiện: chỗ nhận tin nhắn realtime
+  // dùng chính setter này để ĐỌC trạng thái (`setOpen(cur => cur)`), nên gọi
+  // vô điều kiện sẽ bắn `onOpenChange` mỗi tin nhắn tới và làm cả cây cha vẽ
+  // lại. ReferralPromptModal gọi vô điều kiện được vì nó không có chỗ đọc kiểu
+  // ấy.
+  const openRef = useRef(open);
+  openRef.current = open;
+
   const setOpen = useCallback((openState: boolean | ((prev: boolean) => boolean)) => {
-    setInternalOpen((prev) => {
-      const next = typeof openState === "function" ? openState(prev) : openState;
-      if (prev !== next) {
-        onOpenChange?.(next);
-      }
-      return next;
-    });
+    const { next, changed } = resolveOpenChange(openRef.current, openState);
+    setInternalOpen(next);
+    if (changed) {
+      onOpenChange?.(next);
+    }
   }, [onOpenChange]);
   const [messages, setMessages] = useState<StudyRoomMessage[]>([]);
   /** Resolves reply_to_id against the loaded window - see the quote block below. */

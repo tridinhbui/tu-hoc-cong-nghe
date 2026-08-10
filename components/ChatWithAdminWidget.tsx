@@ -27,6 +27,7 @@ import EmojiPicker from "@/components/EmojiPicker";
 import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
 import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
 import { getRandomCommunityShoutout, type CommunityShoutout } from "@/lib/supabase-user";
+import { resolveOpenChange } from "@/lib/controlled-open";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import {
@@ -88,15 +89,22 @@ export default function ChatWithAdminWidget({
   const bubbleRef = useRef<HTMLButtonElement>(null);
   const bubbleDrag = useDraggablePosition("thtcdn_admin_chat_bubble_pos", bubbleRef);
 
+  // So với trạng thái CÓ HIỆU LỰC, không phải `internalIsOpen` - cùng lỗi và
+  // cùng cách sửa như FloatingStudyGroupChat.tsx, xem chú thích dài ở đó.
+  //
+  // Tóm tắt: khi GlobalChatWrapper truyền `isOpen`, sự thật nằm ở cha còn
+  // `internalIsOpen` đứng yên ở `false`. Bấm X gọi `setIsOpen(false)`, bản cũ
+  // so `false !== false` ra sai, `onOpenChange` không chạy, panel không đóng.
+  const isOpenRef = useRef(isOpen);
+  isOpenRef.current = isOpen;
+
   const setIsOpen = useCallback(
     (open: boolean | ((prev: boolean) => boolean)) => {
-      setInternalIsOpen((prev) => {
-        const next = typeof open === "function" ? open(prev) : open;
-        if (prev !== next) {
-          onOpenChange?.(next);
-        }
-        return next;
-      });
+      const { next, changed } = resolveOpenChange(isOpenRef.current, open);
+      setInternalIsOpen(next);
+      if (changed) {
+        onOpenChange?.(next);
+      }
     },
     [onOpenChange]
   );
