@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, Trophy, User, Settings, Globe, LogOut, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, StickyNote, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, User, Settings, Globe, LogOut, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -72,6 +72,19 @@ const TOP_LEVEL_LINKS: NavLink[] = [
   // bấm là quá xa; hai dòng đầu navbar là chỗ duy nhất luôn thấy.
   { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
   /* i18n-ignore-end */
+  // Thống kê và Tài liệu lên phẳng, và hai nhóm chứa chúng biến mất theo.
+  //
+  // "Tiến độ" từng có hai dòng, "Tài nguyên" chỉ có MỘT. Một tiêu đề gập được
+  // đặt trên đúng một dòng thì luôn lỗ: nó tốn một dòng để giấu một dòng, và
+  // bắt người đọc bấm một lần để thấy thứ lẽ ra đã thấy sẵn. Đây chính là lý
+  // lẽ mà 9e182fa dùng để gỡ nhóm "Cộng đồng" - lần đó nó sai vì ba dòng kia
+  // đáng được gập lại khi đang tập trung học, còn ở đây thì đúng, vì không ai
+  // muốn gập một dòng.
+  //
+  // Bảng xếp hạng không lên cùng: trang /bxh đã bị xoá và nội dung của nó nằm
+  // trong /analytics. Xem chú thích ở app/(app)/analytics/page.tsx.
+  { href: "/analytics", labelKey: "stats", icon: BarChart3 },
+  { href: "/tai-lieu", labelKey: "docsLong", icon: FileText },
 ];
 
 /** The nav is grouped by what the reader is trying to *do*, not by feature
@@ -160,21 +173,15 @@ const NAV_SECTIONS: NavSection[] = [
       { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
     ],
   },
-  {
-    titleKey: "sectionProgress",
-    links: [
-      { href: "/analytics", labelKey: "stats", icon: BarChart3 },
-      // Bảng xếp hạng: trang này tồn tại với đủ năm hạng mục và thứ hạng của
-      // chính người dùng, nhưng trước đây không có một đường dẫn nào trong app
-      // trỏ tới nó. Nó chỉ "tồn tại" trong mảng prefetch của navbar, và mảng đó
-      // vừa bị gỡ vì lý do hoá đơn - lúc ấy cổng reachability mới lên tiếng.
-      { href: "/bxh", labelKey: "leaderboard", icon: Trophy },
-    ],
-  },
-  {
-    titleKey: "sectionResources",
-    links: [{ href: "/tai-lieu", labelKey: "docsLong", icon: FileText }],
-  },
+  // Hai nhóm cuối - "Tiến độ" và "Tài nguyên" - không còn. Thống kê và Tài
+  // liệu lên TOP_LEVEL_LINKS; /bxh bị xoá hẳn.
+  //
+  // Lịch sử của /bxh đáng ghi lại một dòng, vì nó là một vòng tròn khép kín.
+  // Trang ấy được thêm vào navbar chính vì cổng reachability kêu rằng không
+  // đường dẫn nào trong app trỏ tới nó. Cách sửa lúc đó là cho nó một dòng
+  // menu. Cách sửa đúng hơn là hỏi vì sao một trang sống được nhiều tháng mà
+  // không ai lần tới - và câu trả lời là nội dung của nó đã có sẵn ở
+  // /analytics, chỉ bị bóp lại bằng cờ `compact`.
 ];
 
 /** The closed-by-default state: every section key. Derived from NAV_SECTIONS

@@ -81,15 +81,6 @@ export const finalTwoVi = {
       backToDashboard: "← Quay lại Dashboard",
       statsAndLeaderboard: "Thống kê & BXH",
     },
-    bxhPage: {
-      loading: "Đang tải...",
-      // Trang này từng render FinSocial - xem chú thích trong
-      // app/(app)/bxh/page.tsx. Ba khoá FinSocial cũ đã bỏ; giữ lại sẽ là ba
-      // chuỗi không ai dùng mà `tsc` không phát hiện được.
-      title: "Bảng xếp hạng",
-      desc: "Ai đang đi xa nhất, theo từng cách đo khác nhau - không chỉ mỗi XP.",
-      communityBadge: "Cộng đồng trong hệ học",
-    },
     phongVanKyThuatDifficulty: {
       fullMixedDrill: "Full mixed drill",
       foundationScreen: "Foundation screen",
@@ -222,12 +213,6 @@ export const finalTwoEn: typeof finalTwoVi = {
       loading: "Loading...",
       backToDashboard: "← Back to Dashboard",
       statsAndLeaderboard: "Stats & Leaderboard",
-    },
-    bxhPage: {
-      loading: "Loading...",
-      title: "Leaderboard",
-      desc: "Who is furthest along, by each way of measuring it - not XP alone.",
-      communityBadge: "Community inside the learning system",
     },
     phongVanKyThuatDifficulty: {
       fullMixedDrill: "Full mixed drill",

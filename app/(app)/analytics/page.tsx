@@ -58,8 +58,22 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="h-dvh overflow-hidden flex flex-col bg-stone-50 dark:bg-stone-950">
-      <div className="shrink-0 max-w-6xl mx-auto w-full px-6 pt-3 pb-2 flex items-center justify-between gap-4">
+    // Trang này từng bị ghim vào đúng một màn hình (`h-dvh overflow-hidden`)
+    // với một vùng cuộn con bên trong. Khung đó chỉ đứng được khi bảng xếp hạng
+    // ở chế độ `compact` - mười người và hết. Bảng đầy đủ dài hơn thế nhiều, và
+    // ép nó vào một vùng cuộn lồng trong trang không cuộn là dựng lại đúng cái
+    // nó vừa thoát ra: nội dung dài nằm trong một cửa sổ hẹp.
+    //
+    // Thêm một lý do nữa để bỏ: `h-dvh` ở đây không trừ chiều cao thanh tiêu đề
+    // trên mobile. Đó chính là lỗi mà one-screen-pages.test.ts mô tả và gác cho
+    // ba trang khác - tài liệu cao 100dvh cộng thêm thanh header, nên nó cuộn
+    // đúng bằng phần thừa ra, thứ mà `overflow-hidden` được đặt vào để chặn.
+    // Trang này không nằm trong danh sách gác nên lỗi ấy chưa ai thấy.
+    //
+    // Cuộn tài liệu bình thường xử lý cả hai chuyện, và đó cũng đúng khuôn mà
+    // trang /bxh cũ dùng.
+    <div className="min-h-screen bg-stone-50 pb-12 dark:bg-stone-950">
+      <div className="max-w-6xl mx-auto w-full px-6 pt-3 pb-2 flex items-center justify-between gap-4">
         <Link
           href="/dashboard"
           className="text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 text-xs font-extrabold uppercase tracking-wider flex items-center gap-1"
@@ -71,7 +85,7 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto max-w-[1480px] mx-auto w-full px-5 pb-4 sm:px-6">
+      <div className="max-w-[1480px] mx-auto w-full px-5 pb-4 sm:px-6">
         <div className="grid gap-4 xl:grid-cols-12 xl:items-start">
           <div className="xl:col-span-5 min-w-0 space-y-4">
             <LearningAnalytics hideLeaderboardTab />
@@ -80,9 +94,15 @@ export default function AnalyticsPage() {
             {userId && <FocusTimePanel userId={userId} />}
           </div>
           <div className="xl:col-span-7 min-w-0">
-            <div className="xl:sticky xl:top-3">
-              <Leaderboard userId={userId} compact />
-            </div>
+            {/* Bảng đầy đủ, không còn `compact`. Hai thứ `compact` cắt đi chính
+                là hai thứ người ta mở bảng xếp hạng để xem: nó dừng ở mười
+                người (`entries.slice(5, 10)`) và bỏ hẳn khối "bạn đang đứng ở
+                đâu" (`myRank`). Trang /bxh riêng tồn tại chỉ để dựng đúng
+                component này mà không truyền `compact`.
+
+                `xl:sticky` cũng bỏ theo: ghim một khối cao hơn khung nhìn thì
+                phần dưới của nó không bao giờ tới được. */}
+            <Leaderboard userId={userId} />
           </div>
         </div>
       </div>

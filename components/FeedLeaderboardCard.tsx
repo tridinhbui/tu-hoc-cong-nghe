@@ -19,8 +19,13 @@ import { useI18n } from "@/lib/i18n/context";
  *  KHỐI TỰ ẨN khi bảng rỗng, giống CommunityLearningNow: một thẻ xếp hạng
  *  không có ai trong đó chỉ chiếm chỗ ở cột vốn đã dài.
  *
- *  Năm dòng, không cuộn. Đây là thẻ dẫn sang /bxh chứ không phải bản sao thu
- *  nhỏ của nó - ai muốn xem đủ thì bấm dòng cuối. */
+ *  Năm dòng, không cuộn. Đây là thẻ DẪN SANG bảng đầy đủ chứ không phải bản sao
+ *  thu nhỏ của nó - ai muốn xem đủ thì bấm dòng cuối.
+ *
+ *  Bảng đầy đủ nằm ở /analytics. Chú thích này từng ghi /bxh, và cái tên đó đã
+ *  sai ngay trong chính commit thêm thẻ: phần `href` bên dưới trỏ /analytics
+ *  kèm lý do, còn dòng này thì không được sửa theo. Hai chỗ nói hai đường dẫn
+ *  khác nhau trong cùng một tệp, và chỉ một trong hai là thứ trình duyệt đi. */
 export default function FeedLeaderboardCard() {
   const { t } = useI18n();
   const [rows, setRows] = useState<LeaderboardRow[] | null>(null);

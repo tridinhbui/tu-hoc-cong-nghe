@@ -212,7 +212,12 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "frmFormulas.title",
   // Product names, an already-English word, and dev-tool debug labels.
   "finalTwo.logo.productName",
-  "finalTwo.bxhPage.finSocialTitle",
+  // `finalTwo.bxhPage.finSocialTitle` đứng ở đây và đã trỏ vào hư không từ
+  // trước: nhánh bxhPage bỏ ba khoá FinSocial cũ mà không dọn dòng miễn trừ
+  // này. Giờ cả nhánh bxhPage đã đi cùng trang /bxh, nên nó chết hai lần.
+  //
+  // Danh sách miễn trừ không tự kêu khi một mục trong nó hết đối tượng - nó chỉ
+  // im lặng không miễn trừ gì cả. Đọc nó với giả định đó.
   "finalTwo.roadmap.title",
   "finalTwo.cfaContentRenderer.youtubeTitle",
   "finalTwo.financeCharacterAvatar.levelPrefix",
