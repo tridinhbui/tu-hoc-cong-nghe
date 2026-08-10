@@ -26,6 +26,7 @@ import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
 import DashboardRecommendations from "@/components/DashboardRecommendations";
 import CommunityLearningNow from "@/components/CommunityLearningNow";
+import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import DashboardArenaCard from "@/components/DashboardArenaCard";
 import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import LessonRecallWidget from "@/components/LessonRecallWidget";
@@ -2253,6 +2254,25 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     học: thứ tự đó nói rằng đây là bằng chứng cho những gợi ý
                     trên, không phải một mục để lướt qua trước khi học. */}
                 <CommunityLearningNow lessonsMeta={lessonsMeta} />
+                {/* Câu hỏi hôm nay, làm ngay tại chỗ, ngay dưới danh sách
+                    chuỗi ngày. Đặt ở đây là cố ý: khối trên vừa cho thấy người
+                    khác đang học, và thứ hợp lý tiếp theo là một việc làm được
+                    ngay trong ba mươi giây mà không phải rời trang.
+
+                    KHÔNG dựng thẻ mới. Widget này đã tồn tại và đang chạy ở
+                    /kiem-tra; chú thích trong chính nó còn nói nó được thiết
+                    kế cho thanh bên dashboard ("On the dashboard sidebar this
+                    is now treated as a 'today in finance' block"), tức là nó
+                    từng ở đây và bị gỡ ra. Viết một thẻ quiz thứ hai sẽ tách
+                    đôi cả kho câu hỏi lẫn đường ghi phần thưởng.
+
+                    Hiện ở cả hai nơi KHÔNG cộng XP hai lần: `claimQuestReward`
+                    chặn theo ngày ở phía máy chủ và trả về `claimed: false`
+                    cho lần thứ hai - xem chú thích "false only means already
+                    claimed today" trong lib/supabase-quests.ts. Sau khi hết
+                    lượt nhận thưởng, widget vẫn còn chế độ luyện không giới
+                    hạn, nên thẻ không biến thành một ô chết trong ngày. */}
+                {user?.id && <DailyNewsQuizWidget userId={user.id} compact />}
                 {/* Ba lối vào "thử sức", DƯỚI băng chuyền người đang học.
                     Hai trong ba đã chết trong mã: BossBattleModal và
                     PvpDuelModal vẫn được dựng ở cuối tệp này, nhưng
