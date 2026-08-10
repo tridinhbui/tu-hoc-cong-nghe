@@ -61,6 +61,7 @@ import { animateCountTo } from "@/lib/animate-count";
 import { timeAgo } from "@/lib/time-ago";
 import FollowButton from "@/components/FollowButton";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
+import FeedLeaderboardCard from "@/components/FeedLeaderboardCard";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale, type Dictionary } from "@/lib/i18n";
 import { isSystemPost, visibleFeedPosts } from "@/lib/community-feed-visibility";
@@ -937,14 +938,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const hotPosts = [...humanPosts]
     .sort((a, b) => b.reaction_count + b.comment_count * 2 - (a.reaction_count + a.comment_count * 2))
     .slice(0, 3);
-  // Thẻ "Nổi bật" trước đây chỉ tới bài hỏi đáp và bài phân tích, tức nó phụ
-  // thuộc vào phân loại. Không còn chủ đề nào để chọn theo, nên nó chọn theo
-  // thứ duy nhất còn đo được và cũng đúng nghĩa "nổi bật" hơn: bài người thật
-  // viết được phản hồi nhiều nhất.
-  const spotlightItems = hotPosts
-    .filter((post) => post.reaction_count + post.comment_count > 0)
-    .slice(0, 2)
-    .map((post) => ({ label: t.feed.spotlightDiscussed, post, icon: MessageCircle }));
   const shellClass = embedded ? "" : "min-h-screen bg-stone-50 dark:bg-stone-950";
 
   return (
@@ -1046,48 +1039,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             />
           )}
 
-          {!embedded && spotlightItems.length > 0 && (
-          <div className="mb-5 rounded-[24px] bg-white/90 p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.2)] ring-1 ring-stone-100/60 dark:bg-stone-900/75 dark:ring-stone-800/60">
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <span className="flex h-10 w-10 items-center justify-center rounded-[18px] bg-stone-100 text-stone-700 shadow-[0_8px_18px_-18px_rgba(15,23,42,0.2)] ring-1 ring-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:ring-stone-700">
-                  <Sparkles className="h-4.5 w-4.5" />
-                </span>
-                <div>
-                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-950 dark:text-stone-50">{t.feed.highlightsTitle}</h2>
-                  <p className="text-xs font-medium text-stone-500 dark:text-stone-400">{t.feed.highlightsSub}</p>
-                </div>
-              </div>
-            </div>
-            <div className="grid gap-2 sm:grid-cols-3">
-              {spotlightItems.map(({ label, post, icon: Icon }) => (
-                (() => {
-                  const spotlightTone = getToneStyles(getPostAccentTone());
-                  return (
-                    <motion.button
-                      key={`${label}-${post.id}`}
-                      type="button"
-                      onClick={() => void toggleComments(post.id)}
-                      className={`group rounded-[20px] p-3 text-left shadow-[0_8px_18px_-18px_rgba(15,23,42,0.18)] transition duration-200 ease-out hover:-translate-y-1 hover:bg-white dark:hover:bg-stone-900 ${spotlightTone.softSurface} ${spotlightTone.border}`}
-                      whileHover={{ y: -4 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{ type: "spring", stiffness: 360, damping: 26 }}
-                    >
-                      <div className="flex items-center gap-2">
-                        <Icon className={`h-4 w-4 ${spotlightTone.icon}`} />
-                        <span className={`text-[10px] font-black uppercase tracking-wide ${spotlightTone.icon}`}>{label}</span>
-                      </div>
-                      <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-stone-700 dark:text-stone-300">
-                        {post.content || t.feed.postWithImage}
-                      </p>
-                      <p className="mt-2 text-[10px] font-medium text-stone-400">{format(t.feed.authorReactions, { name: post.user_name, count: post.reaction_count })}</p>
-                    </motion.button>
-                  );
-                })()
-              ))}
-            </div>
-          </div>
-        )}
 
         {!embedded && (
           <div className="mb-4 rounded-[24px] bg-white p-3.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.22)] ring-1 ring-stone-100/70 dark:bg-stone-900/85 dark:ring-stone-800/60">
@@ -1805,6 +1756,10 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
         {!embedded && (
           <aside className="space-y-4 lg:sticky lg:top-24 self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
+            {/* Bảng xếp hạng đứng đầu cột: nó là thứ duy nhất ở đây đổi theo
+                ngày và có người khác trong đó, nên nó là lý do người ta liếc
+                sang cột này. Luật feed và gợi ý đăng bài đứng yên hàng tuần. */}
+            <FeedLeaderboardCard />
             <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <button
                 type="button"

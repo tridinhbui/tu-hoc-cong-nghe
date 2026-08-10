@@ -11,9 +11,14 @@ import type { SupabaseClient } from "@supabase/supabase-js";
  *  Đo trên Supabase Observability: 20.439 request API Gateway mỗi giờ, và mỗi
  *  lượt tải trang đóng góp ba trong số đó chỉ riêng cho thanh điều hướng.
  *
- *  CÙNG KHUÔN với lib/supabase-dashboard-optimized.ts: RPC không nhận tham số
- *  và tự lấy `auth.uid()` bên trong. Nhận `p_user_id` sẽ cho bất kỳ ai đọc hồ
- *  sơ của bất kỳ ai, vì `security definer` đã bỏ qua RLS.
+ *  DANH TÍNH lấy từ `auth.uid()` bên trong RPC, không nhận từ ngoài - cùng
+ *  khuôn với lib/supabase-dashboard-optimized.ts. Một `p_user_id` sẽ cho bất kỳ
+ *  ai đọc hồ sơ của bất kỳ ai, vì `security definer` đã bỏ qua RLS.
+ *
+ *  `p_day_start` thì khác và được nhận từ ngoài: nó không chọn NGƯỜI, nó chỉ
+ *  hẹp một cửa sổ thời gian trên dữ liệu của chính người gọi. Nó phải ở ngoài
+ *  vì mốc ngày là nửa đêm ĐỊA PHƯƠNG - cắt trong SQL sẽ ra nửa đêm UTC, tức
+ *  07:00 giờ Việt Nam.
  *
  *  HẠ CÁNH MỀM KHI CHƯA CHẠY MIGRATION. Migration trong repo này chạy TAY qua
  *  SQL Editor (xem scripts/check-migrations.mjs), nên khoảng giữa lúc deploy mã
@@ -38,6 +43,14 @@ export type NavState = {
   dailyChestClaimed: boolean;
 };
 
+/** Nửa đêm THEO GIỜ MÁY người dùng, dạng ISO. Cùng phép tính mà lib/chests.ts
+ *  vẫn dùng trước khi phần kiểm rương chuyển vào `get_nav_state`. */
+function startOfLocalDay(): string {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d.toISOString();
+}
+
 function isMissingFunction(error: { code?: string } | null): boolean {
   return error?.code === "PGRST202" || error?.code === "42883" || error?.code === "PGRST205";
 }
@@ -49,10 +62,11 @@ type RpcShape = {
 };
 
 /** Đường cũ: ba truy vấn, giữ nguyên hình dạng cũ. Chỉ chạy khi chưa có RPC. */
-async function readSeparately(supabase: SupabaseClient, userId: string): Promise<NavState> {
-  const dayStart = new Date();
-  dayStart.setHours(0, 0, 0, 0);
-
+async function readSeparately(
+  supabase: SupabaseClient,
+  userId: string,
+  dayStart: string
+): Promise<NavState> {
   const [profile, mistakes, chest] = await Promise.all([
     supabase
       .from("user_profiles")
@@ -69,7 +83,7 @@ async function readSeparately(supabase: SupabaseClient, userId: string): Promise
       .select("id")
       .eq("user_id", userId)
       .eq("source", "daily_login")
-      .gte("earned_at", dayStart.toISOString())
+      .gte("earned_at", dayStart)
       .limit(1)
       .maybeSingle(),
   ]);
@@ -83,10 +97,18 @@ async function readSeparately(supabase: SupabaseClient, userId: string): Promise
 
 export async function getNavState(userId: string): Promise<NavState> {
   const supabase = createClient();
-  const { data, error } = await supabase.rpc("get_nav_state");
+  // Mốc ngày tính ở ĐÂY, không trong SQL. `date_trunc('day', now())` phía máy
+  // chủ là nửa đêm UTC, tức 07:00 giờ Việt Nam - ai học từ 00:00 tới 07:00 sẽ
+  // bị cửa sổ nới rộng về hôm qua và mất rương của ngày mới. Xem
+  // supabase/migrations/20260910_nav_state_rpc_day_start.sql.
+  //
+  // Mọi phép cắt ngày khác trong repo cũng tính ở trình duyệt, nên đây là chỗ
+  // nhất quán chứ không phải chỗ tiện.
+  const dayStart = startOfLocalDay();
+  const { data, error } = await supabase.rpc("get_nav_state", { p_day_start: dayStart });
 
   if (error) {
-    if (isMissingFunction(error)) return readSeparately(supabase, userId);
+    if (isMissingFunction(error)) return readSeparately(supabase, userId, dayStart);
     // Không ném: thanh điều hướng hỏng không đáng làm hỏng cả trang. Phía gọi
     // đã có hồ sơ dự phòng dựng từ `user_metadata` của phiên.
     console.error("get_nav_state:", error.message);
