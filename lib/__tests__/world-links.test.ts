@@ -96,11 +96,23 @@ describe("đường dẫn trong thế giới 3D", () => {
 
 describe("RPC được gọi", () => {
   it("mọi RPC trong ứng dụng đều có định nghĩa trong migrations", () => {
-    // Hai ngoại lệ đã kiểm tay trên database production và xác nhận CÓ tồn
-    // tại; chúng được tạo ngoài thư mục migrations. Danh sách này chỉ được
-    // ngắn đi: thêm tên vào đây nghĩa là chấp nhận một hàm không ai đọc được
-    // định nghĩa trong repo.
-    const CREATED_OUTSIDE_MIGRATIONS = new Set(["get_dashboard_summary", "get_lesson_state"]);
+    // Danh sách này giờ RỖNG, và nó rỗng vì phép đo bên dưới sai chứ không
+    // phải vì có ai đi dọn.
+    //
+    // Nó từng chứa `get_dashboard_summary` và `get_lesson_state` kèm chú thích
+    // rằng hai hàm ấy "được tạo ngoài thư mục migrations". Không đúng: cả hai
+    // nằm trong supabase/migrations/20260804_dashboard_optimized_rpcs.sql, ngay
+    // trong repo. Thứ bỏ sót chúng là biểu thức dưới đây - nó đòi tên phải có
+    // tiền tố `public.`, mà không tệp migration nào trong repo viết như vậy.
+    // Nên hai cái tên bị xếp vào ngoại lệ để bộ kiểm xanh trở lại, và cổng này
+    // từ đó không còn gác được gì: mọi RPC mới đều sẽ trượt hệt như thế.
+    //
+    // Phát hiện ra vì `get_nav_state` mới thêm cũng trượt, và lần này thì lý do
+    // "tạo ngoài migrations" hiển nhiên là sai - tệp migration vừa được viết ra.
+    //
+    // Danh sách chỉ được ngắn đi: thêm tên vào đây nghĩa là chấp nhận một hàm
+    // không ai đọc được định nghĩa trong repo.
+    const CREATED_OUTSIDE_MIGRATIONS = new Set<string>([]);
 
     const sources = [...walk("lib"), ...walk("components"), ...walk("app")]
       .map((f) => readFileSync(f, "utf8"))
@@ -113,9 +125,12 @@ describe("RPC được gọi", () => {
       .filter((f) => f.endsWith(".sql"))
       .map((f) => readFileSync(join("supabase/migrations", f), "utf8"))
       .join("\n");
+    // `public.` là TUỲ CHỌN. Không tệp migration nào trong repo viết tiền tố
+    // đó - chúng dựa vào `search_path` mặc định - nên đòi nó là đòi một quy
+    // ước không tồn tại, và kết quả là bộ kiểm không thấy hàm nào cả.
     const defined = new Set(
-      [...migrations.matchAll(/create\s+(?:or\s+replace\s+)?function\s+public\.([a-z_]+)/gi)].map((m) =>
-        m[1].toLowerCase()
+      [...migrations.matchAll(/create\s+(?:or\s+replace\s+)?function\s+(?:public\.)?([a-z_]+)/gi)].map(
+        (m) => m[1].toLowerCase()
       )
     );
 

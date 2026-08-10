@@ -67,10 +67,12 @@ export async function getUnopenedChestCount(userId: string): Promise<number> {
  *  passing a stage milestone exam. Best-effort by design (a failed insert
  *  here shouldn't block the toast/XP the triggering action already granted).
  *  Returns whether the insert actually succeeded - callers that gate a
- *  "don't show this again today" check on the row existing (like
- *  claimDailyLoginChest below) need to know, otherwise a silently failed
- *  insert (e.g. a source value the DB check constraint doesn't allow yet)
- *  looks identical to success and the caller re-fires every time. */
+ *  "don't show this again today" check on the row existing need to know,
+ *  otherwise a silently failed insert (e.g. a source value the DB check
+ *  constraint doesn't allow yet) looks identical to success and the caller
+ *  re-fires every time. AppNavbar trao rương đăng nhập hằng ngày qua đây, và
+ *  nó đọc "hôm nay đã có chưa" từ `get_nav_state` chứ không mở thêm một truy
+ *  vấn riêng - xem lib/supabase-nav-state.ts. */
 export async function earnChest(userId: string, source: ChestSource, count = 1): Promise<boolean> {
   const supabase = createClient();
   const rows = Array.from({ length: count }, () => ({ user_id: userId, source }));
@@ -82,38 +84,6 @@ export async function earnChest(userId: string, source: ChestSource, count = 1):
   return true;
 }
 
-/**
- * Grants one chest for today's first login, if one hasn't already been
- * granted today - checked against user_chests directly (source +
- * earned_at date) rather than a separate tracking column, so there's one
- * source of truth for "did they already get today's chest". Called once
- * per session from AppNavbar (mounts once, persists across client-side
- * navigation), not tied to lesson completion like the streak - opening the
- * app is the whole signal here.
- */
-export async function claimDailyLoginChest(userId: string): Promise<boolean> {
-  const supabase = createClient();
-  const todayStart = new Date();
-  todayStart.setHours(0, 0, 0, 0);
-
-  const { data: existing, error: checkError } = await supabase
-    .from("user_chests")
-    .select("id")
-    .eq("user_id", userId)
-    .eq("source", "daily_login")
-    .gte("earned_at", todayStart.toISOString())
-    .limit(1)
-    .maybeSingle();
-
-  if (checkError) {
-    if (isMissingTableError(checkError)) return false;
-    console.error("Error checking daily login chest:", checkError);
-    return false;
-  }
-  if (existing) return false; // already claimed today
-
-  return earnChest(userId, "daily_login", 1);
-}
 
 export interface OpenChestResult {
   ok: boolean;
