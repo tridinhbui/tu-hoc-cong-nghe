@@ -63,11 +63,7 @@ import FollowButton from "@/components/FollowButton";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale, type Dictionary } from "@/lib/i18n";
-import {
-  getPostCategory,
-  visibleFeedPosts,
-  type FeedTopicId,
-} from "@/lib/community-feed-visibility";
+import { isSystemPost, visibleFeedPosts } from "@/lib/community-feed-visibility";
 
 /** Kênh báo khi một lá phiếu vừa được lưu, trong cùng tab. */
 const VOTE_CHANGED_EVENT = "thtcdn:community-vote";
@@ -158,31 +154,13 @@ const REACTION_OPTIONS = ["💡 Hay", "🧠 Cần phản biện", "❓ Cùng th�
 // nhận diện chủ đề nằm ở lib/community-feed-visibility.ts cùng với hàm đọc
 // chúng - chúng từng được chép lại ở đây trong một trường `tag` mà không dòng
 // nào đọc tới, bên cạnh một hàm phân loại viết thẳng đúng những chuỗi đó.
-const TOPICS = [
-  { id: "all", icon: Newspaper, tone: "stone" },
-  { id: "meo-tai-chinh", icon: Sparkles, tone: "emerald" },
-  { id: "phan-tich", icon: BarChart3, tone: "sky" },
-  { id: "hoi-dap", icon: HelpCircle, tone: "orange" },
-  { id: "tin-nong", icon: Flame, tone: "red" },
-  { id: "ai-finance", icon: Zap, tone: "violet" },
-] as const;
-
-type TopicId = FeedTopicId;
-
-/** Chủ đề người viết được chọn trong ô soạn bài: mọi chủ đề thật.
- *
- *  Chỉ "all" bị loại, và nó không phải chủ đề - nó là bộ lọc "xem mọi bài", nên
- *  đứng trong ô soạn bài thì đọc thành một mục có tên "Tất cả". Chỗ "không chọn
- *  loại nào" là một mục riêng, dùng `t.feed.topicNone`.
- *
- *  Hằng số này từng phải loại thêm chủ đề Thành tựu; chủ đề ấy không còn tồn
- *  tại nên không có gì để loại. Giữ hằng số thay vì lọc ngay tại chỗ hiển thị,
- *  để danh sách chọn được có đúng một chỗ để đọc. */
-const COMPOSER_TOPICS = TOPICS.filter((topic) => topic.id !== "all");
-
-function getTopicMeta(topicId: TopicId) {
-  return TOPICS.find((topic) => topic.id === topicId) ?? TOPICS[0];
-}
+// KHÔNG CÒN BẢNG CHỦ ĐỀ. Sáu chip lọc ở đầu trang (Tất cả / Mẹo tài chính /
+// Phân tích / Hỏi đáp / Tin nóng / AI tài chính) và hộp chọn chủ đề trong ô
+// soạn bài đã bị gỡ theo yêu cầu của chủ dự án: ở quy mô cộng đồng này, bắt
+// người viết chọn ngăn trước khi được nói là rào cản, không phải tổ chức.
+//
+// Hashtag cũ vẫn nằm trong nội dung bài đã lưu và không bị đụng tới - chúng
+// chỉ trở lại thành chữ thường. Xem lib/community-feed-visibility.ts.
 
 const TONE_STYLES = {
   emerald: {
@@ -258,9 +236,10 @@ function getUserBadge(post: CommunityFeedPost, t: Dictionary) {
   return { label: t.feed.memberRole, icon: ShieldCheck, tone: "emerald" as ToneKey };
 }
 
-function getPostAccentTone(post: CommunityFeedPost): ToneKey {
-  const category = getPostCategory(post);
-  return getTopicMeta(category).tone as ToneKey;
+// Mọi bài dùng chung một tông kể từ khi bỏ phân loại: tông từng đến từ chủ đề
+// của bài, và không còn chủ đề nào để lấy.
+function getPostAccentTone(): ToneKey {
+  return "stone";
 }
 
 interface PollOption {
@@ -496,11 +475,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [content, setContent] = useState("");
   const [pendingImage, setPendingImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  // Mặc định là KHÔNG loại nào. Trước đây mặc định là "meo-tai-chinh", nên bài
-  // của người chưa từng mở hộp chọn vẫn ra đời với nhãn "Mẹo tài chính" - một
-  // câu hỏi hay một dòng tâm sự đứng dưới nhãn "Mẹo", do phần mềm đoán hộ.
-  const [selectedTopic, setSelectedTopic] = useState<TopicId>("all");
-  const [feedFilter, setFeedFilter] = useState<TopicId>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [posting, setPosting] = useState(false);
   const [openComments, setOpenComments] = useState<Record<number, boolean>>({});
@@ -518,7 +492,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [postingComment, setPostingComment] = useState<Record<number, boolean>>({});
   const [reactionPickerFor, setReactionPickerFor] = useState<number | null>(null);
   const [reactionBurstFor, setReactionBurstFor] = useState<number | null>(null);
-  const [topicMenuOpen, setTopicMenuOpen] = useState(false);
   const [rulesOpen, setRulesOpen] = useState(false);
   const [isComposeModalOpen, setIsComposeModalOpen] = useState(false);
   const [isPollMode, setIsPollMode] = useState(false);
@@ -546,10 +519,36 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
+  // Số bài NGƯỜI VIẾT muốn có trên trang đầu, và số trang tối đa được lấy để
+  // đạt được nó. Hai con số này tồn tại vì bài chuỗi ngày do hệ thống tự đăng
+  // chiếm gần hết phần đầu bảng: lấy đúng một trang 20 bài rồi lọc chúng ra thì
+  // dòng chính gần như rỗng, dù bên dưới vẫn còn đầy bài người viết. Đây chính
+  // là lý do luật lọc bị gỡ lần trước - lỗi nằm ở chỗ lấy dữ liệu, không nằm ở
+  // luật lọc.
+  //
+  // Giới hạn 5 trang để một cộng đồng chỉ toàn bài hệ thống không kéo theo một
+  // vòng lặp không đáy; khi đó nút "xem thêm" vẫn còn và người dùng tự quyết.
+  const MIN_HUMAN_POSTS = 8;
+  const MAX_FILL_PAGES = 5;
+
   const refreshFeed = useCallback(async () => {
-    const feed = await getCommunityFeed();
+    let feed = await getCommunityFeed();
+    let more = feed.length === 20;
+
+    for (let page = 1; page < MAX_FILL_PAGES; page++) {
+      if (!more) break;
+      if (feed.filter((post) => !isSystemPost(post)).length >= MIN_HUMAN_POSTS) break;
+      const next = await getCommunityFeed(feed[feed.length - 1].id);
+      if (next.length === 0) {
+        more = false;
+        break;
+      }
+      feed = [...feed, ...next];
+      more = next.length === 20;
+    }
+
     setPosts(feed);
-    setHasMore(feed.length === 20);
+    setHasMore(more);
   }, []);
 
   useEffect(() => {
@@ -638,10 +637,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         : null;
 
       await createManualPost(user.id, content, imageUrl, {
-        // Không chọn loại thì KHÔNG ghi khoá `category` vào metadata, thay vì
-        // ghi "all". "all" là bộ lọc, không phải chủ đề; lưu nó lại là để dành
-        // sẵn một chủ đề tên "Tất cả" cho lần sau ai đó đọc cột này.
-        ...(selectedTopic === "all" ? {} : { category: selectedTopic }),
         ...(pollData ? pollData : {}),
       });
 
@@ -871,7 +866,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     handledDeepLinkRef.current = postId;
 
     // Clear anything that might be hiding the target post from the list.
-    setFeedFilter("all");
+    // Bộ lọc chủ đề đã bỏ, nên chỉ còn ô tìm kiếm có thể đang giấu bài này.
     setSearchQuery("");
     setOpenComments((prev) => ({ ...prev, [postId]: true }));
 
@@ -897,7 +892,13 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   // dữ liệu từ Supabase sau tường đăng nhập, nên đó là chỗ duy nhất kiểm được
   // nó mà không cần một phiên đăng nhập thật và vài chục bài dựng sẵn.
   const searchTerm = searchQuery.trim().toLowerCase();
-  const visiblePosts = visibleFeedPosts(posts, feedFilter, searchQuery);
+  const visiblePosts = visibleFeedPosts(posts, searchQuery);
+  // Mọi con số và mọi bảng xếp hạng đọc từ đây, không đọc từ `posts`. Bài chuỗi
+  // ngày do hệ thống tự đăng chiếm gần hết số bài mới nhất, nên để chúng trong
+  // mẫu thì "sôi nổi nhất" và "tổng lượt thả cảm xúc" đang đo hoạt động của máy
+  // chứ không phải của người - và bảng Trending bên phải hiện ra ba dòng "vừa
+  // đạt chuỗi 7 ngày" y hệt nhau.
+  const humanPosts = posts.filter((post) => !isSystemPost(post));
   // `hiddenAchievements` đã bỏ cùng quy tắc hạ ưu tiên: không bài nào bị ẩn khỏi
   // dòng chính nữa, nên một con số "đang bị ẩn" chỉ có thể sai.
   //
@@ -905,22 +906,20 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   // và đó là chỗ làm người dùng tưởng mất bài: "không khớp bộ lọc" đúng khi có
   // bộ lọc, nhưng khi đang xem tất cả mà chưa có bài nào thì nó đọc như một lời
   // thông báo mất dữ liệu.
-  const emptyBecauseNoPosts = feedFilter === "all" && !searchTerm;
-  const totalReactions = posts.reduce((sum, post) => sum + post.reaction_count, 0);
-  const totalComments = posts.reduce((sum, post) => sum + post.comment_count, 0);
-  const activeTopics = TOPICS.filter((topic) => posts.some((post) => getPostCategory(post) === topic.id && topic.id !== "all")).length;
-  const hotPosts = [...posts]
+  const emptyBecauseNoPosts = !searchTerm;
+  const totalReactions = humanPosts.reduce((sum, post) => sum + post.reaction_count, 0);
+  const totalComments = humanPosts.reduce((sum, post) => sum + post.comment_count, 0);
+  const hotPosts = [...humanPosts]
     .sort((a, b) => b.reaction_count + b.comment_count * 2 - (a.reaction_count + a.comment_count * 2))
     .slice(0, 3);
-  const questionPost = posts.find((post) => getPostCategory(post) === "hoi-dap");
-  const analysisPost = posts.find((post) => getPostCategory(post) === "phan-tich");
-  // Thẻ "Nổi bật" từng có ô thứ ba cho bài thành tựu. Chủ đề đó không còn, nên
-  // ô ấy đi theo - hai ô còn lại là hỏi đáp và phân tích, cả hai đều là bài do
-  // người thật viết, đúng thứ mà một thẻ "nổi bật" nên chỉ tới.
-  const spotlightItems = [
-    questionPost && { label: t.feed.spotlightQuestion, post: questionPost, icon: HelpCircle },
-    analysisPost && { label: t.feed.spotlightAnalysis, post: analysisPost, icon: BarChart3 },
-  ].filter((item): item is { label: string; post: CommunityFeedPost; icon: typeof HelpCircle } => Boolean(item));
+  // Thẻ "Nổi bật" trước đây chỉ tới bài hỏi đáp và bài phân tích, tức nó phụ
+  // thuộc vào phân loại. Không còn chủ đề nào để chọn theo, nên nó chọn theo
+  // thứ duy nhất còn đo được và cũng đúng nghĩa "nổi bật" hơn: bài người thật
+  // viết được phản hồi nhiều nhất.
+  const spotlightItems = hotPosts
+    .filter((post) => post.reaction_count + post.comment_count > 0)
+    .slice(0, 2)
+    .map((post) => ({ label: t.feed.spotlightDiscussed, post, icon: MessageCircle }));
   const shellClass = embedded ? "" : "min-h-screen bg-stone-50 dark:bg-stone-950";
 
   return (
@@ -1038,7 +1037,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             <div className="grid gap-2 sm:grid-cols-3">
               {spotlightItems.map(({ label, post, icon: Icon }) => (
                 (() => {
-                  const spotlightTone = getToneStyles(getPostAccentTone(post));
+                  const spotlightTone = getToneStyles(getPostAccentTone());
                   return (
                     <motion.button
                       key={`${label}-${post.id}`}
@@ -1088,30 +1087,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <RefreshCw className="h-4 w-4" />
                 {t.feed.refresh}
               </motion.button>
-            </div>
-            <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-              {TOPICS.map((topic) => {
-                const Icon = topic.icon;
-                const topicTone = getToneStyles(topic.tone);
-                const isActive = feedFilter === topic.id;
-                return (
-                  <motion.button
-                    key={topic.id}
-                    type="button"
-                    onClick={() => setFeedFilter(topic.id)}
-                    className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-black transition duration-200 ease-out ${
-                      isActive ? topicTone.chipActive : topicTone.chip
-                    }`}
-                    layout
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.97 }}
-                    transition={{ type: "spring", stiffness: 420, damping: 28 }}
-                  >
-                    <Icon className={`h-3.5 w-3.5 ${isActive ? "text-white dark:text-stone-950" : topicTone.icon}`} />
-                    {t.feed.topics[topic.id].label}
-                  </motion.button>
-                );
-              })}
             </div>
           </div>
         )}
@@ -1194,59 +1169,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             {user?.user_metadata?.full_name || t.feed.memberRole}
                           </p>
                           <div className="flex flex-wrap items-center gap-1.5 mt-1">
-                            {/* Topic Dropdown */}
-                            <div className="relative">
-                              <button
-                                type="button"
-                                onClick={() => setTopicMenuOpen((open) => !open)}
-                                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-[11px] font-extrabold text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-700 hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors cursor-pointer"
-                              >
-                                <span>
-                                  {selectedTopic === "all"
-                                    ? t.feed.topicNone
-                                    : t.feed.topics[selectedTopic].label}
-                                </span>
-                                <ChevronDown className="w-3 h-3 opacity-60" />
-                              </button>
-                              <AnimatePresence>
-                                {topicMenuOpen && (
-                                  <motion.div
-                                    initial={{ opacity: 0, y: 6, scale: 0.98 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    exit={{ opacity: 0, y: 4, scale: 0.98 }}
-                                    className="absolute left-0 top-full z-40 mt-1 w-52 rounded-xl bg-white p-1 shadow-lg ring-1 ring-stone-200 dark:bg-stone-900 dark:ring-stone-800"
-                                  >
-                                    {/* "Không phân loại" đứng ĐẦU danh sách vì nó
-                                        là mặc định: một người mở hộp ra để xem
-                                        có gì phải tránh cần thấy ngay là mình
-                                        không buộc phải chọn gì cả. */}
-                                    <button
-                                      type="button"
-                                      onClick={() => {
-                                        setSelectedTopic("all");
-                                        setTopicMenuOpen(false);
-                                      }}
-                                      className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-bold text-stone-500 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800"
-                                    >
-                                      {t.feed.topicNone}
-                                    </button>
-                                    {COMPOSER_TOPICS.map((item) => (
-                                      <button
-                                        key={item.id}
-                                        type="button"
-                                        onClick={() => {
-                                          setSelectedTopic(item.id);
-                                          setTopicMenuOpen(false);
-                                        }}
-                                        className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800"
-                                      >
-                                        {t.feed.topics[item.id].label}
-                                      </button>
-                                    ))}
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-                            </div>
+
                             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/50">
                               {t.feed.visibilityPublic}
                             </span>
@@ -1419,10 +1342,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
           <div className="space-y-4">
             <AnimatePresence initial={false}>
             {visiblePosts.map((post, index) => {
-              const category = getPostCategory(post);
-              const topic = getTopicMeta(category);
-              const TopicIcon = topic.icon;
-              const topicTone = getToneStyles(topic.tone);
               const badge = getUserBadge(post, t);
               const BadgeIcon = badge.icon;
               const badgeTone = getToneStyles(badge.tone);
@@ -1475,12 +1394,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         />
                       )}
                       </div>
-                      {category !== "all" && (
-                        <span className={`inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-black uppercase ${topicTone.chip}`}>
-                          <TopicIcon className={`h-3 w-3 ${topicTone.icon}`} />
-                          {t.feed.topics[topic.id].short}
-                        </span>
-                      )}
                     </div>
                     {editingPostId === post.id ? (
                       <div className="mt-2">
@@ -1843,7 +1756,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         </main>
 
         {!embedded && (
-          <aside className="space-y-4 lg:sticky lg:top-24 self-start">
+          <aside className="space-y-4 lg:sticky lg:top-24 self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
             <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <button
                 type="button"
