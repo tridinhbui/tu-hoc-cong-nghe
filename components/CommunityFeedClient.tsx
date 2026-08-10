@@ -1492,19 +1492,32 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     {/* Attached Image Rendering */}
                     {post.metadata && typeof post.metadata === "object" && "image_url" in post.metadata && Boolean(post.metadata.image_url) && (
                       <div className="mt-4 relative overflow-hidden rounded-[20px] bg-stone-950/5 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.22)] dark:bg-stone-950/40">
-                        {/* Ảnh bài đăng nằm trong bucket "chat-images" của chính
-                            project này, và `*.supabase.co` đã có trong
-                            remotePatterns - xem ProfileWallPosts.tsx về chú
-                            thích cũ nói ngược lại. Đây là feed cuộn vô hạn, nên
-                            đây cũng là chỗ một tấm ảnh gốc phải trả giá nhiều
-                            lần nhất: mỗi người mở /finsocial là một lượt tải. */}
-                        <Image
+                        {/* `<img>` chứ KHÔNG phải next/image, và đây là lần thứ
+                            hai chỗ này quay về `<img>`.
+
+                            Lần đầu, chú thích nói lý do là bucket không nằm
+                            trong remotePatterns. Lý do đó sai và bị bác đúng:
+                            uploadChatImage() ghi vào "chat-images" của chính
+                            project này, tức `<ref>.supabase.co`, mà
+                            remotePatterns có `*.supabase.co`. Nhưng kết luận
+                            "vậy thì đổi sang next/image được" lại không được
+                            KIỂM: /finsocial cần đăng nhập, không phiên nào mở
+                            được nó, và ảnh chết ngay trên production sau khi
+                            đổi.
+
+                            Bài học là về thứ tự, không phải về remotePatterns:
+                            bác bỏ một lý do sai không chứng minh được điều
+                            ngược lại. Muốn đổi lại thì cần đúng một con số -
+                            mã trạng thái của `/_next/image?url=...` với một URL
+                            ảnh thật - chứ không cần thêm lập luận nào.
+
+                            `loading`/`decoding` giữ lại: chúng không cần trình
+                            tối ưu, và đây là feed cuộn vô hạn. */}
+                        <img
                           src={String(post.metadata.image_url)}
                           alt={t.feed.postImageAlt}
-                          width={1024}
-                          height={768}
-                          sizes="(max-width: 768px) 100vw, 640px"
-                          style={{ height: "auto" }}
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-auto max-h-96 object-contain"
                         />
                       </div>
