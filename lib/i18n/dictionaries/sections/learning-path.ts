@@ -35,6 +35,23 @@ export const learningPathVi = {
     trackProfessionalFor: "Đọc báo cáo, định giá, mô hình. Cho người muốn đi làm nghề này.",
     trackLessons: "{count} bài",
     trackTime: "khoảng {weeks} tuần",
+    // Thẻ hướng ĐANG CHỌN đếm số bài CÒN LẠI, thẻ kia đếm tổng. Trước đây cả
+    // hai đều đếm tổng, nên thẻ đang chọn ghi "137 bài · khoảng 28 tuần" ngay
+    // trên ô ước lượng ghi "còn 97 bài · khoảng 20 tuần" - hai câu trả lời cho
+    // cùng một câu hỏi, cách nhau ba dòng.
+    trackLessonsLeft: "còn {count} bài",
+    paceFinishBy: "Xong khoảng {date}.",
+    paceSaved: "Đã lưu",
+    paceSaveFailed: "Chưa lưu được - thử lại",
+    tocTitle: "Trong trang này",
+    parallelTitle: "Hai lối học song song",
+    parallelHint: "Không nằm trong lộ trình đánh số theo ngày. Học thêm lúc nào cũng được, không phải chọn thay.",
+    parallelCfaName: "CFA Level I",
+    parallelCfaFor: "Mười môn, có đề luyện và bộ công thức riêng.",
+    parallelFrmName: "FRM",
+    parallelFrmFor: "Quản trị rủi ro, Part I và Part II.",
+    adjustWeakestOpen: "Mở bài đầu tiên chưa học của chủ đề này",
+    progressAria: "Đã học {done} trên {total} bài",
     trackPicked: "Bạn đang học hướng này",
     trackPick: "Chọn hướng này",
     proNote:
@@ -129,6 +146,19 @@ export const learningPathEn: typeof learningPathVi = {
     trackProfessionalFor: "Read statements, value companies, build models. For people who want the job.",
     trackLessons: "{count} lessons",
     trackTime: "about {weeks} weeks",
+    trackLessonsLeft: "{count} lessons left",
+    paceFinishBy: "Done around {date}.",
+    paceSaved: "Saved",
+    paceSaveFailed: "Not saved - try again",
+    tocTitle: "On this page",
+    parallelTitle: "Two parallel tracks",
+    parallelHint: "Not part of the day-numbered path. Take them any time - they are an addition, not a replacement.",
+    parallelCfaName: "CFA Level I",
+    parallelCfaFor: "Ten subjects, with practice questions and its own formula sheet.",
+    parallelFrmName: "FRM",
+    parallelFrmFor: "Risk management, Part I and Part II.",
+    adjustWeakestOpen: "Open the first unfinished lesson in this topic",
+    progressAria: "{done} of {total} lessons done",
     trackPicked: "This is your direction",
     trackPick: "Choose this one",
     proNote:

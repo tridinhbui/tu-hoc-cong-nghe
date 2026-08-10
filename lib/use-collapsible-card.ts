@@ -33,7 +33,8 @@ export function useCollapsibleCard(storageKey: string, defaultCollapsed = false)
     }
     // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration, xem chú thích đầu tệp
     if (stored !== null) setCollapsed(stored === "1");
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration, xem chú thích đầu tệp
+    // Không cần disable ở dòng dưới: luật chỉ kêu lời gọi đầu tiên, và một
+    // directive thừa lại là một cảnh báo khác.
     setHydrated(true);
   }, [storageKey]);
 

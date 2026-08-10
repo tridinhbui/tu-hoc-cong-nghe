@@ -33,7 +33,15 @@ export default function NotesShortcutCard() {
   const { collapsed, hydrated, toggle } = useCollapsibleCard("thtcdn:card-collapsed:notes");
 
   return (
-    <div className="group relative flex h-full flex-col rounded-[24px] border-2 border-amber-400/60 bg-gradient-to-br from-amber-50 to-orange-50/60 p-4 shadow-sm transition duration-200 ease-out hover:-translate-y-0.5 hover:border-amber-500/70 sm:p-5 dark:border-amber-500/40 dark:from-amber-950/30 dark:to-stone-900">
+    // `self-start` khi gấp, `h-full` khi mở. Lưới cha đặt `items-stretch` để
+    // hai thẻ cao bằng nhau - đúng khi cả hai cùng mở, nhưng nếu giữ nguyên lúc
+    // gấp thì thẻ đã thu gọn vẫn bị kéo cao bằng thẻ bên cạnh và để lại một
+    // mảng trống, tức là gấp mà chẳng thấp đi chút nào.
+    <div
+      className={`group relative flex flex-col rounded-[24px] border-2 border-amber-400/60 bg-gradient-to-br from-amber-50 to-orange-50/60 p-4 shadow-sm transition duration-200 ease-out hover:-translate-y-0.5 hover:border-amber-500/70 sm:p-5 dark:border-amber-500/40 dark:from-amber-950/30 dark:to-stone-900 ${
+        collapsed ? "self-start" : "h-full"
+      }`}
+    >
       <Link href="/ghi-chu" aria-label={p.notesTitle} className="absolute inset-0 z-10 rounded-[24px]" />
 
       <div className="flex items-start gap-3.5">
@@ -54,7 +62,7 @@ export default function NotesShortcutCard() {
               collapsed ? "grid-rows-[0fr] opacity-0" : "grid-rows-[1fr] opacity-100"
             }`}
           >
-            <div className="min-h-0 overflow-hidden">
+            <div className="min-h-0 overflow-hidden" inert={collapsed}>
               <p className="mt-1.5 text-sm font-medium text-stone-600 dark:text-stone-300">{p.notesHint}</p>
             </div>
           </div>
@@ -77,7 +85,7 @@ export default function NotesShortcutCard() {
           collapsed ? "mt-0 grid-rows-[0fr] opacity-0" : "mt-auto grid-rows-[1fr] opacity-100"
         }`}
       >
-        <div className="min-h-0 overflow-hidden">
+        <div className="min-h-0 overflow-hidden" inert={collapsed}>
           <span className="block pt-3 text-sm font-black text-amber-700 group-hover:underline dark:text-amber-400">
             {p.notesCta}
           </span>

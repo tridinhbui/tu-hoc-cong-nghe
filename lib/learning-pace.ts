@@ -58,3 +58,37 @@ export function weeksFor(count: number, perDay: number, daysPerWeek: number): nu
 export function minutesPerDay(pace: Pace): number {
   return pace.perDay * MEDIAN_LESSON_MINUTES;
 }
+
+/** Nhận một nhịp từ NGUỒN NGOÀI (cột Supabase, JSON cũ) và trả về nhịp hợp lệ,
+ *  hoặc null nếu chưa đặt.
+ *
+ *  Tách khỏi readPace vì hai nguồn có hình dạng khác nhau nhưng cùng một tập
+ *  giá trị hợp lệ: localStorage giữ một object, Supabase giữ hai cột rời có thể
+ *  NULL. Viết phép kiểm hai lần là để hai bên trôi khỏi nhau - và bên trôi sẽ
+ *  là bên ít người đọc hơn.
+ *
+ *  Trả null chứ không trả DEFAULT_PACE: "chưa chọn" và "đã chọn đúng bằng mặc
+ *  định" là hai trạng thái khác nhau, và chỉ nơi gọi mới biết cần phân biệt hay
+ *  không. Cột trong CSDL cũng để NULL đúng vì lý do đó. */
+export function paceFromParts(perDay: unknown, daysPerWeek: unknown): Pace | null {
+  if (perDay !== 1 && perDay !== 2) return null;
+  const days = Number(daysPerWeek);
+  if (!Number.isFinite(days) || days < 1 || days > 7) return null;
+  return { perDay, daysPerWeek: Math.trunc(days) };
+}
+
+/** Ngày dự kiến học xong `count` bài, tính từ `from`.
+ *
+ *  "Khoảng 28 tuần" là một con số khó cảm - nó đòi người đọc tự cộng vào lịch.
+ *  Một ngày cụ thể thì không. Cả hai cùng hiện, vì con số tuần vẫn là thứ so
+ *  sánh được giữa hai hướng học còn ngày thì không.
+ *
+ *  Làm tròn theo TUẦN chứ không theo ngày, vì `weeksFor` đã làm tròn lên tuần -
+ *  cộng ngày lẻ vào một con số đã tròn tuần là giả vờ chính xác hơn thực tế. */
+export function finishDate(count: number, pace: Pace, from: Date): Date | null {
+  const weeks = weeksFor(count, pace.perDay, pace.daysPerWeek);
+  if (weeks <= 0) return null;
+  const d = new Date(from.getTime());
+  d.setDate(d.getDate() + weeks * 7);
+  return d;
+}
