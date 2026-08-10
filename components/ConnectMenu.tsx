@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Users, UserPlus, MessagesSquare, MessageCircleHeart, X } from "lucide-react";
@@ -13,6 +13,7 @@ import {
 } from "@/lib/connect-menu-badge";
 import { getPendingFriendRequestCount, subscribeToSocialGraph } from "@/lib/supabase-social";
 import { getUnreadAdminReplyCount, subscribeToChatMessages } from "@/lib/supabase-chat";
+import { useDraggablePosition } from "@/lib/hooks/useDraggablePosition";
 
 /** Một nút duy nhất ở góc phải dưới, thay cho ba nút nổi chồng lên nhau.
  *
@@ -48,6 +49,10 @@ export default function ConnectMenu({
 }) {
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
+  const bubbleRef = useRef<HTMLButtonElement>(null);
+  // Khoá riêng cho nút này. Ba nút nổi trong app dùng ba khoá khác nhau, nếu
+  // không thì dời một cái là hai cái kia nhảy theo.
+  const bubbleDrag = useDraggablePosition("thtcdn_connect_menu_pos", bubbleRef);
   const [counts, setCounts] = useState<ConnectCounts>(EMPTY_CONNECT_COUNTS);
 
   // Trả về số thay vì tự đặt state, và người gọi đặt trong `.then` - cùng mẫu
@@ -146,6 +151,10 @@ export default function ConnectMenu({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 8, scale: 0.97 }}
               transition={{ duration: 0.16 }}
+              // Bảng bám theo nút bằng CÙNG cặp motion value. Không có dòng này
+              // thì kéo nút sang chỗ khác rồi mở ra, bảng vẫn bung ở góc phải
+              // dưới - trông như bấm nhầm vào thứ gì đó.
+              style={{ x: bubbleDrag.x, y: bubbleDrag.y }}
               className="fixed bottom-24 right-4 sm:right-6 z-50 w-[17.5rem] overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-2xl dark:border-stone-800 dark:bg-stone-900"
             >
               <div className="flex items-center justify-between border-b border-stone-100 px-4 py-3 dark:border-stone-800">
@@ -213,19 +222,36 @@ export default function ConnectMenu({
         )}
       </AnimatePresence>
 
-      <button
+      <motion.button
+        ref={bubbleRef}
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        drag
+        dragElastic={0.06}
+        dragMomentum={false}
+        onDragStart={bubbleDrag.onDragStart}
+        onDragEnd={bubbleDrag.onDragEnd}
+        // x/y do `drag` sở hữu hoàn toàn, không đưa vào initial/animate - xem
+        // chú thích dài trong useDraggablePosition về việc hai bên cùng ghi vào
+        // một cặp motion value thì cái nút bật về chỗ cũ ngay khi vừa kéo.
+        style={{ x: bubbleDrag.x, y: bubbleDrag.y }}
+        onClick={() => {
+          // Một cú kéo kết thúc bằng một sự kiện click. Không chặn thì thả tay
+          // ra là bảng mở/đóng theo, tức không thể chỉ dời nút mà không đụng
+          // vào menu.
+          if (bubbleDrag.isDragging) return;
+          setOpen((v) => !v);
+        }}
         aria-label={t.connectMenu.open}
-        className="fixed bottom-6 right-4 sm:right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-stone-900 text-white shadow-xl transition-transform hover:scale-105 dark:border-stone-800 dark:bg-stone-100 dark:text-stone-900 cursor-pointer"
+        title={t.connectMenu.dragTitle}
+        className="fixed bottom-6 right-4 sm:right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-stone-900 text-white shadow-xl transition-transform hover:scale-105 dark:border-stone-800 dark:bg-stone-100 dark:text-stone-900 cursor-grab active:cursor-grabbing select-none touch-none"
       >
-        {open ? <X className="h-5.5 w-5.5" /> : <Menu className="h-5.5 w-5.5" />}
+        {open ? <X className="h-5.5 w-5.5 pointer-events-none" /> : <Menu className="h-5.5 w-5.5 pointer-events-none" />}
         {!open && badge && (
           <span className="absolute -right-1 -top-1 flex min-w-5 items-center justify-center rounded-full bg-rose-500 px-1.5 py-0.5 text-[10px] font-black tabular-nums text-white ring-2 ring-white dark:ring-stone-900">
             {badge}
           </span>
         )}
-      </button>
+      </motion.button>
     </>
   );
 }

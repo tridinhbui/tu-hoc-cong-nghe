@@ -2932,6 +2932,7 @@ export const en: Dictionary = {
   connectMenu: {
     title: "Connect",
     open: "Open the connect menu",
+    dragTitle: "Drag to move",
     close: "Close",
     friends: "Friends & connections",
     friendsSub: "Requests and direct messages",

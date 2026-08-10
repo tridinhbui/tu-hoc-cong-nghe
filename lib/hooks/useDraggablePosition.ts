@@ -99,8 +99,8 @@ function readStored(storageKey: string): Offset {
  * actually settled on after `dragConstraints`, rather than a running sum of
  * raw pointer deltas that drifts past the bound meant to hold it.
  *
- * `storageKey` is read once, on mount. Both call sites pass a string literal;
- * a key that changed at runtime would keep the old position.
+ * `storageKey` is read once, on mount. All three call sites pass a string
+ * literal; a key that changed at runtime would keep the old position.
  */
 export function useDraggablePosition(storageKey: string, elementRef: RefObject<HTMLElement | null>) {
   // Read synchronously so the first paint is already in the restored position;

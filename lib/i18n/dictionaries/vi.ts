@@ -3121,6 +3121,7 @@ export const vi = {
   connectMenu: {
     title: "Kết nối",
     open: "Mở menu kết nối",
+    dragTitle: "Kéo để dời nút",
     close: "Đóng",
     friends: "Bạn bè & kết nối",
     friendsSub: "Lời mời, tin nhắn riêng",
