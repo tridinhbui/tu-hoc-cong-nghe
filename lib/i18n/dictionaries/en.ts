@@ -1464,6 +1464,8 @@ export const en: Dictionary = {
     rule1: "• Be useful, positive and respectful.",
     rule2: "• No firm recommendations, and no confidential data.",
     rule3: "• Detailed posts are preferred, with an example or a source that can be checked.",
+    streakBoardTitle: "Today's streaks",
+    streakBoardEmpty: "Nobody has kept a streak today yet.",
     trendingTitle: "Trending",
     trendingEmpty: "Nothing trending yet.",
     promptsTitle: "Post ideas",

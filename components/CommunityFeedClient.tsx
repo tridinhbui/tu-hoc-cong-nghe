@@ -529,15 +529,27 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   // Giới hạn 5 trang để một cộng đồng chỉ toàn bài hệ thống không kéo theo một
   // vòng lặp không đáy; khi đó nút "xem thêm" vẫn còn và người dùng tự quyết.
   const MIN_HUMAN_POSTS = 8;
-  const MAX_FILL_PAGES = 5;
+  const MAX_FILL_PAGES = 10;
 
   const refreshFeed = useCallback(async () => {
+    // Ngưỡng "hôm nay" tính lại ở đây thay vì dùng biến ngoài, để vòng lặp
+    // không phụ thuộc vào thứ tự khởi tạo trong thân component.
+    const dayStart = new Date();
+    dayStart.setHours(0, 0, 0, 0);
+
     let feed = await getCommunityFeed();
     let more = feed.length === 20;
 
     for (let page = 1; page < MAX_FILL_PAGES; page++) {
       if (!more) break;
-      if (feed.filter((post) => !isSystemPost(post)).length >= MIN_HUMAN_POSTS) break;
+      const enoughHuman = feed.filter((post) => !isSystemPost(post)).length >= MIN_HUMAN_POSTS;
+      // Lấy tiếp chừng nào bài cuối cùng vẫn còn thuộc hôm nay: bảng chuỗi ngày
+      // bên phải phải đếm được ĐỦ chuỗi của hôm nay, và một trang 20 bài không
+      // đủ cho một ngày đông người học. Dừng ngay khi đã vượt qua ranh giới
+      // ngày, vì mọi bài phía sau đều cũ hơn - danh sách sắp theo id giảm dần.
+      const stillToday = new Date(feed[feed.length - 1].created_at) >= dayStart;
+      if (enoughHuman && !stillToday) break;
+
       const next = await getCommunityFeed(feed[feed.length - 1].id);
       if (next.length === 0) {
         more = false;
@@ -909,6 +921,19 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const emptyBecauseNoPosts = !searchTerm;
   const totalReactions = humanPosts.reduce((sum, post) => sum + post.reaction_count, 0);
   const totalComments = humanPosts.reduce((sum, post) => sum + post.comment_count, 0);
+  // Bài chuỗi ngày của HÔM NAY, cho bảng bên phải. Chúng đã ra khỏi dòng chính
+  // nhưng không biến mất - đây là chỗ chúng thuộc về: một bảng đếm được, đọc
+  // lướt qua, không chen vào giữa những bài người thật viết.
+  //
+  // Mốc "hôm nay" theo giờ máy người đọc chứ không theo UTC: người học ở Việt
+  // Nam mở lúc 7 giờ sáng phải thấy chuỗi của sáng nay, không phải một danh
+  // sách đã đổi ngày từ 7 giờ tối hôm trước.
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+  const todayStreakPosts = posts.filter(
+    (post) => isSystemPost(post) && new Date(post.created_at) >= startOfToday
+  );
+
   const hotPosts = [...humanPosts]
     .sort((a, b) => b.reaction_count + b.comment_count * 2 - (a.reaction_count + a.comment_count * 2))
     .slice(0, 3);
@@ -1784,6 +1809,40 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                   </motion.div>
                 )}
               </AnimatePresence>
+            </div>
+
+            <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.streakBoardTitle}</h2>
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-black text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
+                  <Flame className="h-3.5 w-3.5" />
+                  {todayStreakPosts.length}
+                </span>
+              </div>
+              {todayStreakPosts.length === 0 ? (
+                <p className="text-sm text-stone-400">{t.feed.streakBoardEmpty}</p>
+              ) : (
+                /* Cuộn riêng trong thẻ, KHÔNG cắt bớt danh sách: một ngày đông
+                   người học thì đây là bảng dài nhất cột này, và cắt nó ở con số
+                   nào cũng là giấu đi đúng thứ người xem mở nó ra để đếm. */
+                <div className="max-h-80 space-y-2 overflow-y-auto pr-1 [scrollbar-width:thin]">
+                  {todayStreakPosts.map((post) => (
+                    <div
+                      key={post.id}
+                      className="flex items-center gap-2.5 rounded-[16px] bg-stone-50 px-3 py-2 dark:bg-stone-950/60"
+                    >
+                      <Avatar name={post.user_name} avatarUrl={post.user_avatar} />
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{post.user_name}</p>
+                        <p className="truncate text-[11px] font-medium text-stone-500 dark:text-stone-400">
+                          {timeAgo(post.created_at, t.libData.timeAgo)}
+                        </p>
+                      </div>
+                      <Flame className="h-4 w-4 shrink-0 text-emerald-500" />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">

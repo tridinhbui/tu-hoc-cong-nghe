@@ -1561,6 +1561,8 @@ export const vi = {
     rule1: "• Hữu ích, tích cực, tôn trọng nhau.",
     rule2: "• Không khuyến nghị chắc chắn, không chia sẻ dữ liệu mật.",
     rule3: "• Ưu tiên bài viết chi tiết, có ví dụ hoặc nguồn cần kiểm chứng.",
+    streakBoardTitle: "Chuỗi ngày hôm nay",
+    streakBoardEmpty: "Hôm nay chưa ai giữ được chuỗi.",
     trendingTitle: "Đang nổi bật",
     trendingEmpty: "Chưa có bài nổi bật.",
     promptsTitle: "Gợi ý đăng bài",
