@@ -247,10 +247,28 @@ if (process.argv.includes("--sql")) {
     for (const r of missing) console.log(`  ${r.file}\n     → ${r.missing.join("\n     → ")}`);
   }
 
+  // `--list` in ra TÊN FILE chứ không chỉ con số. Không có bảng theo dõi
+  // migration nào trong repo này (xem chú thích đầu file), nên khi cần trả lời
+  // "tôi đã chạy những file nào" thì đây là câu trả lời gần nhất có được - và
+  // nó là SUY RA từ việc bảng/cột có tồn tại, không phải một bản ghi lịch sử.
+  // Hai chỗ nó không kết luận được, cố ý tách riêng thay vì gộp vào "đã chạy":
+  // file chỉ chứa function/policy/index/grant (phải dùng --sql), và file mà
+  // bảng của nó có thể do một migration khác tạo ra trước đó.
+  if (process.argv.includes("--list")) {
+    console.log(`\nĐÃ CHẠY - suy ra từ bảng/cột có thật (${ok.length} file):\n`);
+    for (const r of ok) console.log(`  ${r.file}`);
+    console.log(`\nKHÔNG KẾT LUẬN ĐƯỢC BẰNG CÁCH DÒ BẢNG (${unknown.length} file):\n`);
+    for (const r of unknown) console.log(`  ${r.file}`);
+    console.log("");
+  }
+
   console.log(
     `\n${ok.length} file đã có đủ bảng/cột · ${missing.length} file thiếu · ` +
       `${unknown.length} file chỉ chứa function/policy/index/grant`
   );
   console.log(`Kiểm tra ${unknown.length} file còn lại bằng: node scripts/check-migrations.mjs --sql`);
+  if (!process.argv.includes("--list")) {
+    console.log("Xem tên từng file bằng: node scripts/check-migrations.mjs --list");
+  }
   process.exitCode = missing.length > 0 ? 1 : 0;
 }
