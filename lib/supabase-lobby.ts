@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase";
 import type { RealtimeChannel } from "@supabase/supabase-js";
 import type { CharacterEquipments } from "@/lib/rpg-items";
+import { quantizePose } from "@/lib/lobby-pose-net";
 
 /** Đại sảnh dùng CHUNG một topic cố định cho mọi client - đó là điều kiện để
  *  presence hoạt động, và cũng là lý do không được dùng uniqueRealtimeTopic()
@@ -18,10 +19,21 @@ import type { CharacterEquipments } from "@/lib/rpg-items";
  *  đóng khi người cuối cùng rời đi. */
 const LOBBY_TOPIC = "lobby:reading-room";
 
-/** Vị trí gửi tối đa ~8 lần/giây. Realtime của Supabase mặc định chặn ở 10
- *  sự kiện/giây cho mỗi client, nên 120ms để lại biên an toàn; phần mượt do
- *  phía nhận nội suy chứ không phải do gửi dày hơn. */
-export const MOVE_BROADCAST_MS = 120;
+/** Vị trí gửi tối đa 5 lần/giây. Realtime của Supabase mặc định chặn ở 10 sự
+ *  kiện/giây cho mỗi client, nên 200ms để lại biên rộng; phần mượt do phía nhận
+ *  nội suy chứ không phải do gửi dày hơn.
+ *
+ *  Từ 120ms lên 200ms: chi phí của một phòng tăng theo BÌNH PHƯƠNG số người -
+ *  mỗi gói mình gửi là N gói cả phòng phải nhận - nên cắt nhịp đi 40% cắt luôn
+ *  40% của cái bình phương ấy. Ở phòng 20 người, đó là chênh lệch giữa 33.000
+ *  và 20.000 lượt nhận mỗi phút.
+ *
+ *  Đi kèm hai thứ trong lib/lobby-pose-net.ts, và bỏ thứ nào cũng hỏng:
+ *  lượng tử hoá làm mỗi gói nhỏ đi (nhân chứ không cộng với việc giãn nhịp), và
+ *  hệ số nội suy suy TỪ con số này chứ không phải một hằng số - giữ nguyên hằng
+ *  số cũ thì nhân vật tới đích rồi đứng chờ, thành nhịp đi-dừng-đi-dừng mà mắt
+ *  bắt được ngay. */
+export const MOVE_BROADCAST_MS = 200;
 
 export interface LobbyIdentity {
   userId: string;
@@ -332,12 +344,16 @@ export function sendChat(userId: string, name: string, rawText: string): LobbyCh
 }
 
 /** Gửi vị trí của mình. Không tự tiết chế tần suất - phía gọi giữ nhịp bằng
- *  MOVE_BROADCAST_MS, vì nó mới biết khi nào nhân vật thực sự di chuyển. */
+ *  MOVE_BROADCAST_MS, vì nó mới biết khi nào nhân vật thực sự di chuyển.
+ *
+ *  Lượng tử hoá nằm ở ĐÂY chứ không ở phía gọi: ba cảnh 3D cùng gửi vị trí, và
+ *  một trong ba quên gọi thì không có gì đỏ - chỉ là gói của phòng đó to hơn
+ *  gói của hai phòng kia, mãi mãi. Đặt ở cửa ra thì không có đường vòng. */
 export function sendPose(userId: string, pose: LobbyPose) {
   if (!channel) return;
   void channel.send({
     type: "broadcast",
     event: "move",
-    payload: { userId, ...pose },
+    payload: { userId, ...quantizePose(pose) },
   });
 }

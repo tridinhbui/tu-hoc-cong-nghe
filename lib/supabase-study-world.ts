@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase";
+import { quantizePose } from "@/lib/lobby-pose-net";
 import type { RealtimeChannel } from "@supabase/supabase-js";
 import { CHAT_MAX_LENGTH, type LobbyChatMessage, type LobbyPose } from "@/lib/supabase-lobby";
 import type { CharacterEquipments } from "@/lib/rpg-items";
@@ -208,7 +209,10 @@ export function setStudySeat(roomId: WorldKey, seat: number | null, startedAt: n
 export function sendStudyPose(roomId: WorldKey, userId: string, pose: LobbyPose) {
   const world = worlds.get(String(roomId));
   if (!world) return;
-  void world.channel.send({ type: "broadcast", event: "move", payload: { userId, ...pose } });
+  // Lượng tử hoá ở cửa ra, cùng lý do như sendPose của đại sảnh: phía gọi có
+  // ba chỗ, quên một chỗ thì không có gì đỏ - chỉ là gói của phòng đó to hơn
+  // gói của hai phòng kia, mãi mãi.
+  void world.channel.send({ type: "broadcast", event: "move", payload: { userId, ...quantizePose(pose) } });
 }
 
 /** Nói một câu trong phòng. Trả về đúng bản tin đã phát để phía gọi hiện ngay

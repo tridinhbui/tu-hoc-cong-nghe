@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { poseDiffers, quantizePose } from "@/lib/lobby-pose-net";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import DistrictShell from "./DistrictShell";
@@ -233,14 +234,17 @@ function PlayerRig({ room, poseRef, walkRef, orbitRef, onDeskChange, onDoorChang
     // theo bình phương số người.
     const interval = peerCountRef.current > 8 ? MOVE_BROADCAST_MS * 2 : MOVE_BROADCAST_MS;
     const now = state.clock.elapsedTime * 1000;
-    const moved =
-      Math.abs(pose.x - lastSentPose.current.x) > 0.01 ||
-      Math.abs(pose.z - lastSentPose.current.z) > 0.01 ||
-      Math.abs(pose.ry - lastSentPose.current.ry) > 0.02;
+    // "Đã nhúc nhích" đo trên gói ĐÃ LƯỢNG TỬ HOÁ, không phải trên toạ độ thô.
+    // Ba ngưỡng 0.01/0.02 viết tay trước đây nằm ngay cạnh bước lưới 1cm, nên
+    // có một khe hẹp mà một dịch chuyển vượt ngưỡng thô lại làm tròn về đúng
+    // gói cũ - gửi một gói y hệt gói trước, tốn băng thông cho không thông tin
+    // nào. So sau khi làm tròn thì ngưỡng CHÍNH LÀ bước lưới, không còn khe.
+    const next = quantizePose({ x: pose.x, z: pose.z, ry: pose.ry });
+    const moved = poseDiffers(next, lastSentPose.current);
     if (moved && now - lastSent.current >= interval) {
       lastSent.current = now;
-      lastSentPose.current = { ...pose };
-      sendStudyPose(room.id, userId, { x: pose.x, z: pose.z, ry: pose.ry });
+      lastSentPose.current = next;
+      sendStudyPose(room.id, userId, next);
     }
   });
 

@@ -4,7 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { nameplateTexture, speechBubbleTexture, type NameplateStatus } from "./room-textures";
-import { CHAT_BUBBLE_MS } from "@/lib/supabase-lobby";
+import { CHAT_BUBBLE_MS, MOVE_BROADCAST_MS } from "@/lib/supabase-lobby";
+import { makeIntervalTracker, smoothingFactor } from "@/lib/lobby-pose-net";
 import AvatarGear from "./AvatarGear";
 import { type CharacterEquipments } from "@/lib/rpg-items";
 import { useI18n } from "@/lib/i18n/context";
@@ -103,6 +104,11 @@ export default function LobbyAvatar({
   const bubbleGroup = useRef<THREE.Group>(null);
   const walkPhase = useRef(0);
   const lastPos = useRef(new THREE.Vector2());
+  // Nhịp gói đến THẬT của người này. Không dùng thẳng MOVE_BROADCAST_MS vì cả
+  // ba cảnh tự giãn nhịp gấp đôi khi phòng đông, và gói tin không nói ra điều
+  // đó - xem makeIntervalTracker.
+  const arrival = useRef(makeIntervalTracker(MOVE_BROADCAST_MS));
+  const lastTarget = useRef({ x: 0, z: 0, ry: 0 });
 
   const nameTex = useMemo(
     () => nameplateTexture(name, status, { doneToday: t.lobby.plateDoneToday, notYet: t.lobby.plateNotYet }),
@@ -136,8 +142,25 @@ export default function LobbyAvatar({
       g.position.z = pose.z;
       g.rotation.y = pose.ry;
     } else {
-      // Người khác chỉ gửi ~8 gói/giây; nội suy để bước đi liền mạch.
-      const k = Math.min(1, delta * 10);
+      // Người khác chỉ gửi 5 gói/giây; nội suy để bước đi liền mạch.
+      //
+      // Hệ số suy TỪ nhịp gửi, không phải hằng số. Chỗ này từng là
+      // `Math.min(1, delta * 10)` - hằng thời gian khoảng 100ms, vừa khớp nhịp
+      // 120ms cũ nên nhân vật luôn đang trên đường đi. Giữ nguyên nó mà giãn
+      // nhịp lên 200ms thì nhân vật tới đích sau ~100ms rồi ĐỨNG YÊN 100ms nữa
+      // mới có gói mới: không phải "hơi trễ" mà là đi-dừng-đi-dừng, và người
+      // dùng sẽ kết luận là mạng lag chứ không phải một hằng số đặt sai.
+      // Đích đổi = gói mới tới. Đó là tín hiệu duy nhất có ở đây: pose đi vào
+      // qua một ref, không có sự kiện nào kèm theo.
+      if (
+        pose.x !== lastTarget.current.x ||
+        pose.z !== lastTarget.current.z ||
+        pose.ry !== lastTarget.current.ry
+      ) {
+        lastTarget.current = { x: pose.x, z: pose.z, ry: pose.ry };
+        arrival.current.sample(state.clock.elapsedTime * 1000);
+      }
+      const k = smoothingFactor(delta, arrival.current.intervalMs);
       g.position.x += (pose.x - g.position.x) * k;
       g.position.z += (pose.z - g.position.z) * k;
       let dry = pose.ry - g.rotation.y;
