@@ -70,6 +70,7 @@ export const en: Dictionary = {
     sectionLearn: "Learn",
     sectionPractice: "Practice",
     sectionCommunity: "Community",
+    certificates: "Certifications",
     quiz: "Test",
     notes: "Notes",
     learningPath: "Learning path",
@@ -2957,6 +2958,11 @@ export const en: Dictionary = {
   // Four certification screens: CFA glossary cards, CFA formula book, FRM, and
   // the "what comes next" block under the CFA track.
   certPages: {
+    tabsAria: "Switch between the two certifications",
+    tabCfa: "CFA Level I",
+    tabCfaHint: "10 foundation subjects",
+    tabFrm: "FRM",
+    tabFrmHint: "Risk management",
     frmTipLabel: "Common trap",
     frmAllLabel: "All (10 FRM subjects)",
     frmLearnedToast: "✓ Marked this FRM term as learned!",

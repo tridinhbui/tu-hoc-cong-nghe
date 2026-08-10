@@ -76,6 +76,7 @@ export const vi = {
     sectionLearn: "Học tập",
     sectionPractice: "Thực hành",
     sectionCommunity: "Cộng đồng",
+    certificates: "Chứng chỉ",
     quiz: "Kiểm tra",
     notes: "Ghi chú",
     learningPath: "Lộ trình học",
@@ -3146,6 +3147,11 @@ export const vi = {
   // Bốn trang chứng chỉ: CFA thẻ thuật ngữ, CFA sổ tay công thức, FRM, và
   // khối "chặng sau" dưới lộ trình CFA.
   certPages: {
+    tabsAria: "Chuyển giữa hai chứng chỉ",
+    tabCfa: "CFA Level I",
+    tabCfaHint: "10 môn nền tảng",
+    tabFrm: "FRM",
+    tabFrmHint: "Quản trị rủi ro",
     frmTipLabel: "Bẫy hay gặp",
     frmAllLabel: "Tất cả (10 Môn FRM)",
     frmLearnedToast: "✓ Đã đánh dấu thuộc thuật ngữ FRM!",

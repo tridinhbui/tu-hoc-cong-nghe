@@ -6,6 +6,7 @@ import { getLessonsMeta } from "@/lib/lessons-loader";
 import { FRM_SUBJECTS } from "@/lib/frm-track";
 import { getCompletedLessons } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import CertificateTabs from "@/components/CertificateTabs";
 import FrmTrackView from "@/components/FrmTrackView";
 
 export const dynamic = "force-dynamic";
@@ -81,6 +82,10 @@ export default async function FrmPage() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-8">
+        {/* Cùng cặp tab với /cfa, cùng lý do - xem chú thích ở trang kia. */}
+        <div className="mb-6">
+          <CertificateTabs />
+        </div>
         <FrmTrackView subjects={subjects} completedLessonIds={completedLessonIds} />
       </div>
     </div>

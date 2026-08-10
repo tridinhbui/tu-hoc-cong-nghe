@@ -60,7 +60,22 @@ const topLevel = arrayLiteral("TOP_LEVEL_LINKS");
 const sections = arrayLiteral("NAV_SECTIONS");
 const forcedOpen = arrayLiteral("badgedHrefs");
 
-const hrefsIn = (block: string) => [...block.matchAll(/"(\/[^"]*)"/g)].map((m) => m[1]);
+/** CHỈ lấy giá trị của `href:`, không lấy mọi chuỗi trông giống đường dẫn.
+ *
+ *  Bản cũ khớp bất kỳ `"/..."` nào trong khối, và điều đó đúng khi mỗi mục chỉ
+ *  có một trường mang đường dẫn. Mục "Chứng chỉ" phá giả định ấy: nó dẫn tới
+ *  /cfa và khai thêm `activePrefixes: ["/cfa", "/frm"]` để dòng vẫn sáng khi
+ *  đang ở FRM. Đọc thô thì /cfa hiện hai lần và bộ kiểm báo trùng đích - trong
+ *  khi vẫn chỉ có MỘT dòng dẫn tới đó.
+ *
+ *  Điều bộ kiểm này muốn nói là "không hai DÒNG cho một trang", nên nó phải
+ *  đếm đúng cái quyết định dòng đi đâu. Sửa ở LUẬT chứ không thêm ngoại lệ. */
+const hrefsIn = (block: string) => [...block.matchAll(/href:\s*"(\/[^"]*)"/g)].map((m) => m[1]);
+
+/** Mọi đường dẫn trong một mảng CHUỖI TRẦN (`badgedHrefs`), nơi không có
+ *  `href:` để bám vào. Tách khỏi `hrefsIn` chứ không nới nó ra: nới thì mục
+ *  "Chứng chỉ" lại đếm hai lần đúng như trước. */
+const pathsIn = (block: string) => [...block.matchAll(/"(\/[^"]*)"/g)].map((m) => m[1]);
 
 /** The hrefs the component gives a conditional, prompt-style badge to. */
 const BADGED_HREFS = ["/nhom-hoc", "/kiem-tra"];
@@ -78,7 +93,7 @@ describe("nav rows that carry a badge", () => {
 
   it("keeps every badged row reachable without opening anything", () => {
     const flat = hrefsIn(topLevel);
-    const forced = hrefsIn(forcedOpen);
+    const forced = pathsIn(forcedOpen);
     for (const href of BADGED_HREFS) {
       const reachable = flat.includes(href) || forced.includes(href);
       expect(

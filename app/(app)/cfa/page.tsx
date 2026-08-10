@@ -4,6 +4,7 @@ import { getLessonsMeta } from "@/lib/lessons-loader";
 import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { getCompletedLessons } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import CertificateTabs from "@/components/CertificateTabs";
 import CfaTrackView from "@/components/CfaTrackView";
 import CfaNextLevels from "@/components/CfaNextLevels";
 import { getServerLocale } from "@/lib/i18n/server";
@@ -71,6 +72,11 @@ export default async function CfaPage() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-8">
+        {/* Cặp tab đứng TRÊN nội dung: navbar giờ chỉ có một dòng "Chứng chỉ",
+            nên đây là đường duy nhất đi sang FRM sau khi đã vào trong. */}
+        <div className="mb-6">
+          <CertificateTabs />
+        </div>
         <CfaTrackView subjects={subjects} completedLessonIds={completedLessonIds} />
         <CfaNextLevels />
       </div>

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, ShieldAlert, Route, Landmark, User, Settings, Globe, LogOut, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, Route, Landmark, User, Settings, Globe, LogOut, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -42,10 +42,18 @@ interface NavProfile {
 // UI"); `label` is for the entries that are proper nouns and read the same in
 // both languages, so translating them would only make the product harder to
 // talk about.
+/** `activePrefixes`: những tiền tố đường dẫn cũng làm dòng này sáng.
+ *
+ *  Mặc định một dòng chỉ sáng khi `pathname === href`, và điều đó đúng cho gần
+ *  hết. "Chứng chỉ" là ngoại lệ: một dòng menu dẫn tới HAI route (/cfa và /frm,
+ *  cùng các trang con của chúng), nên nếu không khai báo thì đứng ở FRM sẽ
+ *  không có dòng nào sáng cả. */
+type NavLinkBase = { href: string; icon: LucideIcon; activePrefixes?: readonly string[] };
+
 type NavLink =
-  | { href: string; label: string; labelKey?: never; dataLabelKey?: never; icon: LucideIcon }
-  | { href: string; labelKey: keyof Dictionary["nav"]; label?: never; dataLabelKey?: never; icon: LucideIcon }
-  | { href: string; dataLabelKey: keyof Dictionary["dataRest"]["appNavbar"]; label?: never; labelKey?: never; icon: LucideIcon };
+  | (NavLinkBase & { label: string; labelKey?: never; dataLabelKey?: never })
+  | (NavLinkBase & { labelKey: keyof Dictionary["nav"]; label?: never; dataLabelKey?: never })
+  | (NavLinkBase & { dataLabelKey: keyof Dictionary["dataRest"]["appNavbar"]; label?: never; labelKey?: never });
 
 /**
  * Above the sections, ungrouped, always visible. Chỉ còn Dashboard: nó là
@@ -53,13 +61,14 @@ type NavLink =
  * đích khác.
  *
  * Ba lối vào cộng đồng từng đứng ở đây. Chúng đã xuống thành nhóm "Cộng đồng"
- * gập được, đặt ngay sau "Học tập" - xem NAV_SECTIONS bên dưới.
+ * gập được, nay là nhóm CUỐI - xem NAV_SECTIONS bên dưới.
  *
- * Kiểm tra stays in Học tập rather than joining this list. It carries a live
- * "Tin mới" badge, which is what once justified lifting it out, but
- * `forcedOpenKeys` in the component below now unfolds a section while
- * something inside it has a prompt waiting - so the badge is visible without
- * the row leaving the group it belongs to.
+ * Kiểm tra ở lại trong nhóm (Thực hành, đứng đầu nhóm) chứ không lên danh sách
+ * phẳng này. Nó mang huy hiệu "Tin mới" sống, và đó từng là lý do nhấc nó ra,
+ * nhưng `forcedOpenKeys` phía dưới giờ tự bung nhóm nào đang có thứ chờ bên
+ * trong - nên huy hiệu vẫn thấy được mà dòng ấy không phải rời khỏi nhóm của
+ * nó. (Dòng này trước ghi "stays in Học tập"; /kiem-tra đã chuyển sang Thực
+ * hành từ trước lần sửa thứ tự nhóm này, chỉ là chú thích chưa theo kịp.)
  */
 const TOP_LEVEL_LINKS: NavLink[] = [
   /* i18n-ignore-start: proper nouns / product names, identical in both languages (Dashboard, FinSocial) */
@@ -126,10 +135,14 @@ const NAV_SECTIONS: NavSection[] = [
       // it, so ten subjects, 324 cross-referenced lessons, fourteen
       // purpose-built Ethics lessons, flashcards and the formula sheet were
       // reachable only by typing the URL.
-      /* i18n-ignore-start: proper nouns / certification names, identical in both languages (CFA Level I, FRM) */
-      { href: "/cfa", label: "CFA Level I", icon: Award },
-      { href: "/frm", label: "FRM", icon: ShieldAlert },
-      /* i18n-ignore-end */
+      // CFA và FRM gộp thành MỘT dòng. Hai chứng chỉ là hai lựa chọn thay
+      // nhau chứ không phải hai việc song song - gần như không ai học cả hai
+      // cùng lúc - nên hai dòng menu bắt người đọc chọn một thứ họ đã chọn rồi.
+      //
+      // Dòng này dẫn tới /cfa, và đường sang FRM là cặp tab lớn ở đầu cả hai
+      // trang (components/CertificateTabs.tsx). `activePrefixes` để dòng vẫn
+      // sáng khi đang ở /frm hay các trang con như /cfa/flashcards.
+      { href: "/cfa", labelKey: "certificates", icon: Award, activePrefixes: ["/cfa", "/frm"] },
       // Kiểm tra đã xuống nhóm Thực hành, đứng đầu nhóm. Lý lẽ cũ ở đây nói
       // nó thuộc Học tập vì nó chấm đúng phần kiến thức của những lối học phía
       // trên; lý lẽ đó đúng về NỘI DUNG nhưng sai về VIỆC ĐANG LÀM. Cả ba mục
@@ -141,6 +154,19 @@ const NAV_SECTIONS: NavSection[] = [
       // Mục "Sự nghiệp" (/su-nghiep) từng đứng ở đây. Nội dung của nó giờ
       // nằm ngay dưới các ô chọn nghề trong /nghe-nghiep-hoc ở nhóm trên, nên
       // hai dòng menu cho hai nửa của cùng một câu hỏi rút còn một.
+    ],
+  },
+  {
+    titleKey: "sectionPractice",
+    links: [
+      // Đứng ĐẦU nhóm: đây là mục duy nhất trong nhóm chấm điểm vào tiến độ
+      // thật (avg_quiz_score, cổng mở bài), nên nó là lý do người ta mở nhóm
+      // này ra chứ không phải Game.
+      { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
+      /* i18n-ignore-start: proper noun / product name, identical in both languages (Game) */
+      { href: "/game", label: "Game", icon: Gamepad2 },
+      /* i18n-ignore-end */
+      { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
     ],
   },
   // Nhóm Cộng đồng quay lại, và đây là lần đảo chiều thứ hai của cùng một
@@ -156,7 +182,11 @@ const NAV_SECTIONS: NavSection[] = [
   // `sectionCommunity` vẫn còn nguyên trong cả vi.ts lẫn en.ts từ vòng trước,
   // nên lần này không phải thêm khoá từ điển nào.
   //
-  // Đặt sau Học tập chứ không đầu nav: học trước, sinh hoạt sau.
+  // Đứng CUỐI trong ba nhóm, sau cả Học tập lẫn Thực hành. Nguyên tắc vẫn là
+  // cái cũ - học trước, sinh hoạt sau - chỉ là trước đây nhóm này chen vào
+  // giữa hai nhóm cùng nói về việc học. Đọc bài rồi tự thử sức là hai nửa liền
+  // mạch của một buổi học; ba phòng sinh hoạt thì không, nên chúng lùi xuống
+  // dưới thay vì cắt ngang.
   //
   // Người dùng CŨ sẽ thấy nhóm này MỞ SẴN, người mới thấy nó đóng - và đó là
   // kết quả đúng chứ không phải chỗ cần sửa cho đồng nhất. Effect đọc
@@ -174,19 +204,6 @@ const NAV_SECTIONS: NavSection[] = [
       // noun; it gets translated.
       { href: "/cong-dong", dataLabelKey: "library", icon: Landmark },
       { href: "/nhom-hoc", labelKey: "studyGroup", icon: Users },
-    ],
-  },
-  {
-    titleKey: "sectionPractice",
-    links: [
-      // Đứng ĐẦU nhóm: đây là mục duy nhất trong nhóm chấm điểm vào tiến độ
-      // thật (avg_quiz_score, cổng mở bài), nên nó là lý do người ta mở nhóm
-      // này ra chứ không phải Game.
-      { href: "/kiem-tra", labelKey: "quiz", icon: GraduationCap },
-      /* i18n-ignore-start: proper noun / product name, identical in both languages (Game) */
-      { href: "/game", label: "Game", icon: Gamepad2 },
-      /* i18n-ignore-end */
-      { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
     ],
   },
   // Hai nhóm cuối - "Tiến độ" và "Tài nguyên" - không còn. Thống kê và Tài
@@ -566,9 +583,14 @@ export default function AppNavbar() {
    *  below it. Written once rather than per call site: the badge and
    *  highlight rules already run to a dozen branches, and three copies of
    *  them is how the desktop and mobile menus drifted apart before. */
-  const renderNavItem = ({ href, label, labelKey, dataLabelKey, icon: Icon }: NavLink, onNavigate?: () => void) => {
+  const renderNavItem = (
+    { href, label, labelKey, dataLabelKey, icon: Icon, activePrefixes }: NavLink,
+    onNavigate?: () => void
+  ) => {
     const navLabel = labelKey ? t.nav[labelKey] : dataLabelKey ? t.dataRest.appNavbar[dataLabelKey] : label;
-    const active = pathname === href;
+    const active = activePrefixes
+      ? activePrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`))
+      : pathname === href;
     const isGame = href === "/game";
     const isCareer = href === "/nghe-nghiep-hoc";
     const isKiemTra = href === "/kiem-tra";
