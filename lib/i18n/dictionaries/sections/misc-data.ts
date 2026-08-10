@@ -12,6 +12,16 @@
 // "đã dịch" trông như tiến bộ. Chúng cố ý KHÔNG được đánh `i18n-ignore`: nếu
 // ngày nào có component đọc tới, chúng phải hiện lại trong danh sách còn thiếu.
 //
+// KẾT CỤC CỦA BỘ ĐẦU TIÊN, ghi lại vì nó là cách xử lý đúng cho cả nhóm này:
+// `SHOP_ITEMS` đã bị XOÁ chứ không được dịch. Bảy chuỗi của nó là bản sao
+// nguyên văn của `CHEST_REWARDS`, nơi `desc` đã có lớp phủ ở lib-strings.ts
+// (`chestDescriptions`) và CombinedRewardsWidget tra qua đó. Cả tệp
+// lib/shop.ts không có tệp nào import, còn cửa hàng thật là CosmeticStore và
+// nó dựng catalog riêng từ `t.cosmeticStore.items`. Dịch bản sao ấy sẽ tạo
+// bảy khoá từ điển không bao giờ được vẽ; xoá nó vừa gỡ mã chết vừa làm con
+// số coverage nói đúng sự thật. Cách nhận ra một bộ thuộc nhóm này: tìm chuỗi
+// đó ở nơi khác trong repo trước, chứ không chỉ tìm component đọc hằng số.
+//
 // BỘ THỨ TƯ TỪNG BỊ XẾP NHẦM VÀO ĐÂY, và phép đo hụt ấy để 15 chuỗi ĐANG hiển
 // thị nằm lại kèm một dòng chú thích nói rằng chúng không hiển thị.
 // `WEEKLY_CAREER_MISSIONS` được mô tả là "chỉ được một route API đọc để ĐẾM".

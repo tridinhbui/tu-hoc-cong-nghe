@@ -22,9 +22,18 @@ export interface ChestReward {
   xp: number; // 0 for non-xp rewards
 }
 
-// Exported so lib/shop.ts can build its catalog from these exact
-// title/theme strings instead of retyping them - keeps a reward "meaning"
-// the same thing whether won from a chest or bought directly in the shop.
+// Đây là bản DUY NHẤT của các chuỗi danh hiệu và giao diện. Trước đây
+// lib/shop.ts giữ một bản sao thứ hai để dựng catalog cửa hàng "từ đúng những
+// chuỗi này", nhưng không tệp nào import lib/shop.ts, và cửa hàng thật
+// (CosmeticStore) dựng catalog riêng từ `t.cosmeticStore.items`. Bản sao ấy đã
+// bị xoá - nếu sau này có giao diện mua bằng XP, hãy tra `chestDescriptions`
+// như CombinedRewardsWidget đang làm, đừng chép chuỗi ra lần nữa.
+/* i18n-ignore-start: `value` và `desc` đã có lớp phủ trong
+   lib/i18n/dictionaries/sections/lib-strings.ts (`chestTitles`,
+   `chestDescriptions`), và CombinedRewardsWidget tra qua đó ở modal mở rương.
+   Khoá của hai bảng ấy CHÍNH LÀ chuỗi tiếng Việt ở đây, vì `value` được ghi
+   xuống cột `reward_value` của bảng `user_chests` - dịch nó tại chỗ sẽ làm mồ
+   côi danh hiệu người chơi đã mở được. */
 export const CHEST_REWARDS: ChestReward[] = [
   { type: "title", value: "Chiến thần tích lũy", desc: "Danh hiệu tôn vinh kỷ luật tích sản", xp: 0 },
   { type: "title", value: "Kẻ hủy diệt nợ nần", desc: "Danh hiệu dành cho người làm chủ tài chính", xp: 0 },
@@ -35,7 +44,8 @@ export const CHEST_REWARDS: ChestReward[] = [
   { type: "xp", value: "15", desc: "Cộng nhẹ +15 XP vào tổng điểm tích lũy", xp: 15 },
   { type: "theme", value: "gold", desc: "Mở khóa Giao diện Hoàng Kim quý tộc", xp: 0 },
   { type: "theme", value: "emerald", desc: "Mở khóa Giao diện Ngọc Lục Bảo đặc biệt", xp: 0 },
-];
+];/* i18n-ignore-end */
+
 
 export async function getUnopenedChestCount(userId: string): Promise<number> {
   const supabase = createClient();
