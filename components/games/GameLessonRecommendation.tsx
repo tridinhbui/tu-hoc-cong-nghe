@@ -70,7 +70,7 @@ export default function GameLessonRecommendation({
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-        {relatedLessons.map((lesson, i) => (
+        {relatedLessons.map((lesson) => (
           <Link
             key={lesson.slug}
             href={`/bai-hoc/${lesson.slug}`}
@@ -79,10 +79,10 @@ export default function GameLessonRecommendation({
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5 text-amber-600 text-[11px] font-extrabold mb-0.5">
                 <BookOpen className="w-3.5 h-3.5 shrink-0" />
-                <span className="truncate">{t.gameRelatedLessons[gameType]?.[i]?.title ?? lesson.title}</span>
+                <span className="truncate">{lesson.title}</span>
               </div>
               <p className="text-[10px] text-stone-500 line-clamp-1 leading-snug">
-                {t.gameRelatedLessons[gameType]?.[i]?.subtitle ?? lesson.subtitle}
+                {lesson.subtitle}
               </p>
             </div>
             <div className="w-6 h-6 rounded-lg bg-stone-100 group-hover:bg-amber-500 group-hover:text-white text-stone-400 flex items-center justify-center shrink-0 transition-colors">

@@ -9,6 +9,13 @@ export interface BadgeDefinition {
 }
 
 // Level 1 is the default starting point, so badges begin at level 2.
+/* i18n-ignore-start: `name` và `description` của mọi huy hiệu đã có lớp phủ.
+   Tên huy hiệu cấp độ lấy từ `t.levelTitles[level]` - CHÍNH nguồn đặt tên cấp -
+   chứ không có mục riêng, để hai bên không lệch nhau; mô tả dùng mẫu
+   `t.badgeLevelDescription`. Huy hiệu khác cấp độ tra `t.badges[key]`. Tất cả
+   đi qua lib/badge-label.ts, dịch ở CHỖ HIỂN THỊ chứ không ở tầng đọc dữ liệu,
+   vì `badge_name` là một cột trên Supabase. lib/__tests__/badges-competency-i18n.test.ts
+   giữ chúng khớp nhau và chặn việc chép tên cấp sang bảng huy hiệu. */
 export const LEVEL_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
   level_2: {
     key: "level_2",
@@ -97,6 +104,8 @@ export const CAREER_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
     icon: "🏁",
   },
 };
+
+/* i18n-ignore-end */
 
 export const BADGE_DEFINITIONS = {
   ...LEVEL_BADGE_DEFINITIONS,

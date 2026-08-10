@@ -166,7 +166,9 @@ export async function getSystemAnalytics(): Promise<SystemAnalytics> {
       trackBreakdown,
       topLessons,
       dailyActiveUsers: dailyStats.map((d) => ({
+        /* i18n-ignore-start: "N/A" là chỗ trống của một NGÀY thiếu trong chuỗi số liệu, hiển thị như nhau ở mọi ngôn ngữ. */
         date: d.date || "N/A",
+/* i18n-ignore-end */
         count: d.count || 0,
       })),
     };

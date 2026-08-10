@@ -6,6 +6,9 @@ import { ApiError, type ApiErrorCode } from "@/lib/api-error-code";
 
 export type StudyRoomTopic = "personal" | "professional" | "cfa";
 
+/* i18n-ignore-start: `label` đã có lớp phủ (`t.studyRoomTopics`), khoá theo
+   `id` - vốn cũng là giá trị được ghi xuống cột `topic` của phòng học, nên nó
+   là khoá chứ không phải chữ. */
 export const STUDY_ROOM_TOPICS: { id: StudyRoomTopic; label: string }[] = [
   { id: "personal", label: "Tài chính cá nhân" },
   { id: "professional", label: "Tài chính chuyên ngành" },
@@ -612,3 +615,5 @@ export function subscribeToRoomMessages(
     supabase.removeChannel(channel);
   };
 }
+
+/* i18n-ignore-end */

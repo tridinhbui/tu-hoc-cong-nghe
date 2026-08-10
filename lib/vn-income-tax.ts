@@ -38,6 +38,9 @@ export interface TaxSchedule {
  *  gọi nó là "hiện hành", nên người học tính lương net ra một con số không còn
  *  đúng, và được nói rằng nó đang đúng. Giữ biểu cũ lại để so sánh trước/sau là
  *  đúng - đó là nội dung của bài; gọi nó là hiện hành thì không. */
+/* i18n-ignore-start: `label` của hai biểu thuế đã có lớp phủ
+   (`t.taxSchedules`), khoá theo id biểu. Mọi thứ còn lại trong hai hằng số này
+   là số: ngưỡng bậc và thuế suất. */
 export const SCHEDULE_PRE_2026: TaxSchedule = {
   label: "7 bậc (trước 2026)",
   brackets: [
@@ -127,3 +130,5 @@ export function computeTax(gross: number, dependents: number, schedule: TaxSched
     effectiveRate: g === 0 ? 0 : tax / g,
   };
 }
+
+/* i18n-ignore-end */

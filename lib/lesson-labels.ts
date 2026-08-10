@@ -1,3 +1,4 @@
+import { format } from "@/lib/i18n";
 import type { Lesson } from "@/lib/lesson-types";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
 
@@ -37,15 +38,32 @@ const TITLE_PATTERNS: RegExp[] = [
   /^([A-Za-zÀ-ỹ][^:0-9]{1,30}?)\s+(\d{1,2})\s*:/,
 ];
 
-export function getLessonDisplayLabel(lesson: LessonLike): string {
+/** Hai mẫu chữ, nhận qua tham số: hàm này gọi từ nhiều component và cả nơi
+ *  không có `useI18n`. Chuỗi tiếng Việt trong thân hàm chỉ còn là dự phòng. */
+export interface LessonLabelStrings {
+  /** Chứa {stage} và {number}. */
+  stageAndNumber: string;
+  bonusCase: string;
+}
+
+/* i18n-ignore-start: hai mẫu DỰ PHÒNG, dùng khi chỗ gọi chưa truyền bảng chữ.
+   Bản dịch nằm ở `lessonLabel` trong lib/i18n/dictionaries/sections/lib-strings.ts
+   và ba component đều truyền `t.lessonLabel` vào. */
+const FALLBACK: LessonLabelStrings = {
+  stageAndNumber: "{stage} · Bài {number}",
+  bonusCase: "Case chuyên sâu",
+};
+/* i18n-ignore-end */
+
+export function getLessonDisplayLabel(lesson: LessonLike, s: LessonLabelStrings = FALLBACK): string {
   for (const pattern of TITLE_PATTERNS) {
     const m = pattern.exec(lesson.title);
-    if (m) return `${m[1].trim()} · Bài ${m[2]}`;
+    if (m) return format(s.stageAndNumber, { stage: m[1].trim(), number: m[2] });
   }
 
   // Nhận ra bài case bằng CẢ tiêu đề, không chỉ bằng `track`: nhiều nơi gọi
   // truyền `track: undefined` nên nhánh dựa vào trường đó không bao giờ chạy.
-  if (lesson.track === "bonus" || lesson.title.startsWith("Case chuyên sâu")) return "Case chuyên sâu";
+  if (lesson.track === "bonus" || lesson.title.startsWith("Case chuyên sâu")) return s.bonusCase;
 
   // Không có tiền tố nào đọc được: lấy tên chặng mà bài đó thuộc về. Vẫn là
   // thứ người học nhìn thấy ở dashboard, khác hẳn một id nội bộ.

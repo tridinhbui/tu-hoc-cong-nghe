@@ -222,8 +222,11 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                 </div>
                 <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1">
                   {(score?.parts ?? []).map((part) => (
-                    <span key={part.label} className="text-[10px] font-bold text-stone-400 dark:text-stone-500">
-                      {part.label}: <span className="text-stone-600 dark:text-stone-300">{part.value}</span>
+                    <span key={part.key} className="text-[10px] font-bold text-stone-400 dark:text-stone-500">
+                      {t.competencyParts[part.key] ?? part.label}:{" "}
+                      <span className="text-stone-600 dark:text-stone-300">
+                        {part.unit ? `${part.value} ${t.competencyUnits[part.unit] ?? part.unit}` : part.value}
+                      </span>
                     </span>
                   ))}
                 </div>

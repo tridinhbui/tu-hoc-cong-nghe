@@ -23,6 +23,7 @@ function isMissingReportStatusColumn(error: { code?: string } | null): boolean {
   return error?.code === "42703" || error?.code === "PGRST204";
 }
 
+/* i18n-ignore-start: danh sách CỘT gửi cho Supabase, không phải chữ. */
 const REPORT_SELECT = `
   id,
   user_id,
@@ -35,6 +36,7 @@ const REPORT_SELECT = `
     full_name
   )
 `;
+/* i18n-ignore-end */
 
 export async function listAiReports(
   status: AiReportStatus | "all" = "open"
@@ -95,15 +97,23 @@ export async function listAiReports(
       lesson_title: resolvedTitle,
       quote: row.quote,
       created_at: row.created_at,
-      user_email: row.user_profiles?.email ?? "Không rõ",
-      user_name: row.user_profiles?.full_name ?? "Ẩn danh",
+      // Rỗng chứ không phải "Không rõ"/"Ẩn danh": bốn màn hình quản trị đọc
+      // trường này đều đã có `|| ta.unknownLearner` ở cuối chuỗi fallback, và
+      // một chuỗi tiếng Việt viết cứng ở đây CHE mất bản đã dịch đó - nó không
+      // bao giờ rỗng nên nhánh sau dấu `||` không bao giờ chạy.
+      user_email: row.user_profiles?.email ?? "",
+      user_name: row.user_profiles?.full_name ?? "",
     };
   });
 }
 
+/* i18n-ignore-start: thông báo vận hành - nó bảo quản trị viên chạy một tệp
+   migration cụ thể, và tên tệp SQL là thứ không dịch được. Cùng loại với
+   "Bảng focus_sessions chưa tồn tại" ở lib/admin/world-usage.ts. */
 const MIGRATION_REQUIRED =
   "Chưa chạy migration 20260826_ai_report_status.sql trên môi trường này, " +
   "nên không đóng được báo cáo. Chạy migration rồi thử lại.";
+/* i18n-ignore-end */
 
 /**
  * Đóng cả cụm báo cáo của một bài học sau khi nội dung đã được sửa.

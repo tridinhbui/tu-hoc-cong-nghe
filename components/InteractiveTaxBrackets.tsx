@@ -100,7 +100,7 @@ export default function InteractiveTaxBrackets() {
                 : "bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300"
             }`}
           >
-            {(id === "pre2026" ? SCHEDULE_PRE_2026 : SCHEDULE_2026).label}
+            {t.taxSchedules[id] ?? (id === "pre2026" ? SCHEDULE_PRE_2026 : SCHEDULE_2026).label}
           </button>
         ))}
       </div>

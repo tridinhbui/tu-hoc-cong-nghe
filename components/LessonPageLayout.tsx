@@ -231,7 +231,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // What the reader is actually shown. Falls back to durationMin for lessons
   // that bypass the generator and so have no computed estimate.
   const readingMin = lesson.readingMinutes ?? durationMin;
-  const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: lesson.track });
+  const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: lesson.track }, t.lessonLabel);
 
   useEffect(() => {
     if (!lesson.recallDay) return;

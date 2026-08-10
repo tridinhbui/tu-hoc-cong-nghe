@@ -209,7 +209,10 @@ export async function getPublicUserProfile(userId: string): Promise<PublicUserPr
 
   return {
     id: safeProfile.id,
-    displayName: safeProfile.full_name?.trim() || "Người học",
+    // Rỗng chứ không phải "Người học": hàm này chạy phía dữ liệu và không biết
+    // người đọc đang ở ngôn ngữ nào. Chỗ hiển thị rơi về
+    // `t.dashboard.defaultUserName`, vốn đã có ở cả hai ngôn ngữ.
+    displayName: safeProfile.full_name?.trim() || "",
     avatarUrl: safeProfile.avatar_url,
     bio: safeProfile.bio,
     joinedAt: safeProfile.created_at,

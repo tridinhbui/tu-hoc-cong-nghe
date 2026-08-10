@@ -54,6 +54,8 @@ import { motivationVi, motivationEn } from "./motivation";
 import { questsVi, questsEn } from "./quests";
 import { gamesMetaVi, gamesMetaEn } from "./games-meta";
 import { avatarOptionsVi, avatarOptionsEn } from "./avatar-options";
+import { miscDataVi, miscDataEn } from "./misc-data";
+import { libStringsVi, libStringsEn } from "./lib-strings";
 import { bespokeLessonsVi, bespokeLessonsEn } from "./bespoke-lessons";
 import { badgesCompetencyVi, badgesCompetencyEn } from "./badges-competency";
 import { wisdomCardsVi, wisdomCardsEn } from "./wisdom-cards";
@@ -108,6 +110,8 @@ export const viSections = {
   ...questsVi,
   ...gamesMetaVi,
   ...avatarOptionsVi,
+  ...miscDataVi,
+  ...libStringsVi,
   ...bespokeLessonsVi,
   ...badgesCompetencyVi,
   ...wisdomCardsVi,
@@ -164,6 +168,8 @@ export const enSections: typeof viSections = {
   ...questsEn,
   ...gamesMetaEn,
   ...avatarOptionsEn,
+  ...miscDataEn,
+  ...libStringsEn,
   ...bespokeLessonsEn,
   ...badgesCompetencyEn,
   ...wisdomCardsEn,

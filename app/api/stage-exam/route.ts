@@ -151,7 +151,9 @@ export async function GET(request: NextRequest) {
   );
   if (cooldownMs > 0) {
     return NextResponse.json(
-      { error: "cooldown", cooldownMs, message: `Thi lại sau ${formatCooldown(cooldownMs)}.` },
+      // Chỉ trả về CON SỐ, không trả câu: route chạy ở server và không biết
+      // người dùng đang đọc ngôn ngữ nào. Client dựng câu từ `cooldownMs`.
+      { error: "cooldown", cooldownMs },
       { status: 429 }
     );
   }

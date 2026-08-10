@@ -38,6 +38,7 @@ const should = (domain: SkillDomainId, target: number): SkillRequirement => ({ d
 
 /** Targets that are certifications rather than jobs. Keyed in the same
  *  namespace as career ids - the UI passes whichever the user picked. */
+/* i18n-ignore-start: "CFA Level I" là tên chứng chỉ, giống nhau ở hai ngôn ngữ. */
 export const CERTIFICATION_TARGETS: Record<string, { label: string; emoji: string; requirements: SkillRequirement[] }> = {
   "cfa-level-1": {
     label: "CFA Level I",
@@ -54,6 +55,7 @@ export const CERTIFICATION_TARGETS: Record<string, { label: string; emoji: strin
     ],
   },
 };
+/* i18n-ignore-end */
 
 const CAREER_REQUIREMENTS: Record<string, SkillRequirement[]> = {
   "investment-banking": [

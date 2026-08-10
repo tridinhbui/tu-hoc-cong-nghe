@@ -101,7 +101,14 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
       if (res.status === 429) {
         // Cooldown after a failed attempt - the server won't hand out a fresh
         // draw yet, which is what stops re-rolling until an easy set appears.
-        toast.error(data.message ?? t.stageSkip.cooldownDefault);
+        // Câu chờ dựng Ở ĐÂY từ `cooldownMs`, không dùng `data.message`: route API
+        // ghép sẵn một câu tiếng Việt và gửi xuống, nên người đọc tiếng Anh nhận
+        // một dòng tiếng Việt giữa giao diện tiếng Anh.
+        toast.error(
+          typeof data.cooldownMs === "number" && data.cooldownMs > 0
+            ? format(t.stageSkip.cooldownRetry, { time: formatCooldown(data.cooldownMs, t.cooldown) })
+            : t.stageSkip.cooldownDefault
+        );
         setView("pick");
         return;
       }
@@ -343,7 +350,7 @@ export default function StageSkipExamPanel({ userId }: { userId: string | null }
             <p className="text-sm font-bold text-stone-600 dark:text-stone-400">
               {t.stageSkip.failedResultPart1} {passPercent}
               {t.stageSkip.failedResultPart2}{" "}
-              {formatCooldown(STAGE_EXAM_RETRY_COOLDOWN_MS)} {t.stageSkip.failedResultPart3}
+              {formatCooldown(STAGE_EXAM_RETRY_COOLDOWN_MS, t.cooldown)} {t.stageSkip.failedResultPart3}
             </p>
           )}
           <button

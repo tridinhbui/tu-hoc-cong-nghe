@@ -83,7 +83,9 @@ export async function savePassedMilestone(
     // diagnosable from the toast instead of another round of "vẫn không
     // được" back-and-forth with no way to tell what's actually failing.
     console.error("Error saving milestone completion:", error);
+    /* i18n-ignore-start: chuỗi lỗi kỹ thuật ghép từ mã Supabase, dành cho log và cho người sửa lỗi - không phải câu cho người học. */
     return { ok: false, errorMessage: `${error.code ?? "?"}: ${error.message ?? "unknown error"}` };
+/* i18n-ignore-end */
   }
 
   return { ok: true };

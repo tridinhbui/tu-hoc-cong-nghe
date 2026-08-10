@@ -123,7 +123,7 @@ function Shop({ accent, gear, tryOn, onTryOn, onClose }: Props) {
               }`}
             >
               <span className="mr-1">{item.icon}</span>
-              {item.name}
+              {t.rpgItems[key] ?? item.name}
             </button>
           );
         })}

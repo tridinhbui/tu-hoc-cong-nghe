@@ -71,7 +71,11 @@ export default async function PublicUserProfilePage({
   ]);
   const isFollowing = Boolean(followRow);
 
-  const initials = profile.displayName
+  // `displayName` rỗng khi hồ sơ chưa đặt tên - lib/public-user-profile.ts trả
+  // rỗng thay vì một tên tiếng Việt viết cứng, vì nó không biết ngôn ngữ nào.
+  const displayName = profile.displayName || t.dashboard.defaultUserName;
+
+  const initials = displayName
     .split(" ")
     .map((part) => part[0])
     .join("")
@@ -109,7 +113,7 @@ export default async function PublicUserProfilePage({
               {isValidAvatar(profile.avatarUrl) ? (
                 <Image
                   src={profile.avatarUrl}
-                  alt={profile.displayName}
+                  alt={displayName}
                   width={88}
                   height={88}
                   className="w-[88px] h-[88px] rounded-full object-cover border-2 border-stone-200 dark:border-stone-700"
@@ -125,7 +129,7 @@ export default async function PublicUserProfilePage({
                   {t.publicProfile.eyebrow}
                 </p>
                 <h2 className="text-3xl font-extrabold text-stone-900 dark:text-stone-100 leading-tight">
-                  {profile.displayName}
+                  {displayName}
                 </h2>
                 <p className="text-sm text-stone-500 dark:text-stone-400 mt-2">
                   {format(t.publicProfile.joinedAt, { date: new Date(profile.joinedAt).toLocaleDateString(intlLocale(locale)) })}

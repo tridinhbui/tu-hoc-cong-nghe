@@ -356,8 +356,10 @@ interface CommunityNotificationRow {
   actor: { full_name: string | null; avatar_url: string | null } | null;
 }
 
+/* i18n-ignore-start: danh sách CỘT gửi cho Supabase, không phải chữ. */
 const NOTIFICATION_SELECT_BASE =
   "id, actor_id, type, post_id, comment_id, emoji, created_at, read_at, actor:actor_id(full_name, avatar_url)";
+/* i18n-ignore-end */
 const NOTIFICATION_SELECT = `${NOTIFICATION_SELECT_BASE}, lesson_slug, detail`;
 
 /** `lesson_slug`/`detail` đến từ migration 20260901. Môi trường chưa chạy nó
@@ -394,7 +396,8 @@ export async function getNotifications(userId: string, limit = 20): Promise<Comm
   return ((data ?? []) as unknown as CommunityNotificationRow[]).map((row) => ({
     id: row.id,
     actor_id: row.actor_id,
-    actor_name: row.actor?.full_name || "Người học",
+    // Rỗng chứ không phải tên tiếng Việt viết cứng - xem lib/public-user-profile.ts.
+    actor_name: row.actor?.full_name || "",
     actor_avatar: row.actor?.avatar_url ?? null,
     type: row.type,
     post_id: row.post_id,

@@ -193,15 +193,17 @@ describe("retryCooldownRemaining", () => {
   });
 });
 
+const VI_COOLDOWN = { minutes: "{n} phút", hours: "{n} giờ", hoursMinutes: "{h} giờ {m} phút" };
+
 describe("formatCooldown", () => {
   it("reads in minutes under an hour, rounding up", () => {
-    expect(formatCooldown(60_000)).toBe("1 phút");
-    expect(formatCooldown(90_000)).toBe("2 phút");
+    expect(formatCooldown(60_000, VI_COOLDOWN)).toBe("1 phút");
+    expect(formatCooldown(90_000, VI_COOLDOWN)).toBe("2 phút");
   });
 
   it("reads in hours and minutes above an hour", () => {
-    expect(formatCooldown(60 * 60_000)).toBe("1 giờ");
-    expect(formatCooldown(65 * 60_000)).toBe("1 giờ 5 phút");
+    expect(formatCooldown(60 * 60_000, VI_COOLDOWN)).toBe("1 giờ");
+    expect(formatCooldown(65 * 60_000, VI_COOLDOWN)).toBe("1 giờ 5 phút");
   });
 });
 

@@ -1,3 +1,4 @@
+import { format } from "@/lib/i18n";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange, type Stage } from "@/lib/track-stages";
 
 // "Thi vượt chặng" - pass one exam and the whole chặng is credited as
@@ -48,13 +49,25 @@ export function retryCooldownRemaining(lastFailedAt: string | null, now: number 
   return Math.max(0, STAGE_EXAM_RETRY_COOLDOWN_MS - elapsed);
 }
 
-/** "42 phút" / "1 giờ 5 phút" - for telling the learner when they can retry. */
-export function formatCooldown(ms: number): string {
+/** "42 phút" / "1 giờ 5 phút" - for telling the learner when they can retry.
+ *
+ *  Nhận ba mẫu qua tham số: hàm này gọi từ cả component lẫn route API, và route
+ *  không có `useI18n`. Thứ tự "giờ" trước "phút" khác nhau giữa các ngôn ngữ,
+ *  nên phải là một mẫu hoàn chỉnh chứ không phải hai chuỗi ghép lại. */
+export interface CooldownStrings {
+  minutes: string;
+  hours: string;
+  hoursMinutes: string;
+}
+
+export function formatCooldown(ms: number, s: CooldownStrings): string {
   const totalMinutes = Math.ceil(ms / 60000);
-  if (totalMinutes < 60) return `${totalMinutes} phút`;
+  if (totalMinutes < 60) return format(s.minutes, { n: totalMinutes });
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
-  return minutes === 0 ? `${hours} giờ` : `${hours} giờ ${minutes} phút`;
+  return minutes === 0
+    ? format(s.hours, { n: hours })
+    : format(s.hoursMinutes, { h: hours, m: minutes });
 }
 
 export function getTrackStages(track: StageExamTrack): Stage[] {

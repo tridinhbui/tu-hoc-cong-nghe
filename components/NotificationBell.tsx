@@ -24,10 +24,10 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 function notificationText(n: CommunityNotification, t: Dictionary): string {
   switch (n.type) {
     case "comment":
-      return format(t.notifications.comment, { actor: n.actor_name });
+      return format(t.notifications.comment, { actor: n.actor_name || t.dashboard.defaultUserName });
     case "reaction":
       return format(t.notifications.reaction, {
-        actor: n.actor_name,
+        actor: n.actor_name || t.dashboard.defaultUserName,
         emoji: n.emoji ?? t.notifications.reactionFallback,
       });
     case "appeal_approved":
@@ -258,7 +258,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
                     return isValidAvatar(n.actor_avatar) ? (
                       <Image
                         src={n.actor_avatar!}
-                        alt={n.actor_name}
+                        alt={n.actor_name || t.dashboard.defaultUserName}
                         width={32}
                         height={32}
                         className="w-8 h-8 rounded-full object-cover shrink-0"

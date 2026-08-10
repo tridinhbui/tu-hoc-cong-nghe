@@ -337,7 +337,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
         {/* Chọn nhóm: đưa lên trước, không cắt bớt. */}
         <div className="mt-5">
           <p className="text-sm font-bold text-stone-700 dark:text-stone-200">
-            {WORRY_THEME_PROMPT.question}
+            {t.worryThemePrompt.question}
           </p>
           <div className="mt-2.5 flex flex-wrap gap-1.5">
             {WORRY_THEMES.map((theme) => {
@@ -354,7 +354,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                       : "border-stone-200 bg-white text-stone-600 hover:bg-stone-100 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-400 dark:hover:bg-stone-800"
                   }`}
                 >
-                  {theme.label}
+                  {t.worryThemes[theme.id] ?? theme.label}
                 </button>
               );
             })}
@@ -364,12 +364,12 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                 onClick={() => setWorryTheme(null)}
                 className="rounded-full px-3 py-1.5 text-xs font-semibold text-stone-400 underline-offset-2 hover:underline dark:text-stone-500"
               >
-                {WORRY_THEME_PROMPT.clear}
+                {t.worryThemePrompt.clear}
               </button>
             )}
           </div>
           <p className="mt-2 text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
-            {WORRY_THEME_PROMPT.note}
+            {t.worryThemePrompt.note}
           </p>
         </div>
 
@@ -378,7 +378,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
         )}
         {matchedWorries.length > 0 && (
           <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.18em] text-stone-400 dark:text-stone-500">
-            {WORRY_THEME_PROMPT.restHeading}
+            {t.worryThemePrompt.restHeading}
           </p>
         )}
         <ul className="mt-3 space-y-2.5">{restWorries.map(renderWorry)}</ul>

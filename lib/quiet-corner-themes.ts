@@ -27,6 +27,9 @@ export interface WorryTheme {
   worryIds: readonly string[];
 }
 
+/* i18n-ignore-start: `label` của năm nhóm và bốn dòng của khối chọn nhóm đã có
+   lớp phủ trong lib/i18n/dictionaries/sections/misc-data.ts, khoá theo `id`.
+   `worryIds` là khoá tra nỗi lo trong lib/quiet-corner.ts, không phải chữ. */
 export const WORRY_THEMES: readonly WorryTheme[] = [
   {
     id: "so-sanh",
@@ -91,3 +94,5 @@ export function orderWorriesByTheme(
     rest: worries.filter((w) => !ids.has(w.id)),
   };
 }
+
+/* i18n-ignore-end */

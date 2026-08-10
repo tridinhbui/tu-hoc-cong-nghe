@@ -84,6 +84,11 @@ export const DOMAIN_WEIGHTS: Record<DomainType, number> = {
   ai_for_finance: 1.0
 };
 
+/* i18n-ignore-start: bảy tên lĩnh vực này ĐÃ là tiếng Anh trong bản gốc
+   ("Accounting", "Corporate Finance", "AI for Finance") - chúng là tên môn/lĩnh
+   vực dùng chung ở cả hai ngôn ngữ. Đưa vào từ điển sẽ tạo bảy cặp giá trị
+   giống hệt nhau giữa vi và en, mà dictionary-parity không phân biệt được với
+   bản dịch bị bỏ quên. */
 export const DOMAIN_NAMES: Record<DomainType, string> = {
   accounting: "Accounting",
   corporate_finance: "Corporate Finance",
@@ -93,6 +98,7 @@ export const DOMAIN_NAMES: Record<DomainType, string> = {
   risk_management: "Risk Management",
   ai_for_finance: "AI for Finance"
 };
+/* i18n-ignore-end */
 
 /** Công thức tính XP yêu cầu cho mỗi level của từng Domain: 200 * (L_d - 1)^1.5 + 100 */
 export function getDomainXpForLevel(level: number): number {

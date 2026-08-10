@@ -57,6 +57,9 @@ export interface Lamp {
  */
 export const LAMP_RADII = [22, 36, 55] as const;
 
+/* i18n-ignore-start: ba nhãn kích thước đèn đã có lớp phủ trong
+   lib/i18n/dictionaries/sections/lib-strings.ts (`lampSizes`), khớp THEO VỊ TRÍ
+   với LAMP_RADII ngay trên. WarmLamps.tsx tra `t.lampSizes[lamp.size]`. */
 export const LAMP_SIZE_LABELS = ["Đèn đọc", "Đèn bàn", "Đèn phòng"] as const;
 
 /** Three is where the metaphor breaks: past that it is stage lighting. */
@@ -239,3 +242,5 @@ export function parseLampState(raw: string | null): LampState {
     return DEFAULT_LAMP_STATE;
   }
 }
+
+/* i18n-ignore-end */

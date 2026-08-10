@@ -109,8 +109,11 @@ function Avatar({ name, avatarUrl, size = 36 }: { name?: string | null; avatarUr
   );
 }
 
-function topicLabel(topic: StudyRoomTopic) {
-  return STUDY_ROOM_TOPICS.find((t) => t.id === topic)?.label ?? topic;
+// Nhận bảng chữ qua tham số vì hàm nằm ở module scope, ngoài component - cùng
+// cách `timeAgo` và `badgeName` đã làm. `STUDY_ROOM_TOPICS[].label` chỉ còn là
+// bản dự phòng cho chủ đề mới chưa kịp khai trong từ điển.
+function topicLabel(topic: StudyRoomTopic, topics: Record<string, string>) {
+  return topics[topic] ?? STUDY_ROOM_TOPICS.find((entry) => entry.id === topic)?.label ?? topic;
 }
 
 function missionIcon(key: StudyRoomMission["mission_key"]) {
@@ -1290,7 +1293,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </span>
                 <div className="min-w-0">
                   <h2 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 truncate">
-                    {format(t.studyGroups.roomHeader, { topic: topicLabel(myRoom.topic), count: myRoom.member_count, max: myRoom.max_members })}
+                    {format(t.studyGroups.roomHeader, { topic: topicLabel(myRoom.topic, t.studyRoomTopics), count: myRoom.member_count, max: myRoom.max_members })}
                   </h2>
                   <div className="flex items-center gap-2 mt-0.5">
                     <div className="w-20 sm:w-32 h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
@@ -1551,7 +1554,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           chỗ khác trong trang. */}
                       <span className="hidden sm:inline">
                         {" · "}
-                        {topicLabel(myRoom.topic).toUpperCase()} · {t.libData.roomTimeOfDay[getRoomPhase(new Date().getHours())].toUpperCase()}
+                        {topicLabel(myRoom.topic, t.studyRoomTopics).toUpperCase()} · {t.libData.roomTimeOfDay[getRoomPhase(new Date().getHours())].toUpperCase()}
                       </span>
                     </span>
                     <button
@@ -1625,7 +1628,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       missionLines={missions.map(
                         (m) => `${m.completed ? "✓" : "•"} ${m.title}: ${m.current_value}/${m.target_value}`
                       )}
-                      topicLabel={topicLabel(myRoom.topic)}
+                      topicLabel={topicLabel(myRoom.topic, t.studyRoomTopics)}
                       gear={gear}
                       members={myRoomMembers.map((m) => ({
                         userId: m.user_id,
@@ -2747,7 +2750,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     }
                     return (
                       <p className="text-xs sm:text-sm font-black text-stone-100 mt-1 truncate">
-                        {format(t.studyGroups.roomTopic, { topic: topicLabel(myRoom.topic) })}
+                        {format(t.studyGroups.roomTopic, { topic: topicLabel(myRoom.topic, t.studyRoomTopics) })}
                       </p>
                     );
                   })()}

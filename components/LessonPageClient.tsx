@@ -71,7 +71,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
   // the metaphor line types itself out first, then the takeaways/mistake
   // warning fade in - instead of the whole card appearing at once.
   const [metaphorTyped, setMetaphorTyped] = useState(false);
-  const lessonLabel = getLessonDisplayLabel(lesson);
+  const lessonLabel = getLessonDisplayLabel(lesson, t.lessonLabel);
 
   // Đầu phễu bài học.
   //

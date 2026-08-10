@@ -19,6 +19,10 @@ export interface CharacterEquipments {
   car?: string;
 }
 
+/* i18n-ignore-start: `name` đã có lớp phủ trong
+   lib/i18n/dictionaries/sections/lib-strings.ts (`rpgItems`), khoá theo id vật
+   phẩm - vốn nằm trong kho đồ đã lưu của người chơi. CivicPanel tra
+   `t.rpgItems[key]`; `icon` và `type` là dữ liệu. */
 export const ITEM_DESCRIPTIONS: Record<string, { name: string; type: keyof CharacterEquipments; icon: string }> = {
   weapon_valuation_pen: { name: "Bút Định Giá Thần Kỳ", type: "weapon", icon: "🖊️" },
   weapon_lbo_sword: { name: "Kiếm Phân Tích LBO", type: "weapon", icon: "⚔️" },
@@ -37,7 +41,8 @@ export const ITEM_DESCRIPTIONS: Record<string, { name: string; type: keyof Chara
   title_vip_diamond: { name: "Huy Hiệu VIP Kim Cương", type: "accessory", icon: "💎" },
   chat_effect_dragon_fire: { name: "Khung Chat Rồng Lửa", type: "accessory", icon: "🔥" },
   chat_effect_diamond_glow: { name: "Khung Chat Kim Cương", type: "accessory", icon: "💎" },
-};
+};/* i18n-ignore-end */
+
 
 /** Món đồ nào có hình khối trong thế giới 3D.
  *

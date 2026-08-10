@@ -242,6 +242,11 @@ export interface CompetencyDef {
   actionLabel: string;
 }
 
+/* i18n-ignore-start: `label`, `blurb`, `actionLabel` của bảy trục đã có lớp
+   phủ trong lib/i18n/dictionaries/sections/badges-competency.ts, khoá theo
+   `id`. Sáu trục có nhãn vốn đã là tiếng Anh ("Valuation", "CFA readiness")
+   cố ý KHÔNG có mục dịch - chép chúng vào từ điển tạo cặp giá trị trùng nhau
+   giữa hai ngôn ngữ, và dictionary-parity đã bắt đúng chuyện đó. */
 export const COMPETENCIES: CompetencyDef[] = [
   {
     id: "finance_knowledge",
@@ -303,6 +308,7 @@ export const COMPETENCIES: CompetencyDef[] = [
     actionLabel: "Luyện IB technicals",
   },
 ];
+/* i18n-ignore-end */
 
 export interface QuizSessionSignal {
   track: "personal" | "professional" | "cfa" | "ib" | "mock-interview";
@@ -335,8 +341,17 @@ export interface CompetencyScore {
   /** 0-100, rounded. */
   score: number;
   /** Human-readable breakdown of what produced the number, so the UI can
-   *  answer "why is this 45%?" without re-deriving anything. */
-  parts: { label: string; value: string }[];
+   *  answer "why is this 45%?" without re-deriving anything.
+   *
+   *  `key` và `unit` tồn tại vì hàm này chạy ở ROUTE API
+   *  (app/api/career-profile/route.ts) rồi gửi kết quả xuống client - chuỗi
+   *  sinh ở server thì từ điển phía client không với tới được. `label` là bản
+   *  tiếng Việt dự phòng; giao diện tra `t.competencyParts[key]` trước.
+   *
+   *  `unit` tách khỏi `value` vì cùng lý do: "3/10 bài" ghép sẵn ở server thì
+   *  không dịch được chữ "bài", còn value "3/10" cộng một khoá đơn vị thì
+   *  dịch được. Mục nào không có đơn vị (phần trăm, tỷ lệ module) thì bỏ trống. */
+  parts: { key: string; label: string; value: string; unit?: string }[];
 }
 
 function clampPercent(value: number): number {
@@ -392,6 +407,11 @@ export const IB_DRILL_SATURATION = 60;
 /** Mock interviews that count as fully rehearsed. */
 export const MOCK_INTERVIEW_SATURATION = 3;
 
+/* i18n-ignore-start: `label` của mỗi `part` là bản tiếng Việt DỰ PHÒNG. Hàm
+   này chạy ở route API rồi gửi kết quả xuống client, nên nó gửi kèm `key` và
+   `unit`; giao diện tra `t.competencyParts[key]` và `t.competencyUnits[unit]`.
+   lib/__tests__/badges-competency-i18n.test.ts chạy chính hàm này để lấy bộ
+   khoá thật rồi đối chiếu, nên thêm một part mà quên dịch sẽ làm đỏ build. */
 export function computeCompetencyScores(signals: CompetencySignals): CompetencyScore[] {
   const completed = new Set(signals.completedLessonIds);
 
@@ -471,65 +491,66 @@ export function computeCompetencyScores(signals: CompetencySignals): CompetencyS
       id: "finance_knowledge",
       score: clampPercent(financeKnowledge * 100),
       parts: [
-        { label: "Kế toán & BCTC", value: `${accountingCounts.done}/${accountingCounts.total} bài` },
-        { label: "Cổ phiếu & danh mục", value: `${counts("equity_portfolio").done}/${counts("equity_portfolio").total} bài` },
-        { label: "Trái phiếu", value: `${counts("fixed_income").done}/${counts("fixed_income").total} bài` },
+        { key: "accounting", label: "Kế toán & BCTC", value: `${accountingCounts.done}/${accountingCounts.total}`, unit: "lessons" },
+        { key: "equityPortfolio", label: "Cổ phiếu & danh mục", value: `${counts("equity_portfolio").done}/${counts("equity_portfolio").total}`, unit: "lessons" },
+        { key: "fixedIncome", label: "Trái phiếu", value: `${counts("fixed_income").done}/${counts("fixed_income").total}`, unit: "lessons" },
       ],
     },
     {
       id: "excel_modeling",
       score: clampPercent(excelModeling * 100),
       parts: [
-        { label: "Mô hình tài chính", value: `${modelingCounts.done}/${modelingCounts.total} bài` },
-        { label: "Ngân sách & dự báo", value: `${fpaCounts.done}/${fpaCounts.total} bài` },
+        { key: "modeling", label: "Mô hình tài chính", value: `${modelingCounts.done}/${modelingCounts.total}`, unit: "lessons" },
+        { key: "budgeting", label: "Ngân sách & dự báo", value: `${fpaCounts.done}/${fpaCounts.total}`, unit: "lessons" },
       ],
     },
     {
       id: "valuation",
       score: clampPercent(valuationScore * 100),
       parts: [
-        { label: "Bài định giá", value: `${valuationCounts.done}/${valuationCounts.total} bài` },
-        { label: "M&A", value: `${maCounts.done}/${maCounts.total} bài` },
+        { key: "valuationLessons", label: "Bài định giá", value: `${valuationCounts.done}/${valuationCounts.total}`, unit: "lessons" },
+        { key: "ma", label: "M&A", value: `${maCounts.done}/${maCounts.total}`, unit: "lessons" },
       ],
     },
     {
       id: "interview_readiness",
       score: clampPercent(interviewScore * 100),
       parts: [
-        { label: "Câu hỏi IB đã làm", value: `${ibQuiz.questions} câu` },
-        { label: "Độ chính xác IB", value: ibQuiz.questions > 0 ? `${Math.round(ibQuiz.accuracy * 100)}%` : "—" },
-        { label: "Mock interview", value: `${mock.sessions} lần` },
+        { key: "ibQuestions", label: "Câu hỏi IB đã làm", value: `${ibQuiz.questions}`, unit: "questions" },
+        { key: "ibAccuracy", label: "Độ chính xác IB", value: ibQuiz.questions > 0 ? `${Math.round(ibQuiz.accuracy * 100)}%` : "—" },
+        { key: "mockInterview", label: "Mock interview", value: `${mock.sessions}`, unit: "sessions" },
       ],
     },
     {
       id: "cfa_readiness",
       score: clampPercent(cfaScore * 100),
       parts: [
-        { label: "Bài thuộc 10 môn CFA", value: `${cfaLessonsDone}/${cfaLessonSet.size} bài` },
-        { label: "Module CFA", value: `${signals.completedCfaModuleIds.length}/${signals.totalCfaModules}` },
-        { label: "Quiz CFA", value: `${cfaQuiz.questions} câu` },
+        { key: "cfaLessons", label: "Bài thuộc 10 môn CFA", value: `${cfaLessonsDone}/${cfaLessonSet.size}`, unit: "lessons" },
+        { key: "cfaModules", label: "Module CFA", value: `${signals.completedCfaModuleIds.length}/${signals.totalCfaModules}` },
+        { key: "cfaQuiz", label: "Quiz CFA", value: `${cfaQuiz.questions}`, unit: "questions" },
       ],
     },
     {
       id: "frm_readiness",
       score: clampPercent(frmScore * 100),
       parts: [
-        { label: "Bài thuộc 10 môn FRM", value: `${frmLessonsDone}/${frmLessonSet.size} bài` },
-        { label: "Phái sinh & rủi ro", value: `${counts("derivatives_risk").done}/${counts("derivatives_risk").total} bài` },
-        { label: "Định lượng", value: `${counts("quant").done}/${counts("quant").total} bài` },
+        { key: "frmLessons", label: "Bài thuộc 10 môn FRM", value: `${frmLessonsDone}/${frmLessonSet.size}`, unit: "lessons" },
+        { key: "derivativesRisk", label: "Phái sinh & rủi ro", value: `${counts("derivatives_risk").done}/${counts("derivatives_risk").total}`, unit: "lessons" },
+        { key: "quant", label: "Định lượng", value: `${counts("quant").done}/${counts("quant").total}`, unit: "lessons" },
       ],
     },
     {
       id: "ib_readiness",
       score: clampPercent(ibScore * 100),
       parts: [
-        { label: "M&A", value: `${maCounts.done}/${maCounts.total} bài` },
-        { label: "Định giá", value: `${valuationCounts.done}/${valuationCounts.total} bài` },
-        { label: "Technicals đã luyện", value: `${ibQuiz.questions} câu` },
+        { key: "ma", label: "M&A", value: `${maCounts.done}/${maCounts.total}`, unit: "lessons" },
+        { key: "valuation", label: "Định giá", value: `${valuationCounts.done}/${valuationCounts.total}`, unit: "lessons" },
+        { key: "technicalsDrilled", label: "Technicals đã luyện", value: `${ibQuiz.questions}`, unit: "questions" },
       ],
     },
   ];
 }
+/* i18n-ignore-end */
 
 /** Per-domain coverage, used by the Job Skill Gap panel. Same numbers the
  *  competencies are built from, exposed one level lower. */
