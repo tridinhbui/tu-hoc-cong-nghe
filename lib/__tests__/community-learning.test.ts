@@ -143,7 +143,13 @@ describe("chỉ hiện con số đếm được", () => {
   it("7 ngày ở giao diện khớp p_days truyền vào RPC", () => {
     // Câu phụ nói "trong tuần này". Đổi một bên mà quên bên kia thì câu đó sai,
     // và không có gì khác bắt được vì cả hai đều hợp lệ.
-    expect(COMPONENT).toContain("getCommunityLearningNow(24, 7)");
+    //
+    // Chỉ khớp ĐỐI SỐ THỨ HAI. Bản đầu khớp cả chuỗi `(24, 7)`, nên nó cũng
+    // khoá luôn cái trần số người - một con số chẳng liên quan gì tới chữ "tuần
+    // này", và khi dải chuyển sang cuộn ngang thì nâng trần lên làm đỏ một bộ
+    // kiểm nói về chuyện khác. Một bộ kiểm bắt đúng thứ nó nói mới ngăn được
+    // người ta nới nó ra cho qua chuyện.
+    expect(COMPONENT).toMatch(/getCommunityLearningNow\(\s*\d+\s*,\s*7\s*\)/);
     expect(SQL).toMatch(/p_days int default 7/);
   });
 });

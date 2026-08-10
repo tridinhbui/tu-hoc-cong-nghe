@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Flame, Users } from "lucide-react";
@@ -29,16 +29,46 @@ import { format } from "@/lib/i18n";
 export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: LessonMeta[] }) {
   const { t } = useI18n();
   const [learners, setLearners] = useState<CommunityLearner[] | null>(null);
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const [edges, setEdges] = useState({ left: false, right: false });
 
   useEffect(() => {
     let cancelled = false;
-    getCommunityLearningNow(24, 7).then((rows) => {
+    // Trần 24 cũ cắt đúng thứ mà dòng phụ đề tuyên bố: nó đếm số dòng trả về,
+    // nên một tuần có 40 người giữ chuỗi vẫn đọc ra "24 người học". Dải này
+    // cuộn ngang nên số thẻ không bị giới hạn bởi chỗ hiển thị; giới hạn duy
+    // nhất còn lại là kích thước phản hồi.
+    getCommunityLearningNow(120, 7).then((rows) => {
       if (!cancelled) setLearners(rows);
     });
     return () => {
       cancelled = true;
     };
   }, []);
+
+  // Thanh cuộn bị ẩn (`scrollbar-none`), nên phải có thứ khác nói rằng còn thẻ
+  // ở ngoài khung - không thì một dải cắt ngang trông y như một dải hỏng. Hai
+  // vệt mờ chỉ hiện đúng phía còn nội dung: hiện cả hai lúc nào cũng được thì
+  // vệt bên phải khi đã cuộn hết lại nói dối theo chiều ngược lại.
+  const syncEdges = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setEdges({ left: el.scrollLeft > 4, right: el.scrollLeft < max - 4 });
+  }, []);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    syncEdges();
+    // Không chỉ nghe `scroll`: số thẻ tới sau lần dựng đầu, và chiều rộng khung
+    // đổi theo cột của bảng điều khiển. Cả hai đều đổi câu trả lời "còn gì ở
+    // ngoài không" mà không sinh ra một sự kiện cuộn nào.
+    const observer = new ResizeObserver(syncEdges);
+    observer.observe(el);
+    for (const child of Array.from(el.children)) observer.observe(child);
+    return () => observer.disconnect();
+  }, [syncEdges, learners]);
 
   // `null` là chưa tải xong, `[]` là tải xong và không có ai. Hai trạng thái đó
   // phải khác nhau: gộp lại thì lần dựng đầu tiên nào cũng nháy một khối rỗng.
@@ -62,7 +92,26 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
         </div>
       </div>
 
-      <div className="-mx-1 flex gap-2.5 overflow-x-auto px-1 pb-1 scrollbar-none">
+      <div className="relative">
+        {/* `from-white` khớp nền của chính thẻ này, không phải nền trang: hai
+            vệt nằm ĐÈ lên dải cuộn, nên chúng phải tan vào mặt thẻ. */}
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-8 rounded-l-[16px] bg-gradient-to-r from-white to-transparent transition-opacity duration-200 dark:from-stone-900 ${
+            edges.left ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-8 rounded-r-[16px] bg-gradient-to-l from-white to-transparent transition-opacity duration-200 dark:from-stone-900 ${
+            edges.right ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        <div
+          ref={scrollerRef}
+          onScroll={syncEdges}
+          className="-mx-1 flex snap-x snap-mandatory gap-2.5 overflow-x-auto overscroll-x-contain px-1 pb-1 scrollbar-none"
+        >
         {learners.map((learner) => {
           const lesson = learner.lessonId === null ? undefined : lessonById.get(learner.lessonId);
           const name = shortLearnerName(learner.name, t.communityLearning.anonLearner);
@@ -108,7 +157,7 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
           );
 
           const shell =
-            "w-[10.5rem] shrink-0 rounded-[16px] bg-stone-50 p-2.5 dark:bg-stone-950/60";
+            "w-[10.5rem] shrink-0 snap-start rounded-[16px] bg-stone-50 p-2.5 dark:bg-stone-950/60";
 
           return lesson ? (
             <Link
@@ -124,6 +173,7 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
             </div>
           );
         })}
+        </div>
       </div>
     </section>
   );

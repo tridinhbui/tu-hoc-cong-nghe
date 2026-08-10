@@ -262,6 +262,39 @@ body {
   50% { transform: translateY(-2px) rotate(4deg); }
 }
 
+/* Ngọn lửa chuỗi ngày.
+ *
+ * Ba thứ cộng lại mới ra "đang cháy", và thiếu cái nào thì nó lại thành một
+ * biểu tượng: tô đặc (`fill-current` ở chỗ dùng) thay vì nét viền, quầng sáng
+ * đỏ-cam bằng drop-shadow, và một nhịp lay rất nhẹ.
+ *
+ * `transform-origin` đặt ở 85% chiều cao - tức gần chân ngọn lửa. Lấy tâm mặc
+ * định thì cả hình bập bênh như một miếng dán bị rung; neo ở chân thì phần
+ * ngọn mới là phần động, đúng cách lửa cháy.
+ *
+ * Biên độ cố tình nhỏ (7% và 2 độ). Đây là một chỉ báo trong danh sách, không
+ * phải hiệu ứng ăn mừng: to hơn nữa thì mắt bị kéo khỏi tên người học đứng
+ * ngay cạnh, mà tên mới là nội dung. */
+.flame-burn {
+  transform-origin: 50% 85%;
+  filter: drop-shadow(0 0 3px rgba(239, 68, 68, 0.55)) drop-shadow(0 0 7px rgba(249, 115, 22, 0.35));
+  animation: flame-flicker 2.6s ease-in-out infinite;
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  28% { transform: scale(1.07) rotate(-2deg); opacity: 0.93; }
+  55% { transform: scale(0.97) rotate(1.5deg); opacity: 1; }
+  78% { transform: scale(1.04) rotate(-1deg); opacity: 0.96; }
+}
+
+/* Tắt nhịp lay chứ KHÔNG tắt quầng sáng: người bật giảm chuyển động vẫn cần
+ * thấy ngọn lửa đang sáng, cái họ không muốn là thứ nhúc nhích liên tục ở rìa
+ * tầm nhìn. Đây là khối prefers-reduced-motion đầu tiên trong file này. */
+@media (prefers-reduced-motion: reduce) {
+  .flame-burn { animation: none; }
+}
+
 .skeleton-premium {
   background: linear-gradient(90deg, rgba(226,232,240,0.85) 25%, rgba(241,245,249,0.95) 37%, rgba(226,232,240,0.85) 63%);
   background-size: 400% 100%;

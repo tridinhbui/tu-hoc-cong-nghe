@@ -1392,8 +1392,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         {badge.label}
                       </span>
                       {post.kind === "streak" && (
-                        <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/30 px-2 py-0.5 rounded-full">
-                          <Flame className="w-3 h-3" /> {t.feed.streak}
+                        <span className="flex items-center gap-1 text-[10px] font-bold text-red-600 dark:text-red-300 bg-red-50 dark:bg-red-950/30 px-2 py-0.5 rounded-full">
+                          <Flame className="flame-burn w-3 h-3 fill-current" /> {t.feed.streak}
                         </span>
                       )}
                       <span className="flex items-center gap-1 text-xs text-stone-400 dark:text-stone-500">
@@ -1814,8 +1814,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.streakBoardTitle}</h2>
-                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-black text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
-                  <Flame className="h-3.5 w-3.5" />
+                <span className="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-[11px] font-black text-red-600 dark:bg-red-950/40 dark:text-red-300">
+                  <Flame className="flame-burn h-3.5 w-3.5 fill-current" />
                   {todayStreakPosts.length}
                 </span>
               </div>
@@ -1838,7 +1838,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           {timeAgo(post.created_at, t.libData.timeAgo)}
                         </p>
                       </div>
-                      <Flame className="h-4 w-4 shrink-0 text-emerald-500" />
+                      <Flame className="flame-burn h-4 w-4 shrink-0 fill-red-500 text-red-500" />
                     </div>
                   ))}
                 </div>
