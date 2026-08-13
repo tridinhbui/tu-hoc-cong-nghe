@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Trophy } from "lucide-react";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user";
-import { isValidAvatar } from "@/lib/avatar-utils";
+import Avatar from "@/components/Avatar";
 import { useI18n } from "@/lib/i18n/context";
 
 /** Bảng xếp hạng thu nhỏ ở cột phải của FinSocial.
@@ -77,21 +77,7 @@ export default function FeedLeaderboardCard() {
             >
               {index + 1}
             </span>
-            {isValidAvatar(row.avatarUrl) ? (
-              // `<img>` chứ không next/image - xem chú thích ở
-              // CommunityFeedClient.tsx: trình tối ưu ảnh đang trả 402.
-              <img
-                src={row.avatarUrl}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className="h-7 w-7 shrink-0 rounded-full object-cover"
-              />
-            ) : (
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-stone-900 text-[11px] font-black text-white dark:bg-stone-100 dark:text-stone-900">
-                {row.name.slice(0, 1).toUpperCase()}
-              </span>
-            )}
+            <Avatar key={row.avatarUrl ?? row.user_id} name={row.name} url={row.avatarUrl} size={28} />
             <p className="min-w-0 flex-1 truncate text-xs font-bold text-stone-900 dark:text-stone-100">
               {row.name}
             </p>

@@ -58,6 +58,7 @@ import {
 } from "@/lib/supabase-community";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { animateCountTo } from "@/lib/animate-count";
+import { getCurrentUser, metadataString } from "@/lib/current-user";
 import { timeAgo } from "@/lib/time-ago";
 import FollowButton from "@/components/FollowButton";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
@@ -566,11 +567,18 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
   useEffect(() => {
     const init = async () => {
-      const {
-        data: { user: sessionUser },
-      } = await supabase.auth.getUser();
+      const sessionUser = await getCurrentUser();
       if (sessionUser) {
-        setUser(sessionUser);
+        // `user_metadata` của Supabase là `Record<string, unknown>` vì nội dung
+        // do nhà cung cấp đăng nhập quyết; `metadataString` là chỗ nêu tên phép
+        // ép kiểu đó đúng một lần thay vì rải ra khắp phần JSX bên dưới.
+        setUser({
+          id: sessionUser.id,
+          user_metadata: {
+            full_name: metadataString(sessionUser, "full_name") ?? undefined,
+            avatar_url: metadataString(sessionUser, "avatar_url") ?? undefined,
+          },
+        });
         userIdRef.current = sessionUser.id;
       }
 

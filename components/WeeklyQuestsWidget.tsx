@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Flame, BookOpen, Trophy, Sparkles, CheckCircle2, Gift } from "lucide-react";
+import { Flame, BookOpen, Trophy, CheckCircle2, Gift } from "lucide-react";
 import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { useI18n } from "@/lib/i18n/context";
@@ -136,7 +136,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-3">
         <div>
           <h4 className="text-xs font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
-            <Trophy className="w-4 h-4 text-amber-500 animate-bounce" />
+            <Trophy className="w-4 h-4 text-amber-500" />
             {t.weeklyQuests.title}
           </h4>
           <p className="text-[9px] text-stone-400 dark:text-stone-500 font-semibold mt-0.5">
@@ -188,7 +188,6 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
         <div className="space-y-1.5">
           <div className="flex justify-between items-center text-[10px] font-extrabold text-stone-700 dark:text-stone-300">
             <span className="flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
               {t.weeklyQuests.quizLabel}
             </span>
             <span>{format(t.weeklyQuests.quizProgress, { progress: quizProgress })}</span>

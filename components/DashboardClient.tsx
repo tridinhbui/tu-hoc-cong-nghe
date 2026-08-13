@@ -982,7 +982,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             same panels just stack and the page scrolls normally - there is no
             honest way to fit this much on a phone screen. */}
         <div
-          className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 xl:rounded-[28px] xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:shadow-sm xl:p-3.5 ${
+          className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 xl:rounded-3xl xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:p-3.5 ${
             isLessonsView
               ? "max-w-[1500px] xl:flex xl:flex-col"
               : "max-w-[1500px] xl:grid xl:grid-cols-12 xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-3.5"
@@ -997,19 +997,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             const openLevel = activeTooltipLevel;
 
             const ACCENTS = [
-              { text: "text-slate-600 dark:text-slate-400", bg: "bg-slate-50 dark:bg-slate-900/50", border: "border-slate-300 dark:border-slate-700", solid: "bg-slate-400", glow: "" },
-              { text: "text-sky-600 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-950/30", border: "border-sky-300 dark:border-sky-800", solid: "bg-sky-500", glow: "" },
-              { text: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-50 dark:bg-cyan-950/30", border: "border-cyan-300 dark:border-cyan-800", solid: "bg-cyan-500", glow: "" },
-              { text: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30", border: "border-violet-400 dark:border-violet-700", solid: "bg-violet-500", glow: "shadow-violet-500/20" },
-              { text: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/30", border: "border-emerald-400 dark:border-emerald-700", solid: "bg-emerald-500", glow: "shadow-emerald-500/20" },
-              { text: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-950/30", border: "border-teal-400 dark:border-teal-700", solid: "bg-teal-500", glow: "shadow-teal-500/25" },
-              { text: "text-orange-600 dark:text-orange-400", bg: "bg-orange-50 dark:bg-orange-950/30", border: "border-orange-400 dark:border-orange-700", solid: "bg-orange-500", glow: "shadow-orange-500/25" },
-              { text: "text-rose-600 dark:text-rose-400", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-400 dark:border-rose-700", solid: "bg-rose-500", glow: "shadow-rose-500/30" },
-              { text: "text-amber-600 dark:text-amber-400", bg: "bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/30", border: "border-amber-400 dark:border-amber-500", solid: "bg-gradient-to-r from-amber-400 to-yellow-500", glow: "shadow-amber-500/40" },
+              { text: "text-slate-600 dark:text-slate-400", bg: "bg-slate-50 dark:bg-slate-900/50", border: "border-slate-300 dark:border-slate-700", solid: "bg-slate-400" },
+              { text: "text-sky-600 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-950/30", border: "border-sky-300 dark:border-sky-800", solid: "bg-sky-500" },
+              { text: "text-cyan-600 dark:text-cyan-400", bg: "bg-cyan-50 dark:bg-cyan-950/30", border: "border-cyan-300 dark:border-cyan-800", solid: "bg-cyan-500" },
+              { text: "text-violet-600 dark:text-violet-400", bg: "bg-violet-50 dark:bg-violet-950/30", border: "border-violet-400 dark:border-violet-700", solid: "bg-violet-500" },
+              { text: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/30", border: "border-emerald-400 dark:border-emerald-700", solid: "bg-emerald-500" },
+              { text: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-950/30", border: "border-teal-400 dark:border-teal-700", solid: "bg-teal-500" },
+              { text: "text-orange-600 dark:text-orange-400", bg: "bg-orange-50 dark:bg-orange-950/30", border: "border-orange-400 dark:border-orange-700", solid: "bg-orange-500" },
+              { text: "text-rose-600 dark:text-rose-400", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-400 dark:border-rose-700", solid: "bg-rose-500" },
+              { text: "text-amber-600 dark:text-amber-400", bg: "bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/30", border: "border-amber-400 dark:border-amber-500", solid: "bg-gradient-to-r from-amber-400 to-yellow-500" },
             ];
 
             return (
-              <div className="rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-3 sm:p-3.5 shadow-sm xl:col-span-12 xl:min-h-0 xl:overflow-hidden">
+              <div className="rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-3 sm:p-3.5 xl:col-span-12 xl:min-h-0 xl:overflow-hidden">
                 <div className="grid grid-cols-1 gap-2.5 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   {/* self-stretch (not the grid's items-start) so this column
                       fills the row height set by the taller UserStats sidebar -
@@ -1103,13 +1103,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         // chúng vẫn bằng nhau, chỉ là bằng nhau ở chiều cao đủ chứa chữ.
                                         className={`relative text-left rounded-xl border p-1.5 w-[92px] min-h-[88px] shrink-0 bg-white dark:bg-stone-900 transition-all cursor-pointer flex flex-col [backface-visibility:hidden] ${
                                           isReached
-                                            ? `${accent.border} ${isOpen ? `shadow-md scale-[1.02] ${accent.glow}` : isUserCurrent ? `shadow-sm ${accent.glow}` : ""}`
+                                            ? `${accent.border} ${isOpen ? "scale-[1.02]" : ""}`
                                             : "border-stone-100 dark:border-stone-800 opacity-60 grayscale hover:opacity-90 hover:grayscale-0"
                                         }`}
                                       >
                                         {isUserCurrent && (
                                           <span className="absolute -top-1 -left-1 flex w-3 h-3">
-                                            <span className={`hidden sm:inline-flex sm:animate-ping absolute w-full h-full rounded-full opacity-75 ${accent.solid}`} />
                                             <span className={`relative inline-flex w-3 h-3 rounded-full border-2 border-white dark:border-stone-900 ${accent.solid}`} />
                                           </span>
                                         )}
@@ -1150,7 +1149,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                 transition={{ duration: 0.2 }}
                                 className="overflow-hidden"
                               >
-                                <div className={`mt-4 rounded-2xl border-2 ${accent.border} ${accent.bg} p-4`}>
+                                <div className={`mt-4 rounded-xl ${accent.bg} p-4`}>
                                   <p className={`text-xs font-black uppercase tracking-wider ${accent.text} mb-3`}>
                                     {format(t.dashboard.levelMembers, { level: lvl.level, name: t.levelTitles[lvl.level] ?? lvl.name, count: members.length })}
                                   </p>
@@ -1160,7 +1159,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                         <Link
                                           key={i}
                                           href={`/nguoi-hoc/${m.userId}`}
-                                          className="flex items-center gap-2.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl px-3 py-2.5 hover:border-stone-400 dark:hover:border-stone-600 hover:shadow-sm transition-all"
+                                          className="flex items-center gap-2.5 bg-white dark:bg-stone-900 rounded-lg px-3 py-2.5 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
                                         >
                                           {isValidAvatar(m.avatarUrl) ? (
                                             // next/image chứ không phải <img>: đây là ảnh trong
@@ -1219,7 +1218,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                   </div>
 
-                  <div className="min-w-0 rounded-[24px] border border-stone-200/90 dark:border-stone-800 bg-stone-50/85 dark:bg-stone-900/80 p-3 xl:p-3.5">
+                  <div className="min-w-0 rounded-xl bg-stone-50/85 dark:bg-stone-900/60 p-3 xl:p-3.5">
                     <UserStats
                       xp={userXp}
                       lessonsCompleted={totalDone}
@@ -1275,7 +1274,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {!isLessonsView && (
               <Link
                 href="/lo-trinh"
-                className="group flex items-center gap-3.5 rounded-2xl border border-stone-200 bg-white p-4 shadow-xs transition-all hover:border-emerald-300 hover:shadow-sm dark:border-stone-800 dark:bg-stone-900 dark:hover:border-emerald-800"
+                className="group flex items-center gap-3.5 rounded-2xl border border-stone-200 bg-white p-4 transition-all hover:border-emerald-300 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-emerald-800"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-400">
                   <Route className="h-5 w-5" />
@@ -1356,7 +1355,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
             {/* Bookmarks Section */}
             {bookmarks.length > 0 && (
-              <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4 shadow-sm">
+              <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4">
                 <div className="flex items-center justify-between gap-3 mb-3">
                   <div className="flex items-center gap-2">
                     <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 flex items-center justify-center">
@@ -1380,7 +1379,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     <Link
                       key={bookmark.id}
                       href={`/bai-hoc/${bookmark.lesson_slug}`}
-                      className="group rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/80 dark:bg-stone-950/30 px-4 py-3 hover:border-amber-300 dark:hover:border-amber-700 hover:bg-white dark:hover:bg-stone-900 transition-all"
+                      className="group rounded-lg bg-stone-50 dark:bg-stone-950/40 px-4 py-3 hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -1422,8 +1421,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 onClick={() => setActiveTrack("personal")}
                 className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                   isTrackView && activeTrack === "personal"
-                    ? "border-amber-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-amber-500/20 dark:ring-amber-400/30 shadow-md font-extrabold"
-                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
+                    ? "border-amber-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-amber-500/20 dark:ring-amber-400/30 font-extrabold"
+                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700"
                 }`}
               >
                 <div className="h-0.5 w-full bg-amber-500/70 absolute top-0 left-0 right-0" />
@@ -1464,8 +1463,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 onClick={() => setActiveTrack("professional")}
                 className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
                   isTrackView && activeTrack === "professional"
-                    ? "border-emerald-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 shadow-md font-extrabold"
-                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700 shadow-xs hover:shadow-sm"
+                    ? "border-emerald-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 font-extrabold"
+                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700"
                 }`}
               >
                 <div className="h-0.5 w-full bg-emerald-500/70 absolute top-0 left-0 right-0" />
@@ -1527,7 +1526,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       onClick={() => handleSetProfessionalBranch(branch.id)}
                       className={`shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
                         isActive
-                          ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm"
+                          ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
                           : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-200"
                       }`}
                     >
@@ -1559,7 +1558,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 value={stageSearchQuery}
                 onChange={(e) => setStageSearchQuery(e.target.value)}
                 placeholder={t.dashboard.searchPlaceholder}
-                className="w-full pl-10 pr-9 py-2.5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm font-medium text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all shadow-2xs"
+                className="w-full pl-10 pr-9 py-2.5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm font-medium text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
               />
               {stageSearchQuery && (
                 <button
@@ -1588,7 +1587,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   <button
                     onClick={applyManualFlags}
                     disabled={flagSaving || selectedFlagLessonIds.size === 0}
-                    className="px-3 py-2 text-xs font-bold rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer shadow-xs"
+                    className="px-3 py-2 text-xs font-bold rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
                   >
                     {flagSaving ? t.dashboard.markLearned.saving : t.dashboard.markLearned.confirm}
                   </button>
@@ -1601,7 +1600,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     if (flagSelectionMode) clearFlagSelection();
                     else setFlagSelectionMode(true);
                   }}
-                  className={`px-3.5 py-2 text-xs font-bold rounded-xl border transition-colors cursor-pointer shadow-2xs flex items-center gap-1.5 ${
+                  className={`px-3.5 py-2 text-xs font-bold rounded-xl border transition-colors cursor-pointer flex items-center gap-1.5 ${
                     flagSelectionMode
                       ? "border-sky-300 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300"
                       : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-800"
@@ -1729,7 +1728,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         {stageDisplayLabels.get(stage.label) || stageCopy?.label || stage.label}
                       </span>
                       {stage.isNew && (
-                        <span className="text-[10px] font-black text-white bg-gradient-to-r from-rose-500 to-orange-500 px-2 py-0.5 rounded-full shrink-0 animate-pulse">
+                        <span className="text-[10px] font-black text-white bg-gradient-to-r from-rose-500 to-orange-500 px-2 py-0.5 rounded-full shrink-0">
                           {t.dashboard.isNew}
                         </span>
                       )}
@@ -1745,7 +1744,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                               e.stopPropagation();
                               setSelectedCertStage({ label: stage.label, name: stage.name });
                             }}
-                            className="flex items-center gap-1 text-[11px] font-black text-white shrink-0 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-2.5 py-1 rounded-lg shadow-sm shadow-amber-500/20 active:scale-95 transition-all cursor-pointer"
+                            className="flex items-center gap-1 text-[11px] font-black text-white shrink-0 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-2.5 py-1 rounded-lg active:scale-95 transition-all cursor-pointer"
                           >
                             {t.dashboard.milestone.certificate}
                           </button>
@@ -1790,8 +1789,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 {/* Not available yet - with lock and loading animation */}
                 {stageOpen && !stage.available && (
                   <div className="border-2 border-dashed border-stone-200 dark:border-stone-800 rounded-xl px-5 py-6 text-center bg-stone-50 dark:bg-stone-900/50 relative overflow-hidden">
-                    {/* Animated building background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-200 dark:via-stone-800 to-transparent opacity-30 animate-pulse" />
+                    {/* Building background */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-200 dark:via-stone-800 to-transparent opacity-30" />
 
                     {/* Lock icon */}
                     <div className="relative z-10 flex flex-col items-center gap-3">
@@ -1811,12 +1810,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 {/* Available but no lessons in DB yet - with building animation */}
                 {stageOpen && stage.available && stageLessons.length === 0 && (
                   <div className="border-2 border-dashed border-stone-200 dark:border-stone-800 rounded-xl px-5 py-6 text-center bg-emerald-50 dark:bg-emerald-950/50 relative overflow-hidden">
-                    {/* Animated construction bars */}
+                    {/* Construction bars */}
                     <div className="absolute inset-0 flex items-center justify-center gap-1 opacity-20">
-                      <div className="w-1 bg-stone-400 rounded-full animate-pulse" style={{ height: '20px', animationDelay: '0s' }} />
-                      <div className="w-1 bg-stone-400 rounded-full animate-pulse" style={{ height: '28px', animationDelay: '0.2s' }} />
-                      <div className="w-1 bg-stone-400 rounded-full animate-pulse" style={{ height: '24px', animationDelay: '0.4s' }} />
-                      <div className="w-1 bg-stone-400 rounded-full animate-pulse" style={{ height: '20px', animationDelay: '0.6s' }} />
+                      <div className="w-1 bg-stone-400 rounded-full" style={{ height: '20px' }} />
+                      <div className="w-1 bg-stone-400 rounded-full" style={{ height: '28px' }} />
+                      <div className="w-1 bg-stone-400 rounded-full" style={{ height: '24px' }} />
+                      <div className="w-1 bg-stone-400 rounded-full" style={{ height: '20px' }} />
                     </div>
 
                     {/* Content */}
@@ -1879,7 +1878,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                     <button
                                       key={lesson.id}
                                       onClick={() => handleLockedLessonClick(lesson)}
-                                      className="w-full text-left block rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+                                      className="w-full text-left block rounded-lg border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
                                     >
                                       <div className="flex items-center gap-4 px-6 py-5">
                                         <div className="w-12 flex-shrink-0 text-center">
@@ -1911,7 +1910,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                   <div
                                     key={lesson.id}
                                     onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
-                                    className={`block rounded-xl border-2 transition-all ${
+                                    className={`block rounded-lg border transition-all ${
                                       isDone
                                         ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-900 hover:border-emerald-300 dark:hover:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-950"
                                         : isSelectedForFlag
@@ -2053,7 +2052,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         name: stage.name,
                         lessonIds: stageLessons.map((l) => l.id)
                       })}
-                      className="px-4 py-2 text-xs font-extrabold bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow-[0_4px_10px_-2px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
+                      className="px-4 py-2 text-xs font-extrabold bg-amber-500 hover:bg-amber-600 text-white rounded-xl hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
                     >
                       {t.dashboard.milestone.start}
                     </button>
@@ -2064,7 +2063,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 {stageOpen && stage.available && isStageLockedByMilestone && (
                   <div className="border-2 border-dashed border-rose-200/60 dark:border-rose-950/40 rounded-2xl px-5 py-8 text-center bg-rose-500/[0.02] relative overflow-hidden">
                     <div className="flex flex-col items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center animate-pulse">
+                      <div className="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center">
                         <Lock className="w-6 h-6" />
                       </div>
                       <div>
@@ -2118,7 +2117,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         <button
                           key={lesson.id}
                           onClick={() => handleLockedLessonClick(lesson)}
-                          className="w-full text-left block rounded-xl border-2 border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+                          className="w-full text-left block rounded-lg border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
                         >
                           <div className="flex items-center gap-4 px-6 py-4">
                             <div className="flex-shrink-0">
@@ -2145,7 +2144,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       <div
                         key={lesson.id}
                         onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
-                        className={`block rounded-xl border-2 transition-all ${
+                        className={`block rounded-lg border transition-all ${
                           isDone
                             ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-900 hover:border-emerald-300 dark:hover:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-950"
                             : isSelectedForFlag

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Save, Trash2, Plus, Loader2, Video, Sparkles } from "lucide-react";
+import { Save, Trash2, Plus, Loader2, Video } from "lucide-react";
 import type { AdminBook, AdminReading, AdminModule, AdminQuizQuestion, QuizQuestionInput } from "@/lib/admin/cfa-library";
 import {
   listReadingsAction,
@@ -329,7 +329,7 @@ function ModuleEditor({
         </div>
         <div>
           <label className="text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5" /> {tc.interactiveWidgetLabel}
+            {tc.interactiveWidgetLabel}
           </label>
           <select
             value={interactiveType}

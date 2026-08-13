@@ -40,6 +40,7 @@ import {
 } from "@/lib/supabase-cfa-features";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { getCurrentUser } from "@/lib/current-user";
 
 const INTERACTIVE_WIDGET_TYPES = new Set<string>([
   "interest-rate",
@@ -139,8 +140,8 @@ export default function CfaModulePageClient({ moduleId }: { moduleId: string }) 
       // after another - only serialized where a query's filter genuinely
       // depends on a prior result (Reading needs modData.readingId; Book/
       // siblings need readingData; quiz questions need the header's id).
-      const [{ data: user }, { data: modData, error: modError }] = await Promise.all([
-        supabase.auth.getUser().then((r) => ({ data: r.data.user })),
+      const [user, { data: modData, error: modError }] = await Promise.all([
+        getCurrentUser(),
         supabase.from("Module").select("*").eq("id", moduleId).maybeSingle(),
       ]);
       if (!cancelled) setUserId(user?.id ?? null);

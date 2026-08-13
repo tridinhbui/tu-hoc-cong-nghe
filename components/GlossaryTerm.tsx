@@ -8,6 +8,7 @@ import { saveFlashcard, getFlashcards } from "@/lib/supabase-flashcards";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { getCurrentUserId } from "@/lib/current-user";
 
 // Global cache of saved terms for the active user to avoid redundant fetches
 let cachedSavedTerms: Set<string> | null = null;
@@ -100,11 +101,10 @@ function GlossaryTermSpan({ term, en }: { term: string; en: string }) {
 
     let currentUserId = userId;
     if (!currentUserId) {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        currentUserId = user.id;
-        setUserId(user.id);
+      const id = await getCurrentUserId();
+      if (id) {
+        currentUserId = id;
+        setUserId(id);
       }
     }
 

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Swords, Flame, Trophy, ShieldAlert, Sparkles, RefreshCw } from "lucide-react";
+import { Swords, Flame, Trophy, ShieldAlert, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
 import { recalculateUserStats } from "@/lib/supabase-user";
@@ -300,7 +300,7 @@ export default function WorldBossRaidWidget({
                 <div className="bg-white border border-orange-100 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
                   <div>
                     <h4 className="text-xs font-black uppercase text-orange-600 mb-3 flex items-center gap-1.5">
-                      <Sparkles className="w-4 h-4" /> {t.worldBoss.gearTitle}
+                      {t.worldBoss.gearTitle}
                     </h4>
                     <div className="flex items-center gap-4 bg-gradient-to-br from-orange-50 to-white p-3 rounded-xl border border-orange-100">
                       <FinanceCharacterAvatar level={userLevel} equipments={equipments} size="sm" />

@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Briefcase, Award, TrendingUp, DollarSign, Layers, CheckCircle2, Sparkles, Trophy } from "lucide-react";
+import { Briefcase, Award, TrendingUp, DollarSign, Layers, CheckCircle2, Trophy } from "lucide-react";
 import { toast } from "sonner";
 import { addXpToUser } from "@/lib/supabase-progress";
 import { useI18n } from "@/lib/i18n/context";
@@ -165,7 +165,6 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
             onClick={handleSubmitPitch}
             className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 font-extrabold text-xs text-slate-950 transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
           >
-            <Sparkles className="w-4 h-4" />
             <span>{t.goldmanWidget.submitPitchButton}</span>
           </button>
         </div>

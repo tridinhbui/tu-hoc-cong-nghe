@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { errorMessage } from "@/lib/errors";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
-import { CheckCircle2, Clock, ShieldCheck, Sparkles, X, ArrowRight, RefreshCw, Trophy, Loader2 } from "lucide-react";
+import { CheckCircle2, Clock, ShieldCheck, X, ArrowRight, RefreshCw, Trophy, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { LEVEL_EXAMS } from "@/lib/level-exams";
 import {
@@ -307,7 +307,6 @@ export default function RigorousLevelExamModal({
                       }}
                       className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all active:scale-98"
                     >
-                      <Sparkles className="w-4 h-4" />
                       <span>{t.levelExam.shareCta}</span>
                     </button>
                   </div>

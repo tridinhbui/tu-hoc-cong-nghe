@@ -313,7 +313,6 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0 flex-1">
             <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
-              <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
               {t.analytics.personal}
             </div>
             <h2 className="mt-2 text-xl sm:text-2xl font-black leading-tight tracking-tight text-stone-900 dark:text-stone-100">

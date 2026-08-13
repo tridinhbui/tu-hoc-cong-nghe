@@ -13,7 +13,6 @@ import {
   Briefcase, 
   X, 
   Search, 
-  Sparkles, 
   Clock, 
   Award, 
   Terminal, 
@@ -47,6 +46,7 @@ import { SUGGESTED_JOB_KEYWORDS } from "@/lib/job-search-links";
 import { careerCategoryLabelsOf, CAREER_CATEGORY_ORDER } from "@/lib/career-categories";
 import { notifyLocalStorageChanged, useLocalStorageValue } from "@/lib/use-local-storage-value";
 import { CAREER_GOAL_EVENT, CAREER_GOAL_KEY, CAREER_GOAL_STORAGE_EVENT, CAREER_ITEMS_KEY } from "@/lib/career-goal-storage";
+import { getCurrentUser } from "@/lib/current-user";
 
 // Beautiful custom 3D card tilt and glow component
 function CareerAvatar({ career, size = 110, className = "" }: { career?: FinanceCareer | null; size?: number; className?: string }) {
@@ -651,7 +651,7 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    void getCurrentUser().then(async (user) => {
       if (user) {
         setUserId(user.id);
         
@@ -1021,7 +1021,6 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
               {!quizCompleted ? (
                 <div>
                   <div className="flex items-center gap-2 text-stone-900 dark:text-stone-500">
-                    <Sparkles className="w-4 h-4 text-amber-500 animate-pulse animate-duration-1000" />
                     <h4 className="text-xs font-black uppercase tracking-wider">{t.jobs.quizTitle}</h4>
                   </div>
                   <p className="hidden sm:block text-xs text-stone-500 dark:text-stone-400 mt-1.5 leading-relaxed">
@@ -1409,7 +1408,6 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                         {/* Specific Responsibilities */}
                         <div>
                           <h3 className="text-xs font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-3 flex items-center gap-1.5">
-                            <Sparkles className="w-4 h-4 text-amber-500" />
                             {t.jobs.jobDescription}
                           </h3>
                           <ul className="space-y-3">
@@ -1856,7 +1854,6 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
                         </div>
                         <div>
                           <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-2 flex items-center gap-1.5">
-                            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                             {t.jobs.jobDescriptionShort}
                           </h4>
                           <ul className="space-y-2">

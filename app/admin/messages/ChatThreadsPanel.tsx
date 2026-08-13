@@ -7,11 +7,11 @@ import { MessageCircle, Send, ImagePlus, X, Loader2, Trash2 } from "lucide-react
 import type { ChatThread, ChatThreadMessage } from "@/lib/admin/chat";
 import { sendAdminChatReplyAction, markThreadReadAction, getChatThreadMessagesAction, getChatThreadsAction } from "./actions";
 import { uploadChatImage, isAllowedChatImage, deleteChatMessage } from "@/lib/supabase-chat";
-import { createClient } from "@/lib/supabase";
 import EmptyState from "@/components/admin/EmptyState";
 import EmojiPicker from "@/components/EmojiPicker";
 import { useI18n } from "@/lib/i18n/context";
 import { intlLocale } from "@/lib/i18n";
+import { getCurrentUserId } from "@/lib/current-user";
 
 // 15 giây, không phải 4. Mỗi nhịp là hai Server Action đọc Supabase, chạy
 // suốt thời gian trang quản trị mở - 900 lần mỗi giờ ở mức 4 giây. Hộp thư
@@ -126,12 +126,9 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
         // storage policy (20260722_cfa_tables_rls_and_chat_images_hardening)
         // only allows writing into your own auth.uid() folder; the folder is
         // purely organizational, the message row still targets activeUserId.
-        const supabase = createClient();
-        const {
-          data: { user: adminUser },
-        } = await supabase.auth.getUser();
-        if (!adminUser) throw new Error(tc.sessionExpired);
-        imageUrl = await uploadChatImage(adminUser.id, imageFile);
+        const adminUserId = await getCurrentUserId();
+        if (!adminUserId) throw new Error(tc.sessionExpired);
+        imageUrl = await uploadChatImage(adminUserId, imageFile);
         setUploadingImage(false);
       }
 

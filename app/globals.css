@@ -7,26 +7,39 @@
 
 @theme {
   --font-sans: var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  
+
+  /* Chỉ ba biến màu còn sống, và cả ba được `var()` ngay trong file này
+     (body, và thumb của input[type=range]). Mười một biến khác từng đứng đây
+     - card-base, primary-light, accent-blue/mint/cyan, success(-bg),
+     warning(-bg), danger(-bg) - không có nơi nào dùng: không utility Tailwind
+     nào chúng sinh ra (`bg-danger`, `text-success`...) xuất hiện trong repo,
+     và không `var()` nào trỏ tới. Đo bằng cách quét mọi đuôi file, không chỉ
+     .tsx, vì tên class có thể nằm trong chuỗi động. */
   --color-bg-base: #FAFAFC;
-  --color-card-base: #FFFFFF;
-  
   --color-primary: #059669;
   --color-primary-hover: #047857;
-  --color-primary-light: #ECFDF5;
-  
-  --color-accent-blue: #4F93FF;
-  --color-accent-mint: #3CD070;
-  --color-accent-cyan: #3FD1E3;
-  
-  --color-success: #10B981;
-  --color-success-bg: #ECFDF5;
-  
-  --color-warning: #F59E0B;
-  --color-warning-bg: #FFFBEB;
-  
-  --color-danger: #EF4444;
-  --color-danger-bg: #FEF2F2;
+
+  /* Thang bo góc và đổ bóng, đặt tên THEO VAI TRÒ chứ không theo cỡ.
+   *
+   * Cố tình KHÔNG định nghĩa `--radius-xl` / `--radius-2xl`. Làm thế là ghi đè
+   * thang mặc định của Tailwind, và vì repo đang có 872 chỗ `rounded-xl` cùng
+   * 649 chỗ `rounded-2xl`, một dòng như vậy sẽ đổi giao diện mọi trang cùng
+   * lúc - một cuộc redesign giấu trong một biến.
+   *
+   * Hai giá trị dưới đây bằng ĐÚNG `rounded-xl` (0.75rem) và `rounded-2xl`
+   * (1rem) hiện hành, nên khi một trang chuyển sang `rounded-control` /
+   * `rounded-card` thì trông y hệt lúc trước. Cái đổi là ý định: đọc class là
+   * biết "đây là control" hay "đây là thẻ", thay vì phải nhớ cỡ nào đi với
+   * thứ gì. Đó cũng là thứ khiến năm bán kính hiện tại (full/3xl/2xl/xl/lg)
+   * hội tụ được về hai, dần dần, mà không cần một lượt sửa lớn.
+   *
+   * Bóng lấy mức thấp, gần `shadow-sm` mà phần lớn thẻ đang dùng, và trung
+   * tính - không ám xanh như `.premium-card`/`.glass-card` cũ. */
+  --radius-control: 0.75rem;
+  --radius-card: 1rem;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+  --shadow-card-hover: 0 6px 16px -6px rgba(0, 0, 0, 0.08), 0 2px 6px -2px rgba(0, 0, 0, 0.04);
 }
 
 /* Belt-and-suspenders against horizontal-overflow bugs like the mobile
@@ -84,26 +97,6 @@ body {
    not the whole page, so header/nav chrome stays neutral. */
 .reading-sepia {
   filter: sepia(0.35) saturate(1.15) brightness(0.97) contrast(0.96);
-}
-
-/* Premium micro-animations & transitions */
-.transition-premium {
-  transition: all 0.2s ease-out;
-}
-
-/* Custom premium card styling */
-.premium-card {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(228, 228, 235, 0.6);
-  border-radius: 20px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.015), 0 1px 3px rgba(0, 0, 0, 0.01);
-  transition: all 0.2s ease-out;
-}
-
-.premium-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(95, 93, 240, 0.04), 0 4px 12px rgba(0, 0, 0, 0.015);
-  border-color: rgba(95, 93, 240, 0.15);
 }
 
 .input-premium {
@@ -164,7 +157,7 @@ body {
   transform: none;
 }
 
-.animated-border-card, .glass-card {
+.animated-border-card {
   position: relative;
   isolation: isolate;
   background: rgba(255, 255, 255, 0.88) !important;
@@ -178,7 +171,7 @@ body {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.dark .animated-border-card, .dark .glass-card {
+.dark .animated-border-card {
   background: rgba(12, 18, 28, 0.88) !important;
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow:
@@ -187,7 +180,7 @@ body {
     inset 0 1px 1px rgba(255, 255, 255, 0.12);
 }
 
-.animated-border-card::before, .glass-card::before {
+.animated-border-card::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -209,7 +202,7 @@ body {
   opacity: 0.85;
 }
 
-.animated-border-card::after, .glass-card::after {
+.animated-border-card::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -222,11 +215,11 @@ body {
   transition: opacity 0.2s ease-out;
 }
 
-.animated-border-card:hover::after, .glass-card:hover::after {
+.animated-border-card:hover::after {
   opacity: 1;
 }
 
-.animated-border-card:hover, .glass-card:hover {
+.animated-border-card:hover {
   transform: translateY(-4px);
   box-shadow:
     0 22px 48px -18px rgba(16, 185, 129, 0.28),
@@ -235,14 +228,9 @@ body {
   border-color: rgba(16, 185, 129, 0.5);
 }
 
-.animated-border-card > *, .glass-card > * {
+.animated-border-card > * {
   position: relative;
   z-index: 1;
-}
-
-@keyframes border-beam {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 220% 50%; }
 }
 
 .icon-micro {
@@ -251,15 +239,6 @@ body {
 
 .button-premium:hover:not(:disabled) .icon-micro {
   transform: rotate(-7deg) translateY(-1px);
-}
-
-.icon-bounce {
-  animation: icon-bounce-soft 2.8s ease-in-out infinite;
-}
-
-@keyframes icon-bounce-soft {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-2px) rotate(4deg); }
 }
 
 /* Ngọn lửa chuỗi ngày.
@@ -343,32 +322,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(148, 163, 184, 0.6) transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.6);
-  border-radius: 9999px;
-  border: 3px solid transparent;
-  background-clip: content-box;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.7);
-  border: 3px solid transparent;
-  background-clip: content-box;
 }
 
 /* 3D Flashcard Transform Utilities */

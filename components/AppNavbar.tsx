@@ -222,6 +222,15 @@ const NAV_SECTIONS: NavSection[] = [
  *  rest instead of being the one that hangs open. */
 const ALL_SECTION_KEYS = NAV_SECTIONS.map((section) => section.titleKey);
 
+/** Vỏ chung của năm huy hiệu trong dòng điều hướng.
+ *
+ *  Trước đây mỗi cái tự viết lại chuỗi lớp của mình và chúng đã trôi khỏi nhau:
+ *  hai cái `px-1.5`, ba cái `px-2`; một cái `font-bold`, bốn cái `font-black`;
+ *  ba cái mang đổ bóng ở ba mức khác nhau. Chỉ phần MÀU là khác nhau có chủ ý,
+ *  nên chỉ phần màu ở lại chỗ gọi. */
+const NAV_BADGE =
+  "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider";
+
 // Single, persistent top navbar for every signed-in page (mounted once in
 // app/(app)/layout.tsx, which Next.js keeps alive across client-side
 // navigations between routes in that group - unlike each page rendering its
@@ -595,12 +604,12 @@ export default function AppNavbar() {
     const isCareer = href === "/nghe-nghiep-hoc";
     const isKiemTra = href === "/kiem-tra";
     const isNhomHoc = href === "/nhom-hoc";
-    // Thư viện is the only entry that opens a 3D space rather than a page, so
-    // it gets a standing treatment like Game rather than a conditional badge.
-    // Violet because it is the one hue the nav was not already using: amber is
-    // Game and the two check-in prompts, rose is a waiting news quiz, emerald
-    // is the active row. Reusing any of those would read as one of those
-    // states instead of as its own destination.
+    // Thư viện mở một không gian 3D chứ không phải một trang, nên nó vẫn có
+    // huy hiệu riêng - nhưng chỉ huy hiệu. Trước đây nó, Game, và hai dòng
+    // đang chờ việc mỗi cái mang một nền + viền + đổ bóng riêng, nên năm trong
+    // mười dòng đọc ra như năm thành phần khác nhau thay vì một danh sách.
+    // Giờ DÒNG chỉ có hai trạng thái - đang đứng ở đây, hoặc không - còn phần
+    // "đây là chỗ nào" và "chỗ này đang chờ mình" do huy hiệu nói.
     const isThuVien = href === "/cong-dong";
     return (
       <Link
@@ -610,49 +619,37 @@ export default function AppNavbar() {
           onNavigate?.();
           trackFeatureClick("nav_click", { label: href });
         }}
-        className={`group relative flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-bold transition-all duration-200 ${
-          isGame
-            ? "border border-amber-200 bg-amber-50 text-amber-700 shadow-sm hover:bg-amber-100/70 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300 dark:hover:bg-amber-900/40"
-            : isThuVien
-            ? "border border-violet-300 bg-gradient-to-r from-violet-50 to-indigo-50/70 text-violet-700 shadow-sm hover:from-violet-100 hover:to-indigo-100/70 dark:border-violet-800/70 dark:from-violet-950/60 dark:to-indigo-950/40 dark:text-violet-300 dark:hover:from-violet-900/60"
-            : isKiemTra && hasPendingNewsQuiz
-              ? "border border-rose-300/80 bg-gradient-to-r from-rose-50 to-orange-50/60 text-rose-700 shadow-xs hover:bg-rose-100/80 dark:border-rose-900 dark:from-rose-950/50 dark:to-stone-900 dark:text-rose-300"
-              : isNhomHoc && hasPendingStudyGroupCheckin
-                ? "border border-amber-300/80 bg-amber-50/80 text-amber-800 shadow-xs hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300"
-                : active
-                  ? "border border-emerald-200/70 bg-emerald-50 text-emerald-700 dark:border-emerald-800/60 dark:bg-emerald-950/40 dark:text-emerald-300"
-                  : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
+        className={`group relative flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-bold transition-colors duration-200 ${
+          active
+            ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300"
+            : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100"
         }`}
       >
-        <Icon className={`h-4 w-4 shrink-0 ${isGame ? "text-amber-600 dark:text-amber-400" : isThuVien ? "text-violet-500 dark:text-violet-400" : isCareer ? "text-emerald-600 dark:text-emerald-400" : isKiemTra && hasPendingNewsQuiz ? "text-rose-500 animate-pulse" : isNhomHoc && hasPendingStudyGroupCheckin ? "text-amber-600 animate-bounce" : ""}`} />
+        <Icon className="h-4 w-4 shrink-0" />
         <span className="flex-1">{isGame ? t.dataRest.appNavbar.gameKingdomLabel : navLabel}</span>
         {isGame && (
-          <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white text-amber-700 border border-amber-200 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800">
-            <Flame className="h-2.5 w-2.5 text-orange-500 dark:text-orange-400" />
+          <span className={`${NAV_BADGE} bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300`}>
+            <Flame className="h-2.5 w-2.5" />
             {t.nav.badgeHot}
           </span>
         )}
         {isThuVien && (
-          <span className="inline-flex items-center gap-1 rounded-full border border-violet-300 bg-white px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-violet-700 shadow-2xs dark:border-violet-700/70 dark:bg-violet-950 dark:text-violet-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
+          <span className={`${NAV_BADGE} bg-violet-100 text-violet-700 dark:bg-violet-950/60 dark:text-violet-300`}>
             {t.nav.badge3d}
           </span>
         )}
         {isKiemTra && hasPendingNewsQuiz && (
-          <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-rose-500 text-white shadow-xs animate-pulse">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+          <span className={`${NAV_BADGE} bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300`}>
             {t.nav.badgeNews}
           </span>
         )}
         {isNhomHoc && hasPendingStudyGroupCheckin && (
-          <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-xs animate-pulse">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+          <span className={`${NAV_BADGE} bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300`}>
             {t.nav.badgeCheckin}
           </span>
         )}
         {isCareer && !careerGoalId && (
-          <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500 text-white shadow-2xs animate-pulse">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+          <span className={`${NAV_BADGE} bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300`}>
             {t.nav.badgeNoGoal}
           </span>
         )}
@@ -729,7 +726,7 @@ export default function AppNavbar() {
             của flex item là `min-height: auto`, nên không có nó thì `<nav>` nở
             ra bằng nội dung và đẩy cả cột cao hơn viewport thay vì tự cuộn. */}
         <div className="flex h-full w-full min-h-0 flex-col px-3.5 py-4">
-          <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-2xl shrink-0">
+          <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2 rounded-xl shrink-0">
             <Logo size={30} />
             <span className="text-base font-bold text-stone-900 dark:text-stone-100">{t.nav.brand}</span>
           </Link>
@@ -737,13 +734,13 @@ export default function AppNavbar() {
           <button
             type="button"
             onClick={() => setSearchModalOpen(true)}
-            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-2xl bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-500 hover:bg-stone-200 dark:hover:bg-stone-800 transition-all cursor-pointer"
+            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-xs font-bold text-stone-500 hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors cursor-pointer"
           >
             <span className="flex items-center gap-2">
               <Search className="w-3.5 h-3.5 text-stone-400" />
               <span>{t.nav.searchPlaceholder}</span>
             </span>
-            <kbd className="px-1.5 py-0.5 rounded-md bg-white dark:bg-stone-800 text-[10px] font-mono border border-stone-200 dark:border-stone-700 shadow-2xs">
+            <kbd className="px-1.5 py-0.5 rounded-md bg-white dark:bg-stone-800 text-[10px] font-mono border border-stone-200 dark:border-stone-700">
               {t.dataRest.appNavbar.cmdKHint}
             </kbd>
           </button>
@@ -759,7 +756,7 @@ export default function AppNavbar() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowQuickShop(true)}
-                  className="flex flex-1 min-w-0 items-center justify-between rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2.5 text-sm font-black text-amber-700 shadow-sm transition-colors hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-400"
+                  className="flex flex-1 min-w-0 items-center justify-between rounded-xl border border-amber-200 bg-amber-50 px-3 py-2.5 text-sm font-black text-amber-700 transition-colors hover:bg-amber-100/80 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-400"
                   title={t.nav.coinBalanceTitle}
                 >
                   <span className="flex items-center gap-2">
@@ -773,14 +770,14 @@ export default function AppNavbar() {
             )}
 
             {!profile ? (
-              <div className="h-12 rounded-2xl bg-stone-100 dark:bg-stone-900 animate-pulse" />
+              <div className="h-12 rounded-xl bg-stone-100 dark:bg-stone-900 animate-pulse" />
             ) : (
               /* Panel không nằm ở đây nữa - nó bay NGANG ra khỏi sidebar và
                  được render ngay dưới khối cuộn, xem chú thích ở đó. */
               <div>
                 <button
                   onClick={toggleProfileDropdown}
-                  className="flex w-full items-center gap-2.5 rounded-2xl border border-stone-200 bg-white px-2.5 py-2.5 text-left transition-colors hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800 cursor-pointer"
+                  className="flex w-full items-center gap-2.5 rounded-xl border border-stone-200 bg-white px-2.5 py-2.5 text-left transition-colors hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800 cursor-pointer"
                 >
                   {isValidAvatar(profile.avatar_url) ? (
                     <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
@@ -823,7 +820,7 @@ export default function AppNavbar() {
         {dropdownOpen && profile && (
           <div
             ref={desktopDropdownPanelRef}
-            className="absolute bottom-4 left-full ml-2 w-64 z-50 space-y-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-2 shadow-xl animate-[fadeIn_0.15s_ease-out]"
+            className="absolute bottom-4 left-full ml-2 w-64 z-50 space-y-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-2 shadow-lg animate-[fadeIn_0.15s_ease-out]"
           >
             <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-xs font-bold transition text-stone-800 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800">
               <User className="h-4 w-4 shrink-0 text-stone-500 dark:text-stone-400" />
@@ -873,7 +870,7 @@ export default function AppNavbar() {
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             <Link
               href="/tai-lieu"
-              className={`flex items-center gap-1 text-xs font-bold px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl border transition-all duration-200 whitespace-nowrap ${
+              className={`flex items-center gap-1 text-xs font-bold px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl border transition-colors duration-200 whitespace-nowrap ${
                 pathname === "/tai-lieu"
                   ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
                   : "bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-800"
@@ -887,7 +884,7 @@ export default function AppNavbar() {
             {profile && (
               <button
                 onClick={() => setShowQuickShop(true)}
-                className="flex items-center gap-1 text-xs font-black px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-900 hover:bg-amber-100/80 transition-colors shadow-xs cursor-pointer whitespace-nowrap"
+                className="flex items-center gap-1 text-xs font-black px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-900 hover:bg-amber-100/80 transition-colors cursor-pointer whitespace-nowrap"
                 title={t.nav.coinBalanceTitle}
               >
                 <GoldCoinIcon className="w-4 h-4" />
@@ -899,7 +896,7 @@ export default function AppNavbar() {
 
             <button
               onClick={toggleMobileMenu}
-              className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
+              className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors shrink-0"
               aria-label={t.nav.openMenu}
               aria-expanded={mobileMenuOpen}
             >
@@ -944,7 +941,7 @@ export default function AppNavbar() {
         {dropdownOpen && profile && (
           <div
             ref={mobileDropdownPanelRef}
-            className="absolute right-3 sm:right-6 top-full mt-2 w-[min(16rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 shadow-xl z-50 p-3.5"
+            className="absolute right-3 sm:right-6 top-full mt-2 w-[min(16rem,calc(100vw-2rem))] bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 shadow-lg z-50 p-3.5"
           >
             <div className="flex gap-2.5 mb-3 pb-3 border-b border-stone-100 dark:border-stone-800 items-center">
               {isValidAvatar(profile.avatar_url) ? (
@@ -959,15 +956,15 @@ export default function AppNavbar() {
             </div>
 
             <div className="space-y-1 mb-2">
-              <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+              <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2 rounded-xl px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
                 <User className="h-3.5 w-3.5 shrink-0 text-stone-500 dark:text-stone-400" />
                 {t.nav.menuProfileShort}
               </button>
-              <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+              <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="flex w-full items-center gap-2 rounded-xl px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
                 <Users className="h-3.5 w-3.5 shrink-0 text-stone-500 dark:text-stone-400" />
                 {t.nav.menuFriendsShort}
               </button>
-              <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
+              <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="flex w-full items-center gap-2 rounded-xl px-3 py-1.5 text-left text-xs font-semibold transition text-stone-900 hover:bg-stone-50 dark:text-stone-100 dark:hover:bg-stone-800">
                 <Settings className="h-3.5 w-3.5 shrink-0 text-stone-500 dark:text-stone-400" />
                 {t.nav.menuSettingsShort}
               </button>
@@ -976,7 +973,7 @@ export default function AppNavbar() {
             <button
               onClick={handleSignOut}
               disabled={signingOut}
-              className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-xs font-semibold transition text-rose-600 hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 disabled:opacity-50"
+              className="flex w-full items-center gap-2 rounded-xl px-3 py-1.5 text-left text-xs font-semibold transition text-rose-600 hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 disabled:opacity-50"
             >
               <LogOut className="h-3.5 w-3.5 shrink-0" />
               {signingOut ? t.nav.signingOut : t.nav.signOut}
@@ -1001,7 +998,7 @@ export default function AppNavbar() {
               onClick={() => setMobileMenuOpen(false)}
             />
 
-            <div className="absolute left-0 right-0 top-full bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-2xl max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain z-40 lg:hidden backdrop-blur-md">
+            <div className="absolute left-0 right-0 top-full bg-white/98 dark:bg-stone-950/98 border-b border-stone-200 dark:border-stone-800 px-4 sm:px-6 py-3.5 space-y-1.5 shadow-lg max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain z-40 lg:hidden backdrop-blur-md">
               {profile && (
                 <div className="flex items-center justify-between gap-3 p-3 mb-2 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800">
                   <div className="flex items-center gap-2.5 min-w-0">
@@ -1022,7 +1019,7 @@ export default function AppNavbar() {
                       setMobileMenuOpen(false);
                       setShowQuickShop(true);
                     }}
-                    className="flex items-center gap-1 text-xs font-black px-2.5 py-1.5 rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 shrink-0"
+                    className="flex items-center gap-1 text-xs font-black px-2.5 py-1.5 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800 shrink-0"
                   >
                     <GoldCoinIcon className="w-3.5 h-3.5" />
                     <span>{profile.coins ?? 0}</span>

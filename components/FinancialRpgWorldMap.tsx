@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { organicBuildingsOf, type OrganicBuilding } from "@/lib/rpg-buildings";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, Coins, Zap, Trophy, Lock, Flame, Shield, Sparkles, ShoppingBag, Layers, Activity, Clock, Crown, Compass } from "lucide-react";
+import { ChevronLeft, Coins, Zap, Trophy, Lock, Flame, Shield, ShoppingBag, Layers, Activity, Clock, Crown, Compass } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getRequiredLevelForBuilding } from "@/lib/levels";
 import { toast } from "sonner";
@@ -26,6 +26,7 @@ import FedVaultWidget from "@/components/FedVaultWidget";
 import GoldmanSachsWidget from "@/components/GoldmanSachsWidget";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { getCurrentUser } from "@/lib/current-user";
 
 
 interface EquipmentRow {
@@ -90,14 +91,14 @@ export default function FinancialRpgWorldMap() {
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getUser().then(({ data }) => {
-      if (data.user) {
-        setUser(data.user);
+    void getCurrentUser().then((authUser) => {
+      if (authUser) {
+        setUser({ id: authUser.id, email: authUser.email ?? undefined });
         
         supabase
           .from("user_profiles")
           .select("current_level, coins, discovered_buildings")
-          .eq("id", data.user.id)
+          .eq("id", authUser.id)
           .single()
           .then(({ data: profile }) => {
             if (profile) {
@@ -115,7 +116,7 @@ export default function FinancialRpgWorldMap() {
         supabase
           .from("user_equipments")
           .select("slot, asset_key")
-          .eq("user_id", data.user.id)
+          .eq("user_id", authUser.id)
           .then(({ data: equips }) => {
             if (equips) {
               const gear: CharacterEquipments = {};
@@ -129,7 +130,7 @@ export default function FinancialRpgWorldMap() {
         supabase
           .from("user_progress")
           .select("lesson_id")
-          .eq("user_id", data.user.id)
+          .eq("user_id", authUser.id)
           .eq("completed", true)
           .then(({ data: progressRows }) => {
             if (progressRows) {
@@ -579,7 +580,6 @@ export default function FinancialRpgWorldMap() {
 
                         {b.id === "weekly-challenge" && (
                           <div className="absolute top-2 right-2.5 z-30 flex items-center gap-1 rounded-full bg-purple-100 px-2.5 py-0.5 text-[9px] font-black text-purple-700 border border-purple-300 shadow-xs animate-pulse">
-                            <Sparkles className="w-2.5 h-2.5 text-purple-600" />
                             <span>{t.worldMap.hotCase}</span>
                           </div>
                         )}

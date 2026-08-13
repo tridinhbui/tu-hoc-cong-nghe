@@ -79,20 +79,24 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
       if (!userId) return;
       try {
         // Lấy số coins & level từ user_profiles
-        const { data: profile } = await supabase
+        const { data: profile, error: profileError } = await supabase
           .from("user_profiles")
           .select("total_xp, current_level, coins")
           .eq("id", userId)
           .single();
-        
+
+        if (profileError) throw profileError;
+
         setUserLevel(profile?.current_level || 1);
         setCoins(profile?.coins || 0);
 
         // Lấy danh sách sở hữu
-        const { data: inventory } = await supabase
+        const { data: inventory, error: inventoryError } = await supabase
           .from("user_inventories")
           .select("asset_id, gamification_assets(asset_key)")
           .eq("user_id", userId);
+
+        if (inventoryError) throw inventoryError;
 
         const rows = (inventory ?? []) as unknown as InventoryRow[];
         const keys = new Set(
@@ -101,10 +105,12 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
         setOwnedAssets(keys);
 
         // Lấy danh sách đang trang bị
-        const { data: equips } = await supabase
+        const { data: equips, error: equipsError } = await supabase
           .from("user_equipments")
           .select("slot, asset_key")
           .eq("user_id", userId);
+
+        if (equipsError) throw equipsError;
 
         const gear: CharacterEquipments = {};
         equips?.forEach((e: { slot: string; asset_key: string }) => {
@@ -120,6 +126,19 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
     loadData();
   }, [userId, supabase]);
 
+  /**
+   * Mua một món qua RPC `purchase_cosmetic` (20260913).
+   *
+   * Bản trước làm ba việc từ trình duyệt - tạo asset, ghi inventory, trừ coin -
+   * và không việc nào chạy được: gamification_assets chỉ grant select, nên câu
+   * insert bị RLS chặn. Nó hỏng trong im lặng vì supabase-js KHÔNG throw khi
+   * lỗi, nó trả `{ data, error }`, và `error` không chỗ nào được đọc. Người mua
+   * bấm nút và không thấy gì cả - không thành công, không lỗi.
+   *
+   * Giờ giá và quyền sở hữu do máy chủ quyết. Kiểm coin ở đây chỉ để khỏi mất
+   * một vòng mạng khi rõ ràng không đủ; hàm SQL kiểm lại bằng chính số dư
+   * trong bảng, nên sửa `coins` trong state không mua rẻ được.
+   */
   const handlePurchase = async (item: CosmeticItem) => {
     if (coins < item.price) {
       toast.error(t.cosmeticStore.toastNotEnoughCoins);
@@ -127,50 +146,22 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
     }
 
     try {
-      // 1. Lấy hoặc tạo asset trong gamification_assets
-      let { data: asset } = await supabase
-        .from("gamification_assets")
-        .select("id")
-        .eq("asset_key", item.id)
-        .maybeSingle();
+      const { data, error } = await supabase
+        .rpc("purchase_cosmetic", { p_asset_key: item.id })
+        .select("coins_left")
+        .single();
 
-      if (!asset) {
-        const { data: newAsset } = await supabase
-          .from("gamification_assets")
-          .insert({
-            asset_key: item.id,
-            asset_type: item.asset_type,
-            name: item.name,
-            description: item.description,
-            rarity: item.rarity
-          })
-          .select()
-          .single();
-        asset = newAsset;
-      }
+      if (error) throw error;
 
-      if (asset) {
-        // 2. Thêm vào user_inventories
-        await supabase.from("user_inventories").insert({
-          user_id: userId,
-          asset_id: asset.id
-        });
+      const newCoinBalance = (data as { coins_left: number }).coins_left;
 
-        // 3. Trừ Coin trong user_profiles
-        const newCoinBalance = coins - item.price;
-        await supabase
-          .from("user_profiles")
-          .update({ coins: newCoinBalance })
-          .eq("id", userId);
+      setOwnedAssets(prev => new Set([...prev, item.id]));
+      setCoins(newCoinBalance);
 
-        setOwnedAssets(prev => new Set([...prev, item.id]));
-        setCoins(newCoinBalance);
-        
-        // Phát sự kiện cập nhật Coin lên Navbar
-        window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: newCoinBalance } }));
+      // Phát sự kiện cập nhật Coin lên Navbar
+      window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: newCoinBalance } }));
 
-        toast.success(format(t.cosmeticStore.toastPurchaseSuccess, { name: item.name }));
-      }
+      toast.success(format(t.cosmeticStore.toastPurchaseSuccess, { name: item.name }));
     } catch (error: unknown) {
       toast.error(format(t.cosmeticStore.toastPurchaseFailed, { error: errorMessage(error) }));
     }
@@ -207,17 +198,19 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
     try {
       if (isCurrentlyEquipped) {
         // Tháo đồ
-        await supabase
+        const { error } = await supabase
           .from("user_equipments")
           .delete()
           .eq("user_id", userId)
           .eq("slot", slot);
 
+        if (error) throw error;
+
         setEquippedGear(prev => ({ ...prev, [slot]: undefined }));
         toast.message(format(t.cosmeticStore.toastUnequipped, { name: item.name }));
       } else {
         // Mặc đồ mới
-        await supabase
+        const { error } = await supabase
           .from("user_equipments")
           .upsert({
             user_id: userId,
@@ -225,6 +218,8 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
             asset_key: item.id,
             equipped_at: new Date().toISOString()
           }, { onConflict: "user_id,slot" });
+
+        if (error) throw error;
 
         setEquippedGear(prev => ({ ...prev, [slot]: item.id }));
         toast.success(format(t.cosmeticStore.toastEquipped, { name: item.name }));

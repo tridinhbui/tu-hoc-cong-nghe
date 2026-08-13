@@ -1,12 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Flame, Users } from "lucide-react";
 import type { LessonMeta } from "./DashboardClient";
 import { getCommunityLearningNow, shortLearnerName, type CommunityLearner } from "@/lib/community-learning";
-import { isValidAvatar } from "@/lib/avatar-utils";
+import Avatar from "@/components/Avatar";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
@@ -121,20 +120,7 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
           const card = (
             <>
               <div className="flex items-center gap-2">
-                {isValidAvatar(learner.avatarUrl) ? (
-                  <Image
-                    src={learner.avatarUrl}
-                    alt={name}
-                    width={28}
-                    height={28}
-                    className="h-7 w-7 shrink-0 rounded-full object-cover"
-                    unoptimized
-                  />
-                ) : (
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-stone-900 text-[11px] font-black text-white dark:bg-stone-100 dark:text-stone-900">
-                    {name.slice(0, 1).toUpperCase()}
-                  </span>
-                )}
+                <Avatar key={learner.avatarUrl ?? learner.userId} name={name} url={learner.avatarUrl} size={28} />
                 <div className="min-w-0">
                   <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{name}</p>
                   <span className="mt-0.5 inline-flex items-center gap-0.5 text-[10px] font-black text-amber-600 dark:text-amber-400">

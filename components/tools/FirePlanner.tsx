@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, Info } from "lucide-react";
+import { Flame, Info } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 
@@ -58,7 +58,7 @@ export default function FirePlanner() {
     <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-6 shadow-sm space-y-6">
       <div className="flex items-center gap-2.5 pb-4 border-b border-stone-100 dark:border-stone-800">
         <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-          <Sparkles className="w-5 h-5 text-amber-500 animate-pulse" />
+          <Flame className="w-5 h-5 text-amber-500" />
         </div>
         <div>
           <h2 className="text-base font-extrabold text-stone-900 dark:text-stone-100">{t.firePlanner.title}</h2>

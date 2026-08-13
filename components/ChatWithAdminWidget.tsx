@@ -21,7 +21,6 @@ import {
   Clock,
 } from "lucide-react";
 import { toast } from "sonner";
-import { createClient } from "@/lib/supabase";
 import Logo from "@/components/Logo";
 import EmojiPicker from "@/components/EmojiPicker";
 import { announceWidgetOpened, onOtherWidgetOpened } from "@/lib/floating-widget-coordinator";
@@ -45,6 +44,7 @@ import {
   type ChatReactionMap,
 } from "@/lib/supabase-chat";
 import { useResizablePanel } from "@/lib/use-resizable-panel";
+import { getCurrentUserId } from "@/lib/current-user";
 
 const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
 
@@ -243,16 +243,13 @@ export default function ChatWithAdminWidget({
 
     setLoadingHistory(true);
     try {
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) return;
+      const id = await getCurrentUserId();
+      if (!id) return;
 
-      setUserId(user.id);
+      setUserId(id);
       const [history, savedReactions] = await Promise.all([
-        getChatHistory(user.id),
-        getChatReactions(user.id).catch((error) => {
+        getChatHistory(id),
+        getChatReactions(id).catch((error) => {
           console.error("Error loading chat reactions:", error);
           return {} as ChatReactionMap;
         }),
@@ -260,7 +257,7 @@ export default function ChatWithAdminWidget({
       setMessages(history);
       setReactions(savedReactions);
       hasLoadedHistoryRef.current = true;
-      void markMessagesSeenByUser(user.id);
+      void markMessagesSeenByUser(id);
     } finally {
       setLoadingHistory(false);
     }

@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Building2, TrendingUp, TrendingDown, ArrowUpRight, ArrowDownRight, 
-  Sparkles, RefreshCw, Calendar, BookOpen, AlertTriangle, ShieldCheck, 
+  RefreshCw, Calendar, BookOpen, AlertTriangle, ShieldCheck, 
   DollarSign, PieChart, Layers, ChevronRight, Zap, CheckCircle2 
 } from "lucide-react";
 import { toast } from "sonner";
@@ -426,7 +426,6 @@ export default function FinancialGuildWidget({ userId }: { userId: string }) {
       {currentNews && (
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="bg-amber-50 border border-amber-200 p-4 rounded-2xl mb-6 space-y-1">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
             <h4 className="text-xs font-black text-amber-700">{currentNews.headline}</h4>
           </div>
           <p className="text-[11px] text-stone-600 leading-relaxed pl-6">{currentNews.explanation}</p>

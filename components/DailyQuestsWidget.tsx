@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Sparkles, Trophy, Calendar, CheckCircle2, Gift, ChevronDown, ChevronUp, ArrowRight, BookOpen, Gamepad2, Award } from "lucide-react";
+import { ListChecks, Trophy, Calendar, CheckCircle2, Gift, ChevronDown, ChevronUp, ArrowRight, BookOpen, Gamepad2, Award } from "lucide-react";
 import { getDailyQuests, claimQuestReward, getWeeklyQuestXpBudget, type Quest } from "@/lib/supabase-quests";
 import { WEEKLY_CHEST_QUESTS_REQUIRED } from "@/lib/quest-rewards";
 import { earnChest } from "@/lib/chests";
@@ -261,7 +261,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
       <div className="w-full flex items-center justify-between mb-4 relative z-10">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-            <Sparkles className="w-4 h-4" />
+            <ListChecks className="w-4 h-4" />
           </div>
           <div className="text-left">
             <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.dailyQuests.headerTitle}</h3>

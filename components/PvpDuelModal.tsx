@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Brain, CheckCircle2, Shield, Sparkles, Trophy, X, XCircle } from "lucide-react";
+import { Brain, CheckCircle2, Shield, Trophy, X, XCircle } from "lucide-react";
 import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
 import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/supabase-user";
@@ -274,7 +274,7 @@ export default function PvpDuelModal({
               onClick={startBattle}
               className={`w-full bg-sky-600 hover:bg-sky-500 font-black ${embedded ? "py-3.5 text-base" : "py-4 text-lg"} rounded-2xl text-white shadow-lg transition-colors flex items-center justify-center gap-2 cursor-pointer text-center leading-tight`}
             >
-              <Sparkles className="w-5 h-5" /> {t.pvpDuel.startButton}
+              {t.pvpDuel.startButton}
             </button>
 
             <ModeLeaderboard

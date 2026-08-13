@@ -2,7 +2,7 @@
 
 import { useEffect, type Dispatch, type SetStateAction } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { PlayCircle, CheckCircle2, Sparkles, Flame } from "lucide-react";
+import { PlayCircle, CheckCircle2, Flame } from "lucide-react";
 import { TRACKS, type TrackId } from "@/lib/tracks";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -93,7 +93,6 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           {/* Header Badge */}
           <div className="flex items-center justify-between">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-950/40 dark:text-emerald-300">
-              <Sparkles className="w-3 h-3 text-emerald-500 animate-pulse" />
               {t.trackPanel.standardised}
             </span>
             <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-900/50">

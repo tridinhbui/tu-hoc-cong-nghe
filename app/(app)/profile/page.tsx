@@ -18,8 +18,7 @@ import {
   ShieldCheck,
   Target,
   Trophy,
-  Sparkles,
-} from "lucide-react";
+  } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { getLevelByXp, getLevelProgress, getXpToNextLevel } from "@/lib/levels";
 import { getMyLeaderboardRank, getUserProfile, recalculateUserStats, type UserProfile } from "@/lib/supabase-user";
@@ -790,7 +789,6 @@ export default function ProfilePage() {
             {/* Unlocked Titles & Themes */}
             <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl p-5 shadow-sm">
               <h4 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-1.5 border-b border-stone-100 dark:border-stone-800 pb-3 mb-4">
-                <Sparkles className="w-4 h-4 text-rose-500 animate-pulse" />
                 {t.profile.chestItems}
               </h4>
               

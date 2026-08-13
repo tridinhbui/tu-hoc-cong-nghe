@@ -65,6 +65,7 @@ with expected_functions(name) as (values
     ('notify_on_appeal_reviewed'),
     ('notify_on_community_comment'),
     ('notify_on_community_reaction'),
+    ('purchase_cosmetic'),
     ('record_quiz_mistake'),
     ('record_referral'),
     ('record_study_room_checkin'),

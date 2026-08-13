@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { toast } from "sonner";
-import { Highlighter, Flag, Check, Sparkles } from "lucide-react";
+import { Highlighter, Flag, Check } from "lucide-react";
 import { createHighlight, type LessonHighlight } from "@/lib/lesson-highlights";
 import { useI18n } from "@/lib/i18n/context";
 import { getCurrentUser } from "@/lib/current-user";
@@ -172,7 +172,6 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
     >
       <div className="px-3 py-1.5 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between mb-1">
         <span className="text-[10px] font-black uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1">
-          <Sparkles className="w-3 h-3" />
           {t.textHighlight.title}
         </span>
         <span className="text-[9px] text-stone-400 font-medium">

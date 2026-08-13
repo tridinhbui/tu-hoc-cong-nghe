@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { MessageCircle, UserPlus, Check, Clock } from "lucide-react";
-import { createClient } from "@/lib/supabase";
+import { getCurrentUserId } from "@/lib/current-user";
 import { getMySocialGraph, respondToFriendRequest, sendFriendRequest, type SocialConnection } from "@/lib/supabase-social";
 import { useI18n } from "@/lib/i18n/context";
 
@@ -42,11 +42,8 @@ export default function MessageUserButton({ targetUserId }: { targetUserId: stri
     if (busy) return;
     setBusy(true);
     try {
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) return;
+      const userId = await getCurrentUserId();
+      if (!userId) return;
 
       if (connection?.direction === "friend") {
         router.push(`/ban-be?with=${targetUserId}`);
@@ -65,7 +62,7 @@ export default function MessageUserButton({ targetUserId }: { targetUserId: stri
         return;
       }
 
-      const result = await sendFriendRequest(user.id, targetUserId);
+      const result = await sendFriendRequest(userId, targetUserId);
       toast.success(result.status === "accepted" ? t.miscUi.messageUserButton.becameFriendsToast : t.miscUi.messageUserButton.requestSentToast);
       router.push(`/ban-be?with=${targetUserId}`);
     } catch (error) {

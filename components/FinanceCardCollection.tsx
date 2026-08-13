@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase";
-import { Sparkles, Lock, Trophy, Zap } from "lucide-react";
+import { Lock, Trophy, Zap } from "lucide-react";
 import { FINANCE_CARDS, financeCardsOf, type FinanceCardRarity } from "@/lib/finance-cards";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -143,7 +143,7 @@ export default function FinanceCardCollection({ userId }: { userId: string }) {
                 <div className="my-4 space-y-3">
                   <div>
                     <h4 className="font-extrabold text-stone-900 dark:text-white flex items-center gap-1.5">
-                      {card.name} <Sparkles className="w-4 h-4 text-amber-400" />
+                      {card.name} 
                     </h4>
                     <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5 leading-relaxed">
                       {card.description}

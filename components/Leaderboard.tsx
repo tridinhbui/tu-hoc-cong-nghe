@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Trophy, BookOpen, Sparkles, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase, GraduationCap, Heart, ChevronLeft, ChevronRight , type LucideIcon } from "lucide-react";
+import { Trophy, BookOpen, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase, GraduationCap, Heart, ChevronLeft, ChevronRight , type LucideIcon } from "lucide-react";
 import {
   getLeaderboardByMetric,
   getMyLeaderboardRank,
@@ -439,7 +439,6 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             <h2 className="mt-2.5 text-2xl font-black tracking-tight text-stone-900 dark:text-stone-100">{t.leaderboard.titleCompact}</h2>
           </div>
           <div className="inline-flex items-center gap-1.5 rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 shadow-xs">
-            <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
             {t.leaderboard[activeTab.labelKey]}
           </div>
         </div>
@@ -678,7 +677,6 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           <h2 className="mt-2.5 text-3xl font-black tracking-tight text-stone-900 sm:text-4xl">{t.leaderboard.titleFull}</h2>
         </div>
         <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-sm font-bold text-emerald-700 shadow-xs">
-          <Sparkles className="h-4 w-4 text-emerald-600" />
           {t.leaderboard[activeTab.labelKey]}
         </div>
       </div>

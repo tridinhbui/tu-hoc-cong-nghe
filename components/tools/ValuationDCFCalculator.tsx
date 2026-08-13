@@ -8,7 +8,6 @@ import {
   DollarSign,
   PieChart,
   HelpCircle,
-  Sparkles,
   ArrowUpRight,
   ArrowDownRight,
   ShieldCheck,
@@ -78,7 +77,7 @@ export default function ValuationDCFCalculator() {
         </div>
 
         <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-[11px] font-black uppercase tracking-wider border border-amber-300 dark:border-amber-800">
-          <Sparkles className="w-3.5 h-3.5 text-amber-500" /> {t.dcf.standardBadge}
+          {t.dcf.standardBadge}
         </span>
       </div>
 

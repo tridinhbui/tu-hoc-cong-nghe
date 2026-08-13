@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Compass, CheckCircle2, ArrowRight, Sparkles, X, BrainCircuit, Award } from "lucide-react";
+import { Compass, CheckCircle2, ArrowRight, X, BrainCircuit, Award } from "lucide-react";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -215,7 +215,7 @@ export default function DiagnosticPlacementModal({
                 <div className="text-5xl">{rec.emoji}</div>
                 <div>
                   <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-[10px] font-black uppercase tracking-wider border border-emerald-300 dark:border-emerald-800">
-                    <Sparkles className="w-3 h-3 text-emerald-500" /> {t.diagnostic.resultBadge}
+                    {t.diagnostic.resultBadge}
                   </span>
                   <h3 className="text-lg font-black text-stone-900 dark:text-stone-100 mt-2">
                     {rec.title}

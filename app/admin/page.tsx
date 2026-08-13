@@ -7,7 +7,6 @@ import {
   FileText,
   TrendingUp,
   Award,
-  Sparkles,
   BookMarked,
   BarChart3,
 } from "lucide-react";
@@ -278,7 +277,6 @@ export default async function AdminOverviewPage() {
         <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl p-5 shadow-xs flex flex-col justify-between">
           <div>
             <h2 className="text-sm font-extrabold text-stone-800 dark:text-stone-200 uppercase tracking-wider mb-4 flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-purple-500" />
               {ta.trackRatioHeading}
             </h2>
             <div className="space-y-4">

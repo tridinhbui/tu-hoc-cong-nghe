@@ -3,7 +3,6 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { BriefcaseBusiness, CheckCircle2, ChevronLeft, Sparkles } from "lucide-react";
-import { createClient } from "@/lib/supabase";
 import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
@@ -12,6 +11,7 @@ import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { QUEST_XP_REWARDS } from "@/lib/quest-rewards";
+import { getCurrentUserId } from "@/lib/current-user";
 
 interface ChallengeQuestion {
   lessonId: number;
@@ -36,7 +36,6 @@ type Stage = "setup" | "loading" | "empty" | "error" | "ready" | "done";
 
 export default function KiemTraPage() {
   const { t } = useI18n();
-  const supabase = createClient();
   const [userId, setUserId] = useState<string | null>(null);
   const [track, setTrack] = useState<QuizTrack>("personal");
   const [difficulty, setDifficulty] = useState<QuizDifficulty>("tat-ca");
@@ -53,8 +52,8 @@ export default function KiemTraPage() {
   const [isNewsAnswered, setIsNewsAnswered] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
-  }, [supabase]);
+    void getCurrentUserId().then(setUserId);
+  }, []);
 
   useEffect(() => {
     const todayKey = new Date().toISOString().split("T")[0];
@@ -237,7 +236,6 @@ export default function KiemTraPage() {
                 <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-2">
                   <div>
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-                      <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                       <span>{t.quizPage.rightEyebrow}</span>
                     </div>
                     <h3 className="mt-1.5 text-base font-black text-stone-900 dark:text-stone-100">
@@ -345,7 +343,6 @@ export default function KiemTraPage() {
 
                 {/* XP Reward hint */}
                 <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/80 dark:bg-emerald-950/40 p-2.5 flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <p className="text-xs font-bold text-emerald-800 dark:text-emerald-300">
                     {t.quizPage.rewardPart1}
                     <strong>{format(t.quizPage.rewardXp, { xp: XP_PER_QUESTION })}</strong>

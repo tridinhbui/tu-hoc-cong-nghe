@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { BriefcaseBusiness, ChevronLeft, CheckCircle2, Clock3, Target, Trophy, ChevronDown } from "lucide-react";
-import { createClient } from "@/lib/supabase";
 import { submitQuizSession, computeQuizXp, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { getIbCategoryCounts, IB_TECHNICAL_QUESTIONS, IB_BEHAVIORAL_QUESTIONS } from "@/lib/ib-question-bank";
@@ -21,6 +20,7 @@ import {
   type CareerCategory,
 } from "@/lib/ib-career-picker";
 import { matchesVietnamese } from "@/lib/vn-search";
+import { getCurrentUserId } from "@/lib/current-user";
 
 // Standalone "Technical Interview" drill - split out of /kiem-tra (which
 // stays the general-purpose knowledge-check page) because the 400-question
@@ -70,7 +70,6 @@ type Mode = "technical" | "behavioral";
 export default function TechnicalInterviewPage() {
   const { t, locale } = useI18n();
   const IB_DIFFICULTY_COPY = ibDifficultyCopy(t);
-  const supabase = createClient();
   const [userId, setUserId] = useState<string | null>(null);
   const [mode, setMode] = useState<Mode>("technical");
   const [difficulty, setDifficulty] = useState<QuizDifficulty>("tat-ca");
@@ -157,8 +156,8 @@ export default function TechnicalInterviewPage() {
     : totalQuestions;
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
-  }, [supabase]);
+    void getCurrentUserId().then(setUserId);
+  }, []);
 
   const startQuiz = useCallback(async (overrideDifficulty?: QuizDifficulty, overrideSection?: string | null) => {
     const effectiveDifficulty = overrideDifficulty ?? difficulty;

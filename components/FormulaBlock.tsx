@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Copy, Check, Calculator, Sparkles, HelpCircle } from "lucide-react";
+import { Copy, Check, Calculator, HelpCircle } from "lucide-react";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
 import { copyToClipboard } from "@/lib/copy-to-clipboard";
@@ -167,7 +167,6 @@ export default function FormulaBlock({
       {example && (
         <div className="p-5 bg-emerald-50/30 dark:bg-emerald-950/20 border-t border-emerald-100 dark:border-emerald-900/40">
           <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             <p className="text-xs font-extrabold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider">
               {example.title || t.formulaBlock.defaultExampleTitle}
             </p>

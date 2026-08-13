@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Sparkles, RefreshCcw } from "lucide-react";
+import { RefreshCcw } from "lucide-react";
 import TaiTaiAvatar from "@/components/TaiTaiAvatar";
 import type { QuizTrack, QuizDifficulty } from "@/lib/supabase-quiz-sessions";
 import { useI18n } from "@/lib/i18n/context";
@@ -102,7 +102,6 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5">
             <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.quizSuggestion.suggestionLabel}</p>
-            <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
           </div>
           <p className="mt-1.5 text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
             {t.quizSuggestion.messagePart1} <span className="font-bold text-stone-900 dark:text-stone-100">{t.quizSuggestion.quoteOpen}{suggestion.lessonTitle}{t.quizSuggestion.quoteClose}</span> {t.quizSuggestion.messagePart2}{" "}
