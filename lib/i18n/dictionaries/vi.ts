@@ -515,6 +515,7 @@ export const vi = {
 
   // components/WorldBossRaidWidget.tsx - the weekly server-wide boss raid.
   worldBoss: {
+    noQuestions: "Boss tuần này chưa có câu hỏi nào. Thử tải lại, hoặc quay lại sau nhé.",
     counterattack: "Hụt rồi! Boss phản công làm bạn mất 34 HP.",
     loading: "Đang tải dữ liệu World Boss Server...",
     noEvent: "Chưa mở sự kiện World Boss tuần này.",

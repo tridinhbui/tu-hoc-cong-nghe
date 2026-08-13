@@ -28,6 +28,26 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    // TRÌNH TỐI ƯU ẢNH ĐÃ TẮT. Vercel trả 402 Payment Required cho
+    // `/_next/image` khi hạn mức tối ưu ảnh hết, và 402 thì trình duyệt vẽ ra
+    // một ô ảnh vỡ - không phải ảnh mờ, không phải ảnh to, mà là KHÔNG CÓ ẢNH.
+    //
+    // Người dùng báo hai lần trước khi tìm ra: "mất ảnh" ở thẻ xếp hạng và dải
+    // chuỗi ngày, rồi một ảnh chụp bài đăng cộng đồng in rõ dòng
+    // "402: PAYMENT REQUIRED". Trước đó tôi đã loại nhầm 402 khỏi danh sách
+    // nghi can, vì hai thẻ ấy vốn không đi qua trình tối ưu - nhưng 41 tệp khác
+    // thì có, và KHÔNG tệp nào đặt `unoptimized`.
+    //
+    // Một cờ ở đây thay cho việc sửa 41 tệp, và nó cũng là thứ gỡ ra được bằng
+    // một dòng khi hạn mức được nâng. Cái mất: ảnh không còn được thu nhỏ và
+    // đổi sang webp, nên tốn băng thông hơn và LCP kém hơn. Cái được: ảnh HIỆN
+    // RA. Đổi một tấm ảnh nặng lấy một tấm ảnh vỡ là đổi có lợi.
+    //
+    // `minimumCacheTTL` và `remotePatterns` bên dưới giữ nguyên nhưng tạm thời
+    // KHÔNG còn tác dụng: cả hai chỉ chi phối trình tối ưu, mà trình tối ưu
+    // đang tắt. Giữ lại để bật lại là đủ, đừng xoá.
+    unoptimized: true,
+
     // Bao lâu Vercel giữ một BẢN ĐÃ TỐI ƯU trước khi đi hỏi lại Supabase.
     //
     // Đây là dòng cắt egress mạnh nhất trong tệp này, và lý do nằm ở chỗ nó

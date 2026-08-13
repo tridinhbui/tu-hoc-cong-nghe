@@ -95,6 +95,24 @@ export default function WorldBossRaidWidget({
   const [heroHp, setHeroHp] = useState(100);
 
   const handleStartRaid = () => {
+    // KHÔNG vào đấu trường khi không có câu hỏi nào.
+    //
+    // Trước đây `setInCombat(true)` chạy vô điều kiện, và phép kiểm ngay dưới -
+    // `if (boss?.questions)` - chỉ gác phần xáo lại thứ tự: một mảng RỖNG vẫn
+    // là truthy, nên nó xáo không có gì rồi đi tiếp. Đấu trường mở ra với tiêu
+    // đề "CÂU 1/0", một ô trắng chỗ đề bài, và không nút nào - vì
+    // `boss.questions[qIndex]?.prompt` và `?.options.map` đều lặng lẽ vẽ ra
+    // rỗng. Dấu `?.` ở đó để tránh sập, và nó đã đổi một cú sập lấy một màn
+    // hình trắng không giải thích gì.
+    //
+    // Người dùng báo đúng ba triệu chứng ấy: không hiện nội dung, không có nút,
+    // không có thông báo. Cái thứ ba là cái tệ nhất - hai cái đầu còn đoán được
+    // là hỏng, cái thứ ba làm người ta tưởng mình bấm sai.
+    if (!boss?.questions?.length) {
+      toast.error(t.worldBoss.noQuestions);
+      return;
+    }
+
     // Client-side option reshuffling safeguard to guarantee answer positions A, B, C are randomly distributed
     if (boss?.questions) {
       const reshuffledQuestions = boss.questions.map((q) => {
@@ -444,10 +462,23 @@ export default function WorldBossRaidWidget({
                     </div>
                   </div>
 
+                  {/* Lưới thứ hai. Chặn ở handleStartRaid là đủ cho lối vào,
+                      nhưng câu hỏi cũng có thể biến mất GIỮA phiên - một lượt
+                      tải lại boss trả về rỗng chẳng hạn - và khi đó `?.` bên
+                      dưới lại vẽ ra một màn hình trắng im lặng. Nói thẳng ra
+                      vẫn hơn. */}
+                  {!boss.questions[qIndex] && (
+                    <p className="mb-4 rounded-2xl border border-amber-200 bg-white p-4 text-sm font-bold leading-relaxed text-stone-900 shadow-sm">
+                      {t.worldBoss.noQuestions}
+                    </p>
+                  )}
+
                   {/* Question Prompt */}
+                  {boss.questions[qIndex] && (
                   <h3 className="text-sm font-bold bg-white p-4 rounded-2xl border border-amber-200 mb-4 leading-relaxed text-stone-900 shadow-sm">
                     {boss.questions[qIndex]?.prompt}
                   </h3>
+                  )}
 
                   {/* Options */}
                   <div className="space-y-2.5">

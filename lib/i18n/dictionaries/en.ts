@@ -465,6 +465,7 @@ export const en: Dictionary = {
   },
 
   worldBoss: {
+    noQuestions: "This week's boss has no questions yet. Try reloading, or come back later.",
     counterattack: "Missed! The boss counterattacks and takes 34 HP off you.",
     loading: "Loading the server world boss...",
     noEvent: "This week's world boss event hasn't opened yet.",
