@@ -1500,7 +1500,7 @@ export const en: Dictionary = {
     step3Title: "Check the leaderboard & keep your streak",
     step3Body: "Study daily to climb the ranks",
 
-    heroBanner: "🎓 HERO LEARNING BANNER",
+    heroBanner: "WHERE YOU LEFT OFF",
     xpIfNow: "🔥 +{xp} XP IF YOU START NOW",
     trackProgress: "Track progress ({done}/{total} lessons)",
     continuingLesson: "▶ The lesson you're on",
@@ -2354,6 +2354,12 @@ export const en: Dictionary = {
     libraryEnterCta: "Enter",
 
     learningPathCardSub: "Where to start, how much a day, and when you finish",
+
+    presetLabel: "Layout",
+    presetCompact: "Compact",
+    presetFull: "Everything",
+    presetCompactHint: "Today's studying only",
+    presetFullHint: "Also show rewards, community and challenges",
     streakFeedTitle: "Streaks today",
     streakFeedSub: "Other learners keeping the rhythm",
     streakFeedDays: "{days} days",

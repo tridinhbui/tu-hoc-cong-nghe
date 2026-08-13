@@ -269,9 +269,15 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "goldmanWidget.orgBadge",
   "goldmanWidget.trackBadge",
   "cfaGlossary.heading",
-  // Already English: a banner label and the world-boss HP readout, both of
+  // Already English: the world-boss HP readout and its arena label, both of
   // which are the game's own English chrome in the Vietnamese source too.
-  "resume.heroBanner",
+  //
+  // `resume.heroBanner` ĐÃ Ở ĐÂY và không đáng ở: giá trị của nó là
+  // "🎓 HERO LEARNING BANNER" - tên nội bộ của chính component, viết hoa toàn
+  // bộ, hiện ra cho người dùng đọc ở thẻ trên cùng bảng điều khiển. Lý do ghi
+  // kèm gọi nó là "game's own English chrome", và đó là một cách nói khác của
+  // "cổng kêu nên tôi tắt cổng". Nó không phải chrome của game, nó là nhãn lập
+  // trình viên đặt cho khối JSX. Giờ là chữ thật ở cả hai ngôn ngữ.
   "kingdomPreview.bossRaidLabel",
   "kingdomPreview.bossHpValue",
   // The product's own name, and "Tài Tài" the study-group character, both of

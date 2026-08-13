@@ -1598,7 +1598,7 @@ export const vi = {
     step3Title: "Xem bảng xếp hạng & giữ streak",
     step3Body: "Học đều mỗi ngày để leo hạng",
 
-    heroBanner: "🎓 HERO LEARNING BANNER",
+    heroBanner: "ĐANG HỌC DỞ",
     xpIfNow: "🔥 +{xp} XP NẾU HỌC NGAY",
     trackProgress: "Tiến độ Lộ trình ({done}/{total} bài)",
     continuingLesson: "▶ Bài học đang tiếp tục",
@@ -2524,6 +2524,12 @@ export const vi = {
     libraryEnterCta: "Vào",
 
     learningPathCardSub: "Bắt đầu từ đâu, mỗi ngày bao nhiêu bài, bao giờ thì xong",
+
+    presetLabel: "Bảng nhìn",
+    presetCompact: "Gọn",
+    presetFull: "Đầy đủ",
+    presetCompactHint: "Chỉ giữ việc học hôm nay",
+    presetFullHint: "Hiện thêm thưởng, cộng đồng và thử thách",
     streakFeedTitle: "Chuỗi ngày học hôm nay",
     streakFeedSub: "Người khác cũng đang giữ nhịp",
     streakFeedDays: "{days} ngày",
