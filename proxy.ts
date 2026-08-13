@@ -136,6 +136,29 @@ function isPublicPath(pathname: string): boolean {
 // this is Supabase's documented pattern for keeping SSR sessions in sync.
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Mã OAuth rơi xuống trang chủ thay vì /auth/callback.
+  //
+  // /login mở OAuth với `redirectTo: <origin>/auth/callback?next=...`, và mã
+  // đó đúng. Nhưng Supabase CHỈ dùng `redirect_to` khi URL ấy khớp danh sách
+  // Redirect URLs của dự án; không khớp thì nó lặng lẽ rơi về "Site URL" - tức
+  // trang chủ - và gắn `?code=` vào đó. Không có lỗi nào hiện ra, chỉ là người
+  // dùng đứng ở `/?code=<uuid>` và chưa đăng nhập, vì không ai đổi mã lấy
+  // phiên.
+  //
+  // Chuyển tiếp sang callback thật để lần đăng nhập ấy vẫn xong. Đây là LƯỚI
+  // AN TOÀN chứ không phải bản sửa: chỗ sửa thật nằm ở Supabase Dashboard →
+  // Authentication → URL Configuration, thêm cả hai biến thể có và không có
+  // `www` vào Redirect URLs. Giữ lưới này kể cả sau khi sửa - một tên miền mới
+  // thêm sau này sẽ vấp đúng chỗ đó.
+  //
+  // Chỉ nhận ở "/" vì đó là nơi duy nhất Supabase rơi về. Không vòng lặp:
+  // /auth/* thoát sớm ở nhánh tự-xác-thực ngay bên dưới.
+  if (pathname === "/" && request.nextUrl.searchParams.has("code")) {
+    const callback = new URL("/auth/callback", request.url);
+    callback.search = request.nextUrl.search;
+    return NextResponse.redirect(callback);
+  }
   
   // Apply rate limiting to API routes only (skip in development)
   if (pathname.startsWith('/api') && process.env.NODE_ENV === 'production') {
