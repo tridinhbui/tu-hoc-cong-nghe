@@ -64,10 +64,24 @@ export default function FortuneWheelModal({ userId, onClose, onRewardClaimed }: 
         try {
           const supabase = createClient();
           if (prize.coins > 0) {
-            const { data: profile } = await supabase.from("user_profiles").select("coins").eq("id", userId).single();
-            const currentCoins = profile?.coins || 0;
-            await supabase.from("user_profiles").update({ coins: currentCoins + prize.coins }).eq("id", userId);
-            window.dispatchEvent(new CustomEvent("thtcdn:coin-updated", { detail: { coins: currentCoins + prize.coins } }));
+            // Qua `grant_coins` chứ không cập nhật thẳng: cột `coins` bị trigger
+            // khoá với vai trò của trình duyệt (20260914). Đọc-rồi-ghi từ client
+            // vốn cũng là chỗ ai cũng đặt được số dư tuỳ ý.
+            //
+            // Server chặn trên ở 100 - đúng giải cao nhất của vòng quay này.
+            // Nó CHƯA chặn được việc gọi lại, vì giải vẫn do trình duyệt bốc;
+            // muốn thế thì lượt quay phải chuyển sang server.
+            const { data, error } = await supabase.rpc("grant_coins", {
+              p_source: "wheel",
+              p_ref: null,
+              p_amount: prize.coins,
+            });
+            const row = Array.isArray(data) ? data[0] : data;
+            if (!error && row?.coins_left != null) {
+              window.dispatchEvent(
+                new CustomEvent("thtcdn:coin-updated", { detail: { coins: row.coins_left } }),
+              );
+            }
           }
           onRewardClaimed?.(prize.label, prize.coins || prize.xp);
         } catch (err) {

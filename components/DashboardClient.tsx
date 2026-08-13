@@ -2406,14 +2406,21 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             // next recompute. Routing it through game_sessions also puts it
             // under the same best-per-game_type 50 XP ceiling as every other
             // game, instead of minting a parallel currency.
-            const { data: profile } = await supabase
-              .from("user_profiles")
-              .select("coins")
-              .eq("id", user.id)
-              .single();
-            const newCoins = (profile?.coins || 0) + coins;
-
-            await supabase.from("user_profiles").update({ coins: newCoins }).eq("id", user.id);
+            // Qua `grant_coins`, không đọc-rồi-ghi từ client: trigger 20260914
+            // khoá cột `coins` với vai trò trình duyệt, nên câu update cũ sẽ
+            // báo thành công mà số dư không đổi.
+            //
+            // Server chặn trên ở 50 cho một ván. Nó chưa chặn được việc gọi
+            // lại - điểm số do client báo và không có gì ở server dựng lại được
+            // ván đấu - nhưng mọi lượt cấp đều để lại một hàng trong
+            // `coin_grants`, nên chuyện đó đọc ra được.
+            const { data: grant } = await supabase.rpc("grant_coins", {
+              p_source: "game",
+              p_ref: null,
+              p_amount: coins,
+            });
+            const grantRow = Array.isArray(grant) ? grant[0] : grant;
+            const newCoins = grantRow?.coins_left ?? 0;
             const userId = user.id;
             if (!userId) return;
             await supabase.from("game_sessions").insert({

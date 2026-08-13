@@ -107,12 +107,19 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
     if (userId) {
       try {
         const supabase = createClient();
-        const { data: profile } = await supabase.from("user_profiles").select("coins").eq("id", userId).single();
-        const nextCoins = (profile?.coins || 0) + coins;
-
-        await supabase.from("user_profiles").update({
-          coins: nextCoins,
-        }).eq("id", userId);
+        // Qua `grant_coins`, không đọc-rồi-ghi: trigger 20260914 khoá cột
+        // `coins` với vai trò trình duyệt, nên câu update cũ sẽ báo thành công
+        // mà số dư không đổi.
+        //
+        // Trần server là 100 - `coinReward` cao nhất đang là 80, nhân hệ số
+        // 1.25 khi đạt trên 90% ra 100 tròn.
+        const { data: grant } = await supabase.rpc("grant_coins", {
+          p_source: "challenge",
+          p_ref: null,
+          p_amount: coins,
+        });
+        const grantRow = Array.isArray(grant) ? grant[0] : grant;
+        const nextCoins = grantRow?.coins_left ?? 0;
 
         await recordCustomGameSession(
           userId,

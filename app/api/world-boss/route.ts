@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createAdminClient } from "@/lib/supabase-admin";
 import { BOSS_QUESTION_COUNT } from "@/lib/world-boss";
 import { getServerDictionary } from "@/lib/i18n/server";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -200,7 +201,17 @@ export async function POST(request: NextRequest) {
 
   const currentCoins = profile?.coins ?? 0;
 
-  await supabase
+    // Lượt ghi coin đi bằng service role, KHÔNG bằng client theo phiên.
+    //
+    // Trigger `guard_coins_column` (20260914) chặn mọi thay đổi cột `coins` khi
+    // vai trò là `authenticated` - và route này tuy chạy ở server nhưng vẫn
+    // dùng vai trò của chính người dùng, nên nó cũng bị chặn: câu update báo
+    // thành công còn số dư không nhúc nhích.
+    //
+    // Dùng service role ở ĐÚNG lượt ghi này, không đổi client cho cả route:
+    // số tiền ở đây do server quyết nên nó đáng tin, còn mọi truy vấn khác vẫn
+    // nên đi qua RLS như cũ.
+  await createAdminClient()
     .from("user_profiles")
     .update({
       coins: currentCoins + coinReward,

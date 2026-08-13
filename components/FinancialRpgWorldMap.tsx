@@ -189,9 +189,31 @@ export default function FinancialRpgWorldMap() {
       setCoins(newCoins);
       toast.success(t.miscUi.financialRpgWorldMap.regionDiscovered);
       if (user?.id) {
-        createClient().from("user_profiles").update({ coins: newCoins, discovered_buildings: updated }).eq("id", user.id).then(({ error }) => {
-          if (error) console.warn("Supabase user_profiles update notice:", error.message);
-        });
+        const client = createClient();
+        // Hai lượt ghi tách đôi, vì chúng có mức tin cậy khác nhau.
+        //
+        // `discovered_buildings` là trạng thái của người chơi, ghi thẳng được.
+        // `coins` thì không: trigger 20260914 khoá cột với vai trò trình duyệt,
+        // nên câu update cũ sẽ "thành công" mà tiền không nhúc nhích - im lặng
+        // đúng kiểu khó lần nhất.
+        //
+        // `grant_coins` chốt mức +5 ở server và dùng chính khoá của khu làm
+        // tham chiếu, nên khám phá lại cùng một khu không trả tiền lần hai.
+        client.from("user_profiles").update({ discovered_buildings: updated }).eq("id", user.id)
+          .then(({ error }) => {
+            if (error) console.warn("Supabase user_profiles update notice:", error.message);
+          });
+        client.rpc("grant_coins", { p_source: "building", p_ref: id, p_amount: 5 })
+          .then(({ data, error }) => {
+            if (error) return;
+            const row = Array.isArray(data) ? data[0] : data;
+            if (row?.coins_left != null) {
+              setCoins(row.coins_left);
+              window.dispatchEvent(
+                new CustomEvent("thtcdn:coin-updated", { detail: { coins: row.coins_left } }),
+              );
+            }
+          });
       }
     }
 
