@@ -4,11 +4,12 @@ import React, { Suspense, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, BarChart3, CheckCircle2, MessageCircleMore, ShieldCheck, Sparkles, Star, Users2 } from "lucide-react";
+import { ArrowLeft, BarChart3, CheckCircle2, MessageCircleMore, ShieldCheck, Star, Users2 } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { translateAuthError, isUnconfirmedEmailError } from "@/lib/auth-error-messages";
 import { stashReferralCodeFromUrl } from "@/lib/referrals";
 import { safeNextPath } from "@/lib/safe-next-path";
+import { rememberOAuthNext } from "@/lib/oauth-next-cookie";
 import Logo from "@/components/Logo";
 import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import { type TrackId } from "@/lib/tracks";
@@ -301,16 +302,24 @@ function LoginForm() {
     setLoading(true);
 
     try {
+      // Đặt TRƯỚC khi gọi: signInWithOAuth điều hướng trình duyệt đi ngay, nên
+      // bất kỳ dòng nào sau nó đều có thể không kịp chạy.
+      rememberOAuthNext(nextPath);
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          // `next` phải đi vòng qua Google rồi quay lại: callback là một route
-          // handler chạy trên server, nó không thấy được `?next=` của trang này.
-          // Thiếu đoạn này thì đăng nhập bằng email tôn trọng đích đến còn đăng
-          // nhập bằng Google thì không - mọi liên kết sâu (bài học được chia sẻ,
-          // thông báo đẩy) đều đổ về /dashboard, và người bấm vào không bao giờ
-          // tới được thứ họ bấm.
-          redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(nextPath)}`,
+          // `redirectTo` KHÔNG mang query. Supabase khớp URL này với danh
+          // sách Redirect URLs trên TOÀN BỘ chuỗi, nên một mục đăng ký không
+          // có ký tự đại diện sẽ không khớp khi có `?next=` phía sau - và khi
+          // không khớp thì nó rơi về Site URL kèm `?code=`, tức trang chủ, và
+          // lần đăng nhập ấy không bao giờ hoàn tất. Xem
+          // lib/oauth-next-cookie.ts.
+          //
+          // `next` vẫn phải đi vòng qua Google rồi quay lại - callback là route
+          // handler chạy trên server, nó không thấy `?next=` của trang này -
+          // nên nó đi bằng cookie, đặt ngay trên dòng gọi hàm này.
+          redirectTo: `${window.location.origin}/auth/callback`,
           // Without this, Google silently reuses whichever account is
           // already active in the browser session instead of showing the
           // account chooser - a problem on shared/multi-account devices
@@ -363,7 +372,6 @@ function LoginForm() {
           >
             <div className="max-w-xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50/80 dark:bg-emerald-950/30 px-3.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
-                <Sparkles className="w-3.5 h-3.5" />
                 {t.login.freeForever}
               </div>
 
