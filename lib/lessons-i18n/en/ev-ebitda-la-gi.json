@@ -12,10 +12,21 @@
   ],
   "explanation": "EV/EBITDA compares total enterprise value - market cap plus debt minus cash - against profit before interest, tax, and depreciation. Because both the numerator and denominator sit above both creditors and shareholders, this metric isn't skewed by capital structure the way P/E is, which is why it's the default multiple in mergers and acquisitions. One limitation to remember: EBITDA ignores capital spending, so it inflates the apparent cash-generating power of capital-intensive industries.",
   "diagram": [
-    { "label": "Market capitalization", "arrow": true },
-    { "label": "Add debt, subtract cash: get enterprise value", "arrow": true },
-    { "label": "Divide by EBITDA", "arrow": true },
-    { "label": "Because it ignores capital structure, two differently-leveraged companies can be compared" }
+    {
+      "label": "Market capitalization",
+      "arrow": true
+    },
+    {
+      "label": "Add debt, subtract cash: get enterprise value",
+      "arrow": true
+    },
+    {
+      "label": "Divide by EBITDA",
+      "arrow": true
+    },
+    {
+      "label": "Because it ignores capital structure, two differently-leveraged companies can be compared"
+    }
   ],
   "realWorldExample": {
     "company": "Telecom M&A deals",
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "EV/EBITDA is the most common valuation multiple in M&A and cross-capital-structure business comparisons - because it looks at the whole enterprise level, before accounting for debt and tax."
     },
-    { "type": "callout", "label": "The formula", "text": "EV/EBITDA = Enterprise Value / EBITDA  (EV = Market Capitalization + Debt − Cash)" },
-    { "type": "heading", "text": "Why EV/EBITDA is fairer than P/E across different capital structures" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "EV/EBITDA = Enterprise Value / EBITDA  (EV = Market Capitalization + Debt − Cash)"
+    },
+    {
+      "type": "heading",
+      "text": "Why EV/EBITDA is fairer than P/E across different capital structures"
+    },
     {
       "type": "paragraph",
       "text": "Two companies with identical EBITDA but different debt levels will have noticeably different Net Income (and P/E) - the more heavily-indebted company pays more interest, has lower Net Income, and looks like it has a higher P/E even though its core business is equivalent. EV/EBITDA completely removes this effect because it's calculated at the EBITDA level (before interest, tax, depreciation) and uses Enterprise Value (which already adds back debt) as the numerator - those two companies will have a much closer EV/EBITDA, better reflecting the true value of their operations."
     },
-    { "type": "heading", "text": "Why investment banks prefer EV/EBITDA in M&A" },
+    {
+      "type": "heading",
+      "text": "Why investment banks prefer EV/EBITDA in M&A"
+    },
     {
       "type": "paragraph",
       "text": "In an M&A deal, the buyer isn't just buying shareholders' equity - they're taking on the entire business, including its existing debt obligations. EV/EBITDA correctly reflects this 'all-in' price the buyer actually has to pay, while P/E only looks at it from the shareholder's perspective (Equity Value), ignoring the debt the buyer still has to carry. This is why in telecom M&A deals - where target companies have very different capital structures (infrastructure debt ratios) - EV/EBITDA is almost always the preferred metric."
@@ -128,6 +149,17 @@
       "lines": [
         "When comparing two companies with substantially different capital structures, EV/EBITDA is almost always the fairer choice over P/E."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "EV = Market cap + Debt − Cash · EV/EBITDA = EV ÷ EBITDA",
+      "example": {
+        "title": "Two companies, same EBITDA, different capital structures",
+        "calculation": "A: market cap VND 800bn, debt 400bn, cash 100bn → EV 1,100bn · B: market cap 1,000bn, no debt, cash 100bn → EV 900bn · both EBITDA 100bn",
+        "result": "A: 1,100 ÷ 100 = 11.0x · B: 900 ÷ 100 = 9.0x",
+        "explanation": "B looks dearer on market cap (1,000 against 800) but is in fact cheaper: 9x against 11x. A's VND 400bn of debt is something the buyer takes on, so it belongs in the price paid. P/E cannot see this, because it looks only at the equity."
+      }
     }
   ]
 }

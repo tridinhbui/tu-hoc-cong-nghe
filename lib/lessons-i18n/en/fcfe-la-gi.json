@@ -144,6 +144,17 @@
       "lines": [
         "Choose FCFF when you want to value the entire business; choose FCFE when you only care about the portion belonging to shareholders."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "FCFE = FCFF − Interest × (1 − tax) + New borrowing − Principal repaid",
+      "example": {
+        "title": "The same business as the FCFF lesson, with its debt",
+        "calculation": "FCFF VND 300bn · interest 50bn, tax 20% → after-tax interest 40bn · new borrowing 100bn · principal repaid 60bn",
+        "result": "FCFE = 300 − 40 + 100 − 60 = VND 300bn",
+        "explanation": "Matching FCFF here is a coincidence, and it shows exactly what needs showing: the new VND 100bn of borrowing offset the interest and the repayment. Had the business not borrowed that year, FCFE would be 300 − 40 − 60 = VND 200bn. Same business, same operations, FCFE differs by VND 100bn purely because of a financing decision - which is why FCFE is sensitive to debt policy and FCFF is not."
+      }
     }
   ]
 }

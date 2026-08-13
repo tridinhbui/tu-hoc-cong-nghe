@@ -140,6 +140,17 @@
       "lines": [
         "Neither method is absolutely 'correct' for calculating Terminal Value - using both and comparing is the most professional way to check yourself."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "Terminal value = Final-year EBITDA × Exit multiple",
+      "example": {
+        "title": "A five-year LBO",
+        "calculation": "Year 5 EBITDA VND 150bn · exit multiple 8.0x · remaining debt 300bn",
+        "result": "Enterprise value VND 1,200bn → equity proceeds 1,200 − 300 = VND 900bn",
+        "explanation": "Move the exit multiple from 8.0x down to 7.0x and enterprise value becomes 1,050bn with equity of 750bn - down 17% on one assumption. That is why the exit multiple has to be sensitivity-tested rather than picked once; the convention is to use the same multiple paid on entry, because assuming you buy cheap and sell dear needs its own justification."
+      }
     }
   ]
 }

@@ -149,6 +149,17 @@
       "type": "callout",
       "label": "Negative free cash flow is not bad in itself",
       "text": "Negative because the company is investing to expand, and negative because the business is weak, are two entirely different things. In the first case operating cash flow is still positive but capital spending is larger - acceptable, provided that spending produces better cash flow later. In the second, operating cash flow is already negative and investment still has to be funded, which means the company is burning money. Look at a single year and the two cases appear identical; look at three to five and they do not."
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "FCFF = NOPAT + D&A − CapEx − ΔNWC",
+      "example": {
+        "title": "A manufacturer, one year of figures",
+        "calculation": "EBIT VND 500bn, tax 20% → NOPAT 400bn · D&A 120bn · CapEx 180bn · working capital up 40bn",
+        "result": "FCFF = 400 + 120 − 180 − 40 = VND 300bn",
+        "explanation": "D&A is added back because it was deducted from EBIT without any cash leaving. CapEx and the rise in working capital are subtracted, because that is real money that left the business during the year. Note this line has not deducted interest: the VND 300bn is for BOTH lenders and shareholders, which is why it is discounted at WACC rather than at the cost of equity."
+      }
     }
   ]
 }
