@@ -1,0 +1,192 @@
+{
+  "slug": "doanh-thu-nha-thau-theo-tien-do",
+  "title": "Contractors, Part 1: Revenue follows progress, not invoices",
+  "subtitle": "Why a contractor's reported profit has almost nothing to do with the cash that arrived in the period",
+  "duration": "10 min",
+  "openingQuestion": "A contractor has completed 40% of the work on a contract but nothing has been certified and no invoice has been issued. How much revenue is recognised in the period?",
+  "openingOptions": [
+    "40% of the contract value, because revenue follows work completed",
+    "Zero, because no revenue can be recognised before an invoice is issued",
+    "Zero, because the volume is not confirmed until it has been certified",
+    "40%, but only once the client has paid the first instalment"
+  ],
+  "explanation": "A construction contract recognises revenue as the work progresses, not when an invoice is raised or cash is received. The most common way to measure progress is the cost-to-cost ratio: costs actually incurred divided by the total estimated cost of the whole contract, multiplied by the contract value. Revenue that has been recognised but not yet certified for invoicing does not disappear - it sits on the balance sheet as a contract asset, usually called unbilled revenue. An advance received before any work is done is the mirror image: a contract liability, not revenue. The practical consequence is that a contractor's reported profit tracks the volume built, while the bank balance tracks the certification paperwork, and those two numbers can move in opposite directions for several quarters in a row.",
+  "diagram": [
+    {
+      "label": "Costs incurred ÷ total estimated cost"
+    },
+    {
+      "label": "= % progress, applied to the contract value"
+    },
+    {
+      "label": "= revenue recognised in the period"
+    },
+    {
+      "label": "Uncertified portion → contract asset, not yet cash"
+    }
+  ],
+  "realWorldExample": {
+    "company": "An M&E contractor, a 60bn package",
+    "description": "An M&E contractor takes a 60bn package with a total estimated cost of 48bn. By the end of the first year it has spent 24bn, so progress is 50%: it recognises 30bn of revenue and 24bn of cost, a gross profit of 6bn. But the client has certified only 20bn and retained 5% of that, so cash actually received for the year is 19bn against 24bn spent. The income statement says a 6bn profit; the cash book says minus 5bn. Both are correct."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A construction contract spans several accounting periods. If revenue were only recognised at final handover, the contractor would report zero revenue through two years of building and then one enormous number in the closing quarter - a figure that describes nothing about what actually happened. So the standards allow revenue to be recognised gradually, as the work is completed."
+    },
+    {
+      "type": "heading",
+      "text": "Measure progress with costs, not with judgement"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most widely used measure is cost-to-cost: costs actually incurred divided by the total estimated cost of the whole contract. Its strength is that it rests on figures backed by documents. Its weakness is that it depends on the denominator - the total estimated cost - and that denominator is estimated by the contractor itself."
+    },
+    {
+      "type": "formula",
+      "title": "Cumulative revenue recognised",
+      "variables": [
+        {
+          "symbol": "Contract value",
+          "name": "Value signed",
+          "description": "Including approved variations"
+        },
+        {
+          "symbol": "Costs incurred",
+          "name": "Cumulative actual cost",
+          "description": "Only work actually built; materials delivered but not installed do not count"
+        },
+        {
+          "symbol": "Total estimated cost",
+          "name": "Estimated cost to completion",
+          "description": "Must be revised every period, and this is the figure most easily distorted"
+        }
+      ],
+      "example": {
+        "title": "A 60bn package, estimated cost 48bn",
+        "result": "30bn of cumulative revenue",
+        "explanation": "24bn spent against a 48bn estimate means half the work is done, so half the contract value is recognised."
+      },
+      "equation": "Contract value × (Costs incurred ÷ Total estimated cost)"
+    },
+    {
+      "type": "callout",
+      "label": "Where the denominator gets distorted",
+      "text": "Lowering the total estimated cost raises the progress ratio, and the period's revenue and profit rise with it without a single extra cubic metre being built. This is the classic trick of the industry, and it exposes itself the following period: real costs still arrive, so the ratio overshoots 100% or the gross margin of the closing periods turns sharply negative. When reading a contractor's accounts, look at gross margin quarter by quarter - a smooth, even run that collapses in the final quarter of a contract is the signature of an adjusted denominator."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Contract asset",
+        "text": "Built, revenue recognised, not yet certified for invoicing. A right to be paid, not yet a receivable."
+      },
+      "right": {
+        "label": "Contract liability",
+        "text": "Advance received, work not yet performed. An obligation to build, not revenue of the period."
+      }
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four numbers that are often taken for one",
+      "concepts": [
+        {
+          "en": "Revenue recognised",
+          "def": "Follows construction progress, independent of invoices and cash"
+        },
+        {
+          "en": "Certified work",
+          "def": "The portion the client has confirmed; the basis for invoicing"
+        },
+        {
+          "en": "Amount billed",
+          "def": "The portion submitted for payment, not necessarily collected"
+        },
+        {
+          "en": "Cash collected",
+          "def": "Net of retention and other deductions"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A contractor's revenue measures the volume built; a contractor's cash measures the progress of paperwork. Reading one number and inferring the other is the fastest way to reach a wrong conclusion about a construction business."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "A contract is worth 80bn, the total estimated cost is 64bn, and costs incurred are 16bn. How much cumulative revenue is recognised?",
+      "options": [
+        "16bn (= exactly the cost spent, with no margin added)",
+        "12.8bn (= 64 × 16/80, numerator and denominator swapped)",
+        "25bn (= 80 × 16/64 rounded up to a clean quarter)",
+        "20bn (= 80 × 16/64, on the cost-to-cost ratio)"
+      ],
+      "explanation": "Progress is 16/64 = 25%, applied to the 80bn contract value gives 20bn. The 16bn answer confuses revenue with cost; 12.8bn puts the contract value in the denominator."
+    },
+    {
+      "question": "A contractor receives a 10bn advance before work starts. Where is it recorded?",
+      "options": [
+        "Contract liability, because the matching work is not yet performed",
+        "Revenue of the period, because the cash is already in the account",
+        "Contract asset, because it attaches to a contract already signed",
+        "A receivable, because it will be offset against later instalments"
+      ],
+      "explanation": "Cash received before the work is done is an obligation to build, so it sits on the funding side. It converts to revenue only as progress is made. Treating it as revenue inflates the first period and leaves the later ones short."
+    },
+    {
+      "question": "A contractor cuts its total estimated cost from 50bn to 40bn while costs incurred stay at 20bn. What happens?",
+      "options": [
+        "Revenue is unchanged because the actual costs incurred did not move",
+        "Recognised progress rises from 40% to 50%, lifting the period's revenue",
+        "Gross margin falls because a smaller denominator raises unit cost",
+        "Progress falls to 40% because the total estimated cost is now smaller"
+      ],
+      "explanation": "20/50 is 40% while 20/40 is 50%, so progress and recognised revenue both rise without any change in the volume built. This is why the estimated total cost is the number to examine most closely in a contractor's accounts."
+    },
+    {
+      "question": "At period end a contractor has recognised 30bn of revenue but only 20bn has been certified. Where does the 10bn difference sit?",
+      "options": [
+        "Deferred revenue, recorded on the funding side of the balance sheet",
+        "Trade receivables, because the payment application has been submitted",
+        "Contract asset, the portion built but not yet certified by the client",
+        "Work in progress inventory, because the site is still under construction"
+      ],
+      "explanation": "Without certification there is no unconditional right to payment, so it is not yet a receivable; but the revenue has been recognised, so it must sit in assets. That is precisely the contract asset, or unbilled revenue."
+    },
+    {
+      "question": "Why can a contractor report rising profits while its cash balance keeps falling?",
+      "options": [
+        "Because depreciation of site plant reduces cash without reducing profit",
+        "Because reported profit is always recorded before the costs are recorded",
+        "Because retention is deducted from revenue but not yet deducted from cash",
+        "Revenue follows progress while cash follows the certification paperwork"
+      ],
+      "explanation": "The two numbers measure different things and lag each other by months. Depreciation works the other way round - it reduces profit without reducing cash. The lesson `cong-ty-lai-ma-het-tien` covers the general version of this."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A contractor posts a steady 12% gross margin for four quarters, then minus 9% in the final quarter of the contract. What is the most likely explanation?",
+    "options": [
+      "The total estimated cost was set too low in the earlier quarters",
+      "The client cut the contract value in exactly the final quarter",
+      "Warranty costs for the works were all booked in the handover quarter",
+      "The 5% retention was booked as a revenue reduction at final account"
+    ],
+    "explanation": "A denominator set too low lifts progress and profit in the earlier periods; by the closing period the real costs arrive and the margin collapses. A perfectly even run of margins that breaks in the final period is the familiar signature of a revised estimate."
+  },
+  "keyTakeaways": [
+    "Construction contract revenue follows progress completed, not invoices or cash received",
+    "Progress is usually measured as costs incurred divided by total estimated cost",
+    "The total estimated cost is the contractor's own estimate, and the figure most easily distorted",
+    "Revenue recognised but not yet certified sits in contract assets, not receivables",
+    "An advance received is a contract liability, not revenue"
+  ],
+  "summary": {
+    "keyIdea": "A contractor recognises revenue on work completed, measured as actual cost over total estimated cost. Because invoicing depends on the certification cycle and revenue does not, reported profit and the bank balance diverge systematically - and the gap sits in contract assets on one side of the balance sheet, or contract liabilities on the other."
+  },
+  "application": {
+    "message": "When reading a construction company's accounts, read three lines side by side rather than one: revenue, the contract asset balance, and net cash from operating activities. Revenue rising while contract assets swell faster is a sign the company is recognising more than it is getting certified."
+  }
+}

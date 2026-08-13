@@ -253,7 +253,7 @@ export const TRACK_PROFESSIONAL = {
       label: "Chặng 5",
       name: "Tài chính doanh nghiệp",
       days: [101, 120] as [number, number],
-      extraLessonIds: [1247, 1257, 1337, 1338, 1339],
+      extraLessonIds: [1247, 1257, 1337, 1338, 1339, 1751, 1752, 1753],
       available: true,
       parts: [
         {
@@ -264,7 +264,10 @@ export const TRACK_PROFESSIONAL = {
         {
           name: "Vận hành vốn và tài chính khởi nghiệp",
           days: [111, 120] as [number, number],
-          extraLessonIds: [1247, 1257],
+          // 1751-1753: cụm nhà thầu xây dựng. Đặt ở phần này vì cả ba đều nói
+          // về vốn vận hành của một hợp đồng - ghi nhận, tiền bị giam, và giá
+          // phải bỏ để bù thời gian giam - chứ không phải về cơ cấu vốn.
+          extraLessonIds: [1247, 1257, 1751, 1752, 1753],
         },
       ],
     },

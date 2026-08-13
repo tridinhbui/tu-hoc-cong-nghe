@@ -1,0 +1,192 @@
+{
+  "slug": "gia-goi-thau-va-hieu-qua-du-an-xay-dung",
+  "title": "Contractors, Part 3: Pricing a bid and measuring what it really returns",
+  "subtitle": "Why two packages on the same 10% margin can return wildly different IRRs, and how to read payment terms as a financial variable",
+  "duration": "11 min",
+  "openingQuestion": "Two packages, same value and same 10% margin. Package A is certified monthly; package B quarterly with 10% retention. Which conclusion is right?",
+  "openingOptions": [
+    "A is clearly better: the same profit with capital tied up for less time",
+    "They are equivalent, since margin and contract value are identical",
+    "B is better, because longer cycles cut the cost of preparing paperwork",
+    "They cannot be compared without knowing which client is more reputable"
+  ],
+  "explanation": "Margin measures profit against revenue; it has no time dimension at all. Two packages both earning 10% - one paying monthly, the other quarterly with double the retention - tie up very different average amounts of capital, and for very different lengths of time. Expressing the same profit as a return on the capital actually committed over time, which is the IRR of the package's cash flows, can produce two numbers several times apart. That is why payment terms have to be priced rather than merely read: every month of delayed certification and every extra percentage point of retention is a cost of capital that can be converted into money, and that cost belongs in the bid price from the beginning.",
+  "diagram": [
+    {
+      "label": "Direct cost + overhead + contingency"
+    },
+    {
+      "label": "+ Cost of capital for the time cash is tied up"
+    },
+    {
+      "label": "+ Target margin"
+    },
+    {
+      "label": "= Bid price, checked against the package's IRR"
+    }
+  ],
+  "realWorldExample": {
+    "company": "One 50bn package under two sets of terms",
+    "description": "A 50bn package costing 45bn earns 5bn, a 10% margin. Option A: monthly certification, 5% retention, roughly 6bn of capital tied up on average over 12 months. Option B: quarterly certification with a further 60 days to payment, 10% retention, roughly 15bn tied up over 15 months. The same 5bn of profit gives A a return on capital committed of around 83% a year while B returns about 27%. At a 12% cost of capital both are still worth taking - but if there is funding for only one, choosing wrong gives away most of the return."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Most contractors' bid sheets stop at three lines: direct cost, overhead, and the margin added on top. The missing fourth line is the cost of putting cash out and waiting - and that line is what separates a package worth taking from one you only discover was a loss after it is finished."
+    },
+    {
+      "type": "heading",
+      "text": "Margin has no time dimension"
+    },
+    {
+      "type": "paragraph",
+      "text": "Saying a package earns 10% is a statement about the ratio between two numbers on the income statement. It says nothing about how much of the contractor's own cash goes out, and nothing about how long before it comes back. Two packages both at 10%, one tying up 6bn for 12 months and the other 15bn for 15 months, are entirely different investments."
+    },
+    {
+      "type": "formula",
+      "title": "Bid price including the cost of capital",
+      "variables": [
+        {
+          "symbol": "Average capital tied up",
+          "name": "Own cash sitting inside the package",
+          "description": "The monthly average of cash paid out but not yet recovered"
+        },
+        {
+          "symbol": "Cost of capital",
+          "name": "Borrowing rate or cost of own funds",
+          "description": "Use the higher of the two; see `wacc-co-ban`"
+        },
+        {
+          "symbol": "Time",
+          "name": "From first outflow to final receipt",
+          "description": "Including the wait for retention to be released after the defects period"
+        }
+      ],
+      "example": {
+        "title": "6bn average tied up, 12 months, 12% cost of capital",
+        "result": "0.72bn to be added to the price",
+        "explanation": "Leave this line out and a package that appeared to earn 5bn actually earns 4.28bn, turning a 10% margin into 8.6%."
+      },
+      "equation": "Direct cost + Overhead + Contingency + Average capital tied up × Cost of capital × Time + Target margin"
+    },
+    {
+      "type": "callout",
+      "label": "Check it with IRR, not with margin",
+      "text": "Once you have a price, build the package's own monthly cash flows: outflows negative, each certification receipt positive, and do not forget the retention arriving somewhere past month twenty. Take the IRR of that series and compare it with your cost of capital. This is exactly the tool from `irr-co-ban` and `danh-gia-du-an-npv-irr`, with one difference: the cash flows come from the contract terms rather than from a revenue forecast."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Terms that improve a package",
+        "text": "A large advance, monthly certification, payment within 30 days, 5% retention with the option to swap it for a warranty bond."
+      },
+      "right": {
+        "label": "Terms that damage a package",
+        "text": "Little or no advance, quarterly certification, payment after 60-90 days, 10% retention held to the end of the defects period."
+      }
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four negotiating levers, ranked by financial value",
+      "concepts": [
+        {
+          "en": "Higher advance",
+          "def": "Lifts the bottom of the J-curve immediately, often worth more than a point of margin"
+        },
+        {
+          "en": "Shorter certification cycle",
+          "def": "Moving from quarterly to monthly cuts roughly a third of the average capital tied up"
+        },
+        {
+          "en": "Lower retention",
+          "def": "Every percentage point is cash sitting idle for the whole defects period"
+        },
+        {
+          "en": "Retention bond",
+          "def": "Trades tied-up cash for a small fee paid to the bank"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A bid price is not cost plus margin. It is cost, plus margin, plus the rent on your own capital for the entire period the contract keeps it locked up."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "A package ties up an average of 8bn for 18 months at a 12% annual cost of capital. How much cost of capital belongs in the price?",
+      "options": [
+        "0.96bn (= 8 × 12%, ignoring the 18 months)",
+        "1.44bn (= 8bn × 12% × 1.5 years)",
+        "1.44bn, but only if the firm has to borrow",
+        "2.16bn (= 8 × 18%, multiplying 12% by 1.5)"
+      ],
+      "explanation": "18 months is 1.5 years, so 8 × 12% × 1.5 = 1.44bn. The third option has the right figure but the wrong principle: own capital carries an opportunity cost too, it is not free just because nothing was borrowed."
+    },
+    {
+      "question": "Two packages have the same value and the same 10% margin. Which one has the higher IRR?",
+      "options": [
+        "The one running longer, since costs are spread over more periods",
+        "The one with the larger contract value and so more absolute profit",
+        "The one with a shorter certification cycle and lower retention",
+        "Neither: IRR depends only on the margin earned on the package"
+      ],
+      "explanation": "IRR measures return on capital over time. For the same profit, the package that pays sooner and ties up less capital returns more. Margin carries no information about timing, so it cannot determine IRR."
+    },
+    {
+      "question": "A client offers to raise the advance from 10% to 20% in exchange for a 1% cut in the contract price. How should the contractor evaluate it?",
+      "options": [
+        "Only accept if the client also lowers the retention rate at the same time",
+        "Refuse outright, because any price reduction worsens the margin",
+        "Accept outright, because earlier cash is always better in every case",
+        "Compare the cost of capital saved against 1% of the contract value"
+      ],
+      "explanation": "This is a comparison that can be calculated, not a principle. An extra 10% advance on a 50bn package is 5bn arriving early; if that saves more than 0.5bn of capital cost, the trade is worth making."
+    },
+    {
+      "question": "Why must a package's cash flows extend past the handover date?",
+      "options": [
+        "Because retention only returns once the defects liability period ends",
+        "Because revenue keeps being recognised through the defects period",
+        "Because actual warranty costs exceed the provision set aside",
+        "Because the performance bond is released after the final account"
+      ],
+      "explanation": "The 5-10% retained sits idle until the defects period ends, commonly a further 12 months, and it is the package's final positive cash flow. Leaving it out of the series makes the calculated IRR higher than reality."
+    },
+    {
+      "question": "A 50bn package costs 45bn. After adding 0.9bn of capital cost, what is the true margin?",
+      "options": [
+        "10% (= (50 − 45) ÷ 50, pre capital cost)",
+        "8.2% (= (50 − 45 − 0.9) ÷ 50)",
+        "9.1% (= 4.1 ÷ 45, wrong denominator)",
+        "8.2%, but only if borrowing is used"
+      ],
+      "explanation": "50 − 45 − 0.9 = 4.1bn, divided by 50 gives 8.2%. The final option repeats the confusion from the first question: the opportunity cost of own capital is a real cost."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A contractor can fund only one of two packages: A earns 4bn on 5bn tied up for 10 months; B earns 6bn on 14bn tied up for 20 months. Which should it take?",
+    "options": [
+      "A, because its return on capital over time is clearly higher than B's",
+      "B, because the absolute profit is two billion larger than A's",
+      "B, because the longer run spreads overhead across more periods",
+      "Either, since the margin on contract value works out the same"
+    ],
+    "explanation": "A returns 4bn on 5bn over 10 months, roughly 96% a year; B returns 6bn on 14bn over 20 months, roughly 26% a year. When capital is the binding constraint, the figure to compare is return on capital over time, not absolute profit."
+  },
+  "keyTakeaways": [
+    "Margin has no time dimension, so it cannot compare two packages on its own",
+    "A bid price must include the cost of capital for the time cash is tied up",
+    "Check a package with the IRR of its monthly cash flows, built from the contract terms",
+    "The cash flow series must run until the retention is released after the defects period",
+    "Advance, certification cycle and retention rate are negotiating levers that convert into money"
+  ],
+  "summary": {
+    "keyIdea": "A bid price is cost, plus margin, plus the rent on your own capital for as long as the contract locks it up. Because margin carries no time dimension, two packages on the same margin can return very different rates, and the only way to see that is to build monthly cash flows from the payment terms themselves and take the IRR - running it out to the day the retention comes back."
+  },
+  "application": {
+    "message": "Add one line to your existing bid sheet: average capital tied up, times cost of capital, times time. Then before signing, switch the certification cycle from quarterly to monthly in the sheet and watch how far the IRR moves - that number is what you take into the negotiation."
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "slug": "von-luu-dong-nha-thau-xay-dung",
+  "title": "Contractors, Part 2: Retention, bonds and negative working capital",
+  "subtitle": "Why winning more work leaves a contractor shorter of cash, and how much of a contract stays locked up until after the defects period",
+  "duration": "11 min",
+  "openingQuestion": "A profitable contractor decides to take on twice as many contracts next year. What happens to its working capital requirement?",
+  "openingOptions": [
+    "It rises sharply, because every contract spends cash before it returns any",
+    "It falls, because greater scale allows better terms to be negotiated",
+    "It is unchanged, because cash from old contracts funds the new ones",
+    "It rises slightly, mainly through higher overhead and indirect staff costs"
+  ],
+  "explanation": "The cash profile of a construction contract is J-shaped: the contractor mobilises labour, buys materials and pays subcontractors from the very start, while the client's money only arrives after each certification, typically one to three months later, and always with a portion held back. Stack several contracts that start at different times and the troughs of those J-curves add up while the peaks all sit in the future. Three things lock the cash away: contract retention, usually 5% and released only after the defects liability period ends; the collateral banks demand before issuing bonds; and work built but not yet certified. Together they can leave a contractor with more than a fifth of a contract's value out of reach while wages and subcontractors still have to be paid on time.",
+  "diagram": [
+    {
+      "label": "Sign the contract, receive the advance"
+    },
+    {
+      "label": "Pay for materials, labour and subcontractors first"
+    },
+    {
+      "label": "Certification lags 1-3 months, 5% retained"
+    },
+    {
+      "label": "Bottom of the J: peak cash need mid-contract"
+    },
+    {
+      "label": "Retention returns only after the defects period"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A civil contractor running three staggered packages",
+    "description": "A contractor holds a 100bn package with a 10% advance. Over 12 months of construction it spends an even 6.5bn a month; certification is quarterly and cash arrives a further 45 days later, with 5% retained each time. By month five it has spent roughly 32bn while receiving only the 10bn advance plus one 19bn certification - a shortfall of about 3bn. With three similar packages staggered a month apart, that shortfall becomes nearly 9bn, and it appears exactly when none of them has reached handover."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A retailer runs on negative working capital and treats it as a strength: customers pay immediately, suppliers grant 30 days, so growth generates cash by itself. A construction contractor sits at the opposite extreme. It pays for almost everything up front and collects for almost everything afterwards, so growth drains cash instead."
+    },
+    {
+      "type": "heading",
+      "text": "The three things that lock up a contract's cash"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Retention: typically 5% of each payment, held until the defects liability period ends, commonly 12 months after handover",
+        "Bond collateral: advance payment bonds, performance bonds and warranty bonds, each demanding cash or an occupied credit line",
+        "Uncertified work: already built, subcontractors and materials already paid for, but not yet confirmed and so not yet invoiceable"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Contract value locked up at a point in time",
+      "variables": [
+        {
+          "symbol": "Cumulative retention",
+          "name": "Retention",
+          "description": "The retention rate applied to work certified so far"
+        },
+        {
+          "symbol": "Bond collateral",
+          "name": "Bond collateral",
+          "description": "The cash a bank requires before issuing the bond"
+        },
+        {
+          "symbol": "Uncertified work",
+          "name": "Unbilled work",
+          "description": "The contract asset from the previous lesson"
+        }
+      ],
+      "example": {
+        "title": "A 100bn package, 60bn certified, 72bn built",
+        "result": "18bn locked up",
+        "explanation": "Three billion of bond collateral, three billion retained and twelve billion uncertified - 18% of the package out of reach."
+      },
+      "equation": "Cumulative retention + Bond collateral + Uncertified work"
+    },
+    {
+      "type": "callout",
+      "label": "Why winning a lot of work is dangerous",
+      "text": "A contract's cash requirement peaks around the middle of its life, not at the start. If packages begin a few months apart, their J-curve troughs overlap and total funding need grows faster than revenue. A contractor whose revenue rises 60% in a year usually needs more than 60% more working capital, because its contract mix at that point is weighted towards jobs that are half finished."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Retail: negative working capital is a strength",
+        "text": "Collect immediately, pay suppliers later. One more sale brings cash straight away, so growth funds itself."
+      },
+      "right": {
+        "label": "Contracting: negative working capital is an alarm",
+        "text": "Pay first, collect later, and part is retained. One more contract commits cash for months ahead, so growth has to be borrowed."
+      }
+    },
+    {
+      "type": "conceptTable",
+      "title": "Three bonds and what each one ties up",
+      "concepts": [
+        {
+          "en": "Advance payment bond",
+          "def": "Guarantees repayment of the advance if the contractor fails to perform; reduces as work progresses"
+        },
+        {
+          "en": "Performance bond",
+          "def": "Usually 5-10% of the contract value, held for the whole construction period"
+        },
+        {
+          "en": "Warranty bond",
+          "def": "Substitutes for retention after handover, if the client agrees to it"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "For a contractor the right question is not what margin this contract earns, but how much cash it swallows and for how long before it gives any back. A thick order book against an exhausted credit line is the familiar recipe for walking off a site unfinished."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "A 200bn package has 120bn certified with a 5% retention rate. How much retention has accumulated?",
+      "options": [
+        "6bn (= 120 × 5%, on the work already certified)",
+        "10bn (= 200 × 5%, on the whole contract value)",
+        "4bn (= 80 × 5%, on the portion still outstanding)",
+        "6bn, but released as soon as the works are handed over"
+      ],
+      "explanation": "Retention applies to each certified payment, so 120 × 5% = 6bn. The last option has the right figure but the wrong timing: retention is normally released only after the defects liability period, not at handover."
+    },
+    {
+      "question": "Why does a contractor's working capital need peak mid-contract rather than at the start?",
+      "options": [
+        "Because the opening advance covers the first few months of cost",
+        "Because costs have piled up while retention has also accumulated",
+        "Because construction costs concentrate in the closing phase",
+        "Because bonds are only demanded by the bank from mid-term"
+      ],
+      "explanation": "At the start the advance cushions part of it; at the end certification money flows in. In the middle the advance is spent while uncertified work and accumulated retention are both at their highest, so the gap is deepest."
+    },
+    {
+      "question": "A contractor grows revenue from 300bn to 480bn in one year. What is most likely to happen?",
+      "options": [
+        "Working capital need falls as greater scale reduces unit costs",
+        "Working capital need rises exactly 60%, in line with revenue",
+        "Working capital need rises more than 60%, faster than revenue",
+        "Working capital need is unchanged as old contracts fund new ones"
+      ],
+      "explanation": "Fast growth tilts the mix towards contracts in progress, which are the cash-hungry phase, so working capital usually grows faster than revenue rather than in proportion to it."
+    },
+    {
+      "question": "How does a performance bond affect a contractor?",
+      "options": [
+        "It removes the need for retention entirely throughout the construction period",
+        "It is expensed once, in the period the contract is signed with the client",
+        "It reduces recognised revenue in proportion to the bond value issued",
+        "It occupies credit capacity for the whole construction period"
+      ],
+      "explanation": "It is not a one-off expense but a share of the credit line tied up, reducing borrowing capacity for other packages. A warranty bond is the instrument that can replace retention, and only if the client agrees."
+    },
+    {
+      "question": "A 100bn package: 70bn built, 50bn certified, 5% retention, 4bn of bond collateral. How much value is locked up?",
+      "options": [
+        "26.5bn (= 20 uncertified + 2.5 retention + 4 collateral)",
+        "24bn (= 20 uncertified + 4 collateral, retention omitted)",
+        "9bn (= 5 retention on the whole package + 4 collateral)",
+        "20bn (= the portion built but not yet certified)"
+      ],
+      "explanation": "All three add up: 70 − 50 = 20bn uncertified, 50 × 5% = 2.5bn retained, plus 4bn of collateral gives 26.5bn. Every other option drops at least one of the three."
+    }
+  ],
+  "practicePrompt": {
+    "question": "A contractor has an 800bn order book, 20bn of unused credit line, and three large packages all starting next quarter. What is the nearest risk?",
+    "options": [
+      "Running out of cash mid-life on all three despite each being profitable",
+      "Gross margin falling because material prices rise during construction",
+      "The client certifying late, which reduces revenue recognised in the period",
+      "Warranty bonds on old packages expiring before the new ones complete"
+    ],
+    "explanation": "A thick order book is future revenue, not cash. Three packages starting together stack three J-curve troughs on top of each other, and the remaining 20bn has to carry all three - expected margin does not help pay next month's wages."
+  },
+  "keyTakeaways": [
+    "A construction contract's cash profile is J-shaped: pay first, collect later, deepest mid-life",
+    "Three things lock cash up: retention, bond collateral, and uncertified work",
+    "Retention is typically 5% and returns after the defects period, not at handover",
+    "Negative working capital is a strength in retail but an alarm for a contractor",
+    "Growing a contractor's revenue needs proportionally more working capital than the growth itself"
+  ],
+  "summary": {
+    "keyIdea": "A contractor pays first and collects later, with part held back until after the defects period, so every contract is a working capital investment rather than a source of cash. The three locks - retention, bond collateral and uncertified work - can add up to more than a fifth of a package, and they peak exactly when wages and subcontractors still have to be paid."
+  },
+  "application": {
+    "message": "Before taking on another package, build its monthly cash profile on its own and add it to the profiles of the packages already running. The number that matters is the deepest trough of the total against the unused credit line - not the expected margin on the new job."
+  }
+}

@@ -1151,6 +1151,11 @@
     "subtitle": "Accrual vs cash - two different views of the same transaction",
     "duration": "6 min"
   },
+  "doanh-thu-nha-thau-theo-tien-do": {
+    "title": "Contractors, Part 1: Revenue follows progress, not invoices",
+    "subtitle": "Why a contractor's reported profit has almost nothing to do with the cash that arrived in the period",
+    "duration": "10 min"
+  },
   "doc-bao-cao-tai-chinh-ngan-hang": {
     "title": "Banks, lesson 1: reading a bank's financial statements - why every ratio you learned stops working",
     "subtitle": "NIM, CASA, LDR, NPL, CIR and the provisioning buffer - the private language of a bank's accounts",
@@ -1756,6 +1761,11 @@
     "title": "How do stock price and business value differ?",
     "subtitle": "Price is what the market is paying right now; value is what the business is really worth",
     "duration": "7 min"
+  },
+  "gia-goi-thau-va-hieu-qua-du-an-xay-dung": {
+    "title": "Contractors, Part 3: Pricing a bid and measuring what it really returns",
+    "subtitle": "Why two packages on the same 10% margin can return wildly different IRRs, and how to read payment terms as a financial variable",
+    "duration": "11 min"
   },
   "gia-trai-phieu-va-lai-suat": {
     "title": "Bond price and interest rates",
@@ -3514,6 +3524,11 @@
     "title": "What is working capital?",
     "subtitle": "Working Capital - the daily fuel that runs a business",
     "duration": "6 min"
+  },
+  "von-luu-dong-nha-thau-xay-dung": {
+    "title": "Contractors, Part 2: Retention, bonds and negative working capital",
+    "subtitle": "Why winning more work leaves a contractor shorter of cash, and how much of a contract stays locked up until after the defects period",
+    "duration": "11 min"
   },
   "wacc-co-ban": {
     "title": "What is WACC?",
