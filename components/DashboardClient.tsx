@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X, Route } from "lucide-react";
 import { useProgress } from "@/lib/client-hooks";
+import { DEFAULT_PRESET, getStoredPreset, storePreset, type DashboardPreset } from "@/lib/dashboard-preset";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import { getCompletedLessons } from "@/lib/supabase-progress";
@@ -189,6 +190,31 @@ function isTrackTab(tab: DashboardTab): tab is "personal" | "professional" {
 
 export default function DashboardClient({ lessonsMeta, view = "overview" }: { lessonsMeta: LessonMeta[]; view?: DashboardView }) {
   const isLessonsView = view === "lessons";
+  // Mức dày đặc của trang tổng quan - xem lib/dashboard-preset.ts.
+  //
+  // Khởi tạo bằng DEFAULT_PRESET rồi mới đọc localStorage trong effect, thay
+  // vì đọc ngay lúc dựng state: trang này được kết xuất trên máy chủ trước,
+  // nơi không có localStorage, nên đọc lúc dựng sẽ cho hai kết quả khác nhau
+  // giữa máy chủ và trình duyệt và React sẽ báo lệch hydrate. Cái giá là ai
+  // chọn "đầy đủ" sẽ thấy bản gọn trong một khung hình đầu; chấp nhận được vì
+  // các widget bị ẩn đều tự tải dữ liệu bất đồng bộ và vốn đã hiện sau.
+  const [preset, setPreset] = useState<DashboardPreset>(DEFAULT_PRESET);
+  const isFullPreset = preset === "day-du";
+  // Preset CHỈ áp cho trang tổng quan. /hoc-bai có bộ widget khác hẳn (trợ
+  // giúp ôn tập cạnh danh sách bài) và không có nút chuyển, nên ở đó mọi thứ
+  // hiện như cũ - nếu không, một tuỳ chọn đặt ở màn hình này sẽ lặng lẽ giấu
+  // widget ở màn hình kia mà không có gì bật lại được.
+  const showOptional = isLessonsView || isFullPreset;
+
+  useEffect(() => {
+    const stored = getStoredPreset();
+    if (stored) setPreset(stored);
+  }, []);
+
+  const choosePreset = useCallback((next: DashboardPreset) => {
+    setPreset(next);
+    storePreset(next);
+  }, []);
   const { locale, t } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -985,7 +1011,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 xl:rounded-3xl xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:p-3.5 ${
             isLessonsView
               ? "max-w-[1500px] xl:flex xl:flex-col"
-              : "max-w-[1500px] xl:grid xl:grid-cols-12 xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-3.5"
+              : "max-w-[1500px] xl:grid xl:grid-cols-12 xl:grid-rows-[auto_auto_minmax(0,1fr)] xl:gap-3.5"
           }`}
         >
 
@@ -1234,6 +1260,57 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             );
           })()}
 
+        {/* Nút chuyển mức dày đặc. Chỉ ở trang tổng quan - xem `showOptional`.
+            Cố ý là một hàng nhỏ, chữ thường, không viền nổi: nó là một tuỳ
+            chọn hiển thị, không phải một việc cần làm, nên nó không được
+            tranh chỗ với thứ người học vào đây để làm. */}
+        {!isLessonsView && (
+          // `xl:col-span-12` ở đây là bắt buộc, không phải trang trí.
+          //
+          // Dải này là một Ô của lưới 12 cột phía trên. Thiếu col-span thì nó
+          // chiếm ĐÚNG MỘT cột: hai chữ "Bảng nhìn" bị ép xuống dòng, dải dạt
+          // sang mép trái, và khối nội dung `col-span-12` ngay sau không lọt
+          // cạnh nó nên bị đẩy xuống hàng kế.
+          //
+          // Hàng nó bỏ lại là hàng `minmax(0,1fr)` - hàng nuốt toàn bộ chiều
+          // cao còn thừa của trang. Kết quả: một dải trống bằng nửa màn hình
+          // với đúng một cái nút nhỏ nằm ở mép trái.
+          //
+          // Và vì thế bản mẫu hàng ở lưới cha cũng phải thành ba hàng
+          // (auto_auto_minmax), nếu không hàng thứ ba là hàng ngầm và mất luôn
+          // ràng buộc chiều cao mà `minmax(0,1fr)` đang giữ.
+          <div className="flex items-center justify-end gap-2 xl:col-span-12">
+            <span className="text-xs text-stone-500 dark:text-stone-400">
+              {t.dashboard.presetLabel}
+            </span>
+            <div
+              role="group"
+              aria-label={t.dashboard.presetLabel}
+              className="inline-flex rounded-xl border border-stone-200 bg-white p-0.5 dark:border-stone-800 dark:bg-stone-900"
+            >
+              {([
+                { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
+                { id: "day-du" as const, label: t.dashboard.presetFull, hint: t.dashboard.presetFullHint },
+              ]).map((opt) => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  onClick={() => choosePreset(opt.id)}
+                  aria-pressed={preset === opt.id}
+                  title={opt.hint}
+                  className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
+                    preset === opt.id
+                      ? "bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900"
+                      : "text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800"
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className={`grid grid-cols-1 gap-4 sm:gap-5 min-w-0 ${isLessonsView ? "xl:flex-1 xl:min-h-0 xl:grid-cols-12 xl:gap-3.5" : "xl:col-span-12 xl:min-h-0 xl:grid-cols-12 xl:gap-3.5"}`}>
 
           {/* Left Column: Learning Path (7 columns on desktop xl+) */}
@@ -1302,7 +1379,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 một lần sót - và nó đã được nói lại lần thứ ba, sau khi widget
                 bị gỡ ở 85b0f34 với lý do trùng lặp. Đừng gỡ lần nữa nếu không
                 có yêu cầu mới. */}
-            {!isLessonsView && <CommunityStreakWidget />}
+            {!isLessonsView && isFullPreset && <CommunityStreakWidget />}
 
             {/* Góc yên tĩnh chuyển vào TRONG thẻ Bản đồ Cấp độ, bản nhỏ. */}
 
@@ -2234,7 +2311,20 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               nên nó co lại được tới 0, còn hai hàng `auto` ở dưới thì không:
               khi bản đồ cấp độ ở hàng trên cao lên, chỗ còn lại cho cột này
               hụt đúng bằng phần chênh, và phần hụt ấy phải đi đâu đó. */}
-          <div className={`min-w-0 space-y-6 ${isLessonsView ? "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5" : "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto] xl:gap-3.5"}`}>
+          {/* Lưới hai cột ở trên CHỈ đúng khi CombinedRewardsWidget còn đó:
+              nó là đứa con `xl:row-span-2` chiếm trọn cột thứ nhất. Ở chế độ
+              Gọn widget ấy bị ẩn, và một `grid-cols-2` còn đúng một đứa con sẽ
+              để trống nửa bề ngang - nên chế độ Gọn xếp chồng thay vì lên
+              lưới. Đây là lý do preset phải đổi cả lớp CSS của cột chứ không
+              chỉ ẩn widget: chú thích dài ở ngay trên đã ghi rằng bố cục này
+              nhạy tới mức thừa một khối là trình duyệt tự đẻ ra một hàng ngầm. */}
+          <div className={`min-w-0 space-y-6 ${
+            isLessonsView
+              ? "xl:col-span-4 xl:min-h-0 xl:overflow-y-auto xl:pr-1.5"
+              : isFullPreset
+                ? "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto] xl:gap-3.5"
+                : "xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:pr-0.5"
+          }`}>
             {/* Study aids, beside the lesson list rather than stacked on top of
                 it - see the note in the left column. */}
             {isLessonsView && user?.id && (
@@ -2253,7 +2343,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 hình vuông chỉ đúng khi nội dung tình cờ vuông.
                 `xl:row-span-2` giữ lại: nó cho thẻ CHỖ để cao bằng cột bên,
                 chứ không bắt nó phải cao thế. */}
-            {!isLessonsView && user?.id && (
+            {!isLessonsView && isFullPreset && user?.id && (
               <div className="xl:row-span-2 xl:min-h-0 xl:overflow-y-auto">
                 <CombinedRewardsWidget userId={user.id} defaultExpanded={true} compact />
               </div>
@@ -2270,7 +2360,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 {/* Người thật, dưới phần gợi ý. Cố ý đặt SAU băng chuyền bài
                     học: thứ tự đó nói rằng đây là bằng chứng cho những gợi ý
                     trên, không phải một mục để lướt qua trước khi học. */}
-                <CommunityLearningNow lessonsMeta={lessonsMeta} />
+                {showOptional && <CommunityLearningNow lessonsMeta={lessonsMeta} />}
                 {/* Câu hỏi hôm nay, làm ngay tại chỗ, ngay dưới danh sách
                     chuỗi ngày. Đặt ở đây là cố ý: khối trên vừa cho thấy người
                     khác đang học, và thứ hợp lý tiếp theo là một việc làm được
@@ -2289,13 +2379,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     claimed today" trong lib/supabase-quests.ts. Sau khi hết
                     lượt nhận thưởng, widget vẫn còn chế độ luyện không giới
                     hạn, nên thẻ không biến thành một ô chết trong ngày. */}
-                {user?.id && <DailyNewsQuizWidget userId={user.id} compact />}
+                {showOptional && user?.id && <DailyNewsQuizWidget userId={user.id} compact />}
                 {/* Ba lối vào "thử sức", DƯỚI băng chuyền người đang học.
                     Hai trong ba đã chết trong mã: BossBattleModal và
                     PvpDuelModal vẫn được dựng ở cuối tệp này, nhưng
                     setShowBossBattle(true)/setShowPvpModal(true) không được
                     gọi ở đâu từ lúc thẻ mini-game bị gỡ. */}
-                {!isLessonsView && (
+                {!isLessonsView && isFullPreset && (
                   <DashboardArenaCard
                     onOpenBoss={() => setShowBossBattle(true)}
                     onOpenPvp={() => setShowPvpModal(true)}
