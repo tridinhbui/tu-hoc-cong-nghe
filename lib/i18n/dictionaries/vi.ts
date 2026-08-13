@@ -115,7 +115,7 @@ export const vi = {
     docsLong: "Tài liệu Miễn phí",
     docsShort: "Tài liệu",
     levelXp: "Cấp {level} • {xp} XP",
-    dailyGiftReady: "🎁 Quà đăng nhập hôm nay đã sẵn sàng - mở ở mục Nhiệm vụ & Rương quà!",
+    dailyGiftReady: "Quà đăng nhập hôm nay đã sẵn sàng - mở ở mục Nhiệm vụ & Rương quà!",
   },
 
   common: {
@@ -331,7 +331,7 @@ export const vi = {
       eyebrow: "Không chỉ là bài học",
       titlePart1: "Học, chơi, hỏi đáp và chia sẻ trong cùng một",
       titleHighlight: "hệ sinh thái tài chính",
-      sub: "Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có Lộ trình Active Recall ôn tập chủ động, Học nhóm 3D để giữ nhịp, và FinSocial để trao đổi kiến thức với cộng đồng.",
+      sub: "Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có lộ trình active recall ôn tập chủ động, học nhóm 3D để giữ nhịp, và FinSocial để trao đổi kiến thức với cộng đồng.",
     },
 
     vision: {
@@ -360,11 +360,11 @@ export const vi = {
       trackCfa: "Chứng chỉ CFA Level 1",
       trackGame: "Game Kingdom RPG",
       ecoTitle: "Hệ sinh thái",
-      ecoStudyRoom: "Phòng Học Nhóm (3D)",
+      ecoStudyRoom: "Phòng học nhóm (3D)",
       ecoHot: "Hot",
-      ecoFinsocial: "FinSocial - Feed Bài Viết",
-      ecoCareer: "Bản Đồ Sự Nghiệp Tài Chính",
-      ecoShop: "Cửa Hàng Cosmetic & Avatar",
+      ecoFinsocial: "FinSocial - feed bài viết",
+      ecoCareer: "Bản đồ sự nghiệp tài chính",
+      ecoShop: "Cửa hàng Cosmetic & Avatar",
       supportTitle: "Hỗ trợ & Pháp lý",
       terms: "Điều khoản sử dụng",
       privacy: "Chính sách bảo mật",
@@ -383,9 +383,9 @@ export const vi = {
     xpPerQuestion: "Thưởng +{xp} XP / câu đúng",
 
     leftEyebrow: "Bên Trái • Tin tức tài chính hôm nay",
-    newsTitle: "Thử Thách Bài Kiểm Tra Tin Tức Hằng Ngày",
+    newsTitle: "Thử thách bài kiểm tra tin tức hằng ngày",
     newsDone: "Đã hoàn thành (Menu sạch warning)",
-    newsPending: "⚠️ Chưa làm",
+    newsPending: "Chưa làm",
     newsPendingNote: "(Menu có cảnh báo)",
     // Split around the inline <strong> holding the XP.
     newsBodyPart1: "Trả lời chính xác tình huống tin tức vĩ mô hôm nay để nhận ",
@@ -393,7 +393,7 @@ export const vi = {
     newsBodyPart2: " và giải tỏa biểu tượng cảnh báo 🔴 trên Navbar.",
 
     rightEyebrow: "Bên Phải • Tạo bài kiểm tra tự chọn",
-    builderTitle: "Tùy Chỉnh & Bắt Đầu Kiểm Tra",
+    builderTitle: "Tùy chỉnh & bắt đầu kiểm tra",
     step1: "1. Chọn phần kiến thức",
     selecting: "Đang chọn",
     step2: "2. Chọn độ khó",
@@ -401,7 +401,7 @@ export const vi = {
     rewardPart1: "Mỗi câu đúng thưởng ",
     rewardXp: "+{xp} XP",
     rewardPart2: " cộng ngay vào tài khoản!",
-    start: "🚀 Bắt Đầu Kiểm Tra Ngay",
+    start: "Bắt đầu kiểm tra ngay",
 
     // TRACKS: the ids stay in the component, the copy lives here.
     trackPersonal: "Tài chính cá nhân",
@@ -418,7 +418,7 @@ export const vi = {
     diffMedium: "Trung bình",
     diffHard: "Khó",
 
-    ibEyebrow: "Investment Banking Interview Drill",
+    ibEyebrow: "Investment banking interview drill",
     ibTitle: "Technical Interview",
     ibSub: "400 IB Questions · Accounting, Valuation, DCF, M&A, LBO, behavioral",
     ibOpen: "Mở →",
@@ -472,10 +472,10 @@ export const vi = {
     checkMidpoint: "Trả lời câu hỏi \"Dừng & Kiểm tra\" giữa bài",
     checkQuiz: "Hoàn thành \"Kiểm tra nhanh\" ({done}/{total} câu)",
 
-    videoTitle: "Video Bài Giảng Trực Quan",
+    videoTitle: "Video bài giảng trực quan",
     videoBadge: "Minh họa trực quan",
-    videoNote: "🎬 Bài học này hỗ trợ xem video minh họa trực quan trên YouTube.",
-    videoCta: "▶ Xem Video Bài Giảng trên YouTube",
+    videoNote: "Bài học này hỗ trợ xem video minh họa trực quan trên YouTube.",
+    videoCta: "Xem video bài giảng trên YouTube",
 
     scrollForQuiz: "Cuộn xuống để làm quiz →",
     quickCheck: "Kiểm tra nhanh",
@@ -498,7 +498,7 @@ export const vi = {
     firstAttemptScore: "Điểm ghi nhận: {score}/{total} (lần trả lời đầu)",
     firstAttemptNote:
       "Số ở trên là kết quả sau khi thử lại. Điểm lưu vào hồ sơ lấy lần trả lời đầu, để phần trăm năng lực ở Sự nghiệp phản ánh đúng những gì bạn đã nắm được.",
-    reviewMistakes: "🔄 Ôn Lại Câu Vừa Sai Ngay (Flashcard 3D)",
+    reviewMistakes: "Ôn lại câu vừa sai ngay (Flashcard 3D)",
     dashboard: "Dashboard",
     nextLesson: "Bài tiếp →",
     comingSoon: "Sắp ra mắt",
@@ -518,11 +518,11 @@ export const vi = {
     counterattack: "Hụt rồi! Boss phản công làm bạn mất 34 HP.",
     loading: "Đang tải dữ liệu World Boss Server...",
     noEvent: "Chưa mở sự kiện World Boss tuần này.",
-    eventTitle: "🔥 Server World Boss Event - Hàng Tuần",
-    guideToggle: "📖 Hướng dẫn săn Boss",
-    huntNow: "Săn Boss Server Ngay!",
+    eventTitle: "Server world Boss event - hàng tuần",
+    guideToggle: "Hướng dẫn săn Boss",
+    huntNow: "Săn Boss Server ngay!",
 
-    rulesTitle: "⚔️ Thể lệ & Cách chơi Sự Kiện Săn Boss Server:",
+    rulesTitle: "Thể lệ & cách chơi sự kiện săn Boss Server:",
     // Each rule is a <li> with a bolded lead-in, so the label and the body are
     // separate keys rather than one string carrying <strong>.
     rule1Label: "Thanh máu gộp 1,000,000 HP",
@@ -533,30 +533,30 @@ export const vi = {
     rule3Label: "Phản công của Boss",
     rule3Body:
       "Trả lời sai sẽ bị Boss phản công trừ 25 HP của Nhân vật. Quá 3 câu sai trận đánh sẽ kết thúc.",
-    rule4Label: "Phần thưởng Bảng Xếp Hạng",
+    rule4Label: "Phần thưởng bảng xếp hạng",
     rule4BodyPart1: "Top 10 học viên gây sát thương cao nhất tuần nhận ",
     rule4Coins: "+500 Coins",
     rule4BodyPart2: " + ",
     rule4Badge: "Huy hiệu dũng sĩ săn Boss",
     rule4BodyPart3: "!",
 
-    serverHpLabel: "Thanh Máu Gộp Toàn Server:",
+    serverHpLabel: "Thanh máu gộp toàn Server:",
     hpLine: "{current} / {max} HP ({percent}%)",
 
-    gearTitle: "Trang Bị Sẵn Sàng Săn Boss",
-    heroPower: "Sức Mạnh Nhân Vật",
+    gearTitle: "Trang bị sẵn sàng săn Boss",
+    heroPower: "Sức mạnh nhân vật",
     levelPrefix: "Level: ",
     levelValue: "Lv. {level}",
-    damagePerAnswer: "⚡ Mỗi đáp án đúng gây ~5,000+ Sát thương Server!",
+    damagePerAnswer: "Mỗi đáp án đúng gây ~5,000+ sát thương Server!",
     raidQuestionCount: "Số câu raid",
     questionCount: "{count} câu",
     maxDamagePerQuestion: "Max DMG/câu",
 
-    leaderboardTitle: "Bảng Xếp Hạng Top Sát Thương Tuần",
+    leaderboardTitle: "Bảng xếp hạng top sát thương tuần",
     refreshTitle: "Làm mới",
     damageValue: "{value} DMG",
 
-    arenaTitle: "⚔️ BATTLE ARENA - CÂU {current}/{total}",
+    arenaTitle: "BATTLE ARENA - CÂU {current}/{total}",
     exit: "✕ Thoát",
     levelShort: "Lv.{level}",
     heroName: "Chiến Binh",
@@ -571,7 +571,7 @@ export const vi = {
     donePart1: "Bạn đã đóng góp tổng cộng ",
     doneDamage: "+{value} DMG",
     donePart2: " vào Thanh Máu Server!",
-    closeAndSeeBoard: "Đóng & Xem Bảng Xếp Hạng",
+    closeAndSeeBoard: "Đóng & xem bảng xếp hạng",
   },
 
   // components/FriendsClient.tsx - /ban-be, friends list and direct chat.
@@ -633,7 +633,7 @@ export const vi = {
     seeAllMistakes: "Xem toàn bộ câu sai",
 
     srsBadge: "SPACED REPETITION SM-2",
-    title: "Ôn Tập Câu Sai Flashcard 3D",
+    title: "Ôn tập câu sai Flashcard 3D",
     subtitle:
       "Tự động phân nhịp sinh học ôn tập theo chu kỳ 1 ngày ➔ 3 ngày ➔ 7 ngày ➔ 30 ngày.",
     tabCards: "Thẻ 3D",
@@ -653,12 +653,12 @@ export const vi = {
     noneDueBody:
       "Bạn còn {count} câu sai đang theo dõi, nhưng lịch lặp lại ngắt quãng xếp chúng vào những ngày sau. Ôn sớm hơn lịch thì nhớ kém hơn - đó là toàn bộ lý do có lịch.",
     reviewAllAnyway: "Vẫn ôn tất cả bây giờ",
-    ratedForget: "🔴 Cần ôn lại vào ngày mai (+1 ngày)",
-    ratedHard: "🟡 Đã ghi nhận (+3 ngày)",
-    ratedGood: "🟢 Nhớ tốt! Lên lịch ôn sau 7 ngày",
-    ratedMastered: "🚀 Thành thục! Đưa vào bộ nhớ vĩnh viễn (+30 ngày)",
+    ratedForget: "Cần ôn lại vào ngày mai (+1 ngày)",
+    ratedHard: "Đã ghi nhận (+3 ngày)",
+    ratedGood: "Nhớ tốt! Lên lịch ôn sau 7 ngày",
+    ratedMastered: "Thành thục! Đưa vào bộ nhớ vĩnh viễn (+30 ngày)",
 
-    doneTitle: "Hoàn Thành Phiên Ôn Tập Spaced Repetition!",
+    doneTitle: "Hoàn thành phiên ôn tập spaced repetition!",
     doneBody:
       "Bạn đã xem và đánh giá toàn bộ {count} thẻ ôn tập. Hệ thống đã tự động tính nhịp nhắc nhở lặp lại ngắt quãng tiếp theo!",
     restart: "Ôn lại từ đầu",
@@ -666,18 +666,18 @@ export const vi = {
     srsLevel: "Level {level} • {days} ngày",
     srsLevelShort: "SRS Lvl {level} ({days}d)",
     pickOrFlip: "Bấm chọn đáp án hoặc lật mặt sau để xem lời giải",
-    flipToExplanation: "🔄 Lật xem giải thích",
-    explanationTitle: "💡 Đáp án đúng & Giải thích",
-    flipBack: "↩️ Lật về mặt câu hỏi",
+    flipToExplanation: "Lật xem giải thích",
+    explanationTitle: "Đáp án đúng & giải thích",
+    flipBack: "Lật về mặt câu hỏi",
     correctAnswer: "Đáp án chính xác:",
     financeExplanation: "Giải thích tài chính:",
     noExplanation: "Không có giải thích chi tiết cho câu hỏi này.",
 
     ratePrompt: "Đánh giá mức độ nhớ để xếp lịch Spaced Repetition tiếp theo:",
-    rateForgot: "🔴 Chưa nhớ",
-    rateOk: "🟡 Tương đối",
-    rateGood: "🟢 Nhớ tốt",
-    rateEasy: "🚀 Quá dễ",
+    rateForgot: "Chưa nhớ",
+    rateOk: "Tương đối",
+    rateGood: "Nhớ tốt",
+    rateEasy: "Quá dễ",
     plus1Day: "+1 ngày",
     plus3Days: "+3 ngày",
     plus7Days: "+7 ngày",
@@ -691,8 +691,8 @@ export const vi = {
 
   // components/tools/ValuationDCFCalculator.tsx
   dcf: {
-    tabDcf: "Định Giá Cổ Phiếu DCF",
-    tabWacc: "Chi Phí Vốn WACC",
+    tabDcf: "Định giá cổ phiếu DCF",
+    tabWacc: "Chi phí vốn WACC",
     standardBadge: "Chuẩn CFA & Corporate Finance",
 
     resultTitle: "KẾT QUẢ MÔ PHỎNG ĐỊNH GIÁ DCF",
@@ -719,7 +719,7 @@ export const vi = {
     inShares: "Số lượng cổ phiếu lưu hành (triệu CP)",
     inMarketPrice: "Giá thị trường hiện tại (VNĐ/CP)",
 
-    forecastTitle: "📊 Dự báo Dòng tiền tự do & Hiện giá PV từng năm",
+    forecastTitle: "Dự báo Dòng tiền tự do & Hiện giá PV từng năm",
     colYear: "Năm",
     colFcf: "Dòng tiền FCF (tỷ VNĐ)",
     colDiscount: "Hệ số Chiết khấu PV",
@@ -747,27 +747,27 @@ export const vi = {
   // components/FinancialRpgWorldMap.tsx - the Game Kingdom map.
   worldMap: {
     levelShort: "Lv.{level}",
-    empireTitle: "Đế Chế Wall Street",
+    empireTitle: "Đế chế Wall Street",
     online: "Online",
     empireSub: "Tập sự Phố Wall • 3D RPG Kingdom",
-    capitalLabel: "Vốn Đầu Tư",
+    capitalLabel: "Vốn đầu tư",
     coinsValue: "{count} Coins",
     energyLabel: "Năng Lượng",
 
-    shopTitle: "Tiệm Đồ Executive",
+    shopTitle: "Tiệm đồ executive",
     shopShort: "Tiệm Đồ",
-    cardsTitle: "Bảo Tàng Thẻ VN30",
+    cardsTitle: "Bảo tàng thẻ VN30",
     cardsShort: "Bộ Thẻ",
 
     // Ticker strip. Illustrative figures for the game surface, not market data.
     tickerLabel: "WALL ST. TICKER",
-    tickerIndex: "📈 VN-INDEX: 1,285.40 (+1.45%)",
-    tickerBoss: "🐂 BOSS SÀN NYSE: 850,000 / 1,000,000 HP (85%)",
-    tickerCase: "🏙️ TIMES SQUARE: CASE STUDY CASE #12 HOẠT ĐỘNG",
-    tickerClan: "💼 HEDGE FUND CLAN: TOP #1 WALL STREET",
-    bgAlt: "Wall Street Background",
+    tickerIndex: "VN-INDEX: 1,285.40 (+1.45%)",
+    tickerBoss: "BOSS SÀN NYSE: 850,000 / 1,000,000 HP (85%)",
+    tickerCase: "TIMES SQUARE: CASE STUDY CASE #12 HOẠT ĐỘNG",
+    tickerClan: "HEDGE FUND CLAN: TOP #1 WALL STREET",
+    bgAlt: "Ảnh nền phố Wall",
 
-    zoneMiniGames: "🔥 TỔNG HỢP MINI GAME",
+    zoneMiniGames: "TỔNG HỢP MINI GAME",
 
     fogTitle: "VÙNG ĐẤT CHƯA GIẢI MÃ",
     fogHint: "Click mở (+5 Coins)",
@@ -778,9 +778,9 @@ export const vi = {
     lockedNeedLessons: "Yêu cầu hoàn thành bài học",
     lockedNeedLessonsShort: "Hoàn thành bài học để mở",
 
-    dragHint: "💡 Kéo tự do (Canva Drag & Pan) để di chuyển bản đồ không cần cuộn trang web!",
+    dragHint: "Kéo tự do (Canva Drag & Pan) để di chuyển bản đồ không cần cuộn trang web!",
     zoneCount: "12 VÙNG ĐẤT TÀI CHÍNH",
-    dragHintLong: "🖐️ Canva Drag Canvas (Kéo tự do 360° • Xem trọn vẹn 12 vùng đất)",
+    dragHintLong: "Canva drag Canvas (Kéo tự do 360° • Xem trọn vẹn 12 vùng đất)",
 
     gearOpenTitle: "Mở tủ trang bị",
     gearEyebrow: "Tủ trang bị",
@@ -790,7 +790,7 @@ export const vi = {
 
     bossHp: "BOSS 85% HP",
     hotCase: "HOT CASE STUDY",
-    backToMap: "Quay Lại Bản Đồ Đấu Trường",
+    backToMap: "Quay lại bản đồ đấu trường",
     opening: "Đang mở: {name}",
   },
 
@@ -900,7 +900,7 @@ export const vi = {
     maxLevel: "Đã đạt cấp tối đa",
     xpWithPercent: "{xp} XP",
 
-    trackProgressTitle: "Tiến độ Lộ trình",
+    trackProgressTitle: "Tiến độ lộ trình",
     trackProgressSub: "Tiến độ tổng quát lộ trình học của bạn",
     inProgress: "Đang học",
     lessonsOf: "{done}/{total} bài",
@@ -943,7 +943,7 @@ export const vi = {
     themesSection: "Giao diện ({count})",
     themesEmpty: "Chưa mở khóa giao diện nào.",
     themeGold: "Hoàng Kim",
-    themeEmerald: "Ngọc Lục Bảo",
+    themeEmerald: "Ngọc lục bảo",
     themeLabel: "Giao diện {name}",
 
     savedLessons: "Bài học đã lưu ({count})",
@@ -973,12 +973,12 @@ export const vi = {
       "{uncovered} / {total} vị trí khác chưa có bộ câu hỏi riêng — phần technical của các nghề đó đang được xây dần.",
 
     drillTitle: "Investment Banking & Finance Drill",
-    drillBadge: "✨ Chuẩn bộ \"400 Questions IB Guide\" Phố Wall",
+    drillBadge: "Chuẩn bộ \"400 Questions IB Guide\" Phố Wall",
     drillHeading: "Luyện technical interview như một vòng analyst thực chiến",
     // Split around the inline <strong> holding the book title, which stays as
     // it is - it is the name of a published guide.
     drillBodyPart1: "Bộ câu hỏi phỏng vấn biên soạn theo chuẩn cuốn ",
-    drillBookTitle: "\"400 Questions Investment Banking Interview Guide\"",
+    drillBookTitle: "\"400 questions investment banking interview guide\"",
     drillBodyPart2:
       " truyền thống Phố Wall, trải rộng khắp các chuyên ngành: Kế toán 3 báo cáo, Định giá DCF, M&A, LBO, Tín dụng & Tài chính doanh nghiệp.",
 
@@ -1041,7 +1041,7 @@ export const vi = {
     livePreview: "● Đang xem Live Preview",
     tapToTry: "Bấm để xem thử",
 
-    roadmapTab: "Lộ Trình Ôn Cấp",
+    roadmapTab: "Lộ trình ôn cấp",
     roadmapTitle: "Học tài chính theo lộ trình chặng chuẩn hóa",
     roadmapBody:
       "Tích hợp Active Recall chủ động, theo dõi tiến độ từng chặng từ vỡ lòng đến chuyên sâu.",
@@ -1054,8 +1054,8 @@ export const vi = {
     finsocialBody:
       "Feed tin tức bài viết ngắn, hỏi đáp thực tế, thảo luận phân tích BCTC và thả cảm xúc.",
 
-    roadmapPanelTitle: "Lộ Trình Học Tài Chính Cá Nhân & CFA",
-    roadmapPanelSub: "Thực hành Active Recall đố nhanh ngay tại chỗ",
+    roadmapPanelTitle: "Lộ trình học tài chính cá nhân & CFA",
+    roadmapPanelSub: "Thực hành active recall đố nhanh ngay tại chỗ",
     xpEarned: "Điểm tích lũy: +{xp} XP",
     stage1: "Chặng 1",
     stage1Title: "Vỡ lòng Tài chính & Quản lý Tiền mặt",
@@ -1067,33 +1067,33 @@ export const vi = {
     stage3Title: "Định giá Cổ phiếu & Mô hình DCF",
     stage3Status: "Khóa (Cần đỗ Chặng 2)",
 
-    samplerLabel: "⚡ ACTIVE RECALL SAMPLER",
+    samplerLabel: "ACTIVE RECALL SAMPLER",
     samplerCounter: "Câu 1/1",
     samplerQuestion:
-      "❓ Khi một doanh nghiệp có dòng tiền CFO âm liên tục 3 năm nhưng lợi nhuận ròng vẫn dương, đâu là nguyên nhân chính?",
+      "Khi một doanh nghiệp có dòng tiền CFO âm liên tục 3 năm nhưng lợi nhuận ròng vẫn dương, đâu là nguyên nhân chính?",
     samplerOptionA: "Doanh nghiệp bán hàng ghi nhận doanh thu nhưng chưa thu được tiền (Phải thu tăng)",
     samplerOptionB: "Doanh nghiệp vừa nhận khoản đầu tư lớn từ cổ đông",
     samplerOptionC: "Doanh nghiệp chi trả cổ tức quá mức",
-    samplerCorrect: "🎉 Chính xác! +45 XP. Dòng tiền CFO phản ánh tiền thực về két.",
-    samplerWrong: "❌ Chưa chính xác. Đáp án đúng là Phải thu gia tăng mạnh!",
+    samplerCorrect: "Chính xác! +45 XP. Dòng tiền CFO phản ánh tiền thực về két.",
+    samplerWrong: "Chưa chính xác. Đáp án đúng là phải thu gia tăng mạnh!",
 
-    deskLabel: "🛋️ BÀN HỌC 3D · TÀI CHÍNH CÁ NHÂN",
+    deskLabel: "BÀN HỌC 3D · TÀI CHÍNH CÁ NHÂN",
     cheerLabel: "Cổ Vũ:",
     roomLabel: "BÀN HỌC PHÒNG #102",
     roomXp: "480 / 500 XP",
-    xpBonus: "⚡ +15% XP BONUS",
+    xpBonus: "+15% XP BONUS",
     // Demo learner names are left as they are - they are proper nouns. Only the
     // "(you)" marker is translated.
     youSuffix: "(Bạn)",
-    memberLessons: "🔥 {count} bài",
-    cheerHint: "💡 Bấm thử các nút cổ vũ phía trên để gửi tin nhắn tương tác trực tiếp!",
-    chatLive: "💬 Trò chuyện nhóm Live",
+    memberLessons: "{count} bài",
+    cheerHint: "Bấm thử các nút cổ vũ phía trên để gửi tin nhắn tương tác trực tiếp!",
+    chatLive: "Trò chuyện nhóm Live",
     online: "Online",
     adminByline: "Tài Tài · Quản lý nhóm",
-    adminMessage: "Cập nhật hôm nay: Hà Tường Vy, Hà Hồng đã học bài. Cùng cố gắng nhé!",
+    adminMessage: "Cập nhật hôm nay: Hà tường vy, hà hồng đã học bài. Cùng cố gắng nhé!",
     chatPlaceholder: "Gửi lời chúc, hỏi bài...",
 
-    feedPanelTitle: "FinSocial Feed Trực Tuyến",
+    feedPanelTitle: "FinSocial feed trực tuyến",
     feedPanelSub: "Bấm thử nút Thả tim ❤️ tương tác với bài viết thực tế",
     feedCta: "Vào FinSocial Feed",
     postStats: "{comments} bình luận · {shares} chia sẻ",
@@ -1101,12 +1101,12 @@ export const vi = {
     // The two demo posts. Author names and hashtags stay as they are.
     post1Time: "2 giờ trước",
     post1Topic: "Phân tích BCTC",
-    post1Title: "💡 Bí quyết đọc nhanh Báo cáo lưu chuyển tiền tệ (Cash Flow) trong 5 phút",
+    post1Title: "Bí quyết đọc nhanh Báo cáo lưu chuyển tiền tệ (Cash Flow) trong 5 phút",
     post1Content:
       "Nhiều bạn mới học tài chính thường bỏ qua báo cáo lưu chuyển tiền tệ mà chỉ nhìn lợi nhuận trên Báo cáo KQKD. Nhớ quy tắc: Lợi nhuận có thể là sổ sách, nhưng Dòng tiền từ HĐKD (CFO) mới là dòng máu thực sự của doanh nghiệp!",
     post2Time: "4 giờ trước",
     post2Topic: "Tài chính cá nhân",
-    post2Title: "📊 Quy tắc 50/30/20 có còn phù hợp với bối cảnh lạm phát hiện tại?",
+    post2Title: "Quy tắc 50/30/20 có còn phù hợp với bối cảnh lạm phát hiện tại?",
     post2Content:
       "50% Nhu cầu thiết yếu - 30% Sở thích - 20% Tiết kiệm & Đầu tư. Nếu chi phí sinh hoạt tăng cao, hãy ưu tiên cố định 20% Tiết kiệm trước (Pay Yourself First) rồi mới phân bổ 80% còn lại!",
   },
@@ -1307,8 +1307,8 @@ export const vi = {
     forgotShort: "Quên ❌",
     faceDefinition: "Định nghĩa",
     faceTerm: "Thuật ngữ",
-    flipToTerm: "↩ Chạm để xem thuật ngữ",
-    flipToDefinition: "↪ Chạm để lật mặt sau",
+    flipToTerm: "Chạm để xem thuật ngữ",
+    flipToDefinition: "Chạm để lật mặt sau",
     gradeForgot: "Quên",
     gradeMedium: "Vừa phải",
     gradeEasy: "Dễ nhớ",
@@ -1327,43 +1327,43 @@ export const vi = {
 
   // components/FinancialGuildWidget.tsx - the VN30 fund simulator.
   guild: {
-    stopLossTitle: "🛡️ Bài Học Nguyên Tắc Cắt Lỗ Stop-Loss ({ticker} {percent}%)",
+    stopLossTitle: "Bài học nguyên tắc cắt lỗ stop-loss ({ticker} {percent}%)",
     stopLossDesc:
       "Mã {ticker} đã vi phạm mốc cắt lỗ chuẩn -8%. Bài học: Kỷ luật cắt lỗ sớm giúp bảo vệ quy mô vốn Quỹ để tái cơ cấu vào các cơ hội mới tốt hơn!",
-    takeProfitTitle: "🎉 Bài Học Chốt Lời Take-Profit ({ticker} +{percent}%)",
+    takeProfitTitle: "Bài học chốt lời take-profit ({ticker} +{percent}%)",
     takeProfitDesc:
       "Mã {ticker} đang đạt mức sinh lời ấn tượng! Bài học: Chốt lời từng phần (Scaling Out) giúp hiện thực hóa lợi nhuận thực tế thay vì chỉ nắm giữ lãi trên giấy.",
-    concentrationTitle: "⚠️ Cảnh Báo Tập Trung Vốn (Concentration Risk)",
+    concentrationTitle: "Cảnh báo tập trung vốn (Concentration risk)",
     concentrationDesc:
       "Bạn đang dồn hơn 80% giá trị danh mục vào duy nhất 1 mã cổ phiếu. Bài học: Đa dạng hóa danh mục (Diversification) giúp giảm thiểu rủi ro phi hệ thống khi doanh nghiệp gặp tin xấu!",
     insufficientCash: "Không đủ sức mua tiền mặt khả dụng!",
     insufficientShares: "Số lượng cổ phiếu trong danh mục không đủ để BÁN!",
     rebalanced: "Đã tái cơ cấu đưa Quỹ về trạng thái vốn ban đầu 1 Tỷ VNĐ.",
 
-    clanTitle: "🏛️ Wall Street Hedge Fund Clan",
+    clanTitle: "Wall Street Hedge Fund Clan",
     universe: "VN30 Top 30 Stocks",
-    subtitle: "Mô Phỏng Quỹ Đầu Tư Cổ Phiếu Việt Nam",
+    subtitle: "Mô phỏng quỹ đầu tư cổ phiếu việt nam",
     hideGuide: "Ẩn hướng dẫn",
-    showGuide: "📖 Hướng dẫn cách chơi",
+    showGuide: "Hướng dẫn cách chơi",
     advance7: "Tua +7 Ngày",
     advance30: "Tua +30 Ngày",
     rebalanceTitle: "Tái cơ cấu về 1 Tỷ VNĐ",
 
-    guideTitle: "Hướng Dẫn Chi Tiết Cách Chơi Mô Phỏng Quỹ Đầu Tư",
+    guideTitle: "Hướng dẫn chi tiết cách chơi mô phỏng quỹ đầu tư",
     close: "✕ Đóng",
     // Each step's body wraps inline <strong> emphasis, so it is split into
     // segments rather than carrying markup through the dictionary.
-    step1Title: "1️⃣ Vốn Ban Đầu 1 Tỷ",
+    step1Title: "1️⃣ vốn ban đầu 1 tỷ",
     step1Part1: "Bạn được cấp ",
     step1Amount: "1,000,000,000 VNĐ",
-    step1Part2: " tiền mặt ban đầu để đóng vai Quản lý Quỹ Hedge Fund chuyên nghiệp.",
+    step1Part2: " tiền mặt ban đầu để đóng vai quản lý quỹ Hedge Fund chuyên nghiệp.",
     step2Title: "2️⃣ Mua / Bán VN30",
     step2Part1: "Chọn các mã cổ phiếu đầu ngành (",
     step2Tickers: "FPT, VNM, HPG, TCB...",
     step2Part2: ") bấm ",
     step2Part3: " giải ngân hoặc ",
     step2Part4: " chốt lời.",
-    step3Title: "3️⃣ Tua Thời Gian & Tin Tức",
+    step3Title: "3️⃣ tua thời gian & tin tức",
     step3Part1: "Bấm ",
     step3Part2: " hoặc ",
     step3Advance30Short: "+30 Ngày",
@@ -1373,22 +1373,22 @@ export const vi = {
     step4Board: "BXH Quỹ Server",
     step4Part2: " + tích lũy XP & Coin thưởng.",
 
-    totalAssets: "Tổng Tài Sản Quỹ",
+    totalAssets: "Tổng tài sản quỹ",
     currency: "VNĐ",
     percentOfFund: "% Tổng Quỹ",
-    availableCash: "Tiền Mặt Khả Dụng",
+    availableCash: "Tiền mặt khả dụng",
     buyingPowerLeft: "Sức mua còn lại",
-    stockValue: "Giá Trị Cổ Phiếu",
+    stockValue: "Giá trị cổ phiếu",
     holdingsCount: "{count} mã đang nắm giữ",
-    simulatedTime: "Thời Gian Mô Phỏng",
+    simulatedTime: "Thời gian mô phỏng",
     dayNumber: "Ngày thứ {day}",
-    leaderboardTitle: "BXH Quỹ Mô Phỏng",
+    leaderboardTitle: "BXH quỹ mô phỏng",
     lessonFromPortfolio: "Bài học tài chính rút ra từ danh mục của bạn:",
     allVn30: "Tất cả 30 Mã VN30",
 
     colTicker: "Mã CK / Doanh Nghiệp",
     colSector: "Ngành Nghề",
-    colPrice: "Giá Thị Trường (VNĐ)",
+    colPrice: "Giá thị trường (VnĐ)",
     colChange: "Thay Đổi",
     colHolding: "Nắm Giữ (Cổ phiếu)",
     colPnl: "Lãi/Lỗ Tạm Tính",
@@ -1397,8 +1397,8 @@ export const vi = {
     buy: "MUA",
     sell: "BÁN",
 
-    buyOrderTitle: "🛒 Lệnh Mua Cổ Phiếu",
-    sellOrderTitle: "💰 Lệnh Bán Cổ Phiếu",
+    buyOrderTitle: "Lệnh mua cổ phiếu",
+    sellOrderTitle: "Lệnh bán cổ phiếu",
     currentPrice: "Giá hiện tại:",
     shareCount: "Số lượng cổ phiếu:",
     orderTotal: "Tổng giá trị giao dịch:",
@@ -1410,15 +1410,15 @@ export const vi = {
   // components/CommunityFeedClient.tsx - the FinSocial feed (/finsocial).
   feed: {
     sentimentPost: "#PhanTich #MarketSentiment Hôm nay mình nhận định thị trường {view}. Khảo sát cộng đồng: {bull}% Bullish · {bear}% Bearish.",
-    voteBullish: "🐂 Biển Xanh (Bullish - Tăng trưởng)",
-    voteBearish: "🐻 Biển Đỏ (Bearish - Thận trọng)",
+    voteBullish: "Biển Xanh (Bullish - Tăng trưởng)",
+    voteBearish: "Biển Đỏ (Bearish - Thận trọng)",
     spotlightQuestion: "Câu hỏi cần trả lời",
     spotlightDiscussed: "Đang được bàn nhiều",
     spotlightAnalysis: "Phân tích đáng đọc",
     anonMember: "Thành viên",
     anonYou: "Bạn",
-    sentimentBullish: "🐂 Đã ghi nhận nhận định Biển Xanh Bullish của bạn!",
-    sentimentBearish: "🐻 Đã ghi nhận nhận định Biển Đỏ Bearish của bạn!",
+    sentimentBullish: "Đã ghi nhận nhận định biển xanh bullish của bạn!",
+    sentimentBearish: "Đã ghi nhận nhận định biển đỏ bearish của bạn!",
     postFailed: "Không đăng được bài. Vui lòng thử lại.",
     postEditFailed: "Không sửa được bài viết",
     commentFailed: "Không gửi được bình luận.",
@@ -1458,19 +1458,19 @@ export const vi = {
 
     sentimentTitle: "THỊ TRƯỜNG & VĨ MÔ HÔM NAY",
     sentimentQuestion: "Cộng đồng nhận định xu hướng VN-Index & Vĩ mô hôm nay thế nào?",
-    sentimentShare: "💬 Đăng nhận định",
+    sentimentShare: "Đăng nhận định",
     bullishTitle: "Biển Xanh (Bullish)",
     bullishSub: "Tích cực & Khả quan",
     bearishTitle: "Biển Đỏ (Bearish)",
     bearishSub: "Thận trọng & Quan sát",
-    bullishVotes: "🐂 {count} phiếu ({percent}%)",
-    bearishVotes: "🐻 {count} phiếu ({percent}%)",
+    bullishVotes: "{count} phiếu ({percent}%)",
+    bearishVotes: "{count} phiếu ({percent}%)",
     totalVotes: "Tổng số lượt vote: {count}",
 
     // InteractivePollCard
-    pollTitle: "📊 THĂM DÒ Ý KIẾN CỘNG ĐỒNG",
+    pollTitle: "THĂM DÒ Ý KIẾN CỘNG ĐỒNG",
     pollVoteCount: "{count} lượt bình chọn",
-    pollVoted: "🎉 Đã ghi nhận bình chọn của bạn!",
+    pollVoted: "Đã ghi nhận bình chọn của bạn!",
 
     // Composer
     signInToPost: "Vui lòng đăng nhập để đăng bài.",
@@ -1484,7 +1484,7 @@ export const vi = {
     addFeeling: "Cảm xúc",
     createPost: "Tạo bài viết",
     memberRole: "Thành viên FinSocial",
-    visibilityPublic: "🌐 Công khai",
+    visibilityPublic: "Công khai",
     previewAlt: "Preview",
     createPoll: "Tạo bình chọn / Thăm dò ý kiến",
     cancel: "Hủy",
@@ -1500,7 +1500,7 @@ export const vi = {
     // Header
     bgAlt: "Saigon Skyline background",
     backToDashboard: "Về Dashboard",
-    eyebrow: "Mạng Xã Hội Học Tài Chính",
+    eyebrow: "Mạng xã hội học tài chính",
     title: "FinSocial Feed",
     subtitle:
       "Nơi cộng đồng chia sẻ bản tin ngắn, câu hỏi, phân tích BCTC thực tế và ăn mừng thành tựu học tập mỗi ngày.",
@@ -1531,7 +1531,7 @@ export const vi = {
     cancelEdit: "Huỷ",
     saving: "Đang lưu...",
     save: "Lưu",
-    levelCertTitle: "Chứng Nhận Thăng Cấp",
+    levelCertTitle: "Chứng nhận thăng cấp",
     levelCertLevel: "Cấp {level}: {name}",
     // Split around the inline <strong> holding the score.
     levelCertBodyPart1: "Đạt thành tích vượt qua Bài thi thăng cấp khắt khe với kết quả chính xác ",
@@ -1585,7 +1585,7 @@ export const vi = {
     criteriaReadAll: "đọc hết bài",
     congrats: "Chúc mừng{name}!",
     allDone: "Bạn đã hoàn thành tất cả bài học",
-    study: "▶ Học",
+    study: "Học",
 
     quickGuideTitle: "Hướng dẫn nhanh 3 bước",
     quickGuideIntro:
@@ -1599,12 +1599,12 @@ export const vi = {
     step3Body: "Học đều mỗi ngày để leo hạng",
 
     heroBanner: "ĐANG HỌC DỞ",
-    xpIfNow: "🔥 +{xp} XP NẾU HỌC NGAY",
-    trackProgress: "Tiến độ Lộ trình ({done}/{total} bài)",
-    continuingLesson: "▶ Bài học đang tiếp tục",
-    minutesStudied: "⏱️ Đã học {minutes} phút",
-    readyToStart: "🌱 Sẵn sàng khởi động bài học ngay",
-    continueNow: "▶ TIẾP TỤC HỌC NGAY",
+    xpIfNow: "+{xp} XP NẾU HỌC NGAY",
+    trackProgress: "Tiến độ lộ trình ({done}/{total} bài)",
+    continuingLesson: "Bài học đang tiếp tục",
+    minutesStudied: "Đã học {minutes} phút",
+    readyToStart: "Sẵn sàng khởi động bài học ngay",
+    continueNow: "TIẾP TỤC HỌC NGAY",
 
     feedbackTitle: "Phản hồi học tập",
     reviewOnTime: "Tổng ôn đúng lúc",
@@ -1703,31 +1703,31 @@ export const vi = {
 
   // components/RigorousLevelExamModal.tsx - the level-up exam.
   levelExam: {
-    shareText: "🏆 Tôi vừa xuất sắc vượt qua Bài Thi Thăng Cấp Khắt Khe - Cấp độ {level}: {name} với điểm số {percent}%! 🔥 #LevelUp",
+    shareText: "Tôi vừa xuất sắc vượt qua bài thi thăng cấp khắt khe - cấp độ {level}: {name} với điểm số {percent}%! 🔥 #levelup",
     loadFailed: "Không tải được đề thi.",
     passedToast: "Chúc mừng! Bạn đã thi đỗ xuất sắc Cấp độ {level} ({percent}%)!",
     timedOutToast: "Đã quá thời gian làm bài nên kết quả không được tính. Bạn có thể thi lại.",
     failedToast: "Rất tiếc! Bạn đạt {percent}% (Yêu cầu thi đỗ: ≥ {required}%). Vui lòng ôn lại và thử lại!",
 
-    titleRetake: "Thi Ôn Cấp Định Kỳ",
-    title: "Bài Thi Thăng Cấp Khắt Khe",
+    titleRetake: "Thi ôn cấp định kỳ",
+    title: "Bài thi thăng cấp khắt khe",
     passRequirement: "Yêu cầu đỗ: ≥ {percent}% chính xác",
     reloadExam: "Tải lại đề thi",
     loading: "Đang tải đề thi từ máy chủ...",
 
-    resultPassed: "Xác Nhận Đạt Bằng Cấp Thành Công!",
-    resultFailed: "Chưa Đạt Yêu Cầu Thi Cấp!",
+    resultPassed: "Xác nhận đạt bằng cấp thành công!",
+    resultFailed: "Chưa đạt yêu cầu thi cấp!",
     // Split around the inline <span> holding the score.
     resultPart1: "Kết quả: ",
     resultScore: "{correct}/{total}",
     resultPart2: " câu đúng ({percent}%)",
-    timedOutNote: "⏱ Bài thi được nộp sau khi hết thời gian nên không được tính là đỗ.",
-    promotedTitle: "🎉 Bạn chính thức thăng thâm niên Cấp độ {level} ({name})!",
+    timedOutNote: "Bài thi được nộp sau khi hết thời gian nên không được tính là đỗ.",
+    promotedTitle: "Bạn chính thức thăng thâm niên Cấp độ {level} ({name})!",
     promotedBody:
       "Trạng thái thi đỗ đã được ghi nhận trong hồ sơ và duy trì chứng nhận trong 14 ngày tới.",
     sharedToast: "Đã chia sẻ thành tích lên FinSocial! (+10 XP)",
     shareCta: "Chia sẻ chiến tích lên FinSocial (+10 XP)",
-    reviewTitle: "⚠️ Bạn cần ôn lại các khái niệm chưa nắm vững",
+    reviewTitle: "Bạn cần ôn lại các khái niệm chưa nắm vững",
     reviewBody:
       "Đừng nản lòng! Đọc kỹ giải thích đáp án bên dưới để củng cố kiến thức trước khi làm bài thi lại.",
 
@@ -1741,8 +1741,8 @@ export const vi = {
 
     answered: "Đã trả lời {done}/{total} câu",
     grading: "Đang chấm bài...",
-    submit: "Nộp Bài Thi Cấp",
-    retakeNow: "Thi Lại Ngay",
+    submit: "Nộp bài thi cấp",
+    retakeNow: "Thi lại ngay",
     finish: "Hoàn Tất",
     passRequirementCount: " ({correct}/{total} câu)",
     resultRequired: " — Yêu cầu đỗ: ≥ {percent}%",
@@ -1753,14 +1753,14 @@ export const vi = {
 
   // components/home/InteractiveKingdomPreview.tsx - logged-out Game Kingdom demo.
   kingdomPreview: {
-    tabMap: "Bản đồ Vương quốc",
+    tabMap: "Bản đồ vương quốc",
     tabMinigame: "Chơi thử Mini Game",
     tabBoss: "Săn Boss NYSE",
-    bgAlt: "Wall Street Trading Floor background",
+    bgAlt: "Ảnh nền sàn giao dịch phố Wall",
     eyebrow: "VƯƠNG QUỐC GAME TÀI CHÍNH INTERACTIVE",
     headingMap: "Bản đồ nhiệm vụ & Công trình",
     headingMinigame: "Thử phản xạ active recall trực tiếp",
-    headingBoss: "Đấu trường Săn Boss Phố Wall",
+    headingBoss: "Đấu trường săn Boss Phố Wall",
     xpLabel: "XP Tích lũy",
     xpValue: "+{xp} XP",
 
@@ -1772,22 +1772,22 @@ export const vi = {
 
     samplerQuestion: "Câu hỏi thử nghiệm #{index}",
     samplerXp: "+50 XP nếu chọn đúng",
-    samplerCorrect: "🎉 Chính xác! Bạn nhận được +50 XP thưởng!",
-    samplerWrong: "💡 Chưa chính xác rồi!",
+    samplerCorrect: "Chính xác! Bạn nhận được +50 XP thưởng!",
+    samplerWrong: "Chưa chính xác rồi!",
     tryAnother: "Thử câu hỏi khác",
     doAllQuizzes: "Vào làm trọn bộ 430+ Quiz →",
 
-    bossAlt: "Boss Bò Phố Wall NYSE",
-    bossRaidLabel: "👹 WORLD BOSS RAID · 1,000,000 HP",
-    bossName: "Bò Tót Phố Wall Tăng Trưởng",
+    bossAlt: "Boss bò Phố Wall NYSE",
+    bossRaidLabel: "WORLD BOSS RAID · 1,000,000 HP",
+    bossName: "Bò tót Phố Wall tăng trưởng",
     bossBody:
       "Toàn bộ người học trên hệ thống cùng tham gia đánh Boss mỗi ngày bằng cách trả lời đúng các câu hỏi tài chính.",
     bossHpLabel: "Máu Boss hiện tại",
     bossHpValue: "742,500 / 1,000,000 HP",
     damageToday: "Sát thương hôm nay",
-    damageValue: "⚔️ 1,250 DMG",
+    damageValue: "1,250 DMG",
     bossReward: "Phần thưởng hạ Boss",
-    bossRewardValue: "🏆 +500 XP & Vàng",
+    bossRewardValue: "+500 XP & Vàng",
     joinBoss: "Tham gia Săn Boss NYSE Ngay",
     ongoing: "Đang diễn ra: Mở khóa vương quốc tài chính bằng bài học thật",
     playFull: "Vào chơi thử Game Kingdom đầy đủ",
@@ -1812,7 +1812,7 @@ export const vi = {
     singaporeTag1: "Dòng tiền Cashflow",
     singaporeTag2: "Vốn lưu động",
     singaporeTag3: "Tỷ giá",
-    pvpName: "Đấu Trường Kiến Thức Solo",
+    pvpName: "Đấu trường kiến thức solo",
     pvpSubtitle: "Đánh Boss bằng câu hỏi Active Recall",
     pvpDescription:
       "Thử thách phản xạ kiến thức tài chính qua các hiệp quiz 1v1 dồn dập tích lũy điểm XP.",
@@ -1837,17 +1837,17 @@ export const vi = {
 
   // components/WeeklyChallengeWidget.tsx - the Times Square case-study arena.
   caseArena: {
-    rankS: "Hạng S - Huyền Thoại Phân Tích Wall Street 🏆",
-    rankA: "Hạng A - Chuyên Gia Phân Tích Doanh Nghiệp 🥇",
-    rankB: "Hạng B - Học Viên Phố Wall 🥈",
-    rankC: "Hạng C - Cần Ôn Tập",
+    rankS: "Hạng S - huyền thoại phân tích Wall Street 🏆",
+    rankA: "Hạng A - chuyên gia phân tích doanh nghiệp 🥇",
+    rankB: "Hạng B - học viên Phố Wall 🥈",
+    rankC: "Hạng C - cần ôn tập",
     correctToast: "Chính xác! +{score} điểm (Combo x{multiplier}) 🔥",
     wrongToast: "Chưa chính xác! Thất thoát Combo.",
 
-    hubTitle: "🏙️ Times Square Financial Hub",
-    badge: "Case Study Thực Tế",
-    title: "Đấu Trường Case Study Doanh Nghiệp",
-    totalScore: "Tổng Điểm Game",
+    hubTitle: "Trung tâm tài chính Times Square",
+    badge: "Case Study thực tế",
+    title: "Đấu trường Case Study doanh nghiệp",
+    totalScore: "Tổng điểm game",
     combo: "Combo",
     leaderboardTitle: "BXH Case Study",
 
@@ -1861,8 +1861,8 @@ export const vi = {
     difficulty: "Độ khó: {level}",
     maxReward: "Thưởng tối đa: +{xp} XP",
     coinReward: "+{coins} Coins",
-    analysisQuestions: "❓ {count} Câu hỏi phân tích",
-    start: "Bắt Đầu Trận Đấu Case Study",
+    analysisQuestions: "{count} Câu hỏi phân tích",
+    start: "Bắt đầu trận đấu Case Study",
 
     questionCounter: "Câu hỏi phân tích {current}/{total}",
     currentScore: "Điểm hiện tại",
@@ -1872,21 +1872,21 @@ export const vi = {
     questionsAfterThis: "{count} câu sau câu này",
     expertExplanation: "Giải thích chuyên môn:",
     nextQuestion: "Câu tiếp theo",
-    seeSummary: "Xem Tổng Kết Điểm Game",
+    seeSummary: "Xem tổng kết điểm game",
 
-    doneTitle: "Hoàn Thành Case Study!",
+    doneTitle: "Hoàn thành Case Study!",
     correctCount: "Số câu đúng",
     correctOf: "{correct}/{total} câu",
-    totalGameScore: "Tổng điểm Game",
+    totalGameScore: "Tổng điểm game",
     maxCombo: "Max Combo",
-    maxComboValue: "🔥 x{combo}",
+    maxComboValue: "x{combo}",
     reward: "Phần thưởng",
     rewardXp: "+{xp} XP",
-    lessonHintTitle: "💡 Gợi ý bài học ôn tập tương ứng:",
+    lessonHintTitle: "Gợi ý bài học ôn tập tương ứng:",
     lessonHintBody:
       "Để thành thạo hơn khi phân tích các doanh nghiệp thực tế, bạn nên đọc lại các bài học sau:",
-    replayCase: "Chơi Lại Case này",
-    pickAnotherCase: "Chọn Case Study Khác",
+    replayCase: "Chơi lại case này",
+    pickAnotherCase: "Chọn Case Study khác",
   },
 
   // components/CareerProfilePanel.tsx
@@ -1909,7 +1909,7 @@ export const vi = {
     lessonsCompleted: "{count} bài đã hoàn thành",
     mockInterview: "Làm mock interview (10 câu, có tính giờ)",
 
-    gapTitle: "Job Skill Gap",
+    gapTitle: "Job skill gap",
     groupCertifications: "Chứng chỉ",
     groupCareers: "Nghề nghiệp",
     pickGoal: "Chọn một mục tiêu ở trên để xem bạn còn thiếu gì.",
@@ -1922,7 +1922,7 @@ export const vi = {
     alreadyClaimed: "Đã nhận",
     claim: "Nhận thưởng",
     claiming: "Đang nhận...",
-    perfectWeek: "🏆 Tuần hoàn hảo · +{xp} XP · +{coins} xu",
+    perfectWeek: "Tuần hoàn hảo · +{xp} XP · +{coins} xu",
     perfectWeekBody: "Hoàn thành cả {count} nhiệm vụ trong tuần.",
 
     bulletsTitle: "CV bullets",
@@ -1963,7 +1963,7 @@ export const vi = {
     sending: "Đang gửi...",
     seen: "Đã xem",
     sent: "Đã gửi",
-    replyingTo: "💬 Đang trả lời {name}:",
+    replyingTo: "Đang trả lời {name}:",
     cancelReply: "Hủy trả lời",
     editing: "Đang sửa tin nhắn:",
     cancelEdit: "Hủy sửa",
@@ -1975,7 +1975,7 @@ export const vi = {
     dropImage: "Thả ảnh vào đây để đính kèm 📂",
     imagePlaceholder: "[Hình ảnh]",
     filePlaceholder: "[Tệp: {name}]",
-    deleted: "↩️ Tin nhắn đã bị xoá",
+    deleted: "Tin nhắn đã bị xoá",
     you: "Bạn",
     member: "Thành viên",
     admin: "Tài Tài",
@@ -1989,7 +1989,7 @@ export const vi = {
     editFailed: "Không sửa được tin nhắn",
     sendFailed: "Không gửi được tin nhắn",
     sendFailedRetry: "Không gửi được tin nhắn. Vui lòng thử lại.",
-    taitaiFailed: "Không gọi được Tài Tài",
+    taitaiFailed: "Không gọi được tài tài",
     reactionTitle: "Thả {emoji}",
     editPlaceholder: "Chỉnh lại nội dung tin nhắn...",
     // alt của ảnh đại diện khi người dùng chưa có tên. Trước là "User" viết
@@ -2005,7 +2005,7 @@ export const vi = {
     collapseChat: "Thu nhỏ chat",
     expandChat: "Phóng to chat",
     inputPlaceholder: "Nhập tin nhắn, dán ảnh...",
-    title: "Tài Tài Chatbot",
+    title: "Tài tài chatbot",
     status: "Đang hoạt động • Phản hồi siêu tốc",
     closeAria: "Đóng chat",
     pinnedBy: "Tin nhắn đã ghim ({who})",
@@ -2014,7 +2014,7 @@ export const vi = {
     emptyPart1: "Gửi tin nhắn để bắt đầu trò chuyện với admin.",
     emptyPart2: "Admin thường phản hồi trong vòng 24 giờ.",
     adminName: "Admin",
-    recalledToast: "🗑️ Đã thu hồi tin nhắn thành công!",
+    recalledToast: "Đã thu hồi tin nhắn thành công!",
   },
 
   // components/FloatingStudyGroupChat.tsx
@@ -2040,7 +2040,7 @@ export const vi = {
     botDailyAll: "Cập nhật hôm nay: cả {count} thành viên đều đã học ít nhất 1 bài! Nhóm đang giữ nhịp rất tốt 🔥",
     botDailyPartial: "Cập nhật hôm nay: {names} đã học rồi. Còn {notYet} bạn chưa học hôm nay - đừng để mai dồn nhé!",
     botDailyExtra: " +{extra} bạn nữa",
-    botRules: "Tài Tài đây 👋 Nhóm này đang học theo hướng {topic}, hiện có khoảng {count} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.",
+    botRules: "Tài tài đây 👋 nhóm này đang học theo hướng {topic}, hiện có khoảng {count} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.",
     botTopicPersonal: "Tài chính cá nhân",
     botTopicProfessional: "Tài chính chuyên ngành",
     botTopicCfa: "CFA Level I",
@@ -2060,28 +2060,28 @@ export const vi = {
 
     roomHeader: "Phòng {topic} · {count}/{max} thành viên",
     xpProgress: "{current}/{goal} XP",
-    weeklyGoalTitle: "🔮 Mục tiêu tuần",
+    weeklyGoalTitle: "Mục tiêu tuần",
     weeklyGoalXp: "{current} / {goal} XP",
 
     // Pomodoro
-    pomodoroFocus: "🎯 25m",
-    pomodoroBreak: "☕ 5m",
+    pomodoroFocus: "25m",
+    pomodoroBreak: "5m",
     pomodoroPause: "Tạm dừng",
     pomodoroStart: "Bắt đầu",
     breakStarted:
-      "☕ Hết 25 phút học tập! Cả nhóm nghỉ giải lao 5 phút (+15 XP Tập trung nhóm)! 🎉",
-    focusStarted: "🎯 Hết giờ nghỉ! Bắt đầu phiên 25 phút tập trung tiếp theo!",
+      "Hết 25 phút học tập! Cả nhóm nghỉ giải lao 5 phút (+15 XP Tập trung nhóm)! 🎉",
+    focusStarted: "Hết giờ nghỉ! Bắt đầu phiên 25 phút tập trung tiếp theo!",
 
     // Lofi + voice
-    lofiOn: "🎧 Đã bật nhạc Focus [{track}] Chill!",
+    lofiOn: "Đã bật nhạc Focus [{track}] Chill!",
     stationLit: "Trạm [{name}] đã được thắp sáng trong phiên này.",
     stationActivated: "Đã kích hoạt trạm 3D [{name}]! +15% XP cho cả phòng.",
     quizScoreGood: "Quiz nhóm đạt {score}%. Đã cộng tiến độ nhiệm vụ tuần!",
     quizScoreKeepGoing: "Quiz nhóm đạt {score}%. Cứ làm tiếp, tiến độ quiz tuần vẫn được ghi nhận.",
     lofiToggleTitle: "Bật/Tắt nhạc Lofi Chill tập trung",
     lofiPlaying: "Nhạc Lofi: Đang phát",
-    lofiIdle: "Nhạc Lofi Chill",
-    lofiOff: "🔇 Đã tắt nhạc Focus Lofi",
+    lofiIdle: "Nhạc lofi chill",
+    lofiOff: "Đã tắt nhạc Focus Lofi",
     lofiFailed: "Không thể khởi chạy nhạc Lofi",
     micToggleTitle: "Bật/Tắt Micro",
     micOn: "Mic: Mở",
@@ -2089,14 +2089,14 @@ export const vi = {
     leaveVoiceTitle: "Rời voice",
     leaveVoice: "Rời voice ({count})",
     autoplayBlockedTitle: "Trình duyệt đang chặn tự phát âm thanh",
-    autoplayBlocked: "🔈 Bấm để nghe",
+    autoplayBlocked: "Bấm để nghe",
     voiceJoining: "Đang vào...",
     voiceDisabled: "Voice chưa bật",
     voiceJoin: "Vào voice",
     inVoiceTitle: "Đang ở trong voice",
 
-    tab3d: "🛋️ Bàn 3D",
-    tabChat: "💬 Chat",
+    tab3d: "Bàn 3D",
+    tabChat: "Chat",
     leaveRoom: "Rời phòng",
 
     questsTitle: "Nhiệm vụ tuần của phòng học",
@@ -2104,42 +2104,42 @@ export const vi = {
     streakWeeks: "{weeks}/3 tuần streak",
     questsHint:
       "Hoàn thành 3 nhiệm vụ để mở rương nhóm. Nhắn chat, dán note, làm quiz hoặc bật Pomodoro đều được tính là hoạt động nhóm.",
-    checkInNow: "👋 Bấm điểm danh ngay",
+    checkInNow: "Bấm điểm danh ngay",
     checkedIn: "Đã điểm danh hôm nay. Tiến độ nhiệm vụ nhóm đã cập nhật!",
     questsEmpty:
       "Chưa có dữ liệu nhiệm vụ tuần. Sau khi chạy migration mới, tiến độ sẽ tự lấy từ Supabase.",
 
-    chestOpened: "👑 Rương Đã Mở",
+    chestOpened: "Rương đã mở",
     chestOpening: "Đang mở...",
-    chestClaim: "🎁 Nhận Rương",
+    chestClaim: "Nhận Rương",
 
     // 3D room
-    modeWalk: "🚶 PHÒNG ĐI LẠI",
-    modeDesk: "🌐 BÀN HỌC 3D",
-    viewDesk: "🪑 Xem bàn học",
-    viewWalk: "🚶 Vào phòng đi lại",
+    modeWalk: "PHÒNG ĐI LẠI",
+    modeDesk: "BÀN HỌC 3D",
+    viewDesk: "Xem bàn học",
+    viewWalk: "Vào phòng đi lại",
     resetViewTitle: "Đặt lại góc 3D và độ Zoom",
-    resetView: "🔄 Góc & Zoom ({zoom}%)",
+    resetView: "Góc & Zoom ({zoom}%)",
     cheerLabel: "Cổ vũ:",
     cheerSent: "Đã gửi lời cổ vũ đến cả nhóm! 🎉",
     cheerFailed: "Không thể gửi lời cổ vũ",
     boostAria: "Nạp năng lượng 3D Spatial Boost cho cả phòng",
-    boostDone: "🔮 Đã nạp năng lượng 3D Spatial Boost cho cả phòng!",
-    justJoined: "✨ Vừa vào phòng",
+    boostDone: "Đã nạp năng lượng 3D Spatial Boost cho cả phòng!",
+    justJoined: "Vừa vào phòng",
     levelShort: "Lv.{level}",
     memberRole: "Thành viên",
     you: " (Bạn)",
     topLessonTitle: "Top 1 bài học tuần này",
     emptySeat: "Ghế trống",
     hint3dDesktop:
-      "🖐️ Kéo chuột để xoay phòng 360° · 🔍 Lăn chuột để Zoom · ⌨️ Phím mũi tên / +− / 0 · Bấm 🔄 để về góc gốc",
+      "Kéo chuột để xoay phòng 360° · 🔍 Lăn chuột để Zoom · ⌨️ Phím mũi tên / +− / 0 · Bấm 🔄 để về góc gốc",
     hint3dMobile:
-      "👉 Vuốt ngang để xoay (vẩy mạnh để quay tiếp) · vuốt dọc để cuộn trang",
+      "Vuốt ngang để xoay (vẩy mạnh để quay tiếp) · vuốt dọc để cuộn trang",
 
     // Chat
-    chatTab: "💬 Trò chuyện",
-    notesTab: "📌 Ghi chú ({count})",
-    quizTab: "⚡ Quiz Nhóm",
+    chatTab: "Trò chuyện",
+    notesTab: "Ghi chú ({count})",
+    quizTab: "Quiz Nhóm",
     live: "Live",
     chatCheckinHint:
       "Nhắn 1 tin nhắn bất kỳ lên chat để tự động ghi nhận điểm danh nhóm hôm nay!",
@@ -2155,7 +2155,7 @@ export const vi = {
 
     // Sticky notes
     notePlaceholder: "Dán ghi chú công thức hoặc mẹo học cho cả nhóm...",
-    noteAdd: "+ Dán Ghi Chú",
+    noteAdd: "+ dán ghi chú",
     noteAdded: "Đã dán ghi chú mới lên bảng nhóm!",
     noteDeleted: "Đã xóa ghi chú",
     notesEmpty:
@@ -2164,14 +2164,14 @@ export const vi = {
     noteDelete: "Xóa",
 
     // Group quiz
-    quizChallengeTitle: "⚡ THỬ THÁCH 3 PHÚT NHÓM HÔM NAY",
+    quizChallengeTitle: "THỬ THÁCH 3 PHÚT NHÓM HÔM NAY",
     quizReward: "Thưởng Rương +150 XP",
     quizHint:
       "Mỗi lần làm quiz sẽ ghi điểm từng thành viên và cộng tiến độ nhiệm vụ quiz tuần.",
     quizLoading: "Đang lấy câu hỏi cho phòng...",
     quizEmpty: "Chưa có câu hỏi phù hợp cho chủ đề này.",
     quizQuestion: "Câu {index}: {question}",
-    quizSubmit: "Nộp Bài Thi Nhóm",
+    quizSubmit: "Nộp bài thi nhóm",
     quizResult: "Kết quả Quiz Nhóm: {score}%",
     quizResultGood: "Điểm rất ổn. Lượt này đã được lưu vào bảng quiz nhóm.",
     quizResultRetry:
@@ -2249,7 +2249,7 @@ export const vi = {
     noteDeleteFailed: "Không xóa được ghi chú",
     quizScoreSaveFailed: "Không lưu được điểm quiz nhóm",
     messageEditFailed: "Không sửa được tin nhắn",
-    taitaiFailed: "Không gọi được Tài Tài",
+    taitaiFailed: "Không gọi được tài tài",
     matchFailed: "Không thể ghép nhóm lúc này",
     joinFailed: "Không thể tham gia phòng này",
     leaveFailed: "Không thể rời phòng lúc này",
@@ -2282,7 +2282,7 @@ export const vi = {
     // form because the desktop and mobile panels have different room.
     goalSet: "Đã đặt làm Mục tiêu",
     goalSetAction: "Đặt làm Mục tiêu sự nghiệp",
-    goalSetShort: "Đã đặt Mục tiêu",
+    goalSetShort: "Đã đặt mục tiêu",
     goalSetActionShort: "Đặt Mục tiêu sự nghiệp",
 
     tabDuties: "Nhiệm vụ & Một ngày",
@@ -2334,7 +2334,7 @@ export const vi = {
     signInForProgress: "Đăng nhập để xem tiến độ học các bài liên quan.",
     fullTrackLink: "Xem lộ trình học đầy đủ theo nghề",
 
-    radarTitle: "Biểu đồ Phẩm chất",
+    radarTitle: "Biểu đồ phẩm chất",
     radarOverlayTitle: "So sánh Phẩm chất năng lực (Overlay Radar)",
     // Axis labels on the radar chart. The short form exists because the
     // single-position chart has less room than the overlay.
@@ -2344,9 +2344,9 @@ export const vi = {
     axisCommunication: "GIAO TIẾP",
     axisCompliance: "TUÂN THỦ",
 
-    compareTitle: "⚖️ So sánh vị trí công việc",
-    compareShort: "⚖️ So sánh vị trí",
-    compareShortest: "⚖️ So sánh",
+    compareTitle: "So sánh vị trí công việc",
+    compareShort: "So sánh vị trí",
+    compareShortest: "So sánh",
     current: "Hiện tại",
     pickToCompare: "Chọn vị trí để so sánh",
     pickPlaceholder: "-- Chọn một vị trí --",
@@ -2367,13 +2367,13 @@ export const vi = {
     goalSaveFailed: "Chưa lưu được mục tiêu lên server - hiện chỉ áp dụng trên máy này.",
 
     backToDashboard: "Quay lại Dashboard",
-    pageTitle: "Bản Đồ Việc Làm Tài Chính",
-    walk3d: "🏙️ Đi dạo Phố nghề 3D",
+    pageTitle: "Bản đồ việc làm tài chính",
+    walk3d: "Đi dạo Phố nghề 3D",
     pageSubtitle:
       "Khám phá chi tiết công việc (JD), lộ trình thăng tiến sự nghiệp, yêu cầu kỹ năng và kết nối tuyển dụng trực tuyến.",
 
-    goalChosen: "🎯 Mục tiêu sự nghiệp bạn đã chọn",
-    goalOutsider: "🌱 Học viên ngoài ngành",
+    goalChosen: "Mục tiêu sự nghiệp bạn đã chọn",
+    goalOutsider: "Học viên ngoài ngành",
     goalDetailLink: "Xem lộ trình chi tiết →",
     goalClear: "Bỏ chọn mục tiêu",
     noGoalTitle: "Bạn chưa chọn Mục tiêu Sự nghiệp!",
@@ -2464,8 +2464,8 @@ export const vi = {
     searchClear: "Xoá tìm kiếm",
     scrollLeft: "Cuộn sang trái",
     scrollRight: "Cuộn sang phải",
-    gameBoss: "Tiến vào Vương Quốc Game - Săn Boss",
-    gameSolo: "Tiến vào Vương Quốc Game - Đấu Trường Kiến Thức Solo",
+    gameBoss: "Tiến vào vương quốc game - săn Boss",
+    gameSolo: "Tiến vào vương quốc game - đấu trường kiến thức solo",
 
     // Badge marking the current learner's own row in a leaderboard strip.
     youBadge: "Bạn",
@@ -2478,7 +2478,7 @@ export const vi = {
     stageLockedTitle: "Chặng này bị khoá",
     stageLockedHint: "Hoàn thành chặng trước để mở",
     stageLockedBadge: "Chặng này đang bị khoá 🔒",
-    unlockByChallenge: "🎯 Vượt qua thử thách kiến thức để mở khoá",
+    unlockByChallenge: "Vượt qua thử thách kiến thức để mở khoá",
     unlockByRequest: "Yêu cầu hoàn thành bài trước - nhấn để nhắn admin mở khoá",
 
     markLearned: {
@@ -2517,7 +2517,7 @@ export const vi = {
     // line carrying an {interpolation}, matched nothing. The dashboard read as
     // fully translated with 35 strings still hard-coded.
     loading: "Đang tải",
-    libraryEnter: "Bước vào Thư viện · Phòng đọc Sài Gòn",
+    libraryEnter: "Bước vào thư viện · Phòng đọc sài gòn",
     librarySubtitle:
       "Không gian 3D đi lại được - ngồi vào bàn, thấy ai đang học cùng giờ với bạn",
     libraryPresence: "Thư viện là nơi duy nhất trong app có người khác đang hiện diện",
@@ -2538,13 +2538,13 @@ export const vi = {
     learningPathTab: "Lộ trình học",
     learningPathTitle: "Lộ trình học của bạn",
     learningPathNote: "Bốn lộ trình, từ tài chính cá nhân tới CFA và FRM - vào học tiếp từ đúng chỗ đang dở",
-    levelMapTitle: "Bản đồ Cấp độ Học viên",
+    levelMapTitle: "Bản đồ cấp độ học viên",
     levelMapNote:
       "XP là tiến độ học; sát hạch và điểm kiểm tra mới xác nhận năng lực thật",
     levelMembers: "Thành viên Cấp {level} - {name} ({count})",
     levelNoMembers: "Chưa có thành viên ở cấp này.",
     levelAndOthers: "và {count} người khác...",
-    fightBoss: "⚔️ Đánh Boss",
+    fightBoss: "Đánh Boss",
 
     enterLessons: "Vào Học bài",
     enterLessonsSubtitle:
@@ -2559,15 +2559,15 @@ export const vi = {
     cancel: "Hủy",
     lockedCount: "{count} khoá",
     lessonRange: "Bài {from}-{to}",
-    learnerCount: "👥 {count} người đã học",
+    learnerCount: "{count} người đã học",
     appeal: "Khiếu nại",
     isNew: "MỚI",
 
     milestone: {
       passed: "Đã vượt ải",
-      certificate: "📜 Nhận Chứng Chỉ",
+      certificate: "Nhận chứng chỉ",
       awaiting: "Chờ vượt ải",
-      eligible: "🏆 Đã đủ điều kiện Thi Vượt Ải {stage}",
+      eligible: "Đã đủ điều kiện thi vượt ải {stage}",
       // Split around the inline <strong>+50 XP</strong>.
       eligibleBodyPart1:
         "Chúc mừng bạn đã học xong tất cả bài học trong chặng này! Hãy vượt qua bài thi trắc nghiệm cột mốc (15 câu) để nhận ",
@@ -2587,7 +2587,7 @@ export const vi = {
     // the Vietnamese ones. (The Vietnamese side has the length tell and is
     // tracked separately, along with 190 other unaudited questions.)
     boss: {
-      name: "Boss Bẫy Nợ Nần & Lạm Phát",
+      name: "Boss bẫy nợ nần & lạm phát",
       q1: "Để chống chọi với Lạm Phát 8%, danh mục đầu tư cần có tỷ suất sinh lời tối thiểu là bao nhiêu?",
       q2: "Bẫy nợ tín dụng nguy hiểm nhất ở điểm nào?",
       q2o1: "Lãi suất thả nổi cao & Lãi nhập gốc",
@@ -2856,8 +2856,8 @@ export const vi = {
     building: "Đang dựng thư viện…",
     connectFailed: "Không kết nối được. Thử tải lại trang.",
     opening: "Đang mở cửa thư viện…",
-    title: "Thư viện · Phòng đọc Sài Gòn",
-    studiedToday: "⏱ Hôm nay bạn đã ngồi học {minutes} phút",
+    title: "Thư viện · Phòng đọc sài gòn",
+    studiedToday: "Hôm nay bạn đã ngồi học {minutes} phút",
     peersHere: "{count} người đang ở trong sảnh",
     alone: "Bạn đang ở đây một mình",
     nextLessonLabel: "Bài kế tiếp của bạn",
@@ -2948,7 +2948,7 @@ export const vi = {
     level: "Cấp độ",
     xp: "XP",
     lessons: "Bài học",
-    customizeAvatar: "🎨 Tùy Chỉnh Avatar 2.5D",
+    customizeAvatar: "Tùy chỉnh Avatar 2.5D",
     analytics: "Thống kê học tập",
     documents: "Tài liệu miễn phí",
     profile: "Hồ sơ",
@@ -2993,7 +2993,7 @@ export const vi = {
     hint:
       "Kéo chấm sáng để soi chỗ khác, bấm vào nó để đổi cỡ. Đèn càng đậm thì xung quanh càng chìm vào bóng tối.",
     lampTitle: "{size} · kéo để soi chỗ khác, bấm để đổi cỡ",
-    lampAria: "{size}. Phím mũi tên để di chuyển, Enter để đổi cỡ.",
+    lampAria: "{size}. Phím mũi tên để di chuyển, enter để đổi cỡ.",
     turnOff: "Tắt đèn ấm",
     turnOn: "Bật đèn ấm",
   },
@@ -3023,11 +3023,11 @@ export const vi = {
   textHighlight: {
     needLogin: "Bạn cần đăng nhập để đánh dấu đoạn văn.",
     saveFailed: "Không thể lưu đánh dấu. Vui lòng thử lại.",
-    savedImportant: "✨ Đã tô highlight đoạn quan trọng!",
-    savedFlag: "🚩 Đã báo cáo đoạn văn này!",
+    savedImportant: "Đã tô highlight đoạn quan trọng!",
+    savedFlag: "Đã báo cáo đoạn văn này!",
     title: "Đánh dấu văn bản",
     characters: "ký tự",
-    highlight: "Tô Highlight Quan Trọng",
+    highlight: "Tô highlight quan trọng",
     reportAi: "Báo đoạn này do AI viết",
   },
 
@@ -3164,39 +3164,39 @@ export const vi = {
     // metadata của trang. Dịch được vì các trang này vốn đã dựng động (layout
     // gốc đọc cookie ngôn ngữ), và bọ tìm kiếm không mang cookie nên vẫn nhận
     // bản tiếng Việt mặc định - đúng thứ mình muốn cho một site tiếng Việt.
-    flashcardsMetaTitle: "Bộ Thẻ Thuật Ngữ CFA Song Ngữ En-Vi | TuHocTaiChinh.org",
+    flashcardsMetaTitle: "Bộ thẻ thuật ngữ CFA song ngữ en-vi | Tuhoctaichinh.org",
     flashcardsMetaDesc:
       "Bộ thẻ Flashcard 3D thuật ngữ tiếng Anh chuyên ngành CFA Level 1 kèm định nghĩa tiếng Việt chuẩn và công thức liên quan.",
-    formulasMetaTitle: "Sổ Tay Công Thức CFA Level 1 | TuHocTaiChinh.org",
+    formulasMetaTitle: "Sổ tay công thức CFA level 1 | Tuhoctaichinh.org",
     formulasMetaDesc:
       "Sổ tay công thức CFA Level 1: thẻ phân số tầng trực quan, giải thích từng biến số và ví dụ tính toán bằng số thực tế cho cả mười môn thi.",
 
     backToCfa: "Về trang CFA Track",
     backToDashboard: "Về Dashboard",
-    flashcardsTitle: "Bộ Thẻ Thuật Ngữ CFA Level 1",
-    flashcardsSubtitle: "Flashcard Song Ngữ Anh - Việt & Công Thức Liên Quan",
-    formulasTitle: "Sổ Tay Công Thức CFA Level 1",
+    flashcardsTitle: "Bộ thẻ thuật ngữ CFA level 1",
+    flashcardsSubtitle: "Flashcard song ngữ anh - việt & công thức liên quan",
+    formulasTitle: "Sổ tay công thức CFA level 1",
     formulasSubtitle: "Công thức trọng yếu cả mười môn, kèm ví dụ tính bằng số thực tế",
 
-    frmMockExam: "📝 Thi thử",
+    frmMockExam: "Thi thử",
     // Tên riêng của chứng chỉ, giữ nguyên ở mọi ngôn ngữ - đã khai trong
     // INTENTIONALLY_UNTRANSLATED của dictionary-parity.test.ts.
     frmTitle: "FRM",
-    frmSubtitle: "Financial Risk Manager - GARP Part I & Part II",
-    frmGlossary: "🗂️ Thẻ thuật ngữ",
-    frmFormulas: "📐 Sổ tay công thức",
+    frmSubtitle: "Financial risk manager - GARP part I & part II",
+    frmGlossary: "Thẻ thuật ngữ",
+    frmFormulas: "Sổ tay công thức",
 
-    frmFlashcardsMetaTitle: "Bộ Thẻ Thuật Ngữ FRM Song Ngữ En-Vi | TuHocTaiChinh.org",
+    frmFlashcardsMetaTitle: "Bộ thẻ thuật ngữ FRM song ngữ en-vi | Tuhoctaichinh.org",
     frmFlashcardsMetaDesc:
       "Thẻ ghi nhớ thuật ngữ FRM Part I và Part II - VaR, Expected Shortfall, CVA, LCR, NSFR, PD/LGD/EAD - kèm định nghĩa tiếng Việt và cái bẫy hay gặp ở từng khái niệm.",
-    frmFormulasMetaTitle: "Sổ Tay Công Thức FRM Part I & II | TuHocTaiChinh.org",
+    frmFormulasMetaTitle: "Sổ tay công thức FRM part I & II | Tuhoctaichinh.org",
     frmFormulasMetaDesc:
       "Công thức thi FRM theo mười môn của GARP: VaR, Expected Shortfall, EL, LCR, NSFR, DV01, Greeks - kèm giải thích ký hiệu và ví dụ tính bằng số.",
     backToFrm: "Về trang FRM Track",
     backToFrmTrack: "Về lộ trình FRM",
-    frmFlashcardsTitle: "Bộ Thẻ Thuật Ngữ FRM",
+    frmFlashcardsTitle: "Bộ thẻ thuật ngữ FRM",
     frmFlashcardsSubtitle: "Part I & Part II - song ngữ Anh - Việt kèm bẫy hay gặp",
-    frmFormulasTitle: "Sổ Tay Công Thức FRM",
+    frmFormulasTitle: "Sổ tay công thức FRM",
     frmFormulasSubtitle: "Part I & II - kèm ví dụ tính bằng số",
 
     noLessonsYet: "chưa có bài",
