@@ -52,6 +52,80 @@ export const LEVEL_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
     icon: "⑥",
     level: 6,
   },
+  // Cấp 7-15. Bảng này từng dừng ở cấp 6 trong khi lib/levels.ts có 15 cấp, nên
+  // người học qua cấp 6 thì số huy hiệu đứng yên vĩnh viễn - đúng điều một người
+  // dùng báo lại ("danh hiệu cũng ko tăng"). Không có gì chặn cả: getLevelBadgeKeys
+  // lọc LEVELS theo chính bảng này, nên một cấp thiếu mục ở đây là một cấp không
+  // bao giờ trao huy hiệu, im lặng và không có lỗi nào.
+  //
+  // `name` PHẢI khớp từng chữ với levelTitlesVi.levelTitles[level] - huy hiệu
+  // mang đúng tên cấp đã trao nó, và badges-competency-i18n.test.ts làm đỏ build
+  // nếu hai bên lệch. Chúng cũng KHÔNG được có mục riêng trong bảng dịch huy
+  // hiệu: badgeName() đọc t.levelTitles, và một mục thứ hai là một nguồn thứ hai
+  // để lệch.
+  level_7: {
+    key: "level_7",
+    name: "Chuyên gia Tài chính",
+    description: "Đạt level 7",
+    icon: "⑦",
+    level: 7,
+  },
+  level_8: {
+    key: "level_8",
+    name: "Bậc thầy Tài chính",
+    description: "Đạt level 8",
+    icon: "⑧",
+    level: 8,
+  },
+  level_9: {
+    key: "level_9",
+    name: "Chuyên viên CFA",
+    description: "Đạt level 9",
+    icon: "⑨",
+    level: 9,
+  },
+  level_10: {
+    key: "level_10",
+    name: "Huyền thoại Đầu tư",
+    description: "Đạt level 10",
+    icon: "⑩",
+    level: 10,
+  },
+  level_11: {
+    key: "level_11",
+    name: "Giám đốc Quỹ Hedge Fund",
+    description: "Đạt level 11",
+    icon: "⑪",
+    level: 11,
+  },
+  level_12: {
+    key: "level_12",
+    name: "Quản lý Danh mục Chiến lược",
+    description: "Đạt level 12",
+    icon: "⑫",
+    level: 12,
+  },
+  level_13: {
+    key: "level_13",
+    name: "Bậc thầy Phân tích Thị trường",
+    description: "Đạt level 13",
+    icon: "⑬",
+    level: 13,
+  },
+  level_14: {
+    key: "level_14",
+    name: "Lãnh đạo Tài chính Tối cao",
+    description: "Đạt level 14",
+    icon: "⑭",
+    level: 14,
+  },
+  level_15: {
+    key: "level_15",
+    name: "Đại Thuyền trưởng Phố Wall",
+    description: "Đạt level 15",
+    icon: "⑮",
+    level: 15,
+  },
 };
 
 export const LEADERBOARD_BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {

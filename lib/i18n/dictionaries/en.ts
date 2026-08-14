@@ -2567,7 +2567,6 @@ export const en: Dictionary = {
     career: "Career",
     cfaArena: "CFA arena",
     contribution: "Contribution",
-    badgesLabel: "Badges",
     gamer: "Gamer",
 
     scrollLeft: "Scroll left",
@@ -2614,7 +2613,6 @@ export const en: Dictionary = {
       percent: "%",
       days: "days",
       interactions: "interactions",
-      honors: "badges",
     },
   },
   // app/(app)/nguoi-hoc/[userId]/page.tsx - another learner's public profile.
@@ -2675,6 +2673,8 @@ export const en: Dictionary = {
     startLesson: "Study",
     sitDown: "Sit down to study · 25-minute session",
     sessionDone: "Done!",
+    focusGoalProgress: "{minutes}/{target} min today · +{xp} XP at the goal",
+    focusGoalReached: "Goal met today · claim +{xp} XP in Quests",
     standUp: "Stand up",
     enterRoom: "Enter room →",
     // components/lobby/LobbyDirectory.tsx - the HUD signpost panel.

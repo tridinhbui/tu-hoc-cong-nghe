@@ -1,6 +1,7 @@
 import { createClient } from "./supabase";
 import { QUEST_XP_REWARDS } from "./quest-rewards";
 import { recalculateUserStats } from "./supabase-user";
+import { DAILY_FOCUS_TARGET_MINUTES } from "./study-session";
 
 export interface Quest {
   id: string; // daily_1, daily_2, daily_3
@@ -166,8 +167,8 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       id: "daily_focus",
       title: "Ngồi học trong thành phố",
       description: "Ngồi học 15 phút ở thư viện hoặc phòng nhóm 3D",
-      target: 15,
-      current: Math.min(15, Math.floor(focusSecondsToday / 60)),
+      target: DAILY_FOCUS_TARGET_MINUTES,
+      current: Math.min(DAILY_FOCUS_TARGET_MINUTES, Math.floor(focusSecondsToday / 60)),
       xpReward: QUEST_XP_REWARDS.daily_focus,
       claimed: claimedSet.has("daily_focus"),
     },

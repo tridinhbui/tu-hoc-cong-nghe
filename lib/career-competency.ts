@@ -66,6 +66,9 @@ export const SKILL_DOMAINS: SkillDomain[] = [
       271,
       1001, 1007, 1010, 1011, 1012, 1013, 1015, 1016, 1018, 1019, 1022, 1023, 1026, 1027, 1035,
       1101, 1244, 1265, 1266,
+      // 1751: ghi nhận doanh thu theo tiến độ - một quy tắc kế toán, nên nó
+      // cũng thuộc miền này chứ không chỉ tài chính doanh nghiệp.
+      1751,
       // Chặng 41: báo cáo được LẬP ra thế nào - phần còn thiếu bên cạnh
       // hàng chục bài dạy đọc báo cáo.
       ...range(1721, 1725),
@@ -114,7 +117,10 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // Chặng 39 (FinTech) là kinh tế học của một sản phẩm: doanh thu đến từ
     // đâu, biên đóng góp, điểm hoà vốn - cùng bộ câu hỏi của tài chính doanh
     // nghiệp, chỉ đặt trên một mô hình kinh doanh khác.
-    lessonIds: [...range(92, 120), 1017, 1020, 1038, 1209, 1243, 1247, 1253, 1259, ...range(1701, 1706), ...range(1711, 1715), ...range(1731, 1735)],
+    // 1751-1753: cụm nhà thầu xây dựng. Cùng bộ câu hỏi của tài chính doanh
+    // nghiệp - vốn bị giam bao lâu, giá nào bù được chi phí vốn - chỉ đặt
+    // trên một hợp đồng thi công thay vì một doanh nghiệp.
+    lessonIds: [...range(92, 120), 1017, 1020, 1038, 1209, 1243, 1247, 1253, 1259, ...range(1701, 1706), ...range(1711, 1715), ...range(1731, 1735), ...range(1751, 1753)],
   },
   {
     id: "modeling_excel",

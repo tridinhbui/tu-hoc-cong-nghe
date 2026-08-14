@@ -112,7 +112,6 @@ export const placementFocusVi = {
     tabLessons: "Số bài",
     tabAvgScore: "Điểm TB",
     tabStreak: "Chuỗi ngày",
-    tabBadges: "Huy hiệu",
     tabTrackPersonal: "Cá nhân",
     tabTrackProfessional: "Chuyên ngành",
     tabWeekly: "Tuần này",
@@ -123,7 +122,6 @@ export const placementFocusVi = {
     valueLessons: "{v} bài",
     valueAvgScore: "{v}%",
     valueStreakDays: "{v} ngày",
-    valueBadges: "{v} huy hiệu",
   },
 };
 
@@ -236,7 +234,6 @@ export const placementFocusEn: typeof placementFocusVi = {
     tabLessons: "Lessons",
     tabAvgScore: "Avg score",
     tabStreak: "Streak",
-    tabBadges: "Badges",
     tabTrackPersonal: "Personal",
     tabTrackProfessional: "Professional",
     tabWeekly: "This week",
@@ -247,6 +244,5 @@ export const placementFocusEn: typeof placementFocusVi = {
     valueLessons: "{v} lessons",
     valueAvgScore: "{v}%",
     valueStreakDays: "{v} days",
-    valueBadges: "{v} badges",
   },
 };

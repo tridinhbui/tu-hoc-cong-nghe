@@ -7,6 +7,8 @@ import {
   remainingMs,
   shouldEndForAway,
   earliestSessionStart,
+  focusMinutesToday,
+  DAILY_FOCUS_TARGET_MINUTES,
 } from "../study-session";
 
 describe("dong ho phien", () => {
@@ -83,5 +85,38 @@ describe("earliestSessionStart", () => {
 
   it("giá trị hỏng không được thắng mốc thật", () => {
     expect(earliestSessionStart([Number.NaN, 4000])).toBe(4000);
+  });
+});
+
+/** Mốc nhiệm vụ `daily_focus` hiện trên HUD phòng 3D.
+ *
+ *  Chỗ dễ sai nhất, và đã suýt sai: `focus_sessions.seconds` chỉ được ghi lúc
+ *  ĐÓNG phiên, nên tổng lấy từ máy chủ KHÔNG chứa phiên người ta đang ngồi.
+ *  Quên cộng phần đang trôi thì đồng hồ đứng im ở con số của lần trước suốt cả
+ *  phiên - đúng lúc người ngồi nhìn nó nhiều nhất. */
+describe("phut ngoi hoc hom nay", () => {
+  const start = 1_000_000;
+
+  it("chua ngoi thi chi tinh cac phien da dong", () => {
+    expect(focusMinutesToday(600, null, start)).toBe(10);
+  });
+
+  it("cong ca phien dang mo vao tong cua may chu", () => {
+    // 10 phut da dong + 5 phut dang ngoi = 15
+    expect(focusMinutesToday(600, start, start + 5 * 60_000)).toBe(15);
+  });
+
+  it("lam tron xuong, khong bao gio nhay truoc mot phut", () => {
+    expect(focusMinutesToday(0, start, start + 59_000)).toBe(0);
+    expect(focusMinutesToday(0, start, start + 60_000)).toBe(1);
+  });
+
+  it("dong ho he thong chay lui khong lam so am", () => {
+    expect(focusMinutesToday(120, start, start - 90_000)).toBe(2);
+  });
+
+  it("moc thuong 15 phut khac han mot phien Pomodoro 25 phut", () => {
+    expect(DAILY_FOCUS_TARGET_MINUTES).toBe(15);
+    expect(DAILY_FOCUS_TARGET_MINUTES * 60_000).toBeLessThan(POMODORO_MS);
   });
 });

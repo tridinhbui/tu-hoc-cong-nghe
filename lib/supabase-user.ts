@@ -217,7 +217,24 @@ export async function setPreferredTrack(userId: string, track: "personal" | "pro
   return updateUserProfile(userId, { preferred_track: track });
 }
 
-export type LeaderboardMetric = "xp" | "lessons" | "avg_score" | "streak" | "badges";
+// "badges" was a sixth metric and is gone, by product decision after a learner
+// reported the board showing them rank #1 while their name was nowhere in the
+// top 20. Both halves of that were "correct": the value is
+// `least(current_level - 1, 5)`, which saturates - lib/badges.ts defines five
+// level badges against lib/levels.ts's fifteen levels - so every learner at
+// level 6+ carried the identical 5. Ranking counted who was strictly greater,
+// found nobody, and returned 1 for all of them, while the top-20 list returned
+// an arbitrary 20 of those same tied learners.
+//
+// It is dropped rather than repaired because ranking a value everyone shares
+// sorts nobody: the tie is the metric, not a bug in the SQL around it.
+//
+// The 'badges' branches in get_leaderboard / get_friends_leaderboard are left
+// in the database - harmless and unreachable now - so removing this union
+// member is what keeps them unreachable: adding a badges tab back is a type
+// error here first, which is the point at which the saturation above has to be
+// dealt with rather than rediscovered.
+export type LeaderboardMetric = "xp" | "lessons" | "avg_score" | "streak";
 
 export interface LeaderboardRow {
   user_id: string;

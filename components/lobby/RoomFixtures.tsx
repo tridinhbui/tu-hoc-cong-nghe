@@ -21,8 +21,8 @@ import type { Dictionary } from "@/lib/i18n";
 
 /** Mười phút, và bỏ qua khi tab đang ẩn.
  *
- *  Trước đây là 2 phút với 2 truy vấn. Giờ có 5 bảng xếp hạng nên mỗi nhịp là
- *  6 truy vấn Supabase, cho mỗi tab sảnh đang mở - ở nhịp cũ là 180 truy vấn
+ *  Trước đây là 2 phút với 2 truy vấn. Giờ có 4 bảng xếp hạng nên mỗi nhịp là
+ *  5 truy vấn Supabase, cho mỗi tab sảnh đang mở - ở nhịp cũ là 150 truy vấn
  *  mỗi giờ cho một người ngồi yên trong phòng đọc. Nội dung trên tường là bảng
  *  tin cộng đồng và thứ hạng tuần: không thứ nào đổi trong hai phút, và không
  *  ai đứng nhìn một tấm bảng gỗ chờ nó nhảy số.
@@ -32,8 +32,14 @@ import type { Dictionary } from "@/lib/i18n";
  *  nhìn, nhưng hoá đơn vẫn tính. */
 const BOARD_REFRESH_MS = 600_000;
 
-/** Bốn bảng xếp hạng ngoài XP. XP tách riêng vì nó đã có sẵn từ trước và giữ
+/** Ba bảng xếp hạng ngoài XP. XP tách riêng vì nó đã có sẵn từ trước và giữ
  *  nguyên cách định dạng cũ.
+ *
+ *  "Huy hiệu" từng là bảng thứ tư và đã bị gỡ cùng lúc với tab cùng tên: chỉ số
+ *  ấy chặn trên ở 5 - đúng bằng số huy hiệu cấp mà lib/badges.ts định nghĩa,
+ *  trong khi lib/levels.ts có 15 cấp - nên mọi người từ level 6 trở lên đều
+ *  hiện đúng một con số. Một tấm bảng mà ai cũng bằng nhau thì không xếp hạng
+ *  cái gì cả.
  *
  *  Mỗi hạng mục có đơn vị riêng, và đơn vị là thứ nói cho người đọc biết bảng
  *  này xếp theo cái gì: "87" một mình không phân biệt được điểm quiz với số
@@ -58,18 +64,13 @@ const METRIC_BOARDS: {
     title: (t) => t.lobbyLeaderboards.streakTitle,
     format: (v, t) => `${v} ${t.lobbyLeaderboards.unitStreak}`,
   },
-  {
-    metric: "badges",
-    title: (t) => t.lobbyLeaderboards.badgesTitle,
-    format: (v, t) => `${v} ${t.lobbyLeaderboards.unitBadges}`,
-  },
 ];
 
 function useBoardData(t: Dictionary) {
   const [posts, setPosts] = useState<string[]>([]);
   const [ranking, setRanking] = useState<string[]>([]);
-  /** Bốn bảng còn lại, theo đúng thứ tự METRIC_BOARDS. */
-  const [otherBoards, setOtherBoards] = useState<string[][]>([[], [], [], []]);
+  /** Ba bảng còn lại, theo đúng thứ tự METRIC_BOARDS. */
+  const [otherBoards, setOtherBoards] = useState<string[][]>([[], [], []]);
 
   useEffect(() => {
     let cancelled = false;
@@ -281,7 +282,7 @@ export default function RoomFixtures({
       
           Cách nhau 9 đơn vị dọc chiều dài 56 của phòng: đủ xa để đứng đọc một
           bảng thì bảng bên cạnh không chen vào khung hình, đủ gần để đi dọc
-          tường là thấy hết năm cái. */}
+          tường là thấy hết bốn cái. */}
       {[
         { title: t.lobbyLeaderboards.xpTitle, rows: ranking, accent: "#e5b567" },
         ...METRIC_BOARDS.map((board, i) => ({

@@ -2753,7 +2753,6 @@ export const vi = {
     career: "Sự nghiệp",
     cfaArena: "Đấu trường CFA",
     contribution: "Đóng góp",
-    badgesLabel: "Huy hiệu",
     gamer: "Game thủ",
 
     scrollLeft: "Cuộn sang trái",
@@ -2804,7 +2803,6 @@ export const vi = {
       percent: "%",
       days: "ngày",
       interactions: "tương tác",
-      honors: "danh hiệu",
     },
   },
   // app/(app)/nguoi-hoc/[userId]/page.tsx - another learner's public profile.
@@ -2865,6 +2863,11 @@ export const vi = {
     startLesson: "Vào học",
     sitDown: "Ngồi xuống học · phiên 25 phút",
     sessionDone: "Xong!",
+    // Mốc của nhiệm vụ daily_focus: 15 phút CỘNG DỒN cả ngày, khác đồng hồ
+    // Pomodoro 25 phút ngay bên trên nó. Nói rõ "hôm nay" để không ai đọc
+    // thành "phiên này".
+    focusGoalProgress: "{minutes}/{target} phút hôm nay · đủ mốc được +{xp} XP",
+    focusGoalReached: "Đủ mốc hôm nay · nhận +{xp} XP ở Nhiệm vụ",
     standUp: "Đứng dậy",
     enterRoom: "Vào phòng →",
     // components/lobby/LobbyDirectory.tsx - bảng chỉ đường trên HUD.

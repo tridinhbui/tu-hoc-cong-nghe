@@ -1279,7 +1279,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           // Và vì thế bản mẫu hàng ở lưới cha cũng phải thành ba hàng
           // (auto_auto_minmax), nếu không hàng thứ ba là hàng ngầm và mất luôn
           // ràng buộc chiều cao mà `minmax(0,1fr)` đang giữ.
-          <div className="flex items-center justify-end gap-2 xl:col-span-12">
+          //
+          // `justify-start` là CỐ Ý, không phải sót. Dải này từng `justify-end`.
+          // Đừng lẫn nó với triệu chứng mô tả ở đoạn trên: chỗ đó nói "dạt sang
+          // mép trái" là khi THIẾU `xl:col-span-12` - cả dải co vào một cột hẹp
+          // và kéo theo một khoảng trống nửa màn hình. Còn ở đây dải vẫn trải
+          // đủ 12 cột, chỉ là nội dung neo về đầu hàng.
+          <div className="flex items-center justify-start gap-2 xl:col-span-12">
             <span className="text-xs text-stone-500 dark:text-stone-400">
               {t.dashboard.presetLabel}
             </span>

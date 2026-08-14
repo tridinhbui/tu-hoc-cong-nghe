@@ -90,7 +90,6 @@ function buildTabs(t: Dictionary): TabDef[] {
     { id: "lessons", label: t.leaderboardSection.tabLessons, format: (v) => format(t.leaderboardSection.valueLessons, { v }) },
     { id: "avg_score", label: t.leaderboardSection.tabAvgScore, format: (v) => format(t.leaderboardSection.valueAvgScore, { v: Math.round(v) }) },
     { id: "streak", label: t.leaderboardSection.tabStreak, format: (v) => format(t.leaderboardSection.valueStreakDays, { v }) },
-    { id: "badges", label: t.leaderboardSection.tabBadges, format: (v) => format(t.leaderboardSection.valueBadges, { v }) },
     { id: "track_personal", label: t.leaderboardSection.tabTrackPersonal, format: (v) => format(t.leaderboardSection.valueLessons, { v }) },
     { id: "track_professional", label: t.leaderboardSection.tabTrackProfessional, format: (v) => format(t.leaderboardSection.valueLessons, { v }) },
     { id: "weekly", label: t.leaderboardSection.tabWeekly, format: (v) => format(t.leaderboardSection.valueXp, { v }) },
@@ -156,7 +155,7 @@ async function loadTab(tabId: TabId, userId?: string): Promise<{ top: Leaderboar
   }
 
   // Every other TabId variant returns above; what's left is a plain
-  // LeaderboardMetric ("xp" | "lessons" | "avg_score" | "streak" | "badges").
+  // LeaderboardMetric ("xp" | "lessons" | "avg_score" | "streak").
   const metric = tabId as LeaderboardMetric;
   const [top, mine] = await Promise.all([
     getLeaderboardByMetric(metric, 10),

@@ -177,7 +177,7 @@ const TABS: {
   metric: LeaderboardUiMetric;
   labelKey: keyof Pick<
     Dictionary["leaderboard"],
-    "compositeScore" | "totalXp" | "lessonsCount" | "avgScore" | "streakDays" | "career" | "cfaArena" | "contribution" | "badgesLabel" | "gamer"
+    "compositeScore" | "totalXp" | "lessonsCount" | "avgScore" | "streakDays" | "career" | "cfaArena" | "contribution" | "gamer"
   >;
   icon: LucideIcon;
   format: (v: number, u: Dictionary["leaderboard"]["units"]) => string;
@@ -193,7 +193,6 @@ const TABS: {
   { metric: "career", labelKey: "career", icon: Briefcase, format: (v, u) => `${v} ${u.lessons}` },
   { metric: "cfa", labelKey: "cfaArena", icon: GraduationCap, format: (v, u) => `${v} ${u.points}` },
   { metric: "community", labelKey: "contribution", icon: Heart, format: (v, u) => `${v} ${u.interactions}` },
-  { metric: "badges", labelKey: "badgesLabel", icon: Award, format: (v, u) => `${v} ${u.honors}` },
   { metric: "game", labelKey: "gamer", icon: Gamepad2, format: (v, u) => `${v} ${u.xp}` },
 ];
 

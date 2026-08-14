@@ -18,6 +18,8 @@ import {
   playSessionChime,
   remainingMs,
   shouldEndForAway,
+  DAILY_FOCUS_TARGET_MINUTES,
+  focusMinutesToday,
 } from "@/lib/study-session";
 import {
   CHAT_MAX_LENGTH,
@@ -36,6 +38,7 @@ import Joystick from "@/components/world-controls/joystick";
 import { createWalkState } from "@/components/world-controls/easy-walk";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { QUEST_XP_REWARDS } from "@/lib/quest-rewards";
 
 const LobbySceneInner = dynamic(() => import("./LobbySceneInner"), {
   ssr: false,
@@ -92,7 +95,10 @@ export default function LobbyClient() {
   /** Phiên ngồi học ở server. Ngồi vào bàn mở, đứng dậy đóng; độ dài do server
    *  tính từ hai mốc nó tự đặt. */
   const focusIdRef = useRef<number | null>(null);
-  const [todayMinutes, setTodayMinutes] = useState<number | null>(null);
+  /** Giây của các phiên ĐÃ ĐÓNG hôm nay. Giữ ở đơn vị giây chứ không phải phút
+   *  vì phiên đang mở phải cộng thêm vào - `focus_sessions.seconds` chỉ được
+   *  ghi lúc đóng, nên tổng từ máy chủ không chứa phiên người ta đang ngồi. */
+  const [todayClosedSeconds, setTodayClosedSeconds] = useState<number | null>(null);
   /** Phiên đã chạy hết 25 phút chưa. Tách khỏi `seatedTable` vì chuông chỉ được
    *  kêu một lần, còn người ngồi thì có thể ngồi tiếp sau khi hết giờ. */
   const [chimed, setChimed] = useState(false);
@@ -192,7 +198,7 @@ export default function LobbyClient() {
    *  sáng, chiều quay lại, được chào bằng một khoảng trống. */
   useEffect(() => {
     void getTodayFocusSeconds()
-      .then((s) => setTodayMinutes(Math.round(s / 60)))
+      .then((s) => setTodayClosedSeconds(s))
       .catch(() => {});
   }, []);
 
@@ -211,7 +217,7 @@ export default function LobbyClient() {
       focusIdRef.current = null;
       if (id !== null) {
         void finishFocusSession(id).then((r) => {
-          if (r.counted) void getTodayFocusSeconds().then((s) => setTodayMinutes(Math.round(s / 60)));
+          if (r.counted) void getTodayFocusSeconds().then((s) => setTodayClosedSeconds(s));
         });
       }
     };
@@ -280,6 +286,11 @@ export default function LobbyClient() {
     return <SceneFallback label={t.lobby.connectFailed} />;
   }
 
+  /** Phút ngồi học hôm nay, ĐÃ cộng phiên đang mở. Dùng chung cho dòng chào ở
+   *  đầu màn hình và ô đồng hồ dưới chân - hai chỗ đọc cùng một con số thay vì
+   *  mỗi chỗ tự tính, nên chúng không thể lệch nhau. */
+  const focusMinutes = focusMinutesToday(todayClosedSeconds ?? 0, seatStartedAt, nowTick);
+  const focusGoalReached = focusMinutes >= DAILY_FOCUS_TARGET_MINUTES;
   return (
     <div className="relative h-[100dvh] w-full overflow-hidden">
       {identity ? (
@@ -303,9 +314,9 @@ export default function LobbyClient() {
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col items-center gap-2 p-4 pt-[max(1rem,env(safe-area-inset-top))]">
         <div className="rounded-2xl bg-stone-900/75 px-5 py-2.5 text-center shadow-lg backdrop-blur">
           <h1 className="text-sm font-bold text-amber-200">{t.lobby.title}</h1>
-          {todayMinutes !== null && todayMinutes > 0 && (
+          {todayClosedSeconds !== null && focusMinutes > 0 && (
             <p className="text-[11px] font-bold text-amber-300">
-              {format(t.lobby.studiedToday, { minutes: todayMinutes })}
+              {format(t.lobby.studiedToday, { minutes: focusMinutes })}
             </p>
           )}
           <p className="text-[11px] text-stone-400">
@@ -364,12 +375,27 @@ export default function LobbyClient() {
             </button>
           ) : (
             <div className="pointer-events-auto flex items-center gap-3 rounded-2xl bg-stone-900/85 px-4 py-2.5 shadow-xl backdrop-blur">
-              <span className="font-mono text-lg font-bold tabular-nums text-amber-300">
-                {(() => {
-                  const left = remainingMs(seatStartedAt, nowTick, POMODORO_MS);
-                  return left === 0 ? t.lobby.sessionDone : formatCountdown(left);
-                })()}
-              </span>
+              <div className="flex flex-col items-start">
+                <span className="font-mono text-lg font-bold tabular-nums text-amber-300">
+                  {(() => {
+                    const left = remainingMs(seatStartedAt, nowTick, POMODORO_MS);
+                    return left === 0 ? t.lobby.sessionDone : formatCountdown(left);
+                  })()}
+                </span>
+                {/* Đồng hồ đếm ngược 25 phút là Pomodoro; mốc ĂN THƯỞNG lại là
+                    15 phút cộng dồn cả ngày. Hai con số khác nhau, nên dòng này
+                    nói thẳng cái thứ hai thay vì để người ngồi tự suy ra từ cái
+                    thứ nhất - suy ra thế nào cũng sai. */}
+                <span className={`text-[11px] font-bold ${focusGoalReached ? "text-emerald-400" : "text-stone-400"}`}>
+                  {focusGoalReached
+                    ? format(t.lobby.focusGoalReached, { xp: QUEST_XP_REWARDS.daily_focus })
+                    : format(t.lobby.focusGoalProgress, {
+                        minutes: focusMinutes,
+                        target: DAILY_FOCUS_TARGET_MINUTES,
+                        xp: QUEST_XP_REWARDS.daily_focus,
+                      })}
+                </span>
+              </div>
               <button
                 type="button"
                 onClick={() => {

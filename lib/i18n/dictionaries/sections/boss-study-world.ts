@@ -15,6 +15,10 @@ export const bossStudyWorldVi = {
     soundOffAria: "Bật âm thanh",
     sitButton: "Ngồi xuống học · phiên 25 phút",
     standButton: "Đứng dậy",
+    // Mốc nhiệm vụ daily_focus: 15 phút CỘNG DỒN cả ngày, tính chung cả thư
+    // viện lẫn phòng nhóm - khác đồng hồ Pomodoro 25 phút ngay bên trên.
+    focusGoalProgress: "{minutes}/{target} phút hôm nay · đủ mốc được +{xp} XP",
+    focusGoalReached: "Đủ mốc hôm nay · nhận +{xp} XP ở Nhiệm vụ",
     sessionDone: "Xong một phiên · nghỉ một chút",
     endedAwayPart1: "Phiên đã dừng vì bạn rời khỏi tab quá ",
     endedAwayPart2: " phút.",
@@ -104,6 +108,8 @@ export const bossStudyWorldEn: typeof bossStudyWorldVi = {
     soundOffAria: "Turn on sound",
     sitButton: "Sit down to study · 25-minute session",
     standButton: "Stand up",
+    focusGoalProgress: "{minutes}/{target} min today · +{xp} XP at the goal",
+    focusGoalReached: "Goal met today · claim +{xp} XP in Quests",
     sessionDone: "Session complete · take a break",
     endedAwayPart1: "Your session stopped because you left the tab for more than ",
     endedAwayPart2: " minutes.",

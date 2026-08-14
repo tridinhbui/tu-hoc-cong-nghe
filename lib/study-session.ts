@@ -27,6 +27,37 @@ export { POMODORO_MS } from "./supabase-lobby";
  */
 export const AWAY_MS = 3 * 60 * 1000;
 
+/**
+ * Mốc để nhiệm vụ hằng ngày `daily_focus` tính là xong, tính bằng phút CỘNG DỒN
+ * cả ngày qua cả ba phòng - không phải trọn một phiên Pomodoro.
+ *
+ * Ở đây chứ không phải trong lib/supabase-quests.ts, vì giờ có HAI nơi đọc nó:
+ * chỗ chấm nhiệm vụ, và đồng hồ trên HUD phòng 3D nói cho người ngồi biết còn
+ * bao lâu nữa. Để mỗi nơi tự viết `15` là cách chắc chắn nhất để một hôm nào đó
+ * đồng hồ hứa một mốc mà nhiệm vụ không công nhận.
+ *
+ * Vì sao 15 chứ không phải 25: một phiên bị cắt ngang vì có việc vẫn là thời
+ * gian đã ngồi học thật, và bắt đủ 25 mới tính sẽ biến nhiệm vụ thành thứ
+ * hoặc-tất-cả-hoặc-không.
+ */
+export const DAILY_FOCUS_TARGET_MINUTES = 15;
+
+/**
+ * Số phút ngồi học đã tích được hôm nay, tính cả phiên ĐANG mở.
+ *
+ * `focus_sessions.seconds` chỉ được ghi lúc đóng phiên, nên tổng lấy từ máy chủ
+ * không hề chứa phiên đang chạy. Cộng thêm phần đã trôi của phiên hiện tại mới
+ * ra con số người ngồi đang nhìn thấy trên đồng hồ.
+ */
+export function focusMinutesToday(
+  closedSecondsToday: number,
+  seatStartedAt: number | null,
+  now: number
+): number {
+  const live = seatStartedAt === null ? 0 : Math.max(0, now - seatStartedAt) / 1000;
+  return Math.floor((closedSecondsToday + live) / 60);
+}
+
 /** Đã ngồi đủ một phiên chưa. */
 export function isSessionComplete(startedAt: number | null, now: number, pomodoroMs: number): boolean {
   if (startedAt === null) return false;

@@ -11,11 +11,9 @@ export const lobbyLeaderboardsVi = {
     lessonsTitle: "BXH · Số bài đã học",
     avgScoreTitle: "BXH · Điểm quiz trung bình",
     streakTitle: "BXH · Chuỗi ngày học",
-    badgesTitle: "BXH · Huy hiệu",
     unitXp: "XP",
     unitLessons: "bài",
     unitStreak: "ngày",
-    unitBadges: "huy hiệu",
     empty: "Chưa có ai trên bảng này",
   },
 };
@@ -26,11 +24,9 @@ export const lobbyLeaderboardsEn: typeof lobbyLeaderboardsVi = {
     lessonsTitle: "Leaderboard · Lessons completed",
     avgScoreTitle: "Leaderboard · Average quiz score",
     streakTitle: "Leaderboard · Learning streak",
-    badgesTitle: "Leaderboard · Badges",
     unitXp: "XP",
     unitLessons: "lessons",
     unitStreak: "days",
-    unitBadges: "badges",
     empty: "Nobody on this board yet",
   },
 };

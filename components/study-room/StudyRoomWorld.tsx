@@ -12,6 +12,8 @@ import { finishFocusSession, getTodayFocusSeconds, startFocusSession } from "@/l
 import { getSceneLighting } from "@/lib/study-room-lighting";
 import {
   AWAY_MS,
+  DAILY_FOCUS_TARGET_MINUTES,
+  focusMinutesToday,
   formatCountdown,
   isSessionComplete,
   notifySessionDone,
@@ -21,6 +23,7 @@ import {
 } from "@/lib/study-session";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { QUEST_XP_REWARDS } from "@/lib/quest-rewards";
 
 /** three.js chỉ chạy phía trình duyệt: ssr:false giữ nó ngoài bundle server, và
  *  người dùng thấy khung chờ thay vì lỗi hydrate. */
@@ -113,7 +116,9 @@ export default function StudyRoomWorld({
   /** Id phiên đang mở ở server. Ngồi xuống mở, đứng dậy đóng - và độ dài do
    *  server tính, nên đây chỉ cần giữ cái id. */
   const focusIdRef = useRef<number | null>(null);
-  const [todayMinutes, setTodayMinutes] = useState<number | null>(null);
+  /** Giây của các phiên ĐÃ ĐÓNG hôm nay. Giây chứ không phải phút: phiên đang
+   *  mở phải cộng thêm vào, vì `focus_sessions.seconds` chỉ được ghi lúc đóng. */
+  const [todayClosedSeconds, setTodayClosedSeconds] = useState<number | null>(null);
   /** Phiên vừa chạy hết giờ. Giữ tách khỏi `seated` vì người học được quyền
    *  ngồi tiếp sau khi chuông reo - đứng dậy là quyết định của họ, không phải
    *  của cái đồng hồ. */
@@ -134,6 +139,16 @@ export default function StudyRoomWorld({
     return () => window.clearInterval(timer);
   }, []);
 
+  /** Tổng phút hôm nay đọc ngay khi vào phòng, không đợi đóng phiên đầu tiên.
+   *  Thư viện đã sửa chỗ này từ trước; phòng nhóm thì chưa, nên người đã ngồi
+   *  học buổi sáng quay lại vẫn thấy tiến độ đứng ở 0/15 - một con số sai, và
+   *  sai theo hướng làm nản. */
+  useEffect(() => {
+    void getTodayFocusSeconds()
+      .then((s) => setTodayClosedSeconds(s))
+      .catch(() => {});
+  }, []);
+
   /** Mở và đóng phiên ngồi học. Trước đây ngồi hết 25 phút không để lại gì cả:
    *  đứng dậy là mất sạch, không chuỗi ngày, không dòng nào trong lịch sử. */
   useEffect(() => {
@@ -149,7 +164,7 @@ export default function StudyRoomWorld({
       focusIdRef.current = null;
       if (id !== null) {
         void finishFocusSession(id).then((r) => {
-          if (r.counted) void getTodayFocusSeconds().then((s) => setTodayMinutes(Math.round(s / 60)));
+          if (r.counted) void getTodayFocusSeconds().then((s) => setTodayClosedSeconds(s));
         });
       }
     };
@@ -261,6 +276,11 @@ export default function StudyRoomWorld({
     return [format(t.studyWorld.boardGoalLine, { progress: weeklyXpProgress, goal: weeklyXpGoal, pct }), ...missionLines.slice(0, 4)];
   }, [weeklyXpProgress, weeklyXpGoal, missionLines, t]);
 
+  /** Phút ngồi học hôm nay, đã cộng phiên đang mở. Một biến cho cả dòng chào ở
+   *  đầu HUD lẫn ô đồng hồ dưới chân, nên hai chỗ không thể lệch nhau. */
+  const focusMinutes = focusMinutesToday(todayClosedSeconds ?? 0, seatStartedAt, nowTick);
+  const focusGoalReached = focusMinutes >= DAILY_FOCUS_TARGET_MINUTES;
+
   return (
     <div className="relative h-full w-full overflow-hidden rounded-2xl bg-stone-950">
       {lighting ? (
@@ -308,9 +328,9 @@ export default function StudyRoomWorld({
           {/* Tổng thời gian đã ngồi học hôm nay. Hiện sau phiên đầu tiên chứ
               không hiện sẵn số 0: một dòng "0 phút" ngay lúc vừa vào phòng là
               lời trách móc, không phải thông tin. */}
-          {todayMinutes !== null && todayMinutes > 0 && (
+          {todayClosedSeconds !== null && focusMinutes > 0 && (
             <p className="mt-0.5 text-[10px] font-bold text-emerald-300">
-              {format(t.studyWorld.todayMinutes, { minutes: todayMinutes })}
+              {format(t.studyWorld.todayMinutes, { minutes: focusMinutes })}
             </p>
           )}
         </div>
@@ -351,13 +371,27 @@ export default function StudyRoomWorld({
                 sessionDone ? "bg-emerald-600/90" : "bg-stone-900/85"
               }`}
             >
-              <span className="font-mono text-base font-bold tabular-nums text-emerald-300">
-                {sessionDone ? (
-                  <span className="text-white">{t.studyWorld.sessionDone}</span>
-                ) : (
-                  formatCountdown(remainingMs(seatStartedAt, nowTick, POMODORO_MS))
-                )}
-              </span>
+              <div className="flex flex-col items-start">
+                <span className="font-mono text-base font-bold tabular-nums text-emerald-300">
+                  {sessionDone ? (
+                    <span className="text-white">{t.studyWorld.sessionDone}</span>
+                  ) : (
+                    formatCountdown(remainingMs(seatStartedAt, nowTick, POMODORO_MS))
+                  )}
+                </span>
+                {/* Đồng hồ trên là Pomodoro 25 phút; mốc ăn thưởng là 15 phút
+                    CỘNG DỒN cả ngày, tính chung với cả thư viện. Hai con số
+                    khác nhau nên dòng này nói thẳng cái thứ hai. */}
+                <span className={`text-[10px] font-bold ${focusGoalReached ? "text-emerald-200" : "text-stone-400"}`}>
+                  {focusGoalReached
+                    ? format(t.studyWorld.focusGoalReached, { xp: QUEST_XP_REWARDS.daily_focus })
+                    : format(t.studyWorld.focusGoalProgress, {
+                        minutes: focusMinutes,
+                        target: DAILY_FOCUS_TARGET_MINUTES,
+                        xp: QUEST_XP_REWARDS.daily_focus,
+                      })}
+                </span>
+              </div>
               <button
                 type="button"
                 onClick={() => {
