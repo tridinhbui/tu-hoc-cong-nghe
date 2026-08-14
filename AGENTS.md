@@ -131,14 +131,49 @@ than by reading:
    finding against one false positive is not a ratio to gate a build on, so this
    is recorded rather than enforced. If a second real case turns up, that changes.
 
-   Two other detectors were built and thrown away, which is worth recording so
-   nobody rebuilds them. Ranking answers by word overlap with the explanation
-   produced 235 suspects and zero real errors — explanations name the
-   misconception they refute, so distractors share their vocabulary. Checking
-   that the keyed answer's numbers appear in the explanation produced 4, then 8
-   after adding tolerance, and again zero real errors: derived answers state a
-   result the explanation reaches by a different route. Neither is in the
-   audit. A noisy gate is a gate people learn to ignore.
+   One detector was built and thrown away, and it stays thrown away: ranking
+   answers by word overlap with the explanation produced 235 suspects and zero
+   real errors — explanations name the misconception they refute, so distractors
+   share their vocabulary. A noisy gate is a gate people learn to ignore.
+
+   A SECOND one was thrown away and has now been rebuilt, narrower, because the
+   thing it was supposed to catch turned out to be real. The discarded version
+   checked that the keyed answer's numbers appear in the explanation, over every
+   keyed option: 4 suspects, then 8 after adding tolerance, zero real errors,
+   because a derived answer states a result the explanation reaches by another
+   route.
+
+   What was wrong was the SCOPE, not the idea. Restricted to options that are a
+   BARE NUMBER — nothing but the figure, no clause — the reasoning holds without
+   exception: when an option says nothing but the number, that number *is* the
+   answer, so its absence from the explanation is a contradiction rather than a
+   rephrasing. The whole corpus has six such questions, so the check is cheap
+   and cannot be noisy.
+
+   It was found by a learner, not by the audit. `wacc-co-ban` keyed its opening
+   question to `"8.88%"` while its own explanation computed 9,12% — and 9,12%
+   was not among the four options at all. 8,88% is what you get with tax at 30%;
+   the question says 20%. Quiz question 3 of the *same lesson*, same numbers,
+   keyed 9,12% correctly: the lesson contradicted itself, and the half a learner
+   sees first was the wrong half. Whoever gets the arithmetic right is marked
+   wrong and then handed an explanation stating the figure they just chose.
+
+   The report proposed re-keying to `"9%"`, the nearest option. That would have
+   been worse than the bug: 9% is `(12% + 6%) ÷ 2`, the simple-average mistake
+   this very lesson teaches you to avoid, and the quiz names it as such. **Fix a
+   mis-keyed numeric answer by correcting the figure in the option, never by
+   moving the key to whichever option is closest** — the closest option is
+   usually the misconception, which is exactly why it was written.
+
+   Wiring it up immediately flagged a second, milder case worth recording as the
+   shape of a *legitimate* fix: `lai-don-lai-kep` offered `"260 triệu"` against
+   an explanation reading `≈ 259 triệu`. Both are the same answer at different
+   rounding, so the temptation is to add a tolerance and move on. Don't — the
+   rest of that lesson already said 259 everywhere, including an option in
+   another question, so the option was simply inconsistent with its own lesson
+   (rule 5). Tolerance would have hidden that, and a 1% band is also all that
+   separates 259/260 from 8,88/9,12: tuning a threshold on a sample of two buys
+   nothing but a gate that stops working later.
 5. **Never contradict another lesson's correct answer.** Negative working
    capital is a *strength* for retail and subscription businesses (lesson 178),
    so it cannot be the wrong answer in lesson 50. Check the neighbouring
@@ -545,7 +580,7 @@ cần lặp lại: kiểm ở đường ghi, cảnh báo chứ không chặn, v�
 một bộ kiểm đọc Supabase - nó cần thông tin đăng nhập, không chạy được trong CI,
 và một cổng chỉ chạy khi có người nhớ chạy tay thì không phải cổng.
 
-The lesson audit gates CI on three things:
+The lesson audit gates CI on four things:
 
 - `MAX_LENGTH_BIAS_Z` — how far each track, and the corpus, sits from chance on
   "is the correct answer the uniquely longest / shortest option", measured in
@@ -566,6 +601,13 @@ The lesson audit gates CI on three things:
   lesson cannot add to the backlog. Nothing is ever added to the list; after
   rewriting a lesson, drop it with
   `node scripts/audit-lesson-content.mjs --write-baseline`.
+
+- **Đáp án số trần không khớp lời giải** — a keyed option that is nothing but a
+  number, whose number appears nowhere in that question's own explanation. Gated
+  at zero with no baseline, because unlike a length tell this is not a bias to
+  drift back toward: it is a single question marking the learners who understood
+  it wrong. See rule 4 for why the scope is bare numbers only, and for why the
+  fix is the figure in the option rather than moving the key.
 
 Adding a failing lesson to the baseline is not a fix. If the audit names your
 new lesson, rewrite its options.

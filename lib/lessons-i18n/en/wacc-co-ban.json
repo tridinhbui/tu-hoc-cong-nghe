@@ -5,10 +5,10 @@
   "duration": "10 min",
   "openingQuestion": "A company has 60% equity (Ke=12%) and 40% debt (Kd=6%, tax=20%). What is the WACC?",
   "openingOptions": [
-    "10%, the simple average of the two",
+    "10%",
     "9%",
     "7%",
-    "8.88%"
+    "9.12%"
   ],
   "explanation": "WACC is the average cost of all the capital a business is currently using, weighted by each source: 60%×12% + 40%×6%×(1−20%) = 9.12%. The (1 − tax rate) term applies only to debt, because interest is tax-deductible while dividends are not. This figure is the minimum threshold every project must clear to create value, and it's also the discount rate used in DCF - so being off by one percentage point here throws a valuation far off course.",
   "diagram": [

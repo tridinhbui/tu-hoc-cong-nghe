@@ -687,8 +687,61 @@ function findDuplicateAnswers(options, correct) {
   return hits;
 }
 
+/** Mọi con số trong một đoạn văn, đưa về dạng so sánh được.
+ *
+ *  Tiếng Việt dùng dấu phẩy thập phân ("9,12%") còn tiếng Anh dùng dấu chấm
+ *  ("9.12%"), và cả hai kho đều đi qua đây - nên phải quy về một dạng, chứ so
+ *  chuỗi thô thì mọi câu tiếng Việt đều lệch. Dạng "1.000.000" là dấu phân
+ *  nhóm nghìn chứ không phải thập phân, tách riêng bằng hình dạng của nó. */
+function numericTokens(text) {
+  const out = new Set();
+  for (const m of String(text ?? "").matchAll(/\d[\d.,]*/g)) {
+    const raw = m[0].replace(/[.,]+$/, "");
+    const canon = /^\d{1,3}(?:[.,]\d{3})+$/.test(raw)
+      ? raw.replace(/[.,]/g, "")
+      : raw.replace(",", ".");
+    const n = Number(canon);
+    if (Number.isFinite(n)) out.add(String(n));
+  }
+  return out;
+}
+
+/** Đáp án đúng là một con số TRẦN mà con số đó không hề có trong lời giải.
+ *
+ *  ĐÂY LÀ BỘ DÒ TỪNG BỊ VỨT ĐI, và lý do vứt vẫn đúng: bản đầu soi mọi đáp án
+ *  đúng, ra 4 rồi 8 nghi phạm và không ca nào là lỗi thật, vì một đáp án suy ra
+ *  được thường phát biểu kết quả mà lời giải đi tới bằng đường khác. Bản này hẹp
+ *  hơn hẳn: chỉ xét phương án CHỈ LÀ một con số, không kèm mệnh đề nào. Khi
+ *  phương án không nói gì ngoài con số thì con số ấy CHÍNH LÀ đáp án, nên nó
+ *  vắng mặt trong lời giải là mâu thuẫn chứ không phải diễn đạt khác đi.
+ *
+ *  Toàn kho chỉ có 6 câu thuộc dạng này, nên nó rẻ và không ồn.
+ *
+ *  Ca thật đã có: wacc-co-ban khoá câu mở đầu vào "8.88%" trong khi lời giải
+ *  của chính nó tính ra 9,12% - và 9,12% thậm chí không nằm trong bốn phương án.
+ *  8,88% là kết quả khi thuế 30%, còn đề ghi 20%. Quiz câu 3 của ĐÚNG bài đó,
+ *  cùng bộ số, lại khoá đúng 9,12%: bài tự mâu thuẫn với chính nó. Người học
+ *  tính đúng bị chấm sai, rồi được đưa cho lời giải ghi ra con số họ vừa chọn. */
+function findMiskeyedNumericAnswer(options, correct, explanation) {
+  if (!Array.isArray(options) || typeof correct !== "number") return null;
+  const keyed = options[correct];
+  if (typeof keyed !== "string" || !BARE_NUMERIC_RE.test(keyed)) return null;
+  const keyedTokens = [...numericTokens(keyed)];
+  if (keyedTokens.length !== 1) return null;
+  const explTokens = numericTokens(explanation);
+  // Lời giải không có con số nào thì không kết luận được gì.
+  if (explTokens.size === 0 || explTokens.has(keyedTokens[0])) return null;
+  const rival = options.findIndex(
+    (o, i) => i !== correct && [...numericTokens(o)].some((t) => explTokens.has(t))
+  );
+  return { keyed, keyedValue: keyedTokens[0], rival: rival === -1 ? null : options[rival] };
+}
+
 /** Câu có hai đáp án đúng - gate ở đây, không có baseline. */
 const duplicateAnswers = [];
+
+/** Đáp án số trần không khớp lời giải - gate ở đây, không có baseline. */
+const miskeyedNumeric = [];
 
 /** Mọi tham chiếu chữ cái - nợ tiềm ẩn, chỉ báo cáo. */
 const letterRefs = [];
@@ -904,14 +957,21 @@ for (const lesson of corpus) {
   // lần, và bản chép nằm đúng chỗ nó không được phép nằm.
   // Cả ba kho câu hỏi, không riêng `quiz`: hai ca đã tìm được nằm một ở
   // openingOptions và một ở practicePrompt.
-  for (const [where, options, correct] of [
-    ["openingOptions", lesson.openingOptions, lesson.correctOption],
-    ["practicePrompt", lesson.practicePrompt?.options, lesson.practicePrompt?.correct],
-    ...(lesson.quiz ?? []).map((q, i) => [`quiz[${i}]`, q.options, q.correct]),
+  for (const [where, options, correct, explanation] of [
+    ["openingOptions", lesson.openingOptions, lesson.correctOption, lesson.explanation],
+    [
+      "practicePrompt",
+      lesson.practicePrompt?.options,
+      lesson.practicePrompt?.correct,
+      lesson.practicePrompt?.explanation,
+    ],
+    ...(lesson.quiz ?? []).map((q, i) => [`quiz[${i}]`, q.options, q.correct, q.explanation]),
   ]) {
     for (const hit of findDuplicateAnswers(options, correct)) {
       duplicateAnswers.push({ slug: lesson.slug, where, correct, ...hit });
     }
+    const miskeyed = findMiskeyedNumericAnswer(options, correct, explanation);
+    if (miskeyed) miskeyedNumeric.push({ slug: lesson.slug, where, ...miskeyed });
   }
 
   const pp = lesson.practicePrompt;
@@ -1470,6 +1530,27 @@ if (duplicateAnswers.length > 0) {
         .join("\n") +
       `\n  Người học tính đúng rồi chọn phương án kia thì bị chấm sai. Viết lại phương án` +
       ` nhiễu thành một đáp số KHÁC, kèm phép tính sinh ra nó.`
+  );
+}
+
+console.log(
+  `\nĐáp án số trần không khớp lời giải: ${miskeyedNumeric.length}` +
+    (miskeyedNumeric.length === 0 ? "  (phương án chỉ là con số, không kèm mệnh đề)" : "")
+);
+if (miskeyedNumeric.length > 0) {
+  tellFailures.push(
+    `${miskeyedNumeric.length} câu khoá vào một con số mà chính lời giải của nó không hề nhắc tới:\n` +
+      miskeyedNumeric
+        .map(
+          (row) =>
+            `    ${row.slug} ${row.where}: khoá "${row.keyed}" nhưng lời giải không có ${row.keyedValue}` +
+            (row.rival ? `; "${row.rival}" mới là số lời giải tính ra` : "")
+        )
+        .join("\n") +
+      `\n  Phương án chỉ có con số thì con số ấy CHÍNH LÀ đáp án - vắng mặt trong lời giải là` +
+      ` mâu thuẫn, không phải diễn đạt khác. Sửa con số ở phương án cho khớp phép tính trong` +
+      ` lời giải, đừng dời khoá sang phương án gần đúng nhất: phương án gần nhất thường chính` +
+      ` là ngộ nhận mà bài đang dạy cách tránh.`
   );
 }
 
