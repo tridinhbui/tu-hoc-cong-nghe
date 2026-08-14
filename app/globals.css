@@ -89,6 +89,159 @@ body {
   color: #f4f4f5;
 }
 
+/* ─────────────────────────────────────────────────────────────────────────
+   DẢI NỘI DUNG - hệ nền dùng chung cho cả sản phẩm.
+   ─────────────────────────────────────────────────────────────────────────
+
+   Bốn mặt giấy phẳng và một nét kẻ mảnh. Không quầng sáng, không đổ bóng,
+   không viền hộp lồng nhau. Thứ phân biệt hai dải kề nhau là SẮC ĐỘ GIẤY, y
+   như một cuốn sách phân chương bằng khoảng trắng và một nét mực, chứ không
+   bằng cách đóng khung từng chương.
+
+   Vì sao nằm ở đây chứ không ở trang chủ: bộ nguyên thuỷ này ĐÃ TỒN TẠI, viết
+   trong một khối `<style jsx>` bên trong components/home/HomePage.tsx dưới tên
+   `.landing-band*`. Chú thích của chính nó đã nói ra triết lý ("mỗi dải là một
+   mặt giấy phẳng... sách thì ngăn chương bằng một nét mảnh"), nhưng vì nằm
+   trong một trang nên bốn trang còn lại không với tới được - và đó chính là lý
+   do dashboard, trang học và FinSocial trông như ba sản phẩm khác nhau. Cùng
+   một ý tưởng thiết kế, chép lại ba lần hoặc không chép lần nào.
+
+   Đặt tên trung tính (`band`, không phải `landing-band`) vì giờ nó là hệ của
+   cả sản phẩm.
+
+   BẢN CHÉP ĐÃ BIẾN MẤT. Đoạn này từng hẹn "khi tệp ấy yên, đổi nó sang tên
+   chung ở đây và xoá khối `<style jsx>`" - việc đó đã làm xong: HomePage.tsx
+   dùng `band` / `band-paper` / `band-academic` / `band-ink` / `band-divider`
+   ngay tại đây và không còn một dòng CSS inline nào. Mảnh cuối của nó,
+   `.landing-texture`, lên đây thành `.paper-grain` bên dưới.
+
+   Nên chỉ còn MỘT nơi để sửa. Nếu lần sau ai đó thấy một `<style jsx>` mới mọc
+   trong một trang với mấy quy tắc na ná dưới đây, đó là bản chép thứ hai đang
+   hình thành - nó luôn bắt đầu bằng "chỉ trang này thôi".
+
+   Màu là màu của bản gốc: #fbfaf7 giấy ngà, #f2f6f2 ngà ngả xanh (dải học
+   thuật), #12100e mực đậm. */
+.band {
+  position: relative;
+  isolation: isolate;
+}
+
+.band > * {
+  position: relative;
+  z-index: 1;
+}
+
+.band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.band-paper::before {
+  background: #fbfaf7;
+}
+
+.dark .band-paper::before {
+  background: #0c0a09;
+}
+
+/* Hạt giấy, phủ cả trang. Mảnh cuối của bộ `band*` được đưa lên từ khối
+   `<style jsx>` của HomePage - xem chú thích đầu `.band`, chỗ hẹn "khi tệp ấy
+   yên thì xoá khối đó". Giờ khối đó không còn.
+
+   `.band-paper` cho MÀU của mặt giấy; lớp này cho BỀ MẶT. Tách đôi vì màu thì
+   mỗi dải một sắc độ, còn hạt thì chung một cỡ trên toàn trang - trộn vào nhau
+   thì mỗi lần thêm một dải mới lại phải chép lại phần hạt.
+
+   `mix-blend-mode: multiply` chứ không phải một lớp xám đè lên: nhân thì hạt
+   ăn theo màu nền bên dưới, nên cùng một lớp này dùng được cho cả dải ngà lẫn
+   dải ngà ngả xanh mà không phải chỉnh độ mờ riêng cho từng dải. */
+.paper-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.055;
+  background-image: radial-gradient(rgba(28, 25, 23, 0.5) 0.6px, transparent 0.6px);
+  background-size: 15px 15px;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Trên nền mực thì phép nhân không còn thấy gì - đổi sang cộng sáng và hạ
+   xuống rất nhạt, nếu không dải tối trông phẳng lì cạnh các dải sáng có hạt. */
+.dark .paper-grain::after {
+  opacity: 0.04;
+  background-image: radial-gradient(rgba(231, 229, 228, 0.5) 0.6px, transparent 0.6px);
+  mix-blend-mode: screen;
+}
+
+/* Xanh lá ở đây là màu HỌC THUẬT, không phải màu thương hiệu bôi lên nền. Giữ
+   rất nhạt để chữ vẫn là thứ nổi nhất trên dải. Dùng cho vùng nói về tiến độ
+   và nội dung học, không dùng làm nền trang trí. */
+.band-academic::before {
+  background: #f2f6f2;
+}
+
+.dark .band-academic::before {
+  background: #0b100d;
+}
+
+/* Dải mực đậm. Ở trang chủ nó khoanh khu trò chơi; ở FinSocial nó là phần đầu
+   trang. Là một mặt PHẲNG - không chuyển sắc, không ảnh phủ hai lớp gradient -
+   nên nó đọc như một dải giấy khác màu trong cùng cuốn sách, chứ như một ứng
+   dụng khác. */
+.band-ink::before {
+  background: #12100e;
+}
+
+/* NÉT KẺ, KHÔNG PHẢI VIỀN HỘP. Cao 1px, thu hẹp vào giữa và nhạt dần ở hai
+   đầu, nên nó đọc như đường phân chương chứ như cạnh dưới của một cái khung.
+   Đây là thứ thay cho việc bọc mỗi khối trong một thẻ bo góc có viền. */
+.band-divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(88vw, 1120px);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(120, 113, 108, 0.28) 18%,
+    rgba(120, 113, 108, 0.28) 82%,
+    transparent
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.dark .band-divider::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(214, 211, 209, 0.16) 18%,
+    rgba(214, 211, 209, 0.16) 82%,
+    transparent
+  );
+}
+
+/* Nhãn mắt (eyebrow) của hệ. Có MỘT bản dùng chung thay vì viết lại
+   `text-[10px] font-black uppercase tracking-...` ở từng chỗ - toàn kho đang
+   có 495 chỗ như thế với ba cỡ chữ và bốn độ giãn khác nhau, tức là cùng một
+   thành phần được vẽ lại mỗi lần một kiểu. 11px chứ không phải 9-10px: dưới
+   ngưỡng đó thì người 40 tuổi không đọc được, mà đây là nhãn mang thông tin
+   chứ không phải hoạ tiết. */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
 /* Kindle-style "sepia" reading mode for lesson pages (see
    components/ReadingModeControl.tsx) - a warm-tint CSS filter over the
    light theme rather than a real third color scheme, since lesson content

@@ -983,7 +983,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     // Màn hình đủ cao thì không có gì tràn nên cũng không có thanh cuộn, tức
     // ý đồ ban đầu vẫn nguyên; chỉ khác ở đúng trường hợp trước đây bị mất
     // nội dung.
-    <div className="min-h-screen xl:h-screen xl:overflow-y-auto bg-white dark:bg-stone-950">
+    // Trong suốt, không `bg-white`: khung bố cục ở app/(app)/layout.tsx đã đặt
+    // nền giấy ngà cho cả sản phẩm, và một lớp trắng ở đây sơn đè lên đúng thứ
+    // đó - dashboard sẽ là ô trắng duy nhất trong một sản phẩm màu ngà.
+    <div className="min-h-screen xl:h-screen xl:overflow-y-auto">
 
 
       <div className="px-4 py-4 sm:px-5 sm:py-5 xl:h-full xl:flex xl:flex-col xl:min-h-0">
@@ -1027,7 +1030,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             same panels just stack and the page scrolls normally - there is no
             honest way to fit this much on a phone screen. */}
         <div
-          className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 xl:rounded-3xl xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:p-3.5 ${
+          className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 xl:rounded-2xl xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:p-3.5 ${
             isLessonsView
               ? "max-w-[1500px] xl:flex xl:flex-col"
               : "max-w-[1500px] xl:grid xl:grid-cols-12 xl:grid-rows-[auto_auto_minmax(0,1fr)] xl:gap-3.5"
@@ -1054,7 +1057,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             ];
 
             return (
-              <div className={`rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 xl:col-span-12 xl:min-h-0 xl:overflow-hidden ${isCompactCard ? "p-2.5" : "p-3 sm:p-3.5"}`}>
+              <div className={`rounded-xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 xl:col-span-12 xl:min-h-0 xl:overflow-hidden ${isCompactCard ? "p-2.5" : "p-3 sm:p-3.5"}`}>
                 <div className="grid grid-cols-1 gap-2.5 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   {/* self-stretch (not the grid's items-start) so this column
                       fills the row height set by the taller UserStats sidebar -
@@ -1393,7 +1396,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {!isLessonsView && (
               <Link
                 href="/lo-trinh"
-                className="group flex items-center gap-3.5 rounded-2xl border border-stone-200 bg-white p-4 transition-all hover:border-emerald-300 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-emerald-800"
+                className="group flex items-center gap-3.5 rounded-xl border border-stone-200 bg-white p-4 transition-all hover:border-emerald-300 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-emerald-800"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-400">
                   <Route className="h-5 w-5" />
@@ -1461,7 +1464,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
             {/* Bookmarks Section */}
             {bookmarks.length > 0 && (
-              <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4">
+              <div className="rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-4 py-4">
                 <div className="flex items-center justify-between gap-3 mb-3">
                   <div className="flex items-center gap-2">
                     <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 flex items-center justify-center">
@@ -1525,13 +1528,20 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               <button
                 type="button"
                 onClick={() => setActiveTrack("personal")}
-                className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
+                className={`relative w-full h-full flex flex-col text-left rounded-xl border px-5 py-4 transition-colors duration-200 overflow-hidden ${
                   isTrackView && activeTrack === "personal"
-                    ? "border-amber-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-amber-500/20 dark:ring-amber-400/30 font-extrabold"
-                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700"
+                    ? "border-stone-300 bg-white text-stone-900 dark:border-stone-600 dark:bg-stone-900 dark:text-stone-100"
+                    : "border-stone-200/80 bg-white/70 text-stone-700 hover:border-stone-300 dark:border-stone-800/90 dark:bg-stone-900/60 dark:text-stone-300 dark:hover:border-stone-700"
                 }`}
               >
-                <div className="h-0.5 w-full bg-amber-500/70 absolute top-0 left-0 right-0" />
+                {/* Nét chỉ dấu trên đầu thẻ mang toàn bộ việc phân biệt track,
+                    và đậm lên khi thẻ được chọn. Trước đây trạng thái chọn nói
+                    bằng border-2 màu CỘNG ring-2 màu CỘNG nét này - ba lớp cùng
+                    nói một điều, quanh một thẻ vốn đã nằm cạnh đúng một thẻ
+                    khác. Một nét là đủ để biết đang ở đâu. */}
+                <div className={`absolute top-0 left-0 right-0 h-0.5 transition-colors ${
+                  isTrackView && activeTrack === "personal" ? "bg-amber-500" : "bg-amber-500/30"
+                }`} />
                 <div className="flex items-center gap-2 flex-wrap mt-1">
                   <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
                     {t.trackStages.personal.title}
@@ -1567,13 +1577,15 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               <button
                 type="button"
                 onClick={() => setActiveTrack("professional")}
-                className={`w-full h-full flex flex-col text-left rounded-2xl border-2 px-5 py-4 transition-all duration-300 relative overflow-hidden backdrop-blur-md ${
+                className={`relative w-full h-full flex flex-col text-left rounded-xl border px-5 py-4 transition-colors duration-200 overflow-hidden ${
                   isTrackView && activeTrack === "professional"
-                    ? "border-emerald-500/80 bg-white/95 dark:bg-stone-900 text-stone-900 dark:text-stone-100 ring-2 ring-emerald-500/20 dark:ring-emerald-400/30 font-extrabold"
-                    : "border-stone-200/80 dark:border-stone-800/90 bg-white/95 dark:bg-stone-900/80 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700"
+                    ? "border-stone-300 bg-white text-stone-900 dark:border-stone-600 dark:bg-stone-900 dark:text-stone-100"
+                    : "border-stone-200/80 bg-white/70 text-stone-700 hover:border-stone-300 dark:border-stone-800/90 dark:bg-stone-900/60 dark:text-stone-300 dark:hover:border-stone-700"
                 }`}
               >
-                <div className="h-0.5 w-full bg-emerald-500/70 absolute top-0 left-0 right-0" />
+                <div className={`absolute top-0 left-0 right-0 h-0.5 transition-colors ${
+                  isTrackView && activeTrack === "professional" ? "bg-emerald-500" : "bg-emerald-500/30"
+                }`} />
                 <div className="flex items-center gap-2 flex-wrap mt-1">
                   <div className="text-base font-extrabold tracking-tight text-stone-900 dark:text-stone-100">
                     {t.trackStages.professional.title}
@@ -1664,7 +1676,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 value={stageSearchQuery}
                 onChange={(e) => setStageSearchQuery(e.target.value)}
                 placeholder={t.dashboard.searchPlaceholder}
-                className="w-full pl-10 pr-9 py-2.5 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm font-medium text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+                className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-sm font-medium text-stone-900 dark:text-stone-100 placeholder:text-stone-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
               />
               {stageSearchQuery && (
                 <button
@@ -1726,7 +1738,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   </span>
                 </button>
 
-                <div className={`absolute right-0 top-full z-30 mt-2 w-80 max-w-[90vw] rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 text-xs text-stone-700 dark:text-stone-300 leading-relaxed shadow-xl origin-top-right transition-all duration-150 space-y-2 ${
+                <div className={`absolute right-0 top-full z-30 mt-2 w-80 max-w-[90vw] rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 text-xs text-stone-700 dark:text-stone-300 leading-relaxed shadow-xl origin-top-right transition-all duration-150 space-y-2 ${
                   manualFlagInfoOpen ? "opacity-100 scale-100 pointer-events-auto" : "pointer-events-none opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
                 }`}>
                   {/* Split into segments rather than one string, so the <strong>
@@ -1822,7 +1834,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       }}
                       className={`w-full flex items-center gap-3 cursor-pointer text-left flex-wrap sm:flex-nowrap transition-all ${
                         isCurrentMilestonePassed
-                          ? "bg-emerald-500/[0.04] dark:bg-emerald-500/[0.02] border border-emerald-500/20 px-4 py-3 rounded-2xl mb-4"
+                          ? "bg-emerald-500/[0.04] dark:bg-emerald-500/[0.02] border border-emerald-500/20 px-4 py-3 rounded-xl mb-4"
                           : "border-b border-stone-100 dark:border-stone-800/40 pb-3 mb-4"
                       }`}
                     >
@@ -2143,7 +2155,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                 {/* Milestone Exam Banner (if current stage is completed but milestone is not passed) */}
                 {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && stageDone === stageLessons.length && !passedMilestones.some((m) => m.stage_label === stage.label) && (
-                  <div className="mt-4 p-5 rounded-2xl border border-amber-300 bg-amber-500/[0.04] dark:border-amber-950/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="mt-4 p-5 rounded-xl border border-amber-300 bg-amber-500/[0.04] dark:border-amber-950/40 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
                       <h4 className="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1.5">
                         {format(t.dashboard.milestone.eligible, { stage: stage.label })}
@@ -2167,9 +2179,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                 {/* Locked Stage Banner (if stage is locked by previous stage milestone) */}
                 {stageOpen && stage.available && isStageLockedByMilestone && (
-                  <div className="border-2 border-dashed border-rose-200/60 dark:border-rose-950/40 rounded-2xl px-5 py-8 text-center bg-rose-500/[0.02] relative overflow-hidden">
+                  <div className="border-2 border-dashed border-rose-200/60 dark:border-rose-950/40 rounded-xl px-5 py-8 text-center bg-rose-500/[0.02] relative overflow-hidden">
                     <div className="flex flex-col items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center">
                         <Lock className="w-6 h-6" />
                       </div>
                       <div>
@@ -2369,7 +2381,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 Vẫn chỉ hiện ở chế độ xem bài, y như trước khi dời: trang tổng
                 quan chưa từng dựng hai thẻ này. */}
             {isLessonsView && (
-              <div className="divide-y divide-stone-200 overflow-hidden rounded-2xl border border-stone-200 bg-white dark:divide-stone-800 dark:border-stone-800 dark:bg-stone-900">
+              <div className="divide-y divide-stone-200 overflow-hidden rounded-xl border border-stone-200 bg-white dark:divide-stone-800 dark:border-stone-800 dark:bg-stone-900">
                 <LearningPathSummary
                   track={activeTrack}
                   done={sorted.filter((l) => completed.includes(l.id)).length}

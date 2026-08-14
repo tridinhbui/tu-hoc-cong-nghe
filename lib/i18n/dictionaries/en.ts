@@ -1407,7 +1407,6 @@ export const en: Dictionary = {
     posting: "Posting...",
     post: "Post",
 
-    bgAlt: "Saigon skyline background",
     backToDashboard: "Back to dashboard",
     eyebrow: "The finance learning network",
     title: "FinSocial feed",

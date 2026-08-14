@@ -25,9 +25,99 @@ import {
   subscribeHomeBannerDismissed,
 } from "@/lib/home-banner-dismissed";
 
+/** Vạch ngăn giữa hai section không nằm trong hệ `band`.
+ *
+ *  Bản cũ là một dải cao 48px tô chuyển sắc xanh ở giữa - một vùng phát sáng.
+ *  Giờ nó là một nét kẻ mảnh thu hẹp vào giữa, đúng bằng thứ mà
+ *  `.band-divider::after` vẽ, để hai kiểu ngăn chương trên cùng một
+ *  trang không nói hai giọng khác nhau. */
 function SoftFadeDivider() {
   return (
-    <div className="w-full h-12 pointer-events-none bg-gradient-to-b from-transparent via-emerald-500/10 dark:via-emerald-400/5 to-transparent my-[-1px]" />
+    <div className="mx-auto h-px w-[min(88vw,1120px)] bg-gradient-to-r from-transparent via-stone-300/70 to-transparent dark:via-stone-700/70" />
+  );
+}
+
+/**
+ * Đề mục một section, đặt như đầu một chương sách.
+ *
+ * VÌ SAO GOM VỀ MỘT CHỖ. Năm section trước đây tự viết lại cùng một khuôn:
+ * một dòng eyebrow chữ hoa tô xanh (hoặc hổ phách ở khu tối), một `<h2>`
+ * font-black, một đoạn phụ. Cùng khuôn nhưng lệch nhau ở mọi chi tiết - cỡ
+ * chữ eyebrow chạy từ 11px tới 12px, tiêu đề từ `text-2xl` tới `text-4xl`,
+ * khoảng cách dưới từ `mb-3` tới `mb-8`. Đọc dọc trang thì năm section trông
+ * như năm trang khác nhau ghép lại.
+ *
+ * SỐ CHƯƠNG là thứ thêm mới, và nó làm một việc mà eyebrow màu không làm
+ * được: nói cho người đọc biết họ đang ở đâu trong một trình tự. Đây là sản
+ * phẩm học, nên trang giới thiệu nó nên đọc như mục lục chứ như một dãy thẻ
+ * tính năng.
+ *
+ * `index` là số, không phải chuỗi - nên chỗ này không sinh ra chữ cứng nào cho
+ * scripts/i18n-coverage.mjs phải bắt. Mọi chữ vẫn đến từ từ điển.
+ */
+function ChapterHeading({
+  index,
+  eyebrow,
+  title,
+  sub,
+  tone = "light",
+  className = "",
+}: {
+  index: number;
+  eyebrow: string;
+  title: React.ReactNode;
+  sub?: string;
+  tone?: "light" | "dark";
+  className?: string;
+}) {
+  const dark = tone === "dark";
+  return (
+    <div className={className}>
+      <div className="flex items-baseline gap-3">
+        {/* Số chương ở cỡ lớn nhưng nhạt: nó định vị, không tranh chỗ với tiêu
+            đề. `tabular-nums` để 01 và 02 rộng bằng nhau, nếu không mép trái
+            của các section sẽ lệch nhau vài pixel khi cuộn qua. */}
+        <span
+          className={`shrink-0 font-black tabular-nums leading-none text-[1.75rem] sm:text-[2rem] ${
+            dark ? "text-white/25" : "text-stone-300 dark:text-stone-700"
+          }`}
+        >
+          {String(index).padStart(2, "0")}
+        </span>
+        <span
+          className={`eyebrow ${
+            dark ? "text-emerald-300/90" : "text-emerald-700 dark:text-emerald-400"
+          }`}
+        >
+          {eyebrow}
+        </span>
+      </div>
+
+      {/* Nét kẻ ngang chạy hết chiều rộng khối - dấu hiệu bắt đầu chương. */}
+      <div
+        className={`mt-3 h-px w-full ${
+          dark ? "bg-white/15" : "bg-stone-300/70 dark:bg-stone-700/70"
+        }`}
+      />
+
+      <h2
+        className={`mt-4 text-[1.7rem] font-black leading-[1.12] tracking-tight sm:text-[2.1rem] lg:text-[2.4rem] ${
+          dark ? "text-white" : "text-stone-950 dark:text-stone-50"
+        }`}
+      >
+        {title}
+      </h2>
+
+      {sub && (
+        <p
+          className={`mt-3 max-w-xl text-sm leading-7 sm:text-[15px] ${
+            dark ? "text-stone-300" : "text-stone-600 dark:text-stone-400"
+          }`}
+        >
+          {sub}
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -50,7 +140,11 @@ export default function HomePage() {
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
   const [displayedCompletedCount, setDisplayedCompletedCount] = useState(0);
-  const [heroSpotlight, setHeroSpotlight] = useState({ x: 50, y: 35 });
+  // Vị trí con trỏ trong hero, chỉ dùng để nghiêng bản mô phỏng bài học.
+  // Tên cũ là `heroSpotlight` vì nó từng điều khiển một vệt sáng; vệt sáng đã
+  // bỏ, nên cái tên cũng phải đi theo - một biến tên "spotlight" mà không còn
+  // spotlight nào là thứ khiến lần đọc sau đi tìm một hiệu ứng không tồn tại.
+  const [heroPointer, setHeroPointer] = useState({ x: 50, y: 35 });
   const bannerDismissed = useSyncExternalStore(
     subscribeHomeBannerDismissed,
     getHomeBannerDismissed,
@@ -63,8 +157,8 @@ export default function HomePage() {
   const [lessonCountFloor, setLessonCountFloor] = useState<number | null>(null);
   const userCountLoadedRef = useRef(false);
   const completedCountLoadedRef = useRef(false);
-  const heroParallaxX = (heroSpotlight.x - 50) / 10;
-  const heroParallaxY = (heroSpotlight.y - 35) / 10;
+  const heroParallaxX = (heroPointer.x - 50) / 10;
+  const heroParallaxY = (heroPointer.y - 35) / 10;
 
 
   useEffect(() => {
@@ -146,180 +240,33 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-stone-950 transition-colors duration-300">
-      <div className="bg-stone-50/60 dark:bg-stone-950 relative overflow-hidden">
-        {/* Stripe-style Ambient Radial Glow Beam, Grid Mesh & Floating Blur Orbs */}
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          {/* Top Radial Beam */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(16,185,129,0.22),rgba(20,184,166,0.08)_50%,transparent_100%)] opacity-90" />
+    <div className="relative min-h-screen overflow-x-hidden bg-[#fbfaf7] transition-colors duration-300 dark:bg-stone-950">
+      <div className="relative overflow-hidden bg-[#fbfaf7] dark:bg-stone-950">
+        {/* TẦNG TRANG TRÍ THỨ HAI, đã gỡ.
+            Chú thích cũ của nó tự khai luôn nguồn gốc: "Stripe-style Ambient
+            Radial Glow Beam, Grid Mesh & Floating Blur Orbs". Một chùm sáng
+            1100×650, bốn quả cầu mờ 500-700px (một quả `animate-pulse`), và
+            một lưới 3rem có mặt nạ hình elip.
+            Nó nằm CHỒNG lên tầng trang trí ở khối dưới - hai bộ hiệu ứng độc
+            lập cùng phủ lên một trang, đó là lý do trang cũ sáng đều một màu
+            xanh bất kể section đang nói gì. */}
+      {/* MẶT GIẤY CỦA CẢ TRANG - đúng MỘT lớp.
+          Chỗ này từng có tám lớp chồng lên nhau: một lớp vân, một lớp ba vòng
+          radial màu, một lưới ô 28px tự trôi, ba quầng aurora tự dạt, và ba
+          quả cầu mờ 450-550px tự đập theo nhịp. Chúng phủ lên mọi section bên
+          dưới, nên dù từng section muốn nói gì thì mắt vẫn đọc ra "trang chủ
+          của một công ty phần mềm".
 
-          {/* Floating Glowing Blur Orbs (● blur) */}
-          <div className="absolute -top-36 -left-36 w-[560px] h-[560px] rounded-full bg-emerald-400/22 blur-[130px] animate-pulse" />
-          <div className="absolute top-[380px] -right-36 w-[500px] h-[500px] rounded-full bg-teal-400/20 blur-[130px]" />
-          <div className="absolute top-[42%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-emerald-400/15 blur-[150px]" />
-          <div className="absolute top-[70%] -left-44 w-[580px] h-[580px] rounded-full bg-sky-400/15 blur-[140px]" />
+          Bỏ hết, giữ lại đúng lớp mô tả một BỀ MẶT chứ không phải một nguồn
+          sáng: hạt giấy mịn. Nó nay là `.paper-grain` trong app/globals.css -
+          trước đây tên `.landing-texture` và sống trong một khối `<style jsx>`
+          ngay trong tệp này, tức bốn trang còn lại của sản phẩm không với tới
+          được. Khối ấy đã xoá; trang này không còn CSS inline nào.
 
-          {/* Stripe SVG Fine Grid Pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#10b98112_1px,transparent_1px),linear-gradient(to_bottom,#10b98112_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_20%,#000_65%,transparent_100%)]" />
-        </div>
-      <style>{`
-        @keyframes landing-aurora-drift {
-          0% { transform: translate3d(-2%, -1%, 0) scale(1); }
-          50% { transform: translate3d(2%, 1.5%, 0) scale(1.03); }
-          100% { transform: translate3d(-1%, 2%, 0) scale(1.01); }
-        }
-        @keyframes landing-orbit-drift {
-          0% { transform: translate3d(0, 0, 0) rotate(0deg); }
-          100% { transform: translate3d(0, -16px, 0) rotate(360deg); }
-        }
-        @keyframes landing-grid-drift {
-          0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(24px, 18px, 0); }
-        }
-        @keyframes landing-float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-8px); }
-        }
-        @keyframes landing-pulse-glow {
-          0%, 100% { opacity: 0.45; transform: scale(1); }
-          50% { opacity: 0.78; transform: scale(1.08); }
-        }
-        @keyframes ticker-drift {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes spotlight-sweep {
-          0% { transform: translateX(-130%) skewX(-18deg); opacity: 0; }
-          20% { opacity: 0.18; }
-          100% { transform: translateX(240%) skewX(-18deg); opacity: 0; }
-        }
-        .landing-texture::before {
-          content: "";
-          position: absolute;
-          inset: -5%;
-          background-image:
-            radial-gradient(circle at 20% 25%, rgba(16,185,129,0.08), transparent 24%),
-            radial-gradient(circle at 78% 18%, rgba(245,158,11,0.08), transparent 22%),
-            radial-gradient(circle at 62% 72%, rgba(20,184,166,0.07), transparent 26%);
-          pointer-events: none;
-        }
-        .landing-texture::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          opacity: 0.08;
-          background-image:
-            radial-gradient(rgba(15,23,42,0.35) 0.6px, transparent 0.6px),
-            linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.8) 45%, transparent 100%);
-          background-size: 16px 16px, 100% 100%;
-          mix-blend-mode: multiply;
-          pointer-events: none;
-        }
-        .landing-drift-grid {
-          animation: landing-grid-drift 18s linear infinite alternate;
-        }
-        .landing-aurora {
-          animation: landing-aurora-drift 16s ease-in-out infinite alternate;
-        }
-        .landing-orbit {
-          animation: landing-orbit-drift 24s linear infinite;
-        }
-        .landing-glow {
-          animation: landing-pulse-glow 8s ease-in-out infinite;
-        }
-        .landing-float {
-          animation: landing-float 5.5s ease-in-out infinite;
-        }
-        .landing-ticker {
-          animation: ticker-drift 26s linear infinite;
-          width: max-content;
-          will-change: transform;
-          transform: translateZ(0);
-        }
-        .cta-electric {
-          position: relative;
-          overflow: hidden;
-        }
-        .cta-electric::after {
-          content: "";
-          position: absolute;
-          inset: -40%;
-          background: linear-gradient(110deg, transparent 34%, rgba(255,255,255,0.32) 48%, transparent 62%);
-          transform: translateX(-140%) skewX(-18deg);
-          animation: spotlight-sweep 3.8s ease-in-out infinite;
-          pointer-events: none;
-        }
-        .cta-electric:hover {
-          transform: translateY(-2px) scale(1.01);
-          box-shadow: 0 18px 44px -22px rgba(16,185,129,0.65);
-        }
-        .landing-band {
-          position: relative;
-          overflow: hidden;
-          isolation: isolate;
-        }
-        .landing-band::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          z-index: 0;
-        }
-        .landing-band > * {
-          position: relative;
-          z-index: 1;
-        }
-        .landing-band-soft::before {
-          background:
-            linear-gradient(180deg, rgba(255,255,255,0.78), rgba(248,250,252,0.45)),
-            radial-gradient(circle at 18% 22%, rgba(16,185,129,0.08), transparent 26%),
-            radial-gradient(circle at 82% 74%, rgba(20,184,166,0.07), transparent 24%);
-        }
-        .landing-band-glass::before {
-          background:
-            linear-gradient(180deg, rgba(248,250,252,0.88), rgba(255,255,255,0.58)),
-            linear-gradient(to right, rgba(15,23,42,0.04) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(15,23,42,0.04) 1px, transparent 1px);
-          background-size: auto, 30px 30px, 30px 30px;
-        }
-        .landing-band-emerald::before {
-          background:
-            linear-gradient(180deg, rgba(236,253,245,0.92), rgba(255,255,255,0.68)),
-            radial-gradient(circle at 20% 30%, rgba(16,185,129,0.12), transparent 24%),
-            radial-gradient(circle at 78% 72%, rgba(5,150,105,0.08), transparent 22%);
-        }
-        .landing-band-dark::before {
-          background:
-            linear-gradient(180deg, rgba(12,18,28,0.92), rgba(12,18,28,0.78)),
-            radial-gradient(circle at 18% 24%, rgba(245,158,11,0.12), transparent 20%),
-            radial-gradient(circle at 78% 68%, rgba(16,185,129,0.1), transparent 24%);
-        }
-        .landing-band-divider::after {
-          content: "";
-          position: absolute;
-          left: 50%;
-          bottom: -1px;
-          width: min(92vw, 1120px);
-          height: 96px;
-          transform: translateX(-50%);
-          background: linear-gradient(180deg, rgba(255,255,255,0), rgba(16,185,129,0.06) 48%, rgba(255,255,255,0));
-          filter: blur(18px);
-          pointer-events: none;
-          z-index: 0;
-        }
-      `}</style>
-      {/* Ambient background glows - fixed page-level, not nested inside any section */}
-      <div className="pointer-events-none absolute inset-0 landing-texture z-0" />
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_12%_18%,rgba(16,185,129,0.12),transparent_28%),radial-gradient(circle_at_78%_12%,rgba(20,184,166,0.10),transparent_26%),linear-gradient(180deg,rgba(236,253,245,0.28),rgba(255,255,255,0.18)_38%,rgba(240,253,250,0.34))]" />
-      <div className="pointer-events-none absolute inset-0 landing-drift-grid bg-[linear-gradient(to_right,rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.05)_1px,transparent_1px)] bg-[size:28px_28px] z-0" />
-      <div className="pointer-events-none absolute inset-0 landing-aurora z-0 opacity-90">
-        <div className="absolute left-[8%] top-[8%] h-[22rem] w-[22rem] rounded-full bg-emerald-400/10 blur-[120px] dark:bg-emerald-500/10" />
-        <div className="absolute right-[12%] top-[20%] h-[20rem] w-[20rem] rounded-full bg-teal-400/10 blur-[120px] dark:bg-teal-500/10" />
-        <div className="absolute left-[46%] top-[48%] h-[26rem] w-[26rem] rounded-full bg-amber-400/10 blur-[140px] dark:bg-amber-400/10" />
-      </div>
-      <div className="pointer-events-none absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-emerald-500/10 dark:bg-emerald-500/5 blur-[120px] z-0 landing-glow" />
-      <div className="pointer-events-none absolute top-[45%] right-[8%] w-[550px] h-[550px] rounded-full bg-teal-500/10 dark:bg-teal-500/5 blur-[150px] z-0 landing-glow" />
-      <div className="pointer-events-none absolute top-[75%] left-[12%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 dark:bg-indigo-500/5 blur-[130px] z-0 landing-glow" />
+          Chiều sâu của trang giờ đến từ sắc độ giấy giữa các dải, từ đường kẻ
+          mảnh ngăn chương, và từ chính các khối minh hoạ tương tác - chứ không
+          từ ánh sáng phủ lên tất cả. */}
+      <div className="paper-grain pointer-events-none absolute inset-0 z-0" />
 
       <div className="relative z-10">
         {/* Top banner - pushed to the very top of the page per request, in
@@ -390,7 +337,7 @@ export default function HomePage() {
         )}
 
         {/* ── NAV ── */}
-        <header className="sticky top-0 z-40 bg-white/85 dark:bg-stone-950/85 backdrop-blur-md border-b border-stone-100 dark:border-stone-900">
+        <header className="sticky top-0 z-40 border-b border-stone-300/70 bg-[#fbfaf7] dark:border-stone-800 dark:bg-stone-950">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <Logo size={28} />
@@ -403,7 +350,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/login"
-              className="cta-electric group inline-flex items-center gap-2 rounded-2xl border border-emerald-200/80 dark:border-emerald-800 bg-gradient-to-r from-emerald-500 to-teal-500 px-4.5 py-2.5 text-sm font-bold text-white shadow-[0_12px_28px_-20px_rgba(16,185,129,0.35)] transition-all hover:shadow-[0_16px_34px_-22px_rgba(16,185,129,0.45)]"
+              className="group inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500"
             >
               {t.home.navCta}
               <ArrowRight className="icon-micro w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -412,48 +359,48 @@ export default function HomePage() {
         </header>
 
         {/* ── HERO ── */}
+        {/* `onMouseMove` GIỮ LẠI, nhưng giờ chỉ nuôi đúng một thứ: độ nghiêng
+            của bản mô phỏng bài học ở cột phải. Trước đây nó nuôi hai thứ -
+            độ nghiêng, và một vệt sáng trắng-xanh chạy theo con trỏ khắp hero.
+            Vệt sáng đã bỏ; độ nghiêng thì ở lại, vì nó làm tấm mô phỏng có
+            khối chứ không phải làm nền trang loé lên. */}
         <section
-          className="relative overflow-hidden landing-band landing-band-soft"
+          className="relative overflow-hidden band band-paper"
           onMouseMove={(e) => {
             const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            setHeroSpotlight({
-              x: Math.max(10, Math.min(90, x)),
-              y: Math.max(10, Math.min(90, y)),
+            setHeroPointer({
+              x: Math.max(10, Math.min(90, ((e.clientX - rect.left) / rect.width) * 100)),
+              y: Math.max(10, Math.min(90, ((e.clientY - rect.top) / rect.height) * 100)),
             });
           }}
         >
-          <div className="absolute inset-0">
-            <Image
-              src="/times-square.jpg"
-              alt={t.home.hero.bgAlt}
-              fill
-              sizes="100vw"
-              className="object-cover object-center opacity-[0.16]"
-              priority
-            />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.16),transparent_26%),radial-gradient(circle_at_85%_25%,rgba(245,158,11,0.15),transparent_24%),linear-gradient(135deg,rgba(255,255,255,0.9),rgba(247,250,252,0.8)_40%,rgba(240,253,250,0.62)_100%)] dark:bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.18),transparent_26%),radial-gradient(circle_at_85%_25%,rgba(245,158,11,0.16),transparent_24%),linear-gradient(135deg,rgba(9,9,11,0.92),rgba(15,23,42,0.84)_40%,rgba(6,78,59,0.46)_100%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:32px_32px] opacity-60" />
-            <div
-              className="pointer-events-none absolute inset-0 opacity-70 transition-[background-position] duration-300 ease-out"
-              style={{
-                background: `radial-gradient(circle at ${heroSpotlight.x}% ${heroSpotlight.y}%, rgba(255,255,255,0.34), transparent 22%), radial-gradient(circle at ${heroSpotlight.x}% ${heroSpotlight.y}%, rgba(16,185,129,0.14), transparent 32%)`,
-              }}
-            />
-          </div>
+          {/* Hero không còn lớp nền riêng nào.
+              Ở đây từng có bốn thứ chồng lên nhau: ảnh Quảng trường Thời Đại
+              mờ 16%, hai vòng radial xanh/hổ phách, một lưới ô 32px, và một
+              vệt sáng chạy theo con trỏ. Ảnh New York là hình cổ động cho một
+              ngành nghề, không phải cho việc học - và ba lớp còn lại là hiệu
+              ứng thuần tuý.
+              Bỏ hết thì mặt giấy của trang lộ ra, và thứ sáng nhất trong khung
+              hình đầu tiên trở thành bản mô phỏng bài học thật ở cột phải -
+              đúng thứ đáng làm nhân vật chính. */}
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 sm:pt-8 sm:pb-10">
             <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-12">
               <div className="lg:col-span-7 max-w-2xl">
+                {/* Dòng đề, kiểu chạy đầu trang sách - không phải viên thuốc.
+                    Bản cũ là một pill bo tròn: viền xanh, nền trắng mờ,
+                    backdrop-blur, kèm một chấm `animate-ping`. Chấm nhấp nháy
+                    là quy ước của "đang trực tuyến"; ở đây nó gắn vào một câu
+                    khẩu hiệu không có gì trực tiếp cả, nên nó chỉ là chuyển
+                    động để gây chú ý.
+                    Thay bằng một nét kẻ ngắn màu xanh học thuật rồi tới chữ.
+                    Nét kẻ làm đúng việc của pill - tách dòng đề khỏi tiêu đề -
+                    mà không dựng thêm một cái hộp nào. */}
                 <motion.div
                   {...heroReveal(0)}
-                  className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white/80 px-3.5 py-1 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.14em] text-emerald-700 backdrop-blur-sm dark:border-emerald-900 dark:bg-stone-950/55 dark:text-emerald-300"
+                  className="eyebrow mb-5 flex items-center gap-3 text-stone-500 dark:text-stone-400"
                 >
-                  <span className="relative flex w-1.5 h-1.5">
-                    <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
-                  </span>
+                  <span aria-hidden className="h-px w-8 bg-emerald-600 dark:bg-emerald-500" />
                   {t.home.hero.badge}
                 </motion.div>
 
@@ -482,32 +429,39 @@ export default function HomePage() {
                 >
                   <Link
                     href="/login?mode=signup"
-                    className="cta-electric group inline-flex items-center gap-2 rounded-[20px] bg-stone-950 px-6 py-3.5 text-base font-black text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.38)] transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.015] active:scale-[0.98] hover:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
+                    className="group inline-flex items-center gap-2 rounded-lg bg-stone-950 px-6 py-3.5 text-base font-black text-white transition-colors hover:bg-stone-800 active:bg-stone-900 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-white"
                   >
                     {t.home.hero.ctaPrimary}
                     <ArrowRight className="icon-micro w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <a
                     href={`/bai-hoc/${TRACKS.personal.previewSlug}`}
-                    className="inline-flex items-center gap-2 rounded-[20px] border border-stone-200/80 bg-white/70 px-5 py-3 text-sm font-bold text-stone-900 backdrop-blur transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.015] hover:bg-white dark:border-stone-700 dark:bg-stone-950/45 dark:text-stone-100 dark:hover:bg-stone-900"
+                    className="inline-flex items-center gap-2 rounded-lg border border-stone-400/70 px-5 py-3 text-sm font-bold text-stone-900 transition-colors hover:border-stone-900 hover:bg-stone-900 hover:text-white dark:border-stone-600 dark:text-stone-100 dark:hover:border-stone-100 dark:hover:bg-stone-100 dark:hover:text-stone-900"
                   >
                     <PlayCircle className="w-4 h-4" />
                     {t.home.hero.ctaSecondary}
                   </a>
                 </motion.div>
 
+                {/* Ba con số, đặt như dòng thống kê ở chân một trang sách.
+                    Bản cũ bọc chúng trong một tấm kính: bo 1,35rem, nền trắng
+                    mờ, backdrop-blur, đổ bóng xanh 44px. Ba con số THẬT - đọc
+                    từ cơ sở dữ liệu, đếm lên khi tải - không cần một tấm thẻ
+                    nổi để được tin; tấm thẻ chỉ làm chúng trông như một widget
+                    tiếp thị.
+                    Giờ chúng ngồi thẳng trên giấy, ngăn cách bởi một nét kẻ
+                    ngang phía trên và các nét dọc mảnh giữa từng cột. Nhãn
+                    "đang cập nhật" vẫn còn nhưng thành chữ thường, không chấm
+                    nhấp nháy - xem chú thích ở dòng đề phía trên. */}
                 <motion.div
                   {...heroReveal(0.12, 14)}
-                  className="w-full rounded-[1.35rem] border border-stone-200/80 bg-white/70 px-4 py-3.5 shadow-[0_22px_44px_-30px_rgba(16,185,129,0.35)] backdrop-blur-sm dark:border-stone-800 dark:bg-stone-950/45 sm:w-fit sm:px-5"
+                  className="w-full border-t border-stone-300/70 pt-4 dark:border-stone-700/70 sm:w-fit"
                 >
-                  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:border-emerald-900/50 dark:bg-stone-900/60 dark:text-emerald-300">
-                    <span className="relative flex w-1.5 h-1.5">
-                      <span className="animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-500" />
-                    </span>
+                  <div className="eyebrow mb-3 flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+                    <span aria-hidden className="h-px w-4 bg-emerald-600/70 dark:bg-emerald-500/70" />
                     {t.home.hero.liveLabel}
                   </div>
-                  <div className="flex items-stretch divide-x divide-stone-200 dark:divide-stone-800">
+                  <div className="flex items-stretch divide-x divide-stone-300/70 dark:divide-stone-700/70">
                     <div className="min-w-0 pr-3 sm:pr-6">
                       <LiveNumber value={displayedUserCount} className="text-lg sm:text-2xl" />
                       <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400 sm:text-[11px]">{t.home.hero.statLearners}</p>
@@ -530,7 +484,14 @@ export default function HomePage() {
                   transition={reduceMotion ? { duration: 0 } : { duration: 0.4, ease: "easeOut", delay: 0.09 }}
                   className="lg:col-span-5 relative flex justify-center w-full mt-6 lg:mt-0"
                 >
-                <div className="landing-float relative w-full max-w-[590px] overflow-hidden rounded-[20px] border border-stone-200/80 bg-stone-950 text-white shadow-[0_26px_70px_-34px_rgba(15,23,42,0.58)] dark:border-stone-800 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-[0_30px_78px_-34px_rgba(15,23,42,0.62)]">
+                {/* Khung đứng YÊN. Bản cũ mang `landing-float` - bập bênh
+                    5,5 giây một nhịp, vĩnh viễn - cộng hover nhấc lên và phóng
+                    to. Đây là bản mô phỏng một trang bài học: một tài liệu thì
+                    không trôi nổi, và chuyển động vô cớ ngay cạnh tiêu đề là
+                    thứ kéo mắt khỏi chính chữ cần đọc.
+                    Giữ lại đúng một lớp bóng nhẹ để nó vẫn nổi khỏi mặt giấy -
+                    brief muốn còn chiều sâu, không muốn cực tiểu. */}
+                <div className="relative w-full max-w-[590px] overflow-hidden rounded-xl border border-stone-300/70 bg-stone-950 text-white shadow-[0_18px_48px_-30px_rgba(15,23,42,0.45)] dark:border-stone-800">
                   <div className="absolute inset-0">
                     <Image
                       src="/boss-wallstreet-bull.png"
@@ -550,8 +511,8 @@ export default function HomePage() {
                       }}
                   >
                     <div className="flex items-center justify-between gap-3">
-                      <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200 backdrop-blur">
-                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300" />
+                      <div className="inline-flex items-center gap-2 rounded border border-emerald-300/25 bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" />
                         {t.home.card.studyingNow}
                       </div>
                       <div className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-amber-100">
@@ -561,7 +522,7 @@ export default function HomePage() {
 
                     <div className="mt-5 grid gap-3 xl:grid-cols-[minmax(0,1.08fr)_minmax(190px,0.82fr)]">
                       <div
-                        className="rounded-[1.6rem] border border-white/12 bg-white/10 p-3.5 backdrop-blur-sm xl:p-4"
+                        className="rounded-xl border border-white/10 bg-white/[0.05] p-3.5 xl:p-4"
                         style={{
                           transform: `perspective(1200px) translate3d(${heroParallaxX * 0.8}px, ${heroParallaxY * 0.6}px, 0) rotateY(${heroParallaxX * 0.45}deg)`,
                         }}
@@ -575,8 +536,8 @@ export default function HomePage() {
                             {t.home.card.comprehension}
                           </div>
                         </div>
-                        <div className="rounded-[1.35rem] border border-white/10 bg-stone-950/45 p-3">
-                          <div className="rounded-[18px] bg-white/8 p-2.5">
+                        <div className="rounded-lg border border-white/10 bg-stone-950/45 p-3">
+                          <div className="rounded-md bg-white/8 p-2.5">
                             <div className="flex items-start justify-between gap-3">
                               <div>
                                 <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">{t.home.card.exampleLabel}</p>
@@ -592,7 +553,7 @@ export default function HomePage() {
                                 [t.finalOne.homePage.epsLabel, t.home.card.epsValue],
                                 [t.finalOne.homePage.peBadge, t.home.card.peValue],
                               ].map(([label, value]) => (
-                                <div key={label} className="rounded-[14px] bg-stone-950/45 px-1.5 py-2">
+                                <div key={label} className="rounded-md bg-stone-950/45 px-1.5 py-2">
                                   <p className="text-[9px] font-black uppercase tracking-[0.12em] text-stone-500">{label}</p>
                                   <p className="mt-1 text-[13px] font-black leading-tight text-white">{value}</p>
                                 </div>
@@ -605,7 +566,7 @@ export default function HomePage() {
                               ["2", t.home.card.tip2],
                               ["3", t.home.card.tip3],
                             ].map(([step, text]) => (
-                              <div key={step} className="flex items-center gap-2 rounded-[14px] bg-white/7 px-2.5 py-2 text-[11px] font-bold leading-snug text-stone-200">
+                              <div key={step} className="flex items-center gap-2 rounded-md bg-white/7 px-2.5 py-2 text-[11px] font-bold leading-snug text-stone-200">
                                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-300/15 text-[10px] text-emerald-100">{step}</span>
                                 {text}
                               </div>
@@ -623,7 +584,7 @@ export default function HomePage() {
                             [t.finalOne.homePage.quizLabel, t.home.card.metaQuizValue],
                             [t.home.card.metaReview, t.home.card.metaReviewValue],
                           ].map(([label, value]) => (
-                            <div key={label} className="rounded-[16px] border border-white/10 bg-white/8 px-3 py-2">
+                            <div key={label} className="rounded-lg border border-white/10 bg-white/8 px-3 py-2">
                               <p className="text-[10px] font-black uppercase tracking-[0.14em] text-stone-400">{label}</p>
                               <p className="mt-1 text-[13px] font-black leading-tight text-white">{value}</p>
                             </div>
@@ -633,7 +594,7 @@ export default function HomePage() {
 
                       <div className="grid gap-3 sm:grid-cols-3 xl:block xl:space-y-3">
                         <div
-                          className="rounded-[1.45rem] border border-white/12 bg-white/10 p-3.5 backdrop-blur-sm xl:p-4"
+                          className="rounded-xl border border-white/10 bg-white/[0.05] p-3.5 xl:p-4"
                           style={{
                             transform: `perspective(1200px) translate3d(${heroParallaxX * 1.1}px, ${heroParallaxY * 0.8}px, 0) rotateY(${heroParallaxX * 0.7}deg)`,
                           }}
@@ -646,7 +607,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div
-                          className="rounded-[1.45rem] border border-white/12 bg-white/10 p-3.5 backdrop-blur-sm xl:p-4"
+                          className="rounded-xl border border-white/10 bg-white/[0.05] p-3.5 xl:p-4"
                           style={{
                             transform: `perspective(1200px) translate3d(${heroParallaxX * 1.6}px, ${heroParallaxY * 1.15}px, 0) rotateY(${heroParallaxX * 0.9}deg)`,
                           }}
@@ -658,7 +619,7 @@ export default function HomePage() {
                             <div className="preview-progress-live h-full w-3/4 rounded-full bg-gradient-to-r from-amber-300 to-emerald-300" />
                           </div>
                         </div>
-                        <div className="rounded-[1.45rem] border border-emerald-300/20 bg-emerald-400/10 p-3.5 backdrop-blur-sm xl:p-4">
+                        <div className="rounded-xl border border-emerald-300/20 bg-emerald-400/[0.07] p-3.5 xl:p-4">
                           <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-200">{t.home.card.noteLabel}</p>
                           <p className="mt-2 text-sm font-black text-white">{t.home.card.noteTitle}</p>
                           <p className="mt-1 text-xs leading-relaxed text-stone-300">{t.home.card.noteBody}</p>
@@ -673,66 +634,62 @@ export default function HomePage() {
         </section>
 
         {/* ── PRODUCT PREVIEW ── */}
-        <section className="landing-band landing-band-soft landing-band-divider relative py-6 sm:py-8">
+        <section className="band band-paper band-divider relative py-6 sm:py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-2xl mb-8">
-            <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
-              {t.home.preview.eyebrow}
-            </p>
-            <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
-              {t.home.preview.title}
-            </h2>
-            <p className="mt-3 max-w-xl text-sm text-stone-600 dark:text-stone-400 leading-relaxed sm:text-base">
-              {t.home.preview.sub}
-            </p>
+            <ChapterHeading
+              index={1}
+              eyebrow={t.home.preview.eyebrow}
+              title={t.home.preview.title}
+              sub={t.home.preview.sub}
+            />
           </ScrollReveal>
           <ScrollReveal delay={0.08}>
             <ProductPreview />
           </ScrollReveal>
-          <div className="mt-5 overflow-hidden rounded-full border border-stone-200/80 bg-white/80 px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-stone-500 shadow-sm dark:border-stone-800 dark:bg-stone-900/60 dark:text-stone-400">
-            <div className="landing-ticker flex items-center gap-10">
-              {/* Listed twice on purpose: the CSS marquee translates by -50%,
-                  so the second copy is what makes the loop seamless. */}
-              {[
-                t.home.ticker.liveXp,
-                t.home.ticker.weeklyBoard,
-                t.home.ticker.spacedRepetition,
-                t.home.ticker.gameKingdom,
-                t.home.ticker.finsocial,
-                t.home.ticker.studyGroup,
-              ]
-                .concat([
-                  t.home.ticker.liveXp,
-                  t.home.ticker.weeklyBoard,
-                  t.home.ticker.spacedRepetition,
-                  t.home.ticker.gameKingdom,
-                  t.home.ticker.finsocial,
-                  t.home.ticker.studyGroup,
-                ])
-                .map((item, index) => (
-                  <span key={`${item}-${index}`} className="inline-flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    {item}
-                  </span>
-                ))}
-            </div>
-          </div>
+          {/* MỤC LỤC CHƯƠNG, không phải bảng chạy chữ.
+              Sáu dòng này là tên sáu tính năng thật, và bản cũ cho chúng trôi
+              ngang trong một viên thuốc bo tròn - `animation: ticker-drift 26s
+              linear infinite`. Chữ đang trôi thì không đọc được: muốn biết
+              dòng thứ tư nói gì phải đứng chờ nó quay lại. Một danh sách sáu
+              mục mà người đọc không đọc nổi thì nó không còn là thông tin, chỉ
+              còn là chuyển động.
+
+              Xếp tĩnh, xuống dòng tự nhiên, mỗi mục mở đầu bằng một gạch ngắn
+              xanh - cùng ngôn ngữ với dòng đề ở hero và số chương. Đọc như
+              dòng "trong chương này" ở đầu một chương sách. */}
+          <ul className="eyebrow mt-6 flex flex-wrap items-center gap-x-6 gap-y-2.5 border-t border-stone-300/70 pt-4 text-stone-500 dark:border-stone-700/70 dark:text-stone-400">
+            {[
+              t.home.ticker.liveXp,
+              t.home.ticker.weeklyBoard,
+              t.home.ticker.spacedRepetition,
+              t.home.ticker.gameKingdom,
+              t.home.ticker.finsocial,
+              t.home.ticker.studyGroup,
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-2">
+                <span aria-hidden className="h-px w-3 bg-emerald-600/80 dark:bg-emerald-500/80" />
+                {item}
+              </li>
+            ))}
+          </ul>
           </div>
         </section>
 
         {/* ── SOCIAL PROOF ── */}
         <section className="bg-white dark:bg-stone-950 py-5 sm:py-6 relative border-y border-stone-200/80 dark:border-stone-800/80 font-sans">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal className="text-center mb-5">
-              <p className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1">
-                {t.home.social.eyebrow}
-              </p>
-              <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-stone-100 mb-2 leading-snug">
-                {t.home.social.title}
-              </h2>
-              <p className="max-w-xl mx-auto text-xs sm:text-sm leading-relaxed text-stone-600 dark:text-stone-400">
-                {t.home.social.sub}
-              </p>
+            {/* Căn TRÁI, không còn căn giữa. Đây là section duy nhất trước
+                đây căn giữa, nên khi cuộn qua nó là một lần mắt phải nhảy vào
+                giữa rồi quay lại mép trái ở section sau. Mục lục sách thì
+                thẳng một cột. */}
+            <ScrollReveal className="mb-5">
+              <ChapterHeading
+                index={2}
+                eyebrow={t.home.social.eyebrow}
+                title={t.home.social.title}
+                sub={t.home.social.sub}
+              />
             </ScrollReveal>
 
             <ScrollReveal delay={0.05}>
@@ -742,18 +699,20 @@ export default function HomePage() {
         </section>
 
         {/* ── GAME KINGDOM PREVIEW ── */}
-        <section className="landing-band landing-band-dark landing-band-divider relative py-5 sm:py-6 font-sans">
+        <section className="band band-ink band-divider relative py-5 sm:py-6 font-sans">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="max-w-3xl mb-3">
-            <p className="text-[11px] font-black text-amber-200 uppercase tracking-widest mb-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
-              {t.home.kingdom.eyebrow}
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.72)]">
-              {t.home.kingdom.title}
-            </h2>
-            <p className="mt-1.5 max-w-xl text-xs sm:text-sm leading-relaxed text-stone-200 drop-shadow-[0_1px_2px_rgba(0,0,0,0.75)]">
-              {t.home.kingdom.sub}
-            </p>
+          {/* Dải này là khu trò chơi nên nền vẫn tối - giữ nguyên, vì brief
+              muốn phần gamification còn ra chất. Chỉ bỏ ba lớp `drop-shadow`
+              đổ bóng chữ: nền giờ là một mặt mực phẳng, chữ trắng trên đó đã
+              đủ tương phản, và bóng chữ là thứ chỉ cần khi đặt chữ lên ảnh. */}
+          <ScrollReveal className="max-w-3xl mb-4">
+            <ChapterHeading
+              index={3}
+              tone="dark"
+              eyebrow={t.home.kingdom.eyebrow}
+              title={t.home.kingdom.title}
+              sub={t.home.kingdom.sub}
+            />
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>
@@ -763,21 +722,22 @@ export default function HomePage() {
       </section>
 
         {/* ── FEATURE SHOWCASE ── */}
-        <section className="landing-band landing-band-emerald landing-band-divider relative py-5 sm:py-6 font-sans border-y border-stone-200/80 dark:border-stone-800/80">
+        <section className="band band-academic band-divider relative py-5 sm:py-6 font-sans border-y border-stone-200/80 dark:border-stone-800/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="max-w-3xl mb-4">
-              <p className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">
-                {t.home.ecosystem.eyebrow}
-              </p>
-              <h2 className="text-3xl lg:text-4xl font-black text-stone-900 dark:text-stone-100">
-                {t.home.ecosystem.titlePart1}{" "}
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  {t.home.ecosystem.titleHighlight}
-                </span>
-              </h2>
-              <p className="mt-3 max-w-xl text-sm text-stone-600 dark:text-stone-400 leading-relaxed sm:text-base">
-                {t.home.ecosystem.sub}
-              </p>
+              <ChapterHeading
+                index={4}
+                eyebrow={t.home.ecosystem.eyebrow}
+                sub={t.home.ecosystem.sub}
+                title={
+                  <>
+                    {t.home.ecosystem.titlePart1}{" "}
+                    <span className="text-emerald-700 dark:text-emerald-400">
+                      {t.home.ecosystem.titleHighlight}
+                    </span>
+                  </>
+                }
+              />
             </ScrollReveal>
 
             <ScrollReveal delay={0.08}>
@@ -794,7 +754,13 @@ export default function HomePage() {
         {/* ── VISION & MISSION ── */}
         <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
           <ScrollReveal>
-            <div className="animated-border-card rounded-[20px] border border-stone-200/80 dark:border-stone-800/85 bg-white/70 dark:bg-stone-900/60 backdrop-blur-sm p-5 sm:p-6 shadow-sm">
+            {/* KHÔNG CÒN THẺ BỌC. Chỗ này từng là một `animated-border-card`:
+                viền chạy sáng, nền trắng 70%, backdrop-blur, bo 20px, đổ bóng -
+                và bên trong nó lại là ba thẻ bo góc nữa. Ba tầng hộp lồng nhau
+                cho một đoạn nói về tầm nhìn.
+                Giờ nội dung nằm thẳng trên giấy, ngăn với section trên bằng một
+                nét kẻ. Cùng cách mà một chương sách mở đầu. */}
+            <div className="border-t border-stone-300/70 pt-8 dark:border-stone-700/70">
               <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(300px,0.95fr)] lg:items-center">
                 <div>
                   <p className="mb-2 inline-flex items-center gap-2 text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
@@ -807,8 +773,13 @@ export default function HomePage() {
                     {t.home.vision.title}
                   </h2>
 
-                  <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-xl border border-emerald-200/50 dark:border-emerald-900/40 bg-emerald-50/50 dark:bg-emerald-950/20 p-3">
+                  {/* Bảng số liệu, không phải ba tấm thẻ. Ba con số này đến
+                      từ cùng một khảo sát và phải đọc CẠNH nhau để có nghĩa;
+                      bọc mỗi con số trong một thẻ riêng có viền và nền màu là
+                      tách chúng ra đúng lúc cần so sánh. Vạch ngăn dọc mảnh
+                      giữ chúng là một bảng. */}
+                  <div className="mt-6 grid gap-y-5 border-t border-stone-300/70 pt-5 dark:border-stone-700/70 sm:grid-cols-3 sm:gap-y-0 sm:divide-x sm:divide-stone-300/70 sm:dark:divide-stone-700/70">
+                    <div className="sm:pr-5">
                       <div className="text-[9px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
                         {t.home.vision.stat1Label}
                       </div>
@@ -819,7 +790,7 @@ export default function HomePage() {
                         {t.home.vision.stat1Note}
                       </p>
                     </div>
-                    <div className="rounded-xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 p-3">
+                    <div className="sm:px-5">
                       <div className="text-[9px] font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
                         {t.home.vision.stat2Label}
                       </div>
@@ -830,7 +801,7 @@ export default function HomePage() {
                         {t.home.vision.stat2Note}
                       </p>
                     </div>
-                    <div className="rounded-xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30 p-3">
+                    <div className="sm:pl-5">
                       <div className="text-[9px] font-black uppercase tracking-wider text-stone-500 dark:text-stone-400">
                         {t.home.vision.stat3Label}
                       </div>
@@ -856,7 +827,7 @@ export default function HomePage() {
                     <div className="mt-3">
                       <Link
                         href="/login?mode=signup"
-                        className="cta-electric inline-flex items-center gap-2 rounded-xl bg-stone-950 px-4 py-2 text-xs font-black text-white hover:bg-stone-900 dark:bg-emerald-500 dark:text-stone-950 dark:hover:bg-emerald-400 transition-all cursor-pointer"
+                        className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-stone-950 px-4 py-2 text-xs font-black text-white transition-colors hover:bg-stone-800 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-500"
                       >
                         {t.home.vision.cta}
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -884,7 +855,7 @@ export default function HomePage() {
                   {t.home.footer.blurb}
                 </p>
                 <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3 py-1 text-[11px] font-bold text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                   <span>{t.home.footer.community}</span>
                 </div>
               </div>

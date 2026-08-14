@@ -1499,7 +1499,6 @@ export const vi = {
     post: "Đăng bài",
 
     // Header
-    bgAlt: "Saigon Skyline background",
     backToDashboard: "Về Dashboard",
     eyebrow: "Mạng xã hội học tài chính",
     title: "FinSocial Feed",

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Radio } from "lucide-react";
 import { getTotalCompletedLessonsCount } from "@/lib/supabase-user";
 import { useI18n } from "@/lib/i18n/context";
 import { intlLocale } from "@/lib/i18n";
@@ -79,42 +78,37 @@ export default function DashboardRecommendations() {
   if (liveCompletedCount === null) return null;
 
   return (
-    <div className="w-full rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 shadow-sm">
-      <div className="rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 px-3.5 py-3 dark:border-emerald-900/60 dark:from-emerald-950/35 dark:to-teal-950/20">
-        {/* Con số đứng TRƯỚC phần chữ, tức bên trái.
-            Đổi chỗ bằng thứ tự DOM chứ không phải bằng `text-left`: hai khối
-            này nằm trong một flex, nên `text-right`/`text-left` chỉ quyết định
-            chữ nằm đâu BÊN TRONG khối, không quyết định khối nằm đâu trong
-            hàng. Đổi mỗi lớp căn chữ thì con số vẫn ở nguyên mép phải.
-
-            `justify-between` bỏ đi và phần chữ nhận `flex-1`: giữ
-            justify-between với thứ tự mới sẽ ghim số ở mép trái, chữ ở mép
-            phải và moi ra một khoảng trống giữa hai bên. `flex-1` cho khối chữ
-            ăn hết phần còn lại, nên số đứng sát trái và chữ chạy liền ngay
-            cạnh. */}
-        <div className="flex items-center gap-3">
-          <div className="shrink-0 text-left">
-            <p className="text-2xl font-black tabular-nums leading-none text-stone-950 dark:text-stone-50">
-              {liveCompletedCount.toLocaleString(intlLocale(locale))}
-            </p>
-            <p className="mt-1 text-[10px] font-bold text-emerald-700 dark:text-emerald-300">{t.recommendations.lessonsUnit}</p>
-          </div>
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 rounded-full bg-white/80 px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] text-emerald-700 ring-1 ring-emerald-200 dark:bg-stone-950/50 dark:text-emerald-300 dark:ring-emerald-900">
-                <Radio className="h-3 w-3 animate-pulse" />
-                {t.recommendations.liveBadge}
-              </span>
-              <p className="truncate text-[11px] font-black uppercase tracking-[0.14em] text-emerald-800 dark:text-emerald-300">
-                {t.recommendations.liveTitle}
-              </p>
-            </div>
-            <p className="mt-1 text-xs font-semibold text-stone-600 dark:text-stone-400">
-              {t.recommendations.liveSubtitle}
-            </p>
-          </div>
-        </div>
+    // MỘT khung, không phải hai. Bản trước là một thẻ trắng bọc một thẻ xanh
+    // viền gradient - hai lớp bo góc lồng nhau cho đúng một con số, và cái
+    // khung trong tự nó đã trông như một thông báo cần xử lý.
+    //
+    // Bố cục dọc thay cho hàng ngang: con số là thứ duy nhất đáng nhìn ở đây,
+    // và đặt nó cạnh ba dòng chữ thì nó phải nhỏ lại vừa chiều cao của chúng.
+    // Xếp dọc, nó được cỡ chữ của một tiêu đề, còn nhãn và câu giải thích lùi
+    // xuống làm chú thích - đúng thứ tự đọc mà khối này muốn.
+    <section className="w-full rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
+      {/* Màu xanh còn đúng một chấm 6px. Huy hiệu "LIVE" trước đây là chữ hoa,
+          giãn chữ, viền, nền và một biểu tượng nhấp nháy - năm thứ trang trí
+          cho một thông tin mà cái chấm nói xong. */}
+      <div className="flex items-center gap-2">
+        <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-emerald-500" aria-hidden />
+        <p className="truncate text-[11px] font-semibold tracking-wide text-stone-500 dark:text-stone-400">
+          {t.recommendations.liveTitle}
+        </p>
       </div>
-    </div>
+
+      <p className="mt-2.5 flex items-baseline gap-1.5">
+        <span className="text-[34px] font-black leading-none tracking-tight tabular-nums text-stone-900 dark:text-stone-50">
+          {liveCompletedCount.toLocaleString(intlLocale(locale))}
+        </span>
+        <span className="text-xs font-semibold text-stone-400 dark:text-stone-500">
+          {t.recommendations.lessonsUnit}
+        </span>
+      </p>
+
+      <p className="mt-2 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+        {t.recommendations.liveSubtitle}
+      </p>
+    </section>
   );
 }

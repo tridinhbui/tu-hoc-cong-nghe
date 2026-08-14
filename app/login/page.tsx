@@ -4,7 +4,7 @@ import React, { Suspense, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, BarChart3, CheckCircle2, MessageCircleMore, ShieldCheck, Star, Users2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 import { translateAuthError, isUnconfirmedEmailError } from "@/lib/auth-error-messages";
 import { stashReferralCodeFromUrl } from "@/lib/referrals";
@@ -339,19 +339,15 @@ function LoginForm() {
   }
 
   return (
-    <div className="relative min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden bg-[radial-gradient(circle_at_18%_14%,rgba(16,185,129,0.16),transparent_20%),radial-gradient(circle_at_82%_18%,rgba(59,130,246,0.12),transparent_18%),radial-gradient(circle_at_50%_100%,rgba(167,139,250,0.09),transparent_22%),linear-gradient(180deg,#fbfbfd_0%,#f6f7fb_100%)] dark:bg-[radial-gradient(circle_at_18%_14%,rgba(16,185,129,0.18),transparent_20%),radial-gradient(circle_at_82%_18%,rgba(59,130,246,0.12),transparent_18%),radial-gradient(circle_at_50%_100%,rgba(167,139,250,0.1),transparent_22%),linear-gradient(180deg,rgba(12,10,9,1),rgba(17,24,39,1))] px-4 sm:px-6 lg:px-8 py-3 lg:py-4 flex flex-col justify-between">
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-70"
-        initial={{ opacity: 0, scale: 1.02 }}
-        animate={{ opacity: 0.7, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      >
-        <div className="absolute left-[-8%] top-[-12%] h-72 w-72 rounded-full bg-emerald-300/20 blur-3xl" />
-        <div className="absolute right-[-10%] top-[10%] h-80 w-80 rounded-full bg-sky-300/15 blur-3xl" />
-        <div className="absolute bottom-[-12%] left-[18%] h-96 w-96 rounded-full bg-violet-300/12 blur-3xl" />
-      </motion.div>
+    /* Modern Editorial EdTech, khớp với components/home/HomePage.tsx: nền
+       #fbfaf7 phẳng, số chương + gạch mảnh thay cho thẻ nổi, và xanh lá chỉ
+       dùng ở chỗ mang nghĩa.
 
+       Nền cũ là bốn lớp gradient chồng nhau có cả xanh dương (59,130,246) lẫn
+       tím (167,139,250), cộng ba quả cầu blur-3xl bay phía sau - đó là thứ tạo
+       ra cảm giác SaaS mà trang chủ đã bỏ. Không thay bằng gradient khác, thay
+       bằng KHÔNG gradient: trang chủ dùng đúng một màu nền và để chữ làm việc. */
+    <div className="relative min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden bg-[#fbfaf7] dark:bg-stone-950 px-4 sm:px-6 lg:px-8 py-3 lg:py-4 flex flex-col justify-between transition-colors duration-300">
       <div className="mx-auto w-full max-w-7xl relative flex-1 flex flex-col justify-between my-auto">
         <div className="shrink-0 mb-2">
           <Link
@@ -363,52 +359,76 @@ function LoginForm() {
           </Link>
         </div>
 
-        <div className="grid gap-6 lg:gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(340px,410px)] lg:items-center my-auto flex-1">
+        <div className="grid gap-8 lg:gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(340px,400px)] lg:items-center my-auto flex-1">
           <motion.div
-            className="hidden lg:block"
+            className="relative hidden lg:block"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
           >
-            <div className="max-w-xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50/80 dark:bg-emerald-950/30 px-3.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
-                {t.login.freeForever}
+            {/* Con số vàng nhạt phía sau - mượn đúng thủ pháp của trang chủ.
+                Đây là phần "có chiều sâu, không vô trùng": nó là hoa văn chứ
+                không phải một hiệu ứng phát sáng. */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-4 -top-14 select-none text-[110px] font-black leading-none text-[#FFCD00]/10"
+            >
+              01
+            </div>
+
+            <div className="relative max-w-xl">
+              <div className="flex items-baseline gap-3">
+                <span className="shrink-0 font-black tabular-nums leading-none text-[1.75rem] text-stone-300 dark:text-stone-700">
+                  01
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-400 sm:text-[11px]">
+                  {t.login.freeForever}
+                </span>
               </div>
 
-              <h1 className="mt-3 text-3xl xl:text-4xl font-black tracking-tight text-stone-950 dark:text-stone-50 leading-[1.06] text-balance">
+              <div className="mt-3 h-px w-full bg-stone-300/70 dark:bg-stone-700/70" />
+
+              <h1 className="mt-3.5 text-[1.9rem] xl:text-[2.25rem] font-black tracking-tight text-stone-950 dark:text-stone-50 leading-[1.08] text-balance">
                 {t.login.heroTitle}
               </h1>
-              <p className="mt-2.5 max-w-lg text-xs sm:text-sm leading-relaxed text-stone-600 dark:text-stone-300">
+              <p className="mt-2.5 max-w-lg text-[13px] leading-6 text-stone-600 dark:text-stone-400">
                 {t.login.heroBody}
               </p>
 
-              <div className="mt-3.5 grid gap-2.5 sm:grid-cols-3">
-                <div className="rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-white/82 dark:bg-stone-900/60 p-3 shadow-xs">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <p className="mt-2 text-xs font-bold text-stone-900 dark:text-stone-100">{t.login.perk1Title}</p>
-                  <p className="mt-0.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">{t.login.perk1Body}</p>
-                </div>
-                <div className="rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-white/82 dark:bg-stone-900/60 p-3 shadow-xs">
-                  <BarChart3 className="w-4 h-4 text-sky-600 dark:text-sky-400" />
-                  <p className="mt-2 text-xs font-bold text-stone-900 dark:text-stone-100">{t.login.perk2Title}</p>
-                  <p className="mt-0.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">{t.login.perk2Body}</p>
-                </div>
-                <div className="rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-white/82 dark:bg-stone-900/60 p-3 shadow-xs">
-                  <CheckCircle2 className="w-4 h-4 text-violet-600 dark:text-violet-400" />
-                  <p className="mt-2 text-xs font-bold text-stone-900 dark:text-stone-100">{t.login.perk3Title}</p>
-                  <p className="mt-0.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">{t.login.perk3Body}</p>
-                </div>
-              </div>
-
-              <div className="mt-3.5 rounded-2xl border border-stone-200/60 dark:border-stone-800/80 bg-white/82 dark:bg-stone-900/55 p-3 shadow-sm">
-                <div className="mb-2 flex items-center gap-2">
-                  <Logo size={24} />
-                  <div>
-                    <p className="text-xs font-bold text-stone-900 dark:text-stone-100">{t.login.trackPickTitle}</p>
-                    <p className="text-[10px] text-stone-500 dark:text-stone-400">{t.login.trackPickBody}</p>
+              {/* Ba lợi ích: cùng nội dung, bỏ ba cái thẻ. Chia bằng gạch dọc
+                  mảnh và bỏ ba màu icon xanh lá / xanh dương / tím vốn là thứ
+                  làm trang này trông như một bảng giá SaaS.
+                  Xếp NGANG chứ không dọc, và đó không phải chuyện thẩm mỹ: khối
+                  bọc ngoài là `lg:overflow-hidden`, nên một cột trái cao quá
+                  viewport bị CẮT chứ không cuộn được. Bản danh sách dọc đo được
+                  770px trong khung 720px và ăn mất đáy khối xem trước. */}
+              <dl className="mt-5 grid grid-cols-3 divide-x divide-stone-200 border-y border-stone-200 py-2.5 dark:divide-stone-800 dark:border-stone-800">
+                {[
+                  { t: t.login.perk1Title, b: t.login.perk1Body },
+                  { t: t.login.perk2Title, b: t.login.perk2Body },
+                  { t: t.login.perk3Title, b: t.login.perk3Body },
+                ].map((perk, i) => (
+                  <div key={perk.t} className={i === 0 ? "pr-4" : i === 2 ? "pl-4" : "px-4"}>
+                    <span aria-hidden="true" className="block h-1 w-5 bg-emerald-600 dark:bg-emerald-500" />
+                    <dt className="mt-1.5 text-[13px] font-black text-stone-900 dark:text-stone-100">{perk.t}</dt>
+                    <dd className="mt-0.5 text-[12px] leading-5 text-stone-600 dark:text-stone-400">{perk.b}</dd>
                   </div>
+                ))}
+              </dl>
+
+              {/* Một khối xem trước duy nhất, đóng khung bằng nhãn + gạch mảnh
+                  thay vì một thẻ bo tròn có đổ bóng. */}
+              <div className="mt-5">
+                <div className="flex items-baseline justify-between gap-4">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-stone-500 dark:text-stone-400">
+                    {t.login.trackPickTitle}
+                  </span>
+                  <span className="text-[11px] text-stone-500 dark:text-stone-400">{t.login.trackPickBody}</span>
                 </div>
-                <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} compact />
+                <div className="mt-2 h-px w-full bg-stone-300/70 dark:bg-stone-700/70" />
+                <div className="mt-2.5">
+                  <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} compact />
+                </div>
               </div>
             </div>
           </motion.div>
@@ -421,25 +441,37 @@ function LoginForm() {
               </span>
             </div>
 
+            {/* Thẻ form: bo 16px thay vì 32, viền đặc thay vì trong mờ, bóng nhẹ
+                thay cho bóng 90px, và bỏ backdrop-blur cùng dải gradient ba màu
+                ở mép trên. Vẫn là thẻ nổi duy nhất trên trang - đó là thứ giữ
+                cho nó "premium" mà không cần thêm hiệu ứng nào. */}
             <motion.div
-              initial={{ opacity: 0, y: 16, scale: 0.985 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.55, ease: "easeOut" }}
-              className="bg-white/78 dark:bg-stone-900/85 border border-stone-200/70 dark:border-stone-800 rounded-[32px] shadow-[0_35px_90px_-48px_rgba(15,23,42,0.45)] dark:shadow-black/30 overflow-hidden backdrop-blur-xl"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl shadow-sm overflow-hidden"
             >
-              <div className="h-[3px] bg-gradient-to-r from-emerald-400 via-teal-400 to-sky-400" />
-              <div className="p-5 sm:p-6 xl:p-7 space-y-3 font-sans">
-                <div className="lg:hidden rounded-2xl border border-emerald-100/80 dark:border-emerald-900 bg-gradient-to-r from-emerald-50/75 via-white/70 to-teal-50/70 dark:from-emerald-950/25 dark:via-stone-900/40 dark:to-teal-950/20 px-3.5 py-2.5 shadow-xs">
-                  <p className="text-xs font-bold text-stone-900 dark:text-stone-100">
+              <div className="p-5 sm:p-6 xl:p-7 space-y-3.5 font-sans">
+                <div className="lg:hidden border-l-2 border-emerald-600 dark:border-emerald-500 pl-3">
+                  <p className="text-[13px] font-bold text-stone-900 dark:text-stone-100">
                     {format(t.login.lessonCountLine, { count: lessonCountFloor ?? 360 })}
                   </p>
                 </div>
 
                 <div>
-                  <h1 className="text-xl sm:text-2xl font-black text-stone-900 dark:text-stone-100 mb-1">
+                  <div className="flex items-baseline gap-3">
+                    <span className="shrink-0 font-black tabular-nums leading-none text-[1.4rem] text-stone-300 dark:text-stone-700">
+                      02
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-400">
+                      {t.login.brand}
+                    </span>
+                  </div>
+                  <div className="mt-2.5 mb-3 h-px w-full bg-stone-200 dark:bg-stone-800" />
+                  <h1 className="text-[1.6rem] font-black leading-[1.15] tracking-tight text-stone-950 dark:text-stone-50 mb-1.5">
                     {mode === "login" ? t.login.modeLogin : mode === "signup" ? t.login.modeSignup : t.login.modeForgot}
                   </h1>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
+                  <p className="text-[13px] leading-6 text-stone-600 dark:text-stone-400">
                     {mode === "login"
                       ? t.login.subLogin
                       : mode === "signup"
@@ -453,7 +485,7 @@ function LoginForm() {
                     <button
                       onClick={handleGoogleLogin}
                       disabled={loading}
-                      className="button-premium w-full border border-stone-200/80 dark:border-stone-700/80 bg-white/80 dark:bg-stone-950/40 hover:bg-white dark:hover:bg-stone-800 text-stone-900 dark:text-stone-100 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 disabled:opacity-60 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-500/10 hover:shadow-md cursor-pointer"
+                      className="button-premium w-full border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-950/40 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-900 dark:text-stone-100 py-2.5 rounded-lg font-bold text-[13px] transition-colors duration-200 disabled:opacity-60 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600/30 cursor-pointer"
                     >
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -476,7 +508,7 @@ function LoginForm() {
 
                 {mode === "forgot" ? (
                   resetSent ? (
-                    <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400 text-xs font-semibold rounded-xl px-3.5 py-3 text-center">
+                    <div className="bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-400 text-[13px] font-semibold rounded-lg px-3.5 py-3 text-center">
                       {t.login.resetSentPart1}
                       <strong>{email}</strong>
                       {t.login.resetSentPart2}
@@ -484,7 +516,15 @@ function LoginForm() {
                   ) : (
                     <form onSubmit={handleForgotPassword} className="space-y-3">
                       <div className="space-y-1">
-                        <label className="text-[10px] font-black text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
+                        {/* KHÔNG dùng .input-premium ở đây nữa. Lớp đó trong
+                            globals.css đặt cứng `background: rgba(255,255,255,.88)`
+                            và KHÔNG có bản `.dark`, nên ở chế độ tối nó thắng
+                            `dark:bg-stone-800` - ô nhập sáng trắng trong khi chữ
+                            là `dark:text-stone-100`, tức gõ xong gần như không
+                            đọc được. Nó cũng đặt cứng `border-radius: 18px`, ghi
+                            đè luôn bo góc của trang này. Viết thẳng bằng Tailwind
+                            thì cả hai vấn đề biến mất và không đụng globals.css. */}
+                        <label className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-[0.18em] block">
                           {t.login.emailLabel}
                         </label>
                         <input
@@ -492,12 +532,12 @@ function LoginForm() {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="email@vi-du.com"
-                          className="input-premium w-full px-3.5 py-2.5 text-xs sm:text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-300 dark:placeholder:text-stone-600 dark:bg-stone-800 dark:border-stone-700 rounded-xl"
+                          className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
                         />
                       </div>
 
                       {error && (
-                        <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-semibold rounded-xl px-3 py-2">
+                        <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-[13px] font-semibold rounded-lg px-3 py-2">
                           {error}
                         </div>
                       )}
@@ -505,7 +545,7 @@ function LoginForm() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="button-premium w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-3 rounded-xl font-black text-xs sm:text-sm transition-all duration-200 disabled:opacity-60 mt-1 cursor-pointer"
+                        className="button-premium w-full bg-stone-950 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-950 py-3 rounded-lg font-black text-[13px] uppercase tracking-[0.08em] transition-colors duration-200 disabled:opacity-60 mt-1 cursor-pointer"
                       >
                         {loading ? t.login.sending : t.login.sendReset}
                       </button>
@@ -515,7 +555,7 @@ function LoginForm() {
                   <form onSubmit={handleSubmit} className="space-y-2.5">
                     {mode === "signup" && (
                       <div className="space-y-1">
-                        <label className="text-[10px] font-black text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
+                        <label className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-[0.18em] block">
                           {t.login.nameLabel}
                         </label>
                         <input
@@ -523,13 +563,13 @@ function LoginForm() {
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           placeholder={t.login.namePlaceholder}
-                          className="input-premium w-full px-3.5 py-2 text-xs sm:text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-300 dark:placeholder:text-stone-600 dark:bg-stone-800 dark:border-stone-700 rounded-xl"
+                          className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
                         />
                       </div>
                     )}
 
                     <div className="space-y-1">
-                      <label className="text-[10px] font-black text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
+                      <label className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-[0.18em] block">
                         {t.login.emailLabel}
                       </label>
                       <input
@@ -537,13 +577,13 @@ function LoginForm() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="email@vi-du.com"
-                        className="input-premium w-full px-3.5 py-2 text-xs sm:text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-300 dark:placeholder:text-stone-600 dark:bg-stone-800 dark:border-stone-700 rounded-xl"
+                        className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
                       />
                     </div>
 
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <label className="text-[10px] font-black text-stone-600 dark:text-stone-400 uppercase tracking-wider block">
+                        <label className="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase tracking-[0.18em] block">
                           {t.login.passwordLabel}
                         </label>
                         {mode === "login" && (
@@ -565,18 +605,18 @@ function LoginForm() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••"
-                        className="input-premium w-full px-3.5 py-2 text-xs sm:text-sm text-stone-900 dark:text-stone-100 placeholder:text-stone-300 dark:placeholder:text-stone-600 dark:bg-stone-800 dark:border-stone-700 rounded-xl"
+                        className="w-full rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:placeholder:text-stone-500"
                       />
                     </div>
 
                     {error && (
-                      <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-semibold rounded-xl px-3 py-2">
+                      <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-400 text-[13px] font-semibold rounded-lg px-3 py-2">
                         <p>{error}</p>
                       </div>
                     )}
 
                     {needsEmailConfirm && (
-                      <div className="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-300 text-xs font-semibold rounded-xl px-3 py-2.5 space-y-2">
+                      <div className="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-300 text-[13px] font-semibold rounded-lg px-3 py-2.5 space-y-2">
                         <p>{t.login.emailNotConfirmed}</p>
                         {confirmResent ? (
                           <p className="font-bold">{t.login.confirmResent}</p>
@@ -594,7 +634,7 @@ function LoginForm() {
                     )}
 
                     {cooldownUntil && (
-                      <div className="bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-400 text-xs font-semibold rounded-xl px-3 py-2">
+                      <div className="bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-900 text-amber-800 dark:text-amber-400 text-[13px] font-semibold rounded-lg px-3 py-2">
                         {format(t.login.tooManyAttempts, { seconds: cooldownLeft })}
                       </div>
                     )}
@@ -602,36 +642,30 @@ function LoginForm() {
                     <button
                       type="submit"
                       disabled={loading || !!cooldownUntil}
-                      className="button-premium w-full bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 py-3 rounded-xl font-black text-xs sm:text-sm transition-all duration-200 disabled:opacity-60 mt-1 cursor-pointer"
+                      className="button-premium w-full bg-stone-950 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-950 py-3 rounded-lg font-black text-[13px] uppercase tracking-[0.08em] transition-colors duration-200 disabled:opacity-60 mt-1 cursor-pointer"
                     >
                       {loading ? t.login.processing : mode === "login" ? t.login.modeLogin : t.login.signUp}
                     </button>
                   </form>
                 )}
 
-                <div className="grid gap-2 grid-cols-3">
-                  <div className="rounded-xl border border-stone-200/70 bg-stone-50/80 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-950/35">
-                    <div className="flex items-center gap-1.5">
-                      <Star className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                      <p className="text-[9px] font-black uppercase text-stone-400 truncate">{t.login.statRating}</p>
+                {/* Ba con số: cùng nội dung, bỏ ba cái thẻ có viền và ba màu
+                    icon. Chia bằng gạch dọc mảnh và dùng tabular-nums như dải
+                    thống kê ở hero trang chủ, nên giá trị thẳng cột với nhau. */}
+                <dl className="grid grid-cols-3 divide-x divide-stone-200 border-t border-stone-200 pt-3 dark:divide-stone-800 dark:border-stone-800">
+                  {[
+                    { k: t.login.statRating, v: t.login.statRatingValue },
+                    { k: t.login.statLessons, v: format(t.login.statLessonsValue, { count: lessonCountFloor ?? 360 }) },
+                    { k: t.login.statSupport, v: t.login.statSupportValue },
+                  ].map((stat, i) => (
+                    <div key={stat.k} className={i === 0 ? "pr-3" : i === 2 ? "pl-3" : "px-3"}>
+                      <dd className="text-[13px] font-black tabular-nums text-stone-900 dark:text-stone-100">{stat.v}</dd>
+                      <dt className="mt-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400">
+                        {stat.k}
+                      </dt>
                     </div>
-                    <p className="mt-0.5 text-xs font-bold text-stone-900 dark:text-stone-100 truncate">{t.login.statRatingValue}</p>
-                  </div>
-                  <div className="rounded-xl border border-stone-200/70 bg-stone-50/80 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-950/35">
-                    <div className="flex items-center gap-1.5">
-                      <Users2 className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
-                      <p className="text-[9px] font-black uppercase text-stone-400 truncate">{t.login.statLessons}</p>
-                    </div>
-                    <p className="mt-0.5 text-xs font-bold text-stone-900 dark:text-stone-100 truncate">{format(t.login.statLessonsValue, { count: lessonCountFloor ?? 360 })}</p>
-                  </div>
-                  <div className="rounded-xl border border-stone-200/70 bg-stone-50/80 px-2.5 py-2 dark:border-stone-800 dark:bg-stone-950/35">
-                    <div className="flex items-center gap-1.5">
-                      <MessageCircleMore className="h-3.5 w-3.5 text-sky-500 shrink-0" />
-                      <p className="text-[9px] font-black uppercase text-stone-400 truncate">{t.login.statSupport}</p>
-                    </div>
-                    <p className="mt-0.5 text-xs font-bold text-stone-900 dark:text-stone-100 truncate">{t.login.statSupportValue}</p>
-                  </div>
-                </div>
+                  ))}
+                </dl>
 
                 <div className="text-center text-xs text-stone-600 dark:text-stone-400">
                   {mode === "login" ? (

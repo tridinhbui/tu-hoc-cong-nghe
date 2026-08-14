@@ -65,17 +65,25 @@ export default function LearningPathSummary({
     // `self-start` đã bỏ cùng lúc: nó tồn tại để thoát khỏi `items-stretch` của
     // lưới hai cột cũ, mà lưới ấy không còn.
     <div className="p-4 sm:p-5">
-      <div className="flex items-start gap-3.5">
-        <div className="w-10 h-10 shrink-0 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md">
-          <Compass className="w-5 h-5" />
-        </div>
+      <div className="flex items-start gap-3">
+        {/* Biểu tượng nét, không phải huy hiệu.
+            Ô 40px nền đặc bo góc kèm shadow là hình dạng của một NÚT - nó hứa
+            một hành động riêng, trong khi cả hàng mới là thứ bấm được. Ở kích
+            thước đó nó cũng nặng ngang tiêu đề, nên mắt dừng ở màu trước rồi
+            mới đọc chữ. Nét 16px giữ nguyên chức năng phân biệt hai hàng (xanh
+            / hổ phách) mà không tranh phần với dòng chữ nó đang chú thích. */}
+        <Compass className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
 
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-400">
+          {/* Nhãn mào lùi về màu trung tính và bỏ font-black: hai hàng này
+              trước đây có tới ba mức nhấn (nhãn mào đậm màu, tiêu đề đậm, ô
+              biểu tượng đặc màu) nên không mức nào còn nhấn được gì. Giữ đúng
+              một: tiêu đề. */}
+          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-400 dark:text-stone-500">
             {p.summaryEyebrow}
           </p>
 
-          <p className="mt-1 text-base font-bold text-stone-900 dark:text-stone-100">{trackName}</p>
+          <p className="mt-0.5 text-[17px] font-black tracking-tight text-stone-900 dark:text-stone-100">{trackName}</p>
 
           {/* Phần gấp được. `grid-rows-[0fr]` → `[1fr]` chứ không phải max-height:
               chiều cao thật do nội dung quyết định, nên không phải đoán một con
@@ -127,7 +135,7 @@ export default function LearningPathSummary({
           aria-expanded={!collapsed}
           title={collapsed ? p.cardExpand : p.cardCollapse}
           aria-label={collapsed ? p.cardExpand : p.cardCollapse}
-          className="-mr-1 -mt-1 shrink-0 cursor-pointer rounded-xl p-1.5 text-emerald-700 transition hover:bg-emerald-500/10 dark:text-emerald-400"
+          className="-mr-1 -mt-1 shrink-0 cursor-pointer rounded-lg p-1.5 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700 dark:text-stone-500 dark:hover:bg-stone-800 dark:hover:text-stone-200"
         >
           <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${collapsed ? "-rotate-90" : ""}`} />
         </button>

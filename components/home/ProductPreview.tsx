@@ -67,7 +67,7 @@ export default function ProductPreview() {
   return (
     <div
       style={{ contain: "layout paint" }}
-      className="animated-border-card relative overflow-hidden rounded-[20px] border border-stone-200/80 bg-white shadow-[0_18px_44px_-28px_rgba(15,23,42,0.24)] dark:border-stone-800 dark:bg-stone-900 transform-gpu will-change-transform"
+      className="relative overflow-hidden rounded-xl border border-stone-300/80 bg-white dark:border-stone-800 dark:bg-stone-900 transform-gpu will-change-transform"
     >
       <style>{`
         @keyframes preview-progress-pulse {

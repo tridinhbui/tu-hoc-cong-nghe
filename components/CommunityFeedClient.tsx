@@ -946,22 +946,17 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const hotPosts = [...humanPosts]
     .sort((a, b) => b.reaction_count + b.comment_count * 2 - (a.reaction_count + a.comment_count * 2))
     .slice(0, 3);
-  const shellClass = embedded ? "" : "min-h-screen bg-stone-50 dark:bg-stone-950";
+  // Nền giấy ngà của hệ chung, không phải stone-50. Cùng giá trị trang chủ
+  // dùng cho `.band-paper`; hai trang cạnh nhau lệch một bậc xám là thứ mắt
+  // bắt được ngay cả khi không gọi tên được.
+  const shellClass = embedded ? "" : "min-h-screen bg-[#fbfaf7] dark:bg-stone-950";
 
   return (
     <div className={shellClass}>
       <style>{`
-        @keyframes finsocial-gradient-drift {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 100% 50%; }
-        }
         @keyframes finsocial-shimmer {
           0% { transform: translateX(-120%); }
           100% { transform: translateX(220%); }
-        }
-        .finsocial-hero-gradient {
-          background-size: 220% 220%;
-          animation: finsocial-gradient-drift 18s ease-in-out infinite alternate;
         }
         .finsocial-progress-shimmer {
           position: relative;
@@ -977,60 +972,78 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         }
       `}</style>
       {!embedded && (
-        <div className="relative overflow-hidden border-b border-stone-800 bg-stone-950 text-white">
-          {/* Saigon Skyline Background Image (Crisp & High Clarity) */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        // Dải mực của hệ chung (app/globals.css), không phải một trang bìa
+        // riêng. Trước đây chỗ này là ảnh skyline ở opacity 70% phủ HAI lớp
+        // gradient chồng nhau, viền dưới, và ba tấm thẻ số bo 2xl mang ba màu
+        // nhấn khác nhau kèm shadow-xl - tức mọi thứ trang chủ cố ý không làm.
+        // Đó là lý do FinSocial đọc như một ứng dụng khác dán vào cạnh sản
+        // phẩm chứ không phải một chương của nó.
+        <div className="band band-ink band-divider text-white">
+          {/* Ảnh giữ lại nhưng hạ xuống mức HOA VĂN NỀN: nó mang bản sắc Sài
+              Gòn, thứ đáng giữ, nhưng ở 70% nó là ảnh bìa và nuốt mất chữ. Một
+              lớp phủ phẳng thay cho hai lớp chuyển sắc - dải này là một mặt
+              giấy, không phải một khung cảnh. */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
             <Image
               src="/saigon-skyline.jpg"
-              alt={t.feed.bgAlt}
+              alt=""
               fill
               priority
-              quality={95}
+              quality={90}
               sizes="100vw"
-              className="object-cover opacity-70 brightness-105 contrast-105 scale-100"
+              className="object-cover opacity-[0.13]"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-stone-950/85 via-stone-950/55 to-emerald-950/70" />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/30" />
           </div>
 
-          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
-            <Link href="/dashboard" className="text-stone-300 hover:text-white text-sm font-semibold flex items-center gap-1.5 w-fit bg-stone-900/60 px-3 py-1.5 rounded-full backdrop-blur-md border border-stone-800 transition-colors">
+          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-9 sm:py-12">
+            {/* Liên kết chữ, không phải viên thuốc. Một đường quay lại không
+                cần nền mờ, viền và bo tròn để người ta hiểu nó bấm được. */}
+            <Link
+              href="/dashboard"
+              className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-stone-400 transition-colors hover:text-white"
+            >
               <ArrowLeft className="w-4 h-4" /> {t.feed.backToDashboard}
             </Link>
-            <div className="mt-5 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+
+            <div className="mt-7 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3.5 py-1 text-[11px] font-black uppercase tracking-[0.18em] text-emerald-300 backdrop-blur-md shadow-lg">
-                  <MessageCircle className="h-3.5 w-3.5 text-emerald-400" />
+                {/* Nhãn mắt dùng lớp `.eyebrow` chung: chữ và màu, không hộp.
+                    Xanh lá ở đây là trạng thái "đang hoạt động", đúng vai trò
+                    duy nhất nó được giữ trong hệ. */}
+                <p className="eyebrow flex items-center gap-2 text-emerald-400">
+                  <MessageCircle className="h-3.5 w-3.5" />
                   {t.feed.eyebrow}
-                </div>
-                <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white drop-shadow-md">
+                </p>
+                <h1 className="mt-3 text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] tracking-tight text-white">
                   {t.feed.title}
                 </h1>
-                <p className="mt-2.5 max-w-xl text-sm sm:text-base leading-relaxed text-stone-200 drop-shadow-sm font-medium">
+                <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-stone-300">
                   {t.feed.subtitle}
                 </p>
               </div>
-              <div className="grid grid-cols-3 gap-3 sm:min-w-[420px]">
+
+              {/* Ba con số đọc thành MỘT hàng chỉ số, ngăn nhau bằng nét kẻ
+                  mảnh thay vì ba tấm thẻ. Bỏ ba màu nhấn: chúng không nói lên
+                  trạng thái nào - bài viết không "xanh" hơn hay "hổ phách" hơn
+                  bình luận - nên ba màu ấy chỉ là tiếng ồn. Con số vẫn đếm
+                  động, vẫn là phần sống của trang. */}
+              <dl className="flex items-end gap-6 sm:gap-9 lg:shrink-0">
                 {[
-                  { label: t.feed.statPosts, value: posts.length, color: "text-sky-300 bg-stone-900/80 border-sky-500/30" },
-                  { label: t.feed.statReactions, value: totalReactions, color: "text-amber-300 bg-stone-900/80 border-amber-500/30" },
-                  { label: t.feed.statComments, value: totalComments, color: "text-emerald-300 bg-stone-900/80 border-emerald-500/30" },
-                ].map((item) => (
-                  <motion.div
+                  { label: t.feed.statPosts, value: posts.length },
+                  { label: t.feed.statReactions, value: totalReactions },
+                  { label: t.feed.statComments, value: totalComments },
+                ].map((item, i) => (
+                  <div
                     key={item.label}
-                    className={`rounded-2xl px-4 py-3.5 text-center border backdrop-blur-md shadow-xl ${item.color}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    whileHover={{ y: -4 }}
-                    transition={{ type: "spring", stiffness: 360, damping: 26 }}
+                    className={i > 0 ? "border-l border-white/12 pl-6 sm:pl-9" : ""}
                   >
-                    <p className={`text-2xl sm:text-3xl font-black ${item.color.split(" ")[0]}`}>
+                    <dd className="text-3xl sm:text-4xl font-bold tabular-nums tracking-tight text-white">
                       <AnimatedCounter value={item.value} />
-                    </p>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-300 mt-0.5">{item.label}</p>
-                  </motion.div>
+                    </dd>
+                    <dt className="eyebrow mt-1 text-stone-400">{item.label}</dt>
+                  </div>
                 ))}
-              </div>
+              </dl>
             </div>
           </div>
         </div>
@@ -1323,7 +1336,16 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             )}
           </div>
         ) : (
-          <div className="space-y-4">
+          // Bài viết là BÀI VIẾT, ngăn nhau bằng nét kẻ - không phải một chồng
+          // thẻ nổi. Trước đây mỗi bài là một khối bo 24px, nền trắng, viền
+          // ring, đổ bóng, và nhấc lên 4px khi rê chuột; xếp mười bài như thế
+          // thì trang đọc như một bảng điều khiển đầy ô chứ như một dòng thời
+          // gian để đọc. Bỏ vỏ thẻ đi thì thứ còn lại là chữ, đúng thứ người ta
+          // vào đây để xem.
+          //
+          // Nền `bg-white/60` rất nhạt chỉ để tách bài khỏi nền giấy khi rê
+          // chuột - một chỉ báo "đang ở đây", không phải một mặt phẳng mới.
+          <div className="divide-y divide-stone-200/70 dark:divide-stone-800/70">
             <AnimatePresence initial={false}>
             {visiblePosts.map((post, index) => {
               const badge = getUserBadge(post, t);
@@ -1333,12 +1355,11 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               <motion.div
                 key={post.id}
                 id={`community-post-${post.id}`}
-                className="group rounded-[24px] bg-white p-5 shadow-[0_16px_34px_-28px_rgba(15,23,42,0.22)] ring-1 ring-stone-100/70 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_20px_42px_-26px_rgba(15,23,42,0.28)] dark:bg-stone-900/85 dark:ring-stone-800/60"
-                initial={{ opacity: 0, y: 18 }}
+                className="group -mx-3 px-3 py-6 transition-colors duration-150 hover:bg-white/60 sm:-mx-4 sm:px-4 dark:hover:bg-stone-900/40"
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 340, damping: 28, delay: Math.min(index * 0.08, 0.32) }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.22, ease: "easeOut", delay: Math.min(index * 0.04, 0.16) }}
               >
                 <div className="flex items-start gap-4">
                   <Avatar name={post.user_name} avatarUrl={post.user_avatar} />

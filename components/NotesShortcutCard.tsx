@@ -42,19 +42,24 @@ export default function NotesShortcutCard() {
     // Hiệu ứng hover đổi từ `-translate-y-0.5` sang đổi nền: nhấc một HÀNG lên
     // khỏi bảng chứa nó trông như hàng bị bong ra, còn nhấc một tấm thẻ rời thì
     // không. Vùng bấm vẫn là toàn bộ hàng.
-    <div className="group relative flex flex-col p-4 transition-colors duration-200 hover:bg-amber-50/60 sm:p-5 dark:hover:bg-amber-950/20">
+    // Nền hover chuyển sang trung tính. Một vệt hổ phách phủ cả hàng là màu
+    // dùng để trang trí một trạng thái tạm; màu ở đây chỉ còn việc phân biệt
+    // hai hàng, và nó làm việc đó ở biểu tượng.
+    <div className="group relative flex flex-col p-4 transition-colors duration-200 hover:bg-stone-50 sm:p-5 dark:hover:bg-stone-800/40">
       <Link href="/ghi-chu" aria-label={p.notesTitle} className="absolute inset-0 z-10" />
 
-      <div className="flex items-start gap-3.5">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-500 text-white shadow-md">
-          <StickyNote className="h-5 w-5" />
-        </div>
+      <div className="flex items-start gap-3">
+        {/* Biểu tượng nét - xem chú thích cùng chỗ trong LearningPathSummary. */}
+        <StickyNote className="mt-0.5 h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400" />
 
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-black uppercase tracking-[0.14em] text-amber-700 dark:text-amber-400">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-400 dark:text-stone-500">
             {p.notesEyebrow}
           </p>
-          <h2 className="mt-0.5 text-lg font-black text-stone-900 dark:text-stone-100">{p.notesTitle}</h2>
+          {/* Cùng cỡ, cùng độ đậm với tiêu đề hàng trên. Trước đây hàng này
+              text-lg còn hàng kia text-base, nên hai hàng ngang cấp trong cùng
+              một bảng lại đọc ra như một mục chính và một mục phụ. */}
+          <h2 className="mt-0.5 text-[17px] font-black tracking-tight text-stone-900 dark:text-stone-100">{p.notesTitle}</h2>
 
           {/* Cùng cách gấp với LearningPathSummary - xem chú thích ở đó về lý do
               dùng grid-rows thay cho max-height. */}
@@ -75,7 +80,7 @@ export default function NotesShortcutCard() {
           aria-expanded={!collapsed}
           title={collapsed ? p.cardExpand : p.cardCollapse}
           aria-label={collapsed ? p.cardExpand : p.cardCollapse}
-          className="relative z-20 -mr-1 -mt-1 shrink-0 cursor-pointer rounded-xl p-1.5 text-amber-700 transition hover:bg-amber-500/10 dark:text-amber-400"
+          className="relative z-20 -mr-1 -mt-1 shrink-0 cursor-pointer rounded-lg p-1.5 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700 dark:text-stone-500 dark:hover:bg-stone-800 dark:hover:text-stone-200"
         >
           <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${collapsed ? "-rotate-90" : ""}`} />
         </button>
@@ -87,7 +92,7 @@ export default function NotesShortcutCard() {
         }`}
       >
         <div className="min-h-0 overflow-hidden" inert={collapsed}>
-          <span className="block pt-3 text-sm font-black text-amber-700 group-hover:underline dark:text-amber-400">
+          <span className="block pt-3 text-[13px] font-bold text-amber-700 group-hover:underline dark:text-amber-400">
             {p.notesCta}
           </span>
         </div>
