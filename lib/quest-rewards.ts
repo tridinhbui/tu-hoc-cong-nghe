@@ -38,6 +38,18 @@ export const QUEST_XP_REWARDS: Record<string, number> = {
   // phần thêm vào: ngân sách ngày lên 35.
   daily_focus: 5,
   daily_game: 0,
+  // Ba nhiệm vụ thêm 2026-08-13 để đẩy người học ra phố, học sâu hơn và tương
+  // tác trong phòng 3D thay vì chỉ ghé qua. Cả ba đều đo bằng dữ liệu MÁY CHỦ
+  // ghi, không phải cờ localStorage như daily_study_group - đó là điều kiện để
+  // một nhiệm vụ đáng có phần thưởng.
+  //
+  // Tổng ngày lên 53, nhưng WEEKLY_QUEST_XP_CAP giữ nguyên 120: ba nhiệm vụ này
+  // ĐỔI việc người học làm chứ không nới ngân sách. Đó đúng là tính chất mà
+  // ghi chú của cái trần này mô tả - thêm loại nhiệm vụ mới thì nó cạnh tranh
+  // trong cùng một ngân sách tuần chứ không thổi phồng nền kinh tế.
+  daily_lessons_3: 8, // Học sâu: 3 bài trong ngày
+  daily_street: 5, // Ra Phố Nghề: thử thách cột trụ hoặc ngồi học tại phố
+  daily_room_quiz: 5, // Làm 1 quiz nhóm trong phòng 3D
   daily_news_quiz: 8, // components/DailyNewsQuizWidget.tsx - a real quiz (was 15)
   career_assessment: 50, // components/JobSearchClient.tsx - one-time (day_key "once")
 };

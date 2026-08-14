@@ -299,6 +299,7 @@ with expected_functions(name) as (values
     ('public', 'study_room_notes', 'Members can read study room notes'),
     ('public', 'study_room_pomodoro', 'Members can read study room pomodoro'),
     ('public', 'study_room_quiz_attempts', 'Members can read study room quiz attempts'),
+    ('public', 'study_room_quiz_attempts', 'Users can read own room quiz attempts'),
     ('public', 'study_room_reward_claims', 'Members can read study room reward claims'),
     ('public', 'study_rooms', 'Authenticated users can view study rooms'),
     ('public', 'user_badges', 'Users can earn their own badges'),

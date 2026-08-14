@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { processRecallAttempt } from "@/lib/supabase-recalls";
+import { PILLAR_QUIZ_SOURCE } from "@/lib/study-session";
 import { useI18n } from "@/lib/i18n/context";
 
 /** Trả lời một câu ôn ngay tại cột, không rời hành lang.
@@ -88,6 +89,11 @@ export default function PillarQuiz({ lessonId, accent, due = false, userId, onCl
           body: JSON.stringify({
             track: "personal",
             difficulty: "tat-ca",
+            // Đánh dấu lượt này là làm TẠI Phố Nghề. Nhiệm vụ hàng ngày
+            // daily_street đếm theo cột `source` của user_quiz_sessions, vì
+            // track/difficulty ở đây trùng hệt một lượt thử thách kiến thức làm
+            // ở nhà. Máy chủ vẫn đối chiếu lại với danh sách đóng của nó.
+            source: PILLAR_QUIZ_SOURCE,
             answers: [{ token: q.token, selected: picked }],
           }),
         });

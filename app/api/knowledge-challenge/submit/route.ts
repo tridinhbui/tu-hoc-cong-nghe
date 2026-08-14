@@ -3,6 +3,7 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { createAdminClient } from "@/lib/supabase-admin";
 import { verifyQuestionToken } from "@/lib/quiz-tokens";
 import { STANDALONE_QUIZ_DAILY_XP_CAP, computeQuizXp } from "@/lib/supabase-quiz-sessions";
+import { PILLAR_QUIZ_SOURCE } from "@/lib/study-session";
 
 // Server-authoritative grading for both the standalone /kiem-tra quiz and
 // the lesson-unlock gate challenge (components/KnowledgeChallengeModal.tsx).
@@ -30,6 +31,8 @@ export function maxAnswersFor(body: { mode?: unknown; track?: unknown }): number
 const GATE_PASS_RATIO = 0.6;
 const VALID_TRACKS = new Set(["personal", "professional", "cfa", "frm", "ib", "mock-interview"]);
 const VALID_DIFFICULTIES = new Set(["de", "trung-binh", "kho", "tat-ca"]);
+/** Danh sách đóng cho cột `source`. Xem chú thích ở chỗ insert bên dưới. */
+const VALID_SOURCES = new Set([PILLAR_QUIZ_SOURCE]);
 
 interface AnswerInput {
   token: string;
@@ -148,9 +151,15 @@ export async function POST(request: NextRequest) {
   const earnedToday = (todayRows ?? []).reduce((sum, row) => sum + (Number(row.xp_earned) || 0), 0);
   const remainingDailyXp = Math.max(0, STANDALONE_QUIZ_DAILY_XP_CAP - earnedToday);
   const xpEarned = Math.min(computeQuizXp(score, total), remainingDailyXp);
+  // `source` chỉ để phân biệt NƠI làm bài, không đụng tới điểm hay XP. Nhiệm vụ
+  // daily_street đếm số lượt có source = PILLAR_QUIZ_SOURCE trong ngày; nếu tin
+  // thẳng chuỗi client gửi thì bất kỳ ai cũng tự đánh dấu mình đã ra phố bằng
+  // một request từ devtools, nên nó được đối chiếu với một danh sách đóng và
+  // ngoài danh sách thì ghi null chứ không phải ghi nguyên văn.
+  const source = VALID_SOURCES.has(body.source as string) ? (body.source as string) : null;
   const { error } = await admin
     .from("user_quiz_sessions")
-    .insert([{ user_id: user.id, track, difficulty, score, total, xp_earned: xpEarned }]);
+    .insert([{ user_id: user.id, track, difficulty, score, total, xp_earned: xpEarned, source }]);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });

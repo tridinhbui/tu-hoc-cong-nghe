@@ -15,8 +15,9 @@ export const bossStudyWorldVi = {
     soundOffAria: "Bật âm thanh",
     sitButton: "Ngồi xuống học · phiên 25 phút",
     standButton: "Đứng dậy",
-    // Mốc nhiệm vụ daily_focus: 15 phút CỘNG DỒN cả ngày, tính chung cả thư
-    // viện lẫn phòng nhóm - khác đồng hồ Pomodoro 25 phút ngay bên trên.
+    // Mốc nhiệm vụ daily_focus: 25 phút CỘNG DỒN cả ngày, tính chung cả thư
+    // viện lẫn phòng nhóm. Bằng đúng đồng hồ Pomodoro bên trên, nên giữ chữ
+    // "hôm nay" - xem chú thích ở lib/i18n/dictionaries/vi.ts.
     focusGoalProgress: "{minutes}/{target} phút hôm nay · đủ mốc được +{xp} XP",
     focusGoalReached: "Đủ mốc hôm nay · nhận +{xp} XP ở Nhiệm vụ",
     sessionDone: "Xong một phiên · nghỉ một chút",

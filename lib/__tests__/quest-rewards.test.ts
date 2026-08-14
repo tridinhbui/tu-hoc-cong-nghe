@@ -94,7 +94,22 @@ describe("XP economy invariants", () => {
     //
     // Tỷ lệ vẫn giữ được ý ban đầu: một ngày làm hết việc vặt = 3,5 bài học,
     // so với 5,5 bài trước lần cân lại năm ngoái.
-    expect(MAX_DAILY_QUEST_XP).toBe(35);
+    //
+    // 2026-08-13: 35 -> 53. Ba nhiệm vụ mới (daily_lessons_3 8, daily_street 5,
+    // daily_room_quiz 5). Cổng này đã làm đúng việc của nó - nó đỏ, nên con số
+    // được nói ra chứ không trôi đi.
+    //
+    // Vì sao lần này không phải là thổi phồng nền kinh tế: WEEKLY_QUEST_XP_CAP
+    // GIỮ NGUYÊN 120. Trần tuần kẹp phần thưởng về 0 khi vượt
+    // (app/api/quests/claim/route.ts), nên tổng XP một tuần không đổi một điểm
+    // nào - ba nhiệm vụ này ĐỔI việc người học làm để lấy cùng ngân sách đó,
+    // chứ không phát thêm. Lần drift 55/ngày mà ghi chú trên kể lại xảy ra khi
+    // CHƯA có trần tuần nào.
+    //
+    // Hệ quả có thật và cần biết: trần chạm sớm hơn trong tuần (ngày 3 thay vì
+    // ngày 4 nếu làm hết mọi nhiệm vụ). Người cày đủ cả bảy ngày sẽ gặp nhiều
+    // lượt "Nhận" cộng 0 hơn trước.
+    expect(MAX_DAILY_QUEST_XP).toBe(53);
   });
 
   it("makes the weekly cap actually bind", () => {

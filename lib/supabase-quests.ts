@@ -1,7 +1,11 @@
 import { createClient } from "./supabase";
 import { QUEST_XP_REWARDS } from "./quest-rewards";
 import { recalculateUserStats } from "./supabase-user";
-import { DAILY_FOCUS_TARGET_MINUTES } from "./study-session";
+import {
+  DAILY_FOCUS_TARGET_MINUTES,
+  DAILY_STREET_TARGET_MINUTES,
+  PILLAR_QUIZ_SOURCE,
+} from "./study-session";
 
 export interface Quest {
   id: string; // daily_1, daily_2, daily_3
@@ -62,9 +66,15 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
   // bảng do /api/focus-session ghi với hai mốc thời gian server tự đặt, nên
   // con số này không giả được bằng devtools như một cờ trong localStorage.
   const startOfDay = new Date(`${dayKey}T00:00:00`);
+  // `world` đi kèm trong CÙNG truy vấn này chứ không phải một truy vấn thứ hai
+  // lọc world='pho-nghe'. Hai lý do: một vòng đi-về ít hơn, và bộ kiểm
+  // lib/__tests__/quest-rewards.test.ts đếm số lần đọc bảng này trong file phải
+  // đúng bằng 1 - để không ai bám thêm một nhiệm vụ nữa vào đây mà quên mất
+  // nhánh lọc lúc bảng chưa tồn tại. Phép đếm ấy quét mã nguồn dạng chữ, nên
+  // nhắc lại nguyên văn lời gọi trong một chú thích cũng làm nó đỏ.
   const { data: focusToday, error: focusError } = await supabase
     .from("focus_sessions")
-    .select("seconds")
+    .select("seconds, world")
     .eq("user_id", userId)
     .gte("started_at", startOfDay.toISOString());
   // PGRST205 = bảng không tồn tại, tức migration 20260824_focus_sessions.sql
@@ -81,6 +91,42 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
     );
   }
   const focusSecondsToday = (focusToday ?? []).reduce((sum, r) => sum + ((r.seconds as number) ?? 0), 0);
+  // Riêng thời gian ngồi Ở PHỐ NGHỀ. `world` là chuỗi tự do trong bảng
+  // (xem 20260824_focus_sessions.sql) nhưng /api/focus-session chỉ nhận ba giá
+  // trị trong VALID_WORLDS, nên so sánh thẳng là đủ.
+  const streetSecondsToday = (focusToday ?? [])
+    .filter((r) => r.world === "pho-nghe")
+    .reduce((sum, r) => sum + ((r.seconds as number) ?? 0), 0);
+
+  // 3c. Thử thách cột trụ ở Phố Nghề hôm nay.
+  //
+  // Đọc user_quiz_sessions chứ không đọc user_lesson_recalls, dù PillarQuiz có
+  // gọi cả hai. user_lesson_recalls là upsert khoá (user_id, lesson_id), nên
+  // created_at của nó là lần ĐẦU chạm bài đó - không có mốc nào nói "làm hôm
+  // nay", và next_recall_at thì luôn nằm ở tương lai. Đếm bằng bảng ấy sẽ cho
+  // ra một nhiệm vụ hoặc xong sẵn từ hôm trước, hoặc không bao giờ xong.
+  //
+  // `source` phân biệt cột trụ với thử thách kiến thức thường: PillarQuiz gửi
+  // đúng track/difficulty như mọi lượt khác, nên nếu không có cột này thì làm
+  // quiz ở nhà cũng tính là đã ra phố.
+  const { data: pillarToday, error: pillarError } = await supabase
+    .from("user_quiz_sessions")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("source", PILLAR_QUIZ_SOURCE)
+    .gte("completed_at", startOfDay.toISOString());
+  // Cột `source` cần migration 20260912_daily_quest_signals.sql. 42703 =
+  // undefined_column. Chưa chạy thì nhánh cột trụ im lặng, nhưng nhiệm vụ vẫn
+  // hoàn thành được bằng nhánh ngồi học ở phố - nên không lọc bỏ cả nhiệm vụ.
+  const pillarCountToday = pillarError ? 0 : (pillarToday ?? []).length;
+
+  // 3d. Quiz nhóm trong phòng 3D hôm nay.
+  const { data: roomQuizToday } = await supabase
+    .from("study_room_quiz_attempts")
+    .select("id")
+    .eq("user_id", userId)
+    .gte("created_at", startOfDay.toISOString());
+  const roomQuizCountToday = (roomQuizToday ?? []).length;
 
   // 4. Fetch claimed status from DB
   const claimedSet = new Set<string>();
@@ -161,12 +207,13 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       claimed: claimedSet.has("daily_4"),
     },
     {
-      // Mục tiêu 15 phút chứ không phải trọn 25: một phiên Pomodoro bị cắt
-      // ngang vì có việc vẫn là thời gian đã ngồi học thật, và bắt phải đủ 25
-      // mới tính sẽ biến nhiệm vụ thành thứ hoặc-tất-cả-hoặc-không.
+      // 25 phút CỘNG DỒN cả ngày, không phải trọn một phiên liên tục. Hai
+      // chuyện khác nhau, và chỗ này là nơi dễ lẫn nhất: đứng dậy giữa chừng
+      // hay đổi phòng đều không mất gì, vì tổng lấy từ `focus_sessions` của cả
+      // ngày. Xem DAILY_FOCUS_TARGET_MINUTES trong lib/study-session.ts.
       id: "daily_focus",
       title: "Ngồi học trong thành phố",
-      description: "Ngồi học 15 phút ở thư viện hoặc phòng nhóm 3D",
+      description: "Ngồi học 25 phút ở thư viện hoặc phòng nhóm 3D",
       target: DAILY_FOCUS_TARGET_MINUTES,
       current: Math.min(DAILY_FOCUS_TARGET_MINUTES, Math.floor(focusSecondsToday / 60)),
       xpReward: QUEST_XP_REWARDS.daily_focus,
@@ -180,6 +227,43 @@ export async function getDailyQuests(userId: string, dayKey: string): Promise<Qu
       current: 1,
       xpReward: QUEST_XP_REWARDS.daily_game,
       claimed: claimedSet.has("daily_game"),
+    },
+    {
+      // Học sâu. Mốc 3 chứ không phải 2: daily_1 đã đòi 1 bài, nên 2 gần như
+      // tự xong theo và thành nhiệm vụ thừa nằm cạnh nó.
+      id: "daily_lessons_3",
+      title: "Buổi học tử tế",
+      description: "Hoàn thành 3 bài học trong hôm nay",
+      target: 3,
+      current: Math.min(3, completedTodayCount),
+      xpReward: QUEST_XP_REWARDS.daily_lessons_3,
+      claimed: claimedSet.has("daily_lessons_3"),
+    },
+    {
+      // Hai đường hoàn thành, xong một là đủ - và cả hai đều bắt phải Ở Phố
+      // Nghề. Để một đường thôi thì hoặc phụ thuộc vào việc có cột trụ đang mở
+      // (chưa học bài nào thì không có câu hỏi), hoặc biến nó thành daily_focus
+      // thứ hai.
+      id: "daily_street",
+      title: "Xuống Phố Nghề",
+      description: `Làm 1 thử thách cột trụ, hoặc ngồi học ${DAILY_STREET_TARGET_MINUTES} phút ở Phố Nghề`,
+      target: 1,
+      current:
+        pillarCountToday > 0 || streetSecondsToday >= DAILY_STREET_TARGET_MINUTES * 60 ? 1 : 0,
+      xpReward: QUEST_XP_REWARDS.daily_street,
+      claimed: claimedSet.has("daily_street"),
+    },
+    {
+      // Tương tác thật trong phòng 3D: làm bài cùng phòng, không phải gõ một
+      // tin nhắn. Khác daily_study_group ở chỗ nó đọc bảng máy chủ ghi
+      // (study_room_quiz_attempts) chứ không đọc một cờ trong localStorage.
+      id: "daily_room_quiz",
+      title: "Học cùng phòng",
+      description: "Làm 1 quiz nhóm trong phòng học 3D",
+      target: 1,
+      current: Math.min(1, roomQuizCountToday),
+      xpReward: QUEST_XP_REWARDS.daily_room_quiz,
+      claimed: claimedSet.has("daily_room_quiz"),
     },
     // Lọc bỏ nhiệm vụ không đo được. Hiện tại chỉ có daily_focus rơi vào đây,
     // và chỉ khi migration focus_sessions chưa chạy.

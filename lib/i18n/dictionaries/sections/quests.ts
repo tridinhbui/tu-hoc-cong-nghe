@@ -26,11 +26,23 @@ export const questsVi = {
     daily_4: { title: "Đăng nhập mỗi ngày", description: "Ghé thăm nền tảng hôm nay" },
     daily_focus: {
       title: "Ngồi học trong thành phố",
-      description: "Ngồi học 15 phút ở thư viện hoặc phòng nhóm 3D",
+      description: "Ngồi học 25 phút ở thư viện hoặc phòng nhóm 3D",
     },
     daily_game: {
       title: "Khám phá Vương Quốc Game",
       description: "Tiến vào thế giới Game Tài Chính hôm nay",
+    },
+    daily_lessons_3: {
+      title: "Buổi học tử tế",
+      description: "Hoàn thành 3 bài học trong hôm nay",
+    },
+    daily_street: {
+      title: "Xuống Phố Nghề",
+      description: "Làm 1 thử thách cột trụ, hoặc ngồi học 10 phút ở Phố Nghề",
+    },
+    daily_room_quiz: {
+      title: "Học cùng phòng",
+      description: "Làm 1 quiz nhóm trong phòng học 3D",
     },
   } as Record<string, { title: string; description: string }>,
 };
@@ -47,11 +59,23 @@ export const questsEn: typeof questsVi = {
     daily_4: { title: "Daily sign-in", description: "Visit the platform today" },
     daily_focus: {
       title: "Study in the city",
-      description: "Sit and study for 15 minutes in the 3D library or a group room",
+      description: "Sit and study for 25 minutes in the 3D library or a group room",
     },
     daily_game: {
       title: "Explore the Game Kingdom",
       description: "Step into the Finance Game world today",
+    },
+    daily_lessons_3: {
+      title: "A proper session",
+      description: "Finish three lessons today",
+    },
+    daily_street: {
+      title: "Head out to Career Street",
+      description: "Clear one pillar challenge, or study for 10 minutes on Career Street",
+    },
+    daily_room_quiz: {
+      title: "Study with the room",
+      description: "Take one group quiz inside a 3D study room",
     },
   },
 };

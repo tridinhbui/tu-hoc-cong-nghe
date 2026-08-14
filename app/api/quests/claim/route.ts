@@ -7,6 +7,7 @@ import {
   ONCE_ONLY_QUESTS,
   WEEKLY_QUEST_XP_CAP,
 } from "@/lib/quest-rewards";
+import { checkQuestEligibility } from "@/lib/quest-eligibility";
 
 // Server-authoritative quest claiming. user_quest_completions used to be
 // insertable straight from the browser with a client-supplied xp_earned
@@ -69,6 +70,22 @@ export async function POST(request: NextRequest) {
   }
 
   const admin = createAdminClient();
+
+  // ĐÃ LÀM XONG NHIỆM VỤ CHƯA. Phép kiểm này trước đây không tồn tại ở đâu
+  // ngoài giao diện: components/DailyQuestsWidget.tsx bỏ qua cú bấm khi
+  // `quest.current < quest.target`, và đó là tất cả. Chú thích đầu tệp này nói
+  // route "server-authoritative" - đúng, nhưng chỉ về SỐ TIỀN. Ai cũng có thể
+  // POST thẳng vào đây và nhận đủ XP của một nhiệm vụ chưa hề làm.
+  //
+  // Đặt TRƯỚC phần tính trần tuần: một lần nhận không hợp lệ thì không nên
+  // chạm vào ngân sách tuần, kể cả để đọc.
+  const eligibility = await checkQuestEligibility(admin, user.id, questType, dayKey);
+  if (!eligibility.eligible) {
+    return NextResponse.json(
+      { error: "Quest not completed", reason: eligibility.reason },
+      { status: 403 }
+    );
+  }
 
   // Weekly budget for repeatable quests. Mirrors the daily cap on standalone
   // quiz sessions (STANDALONE_QUIZ_DAILY_XP_CAP): the row is still written so

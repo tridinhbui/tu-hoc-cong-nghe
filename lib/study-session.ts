@@ -36,11 +36,44 @@ export const AWAY_MS = 3 * 60 * 1000;
  * bao lâu nữa. Để mỗi nơi tự viết `15` là cách chắc chắn nhất để một hôm nào đó
  * đồng hồ hứa một mốc mà nhiệm vụ không công nhận.
  *
- * Vì sao 15 chứ không phải 25: một phiên bị cắt ngang vì có việc vẫn là thời
- * gian đã ngồi học thật, và bắt đủ 25 mới tính sẽ biến nhiệm vụ thành thứ
- * hoặc-tất-cả-hoặc-không.
+ * 25 phút, và chữ CỘNG DỒN ở trên là thứ giữ cho con số đó không trở thành
+ * hoặc-tất-cả-hoặc-không. Mốc từng là 15 với lý lẽ: một phiên bị cắt ngang vì
+ * có việc vẫn là thời gian đã ngồi học thật. Lý lẽ ấy vẫn đúng và vẫn được tôn
+ * trọng - nó chống lại việc đòi TRỌN một phiên liên tục, chứ không chống lại
+ * việc đòi nhiều phút hơn. Ngồi 10 phút sáng, 8 phút trưa, 7 phút tối vẫn đủ;
+ * đứng dậy giữa chừng không mất gì; đổi phòng cũng không.
+ *
+ * Hệ quả cần biết: mốc này giờ TRÙNG với POMODORO_MS. Trước đây hai con số cố
+ * ý khác nhau và HUD phải nói rõ "đồng hồ đếm ngược 25, mốc thưởng 15" để người
+ * ngồi không nhầm. Giờ chúng bằng nhau, nên đồng hồ Pomodoro chạy hết đúng lúc
+ * nhiệm vụ đủ điều kiện - với điều kiện phiên đó là phiên duy nhất trong ngày.
+ * Người đã ngồi buổi sáng sẽ đủ trước khi đồng hồ về 0, và đó là đúng.
  */
-export const DAILY_FOCUS_TARGET_MINUTES = 15;
+export const DAILY_FOCUS_TARGET_MINUTES = 25;
+
+/**
+ * Mốc nhiệm vụ daily_street khi hoàn thành bằng cách NGỒI HỌC ở Phố Nghề.
+ *
+ * Thấp hơn hẳn DAILY_FOCUS_TARGET_MINUTES vì đây không phải nhiệm vụ ngồi học -
+ * nó chỉ là nhánh thứ hai của một nhiệm vụ mà nhánh chính là làm thử thách cột
+ * trụ. Đặt bằng 25 sẽ biến nó thành bản sao của daily_focus, và người học chỉ
+ * cần ngồi im một chỗ là xong cả hai - đúng thứ mà nhiệm vụ "ra phố" muốn tránh.
+ *
+ * Phút ngồi ở Phố Nghề vẫn được cộng vào daily_focus như mọi phòng khác; hai
+ * nhiệm vụ chồng nhau ở đây là có chủ ý, không phải sót.
+ */
+export const DAILY_STREET_TARGET_MINUTES = 10;
+
+/**
+ * Giá trị `user_quiz_sessions.source` mà PillarQuiz ở Phố Nghề ghi xuống.
+ *
+ * Sống ở đây - chứ không viết thẳng chuỗi ở ba nơi - vì nó phải khớp giữa client
+ * gửi (components/career-district/PillarQuiz.tsx), route nhận
+ * (app/api/knowledge-challenge/submit/route.ts) và truy vấn đếm
+ * (lib/supabase-quests.ts). Lệch một ký tự thì nhiệm vụ không bao giờ xong và
+ * không có lỗi nào hiện ra.
+ */
+export const PILLAR_QUIZ_SOURCE = "pho-nghe-pillar";
 
 /**
  * Số phút ngồi học đã tích được hôm nay, tính cả phiên ĐANG mở.

@@ -115,8 +115,27 @@ describe("phut ngoi hoc hom nay", () => {
     expect(focusMinutesToday(120, start, start - 90_000)).toBe(2);
   });
 
-  it("moc thuong 15 phut khac han mot phien Pomodoro 25 phut", () => {
-    expect(DAILY_FOCUS_TARGET_MINUTES).toBe(15);
-    expect(DAILY_FOCUS_TARGET_MINUTES * 60_000).toBeLessThan(POMODORO_MS);
+  /** Bài cũ ở đây khẳng định mốc thưởng (15) KHÁC hẳn một phiên Pomodoro (25),
+   *  và cả hai vế đều đã hết đúng: mốc lên 25, tức bằng đúng Pomodoro.
+   *
+   *  Nhưng tính chất mà bài cũ bảo vệ thì vẫn còn, chỉ là giờ không đọc ra được
+   *  từ con số nữa - và đó chính là lý do phải có bài thay thế. Trước đây "15
+   *  khác 25" tự nó nói rằng mốc không phải một phiên. Giờ hai số trùng nhau,
+   *  nên chỗ duy nhất còn giữ được ý "CỘNG DỒN cả ngày, không phải trọn một
+   *  phiên" là một bài kiểm hành vi.
+   *
+   *  Ai đó siết mốc này thành "phải ngồi liền một mạch 25 phút" sẽ làm bài dưới
+   *  đỏ - đúng cái cần chặn, vì nó biến nhiệm vụ thành hoặc-tất-cả-hoặc-không. */
+  it("du moc bang nhieu phien ngan, khong can tron mot Pomodoro", () => {
+    expect(DAILY_FOCUS_TARGET_MINUTES).toBe(25);
+    expect(DAILY_FOCUS_TARGET_MINUTES * 60_000).toBe(POMODORO_MS);
+
+    // Ba lần ngồi rời rạc - 10 + 8 + 7 phút - đã đóng hết, không phiên nào mở.
+    // Không lần nào chạm 25, nhưng tổng thì đủ.
+    const closed = (10 + 8 + 7) * 60;
+    expect(focusMinutesToday(closed, null, start)).toBe(25);
+    expect(focusMinutesToday(closed, null, start)).toBeGreaterThanOrEqual(
+      DAILY_FOCUS_TARGET_MINUTES
+    );
   });
 });
