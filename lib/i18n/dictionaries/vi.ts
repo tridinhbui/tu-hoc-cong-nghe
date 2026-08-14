@@ -2863,9 +2863,10 @@ export const vi = {
     startLesson: "Vào học",
     sitDown: "Ngồi xuống học · phiên 25 phút",
     sessionDone: "Xong!",
-    // Mốc của nhiệm vụ daily_focus: 15 phút CỘNG DỒN cả ngày, khác đồng hồ
-    // Pomodoro 25 phút ngay bên trên nó. Nói rõ "hôm nay" để không ai đọc
-    // thành "phiên này".
+    // Mốc của nhiệm vụ daily_focus: 25 phút CỘNG DỒN cả ngày, tình cờ bằng
+    // đúng đồng hồ Pomodoro ngay bên trên nó. Chữ "hôm nay" vì thế KHÔNG được
+    // bỏ: nó là thứ duy nhất còn phân biệt "tổng cả ngày" với "phiên này", và
+    // trước đây hai số khác nhau nên tự chúng đã phân biệt hộ.
     focusGoalProgress: "{minutes}/{target} phút hôm nay · đủ mốc được +{xp} XP",
     focusGoalReached: "Đủ mốc hôm nay · nhận +{xp} XP ở Nhiệm vụ",
     standUp: "Đứng dậy",
@@ -3218,16 +3219,20 @@ export const vi = {
   careerCategories: {
     labels: {
       investment: "Đầu tư & Nghiên cứu",
+      dealmaking: "Ngân hàng Đầu tư & M&A",
       accounting: "Kế toán & Kiểm soát",
+      risk: "Rủi ro & Tuân thủ",
       banking: "Ngân hàng & Nguồn vốn",
-      advisory: "Dịch vụ & Tư vấn",
+      advisory: "Quản lý Tài sản & Tư vấn",
       data: "Dữ liệu & Công nghệ",
     },
     // Một dòng nói nhóm ngành này làm gì, cho biển hiệu ngoài cửa.
     blurbs: {
       investment: "Định giá, chọn cổ phiếu, quản lý danh mục",
+      dealmaking: "Thương vụ M&A, huy động vốn, đầu tư tư nhân",
       banking: "Thu xếp vốn, tín dụng, nguồn vốn ngân hàng",
-      advisory: "Tư vấn khách hàng, hoạch định tài chính",
+      risk: "Đo lường rủi ro, tuân thủ, kiểm toán nội bộ",
+      advisory: "Quản lý tài sản, hoạch định tài chính cá nhân",
       accounting: "Ghi nhận, kiểm toán, kiểm soát nội bộ",
       data: "Mô hình, dữ liệu và công nghệ tài chính",
     },

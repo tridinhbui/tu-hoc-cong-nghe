@@ -21,7 +21,9 @@ import type { FrmSubjectId } from "@/lib/frm-track";
 
 const CFA_SUBJECTS_FOR: Record<CareerCategory, CfaSubjectId[]> = {
   investment: ["equity", "portfolio", "fixedIncome", "alternatives"],
+  dealmaking: ["corporate", "equity", "fsa"],
   banking: ["corporate", "fixedIncome", "economics"],
+  risk: ["derivatives", "fixedIncome", "ethics"],
   advisory: ["portfolio", "ethics", "economics"],
   accounting: ["fsa", "corporate"],
   data: ["quant", "derivatives"],
@@ -29,7 +31,9 @@ const CFA_SUBJECTS_FOR: Record<CareerCategory, CfaSubjectId[]> = {
 
 const FRM_SUBJECTS_FOR: Record<CareerCategory, FrmSubjectId[]> = {
   investment: ["investment-management", "market-risk"],
+  dealmaking: ["valuation-risk-models", "credit-risk"],
   banking: ["credit-risk", "liquidity-treasury"],
+  risk: ["market-risk", "credit-risk", "operational-resilience"],
   advisory: ["foundations"],
   accounting: ["valuation-risk-models"],
   data: ["quant-analysis", "market-risk"],

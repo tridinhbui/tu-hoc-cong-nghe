@@ -16,6 +16,7 @@
 // (FinanceCareer.relatedCfaSubjectIds). That keeps this file from turning
 // into 40 near-identical literals that nobody would keep in sync.
 
+import type { FinanceCareer } from "@/lib/finance-careers";
 import type { SkillDomainId } from "@/lib/career-competency";
 
 export type RequirementPriority = "must" | "should";
@@ -29,7 +30,14 @@ export interface SkillRequirement {
 
 export interface CareerLike {
   id: string;
-  category: "investment" | "accounting" | "banking" | "advisory" | "data";
+  /** Lấy thẳng từ FinanceCareer chứ KHÔNG chép lại danh sách nhóm ngành.
+   *
+   *  Trước đây chỗ này viết lại union bằng tay, và khi lib/finance-careers.ts
+   *  tách 5 nhóm thành 7 thì bản chép ở đây không đổi - nghĩa là một nghề
+   *  thuộc nhóm mới không còn gán được vào CareerLike. Import kiểu bị xoá lúc
+   *  biên dịch nên không thêm chi phí chạy, mà đổi lại là hai nơi không bao
+   *  giờ lệch nhau được nữa. */
+  category: FinanceCareer["category"];
   relatedCfaSubjectIds?: readonly string[];
 }
 
@@ -109,6 +117,14 @@ const CATEGORY_BASELINE: Record<CareerLike["category"], SkillRequirement[]> = {
   investment: [must("valuation", 60), must("equity_portfolio", 60), should("accounting", 50), should("economics", 40)],
   accounting: [must("accounting", 75), should("fpa_budgeting", 50), should("ethics", 40)],
   banking: [must("fixed_income", 60), must("accounting", 60), should("derivatives_risk", 40)],
+  // Nghề thương vụ đứng trên định giá và kế toán ở mức cao hơn nhánh đầu tư
+  // niêm yết: một Analyst M&A dựng mô hình từ báo cáo chưa kiểm toán của bên
+  // bán, nên đọc sai một khoản dồn tích là sai cả giá thương vụ.
+  dealmaking: [must("valuation", 70), must("accounting", 65), must("corporate_finance", 60), should("modeling_excel", 50)],
+  // Nhánh rủi ro lấy derivatives_risk làm bắt buộc - đó là nơi chứa đo lường
+  // rủi ro thị trường - kèm ethics ở mức cao hơn mặt bằng, vì tuân thủ và
+  // kiểm toán nội bộ là công việc phán xét chứ không chỉ là tính toán.
+  risk: [must("derivatives_risk", 65), must("fixed_income", 55), should("accounting", 50), should("ethics", 55)],
   advisory: [must("personal_finance", 60), must("equity_portfolio", 50), should("ethics", 40)],
   // Nhánh dữ liệu đứng trên nền định lượng chứ không phải nền định giá: một
   // Data Analyst cần thống kê và kiểm định vững, còn kế toán chỉ ở mức đọc

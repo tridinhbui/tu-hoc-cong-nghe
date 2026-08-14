@@ -30,7 +30,9 @@ interface CareerLearningPathClientProps {
 function categoryLabel(t: Dictionary, category: FinanceCareer["category"]): string {
   const map: Record<FinanceCareer["category"], string> = {
     investment: t.careerPath.categoryInvestment,
+    dealmaking: t.careerPath.categoryDealmaking,
     accounting: t.careerPath.categoryAccounting,
+    risk: t.careerPath.categoryRisk,
     banking: t.careerPath.categoryBanking,
     advisory: t.careerPath.categoryAdvisory,
     data: t.careerPath.categoryData,
@@ -46,6 +48,11 @@ function categoryMeta(
 ): Record<FinanceCareer["category"], { label: string; description: string; emoji: string; image: string; from: string; to: string }> {
   return {
     investment: { label: t.careerPath.catInvestmentLabel, description: t.careerPath.catInvestmentDesc, emoji: "📈", image: "/careers/cat_investment_3d.jpg", from: "#34d399", to: "#0d9488" },
+    // Hai nhóm tách ra ở lượt chia lại 5 -> 7 chưa có ảnh riêng, mượn ảnh của
+    // nhóm gốc mà chúng tách ra (dealmaking từ investment, risk từ banking).
+    // Cùng cách xử lý đã dùng cho `data` bên dưới. Thay khi có ảnh.
+    dealmaking: { label: t.careerPath.catDealmakingLabel, description: t.careerPath.catDealmakingDesc, emoji: "🤝", image: "/careers/cat_investment_3d.jpg", from: "#38bdf8", to: "#0284c7" },
+    risk: { label: t.careerPath.catRiskLabel, description: t.careerPath.catRiskDesc, emoji: "🛡️", image: "/careers/cat_banking_3d.jpg", from: "#fb7185", to: "#be123c" },
     accounting: { label: t.careerPath.catAccountingLabel, description: t.careerPath.catAccountingDesc, emoji: "📒", image: "/careers/cat_accounting_3d.jpg", from: "#60a5fa", to: "#2563eb" },
     banking: { label: t.careerPath.catBankingLabel, description: t.careerPath.catBankingDesc, emoji: "🏦", image: "/careers/cat_banking_3d.jpg", from: "#f59e0b", to: "#d97706" },
     advisory: { label: t.careerPath.catAdvisoryLabel, description: t.careerPath.catAdvisoryDesc, emoji: "🤝", image: "/careers/cat_advisory_3d.jpg", from: "#f472b6", to: "#db2777" },
@@ -54,12 +61,25 @@ function categoryMeta(
     data: { label: t.careerPath.catDataLabel, description: t.careerPath.catDataDesc, emoji: "🧮", image: "/careers/cat_investment_3d.jpg", from: "#38bdf8", to: "#0369a1" },
   };
 }
-const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "accounting", "banking", "advisory", "data"];
+const CATEGORY_ORDER: FinanceCareer["category"][] = ["investment", "dealmaking", "banking", "risk", "advisory", "accounting", "data"];
 
-// Entry-level and mixed ("Junior đến Senior") careers still have a way in;
-// pure "Senior - ..." entries are the destination after years of experience,
-// not something a learner picks as a starting direction to study toward.
-const entryLevelCareers = FINANCE_CAREERS.filter((c) => !c.entryLevel.startsWith("Senior"));
+// Nghề mà `entryLevel` mở đầu bằng "Senior" là ĐÍCH ĐẾN sau vài năm kinh
+// nghiệm, không phải hướng để người mới chọn học từ đầu.
+//
+// Trước đây chỗ này LỌC BỎ chúng khỏi trang, và lập luận trên là đúng nhưng
+// kết luận thì quá tay: bốn nghề bị ẩn gồm "Ngân hàng Đầu tư" và "Chuyên viên
+// Đầu tư (CFA Track)" - hai cái tên kéo người vào ngành mạnh nhất - nên trang
+// nghề nghiệp không hề nhắc tới chúng ở bất kỳ đâu. Người đi tìm đúng hai nghề
+// ấy kết luận là app không dạy, trong khi dữ liệu của cả hai vẫn nằm sẵn trong
+// lib/finance-careers.ts kèm lộ trình bài học.
+//
+// Giờ chúng hiện đủ, kèm nhãn "Cần kinh nghiệm". Tín hiệu mà bộ lọc muốn gửi
+// vẫn tới được người học, chỉ khác là dưới dạng một lời cảnh báo đọc được thay
+// vì một sự vắng mặt không giải thích.
+function needsExperience(career: FinanceCareer): boolean {
+  return career.entryLevel.startsWith("Senior");
+}
+const allCareers = FINANCE_CAREERS;
 
 export default function CareerLearningPathClient({
   lessonsBySlug,
@@ -71,7 +91,7 @@ export default function CareerLearningPathClient({
   const CATEGORY_META = useMemo(() => categoryMeta(t), [t]);
   // Dữ liệu nghề nằm ngoài từ điển UI - xem lib/finance-careers-i18n. Hợp nhất
   // ở đây chứ không ở module vì bản dịch phụ thuộc locale, mà locale là state.
-  const careers = useMemo(() => mergeCareers(entryLevelCareers, locale), [locale]);
+  const careers = useMemo(() => mergeCareers(allCareers, locale), [locale]);
   const [selectedCategory, setSelectedCategory] = useState<FinanceCareer["category"] | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const completedSet = useMemo(() => new Set(completedLessonIds), [completedLessonIds]);
@@ -100,7 +120,7 @@ export default function CareerLearningPathClient({
     const out = {} as Record<FinanceCareer["category"], ReturnType<typeof categoryProgress>>;
     for (const cat of CATEGORY_ORDER) {
       out[cat] = categoryProgress(
-        entryLevelCareers.filter((c) => c.category === cat),
+        allCareers.filter((c) => c.category === cat),
         lessonIndex,
         completedSet
       );
@@ -129,14 +149,14 @@ export default function CareerLearningPathClient({
           {t.careerPath.pageSubtitle}
         </p>
 
-        {/* Ba cột từ lg trở lên: có đúng năm nhóm, nên lưới hai cột luôn để
-            lại một thẻ mồ côi cạnh một ô trống ở hàng cuối. Ba cột xếp thành
-            3 + 2, và cột rộng hơn (max-w-5xl thay cho max-w-2xl) kéo nội dung
+        {/* Ba cột từ lg trở lên. Với bảy nhóm, lưới này xếp thành 3 + 3 + 1;
+            lưới hai cột sẽ là 2×3 + 1 và cũng để một thẻ lẻ ở hàng cuối, nên ba
+            cột vẫn hơn. Cột rộng (max-w-5xl thay cho max-w-2xl) kéo nội dung
             phủ hết bề ngang thay vì dồn vào một dải hẹp giữa màn hình. */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {CATEGORY_ORDER.map((cat) => {
             const meta = CATEGORY_META[cat];
-            const count = entryLevelCareers.filter((c) => c.category === cat).length;
+            const count = allCareers.filter((c) => c.category === cat).length;
             const countLabel = format(t.careerPath.careerCount, { count });
             const progress = progressByCategory[cat];
             return (
@@ -247,7 +267,19 @@ export default function CareerLearningPathClient({
                 </div>
                 <div className="min-w-0">
                   <p className="font-bold text-stone-900 dark:text-stone-100 text-sm truncate">{career.title}</p>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">{categoryLabel(t, career.category)}</p>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">{categoryLabel(t, career.category)}</p>
+                    {/* Thay cho việc lọc bỏ hẳn nghề khỏi trang - xem
+                        needsExperience(). Nhãn chứ không phải khoá: người học
+                        vẫn mở được lộ trình bài học của nghề, họ chỉ biết thêm
+                        rằng đây là chỗ để nhắm tới chứ không phải chỗ để nộp
+                        đơn ngay. */}
+                    {needsExperience(career) && (
+                      <span className="rounded-md bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700 dark:bg-amber-950/40 dark:text-amber-400">
+                        {t.careerPath.needsExperienceBadge}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
               <p className="text-xs text-stone-500 dark:text-stone-400 line-clamp-2">{career.summary}</p>

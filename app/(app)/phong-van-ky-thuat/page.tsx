@@ -133,7 +133,9 @@ export default function TechnicalInterviewPage() {
   const CATEGORY_LABELS = useMemo(
     (): Record<CareerCategory, string> => ({
       investment: t.careerPath.catInvestmentLabel,
+      dealmaking: t.careerPath.catDealmakingLabel,
       accounting: t.careerPath.catAccountingLabel,
+      risk: t.careerPath.catRiskLabel,
       banking: t.careerPath.catBankingLabel,
       advisory: t.careerPath.catAdvisoryLabel,
       data: t.careerPath.catDataLabel,

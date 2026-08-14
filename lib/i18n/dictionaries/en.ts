@@ -3026,16 +3026,20 @@ export const en: Dictionary = {
   careerCategories: {
     labels: {
       investment: "Investing & Research",
+      dealmaking: "Investment Banking & M&A",
       accounting: "Accounting & Control",
+      risk: "Risk & Compliance",
       banking: "Banking & Treasury",
-      advisory: "Advisory & Client Services",
+      advisory: "Wealth & Client Advisory",
       data: "Data & Technology",
     },
     // One line saying what the group actually does, for the shopfront sign.
     blurbs: {
       investment: "Valuation, stock picking, portfolio management",
+      dealmaking: "M&A deals, capital raising, private investing",
       banking: "Raising capital, credit, bank funding",
-      advisory: "Client advice and financial planning",
+      risk: "Measuring risk, compliance, internal audit",
+      advisory: "Wealth management and personal financial planning",
       accounting: "Recording, auditing, internal control",
       data: "Models, data and financial technology",
     },

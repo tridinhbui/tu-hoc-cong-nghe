@@ -53,7 +53,17 @@ export interface FinanceCareer {
   // theo danh mục phải liệt kê đủ cả năm, nếu không nghề thuộc danh mục thiếu
   // sẽ biến mất khỏi giao diện đó: components/CareerRoadmapMap.tsx,
   // components/CareerLearningPathClient.tsx và components/JobSearchClient.tsx.
-  category: "investment" | "accounting" | "banking" | "advisory" | "data";
+  // Bảy nhóm ngành. `dealmaking` và `risk` là hai nhóm THÊM VÀO, tách ra từ ba
+  // nhóm cũ đã phình quá to (investment 13, banking 10, advisory 10) - ở cỡ đó
+  // màn hình chọn nhóm không còn thu hẹp lựa chọn được bao nhiêu, mà đó là
+  // toàn bộ lý do bước chọn nhóm tồn tại.
+  //
+  // `advisory` GIỮ NGUYÊN tên định danh dù nhãn hiển thị đổi thành "Quản lý
+  // Tài sản & Tư vấn cá nhân": giá trị này được đọc ở nhiều nơi ngoài tệp
+  // này (career-categories.ts, phố nghề, bộ lọc trang việc làm), nên đổi tên
+  // định danh là một lượt sửa lan rộng không đem lại gì - nhãn mới hiển thị
+  // qua từ điển.
+  category: "investment" | "dealmaking" | "accounting" | "risk" | "banking" | "advisory" | "data";
   traits: CareerTraits;
 }
 
@@ -290,7 +300,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Thu nhập và chế độ thưởng vô cùng cao, cơ hội làm việc trực tiếp với các nhà lãnh đạo tập đoàn hàng đầu và tham gia vào những thương vụ tỷ đô tái định hình thị trường.",
     cons: "Thời gian làm việc cực kỳ khắc nghiệt (thường xuyên lên tới 80 - 100 giờ/tuần), áp lực tiến độ khủng khiếp, tỷ lệ đào thải (burnout) rất cao.",
     applicationTips: "Luyện tập thuần thục kỹ năng định giá doanh nghiệp phức tạp, thiết kế slide chuyên nghiệp và trang bị chứng chỉ CFA hoặc bằng cấp từ các trường đại học hàng đầu.",
-    category: "investment",
+    category: "dealmaking",
     traits: {
       analytical: 5,
       compliance: 2,
@@ -481,7 +491,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Công việc mang tính chuyên sâu kỹ thuật và mang tính bảo vệ cao, ít chịu áp lực doanh số giải ngân trực tiếp như phòng kinh doanh, chế độ ổn định dài hạn.",
     cons: "Đôi lúc bị các phòng ban kinh doanh xem là rào cản hạn chế tiến độ công việc, đòi hỏi kỹ năng xử lý toán học/thống kê định lượng tương đối phức tạp.",
     applicationTips: "Tập trung lấy chứng chỉ quốc tế FRM (Financial Risk Manager) để chứng minh năng lực chuyên môn vượt trội và thực hành các kỹ năng viết câu lệnh SQL để truy xuất dữ liệu.",
-    category: "banking",
+    category: "risk",
     traits: {
       analytical: 4,
       compliance: 4,
@@ -853,7 +863,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Kiến thức chuyên sâu về giá trị cốt lõi của tài sản, cơ hội làm việc trong các công ty tư vấn lớn (Big4, hãng định giá độc lập) và tiếp xúc nhiều loại hình doanh nghiệp.",
     cons: "Áp lực giải trình số liệu rất lớn khi bị kiểm toán độc lập hoặc cơ quan quản lý chất vấn, khối lượng tài liệu lập hồ sơ định giá đồ sộ.",
     applicationTips: "Năm vững nguyên lý chiết khấu dòng tiền (WACC, CAPM) và cơ chế định giá tài sản vô hình, chuẩn bị tốt kỹ năng viết báo cáo giải trình mạch lạc.",
-    category: "investment",
+    category: "dealmaking",
     traits: {
       analytical: 5,
       compliance: 4,
@@ -906,7 +916,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Đứng ở trung điểm giữa chiến lược doanh nghiệp và thị trường vốn, tiếp xúc với các quỹ đầu tư lớn toàn cầu, mở rộng vòng quan hệ tài chính rất rộng.",
     cons: "Chịu áp lực giữ hình ảnh doanh nghiệp trước công chúng, nhạy cảm về công bố thông tin (tránh vi phạm insider trading), bận rộn cao điểm mùa đại hội cổ đông.",
     applicationTips: "Rèn luyện khả năng tiếng Anh biên phiên dịch chuyên ngành tài chính, khả năng viết lách mạch lạc, am hiểu luật công bố thông tin trên thị trường chứng khoán.",
-    category: "advisory",
+    category: "dealmaking",
     traits: {
       analytical: 3,
       compliance: 3,
@@ -955,7 +965,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Được nhìn bức tranh chiến lược toàn ngành thay vì chỉ một deal đơn lẻ, xây dựng mạng lưới quan hệ rộng với chủ doanh nghiệp và quỹ đầu tư, ít áp lực deadline gấp gáp hơn giai đoạn thực thi.",
     cons: "Phần lớn các cơ hội được sàng lọc sẽ không bao giờ thành deal thật - tỷ lệ 'chốt' thấp có thể gây nản, cần kiên nhẫn xây dựng quan hệ dài hạn không có kết quả tức thì.",
     applicationTips: "Thể hiện tư duy chiến lược qua các case study tự phân tích 'nếu là CEO công ty X, tôi sẽ M&A ai và vì sao', rèn kỹ năng định giá sơ bộ nhanh và networking chuyên nghiệp.",
-    category: "banking",
+    category: "dealmaking",
     traits: { analytical: 4, compliance: 2, clientFacing: 4, quantitative: 3 },
   },
   {
@@ -993,7 +1003,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Trực tiếp 'cầm trịch' một thương vụ tỷ đô từ đầu đến khi ký kết, học hỏi cực nhanh về cấu trúc giao dịch phức tạp, đây là vị trí M&A advisory đóng vai trò trung gian kết nối bên mua (buy-side) và bên bán (sell-side).",
     cons: "Cường độ làm việc khắc nghiệt nhất trong ngành tài chính (thường 80-100 giờ/tuần khi deal vào giai đoạn nước rút), deal có thể đổ vỡ vào phút chót sau nhiều tháng làm việc.",
     applicationTips: "Luyện thành thạo mô hình LBO/DCF phức tạp, hiểu rõ cấu trúc tài trợ vốn (debt/equity mix) và chuẩn bị tinh thần cho môi trường áp lực cao, deadline gấp.",
-    category: "banking",
+    category: "dealmaking",
     traits: { analytical: 5, compliance: 3, clientFacing: 3, quantitative: 4 },
   },
   {
@@ -1042,7 +1052,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Vai trò ít người biết đến nhưng quyết định thành-bại thực sự của một thương vụ M&A - phần lớn giá trị synergy hứa hẹn trên giấy chỉ thành hiện thực nhờ PMI làm tốt, cơ hội học cả tài chính lẫn vận hành/lãnh đạo con người.",
     cons: "Công việc 'dọn dẹp sau tiệc' thường ít được chú ý bằng đội deal-making, phải xử lý xung đột văn hóa và chính trị nội bộ giữa hai tổ chức vừa hợp nhất - vốn rất nhạy cảm.",
     applicationTips: "Kết hợp câu chuyện tài chính (đọc hiểu synergy) với kỹ năng quản lý con người/thay đổi trong CV - đây là vị trí hiếm khi tìm được ứng viên có cả hai, nên là lợi thế lớn nếu chứng minh được.",
-    category: "advisory",
+    category: "dealmaking",
     traits: { analytical: 3, compliance: 3, clientFacing: 4, quantitative: 3 },
   },
   {
@@ -1083,7 +1093,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Tiếp xúc trực tiếp với founder và mô hình kinh doanh mới nhất của thị trường, quy mô quỹ khác nhau (dưới 30 triệu USD, dưới 100 triệu USD, hay dưới 300 triệu USD AUM) đòi hỏi chiến lược đầu tư và cấu trúc đội ngũ hoàn toàn khác nhau - môi trường học hỏi cực kỳ đa dạng, tiềm năng thu nhập cao qua carried interest nếu quỹ thành công.",
     cons: "Chu kỳ đầu tư dài (thường 5-10 năm mới thoái vốn), tỷ lệ thất bại của startup/doanh nghiệp trong danh mục vẫn cao dù đã thẩm định kỹ, cạnh tranh vào ngành cực kỳ khốc liệt do số lượng vị trí rất ít.",
     applicationTips: "Xây dựng luận điểm đầu tư mẫu (investment memo) cho một công ty/startup thật để đính kèm CV, hiểu rõ sự khác biệt giữa quy mô quỹ (AUM tier) ảnh hưởng thế nào đến khẩu vị đầu tư, và mạng lưới quan hệ với founder là lợi thế lớn.",
-    category: "investment",
+    category: "dealmaking",
     traits: { analytical: 5, compliance: 2, clientFacing: 4, quantitative: 4 },
   },
   // ── Second content-expansion pass: fills categories that were thin
@@ -1133,7 +1143,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Vai trò 'người gác cổng' quan trọng bảo vệ tổ chức khỏi rủi ro pháp lý nghiêm trọng, môi trường làm việc ổn định với giờ giấc hành chính rõ ràng, ít bị cuốn vào áp lực doanh số.",
     cons: "Đôi khi bị xem là 'rào cản' bởi các phòng kinh doanh muốn đẩy nhanh giao dịch, khối lượng văn bản pháp lý cần cập nhật liên tục và dễ gây nhàm chán nếu không thực sự yêu thích mảng quy định.",
     applicationTips: "Nắm chắc các thông tư/quy định hiện hành của NHNN và UBCKNN, rèn tư duy rà soát chi tiết (attention to detail) và cân nhắc học chứng chỉ CAMS để tăng tính cạnh tranh.",
-    category: "accounting",
+    category: "risk",
     traits: { analytical: 3, compliance: 5, clientFacing: 2, quantitative: 2 },
   },
   {
@@ -1179,7 +1189,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Được nhìn toàn cảnh hoạt động của doanh nghiệp từ góc độ quản trị rủi ro, ít áp lực mùa vụ hơn kiểm toán độc lập bên ngoài, cơ hội thăng tiến rõ ràng lên các vị trí quản lý rủi ro/quản trị doanh nghiệp.",
     cons: "Đôi khi gặp phản ứng phòng thủ từ các phòng ban bị kiểm toán, cần tính độc lập và bản lĩnh cao để báo cáo trung thực dù kết quả có thể 'mất lòng' đồng nghiệp nội bộ.",
     applicationTips: "Rèn kỹ năng phỏng vấn và viết báo cáo khách quan, học chứng chỉ CIA để khẳng định chuyên môn, và thể hiện được tư duy đánh giá rủi ro có hệ thống trong CV.",
-    category: "accounting",
+    category: "risk",
     traits: { analytical: 4, compliance: 5, clientFacing: 3, quantitative: 2 },
   },
   {
@@ -1409,7 +1419,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Một trong những nghề có thu nhập senior cao nhất trong ngành tài chính, tính chuyên môn kỹ thuật cao khiến rào cản cạnh tranh lớn (ít người theo đuổi hết lộ trình chứng chỉ), công việc ổn định và được coi trọng.",
     cons: "Lộ trình thi chứng chỉ Actuary chuyên nghiệp (SOA/IFoA) kéo dài nhiều năm và rất khó, đòi hỏi nền tảng Toán/Thống kê vững chắc ngay từ đầu, số lượng vị trí tuyển dụng tại Việt Nam còn hạn chế.",
     applicationTips: "Có nền tảng Toán/Thống kê/Actuarial Science từ đại học là lợi thế lớn, bắt đầu lộ trình thi chứng chỉ Actuary càng sớm càng tốt, luyện kỹ năng lập trình R/Python để xử lý dữ liệu lớn.",
-    category: "banking",
+    category: "risk",
     traits: { analytical: 5, compliance: 4, clientFacing: 1, quantitative: 5 },
   },
   {
@@ -1499,7 +1509,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Ngành tăng trưởng nhanh với nhiều cơ hội việc làm mới, môi trường startup/công nghệ năng động khác biệt so với tài chính truyền thống, kết hợp được cả kỹ năng tài chính lẫn công nghệ - bộ kỹ năng khan hiếm.",
     cons: "Ngành còn non trẻ nên khung pháp lý chưa hoàn thiện, rủi ro biến động cao hơn tài chính truyền thống (một số công ty fintech có thể thất bại/thu hẹp), đòi hỏi liên tục học công nghệ mới.",
     applicationTips: "Kết hợp câu chuyện tài chính với hiểu biết công nghệ/sản phẩm số trong CV, học SQL và phân tích dữ liệu cơ bản, theo dõi các case study fintech thành công/thất bại tại Việt Nam và Đông Nam Á.",
-    category: "banking",
+    category: "data",
     traits: { analytical: 4, compliance: 3, clientFacing: 2, quantitative: 4 },
   },
   {
@@ -1853,7 +1863,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Ngành đầu tư thụ động (ETF) đang tăng trưởng nhanh tại Việt Nam, công việc kết hợp cả phân tích lẫn giao tiếp/kinh doanh, môi trường làm việc chuyên nghiệp tại công ty quản lý quỹ.",
     cons: "Cần hiểu rõ cả sản phẩm lẫn kỹ năng bán hàng - không thuần phân tích, phụ thuộc vào tăng trưởng thị trường chung để thu hút dòng tiền vào quỹ, cạnh tranh với nhiều kênh đầu tư khác.",
     applicationTips: "Tìm hiểu và so sánh các quỹ ETF đang niêm yết tại Việt Nam (phí, hiệu suất, chỉ số theo dõi) làm case study, luyện khả năng giải thích lợi ích đầu tư thụ động đơn giản, dễ hiểu.",
-    category: "investment",
+    category: "advisory",
     traits: { analytical: 3, compliance: 3, clientFacing: 4, quantitative: 3 },
   },
   {
@@ -1946,7 +1956,7 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     pros: "Nhu cầu tuyển dụng ổn định tại ngân hàng/công ty tài chính tiêu dùng, công việc có quy trình rõ ràng dễ học việc, cơ hội chuyển sang mảng quản trị rủi ro rộng hơn.",
     cons: "Khối lượng hồ sơ xử lý hàng ngày có thể lớn và lặp lại, áp lực cân bằng giữa tốc độ duyệt hồ sơ và kiểm soát rủi ro nợ xấu, đôi khi phải từ chối hồ sơ gây khó xử với khách hàng.",
     applicationTips: "Tìm hiểu cách hoạt động của hệ thống chấm điểm tín dụng (credit scoring) cơ bản, luyện kỹ năng đọc hiểu báo cáo tài chính cá nhân/hộ gia đình nhanh và chính xác.",
-    category: "banking",
+    category: "risk",
     traits: { analytical: 4, compliance: 4, clientFacing: 2, quantitative: 3 },
   },
   {

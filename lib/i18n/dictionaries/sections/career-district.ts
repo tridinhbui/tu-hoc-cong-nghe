@@ -8,7 +8,9 @@ export const careerDistrictVi = {
     // chữ trên biển bé lại đến mức đứng dưới đường không đọc được.
     shopSigns: {
       investment: "ĐẦU TƯ",
+      dealmaking: "M&A",
       banking: "NGÂN HÀNG",
+      risk: "RỦI RO",
       advisory: "TƯ VẤN",
       accounting: "KẾ TOÁN",
       data: "DỮ LIỆU",
@@ -294,7 +296,9 @@ export const careerDistrictEn: typeof careerDistrictVi = {
     // lettering until it cannot be read from the pavement.
     shopSigns: {
       investment: "INVESTING",
+      dealmaking: "M&A",
       banking: "BANKING",
+      risk: "RISK",
       advisory: "ADVISORY",
       accounting: "ACCOUNTING",
       data: "DATA",

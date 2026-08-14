@@ -29,6 +29,8 @@ function categoryMeta(
 ): Record<FinanceCareer["category"], { label: string; color: string; border: string; bg: string }> {
   return {
     investment: { label: t.careerRoadmap.catInvestmentLabel, color: "#10b981", border: "border-emerald-300 dark:border-emerald-800", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
+    dealmaking: { label: t.careerRoadmap.catDealmakingLabel, color: "#0284c7", border: "border-sky-300 dark:border-sky-800", bg: "bg-sky-50 dark:bg-sky-950/30" },
+    risk: { label: t.careerRoadmap.catRiskLabel, color: "#e11d48", border: "border-rose-300 dark:border-rose-800", bg: "bg-rose-50 dark:bg-rose-950/30" },
     accounting: { label: t.careerRoadmap.catAccountingLabel, color: "#3b82f6", border: "border-blue-300 dark:border-blue-800", bg: "bg-blue-50 dark:bg-blue-950/30" },
     banking: { label: t.careerRoadmap.catBankingLabel, color: "#f59e0b", border: "border-amber-300 dark:border-amber-800", bg: "bg-amber-50 dark:bg-amber-950/30" },
     advisory: { label: t.careerRoadmap.catAdvisoryLabel, color: "#8b5cf6", border: "border-violet-300 dark:border-violet-800", bg: "bg-violet-50 dark:bg-violet-950/30" },

@@ -21,9 +21,18 @@ import type { CareerCoverage } from "@/lib/ib-question-careers";
 
 export type CareerCategory = FinanceCareer["category"];
 
+// CẢNH BÁO: đây là `readonly CareerCategory[]`, không phải Record - nên thiếu
+// một nhóm ngành ở đây KHÔNG gây lỗi biên dịch, nó chỉ lặng lẽ làm mọi nghề
+// thuộc nhóm ấy biến mất khỏi bộ chọn. Lượt tách 5 nhóm thành 7 đã rơi đúng
+// vào bẫy này: 11 nghề chuyển sang `dealmaking`/`risk` mất hút, tsc xanh, và
+// thứ bắt được là bài "trên dữ liệu THẬT, không nghề nào rơi ra ngoài" trong
+// lib/__tests__/ib-career-picker.test.ts. Thêm nhóm ngành mới thì thêm cả ở
+// đây, và chạy bộ kiểm đó.
 export const PICKER_CATEGORY_ORDER: readonly CareerCategory[] = [
   "investment",
+  "dealmaking",
   "accounting",
+  "risk",
   "banking",
   "advisory",
   "data",

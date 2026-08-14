@@ -1,6 +1,6 @@
 import type { FinanceCareer } from "@/lib/finance-careers";
 
-/** Năm nhóm ngành, tên hiển thị và thứ tự.
+/** Bảy nhóm ngành, tên hiển thị và thứ tự.
  *
  *  Trước đây danh sách này nằm bên trong JobSearchClient, nên bất cứ màn hình
  *  nào khác muốn gọi tên một nhóm ngành đều phải chép lại - và một bản chép là
@@ -10,7 +10,7 @@ import type { FinanceCareer } from "@/lib/finance-careers";
 
 export type CareerCategory = FinanceCareer["category"];
 
-/** Tên năm nhóm ngành, đọc từ từ điển.
+/** Tên bảy nhóm ngành, đọc từ từ điển.
  *
  *  Là HÀM chứ không phải hằng số vì câu chữ phải theo ngôn ngữ đang chọn -
  *  cùng khuôn với districtRoomsOf(t). Thứ tự và MÀU thì vẫn là hằng số ở dưới:
@@ -25,7 +25,9 @@ export function careerCategoryLabelsOf(
 /** Thứ tự trưng bày, cũng là thứ tự các căn nhà dọc phố nghề. */
 export const CAREER_CATEGORY_ORDER: CareerCategory[] = [
   "investment",
+  "dealmaking",
   "banking",
+  "risk",
   "advisory",
   "accounting",
   "data",
@@ -35,7 +37,12 @@ export const CAREER_CATEGORY_ORDER: CareerCategory[] = [
  *  giới thiệu đều lấy ở đây, để đi từ ngoài vào trong vẫn thấy cùng một màu. */
 export const CAREER_CATEGORY_COLORS: Record<CareerCategory, string> = {
   investment: "#5eead4",
+  // Hai nhóm tách ra sau này lấy màu KỀ với nhóm gốc của chúng, không lấy màu
+  // mới hẳn: người học đi từ "Đầu tư" sang "Ngân hàng Đầu tư & M&A" vẫn đang ở
+  // cùng một vùng nghề, và màu nên nói ra điều đó.
+  dealmaking: "#7dd3fc",
   banking: "#93c5fd",
+  risk: "#fca5a5",
   advisory: "#fdba74",
   accounting: "#c4b5fd",
   data: "#f0abfc",

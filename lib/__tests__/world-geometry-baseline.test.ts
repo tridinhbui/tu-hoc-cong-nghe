@@ -80,11 +80,14 @@ describe("mốc khu phố nghề", () => {
     // Thêm một nghề, một trạm hay một địa điểm game đều làm đổi số ở đây - đó
     // là điểm: một lần đổi có chủ ý thì sửa mốc, một lần đổi ngoài ý muốn thì
     // bài này đỏ.
+    // rooms 32 -> 34 và doorways 47 -> 51: lượt tách nhóm ngành từ 5 thành 7
+    // (`dealmaking`, `risk` trong lib/finance-careers.ts) dựng thêm hai căn nhà
+    // trên phố nghề, mỗi căn hai cánh cửa. Đổi có chủ ý, nên sửa mốc.
     expect(shape).toEqual({
-      rooms: 32,
+      rooms: 34,
       desks: 44,
       portals: 23,
-      doorways: 47,
+      doorways: 51,
       lifts: 10,
       streetHalfLength: 90,
     });

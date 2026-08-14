@@ -35,7 +35,7 @@ import { formulasFor, type WallFormula } from "./district-content";
 import { STATION_IDS } from "@/components/lobby/stations";
 import CivicScene, { isCivicRoom } from "./CivicScenes";
 import { BUILDING_COUNT } from "@/lib/rpg-buildings";
-import { CAREER_CATEGORY_ORDER, isCareerCategory, type CareerCategory } from "@/lib/career-categories";
+import { CAREER_CATEGORY_COLORS, CAREER_CATEGORY_ORDER, isCareerCategory, type CareerCategory } from "@/lib/career-categories";
 import {
   asphaltTexture,
   boardTexture,
@@ -308,13 +308,12 @@ function Shophouse({ category, progress }: { category: CareerCategory; progress:
   );
 }
 
-const SHOP_ACCENT: Record<CareerCategory, string> = {
-  investment: "#5eead4",
-  banking: "#93c5fd",
-  advisory: "#fdba74",
-  accounting: "#c4b5fd",
-  data: "#f0abfc",
-};
+// Trước đây đây là một bản CHÉP y hệt CAREER_CATEGORY_COLORS. Hai bảng màu cho
+// cùng một thứ nghĩa là biển hiệu ngoài phố và thẻ giới thiệu trong phòng có
+// thể lệch màu nhau sau một lần sửa - mà chú thích của bảng gốc lại nói rõ mục
+// đích của nó là "đi từ ngoài vào trong vẫn thấy cùng một màu". Dùng thẳng bản
+// gốc; lượt tách 5 nhóm thành 7 là lần bản chép này suýt lệch thật.
+const SHOP_ACCENT = CAREER_CATEGORY_COLORS;
 
 
 /** Toà tháp ở đầu phố. Cao hơn hẳn dãy nhà bên cạnh vì nó phải nhìn thấy được
