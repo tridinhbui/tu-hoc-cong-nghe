@@ -12,10 +12,21 @@
   ],
   "explanation": "ROE measures how many dong of profit each dong of shareholders' capital generates, making it the metric closest to shareholders' own interests. But it is also the easiest to distort, since it can be lifted just by borrowing more: a smaller equity denominator makes the ratio look prettier without operations improving at all. That's why ROE must always be decomposed via DuPont into margin, asset turnover, and leverage - to see where the number actually comes from.",
   "diagram": [
-    { "label": "Net income", "arrow": true },
-    { "label": "Divide by shareholders' equity", "arrow": true },
-    { "label": "Decompose via DuPont: margin, turnover, leverage", "arrow": true },
-    { "label": "Check whether a high ROE comes from real efficiency or just heavy borrowing" }
+    {
+      "label": "Net income",
+      "arrow": true
+    },
+    {
+      "label": "Divide by shareholders' equity",
+      "arrow": true
+    },
+    {
+      "label": "Decompose via DuPont: margin, turnover, leverage",
+      "arrow": true
+    },
+    {
+      "label": "Check whether a high ROE comes from real efficiency or just heavy borrowing"
+    }
   ],
   "realWorldExample": {
     "company": "Vinamilk (VNM)",
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "If you could only pick one metric to assess 'are shareholders being treated well,' most investors would choose ROE (Return on Equity) - the profit generated per dong of shareholders' equity actually invested in the business."
     },
-    { "type": "callout", "label": "The formula", "text": "ROE = Net Income / Shareholders' Equity" },
-    { "type": "heading", "text": "Buffett and the 15% ROE threshold" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "ROE = Net Income / Shareholders' Equity"
+    },
+    {
+      "type": "heading",
+      "text": "Buffett and the 15% ROE threshold"
+    },
     {
       "type": "paragraph",
       "text": "Warren Buffett is famous for seeking businesses that sustainably maintain an ROE above 15% for many years - a sign of a genuine competitive advantage (economic moat), not a lucky streak. Vinamilk is a classic example in Vietnam: an ROE stable above 20% for many consecutive years, driven by a combination of good margins, high asset-use efficiency, and a conservative capital structure - not heavy borrowing."
     },
-    { "type": "heading", "text": "But not every high ROE deserves your trust" },
+    {
+      "type": "heading",
+      "text": "But not every high ROE deserves your trust"
+    },
     {
       "type": "paragraph",
       "text": "This is the most common trap when reading ROE: two companies both have ROE = 25%, but Company A achieves it through good margin and asset efficiency, while Company B achieves it mainly through very heavy borrowing (high financial leverage pushing up the equity multiplier). Company B is far riskier over the long run - an ROE built on leverage can collapse quickly when interest rates rise or revenue dips slightly, while A's ROE comes from core business efficiency, which is far more durable."
@@ -119,9 +140,21 @@
       "title": "DuPont Decomposition",
       "subtitle": "Breaking ROE down into 3 sources",
       "concepts": [
-        { "vi": "Biên lợi nhuận ròng", "en": "Net Margin", "def": "Net Income / Revenue - is the business turning a good profit?" },
-        { "vi": "Vòng quay tài sản", "en": "Asset Turnover", "def": "Revenue / Total Assets - is it using assets efficiently?" },
-        { "vi": "Đòn bẩy tài chính", "en": "Financial Leverage (Equity Multiplier)", "def": "Total Assets / Equity - how much debt is being used to amplify profit?" }
+        {
+          "vi": "Biên lợi nhuận ròng",
+          "en": "Net Margin",
+          "def": "Net Income / Revenue - is the business turning a good profit?"
+        },
+        {
+          "vi": "Vòng quay tài sản",
+          "en": "Asset Turnover",
+          "def": "Revenue / Total Assets - is it using assets efficiently?"
+        },
+        {
+          "vi": "Đòn bẩy tài chính",
+          "en": "Financial Leverage (Equity Multiplier)",
+          "def": "Total Assets / Equity - how much debt is being used to amplify profit?"
+        }
       ]
     },
     {
@@ -138,6 +171,17 @@
       "lines": [
         "ROE is a good starting point, but it always needs to be unpacked with DuPont before concluding a business is 'good.'"
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "ROE = Profit after tax ÷ Average shareholders' equity",
+      "example": {
+        "title": "Two companies, same ROE, different reasons",
+        "calculation": "A: profit VND 150bn, equity 1,000bn, no debt · B: profit 150bn, equity 1,000bn, debt 1,500bn",
+        "result": "Both ROE = 150 ÷ 1,000 = 15%",
+        "explanation": "Identical numbers, but B produces its 15% on top of VND 1,500bn of borrowing. A 2-point rise in rates costs B VND 30bn of profit and takes ROE to 12%, while A is untouched. That is why ROE has to be read alongside leverage."
+      }
     }
   ]
 }

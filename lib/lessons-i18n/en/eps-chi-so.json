@@ -12,10 +12,21 @@
   ],
   "explanation": "Earnings per share converts a whole company's profit into the portion belonging to a single share, making it comparable against the market price. It's best to use the diluted version, which counts options and convertible bonds that could turn into shares, since that's the real denominator shareholders will end up sharing. Also remember this metric is affected by buybacks: a smaller denominator makes it rise even while profit stands still.",
   "diagram": [
-    { "label": "Net income belonging to common shareholders", "arrow": true },
-    { "label": "Divide by average diluted shares outstanding", "arrow": true },
-    { "label": "Get earnings per share", "arrow": true },
-    { "label": "Multiply by the market P/E for a reference price" }
+    {
+      "label": "Net income belonging to common shareholders",
+      "arrow": true
+    },
+    {
+      "label": "Divide by average diluted shares outstanding",
+      "arrow": true
+    },
+    {
+      "label": "Get earnings per share",
+      "arrow": true
+    },
+    {
+      "label": "Multiply by the market P/E for a reference price"
+    }
   ],
   "realWorldExample": {
     "company": "Vinhomes (VHM)",
@@ -103,13 +114,23 @@
       "type": "lead",
       "text": "EPS (Earnings Per Share) divides net profit by shares outstanding, answering the direct question every shareholder cares about: how much of the company's profit corresponds to each share I hold?"
     },
-    { "type": "callout", "label": "The formula", "text": "EPS = Net Income / Diluted Shares Outstanding.  **Example:** 200 billion / 100 million shares = 2,000 dong/share" },
-    { "type": "heading", "text": "Why use diluted EPS instead of basic EPS" },
+    {
+      "type": "callout",
+      "label": "The formula",
+      "text": "EPS = Net Income / Diluted Shares Outstanding.  **Example:** 200 billion / 100 million shares = 2,000 dong/share"
+    },
+    {
+      "type": "heading",
+      "text": "Why use diluted EPS instead of basic EPS"
+    },
     {
       "type": "paragraph",
       "text": "Basic EPS only divides by shares actually outstanding. Diluted EPS is more conservative: it also counts stock options, warrants, and convertible bonds - if all these instruments were exercised, how many new shares would there be, and how much would EPS be diluted? Diluted EPS is almost always lower than or equal to basic EPS, and reflects the actual dilution risk existing shareholders face more accurately."
     },
-    { "type": "heading", "text": "Dilution: when a falling EPS doesn't mean worse business" },
+    {
+      "type": "heading",
+      "text": "Dilution: when a falling EPS doesn't mean worse business"
+    },
     {
       "type": "paragraph",
       "text": "When a company issues 20% more new shares to raise capital, EPS falls immediately even though Net Income hasn't yet changed - because the same level of profit must now be divided among more shares. This is the dilution phenomenon, not a sign the company's business is deteriorating. Investors need to clearly distinguish between two causes of falling EPS: profit genuinely falling, or simply the denominator (share count) rising."
@@ -128,6 +149,17 @@
       "lines": [
         "EPS is the foundation block for calculating P/E - but always check whether an EPS rise or fall comes from real profit or from a change in share count."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "EPS = Profit after tax ÷ Weighted average shares outstanding",
+      "example": {
+        "title": "A listed company",
+        "calculation": "Profit after tax VND 480bn · 200m shares",
+        "result": "EPS = 480bn ÷ 200m = VND 2,400 per share",
+        "explanation": "Issue 20% more shares next year before profit catches up and EPS becomes 480 ÷ 240 = VND 2,000 - down 17% while the business is no worse. That is dilution, and it is why you always ask whether EPS fell because of the numerator or the denominator."
+      }
     }
   ]
 }

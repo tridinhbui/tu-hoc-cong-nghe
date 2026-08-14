@@ -191,6 +191,17 @@
         "Negative WC isn't automatically bad - it depends on the business model and operating cash flow.",
         "Changes in WC over each period are one of the three main components of operating cash flow (OCF)."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "Working capital = Current assets − Current liabilities",
+      "example": {
+        "title": "NEGATIVE working capital that is healthy",
+        "calculation": "Supermarket chain: inventory VND 400bn, receivables 20bn, cash 180bn → current assets 600bn · payables 750bn",
+        "result": "Working capital = 600 − 750 = NEGATIVE VND 150bn",
+        "explanation": "The negative figure here is a strength: customers pay at the till while suppliers give 45 days, so the chain runs on its suppliers' money. The same negative VND 150bn at a construction contractor - where cash arrives months later - would instead be a sign it is about to miss payroll."
+      }
     }
   ]
 }

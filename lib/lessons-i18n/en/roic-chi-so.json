@@ -149,6 +149,17 @@
       "lines": [
         "ROIC versus WACC is the most important question in corporate finance: is this business worth pouring more capital into?"
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "ROIC = NOPAT ÷ (Debt + Equity − Cash)",
+      "example": {
+        "title": "ROIC against the cost of capital",
+        "calculation": "EBIT VND 400bn, tax 20% → NOPAT 320bn · debt 600bn, equity 1,400bn, cash 200bn → invested capital 1,800bn · WACC 11%",
+        "result": "ROIC = 320 ÷ 1,800 = 17.8% · a 6.8-point spread over WACC",
+        "explanation": "The business earns 17.8% on each dong of capital it pays 11% to hold; that 6.8-point spread is the value created. If ROIC fell to 9% the business would still post an accounting profit while DESTROYING value - every extra dong invested makes shareholders poorer."
+      }
     }
   ]
 }

@@ -149,6 +149,17 @@
       "lines": [
         "Net Margin tells you 'how much is left' - but to understand 'why it's left that way,' you need to unpack it through Gross Margin and Operating Margin first."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "Net profit margin = Profit after tax ÷ Revenue",
+      "example": {
+        "title": "Same margin logic, two very different models",
+        "calculation": "Grocery chain: revenue VND 10,000bn, profit 300bn · Software firm: revenue 500bn, profit 150bn",
+        "result": "Grocery = 300 ÷ 10,000 = 3% · Software = 150 ÷ 500 = 30%",
+        "explanation": "A 3% margin sounds fragile, but retail lives on turnover rather than margin: on the same assets it turns its stock over many times a year. Margin only compares within an industry - and inside one, a single percentage point is already a wide gap."
+      }
     }
   ]
 }

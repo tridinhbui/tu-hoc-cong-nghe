@@ -149,6 +149,17 @@
       "lines": [
         "Tracking Gross Margin and Operating Margin side by side gives a much fuller picture than looking at either one alone."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "Operating margin = EBIT ÷ Revenue",
+      "example": {
+        "title": "Separating the trading from the financing",
+        "calculation": "Revenue VND 2,000bn · cost of sales 1,300bn · selling and admin 400bn → EBIT 300bn · interest 120bn",
+        "result": "Operating margin = 300 ÷ 2,000 = 15% · net margin after interest and 20% tax ≈ 7.2%",
+        "explanation": "One business, two very different figures, and almost the whole gap from 15% to 7.2% is the VND 120bn of interest. Operating margin measures the trading; net margin measures the trading PLUS the financing. Pay down debt and the second number rises while the first does not move."
+      }
     }
   ]
 }

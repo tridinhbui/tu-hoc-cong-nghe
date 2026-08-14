@@ -149,6 +149,17 @@
       "lines": [
         "A low ROA in an asset-heavy industry isn't a weakness - it's an inherent feature of a business model that requires a lot of assets to operate."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the formula",
+      "equation": "ROA = Profit after tax ÷ Average total assets",
+      "example": {
+        "title": "Retail against manufacturing",
+        "calculation": "Retail chain: profit VND 120bn, assets 800bn · Steel mill: profit 300bn, assets 6,000bn",
+        "result": "Retail ROA = 120 ÷ 800 = 15% · Steel ROA = 300 ÷ 6,000 = 5%",
+        "explanation": "The steel mill earns 2.5 times the profit but needs 7.5 times the assets to do it. ROA does not say who is better; it says what each dong of assets produces - and that is set by the industry first, so comparing ROA across industries is close to meaningless."
+      }
     }
   ]
 }
