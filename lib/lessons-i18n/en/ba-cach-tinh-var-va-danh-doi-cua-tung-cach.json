@@ -151,6 +151,17 @@
         "VaR is not a number; it is a number plus the method and the window that produced it.",
         "The next lesson asks the question every model has to answer: how do you know it is right?"
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the variance-covariance method",
+      "equation": "1-day VaR = Portfolio value × Daily standard deviation × z-score",
+      "example": {
+        "title": "A VND 100bn portfolio with 1.5% daily volatility",
+        "calculation": "z for 95% confidence is 1.65 · z for 99% is 2.33",
+        "result": "95% VaR = 100 × 1.5% × 1.65 = VND 2.48bn · 99% VaR = 100 × 1.5% × 2.33 = VND 3.50bn",
+        "explanation": "Raising the confidence level from 95% to 99% lifts the number by 41% while nothing about the portfolio changes - which is why a VaR figure quoted without its confidence level and horizon is meaningless. Both also assume a normal distribution: with the fat tails of real returns, the worst day of the year usually goes well past VND 3.50bn."
+      }
     }
   ]
 }

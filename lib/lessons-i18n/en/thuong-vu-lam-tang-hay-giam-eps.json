@@ -13,10 +13,18 @@
   ],
   "explanation": "In an all-stock deal the rule is compact: a buyer with the higher P/E gets accretion, a buyer with the lower P/E gets dilution. The intuition is that you are paying 15 for every unit of earnings you acquire, while the market is paying 20 for every unit of your own. Note the condition: this rule only holds for all-stock deals. Pay in cash or with debt and the two P/E ratios stop being relevant, because no shares are issued at all.",
   "diagram": [
-    { "label": "The seller's earnings are added in" },
-    { "label": "Subtract new interest expense and forgone deposit interest" },
-    { "label": "Divide by the new share count" },
-    { "label": "Compare new EPS against old EPS" }
+    {
+      "label": "The seller's earnings are added in"
+    },
+    {
+      "label": "Subtract new interest expense and forgone deposit interest"
+    },
+    {
+      "label": "Divide by the new share count"
+    },
+    {
+      "label": "Compare new EPS against old EPS"
+    }
   ],
   "realWorldExample": {
     "company": "Why a good deal can still be dilutive",
@@ -106,7 +114,10 @@
       "type": "lead",
       "text": "The IB & Analysis stage taught you why to buy, who to buy and what to pay with. This stage starts at the calculation a buyer runs the moment those three answers exist, and the one an interviewer asks first."
     },
-    { "type": "heading", "text": "Three costs, matching the three ways of paying" },
+    {
+      "type": "heading",
+      "text": "Three costs, matching the three ways of paying"
+    },
     {
       "type": "conceptTable",
       "title": "What pushes EPS down",
@@ -163,6 +174,17 @@
         "Accretion is what gets a deal onto the table, not proof that it is worth doing.",
         "The next lesson takes up the question that comes immediately before it: where does the money to pay for this deal come from."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the calculation",
+      "equation": "Post-deal EPS = (Acquirer profit + Target profit) ÷ (Acquirer shares + New shares issued)",
+      "example": {
+        "title": "An all-share deal where the acquirer has the higher P/E",
+        "calculation": "Acquirer: profit VND 200bn, 100m shares → EPS 2,000d, price 30,000d, P/E 15 · Target: profit 50bn, bought for 500bn → issue 500/30 ≈ 16.7m shares",
+        "result": "New EPS = (200 + 50) ÷ (100 + 16.7) = 250 ÷ 116.7 ≈ 2,142d → ACCRETIVE by 7.1%",
+        "explanation": "The acquirer pays VND 500bn for VND 50bn of profit, a P/E of 10 - cheaper than its own 15, so EPS rises. Reverse it: pay 900bn (P/E 18) and it issues 30m shares, giving 250 ÷ 130 ≈ 1,923d, DILUTIVE by 3.8%. The dividing line sits exactly where the P/E paid equals the acquirer's own P/E."
+      }
     }
   ]
 }

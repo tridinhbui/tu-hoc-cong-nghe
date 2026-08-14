@@ -506,6 +506,17 @@ export const PRIVATE_MARKETS_LESSONS: Lesson[] = [
           "Bài cuối chặng nói về khâu quyết định mọi chỉ số ở trên: thoái vốn.",
         ],
       },
+      {
+        type: "formula",
+        title: "Thay số vào bốn chỉ số",
+        equation: "MOIC = Tổng giá trị ÷ Vốn đã gọi · DPI = Đã trả về ÷ Vốn đã gọi · TVPI = (Đã trả về + NAV còn lại) ÷ Vốn đã gọi",
+        example: {
+                title: "Một quỹ sau 6 năm",
+                calculation: "Vốn đã gọi 100 tỷ · đã trả về nhà đầu tư 120 tỷ · NAV danh mục còn lại 80 tỷ",
+                result: "DPI = 120 ÷ 100 = 1,2 lần · TVPI = (120 + 80) ÷ 100 = 2,0 lần · MOIC = 2,0 lần",
+                explanation: "TVPI 2,0 nghe như đã nhân đôi vốn, nhưng DPI mới là tiền THẬT đã về tay: 1,2 lần. Phần 80 tỷ còn lại là định giá do chính quỹ đưa ra và chưa qua một lần bán nào. Đọc TVPI mà bỏ DPI là tin vào con số chưa được thị trường kiểm chứng."
+        }
+}
     ],
   },
   {

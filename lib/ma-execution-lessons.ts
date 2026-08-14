@@ -185,6 +185,17 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
           "Bài sau đi vào câu hỏi đứng ngay trước đó: tiền để trả cho thương vụ này lấy ở đâu.",
         ],
       },
+      {
+        type: "formula",
+        title: "Thay số vào phép tính",
+        equation: "EPS sau thương vụ = (LN bên mua + LN bên bán) ÷ (CP bên mua + CP mới phát hành)",
+        example: {
+                title: "Thương vụ toàn cổ phiếu, bên mua P/E cao hơn",
+                calculation: "Bên mua: LN 200 tỷ, 100 triệu CP → EPS 2.000đ, giá 30.000đ, P/E 15 · Bên bán: LN 50 tỷ, mua giá 500 tỷ → phát hành 500/30 ≈ 16,7 triệu CP",
+                result: "EPS mới = (200 + 50) ÷ (100 + 16,7) = 250 ÷ 116,7 ≈ 2.142đ → TĂNG 7,1%",
+                explanation: "Bên mua trả 500 tỷ cho 50 tỷ lợi nhuận, tức P/E 10 - rẻ hơn P/E 15 của chính mình, nên EPS tăng. Đảo lại: trả 900 tỷ (P/E 18) thì phát hành 30 triệu CP và EPS mới = 250 ÷ 130 ≈ 1.923đ, PHA LOÃNG 3,8%. Ranh giới nằm đúng ở chỗ P/E trả cho bên bán bằng P/E của bên mua."
+        }
+}
     ],
   },
   {

@@ -172,6 +172,17 @@ export const FRM_MARKET_RISK_LESSONS: Lesson[] = [
           "Bài sau hỏi câu mà mọi mô hình phải trả lời được: làm sao biết nó đúng.",
         ],
       },
+      {
+        type: "formula",
+        title: "Thay số vào cách phương sai - hiệp phương sai",
+        equation: "VaR 1 ngày = Giá trị danh mục × Độ lệch chuẩn ngày × Hệ số z",
+        example: {
+                title: "Danh mục 100 tỷ, biến động 1,5%/ngày",
+                calculation: "z của mức tin cậy 95% là 1,65 · z của 99% là 2,33",
+                result: "VaR 95% = 100 × 1,5% × 1,65 = 2,48 tỷ · VaR 99% = 100 × 1,5% × 2,33 = 3,50 tỷ",
+                explanation: "Nâng mức tin cậy từ 95% lên 99% làm con số tăng 41% dù danh mục không đổi gì - nên một con số VaR không kèm mức tin cậy và khung thời gian là con số vô nghĩa. Cả hai đều giả định phân phối chuẩn: với đuôi dày của lợi suất thật, ngày tệ nhất trong năm thường vượt xa 3,50 tỷ."
+        }
+}
     ],
   },
   {

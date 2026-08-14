@@ -13,10 +13,18 @@
   ],
   "explanation": "IRR measures return per unit of time, so a deal that doubles the money in one year gives an IRR of 100%, while one that triples it over six years gives roughly 20% - even though the second deal produced more money. So a fund can improve its IRR by selling good deals early, or by using a short-term credit line to delay calling capital from investors, which starts the IRR clock later. Neither move produces a single extra unit of profit for the investor.",
   "diagram": [
-    { "label": "IRR: return per unit of time" },
-    { "label": "MOIC: how many times the money multiplied" },
-    { "label": "DPI: cash actually back in hand" },
-    { "label": "TVPI: total value including what is still unexited" }
+    {
+      "label": "IRR: return per unit of time"
+    },
+    {
+      "label": "MOIC: how many times the money multiplied"
+    },
+    {
+      "label": "DPI: cash actually back in hand"
+    },
+    {
+      "label": "TVPI: total value including what is still unexited"
+    }
   ],
   "realWorldExample": {
     "company": "The J-curve in a fund's early years",
@@ -148,6 +156,17 @@
         "The most attractive number on a performance page is usually the one that depends most heavily on assumptions.",
         "The final lesson of this stage covers the step that determines every metric above: the exit."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the four measures",
+      "equation": "MOIC = Total value ÷ Capital called · DPI = Distributed ÷ Capital called · TVPI = (Distributed + Residual NAV) ÷ Capital called",
+      "example": {
+        "title": "A fund after 6 years",
+        "calculation": "Capital called VND 100bn · distributed to investors 120bn · residual portfolio NAV 80bn",
+        "result": "DPI = 120 ÷ 100 = 1.2x · TVPI = (120 + 80) ÷ 100 = 2.0x · MOIC = 2.0x",
+        "explanation": "A TVPI of 2.0 sounds like the capital has doubled, but DPI is the money actually back in hand: 1.2x. The remaining VND 80bn is a valuation the fund itself produced and no sale has tested. Reading TVPI without DPI is trusting a figure the market has never checked."
+      }
     }
   ]
 }
