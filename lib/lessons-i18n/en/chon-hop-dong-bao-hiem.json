@@ -1,0 +1,165 @@
+{
+  "slug": "chon-hop-dong-bao-hiem",
+  "title": "Choosing insurance, Part 3: Comparing two policies and deciding",
+  "subtitle": "The right order to buy in, how to compare cost per unit of cover, and the checklist to run before you sign",
+  "duration": "12 min",
+  "openingQuestion": "You are 28, single, nobody depends on you, and you hold a three-month emergency fund. Your insurance budget is tight - what comes first?",
+  "openingOptions": [
+    "Public health insurance and a health policy; life cover can wait",
+    "Whole life cover, because buying young makes the premium far cheaper",
+    "A unit-linked policy, so you get protection and accumulation early",
+    "Accident cover, because at this age accidents outrank illness"
+  ],
+  "explanation": "Life insurance protects the people who depend on your income, not you - a conclusion already established in `bao-hiem-bao-ve-tai-san`, and it determines the order here. With nobody depending on you, a death benefit solves nobody's problem, while the risk you genuinely carry is a hospital stay that wipes out your savings. So the first layer is public health insurance, the cheapest cover per unit of benefit available anywhere, and then a private health policy covering the co-payment and the out-of-network gap. The 'buy young, pay less' argument is arithmetically true but answers the wrong question: cheaper cover for something you do not yet need is still spending earlier than necessary, and that money is competing with both your emergency fund and your long-term investing.",
+  "diagram": [
+    { "label": "Layer 1: Public health insurance - the cheapest cover per unit of benefit" },
+    { "label": "Layer 2: Private health cover - fills co-payment and out-of-network gaps" },
+    { "label": "Layer 3: Term life - ONLY when someone depends on your income" },
+    { "label": "Layer 4: Critical illness and income protection - once the first three suffice" }
+  ],
+  "realWorldExample": {
+    "company": "Two 35-year-olds on the same 15m annual budget",
+    "description": "Two people, both 35, both with 15m a year to spend. The first buys a unit-linked policy for the whole 15m with a 300m death benefit and no health cover. The second buys term life at 300m for 3m, a health policy with a 300m limit for 7m, and puts the remaining 5m into an index fund. Same death benefit, but the second person also holds a health layer - the risk most likely to materialise at that age - and their accumulation is not reduced by an initial charge."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The question 'which insurer should I buy from' is almost always the wrong question, because it gets asked before you know which layer of protection you need. The order of the layers does not depend on the insurer, and getting the order wrong costs far more than picking the wrong company."
+    },
+    { "type": "heading", "text": "Four layers, and why that order" },
+    {
+      "type": "list",
+      "items": [
+        "Public health insurance: the lowest premium per unit of benefit any product offers. Nothing substitutes for it, not even an expensive private policy.",
+        "Private health cover: fills the co-payment, the out-of-network portion and the service gap the first layer leaves. This is the layer standing between you and the risk most likely to happen.",
+        "Term life: only meaningful once someone lives on your income. Size it against their needs - see `needs-analysis-tu-van-bao-hiem`.",
+        "Critical illness and income protection: these solve prolonged loss of income, a different problem from hospital bills. They come last because they are expensive and only worth it once the first three are adequate."
+      ]
+    },
+    { "type": "heading", "text": "Comparing two policies: the premium says very little" },
+    {
+      "type": "formula",
+      "title": "True cost in a typical year",
+      "equation": "Annual premium + (Expected medical cost × Co-payment rate) + Amount above the limit",
+      "variables": [
+        { "symbol": "Annual premium", "name": "What you pay in", "description": "The one number usually compared, and the one that says least" },
+        { "symbol": "Expected medical cost", "name": "A realistic figure for your situation", "description": "Estimated from your history and age, not from the worst case" },
+        { "symbol": "Amount above the limit", "name": "What the policy does not cover", "description": "Zero if the limit is high enough; this is where a limit earns its keep" }
+      ],
+      "example": {
+        "title": "A: 5m premium, 30% co-pay · B: 7m premium, no co-pay · 50m expected",
+        "calculation": "A = 5 + 50×0.3 = 20 · B = 7 + 0 = 7",
+        "result": "B costs nearly three times less than A",
+        "explanation": "A's headline premium is 2m lower, and that is the only number on which A wins."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A high limit is not automatically better",
+      "text": "Raising a limit from 200m to 1bn sounds like five times the protection, but it only has value in the slice of probability where you genuinely spend more than 200m in a year - a small probability for most people. The premium, meanwhile, rises immediately and rises every year. On a tight budget, a moderate limit with no co-payment usually protects better than an enormous limit with a 30% co-payment."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Signs a policy is worth considering",
+        "text": "A short and specific exclusion list, waiting periods stated per condition group, low co-payment, and an agent who answers by pointing at a page in the document."
+      },
+      "right": {
+        "label": "Signs to stop",
+        "text": "Being pushed to sign at the first meeting, being advised to skip a health disclosure item, or every cost question answered with the end-of-term figure from the high interest column."
+      }
+    },
+    {
+      "type": "conceptTable",
+      "title": "The checklist before signing",
+      "concepts": [
+        { "en": "Who is protected", "def": "Life cover protects dependants; health cover protects you" },
+        { "en": "What is excluded", "def": "Read the whole exclusion section, not just its opening lines" },
+        { "en": "Waiting periods", "def": "Stated per condition group, not as a single date" },
+        { "en": "Co-pay and deductible", "def": "Multiply by expected cost, add to premium, and you have true cost" },
+        { "en": "Break-even year", "def": "Only ask on products with accumulation; read it off the surrender value column" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Good insurance is the policy that pays out when you need it, not the one with the largest number on its front page. Those two coincide far less often than they seem to at the point of sale."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "A costs 6m with a 25% co-payment. B costs 9m with none. You expect 40m of costs a year. Which is cheaper?",
+      "options": [
+        "The same: the premium gap offsets the co-payment",
+        "A, because its premium is 3m lower every year",
+        "A, because co-pay only applies above the limit",
+        "B: 9m (= 9 + 0) against A's 16m (= 6 + 10)"
+      ],
+      "explanation": "A costs 6 + 40×0.25 = 16m; B costs 9m. The headline premium is the only number A wins on, and it is the number that says least about true cost."
+    },
+    {
+      "question": "A 26-year-old, single, with nobody dependent. Which layer is least needed right now?",
+      "options": [
+        "Life insurance, because nobody lives on that income yet",
+        "Health cover, because hospitalisation rates are low at this age",
+        "Public health insurance, because its benefits are narrower than private",
+        "Accident cover, because the emergency fund already handles this"
+      ],
+      "explanation": "Life cover protects dependants rather than the insured, so with no dependants the payout solves nobody's problem. All three other layers protect the buyer directly."
+    },
+    {
+      "question": "Why is raising a health limit from 200m to 1bn not necessarily worth the money?",
+      "options": [
+        "Because limits above 500m are rarely approved by the insurer",
+        "Because the premium rises every year while the extra is rarely used",
+        "Because a higher limit automatically raises the co-payment rate",
+        "Because anything above 200m needs separate underwriting"
+      ],
+      "explanation": "The additional limit only has value in years where costs exceed the old ceiling - rare for most people - while the premium rises immediately and permanently. That budget usually buys more protection if spent lowering the co-payment."
+    },
+    {
+      "question": "Which is the strongest reason to stop during a sales meeting?",
+      "options": [
+        "The product has longer waiting periods for specified conditions",
+        "The agent opens the document and points at the exact clause",
+        "Being advised to skip an item on the health disclosure form",
+        "The policy carries a co-payment rather than paying the whole bill"
+      ],
+      "explanation": "That advice moves risk from the agent onto you and only surfaces when you file a claim. The other three are ordinary features of a clearly written policy."
+    },
+    {
+      "question": "On a product with accumulation, which figure shows how long you must hold it not to lose money?",
+      "options": [
+        "The year account value exceeds the guaranteed death benefit",
+        "The first year the initial charge rate falls to zero",
+        "The year the policy reaches the high illustrated interest rate",
+        "The first year surrender value exceeds total premiums paid"
+      ],
+      "explanation": "Surrender value is what you actually receive on exit, so the year it passes total premiums paid is the break-even point. The initial charge reaches zero well before that, so using it produces an optimistic figure."
+    }
+  ],
+  "practicePrompt": {
+    "question": "You are 34 with two young children, already holding public health insurance and a private health policy. You have 6m a year left. What is the sensible next step?",
+    "options": [
+      "Buy term life, sized against what the family would need",
+      "Raise the limit on the existing health policy to its maximum",
+      "Buy a unit-linked policy for protection plus accumulation",
+      "Add critical illness cover for both you and your spouse"
+    ],
+    "explanation": "The first two layers are in place and dependants now exist - exactly the condition that makes life cover necessary. Term life gives the most protection per unit of premium, and the sum should be derived from the family's needs rather than from whatever budget happens to be left."
+  },
+  "keyTakeaways": [
+    "The order of the four layers matters more than which insurer you pick",
+    "Public health insurance is the cheapest foundation per unit of benefit",
+    "Life cover only means something once someone lives on your income",
+    "True cost is the premium plus the co-payment share, not the premium alone",
+    "A very high limit is usually worth less than a low co-payment"
+  ],
+  "summary": {
+    "keyIdea": "Choosing insurance means choosing the order first and the product second: public health insurance, then private health cover, then term life if anyone depends on you, and only then critical illness. Compare two policies on true cost - premium plus co-payment applied to expected medical spending - rather than on the headline premium, and remember that an enormous limit is usually worth less than a low co-payment."
+  },
+  "application": {
+    "message": "Write out the four layers in order and mark the ones you already hold. The first gap from the top is what to buy next, whatever product happens to be in front of you. Then, for two policies in the same layer, compute the true cost of both with the formula in this lesson before comparing premiums."
+  }
+}

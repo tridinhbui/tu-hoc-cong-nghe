@@ -137,6 +137,11 @@
     "subtitle": "Why an insurer still makes money even though it pays out on events nobody can foresee",
     "duration": "7 min"
   },
+  "bao-hiem-lien-ket-dau-tu-bang-minh-hoa": {
+    "title": "Choosing insurance, Part 2: Reading the illustration of a unit-linked policy",
+    "subtitle": "Why the first-year surrender value is close to zero, which interest column is a promise, and the only comparison that means anything",
+    "duration": "13 min"
+  },
   "bao-hiem-nhan-tho-term-vs-whole-life": {
     "title": "Stage 9, Lesson 6: Life insurance - term or whole life?",
     "subtitle": "Two very different philosophies, not one product under two names",
@@ -776,6 +781,11 @@
     "title": "How to choose the right ETF for you",
     "subtitle": "Building a stock portfolio"
   },
+  "chon-hop-dong-bao-hiem": {
+    "title": "Choosing insurance, Part 3: Comparing two policies and deciding",
+    "subtitle": "The right order to buy in, how to compare cost per unit of cover, and the checklist to run before you sign",
+    "duration": "12 min"
+  },
   "chon-mau-trong-kiem-toan": {
     "title": "Audit, Lesson 4: Sampling - why nobody tests everything, and whether that is acceptable",
     "subtitle": "Statistical and non-statistical sampling, projecting errors, and how a small sample still supports a defensible conclusion",
@@ -1175,6 +1185,11 @@
     "title": "Track 7, Lesson 3: Three basic ratios to read before buying any share",
     "subtitle": "You don't need to be a financial analyst - just enough P/E, ROE and debt ratio to avoid the most basic mistakes.",
     "duration": "7 min"
+  },
+  "doc-dieu-khoan-bao-hiem": {
+    "title": "Choosing insurance, Part 1: The clauses that decide whether you get paid",
+    "subtitle": "Exclusions, waiting periods, pre-existing conditions, indemnity or fixed benefit - five places that turn two identical-looking policies into two different outcomes",
+    "duration": "12 min"
   },
   "doc-hieu-chi-bao-kinh-te-vi-mo": {
     "title": "Reading the key macroeconomic indicators: PMI, CPI and GDP nowcasting",

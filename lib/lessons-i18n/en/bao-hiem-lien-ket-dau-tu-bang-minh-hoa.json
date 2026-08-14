@@ -1,0 +1,163 @@
+{
+  "slug": "bao-hiem-lien-ket-dau-tu-bang-minh-hoa",
+  "title": "Choosing insurance, Part 2: Reading the illustration of a unit-linked policy",
+  "subtitle": "Why the first-year surrender value is close to zero, which interest column is a promise, and the only comparison that means anything",
+  "duration": "13 min",
+  "openingQuestion": "You pay 20m a year into a unit-linked policy. If you surrender it after the first year, roughly how much comes back?",
+  "openingOptions": [
+    "Close to zero: the first-year initial charge takes most of what you paid",
+    "Around 20m, because the money is still sitting in your investment account",
+    "Around 18m, that is after roughly 10% of policy administration costs",
+    "Around 22m, because the linked fund earned a return in the first year"
+  ],
+  "explanation": "Premiums on a unit-linked policy do not go straight into the investment account. An initial charge is deducted first, and in the opening year that share is very large - many products on the Vietnamese market take roughly 60 to 80% of the first year's basic premium, tapering over subsequent years and reaching zero after about five to seven. Only what remains buys fund units, and from there it is further reduced by fund management charges, policy administration fees and monthly cost of insurance. That is why the account value after the first year is usually a small fraction of what was paid, and why the surrender value - what you would actually receive on exit - is lower still, since surrender charges come off on top. None of this is hidden: it sits in the illustration, in the surrender value column, and that is the column almost never pointed at during a sales meeting.",
+  "diagram": [
+    { "label": "Premium paid in" },
+    { "label": "− Initial charge (very large in year 1)" },
+    { "label": "= The portion that buys fund units" },
+    { "label": "− Fund management, policy admin and monthly cost of insurance" },
+    { "label": "= Account value; less surrender charges → surrender value" }
+  ],
+  "realWorldExample": {
+    "company": "Minh, a unit-linked policy at 20m a year",
+    "description": "Minh pays 20m a year. Suppose the initial charge is 70% in year one, 50% in year two and 25% in year three, then zero. After three years he has paid 60m, but only 6 + 10 + 15 = 31m ever reached the fund, before management fees and cost of insurance. Surrender in year three and what comes back is calculated from that 31m downwards, not from 60m. For the investment portion to catch up with total premiums paid, the policy typically has to run past year seven to ten - which is why this product only makes sense for someone certain they can keep it for a very long time."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A unit-linked policy bundles two things into one product: protection and investment. Bundling is convenient, but it also removes your ability to see the price of each part - and once you cannot see the price of each part, there is nothing you can compare it against."
+    },
+    { "type": "heading", "text": "Premiums paid in are not money invested" },
+    {
+      "type": "paragraph",
+      "text": "This is the most important sentence in the lesson. With a savings deposit or an open-ended fund, the money you put in is the money that gets invested. With a unit-linked policy it is not: the initial charge comes off first, and in the early years it takes the larger share. The illustration always carries this line, usually labelled 'initial charge rate' or 'allocation charge', and it is the first row to find."
+    },
+    {
+      "type": "formula",
+      "title": "What actually gets invested in a given year",
+      "equation": "Basic premium × (1 − Initial charge rate for that year)",
+      "variables": [
+        { "symbol": "Basic premium", "name": "The scheduled premium under the policy", "description": "Excluding top-up premiums, which usually carry a far lower charge" },
+        { "symbol": "Initial charge rate", "name": "Taken before units are bought", "description": "Declines by policy year; read the table for the specific product in front of you" }
+      ],
+      "example": {
+        "title": "20m premium, 70% initial charge in year one",
+        "calculation": "20 × (1 − 0.7)",
+        "result": "6m buys fund units",
+        "explanation": "The other 14m is the cost of the policy that year, not an amount held back temporarily."
+      }
+    },
+    { "type": "heading", "text": "Two interest columns, and which one is a promise" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The high interest column",
+        "text": "An assumed scenario, typically a steady 8-10% a year for twenty years. It is the column pointed at during the sales meeting, and nobody guarantees it."
+      },
+      "right": {
+        "label": "The low column and the guaranteed rate",
+        "text": "The low scenario is also an assumption. The only guaranteed figure is the minimum rate on the universal-linked fund, where the product offers one - usually very low and applied to part of the account only."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The only comparison that means anything",
+      "text": "Do not compare a unit-linked policy against a savings deposit, and do not compare it against an open-ended fund either - neither of those carries any protection. The correct comparison is: this unit-linked policy, against a term life policy at the same sum assured plus investing the premium difference yourself. The lesson `bao-hiem-nhan-tho-term-vs-whole-life` already reaches that conclusion; the illustration is where you test it against the numbers of the specific product being offered."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Four fee rows to find in the illustration",
+      "concepts": [
+        { "en": "Initial / allocation charge", "def": "Deducted from premiums before units are bought; largest in the early years" },
+        { "en": "Fund management charge", "def": "Levied on account value every year, for the life of the policy" },
+        { "en": "Policy administration fee", "def": "A fixed monthly deduction, independent of account value" },
+        { "en": "Cost of insurance", "def": "The price of the protection, RISING with age and taken from the investment account itself" }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "That last row is the one that surprises people latest. Cost of insurance rises with age and is deducted from the investment account, so in later years it eats into accumulated value faster and faster. A policy that looks healthy at year ten can be hollowed out by year twenty-five if the fund does not hit its illustrated return - and when account value reaches zero, the policy lapses even though the buyer has paid every premium on time."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The illustration does not lie; it just gets read starting from its prettiest column. Read it from the year-one surrender value downwards and the same sheet of paper tells a different story."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "A basic premium of 30m with a 60% initial charge in year one. How much buys fund units?",
+      "options": [
+        "30m, because the initial charge is refunded later",
+        "18m (= 30 × 0.6, taking the deducted share by mistake)",
+        "12m (= 30 × (1 − 0.6), after the initial charge)",
+        "28.2m (= 30 − 6%, misreading 60% as 6%)"
+      ],
+      "explanation": "60% is taken as the initial charge and the remaining 40% buys units: 30 × 0.4 = 12m. The 30m answer reflects the most common misunderstanding - the initial charge is a cost incurred, not an amount held in trust."
+    },
+    {
+      "question": "In an illustration, what does the high interest column represent?",
+      "options": [
+        "A cap set by the regulator for unit-linked insurance products",
+        "The rate the insurer guarantees if the policy is held to maturity",
+        "The average return the fund achieved over the past five years",
+        "An assumed scenario that nobody guarantees you will achieve"
+      ],
+      "explanation": "Both the high and low columns are assumptions. The only guaranteed figure is the minimum rate on the universal-linked fund where the product offers one, usually very low and applied to only part of the account."
+    },
+    {
+      "question": "You pay 25m a year. The initial charge is 80% in year one and 40% in year two. How much reached the fund over two years?",
+      "options": [
+        "20m (= 25×0.2 + 25×0.6, summing the two years)",
+        "50m (= 25 × 2, the full premiums paid in)",
+        "30m (= 50 × 0.6, one rate for both years)",
+        "35m (= 25×0.8 + 25×0.6, year one wrong)"
+      ],
+      "explanation": "Year one puts 25 × 0.2 = 5m into the fund and year two 25 × 0.6 = 15m, so 20m of the 50m paid. The gap is not sitting in a holding account - it is cost already incurred."
+    },
+    {
+      "question": "Where is the cost of insurance in a unit-linked policy taken from?",
+      "options": [
+        "From top-up premiums, so the investment account is unaffected",
+        "From the investment account value itself, rising as you age",
+        "From fund profits, so it is only charged in years the fund gains",
+        "From the initial charge already taken, so never charged twice"
+      ],
+      "explanation": "It is deducted monthly from the investment account and rises with age, so it consumes accumulated value faster in later years. If account value reaches zero the policy lapses, even with every premium paid on time."
+    },
+    {
+      "question": "Which comparison properly evaluates a unit-linked policy?",
+      "options": [
+        "An equity fund with a track record over the past ten years",
+        "A bank deposit of the same term and the same amount paid in",
+        "Term life at the same sum assured, plus investing the difference",
+        "Another unit-linked policy that carries a lower initial charge"
+      ],
+      "explanation": "Deposits and funds carry no protection, so comparing against them compares two different things. Comparing one unit-linked policy against another skips the question of whether the structure makes sense at all."
+    }
+  ],
+  "practicePrompt": {
+    "question": "An agent says: 'Pay for 20 years and by age 65 you will have 2bn, protected the whole time and with a retirement pot at the end.' What is the first question to ask?",
+    "options": [
+      "Which interest column produces that 2bn, and is that column guaranteed",
+      "How much does the final figure rise if I pay extra every year",
+      "Which asset classes does the linked fund mainly invest in",
+      "If I die before 65, how much does my family actually receive"
+    ],
+    "explanation": "The other three are worth asking but come later. An end-of-term figure means nothing until you know which assumed column produced it - and the honest answer is always 'this column is not guaranteed'."
+  },
+  "keyTakeaways": [
+    "Premiums paid in are not money invested - the initial charge comes off first",
+    "The initial charge is largest in the early years, so year-one surrender value is near zero",
+    "Both the high and the low interest columns are assumptions, not commitments",
+    "Cost of insurance is taken from the investment account and rises with age",
+    "The right comparison is term life at the same cover plus investing the difference"
+  ],
+  "summary": {
+    "keyIdea": "A unit-linked policy deducts its initial charge before buying fund units, and that share is very large in the early years, so the first-year surrender value is close to zero and the investment portion typically needs seven to ten years to catch up with total premiums paid. Both interest columns in the illustration are assumptions. Cost of insurance is taken from the investment account itself and rises with age, so the greatest risk sits in the final years rather than the first."
+  },
+  "application": {
+    "message": "Ask for the illustration as a file, open the 'surrender value' column and read from year one down. Find the first year where surrender value exceeds total premiums paid - that is the minimum number of years you must hold the policy not to lose money. If it is longer than the period you feel certain about your income, the product does not fit."
+  }
+}

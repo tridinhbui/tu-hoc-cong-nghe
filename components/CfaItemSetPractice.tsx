@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { CFA_ITEM_SETS, type CfaItemSet, type ItemSetQuestion } from "@/lib/cfa-item-sets";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -120,13 +121,20 @@ export default function CfaItemSetPractice() {
   const open = CFA_ITEM_SETS.find((s) => s.id === openId) ?? null;
 
   return (
-    <section className="mt-6 rounded-[24px] border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100">
-        {t.finalTwo.cfaItemSetPractice.title}
-      </h3>
-      <p className="mt-1 max-w-2xl text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-        {t.finalTwo.cfaItemSetPractice.subtitle}
-      </p>
+    <details className="group mt-4 rounded-[24px] border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
+      {/* Đóng sẵn: khối này không tính điểm và không lưu lại, nên nó là thứ
+          người học CHỌN mở, không phải thứ chắn đường cuộn. */}
+      <summary className="cursor-pointer list-none">
+        <div className="flex items-center gap-2">
+          <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100">
+            {t.finalTwo.cfaItemSetPractice.title}
+          </h3>
+          <ChevronDown className="ml-auto h-4 w-4 shrink-0 text-stone-400 transition-transform group-open:rotate-180" />
+        </div>
+        <span className="mt-1 block max-w-2xl text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+          {t.finalTwo.cfaItemSetPractice.subtitle}
+        </span>
+      </summary>
 
       <div className="mt-4 flex flex-wrap gap-2">
         {CFA_ITEM_SETS.map((s) => (
@@ -155,6 +163,6 @@ export default function CfaItemSetPractice() {
           {t.finalTwo.cfaItemSetPractice.emptyHint}
         </p>
       )}
-    </section>
+    </details>
   );
 }

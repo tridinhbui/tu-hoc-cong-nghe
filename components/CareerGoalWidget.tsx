@@ -75,19 +75,19 @@ export default function CareerGoalWidget({ userId, compact = false }: { userId?:
   const nextLesson = progress?.lessons.find((l) => !l.completed);
 
   return (
-    <div className={`bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 ${compact ? "rounded-2xl border p-3" : "rounded-xl border-2 p-4"}`}>
-      <div className="flex items-center gap-2 mb-2">
+    <div className={`bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 ${compact ? "rounded-2xl border p-2.5" : "rounded-xl border-2 p-4"}`}>
+      <div className={`flex items-center gap-2 ${compact ? "mb-1" : "mb-2"}`}>
         <Briefcase className="w-4 h-4 text-indigo-500" />
         <p className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
           {t.careerGoalWidget.title}
         </p>
       </div>
       <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{mergeCareer(career, locale).title}</p>
-      <div className="flex items-center justify-between text-xs font-semibold text-stone-500 dark:text-stone-400 mt-2 mb-1.5">
+      <div className={`flex items-center justify-between text-xs font-semibold text-stone-500 dark:text-stone-400 ${compact ? "mt-1 mb-1" : "mt-2 mb-1.5"}`}>
         <span>{format(t.careerGoalWidget.progress, { completed, total })}</span>
         <span>{percent}%</span>
       </div>
-      <div className="h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden mb-3">
+      <div className={`h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden ${compact ? "mb-2" : "mb-3"}`}>
         <div
           className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 transition-all duration-500"
           style={{ width: `${percent}%` }}

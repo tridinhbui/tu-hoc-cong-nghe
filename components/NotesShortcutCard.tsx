@@ -33,16 +33,17 @@ export default function NotesShortcutCard() {
   const { collapsed, hydrated, toggle } = useCollapsibleCard("thtcdn:card-collapsed:notes");
 
   return (
-    // `self-start` khi gấp, `h-full` khi mở. Lưới cha đặt `items-stretch` để
-    // hai thẻ cao bằng nhau - đúng khi cả hai cùng mở, nhưng nếu giữ nguyên lúc
-    // gấp thì thẻ đã thu gọn vẫn bị kéo cao bằng thẻ bên cạnh và để lại một
-    // mảng trống, tức là gấp mà chẳng thấp đi chút nào.
-    <div
-      className={`group relative flex flex-col rounded-[24px] border-2 border-amber-400/60 bg-gradient-to-br from-amber-50 to-orange-50/60 p-4 shadow-sm transition duration-200 ease-out hover:-translate-y-0.5 hover:border-amber-500/70 sm:p-5 dark:border-amber-500/40 dark:from-amber-950/30 dark:to-stone-900 ${
-        collapsed ? "self-start" : "h-full"
-      }`}
-    >
-      <Link href="/ghi-chu" aria-label={p.notesTitle} className="absolute inset-0 z-10 rounded-[24px]" />
+    // KHÔNG có khung riêng - xem chú thích cùng chỗ trong LearningPathSummary.tsx.
+    //
+    // `self-start`/`h-full` đã bỏ: cả hai chỉ tồn tại để xoay xở với
+    // `items-stretch` của lưới hai cột cũ, và hàng trong một bảng thì cao theo
+    // nội dung của nó.
+    //
+    // Hiệu ứng hover đổi từ `-translate-y-0.5` sang đổi nền: nhấc một HÀNG lên
+    // khỏi bảng chứa nó trông như hàng bị bong ra, còn nhấc một tấm thẻ rời thì
+    // không. Vùng bấm vẫn là toàn bộ hàng.
+    <div className="group relative flex flex-col p-4 transition-colors duration-200 hover:bg-amber-50/60 sm:p-5 dark:hover:bg-amber-950/20">
+      <Link href="/ghi-chu" aria-label={p.notesTitle} className="absolute inset-0 z-10" />
 
       <div className="flex items-start gap-3.5">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-500 text-white shadow-md">

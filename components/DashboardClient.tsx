@@ -205,6 +205,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   // hiện như cũ - nếu không, một tuỳ chọn đặt ở màn hình này sẽ lặng lẽ giấu
   // widget ở màn hình kia mà không có gì bật lại được.
   const showOptional = isLessonsView || isFullPreset;
+  // Bản GỌN của chính các thẻ, khác `showOptional` vốn chỉ quyết định widget
+  // nào có mặt. Ở đây là thẻ vẫn có mặt nhưng thu lại.
+  //
+  // `isLessonsView ||` chứ không phải `&&`: /hoc-bai không có nút chuyển, nên
+  // nó giữ nguyên bản gọn như trước. Nếu để preset chi phối cả trang đó thì
+  // một lựa chọn đặt ở màn hình này sẽ lặng lẽ nới rộng màn hình kia - cùng
+  // cái bẫy mà chú thích của `showOptional` ngay trên đã tránh.
+  const isCompactCard = isLessonsView || !isFullPreset;
 
   useEffect(() => {
     const stored = getStoredPreset();
@@ -403,12 +411,23 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           grouped.set(lvl.level, []);
         }
         entries.forEach((entry) => {
-          // Approximation: grouping every other user by level here can't
-          // check their individual CFA completion for the L9+ gate (that
-          // data isn't part of the xp leaderboard query), so a handful of
-          // high-XP-but-no-CFA users may show under L9 in this member list
-          // even though recalculateUserStats caps their persisted level
-          // lower. Only the current user's own level (below) is exact.
+          // Bảng xếp hạng XP không trả về số mô-đun CFA của từng người, nên
+          // `cfaCompleted` ở đây luôn là 0 (giá trị mặc định của tham số).
+          //
+          // Chú thích cũ ở chỗ này nói rằng hệ quả là "một vài người XP cao mà
+          // chưa học CFA CÓ THỂ hiện dưới L9". Điều đó sai, và sai theo đúng
+          // chiều ngược lại: cfaCompleted = 0 không bao giờ vượt được cổng
+          // `minCfaCompleted: 5` của L9, nên KHÔNG AI lọt vào L9 - cả dải
+          // 3.600-5.199 XP bị dồn xuống L8, còn ai đủ 5.200 thì nhảy thẳng lên
+          // L10. Trên giao diện, L9 là một ô vĩnh viễn trống, và đó chính là
+          // thứ một người học báo lỗi: họ 5.036 XP, thấy mình ở nhóm L8, cạnh
+          // tấm thẻ L9 ghi mỗi ngưỡng XP thấp hơn số của họ.
+          //
+          // Xếp theo XP đơn thuần ở đây thì L9 đầy lên nhưng danh sách sẽ mâu
+          // thuẫn với cấp đã lưu của chính những người đó (recalculateUserStats
+          // có xét cổng CFA). Sửa đúng là để truy vấn trả kèm số mô-đun CFA;
+          // trong lúc chờ, thẻ L9 đã ghi rõ cổng CFA nên ô trống ấy tự giải
+          // thích được.
           const lvl = getLevelByXp(entry.value).level;
           if (grouped.has(lvl)) {
             grouped.get(lvl)?.push({ name: entry.name, xp: entry.value, avatarUrl: entry.avatarUrl, userId: entry.user_id });
@@ -1035,7 +1054,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             ];
 
             return (
-              <div className="rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-3 sm:p-3.5 xl:col-span-12 xl:min-h-0 xl:overflow-hidden">
+              <div className={`rounded-2xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 xl:col-span-12 xl:min-h-0 xl:overflow-hidden ${isCompactCard ? "p-2.5" : "p-3 sm:p-3.5"}`}>
                 <div className="grid grid-cols-1 gap-2.5 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   {/* self-stretch (not the grid's items-start) so this column
                       fills the row height set by the taller UserStats sidebar -
@@ -1047,9 +1066,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         <h3 className="text-[15px] font-bold text-stone-900 dark:text-stone-100">
                           {t.dashboard.levelMapTitle}
                         </h3>
-                        <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
-                          {t.dashboard.levelMapNote}
-                        </p>
+                        {/* Dòng giải thích bản đồ chỉ có ở bản đầy đủ: nó nói
+                            cách đọc dải cấp độ, và người đã chọn "Gọn" là
+                            người đã đọc nó rồi. */}
+                        {!isCompactCard && (
+                          <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5">
+                            {t.dashboard.levelMapNote}
+                          </p>
+                        )}
                       </div>
                       <div className="flex flex-wrap items-center gap-2.5 text-left sm:text-right self-start sm:self-auto">
                         {user?.id && <DashboardStreakWidget userId={user.id} />}
@@ -1150,6 +1174,17 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                           {t.levelTitles[lvl.level] ?? lvl.name}
                                         </p>
                                         <p className="text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
+                                        {/* Cấp có cổng CFA phải nói ra, nếu không thẻ đang nói dối
+                                            bằng cách nói thiếu. L9 đòi 3.600 XP VÀ 5 mô-đun CFA
+                                            (lib/levels.ts), nhưng thẻ chỉ ghi ngưỡng XP - nên người học
+                                            5.036 XP thấy mình đứng ở L8 cạnh một tấm thẻ ghi "3.600 XP"
+                                            và kết luận hệ thống xếp sai cấp. Họ suy luận đúng theo đúng
+                                            cái luật duy nhất được cho xem. */}
+                                        {lvl.minCfaCompleted ? (
+                                          <p className="text-[9px] text-amber-600 dark:text-amber-500 leading-tight">
+                                            {format(t.finalOne.dashboardClient.levelCfaGate, { count: lvl.minCfaCompleted })}
+                                          </p>
+                                        ) : null}
                                         <div className={`inline-flex items-center gap-1 text-[8px] font-bold mt-1 px-1.5 py-0.5 rounded-full w-fit ${isReached ? `${accent.bg} ${accent.text}` : "bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500"}`}>
                                           👥 {members.length}
                                         </div>
@@ -1237,8 +1272,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             Hai cột trên màn rộng, vì xếp dọc là cộng thêm
                             chiều cao vào đúng thẻ vừa được thu gọn. */}
                         <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-                          {user?.id && <DailyMotivationWidget userId={user.id} compact />}
-                          {!isLessonsView && <CareerGoalWidget userId={user?.id} compact />}
+                          {user?.id && <DailyMotivationWidget userId={user.id} compact={isCompactCard} />}
+                          {!isLessonsView && <CareerGoalWidget userId={user?.id} compact={isCompactCard} />}
                         </div>
                     </div>
 
@@ -1253,6 +1288,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       userId={user?.id}
                       sidebar={true}
                       embedded={true}
+                      compact={isCompactCard}
                     />
                   </div>
                 </div>
@@ -1411,24 +1447,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 dưới đây - totalDone là mọi bài đã học ở cả hai track, đặt cạnh
                 totalLessons (chỉ track hiện tại) sẽ ra tỷ lệ vượt 100% cho ai
                 đã học cả hai. */}
-            {/* Lộ trình và sổ tay chia đôi hàng. Ghi chú rời khỏi navbar về
-                đây: nó là việc làm TRONG lúc học, ngay sau khi hiểu ra một
-                điều, chứ không phải một đích đến chọn từ menu trước khi bắt
-                đầu - nên chỗ của nó là ngay cạnh thứ người ta nhìn lúc chuẩn
-                bị vào bài.
-
-                `items-stretch` để hai thẻ cao bằng nhau: thẻ lộ trình có bốn
-                dòng chữ, thẻ sổ tay có hai, và không có nó thì thẻ ngắn hơn
-                treo lửng giữa hàng. Xếp chồng dưới `sm` - hai thẻ cạnh nhau ở
-                375px thì mỗi bên còn chưa tới 170px. */}
-            <div className="grid items-stretch gap-4 sm:grid-cols-2">
-              <LearningPathSummary
-                track={activeTrack}
-                done={sorted.filter((l) => completed.includes(l.id)).length}
-                total={sorted.length}
-              />
-              <NotesShortcutCard />
-            </div>
+            {/* Lộ trình và sổ tay đã chuyển sang CỘT PHẢI, gộp thành một bảng -
+                xem chỗ dựng ở đó. Lý do đặt sổ tay cạnh lộ trình vẫn giữ
+                nguyên (ghi chú là việc làm TRONG lúc học, không phải một đích
+                đến chọn từ menu); chỉ khác là bây giờ cả hai đứng cạnh danh
+                sách bài thay vì chen giữa nó và thẻ tiếp tục học. */}
 
             {/* The recall / mistake / remediation widgets used to sit here, at
                 the top of this column. Now that the column is a fixed-height
@@ -2331,6 +2354,31 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 ? "xl:space-y-0 xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:grid xl:grid-cols-2 xl:grid-rows-[minmax(0,1fr)_auto] xl:gap-3.5"
                 : "xl:col-span-8 xl:min-h-0 xl:overflow-y-auto xl:pr-0.5"
           }`}>
+            {/* Lộ trình + sổ tay, MỘT bảng hai hàng, đứng đầu cột phải.
+                Trước đây là hai tấm thẻ rời chia đôi một hàng ở cột trái, chen
+                giữa thẻ "tiếp tục học" và danh sách bài - tức là mỗi lần vào
+                học đều phải lướt qua chúng để tới thứ mình vào để làm.
+
+                Gộp chứ không chỉ dời: hai thẻ ấy mỗi cái mang một viền 2px và
+                một nền gradient riêng, đặt cạnh nhau trong cột hẹp thành hai
+                khung tranh nhau. Bảng này giữ viền, hai hàng bên trong chỉ còn
+                một đường kẻ ngăn - còn màu nhận dạng (xanh cho lộ trình, hổ
+                phách cho sổ tay) chuyển hết vào ô biểu tượng, nơi nó phân biệt
+                được hai hàng mà không tốn thêm cái khung nào.
+
+                Vẫn chỉ hiện ở chế độ xem bài, y như trước khi dời: trang tổng
+                quan chưa từng dựng hai thẻ này. */}
+            {isLessonsView && (
+              <div className="divide-y divide-stone-200 overflow-hidden rounded-2xl border border-stone-200 bg-white dark:divide-stone-800 dark:border-stone-800 dark:bg-stone-900">
+                <LearningPathSummary
+                  track={activeTrack}
+                  done={sorted.filter((l) => completed.includes(l.id)).length}
+                  total={sorted.length}
+                />
+                <NotesShortcutCard />
+              </div>
+            )}
+
             {/* Study aids, beside the lesson list rather than stacked on top of
                 it - see the note in the left column. */}
             {isLessonsView && user?.id && (

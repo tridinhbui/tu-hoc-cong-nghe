@@ -54,13 +54,17 @@ export default function LearningPathSummary({
   const trackName = track === "professional" ? p.trackProfessionalName : p.trackPersonalName;
 
   return (
-    // `self-start` khi gấp - xem chú thích cùng chỗ trong NotesShortcutCard.tsx
-    // về lý do phải thoát khỏi `items-stretch` của lưới cha.
-    <div
-      className={`rounded-[24px] border-2 border-emerald-500/60 bg-gradient-to-br from-emerald-50 to-teal-50/60 dark:from-emerald-950/40 dark:to-stone-900 p-4 sm:p-5 shadow-sm ${
-        collapsed ? "self-start" : ""
-      }`}
-    >
+    // KHÔNG có khung riêng. Thẻ này và NotesShortcutCard giờ là hai HÀNG trong
+    // cùng một bảng ở cột phải, và bảng cha giữ viền/nền/bo góc - xem chỗ dựng
+    // trong DashboardClient.tsx. Trả khung lại cho chỗ này là dựng lại thẻ lồng
+    // thẻ: một khung 2px nằm trong một khung nữa, đúng thứ vừa dọn đi.
+    //
+    // Màu nhận dạng chuyển hết vào ô biểu tượng bên dưới. Nó vẫn phân biệt được
+    // hai hàng mà không cần tới hai cái viền.
+    //
+    // `self-start` đã bỏ cùng lúc: nó tồn tại để thoát khỏi `items-stretch` của
+    // lưới hai cột cũ, mà lưới ấy không còn.
+    <div className="p-4 sm:p-5">
       <div className="flex items-start gap-3.5">
         <div className="w-10 h-10 shrink-0 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md">
           <Compass className="w-5 h-5" />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { CFA_ESSAYS, essayMaxPoints, type CfaEssay } from "@/lib/cfa-essays";
 import { useI18n } from "@/lib/i18n/context";
 import { mergeCfaEssays } from "@/lib/cfa-essays-i18n";
@@ -105,18 +106,25 @@ export default function CfaEssayPractice() {
   // Nội dung đề nằm ngoài từ điển UI - xem lib/cfa-essays-i18n.
   const essays = useMemo(() => mergeCfaEssays(CFA_ESSAYS, locale), [locale]);
   return (
-    <section className="mt-6 rounded-[24px] border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
-      <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100">
-        {t.cfaEssay.sectionTitle}
-      </h3>
-      <p className="mt-1 max-w-2xl text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-        {t.cfaEssay.sectionBlurb}
-      </p>
+    <details className="group mt-4 rounded-[24px] border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
+      {/* Đóng sẵn, cùng lý do với khối item set: điểm tự chấm ở đây không lưu
+          và không tính vào đâu, nên nó là bài tập tự chọn. */}
+      <summary className="cursor-pointer list-none">
+        <div className="flex items-center gap-2">
+          <h3 className="text-base font-extrabold text-stone-900 dark:text-stone-100">
+            {t.cfaEssay.sectionTitle}
+          </h3>
+          <ChevronDown className="ml-auto h-4 w-4 shrink-0 text-stone-400 transition-transform group-open:rotate-180" />
+        </div>
+        <span className="mt-1 block max-w-2xl text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+          {t.cfaEssay.sectionBlurb}
+        </span>
+      </summary>
       <div className="mt-4 grid gap-3 lg:grid-cols-2">
         {essays.map((essay) => (
           <EssayCard key={essay.id} essay={essay} />
         ))}
       </div>
-    </section>
+    </details>
   );
 }

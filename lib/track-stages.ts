@@ -154,9 +154,16 @@ export const TRACK_PERSONAL = {
       days: [289, 298] as [number, number],
       available: true,
       isNew: true,
+      // 1761-1763: cụm chọn bảo hiểm. Ngày 289-298 đã kín nên chúng đi qua
+      // extraLessonIds, giống cách Chặng 5 chuyên ngành làm.
+      extraLessonIds: [1761, 1762, 1763],
       parts: [
         { name: "Nhà ở & tín dụng", days: [289, 293] as [number, number] },
-        { name: "Bảo vệ tài sản & di sản", days: [294, 298] as [number, number] },
+        {
+          name: "Bảo vệ tài sản & di sản",
+          days: [294, 298] as [number, number],
+          extraLessonIds: [1761, 1762, 1763],
+        },
       ],
     },
     {

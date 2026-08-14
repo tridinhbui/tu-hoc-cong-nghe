@@ -1,0 +1,172 @@
+{
+  "slug": "doc-dieu-khoan-bao-hiem",
+  "title": "Choosing insurance, Part 1: The clauses that decide whether you get paid",
+  "subtitle": "Exclusions, waiting periods, pre-existing conditions, indemnity or fixed benefit - five places that turn two identical-looking policies into two different outcomes",
+  "duration": "12 min",
+  "openingQuestion": "You buy health cover today and are admitted two weeks later with appendicitis. Does the insurer pay?",
+  "openingOptions": [
+    "Usually not: the policy has a waiting period before benefits take effect",
+    "Yes, because cover began the moment you paid the first premium",
+    "Yes, because appendicitis is acute rather than a pre-existing condition",
+    "No, because every internal medical condition sits in the exclusion list"
+  ],
+  "explanation": "Almost every health policy carries a waiting period: 30 days for ordinary illness, 90 to 365 days for specified conditions, and typically 270 to 365 days for maternity. During that window you are paying premiums but the benefit is not yet live - accidents are the usual exception, because an accident cannot be planned in advance. The clause exists because of adverse selection: if buying today meant being paid tomorrow, the most rational buyer would be someone who already knows they are about to be hospitalised, and a pool made only of such buyers would have to price itself out of reach. But a sound reason does not make it any less of a trap for someone who does not know about it, because a great many people buy insurance exactly when they first notice something wrong with their health - which is exactly the moment this clause blocks them.",
+  "diagram": [
+    { "label": "Sign the policy, pay the first premium" },
+    { "label": "Waiting period: premiums paid, benefits not yet live" },
+    { "label": "Waiting period ends → benefits take effect" },
+    { "label": "Claim event → exclusions and original disclosure are reviewed" },
+    { "label": "Paid on indemnity or fixed-benefit terms, after co-payment" }
+  ],
+  "realWorldExample": {
+    "company": "Lan, a health policy with a 200m limit",
+    "description": "Lan buys health cover with a 200m annual inpatient limit for a 6m premium. In month two she is admitted for gallstone surgery costing 45m. The policy carries a 90-day waiting period for conditions requiring surgery, so nothing is paid. Had the operation fallen in month four, the payout still would not have been 45m: the policy specifies a 20% co-payment, so the insurer pays 36m and Lan pays 9m. Same policy, same operation, three different outcomes - decided by timing and one line specifying a percentage."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "When you go to buy insurance, nearly the whole conversation revolves around one number: how large is the benefit. It is the easiest number to compare and the least decisive one. What actually determines whether money reaches you sits in five other places, all inside the document pack you are handed and almost nobody opens before signing."
+    },
+    { "type": "heading", "text": "Five places to read before you sign" },
+    {
+      "type": "list",
+      "items": [
+        "Exclusions: the list of situations the policy will NOT pay for, however fully you have paid your premiums. It is the longest section and the only one that gets read carefully at claim time.",
+        "Waiting periods: the stretch after signing during which benefits are not yet live. They differ by condition group, and the longest ones usually attach to the most expensive conditions.",
+        "Pre-existing conditions: anything that existed before the effective date. Not disclosing it does not make it disappear - it only converts an excluded claim into grounds for voiding the policy.",
+        "Indemnity or fixed benefit: two completely different ways of paying, sitting behind the same headline benefit figure.",
+        "Co-payment and deductible: the share you carry on each claim, applied after every condition above has been met."
+      ]
+    },
+    { "type": "heading", "text": "Indemnity and fixed benefit: one number, two meanings" },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Indemnity (reimburses the bill)",
+        "text": "Pays what you actually spent, up to the limit. A 40m hospital bill against a 200m limit pays 40m. Spend nothing and you receive nothing, even if you were admitted."
+      },
+      "right": {
+        "label": "Fixed benefit (pays a set amount)",
+        "text": "Pays a set sum per event, no receipts required. Say 1m per day in hospital: ten days pays 10m, whether the real bill was 4m or 40m."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "Neither type is superior; they solve different problems. Indemnity fits the risk of a large hospital bill, which is the thing that can wipe out savings. Fixed benefit fits the income lost while you are in hospital, which no receipt can evidence. Trouble only arises when a buyer believes they hold one and are actually holding the other, and that happens often because both are advertised through a single number."
+    },
+    { "type": "heading", "text": "Co-payment is not a rounding error" },
+    {
+      "type": "formula",
+      "title": "Amount actually received after co-payment",
+      "equation": "(Eligible cost − Deductible) × (1 − Co-payment rate)",
+      "variables": [
+        { "symbol": "Eligible cost", "name": "The non-excluded portion", "description": "After removing anything sitting in the exclusion list" },
+        { "symbol": "Deductible", "name": "The first slice you carry", "description": "Some policies have one, some do not; subtract it before applying the rate" },
+        { "symbol": "Co-payment rate", "name": "Your share", "description": "Commonly 10-30%; cheaper policies usually carry higher rates" }
+      ],
+      "example": {
+        "title": "60m bill, 5m deductible, 20% co-payment",
+        "calculation": "(60 − 5) × 0.8",
+        "result": "44m paid",
+        "explanation": "You carry 16m, more than a quarter of the bill, while the policy limit still has plenty of room left."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Health disclosure: the most expensive place to get it wrong",
+      "text": "Leaving an existing condition off the form does not get that condition covered - it gives the insurer grounds to refuse a claim and void the policy, including for conditions entirely unrelated to it. An agent will occasionally suggest skipping an item to 'keep things simple'; that advice moves risk from them to you, and it only surfaces at the moment you file a claim. Disclose everything and the worst case is that the condition is excluded or your premium rises - you still have a policy."
+    },
+    {
+      "type": "conceptTable",
+      "title": "The vocabulary of reading a policy",
+      "concepts": [
+        { "en": "Exclusions", "def": "Situations that are not paid, however fully premiums have been paid" },
+        { "en": "Waiting period", "def": "The stretch after the effective date during which benefits do not apply" },
+        { "en": "Pre-existing condition", "def": "A condition that existed before the policy's effective date" },
+        { "en": "Co-payment", "def": "The percentage the buyer carries on every claim" },
+        { "en": "Deductible", "def": "The first slice of any loss the buyer absorbs" }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The benefit figure tells you the ceiling on any payout. The five clauses above tell you whether you can reach that ceiling - and that is what you are actually buying."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "An eligible bill of 80m, a 10m deductible, and a 20% co-payment. How much does the insurer pay?",
+      "options": [
+        "64m (= 80 × 0.8, deductible ignored)",
+        "56m (= (80 − 10) × 0.8, deductible first)",
+        "70m (= 80 − 10, co-payment ignored)",
+        "54m (= 80 × 0.8 − 10, deductible last)"
+      ],
+      "explanation": "Subtract the deductible first, then apply the rate: (80 − 10) × 0.8 = 56m. You carry 24m. The 54m answer subtracts both correct amounts but in the wrong order, and the order is worth 2m."
+    },
+    {
+      "question": "Why do health policies impose a waiting period?",
+      "options": [
+        "To offset the cost of issuing the policy in the opening months",
+        "To give the insurer time to re-examine the health disclosures made",
+        "To stop people buying cover once they know treatment is coming",
+        "Because regulation requires every policy to carry 30 days of waiting"
+      ],
+      "explanation": "Without one, the most rational buyer is someone who already knows they are about to be hospitalised, and a pool made only of such buyers has to price itself out of reach. Accidents are usually exempt because they cannot be planned."
+    },
+    {
+      "question": "A fixed-benefit policy pays 1m per day in hospital. You stay 8 days; the real bill is 3m. What do you receive?",
+      "options": [
+        "3m, and anything above the set rate is not paid on top",
+        "3m (= exactly the hospital costs actually incurred)",
+        "5m (= the 8m entitlement less the 3m hospital bill)",
+        "8m (= 8 days × 1m, independent of any receipt)"
+      ],
+      "explanation": "A fixed benefit pays per event rather than per receipt, so the full 8m is due. Both answers that reference the hospital bill are applying indemnity logic to a fixed-benefit policy - exactly where the two are confused."
+    },
+    {
+      "question": "A buyer omits a condition they already had. What is the most common consequence?",
+      "options": [
+        "The insurer may refuse the claim and void the entire policy",
+        "Only the undisclosed condition is excluded; the rest stays intact",
+        "The policy stays live but back premiums are charged for prior years",
+        "Nothing, provided that condition is unrelated to this hospital stay"
+      ],
+      "explanation": "Non-disclosure converts 'an excluded claim' into 'grounds to void the policy', including for unrelated conditions. Disclose fully and the worst case is exclusion of that condition or a higher premium - you still have a policy."
+    },
+    {
+      "question": "The limit is 300m but you only spend 20m. How much does an indemnity policy pay?",
+      "options": [
+        "300m, because that is the benefit written into the signed policy",
+        "20m, because indemnity pays the bill rather than the limit",
+        "160m (= the midpoint of the 20m spent and the 300m limit)",
+        "20m, and the unused limit is refunded to you in cash"
+      ],
+      "explanation": "The limit is a ceiling, not a payout. This is the sharpest difference between indemnity and fixed benefit, and it is why a policy with a very high limit is not automatically better if its premium rises to match."
+    }
+  ],
+  "practicePrompt": {
+    "question": "Two health policies, both with a 200m limit. A costs 5m with a 30% co-payment. B costs 7m with no co-payment. For someone expecting roughly 50m of medical costs a year, which is cheaper?",
+    "options": [
+      "B: A costs 20m in total against 7m for B",
+      "A, because its premium is 2m lower than B every year",
+      "A, because co-payment only applies above the policy limit",
+      "The same, since an identical limit means identical benefits"
+    ],
+    "explanation": "A: 5m premium plus 15m carried (30% of 50) is 20m. B: 7m premium, nothing carried. A's headline premium is lower while its total cost is nearly three times higher - comparing premiums without comparing co-payments is comparing half the problem."
+  },
+  "keyTakeaways": [
+    "The benefit figure is a ceiling on payouts, not the amount you will receive",
+    "The longest waiting periods usually attach to the most expensive condition groups",
+    "Indemnity pays the bill; fixed benefit pays per event - one number, two meanings",
+    "Co-payment applies after the deductible, and that order changes the result",
+    "Non-disclosure hides nothing; it converts an exclusion into grounds to void the policy"
+  ],
+  "summary": {
+    "keyIdea": "A policy is sold on its benefit figure but enforced through five clauses: exclusions, waiting periods, pre-existing condition disclosure, the indemnity-or-fixed-benefit mechanism, and co-payment. The first four decide whether you are paid at all; the last decides how much. Reading them before signing costs one evening; reading them after filing a claim is too late."
+  },
+  "application": {
+    "message": "Open the policy you already hold, find these five items, and write them on a single sheet. If any of them is missing from the pack you were given, that is the first question for your agent - and the answer has to come in writing, not in conversation."
+  }
+}

@@ -221,11 +221,16 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
 
   return (
     <div className="py-2">
-      {/* ─── ALWAYS VISIBLE TOP BANNERS (LIGHT MODE, LOW HEIGHT 1/3 EACH) ─── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-5">
-        {/* 🎯 CFA Global Continuation Summary Banner (1/3) */}
-        <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
-          <div className="space-y-1.5">
+      {/* ─── ALWAYS VISIBLE TOP BANNERS ───
+          Hai tầng chứ không phải một lưới 2×2. Thẻ tiến độ trả lời "học tiếp
+          bài nào", ba thẻ còn lại là công cụ ôn - xếp chung một lưới thì cả
+          bốn trông ngang hàng nhau, trong khi chỉ một cái là việc cần làm kế
+          tiếp. Tầng trên nằm ngang để tiêu đề bài không còn bị line-clamp-1
+          cắt giữa chừng ở khổ hẹp. */}
+      <div className="mb-5 space-y-3.5">
+        {/* 🎯 CFA Global Continuation Summary Banner - full width */}
+        <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="space-y-1.5 min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-1.5">
               <span className="text-[9px] font-black uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-md border border-emerald-200/60 dark:border-emerald-800/60">
                 {t.cfaTrack.progressBadge}
@@ -234,10 +239,10 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                 {format(t.cfaTrack.progressCount, { done: totalCompletedCfa, total: totalCfaLessons, pct: overallPct })}
               </span>
             </div>
-            <h2 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug line-clamp-1">
+            <h2 className="text-sm sm:text-base font-extrabold text-stone-900 dark:text-stone-100 leading-snug line-clamp-2">
               {nextGlobalLesson ? format(t.cfaTrack.nextLessonTitle, { title: nextGlobalLesson.title }) : t.cfaTrack.allDoneTitle}
             </h2>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-1">
+            <p className="text-[11px] text-stone-500 dark:text-stone-400 line-clamp-1">
               {nextGlobalLesson ? format(t.cfaTrack.nextLessonSubject, { subject: nextGlobalLesson.subjectName }) : t.cfaTrack.allDoneSubtitle}
             </p>
 
@@ -252,7 +257,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
           {nextGlobalLesson && (
             <Link
               href={`/bai-hoc/${nextGlobalLesson.slug}`}
-              className="mt-3 px-3 py-2 bg-emerald-600 hover:bg-emerald-700 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
+              className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full sm:w-auto text-center active:scale-95"
             >
               <PlayCircle className="w-3.5 h-3.5 text-white" />
               <span>{t.cfaTrack.continueNextLesson}</span>
@@ -260,85 +265,89 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
           )}
         </div>
 
-        {/* 📇 CFA Glossary Flashcards Banner (1/3) */}
-        <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-1.5">
-              <span className="text-lg">📇</span>
-              <span className="text-[9px] font-black uppercase text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/50 px-2 py-0.5 rounded-md border border-amber-200/60 dark:border-amber-800/60">
-                {t.cfaTrack.flashcardBadge}
-              </span>
+        {/* Ba công cụ ôn, một hàng. Chúng cùng một loại việc ("mở ra tra/ôn"),
+            nên đứng cùng nhịp và cùng chiều cao. */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+          {/* 📇 CFA Glossary Flashcards Banner (1/3) */}
+          <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <span className="text-lg">📇</span>
+                <span className="text-[9px] font-black uppercase text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/50 px-2 py-0.5 rounded-md border border-amber-200/60 dark:border-amber-800/60">
+                  {t.cfaTrack.flashcardBadge}
+                </span>
+              </div>
+              <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
+                {t.cfaTrack.flashcardTitle}
+              </h3>
+              <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
+                {/* Một biểu thức duy nhất thay vì `{số} chữ`: JSX cắt khoảng
+                    trắng quanh biểu thức theo luật riêng của nó, và ở đây kết
+                    quả render ra "118thuật ngữ" - dính liền. Ghép sẵn trong
+                    chuỗi thì không còn khoảng trắng nào để ai cắt. */}
+                {format(t.cfaTrack.flashcardDesc, { count: CFA_GLOSSARY_TERMS.length })}
+              </p>
             </div>
-            <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
-              {t.cfaTrack.flashcardTitle}
-            </h3>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
-              {/* Một biểu thức duy nhất thay vì `{số} chữ`: JSX cắt khoảng
-                  trắng quanh biểu thức theo luật riêng của nó, và ở đây kết
-                  quả render ra "118thuật ngữ" - dính liền. Ghép sẵn trong
-                  chuỗi thì không còn khoảng trắng nào để ai cắt. */}
-              {format(t.cfaTrack.flashcardDesc, { count: CFA_GLOSSARY_TERMS.length })}
-            </p>
+
+            <Link
+              href="/cfa/flashcards"
+              className="mt-3 px-3 py-2 bg-amber-500 hover:bg-amber-600 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
+            >
+              <span>{t.cfaTrack.flashcardCta}</span>
+            </Link>
           </div>
 
-          <Link
-            href="/cfa/flashcards"
-            className="mt-3 px-3 py-2 bg-amber-500 hover:bg-amber-600 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
-          >
-            <span>{t.cfaTrack.flashcardCta}</span>
-          </Link>
-        </div>
-
-        {/* 📐 CFA Formula Cheat Sheet Banner (1/3) */}
-        <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-1.5">
-              <span className="text-lg">📐</span>
-              <span className="text-[9px] font-black uppercase text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded-md border border-indigo-200/60 dark:border-indigo-800/60">
-                {t.cfaTrack.formulaBadge}
-              </span>
+          {/* 📐 CFA Formula Cheat Sheet Banner (1/3) */}
+          <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <span className="text-lg">📐</span>
+                <span className="text-[9px] font-black uppercase text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded-md border border-indigo-200/60 dark:border-indigo-800/60">
+                  {t.cfaTrack.formulaBadge}
+                </span>
+              </div>
+              <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
+                {t.cfaTrack.formulaTitle}
+              </h3>
+              <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
+                {format(t.cfaTrack.formulaDesc, { count: CFA_FORMULAS_DATA.length })}
+              </p>
             </div>
-            <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
-              {t.cfaTrack.formulaTitle}
-            </h3>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
-              {format(t.cfaTrack.formulaDesc, { count: CFA_FORMULAS_DATA.length })}
-            </p>
+
+            <Link
+              href="/cfa/formulas"
+              className="mt-3 px-3 py-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold text-xs rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
+            >
+              <span>{t.cfaTrack.formulaCta}</span>
+            </Link>
           </div>
 
-          <Link
-            href="/cfa/formulas"
-            className="mt-3 px-3 py-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold text-xs rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
-          >
-            <span>{t.cfaTrack.formulaCta}</span>
-          </Link>
-        </div>
-
-        {/* 📝 Thi thử - đứng cùng hàng với sổ công thức và flashcard vì cả ba
-            đều là "công cụ ôn", nhưng đây là cái duy nhất trả lời được câu hỏi
-            "tôi đã sẵn sàng chưa". */}
-        <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-1.5">
-              <span className="text-lg">📝</span>
-              <span className="text-[9px] font-black uppercase text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/50 px-2 py-0.5 rounded-md border border-rose-200/60 dark:border-rose-800/60">
-                {t.cfaTrack.mockExamBadge}
-              </span>
+          {/* 📝 Thi thử - đứng cùng hàng với sổ công thức và flashcard vì cả ba
+              đều là "công cụ ôn", nhưng đây là cái duy nhất trả lời được câu hỏi
+              "tôi đã sẵn sàng chưa". */}
+          <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <span className="text-lg">📝</span>
+                <span className="text-[9px] font-black uppercase text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/50 px-2 py-0.5 rounded-md border border-rose-200/60 dark:border-rose-800/60">
+                  {t.cfaTrack.mockExamBadge}
+                </span>
+              </div>
+              <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
+                {t.cfaTrack.mockExamTitle}
+              </h3>
+              <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
+                {t.cfaTrack.mockExamDesc}
+              </p>
             </div>
-            <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
-              {t.cfaTrack.mockExamTitle}
-            </h3>
-            <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
-              {t.cfaTrack.mockExamDesc}
-            </p>
-          </div>
 
-          <Link
-            href="/cfa/thi-thu"
-            className="mt-3 px-3 py-2 bg-rose-600 hover:bg-rose-700 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
-          >
-            <span>{t.cfaTrack.mockExamCta}</span>
-          </Link>
+            <Link
+              href="/cfa/thi-thu"
+              className="mt-3 px-3 py-2 bg-rose-600 hover:bg-rose-700 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
+            >
+              <span>{t.cfaTrack.mockExamCta}</span>
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -574,7 +583,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
         /* Book Grid Library View */
         <div>
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
               {[1, 2, 3, 4].map((n) => (
                 <div key={n} className="rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 p-4 animate-pulse">
                   <div className="aspect-[3/4] bg-stone-200 dark:bg-stone-800 rounded-lg mb-3" />
@@ -584,7 +593,7 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
               ))}
             </div>
           ) : books.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
               {books.map((book, i) => (
                 <motion.div
                   key={book.id}

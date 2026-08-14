@@ -379,9 +379,11 @@ export default function StudyRoomWorld({
                     formatCountdown(remainingMs(seatStartedAt, nowTick, POMODORO_MS))
                   )}
                 </span>
-                {/* Đồng hồ trên là Pomodoro 25 phút; mốc ăn thưởng là 15 phút
-                    CỘNG DỒN cả ngày, tính chung với cả thư viện. Hai con số
-                    khác nhau nên dòng này nói thẳng cái thứ hai. */}
+                {/* Đồng hồ trên là MỘT phiên Pomodoro; dòng này là tổng cộng
+                    dồn cả ngày, tính chung với cả thư viện. Hai con số giờ
+                    cùng là 25, nên chữ "hôm nay" trong chuỗi là thứ duy nhất
+                    phân biệt chúng - xem chú thích dài hơn ở
+                    components/lobby/LobbyClient.tsx. */}
                 <span className={`text-[10px] font-bold ${focusGoalReached ? "text-emerald-200" : "text-stone-400"}`}>
                   {focusGoalReached
                     ? format(t.studyWorld.focusGoalReached, { xp: QUEST_XP_REWARDS.daily_focus })

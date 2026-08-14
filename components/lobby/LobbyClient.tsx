@@ -382,10 +382,13 @@ export default function LobbyClient() {
                     return left === 0 ? t.lobby.sessionDone : formatCountdown(left);
                   })()}
                 </span>
-                {/* Đồng hồ đếm ngược 25 phút là Pomodoro; mốc ĂN THƯỞNG lại là
-                    15 phút cộng dồn cả ngày. Hai con số khác nhau, nên dòng này
-                    nói thẳng cái thứ hai thay vì để người ngồi tự suy ra từ cái
-                    thứ nhất - suy ra thế nào cũng sai. */}
+                {/* Đồng hồ đếm ngược ở trên là MỘT phiên Pomodoro; dòng này là
+                    tổng CỘNG DỒN cả ngày. Cả hai giờ cùng là 25 phút, và đó
+                    chính là lý do dòng này phải ở lại: khi hai con số bằng
+                    nhau, người ngồi rất dễ đọc chúng thành cùng một đồng hồ.
+                    Chữ "hôm nay" trong chuỗi là thứ duy nhất phân biệt - ai đã
+                    ngồi buổi sáng sẽ thấy mốc đủ trước khi đồng hồ về 0, và đó
+                    là đúng chứ không phải lỗi. */}
                 <span className={`text-[11px] font-bold ${focusGoalReached ? "text-emerald-400" : "text-stone-400"}`}>
                   {focusGoalReached
                     ? format(t.lobby.focusGoalReached, { xp: QUEST_XP_REWARDS.daily_focus })

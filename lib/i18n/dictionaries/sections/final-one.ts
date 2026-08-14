@@ -37,6 +37,10 @@ export const finalOneVi = {
     dashboardClient: {
       soloLabel: "🧠 Solo",
       xpValue: "{xp} XP",
+      // Cấp có thêm cổng CFA (hiện chỉ L9) phải nói ra điều đó ngay trên thẻ:
+      // thẻ chỉ ghi ngưỡng XP là lý do người học 5.036 XP tưởng mình đang bị
+      // xếp sai cấp.
+      levelCfaGate: "+ {count} mô-đun CFA",
       milestoneBonusXp: "+50 XP",
       bonusLabel: "Bonus",
       bossDefeatedToast: "🎉 Hạ gục Boss thành công! Nhận +{xp} XP & 🪙 +{coins} Coins!",
@@ -97,6 +101,7 @@ export const finalOneEn: typeof finalOneVi = {
     dashboardClient: {
       soloLabel: "🧠 Solo",
       xpValue: "{xp} XP",
+      levelCfaGate: "+ {count} CFA modules",
       milestoneBonusXp: "+50 XP",
       bonusLabel: "Bonus",
       bossDefeatedToast: "🎉 Boss defeated! Earned +{xp} XP & 🪙 +{coins} Coins!",

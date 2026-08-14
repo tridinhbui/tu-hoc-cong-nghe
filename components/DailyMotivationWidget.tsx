@@ -138,9 +138,14 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
         </div>
       </Link>
 
-      <div className={`relative ${compact ? "mt-2 pl-10" : "mt-3 pl-[54px]"}`}>
-        <MotivationShareCard text={line} />
-      </div>
+      {/* Nút chia sẻ chỉ có ở bản đầy đủ. Nó là hành động phụ - lời nhắn mới là
+          nội dung - và ở bản gọn nó chiếm nguyên một hàng dưới cùng thẻ. Ẩn chứ
+          không bỏ: đổi sang "Đầy đủ" là nó quay lại nguyên vẹn. */}
+      {!compact && (
+        <div className="relative mt-3 pl-[54px]">
+          <MotivationShareCard text={line} />
+        </div>
+      )}
     </div>
   );
 }

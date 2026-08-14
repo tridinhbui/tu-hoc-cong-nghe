@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { CFA_LEVELS, type CfaLevelSpec } from "@/lib/cfa-levels";
 import { mergeCfaLevels } from "@/lib/cfa-levels-i18n";
 import { getServerLocale } from "@/lib/i18n/server";
@@ -123,18 +124,30 @@ export default async function CfaNextLevels() {
   const t = getDictionary(locale);
   return (
     <section className="mt-10">
-      <h2 className="text-sm font-black uppercase tracking-wide text-stone-500 dark:text-stone-400">
-        {t.certPages.nextStages}
-      </h2>
-      <p className="mt-2 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-        {t.certPages.nextStagesBlurb}
-      </p>
+      {/* Đóng sẵn. Ba khối dưới đây cộng lại dài hơn cả phần Level I nằm trên,
+          trong khi Level I mới là việc người học đang làm - để mở hết thì thứ
+          duy nhất họ thấy khi cuộn là hai cấp CHƯA CÓ BÀI. `<details>` thay vì
+          state React: đây là server component, và mở/đóng một khối chữ tĩnh
+          không đáng một byte JavaScript nào. */}
+      <details className="group rounded-[24px] border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
+        <summary className="cursor-pointer list-none">
+          <div className="flex items-center gap-2">
+            <h2 className="text-sm font-black uppercase tracking-wide text-stone-500 dark:text-stone-400">
+              {t.certPages.nextStages}
+            </h2>
+            <ChevronDown className="ml-auto h-4 w-4 shrink-0 text-stone-400 transition-transform group-open:rotate-180" />
+          </div>
+          <span className="mt-2 block text-xs leading-relaxed text-stone-500 dark:text-stone-400">
+            {t.certPages.nextStagesBlurb}
+          </span>
+        </summary>
 
-      <div className="mt-5 grid items-stretch gap-4 lg:grid-cols-2">
-        {mergeCfaLevels(CFA_LEVELS, locale).map((spec) => (
-          <LevelCard key={spec.level} spec={spec} t={t} />
-        ))}
-      </div>
+        <div className="mt-5 grid items-stretch gap-4 lg:grid-cols-2">
+          {mergeCfaLevels(CFA_LEVELS, locale).map((spec) => (
+            <LevelCard key={spec.level} spec={spec} t={t} />
+          ))}
+        </div>
+      </details>
 
       {/* Cho tới đây, hai cấp trên mới chỉ là thông tin: thi cái gì, nặng bao
           nhiêu. Hai khối dưới là phần luyện đầu tiên - và cả hai đều bám đúng

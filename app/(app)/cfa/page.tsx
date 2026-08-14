@@ -56,7 +56,7 @@ export default async function CfaPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
       <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center gap-3">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center gap-3">
           <Link
             href="/dashboard"
             className="flex items-center justify-center w-9 h-9 rounded-full text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-700 dark:hover:text-stone-200 transition-colors"
@@ -71,7 +71,7 @@ export default async function CfaPage() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-6xl mx-auto px-6 py-8">
         {/* Cặp tab đứng TRÊN nội dung: navbar giờ chỉ có một dòng "Chứng chỉ",
             nên đây là đường duy nhất đi sang FRM sau khi đã vào trong. */}
         <div className="mb-6">

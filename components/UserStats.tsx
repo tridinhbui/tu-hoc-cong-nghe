@@ -31,6 +31,9 @@ interface UserStatsProps {
   userId?: string;
   sidebar?: boolean;
   embedded?: boolean;
+  /** Bản gọn của trang tổng quan. Rút banner thi thăng cấp về một dòng; phần
+   *  bị rút quay lại nguyên vẹn khi người học chọn "Đầy đủ". */
+  compact?: boolean;
 }
 
 const LEVEL_EMOJIS: Record<number, string> = {
@@ -62,6 +65,7 @@ export default function UserStats({
   userId,
   sidebar = false,
   embedded = false,
+  compact = false,
 }: UserStatsProps) {
   const { t } = useI18n();
   const [cfaCompleted, setCfaCompleted] = useState(0);
@@ -446,16 +450,21 @@ export default function UserStats({
               setSelectedExamLevel(nextLevel.level);
               setShowExamModal(true);
             }}
-            className="w-full flex items-center justify-between p-3 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black text-xs transition-all shadow-md hover:scale-[1.01] cursor-pointer"
+            className={`w-full flex items-center justify-between rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black text-xs transition-all shadow-md hover:scale-[1.01] cursor-pointer ${compact ? "p-2" : "p-3"}`}
           >
             <div className="flex items-center gap-2 text-left">
-              <span className="text-lg">🛡️</span>
+              <span className={compact ? "text-base" : "text-lg"}>🛡️</span>
               <div>
                 <p className="leading-tight text-white drop-shadow-sm font-extrabold text-[11px]">{format(t.userStats.examBannerTitle, { level: nextLevel.level })}</p>
-                <p className="text-[10px] text-emerald-100 font-bold">{format(t.userStats.examBannerHint, { percent: LEVEL_EXAMS[nextLevel.level]?.minPassPercentage || 80 })}</p>
+                {/* Dòng điều kiện điểm chỉ có ở bản đầy đủ. Ở bản gọn nó đẩy
+                    banner cao gấp đôi để nói một thứ modal thi cũng nói lại
+                    ngay khi mở. */}
+                {!compact && (
+                  <p className="text-[10px] text-emerald-100 font-bold">{format(t.userStats.examBannerHint, { percent: LEVEL_EXAMS[nextLevel.level]?.minPassPercentage || 80 })}</p>
+                )}
               </div>
             </div>
-            <span className="px-3 py-1 rounded-xl bg-stone-950 text-emerald-400 text-[10px] font-black tracking-wide shrink-0">
+            <span className={`rounded-xl bg-stone-950 text-emerald-400 text-[10px] font-black tracking-wide shrink-0 ${compact ? "px-2 py-0.5" : "px-3 py-1"}`}>
               {t.userStats.examBannerCta}
             </span>
           </button>

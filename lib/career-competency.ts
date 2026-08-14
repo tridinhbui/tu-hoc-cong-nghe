@@ -57,7 +57,10 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     id: "personal_finance",
     // 1301-1308 là chặng thuế TNCN; 1249/1284/1285 là quy trình hoạch định
     // tài chính cá nhân - đều thuộc đây chứ không phải kế toán doanh nghiệp.
-    lessonIds: [...range(1, 20), ...range(241, 298), 1048, 1249, 1255, 1284, 1285, ...range(1301, 1308), ...range(1351, 1353)],
+    // 1761-1763: cụm chọn bảo hiểm cá nhân - đọc điều khoản, đọc bảng minh
+    // họa liên kết đầu tư, và so hai hợp đồng. Cùng miền với các bài bảo hiểm
+    // đã có ở dải 241-298.
+    lessonIds: [...range(1, 20), ...range(241, 298), 1048, 1249, 1255, 1284, 1285, ...range(1301, 1308), ...range(1351, 1353), ...range(1761, 1763)],
   },
   {
     id: "accounting",
