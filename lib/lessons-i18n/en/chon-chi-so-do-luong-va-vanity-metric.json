@@ -13,10 +13,18 @@
   ],
   "explanation": "Cumulative sign-ups since launch is the classic vanity metric: it can only go up, so it always looks good, but nobody does anything differently when they look at it. Sign-ups that became active again this week is a different animal - it can fall as well as rise, and when it falls somebody has to find out why. The only test worth remembering: if this number gets worse, who does what?",
   "diagram": [
-    { "label": "Can this metric actually move?" },
-    { "label": "Who is accountable for it?" },
-    { "label": "If it worsens, what changes?" },
-    { "label": "Can it be gamed?" }
+    {
+      "label": "Can this metric actually move?"
+    },
+    {
+      "label": "Who is accountable for it?"
+    },
+    {
+      "label": "If it worsens, what changes?"
+    },
+    {
+      "label": "Can it be gamed?"
+    }
   ],
   "realWorldExample": {
     "company": "A bank measuring new accounts opened",
@@ -115,10 +123,18 @@
       "title": "The questions to ask before accepting a metric",
       "subtitle": "Failing any one of them is reason enough to think again",
       "concepts": [
-        { "def": "The metric has to move up and down in response to someone's actions. A running cumulative total only goes one way, so it carries no signal." },
-        { "def": "A metric that belongs to nobody gets watched by nobody. Without an owner, however pretty it looks, it just sits on a report." },
-        { "def": "A leading metric moves first and leaves time to intervene. A lagging metric only confirms what has already happened. You need both, but do not confuse their roles." },
-        { "def": "Ask this before attaching rewards or penalties. People always optimise exactly what is measured, even when doing so wrecks the real objective." }
+        {
+          "def": "The metric has to move up and down in response to someone's actions. A running cumulative total only goes one way, so it carries no signal."
+        },
+        {
+          "def": "A metric that belongs to nobody gets watched by nobody. Without an owner, however pretty it looks, it just sits on a report."
+        },
+        {
+          "def": "A leading metric moves first and leaves time to intervene. A lagging metric only confirms what has already happened. You need both, but do not confuse their roles."
+        },
+        {
+          "def": "Ask this before attaching rewards or penalties. People always optimise exactly what is measured, even when doing so wrecks the real objective."
+        }
       ]
     },
     {
@@ -143,6 +159,17 @@
         "No calculation rescues you from measuring the wrong thing. That decision comes before any tool.",
         "The next lesson covers how a single average can conceal the entire truth."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers in to separate real metrics from vanity ones",
+      "equation": "A real metric ties to money: Revenue per active user = Revenue ÷ users who actually use it",
+      "example": {
+        "title": "An app advertising 'one million users'",
+        "calculation": "Cumulative signups 1,000,000 · monthly active users 40,000 · paying 3,000 · monthly revenue VND 300m",
+        "result": "Revenue per signup = VND 300 · per active user = VND 7,500 · per paying user = VND 100,000",
+        "explanation": "One business, three figures more than 300 times apart, and only the first goes on the homepage. Cumulative signups is a vanity metric because it only ever rises - it cannot respond to anything that happens afterwards. The metric worth tracking is the one that can GO DOWN when the business does badly."
+      }
     }
   ]
 }

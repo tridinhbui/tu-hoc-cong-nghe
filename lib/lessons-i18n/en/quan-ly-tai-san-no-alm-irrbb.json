@@ -13,10 +13,18 @@
   ],
   "explanation": "The trading book holds positions that are actively bought and sold and marked to market daily. The banking book holds loans and deposits that are kept to maturity and are not traded regularly. IRRBB measures the risk that when market interest rates move, the economic value of the banking book and future net interest income will swing with them - a quiet risk, accumulating slowly but capable of becoming very large.",
   "diagram": [
-    { "label": "Assets (long-dated fixed-rate lending) have a long maturity" },
-    { "label": "Liabilities (deposits) usually have a much shorter maturity" },
-    { "label": "Market rates rise → funding cost rises faster than the yield on legacy assets" },
-    { "label": "Net interest income is squeezed, the economic value of equity falls" }
+    {
+      "label": "Assets (long-dated fixed-rate lending) have a long maturity"
+    },
+    {
+      "label": "Liabilities (deposits) usually have a much shorter maturity"
+    },
+    {
+      "label": "Market rates rise → funding cost rises faster than the yield on legacy assets"
+    },
+    {
+      "label": "Net interest income is squeezed, the economic value of equity falls"
+    }
   ],
   "realWorldExample": {
     "company": "Silicon Valley Bank, 2023 (the IRRBB view)",
@@ -128,6 +136,17 @@
         "The most dangerous risk is usually not the loudest one, but the one that appears on no report at all until the day it is forced to appear.",
         "This is the last lesson of the FRM Foundations - Operational Resilience - Liquidity and Treasury Risk stage. The full FRM path still has large areas unbuilt (particularly GARP's case studies and finer learning objectives), but three subjects that were once empty now have real foundations."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the repricing gap",
+      "equation": "ΔNet interest income ≈ Repricing gap × ΔInterest rate",
+      "example": {
+        "title": "A small bank with a VND 10,000bn balance sheet",
+        "calculation": "Assets repricing within 1 year: VND 4,000bn · liabilities repricing within 1 year: 6,500bn → gap of NEGATIVE VND 2,500bn",
+        "result": "Rates rise 1 point: ΔNII = −2,500 × 1% = VND 25bn less per year",
+        "explanation": "A negative gap means liabilities reprice faster than assets: the bank pays more for deposits immediately while its loan book is still locked at the old rates. For the same bank, a 1-point FALL in rates adds VND 25bn - so the gap is not a good or bad number, it is a bet on the direction of rates, and ALM is the job of deciding whether you want that bet."
+      }
     }
   ]
 }

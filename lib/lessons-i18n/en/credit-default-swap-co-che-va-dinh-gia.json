@@ -13,10 +13,21 @@
   ],
   "explanation": "A CDS works like an insurance contract: the protection buyer pays a fee (the CDS spread, quoted in basis points per year on the notional) steadily to the protection seller. If a credit event occurs at the reference entity - default, or a debt restructuring - the seller has to compensate the buyer. Unlike direct lending, neither side needs any credit relationship with the reference entity at all, and that is precisely why a CDS can be used to speculate rather than only to hedge.",
   "diagram": [
-    { "label": "The protection buyer pays a periodic fee (the CDS spread)", "arrow": true },
-    { "label": "The protection seller takes the fee and promises to pay on a credit event", "arrow": true },
-    { "label": "A credit event occurs (default, restructuring)", "arrow": true },
-    { "label": "The seller compensates by the loss rate (1 − recovery rate)" }
+    {
+      "label": "The protection buyer pays a periodic fee (the CDS spread)",
+      "arrow": true
+    },
+    {
+      "label": "The protection seller takes the fee and promises to pay on a credit event",
+      "arrow": true
+    },
+    {
+      "label": "A credit event occurs (default, restructuring)",
+      "arrow": true
+    },
+    {
+      "label": "The seller compensates by the loss rate (1 − recovery rate)"
+    }
   ],
   "realWorldExample": {
     "company": "AIG, 2008",
@@ -103,16 +114,27 @@
       "type": "lead",
       "text": "The CDS is often assumed to be complicated, but the core mechanism is as simple as an insurance policy: pay a fee regularly, receive compensation if the bad thing happens. The complicated part - and the dangerous part - is who is allowed to buy that insurance without owning the thing being insured."
     },
-    { "type": "heading", "text": "The basic mechanism" },
+    {
+      "type": "heading",
+      "text": "The basic mechanism"
+    },
     {
       "type": "conceptTable",
       "title": "The components of a CDS contract",
       "subtitle": "Four elements that define every contract",
       "concepts": [
-        { "def": "The debt issuer the CDS contract protects against - a company, a bank, or a government." },
-        { "def": "The condition that triggers payment - usually default, debt restructuring, or insolvency, defined by ISDA's standard terms." },
-        { "def": "The fee the buyer pays the seller, quoted in basis points per year on the notional - a real-time measure of credit risk." },
-        { "def": "The percentage of par recovered after default through bankruptcy proceedings - it determines the actual payout (1 − recovery rate)." }
+        {
+          "def": "The debt issuer the CDS contract protects against - a company, a bank, or a government."
+        },
+        {
+          "def": "The condition that triggers payment - usually default, debt restructuring, or insolvency, defined by ISDA's standard terms."
+        },
+        {
+          "def": "The fee the buyer pays the seller, quoted in basis points per year on the notional - a real-time measure of credit risk."
+        },
+        {
+          "def": "The percentage of par recovered after default through bankruptcy proceedings - it determines the actual payout (1 − recovery rate)."
+        }
       ]
     },
     {
@@ -126,6 +148,17 @@
         "A CDS moves credit risk from where it originates to whoever is willing to accept it - but it does not remove the risk, it only relocates it, sometimes to a place without the capital to carry it.",
         "Next lesson: what happens when hundreds of loans are pooled and sliced into different layers of risk - securitisation and CDO structures."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the CDS spread",
+      "equation": "Annual CDS spread ≈ Probability of default × (1 − Recovery rate)",
+      "example": {
+        "title": "Reading the default probability back out of the market price",
+        "calculation": "A five-year CDS trading at 240 basis points, i.e. 2.4% a year · assumed recovery rate 40%",
+        "result": "Implied annual default probability ≈ 2.4% ÷ (1 − 0.40) = 4.0%",
+        "explanation": "Insuring VND 100bn of debt costs VND 2.4bn a year. That price already contains a forecast: the market is pricing roughly a 4% chance of default per year. Change the recovery assumption from 40% to 20% and the implied probability falls to 3.0% - same spread, different conclusion, which is why the recovery rate has to be stated rather than left implicit."
+      }
     }
   ]
 }

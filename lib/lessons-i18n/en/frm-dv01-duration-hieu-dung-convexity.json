@@ -13,10 +13,18 @@
   ],
   "explanation": "DV01 answers the question of how much money the book loses when rates rise one basis point. It is measured in money rather than in percent or in years, and that is exactly its advantage: two positions of very different maturity and size can have their DV01s added together to give the interest rate risk of the whole book. Duration measures the same thing in percentage terms, while convexity describes the non-linear part duration misses - and that part only matters once rates move a long way.",
   "diagram": [
-    { "label": "Duration: a first-order approximation, percentage price change per unit of yield" },
-    { "label": "DV01: the same idea expressed in money, so it can be summed" },
-    { "label": "Convexity: adds back the curvature the first-order term drops" },
-    { "label": "A callable bond means you have to use effective duration" }
+    {
+      "label": "Duration: a first-order approximation, percentage price change per unit of yield"
+    },
+    {
+      "label": "DV01: the same idea expressed in money, so it can be summed"
+    },
+    {
+      "label": "Convexity: adds back the curvature the first-order term drops"
+    },
+    {
+      "label": "A callable bond means you have to use effective duration"
+    }
   ],
   "realWorldExample": {
     "company": "Why effective duration exists",
@@ -110,17 +118,32 @@
       "title": "The two-term approximation",
       "equation": "% price change ≈ − Duration × Δr + ½ × Convexity × (Δr)²",
       "variables": [
-        { "symbol": "Δr", "name": "Change in yield" },
-        { "symbol": "Duration", "name": "First-order sensitivity" },
-        { "symbol": "Convexity", "name": "The second-order correction, always additive when convexity is positive" }
+        {
+          "symbol": "Δr",
+          "name": "Change in yield"
+        },
+        {
+          "symbol": "Duration",
+          "name": "First-order sensitivity"
+        },
+        {
+          "symbol": "Convexity",
+          "name": "The second-order correction, always additive when convexity is positive"
+        }
       ]
     },
-    { "type": "heading", "text": "Why a desk prefers DV01 to duration" },
+    {
+      "type": "heading",
+      "text": "Why a desk prefers DV01 to duration"
+    },
     {
       "type": "paragraph",
       "text": "Duration is a percentage, and percentages of two positions of different size cannot be added. DV01 converts to money: how many dong each position contributes per basis point. Add them up and you have the interest rate risk of the whole book; subtract and you have the hedge size required."
     },
-    { "type": "heading", "text": "Effective duration for cash flows that are not fixed" },
+    {
+      "type": "heading",
+      "text": "Effective duration for cash flows that are not fixed"
+    },
     {
       "type": "paragraph",
       "text": "When a bond is callable or a loan carries a prepayment option, the cash flows themselves move with rates. Effective duration is not computed from a cash flow formula but measured empirically: shift the whole curve up and down a little, revalue, and take the difference."
@@ -136,6 +159,17 @@
         "One duration figure for a whole book is convenient, and convenience always has a price.",
         "Next lesson: credit ratings - the input to every credit risk model."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into DV01 and convexity",
+      "equation": "ΔPrice ≈ −Duration × ΔYield × Price + ½ × Convexity × (ΔYield)² × Price",
+      "example": {
+        "title": "A VND 100bn bond, duration 7, convexity 60",
+        "calculation": "Yield rises by 1 percentage point (100 bp)",
+        "result": "Duration alone: −7 × 1% × 100 = −VND 7.0bn · with convexity: +½ × 60 × 0.01² × 100 = +VND 0.30bn → −VND 6.7bn · DV01 = 100bn × 7 × 0.0001 = VND 70m",
+        "explanation": "Duration on its own always overstates the loss when yields rise and understates the gain when they fall, because it draws a straight line onto a curve. On a 1-point move the error is VND 0.3bn; on a 3-point move the convexity term becomes VND 2.7bn - nine times larger, because it scales with the square. That is why convexity can only be ignored while markets are calm."
+      }
     }
   ]
 }

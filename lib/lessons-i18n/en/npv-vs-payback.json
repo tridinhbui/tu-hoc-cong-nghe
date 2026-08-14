@@ -4,13 +4,29 @@
   "subtitle": "Comparing project appraisal methods",
   "duration": "6 min",
   "openingQuestion": "Project A: Payback 2 years, NPV −50 million. Project B: Payback 4 years, NPV +200 million. Which project should you choose?",
-  "openingOptions": ["Equal", "B - a larger positive NPV creates more value", "A - because it pays the money back much faster", "Need more information"],
+  "openingOptions": [
+    "Equal",
+    "B - a larger positive NPV creates more value",
+    "A - because it pays the money back much faster",
+    "Need more information"
+  ],
   "explanation": "The two criteria answer two different questions, and only one of them is tied to the goal of maximizing value. NPV measures total value created after accounting for the cost of capital; the payback period only measures how fast money comes back and knows nothing about what happens afterward. As a result, a project with a fast payback can still have a negative NPV. The sensible approach is to decide by NPV, and treat the payback period only as a liquidity constraint.",
   "diagram": [
-    { "label": "The same project, scored two different ways", "arrow": true },
-    { "label": "Payback only asks how long to get the money back", "arrow": true },
-    { "label": "NPV asks total value created after the cost of capital", "arrow": true },
-    { "label": "A project with fast payback can still have a negative NPV" }
+    {
+      "label": "The same project, scored two different ways",
+      "arrow": true
+    },
+    {
+      "label": "Payback only asks how long to get the money back",
+      "arrow": true
+    },
+    {
+      "label": "NPV asks total value created after the cost of capital",
+      "arrow": true
+    },
+    {
+      "label": "A project with fast payback can still have a negative NPV"
+    }
   ],
   "realWorldExample": {
     "company": "Venture capital investment decisions",
@@ -98,12 +114,18 @@
       "type": "lead",
       "text": "When choosing between multiple investment projects, appraisal criteria don't always agree. Payback Period prioritizes speed of capital recovery, while NPV prioritizes total value created - and these two priorities sometimes point to opposite decisions."
     },
-    { "type": "heading", "text": "Why NPV is theoretically superior" },
+    {
+      "type": "heading",
+      "text": "Why NPV is theoretically superior"
+    },
     {
       "type": "paragraph",
       "text": "NPV accounts for the entire cash flow across the project's whole life (not just up to the payback point), and discounts correctly for the time value of money. Project A might pay back quickly in 2 years but then see declining cash flow and end up with a negative NPV; while project B pays back more slowly (5 years) but then keeps generating strong cash flow for 15 more years, resulting in a very large positive NPV. If you only look at Payback, the business would wrongly pick project A."
     },
-    { "type": "heading", "text": "When Payback is still useful" },
+    {
+      "type": "heading",
+      "text": "When Payback is still useful"
+    },
     {
       "type": "paragraph",
       "text": "Payback Period isn't useless - it's a good supplementary indicator of liquidity risk, especially important when a business needs cash to turn over quickly or operates in an uncertain environment. Venture capital funds are the opposite example: they're willing to accept very long payback periods (sometimes years without recovering capital) in exchange for enormous potential NPV if the startup succeeds spectacularly."
@@ -122,6 +144,17 @@
       "lines": [
         "The three metrics don't contradict each other - they answer three different questions. The problem only arises when a business uses the wrong metric for the question that needs answering."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into both methods",
+      "equation": "NPV = Σ Cash flow / (1+r)^n − Investment · Payback = years to recover the outlay",
+      "example": {
+        "title": "Two projects, VND 100bn each, 10% discount rate",
+        "calculation": "A: VND 50bn a year for 3 years · B: VND 40bn a year for 6 years",
+        "result": "A: payback 2.0 years, NPV = 124.3 − 100 = +VND 24.3bn · B: payback 2.5 years, NPV = 174.2 − 100 = +VND 74.2bn",
+        "explanation": "Payback picks A because it returns the capital half a year sooner. NPV picks B because it creates three times as much. Payback is blind to everything AFTER the money comes back - B's last three years, VND 120bn, are simply not counted. That is not a small flaw; it is the whole of the project's value."
+      }
     }
   ]
 }

@@ -13,10 +13,21 @@
   ],
   "explanation": "Currency consistency is the foundational rule and also the one most often broken. Whatever currency the cash flows are in, the discount rate must be built in that same currency, because that currency's inflation sits in both the numerator and the denominator. Discounting nominal local-currency cash flows from a high-inflation economy at a dollar cost of capital produces a value far above reality. If you want a dollar valuation, you must first convert the cash flows into dollars at expected exchange rates, and only then discount at a dollar cost of capital.",
   "diagram": [
-    { "label": "Cash flows in currency X", "arrow": true },
-    { "label": "Discount at the cost of capital in currency X", "arrow": true },
-    { "label": "Or: convert into currency Y at expected exchange rates", "arrow": true },
-    { "label": "Then discount at the cost of capital in currency Y" }
+    {
+      "label": "Cash flows in currency X",
+      "arrow": true
+    },
+    {
+      "label": "Discount at the cost of capital in currency X",
+      "arrow": true
+    },
+    {
+      "label": "Or: convert into currency Y at expected exchange rates",
+      "arrow": true
+    },
+    {
+      "label": "Then discount at the cost of capital in currency Y"
+    }
   ],
   "realWorldExample": {
     "company": "Valuation reports from international research desks",
@@ -105,12 +116,18 @@
       "type": "lead",
       "text": "The two previous lessons were theory about exchange rates. This one puts that theory where it does the most damage: the valuation model. The three errors described here appear constantly in real reports, and each one is enough to move the value by tens of percent."
     },
-    { "type": "heading", "text": "Error 1: a currency mismatch between numerator and denominator" },
+    {
+      "type": "heading",
+      "text": "Error 1: a currency mismatch between numerator and denominator"
+    },
     {
       "type": "paragraph",
       "text": "This is the most serious error and also the easiest to make, because international cost-of-capital data is always more readily available than domestic data. If cash flows grow with local inflation while the discount rate reflects only the inflation of a more stable currency, the model is comparing two things measured in different units. The error compounds over time, so it hits the terminal value hardest - the part that usually makes up more than half of the total valuation."
     },
-    { "type": "heading", "text": "Errors 2 and 3: country risk either forgotten or counted twice" },
+    {
+      "type": "heading",
+      "text": "Errors 2 and 3: country risk either forgotten or counted twice"
+    },
     {
       "type": "list",
       "items": [
@@ -130,6 +147,17 @@
         "Cross-border valuation needs no new tools, only discipline about units of measurement.",
         "The final lesson of this stage moves from valuation to accounting: how exchange rates show up in consolidated financial statements."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the cost of equity",
+      "equation": "Cost of equity = Risk-free rate + Beta × Market premium + Country risk premium",
+      "example": {
+        "title": "The same business, valued in two countries",
+        "calculation": "Rf 4%, beta 1.1, market premium 5.5% · Vietnam CRP about 3.5%, US 0%",
+        "result": "In the US: 4 + 1.1×5.5 = 10.05% · In Vietnam: 10.05 + 3.5 = 13.55%",
+        "explanation": "On the same perpetual cash flow of VND 100bn a year: discounting at 10.05% gives VND 995bn, at 13.55% gives VND 738bn - 26% lower. The country risk premium is not a decorative number added at the end; it decides more than a quarter of the value. And it is added ONCE, not to both the cash flow and the discount rate."
+      }
     }
   ]
 }

@@ -997,7 +997,18 @@ export const FRM_VALUATION_CURRENT_LESSONS: Lesson[] = [
           "Một con số duration cho cả danh mục là tiện, và tiện thì luôn có giá của nó.",
           "Bài tiếp theo: xếp hạng tín nhiệm - đầu vào của mọi mô hình rủi ro tín dụng."
         ]
-      }
+      },
+      {
+        type: "formula",
+        title: "Thay số vào DV01 và convexity",
+        equation: "ΔGiá ≈ −Duration × ΔLợi suất × Giá + ½ × Convexity × (ΔLợi suất)² × Giá",
+        example: {
+                title: "Trái phiếu 100 tỷ, duration 7, convexity 60",
+                calculation: "Lợi suất tăng 1 điểm phần trăm (100 bp)",
+                result: "Chỉ duration: −7 × 1% × 100 = −7,0 tỷ · thêm convexity: +½ × 60 × 0,01² × 100 = +0,30 tỷ → −6,7 tỷ · DV01 = 100 tỷ × 7 × 0,0001 = 70 triệu",
+                explanation: "Duration một mình luôn ước tính lỗ QUÁ nặng khi lợi suất tăng và lãi quá ít khi lợi suất giảm, vì nó vẽ một đường thẳng lên một đường cong. Với cú dịch 1 điểm sai số là 0,3 tỷ; với cú dịch 3 điểm, số hạng convexity thành 2,7 tỷ - sai số lớn gấp chín lần vì nó theo bình phương. Đó là lý do convexity chỉ bỏ qua được khi thị trường yên."
+        }
+}
     ]
   },
   {

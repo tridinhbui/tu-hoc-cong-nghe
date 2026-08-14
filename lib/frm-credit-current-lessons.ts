@@ -165,6 +165,17 @@ export const FRM_CREDIT_CURRENT_LESSONS: Lesson[] = [
           "Bài sau: khi hàng trăm khoản vay được gộp lại và cắt thành nhiều lớp rủi ro khác nhau - chứng khoán hoá và cấu trúc CDO.",
         ],
       },
+      {
+        type: "formula",
+        title: "Thay số vào phí CDS",
+        equation: "Phí CDS mỗi năm ≈ Xác suất vỡ nợ × (1 − Tỷ lệ thu hồi)",
+        example: {
+                title: "Đọc ngược từ giá thị trường ra xác suất vỡ nợ",
+                calculation: "CDS 5 năm của một doanh nghiệp đang giao dịch ở 240 điểm cơ bản, tức 2,4%/năm · tỷ lệ thu hồi giả định 40%",
+                result: "Xác suất vỡ nợ hằng năm ≈ 2,4% ÷ (1 − 0,40) = 4,0%",
+                explanation: "Mua bảo hiểm 100 tỷ nợ tốn 2,4 tỷ mỗi năm. Con số ấy chứa sẵn một dự báo: thị trường đang định giá khả năng vỡ nợ khoảng 4% một năm. Đổi giả định thu hồi từ 40% sang 20% thì xác suất suy ra chỉ còn 3,0% - cùng một mức phí, hai kết luận khác nhau, nên tỷ lệ thu hồi phải nói ra chứ không để ngầm."
+        }
+}
     ],
   },
   {

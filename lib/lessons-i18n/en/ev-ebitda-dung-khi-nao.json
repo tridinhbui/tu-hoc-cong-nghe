@@ -141,6 +141,17 @@
       "lines": [
         "When capital structure muddies P/E, EV/EBITDA is the tool that lets you compare apples to apples."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers in to see when the multiple breaks",
+      "equation": "EV/EBITDA = (Market cap + Debt − Cash) ÷ EBITDA",
+      "example": {
+        "title": "Two businesses on 8x, very different capital intensity",
+        "calculation": "Software: EBITDA VND 100bn, CapEx 5bn · Factory: EBITDA 100bn, CapEx 70bn · both EV 800bn",
+        "result": "EBITDA − CapEx: software 95bn, factory 30bn → EV/(EBITDA−CapEx) is 8.4x against 26.7x",
+        "explanation": "Both are 8x on EBITDA, but the factory has to hand back 70% of that cash just to keep capacity. EBITDA adds depreciation back - an estimate of real wear - so for a capital-heavy business it omits exactly the largest cost. That is why EV/EBITDA compares businesses of SIMILAR capital intensity well and misleads badly across them."
+      }
     }
   ]
 }

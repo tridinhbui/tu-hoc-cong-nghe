@@ -823,6 +823,17 @@ export const VN_MARKET_LESSONS: Lesson[] = [
           "Bài sau nói về cơ chế khuếch đại cả hai chiều trên thị trường này: giao dịch ký quỹ.",
         ],
       },
+      {
+        type: "formula",
+        title: "Thay số để thấy vài mã chi phối chỉ số thế nào",
+        equation: "Đóng góp của một mã vào chỉ số = Tỷ trọng vốn hoá × Mức tăng giảm của mã",
+        example: {
+                title: "Chỉ số tăng 1% mà phần lớn cổ phiếu thì không",
+                calculation: "Nhóm 5 mã lớn chiếm 35% vốn hoá và tăng 3% · 395 mã còn lại chiếm 65% và giảm 0,3%",
+                result: "Đóng góp: 35% × 3% = +1,05 điểm phần trăm · 65% × (−0,3%) = −0,20 → chỉ số +0,85%",
+                explanation: "Bảng điện đỏ gần hết mà VN-Index vẫn xanh, và không có gì mâu thuẫn: chỉ số cân theo vốn hoá chứ không đếm đầu mã. Nếu danh mục của bạn không nắm đúng năm mã kia thì mức +0,85% ấy không liên quan gì đến bạn - đó là lý do phải so danh mục với chỉ số theo TỶ TRỌNG, không so với con số trên bản tin."
+        }
+}
     ],
   },
   {

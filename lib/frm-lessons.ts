@@ -1406,6 +1406,17 @@ export const FRM_LESSONS: Lesson[] = [
           "Đây là bài cuối của chặng FRM Foundations - Operational Resilience - Liquidity and Treasury Risk. Lộ trình FRM đầy đủ vẫn còn nhiều mảng chưa xây (đặc biệt các case study và LO chi tiết hơn của GARP), nhưng ba môn từng trống trơn giờ đã có nền tảng thật.",
         ],
       },
+      {
+        type: "formula",
+        title: "Thay số vào khoảng chênh kỳ hạn",
+        equation: "ΔThu nhập lãi thuần ≈ Khoảng chênh định giá lại × ΔLãi suất",
+        example: {
+                title: "Một ngân hàng nhỏ, bảng cân đối 10.000 tỷ",
+                calculation: "Tài sản định giá lại trong 1 năm: 4.000 tỷ · nợ định giá lại trong 1 năm: 6.500 tỷ → khoảng chênh ÂM 2.500 tỷ",
+                result: "Lãi suất tăng 1 điểm: ΔNII = −2.500 × 1% = giảm 25 tỷ mỗi năm",
+                explanation: "Khoảng chênh âm nghĩa là nợ định giá lại nhanh hơn tài sản: ngân hàng trả lãi huy động cao hơn ngay trong khi danh mục cho vay vẫn còn khoá ở lãi suất cũ. Cùng ngân hàng ấy, nếu lãi suất GIẢM 1 điểm thì lãi thêm 25 tỷ - nên khoảng chênh không phải một con số tốt hay xấu, nó là một đặt cược về hướng lãi suất, và ALM là việc chọn xem có muốn đặt cược đó không."
+        }
+}
     ],
   },
 ];

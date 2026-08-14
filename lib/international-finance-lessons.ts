@@ -513,6 +513,17 @@ export const INTERNATIONAL_FINANCE_LESSONS: Lesson[] = [
           "Bài cuối chặng chuyển từ định giá sang kế toán: tỷ giá hiện lên thế nào trên báo cáo hợp nhất.",
         ],
       },
+      {
+        type: "formula",
+        title: "Thay số vào chi phí vốn chủ",
+        equation: "Cost of equity = Lãi suất phi rủi ro + Beta × Phần bù thị trường + Phần bù rủi ro quốc gia",
+        example: {
+                title: "Cùng một doanh nghiệp, định giá ở hai nước",
+                calculation: "Rf 4%, beta 1,1, phần bù thị trường 5,5% · CRP của Việt Nam khoảng 3,5%, của Mỹ 0%",
+                result: "Tại Mỹ: 4 + 1,1×5,5 = 10,05% · Tại Việt Nam: 10,05 + 3,5 = 13,55%",
+                explanation: "Cùng dòng tiền 100 tỷ mỗi năm vĩnh viễn: chiết khấu 10,05% cho ra 995 tỷ, chiết khấu 13,55% cho ra 738 tỷ - thấp hơn 26%. Phần bù rủi ro quốc gia không phải một con số trang trí thêm vào cuối; nó là thứ quyết định hơn một phần tư giá trị. Và nó chỉ được cộng MỘT lần, không cộng cả vào dòng tiền lẫn vào tỷ lệ chiết khấu."
+        }
+}
     ],
   },
   {

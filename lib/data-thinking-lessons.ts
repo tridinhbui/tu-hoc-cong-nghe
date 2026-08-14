@@ -181,6 +181,17 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
           "Bài sau nói về cách một con số trung bình có thể che giấu toàn bộ sự thật.",
         ],
       },
+      {
+        type: "formula",
+        title: "Thay số để tách chỉ số thật khỏi chỉ số làm đẹp",
+        equation: "Chỉ số thật gắn với tiền: Doanh thu trên mỗi người dùng hoạt động = Doanh thu ÷ Số người dùng THỰC SỰ dùng",
+        example: {
+                title: "Một ứng dụng khoe 'một triệu người dùng'",
+                calculation: "Đăng ký tích luỹ 1.000.000 · người dùng hoạt động tháng 40.000 · trả phí 3.000 · doanh thu tháng 300 triệu",
+                result: "Doanh thu trên mỗi lượt đăng ký = 300đ · trên mỗi người hoạt động = 7.500đ · trên mỗi người trả phí = 100.000đ",
+                explanation: "Cùng một doanh nghiệp, ba con số cách nhau hơn 300 lần, và chỉ con số đầu tiên được đưa lên trang chủ. Đăng ký tích luỹ là chỉ số làm đẹp vì nó chỉ tăng, không bao giờ giảm - nó không phản ứng với bất cứ điều gì xảy ra sau đó. Chỉ số đáng theo là chỉ số có thể ĐI XUỐNG khi doanh nghiệp làm dở."
+        }
+}
     ],
   },
   {

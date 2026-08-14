@@ -13,10 +13,18 @@
   ],
   "explanation": "The VN-Index is a market-cap weighted index: each stock contributes in proportion to its market value, not one vote per ticker. A single very large company hitting its ceiling can pull the index green while hundreds of small caps fall together. That is not a flaw in the index - it measures market value, not the proportion of stocks that rose. But if you use it to judge whether today was good or bad for your own portfolio, it may be answering a different question from the one you are asking.",
   "diagram": [
-    { "label": "The price of each stock" },
-    { "label": "Multiplied by its market capitalisation" },
-    { "label": "Summed into the basket's total market cap" },
-    { "label": "Compared with the base period to give the index" }
+    {
+      "label": "The price of each stock"
+    },
+    {
+      "label": "Multiplied by its market capitalisation"
+    },
+    {
+      "label": "Summed into the basket's total market cap"
+    },
+    {
+      "label": "Compared with the base period to give the index"
+    }
   ],
   "realWorldExample": {
     "company": "A green index on red breadth",
@@ -110,9 +118,15 @@
       "title": "Three ways an index can be computed",
       "subtitle": "The formula decides what the index actually reflects",
       "concepts": [
-        { "def": "Each stock contributes in proportion to its market cap. The VN-Index works this way, so the largest few names carry overwhelming influence." },
-        { "def": "Each stock contributes in proportion to its absolute share price, regardless of company size. The Dow Jones is the classic example and the classic target of criticism for it." },
-        { "def": "Every stock contributes equally. It tracks the average stock more closely, but requires constant rebalancing, so it is rarely used as a headline index." }
+        {
+          "def": "Each stock contributes in proportion to its market cap. The VN-Index works this way, so the largest few names carry overwhelming influence."
+        },
+        {
+          "def": "Each stock contributes in proportion to its absolute share price, regardless of company size. The Dow Jones is the classic example and the classic target of criticism for it."
+        },
+        {
+          "def": "Every stock contributes equally. It tracks the average stock more closely, but requires constant rebalancing, so it is rarely used as a headline index."
+        }
       ]
     },
     {
@@ -134,6 +148,17 @@
         "The index is one measure, not the whole truth about a session.",
         "The next lesson covers a mechanism that amplifies moves in both directions in this market: margin trading."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers in to see how a few names drive the index",
+      "equation": "A stock's contribution = Its market-cap weight × Its move",
+      "example": {
+        "title": "The index up 1% while most shares are down",
+        "calculation": "Five large names hold 35% of market cap and rise 3% · the other 395 hold 65% and fall 0.3%",
+        "result": "Contributions: 35% × 3% = +1.05 percentage points · 65% × (−0.3%) = −0.20 → index +0.85%",
+        "explanation": "The board is mostly red while the VN-Index is green, and nothing about that is contradictory: the index weights by market cap rather than counting names. If your portfolio does not hold those five, that +0.85% has nothing to do with you - which is why a portfolio is compared with the index by WEIGHT, not against the number on the news."
+      }
     }
   ]
 }

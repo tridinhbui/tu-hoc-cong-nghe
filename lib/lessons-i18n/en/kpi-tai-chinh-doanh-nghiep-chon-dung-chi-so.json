@@ -12,9 +12,15 @@
   ],
   "explanation": "KPIs have to be chosen to fit the SPECIFICS OF THE BUSINESS MODEL, not taken from one common set applied to every company. For SaaS, this month's revenue matters far less than the ability to RETAIN customers over the long run (a low churn rate) and the efficiency of winning new ones against the value they bring (the LTV/CAC ratio) - those metrics predict long-run financial health far better than a single month of revenue.",
   "diagram": [
-    { "label": "Identify what is specific about the business model" },
-    { "label": "Pick KPIs that reflect the real value drivers of that model" },
-    { "label": "Track the few that matter most, do not spread thin" }
+    {
+      "label": "Identify what is specific about the business model"
+    },
+    {
+      "label": "Pick KPIs that reflect the real value drivers of that model"
+    },
+    {
+      "label": "Track the few that matter most, do not spread thin"
+    }
   ],
   "realWorldExample": {
     "company": "SaaS and subscription companies",
@@ -97,7 +103,10 @@
       "type": "lead",
       "text": "Tracking too many KPIs at once can damage decision-making just as much as tracking too few."
     },
-    { "type": "heading", "text": "KPIs must fit the specifics of the business model" },
+    {
+      "type": "heading",
+      "text": "KPIs must fit the specifics of the business model"
+    },
     {
       "type": "paragraph",
       "text": "A SaaS company should prioritise churn rate, CAC and LTV rather than just looking at monthly revenue - because a subscription model lives on retaining customers over the long run. Copying KPIs from a different business model (a retailer adopting the whole SaaS metric set, say) without understanding the nature of it is a common mistake. Too many metrics leave the leadership team unable to identify the real priority - the key principle is 'few but on point'."
@@ -115,13 +124,24 @@
       "title": "Different business model, different metrics",
       "subtitle": "All of them are businesses, but the value drivers are not the same",
       "concepts": [
-        { "def": "Churn rate, customer acquisition cost, customer lifetime value, recurring revenue. Monthly revenue on its own hides existing customers walking away." },
-        { "def": "Revenue per square metre, same-store growth, inventory turnover, gross margin. Opening new stores always lifts total revenue, so the existing base has to be separated out." },
-        { "def": "Capacity utilisation, scrap rate, cash conversion cycle, operating leverage. This is where fixed costs decide profit and loss." },
-        { "def": "Net interest margin, non-performing loan ratio, provisioning cost, capital adequacy. Fast loan book growth without watching credit quality is the single most dangerous metric there is." }
+        {
+          "def": "Churn rate, customer acquisition cost, customer lifetime value, recurring revenue. Monthly revenue on its own hides existing customers walking away."
+        },
+        {
+          "def": "Revenue per square metre, same-store growth, inventory turnover, gross margin. Opening new stores always lifts total revenue, so the existing base has to be separated out."
+        },
+        {
+          "def": "Capacity utilisation, scrap rate, cash conversion cycle, operating leverage. This is where fixed costs decide profit and loss."
+        },
+        {
+          "def": "Net interest margin, non-performing loan ratio, provisioning cost, capital adequacy. Fast loan book growth without watching credit quality is the single most dangerous metric there is."
+        }
       ]
     },
-    { "type": "heading", "text": "Three tests for whether a metric deserves tracking" },
+    {
+      "type": "heading",
+      "text": "Three tests for whether a metric deserves tracking"
+    },
     {
       "type": "list",
       "items": [
@@ -145,6 +165,17 @@
         "The best KPI is not the one most widely used in the industry.",
         "It is the one that reflects the real value drivers of your own business."
       ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into a SaaS KPI set",
+      "equation": "LTV/CAC = (ARPU × Gross margin ÷ Churn rate) ÷ Cost to acquire a customer",
+      "example": {
+        "title": "Same monthly revenue, two very different futures",
+        "calculation": "Both: ARPU VND 2m a month, gross margin 80%, CAC VND 30m · A churns 2% a month · B churns 5%",
+        "result": "A: LTV = 2 × 80% ÷ 2% = VND 80m → LTV/CAC = 2.7 · B: LTV = 1.6 ÷ 5% = VND 32m → LTV/CAC = 1.1",
+        "explanation": "The two report identical monthly revenue, but A gets back VND 2.7 for every dong spent winning a customer while B roughly breaks even. The whole difference is one number that appears nowhere in the financial statements: churn. That is the lesson's point - KPIs follow the business model, and for SaaS the monthly revenue line says far less than retention."
+      }
     }
   ],
   "summary": {

@@ -69,11 +69,37 @@ export async function GET(request: NextRequest) {
     .limit(1)
     .maybeSingle();
 
-  const activeBoss = boss || fallbackWorldBoss(t);
+  const fallback = fallbackWorldBoss(t);
+  const activeBoss = boss || fallback;
+
+  // Câu hỏi LUÔN lấy từ từ điển trừ khi hàng boss thật sự mang một mảng không
+  // rỗng - và hôm nay thì không hàng nào mang cả.
+  //
+  // `world_bosses` KHÔNG có cột `questions`: xem
+  // 20260808_world_boss_raid.sql, bảng chỉ có id/name/description/boss_emoji/
+  // max_hp/current_hp/start_date/end_date/is_active/created_at. Cũng không có
+  // trang quản trị nào soạn câu hỏi cho boss. Nên `activeBoss.questions` đọc
+  // một cột chưa từng tồn tại, và trả về undefined trên MỌI hàng thật.
+  //
+  // Kết hợp với `boss || fallbackWorldBoss(t)` thì thành ra thế này: fallback
+  // chỉ đỡ khi KHÔNG có hàng active nào. Vừa có một hàng active - và luôn có
+  // một hàng, vì sự kiện tuần nào cũng mở - là hàng thật thắng, mang theo
+  // undefined, `(activeBoss.questions || [])` thành mảng rỗng, và client nhận
+  // một con boss không câu hỏi. Người dùng bấm "Tiến vào" rồi nhận toast
+  // "Boss tuần này chưa có câu hỏi nào".
+  //
+  // Đây không phải bản vá tạm. Không có nguồn câu hỏi nào khác trong hệ thống:
+  // hàng boss cho danh tính/HP/ngày, từ điển cho câu hỏi. Nhánh đọc từ hàng
+  // giữ lại để nếu sau này có thêm cột và trang soạn thảo thì nó tự ưu tiên
+  // dữ liệu thật, chứ không phải vì hôm nay nó chạy.
+  const sourceQuestions: BossQuestion[] =
+    Array.isArray(activeBoss.questions) && activeBoss.questions.length > 0
+      ? (activeBoss.questions as BossQuestion[])
+      : fallback.questions;
 
   // Shuffle question list and each question's option order so correct answer isn't always A
   const shuffledQuestions = shuffleArray(
-    (activeBoss.questions || []).map((q: BossQuestion) => {
+    sourceQuestions.map((q: BossQuestion) => {
       const order = shuffleArray(q.options.map((_, i) => i));
       const correct = order.indexOf(q.correct ?? 0);
       return {
