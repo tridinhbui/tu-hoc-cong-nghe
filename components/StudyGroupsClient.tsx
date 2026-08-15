@@ -116,19 +116,29 @@ function topicLabel(topic: StudyRoomTopic, topics: Record<string, string>) {
   return topics[topic] ?? STUDY_ROOM_TOPICS.find((entry) => entry.id === topic)?.label ?? topic;
 }
 
-function missionIcon(key: StudyRoomMission["mission_key"]) {
-  if (key === "lessons") return "📚";
-  if (key === "quizzes") return "⚡";
-  return "📍";
-}
+// `missionIcon()` từng trả về 📚/⚡/📍 cho ba nhiệm vụ tuần. Bỏ cùng lượt gộp
+// ba tấm thẻ thành một thanh chữ: trên một hàng, ba emoji cạnh ba tên nhiệm vụ
+// không phân biệt thêm được gì mà tên đã nói, chúng chỉ chen vào giữa nhãn và
+// con số - thứ duy nhất trên hàng đó thật sự thay đổi theo thời gian.
 
-function noteColorClass(color: string) {
+/** Màu của một ghi chú, dùng làm VẠCH CHỈ BÁO chứ không phải nền cả tấm.
+ *
+ *  Màu ở đây là dữ liệu: người viết tự chọn khi tạo ghi chú, và nó được lưu ở
+ *  cột `color`. Nên không bỏ được như mấy màu trang trí khác trên trang này -
+ *  bỏ là mất một lựa chọn người dùng đã thực hiện.
+ *
+ *  Cái đổi là TRỌNG LƯỢNG. Trước đây mỗi ghi chú là một tấm nền pastel kín kèm
+ *  viền cùng tông và chữ cũng nhuộm theo, nên một cột năm ghi chú năm màu đọc
+ *  ra như năm loại cảnh báo khác nhau, trong khi màu chỉ có nghĩa "tôi thích
+ *  màu này". Giờ tấm ghi chú trung tính, màu còn đúng một vạch bên trái - vẫn
+ *  phân biệt và nhóm được bằng mắt, không còn hét lên. */
+function noteAccentClass(color: string) {
   const colors: Record<string, string> = {
-    emerald: "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-800 text-emerald-950 dark:text-emerald-100",
-    amber: "bg-amber-50 dark:bg-amber-950/50 border-amber-200 dark:border-amber-800 text-amber-950 dark:text-amber-100",
-    sky: "bg-sky-50 dark:bg-sky-950/50 border-sky-200 dark:border-sky-800 text-sky-950 dark:text-sky-100",
-    rose: "bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-800 text-rose-950 dark:text-rose-100",
-    violet: "bg-violet-50 dark:bg-violet-950/50 border-violet-200 dark:border-violet-800 text-violet-950 dark:text-violet-100",
+    emerald: "border-l-emerald-500",
+    amber: "border-l-amber-500",
+    sky: "border-l-sky-500",
+    rose: "border-l-rose-500",
+    violet: "border-l-violet-500",
   };
   return colors[color] ?? colors.emerald;
 }
@@ -401,7 +411,13 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
   const [lofiTrack, setLofiTrack] = useState<"lofi" | "rain" | "waves">("lofi");
   const audioCtxRef = useRef<AudioContext | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
-  const noiseSourceRef = useRef<AudioBufferSourceNode | null>(null);
+  /** MỌI nguồn âm đang chạy, không chỉ nguồn nhiễu.
+   *
+   *  Bản trước chỉ giữ `noiseSourceRef`, còn nhánh lofi tạo bốn oscillator rồi
+   *  quên chúng ngay. Tắt nhạc vì thế không DỪNG được lofi, nó chỉ vặn gain
+   *  xuống 0 - bốn oscillator vẫn chạy tới hết đời trang. Mỗi lần bật lại là
+   *  thêm bốn cái nữa. */
+  const sourcesRef = useRef<AudioScheduledSourceNode[]>([]);
 
   // 2b. Room voice chat (LiveKit). Opt-in, audio-only, mic starts muted -
   // see the header comment in lib/use-study-room-voice.ts.
@@ -477,17 +493,42 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
     return `${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`;
   }
 
-  const toggleLofiMusic = () => {
-    if (lofiPlaying) {
-      if (gainNodeRef.current) gainNodeRef.current.gain.value = 0;
-      if (noiseSourceRef.current) {
-        try { noiseSourceRef.current.stop(); } catch {}
-      }
-      setLofiPlaying(false);
-      toast.info(t.studyGroups.lofiOff);
-      return;
+  /** Dừng hẳn mọi nguồn âm đang chạy và ngắt kết nối chúng.
+   *
+   *  Vặn gain về 0 là làm cho không nghe thấy, không phải làm cho hết chạy.
+   *  Phân biệt đó quan trọng ở đây vì hàm này còn được gọi lúc unmount, khi
+   *  không còn ai giữ tham chiếu tới gain node để vặn nữa. */
+  const stopAllAudio = useCallback(() => {
+    for (const src of sourcesRef.current) {
+      try { src.stop(); } catch {}
+      try { src.disconnect(); } catch {}
     }
+    sourcesRef.current = [];
+    if (gainNodeRef.current) {
+      try { gainNodeRef.current.disconnect(); } catch {}
+      gainNodeRef.current = null;
+    }
+  }, []);
 
+  /** Rời phòng là tắt nhạc.
+   *
+   *  Không có effect này thì bật lofi rồi chuyển trang sẽ để nhạc chạy tiếp mãi
+   *  - component đã unmount nên mọi ref biến mất, và không còn nút nào trong
+   *  ứng dụng ngắt được nó. Quay lại phòng thì nút hiện trạng thái "đang tắt"
+   *  và bấm vào chỉ chồng thêm một lớp âm thứ hai. Đây chính là lỗi "bật lofi
+   *  xong không tắt được" mà người dùng gặp. */
+  useEffect(() => {
+    return () => {
+      stopAllAudio();
+      const ctx = audioCtxRef.current;
+      audioCtxRef.current = null;
+      if (ctx) void ctx.close().catch(() => {});
+    };
+  }, [stopAllAudio]);
+
+  /** Bật một nền âm. Tách khỏi `toggleLofiMusic` để việc ĐỔI track lúc đang
+   *  phát dùng lại được: dừng cái đang chạy rồi gọi hàm này với track mới. */
+  const startLofiTrack = (track: "lofi" | "rain" | "waves") => {
     try {
       const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       if (!audioCtxRef.current) audioCtxRef.current = new AudioCtx();
@@ -499,13 +540,14 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
       gain.connect(ctx.destination);
       gainNodeRef.current = gain;
 
-      if (lofiTrack === "lofi") {
+      if (track === "lofi") {
         [220, 277.18, 329.63, 440].forEach((freq) => {
           const osc = ctx.createOscillator();
           osc.type = "sine";
           osc.frequency.setValueAtTime(freq, ctx.currentTime);
           osc.connect(gain);
           osc.start();
+          sourcesRef.current.push(osc);
         });
       } else {
         const bufferSize = ctx.sampleRate * 2;
@@ -517,13 +559,33 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         noise.loop = true;
         noise.connect(gain);
         noise.start();
-        noiseSourceRef.current = noise;
+        sourcesRef.current.push(noise);
       }
       setLofiPlaying(true);
-      toast.success(format(t.studyGroups.lofiOn, { track: lofiTrack.toUpperCase() }));
+      toast.success(format(t.studyGroups.lofiOn, { track: track.toUpperCase() }));
     } catch {
       toast.error(t.studyGroups.lofiFailed);
     }
+  };
+
+  const toggleLofiMusic = () => {
+    if (lofiPlaying) {
+      stopAllAudio();
+      setLofiPlaying(false);
+      toast.info(t.studyGroups.lofiOff);
+      return;
+    }
+    startLofiTrack(lofiTrack);
+  };
+
+  /** Đổi nền âm. Đang phát thì phát lại NGAY bằng track mới - trước đây
+   *  `setLofiTrack` không được gọi ở đâu cả, nên hai nền "mưa" và "sóng" là
+   *  code không bao giờ chạy tới. */
+  const changeLofiTrack = (track: "lofi" | "rain" | "waves") => {
+    setLofiTrack(track);
+    if (!lofiPlaying) return;
+    stopAllAudio();
+    startLofiTrack(track);
   };
 
   const handleStageMouseDown = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
@@ -1286,125 +1348,171 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
         {myRoom ? (
           <div className="h-full flex flex-col min-h-0 space-y-3">
             {/* Top Room Info, Lofi Audio & Mobile Segmented Tab Bar */}
-            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl px-3 sm:px-4 py-2 shrink-0 flex items-center justify-between gap-2 sm:gap-3 shadow-xs">
+            {/* Tên phòng + tiến độ XP tuần. Bỏ khung thẻ, shadow và ô emoji
+                👥 nền xanh: đây là DÒNG TIÊU ĐỀ của trang, không phải một tấm
+                thẻ ngang hàng với những tấm khác - và một ô biểu tượng đặc màu
+                cạnh nó nặng ngang chính cái tên nó đang chú thích.
+                Thanh XP mảnh lại còn 1px, cùng ngôn ngữ với thanh trạng thái
+                nhiệm vụ ngay bên dưới. */}
+            <div className="shrink-0 flex items-center justify-between gap-2 sm:gap-3">
               <div className="flex items-center gap-2.5 min-w-0">
-                <span className="w-8 h-8 rounded-xl bg-emerald-600 text-white font-black flex items-center justify-center text-xs shrink-0 shadow-xs">
-                  👥
-                </span>
                 <div className="min-w-0">
-                  <h2 className="text-xs sm:text-sm font-black text-stone-900 dark:text-stone-100 truncate">
+                  <h2 className="text-sm font-bold tracking-tight text-stone-900 dark:text-stone-100 truncate">
                     {format(t.studyGroups.roomHeader, { topic: topicLabel(myRoom.topic, t.studyRoomTopics), count: myRoom.member_count, max: myRoom.max_members })}
                   </h2>
-                  <div className="flex items-center gap-2 mt-0.5">
-                    <div className="w-20 sm:w-32 h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                  <div className="flex items-center gap-2 mt-1">
+                    <div className="w-20 sm:w-32 h-px bg-stone-200 dark:bg-stone-800">
                       <div
-                        className="h-full rounded-full bg-emerald-500 transition-all duration-500"
+                        className="h-px bg-emerald-600 dark:bg-emerald-400 transition-all duration-500"
                         style={{ width: `${Math.min(100, (myRoom.weekly_xp_progress / Math.max(1, myRoom.weekly_xp_goal)) * 100)}%` }}
                       />
                     </div>
-                    <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 shrink-0">
+                    <span className="text-[10px] tabular-nums text-stone-500 dark:text-stone-400 shrink-0">
                       {format(t.studyGroups.xpProgress, { current: myRoom.weekly_xp_progress, goal: myRoom.weekly_xp_goal })}
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Center/Right Action Bar: Group Co-Pomodoro + Lofi Focus Sound + Mic Toggle + Mobile Segmented Tab Toggle */}
-              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                {/* ⏱️ Group Co-Pomodoro Timer Widget */}
-                <div className="flex items-center gap-1.5 bg-stone-100 dark:bg-stone-800 px-2.5 py-1 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-mono font-black">
-                  <span className={pomoRunning ? "animate-pulse text-emerald-500" : "text-amber-500"}>
-                    {pomoMode === "focus" ? t.studyGroups.pomodoroFocus : t.studyGroups.pomodoroBreak}
-                  </span>
-                  <span className="text-stone-900 dark:text-stone-100 font-extrabold">{formatPomoTime(pomoSeconds)}</span>
+              {/* MỘT cụm điều khiển, phân đoạn.
+                  Trước đây đây là sáu khối rời cạnh nhau - đồng hồ Pomodoro,
+                  nút lofi, nút mic, nút rời thoại, nút mở khoá âm thanh, bộ tab
+                  di động - và MỖI khối tự mang viền, nền và bo góc riêng. Sáu
+                  cái khung cho sáu nút nằm sát nhau, cộng bốn màu nền khác nhau
+                  (xám, xanh lá, hồng, hổ phách) cho bốn trạng thái không cùng
+                  hạng.
+                  Giờ một khung duy nhất, các đoạn ngăn nhau bằng đường kẻ dọc -
+                  cùng ngôn ngữ với thanh trạng thái ở trên. Trạng thái bật/tắt
+                  do MÀU CHỮ nói, không cần tô kín cả nút.
+                  `animate-pulse` bỏ ở đồng hồ và nút lofi: cả hai nhấp nháy khi
+                  đang CHẠY BÌNH THƯỜNG, tức là báo động cho trạng thái đúng. */}
+              <div className="flex items-center gap-2 shrink-0">
+                <div className="flex items-center divide-x divide-stone-200 rounded-md border border-stone-200 text-[10px] font-semibold dark:divide-stone-700 dark:border-stone-700">
+                  {/* Pomodoro */}
+                  <div className="flex items-center gap-1.5 px-2 py-1 font-mono">
+                    <span className={pomoRunning ? "text-emerald-600 dark:text-emerald-400" : "text-stone-400 dark:text-stone-500"}>
+                      {pomoMode === "focus" ? t.studyGroups.pomodoroFocus : t.studyGroups.pomodoroBreak}
+                    </span>
+                    <span className="font-bold tabular-nums text-stone-900 dark:text-stone-100">{formatPomoTime(pomoSeconds)}</span>
+                    <button
+                      type="button"
+                      onClick={() => void handleTogglePomodoro()}
+                      className="cursor-pointer text-[9px] font-bold uppercase text-emerald-700 hover:underline dark:text-emerald-400"
+                    >
+                      {pomoRunning ? t.studyGroups.pomodoroPause : t.studyGroups.pomodoroStart}
+                    </button>
+                  </div>
+
+                  {/* Âm thanh nền */}
                   <button
                     type="button"
-                    onClick={() => void handleTogglePomodoro()}
-                    className="ml-0.5 text-[9px] font-black uppercase text-emerald-600 dark:text-emerald-400 hover:underline cursor-pointer"
+                    onClick={toggleLofiMusic}
+                    className={`inline-flex cursor-pointer items-center gap-1 px-2 py-1 transition-colors ${
+                      lofiPlaying
+                        ? "text-emerald-700 dark:text-emerald-400"
+                        : "text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+                    }`}
+                    title={t.studyGroups.lofiToggleTitle}
                   >
-                    {pomoRunning ? t.studyGroups.pomodoroPause : t.studyGroups.pomodoroStart}
+                    <span aria-hidden>🎧</span>
+                    <span className="hidden sm:inline">{lofiPlaying ? t.studyGroups.lofiPlaying : t.studyGroups.lofiIdle}</span>
                   </button>
-                </div>
-                {/* 🎧 Lofi Chill Focus Audio Button */}
-                <button
-                  type="button"
-                  onClick={toggleLofiMusic}
-                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
-                    lofiPlaying
-                      ? "bg-emerald-500 text-white border-emerald-400 animate-pulse shadow-xs"
-                      : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-200 dark:border-stone-700 hover:bg-stone-200"
-                  }`}
-                  title={t.studyGroups.lofiToggleTitle}
-                >
-                  <span>🎧</span>
-                  <span className="hidden sm:inline">{lofiPlaying ? t.studyGroups.lofiPlaying : t.studyGroups.lofiIdle}</span>
-                </button>
 
-                {/* 🎙️ Voice chat - opt in, then unmute. Two separate steps on
-                    purpose: rooms are re-matched with strangers every Monday,
-                    so nothing connects and no microphone opens until the user
-                    asks for it twice. */}
-                {voice.status === "connected" ? (
-                  <>
-                    <button
-                      type="button"
-                      onClick={() => void voice.toggleMic()}
-                      className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer ${
-                        voice.micEnabled
-                          ? "bg-emerald-600 text-white border-emerald-500"
-                          : "bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400 border-stone-200 dark:border-stone-700"
-                      }`}
-                      title={t.studyGroups.micToggleTitle}
-                    >
-                      <span>{voice.micEnabled ? "🎙️" : "🔇"}</span>
-                      <span className="hidden md:inline">{voice.micEnabled ? t.studyGroups.micOn : t.studyGroups.micOff}</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => void voice.leave()}
-                      className="inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border bg-rose-500 text-white border-rose-400 transition-all cursor-pointer"
-                      title={t.studyGroups.leaveVoiceTitle}
-                    >
-                      <span>📴</span>
-                      <span className="hidden md:inline">{format(t.studyGroups.leaveVoice, { count: voice.participantIds.length })}</span>
-                    </button>
-                    {voice.needsAudioUnlock && (
+                  {/* Chọn nền âm. Chữ trần phân cách bằng gạch dọc mảnh, không
+                      phải ba viên thuốc nữa - thanh điều khiển này đã đông rồi. */}
+                  <div
+                    role="group"
+                    aria-label={t.studyGroups.lofiTrackAria}
+                    className="inline-flex items-center gap-1.5 text-[11px]"
+                  >
+                    {([
+                      ["lofi", t.studyGroups.lofiTrackLofi],
+                      ["rain", t.studyGroups.lofiTrackRain],
+                      ["waves", t.studyGroups.lofiTrackWaves],
+                    ] as const).map(([id, label], i) => (
+                      <span key={id} className="inline-flex items-center gap-1.5">
+                        {i > 0 && <span aria-hidden className="text-stone-300 dark:text-stone-700">·</span>}
+                        <button
+                          type="button"
+                          onClick={() => changeLofiTrack(id)}
+                          aria-pressed={lofiTrack === id}
+                          className={`cursor-pointer transition-colors ${
+                            lofiTrack === id
+                              ? "font-bold text-stone-900 dark:text-stone-100"
+                              : "text-stone-400 hover:text-stone-700 dark:text-stone-500 dark:hover:text-stone-300"
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* 🎙️ Voice chat - opt in, then unmute. Two separate steps on
+                      purpose: rooms are re-matched with strangers every Monday,
+                      so nothing connects and no microphone opens until the user
+                      asks for it twice. */}
+                  {voice.status === "connected" ? (
+                    <>
                       <button
                         type="button"
-                        onClick={() => void voice.unlockAudio()}
-                        className="inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border bg-amber-500 text-stone-950 border-amber-400 animate-pulse cursor-pointer"
-                        title={t.studyGroups.autoplayBlockedTitle}
+                        onClick={() => void voice.toggleMic()}
+                        className={`inline-flex cursor-pointer items-center gap-1 px-2 py-1 transition-colors ${
+                          voice.micEnabled
+                            ? "text-emerald-700 dark:text-emerald-400"
+                            : "text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+                        }`}
+                        title={t.studyGroups.micToggleTitle}
                       >
-                        {t.studyGroups.autoplayBlocked}
+                        <span aria-hidden>{voice.micEnabled ? "🎙️" : "🔇"}</span>
+                        <span className="hidden md:inline">{voice.micEnabled ? t.studyGroups.micOn : t.studyGroups.micOff}</span>
                       </button>
-                    )}
-                  </>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => void voice.join()}
-                    disabled={voice.status === "connecting" || voice.status === "unavailable"}
-                    className={`inline-flex items-center gap-1 px-2 py-1 rounded-xl text-[10px] font-extrabold border transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${
-                      voice.status === "unavailable"
-                        ? "bg-stone-100 dark:bg-stone-800 text-stone-400 border-stone-200 dark:border-stone-700"
-                        : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-200 dark:border-stone-700 hover:bg-stone-200"
-                    }`}
-                    title={
-                      voice.status === "unavailable"
-                        ? t.studyGroups.voiceUnavailableTitle
-                        : t.studyGroups.voiceJoinTitle
-                    }
-                  >
-                    <span>🎙️</span>
-                    <span className="hidden md:inline">
-                      {voice.status === "connecting"
-                        ? t.studyGroups.voiceJoining
-                        : voice.status === "unavailable"
-                        ? t.studyGroups.voiceDisabled
-                        : t.studyGroups.voiceJoin}
-                    </span>
-                  </button>
-                )}
+                      <button
+                        type="button"
+                        onClick={() => void voice.leave()}
+                        className="inline-flex cursor-pointer items-center gap-1 px-2 py-1 text-rose-600 transition-colors hover:text-rose-500 dark:text-rose-400"
+                        title={t.studyGroups.leaveVoiceTitle}
+                      >
+                        <span aria-hidden>📴</span>
+                        <span className="hidden md:inline">{format(t.studyGroups.leaveVoice, { count: voice.participantIds.length })}</span>
+                      </button>
+                      {/* Nút DUY NHẤT còn nền màu trong cụm. Trình duyệt đã chặn
+                          âm thanh và người dùng phải bấm thì mới nghe được ai -
+                          đúng nghĩa "thông tin ngoại lệ" mà nền màu để dành. */}
+                      {voice.needsAudioUnlock && (
+                        <button
+                          type="button"
+                          onClick={() => void voice.unlockAudio()}
+                          className="inline-flex cursor-pointer items-center gap-1 bg-amber-500 px-2 py-1 font-bold text-stone-950"
+                          title={t.studyGroups.autoplayBlockedTitle}
+                        >
+                          {t.studyGroups.autoplayBlocked}
+                        </button>
+                      )}
+                    </>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => void voice.join()}
+                      disabled={voice.status === "connecting" || voice.status === "unavailable"}
+                      className="inline-flex cursor-pointer items-center gap-1 px-2 py-1 text-stone-500 transition-colors hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50 dark:text-stone-400 dark:hover:text-stone-100"
+                      title={
+                        voice.status === "unavailable"
+                          ? t.studyGroups.voiceUnavailableTitle
+                          : t.studyGroups.voiceJoinTitle
+                      }
+                    >
+                      <span aria-hidden>🎙️</span>
+                      <span className="hidden md:inline">
+                        {voice.status === "connecting"
+                          ? t.studyGroups.voiceJoining
+                          : voice.status === "unavailable"
+                          ? t.studyGroups.voiceDisabled
+                          : t.studyGroups.voiceJoin}
+                      </span>
+                    </button>
+                  )}
+                </div>
 
                 {/* 📱 Mobile Segmented Tab Control (< lg screens) */}
                 <div className="lg:hidden flex bg-stone-100 dark:bg-stone-800 p-0.5 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-extrabold">
@@ -1439,67 +1547,76 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             </div>
 
-            {/* 💡 Group Attendance & Daily Quest Guidance Banner */}
-            <div className="mb-3 px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/15 to-teal-500/15 border border-amber-500/40 text-xs font-medium text-stone-800 dark:text-stone-200 flex flex-wrap items-center justify-between gap-2 shadow-xs">
-              <div className="flex items-center gap-2 min-w-0">
-                <span className="w-7 h-7 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-sm shrink-0 shadow-xs">
-                  📍
+            {/* MỘT thanh trạng thái phòng, thay cho BA vùng.
+                Trước đây phần trên trang là: một banner gradient ba màu
+                (hổ phách → ngọc → xanh mòng két) có viền, ô biểu tượng và viên
+                thuốc chuỗi tuần; rồi BA tấm thẻ nhiệm vụ, mỗi thẻ một viền, một
+                shadow, một viên thuốc tỉ số và một thanh tiến độ riêng; và ở
+                tận đáy trang một dải xanh đậm nữa cho mục tiêu tuần (xem chú
+                thích chỗ nó từng đứng). Ba vùng, ba nền, bảy thanh/viên thuốc -
+                cho một câu duy nhất: "tuần này phòng đã đi tới đâu".
+                Giờ là một hàng chữ: nhãn, chuỗi tuần, ba nhiệm vụ ngăn nhau
+                bằng đường kẻ dọc, rồi hai hành động. Con số vẫn đủ, dấu ✓ thay
+                cho viên thuốc màu, và khi mọi thứ xong thì hàng này im lặng
+                chứ không sáng lên.
+                `questsHint` bỏ đi: nó giải thích cách nhiệm vụ hoạt động, thứ
+                đọc một lần chứ không cần đứng thường trực trên đầu phòng học. */}
+            <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-stone-200 py-2 text-xs dark:border-stone-800">
+              <div className="flex min-w-0 items-center gap-2">
+                <span className="font-bold text-stone-900 dark:text-stone-100">
+                  {t.studyGroups.questsTitle}
                 </span>
-                <div>
-                  <p className="flex flex-wrap items-center gap-1.5 font-extrabold text-stone-900 dark:text-stone-100">
-                    <span>{t.studyGroups.questsTitle}</span>
-                    <span className="text-[10px] font-black text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-300 dark:border-amber-800">
-                      {isPermanentRoom
-                        ? t.studyGroups.permanentGroup
-                        : format(t.studyGroups.streakWeeks, { weeks: groupStreakWeeks })}
-                    </span>
-                  </p>
-                  <p className="text-stone-600 dark:text-stone-300 text-[11px] leading-tight mt-0.5">
-                    {t.studyGroups.questsHint}
-                  </p>
-                </div>
+                <span className="truncate text-stone-400 dark:text-stone-500">
+                  {isPermanentRoom
+                    ? t.studyGroups.permanentGroup
+                    : format(t.studyGroups.streakWeeks, { weeks: groupStreakWeeks })}
+                </span>
               </div>
-              <button
-                type="button"
-                onClick={() => void handleManualCheckin()}
-                className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black transition-all shadow-xs cursor-pointer shrink-0 active:scale-95 flex items-center gap-1"
-              >
-                <span>{t.studyGroups.checkInNow}</span>
-              </button>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
               {missions.length === 0 ? (
-                <div className="md:col-span-3 rounded-2xl border border-dashed border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 px-4 py-3 text-xs font-bold text-stone-500 dark:text-stone-400">
-                  {t.studyGroups.questsEmpty}
-                </div>
+                <span className="text-stone-500 dark:text-stone-400">{t.studyGroups.questsEmpty}</span>
               ) : (
-                missions.map((mission) => {
-                  const pct = Math.min(100, Math.round((mission.current_value / Math.max(1, mission.target_value)) * 100));
-                  return (
-                    <div key={mission.mission_key} className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-3.5 py-3 shadow-xs">
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="min-w-0">
-                          <p className="text-xs font-black text-stone-900 dark:text-stone-100 truncate">
-                            {missionIcon(mission.mission_key)} {mission.title}
-                          </p>
-                          <p className="text-[10px] text-stone-500 dark:text-stone-400 mt-0.5 line-clamp-2">{mission.description}</p>
-                        </div>
-                        <span className={`text-[10px] font-black px-2 py-0.5 rounded-full border shrink-0 ${
-                          mission.completed
-                            ? "bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
-                            : "bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800"
-                        }`}>
-                          {mission.current_value}/{mission.target_value}
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  {missions.map((mission) => (
+                    <span
+                      key={mission.mission_key}
+                      className="flex items-center gap-1.5 border-stone-200 pl-3 first:border-l-0 first:pl-0 [&:not(:first-child)]:border-l dark:border-stone-800"
+                      title={mission.description}
+                    >
+                      <span className="text-stone-500 dark:text-stone-400">{mission.title}</span>
+                      <span className="font-semibold tabular-nums text-stone-900 dark:text-stone-100">
+                        {mission.current_value}/{mission.target_value}
+                      </span>
+                      {mission.completed && (
+                        <span className="text-emerald-600 dark:text-emerald-400" aria-hidden>
+                          ✓
                         </span>
-                      </div>
-                      <div className="mt-2 h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
-                        <div className="h-full rounded-full bg-emerald-500 transition-all duration-500" style={{ width: `${pct}%` }} />
-                      </div>
-                    </div>
-                  );
-                })
+                      )}
+                    </span>
+                  ))}
+                </div>
               )}
+
+              {/* Hai hành động, đẩy về cuối hàng. Nút điểm danh giữ nền xanh vì
+                  nó là hành động chính của thanh này; "Vào học ngay" - vốn
+                  chiếm cả một dải xanh đậm ở đáy trang - rút về một liên kết
+                  chữ, đứng ngay cạnh con số mà nó phục vụ. */}
+              <div className="ml-auto flex shrink-0 items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => void handleManualCheckin()}
+                  className="cursor-pointer rounded-md bg-emerald-600 px-2.5 py-1 text-xs font-semibold text-white transition-colors hover:bg-emerald-500"
+                >
+                  {t.studyGroups.checkInNow}
+                </button>
+                <Link
+                  href="/hoc-bai"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 hover:underline dark:text-emerald-400"
+                >
+                  <span>{t.studyGroups.studyNow}</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
             </div>
 
             {/* Main 2-Column Split View */}
@@ -1546,8 +1663,19 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     xuống dòng. Ba thứ giữ nó lại: cho phép wrap, `min-w-0` để
                     cụm trái được co, và giấu bớt phần nhãn ở màn hẹp. */}
                 <div className="relative z-30 mb-1 flex shrink-0 flex-wrap items-center justify-between gap-1.5">
-                  <div className="flex min-w-0 flex-wrap items-center gap-1.5 sm:gap-2">
-                    <span className="max-w-full truncate text-[10px] font-black uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 backdrop-blur-md">
+                  {/* HAI cụm HUD, không phải bốn khối rải bốn góc.
+                      Trước đây trong khung 3D có: một viên thuốc trạng thái nền
+                      xanh viền xanh, một viên thuốc đổi chế độ xem, một viên
+                      thuốc đặt lại góc nhìn, và một cụm cổ vũ - mỗi cái một
+                      viền, một nền, một bo góc tròn hoàn toàn, và ba tông màu
+                      khác nhau. Bốn khung nổi trên một khung cảnh vốn đã nhiều
+                      màu.
+                      Giờ: TRẠNG THÁI bên trái, ĐIỀU KHIỂN bên phải, cả hai cùng
+                      một vỏ (nền tối mờ, viền mảnh, các đoạn ngăn bằng đường kẻ
+                      dọc) nên chúng đọc ra là một hệ HUD chứ không phải mấy
+                      widget tình cờ rơi vào cùng một khung. */}
+                  <div className="flex min-w-0 items-center divide-x divide-white/10 rounded-md border border-white/15 bg-stone-950/75 text-[10px] backdrop-blur-md">
+                    <span className="max-w-full truncate px-2 py-1 font-semibold uppercase tracking-wider text-emerald-300">
                       {walkMode ? t.studyGroups.modeWalk : t.studyGroups.modeDesk}
                       {/* Chủ đề và buổi trong ngày là thông tin phụ: trên màn
                           hẹp chúng đẩy cả hàng vỡ ra, và cả hai đều đã hiện ở
@@ -1563,7 +1691,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         e.stopPropagation();
                         setWalkMode((prev) => !prev);
                       }}
-                      className="text-[9px] font-bold text-emerald-200 bg-emerald-950/80 hover:bg-emerald-900 px-2 py-0.5 rounded-full border border-emerald-500/40 transition-all cursor-pointer"
+                      className="shrink-0 cursor-pointer px-2 py-1 font-semibold text-stone-300 transition-colors hover:text-white"
                       title={walkMode ? t.studyGroups.viewDeskTitle : t.studyGroups.viewWalkTitle}
                     >
                       {walkMode ? t.studyGroups.viewDesk : t.studyGroups.viewWalk}
@@ -1575,7 +1703,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           e.stopPropagation();
                           resetCamera();
                         }}
-                        className="text-[9px] font-bold text-stone-300 bg-stone-900/90 hover:bg-stone-800 px-2 py-0.5 rounded-full border border-stone-700 transition-all cursor-pointer"
+                        className="shrink-0 cursor-pointer px-2 py-1 font-semibold text-stone-400 transition-colors hover:text-white"
                         title={t.studyGroups.resetViewTitle}
                         aria-label={format(t.studyGroups.resetViewAria, { zoom: Math.round(zoom3D * 100) })}
                       >
@@ -1584,9 +1712,9 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     )}
                   </div>
 
-                  {/* Quick Cheer Actions Bar */}
-                  <div className="flex shrink-0 items-center gap-0.5 rounded-xl border border-stone-800 bg-stone-900/90 px-1.5 py-0.5 shadow-xs backdrop-blur-md sm:gap-1 sm:px-2">
-                    <span className="text-[9px] font-bold text-stone-400 mr-1 hidden sm:inline">{t.studyGroups.cheerLabel}</span>
+                  {/* Cụm điều khiển: cổ vũ. Cùng vỏ với cụm trạng thái bên trái. */}
+                  <div className="flex shrink-0 items-center gap-0.5 rounded-md border border-white/15 bg-stone-950/75 px-1.5 py-0.5 backdrop-blur-md sm:gap-1 sm:px-2">
+                    <span className="mr-1 hidden text-[9px] font-semibold text-stone-400 sm:inline">{t.studyGroups.cheerLabel}</span>
                     {quickCheers.map((cheer) => (
                       <button
                         key={cheer.emoji}
@@ -2150,56 +2278,72 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               >
                 {/* Sub-tab Navigation Header */}
                 <div className="flex items-center justify-between border-b border-stone-200 dark:border-stone-800 pb-2 mb-2 shrink-0">
-                  <div className="flex items-center gap-1 bg-stone-100 dark:bg-stone-800 p-0.5 rounded-xl border border-stone-200 dark:border-stone-700 text-[10px] font-black">
-                    <button
-                      type="button"
-                      onClick={() => setChatSubTab("chat")}
-                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                        chatSubTab === "chat" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
-                      }`}
-                    >
-                      {t.studyGroups.chatTab}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setChatSubTab("notes")}
-                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                        chatSubTab === "notes" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
-                      }`}
-                    >
-                      {format(t.studyGroups.notesTab, { count: stickyNotes.length })}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setChatSubTab("quiz")}
-                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                        chatSubTab === "quiz" ? "bg-white dark:bg-stone-900 text-emerald-600 dark:text-emerald-400 shadow-xs font-black" : "text-stone-500 hover:text-stone-700"
-                      }`}
-                    >
-                      {t.studyGroups.quizTab}
-                    </button>
+                  {/* Tab dạng gạch chân, không phải viên thuốc trong hộp.
+                      Trước đây ba tab nằm trong một hộp có nền và viền riêng,
+                      và tab đang mở lại là một viên thuốc nền trắng có shadow -
+                      tức hộp trong hộp, ngay dưới đường kẻ vốn đã tách phần
+                      đầu bảng ra rồi. Gạch chân dùng chính đường kẻ ấy. */}
+                  <div className="flex items-center gap-4 text-[11px] font-semibold">
+                    {([
+                      ["chat", t.studyGroups.chatTab],
+                      ["notes", format(t.studyGroups.notesTab, { count: stickyNotes.length })],
+                      ["quiz", t.studyGroups.quizTab],
+                    ] as const).map(([id, label]) => (
+                      <button
+                        key={id}
+                        type="button"
+                        onClick={() => setChatSubTab(id)}
+                        className={`-mb-2 cursor-pointer border-b-2 pb-2 transition-colors ${
+                          chatSubTab === id
+                            ? "border-emerald-600 text-emerald-700 dark:border-emerald-400 dark:text-emerald-400"
+                            : "border-transparent text-stone-500 hover:text-stone-900 dark:hover:text-stone-100"
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    ))}
                   </div>
-                  <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
+                  {/* "LIVE" từ viên thuốc nền xanh có viền xuống một chấm + chữ.
+                      Nó là chỉ báo trạng thái luôn bật, không phải một nhãn cần
+                      đóng khung. */}
+                  <span className="flex items-center gap-1.5 text-[10px] text-stone-400 dark:text-stone-500">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
                     {t.studyGroups.live}
                   </span>
                 </div>
                 {chatSubTab === "chat" && (
                   <div className="flex-1 flex flex-col min-h-0">
-                    <div className="mb-2 px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 shrink-0 text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold flex items-center gap-1">
-                      <span>💡</span>
-                      <span>{t.studyGroups.chatCheckinHint}</span>
+                    {/* MỘT vùng thông báo, không phải hai tấm thẻ màu chồng lên
+                        nhau trên đầu cuộc trò chuyện.
+                        Dòng nhắc điểm danh bỏ nền xanh và viền: nó luôn hiện,
+                        cho mọi phòng, mọi lúc - tức là thông tin nền, mà nền
+                        màu thì để dành cho thứ bất thường. Tin ghim GIỮ lại
+                        điểm nhấn vì nó đúng là ngoại lệ, nhưng đổi từ tấm thẻ
+                        vàng sang một vạch hổ phách bên trái: vẫn bắt mắt, không
+                        chiếm thêm một mặt phẳng nữa. */}
+                    <div className="mb-2 shrink-0 space-y-1.5">
+                      <p className="text-[10px] text-stone-400 dark:text-stone-500">
+                        {t.studyGroups.chatCheckinHint}
+                      </p>
+                      {pinnedMessage && (
+                        <div className="border-l-2 border-amber-500 pl-2.5">
+                          <p className="text-[9px] font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-500">
+                            {t.studyGroups.pinnedByAdmin}
+                          </p>
+                          <p className="truncate text-[11px] leading-snug text-stone-700 dark:text-stone-300">
+                            {pinnedMessage.content}
+                          </p>
+                        </div>
+                      )}
                     </div>
-                    {pinnedMessage && (
-                      <div className="mb-2 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 shrink-0">
-                        <p className="text-[9px] font-extrabold text-amber-700 dark:text-amber-400">{t.studyGroups.pinnedByAdmin}</p>
-                        <p className="text-[11px] text-stone-800 dark:text-stone-200 leading-snug truncate">{pinnedMessage.content}</p>
-                      </div>
-                    )}
                     <div className="relative flex-1 min-h-0 flex flex-col">
+                    {/* Khung cuộn bỏ viền và nền riêng: nó nằm trong tấm bảng
+                        hoạt động vốn đã có viền và nền của mình, nên đây là
+                        thẻ-trong-thẻ. Dòng tin tự phân tách bằng khoảng cách. */}
                     <div
                       ref={scrollBoxRef}
                       onScroll={handleMessagesScroll}
-                      className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40 p-3 space-y-2.5"
+                      className="flex-1 min-h-0 overflow-y-auto py-1 pr-1 space-y-2.5"
                     >
               {hasOlderMessages && (
                 <div className="flex justify-center pb-1">
@@ -2217,14 +2361,23 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   {t.studyGroups.chatEmpty}
                 </p>
               ) : (
-                scrollMessages.map((msg) => {
+                scrollMessages.map((msg, msgIdx) => {
                   if (msg.is_bot) {
                     return (
-                      <div key={msg.id} className="flex justify-start">
-                        <div className="max-w-[85%] rounded-xl px-3 py-2 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
-                          <p className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 mb-0.5">{t.studyGroups.byAdmin}</p>
-                          <p className="text-sm break-words text-stone-800 dark:text-stone-200">{renderBotMessage(msg.content, t.groupChat, format)}</p>
-                        </div>
+                      // Tin của bot/hệ thống: HÀNG HOẠT ĐỘNG, không phải bong
+                      // bóng chat. Trước đây mỗi cập nhật tự động là một hộp
+                      // vàng có viền - mà bot nói liên tục (điểm danh, kết quả
+                      // quiz, người vào phòng), nên khung chat thành một dãy
+                      // hộp vàng và tin của NGƯỜI THẬT bị chìm giữa chúng.
+                      // Giờ chúng là dòng chữ nhỏ, xám, thụt vào - đọc được khi
+                      // cần, không tranh chỗ với người đang nói chuyện.
+                      <div key={msg.id} className="flex gap-2 py-0.5 text-xs leading-snug">
+                        <span className="shrink-0 font-semibold text-stone-400 dark:text-stone-500">
+                          {t.studyGroups.byAdmin}
+                        </span>
+                        <span className="min-w-0 break-words text-stone-500 dark:text-stone-400">
+                          {renderBotMessage(msg.content, t.groupChat, format)}
+                        </span>
                       </div>
                     );
                   }
@@ -2245,6 +2398,25 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     : null;
                   const mainText = msg.content;
 
+                  // Gộp tin liên tiếp của CÙNG một người.
+                  //
+                  // Trước đây mỗi tin tự lặp lại tên người gửi, kể cả khi cùng
+                  // một người nhắn năm câu liền - nên tên hiện năm lần và mắt
+                  // phải đọc lại "ai đang nói" ở mỗi dòng dù câu trả lời không
+                  // đổi. Đây là điều làm khung chat đọc ra như một danh sách
+                  // bản ghi thay vì một cuộc trò chuyện.
+                  //
+                  // Điều kiện gộp cố tình hẹp: cùng người gửi, cùng phía, tin
+                  // liền ngay trước, và KHÔNG phải tin bot - tin bot giờ là
+                  // hàng hoạt động nên nó luôn cắt mạch. Tin có trích dẫn cũng
+                  // không gộp: phần trích cần tên để biết ai đang trả lời ai.
+                  const prevMsg = msgIdx > 0 ? scrollMessages[msgIdx - 1] : null;
+                  const groupedWithPrev =
+                    !!prevMsg &&
+                    !prevMsg.is_bot &&
+                    prevMsg.sender_id === msg.sender_id &&
+                    msg.reply_to_id === null;
+
                   const isPending = isPendingMessage(msg);
                   const hasFailed = failedMessageIds.has(msg.id);
                   const isDragon = isMine && activeChatEffect === "chat_effect_dragon_fire";
@@ -2258,6 +2430,10 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                         isMine ? "items-end" : "items-start"
                       } ${highlightedMsgId === msg.id ? "bg-emerald-500/15 rounded-2xl -mx-1 px-1 py-0.5" : ""} ${
                         isPending && !hasFailed ? "opacity-60" : ""
+                      } ${/* Tin đã gộp đứng sát tin trước, để một lượt nói của
+                             cùng một người đọc thành MỘT khối chứ không phải
+                             mấy dòng rời cách đều nhau. */ ""}${
+                        groupedWithPrev ? "-mt-1.5" : ""
                       }`}
                     >
                       <div className={`flex items-center gap-1.5 max-w-[85%] w-fit min-w-0 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
@@ -2270,7 +2446,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                             ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-tr-xs"
                             : "bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 rounded-tl-xs"
                         }`}>
-                          {!isMine && (
+                          {!isMine && !groupedWithPrev && (
                             <p className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 mb-0.5">
                               {senderName}
                             </p>
@@ -2591,12 +2767,15 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   const author = memberById.get(note.author_id);
                   const isAuthor = note.author_id === user?.id;
                   return (
-                    <div key={note.id} className={`p-3 rounded-2xl border ${noteColorClass(note.color)} text-xs space-y-1 shadow-xs`}>
-                      <div className="flex items-center justify-between gap-2 font-black text-[10px] opacity-80">
-                        <span className="truncate">📌 {isAuthor ? t.studyGroups.noteAuthorYou : author?.full_name || t.studyGroups.memberRole}</span>
+                    <div
+                      key={note.id}
+                      className={`border-l-2 py-1.5 pl-3 text-xs space-y-1 ${noteAccentClass(note.color)}`}
+                    >
+                      <div className="flex items-center justify-between gap-2 text-[10px] text-stone-400 dark:text-stone-500">
+                        <span className="truncate">{isAuthor ? t.studyGroups.noteAuthorYou : author?.full_name || t.studyGroups.memberRole}</span>
                         <span className="shrink-0">{formatShortTime(note.created_at)}</span>
                       </div>
-                      <p className="font-semibold leading-relaxed whitespace-pre-wrap break-words">{note.content}</p>
+                      <p className="leading-relaxed whitespace-pre-wrap break-words text-stone-800 dark:text-stone-200">{note.content}</p>
                       {isAuthor && (
                         <button
                           type="button"
@@ -2617,12 +2796,17 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
         {chatSubTab === "quiz" && (
           <div className="flex-1 flex flex-col min-h-0 overflow-y-auto p-1 space-y-3">
-            <div className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/15 to-teal-500/15 border border-amber-500/40 text-xs space-y-1 shrink-0">
-              <p className="font-black text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+            {/* Đầu tab Quiz: bỏ gradient ba màu (hổ phách → ngọc → mòng két) và
+                viền hổ phách. Đây là dòng giới thiệu của tab, đọc một lần rồi
+                thôi - nó không phải cảnh báo, mà nền màu trên trang này giờ chỉ
+                dành cho cảnh báo. Phần thưởng vẫn giữ màu hổ phách nhưng là
+                CHỮ, vì nó là con số đáng liếc chứ không đáng đóng khung. */}
+            <div className="shrink-0 space-y-1 border-b border-stone-200 pb-3 text-xs dark:border-stone-800">
+              <p className="flex items-center gap-2 font-bold text-stone-900 dark:text-stone-100">
                 <span>{t.studyGroups.quizChallengeTitle}</span>
-                <span className="px-2 py-0.5 rounded-full bg-amber-500 text-stone-950 text-[9px]">{t.studyGroups.quizReward}</span>
+                <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-500">{t.studyGroups.quizReward}</span>
               </p>
-              <p className="text-stone-600 dark:text-stone-300 text-[11px]">
+              <p className="text-[11px] text-stone-500 dark:text-stone-400">
                 {t.studyGroups.quizHint}
               </p>
             </div>
@@ -2716,59 +2900,21 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             </div>
 
-      {/* Nhắc học của phòng.
-      
-          Bản trước là chữ cứng: nó nói "Bài 12: Phân tích Báo cáo Dòng tiền"
-          cho MỌI phòng, mọi ngày, mãi mãi - kèm dòng "Thưởng +50 XP / bài" cho
-          một khoản thưởng không tồn tại ở đâu trong mã, và nút bấm đi thẳng về
-          dashboard. Ba lời hứa, không lời nào có thật.
-      
-          Giờ nó đọc đúng thứ phòng thật sự có: nhiệm vụ tuần và chủ đề phòng.
-          Không có khái niệm "bài học của phòng hôm nay" trong dữ liệu, nên
-          không dựng ra một cái. */}
-            <div className="bg-gradient-to-r from-emerald-950 via-stone-900 to-emerald-950 border border-emerald-500/30 rounded-2xl p-3 sm:p-3.5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-white shadow-lg">
-              <div className="flex items-center gap-3 min-w-0">
-                <span className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 flex items-center justify-center text-lg shrink-0 shadow-xs">
-                  🎯
-                </span>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40">
-                      {t.studyGroups.roomGoalTitle}
-                    </span>
-                  </div>
-                  {(() => {
-                    const lessonMission = missions.find((m) => m.mission_key === "lessons");
-                    if (lessonMission) {
-                      const left = Math.max(0, lessonMission.target_value - lessonMission.current_value);
-                      return (
-                        <p className="text-xs sm:text-sm font-black text-stone-100 mt-1 truncate">
-                          {lessonMission.title} · {lessonMission.current_value}/{lessonMission.target_value}
-                          {left > 0 ? format(t.studyGroups.roomGoalRemaining, { count: left }) : t.studyGroups.roomGoalDone}
-                        </p>
-                      );
-                    }
-                    return (
-                      <p className="text-xs sm:text-sm font-black text-stone-100 mt-1 truncate">
-                        {format(t.studyGroups.roomTopic, { topic: topicLabel(myRoom.topic, t.studyRoomTopics) })}
-                      </p>
-                    );
-                  })()}
-                </div>
-              </div>
-
-              <Link
-                href="/hoc-bai"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black px-4 py-2 rounded-xl text-xs transition-all shadow-md active:scale-95 shrink-0 cursor-pointer"
-              >
-                <span>{t.studyGroups.studyNow}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
+      {/* Dải "mục tiêu cả phòng tuần này" từng đứng ở đây: một khối gradient
+          xanh đậm chiếm trọn chiều ngang, có ô biểu tượng 🎯, một viên thuốc
+          tiêu đề và một nút CTA nền xanh.
+          Đã gộp lên THANH TRẠNG THÁI ở đầu trang. Nó không mất thông tin nào:
+          nhiệm vụ "lessons" mà nó hiển thị vốn đã là một trong ba nhiệm vụ trên
+          thanh ấy, và nhánh dự phòng của nó - chủ đề phòng - đã hiện sẵn ở
+          tiêu đề sân khấu 3D (xem chú thích ở đó: "cả hai đều đã hiện ở chỗ
+          khác trong trang"). Thứ duy nhất thật sự riêng của nó là nút "Vào học
+          ngay", và nút ấy giờ là một liên kết chữ trên cùng thanh, đứng ngay
+          cạnh con số mà nó phục vụ - thay vì đòi cả một mặt phẳng riêng ở đáy
+          màn hình. */}
           </div>
         ) : (
           <div className="space-y-6">
-            <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-lg p-6">
               <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest mb-1">
                 {t.studyGroups.matchRandom}
               </h2>
@@ -2790,7 +2936,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             </div>
 
-            <div className="bg-white dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-800 rounded-2xl p-6">
+            <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-lg p-6">
               <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
                 <h2 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-widest">
                   {t.studyGroups.orPickRoom}

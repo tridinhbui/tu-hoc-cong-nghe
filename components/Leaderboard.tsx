@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Trophy, BookOpen, Crown, Medal, Award, Flame, Target, Gamepad2, Star, ShieldCheck, Zap, Shield, Gem, Briefcase, GraduationCap, Heart, ChevronLeft, ChevronRight , type LucideIcon } from "lucide-react";
+import { Trophy, BookOpen, Crown, Flame, Target, Gamepad2, ShieldCheck, Zap, Briefcase, GraduationCap, Heart, ChevronLeft, ChevronRight, type LucideIcon } from "lucide-react";
 import {
   getLeaderboardByMetric,
   getMyLeaderboardRank,
@@ -41,7 +41,7 @@ function LeaderboardAvatar({ name, avatarUrl, size = 36 }: { name: string; avata
   const initials = name.trim().split(" ").map((n) => n.charAt(0)).join("").slice(0, 2).toUpperCase() || "?";
   return (
     <div
-      className="flex items-center justify-center rounded-full bg-gradient-to-br from-stone-100 to-stone-300 font-extrabold text-stone-700 shadow-inner"
+      className="flex items-center justify-center rounded-full bg-stone-200 font-bold text-stone-600 dark:bg-stone-700 dark:text-stone-200"
       style={{ width: size, height: size, fontSize: `${Math.max(10, size * 0.32)}px` }}
     >
       {initials}
@@ -49,94 +49,54 @@ function LeaderboardAvatar({ name, avatarUrl, size = 36 }: { name: string; avata
   );
 }
 
-// Prominent Avatar Frame Wrapper with Floating Crown & Metallic Rings
+// Khung avatar theo hạng: vòng vàng/bạc/đồng PHẲNG, vương miện cho hạng nhất.
 function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; name: string; avatarUrl: string | null; size?: number }) {
-  // Its own useI18n rather than a prop: this renders inside the podium and the
-  // rank rows, so threading `t` down would touch every call site to translate
-  // three alt attributes.
-  const { t } = useI18n();
-  if (rank === 1) {
+  // Ba hạng đầu có khung riêng - vàng, bạc, đồng - và hạng nhất đội vương miện.
+  //
+  // ĐỌC ĐOẠN NÀY TRƯỚC KHI "LÀM ĐẸP" THÊM. Bản trước bản trước đã có khung
+  // riêng cho cả năm nhóm hạng, và nó bị gỡ sạch vì một lý do có thật: mỗi
+  // khung là một gradient kim loại CỘNG một vầng sáng `blur-md` CỘNG một ảnh
+  // cúp 3D, riêng hạng nhất thêm `animate-pulse` và `animate-bounce`. Năm bảng
+  // màu phát sáng cạnh nhau thì không còn thứ bậc nào đọc được, vì mọi hàng
+  // giành sự chú ý ngang nhau.
+  //
+  // Bản này lấy lại thứ ĐÁNG lấy và bỏ thứ đã hỏng. Vàng/bạc/đồng là quy ước
+  // huy chương mà ai cũng đọc được ngay, tức chúng MANG THÔNG TIN về thứ hạng -
+  // khác hẳn năm gradient trang trí. Nên giữ đúng ba màu ấy, và giữ ở dạng
+  // PHẲNG: một vòng màu đặc, không chuyển sắc, không quầng sáng, không ảnh cúp,
+  // không chuyển động. Hạng 4-5 về lại viền trung tính, từ 6 trở đi không viền.
+  //
+  // Vương miện chỉ hạng nhất, và nó THAY con số "1" từng nằm đúng chỗ đó chứ
+  // không chồng thêm lên - hai dấu hiệu cho cùng một điều là cách bản cũ bắt
+  // đầu trượt.
+  const ringByRank: Record<number, string> = {
+    1: "bg-amber-400 dark:bg-amber-500",
+    2: "bg-stone-400 dark:bg-stone-400",
+    3: "bg-orange-700 dark:bg-orange-600",
+  };
+
+  if (rank <= 3) {
+    const crownSize = Math.max(12, Math.round(size * 0.32));
     return (
-      <div className="relative inline-flex items-center justify-center pt-5">
-        {/* Golden outer aura glow */}
-        <div className="absolute -inset-3 animate-pulse rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 opacity-80 blur-md" />
-        
-        {/* Metallic Gold Ring with Laurel Border */}
-        <div className="relative rounded-full p-[4px] bg-gradient-to-tr from-amber-600 via-yellow-300 via-amber-400 to-yellow-100 shadow-[0_0_20px_rgba(245,158,11,0.6)]">
-          <div className="rounded-full bg-white p-[2px] shadow-inner">
+      <div className="relative inline-flex items-center justify-center pt-2.5">
+        <div className={`rounded-full p-[2px] ${ringByRank[rank]}`}>
+          <div className="rounded-full bg-white p-[2px] dark:bg-stone-900">
             <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
           </div>
         </div>
-
-        {/* 👑 Prominent 3D Gold Crown Trophy */}
-        <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-amber-950 border-2 border-amber-400 shadow-xl overflow-hidden animate-bounce">
-          <Image
-            src="/trophy-gold-3d.jpg"
-            alt={t.leaderboard.trophyGoldAlt}
-            width={32}
-            height={32}
-            className="w-full h-full object-cover"
+        {rank === 1 ? (
+          <Crown
+            className="absolute left-1/2 top-0 -translate-x-1/2 fill-amber-400 text-amber-500 dark:fill-amber-500 dark:text-amber-400"
+            style={{ width: crownSize, height: crownSize }}
+            aria-hidden="true"
           />
-        </div>
-
-        {/* Golden Star Particle */}
-        <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-amber-400 text-amber-950 shadow ring-2 ring-white font-black text-[9px]">
-          ★
-        </div>
-      </div>
-    );
-  }
-
-  if (rank === 2) {
-    return (
-      <div className="relative inline-flex items-center justify-center pt-4">
-        {/* Silver outer glow */}
-        <div className="absolute -inset-2.5 rounded-full bg-gradient-to-r from-slate-300 via-slate-100 to-slate-400 opacity-70 blur-md" />
-
-        {/* Metallic Silver Ring */}
-        <div className="relative rounded-full p-[3.5px] bg-gradient-to-tr from-slate-400 via-slate-100 via-slate-200 to-slate-400 shadow-[0_0_15px_rgba(148,163,184,0.5)]">
-          <div className="rounded-full bg-white p-[2px]">
-            <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
-          </div>
-        </div>
-
-        {/* 🛡️ 3D Silver Trophy */}
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-slate-950 border-2 border-slate-300 shadow-lg overflow-hidden">
-          <Image
-            src="/trophy-silver-3d.jpg"
-            alt={t.leaderboard.trophySilverAlt}
-            width={28}
-            height={28}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-    );
-  }
-
-  if (rank === 3) {
-    return (
-      <div className="relative inline-flex items-center justify-center pt-4">
-        {/* Bronze outer glow */}
-        <div className="absolute -inset-2.5 rounded-full bg-gradient-to-r from-amber-700 via-orange-400 to-amber-800 opacity-60 blur-md" />
-
-        {/* Metallic Bronze Ring */}
-        <div className="relative rounded-full p-[3.5px] bg-gradient-to-tr from-amber-800 via-orange-300 via-amber-500 to-amber-700 shadow-[0_0_12px_rgba(180,83,9,0.45)]">
-          <div className="rounded-full bg-white p-[2px]">
-            <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
-          </div>
-        </div>
-
-        {/* 🏆 3D Bronze Chalice Trophy */}
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-amber-950 border-2 border-amber-600 shadow-lg overflow-hidden">
-          <Image
-            src="/trophy-bronze-3d.jpg"
-            alt={t.leaderboard.trophyBronzeAlt}
-            width={28}
-            height={28}
-            className="w-full h-full object-cover"
-          />
-        </div>
+        ) : (
+          <span
+            className={`absolute -top-0.5 left-1/2 -translate-x-1/2 rounded-sm px-1.5 py-px text-[9px] font-black tabular-nums text-white ${ringByRank[rank]}`}
+          >
+            {rank}
+          </span>
+        )}
       </div>
     );
   }
@@ -144,27 +104,18 @@ function AvatarWithFrame({ rank, name, avatarUrl, size = 44 }: { rank: number; n
   if (rank <= 5) {
     return (
       <div className="relative inline-flex items-center justify-center pt-1">
-        <div className="relative rounded-full p-[3px] bg-gradient-to-tr from-violet-500 via-purple-300 to-indigo-500 shadow-md">
-          <div className="rounded-full bg-white p-[1.5px]">
+        <div className="rounded-full p-[1.5px] bg-stone-300 dark:bg-stone-700">
+          <div className="rounded-full bg-white p-[1.5px] dark:bg-stone-900">
             <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
           </div>
-        </div>
-
-        <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-violet-600 p-0.5 text-white shadow ring-1 ring-white">
-          <Gem className="h-3 w-3 text-violet-100" />
         </div>
       </div>
     );
   }
 
-  // Next Positions (#6+) Avatar Frame
   return (
     <div className="relative inline-flex items-center justify-center">
-      <div className="rounded-full p-[2px] bg-gradient-to-tr from-amber-300 via-stone-200 to-amber-200 shadow-xs">
-        <div className="rounded-full bg-white p-[1px]">
-          <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
-        </div>
-      </div>
+      <LeaderboardAvatar name={name} avatarUrl={avatarUrl} size={size} />
     </div>
   );
 }
@@ -225,88 +176,56 @@ function getPodiumHeight(rank: number) {
   return "h-9";
 }
 
-// Custom Styled Metallic Badges
+// MỘT hình dạng huy hiệu cho mọi hạng, chỉ khác màu nền ở ba hạng đầu.
+//
+// Trước đây có bốn hình dạng: hạng 1 gradient vàng + icon Crown, hạng 2
+// gradient bạc + Medal, hạng 3 gradient đồng + Award, còn lại gradient xám +
+// Star - bốn gradient và bốn icon để nói đúng một thứ mà con số hạng đã nói.
+// Hình dạng vẫn là một; thứ quay lại chỉ là MÀU, và nó phải trùng màu vòng
+// khung trong AvatarWithFrame: nếu không, cùng một người đội vương miện vàng
+// lại đeo huy hiệu xanh lá, và màu thôi chỉ ra được ai đang đứng nhất.
+const BADGE_TONE_BY_RANK: Record<number, string> = {
+  1: "bg-amber-400 text-stone-950 dark:bg-amber-500",
+  2: "bg-stone-400 text-white dark:bg-stone-400 dark:text-stone-950",
+  3: "bg-orange-700 text-white dark:bg-orange-600",
+};
+
 function RankBadgePill({ rank, badgeText }: { rank: number; badgeText: string }) {
-  if (rank === 1) {
-    return (
-      <div className="inline-flex max-w-full items-center gap-1 rounded-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-amber-950 shadow-md ring-1 ring-amber-300">
-        <Crown className="h-3 w-3 shrink-0 fill-amber-950 text-amber-950" />
-        <span className="truncate">{badgeText}</span>
-      </div>
-    );
-  }
-  if (rank === 2) {
-    return (
-      <div className="inline-flex max-w-full items-center gap-1 rounded-full bg-gradient-to-r from-slate-300 via-slate-100 to-slate-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-slate-900 shadow ring-1 ring-slate-300">
-        <Medal className="h-3 w-3 shrink-0 text-slate-800" />
-        <span className="truncate">{badgeText}</span>
-      </div>
-    );
-  }
-  if (rank === 3) {
-    return (
-      <div className="inline-flex max-w-full items-center gap-1 rounded-full bg-gradient-to-r from-amber-700 via-amber-600 to-orange-700 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-amber-50 shadow ring-1 ring-amber-600">
-        <Award className="h-3 w-3 shrink-0 text-amber-50" />
-        <span className="truncate">{badgeText}</span>
-      </div>
-    );
-  }
   return (
-    <div className="inline-flex max-w-full items-center gap-1 rounded-full bg-gradient-to-r from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-800 border border-stone-300 dark:border-stone-700 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-stone-700 dark:text-stone-300 shadow-2xs">
-      <Star className="h-2.5 w-2.5 shrink-0 text-stone-500" />
+    <div
+      className={`inline-flex max-w-full items-center rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.12em] ${
+        BADGE_TONE_BY_RANK[rank] ?? "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400"
+      }`}
+    >
       <span className="truncate">{badgeText}</span>
     </div>
   );
 }
 
+// Hạng NHẤT nổi, còn lại dùng chung một thẻ trung tính.
+//
+// Bản trước trả về năm bộ khác nhau, mỗi bộ một gradient nền, một `ring`, một
+// bóng có màu và một màu chữ riêng - amber, slate, amber-orange, violet,
+// emerald. Đó là chỗ phần lớn "cảm giác gamification" đến từ, và nó làm hạng 4
+// (tím) trông nổi hơn hạng 2 (xám bạc) dù xếp sau.
 function getPodiumTone(rank: number) {
   if (rank === 1) {
     return {
-      card: "border-amber-300/80 dark:border-amber-500/50 bg-gradient-to-b from-amber-100/90 via-amber-50/50 to-white dark:from-amber-950/60 dark:via-amber-900/40 dark:to-stone-900 shadow-xl shadow-amber-500/10 ring-2 ring-amber-400/30",
-      pedestal: "from-amber-500/40 via-amber-400/25 to-amber-300/10 border-amber-400/80",
-      chip: "bg-gradient-to-r from-amber-500 to-yellow-500 text-amber-950 font-black shadow-md",
-      name: "text-stone-900 dark:text-amber-100",
-      value: "text-amber-700 dark:text-amber-300",
-      pedestalLabel: "1st",
-    };
-  }
-  if (rank === 2) {
-    return {
-      card: "border-slate-300 dark:border-slate-700 bg-gradient-to-b from-slate-100/90 via-slate-50/50 to-white dark:from-slate-900/80 dark:via-slate-900/40 dark:to-stone-900 shadow-lg shadow-slate-500/10 ring-1 ring-slate-300/50",
-      pedestal: "from-slate-400/35 via-slate-300/20 to-slate-200/10 border-slate-300/80",
-      chip: "bg-gradient-to-r from-slate-400 to-slate-600 text-white font-black shadow",
-      name: "text-stone-900 dark:text-slate-100",
-      value: "text-slate-700 dark:text-slate-300",
-      pedestalLabel: "2nd",
-    };
-  }
-  if (rank === 3) {
-    return {
-      card: "border-amber-700/30 dark:border-amber-700/60 bg-gradient-to-b from-amber-100/60 via-amber-50/40 to-white dark:from-amber-950/40 dark:via-amber-950/20 dark:to-stone-900 shadow-md shadow-orange-500/10 ring-1 ring-amber-600/30",
-      pedestal: "from-amber-700/30 via-orange-400/15 to-amber-300/10 border-amber-600/70",
-      chip: "bg-gradient-to-r from-amber-700 to-orange-600 text-white font-black shadow",
-      name: "text-stone-900 dark:text-amber-200",
-      value: "text-orange-700 dark:text-amber-400",
-      pedestalLabel: "3rd",
-    };
-  }
-  if (rank === 4) {
-    return {
-      card: "border-violet-200 dark:border-violet-900 bg-gradient-to-b from-violet-50/70 via-white to-violet-50/30 dark:from-violet-950/40 dark:via-stone-900 dark:to-stone-900 shadow-sm",
-      pedestal: "from-violet-400/20 via-violet-300/10 to-transparent border-violet-200/70",
-      chip: "bg-violet-600 text-white font-black",
-      name: "text-stone-900 dark:text-violet-200",
-      value: "text-violet-700 dark:text-violet-400",
-      pedestalLabel: "4th",
+      card: "border-emerald-600/60 dark:border-emerald-500/50 bg-white dark:bg-stone-900",
+      pedestal: "bg-emerald-600/10 border-emerald-600/40 dark:bg-emerald-500/10 dark:border-emerald-500/30",
+      chip: "bg-emerald-600 text-white dark:bg-emerald-500 dark:text-stone-950",
+      name: "text-stone-900 dark:text-stone-100",
+      value: "text-emerald-700 dark:text-emerald-400",
+      pedestalLabel: "1",
     };
   }
   return {
-    card: "border-emerald-200 dark:border-emerald-900 bg-gradient-to-b from-emerald-50/70 via-white to-emerald-50/30 dark:from-emerald-950/40 dark:via-stone-900 dark:to-stone-900 shadow-sm",
-    pedestal: "from-emerald-400/20 via-emerald-300/10 to-transparent border-emerald-200/70",
-    chip: "bg-emerald-600 text-white font-black",
-    name: "text-stone-900 dark:text-emerald-200",
-    value: "text-emerald-700 dark:text-emerald-400",
-    pedestalLabel: "5th",
+    card: "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900",
+    pedestal: "bg-stone-100 border-stone-200 dark:bg-stone-800/60 dark:border-stone-700",
+    chip: "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400",
+    name: "text-stone-900 dark:text-stone-100",
+    value: "text-stone-700 dark:text-stone-300",
+    pedestalLabel: String(rank),
   };
 }
 
@@ -428,7 +347,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
   if (compact) {
     return (
-      <div className="rounded-[28px] border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 p-4 sm:p-5 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.18)]">
+      <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5">
         <div className="flex items-start justify-between gap-3 border-b border-stone-200/80 dark:border-stone-800 pb-4">
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-amber-700 dark:text-amber-400 shadow-xs">
@@ -488,7 +407,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         </div>
 
         {metric === "composite" && (
-          <div className="mt-3 rounded-2xl border border-violet-200 dark:border-violet-900 bg-gradient-to-r from-violet-50 via-white to-emerald-50 dark:from-violet-950/50 dark:via-stone-900 dark:to-emerald-950/30 px-4 py-3 shadow-xs">
+          <div className="mt-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 dark:border-stone-800 dark:bg-stone-800/40">
             <div className="flex items-start gap-2.5">
               <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-violet-600 text-white shadow-sm">
                 <ShieldCheck className="h-4 w-4" />
@@ -571,7 +490,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                       </div>
 
                       {/* 3D Pedestal Step Base */}
-                      <div className={`mt-1 w-full rounded-t-xl border-x border-t bg-gradient-to-t ${tone.pedestal} ${getPodiumHeight(rank)} flex items-center justify-center font-black text-[10px] uppercase text-stone-400/80 shadow-xs`}>
+                      <div className={`mt-1 w-full rounded-t-xl border-x border-t ${tone.pedestal} ${getPodiumHeight(rank)} flex items-center justify-center font-black text-[10px] uppercase text-stone-400/80 shadow-xs`}>
                         {tone.pedestalLabel}
                       </div>
                     </Link>
@@ -601,23 +520,23 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                   <Link
                     key={entry.user_id}
                     href={href}
-                    className={`flex items-center justify-between gap-3 rounded-2xl border p-2.5 transition-all shadow-xs group ${
+                    className={`flex items-center justify-between gap-3 border-b border-stone-100 px-1 py-2 transition-colors group last:border-b-0 dark:border-stone-800/80 ${
                       isCurrent
-                        ? "border-emerald-300 dark:border-emerald-800 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/80 dark:from-emerald-950/50 dark:via-stone-900 dark:to-emerald-950/30 ring-2 ring-emerald-400/50 shadow-md"
-                        : "border-stone-200/90 dark:border-stone-800 bg-gradient-to-r from-stone-50/80 via-white to-amber-50/20 dark:from-stone-900 dark:via-stone-900 dark:to-stone-900 hover:border-amber-300 dark:hover:border-amber-700 hover:shadow-md hover:-translate-y-0.5"
+                        ? "bg-emerald-50/70 dark:bg-emerald-950/30"
+                        : "hover:bg-stone-50 dark:hover:bg-stone-800/40"
                     }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       {/* Metallic Rank Shield Badge */}
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 dark:from-stone-800 dark:to-stone-700 font-black text-xs text-stone-700 dark:text-stone-200 shadow-inner border border-stone-300/80 dark:border-stone-700 group-hover:scale-105 transition-transform">
-                        #{actualRank}
+                      <div className="w-7 shrink-0 text-right font-bold tabular-nums text-xs text-stone-400 dark:text-stone-500">
+                        {actualRank}
                       </div>
 
                       {/* Framed Avatar */}
                       <AvatarWithFrame rank={actualRank} name={entry.name} avatarUrl={entry.avatarUrl} size={36} />
 
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-xs font-black text-stone-900 dark:text-stone-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{entry.name}</p>
+                        <p className="truncate text-xs font-black text-stone-900 dark:text-stone-100 transition-colors">{entry.name}</p>
                         <p className="truncate text-[9px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
                           {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : honor.nickname}
                         </p>
@@ -626,9 +545,8 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
                     <div className="text-right shrink-0">
                       {/* Framed Badge Tag */}
-                      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500/10 via-amber-400/20 to-amber-500/10 dark:from-amber-950/60 dark:to-amber-900/40 px-2 py-0.5 text-[9px] font-black uppercase text-amber-800 dark:text-amber-300 border border-amber-300/50 dark:border-amber-800 mb-0.5">
-                        <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
-                        <span>{honor.badge}</span>
+                      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-stone-400 dark:text-stone-500 mb-0.5">
+                        {honor.badge}
                       </div>
                       <p className="text-xs font-black text-stone-900 dark:text-stone-100">{activeTab.format(entry.value, t.leaderboard.units)}</p>
                     </div>
@@ -639,7 +557,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
             {/* User MyRank Banner */}
             {myRank && (
-              <div className="rounded-2xl border border-dashed border-amber-300 dark:border-amber-700/80 bg-gradient-to-r from-amber-50/80 via-yellow-50/40 to-amber-50/80 dark:from-amber-950/50 dark:via-amber-900/30 dark:to-amber-950/50 px-4 py-3 shadow-xs">
+              <div className="rounded-xl border border-dashed border-stone-300 bg-stone-50/60 px-4 py-3 dark:border-stone-700 dark:bg-stone-800/30">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
                     <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-400 text-amber-950 shadow">
@@ -666,7 +584,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
   }
 
   return (
-    <div className="rounded-[28px] border border-stone-200 bg-white p-5 sm:p-6 lg:p-7 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.22)]">
+    <div className="rounded-2xl border border-stone-200 bg-white p-5 sm:p-6 lg:p-7">
       <div className="flex flex-col gap-4 border-b border-stone-200 pb-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-amber-700 shadow-xs">
@@ -750,7 +668,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     </div>
 
                     {/* Pedestal Step */}
-                    <div className={`mt-1.5 w-full rounded-t-[20px] border-x border-t bg-gradient-to-t ${tone.pedestal} ${getPodiumHeight(rank)} flex items-center justify-center font-black text-xs uppercase text-stone-400/80 shadow-xs`}>
+                    <div className={`mt-1.5 w-full rounded-t-[20px] border-x border-t ${tone.pedestal} ${getPodiumHeight(rank)} flex items-center justify-center font-black text-xs uppercase text-stone-400/80 shadow-xs`}>
                       {tone.pedestalLabel}
                     </div>
                   </Link>
@@ -782,23 +700,21 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                   <Link
                     key={entry.user_id}
                     href={href}
-                    className={`flex items-center justify-between gap-4 rounded-2xl border p-3 transition-all shadow-xs group ${
-                      isCurrent
-                        ? "border-emerald-300 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/90 ring-2 ring-emerald-400/60 shadow-md"
-                        : "border-stone-200/90 bg-gradient-to-r from-stone-50/90 via-white to-amber-50/30 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5"
+                    className={`flex items-center justify-between gap-4 border-b border-stone-100 px-1 py-2.5 transition-colors group last:border-b-0 ${
+                      isCurrent ? "bg-emerald-50/70" : "hover:bg-stone-50"
                     }`}
                   >
                     <div className="flex min-w-0 items-center gap-3">
                       {/* Metallic Rank Shield Badge */}
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stone-100 via-stone-50 to-amber-100/60 font-black text-xs text-stone-700 shadow-inner border border-stone-300/80 group-hover:scale-105 transition-transform">
-                        #{rank}
+                      <div className="w-8 shrink-0 text-right font-bold tabular-nums text-xs text-stone-400">
+                        {rank}
                       </div>
 
                       {/* Avatar with Custom Frame */}
                       <AvatarWithFrame rank={rank} name={entry.name} avatarUrl={entry.avatarUrl} size={38} />
 
                       <div className="min-w-0">
-                        <p className="truncate font-black text-stone-900 group-hover:text-amber-700 transition-colors">{entry.name}</p>
+                        <p className="truncate font-black text-stone-900 transition-colors">{entry.name}</p>
                         <p className="truncate text-[11px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
                           {entry.careerTitle ? `${entry.careerEmoji || "💼"} ${entry.careerTitle}` : honor.nickname}
                         </p>
@@ -806,9 +722,8 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     </div>
 
                     <div className="text-right shrink-0">
-                      <div className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500/10 via-amber-400/20 to-amber-500/10 px-2.5 py-0.5 text-[10px] font-black uppercase text-amber-800 border border-amber-300/50 mb-0.5">
-                        <Star className="h-2.5 w-2.5 fill-amber-500 text-amber-500" />
-                        <span>{honor.badge}</span>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-stone-400 mb-0.5">
+                        {honor.badge}
                       </div>
                       <p className={`font-black ${isCurrent ? "text-emerald-700" : "text-stone-800"}`}>{activeTab.format(entry.value, t.leaderboard.units)}</p>
                     </div>
@@ -819,10 +734,10 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
 
             {/* My Rank Footer */}
             {myRank && (
-              <div className="mt-4 rounded-2xl border border-dashed border-amber-300 bg-gradient-to-r from-amber-50/80 via-yellow-50/40 to-amber-50/80 px-4 py-3 shadow-xs">
+              <div className="mt-4 rounded-xl border border-dashed border-stone-300 bg-stone-50/60 px-4 py-3">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-yellow-500 text-amber-950 shadow">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-600 text-white dark:bg-emerald-500 dark:text-stone-950">
                       <Trophy className="h-5 w-5 fill-amber-950 text-amber-950" />
                     </div>
                     <div>

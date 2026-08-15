@@ -96,7 +96,7 @@
   ],
   "keyTakeaways": [
     "The foundations group: what a bond is, who issues it, the rate-price relationship, credit risk, and credit ratings",
-    "The valuation and sensitivity group: the factors affecting a bond's price, the discount formula PV=FV/(1+r), the concept of Duration",
+    "The valuation and sensitivity group: the factors affecting a bond's price, the discount formula PV=FV/(1+r)^n, the concept of Duration",
     "The risks and real costs group: coupon reinvestment risk, the 5% personal income tax on corporate bond interest",
     "The strategy and real-world application group: the ladder strategy, when to prioritize bonds, related products (CDs, investment-linked insurance), and a specific portfolio-allocation case"
   ],
@@ -113,7 +113,7 @@
   "summary": {
     "keyIdea": "The foundations group: what a bond is, who issues it, the rate-price relationship, credit risk, and credit ratings",
     "commonMistake": "Reading the concept as a line to recite rather than a principle to apply to a real decision.",
-    "action": "The valuation and sensitivity group: the factors affecting a bond's price, the discount formula PV=FV/(1+r), the concept of Duration"
+    "action": "The valuation and sensitivity group: the factors affecting a bond's price, the discount formula PV=FV/(1+r)^n, the concept of Duration"
   },
   "application": {
     "title": "Grade yourself on Stage 5",
@@ -173,7 +173,7 @@
         {
           "vi": "Valuation",
           "en": "Valuation & sensitivity",
-          "def": "The formula PV=FV/(1+r), the concept of Duration, sensitivity by term."
+          "def": "The formula PV=FV/(1+r)^n, the concept of Duration, sensitivity by term."
         },
         {
           "vi": "Risks & costs",

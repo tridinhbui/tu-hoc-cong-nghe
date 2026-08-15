@@ -2082,6 +2082,12 @@ export const vi = {
     lofiPlaying: "Nhạc Lofi: Đang phát",
     lofiIdle: "Nhạc lofi chill",
     lofiOff: "Đã tắt nhạc Focus Lofi",
+    // Ba nền âm. State `lofiTrack` đã có ba giá trị từ đầu nhưng không có
+    // giao diện nào đổi được, nên hai cái sau là code chết cho tới lượt này.
+    lofiTrackLofi: "Lofi",
+    lofiTrackRain: "Mưa",
+    lofiTrackWaves: "Sóng biển",
+    lofiTrackAria: "Chọn âm thanh nền",
     lofiFailed: "Không thể khởi chạy nhạc Lofi",
     micToggleTitle: "Bật/Tắt Micro",
     micOn: "Mic: Mở",

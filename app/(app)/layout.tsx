@@ -3,21 +3,21 @@ import WarmLamps from "@/components/WarmLamps";
 import XpFloatingPopup from "@/components/XpFloatingPopup";
 
 export default function AppShellLayout({ children }: { children: React.ReactNode }) {
-  // Giấy ngà #fbfaf7, cùng đúng giá trị `.band-paper` dùng ở trang chủ và
-  // FinSocial - KHÔNG phải bg-white.
+  // Nền trắng, theo yêu cầu trực tiếp.
   //
-  // Đây là đường nối rõ nhất giữa trang giới thiệu và sản phẩm: bên ngoài là
-  // giấy ngà ấm, bước qua cửa đăng nhập thì thành trắng tinh, và mắt đọc ra
-  // hai sản phẩm khác nhau trước khi kịp đọc chữ nào.
+  // Chỗ này từng là giấy ngà #fbfaf7 - cùng giá trị `.band-paper` của trang chủ
+  // và FinSocial - và lý lẽ khi ấy là giữ một mạch màu liền từ trang giới thiệu
+  // sang sản phẩm, để bước qua cửa đăng nhập không thấy như đổi sang một sản
+  // phẩm khác. Lý lẽ đó không sai, nó chỉ không phải lựa chọn được giữ.
   //
-  // Đặt màu thẳng thay vì gắn lớp `.band`: lớp đó dựng pseudo-element và ép
-  // `position: relative` lên mọi con trực tiếp, thứ không nên áp lên một khung
-  // bố cục có thanh bên cố định. Ở đây chỉ cần MÀU.
-  //
-  // Các thẻ bên trong vẫn `bg-white`, và trên nền ngà chúng nổi lên thành mặt
-  // giấy trắng - độ sâu có được từ sắc độ chứ không từ đổ bóng.
+  // Hệ quả cần biết trước khi ai đó đổi tiếp: nền ngà từng là thứ TÁCH các thẻ
+  // `bg-white` bên trong ra khỏi nền, tức chiều sâu đến từ sắc độ chứ không từ
+  // đổ bóng. Với nền trắng thì thẻ trắng nằm trên nền trắng, và ranh giới của
+  // chúng CHỈ còn nhờ đường viền. Nên nếu sau này có ai bỏ viền của thẻ cho
+  // "phẳng hơn", các thẻ sẽ tan vào nền - đừng bỏ viền mà không thay bằng một
+  // cách phân tách khác.
   return (
-    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950 lg:pl-64 overflow-x-hidden">
+    <div className="min-h-screen bg-white dark:bg-stone-950 lg:pl-64 overflow-x-hidden">
       <AppNavbar />
       <XpFloatingPopup />
       {children}

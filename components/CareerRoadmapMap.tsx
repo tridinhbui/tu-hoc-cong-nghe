@@ -97,25 +97,28 @@ export default function CareerRoadmapMap({
   }
 
   return (
-    <div className="rounded-3xl border-2 border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 shadow-sm overflow-hidden mb-6">
+    <div className="mb-6 overflow-hidden rounded-lg border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900">
       <button
         onClick={() => setExpanded((v) => !v)}
-        className="w-full flex items-center justify-between gap-3 px-5 py-4 sm:px-6 sm:py-5 text-left cursor-pointer"
+        className="flex w-full cursor-pointer items-center justify-between gap-3 px-5 py-4 text-left sm:px-6"
       >
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="shrink-0 rounded-xl border-2 border-emerald-500 px-2 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+        <div className="min-w-0">
+          {/* Nhãn "BẢN ĐỒ" từ viên thuốc viền xanh 2px xuống chữ mào. Nó là
+              nhãn phân loại của khối, không phải một trạng thái - và màu xanh
+              để dành cho lựa chọn hiện tại trong chính bản đồ bên dưới. */}
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-400 dark:text-stone-500">
             {t.careerRoadmap.mapBadge}
-          </span>
-          <div className="min-w-0">
-            <h2 className="text-base sm:text-lg font-black text-stone-900 dark:text-stone-100">
-              {t.careerRoadmap.mapHeading}
-            </h2>
-            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400">
-              {t.careerRoadmap.mapSubheading}
-            </p>
-          </div>
+          </p>
+          <h2 className="text-base font-bold tracking-tight text-stone-900 sm:text-lg dark:text-stone-100">
+            {t.careerRoadmap.mapHeading}
+          </h2>
+          <p className="text-xs text-stone-500 sm:text-sm dark:text-stone-400">
+            {t.careerRoadmap.mapSubheading}
+          </p>
         </div>
-        <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-stone-900 dark:bg-stone-100 px-3.5 py-2 text-xs font-black text-white dark:text-stone-900 shadow-sm hover:opacity-90 transition-opacity">
+        {/* Nút gập từ viên thuốc nền đen đặc xuống chữ + mũi tên. Nó là một
+            công tắc phụ, không phải hành động chính của trang. */}
+        <span className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-stone-500 transition-colors hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100">
           {expanded ? t.careerRoadmap.collapseCta : t.careerRoadmap.expandCta}
           <span
             className={`inline-block transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
@@ -184,36 +187,57 @@ export default function CareerRoadmapMap({
                     transition: isDragging ? "none" : "transform 0.15s ease-out",
                   }}
                 >
-                  {/* Root node */}
+                  {/* BẢN ĐỒ THÔNG TIN, KHÔNG PHẢI MỘT DÀN NÚT.
+                      Trước đây: một nút gốc nền đen bo 16px có shadow, bảy hộp
+                      nhóm mỗi hộp viền 2px và nền màu riêng, rồi ba mươi sáu
+                      viên thuốc bo tròn hoàn toàn - mỗi chức danh trông y hệt
+                      một cái nút bấm, và bảy màu nền cạnh nhau thành cầu vồng.
+                      Không có gì trong đó nói cho mắt biết cái nào là gốc, cái
+                      nào là nhánh, cái nào là lá.
+                      Giờ cấp bậc do CHỮ và ĐƯỜNG KẺ dựng: gốc là một dòng chữ
+                      hoa nhỏ, mỗi nhóm là một cột có tiêu đề trên một đường kẻ,
+                      chức danh là chữ trần xếp dọc. Màu nhóm còn đúng một chấm
+                      3px cạnh tiêu đề cột. */}
                   <div className="flex justify-center">
-                    <div className="inline-flex items-center gap-2 rounded-2xl border-2 border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 px-5 py-3 shadow-md select-none">
-                      <span className="text-sm font-black text-white dark:text-stone-900">{t.careerRoadmap.rootNodeLabel}</span>
-                    </div>
+                    <span className="select-none text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
+                      {t.careerRoadmap.rootNodeLabel}
+                    </span>
                   </div>
 
-                  {/* Trunk connector */}
+                  {/* Đường trục: mảnh hơn, chỉ để mắt lần được từ gốc xuống các
+                      cột - không phải một thanh trang trí. */}
                   <div className="flex justify-center">
-                    <div className="w-0.5 h-6 bg-stone-300 dark:bg-stone-700" />
+                    <div className="h-6 w-px bg-stone-300 dark:bg-stone-700" />
                   </div>
 
-                  {/* Category branches */}
-                  <div className="flex items-start justify-center gap-5">
+                  <div className="flex items-start justify-center gap-8">
                     {byCategory.map(({ category, meta, items }) => (
-                      <div key={category} className="flex flex-col items-center" style={{ width: 260 }}>
-                        <div className="w-0.5 h-4 bg-stone-300 dark:bg-stone-700" />
+                      <div key={category} className="flex flex-col" style={{ width: 210 }}>
+                        <div className="mx-auto h-4 w-px bg-stone-300 dark:bg-stone-700" />
 
-                        <div className={`w-full rounded-2xl border-2 ${meta.border} ${meta.bg} px-4 py-3 text-center select-none`}>
-                          <span className="text-xs font-black uppercase tracking-wide" style={{ color: meta.color }}>
-                            {meta.label}
-                          </span>
-                          <span className="block text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">
-                            {format(t.careerRoadmap.positionCount, { count: items.length })}
-                          </span>
+                        {/* Tiêu đề cột: chấm màu + tên nhóm + số vị trí, trên
+                            một đường kẻ. Không hộp, không nền. */}
+                        <div className="mt-1 border-b border-stone-300 pb-1.5 dark:border-stone-700">
+                          <div className="flex items-baseline gap-1.5">
+                            <span
+                              aria-hidden
+                              className="h-[3px] w-[3px] shrink-0 translate-y-[-2px] rounded-full"
+                              style={{ backgroundColor: meta.color }}
+                            />
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-stone-700 dark:text-stone-200">
+                              {meta.label}
+                            </span>
+                            <span className="ml-auto shrink-0 text-[10px] tabular-nums text-stone-400 dark:text-stone-500">
+                              {format(t.careerRoadmap.positionCount, { count: items.length })}
+                            </span>
+                          </div>
                         </div>
 
-                        <div className="w-0.5 h-4 bg-stone-300 dark:bg-stone-700" />
-
-                        <div className="w-full flex flex-wrap justify-center gap-1.5">
+                        {/* Chức danh: nút thật (vẫn bấm được y như cũ) nhưng
+                            KHÔNG trông như nút. Không viền, không nền, không bo
+                            góc. Xanh chỉ xuất hiện lúc rê chuột hoặc lấy tiêu
+                            điểm - tức lúc nó là mục đang được chọn. */}
+                        <div className="mt-1.5 flex flex-col items-start">
                           {items.map((career) => (
                             <button
                               key={career.id}
@@ -221,10 +245,9 @@ export default function CareerRoadmapMap({
                                 onSelectCareer(career);
                                 trackFeatureClick("career_roadmap_node_click", { label: career.id });
                               }}
-                              className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-950/40 px-2.5 py-1.5 text-[11px] font-bold text-stone-700 dark:text-stone-300 hover:border-stone-900 dark:hover:border-stone-100 hover:bg-white dark:hover:bg-stone-900 transition-colors cursor-pointer"
+                              className="w-full cursor-pointer py-[3px] text-left text-[11px] leading-snug text-stone-600 transition-colors hover:text-emerald-700 focus-visible:text-emerald-700 dark:text-stone-400 dark:hover:text-emerald-400 dark:focus-visible:text-emerald-400"
                             >
-                              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: meta.color }} />
-                              <span>{mergeCareer(career, locale).title}</span>
+                              {mergeCareer(career, locale).title}
                             </button>
                           ))}
                         </div>

@@ -198,19 +198,25 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
           </span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* HÀNG DỮ LIỆU, KHÔNG PHẢI THẺ CON.
+            Sáu trục năng lực trước đây là sáu tấm thẻ bo 16px có viền và nền
+            riêng, nằm trong một khối vốn đã là thẻ - và mỗi thẻ lại mang một
+            màu riêng cho con số và thanh tiến độ, tức sáu màu cho sáu thứ cùng
+            loại. Màu ở đó không phân biệt được gì mà chỉ nói "cái này quan
+            trọng", sáu lần.
+            Giờ mỗi trục là một hàng, ngăn nhau bằng một đường kẻ; con số căn
+            phải làm cột số liệu đọc dọc được; thanh tiến độ dùng đúng một màu
+            nhấn. */}
+        <div className="divide-y divide-stone-200 border-y border-stone-200 dark:divide-stone-800 dark:border-stone-800">
           {COMPETENCIES.map((competency) => {
             const score = scores.get(competency.id);
             return (
-              <div
-                key={competency.id}
-                className="p-4 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/40"
-              >
+              <div key={competency.id} className="py-3.5">
                 <div className="flex items-baseline justify-between gap-2">
-                  <span className="text-sm font-black text-stone-900 dark:text-stone-100">
+                  <span className="text-sm font-bold text-stone-900 dark:text-stone-100">
                     {t.competencies[competency.id]?.label ?? competency.label}
                   </span>
-                  <span className="text-lg font-black tabular-nums" style={{ color: competency.color }}>
+                  <span className="text-base font-bold tabular-nums text-stone-900 dark:text-stone-100">
                     {score?.score ?? 0}%
                   </span>
                 </div>
@@ -218,7 +224,7 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
                   {t.competencies[competency.id]?.blurb ?? competency.blurb}
                 </p>
                 <div className="mt-2.5">
-                  <Bar percent={score?.score ?? 0} color={competency.color} />
+                  <Bar percent={score?.score ?? 0} color="#059669" />
                 </div>
                 <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1">
                   {(score?.parts ?? []).map((part) => (
@@ -243,7 +249,11 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
 
         <button
           onClick={() => setInterviewOpen(true)}
-          className="mt-4 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-black shadow-sm transition-colors cursor-pointer"
+          // Chàm -> xanh lá. Trang này có nút chàm, hổ phách, xanh da trời và
+          // hồng cho bốn hành động ngang cấp; bốn màu cho "đây là nút" thì màu
+          // thôi không còn chỉ ra cái nào chính. Một nhấn duy nhất, dùng lại
+          // đúng màu xanh của cả sản phẩm.
+          className="mt-4 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors cursor-pointer"
         >
           <Mic className="w-4 h-4" />
           {t.careerProfile.mockInterview}
@@ -285,25 +295,25 @@ export default function CareerProfilePanel({ userId, careerId }: CareerProfilePa
           </p>
         ) : (
           <>
-            <div className="p-4 rounded-2xl bg-violet-50/50 dark:bg-violet-950/10 border border-violet-500/15 flex items-center gap-4">
-              <span className="text-3xl font-black text-violet-600 dark:text-violet-400 tabular-nums">
+            {/* Con số sẵn sàng: bỏ tấm nền tím. Cỡ chữ đã làm nó nổi bật hơn
+                bất kỳ cái hộp nào, và màu tím ở đây không mang nghĩa gì - nó
+                chỉ là màu thứ tư trên cùng một màn hình. */}
+            <div className="flex items-baseline gap-4 border-b border-stone-200 pb-3 dark:border-stone-800">
+              <span className="text-3xl font-bold tabular-nums text-stone-900 dark:text-stone-100">
                 {skillGap.readiness}%
               </span>
-              <p className="text-[11px] font-bold text-stone-600 dark:text-stone-400 leading-relaxed">
+              <p className="text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
                 {t.careerProfile.readinessBody}
               </p>
             </div>
 
-            <div className="mt-3 space-y-2">
+            {/* Từng mảng kỹ năng: hàng có đường kẻ thay cho thẻ. Trạng thái
+                "đã đạt" do dấu tích và màu chữ nói, không cần cả một tấm nền
+                xanh - nền màu cho mỗi mục đạt sẽ biến danh sách thành một dãy
+                khối màu xen kẽ. */}
+            <div className="mt-1 divide-y divide-stone-200 dark:divide-stone-800">
               {skillGap.items.map((item) => (
-                <div
-                  key={item.domain}
-                  className={`p-3.5 rounded-2xl border ${
-                    item.met
-                      ? "border-emerald-500/25 bg-emerald-50/40 dark:bg-emerald-950/10"
-                      : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950/40"
-                  }`}
-                >
+                <div key={item.domain} className="py-3">
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-xs font-black text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
                       {item.met && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}

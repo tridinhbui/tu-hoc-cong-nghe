@@ -881,7 +881,13 @@ export default function JobSearchClient({ embedded = false }: { embedded?: boole
   }
 
   return (
-    <div className={`bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 font-sans transition-colors duration-300 ${embedded ? "" : "min-h-screen"}`}>
+    // Nền trắng, cùng lượt với vỏ ứng dụng (app/(app)/layout.tsx).
+    //
+    // Khối này được NHÚNG vào /nghe-nghiep-hoc ngay dưới lưới nhóm nghề, nên
+    // `bg-stone-50` ở đây vẽ ra một mảng xám chiếm trọn nửa dưới trang trong
+    // khi nửa trên đã trắng - hai nền khác nhau trên cùng một trang, cắt ngang
+    // đúng chỗ khối này bắt đầu.
+    <div className={`bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100 font-sans transition-colors duration-300 ${embedded ? "" : "min-h-screen"}`}>
       
       {/* Top Header Bar */}
       <div className={`z-30 border-b border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-950/80 backdrop-blur-md ${embedded ? "" : "sticky top-0"}`}>

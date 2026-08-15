@@ -1371,7 +1371,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
     ],
   },
   {
-    id: 1764,
+    id: 1449,
     slug: "thue-tai-san-ifrs16-len-bang-can-doi",
     title: "Chuẩn mực & Thuế, Bài 9: IFRS 16 - hợp đồng thuê lên bảng cân đối",
     subtitle: "Vì sao một chuẩn mực kế toán làm tỷ lệ nợ của bán lẻ và hàng không tăng vọt mà không doanh nghiệp nào vay thêm đồng nào",

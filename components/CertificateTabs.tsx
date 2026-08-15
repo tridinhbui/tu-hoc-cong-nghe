@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Award, ShieldAlert } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 
 /** Chuyển giữa hai chứng chỉ, đặt ở đầu cả /cfa lẫn /frm.
@@ -21,63 +20,46 @@ import { useI18n } from "@/lib/i18n/context";
  *  /cfa/thi-thu và /cfa/[moduleId]. Đứng ở trang công thức FRM mà tab FRM không
  *  sáng thì cặp tab này nói sai chỗ người đọc đang đứng.
  *
- *  Màu theo từng bên - hổ phách cho CFA, đỏ cho FRM - vì đó là màu hai trang
- *  ấy vốn đã dùng cho nút và huy hiệu của chúng. Một màu chung cho cả hai sẽ
- *  làm tab đang chọn trông như một trạng thái thứ ba. */
+ *  MỘT màu nhấn, không phải màu riêng mỗi bên. Bản trước dùng hổ phách cho CFA
+ *  và đỏ cho FRM, với lý lẽ rằng đó là màu hai trang ấy vốn dùng. Lý lẽ đó đúng
+ *  lúc mỗi trang là một thế giới riêng, nhưng ở đây chúng là hai mục của cùng
+ *  một danh sách - và hai màu mạnh cạnh nhau làm cặp tab trông như hai nút quảng
+ *  cáo chứ không như một bộ chọn. Trạng thái đang chọn giờ nói bằng chữ đậm cộng
+ *  một gạch chân; mục còn lại vẫn đọc được nhưng lặng.
+ */
 export default function CertificateTabs() {
   const { t } = useI18n();
   const pathname = usePathname();
   const p = t.certPages;
 
   const tabs = [
-    {
-      href: "/cfa",
-      prefix: "/cfa",
-      label: p.tabCfa,
-      hint: p.tabCfaHint,
-      icon: Award,
-      activeClass:
-        "border-amber-400 bg-gradient-to-br from-amber-50 to-orange-50/70 text-amber-900 dark:border-amber-500/60 dark:from-amber-950/50 dark:to-stone-900 dark:text-amber-200",
-      iconClass: "bg-amber-500",
-    },
-    {
-      href: "/frm",
-      prefix: "/frm",
-      label: p.tabFrm,
-      hint: p.tabFrmHint,
-      icon: ShieldAlert,
-      activeClass:
-        "border-red-400 bg-gradient-to-br from-red-50 to-rose-50/70 text-red-900 dark:border-red-500/60 dark:from-red-950/50 dark:to-stone-900 dark:text-red-200",
-      iconClass: "bg-red-600",
-    },
+    { href: "/cfa", prefix: "/cfa", label: p.tabCfa, hint: p.tabCfaHint },
+    { href: "/frm", prefix: "/frm", label: p.tabFrm, hint: p.tabFrmHint },
   ];
 
   return (
-    <nav aria-label={p.tabsAria} className="grid grid-cols-2 gap-3">
-      {tabs.map(({ href, prefix, label, hint, icon: Icon, activeClass, iconClass }) => {
+    <nav aria-label={p.tabsAria} className="flex items-end gap-7 border-b border-stone-200 dark:border-stone-800">
+      {tabs.map(({ href, prefix, label, hint }) => {
         const active = pathname === prefix || pathname.startsWith(`${prefix}/`);
         return (
           <Link
             key={href}
             href={href}
             aria-current={active ? "page" : undefined}
-            className={`flex items-center gap-3 rounded-[20px] border-2 px-4 py-3.5 transition duration-200 ease-out ${
+            className={`-mb-px border-b-2 pb-2.5 transition-colors ${
               active
-                ? `${activeClass} shadow-sm`
-                : "border-stone-200 bg-white text-stone-500 hover:-translate-y-0.5 hover:border-stone-300 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-400"
+                ? "border-emerald-600 dark:border-emerald-500"
+                : "border-transparent hover:border-stone-300 dark:hover:border-stone-700"
             }`}
           >
             <span
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl text-white shadow-md ${
-                active ? iconClass : "bg-stone-300 dark:bg-stone-700"
+              className={`block text-sm font-black leading-tight ${
+                active ? "text-stone-900 dark:text-stone-100" : "text-stone-500 dark:text-stone-400"
               }`}
             >
-              <Icon className="h-5 w-5" />
+              {label}
             </span>
-            <span className="min-w-0">
-              <span className="block truncate text-base font-black leading-tight">{label}</span>
-              <span className="block truncate text-xs font-medium opacity-70">{hint}</span>
-            </span>
+            <span className="mt-0.5 block text-[11px] text-stone-500 dark:text-stone-400">{hint}</span>
           </Link>
         );
       })}

@@ -1030,7 +1030,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             same panels just stack and the page scrolls normally - there is no
             honest way to fit this much on a phone screen. */}
         <div
-          className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 xl:rounded-2xl xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:bg-stone-50/60 xl:dark:bg-stone-900/40 xl:p-3.5 ${
+          // Lớp tô xám của bảng bọc đã bỏ cùng lượt cho nền trắng: nó là lớp
+          // xám THỨ HAI trong cùng một khung nhìn, sau nền vỏ ứng dụng, nên
+          // đổi vỏ sang trắng mà giữ nó thì vẫn còn một mảng xám ở khổ xl.
+          // ĐƯỜNG VIỀN giữ nguyên - nó mới là thứ gom lưới thành "một hình chữ
+          // nhật" như chú thích dưới mô tả; phần tô chỉ là nhấn thêm.
+          className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 xl:rounded-2xl xl:border xl:border-stone-200 xl:dark:border-stone-800 xl:p-3.5 ${
             isLessonsView
               ? "max-w-[1500px] xl:flex xl:flex-col"
               : "max-w-[1500px] xl:grid xl:grid-cols-12 xl:grid-rows-[auto_auto_minmax(0,1fr)] xl:gap-3.5"
@@ -1053,11 +1058,27 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               { text: "text-teal-600 dark:text-teal-400", bg: "bg-teal-50 dark:bg-teal-950/30", border: "border-teal-400 dark:border-teal-700", solid: "bg-teal-500" },
               { text: "text-orange-600 dark:text-orange-400", bg: "bg-orange-50 dark:bg-orange-950/30", border: "border-orange-400 dark:border-orange-700", solid: "bg-orange-500" },
               { text: "text-rose-600 dark:text-rose-400", bg: "bg-rose-50 dark:bg-rose-950/30", border: "border-rose-400 dark:border-rose-700", solid: "bg-rose-500" },
-              { text: "text-amber-600 dark:text-amber-400", bg: "bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-950/40 dark:to-yellow-950/30", border: "border-amber-400 dark:border-amber-500", solid: "bg-gradient-to-r from-amber-400 to-yellow-500" },
+              { text: "text-amber-600 dark:text-amber-400", bg: "bg-amber-50 dark:bg-amber-950/30", border: "border-amber-400 dark:border-amber-500", solid: "bg-gradient-to-r from-amber-400 to-yellow-500" },
             ];
 
             return (
-              <div className={`rounded-xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 xl:col-span-12 xl:min-h-0 xl:overflow-hidden ${isCompactCard ? "p-2.5" : "p-3 sm:p-3.5"}`}>
+              // `xl:overflow-y-auto`, KHÔNG phải `xl:overflow-hidden`.
+              //
+              // Thẻ này bị lưới giới hạn chiều cao. Với `overflow-hidden`, phần
+              // không vừa bị CẮT và không sinh ra thanh cuộn nào - cột phải bên
+              // trong (dải avatar, khối cấp độ/XP, banner thi thăng cấp) mất
+              // phần dưới, và cách duy nhất để đọc nốt là thu nhỏ cả trang.
+              // Người dùng báo đúng triệu chứng đó.
+              //
+              // Đây là bài học đã ghi ở chú thích khối ngoài cùng phía trên và
+              // ở app/(app)/analytics/page.tsx: "phần không vừa không phải là
+              // hơi chật: nó BIẾN MẤT, và không có thanh cuộn nào để lấy lại".
+              //
+              // Cho cuộn TRONG thẻ chứ không bỏ hẳn giới hạn chiều cao: thẻ nằm
+              // ở hàng `auto` đầu tiên của một lưới đã bị bó chiều cao, nên để
+              // nó nở tự do là bóp hàng `minmax(0,1fr)` bên dưới xuống gần 0 -
+              // đổi một chỗ mất nội dung lấy một chỗ khác.
+              <div className={`rounded-xl border border-stone-200/90 dark:border-stone-800 bg-white/95 dark:bg-stone-900 xl:col-span-12 xl:min-h-0 xl:overflow-y-auto ${isCompactCard ? "p-2.5" : "p-3 sm:p-3.5"}`}>
                 <div className="grid grid-cols-1 gap-2.5 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start">
                   {/* self-stretch (not the grid's items-start) so this column
                       fills the row height set by the taller UserStats sidebar -
@@ -1635,26 +1656,31 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   scroll strip would leave branches permanently off-screen with
                   nothing to hint at them. Mobile keeps the swipeable strip,
                   where a wrapped set would run five rows deep. */}
-              <div className="flex gap-2 overflow-x-auto sm:overflow-visible sm:flex-wrap scrollbar-none pb-1">
+              {/* Bộ lọc phân loại, không phải bảy nút quảng cáo.
+                  Trước đây mỗi nhánh là một viên thuốc bo tròn có emoji, và
+                  nhánh đang chọn được tô đen đặc - tương phản mạnh nhất trên cả
+                  màn hình cho một thứ chỉ là bộ lọc. Giờ là dải tab gạch chân:
+                  nhãn làm chính, gạch dưới bằng màu nhấn nói cái nào đang chọn,
+                  emoji bỏ đi vì nó không phân biệt được bảy nhánh với nhau. */}
+              <div className="flex gap-5 overflow-x-auto sm:flex-wrap sm:gap-6 scrollbar-none border-b border-stone-200 dark:border-stone-800">
                 {PROFESSIONAL_BRANCHES.map((branch) => {
                   const isActive = professionalBranch === branch.id;
                   return (
                     <button
                       key={branch.id}
                       onClick={() => handleSetProfessionalBranch(branch.id)}
-                      className={`shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+                      className={`shrink-0 whitespace-nowrap border-b-2 pb-2 text-xs transition-colors cursor-pointer ${
                         isActive
-                          ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
-                          : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-200"
+                          ? "border-emerald-600 font-bold text-stone-900 dark:border-emerald-500 dark:text-stone-100"
+                          : "border-transparent font-semibold text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200"
                       }`}
                     >
-                      <span>{branch.emoji}</span>
                       {t.professionalBranches[branch.id]?.label ?? branch.label}
                     </button>
                   );
                 })}
               </div>
-              <p className="mt-2 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
+              <p className="mt-2.5 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
                 {t.professionalBranches[professionalBranch]?.subtitle ??
                   PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)?.subtitle}
               </p>
@@ -1846,7 +1872,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         {stageDisplayLabels.get(stage.label) || stageCopy?.label || stage.label}
                       </span>
                       {stage.isNew && (
-                        <span className="text-[10px] font-black text-white bg-gradient-to-r from-rose-500 to-orange-500 px-2 py-0.5 rounded-full shrink-0">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-emerald-700 dark:text-emerald-400 shrink-0">
                           {t.dashboard.isNew}
                         </span>
                       )}
@@ -1862,7 +1888,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                               e.stopPropagation();
                               setSelectedCertStage({ label: stage.label, name: stage.name });
                             }}
-                            className="flex items-center gap-1 text-[11px] font-black text-white shrink-0 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-2.5 py-1 rounded-lg active:scale-95 transition-all cursor-pointer"
+                            className="flex items-center gap-1 text-[11px] font-bold text-white shrink-0 bg-emerald-600 hover:bg-emerald-700 px-2.5 py-1 rounded-md transition-colors cursor-pointer"
                           >
                             {t.dashboard.milestone.certificate}
                           </button>
