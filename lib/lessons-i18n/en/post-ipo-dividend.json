@@ -12,14 +12,22 @@
   ],
   "explanation": "Once it is listed, a company usually feels pressure to pay a dividend to prove it has grown up. But only one comparison actually matters: is there still a reinvestment opportunity earning more than the cost of capital? If there is, every dong paid out is a dong that would have created more value inside the business. Remember too that the market reads a dividend as a commitment, so starting early and then having to cut is a far worse signal than never having paid at all.",
   "diagram": [
-    { "label": "FCF" },
-    { "label": "Opportunities" },
-    { "label": "Payout policy" },
-    { "label": "Dividend or reinvestment" }
+    {
+      "label": "FCF"
+    },
+    {
+      "label": "Opportunities"
+    },
+    {
+      "label": "Payout policy"
+    },
+    {
+      "label": "Dividend or reinvestment"
+    }
   ],
   "realWorldExample": {
     "company": "A newly listed company",
-    "description": "A business fresh from its IPO may still need the cash on its balance sheet to expand, rather than paying it all out to shareholders."
+    "description": "A newly listed company faces two groups of shareholders who want opposite things. Those who bought for growth want the cash retained to expand; those who bought for income want a dividend now. The test is not a survey of opinion but ROIC against the cost of capital: if each retained dong earns 18% while capital costs 11%, retaining is right - paying it out takes that 7-point spread away from the shareholder. Once ROIC falls below the cost of capital the conclusion reverses, and that is usually when the market starts demanding a dividend. Committing to a fixed dividend policy right after IPO ties your hands before you know the answer."
   },
   "quiz": [
     {
@@ -88,7 +96,10 @@
       "type": "lead",
       "text": "After an IPO many investors expect the company to start paying a dividend soon to 'reward shareholders' - but that is not always the best capital allocation decision."
     },
-    { "type": "heading", "text": "The capital allocation principle: retain or pay out?" },
+    {
+      "type": "heading",
+      "text": "The capital allocation principle: retain or pay out?"
+    },
     {
       "type": "paragraph",
       "text": "If the company still holds plenty of projects with a ROIC above WACC (the cost of capital), retaining capital to reinvest usually creates more long-term value for shareholders than an early dividend. A newly listed company normally still has a strong set of growth opportunities - rushing into a large payout may mean giving up far more value for those same shareholders."
@@ -112,7 +123,10 @@
         "explanation": "If the company still has projects at that level of return, paying the whole 1,000bn out to shareholders means giving up that 13% spread every year - a very large opportunity cost that the balance sheet never shows directly."
       }
     },
-    { "type": "heading", "text": "The corporate life cycle and dividend policy" },
+    {
+      "type": "heading",
+      "text": "The corporate life cycle and dividend policy"
+    },
     {
       "type": "list",
       "items": [
