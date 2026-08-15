@@ -1370,4 +1370,185 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       },
     ],
   },
+  {
+    id: 1764,
+    slug: "thue-tai-san-ifrs16-len-bang-can-doi",
+    title: "Chuẩn mực & Thuế, Bài 9: IFRS 16 - hợp đồng thuê lên bảng cân đối",
+    subtitle: "Vì sao một chuẩn mực kế toán làm tỷ lệ nợ của bán lẻ và hàng không tăng vọt mà không doanh nghiệp nào vay thêm đồng nào",
+    duration: "10 phút",
+    difficulty: "Khó",
+    emoji: "🏬",
+    track: "professional",
+    whyItMatters: "Mọi tỷ lệ đòn bẩy bạn tính cho một chuỗi bán lẻ, một hãng bay hay một chuỗi F&B đều sai nếu bỏ qua hợp đồng thuê - và trước 2019 thì chúng thật sự bị bỏ qua.",
+    openingQuestion: "Một chuỗi bán lẻ thuê toàn bộ mặt bằng, không vay ngân hàng đồng nào. Nợ của họ bằng bao nhiêu?",
+    openingOptions: [
+      "Bằng không, vì họ không vay của ai cả",
+      "Bằng giá trị hiện tại của toàn bộ tiền thuê phải trả",
+      "Bằng tiền thuê phải trả trong mười hai tháng tới",
+      "Không tính được nếu chưa biết doanh thu mỗi cửa hàng"
+    ],
+    correctOption: 1,
+    explanation: "Một hợp đồng thuê mười năm là một nghĩa vụ trả tiền cố định không huỷ ngang được - về bản chất kinh tế nó giống hệt một khoản vay mua tài sản, chỉ khác cái tên. IFRS 16 ghi nhận đúng điều đó: bên thuê phải đưa lên bảng cân đối một tài sản quyền sử dụng và một khoản nợ thuê bằng giá trị hiện tại của dòng tiền thuê còn lại. Trước chuẩn mực này, thuê hoạt động chỉ là một dòng chi phí trên báo cáo kết quả và biến mất khỏi bảng cân đối, nên hai doanh nghiệp có cùng nghĩa vụ kinh tế lại hiện ra với hai mức đòn bẩy khác hẳn nhau chỉ vì một bên đi vay còn một bên đi thuê.",
+    diagram: [
+      {
+        label: "Hợp đồng thuê: nghĩa vụ trả tiền cố định nhiều năm",
+        arrow: true
+      },
+      {
+        label: "Chiết khấu dòng tiền thuê về hiện tại",
+        arrow: true
+      },
+      {
+        label: "Lên bảng cân đối: tài sản quyền sử dụng + nợ thuê",
+        arrow: true
+      },
+      {
+        label: "Đòn bẩy tăng, EBITDA cũng tăng - hai chiều ngược nhau",
+        arrow: false
+      }
+    ],
+    realWorldExample: {
+      company: "Thế Giới Di Động và các chuỗi thuê toàn bộ mặt bằng",
+      description: "Một chuỗi bán lẻ vận hành hơn hai nghìn cửa hàng thuê sẽ mang theo nghĩa vụ tiền thuê nhiều năm cho từng điểm bán. Trước IFRS 16, toàn bộ nghĩa vụ ấy nằm ngoài bảng cân đối và chỉ được thuyết minh trong phần ghi chú; nhà phân tích nào muốn biết đòn bẩy thật phải tự đọc thuyết minh rồi tự chiết khấu. Sau IFRS 16, con số đó nằm ngay trên bảng cân đối - và tỷ lệ Nợ/EBITDA của cả ngành bán lẻ nhảy lên một bậc trong đúng một kỳ báo cáo, dù không doanh nghiệp nào ký thêm một hợp đồng vay nào."
+    },
+    quiz: [
+      {
+        question: "IFRS 16 buộc bên thuê ghi nhận thứ gì lên bảng cân đối?",
+        options: [
+          "Chỉ khoản tiền thuê phải trả trong năm tài chính tới",
+          "Tài sản quyền sử dụng và một khoản nợ thuê tương ứng",
+          "Toàn bộ giá trị thị trường của mặt bằng mà doanh nghiệp đang thuê",
+          "Một khoản dự phòng bằng ba tháng tiền thuê"
+        ],
+        correct: 1,
+        explanation: "Hai vế cùng lúc: một tài sản đại diện cho quyền dùng mặt bằng trong suốt kỳ thuê, và một khoản nợ bằng giá trị hiện tại của tiền thuê còn phải trả. Giá trị thị trường của mặt bằng không liên quan vì bên thuê không sở hữu nó, và một khoản dự phòng ba tháng thì không phản ánh nghĩa vụ nhiều năm."
+      },
+      {
+        question: "Vì sao EBITDA của một doanh nghiệp thuê nhiều lại TĂNG sau khi áp dụng IFRS 16?",
+        options: [
+          "Vì doanh thu được ghi nhận sớm hơn theo chuẩn mực mới",
+          "Vì tiền thuê chuyển thành khấu hao và lãi vay, cả hai đều nằm dưới EBITDA",
+          "Vì chi phí thuê được miễn trừ khỏi báo cáo kết quả kinh doanh",
+          "Vì tài sản quyền sử dụng được ghi nhận thẳng vào doanh thu tài chính trong kỳ"
+        ],
+        correct: 1,
+        explanation: "Chi phí thuê trước đây nằm trong chi phí hoạt động, tức TRÊN dòng EBITDA. Sau IFRS 16 nó tách thành khấu hao tài sản quyền sử dụng và lãi trên nợ thuê, mà cả hai đều nằm dưới EBITDA. Doanh thu không đổi, chi phí thật cũng không đổi - chỉ chỗ đứng của nó trên báo cáo đổi. Đó là lý do so EBITDA trước và sau 2019 mà không hiệu chỉnh là so hai thước đo khác nhau."
+      },
+      {
+        question: "Hai chuỗi cà phê có cùng số cửa hàng và cùng dòng tiền. A mua đứt mặt bằng bằng vốn vay, B thuê dài hạn. Trước IFRS 16, báo cáo của họ khác nhau thế nào?",
+        options: [
+          "A trông nợ nhiều hơn hẳn dù nghĩa vụ kinh tế của hai bên tương đương",
+          "B trông nợ nhiều hơn vì tiền thuê là chi phí cố định",
+          "Hai bên trông giống hệt nhau vì dòng tiền giống nhau",
+          "Không so sánh được vì hai mô hình vận hành dùng chuẩn mực kế toán khác nhau"
+        ],
+        correct: 0,
+        explanation: "Khoản vay của A nằm trên bảng cân đối; nghĩa vụ thuê của B thì không, dù cả hai đều bị ràng buộc phải trả tiền đều đặn nhiều năm. Chính sự lệch này là lý do IFRS 16 ra đời: hai doanh nghiệp có rủi ro kinh tế như nhau không nên hiện ra với hai mức đòn bẩy khác nhau chỉ vì cách họ có được mặt bằng."
+      },
+      {
+        question: "Chuẩn mực cho phép bỏ qua hợp đồng thuê nào?",
+        options: [
+          "Mọi hợp đồng thuê mặt bằng bán lẻ, vì trên thực tế chúng huỷ ngang được",
+          "Hợp đồng ngắn hạn dưới 12 tháng và hợp đồng tài sản giá trị thấp",
+          "Hợp đồng có điều khoản điều chỉnh tiền thuê theo doanh thu",
+          "Hợp đồng thuê của doanh nghiệp chưa niêm yết"
+        ],
+        correct: 1,
+        explanation: "Hai miễn trừ thực dụng: thuê dưới mười hai tháng, và tài sản giá trị thấp như máy tính hay máy in. Chúng tồn tại để doanh nghiệp không phải dựng bảng tính cho từng chiếc máy photocopy. Hợp đồng thuê mặt bằng nhiều năm thì không nằm trong diện miễn trừ, và đó chính là loại hợp đồng chuẩn mực nhắm tới."
+      },
+      {
+        question: "Nhà phân tích nên làm gì khi so một doanh nghiệp thuê nhiều với một doanh nghiệp sở hữu tài sản?",
+        options: [
+          "Dùng EV/EBITDA vì bội số này đã trung lập với cách tài trợ",
+          "So EBITDA của cả hai vì chuẩn mực đã làm cho chúng tương đương",
+          "Đưa nợ thuê vào Enterprise Value giống như mọi khoản nợ khác",
+          "Bỏ tài sản quyền sử dụng khỏi tổng tài sản để tính ROA cho gọn"
+        ],
+        correct: 2,
+        explanation: "Nợ thuê là nợ, nên nó thuộc về EV đúng như một khoản vay ngân hàng - bỏ nó ra là quay lại đúng vấn đề mà IFRS 16 sinh ra để sửa. EV/EBITDA không tự trung lập ở đây: nếu nợ thuê bị bỏ khỏi tử số trong khi EBITDA ở mẫu số đã được đẩy lên nhờ chuẩn mực, bội số sẽ thấp giả tạo ở đúng những doanh nghiệp thuê nhiều nhất."
+      }
+    ],
+    keyTakeaways: [
+      "Hợp đồng thuê dài hạn là một khoản vay đội tên khác: nghĩa vụ trả tiền cố định, không huỷ ngang",
+      "IFRS 16 đưa cả tài sản quyền sử dụng lẫn nợ thuê lên bảng cân đối",
+      "EBITDA tăng còn đòn bẩy cũng tăng - hai chiều ngược nhau, nên đừng đọc một chỉ số rồi kết luận",
+      "Nợ thuê thuộc về Enterprise Value đúng như mọi khoản nợ khác",
+      "So EBITDA trước và sau 2019 mà không hiệu chỉnh là so hai thước đo khác nhau"
+    ],
+    practicePrompt: {
+      question: "Một chuỗi thuê mặt bằng, tiền thuê 120 tỷ mỗi năm trong 8 năm còn lại, lãi suất chiết khấu 8%. Nợ thuê ghi lên bảng cân đối xấp xỉ bao nhiêu?",
+      options: [
+        "Khoảng 690 tỷ (= 120 × hệ số niên kim 8 năm ở 8%, tức 5,747)",
+        "960 tỷ (= 120 × 8, cộng thẳng không chiết khấu)",
+        "120 tỷ (= chỉ tiền thuê của năm tới)",
+        "Không ghi nhận, vì đây là thuê hoạt động"
+      ],
+      correct: 0,
+      explanation: "Nợ thuê là GIÁ TRỊ HIỆN TẠI của dòng tiền thuê còn lại, nên phải chiết khấu: 120 × 5,747 ≈ 690 tỷ. Phương án 960 tỷ cộng thẳng tám năm và bỏ qua giá trị thời gian của tiền - sai lệch 270 tỷ, tức 39% so với con số đúng. Phương án 120 tỷ là cách ghi nhận CŨ trước IFRS 16, và phương án cuối nhắc lại đúng khái niệm mà chuẩn mực này đã bỏ đi với hợp đồng dài hạn."
+    },
+    summary: {
+      keyIdea: "Thuê dài hạn và vay mua tài sản có cùng nghĩa vụ kinh tế, nên IFRS 16 buộc chúng hiện ra giống nhau trên bảng cân đối",
+      commonMistake: "So EBITDA hoặc tỷ lệ nợ giữa hai kỳ bắc qua năm áp dụng chuẩn mực mà không hiệu chỉnh",
+      action: "Khi tính EV cho một doanh nghiệp thuê nhiều, cộng nợ thuê vào đúng như một khoản vay"
+    },
+    application: {
+      title: "Thử trên một báo cáo thật",
+      message: "Mở báo cáo của một chuỗi bán lẻ niêm yết, tìm dòng nợ thuê trên bảng cân đối, rồi tính lại Nợ/EBITDA khi có và khi không có dòng đó.",
+      secondary: "Nếu hai con số cách nhau hơn một bậc, mọi so sánh của bạn với doanh nghiệp sở hữu mặt bằng đều cần hiệu chỉnh trước."
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Trước 2019, một chuỗi bán lẻ thuê hai nghìn mặt bằng có thể hiện ra trên bảng cân đối như một doanh nghiệp gần như không nợ. Nghĩa vụ trả tiền thuê nhiều năm nằm trong phần thuyết minh, và ai muốn biết đòn bẩy thật thì tự đi đọc rồi tự chiết khấu."
+      },
+      {
+        type: "heading",
+        text: "Thuê dài hạn là một khoản vay đội tên khác"
+      },
+      {
+        type: "paragraph",
+        text: "Ký một hợp đồng thuê mười năm nghĩa là cam kết trả một dòng tiền cố định trong mười năm, không huỷ ngang được. Về mặt kinh tế, điều đó không khác gì vay tiền mua tài sản rồi trả góp: cùng một nghĩa vụ, cùng một rủi ro nếu doanh thu sụt. Chuẩn mực cũ để hai thứ ấy hiện ra khác nhau, và khoảng cách đó đủ lớn để đổi hẳn kết luận về một doanh nghiệp."
+      },
+      {
+        type: "list",
+        items: [
+          "Bên thuê ghi nhận một TÀI SẢN quyền sử dụng - quyền dùng mặt bằng trong suốt kỳ thuê",
+          "Và một khoản NỢ thuê bằng giá trị hiện tại của tiền thuê còn phải trả",
+          "Tiền thuê không còn là chi phí hoạt động: nó tách thành khấu hao và lãi vay",
+          "Miễn trừ cho hợp đồng dưới 12 tháng và tài sản giá trị thấp, để không phải dựng bảng tính cho từng máy photocopy"
+        ]
+      },
+      {
+        type: "formula",
+        title: "Thay số vào nợ thuê",
+        equation: "Nợ thuê = Σ Tiền thuê kỳ n ÷ (1 + r)^n",
+        example: {
+          title: "Một chuỗi còn 8 năm thuê",
+          calculation: "Tiền thuê 120 tỷ mỗi năm · còn 8 năm · lãi suất chiết khấu 8% → hệ số niên kim 5,747",
+          result: "Nợ thuê = 120 × 5,747 ≈ 690 tỷ",
+          explanation: "Cộng thẳng tám năm ra 960 tỷ, tức cao hơn con số đúng 270 tỷ - 39%. Giá trị thời gian của tiền không phải chi tiết kỹ thuật ở đây, nó là gần hai phần năm của khoản mục. Lãi suất chiết khấu cũng quan trọng không kém: cùng dòng tiền ấy ở mức 5% cho ra 775 tỷ, cao hơn 12% so với ở mức 8%."
+        }
+      },
+      {
+        type: "heading",
+        text: "Hai chiều ngược nhau, và đó là chỗ dễ đọc sai nhất"
+      },
+      {
+        type: "paragraph",
+        text: "Chuẩn mực này làm đòn bẩy TĂNG vì nợ thuê xuất hiện, đồng thời làm EBITDA cũng TĂNG vì chi phí thuê rời khỏi chi phí hoạt động để thành khấu hao và lãi vay. Tỷ lệ Nợ/EBITDA vì thế có tử số lớn hơn và mẫu số cũng lớn hơn, và kết quả cuối phụ thuộc doanh nghiệp thuê nhiều đến đâu. Đọc một trong hai chỉ số rồi kết luận là cách chắc chắn nhất để sai."
+      },
+      {
+        type: "callout",
+        label: "Khi so hai doanh nghiệp",
+        text: "Nợ thuê là nợ - nó thuộc về Enterprise Value đúng như một khoản vay ngân hàng. Bỏ nó ra khỏi EV trong khi EBITDA ở mẫu số đã được chuẩn mực đẩy lên sẽ cho bội số thấp giả tạo ở đúng những doanh nghiệp thuê nhiều nhất, tức đúng nhóm mà bạn cần cẩn thận nhất."
+      },
+      {
+        type: "closing",
+        lines: [
+          "Chuẩn mực không làm doanh nghiệp nợ thêm đồng nào; nó chỉ thôi giấu khoản nợ vốn đã có ở đó.",
+          "Nên nếu tỷ lệ đòn bẩy của một ngành nhảy một bậc trong đúng một kỳ báo cáo, hãy hỏi cái gì đổi: nghĩa vụ, hay cách ghi chép nó."
+        ]
+      }
+    ]
+  },
 ];

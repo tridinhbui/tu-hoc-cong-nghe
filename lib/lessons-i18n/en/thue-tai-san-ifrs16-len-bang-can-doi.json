@@ -1,0 +1,169 @@
+{
+  "slug": "thue-tai-san-ifrs16-len-bang-can-doi",
+  "title": "Standards & Tax, Lesson 9: IFRS 16 - leases come onto the balance sheet",
+  "subtitle": "Why one accounting standard sent leverage ratios in retail and airlines sharply higher without a single company borrowing a dong more",
+  "duration": "10 min",
+  "openingQuestion": "A retail chain leases all of its premises and has no bank borrowing at all. How much debt does it have?",
+  "openingOptions": [
+    "None, because it has not borrowed from anyone",
+    "The present value of all the lease payments still owed",
+    "The rent payable over the next twelve months",
+    "It cannot be worked out without revenue per store"
+  ],
+  "explanation": "A ten-year lease is a fixed, non-cancellable payment obligation - economically the same thing as borrowing to buy the asset, only under a different name. IFRS 16 records exactly that: the lessee puts a right-of-use asset and a lease liability equal to the present value of the remaining lease payments onto the balance sheet. Before the standard, an operating lease was only a cost line on the income statement and vanished from the balance sheet, so two businesses with the same economic obligation appeared with completely different leverage purely because one borrowed and the other leased.",
+  "diagram": [
+    {
+      "label": "A lease: a fixed payment obligation across years",
+      "arrow": true
+    },
+    {
+      "label": "Discount the lease payments to present value",
+      "arrow": true
+    },
+    {
+      "label": "Onto the balance sheet: right-of-use asset + lease liability",
+      "arrow": true
+    },
+    {
+      "label": "Leverage rises and EBITDA rises too - two opposite directions",
+      "arrow": false
+    }
+  ],
+  "realWorldExample": {
+    "company": "Thế Giới Di Động and chains that lease every location",
+    "description": "A retail chain running more than two thousand leased stores carries years of rent obligations for every one of them. Before IFRS 16 that entire obligation sat off the balance sheet and appeared only in the notes; an analyst who wanted the real leverage had to read the notes and do the discounting themselves. After IFRS 16 the figure sits on the balance sheet - and the whole sector's Debt/EBITDA jumped a notch in a single reporting period, without any company signing a single new loan."
+  },
+  "quiz": [
+    {
+      "question": "What does IFRS 16 require a lessee to recognise on the balance sheet?",
+      "options": [
+        "Only the rent payable in the next financial year",
+        "A right-of-use asset and a matching lease liability",
+        "The full market value of the premises being leased by the business",
+        "A provision equal to three months of rent"
+      ],
+      "explanation": "Both sides at once: an asset representing the right to use the premises across the lease term, and a liability equal to the present value of the rent still owed. The market value of the premises is irrelevant because the lessee does not own them, and a three-month provision would not reflect an obligation running for years."
+    },
+    {
+      "question": "Why does EBITDA RISE at a lease-heavy business after IFRS 16 is applied?",
+      "options": [
+        "Because revenue is recognised earlier under the new standard",
+        "Because rent becomes depreciation and interest, both of which sit below EBITDA",
+        "Because lease costs are exempted from the income statement",
+        "Because the right-of-use asset is recognised straight into financial income for the period"
+      ],
+      "explanation": "Rent used to sit in operating costs, ABOVE the EBITDA line. After IFRS 16 it splits into depreciation of the right-of-use asset and interest on the lease liability, and both sit below EBITDA. Revenue does not change and the real cost does not change - only where it sits on the statement. That is why comparing EBITDA before and after 2019 without adjusting compares two different measures."
+    },
+    {
+      "question": "Two coffee chains have the same number of stores and the same cash flow. A bought its premises with borrowed money, B leases long-term. Before IFRS 16, how did their statements differ?",
+      "options": [
+        "A looked far more indebted although the two obligations were economically equivalent",
+        "B looked more indebted because rent is a fixed cost",
+        "They looked identical because their cash flows were the same",
+        "They could not be compared because the two models use different accounting standards"
+      ],
+      "explanation": "A's loan was on the balance sheet; B's lease obligation was not, even though both were committed to paying regularly for years. That mismatch is exactly why IFRS 16 exists: two businesses carrying the same economic risk should not appear at different leverage simply because of how they obtained their premises."
+    },
+    {
+      "question": "Which leases does the standard allow you to leave off?",
+      "options": [
+        "Every retail premises lease, because in practice they can be cancelled",
+        "Short leases under 12 months and leases of low-value assets",
+        "Leases with rent that adjusts in line with revenue",
+        "Leases held by businesses that are not listed"
+      ],
+      "explanation": "Two practical exemptions: leases under twelve months, and low-value assets such as laptops or printers. They exist so a business does not have to build a schedule for every photocopier. A multi-year premises lease is not exempt, and it is precisely the kind of contract the standard was aimed at."
+    },
+    {
+      "question": "What should an analyst do when comparing a lease-heavy business with one that owns its assets?",
+      "options": [
+        "Use EV/EBITDA, since that multiple is already neutral to how things are financed",
+        "Compare the EBITDA of both, since the standard has made them equivalent",
+        "Put the lease liability into Enterprise Value like any other debt",
+        "Strip the right-of-use asset out of total assets to keep ROA simple"
+      ],
+      "explanation": "A lease liability is debt, so it belongs in EV exactly as a bank loan does - leaving it out puts you back at the very problem IFRS 16 was created to fix. EV/EBITDA is not automatically neutral here: if the lease liability is dropped from the numerator while EBITDA in the denominator has been lifted by the standard, the multiple comes out artificially low at exactly the most lease-heavy businesses."
+    }
+  ],
+  "keyTakeaways": [
+    "A long lease is borrowing under another name: a fixed, non-cancellable payment obligation",
+    "IFRS 16 brings both the right-of-use asset and the lease liability onto the balance sheet",
+    "EBITDA rises and leverage rises too - opposite directions, so do not read one and conclude",
+    "The lease liability belongs in Enterprise Value like any other debt",
+    "Comparing EBITDA before and after 2019 without adjusting compares two different measures"
+  ],
+  "practicePrompt": {
+    "question": "A chain leases its premises for VND 120bn a year with 8 years remaining, at an 8% discount rate. Roughly what lease liability goes on the balance sheet?",
+    "options": [
+      "About VND 690bn (= 120 × the 8-year annuity factor at 8%, i.e. 5.747)",
+      "VND 960bn (= 120 × 8, added straight up with no discounting)",
+      "VND 120bn (= only next year's rent)",
+      "Nothing is recognised, because this is an operating lease"
+    ],
+    "explanation": "The lease liability is the PRESENT VALUE of the remaining rent, so it has to be discounted: 120 × 5.747 ≈ VND 690bn. The VND 960bn option adds eight years straight up and ignores the time value of money - out by VND 270bn, or 39% of the correct figure. The VND 120bn option is the OLD treatment before IFRS 16, and the last option repeats the very concept the standard removed for long leases."
+  },
+  "summary": {
+    "keyIdea": "A long lease and borrowing to buy an asset carry the same economic obligation, so IFRS 16 makes them appear the same way on the balance sheet",
+    "commonMistake": "Comparing EBITDA or leverage across the year the standard was adopted without adjusting",
+    "action": "When building EV for a lease-heavy business, add the lease liability in exactly as you would a loan"
+  },
+  "application": {
+    "title": "Try it on a real set of accounts",
+    "message": "Open the accounts of a listed retail chain, find the lease liability line on the balance sheet, then recompute Debt/EBITDA with and without it.",
+    "secondary": "If the two figures differ by more than a notch, every comparison you make with a business that owns its premises needs adjusting first."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Before 2019, a retail chain leasing two thousand premises could appear on the balance sheet as a business with almost no debt. The obligation to pay rent for years sat in the notes, and anyone who wanted the real leverage had to go and read it and do the discounting themselves."
+    },
+    {
+      "type": "heading",
+      "text": "A long lease is borrowing under another name"
+    },
+    {
+      "type": "paragraph",
+      "text": "Signing a ten-year lease means committing to a fixed stream of payments for ten years that cannot be cancelled. Economically that is no different from borrowing to buy the asset and repaying in instalments: the same obligation, the same risk if revenue falls. The old standard let those two appear differently, and the gap was wide enough to change the conclusion about a business."
+    },
+    {
+      "type": "list",
+      "items": [
+        "The lessee recognises a right-of-use ASSET - the right to use the premises across the lease term",
+        "And a lease LIABILITY equal to the present value of the rent still owed",
+        "Rent is no longer an operating cost: it splits into depreciation and interest",
+        "Exemptions for leases under 12 months and low-value assets, so nobody builds a schedule for every photocopier"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Putting numbers into the lease liability",
+      "equation": "Lease liability = Σ Rent in period n ÷ (1 + r)^n",
+      "example": {
+        "title": "A chain with 8 years of lease remaining",
+        "calculation": "Rent VND 120bn a year · 8 years left · 8% discount rate → annuity factor 5.747",
+        "result": "Lease liability = 120 × 5.747 ≈ VND 690bn",
+        "explanation": "Adding eight years straight up gives VND 960bn, VND 270bn above the correct figure - 39%. The time value of money is not a technical detail here; it is nearly two fifths of the line item. The discount rate matters just as much: the same payments at 5% give VND 775bn, 12% higher than at 8%."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Two opposite directions, and that is where it is most often misread"
+    },
+    {
+      "type": "paragraph",
+      "text": "The standard makes leverage RISE because the lease liability appears, and at the same time makes EBITDA RISE because rent leaves operating costs to become depreciation and interest. Debt/EBITDA therefore has a larger numerator and a larger denominator, and the net result depends on how lease-heavy the business is. Reading one of the two and concluding is the surest way to get it wrong."
+    },
+    {
+      "type": "callout",
+      "label": "When comparing two businesses",
+      "text": "A lease liability is debt - it belongs in Enterprise Value exactly as a bank loan does. Leaving it out of EV while EBITDA in the denominator has been lifted by the standard produces an artificially low multiple at precisely the most lease-heavy businesses, which is precisely the group you need to be most careful with."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The standard did not make any business owe a dong more; it simply stopped hiding debt that was already there.",
+        "So when an industry's leverage jumps a notch in a single reporting period, ask what changed: the obligation, or the way it is recorded."
+      ]
+    }
+  ]
+}
