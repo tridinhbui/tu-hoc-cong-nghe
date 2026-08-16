@@ -4,11 +4,17 @@
    components/login/TrackPreviewPanel.tsx và app/(app)/profile/page.tsx đọc
    `t.tracks[id]`, không đọc thẳng tệp này. `estimatedHours` và `previewSlug`
    là số và khoá định tuyến. */
+import { trackHours } from "@/lib/track-totals";
+
+// `estimatedHours` KHÔNG còn là số gõ tay. Cả ba đều đã lệch khỏi kho bài -
+// cá nhân khai 10 giờ khi thật là 21,9, chuyên nghiệp khai 18 khi thật là
+// 48,8, CFA khai 27 khi thật là 38,6 - vì con số được gõ một lần rồi kho bài
+// đi tiếp còn nó thì đứng yên. Xem lib/track-totals.ts.
 export const TRACKS = {
   personal: {
     tab: "Tài chính cá nhân",
     subtitle: "Dành cho người mới bắt đầu",
-    estimatedHours: 10,
+    estimatedHours: trackHours("personal"),
     description: "Kiểm tra tài chính của chính bạn, kiểm soát chi tiêu, xây quỹ khẩn cấp, trả nợ và đầu tư thông minh - không cần kiến thức ngành.",
     // Phải khớp thứ tự và số hiệu của TRACK_PERSONAL.stages trong
     // lib/track-stages.ts - đó mới là thứ người học nhìn thấy trên
@@ -44,7 +50,7 @@ export const TRACKS = {
   professional: {
     tab: "Tài chính chuyên ngành",
     subtitle: "Chuyên sâu, cho người đã có nền tài chính",
-    estimatedHours: 18,
+    estimatedHours: trackHours("professional"),
     description: "Kế toán, đọc báo cáo tài chính, định giá doanh nghiệp, trái phiếu, danh mục, phái sinh và AI in Finance.",
     // Cố ý KHÔNG đánh số. Dashboard chuyên ngành đánh lại số chặng theo
     // nhánh nghề đang chọn (DashboardClient dựng `Chặng ${displayIdx + 1}`
@@ -71,7 +77,7 @@ export const TRACKS = {
     // not an estimate of real CFA Level I study time (that's the 300h
     // figure CFA Institute cites), just how long it'd take to read every
     // lesson currently mapped into these 10 subjects.
-    estimatedHours: 27,
+    estimatedHours: trackHours("cfa"),
     description: "Ánh xạ các bài học đã có sang đúng 10 môn thi CFA Level I chính thức - không tạo bài mới, không đổi số ngày của 2 track kia. Môn nào chưa có bài phù hợp sẽ được xây dần.",
     stages: [
       // Dòng này từng ghi "sẽ xây trong tương lai" và đã sai từ lúc 14 bài

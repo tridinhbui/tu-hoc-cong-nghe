@@ -1,3 +1,7 @@
+import { trackHours } from "@/lib/track-totals";
+
+// Xem chú thích cùng nội dung trong lib/tracks.ts: hai con số `estimatedHours`
+// dưới đây từng là hằng số gõ tay và cả hai đã lệch khỏi kho bài.
 export interface StagePart {
   name: string;
   days: [number, number];
@@ -43,7 +47,7 @@ export const TRACK_PERSONAL = {
   // ngày một bài; hôm nay track có 136 bài và người học đi theo nhịp của họ,
   // nên "108 ngày" vừa sai vừa không có gì trong ứng dụng đối chiếu được.
   subtitle: "Dành cho người mới bắt đầu",
-  estimatedHours: 10,
+  estimatedHours: trackHours("personal"),
   description:
     "Dành cho người muốn hiểu tiền bạc, kiểm soát chi tiêu, xây dựng tài sản và đầu tư thông minh - không cần kiến thức ngành.",
   pillars: ["Tư duy tiền bạc", "Đầu tư cá nhân", "Lập kế hoạch tài chính"],
@@ -362,7 +366,7 @@ export const TRACK_PROFESSIONAL = {
   id: "professional",
   title: "Tài chính chuyên ngành",
   subtitle: "Chuyên sâu, cho người đã có nền tài chính",
-  estimatedHours: 18,
+  estimatedHours: trackHours("professional"),
   description:
     "Lộ trình chuyên sâu dành cho người đã biết tài chính cơ bản: kế toán, báo cáo tài chính, định giá, trái phiếu, danh mục đầu tư, phái sinh.",
   pillars: ["Kế toán & báo cáo tài chính", "Định giá & phân tích", "Đầu tư & quản lý rủi ro"],
@@ -772,11 +776,25 @@ export const TRACK_PROFESSIONAL = {
       // của track cá nhân - không bài nào về thuế doanh nghiệp.
       label: "Chặng 24",
       name: "Chuẩn mực kế toán và thuế doanh nghiệp Việt Nam",
-      days: [1441, 1448] as [number, number],
+      // Dải tới 1449 chứ không phải 1448: bài 1449 (IFRS 16) là Bài 9 của
+      // chính loạt "Chuẩn mực & Thuế" này, thêm vào sau mà dải không được nới
+      // theo - nên nó tồn tại trong kho mà không lộ trình nào dẫn tới. Bộ kiểm
+      // lib/__tests__/track-stage-coverage.test.ts bắt được đúng chuyện đó,
+      // nhưng chỉ khi lib/lessons-data/ được sinh lại: thư mục ấy nằm trong
+      // .gitignore, nên dữ liệu cũ trên máy đã che nó một thời gian.
+      days: [1441, 1449] as [number, number],
       available: true,
       isNew: true,
       parts: [
-        { name: "VAS, IFRS và chuyển đổi chuẩn mực", days: [1441, 1442] as [number, number] },
+        {
+          // 1449 vào phần NÀY chứ không phải phần cuối, dù id của nó nằm sau
+          // 1448: IFRS 16 là chuẩn mực, không phải thuế. Đây đúng là tình
+          // huống `extraLessonIds` sinh ra để giải quyết - xem chú thích ở
+          // định nghĩa StagePart phía trên file.
+          name: "VAS, IFRS và chuyển đổi chuẩn mực",
+          days: [1441, 1442] as [number, number],
+          extraLessonIds: [1449],
+        },
         { name: "Thuế doanh nghiệp và thuế hoãn lại", days: [1443, 1445] as [number, number] },
         { name: "Chi phí được trừ, ưu đãi và thanh tra thuế", days: [1446, 1448] as [number, number] },
       ],

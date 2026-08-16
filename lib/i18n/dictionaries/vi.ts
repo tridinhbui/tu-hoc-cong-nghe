@@ -353,7 +353,7 @@ export const vi = {
     footer: {
       blurb:
         "Nền tảng tự học tài chính cá nhân, tài chính doanh nghiệp và CFA miễn phí 100%. Giúp người Việt làm chủ tiền bạc bằng phương pháp Spaced Repetition và Game Kingdom.",
-      community: "Cộng đồng 430+ bài học & Quiz tương tác",
+      community: "Cộng đồng {count}+ bài học & Quiz tương tác",
       tracksTitle: "Lộ trình học",
       trackPersonal: "Tài chính cá nhân",
       trackCorporate: "Tài chính doanh nghiệp",
@@ -1828,7 +1828,7 @@ export const vi = {
       "Thử thách phản xạ kiến thức tài chính qua các hiệp quiz 1v1 dồn dập tích lũy điểm XP.",
     pvpTag1: "Active Recall",
     pvpTag2: "Thách đấu 1v1",
-    pvpTag3: "Kho quiz 430+ bài",
+    pvpTag3: "Kho quiz {count}+ bài",
 
     // SAMPLER_QUESTIONS
     q1: "Tài sản nào sau đây được xếp vào 'Tài sản Ngắn hạn'?",
@@ -2458,6 +2458,8 @@ export const vi = {
 
   // components/DashboardClient.tsx
   dashboard: {
+    branchesShowAll: "Xem tất cả chủ đề",
+    branchesCollapse: "Thu gọn",
     stageLabel: "Chặng {n}",
     // Nhãn thời lượng trên thẻ bài học. Trước là template literal trong một
     // hàm ở module scope, ngoài tầm mọi rule cho tới khi thêm returned-text.
@@ -2564,7 +2566,7 @@ export const vi = {
     seeAll: "Xem tất cả",
     bookmarkedOn: "Lưu ngày {date}",
     foundationHours: "~{hours} giờ học nền tảng",
-    advancedLessons: "180 bài chuyên sâu",
+    advancedLessons: "{count} bài chuyên sâu",
     selectedCount: "{count} bài chọn",
     cancel: "Hủy",
     lockedCount: "{count} khoá",

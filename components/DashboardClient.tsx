@@ -46,6 +46,7 @@ import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
 import CertificateModal from "@/components/CertificateModal";
+import { trackTotals } from "@/lib/track-totals";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange, PROFESSIONAL_BRANCHES, type ProfessionalBranchId } from "@/lib/track-stages";
 import { getLessonShortTitle } from "@/lib/lesson-labels";
 import { BONUS_CATEGORIES, BONUS_CATEGORY_ORDER } from "@/lib/bonus-lesson-categories";
@@ -1274,9 +1275,31 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             cái đo cấp, cái kia đo nghề nhắm tới.
                             Hai cột trên màn rộng, vì xếp dọc là cộng thêm
                             chiều cao vào đúng thẻ vừa được thu gọn. */}
-                        <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-                          {user?.id && <DailyMotivationWidget userId={user.id} compact={isCompactCard} />}
-                          {!isLessonsView && <CareerGoalWidget userId={user?.id} compact={isCompactCard} />}
+                        {/* CẢ HAI luôn `compact`, không theo preset.
+                            `compact={isCompactCard}` là một cái bẫy ở đây: ở
+                            preset "Đầy đủ" nó dựng bản KHÔNG compact của cả
+                            hai, mà bản không-compact của mỗi widget tự vẽ
+                            `rounded-xl border p-4` của riêng nó - thành viền
+                            trong viền ngay giữa thẻ Bản đồ Cấp độ. Với góc yên
+                            tĩnh còn tệ hơn: màu cam và ngọn lửa chỉ có ở bản
+                            compact, nên đúng preset mặc định lại là preset mất
+                            màu.
+
+                            Thứ tự cũng đảo: mục tiêu nghề đứng TRƯỚC. Trái là
+                            việc phải làm (có nút Học tiếp), phải là chỗ để
+                            nghỉ - và đó cũng là lý do bên phải được phép mang
+                            màu, xem chú thích trong DailyMotivationWidget. */}
+                        <div className="mt-3 grid grid-cols-1 items-stretch gap-2.5 sm:grid-cols-2">
+                          {!isLessonsView && (
+                            <div className="min-w-0 rounded-lg border border-stone-200 bg-white p-3 dark:border-stone-800 dark:bg-stone-900">
+                              <CareerGoalWidget userId={user?.id} compact />
+                            </div>
+                          )}
+                          {user?.id && (
+                            <div className="min-w-0">
+                              <DailyMotivationWidget userId={user.id} compact />
+                            </div>
+                          )}
                         </div>
                     </div>
 
@@ -1592,7 +1615,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   </div>
                 </div>
                 <div className="text-xs mt-1.5 text-stone-500 dark:text-stone-400 font-normal">
-                  {t.dashboard.advancedLessons}
+                  {format(t.dashboard.advancedLessons, {
+                    count: trackTotals("professional").lessons,
+                  })}
                 </div>
                 <div className="sm:hidden text-xs mt-2 leading-snug text-stone-500 dark:text-stone-400">
                   {t.trackStages.professional.description}

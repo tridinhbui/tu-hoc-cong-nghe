@@ -313,7 +313,7 @@ export const en: Dictionary = {
     footer: {
       blurb:
         "A 100% free platform for teaching yourself personal finance, corporate finance and CFA. Helping Vietnamese people take charge of their money through spaced repetition and Game Kingdom.",
-      community: "A community of 430+ lessons & interactive quizzes",
+      community: "A community of {count}+ lessons & interactive quizzes",
       tracksTitle: "Learning tracks",
       trackPersonal: "Personal finance",
       trackCorporate: "Corporate finance",
@@ -1715,7 +1715,7 @@ export const en: Dictionary = {
       "Test your finance reflexes across rapid 1v1 quiz rounds and stack up XP.",
     pvpTag1: "Active recall",
     pvpTag2: "1v1 duels",
-    pvpTag3: "430+ lesson quiz bank",
+    pvpTag3: "{count}+ lesson quiz bank",
 
     q1: "Which of these counts as a 'current asset'?",
     q1a: "Cash & bank deposits",
@@ -2300,6 +2300,8 @@ export const en: Dictionary = {
   },
 
   dashboard: {
+    branchesShowAll: "See all topics",
+    branchesCollapse: "Collapse",
     stageLabel: "Stage {n}",
     // Nhãn thời lượng trên thẻ bài học. Trước là template literal trong một
     // hàm ở module scope, ngoài tầm mọi rule cho tới khi thêm returned-text.
@@ -2393,7 +2395,7 @@ export const en: Dictionary = {
     seeAll: "See all",
     bookmarkedOn: "Saved on {date}",
     foundationHours: "~{hours} hours of foundations",
-    advancedLessons: "180 advanced lessons",
+    advancedLessons: "{count} advanced lessons",
     selectedCount: "{count} selected",
     cancel: "Cancel",
     lockedCount: "{count} locked",

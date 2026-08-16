@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, PlayCircle, X } from "lucide-react";
 import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/supabase-user";
+import { roundedLessonCount } from "@/lib/track-totals";
 import { animateCountTo } from "@/lib/animate-count";
 import { TRACKS } from "@/lib/tracks";
 import Logo from "@/components/Logo";
@@ -856,7 +857,7 @@ export default function HomePage() {
                 </p>
                 <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3 py-1 text-[11px] font-bold text-emerald-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span>{t.home.footer.community}</span>
+                  <span>{format(t.home.footer.community, { count: roundedLessonCount() })}</span>
                 </div>
               </div>
 

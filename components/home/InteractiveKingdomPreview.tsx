@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useI18n } from "@/lib/i18n/context";
+import { roundedLessonCount } from "@/lib/track-totals";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import {
@@ -91,7 +92,7 @@ const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
     xpReward: 400,
     badge: "⚔️ SOLO PVP DUEL",
     description: t.kingdomPreview.pvpDescription,
-    tags: [t.kingdomPreview.pvpTag1, t.kingdomPreview.pvpTag2, t.kingdomPreview.pvpTag3],
+    tags: [t.kingdomPreview.pvpTag1, t.kingdomPreview.pvpTag2, format(t.kingdomPreview.pvpTag3, { count: roundedLessonCount() })],
   },
 ];
 

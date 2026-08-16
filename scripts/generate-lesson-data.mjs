@@ -165,6 +165,80 @@ const index = lessons.map((l) => ({
 
 writeFileSync(path.join(outDir, "_index.json"), JSON.stringify(index));
 
+/* ── Tổng số bài và tổng thời lượng, theo chặng ──────────────────────────
+ *
+ * VÌ SAO SINH RA CHỨ KHÔNG GÕ TAY. `estimatedHours` của ba chặng trước đây là
+ * hằng số viết trong lib/tracks.ts và lib/track-stages.ts, và cả ba đều đã
+ * lệch khỏi thực tế: cá nhân khai 10 giờ trong khi 220 bài của nó cộng lại là
+ * 21,9 giờ; chuyên nghiệp khai 18 trong khi thật là 48,8; bonus khai 27 trong
+ * khi thật là 12,3 - tức là khai VỐNG hơn gấp đôi.
+ *
+ * Không phải ai nói dối: con số được gõ một lần lúc chặng còn vài chục bài,
+ * rồi kho bài đi tiếp còn con số thì đứng yên. Đây đúng là lỗi mà chú thích
+ * đầu components/CfaTrackView.tsx đã ghi cho banner flashcard ("500+ thuật
+ * ngữ" khi bộ thẻ có 75), chỉ khác chỗ xảy ra.
+ *
+ * Đọc từ nguồn thì nó không lệch được nữa. File này nhỏ (ba dòng số) nên nhập
+ * thẳng vào bundle phía trình duyệt cũng không tốn gì - khác với _index.json
+ * 814 mục.
+ *
+ * `totalMinutes` là thời lượng CẢ BÀI (đọc + tương tác + quiz), cùng trường mà
+ * thẻ bài học trên dashboard đang hiện. Bài thiếu trường này được đếm riêng để
+ * con số giờ không lặng lẽ hụt đi. */
+const trackTotals = {};
+let lessonsWithoutMinutes = 0;
+for (const l of lessons) {
+  if (l.isVisible === false) continue;
+  const track = l.resolvedTrack ?? l.track ?? "unknown";
+  const entry = (trackTotals[track] ??= { lessons: 0, minutes: 0, missingMinutes: 0 });
+  entry.lessons++;
+  if (typeof l.totalMinutes === "number") entry.minutes += l.totalMinutes;
+  else {
+    entry.missingMinutes++;
+    lessonsWithoutMinutes++;
+  }
+}
+
+/* CFA không phải một chặng thứ tư: nó là một lớp ánh xạ trên chính những bài
+ * của ba chặng trên (xem chú thích đầu app/(app)/cfa/page.tsx). Nên nó được
+ * cộng riêng theo danh sách lessonIds của mười môn, và một bài nằm trong hai
+ * môn chỉ được đếm một lần.
+ *
+ * Đọc lib/cfa-track.ts bằng chính `loadLocalModule` mà script này đã dùng cho
+ * kho bài, thay vì chép lại danh sách id sang đây - một bản sao thứ hai của
+ * cùng danh sách là một chỗ nữa để lệch. */
+const minutesById = new Map(
+  lessons.filter((l) => l.isVisible !== false).map((l) => [l.id, l.totalMinutes ?? 0])
+);
+const { CFA_LEVEL_1_SUBJECTS } = loadLocalModule(path.join(root, "lib/cfa-track"));
+const cfaIds = new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
+let cfaLessons = 0;
+let cfaMinutes = 0;
+for (const id of cfaIds) {
+  if (!minutesById.has(id)) continue;
+  cfaLessons++;
+  cfaMinutes += minutesById.get(id);
+}
+
+writeFileSync(
+  path.join(outDir, "_track-totals.json"),
+  JSON.stringify({
+    tracks: {
+      ...trackTotals,
+      cfa: { lessons: cfaLessons, minutes: cfaMinutes, missingMinutes: 0 },
+    },
+    // Tổng KHÔNG cộng cfa vào: những bài ấy đã nằm trong ba chặng trên rồi.
+    totalLessons: Object.values(trackTotals).reduce((n, e) => n + e.lessons, 0),
+    totalMinutes: Object.values(trackTotals).reduce((n, e) => n + e.minutes, 0),
+  })
+);
+
+if (lessonsWithoutMinutes > 0) {
+  console.warn(
+    `⚠ ${lessonsWithoutMinutes} bài không có totalMinutes - số giờ của chặng chứa chúng đang thấp hơn thực tế.`
+  );
+}
+
 for (const lesson of lessons) {
   writeFileSync(path.join(outDir, `${lesson.slug}.json`), JSON.stringify(lesson));
 }
