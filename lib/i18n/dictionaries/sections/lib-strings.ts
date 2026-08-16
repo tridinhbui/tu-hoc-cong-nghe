@@ -88,8 +88,8 @@ export const libStringsVi = {
     hoursMinutes: "{h} giờ {m} phút",
   },
   studyRoomTopics: {
-    personal: "Tài chính cá nhân",
-    professional: "Tài chính chuyên ngành",
+    personal: "Nền tảng công nghệ",
+    professional: "Công nghệ chuyên sâu",
     cfa: "CFA Level I",
   } as Record<string, string>,
   lessonLabel: {
@@ -107,7 +107,7 @@ export const libStringsEn: typeof libStringsVi = {
   chestTitles: {
     "Chiến thần tích lũy": "God of Accumulation",
     "Kẻ hủy diệt nợ nần": "Debt Destroyer",
-    "Sói già phố Wall": "Wolf of Wall Street",
+    "Sói già phố Wall": "Wolf of Silicon Valley",
     "Đại gia lãi kép": "Compounding Magnate",
     "Bậc thầy định giá": "Master of Valuation",
   },
@@ -125,7 +125,7 @@ export const libStringsEn: typeof libStringsVi = {
   rpgItems: {
     weapon_valuation_pen: "The Magic Valuation Pen",
     weapon_lbo_sword: "The LBO Analysis Blade",
-    weapon_bell: "The Wall Street Opening Bell",
+    weapon_bell: "The Silicon Valley Opening Bell",
     armor_risk_shield: "The Risk Management Shield",
     armor_savings_vest: "The Saver's Armour",
     acc_glasses: "Statement Analyst Glasses",
@@ -151,8 +151,8 @@ export const libStringsEn: typeof libStringsVi = {
     hoursMinutes: "{h} hr {m} min",
   },
   studyRoomTopics: {
-    personal: "Personal Finance",
-    professional: "Professional Finance",
+    personal: "Tech Foundations",
+    professional: "Advanced Technology",
     cfa: "CFA Level I",
   },
   lessonLabel: {

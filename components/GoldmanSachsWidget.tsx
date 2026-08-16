@@ -7,63 +7,75 @@ import { Briefcase, Award, TrendingUp, DollarSign, Layers, CheckCircle2, Trophy 
 import { toast } from "sonner";
 import { addXpToUser } from "@/lib/supabase-progress";
 import { useI18n } from "@/lib/i18n/context";
-import { format } from "@/lib/i18n";
+import { format, intlLocale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 interface GoldmanSachsWidgetProps {
   userId: string;
 }
 
-interface MACompany {
+/** Một case định mức dung lượng.
+ *
+ *  `recommendedNodes` KHÔNG phải con số gõ tay: nó là
+ *  `peakRps / nodeRps * headroomMultiple`, đúng công thức mà lời giải in ra cho
+ *  người học. Gõ tay một con số lệch khỏi công thức thì widget chấm người hiểu
+ *  bài là sai, rồi giải thích cho họ bằng chính công thức họ vừa dùng đúng. */
+interface CapacityCase {
   id: string;
   name: string;
   ticker: string;
-  revenue: string;
-  ebitda: string;
-  evEbitdaMultiple: number;
-  synergyPotential: string;
-  recommendedPrice: number; // In million USD
+  peakRps: number;
+  nodeRps: number;
+  headroomMultiple: number;
+  loadDriver: string;
 }
 
-function buildMaDeals(t: Dictionary): MACompany[] {
+function recommendedNodes(c: CapacityCase): number {
+  return Math.round((c.peakRps / c.nodeRps) * c.headroomMultiple);
+}
+
+function buildCapacityCases(t: Dictionary): CapacityCase[] {
   return [
     {
       id: "tech-corp",
-      /* i18n-ignore-start: tên hai doanh nghiệp hư cấu trong bộ dữ liệu demo
-         của widget. Tên riêng, không dịch - giống guild.clanTitle. */
+      /* i18n-ignore-start: tên hai hệ thống hư cấu trong bộ dữ liệu demo của
+         widget. Tên riêng, không dịch - giống guild.clanTitle. */
       name: "TechCloud AI Global",
       ticker: "TCAI",
-      revenue: "240M USD",
-      ebitda: "45M USD",
-      evEbitdaMultiple: 12,
-      synergyPotential: t.goldmanWidget.synergyTechCorp,
-      recommendedPrice: 540,
+      /* i18n-ignore-end */
+      peakRps: 24000,
+      nodeRps: 200,
+      headroomMultiple: 1.5,
+      loadDriver: t.goldmanWidget.synergyTechCorp,
     },
     {
       id: "retail-chain",
+      /* i18n-ignore-start: như trên. */
       name: "VinMart Retail Chain",
-      /* i18n-ignore-end */
       ticker: "VMR",
-      revenue: "850M USD",
-      ebitda: "90M USD",
-      evEbitdaMultiple: 8,
-      synergyPotential: t.goldmanWidget.synergyRetailChain,
-      recommendedPrice: 720,
+      /* i18n-ignore-end */
+      peakRps: 8000,
+      nodeRps: 100,
+      headroomMultiple: 1.25,
+      loadDriver: t.goldmanWidget.synergyRetailChain,
     },
   ];
 }
 
 export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) {
-  const { t } = useI18n();
-  const maDeals = useMemo(() => buildMaDeals(t), [t]);
-  const [selectedDeal, setSelectedDeal] = useState<MACompany>(maDeals[0]);
-  const [userOffer, setUserOffer] = useState<number>(540);
+  const { t, locale } = useI18n();
+  // "24.000 req/s" với người đọc tiếng Việt, "24,000 req/s" với người đọc tiếng
+  // Anh. Cùng lý do AGENTS.md bắt mọi ngày tháng đi qua intlLocale().
+  const rps = (n: number) => `${n.toLocaleString(intlLocale(locale))} req/s`;
+  const capacityCases = useMemo(() => buildCapacityCases(t), [t]);
+  const [selectedCase, setSelectedCase] = useState<CapacityCase>(capacityCases[0]);
+  const [userNodes, setUserNodes] = useState<number>(recommendedNodes(capacityCases[0]));
   const [pitchSubmitted, setPitchSubmitted] = useState<boolean>(false);
   const [score, setScore] = useState<number | null>(null);
 
   const handleSubmitPitch = () => {
-    const target = selectedDeal.recommendedPrice;
-    const diffPercent = Math.abs(userOffer - target) / target;
+    const target = recommendedNodes(selectedCase);
+    const diffPercent = Math.abs(userNodes - target) / target;
 
     let dealScore = 100;
     if (diffPercent > 0.2) dealScore = 60;
@@ -104,58 +116,58 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
         </div>
       </div>
 
-      {/* Select Deal */}
+      {/* Chọn case */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {maDeals.map((deal) => (
+        {capacityCases.map((c) => (
           <div
-            key={deal.id}
+            key={c.id}
             onClick={() => {
-              setSelectedDeal(deal);
-              setUserOffer(deal.recommendedPrice);
+              setSelectedCase(c);
+              setUserNodes(recommendedNodes(c));
               setPitchSubmitted(false);
               setScore(null);
             }}
             className={`p-4 rounded-2xl border-2 cursor-pointer transition-all ${
-              selectedDeal.id === deal.id
+              selectedCase.id === c.id
                 ? "bg-sky-950/60 border-sky-400 ring-2 ring-sky-400/30 shadow-lg"
                 : "bg-slate-900 border-slate-800 hover:border-slate-700"
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-black uppercase text-sky-400 tracking-wider">{format(t.goldmanWidget.dealCase, { ticker: deal.ticker })}</span>
-              <span className="text-xs font-bold text-slate-400">{format(t.goldmanWidget.dealEbitda, { ebitda: deal.ebitda })}</span>
+              <span className="text-xs font-black uppercase text-sky-400 tracking-wider">{format(t.goldmanWidget.dealCase, { ticker: c.ticker })}</span>
+              <span className="text-xs font-bold text-slate-400">{format(t.goldmanWidget.dealEbitda, { capacity: rps(c.nodeRps) })}</span>
             </div>
-            <h4 className="text-base font-extrabold text-white mt-1">{deal.name}</h4>
-            <p className="text-xs text-slate-400 mt-1">{deal.synergyPotential}</p>
+            <h4 className="text-base font-extrabold text-white mt-1">{c.name}</h4>
+            <p className="text-xs text-slate-400 mt-1">{c.loadDriver}</p>
           </div>
         ))}
       </div>
 
-      {/* Valuation Workspace */}
+      {/* Bàn làm việc định mức */}
       <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4">
         <div className="flex items-center justify-between border-b border-slate-800 pb-3">
           <div>
-            <h4 className="text-sm font-extrabold text-white">{format(t.goldmanWidget.valuationTitle, { name: selectedDeal.name })}</h4>
-            <p className="text-xs text-slate-400 mt-0.5">{format(t.goldmanWidget.valuationMultiple, { multiple: selectedDeal.evEbitdaMultiple })}</p>
+            <h4 className="text-sm font-extrabold text-white">{format(t.goldmanWidget.valuationTitle, { name: selectedCase.name })}</h4>
+            <p className="text-xs text-slate-400 mt-0.5">{format(t.goldmanWidget.valuationMultiple, { multiple: selectedCase.headroomMultiple })}</p>
           </div>
           <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/30">
-            {format(t.goldmanWidget.revenueBadge, { revenue: selectedDeal.revenue })}
+            {format(t.goldmanWidget.revenueBadge, { peak: rps(selectedCase.peakRps) })}
           </span>
         </div>
 
         <div className="space-y-3">
           <div className="flex items-center justify-between text-xs font-bold">
             <span className="text-slate-300">{t.goldmanWidget.pitchLabel}</span>
-            <span className="text-sky-400 font-mono text-base font-black">{format(t.goldmanWidget.pitchValue, { price: userOffer })}</span>
+            <span className="text-sky-400 font-mono text-base font-black">{format(t.goldmanWidget.pitchValue, { count: userNodes })}</span>
           </div>
 
           <input
             type="range"
-            min={Math.round(selectedDeal.recommendedPrice * 0.5)}
-            max={Math.round(selectedDeal.recommendedPrice * 1.5)}
+            min={Math.round(recommendedNodes(selectedCase) * 0.5)}
+            max={Math.round(recommendedNodes(selectedCase) * 1.5)}
             step={10}
-            value={userOffer}
-            onChange={(e) => setUserOffer(Number(e.target.value))}
+            value={userNodes}
+            onChange={(e) => setUserNodes(Number(e.target.value))}
             className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400"
           />
         </div>
@@ -176,7 +188,7 @@ export default function GoldmanSachsWidget({ userId }: GoldmanSachsWidgetProps) 
               <span className="font-black text-emerald-400 text-sm">{format(t.goldmanWidget.reviewScore, { score })}</span>
             </div>
             <p className="text-slate-300 leading-relaxed">
-              {t.goldmanWidget.reviewNotePart1}<strong>{format(t.goldmanWidget.reviewAmount, { price: selectedDeal.recommendedPrice })}</strong>{t.goldmanWidget.reviewNotePart2}
+              {t.goldmanWidget.reviewNotePart1}<strong>{format(t.goldmanWidget.reviewAmount, { count: recommendedNodes(selectedCase) })}</strong>{t.goldmanWidget.reviewNotePart2}
             </p>
           </div>
         )}

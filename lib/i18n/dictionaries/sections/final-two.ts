@@ -89,13 +89,13 @@ export const finalTwoVi = {
     },
     cfaPage: {
       backToDashboardAria: "Về Dashboard",
-      title: "Tài chính chứng chỉ",
+      title: "Chứng chỉ công nghệ",
       subtitle: "CFA Level I - 10 môn thi chính thức",
     },
     gamePage: {
       metaTitle: "Thế Giới Game Tài Chính | TuHocTaiChinh.org",
       metaDescription:
-        "Bản đồ thị trấn RPG Tài chính nhập vai với các chế độ Săn Boss Server, Bang Hội và Đấu Trường 1v1 PvP.",
+        "Bản đồ thị trấn RPG Tài chính nhập vai với các chế độ săn boss máy chủ, Bang Hội và Đấu Trường 1v1 PvP.",
       loading: "Đang tải Thế Giới Game...",
     },
     ghiChuPage: {
@@ -127,13 +127,13 @@ export const finalTwoVi = {
       backToDashboard: "Về Dashboard",
     },
     rootLayout: {
-      siteTitle: "Tự học Tài chính Mỗi Ngày",
+      siteTitle: "Tự học Công nghệ Mỗi Ngày",
     },
     privacyPolicyPage: {
-      metaTitle: "Chính sách bảo mật - Tự học Tài chính",
+      metaTitle: "Chính sách bảo mật - Tự học Công nghệ",
     },
     termsPage: {
-      metaTitle: "Điều khoản sử dụng - Tự học Tài chính",
+      metaTitle: "Điều khoản sử dụng - Tự học Công nghệ",
     },
     uistatsPreview: {
       sidebarTrueLabel: "sidebar=true (screenshot case)",
@@ -141,7 +141,7 @@ export const finalTwoVi = {
       maxLevelLabel: "max level",
     },
     logo: {
-      productName: "Tự Học Tài Chính",
+      productName: "Tự Học Công Nghệ",
     },
   },
 };
@@ -260,7 +260,7 @@ export const finalTwoEn: typeof finalTwoVi = {
       backToDashboard: "Back to Dashboard",
     },
     rootLayout: {
-      siteTitle: "Learn Finance Every Day",
+      siteTitle: "Learn Technology Every Day",
     },
     privacyPolicyPage: {
       metaTitle: "Privacy Policy - Learn Finance",
@@ -274,7 +274,7 @@ export const finalTwoEn: typeof finalTwoVi = {
       maxLevelLabel: "max level",
     },
     logo: {
-      productName: "Tự Học Tài Chính",
+      productName: "Tự Học Công Nghệ",
     },
   },
 };

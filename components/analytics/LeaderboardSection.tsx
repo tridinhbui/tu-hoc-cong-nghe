@@ -16,15 +16,11 @@ import {
   getXpLeaderboardSince,
   getMyXpRankSince,
   getFriendsLeaderboard,
-  getCompetencyLeaderboard,
-  getMyCompetencyLeaderboardRank,
   type LeaderboardMetric,
   type LeaderboardRow,
 } from "@/lib/supabase-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
 import { isValidAvatar } from "@/lib/avatar-utils";
-import { COMPETENCY_LEADERBOARD_TABS } from "@/lib/competency-leaderboard";
-import type { CompetencyId } from "@/lib/career-competency";
 
 // Same avatar/rank-frame visual pattern as the compact dashboard widget
 // (components/Leaderboard.tsx) - kept as a separate component instead of
@@ -73,7 +69,7 @@ function RankAvatarFrame({ rank, children }: { rank: number; children: ReactNode
 
 const RANK_MEDALS: Record<number, string> = { 1: "🏆", 2: "🥈", 3: "🥉" };
 
-type TabId = LeaderboardMetric | "track_personal" | "track_professional" | "weekly" | "monthly" | "friends" | "game" | CompetencyId;
+type TabId = LeaderboardMetric | "track_personal" | "track_professional" | "weekly" | "monthly" | "friends" | "game";
 
 interface TabDef {
   id: TabId;
@@ -96,11 +92,8 @@ function buildTabs(t: Dictionary): TabDef[] {
     { id: "monthly", label: t.leaderboardSection.tabMonthly, format: (v) => format(t.leaderboardSection.valueXp, { v }) },
     { id: "friends", label: t.leaderboardSection.tabFriends, format: (v) => format(t.leaderboardSection.valueXp, { v }) },
     { id: "game", label: t.leaderboardSection.tabGame, format: (v) => format(t.leaderboardSection.valueXp, { v }) },
-    ...COMPETENCY_LEADERBOARD_TABS.map((c) => ({ id: c.id as TabId, label: c.label, format: (v: number) => format(t.leaderboardSection.valueLessons, { v }) })),
   ];
 }
-
-const COMPETENCY_LESSON_IDS_BY_TAB = new Map(COMPETENCY_LEADERBOARD_TABS.map((c) => [c.id as TabId, c.lessonIds]));
 
 interface LeaderboardSectionProps {
   userId?: string;
@@ -145,14 +138,9 @@ async function loadTab(tabId: TabId, userId?: string): Promise<{ top: Leaderboar
     return { top: top.slice(0, 10), mine };
   }
 
-  const competencyLessonIds = COMPETENCY_LESSON_IDS_BY_TAB.get(tabId);
-  if (competencyLessonIds) {
-    const [top, mine] = await Promise.all([
-      getCompetencyLeaderboard(competencyLessonIds, 10),
-      userId ? getMyCompetencyLeaderboardRank(competencyLessonIds, userId) : Promise.resolve(null),
-    ]);
-    return { top, mine };
-  }
+  // Các tab xếp hạng theo "năng lực" đã gỡ cùng lib/career-competency.ts: mỗi
+  // tab là một nhóm kỹ năng tài chính (định giá, kế toán, rủi ro...) gom từ id
+  // bài học của nhóm đó. Bảng xếp hạng chung phía dưới không đụng tới chúng.
 
   // Every other TabId variant returns above; what's left is a plain
   // LeaderboardMetric ("xp" | "lessons" | "avg_score" | "streak").

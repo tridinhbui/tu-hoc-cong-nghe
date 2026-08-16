@@ -16,13 +16,12 @@ import {
   type CompositeRank,
 } from "@/lib/supabase-user";
 import { getCombinedGameLeaderboard } from "@/lib/games";
-import { getCareerLeaderboard, type CareerLeaderboardRow } from "@/lib/finance-careers";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
 import { format as formatI18n } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n";
 
-type LeaderboardUiMetric = LeaderboardMetric | "composite" | "game" | "career" | "cfa" | "community";
+type LeaderboardUiMetric = LeaderboardMetric | "composite" | "game" | "community";
 
 function LeaderboardAvatar({ name, avatarUrl, size = 36 }: { name: string; avatarUrl: string | null; size?: number }) {
   if (isValidAvatar(avatarUrl)) {
@@ -177,7 +176,7 @@ const TABS: {
   metric: LeaderboardUiMetric;
   labelKey: keyof Pick<
     Dictionary["leaderboard"],
-    "compositeScore" | "totalXp" | "lessonsCount" | "avgScore" | "streakDays" | "career" | "cfaArena" | "contribution" | "gamer"
+    "compositeScore" | "totalXp" | "lessonsCount" | "avgScore" | "streakDays" | "contribution" | "gamer"
   >;
   icon: LucideIcon;
   format: (v: number, u: Dictionary["leaderboard"]["units"]) => string;
@@ -190,8 +189,6 @@ const TABS: {
   { metric: "lessons", labelKey: "lessonsCount", icon: BookOpen, format: (v, u) => `${v} ${u.lessons}` },
   { metric: "avg_score", labelKey: "avgScore", icon: Target, format: (v, u) => `${Math.round(v)}${u.percent}` },
   { metric: "streak", labelKey: "streakDays", icon: Flame, format: (v, u) => `${v} ${u.days}` },
-  { metric: "career", labelKey: "career", icon: Briefcase, format: (v, u) => `${v} ${u.lessons}` },
-  { metric: "cfa", labelKey: "cfaArena", icon: GraduationCap, format: (v, u) => `${v} ${u.points}` },
   { metric: "community", labelKey: "contribution", icon: Heart, format: (v, u) => `${v} ${u.interactions}` },
   { metric: "game", labelKey: "gamer", icon: Gamepad2, format: (v, u) => `${v} ${u.xp}` },
 ];
@@ -353,33 +350,6 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           if (userId) {
             const myIndex = gameRows.findIndex((r) => r.user_id === userId);
             if (myIndex !== -1) mine = { rank: myIndex + 1, value: gameRows[myIndex].totalXp };
-          }
-        } else if (metric === "career") {
-          const careerRows = await getCareerLeaderboard(20);
-          top = careerRows.map((row) => ({
-            user_id: row.user_id,
-            value: row.value,
-            name: row.name,
-            avatarUrl: row.avatarUrl,
-            careerTitle: row.careerTitle,
-            careerEmoji: row.careerEmoji,
-          }));
-          if (userId) {
-            const myIndex = careerRows.findIndex((r) => r.user_id === userId);
-            if (myIndex !== -1) mine = { rank: myIndex + 1, value: careerRows[myIndex].value };
-          }
-        } else if (metric === "cfa") {
-          const { getCfaLeaderboard } = await import("@/lib/cfa-track");
-          const cfaRows = await getCfaLeaderboard(20);
-          top = cfaRows.map((row) => ({
-            user_id: row.user_id,
-            value: row.value,
-            name: row.name,
-            avatarUrl: row.avatarUrl,
-          }));
-          if (userId) {
-            const myIndex = cfaRows.findIndex((r) => r.user_id === userId);
-            if (myIndex !== -1) mine = { rank: myIndex + 1, value: cfaRows[myIndex].value };
           }
         } else if (metric === "community") {
           // Real posts + comments + reactions. This branch previously derived a

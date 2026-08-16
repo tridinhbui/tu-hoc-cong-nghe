@@ -40,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
   // single lesson is added - "360+" stays accurate until the count crosses
   // the next multiple of 10.
   const lessonCountFloor = Math.floor(lessons.length / 10) * 10;
-  const description = `${lessonCountFloor}+ bài học - 100% miễn phí - về tài chính cá nhân, CFA và tài chính chuyên ngành. Học 5 phút mỗi ngày, ứng dụng Spaced Repetition để nhớ lâu.`;
+  const description = `${lessonCountFloor}+ bài học - 100% miễn phí - về lập trình, dữ liệu, AI và hạ tầng. Học 5 phút mỗi ngày, ứng dụng Spaced Repetition để nhớ lâu.`;
 
   return {
     metadataBase: new URL(siteUrl),

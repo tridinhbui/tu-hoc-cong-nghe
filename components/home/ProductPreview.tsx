@@ -18,9 +18,9 @@ function buildTabs(t: Dictionary): { id: Tab; label: string }[] {
 
 function buildDashboardLessons(t: Dictionary) {
   return [
-    { title: t.productPreview.lessonStocksWhy, done: true },
-    { title: t.productPreview.lessonPeRatio, done: true },
-    { title: t.productPreview.lessonEtf, done: false },
+    { title: t.productPreview.lessonGitBasics, done: true },
+    { title: t.productPreview.lessonBigO, done: true },
+    { title: t.productPreview.lessonApiStyles, done: false },
   ];
 }
 
@@ -114,7 +114,7 @@ export default function ProductPreview() {
             <span className="w-2.5 h-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
           </div>
           <div className="flex-1 min-w-0 text-[11px] font-semibold text-stone-400 dark:text-stone-500 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full px-4 py-1 text-center truncate">
-            tuhoctaichinh.vn/{tab === "dashboard" ? "dashboard" : "bai-hoc"}
+            tuhoccongnghe.vn/{tab === "dashboard" ? "dashboard" : "bai-hoc"}
           </div>
         </div>
         <div className="flex gap-1 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-full p-0.5 shrink-0 mx-auto sm:mx-0">

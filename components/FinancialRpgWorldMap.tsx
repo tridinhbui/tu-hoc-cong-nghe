@@ -19,9 +19,6 @@ import WorldBossRaidWidget from "@/components/WorldBossRaidWidget";
 import FinancialGuildWidget from "@/components/FinancialGuildWidget";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import GameHubClient from "@/components/games/GameHubClient";
-import CandlestickGame from "@/components/games/CandlestickGame";
-import MaSpeedrunGame from "@/components/games/MaSpeedrunGame";
-import AlgoTraderGame from "@/components/games/AlgoTraderGame";
 import FedVaultWidget from "@/components/FedVaultWidget";
 import GoldmanSachsWidget from "@/components/GoldmanSachsWidget";
 import { useI18n } from "@/lib/i18n/context";
@@ -721,26 +718,26 @@ export default function FinancialRpgWorldMap() {
                 {selectedBuilding === "arcade" && (
                   <GameHubClient />
                 )}
-                {selectedBuilding === "candlestick-game" && (
-                  <CandlestickGame onBack={handleCloseBuilding} completedLessonIds={completedLessonIds} />
-                )}
-                {selectedBuilding === "ma-speedrun" && (
-                  <MaSpeedrunGame onBack={handleCloseBuilding} completedLessonIds={completedLessonIds} />
-                )}
-                {(selectedBuilding === "algo-game" || selectedBuilding === "silicon-bay") && (
-                  <AlgoTraderGame onBack={handleCloseBuilding} />
-                )}
                 {selectedBuilding === "capitol-hill" && (
                   <WeeklyChallengeWidget userId={user?.id || ""} />
-                )}
-                {selectedBuilding === "cme-commodities" && (
-                  <CandlestickGame onBack={handleCloseBuilding} completedLessonIds={completedLessonIds} />
                 )}
                 {selectedBuilding === "swiss-haven" && (
                   <FinanceCardCollection userId={user?.id || ""} />
                 )}
-                {selectedBuilding === "singapore-dock" && (
-                  <MaSpeedrunGame onBack={handleCloseBuilding} completedLessonIds={completedLessonIds} />
+                {/* Ba game đọc nến / MA speedrun / algo trader đã bị xoá: cơ chế
+                    của chúng chính là nội dung tài chính, không thay dữ liệu
+                    sang công nghệ được. Hai nhánh "candlestick-game",
+                    "ma-speedrun" và "algo-game" vốn đã chết - không có toà nhà
+                    nào mang ba id đó trong lib/rpg-buildings.ts.
+
+                    Ba toà nhà THẬT từng mở chúng (silicon-bay, cme-commodities,
+                    singapore-dock) tạm trỏ về sảnh game để không mở ra khoảng
+                    trắng. Cả ba đều là toà nhà tài chính và sẽ được thay ở bước
+                    dọn nội dung; đây là chỗ chống đỡ, không phải thiết kế. */}
+                {(selectedBuilding === "silicon-bay" ||
+                  selectedBuilding === "cme-commodities" ||
+                  selectedBuilding === "singapore-dock") && (
+                  <GameHubClient />
                 )}
               </div>
             )}

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { BriefcaseBusiness, CheckCircle2, ChevronLeft, Sparkles } from "lucide-react";
+import { CheckCircle2, ChevronLeft, Sparkles } from "lucide-react";
 import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
@@ -26,7 +26,12 @@ interface ChallengeQuestion {
 
 // Ids and their order only; the label and description come from the dictionary
 // at render time, because module scope has no useI18n() to call.
-const TRACK_IDS: QuizTrack[] = ["personal", "professional", "cfa", "frm"];
+// Hai chặng "cfa" và "frm" đã rời khỏi danh sách cùng lib/cfa-track.ts và
+// lib/frm-track.ts: chúng vẫn hiện thành thẻ chọn được, và bấm vào thì bộ câu
+// hỏi rỗng. QuizTrack còn khai chúng vì bảng user_quiz_sessions trên Supabase
+// đã lưu phiên cũ mang hai giá trị đó - xoá khỏi union sẽ làm dữ liệu cũ
+// không đọc lại được, nên chúng ở lại kiểu mà rời khỏi giao diện.
+const TRACK_IDS: QuizTrack[] = ["personal", "professional"];
 const DIFFICULTY_IDS: QuizDifficulty[] = ["tat-ca", "de", "trung-binh", "kho"];
 
 const XP_PER_QUESTION = 5;
@@ -262,22 +267,9 @@ export default function KiemTraPage() {
                   </label>
                   <div className="space-y-1.5">
                     {TRACK_IDS.map((id) => {
-                      const label =
-                        id === "personal"
-                          ? t.quizPage.trackPersonal
-                          : id === "professional"
-                            ? t.quizPage.trackProfessional
-                            : id === "cfa"
-                              ? t.quizPage.trackCfa
-                              : t.quizPage.trackFrm;
+                      const label = id === "personal" ? t.quizPage.trackPersonal : t.quizPage.trackProfessional;
                       const desc =
-                        id === "personal"
-                          ? t.quizPage.trackPersonalDesc
-                          : id === "professional"
-                            ? t.quizPage.trackProfessionalDesc
-                            : id === "cfa"
-                              ? t.quizPage.trackCfaDesc
-                              : t.quizPage.trackFrmDesc;
+                        id === "personal" ? t.quizPage.trackPersonalDesc : t.quizPage.trackProfessionalDesc;
                       const selected = track === id;
                       return (
                         <button
@@ -365,26 +357,6 @@ export default function KiemTraPage() {
               <StageSkipExamPanel userId={userId} />
             </div>
 
-            <Link
-              href="/phong-van-ky-thuat"
-              className="lg:col-span-12 group rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-amber-300 dark:hover:border-amber-800 transition-colors overflow-hidden shadow-sm flex items-center justify-between gap-4 p-3 sm:p-3.5"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 flex items-center justify-center shrink-0">
-                  <BriefcaseBusiness className="h-4.5 w-4.5 text-amber-600 dark:text-amber-400" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-600 dark:text-amber-400">
-                    {t.quizPage.ibEyebrow}
-                  </p>
-                  <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">{t.quizPage.ibTitle}</h3>
-                  <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">{t.quizPage.ibSub}</p>
-                </div>
-              </div>
-              <span className="shrink-0 text-xs font-black text-amber-600 dark:text-amber-400 group-hover:translate-x-0.5 transition-transform">
-                {t.quizPage.ibOpen}
-              </span>
-            </Link>
           </div>
         )}
 

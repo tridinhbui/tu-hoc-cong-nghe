@@ -1,18 +1,5 @@
-import { createClient } from "@/lib/supabase";
-import { handleSupabaseError } from "@/lib/errors";
 import { FINANCE_GLOSSARY } from "@/lib/finance-glossary";
-import { recalculateUserStats } from "@/lib/supabase-user";
-
-function isMissingTableError(error: { code?: string } | null): boolean {
-  return (
-    error?.code === "PGRST205" ||
-    error?.code === "42P01" ||
-    error?.code === "PGRST202" ||
-    error?.code === "42883" ||
-    error?.code === "23514" ||
-    error?.code === "42703"
-  );
-}
+import { appendGameSession, getLocalPlayer, listGameSessions } from "@/lib/local-store";
 
 export type GameType =
   | "financial-statement-match"
@@ -66,7 +53,7 @@ export interface SpecialGameMeta {
 export const SPECIAL_GAMES: SpecialGameMeta[] = [
   {
     id: "wall-street-millionaire",
-    title: "Ai Là Triệu Phú Phố Wall",
+    title: "Ai Là Triệu Phú Silicon Valley",
     description: "15 câu hỏi tài chính cấp độ cao kết hợp với cơ chế trợ giúp kiểu game show.",
     emoji: "💰",
     accent: "amber",
@@ -127,15 +114,15 @@ export const GAMES: GameMeta[] = [
   {
     id: "random-mix",
     title: "🎲 Trộn ngẫu nhiên tất cả chủ đề",
-    description: "Thách thức tổng hợp: Trộn ngẫu nhiên kiến thức từ Báo cáo tài chính, Thuật ngữ, Chỉ số, Công thức và Rủi ro!",
+    description: "Thách thức tổng hợp: Trộn ngẫu nhiên kiến thức từ Tầng hệ thống, Thuật ngữ, Chỉ số, Công thức và Rủi ro!",
     emoji: "🎲",
     mechanic: "pair",
     accent: "rose",
   },
   {
     id: "financial-statement-match",
-    title: "Báo cáo tài chính",
-    description: "Kéo từng khoản mục vào đúng báo cáo (Bảng cân đối / Kết quả kinh doanh / Lưu chuyển tiền tệ).",
+    title: "Tầng của hệ thống",
+    description: "Kéo từng thành phần vào đúng tầng (Giao diện / Dịch vụ / Dữ liệu & hạ tầng).",
     emoji: "📊",
     mechanic: "bucket",
     accent: "emerald",
@@ -143,14 +130,14 @@ export const GAMES: GameMeta[] = [
   {
     id: "en-vi-terms",
     title: "Thuật ngữ Anh - Việt",
-    description: "Ghép đúng cặp thuật ngữ tài chính English ↔ Tiếng Việt, lấy từ chính các bài bạn đã học.",
+    description: "Ghép đúng cặp thuật ngữ công nghệ English ↔ Tiếng Việt, lấy từ chính các bài bạn đã học.",
     emoji: "🔤",
     mechanic: "pair",
     accent: "sky",
   },
   {
     id: "ratio-category",
-    title: "Phân loại chỉ số tài chính",
+    title: "Phân loại chỉ số hệ thống",
     description: "Kéo từng tỷ số vào đúng nhóm: Thanh khoản / Sinh lời / Đòn bẩy / Hiệu quả hoạt động.",
     emoji: "🧮",
     mechanic: "bucket",
@@ -159,7 +146,7 @@ export const GAMES: GameMeta[] = [
   {
     id: "term-definition",
     title: "Thuật ngữ & Định nghĩa",
-    description: "Ghép mỗi thuật ngữ tài chính với định nghĩa ngắn gọn đúng của nó.",
+    description: "Ghép mỗi thuật ngữ công nghệ với định nghĩa ngắn gọn đúng của nó.",
     emoji: "📖",
     mechanic: "pair",
     accent: "violet",
@@ -174,7 +161,7 @@ export const GAMES: GameMeta[] = [
   },
   {
     id: "risk-category",
-    title: "Phân loại rủi ro đầu tư",
+    title: "Phân loại rủi ro thay đổi",
     description: "Kéo từng loại tài sản vào đúng nhóm rủi ro: Thấp / Trung bình / Cao.",
     emoji: "⚖️",
     mechanic: "bucket",
@@ -183,7 +170,7 @@ export const GAMES: GameMeta[] = [
   {
     id: "ticker-match",
     title: "Mã chứng khoán",
-    description: "Ghép tên doanh nghiệp niêm yết với đúng mã cổ phiếu trên sàn.",
+    description: "Ghép tên công ty công nghệ với đúng công nghệ họ tạo ra.",
     emoji: "🏢",
     mechanic: "pair",
     accent: "teal",
@@ -266,14 +253,14 @@ export function computeGameXp(score: number, total: number): number {
   return Math.min(MAX_GAME_XP_PER_TYPE, score * XP_PER_CORRECT);
 }
 
-// ─── Game 1 content: financial statement line items ────────────────────────
+// ─── Game 1 content: các thành phần của một hệ thống, theo tầng ───────────
 
-export type StatementBucket = "balance-sheet" | "income-statement" | "cash-flow";
+export type StatementBucket = "frontend" | "backend" | "data";
 
 export const STATEMENT_LABELS: Record<StatementBucket, string> = {
-  "balance-sheet": "Bảng cân đối kế toán",
-  "income-statement": "Báo cáo kết quả kinh doanh",
-  "cash-flow": "Báo cáo lưu chuyển tiền tệ",
+  frontend: "Tầng giao diện (client)",
+  backend: "Tầng dịch vụ (server)",
+  data: "Tầng dữ liệu & hạ tầng",
 };
 
 export interface StatementItem {
@@ -282,58 +269,52 @@ export interface StatementItem {
 }
 
 export const STATEMENT_ITEMS: StatementItem[] = [
-  // Bảng cân đối kế toán (Balance Sheet)
-  { term: "Tiền mặt & Tương đương tiền", bucket: "balance-sheet" },
-  { term: "Hàng tồn kho (Sắt thép HPG / Hàng hóa FPT)", bucket: "balance-sheet" },
-  { term: "Phải thu ngắn hạn khách hàng", bucket: "balance-sheet" },
-  { term: "Tài sản cố định hữu hình", bucket: "balance-sheet" },
-  { term: "Chi phí xây dựng dở dang dài hạn", bucket: "balance-sheet" },
-  { term: "Phải trả người bán ngắn hạn", bucket: "balance-sheet" },
-  { term: "Vay & nợ thuê tài chính ngắn hạn", bucket: "balance-sheet" },
-  { term: "Vay & nợ thuê tài chính dài hạn", bucket: "balance-sheet" },
-  { term: "Vốn góp của chủ sở hữu", bucket: "balance-sheet" },
-  { term: "Thặng dư vốn cổ phần", bucket: "balance-sheet" },
-  { term: "Lợi nhuận sau thuế chưa phân phối", bucket: "balance-sheet" },
-  { term: "Người mua trả tiền trước ngắn hạn", bucket: "balance-sheet" },
-  { term: "Chi phí trả trước dài hạn", bucket: "balance-sheet" },
-  { term: "Tiền gửi ngân hàng có kỳ hạn", bucket: "balance-sheet" },
-  { term: "Bất động sản đầu tư", bucket: "balance-sheet" },
-  { term: "Quyền sử dụng đất & Lợi thế thương mại", bucket: "balance-sheet" },
-  { term: "Trái phiếu doanh nghiệp phát hành", bucket: "balance-sheet" },
-  { term: "Quỹ đầu tư phát triển", bucket: "balance-sheet" },
-  { term: "Thuế & các khoản phải nộp Nhà nước", bucket: "balance-sheet" },
+  // Tầng giao diện (client)
+  { term: "Thành phần React dựng danh sách sản phẩm", bucket: "frontend" },
+  { term: "Biểu định kiểu CSS và bố cục responsive", bucket: "frontend" },
+  { term: "Kiểm tra hợp lệ biểu mẫu ngay trên trình duyệt", bucket: "frontend" },
+  { term: "Bộ định tuyến trang phía client", bucket: "frontend" },
+  { term: "Trạng thái cục bộ của một màn hình", bucket: "frontend" },
+  { term: "Ảnh và font tải kèm trang", bucket: "frontend" },
+  { term: "Service worker cho chế độ ngoại tuyến", bucket: "frontend" },
+  { term: "Nhãn ARIA cho trình đọc màn hình", bucket: "frontend" },
+  { term: "Hoạt ảnh chuyển trang", bucket: "frontend" },
+  { term: "localStorage giữ giỏ hàng tạm", bucket: "frontend" },
+  { term: "Chia gói JavaScript theo tuyến đường", bucket: "frontend" },
+  { term: "Chủ đề sáng/tối lưu theo thiết bị", bucket: "frontend" },
+  { term: "Đo Core Web Vitals trên máy người dùng", bucket: "frontend" },
 
-  // Báo cáo kết quả kinh doanh (Income Statement)
-  { term: "Doanh thu bán hàng & dịch vụ", bucket: "income-statement" },
-  { term: "Các khoản giảm trừ doanh thu", bucket: "income-statement" },
-  { term: "Doanh thu thuần", bucket: "income-statement" },
-  { term: "Giá vốn hàng bán (COGS)", bucket: "income-statement" },
-  { term: "Lợi nhuận gộp", bucket: "income-statement" },
-  { term: "Doanh thu hoạt động tài chính", bucket: "income-statement" },
-  { term: "Chi phí lãi vay", bucket: "income-statement" },
-  { term: "Chi phí bán hàng & Marketing", bucket: "income-statement" },
-  { term: "Chi phí quản lý doanh nghiệp", bucket: "income-statement" },
-  { term: "Chi phí Nghiên cứu & Phát triển (R&D)", bucket: "income-statement" },
-  { term: "Chi phí khấu hao tài sản cố định trong kỳ", bucket: "income-statement" },
-  { term: "Thu nhập khác", bucket: "income-statement" },
-  { term: "Chi phí thuế TNDN hiện hành", bucket: "income-statement" },
-  { term: "Lợi nhuận sau thuế (Lợi nhuận ròng)", bucket: "income-statement" },
-  { term: "Lãi cơ bản trên cổ phiếu (EPS)", bucket: "income-statement" },
+  // Tầng dịch vụ (server)
+  { term: "Endpoint REST trả danh sách đơn hàng", bucket: "backend" },
+  { term: "Middleware xác thực JWT", bucket: "backend" },
+  { term: "Quy tắc phân quyền theo vai trò", bucket: "backend" },
+  { term: "Giới hạn tần suất gọi API", bucket: "backend" },
+  { term: "Hàng đợi xử lý việc nền", bucket: "backend" },
+  { term: "Tác vụ định kỳ chạy theo lịch (cron)", bucket: "backend" },
+  { term: "Gọi cổng thanh toán bên thứ ba", bucket: "backend" },
+  { term: "Tầng nghiệp vụ tính giá và khuyến mãi", bucket: "backend" },
+  { term: "Ghi log có cấu trúc cho mỗi request", bucket: "backend" },
+  { term: "Kiểm tra sức khoẻ dịch vụ (health check)", bucket: "backend" },
+  { term: "Sinh và ký lại refresh token", bucket: "backend" },
+  { term: "Xử lý webhook đến từ đối tác", bucket: "backend" },
+  { term: "Bộ chuyển đổi dữ liệu trước khi trả về client", bucket: "backend" },
+  { term: "Thử lại có độ trễ tăng dần khi gọi dịch vụ ngoài", bucket: "backend" },
 
-  // Báo cáo lưu chuyển tiền tệ (Cash Flow Statement)
-  { term: "Dòng tiền thuần từ hoạt động kinh doanh", bucket: "cash-flow" },
-  { term: "Dòng tiền thuần từ hoạt động đầu tư", bucket: "cash-flow" },
-  { term: "Dòng tiền thuần từ hoạt động tài chính", bucket: "cash-flow" },
-  { term: "Tiền chi mua sắm tài sản cố định (CapEx)", bucket: "cash-flow" },
-  { term: "Tiền thu từ thanh lý tài sản cố định", bucket: "cash-flow" },
-  { term: "Tiền chi trả nợ gốc vay", bucket: "cash-flow" },
-  { term: "Tiền thu từ nhận nợ vay mới", bucket: "cash-flow" },
-  { term: "Tiền chi trả cổ tức cho cổ đông", bucket: "cash-flow" },
-  { term: "Tiền thu từ phát hành cổ phiếu mới", bucket: "cash-flow" },
-  { term: "Lãi tiền gửi ngân hàng đã thu bằng tiền", bucket: "cash-flow" },
-  { term: "Tiền lãi vay đã trả trong kỳ", bucket: "cash-flow" },
-  { term: "Tiền chi mua cổ phiếu công ty con", bucket: "cash-flow" },
-  { term: "Tăng/giảm tiền & tương đương tiền ròng", bucket: "cash-flow" },
+  // Tầng dữ liệu & hạ tầng
+  { term: "Bảng người dùng và chỉ mục trên email", bucket: "data" },
+  { term: "Migration thêm cột vào bảng đơn hàng", bucket: "data" },
+  { term: "Bản sao chỉ đọc của cơ sở dữ liệu", bucket: "data" },
+  { term: "Sao lưu hằng đêm và thử khôi phục", bucket: "data" },
+  { term: "Redis làm bộ nhớ đệm phiên đăng nhập", bucket: "data" },
+  { term: "Kho lưu trữ đối tượng chứa ảnh tải lên", bucket: "data" },
+  { term: "CDN phân phối tệp tĩnh", bucket: "data" },
+  { term: "Cân bằng tải trước cụm máy chủ", bucket: "data" },
+  { term: "Container và tệp cấu hình triển khai", bucket: "data" },
+  { term: "Chứng chỉ TLS và bản ghi DNS", bucket: "data" },
+  { term: "Kho dữ liệu phục vụ báo cáo", bucket: "data" },
+  { term: "Hệ thống giám sát và cảnh báo", bucket: "data" },
+  { term: "Quản lý bí mật và biến môi trường", bucket: "data" },
+  { term: "Nhóm tự mở rộng theo tải", bucket: "data" },
 ];
 
 export function pickStatementRound(count = 10): StatementItem[] {
@@ -368,57 +349,56 @@ export interface BucketConfig {
 }
 
 const RATIO_ITEMS: BucketItem[] = [
-  { term: "Current Ratio", bucket: "liquidity" },
-  { term: "Quick Ratio", bucket: "liquidity" },
-  { term: "Cash Ratio", bucket: "liquidity" },
-  { term: "ROE", bucket: "profitability" },
-  { term: "ROA", bucket: "profitability" },
-  { term: "Biên lợi nhuận gộp", bucket: "profitability" },
-  { term: "Biên lợi nhuận ròng", bucket: "profitability" },
-  { term: "Debt-to-Equity", bucket: "leverage" },
-  { term: "Debt-to-Assets", bucket: "leverage" },
-  { term: "Interest Coverage", bucket: "leverage" },
-  { term: "Vòng quay hàng tồn kho", bucket: "efficiency" },
-  { term: "Vòng quay khoản phải thu", bucket: "efficiency" },
-  { term: "Vòng quay tổng tài sản", bucket: "efficiency" },
+  { term: "Độ trễ trung vị (p50)", bucket: "latency" },
+  { term: "Độ trễ đuôi (p99)", bucket: "latency" },
+  { term: "Thời gian phản hồi đầu tiên (TTFB)", bucket: "latency" },
+  { term: "Số request mỗi giây (RPS)", bucket: "throughput" },
+  { term: "Số công việc xử lý mỗi phút", bucket: "throughput" },
+  { term: "Băng thông thực tế", bucket: "throughput" },
+  { term: "Tỷ lệ lỗi 5xx", bucket: "reliability" },
+  { term: "Thời gian hoạt động (uptime)", bucket: "reliability" },
+  { term: "Thời gian khôi phục trung bình (MTTR)", bucket: "reliability" },
+  { term: "Chi phí trên mỗi request", bucket: "cost" },
+  { term: "Mức dùng CPU trung bình", bucket: "cost" },
+  { term: "Tỷ lệ trúng cache", bucket: "cost" },
 ];
 
 const RISK_ITEMS: BucketItem[] = [
-  { term: "Tiền gửi tiết kiệm", bucket: "low" },
-  { term: "Trái phiếu Chính phủ", bucket: "low" },
-  { term: "Chứng chỉ quỹ trái phiếu", bucket: "low" },
-  { term: "Vàng", bucket: "low" },
-  { term: "Trái phiếu doanh nghiệp lớn", bucket: "medium" },
-  { term: "Bất động sản cho thuê", bucket: "medium" },
-  { term: "Quỹ đầu tư cân bằng", bucket: "medium" },
-  { term: "Cổ phiếu Bluechip (VN30)", bucket: "medium" },
-  { term: "Cổ phiếu Penny", bucket: "high" },
-  { term: "Tiền mã hóa (Crypto)", bucket: "high" },
-  { term: "Hợp đồng phái sinh", bucket: "high" },
-  { term: "Cổ phiếu công ty mới IPO", bucket: "high" },
+  { term: "Đổi tên biến cục bộ", bucket: "low" },
+  { term: "Thêm một bài kiểm thử mới", bucket: "low" },
+  { term: "Sửa lỗi chính tả trong tài liệu", bucket: "low" },
+  { term: "Thêm log vào một hàm sẵn có", bucket: "low" },
+  { term: "Nâng phiên bản thư viện lên bản vá", bucket: "medium" },
+  { term: "Thêm một cột mới vào bảng dữ liệu", bucket: "medium" },
+  { term: "Đổi cấu hình cache", bucket: "medium" },
+  { term: "Tách một hàm lớn thành nhiều hàm nhỏ", bucket: "medium" },
+  { term: "Đổi kiểu dữ liệu của một cột đang dùng", bucket: "high" },
+  { term: "Xoá một endpoint API công khai", bucket: "high" },
+  { term: "Di trú cơ sở dữ liệu sang máy chủ khác", bucket: "high" },
+  { term: "Đổi thuật toán băm mật khẩu", bucket: "high" },
 ];
 
 const COST_ITEMS: BucketItem[] = [
-  { term: "Tiền thuê mặt bằng", bucket: "fixed" },
-  { term: "Lương quản lý (cố định hàng tháng)", bucket: "fixed" },
-  { term: "Khấu hao tài sản cố định", bucket: "fixed" },
-  { term: "Bảo hiểm nhà xưởng", bucket: "fixed" },
-  { term: "Lãi vay ngân hàng cố định", bucket: "fixed" },
-  { term: "Phí thuê phần mềm hàng tháng", bucket: "fixed" },
-  { term: "Nguyên vật liệu trực tiếp", bucket: "variable" },
-  { term: "Hoa hồng bán hàng", bucket: "variable" },
-  { term: "Chi phí vận chuyển hàng bán", bucket: "variable" },
-  { term: "Chi phí đóng gói sản phẩm", bucket: "variable" },
-  { term: "Nhân công trực tiếp sản xuất (theo sản lượng)", bucket: "variable" },
-  { term: "Phí giao dịch thẻ (theo doanh số)", bucket: "variable" },
+  { term: "Thuê máy chủ theo tháng", bucket: "fixed" },
+  { term: "Gói giám sát trả cố định hàng tháng", bucket: "fixed" },
+  { term: "Khấu hao thiết bị phòng máy", bucket: "fixed" },
+  { term: "Phí tên miền và chứng chỉ TLS", bucket: "fixed" },
+  { term: "Lương đội vận hành", bucket: "fixed" },
+  { term: "Phí bản quyền phần mềm theo năm", bucket: "fixed" },
+  { term: "Băng thông truyền ra Internet", bucket: "variable" },
+  { term: "Số lần gọi hàm serverless", bucket: "variable" },
+  { term: "Dung lượng lưu trữ đối tượng đã dùng", bucket: "variable" },
+  { term: "Phí gửi email theo số lượng", bucket: "variable" },
+  { term: "Token gọi API mô hình ngôn ngữ", bucket: "variable" },
+  { term: "Phí ghi log theo số dòng", bucket: "variable" },
 ];
 
 const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
   "financial-statement-match": {
     buckets: [
-      { id: "balance-sheet", label: STATEMENT_LABELS["balance-sheet"] },
-      { id: "income-statement", label: STATEMENT_LABELS["income-statement"] },
-      { id: "cash-flow", label: STATEMENT_LABELS["cash-flow"] },
+      { id: "frontend", label: STATEMENT_LABELS["frontend"] },
+      { id: "backend", label: STATEMENT_LABELS["backend"] },
+      { id: "data", label: STATEMENT_LABELS["data"] },
     ],
     items: STATEMENT_ITEMS,
     roundSize: 10,
@@ -426,10 +406,10 @@ const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
   },
   "ratio-category": {
     buckets: [
-      { id: "liquidity", label: "Thanh khoản" },
-      { id: "profitability", label: "Sinh lời" },
-      { id: "leverage", label: "Đòn bẩy" },
-      { id: "efficiency", label: "Hiệu quả hoạt động" },
+      { id: "latency", label: "Độ trễ" },
+      { id: "throughput", label: "Thông lượng" },
+      { id: "reliability", label: "Độ tin cậy" },
+      { id: "cost", label: "Chi phí" },
     ],
     items: RATIO_ITEMS,
     roundSize: 10,
@@ -472,44 +452,44 @@ export interface PairConfig {
 }
 
 const TERM_DEFINITION_PAIRS: { left: string; right: string }[] = [
-  { left: "ROE", right: "Lợi nhuận ròng trên vốn chủ sở hữu" },
-  { left: "P/E", right: "Giá cổ phiếu chia lợi nhuận mỗi cổ phần" },
-  { left: "Dòng tiền tự do (FCF)", right: "Tiền còn lại sau khi trừ chi đầu tư (CapEx)" },
-  { left: "Khấu hao", right: "Phân bổ dần chi phí tài sản dài hạn qua nhiều năm" },
-  { left: "Thanh khoản", right: "Khả năng chuyển tài sản thành tiền mặt nhanh" },
-  { left: "Đòn bẩy tài chính", right: "Dùng nợ vay để khuếch đại lợi nhuận (và rủi ro)" },
-  { left: "Vốn lưu động", right: "Tài sản ngắn hạn trừ nợ ngắn hạn" },
-  { left: "WACC", right: "Chi phí vốn bình quân gia quyền" },
-  { left: "NPV", right: "Giá trị hiện tại ròng của dòng tiền tương lai" },
-  { left: "IRR", right: "Tỷ suất chiết khấu làm NPV bằng 0" },
-  { left: "EBITDA", right: "Lợi nhuận trước lãi vay, thuế và khấu hao" },
-  { left: "Cổ tức", right: "Phần lợi nhuận công ty chia cho cổ đông" },
+  { left: "API", right: "Giao diện để hai chương trình gọi nhau" },
+  { left: "Cache", right: "Bộ nhớ đệm giữ lại kết quả đã tính để khỏi tính lại" },
+  { left: "Idempotent", right: "Gọi nhiều lần cho cùng một kết quả như gọi một lần" },
+  { left: "Race condition", right: "Lỗi do hai luồng cùng chạm một dữ liệu không có khoá" },
+  { left: "Index (CSDL)", right: "Cấu trúc giúp tìm dòng mà không phải quét cả bảng" },
+  { left: "Load balancer", right: "Thành phần chia lưu lượng cho nhiều máy chủ" },
+  { left: "Deadlock", right: "Hai tiến trình cùng chờ tài nguyên của nhau, không ai đi tiếp" },
+  { left: "Big-O", right: "Cách mô tả số bước tăng ra sao khi dữ liệu lớn dần" },
+  { left: "Refactor", right: "Sửa cấu trúc mã mà không đổi hành vi bên ngoài" },
+  { left: "Rollback", right: "Đưa hệ thống về bản phát hành trước khi có lỗi" },
+  { left: "Rate limit", right: "Giới hạn số lần gọi trong một khoảng thời gian" },
+  { left: "Garbage collection", right: "Cơ chế tự thu hồi bộ nhớ không còn ai tham chiếu" },
 ];
 
 const FORMULA_PAIRS: { left: string; right: string }[] = [
-  { left: "ROE", right: "Lợi nhuận ròng / Vốn chủ sở hữu" },
-  { left: "ROA", right: "Lợi nhuận ròng / Tổng tài sản" },
-  { left: "Current Ratio", right: "Tài sản ngắn hạn / Nợ ngắn hạn" },
-  { left: "P/E", right: "Giá cổ phiếu / EPS" },
-  { left: "EPS", right: "Lợi nhuận ròng / Số cổ phiếu lưu hành" },
-  { left: "Debt-to-Equity", right: "Tổng nợ / Vốn chủ sở hữu" },
-  { left: "Biên lợi nhuận gộp", right: "Lợi nhuận gộp / Doanh thu" },
-  { left: "FCF", right: "Dòng tiền hoạt động − CapEx" },
-  { left: "Quick Ratio", right: "(Tài sản ngắn hạn − Hàng tồn kho) / Nợ ngắn hạn" },
-  { left: "Vốn lưu động", right: "Tài sản ngắn hạn − Nợ ngắn hạn" },
+  { left: "Uptime", right: "Thời gian hoạt động / Tổng thời gian" },
+  { left: "Tỷ lệ lỗi", right: "Số request lỗi / Tổng số request" },
+  { left: "Thông lượng", right: "Số request / Đơn vị thời gian" },
+  { left: "Tỷ lệ trúng cache", right: "Số lần trúng / (Trúng + Trượt)" },
+  { left: "Chi phí mỗi request", right: "Tổng chi phí hạ tầng / Số request" },
+  { left: "MTTR", right: "Tổng thời gian khôi phục / Số sự cố" },
+  { left: "Độ phủ kiểm thử", right: "Số dòng được chạy bởi test / Tổng số dòng" },
+  { left: "Ngân sách lỗi", right: "1 − Mục tiêu SLO" },
+  { left: "Hệ số mở rộng", right: "Thông lượng sau / Thông lượng trước" },
+  { left: "Độ trễ trung bình", right: "Tổng thời gian phản hồi / Số request" },
 ];
 
 const TICKER_PAIRS: { left: string; right: string }[] = [
-  { left: "Vinamilk", right: "VNM" },
-  { left: "FPT Corporation", right: "FPT" },
-  { left: "Hòa Phát Group", right: "HPG" },
-  { left: "Vingroup", right: "VIC" },
-  { left: "Thế Giới Di Động", right: "MWG" },
-  { left: "Vietcombank", right: "VCB" },
-  { left: "Sabeco", right: "SAB" },
-  { left: "Masan Group", right: "MSN" },
-  { left: "Petrolimex", right: "PLX" },
-  { left: "Vietjet Air", right: "VJC" },
+  { left: "Google", right: "Android" },
+  { left: "Meta", right: "React" },
+  { left: "Microsoft", right: "TypeScript" },
+  { left: "Amazon", right: "AWS" },
+  { left: "Apple", right: "Swift" },
+  { left: "Oracle", right: "Java" },
+  { left: "JetBrains", right: "Kotlin" },
+  { left: "Mozilla", right: "Rust" },
+  { left: "Docker Inc.", right: "Docker" },
+  { left: "Canonical", right: "Ubuntu" },
 ];
 
 const PAIR_CONFIGS: Partial<Record<GameType, PairConfig>> = {
@@ -532,7 +512,7 @@ const PAIR_CONFIGS: Partial<Record<GameType, PairConfig>> = {
     roundSize: 6,
     leftLabel: "Doanh nghiệp",
     rightLabel: "Mã cổ phiếu",
-    hint: "Bấm 1 doanh nghiệp rồi bấm đúng mã cổ phiếu (hoặc kéo thả) để ghép cặp.",
+    hint: "Bấm 1 công ty rồi bấm đúng công nghệ (hoặc kéo thả) để ghép cặp.",
   },
 };
 
@@ -610,18 +590,13 @@ export interface GameSession {
 }
 
 export async function recordGameSession(
-  userId: string,
+  _userId: string,
   gameType: AnyGameType,
   score: number,
   total: number
 ): Promise<number> {
   const xpEarned = computeGameXp(score, total);
-  const supabase = createClient();
-  const { error } = await supabase
-    .from("game_sessions")
-    .insert([{ user_id: userId, game_type: gameType, score, total, xp_earned: xpEarned }]);
-
-  if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
+  appendGameSession({ game_type: gameType, score, total, xp_earned: xpEarned });
 
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event("thtcdn_game_session_recorded"));
@@ -630,34 +605,25 @@ export async function recordGameSession(
     }
   }
 
-  void recalculateUserStats(userId).catch(() => {});
-
   return xpEarned;
 }
 
 export async function recordCustomGameSession(
-  userId: string,
+  _userId: string,
   gameType: AnyGameType,
   score: number,
   total: number,
   xpEarned: number
 ): Promise<void> {
   const safeXpEarned = Math.max(0, Math.min(MAX_GAME_XP_PER_TYPE, Math.round(xpEarned)));
-  const supabase = createClient();
-  const { error } = await supabase
-    .from("game_sessions")
-    .insert([{ user_id: userId, game_type: gameType, score, total, xp_earned: safeXpEarned }]);
-
-  if (error && !isMissingTableError(error)) throw handleSupabaseError(error);
+  appendGameSession({ game_type: gameType, score, total, xp_earned: safeXpEarned });
 
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event("thtcdn_game_session_recorded"));
     if (safeXpEarned > 0) {
-      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: safeXpEarned, label: "Trò chơi tài chính!" } }));
+      window.dispatchEvent(new CustomEvent("thtcdn:xp-gained", { detail: { xp: safeXpEarned, label: "Thắng mini-game!" } }));
     }
   }
-
-  void recalculateUserStats(userId).catch(() => {});
 }
 
 /**
@@ -668,20 +634,9 @@ export async function recordCustomGameSession(
  * recalculateUserStats alongside lesson + quiz XP; without this the "+X XP"
  * a game shows on finish never actually reached the user's level/leaderboard.
  */
-export async function getTotalGameXp(userId: string): Promise<number> {
-  const supabase = createClient();
-  const { data, error } = await supabase
-    .from("game_sessions")
-    .select("game_type, xp_earned")
-    .eq("user_id", userId);
-
-  if (error) {
-    if (isMissingTableError(error)) return 0;
-    throw handleSupabaseError(error);
-  }
-
+export async function getTotalGameXp(_userId: string): Promise<number> {
   const bestByGame = new Map<string, number>();
-  for (const row of (data ?? []) as { game_type: string; xp_earned: number }[]) {
+  for (const row of listGameSessions()) {
     const cur = bestByGame.get(row.game_type) ?? 0;
     const safeXp = Math.max(0, Math.min(MAX_GAME_XP_PER_TYPE, Number(row.xp_earned) || 0));
     if (safeXp > cur) bestByGame.set(row.game_type, safeXp);
@@ -689,21 +644,11 @@ export async function getTotalGameXp(userId: string): Promise<number> {
   return Array.from(bestByGame.values()).reduce((sum, v) => sum + v, 0);
 }
 
-export async function getGameHistory(userId: string, gameType: AnyGameType, limit = 20): Promise<GameSession[]> {
-  const supabase = createClient();
-  const { data, error } = await supabase
-    .from("game_sessions")
-    .select("id, game_type, score, total, xp_earned, created_at")
-    .eq("user_id", userId)
-    .eq("game_type", gameType)
-    .order("created_at", { ascending: false })
-    .limit(limit);
-
-  if (error) {
-    if (isMissingTableError(error)) return [];
-    throw handleSupabaseError(error);
-  }
-  return data as GameSession[];
+export async function getGameHistory(_userId: string, gameType: AnyGameType, limit = 20): Promise<GameSession[]> {
+  // `appendGameSession` đã chèn vào đầu mảng, nên thứ tự mới-nhất-trước có sẵn.
+  return listGameSessions()
+    .filter((s) => s.game_type === gameType)
+    .slice(0, limit) as GameSession[];
 }
 
 export interface GameLeaderboardRow {
@@ -715,25 +660,27 @@ export interface GameLeaderboardRow {
   playedAt: string;
 }
 
-export async function getGameLeaderboard(gameType: AnyGameType, limit = 10): Promise<GameLeaderboardRow[]> {
-  const supabase = createClient();
-  const { data, error } = await supabase.rpc("get_game_leaderboard", { p_game_type: gameType, p_limit: limit });
+/**
+ * Không còn máy chủ thì không còn bảng xếp hạng nhiều người: hàm này trả về
+ * kỷ lục của chính máy này, tối đa một hàng. Giữ nguyên kiểu trả về để
+ * GameLeaderboard/ModeLeaderboard render y như cũ mà không phải sửa.
+ */
+export async function getGameLeaderboard(gameType: AnyGameType, _limit = 10): Promise<GameLeaderboardRow[]> {
+  const mine = listGameSessions().filter((s) => s.game_type === gameType);
+  if (mine.length === 0) return [];
 
-  if (error) {
-    if (isMissingTableError(error)) return [];
-    throw handleSupabaseError(error);
-  }
-
-  return ((data ?? []) as { user_id: string; name: string; avatar_url: string | null; best_score: number; best_total: number; played_at: string }[]).map(
-    (row) => ({
-      user_id: row.user_id,
-      name: row.name,
-      avatarUrl: row.avatar_url,
-      bestScore: row.best_score,
-      bestTotal: row.best_total,
-      playedAt: row.played_at,
-    })
-  );
+  const best = mine.reduce((a, b) => (b.score > a.score ? b : a));
+  const player = getLocalPlayer();
+  return [
+    {
+      user_id: player.id,
+      name: player.name,
+      avatarUrl: null,
+      bestScore: best.score,
+      bestTotal: best.total,
+      playedAt: best.created_at,
+    },
+  ];
 }
 
 export interface CombinedLeaderboardRow {
@@ -745,46 +692,36 @@ export interface CombinedLeaderboardRow {
   lastPlayedAt: string;
 }
 
-export async function getCombinedGameLeaderboard(limit = 10): Promise<CombinedLeaderboardRow[]> {
-  const supabase = createClient();
-  const { data, error } = await supabase.rpc("get_combined_game_leaderboard", { p_limit: limit });
+/** Cục bộ, cùng lý do như `getGameLeaderboard`: một hàng duy nhất. */
+export async function getCombinedGameLeaderboard(_limit = 10): Promise<CombinedLeaderboardRow[]> {
+  const sessions = listGameSessions();
+  if (sessions.length === 0) return [];
 
-  if (error) {
-    if (isMissingTableError(error)) return [];
-    throw handleSupabaseError(error);
-  }
-
-  return (
-    (data ?? []) as {
-      user_id: string;
-      name: string;
-      avatar_url: string | null;
-      total_xp: number;
-      games_played: number;
-      last_played_at: string;
-    }[]
-  ).map((row) => ({
-    user_id: row.user_id,
-    name: row.name,
-    avatarUrl: row.avatar_url,
-    totalXp: row.total_xp,
-    gamesPlayed: row.games_played,
-    lastPlayedAt: row.last_played_at,
-  }));
+  const player = getLocalPlayer();
+  return [
+    {
+      user_id: player.id,
+      name: player.name,
+      avatarUrl: null,
+      totalXp: await getTotalGameXp(player.id),
+      gamesPlayed: new Set(sessions.map((s) => s.game_type)).size,
+      lastPlayedAt: sessions[0].created_at,
+    },
+  ];
 }
 
-// ─── Fun finance-themed titles for the top 3 of each game's leaderboard ───
+// ─── Fun tech-themed titles for the top 3 of each game's leaderboard ───
 
 const GAME_TITLES: Record<GameType, [string, string, string]> = {
   "random-mix": ["Đại Sư Trộn Ngẫu Nhiên", "Phù Thủy Tổng Hợp", "Cao Thủ Ngẫu Nhiên"],
-  "financial-statement-match": ["Kế Toán Trưởng Vũ Trụ", "Thần Cân Đối Kế Toán", "Đại Sư Báo Cáo Tài Chính"],
-  "en-vi-terms": ["Phù Thuỷ Song Ngữ Tài Chính", "Thánh Thuật Ngữ", "Dịch Giả Phố Wall"],
-  "ratio-category": ["Bậc Thầy Chỉ Số", "Nhà Phân Tích Thượng Thừa", "Trùm Tỷ Số Tài Chính"],
-  "term-definition": ["Từ Điển Sống", "Học Giả Tài Chính", "Bộ Não Bách Khoa"],
+  "financial-statement-match": ["Kiến Trúc Sư Vũ Trụ", "Thần Phân Tầng Hệ Thống", "Đại Sư Kiến Trúc"],
+  "en-vi-terms": ["Phù Thuỷ Song Ngữ Công Nghệ", "Thánh Thuật Ngữ", "Dịch Giả Silicon Valley"],
+  "ratio-category": ["Bậc Thầy Chỉ Số", "Nhà Phân Tích Thượng Thừa", "Trùm Đo Lường Hệ Thống"],
+  "term-definition": ["Từ Điển Sống", "Học Giả Công Nghệ", "Bộ Não Bách Khoa"],
   "formula-match": ["Thần Đồng Công Thức", "Pháp Sư Con Số", "Cao Thủ Định Lượng"],
-  "risk-category": ["Vệ Thần Danh Mục", "Cao Thủ Quản Trị Rủi Ro", "Bậc Thầy Phân Bổ Tài Sản"],
-  "ticker-match": ["Thổ Địa Sàn Chứng Khoán", "Cao Thủ Đọc Bảng Điện", "Huyền Thoại Mã Cổ Phiếu"],
-  "cost-category": ["Kế Toán Chi Phí Thượng Thừa", "Bậc Thầy Fixed & Variable", "Huyền Thoại Phân Loại Chi Phí"],
+  "risk-category": ["Vệ Thần Bản Phát Hành", "Cao Thủ Quản Trị Rủi Ro", "Bậc Thầy Đánh Giá Thay Đổi"],
+  "ticker-match": ["Thổ Địa Làng Công Nghệ", "Cao Thủ Nhận Diện Công Nghệ", "Huyền Thoại Mã Nguồn"],
+  "cost-category": ["Quản Trị Chi Phí Thượng Thừa", "Bậc Thầy Fixed & Variable", "Huyền Thoại Tối Ưu Hạ Tầng"],
 };
 
 /** Rank is 1-based. Returns null for rank 4+. */
@@ -793,7 +730,7 @@ export function getGameTitle(gameType: GameType, rank: number): string | null {
   return GAME_TITLES[gameType][rank - 1];
 }
 
-const COMBINED_TITLES: [string, string, string] = ["Huyền Thoại Mini Game", "Đại Kiện Tướng Tài Chính", "Cao Thủ Toàn Năng"];
+const COMBINED_TITLES: [string, string, string] = ["Huyền Thoại Mini Game", "Đại Kiện Tướng Công Nghệ", "Cao Thủ Toàn Năng"];
 
 /* i18n-ignore-end */
 

@@ -29,70 +29,225 @@ export interface WisdomCard {
    đọc `t.wisdomCards[card.id]`. lib/__tests__/wisdom-cards-i18n.test.ts làm đỏ
    build khi thiếu hoặc thừa khoá, ở cả hai mảng. */
 export const WISDOM_CARDS: WisdomCard[] = [
-  { id: "wc-001", text: "Chi tiêu ít hơn số tiền kiếm được là quy tắc đầu tiên - không có công cụ đầu tư nào cứu được một người luôn tiêu nhiều hơn thu." },
-  { id: "wc-002", text: "Quỹ khẩn cấp không phải để sinh lời - nó tồn tại để bạn không phải bán tài sản tốt vào đúng lúc giá đang xấu." },
-  { id: "wc-003", text: "Lãi kép cần thời gian hơn là cần số tiền lớn. Bắt đầu sớm với số nhỏ thường thắng bắt đầu muộn với số lớn." },
-  { id: "wc-004", text: "Rủi ro lớn nhất không phải là mất tiền trong ngắn hạn, mà là không bao giờ bắt đầu vì sợ mất tiền." },
-  { id: "wc-005", text: "Một tài sản tốt mua ở giá cao vẫn tốt hơn một tài sản tệ mua ở giá thấp." },
-  { id: "wc-006", text: "Đa dạng hóa không phải để tối đa lợi nhuận - nó để bạn không bị loại khỏi cuộc chơi chỉ vì một khoản đặt cược sai." },
-  { id: "wc-007", text: "Nợ tốt giúp bạn xây dựng tài sản. Nợ xấu giúp người khác xây dựng tài sản bằng tiền của bạn." },
-  { id: "wc-008", text: "Thị trường không quan tâm bạn mua ở giá nào - nó chỉ quan tâm giá trị thực sẽ đi về đâu." },
-  { id: "wc-009", text: "Kỷ luật đầu tư đều đặn mỗi tháng thường thắng việc cố đoán đúng thời điểm thị trường." },
-  { id: "wc-010", text: "Đọc báo cáo tài chính một công ty giống như đọc lý lịch một người trước khi kết hôn - đừng bỏ qua bước này." },
-  { id: "wc-011", text: "Lạm phát là kẻ trộm âm thầm nhất - nó không lấy tiền của bạn, nó lấy sức mua của bạn." },
-  { id: "wc-012", text: "Bảo hiểm không phải là chi phí lãng phí - nó là cách bạn chuyển giao rủi ro mà một mình bạn không gánh nổi." },
-  { id: "wc-013", text: "Đừng nhầm giữa 'giá đang giảm' với 'giá đang rẻ' - hai điều này không phải lúc nào cũng giống nhau." },
-  { id: "wc-014", text: "Một kế hoạch tài chính tồi vẫn tốt hơn không có kế hoạch nào - vì ít nhất nó cho bạn thứ để điều chỉnh." },
-  { id: "wc-015", text: "Tài sản là thứ bỏ tiền vào túi bạn. Tiêu sản là thứ lấy tiền ra khỏi túi bạn - dù trông nó có sang trọng đến đâu." },
-  { id: "wc-016", text: "Đừng đầu tư vào thứ bạn không hiểu, chỉ vì người khác đang kiếm tiền từ nó." },
-  { id: "wc-017", text: "Thời gian trên thị trường thường quan trọng hơn việc canh đúng thời điểm vào thị trường." },
-  { id: "wc-018", text: "Một đồng tiết kiệm hôm nay có giá trị hơn một đồng tiết kiệm ngày mai - đó là lý do lãi kép luôn thưởng cho người bắt đầu sớm." },
-  { id: "wc-019", text: "Đừng để cảm xúc quyết định khi thị trường hoảng loạn - đó chính xác là lúc kỷ luật trở nên đắt giá nhất." },
-  { id: "wc-020", text: "Chi phí ẩn (phí quản lý, phí giao dịch) âm thầm bào mòn lợi nhuận nhiều hơn bạn tưởng qua nhiều năm." },
-  { id: "wc-021", text: "Một ngân sách không phải để hạn chế bạn - nó để bạn biết chính xác tiền của mình đang đi đâu." },
-  { id: "wc-022", text: "Không ai quan tâm đến tiền của bạn nhiều hơn chính bạn - đừng giao toàn bộ quyết định cho người khác." },
-  { id: "wc-023", text: "So sánh bản thân với người khác trong đầu tư là con đường nhanh nhất dẫn đến quyết định sai lầm." },
-  { id: "wc-024", text: "Tự do tài chính không phải là có thật nhiều tiền - đó là có đủ lựa chọn để không phải làm việc mình không muốn." },
-  { id: "wc-025", text: "Học cách đọc một hợp đồng vay trước khi ký - lãi suất ẩn thường nằm ở những dòng chữ nhỏ nhất." },
-  { id: "wc-026", text: "Đầu tư vào kiến thức tài chính của chính mình luôn trả lãi cao nhất, và không ai đánh thuế được nó." },
-  { id: "wc-027", text: "Một danh mục đầu tư tốt là danh mục bạn có thể ngủ ngon, không phải danh mục có lợi nhuận cao nhất trên giấy." },
-  { id: "wc-028", text: "Đừng vay tiền để đầu tư vào thứ có thể giảm giá nhanh hơn tốc độ bạn trả lãi." },
-  { id: "wc-029", text: "Sự kiên nhẫn là một chiến lược đầu tư - chỉ là ít người đủ kỷ luật để thực sự áp dụng nó." },
-  { id: "wc-030", text: "Tiền không mua được hạnh phúc, nhưng thiếu kế hoạch tài chính chắc chắn mua được rất nhiều lo âu." },
-  { id: "wc-031", text: "Hãy trả cho chính mình trước - trích tiết kiệm ngay khi nhận lương, trước khi kịp tiêu vào việc khác." },
-  { id: "wc-032", text: "Giá trị của một tài sản đến từ dòng tiền nó tạo ra trong tương lai, không phải từ việc mọi người đang bàn tán về nó." },
-  { id: "wc-033", text: "Quản lý rủi ro không phải là tránh mọi rủi ro - đó là chỉ chấp nhận những rủi ro bạn hiểu rõ và có thể chịu được." },
-  { id: "wc-034", text: "Đừng để một khoản lãi lớn khiến bạn quên mất kỷ luật đã giúp bạn có được nó." },
-  { id: "wc-035", text: "Chữ ký của bạn trên hợp đồng vay có giá trị hơn lời hứa miệng của bất kỳ ai - đọc kỹ trước khi ký." },
-  { id: "wc-036", text: "Tiết kiệm mà không có mục tiêu cụ thể rất dễ bị bỏ cuộc giữa chừng - hãy gắn mỗi khoản tiết kiệm với một mục tiêu rõ ràng." },
-  { id: "wc-037", text: "Người giàu mua tài sản trước, tiêu sản sau. Người nghèo thường làm ngược lại." },
-  { id: "wc-038", text: "Không có khoản đầu tư nào 'chắc chắn thắng' - ai nói vậy với bạn đang bán thứ gì đó, không phải sự thật." },
-  { id: "wc-039", text: "Học cách nói 'không' với những khoản chi tiêu theo cảm xúc là kỹ năng tài chính quan trọng nhất ít ai dạy bạn." },
-  { id: "wc-040", text: "Một quyết định tài chính tốt hôm nay là món quà bạn gửi cho chính mình mười năm sau." },
-  { id: "wc-041", text: "Đòn bẩy tài chính giống như con dao hai lưỡi - dùng đúng thì tăng tốc, dùng sai thì gây thương tích nặng." },
-  { id: "wc-042", text: "Đừng đợi đến khi 'có nhiều tiền hơn' mới bắt đầu học về tài chính - kiến thức nên đi trước số tiền, không phải theo sau." },
-  { id: "wc-043", text: "Chi phí cơ hội là thứ vô hình nhưng luôn hiện diện - mỗi đồng bạn tiêu hôm nay là một đồng không còn có thể sinh lời trong tương lai." },
-  { id: "wc-044", text: "Đừng nhầm lẫn giữa thu nhập cao và giàu có - nhiều người thu nhập cao vẫn nghèo vì chi tiêu còn cao hơn." },
-  { id: "wc-045", text: "Bảng cân đối kế toán cá nhân của bạn (tài sản trừ nợ) quan trọng hơn nhiều so với mức lương ghi trên hợp đồng." },
+  {
+    id: "wc-001",
+    text: "Viết ít mã hơn số mã bạn hiểu là quy tắc đầu tiên - không framework nào cứu được một người luôn dán vào nhiều hơn mình đọc nổi.",
+  },
+  {
+    id: "wc-002",
+    text: "Bản sao lưu không phải để chạy nhanh - nó tồn tại để bạn không phải sửa vội một hệ thống đang cháy vào đúng lúc tệ nhất.",
+  },
+  {
+    id: "wc-003",
+    text: "Thói quen commit đều cần thời gian hơn là cần một tuần cày. Mỗi ngày một chút thường thắng một đợt dồn sức rồi bỏ.",
+  },
+  {
+    id: "wc-004",
+    text: "Rủi ro lớn nhất không phải là viết ra mã tệ, mà là không bao giờ bắt đầu vì sợ viết ra mã tệ.",
+  },
+  {
+    id: "wc-005",
+    text: "Một kiến trúc tốt bị cài đặt vụng vẫn cứu được. Một kiến trúc sai được cài đặt hoàn hảo thì không.",
+  },
+  {
+    id: "wc-006",
+    text: "Dự phòng không phải để chạy nhanh hơn - nó để bạn không bị loại khỏi cuộc chơi chỉ vì một máy chủ chết.",
+  },
+  {
+    id: "wc-007",
+    text: "Nợ kỹ thuật có chủ đích giúp bạn ra mắt sớm. Nợ kỹ thuật không ai ghi lại giúp người sau trả lãi thay bạn.",
+  },
+  { id: "wc-008", text: "Máy không quan tâm mã của bạn đẹp cỡ nào - nó chỉ quan tâm mã ấy làm đúng việc gì." },
+  {
+    id: "wc-009",
+    text: "Kỷ luật viết kiểm thử cho từng thay đổi nhỏ thường thắng việc cố gỡ một lỗi lớn vào phút chót.",
+  },
+  {
+    id: "wc-010",
+    text: "Đọc mã nguồn một thư viện trước khi phụ thuộc vào nó giống như đọc hợp đồng trước khi ký - đừng bỏ qua bước này.",
+  },
+  { id: "wc-011", text: "Độ trễ là kẻ trộm âm thầm nhất - nó không làm hệ thống chết, nó lấy đi người dùng của bạn." },
+  {
+    id: "wc-012",
+    text: "Giám sát không phải chi phí lãng phí - nó là cách bạn biết hệ thống hỏng trước khi người dùng gọi điện báo.",
+  },
+  {
+    id: "wc-013",
+    text: "Đừng nhầm giữa 'mã chạy được' với 'mã đúng' - hai điều này không phải lúc nào cũng giống nhau.",
+  },
+  {
+    id: "wc-014",
+    text: "Một thiết kế tồi được viết ra vẫn tốt hơn không có thiết kế nào - vì ít nhất nó cho bạn thứ để sửa.",
+  },
+  {
+    id: "wc-015",
+    text: "Tài sản là đoạn mã người khác đọc được và sửa được. Gánh nặng là đoạn mã chỉ mình bạn hiểu - dù nó có thông minh đến đâu.",
+  },
+  { id: "wc-016", text: "Đừng đưa vào hệ thống một công nghệ bạn không hiểu, chỉ vì người khác đang nói nó nhanh." },
+  { id: "wc-017", text: "Thời gian một hệ thống đã chạy ổn định thường nói nhiều hơn số sao trên GitHub của nó." },
+  {
+    id: "wc-018",
+    text: "Một dòng mã xoá hôm nay đáng giá hơn một dòng mã xoá năm sau - vì mỗi tháng trôi qua lại có thêm thứ phụ thuộc vào nó.",
+  },
+  {
+    id: "wc-019",
+    text: "Đừng để cảm xúc quyết định lúc hệ thống đang sập - đó chính xác là lúc quy trình trở nên đắt giá nhất.",
+  },
+  {
+    id: "wc-020",
+    text: "Chi phí ẩn (một truy vấn thừa, một vòng gọi mạng thừa) âm thầm bào mòn hiệu năng nhiều hơn bạn tưởng qua nhiều năm.",
+  },
+  {
+    id: "wc-021",
+    text: "Một bản ghi log không phải để làm phiền bạn - nó để bạn biết chính xác hệ thống của mình đang làm gì.",
+  },
+  {
+    id: "wc-022",
+    text: "Không ai quan tâm đến mã của bạn nhiều hơn chính bạn - đừng giao toàn bộ quyết định thiết kế cho người khác.",
+  },
+  {
+    id: "wc-023",
+    text: "So sánh tốc độ học của mình với người khác trong nghề là con đường nhanh nhất dẫn đến quyết định sai lầm.",
+  },
+  {
+    id: "wc-024",
+    text: "Giỏi nghề không phải là biết thật nhiều công nghệ - đó là có đủ lựa chọn để không phải làm theo cách mình biết là sai.",
+  },
+  {
+    id: "wc-025",
+    text: "Học cách đọc giấy phép của một thư viện trước khi dùng - ràng buộc thật thường nằm ở những dòng chữ nhỏ nhất.",
+  },
+  {
+    id: "wc-026",
+    text: "Đầu tư vào nền tảng của chính mình luôn trả lãi cao nhất, và không framework nào làm nó lỗi thời được.",
+  },
+  {
+    id: "wc-027",
+    text: "Một hệ thống tốt là hệ thống bạn ngủ ngon khi tới phiên trực, không phải hệ thống có sơ đồ đẹp nhất trên giấy.",
+  },
+  { id: "wc-028", text: "Đừng dựng thêm một dịch vụ mới để giải quyết một vấn đề mà bạn còn chưa đo được." },
+  {
+    id: "wc-029",
+    text: "Sự kiên nhẫn khi gỡ lỗi là một kỹ năng - chỉ là ít người đủ bình tĩnh để thực sự áp dụng nó.",
+  },
+  {
+    id: "wc-030",
+    text: "Công nghệ không giải quyết được mọi việc, nhưng thiếu một kế hoạch rõ ràng chắc chắn tạo ra rất nhiều việc.",
+  },
+  {
+    id: "wc-031",
+    text: "Hãy trả cho chính mình trước - dành thời gian dọn mã ngay sau khi ra mắt, trước khi kịp bị cuốn vào tính năng mới.",
+  },
+  {
+    id: "wc-032",
+    text: "Giá trị của một hệ thống đến từ việc nó phục vụ được ai, không phải từ việc nó dùng công nghệ đang được bàn tán.",
+  },
+  {
+    id: "wc-033",
+    text: "Quản lý rủi ro vận hành không phải là tránh mọi thay đổi - đó là chỉ chấp nhận thay đổi bạn hiểu rõ và quay lui được.",
+  },
+  { id: "wc-034", text: "Đừng để một lần tối ưu thành công khiến bạn quên mất phép đo đã giúp bạn tìm ra nó." },
+  {
+    id: "wc-035",
+    text: "Cam kết của bạn trong một tài liệu thiết kế có giá trị hơn lời hứa miệng của bất kỳ ai - viết ra trước khi bắt tay làm.",
+  },
+  {
+    id: "wc-036",
+    text: "Dọn mã mà không có mục tiêu cụ thể rất dễ bỏ dở giữa chừng - hãy gắn mỗi lần dọn với một vấn đề có thật.",
+  },
+  { id: "wc-037", text: "Kỹ sư giỏi dựng nền trước, thêm tính năng sau. Người vội thường làm ngược lại." },
+  {
+    id: "wc-038",
+    text: "Không có công nghệ nào 'chắc chắn hợp' - ai nói vậy với bạn đang bán thứ gì đó, không phải sự thật.",
+  },
+  {
+    id: "wc-039",
+    text: "Học cách nói 'không' với một tính năng thêm vào phút chót là kỹ năng nghề quan trọng nhất ít ai dạy bạn.",
+  },
+  {
+    id: "wc-040",
+    text: "Một quyết định kỹ thuật tốt hôm nay là món quà bạn gửi cho chính mình mười năm sau, lúc phải mở lại kho mã ấy.",
+  },
+  {
+    id: "wc-041",
+    text: "Trừu tượng hoá giống như con dao hai lưỡi - đúng chỗ thì gọn cả hệ thống, sai chỗ thì giấu mất chỗ hỏng.",
+  },
+  {
+    id: "wc-042",
+    text: "Đừng đợi đến khi 'có dự án lớn hơn' mới bắt đầu học nền tảng - kiến thức nên đi trước quy mô, không phải theo sau.",
+  },
+  {
+    id: "wc-043",
+    text: "Chi phí cơ hội là thứ vô hình nhưng luôn hiện diện - mỗi giờ bạn dành cho một tính năng là một giờ không dành cho chỗ đang hỏng.",
+  },
+  {
+    id: "wc-044",
+    text: "Đừng nhầm lẫn giữa viết nhanh và làm xong - nhiều người viết rất nhanh rồi mất gấp đôi thời gian để sửa.",
+  },
+  { id: "wc-045", text: "Số lỗi còn tồn đọng của bạn nói nhiều về hệ thống hơn là số dòng mã đã viết ra." },
 ];
 
 // Thẻ theo kết quả bài quiz. Pool "encourage" dày hơn "celebrate" một chút -
 // người làm sai nhiều dễ quay lại làm lại bài đó ngay, nên lặp câu cũ sẽ lộ
 // hơn; người đạt điểm tuyệt đối thì hiếm khi làm lại.
 export const WISDOM_TONE_CARDS: WisdomCard[] = [
-  { id: "wc-cl-01", tone: "celebrate", text: "Đúng hết không phải may mắn - đó là dấu hiệu bạn đã thật sự hiểu, không chỉ đọc lướt." },
-  { id: "wc-cl-02", tone: "celebrate", text: "Điểm tuyệt đối hôm nay đáng giá nhất ở chỗ nó cho bạn nền để học bài khó hơn." },
-  { id: "wc-cl-03", tone: "celebrate", text: "Hiểu đúng một khái niệm tài chính là thứ không ai lấy lại được của bạn." },
-  { id: "wc-cl-04", tone: "celebrate", text: "Làm tốt rồi thì đừng dừng ở đây - kiến thức chỉ đọng lại khi được dùng ở bài tiếp theo." },
-  { id: "wc-cl-05", tone: "celebrate", text: "Bạn vừa chứng minh mình đọc kỹ. Trong tài chính, đọc kỹ là kỹ năng đắt tiền." },
+  {
+    id: "wc-cl-01",
+    tone: "celebrate",
+    text: "Đúng hết không phải may mắn - đó là dấu hiệu bạn đã thật sự hiểu, không chỉ đọc lướt.",
+  },
+  {
+    id: "wc-cl-02",
+    tone: "celebrate",
+    text: "Điểm tuyệt đối hôm nay đáng giá nhất ở chỗ nó cho bạn nền để học bài khó hơn.",
+  },
+  { id: "wc-cl-03", tone: "celebrate", text: "Hiểu đúng một khái niệm kỹ thuật là thứ không ai lấy lại được của bạn." },
+  {
+    id: "wc-cl-04",
+    tone: "celebrate",
+    text: "Làm tốt rồi thì đừng dừng ở đây - kiến thức chỉ đọng lại khi được dùng ở bài tiếp theo.",
+  },
+  {
+    id: "wc-cl-05",
+    tone: "celebrate",
+    text: "Bạn vừa chứng minh mình đọc kỹ. Trong nghề này, đọc kỹ là kỹ năng đắt tiền.",
+  },
 
-  { id: "wc-en-01", tone: "encourage", text: "Câu sai hôm nay là câu bạn sẽ nhớ lâu nhất. Đó là cách trí nhớ hoạt động, không phải dấu hiệu bạn kém." },
-  { id: "wc-en-02", tone: "encourage", text: "Sai ở bài tập rẻ hơn sai bằng tiền thật rất nhiều. Bạn đang trả học phí bằng thời gian." },
-  { id: "wc-en-03", tone: "encourage", text: "Không ai hiểu một khái niệm tài chính ngay lần đọc đầu. Đọc lại không phải thụt lùi." },
-  { id: "wc-en-04", tone: "encourage", text: "Điểm thấp chỉ nói bài này cần thêm một lượt nữa, không nói gì về khả năng của bạn." },
-  { id: "wc-en-05", tone: "encourage", text: "Người bỏ cuộc và người làm lại đều vừa làm sai như nhau. Khác nhau ở bước tiếp theo." },
-  { id: "wc-en-06", tone: "encourage", text: "Cứ ôn lại đúng những câu vừa sai - đó là cách học nhanh nhất, và cũng ít người chịu làm nhất." },
-  { id: "wc-en-07", tone: "encourage", text: "Chỗ bạn thấy khó chính là chỗ đáng học nhất. Phần dễ thì ai cũng qua được." },
+  {
+    id: "wc-en-01",
+    tone: "encourage",
+    text: "Câu sai hôm nay là câu bạn sẽ nhớ lâu nhất. Đó là cách trí nhớ hoạt động, không phải dấu hiệu bạn kém.",
+  },
+  {
+    id: "wc-en-02",
+    tone: "encourage",
+    text: "Sai ở bài tập rẻ hơn sai trên hệ thống thật rất nhiều. Bạn đang trả học phí bằng thời gian.",
+  },
+  {
+    id: "wc-en-03",
+    tone: "encourage",
+    text: "Không ai hiểu một khái niệm kỹ thuật ngay lần đọc đầu. Đọc lại không phải thụt lùi.",
+  },
+  {
+    id: "wc-en-04",
+    tone: "encourage",
+    text: "Điểm thấp chỉ nói bài này cần thêm một lượt nữa, không nói gì về khả năng của bạn.",
+  },
+  {
+    id: "wc-en-05",
+    tone: "encourage",
+    text: "Người bỏ cuộc và người làm lại đều vừa làm sai như nhau. Khác nhau ở bước tiếp theo.",
+  },
+  {
+    id: "wc-en-06",
+    tone: "encourage",
+    text: "Cứ ôn lại đúng những câu vừa sai - đó là cách học nhanh nhất, và cũng ít người chịu làm nhất.",
+  },
+  {
+    id: "wc-en-07",
+    tone: "encourage",
+    text: "Chỗ bạn thấy khó chính là chỗ đáng học nhất. Phần dễ thì ai cũng qua được.",
+  },
 ];
 
 /* i18n-ignore-end */

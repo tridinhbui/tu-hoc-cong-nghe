@@ -12,124 +12,188 @@
 
 export const wisdomCardsVi = {
   wisdomCards: {
-    "wc-001": "Chi tiêu ít hơn số tiền kiếm được là quy tắc đầu tiên - không có công cụ đầu tư nào cứu được một người luôn tiêu nhiều hơn thu.",
-    "wc-002": "Quỹ khẩn cấp không phải để sinh lời - nó tồn tại để bạn không phải bán tài sản tốt vào đúng lúc giá đang xấu.",
-    "wc-003": "Lãi kép cần thời gian hơn là cần số tiền lớn. Bắt đầu sớm với số nhỏ thường thắng bắt đầu muộn với số lớn.",
-    "wc-004": "Rủi ro lớn nhất không phải là mất tiền trong ngắn hạn, mà là không bao giờ bắt đầu vì sợ mất tiền.",
-    "wc-005": "Một tài sản tốt mua ở giá cao vẫn tốt hơn một tài sản tệ mua ở giá thấp.",
-    "wc-006": "Đa dạng hóa không phải để tối đa lợi nhuận - nó để bạn không bị loại khỏi cuộc chơi chỉ vì một khoản đặt cược sai.",
-    "wc-007": "Nợ tốt giúp bạn xây dựng tài sản. Nợ xấu giúp người khác xây dựng tài sản bằng tiền của bạn.",
-    "wc-008": "Thị trường không quan tâm bạn mua ở giá nào - nó chỉ quan tâm giá trị thực sẽ đi về đâu.",
-    "wc-009": "Kỷ luật đầu tư đều đặn mỗi tháng thường thắng việc cố đoán đúng thời điểm thị trường.",
-    "wc-010": "Đọc báo cáo tài chính một công ty giống như đọc lý lịch một người trước khi kết hôn - đừng bỏ qua bước này.",
-    "wc-011": "Lạm phát là kẻ trộm âm thầm nhất - nó không lấy tiền của bạn, nó lấy sức mua của bạn.",
-    "wc-012": "Bảo hiểm không phải là chi phí lãng phí - nó là cách bạn chuyển giao rủi ro mà một mình bạn không gánh nổi.",
-    "wc-013": "Đừng nhầm giữa 'giá đang giảm' với 'giá đang rẻ' - hai điều này không phải lúc nào cũng giống nhau.",
-    "wc-014": "Một kế hoạch tài chính tồi vẫn tốt hơn không có kế hoạch nào - vì ít nhất nó cho bạn thứ để điều chỉnh.",
-    "wc-015": "Tài sản là thứ bỏ tiền vào túi bạn. Tiêu sản là thứ lấy tiền ra khỏi túi bạn - dù trông nó có sang trọng đến đâu.",
-    "wc-016": "Đừng đầu tư vào thứ bạn không hiểu, chỉ vì người khác đang kiếm tiền từ nó.",
-    "wc-017": "Thời gian trên thị trường thường quan trọng hơn việc canh đúng thời điểm vào thị trường.",
-    "wc-018": "Một đồng tiết kiệm hôm nay có giá trị hơn một đồng tiết kiệm ngày mai - đó là lý do lãi kép luôn thưởng cho người bắt đầu sớm.",
-    "wc-019": "Đừng để cảm xúc quyết định khi thị trường hoảng loạn - đó chính xác là lúc kỷ luật trở nên đắt giá nhất.",
-    "wc-020": "Chi phí ẩn (phí quản lý, phí giao dịch) âm thầm bào mòn lợi nhuận nhiều hơn bạn tưởng qua nhiều năm.",
-    "wc-021": "Một ngân sách không phải để hạn chế bạn - nó để bạn biết chính xác tiền của mình đang đi đâu.",
-    "wc-022": "Không ai quan tâm đến tiền của bạn nhiều hơn chính bạn - đừng giao toàn bộ quyết định cho người khác.",
-    "wc-023": "So sánh bản thân với người khác trong đầu tư là con đường nhanh nhất dẫn đến quyết định sai lầm.",
-    "wc-024": "Tự do tài chính không phải là có thật nhiều tiền - đó là có đủ lựa chọn để không phải làm việc mình không muốn.",
-    "wc-025": "Học cách đọc một hợp đồng vay trước khi ký - lãi suất ẩn thường nằm ở những dòng chữ nhỏ nhất.",
-    "wc-026": "Đầu tư vào kiến thức tài chính của chính mình luôn trả lãi cao nhất, và không ai đánh thuế được nó.",
-    "wc-027": "Một danh mục đầu tư tốt là danh mục bạn có thể ngủ ngon, không phải danh mục có lợi nhuận cao nhất trên giấy.",
-    "wc-028": "Đừng vay tiền để đầu tư vào thứ có thể giảm giá nhanh hơn tốc độ bạn trả lãi.",
-    "wc-029": "Sự kiên nhẫn là một chiến lược đầu tư - chỉ là ít người đủ kỷ luật để thực sự áp dụng nó.",
-    "wc-030": "Tiền không mua được hạnh phúc, nhưng thiếu kế hoạch tài chính chắc chắn mua được rất nhiều lo âu.",
-    "wc-031": "Hãy trả cho chính mình trước - trích tiết kiệm ngay khi nhận lương, trước khi kịp tiêu vào việc khác.",
-    "wc-032": "Giá trị của một tài sản đến từ dòng tiền nó tạo ra trong tương lai, không phải từ việc mọi người đang bàn tán về nó.",
-    "wc-033": "Quản lý rủi ro không phải là tránh mọi rủi ro - đó là chỉ chấp nhận những rủi ro bạn hiểu rõ và có thể chịu được.",
-    "wc-034": "Đừng để một khoản lãi lớn khiến bạn quên mất kỷ luật đã giúp bạn có được nó.",
-    "wc-035": "Chữ ký của bạn trên hợp đồng vay có giá trị hơn lời hứa miệng của bất kỳ ai - đọc kỹ trước khi ký.",
-    "wc-036": "Tiết kiệm mà không có mục tiêu cụ thể rất dễ bị bỏ cuộc giữa chừng - hãy gắn mỗi khoản tiết kiệm với một mục tiêu rõ ràng.",
-    "wc-037": "Người giàu mua tài sản trước, tiêu sản sau. Người nghèo thường làm ngược lại.",
-    "wc-038": "Không có khoản đầu tư nào 'chắc chắn thắng' - ai nói vậy với bạn đang bán thứ gì đó, không phải sự thật.",
-    "wc-039": "Học cách nói 'không' với những khoản chi tiêu theo cảm xúc là kỹ năng tài chính quan trọng nhất ít ai dạy bạn.",
-    "wc-040": "Một quyết định tài chính tốt hôm nay là món quà bạn gửi cho chính mình mười năm sau.",
-    "wc-041": "Đòn bẩy tài chính giống như con dao hai lưỡi - dùng đúng thì tăng tốc, dùng sai thì gây thương tích nặng.",
-    "wc-042": "Đừng đợi đến khi 'có nhiều tiền hơn' mới bắt đầu học về tài chính - kiến thức nên đi trước số tiền, không phải theo sau.",
-    "wc-043": "Chi phí cơ hội là thứ vô hình nhưng luôn hiện diện - mỗi đồng bạn tiêu hôm nay là một đồng không còn có thể sinh lời trong tương lai.",
-    "wc-044": "Đừng nhầm lẫn giữa thu nhập cao và giàu có - nhiều người thu nhập cao vẫn nghèo vì chi tiêu còn cao hơn.",
-    "wc-045": "Bảng cân đối kế toán cá nhân của bạn (tài sản trừ nợ) quan trọng hơn nhiều so với mức lương ghi trên hợp đồng.",
+    "wc-001":
+      "Viết ít mã hơn số mã bạn hiểu là quy tắc đầu tiên - không framework nào cứu được một người luôn dán vào nhiều hơn mình đọc nổi.",
+    "wc-002":
+      "Bản sao lưu không phải để chạy nhanh - nó tồn tại để bạn không phải sửa vội một hệ thống đang cháy vào đúng lúc tệ nhất.",
+    "wc-003":
+      "Thói quen commit đều cần thời gian hơn là cần một tuần cày. Mỗi ngày một chút thường thắng một đợt dồn sức rồi bỏ.",
+    "wc-004": "Rủi ro lớn nhất không phải là viết ra mã tệ, mà là không bao giờ bắt đầu vì sợ viết ra mã tệ.",
+    "wc-005": "Một kiến trúc tốt bị cài đặt vụng vẫn cứu được. Một kiến trúc sai được cài đặt hoàn hảo thì không.",
+    "wc-006": "Dự phòng không phải để chạy nhanh hơn - nó để bạn không bị loại khỏi cuộc chơi chỉ vì một máy chủ chết.",
+    "wc-007":
+      "Nợ kỹ thuật có chủ đích giúp bạn ra mắt sớm. Nợ kỹ thuật không ai ghi lại giúp người sau trả lãi thay bạn.",
+    "wc-008": "Máy không quan tâm mã của bạn đẹp cỡ nào - nó chỉ quan tâm mã ấy làm đúng việc gì.",
+    "wc-009": "Kỷ luật viết kiểm thử cho từng thay đổi nhỏ thường thắng việc cố gỡ một lỗi lớn vào phút chót.",
+    "wc-010":
+      "Đọc mã nguồn một thư viện trước khi phụ thuộc vào nó giống như đọc hợp đồng trước khi ký - đừng bỏ qua bước này.",
+    "wc-011": "Độ trễ là kẻ trộm âm thầm nhất - nó không làm hệ thống chết, nó lấy đi người dùng của bạn.",
+    "wc-012":
+      "Giám sát không phải chi phí lãng phí - nó là cách bạn biết hệ thống hỏng trước khi người dùng gọi điện báo.",
+    "wc-013": "Đừng nhầm giữa 'mã chạy được' với 'mã đúng' - hai điều này không phải lúc nào cũng giống nhau.",
+    "wc-014": "Một thiết kế tồi được viết ra vẫn tốt hơn không có thiết kế nào - vì ít nhất nó cho bạn thứ để sửa.",
+    "wc-015":
+      "Tài sản là đoạn mã người khác đọc được và sửa được. Gánh nặng là đoạn mã chỉ mình bạn hiểu - dù nó có thông minh đến đâu.",
+    "wc-016": "Đừng đưa vào hệ thống một công nghệ bạn không hiểu, chỉ vì người khác đang nói nó nhanh.",
+    "wc-017": "Thời gian một hệ thống đã chạy ổn định thường nói nhiều hơn số sao trên GitHub của nó.",
+    "wc-018":
+      "Một dòng mã xoá hôm nay đáng giá hơn một dòng mã xoá năm sau - vì mỗi tháng trôi qua lại có thêm thứ phụ thuộc vào nó.",
+    "wc-019": "Đừng để cảm xúc quyết định lúc hệ thống đang sập - đó chính xác là lúc quy trình trở nên đắt giá nhất.",
+    "wc-020":
+      "Chi phí ẩn (một truy vấn thừa, một vòng gọi mạng thừa) âm thầm bào mòn hiệu năng nhiều hơn bạn tưởng qua nhiều năm.",
+    "wc-021": "Một bản ghi log không phải để làm phiền bạn - nó để bạn biết chính xác hệ thống của mình đang làm gì.",
+    "wc-022":
+      "Không ai quan tâm đến mã của bạn nhiều hơn chính bạn - đừng giao toàn bộ quyết định thiết kế cho người khác.",
+    "wc-023":
+      "So sánh tốc độ học của mình với người khác trong nghề là con đường nhanh nhất dẫn đến quyết định sai lầm.",
+    "wc-024":
+      "Giỏi nghề không phải là biết thật nhiều công nghệ - đó là có đủ lựa chọn để không phải làm theo cách mình biết là sai.",
+    "wc-025":
+      "Học cách đọc giấy phép của một thư viện trước khi dùng - ràng buộc thật thường nằm ở những dòng chữ nhỏ nhất.",
+    "wc-026": "Đầu tư vào nền tảng của chính mình luôn trả lãi cao nhất, và không framework nào làm nó lỗi thời được.",
+    "wc-027":
+      "Một hệ thống tốt là hệ thống bạn ngủ ngon khi tới phiên trực, không phải hệ thống có sơ đồ đẹp nhất trên giấy.",
+    "wc-028": "Đừng dựng thêm một dịch vụ mới để giải quyết một vấn đề mà bạn còn chưa đo được.",
+    "wc-029": "Sự kiên nhẫn khi gỡ lỗi là một kỹ năng - chỉ là ít người đủ bình tĩnh để thực sự áp dụng nó.",
+    "wc-030":
+      "Công nghệ không giải quyết được mọi việc, nhưng thiếu một kế hoạch rõ ràng chắc chắn tạo ra rất nhiều việc.",
+    "wc-031":
+      "Hãy trả cho chính mình trước - dành thời gian dọn mã ngay sau khi ra mắt, trước khi kịp bị cuốn vào tính năng mới.",
+    "wc-032":
+      "Giá trị của một hệ thống đến từ việc nó phục vụ được ai, không phải từ việc nó dùng công nghệ đang được bàn tán.",
+    "wc-033":
+      "Quản lý rủi ro vận hành không phải là tránh mọi thay đổi - đó là chỉ chấp nhận thay đổi bạn hiểu rõ và quay lui được.",
+    "wc-034": "Đừng để một lần tối ưu thành công khiến bạn quên mất phép đo đã giúp bạn tìm ra nó.",
+    "wc-035":
+      "Cam kết của bạn trong một tài liệu thiết kế có giá trị hơn lời hứa miệng của bất kỳ ai - viết ra trước khi bắt tay làm.",
+    "wc-036":
+      "Dọn mã mà không có mục tiêu cụ thể rất dễ bỏ dở giữa chừng - hãy gắn mỗi lần dọn với một vấn đề có thật.",
+    "wc-037": "Kỹ sư giỏi dựng nền trước, thêm tính năng sau. Người vội thường làm ngược lại.",
+    "wc-038": "Không có công nghệ nào 'chắc chắn hợp' - ai nói vậy với bạn đang bán thứ gì đó, không phải sự thật.",
+    "wc-039":
+      "Học cách nói 'không' với một tính năng thêm vào phút chót là kỹ năng nghề quan trọng nhất ít ai dạy bạn.",
+    "wc-040":
+      "Một quyết định kỹ thuật tốt hôm nay là món quà bạn gửi cho chính mình mười năm sau, lúc phải mở lại kho mã ấy.",
+    "wc-041":
+      "Trừu tượng hoá giống như con dao hai lưỡi - đúng chỗ thì gọn cả hệ thống, sai chỗ thì giấu mất chỗ hỏng.",
+    "wc-042":
+      "Đừng đợi đến khi 'có dự án lớn hơn' mới bắt đầu học nền tảng - kiến thức nên đi trước quy mô, không phải theo sau.",
+    "wc-043":
+      "Chi phí cơ hội là thứ vô hình nhưng luôn hiện diện - mỗi giờ bạn dành cho một tính năng là một giờ không dành cho chỗ đang hỏng.",
+    "wc-044":
+      "Đừng nhầm lẫn giữa viết nhanh và làm xong - nhiều người viết rất nhanh rồi mất gấp đôi thời gian để sửa.",
+    "wc-045": "Số lỗi còn tồn đọng của bạn nói nhiều về hệ thống hơn là số dòng mã đã viết ra.",
     "wc-cl-01": "Đúng hết không phải may mắn - đó là dấu hiệu bạn đã thật sự hiểu, không chỉ đọc lướt.",
     "wc-cl-02": "Điểm tuyệt đối hôm nay đáng giá nhất ở chỗ nó cho bạn nền để học bài khó hơn.",
-    "wc-cl-03": "Hiểu đúng một khái niệm tài chính là thứ không ai lấy lại được của bạn.",
+    "wc-cl-03": "Hiểu đúng một khái niệm kỹ thuật là thứ không ai lấy lại được của bạn.",
     "wc-cl-04": "Làm tốt rồi thì đừng dừng ở đây - kiến thức chỉ đọng lại khi được dùng ở bài tiếp theo.",
-    "wc-cl-05": "Bạn vừa chứng minh mình đọc kỹ. Trong tài chính, đọc kỹ là kỹ năng đắt tiền.",
-    "wc-en-01": "Câu sai hôm nay là câu bạn sẽ nhớ lâu nhất. Đó là cách trí nhớ hoạt động, không phải dấu hiệu bạn kém.",
-    "wc-en-02": "Sai ở bài tập rẻ hơn sai bằng tiền thật rất nhiều. Bạn đang trả học phí bằng thời gian.",
-    "wc-en-03": "Không ai hiểu một khái niệm tài chính ngay lần đọc đầu. Đọc lại không phải thụt lùi.",
+    "wc-cl-05": "Bạn vừa chứng minh mình đọc kỹ. Trong nghề này, đọc kỹ là kỹ năng đắt tiền.",
+    "wc-en-01":
+      "Câu sai hôm nay là câu bạn sẽ nhớ lâu nhất. Đó là cách trí nhớ hoạt động, không phải dấu hiệu bạn kém.",
+    "wc-en-02": "Sai ở bài tập rẻ hơn sai trên hệ thống thật rất nhiều. Bạn đang trả học phí bằng thời gian.",
+    "wc-en-03": "Không ai hiểu một khái niệm kỹ thuật ngay lần đọc đầu. Đọc lại không phải thụt lùi.",
     "wc-en-04": "Điểm thấp chỉ nói bài này cần thêm một lượt nữa, không nói gì về khả năng của bạn.",
     "wc-en-05": "Người bỏ cuộc và người làm lại đều vừa làm sai như nhau. Khác nhau ở bước tiếp theo.",
     "wc-en-06": "Cứ ôn lại đúng những câu vừa sai - đó là cách học nhanh nhất, và cũng ít người chịu làm nhất.",
     "wc-en-07": "Chỗ bạn thấy khó chính là chỗ đáng học nhất. Phần dễ thì ai cũng qua được.",
+    // `as Record<string, string>` chứ không để TypeScript suy ra 57 khoá cụ
+    // thể: WisdomCardFlip tra `t.wisdomCards[card.id]` với `card.id` kiểu
+    // string, và một kiểu literal 57 khoá làm phép tra đó thành lỗi.
   } as Record<string, string>,
 };
 
 export const wisdomCardsEn: typeof wisdomCardsVi = {
   wisdomCards: {
-    "wc-001": "Spending less than you earn is the first rule - no investment can rescue someone who always spends more than they take in.",
-    "wc-002": "An emergency fund isn't there to earn a return. It's there so you never have to sell a good asset at a bad price.",
-    "wc-003": "Compounding needs time more than it needs a large sum. Starting early with a little usually beats starting late with a lot.",
-    "wc-004": "The biggest risk isn't losing money in the short run. It's never starting because you're afraid to lose money.",
-    "wc-005": "A good asset bought at a high price still beats a bad asset bought cheap.",
-    "wc-006": "Diversification isn't about maximising returns. It's about not being knocked out of the game by a single wrong bet.",
-    "wc-007": "Good debt helps you build assets. Bad debt helps someone else build theirs, with your money.",
-    "wc-008": "The market doesn't care what you paid. It only cares where the real value is heading.",
-    "wc-009": "Investing the same amount every month usually beats trying to time the market.",
-    "wc-010": "Reading a company's financial statements is like reading someone's history before you marry them - don't skip it.",
-    "wc-011": "Inflation is the quietest thief there is. It doesn't take your money, it takes your purchasing power.",
-    "wc-012": "Insurance isn't wasted money. It's how you hand off a risk you couldn't carry alone.",
-    "wc-013": "Don't confuse 'the price is falling' with 'the price is cheap'. They are not always the same thing.",
-    "wc-014": "A bad financial plan still beats no plan, because at least it gives you something to correct.",
-    "wc-015": "An asset puts money in your pocket. A liability takes money out of it - however expensive it looks.",
-    "wc-016": "Don't invest in something you don't understand just because other people are making money from it.",
-    "wc-017": "Time in the market usually matters more than timing your way into it.",
-    "wc-018": "A dollar saved today is worth more than a dollar saved tomorrow - which is why compounding always rewards starting early.",
-    "wc-019": "Don't let emotion decide when the market panics. That is precisely when discipline is worth the most.",
-    "wc-020": "Hidden costs - management fees, transaction fees - erode returns far more over the years than you would guess.",
-    "wc-021": "A budget isn't there to restrict you. It's there so you know exactly where your money goes.",
-    "wc-022": "Nobody cares about your money more than you do - don't hand every decision to someone else.",
-    "wc-023": "Comparing yourself to other investors is the fastest route to a bad decision.",
-    "wc-024": "Financial freedom isn't having a great deal of money. It's having enough options not to do work you don't want.",
-    "wc-025": "Learn to read a loan agreement before you sign it - the hidden interest usually lives in the smallest print.",
-    "wc-026": "Investing in your own financial knowledge always pays the highest return, and nobody can tax it.",
-    "wc-027": "A good portfolio is one you can sleep through, not the one with the highest return on paper.",
-    "wc-028": "Don't borrow to invest in something that can fall faster than you can pay the interest.",
-    "wc-029": "Patience is an investment strategy - it's just that few people have the discipline to actually use it.",
-    "wc-030": "Money can't buy happiness, but having no financial plan will certainly buy you a great deal of anxiety.",
-    "wc-031": "Pay yourself first - move the savings across the day your salary lands, before it can go anywhere else.",
-    "wc-032": "An asset is worth the cash it will produce in the future, not what people are currently saying about it.",
-    "wc-033": "Risk management isn't avoiding all risk. It's taking only the risks you understand and can absorb.",
-    "wc-034": "Don't let one large gain make you forget the discipline that produced it.",
-    "wc-035": "Your signature on a loan agreement outweighs anybody's verbal promise - read it properly before you sign.",
-    "wc-036": "Saving with no specific goal is the easiest thing to abandon halfway - attach every pot of savings to something concrete.",
-    "wc-037": "The wealthy buy assets first and liabilities second. Most people do it the other way round.",
-    "wc-038": "There is no 'sure thing' investment - anyone telling you otherwise is selling something, not stating a fact.",
-    "wc-039": "Learning to say no to emotional spending is the most important financial skill almost nobody teaches you.",
-    "wc-040": "A good financial decision today is a gift you're posting to yourself ten years out.",
-    "wc-041": "Leverage cuts both ways - used properly it speeds you up, used badly it does serious damage.",
-    "wc-042": "Don't wait until you 'have more money' to start learning about it - the knowledge should come first, not after.",
-    "wc-043": "Opportunity cost is invisible but always present - every dollar spent today is a dollar that can no longer compound.",
-    "wc-044": "Don't confuse a high income with wealth - plenty of high earners are broke because their spending is higher still.",
-    "wc-045": "Your personal balance sheet - assets minus debts - matters far more than the salary on your contract.",
-    "wc-cl-01": "Getting them all right isn't luck. It's a sign you actually understood it rather than skimmed it.",
-    "wc-cl-02": "What today's perfect score is really worth is the foundation it gives you for a harder lesson.",
-    "wc-cl-03": "Properly understanding a financial concept is something nobody can take back from you.",
-    "wc-cl-04": "You did well, so don't stop here - knowledge only settles when it gets used in the next lesson.",
-    "wc-cl-05": "You just proved you read carefully. In finance, reading carefully is an expensive skill.",
-    "wc-en-01": "The question you got wrong today is the one you'll remember longest. That's how memory works, not a sign you're bad at this.",
-    "wc-en-02": "Being wrong in an exercise is far cheaper than being wrong with real money. You're paying the tuition in time.",
-    "wc-en-03": "Nobody understands a financial concept on the first read. Reading it again isn't going backwards.",
-    "wc-en-04": "A low score says this lesson needs one more pass. It says nothing about what you're capable of.",
-    "wc-en-05": "The person who quits and the person who retries just got the same answers wrong. The difference is what comes next.",
-    "wc-en-06": "Go back over exactly the questions you just missed - it's the fastest way to learn, and the one fewest people do.",
-    "wc-en-07": "The part you find hard is the part most worth studying. Anyone can get through the easy part.",
-  },
+    "wc-001":
+      "Writing less code than you understand is the first rule - no framework saves someone who keeps pasting in more than they can read.",
+    "wc-002":
+      "A backup isn't there to make things fast - it exists so you never have to patch a burning system at the worst possible moment.",
+    "wc-003":
+      "A steady commit habit needs time more than it needs one heroic week. A little every day usually beats a sprint you then abandon.",
+    "wc-004": "The biggest risk isn't writing bad code; it's never starting because you're afraid of writing bad code.",
+    "wc-005":
+      "A good architecture badly implemented can still be rescued. A wrong architecture perfectly implemented cannot.",
+    "wc-006":
+      "Redundancy isn't there to make you faster - it's there so one dead server doesn't take you out of the game.",
+    "wc-007":
+      "Deliberate technical debt helps you ship early. Technical debt nobody wrote down makes the next person pay your interest.",
+    "wc-008": "The machine doesn't care how elegant your code is - it only cares what that code actually does.",
+    "wc-009":
+      "The discipline of testing each small change usually beats trying to debug one large failure at the last minute.",
+    "wc-010":
+      "Reading a library's source before depending on it is like reading a contract before signing - don't skip that step.",
+    "wc-011": "Latency is the quietest thief - it doesn't kill your system, it takes your users.",
+    "wc-012": "Monitoring isn't wasted spend - it's how you learn the system broke before a user calls to tell you.",
+    "wc-013": "Don't confuse 'the code runs' with 'the code is correct' - those two are not always the same thing.",
+    "wc-014":
+      "A bad design that got written down still beats no design at all - at least it gives you something to fix.",
+    "wc-015":
+      "An asset is code other people can read and change. A burden is code only you understand - however clever it is.",
+    "wc-016":
+      "Don't put a technology into your system that you don't understand, just because someone said it was fast.",
+    "wc-017": "How long a system has run stably usually tells you more than how many GitHub stars it has.",
+    "wc-018":
+      "A line of code deleted today is worth more than one deleted next year - every month, something new comes to depend on it.",
+    "wc-019":
+      "Don't let emotion drive decisions while the system is down - that is exactly when process becomes most valuable.",
+    "wc-020":
+      "Hidden costs - one extra query, one extra network round trip - quietly erode performance far more than you'd think over the years.",
+    "wc-021": "A log line isn't there to annoy you - it's there so you know exactly what your system is doing.",
+    "wc-022": "Nobody cares about your code more than you do - don't hand every design decision to somebody else.",
+    "wc-023": "Comparing how fast you learn against everyone else is the quickest route to a bad decision.",
+    "wc-024":
+      "Being good at this job isn't knowing every technology - it's having enough options that you never have to do it the way you know is wrong.",
+    "wc-025":
+      "Learn to read a library's licence before you use it - the real constraints are usually in the smallest print.",
+    "wc-026":
+      "Investing in your own fundamentals always pays the highest return, and no framework can make it obsolete.",
+    "wc-027":
+      "A good system is one you sleep through your on-call shift with, not one with the prettiest diagram on paper.",
+    "wc-028": "Don't stand up another service to solve a problem you haven't measured yet.",
+    "wc-029": "Patience while debugging is a skill - it's just that few people stay calm enough to actually use it.",
+    "wc-030": "Technology doesn't solve everything, but the lack of a clear plan reliably creates plenty of work.",
+    "wc-031":
+      "Pay yourself first - clean up the code right after a release, before you get pulled into the next feature.",
+    "wc-032":
+      "A system's value comes from who it serves, not from whether it uses the technology everyone is talking about.",
+    "wc-033":
+      "Managing operational risk isn't avoiding every change - it's only accepting changes you understand and can roll back.",
+    "wc-034": "Don't let one successful optimisation make you forget the measurement that found it.",
+    "wc-035":
+      "Your commitment in a design doc is worth more than anyone's verbal promise - write it down before you start building.",
+    "wc-036":
+      "Cleaning up code without a specific goal is easy to abandon halfway - tie every cleanup to a real problem.",
+    "wc-037": "Good engineers build the foundation first and add features second. People in a hurry do the opposite.",
+    "wc-038":
+      "No technology is 'guaranteed to fit' - anyone telling you otherwise is selling something, not stating a fact.",
+    "wc-039":
+      "Learning to say 'no' to a feature added at the last minute is the most important professional skill nobody teaches you.",
+    "wc-040":
+      "A good technical decision today is a gift to yourself ten years from now, when you have to open that repo again.",
+    "wc-041":
+      "Abstraction is a double-edged blade - in the right place it tidies the whole system, in the wrong place it hides the break.",
+    "wc-042":
+      "Don't wait for a 'bigger project' before learning fundamentals - knowledge should lead scale, not trail it.",
+    "wc-043":
+      "Opportunity cost is invisible but always present - every hour on a new feature is an hour not spent on what's already broken.",
+    "wc-044":
+      "Don't confuse writing fast with being finished - plenty of people write very fast and then spend twice as long fixing it.",
+    "wc-045": "Your open bug count says more about the system than the number of lines you've written.",
+    "wc-cl-01": "Getting them all right isn't luck - it's a sign you actually understood rather than skimmed.",
+    "wc-cl-02": "A perfect score today is worth most because it gives you the ground to take on a harder lesson.",
+    "wc-cl-03": "Genuinely understanding a technical concept is something nobody can take back from you.",
+    "wc-cl-04": "You did well, so don't stop here - knowledge only settles once it gets used in the next lesson.",
+    "wc-cl-05": "You just proved you read carefully. In this line of work, reading carefully is an expensive skill.",
+    "wc-en-01":
+      "The question you got wrong today is the one you'll remember longest. That's how memory works, not a sign you're bad at this.",
+    "wc-en-02":
+      "Getting it wrong in an exercise is far cheaper than getting it wrong in production. You're paying tuition in time.",
+    "wc-en-03": "Nobody understands a technical concept on the first read. Reading it again isn't going backwards.",
+    "wc-en-04": "A low score only says this lesson needs one more pass; it says nothing about what you're capable of.",
+    "wc-en-05":
+      "The person who quits and the person who retries both just got it wrong. The difference is the next step.",
+    "wc-en-06":
+      "Go back over exactly the questions you just missed - it's the fastest way to learn, and the one fewest people do.",
+    "wc-en-07": "The part you find hard is the part most worth learning. Anyone can get through the easy part.",
+  } as Record<string, string>,
 };

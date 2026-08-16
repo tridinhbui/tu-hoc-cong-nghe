@@ -4,7 +4,7 @@
 
 export const cosmeticsDuelVi = {
   characterCustomizer: {
-    badge: "🎨 Wall Street Character Studio",
+    badge: "🎨 Silicon Valley Character Studio",
     title: "Thiết Kế & Tùy Chỉnh Nhân Vật Avatar 2.5D",
     livePreviewBadge: "⚡ Live Real-time Preview",
     levelTrader: "Level {level} Trader",
@@ -43,12 +43,12 @@ export const cosmeticsDuelVi = {
   },
   cosmeticStore: {
     vipDiamond: "💎 VIP Kim Cương",
-    storeAlt: "The Wolf of Wall Street Executive Store",
+    storeAlt: "The Wolf of Silicon Valley Executive Store",
     arsenalEyebrow: "🐺 WOLF OF WALL STREET ARSENAL",
     arsenalTitle: "Financial RPG Arsenal",
     loadingText: "Đang tải cửa hàng vật phẩm...",
     backButton: "← Quay lại",
-    heroTitle: "Tiệm Đồ & Tủ Đồ RPG Phố Wall",
+    heroTitle: "Tiệm Đồ & Tủ Đồ RPG Silicon Valley",
     sectionTitle: "🎨 Cửa hàng Trang bị & Nhân vật",
     sectionDesc: "Mua trang bị vũ khí, giáp bảo vệ và linh vật để tăng ngoại hình chiến binh tài chính của bạn.",
     coinBalanceLabel: "Số dư Coin:",
@@ -138,7 +138,7 @@ export const cosmeticsDuelVi = {
     loadingText: "Đang chọn câu hỏi từ bài bạn đã học...",
     fromLessonLabel: "Từ bài: {title}",
     youLabel: "Lv.{level} Bạn",
-    bullNickname: "Trâu Phố Wall",
+    bullNickname: "Trâu Silicon Valley",
     questionCounter: "Câu {progress}",
     bossHpLabel: "Thanh Máu Giáp Boss",
     hpSuffix: "{hp}/{max} HP",
@@ -190,7 +190,7 @@ export const cosmeticsDuelVi = {
 
 export const cosmeticsDuelEn: typeof cosmeticsDuelVi = {
   characterCustomizer: {
-    badge: "🎨 Wall Street Character Studio",
+    badge: "🎨 Silicon Valley Character Studio",
     title: "Design & Customize Your 2.5D Avatar",
     livePreviewBadge: "⚡ Live Real-time Preview",
     levelTrader: "Level {level} Trader",
@@ -229,12 +229,12 @@ export const cosmeticsDuelEn: typeof cosmeticsDuelVi = {
   },
   cosmeticStore: {
     vipDiamond: "💎 Diamond VIP",
-    storeAlt: "The Wolf of Wall Street Executive Store",
+    storeAlt: "The Wolf of Silicon Valley Executive Store",
     arsenalEyebrow: "🐺 WOLF OF WALL STREET ARSENAL",
     arsenalTitle: "Financial RPG Arsenal",
     loadingText: "Loading item shop...",
     backButton: "← Back",
-    heroTitle: "Wall Street RPG Gear & Wardrobe",
+    heroTitle: "Silicon Valley RPG Gear & Wardrobe",
     sectionTitle: "🎨 Gear & Character Shop",
     sectionDesc: "Buy weapons, protective armor, and companions to level up your financial warrior's look.",
     coinBalanceLabel: "Coin balance:",
@@ -322,7 +322,7 @@ export const cosmeticsDuelEn: typeof cosmeticsDuelVi = {
     loadingText: "Picking questions from lessons you've studied...",
     fromLessonLabel: "From lesson: {title}",
     youLabel: "Lv.{level} You",
-    bullNickname: "Wall Street Bull",
+    bullNickname: "Silicon Valley Bull",
     questionCounter: "Question {progress}",
     bossHpLabel: "Boss Armor HP Bar",
     hpSuffix: "{hp}/{max} HP",

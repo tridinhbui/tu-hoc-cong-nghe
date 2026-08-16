@@ -6,7 +6,7 @@ import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { FileText, BarChart3, GraduationCap, Gamepad2, Menu, X, Briefcase, BriefcaseBusiness, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Award, Route, Landmark, User, Settings, Globe, LogOut, type LucideIcon } from "lucide-react";
+import { FileText, BarChart3, GraduationCap, Gamepad2, Menu, X, BookOpen, Home, Flame, Users, MessageSquareMore, Search, ChevronDown, Landmark, User, Settings, Globe, LogOut, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -23,8 +23,6 @@ import { trackFeatureClick } from "@/lib/feature-events";
 import LevelUpModal from "@/components/LevelUpModal";
 import QuickShopModal from "@/components/QuickShopModal";
 import GlobalSearchModal from "@/components/GlobalSearchModal";
-import { getMyCareerGoal } from "@/lib/supabase-career-goals";
-import { FINANCE_CAREERS } from "@/lib/finance-careers";
 
 interface NavProfile {
   full_name: string | null;
@@ -125,24 +123,11 @@ const NAV_SECTIONS: NavSection[] = [
       // trong dãy chọn track nhưng không phải track trong lộ trình đánh số
       // theo ngày - chúng là các lối học song song, nên thuộc navbar.
       //
-      // Nhãn và icon phải khác hẳn "Sự nghiệp" (/su-nghiep) ở nhóm Tiến độ:
-      // hai trang trả lời hai câu khác nhau - trang kia là "nghề nào hợp với
-      // tôi", trang này là "nghề đó thì học bài nào" - và dùng chung icon
-      // cặp táp thì đọc như một mục bị lặp.
-      { href: "/nghe-nghiep-hoc", dataLabelKey: "hocTheoNghe", icon: Route },
-      // /cfa had no nav entry at all. The only way in was a placement modal
-      // that fires once per browser and never again once localStorage records
-      // it, so ten subjects, 324 cross-referenced lessons, fourteen
-      // purpose-built Ethics lessons, flashcards and the formula sheet were
-      // reachable only by typing the URL.
-      // CFA và FRM gộp thành MỘT dòng. Hai chứng chỉ là hai lựa chọn thay
-      // nhau chứ không phải hai việc song song - gần như không ai học cả hai
-      // cùng lúc - nên hai dòng menu bắt người đọc chọn một thứ họ đã chọn rồi.
-      //
-      // Dòng này dẫn tới /cfa, và đường sang FRM là cặp tab lớn ở đầu cả hai
-      // trang (components/CertificateTabs.tsx). `activePrefixes` để dòng vẫn
-      // sáng khi đang ở /frm hay các trang con như /cfa/flashcards.
-      { href: "/cfa", labelKey: "certificates", icon: Award, activePrefixes: ["/cfa", "/frm"] },
+      // Dòng "Chứng chỉ" (/cfa, kèm activePrefixes sang /frm) đã gỡ cùng hai
+      // route đó. Chú thích cũ ở đây kể rằng /cfa từng không có lối vào nào
+      // ngoài một modal chạy một lần rồi thôi - giữ lại ý đó ở đây vì nó là
+      // bài học về navbar chứ không về CFA: một khu vực lớn mà không có dòng
+      // menu nào dẫn tới thì coi như không tồn tại.
       // Kiểm tra đã xuống nhóm Thực hành, đứng đầu nhóm. Lý lẽ cũ ở đây nói
       // nó thuộc Học tập vì nó chấm đúng phần kiến thức của những lối học phía
       // trên; lý lẽ đó đúng về NỘI DUNG nhưng sai về VIỆC ĐANG LÀM. Cả ba mục
@@ -166,7 +151,6 @@ const NAV_SECTIONS: NavSection[] = [
       /* i18n-ignore-start: proper noun / product name, identical in both languages (Game) */
       { href: "/game", label: "Game", icon: Gamepad2 },
       /* i18n-ignore-end */
-      { href: "/phong-van-ky-thuat", labelKey: "technicalInterview", icon: BriefcaseBusiness },
     ],
   },
   // Nhóm Cộng đồng quay lại, và đây là lần đảo chiều thứ hai của cùng một
@@ -253,7 +237,6 @@ export default function AppNavbar() {
   const [signingOut, setSigningOut] = useState(false);
   const [showQuickShop, setShowQuickShop] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
-  const [careerGoalId, setCareerGoalId] = useState<string | null>(null);
   // Which sections the reader has folded away. Every section starts folded, so
   // the sidebar opens as five headers rather than the ~20 links they hold. The
   // pathname effect below unfolds whichever section owns the current page, so
@@ -281,42 +264,12 @@ export default function AppNavbar() {
   const desktopDropdownPanelRef = useRef<HTMLDivElement>(null);
 
 
-  useEffect(() => {
-    // Đọc localStorage NGAY khi gắn, và có chủ ý là trong effect chứ không
-    // phải bằng giá trị khởi tạo của useState.
-    //
-    // react-hooks/set-state-in-effect đúng ở hầu hết mọi chỗ, nhưng không đúng
-    // ở đây: máy chủ không có localStorage. Đưa phép đọc này vào useState thì
-    // máy chủ dựng ra một đằng và trình duyệt dựng ra một nẻo ngay lần đầu -
-    // `careerGoalId` quyết định có hiện lời mời chọn mục tiêu nghề hay không,
-    // nên lệch nhau là lệch cả một khối trên màn hình, và React báo lỗi
-    // hydration. Một lần dựng thừa là cái giá đúng để đổi lấy điều đó.
-    if (typeof window !== "undefined") {
-      const local = localStorage.getItem("active_career_goal") || localStorage.getItem("thtcdn_career_goal") || localStorage.getItem("user_career_goal");
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration, xem chú thích đầu effect
-      if (local) setCareerGoalId(local);
-    }
+  // Effect đọc mục tiêu nghề đã gỡ cùng huy hiệu "chưa chọn nghề": nó là thứ
+  // duy nhất dùng `careerGoalId`, và /nghe-nghiep-hoc - trang mà huy hiệu ấy
+  // mời người đọc đi tới - không còn. Đáng gỡ chứ không để lại: thanh này gắn ở
+  // MỌI trang, nên effect cũ là một truy vấn Supabase trên mỗi lượt tải trang
+  // của cả hệ thống, để nuôi một huy hiệu không còn hiện ra nữa.
 
-    const loadGoal = async () => {
-      if (userId) {
-        const g = await getMyCareerGoal(userId).catch(() => null);
-        if (g) {
-          setCareerGoalId(g);
-        }
-      }
-    };
-    void loadGoal();
-
-    function handleCareerGoalUpdate(e: Event) {
-      const detail = (e as CustomEvent<{ careerId: string | null }>).detail;
-      setCareerGoalId(detail?.careerId ?? null);
-    }
-
-    window.addEventListener("thtcdn:career-goal-updated", handleCareerGoalUpdate);
-    return () => {
-      window.removeEventListener("thtcdn:career-goal-updated", handleCareerGoalUpdate);
-    };
-  }, [userId]);
 
   // Thanh này gắn ở mọi trang trong ứng dụng, nên mỗi request nó mở là một
   // request nhân với số lượt tải trang của cả hệ thống. Trước đây là bốn:
@@ -601,7 +554,6 @@ export default function AppNavbar() {
       ? activePrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`))
       : pathname === href;
     const isGame = href === "/game";
-    const isCareer = href === "/nghe-nghiep-hoc";
     const isKiemTra = href === "/kiem-tra";
     const isNhomHoc = href === "/nhom-hoc";
     // Thư viện mở một không gian 3D chứ không phải một trang, nên nó vẫn có
@@ -646,11 +598,6 @@ export default function AppNavbar() {
         {isNhomHoc && hasPendingStudyGroupCheckin && (
           <span className={`${NAV_BADGE} bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300`}>
             {t.nav.badgeCheckin}
-          </span>
-        )}
-        {isCareer && !careerGoalId && (
-          <span className={`${NAV_BADGE} bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300`}>
-            {t.nav.badgeNoGoal}
           </span>
         )}
       </Link>

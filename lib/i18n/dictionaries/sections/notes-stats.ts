@@ -54,7 +54,7 @@ export const notesStatsVi = {
   },
   userStats: {
     levelLabel: "Cấp độ {level} / {total}",
-    activateWarrior: "Chiến binh Cấp {level} sẵn sàng chinh phục Phố Wall!",
+    activateWarrior: "Chiến binh Cấp {level} sẵn sàng chinh phục Silicon Valley!",
     clickToActivate: "Bấm để kích hoạt chiến binh!",
     lessons: "Bài học",
     quizAvg: "Quiz TB",
@@ -170,7 +170,7 @@ export const notesStatsEn: typeof notesStatsVi = {
   },
   userStats: {
     levelLabel: "Level {level} / {total}",
-    activateWarrior: "Level {level} warrior ready to conquer Wall Street!",
+    activateWarrior: "Level {level} warrior ready to conquer Silicon Valley!",
     clickToActivate: "Click to activate your warrior!",
     lessons: "Lessons",
     quizAvg: "Quiz avg",

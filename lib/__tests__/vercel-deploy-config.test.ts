@@ -61,11 +61,18 @@ describe("vercel.json", () => {
     }
   });
 
-  it("giữ nguyên các cron đã khai báo", () => {
-    // Cùng file, nên một lần ghi đè cẩu thả cũng cuốn theo lịch cron.
-    expect(Array.isArray(config.crons)).toBe(true);
-    expect(config.crons.length).toBeGreaterThanOrEqual(6);
-    for (const c of config.crons) {
+  it("không khai báo cron nào khi chưa có máy chủ để cron gọi tới", () => {
+    // Sáu cron cũ trỏ vào /api/cron/* và cả sáu đều đọc Supabase của dự án tài
+    // chính cũ. Khi ngắt cơ sở dữ liệu đó, để lịch cron nguyên vẹn nghĩa là
+    // Vercel vẫn gọi sáu endpoint mỗi ngày và cả sáu lỗi lặng lẽ - đúng kiểu
+    // hỏng-không-tín-hiệu mà chú thích đầu file này nói tới.
+    //
+    // Cổng vẫn giữ hình dạng cũ chứ không xoá hẳn: nếu sau này có cron thật cho
+    // phiên bản công nghệ, mỗi mục vẫn phải là một đường /api/cron/ hợp lệ.
+    const crons = config.crons ?? [];
+    expect(Array.isArray(crons)).toBe(true);
+    expect(crons).toHaveLength(0);
+    for (const c of crons) {
       expect(c.path).toMatch(/^\/api\/cron\//);
       expect(typeof c.schedule).toBe("string");
     }

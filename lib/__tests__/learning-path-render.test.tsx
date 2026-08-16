@@ -120,11 +120,13 @@ describe("trang /lo-trinh dựng ra chữ gì", () => {
     expect(html).not.toContain("progressbar\"></div>");
   });
 
-  it("hai lối học song song có mặt và trỏ đúng chỗ", async () => {
+  it("không còn quảng cáo lối học song song nào đã bị gỡ", async () => {
+    // Khối "Hai lối học song song" từng trỏ sang /cfa và /frm. Cả hai route đã
+    // được gỡ, nên phép kiểm đảo chiều: cái sai bây giờ là chúng CÒN xuất hiện,
+    // vì một link tới route đã xoá dẫn thẳng vào trang 404.
     const html = await markup("vi");
-    expect(html).toContain("Hai lối học song song");
-    expect(html).toContain('href="/cfa"');
-    expect(html).toContain('href="/frm"');
+    expect(html).not.toContain('href="/cfa"');
+    expect(html).not.toContain('href="/frm"');
   });
 
   it("mục lục trỏ tới đúng sáu khối có thật", async () => {

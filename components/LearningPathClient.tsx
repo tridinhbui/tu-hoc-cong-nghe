@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Award, CalendarDays, CheckCircle2, Compass, Flame, HelpCircle, ListChecks, ShieldAlert } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, Compass, Flame, HelpCircle, ListChecks } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { saveLearningPathPrefs } from "@/app/(app)/lo-trinh/actions";
 import { getLessonShortTitle } from "@/lib/lesson-labels";
@@ -297,43 +297,12 @@ export default function LearningPathClient({
           </p>
         )}
 
-        {/* CFA và FRM, dưới một tiêu đề riêng và KHÔNG phải thẻ chọn được.
-            Navbar coi chúng là lối học song song, còn trang này - trang duy
-            nhất trả lời "học gì" - trước đây không nhắc tới chúng một chữ, nên
-            người mới đọc xong tưởng cả app chỉ có hai đường.
-
-            Không cho chúng vào dãy chọn phía trên: `pickTrack` ghi
-            `activeTrack`, mà dashboard đọc đúng khoá đó để chọn chặng nào hiện.
-            Nhét "cfa" vào đấy là đưa một giá trị mà dashboard không biết đọc
-            vào một khoá dùng chung - đúng loại bẫy mà DASHBOARD_TABS đã để lại
-            một lần rồi. Chúng là hai ĐƯỜNG DẪN, nên chúng là hai link. */}
-        <div className="mt-5 border-t border-stone-200 pt-4 dark:border-stone-800">
-          <p className="text-sm font-bold text-stone-800 dark:text-stone-200">{p.parallelTitle}</p>
-          <p className="mt-1 text-sm leading-relaxed text-stone-600 dark:text-stone-400">{p.parallelHint}</p>
-          <div className="mt-3 grid gap-2 sm:grid-cols-2">
-            {[
-              { href: "/cfa", icon: Award, name: p.parallelCfaName, desc: p.parallelCfaFor },
-              { href: "/frm", icon: ShieldAlert, name: p.parallelFrmName, desc: p.parallelFrmFor },
-            ].map(({ href, icon: Icon, name, desc }) => (
-              <Link
-                key={href}
-                href={href}
-                className="group flex items-start gap-2.5 rounded-xl border border-stone-200 bg-white p-3 transition-colors hover:border-stone-400 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-stone-600"
-              >
-                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-stone-500 dark:text-stone-400" />
-                <span className="min-w-0">
-                  <span className="flex items-center gap-1 text-sm font-bold text-stone-900 dark:text-stone-100">
-                    {name}
-                    <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
-                  </span>
-                  <span className="mt-0.5 block text-xs leading-relaxed text-stone-600 dark:text-stone-400">
-                    {desc}
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
+        {/* Khối "hai lối học song song" (CFA và FRM) đã gỡ cùng hai route đó.
+            Chú thích cũ ở đây giải thích vì sao chúng là hai LINK chứ không
+            phải hai mục trong dãy chọn chặng: `pickTrack` ghi vào `activeTrack`,
+            khoá mà dashboard đọc để quyết định hiện chặng nào, nên nhét một giá
+            trị lạ vào đó là gài bẫy cho dashboard. Ý ấy vẫn đúng cho bất kỳ lối
+            học song song nào thêm sau này. */}
       </Card>
 
       <Card id="pace" icon={<CalendarDays className="h-4 w-4" />} title={p.stepPaceTitle} hint={p.stepPaceHint}>

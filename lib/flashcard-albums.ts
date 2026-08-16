@@ -96,7 +96,7 @@ export const FLASHCARD_ALBUMS: FlashcardAlbum[] = [
   },
   {
     id: "tai-chinh-ca-nhan",
-    title: "Tài chính cá nhân",
+    title: "Nền tảng công nghệ",
     description: "Nền tảng để quản lý tiền của chính mình trước khi đầu tư",
     emoji: "💰",
     gradient: "from-violet-500 to-purple-600",

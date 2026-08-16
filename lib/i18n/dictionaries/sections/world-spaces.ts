@@ -17,8 +17,8 @@ export const worldSpacesVi = {
       towerLobby: "Tháp Tự Học",
       stageFloor: "Sảnh chặng học",
       towerStopStreet: "Sảnh · ra phố",
-      towerStopStage: "Chặng học tài chính",
-      gameSquare: "Quảng trường Game Tài chính",
+      towerStopStage: "Chặng học công nghệ",
+      gameSquare: "Quảng trường Game Công nghệ",
       gameSquareShort: "Quảng trường Game",
       park: "Công viên Bến Nghé",
       parkShort: "Công viên",
@@ -59,15 +59,15 @@ export const worldSpacesVi = {
         },
         phongThi: {
           label: "Phòng thi",
-          blurb: "Đề thi thử CFA, FRM và kiểm tra chặng",
+          blurb: "Đề thi thử chứng chỉ và kiểm tra chặng",
         },
         canHo: {
           label: "Căn hộ của bạn",
           blurb: "Chuỗi ngày, cúp và mục tiêu nghề của riêng bạn",
         },
         baoTang: {
-          label: "Bảo tàng Tài chính",
-          blurb: "1929, 2008, lạm phát - và bài học đằng sau",
+          label: "Bảo tàng Công nghệ",
+          blurb: "Y2K, Morris Worm, sự cố hạ tầng - và bài học đằng sau",
         },
         nhaBanBe: {
           label: "Khu nhà bạn bè",
@@ -91,14 +91,14 @@ export const worldSpacesVi = {
       hocBai: {
         room: "Phòng học hôm nay",
         blurb: "Bài kế tiếp trong lộ trình của bạn",
-        formula: "FV = PV × (1 + r)ⁿ",
-        note: "Lãi kép - nền của mọi thứ còn lại trong tài chính",
+        formula: "T(n) = O(n log n)",
+        note: "Độ phức tạp - nền của mọi thứ còn lại trong hiệu năng",
       },
       kiemTra: {
         room: "Phòng luyện đề",
         blurb: "Kiểm tra theo chặng, chấm điểm ngay",
-        formula: "NPV = Σ CFₜ / (1 + r)ᵗ − C₀",
-        note: "Dự án đáng làm khi NPV > 0",
+        formula: "Độ phủ = Dòng chạy bởi test / Tổng số dòng",
+        note: "Bản vá đáng tin khi có test chạy qua nó",
       },
       onTap: {
         room: "Phòng ôn câu sai",
@@ -108,25 +108,25 @@ export const worldSpacesVi = {
       },
       congCu: {
         room: "Phòng công cụ",
-        blurb: "Máy tính DCF, WACC, lãi kép",
-        formula: "EV = Σ FCFₜ/(1+w)ᵗ + TV/(1+w)ⁿ",
-        note: "Chiết khấu dòng tiền - cách định giá một doanh nghiệp",
+        blurb: "Máy tính độ trễ, dung lượng, chi phí hạ tầng",
+        formula: "Little's Law: L = λ × W",
+        note: "Số việc trong hệ thống = tốc độ đến × thời gian ở lại",
       },
       cfa: {
-        room: "Phòng CFA",
-        blurb: "Ba cấp độ, theo giáo trình chính thức",
-        formula: "WACC = E/V × Rₑ + D/V × R_d × (1 − t)",
-        note: "Chi phí vốn bình quân, đã trừ lá chắn thuế của nợ",
+        room: "Phòng chứng chỉ",
+        blurb: "Bốn miền thi, theo đề cương chính thức",
+        formula: "Uptime = Thời gian hoạt động / Tổng thời gian",
+        note: "99,9% một tháng là được phép hỏng 43 phút",
       },
       frm: {
-        room: "Phòng FRM",
-        blurb: "Quản trị rủi ro tài chính",
-        formula: "VaR = μ − z_α × σ",
-        note: "Mức lỗ tệ nhất trong α% trường hợp xấu",
+        room: "Phòng độ tin cậy",
+        blurb: "Quản trị rủi ro vận hành",
+        formula: "Ngân sách lỗi = 1 − SLO",
+        note: "Phần được phép hỏng trước khi phải dừng phát hành",
       },
       phongVan: {
         room: "Phòng phỏng vấn",
-        blurb: "Câu hỏi kỹ thuật IB, trả lời có chấm",
+        blurb: "Câu hỏi kỹ thuật, trả lời có chấm",
         formula: "EV = Vốn hoá + Nợ − Tiền mặt",
         note: "Giá trị doanh nghiệp - câu hỏi mở màn của mọi buổi phỏng vấn IB",
       },
@@ -141,7 +141,7 @@ export const worldSpacesVi = {
       fallbackName: "Bạo Chúa Khủng Hoảng Tài Chính (Financial Crisis Titan)",
       fallbackDescription:
         "Trùm World Boss Server hàng tuần cực mạnh sở hữu 1.000.000 HP. Toàn bộ người học trên server cùng nhau gây sát thương để giải cứu thị trường!",
-      defaultLeaderboardNames: ["Sói Già Phố Wall", "Thầy Giáo Định Giá", "Chiến Thần CFA"],
+      defaultLeaderboardNames: ["Sói Già Silicon Valley", "Thầy Giáo Kiến Trúc", "Chiến Thần Thuật Toán"],
       defaultWarriorName: "Chiến binh Server",
       questions: [
         {
@@ -281,8 +281,8 @@ export const worldSpacesEn: typeof worldSpacesVi = {
       towerLobby: "Self-Study Tower",
       stageFloor: "Stage lobby",
       towerStopStreet: "Lobby · back to the street",
-      towerStopStage: "Finance learning stages",
-      gameSquare: "Finance Game Square",
+      towerStopStage: "Technology learning stages",
+      gameSquare: "Technology Game Square",
       gameSquareShort: "Game Square",
       park: "Ben Nghe Park",
       parkShort: "Park",
@@ -321,15 +321,15 @@ export const worldSpacesEn: typeof worldSpacesVi = {
         },
         phongThi: {
           label: "Exam room",
-          blurb: "CFA and FRM mock exams, plus stage checkpoints",
+          blurb: "Certification mock exams, plus stage checkpoints",
         },
         canHo: {
           label: "Your apartment",
           blurb: "Your streak, trophies, and career goals",
         },
         baoTang: {
-          label: "Museum of Finance",
-          blurb: "1929, 2008, inflation - and the lesson behind each one",
+          label: "Museum of Technology",
+          blurb: "Y2K, the Morris worm, the big outages - and the lesson behind each one",
         },
         nhaBanBe: {
           label: "Friends' block",
@@ -353,14 +353,14 @@ export const worldSpacesEn: typeof worldSpacesVi = {
       hocBai: {
         room: "Today's lesson room",
         blurb: "The next lesson in your path",
-        formula: "FV = PV × (1 + r)ⁿ",
-        note: "Compound interest - the foundation everything else in finance builds on",
+        formula: "T(n) = O(n log n)",
+        note: "Complexity - the foundation everything else in performance builds on",
       },
       kiemTra: {
         room: "Practice test room",
         blurb: "Stage-by-stage tests, scored instantly",
-        formula: "NPV = Σ CFₜ / (1 + r)ᵗ − C₀",
-        note: "A project is worth doing when NPV > 0",
+        formula: "Coverage = Lines run by tests / Total lines",
+        note: "A patch is trustworthy when a test actually runs through it",
       },
       onTap: {
         room: "Wrong-answer review room",
@@ -370,25 +370,25 @@ export const worldSpacesEn: typeof worldSpacesVi = {
       },
       congCu: {
         room: "Tools room",
-        blurb: "DCF, WACC and compound-interest calculators",
-        formula: "EV = Σ FCFₜ/(1+w)ᵗ + TV/(1+w)ⁿ",
-        note: "Discounted cash flow - how a business gets valued",
+        blurb: "Latency, capacity and infrastructure-cost calculators",
+        formula: "Little's Law: L = λ × W",
+        note: "Work in the system = arrival rate × time spent in it",
       },
       cfa: {
-        room: "CFA room",
-        blurb: "All three levels, following the official curriculum",
-        formula: "WACC = E/V × Rₑ + D/V × R_d × (1 − t)",
-        note: "Weighted average cost of capital, net of debt's tax shield",
+        room: "Certification room",
+        blurb: "All four domains, following the official syllabus",
+        formula: "Uptime = Time up / Total time",
+        note: "99.9% over a month allows 43 minutes of downtime",
       },
       frm: {
-        room: "FRM room",
-        blurb: "Financial risk management",
-        formula: "VaR = μ − z_α × σ",
-        note: "The worst loss expected in α% of cases",
+        room: "Reliability room",
+        blurb: "Operational risk management",
+        formula: "Error budget = 1 − SLO",
+        note: "How much may break before releases have to stop",
       },
       phongVan: {
         room: "Interview room",
-        blurb: "Technical IB questions, scored as you answer",
+        blurb: "Technical questions, scored as you answer",
         formula: "EV = Market cap + Debt − Cash",
         note: "Enterprise value - the opening question of every IB interview",
       },
@@ -403,7 +403,7 @@ export const worldSpacesEn: typeof worldSpacesVi = {
       fallbackName: "Financial Crisis Titan",
       fallbackDescription:
         "A massive weekly Server World Boss with 1,000,000 HP. Every learner on the server deals damage together to rescue the market!",
-      defaultLeaderboardNames: ["Wall Street Old Wolf", "The Valuation Teacher", "CFA War God"],
+      defaultLeaderboardNames: ["Silicon Valley Old Wolf", "The Architecture Teacher", "Algorithm War God"],
       defaultWarriorName: "Server Warrior",
       questions: [
         {

@@ -26,16 +26,20 @@ const SAMPLE_LESSON_URLS: Record<string, string> = {
   "l-4": "/dashboard",
 };
 const SAMPLE_GLOSSARY_URLS: Record<string, string> = {
-  "g-dcf": "/cong-cu",
-  "g-wacc": "/cong-cu",
+  "g-dcf": "/tai-lieu",
+  "g-wacc": "/tai-lieu",
   "g-pe": "/tai-lieu",
   "g-roe": "/tai-lieu",
 };
+// Cả bốn công cụ mẫu từng trỏ vào /cong-cu, route đã gỡ cùng tám máy tính tài
+// chính cá nhân của nó. Đây là dữ liệu MẪU cho ô tìm kiếm (xem chú thích đầu
+// tệp: sẽ thay bằng kho thật), nên chúng trỏ tạm về thư viện thay vì biến mất -
+// nhóm "công cụ" trống trơn trông như ô tìm kiếm hỏng.
 const SAMPLE_TOOL_URLS: Record<string, string> = {
-  "t-networth": "/cong-cu",
-  "t-budget": "/cong-cu",
-  "t-fire": "/cong-cu",
-  "t-dcf": "/cong-cu",
+  "t-networth": "/tai-lieu",
+  "t-budget": "/tai-lieu",
+  "t-fire": "/tai-lieu",
+  "t-dcf": "/tai-lieu",
 };
 
 function sampleLessonsOf(t: Dictionary): SearchResultItem[] {

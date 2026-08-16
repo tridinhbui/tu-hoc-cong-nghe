@@ -73,11 +73,6 @@
     "subtitle": "Before learning to invest or save, you need to know exactly what your numbers are today.",
     "duration": "6 min"
   },
-  "ba-cach-tinh-var-va-danh-doi-cua-tung-cach": {
-    "title": "Market Risk, Lesson 1: three ways to compute VaR - and what each one costs you",
-    "subtitle": "Historical, parametric and Monte Carlo: which assumption breaks, and which direction it skews the number",
-    "duration": "12 min"
-  },
   "bai-cuoi-phan-tich-doanh-nghiep-hoan-chinh": {
     "title": "Final lesson - Analyze a complete company from A to Z yourself",
     "subtitle": "Applying all 200 days to a real analysis workflow"
@@ -397,351 +392,6 @@
     "subtitle": "How much debt is 'just enough' - not too little, not too much",
     "duration": "7 min"
   },
-  "cfa-alt-chien-luoc-hedge-fund": {
-    "title": "CFA Alternatives 6: The four hedge fund strategy groups and the risk particular to each",
-    "subtitle": "Equity, event, relative value, macro - and why 'hedge fund' is not an asset class",
-    "duration": "11 min"
-  },
-  "cfa-alt-dac-diem-chung-tai-san-thay-the": {
-    "title": "CFA Alternatives 1: What puts an asset in the 'alternative' group",
-    "subtitle": "Not because it is exotic, but because four characteristics appear together: illiquidity, sparse valuation, leverage, and two tiers of fees",
-    "duration": "10 min"
-  },
-  "cfa-alt-do-hieu-suat-tai-san-thay-the": {
-    "title": "CFA Alternatives 2: Why ordinary performance measures give the wrong answer for this group",
-    "subtitle": "Return smoothing, stale prices, and three biases that make hedge fund indices look better than reality",
-    "duration": "11 min"
-  },
-  "cfa-alt-ha-tang-infrastructure": {
-    "title": "CFA Alternatives 4: Infrastructure - the longest-dated asset in the portfolio",
-    "subtitle": "Brownfield and greenfield, inflation-linked cash flow, and political risk as a real risk",
-    "duration": "10 min"
-  },
-  "cfa-alt-no-tu-nhan-private-debt": {
-    "title": "CFA Alternatives 3: Private debt - direct lending, mezzanine and distressed",
-    "subtitle": "The fastest-growing asset group after the crisis, and why the banks gave up the field",
-    "duration": "11 min"
-  },
-  "cfa-alt-tai-nguyen-nong-lam-nghiep": {
-    "title": "CFA Alternatives 5: Farmland and timberland - two assets that both yield and appreciate",
-    "subtitle": "A compound source of return, the ability to defer the harvest, and why they correlate so little with equities",
-    "duration": "10 min"
-  },
-  "cfa-alt-tai-san-so-trong-danh-muc": {
-    "title": "CFA Alternatives 7: Digital assets seen through the alternatives framework",
-    "subtitle": "Classifying by function, the custody mechanism, and why 'uncorrelated' is a claim that needs testing",
-    "duration": "10 min"
-  },
-  "cfa-alt-vai-tro-trong-danh-muc": {
-    "title": "CFA Alternatives 8: Putting alternatives into a portfolio - how much, and on what conditions",
-    "subtitle": "The liquidity budget, unfunded commitments, and why the optimiser gives you the wrong answer",
-    "duration": "11 min"
-  },
-  "cfa-economics-business-cycles": {
-    "title": "CFA Economics: Business Cycles",
-    "subtitle": "The four phases of an economy and how professional investors read the cycle's signals",
-    "duration": "8 min"
-  },
-  "cfa-economics-can-can-thanh-toan-che-do-ty-gia": {
-    "title": "CFA Economics: The balance of payments and exchange rate regimes",
-    "subtitle": "Is a current account deficit a bad sign, and why no country can hold all three objectives at once",
-    "duration": "8 min"
-  },
-  "cfa-economics-chinh-sach-tien-te-sbv": {
-    "title": "CFA Economics: Monetary policy at the State Bank of Vietnam",
-    "subtitle": "The refinancing rate, reserve requirements and open market operations - the SBV's three main instruments",
-    "duration": "8 min"
-  },
-  "cfa-economics-co-che-truyen-dan-tien-te": {
-    "title": "CFA Economics: The monetary policy transmission mechanism",
-    "subtitle": "From the central bank changing a rate to the economy feeling it: the route, and the lag",
-    "duration": "8 min"
-  },
-  "cfa-economics-cung-cau-do-co-gian": {
-    "title": "CFA Economics: Supply, demand and elasticity",
-    "subtitle": "Why raising prices sometimes lifts revenue and sometimes kills it",
-    "duration": "8 min"
-  },
-  "cfa-economics-dieu-hanh-ty-gia-vnd": {
-    "title": "CFA Economics: Case - managing the dong through a period of volatility",
-    "subtitle": "The central parity and the fluctuation band - how Vietnam runs a currency that neither floats freely nor is rigidly fixed",
-    "duration": "8 min"
-  },
-  "cfa-economics-fiscal-policy": {
-    "title": "CFA Economics: Fiscal Policy",
-    "subtitle": "How governments use taxation and public spending to steer an economy",
-    "duration": "7 min"
-  },
-  "cfa-economics-fx-capital-flows": {
-    "title": "CFA Economics: FX markets & international capital flows",
-    "subtitle": "What sets an exchange rate, and why capital moves between countries",
-    "duration": "8 min"
-  },
-  "cfa-economics-international-trade": {
-    "title": "CFA Economics: International trade",
-    "subtitle": "Comparative advantage, tariffs, and why countries still trade when they could make it themselves",
-    "duration": "7 min"
-  },
-  "cfa-economics-ly-thuyet-doanh-nghiep-chi-phi": {
-    "title": "CFA Economics: Theory of the firm - marginal cost & economies of scale",
-    "subtitle": "Why a firm produces up to the point where marginal revenue equals marginal cost, not up to maximum output",
-    "duration": "8 min"
-  },
-  "cfa-economics-market-structures": {
-    "title": "CFA Economics: Market structures",
-    "subtitle": "From perfect competition to monopoly - market structure decides how much pricing power a firm has",
-    "duration": "7 min"
-  },
-  "cfa-economics-tang-truong-kinh-te-nang-suat": {
-    "title": "CFA Economics: Economic growth & productivity",
-    "subtitle": "Why, over the long run, only productivity makes a country richer",
-    "duration": "8 min"
-  },
-  "cfa-economics-tong-cung-tong-cau": {
-    "title": "CFA Economics: Aggregate demand and aggregate supply (AD/AS)",
-    "subtitle": "The framework for answering: will this shock push up inflation, or push up unemployment?",
-    "duration": "8 min"
-  },
-  "cfa-ethics-bo-may-tuan-thu-thuc-te": {
-    "title": "CFA Ethics 36: How a compliance function actually works - walls, lists and pre-clearance",
-    "subtitle": "From principles on paper to the concrete mechanisms that stop a violation before it happens",
-    "duration": "10 min"
-  },
-  "cfa-ethics-case-chuyen-viec-va-khach-hang": {
-    "title": "CFA Ethics 46: Case - changing jobs, and what you may take with you",
-    "subtitle": "A chain of decisions across three months, and which standard fires at each step",
-    "duration": "11 min"
-  },
-  "cfa-ethics-case-co-hoi-dau-tu-ca-nhan": {
-    "title": "CFA Ethics 45: Case - an investment opportunity reaches you before it reaches your clients",
-    "subtitle": "Allocation, priority and disclosure - three standards touching one decision",
-    "duration": "10 min"
-  },
-  "cfa-ethics-case-phat-hien-sai-pham": {
-    "title": "CFA Ethics 47: Case - discovering misconduct where you work",
-    "subtitle": "The order of the steps, the limits of any duty to report, and the point at which leaving is the right answer",
-    "duration": "11 min"
-  },
-  "cfa-ethics-case-ra-mat-quy-moi": {
-    "title": "CFA Ethics 48: Case - launching a new fund, and everything that can go wrong in the offering document",
-    "subtitle": "Simulated performance, designations, benchmarks and promises - four standards in one set of materials",
-    "duration": "11 min"
-  },
-  "cfa-ethics-case-standard-1-2": {
-    "title": "CFA Ethics 5: In-depth case studies - Standard I & II",
-    "subtitle": "Professionalism and Integrity of Capital Markets, worked through real situations",
-    "duration": "9 min"
-  },
-  "cfa-ethics-case-standard-3-4": {
-    "title": "CFA Ethics 6: In-depth case studies - Standard III & IV",
-    "subtitle": "Duties to Clients and Duties to Employers, worked through real situations",
-    "duration": "9 min"
-  },
-  "cfa-ethics-case-standard-6-7": {
-    "title": "CFA Ethics 8: In-depth case studies - Standard VI & VII",
-    "subtitle": "Conflicts of Interest and Responsibilities as a CFA Member or Candidate",
-    "duration": "8 min"
-  },
-  "cfa-ethics-case-studies": {
-    "title": "CFA Ethics 3: Case studies applying the Standards to real situations",
-    "subtitle": "Practising the classification skill through CFA Level I style scenarios",
-    "duration": "9 min"
-  },
-  "cfa-ethics-case-suc-ep-tu-bo-phan-ban-hang": {
-    "title": "CFA Ethics 44: Case - an analyst under pressure from the underwriting desk",
-    "subtitle": "One situation, four standards, and the order of the steps",
-    "duration": "11 min"
-  },
-  "cfa-ethics-case-tong-hop-standards": {
-    "title": "CFA Ethics 14: Composite case - spotting layered breaches in one real situation",
-    "subtitle": "A financial scandal rarely breaches only a single Standard",
-    "duration": "9 min"
-  },
-  "cfa-ethics-code-of-ethics": {
-    "title": "CFA Ethics 1: Code of Ethics - why this is the heaviest subject in the CFA exam",
-    "subtitle": "The six founding ethical principles every CFA charterholder has to live by",
-    "duration": "8 min"
-  },
-  "cfa-ethics-dung-nghien-cuu-ben-thu-ba": {
-    "title": "CFA Ethics 43: Using third-party research - the responsibility stays yours",
-    "subtitle": "Vetting the source, understanding the method, and when diligence counts as sufficient",
-    "duration": "10 min"
-  },
-  "cfa-ethics-gips-esg-greenwashing": {
-    "title": "CFA Ethics 13: GIPS extended - ESG ethics and the risk of greenwashing",
-    "subtitle": "When \"sustainable investing\" becomes a marketing device rather than a real commitment",
-    "duration": "8 min"
-  },
-  "cfa-ethics-gips-kiem-chung-va-composite": {
-    "title": "CFA Ethics 35: GIPS at the operating level - who may claim compliance, and what verification actually is",
-    "subtitle": "Compliance at firm level, the rules for building a composite, and the difference between verification and a performance examination",
-    "duration": "10 min"
-  },
-  "cfa-ethics-gips-standards": {
-    "title": "CFA Ethics 4: GIPS Standards - the rules for presenting investment performance",
-    "subtitle": "Why an advertised \"30% average annual return\" is almost always worth a second look",
-    "duration": "8 min"
-  },
-  "cfa-ethics-khung-ra-quyet-dinh-dao-duc": {
-    "title": "CFA Ethics 15: The ethical decision-making framework - the tool for when no Standard is obvious yet",
-    "subtitle": "The exam gives you a situation it has never shown before, not the name of a Standard - this framework is where you start",
-    "duration": "10 min"
-  },
-  "cfa-ethics-mosaic-theory": {
-    "title": "CFA Ethics 20: Mosaic theory - the line between excellent analysis and insider dealing",
-    "subtitle": "Why assembling many non-material pieces is lawful, while a single material one is not",
-    "duration": "11 min"
-  },
-  "cfa-ethics-niem-tin-trong-nganh-dau-tu": {
-    "title": "CFA Ethics 16: Why the investment industry depends on trust more than any other",
-    "subtitle": "The product is a promise about the future, and the buyer has almost no way to verify it",
-    "duration": "9 min"
-  },
-  "cfa-ethics-quy-trinh-xu-ly-ky-luat": {
-    "title": "CFA Ethics 42: What happens when a complaint is made - the CFA Institute disciplinary process",
-    "subtitle": "From how matters surface to the sanctions, and why cooperating with an investigation is a duty in its own right",
-    "duration": "9 min"
-  },
-  "cfa-ethics-standard-1-whistleblowing": {
-    "title": "CFA Ethics 11: Standard I(D) - Misconduct and what you owe when you spot wrongdoing",
-    "subtitle": "Staying silent in the face of wrongdoing is also a choice, and it carries ethical consequences",
-    "duration": "7 min"
-  },
-  "cfa-ethics-standard-1a-knowledge-of-the-law": {
-    "title": "CFA Ethics 17: Standard I(A) - when local law is looser than the Code of Ethics",
-    "subtitle": "The rule that picks the stricter side, and the duty to dissociate from a violation",
-    "duration": "10 min"
-  },
-  "cfa-ethics-standard-1b-doc-lap-khach-quan": {
-    "title": "CFA Ethics 18: Standard I(B) - where the pressure that bends analysis comes from",
-    "subtitle": "Gifts, issuer-paid research, and the pressure coming from the sell side itself",
-    "duration": "11 min"
-  },
-  "cfa-ethics-standard-1c-trinh-bay-sai-lech": {
-    "title": "CFA Ethics 19: Standard I(C) - plagiarism, attribution and AI-generated content",
-    "subtitle": "Misrepresentation does not need an intent to deceive before it becomes a violation",
-    "duration": "10 min"
-  },
-  "cfa-ethics-standard-1d-hanh-vi-ca-nhan": {
-    "title": "CFA Ethics 41: Standard I(D) - when conduct outside work touches professional standing",
-    "subtitle": "The line between private life and the profession, and three signs that make a private matter a professional one",
-    "duration": "9 min"
-  },
-  "cfa-ethics-standard-2-insider-trading-vn": {
-    "title": "CFA Ethics 9: Standard II - Material Nonpublic Information and Vietnamese securities law",
-    "subtitle": "Why \"knowing first, then buying\" is always the red line, under the CFA standards and under Vietnamese law alike",
-    "duration": "8 min"
-  },
-  "cfa-ethics-standard-2b-thao-tung-thi-truong": {
-    "title": "CFA Ethics 21: Standard II(B) - two kinds of manipulation, and why intent is what decides",
-    "subtitle": "Manipulation through trading and manipulation through information - the same act can be legitimate or not",
-    "duration": "10 min"
-  },
-  "cfa-ethics-standard-3-fiduciary-duty": {
-    "title": "CFA Ethics 10: Standard III - Duties to Clients and the fiduciary duty",
-    "subtitle": "Why \"put the client's interest above your own\" is easy to say and the hardest thing to apply",
-    "duration": "8 min"
-  },
-  "cfa-ethics-standard-3a-long-trung-thanh-than-trong": {
-    "title": "CFA Ethics 27: Standard III(A) - who the client is, and whose money soft dollars spend",
-    "subtitle": "Identifying the party you actually serve, and the limits of commissions traded for research",
-    "duration": "11 min"
-  },
-  "cfa-ethics-standard-3b-doi-xu-cong-bang": {
-    "title": "CFA Ethics 22: Standard III(B) - fair does not mean identical",
-    "subtitle": "Trade allocation, report distribution, and the right to different service levels for different fees",
-    "duration": "10 min"
-  },
-  "cfa-ethics-standard-3c-tinh-phu-hop": {
-    "title": "CFA Ethics 28: Standard III(C) - suitable for whom, and what about client-directed orders",
-    "subtitle": "Judged at portfolio level rather than trade by trade, and how to handle a request that cuts against the IPS",
-    "duration": "10 min"
-  },
-  "cfa-ethics-standard-3d-trinh-bay-hieu-suat": {
-    "title": "CFA Ethics 23: Standard III(D) - what an honest performance number looks like",
-    "subtitle": "Survivorship bias, cherry-picked periods, and backtested performance",
-    "duration": "10 min"
-  },
-  "cfa-ethics-standard-3e-bao-mat-thong-tin": {
-    "title": "CFA Ethics 29: Standard III(E) - client confidentiality and its three exceptions",
-    "subtitle": "A duty that outlives the relationship, and when disclosure is permitted",
-    "duration": "9 min"
-  },
-  "cfa-ethics-standard-4a-trung-thanh-nha-tuyen-dung": {
-    "title": "CFA Ethics 30: Standard IV(A) - how to leave a job properly",
-    "subtitle": "Before you go, after you go, and the limits of inviting clients to follow",
-    "duration": "11 min"
-  },
-  "cfa-ethics-standard-4b-thu-lao-them": {
-    "title": "CFA Ethics 24: Standard IV(B) - every payment outside your salary has to reach your employer",
-    "subtitle": "Side work, payments from clients, and why a verbal yes is not enough",
-    "duration": "9 min"
-  },
-  "cfa-ethics-standard-4c-trach-nhiem-giam-sat": {
-    "title": "CFA Ethics 31: Standard IV(C) - 'I didn't know' is not a defence",
-    "subtitle": "The reasonable steps a supervisor must take, and liability when the control system does not exist",
-    "duration": "10 min"
-  },
-  "cfa-ethics-standard-5-deep-dive": {
-    "title": "CFA Ethics 7: Ethics in investment research - Standard V in detail",
-    "subtitle": "Diligence, Reasonable Basis and Communication - the three pillars of a research report anyone can trust",
-    "duration": "9 min"
-  },
-  "cfa-ethics-standard-5b-trao-doi-voi-khach-hang": {
-    "title": "CFA Ethics 25: Standard V(B) - separating fact from opinion when you talk to a client",
-    "subtitle": "State the process, the limits of the model, and what has changed since last time",
-    "duration": "10 min"
-  },
-  "cfa-ethics-standard-5c-luu-tru-ho-so": {
-    "title": "CFA Ethics 32: Standard V(C) - the file is all that is left when someone asks again",
-    "subtitle": "What to keep, how long to keep it, and why the records belong to the firm rather than to you",
-    "duration": "9 min"
-  },
-  "cfa-ethics-standard-6-conflict-of-interest-ma": {
-    "title": "CFA Ethics 12: Standard VI - conflicts of interest in M&A advisory",
-    "subtitle": "When an investment bank advises both the buyer and the seller - or something worse",
-    "duration": "8 min"
-  },
-  "cfa-ethics-standard-6a-cong-bo-xung-dot": {
-    "title": "CFA Ethics 33: Standard VI(A) - what to disclose, to whom, and where",
-    "subtitle": "The 'could reasonably be expected to impair' test, and why a footnote does not count as disclosure",
-    "duration": "10 min"
-  },
-  "cfa-ethics-standard-6b-thu-tu-uu-tien-giao-dich": {
-    "title": "CFA Ethics 39: Standard VI(B) - clients come first, and whose account is a relative's",
-    "subtitle": "Front-running client orders, allocating short supply, and where a family account sits",
-    "duration": "10 min"
-  },
-  "cfa-ethics-standard-6c-phi-gioi-thieu": {
-    "title": "CFA Ethics 40: Standard VI(C) - a referral fee must be disclosed whichever way it flows",
-    "subtitle": "Receiving fees, paying fees, and the arrangements that are not money at all",
-    "duration": "9 min"
-  },
-  "cfa-ethics-standard-7a-ky-thi-va-chuong-trinh": {
-    "title": "CFA Ethics 34: Standard VII(A) - protecting the very exam you are sitting",
-    "subtitle": "Exam confidentiality, honest applications, and why sharing 'exam experience' can be a breach",
-    "duration": "9 min"
-  },
-  "cfa-ethics-standard-7b-dung-danh-xung-cfa": {
-    "title": "CFA Ethics 26: Standard VII(B) - using the CFA designation properly, and why the rules are this tight",
-    "subtitle": "Charterholder, candidate, and the harmless-sounding phrasings that are breaches",
-    "duration": "9 min"
-  },
-  "cfa-ethics-standards-of-conduct": {
-    "title": "CFA Ethics 2: the 7 Standards of Professional Conduct",
-    "subtitle": "From abstract principle to the concrete rules of conduct the CFA exam keeps testing",
-    "duration": "9 min"
-  },
-  "cfa-ethics-thuat-toan-va-ai-trong-dau-tu": {
-    "title": "CFA Ethics 37: When an algorithm decides - who is responsible",
-    "subtitle": "Reasonable basis for a model, bias in the data, and the duty to explain it to clients",
-    "duration": "11 min"
-  },
-  "cfa-ethics-van-dung-thi-truong-viet-nam": {
-    "title": "CFA Ethics 38: Applying it in the Vietnamese market - where the Code is stricter than the law",
-    "subtitle": "Personal relationships, boardroom information, and the areas domestic rules have not yet reached",
-    "duration": "11 min"
-  },
   "chi-phi-duoc-tru-va-khong-duoc-tru": {
     "title": "Standards & Tax, Lesson 6: Deductible and non-deductible expenses",
     "subtitle": "Why accounting profit and taxable profit are never the same number",
@@ -805,11 +455,6 @@
     "title": "Professional Skills, Lesson 3: Preparing for the modelling test and the case interview",
     "subtitle": "Time management, the order in which you build a model, and how to think out loud while working",
     "duration": "12 min"
-  },
-  "chung-khoan-hoa-va-cau-truc-cdo": {
-    "title": "FRM Credit Risk, Lesson 2: Securitization and structured credit risk (CDOs)",
-    "subtitle": "How thousands of individual loans become a AAA-rated security - and why the tranching decides everything",
-    "duration": "10 min"
   },
   "chuoi-thoi-gian-va-kiem-chung-ngoai-mau": {
     "title": "Quantitative, Lesson 6: Time series and out-of-sample validation - why a backtest always looks better than reality",
@@ -938,11 +583,6 @@
     "title": "Journal entries in practice: from the rule to the ledger",
     "subtitle": "Debits and credits for the transactions you meet every day, and a startup's first month",
     "duration": "7 min"
-  },
-  "credit-default-swap-co-che-va-dinh-gia": {
-    "title": "FRM Credit Risk, Lesson 1: The Credit Default Swap (CDS) - mechanics and basic pricing",
-    "subtitle": "Buying insurance on a debt you do not even need to hold the bond for",
-    "duration": "10 min"
   },
   "credit-rating": {
     "title": "Credit Rating",
@@ -1151,11 +791,6 @@
     "subtitle": "Why IRR can mislead, and which set of metrics actually tells you the money has come back",
     "duration": "12 min"
   },
-  "do-luong-rui-ro-van-hanh-lda": {
-    "title": "FRM Operational, lesson 1: measuring operational risk with the Loss Distribution Approach (LDA)",
-    "subtitle": "Frequency × severity: how to quantify a risk long treated as \"unmeasurable\"",
-    "duration": "10 min"
-  },
   "doanh-thu-ghi-nhan": {
     "title": "Revenue: when is it recognised?",
     "subtitle": "Accrual vs cash - two different views of the same transaction",
@@ -1321,11 +956,6 @@
     "subtitle": "The value that belongs to shareholders differs from the value of the whole operating business",
     "duration": "6 min"
   },
-  "erm-khung-quan-tri-rui-ro-doanh-nghiep": {
-    "title": "FRM Foundations, Lesson 1: The Enterprise Risk Management (ERM) framework",
-    "subtitle": "Three lines of defence, risk appetite and risk limits: why risk is not the risk department's private business",
-    "duration": "10 min"
-  },
   "esg-investing-screening-den-portfolio": {
     "title": "ESG Investing: from screening to portfolio construction",
     "subtitle": "Exclusionary screening, best-in-class, impact investing - the different ESG investing strategies and when to use which",
@@ -1368,11 +998,6 @@
     "title": "A portfolio's expected return",
     "subtitle": "A portfolio's expected return is the weighted average of its components",
     "duration": "6 min"
-  },
-  "expected-shortfall-va-thuoc-do-rui-ro-nhat-quan": {
-    "title": "Market Risk, Lesson 3: Expected Shortfall - and why Basel dropped VaR",
-    "subtitle": "The four properties of a coherent risk measure, the subadditivity VaR violates, and what ES costs you",
-    "duration": "12 min"
   },
   "fcf-deep-dive": {
     "title": "Free Cash Flow - a closer reading",
@@ -1467,301 +1092,6 @@
     "title": "What is Free Cash Flow?",
     "subtitle": "OCF − CapEx = the cash a business is genuinely free to use",
     "duration": "6 min"
-  },
-  "frm-ai-machine-learning-trong-quan-tri-rui-ro": {
-    "title": "FRM Current Issues, Lesson 4: AI and machine learning in risk management",
-    "subtitle": "Better predictions, worse explanations - and the regulator wants both",
-    "duration": "9 min"
-  },
-  "frm-anh-xa-vi-the-vao-nhan-to-rui-ro": {
-    "title": "Market Risk, Lesson 9: Mapping positions onto risk factors",
-    "subtitle": "Nobody models every single bond - and how you choose to aggregate decides the VaR number",
-    "duration": "9 min"
-  },
-  "frm-bat-on-ngan-hang-2023-bai-hoc": {
-    "title": "FRM Current Issues, Lesson 9: The 2023 banking stress and three lessons",
-    "subtitle": "Interest rate risk in the banking book, uninsured deposits, and the speed of a digital run",
-    "duration": "10 min"
-  },
-  "frm-bcbs-239-du-lieu-rui-ro": {
-    "title": "FRM Foundations, Lesson 9: BCBS 239 - risk data aggregation and data quality",
-    "subtitle": "If the numbers cannot be pulled together within hours, every sophisticated model is useless once a crisis breaks",
-    "duration": "9 min"
-  },
-  "frm-black-scholes-gia-dinh-va-gioi-han": {
-    "title": "FRM Valuation, Lesson 3: Black-Scholes-Merton - assumptions and limits",
-    "subtitle": "The most famous formula in finance, and the five assumptions real markets violate every day",
-    "duration": "10 min"
-  },
-  "frm-bon-lua-chon-voi-mot-rui-ro": {
-    "title": "FRM Foundations, Lesson 12: Four things you can do with a risk - avoid, reduce, transfer, retain",
-    "subtitle": "Hedging is not always right, and leaving a risk in place is not always wrong",
-    "duration": "9 min"
-  },
-  "frm-bootstrapping-tai-chon-mau": {
-    "title": "FRM Quant, Lesson 7: Bootstrapping and resampling techniques",
-    "subtitle": "Using the data itself as the distribution, instead of imposing a theoretical shape on it",
-    "duration": "9 min"
-  },
-  "frm-cac-greeks-delta-gamma-vega-theta": {
-    "title": "FRM Valuation, Lesson 4: The Greeks - delta, gamma, vega, theta, rho",
-    "subtitle": "Five versions of the question \"if this moves, how much does my position move?\"",
-    "duration": "10 min"
-  },
-  "frm-capm-va-mo-hinh-da-nhan-to": {
-    "title": "FRM Foundations, Lesson 7: CAPM and multi-factor models in risk management",
-    "subtitle": "One factor is not enough - why APT and the multi-factor models appeared",
-    "duration": "9 min"
-  },
-  "frm-cay-nhi-thuc-dinh-gia-quyen-chon": {
-    "title": "FRM Valuation, Lesson 2: The binomial tree for option pricing",
-    "subtitle": "The simplest model showing the whole logic - and the only one that can price an American option",
-    "duration": "10 min"
-  },
-  "frm-cbdc-va-he-thong-ngan-hang": {
-    "title": "FRM Current Issues, Lesson 7: Central bank digital currency and the banking system",
-    "subtitle": "If anyone can hold a deposit straight at the central bank, what is left for commercial banks",
-    "duration": "9 min"
-  },
-  "frm-chuyen-doi-libor-sang-lai-suat-tham-chieu-moi": {
-    "title": "FRM Current Issues, Lesson 6: From LIBOR to the new reference rates",
-    "subtitle": "Replacing one number sitting inside hundreds of trillions of dollars of contracts - and what it teaches about benchmark risk",
-    "duration": "9 min"
-  },
-  "frm-dich-vu-trong-yeu-va-nguong-chiu-dung": {
-    "title": "FRM Operational, Lesson 7: Important business services and impact tolerances",
-    "subtitle": "The question is not whether the system will fail, but how long it can be down before customers are really harmed",
-    "duration": "10 min"
-  },
-  "frm-dinh-gia-khong-kinh-doanh-chenh-lech-gia": {
-    "title": "FRM Valuation, Lesson 1: The no-arbitrage principle",
-    "subtitle": "The first brick of every valuation model - and why valuation does not need to know where you think the price is going",
-    "duration": "9 min"
-  },
-  "frm-do-hieu-qua-dieu-chinh-rui-ro": {
-    "title": "FRM Foundations, Lesson 6: Risk-adjusted performance - Sharpe, Treynor, Jensen, IR",
-    "subtitle": "Four measures answering one question, but the denominators differ so the conclusions differ too",
-    "duration": "10 min"
-  },
-  "frm-du-lieu-ton-that-ben-ngoai": {
-    "title": "FRM Operational, Lesson 5: External loss data - borrowing someone else's tail",
-    "subtitle": "Why you cannot take another bank's figure straight off the page, and how to scale it properly",
-    "duration": "9 min"
-  },
-  "frm-dv01-duration-hieu-dung-convexity": {
-    "title": "FRM Valuation, Lesson 5: DV01, effective duration and convexity",
-    "subtitle": "The delta and gamma of the bond world, under different names",
-    "duration": "9 min"
-  },
-  "frm-frtb-so-giao-dich": {
-    "title": "Market Risk, Lesson 7: FRTB - redrawing the boundary between the trading book and the banking book",
-    "subtitle": "Why Basel had to rewrite the entire market risk capital framework after 2008",
-    "duration": "10 min"
-  },
-  "frm-funds-transfer-pricing": {
-    "title": "FRM Liquidity, Lesson 8: Funds transfer pricing (FTP)",
-    "subtitle": "If raising long-term funding costs the business line nothing, they will fund everything with short-term money",
-    "duration": "9 min"
-  },
-  "frm-garp-code-of-conduct": {
-    "title": "FRM Foundations, Lesson 8: The GARP Code of Conduct - ethics for the risk professional",
-    "subtitle": "Someone who warns about risk is only worth having if they dare say what nobody wants to hear",
-    "duration": "8 min"
-  },
-  "frm-key-rate-duration-rui-ro-duong-cong": {
-    "title": "Market Risk, Lesson 8: Key rate duration - when the curve does not shift in parallel",
-    "subtitle": "A portfolio with zero duration can still lose heavily when the curve rotates",
-    "duration": "10 min"
-  },
-  "frm-khau-vi-rui-ro-va-han-muc": {
-    "title": "FRM Foundations, Lesson 5: Risk appetite, tolerance and the limit framework",
-    "subtitle": "From one sentence signed off by the board down to the limit on a trader's screen",
-    "duration": "9 min"
-  },
-  "frm-liquidity-gap-va-cash-flow-ladder": {
-    "title": "FRM Liquidity, Lesson 7: The liquidity gap and the cash flow ladder",
-    "subtitle": "The simplest tool for seeing which day the institution runs short of cash, before that day arrives",
-    "duration": "9 min"
-  },
-  "frm-ly-thuyet-gia-tri-cuc-tri": {
-    "title": "FRM Quant, Lesson 8: Fat tails and extreme value theory",
-    "subtitle": "How to say something defensible about events rarer than the data you hold",
-    "duration": "10 min"
-  },
-  "frm-ma-tran-tuong-quan-va-pca": {
-    "title": "FRM Quant, Lesson 9: The covariance matrix and principal component analysis",
-    "subtitle": "When a portfolio has hundreds of risk factors, most of the variation usually comes from a handful of dimensions",
-    "duration": "10 min"
-  },
-  "frm-machine-learning-trong-quan-tri-rui-ro": {
-    "title": "FRM Quant, Lesson 3: Machine learning in risk management - and its three traps",
-    "subtitle": "Overfitting, data leakage, and a model that is accurate but that nobody can explain",
-    "duration": "10 min"
-  },
-  "frm-mo-phong-monte-carlo": {
-    "title": "FRM Quant, Lesson 6: Monte Carlo simulation and variance reduction",
-    "subtitle": "When the problem has no closed-form solution, you generate tens of thousands of fake futures and count",
-    "duration": "10 min"
-  },
-  "frm-netting-va-tai-san-bao-dam-doi-tac": {
-    "title": "FRM Credit Risk, Lesson 5: Netting and collateral - cutting counterparty exposure",
-    "subtitle": "For the same derivatives book, exposure can differ several times over because of a single contractual clause",
-    "duration": "10 min"
-  },
-  "frm-phan-loai-rui-ro-tai-chinh": {
-    "title": "FRM Foundations, Lesson 4: Classifying financial risk - the map before the measurement",
-    "subtitle": "Market, credit, operational, liquidity, strategic, reputational - and why the boundaries between them always leak",
-    "duration": "9 min"
-  },
-  "frm-phan-loai-su-kien-rui-ro-hoat-dong": {
-    "title": "FRM Operational, Lesson 9: The seven Basel event types and internal loss data",
-    "subtitle": "If you cannot classify an event you cannot build a loss distribution - and you cannot compute capital",
-    "duration": "9 min"
-  },
-  "frm-phan-ra-rui-ro-giua-cac-ban": {
-    "title": "Market Risk, Lesson 10: Risk decomposition - why the desks' VaRs sum to more than the bank's",
-    "subtitle": "Marginal, incremental and component VaR - three different questions, three different numbers",
-    "duration": "9 min"
-  },
-  "frm-phan-tich-kich-ban-rui-ro-hoat-dong": {
-    "title": "FRM Operational, Lesson 4: Scenario analysis - measuring what has never happened",
-    "subtitle": "Internal data can only tell you about what has already occurred, and the tail by definition has not",
-    "duration": "10 min"
-  },
-  "frm-phan-tich-quy-ket-hieu-qua-danh-muc": {
-    "title": "FRM Investment, Lesson 1: Performance attribution - where did that return come from",
-    "subtitle": "Separating the part from asset allocation, the part from stock selection, and the part from luck",
-    "duration": "9 min"
-  },
-  "frm-quan-tri-rui-ro-cap-hoi-dong": {
-    "title": "FRM Foundations, Lesson 11: Board-level risk governance - who does the CRO report to",
-    "subtitle": "Why the chief risk officer's reporting line matters more than the content of the report",
-    "duration": "9 min"
-  },
-  "frm-quan-tri-tai-san-bao-dam": {
-    "title": "FRM Liquidity, Lesson 10: Collateral management and haircuts",
-    "subtitle": "Collateral is a source of liquidity in calm markets and a channel that spreads stress when they turn",
-    "duration": "9 min"
-  },
-  "frm-raroc-va-von-kinh-te": {
-    "title": "FRM Foundations, Lesson 10: RAROC and economic capital - the price of risk measured in capital",
-    "subtitle": "Why a desk earning 100bn can be destroying value while a desk earning 40bn is not",
-    "duration": "10 min"
-  },
-  "frm-rcsa-va-kri": {
-    "title": "FRM Operational, Lesson 10: RCSA and key risk indicators",
-    "subtitle": "Loss data looks backwards - RCSA and KRIs are the two tools that look forward",
-    "duration": "9 min"
-  },
-  "frm-repo-va-tai-tro-co-bao-dam": {
-    "title": "FRM Liquidity, Lesson 5: Repo and secured funding - why the safest source disappears first",
-    "subtitle": "Funding against collateral sounds safe, right up until haircuts rise and the whole market has to sell at once",
-    "duration": "10 min"
-  },
-  "frm-rui-ro-an-ninh-mang": {
-    "title": "FRM Operational, Lesson 11: Cyber risk and technology resilience",
-    "subtitle": "The one operational risk category with an active adversary trying to get past your controls",
-    "duration": "9 min"
-  },
-  "frm-rui-ro-con-nguoi-trong-van-hanh": {
-    "title": "FRM Operational, Lesson 8: People risk - key staff, incentives and a speak-up culture",
-    "subtitle": "A process is only as good as what people do when nobody is watching",
-    "duration": "9 min"
-  },
-  "frm-rui-ro-danh-tieng-va-chien-luoc": {
-    "title": "FRM Foundations, Lesson 14: Reputational and strategic risk - the two with no model",
-    "subtitle": "Something that cannot be measured with a probability distribution can still be the thing that kills the firm fastest",
-    "duration": "9 min"
-  },
-  "frm-rui-ro-gian-lan-va-kiem-soat": {
-    "title": "FRM Operational, Lesson 12: Fraud risk and control design",
-    "subtitle": "The fraud triangle: pressure, opportunity and rationalisation - controls can only reach one side",
-    "duration": "9 min"
-  },
-  "frm-rui-ro-hanh-vi-va-tuan-thu": {
-    "title": "FRM Operational, Lesson 14: Conduct, legal and compliance risk",
-    "subtitle": "Selling within the law can still be wrong - when the product does not suit the person buying it",
-    "duration": "9 min"
-  },
-  "frm-rui-ro-khi-hau-va-stress-test-khi-hau": {
-    "title": "FRM Current Issues, Lesson 5: Climate risk and climate stress testing",
-    "subtitle": "Physical risk, transition risk, and a problem with no historical data to calibrate against",
-    "duration": "9 min"
-  },
-  "frm-rui-ro-quan-ly-thay-doi": {
-    "title": "FRM Operational, Lesson 6: Change risk - most incidents begin with a deployment",
-    "subtitle": "The system runs for six months and then breaks at two in the morning on a Saturday, right after an update",
-    "duration": "9 min"
-  },
-  "frm-rui-ro-quy-phong-ho-va-thien-lech-du-lieu": {
-    "title": "FRM Investments, Lesson 2: Hedge fund risk - leverage, liquidity and data that lies",
-    "subtitle": "Why the average return of the hedge fund industry is always higher than what investors actually received",
-    "duration": "10 min"
-  },
-  "frm-rui-ro-tap-trung-danh-muc-tin-dung": {
-    "title": "FRM Credit Risk, Lesson 6: Concentration and correlation in a credit portfolio",
-    "subtitle": "A hundred loans to the same industry is not a diversified portfolio",
-    "duration": "10 min"
-  },
-  "frm-rui-ro-tap-trung-nha-cung-cap-dam-may": {
-    "title": "FRM Current Issues, Lesson 8: Cloud provider concentration risk",
-    "subtitle": "When a whole industry outsources to the same three companies, individual risk becomes systemic risk",
-    "duration": "9 min"
-  },
-  "frm-sai-so-chuan-vung-trong-hoi-quy": {
-    "title": "FRM Quant, Lesson 2: Robust standard errors - when the coefficient is right and the conclusion is wrong",
-    "subtitle": "Heteroskedasticity and autocorrelation do not bias the coefficient, they bias your confidence in it",
-    "duration": "9 min"
-  },
-  "frm-stress-test-thanh-khoan": {
-    "title": "FRM Liquidity, Lesson 9: Liquidity stress testing",
-    "subtitle": "One question only: if funding stops flowing today, how many days does the institution last",
-    "duration": "9 min"
-  },
-  "frm-thanh-khoan-noi-ngay": {
-    "title": "FRM Liquidity, Lesson 4: Intraday liquidity - the risk that never appears on the balance sheet",
-    "subtitle": "A bank can be perfectly liquid at close of business and still unable to settle at ten in the morning",
-    "duration": "9 min"
-  },
-  "frm-thanh-khoan-quy-dau-tu": {
-    "title": "FRM Liquidity, Lesson 11: Liquidity risk in investment funds and the defences against it",
-    "subtitle": "Promising daily redemption while holding assets that take weeks to sell is a promise that only survives calm markets",
-    "duration": "9 min"
-  },
-  "frm-thanh-khoan-thi-truong-va-tai-tro": {
-    "title": "FRM Liquidity, Lesson 6: Market liquidity and funding liquidity",
-    "subtitle": "Two different kinds of liquidity, and the spiral in which they drain each other",
-    "duration": "9 min"
-  },
-  "frm-thi-truong-chi-tra-cho-rui-ro-he-thong": {
-    "title": "FRM Foundations, Lesson 13: Why the market only pays for systematic risk",
-    "subtitle": "Carrying extra idiosyncratic risk is working for free - and that is the foundation of every asset pricing model",
-    "duration": "10 min"
-  },
-  "frm-tinh-dung-va-mo-hinh-ar-ma": {
-    "title": "FRM Quant, Lesson 1: Stationarity and AR, MA models - the precondition for any forecast",
-    "subtitle": "Regressing two non-stationary series gives a beautiful R² and a meaningless conclusion",
-    "duration": "10 min"
-  },
-  "frm-uoc-luong-hop-ly-cuc-dai": {
-    "title": "FRM Quant, Lesson 5: Maximum likelihood estimation and the method of moments",
-    "subtitle": "Two ways to pick the parameters of a distribution, and why that choice decides the final risk number",
-    "duration": "9 min"
-  },
-  "frm-von-cho-rui-ro-hoat-dong-sma": {
-    "title": "FRM Operational, Lesson 13: Operational risk capital and the standardised measurement approach",
-    "subtitle": "Why Basel abandoned internal models and went back to one standard formula for everyone",
-    "duration": "9 min"
-  },
-  "frm-xac-suat-va-dinh-ly-bayes": {
-    "title": "FRM Quant, Lesson 4: Conditional probability and Bayes' theorem in risk management",
-    "subtitle": "Why a warning system that is 99% accurate can still be wrong almost every time it fires",
-    "duration": "9 min"
-  },
-  "frm-xep-hang-tin-nhiem-noi-bo-va-ben-ngoai": {
-    "title": "FRM Valuation, Lesson 6: Internal ratings, external ratings and sovereign risk",
-    "subtitle": "Three letters standing behind trillions of dong in lending decisions - and what they do not say",
-    "duration": "9 min"
   },
   "future-value": {
     "title": "Future Value",
@@ -2012,11 +1342,6 @@
     "subtitle": "Debt-to-income - the ratio the bank uses, and the one you should set yourself",
     "duration": "6 min"
   },
-  "kha-nang-phuc-hoi-van-hanh-bcp-cyber": {
-    "title": "FRM Operational, Part 2: Operational resilience - BCP, DR and technology risk",
-    "subtitle": "Why \"measuring the loss\" is not enough - the firm also has to survive the disruption",
-    "duration": "9 min"
-  },
   "khau-hao-co-ban": {
     "title": "What is depreciation?",
     "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
@@ -2085,11 +1410,6 @@
     "title": "Quant, Lesson 3: Hypothesis testing - and the p-hacking trap in backtests",
     "subtitle": "The null hypothesis, the p-value, Type I and Type II errors, and why trying 100 strategies always turns up a pretty one",
     "duration": "12 min"
-  },
-  "kiem-dinh-hau-nghiem-var-backtesting": {
-    "title": "Market Risk, Lesson 2: VaR backtesting - counting how often the model is wrong",
-    "subtitle": "Expected breaches, the Kupiec test, the Basel traffic-light system and the clustering trap",
-    "duration": "11 min"
   },
   "kiem-toan-la-gi-va-bon-loai-y-kien": {
     "title": "Audit, Lesson 1: What an audit opinion asserts - and what it does not",
@@ -2324,11 +1644,6 @@
     "subtitle": "The 5C framework is the qualitative approach - a credit scoring model is the systematic quantitative approach the large banks actually run",
     "duration": "8 min"
   },
-  "mo-hinh-hoa-do-bien-dong-ewma-garch": {
-    "title": "Market Risk, Lesson 4: modelling volatility - EWMA and GARCH",
-    "subtitle": "Why volatility clusters, how to put decaying weight on old data, and what mean reversion to a long-run level actually means",
-    "duration": "12 min"
-  },
   "mo-hinh-lbo-don-gian": {
     "title": "Financial Modelling, Lesson 8: a simple LBO model",
     "subtitle": "Why leverage creates returns for a private equity fund",
@@ -2388,11 +1703,6 @@
     "subtitle": "After everything - costs, interest, and tax - how much is left?",
     "duration": "5 min"
   },
-  "ngan-hang-ngam-shadow-banking": {
-    "title": "FRM Current Issues, Lesson 1: shadow banking and systemic risk off the balance sheet",
-    "subtitle": "When banking functions are performed by institutions that are not supervised like banks",
-    "duration": "9 min"
-  },
   "ngan-sach-va-du-bao-tai-chinh": {
     "title": "Budgeting & financial forecasting - planning in order to steer",
     "subtitle": "From forecast to replanning when reality moves",
@@ -2417,11 +1727,6 @@
     "title": "Financial modelling, part 1: modelling principles - structure before formulas",
     "subtitle": "Why a broken model is usually a layout problem rather than an arithmetic one",
     "duration": "8 min"
-  },
-  "nhung-tham-hoa-tai-chinh-kinh-dien": {
-    "title": "FRM Foundations, part 3: the classic financial disasters and their shared pattern",
-    "subtitle": "LTCM, the 2008 crisis and the lesson that keeps repeating: leverage, mispriced correlation, and liquidity risk all arriving at once",
-    "duration": "11 min"
   },
   "no-co-loi-ich-gi": {
     "title": "What benefit does debt provide a business?",
@@ -2759,11 +2064,6 @@
     "subtitle": "An exchange rate move can wipe out the entire margin on a large order",
     "duration": "7 min"
   },
-  "quan-ly-tai-san-no-alm-irrbb": {
-    "title": "FRM Liquidity, Lesson 3: Asset-Liability Management (ALM) and interest rate risk in the banking book",
-    "subtitle": "Why a bank can lose heavily without trading at all - purely because the maturity structure of its assets and liabilities do not line up",
-    "duration": "10 min"
-  },
   "quan-ly-tai-san-qua-cac-giai-doan": {
     "title": "Stage 8, Lesson 9: Managing wealth across the stages of life",
     "subtitle": "The financial strategy that fits at 25 no longer fits at 55 - and that is entirely normal.",
@@ -2936,36 +2236,6 @@
     "subtitle": "Interest rate risk",
     "duration": "6 min"
   },
-  "rui-ro-lien-ket-he-thong-too-interconnected": {
-    "title": "FRM Current Issues, Lesson 2: Interconnection risk - too-interconnected-to-fail",
-    "subtitle": "Why size is not the only measure of how systemically important a financial institution is",
-    "duration": "9 min"
-  },
-  "rui-ro-mo-hinh-va-rui-ro-ben-thu-ba": {
-    "title": "FRM Operational, Lesson 3: Model risk and third-party risk",
-    "subtitle": "When the instrument that measures risk becomes a source of it - and why internal control does not stop at the edge of the organisation",
-    "duration": "9 min"
-  },
-  "rui-ro-tai-tro-va-ke-hoach-tai-tro-du-phong": {
-    "title": "FRM Liquidity, Lesson 2: Funding risk and the Contingency Funding Plan (CFP)",
-    "subtitle": "Measuring liquidity risk is not enough - the playbook has to exist before the crisis does",
-    "duration": "9 min"
-  },
-  "rui-ro-thanh-khoan-ngan-hang-lcr-nsfr": {
-    "title": "FRM Liquidity, Lesson 1: Bank liquidity risk - LCR and NSFR",
-    "subtitle": "The two Basel III ratios written after 2008 to answer: does the bank survive a month of panic, and is its funding structure sustainable over the long run",
-    "duration": "10 min"
-  },
-  "rui-ro-tin-dung-chu-quyen-sovereign-credit-risk": {
-    "title": "FRM Credit Risk, Lesson 4: Sovereign credit risk",
-    "subtitle": "A government cannot be forced into bankruptcy the way a company can - but it can still choose not to pay",
-    "duration": "9 min"
-  },
-  "rui-ro-tin-dung-doi-tac-cva-va-danh-muc": {
-    "title": "FRM Credit Risk, Lesson 3: Counterparty credit risk (CVA) and portfolio credit models",
-    "subtitle": "Why a derivative contract that is worth money to you can still cost you money",
-    "duration": "10 min"
-  },
   "rui-ro-ty-gia-tren-bao-cao-hop-nhat": {
     "title": "International Finance, Lesson 4: FX risk in the accounts - transaction, translation and economic",
     "subtitle": "Three different exposures, and why only one of the three actually costs the business money",
@@ -3034,20 +2304,10 @@
     "subtitle": "The four kinds of JOIN, the row-duplication trap, and the family of functions that solves ranking and running totals",
     "duration": "12 min"
   },
-  "stablecoin-va-rui-ro-he-thong-tai-san-so": {
-    "title": "FRM Current Issues, Lesson 3: Stablecoins and systemic risk from digital assets",
-    "subtitle": "A token that promises a \"1:1 peg\" can still lose that peg within hours - and take a whole ecosystem down with it",
-    "duration": "9 min"
-  },
   "standard-deviation-dau-tu": {
     "title": "Standard deviation in investing",
     "subtitle": "The mathematical tool that precisely measures volatility",
     "duration": "7 min"
-  },
-  "stress-testing-va-kich-ban-nguoc": {
-    "title": "Market Risk, Lesson 6: Stress testing and reverse scenarios - when the model is no longer enough",
-    "subtitle": "Historical and hypothetical scenarios, the reverse stress test, and why stress testing supplements VaR rather than replacing it",
-    "duration": "11 min"
   },
   "strike-price-expiration-date": {
     "title": "Strike Price and Expiration Date",
@@ -3437,11 +2697,6 @@
     "subtitle": "When to hire an advisor",
     "duration": "6 min"
   },
-  "tuong-quan-copula-va-phu-thuoc-duoi": {
-    "title": "Market Risk, Lesson 5: Correlation, copulas and tail dependence",
-    "subtitle": "Why a correlation coefficient does not describe enough, how dependence separates from the marginal distributions, and the lesson of 2008",
-    "duration": "12 min"
-  },
   "tuong-quan-khong-phai-nhan-qua": {
     "title": "Data Thinking, Lesson 4: Correlation is not causation - and three ways to be fooled",
     "subtitle": "Confounding, reverse causality, survivorship bias: three mechanisms that turn real data into a wrong conclusion",
@@ -3466,11 +2721,6 @@
     "title": "Value at Risk (VaR) & Stress Testing - Measuring the maximum risk",
     "subtitle": "When you cannot remove risk, the next best thing is to measure it accurately.",
     "duration": "8 min"
-  },
-  "van-hoa-rui-ro-va-dao-duc-nghe-quan-tri-rui-ro": {
-    "title": "FRM Foundations, Lesson 2: Risk culture - why the right structure can still fail",
-    "subtitle": "Misaligned incentives, behavioural bias, and the GARP Code of Conduct",
-    "duration": "9 min"
   },
   "vas-vs-ifrs-khac-biet-nen-tang": {
     "title": "Standards & Tax, Lesson 1: Where VAS and IFRS differ",

@@ -47,12 +47,6 @@ interface StationStruct {
 const STATION_STRUCT: StationStruct[] = [
   { id: "hoc-bai", side: -1, z: -6, href: "/hoc-bai", accent: "#e5b567" },
   { id: "kiem-tra", side: -1, z: 3, href: "/kiem-tra", accent: "#7dd3fc" },
-  { id: "on-tap", side: -1, z: 12, href: "/on-tap-cau-sai", accent: "#f0a3a3" },
-  { id: "cong-cu", side: -1, z: 21, href: "/cong-cu", accent: "#86efac" },
-  { id: "cfa", side: 1, z: -6, href: "/cfa", accent: "#c4b5fd" },
-  { id: "frm", side: 1, z: 3, href: "/frm", accent: "#fca5a5" },
-  { id: "phong-van", side: 1, z: 12, href: "/phong-van-ky-thuat", accent: "#fdba74" },
-  { id: "su-nghiep", side: 1, z: 21, href: "/su-nghiep", accent: "#5eead4" },
 ];
 
 /** Khoá tra chữ hiển thị trong `t.worldSpaces.lobbyStations`, theo đúng id
@@ -61,7 +55,6 @@ const STATION_COPY_KEY: Record<string, keyof Dictionary["worldSpaces"]["lobbySta
   "hoc-bai": "hocBai",
   "kiem-tra": "kiemTra",
   "on-tap": "onTap",
-  "cong-cu": "congCu",
   cfa: "cfa",
   frm: "frm",
   "phong-van": "phongVan",
@@ -103,7 +96,10 @@ export function stationsOf(t: Dictionary): Station[] {
  *  danh sách ngay từ đầu: để không bao giờ có chuyện thư viện có tám cửa còn
  *  toà tháp có bảy tầng. */
 export function stationRoomHref(station: Station): string {
-  return `/pho-nghe?phong=tang-${station.id}`;
+  // Khu phố nghề (/pho-nghe) đã bị gỡ cùng phần nghề tài chính, nên không còn
+  // tầng 3D nào để dẫn vào. Trả thẳng đường của trạm: cánh cửa vẫn mở ra đúng
+  // màn hình mà trạm đó đại diện, chỉ là không đi vòng qua phòng dựng hình nữa.
+  return station.href;
 }
 
 /** Cửa nằm trên tường ngoài của ban công. */

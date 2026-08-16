@@ -16,7 +16,6 @@ import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import { LessonApplicationCard, LessonQuestionCard, LessonSummaryCard, ReviewLoopCard } from "@/components/LessonLearningBlocks";
 import { getLessonDisplayLabel, getLessonRecallDay } from "@/lib/lesson-labels";
 import TypingText from "@/components/TypingText";
-import LessonRoomCard from "@/components/LessonRoomCard";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -415,7 +414,6 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 6.5. Đường sang căn phòng 3D dạy đúng điều này, nếu bài có một
           căn. Sau phần ghi nhớ chứ không phải đầu bài: ở đầu bài nó rủ người
           ta bỏ dở, ở đây nó là bước tiếp theo của người vừa tóm tắt xong. */}
-      <LessonRoomCard slug={lesson.slug} />
       </FreeRecallCard>
     </LessonPageLayout>
     </div>

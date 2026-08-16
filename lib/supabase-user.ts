@@ -5,12 +5,11 @@ import { getTotalGameXp } from "@/lib/games";
 import { getTotalReferralXp, rewardMyReferralIfPending } from "@/lib/referrals";
 import { getTotalQuestXp } from "@/lib/supabase-quests";
 import { getTotalChestXp } from "@/lib/chests";
-import { getTotalCareerMissionXp } from "@/lib/career-profile";
 import { getLevelByXp, XP_PER_LESSON } from "@/lib/levels";
-import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { getDictionary, readLocaleCookie } from "@/lib/i18n";
 
-const CFA_LESSON_IDS = new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
+// Các môn CFA đã bị gỡ, nên không còn bài nào tính là "bài CFA".
+const CFA_LESSON_IDS = new Set<number>();
 
 /** Tên thay thế cho một người chưa đặt tên hiển thị, trên bảng xếp hạng.
  *
@@ -668,11 +667,8 @@ export async function recalculateUserStats(userId: string) {
     Promise.resolve(supabase.from("cfa_module_progress").select("module_id").eq("user_id", userId).eq("completed", true)).catch(() => ({ data: null, error: null })),
     // XP permanently spent on streak restores
     Promise.resolve(supabase.from("user_stats").select("xp_spent").eq("user_id", userId).maybeSingle()).catch(() => ({ data: null, error: null })),
-    // Weekly Career Mission payouts - see lib/weekly-career-mission.ts. The
-    // ledger is written only by app/api/career-profile/claim/route.ts, which
-    // re-derives both the amount and the "is it actually complete" check
-    // server-side, so the sum needs no extra cap here.
-    getTotalCareerMissionXp(userId).catch(() => 0),
+    // Nhiệm vụ nghề hằng tuần đã gỡ cùng /api/career-profile/claim.
+    Promise.resolve(0),
   ]);
 
   // Academic game bonus: +3 XP for 100% correct, +1 XP for >= 80% correct, capped at +30 XP overall.

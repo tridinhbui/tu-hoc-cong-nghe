@@ -103,13 +103,6 @@ export default function UserMenu({ name, email, avatarUrl }: UserMenuProps) {
               {t.userMenu.menuMiniGame}
             </Link>
             <Link
-              href="/cong-cu"
-              onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
-            >
-              {t.userMenu.menuPersonalTools}
-            </Link>
-            <Link
               href="/settings"
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2 text-sm font-semibold text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"

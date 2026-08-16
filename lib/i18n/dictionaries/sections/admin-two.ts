@@ -118,8 +118,8 @@ export const adminTwoVi = {
         cfa: "CFA: {pct}%",
       },
       trackNames: {
-        personal: "Tài chính cá nhân",
-        professional: "Tài chính chuyên ngành",
+        personal: "Nền tảng công nghệ",
+        professional: "Công nghệ chuyên sâu",
         cfa: "CFA Level 1",
       },
       totalAccountsFooter: "Tổng cộng: {total} tài khoản người học.",
@@ -347,8 +347,8 @@ export const adminTwoEn: typeof adminTwoVi = {
         cfa: "CFA: {pct}%",
       },
       trackNames: {
-        personal: "Personal finance",
-        professional: "Professional finance",
+        personal: "Tech foundations",
+        professional: "Advanced technology",
         cfa: "CFA Level 1",
       },
       totalAccountsFooter: "Total: {total} learner accounts.",

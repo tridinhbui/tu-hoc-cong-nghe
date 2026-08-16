@@ -39,7 +39,7 @@ export const adminOneVi = {
     sidebar: {
       brandShort: "Admin",
       brandFull: "Admin Panel",
-      appName: "Tự Học Tài Chính",
+      appName: "Tự Học Công Nghệ",
       openMenu: "Mở menu",
       closeMenu: "Đóng menu",
       backToApp: "Quay lại app",

@@ -27,52 +27,52 @@ export const gamesMetaVi = {
     kho: { label: "Khó", hint: "Nhiều thẻ hơn + giới hạn 60 giây" },
   } as Record<string, { label: string; hint: string }>,
   statementBuckets: {
-    "balance-sheet": "Bảng cân đối kế toán",
-    "income-statement": "Báo cáo kết quả kinh doanh",
-    "cash-flow": "Báo cáo lưu chuyển tiền tệ",
+    frontend: "Tầng giao diện (client)",
+    backend: "Tầng dịch vụ (server)",
+    data: "Tầng dữ liệu & hạ tầng",
   } as Record<string, string>,
   gameMeta: {
     "random-mix": {
       title: "🎲 Trộn ngẫu nhiên tất cả chủ đề",
       description:
-        "Thách thức tổng hợp: Trộn ngẫu nhiên kiến thức từ Báo cáo tài chính, Thuật ngữ, Chỉ số, Công thức và Rủi ro!",
+        "Thách thức tổng hợp: Trộn ngẫu nhiên kiến thức từ Tầng hệ thống, Thuật ngữ, Chỉ số, Công thức và Rủi ro!",
     },
     "financial-statement-match": {
-      title: "Báo cáo tài chính",
+      title: "Tầng của hệ thống",
       description:
-        "Kéo từng khoản mục vào đúng báo cáo (Bảng cân đối / Kết quả kinh doanh / Lưu chuyển tiền tệ).",
+        "Kéo từng thành phần vào đúng tầng (Giao diện / Dịch vụ / Dữ liệu & hạ tầng).",
     },
     "en-vi-terms": {
       title: "Thuật ngữ Anh - Việt",
       description:
-        "Ghép đúng cặp thuật ngữ tài chính English ↔ Tiếng Việt, lấy từ chính các bài bạn đã học.",
+        "Ghép đúng cặp thuật ngữ công nghệ English ↔ Tiếng Việt, lấy từ chính các bài bạn đã học.",
     },
     "ratio-category": {
-      title: "Phân loại chỉ số tài chính",
+      title: "Phân loại chỉ số hệ thống",
       description: "Kéo từng tỷ số vào đúng nhóm: Thanh khoản / Sinh lời / Đòn bẩy / Hiệu quả hoạt động.",
     },
     "term-definition": {
       title: "Thuật ngữ & Định nghĩa",
-      description: "Ghép mỗi thuật ngữ tài chính với định nghĩa ngắn gọn đúng của nó.",
+      description: "Ghép mỗi thuật ngữ công nghệ với định nghĩa ngắn gọn đúng của nó.",
     },
     "formula-match": {
       title: "Tên & Công thức",
       description: "Ghép tên chỉ số với đúng công thức tính của nó (ROE, P/E, Current Ratio...).",
     },
     "risk-category": {
-      title: "Phân loại rủi ro đầu tư",
+      title: "Phân loại rủi ro thay đổi",
       description: "Kéo từng loại tài sản vào đúng nhóm rủi ro: Thấp / Trung bình / Cao.",
     },
     "ticker-match": {
       title: "Mã chứng khoán",
-      description: "Ghép tên doanh nghiệp niêm yết với đúng mã cổ phiếu trên sàn.",
+      description: "Ghép tên công ty công nghệ với đúng công nghệ họ tạo ra.",
     },
     "cost-category": {
       title: "Phân loại chi phí",
       description: "Kéo từng khoản chi phí vào đúng nhóm: Cố định (Fixed) hay Biến đổi (Variable).",
     },
     "wall-street-millionaire": {
-      title: "Ai Là Triệu Phú Phố Wall",
+      title: "Ai Là Triệu Phú Silicon Valley",
       description: "15 câu hỏi tài chính cấp độ cao kết hợp với cơ chế trợ giúp kiểu game show.",
     },
     "dcf-mastermind": {
@@ -95,20 +95,20 @@ export const gamesMetaEn: typeof gamesMetaVi = {
     kho: { label: "Hard", hint: "More cards, plus a 60-second limit" },
   },
   statementBuckets: {
-    "balance-sheet": "Balance Sheet",
-    "income-statement": "Income Statement",
-    "cash-flow": "Cash Flow Statement",
+    frontend: "Client tier",
+    backend: "Service tier",
+    data: "Data & infrastructure tier",
   },
   gameMeta: {
     "random-mix": {
       title: "🎲 Everything, shuffled",
       description:
-        "The all-in challenge: financial statements, terminology, ratios, formulas and risk, drawn at random.",
+        "The all-in challenge: system tiers, terminology, metrics, formulas and risk, drawn at random.",
     },
     "financial-statement-match": {
       title: "Financial statements",
       description:
-        "Drag each line item onto the statement it belongs to (Balance Sheet / Income Statement / Cash Flow).",
+        "Drag each component onto the tier it belongs to (Client / Service / Data & infrastructure).",
     },
     "en-vi-terms": {
       title: "English - Vietnamese terms",
@@ -140,7 +140,7 @@ export const gamesMetaEn: typeof gamesMetaVi = {
       description: "Drag each cost into the right group: Fixed or Variable.",
     },
     "wall-street-millionaire": {
-      title: "Who Wants to Be a Wall Street Millionaire",
+      title: "Who Wants to Be a Silicon Valley Millionaire",
       description: "Fifteen advanced finance questions, with game-show lifelines to help you through.",
     },
     "dcf-mastermind": {

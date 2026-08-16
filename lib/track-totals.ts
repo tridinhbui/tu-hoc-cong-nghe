@@ -36,7 +36,13 @@ interface TrackTotal {
   missingMinutes: number;
 }
 
-const TRACKS = totals.tracks as Partial<Record<TrackTotalsId, TrackTotal>>;
+// `?? {}` vì scripts/generate-lesson-data.mjs nạp CHÍNH file này trong lúc
+// nó đang sinh ra _track-totals.json - vòng lặp mà chú thích `requireShim`
+// trong script đó mô tả, kèm lời dặn rằng chỗ phải chịu được tệp rỗng là đây.
+// Vòng lặp đã xảy ra thật: một lượt chạy dọn sạch lib/lessons-data rồi hỏng
+// giữa chừng, và từ đó mọi lượt sau đều chết ở dòng này. Giá trị rỗng chỉ
+// sống trong lượt chạy đang sinh dữ liệu; bản build thật luôn đọc file đầy đủ.
+const TRACKS = (totals.tracks ?? {}) as Partial<Record<TrackTotalsId, TrackTotal>>;
 
 const EMPTY: TrackTotal = { lessons: 0, minutes: 0, missingMinutes: 0 };
 
@@ -59,10 +65,10 @@ export function trackHours(track: TrackTotalsId): number {
 }
 
 /** Tổng số bài đang hiện, mọi chặng. */
-export const TOTAL_LESSONS: number = totals.totalLessons;
+export const TOTAL_LESSONS: number = totals.totalLessons ?? 0;
 
 /** Tổng thời lượng mọi chặng, tính bằng phút. */
-export const TOTAL_MINUTES: number = totals.totalMinutes;
+export const TOTAL_MINUTES: number = totals.totalMinutes ?? 0;
 
 /** Số bài làm tròn XUỐNG bội của mười, cho những câu quảng cáo dạng "{n}+".
  *

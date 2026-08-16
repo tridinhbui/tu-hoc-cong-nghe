@@ -8,7 +8,6 @@ import {
 } from "@/lib/badges";
 import { getLevelByXp } from "@/lib/levels";
 import { getMyLeaderboardRank, type LeaderboardMetric } from "@/lib/supabase-user";
-import { FINANCE_CAREERS } from "@/lib/finance-careers";
 
 export interface UserBadge {
   id: number;
@@ -87,25 +86,11 @@ async function getEarnedCareerBadgeKeys(
   if (goalRow?.career_id) earned.push("career_goal_set");
   if (quizRow) earned.push("career_quiz_done");
 
-  const goalCareer = goalRow?.career_id ? FINANCE_CAREERS.find((c) => c.id === goalRow.career_id) : null;
-  if (goalCareer && goalCareer.relatedLessonSlugs.length > 0) {
-    try {
-      const res = await fetch("/api/career-lesson-progress", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slugs: goalCareer.relatedLessonSlugs }),
-      });
-      if (res.ok) {
-        const progress = (await res.json()) as { total: number; completed: number };
-        if (progress.total > 0 && progress.completed === progress.total) {
-          earned.push("career_path_complete");
-        }
-      }
-    } catch {
-      // Non-critical - a network hiccup here just means the badge doesn't
-      // show up this load, not a broken profile page.
-    }
-  }
+  // Huy hiệu "career_path_complete" đã gỡ cùng danh mục nghề tài chính
+  // (FINANCE_CAREERS) và /api/career-lesson-progress: nó đo xem người học đã
+  // xong hết các bài gắn với một nghề tài chính hay chưa, và không còn nghề nào
+  // để đo. Hai huy hiệu phía trên vẫn chạy vì chúng chỉ đọc bảng mục tiêu và
+  // bảng quiz, không cần biết nghề đó là nghề gì.
 
   return earned;
 }

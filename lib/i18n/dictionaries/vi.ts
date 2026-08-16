@@ -31,7 +31,7 @@ export const vi = {
     streakAtRiskBody: "Streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!",
     streakAtRiskEmail: "Chào {name}, streak học tập của bạn sắp bị mất nếu hôm nay không học. Quay lại ngay nhé!",
     comebackEmail: "Chào {name}, đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!",
-    comebackSubject: "Đã lâu rồi bạn chưa quay lại học tài chính",
+    comebackSubject: "Đã lâu rồi bạn chưa quay lại học công nghệ",
     comebackBody: "Đã vài ngày rồi bạn chưa học bài mới. Quay lại tiếp tục lộ trình của bạn nhé!",
     morningReviewBody: "Khoảng 90 giây. Toàn câu bạn từng làm sai, trộn từ nhiều bài.",
   },
@@ -90,7 +90,7 @@ export const vi = {
     signingOut: "Đang đăng xuất...",
     coinBalanceTitle: "Số dư Coin tích lũy - Bấm để mở Cửa hàng Nhanh",
 
-    brand: "Tự Học Tài Chính",
+    brand: "Tự Học Công Nghệ",
     searchPlaceholder: "Tìm kiếm...",
     coins: "Coins",
     // Nhãn nhỏ gắn vào từng mục điều hướng.
@@ -180,52 +180,51 @@ export const vi = {
     // lib/__tests__/stage-numbering.test.ts holds against lib/track-stages.ts -
     // only the wording lives here.
     personal: {
-      tab: "Tài chính cá nhân",
+      tab: "Nền tảng công nghệ",
       subtitle: "Dành cho người mới bắt đầu",
       description:
-        "Kiểm tra tài chính của chính bạn, kiểm soát chi tiêu, xây quỹ khẩn cấp, trả nợ và đầu tư thông minh - không cần kiến thức ngành.",
+        "Dựng nền từ máy tính và dòng lệnh tới Git, một ngôn ngữ lập trình đầu tiên và trang web chạy được - không cần kiến thức ngành.",
       stages: [
-        "Chặng 1 - Biết mình: audit, ngân sách, quỹ khẩn cấp, trả nợ",
-        "Chặng 2 - Thuế TNCN và lương thực nhận",
-        "Chặng 3 - Tư duy tiền bạc và tài chính cơ bản",
-        "Chặng 4 - Cổ phiếu, ETF và quỹ đầu tư",
-        "Chặng 5 - Trái phiếu và các công cụ cố định",
-        "Chặng 6 - Danh mục đầu tư và kế hoạch hưu trí",
-        "Chặng 7 - Chiến lược đầu tư cá nhân",
-        "Chặng 8 - Quản lý tài sản & hưu trí",
-        "Chặng 9 - Nhà ở, bảo vệ tài sản và các quyết định tài chính lớn",
-        "Chặng 10 - Tâm lý học tài chính hành vi",
+        "Chặng 1 - Biết mình: máy tính, hệ điều hành, dòng lệnh",
+        "Chặng 2 - Git và làm việc trên kho mã chung",
+        "Chặng 3 - Tư duy lập trình và ngôn ngữ đầu tiên",
+        "Chặng 4 - HTML, CSS và trang web đầu tiên",
+        "Chặng 5 - JavaScript và trình duyệt",
+        "Chặng 6 - Dữ liệu, cấu trúc dữ liệu và thuật toán cơ bản",
+        "Chặng 7 - Gọi API và ghép dịch vụ ngoài",
+        "Chặng 8 - Cơ sở dữ liệu và truy vấn",
+        "Chặng 9 - Đưa sản phẩm lên mạng: triển khai, tên miền, bảo mật",
+        "Chặng 10 - Làm việc nhóm: code review, kiểm thử, tài liệu",
       ],
       previewLabel: "Chặng 1: Bạn đang đứng ở đâu?",
     },
     professional: {
-      tab: "Tài chính chuyên ngành",
-      subtitle: "Chuyên sâu, cho người đã có nền tài chính",
+      tab: "Công nghệ chuyên sâu",
+      subtitle: "Chuyên sâu, cho người đã có nền lập trình",
       description:
-        "Kế toán, đọc báo cáo tài chính, định giá doanh nghiệp, trái phiếu, danh mục, phái sinh và AI in Finance.",
+        "Kiến trúc hệ thống, cơ sở dữ liệu ở quy mô lớn, hạ tầng và vận hành, dữ liệu, và AI trong sản phẩm thật.",
       stages: [
-        "Kế toán, báo cáo tài chính và chỉ số",
-        "Giá trị thời gian của tiền, tài chính doanh nghiệp",
-        "Định giá cổ phiếu, trái phiếu và tín dụng",
-        "Danh mục đầu tư và công cụ phái sinh",
-        "Vận hành tài chính doanh nghiệp hiện đại",
-        "AI trong tài chính: đọc báo cáo, phân tích tin và viết memo",
+        "Cấu trúc dữ liệu, thuật toán và độ phức tạp",
+        "Thiết kế hệ thống và kiến trúc dịch vụ",
+        "Cơ sở dữ liệu: mô hình hoá, chỉ mục và hiệu năng",
+        "Hạ tầng, container và vận hành sản phẩm",
+        "Dữ liệu: pipeline, kho dữ liệu và phân tích",
+        "AI trong sản phẩm: LLM, RAG và đánh giá chất lượng",
       ],
-      previewLabel: "Bài mở đầu: Kế toán là ngôn ngữ của kinh doanh",
+      previewLabel: "Bài mở đầu: Độ phức tạp là ngôn ngữ của hiệu năng",
     },
     cfa: {
-      tab: "Tài chính chứng chỉ",
-      subtitle: "CFA Level I · đang xây dựng",
+      tab: "Chứng chỉ công nghệ",
+      subtitle: "AWS Solutions Architect (Associate) · đang xây dựng",
       description:
-        "Ánh xạ các bài học đã có sang đúng 10 môn thi CFA Level I chính thức - không tạo bài mới, không đổi số ngày của 2 track kia. Môn nào chưa có bài phù hợp sẽ được xây dần.",
+        "Ánh xạ các bài học đã có sang đúng 4 miền thi của chứng chỉ AWS Solutions Architect (Associate) - không tạo bài mới, không đổi số ngày của 2 track kia. Miền nào chưa có bài phù hợp sẽ được xây dần.",
       stages: [
-        "Ethics and Professional Standards",
-        "Quantitative Methods, Economics",
-        "Financial Statement Analysis, Corporate Issuers",
-        "Equity Investments, Fixed Income",
-        "Derivatives, Alternative Investments, Portfolio Management",
+        "Thiết kế kiến trúc an toàn",
+        "Thiết kế kiến trúc chịu lỗi",
+        "Thiết kế kiến trúc hiệu năng cao",
+        "Thiết kế kiến trúc tối ưu chi phí",
       ],
-      previewLabel: "Xem lộ trình CFA Level I",
+      previewLabel: "Xem lộ trình AWS Solutions Architect",
     },
   },
 
@@ -236,7 +235,7 @@ export const vi = {
       part1: "Cam kết toàn bộ bài học tại đây ",
       freeForever: "miễn phí mãi mãi",
       part2:
-        " vì sự phát triển của cộng đồng học tài chính cá nhân, CFA, lập kế hoạch tài chính, đầu tư, và người làm tài chính tại Việt Nam.",
+        " vì sự phát triển của cộng đồng học lập trình, dữ liệu, AI, và người làm công nghệ tại Việt Nam.",
       // Bản một dòng cho màn hình hẹp - câu đầy đủ chiếm bốn dòng ở 375px,
       // đẩy hero xuống gần một phần tư màn hình đầu.
       shortPrefix: "Toàn bộ bài học tại đây ",
@@ -245,7 +244,7 @@ export const vi = {
       facebookShort: "Group Facebook",
     },
 
-    brand: "Tự Học Tài Chính",
+    brand: "Tự Học Công Nghệ",
     brandBadge: "🇻🇳 VIỆT NAM",
     navCta: "Vào học ngay",
 
@@ -254,12 +253,12 @@ export const vi = {
       // The headline wraps a coloured <span> and a <br>, so it is split rather
       // than assembled from one string.
       titlePart1: "Bước vào thế giới",
-      titleHighlight: "tài chính",
+      titleHighlight: "công nghệ",
       titlePart2: "cùng bắt đầu từ con số 0",
-      sub: "{count}+ bài học - 100% miễn phí vĩnh viễn - giáo trình thiết kế riêng cho người Việt học tài chính cá nhân, CFA, lập kế hoạch tài chính, đầu tư, kế toán và tài chính chuyên nghiệp. Học theo phương pháp Spaced Repetition khoa học.",
+      sub: "{count}+ bài học - 100% miễn phí vĩnh viễn - giáo trình thiết kế riêng cho người Việt học lập trình, dữ liệu, AI, hạ tầng và kỹ năng làm sản phẩm công nghệ. Học theo phương pháp Spaced Repetition khoa học.",
       ctaPrimary: "Bắt đầu học miễn phí",
       ctaSecondary: "Xem thử bài học",
-      bgAlt: "Bối cảnh tài chính hiện đại",
+      bgAlt: "Bối cảnh công nghệ hiện đại",
       liveLabel: "Live cập nhật trực tiếp",
       statLearners: "người học",
       statLessons: "bài học",
@@ -267,37 +266,37 @@ export const vi = {
     },
 
     // The mock lesson card in the hero. Illustrative content, not a real
-    // lesson - the P/E figures are a worked example.
+    // lesson - the Big-O figures are a worked example.
     card: {
       studyingNow: "Đang học thật",
       lessonNo: "Bài 24",
       todayLabel: "Bài học hôm nay",
-      todayTitle: "Đọc chỉ số P/E trong 5 phút",
+      todayTitle: "Đọc độ phức tạp Big-O trong 5 phút",
       comprehension: "72% hiểu bài",
       exampleLabel: "Ví dụ trong bài",
-      exampleText: "Công ty A có EPS = 5.000đ, giá cổ phiếu = 75.000đ. P/E bằng bao nhiêu?",
-      priceLabel: "Giá",
-      priceValue: "75.000đ",
-      epsValue: "5.000đ",
-      peValue: "15 lần",
-      tip1: "P/E thấp chưa chắc rẻ nếu lợi nhuận giảm",
-      tip2: "So sánh P/E trong cùng ngành sẽ ý nghĩa hơn",
-      tip3: "Kiểm tra chất lượng lợi nhuận bằng dòng tiền",
+      exampleText: "Một vòng lặp lồng trong một vòng lặp, mỗi vòng chạy n lần. Với n = 1.000, code chạy bao nhiêu bước?",
+      priceLabel: "Cỡ dữ liệu",
+      priceValue: "n = 1.000",
+      epsValue: "1.000.000",
+      peValue: "O(n²)",
+      tip1: "O(n²) với n = 1.000 đã là một triệu bước",
+      tip2: "So sánh hai thuật toán chỉ có nghĩa trên cùng cỡ dữ liệu",
+      tip3: "Đo bằng profiler trước khi viết lại code",
       metaLesson: "Bài học",
       metaLessonValue: "5 phút",
       metaQuizValue: "5 câu/bài",
       metaReview: "Ôn lại",
       metaReviewValue: "Sau 5 bài",
       quizLabel: "Quiz nhanh",
-      quizQuestion: "P/E = Giá / EPS?",
-      quizRight: "Đúng: 15 lần",
-      quizWrong: "Sai: 0,15 lần",
-      flashQuestion: "P/E là gì?",
-      flashAnswer: "Số năm lợi nhuận hiện tại cần để hoàn vốn nếu mọi thứ giữ nguyên.",
+      quizQuestion: "Vòng lặp lồng nhau = O(n²)?",
+      quizRight: "Đúng: 1.000.000 bước",
+      quizWrong: "Sai: 2.000 bước",
+      flashQuestion: "Big-O là gì?",
+      flashAnswer: "Cách mô tả số bước tăng nhanh ra sao khi dữ liệu lớn dần, bỏ qua hằng số.",
       noteLabel: "Ghi chú mẫu",
-      noteTitle: "Không mua chỉ vì P/E thấp",
-      noteBody: "Luôn hỏi: lợi nhuận có bền không, dòng tiền có thật không?",
-      bullAlt: "Bò Phố Wall - boss trong Game Kingdom",
+      noteTitle: "Đừng tối ưu khi chưa đo",
+      noteBody: "Luôn hỏi: chỗ chậm thật nằm ở đâu, n có đủ lớn để đáng tối ưu không?",
+      bullAlt: "Bò tót 3D - boss trong Game Kingdom",
     },
 
     preview: {
@@ -323,39 +322,39 @@ export const vi = {
 
     kingdom: {
       eyebrow: "Xem trước Game Kingdom",
-      title: "Một vương quốc tài chính để bạn mở khóa bằng kiến thức",
-      sub: "Game Kingdom biến việc học thành nhiệm vụ: hoàn thành bài, làm quiz, chơi mini game và mở dần các công trình tài chính.",
+      title: "Một vương quốc công nghệ để bạn mở khóa bằng kiến thức",
+      sub: "Game Kingdom biến việc học thành nhiệm vụ: hoàn thành bài, làm quiz, chơi mini game và mở dần các công trình trong vương quốc.",
     },
 
     ecosystem: {
       eyebrow: "Không chỉ là bài học",
       titlePart1: "Học, chơi, hỏi đáp và chia sẻ trong cùng một",
-      titleHighlight: "hệ sinh thái tài chính",
+      titleHighlight: "hệ sinh thái công nghệ",
       sub: "Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có lộ trình active recall ôn tập chủ động, học nhóm 3D để giữ nhịp, và FinSocial để trao đổi kiến thức với cộng đồng.",
     },
 
     vision: {
       eyebrow: "Vì sao chúng tôi làm",
       title:
-        "Hiểu biết tài chính ở Việt Nam đang cải thiện, nhưng khoảng trống nền tảng vẫn còn rất lớn.",
-      stat1Label: "Hiểu biết cơ bản",
-      stat1Note: "đạt ngưỡng cơ bản.",
+        "Ngành công nghệ Việt Nam lớn rất nhanh, nhưng khoảng trống kỹ năng nền tảng vẫn còn rất lớn.",
+      stat1Label: "Tay nghề cao",
+      stat1Note: "lực lượng lao động đạt tay nghề cao - Malaysia 29%.",
       stat2Label: "Khoảng trống",
-      stat2Note: "chưa đạt nền tảng.",
-      stat3Label: "Tiếp cận 2024",
-      stat3Note: "có tài khoản tài chính.",
+      stat2Note: "sinh viên CNTT ra trường cần thêm 3-6 tháng mới làm được việc.",
+      stat3Label: "Quy mô ngành",
+      stat3Note: "người đang làm trong 74.000 doanh nghiệp công nghệ.",
       missionLabel: "Tầm nhìn & Sứ mệnh",
       missionBody:
-        "Xây dựng giáo trình tài chính 100% miễn phí, rõ ràng và đủ sâu cho người học Việt Nam. Giúp việc tự học tài chính trở nên gần gũi, thực tế và bền vững.",
+        "Xây dựng giáo trình công nghệ 100% miễn phí, rõ ràng và đủ sâu cho người học Việt Nam. Giúp việc tự học công nghệ trở nên gần gũi, thực tế và bền vững.",
       cta: "Bắt đầu học miễn phí",
     },
 
     footer: {
       blurb:
-        "Nền tảng tự học tài chính cá nhân, tài chính doanh nghiệp và CFA miễn phí 100%. Giúp người Việt làm chủ tiền bạc bằng phương pháp Spaced Repetition và Game Kingdom.",
+        "Nền tảng tự học công nghệ miễn phí 100%: lập trình, dữ liệu, AI và hạ tầng. Giúp người Việt làm chủ nghề công nghệ bằng phương pháp Spaced Repetition và Game Kingdom.",
       community: "Cộng đồng {count}+ bài học & Quiz tương tác",
       tracksTitle: "Lộ trình học",
-      trackPersonal: "Tài chính cá nhân",
+      trackPersonal: "Nền tảng công nghệ",
       trackCorporate: "Tài chính doanh nghiệp",
       trackCfa: "Chứng chỉ CFA Level 1",
       trackGame: "Game Kingdom RPG",
@@ -363,14 +362,13 @@ export const vi = {
       ecoStudyRoom: "Phòng học nhóm (3D)",
       ecoHot: "Hot",
       ecoFinsocial: "FinSocial - feed bài viết",
-      ecoCareer: "Bản đồ sự nghiệp tài chính",
       ecoShop: "Cửa hàng Cosmetic & Avatar",
       supportTitle: "Hỗ trợ & Pháp lý",
       terms: "Điều khoản sử dụng",
       privacy: "Chính sách bảo mật",
       login: "Đăng nhập / Đăng ký",
-      copyright: "© 2026 Tự Học Tài Chính. Tất cả quyền được bảo lưu.",
-      tagline: "Học tài chính miễn phí cho người Việt 🇻🇳",
+      copyright: "© 2026 Tự Học Công Nghệ. Tất cả quyền được bảo lưu.",
+      tagline: "Học công nghệ miễn phí cho người Việt 🇻🇳",
       sovereignty: "Hoàng Sa & Trường Sa là của Việt Nam!",
     },
   },
@@ -404,24 +402,15 @@ export const vi = {
     start: "Bắt đầu kiểm tra ngay",
 
     // TRACKS: the ids stay in the component, the copy lives here.
-    trackPersonal: "Tài chính cá nhân",
-    trackPersonalDesc: "Tư duy tiền bạc, đầu tư, danh mục, hưu trí",
-    trackProfessional: "Tài chính chuyên ngành",
-    trackProfessionalDesc: "Kế toán, định giá, trái phiếu, phái sinh",
-    trackCfa: "Tài chính chứng chỉ",
-    trackCfaDesc: "CFA Level I - 10 môn thi chính thức",
-    trackFrm: "Quản trị rủi ro (FRM)",
-    trackFrmDesc: "Part I - 4 môn, ra đề theo trọng số GARP",
+    trackPersonal: "Nền tảng công nghệ",
+    trackPersonalDesc: "Máy tính, dòng lệnh, Git, ngôn ngữ đầu tiên",
+    trackProfessional: "Công nghệ chuyên sâu",
+    trackProfessionalDesc: "Kiến trúc hệ thống, cơ sở dữ liệu, hạ tầng, AI",
 
     diffAll: "Tất cả",
     diffEasy: "Dễ",
     diffMedium: "Trung bình",
     diffHard: "Khó",
-
-    ibEyebrow: "Investment banking interview drill",
-    ibTitle: "Technical Interview",
-    ibSub: "400 IB Questions · Accounting, Valuation, DCF, M&A, LBO, behavioral",
-    ibOpen: "Mở →",
 
     loadingQuestions: "Đang chuẩn bị câu hỏi...",
     loadFailed: "Không thể tải bài kiểm tra lúc này. Vui lòng thử lại sau.",
@@ -517,13 +506,13 @@ export const vi = {
   worldBoss: {
     noQuestions: "Boss tuần này chưa có câu hỏi nào. Thử tải lại, hoặc quay lại sau nhé.",
     counterattack: "Hụt rồi! Boss phản công làm bạn mất 34 HP.",
-    loading: "Đang tải dữ liệu World Boss Server...",
+    loading: "Đang tải dữ liệu World Boss...",
     noEvent: "Chưa mở sự kiện World Boss tuần này.",
     eventTitle: "Server world Boss event - hàng tuần",
     guideToggle: "Hướng dẫn săn Boss",
-    huntNow: "Săn Boss Server ngay!",
+    huntNow: "Săn boss máy chủ ngay!",
 
-    rulesTitle: "Thể lệ & cách chơi sự kiện săn Boss Server:",
+    rulesTitle: "Thể lệ & cách chơi sự kiện săn boss máy chủ:",
     // Each rule is a <li> with a bolded lead-in, so the label and the body are
     // separate keys rather than one string carrying <strong>.
     rule1Label: "Thanh máu gộp 1,000,000 HP",
@@ -548,7 +537,7 @@ export const vi = {
     heroPower: "Sức mạnh nhân vật",
     levelPrefix: "Level: ",
     levelValue: "Lv. {level}",
-    damagePerAnswer: "Mỗi đáp án đúng gây ~5,000+ sát thương Server!",
+    damagePerAnswer: "Mỗi đáp án đúng gây ~5,000+ sát thương lên máy chủ!",
     raidQuestionCount: "Số câu raid",
     questionCount: "{count} câu",
     maxDamagePerQuestion: "Max DMG/câu",
@@ -564,8 +553,8 @@ export const vi = {
     heroHp: "{hp}/100 HP",
     vs: "VS",
     sessionDamage: "DMG: +{value}",
-    bossAlt: "Wall Street bull boss",
-    bossName: "Trâu Phố Wall 3D",
+    bossAlt: "Silicon Valley bull boss",
+    bossName: "Bò tót 3D",
     bossHpPercent: "{percent}% HP",
 
     doneTitle: "KẾT THÚC ĐỢT SĂN BOSS!",
@@ -748,25 +737,25 @@ export const vi = {
   // components/FinancialRpgWorldMap.tsx - the Game Kingdom map.
   worldMap: {
     levelShort: "Lv.{level}",
-    empireTitle: "Đế chế Wall Street",
+    empireTitle: "Đế chế Silicon Valley",
     online: "Online",
-    empireSub: "Tập sự Phố Wall • 3D RPG Kingdom",
-    capitalLabel: "Vốn đầu tư",
+    empireSub: "Tập sự Silicon Valley • 3D RPG Kingdom",
+    capitalLabel: "Ngân sách hạ tầng",
     coinsValue: "{count} Coins",
     energyLabel: "Năng Lượng",
 
-    shopTitle: "Tiệm đồ executive",
+    shopTitle: "Tiệm đồ kỹ sư trưởng",
     shopShort: "Tiệm Đồ",
-    cardsTitle: "Bảo tàng thẻ VN30",
+    cardsTitle: "Bảo tàng thẻ công nghệ",
     cardsShort: "Bộ Thẻ",
 
-    // Ticker strip. Illustrative figures for the game surface, not market data.
-    tickerLabel: "WALL ST. TICKER",
-    tickerIndex: "VN-INDEX: 1,285.40 (+1.45%)",
-    tickerBoss: "BOSS SÀN NYSE: 850,000 / 1,000,000 HP (85%)",
-    tickerCase: "TIMES SQUARE: CASE STUDY CASE #12 HOẠT ĐỘNG",
-    tickerClan: "HEDGE FUND CLAN: TOP #1 WALL STREET",
-    bgAlt: "Ảnh nền phố Wall",
+    // Ticker strip. Illustrative figures for the game surface, not live metrics.
+    tickerLabel: "BẢNG TIN DEV SQUARE",
+    tickerIndex: "UPTIME TOÀN HỆ THỐNG: 99,95% (+0,03%)",
+    tickerBoss: "BOSS SÀN SERVER: 850,000 / 1,000,000 HP (85%)",
+    tickerCase: "DEV SQUARE: CASE STUDY HỆ THỐNG #12 HOẠT ĐỘNG",
+    tickerClan: "CLAN KỸ SƯ: TOP #1 SILICON VALLEY",
+    bgAlt: "Ảnh nền khu công nghệ",
 
     zoneMiniGames: "TỔNG HỢP MINI GAME",
 
@@ -780,12 +769,12 @@ export const vi = {
     lockedNeedLessonsShort: "Hoàn thành bài học để mở",
 
     dragHint: "Kéo tự do (Canva Drag & Pan) để di chuyển bản đồ không cần cuộn trang web!",
-    zoneCount: "12 VÙNG ĐẤT TÀI CHÍNH",
+    zoneCount: "12 VÙNG ĐẤT CÔNG NGHỆ",
     dragHintLong: "Canva drag Canvas (Kéo tự do 360° • Xem trọn vẹn 12 vùng đất)",
 
     gearOpenTitle: "Mở tủ trang bị",
     gearEyebrow: "Tủ trang bị",
-    gearTitle: "Executive Gear",
+    gearTitle: "Trang bị kỹ sư",
     gearSub: "Cố định ngoài bản đồ nhiệm vụ",
     gearCta: "Mở cửa hàng & tủ đồ",
 
@@ -813,7 +802,7 @@ export const vi = {
   login: {
     backHome: "Về trang chủ",
     freeForever: "Miễn phí mãi mãi",
-    heroTitle: "Học tài chính theo cách gọn, rõ và đủ động lực để theo lâu dài",
+    heroTitle: "Học công nghệ theo cách gọn, rõ và đủ động lực để theo lâu dài",
     heroBody:
       "Vào lại hành trình của bạn, tiếp tục đúng bài đang học dở và để hệ thống tự giữ nhịp bằng quiz, ghi chú và Spaced Repetition.",
 
@@ -827,14 +816,14 @@ export const vi = {
     trackPickTitle: "Chọn lộ trình rồi vào học ngay",
     trackPickBody: "Bạn có thể đổi hướng học sau trong phần cài đặt.",
 
-    brand: "Tự Học Tài Chính",
+    brand: "Tự Học Công Nghệ",
     lessonCountLine: "Học {count}+ bài, 100% miễn phí, lưu tiến độ thật trên tài khoản của bạn.",
 
     modeLogin: "Đăng nhập",
     modeSignup: "Tạo tài khoản",
     modeForgot: "Quên mật khẩu",
     subLogin: "Quay lại dashboard, tiếp tục bài đang học và xem lại tiến độ của bạn.",
-    subSignup: "Bắt đầu hành trình học tài chính của riêng bạn chỉ trong chưa tới một phút.",
+    subSignup: "Bắt đầu hành trình học công nghệ của riêng bạn chỉ trong chưa tới một phút.",
     subForgot: "Nhập email để nhận link đặt lại mật khẩu và quay lại học tiếp.",
 
     google: "Đăng nhập với Google",
@@ -955,15 +944,15 @@ export const vi = {
   interview: {
     backToDashboard: "Về Dashboard",
     title: "Technical Interview",
-    subtitle: "Luyện technical + behavioral như một vòng phỏng vấn analyst thật",
+    subtitle: "Luyện technical + behavioral như một vòng phỏng vấn kỹ sư thật",
     xpPerQuestion: "Thưởng +{xp} XP / câu đúng",
     technicalCount: "Technical · {count} câu",
     behavioralCount: "Behavioral · {count} câu",
 
     byRoleTitle: "Luyện theo vị trí bạn nhắm tới",
-    sourceBadge: "Nguồn: bộ 400 IB Interview Questions",
+    sourceBadge: "Nguồn: bộ 400 câu phỏng vấn kỹ thuật",
     byRoleBody:
-      "Bộ câu hỏi này viết cho Ngân hàng Đầu tư, nhưng phần kế toán, định giá và DCF dùng chung được cho nhiều vị trí phân tích khác. Chọn vị trí để chỉ luyện đúng phần liên quan.",
+      "Bộ câu hỏi này viết cho vị trí kỹ sư phần mềm, nhưng phần thuật toán, cấu trúc dữ liệu và thiết kế hệ thống dùng chung được cho nhiều vị trí kỹ thuật khác. Chọn vị trí để chỉ luyện đúng phần liên quan.",
     allWithCount: "Tất cả · {count}",
     changeRole: "Đổi vị trí",
     closeRolePicker: "Thu gọn",
@@ -973,15 +962,15 @@ export const vi = {
     uncoveredNote:
       "{uncovered} / {total} vị trí khác chưa có bộ câu hỏi riêng — phần technical của các nghề đó đang được xây dần.",
 
-    drillTitle: "Investment Banking & Finance Drill",
-    drillBadge: "Chuẩn bộ \"400 Questions IB Guide\" Phố Wall",
-    drillHeading: "Luyện technical interview như một vòng analyst thực chiến",
+    drillTitle: "Software Engineering Drill",
+    drillBadge: "Chuẩn bộ \"400 câu phỏng vấn kỹ thuật\" Silicon Valley",
+    drillHeading: "Luyện technical interview như một vòng phỏng vấn kỹ sư thực chiến",
     // Split around the inline <strong> holding the book title, which stays as
     // it is - it is the name of a published guide.
     drillBodyPart1: "Bộ câu hỏi phỏng vấn biên soạn theo chuẩn cuốn ",
-    drillBookTitle: "\"400 questions investment banking interview guide\"",
+    drillBookTitle: "\"Cracking the Coding Interview\"",
     drillBodyPart2:
-      " truyền thống Phố Wall, trải rộng khắp các chuyên ngành: Kế toán 3 báo cáo, Định giá DCF, M&A, LBO, Tín dụng & Tài chính doanh nghiệp.",
+      " kinh điển của Silicon Valley, trải rộng khắp các mảng: cấu trúc dữ liệu, thuật toán, thiết kế hệ thống, cơ sở dữ liệu và gỡ lỗi thực tế.",
 
     statBankLabel: "Question bank",
     statBankValue: "{count} câu",
@@ -993,9 +982,9 @@ export const vi = {
     sectionsForRole: "Các section bạn sẽ được hỏi",
     sectionsAll: "Các section trong bộ câu hỏi",
     pickRound: "Chọn vòng phỏng vấn",
-    startDrill: "Bắt đầu IB drill →",
+    startDrill: "Bắt đầu drill →",
     difficultyHint:
-      "Gợi ý: dùng \"Trung bình\" cho mock analyst round, dùng \"Khó\" khi muốn luyện áp lực trước interview.",
+      "Gợi ý: dùng \"Trung bình\" cho vòng phỏng vấn thường, dùng \"Khó\" khi muốn luyện áp lực trước onsite.",
 
     // DIFFICULTIES labels, keyed by the same ids the component uses.
     diffAll: "Tất cả",
@@ -1008,7 +997,7 @@ export const vi = {
     back: "← Quay lại",
     noQuestions: "Chưa có câu hỏi nào cho độ khó này. Thử độ khó khác nhé.",
 
-    drillHeader: "IB Interview Drill",
+    drillHeader: "Technical Interview Drill",
     statQuestion: "Câu hỏi",
     statCorrect: "Đúng",
     statRound: "Round",
@@ -1019,7 +1008,7 @@ export const vi = {
     seeResults: "Xem kết quả →",
     nextQuestion: "Câu tiếp theo →",
 
-    doneTitle: "Hoàn thành IB interview drill!",
+    doneTitle: "Hoàn thành vòng drill kỹ thuật!",
     doneScore: "{score}/{total} câu đúng",
     donePassed: " · Đạt",
     readiness: "Interview readiness",
@@ -1043,7 +1032,7 @@ export const vi = {
     tapToTry: "Bấm để xem thử",
 
     roadmapTab: "Lộ trình ôn cấp",
-    roadmapTitle: "Học tài chính theo lộ trình chặng chuẩn hóa",
+    roadmapTitle: "Học công nghệ theo lộ trình chặng chuẩn hóa",
     roadmapBody:
       "Tích hợp Active Recall chủ động, theo dõi tiến độ từng chặng từ vỡ lòng đến chuyên sâu.",
     groupTab: "Học Nhóm (3D)",
@@ -1051,7 +1040,7 @@ export const vi = {
     groupBody:
       "Bàn tròn 3D ảo, ghép nhóm theo chủ đề, check-in nhận XP và khung chat nhóm tương tác.",
     finsocialTab: "FinSocial",
-    finsocialTitle: "Mạng xã hội học tài chính chia sẻ bài học",
+    finsocialTitle: "Mạng xã hội học công nghệ chia sẻ bài học",
     finsocialBody:
       "Feed tin tức bài viết ngắn, hỏi đáp thực tế, thảo luận phân tích BCTC và thả cảm xúc.",
 
@@ -1106,7 +1095,7 @@ export const vi = {
     post1Content:
       "Nhiều bạn mới học tài chính thường bỏ qua báo cáo lưu chuyển tiền tệ mà chỉ nhìn lợi nhuận trên Báo cáo KQKD. Nhớ quy tắc: Lợi nhuận có thể là sổ sách, nhưng Dòng tiền từ HĐKD (CFO) mới là dòng máu thực sự của doanh nghiệp!",
     post2Time: "4 giờ trước",
-    post2Topic: "Tài chính cá nhân",
+    post2Topic: "Nền tảng công nghệ",
     post2Title: "Quy tắc 50/30/20 có còn phù hợp với bối cảnh lạm phát hiện tại?",
     post2Content:
       "50% Nhu cầu thiết yếu - 30% Sở thích - 20% Tiết kiệm & Đầu tư. Nếu chi phí sinh hoạt tăng cao, hãy ưu tiên cố định 20% Tiết kiệm trước (Pay Yourself First) rồi mới phân bổ 80% còn lại!",
@@ -1341,7 +1330,7 @@ export const vi = {
     insufficientShares: "Số lượng cổ phiếu trong danh mục không đủ để BÁN!",
     rebalanced: "Đã tái cơ cấu đưa Quỹ về trạng thái vốn ban đầu 1 Tỷ VNĐ.",
 
-    clanTitle: "Wall Street Hedge Fund Clan",
+    clanTitle: "Silicon Valley Hedge Fund Clan",
     universe: "VN30 Top 30 Stocks",
     subtitle: "Mô phỏng quỹ đầu tư cổ phiếu việt nam",
     hideGuide: "Ẩn hướng dẫn",
@@ -1443,12 +1432,12 @@ export const vi = {
     // không phải một chủ đề người ta viết vào.
     topics: {
       all: { label: "Tất cả", short: "Tất cả" },
-      "meo-tai-chinh": { label: "Mẹo tài chính", short: "Mẹo" },
+      "meo-tai-chinh": { label: "Mẹo công nghệ", short: "Mẹo" },
       "phan-tich": { label: "Phân tích", short: "Phân tích" },
       "thanh-tuu": { label: "Thành tựu", short: "Thành tựu" },
       "hoi-dap": { label: "Hỏi đáp", short: "Hỏi đáp" },
       "tin-nong": { label: "Tin nóng", short: "Tin nóng" },
-      "ai-finance": { label: "AI tài chính", short: "AI Finance" },
+      "ai-finance": { label: "AI & công cụ", short: "AI" },
     },
 
 
@@ -1569,6 +1558,7 @@ export const vi = {
     prompt4: "Ảnh thành quả/streak hôm nay:",
   },
 
+
   // components/ResumeLearningButton.tsx - the "continue learning" hero card.
   resume: {
     greeting1: "Chào{name}! Sách đã mở, kiến thức đã sẵn sàng. Cùng chinh phục bài tiếp theo để nhận XP nào! 🔥",
@@ -1583,7 +1573,7 @@ export const vi = {
 
     quickGuideTitle: "Hướng dẫn nhanh 3 bước",
     quickGuideIntro:
-      "\"Chào{name}! Lần đầu học tài chính đúng không? Đi theo 3 bước này là bạn có nền ngay.\"",
+      "\"Chào{name}! Lần đầu học công nghệ đúng không? Đi theo 3 bước này là bạn có nền ngay.\"",
     step1Title: "Chọn lộ trình phù hợp",
     step1Body: "Cá nhân hay chuyên ngành - chọn đúng ngay từ đầu",
     step2Title: "Học bài đầu tiên: {lesson}",
@@ -1630,20 +1620,20 @@ export const vi = {
   // client component: route trả id, client tra từ điển. Trả câu chữ từ route thì
   // ngôn ngữ do server chọn chứ không do người đọc chọn.
   skillDomains: {
-    personal_finance: { label: "Tài chính cá nhân", gapHint: "ngân sách, quỹ khẩn cấp, kế hoạch tài chính cá nhân" },
-    accounting: { label: "Kế toán & Báo cáo tài chính", gapHint: "kế toán, đọc 3 báo cáo tài chính, chỉ số tài chính" },
-    valuation: { label: "Định giá (Valuation)", gapHint: "DCF, comps, precedent transactions, terminal value" },
-    corporate_finance: { label: "Tài chính doanh nghiệp", gapHint: "cấu trúc vốn, WACC, chính sách cổ tức, quyết định đầu tư" },
-    modeling_excel: { label: "Excel & Mô hình tài chính", gapHint: "dựng mô hình 3 báo cáo, LBO, bảng độ nhạy, dashboard Excel" },
-    ma: { label: "M&A", gapHint: "M&A, synergy, deal structure, due diligence, LBO" },
-    fixed_income: { label: "Trái phiếu & Tín dụng", gapHint: "trái phiếu, YTM, duration, credit spread, xếp hạng tín nhiệm" },
-    equity_portfolio: { label: "Cổ phiếu & Danh mục", gapHint: "phân tích cổ phiếu, xây danh mục, đo lường rủi ro - lợi nhuận" },
-    derivatives_risk: { label: "Phái sinh & Quản trị rủi ro", gapHint: "phái sinh, phòng hộ, VaR, stress testing, Basel" },
-    fpa_budgeting: { label: "FP&A & Ngân sách", gapHint: "lập ngân sách, rolling forecast, phân tích variance, KPI" },
-    ethics: { label: "Đạo đức nghề nghiệp", gapHint: "Code of Ethics, Standards of Conduct, GIPS, AML/KYC, đạo đức dữ liệu" },
-    economics: { label: "Kinh tế học", gapHint: "chu kỳ kinh tế, chính sách tiền tệ - tài khóa, tỷ giá" },
-    quant: { label: "Phương pháp định lượng", gapHint: "giá trị thời gian của tiền, NPV/IRR, xác suất - thống kê, suy diễn từ dữ liệu" },
-    ai_tools: { label: "AI trong tài chính", gapHint: "giao việc cho AI, đọc báo cáo và viết memo có kiểm chứng" },
+    personal_finance: { label: "Nền tảng lập trình", gapHint: "dòng lệnh, Git, cú pháp và cấu trúc chương trình" },
+    accounting: { label: "Web & giao diện", gapHint: "HTML, CSS, JavaScript, framework giao diện" },
+    valuation: { label: "Thiết kế hệ thống", gapHint: "phân tách dịch vụ, hàng đợi, cache, đánh đổi kiến trúc" },
+    corporate_finance: { label: "Backend & API", gapHint: "thiết kế API, xác thực, xử lý lỗi, phân trang" },
+    modeling_excel: { label: "Cơ sở dữ liệu & SQL", gapHint: "mô hình hoá bảng, chỉ mục, truy vấn, giao dịch" },
+    ma: { label: "DevOps & triển khai", gapHint: "CI/CD, container, giám sát, khôi phục sự cố" },
+    fixed_income: { label: "Mạng & giao thức", gapHint: "HTTP, DNS, TLS, độ trễ, gỡ lỗi đường truyền" },
+    equity_portfolio: { label: "Cấu trúc dữ liệu & thuật toán", gapHint: "mảng, cây, đồ thị, độ phức tạp, tối ưu vòng lặp" },
+    derivatives_risk: { label: "An toàn thông tin", gapHint: "OWASP, quản lý bí mật, phân quyền, mô hình hoá mối đe doạ" },
+    fpa_budgeting: { label: "Kiểm thử & chất lượng", gapHint: "unit test, integration test, độ phủ, kiểm thử hồi quy" },
+    ethics: { label: "Đạo đức nghề nghiệp", gapHint: "quyền riêng tư, giấy phép mã nguồn, đạo đức dữ liệu và AI" },
+    economics: { label: "Hệ điều hành & Linux", gapHint: "tiến trình, bộ nhớ, tập tin, quyền, shell script" },
+    quant: { label: "Dữ liệu & phân tích", gapHint: "pipeline, kho dữ liệu, chỉ số, thống kê cơ bản" },
+    ai_tools: { label: "AI trong sản phẩm", gapHint: "gọi LLM, RAG, đánh giá chất lượng đầu ra có kiểm chứng" },
   },
 
   // Ba mức đọc ra chữ của TopicMasteryWidget. Trước nằm trong hàm band() nên
@@ -1656,40 +1646,40 @@ export const vi = {
   },
 
   topics: {
-    "money-foundations": "Nền tảng tiền bạc & rủi ro",
-    "tax-payroll": "Thuế & lương thực nhận",
-    "personal-investing": "Đầu tư cá nhân",
-    "bonds-rates": "Trái phiếu & lãi suất",
-    "portfolio-retirement": "Danh mục & hưu trí",
-    "housing-protection": "Nhà ở & bảo vệ tài sản",
-    "banking-deposits": "Ngân hàng & tiền gửi",
-    "gold-fx": "Vàng & ngoại tệ",
-    "vn-stock-practical": "Chứng khoán Việt Nam thực chiến",
-    "digital-assets-risk": "Tài sản số & rủi ro",
-    "fraud-safety": "Phòng lừa đảo & an toàn",
-    "real-estate-vn": "Bất động sản Việt Nam",
-    "life-expenses": "Khoản chi lớn trong đời",
-    "health-risk": "Y tế và rủi ro con người",
-    "life-stage": "Tài chính theo giai đoạn tuổi",
+    "money-foundations": "Nền tảng máy tính & dòng lệnh",
+    "tax-payroll": "Git & cộng tác trên kho mã",
+    "personal-investing": "Lập trình cơ bản",
+    "bonds-rates": "Mạng & giao thức",
+    "portfolio-retirement": "Kiến trúc & thiết kế hệ thống",
+    "housing-protection": "Triển khai & vận hành",
+    "banking-deposits": "Đám mây & dịch vụ thuê ngoài",
+    "gold-fx": "Container & điều phối",
+    "vn-stock-practical": "Thị trường IT Việt Nam thực chiến",
+    "digital-assets-risk": "Blockchain & rủi ro",
+    "fraud-safety": "An toàn thông tin & phòng tấn công",
+    "real-estate-vn": "Ứng dụng di động Việt Nam",
+    "life-expenses": "Dự án lớn trong nghề",
+    "health-risk": "Sức khoẻ nghề nghiệp & rủi ro con người",
+    "life-stage": "Nghề công nghệ theo giai đoạn",
     "personal-ops": "Công cụ và vận hành",
-    "investing-psychology": "Tâm lý đầu tư",
-    "accounting-reporting": "Kế toán & báo cáo tài chính",
-    "valuation-corp-finance": "Định giá & tài chính doanh nghiệp",
-    "bonds-credit": "Trái phiếu & tín dụng",
-    "risk-portfolio-derivatives": "Rủi ro, danh mục & phái sinh",
-    "risk-frm": "Rủi ro & FRM",
-    "banking-compliance": "Ngân hàng, tín dụng & tuân thủ",
-    "quant-data": "Định lượng & phân tích dữ liệu",
+    "investing-psychology": "Tâm lý người dùng & sản phẩm",
+    "accounting-reporting": "Web & giao diện",
+    "valuation-corp-finance": "Thiết kế hệ thống & backend",
+    "bonds-credit": "Hàng đợi & giao tiếp dịch vụ",
+    "risk-portfolio-derivatives": "Độ tin cậy, giám sát & sự cố",
+    "risk-frm": "Bảo mật chuyên sâu",
+    "banking-compliance": "Quyền riêng tư, giấy phép & tuân thủ",
+    "quant-data": "Dữ liệu & phân tích",
     "career-application": "Ứng dụng nghề nghiệp",
-    esg: "ESG & tài chính bền vững",
-    "economics-markets": "Kinh tế học & thị trường",
+    esg: "Bền vững & hiệu quả năng lượng",
+    "economics-markets": "Hệ điều hành & Linux",
     "vn-market": "Thị trường Việt Nam",
-    "private-markets": "Private markets & đầu tư thay thế",
-    "wealth-insurance": "Gia sản & bảo hiểm",
-    "real-estate-project": "Bất động sản & tài chính dự án",
-    fintech: "FinTech & sản phẩm tài chính",
-    "personal-finance": "Tài chính cá nhân",
-    "professional-finance": "Tài chính chuyên ngành",
+    "private-markets": "Mã nguồn mở & hệ sinh thái",
+    "wealth-insurance": "Quy mô lớn & chịu tải",
+    "real-estate-project": "Hạ tầng & dự án nền tảng",
+    fintech: "AI & sản phẩm thông minh",
+    "personal-finance": "Nền tảng công nghệ",
+    "professional-finance": "Công nghệ chuyên sâu",
     "bonus-cases": "Bài case & ứng dụng",
   },
 
@@ -1759,12 +1749,12 @@ export const vi = {
   kingdomPreview: {
     tabMap: "Bản đồ vương quốc",
     tabMinigame: "Chơi thử Mini Game",
-    tabBoss: "Săn Boss NYSE",
+    tabBoss: "Săn boss máy chủ",
     bgAlt: "Ảnh nền sàn giao dịch phố Wall",
-    eyebrow: "VƯƠNG QUỐC GAME TÀI CHÍNH INTERACTIVE",
+    eyebrow: "VƯƠNG QUỐC GAME CÔNG NGHỆ INTERACTIVE",
     headingMap: "Bản đồ nhiệm vụ & Công trình",
     headingMinigame: "Thử phản xạ active recall trực tiếp",
-    headingBoss: "Đấu trường săn Boss Phố Wall",
+    headingBoss: "Đấu trường săn Boss Silicon Valley",
     xpLabel: "XP Tích lũy",
     xpValue: "+{xp} XP",
 
@@ -1781,69 +1771,82 @@ export const vi = {
     tryAnother: "Thử câu hỏi khác",
     doAllQuizzes: "Vào làm trọn bộ 430+ Quiz →",
 
-    bossAlt: "Boss bò Phố Wall NYSE",
+    bossAlt: "Boss sự cố hệ thống Silicon Valley",
     bossRaidLabel: "WORLD BOSS RAID · 1,000,000 HP",
-    bossName: "Bò tót Phố Wall tăng trưởng",
+    bossName: "Boss sự cố diện rộng Silicon Valley",
     bossBody:
-      "Toàn bộ người học trên hệ thống cùng tham gia đánh Boss mỗi ngày bằng cách trả lời đúng các câu hỏi tài chính.",
+      "Toàn bộ người học trên hệ thống cùng tham gia đánh Boss mỗi ngày bằng cách trả lời đúng các câu hỏi công nghệ.",
     bossHpLabel: "Máu Boss hiện tại",
     bossHpValue: "742,500 / 1,000,000 HP",
     damageToday: "Sát thương hôm nay",
     damageValue: "1,250 DMG",
     bossReward: "Phần thưởng hạ Boss",
     bossRewardValue: "+500 XP & Vàng",
-    joinBoss: "Tham gia Săn Boss NYSE Ngay",
-    ongoing: "Đang diễn ra: Mở khóa vương quốc tài chính bằng bài học thật",
+    joinBoss: "Tham gia săn boss máy chủ ngay",
+    ongoing: "Đang diễn ra: Mở khóa vương quốc công nghệ bằng bài học thật",
     playFull: "Vào chơi thử Game Kingdom đầy đủ",
 
     // KINGDOM_BUILDINGS: ids, images, levels and rewards stay in the component.
-    // Building NAMES are proper nouns and stay too; only the copy is here.
-    goldmanSubtitle: "Đấu trường Định giá & Mô hình DCF",
+    //
+    // Building NAMES used to stay there too, on the grounds that they were
+    // proper nouns. That reasoning held while they were "Goldman Sachs Tower"
+    // and "Fed Reserve Bank"; once they had to become technology landmarks they
+    // were plain copy again, rendered untranslated on an English homepage. The
+    // ids (`goldman`, `fed`, `singapore`) and the image paths keep their old
+    // names - they are lookup keys and files in public/, not text.
+    goldmanName: "Trung tâm dữ liệu Silicon Valley",
+    goldmanBadge: "TRUNG TÂM DỮ LIỆU",
+    goldmanSubtitle: "Đấu trường Thiết kế hệ thống",
     goldmanDescription:
-      "Thực hành phân tích định giá doanh nghiệp, P/E, P/B và mô hình chiết khấu dòng tiền DCF.",
-    goldmanTag1: "Định giá P/E",
-    goldmanTag2: "Mô hình DCF",
-    goldmanTag3: "Đọc BCTC",
-    fedSubtitle: "Thử thách Lãi suất & Ngân hàng Trung ương",
+      "Thực hành tách dịch vụ, chọn nơi đặt cache và cân đối đánh đổi giữa tốc độ, chi phí và độ tin cậy.",
+    goldmanTag1: "Thiết kế hệ thống",
+    goldmanTag2: "Cache & hàng đợi",
+    goldmanTag3: "Đọc sơ đồ kiến trúc",
+    fedName: "Trung tâm xương sống Internet",
+    fedBadge: "XƯƠNG SỐNG INTERNET",
+    fedSubtitle: "Thử thách Mạng & Giao thức",
     fedDescription:
-      "Dự đoán động thái lãi suất Fed, lạm phát và ảnh hưởng đến thị trường chứng khoán.",
-    fedTag1: "Tỷ lệ Lãi suất",
-    fedTag2: "Lạm phát",
-    fedTag3: "Chính sách tiền tệ",
-    singaporeSubtitle: "Cảng Dòng tiền & Thương mại Quốc tế",
+      "Lần theo một request từ DNS tới TLS tới máy chủ, và đoán xem độ trễ thật sự nằm ở chặng nào.",
+    fedTag1: "HTTP & DNS",
+    fedTag2: "Độ trễ",
+    fedTag3: "Gỡ lỗi đường truyền",
+    singaporeName: "Cảng dữ liệu Singapore",
+    singaporeBadge: "PIPELINE DỮ LIỆU",
+    singaporeSubtitle: "Cảng Dữ liệu & Luồng xử lý",
     singaporeDescription:
-      "Quản lý dòng tiền lưu chuyển, xuất nhập khẩu và chu kỳ tiền mặt doanh nghiệp.",
-    singaporeTag1: "Dòng tiền Cashflow",
-    singaporeTag2: "Vốn lưu động",
-    singaporeTag3: "Tỷ giá",
+      "Điều phối luồng dữ liệu vào ra, hàng đợi dồn ứ và chu kỳ xử lý của một pipeline thật.",
+    singaporeTag1: "Pipeline dữ liệu",
+    singaporeTag2: "Hàng đợi",
+    singaporeTag3: "Thông lượng",
     pvpName: "Đấu trường kiến thức solo",
+    pvpBadge: "SOLO PVP DUEL",
     pvpSubtitle: "Đánh Boss bằng câu hỏi Active Recall",
     pvpDescription:
-      "Thử thách phản xạ kiến thức tài chính qua các hiệp quiz 1v1 dồn dập tích lũy điểm XP.",
+      "Thử thách phản xạ kiến thức công nghệ qua các hiệp quiz 1v1 dồn dập tích lũy điểm XP.",
     pvpTag1: "Active Recall",
     pvpTag2: "Thách đấu 1v1",
     pvpTag3: "Kho quiz {count}+ bài",
 
     // SAMPLER_QUESTIONS
-    q1: "Tài sản nào sau đây được xếp vào 'Tài sản Ngắn hạn'?",
-    q1a: "Tiền mặt & Tiền gửi ngân hàng",
-    q1b: "Nhà xưởng máy móc thiết bị",
-    q1c: "Thương hiệu & Bằng sáng chế",
+    q1: "Thao tác nào sau đây chạy nhanh nhất trên một máy chủ?",
+    q1a: "Đọc một biến đã nằm sẵn trong bộ nhớ",
+    q1b: "Đọc một dòng từ ổ đĩa",
+    q1c: "Gọi một API ở trung tâm dữ liệu khác",
     q1explanation:
-      "Chính xác! Tiền mặt & các khoản tương đương tiền có tính thanh khoản cao nhất, thuộc tài sản ngắn hạn.",
-    q2: "Chỉ số P/E (Price to Earnings) phản ánh điều gì?",
-    q2a: "Số năm nhà đầu tư hòa vốn nếu lợi nhuận giữ nguyên",
-    q2b: "Tổng nợ vay trên tổng vốn chủ sở hữu",
-    q2c: "Tỷ lệ trả cổ tức bằng tiền mặt",
+      "Chính xác! Bộ nhớ nhanh hơn ổ đĩa hàng nghìn lần, và nhanh hơn một vòng gọi qua mạng hàng triệu lần.",
+    q2: "Độ phức tạp O(n log n) nói lên điều gì?",
+    q2a: "Số bước tăng nhanh hơn tuyến tính một chút khi dữ liệu lớn dần",
+    q2b: "Thuật toán luôn chạy trong đúng n log n giây",
+    q2c: "Bộ nhớ dùng luôn gấp log n lần dữ liệu",
     q2explanation:
-      "Đúng rồi! P/E = Giá cổ phiếu / EPS, thể hiện mức giá nhà đầu tư chấp nhận trả cho 1 đồng lợi nhuận.",
+      "Đúng rồi! Big-O mô tả tốc độ TĂNG của số bước theo cỡ dữ liệu, không phải thời gian tuyệt đối.",
   },
 
   // components/WeeklyChallengeWidget.tsx - the Times Square case-study arena.
   caseArena: {
-    rankS: "Hạng S - huyền thoại phân tích Wall Street 🏆",
+    rankS: "Hạng S - huyền thoại phân tích Silicon Valley 🏆",
     rankA: "Hạng A - chuyên gia phân tích doanh nghiệp 🥇",
-    rankB: "Hạng B - học viên Phố Wall 🥈",
+    rankB: "Hạng B - học viên Silicon Valley 🥈",
     rankC: "Hạng C - cần ôn tập",
     correctToast: "Chính xác! +{score} điểm (Combo x{multiplier}) 🔥",
     wrongToast: "Chưa chính xác! Thất thoát Combo.",
@@ -2045,8 +2048,8 @@ export const vi = {
     botDailyPartial: "Cập nhật hôm nay: {names} đã học rồi. Còn {notYet} bạn chưa học hôm nay - đừng để mai dồn nhé!",
     botDailyExtra: " +{extra} bạn nữa",
     botRules: "Tài tài đây 👋 nhóm này đang học theo hướng {topic}, hiện có khoảng {count} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.",
-    botTopicPersonal: "Tài chính cá nhân",
-    botTopicProfessional: "Tài chính chuyên ngành",
+    botTopicPersonal: "Nền tảng công nghệ",
+    botTopicProfessional: "Công nghệ chuyên sâu",
     botTopicCfa: "CFA Level I",
     dropImage: "Thả ảnh vào đây để gửi 📂",
     emptyPart1: "Chưa có tin nhắn nào.",
@@ -2745,7 +2748,7 @@ export const vi = {
 
   // components/Leaderboard.tsx. Scope note: the per-rank nicknames and badge
   // names (LEADERBOARD_TITLES, the byMetric honor tables - "Sói Biển Đầu Tư",
-  // "Trùm Sàn NYSE", etc.) are deliberately NOT covered here. Those are
+  // "Trùm Sàn Server", etc.) are deliberately NOT covered here. Those are
   // Vietnamese wordplay/finance-meme flavor text, not UI strings - a literal
   // translation would read as nonsense in English, and a good one is a
   // separate creative-writing pass, not a mechanical dictionary lookup.
@@ -2831,8 +2834,8 @@ export const vi = {
 
     progressTitle: "Tiến độ học tập",
     currentPriority: "Ưu tiên hiện tại: {track}",
-    trackPersonal: "Tài chính cá nhân",
-    trackProfessional: "Tài chính chuyên ngành",
+    trackPersonal: "Nền tảng công nghệ",
+    trackProfessional: "Công nghệ chuyên sâu",
     studyMinutes: "{minutes} phút học",
     currentStreakLine: "{days} ngày streak hiện tại",
     percentComplete: "{percent}% hoàn thành",
@@ -3223,23 +3226,23 @@ export const vi = {
   // mục lục phòng, và bộ lọc trang việc làm.
   careerCategories: {
     labels: {
-      investment: "Đầu tư & Nghiên cứu",
-      dealmaking: "Ngân hàng Đầu tư & M&A",
-      accounting: "Kế toán & Kiểm soát",
-      risk: "Rủi ro & Tuân thủ",
-      banking: "Ngân hàng & Nguồn vốn",
-      advisory: "Quản lý Tài sản & Tư vấn",
-      data: "Dữ liệu & Công nghệ",
+      investment: "Phát triển sản phẩm",
+      dealmaking: "Kiến trúc & Nền tảng",
+      accounting: "Chất lượng & Kiểm thử",
+      risk: "Bảo mật & Tuân thủ",
+      banking: "Hạ tầng & Vận hành",
+      advisory: "Tư vấn & Giải pháp",
+      data: "Dữ liệu & AI",
     },
     // Một dòng nói nhóm ngành này làm gì, cho biển hiệu ngoài cửa.
     blurbs: {
-      investment: "Định giá, chọn cổ phiếu, quản lý danh mục",
-      dealmaking: "Thương vụ M&A, huy động vốn, đầu tư tư nhân",
-      banking: "Thu xếp vốn, tín dụng, nguồn vốn ngân hàng",
-      risk: "Đo lường rủi ro, tuân thủ, kiểm toán nội bộ",
-      advisory: "Quản lý tài sản, hoạch định tài chính cá nhân",
-      accounting: "Ghi nhận, kiểm toán, kiểm soát nội bộ",
-      data: "Mô hình, dữ liệu và công nghệ tài chính",
+      investment: "Viết tính năng, dựng giao diện, đưa sản phẩm ra thị trường",
+      dealmaking: "Thiết kế hệ thống, dịch vụ dùng chung, nền tảng nội bộ",
+      banking: "Máy chủ, mạng, triển khai và trực sự cố",
+      risk: "Kiểm thử xâm nhập, quản lý bí mật, quyền riêng tư",
+      advisory: "Khảo sát nhu cầu, thiết kế giải pháp, triển khai cho khách",
+      accounting: "Kiểm thử tự động, độ phủ, kiểm soát chất lượng bản phát hành",
+      data: "Pipeline dữ liệu, mô hình học máy và ứng dụng AI",
     },
   },
 

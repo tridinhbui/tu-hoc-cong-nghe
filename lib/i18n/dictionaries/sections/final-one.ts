@@ -58,17 +58,17 @@ export const finalOneVi = {
     // in the route module (short acronym badge, identical in both languages).
     guildsRoute: {
       fallbackNames: {
-        "guild-wallstreet": "Liên Minh Phố Wall",
+        "guild-wallstreet": "Liên Minh Silicon Valley",
         "guild-tichsan": "Hội Đầu Tư Tích Sản",
         "guild-pe": "Private Equity Syndicate",
       },
     },
-    // components/home/HomePage.tsx - short finance labels in the hero preview
-    // cards. All under 16 chars, so identical-value parity is expected, not a
+    // components/home/HomePage.tsx - short labels in the hero preview cards.
+    // All under 16 chars, so identical-value parity is expected, not a
     // copy-paste mistake (see lib/__tests__/dictionary-parity.test.ts).
     homePage: {
-      peBadge: "P/E",
-      epsLabel: "EPS",
+      bigOBadge: "Big-O",
+      stepsLabel: "Số bước",
       quizLabel: "Quiz",
       flashcardLabel: "Flashcard",
     },
@@ -116,14 +116,14 @@ export const finalOneEn: typeof finalOneVi = {
     },
     guildsRoute: {
       fallbackNames: {
-        "guild-wallstreet": "Wall Street Alliance",
+        "guild-wallstreet": "Silicon Valley Alliance",
         "guild-tichsan": "FIRE Investors Guild",
         "guild-pe": "Private Equity Syndicate",
       },
     },
     homePage: {
-      peBadge: "P/E",
-      epsLabel: "EPS",
+      bigOBadge: "Big-O",
+      stepsLabel: "Steps",
       quizLabel: "Quiz",
       flashcardLabel: "Flashcard",
     },

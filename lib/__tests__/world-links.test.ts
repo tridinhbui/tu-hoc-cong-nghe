@@ -16,7 +16,6 @@ import { describe, expect, it } from "vitest";
  *  - nhưng thà kiểm thừa một dòng chú thích còn hơn bỏ sót một cánh cửa. */
 
 const WORLD_DIRS = [
-  "components/career-district",
   "components/lobby",
   "components/study-room",
   "components/world-controls",
@@ -72,7 +71,12 @@ describe("đường dẫn trong thế giới 3D", () => {
     const hrefs = [...src.matchAll(/href[:=]\s*[`"]([^`"$]+)/g)]
       .map((m) => m[1].split("?")[0].replace(/\/$/, ""))
       .filter((h) => h.startsWith("/"));
-    expect(hrefs.length, "không đọc được href nào - regex hỏng?").toBeGreaterThan(10);
+    // Ngưỡng này là cái chốt chống regex hỏng, không phải mục tiêu: nó chỉ cần
+    // đủ lớn để một regex trả về mảng rỗng bị bắt. Hạ từ 10 xuống 5 khi năm
+    // trạm tài chính (CFA, FRM, phỏng vấn, sự nghiệp, ôn câu sai) và cổng khu
+    // phố nghề bị gỡ - thế giới 3D còn 7 cánh cửa, nên mốc cũ sẽ đỏ mãi mãi
+    // dù không có gì hỏng.
+    expect(hrefs.length, "không đọc được href nào - regex hỏng?").toBeGreaterThan(5);
 
     const broken = [...new Set(hrefs)].filter((h) => {
       if (routes.has(h)) return false;

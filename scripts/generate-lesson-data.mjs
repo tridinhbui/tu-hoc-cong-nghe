@@ -58,8 +58,49 @@ function loadLocalModule(rawPath) {
 
   const moduleObj = { exports: {} };
   const dir = path.dirname(resolved);
-  const requireShim = (spec) =>
-    spec.startsWith(".") ? loadLocalModule(path.join(dir, spec)) : nodeRequire(spec);
+  // `@/...` là BÍ DANH TypeScript trỏ về gốc kho, không phải một gói npm - nên
+  // nó phải được nạp như tệp cục bộ, y hệt specifier tương đối.
+  //
+  // Thiếu nhánh này thì `npm run build` chết ở bước sinh dữ liệu bài học với
+  // "Cannot find module '@/lib/track-totals'", vì `nodeRequire` đi tìm một gói
+  // tên `@/lib/track-totals` trong node_modules. Đã xảy ra thật, ngay khi
+  // lib/track-stages.ts đổi từ hằng số gõ tay sang import số giờ từ
+  // lib/track-totals.ts. Chú thích phía trên nói bare specifier là "gói npm và
+  // builtin" - đúng lúc nó được viết, và bí danh đã phá vỡ giả định đó.
+  const requireShim = (spec) => {
+    // JSON không đi qua transpiler: `ts.transpileModule` nhận nó như mã nguồn
+    // và trả về một module rỗng, nên bên gọi thấy `undefined` rồi vỡ ở lần
+    // đọc thuộc tính đầu tiên - "Cannot read properties of undefined". Đọc và
+    // parse thẳng.
+    //
+    // Có một vòng lặp phụ thuộc đáng biết ở đây: tệp JSON duy nhất đi qua
+    // nhánh này là `lib/lessons-data/_track-totals.json`, và chính script này
+    // sinh ra nó. Chạy trên một cây chưa từng build sẽ không có tệp - nên nếu
+    // sau này ai gặp lỗi thiếu tệp ở đây, cách sửa là cho `lib/track-totals.ts`
+    // chịu được tệp rỗng, chứ không phải bỏ nhánh này đi.
+    const asLocal = spec.startsWith(".")
+      ? path.join(dir, spec)
+      : spec.startsWith("@/")
+        ? path.join(root, spec.slice(2))
+        : null;
+    if (asLocal === null) return nodeRequire(spec);
+    if (asLocal.endsWith(".json")) {
+      // `import totals from "....json"` được biên dịch sang CommonJS thành
+      // `require(...).default`, nên trả thẳng object đã parse sẽ cho ra
+      // `undefined`. Gắn cả `default` lẫn các khoá ở cấp một để cả hai kiểu
+      // import cùng chạy.
+      // Vòng lặp phụ thuộc nói ở trên đã xảy ra thật: xoá bớt bài học làm một
+      // lượt chạy dọn sạch outDir rồi hỏng giữa chừng, và từ đó mọi lượt sau
+      // đều chết ở đây vì `_track-totals.json` không còn. Một cây checkout sạch
+      // cũng vậy. Thiếu tệp thì nạp bằng object rỗng: giá trị đúng được chính
+      // script này ghi đè ở cuối lượt chạy, nên nó chỉ cần đủ để đi qua bước
+      // nạp module chứ không cần đúng.
+      if (!existsSync(asLocal)) return { default: {} };
+      const parsed = JSON.parse(readFileSync(asLocal, "utf8"));
+      return { ...parsed, default: parsed };
+    }
+    return loadLocalModule(asLocal);
+  };
 
   new Function("exports", "module", "require", outputText)(moduleObj.exports, moduleObj, requireShim);
   localModuleCache.set(resolved, moduleObj.exports);
@@ -199,26 +240,16 @@ for (const l of lessons) {
   }
 }
 
-/* CFA không phải một chặng thứ tư: nó là một lớp ánh xạ trên chính những bài
- * của ba chặng trên (xem chú thích đầu app/(app)/cfa/page.tsx). Nên nó được
- * cộng riêng theo danh sách lessonIds của mười môn, và một bài nằm trong hai
- * môn chỉ được đếm một lần.
- *
- * Đọc lib/cfa-track.ts bằng chính `loadLocalModule` mà script này đã dùng cho
- * kho bài, thay vì chép lại danh sách id sang đây - một bản sao thứ hai của
- * cùng danh sách là một chỗ nữa để lệch. */
+/* Lớp ánh xạ CFA đã được gỡ cùng lib/cfa-track.ts: nó gom bài của ba chặng
+ * trên theo mười môn CFA, và cả mười môn lẫn hai route /cfa, /frm đều không
+ * còn. Khoá `cfa` vẫn được ghi ra với số 0 chứ không bỏ hẳn, vì
+ * lib/track-totals.ts khai nó trong `TrackTotalsId` và `trackHours("cfa")` vẫn
+ * gọi được - trả 0 giờ thì đúng, còn thiếu khoá thì đọc ra `undefined`. */
 const minutesById = new Map(
   lessons.filter((l) => l.isVisible !== false).map((l) => [l.id, l.totalMinutes ?? 0])
 );
-const { CFA_LEVEL_1_SUBJECTS } = loadLocalModule(path.join(root, "lib/cfa-track"));
-const cfaIds = new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
-let cfaLessons = 0;
-let cfaMinutes = 0;
-for (const id of cfaIds) {
-  if (!minutesById.has(id)) continue;
-  cfaLessons++;
-  cfaMinutes += minutesById.get(id);
-}
+const cfaLessons = 0;
+const cfaMinutes = 0;
 
 writeFileSync(
   path.join(outDir, "_track-totals.json"),

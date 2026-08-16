@@ -28,11 +28,11 @@ export const learningPathVi = {
     heroLoading: "Đang xem bạn đang ở đâu...",
 
     stepPickTitle: "Chọn một hướng",
-    stepPickHint: "Bạn muốn quản tiền của mình, hay muốn đi làm nghề tài chính? Chọn một. Đổi lúc nào cũng được.",
-    trackPersonalName: "Tiền của tôi",
-    trackPersonalFor: "Biết tiền đi đâu, tiết kiệm, đầu tư, mua nhà, hưu trí.",
-    trackProfessionalName: "Nghề tài chính",
-    trackProfessionalFor: "Đọc báo cáo, định giá, mô hình. Cho người muốn đi làm nghề này.",
+    stepPickHint: "Bạn muốn tự dựng được sản phẩm của mình, hay muốn đi làm nghề công nghệ? Chọn một. Đổi lúc nào cũng được.",
+    trackPersonalName: "Nền tảng của tôi",
+    trackPersonalFor: "Biết máy chạy thế nào, dùng Git, viết chương trình đầu tiên, dựng web, triển khai.",
+    trackProfessionalName: "Nghề công nghệ",
+    trackProfessionalFor: "Đọc mã người khác, thiết kế hệ thống, vận hành. Cho người muốn đi làm nghề này.",
     trackLessons: "{count} bài",
     trackTime: "khoảng {weeks} tuần",
     // Thẻ hướng ĐANG CHỌN đếm số bài CÒN LẠI, thẻ kia đếm tổng. Trước đây cả
@@ -55,7 +55,7 @@ export const learningPathVi = {
     trackPicked: "Bạn đang học hướng này",
     trackPick: "Chọn hướng này",
     proNote:
-      "Chọn hướng nghề thì cứ đi 20 bài đầu của hướng kia trước. Lãi kép và giá trị của tiền theo thời gian là nền của mọi thứ phía sau, và nó chỉ mất hai tuần.",
+      "Chọn hướng nghề thì cứ đi 20 bài đầu của hướng kia trước. Dòng lệnh và Git là nền của mọi thứ phía sau, và nó chỉ mất hai tuần.",
 
     stepPaceTitle: "Chọn nhịp bạn giữ được",
     stepPaceHint: "Nhịp giữ được quan trọng hơn nhịp nhanh.",
@@ -139,11 +139,11 @@ export const learningPathEn: typeof learningPathVi = {
     heroLoading: "Checking where you are...",
 
     stepPickTitle: "Pick one direction",
-    stepPickHint: "Do you want to manage your own money, or work in finance? Pick one. You can change it any time.",
-    trackPersonalName: "My own money",
-    trackPersonalFor: "Know where your money goes, save, invest, buy a home, retire.",
-    trackProfessionalName: "A finance career",
-    trackProfessionalFor: "Read statements, value companies, build models. For people who want the job.",
+    stepPickHint: "Do you want to build your own things, or work in technology? Pick one. You can change it any time.",
+    trackPersonalName: "My own foundation",
+    trackPersonalFor: "Know how your machine works, use Git, write a first program, build a site, deploy it.",
+    trackProfessionalName: "A technology career",
+    trackProfessionalFor: "Read other people's code, design systems, run them. For people who want the job.",
     trackLessons: "{count} lessons",
     trackTime: "about {weeks} weeks",
     trackLessonsLeft: "{count} lessons left",
@@ -162,7 +162,7 @@ export const learningPathEn: typeof learningPathVi = {
     trackPicked: "This is your direction",
     trackPick: "Choose this one",
     proNote:
-      "If you pick the career direction, still take the first 20 lessons of the other one. Compounding and the time value of money are the foundation for everything after, and they only take two weeks.",
+      "If you pick the career direction, still take the first 20 lessons of the other one. The command line and Git are the foundation for everything after, and they only take two weeks.",
 
     stepPaceTitle: "Pick a pace you can keep",
     stepPaceHint: "A pace you keep beats a fast one.",

@@ -8,9 +8,9 @@
 // - đúng hình dạng lỗi mà `sections` bị ghi đè trong lesson override đã gây ra
 // một lần. Số cấp thì không đổi được: hạ hay nâng ngưỡng XP vẫn là cấp 7.
 //
-// Bậc 1-8 là thang nghề tài chính thật, dịch sát nghĩa. Bậc 9 giữ "CFA" nguyên
+// Bậc 1-8 là thang nghề kỹ sư phần mềm thật, dịch sát nghĩa. Bậc 9 giữ "AWS" nguyên
 // vì đó là tên chứng chỉ. Bậc 10-15 là danh hiệu vui, dịch theo hình ảnh chứ
-// không theo từ: "Đại Thuyền trưởng Phố Wall" thành "Wall Street Admiral" -
+// không theo từ: "Đại thuyền trưởng Silicon Valley" thành "Silicon Valley Admiral" -
 // "Grand Captain" đọc như lỗi dịch máy, còn hình ảnh thì vẫn là người chỉ huy
 // hạm đội.
 //
@@ -20,19 +20,19 @@ export const levelTitlesVi = {
   levelTitles: {
     1: "Tò mò",
     2: "Học viên",
-    3: "Nhà đầu tư",
-    4: "Nhà phân tích",
-    5: "Cố vấn Tài chính",
-    6: "Thạo thủ Tài chính",
-    7: "Chuyên gia Tài chính",
-    8: "Bậc thầy Tài chính",
-    9: "Chuyên viên CFA",
-    10: "Huyền thoại Đầu tư",
-    11: "Giám đốc Quỹ Hedge Fund",
-    12: "Quản lý Danh mục Chiến lược",
-    13: "Bậc thầy Phân tích Thị trường",
-    14: "Lãnh đạo Tài chính Tối cao",
-    15: "Đại Thuyền trưởng Phố Wall",
+    3: "Lập trình viên tập sự",
+    4: "Kỹ sư phần mềm",
+    5: "Kỹ sư chính",
+    6: "Kỹ sư cao cấp",
+    7: "Chuyên gia hệ thống",
+    8: "Kiến trúc sư phần mềm",
+    9: "Ứng viên chứng chỉ AWS",
+    10: "Huyền thoại mã nguồn mở",
+    11: "Giám đốc kỹ thuật",
+    12: "Kiến trúc sư trưởng nền tảng",
+    13: "Bậc thầy thiết kế hệ thống",
+    14: "Lãnh đạo công nghệ tối cao",
+    15: "Đại thuyền trưởng Silicon Valley",
   } as Record<number, string>,
 };
 
@@ -40,18 +40,18 @@ export const levelTitlesEn: typeof levelTitlesVi = {
   levelTitles: {
     1: "Curious",
     2: "Student",
-    3: "Investor",
-    4: "Analyst",
-    5: "Financial Advisor",
-    6: "Finance Adept",
-    7: "Finance Specialist",
-    8: "Finance Master",
-    9: "CFA Candidate",
-    10: "Investing Legend",
-    11: "Hedge Fund Director",
-    12: "Strategic Portfolio Manager",
-    13: "Master of Market Analysis",
-    14: "Supreme Finance Leader",
-    15: "Wall Street Admiral",
+    3: "Junior Developer",
+    4: "Software Engineer",
+    5: "Senior Engineer",
+    6: "Staff Engineer",
+    7: "Systems Specialist",
+    8: "Software Architect",
+    9: "AWS Certification Candidate",
+    10: "Open Source Legend",
+    11: "Engineering Director",
+    12: "Chief Platform Architect",
+    13: "Master of System Design",
+    14: "Supreme Technology Leader",
+    15: "Silicon Valley Admiral",
   },
 };

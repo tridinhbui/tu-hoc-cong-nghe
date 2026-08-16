@@ -7,7 +7,6 @@ import { Gamepad2, Trophy, History as HistoryIcon, ArrowLeft, Crown, Volume2, Vo
 import { useAuthGate } from "@/lib/use-auth-gate";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { GAMES, GAME_DIFFICULTIES, getGameMeta, type GameType, type GameDifficulty } from "@/lib/games";
-import { recalculateUserStats } from "@/lib/supabase-user";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import { soundManager } from "@/lib/sounds";
 import { useI18n } from "@/lib/i18n/context";
@@ -22,9 +21,6 @@ import GameLessonRecommendation from "@/components/games/GameLessonRecommendatio
 import PvpDuelModal from "@/components/PvpDuelModal";
 import FinancialGuildWidget from "@/components/FinancialGuildWidget";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
-import WallStreetMillionaireGame from "@/components/games/WallStreetMillionaireGame";
-import SnowballRacerGame from "@/components/games/SnowballRacerGame";
-import DcfValuationGame from "@/components/games/DcfValuationGame";
 
 type InnerTab = "play" | "leaderboard" | "history";
 type HubTab = "games" | "pvp" | "guild" | "combined";
@@ -106,9 +102,6 @@ export default function GameHubClient() {
   const [hubTab, setHubTab] = useState<HubTab>("games");
   const [soundsEnabled, setSoundsEnabled] = useState(() => soundManager.isEnabled());
   const [showPvpModal, setShowPvpModal] = useState(false);
-  const [showMillionaireModal, setShowMillionaireModal] = useState(false);
-  const [showRacerModal, setShowRacerModal] = useState(false);
-  const [showDcfModal, setShowDcfModal] = useState(false);
 
   const [lastResult, setLastResult] = useState<{ gameType: GameType; score: number; total: number } | null>(null);
 
@@ -126,9 +119,9 @@ export default function GameHubClient() {
     }
     if (xpEarned > 0) toast.success(format(gameHub.finishedSuccess, { score, total, xp: xpEarned }));
     else toast.info(format(gameHub.finishedFail, { score, total }));
-    // Fold the game's best-per-game XP into the user's real total_xp/level
-    // right away (best-effort - the session is already saved regardless).
-    if (userId) void recalculateUserStats(userId).catch(() => {});
+    // Không còn bước gộp XP lên máy chủ: `recordGameSession` đã ghi phiên vào
+    // kho cục bộ, và `getTotalGameXp` tính lại tổng từ chính kho đó mỗi lần
+    // đọc, nên không có bản sao nào để đồng bộ nữa.
     setInnerTab("leaderboard");
   }
 
@@ -233,114 +226,6 @@ export default function GameHubClient() {
             </div>
           ) : (
             <div className="space-y-6">
-              {/* Featured Wall Street Quiz Millionaire Banner */}
-              <div
-                onClick={() => {
-                  setShowMillionaireModal(true);
-                  trackFeatureClick("game_open_millionaire", { label: "wall-street-millionaire" });
-                }}
-                className="relative rounded-3xl overflow-hidden border-2 border-amber-500/50 bg-gradient-to-r from-slate-900 via-amber-950/60 to-slate-950 p-6 sm:p-7 shadow-xl cursor-pointer group hover:border-amber-400 hover:shadow-amber-500/20 transition-all duration-300"
-              >
-                <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-amber-500/20 border-2 border-amber-400/60 flex items-center justify-center text-3xl shrink-0 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform">
-                      💰
-                    </div>
-                    <div>
-                      <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 px-2.5 py-0.5 text-[10px] font-black text-amber-300 uppercase tracking-widest mb-1">
-                        {gameHub.millionaireBadge}
-                      </div>
-                      <h2 className="text-lg sm:text-xl font-black text-amber-100 group-hover:text-amber-300 transition-colors">
-                        {gameHub.millionaireTitle}
-                      </h2>
-                      <p className="text-xs text-stone-300 mt-1 max-w-lg leading-relaxed">
-                        {gameHub.millionaireDesc}
-                      </p>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    className="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-stone-950 font-black text-xs sm:text-sm shadow-lg group-hover:scale-105 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
-                  >
-                    <span>{gameHub.millionaireButton}</span>
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Featured Snowball Racer Banner */}
-              <div
-                onClick={() => {
-                  setShowRacerModal(true);
-                  trackFeatureClick("game_open_racer", { label: "snowball-racer" });
-                }}
-                className="relative rounded-3xl overflow-hidden border-2 border-emerald-500/50 bg-gradient-to-r from-slate-900 via-emerald-950/60 to-slate-950 p-6 sm:p-7 shadow-xl cursor-pointer group hover:border-emerald-400 hover:shadow-emerald-500/20 transition-all duration-300"
-              >
-                <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 border-2 border-emerald-400/60 flex items-center justify-center text-3xl shrink-0 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform">
-                      🏎️
-                    </div>
-                    <div>
-                      <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 px-2.5 py-0.5 text-[10px] font-black text-emerald-300 uppercase tracking-widest mb-1">
-                        {gameHub.racerBadge}
-                      </div>
-                      <h2 className="text-lg sm:text-xl font-black text-emerald-100 group-hover:text-emerald-300 transition-colors">
-                        {gameHub.racerTitle}
-                      </h2>
-                      <p className="text-xs text-stone-300 mt-1 max-w-lg leading-relaxed">
-                        {gameHub.racerDesc}
-                      </p>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    className="px-5 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-stone-950 font-black text-xs sm:text-sm shadow-lg group-hover:scale-105 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
-                  >
-                    <span>{gameHub.racerButton}</span>
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Featured DCF Valuation Mastermind Banner */}
-              <div
-                onClick={() => {
-                  setShowDcfModal(true);
-                  trackFeatureClick("game_open_dcf", { label: "dcf-mastermind" });
-                }}
-                className="relative rounded-3xl overflow-hidden border-2 border-indigo-500/50 bg-gradient-to-r from-slate-900 via-indigo-950/60 to-slate-950 p-6 sm:p-7 shadow-xl cursor-pointer group hover:border-indigo-400 hover:shadow-indigo-500/20 transition-all duration-300"
-              >
-                <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-indigo-500/20 border-2 border-indigo-400/60 flex items-center justify-center text-3xl shrink-0 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform">
-                      🧮
-                    </div>
-                    <div>
-                      <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/20 border border-indigo-400/40 px-2.5 py-0.5 text-[10px] font-black text-indigo-300 uppercase tracking-widest mb-1">
-                        {gameHub.dcfBadge}
-                      </div>
-                      <h2 className="text-lg sm:text-xl font-black text-indigo-100 group-hover:text-indigo-300 transition-colors">
-                        {gameHub.dcfTitle}
-                      </h2>
-                      <p className="text-xs text-stone-300 mt-1 max-w-lg leading-relaxed">
-                        {gameHub.dcfDesc}
-                      </p>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    className="px-5 py-3 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-stone-950 font-black text-xs sm:text-sm shadow-lg group-hover:scale-105 transition-all shrink-0 flex items-center gap-2 cursor-pointer"
-                  >
-                    <span>{gameHub.dcfButton}</span>
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  </button>
-                </div>
-              </div>
-
               {/* Standard Mini Games Grid */}
               <div className="grid sm:grid-cols-2 gap-4">
               {localizedGames.map((g) => {
@@ -403,26 +288,8 @@ export default function GameHubClient() {
           />
         )}
 
-        {showMillionaireModal && (
-          <WallStreetMillionaireGame
-            userId={userId}
-            onClose={() => setShowMillionaireModal(false)}
-          />
-        )}
 
-        {showRacerModal && (
-          <SnowballRacerGame
-            userId={userId}
-            onClose={() => setShowRacerModal(false)}
-          />
-        )}
 
-        {showDcfModal && (
-          <DcfValuationGame
-            userId={userId}
-            onClose={() => setShowDcfModal(false)}
-          />
-        )}
       </div>
     );
   }

@@ -37,7 +37,6 @@ import { getUserAnalytics } from "@/lib/supabase-analytics";
 import { createClient } from "@/lib/supabase";
 import type { LearningAnalytics as LearningAnalyticsType } from "@/lib/supabase-analytics";
 import LeaderboardSection from "@/components/analytics/LeaderboardSection";
-import CompetencyStatsSection from "@/components/analytics/CompetencyStatsSection";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -816,7 +815,6 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
         </div>
       )}
 
-      {activeSection === "competency" && <CompetencyStatsSection userId={userId} />}
 
       {activeSection === "leaderboard" && <LeaderboardSection userId={userId} />}
     </div>

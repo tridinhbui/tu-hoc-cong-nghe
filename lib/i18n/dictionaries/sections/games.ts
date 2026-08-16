@@ -23,7 +23,7 @@ export const gamesVi = {
       pvpLeaderboardEmpty:
         "Chưa có dữ liệu thách đấu. Hãy bấm nút phía trên để bắt đầu ván Solo PVP đầu tiên!",
       millionaireBadge: "🏆 GAME SHOW ĐẶC BIỆT",
-      millionaireTitle: "Ai Là Triệu Phú Phố Wall",
+      millionaireTitle: "Ai Là Triệu Phú Silicon Valley",
       millionaireDesc:
         "15 câu hỏi chinh phục $1,000,000 vốn đầu tư! Sử dụng 3 quyền trợ giúp: 50:50, Hỏi Mascot Tài Tài & Khảo sát 1,000 Chuyên viên.",
       millionaireButton: "Vào Game Show",
@@ -101,7 +101,7 @@ export const gamesVi = {
       },
     },
     millionaire: {
-      title: "Ai Là Triệu Phú Phố Wall",
+      title: "Ai Là Triệu Phú Silicon Valley",
       questionCounter: "Câu {current}/15",
       subtitle: "Chinh phục $1,000,000 vốn đầu tư danh giá",
       walkAwayButton: "Dừng cuộc chơi ({prize})",
@@ -123,7 +123,7 @@ export const gamesVi = {
       prizeLadderTitle: "Thang tiền thưởng",
       taiTaiModalTitle: "Linh vật Tài Tài tư vấn:",
       taiTaiThanks: "Cảm ơn Tài Tài!",
-      audienceModalTitle: "Ý kiến 1,000 Chuyên viên Phố Wall:",
+      audienceModalTitle: "Ý kiến 1,000 Chuyên viên Silicon Valley:",
       audienceOptionLabel: "Phương án {letter}",
       audienceGotIt: "Đã hiểu!",
       toastFiftyFifty: "Đã loại bỏ 2 phương án sai!",
@@ -309,7 +309,7 @@ export const gamesVi = {
             "D. Chứng chỉ quỹ ETF Vàng SPDR Gold Trust",
           ],
           explanation: "AIG đã bán hàng trăm tỷ USD hợp đồng CDS bảo hiểm cho CDO nợ dưới chuẩn mà không có đủ vốn dự phòng khi nợ xấu bùng nổ.",
-          taiTaiHint: "CDS (Credit Default Swaps) là ngòi nổ kích nổ AIG năm 2008! Bạn sắp trở thành Triệu phú Phố Wall, chọn B ngay!",
+          taiTaiHint: "CDS (Credit Default Swaps) là ngòi nổ kích nổ AIG năm 2008! Bạn sắp trở thành Triệu phú Silicon Valley, chọn B ngay!",
         },
       },
     },
@@ -362,7 +362,7 @@ export const gamesVi = {
     },
     candlestick: {
       backButton: "Bản Đồ",
-      districtBadge: "📊 NYSE Central District",
+      districtBadge: "📊 Server Central District",
       title: "Sàn Giao Dịch Nến Nhật 10S",
       syncNote: "🎯 Đồng bộ với {count} bài học Phân Tích Kỹ Thuật của bạn",
       pointsLabel: "{score} pts",
@@ -546,7 +546,7 @@ export const gamesEn: typeof gamesVi = {
       pvpLeaderboardEmpty:
         "No duel data yet. Tap the button above to start your first Solo PVP match!",
       millionaireBadge: "🏆 SPECIAL GAME SHOW",
-      millionaireTitle: "Who Wants to Be a Wall Street Millionaire",
+      millionaireTitle: "Who Wants to Be a Silicon Valley Millionaire",
       millionaireDesc:
         "15 questions to conquer $1,000,000 in capital! Use 3 lifelines: 50:50, Ask Mascot Tai Tai & Poll 1,000 Professionals.",
       millionaireButton: "Enter Game Show",
@@ -624,7 +624,7 @@ export const gamesEn: typeof gamesVi = {
       },
     },
     millionaire: {
-      title: "Who Wants to Be a Wall Street Millionaire",
+      title: "Who Wants to Be a Silicon Valley Millionaire",
       questionCounter: "Question {current}/15",
       subtitle: "Conquer $1,000,000 in prestigious investment capital",
       walkAwayButton: "Walk away ({prize})",
@@ -646,7 +646,7 @@ export const gamesEn: typeof gamesVi = {
       prizeLadderTitle: "Prize ladder",
       taiTaiModalTitle: "Mascot Tai Tai advises:",
       taiTaiThanks: "Thanks, Tai Tai!",
-      audienceModalTitle: "1,000 Wall Street professionals say:",
+      audienceModalTitle: "1,000 Silicon Valley professionals say:",
       audienceOptionLabel: "Option {letter}",
       audienceGotIt: "Got it!",
       toastFiftyFifty: "2 wrong options removed!",
@@ -832,7 +832,7 @@ export const gamesEn: typeof gamesVi = {
             "D. SPDR Gold Trust ETF shares",
           ],
           explanation: "AIG sold hundreds of billions of dollars in CDS insuring subprime CDOs without enough capital reserved when defaults exploded.",
-          taiTaiHint: "CDS (Credit Default Swaps) lit the fuse that blew up AIG in 2008! You're about to become a Wall Street Millionaire, pick B!",
+          taiTaiHint: "CDS (Credit Default Swaps) lit the fuse that blew up AIG in 2008! You're about to become a Silicon Valley Millionaire, pick B!",
         },
       },
     },
@@ -885,7 +885,7 @@ export const gamesEn: typeof gamesVi = {
     },
     candlestick: {
       backButton: "Map",
-      districtBadge: "📊 NYSE Central District",
+      districtBadge: "📊 Server Central District",
       title: "10-Second Candlestick Trading Floor",
       syncNote: "🎯 Synced with {count} of your Technical Analysis lessons",
       pointsLabel: "{score} pts",

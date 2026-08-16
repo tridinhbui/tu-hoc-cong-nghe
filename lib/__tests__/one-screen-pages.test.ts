@@ -25,7 +25,6 @@ const HEADER_SUBTRACTION = "h-[calc(100dvh-3.5rem)]";
 
 const ONE_SCREEN_PAGES = [
   "app/(app)/kiem-tra/page.tsx",
-  "app/(app)/phong-van-ky-thuat/page.tsx",
   "app/(app)/nhom-hoc/page.tsx",
 ];
 

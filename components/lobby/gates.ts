@@ -34,13 +34,5 @@ export function gatesOf(t: Dictionary): GateTarget[] {
       blurb: c.studyBlurb,
       accent: "#7dd3fc",
     },
-    {
-      id: "pho-nghe",
-      href: "/pho-nghe",
-      label: c.districtLabel,
-      shortLabel: c.districtShort,
-      blurb: c.districtBlurb,
-      accent: "#fbbf24",
-    },
   ];
 }

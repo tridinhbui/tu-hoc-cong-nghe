@@ -33,7 +33,6 @@ import MistakeReviewWidget from "@/components/MistakeReviewWidget";
 import LessonRecallWidget from "@/components/LessonRecallWidget";
 import SmartRemediationWidget from "@/components/SmartRemediationWidget";
 import OnlineUsersWidget from "@/components/OnlineUsersWidget";
-import CareerGoalWidget from "@/components/CareerGoalWidget";
 import ReferralPromptModal from "@/components/ReferralPromptModal";
 import DiagnosticPlacementModal from "@/components/DiagnosticPlacementModal";
 import CombinedRewardsWidget from "@/components/CombinedRewardsWidget";
@@ -43,7 +42,6 @@ import { syncLocalLevelExams } from "@/lib/supabase-level-exams";
 import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/supabase-dashboard-optimized";
 import { getLevelByXp, getLevelProgress, LEVELS } from "@/lib/levels";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
-import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
 import CertificateModal from "@/components/CertificateModal";
 import { trackTotals } from "@/lib/track-totals";
@@ -1296,11 +1294,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             nghỉ - và đó cũng là lý do bên phải được phép mang
                             màu, xem chú thích trong DailyMotivationWidget. */}
                         <div className="mt-3 grid grid-cols-1 items-stretch gap-2.5 sm:grid-cols-2">
-                          {!isLessonsView && (
-                            <div className="min-w-0 rounded-lg border border-stone-200 bg-white p-3 dark:border-stone-800 dark:bg-stone-900">
-                              <CareerGoalWidget userId={user?.id} compact />
-                            </div>
-                          )}
                           {user?.id && (
                             <div className="min-w-0">
                               <DailyMotivationWidget userId={user.id} compact />
@@ -2558,24 +2551,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         />
       )}
 
-      {showChallenge && <KnowledgeChallengeModal onClose={() => setShowChallenge(false)} />}
-
-      {challengeGateLesson && user?.id && (
-        <KnowledgeChallengeModal
-          onClose={() => setChallengeGateLesson(null)}
-          gate={{
-            lessonId: challengeGateLesson.id,
-            lessonSlug: challengeGateLesson.slug,
-            lessonTitle: challengeGateLesson.title,
-            userId: user.id,
-          }}
-          onPassed={() => {
-            setChallengePassedIds((prev) => new Set(prev).add(challengeGateLesson.id));
-            router.push(`/bai-hoc/${challengeGateLesson.slug}`);
-            setChallengeGateLesson(null);
-          }}
-        />
-      )}
+      {/* Cổng thử thách kiến thức đã gỡ cùng /api/knowledge-challenge: bộ câu
+          hỏi của nó lấy từ các môn CFA/FRM, tức là chính nội dung tài chính.
+          `challengeGateLesson` giờ chỉ còn được đặt rồi xoá mà không mở gì -
+          khi có bộ câu hỏi công nghệ thì dựng lại cổng ở đúng chỗ này. */}
 
       {selectedCertStage && user?.id && (
         <CertificateModal

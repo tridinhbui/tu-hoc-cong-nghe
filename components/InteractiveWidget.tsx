@@ -3,6 +3,7 @@ import InteractiveInterestRate from "./InteractiveInterestRate";
 import InteractiveSupplyDemand from "./InteractiveSupplyDemand";
 import InteractiveROE from "./InteractiveROE";
 import InteractiveBond from "./InteractiveBond";
+import InteractiveMultiples from "./InteractiveMultiples";
 import InteractiveMoneyVsAsset from "./InteractiveMoneyVsAsset";
 import InteractiveCashFlowSimulator from "./InteractiveCashFlowSimulator";
 import InteractiveInflationCalculator from "./InteractiveInflationCalculator";
@@ -11,16 +12,13 @@ import InteractiveRisk from "./InteractiveRisk";
 import InteractiveChart from "./InteractiveChart";
 import InteractiveProcess from "./InteractiveProcess";
 import InteractivePayoff from "./InteractivePayoff";
-import InteractiveMultiples from "./InteractiveMultiples";
 import InteractiveProspect from "./InteractiveProspect";
 import InteractiveAccretion from "./InteractiveAccretion";
 import InteractiveEthicsCase from "./InteractiveEthicsCase";
-import InteractiveMacroPolicy from "./InteractiveMacroPolicy";
 import ExcelPractice from "./ExcelPractice";
 import InteractivePromptCraft from "./InteractivePromptCraft";
 import InteractiveAiVerify from "./InteractiveAiVerify";
 import InteractiveEsgScore from "./InteractiveEsgScore";
-import InteractiveLiquidityRun from "./InteractiveLiquidityRun";
 import InteractiveSampling from "./InteractiveSampling";
 import InteractiveRegression from "./InteractiveRegression";
 import InteractiveTaxBrackets from "./InteractiveTaxBrackets";
@@ -47,7 +45,6 @@ export type WidgetType =
   | "prospect"
   | "accretion"
   | "ethics-case"
-  | "macro-policy"
   | "fee-drag"
   | "ratios"
   | "tail-risk"
@@ -62,7 +59,6 @@ export type WidgetType =
   | "prompt-craft"
   | "ai-verify"
   | "esg-score"
-  | "liquidity-run"
   | "sampling"
   | "regression"
   | "tax-brackets"
@@ -104,8 +100,6 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveAccretion />;
     case "ethics-case":
       return <InteractiveEthicsCase />;
-    case "macro-policy":
-      return <InteractiveMacroPolicy />;
     case "excel-shortcuts":
     case "excel-lookup":
     case "excel-three-statement":
@@ -119,8 +113,6 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveAiVerify />;
     case "esg-score":
       return <InteractiveEsgScore />;
-    case "liquidity-run":
-      return <InteractiveLiquidityRun />;
     case "sampling":
       return <InteractiveSampling />;
     case "regression":
@@ -160,7 +152,6 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "prospect",
   "accretion",
   "ethics-case",
-  "macro-policy",
   "fee-drag",
   "ratios",
   "tail-risk",
@@ -173,7 +164,6 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "prompt-craft",
   "ai-verify",
   "esg-score",
-  "liquidity-run",
   "sampling",
   "regression",
   "tax-brackets",

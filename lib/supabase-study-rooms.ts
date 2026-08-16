@@ -10,8 +10,8 @@ export type StudyRoomTopic = "personal" | "professional" | "cfa";
    `id` - vốn cũng là giá trị được ghi xuống cột `topic` của phòng học, nên nó
    là khoá chứ không phải chữ. */
 export const STUDY_ROOM_TOPICS: { id: StudyRoomTopic; label: string }[] = [
-  { id: "personal", label: "Tài chính cá nhân" },
-  { id: "professional", label: "Tài chính chuyên ngành" },
+  { id: "personal", label: "Nền tảng công nghệ" },
+  { id: "professional", label: "Công nghệ chuyên sâu" },
   { id: "cfa", label: "CFA Level I" },
 ];
 

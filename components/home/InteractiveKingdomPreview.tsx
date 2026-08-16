@@ -36,6 +36,10 @@ interface KingdomBuilding {
   minLevel: number;
   progress: string;
   xpReward: number;
+  // Emoji là trang trí đứng cạnh nhãn, không phải một phần của câu chữ.
+  // `copy-tone.test.ts` chặn chuỗi giao diện mở đầu bằng emoji, và nó đúng:
+  // nhãn phải dịch được, hình thì không.
+  icon: string;
   badge: string;
   description: string;
   tags: string[];
@@ -44,37 +48,40 @@ interface KingdomBuilding {
 const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
   {
     id: "goldman",
-    name: "Goldman Sachs Tower",
+    name: t.kingdomPreview.goldmanName,
     subtitle: t.kingdomPreview.goldmanSubtitle,
     image: "/rpg/goldman_sachs.png",
     minLevel: 5,
     progress: "72%",
     xpReward: 350,
-    badge: "🏛️ INVESTMENT BANK",
+    icon: "🏛️",
+    badge: t.kingdomPreview.goldmanBadge,
     description: t.kingdomPreview.goldmanDescription,
     tags: [t.kingdomPreview.goldmanTag1, t.kingdomPreview.goldmanTag2, t.kingdomPreview.goldmanTag3],
   },
   {
     id: "fed",
-    name: "Fed Reserve Bank",
+    name: t.kingdomPreview.fedName,
     subtitle: t.kingdomPreview.fedSubtitle,
     image: "/rpg/fed_reserve.jpg",
     minLevel: 3,
     progress: "48%",
     xpReward: 250,
-    badge: "🏦 CENTRAL BANK",
+    icon: "🌐",
+    badge: t.kingdomPreview.fedBadge,
     description: t.kingdomPreview.fedDescription,
     tags: [t.kingdomPreview.fedTag1, t.kingdomPreview.fedTag2, t.kingdomPreview.fedTag3],
   },
   {
     id: "singapore",
-    name: "Singapore Maritime Dock",
+    name: t.kingdomPreview.singaporeName,
     subtitle: t.kingdomPreview.singaporeSubtitle,
     image: "/rpg/singapore_dock.jpg",
     minLevel: 2,
     progress: "65%",
     xpReward: 180,
-    badge: "🚢 GLOBAL TRADE",
+    icon: "🚢",
+    badge: t.kingdomPreview.singaporeBadge,
     description: t.kingdomPreview.singaporeDescription,
     tags: [
       t.kingdomPreview.singaporeTag1,
@@ -90,7 +97,8 @@ const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
     minLevel: 1,
     progress: "90%",
     xpReward: 400,
-    badge: "⚔️ SOLO PVP DUEL",
+    icon: "⚔️",
+    badge: t.kingdomPreview.pvpBadge,
     description: t.kingdomPreview.pvpDescription,
     tags: [t.kingdomPreview.pvpTag1, t.kingdomPreview.pvpTag2, format(t.kingdomPreview.pvpTag3, { count: roundedLessonCount() })],
   },
@@ -171,7 +179,7 @@ export default function InteractiveKingdomPreview() {
             <span className="h-2.5 w-2.5 rounded-full bg-stone-700" />
           </div>
           <div className="hidden sm:block min-w-0 flex-1 truncate rounded-full border border-stone-800 bg-stone-950 px-4 py-1 text-center text-[11px] font-semibold text-stone-500">
-            tuhoctaichinh.org/game-kingdom
+            tuhoccongnghe.org/game-kingdom
           </div>
         </div>
 
@@ -330,7 +338,7 @@ export default function InteractiveKingdomPreview() {
                     {/* Nhãn phân loại: chữ trần trên ảnh, không còn viên thuốc
                         nền cam có viền. */}
                     <span className="absolute left-2 top-2 text-[8px] font-black uppercase tracking-widest text-amber-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
-                      {b.badge}
+                      {b.icon} {b.badge}
                     </span>
 
                     <div className="absolute inset-x-0 bottom-0 p-2 pb-2.5">

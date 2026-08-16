@@ -32,9 +32,7 @@ const ROOT = path.resolve(__dirname, "../..");
 
 /** Các module mà một server component đọc trực tiếp. Thêm vào đây khi có trang
  *  server mới import dữ liệu từ tầng components. */
-const SERVER_ENTRIES = [
-  "components/career-district/district-space.ts",
-  "components/career-district/district-content.ts",
+const SERVER_ENTRIES: string[] = [
 ];
 
 function resolveImport(fromFile: string, spec: string): string | null {

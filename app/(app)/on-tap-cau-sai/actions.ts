@@ -3,11 +3,7 @@
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonById } from "@/lib/lessons-loader";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
-import { IB_QUESTION_BANK, formatCategoryLabel } from "@/lib/ib-question-bank";
-import { ALL_TECHNICAL_QUESTIONS } from "@/lib/ib-question-careers";
-import { CAREER_TECHNICAL_QUESTIONS } from "@/lib/career-question-bank";
 import { questionFingerprint } from "@/lib/stable-hash";
-import { getServerDictionary } from "@/lib/i18n/server";
 
 export interface QuizMistakeReviewItem {
   lessonId: number;
@@ -57,7 +53,6 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
   // silently dropped here by the `!lesson` guard below, making the review
   // flow look like it simply ignored interview practice.
   const lessonRows = data.filter((row) => row.lesson_id > 0);
-  const ibRows = data.filter((row) => row.lesson_id < 0);
 
   const lessonIds = Array.from(new Set(lessonRows.map((row) => row.lesson_id)));
   const lessons = await Promise.all(lessonIds.map((id) => getLessonById(id)));
@@ -93,46 +88,15 @@ export async function getQuizMistakesReviewAction(userId: string): Promise<QuizM
     });
   }
 
-  if (ibRows.length > 0) {
-    // Both banks, not just the IB one. A wrong answer is stored as a negative
-    // lesson_id holding the question id and looked up by that id alone, so a
-    // bank missing from this map does not error - the `continue` below drops
-    // the row silently. That is what happened when lib/career-question-bank.ts
-    // landed: 134 questions were being served to learners, saved when answered
-    // wrong, and then never appearing in review.
-    // IB_QUESTION_BANK rather than its technical subset, so rows saved before
-    // the behavioral questions stopped being scored still resolve.
-    const bankById = new Map(
-      [...IB_QUESTION_BANK, ...ALL_TECHNICAL_QUESTIONS].map((q) => [q.id, q])
-    );
-    const careerQuestionIds = new Set(CAREER_TECHNICAL_QUESTIONS.map((q) => q.id));
-    for (const row of ibRows) {
-      const question = bankById.get(-row.lesson_id);
-      // A question dropped from the bank falls out of review, same as an
-      // edited lesson question.
-      if (!question) continue;
-      if (row.question_hash && row.question_hash !== questionFingerprint(question.question)) continue;
-      items.push({
-        lessonId: row.lesson_id,
-        lessonSlug: "ib-question-bank",
-        // The career bank covers fund management, treasury, ESG and the rest;
-        // labelling those "IB Interview" would tell a compliance candidate
-        // they got a banking question wrong.
-        lessonLabel: careerQuestionIds.has(question.id) ? (await getServerDictionary()).miscUi.careerQuestionLabel : "IB Interview",
-        lessonTitle: formatCategoryLabel(question.category),
-        questionIndex: row.question_index,
-        question: question.question,
-        options: question.options,
-        correct: question.correct,
-        explanation: question.explanation,
-        wrongCount: row.wrong_count,
-        lastAttemptAt: row.last_attempt_at,
-        href: "/phong-van-ky-thuat",
-      });
-    }
-    // Merging two sources loses the ordering the query applied, so re-sort.
-    items.sort((a, b) => b.lastAttemptAt.localeCompare(a.lastAttemptAt));
-  }
+  // Ba ngân hàng câu hỏi phỏng vấn (IB, kỹ thuật theo nghề, câu hỏi nghề) đã
+  // được gỡ cùng /phong-van-ky-thuat, nên nhánh giải mã các hàng lesson_id âm không
+  // còn nguồn để tra. Các hàng ấy vẫn nằm trong quiz_mistakes dưới dạng
+  // lesson_id ÂM và giờ rơi ra khỏi phần ôn tập - đúng như chú thích cũ ở đây
+  // mô tả cho một ngân hàng thiếu trong map: `continue` bỏ hàng đó lặng lẽ.
+  //
+  // Cố ý không xoá các hàng đó khỏi cơ sở dữ liệu: nếu sau này có ngân hàng câu
+  // hỏi công nghệ, cách nối lại là dựng một map mới ở đúng chỗ này, và dữ liệu
+  // cũ thì không lấy lại được sau khi xoá.
 
   return items;
 }

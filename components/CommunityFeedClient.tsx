@@ -17,8 +17,6 @@ import {
   Lightbulb,
   MessageCircle,
   Newspaper,
-  RefreshCw,
-  Search,
   Send,
   ShieldCheck,
   SmilePlus,
@@ -73,24 +71,6 @@ const VOTE_CHANGED_EVENT = "thtcdn:community-vote";
 interface SessionUser {
   id: string;
   user_metadata?: { full_name?: string; avatar_url?: string };
-}
-
-function AnimatedCounter({ value, className = "" }: { value: number; className?: string }) {
-  // Thousands separators differ by locale ("1.234" vs "1,234"), so this follows
-  // the reader's language rather than hard-coding vi-VN.
-  const { locale } = useI18n();
-  const [displayValue, setDisplayValue] = useState(0);
-  const cancelledRef = useRef(false);
-
-  useEffect(() => {
-    cancelledRef.current = false;
-    animateCountTo(value, setDisplayValue, cancelledRef);
-    return () => {
-      cancelledRef.current = true;
-    };
-  }, [value]);
-
-  return <span className={`tabular-nums ${className}`}>{displayValue.toLocaleString(intlLocale(locale))}</span>;
 }
 
 function FeedSkeleton() {
@@ -477,7 +457,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [content, setContent] = useState("");
   const [pendingImage, setPendingImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
   const [posting, setPosting] = useState(false);
   const [openComments, setOpenComments] = useState<Record<number, boolean>>({});
   // Inline post editing. Only one post is editable at a time - opening a
@@ -501,6 +480,21 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [pollOptions, setPollOptions] = useState<string[]>(["", ""]);
   const userIdRef = useRef<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const sentinelRef = useRef<HTMLButtonElement>(null);
+  // Bản chụp mới nhất của `posts` cho `loadMore` đọc.
+  //
+  // Không để `posts` vào danh sách phụ thuộc của `loadMore`: mỗi lần nối thêm
+  // một trang là `loadMore` thành một hàm mới, là effect quan sát tháo và gắn
+  // lại observer, và một observer vừa gắn sẽ bắn NGAY nếu vạch canh đang nằm
+  // trong khung nhìn - tức là tải trang kế tiếp trước khi người đọc kịp cuộn.
+  //
+  // Đồng bộ trong effect chứ không gán thẳng khi dựng: chạm vào ref lúc dựng
+  // là thứ React Compiler chặn (`Cannot access refs during render`), và ở đây
+  // effect là đủ - observer chỉ bắn sau khi trang đã vẽ xong.
+  const postsRef = useRef<CommunityFeedPost[]>([]);
+  useEffect(() => {
+    postsRef.current = posts;
+  }, [posts]);
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -615,20 +609,57 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     return unsubscribe;
   }, [openComments, refreshFeed]);
 
+  // `loadingRef` chứ không chỉ `loadingMore`.
+  //
+  // Cuộn tự động bắn nhiều lần liên tiếp: IntersectionObserver gọi lại mỗi lần
+  // vạch cuối vào khung nhìn, và trong lúc `setLoadingMore(true)` chờ React vẽ
+  // lại thì `loadingMore` vẫn còn là false ở lần gọi kế. Hai lượt tải cùng lúc
+  // dùng chung một `oldestId`, nên cùng một trang bài được nối vào hai lần -
+  // đúng loại lỗi mà nút bấm tay không bao giờ lộ ra, vì người ta không bấm
+  // được hai lần trong một khung hình.
+  const loadingRef = useRef(false);
+
   const loadMore = useCallback(async () => {
-    if (loadingMore || posts.length === 0) return;
+    if (loadingRef.current || postsRef.current.length === 0) return;
+    loadingRef.current = true;
     setLoadingMore(true);
     try {
-      const oldestId = posts[posts.length - 1].id;
+      const oldestId = postsRef.current[postsRef.current.length - 1].id;
       const more = await getCommunityFeed(oldestId);
       setPosts((prev) => [...prev, ...more]);
       setHasMore(more.length === 20);
     } catch (error) {
       console.error("Error loading more posts:", error);
     } finally {
+      loadingRef.current = false;
       setLoadingMore(false);
     }
-  }, [loadingMore, posts]);
+  }, []);
+
+  // Cuộn tới đáy thì tự tải tiếp.
+  //
+  // Vạch canh đặt trước đáy 600px, không phải ĐÚNG đáy: chạm đáy rồi mới bắt
+  // đầu gọi mạng thì người đọc luôn nhìn thấy một khoảng trống và một dòng
+  // "đang tải" - tức là vẫn phải chờ, chỉ khác là không phải bấm. Tải trước một
+  // màn hình thì bài kế đã nằm sẵn ở đó lúc cuộn tới.
+  //
+  // Vạch canh vẫn là một cái NÚT bấm được (xem phần JSX): trình duyệt không có
+  // IntersectionObserver, hoặc người dùng đang duyệt bằng bàn phím và không hề
+  // "cuộn" theo nghĩa nào cả, thì lối cũ còn nguyên.
+  useEffect(() => {
+    const node = sentinelRef.current;
+    if (!node || !hasMore) return;
+    if (typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) void loadMore();
+      },
+      { rootMargin: "600px 0px" }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [hasMore, loadMore]);
 
   const handlePost = async () => {
     if (!user) {
@@ -888,7 +919,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
 
     // Clear anything that might be hiding the target post from the list.
     // Bộ lọc chủ đề đã bỏ, nên chỉ còn ô tìm kiếm có thể đang giấu bài này.
-    setSearchQuery("");
     setOpenComments((prev) => ({ ...prev, [postId]: true }));
 
     void (async () => {
@@ -912,8 +942,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   // lib/community-feed-visibility.ts cùng bộ test của nó - màn hình này tự lấy
   // dữ liệu từ Supabase sau tường đăng nhập, nên đó là chỗ duy nhất kiểm được
   // nó mà không cần một phiên đăng nhập thật và vài chục bài dựng sẵn.
-  const searchTerm = searchQuery.trim().toLowerCase();
-  const visiblePosts = visibleFeedPosts(posts, searchQuery);
+  // Vẫn gọi visibleFeedPosts: ngoài tìm kiếm nó còn lọc bài hệ thống ra khỏi
+  // dòng (xem isSystemPost). Bỏ ô tìm kiếm chỉ làm tham số thứ hai luôn rỗng.
+  const visiblePosts = visibleFeedPosts(posts, "");
   // Mọi con số và mọi bảng xếp hạng đọc từ đây, không đọc từ `posts`. Bài chuỗi
   // ngày do hệ thống tự đăng chiếm gần hết số bài mới nhất, nên để chúng trong
   // mẫu thì "sôi nổi nhất" và "tổng lượt thả cảm xúc" đang đo hoạt động của máy
@@ -927,9 +958,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   // và đó là chỗ làm người dùng tưởng mất bài: "không khớp bộ lọc" đúng khi có
   // bộ lọc, nhưng khi đang xem tất cả mà chưa có bài nào thì nó đọc như một lời
   // thông báo mất dữ liệu.
-  const emptyBecauseNoPosts = !searchTerm;
-  const totalReactions = humanPosts.reduce((sum, post) => sum + post.reaction_count, 0);
-  const totalComments = humanPosts.reduce((sum, post) => sum + post.comment_count, 0);
   // Bài chuỗi ngày của HÔM NAY, cho bảng bên phải. Chúng đã ra khỏi dòng chính
   // nhưng không biến mất - đây là chỗ chúng thuộc về: một bảng đếm được, đọc
   // lướt qua, không chen vào giữa những bài người thật viết.
@@ -946,10 +974,15 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const hotPosts = [...humanPosts]
     .sort((a, b) => b.reaction_count + b.comment_count * 2 - (a.reaction_count + a.comment_count * 2))
     .slice(0, 3);
-  // Nền giấy ngà của hệ chung, không phải stone-50. Cùng giá trị trang chủ
-  // dùng cho `.band-paper`; hai trang cạnh nhau lệch một bậc xám là thứ mắt
-  // bắt được ngay cả khi không gọi tên được.
-  const shellClass = embedded ? "" : "min-h-screen bg-[#fbfaf7] dark:bg-stone-950";
+  // Nền TRẮNG.
+  //
+  // Trước đây là #fbfaf7 - nền giấy ngà của hệ chung, cùng giá trị trang chủ
+  // dùng cho `.band-paper`. Đổi sang trắng là cố ý lệch khỏi giá trị đó, nên
+  // ghi lại ở đây: các thẻ bài viết trong dòng tin đều là `bg-white`, và trên
+  // nền ngà chúng nổi lên bằng một bậc xám mờ tới mức chỉ còn viền và bóng đổ
+  // làm việc. Nền trắng bỏ hẳn bậc đó - thẻ và nền cùng một mặt phẳng, ranh
+  // giới do viền vẽ ra chứ không do hai sắc trắng khác nhau.
+  const shellClass = embedded ? "" : "min-h-screen bg-white dark:bg-stone-950";
 
   return (
     <div className={shellClass}>
@@ -1022,28 +1055,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 </p>
               </div>
 
-              {/* Ba con số đọc thành MỘT hàng chỉ số, ngăn nhau bằng nét kẻ
-                  mảnh thay vì ba tấm thẻ. Bỏ ba màu nhấn: chúng không nói lên
-                  trạng thái nào - bài viết không "xanh" hơn hay "hổ phách" hơn
-                  bình luận - nên ba màu ấy chỉ là tiếng ồn. Con số vẫn đếm
-                  động, vẫn là phần sống của trang. */}
-              <dl className="flex items-end gap-6 sm:gap-9 lg:shrink-0">
-                {[
-                  { label: t.feed.statPosts, value: posts.length },
-                  { label: t.feed.statReactions, value: totalReactions },
-                  { label: t.feed.statComments, value: totalComments },
-                ].map((item, i) => (
-                  <div
-                    key={item.label}
-                    className={i > 0 ? "border-l border-white/12 pl-6 sm:pl-9" : ""}
-                  >
-                    <dd className="text-3xl sm:text-4xl font-bold tabular-nums tracking-tight text-white">
-                      <AnimatedCounter value={item.value} />
-                    </dd>
-                    <dt className="eyebrow mt-1 text-stone-400">{item.label}</dt>
-                  </div>
-                ))}
-              </dl>
             </div>
           </div>
         </div>
@@ -1061,32 +1072,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
           )}
 
 
-        {!embedded && (
-          <div className="mb-4 rounded-[24px] bg-white p-3.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.22)] ring-1 ring-stone-100/70 dark:bg-stone-900/85 dark:ring-stone-800/60">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="relative flex-1">
-                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
-                <input
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={t.feed.searchPlaceholder}
-                  className="w-full rounded-[18px] bg-stone-100/80 py-3 pl-10 pr-3 text-sm font-medium text-stone-900 outline-none transition duration-200 ease-out focus:bg-white focus:ring-2 focus:ring-emerald-400/25 dark:bg-stone-950/75 dark:text-stone-100"
-                />
-              </div>
-              <motion.button
-                type="button"
-                onClick={() => void refreshFeed()}
-                className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-stone-100 px-4 py-2.5 text-sm font-bold text-stone-700 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:hover:bg-stone-700"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 420, damping: 24 }}
-              >
-                <RefreshCw className="h-4 w-4" />
-                {t.feed.refresh}
-              </motion.button>
-            </div>
-          </div>
-        )}
 
         {user && (
           <>
@@ -1319,21 +1304,18 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         ) : visiblePosts.length === 0 ? (
           <div className="py-12 text-center">
             <p className="text-sm text-stone-500 dark:text-stone-400">
-              {emptyBecauseNoPosts ? t.feed.feedEmptyNoPosts : t.feed.feedEmpty}
+              {t.feed.feedEmptyNoPosts}
             </p>
-            {/* Chỉ mời viết khi thật sự chưa có bài nào. Lúc đang lọc theo chủ đề
-                hoặc đang tìm kiếm thì "không có gì khớp" là câu trả lời đúng, và
-                một nút soạn bài ở đó chỉ làm người đọc tưởng mình phải viết mới
-                thấy được bài của người khác. */}
-            {emptyBecauseNoPosts && (
-              <button
-                type="button"
-                onClick={() => setIsComposeModalOpen(true)}
-                className="mt-3 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300"
-              >
-                {t.feed.feedEmptyWrite}
-              </button>
-            )}
+            {/* Không còn ô tìm kiếm nên dòng rỗng CHỈ có thể vì chưa ai đăng
+                bài. Điều kiện `emptyBecauseNoPosts` từng gác nút này - nó phân
+                biệt "chưa có bài" với "tìm không ra" - và đã đi cùng ô tìm kiếm. */}
+            <button
+              type="button"
+              onClick={() => setIsComposeModalOpen(true)}
+              className="mt-3 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300"
+            >
+              {t.feed.feedEmptyWrite}
+            </button>
           </div>
         ) : (
           // Bài viết là BÀI VIẾT, ngăn nhau bằng nét kẻ - không phải một chồng
@@ -1770,11 +1752,19 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             )})}
             </AnimatePresence>
 
+            {/* Vạch canh CHÍNH LÀ cái nút cũ.
+                Cuộn tới gần đây thì trang tự tải tiếp (xem effect quan sát ở
+                trên); nhưng nó vẫn là một `<button>` thật, vẫn nhận tiêu điểm
+                bàn phím và vẫn bấm được - nên khi trình duyệt không có
+                IntersectionObserver, hoặc lượt tải trước vừa lỗi mạng, lối cũ
+                còn nguyên thay vì cụt đường. */}
             {hasMore && (
               <button
+                ref={sentinelRef}
                 onClick={loadMore}
                 disabled={loadingMore}
-                className="w-full py-2.5 text-sm font-semibold text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition"
+                aria-live="polite"
+                className="w-full py-2.5 text-sm font-medium text-stone-400 transition hover:text-stone-900 dark:text-stone-500 dark:hover:text-stone-100"
               >
                 {loadingMore ? t.feed.loading : t.feed.loadMore}
               </button>

@@ -72,8 +72,8 @@ describe("bản dịch phần vỏ của games.ts", () => {
     const en = localizeBucketConfig(vi, "cost-category", "en");
     expect(en.items.map((i) => i.bucket)).toEqual(vi.items.map((i) => i.bucket));
     const byBucket = Object.fromEntries(en.items.map((i) => [i.term, i.bucket]));
-    expect(byBucket["Sales commission"]).toBe("variable");
-    expect(byBucket["Premises rent"]).toBe("fixed");
+    expect(byBucket["Outbound internet bandwidth"]).toBe("variable");
+    expect(byBucket["Monthly server rental"]).toBe("fixed");
   });
 
   // ĐÂY LÀ BÀI KIỂM QUAN TRỌNG NHẤT CỦA TỆP NÀY.

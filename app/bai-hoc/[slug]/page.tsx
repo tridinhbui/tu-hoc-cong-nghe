@@ -35,13 +35,13 @@ export async function generateStaticParams() {
 // Without this, every lesson page fell back to the root layout's generic
 // site-wide title/description - so sharing a just-completed lesson to
 // Facebook (ShareCompletionButton) produced a link preview card that just
-// said "Tự học Tài chính Mỗi Ngày" for every single lesson, not which one.
+// said "Tự học Công nghệ Mỗi Ngày" for every single lesson, not which one.
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const lesson = await getLessonBySlug(slug, await getServerLocale());
   if (!lesson) return {};
 
-  const title = `${lesson.title} | Tự học Tài chính Mỗi Ngày`;
+  const title = `${lesson.title} | Tự học Công nghệ Mỗi Ngày`;
   const description = lesson.subtitle || lesson.whyItMatters || undefined;
 
   return {

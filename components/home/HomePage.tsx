@@ -546,13 +546,13 @@ export default function HomePage() {
                                   {t.home.card.exampleText}
                                 </p>
                               </div>
-                              <div className="rounded-full bg-amber-300/15 px-2 py-1 text-[10px] font-black text-amber-100">{t.finalOne.homePage.peBadge}</div>
+                              <div className="rounded-full bg-amber-300/15 px-2 py-1 text-[10px] font-black text-amber-100">{t.finalOne.homePage.bigOBadge}</div>
                             </div>
                             <div className="mt-3 grid grid-cols-3 gap-2 text-center">
                               {[
                                 [t.home.card.priceLabel, t.home.card.priceValue],
-                                [t.finalOne.homePage.epsLabel, t.home.card.epsValue],
-                                [t.finalOne.homePage.peBadge, t.home.card.peValue],
+                                [t.finalOne.homePage.stepsLabel, t.home.card.epsValue],
+                                [t.finalOne.homePage.bigOBadge, t.home.card.peValue],
                               ].map(([label, value]) => (
                                 <div key={label} className="rounded-md bg-stone-950/45 px-1.5 py-2">
                                   <p className="text-[9px] font-black uppercase tracking-[0.12em] text-stone-500">{label}</p>
@@ -774,18 +774,32 @@ export default function HomePage() {
                     {t.home.vision.title}
                   </h2>
 
-                  {/* Bảng số liệu, không phải ba tấm thẻ. Ba con số này đến
-                      từ cùng một khảo sát và phải đọc CẠNH nhau để có nghĩa;
-                      bọc mỗi con số trong một thẻ riêng có viền và nền màu là
-                      tách chúng ra đúng lúc cần so sánh. Vạch ngăn dọc mảnh
-                      giữ chúng là một bảng. */}
+                  {/* Bảng số liệu, không phải ba tấm thẻ. Ba con số này phải
+                      đọc CẠNH nhau để có nghĩa - quy mô ngành, tỷ lệ tay nghề
+                      cao, và phần ra trường chưa làm được việc; bọc mỗi con số
+                      trong một thẻ riêng có viền và nền màu là tách chúng ra
+                      đúng lúc cần so sánh. Vạch ngăn dọc mảnh giữ chúng là một
+                      bảng.
+
+                      Nguồn, mỗi con số một nguồn khác nhau (bản cũ là ba con số
+                      cùng một khảo sát về hiểu biết tài chính - đổi chủ đề thì
+                      không còn khảo sát nào phủ cả ba):
+                      - 11%: ManpowerGroup, Total Workforce Index, dẫn lại ở
+                        news.laodong.vn/cong-doan/3-khoang-trong-cua-nhan-luc-so
+                        -tai-viet-nam-1570470.ldo (Malaysia 29%, Philippines
+                        18%, Thái Lan 14%).
+                      - 7/10: khoảng 30% sinh viên CNTT ra trường làm được việc
+                        ngay, 70% còn lại cần 3-6 tháng đào tạo thêm (vneconomy).
+                      - 1,2 triệu: số lao động trong 74.000 doanh nghiệp CNTT,
+                        theo Bộ Khoa học và Công nghệ.
+                      Con số nào đổi thì đổi cả chú thích ở đây. */}
                   <div className="mt-6 grid gap-y-5 border-t border-stone-300/70 pt-5 dark:border-stone-700/70 sm:grid-cols-3 sm:gap-y-0 sm:divide-x sm:divide-stone-300/70 sm:dark:divide-stone-700/70">
                     <div className="sm:pr-5">
                       <div className="text-[9px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
                         {t.home.vision.stat1Label}
                       </div>
                       <div className="mt-1 text-2xl font-black text-emerald-600 dark:text-emerald-400">
-                        24%
+                        11%
                       </div>
                       <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
                         {t.home.vision.stat1Note}
@@ -796,7 +810,7 @@ export default function HomePage() {
                         {t.home.vision.stat2Label}
                       </div>
                       <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
-                        3/4
+                        7/10
                       </div>
                       <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
                         {t.home.vision.stat2Note}
@@ -807,7 +821,7 @@ export default function HomePage() {
                         {t.home.vision.stat3Label}
                       </div>
                       <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
-                        70,6%
+                        1,2 triệu
                       </div>
                       <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
                         {t.home.vision.stat3Note}
@@ -892,9 +906,6 @@ export default function HomePage() {
                   </li>
                   <li>
                     <Link href="/finsocial" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoFinsocial}</Link>
-                  </li>
-                  <li>
-                    <Link href="/su-nghiep" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoCareer}</Link>
                   </li>
                   <li>
                     <Link href="/cua-hang" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoShop}</Link>

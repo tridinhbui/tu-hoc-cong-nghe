@@ -39,19 +39,19 @@ interface UserStatsProps {
 const LEVEL_EMOJIS: Record<number, string> = {
   1: "🌱", // Tò mò
   2: "🎒", // Học viên
-  3: "💼", // Nhà đầu tư
-  4: "📊", // Nhà phân tích
-  5: "🛡️", // Cố vấn Tài chính
-  6: "👑", // Thạo thủ Tài chính
-  7: "🔥", // Chuyên gia Tài chính
-  8: "💎", // Bậc thầy Tài chính
-  9: "🎓", // Chuyên viên CFA
-  10: "🦁", // Huyền thoại Đầu tư
-  11: "🏛️", // Giám đốc Quỹ Hedge Fund
-  12: "🌐", // Quản lý Danh mục Chiến lược
-  13: "🚀", // Bậc thầy Phân tích Thị trường
-  14: "⚡", // Lãnh đạo Tài chính Tối cao
-  15: "🔱", // Đại Thuyền trưởng Phố Wall
+  3: "💼", // Lập trình viên tập sự
+  4: "📊", // Kỹ sư phần mềm
+  5: "🛡️", // Kỹ sư chính
+  6: "👑", // Kỹ sư cao cấp
+  7: "🔥", // Chuyên gia hệ thống
+  8: "💎", // Kiến trúc sư phần mềm
+  9: "🎓", // Ứng viên chứng chỉ AWS
+  10: "🦁", // Huyền thoại mã nguồn mở
+  11: "🏛️", // Giám đốc kỹ thuật
+  12: "🌐", // Kiến trúc sư trưởng nền tảng
+  13: "🚀", // Bậc thầy thiết kế hệ thống
+  14: "⚡", // Lãnh đạo công nghệ tối cao
+  15: "🔱", // Đại thuyền trưởng Silicon Valley
 };
 
 import RigorousLevelExamModal from "@/components/RigorousLevelExamModal";

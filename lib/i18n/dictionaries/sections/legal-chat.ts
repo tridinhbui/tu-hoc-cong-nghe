@@ -39,7 +39,7 @@ export const legalChatVi = {
     updatedAt: "Cập nhật lần cuối: {date}",
     section1Heading: "1. Về sản phẩm này",
     section1Body:
-      "Tự học Tài chính là một dự án giáo dục cá nhân, phi thương mại, được xây dựng để giúp người Việt Nam tiếp cận kiến thức tài chính cá nhân và tài chính chuyên ngành theo lộ trình từng ngày. Nội dung do một cá nhân biên soạn, không phải sản phẩm của một tổ chức tài chính, công ty tư vấn đầu tư, hay cơ quan được cấp phép hành nghề tư vấn tài chính.",
+      "Tự học Công nghệ là một dự án giáo dục cá nhân, phi thương mại, được xây dựng để giúp người Việt Nam tiếp cận kiến thức tài chính cá nhân và tài chính chuyên ngành theo lộ trình từng ngày. Nội dung do một cá nhân biên soạn, không phải sản phẩm của một tổ chức tài chính, công ty tư vấn đầu tư, hay cơ quan được cấp phép hành nghề tư vấn tài chính.",
     section2Heading: "2. Không phải lời khuyên đầu tư",
     section2Body:
       "Toàn bộ nội dung bài học, ví dụ, số liệu minh họa trên trang này chỉ nhằm mục đích giáo dục. Đây không phải lời khuyên đầu tư, khuyến nghị mua/bán tài sản tài chính cụ thể, hay tư vấn thuế/pháp lý. Bạn tự chịu trách nhiệm với các quyết định tài chính của mình và nên tham khảo chuyên gia được cấp phép cho các quyết định quan trọng.",
@@ -98,8 +98,8 @@ export const legalChatVi = {
     toastShared: "Đã chia sẻ thành tích!",
     toastSharedDownloaded: "Đã tải ảnh - đăng lên Facebook/story và đính kèm ảnh này nhé!",
     toastShareError: "Không thể chia sẻ lúc này.",
-    shareCaption: "Mình vừa lên cấp {level} tại Tự Học Tài Chính 🎉",
-    shareCaptionWithName: "Mình vừa lên Level {level} - {name} trên Tự học Tài chính! 🎉",
+    shareCaption: "Mình vừa lên cấp {level} tại Tự Học Công Nghệ 🎉",
+    shareCaptionWithName: "Mình vừa lên Level {level} - {name} trên Tự học Công nghệ! 🎉",
     svgHeaderName: "TỰ HỌC TÀI CHÍNH MỖI NGÀY",
     svgTitle: "THÀNH TÍCH LÊN CẤP",
     svgUserAchieved: "{userName} vừa đạt",
@@ -143,7 +143,7 @@ export const legalChatEn: typeof legalChatVi = {
     updatedAt: "Last updated: {date}",
     section1Heading: "1. About this product",
     section1Body:
-      "Tự học Tài chính is a personal, non-commercial educational project, built to help Vietnamese people access personal finance and specialized finance knowledge on a day-by-day path. The content is written by an individual, and is not the product of a financial institution, an investment advisory firm, or an agency licensed to practice financial advisory services.",
+      "Tự học Công nghệ is a personal, non-commercial educational project, built to help Vietnamese people access personal finance and specialized finance knowledge on a day-by-day path. The content is written by an individual, and is not the product of a financial institution, an investment advisory firm, or an agency licensed to practice financial advisory services.",
     section2Heading: "2. Not investment advice",
     section2Body:
       "All lesson content, examples, and illustrative figures on this site are for educational purposes only. This is not investment advice, a recommendation to buy/sell any specific financial asset, or tax/legal advice. You are solely responsible for your own financial decisions and should consult a licensed professional for important decisions.",
@@ -202,8 +202,8 @@ export const legalChatEn: typeof legalChatVi = {
     toastShared: "Achievement shared!",
     toastSharedDownloaded: "Image downloaded - post it to Facebook/story and attach this image!",
     toastShareError: "Couldn't share right now.",
-    shareCaption: "I just reached Level {level} on Tự Học Tài Chính 🎉",
-    shareCaptionWithName: "I just reached Level {level} - {name} on Tự học Tài chính! 🎉",
+    shareCaption: "I just reached Level {level} on Tự Học Công Nghệ 🎉",
+    shareCaptionWithName: "I just reached Level {level} - {name} on Tự học Công nghệ! 🎉",
     svgHeaderName: "LEARN FINANCE EVERY DAY",
     svgTitle: "LEVEL-UP ACHIEVEMENT",
     svgUserAchieved: "{userName} just reached",

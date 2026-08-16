@@ -54,9 +54,9 @@ export const placementFocusVi = {
     worldCareerStreet: "Phố nghề",
   },
   fortuneWheel: {
-    badge: "🎡 Vòng Quay Wall Street",
-    title: "Vòng Quay Vận Mây Phố Wall",
-    subtitle: "Quay mỗi ngày để nhận Coins, XP và xa xỉ phẩm Wall Street!",
+    badge: "🎡 Vòng Quay Silicon Valley",
+    title: "Vòng Quay Vận Mây Silicon Valley",
+    subtitle: "Quay mỗi ngày để nhận Coins, XP và xa xỉ phẩm Silicon Valley!",
     wonToast: "🎉 Chúc mừng! Bạn trúng {emoji} {label}!",
     receivedPrefix: "🎁 Bạn vừa nhận được:",
     spinning: "Đang quay...",
@@ -83,7 +83,7 @@ export const placementFocusVi = {
   motivationShare: {
     generatingImage: "Đang tạo ảnh...",
     shareMessage: "Chia sẻ lời nhắn",
-    downloadedFilenameCaption: "Lời nhắn hôm nay của mình trên Tự học Tài chính 🔥",
+    downloadedFilenameCaption: "Lời nhắn hôm nay của mình trên Tự học Công nghệ 🔥",
     sharedToast: "Đã chia sẻ lời nhắn!",
     downloadedToast: "Đã tải ảnh - đăng lên story/Facebook và đính kèm ảnh này nhé!",
     errorToast: "Không thể tạo ảnh lúc này.",
@@ -176,9 +176,9 @@ export const placementFocusEn: typeof placementFocusVi = {
     worldCareerStreet: "Career street",
   },
   fortuneWheel: {
-    badge: "🎡 Wall Street Wheel",
-    title: "Wall Street Fortune Wheel",
-    subtitle: "Spin every day to win Coins, XP, and Wall Street luxuries!",
+    badge: "🎡 Silicon Valley Wheel",
+    title: "Silicon Valley Fortune Wheel",
+    subtitle: "Spin every day to win Coins, XP, and Silicon Valley luxuries!",
     wonToast: "🎉 Congrats! You won {emoji} {label}!",
     receivedPrefix: "🎁 You just received:",
     spinning: "Spinning...",
@@ -205,7 +205,7 @@ export const placementFocusEn: typeof placementFocusVi = {
   motivationShare: {
     generatingImage: "Creating image...",
     shareMessage: "Share message",
-    downloadedFilenameCaption: "My message for today on Tự Học Tài Chính 🔥",
+    downloadedFilenameCaption: "My message for today on Tự Học Công Nghệ 🔥",
     sharedToast: "Message shared!",
     downloadedToast: "Image downloaded - post it to your story/Facebook with this image attached!",
     errorToast: "Couldn't create the image right now.",

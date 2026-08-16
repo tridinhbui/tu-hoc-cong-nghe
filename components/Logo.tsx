@@ -7,7 +7,7 @@ export default function Logo({ size = 32, className = "" }: { size?: number; cla
     <Image
       src="/logo.png"
       /* i18n-ignore-start: product name, a proper noun invariant across locales */
-      alt="Tự Học Tài Chính"
+      alt="Tự Học Công Nghệ"
       /* i18n-ignore-end */
       width={size}
       height={size}
