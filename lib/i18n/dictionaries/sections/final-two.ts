@@ -88,6 +88,12 @@ export const finalTwoVi = {
       pressureRound: "Pressure round",
     },
     cfaPage: {
+      // --- Hero "Chặng hiện tại" (components/cfa/CfaCurrentStage)
+      stageEyebrow: "Chặng hiện tại",
+      stageProgress: "{done}/{total} bài đã xong",
+      stageMilestone: "Còn {count} bài để hết môn này",
+      stageCta: "Học tiếp",
+      stageAllDone: "Bạn đã hoàn thành cả mười môn Level I",
       backToDashboardAria: "Về Dashboard",
       title: "Tài chính chứng chỉ",
       subtitle: "CFA Level I - 10 môn thi chính thức",
@@ -118,6 +124,9 @@ export const finalTwoVi = {
       cheatSheetHint: "Công thức mười môn, tra nhanh",
       mockExam: "Thi thử",
       mockExamHint: "Đề cân theo trọng số thật",
+      checkpointCta: "Kiểm tra {subject}",
+      checkpointHint: "5 câu rút từ đúng bài của môn này",
+      bookForMission: "Quyển cho nhiệm vụ hiện tại",
     },
     gamePage: {
       metaTitle: "Thế Giới Game Tài Chính | TuHocTaiChinh.org",
@@ -248,6 +257,11 @@ export const finalTwoEn: typeof finalTwoVi = {
       pressureRound: "Pressure round",
     },
     cfaPage: {
+      stageEyebrow: "Current stage",
+      stageProgress: "{done}/{total} lessons done",
+      stageMilestone: "{count} lessons left to finish this subject",
+      stageCta: "Continue",
+      stageAllDone: "You have finished all ten Level I subjects",
       backToDashboardAria: "Back to Dashboard",
       title: "Certificate track",
       subtitle: "CFA Level I - 10 official exam topics",
@@ -278,6 +292,9 @@ export const finalTwoEn: typeof finalTwoVi = {
       cheatSheetHint: "Formulas for all ten subjects",
       mockExam: "Mock exam",
       mockExamHint: "Weighted like the real paper",
+      checkpointCta: "{subject} checkpoint",
+      checkpointHint: "5 questions drawn from this subject only",
+      bookForMission: "Book for the current mission",
     },
     gamePage: {
       metaTitle: "Financial Game World | TuHocTaiChinh.org",

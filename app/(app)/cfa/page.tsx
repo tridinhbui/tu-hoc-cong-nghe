@@ -6,6 +6,7 @@ import { getCompletedLessons } from "@/lib/supabase-progress";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import CertificateTabs from "@/components/CertificateTabs";
 import CfaTrackView from "@/components/CfaTrackView";
+import CfaCurrentStage from "@/components/cfa/CfaCurrentStage";
 import CfaCampaignHeader from "@/components/CfaCampaignHeader";
 import CfaNextLevels from "@/components/CfaNextLevels";
 import { getServerLocale } from "@/lib/i18n/server";
@@ -88,6 +89,24 @@ export default async function CfaPage() {
         <div className="mb-6">
           <CertificateTabs />
         </div>
+        {/* HERO ĐỨNG ĐẦU, trên mọi thứ khác.
+            Trang này trả lời đúng một câu khi mở ra - "giờ tôi học gì" - và
+            trước đây câu ấy nằm sau mười môn xếp thành bảng: người đọc phải tự
+            dò môn nào còn dở, tự tìm bài kế tiếp, rồi mới bấm được. Khối này
+            làm cả ba bước và đưa thẳng tới bài. */}
+        <div className="mb-6">
+          <CfaCurrentStage
+            stages={subjects.map((s) => ({
+              id: s.subject.id,
+              name: s.subject.name,
+              total: s.lessons.length,
+              completed: s.completedCount,
+              nextLessonSlug: s.nextLessonSlug,
+              nextLessonTitle: s.nextLessonTitle,
+            }))}
+          />
+        </div>
+
         <CfaCampaignHeader
           completedLessonIds={completedLessonIds}
           nextLessonBySubject={nextLessonBySubject}
