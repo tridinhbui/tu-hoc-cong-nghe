@@ -5,45 +5,48 @@ import { normalQuantile, tQuantile } from "@/lib/tail-risk";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
-// VaR dưới hai giả định phân phối, widget cho các bài khai `interactiveType:
-// "tail-risk"`.
+// Độ trễ đuôi dưới hai giả định phân phối, widget cho các bài khai
+// `interactiveType: "tail-risk"`.
 //
-// Toàn bộ FRM quay quanh một câu: con số rủi ro bạn báo cáo phụ thuộc vào giả
-// định bạn đã chọn, và giả định đó thường vô hình. VaR 99% tính theo phân phối
-// chuẩn cho ra một con số gọn gàng; cùng dữ liệu ấy với đuôi dày cho ra con số
-// lớn hơn hẳn, và chênh lệch đó chính là phần vốn ngân hàng thiếu khi thị
-// trường xấu.
+// Toàn bộ chuyện đo hiệu năng quay quanh một câu: con số p99 bạn báo cáo phụ
+// thuộc vào giả định phân phối bạn đã chọn, và giả định đó thường vô hình. Tính
+// p99 theo phân phối chuẩn cho ra một con số gọn gàng; cùng dữ liệu ấy với đuôi
+// dày cho ra con số lớn hơn hẳn - và chênh lệch đó chính là phần dung lượng
+// thiếu đúng lúc tải lên đỉnh.
 //
 // Widget đặt hai con số cạnh nhau và cho kéo bậc tự do của phân phối Student-t.
 // Bậc tự do thấp = đuôi dày. Khi bậc tự do lớn dần, t hội tụ về chuẩn và hai
 // con số gặp nhau - nhìn thấy điều đó thì "đuôi dày" thôi là một tính từ.
 //
-// Kèm cả Expected Shortfall, vì đó là câu trả lời cho khiếm khuyết lớn nhất
-// của VaR: VaR nói ngưỡng bị vượt bao lâu một lần, không nói vượt xa tới đâu.
-// Basel đã chuyển sang ES chính vì chỗ đó.
+// Kèm cả trung bình phần đuôi, vì đó là câu trả lời cho khiếm khuyết lớn nhất
+// của một ngưỡng phân vị: p99 nói ngưỡng bị vượt bao lâu một lần, không nói
+// vượt xa tới đâu. Người dùng chạm phải phần "xa tới đâu" ấy.
 
 export default function InteractiveTailRisk() {
   const { t } = useI18n();
-  const [portfolio, setPortfolio] = useState(1000); // tỷ đồng
-  const [vol, setVol] = useState(20); // % năm
+  const [baseline, setBaseline] = useState(120); // ms, độ trễ nền p50
+  const [jitter, setJitter] = useState(20); // % của độ trễ nền
   const [conf, setConf] = useState(99);
   const [df, setDf] = useState(4);
 
   const numbers = useMemo(() => {
     const p = conf / 100;
-    const daily = vol / 100 / Math.sqrt(252);
+    // Độ lệch chuẩn tính thẳng theo ms. Bản tài chính chia thêm √252 để quy lợi
+    // suất năm về một ngày giao dịch; độ trễ không có nhịp đó - mỗi request là
+    // một quan sát, nên không có gì để quy đổi.
+    const sigma = (baseline * jitter) / 100;
     const zNorm = normalQuantile(p);
     // Chuẩn hoá t về cùng độ lệch chuẩn, nếu không thì so hai thứ có phương sai
     // khác nhau và chênh lệch chỉ là ảo giác của thang đo.
     const tScale = df > 2 ? Math.sqrt((df - 2) / df) : 1;
     const zT = tQuantile(p, df) * tScale;
-    const varNorm = portfolio * daily * zNorm;
-    const varT = portfolio * daily * zT;
-    // ES của phân phối chuẩn có công thức đóng: φ(z)/(1−p)·σ.
+    const varNorm = sigma * zNorm;
+    const varT = sigma * zT;
+    // Trung bình phần đuôi của phân phối chuẩn có công thức đóng: φ(z)/(1−p)·σ.
     const pdf = Math.exp(-0.5 * zNorm * zNorm) / Math.sqrt(2 * Math.PI);
-    const esNorm = portfolio * daily * (pdf / (1 - p));
+    const esNorm = sigma * (pdf / (1 - p));
     return { varNorm, varT, esNorm, gap: varT - varNorm };
-  }, [portfolio, vol, conf, df]);
+  }, [baseline, jitter, conf, df]);
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-800 dark:bg-stone-900">
@@ -52,14 +55,14 @@ export default function InteractiveTailRisk() {
       </h3>
 
       <div className="mt-4 space-y-3">
-        <Row label={t.tailRisk.portfolioSizeLabel} value={format(t.tailRisk.portfolioSizeValue, { value: portfolio })}>
-          <input type="range" min={100} max={5000} step={100} value={portfolio}
-            onChange={(e) => setPortfolio(Number(e.target.value))} aria-label={t.tailRisk.portfolioSizeAriaLabel}
+        <Row label={t.tailRisk.portfolioSizeLabel} value={format(t.tailRisk.portfolioSizeValue, { value: baseline })}>
+          <input type="range" min={20} max={500} step={10} value={baseline}
+            onChange={(e) => setBaseline(Number(e.target.value))} aria-label={t.tailRisk.portfolioSizeAriaLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
-        <Row label={t.tailRisk.volatilityLabel} value={`${vol}%`}>
-          <input type="range" min={5} max={60} step={1} value={vol}
-            onChange={(e) => setVol(Number(e.target.value))} aria-label={t.tailRisk.volatilityAriaLabel}
+        <Row label={t.tailRisk.volatilityLabel} value={`${jitter}%`}>
+          <input type="range" min={5} max={60} step={1} value={jitter}
+            onChange={(e) => setJitter(Number(e.target.value))} aria-label={t.tailRisk.volatilityAriaLabel}
             className="w-full cursor-pointer accent-stone-900 dark:accent-stone-100" />
         </Row>
         <Row label={t.tailRisk.confidenceLabel} value={`${conf}%`}>

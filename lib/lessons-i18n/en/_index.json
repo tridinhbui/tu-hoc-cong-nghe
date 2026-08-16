@@ -242,10 +242,6 @@
     "subtitle": "A simple formula so the AI understands what you actually want.",
     "duration": "14 min"
   },
-  "cach-mua-co-phieu": {
-    "title": "How to buy stocks",
-    "subtitle": "Your first step into the stock market"
-  },
   "call-option-la-gi": {
     "title": "What Is a Call Option?",
     "subtitle": "The right to buy an asset at a fixed price - expecting the price to rise"
@@ -397,10 +393,6 @@
     "subtitle": "Telling a vanity metric from one that drives action, and the trap of turning a metric into a target",
     "duration": "11 min"
   },
-  "chon-etf": {
-    "title": "How to choose the right ETF for you",
-    "subtitle": "Building a stock portfolio"
-  },
   "chon-hop-dong-bao-hiem": {
     "title": "Choosing insurance, Part 3: Comparing two policies and deciding",
     "subtitle": "The right order to buy in, how to compare cost per unit of cover, and the checklist to run before you sign",
@@ -451,10 +443,6 @@
     "subtitle": "A certificate of ownership in part of a business",
     "duration": "6 min"
   },
-  "co-phieu-la-gi": {
-    "title": "What is a stock? Why beginners should understand it",
-    "subtitle": "Stocks at a basic level"
-  },
   "co-tuc-chinh-sach": {
     "title": "Dividend Policy",
     "subtitle": "Pay a dividend or retain earnings for reinvestment?",
@@ -494,10 +482,6 @@
     "title": "Assets = Liabilities + Equity",
     "subtitle": "The basic accounting equation and why it always holds",
     "duration": "5 min"
-  },
-  "cong-ty-cong-khai": {
-    "title": "Public company vs private company",
-    "subtitle": "What is an IPO"
   },
   "cong-ty-lai-ma-het-tien": {
     "title": "Why can a profitable company run short of cash?",
@@ -657,10 +641,6 @@
     "title": "Track 7, Lesson 5: DCA in depth - when to invest in instalments and when not to",
     "subtitle": "Dollar-cost averaging is not always the optimal strategy - knowing its limits helps you use it at the right time.",
     "duration": "6 min"
-  },
-  "dca": {
-    "title": "DCA: investing periodically rather than all at once",
-    "subtitle": "Dollar-cost averaging"
   },
   "dcf-la-gi-day133": {
     "title": "What is DCF?",
@@ -934,10 +914,6 @@
   "etf-la-gi-day176": {
     "title": "What is an ETF?",
     "subtitle": "Exchange-traded fund - trades like a stock, diversifies like a fund"
-  },
-  "etf-la-gi": {
-    "title": "What is an ETF? Why is it safer than individual stocks",
-    "subtitle": "Diversified investment vehicle"
   },
   "ev-ebitda-dung-khi-nao": {
     "title": "When should EV/EBITDA be used?",
@@ -1302,10 +1278,6 @@
     "subtitle": "Not just a line of numbers on a screen - but a real economic right",
     "duration": "6 min"
   },
-  "khi-nao-ban-co-phieu": {
-    "title": "When should you sell a stock?",
-    "subtitle": "Exit strategy"
-  },
   "khi-nao-can-tu-van-tai-chinh": {
     "title": "Stage 8, Lesson 8: When you need professional financial advice",
     "subtitle": "Teaching yourself finance is excellent, but some situations are complicated enough that an expert can save you from a costly mistake.",
@@ -1386,10 +1358,6 @@
     "subtitle": "Why does a client have to 'hand the money back' the moment the market turns against them?",
     "duration": "8 min"
   },
-  "ky-vong-loi-nhuan": {
-    "title": "Realistic return expectations from stocks",
-    "subtitle": "Realistic return expectations"
-  },
   "ladder": {
     "title": "The ladder strategy: buying bonds of different terms",
     "subtitle": "Bond laddering strategy",
@@ -1469,10 +1437,6 @@
     "title": "Gross, operating, and net profit",
     "subtitle": "Three tiers of profit - each tells a different story",
     "duration": "7 min"
-  },
-  "loi-nhuan-co-phieu": {
-    "title": "Profit from stocks: capital gains and dividends",
-    "subtitle": "Making money from stocks"
   },
   "loi-nhuan-cong-ty-bao-hiem-va-float": {
     "title": "Pricing, Lesson 5: Where an insurer makes its money - underwriting or investing",
@@ -1767,10 +1731,6 @@
     "subtitle": "How many times profit does an investor pay to buy a share",
     "duration": "6 min"
   },
-  "pe-ratio": {
-    "title": "Simple P/E ratio: is a stock cheap or expensive",
-    "subtitle": "How to read a stock quote"
-  },
   "perpetuity": {
     "title": "Perpetuity: cash flows forever",
     "subtitle": "A level cash flow that continues indefinitely",
@@ -1800,11 +1760,6 @@
     "title": "AI in Finance, Lesson 8: News sentiment analysis with AI",
     "subtitle": "Read whether the news is positive or negative, without mistaking mood for value.",
     "duration": "15 min"
-  },
-  "phan-tich-co-phieu": {
-    "title": "Case study: Analyzing a stock, step by step",
-    "subtitle": "Stock analysis example",
-    "duration": "8 min"
   },
   "phan-tich-cohort-va-cai-bay-trung-binh": {
     "title": "Data Thinking, Lesson 2: Cohort analysis - when the average hides the truth",
@@ -1845,10 +1800,6 @@
     "title": "Expense ratios: the cost of your portfolio",
     "subtitle": "Expense optimization",
     "duration": "7 min"
-  },
-  "phi-quy": {
-    "title": "Fund fees: the hidden cost you're paying",
-    "subtitle": "Expense ratio"
   },
   "phim-tat-excel-va-ky-luat-ban-phim": {
     "title": "Excel, Lesson 1: Keyboard discipline - why a modelling test bans the mouse",
@@ -1984,10 +1935,6 @@
     "subtitle": "Excludes inventory - stricter than the Current Ratio",
     "duration": "5 min"
   },
-  "quy-chi-so": {
-    "title": "Index funds: tracking the market",
-    "subtitle": "Index funds"
-  },
   "quy-mo-etf-noi-va-chung-chi-quy": {
     "title": "The Vietnamese market, Lesson 7: open-ended funds, domestic ETFs and fund certificates",
     "subtitle": "How to reach diversification while your capital is still small",
@@ -2027,10 +1974,6 @@
     "title": "Deals, Lesson 5: from the letter of interest to closing day - the process and the gates to pass",
     "subtitle": "The document milestones, the gap between signing and closing, conditions precedent and competition approval",
     "duration": "11 min"
-  },
-  "quy-tuong-tac": {
-    "title": "Active funds: expert management",
-    "subtitle": "Managed funds"
   },
   "quyet-toan-va-thanh-tra-thue": {
     "title": "Standards & Tax, Lesson 8: tax finalisation and tax audits",
@@ -2097,10 +2040,6 @@
     "subtitle": "Foreign ownership limits, market classification criteria, and what they mean for valuation",
     "duration": "11 min"
   },
-  "rui-ro-danh-muc": {
-    "title": "Risk of an individual stock vs a portfolio",
-    "subtitle": "Risk management"
-  },
   "rui-ro-du-an-bat-dong-san-va-kich-ban": {
     "title": "Property projects, Lesson 5: three risks and how they compound on each other",
     "subtitle": "Permitting delay, cost overrun, a market that turns - and why they never arrive on their own",
@@ -2125,10 +2064,6 @@
     "title": "Default risk: bond credit ratings",
     "subtitle": "Credit ratings for bonds",
     "duration": "6 min"
-  },
-  "sai-lam-dau-tu": {
-    "title": "Common mistakes of new investors",
-    "subtitle": "Pitfalls to avoid"
   },
   "sai-lam-tam-ly-fomo-thien-kien": {
     "title": "Track 7, Lesson 9: Common psychological mistakes - FOMO and confirmation bias",
@@ -2252,10 +2187,6 @@
     "subtitle": "Social insurance (BHXH) and voluntary supplementary pension funds",
     "duration": "7 min"
   },
-  "tai-khoan-tu-quan": {
-    "title": "Self-directed vs managed accounts",
-    "subtitle": "Account types"
-  },
   "tai-san-trong-ke-toan": {
     "title": "What is an asset in accounting?",
     "subtitle": "Current assets, non-current assets, and how they create value",
@@ -2265,10 +2196,6 @@
     "title": "Herd behaviour and FOMO: why we buy the top and sell the bottom",
     "subtitle": "When everyone around you is talking about a stock, that is usually the most dangerous moment to buy it",
     "duration": "6 min"
-  },
-  "tam-ly-dau-tu": {
-    "title": "Investor psychology: greed and fear",
-    "subtitle": "Behavioral finance basics"
   },
   "tao-tro-ly-ai-rieng-cho-tai-chinh": {
     "title": "AI in Finance, Lesson 9: Building your own AI assistant for finance",
@@ -2319,10 +2246,6 @@
     "title": "Private markets, Lesson 4: Exits and the secondary market - when paper money becomes money",
     "subtitle": "The four exit routes, fund life pressure, and the role of the market in fund interests",
     "duration": "11 min"
-  },
-  "thue-co-phieu": {
-    "title": "Calculating tax on stock investment profit",
-    "subtitle": "Tax implications"
   },
   "thue-gtgt-va-thue-nha-thau": {
     "title": "Standards & Tax, Lesson 4: VAT and foreign contractor tax - a cash flow effect, not a profit effect",
@@ -2413,11 +2336,6 @@
     "title": "Recap: building a psychological immune system for financial decisions",
     "subtitle": "The 5 biases covered, and the self-check questions to run before every important money decision",
     "duration": "7 min"
-  },
-  "tong-on-chang-2": {
-    "title": "Stage 4 review: fundamentals of stock investing",
-    "subtitle": "Stage 2 summary",
-    "duration": "9 min"
   },
   "tong-on-chang-3": {
     "title": "Stage 5 review: bonds for the conservative investor",

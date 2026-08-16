@@ -30,14 +30,17 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   bond: ["trái phiếu", "coupon", "ytm", "bond", "lợi suất", "tín dụng", "spread", "vỡ nợ", "xếp hạng"],
   payoff: ["quyền chọn", "option", "payoff", "phái sinh", "call", "put", "forward", "future", "swap", "phòng hộ", "chênh lệch giá"],
   "money-vs-asset": ["tài sản", "tiêu sản", "tiền", "thuê", "mua"],
-  multiples: ["p/e", "p/b", "bội số", "ev/ebitda", "định giá", "multiple", "market cap", "enterprise value", "cổ phiếu", "giá trị doanh nghiệp"],
+  // Loại multiples đã tạm rút khỏi WIDGET_TYPES (xem chú thích trong
+  // components/InteractiveWidget.tsx), và bảng này chỉ được chứa widget có
+  // thật. Khi có bài về dung lượng, thêm lại cả hai chỗ cùng lúc:
+  // ["dung lượng", "capacity", "ước lượng", "hệ số", "sizing", "thông lượng"]
   budget: ["ngân sách", "50/30/20", "chi tiêu", "tiết kiệm", "trả nợ", "audit tài chính", "tài sản ròng"],
   prospect: ["tâm lý", "hành vi", "prospect", "mất mát", "thiên kiến", "behavioral", "sai lầm"],
   accretion: ["eps", "m&a", "sáp nhập", "pha loãng", "thâu tóm", "thương vụ"],
   "supply-demand": ["cung", "cầu", "giá cân bằng", "thị trường", "chi phí biên", "sức mua"],
   "inflation-calculator": ["lạm phát", "sức mua"],
   "ethics-case": ["đạo đức", "ethics", "chuẩn mực", "standard", "xung đột lợi ích", "tuân thủ", "aml", "kyc", "gian lận", "công bố", "trọng yếu", "khủng hoảng"],
-  "tail-risk": ["var", "đuôi", "tail", "expected shortfall", "biến động", "garch", "phân phối"],
+  "tail-risk": ["p99", "độ trễ", "latency", "percentile", "phân vị", "đuôi", "tail", "tốc độ tải", "thời gian chờ", "biến động", "phân phối"],
   ratios: ["chỉ số", "tỷ số", "ratio", "cân đối", "thanh toán", "đòn bẩy", "turnover", "vòng quay", "hiệu quả sử dụng"],
   "fee-drag": ["phí", "fee", "chi phí quản lý", "ter", "hiệu suất", "etf", "quỹ mở", "quỹ chỉ số"],
   "esg-score": ["esg", "bền vững", "xếp hạng", "khí hậu", "carbon", "quản trị doanh nghiệp", "governance"],

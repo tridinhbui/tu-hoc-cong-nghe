@@ -134,7 +134,21 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "chart",
   "process",
   "payoff",
-  "multiples",
+  // Loại multiples tạm rút khỏi danh sách khai báo, KHÔNG xoá.
+  //
+  // Widget này đã chuyển từ định giá bội số EV/EBITDA sang ước lượng dung lượng
+  // theo dịch vụ tương đương, nên 20 bài P/E cũ không còn khai nó nữa. Kho bài
+  // công nghệ hiện mới đi tới Bài 220 (phần web) và chưa có bài nào về dung
+  // lượng hay mở rộng hệ thống để gắn vào.
+  //
+  // `interactive-widgets.test.ts` bắt đúng chuyện đó: một widget không bài nào
+  // dùng là mã chết. Gắn ép vào một bài sai chủ đề thì cổng kia im, nhưng người
+  // học mở bài Đưa trang lên mạng ra lại thấy máy tính số máy mỗi vùng.
+  //
+  // Nhánh dispatcher bên dưới vẫn còn, nên chỉ cần thêm lại một dòng ở đây là
+  // widget sống lại. Đừng đặt tên loại trong ngoặc kép ở chú thích này:
+  // declaredWidgetTypes() cắt khối rồi bắt khoá bằng regex trên chuỗi có ngoặc,
+  // nên một cái tên trong chú thích cũng bị tính là đã khai báo.
   "prospect",
   "accretion",
   "ethics-case",
