@@ -232,11 +232,6 @@
     "subtitle": "A way to pay shareholders that isn't a dividend",
     "duration": "6 min"
   },
-  "ca-nhan-doanh-nghiep-chinh-phu": {
-    "title": "How individuals, businesses and governments manage money differently.",
-    "subtitle": "Three financial actors, three different goals, three different toolkits.",
-    "duration": "7 min"
-  },
   "cach-danh-gia-esg-cua-doanh-nghiep": {
     "title": "How to assess a company's ESG: from indicator to score",
     "subtitle": "15 common ESG indicators, how an ESG score is built, and the red flags to watch for in a report",
@@ -826,11 +821,6 @@
     "subtitle": "Amplifying profit - and risk",
     "duration": "7 min"
   },
-  "don-bay-tai-chinh": {
-    "title": "What is financial leverage?",
-    "subtitle": "Leverage amplifies both gains and losses. It's a genuine double-edged sword.",
-    "duration": "7 min"
-  },
   "dong-tien-du-an-phat-trien-bat-dong-san": {
     "title": "Property projects, lesson 2: the J-curve - money out first, money in later",
     "subtitle": "A development project's cash flow, the peak funding requirement, and why a handsome IRR can still kill the developer",
@@ -1116,11 +1106,6 @@
     "title": "What is inventory?",
     "subtitle": "Asset or burden - it depends on how it's managed",
     "duration": "5 min"
-  },
-  "he-thong-tai-chinh": {
-    "title": "Who makes up the financial system: banks, funds, companies, investors.",
-    "subtitle": "The financial system is the network connecting people with spare money to people who need it.",
-    "duration": "7 min"
   },
   "hedge-fund-la-gi": {
     "title": "What is a Hedge Fund?",
@@ -1494,11 +1479,6 @@
     "subtitle": "The combined ratio, float, and why a company losing money on underwriting can still be a good company",
     "duration": "11 min"
   },
-  "loi-nhuan-ky-vong": {
-    "title": "What is expected return?",
-    "subtitle": "Expected Return is a probability-weighted average across every possible scenario.",
-    "duration": "7 min"
-  },
   "loi-the-thue-huu-tri": {
     "title": "The tax advantage of a retirement account",
     "subtitle": "Personal income tax relief for joining a voluntary supplementary pension",
@@ -1668,11 +1648,6 @@
     "subtitle": "Financial obligations and how they affect a business",
     "duration": "5 min"
   },
-  "no-tot-no-xau": {
-    "title": "Good debt and bad debt.",
-    "subtitle": "Not every debt is bad. What matters is what the debt creates.",
-    "duration": "6 min"
-  },
   "no-vay-lai-vay-vong-lap-circularity": {
     "title": "Financial modelling, part 5: debt, interest and circularity in a model",
     "subtitle": "Why interest expense creates a circular reference, and how to deal with it",
@@ -1707,11 +1682,6 @@
     "title": "Review: the three financial statements",
     "subtitle": "Connecting the P&L, Balance Sheet, and Cash Flow Statement",
     "duration": "7 min"
-  },
-  "on-tap-chang-1": {
-    "title": "Stage 3 review: money, time, risk, cash flow.",
-    "subtitle": "The first 20 days built the foundation. This is the map of the core concepts.",
-    "duration": "8 min"
   },
   "on-tap-chi-so-tai-chinh": {
     "title": "Review: Using Ratios to Compare Businesses",
@@ -2141,11 +2111,6 @@
     "subtitle": "Physical risk, transition risk and stranded assets - how to quantify instead of just worrying",
     "duration": "9 min"
   },
-  "rui-ro-la-gi": {
-    "title": "What is risk? No return ever comes for free.",
-    "subtitle": "Risk isn't something to avoid; it's something to understand and price correctly.",
-    "duration": "7 min"
-  },
   "rui-ro-lai-suat": {
     "title": "Interest rate risk: how bond prices change",
     "subtitle": "Interest rate risk",
@@ -2320,11 +2285,6 @@
     "subtitle": "Net income vs operating cash flow - where the gap comes from",
     "duration": "6 min"
   },
-  "thanh-khoan-la-gi": {
-    "title": "What is liquidity? Assets that sell easily, and assets that don't.",
-    "subtitle": "Liquidity is the ability to turn an asset into cash quickly without losing much value.",
-    "duration": "6 min"
-  },
   "theo-doi-chi-tieu-truoc-khi-lap-ngan-sach": {
     "title": "Track 1, Lesson 1: Tracking spending - measure before you allocate",
     "subtitle": "You can't budget money when you don't know where it is currently going",
@@ -2334,11 +2294,6 @@
     "title": "Monitoring your portfolio: how often should you check",
     "subtitle": "Monitoring frequency",
     "duration": "6 min"
-  },
-  "thi-truong-tai-chinh": {
-    "title": "What is a financial market?",
-    "subtitle": "A financial market is where people with spare capital meet people who need capital, through price.",
-    "duration": "7 min"
   },
   "thien-kien-hanh-vi-trong-phan-tich-equity": {
     "title": "Behavioural bias in equity research: when the experts are wrong too",
@@ -2615,11 +2570,6 @@
   "vay-mua-nha-co-ban": {
     "title": "Stage 9, Lesson 1: How does a mortgage actually work?",
     "subtitle": "The mechanics behind the largest loan of most people's lives",
-    "duration": "7 min"
-  },
-  "vay-tien-giau-hay-pha-san": {
-    "title": "Why borrowing can make you rich, or bankrupt you.",
-    "subtitle": "The outcome depends on whether the return on borrowed capital beats the loan's interest rate.",
     "duration": "7 min"
   },
   "venture-capital-la-gi": {

@@ -32,8 +32,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "6": [
     {
       "fromDay": 1,
-      "fromTitle": "Tài chính là gì? Vì sao tài chính không chỉ là tiền.",
-      "text": "Tài chính là phân bổ nguồn lực trong thời gian và bất định",
+      "fromTitle": "Bài 1: Chương trình là gì",
+      "text": "Bộ xử lý chỉ hiểu lệnh máy; mã nguồn là văn bản dành cho con người.",
       "distractors": [
         "Lạm phát âm thầm bào mòn sức mua của tiền theo thời gian, kể cả khi số dư danh nghĩa không giảm",
         "Là cơ sở tính toán trong hầu hết các thương vụ M&A thực tế"
@@ -43,8 +43,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "7": [
     {
       "fromDay": 2,
-      "fromTitle": "Tiền là gì? Tiền khác tài sản như thế nào.",
-      "text": "Tiền là phương tiện trao đổi, có thanh khoản tuyệt đối",
+      "fromTitle": "Bài 2: Biến và phép gán",
+      "text": "Dấu bằng là phép gán, không phải so sánh - hai dấu bằng mới là so sánh.",
       "distractors": [
         "Nhạy cảm với discount rate và dự báo FCF",
         "SG&A = chi phí vận hành gián tiếp (bán hàng + quản lý)"
@@ -54,8 +54,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "8": [
     {
       "fromDay": 3,
-      "fromTitle": "Thu nhập, chi phí, tiết kiệm và đầu tư.",
-      "text": "Tỷ lệ tiết kiệm quan trọng hơn số tiền tiết kiệm tuyệt đối",
+      "fromTitle": "Bài 3: Kiểu dữ liệu cơ bản",
+      "text": "Bốn nhóm cơ bản: số, chuỗi, luận lý, và giá trị rỗng.",
       "distractors": [
         "Công ty tăng trưởng nhanh thường ưu tiên tái đầu tư hơn là chia cổ tức; công ty ổn định (như Vinamilk) thường trả cổ tức đều đặn",
         "Theo dõi OCF, không chỉ Net Income"
@@ -65,8 +65,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "9": [
     {
       "fromDay": 4,
-      "fromTitle": "Dòng tiền là gì? Vì sao người giàu nhìn dòng tiền trước lợi nhuận.",
-      "text": "Lợi nhuận là con số kế toán; dòng tiền là tiền thực trong tài khoản",
+      "fromTitle": "Bài 4: Chuỗi và thao tác văn bản",
+      "text": "Ký tự được lưu bằng số theo bảng mã; chữ có dấu chiếm nhiều byte hơn một.",
       "distractors": [
         "Là tỷ lệ chiết khấu chuẩn trong DCF",
         "Correlation không cố định - có thể thay đổi bất lợi đúng vào giai đoạn khủng hoảng, đây là giới hạn thực tế cần lưu ý"
@@ -76,8 +76,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "10": [
     {
       "fromDay": 5,
-      "fromTitle": "Tài sản và tiêu sản: hiểu đúng, không cực đoan.",
-      "text": "Tài sản tạo dòng tiền dương; tiêu sản tạo dòng tiền âm",
+      "fromTitle": "Bài 5: Phép toán và biểu thức luận lý",
+      "text": "Mọi phép so sánh cho ra một giá trị luận lý - đúng hoặc sai.",
       "distractors": [
         "Quick Ratio loại hàng tồn kho khỏi tài sản ngắn hạn",
         "Là cơ sở tính toán trong hầu hết các thương vụ M&A thực tế"
@@ -87,19 +87,19 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "11": [
     {
       "fromDay": 6,
-      "fromTitle": "Lãi suất là gì? Vì sao lãi suất ảnh hưởng mọi thứ.",
-      "text": "Lãi suất là giá của tiền: tăng thì vay đắt hơn, tiết kiệm hấp dẫn hơn",
+      "fromTitle": "Bài 6: Câu điều kiện - chương trình rẽ nhánh",
+      "text": "Đúng một nhánh được chạy - không bao giờ cả hai, không bao giờ không nhánh nào.",
       "distractors": [
         "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-        "FCF = NOPAT × (1 − Growth/ROIC)"
+        "Revenue → Gross Profit → EBITDA → EBIT → Net Income → OCF → FCF là một chuỗi liên thông, không phải bảy công thức rời rạc."
       ]
     }
   ],
   "12": [
     {
       "fromDay": 7,
-      "fromTitle": "Lãi đơn và lãi kép.",
-      "text": "Lãi kép: lãi sinh lãi, tạo hiệu ứng bóng tuyết theo thời gian",
+      "fromTitle": "Bài 7: Vòng lặp",
+      "text": "for khi biết trước tập cần duyệt; while khi chỉ có một điều kiện dừng.",
       "distractors": [
         "Danh mục phù hợp là danh mục bạn có thể kiên trì nắm giữ qua các giai đoạn giảm điểm, không phải danh mục có lợi nhuận kỳ vọng cao nhất trên giấy",
         "Là phương pháp định giá tuyệt đối, độc lập với định giá thị trường của công ty khác"
@@ -109,8 +109,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "13": [
     {
       "fromDay": 8,
-      "fromTitle": "Sức mạnh của thời gian trong tài chính.",
-      "text": "Bắt đầu sớm quan trọng hơn đầu tư nhiều về sau",
+      "fromTitle": "Bài 8: Danh sách - cấu trúc dữ liệu đầu tiên",
+      "text": "Chỉ số là độ dời từ đầu, nên bắt đầu từ 0 và phần tử cuối ở vị trí n trừ một.",
       "distractors": [
         "Rule of 72: số năm nhân đôi ≈ 72 / lãi suất",
         "Tỷ trọng cổ phiếu nên giảm dần khi tuổi tăng, vì thời gian phục hồi sau biến động ngắn lại"
@@ -118,8 +118,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 1,
-      "fromTitle": "Tài chính là gì? Vì sao tài chính không chỉ là tiền.",
-      "text": "Tài chính là phân bổ nguồn lực trong thời gian và bất định",
+      "fromTitle": "Bài 1: Chương trình là gì",
+      "text": "Bộ xử lý chỉ hiểu lệnh máy; mã nguồn là văn bản dành cho con người.",
       "distractors": [
         "Trì hoãn đầu tư hưu trí là chi phí cơ hội không thể bù đắp lại bằng tiền bạc sau này",
         "Tài sản dài hạn: mang lại lợi ích nhiều năm, thường khấu hao dần"
@@ -129,8 +129,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "14": [
     {
       "fromDay": 9,
-      "fromTitle": "Lạm phát là gì? Vì sao tiền mất giá.",
-      "text": "Lạm phát làm tiền mất sức mua theo thời gian, tích lũy theo năm",
+      "fromTitle": "Bài 9: Từ điển - tra bằng tên thay vì bằng vị trí",
+      "text": "Từ điển gồm các cặp khoá và giá trị; khoá là duy nhất trong một từ điển.",
       "distractors": [
         "ROIC > WACC = tạo giá trị; ROIC < WACC = phá hủy giá trị",
         "Khắt khe và thực tế hơn Current Ratio"
@@ -138,8 +138,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 2,
-      "fromTitle": "Tiền là gì? Tiền khác tài sản như thế nào.",
-      "text": "Tiền là phương tiện trao đổi, có thanh khoản tuyệt đối",
+      "fromTitle": "Bài 2: Biến và phép gán",
+      "text": "Dấu bằng là phép gán, không phải so sánh - hai dấu bằng mới là so sánh.",
       "distractors": [
         "Lãi suất thực ≈ Lãi suất danh nghĩa − Lạm phát",
         "Giao dịch quá thường xuyên (overtrading) làm tăng chi phí giao dịch và thường xuất phát từ cảm xúc hơn là phân tích"
@@ -149,8 +149,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "15": [
     {
       "fromDay": 10,
-      "fromTitle": "Giá trị thời gian của tiền: 1 triệu hôm nay khác 1 triệu năm sau.",
-      "text": "Tiền hôm nay đáng giá hơn cùng số tiền trong tương lai",
+      "fromTitle": "Bài 10: Ghép lại thành chương trình chạy được",
+      "text": "Bắt đầu bằng cách viết ra dữ liệu vào là gì và kết quả ra trông thế nào.",
       "distractors": [
         "Quỹ chủ động thuê chuyên gia phân tích tự chọn cổ phiếu, với mục tiêu vượt trội hơn thị trường, khác với quỹ chỉ số mô phỏng máy móc",
         "CapEx: tài sản dài hạn, khấu hao dần"
@@ -158,8 +158,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 3,
-      "fromTitle": "Thu nhập, chi phí, tiết kiệm và đầu tư.",
-      "text": "Tỷ lệ tiết kiệm quan trọng hơn số tiền tiết kiệm tuyệt đối",
+      "fromTitle": "Bài 3: Kiểu dữ liệu cơ bản",
+      "text": "Bốn nhóm cơ bản: số, chuỗi, luận lý, và giá trị rỗng.",
       "distractors": [
         "DCA phù hợp nhất với người có thu nhập đều đặn, muốn xây dựng kỷ luật đầu tư dài hạn mà không cần đoán thời điểm thị trường",
         "Expected Loss = PD × LGD"
@@ -169,8 +169,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "16": [
     {
       "fromDay": 11,
-      "fromTitle": "Rủi ro là gì? Không có lợi nhuận nào miễn phí.",
-      "text": "Lợi nhuận cao hơn luôn đi kèm rủi ro cao hơn, không có ngoại lệ",
+      "fromTitle": "Bài 11: Hàm - đóng gói một việc",
+      "text": "Chép mã bốn chỗ nghĩa là phải giữ bốn bản đồng bộ bằng trí nhớ - trí nhớ luôn thua.",
       "distractors": [
         "Nợ dài hạn: thời gian trả dài hơn, thường lãi cao hơn",
         "Tư duy portfolio là nền tảng của toàn bộ lý thuyết đầu tư hiện đại"
@@ -178,8 +178,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 4,
-      "fromTitle": "Dòng tiền là gì? Vì sao người giàu nhìn dòng tiền trước lợi nhuận.",
-      "text": "Lợi nhuận là con số kế toán; dòng tiền là tiền thực trong tài khoản",
+      "fromTitle": "Bài 4: Chuỗi và thao tác văn bản",
+      "text": "Ký tự được lưu bằng số theo bảng mã; chữ có dấu chiếm nhiều byte hơn một.",
       "distractors": [
         "Muốn giảm rủi ro biến động giá khi lo ngại lãi suất tăng, hãy ưu tiên trái phiếu kỳ hạn ngắn hơn",
         "Cổ đông có quyền nhận cổ tức, biểu quyết, và phần tài sản còn lại khi giải thể"
@@ -189,8 +189,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "17": [
     {
       "fromDay": 12,
-      "fromTitle": "Lợi nhuận kỳ vọng là gì?",
-      "text": "Expected Return = tổng (xác suất x kết quả) của mọi kịch bản",
+      "fromTitle": "Bài 12: Tham số, giá trị trả về và phạm vi",
+      "text": "Dữ liệu đơn được sao chép khi truyền vào hàm; dữ liệu phức hợp truyền chỗ trỏ.",
       "distractors": [
         "Phản ánh chi phí thực sự để mua đứt toàn bộ hoạt động kinh doanh của công ty",
         "Đo hiệu quả sinh lời trên mỗi đơn vị rủi ro, không chỉ lợi nhuận tuyệt đối"
@@ -198,8 +198,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 5,
-      "fromTitle": "Tài sản và tiêu sản: hiểu đúng, không cực đoan.",
-      "text": "Tài sản tạo dòng tiền dương; tiêu sản tạo dòng tiền âm",
+      "fromTitle": "Bài 5: Phép toán và biểu thức luận lý",
+      "text": "Mọi phép so sánh cho ra một giá trị luận lý - đúng hoặc sai.",
       "distractors": [
         "Rủi ro tối đa của người mua call = premium đã trả, không hơn",
         "DCA không đảm bảo lợi nhuận cao hơn đầu tư một lần - mục tiêu chính là giảm rủi ro tâm lý và rủi ro mua đúng đỉnh"
@@ -209,17 +209,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "18": [
     {
       "fromDay": 13,
-      "fromTitle": "Thanh khoản là gì? Tài sản dễ bán và khó bán.",
-      "text": "Thanh khoản: khả năng bán nhanh mà không mất nhiều giá trị",
+      "fromTitle": "Bài 13: Chương trình trong bộ nhớ",
+      "text": "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte.",
       "distractors": [
-        "Luôn giữ một phần tài sản ở dạng thanh khoản cao cho nhu cầu khẩn cấp",
+        "EV = Market Cap + Nợ − Tiền mặt: nợ cộng vào vì người mua gánh nó, tiền trừ ra vì người mua được dùng nó.",
         "Non-cash expense: không ảnh hưởng trực tiếp đến dòng tiền"
       ]
     },
     {
       "fromDay": 6,
-      "fromTitle": "Lãi suất là gì? Vì sao lãi suất ảnh hưởng mọi thứ.",
-      "text": "Lãi suất là giá của tiền: tăng thì vay đắt hơn, tiết kiệm hấp dẫn hơn",
+      "fromTitle": "Bài 6: Câu điều kiện - chương trình rẽ nhánh",
+      "text": "Đúng một nhánh được chạy - không bao giờ cả hai, không bao giờ không nhánh nào.",
       "distractors": [
         "Lựa chọn Beta phù hợp nên dựa trên chân trời đầu tư và khẩu vị rủi ro của từng nhà đầu tư",
         "Retained earnings âm = accumulated deficit - lỗ tích lũy"
@@ -229,8 +229,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "19": [
     {
       "fromDay": 14,
-      "fromTitle": "Nợ tốt và nợ xấu.",
-      "text": "Nợ tốt: dùng để mua tài sản sinh lợi cao hơn lãi vay",
+      "fromTitle": "Bài 14: Lỗi và ngoại lệ",
+      "text": "Bắt lỗi rồi không làm gì là cách tệ nhất - tệ hơn cả để chương trình dừng hẳn.",
       "distractors": [
         "Expected Return của danh mục = trung bình có trọng số theo tỷ trọng từng tài sản",
         "ETF: quỹ chứa rổ tài sản nhưng giao dịch linh hoạt như một cổ phiếu"
@@ -238,8 +238,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 7,
-      "fromTitle": "Lãi đơn và lãi kép.",
-      "text": "Lãi kép: lãi sinh lãi, tạo hiệu ứng bóng tuyết theo thời gian",
+      "fromTitle": "Bài 7: Vòng lặp",
+      "text": "for khi biết trước tập cần duyệt; while khi chỉ có một điều kiện dừng.",
       "distractors": [
         "Giá rẻ không tự động là cơ hội tốt - cần phân biệt 'rẻ vì bị bỏ quên' với 'rẻ vì thực sự có vấn đề'",
         "FIRE không nhất thiết là ngừng làm việc hoàn toàn - nhiều người chọn 'Barista FIRE' (làm việc bán thời gian) để giảm áp lực rút vốn"
@@ -249,8 +249,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "20": [
     {
       "fromDay": 15,
-      "fromTitle": "Đòn bẩy tài chính là gì?",
-      "text": "Đòn bẩy khuếch đại cả lợi nhuận lẫn thua lỗ so với vốn tự có",
+      "fromTitle": "Bài 15: Gỡ lỗi có phương pháp",
+      "text": "Bước đầu tiên luôn là tái hiện lỗi ổn định - không có nó thì không biết đã sửa xong chưa.",
       "distractors": [
         "VC: đầu tư mạo hiểm, chấp nhận rủi ro cao",
         "Tắt thông báo biến động giá hàng ngày trên app đầu tư là cách đơn giản để giảm cám dỗ kiểm tra liên tục"
@@ -258,11 +258,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 8,
-      "fromTitle": "Sức mạnh của thời gian trong tài chính.",
-      "text": "Bắt đầu sớm quan trọng hơn đầu tư nhiều về sau",
+      "fromTitle": "Bài 8: Danh sách - cấu trúc dữ liệu đầu tiên",
+      "text": "Chỉ số là độ dời từ đầu, nên bắt đầu từ 0 và phần tử cuối ở vị trí n trừ một.",
       "distractors": [
         "Trái phiếu = cho vay, nhận coupon + hoàn vốn khi đáo hạn",
-        "ROIC > WACC → tạo value"
+        "EV/EBITDA trung lập với đòn bẩy và khấu hao, nên nó là bội số để so hai doanh nghiệp vay nợ khác nhau."
       ]
     }
   ],
@@ -390,7 +390,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Khấu hao phân bổ chi phí tài sản dài hạn qua nhiều năm",
       "distractors": [
         "FCFF: dòng tiền tự do thuộc về toàn bộ nhà cung cấp vốn (cổ đông và chủ nợ)",
-        "Thời gian: lãi kép, bắt đầu sớm, PV/FV"
+        "FCF là cơ sở của mọi mô hình DCF - nhớ nó trước khi nhớ bất kỳ bội số nào."
       ]
     },
     {
@@ -398,7 +398,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Chi phí khác dòng tiền ra thế nào?",
       "text": "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
       "distractors": [
-        "Tiền hôm nay đáng giá hơn cùng số tiền trong tương lai",
+        "Nhóm đối chứng là thứ tách ảnh hưởng của thay đổi khỏi mọi biến động khác cùng thời điểm",
         "Ba quyết định: Đầu tư, Tài trợ, Phân phối"
       ]
     }
@@ -479,7 +479,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Equity = Tài sản − Nợ phải trả",
       "distractors": [
         "Alpha dương phản ánh kỹ năng thực sự của nhà quản lý quỹ, không phải may mắn ngắn hạn",
-        "Optimal leverage tồn tại - leverage quá cao làm Ke và Kd tăng"
+        "Tính cỡ mẫu trước khi chạy, và coi điểm dừng là cam kết chứ không phải lựa chọn"
       ]
     }
   ],
@@ -489,7 +489,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Nợ ngắn hạn và nợ dài hạn",
       "text": "Nợ ngắn hạn: đáo hạn ≤ 12 tháng - rủi ro thanh khoản cao hơn",
       "distractors": [
-        "Nợ tốt: dùng để mua tài sản sinh lợi cao hơn lãi vay",
+        "Nhìn kết quả giữa chừng rồi dừng khi đẹp có thể đẩy tỷ lệ sai từ 5% lên trên 30%",
         "Duration: đo độ nhạy giá với lãi suất"
       ]
     },
@@ -549,8 +549,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Accrual Accounting là gì?",
       "text": "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
       "distractors": [
-        "Discount rate = chi phí cơ hội của vốn",
-        "Thời gian tăng trưởng, không phải thời gian đóng tiền, quyết định kết quả"
+        "Giá trị p nói về xác suất của dữ liệu, không phải xác suất giả thuyết đúng",
+        "Càng so sánh nhiều lần càng dễ bắt được một kết quả đẹp thuần túy do ngẫu nhiên"
       ]
     },
     {
@@ -569,7 +569,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Cash Accounting là gì?",
       "text": "Cash accounting: ghi nhận khi tiền thực sự vào/ra",
       "distractors": [
-        "Lạm phát làm tiền mất sức mua theo thời gian, tích lũy theo năm",
+        "Ác cảm mất mát (loss aversion): não bộ cảm nhận nỗi đau mất tiền mạnh gấp 2-2.5 lần niềm vui được cùng khoản tiền đó",
         "Dùng YTM của trái phiếu hiện tại, không dùng lãi suất hợp đồng cũ"
       ]
     },
@@ -870,7 +870,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "ICF âm = đang đầu tư vào tương lai (CapEx, M&A)",
       "distractors": [
         "VC: đầu tư mạo hiểm, chấp nhận rủi ro cao",
-        "FCF = NOPAT × (1 − Growth/ROIC)"
+        "Disposition effect: xu hướng bán cổ phiếu lãi quá sớm, giữ cổ phiếu lỗ quá lâu - hệ quả trực tiếp của ác cảm mất mát"
       ]
     },
     {
@@ -909,7 +909,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Vì sao công ty lãi nhưng thiếu tiền?",
       "text": "Lợi nhuận kế toán ≠ tiền thực trong tay",
       "distractors": [
-        "Nợ xấu: dùng để tiêu dùng hoặc mua tài sản kém hơn lãi vay",
+        "Ác cảm mất mát khiến nhiều người giữ quá nhiều tiền mặt, sợ rủi ro nhìn thấy được hơn là rủi ro vô hình như lạm phát",
         "Financial model: dự báo tài chính theo giả định"
       ]
     },
@@ -949,7 +949,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Free Cash Flow là gì?",
       "text": "FCF = OCF − CapEx",
       "distractors": [
-        "ROIC > WACC → tạo value",
+        "Đặt quy tắc đầu tư rõ ràng trước khi thị trường biến động là cách hiệu quả nhất để trung hòa ảnh hưởng của thiên kiến này",
         "Trái phiếu cũng hữu ích để làm 'vùng đệm' giảm biến động cho cả danh mục, không nhất thiết phải chọn hoàn toàn một trong hai"
       ]
     },
@@ -1119,7 +1119,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Apple: OCF mạnh, FCF gần bằng OCF, buyback liên tục",
       "distractors": [
         "Trung lập với cơ cấu vốn và chính sách khấu hao - phù hợp so sánh công ty có đòn bẩy khác nhau",
-        "Sharpe Ratio: lợi nhuận thặng dư trên mỗi đơn vị rủi ro"
+        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt"
       ]
     }
   ],
@@ -1130,7 +1130,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "ROIC = NOPAT / Invested Capital",
       "distractors": [
         "3 phần: Operating, Investing, Financing",
-        "Mọi quyết định dùng tiền đều có chi phí cơ hội"
+        "Matching principle: doanh thu và chi phí khớp cùng kỳ"
       ]
     },
     {
@@ -1359,7 +1359,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Interest Coverage = EBIT / Interest Expense",
       "distractors": [
         "Không có di chúc, tài sản chia theo pháp luật (hàng thừa kế thứ nhất: vợ/chồng, cha mẹ, con) - không nhất thiết theo mong muốn thực sự của người mất",
-        "Lãi suất là giá của tiền: tăng thì vay đắt hơn, tiết kiệm hấp dẫn hơn"
+        "Hầu hết doanh nghiệp lớn bắt buộc dùng accrual"
       ]
     }
   ],
@@ -1369,7 +1369,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "EV/EBITDA là gì?",
       "text": "EV/EBITDA trung lập với cơ cấu vốn và khấu hao",
       "distractors": [
-        "3 factors: Supply/Demand, Inventory, Geopolitics",
+        "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
         "ROIC > WACC = tạo giá trị; ROIC < WACC = phá hủy giá trị"
       ]
     },
@@ -1378,7 +1378,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Asset Turnover: Hiệu quả sử dụng tài sản",
       "text": "Asset Turnover = Revenue / Total Assets",
       "distractors": [
-        "Rủi ro: không miễn phí, cần được định giá, đa dạng hóa loại bỏ rủi ro đặc thù",
+        "Passive investing: mô phỏng chỉ số, chi phí thấp hơn nhiều",
         "Amazon là ví dụ kinh điển: lỗ kế toán nhưng OCF mạnh"
       ]
     }
@@ -1390,7 +1390,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "4 nhóm ratios: Profitability, Liquidity, Leverage, Valuation",
       "distractors": [
         "Tái cân bằng về bản chất là 'bán cao, mua thấp' có kỷ luật, ngược với bản năng tâm lý tự nhiên",
-        "Expected Return = tổng (xác suất x kết quả) của mọi kịch bản"
+        "Dữ liệu dài hạn cho thấy đa số quỹ chủ động khó vượt qua benchmark sau khi trừ phí"
       ]
     },
     {
@@ -1430,7 +1430,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "FV = PV × (1+r)^n",
       "distractors": [
         "Phân tích tài chính toàn diện kết nối bốn lớp: kế toán, định giá, rủi ro, thị trường",
-        "Tiền mặt mất sức mua theo lạm phát; đầu tư để bảo tồn giá trị thực"
+        "Bảng tử suất (mortality table) cho biết xác suất tử vong theo tuổi - dựa trên dữ liệu thống kê lịch sử lớn, không phải dự đoán cho từng cá nhân cụ thể"
       ]
     },
     {
@@ -1439,7 +1439,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "CCC = DIO + DSO − DPO",
       "distractors": [
         "Quy trình phân tích hoàn chỉnh: đọc báo cáo → tính chỉ số → định giá → đánh giá rủi ro → đối chiếu thị trường",
-        "Quy tắc 72: số năm gấp đôi = 72 chia cho lãi suất"
+        "Actuary kết hợp xác suất VÀ giá trị thời gian của tiền để tính 'giá trị hiện tại kỳ vọng' của nghĩa vụ chi trả - nền tảng khoa học của việc định phí bảo hiểm"
       ]
     }
   ],
@@ -1529,7 +1529,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Perpetuity: Dòng tiền vĩnh viễn",
       "text": "PV Perpetuity = C / r",
       "distractors": [
-        "Tiền là phương tiện trao đổi, có thanh khoản tuyệt đối",
+        "Life actuary (bảng tử suất, hợp đồng dài hạn) và Non-life/P&C actuary (tần suất-mức độ tổn thất, catastrophe modeling) có phương pháp luận khác nhau",
         "WACC = discount rate, DCF = định giá bằng dòng tiền"
       ]
     },
@@ -1539,7 +1539,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "4 nhóm ratios: Profitability, Liquidity, Leverage, Valuation",
       "distractors": [
         "Giảm CCC = giải phóng vốn, cải thiện FCF",
-        "Rủi ro: overpay, culture clash, synergy thực tế thấp hơn kỳ vọng"
+        "Bảng sống sót quan trọng cho sản phẩm niên kim/hưu trí - nơi rủi ro của công ty bảo hiểm là người mua sống THỌ HƠN dự kiến, ngược với bảo hiểm tử vong thông thường"
       ]
     }
   ],
@@ -1598,7 +1598,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Discount Rate: Tỷ lệ chiết khấu",
       "text": "Discount rate = chi phí cơ hội + phần bù rủi ro",
       "distractors": [
-        "Sơ cấp: doanh nghiệp huy động vốn; thứ cấp: nhà đầu tư giao dịch lại",
+        "Giao cho AI những việc xử lý ngôn ngữ; giữ lại cho mình những việc gắn với trách nhiệm và bối cảnh riêng.",
         "Người còn trẻ, còn nhiều thời gian đầu tư, thường được khuyên ưu tiên cổ phiếu hơn để tận dụng tăng trưởng dài hạn, và tăng dần tỷ trọng trái phiếu khi lớn tuổi hơn"
       ]
     }
@@ -1610,7 +1610,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "NPV > IRR > Payback về mặt lý thuyết tài chính",
       "distractors": [
         "Chi phí y tế có xu hướng tăng theo tuổi tác, nên cộng thêm một khoản dự phòng riêng cho y tế",
-        "Đây là khung tham khảo, không phải luật cứng - điều chỉnh theo hoàn cảnh nhưng nên biết mình đang lệch ở đâu"
+        "Một cảnh báo hay kết luận từ AI chỉ có giá trị khi kèm bằng chứng số liệu và nguồn."
       ]
     },
     {
@@ -1639,7 +1639,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Discounting = compounding ngược lại",
       "distractors": [
         "Phản ánh pricing power và hiệu quả sản xuất",
-        "Lãi kép: lãi sinh lãi, tạo hiệu ứng bóng tuyết theo thời gian"
+        "Đừng đưa dữ liệu nội bộ hoặc dữ liệu mật lên công cụ AI nếu chưa được phép."
       ]
     }
   ],
@@ -1679,7 +1679,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "PV Perpetuity = C / r",
       "distractors": [
         "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
-        "Vay làm giàu khi ROI đầu tư lớn hơn lãi suất vay (spread dương)"
+        "Quyết định cuối cùng - và trách nhiệm cho quyết định đó - luôn thuộc về bạn."
       ]
     }
   ],
@@ -1699,7 +1699,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "NPV > 0: tạo giá trị; NPV < 0: phá hủy giá trị",
       "distractors": [
         "Việc tái cơ cấu danh mục diễn ra tự động theo công thức, không dựa vào phán đoán chủ quan của con người",
-        "Liquidity premium: tài sản kém thanh khoản phải trả lợi suất cao hơn"
+        "AI là trợ lý đọc - viết rất nhanh, không phải người chịu trách nhiệm cho kết luận tài chính của bạn."
       ]
     }
   ],
@@ -1730,7 +1730,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "CAPM: Ke = Rf + β(Rm − Rf)",
       "distractors": [
         "Expiration date xa hơn → premium cao hơn (nhiều thời gian biến động hơn)",
-        "Rủi ro: overpay, culture clash, synergy thực tế thấp hơn kỳ vọng"
+        "Giá trị lớn nhất của AI với người mới là rút ngắn thời gian tiếp cận tài liệu dài, không phải đưa ra khuyến nghị mua bán."
       ]
     },
     {
@@ -1899,7 +1899,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Risk-free rate = T-bill Mỹ hoặc trái phiếu chính phủ dài hạn",
       "distractors": [
         "Hạn chế: kế thừa sai lệch nếu cả ngành/thị trường đang bị định giá sai một cách hệ thống",
-        "Tài sản ròng = Tổng tài sản − Tổng nợ; phải liệt kê ĐẦY ĐỦ cả hai vế, kể cả nợ 'mềm' (thẻ tín dụng, vay người thân, trả góp)"
+        "Mọi con số AI đưa ra chỉ đáng tin khi kèm nguồn: tài liệu nào, trang nào, đơn vị gì, kỳ nào."
       ]
     }
   ],
@@ -1910,7 +1910,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Giữ lại nếu ROIC > cost of capital",
       "distractors": [
         "Giá trị lớn nhất của hành trình là thói quen ra quyết định tài chính có kỷ luật, áp dụng và điều chỉnh liên tục suốt đời",
-        "Nếu nhóm thiết yếu vượt 50%, ưu tiên xử lý chi phí cố định trước khi cắt giảm các khoản khác"
+        "Bắt đầu từ tác vụ nhỏ và dễ kiểm tra, rồi mới tăng độ khó - đó là cách học an toàn nhất."
       ]
     },
     {
@@ -1918,7 +1918,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Tính NPV một dự án đơn giản",
       "text": "NPV = PV(dòng tiền) − Đầu tư ban đầu",
       "distractors": [
-        "Cùng một vật có thể là tài sản hoặc tiêu sản tùy cách dùng",
+        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
         "CAPM: Ke = Rf + β × (Rm − Rf)"
       ]
     }
@@ -1989,7 +1989,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "IPO là gì?",
       "text": "IPO = lần đầu bán cổ phiếu ra công chúng",
       "distractors": [
-        "Doanh nghiệp tối ưu lợi nhuận và giá trị cổ đông",
+        "Alpha dương phản ánh kỹ năng thực sự của nhà quản lý quỹ, không phải may mắn ngắn hạn",
         "Diversification, correlation và các thước đo risk-adjusted return là bộ công cụ cốt lõi"
       ]
     },
@@ -2029,7 +2029,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Quản lý vốn lưu động",
       "text": "Working Capital = Current Assets − Current Liabilities",
       "distractors": [
-        "Giá thị trường phản ánh kỳ vọng tổng hợp của tất cả người tham gia",
+        "Rất khó tạo ra Alpha dương bền vững trong thị trường hiệu quả - lý do quỹ index thụ động ngày càng phổ biến",
         "Tax shield = Lãi vay × Thuế suất"
       ]
     },
@@ -2070,7 +2070,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "CapEx: tài sản dài hạn, khấu hao dần",
       "distractors": [
         "CCC ngắn: vốn quay nhanh, cần ít tiền hơn",
-        "Quỹ khẩn cấp = 3-6 tháng chi tiêu thiết yếu (6-12 tháng nếu thu nhập thất thường), để ở kênh rút được trong 1-2 ngày"
+        "Lịch sử khách hàng tốt làm tăng độ tin cậy nhưng không thay thế nghĩa vụ xác minh - tội phạm tìm đến tài khoản sạch chính vì lý do đó."
       ]
     },
     {
@@ -2078,7 +2078,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Mua lại cổ phiếu (Share Buyback)",
       "text": "Buyback = giảm shares outstanding → EPS tăng",
       "distractors": [
-        "Tài sản tạo dòng tiền dương; tiêu sản tạo dòng tiền âm",
+        "Lời giải thích bằng miệng chỉ có giá trị khi kèm tài liệu chứng minh khớp với nội dung giải thích.",
         "P&L đi từ Revenue xuống Net Income"
       ]
     }
@@ -2209,7 +2209,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Cổ phiếu là gì?",
       "text": "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
       "distractors": [
-        "Avalanche (theo lãi suất cao → thấp) tối ưu về tiền; Snowball (theo số dư nhỏ → lớn) tối ưu về động lực - chọn theo con người thật của bạn",
+        "Tài khoản trung gian có mẫu hình khá đặc trưng: ngủ đông rồi bùng nổ, tiền vào ra trong ngày, số dư cuối ngày xấp xỉ bằng không.",
         "Chi phí y tế có xu hướng tăng theo tuổi tác, nên cộng thêm một khoản dự phòng riêng cho y tế"
       ]
     },
@@ -2219,7 +2219,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "CapEx: tài sản dài hạn, khấu hao dần",
       "distractors": [
         "DuPont phân tích: Margin × Turnover × Leverage",
-        "Cả hai phương pháp đều yêu cầu: trả tối thiểu mọi khoản khác, dồn phần dư vào khoản ưu tiên"
+        "Chức năng tuân thủ phải độc lập với kinh doanh; áp lực bỏ qua bước xác minh cần được ghi nhận và báo cáo theo đường riêng."
       ]
     }
   ],
@@ -2238,7 +2238,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Burn Rate và Runway",
       "text": "Runway = Cash ÷ Net Burn Rate",
       "distractors": [
-        "Thời gian tăng trưởng, không phải thời gian đóng tiền, quyết định kết quả",
+        "KYC là nền móng của AML: không biết rõ khách hàng thì không có cơ sở nào để nói một giao dịch là bất thường.",
         "Spot vs Futures: contango vs backwardation"
       ]
     }
@@ -2269,7 +2269,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Market Cap là gì?",
       "text": "Market Cap = Giá cổ phiếu × Số lượng cổ phiếu đang lưu hành",
       "distractors": [
-        "DTI: theo dõi tỷ lệ nợ/thu nhập để giữ sức khỏe tài chính",
+        "Rửa tiền diễn ra theo ba giai đoạn - sắp xếp, phân tán, hợp nhất - và mỗi giai đoạn để lại loại dấu vết khác nhau.",
         "FV = PV × (1+r)^n"
       ]
     },
@@ -2298,7 +2298,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Venture Capital là gì?",
       "text": "VC: đầu tư mạo hiểm, chấp nhận rủi ro cao",
       "distractors": [
-        "ROIC < WACC: tăng trưởng phá hủy value",
+        "Chân dung khách hàng phải được cập nhật liên tục, không đóng băng ở thời điểm mở tài khoản.",
         "Cash accounting: ghi nhận khi tiền thực sự vào/ra"
       ]
     }
@@ -2310,7 +2310,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Equity Value: giá trị dành cho cổ đông; Enterprise Value: giá trị toàn bộ doanh nghiệp",
       "distractors": [
         "Nếu không chắc có nên cho vay hay không, thử tự hỏi: 'Nếu mất số tiền này, mối quan hệ có còn nguyên vẹn không?'",
-        "Audit là bước đầu tiên bắt buộc - không có nó, mọi kế hoạch tài chính sau đều thiếu cơ sở"
+        "Xếp loại rủi ro dựa trên khả năng bị lạm dụng, không dựa trên quy mô số dư của khách hàng."
       ]
     },
     {
@@ -2338,7 +2338,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: Tài chính doanh nghiệp",
       "text": "Ba quyết định: Đầu tư, Tài trợ, Phân phối",
       "distractors": [
-        "ROIC = NOPAT / (Debt + Equity − Cash)",
+        "Quy trình chuẩn gồm năm khâu: nhận biết khách hàng, sàng lọc danh sách, giám sát giao dịch, rà soát cảnh báo, và báo cáo khi đủ cơ sở.",
         "Ở nhiều nước khác (như Mỹ với 401k, IRA) khái niệm 'tài khoản hưu trí có ưu đãi thuế' tồn tại dưới hình thức khác, nhưng nguyên lý chung là khuyến khích tiết kiệm dài hạn cho tuổi già bằng ưu đãi thuế"
       ]
     }
@@ -2389,7 +2389,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Revenue Multiple dùng khi nào?",
       "text": "EV/Revenue: dùng khi công ty chưa có lợi nhuận dương để áp dụng các chỉ số khác",
       "distractors": [
-        "Đòn bẩy khuếch đại cả lợi nhuận lẫn thua lỗ so với vốn tự có",
+        "Báo cáo giao dịch đáng ngờ dựa trên phân tích dấu hiệu, không phụ thuộc vào việc giao dịch có vượt ngưỡng số tiền hay không.",
         "P/E cao hơn trung bình ngành không tự động là xấu - cần xem xét cùng tốc độ tăng trưởng lợi nhuận kỳ vọng"
       ]
     },
@@ -2459,7 +2459,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Equity Value: giá trị dành cho cổ đông; Enterprise Value: giá trị toàn bộ doanh nghiệp",
       "distractors": [
         "Software/SaaS có operating margin cao nhất do scalability",
-        "Growth = ROIC × Reinvestment Rate"
+        "Cấm tiết lộ là ranh giới pháp lý tuyệt đối: không được để đối tượng biết mình đang bị báo cáo."
       ]
     }
   ],
@@ -2499,7 +2499,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "P/B = Giá cổ phiếu / Book Value per Share",
       "distractors": [
         "ROA = Net Income / Total Assets",
-        "Debt rẻ hơn equity vì tax shield"
+        "Ngưỡng cảnh báo quá nhạy làm hệ thống yếu đi vì cảnh báo thật bị chôn giữa dương tính giả."
       ]
     }
   ],
@@ -2538,7 +2538,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Revenue Multiple dùng khi nào?",
       "text": "EV/Revenue: dùng khi công ty chưa có lợi nhuận dương để áp dụng các chỉ số khác",
       "distractors": [
-        "Đây là khung tham khảo, không phải luật cứng - điều chỉnh theo hoàn cảnh nhưng nên biết mình đang lệch ở đâu",
+        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
         "Premium: phí trả để có quyền chọn, là rủi ro tối đa của người mua"
       ]
     }
@@ -2730,7 +2730,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
       "distractors": [
         "Lạm phát âm thầm bào mòn sức mua của tiền theo thời gian, kể cả khi số dư danh nghĩa không giảm",
-        "Vay phá sản khi ROI nhỏ hơn lãi suất vay (spread âm) hoặc tài sản mất giá mạnh"
+        "**Ứng dụng:** trả góp, bảo hiểm, trái phiếu coupon"
       ]
     },
     {
@@ -2738,7 +2738,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "nhỏ - Định giá một công ty bằng P/E và DCF đơn giản",
       "text": "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
       "distractors": [
-        "Thời gian tăng trưởng, không phải thời gian đóng tiền, quyết định kết quả",
+        "PV Annuity = PMT × [(1−(1+r)^−n)/r]",
         "Payback = Vốn đầu tư / Dòng tiền hàng năm"
       ]
     }
@@ -2778,8 +2778,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Giá trái phiếu và lãi suất",
       "text": "Lãi suất tăng → giá trái phiếu giảm (và ngược lại)",
       "distractors": [
-        "Cả hai phương pháp đều yêu cầu: trả tối thiểu mọi khoản khác, dồn phần dư vào khoản ưu tiên",
-        "Xuất hiện liên tục → red flag capital allocation"
+        "Asset Turnover = Revenue / Total Assets",
+        "Cao hơn = tạo doanh thu hiệu quả hơn từ tài sản"
       ]
     }
   ],
@@ -2830,7 +2830,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Lãi suất: công cụ điều hành kinh tế mạnh nhất",
       "distractors": [
         "Lợi nhuận kế toán ≠ tiền thực trong tay",
-        "Tỷ lệ tiết kiệm quan trọng hơn số tiền tiết kiệm tuyệt đối"
+        "Asset-light: turnover cao; Asset-heavy: turnover thấp"
       ]
     },
     {
@@ -2898,7 +2898,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Lạm phát và tác động đến đầu tư",
       "text": "Lãi suất thực âm = tích lũy tiền mặt mất sức mua",
       "distractors": [
-        "Optimal leverage tồn tại - leverage quá cao làm Ke và Kd tăng",
+        "Bậc thang = nhiều sổ kỳ hạn dài, ngày đáo hạn lệch nhau đều đặn",
         "Lạm phát Việt Nam có giai đoạn biến động mạnh (từng vượt 20%/năm), khiến việc chỉ giữ tiền mặt/tiết kiệm không kỳ hạn trở nên rủi ro hơn vẻ ngoài 'an toàn'"
       ]
     }
@@ -2978,7 +2978,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: Trái phiếu & Lãi suất",
       "text": "Lãi suất: công cụ điều hành kinh tế mạnh nhất",
       "distractors": [
-        "Bắt đầu sớm quan trọng hơn đầu tư nhiều về sau",
+        "Kết quả: hưởng lãi kỳ hạn dài mà vẫn có tiền về định kỳ, không phải phá sổ",
         "Equity Value: giá trị dành cho cổ đông; Enterprise Value: giá trị toàn bộ doanh nghiệp"
       ]
     }
@@ -2989,7 +2989,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Tổng ôn Chặng 8 - Trái phiếu là thế giới của lãi suất và niềm tin",
       "text": "Trái phiếu vận hành trên hai trục: giá trị thời gian của tiền và niềm tin tín dụng",
       "distractors": [
-        "Quy tắc 72: số năm gấp đôi = 72 chia cho lãi suất",
+        "Khoảng cách giữa các lần đáo hạn đúng bằng khoảng cách giữa các lần mở sổ",
         "Quyết định bán nên dựa trên việc luận điểm đầu tư ban đầu (nền tảng cơ bản doanh nghiệp) có còn đúng hay không, không nên chỉ dựa vào biến động giá ngắn hạn"
       ]
     },
@@ -2999,7 +2999,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Default: vi phạm nghĩa vụ trả nợ, không nhất thiết là phá sản",
       "distractors": [
         "Gordon Growth Method: Terminal Value = FCF cuối × (1+g) / (WACC − g)",
-        "Rủi ro: overpay, culture clash, synergy thực tế thấp hơn kỳ vọng"
+        "Cái giá là công theo dõi nhiều ngày đáo hạn, không phải tiền"
       ]
     }
   ],
@@ -3070,7 +3070,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)",
       "distractors": [
         "EPS = Net Income / Diluted Shares - dùng cho P/E",
-        "Tiền hôm nay đáng giá hơn cùng số tiền trong tương lai"
+        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc"
       ]
     },
     {
@@ -3179,7 +3179,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Rủi ro của một tài sản riêng lẻ không phản ánh đúng đóng góp của nó vào rủi ro danh mục",
       "distractors": [
         "Chặng 4 xoay quanh bốn trụ cột liên kết chặt chẽ: công cụ đầu tư và định giá (ETF, quỹ mở, P/E), quản trị rủi ro (đa dạng hóa, tránh đòn bẩy), kỷ luật tâm lý (tránh tham lam/sợ hãi, DCA), và kỳ vọng thực tế (8-12%/năm dài hạn, không phải làm giàu nhanh)",
-        "Nợ xấu: dùng để tiêu dùng hoặc mua tài sản kém hơn lãi vay"
+        "Quy trình phân tích hoàn chỉnh: đọc báo cáo → tính chỉ số → định giá → đánh giá rủi ro → đối chiếu thị trường"
       ]
     }
   ],
@@ -3199,7 +3199,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống",
       "distractors": [
         "Chi phí danh mục là tổng của nhiều loại phí: phí quỹ (expense ratio), phí giao dịch, phí lưu ký, phí tư vấn - không chỉ một khoản riêng lẻ",
-        "Cả hai phương pháp đều yêu cầu: trả tối thiểu mọi khoản khác, dồn phần dư vào khoản ưu tiên"
+        "200 ngày xây dựng tư duy phân tích, không phải một danh sách công thức để học thuộc - đây là nền tảng để tự phân tích bất kỳ doanh nghiệp nào"
       ]
     }
   ],
@@ -3290,7 +3290,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
       "distractors": [
         "Rủi ro tỷ giá là yếu tố đặc thù: lợi nhuận thực tế = lợi nhuận tài sản kết hợp với biến động tỷ giá",
-        "Dòng tiền: sức khỏe tài chính thực tế, quan trọng hơn lợi nhuận kế toán"
+        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước"
       ]
     },
     {
@@ -3319,7 +3319,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "MPT: nền tảng toán học để xây dựng danh mục tối ưu dựa trên return, risk, correlation",
       "distractors": [
         "Nhược: không matching, dễ bóp méo lợi nhuận",
-        "ROIC > WACC → tạo value"
+        "Book Value = Total Equity - nền tảng tính P/B"
       ]
     }
   ],
@@ -3369,7 +3369,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "nhỏ - Xây danh mục 3 tài sản",
       "text": "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản",
       "distractors": [
-        "50/30/20: 50% nhu cầu thiết yếu, 30% mong muốn, 20% tiết kiệm & trả nợ - tính trên thu nhập sau thuế",
+        "Debt/Equity ratio từ BS cho biết đòn bẩy tài chính",
         "Người còn trẻ, còn nhiều thời gian đầu tư, thường được khuyên ưu tiên cổ phiếu hơn để tận dụng tăng trưởng dài hạn, và tăng dần tỷ trọng trái phiếu khi lớn tuổi hơn"
       ]
     },
@@ -3379,7 +3379,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
       "distractors": [
         "ROE: hiệu quả dùng vốn cổ đông để tạo lợi nhuận - càng cao càng tốt trong cùng ngành",
-        "Chặng 1 hoàn chỉnh gồm: biết tài sản ròng, biết khẩu vị rủi ro, có ngân sách, có quỹ khẩn cấp, có chiến lược trả nợ, có sinking fund cho mục tiêu lớn"
+        "Bán chéo chuyên nghiệp (needs-based selling) khác biệt hoàn toàn với 'nhồi nhét sản phẩm' - bắt đầu từ việc hiểu nhu cầu thực sự qua fact-finding, không phải từ sản phẩm cần đẩy doanh số"
       ]
     }
   ],
@@ -3410,7 +3410,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác",
       "distractors": [
         "FOMO (sợ bỏ lỡ) là một biểu hiện phổ biến của lòng tham, khiến nhà đầu tư mua vào khi giá đã tăng nóng mà không phân tích giá trị thực",
-        "Tiền là phương tiện trao đổi, có thanh khoản tuyệt đối"
+        "Customer Lifetime Value (giá trị vòng đời khách hàng) thường lớn hơn nhiều so với lợi ích một giao dịch bán chéo ép buộc - tư vấn đúng xây dựng niềm tin và referral dài hạn"
       ]
     },
     {
@@ -3430,7 +3430,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Forward: hợp đồng riêng tư (OTC), khóa giá mua/bán trong tương lai",
       "distractors": [
         "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Vay làm giàu khi ROI đầu tư lớn hơn lãi suất vay (spread dương)"
+        "Vụ bê bối Wells Fargo minh họa hậu quả nghiêm trọng khi hệ thống KPI/incentive được thiết kế sai, khuyến khích hành vi mis-selling"
       ]
     },
     {
@@ -3438,7 +3438,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Active vs Passive Investing",
       "text": "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
       "distractors": [
-        "Tài chính là phân bổ nguồn lực trong thời gian và bất định",
+        "Fact-finding toàn diện (mục tiêu, thu nhập, nợ, khẩu vị rủi ro, hoàn cảnh gia đình) là nền tảng bắt buộc trước khi đề xuất bất kỳ sản phẩm tài chính nào",
         "P&L đi từ Revenue xuống Net Income"
       ]
     }
@@ -3459,7 +3459,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "ETF: quỹ chứa rổ tài sản nhưng giao dịch linh hoạt như một cổ phiếu",
       "distractors": [
         "DCA phù hợp nhất với người có thu nhập đều đặn, muốn xây dựng kỷ luật đầu tư dài hạn mà không cần đoán thời điểm thị trường",
-        "Chặng 1 hoàn chỉnh gồm: biết tài sản ròng, biết khẩu vị rủi ro, có ngân sách, có quỹ khẩn cấp, có chiến lược trả nợ, có sinking fund cho mục tiêu lớn"
+        "Từng khoản đều xử lý được; sự chồng lấn mới là thứ làm kế hoạch vỡ"
       ]
     }
   ],
@@ -3509,7 +3509,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Put Option là gì?",
       "text": "Put option: quyền bán ở strike price, có lợi khi giá giảm",
       "distractors": [
-        "Chính phủ cân bằng tăng trưởng, ổn định và phân phối công bằng",
+        "Giai đoạn lập gia đình thường có nhiều khoản chồng nhau nhất, đúng lúc thu nhập chưa đạt đỉnh",
         "Cash accounting: ghi nhận khi thực sự nhận tiền"
       ]
     },
@@ -3519,7 +3519,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản",
       "distractors": [
         "SG&A = chi phí vận hành gián tiếp (bán hàng + quản lý)",
-        "Avalanche (theo lãi suất cao → thấp) tối ưu về tiền; Snowball (theo số dư nhỏ → lớn) tối ưu về động lực - chọn theo con người thật của bạn"
+        "Biết trước cho bạn ba cách xử lý rẻ: dời, giãn, hoặc bắt đầu sớm hơn"
       ]
     }
   ],
@@ -3579,7 +3579,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Forward: hợp đồng riêng tư (OTC), khóa giá mua/bán trong tương lai",
       "distractors": [
         "Công cụ quan trọng cho doanh nghiệp có nợ và doanh thu bằng các đồng tiền khác nhau",
-        "Lợi ích: huy động vốn lớn, exit cho founders/VC"
+        "Xác định trước khoản nào sẽ giảm quy mô, thay vì quyết định điều đó dưới áp lực"
       ]
     }
   ],
@@ -3589,7 +3589,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Speculation là gì?",
       "text": "Speculation: đặt cược vào hướng giá để kiếm lời, không có rủi ro nền tảng cần bảo vệ",
       "distractors": [
-        "Rủi ro: không miễn phí, cần được định giá, đa dạng hóa loại bỏ rủi ro đặc thù",
+        "Đàm phán ở việc chính có tỷ suất cao nhất trên thời gian, nên nó đứng trước nghề tay trái",
         "Đặt lệnh mua/bán cần chú ý mức giá và loại lệnh (giá thị trường, giá giới hạn) để hiểu lệnh có khớp được hay không"
       ]
     },
@@ -3679,7 +3679,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Strike price gần giá thị trường hơn → premium cao hơn (với option có lợi)",
       "distractors": [
         "Là tiêu chí quan trọng để đánh giá chất lượng vận hành của quỹ ETF/index",
-        "Dòng tiền: sức khỏe tài chính thực tế, quan trọng hơn lợi nhuận kế toán"
+        "Hai tháng đầu chỉ cần hai việc rẻ: đo dải thị trường và mở sổ ghi kết quả"
       ]
     }
   ],
@@ -3706,8 +3706,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "201": [
     {
       "fromDay": 19,
-      "fromTitle": "Thị trường tài chính là gì?",
-      "text": "Giá thị trường phản ánh kỳ vọng tổng hợp của tất cả người tham gia",
+      "fromTitle": "Bài 19: Kiểm thử - chứng minh mã làm đúng",
+      "text": "Bộ kiểm thử xanh chỉ chứng minh các trường hợp đã viết ra là đúng, không hơn.",
       "distractors": [
         "So sánh trong ngành - mỗi ngành có benchmark khác nhau",
         "Nợ dài hạn: thời gian trả dài hơn, thường lãi cao hơn"
@@ -3715,19 +3715,19 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 12,
-      "fromTitle": "Lợi nhuận kỳ vọng là gì?",
-      "text": "Expected Return = tổng (xác suất x kết quả) của mọi kịch bản",
+      "fromTitle": "Bài 12: Tham số, giá trị trả về và phạm vi",
+      "text": "Dữ liệu đơn được sao chép khi truyền vào hàm; dữ liệu phức hợp truyền chỗ trỏ.",
       "distractors": [
         "Bất động sản đầu tư (mua để cho thuê) khác hẳn về bản chất tài chính: có dòng tiền thực sự từ tiền thuê",
-        "Hedging = risk management, not speculation"
+        "Ngân sách chạy song song suốt năm, nếu không phần tăng thêm sẽ biến mất"
       ]
     }
   ],
   "202": [
     {
       "fromDay": 20,
-      "fromTitle": "Tổng ôn chặng 3: tiền, thời gian, rủi ro, dòng tiền.",
-      "text": "Tiền: phương tiện trao đổi, mất giá theo lạm phát",
+      "fromTitle": "Bài 20: Tổng ôn chặng lập trình",
+      "text": "Bốn nhóm: giữ dữ liệu, điều khiển luồng, xử lý khi hỏng, viết cho người khác đọc.",
       "distractors": [
         "Market Risk Premium = Rm − Rf (~5-7% lịch sử Mỹ)",
         "Đổi lại vốn huy động được, công ty đại chúng phải minh bạch thông tin tài chính định kỳ cho nhà đầu tư"
@@ -3735,8 +3735,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 13,
-      "fromTitle": "Thanh khoản là gì? Tài sản dễ bán và khó bán.",
-      "text": "Thanh khoản: khả năng bán nhanh mà không mất nhiều giá trị",
+      "fromTitle": "Bài 13: Chương trình trong bộ nhớ",
+      "text": "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte.",
       "distractors": [
         "Ba quyết định: Đầu tư, Tài trợ, Phân phối",
         "Không có kế hoạch đầu tư rõ ràng từ đầu là gốc rễ khiến nhà đầu tư dễ bị cuốn theo tin đồn và biến động ngắn hạn"
@@ -3746,8 +3746,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "203": [
     {
       "fromDay": 14,
-      "fromTitle": "Nợ tốt và nợ xấu.",
-      "text": "Nợ tốt: dùng để mua tài sản sinh lợi cao hơn lãi vay",
+      "fromTitle": "Bài 14: Lỗi và ngoại lệ",
+      "text": "Bắt lỗi rồi không làm gì là cách tệ nhất - tệ hơn cả để chương trình dừng hẳn.",
       "distractors": [
         "Time Value giảm dần về 0 khi tiến gần ngày đáo hạn (time decay)",
         "QE: bơm tiền khi lãi suất đã về 0"
@@ -3757,8 +3757,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "204": [
     {
       "fromDay": 15,
-      "fromTitle": "Đòn bẩy tài chính là gì?",
-      "text": "Đòn bẩy khuếch đại cả lợi nhuận lẫn thua lỗ so với vốn tự có",
+      "fromTitle": "Bài 15: Gỡ lỗi có phương pháp",
+      "text": "Bước đầu tiên luôn là tái hiện lỗi ổn định - không có nó thì không biết đã sửa xong chưa.",
       "distractors": [
         "ETF theo dõi chỉ số rộng (như VN30) thường phù hợp làm nền tảng danh mục cho người mới hơn là ETF chuyên biệt theo một ngành hẹp",
         "Speculation: đặt cược vào hướng giá để kiếm lời, không có rủi ro nền tảng cần bảo vệ"
@@ -3768,10 +3768,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "205": [
     {
       "fromDay": 16,
-      "fromTitle": "Vì sao người vay tiền có thể giàu lên hoặc phá sản.",
-      "text": "Vay làm giàu khi ROI đầu tư lớn hơn lãi suất vay (spread dương)",
+      "fromTitle": "Bài 16: Mô-đun và thư viện",
+      "text": "Mô-đun là tệp công khai phần cần dùng và giữ phần còn lại cho riêng mình.",
       "distractors": [
-        "DTI: theo dõi tỷ lệ nợ/thu nhập để giữ sức khỏe tài chính",
+        "Làm cả bốn nhánh cùng lúc là cách chắc chắn để không nhánh nào đủ sâu",
         "Bị ảnh hưởng bởi chính sách vay/trả nợ của công ty trong từng kỳ, cần thận trọng khi diễn giải"
       ]
     }
@@ -3788,8 +3788,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 17,
-      "fromTitle": "Cá nhân, doanh nghiệp và chính phủ quản lý tiền khác nhau ra sao.",
-      "text": "Cá nhân tối ưu tiêu dùng và tích lũy trong vòng đời",
+      "fromTitle": "Bài 17: Đọc tài liệu và thông báo lỗi",
+      "text": "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả.",
       "distractors": [
         "Hiểu bản chất chuyển giao rủi ro giúp đánh giá đúng bất kỳ sản phẩm phái sinh mới nào trong tương lai",
         "Tái cân bằng vô tình tạo kỷ luật 'bán cao, mua thấp' một cách tự động, không cần dự đoán thị trường"
@@ -3808,11 +3808,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 18,
-      "fromTitle": "Hệ thống tài chính gồm những ai: ngân hàng, quỹ, công ty, nhà đầu tư.",
-      "text": "Ngân hàng: trung gian tín dụng, huy động để cho vay",
+      "fromTitle": "Bài 18: Viết mã người khác đọc được",
+      "text": "Mã được đọc nhiều lần hơn số lần được viết, nên tối ưu cho người đọc gần như luôn đúng.",
       "distractors": [
         "Robo-advisor là dạng trung gian: quản lý tự động bằng thuật toán, chi phí thường thấp hơn quản lý truyền thống",
-        "Quy tắc 72: số năm gấp đôi = 72 chia cho lãi suất"
+        "Bảng cân đối không cân = lỗi hoặc gian lận"
       ]
     }
   ],
@@ -3822,14 +3822,14 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Cách mua cổ phiếu",
       "text": "Muốn mua cổ phiếu, phải mở tài khoản tại một công ty chứng khoán được cấp phép, không mua trực tiếp từ công ty phát hành",
       "distractors": [
-        "Lợi nhuận cao hơn luôn đi kèm rủi ro cao hơn, không có ngoại lệ",
+        "Double-entry: mỗi giao dịch ghi hai chiều",
         "Là chỉ số chuẩn để so sánh hiệu suất giữa các quỹ đầu tư khác nhau"
       ]
     },
     {
       "fromDay": 19,
-      "fromTitle": "Thị trường tài chính là gì?",
-      "text": "Giá thị trường phản ánh kỳ vọng tổng hợp của tất cả người tham gia",
+      "fromTitle": "Bài 19: Kiểm thử - chứng minh mã làm đúng",
+      "text": "Bộ kiểm thử xanh chỉ chứng minh các trường hợp đã viết ra là đúng, không hơn.",
       "distractors": [
         "Deepfake AI giả mạo hình ảnh/giọng nói là hình thức lừa đảo mới đang gia tăng - luôn xác minh qua kênh độc lập trước khi chuyển tiền theo yêu cầu khẩn cấp",
         "Lợi ích chính: giảm rủi ro tái đầu tư toàn bộ vốn cùng lúc ở mức lãi suất bất lợi, đồng thời có thanh khoản đều đặn mỗi năm"
@@ -3848,8 +3848,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 20,
-      "fromTitle": "Tổng ôn chặng 3: tiền, thời gian, rủi ro, dòng tiền.",
-      "text": "Tiền: phương tiện trao đổi, mất giá theo lạm phát",
+      "fromTitle": "Bài 20: Tổng ôn chặng lập trình",
+      "text": "Bốn nhóm: giữ dữ liệu, điều khiển luồng, xử lý khi hỏng, viết cho người khác đọc.",
       "distractors": [
         "P/E = Price / EPS - trả bao nhiêu lần lợi nhuận",
         "VFF (VinaCapital) và TCBF (Techcom Capital) là hai quỹ trái phiếu mở phổ biến tại Việt Nam cho nhà đầu tư cá nhân, nhưng NAV vẫn có thể biến động nhẹ, không cố định như lãi suất tiết kiệm"
@@ -3862,8 +3862,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "P/E ratio đơn giản: cổ phiếu rẻ hay đắt",
       "text": "Giá cổ phiếu một mình không nói lên gì về độ rẻ/đắt; P/E (giá chia lợi nhuận mỗi cổ phiếu) mới là thước đo so sánh công bằng hơn",
       "distractors": [
-        "ROIC > WACC → tạo value",
-        "Đây là khung tham khảo, không phải luật cứng - điều chỉnh theo hoàn cảnh nhưng nên biết mình đang lệch ở đâu"
+        "Nguyên tắc này tự động phát hiện nhiều loại sai sót",
+        "Tài sản = Nợ phải trả + Vốn chủ sở hữu, và nó luôn cân: hai cột là cùng một số tiền nhìn từ hai phía."
       ]
     }
   ],
@@ -3874,15 +3874,15 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "ETF là quỹ nắm giữ nhiều cổ phiếu (hoặc tài sản khác) cùng lúc, nhưng giao dịch dễ dàng như một cổ phiếu đơn lẻ trên sàn",
       "distractors": [
         "WC = Tài sản ngắn hạn − Nợ ngắn hạn",
-        "Cả hai phương pháp đều yêu cầu: trả tối thiểu mọi khoản khác, dồn phần dư vào khoản ưu tiên"
+        "Tài sản ngắn hạn là những gì thành tiền trong 12 tháng - nhà xưởng và goodwill không nằm trong đó."
       ]
     }
   ],
   "212": [
     {
       "fromDay": 16,
-      "fromTitle": "Vì sao người vay tiền có thể giàu lên hoặc phá sản.",
-      "text": "Vay làm giàu khi ROI đầu tư lớn hơn lãi suất vay (spread dương)",
+      "fromTitle": "Bài 16: Mô-đun và thư viện",
+      "text": "Mô-đun là tệp công khai phần cần dùng và giữ phần còn lại cho riêng mình.",
       "distractors": [
         "P/E cao hơn thường phản ánh kỳ vọng tăng trưởng cao hơn, không hẳn là 'đắt' một cách tuyệt đối",
         "Chặng 6 xây hai lớp: BẢO VỆ (quỹ khẩn cấp, bảo hiểm, bảo mật trước lừa đảo) và TỔ CHỨC (ngân sách, tờ khai tài chính, thừa kế, biết khi nào cần tư vấn chuyên nghiệp)"
@@ -3890,8 +3890,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 9,
-      "fromTitle": "Lạm phát là gì? Vì sao tiền mất giá.",
-      "text": "Lạm phát làm tiền mất sức mua theo thời gian, tích lũy theo năm",
+      "fromTitle": "Bài 9: Từ điển - tra bằng tên thay vì bằng vị trí",
+      "text": "Từ điển gồm các cặp khoá và giá trị; khoá là duy nhất trong một từ điển.",
       "distractors": [
         "Nhóm chiến lược và ứng dụng thực tế: chiến lược ladder, khi nào nên ưu tiên trái phiếu, các sản phẩm liên quan (CD, bảo hiểm liên kết đầu tư), và case phân bổ danh mục cụ thể",
         "Có kế hoạch đầu tư rõ ràng từ trước và tuân thủ kỷ luật là cách hiệu quả nhất để giảm ảnh hưởng của cảm xúc lên quyết định"
@@ -3901,8 +3901,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "213": [
     {
       "fromDay": 17,
-      "fromTitle": "Cá nhân, doanh nghiệp và chính phủ quản lý tiền khác nhau ra sao.",
-      "text": "Cá nhân tối ưu tiêu dùng và tích lũy trong vòng đời",
+      "fromTitle": "Bài 17: Đọc tài liệu và thông báo lỗi",
+      "text": "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả.",
       "distractors": [
         "Lập giấy vay nợ rõ ràng (số tiền, lãi suất nếu có, lịch trả, chữ ký hai bên) là cách bảo vệ quan hệ, không phải thiếu tin tưởng",
         "WC = Tài sản ngắn hạn − Nợ ngắn hạn"
@@ -3910,8 +3910,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 10,
-      "fromTitle": "Giá trị thời gian của tiền: 1 triệu hôm nay khác 1 triệu năm sau.",
-      "text": "Tiền hôm nay đáng giá hơn cùng số tiền trong tương lai",
+      "fromTitle": "Bài 10: Ghép lại thành chương trình chạy được",
+      "text": "Bắt đầu bằng cách viết ra dữ liệu vào là gì và kết quả ra trông thế nào.",
       "distractors": [
         "Speculation: đặt cược vào hướng giá để kiếm lời, không có rủi ro nền tảng cần bảo vệ",
         "Cao hơn = tạo doanh thu hiệu quả hơn từ tài sản"
@@ -3921,8 +3921,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "214": [
     {
       "fromDay": 18,
-      "fromTitle": "Hệ thống tài chính gồm những ai: ngân hàng, quỹ, công ty, nhà đầu tư.",
-      "text": "Ngân hàng: trung gian tín dụng, huy động để cho vay",
+      "fromTitle": "Bài 18: Viết mã người khác đọc được",
+      "text": "Mã được đọc nhiều lần hơn số lần được viết, nên tối ưu cho người đọc gần như luôn đúng.",
       "distractors": [
         "Giá cổ phiếu chỉ là biểu hiện thị trường của quyền lợi kinh tế thực sự bên dưới",
         "DCA có giá trị tâm lý thực sự: giảm cảm giác hối tiếc nếu mua đúng đỉnh, phù hợp với dòng tiền lương hàng tháng"
@@ -3930,8 +3930,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 11,
-      "fromTitle": "Rủi ro là gì? Không có lợi nhuận nào miễn phí.",
-      "text": "Lợi nhuận cao hơn luôn đi kèm rủi ro cao hơn, không có ngoại lệ",
+      "fromTitle": "Bài 11: Hàm - đóng gói một việc",
+      "text": "Chép mã bốn chỗ nghĩa là phải giữ bốn bản đồng bộ bằng trí nhớ - trí nhớ luôn thua.",
       "distractors": [
         "Giá trị nội tại (value): ước tính dựa trên phân tích cơ bản dài hạn",
         "Market Cap = Giá cổ phiếu × Số lượng cổ phiếu đang lưu hành"
@@ -3953,7 +3953,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kỳ vọng lợi nhuận thực tế từ cổ phiếu",
       "text": "Lợi nhuận trung bình dài hạn của thị trường chứng khoán (kể cả VN-Index) thường ở mức khoảng 8-12%/năm khi tính lãi kép qua nhiều năm, không phải 50-100%/năm như những câu chuyện thường được kể",
       "distractors": [
-        "Đòn bẩy cao + biến động thị trường = rủi ro phá sản",
+        "Current Ratio trên 1,5 và D/E dưới 2,0 là hai ngưỡng đọc đầu tiên, không phải kết luận cuối cùng.",
         "Operating Income = Gross Profit − SG&A − R&D"
       ]
     }
@@ -4004,7 +4004,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Cách chọn ETF phù hợp với bạn",
       "text": "Bốn tiêu chí cốt lõi khi chọn ETF: phí quản lý (expense ratio), thanh khoản giao dịch, quy mô quỹ (AUM), và tài sản/chỉ số theo dõi có phù hợp mục tiêu đầu tư hay không",
       "distractors": [
-        "ROIC = NOPAT / (Debt + Equity − Cash)",
+        "Goodwill chỉ sinh ra từ M&A. Thương hiệu tự xây không được ghi nhận, còn goodwill lớn là rủi ro ghi giảm.",
         "NI dương + FCF âm = cần điều tra sâu hơn"
       ]
     },
@@ -4013,7 +4013,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Cách mua cổ phiếu",
       "text": "Muốn mua cổ phiếu, phải mở tài khoản tại một công ty chứng khoán được cấp phép, không mua trực tiếp từ công ty phát hành",
       "distractors": [
-        "DTI: theo dõi tỷ lệ nợ/thu nhập để giữ sức khỏe tài chính",
+        "Hai trục quyết định độ tin cậy: nguồn bên ngoài hay nội bộ, và kiểm toán viên tự lấy hay nhận lại",
         "Khi so sánh lợi suất giữa các kênh đầu tư (gửi tiết kiệm, trái phiếu, chứng chỉ quỹ), cần so sánh lợi suất sau thuế thay vì chỉ nhìn con số lãi suất công bố trên giấy tờ"
       ]
     }
@@ -4053,7 +4053,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "P/E ratio đơn giản: cổ phiếu rẻ hay đắt",
       "text": "Giá cổ phiếu một mình không nói lên gì về độ rẻ/đắt; P/E (giá chia lợi nhuận mỗi cổ phiếu) mới là thước đo so sánh công bằng hơn",
       "distractors": [
-        "PV = FV / (1+r)^n; FV = PV x (1+r)^n",
+        "Thư xác nhận phải gửi thẳng về kiểm toán viên, đi qua doanh nghiệp là mất giá trị",
         "Hedging: giảm rủi ro đã có sẵn, không tạo thêm rủi ro mới"
       ]
     }
@@ -4093,7 +4093,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Quỹ chỉ số: theo dõi thị trường",
       "text": "Quỹ chỉ số mô phỏng hiệu suất của một chỉ số tham chiếu (VN30, S&P 500...), không cố gắng chọn lọc cổ phiếu để vượt trội hơn thị trường",
       "distractors": [
-        "DTI: theo dõi tỷ lệ nợ/thu nhập để giữ sức khỏe tài chính",
+        "Thử nghiệm kiểm soát xem quy trình chạy tốt không; thử nghiệm cơ bản kiểm tra chính con số",
         "WACC cao → NPV giảm → ít dự án được chấp thuận hơn"
       ]
     }
@@ -4185,7 +4185,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Trái phiếu Chính phủ được xem là an toàn nhất (rủi ro vỡ nợ gần như bằng 0), lãi suất thấp nhất, dùng làm chuẩn so sánh cho các loại trái phiếu khác",
       "distractors": [
         "Mua cổ phiếu là mua một phần sở hữu thật của công ty, không phải cho vay hay cá cược",
-        "DTI: theo dõi tỷ lệ nợ/thu nhập để giữ sức khỏe tài chính"
+        "Kiểm soát tốt thì giảm được thử nghiệm cơ bản - đây là lý do phí kiểm toán khác nhau"
       ]
     },
     {
@@ -4265,7 +4265,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Cổ phiếu thường có lợi nhuận trung bình cao hơn trái phiếu trong dài hạn, để đền bù cho rủi ro cao hơn - gọi là phần bù rủi ro cổ phiếu (equity risk premium)",
       "distractors": [
         "Đừng gián đoạn - liên tục là chìa khóa của compounding",
-        "Bắt đầu sớm quan trọng hơn đầu tư nhiều về sau"
+        "Giải trình của ban giám đốc bổ sung chứ không thay thế bằng chứng độc lập"
       ]
     },
     {
@@ -4273,7 +4273,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Phân tích một cổ phiếu đơn giản",
       "text": "Phân tích cổ phiếu cơ bản nên đi qua ít nhất bốn bước: xu hướng doanh thu/lợi nhuận nhiều năm, định giá (P/E so với ngành), cổ tức, và triển vọng ngành",
       "distractors": [
-        "FCF = NOPAT × (1 − Growth/ROIC)",
+        "Bảng khấu hao: số dư đầu kỳ + CapEx − khấu hao = số dư cuối kỳ",
         "ETF: quỹ chứa rổ tài sản nhưng giao dịch linh hoạt như một cổ phiếu"
       ]
     }
@@ -4284,7 +4284,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Rủi ro lãi suất: giá trái phiếu thay đổi như thế nào",
       "text": "Trái phiếu kỳ hạn càng dài, giá càng nhạy cảm (biến động mạnh) với thay đổi lãi suất thị trường so với trái phiếu ngắn hạn",
       "distractors": [
-        "Tài sản ròng = Tổng tài sản − Tổng nợ; phải liệt kê ĐẦY ĐỦ cả hai vế, kể cả nợ 'mềm' (thẻ tín dụng, vay người thân, trả góp)",
+        "Vốn lưu động dự phóng theo số ngày luân chuyển DIO/DSO/DPO, tự co giãn theo quy mô",
         "Apple: OCF mạnh, FCF gần bằng OCF, buyback liên tục"
       ]
     },
@@ -4324,7 +4324,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Quỹ trái phiếu: cho vay mà không cần chọn từng trái phiếu",
       "text": "Quỹ trái phiếu cho phép nhà đầu tư nhỏ lẻ tiếp cận một danh mục đa dạng các trái phiếu chỉ với số vốn nhỏ, thay vì phải tự mua trực tiếp từng trái phiếu với yêu cầu vốn lớn",
       "distractors": [
-        "Net worth = tổng tài sản - tổng nợ",
+        "Chỉ THAY ĐỔI vốn lưu động giữa hai kỳ mới chảy vào dòng tiền, không phải số dư",
         "Cách khắc phục thực tế: chủ động tìm kiếm quan điểm trái chiều trước khi ra quyết định, không chỉ tin vào điều mình muốn tin"
       ]
     },
@@ -4433,7 +4433,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Rủi ro lãi suất: giá trái phiếu thay đổi như thế nào",
       "text": "Trái phiếu kỳ hạn càng dài, giá càng nhạy cảm (biến động mạnh) với thay đổi lãi suất thị trường so với trái phiếu ngắn hạn",
       "distractors": [
-        "FCF = NOPAT × (1 − Growth/ROIC)",
+        "Giữ vốn lưu động cố định khi doanh thu tăng mạnh sẽ cho dòng tiền dự phóng phi thực tế",
         "Thuế chứng khoán Việt Nam (0,1% trên giá trị bán) và các loại phí (giao dịch, quản lý quỹ) đều là chi phí thực tế cần tính vào lợi nhuận ròng, dù dễ bị bỏ qua"
       ]
     }
@@ -4444,7 +4444,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Thuế trên lợi tức trái phiếu",
       "text": "Lãi (coupon) trái phiếu doanh nghiệp nhận bởi cá nhân tại Việt Nam chịu thuế thu nhập cá nhân 5%, tính trên phần lãi nhận được và thường khấu trừ tại nguồn",
       "distractors": [
-        "ROIC < WACC: tăng trưởng phá hủy value",
+        "Phí thuần = xác suất xảy ra × số tiền bảo hiểm, chiết khấu về hiện tại.",
         "Càng gần thời điểm cần dùng đến tiền (nghỉ hưu, mua nhà, học phí con), tỷ trọng trái phiếu trong danh mục nên tăng lên tương ứng để giảm rủi ro mất vốn đúng lúc cần thiết"
       ]
     },
@@ -4585,7 +4585,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Tỷ trọng cổ phiếu nên giảm dần khi tuổi tăng, vì thời gian phục hồi sau biến động ngắn lại",
       "distractors": [
         "PE: mua công ty trưởng thành, tái cơ cấu, exit sau 5-7 năm",
-        "Lợi nhuận cao hơn luôn đi kèm rủi ro cao hơn, không có ngoại lệ"
+        "Phí gộp = phí thuần + chi phí quản lý + hoa hồng + biên an toàn."
       ]
     },
     {
@@ -4644,7 +4644,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Phí quản lý: chi phí của danh mục",
       "text": "Chi phí danh mục là tổng của nhiều loại phí: phí quỹ (expense ratio), phí giao dịch, phí lưu ký, phí tư vấn - không chỉ một khoản riêng lẻ",
       "distractors": [
-        "Sharpe Ratio: lợi nhuận thặng dư trên mỗi đơn vị rủi ro",
+        "Luật số lớn là nền của cả mô hình - nó đòi hỏi các rủi ro độc lập với nhau.",
         "Sau track 'personal', track 'professional' là bước tiếp theo cho ai muốn học sâu hơn về phân tích và định giá doanh nghiệp"
       ]
     },
@@ -4753,7 +4753,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Đặc tính cá nhân: cẩn thận hay mạo hiểm",
       "text": "Khả năng chịu rủi ro gồm hai phần: khả năng tài chính khách quan và thái độ tâm lý chủ quan với biến động",
       "distractors": [
-        "Lãi suất là giá của tiền: tăng thì vay đắt hơn, tiết kiệm hấp dẫn hơn",
+        "Tập khách hàng bảo hiểm khoẻ hơn dân số chung, nên bảng tử vong phải điều chỉnh.",
         "Phần lớn quỹ chủ động không vượt trội hơn chỉ số tham chiếu sau khi trừ phí trong dài hạn - cần cân nhắc kỹ trước khi chọn"
       ]
     }
@@ -4784,7 +4784,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Bảo hiểm: bảo vệ danh mục từ rủi ro",
       "text": "Bảo hiểm nên được hiểu là công cụ CHUYỂN GIAO RỦI RO, không phải công cụ đầu tư sinh lời",
       "distractors": [
-        "Debt rẻ hơn equity vì tax shield",
+        "Khấu hao cộng vào làm dòng tiền cao hơn lợi nhuận; vốn lưu động là thứ kéo nó xuống",
         "Đổi lại vốn huy động được, công ty đại chúng phải minh bạch thông tin tài chính định kỳ cho nhà đầu tư"
       ]
     },
@@ -4833,7 +4833,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Lợi thế thuế của tài khoản hưu trí",
       "text": "Đóng góp vào quỹ hưu trí bổ sung tự nguyện (Nghị định 88/2016/NĐ-CP) được giảm trừ thuế TNCN trong hạn mức quy định",
       "distractors": [
-        "Mục đích là an toàn và thanh khoản, không phải sinh lời cao - không nên đầu tư quỹ này vào cổ phiếu",
+        "Phải thu và tồn kho tăng thì trừ ra; phải trả tăng thì cộng vào",
         "Trái phiếu phù hợp khi mục tiêu là bảo toàn vốn, có dòng tiền lãi ổn định, hoặc khi bạn sắp cần dùng đến khoản tiền đó trong thời gian gần (vài năm tới)"
       ]
     }
@@ -4864,7 +4864,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Theo dõi danh mục: cần kiểm tra bao lâu",
       "text": "Kiểm tra danh mục quá thường xuyên không cải thiện hiệu suất mà còn dễ gây quyết định cảm tính, có hại cho chiến lược dài hạn",
       "distractors": [
-        "Đòn bẩy cao + biến động thị trường = rủi ro phá sản",
+        "Tỷ lệ dòng tiền kinh doanh trên lợi nhuận ròng dưới 0,5 lần là mức phải đi tìm lý do",
         "Nên cập nhật định kỳ theo các thay đổi lớn trong cuộc sống, không lập một lần rồi bỏ quên"
       ]
     },
@@ -4874,7 +4874,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Quy tắc 4%: rút 4% giá trị danh mục năm đầu tiên nghỉ hưu, các năm sau điều chỉnh số tiền đó theo lạm phát",
       "distractors": [
         "Interest Coverage = EBIT / Interest Expense",
-        "Optimal leverage tồn tại - leverage quá cao làm Ke và Kd tăng"
+        "Ngưỡng tỷ lệ phụ thuộc ngành: nhận thanh toán theo tiến độ khác hẳn thu tiền ngay"
       ]
     }
   ],
@@ -4885,7 +4885,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Không phải ai cũng cần tư vấn tài chính chuyên nghiệp - với nhu cầu đơn giản, tự học và tự quản lý là đủ",
       "distractors": [
         "Quyết định bán nên dựa trên việc luận điểm đầu tư ban đầu (nền tảng cơ bản doanh nghiệp) có còn đúng hay không, không nên chỉ dựa vào biến động giá ngắn hạn",
-        "Lợi ích: huy động vốn lớn, exit cho founders/VC"
+        "Bảo hiểm xử lý rủi ro đuôi (tail risk) - xác suất thấp nhưng thiệt hại cực lớn mà đầu tư không thể phòng ngừa"
       ]
     },
     {
@@ -4901,8 +4901,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "268": [
     {
       "fromDay": 263,
-      "fromTitle": "Audit tài chính cá nhân: Bạn đang đứng ở đâu?",
-      "text": "Tài sản ròng = Tổng tài sản − Tổng nợ; phải liệt kê ĐẦY ĐỦ cả hai vế, kể cả nợ 'mềm' (thẻ tín dụng, vay người thân, trả góp)",
+      "fromTitle": "Chặng 1, Bài 2: Hệ điều hành làm gì khi bạn không nhìn",
+      "text": "Hệ điều hành là lớp trung gian giữa chương trình bạn viết và phần cứng thật.",
       "distractors": [
         "ROIC > WACC = tạo giá trị; ROIC < WACC = phá hủy giá trị",
         "Kết hợp nhiều ratios - một ratios không đủ để ra quyết định"
@@ -4995,7 +4995,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Bài cuối - Tự phân tích một doanh nghiệp hoàn chỉnh từ A đến Z",
       "text": "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
       "distractors": [
-        "Lợi nhuận là con số kế toán; dòng tiền là tiền thực trong tài khoản",
+        "Bảo hiểm nhân thọ bảo vệ người PHỤ THUỘC vào thu nhập của bạn, không phải bản thân bạn",
         "Mục tiêu: tối đa hóa giá trị dài hạn cho cổ đông"
       ]
     },
@@ -5012,8 +5012,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "1106": [
     {
       "fromDay": 1101,
-      "fromTitle": "Chất lượng lợi nhuận: đọc vị judgment kế toán",
-      "text": "So sánh Net Income với Operating Cash Flow là bước kiểm tra chất lượng lợi nhuận đầu tiên và quan trọng nhất",
+      "fromTitle": "IB & Phân tích, Bài 1: Quality of Earnings - đọc lợi nhuận như nhà phân tích thực thụ",
+      "text": "Quality of Earnings đánh giá lợi nhuận đến từ hoạt động lõi bền vững hay các khoản một lần không lặp lại",
       "distractors": [
         "Đây là công cụ chính sách phổ biến trên thế giới (như 401k ở Mỹ) để khuyến khích tiết kiệm hưu trí dài hạn, không phải đặc thù riêng của Việt Nam",
         "Trái phiếu vận hành trên hai trục: giá trị thời gian của tiền và niềm tin tín dụng"
@@ -5032,8 +5032,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "1107": [
     {
       "fromDay": 1102,
-      "fromTitle": "Comps: Chọn peer group và điều chỉnh định giá tương đối",
-      "text": "Một chỉ số định giá tương đối chỉ có ý nghĩa khi peer group thực sự tương đồng về kinh tế cơ bản, không chỉ cùng ngành theo tên gọi",
+      "fromTitle": "IB & Phân tích, Bài 2: Comps thực chiến - chọn công ty so sánh đúng cách",
+      "text": "Comps thực chiến cần tinh chỉnh sâu hơn mã ngành: quy mô, tăng trưởng, biên lợi nhuận, mô hình kinh doanh tương đồng",
       "distractors": [
         "Correlation càng thấp hoặc âm, hiệu quả đa dạng hóa càng mạnh",
         "NPV đo giá trị tổng thể, có tính thời gian"
@@ -5045,15 +5045,15 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Đòn bẩy cao khuếch đại cả lãi và lỗ trên vốn bỏ ra",
       "distractors": [
         "Trả cổ tức khi cơ hội đầu tư cạn kiệt",
-        "Có tiền tiết kiệm không đồng nghĩa với giàu lên nếu nợ tăng nhanh hơn"
+        "Thứ tự ưu tiên hợp lý: bảo hiểm cơ bản và quỹ khẩn cấp trước, tối ưu hóa đầu tư sau"
       ]
     }
   ],
   "1108": [
     {
       "fromDay": 1103,
-      "fromTitle": "Phân tích tín dụng: Covenant và thứ tự ưu tiên phá sản",
-      "text": "Covenant là ràng buộc pháp lý - vi phạm là 'technical default' dù vẫn đang trả lãi đúng hạn",
+      "fromTitle": "IB & Phân tích, Bài 3: Precedent Transactions - định giá qua thương vụ M&A quá khứ",
+      "text": "Precedent Transactions thường có bội số cao hơn Comps vì bao gồm control premium",
       "distractors": [
         "Không có lãi suất cụ thể - đây là chi phí cơ hội của cổ đông",
         "Kiến thức tài chính chỉ có giá trị khi được áp dụng liên tục và cập nhật theo từng giai đoạn cuộc đời - đây là hành trình dài hạn, không phải đích đến một lần rồi thôi"
@@ -5072,8 +5072,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "1109": [
     {
       "fromDay": 1104,
-      "fromTitle": "Xây dựng mô hình 3 báo cáo tài chính liên kết",
-      "text": "Ba báo cáo tài chính liên kết qua các cầu nối cụ thể: Net Income → Retained Earnings và Cash Flow; Depreciation → cả ba báo cáo với vai trò khác nhau",
+      "fromTitle": "IB & Phân tích, Bài 4: Credit Analysis cơ bản cho nhà phân tích tín dụng",
+      "text": "Equity analyst quan tâm upside tăng trưởng; credit analyst quan tâm downside protection - khả năng trả nợ đúng hạn",
       "distractors": [
         "Inventory turnover = COGS / Average Inventory",
         "Luôn đọc kỹ bảng minh họa quyền lợi và phí trước khi ký hợp đồng bảo hiểm dài hạn - đừng chỉ nghe tư vấn viên trình bày"
@@ -5084,7 +5084,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "nhỏ - Doanh nghiệp xuất khẩu phòng hộ tỷ giá",
       "text": "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu",
       "distractors": [
-        "Đây là nền tảng bắt buộc trước khi học đầu tư - bỏ qua Chặng 1 khiến các quyết định ở chặng sau thiếu cơ sở thực tế",
+        "Quỹ khẩn cấp lo rủi ro nhỏ và thường gặp; bảo hiểm lo rủi ro hiếm nhưng không có trần tổn thất",
         "ROIC > WACC = tạo giá trị; ROIC < WACC = phá hủy giá trị"
       ]
     }
@@ -5092,8 +5092,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "1110": [
     {
       "fromDay": 1105,
-      "fromTitle": "Xây dựng mô hình DCF vận hành đầy đủ",
-      "text": "DCF thực chiến chủ yếu là công việc xây dựng operating model (revenue build-up, chi phí, capex, working capital), không chỉ là công thức chiết khấu",
+      "fromTitle": "IB & Phân tích, Bài 5: Case tổng hợp - định giá một công ty bằng nhiều phương pháp",
+      "text": "Nên trình bày một vùng định giá tổng hợp từ nhiều phương pháp (football field chart), không chốt một con số tuyệt đối",
       "distractors": [
         "Đa dạng hóa thực sự dựa trên mức TƯƠNG QUAN thấp giữa các tài sản, không chỉ số lượng mã cổ phiếu",
         "NPV = tiêu chí quyết định đầu tư tốt nhất"
