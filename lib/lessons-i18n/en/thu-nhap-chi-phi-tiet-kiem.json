@@ -12,14 +12,22 @@
   ],
   "explanation": "The savings rate matters more than the absolute amount, because it drives both sides of the equation: how much you set aside each month, and how much you need to live on. Person B saves 27% of income, person A only 10% - that gap is not just faster accumulation, it's also a lower lifestyle to sustain, so the destination is closer too. This is why raising income while spending rises to match it barely shortens the journey at all.",
   "diagram": [
-    { "label": "Income comes in" },
-    { "label": "Subtract fixed and variable expenses" },
-    { "label": "What's left over is savings" },
-    { "label": "Put savings to work by investing them" }
+    {
+      "label": "Income comes in"
+    },
+    {
+      "label": "Subtract fixed and variable expenses"
+    },
+    {
+      "label": "What's left over is savings"
+    },
+    {
+      "label": "Put savings to work by investing them"
+    }
   ],
   "realWorldExample": {
-    "company": "The 50/30/20 rule",
-    "description": "50% essential needs, 30% wants, 20% saving and investing. This is the most widely used budgeting framework in the world."
+    "company": "Income of VND 20m, split 50/30/20",
+    "description": "An income of VND 20m a month splits into: VND 10m for needs - rent, food, transport, insurance; VND 6m for wants - eating out, entertainment, shopping; VND 4m for saving and debt repayment. Where the rule is most often misread is the first part: if rent alone is already VND 10m, the problem is not spending discipline but fixed costs, and cutting coffee will not fix it. The rule is not there to be obeyed exactly, it is there to show which part is swelling - and the part that swells usually matters more than the other two combined."
   },
   "quiz": [
     {
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "Person A earns 30 million a month and saves 3 million. Person B earns 15 million and saves 4 million. Who has the stronger financial footing? The answer turns on one number few people pay attention to: the savings rate."
     },
-    { "type": "heading", "text": "Four foundational concepts" },
+    {
+      "type": "heading",
+      "text": "Four foundational concepts"
+    },
     {
       "type": "paragraph",
       "text": "Personal finance is built on four concepts: income (money in), expenses (money out), saving (income minus expenses, holding its value unchanged) and investing (putting savings into assets that earn a return, accepting risk to grow). The four are tightly linked: without income exceeding expenses there is nothing to save, and without saving there is no capital to invest."
     },
-    { "type": "heading", "text": "Why does the rate matter more than the absolute number?" },
+    {
+      "type": "heading",
+      "text": "Why does the rate matter more than the absolute number?"
+    },
     {
       "type": "paragraph",
       "text": "Person A saves 3/30 = 10% of income. Person B saves 4/15 ≈ 27% of income. Even though B's absolute amount is smaller than A's, B's savings rate is 2.7 times higher. Over the long run, it is this rate - not absolute income - that drives the pace of wealth accumulation, because the rate reflects spending discipline, something a person controls fully regardless of whether their income is high or low."

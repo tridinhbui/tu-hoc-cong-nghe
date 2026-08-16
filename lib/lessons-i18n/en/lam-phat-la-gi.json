@@ -12,14 +12,22 @@
   ],
   "explanation": "A bowl of phở at 500 đồng in 1990 costs roughly 70,000 today - a 140-fold rise over about three decades. What is worth noticing is not the number 140 but where it came from: an average inflation rate of only a few percent a year. Accumulate that for long enough and a rate that sounds harmless consumes the whole purchasing power of the currency. This is why holding cash over a long horizon is a risky decision, even though it feels like the safest option available.",
   "diagram": [
-    { "label": "Prices rise a few percent every year" },
-    { "label": "The same money buys fewer goods" },
-    { "label": "Compounded over decades, that becomes many times over" },
-    { "label": "An investment must beat inflation to hold its real value" }
+    {
+      "label": "Prices rise a few percent every year"
+    },
+    {
+      "label": "The same money buys fewer goods"
+    },
+    {
+      "label": "Compounded over decades, that becomes many times over"
+    },
+    {
+      "label": "An investment must beat inflation to hold its real value"
+    }
   ],
   "realWorldExample": {
     "company": "Zimbabwe 2008",
-    "description": "Zimbabwe went through hyperinflation of 89.7 billion percent a month. A 100-trillion Zimbabwe dollar note was not enough to buy a loaf of bread."
+    "description": "Zimbabwe in 2008 went through hyperinflation of roughly 89.7 billion percent a month, and a 100 trillion Zimbabwe dollar note would not buy a loaf of bread. The mechanism behind it is always the same: the state spends more than it collects and covers the gap by printing, people realise the money is losing value so they spend it immediately, and that spending pushes prices up faster still. The loop feeds itself, which is why hyperinflation does not slow gradually - it stops when the currency is abandoned. That is why a few percent a year is a policy question, while a loss of confidence is a different thing in kind."
   },
   "quiz": [
     {
@@ -103,12 +111,18 @@
       "type": "lead",
       "text": "Your parents remember a bowl of phở costing 500 đồng in 1990; today it costs 70,000. That figure is not small talk - it is living proof of how quietly inflation does its damage."
     },
-    { "type": "heading", "text": "What is inflation, and why is it always with us?" },
+    {
+      "type": "heading",
+      "text": "What is inflation, and why is it always with us?"
+    },
     {
       "type": "paragraph",
       "text": "Inflation is the general level of prices for goods and services rising over time, so that one unit of currency buys fewer goods. It is not an economic 'accident' but an almost inherent feature of every modern economy, because the money supply usually grows faster than the real goods available in that economy."
     },
-    { "type": "heading", "text": "140 times over in 34 years - what does that figure tell us?" },
+    {
+      "type": "heading",
+      "text": "140 times over in 34 years - what does that figure tell us?"
+    },
     {
       "type": "paragraph",
       "text": "70,000 divided by 500 is 140 - the price of phở has risen 140-fold. Put another way, 500 đồng in 1990 had the purchasing power of 70,000 đồng today; and 1 đồng held in your pocket across those 34 years has lost 99.3% of its original purchasing power, if it was held as cash earning nothing. This is exactly why 'cash is safe' becomes a risky decision over a long horizon."

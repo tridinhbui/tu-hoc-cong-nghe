@@ -12,14 +12,26 @@
   ],
   "explanation": "Net asset valuation suits businesses holding a lot of tangible assets, or a liquidation / NAV / RNAV situation - a property company, a holding company owning several projects, or a business considering winding up. It suits technology and services companies far less, where most of the value comes from intangibles such as the brand or the team, which are hard to value separately.",
   "diagram": [
-    { "label": "Assets", "arrow": true },
-    { "label": "Liabilities", "arrow": true },
-    { "label": "NAV / RNAV", "arrow": true },
-    { "label": "Equity value", "arrow": false }
+    {
+      "label": "Assets",
+      "arrow": true
+    },
+    {
+      "label": "Liabilities",
+      "arrow": true
+    },
+    {
+      "label": "NAV / RNAV",
+      "arrow": true
+    },
+    {
+      "label": "Equity value",
+      "arrow": false
+    }
   ],
   "realWorldExample": {
-    "company": "Property and holding companies",
-    "description": "Companies holding clearly identifiable assets such as land, projects and cash are usually examined on NAV alongside DCF and multiples."
+    "company": "A holding company trading below the value of its own assets",
+    "description": "A holding company owns three plots of land, a portfolio of listed shares and a pile of cash. Add the market value of each and subtract debt and you get net asset value - say VND 5,000bn. But its own shares are valued by the market at VND 3,500bn, a 30% discount. That discount is usually not a mispricing to exploit but the price of three real things: the cost of running the parent company, the tax due if assets were sold, and the fact that minority shareholders cannot decide to sell. NAV tells you what the business OWNS; it does not tell you what a shareholder can GET OUT."
   },
   "quiz": [
     {

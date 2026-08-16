@@ -12,14 +12,22 @@
   ],
   "explanation": "When two businesses on the same value chain combine, the synergy comes from distribution, IP and the ability to cross-sell to each other's customers. This kind of synergy (revenue synergy) is usually harder to measure and takes far longer to realise than cost-cutting synergy (cost synergy).",
   "diagram": [
-    { "label": "Business A" },
-    { "label": "Combines with B" },
-    { "label": "Synergy" },
-    { "label": "Combined value" }
+    {
+      "label": "Business A"
+    },
+    {
+      "label": "Combines with B"
+    },
+    {
+      "label": "Synergy"
+    },
+    {
+      "label": "Combined value"
+    }
   ],
   "realWorldExample": {
     "company": "Disney-Pixar",
-    "description": "The Disney-Pixar deal is routinely cited as an example of M&A that created additional value through a content and distribution ecosystem."
+    "description": "Disney bought Pixar in 2006 for around USD 7.4bn, paid entirely in shares. That figure was well above the value of Pixar's own cash flow standing alone, and the excess only made sense if the two together could do what neither could apart: Pixar had the film-making capability, Disney had distribution, theme parks, merchandise and television. A successful character therefore earns in five places rather than one. This is revenue synergy - the hardest kind to estimate and the most often inflated, which is why this deal is cited so often: it is the exception, not the rule."
   },
   "quiz": [
     {
