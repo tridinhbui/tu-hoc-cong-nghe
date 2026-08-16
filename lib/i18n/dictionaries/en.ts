@@ -1642,6 +1642,7 @@ export const en: Dictionary = {
     "portfolio-retirement": "Portfolios & retirement",
     "housing-protection": "Housing & asset protection",
     "banking-deposits": "Banking & deposits",
+    "gold-fx": "Gold & foreign currency",
     "investing-psychology": "Investor psychology",
     "accounting-reporting": "Accounting & financial reporting",
     "valuation-corp-finance": "Valuation & corporate finance",
@@ -2375,6 +2376,15 @@ export const en: Dictionary = {
   },
 
   dashboard: {
+    phCurrent: "You are here",
+    phNext: "Next",
+    phXpToNext: "{xp} XP to Level {level}",
+    phXpOf: "{done} / {total} XP",
+    phExamTitle: "Level {level} promotion exam",
+    phExamReady: "Eligible · you need 80% or above",
+    phExamLocked: "Opens at 0 XP to go · {xp} short",
+    phMissionEyebrow: "Next mission",
+    phMissionChain: "+{xp} XP · {remaining} XP left · unlocks the Level {level} exam",
     stageLabel: "Stage {n}",
     // Nhãn thời lượng trên thẻ bài học. Trước là template literal trong một
     // hàm ở module scope, ngoài tầm mọi rule cho tới khi thêm returned-text.

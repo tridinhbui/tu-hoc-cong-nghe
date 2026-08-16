@@ -1007,7 +1007,7 @@ export const vi = {
 
     objectiveLabel: "Mục tiêu kế tiếp:",
     objectiveUnlockKho: "còn {count} section đạt mức Vững để mở Vòng áp lực.",
-    objectiveUnlockMock: "còn {count} section Kế toán + Định giá đạt mức Vững để mở Mock Analyst đầy đủ.",
+    objectiveUnlockMock: "còn {count} section Kế toán + Định giá đạt mức Vững để mở Mock analyst đầy đủ.",
     objectiveNextRank: "còn {count} điểm thành thạo nữa để lên {next}.",
     objectiveMaxed: "đã mở hết các vòng và đạt bậc cao nhất. Giữ tỉ lệ đúng ở mức thành thạo.",
 
@@ -1023,14 +1023,14 @@ export const vi = {
        thích ở chỗ dựng trong app/(app)/phong-van-ky-thuat/page.tsx. */
     masteryUntestedCount: "{total} câu",
     masteryScore: "{accuracy}% · {correct}/{attempted}",
-    milestoneSectionHint: "Thuộc mốc mở khoá Mock Analyst đầy đủ",
+    milestoneSectionHint: "Thuộc mốc mở khoá Mock analyst đầy đủ",
     nextUpBadge: "LÀM TIẾP",
 
     modeNames: {
       de: "Vòng sàng lọc",
       "tat-ca": "Vòng hỗn hợp",
       kho: "Vòng áp lực",
-      mock: "Mock Analyst đầy đủ",
+      mock: "Mock analyst đầy đủ",
     },
     modeBlurbs: {
       de: "câu nền tảng",
@@ -1043,7 +1043,7 @@ export const vi = {
     khoUnlockHint:
       "Vòng áp lực mở khi bạn đạt mức Vững ở {required} section. Còn {count} section nữa.",
     mockUnlockHint:
-      "Mock Analyst đầy đủ mở khi cả bốn section Kế toán và Định giá đạt mức Vững. Còn {count} section nữa.",
+      "Mock analyst đầy đủ mở khi cả bốn section Kế toán và Định giá đạt mức Vững. Còn {count} section nữa.",
 
     missionQuestions: "Số câu",
     missionDuration: "Thời lượng",
@@ -1753,6 +1753,7 @@ export const vi = {
     "portfolio-retirement": "Danh mục & hưu trí",
     "housing-protection": "Nhà ở & bảo vệ tài sản",
     "banking-deposits": "Ngân hàng & tiền gửi",
+    "gold-fx": "Vàng & ngoại tệ",
     "investing-psychology": "Tâm lý đầu tư",
     "accounting-reporting": "Kế toán & báo cáo tài chính",
     "valuation-corp-finance": "Định giá & tài chính doanh nghiệp",
@@ -2543,6 +2544,16 @@ export const vi = {
 
   // components/DashboardClient.tsx
   dashboard: {
+    // --- Khối chủ đạo tiến trình (components/dashboard/ProgressionHero)
+    phCurrent: "Đang ở",
+    phNext: "Tiếp theo",
+    phXpToNext: "Còn {xp} XP để lên Level {level}",
+    phXpOf: "{done} / {total} XP",
+    phExamTitle: "Bài thi thăng cấp Level {level}",
+    phExamReady: "Đủ điều kiện thi · cần đúng từ 80%",
+    phExamLocked: "Mở khi còn 0 XP · hiện còn thiếu {xp}",
+    phMissionEyebrow: "Nhiệm vụ tiếp theo",
+    phMissionChain: "+{xp} XP · còn {remaining} XP · mở bài thi Level {level}",
     stageLabel: "Chặng {n}",
     // Nhãn thời lượng trên thẻ bài học. Trước là template literal trong một
     // hàm ở module scope, ngoài tầm mọi rule cho tới khi thêm returned-text.
