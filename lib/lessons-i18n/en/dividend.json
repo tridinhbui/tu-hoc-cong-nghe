@@ -12,14 +12,22 @@
   ],
   "explanation": "A dividend is only durable when it is paid out of free cash flow - what is left after the business has spent enough to maintain and expand its operating capacity. So the number to look at is not the payout against profit but the payout against free cash flow. Funding a dividend with borrowings, or out of an accumulated cash pile while free cash flow is negative, can be kept up for a few years, but it is a loan taken from the future rather than a result achieved.",
   "diagram": [
-    { "label": "FCF" },
-    { "label": "Payout ratio" },
-    { "label": "Dividend" },
-    { "label": "Sustainability" }
+    {
+      "label": "FCF"
+    },
+    {
+      "label": "Payout ratio"
+    },
+    {
+      "label": "Dividend"
+    },
+    {
+      "label": "Sustainability"
+    }
   ],
   "realWorldExample": {
-    "company": "Mature businesses",
-    "description": "Mature companies tend to pay a more consistent dividend because their reinvestment needs are lower than those of a growth business."
+    "company": "Two companies, the same profit, opposite dividend policies",
+    "description": "Two companies each earn VND 200bn. A is expanding and each retained dong earns 20% while capital costs 12%; retaining is right, because paying out takes that 8-point spread away from the shareholder. B is mature and its remaining opportunities earn 8% while capital still costs 12%; holding cash there destroys value, so paying a dividend is the correct call. The same profit figure, opposite policies, and what decides is not whether the company is young or old but ROIC against the cost of capital. A dividend cut is therefore not bad news in itself - it is bad news when the company cuts without anywhere better to put the money."
   },
   "quiz": [
     {

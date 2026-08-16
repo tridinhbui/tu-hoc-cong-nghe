@@ -12,14 +12,22 @@
   ],
   "explanation": "Large-scale retail does not win on margin, it wins on turnover and buying power. The margin on each basket is very thin, but sell enough times a year and the return on capital is still high. The real advantage sits on the input side: buying in huge volume means a lower cost of goods than rivals, and a lower cost of goods allows low prices while still making money - a self-reinforcing loop that a smaller competitor cannot break simply by matching the price.",
   "diagram": [
-    { "label": "High volume" },
-    { "label": "Inventory turn" },
-    { "label": "Logistics" },
-    { "label": "Steady profit" }
+    {
+      "label": "High volume"
+    },
+    {
+      "label": "Inventory turn"
+    },
+    {
+      "label": "Logistics"
+    },
+    {
+      "label": "Steady profit"
+    }
   ],
   "realWorldExample": {
     "company": "Walmart",
-    "description": "The Walmart lesson is that reading earnings means looking at operations, inventory, gross margin and supply-chain efficiency together."
+    "description": "Walmart runs on a net margin of a few percent, so one percentage point of gross margin is more money than most companies earn in a year. The consequence is that its earnings release is not read off the revenue line but off three others: same-store sales (real growth, or just more stores), days of inventory (is stock piling up), and gross margin (is it discounting to move goods). A quarter with handsome revenue growth and lengthening inventory is usually a quarter that will be discounted away in the next one."
   },
   "quiz": [
     {

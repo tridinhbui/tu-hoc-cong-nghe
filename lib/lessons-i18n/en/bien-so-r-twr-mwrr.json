@@ -30,8 +30,8 @@
     }
   ],
   "realWorldExample": {
-    "company": "Investment funds",
-    "description": "A fund with a handsome TWR but a poor MWRR may simply be one whose investors put their money in at the wrong moment."
+    "company": "A fund earning 15% a year while its investors get a few percent",
+    "description": "A fund reports a TWR of 15% a year over three years. But its investors' money did not arrive evenly: most of it came in after year two, once the market had already run up and just before a correction. TWR ignores that because it cuts the return series at every contribution and withdrawal and links the pieces - correctly so, since the manager does not choose when money arrives. MWRR weights by the size and timing of those flows, so it produces the number the investor ACTUALLY received. The gap between the two says nothing about whether the fund is good; it measures the cost of buying in while the market was euphoric."
   },
   "quiz": [
     {
