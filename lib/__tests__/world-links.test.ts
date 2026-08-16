@@ -72,11 +72,11 @@ describe("đường dẫn trong thế giới 3D", () => {
       .map((m) => m[1].split("?")[0].replace(/\/$/, ""))
       .filter((h) => h.startsWith("/"));
     // Ngưỡng này là cái chốt chống regex hỏng, không phải mục tiêu: nó chỉ cần
-    // đủ lớn để một regex trả về mảng rỗng bị bắt. Hạ từ 10 xuống 5 khi năm
-    // trạm tài chính (CFA, FRM, phỏng vấn, sự nghiệp, ôn câu sai) và cổng khu
-    // phố nghề bị gỡ - thế giới 3D còn 7 cánh cửa, nên mốc cũ sẽ đỏ mãi mãi
-    // dù không có gì hỏng.
-    expect(hrefs.length, "không đọc được href nào - regex hỏng?").toBeGreaterThan(5);
+    // đủ lớn để một regex trả về mảng rỗng bị bắt. Đã hạ hai lần khi các trạm
+    // tài chính bị gỡ (CFA, FRM, phỏng vấn, sự nghiệp, công cụ) cùng cổng khu
+    // phố nghề - thế giới 3D còn 5 cánh cửa. Đặt ở 2 để nó không phải đi theo
+    // từng lần gỡ nữa: một regex hỏng trả về 0, và 2 vẫn bắt được điều đó.
+    expect(hrefs.length, "không đọc được href nào - regex hỏng?").toBeGreaterThan(2);
 
     const broken = [...new Set(hrefs)].filter((h) => {
       if (routes.has(h)) return false;

@@ -279,7 +279,6 @@ export const BANKING_LESSONS: Lesson[] = [
       { label: "Chênh lệch ROE − ke = giá trị tạo thêm", arrow: true },
       { label: "Quyết định mức P/B hợp lý" },
     ],
-    interactiveType: "roe",
     realWorldExample: {
       company: "Chênh lệch P/B trong nhóm ngân hàng niêm yết",
       description:

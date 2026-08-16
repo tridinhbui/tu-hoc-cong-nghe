@@ -230,7 +230,6 @@ export const FINTECH_LESSONS: Lesson[] = [
       { label: "So với lợi nhuận gộp mỗi khách mỗi tháng", arrow: true },
       { label: "Số tháng hoàn vốn" },
     ],
-    interactiveType: "cash-flow-simulator",
     realWorldExample: {
       company: "Các ứng dụng cho vay tiêu dùng tại Việt Nam giai đoạn 2019-2022",
       description:
@@ -925,7 +924,6 @@ export const FINTECH_LESSONS: Lesson[] = [
       { label: "− chi phí cố định (đội ngũ, hạ tầng)", arrow: true },
       { label: "Mức đốt hằng tháng → runway" },
     ],
-    interactiveType: "cash-flow-simulator",
     realWorldExample: {
       company: "Thị trường vốn mạo hiểm Đông Nam Á sau 2022",
       description:

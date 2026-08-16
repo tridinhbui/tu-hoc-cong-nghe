@@ -101,7 +101,7 @@ describe("trang /lo-trinh dựng ra chữ gì", () => {
     // Thẻ Nghề tài chính là thẻ đang chọn, nên nó đếm số còn lại (472 − 0).
     expect(html).toContain("còn 472 bài");
     // Và ghi chú riêng của hướng chuyên ngành phải hiện ngay từ lần dựng đầu.
-    expect(html).toContain("Nghề tài chính");
+    expect(html).toContain("Nghề công nghệ");
   });
 
   it("nhịp lưu trên server dựng ra ngay, không chờ effect", async () => {

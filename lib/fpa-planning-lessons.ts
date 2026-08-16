@@ -391,7 +391,6 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
       { label: "Chi: lương, nhà cung cấp, thuế, nợ vay", arrow: true },
       { label: "Tiền cuối tuần so với mức tối thiểu" },
     ],
-    interactiveType: "cash-flow-simulator",
     realWorldExample: {
       company: "Nhà thầu xây dựng có lãi nhưng suýt mất thanh khoản",
       description:

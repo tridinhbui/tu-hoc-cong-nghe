@@ -145,128 +145,138 @@ export const worldSpacesVi = {
       defaultWarriorName: "Chiến binh Server",
       questions: [
         {
-          prompt: "Khủng hoảng nợ dưới chuẩn (Subprime Mortgage) năm 2008 khởi nguồn chính từ đâu?",
+          prompt:
+            "Nguyên nhân chính của sự cố sập diện rộng khi một dịch vụ phụ thuộc chậm đi là gì?",
           options: [
-            "Nợ xấu chứng khoán hóa quá đà & Định giá tín nhiệm sai lầm",
-            "Giá dầu mỏ giảm đột ngột",
-            "Lạm phát tiền tệ ở Châu Âu",
+            "Các lệnh gọi chờ nhau dồn ứ cho tới khi cạn kết nối và lan sang dịch vụ khác",
+            "Máy chủ hết dung lượng ổ đĩa nên không ghi được log",
+            "Tên miền hết hạn nên trình duyệt không phân giải được",
           ],
         },
         {
           prompt:
-            "Khi Ngân hàng Trung ương liên tục nâng lãi suất điều hành (Hawk Policy), thị trường tài sản thường có xu hướng nào?",
+            "Khi tải tăng gấp đôi mà độ trễ tăng gấp mười, nguyên nhân thường gặp nhất là gì?",
           options: [
-            "Biến động giảm do chi phí vốn tăng & định giá chiết khấu giảm",
-            "Tăng trưởng bùng nổ ngay lập tức",
-            "Không ảnh hưởng",
-          ],
-        },
-        {
-          prompt: "Chỉ số VIX (Volatility Index) trên thị trường tài chính thường đại diện cho điều gì?",
-          options: [
-            "Chỉ số đo lường mức độ sợ hãi/biến động của thị trường",
-            "Tỷ lệ lạm phát mục tiêu",
-            "Tỷ lệ thất nghiệp",
+            "Một điểm nghẽn đã bão hoà nên hàng đợi trước nó dài ra rất nhanh",
+            "Trình duyệt người dùng chạy chậm hơn khi có nhiều người cùng vào",
+            "Mã nguồn tự động chạy chậm lại để bảo vệ máy chủ",
           ],
         },
         {
           prompt:
-            "Trong mô hình Black-Scholes định giá quyền chọn, biến số nào tác động mạnh nhất đến Giá trị Thời gian (Time Value)?",
+            "Chỉ số p99 của độ trễ nói lên điều gì?",
           options: [
-            "Độ biến động lịch sử/nội hàm (Implied Volatility)",
-            "Số dư tiền gửi",
-            "Mệnh giá cổ phiếu",
+            "99% request nhanh hơn mức đó, và 1% chậm nhất mới là phần người dùng nhớ",
+            "Độ trễ trung bình của 99% máy chủ trong cụm",
+            "Tỷ lệ 99% request thành công không tính lỗi",
           ],
         },
         {
           prompt:
-            "Chiến lược Hedging (Phòng hộ) bằng hợp đồng Tương lai (Futures Contract) giúp doanh nghiệp đạt mục tiêu gì?",
+            "Trong một hệ phân tán, thêm bản sao chỉ đọc giải quyết được vấn đề nào?",
           options: [
-            "Cố định chi phí/doanh thu rủi ro biến động giá trong tương lai",
-            "Gia tăng nợ vay ngân hàng",
-            "Trốn thuế doanh nghiệp",
+            "Chia tải đọc, nhưng ghi vẫn dồn về một chỗ và có độ trễ đồng bộ",
+            "Chia đều cả tải đọc lẫn tải ghi cho mọi bản sao",
+            "Xoá bỏ nhu cầu sao lưu vì dữ liệu đã có nhiều bản",
           ],
         },
         {
           prompt:
-            "Khi lợi suất trái phiếu chính phủ Mỹ kỳ hạn 10 năm tăng mạnh, định giá cổ phiếu tăng trưởng thường chịu áp lực vì sao?",
+            "Đặt chỉ mục lên một cột giúp gì và trả giá bằng gì?",
           options: [
-            "Tỷ lệ chiết khấu tăng làm giá trị hiện tại của dòng tiền tương lai giảm",
-            "Doanh thu của doanh nghiệp tự động giảm ngay",
-            "Cổ tức bắt buộc phải bị cắt",
+            "Tra thẳng tới dòng cần thay vì quét bảng, đổi lại mỗi lần ghi phải cập nhật thêm",
+            "Làm dữ liệu chiếm ít dung lượng hơn và ghi cũng nhanh hơn",
+            "Tăng tốc mọi truy vấn, kể cả truy vấn không dùng cột đó",
           ],
         },
         {
           prompt:
-            "Một ngân hàng có tỷ lệ nợ xấu (NPL) tăng mạnh nhưng vẫn báo lợi nhuận đẹp. Nhà phân tích nên nghi ngờ điều gì đầu tiên?",
+            "Vì sao một thao tác nên idempotent khi client có thể thử lại?",
           options: [
-            "Khả năng trích lập dự phòng chưa đủ hoặc ghi nhận lợi nhuận chưa phản ánh rủi ro tín dụng",
-            "Ngân hàng chắc chắn đang tăng trưởng bền vững",
-            "Chỉ số NPL không liên quan gì đến chất lượng lợi nhuận",
+            "Vì gói tin có thể tới hai lần, và lần thứ hai không được tạo thêm bản ghi",
+            "Vì nó làm request chạy nhanh hơn lần gọi đầu tiên",
+            "Vì máy chủ sẽ tự động bỏ qua mọi request trùng lặp",
           ],
         },
         {
-          prompt: "Trong khủng hoảng thanh khoản, tài sản nào thường bị bán đầu tiên trong danh mục tổ chức?",
+          prompt:
+            "Cache đặt sai chỗ gây ra hậu quả điển hình nào?",
           options: [
-            "Tài sản thanh khoản cao, dễ bán nhanh để lấy tiền mặt",
-            "Tài sản vô hình không thể giao dịch",
-            "Các khoản chi phí trả trước",
+            "Người dùng đọc phải dữ liệu cũ mà không có gì báo là nó cũ",
+            "Máy chủ tốn thêm CPU nhưng dữ liệu luôn mới nhất",
+            "Truy vấn tới cơ sở dữ liệu tăng lên gấp đôi",
           ],
         },
         {
-          prompt: "Nếu spread tín dụng doanh nghiệp (credit spread) nới rộng đột ngột, tín hiệu phổ biến nhất là gì?",
+          prompt:
+            "Ngân sách lỗi (error budget) dùng để làm gì?",
           options: [
-            "Thị trường đang yêu cầu premium rủi ro cao hơn vì lo ngại tín dụng/xác suất vỡ nợ tăng",
-            "Doanh nghiệp tự động được nâng hạng tín nhiệm",
-            "Chi phí vốn cổ phần giảm ngay",
+            "Định lượng phần được phép hỏng, và dừng phát hành khi đã tiêu hết",
+            "Ghi nhận chi phí phải bồi thường cho khách khi có sự cố",
+            "Đặt hạn mức số lỗi mà mỗi lập trình viên được tạo ra",
           ],
         },
         {
-          prompt: "Một quỹ dùng đòn bẩy cao để ôm tài sản dài hạn nhưng tài trợ bằng vốn ngắn hạn. Rủi ro lớn nhất là gì?",
+          prompt:
+            "Vì sao khoá phiên bản thư viện (lockfile) lại quan trọng?",
           options: [
-            "Rủi ro mismatch kỳ hạn và bị ép thanh lý khi nguồn vốn ngắn hạn rút đi",
-            "Rủi ro này luôn tốt vì ROE tăng",
-            "Không có rủi ro nếu tài sản đang tăng giá",
+            "Vì cùng một mã nguồn phải dựng ra cùng một kết quả trên mọi máy",
+            "Vì nó ngăn thư viện được cập nhật lên bản vá bảo mật",
+            "Vì nó làm quá trình cài đặt gói tốn ít băng thông hơn",
           ],
         },
         {
-          prompt: "Khi thị trường rơi vào panic selling, chỉ báo nào thường phản ánh nhu cầu trú ẩn tăng lên?",
+          prompt:
+            "Deadlock xảy ra khi nào?",
           options: [
-            "Giá trái phiếu chính phủ tăng và lợi suất giảm",
-            "P/E toàn thị trường mở rộng mạnh vì ai cũng lạc quan",
-            "Margin lending tăng vọt do tâm lý hưng phấn",
+            "Hai tiến trình giữ tài nguyên của nhau và cùng chờ, không ai nhả ra trước",
+            "Một tiến trình chạy quá lâu nên hệ điều hành buộc phải dừng nó",
+            "Bộ nhớ đầy nên tiến trình không cấp phát thêm được",
           ],
         },
         {
-          prompt: "Trong phân tích khủng hoảng doanh nghiệp, chỉ số nào cảnh báo sớm áp lực thanh khoản ngắn hạn?",
+          prompt:
+            "Vì sao mật khẩu phải băm kèm salt chứ không băm trơn?",
           options: [
-            "Current ratio và dòng tiền từ hoạt động kinh doanh suy yếu",
-            "Số lượng nhân viên không đổi",
-            "Logo thương hiệu mới",
+            "Vì không có salt thì hai mật khẩu giống nhau ra cùng chuỗi băm, tra bảng là lộ",
+            "Vì salt làm chuỗi băm ngắn lại nên lưu trữ tiết kiệm hơn",
+            "Vì salt cho phép giải mã ngược lại ra mật khẩu gốc khi cần",
           ],
         },
         {
-          prompt: "Một doanh nghiệp báo EBITDA tăng nhưng CFO âm kéo dài. Với boss tài chính, đây thường là dấu hiệu gì?",
+          prompt:
+            "Phát hành dần theo tỷ lệ (canary) cho bạn điều gì mà phát hành toàn bộ không có?",
           options: [
-            "Lợi nhuận kế toán chưa chuyển hóa thành tiền mặt, cần soi chất lượng earnings",
-            "Doanh nghiệp chắc chắn rẻ hơn",
-            "Không ảnh hưởng gì đến rủi ro",
+            "Một nhóm nhỏ chạm lỗi trước, đủ để quay lui trước khi mọi người dính",
+            "Bản mới chạy nhanh hơn vì chỉ phục vụ ít người dùng",
+            "Khả năng bỏ qua hoàn toàn bước kiểm thử trước khi phát hành",
           ],
         },
         {
-          prompt: "Khi FED pivot từ hawkish sang dovish, nhóm tài sản nào thường phản ứng tích cực sớm nhất?",
+          prompt:
+            "Vì sao đo trước khi tối ưu lại là quy tắc?",
           options: [
-            "Tài sản nhạy cảm lãi suất như cổ phiếu tăng trưởng và trái phiếu dài hạn",
-            "Tiền mặt không sinh lời",
-            "Các khoản phải thu khách hàng",
+            "Vì chỗ ta đoán là chậm thường không phải chỗ thật sự tốn thời gian",
+            "Vì trình biên dịch chỉ tối ưu được phần mã đã có kết quả đo",
+            "Vì tối ưu sớm luôn làm chương trình chạy chậm đi",
           ],
         },
         {
-          prompt: "Một cú short squeeze xảy ra khi nào?",
+          prompt:
+            "Một API trả 401 và một API trả 403 khác nhau ở đâu?",
           options: [
-            "Người bán khống buộc phải mua lại cổ phiếu vì giá tăng mạnh, làm giá càng bị đẩy lên",
-            "Doanh nghiệp mua lại toàn bộ nợ vay",
-            "Lợi nhuận gộp giảm do giá nguyên liệu tăng",
+            "401 là chưa biết bạn là ai, 403 là biết rồi và vẫn không cho phép",
+            "401 là lỗi phía máy chủ, còn 403 là lỗi phía client",
+            "401 là hết hạn phiên, còn 403 là sai địa chỉ endpoint",
+          ],
+        },
+        {
+          prompt:
+            "Vì sao sao lưu chưa từng khôi phục thử thì chưa tính là sao lưu?",
+          options: [
+            "Vì chỉ lúc khôi phục mới biết bản sao có đọc được và có đủ dữ liệu không",
+            "Vì bản sao sẽ tự hỏng nếu để lâu mà không mở ra",
+            "Vì nhà cung cấp chỉ giữ bản sao trong vòng ba mươi ngày",
           ],
         },
       ],
@@ -407,123 +417,138 @@ export const worldSpacesEn: typeof worldSpacesVi = {
       defaultWarriorName: "Server Warrior",
       questions: [
         {
-          prompt: "What was the main origin of the 2008 subprime mortgage crisis?",
+          prompt:
+            "What is the usual origin of a wide outage when one dependency slows down?",
           options: [
-            "Excessive mortgage securitization and mispriced credit ratings",
-            "A sudden drop in oil prices",
-            "Currency inflation in Europe",
+            "Calls pile up waiting on each other until connections run out and it spreads",
+            "The server runs out of disk space and cannot write logs",
+            "The domain expires so browsers can no longer resolve it",
           ],
         },
         {
-          prompt: "When a central bank keeps raising its policy rate (a hawkish stance), asset markets tend to do what?",
+          prompt:
+            "When load doubles but latency grows tenfold, what is most often happening?",
           options: [
-            "Fall in value, since higher funding costs lower discounted valuations",
-            "Boom immediately",
-            "Stay unaffected",
+            "A bottleneck has saturated, so the queue in front of it grows very fast",
+            "Users' browsers slow down when more people are online at once",
+            "The code deliberately slows itself down to protect the server",
           ],
         },
         {
-          prompt: "What does the VIX (Volatility Index) typically represent in financial markets?",
+          prompt:
+            "What does a p99 latency figure tell you?",
           options: [
-            "A gauge of the market's fear or volatility level",
-            "The target inflation rate",
-            "The unemployment rate",
+            "99% of requests are faster than that, and the slowest 1% is what users remember",
+            "The average latency across 99% of the servers in the pool",
+            "That 99% of requests succeed, errors excluded",
           ],
         },
         {
-          prompt: "In the Black-Scholes option pricing model, which variable most strongly drives Time Value?",
+          prompt:
+            "In a distributed system, what does adding a read replica actually solve?",
           options: [
-            "Historical/implied volatility",
-            "Cash account balance",
-            "Share par value",
+            "It spreads read load, but writes still funnel to one place and lag behind",
+            "It spreads read and write load evenly across every replica",
+            "It removes the need for backups because the data now exists twice",
           ],
         },
         {
-          prompt: "What goal does hedging with futures contracts help a business achieve?",
+          prompt:
+            "What does an index on a column buy you, and what does it cost?",
           options: [
-            "Locking in costs or revenue against future price swings",
-            "Increasing bank borrowing",
-            "Evading corporate tax",
+            "Direct lookups instead of a table scan, paid for on every write that updates it",
+            "Less storage used, and faster writes as well",
+            "Faster queries across the board, including ones that never touch that column",
           ],
         },
         {
-          prompt: "When the US 10-year Treasury yield rises sharply, why do growth stock valuations usually come under pressure?",
+          prompt:
+            "Why should an operation be idempotent when the client may retry?",
           options: [
-            "A higher discount rate lowers the present value of future cash flows",
-            "Company revenue automatically drops right away",
-            "Dividends are forced to be cut",
+            "Because the packet can arrive twice, and the second one must not create a second record",
+            "Because it makes the request run faster than the first call did",
+            "Because the server automatically discards every duplicate request",
           ],
         },
         {
-          prompt: "A bank's non-performing loan (NPL) ratio is rising sharply but it still reports strong profit. What should an analyst suspect first?",
+          prompt:
+            "What is the classic consequence of caching in the wrong place?",
           options: [
-            "Provisions may be insufficient, or reported profit isn't reflecting credit risk",
-            "The bank is certainly growing sustainably",
-            "The NPL ratio has nothing to do with earnings quality",
+            "Users read stale data with nothing to tell them it is stale",
+            "The server burns more CPU but the data is always current",
+            "Queries against the database double in number",
           ],
         },
         {
-          prompt: "During a liquidity crisis, which assets in an institutional portfolio tend to get sold first?",
+          prompt:
+            "What is an error budget for?",
           options: [
-            "Highly liquid assets that can be sold quickly for cash",
-            "Intangible assets that can't be traded",
-            "Prepaid expenses",
+            "Quantifying how much may break, and stopping releases once it is spent",
+            "Recording the compensation owed to customers after an incident",
+            "Capping how many bugs each developer is allowed to write",
           ],
         },
         {
-          prompt: "If corporate credit spreads widen suddenly, what is the most common signal?",
+          prompt:
+            "Why does a dependency lockfile matter?",
           options: [
-            "The market is demanding a higher risk premium on rising credit/default concerns",
-            "The company is automatically upgraded",
-            "The cost of equity drops right away",
+            "Because the same source must build into the same result on every machine",
+            "Because it stops libraries from ever receiving security patches",
+            "Because it makes installing packages use less bandwidth",
           ],
         },
         {
-          prompt: "A fund uses high leverage to hold long-term assets funded by short-term borrowing. What is the biggest risk?",
+          prompt:
+            "When does a deadlock happen?",
           options: [
-            "Maturity mismatch risk, forcing a fire sale when short-term funding is pulled",
-            "This is always fine because it boosts ROE",
-            "There's no risk as long as asset prices keep rising",
+            "Two processes each hold what the other needs and both wait, neither yielding",
+            "A process runs so long that the operating system has to kill it",
+            "Memory fills up so a process can no longer allocate",
           ],
         },
         {
-          prompt: "During panic selling, which indicator typically reflects rising demand for safe havens?",
+          prompt:
+            "Why must passwords be hashed with a salt rather than hashed plain?",
           options: [
-            "Government bond prices rise and yields fall",
-            "Market-wide P/E expands sharply because everyone turns optimistic",
-            "Margin lending surges on euphoric sentiment",
+            "Without a salt, identical passwords hash identically and a lookup table exposes them",
+            "Because a salt shortens the hash so it takes less space to store",
+            "Because a salt lets you reverse the hash back to the original password",
           ],
         },
         {
-          prompt: "In analyzing a corporate crisis, which metric gives an early warning of short-term liquidity pressure?",
+          prompt:
+            "What does a canary release give you that a full rollout does not?",
           options: [
-            "A weakening current ratio and operating cash flow",
-            "An unchanged headcount",
-            "A new company logo",
+            "A small group hits the fault first, early enough to roll back before everyone does",
+            "A faster release because it serves fewer users",
+            "Permission to skip testing entirely before shipping",
           ],
         },
         {
-          prompt: "A company reports rising EBITDA but persistently negative operating cash flow. For a finance boss, what does this usually signal?",
+          prompt:
+            "Why is measuring before optimising the rule?",
           options: [
-            "Accounting profit hasn't converted into cash yet - earnings quality needs scrutiny",
-            "The company is definitely cheap",
-            "It has no bearing on risk at all",
+            "Because the part you assume is slow is usually not where the time actually goes",
+            "Because the compiler can only optimise code that has been profiled",
+            "Because optimising early always makes the program slower",
           ],
         },
         {
-          prompt: "When the Fed pivots from hawkish to dovish, which asset group tends to react positively first?",
+          prompt:
+            "How do a 401 and a 403 from an API differ?",
           options: [
-            "Rate-sensitive assets like growth stocks and long-duration bonds",
-            "Cash, which earns no return",
-            "Accounts receivable",
+            "401 means we don't know who you are; 403 means we do, and the answer is still no",
+            "401 is a server-side error while 403 is a client-side one",
+            "401 means the session expired while 403 means the endpoint address is wrong",
           ],
         },
         {
-          prompt: "When does a short squeeze happen?",
+          prompt:
+            "Why is a backup you have never restored not yet a backup?",
           options: [
-            "Short sellers are forced to buy back shares as the price surges, pushing it up further",
-            "A company buys back all of its debt",
-            "Gross margin falls because input costs rise",
+            "Because only a restore proves the copy is readable and actually complete",
+            "Because a copy corrupts itself if left unopened for too long",
+            "Because providers only retain copies for thirty days",
           ],
         },
       ],

@@ -387,7 +387,6 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       { label: "→ CF: cộng lại khấu hao, ± vốn lưu động", arrow: true },
       { label: "→ Tiền mặt cuối kỳ (BS) → BS cân" },
     ],
-    interactiveType: "cash-flow-simulator",
     realWorldExample: {
       company: "Bài kiểm tra phỏng vấn kinh điển",
       description:
@@ -556,7 +555,6 @@ export const FINANCIAL_MODELING_LESSONS: Lesson[] = [
       { label: "→ Thay đổi vốn lưu động", arrow: true },
       { label: "→ Dòng tiền hoạt động" },
     ],
-    interactiveType: "cash-flow-simulator",
     realWorldExample: {
       company: "Doanh nghiệp tăng trưởng nhanh",
       description:

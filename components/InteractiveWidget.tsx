@@ -1,11 +1,9 @@
 import InteractiveProfitCalc from "./InteractiveProfitCalc";
 import InteractiveInterestRate from "./InteractiveInterestRate";
 import InteractiveSupplyDemand from "./InteractiveSupplyDemand";
-import InteractiveROE from "./InteractiveROE";
 import InteractiveBond from "./InteractiveBond";
 import InteractiveMultiples from "./InteractiveMultiples";
 import InteractiveMoneyVsAsset from "./InteractiveMoneyVsAsset";
-import InteractiveCashFlowSimulator from "./InteractiveCashFlowSimulator";
 import InteractiveInflationCalculator from "./InteractiveInflationCalculator";
 import InteractiveBudget from "./InteractiveBudget";
 import InteractiveRisk from "./InteractiveRisk";
@@ -21,7 +19,6 @@ import InteractiveAiVerify from "./InteractiveAiVerify";
 import InteractiveEsgScore from "./InteractiveEsgScore";
 import InteractiveSampling from "./InteractiveSampling";
 import InteractiveRegression from "./InteractiveRegression";
-import InteractiveTaxBrackets from "./InteractiveTaxBrackets";
 import InteractiveJournalEntry from "./InteractiveJournalEntry";
 import InteractiveFeeDrag from "./InteractiveFeeDrag";
 import InteractiveRatios from "./InteractiveRatios";
@@ -31,10 +28,8 @@ export type WidgetType =
   | "interest-rate"
   | "supply-demand"
   | "profit-calc"
-  | "roe"
   | "bond"
   | "money-vs-asset"
-  | "cash-flow-simulator"
   | "inflation-calculator"
   | "process"
   | "budget"
@@ -61,7 +56,6 @@ export type WidgetType =
   | "esg-score"
   | "sampling"
   | "regression"
-  | "tax-brackets"
   | "journal-entry";
 
 export default function InteractiveWidget({ type }: { type: WidgetType }) {
@@ -72,14 +66,10 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveInterestRate />;
     case "supply-demand":
       return <InteractiveSupplyDemand />;
-    case "roe":
-      return <InteractiveROE />;
     case "bond":
       return <InteractiveBond />;
     case "money-vs-asset":
       return <InteractiveMoneyVsAsset />;
-    case "cash-flow-simulator":
-      return <InteractiveCashFlowSimulator />;
     case "inflation-calculator":
       return <InteractiveInflationCalculator />;
     case "budget":
@@ -117,8 +107,6 @@ export default function InteractiveWidget({ type }: { type: WidgetType }) {
       return <InteractiveSampling />;
     case "regression":
       return <InteractiveRegression />;
-    case "tax-brackets":
-      return <InteractiveTaxBrackets />;
     case "journal-entry":
       return <InteractiveJournalEntry />;
     case "fee-drag":
@@ -138,10 +126,8 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "interest-rate",
   "supply-demand",
   "profit-calc",
-  "roe",
   "bond",
   "money-vs-asset",
-  "cash-flow-simulator",
   "inflation-calculator",
   "budget",
   "risk",
@@ -166,7 +152,6 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "esg-score",
   "sampling",
   "regression",
-  "tax-brackets",
   "journal-entry",
 ];
 

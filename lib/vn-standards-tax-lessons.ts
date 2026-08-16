@@ -574,7 +574,6 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
       { label: "Nộp phần chênh lệch cho ngân sách", arrow: true },
       { label: "Nếu đầu vào lớn hơn: chờ khấu trừ hoặc hoàn" },
     ],
-    interactiveType: "cash-flow-simulator",
     realWorldExample: {
       company: "Doanh nghiệp xuất khẩu và doanh nghiệp đang xây nhà máy",
       description:

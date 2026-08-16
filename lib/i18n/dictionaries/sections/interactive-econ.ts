@@ -125,24 +125,6 @@ export const interactiveEconVi = {
     explanationPart2: "số tiền cuối cùng, trong khi con số ghi trên hợp đồng chỉ là {fee}% một năm. Chênh lệch đến từ chỗ phần bị lấy mỗi năm cũng mất luôn toàn bộ số lãi nó đáng lẽ sinh ra trong những năm còn lại — nên kéo thanh \"số năm giữ\" lên là thấy tỷ lệ này lớn dần, dù mức phí không đổi.",
   },
 
-  compoundSim: {
-    headerTitle: "Giả lập Sức mạnh Lãi kép",
-    headerSubtitle: "Trực quan hóa tài sản sinh sôi khi tích lũy đều đặn",
-    initialAmountLabel: "Số tiền ban đầu (VND)",
-    monthlyContributionLabel: "Tích lũy thêm mỗi tháng (VND)",
-    yearsLabel: "Thời gian (Năm)",
-    interestRateLabel: "Lãi suất (% / Năm)",
-    totalPrincipalLabel: "Tổng gốc đóng góp",
-    totalInterestLabel: "Tiền lãi sinh ra",
-    futureValueLabel: "Tổng giá trị dự kiến (FV)",
-    yearOneLabel: "Năm 1",
-    yearNLabel: "Năm {years}",
-    tooltipText: "Năm {year}: {total} (Gốc: {principal}, Lãi: {interest})",
-    legendPrincipal: "Tiền gốc đóng góp",
-    legendInterest: "Tiền lãi sinh ra",
-    adviceLabel: "Lời khuyên sư phạm:",
-    adviceText: "Càng bắt đầu tích lũy sớm, phần lãi sinh ra càng phình to vượt trội so với tiền gốc bạn tự đóng góp. Đây chính là nguyên lý của quả cầu tuyết tài chính được Warren Buffett ứng dụng suốt sự nghiệp.",
-  },
 };
 
 export const interactiveEconEn: typeof interactiveEconVi = {
@@ -268,22 +250,4 @@ export const interactiveEconEn: typeof interactiveEconVi = {
     explanationPart2: "of the final amount, while the number printed in the contract is just {fee}% a year. The gap comes from the fact that the portion taken each year also loses all the interest it would otherwise have earned in the remaining years — so dragging \"years held\" up shows this share growing, even though the fee rate never changes.",
   },
 
-  compoundSim: {
-    headerTitle: "Compound Interest Simulator",
-    headerSubtitle: "Visualize wealth growing through steady contributions",
-    initialAmountLabel: "Initial amount (VND)",
-    monthlyContributionLabel: "Additional monthly contribution (VND)",
-    yearsLabel: "Time (Years)",
-    interestRateLabel: "Interest rate (% / Year)",
-    totalPrincipalLabel: "Total principal contributed",
-    totalInterestLabel: "Interest earned",
-    futureValueLabel: "Total projected value (FV)",
-    yearOneLabel: "Year 1",
-    yearNLabel: "Year {years}",
-    tooltipText: "Year {year}: {total} (Principal: {principal}, Interest: {interest})",
-    legendPrincipal: "Principal contributed",
-    legendInterest: "Interest earned",
-    adviceLabel: "Teaching note:",
-    adviceText: "The earlier you start contributing, the more the interest earned outgrows the principal you put in yourself. This is the snowball principle Warren Buffett applied throughout his career.",
-  },
 };

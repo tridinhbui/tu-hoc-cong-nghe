@@ -3,28 +3,6 @@
 // See lib/i18n/dictionaries/sections/index.ts for how sections are wired in.
 
 export const moreCalculatorsVi = {
-  emergencyFund: {
-    loadError: "Không thể tải quỹ khẩn cấp đã lưu.",
-    expensesRequired: "Vui lòng nhập chi tiêu hàng tháng.",
-    saveSuccess: "Đã lưu quỹ khẩn cấp",
-    saveError: "Không thể lưu. Vui lòng thử lại.",
-    intro: "Quỹ khẩn cấp giúp bạn có tiền dự phòng khi mất việc hoặc ốm đau, thay vì phải vay nợ.",
-    monthlyExpensesLabel: "Chi tiêu hàng tháng (VNĐ)",
-    monthlyExpensesPlaceholder: "VD: 8000000",
-    targetMonthsLabel: "Số tháng mục tiêu",
-    monthsUnit: "{months} tháng",
-    monthsUnitMin: "3 tháng",
-    monthsUnitMax: "12 tháng",
-    currentSavedLabel: "Số tiền đã có (VNĐ)",
-    currentSavedPlaceholder: "VD: 20000000",
-    targetTitle: "Mục tiêu quỹ khẩn cấp",
-    targetAmount: "{amount} đ",
-    progressLabel: "Đã đạt {pct}%",
-    doneMessage: "Đã đủ (thậm chí vượt) mục tiêu quỹ khẩn cấp. Dư {amount} đ.",
-    remainingMessage: "Còn thiếu {amount} đ để đạt mục tiêu.",
-    saveButton: "Lưu",
-    savingButton: "Đang lưu...",
-  },
 
   inflationCalc: {
     title: "Máy tính Lạm phát",
@@ -72,65 +50,9 @@ export const moreCalculatorsVi = {
       "Tăng thu nhập mà chi tiêu tăng theo thì tỷ lệ tiết kiệm không đổi - và số tháng ở trên cũng gần như không đổi. Đó là lý do tỷ lệ quan trọng hơn số tiền.",
   },
 
-  liquidityRun: {
-    title: "Sống được bao nhiêu ngày khi tiền bắt đầu chảy ra",
-    depositsLabel: "Tiền gửi / vốn huy động",
-    depositsValue: "{amount} tỷ",
-    depositsAria: "Tiền gửi",
-    outflowLabel: "Rút mỗi ngày",
-    outflowValue: "{pct}% ({amount} tỷ)",
-    outflowAria: "Tốc độ rút",
-    bufferLabel: "Đệm tiền mặt",
-    bufferValue: "{amount} tỷ",
-    bufferAria: "Đệm tiền mặt",
-    pledgeableLabel: "Tài sản cầm cố được",
-    pledgeableValue: "{amount} tỷ",
-    pledgeableAria: "Tài sản cầm cố được",
-    haircutLabel: "Haircut lúc bình thường",
-    haircutValue: "{pct}%",
-    haircutAria: "Haircut",
-    stressLabel: "Mức căng thẳng thị trường",
-    stressValueNormal: "bình thường",
-    stressValue: "{pct}%",
-    stressAria: "Mức căng thẳng",
-    calmCardLabel: "Sống sót (thị trường bình thường)",
-    stressedCardLabel: "Sống sót (thị trường căng)",
-    daysOver60: "trên 60 ngày",
-    daysValue: "{days} ngày",
-    noteStressZero:
-      "Kéo thanh căng thẳng lên và để ý: không một đồng tài sản nào biến mất, không một khoản lỗ nào phát sinh, nhưng số ngày sống sót vẫn tụt. Toàn bộ chênh lệch đến từ haircut.",
-    noteBigGap:
-      "Cùng bảng cân đối ấy, thị trường căng lấy mất {days} ngày. Tài sản vẫn nguyên và vẫn tốt — chỉ là quy đổi ra tiền được ít hơn, và càng kéo dài thì bên nhận cầm cố càng siết. Đó là lý do một tổ chức có vốn dày vẫn có thể chết trong hai tuần mà không hề lỗ.",
-    noteSmallGap:
-      "Ở cấu hình này đệm tiền mặt đủ dày để gánh gần hết cú rút, nên haircut chưa kịp có tác dụng. Hạ đệm tiền mặt xuống để thấy phần còn lại của bảng cân đối phải làm việc.",
-    modelDisclaimer:
-      "Đây là mô hình dạy học: dòng ra đều mỗi ngày và chỉ có một loại tài sản. Thực tế tiền ra dồn vào một, hai ngày đầu và tài sản tốt nhất bị cầm cố trước, nên số ngày thật thường ngắn hơn con số ở đây.",
-  },
 };
 
 export const moreCalculatorsEn: typeof moreCalculatorsVi = {
-  emergencyFund: {
-    loadError: "Could not load your saved emergency fund.",
-    expensesRequired: "Please enter your monthly expenses.",
-    saveSuccess: "Emergency fund saved",
-    saveError: "Could not save. Please try again.",
-    intro: "An emergency fund gives you a cushion if you lose your job or get sick, instead of having to borrow.",
-    monthlyExpensesLabel: "Monthly expenses (VND)",
-    monthlyExpensesPlaceholder: "e.g. 8000000",
-    targetMonthsLabel: "Target number of months",
-    monthsUnit: "{months} months",
-    monthsUnitMin: "3 months",
-    monthsUnitMax: "12 months",
-    currentSavedLabel: "Amount already saved (VND)",
-    currentSavedPlaceholder: "e.g. 20000000",
-    targetTitle: "Emergency fund target",
-    targetAmount: "{amount} VND",
-    progressLabel: "{pct}% reached",
-    doneMessage: "You've hit (or exceeded) your emergency fund target. Surplus of {amount} VND.",
-    remainingMessage: "Still need {amount} VND to reach the target.",
-    saveButton: "Save",
-    savingButton: "Saving...",
-  },
 
   inflationCalc: {
     title: "Inflation Calculator",
@@ -178,38 +100,4 @@ export const moreCalculatorsEn: typeof moreCalculatorsVi = {
       "If income and spending rise together, the savings rate stays the same - and so does the number of months above. That's why the rate matters more than the amount.",
   },
 
-  liquidityRun: {
-    title: "How many days can you survive once money starts flowing out",
-    depositsLabel: "Deposits / funding raised",
-    depositsValue: "{amount}B",
-    depositsAria: "Deposits",
-    outflowLabel: "Outflow per day",
-    outflowValue: "{pct}% ({amount}B)",
-    outflowAria: "Outflow rate",
-    bufferLabel: "Cash buffer",
-    bufferValue: "{amount}B",
-    bufferAria: "Cash buffer",
-    pledgeableLabel: "Pledgeable assets",
-    pledgeableValue: "{amount}B",
-    pledgeableAria: "Pledgeable assets",
-    haircutLabel: "Haircut in normal times",
-    haircutValue: "{pct}%",
-    haircutAria: "Haircut",
-    stressLabel: "Market stress level",
-    stressValueNormal: "normal",
-    stressValue: "{pct}%",
-    stressAria: "Stress level",
-    calmCardLabel: "Survival (normal market)",
-    stressedCardLabel: "Survival (stressed market)",
-    daysOver60: "over 60 days",
-    daysValue: "{days} days",
-    noteStressZero:
-      "Drag the stress slider up and notice: no asset disappears, no loss occurs, but the survival days still drop. The entire gap comes from the haircut.",
-    noteBigGap:
-      "Same balance sheet, but a stressed market costs {days} days. The assets are still there and still good - they just convert to cash less efficiently, and the longer it drags on, the harder the lender squeezes. That is why a well-capitalized institution can still die within two weeks without ever posting a loss.",
-    noteSmallGap:
-      "In this configuration the cash buffer is thick enough to absorb almost the whole outflow, so the haircut hasn't had a chance to bite yet. Lower the cash buffer to see the rest of the balance sheet have to work.",
-    modelDisclaimer:
-      "This is a teaching model: outflows are steady every day and there is only one type of asset. In reality, outflows front-load into the first day or two and the best assets get pledged first, so real survival time is usually shorter than the number shown here.",
-  },
 };

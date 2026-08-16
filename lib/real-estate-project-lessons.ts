@@ -203,7 +203,6 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       { label: "Giai đoạn 3: mở bán - tiền khách bắt đầu vào", arrow: true },
       { label: "Giai đoạn 4: bàn giao, thu nốt, quyết toán" },
     ],
-    interactiveType: "cash-flow-simulator",
     realWorldExample: {
       company: "Cách ngân hàng thẩm định một dự án bất động sản",
       description:
