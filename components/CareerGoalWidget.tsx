@@ -95,10 +95,14 @@ export default function CareerGoalWidget({ userId, compact = false }: { userId?:
         <span className="shrink-0 text-xs tabular-nums text-stone-500 dark:text-stone-400">{percent}%</span>
       </div>
 
+      {/* Ở 0% thì thanh tiến độ và dòng "0/14 bài" nói cùng một điều: chưa bắt
+          đầu. Giữ cả hai là dành một thẻ cao cho một con số bằng không, đúng
+          thứ làm mục tiêu nghề nghiệp trông như một ô trống trên dashboard.
+          Nên khi chưa học bài nào, khối này rút còn một dòng và một lối đi. */}
       <p className="mt-1.5 text-xs text-stone-500 dark:text-stone-400">
         {format(t.careerGoalWidget.progress, { completed, total })}
       </p>
-      <div className="mt-1 h-1 overflow-hidden rounded-full bg-stone-200 dark:bg-stone-800">
+      <div className={`mt-1 h-1 overflow-hidden rounded-full bg-stone-200 dark:bg-stone-800 ${completed === 0 ? "hidden" : ""}`}>
         <div
           className="h-full rounded-full bg-emerald-600 transition-all duration-500 dark:bg-emerald-500"
           style={{ width: `${percent}%` }}

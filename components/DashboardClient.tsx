@@ -1389,7 +1389,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           {!isLessonsView && <CareerGoalWidget userId={user?.id} compact={isCompactCard} />}
                           {user?.id && (
                             <div className="mt-2.5 border-t border-stone-200/80 pt-2.5 dark:border-stone-800">
-                              <DailyMotivationWidget userId={user.id} compact={isCompactCard} />
+                              {/* LUÔN compact, không theo preset nữa. Thẻ này là một câu động viên,
+                                  không phải một bước trong vòng lặp chơi - ở chế độ
+                                  "Đầy đủ" nó từng nở thành một thẻ viền dày tô cam
+                                  chiếm nhiều chỗ hơn cả khối nhiệm vụ ngay dưới. Bản
+                                  compact bỏ vỏ và giữ đúng câu chữ, nên nội dung không
+                                  mất, chỉ thôi tranh chỗ. */}
+                              <DailyMotivationWidget userId={user.id} compact />
                             </div>
                           )}
                         </div>
