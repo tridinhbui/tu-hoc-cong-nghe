@@ -5,6 +5,7 @@ import { Loader2, Lightbulb, ChevronRight, ChevronLeft, MessageSquareQuote } fro
 import type { BehavioralPrepQuestion } from "@/app/api/ib-behavioral/route";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
+import { markBehavioralPrepared, readPreparedBehavioral } from "@/lib/ib-behavioral-prepared";
 
 // Behavioral/fit prep, deliberately un-scored. "Walk me through your resume"
 // and "Why banking?" have no single right answer, so the old multiple-choice
@@ -22,6 +23,11 @@ export default function BehavioralPrepPanel() {
   const [category, setCategory] = useState<string>("all");
   const [activeIdx, setActiveIdx] = useState(0);
   const [revealed, setRevealed] = useState(false);
+  /** Id những câu đã mở khung trả lời, trên máy này. Đọc sau khi mount vì
+   *  localStorage không tồn tại lúc render ở server - đọc trong initializer sẽ
+   *  làm lệch bản dựng và React than hydration mismatch. */
+  const [prepared, setPrepared] = useState<Set<number>>(new Set());
+  useEffect(() => setPrepared(readPreparedBehavioral()), []);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -95,6 +101,38 @@ export default function BehavioralPrepPanel() {
 
   return (
     <div className="space-y-5">
+      {/* ── Tiến độ của track behavioral ──
+          Track song song với technical, và có dải tiến độ riêng - nhưng đo một
+          thứ KHÁC. Bên technical là tỉ lệ đúng, ở đây không có đúng/sai để đo,
+          nên con số này là ĐỘ PHỦ: đã đi qua bao nhiêu câu trong bộ.
+          Chữ phải nói đúng chuyện đó. Gọi nó là "mức sẵn sàng behavioral 12%"
+          thì tiện hơn nhiều và sẽ là bịa: xem một khung trả lời không chứng
+          minh được là kể lại được câu chuyện của mình trong phòng phỏng vấn. */}
+      <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+          <p className="text-[11px] font-semibold text-stone-400 dark:text-stone-500">
+            {t.behavioralPrep.coverageLabel}
+          </p>
+          <p className="text-[11px] font-semibold tabular-nums text-stone-500 dark:text-stone-400">
+            {format(t.behavioralPrep.coverageCount, {
+              done: prepared.size,
+              total: questions.length,
+            })}
+          </p>
+        </div>
+        <div className="mt-2 h-1 overflow-hidden rounded-full bg-stone-100 dark:bg-stone-800">
+          <div
+            className="h-full rounded-full bg-stone-900 transition-all duration-500 dark:bg-stone-100"
+            style={{
+              width: `${questions.length > 0 ? Math.min(100, (prepared.size / questions.length) * 100) : 0}%`,
+            }}
+          />
+        </div>
+        <p className="mt-2 text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
+          {t.behavioralPrep.coverageCaveat}
+        </p>
+      </div>
+
       <div className="rounded-2xl border border-sky-200 dark:border-sky-900/60 bg-sky-50/60 dark:bg-sky-950/20 p-4 flex items-start gap-3">
         <MessageSquareQuote className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5" />
         <p className="text-xs font-semibold text-stone-600 dark:text-stone-300 leading-relaxed">
@@ -158,7 +196,14 @@ export default function BehavioralPrepPanel() {
             </div>
           ) : (
             <button
-              onClick={() => setRevealed(true)}
+              onClick={() => {
+                setRevealed(true);
+                // Ghi nhận ĐỘ PHỦ, không phải điểm. Xem
+                // lib/ib-behavioral-prepared.ts: phần behavioral vẫn không
+                // chấm, không XP; thứ duy nhất được đếm là "đã đi qua câu này
+                // chưa", và nó chỉ nằm trên máy.
+                setPrepared(markBehavioralPrepared(q.id));
+              }}
               className="w-full py-3.5 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-black uppercase tracking-wide cursor-pointer hover:opacity-90 transition-opacity"
             >
               {t.behavioralPrep.revealFramework}

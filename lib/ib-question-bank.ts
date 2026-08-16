@@ -11,6 +11,15 @@ export interface IbQuestion {
 }
 
 export interface IbCategoryCount {
+  /** Raw category string exactly as stored on the question.
+   *
+   *  This is the join key, and it has to be carried alongside `label` rather
+   *  than recovered from it: `user_ib_question_attempts.category` stores the
+   *  raw value, so anything matching measured performance against the bank
+   *  (lib/ib-progression.ts) needs the unstripped string. For most categories
+   *  the two are identical, which is exactly why leaving only `label` here was
+   *  a trap - it works until it meets one of the quoted ones. */
+  category: string;
   /** Cleaned for display - a handful of categories (e.g. "Career Changer")
    *  carry literal quote characters in the source data as emphasis; those
    *  read as a formatting glitch once rendered as a chip, so strip them. */
@@ -54,13 +63,15 @@ export function formatCategoryLabel(category: string): string {
  *  it - the technical drill and the behavioral prep surface each show their
  *  own sections rather than one combined list that no single mode serves. */
 export function getIbCategoryCounts(questions: IbQuestion[] = IB_QUESTION_BANK): IbCategoryCount[] {
+  // Gom theo chuỗi THÔ. Gom theo nhãn đã làm sạch sẽ nhập hai category khác
+  // nhau - một cái có dấu nháy, một cái không - thành một dòng, và dòng đó
+  // mang một `category` không khớp với category nào trong bảng attempts.
   const counts = new Map<string, number>();
   for (const q of questions) {
-    const label = formatCategoryLabel(q.category);
-    counts.set(label, (counts.get(label) ?? 0) + 1);
+    counts.set(q.category, (counts.get(q.category) ?? 0) + 1);
   }
   return Array.from(counts.entries())
-    .map(([label, count]) => ({ label, count }))
+    .map(([category, count]) => ({ category, label: formatCategoryLabel(category), count }))
     .sort((a, b) => b.count - a.count);
 }
 

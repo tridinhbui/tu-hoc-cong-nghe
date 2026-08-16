@@ -7,6 +7,7 @@ import { frmLessonIds, pickFrmWeighted, type FrmPart } from "@/lib/frm-exam";
 import { IB_TECHNICAL_QUESTIONS, formatCategoryLabel } from "@/lib/ib-question-bank";
 import { bankCoversCareer, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { localizeIbQuestion } from "@/lib/ib-questions-i18n";
+import { phaseFor, sortByPhase, type RoundPhase } from "@/lib/ib-progression";
 import { type Locale } from "@/lib/i18n/locales";
 import { getServerLocale } from "@/lib/i18n/server";
 import { signQuestionToken } from "@/lib/quiz-tokens";
@@ -20,6 +21,17 @@ export interface ChallengeQuestion {
   options: string[];
   correct: number;
   explanation: string;
+  /** Chặng của câu hỏi trong một vòng phỏng vấn: khởi động / lõi / áp lực.
+   *
+   *  Tính ở máy chủ chứ không ở trình duyệt, vì luật tính cần `difficulty` và
+   *  `category` thô của câu hỏi - `difficulty` chưa từng được gửi xuống, và
+   *  gửi thêm một trường chỉ để trình duyệt tính lại đúng phép tính này là
+   *  chép luật ra hai chỗ. Chỉ có ở track `ib` và `mock-interview`.
+   *
+   *  Không rò rỉ gì: `correct` vốn đã nằm trong phản hồi (token là thứ chống
+   *  giả mạo, không phải phần che đáp án), và tên category đã đi kèm trong
+   *  `lessonTitle` từ trước. */
+  phase?: RoundPhase;
   // Signed proof of `correct` for this specific delivered question -
   // submit it back (with the option the learner picked) to
   // /api/knowledge-challenge/submit so the server can grade the attempt
@@ -73,7 +85,12 @@ async function idsForTrack(track: PoolTrack, frmPart: FrmPart): Promise<Set<numb
   return new Set(ids);
 }
 
-type IbPoolQuestion = Omit<ChallengeQuestion, "lessonSlug" | "token"> & { category: string };
+type IbPoolQuestion = Omit<ChallengeQuestion, "lessonSlug" | "token" | "phase"> & {
+  category: string;
+  /** Mức khó thô của chính câu hỏi. Chỉ dùng trong route để tính `phase`;
+   *  không gửi xuống dưới dạng riêng - `phase` đã là câu trả lời. */
+  difficulty: string;
+};
 
 // Draws from IB_TECHNICAL_QUESTIONS, never the full bank: behavioral
 // questions ("Walk me through your resume", "Why banking?") have no single
@@ -120,6 +137,7 @@ function ibQuestionsForDifficulty(
       lessonId: -q.id,
       lessonTitle: `IB Question Bank · ${q.category}`,
       category: q.category,
+      difficulty: raw.difficulty,
       question: q.question,
       options: q.options,
       correct: q.correct,
@@ -220,7 +238,13 @@ export async function GET(request: NextRequest) {
       track === "mock-interview"
         ? pickAcrossCategories(pool, MOCK_INTERVIEW_QUESTION_COUNT)
         : shuffle(pool).slice(0, Math.min(QUESTION_COUNT, pool.length));
-    const questions = picked.map((q) => {
+    // Sắp theo chặng trước khi trả về, nên một lượt luôn đi khởi động → lõi →
+    // áp lực. Đây là thứ biến "vòng phỏng vấn" thành một mô tả đúng thay vì
+    // một cái nhãn: thứ tự câu hỏi thật sự tăng dần độ khó, chứ không phải
+    // chặng được gán theo vị trí của câu hỏi trong một danh sách ngẫu nhiên.
+    const questions = sortByPhase(
+      picked.map((q) => ({ ...q, phase: phaseFor(q.difficulty, q.category) }))
+    ).map((q) => {
       const order = shuffle(q.options.map((_, i) => i));
       const correct = order.indexOf(q.correct);
       return {

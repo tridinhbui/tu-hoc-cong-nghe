@@ -41,7 +41,7 @@ import { hasCompletedOnboarding, completeOnboarding } from "@/lib/supabase-onboa
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric, getCfaCompletedCount } from "@/lib/supabase-user";
 import { syncLocalLevelExams } from "@/lib/supabase-level-exams";
 import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/supabase-dashboard-optimized";
-import { getLevelByXp, getLevelProgress, LEVELS } from "@/lib/levels";
+import { getLevelByXp, getLevelProgress, LEVELS, XP_PER_LESSON } from "@/lib/levels";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import KnowledgeChallengeModal from "@/components/KnowledgeChallengeModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
@@ -1093,6 +1093,28 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
           {/* Level map is progress/gamification, so it stays on the overview
               route and is not repeated above the learning path. */}
+          {/* KHỐI TIẾN TRÌNH CHỦ ĐẠO, đứng trên bản đồ cấp độ.
+              Bản đồ trải đều mười lăm cấp cùng một cỡ, trong khi 95% người
+              dùng đang ở Level 1 (đo trên 1000 hồ sơ). Khối này phóng to đúng
+              hai cấp có nghĩa với người đang xem, viết ra khoảng cách XP ngay
+              trên đường đi, và gắn bài thi thăng cấp vào cấp kế thay vì để nó
+              nằm riêng ở cột phải. */}
+          {!isLessonsView && user?.id && (
+            <ProgressionHero
+              userXp={userXp}
+              cfaCompleted={cfaCompletedForLevel}
+              nextLesson={(() => {
+                const nl = sorted.find((l) => !completed.includes(l.id));
+                return nl ? { slug: nl.slug, title: nl.title, xp: XP_PER_LESSON } : null;
+              })()}
+              examUnlocked={getLevelProgress(userXp, cfaCompletedForLevel) >= 100}
+              onOpenExam={() => {
+                const cur = getLevelByXp(userXp, cfaCompletedForLevel).level;
+                setHeroExamLevel(cur + 1);
+              }}
+            />
+          )}
+
           {!isLessonsView && user?.id && (() => {
             const currentUserLevel = getLevelByXp(userXp, cfaCompletedForLevel).level;
             const levelProgress = getLevelProgress(userXp, cfaCompletedForLevel);
@@ -2648,6 +2670,15 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           userName={user?.user_metadata?.full_name || user?.email || t.dashboard.defaultUserName}
           userId={user.id}
           onClose={() => setSelectedCertStage(null)}
+        />
+      )}
+
+      {heroExamLevel !== null && user?.id && (
+        <RigorousLevelExamModal
+          levelToTest={heroExamLevel}
+          userId={user.id}
+          onClose={() => setHeroExamLevel(null)}
+          onExamPassed={() => setHeroExamLevel(null)}
         />
       )}
 
