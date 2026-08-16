@@ -1,5 +1,6 @@
 import { FINANCE_CAREERS, type FinanceCareer } from "@/lib/finance-careers";
 import type { CareerCoverage } from "@/lib/ib-question-careers";
+import { CAREER_CATEGORY_ORDER, type CareerCategory } from "@/lib/career-categories";
 
 /** Sắp xếp bộ chọn vị trí ở /phong-van-ky-thuat.
  *
@@ -19,24 +20,30 @@ import type { CareerCoverage } from "@/lib/ib-question-careers";
  *  Gom theo đúng năm nhóm nghề mà /nghe-nghiep-hoc đã dùng, từ cùng một nguồn
  *  `FINANCE_CAREERS`, nên hai màn hình không thể lệch nhau. */
 
-export type CareerCategory = FinanceCareer["category"];
+// `CareerCategory` từng được KHAI BÁO LẠI ở đây trong khi đầu tệp đã import
+// nó, và xung đột ấy làm đỏ `tsc` của cả kho.
+//
+// Hai định nghĩa giống hệt nhau (`FinanceCareer["category"]`) nên chỉ cần một
+// nguồn: lib/career-categories.ts. Nhưng KHÔNG xoá hẳn được. Phép grep đầu
+// tiên của tôi tìm `CareerCategory ... from "@/lib/ib-career-picker"` trên
+// MỘT dòng và báo không ai dùng, trong khi phong-van-ky-thuat/page.tsx import
+// nó qua một câu import nhiều dòng - xoá xong tsc đỏ ngay ở đúng chỗ đó.
+//
+// Nên tái xuất: một nguồn sự thật, mà bề mặt công khai của tệp không đổi.
+export type { CareerCategory };
 
-// CẢNH BÁO: đây là `readonly CareerCategory[]`, không phải Record - nên thiếu
-// một nhóm ngành ở đây KHÔNG gây lỗi biên dịch, nó chỉ lặng lẽ làm mọi nghề
-// thuộc nhóm ấy biến mất khỏi bộ chọn. Lượt tách 5 nhóm thành 7 đã rơi đúng
-// vào bẫy này: 11 nghề chuyển sang `dealmaking`/`risk` mất hút, tsc xanh, và
-// thứ bắt được là bài "trên dữ liệu THẬT, không nghề nào rơi ra ngoài" trong
-// lib/__tests__/ib-career-picker.test.ts. Thêm nhóm ngành mới thì thêm cả ở
-// đây, và chạy bộ kiểm đó.
-export const PICKER_CATEGORY_ORDER: readonly CareerCategory[] = [
-  "investment",
-  "dealmaking",
-  "accounting",
-  "risk",
-  "banking",
-  "advisory",
-  "data",
-];
+// Đọc THẲNG thứ tự nhóm ngành từ lib/career-categories.ts, không giữ bản chép.
+//
+// Chỗ này từng là một mảng khai tay, kèm đúng lời cảnh báo rằng nó là
+// `readonly CareerCategory[]` chứ không phải Record - nên thiếu một nhóm KHÔNG
+// gây lỗi biên dịch, chỉ lặng lẽ làm mọi nghề nhóm ấy biến mất khỏi bộ chọn.
+// Lượt tách 5 nhóm thành 7 đã rơi vào bẫy đó một lần (11 nghề mất hút), và lượt
+// thêm bảy nhóm này rơi vào đúng bẫy ấy lần thứ hai - cùng một bài kiểm bắt
+// được, cùng một cách sửa.
+//
+// Lần này sửa bằng cách bỏ bản chép đi. Bẫy chỉ tồn tại chừng nào còn hai danh
+// sách; một danh sách thì không có gì để lệch.
+export const PICKER_CATEGORY_ORDER: readonly CareerCategory[] = CAREER_CATEGORY_ORDER;
 
 export interface CoverageGroup<T extends CareerCoverage = CareerCoverage> {
   category: CareerCategory;
