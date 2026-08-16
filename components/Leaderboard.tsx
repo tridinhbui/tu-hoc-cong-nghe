@@ -342,6 +342,28 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
     };
   }, [metric, userId]);
 
+  /** Cần thêm bao nhiêu để lên một bậc, và bậc đó là bậc nào.
+   *
+   *  Đây là câu hỏi thứ ba của trang - "tôi phải làm gì để leo" - và trước đây
+   *  không chỗ nào trả lời: khối "hạng của bạn" chỉ in ra con số hạng rồi thôi.
+   *
+   *  Mốc chọn theo vị trí người dùng đang đứng. Nếu họ nằm TRONG danh sách đã
+   *  tải thì mốc là người ngay trên. Nếu họ ở ngoài, mốc là người CUỐI danh
+   *  sách - tức ngưỡng để lọt vào bảng - vì hạng ngay trên họ không có dữ liệu
+   *  và đoán ra sẽ là bịa.
+   *
+   *  Trả null khi đang dẫn đầu hoặc khi chưa đủ dữ liệu, thay vì hiện "+0": một
+   *  lời kêu gọi hành động bằng không là nhiễu. */
+  const climb = useMemo(() => {
+    if (!myRank || entries.length === 0) return null;
+    if (myRank.rank === 1) return { leading: true as const };
+    const above = myRank.rank <= entries.length ? entries[myRank.rank - 2] : entries[entries.length - 1];
+    if (!above) return null;
+    const gap = above.value - myRank.value;
+    if (gap <= 0) return null;
+    return { leading: false as const, gap, rank: myRank.rank <= entries.length ? myRank.rank - 1 : entries.length };
+  }, [myRank, entries]);
+
   const podiumEntries = useMemo(() => entries.slice(0, 5), [entries]);
   const remainingEntries = useMemo(() => entries.slice(5), [entries]);
 
@@ -752,6 +774,16 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
                     <p className="text-xs font-extrabold text-stone-700">{activeTab.format(myRank.value, t.leaderboard.units)}</p>
                   </div>
                 </div>
+                {/* Việc cần làm để leo, ngay dưới thứ hạng. Con số là hiệu số
+                    THẬT với người phía trên trong chính bảng đang xem, không
+                    phải một mục tiêu tròn trịa nghĩ ra cho đẹp. */}
+                {climb && (
+                  <p className="mt-2 border-t border-dashed border-stone-300 pt-2 text-xs font-bold text-stone-600">
+                    {climb.leading
+                      ? t.leaderboard.climbLeading
+                      : formatI18n(t.leaderboard.climbToRank, { gap: climb.gap, rank: climb.rank })}
+                  </p>
+                )}
               </div>
             )}
           </div>

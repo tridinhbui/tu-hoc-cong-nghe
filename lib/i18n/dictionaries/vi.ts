@@ -382,25 +382,18 @@ export const vi = {
     subtitle: "Thử thách tin tức vĩ mô hôm nay & tạo bài kiểm tra tự chọn",
     xpPerQuestion: "Thưởng +{xp} XP / câu đúng",
 
-    leftEyebrow: "Bên Trái • Tin tức tài chính hôm nay",
     newsTitle: "Thử thách bài kiểm tra tin tức hằng ngày",
     newsDone: "Đã hoàn thành (Menu sạch warning)",
     newsPending: "Chưa làm",
-    newsPendingNote: "(Menu có cảnh báo)",
     // Split around the inline <strong> holding the XP.
     newsBodyPart1: "Trả lời chính xác tình huống tin tức vĩ mô hôm nay để nhận ",
     newsXp: "+{xp} XP",
     newsBodyPart2: " và giải tỏa biểu tượng cảnh báo 🔴 trên Navbar.",
 
-    rightEyebrow: "Bên Phải • Tạo bài kiểm tra tự chọn",
     builderTitle: "Tùy chỉnh & bắt đầu kiểm tra",
     step1: "1. Chọn phần kiến thức",
-    selecting: "Đang chọn",
     step2: "2. Chọn độ khó",
     // Split around the inline <strong>.
-    rewardPart1: "Mỗi câu đúng thưởng ",
-    rewardXp: "+{xp} XP",
-    rewardPart2: " cộng ngay vào tài khoản!",
     start: "Bắt đầu kiểm tra ngay",
 
     // TRACKS: the ids stay in the component, the copy lives here.
@@ -418,7 +411,6 @@ export const vi = {
     diffMedium: "Trung bình",
     diffHard: "Khó",
 
-    ibEyebrow: "Investment banking interview drill",
     ibTitle: "Technical Interview",
     ibSub: "400 IB Questions · Accounting, Valuation, DCF, M&A, LBO, behavioral",
     ibOpen: "Mở →",
@@ -997,6 +989,78 @@ export const vi = {
     difficultyHint:
       "Gợi ý: dùng \"Trung bình\" cho mock analyst round, dùng \"Khó\" khi muốn luyện áp lực trước interview.",
 
+    /* ── Thang tiến bộ ──
+       Tên bậc, tên vòng và tên mức thành thạo. Chúng là NHÃN, còn ngưỡng và
+       luật mở khoá nằm ở lib/ib-progression.ts - đổi chữ ở đây không đổi được
+       ai lên hạng, và đó là chủ ý. */
+    rankLabel: "Cấp bậc",
+    rankNames: {
+      candidate: "Ứng viên",
+      intern: "Thực tập sinh",
+      analyst1: "Analyst I",
+      analyst2: "Analyst II",
+      analyst3: "Analyst III",
+      associate: "Associate",
+    },
+    rankToNext: "còn {points} điểm nữa lên {next}",
+    rankMaxed: "Đã ở bậc cao nhất",
+
+    objectiveLabel: "Mục tiêu kế tiếp:",
+    objectiveUnlockKho: "còn {count} section đạt mức Vững để mở Vòng áp lực.",
+    objectiveUnlockMock: "còn {count} section Kế toán + Định giá đạt mức Vững để mở Mock Analyst đầy đủ.",
+    objectiveNextRank: "còn {count} điểm thành thạo nữa để lên {next}.",
+    objectiveMaxed: "đã mở hết các vòng và đạt bậc cao nhất. Giữ tỉ lệ đúng ở mức thành thạo.",
+
+    masteryLoading: "đang đọc kết quả…",
+    masteryTiers: {
+      untested: "Chưa đo",
+      weak: "Yếu",
+      improving: "Đang lên",
+      strong: "Vững",
+      mastered: "Thành thạo",
+    },
+    /* Chưa làm câu nào thì in số câu của section, không in "0%" - xem chú
+       thích ở chỗ dựng trong app/(app)/phong-van-ky-thuat/page.tsx. */
+    masteryUntestedCount: "{total} câu",
+    masteryScore: "{accuracy}% · {correct}/{attempted}",
+    milestoneSectionHint: "Thuộc mốc mở khoá Mock Analyst đầy đủ",
+    nextUpBadge: "LÀM TIẾP",
+
+    modeNames: {
+      de: "Vòng sàng lọc",
+      "tat-ca": "Vòng hỗn hợp",
+      kho: "Vòng áp lực",
+      mock: "Mock Analyst đầy đủ",
+    },
+    modeBlurbs: {
+      de: "câu nền tảng",
+      "tat-ca": "trộn cả bộ đề",
+      kho: "câu khó, có tính giờ tâm lý",
+      mock: "10 câu rải đều section",
+    },
+    modeLockedShort: "khoá, còn {count} section",
+    modeLockedCta: "Vòng này chưa mở",
+    khoUnlockHint:
+      "Vòng áp lực mở khi bạn đạt mức Vững ở {required} section. Còn {count} section nữa.",
+    mockUnlockHint:
+      "Mock Analyst đầy đủ mở khi cả bốn section Kế toán và Định giá đạt mức Vững. Còn {count} section nữa.",
+
+    missionQuestions: "Số câu",
+    missionDuration: "Thời lượng",
+    missionReward: "XP tối đa",
+    missionMinutes: "~{minutes} phút",
+    drillRecommended: "Luyện riêng {section}",
+
+    roundProgress: "Câu {index}/{total} · đúng {correct}",
+    roundPhases: {
+      warmup: "Khởi động",
+      core: "Kỹ thuật lõi",
+      pressure: "Câu áp lực",
+    },
+    roundResult: "Kết quả",
+
+
+
     // DIFFICULTIES labels, keyed by the same ids the component uses.
     diffAll: "Tất cả",
     diffEasy: "Dễ",
@@ -1171,6 +1235,29 @@ export const vi = {
     cardWeekRhythm: "Nhịp 7 ngày",
     cardStudyTime: "Thời gian học",
     cardWeekTrend: "Xu hướng tuần",
+    // --- Bảng trạng thái người chơi (components/analytics/PlayerStatusPanel)
+    psEyebrow: "Trạng thái người chơi",
+    psStreak: "Chuỗi ngày",
+    psStreakUnit: "{count} ngày",
+    psStreakBest: "Kỷ lục {count}",
+    psAccuracy: "Độ chính xác quiz",
+    psAccuracyHint: "Trung bình mọi bài đã chấm",
+    psTime: "Thời gian học",
+    psTimeUnit: "{count} phút",
+    psTimeWeek: "{count} phút trong 7 ngày",
+    psMomentum: "Đà tuần này",
+    psMomentumHint: "{count} bài trong 7 ngày",
+    // Mục tiêu tuần lấy từ nhịp người dùng TỰ ĐẶT ở /lo-trinh, không phải một
+    // con số do trang này bịa ra - xem chú thích trong PlayerStatusPanel.
+    psWeekTitle: "Tuần này",
+    psWeekProgress: "{done}/{target} bài",
+    psWeekLeft: "còn {days} ngày",
+    psWeekLastDay: "hôm nay là ngày cuối",
+    psWeekDone: "Đã đạt mục tiêu tuần",
+    psWeekBehind: "Còn {count} bài để đạt nhịp bạn đặt",
+    psWeekNoTarget: "Chưa đặt nhịp học",
+    psWeekSetTarget: "Đặt nhịp ở Lộ trình →",
+    psObjective: "Việc cần làm",
 
     rhythmEyebrow: "Nhịp học 8 tuần gần đây",
     rhythmTitle: "Hoạt động của bạn theo tuần",
@@ -1515,9 +1602,6 @@ export const vi = {
     reactionsSuffix: "cảm xúc",
     commentsSuffix: "bình luận",
     authorReactions: "{name} · {count} cảm xúc",
-    searchPlaceholder: "Tìm bài viết, người đăng, chủ đề...",
-    refresh: "Làm mới",
-    feedEmpty: "Chưa có bài chia sẻ nào phù hợp bộ lọc này.",
     // Hai trạng thái rỗng KHÁC NHAU, và gộp chúng là chỗ đã làm người dùng
     // tưởng mất bài: `feedEmpty` nói "không khớp bộ lọc" - đúng khi có bộ lọc
     // hoặc từ khoá, nhưng khi đang xem tất cả mà không có bài nào thì câu đó
@@ -1668,6 +1752,7 @@ export const vi = {
     "bonds-rates": "Trái phiếu & lãi suất",
     "portfolio-retirement": "Danh mục & hưu trí",
     "housing-protection": "Nhà ở & bảo vệ tài sản",
+    "banking-deposits": "Ngân hàng & tiền gửi",
     "investing-psychology": "Tâm lý đầu tư",
     "accounting-reporting": "Kế toán & báo cáo tài chính",
     "valuation-corp-finance": "Định giá & tài chính doanh nghiệp",
@@ -2409,6 +2494,10 @@ export const vi = {
     quizQuestionCounter: "Câu hỏi {current}/{total}",
 
     salaryRange: "• Dải lương: {range}",
+    // Nhãn của bảng dữ kiện trong hồ sơ nghề - hàng "nhãn: giá trị", nên
+    // không dùng lại `salaryRange` vốn đã gói sẵn cả dấu chấm đầu dòng.
+    factEntryLevel: "Vị trí khởi điểm",
+    factSalary: "Dải lương",
     salaryDisclaimer:
       "* Mức lương chỉ mang tính ước tính tham khảo, thay đổi theo công ty, khu vực và kinh nghiệm thực tế - không phải số liệu khảo sát chính thức.",
 
@@ -2783,6 +2872,8 @@ export const vi = {
     rangeFull: "BẢNG VINH DANH #6 - #20",
 
     yourRank: "Hạng của bạn",
+    climbToRank: "+{gap} để vào Top {rank}",
+    climbLeading: "Bạn đang dẫn đầu bảng này",
     byMetricCompact: "Chỉ số {metric}",
     byMetricFull: "Theo chỉ số {metric}",
 
@@ -2937,6 +3028,13 @@ export const vi = {
   },
   // components/BehavioralPrepPanel.tsx - the unscored behavioural question drill.
   behavioralPrep: {
+    /* Độ phủ, không phải mức sẵn sàng - xem lib/ib-behavioral-prepared.ts.
+       Chữ ở đây là chỗ duy nhất người dùng biết được con số này đo cái gì và
+       nó sống ở đâu, nên nó nói thẳng cả hai. */
+    coverageLabel: "Đã chuẩn bị",
+    coverageCount: "{done}/{total} câu",
+    coverageCaveat:
+      "Đếm số câu bạn đã mở khung trả lời, lưu trên máy này. Đây là độ phủ bộ câu hỏi, không phải điểm - phần behavioral không chấm.",
     loading: "Đang tải câu hỏi behavioral...",
     loadError: "Không tải được bộ câu hỏi behavioral.",
     retry: "Thử lại",
@@ -3230,6 +3328,13 @@ export const vi = {
       banking: "Ngân hàng & Nguồn vốn",
       advisory: "Quản lý Tài sản & Tư vấn",
       data: "Dữ liệu & Công nghệ",
+      trading: "Giao dịch & Thị trường vốn",
+      treasury: "Treasury & Vốn lưu động",
+      insurance: "Bảo hiểm & Định phí",
+      tax: "Thuế",
+      esg: "ESG & Tài chính bền vững",
+      realestate: "Bất động sản & Hạ tầng",
+      fintech: "Fintech & Tài sản số",
     },
     // Một dòng nói nhóm ngành này làm gì, cho biển hiệu ngoài cửa.
     blurbs: {
@@ -3240,7 +3345,59 @@ export const vi = {
       advisory: "Quản lý tài sản, hoạch định tài chính cá nhân",
       accounting: "Ghi nhận, kiểm toán, kiểm soát nội bộ",
       data: "Mô hình, dữ liệu và công nghệ tài chính",
+      trading: "Mua bán trên thị trường, tạo lập giá, quản trị thanh khoản",
+      treasury: "Quản trị tiền mặt, vốn lưu động, cân đối tài sản - nợ",
+      insurance: "Định phí, thẩm định, quản lý danh mục bảo hiểm",
+      tax: "Thuế doanh nghiệp, thuế cá nhân, chuyển giá",
+      esg: "Phân tích ESG, báo cáo bền vững, rủi ro khí hậu",
+      realestate: "Tài chính dự án, định giá bất động sản, hạ tầng",
+      fintech: "Sản phẩm tài chính số, ngân hàng số, tài sản số",
     },
+  },
+
+
+  // lib/career-zones.ts + CareerLearningPathClient - bản đồ vùng nghề.
+  careerZones: {
+    pageTitle: "Bản đồ nghề nghiệp",
+    pageSubtitle: "Học kỹ năng nền → mở vùng nghề → chọn vai trò → hoàn thành lộ trình của vai trò đó.",
+
+    readinessLabel: "Độ sẵn sàng nghề nghiệp",
+    readinessZones: "{unlocked}/{total} vùng đã mở",
+    readinessRoles: "{ready}/{total} nghề hoàn tất",
+    readinessLessons: "{done}/{total} bài",
+
+    recommendedLabel: "Nên đi tiếp",
+    nextRoleLabel: "Vai trò gần đích nhất",
+    ctaContinue: "Tiếp tục lộ trình",
+    ctaExplore: "Khám phá nghề phù hợp tiếp theo",
+
+    tier1: "Nền tảng",
+    tier2: "Chuyên sâu",
+    tier3: "Chuyên gia",
+    tier4: "Chuyên biệt",
+    tier1Hint: "Mở sẵn - đọc được bộ sổ và hiểu dòng tiền trước đã",
+    tier2Hint: "Mở bằng một vùng nền",
+    tier3Hint: "Mở bằng một vùng chuyên sâu",
+    tier4Hint: "Mở bằng một vùng chuyên gia",
+
+    stateLocked: "Chưa mở",
+    stateOpen: "Sẵn sàng học",
+    stateInProgress: "Đang học",
+    stateProficient: "Thành thạo",
+    stateMastered: "Hoàn tất",
+
+    gateLine: "Mở khoá: {done}/{need} bài {zone}",
+    gateSoftNote: "Vùng chưa mở vẫn xem được - cổng nói thứ tự nên đi, không phải một cánh cửa khoá.",
+    roleCount: "{count} nghề",
+    lessonProgress: "{done}/{total} bài",
+    noLessonsYet: "Chưa có bài liên kết",
+
+    zoneRolesTitle: "Vai trò trong vùng này",
+    zoneBack: "Bản đồ nghề nghiệp",
+    roleNotStarted: "Chưa bắt đầu",
+    roleInProgress: "Đang học",
+    roleReady: "Đã xong lộ trình",
+
   },
 
 };
