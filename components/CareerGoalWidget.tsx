@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Briefcase, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getMyCareerGoal } from "@/lib/supabase-career-goals";
 import { getCareerLessonProgress, type CareerLessonProgress } from "@/lib/career-lesson-progress";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
@@ -75,39 +75,54 @@ export default function CareerGoalWidget({ userId, compact = false }: { userId?:
   const nextLesson = progress?.lessons.find((l) => !l.completed);
 
   return (
-    <div className={`bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 ${compact ? "rounded-2xl border p-2.5" : "rounded-xl border-2 p-4"}`}>
-      <div className={`flex items-center gap-2 ${compact ? "mb-1" : "mb-2"}`}>
-        <Briefcase className="w-4 h-4 text-indigo-500" />
-        <p className="text-[11px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
-          {t.careerGoalWidget.title}
+    // `compact` = KHÔNG VỎ. Khối chung do DashboardClient dựng; ở đây chỉ còn
+    // nội dung, nên hai thẻ cạnh nhau thôi là hai mặt phẳng cạnh nhau.
+    //
+    // Bỏ chàm/tím: thanh tiến độ từng tô gradient indigo→violet và cả ba liên
+    // kết đều màu indigo, trong khi ngay bên cạnh là một thẻ cam và một banner
+    // xanh lá. Ba họ màu ở cùng trọng lượng thì không màu nào còn nghĩa. Tiến
+    // độ giờ dùng xanh lá - màu DUY NHẤT của tiến độ trong sản phẩm này.
+    <div className={compact ? "" : "rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900"}>
+      <p className="eyebrow text-stone-400 dark:text-stone-500">
+        {t.careerGoalWidget.title}
+      </p>
+      {/* Tên nghề và phần trăm trên CÙNG một hàng: hai con số của cùng một
+          mục tiêu, không cần hai dòng và một khoảng cách 12px giữa chúng. */}
+      <div className="mt-0.5 flex items-baseline justify-between gap-3">
+        <p className="min-w-0 truncate text-[15px] font-semibold text-stone-900 dark:text-stone-100">
+          {mergeCareer(career, locale).title}
         </p>
+        <span className="shrink-0 text-xs tabular-nums text-stone-500 dark:text-stone-400">{percent}%</span>
       </div>
-      <p className="text-sm font-bold text-stone-900 dark:text-stone-100">{mergeCareer(career, locale).title}</p>
-      <div className={`flex items-center justify-between text-xs font-semibold text-stone-500 dark:text-stone-400 ${compact ? "mt-1 mb-1" : "mt-2 mb-1.5"}`}>
-        <span>{format(t.careerGoalWidget.progress, { completed, total })}</span>
-        <span>{percent}%</span>
-      </div>
-      <div className={`h-1.5 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden ${compact ? "mb-2" : "mb-3"}`}>
+
+      <p className="mt-1.5 text-xs text-stone-500 dark:text-stone-400">
+        {format(t.careerGoalWidget.progress, { completed, total })}
+      </p>
+      <div className="mt-1 h-1 overflow-hidden rounded-full bg-stone-200 dark:bg-stone-800">
         <div
-          className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 transition-all duration-500"
+          className="h-full rounded-full bg-emerald-600 transition-all duration-500 dark:bg-emerald-500"
           style={{ width: `${percent}%` }}
         />
       </div>
+
+      {/* CTA CHÍNH và duy nhất của cả khối. Trước đây nó là một liên kết chữ
+          màu chàm, cùng trọng lượng với "Mở góc yên tĩnh" ở thẻ bên cạnh - hai
+          lời mời ngang nhau, không cái nào là việc tiếp theo. */}
       {nextLesson ? (
         <Link
           href={`/bai-hoc/${nextLesson.slug}`}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+          className="mt-2.5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-emerald-700"
         >
           {format(t.careerGoalWidget.continue, { title: nextLesson.title })}
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="h-3.5 w-3.5 shrink-0" />
         </Link>
       ) : (
         <Link
           href="/su-nghiep"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+          className="mt-2.5 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-stone-300 px-4 py-2 text-[13px] font-semibold text-stone-700 transition-colors hover:border-stone-400 dark:border-stone-700 dark:text-stone-300"
         >
           {t.careerGoalWidget.allDone}
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="h-3.5 w-3.5 shrink-0" />
         </Link>
       )}
     </div>

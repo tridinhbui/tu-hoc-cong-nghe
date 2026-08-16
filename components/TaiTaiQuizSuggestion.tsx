@@ -96,13 +96,16 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
   }
 
   return (
-    <section className="rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/40 dark:bg-emerald-950/20 p-4 sm:p-5 shadow-sm">
-      <div className="flex items-start gap-3">
-        <TaiTaiAvatar size={44} />
+    // Gợi ý, không phải mệnh lệnh. Trước đây đây là một khối nền xanh có viền
+    // xanh và đổ bóng, đặt ngay đầu cột thiết lập - tức thứ NỔI NHẤT trên cột
+    // lại là một đề xuất tự động, đứng trên chính hai bước mà người dùng vào
+    // đây để làm. Giờ nó là một khối chữ trên nền trang, ngăn bằng nét kẻ dưới,
+    // và avatar hạ từ 44px xuống 28px.
+    <section className="pb-4 border-b border-stone-200/80 dark:border-stone-800">
+      <div className="flex items-start gap-2.5">
+        <TaiTaiAvatar size={28} />
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1.5">
-            <p className="text-sm font-extrabold text-stone-900 dark:text-stone-100">{t.quizSuggestion.suggestionLabel}</p>
-          </div>
+          <p className="eyebrow text-stone-400 dark:text-stone-500">{t.quizSuggestion.suggestionLabel}</p>
           <p className="mt-1.5 text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
             {t.quizSuggestion.messagePart1} <span className="font-bold text-stone-900 dark:text-stone-100">{t.quizSuggestion.quoteOpen}{suggestion.lessonTitle}{t.quizSuggestion.quoteClose}</span> {t.quizSuggestion.messagePart2}{" "}
             <span className="font-bold text-emerald-700 dark:text-emerald-400">{TRACK_LABEL[suggestion.track]}</span>
@@ -112,13 +115,13 @@ export default function TaiTaiQuizSuggestion({ userId, onSelect }: TaiTaiQuizSug
           <div className="mt-3 flex items-center gap-2">
             <button
               onClick={() => onSelect(suggestion.track, suggestion.difficulty)}
-              className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold uppercase tracking-wide cursor-pointer transition-colors"
+              className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 underline underline-offset-4 decoration-emerald-300 hover:decoration-emerald-500 cursor-pointer transition-colors dark:text-emerald-400 dark:hover:text-emerald-300"
             >
               {t.quizSuggestion.ctaButton}
             </button>
             <button
               onClick={() => void loadSuggestion()}
-              className="p-2 rounded-xl text-stone-500 dark:text-stone-400 hover:bg-white dark:hover:bg-stone-900 hover:text-stone-700 dark:hover:text-stone-200 transition-colors cursor-pointer"
+              className="p-1.5 rounded-md text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors cursor-pointer"
               aria-label={t.quizSuggestion.refreshAria}
               title={t.quizSuggestion.refreshAria}
             >

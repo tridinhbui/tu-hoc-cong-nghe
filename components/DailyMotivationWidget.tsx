@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Flame } from "lucide-react";
 import {
   getUserStreak,
   hasActivityToday as checkActivityToday,
@@ -75,7 +73,10 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
 
   if (!motivation) return null;
 
-  const { message, tone, warmth } = motivation;
+  // `warmth` không còn được đọc: nó chỉ dùng để pha độ đậm của lớp phủ cam và
+  // quầng sáng, cả hai đã bỏ. Giữ nguyên phép tính ở lib vì nó cũng quyết định
+  // `tone`, thứ vẫn đang chọn câu chữ.
+  const { message, tone } = motivation;
   // Đọc đồng hồ ở đây an toàn: khối này chỉ render sau khi fetch xong ở client
   // nên không có bản HTML từ server để lệch.
   // `getLateNightNote` chỉ còn được hỏi CÓ hay KHÔNG - chữ thì lấy từ từ điển.
@@ -86,63 +87,39 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
 
   return (
     <div
-      className={`relative overflow-hidden bg-white shadow-sm dark:bg-stone-900 ${compact ? "rounded-2xl border p-2.5" : "rounded-[24px] border-2 p-5"}`}
-      style={{ borderColor: `rgba(249, 115, 22, ${0.2 + warmth * 0.5})` }}
+      // `compact` giờ là KHÔNG VỎ: thẻ này nằm bên trong một khối chung do
+      // DashboardClient dựng, nên nó không tự dựng mặt phẳng nữa.
+      //
+      // Cả lớp trang trí cam đã đi: một lớp phủ chuyển sắc theo `warmth`, một
+      // quầng `blur-3xl` đập theo nhịp 4,5 giây, một ô biểu tượng bo góc tô
+      // gradient hổ phách→cam có đổ bóng và tự phóng to thu nhỏ, cộng viền màu
+      // cam đậm dần. Sáu thứ trang trí cho MỘT câu động viên - và chúng đứng
+      // ngay cạnh mục tiêu nghề nghiệp, thứ thật sự nói người học đang đi tới
+      // đâu. Câu động viên là lời phụ, nên giờ nó trông như lời phụ.
+      className={compact ? "" : "relative overflow-hidden rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900"}
     >
-      {/* Lớp ấm phủ trên nền theo warmth - để riêng thay vì đặt thẳng vào
-          `background` của card, nhờ vậy nền gốc vẫn đổi theo light/dark và chữ
-          luôn đủ tương phản ở cả hai chế độ. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: `linear-gradient(135deg, rgba(251, 146, 60, ${0.1 + warmth * 0.22}), rgba(249, 115, 22, ${0.04 + warmth * 0.12}))`,
-        }}
-      />
-
-      {/* Quầng sáng của ngọn lửa - chỉ đủ thấy, không cản chữ */}
-      <motion.div
-        aria-hidden
-        className={`pointer-events-none absolute -left-10 -top-12 rounded-full blur-3xl ${compact ? "h-24 w-24" : "h-40 w-40"}`}
-        style={{ background: `rgba(251, 146, 60, ${0.25 + warmth * 0.45})` }}
-        animate={{ opacity: [0.65, 1, 0.65], scale: [1, 1.08, 1] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Phần chữ là link sang trang riêng; nút chia sẻ nằm ngoài link, vì một
-          <button> lồng trong <a> là HTML không hợp lệ và bàn phím sẽ lạc. */}
-      <Link href="/loi-nhan" className={`relative flex items-start group ${compact ? "gap-3" : "gap-3.5"}`}>
-        <motion.div
-          className={`mt-0.5 flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 shadow-md ${compact ? "h-7 w-7" : "h-10 w-10"}`}
-          animate={{ scale: [1, 1.06, 1] }}
-          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Flame className={compact ? "h-4 w-4 text-white" : "h-5 w-5 text-white"} />
-        </motion.div>
-
-        <div className="min-w-0">
-          {lateNight && (
-            <p className="mb-1.5 text-[11px] font-semibold leading-relaxed text-stone-500 dark:text-stone-400">
-              {lateNight}
-            </p>
-          )}
-          <p className={`font-bold uppercase tracking-wide text-orange-700 dark:text-orange-300 ${compact ? "text-[9px]" : "text-[10px]"}`}>
-            {t.motivationToneLabel[tone] ?? MOTIVATION_TONE_LABEL[tone]}
+      <Link href="/loi-nhan" className="group block">
+        {lateNight && (
+          <p className="mb-1 text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
+            {lateNight}
           </p>
-          <p className={`font-semibold leading-relaxed text-stone-800 dark:text-stone-100 ${compact ? "mt-1 text-[11px]" : "mt-1.5 text-sm"}`}>
-            {line}
-          </p>
-          <p className={`font-bold text-orange-600 dark:text-orange-400 group-hover:underline ${compact ? "mt-1 text-[10px]" : "mt-2 text-[11px]"}`}>
-            {t.miscUi.dailyMotivationWidget.openQuietCorner}
-          </p>
-        </div>
+        )}
+        <p className="eyebrow text-stone-400 dark:text-stone-500">
+          {t.motivationToneLabel[tone] ?? MOTIVATION_TONE_LABEL[tone]}
+        </p>
+        <p className="mt-1 text-[13px] leading-relaxed text-stone-600 dark:text-stone-400">
+          {line}
+        </p>
+        <p className="mt-1.5 text-xs text-stone-500 underline decoration-stone-300 underline-offset-4 transition-colors group-hover:text-stone-800 dark:text-stone-400 dark:decoration-stone-600 dark:group-hover:text-stone-200">
+          {t.miscUi.dailyMotivationWidget.openQuietCorner}
+        </p>
       </Link>
 
-      {/* Nút chia sẻ chỉ có ở bản đầy đủ. Nó là hành động phụ - lời nhắn mới là
-          nội dung - và ở bản gọn nó chiếm nguyên một hàng dưới cùng thẻ. Ẩn chứ
-          không bỏ: đổi sang "Đầy đủ" là nó quay lại nguyên vẹn. */}
       {!compact && (
-        <div className="relative mt-3 pl-[54px]">
+        // `pl-[54px]` đã bỏ: nó canh với ô biểu tượng ngọn lửa 40px cộng
+        // khoảng cách 14px, mà ô đó không còn. Giữ lại thì nút chia sẻ thụt vào
+        // 54px so với chữ ngay trên nó, canh theo một thứ vô hình.
+        <div className="relative mt-3">
           <MotivationShareCard text={line} />
         </div>
       )}

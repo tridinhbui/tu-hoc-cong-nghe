@@ -305,29 +305,31 @@ export default function UserStats({
       )}
 
       {/* Modern Stats Grid */}
-      <div className={`grid gap-1.5 relative z-10 ${sidebar ? "mb-2.5" : "mb-4"}`}>
-        <div className={`grid ${sidebar ? "grid-cols-1" : "grid-cols-2"} gap-2 rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white/90 dark:bg-stone-900/85 ${
-          sidebar ? "p-1.5" : "p-3"
-        }`}>
-          <div className="min-w-0 rounded-xl bg-sky-50/50 dark:bg-sky-950/15 border border-sky-100/70 dark:border-sky-900/30 px-2.5 py-1.5">
-            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">{t.userStats.lessons}</span>
-            <div className="flex items-center gap-1 mt-1 truncate">
-              <BookOpen className="w-3.5 h-3.5 text-sky-500 dark:text-sky-400 shrink-0" />
-              <span className={`font-black text-stone-950 dark:text-stone-50 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{lessonsCompleted}</span>
-              <span className="text-[9px] font-bold text-stone-400 dark:text-stone-500">/ {totalLessons}</span>
-            </div>
-          </div>
+      {/* HAI HÀNG SỐ LIỆU, MỘT KHUNG.
+          Trước đây mỗi con số là một thẻ bo 12px nền màu riêng (xanh dương cho
+          bài học, bạc hà cho quiz), nằm trong một thẻ bo 16px có viền, nằm
+          trong một lưới - ba lớp khung cho hai dòng chữ, và hai mảng màu chỉ
+          để phân biệt hai thứ mà nhãn đã nói rõ. Nhãn và giá trị giờ nằm cùng
+          hàng, ngăn nhau bằng một nét kẻ. */}
+      <div className={`relative z-10 rounded-lg border border-stone-200 dark:border-stone-800 ${sidebar ? "mb-2.5 px-2.5" : "mb-4 px-3"}`}>
+        <div className="flex items-center justify-between gap-2 border-b border-stone-200/80 py-1.5 dark:border-stone-800/80">
+          <span className="flex items-center gap-1.5 text-[11px] text-stone-500 dark:text-stone-400">
+            <BookOpen className="w-3.5 h-3.5 shrink-0 text-stone-400 dark:text-stone-500" />
+            {t.userStats.lessons}
+          </span>
+          <span className="shrink-0 text-[13px] tabular-nums text-stone-900 dark:text-stone-100">
+            <span className="font-semibold">{lessonsCompleted}</span>
+            <span className="text-stone-400 dark:text-stone-500"> / {totalLessons}</span>
+          </span>
         </div>
-        <div className={`grid grid-cols-1 gap-2 rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-white/90 dark:bg-stone-900/85 ${
-          sidebar ? "p-1.5" : "p-3"
-        }`}>
-          <div className="min-w-0 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/15 border border-emerald-100/70 dark:border-emerald-900/30 px-2.5 py-1.5">
-            <span className="text-[8px] sm:text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-wider block">{t.userStats.quizAvg}</span>
-            <div className="flex items-center gap-1 mt-1">
-              <Target className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 shrink-0" />
-              <span className={`font-black text-emerald-600 dark:text-emerald-400 ${sidebar ? "text-xs" : "text-sm sm:text-base"}`}>{Math.round(avgQuizScore)}%</span>
-            </div>
-          </div>
+        <div className="flex items-center justify-between gap-2 py-1.5">
+          <span className="flex items-center gap-1.5 text-[11px] text-stone-500 dark:text-stone-400">
+            <Target className="w-3.5 h-3.5 shrink-0 text-stone-400 dark:text-stone-500" />
+            {t.userStats.quizAvg}
+          </span>
+          <span className="shrink-0 text-[13px] font-semibold tabular-nums text-stone-900 dark:text-stone-100">
+            {Math.round(avgQuizScore)}%
+          </span>
         </div>
       </div>
 
@@ -394,13 +396,14 @@ export default function UserStats({
               )}
             </span>
           </div>
-          <div className="w-full h-2 bg-stone-100 dark:bg-stone-800/70 rounded-full overflow-hidden relative shadow-inner">
+          {/* Một thanh 4px màu đặc. Bản cũ cao 8px, tô gradient ba chặng, đổ
+              bóng phát sáng và có một lớp trắng nhấp nháy vô hạn chồng lên -
+              chuyển động liên tục cho một con số không đổi. */}
+          <div className="w-full h-1 bg-stone-200 dark:bg-stone-800 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 rounded-full transition-all duration-500 relative shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+              className="h-full bg-emerald-600 dark:bg-emerald-500 rounded-full transition-all duration-500"
               style={{ width: `${progress}%` }}
-            >
-              <div className="absolute inset-0 bg-white/20 animate-[pulse_1.5s_infinite]" />
-            </div>
+            />
           </div>
 
           {!sidebar && (
@@ -444,27 +447,32 @@ export default function UserStats({
 
       {/* Level Exam Gatekeeper Banner */}
       {nextLevel && (
-        <div className="mt-3 relative z-10 pt-2 border-t border-stone-100 dark:border-stone-800">
+        <div className="mt-2.5 relative z-10 pt-2 border-t border-stone-100 dark:border-stone-800">
           <button
             onClick={() => {
               setSelectedExamLevel(nextLevel.level);
               setShowExamModal(true);
             }}
-            className={`w-full flex items-center justify-between rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black text-xs transition-all shadow-md hover:scale-[1.01] cursor-pointer ${compact ? "p-2" : "p-3"}`}
+            // Hành động PHỤ, nên trông như hành động phụ. Trước đây nó là một
+            // banner tô kín gradient xanh lá→ngọc→xanh lá, có đổ bóng, phóng to
+            // khi rê chuột, một emoji khiên, chữ `font-black` đổ bóng, và một
+            // viên thuốc nền đen chữ xanh làm nút. Nó là thứ đậm nhất trong cả
+            // cột - đậm hơn cả tiến độ học - cho một bài thi mà người học chỉ
+            // vào khi đã sẵn sàng.
+            //
+            // Giữ nguyên hành vi và cả dòng điều kiện điểm; chỉ hạ trọng lượng.
+            className={`w-full flex items-center justify-between gap-3 rounded-lg border border-stone-200 text-left transition-colors hover:border-stone-400 cursor-pointer dark:border-stone-800 dark:hover:border-stone-600 ${compact ? "p-2" : "p-3"}`}
           >
-            <div className="flex items-center gap-2 text-left">
-              <span className={compact ? "text-base" : "text-lg"}>🛡️</span>
-              <div>
-                <p className="leading-tight text-white drop-shadow-sm font-extrabold text-[11px]">{format(t.userStats.examBannerTitle, { level: nextLevel.level })}</p>
-                {/* Dòng điều kiện điểm chỉ có ở bản đầy đủ. Ở bản gọn nó đẩy
-                    banner cao gấp đôi để nói một thứ modal thi cũng nói lại
-                    ngay khi mở. */}
-                {!compact && (
-                  <p className="text-[10px] text-emerald-100 font-bold">{format(t.userStats.examBannerHint, { percent: LEVEL_EXAMS[nextLevel.level]?.minPassPercentage || 80 })}</p>
-                )}
-              </div>
+            <div>
+              <p className="text-[11px] font-medium leading-tight text-stone-700 dark:text-stone-300">{format(t.userStats.examBannerTitle, { level: nextLevel.level })}</p>
+              {/* Dòng điều kiện điểm chỉ có ở bản đầy đủ. Ở bản gọn nó đẩy
+                  banner cao gấp đôi để nói một thứ modal thi cũng nói lại
+                  ngay khi mở. */}
+              {!compact && (
+                <p className="mt-0.5 text-[10px] text-stone-500 dark:text-stone-400">{format(t.userStats.examBannerHint, { percent: LEVEL_EXAMS[nextLevel.level]?.minPassPercentage || 80 })}</p>
+              )}
             </div>
-            <span className={`rounded-xl bg-stone-950 text-emerald-400 text-[10px] font-black tracking-wide shrink-0 ${compact ? "px-2 py-0.5" : "px-3 py-1"}`}>
+            <span className="shrink-0 text-[10px] font-semibold text-stone-500 dark:text-stone-400">
               {t.userStats.examBannerCta}
             </span>
           </button>

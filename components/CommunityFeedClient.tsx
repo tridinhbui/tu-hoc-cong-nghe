@@ -10,15 +10,12 @@ import {
   ArrowLeft,
   Award,
   BarChart3,
-  Bookmark,
   Flame,
   HelpCircle,
   Image as ImageIcon,
   Lightbulb,
   MessageCircle,
   Newspaper,
-  RefreshCw,
-  Search,
   Send,
   ShieldCheck,
   SmilePlus,
@@ -57,14 +54,13 @@ import {
   type CommunityPostComment,
 } from "@/lib/supabase-community";
 import { isValidAvatar } from "@/lib/avatar-utils";
-import { animateCountTo } from "@/lib/animate-count";
 import { getCurrentUser, metadataString } from "@/lib/current-user";
 import { timeAgo } from "@/lib/time-ago";
 import FollowButton from "@/components/FollowButton";
 import { useLocalStorageValue, writeLocalStorageValue } from "@/lib/use-local-storage-value";
 import FeedLeaderboardCard from "@/components/FeedLeaderboardCard";
 import { useI18n } from "@/lib/i18n/context";
-import { format, intlLocale, type Dictionary } from "@/lib/i18n";
+import { format, type Dictionary } from "@/lib/i18n";
 import { isSystemPost, visibleFeedPosts } from "@/lib/community-feed-visibility";
 
 /** Kênh báo khi một lá phiếu vừa được lưu, trong cùng tab. */
@@ -73,24 +69,6 @@ const VOTE_CHANGED_EVENT = "thtcdn:community-vote";
 interface SessionUser {
   id: string;
   user_metadata?: { full_name?: string; avatar_url?: string };
-}
-
-function AnimatedCounter({ value, className = "" }: { value: number; className?: string }) {
-  // Thousands separators differ by locale ("1.234" vs "1,234"), so this follows
-  // the reader's language rather than hard-coding vi-VN.
-  const { locale } = useI18n();
-  const [displayValue, setDisplayValue] = useState(0);
-  const cancelledRef = useRef(false);
-
-  useEffect(() => {
-    cancelledRef.current = false;
-    animateCountTo(value, setDisplayValue, cancelledRef);
-    return () => {
-      cancelledRef.current = true;
-    };
-  }, [value]);
-
-  return <span className={`tabular-nums ${className}`}>{displayValue.toLocaleString(intlLocale(locale))}</span>;
 }
 
 function FeedSkeleton() {
@@ -296,12 +274,19 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
   const bearishPct = 100 - bullishPct;
 
   return (
-    <div className="mb-6 overflow-hidden rounded-[24px] bg-gradient-to-br from-stone-900 via-stone-950 to-emerald-950 p-4 sm:p-5 text-white shadow-xl border border-stone-800 font-sans">
+    // BÀI GHIM, KHÔNG PHẢI SHOWCASE.
+    // Khối này từng là thứ đầu tiên trên trang: một tấm bo 24px, nền chuyển sắc
+    // ba màu từ stone-900 qua stone-950 tới emerald-950, đứng TRÊN cả ô soạn
+    // bài. Nó là một cuộc bình chọn của cộng đồng - tức là một bài viết - nhưng
+    // được trình bày như một mô-đun sản phẩm, nên nó chiếm chỗ của bài mới nhất
+    // và đọc như quảng cáo tính năng.
+    // Giờ nó nằm TRONG dòng, ngay dưới ô soạn bài, mang đúng nhịp đệm và nét kẻ
+    // của một bài. Nền tối giữ lại rất nhẹ để nó vẫn là bài được ghim - khác
+    // biệt bằng một bậc sắc độ, không bằng một cái khung.
+    <div className="-mx-3 border-b border-stone-200/70 bg-stone-950 px-3 py-5 text-white sm:-mx-4 sm:px-4 dark:border-stone-800/70">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">
         <div className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-lg shadow-sm">
-            📊
-          </span>
+
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40">
@@ -344,7 +329,7 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
           }`}
         >
           <div className="flex items-center gap-2">
-            <span className="text-xl">🐂</span>
+
             <div className="text-left">
               <p className="font-black text-xs sm:text-sm text-stone-100">{t.feed.bullishTitle}</p>
               <p className="text-[10px] text-stone-400">{t.feed.bullishSub}</p>
@@ -363,7 +348,7 @@ function MarketSentimentWidget({ onShareSentiment }: { onShareSentiment?: (text:
           }`}
         >
           <div className="flex items-center gap-2">
-            <span className="text-xl">🐻</span>
+
             <div className="text-left">
               <p className="font-black text-xs sm:text-sm text-stone-100">{t.feed.bearishTitle}</p>
               <p className="text-[10px] text-stone-400">{t.feed.bearishSub}</p>
@@ -477,7 +462,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   const [content, setContent] = useState("");
   const [pendingImage, setPendingImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
   const [posting, setPosting] = useState(false);
   const [openComments, setOpenComments] = useState<Record<number, boolean>>({});
   // Inline post editing. Only one post is editable at a time - opening a
@@ -886,9 +870,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     if (!posts.some((p) => p.id === postId)) return;
     handledDeepLinkRef.current = postId;
 
-    // Clear anything that might be hiding the target post from the list.
-    // Bộ lọc chủ đề đã bỏ, nên chỉ còn ô tìm kiếm có thể đang giấu bài này.
-    setSearchQuery("");
+    // Không còn gì phải xoá để bài này hiện ra: bộ lọc chủ đề đã bỏ từ trước,
+    // và ô tìm kiếm - thứ cuối cùng có thể đang giấu bài - cũng vừa bỏ. Dòng
+    // `setSearchQuery("")` từng đứng đây đi theo nó.
     setOpenComments((prev) => ({ ...prev, [postId]: true }));
 
     void (async () => {
@@ -912,8 +896,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   // lib/community-feed-visibility.ts cùng bộ test của nó - màn hình này tự lấy
   // dữ liệu từ Supabase sau tường đăng nhập, nên đó là chỗ duy nhất kiểm được
   // nó mà không cần một phiên đăng nhập thật và vài chục bài dựng sẵn.
-  const searchTerm = searchQuery.trim().toLowerCase();
-  const visiblePosts = visibleFeedPosts(posts, searchQuery);
+  // Vẫn gọi visibleFeedPosts: ngoài tìm kiếm nó còn lọc bài hệ thống ra khỏi
+  // dòng (xem isSystemPost). Bỏ ô tìm kiếm chỉ làm tham số thứ hai luôn rỗng.
+  const visiblePosts = visibleFeedPosts(posts, "");
   // Mọi con số và mọi bảng xếp hạng đọc từ đây, không đọc từ `posts`. Bài chuỗi
   // ngày do hệ thống tự đăng chiếm gần hết số bài mới nhất, nên để chúng trong
   // mẫu thì "sôi nổi nhất" và "tổng lượt thả cảm xúc" đang đo hoạt động của máy
@@ -927,22 +912,6 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   // và đó là chỗ làm người dùng tưởng mất bài: "không khớp bộ lọc" đúng khi có
   // bộ lọc, nhưng khi đang xem tất cả mà chưa có bài nào thì nó đọc như một lời
   // thông báo mất dữ liệu.
-  const emptyBecauseNoPosts = !searchTerm;
-  const totalReactions = humanPosts.reduce((sum, post) => sum + post.reaction_count, 0);
-  const totalComments = humanPosts.reduce((sum, post) => sum + post.comment_count, 0);
-  // Bài chuỗi ngày của HÔM NAY, cho bảng bên phải. Chúng đã ra khỏi dòng chính
-  // nhưng không biến mất - đây là chỗ chúng thuộc về: một bảng đếm được, đọc
-  // lướt qua, không chen vào giữa những bài người thật viết.
-  //
-  // Mốc "hôm nay" theo giờ máy người đọc chứ không theo UTC: người học ở Việt
-  // Nam mở lúc 7 giờ sáng phải thấy chuỗi của sáng nay, không phải một danh
-  // sách đã đổi ngày từ 7 giờ tối hôm trước.
-  const startOfToday = new Date();
-  startOfToday.setHours(0, 0, 0, 0);
-  const todayStreakPosts = posts.filter(
-    (post) => isSystemPost(post) && new Date(post.created_at) >= startOfToday
-  );
-
   const hotPosts = [...humanPosts]
     .sort((a, b) => b.reaction_count + b.comment_count * 2 - (a.reaction_count + a.comment_count * 2))
     .slice(0, 3);
@@ -995,103 +964,55 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             />
           </div>
 
-          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-9 sm:py-12">
-            {/* Liên kết chữ, không phải viên thuốc. Một đường quay lại không
-                cần nền mờ, viền và bo tròn để người ta hiểu nó bấm được. */}
+          {/* ĐẦU TRANG, KHÔNG PHẢI HERO.
+              Khối này từng cao 9-12rem đệm dọc và chở một `<dl>` ba con số cỡ
+              4xl: bài viết / cảm xúc / bình luận. Trên một trang mà thứ người
+              ta vào để xem là DÒNG BÀI, ba con số ấy đứng trên cùng và to gấp
+              đôi mọi tiêu đề bài viết bên dưới.
+
+              Ba con số đã bỏ hẳn, không thu nhỏ. Chúng đo hoạt động của cả
+              trang, mà người mở feed không hỏi "cộng đồng có bao nhiêu bình
+              luận" - họ hỏi "có gì mới". Con số tổng là chỉ số cho người vận
+              hành sản phẩm, không phải cho người đọc.
+
+              Còn lại đúng ba dòng: đường quay lại, tên trang, một câu nói trang
+              này là gì. Đệm dọc còn một nửa, nên bài đầu tiên lọt vào màn hình
+              đầu thay vì nằm dưới nếp gấp. */}
+          <div className="relative z-10 mx-auto max-w-6xl px-4 py-5 sm:px-6 sm:py-6">
             <Link
               href="/dashboard"
-              className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-stone-400 transition-colors hover:text-white"
+              className="inline-flex w-fit items-center gap-1.5 text-[13px] font-semibold text-stone-400 transition-colors hover:text-white"
             >
-              <ArrowLeft className="w-4 h-4" /> {t.feed.backToDashboard}
+              <ArrowLeft className="h-3.5 w-3.5" /> {t.feed.backToDashboard}
             </Link>
 
-            <div className="mt-7 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-2xl">
-                {/* Nhãn mắt dùng lớp `.eyebrow` chung: chữ và màu, không hộp.
-                    Xanh lá ở đây là trạng thái "đang hoạt động", đúng vai trò
-                    duy nhất nó được giữ trong hệ. */}
-                <p className="eyebrow flex items-center gap-2 text-emerald-400">
-                  <MessageCircle className="h-3.5 w-3.5" />
-                  {t.feed.eyebrow}
-                </p>
-                <h1 className="mt-3 text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] tracking-tight text-white">
-                  {t.feed.title}
-                </h1>
-                <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-stone-300">
-                  {t.feed.subtitle}
-                </p>
-              </div>
-
-              {/* Ba con số đọc thành MỘT hàng chỉ số, ngăn nhau bằng nét kẻ
-                  mảnh thay vì ba tấm thẻ. Bỏ ba màu nhấn: chúng không nói lên
-                  trạng thái nào - bài viết không "xanh" hơn hay "hổ phách" hơn
-                  bình luận - nên ba màu ấy chỉ là tiếng ồn. Con số vẫn đếm
-                  động, vẫn là phần sống của trang. */}
-              <dl className="flex items-end gap-6 sm:gap-9 lg:shrink-0">
-                {[
-                  { label: t.feed.statPosts, value: posts.length },
-                  { label: t.feed.statReactions, value: totalReactions },
-                  { label: t.feed.statComments, value: totalComments },
-                ].map((item, i) => (
-                  <div
-                    key={item.label}
-                    className={i > 0 ? "border-l border-white/12 pl-6 sm:pl-9" : ""}
-                  >
-                    <dd className="text-3xl sm:text-4xl font-bold tabular-nums tracking-tight text-white">
-                      <AnimatedCounter value={item.value} />
-                    </dd>
-                    <dt className="eyebrow mt-1 text-stone-400">{item.label}</dt>
-                  </div>
-                ))}
-              </dl>
+            <div className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <h1 className="text-[26px] font-bold leading-tight tracking-tight text-white sm:text-[30px]">
+                {t.feed.title}
+              </h1>
+              <p className="eyebrow flex items-center gap-1.5 text-emerald-400">
+                <MessageCircle className="h-3 w-3" />
+                {t.feed.eyebrow}
+              </p>
             </div>
+            <p className="mt-1.5 max-w-xl text-[14px] leading-relaxed text-stone-400">
+              {t.feed.subtitle}
+            </p>
           </div>
         </div>
       )}
 
-      <div className={`${embedded ? "" : "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-6"} px-4 sm:px-6 py-6`}>
+      <div className={`${embedded ? "" : "mx-auto grid max-w-[76rem] grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_264px]"} px-4 py-6 sm:px-6`}>
         <main className="min-w-0">
-          {!embedded && (
-            <MarketSentimentWidget
-              onShareSentiment={(text) => {
-                setContent(text);
-                setIsComposeModalOpen(true);
-              }}
-            />
-          )}
 
-
-        {!embedded && (
-          <div className="mb-4 rounded-[24px] bg-white p-3.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.22)] ring-1 ring-stone-100/70 dark:bg-stone-900/85 dark:ring-stone-800/60">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="relative flex-1">
-                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
-                <input
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={t.feed.searchPlaceholder}
-                  className="w-full rounded-[18px] bg-stone-100/80 py-3 pl-10 pr-3 text-sm font-medium text-stone-900 outline-none transition duration-200 ease-out focus:bg-white focus:ring-2 focus:ring-emerald-400/25 dark:bg-stone-950/75 dark:text-stone-100"
-                />
-              </div>
-              <motion.button
-                type="button"
-                onClick={() => void refreshFeed()}
-                className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-stone-100 px-4 py-2.5 text-sm font-bold text-stone-700 transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:hover:bg-stone-700"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 420, damping: 24 }}
-              >
-                <RefreshCw className="h-4 w-4" />
-                {t.feed.refresh}
-              </motion.button>
-            </div>
-          </div>
-        )}
 
         {user && (
           <>
             {/* Facebook-style Composer Trigger Bar */}
-            <div className="mb-6 rounded-[22px] bg-white p-3.5 sm:p-4 shadow-sm ring-1 ring-stone-200/80 dark:bg-stone-900 dark:ring-stone-800 font-sans">
+            {/* Composer chảy THẲNG vào dòng bài: chỉ một nét kẻ dưới, không vỏ
+                thẻ. Nó là dòng đầu tiên của dòng thời gian chứ không phải một
+                công cụ đặt cạnh nó. */}
+            <div className="border-y border-stone-200/70 py-3.5 dark:border-stone-800/70">
               <div className="flex items-center gap-3">
                 <Avatar name={user.user_metadata?.full_name || t.feed.anonMember} avatarUrl={user.user_metadata?.avatar_url} />
                 <button
@@ -1314,26 +1235,37 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
           </>
         )}
 
+        {/* Bình chọn đứng NGAY DƯỚI ô soạn bài, tức là mục đầu tiên của dòng.
+            Trước đây nó ở trên cùng, trên cả composer - một cuộc bình chọn của
+            cộng đồng nhưng được xếp như một mô-đun sản phẩm, và nó đẩy bài mới
+            nhất xuống dưới nếp gấp. */}
+        {!embedded && (
+          <MarketSentimentWidget
+            onShareSentiment={(text) => {
+              setContent(text);
+              setIsComposeModalOpen(true);
+            }}
+          />
+        )}
+
+
         {loading ? (
           <FeedSkeleton />
         ) : visiblePosts.length === 0 ? (
           <div className="py-12 text-center">
+            {/* Không còn ô tìm kiếm nên dòng rỗng CHỈ có thể vì chưa ai đăng
+                bài - nhánh "không tìm thấy kết quả nào" đã thành mã chết cùng
+                với ô tìm kiếm, nên nó đi theo. */}
             <p className="text-sm text-stone-500 dark:text-stone-400">
-              {emptyBecauseNoPosts ? t.feed.feedEmptyNoPosts : t.feed.feedEmpty}
+              {t.feed.feedEmptyNoPosts}
             </p>
-            {/* Chỉ mời viết khi thật sự chưa có bài nào. Lúc đang lọc theo chủ đề
-                hoặc đang tìm kiếm thì "không có gì khớp" là câu trả lời đúng, và
-                một nút soạn bài ở đó chỉ làm người đọc tưởng mình phải viết mới
-                thấy được bài của người khác. */}
-            {emptyBecauseNoPosts && (
-              <button
-                type="button"
-                onClick={() => setIsComposeModalOpen(true)}
-                className="mt-3 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300"
-              >
-                {t.feed.feedEmptyWrite}
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={() => setIsComposeModalOpen(true)}
+              className="mt-3 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300"
+            >
+              {t.feed.feedEmptyWrite}
+            </button>
           </div>
         ) : (
           // Bài viết là BÀI VIẾT, ngăn nhau bằng nét kẻ - không phải một chồng
@@ -1784,20 +1716,20 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         </main>
 
         {!embedded && (
-          <aside className="space-y-4 lg:sticky lg:top-24 self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
+          <aside className="space-y-5 lg:sticky lg:top-24 self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
             {/* Bảng xếp hạng đứng đầu cột: nó là thứ duy nhất ở đây đổi theo
                 ngày và có người khác trong đó, nên nó là lý do người ta liếc
                 sang cột này. Luật feed và gợi ý đăng bài đứng yên hàng tuần. */}
             <FeedLeaderboardCard />
-            <div className="rounded-[22px] bg-white p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
+            <div className="border-t border-stone-200/70 pt-4 dark:border-stone-800/70">
               <button
                 type="button"
                 onClick={() => setRulesOpen((prev) => !prev)}
                 className="w-full flex items-center justify-between gap-2 text-left cursor-pointer"
               >
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-5 w-5 text-emerald-600" />
-                  <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.rulesTitle}</h2>
+                  <ShieldCheck className="h-3.5 w-3.5 text-stone-400" />
+                  <h2 className="eyebrow text-stone-500 dark:text-stone-400">{t.feed.rulesTitle}</h2>
                 </div>
                 {rulesOpen ? <ChevronUp className="h-4 w-4 text-stone-400" /> : <ChevronDown className="h-4 w-4 text-stone-400" />}
               </button>
@@ -1818,93 +1750,16 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               </AnimatePresence>
             </div>
 
-            <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.streakBoardTitle}</h2>
-                <span className="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-[11px] font-black text-red-600 dark:bg-red-950/40 dark:text-red-300">
-                  <Flame className="flame-burn h-3.5 w-3.5 fill-current" />
-                  {todayStreakPosts.length}
-                </span>
-              </div>
-              {todayStreakPosts.length === 0 ? (
-                <p className="text-sm text-stone-400">{t.feed.streakBoardEmpty}</p>
-              ) : (
-                /* Cuộn riêng trong thẻ, KHÔNG cắt bớt danh sách: một ngày đông
-                   người học thì đây là bảng dài nhất cột này, và cắt nó ở con số
-                   nào cũng là giấu đi đúng thứ người xem mở nó ra để đếm. */
-                <div className="max-h-80 space-y-2 overflow-y-auto pr-1 [scrollbar-width:thin]">
-                  {todayStreakPosts.map((post) => (
-                    <div
-                      key={post.id}
-                      className="flex items-center gap-2.5 rounded-[16px] bg-stone-50 px-3 py-2 dark:bg-stone-950/60"
-                    >
-                      <Avatar name={post.user_name} avatarUrl={post.user_avatar} />
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-xs font-bold text-stone-900 dark:text-stone-100">{post.user_name}</p>
-                        <p className="truncate text-[11px] font-medium text-stone-500 dark:text-stone-400">
-                          {timeAgo(post.created_at, t.libData.timeAgo)}
-                        </p>
-                      </div>
-                      <Flame className="flame-burn h-4 w-4 shrink-0 fill-red-500 text-red-500" />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            {/* HAI THẺ, KHÔNG PHẢI BỐN.
+                Cột này từng có bốn: bảng xếp hạng, luật feed, "chuỗi ngày hôm
+                nay" và một danh sách gợi ý đăng bài. Bốn hộp trắng bo 22px xếp
+                dọc, mỗi hộp một biểu tượng màu riêng - và cả bốn cao hơn màn
+                hình, nên phải cuộn một cột phụ để đọc hết thứ phụ.
 
-            <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.trendingTitle}</h2>
-                <TrendingUp className="h-5 w-5 text-amber-500" />
-              </div>
-              {hotPosts.length === 0 ? (
-                <p className="text-sm text-stone-400">{t.feed.trendingEmpty}</p>
-              ) : (
-                <div className="space-y-3">
-                  {hotPosts.map((post, index) => (
-                    <div key={post.id} className="rounded-[18px] bg-stone-50 p-3 dark:bg-stone-950/60">
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-xs font-black text-white dark:bg-stone-100 dark:text-stone-900">
-                          {index + 1}
-                        </span>
-                        <p className="truncate text-sm font-bold text-stone-900 dark:text-stone-100">{post.user_name}</p>
-                      </div>
-                      <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-stone-500 dark:text-stone-400">
-                        {post.content || t.feed.postWithImage}
-                      </p>
-                      <div className="mt-2 flex items-center gap-3 text-[11px] font-bold text-stone-400">
-                        <span>{post.reaction_count} {t.feed.reactionsSuffix}</span>
-                        <span>{post.comment_count} {t.feed.commentsSuffix}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="rounded-[22px] bg-white p-4.5 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.18)] ring-1 ring-stone-100/70 dark:bg-stone-900/80 dark:ring-stone-800/60">
-              <div className="flex items-center gap-2">
-                <Bookmark className="h-5 w-5 text-sky-600" />
-                <h2 className="text-sm font-black uppercase tracking-[0.14em] text-stone-900 dark:text-stone-100">{t.feed.promptsTitle}</h2>
-              </div>
-              <div className="mt-4 grid gap-2">
-                {[
-                  t.feed.prompt1,
-                  t.feed.prompt2,
-                  t.feed.prompt3,
-                  t.feed.prompt4,
-                ].map((idea) => (
-                  <button
-                    key={idea}
-                    type="button"
-                    onClick={() => setContent((prev) => (prev ? prev : idea))}
-                    className="rounded-[18px] border border-stone-200 bg-stone-50 px-3 py-2 text-left text-xs font-bold text-stone-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-300"
-                  >
-                    {idea}
-                  </button>
-                ))}
-              </div>
-            </div>
+                Bỏ hai cái dưới. "Chuỗi ngày" là bảng đếm trò chơi hoá, không
+                phải thứ giúp đọc feed; gợi ý đăng bài thì đứng yên hàng tuần và
+                đã có chỗ đúng hơn của nó là trong composer. Còn lại đúng những
+                gì đổi theo ngày và có người khác trong đó. */}
           </aside>
         )}
       </div>
