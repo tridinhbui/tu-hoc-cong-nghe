@@ -163,7 +163,7 @@
     },
     {
       "type": "paragraph",
-      "text": "In practice, bond funds and securities firms often publish the 'average term' or 'average duration' of their portfolio so investors can gauge the level of interest-rate risk. When reading a bond fund's prospectus, a duration around 1-2 years marks a fund fairly safe from rate swings; a duration of 7-8 years or more means that fund's NAV will move noticeably more with rate movements. One limit worth remembering: duration is a LINEAR estimate, accurate only for small rate moves. When rates swing hard, the real relationship between price and rates is a curve, so the duration figure drifts off. That curvature has a name of its own - convexity - and it works in the holder's favour: prices rise more than duration predicts when rates fall, and fall less than it predicts when rates rise."
+      "text": "In practice, bond funds and securities firms often publish the 'average term' or 'average duration' of their portfolio so investors can gauge the level of interest-rate risk. When reading a bond fund's prospectus, a duration around 1-2 years marks a fund fairly safe from rate swings; a duration of 7-8 years or more means that fund's NAV will move noticeably more with rate movements."
     },
     {
       "type": "closing",

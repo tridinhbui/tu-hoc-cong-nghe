@@ -2,39 +2,24 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { BriefcaseBusiness, ChevronLeft, CheckCircle2 } from "lucide-react";
+import { BriefcaseBusiness, ChevronLeft, CheckCircle2, Clock3, Target, Trophy, ChevronDown } from "lucide-react";
 import { submitQuizSession, computeQuizXp, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { getIbCategoryCounts, IB_TECHNICAL_QUESTIONS, IB_BEHAVIORAL_QUESTIONS } from "@/lib/ib-question-bank";
 import BehavioralPrepPanel from "@/components/BehavioralPrepPanel";
+import IbWeakAreasPanel from "@/components/IbWeakAreasPanel";
 import { recordQuizMistake } from "@/lib/quiz-mistakes";
-import { getCategoryPerformance } from "@/lib/ib-weak-areas";
-import {
-  buildSectionMastery,
-  modeLocks,
-  nextObjective,
-  rankFor,
-  rankPoints,
-  recommendedSection,
-  INTERVIEW_MODE_IDS,
-  MODE_QUESTION_COUNT,
-  MOCK_MILESTONE_SECTIONS,
-  ROUND_PHASES,
-  type InterviewModeId,
-  type MasteryTier,
-  type RoundPhase,
-} from "@/lib/ib-progression";
-import { readPreparedBehavioral } from "@/lib/ib-behavioral-prepared";
 import { getCareersCoveredByBank, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { FINANCE_CAREERS } from "@/lib/finance-careers";
 import { useI18n } from "@/lib/i18n/context";
 import { mergeCareer } from "@/lib/finance-careers-i18n";
-import { format } from "@/lib/i18n";
+import { format, type Dictionary } from "@/lib/i18n";
 import {
   groupCoverageByCategory,
   withoutWholeBankCareers,
   type CareerCategory,
 } from "@/lib/ib-career-picker";
+import { matchesVietnamese } from "@/lib/vn-search";
 import { getCurrentUserId } from "@/lib/current-user";
 
 // Standalone "Technical Interview" drill - split out of /kiem-tra (which
@@ -55,36 +40,26 @@ interface ChallengeQuestion {
   options: string[];
   correct: number;
   explanation: string;
-  /** Chặng của câu này trong vòng. Route tính và sắp sẵn theo thứ tự
-   *  khởi động → lõi → áp lực; xem app/api/knowledge-challenge/route.ts. */
-  phase?: RoundPhase;
   token: string;
 }
 
+// Labels come from the dictionary at render time; module scope has no
+// useI18n() to call, so this keeps only the ids and their order.
+function ibDifficultyCopy(t: Dictionary): Record<QuizDifficulty, string> {
+  return {
+    "tat-ca": t.finalTwo.phongVanKyThuatDifficulty.fullMixedDrill,
+    de: t.finalTwo.phongVanKyThuatDifficulty.foundationScreen,
+    "trung-binh": t.finalTwo.phongVanKyThuatDifficulty.analystRound,
+    kho: t.finalTwo.phongVanKyThuatDifficulty.pressureRound,
+  };
+}
+
+// Labels come from the dictionary at render time; module scope has no
+// useI18n() to call, so this keeps only the ids and their order.
+const DIFFICULTY_IDS: QuizDifficulty[] = ["tat-ca", "de", "trung-binh", "kho"];
+
 const XP_PER_QUESTION = 5;
 const PASS_RATIO = 0.6;
-
-/** Màu của bốn bậc thành thạo.
- *
- *  Bốn màu, không phải mười bốn: màu ở đây mã hoá BẬC, không mã hoá section.
- *  Và `untested` cố ý là màu trung tính chứ không phải đỏ - chưa đo được không
- *  phải là kém, gán nó màu cảnh báo là nói với người mới rằng họ đang yếu ở cả
- *  mười bốn mục trước khi trả lời câu nào. */
-const MASTERY_TONE: Record<MasteryTier, string> = {
-  untested: "text-stone-400 dark:text-stone-500",
-  weak: "text-rose-600 dark:text-rose-400",
-  improving: "text-amber-600 dark:text-amber-400",
-  strong: "text-sky-700 dark:text-sky-400",
-  mastered: "text-emerald-600 dark:text-emerald-400",
-};
-
-const MASTERY_BAR: Record<MasteryTier, string> = {
-  untested: "bg-stone-200 dark:bg-stone-800",
-  weak: "bg-rose-500",
-  improving: "bg-amber-500",
-  strong: "bg-sky-500",
-  mastered: "bg-emerald-500",
-};
 
 type Stage = "setup" | "loading" | "empty" | "error" | "ready" | "done";
 
@@ -94,17 +69,10 @@ type Mode = "technical" | "behavioral";
 
 export default function TechnicalInterviewPage() {
   const { t, locale } = useI18n();
+  const IB_DIFFICULTY_COPY = ibDifficultyCopy(t);
   const [userId, setUserId] = useState<string | null>(null);
   const [mode, setMode] = useState<Mode>("technical");
-  /** Vòng phỏng vấn đang chọn. Thay cho `difficulty` ở phần chọn: `mock` không
-   *  phải một độ khó mà là một track riêng ở route, nên id chọn và tham số gửi
-   *  đi không còn là cùng một thứ - xem `startMode`. */
-  const [interviewMode, setInterviewMode] = useState<InterviewModeId>("tat-ca");
-  /** Độ khó của lượt ĐANG CHẠY. Vẫn là QuizDifficulty vì submitQuizSession ghi
-   *  nó xuống bảng phiên; `mock` quy về "tat-ca" ở đó. */
   const [difficulty, setDifficulty] = useState<QuizDifficulty>("tat-ca");
-  /** Vòng của lượt đang chạy, để phần kết quả gọi đúng tên nó. */
-  const [activeMode, setActiveMode] = useState<InterviewModeId>("tat-ca");
   // Which career's slice of the bank to drill. null = the whole technical
   // pool. Only careers the bank genuinely covers are offered.
   const [selectedCareer, setSelectedCareer] = useState<string | null>(null);
@@ -141,25 +109,29 @@ export default function TechnicalInterviewPage() {
 
   const uncoveredCount = FINANCE_CAREERS.length - careerCoverage.length;
 
-  /** Nghề theo nhóm, dùng làm <optgroup> của ô chọn vị trí.
-   *
-   *  Ô tìm bỏ dấu đã bỏ cùng với bộ chọn tự dựng: <select> gốc đã có gõ-để-nhảy
-   *  của hệ điều hành, và 43 mục chia sẵn theo bảy nhóm thì cuộn tới nơi nhanh
-   *  hơn gõ. matchesVietnamese vẫn còn nguyên trong lib/vn-search.ts cho những
-   *  ô tìm thật ở nơi khác. */
-  const roleGroups = useMemo(
-    () => groupCoverageByCategory(withoutWholeBankCareers(careerCoverage, totalQuestions)),
-    [careerCoverage, totalQuestions]
+  const [rolePickerOpen, setRolePickerOpen] = useState(false);
+  const [roleQuery, setRoleQuery] = useState("");
+
+  // Nhóm sau khi lọc theo ô tìm. Lọc TRƯỚC khi gom nên nhóm không còn nghề nào
+  // khớp sẽ tự biến mất, thay vì để lại một nhãn nhóm trống.
+  const visibleGroups = useMemo(
+    () =>
+      groupCoverageByCategory(
+        withoutWholeBankCareers(careerCoverage, totalQuestions).filter((c) =>
+          matchesVietnamese(c.title, roleQuery)
+        )
+      ),
+    [careerCoverage, totalQuestions, roleQuery]
   );
 
-  // `Partial` chứ không phải `Record` đầy đủ, và có đường lùi ở chỗ dùng.
-  // FinanceCareer["category"] là union mở - thêm một nhóm ngành vào
-  // lib/finance-careers.ts là làm hỏng biên dịch ở đây, tức là một thay đổi dữ
-  // liệu ở file khác chặn cả trang này. Nhóm chưa có nhãn thì hiện id thay vì
-  // không dựng được; bộ chọn vẫn chạy, và lib/__tests__/ib-career-picker.test.ts
-  // mới là chỗ bắt nhóm bị rơi ra ngoài (nó đang đỏ vì đúng chuyện đó).
+  const activeRoleLabel = useMemo(() => {
+    if (!selectedCareer) return format(t.interview.allWithCount, { count: totalQuestions });
+    const found = careerCoverage.find((c) => c.careerId === selectedCareer);
+    return found ? `${found.title} · ${found.questionCount}` : format(t.interview.allWithCount, { count: totalQuestions });
+  }, [selectedCareer, careerCoverage, totalQuestions, t]);
+
   const CATEGORY_LABELS = useMemo(
-    (): Partial<Record<CareerCategory, string>> => ({
+    (): Record<CareerCategory, string> => ({
       investment: t.careerPath.catInvestmentLabel,
       dealmaking: t.careerPath.catDealmakingLabel,
       accounting: t.careerPath.catAccountingLabel,
@@ -181,64 +153,15 @@ export default function TechnicalInterviewPage() {
     [selectedCareer]
   );
 
+  const activeQuestionTotal = selectedCareer
+    ? activeCategoryCounts.reduce((sum, c) => sum + c.count, 0)
+    : totalQuestions;
+
   useEffect(() => {
     void getCurrentUserId().then(setUserId);
   }, []);
 
-  /* ─────────────────── Tiến bộ: đo, không phải trang trí ─────────────────── */
-
-  /** Hiệu suất từng section, đọc từ user_ib_question_attempts.
-   *
-   *  Trang tự đọc thay vì mượn IbWeakAreasPanel như trước. Panel ấy đã được gỡ
-   *  khỏi đây: nó vẽ đúng những con số mà bảng thành thạo bên dưới vẽ - tỉ lệ
-   *  đúng từng section, cộng một câu "chỗ yếu nhất là X" - nên để cả hai là
-   *  hiển thị một bảng dữ liệu hai lần, bằng hai lần truy vấn cùng một bảng.
-   *  Component vẫn còn trong repo cho chỗ khác dùng. */
-  const [performance, setPerformance] = useState<Awaited<ReturnType<typeof getCategoryPerformance>>>([]);
-  const [performanceLoaded, setPerformanceLoaded] = useState(false);
-
-  useEffect(() => {
-    if (!userId) return;
-    let cancelled = false;
-    void getCategoryPerformance(userId)
-      .then((rows) => {
-        if (!cancelled) setPerformance(rows);
-      })
-      .catch((error) => console.error("Error loading IB section mastery:", error))
-      .finally(() => {
-        if (!cancelled) setPerformanceLoaded(true);
-      });
-    return () => {
-      cancelled = true;
-    };
-    // weakAreasKey đổi sau mỗi lượt xong, nên bảng thành thạo đọc lại số vừa
-    // được ghi thay vì số trước lượt.
-  }, [userId, weakAreasKey]);
-
-  /** Thành thạo theo section, ghép trên TOÀN BỘ section của ngân hàng đang
-   *  hoạt động - kể cả những section chưa đụng tới. */
-  const sections = useMemo(
-    () => buildSectionMastery(performance, activeCategoryCounts),
-    [performance, activeCategoryCounts]
-  );
-
-  const rank = useMemo(() => rankFor(rankPoints(sections)), [sections]);
-  const locks = useMemo(() => modeLocks(sections), [sections]);
-  const objective = useMemo(() => nextObjective(sections, rank), [sections, rank]);
-  const nextSection = useMemo(() => recommendedSection(sections), [sections]);
-
-  /** Số câu behavioral đã mở khung trả lời, trên máy này. Độ phủ, không phải
-   *  điểm - xem lib/ib-behavioral-prepared.ts. */
-  const [preparedBehavioral, setPreparedBehavioral] = useState(0);
-  useEffect(() => {
-    setPreparedBehavioral(readPreparedBehavioral().size);
-  }, [mode]);
-
-  const startQuiz = useCallback(async (
-    overrideDifficulty?: QuizDifficulty,
-    overrideSection?: string | null,
-    asMock = false
-  ) => {
+  const startQuiz = useCallback(async (overrideDifficulty?: QuizDifficulty, overrideSection?: string | null) => {
     const effectiveDifficulty = overrideDifficulty ?? difficulty;
     setSelectedSection(overrideSection ?? null);
     setStage("loading");
@@ -255,13 +178,8 @@ export default function TechnicalInterviewPage() {
       // career title against an English `lessonTitle` matched nothing at all.
       const careerParam = selectedCareer ? `&career=${encodeURIComponent(selectedCareer)}` : "";
       const sectionParam = overrideSection ? `&section=${encodeURIComponent(overrideSection)}` : "";
-      // `mock-interview` là một track riêng ở route, không phải một độ khó: nó
-      // lấy 10 câu rải đều các section thay vì 5 câu ngẫu nhiên. Cả hai track
-      // đều đi qua cùng đường ký token và cùng đường chấm, nên phần thưởng và
-      // bản ghi từng câu không lệch nhau.
-      const track = asMock ? "mock-interview" : "ib";
       const res = await fetch(
-        `/api/knowledge-challenge?track=${track}&difficulty=${effectiveDifficulty}${careerParam}${sectionParam}`
+        `/api/knowledge-challenge?track=ib&difficulty=${effectiveDifficulty}${careerParam}${sectionParam}`
       );
       if (!res.ok) throw new Error("failed");
       const data = await res.json();
@@ -278,27 +196,6 @@ export default function TechnicalInterviewPage() {
       setStage("error");
     }
   }, [difficulty, selectedCareer]);
-
-  /** Bắt đầu một vòng theo id đã chọn.
-   *
-   *  Một id chọn ánh xạ sang HAI tham số khác nhau, nên nó không gộp được vào
-   *  `difficulty`: `mock` chạy track riêng, ba vòng còn lại chạy độ khó của
-   *  chúng. Gộp lại thì "mock" phải giả làm một độ khó, và route không có độ
-   *  khó nào tên vậy - nó sẽ lọc ra pool rỗng, đúng cách `trung-binh` đang
-   *  hỏng. */
-  const startMode = useCallback(
-    (id: InterviewModeId) => {
-      setActiveMode(id);
-      const asDifficulty: QuizDifficulty = id === "mock" ? "tat-ca" : (id as QuizDifficulty);
-      // Phải set, không chỉ truyền xuống: `difficulty` là thứ finalizeQuiz ghi
-      // vào submitQuizSession. Chỉ truyền qua tham số thì mọi lượt đều được
-      // lưu là "tat-ca" - trạng thái ban đầu - và bảng phiên sẽ nói rằng không
-      // ai từng chạy vòng áp lực.
-      setDifficulty(asDifficulty);
-      return startQuiz(asDifficulty, null, id === "mock");
-    },
-    [startQuiz]
-  );
 
   /** Sections the learner got wrong in this run, most-missed first. The
    *  category is parsed out of `lessonTitle`, which the API formats as
@@ -325,6 +222,7 @@ export default function TechnicalInterviewPage() {
   const allDone = submitted && activeQ === questions.length - 1;
   const score = results.filter(Boolean).length;
   const passed = questions.length > 0 && score >= Math.ceil(questions.length * PASS_RATIO);
+  const progressPct = questions.length > 0 ? Math.round(((activeQ + (submitted ? 1 : 0)) / questions.length) * 100) : 0;
 
   async function finalizeQuiz() {
     if (!userId || recording || xpAwarded !== null) return;
@@ -392,16 +290,21 @@ export default function TechnicalInterviewPage() {
             >
               <ChevronLeft className="w-5 h-5" />
             </Link>
-            {/* Phụ đề bỏ đi: nó nói lại đúng điều tiêu đề khối bên dưới đã
-                nói, và nói bằng chữ nhỏ hơn ngay phía trên nó. Huy hiệu XP
-                xanh lá cũng vậy - con số +5 XP giờ nằm trong dòng thông tin
-                của khối drill, chỗ người ta thật sự đang cân nhắc có bắt đầu
-                hay không. */}
-            <h1 className="text-lg font-black text-stone-900 dark:text-stone-100 tracking-tight flex items-center gap-2">
-              <BriefcaseBusiness className="w-4 h-4 text-stone-400" />
-              {t.interview.title}
-            </h1>
+            <div>
+              <h1 className="text-xl font-black text-stone-900 dark:text-stone-100 tracking-tight flex items-center gap-2">
+                <BriefcaseBusiness className="w-5 h-5 text-amber-500" />
+                {t.interview.title}
+              </h1>
+              <p className="text-xs font-semibold text-stone-500 dark:text-stone-400 mt-0.5">
+                {t.interview.subtitle}
+              </p>
+            </div>
           </div>
+          {mode === "technical" && (
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold">
+              <span>{format(t.interview.xpPerQuestion, { xp: XP_PER_QUESTION })}</span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -409,351 +312,272 @@ export default function TechnicalInterviewPage() {
         {/* Mode switch. Hidden mid-drill so a half-finished scored run can't be
             abandoned by an accidental tab click. */}
         {(stage === "setup" || mode === "behavioral") && (
-          // Tab gạch chân thay cho hộp pill. Đây là bước MỘT của luồng (chọn
-          // loại câu hỏi), nên nó phải đọc ra như một cái tab - còn hộp bo góc
-          // có nền, có viền, có shadow thì đọc ra như một khối nội dung nữa
-          // xếp chồng lên khối bên dưới. Giữ nguyên chỗ đứng ở cả hai chế độ:
-          // chuyển nó vào cột điều khiển bên phải sẽ làm nó biến mất khi sang
-          // Behavioral, vì chế độ đó thay cả tấm panel.
-          <div className="mb-5 flex items-center gap-6 border-b border-stone-200 dark:border-stone-800">
-            {/* Mỗi tab mang con số tiến bộ CỦA TRACK MÌNH: technical là cấp
-                bậc, behavioral là số câu đã chuẩn bị. Hai thước đo khác nhau
-                vì hai track đo được hai thứ khác nhau - technical có đúng/sai,
-                behavioral không. Ép chúng về một thanh phần trăm chung sẽ phải
-                bịa ra một điểm số cho bên không có điểm. */}
-            {([
-              [
-                "technical",
-                format(t.interview.technicalCount, { count: totalQuestions }),
-                t.interview.rankNames[rank.id],
-              ],
-              [
-                "behavioral",
-                format(t.interview.behavioralCount, { count: behavioralCount }),
-                format(t.behavioralPrep.coverageCount, { done: preparedBehavioral, total: behavioralCount }),
-              ],
-            ] as const).map(([id, label, meta]) => (
-              <button
-                key={id}
-                onClick={() => setMode(id)}
-                className={`-mb-px cursor-pointer border-b-2 pb-2.5 text-[13px] font-bold transition-colors ${
-                  mode === id
-                    ? "border-stone-900 text-stone-900 dark:border-stone-100 dark:text-stone-100"
-                    : "border-transparent text-stone-400 hover:text-stone-700 dark:text-stone-500 dark:hover:text-stone-300"
-                }`}
-              >
-                {label}
-                <span className="ml-2 font-semibold text-stone-400 dark:text-stone-500">{meta}</span>
-              </button>
-            ))}
+          <div className="mb-6 inline-flex p-1 rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-100 dark:bg-stone-900">
+            <button
+              onClick={() => setMode("technical")}
+              className={`px-4 py-2 rounded-xl text-xs font-black transition-colors cursor-pointer ${
+                mode === "technical"
+                  ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"
+                  : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
+              }`}
+            >
+              {format(t.interview.technicalCount, { count: totalQuestions })}
+            </button>
+            <button
+              onClick={() => setMode("behavioral")}
+              className={`px-4 py-2 rounded-xl text-xs font-black transition-colors cursor-pointer ${
+                mode === "behavioral"
+                  ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"
+                  : "text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200"
+              }`}
+            >
+              {format(t.interview.behavioralCount, { count: behavioralCount })}
+            </button>
           </div>
         )}
 
         {mode === "behavioral" && <BehavioralPrepPanel />}
 
         {mode === "technical" && stage === "setup" && (
-          <div className="space-y-5">
-            {/* MỘT tấm panel cho cả màn chuẩn bị.
-                Trước đây đây là hai tấm chồng nhau: một thẻ "Đang luyện /
-                Đổi vị trí" chiếm nguyên chiều ngang chỉ để giữ một nhãn và một
-                nút, rồi tới tấm hero. Chọn vị trí là một bước của cùng một
-                luồng chọn-rồi-bắt-đầu, nên nó thuộc về cột điều khiển bên
-                phải, cạnh vòng phỏng vấn và nút bắt đầu. */}
-            <section className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden">
-              {/* ── Dải cấp bậc ──
-                  Một dòng ngang duy nhất trên đầu panel, không phải một tấm
-                  thẻ riêng. Cấp bậc là NGỮ CẢNH cho việc chọn vòng ở dưới, nên
-                  nó đứng cùng khung với việc đó; tách ra thành thẻ riêng là
-                  quay lại đúng kiểu bảng điều khiển game mà cả trang này đang
-                  tránh. */}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 px-5 py-3 sm:px-6">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-[11px] font-semibold text-stone-400 dark:text-stone-500">
-                    {t.interview.rankLabel}
-                  </span>
-                  <span className="text-sm font-black tracking-tight text-stone-900 dark:text-stone-100">
-                    {t.interview.rankNames[rank.id]}
-                  </span>
-                </div>
+          <div className="space-y-6">
+            <IbWeakAreasPanel
+              userId={userId}
+              onDrillSection={redrillSection}
+              refreshKey={weakAreasKey}
+            />
 
-                {/* Thanh tiến độ TRONG bậc hiện tại, không phải tổng thể. Một
-                    thanh chạy từ 0 tới đỉnh thang sẽ đứng yên hàng tuần ở giữa
-                    hành trình; thanh trong bậc thì nhúc nhích mỗi lần một
-                    section lên hạng. */}
-                {rank.nextId ? (
-                  <div className="flex min-w-[10rem] flex-1 items-center gap-2">
-                    <div className="h-1 flex-1 overflow-hidden rounded-full bg-stone-200 dark:bg-stone-800">
-                      <div
-                        className="h-full rounded-full bg-stone-900 transition-all duration-500 dark:bg-stone-100"
-                        style={{ width: `${Math.max(3, rank.progressPct)}%` }}
-                      />
-                    </div>
-                    <span className="shrink-0 text-[11px] font-semibold tabular-nums text-stone-500 dark:text-stone-400">
-                      {format(t.interview.rankToNext, {
-                        points: rank.pointsToNext,
-                        next: t.interview.rankNames[rank.nextId],
-                      })}
-                    </span>
-                  </div>
-                ) : (
-                  <span className="text-[11px] font-semibold text-stone-500 dark:text-stone-400">
-                    {t.interview.rankMaxed}
-                  </span>
-                )}
+            {/* Which career's questions to drill.
+                The bank is Investment Banking's - 395 questions scraped from
+                an IB interview guide - but its accounting, valuation and DCF
+                sections are the shared core of most analytical finance roles,
+                so they're offered to those careers too via
+                lib/ib-question-careers.ts. Counts below are computed from the
+                bank, not hardcoded: an earlier version of this picker
+                advertised 120/95/85/110 questions for tracks that had no
+                questions at all, and clicking them showed an empty drill. */}
+            {/* MẶC ĐỊNH THU GỌN MỘT DÒNG.
+                Bản trước dựng thẳng 43 nút lọc - đầu tiên là một hàng cuộn
+                không cấu trúc, rồi sau khi gom theo năm nhóm nghề vẫn là 43
+                nút đập vào mắt cùng lúc. Gom nhóm cho cấu trúc nhưng không
+                giảm LƯỢNG, và lượng mới là thứ làm màn hình loạn.
+
+                Thứ này là bộ TINH CHỈNH cho người đã biết mình nhắm nghề gì.
+                Người còn lại bấm Bắt đầu với "Tất cả". Nên mặc định nó phải
+                nhường chỗ, và mở ra khi được hỏi tới.
+
+                Nền trung tính chứ không phải hổ phách: vàng cộng viền vàng là
+                ngôn ngữ cảnh báo, và thứ đeo nó chỉ là một hộp lọc - trong khi
+                nút bắt đầu thật ở dưới lại nhạt hơn. */}
+            <div className="rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-5 shadow-xs">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                <span className="text-xs font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">
+                  {t.interview.currentRoleLabel}
+                </span>
+                <span className="inline-flex items-center rounded-full border border-amber-500 bg-amber-400 px-3 py-1.5 text-xs font-black text-stone-950">
+                  {activeRoleLabel}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setRolePickerOpen((open) => !open)}
+                  className="ml-auto inline-flex items-center gap-1 rounded-full border border-stone-200 dark:border-stone-800 px-3 py-1.5 text-xs font-bold text-stone-600 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 transition-colors cursor-pointer"
+                >
+                  {rolePickerOpen ? t.interview.closeRolePicker : t.interview.changeRole}
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rolePickerOpen ? "rotate-180" : ""}`} />
+                </button>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12">
-                <div className="lg:col-span-7 p-5 sm:p-6">
-                  <h2 className="text-lg sm:text-xl font-black tracking-tight text-stone-900 dark:text-stone-100">
-                    {t.interview.drillHeading}
-                  </h2>
-                  <p className="mt-2 max-w-xl text-[13px] leading-relaxed text-stone-600 dark:text-stone-300">
-                    {t.interview.drillBodyPart1}
-                    <strong className="font-bold text-stone-800 dark:text-stone-200">{t.interview.drillBookTitle}</strong>
-                    {t.interview.drillBodyPart2}
+              {rolePickerOpen && (
+                <div className="mt-4 border-t border-stone-100 dark:border-stone-800 pt-4">
+                  <p className="text-xs text-stone-600 dark:text-stone-400 mb-3 leading-relaxed">
+                    {t.interview.byRoleBody}
                   </p>
 
-                  {/* ── Mục tiêu kế tiếp ──
-                      MỘT câu, không phải một danh sách. Cái gần nhất chưa mở
-                      được nói ra; ba mục tiêu bày cùng lúc thì không cái nào
-                      là mục tiêu. */}
-                  <p className="mt-4 flex items-start gap-2 rounded-lg border-l-2 border-amber-400 bg-stone-50 px-3 py-2 text-[13px] leading-relaxed text-stone-700 dark:bg-stone-950/60 dark:text-stone-300">
-                    <span className="font-bold text-stone-900 dark:text-stone-100">
-                      {t.interview.objectiveLabel}
-                    </span>
-                    <span>
-                      {objective.kind === "unlock-kho"
-                        ? format(t.interview.objectiveUnlockKho, { count: objective.remaining })
-                        : objective.kind === "unlock-mock"
-                          ? format(t.interview.objectiveUnlockMock, { count: objective.remaining })
-                          : objective.kind === "next-rank"
-                            ? format(t.interview.objectiveNextRank, {
-                                count: objective.remaining,
-                                next: rank.nextId ? t.interview.rankNames[rank.nextId] : "",
-                              })
-                            : t.interview.objectiveMaxed}
-                    </span>
-                  </p>
+                  {/* Ô tìm bỏ dấu - xem lib/vn-search.ts. Với 43 lựa chọn thì
+                      gõ ba chữ nhanh hơn quét mắt, và người Việt gõ nhanh
+                      thường không bỏ dấu. */}
+                  <input
+                    type="search"
+                    value={roleQuery}
+                    onChange={(e) => setRoleQuery(e.target.value)}
+                    placeholder={t.interview.roleSearchPlaceholder}
+                    className="w-full rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 px-3 py-2 text-sm text-stone-800 dark:text-stone-200 placeholder:text-stone-400 focus:border-stone-400 dark:focus:border-stone-600 focus:outline-none"
+                  />
 
-                  {/* ── Thành thạo theo section ──
-                      Thay cho bảng "tên section / số câu" của lượt trước. Số
-                      câu trong ngân hàng là thuộc tính của bộ đề và nó không
-                      đổi bao giờ; thứ đổi sau mỗi lượt - và thứ quyết định nên
-                      luyện gì tiếp - là mức thành thạo. Số câu vẫn còn, lùi
-                      xuống làm chú thích của thanh tiến độ. */}
-                  <div className="mt-5 border-t border-stone-200 pt-4 dark:border-stone-800">
-                    <div className="flex items-baseline justify-between gap-3">
-                      <p className="text-[11px] font-semibold text-stone-400 dark:text-stone-500">
-                        {selectedCareer ? t.interview.sectionsForRole : t.interview.sectionsAll}
-                      </p>
-                      {!performanceLoaded && userId && (
-                        <span className="text-[11px] text-stone-400 dark:text-stone-500">
-                          {t.interview.masteryLoading}
-                        </span>
-                      )}
-                    </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedCareer(null);
+                      setRolePickerOpen(false);
+                    }}
+                    className={`mt-3 mb-3 px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
+                      selectedCareer === null
+                        ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
+                        : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
+                    }`}
+                  >
+                    {format(t.interview.allWithCount, { count: totalQuestions })}
+                  </button>
 
-                    <ul className="mt-2 divide-y divide-stone-100 dark:divide-stone-800/70">
-                      {sections.map((s) => {
-                        const isNext = nextSection?.category === s.category;
-                        const isMilestone = MOCK_MILESTONE_SECTIONS.includes(s.category);
-                        return (
-                          <li key={s.category} className="py-2">
-                            <div className="flex items-baseline justify-between gap-3">
+                  <div className="space-y-2.5">
+                    {visibleGroups.map((group) => (
+                      <div key={group.category} className="sm:grid sm:grid-cols-[8.5rem_1fr] sm:gap-3 sm:items-baseline">
+                        <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-1.5 sm:mb-0 sm:text-right sm:pt-1">
+                          {CATEGORY_LABELS[group.category]}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {group.careers.map((c) => {
+                            const active = selectedCareer === c.careerId;
+                            return (
                               <button
+                                key={c.careerId}
                                 type="button"
-                                onClick={() => void redrillSection(s.label)}
-                                className="min-w-0 flex-1 truncate text-left text-[13px] font-semibold text-stone-800 hover:underline dark:text-stone-200"
+                                onClick={() => {
+                                  setSelectedCareer(active ? null : c.careerId);
+                                  setRolePickerOpen(false);
+                                }}
+                                title={c.categories.join(" · ")}
+                                className={`px-3 py-1.5 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
+                                  active
+                                    ? "border-amber-500 bg-amber-400 text-stone-950 font-black"
+                                    : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 text-stone-600 dark:text-stone-300 hover:border-stone-300"
+                                }`}
                               >
-                                {s.label}
-                                {isMilestone && (
-                                  <span
-                                    className="ml-1.5 text-stone-300 dark:text-stone-600"
-                                    title={t.interview.milestoneSectionHint}
-                                    aria-label={t.interview.milestoneSectionHint}
-                                  >
-                                    ◆
-                                  </span>
-                                )}
-                              </button>
-                              {/* Section nên luyện tiếp là chỗ DUY NHẤT trong
-                                  danh sách được đánh dấu. Tô màu cả bốn bậc
-                                  thành thạo sẽ cho ra mười bốn dòng nhiều màu
-                                  và không dòng nào nổi lên. */}
-                              {isNext && (
-                                <span className="shrink-0 rounded bg-amber-400 px-1.5 py-0.5 text-[10px] font-black text-stone-950">
-                                  {t.interview.nextUpBadge}
+                                {c.title}
+                                <span className={active ? "text-stone-950 font-extrabold" : "text-stone-400 dark:text-stone-500"}>
+                                  {" "}· {c.questionCount}
                                 </span>
-                              )}
-                              <span className={`shrink-0 text-[11px] font-bold ${MASTERY_TONE[s.tier]}`}>
-                                {t.interview.masteryTiers[s.tier]}
-                              </span>
-                            </div>
-
-                            <div className="mt-1 flex items-center gap-2">
-                              <div className="h-1 flex-1 overflow-hidden rounded-full bg-stone-100 dark:bg-stone-800">
-                                <div
-                                  className={`h-full rounded-full transition-all duration-500 ${MASTERY_BAR[s.tier]}`}
-                                  style={{ width: `${s.tier === "untested" ? 0 : Math.max(3, s.accuracy)}%` }}
-                                />
-                              </div>
-                              {/* Chưa đo được thì in số câu của section, không
-                                  in "0%". Một dòng 0% cạnh mười ba dòng khác
-                                  đọc ra là "bạn sai hết", trong khi sự thật là
-                                  "bạn chưa làm câu nào". */}
-                              <span className="w-24 shrink-0 text-right text-[11px] tabular-nums text-stone-400 dark:text-stone-500">
-                                {s.tier === "untested"
-                                  ? format(t.interview.masteryUntestedCount, { total: s.total })
-                                  : format(t.interview.masteryScore, {
-                                      accuracy: s.accuracy,
-                                      correct: s.correct,
-                                      attempted: s.attempted,
-                                    })}
-                              </span>
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                </div>
 
-                {/* ── Cột điều khiển: nhiệm vụ đang chọn ── */}
-                <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 p-5 sm:p-6">
-                  <label
-                    htmlFor="ib-role"
-                    className="block text-[11px] font-semibold text-stone-400 dark:text-stone-500"
-                  >
-                    {t.interview.currentRoleLabel}
-                  </label>
-                  <select
-                    id="ib-role"
-                    value={selectedCareer ?? ""}
-                    onChange={(e) => setSelectedCareer(e.target.value || null)}
-                    className="mt-1.5 w-full cursor-pointer rounded-lg border border-stone-300 bg-white px-3 py-2 text-[13px] font-semibold text-stone-800 focus:border-stone-500 focus:outline-none dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
-                  >
-                    <option value="">{format(t.interview.allWithCount, { count: totalQuestions })}</option>
-                    {roleGroups.map((group) => (
-                      <optgroup key={group.category} label={CATEGORY_LABELS[group.category] ?? group.category}>
-                        {group.careers.map((c) => (
-                          <option key={c.careerId} value={c.careerId}>
-                            {c.title} · {c.questionCount}
-                          </option>
-                        ))}
-                      </optgroup>
-                    ))}
-                  </select>
-
-                  {/* Vòng phỏng vấn: ô chọn, và mục đã khoá thì `disabled`.
-                      Khoá bằng thuộc tính disabled của <option> chứ không phải
-                      bằng cách giấu mục đi - một thang tiến bộ mà không thấy
-                      bậc trên thì không phải thang, nó chỉ là một danh sách
-                      ngắn hơn. */}
-                  <label
-                    htmlFor="ib-mode"
-                    className="mt-4 block text-[11px] font-semibold text-stone-400 dark:text-stone-500"
-                  >
-                    {t.interview.pickRound}
-                  </label>
-                  <select
-                    id="ib-mode"
-                    value={interviewMode}
-                    onChange={(e) => setInterviewMode(e.target.value as InterviewModeId)}
-                    className="mt-1.5 w-full cursor-pointer rounded-lg border border-stone-300 bg-white px-3 py-2 text-[13px] font-semibold text-stone-800 focus:border-stone-500 focus:outline-none dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
-                  >
-                    {INTERVIEW_MODE_IDS.map((id) => (
-                      <option key={id} value={id} disabled={!locks[id].unlocked}>
-                        {t.interview.modeNames[id]}
-                        {locks[id].unlocked
-                          ? ` — ${t.interview.modeBlurbs[id]}`
-                          : ` — ${format(t.interview.modeLockedShort, { count: locks[id].remaining })}`}
-                      </option>
-                    ))}
-                  </select>
-
-                  {/* ── Nhiệm vụ đang chọn ──
-                      Ba con số của lượt sắp chạy, đọc từ chính mode đang chọn
-                      chứ không phải gõ tay: số câu lấy từ MODE_QUESTION_COUNT
-                      (khớp hằng số của route), XP là số câu × XP mỗi câu. Đây
-                      là chỗ ba tấm thẻ thống kê cũ đi về - chúng nói về cả bộ
-                      đề, còn đây nói về lượt bạn sắp làm. */}
-                  <dl className="mt-4 grid grid-cols-3 gap-3 border-t border-stone-200 pt-3 dark:border-stone-800">
-                    <div>
-                      <dt className="text-[10px] font-semibold text-stone-400 dark:text-stone-500">
-                        {t.interview.missionQuestions}
-                      </dt>
-                      <dd className="mt-0.5 text-sm font-black tabular-nums text-stone-900 dark:text-stone-100">
-                        {MODE_QUESTION_COUNT[interviewMode]}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt className="text-[10px] font-semibold text-stone-400 dark:text-stone-500">
-                        {t.interview.missionDuration}
-                      </dt>
-                      <dd className="mt-0.5 text-sm font-black text-stone-900 dark:text-stone-100">
-                        {format(t.interview.missionMinutes, {
-                          minutes: Math.max(3, Math.round(MODE_QUESTION_COUNT[interviewMode] * 0.7)),
-                        })}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt className="text-[10px] font-semibold text-stone-400 dark:text-stone-500">
-                        {t.interview.missionReward}
-                      </dt>
-                      <dd className="mt-0.5 text-sm font-black tabular-nums text-stone-900 dark:text-stone-100">
-                        +{MODE_QUESTION_COUNT[interviewMode] * XP_PER_QUESTION}
-                      </dd>
-                    </div>
-                  </dl>
-
-                  {locks[interviewMode].unlocked ? (
-                    <button
-                      type="button"
-                      onClick={() => void startMode(interviewMode)}
-                      className="mt-4 w-full cursor-pointer rounded-lg bg-amber-400 px-4 py-3 text-sm font-black text-stone-950 transition-colors hover:bg-amber-300 active:scale-[0.99]"
-                    >
-                      {t.interview.startDrill}
-                    </button>
-                  ) : (
-                    <>
-                      <button
-                        type="button"
-                        disabled
-                        className="mt-4 w-full cursor-not-allowed rounded-lg bg-stone-200 px-4 py-3 text-sm font-black text-stone-500 dark:bg-stone-800 dark:text-stone-500"
-                      >
-                        {t.interview.modeLockedCta}
-                      </button>
-                      <p className="mt-2 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
-                        {interviewMode === "mock"
-                          ? format(t.interview.mockUnlockHint, { count: locks.mock.remaining })
-                          : format(t.interview.khoUnlockHint, {
-                              count: locks.kho.remaining,
-                              required: locks.kho.required,
-                            })}
-                      </p>
-                    </>
+                  {visibleGroups.length === 0 && (
+                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                      {format(t.interview.roleSearchEmpty, { query: roleQuery.trim() })}
+                    </p>
                   )}
 
-                  {/* Đường tắt tới đúng section đang cần luyện. Nút bắt đầu ở
-                      trên chạy vòng đã chọn; nút này chạy đúng một section, và
-                      nó là hành động mà câu "mục tiêu kế tiếp" bên trái vừa
-                      khuyên - nên nó phải bấm được ngay, không bắt người ta đi
-                      tìm dòng đó trong danh sách mười bốn mục. */}
-                  {nextSection && (
-                    <button
-                      type="button"
-                      onClick={() => void redrillSection(nextSection.label)}
-                      className="mt-2.5 w-full cursor-pointer rounded-lg border border-stone-300 px-4 py-2.5 text-[13px] font-bold text-stone-700 transition-colors hover:border-stone-500 dark:border-stone-700 dark:text-stone-300 dark:hover:border-stone-500"
-                    >
-                      {format(t.interview.drillRecommended, { section: nextSection.label })}
-                    </button>
-                  )}
-
+                  {/* Chỉ dựng khi CÒN nghề chưa phủ. Trước đây nó dựng vô điều
+                      kiện, và vì cả 44 nghề đều đã có bộ đề nên nó in ra
+                      "0 / 44 vị trí khác chưa có bộ câu hỏi riêng" - một câu
+                      nói ngược với sự thật nó định nói. */}
                   {uncoveredCount > 0 && (
-                    <p className="mt-3 text-[11px] leading-relaxed text-stone-400 dark:text-stone-500">
+                    <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
                       {format(t.interview.uncoveredNote, { uncovered: uncoveredCount, total: FINANCE_CAREERS.length })}
                     </p>
                   )}
+                </div>
+              )}
+            </div>
+
+            <section className="rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden shadow-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-12">
+                <div className="lg:col-span-7 p-5 sm:p-6 lg:p-7">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 dark:border-amber-900 dark:bg-amber-950/40 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-amber-700 dark:text-amber-300">
+                      <BriefcaseBusiness className="h-3.5 w-3.5" />
+                      {t.interview.drillTitle}
+                    </div>
+                    <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/80 bg-amber-400/10 px-3 py-1 text-[10px] font-black text-amber-900 dark:text-amber-200">
+                      <span>{t.interview.drillBadge}</span>
+                    </div>
+                  </div>
+                  <h2 className="mt-4 text-2xl sm:text-3xl font-black tracking-tight text-stone-900 dark:text-stone-100">
+                    {t.interview.drillHeading}
+                  </h2>
+                  <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-stone-600 dark:text-stone-300">
+                    {t.interview.drillBodyPart1}
+                    <strong>{t.interview.drillBookTitle}</strong>
+                    {t.interview.drillBodyPart2}
+                  </p>
+
+                  <div className="mt-5 grid grid-cols-3 gap-2.5">
+                    {[
+                      { icon: Target, label: t.interview.statBankLabel, value: format(t.interview.statBankValue, { count: activeQuestionTotal }) },
+                      { icon: Clock3, label: t.interview.statPerRoundLabel, value: t.interview.statPerRoundValue },
+                      { icon: Trophy, label: t.interview.statRewardLabel, value: t.interview.statRewardValue },
+                    ].map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <div key={item.label} className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 px-3 py-3">
+                          <Icon className="h-4 w-4 text-amber-500" />
+                          <p className="mt-2 text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{item.label}</p>
+                          <p className="mt-0.5 text-sm font-black text-stone-900 dark:text-stone-100">{item.value}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* The actual section breakdown - what "400 IB Questions" is
+                      really made of, so a learner can see coverage instead of
+                      a single opaque number. */}
+                  <div className="mt-5">
+                    <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-2">
+                      {selectedCareer ? t.interview.sectionsForRole : t.interview.sectionsAll}
+                    </p>
+                    {/* Read-only breakdown, not a filter. Filtering by a single
+                        category is done through the career picker above, which
+                        narrows server-side; a client-side chip filter could
+                        only ever act on the five questions already returned. */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {activeCategoryCounts.map((c) => (
+                        <span
+                          key={c.label}
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 text-xs font-bold text-stone-600 dark:text-stone-300"
+                        >
+                          {c.label}
+                          <span className="text-stone-400 dark:text-stone-500">· {c.count}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 p-5 sm:p-6 lg:p-7">
+                  <p className="text-xs font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">{t.interview.pickRound}</p>
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    {DIFFICULTY_IDS.map((id) => {
+                      const selected = difficulty === id;
+                      const label =
+                        id === "tat-ca"
+                          ? t.interview.diffAll
+                          : id === "de"
+                            ? t.interview.diffEasy
+                            : id === "trung-binh"
+                              ? t.interview.diffMedium
+                              : t.interview.diffHard;
+                      return (
+                        <button
+                          key={id}
+                          type="button"
+                          onClick={() => setDifficulty(id)}
+                          className={`rounded-2xl border-2 px-3 py-3 text-left transition-all cursor-pointer ${
+                            selected
+                              ? "border-amber-400 bg-amber-400 text-stone-950 shadow-sm"
+                              : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700"
+                          }`}
+                        >
+                          <span className="block text-xs font-black">{label}</span>
+                          <span className={`mt-1 block text-[10px] font-bold ${selected ? "text-stone-800" : "text-stone-400 dark:text-stone-500"}`}>
+                            {IB_DIFFICULTY_COPY[id]}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => void startQuiz(difficulty)}
+                    className="mt-4 w-full rounded-2xl bg-amber-400 hover:bg-amber-300 px-4 py-4 text-sm font-black uppercase tracking-wider text-stone-950 shadow-sm transition-all active:scale-[0.98] cursor-pointer"
+                  >
+                    {t.interview.startDrill}
+                  </button>
+                  <p className="mt-3 text-[11px] font-semibold leading-relaxed text-stone-500 dark:text-stone-400">
+                    {t.interview.difficultyHint}
+                  </p>
                 </div>
               </div>
             </section>
@@ -782,75 +606,33 @@ export default function TechnicalInterviewPage() {
 
         {mode === "technical" && stage === "ready" && q && (
           <div className="mx-auto max-w-4xl space-y-5 rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 sm:p-6 shadow-sm">
-            {/* ── Đầu vòng: chặng, không phải ba tấm thẻ ──
-                Ba ô "Câu / Đúng / Vòng" mỗi ô một viền đã gộp thành một dòng.
-                Thứ thay chỗ chúng là dải chặng: một vòng phỏng vấn thật đi từ
-                câu khởi động tới câu áp lực, và route đã sắp câu hỏi theo đúng
-                thứ tự đó (xem `phase` trong app/api/knowledge-challenge/route.ts),
-                nên dải này mô tả một chuyện có thật chứ không dán nhãn theo vị
-                trí. Chặng nào lượt này không có câu thì hiện mờ - nói rằng
-                vòng đã chọn không chứa nó, thay vì vờ như có. */}
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-4">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                <span className="text-[13px] font-black text-stone-900 dark:text-stone-100">
-                  {t.interview.modeNames[activeMode]}
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <span className="text-xs font-extrabold uppercase tracking-wide text-amber-600 dark:text-amber-400">
+                  {t.interview.drillHeader}
                 </span>
-                <span className="text-[11px] font-semibold tabular-nums text-stone-500 dark:text-stone-400">
-                  {format(t.interview.roundProgress, {
-                    index: activeQ + 1,
-                    total: questions.length,
-                    correct: score,
-                  })}
-                </span>
+                <span className="text-xs truncate max-w-[60%] text-stone-500 dark:text-stone-400">{q.lessonTitle}</span>
               </div>
-
-              <ol className="mt-3 flex gap-1.5">
-                {ROUND_PHASES.map((phase) => {
-                  const inRun = questions.some((question) => question.phase === phase);
-                  const isCurrent = q.phase === phase;
-                  const done =
-                    inRun &&
-                    !isCurrent &&
-                    questions.findIndex((question) => question.phase === phase) < activeQ;
-                  return (
-                    <li key={phase} className="min-w-0 flex-1">
-                      <div
-                        className={`h-1 rounded-full transition-colors ${
-                          isCurrent
-                            ? "bg-amber-400"
-                            : done
-                              ? "bg-stone-900 dark:bg-stone-100"
-                              : inRun
-                                ? "bg-stone-200 dark:bg-stone-800"
-                                : "bg-stone-100 dark:bg-stone-900"
-                        }`}
-                      />
-                      <p
-                        className={`mt-1 truncate text-[10px] font-semibold ${
-                          isCurrent
-                            ? "text-stone-900 dark:text-stone-100"
-                            : inRun
-                              ? "text-stone-500 dark:text-stone-400"
-                              : "text-stone-300 dark:text-stone-700"
-                        }`}
-                      >
-                        {t.interview.roundPhases[phase]}
-                      </p>
-                    </li>
-                  );
-                })}
-                {/* Chặng thứ tư là KẾT QUẢ. Nó không phải một chặng hỏi bài,
-                    nên nó không lấy câu nào từ ngân hàng - nhưng bỏ nó ra khỏi
-                    dải thì vòng trông như kết thúc lửng ở câu cuối. */}
-                <li className="min-w-0 flex-1">
-                  <div className="h-1 rounded-full bg-stone-100 dark:bg-stone-900" />
-                  <p className="mt-1 truncate text-[10px] font-semibold text-stone-300 dark:text-stone-700">
-                    {t.interview.roundResult}
-                  </p>
-                </li>
-              </ol>
-
-              <p className="mt-3 truncate text-[11px] text-stone-400 dark:text-stone-500">{q.lessonTitle}</p>
+              <div className="mt-3 grid grid-cols-3 gap-2">
+                <div className="rounded-xl bg-white dark:bg-stone-900 px-3 py-2 border border-stone-200 dark:border-stone-800">
+                  <p className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.statQuestion}</p>
+                  <p className="text-sm font-black text-stone-900 dark:text-stone-100">{activeQ + 1}/{questions.length}</p>
+                </div>
+                <div className="rounded-xl bg-white dark:bg-stone-900 px-3 py-2 border border-stone-200 dark:border-stone-800">
+                  <p className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.statCorrect}</p>
+                  <p className="text-sm font-black text-emerald-600 dark:text-emerald-400">{score}</p>
+                </div>
+                <div className="rounded-xl bg-white dark:bg-stone-900 px-3 py-2 border border-stone-200 dark:border-stone-800">
+                  <p className="text-[9px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.statRound}</p>
+                  <p className="text-sm font-black text-amber-600 dark:text-amber-400">{IB_DIFFICULTY_COPY[difficulty]}</p>
+                </div>
+              </div>
+              <div className="mt-3 h-2 rounded-full overflow-hidden bg-stone-200 dark:bg-stone-800">
+                <div
+                  className="h-full rounded-full transition-all duration-500 bg-amber-400"
+                  style={{ width: `${Math.max(6, progressPct)}%` }}
+                />
+              </div>
             </div>
 
             <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-4 sm:p-5">
@@ -930,7 +712,7 @@ export default function TechnicalInterviewPage() {
               </div>
               <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-4">
                 <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.statRound}</p>
-                <p className="mt-1 text-sm font-black text-stone-900 dark:text-stone-100">{t.interview.modeNames[activeMode]}</p>
+                <p className="mt-1 text-sm font-black text-stone-900 dark:text-stone-100">{IB_DIFFICULTY_COPY[difficulty]}</p>
               </div>
               <div className="rounded-2xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-4">
                 <p className="text-[10px] font-black uppercase tracking-wider text-stone-400 dark:text-stone-500">{t.interview.nextAction}</p>

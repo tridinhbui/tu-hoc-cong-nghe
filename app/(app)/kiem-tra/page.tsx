@@ -1,9 +1,8 @@
 "use client";
 
-import { Suspense, useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { BriefcaseBusiness, Check, CheckCircle2, ChevronLeft } from "lucide-react";
+import { BriefcaseBusiness, CheckCircle2, ChevronLeft, Sparkles } from "lucide-react";
 import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
@@ -35,23 +34,8 @@ const PASS_RATIO = 0.6;
 
 type Stage = "setup" | "loading" | "empty" | "error" | "ready" | "done";
 
-/** `useSearchParams()` buộc phải nằm trong một ranh giới <Suspense>.
- *
- *  Không phải chuyện thẩm mỹ: Next prerender trang này lúc build, và ở đó chưa
- *  có URL nào để đọc tham số. Thiếu ranh giới thì `next build` DỪNG với
- *  "Error occurred prerendering page /kiem-tra" - đã xảy ra đúng một lần, ngay
- *  khi `?subject=` được thêm vào để trang CFA mở checkpoint theo môn.
- *
- *  Vỏ mỏng ở ngoài, toàn bộ trang ở trong, `fallback={null}` vì phần khung đã
- *  do app/(app)/layout.tsx dựng - một khung xương nhấp nháy trong vài mili giây
- *  còn khó chịu hơn không có gì. */
-function KiemTraPageInner() {
+export default function KiemTraPage() {
   const { t } = useI18n();
-  // `?subject=` để trang CFA mở thẳng một "checkpoint" của đúng một môn. Chỉ có
-  // nghĩa với track `cfa`; API bỏ qua nó ở các track khác, và bỏ qua cả giá trị
-  // lạ - xem `cfaSubjectIds` trong app/api/knowledge-challenge/route.ts.
-  const searchParams = useSearchParams();
-  const cfaSubject = searchParams.get("subject");
   const [userId, setUserId] = useState<string | null>(null);
   const [track, setTrack] = useState<QuizTrack>("personal");
   const [difficulty, setDifficulty] = useState<QuizDifficulty>("tat-ca");
@@ -97,10 +81,7 @@ function KiemTraPageInner() {
     setAnswers([]);
     setXpAwarded(null);
     try {
-      const subjectParam = effectiveTrack === "cfa" && cfaSubject ? `&subject=${encodeURIComponent(cfaSubject)}` : "";
-      const res = await fetch(
-        `/api/knowledge-challenge?track=${effectiveTrack}&difficulty=${effectiveDifficulty}${subjectParam}`
-      );
+      const res = await fetch(`/api/knowledge-challenge?track=${effectiveTrack}&difficulty=${effectiveDifficulty}`);
       if (!res.ok) throw new Error("failed");
       const data = await res.json();
       if (!data.questions || data.questions.length === 0) {
@@ -114,7 +95,7 @@ function KiemTraPageInner() {
       console.error("Error loading kiểm tra:", error);
       setStage("error");
     }
-  }, [track, difficulty, cfaSubject]);
+  }, [track, difficulty]);
 
   const q = questions[activeQ];
   const allDone = submitted && activeQ === questions.length - 1;
@@ -180,91 +161,88 @@ function KiemTraPageInner() {
     // plain h-dvh here would make the document 100dvh + 3.5rem and scroll,
     // which is exactly what pinning to one screen is meant to prevent. The
     // desktop sidebar is `fixed` and costs no height, hence lg:h-dvh.
-    <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col">
-      <div className="shrink-0 border-b border-stone-200 dark:border-stone-800">
-        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
+    <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-stone-50 dark:bg-stone-950">
+      <div className="shrink-0 border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
+        <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link
               href="/dashboard"
-              className="flex items-center justify-center w-9 h-9 -ml-2 rounded-full text-stone-400 hover:text-stone-700 dark:text-stone-500 dark:hover:text-stone-200 transition-colors"
+              className="flex items-center justify-center w-9 h-9 rounded-full text-stone-500 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
               aria-label={t.quizPage.backAria}
             >
               <ChevronLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-lg font-semibold tracking-tight text-stone-900 dark:text-stone-100">{t.quizPage.title}</h1>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+              <h1 className="text-xl font-black text-stone-900 dark:text-stone-100 tracking-tight">{t.quizPage.title}</h1>
+              <p className="text-xs font-semibold text-stone-500 dark:text-stone-400 mt-0.5">
                 {t.quizPage.subtitle}
               </p>
             </div>
           </div>
 
-          {/* Mức thưởng nói MỘT lần, ở dạng chữ. Trước đây nó là một viên thuốc
-              viền xanh có icon ở đây, VÀ một hộp nền xanh nhắc lại y hệt ở cuối
-              cột phải - cùng một câu, hai lần, hai kiểu trang trí. Phần thưởng
-              là hệ quả của việc làm bài, không phải việc cần làm, nên nó đứng
-              yên ở đây dưới dạng một dòng phụ. */}
-          <p className="hidden sm:block text-xs tabular-nums text-stone-500 dark:text-stone-400">
-            {format(t.quizPage.xpPerQuestion, { xp: XP_PER_QUESTION })}
-          </p>
+          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-200 bg-emerald-50 text-emerald-700 text-xs font-extrabold">
+            <Sparkles className="w-4 h-4 text-emerald-600" />
+            <span>{format(t.quizPage.xpPerQuestion, { xp: XP_PER_QUESTION })}</span>
+          </div>
         </div>
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto max-w-6xl mx-auto w-full px-4 sm:px-6 py-3 sm:py-4">
         {stage === "setup" && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-0 items-stretch">
-            {/* CỘT TRÁI - mặt làm bài. Việc chính của trang.
-                Không còn nằm trong hộp: trước đây nó là một khối bo 3xl, viền
-                hồng, nền chuyển sắc hồng-trắng-hổ phách, đổ bóng - và bên trong
-                lại chứa thêm một hộp tin tức, rồi bốn hộp đáp án nữa. Ba tầng
-                hộp lồng nhau cho một việc duy nhất là đọc và chọn.
-                Nhãn "BÊN TRÁI •" cũng đã bỏ. Nó nói cho người đọc biết cột này
-                nằm bên trái, thứ mà vị trí của nó đã nói rồi. */}
-            <div className="lg:col-span-7 lg:pr-8 h-full flex flex-col">
-              <div className="pb-3 border-b border-stone-200 dark:border-stone-800">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h2 className="text-base font-semibold text-stone-900 dark:text-stone-100">
-                    {t.quizPage.newsTitle}
-                  </h2>
-                  {/* Trạng thái là CHỮ, không phải viên thuốc đỏ nhấp nháy. Bản
-                      cũ dùng `animate-pulse` cộng một chấm `animate-ping` cho
-                      trạng thái "chưa làm" - hai hiệu ứng chuyển động để báo một
-                      việc chưa làm, ngay cạnh chính việc đó. */}
-                  {isNewsAnswered ? (
-                    <span className="shrink-0 inline-flex items-center gap-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-400">
-                      <CheckCircle2 className="w-4 h-4" />
-                      {t.quizPage.newsDone}
-                    </span>
-                  ) : (
-                    <span className="shrink-0 text-xs font-medium text-stone-500 dark:text-stone-400">
-                      {t.quizPage.newsPending}
-                    </span>
-                  )}
-                </div>
-                <p className="mt-1 text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-                  {t.quizPage.newsBodyPart1}
-                  {format(t.quizPage.newsXp, { xp: QUEST_XP_REWARDS.daily_news_quiz })}
-                  {t.quizPage.newsBodyPart2}
-                </p>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-stretch">
+            {/* 📰 LEFT COLUMN: Daily Financial News Quiz */}
+            <div className="lg:col-span-6 h-full flex flex-col">
+              <div className="rounded-3xl border border-rose-200/90 dark:border-rose-900/60 bg-gradient-to-b from-rose-50/80 via-white to-amber-50/40 dark:from-rose-950/40 dark:via-stone-900 dark:to-stone-950 p-3.5 sm:p-4 shadow-md h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-2.5 pb-2 border-b border-rose-100 dark:border-rose-900/40">
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-rose-500 text-white shadow-2xs">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                        <span>{t.quizPage.leftEyebrow}</span>
+                      </div>
+                      <h3 className="mt-1.5 text-base font-black text-stone-900 dark:text-stone-100">
+                        {t.quizPage.newsTitle}
+                      </h3>
+                    </div>
+                    {isNewsAnswered ? (
+                      <span className="shrink-0 text-xs font-extrabold px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 flex items-center gap-1.5 shadow-2xs">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                        {t.quizPage.newsDone}
+                      </span>
+                    ) : (
+                      <span className="shrink-0 text-xs font-extrabold px-3 py-1.5 rounded-full bg-rose-500 text-white animate-pulse shadow-2xs flex items-center gap-1">
+                        <span>{t.quizPage.newsPending}</span>
+                        <span className="text-[10px] opacity-90">{t.quizPage.newsPendingNote}</span>
+                      </span>
+                    )}
+                  </div>
 
-              <div className="flex-1 flex flex-col justify-start pt-4">
-                <DailyNewsQuizWidget userId={userId || "guest"} compact={false} />
+                  <p className="text-xs text-stone-600 dark:text-stone-400 mb-2.5 leading-snug">
+                    {t.quizPage.newsBodyPart1}
+                    <strong>{format(t.quizPage.newsXp, { xp: QUEST_XP_REWARDS.daily_news_quiz })}</strong>
+                    {t.quizPage.newsBodyPart2}
+                  </p>
+                </div>
+
+                <div className="flex-1 flex flex-col justify-end">
+                  <DailyNewsQuizWidget userId={userId || "guest"} compact={false} />
+                </div>
               </div>
             </div>
 
-            {/* CỘT PHẢI - bảng thiết lập. Phụ thuộc, nên hẹp hơn (5/12 so với
-                7/12) và ngăn bằng một NÉT DỌC chứ không phải thành hộp thứ hai
-                đặt cạnh hộp thứ nhất. Hai tấm thẻ nằm cạnh nhau thì trông ngang
-                vai nhau, mà ở trang này chúng không ngang vai: một bên là việc
-                cần làm, một bên là mấy công tắc để bắt đầu một việc khác. */}
-            <div className="lg:col-span-5 h-full flex flex-col lg:border-l lg:border-stone-200 lg:pl-8 dark:lg:border-stone-800">
-              <div className="pb-3 border-b border-stone-200 dark:border-stone-800">
-                <h2 className="text-base font-semibold text-stone-900 dark:text-stone-100">
-                  {t.quizPage.builderTitle}
-                </h2>
-              </div>
-              <div className="space-y-5 pt-4">
+            {/* 🎯 RIGHT COLUMN: Enhanced Test Creation Form */}
+            <div className="lg:col-span-6 h-full flex flex-col">
+              <div className="rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-3.5 sm:p-4 shadow-md space-y-3 h-full flex flex-col justify-between">
+                <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-2">
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                      <span>{t.quizPage.rightEyebrow}</span>
+                    </div>
+                    <h3 className="mt-1.5 text-base font-black text-stone-900 dark:text-stone-100">
+                      {t.quizPage.builderTitle}
+                    </h3>
+                  </div>
+                </div>
 
                 {userId && (
                   <TaiTaiQuizSuggestion
@@ -279,10 +257,10 @@ function KiemTraPageInner() {
 
                 {/* Track Selector */}
                 <div>
-                  <label className="eyebrow block text-stone-400 dark:text-stone-500 mb-2">
+                  <label className="block text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1.5">
                     {t.quizPage.step1}
                   </label>
-                  <div className="divide-y divide-stone-200/80 border-y border-stone-200/80 dark:divide-stone-800 dark:border-stone-800">
+                  <div className="space-y-1.5">
                     {TRACK_IDS.map((id) => {
                       const label =
                         id === "personal"
@@ -306,27 +284,22 @@ function KiemTraPageInner() {
                           key={id}
                           type="button"
                           onClick={() => setTrack(id)}
-                          // Hàng, không phải thẻ. Trạng thái đang chọn nói bằng
-                          // MỘT dấu tích cộng chữ đậm lên - bản cũ nói bằng
-                          // border-2 xanh, CỘNG nền chuyển sắc, CỘNG ring-2,
-                          // CỘNG một viên thuốc chữ "ĐANG CHỌN": bốn tín hiệu
-                          // cho một trạng thái nhị phân trong danh sách bốn mục.
-                          className={`w-full text-left px-1 py-2.5 transition-colors cursor-pointer flex items-start gap-2.5 ${
+                          className={`w-full text-left rounded-2xl border-2 p-2.5 transition-all duration-200 cursor-pointer flex items-start justify-between gap-3 ${
                             selected
-                              ? "text-stone-900 dark:text-stone-100"
-                              : "text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200"
+                              ? "border-emerald-500 bg-gradient-to-r from-emerald-50/90 to-teal-50/40 dark:from-emerald-950/60 dark:to-stone-900 ring-2 ring-emerald-400/30 text-stone-900 dark:text-stone-100 shadow-sm"
+                              : "border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40 text-stone-700 dark:text-stone-300"
                           }`}
-                          aria-pressed={selected}
                         >
-                          <Check
-                            className={`mt-0.5 h-4 w-4 shrink-0 transition-opacity ${
-                              selected ? "text-emerald-600 opacity-100 dark:text-emerald-500" : "opacity-0"
-                            }`}
-                            aria-hidden="true"
-                          />
                           <div className="min-w-0 flex-1">
-                            <div className={`text-sm ${selected ? "font-semibold" : "font-medium"}`}>{label}</div>
-                            <p className="text-xs mt-0.5 text-stone-500 dark:text-stone-400 leading-snug">{desc}</p>
+                            <div className="font-extrabold text-sm flex items-center gap-2">
+                              <span>{label}</span>
+                              {selected && (
+                                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-emerald-500 text-white">
+                                  {t.quizPage.selecting}
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-[11px] mt-0.5 text-stone-500 dark:text-stone-400 leading-snug">{desc}</p>
                           </div>
                         </button>
                       );
@@ -336,7 +309,7 @@ function KiemTraPageInner() {
 
                 {/* Difficulty Selector */}
                 <div>
-                  <label className="eyebrow block text-stone-400 dark:text-stone-500 mb-2">
+                  <label className="block text-xs font-black uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1.5">
                     {t.quizPage.step2}
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
@@ -355,10 +328,10 @@ function KiemTraPageInner() {
                           key={id}
                           type="button"
                           onClick={() => setDifficulty(id)}
-                          className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer text-center ${
+                          className={`rounded-xl border-2 px-3 py-1.5 text-xs font-extrabold transition-all cursor-pointer text-center ${
                             selected
-                              ? "border-stone-900 bg-stone-900 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900"
-                              : "border-stone-200 text-stone-600 hover:border-stone-400 dark:border-stone-800 dark:text-stone-400 dark:hover:border-stone-600"
+                              ? "border-stone-900 dark:border-stone-100 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 shadow-sm"
+                              : "border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-700 bg-stone-50/50 dark:bg-stone-800/40"
                           }`}
                         >
                           {label}
@@ -368,10 +341,19 @@ function KiemTraPageInner() {
                   </div>
                 </div>
 
+                {/* XP Reward hint */}
+                <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/80 dark:bg-emerald-950/40 p-2.5 flex items-center gap-3">
+                  <p className="text-xs font-bold text-emerald-800 dark:text-emerald-300">
+                    {t.quizPage.rewardPart1}
+                    <strong>{format(t.quizPage.rewardXp, { xp: XP_PER_QUESTION })}</strong>
+                    {t.quizPage.rewardPart2}
+                  </p>
+                </div>
+
                 {/* Start Action Button */}
                 <button
                   onClick={() => startSelectedQuiz(track, difficulty)}
-                  className="w-full py-2.5 rounded-lg text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-2.5 rounded-2xl font-black text-sm uppercase tracking-wider text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-500/20 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
                 >
                   <span>{t.quizPage.start}</span>
                   <span>→</span>
@@ -385,20 +367,21 @@ function KiemTraPageInner() {
 
             <Link
               href="/phong-van-ky-thuat"
-              // Lối rẽ phụ, nên trông như một lối rẽ: một hàng dưới nét kẻ,
-              // không phải tấm thẻ thứ ba có viền, đổ bóng và ô biểu tượng hổ
-              // phách. Ô biểu tượng 36px có nền riêng, viền riêng và màu riêng
-              // là ba quyết định thị giác cho một liên kết.
-              className="lg:col-span-12 group mt-2 flex items-center justify-between gap-4 border-t border-stone-200 py-3.5 transition-colors dark:border-stone-800"
+              className="lg:col-span-12 group rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:border-amber-300 dark:hover:border-amber-800 transition-colors overflow-hidden shadow-sm flex items-center justify-between gap-4 p-3 sm:p-3.5"
             >
               <div className="flex items-center gap-3">
-                <BriefcaseBusiness className="h-4 w-4 shrink-0 text-stone-400 transition-colors group-hover:text-stone-600 dark:group-hover:text-stone-300" />
+                <div className="w-9 h-9 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 flex items-center justify-center shrink-0">
+                  <BriefcaseBusiness className="h-4.5 w-4.5 text-amber-600 dark:text-amber-400" />
+                </div>
                 <div>
-                  <h3 className="text-sm font-medium text-stone-900 dark:text-stone-100">{t.quizPage.ibTitle}</h3>
-                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">{t.quizPage.ibSub}</p>
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-600 dark:text-amber-400">
+                    {t.quizPage.ibEyebrow}
+                  </p>
+                  <h3 className="text-sm font-black text-stone-900 dark:text-stone-100">{t.quizPage.ibTitle}</h3>
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">{t.quizPage.ibSub}</p>
                 </div>
               </div>
-              <span className="shrink-0 text-xs font-medium text-stone-500 transition-all group-hover:translate-x-0.5 group-hover:text-stone-800 dark:text-stone-400 dark:group-hover:text-stone-200">
+              <span className="shrink-0 text-xs font-black text-amber-600 dark:text-amber-400 group-hover:translate-x-0.5 transition-transform">
                 {t.quizPage.ibOpen}
               </span>
             </Link>
@@ -555,13 +538,5 @@ function KiemTraPageInner() {
         )}
       </div>
     </div>
-  );
-}
-
-export default function KiemTraPage() {
-  return (
-    <Suspense fallback={null}>
-      <KiemTraPageInner />
-    </Suspense>
   );
 }

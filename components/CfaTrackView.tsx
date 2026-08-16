@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { createClient } from "@/lib/supabase";
-import { BookOpen, Loader2, ChevronRight, ArrowLeft, CheckCircle2, Circle, PlayCircle } from "lucide-react";
+import { BookOpen, Loader2, ChevronRight, ArrowLeft, Library, ListChecks, CheckCircle2, Circle, PlayCircle } from "lucide-react";
 import type { LessonMeta } from "@/lib/lesson-types";
 import type { CfaSubject } from "@/lib/cfa-track";
 // Số lượng đọc thẳng từ dữ liệu, không gõ tay vào chuỗi quảng cáo. Banner từng
@@ -14,8 +14,6 @@ import type { CfaSubject } from "@/lib/cfa-track";
 import { CFA_GLOSSARY_TERMS } from "@/lib/cfa-glossary-terms";
 import { CFA_FORMULAS_DATA } from "@/lib/cfa-formulas-data";
 import { toTitleCase } from "@/lib/cfa-format";
-import { buildCfaCampaign } from "@/lib/cfa-progression";
-import { booksForSubject } from "@/lib/cfa-library-map";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -64,15 +62,6 @@ let cachedBooks: Book[] | null = null;
 
 export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
   const { t } = useI18n();
-  // Quyển nào phục vụ môn ĐANG HỌC. Trước đây bốn bìa sách hiện y hệt nhau dù
-  // người học đang ở môn nào, vì thư viện (Book/Reading/Module trong Supabase)
-  // và lộ trình mười môn (bài học trong repo) chưa có đường nối - xem
-  // lib/cfa-library-map.ts.
-  const missionBookIds = useMemo(() => {
-    const campaign = buildCfaCampaign(new Set(completedLessonIds));
-    return new Set(booksForSubject(campaign.currentSubjectId));
-  }, [completedLessonIds]);
-
   const [viewMode, setViewMode] = useState<ViewMode>("library");
   const [openSubjects, setOpenSubjects] = useState<Set<string>>(new Set());
   const completedSet = new Set(completedLessonIds);
@@ -239,98 +228,145 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
           tiếp. Tầng trên nằm ngang để tiêu đề bài không còn bị line-clamp-1
           cắt giữa chừng ở khổ hẹp. */}
       <div className="mb-5 space-y-3.5">
-        {/* Hàng "học tiếp", không phải thẻ.
-            Bản trước xếp cùng lúc: huy hiệu nhãn, huy hiệu tiến độ, thẻ có viền
-            và bóng, thanh tiến độ, rồi một nút full-width - năm lớp trang trí
-            cho một câu duy nhất là "học bài này tiếp". Giờ TÊN BÀI mang gần hết
-            trọng lượng thị giác, mọi thứ khác lùi xuống hàng phụ. */}
-        <div className="border-t border-stone-900/10 pt-4 dark:border-stone-100/10">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div className="min-w-0 flex-1">
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-500 dark:text-stone-400">
+        {/* 🎯 CFA Global Continuation Summary Banner - full width */}
+        <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="space-y-1.5 min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="text-[9px] font-black uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-md border border-emerald-200/60 dark:border-emerald-800/60">
                 {t.cfaTrack.progressBadge}
-                {nextGlobalLesson && (
-                  <>
-                    <span className="mx-1.5 text-stone-300 dark:text-stone-700">·</span>
-                    <span className="text-stone-400 dark:text-stone-500">{nextGlobalLesson.subjectName}</span>
-                  </>
-                )}
-              </p>
-              <h2 className="mt-1.5 text-lg sm:text-xl font-black leading-tight tracking-tight text-stone-900 dark:text-stone-100 line-clamp-2">
-                {nextGlobalLesson ? nextGlobalLesson.title : t.cfaTrack.allDoneTitle}
-              </h2>
+              </span>
+              <span className="text-[9px] font-extrabold text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-md">
+                {format(t.cfaTrack.progressCount, { done: totalCompletedCfa, total: totalCfaLessons, pct: overallPct })}
+              </span>
             </div>
+            <h2 className="text-sm sm:text-base font-extrabold text-stone-900 dark:text-stone-100 leading-snug line-clamp-2">
+              {nextGlobalLesson ? format(t.cfaTrack.nextLessonTitle, { title: nextGlobalLesson.title }) : t.cfaTrack.allDoneTitle}
+            </h2>
+            <p className="text-[11px] text-stone-500 dark:text-stone-400 line-clamp-1">
+              {nextGlobalLesson ? format(t.cfaTrack.nextLessonSubject, { subject: nextGlobalLesson.subjectName }) : t.cfaTrack.allDoneSubtitle}
+            </p>
 
-            {nextGlobalLesson && (
-              <Link
-                href={`/bai-hoc/${nextGlobalLesson.slug}`}
-                className="inline-flex shrink-0 items-center gap-1.5 self-start rounded-md bg-emerald-600 px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-emerald-700 sm:self-auto"
-              >
-                {t.cfaTrack.continueNextLesson}
-                <ChevronRight className="h-3.5 w-3.5" />
-              </Link>
-            )}
+            <div className="w-full h-1.5 bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden mt-1.5">
+              <div
+                className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+                style={{ width: `${overallPct}%` }}
+              />
+            </div>
           </div>
 
-          {/* Tiến độ là một dòng chữ cộng một sợi kẻ, không phải thanh bo tròn
-              đặt trong thẻ. Con số mới là thông tin; sợi kẻ chỉ để liếc qua. */}
-          <div className="mt-3 flex items-center gap-3">
-            <div className="h-px flex-1 bg-stone-200 dark:bg-stone-800">
-              <div className="h-px bg-emerald-600 dark:bg-emerald-500" style={{ width: `${overallPct}%` }} />
-            </div>
-            <span className="shrink-0 text-[11px] tabular-nums text-stone-500 dark:text-stone-400">
-              {format(t.cfaTrack.progressCount, { done: totalCompletedCfa, total: totalCfaLessons, pct: overallPct })}
-            </span>
-          </div>
+          {nextGlobalLesson && (
+            <Link
+              href={`/bai-hoc/${nextGlobalLesson.slug}`}
+              className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full sm:w-auto text-center active:scale-95"
+            >
+              <PlayCircle className="w-3.5 h-3.5 text-white" />
+              <span>{t.cfaTrack.continueNextLesson}</span>
+            </Link>
+          )}
         </div>
 
-        {/* Ba công cụ ôn: danh sách, không phải ba thẻ tính năng.
-            Bản trước lặp đúng một khuôn ba lần - nhãn nhỏ, tiêu đề, mô tả, nút
-            xanh full-width - và ba khối giống hệt nhau xếp cạnh nhau là dấu hiệu
-            rõ nhất của một trang được sinh tự động. Giờ mỗi công cụ là một dòng:
-            cả dòng bấm được, không nút riêng, phân cách bằng kẻ mảnh. */}
-        <div className="border-t border-stone-200 dark:border-stone-800">
-          {[
-            { href: "/cfa/flashcards", label: t.cfaTrack.flashcardBadge, title: t.cfaTrack.flashcardTitle, desc: format(t.cfaTrack.flashcardDesc, { count: CFA_GLOSSARY_TERMS.length }) },
-            { href: "/cfa/formulas", label: t.cfaTrack.formulaBadge, title: t.cfaTrack.formulaTitle, desc: format(t.cfaTrack.formulaDesc, { count: CFA_FORMULAS_DATA.length }) },
-            { href: "/cfa/thi-thu", label: t.cfaTrack.mockExamBadge, title: t.cfaTrack.mockExamTitle, desc: t.cfaTrack.mockExamDesc },
-          ].map((tool) => (
+        {/* Ba công cụ ôn, một hàng. Chúng cùng một loại việc ("mở ra tra/ôn"),
+            nên đứng cùng nhịp và cùng chiều cao. */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+          {/* 📇 CFA Glossary Flashcards Banner (1/3) */}
+          <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <span className="text-lg">📇</span>
+                <span className="text-[9px] font-black uppercase text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/50 px-2 py-0.5 rounded-md border border-amber-200/60 dark:border-amber-800/60">
+                  {t.cfaTrack.flashcardBadge}
+                </span>
+              </div>
+              <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
+                {t.cfaTrack.flashcardTitle}
+              </h3>
+              <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
+                {/* Một biểu thức duy nhất thay vì `{số} chữ`: JSX cắt khoảng
+                    trắng quanh biểu thức theo luật riêng của nó, và ở đây kết
+                    quả render ra "118thuật ngữ" - dính liền. Ghép sẵn trong
+                    chuỗi thì không còn khoảng trắng nào để ai cắt. */}
+                {format(t.cfaTrack.flashcardDesc, { count: CFA_GLOSSARY_TERMS.length })}
+              </p>
+            </div>
+
             <Link
-              key={tool.href}
-              href={tool.href}
-              className="group flex items-baseline gap-4 border-b border-stone-200 py-2.5 transition-colors hover:bg-stone-50 dark:border-stone-800 dark:hover:bg-stone-800/40"
+              href="/cfa/flashcards"
+              className="mt-3 px-3 py-2 bg-amber-500 hover:bg-amber-600 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
             >
-              <span className="w-24 shrink-0 text-[10px] font-bold uppercase tracking-[0.14em] text-stone-400 dark:text-stone-500">
-                {tool.label}
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-[13px] font-bold text-stone-900 dark:text-stone-100">{tool.title}</span>
-                <span className="mt-0.5 block truncate text-[11px] text-stone-500 dark:text-stone-400">{tool.desc}</span>
-              </span>
-              <ChevronRight className="h-3.5 w-3.5 shrink-0 self-center text-stone-300 transition-colors group-hover:text-emerald-600 dark:text-stone-600 dark:group-hover:text-emerald-500" />
+              <span>{t.cfaTrack.flashcardCta}</span>
             </Link>
-          ))}
+          </div>
+
+          {/* 📐 CFA Formula Cheat Sheet Banner (1/3) */}
+          <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <span className="text-lg">📐</span>
+                <span className="text-[9px] font-black uppercase text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded-md border border-indigo-200/60 dark:border-indigo-800/60">
+                  {t.cfaTrack.formulaBadge}
+                </span>
+              </div>
+              <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
+                {t.cfaTrack.formulaTitle}
+              </h3>
+              <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
+                {format(t.cfaTrack.formulaDesc, { count: CFA_FORMULAS_DATA.length })}
+              </p>
+            </div>
+
+            <Link
+              href="/cfa/formulas"
+              className="mt-3 px-3 py-2 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-white text-white dark:text-stone-900 font-bold text-xs rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
+            >
+              <span>{t.cfaTrack.formulaCta}</span>
+            </Link>
+          </div>
+
+          {/* 📝 Thi thử - đứng cùng hàng với sổ công thức và flashcard vì cả ba
+              đều là "công cụ ôn", nhưng đây là cái duy nhất trả lời được câu hỏi
+              "tôi đã sẵn sàng chưa". */}
+          <div className="bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 rounded-2xl p-4 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <span className="text-lg">📝</span>
+                <span className="text-[9px] font-black uppercase text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950/50 px-2 py-0.5 rounded-md border border-rose-200/60 dark:border-rose-800/60">
+                  {t.cfaTrack.mockExamBadge}
+                </span>
+              </div>
+              <h3 className="text-xs sm:text-sm font-extrabold text-stone-900 dark:text-stone-100 leading-snug">
+                {t.cfaTrack.mockExamTitle}
+              </h3>
+              <p className="text-[10px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-normal">
+                {t.cfaTrack.mockExamDesc}
+              </p>
+            </div>
+
+            <Link
+              href="/cfa/thi-thu"
+              className="mt-3 px-3 py-2 bg-rose-600 hover:bg-rose-700 font-bold text-xs text-white rounded-xl transition-all shadow-2xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5 w-full text-center active:scale-95"
+            >
+              <span>{t.cfaTrack.mockExamCta}</span>
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* ─── MODE SWITCHER TAB BAR ─── */}
-      {/* Bộ lọc là tab gạch chân, không phải hai nút trong một hộp bo tròn.
-          Hộp xám bọc ngoài là thêm một container nữa quanh thứ vốn chỉ cần hai
-          chữ, và nó lặp lại đúng hình dạng đã dùng cho ba chỗ khác trên trang. */}
-      <div className="flex gap-6 mb-6 border-b border-stone-200 dark:border-stone-800">
+      <div className="flex gap-1 mb-6 bg-stone-100 dark:bg-stone-900 rounded-xl p-1 max-w-md">
         {[
-          { id: "library" as const, label: t.cfaTrack.tabLibrary },
-          { id: "subjects" as const, label: t.cfaTrack.tabSubjects },
-        ].map(({ id, label }) => (
+          { id: "library" as const, label: t.cfaTrack.tabLibrary, icon: Library },
+          { id: "subjects" as const, label: t.cfaTrack.tabSubjects, icon: ListChecks },
+        ].map(({ id, label, icon: Icon }) => (
           <button
             key={id}
             onClick={() => setViewMode(id)}
-            className={`-mb-px border-b-2 pb-2.5 text-xs transition-colors cursor-pointer ${
+            className={`flex-1 flex items-center justify-center gap-1.5 text-xs font-bold px-3 py-2.5 rounded-lg transition-all cursor-pointer ${
               viewMode === id
-                ? "border-emerald-600 font-bold text-stone-900 dark:border-emerald-500 dark:text-stone-100"
-                : "border-transparent font-semibold text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200"
+                ? "bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm"
+                : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300"
             }`}
           >
+            <Icon className="w-3.5 h-3.5" />
             {label}
           </button>
         ))}
@@ -549,8 +585,8 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
           {loading ? (
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
               {[1, 2, 3, 4].map((n) => (
-                <div key={n} className="animate-pulse">
-                  <div className="aspect-[3/4] bg-stone-200 dark:bg-stone-800 rounded-sm mb-2.5" />
+                <div key={n} className="rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 p-4 animate-pulse">
+                  <div className="aspect-[3/4] bg-stone-200 dark:bg-stone-800 rounded-lg mb-3" />
                   <div className="h-4 bg-stone-200 dark:bg-stone-800 rounded w-3/4 mb-2" />
                   <div className="h-3 bg-stone-200 dark:bg-stone-800 rounded w-1/2" />
                 </div>
@@ -565,16 +601,10 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.35, delay: i * 0.05 }}
                   onClick={() => setSelectedBook(book)}
-                  className="group cursor-pointer"
+                  className="rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/50 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
                 >
                   <div>
-                    <div
-                      className={`aspect-[3/4] overflow-hidden rounded-sm bg-stone-200 dark:bg-stone-800 relative shadow-[0_1px_3px_rgba(0,0,0,0.12)] ${
-                        missionBookIds.has(book.id)
-                          ? "ring-2 ring-emerald-600 dark:ring-emerald-500"
-                          : "ring-1 ring-stone-900/5 dark:ring-stone-100/10"
-                      }`}
-                    >
+                    <div className="aspect-[3/4] overflow-hidden bg-stone-200 dark:bg-stone-800 relative">
                       {book.coverImage ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
@@ -587,26 +617,20 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                           <BookOpen className="w-8 h-8" />
                         </div>
                       )}
-                      {/* Nhãn chữ, không chỉ viền màu: một vòng xanh quanh bìa
-                          nói "có gì đó đặc biệt" chứ không nói ĐIỀU GÌ, và người
-                          không phân biệt được màu thì không nhận được gì cả. */}
-                      {missionBookIds.has(book.id) && (
-                        <span className="absolute left-0 bottom-0 right-0 bg-emerald-600 px-1.5 py-1 text-[10px] font-semibold leading-tight text-white">
-                          {t.finalTwo.cfaCampaign.bookForMission}
-                        </span>
-                      )}
                     </div>
-                    <div className="pt-2.5">
-                      <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-stone-400 dark:text-stone-500">
-                        {book.level}
-                      </p>
-                      <h4 className="mt-0.5 text-[13px] font-bold leading-snug text-stone-900 dark:text-stone-100 line-clamp-2">
+                    <div className="p-4">
+                      <h4 className="text-xs font-extrabold text-stone-900 dark:text-white line-clamp-1 mb-1">
                         {toTitleCase(book.title)}
                       </h4>
-                      <p className="mt-0.5 text-[11px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-relaxed">
+                      <p className="text-[11px] text-stone-500 dark:text-stone-400 line-clamp-2 leading-relaxed">
                         {book.description}
                       </p>
                     </div>
+                  </div>
+                  <div className="px-4 pb-4 pt-1">
+                    <span className="text-[9px] font-bold text-stone-900 dark:text-stone-900 bg-stone-200 dark:bg-stone-100 px-2 py-0.5 rounded uppercase">
+                      {book.level}
+                    </span>
                   </div>
                 </motion.div>
               ))}

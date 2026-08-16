@@ -12,32 +12,19 @@
   ],
   "explanation": "A portfolio or a company can face several distinct layers of risk, not just price movement. Many new investors look only at market risk - prices going up and down - and miss the quieter ones such as liquidity or concentration risk, which can do far more damage.",
   "diagram": [
-    {
-      "label": "Credit risk"
-    },
-    {
-      "label": "Liquidity risk"
-    },
-    {
-      "label": "Interest rate risk"
-    },
-    {
-      "label": "Market / concentration risk"
-    }
+    { "label": "Credit risk" },
+    { "label": "Liquidity risk" },
+    { "label": "Interest rate risk" },
+    { "label": "Market / concentration risk" }
   ],
   "realWorldExample": {
     "company": "An investment portfolio / a company",
-    "description": "The four kinds of financial risk break in four different ways, so folding them into one word - 'risk' - loses exactly the part that is useful. Market risk is asset prices moving against you. Credit risk is the other side not paying. Liquidity risk is holding an asset you cannot sell in time at a fair price. Operational risk is a process, a person or a system failing. What makes them dangerous is that they usually deteriorate together: when markets fall, borrowers struggle to pay, and that is precisely when assets are hardest to sell. Leverage is not a fifth category - it is a multiplier on all four."
+    "description": "Concentration risk or high leverage can turn a small shock into a large liquidity problem."
   },
   "quiz": [
     {
       "question": "Which risk arises when you cannot sell assets fast enough to meet an obligation?",
-      "options": [
-        "Growth risk",
-        "Liquidity risk",
-        "Market risk",
-        "Tax rate risk"
-      ],
+      "options": ["Growth risk", "Liquidity risk", "Market risk", "Tax rate risk"],
       "explanation": "Low liquidity can put a company or an investor in serious difficulty even though the assets are still there on paper. Market risk is about the price moving against you, which is a separate question from whether you can transact at all; tax risk concerns changes in the rate or its treatment; and growth risk is about the business plan rather than about settling an obligation on time."
     },
     {
@@ -96,10 +83,7 @@
       "type": "lead",
       "text": "When people talk about 'risk' in investing, most think immediately of asset prices going up and down - but that is only one of several layers of financial risk worth attention."
     },
-    {
-      "type": "heading",
-      "text": "Five layers of financial risk"
-    },
+    { "type": "heading", "text": "Five layers of financial risk" },
     {
       "type": "paragraph",
       "text": "Beyond market risk (price movement), a portfolio or a company also faces credit risk (a counterparty failing to repay), liquidity risk (not being able to sell fast enough when cash is needed), interest rate risk (rates moving), and concentration risk (too much exposure to one asset or sector). Diversifying by number of holdings does not automatically remove sector concentration risk - if the whole portfolio sits in one sector, the names still move together when a shock hits the sector."
@@ -133,10 +117,7 @@
         }
       ]
     },
-    {
-      "type": "heading",
-      "text": "Why diversifying by count is not enough"
-    },
+    { "type": "heading", "text": "Why diversifying by count is not enough" },
     {
       "type": "paragraph",
       "text": "A portfolio holding 20 shares sounds well diversified, but if all 20 are in real estate or banking they still tend to move together when a shock hits the whole sector - a sudden rate rise, a tightening of credit policy. Real diversification means looking at the correlation between the assets, not just counting the names in the portfolio."

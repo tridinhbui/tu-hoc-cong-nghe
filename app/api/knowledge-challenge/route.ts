@@ -1,13 +1,12 @@
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
-import { CFA_LEVEL_1_SUBJECTS, type CfaSubjectId } from "@/lib/cfa-track";
+import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
 import { CFA_EXAM, pickCfaWeighted, toThreeOptions } from "@/lib/cfa-exam";
 import { frmLessonIds, pickFrmWeighted, type FrmPart } from "@/lib/frm-exam";
 import { IB_TECHNICAL_QUESTIONS, formatCategoryLabel } from "@/lib/ib-question-bank";
 import { bankCoversCareer, getTechnicalQuestionsForCareer } from "@/lib/ib-question-careers";
 import { localizeIbQuestion } from "@/lib/ib-questions-i18n";
-import { phaseFor, sortByPhase, type RoundPhase } from "@/lib/ib-progression";
 import { type Locale } from "@/lib/i18n/locales";
 import { getServerLocale } from "@/lib/i18n/server";
 import { signQuestionToken } from "@/lib/quiz-tokens";
@@ -21,17 +20,6 @@ export interface ChallengeQuestion {
   options: string[];
   correct: number;
   explanation: string;
-  /** Chặng của câu hỏi trong một vòng phỏng vấn: khởi động / lõi / áp lực.
-   *
-   *  Tính ở máy chủ chứ không ở trình duyệt, vì luật tính cần `difficulty` và
-   *  `category` thô của câu hỏi - `difficulty` chưa từng được gửi xuống, và
-   *  gửi thêm một trường chỉ để trình duyệt tính lại đúng phép tính này là
-   *  chép luật ra hai chỗ. Chỉ có ở track `ib` và `mock-interview`.
-   *
-   *  Không rò rỉ gì: `correct` vốn đã nằm trong phản hồi (token là thứ chống
-   *  giả mạo, không phải phần che đáp án), và tên category đã đi kèm trong
-   *  `lessonTitle` từ trước. */
-  phase?: RoundPhase;
   // Signed proof of `correct` for this specific delivered question -
   // submit it back (with the option the learner picked) to
   // /api/knowledge-challenge/submit so the server can grade the attempt
@@ -68,27 +56,9 @@ function shuffle<T>(arr: T[]): T[] {
 
 type PoolTrack = "personal" | "professional" | "cfa" | "frm";
 
-/** `?subject=` chỉ có nghĩa với track `cfa`.
- *
- *  Thu hẹp về ĐÚNG một trong mười môn, để một "checkpoint Ethics" là đề ra từ
- *  bài Ethics chứ không phải đề trộn mười môn dán nhãn Ethics. Trước đây route
- *  chỉ lọc tới mức track, nên trang CFA không có cách nào hỏi một môn.
- *
- *  Giá trị lạ thì BỎ QUA, không báo lỗi: người học gõ tay một URL sai vẫn nên
- *  nhận được đề mười môn như cũ, thay vì một trang trắng. */
-function cfaSubjectIds(subject: string | null): Set<number> | null {
-  if (!subject) return null;
-  const match = CFA_LEVEL_1_SUBJECTS.find((s) => s.id === (subject as CfaSubjectId));
-  return match ? new Set(match.lessonIds) : null;
-}
-
-async function idsForTrack(
-  track: PoolTrack,
-  frmPart: FrmPart,
-  cfaSubject: string | null
-): Promise<Set<number>> {
+async function idsForTrack(track: PoolTrack, frmPart: FrmPart): Promise<Set<number>> {
   if (track === "cfa") {
-    return cfaSubjectIds(cfaSubject) ?? new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
+    return new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
   }
   // FRM thu hẹp theo phần thi ngay từ khâu lấy bài: Part I và Part II là hai kỳ
   // thi riêng, và một câu Credit Risk lọt vào đề Part I là hỏi ngoài phạm vi.
@@ -103,12 +73,7 @@ async function idsForTrack(
   return new Set(ids);
 }
 
-type IbPoolQuestion = Omit<ChallengeQuestion, "lessonSlug" | "token" | "phase"> & {
-  category: string;
-  /** Mức khó thô của chính câu hỏi. Chỉ dùng trong route để tính `phase`;
-   *  không gửi xuống dưới dạng riêng - `phase` đã là câu trả lời. */
-  difficulty: string;
-};
+type IbPoolQuestion = Omit<ChallengeQuestion, "lessonSlug" | "token"> & { category: string };
 
 // Draws from IB_TECHNICAL_QUESTIONS, never the full bank: behavioral
 // questions ("Walk me through your resume", "Why banking?") have no single
@@ -155,7 +120,6 @@ function ibQuestionsForDifficulty(
       lessonId: -q.id,
       lessonTitle: `IB Question Bank · ${q.category}`,
       category: q.category,
-      difficulty: raw.difficulty,
       question: q.question,
       options: q.options,
       correct: q.correct,
@@ -235,7 +199,6 @@ export async function GET(request: NextRequest) {
   /** Phần thi FRM. Mặc định Part I - đó là phần người học gặp trước, và một
    *  tham số sai chính tả không nên đẩy họ sang đề Part II. */
   const frmPart: FrmPart = searchParams.get("part") === "II" ? "II" : "I";
-  const cfaSubject = searchParams.get("subject");
   const requestedCount = Math.min(
     MAX_QUESTION_COUNT,
     Math.max(1, Number(searchParams.get("count")) || QUESTION_COUNT)
@@ -257,13 +220,7 @@ export async function GET(request: NextRequest) {
       track === "mock-interview"
         ? pickAcrossCategories(pool, MOCK_INTERVIEW_QUESTION_COUNT)
         : shuffle(pool).slice(0, Math.min(QUESTION_COUNT, pool.length));
-    // Sắp theo chặng trước khi trả về, nên một lượt luôn đi khởi động → lõi →
-    // áp lực. Đây là thứ biến "vòng phỏng vấn" thành một mô tả đúng thay vì
-    // một cái nhãn: thứ tự câu hỏi thật sự tăng dần độ khó, chứ không phải
-    // chặng được gán theo vị trí của câu hỏi trong một danh sách ngẫu nhiên.
-    const questions = sortByPhase(
-      picked.map((q) => ({ ...q, phase: phaseFor(q.difficulty, q.category) }))
-    ).map((q) => {
+    const questions = picked.map((q) => {
       const order = shuffle(q.options.map((_, i) => i));
       const correct = order.indexOf(q.correct);
       return {
@@ -294,7 +251,7 @@ export async function GET(request: NextRequest) {
     track === "cfa" ||
     track === "frm"
   ) {
-    const trackIds = await idsForTrack(track, frmPart, cfaSubject);
+    const trackIds = await idsForTrack(track, frmPart);
     let candidateIds = Array.from(trackIds);
     if (difficulty && difficulty !== "tat-ca" && DIFFICULTY_LABELS[difficulty]) {
       const allLessons = await getLessonsMeta();
@@ -351,14 +308,8 @@ export async function GET(request: NextRequest) {
   const want = Math.min(requestedCount, pool.length);
   // Hai chứng chỉ đều phải cân theo trọng số môn của đề thi thật; các track còn
   // lại không có trọng số công bố nên xáo đều là đúng.
-  //
-  // NHƯNG khi `?subject=` đã thu kho về đúng một môn thì cân trọng số là vô
-  // nghĩa - `pickCfaWeighted` chia chỉ tiêu cho mười môn, mà chín trong số đó
-  // giờ không còn câu nào, nên nó trả về ít hơn số câu được yêu cầu và một
-  // "checkpoint 5 câu" ra 1-2 câu. Một môn thì xáo đều mới đúng.
-  const cfaNarrowed = track === "cfa" && cfaSubjectIds(cfaSubject) !== null;
   const picked =
-    track === "cfa" && !cfaNarrowed
+    track === "cfa"
       ? pickCfaWeighted(pool, want)
       : track === "frm"
         ? pickFrmWeighted(pool, want, frmPart).map((r) => ({ ...r.item, subjectId: r.subject }))

@@ -12,22 +12,14 @@
   ],
   "explanation": "Modern portfolio theory makes a counterintuitive claim: the risk of an asset only means anything in the context of the whole portfolio, because what matters is how far it moves in step with everything else. Combining lightly correlated assets can lower total risk without a matching cut in expected return - close to the only free lunch in finance. Its limitation is that correlations rise exactly when a crisis hits.",
   "diagram": [
-    {
-      "label": "Expected return"
-    },
-    {
-      "label": "Volatility"
-    },
-    {
-      "label": "Correlation"
-    },
-    {
-      "label": "Efficient frontier"
-    }
+    { "label": "Expected return" },
+    { "label": "Volatility" },
+    { "label": "Correlation" },
+    { "label": "Efficient frontier" }
   ],
   "realWorldExample": {
-    "company": "Two portfolios with the same expected return and very different risk",
-    "description": "Portfolio A puts everything into technology shares: expected return 12%, standard deviation 28%. Portfolio B splits 60% across diversified equities, 30% bonds, 10% cash: also about 12% expected, but a standard deviation of 15%. What makes B different is not that it holds 'safer' assets - it is that its parts do not fall at the same time. That is the whole point of portfolio theory: the risk of a collection is not the average of its parts' risks, it depends on how they correlate. And in a crisis, correlations tend towards 1 - exactly when diversification is needed most."
+    "company": "A personal investment portfolio",
+    "description": "Someone holding 100% technology stocks carries a completely different risk from someone spread across bonds, cash and defensive equities."
   },
   "quiz": [
     {
@@ -106,10 +98,7 @@
       "type": "lead",
       "text": "MPT does not teach you to pick the 'best ticker'. It teaches you to combine assets so that the whole portfolio becomes better."
     },
-    {
-      "type": "heading",
-      "text": "Mini simulation"
-    },
+    { "type": "heading", "text": "Mini simulation" },
     {
       "type": "comparison",
       "left": {
@@ -129,15 +118,9 @@
       "type": "conceptTable",
       "title": "The three variables in MPT",
       "concepts": [
-        {
-          "def": "The average return you hope to receive."
-        },
-        {
-          "def": "How far returns swing around that expectation - the higher, the more uncomfortable."
-        },
-        {
-          "def": "Measures whether assets move in the same direction or opposite ones."
-        }
+        { "def": "The average return you hope to receive." },
+        { "def": "How far returns swing around that expectation - the higher, the more uncomfortable." },
+        { "def": "Measures whether assets move in the same direction or opposite ones." }
       ]
     },
     {
@@ -168,10 +151,7 @@
         "explanation": "Expected return adds up straight by weight; risk does not, because of the 2w₁w₂ρσ₁σ₂ term. Only at ρ = 1 does σ_p equal the weighted average. Every ρ below 1 gives risk LOWER than that average, and that is exactly the 'free lunch' Markowitz was pointing at."
       }
     },
-    {
-      "type": "heading",
-      "text": "That free lunch has a limit"
-    },
+    { "type": "heading", "text": "That free lunch has a limit" },
     {
       "type": "paragraph",
       "text": "Adding stocks cuts risk quickly at first and then flattens out: going from 1 to 10 holdings removes most company-specific risk, while going from 30 to 100 removes almost nothing more. The reason is in the formula - as the number of assets rises, the individual variance terms (wᵢ²σᵢ²) shrink because w is squared, while the correlation terms do not disappear. What is left is systematic risk: when the whole market falls, no set of weights saves you. It is also why CAPM pays you for beta and not for total volatility."

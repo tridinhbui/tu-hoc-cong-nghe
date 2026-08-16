@@ -12,22 +12,14 @@
   ],
   "explanation": "Money needs five properties: it must be divisible, durable, uniform, scarce, and widely accepted. Gold meets all five; stone is too bulky to divide and inconsistent in shape, while clothing is neither durable nor scarce - which is why neither ever became widely used currency.",
   "diagram": [
-    {
-      "label": "Bartering goods for goods: hard to match needs"
-    },
-    {
-      "label": "A go-between is needed: durable, divisible, scarce"
-    },
-    {
-      "label": "Once widely accepted, it becomes money"
-    },
-    {
-      "label": "Money loses purchasing power gradually to inflation"
-    }
+    { "label": "Bartering goods for goods: hard to match needs" },
+    { "label": "A go-between is needed: durable, divisible, scarce" },
+    { "label": "Once widely accepted, it becomes money" },
+    { "label": "Money loses purchasing power gradually to inflation" }
   ],
   "realWorldExample": {
     "company": "The State Bank",
-    "description": "The note in your wallet cannot be exchanged for gold anywhere, and no vault of gold stands behind it. What makes it spendable is a chain of belief: you accept it because you believe others will, the seller accepts it because they believe the bank will, and everyone believes the central bank will not print until the note stops meaning anything. Wherever that chain breaks is where money breaks - and every hyperinflation in history started at the last link. That is why central bank independence is not a distant technocratic matter: it is what keeps the paper in your wallet being money."
+    "description": "Today's VND is not backed by gold but by trust in the state and its monetary policy."
   },
   "quiz": [
     {
@@ -111,10 +103,7 @@
       "type": "lead",
       "text": "Gold served as a global currency for thousands of years. Precious stones, shells, or clothing never became widely used money. The difference lies in five properties that anything aspiring to be 'money' has to have."
     },
-    {
-      "type": "heading",
-      "text": "The five required properties of money"
-    },
+    { "type": "heading", "text": "The five required properties of money" },
     {
       "type": "paragraph",
       "text": "For something to become widely accepted money, it needs to be: divisible (splitting an amount of gold into smaller pieces preserves proportional value), durable (it doesn't degrade over time), uniform (one tael of gold is the same wherever it is), scarce (it cannot be produced without limit), and widely accepted (many people agree to use it in exchange)."
@@ -129,18 +118,12 @@
         "Widely accepted: nearly every civilisation has recognised gold's value"
       ]
     },
-    {
-      "type": "heading",
-      "text": "Why didn't stone or clothing become money?"
-    },
+    { "type": "heading", "text": "Why didn't stone or clothing become money?" },
     {
       "type": "paragraph",
       "text": "Stone is too bulky to divide and transport, and inconsistent in shape and size. Clothing isn't durable (it tears and wears out over time) and isn't scarce (anyone can sew more). Missing even one of the five properties makes something a poor long-term medium of exchange."
     },
-    {
-      "type": "heading",
-      "text": "How does money differ from an asset?"
-    },
+    { "type": "heading", "text": "How does money differ from an asset?" },
     {
       "type": "paragraph",
       "text": "Money is a medium of exchange - a tool for measuring and transferring value. An asset is something that creates or stores value (stocks, real estate, gold when not used for a transaction). The problem with cash: it loses purchasing power to inflation every year, while an asset has the potential to gain real value over time."

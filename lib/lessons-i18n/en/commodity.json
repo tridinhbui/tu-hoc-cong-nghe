@@ -31,7 +31,7 @@
   ],
   "realWorldExample": {
     "company": "Vietnam Airlines",
-    "description": "Jet fuel is typically somewhere between a quarter and two fifths of an airline's operating cost - its largest line, and the one whose price it does not control. So the airline buys futures to fix the price on part of the fuel it will burn over the next six to twelve months. The trade cuts both ways: if oil rises, the hedged portion saves the margin; if oil falls, that same portion becomes a book loss while unhedged rivals buy cheap. Hedging is not there to win, it is there to avoid LOSING badly - trading the chance of a large gain for knowing the cost in advance."
+    "description": "Uses oil futures to lock in jet fuel prices 6-12 months ahead."
   },
   "quiz": [
     {

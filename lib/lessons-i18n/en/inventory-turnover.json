@@ -12,22 +12,14 @@
   ],
   "explanation": "Inventory turnover divides cost of goods sold by average inventory, showing how many times in a year the business sells through and restocks. Converting it into days of inventory makes it easier to read when comparing. What matters is the direction of travel: a slowing turn means capital is tied up longer and the risk of having to discount rises. But a sudden jump in turnover is worth checking too - it can mean strong selling, or it can mean the warehouse has just been cleared out.",
   "diagram": [
-    {
-      "label": "COGS"
-    },
-    {
-      "label": "Average inventory"
-    },
-    {
-      "label": "Inventory turnover"
-    },
-    {
-      "label": "Days inventory outstanding"
-    }
+    { "label": "COGS" },
+    { "label": "Average inventory" },
+    { "label": "Inventory turnover" },
+    { "label": "Days inventory outstanding" }
   ],
   "realWorldExample": {
     "company": "Zara",
-    "description": "Zara's model is built on cutting the time from sketch to shop floor down to weeks rather than months, ordering in small batches and restocking whatever is selling. The accounting consequence is very concrete: stock sits for fewer days, so the same working capital turns over more times a year, and the share of goods that has to be discounted at end of season is far below the industry norm. That is why inventory turnover is not a logistics metric - it says whether the business model is tying capital up in the riskiest thing in fashion retail: goods already bought that nobody yet wants to wear."
+    "description": "Fast fashion works partly because inventory turns quickly, which cuts the risk of stock going out of style."
   },
   "quiz": [
     {

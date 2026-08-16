@@ -7,9 +7,6 @@ import { createClient } from "@/lib/supabase";
 import dynamicImport from "next/dynamic";
 import Leaderboard from "@/components/Leaderboard";
 import FocusTimePanel from "@/components/FocusTimePanel";
-import PlayerStatusPanel from "@/components/analytics/PlayerStatusPanel";
-import { getUserAnalytics, type LearningAnalytics } from "@/lib/supabase-analytics";
-import { paceFromParts, type Pace } from "@/lib/learning-pace";
 import { useI18n } from "@/lib/i18n/context";
 
 // next/dynamic's `loading` option is rendered as its own component, so it can
@@ -33,12 +30,6 @@ export default function AnalyticsPage() {
   const supabase = createClient();
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | undefined>(undefined);
-  // Bảng trạng thái người chơi cần hai nguồn mà trang này chưa đọc: số liệu
-  // học tập, và NHỊP người dùng tự đặt ở /lo-trinh. Nhịp nằm trên
-  // user_profiles từ 20260912; đọc nó ở đây thay vì bịa một mục tiêu mặc định
-  // là điều kiện để thanh tiến độ tuần đo một thứ có thật.
-  const [analytics, setAnalytics] = useState<LearningAnalytics | null>(null);
-  const [pace, setPace] = useState<Pace | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -53,18 +44,6 @@ export default function AnalyticsPage() {
 
       setUserId(session.user.id);
       setLoading(false);
-
-      // Hai truy vấn này chỉ nuôi cột trái, nên chúng chạy SAU khi trang đã
-      // bỏ trạng thái tải: khối bảng xếp hạng bên phải không phải chờ chúng.
-      void getUserAnalytics(session.user.id).then(setAnalytics).catch(() => setAnalytics(null));
-      void supabase
-        .from("user_profiles")
-        .select("learning_pace_per_day, learning_pace_days_per_week")
-        .eq("id", session.user.id)
-        .maybeSingle()
-        .then(({ data }) =>
-          setPace(paceFromParts(data?.learning_pace_per_day, data?.learning_pace_days_per_week)),
-        );
     };
 
     void checkAuth();
@@ -109,17 +88,6 @@ export default function AnalyticsPage() {
       <div className="max-w-[1480px] mx-auto w-full px-5 pb-4 sm:px-6">
         <div className="grid gap-4 xl:grid-cols-12 xl:items-start">
           <div className="xl:col-span-5 min-w-0 space-y-4">
-            {/* Khối trạng thái người chơi đứng TRƯỚC LearningAnalytics: nó trả
-                lời "tôi đang thế nào" bằng bốn con số và một việc cần làm, còn
-                LearningAnalytics bên dưới là phần đào sâu. Thứ tự ngược lại
-                bắt người đọc lướt qua biểu đồ mới tới được câu trả lời. */}
-            {analytics && (
-              <PlayerStatusPanel
-                analytics={analytics}
-                pace={pace}
-                weekLessons={analytics.recentMomentum.last7DaysLessons}
-              />
-            )}
             <LearningAnalytics hideLeaderboardTab />
             {/* Thời gian ngồi học trong thế giới 3D. Tấm thẻ tự ẩn khi chưa có
                 phiên nào, nên nó không chiếm chỗ của người chưa vào thành phố. */}

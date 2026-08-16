@@ -4,30 +4,17 @@
   "subtitle": "FCF = OCF − CapEx, NOPAT and working capital",
   "duration": "7 min",
   "openingQuestion": "What is the shortest common definition of FCF?",
-  "openingOptions": [
-    "OCF − CapEx",
-    "Net income",
-    "Revenue − tax",
-    "EBITDA"
-  ],
+  "openingOptions": ["OCF − CapEx", "Net income", "Revenue − tax", "EBITDA"],
   "explanation": "Free cash flow is the cash left over once the business has funded its operations and the investment it needs to maintain or expand. It is the money the company is genuinely free to use - to pay a dividend, buy back shares, repay debt or accumulate - without damaging the core business.",
   "diagram": [
-    {
-      "label": "Operating cash flow"
-    },
-    {
-      "label": "− CapEx"
-    },
-    {
-      "label": "Free cash flow"
-    },
-    {
-      "label": "Value creation"
-    }
+    { "label": "Operating cash flow" },
+    { "label": "− CapEx" },
+    { "label": "Free cash flow" },
+    { "label": "Value creation" }
   ],
   "realWorldExample": {
-    "company": "VND 500bn of profit, almost no free cash flow",
-    "description": "A business reports VND 500bn of profit. Add back VND 200bn of depreciation and operating cash is 700bn - which sounds strong. But to hold that growth rate it spent VND 450bn on fixed assets that year and let another 200bn get stuck in receivables and inventory as revenue swelled. Free cash flow comes to VND 50bn, a tenth of the profit figure. This does not mean the business is weak: it means the entire profit is being reinvested, and the next question is what that reinvestment earns. Every growing business passes through this phase; the problem only appears when it never ends."
+    "company": "A growth business",
+    "description": "A company can report steady profits, but if it has to keep pouring money into capex and working capital, its free cash flow can still be weak."
   },
   "quiz": [
     {

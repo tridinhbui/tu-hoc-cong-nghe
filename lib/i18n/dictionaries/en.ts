@@ -341,16 +341,23 @@ export const en: Dictionary = {
     subtitle: "Today's macro-news challenge, and build your own test",
     xpPerQuestion: "Reward +{xp} XP per correct answer",
 
+    leftEyebrow: "Left • Today's financial news",
     newsTitle: "The daily news challenge",
     newsDone: "Completed (the menu warning is cleared)",
     newsPending: "Not done",
+    newsPendingNote: "(the menu shows a warning)",
     newsBodyPart1: "Answer today's macro-news scenario correctly to earn ",
     newsXp: "+{xp} XP",
     newsBodyPart2: " and clear the 🔴 warning icon in the navbar.",
 
+    rightEyebrow: "Right • Build your own test",
     builderTitle: "Configure & start a test",
     step1: "1. Choose a subject area",
+    selecting: "Selected",
     step2: "2. Choose a difficulty",
+    rewardPart1: "Each correct answer earns ",
+    rewardXp: "+{xp} XP",
+    rewardPart2: ", credited straight away.",
     start: "Start the test",
 
     trackPersonal: "Personal finance",
@@ -367,6 +374,7 @@ export const en: Dictionary = {
     diffMedium: "Intermediate",
     diffHard: "Advanced",
 
+    ibEyebrow: "Investment Banking Interview Drill",
     ibTitle: "Technical interview",
     ibSub: "400 IB questions · accounting, valuation, DCF, M&A, LBO, behavioural",
     ibOpen: "Open →",
@@ -923,75 +931,6 @@ export const en: Dictionary = {
     difficultyHint:
       "Tip: use \"Intermediate\" for a mock analyst round, and \"Advanced\" when you want pressure practice before the real thing.",
 
-    /* ── Progression ──
-       Names only. Thresholds and unlock rules live in lib/ib-progression.ts,
-       so editing copy here cannot promote anybody - which is the point. */
-    rankLabel: "Rank",
-    rankNames: {
-      candidate: "Candidate",
-      intern: "Intern",
-      analyst1: "Analyst I",
-      analyst2: "Analyst II",
-      analyst3: "Analyst III",
-      associate: "Associate",
-    },
-    rankToNext: "{points} points to {next}",
-    rankMaxed: "Top rank reached",
-
-    objectiveLabel: "Next objective:",
-    objectiveUnlockKho: "{count} more sections at Solid to unlock the Pressure Round.",
-    objectiveUnlockMock: "{count} more Accounting + Valuation sections at Solid to unlock the Full Analyst Mock.",
-    objectiveNextRank: "{count} more mastery points to reach {next}.",
-    objectiveMaxed: "every round unlocked and top rank reached. Hold your accuracy at mastery level.",
-
-    masteryLoading: "reading your results…",
-    masteryTiers: {
-      untested: "Untested",
-      weak: "Weak",
-      improving: "Improving",
-      strong: "Solid",
-      mastered: "Mastered",
-    },
-    masteryUntestedCount: "{total} questions",
-    masteryScore: "{accuracy}% · {correct}/{attempted}",
-    milestoneSectionHint: "Part of the Full Analyst Mock unlock",
-    nextUpBadge: "NEXT UP",
-
-    modeNames: {
-      de: "Screening round",
-      "tat-ca": "Mixed round",
-      kho: "Pressure round",
-      mock: "Full Analyst Mock",
-    },
-    modeBlurbs: {
-      de: "foundation questions",
-      "tat-ca": "the whole bank, mixed",
-      kho: "hard questions under pressure",
-      mock: "10 questions across every section",
-    },
-    modeLockedShort: "locked, {count} sections to go",
-    modeLockedCta: "Round not unlocked yet",
-    khoUnlockHint:
-      "The Pressure Round unlocks once {required} sections reach Solid. {count} to go.",
-    mockUnlockHint:
-      "The Full Analyst Mock unlocks once all four Accounting and Valuation sections reach Solid. {count} to go.",
-
-    missionQuestions: "Questions",
-    missionDuration: "Length",
-    missionReward: "Max XP",
-    missionMinutes: "~{minutes} min",
-    drillRecommended: "Drill {section} on its own",
-
-    roundProgress: "Question {index}/{total} · {correct} correct",
-    roundPhases: {
-      warmup: "Warm-up",
-      core: "Core technicals",
-      pressure: "Pressure questions",
-    },
-    roundResult: "Result",
-
-
-
     diffAll: "All",
     diffEasy: "Easy",
     diffMedium: "Intermediate",
@@ -1157,26 +1096,6 @@ export const en: Dictionary = {
     cardWeekRhythm: "7-day rhythm",
     cardStudyTime: "Time studied",
     cardWeekTrend: "Weekly trend",
-    psEyebrow: "Player status",
-    psStreak: "Streak",
-    psStreakUnit: "{count} days",
-    psStreakBest: "Best {count}",
-    psAccuracy: "Quiz accuracy",
-    psAccuracyHint: "Average across every graded lesson",
-    psTime: "Study time",
-    psTimeUnit: "{count} min",
-    psTimeWeek: "{count} min in 7 days",
-    psMomentum: "This week's momentum",
-    psMomentumHint: "{count} lessons in 7 days",
-    psWeekTitle: "This week",
-    psWeekProgress: "{done}/{target} lessons",
-    psWeekLeft: "{days} days left",
-    psWeekLastDay: "last day of the week",
-    psWeekDone: "Weekly target reached",
-    psWeekBehind: "{count} lessons to hit the pace you set",
-    psWeekNoTarget: "No pace set yet",
-    psWeekSetTarget: "Set your pace in Learning path →",
-    psObjective: "What to do next",
 
     rhythmEyebrow: "The last 8 weeks",
     rhythmTitle: "Your activity by week",
@@ -1503,6 +1422,9 @@ export const en: Dictionary = {
     reactionsSuffix: "reactions",
     commentsSuffix: "comments",
     authorReactions: "{name} · {count} reactions",
+    searchPlaceholder: "Search posts, people, topics...",
+    refresh: "Refresh",
+    feedEmpty: "No posts match this filter.",
     // Hai trạng thái rỗng KHÁC NHAU, và gộp chúng là chỗ đã làm người dùng
     // tưởng mất bài: `feedEmpty` nói "không khớp bộ lọc" - đúng khi có bộ lọc
     // hoặc từ khoá, nhưng khi đang xem tất cả mà không có bài nào thì câu đó
@@ -2035,10 +1957,6 @@ export const en: Dictionary = {
     lofiPlaying: "Lofi: playing",
     lofiIdle: "Lofi chill",
     lofiOff: "Focus lofi turned off",
-    lofiTrackLofi: "Lofi",
-    lofiTrackRain: "Rain",
-    lofiTrackWaves: "Waves",
-    lofiTrackAria: "Choose ambient sound",
     lofiFailed: "Couldn't start the lofi music",
     micToggleTitle: "Toggle your microphone",
     micOn: "Mic: on",
@@ -2338,8 +2256,6 @@ export const en: Dictionary = {
     quizQuestionCounter: "Question {current}/{total}",
 
     salaryRange: "• Salary range: {range}",
-    factEntryLevel: "Entry position",
-    factSalary: "Salary range",
     salaryDisclaimer:
       "* Salary figures are indicative estimates only and vary by company, region and actual experience - they are not official survey data.",
 
@@ -2384,15 +2300,6 @@ export const en: Dictionary = {
   },
 
   dashboard: {
-    phCurrent: "You are here",
-    phNext: "Next",
-    phXpToNext: "{xp} XP to Level {level}",
-    phXpOf: "{done} / {total} XP",
-    phExamTitle: "Level {level} promotion exam",
-    phExamReady: "Eligible · you need 80% or above",
-    phExamLocked: "Opens at 0 XP to go · {xp} short",
-    phMissionEyebrow: "Next mission",
-    phMissionChain: "+{xp} XP · {remaining} XP left · unlocks the Level {level} exam",
     stageLabel: "Stage {n}",
     // Nhãn thời lượng trên thẻ bài học. Trước là template literal trong một
     // hàm ở module scope, ngoài tầm mọi rule cho tới khi thêm returned-text.
@@ -2692,8 +2599,6 @@ export const en: Dictionary = {
     rangeFull: "HONOR ROLL #6-#20",
 
     yourRank: "Your rank",
-    climbToRank: "+{gap} to reach Top {rank}",
-    climbLeading: "You are leading this board",
     byMetricCompact: "{metric} ranking",
     byMetricFull: "By {metric}",
 
@@ -2842,13 +2747,6 @@ export const en: Dictionary = {
   },
   // components/BehavioralPrepPanel.tsx - the unscored behavioural question drill.
   behavioralPrep: {
-    /* Coverage, not readiness - see lib/ib-behavioral-prepared.ts. This copy
-       is the only place a user learns what the number measures and where it
-       lives, so it says both outright. */
-    coverageLabel: "Prepared",
-    coverageCount: "{done}/{total} questions",
-    coverageCaveat:
-      "Counts the questions whose framework you have opened, stored on this device. It is coverage of the question set, not a score - the behavioural track is not graded.",
     loading: "Loading behavioural questions...",
     loadError: "Could not load the behavioural question set.",
     retry: "Try again",
@@ -3143,13 +3041,6 @@ export const en: Dictionary = {
       banking: "Banking & Treasury",
       advisory: "Wealth & Client Advisory",
       data: "Data & Technology",
-      trading: "Trading & Capital Markets",
-      treasury: "Treasury & Working Capital",
-      insurance: "Insurance & Actuarial",
-      tax: "Tax",
-      esg: "ESG & Sustainable Finance",
-      realestate: "Real Estate & Infrastructure",
-      fintech: "Fintech & Digital Assets",
     },
     // One line saying what the group actually does, for the shopfront sign.
     blurbs: {
@@ -3160,58 +3051,7 @@ export const en: Dictionary = {
       advisory: "Wealth management and personal financial planning",
       accounting: "Recording, auditing, internal control",
       data: "Models, data and financial technology",
-      trading: "Market making, execution and liquidity management",
-      treasury: "Cash management, working capital, asset-liability balance",
-      insurance: "Pricing, underwriting and insurance portfolio management",
-      tax: "Corporate tax, personal income tax, transfer pricing",
-      esg: "ESG analysis, sustainability reporting, climate risk",
-      realestate: "Project finance, property valuation, infrastructure",
-      fintech: "Digital finance products, digital banking, digital assets",
     },
-  },
-
-
-  careerZones: {
-    pageTitle: "Career map",
-    pageSubtitle: "Learn the fundamentals → unlock a career zone → pick a role → finish that role's path.",
-
-    readinessLabel: "Career readiness",
-    readinessZones: "{unlocked}/{total} zones unlocked",
-    readinessRoles: "{ready}/{total} roles complete",
-    readinessLessons: "{done}/{total} lessons",
-
-    recommendedLabel: "Go here next",
-    nextRoleLabel: "Closest role to finishing",
-    ctaContinue: "Continue the path",
-    ctaExplore: "Explore your next matching role",
-
-    tier1: "Foundations",
-    tier2: "Specialisation",
-    tier3: "Expert",
-    tier4: "Niche",
-    tier1Hint: "Open from the start - read the books and follow the cash first",
-    tier2Hint: "Unlocked by a foundation zone",
-    tier3Hint: "Unlocked by a specialisation zone",
-    tier4Hint: "Unlocked by an expert zone",
-
-    stateLocked: "Not unlocked",
-    stateOpen: "Ready to start",
-    stateInProgress: "In progress",
-    stateProficient: "Proficient",
-    stateMastered: "Complete",
-
-    gateLine: "Unlock: {done}/{need} {zone} lessons",
-    gateSoftNote: "Zones you haven't unlocked are still readable - the gate shows the order to walk, not a locked door.",
-    roleCount: "{count} roles",
-    lessonProgress: "{done}/{total} lessons",
-    noLessonsYet: "No lessons linked yet",
-
-    zoneRolesTitle: "Roles in this zone",
-    zoneBack: "Career map",
-    roleNotStarted: "Not started",
-    roleInProgress: "In progress",
-    roleReady: "Path complete",
-
   },
 
 };

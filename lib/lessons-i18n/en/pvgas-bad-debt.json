@@ -12,22 +12,14 @@
   ],
   "explanation": "Large receivables and high customer concentration can make revenue look attractive while cash flow deteriorates and credit risk rises. If a handful of large customers account for most of the revenue and they run into financial trouble, the business may have to book a large and unexpected bad-debt provision.",
   "diagram": [
-    {
-      "label": "Receivables"
-    },
-    {
-      "label": "Concentration risk"
-    },
-    {
-      "label": "Bad debt"
-    },
-    {
-      "label": "Cash conversion"
-    }
+    { "label": "Receivables" },
+    { "label": "Concentration risk" },
+    { "label": "Bad debt" },
+    { "label": "Cash conversion" }
   ],
   "realWorldExample": {
     "company": "PVGas",
-    "description": "A gas business sells most of its output to a small group of industrial customers - mainly power and fertiliser plants. The structure has real advantages: long-term contracts, forecastable volume, low selling costs. The downside shows up when one customer pays late: for a retail chain, losing a customer costs a thousandth of revenue; here one customer can be a double-digit percentage. So reading a business like this means looking at two things the headline statements do not show: the largest customer's share of revenue, and the ageing of receivables. Revenue rising steadily while the ageing lengthens is a sign that cash is stuck, not that trading is good."
+    "description": "A business selling to a small number of large customers needs its collectability and its concentration risk examined especially closely."
   },
   "quiz": [
     {
@@ -96,10 +88,7 @@
       "type": "lead",
       "text": "A business showing attractive revenue growth on paper can still carry a serious risk if most of that revenue depends on a handful of customers."
     },
-    {
-      "type": "heading",
-      "text": "Concentration risk and the quality of earnings"
-    },
+    { "type": "heading", "text": "Concentration risk and the quality of earnings" },
     {
       "type": "paragraph",
       "text": "Large receivables concentrated in a few customers can make revenue look attractive while carrying high credit risk - if one large customer runs into financial trouble, the business may have to book a large and unexpected bad-debt provision. Investors normally demand a larger margin of safety, or value the business more conservatively at a lower multiple, where customer concentration risk is high."
@@ -123,10 +112,7 @@
         "explanation": "Receivables growing nearly five times faster than revenue means the business is selling on credit far more than before, or customers are paying more slowly. Either possibility calls for a careful look at the debt ageing and at customer concentration before you trust the revenue growth figure."
       }
     },
-    {
-      "type": "heading",
-      "text": "Three questions when you find high customer concentration"
-    },
+    { "type": "heading", "text": "Three questions when you find high customer concentration" },
     {
       "type": "list",
       "items": [

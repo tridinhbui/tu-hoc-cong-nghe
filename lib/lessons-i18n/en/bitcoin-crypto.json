@@ -30,8 +30,8 @@
     }
   ],
   "realWorldExample": {
-    "company": "The same asset, two sessions hours apart",
-    "description": "An asset with no cash flow has no anchor for asking whether the price is cheap or dear. A share down 30% can still be checked against earnings, dividends, asset value; Bitcoin down 30% has no figure underneath to catch it. The result is that the price responds almost entirely to three things: global macro liquidity, ETF fund flows, and general risk appetite. All three change faster than any fundamental of a business - so the width of the swings is not a defect of this market, it is the direct consequence of having no anchor."
+    "company": "Crypto market",
+    "description": "Digital assets swing hard because their valuation depends heavily on expectations, liquidity and market sentiment."
   },
   "quiz": [
     {

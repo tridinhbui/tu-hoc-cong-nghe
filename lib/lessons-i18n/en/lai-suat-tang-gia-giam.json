@@ -44,7 +44,7 @@
       "explanation": "At 5%: PV = 105/1.05 = 100 million. At 10%: PV = 105/1.10 ≈ 95.45 million. The higher the discount rate, the lower the present value of the same future cash flow - this is exactly why bond prices fall when rates rise."
     },
     {
-      "question": "In the formula PV = FV / (1+r)^n, why does r sitting in the denominator explain the inverse relationship between rates and bond prices?",
+      "question": "In the formula PV = FV / (1+r), why does r sitting in the denominator explain the inverse relationship between rates and bond prices?",
       "options": [
         "Because it's purely a mathematical convention with no real-world meaning whatsoever",
         "Because when the denominator (1+r) grows larger as r rises, the division result PV falls, with FV held constant, and this arithmetic only works out cleanly when the future value happens to be a round number",
@@ -135,7 +135,7 @@
     {
       "type": "callout",
       "label": "The simplest formula",
-      "text": "PV = FV / (1 + r)^n, where FV is the amount received in the future, r is the discount rate (the market rate), n is the number of periods from today until the cash flow arrives, and PV is the present value (today's bond price)."
+      "text": "PV = FV / (1 + r), where FV is the amount received in the future, r is the discount rate (the market rate), and PV is the present value (today's bond price)."
     },
     {
       "type": "heading",
@@ -150,12 +150,12 @@
       "items": [
         "For a bond with periodic coupons, the bond's price is the sum of several PVs: PV(year-1 coupon) + PV(year-2 coupon) + ... + PV(final-year coupon + face value)",
         "The longer the term, the more discounting periods there are, and the higher the power the denominator (1+r) is raised to - this is why long-term bonds are more sensitive to rate changes (covered in more depth in the lesson on Duration)",
-        "The formula PV = FV/(1+r)^n isn't only for bonds - it's the foundation of valuing any financial asset with future cash flows, including stocks and rental real estate"
+        "The formula PV = FV/(1+r) isn't only for bonds - it's the foundation of valuing any financial asset with future cash flows, including stocks and rental real estate"
       ]
     },
     {
       "type": "conceptTable",
-      "title": "Four variables in the pricing formula",
+      "title": "Three variables in the pricing formula",
       "concepts": [
         {
           "vi": "Future cash flow",
@@ -171,11 +171,6 @@
           "vi": "Present value",
           "en": "Present Value (PV)",
           "def": "The amount, in today's terms, equivalent to a future cash flow, after discounting at the market rate."
-        },
-        {
-          "vi": "Number of periods",
-          "en": "Number of periods (n)",
-          "def": "The number of periods from today until the cash flow arrives. Each extra period multiplies the denominator by (1 + r) once more, so the same rise in rates pulls a long-dated bond down far harder than a short-dated one - which is the root of Duration."
         }
       ]
     },
@@ -183,7 +178,7 @@
       "type": "closing",
       "lines": [
         "A bond's price is simply a present-value calculation of future cash flows, discounted at the market rate - nothing mysterious about it.",
-        "Remember the formula PV = FV/(1+r)^n, and you'll always understand why interest rates and bond prices move opposite each other in every situation."
+        "Remember the formula PV = FV/(1+r), and you'll always understand why interest rates and bond prices move opposite each other in every situation."
       ]
     }
   ]

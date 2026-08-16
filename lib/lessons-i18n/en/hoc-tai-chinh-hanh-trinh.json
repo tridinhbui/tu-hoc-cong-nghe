@@ -26,8 +26,8 @@
     }
   ],
   "realWorldExample": {
-    "company": "Two people take the same course, one of them remembers it",
-    "description": "Two people work through the same run of lessons on reading financial statements. The first reads them and stops; three months later a few scattered terms remain. The second turns each lesson into one question to ask when opening a real set of accounts - is operating cash flow keeping up with profit, are receivables growing faster than revenue, how much debt matures this year. After three months the second person has used that list a dozen times, and each use was a revision. The difference is not memory but whether the knowledge was turned into something repeatable."
+    "company": "The finance learner",
+    "description": "The learners who last are usually the ones who turn knowledge into a checklist they apply again and again, rather than trying to memorise everything in one go."
   },
   "quiz": [
     {

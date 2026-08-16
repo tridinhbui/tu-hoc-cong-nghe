@@ -18,20 +18,16 @@ import CfaEssayPractice from "@/components/CfaEssayPractice";
  *  Thành phần máy chủ: toàn chữ tĩnh, không gửi một byte JavaScript nào xuống
  *  trình duyệt. */
 
-// Cấp II và III từng mang hai màu riêng - lam và tím - cộng hai emoji sách.
-// Số cấp độ là thứ tự, không phải hai hạng mục ngữ nghĩa khác nhau, nên hai
-// bảng màu chỉ thêm màu vào trang chứ không thêm thông tin. Cả hai giờ dùng
-// chung một kiểu trung tính; chính con số "II" / "III" phân biệt chúng.
 const ACCENT: Record<CfaLevelSpec["level"], { chip: string; bar: string; emoji: string }> = {
   II: {
-    chip: "text-stone-600 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 border-stone-200 dark:border-stone-700",
-    bar: "bg-stone-400 dark:bg-stone-500",
-    emoji: "",
+    chip: "text-sky-700 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/50 border-sky-200/60 dark:border-sky-800/60",
+    bar: "bg-sky-500/80 dark:bg-sky-400/70",
+    emoji: "📗",
   },
   III: {
-    chip: "text-stone-600 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 border-stone-200 dark:border-stone-700",
-    bar: "bg-stone-400 dark:bg-stone-500",
-    emoji: "",
+    chip: "text-violet-700 dark:text-violet-300 bg-violet-50 dark:bg-violet-950/50 border-violet-200/60 dark:border-violet-800/60",
+    bar: "bg-violet-500/80 dark:bg-violet-400/70",
+    emoji: "📕",
   },
 };
 
@@ -133,7 +129,7 @@ export default async function CfaNextLevels() {
           duy nhất họ thấy khi cuộn là hai cấp CHƯA CÓ BÀI. `<details>` thay vì
           state React: đây là server component, và mở/đóng một khối chữ tĩnh
           không đáng một byte JavaScript nào. */}
-      <details className="group rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
+      <details className="group rounded-[24px] border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
         <summary className="cursor-pointer list-none">
           <div className="flex items-center gap-2">
             <h2 className="text-sm font-black uppercase tracking-wide text-stone-500 dark:text-stone-400">
