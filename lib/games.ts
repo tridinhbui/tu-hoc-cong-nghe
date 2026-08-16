@@ -138,7 +138,7 @@ export const GAMES: GameMeta[] = [
   {
     id: "ratio-category",
     title: "Phân loại chỉ số hệ thống",
-    description: "Kéo từng tỷ số vào đúng nhóm: Thanh khoản / Sinh lời / Đòn bẩy / Hiệu quả hoạt động.",
+    description: "Kéo từng chỉ số vào đúng nhóm: Độ trễ / Thông lượng / Độ tin cậy / Chi phí.",
     emoji: "🧮",
     mechanic: "bucket",
     accent: "amber",
@@ -154,7 +154,7 @@ export const GAMES: GameMeta[] = [
   {
     id: "formula-match",
     title: "Tên & Công thức",
-    description: "Ghép tên chỉ số với đúng công thức tính của nó (ROE, P/E, Current Ratio...).",
+    description: "Ghép tên chỉ số với đúng công thức tính của nó (uptime, tỷ lệ lỗi, MTTR...).",
     emoji: "➗",
     mechanic: "pair",
     accent: "rose",
@@ -162,15 +162,15 @@ export const GAMES: GameMeta[] = [
   {
     id: "risk-category",
     title: "Phân loại rủi ro thay đổi",
-    description: "Kéo từng loại tài sản vào đúng nhóm rủi ro: Thấp / Trung bình / Cao.",
+    description: "Kéo từng thay đổi mã vào đúng mức rủi ro: Thấp / Trung bình / Cao.",
     emoji: "⚖️",
     mechanic: "bucket",
     accent: "indigo",
   },
   {
     id: "ticker-match",
-    title: "Mã chứng khoán",
-    description: "Ghép tên công ty công nghệ với đúng công nghệ họ tạo ra.",
+    title: "Công ty & Công nghệ",
+    description: "Ghép tên công ty với đúng công nghệ do họ tạo ra.",
     emoji: "🏢",
     mechanic: "pair",
     accent: "teal",
@@ -178,7 +178,7 @@ export const GAMES: GameMeta[] = [
   {
     id: "cost-category",
     title: "Phân loại chi phí",
-    description: "Kéo từng khoản chi phí vào đúng nhóm: Cố định (Fixed) hay Biến đổi (Variable).",
+    description: "Kéo từng khoản chi phí hạ tầng vào đúng nhóm: Cố định (Fixed) hay Biến đổi (Variable).",
     emoji: "🧾",
     mechanic: "bucket",
     accent: "cyan",
@@ -402,7 +402,7 @@ const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
     ],
     items: STATEMENT_ITEMS,
     roundSize: 10,
-    sourceHint: "Kéo hoặc chọn thẻ, rồi thả vào đúng báo cáo",
+    sourceHint: "Kéo hoặc chọn thẻ, rồi thả vào đúng tầng",
   },
   "ratio-category": {
     buckets: [
@@ -413,7 +413,7 @@ const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
     ],
     items: RATIO_ITEMS,
     roundSize: 10,
-    sourceHint: "Kéo hoặc chọn tỷ số, rồi thả vào đúng nhóm",
+    sourceHint: "Kéo hoặc chọn chỉ số, rồi thả vào đúng nhóm",
   },
   "risk-category": {
     buckets: [
@@ -423,7 +423,7 @@ const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
     ],
     items: RISK_ITEMS,
     roundSize: 10,
-    sourceHint: "Kéo hoặc chọn tài sản, rồi thả vào đúng mức rủi ro",
+    sourceHint: "Kéo hoặc chọn thay đổi, rồi thả vào đúng mức rủi ro",
   },
   "cost-category": {
     buckets: [

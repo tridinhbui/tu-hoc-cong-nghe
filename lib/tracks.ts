@@ -44,8 +44,8 @@ export const TRACKS = {
       "Chặng 20 - Nghề công nghệ theo giai đoạn sự nghiệp",
       "Chặng 21 - Công cụ và vận hành",
     ],
-    previewSlug: "audit-tai-chinh-ca-nhan",
-    previewLabel: "Chặng 1: Bạn đang đứng ở đâu?",
+    previewSlug: "he-dieu-hanh-lam-gi",
+    previewLabel: "Chặng 1: Hệ điều hành làm gì khi bạn không nhìn",
   },
   professional: {
     tab: "Công nghệ chuyên sâu",

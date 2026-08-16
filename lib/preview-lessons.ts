@@ -16,7 +16,7 @@
  *  viết tay trong app/bai-hoc/<slug>/), nên chúng đi qua LessonPageLayout và
  *  nhận được phần xử lý "khách chưa đăng nhập" ở đó. */
 export const PREVIEW_LESSON_SLUGS = [
-  "audit-tai-chinh-ca-nhan", // TRACKS.personal.previewSlug
+  "he-dieu-hanh-lam-gi", // TRACKS.personal.previewSlug
   "ke-toan-la-gi", // TRACKS.professional.previewSlug
   "tai-chinh-la-gi",
   "lai-suat-la-gi",

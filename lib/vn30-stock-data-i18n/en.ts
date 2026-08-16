@@ -1,199 +1,184 @@
 import type { Vn30Translation } from "./index";
 
 /**
- * Bản tiếng Anh của danh sách VN30 và bể tin thị trường.
+ * Bản tiếng Anh của danh sách công ty công nghệ và bể tin ngành.
  *
- * Tên doanh nghiệp dùng TÊN TIẾNG ANH CHÍNH THỨC của chính doanh nghiệp đó, không
- * dịch từng chữ: "Tập đoàn Hòa Phát" là "Hoa Phat Group", không phải "Peaceful
- * Development Group". Doanh nghiệp nào vốn đã mang tên quốc tế (Vinamilk,
- * Techcombank, Sabeco) thì giữ nguyên - dịch chúng là đặt cho doanh nghiệp một
- * cái tên không tồn tại.
+ * Tên doanh nghiệp dùng TÊN CHÍNH THỨC của chính doanh nghiệp đó, không dịch
+ * từng chữ. Doanh nghiệp vốn đã mang tên quốc tế (NVIDIA, Microsoft, GitLab)
+ * thì giữ nguyên - dịch chúng là đặt cho doanh nghiệp một cái tên không tồn tại.
  *
- * `sectors` phải phủ ĐỦ 18 ngành. Thiếu một ngành thì cả cổ phiếu và tin thị
- * trường của ngành đó giữ tiếng Việt - không vỡ phép ghép, nhưng người đọc tiếng
- * Anh thấy một ô tiếng Việt giữa bảng. Bộ kiểm đi kèm bắt buộc đủ 18.
+ * `sectors` phải phủ ĐỦ 17 ngành. Thiếu một ngành thì cả cổ phiếu và tin ngành
+ * của ngành đó giữ tiếng Việt - không vỡ phép ghép, nhưng người đọc tiếng Anh
+ * thấy một ô tiếng Việt giữa bảng. Bộ kiểm đi kèm bắt buộc đủ 17.
  */
 export const vn30En: Vn30Translation = {
   sectors: {
-    "Công nghệ & AI": "Technology & AI",
-    "Hàng tiêu dùng": "Consumer staples",
-    "Thép & Công nghiệp": "Steel & industrials",
-    "Ngân hàng": "Banking",
-    "Bất động sản": "Real estate",
-    "Tập đoàn đa ngành": "Diversified conglomerate",
-    "Bán lẻ": "Retail",
-    "Tiêu dùng & Thực phẩm": "Consumer & food",
-    "Dịch vụ tài chính": "Financial services",
-    "Bán lẻ trang sức": "Jewellery retail",
-    "Hóa chất": "Chemicals",
-    "Năng lượng & Hạ tầng": "Energy & infrastructure",
-    "Dầu khí": "Oil & gas",
-    "Phân phối xăng dầu": "Fuel distribution",
-    "Bia & Đồ uống": "Beer & beverages",
-    "Bất động sản bán lẻ": "Retail real estate",
-    "BĐS Khu công nghiệp": "Industrial park real estate",
-    "Logistics & Vận tải": "Logistics & transport",
+    "Phần mềm & dịch vụ CNTT": "Software & IT services",
+    "Nền tảng số & giải trí": "Digital platforms & entertainment",
+    "Logistics công nghệ": "Tech-enabled logistics",
+    "Thiết bị mạng & viễn thông": "Network & telecom equipment",
+    "Bán dẫn & chip": "Semiconductors & chips",
+    "Điện toán đám mây": "Cloud computing",
+    "Thương mại điện tử": "E-commerce",
+    "Dữ liệu & phân tích": "Data & analytics",
+    "Giám sát & vận hành": "Monitoring & operations",
+    "Cơ sở dữ liệu": "Databases",
+    "An toàn thông tin": "Security",
+    "Mạng phân phối & CDN": "Delivery networks & CDN",
+    "Ảo hoá & hạ tầng": "Virtualisation & infrastructure",
+    "Mã nguồn mở doanh nghiệp": "Enterprise open source",
+    "Công cụ lập trình": "Developer tooling",
+    "Nền tảng API": "API platforms",
+    "Trí tuệ nhân tạo": "Artificial intelligence",
   },
 
   stocks: {
     FPT: {
       name: "FPT Corporation",
-      description:
-        "The leading IT company in Vietnam: software exports and AI training.",
+      description: "Vietnam's leading software exporter, digital transformation and engineer training.",
     },
-    VNM: {
-      name: "Vinamilk",
-      description: "Vietnam's largest dairy company, with plentiful cash dividend flow.",
+    VNG: {
+      name: "VNG Corporation",
+      description: "Zalo, online games and domestic cloud services.",
     },
-    HPG: {
-      name: "Hoa Phat Group",
-      description: "Vietnam's steel king, built around the Dung Quat 2 BOF complex.",
-    },
-    VCB: {
-      name: "Vietcombank",
-      description: "The commercial bank with the largest market capitalisation.",
-    },
-    VHM: {
-      name: "Vinhomes",
-      description: "Vietnam's largest developer of master-planned urban property.",
-    },
-    VIC: {
-      name: "Vingroup",
-      description:
-        "The leading diversified conglomerate, owner of VinFast electric vehicles and Vinpearl.",
-    },
-    MWG: {
-      name: "Mobile World Group",
-      description:
-        "The phone and electronics retail chains Thế Giới Di Động and Bách Hóa Xanh.",
-    },
-    MSN: {
-      name: "Masan Group",
-      description: "The consumer goods ecosystem behind WinMart, Masan Consumer and Chinsu.",
-    },
-    SSI: {
-      name: "SSI Securities",
-      description: "The brokerage with the largest market share in Vietnam.",
-    },
-    VND: {
-      name: "VNDIRECT Securities",
-      description: "An aggressive retail brokerage platform.",
-    },
-    PNJ: {
-      name: "PNJ Jewellery",
-      description: "A trusted brand in crafting and retailing gold and jewellery.",
-    },
-    TCB: {
-      name: "Techcombank",
-      description:
-        "The leading private bank on CASA efficiency and digital banking.",
-    },
-    MBB: {
-      name: "MBBank",
-      description: "The Military Bank, growing its digital user base quickly.",
-    },
-    CTG: { name: "VietinBank", description: "A large state-owned joint stock commercial bank." },
-    BID: {
-      name: "BIDV",
-      description: "A commercial bank with total assets among Vietnam's largest.",
-    },
-    VPB: {
-      name: "VPBank",
-      description: "A bank with unusually large equity after selling a stake to SMBC.",
-    },
-    ACB: {
-      name: "ACB Bank",
-      description:
-        "A leader in credit risk management, paying cash dividends consistently.",
-    },
-    DGC: {
-      name: "Duc Giang Chemicals",
-      description: "Southeast Asia's largest producer of yellow phosphorus.",
-    },
-    REE: {
-      name: "REE Corporation",
-      description:
-        "A defensive infrastructure group in power, water and renewable energy.",
-    },
-    GAS: {
-      name: "PV GAS",
-      description:
-        "Vietnam's gas corporation, the monopoly distributor of natural gas and LNG.",
-    },
-    PLX: {
-      name: "Petrolimex",
-      description: "The fuel group holding 50% of the national retail market.",
-    },
-    SAB: {
-      name: "Sabeco",
-      description: "The Bia Sài Gòn brand, at the front of the beverage industry.",
-    },
-    VRE: {
-      name: "Vincom Retail",
-      description: "Owns and operates the nationwide Vincom shopping centre chain.",
-    },
-    KDH: {
-      name: "Khang Dien House",
-      description:
-        "A residential property developer known for clean legal paperwork in Ho Chi Minh City.",
-    },
-    BCM: {
-      name: "Becamex IDC",
-      description: "Developer of the nationwide VSIP industrial park chain.",
-    },
-    HDB: {
-      name: "HDBank",
-      description: "A commercial bank sustaining high growth year after year.",
-    },
-    VIB: {
-      name: "VIB Bank",
-      description: "The leader in car loans and personal credit cards.",
-    },
-    LPB: {
-      name: "LPBank",
-      description: "Lộc Phát Bank, with an unusually wide branch network.",
-    },
-    SHB: {
-      name: "SHB Bank",
-      description: "A commercial bank whose total assets rank among the largest.",
+    CMG: {
+      name: "CMC Technology",
+      description: "Systems integration, information security and datacenters.",
     },
     VTP: {
       name: "Viettel Post",
-      description:
-        "Viettel's postal arm, building smart warehousing and logistics infrastructure.",
+      description: "Smart warehousing infrastructure and automated parcel sorting.",
+    },
+    ELC: {
+      name: "Elcom",
+      description: "Telecom infrastructure equipment and intelligent transport systems.",
+    },
+    ITD: {
+      name: "Tien Phong Technology",
+      description: "Traffic control and industrial automation solutions.",
+    },
+    NVDA: {
+      name: "NVIDIA",
+      description: "Graphics chips and accelerators for training AI models.",
+    },
+    AMD: {
+      name: "AMD",
+      description: "Server processors and graphics chips competing head-on.",
+    },
+    TSM: {
+      name: "TSMC",
+      description: "The world's largest chip foundry, on sub-5nm processes.",
+    },
+    MSFT: {
+      name: "Microsoft",
+      description: "Azure, the Office suite and enterprise developer platforms.",
+    },
+    AMZN: {
+      name: "Amazon",
+      description: "AWS leads cloud infrastructure, alongside global e-commerce.",
+    },
+    GOOG: {
+      name: "Alphabet",
+      description: "Google Cloud, search and the Android operating system.",
+    },
+    SHOP: {
+      name: "Shopify",
+      description: "A platform for small merchants to build online stores.",
+    },
+    SE: {
+      name: "Sea Group",
+      description: "Shopee, Garena and digital wallets across South-East Asia.",
+    },
+    MELI: {
+      name: "MercadoLibre",
+      description: "Latin America's largest marketplace and digital payments network.",
+    },
+    SNOW: {
+      name: "Snowflake",
+      description: "A cloud data warehouse that separates compute from storage.",
+    },
+    DDOG: {
+      name: "Datadog",
+      description: "Monitoring, logging and tracing for distributed systems.",
+    },
+    MDB: {
+      name: "MongoDB",
+      description: "A document database and the Atlas managed cloud service.",
+    },
+    ORCL: {
+      name: "Oracle",
+      description: "Enterprise databases and OCI cloud infrastructure.",
+    },
+    CRWD: {
+      name: "CrowdStrike",
+      description: "Endpoint protection and real-time intrusion detection.",
+    },
+    PANW: {
+      name: "Palo Alto Networks",
+      description: "Next-generation firewalls and cloud infrastructure security.",
+    },
+    NET: {
+      name: "Cloudflare",
+      description: "CDN, DDoS protection and functions that run at the edge.",
+    },
+    AKAM: {
+      name: "Akamai",
+      description: "A long-established content delivery network and edge computing.",
+    },
+    VMW: {
+      name: "Broadcom VMware",
+      description: "Server virtualisation and enterprise infrastructure platforms.",
+    },
+    RHT: {
+      name: "Red Hat",
+      description: "Enterprise Linux, Kubernetes and long-term support.",
+    },
+    GTLB: {
+      name: "GitLab",
+      description: "Source control, CI/CD and security in a single platform.",
+    },
+    TEAM: {
+      name: "Atlassian",
+      description: "Jira, Confluence and collaboration tooling for engineering teams.",
+    },
+    TWLO: {
+      name: "Twilio",
+      description: "APIs for messaging, voice and authentication in applications.",
+    },
+    STRP: {
+      name: "Stripe Payments",
+      description: "Payment API infrastructure for online platforms.",
+    },
+    OPAI: {
+      name: "OpenAI Platform",
+      description: "Language-model APIs and tooling for building AI applications.",
     },
   },
 
   news: [
     {
-      headline: "📢 The State Bank cuts its policy rate by 0.5%",
-      explanation:
-        "Lower rates cut the cost of capital for companies and push money towards equities and property.",
+      headline: "📢 Chip demand surges on the wave of AI model training",
+      explanation: "Accelerator orders are booked out two years ahead, lifting margins at both foundries and chip designers.",
     },
     {
-      headline: "📊 Global HRC steel prices rebound sharply, up 6%",
-      explanation:
-        "Higher steel prices widen gross margins for large steel producers such as Hoa Phat.",
+      headline: "📊 Enterprise cloud infrastructure spending up 18% year on year",
+      explanation: "Budgets shift from self-managed servers to rented services, raising recurring revenue across the infrastructure group.",
     },
     {
-      headline: "🏬 Consumer retail sales grow 12% year on year",
-      explanation:
-        "Recovering purchasing power drives growth at MWG, MSN, PNJ and VNM.",
+      headline: "🛡️ A large breach gets security budgets approved in a hurry",
+      explanation: "After a major incident, security spending is one of the few lines approved quickly, because the risk has become a concrete number.",
     },
     {
-      headline: "🌐 FPT signs a USD 100 million AI software export contract in the US",
-      explanation:
-        "International technology deals lift the valuation of the IT segment.",
+      headline: "🌐 A core network fault disrupts many services for four hours",
+      explanation: "A wide outage pushes large customers to demand multi-provider plans, slowing the pace of new contracts.",
     },
     {
-      headline: "⛽ Brent crude jumps past USD 85 a barrel",
-      explanation:
-        "Oil, gas and fuel names benefit directly when world crude prices climb.",
+      headline: "🛒 Peak-season e-commerce sales beat forecasts by 12%",
+      explanation: "Higher order volumes lift both delivery volume and the number of payment API calls.",
     },
     {
-      headline: "⚠️ The US Federal Reserve delays rate cuts on inflation",
-      explanation:
-        "Pressure on the exchange rate causes foreign capital to pull out of emerging markets for a time.",
+      headline: "⚠️ With rates staying high, unprofitable tech companies get repriced",
+      explanation: "Cash flows far in the future are discounted harder, so unprofitable growth names come under pressure first.",
     },
   ],
 };

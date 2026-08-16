@@ -43,7 +43,6 @@ const GRANDFATHERED = new Set([
   "bossStudyWorld.toastSuccess",
   "bossStudyWorld.victoryRewardPart1",
   "cosmeticsDuel.toastSoftLanding",
-  "games.rewardNote",
   "games.xpBadge",
   "worldBoss.bossRewardValue",
   "gameKingdom.quizReward",

@@ -34,7 +34,18 @@ export const libStringsVi = {
   // Lần thứ hai tôi kết luận nhầm rằng bộ này không được vẽ ra. `reward.desc`
   // và `reward.value` đều hiện ở modal mở rương
   // (components/CombinedRewardsWidget.tsx, quanh dòng 472-475).
+  // Năm khoá ĐẦU là danh hiệu công nghệ hiện hành; năm khoá sau là danh hiệu
+  // tài chính cũ, GIỮ LẠI có chủ ý. `lib/chests.ts` ghi `reward_value` - chính
+  // chuỗi tiếng Việt này - vào Supabase, nên mọi danh hiệu đã trao trước lần
+  // đổi này còn nằm nguyên trong bảng. Xoá khoá cũ thì hồ sơ của họ hiện ra
+  // một chuỗi không tra được, và không có cách nào lấy lại. Chỉ được xoá sau
+  // khi có một migration đổi giá trị đã lưu.
   chestTitles: {
+    "Chiến thần commit": "Chiến thần commit",
+    "Kẻ hủy diệt nợ kỹ thuật": "Kẻ hủy diệt nợ kỹ thuật",
+    "Sói già Silicon Valley": "Sói già Silicon Valley",
+    "Đại gia thông lượng": "Đại gia thông lượng",
+    "Bậc thầy gỡ lỗi": "Bậc thầy gỡ lỗi",
     "Chiến thần tích lũy": "Chiến thần tích lũy",
     "Kẻ hủy diệt nợ nần": "Kẻ hủy diệt nợ nần",
     "Sói già phố Wall": "Sói già phố Wall",
@@ -42,6 +53,11 @@ export const libStringsVi = {
     "Bậc thầy định giá": "Bậc thầy định giá",
   } as Record<string, string>,
   chestDescriptions: {
+    "Danh hiệu tôn vinh kỷ luật đẩy mã mỗi ngày": "Danh hiệu tôn vinh kỷ luật đẩy mã mỗi ngày",
+    "Danh hiệu dành cho người dọn sạch mã cũ": "Danh hiệu dành cho người dọn sạch mã cũ",
+    "Danh hiệu của bậc thầy thiết kế hệ thống": "Danh hiệu của bậc thầy thiết kế hệ thống",
+    "Danh hiệu dành cho tín đồ tối ưu hiệu năng": "Danh hiệu dành cho tín đồ tối ưu hiệu năng",
+    "Danh hiệu của chuyên gia đọc nhật ký hệ thống": "Danh hiệu của chuyên gia đọc nhật ký hệ thống",
     "Danh hiệu tôn vinh kỷ luật tích sản": "Danh hiệu tôn vinh kỷ luật tích sản",
     "Danh hiệu dành cho người làm chủ tài chính": "Danh hiệu dành cho người làm chủ tài chính",
     "Danh hiệu của bậc thầy phân tích thị trường": "Danh hiệu của bậc thầy phân tích thị trường",
@@ -60,15 +76,15 @@ export const libStringsVi = {
   // chỉ lấy `.icon`. Chỗ thứ ba - cửa hàng trong quận 3D
   // (components/career-district/CivicPanel.tsx) - vẽ thẳng `{item.name}`.
   rpgItems: {
-    weapon_valuation_pen: "Bút Định Giá Thần Kỳ",
-    weapon_lbo_sword: "Kiếm Phân Tích LBO",
-    weapon_bell: "Chuông Giao Dịch Sàn Wall",
-    armor_risk_shield: "Khiên Quản Trị Rủi Ro",
-    armor_savings_vest: "Áo Giáp Tích Sản",
-    acc_glasses: "Kính Phân Tích BCTC",
-    acc_crown: "Vương Miện CFO",
-    pet_bull: "Linh vật Bò Tăng Trưởng",
-    pet_bear: "Gấu Tiết Kiệm Thần Kỳ",
+    weapon_valuation_pen: "Bàn Phím Cơ Thần Tốc",
+    weapon_lbo_sword: "Kiếm Tái Cấu Trúc Mã",
+    weapon_bell: "Chuông Báo Sự Cố",
+    armor_risk_shield: "Khiên Kiểm Thử Tự Động",
+    armor_savings_vest: "Áo Giáp Sao Lưu",
+    acc_glasses: "Kính Soi Nhật Ký Hệ Thống",
+    acc_crown: "Vương Miện CTO",
+    pet_bull: "Linh vật Cá Heo Deploy",
+    pet_bear: "Gấu Trúc Sao Lưu",
     booster_xp_24h: "Thẻ X2 XP Booster (24h)",
     title_vip_diamond: "Huy Hiệu VIP Kim Cương",
     chat_effect_dragon_fire: "Khung Chat Rồng Lửa",
@@ -105,6 +121,11 @@ export const libStringsVi = {
 
 export const libStringsEn: typeof libStringsVi = {
   chestTitles: {
+    "Chiến thần commit": "God of the Commit Log",
+    "Kẻ hủy diệt nợ kỹ thuật": "Technical-Debt Destroyer",
+    "Sói già Silicon Valley": "Wolf of Silicon Valley",
+    "Đại gia thông lượng": "Throughput Magnate",
+    "Bậc thầy gỡ lỗi": "Master of Debugging",
     "Chiến thần tích lũy": "God of Accumulation",
     "Kẻ hủy diệt nợ nần": "Debt Destroyer",
     "Sói già phố Wall": "Wolf of Silicon Valley",
@@ -112,6 +133,11 @@ export const libStringsEn: typeof libStringsVi = {
     "Bậc thầy định giá": "Master of Valuation",
   },
   chestDescriptions: {
+    "Danh hiệu tôn vinh kỷ luật đẩy mã mỗi ngày": "A title honouring the discipline of shipping every day",
+    "Danh hiệu dành cho người dọn sạch mã cũ": "A title for whoever clears out the old code",
+    "Danh hiệu của bậc thầy thiết kế hệ thống": "The title of a master system designer",
+    "Danh hiệu dành cho tín đồ tối ưu hiệu năng": "A title for the devotee of performance tuning",
+    "Danh hiệu của chuyên gia đọc nhật ký hệ thống": "The title of an expert reader of system logs",
     "Danh hiệu tôn vinh kỷ luật tích sản": "A title honouring the discipline of building assets",
     "Danh hiệu dành cho người làm chủ tài chính": "A title for whoever has their finances in hand",
     "Danh hiệu của bậc thầy phân tích thị trường": "The title of a master market analyst",
@@ -123,15 +149,15 @@ export const libStringsEn: typeof libStringsVi = {
     "Mở khóa Giao diện Ngọc Lục Bảo đặc biệt": "Unlocks the special Emerald theme",
   },
   rpgItems: {
-    weapon_valuation_pen: "The Magic Valuation Pen",
-    weapon_lbo_sword: "The LBO Analysis Blade",
-    weapon_bell: "The Silicon Valley Opening Bell",
-    armor_risk_shield: "The Risk Management Shield",
-    armor_savings_vest: "The Saver's Armour",
-    acc_glasses: "Statement Analyst Glasses",
-    acc_crown: "The CFO Crown",
-    pet_bull: "Bull Market Companion",
-    pet_bear: "The Thrifty Bear",
+    weapon_valuation_pen: "The Lightning Mechanical Keyboard",
+    weapon_lbo_sword: "The Refactoring Blade",
+    weapon_bell: "The Incident Bell",
+    armor_risk_shield: "The Automated Test Shield",
+    armor_savings_vest: "The Backup Vest",
+    acc_glasses: "Log Inspector Glasses",
+    acc_crown: "The CTO Crown",
+    pet_bull: "The Deploy Dolphin",
+    pet_bear: "The Backup Panda",
     booster_xp_24h: "2x XP Booster (24h)",
     title_vip_diamond: "Diamond VIP Badge",
     chat_effect_dragon_fire: "Dragon Fire Chat Frame",

@@ -32,7 +32,7 @@ function markup() {
   // Bọc trong I18nProvider vì GlossaryTermSpan gọi useI18n() để lấy nhãn nút
   // Lưu Flashcard - không có provider thì hook ném lỗi ngay khi render.
   return renderToStaticMarkup(
-    <I18nProvider initialLocale="vi">{highlightGlossaryTerms("Lãi suất là gì?", new Set<string>())}</I18nProvider>
+    <I18nProvider initialLocale="vi">{highlightGlossaryTerms("Độ trễ là gì?", new Set<string>())}</I18nProvider>
   );
 }
 

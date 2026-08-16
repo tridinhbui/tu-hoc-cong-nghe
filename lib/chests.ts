@@ -35,11 +35,11 @@ export interface ChestReward {
    xuống cột `reward_value` của bảng `user_chests` - dịch nó tại chỗ sẽ làm mồ
    côi danh hiệu người chơi đã mở được. */
 export const CHEST_REWARDS: ChestReward[] = [
-  { type: "title", value: "Chiến thần tích lũy", desc: "Danh hiệu tôn vinh kỷ luật tích sản", xp: 0 },
-  { type: "title", value: "Kẻ hủy diệt nợ nần", desc: "Danh hiệu dành cho người làm chủ tài chính", xp: 0 },
-  { type: "title", value: "Sói già phố Wall", desc: "Danh hiệu của bậc thầy phân tích thị trường", xp: 0 },
-  { type: "title", value: "Đại gia lãi kép", desc: "Danh hiệu dành cho tín đồ dòng tiền dài hạn", xp: 0 },
-  { type: "title", value: "Bậc thầy định giá", desc: "Danh hiệu của chuyên gia đọc báo cáo tài chính", xp: 0 },
+  { type: "title", value: "Chiến thần commit", desc: "Danh hiệu tôn vinh kỷ luật đẩy mã mỗi ngày", xp: 0 },
+  { type: "title", value: "Kẻ hủy diệt nợ kỹ thuật", desc: "Danh hiệu dành cho người dọn sạch mã cũ", xp: 0 },
+  { type: "title", value: "Sói già Silicon Valley", desc: "Danh hiệu của bậc thầy thiết kế hệ thống", xp: 0 },
+  { type: "title", value: "Đại gia thông lượng", desc: "Danh hiệu dành cho tín đồ tối ưu hiệu năng", xp: 0 },
+  { type: "title", value: "Bậc thầy gỡ lỗi", desc: "Danh hiệu của chuyên gia đọc nhật ký hệ thống", xp: 0 },
   { type: "xp", value: "10", desc: "Cộng nhẹ +10 XP vào tổng điểm tích lũy", xp: 10 },
   { type: "xp", value: "15", desc: "Cộng nhẹ +15 XP vào tổng điểm tích lũy", xp: 15 },
   { type: "theme", value: "gold", desc: "Mở khóa Giao diện Hoàng Kim quý tộc", xp: 0 },

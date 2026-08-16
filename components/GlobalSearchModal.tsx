@@ -20,7 +20,7 @@ interface SearchResultItem {
 // with the real lesson/tool/glossary corpus. Translated in the meantime so
 // the English UI doesn't show Vietnamese; id/category/url stay structural.
 const SAMPLE_LESSON_URLS: Record<string, string> = {
-  "l-1": "/bai-hoc/audit-tai-chinh-ca-nhan",
+  "l-1": "/bai-hoc/he-dieu-hanh-lam-gi",
   "l-2": "/dashboard",
   "l-3": "/dashboard",
   "l-4": "/dashboard",

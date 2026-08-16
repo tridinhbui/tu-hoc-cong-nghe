@@ -49,7 +49,7 @@ export const gamesMetaVi = {
     },
     "ratio-category": {
       title: "Phân loại chỉ số hệ thống",
-      description: "Kéo từng tỷ số vào đúng nhóm: Thanh khoản / Sinh lời / Đòn bẩy / Hiệu quả hoạt động.",
+      description: "Kéo từng chỉ số vào đúng nhóm: Độ trễ / Thông lượng / Độ tin cậy / Chi phí.",
     },
     "term-definition": {
       title: "Thuật ngữ & Định nghĩa",
@@ -57,19 +57,19 @@ export const gamesMetaVi = {
     },
     "formula-match": {
       title: "Tên & Công thức",
-      description: "Ghép tên chỉ số với đúng công thức tính của nó (ROE, P/E, Current Ratio...).",
+      description: "Ghép tên chỉ số với đúng công thức tính của nó (uptime, tỷ lệ lỗi, MTTR...).",
     },
     "risk-category": {
       title: "Phân loại rủi ro thay đổi",
-      description: "Kéo từng loại tài sản vào đúng nhóm rủi ro: Thấp / Trung bình / Cao.",
+      description: "Kéo từng thay đổi mã vào đúng mức rủi ro: Thấp / Trung bình / Cao.",
     },
     "ticker-match": {
-      title: "Mã chứng khoán",
-      description: "Ghép tên công ty công nghệ với đúng công nghệ họ tạo ra.",
+      title: "Công ty & Công nghệ",
+      description: "Ghép tên công ty với đúng công nghệ do họ tạo ra.",
     },
     "cost-category": {
       title: "Phân loại chi phí",
-      description: "Kéo từng khoản chi phí vào đúng nhóm: Cố định (Fixed) hay Biến đổi (Variable).",
+      description: "Kéo từng khoản chi phí hạ tầng vào đúng nhóm: Cố định (Fixed) hay Biến đổi (Variable).",
     },
     "wall-street-millionaire": {
       title: "Ai Là Triệu Phú Silicon Valley",
@@ -113,31 +113,31 @@ export const gamesMetaEn: typeof gamesMetaVi = {
     "en-vi-terms": {
       title: "English - Vietnamese terms",
       description:
-        "Match each finance term to its Vietnamese counterpart, taken from the lessons you have studied.",
+        "Match each technology term to its Vietnamese counterpart, taken from the lessons you have studied.",
     },
     "ratio-category": {
-      title: "Sorting financial ratios",
-      description: "Drag each ratio into the right family: Liquidity / Profitability / Leverage / Efficiency.",
+      title: "Sorting system metrics",
+      description: "Drag each metric into the right family: Latency / Throughput / Reliability / Cost.",
     },
     "term-definition": {
       title: "Terms & definitions",
-      description: "Match each finance term with the short definition that actually fits it.",
+      description: "Match each technology term with the short definition that actually fits it.",
     },
     "formula-match": {
       title: "Names & formulas",
-      description: "Match each ratio's name to the formula that computes it (ROE, P/E, Current Ratio...).",
+      description: "Match each metric's name to the formula that computes it (uptime, error rate, MTTR...).",
     },
     "risk-category": {
-      title: "Sorting investment risk",
-      description: "Drag each asset type into the right risk band: Low / Medium / High.",
+      title: "Sorting change risk",
+      description: "Drag each code change into the right risk band: Low / Medium / High.",
     },
     "ticker-match": {
-      title: "Ticker symbols",
-      description: "Match each listed company to its ticker on the exchange.",
+      title: "Companies & technologies",
+      description: "Match each company to the technology it created.",
     },
     "cost-category": {
       title: "Sorting costs",
-      description: "Drag each cost into the right group: Fixed or Variable.",
+      description: "Drag each infrastructure cost into the right group: Fixed or Variable.",
     },
     "wall-street-millionaire": {
       title: "Who Wants to Be a Silicon Valley Millionaire",

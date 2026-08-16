@@ -103,10 +103,8 @@ export interface Lesson {
     | "interest-rate"
     | "supply-demand"
     | "profit-calc"
-    | "roe"
     | "bond"
     | "money-vs-asset"
-    | "cash-flow-simulator"
     | "inflation-calculator"
     | "process"
     | "budget"
@@ -131,7 +129,6 @@ export interface Lesson {
     | "esg-score"
     | "sampling"
     | "regression"
-    | "tax-brackets"
     | "journal-entry";
   realWorldExample: {
     company: string;

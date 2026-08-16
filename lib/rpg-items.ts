@@ -24,18 +24,18 @@ export interface CharacterEquipments {
    phẩm - vốn nằm trong kho đồ đã lưu của người chơi. CivicPanel tra
    `t.rpgItems[key]`; `icon` và `type` là dữ liệu. */
 export const ITEM_DESCRIPTIONS: Record<string, { name: string; type: keyof CharacterEquipments; icon: string }> = {
-  weapon_valuation_pen: { name: "Bút Định Giá Thần Kỳ", type: "weapon", icon: "🖊️" },
-  weapon_lbo_sword: { name: "Kiếm Phân Tích LBO", type: "weapon", icon: "⚔️" },
-  weapon_bell: { name: "Chuông Giao Dịch Sàn Wall", type: "weapon", icon: "🔔" },
+  weapon_valuation_pen: { name: "Bàn Phím Cơ Thần Tốc", type: "weapon", icon: "⌨️" },
+  weapon_lbo_sword: { name: "Kiếm Tái Cấu Trúc Mã", type: "weapon", icon: "⚔️" },
+  weapon_bell: { name: "Chuông Báo Sự Cố", type: "weapon", icon: "🔔" },
 
-  armor_risk_shield: { name: "Khiên Quản Trị Rủi Ro", type: "armor", icon: "🛡️" },
-  armor_savings_vest: { name: "Áo Giáp Tích Sản", type: "armor", icon: "🎽" },
+  armor_risk_shield: { name: "Khiên Kiểm Thử Tự Động", type: "armor", icon: "🛡️" },
+  armor_savings_vest: { name: "Áo Giáp Sao Lưu", type: "armor", icon: "🎽" },
 
-  acc_glasses: { name: "Kính Phân Tích BCTC", type: "accessory", icon: "👓" },
-  acc_crown: { name: "Vương Miện CFO", type: "accessory", icon: "👑" },
+  acc_glasses: { name: "Kính Soi Nhật Ký Hệ Thống", type: "accessory", icon: "👓" },
+  acc_crown: { name: "Vương Miện CTO", type: "accessory", icon: "👑" },
 
-  pet_bull: { name: "Linh vật Bò Tăng Trưởng", type: "companion", icon: "🐂" },
-  pet_bear: { name: "Gấu Tiết Kiệm Thần Kỳ", type: "companion", icon: "🐻" },
+  pet_bull: { name: "Linh vật Cá Heo Deploy", type: "companion", icon: "🐬" },
+  pet_bear: { name: "Gấu Trúc Sao Lưu", type: "companion", icon: "🐼" },
 
   booster_xp_24h: { name: "Thẻ X2 XP Booster (24h)", type: "accessory", icon: "⚡" },
   title_vip_diamond: { name: "Huy Hiệu VIP Kim Cương", type: "accessory", icon: "💎" },
