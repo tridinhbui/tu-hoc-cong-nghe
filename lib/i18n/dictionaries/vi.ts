@@ -1504,9 +1504,6 @@ export const vi = {
     title: "FinSocial Feed",
     subtitle:
       "Nơi cộng đồng chia sẻ bản tin ngắn, câu hỏi, phân tích BCTC thực tế và ăn mừng thành tựu học tập mỗi ngày.",
-    statPosts: "Bài viết",
-    statReactions: "Cảm xúc",
-    statComments: "Bình luận",
 
     // Highlights + filters
     highlightsTitle: "Nổi bật hôm nay",
@@ -1515,9 +1512,6 @@ export const vi = {
     reactionsSuffix: "cảm xúc",
     commentsSuffix: "bình luận",
     authorReactions: "{name} · {count} cảm xúc",
-    searchPlaceholder: "Tìm bài viết, người đăng, chủ đề...",
-    refresh: "Làm mới",
-    feedEmpty: "Chưa có bài chia sẻ nào phù hợp bộ lọc này.",
     // Hai trạng thái rỗng KHÁC NHAU, và gộp chúng là chỗ đã làm người dùng
     // tưởng mất bài: `feedEmpty` nói "không khớp bộ lọc" - đúng khi có bộ lọc
     // hoặc từ khoá, nhưng khi đang xem tất cả mà không có bài nào thì câu đó

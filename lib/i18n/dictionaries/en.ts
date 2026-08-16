@@ -1412,9 +1412,6 @@ export const en: Dictionary = {
     title: "FinSocial feed",
     subtitle:
       "Where the community shares short updates, questions, real financial-statement analysis, and celebrates what they've learned each day.",
-    statPosts: "Posts",
-    statReactions: "Reactions",
-    statComments: "Comments",
 
     highlightsTitle: "Standing out today",
     highlightsSub: "The posts worth opening first to catch up quickly",
@@ -1422,9 +1419,6 @@ export const en: Dictionary = {
     reactionsSuffix: "reactions",
     commentsSuffix: "comments",
     authorReactions: "{name} · {count} reactions",
-    searchPlaceholder: "Search posts, people, topics...",
-    refresh: "Refresh",
-    feedEmpty: "No posts match this filter.",
     // Hai trạng thái rỗng KHÁC NHAU, và gộp chúng là chỗ đã làm người dùng
     // tưởng mất bài: `feedEmpty` nói "không khớp bộ lọc" - đúng khi có bộ lọc
     // hoặc từ khoá, nhưng khi đang xem tất cả mà không có bài nào thì câu đó

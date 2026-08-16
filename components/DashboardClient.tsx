@@ -270,6 +270,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       ? (saved as ProfessionalBranchId)
       : "corporate";
   });
+
+  // Dải pill chỉ hiện mô tả của nhánh ĐANG CHỌN, nên sáu nhánh còn lại là sáu
+  // cái nhãn không nói gì: muốn biết "Định lượng & dữ liệu" dạy gì thì phải bấm
+  // vào nó, tức phải rời chỗ đang đứng để đọc rồi bấm quay lại. Nút này mở cả
+  // bảy mô tả cùng lúc để so sánh trước khi chọn.
+  const [showAllBranches, setShowAllBranches] = useState(false);
   const handleSetProfessionalBranch = (branch: ProfessionalBranchId) => {
     setProfessionalBranch(branch);
     if (typeof window !== "undefined") window.localStorage.setItem("professionalBranch", branch);
@@ -1673,16 +1679,57 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:border-stone-400 dark:hover:border-stone-600 hover:text-stone-900 dark:hover:text-stone-200"
                       }`}
                     >
-                      <span>{branch.emoji}</span>
+                      {/* Không emoji. Bảy pill mỗi cái một biểu tượng khác nhau
+                          là bảy điểm nhìn cạnh tranh trên cùng một hàng, và
+                          không cái nào mang thông tin mà cái nhãn ngay cạnh nó
+                          chưa nói. Trạng thái đang chọn đã do nền đậm gánh. */}
                       {t.professionalBranches[branch.id]?.label ?? branch.label}
                     </button>
                   );
                 })}
               </div>
-              <p className="mt-2 text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
-                {t.professionalBranches[professionalBranch]?.subtitle ??
-                  PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)?.subtitle}
-              </p>
+              <div className="mt-2 flex items-start justify-between gap-4">
+                <p className="text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
+                  {t.professionalBranches[professionalBranch]?.subtitle ??
+                    PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)?.subtitle}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setShowAllBranches((v) => !v)}
+                  className="shrink-0 cursor-pointer text-[11px] font-bold text-stone-600 underline-offset-2 hover:underline dark:text-stone-400"
+                >
+                  {showAllBranches ? t.dashboard.branchesCollapse : t.dashboard.branchesShowAll}
+                </button>
+              </div>
+
+              {/* Bảy nhánh kèm mô tả, đọc một lượt. Bấm một dòng vừa chọn nhánh
+                  vừa đóng danh sách: mở ra để SO SÁNH, nên khi đã chọn xong thì
+                  đóng lại là bước tiếp theo, không phải một cú bấm nữa. */}
+              {showAllBranches && (
+                <ul className="mt-2.5 divide-y divide-stone-100 overflow-hidden rounded-xl border border-stone-200 dark:divide-stone-800 dark:border-stone-800">
+                  {PROFESSIONAL_BRANCHES.map((branch) => (
+                    <li key={branch.id}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          handleSetProfessionalBranch(branch.id);
+                          setShowAllBranches(false);
+                        }}
+                        className={`w-full cursor-pointer px-3.5 py-2.5 text-left transition-colors hover:bg-stone-50 dark:hover:bg-stone-800/60 ${
+                          professionalBranch === branch.id ? "bg-stone-50 dark:bg-stone-800/60" : ""
+                        }`}
+                      >
+                        <span className="block text-xs font-bold text-stone-900 dark:text-stone-100">
+                          {t.professionalBranches[branch.id]?.label ?? branch.label}
+                        </span>
+                        <span className="mt-0.5 block text-[11px] leading-relaxed text-stone-500 dark:text-stone-400">
+                          {t.professionalBranches[branch.id]?.subtitle ?? branch.subtitle}
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
 
