@@ -776,25 +776,28 @@ export const TRACK_PROFESSIONAL = {
       // của track cá nhân - không bài nào về thuế doanh nghiệp.
       label: "Chặng 24",
       name: "Chuẩn mực kế toán và thuế doanh nghiệp Việt Nam",
-      // Dải tới 1449 chứ không phải 1448: bài 1449 (IFRS 16) là Bài 9 của
-      // chính loạt "Chuẩn mực & Thuế" này, thêm vào sau mà dải không được nới
-      // theo - nên nó tồn tại trong kho mà không lộ trình nào dẫn tới. Bộ kiểm
-      // lib/__tests__/track-stage-coverage.test.ts bắt được đúng chuyện đó,
-      // nhưng chỉ khi lib/lessons-data/ được sinh lại: thư mục ấy nằm trong
-      // .gitignore, nên dữ liệu cũ trên máy đã che nó một thời gian.
-      days: [1441, 1449] as [number, number],
+      // Dải dừng ở 1448, và nó TỪNG tới 1449.
+      //
+      // Bài 1449 (IFRS 16) là Bài 9 của chính loạt "Chuẩn mực & Thuế" này. Nó
+      // được thêm vào kho mà dải ở đây không nới theo, nên nó tồn tại mà không
+      // lộ trình nào dẫn tới - lib/__tests__/track-stage-coverage.test.ts bắt
+      // được, nhưng chỉ sau khi lib/lessons-data/ được sinh lại, vì thư mục ấy
+      // nằm trong .gitignore và dữ liệu cũ trên máy đã che nó một thời gian.
+      //
+      // Nới xong thì e7fe9cf gỡ luôn bài đó khỏi nguồn, nên dải phải co lại.
+      // Ghi ra đây vì bài học không nằm ở con số mà ở CẶP: dải này và dải
+      // `accounting` trong lib/career-competency.ts phải đi cùng nhau theo cả
+      // hai chiều. Một bài vào được lộ trình mà không thuộc miền năng lực nào
+      // thì học xong không con số nào nhúc nhích; một bài đã bị gỡ mà còn nằm
+      // trong dải thì hai tệp trỏ vào chỗ trống. Chiều thứ hai không có bộ
+      // kiểm nào - `skill-domain-coverage` chỉ soi phía miền năng lực.
+      //
+      // Bài 1449 quay lại thì nới lại cả hai.
+      days: [1441, 1448] as [number, number],
       available: true,
       isNew: true,
       parts: [
-        {
-          // 1449 vào phần NÀY chứ không phải phần cuối, dù id của nó nằm sau
-          // 1448: IFRS 16 là chuẩn mực, không phải thuế. Đây đúng là tình
-          // huống `extraLessonIds` sinh ra để giải quyết - xem chú thích ở
-          // định nghĩa StagePart phía trên file.
-          name: "VAS, IFRS và chuyển đổi chuẩn mực",
-          days: [1441, 1442] as [number, number],
-          extraLessonIds: [1449],
-        },
+        { name: "VAS, IFRS và chuyển đổi chuẩn mực", days: [1441, 1442] as [number, number] },
         { name: "Thuế doanh nghiệp và thuế hoãn lại", days: [1443, 1445] as [number, number] },
         { name: "Chi phí được trừ, ưu đãi và thanh tra thuế", days: [1446, 1448] as [number, number] },
       ],

@@ -9,7 +9,7 @@ import totals from "@/lib/lessons-data/_track-totals.json";
  *     chặng            khai      thật
  *     cá nhân          10 giờ    21,9 giờ
  *     chuyên nghiệp    18 giờ    48,8 giờ
- *     bonus            27 giờ    12,3 giờ   ← khai vống hơn gấp đôi
+ *     CFA              27 giờ    38,6 giờ
  *
  * Không ai nói dối: con số được gõ một lần lúc chặng còn vài chục bài, rồi kho
  * bài đi tiếp còn con số thì đứng yên. Cùng đúng cái lỗi mà chú thích đầu
@@ -51,8 +51,9 @@ export function trackTotals(track: TrackTotalsId): TrackTotal {
  *  nhau hai mươi phút. Nửa giờ là mức chi tiết mà một ước lượng thời gian học
  *  chịu được, và cũng là mức người đọc dùng được để xếp lịch.
  *
- *  KHÔNG làm tròn lên: ước lượng thời lượng là một lời hứa với người học, và
- *  hứa dài hơn thực tế thì không sao, hứa ngắn hơn mới là thứ làm họ bỏ dở. */
+ *  Làm tròn về mốc GẦN NHẤT, nên nó có thể xuống (48,6 → 48,5) cũng như lên
+ *  (21,9 → 22). Sai số tối đa mười lăm phút trên một con số hàng chục giờ, và
+ *  ở cỡ đó thì không đáng đổi lấy một quy tắc phức tạp hơn. */
 export function trackHours(track: TrackTotalsId): number {
   return Math.round((trackTotals(track).minutes / 60) * 2) / 2;
 }

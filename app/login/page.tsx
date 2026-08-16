@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { createClient } from "@/lib/supabase";
+import { roundedLessonCount } from "@/lib/track-totals";
 import { translateAuthError, isUnconfirmedEmailError } from "@/lib/auth-error-messages";
 import { stashReferralCodeFromUrl } from "@/lib/referrals";
 import { safeNextPath } from "@/lib/safe-next-path";
@@ -76,7 +77,18 @@ function LoginForm() {
   // rounded-down floor (not the animated count) since this is inline copy,
   // not a hero stat. Falls back to null (renders nothing extra) if the
   // fetch fails, rather than showing a stale hardcoded number.
-  const [lessonCountFloor, setLessonCountFloor] = useState<number | null>(null);
+  // Khởi tạo bằng con số THẬT lúc build, không phải `null` rồi rơi về 360.
+  //
+  // 360 là số gõ tay từ hồi kho có ngần ấy bài; hôm nay là 813, nên lần vẽ đầu
+  // của trang đăng nhập in ra một con số lệch 450 rồi mới nhảy khi fetch về.
+  // TOTAL_LESSONS đọc từ chính kho bài lúc build nên nó không lệch được, và
+  // dùng nó thì không còn nhấp nháy.
+  //
+  // VẪN GIỮ lời gọi API bên dưới: nó đếm sau khi lọc cờ `is_visible` của bảng
+  // `lessons`, thứ chỉ biết được lúc chạy. Hằng số là điểm khởi đầu đúng, còn
+  // API là con số chính xác - xem ghi chú ở lib/track-totals.ts về việc hai
+  // con số này trả lời hai câu hỏi khác nhau.
+  const [lessonCountFloor, setLessonCountFloor] = useState<number>(roundedLessonCount());
 
   useEffect(() => {
     let cancelled = false;
@@ -454,7 +466,7 @@ function LoginForm() {
               <div className="p-5 sm:p-6 xl:p-7 space-y-3.5 font-sans">
                 <div className="lg:hidden border-l-2 border-emerald-600 dark:border-emerald-500 pl-3">
                   <p className="text-[13px] font-bold text-stone-900 dark:text-stone-100">
-                    {format(t.login.lessonCountLine, { count: lessonCountFloor ?? 360 })}
+                    {format(t.login.lessonCountLine, { count: lessonCountFloor })}
                   </p>
                 </div>
 
@@ -655,7 +667,7 @@ function LoginForm() {
                 <dl className="grid grid-cols-3 divide-x divide-stone-200 border-t border-stone-200 pt-3 dark:divide-stone-800 dark:border-stone-800">
                   {[
                     { k: t.login.statRating, v: t.login.statRatingValue },
-                    { k: t.login.statLessons, v: format(t.login.statLessonsValue, { count: lessonCountFloor ?? 360 }) },
+                    { k: t.login.statLessons, v: format(t.login.statLessonsValue, { count: lessonCountFloor }) },
                     { k: t.login.statSupport, v: t.login.statSupportValue },
                   ].map((stat, i) => (
                     <div key={stat.k} className={i === 0 ? "pr-3" : i === 2 ? "pl-3" : "px-3"}>
