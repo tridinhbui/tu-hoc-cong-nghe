@@ -60,7 +60,7 @@ export const SKILL_DOMAINS: SkillDomain[] = [
     // 1761-1763: cụm chọn bảo hiểm cá nhân - đọc điều khoản, đọc bảng minh
     // họa liên kết đầu tư, và so hai hợp đồng. Cùng miền với các bài bảo hiểm
     // đã có ở dải 241-298.
-    lessonIds: [...range(1, 20), ...range(241, 298), 1048, 1249, 1255, 1284, 1285, ...range(1301, 1308), ...range(1351, 1353), ...range(1761, 1763)],
+    lessonIds: [...range(1, 20), ...range(241, 298), ...range(300, 309), ...range(310, 319), ...range(320, 327), ...range(330, 339), ...range(340, 347), ...range(350, 357), ...range(360, 367), ...range(370, 376), ...range(380, 384), ...range(390, 393), ...range(400, 403), 1048, 1249, 1255, 1284, 1285, ...range(1301, 1308), ...range(1351, 1353), ...range(1761, 1763)],
   },
   {
     id: "accounting",

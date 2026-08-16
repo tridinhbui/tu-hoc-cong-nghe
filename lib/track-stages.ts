@@ -182,6 +182,179 @@ export const TRACK_PERSONAL = {
         },
       ],
     },
+    {
+      // Chặng 11 nói về vế còn lại của phương trình: số tiền ĐI VÀO. Mười
+      // chặng trên phủ rất kỹ việc phân bổ và đầu tư số tiền đã có, nhưng
+      // không có bài nào về thu nhập - trong khi với người đi làm, đó thường
+      // là biến thay đổi được nhiều nhất.
+      //
+      // Ids 300-309 nằm ngay sau Chặng 9 (289-298). Dải 299-800 trống hoàn
+      // toàn ở cả tệp này lẫn career-competency.ts, nên khai báo được bằng
+      // `days` mà không cần extraLessonIds như Chặng 1 và Chặng 10 phải làm.
+      label: "Chặng 11",
+      name: "Tăng thu nhập & đầu tư vào bản thân",
+      days: [300, 309] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Đòn bẩy thu nhập và giá thị trường của bạn", days: [300, 301] as [number, number] },
+        { name: "Đàm phán lương và tổng đãi ngộ", days: [302, 304] as [number, number] },
+        { name: "Nguồn thu thứ hai", days: [305, 307] as [number, number] },
+        { name: "Đầu tư vào bản thân và bản đồ 12 tháng", days: [308, 309] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 12: nơi gần như 100% người học Việt Nam thật sự để tiền. Track
+      // này dạy rất kỹ cổ phiếu, trái phiếu và danh mục, nhưng sổ tiết kiệm
+      // ngân hàng thì trước đây không có bài nào - nên người học biết tính
+      // duration của trái phiếu mà không biết vì sao rút sổ trước hạn lại mất
+      // gần hết lãi.
+      label: "Chặng 12",
+      name: "Ngân hàng, tiết kiệm & tiền gửi",
+      days: [310, 319] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Sổ tiết kiệm và lãi suất thực", days: [310, 311] as [number, number] },
+        { name: "Kỳ hạn, rút trước hạn và bậc thang", days: [312, 313] as [number, number] },
+        { name: "Sản phẩm khác và mức bảo vệ", days: [314, 315] as [number, number] },
+        { name: "Phí, kênh số và sắp xếp toàn bộ", days: [316, 319] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 13: vàng là kênh giữ tiền phổ biến bậc nhất ở Việt Nam và track
+      // này trước đó có ĐÚNG 0 bài về nó.
+      label: "Chặng 13",
+      name: "Vàng, ngoại tệ và tỷ giá",
+      days: [320, 327] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Vàng là tài sản gì", days: [320, 321] as [number, number] },
+        { name: "Chi phí thật và chuyện chống lạm phát", days: [322, 323] as [number, number] },
+        { name: "Tỷ giá và ngoại tệ", days: [324, 325] as [number, number] },
+        { name: "Tỷ trọng hợp lý và tổng kết", days: [326, 327] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 14: Chặng 4 có 20 bài lý thuyết về cổ phiếu nhưng không bài nào
+      // nói người học phải làm gì để MUA được một cổ phiếu ở Việt Nam.
+      label: "Chặng 14",
+      name: "Chứng khoán Việt Nam trong thực tế",
+      days: [330, 339] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Mở tài khoản và đặt lệnh", days: [330, 331] as [number, number] },
+        { name: "Thanh toán, phí và chỉ số", days: [332, 334] as [number, number] },
+        { name: "Quỹ, cổ tức và đòn bẩy", days: [335, 337] as [number, number] },
+        { name: "Bảng giá và lệnh đầu tiên", days: [338, 339] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 15: track có 0 bài về crypto trong khi đây là nơi người học gặp
+      // nhiều lời mời chào nhất. Im lặng không bảo vệ được ai - họ vẫn gặp chủ
+      // đề này, chỉ là từ những nguồn có động cơ bán hàng. Giọng của chặng là
+      // cơ chế và rủi ro, không khuyên mua và cũng không khuyên tránh.
+      label: "Chặng 15",
+      name: "Crypto & tài sản số",
+      days: [340, 347] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Bản chất tài sản và cách nắm giữ", days: [340, 341] as [number, number] },
+        { name: "Sàn, stablecoin và pháp lý", days: [342, 344] as [number, number] },
+        { name: "Lừa đảo, tỷ trọng và tổng kết", days: [345, 347] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 16: track chỉ có ĐÚNG MỘT bài về lừa đảo (id 284), trong khi đây
+      // là nguyên nhân mất tiền nhanh nhất và không có cơ hội gỡ lại. Dạy nhận
+      // diện theo CẤU TRÚC chứ không theo dấu hiệu bề mặt: kịch bản nào cũng
+      // cần bạn gấp, một mình, và qua kênh do chúng chọn.
+      label: "Chặng 16",
+      name: "Phòng lừa đảo & an toàn tài chính",
+      days: [350, 357] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Cơ chế và kịch bản mạo danh", days: [350, 352] as [number, number] },
+        { name: "Việc làm, đầu tư và bảo mật", days: [353, 355] as [number, number] },
+        { name: "Khi đã có chuyện và quy tắc gia đình", days: [356, 357] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 17 KHÔNG trùng Chặng 9. Chặng 9 có phần lý thuyết: khoản vay hoạt
+      // động thế nào, DTI, thuê hay mua. Chặng này bắt đầu từ chỗ đó dừng lại -
+      // kiểm gì trước khi cọc, chi phí thật ngoài giá, lãi thả nổi sau ưu đãi,
+      // và lợi suất cho thuê sau khi trừ hết.
+      label: "Chặng 17",
+      name: "Bất động sản Việt Nam thực chiến",
+      days: [360, 367] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Pháp lý và đặt cọc", days: [360, 361] as [number, number] },
+        { name: "Chi phí thật và khoản vay", days: [362, 363] as [number, number] },
+        { name: "Chung cư, đất nền và cho thuê", days: [364, 366] as [number, number] },
+        { name: "Danh sách trước khi xuống tiền", days: [367, 367] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 18: thứ làm hỏng kế hoạch tài chính của phần lớn hộ gia đình
+      // không phải đầu tư sai, mà là vài khoản chi lớn đến theo lịch của đời
+      // người - và đều BIẾT TRƯỚC được.
+      label: "Chặng 18",
+      name: "Những khoản chi lớn trong đời",
+      days: [370, 376] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Nguyên tắc chung và mua xe", days: [370, 371] as [number, number] },
+        { name: "Cưới hỏi, sinh con và học phí", days: [372, 374] as [number, number] },
+        { name: "Chăm bố mẹ và bản đồ tổng thể", days: [375, 376] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 19: rủi ro sức khỏe tấn công CẢ HAI VẾ cùng lúc - chi phí tăng
+      // trong khi thu nhập dừng. Mọi chặng trước chỉ nói về một vế.
+      label: "Chặng 19",
+      name: "Y tế, BHYT và rủi ro con người",
+      days: [380, 384] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Rủi ro hai vế và BHYT", days: [380, 381] as [number, number] },
+        { name: "Bảo hiểm bổ sung và thu nhập", days: [382, 383] as [number, number] },
+        { name: "Danh sách kiểm", days: [384, 384] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 20: cùng một lời khuyên đúng có thể vô dụng nếu đưa sai giai
+      // đoạn. Chặng này xếp lại 19 chặng trước theo trục tuổi.
+      label: "Chặng 20",
+      name: "Tài chính theo giai đoạn tuổi",
+      days: [390, 393] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Tuổi hai mươi và ba mươi", days: [390, 391] as [number, number] },
+        { name: "Bốn mươi, năm mươi và sau đó", days: [392, 393] as [number, number] },
+      ],
+    },
+    {
+      // Chặng 21: thất bại phổ biến nhất trong tài chính cá nhân không phải
+      // hiểu sai, mà là hiểu đúng rồi không duy trì được.
+      label: "Chặng 21",
+      name: "Công cụ và vận hành",
+      days: [400, 403] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Hệ thống tối thiểu và tự động hóa", days: [400, 401] as [number, number] },
+        { name: "Rà soát hằng năm và tổng kết", days: [402, 403] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 

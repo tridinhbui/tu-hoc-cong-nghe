@@ -89,6 +89,12 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
     relatedLessonSlugs: ["tai-chinh-la-gi", "tien-la-gi", "thu-nhap-chi-phi-tiet-kiem", "dong-tien", "tai-san-tieu-san", "lai-suat-la-gi", "lai-don-lai-kep",
       "audit-tai-chinh-ca-nhan",
       "quy-khan-cap-tam-dem",
+
+      // Chặng 21: biến kiến thức thành một hệ thống chạy được mà không cần nhớ.
+      "he-thong-toi-thieu-can-co",
+      "tu-dong-hoa-toan-bo-he-thong",
+      "buoi-ra-soat-tai-chinh-hang-nam",
+      "tong-ket-toan-bo-lo-trinh",
     ],
     dayInLife: "Dành 15-20 phút mỗi ngày học bài mới, lập ngân sách cá nhân, phân bổ vốn vào các tài sản an toàn và theo dõi tích lũy tài sản ròng (Net worth).",
     careerPath: ["Người mới bắt đầu", "Nhà đầu tư cá nhân thông thái", "Tự chủ tài chính"],
@@ -330,6 +336,10 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
       "thien-kien-hanh-vi-trong-phan-tich-equity",
       "prospect-theory-khung-ly-thuyet-chinh-thuc",
       "do-hieu-suat-quy-irr-moic-dpi-tvpi",
+    
+      // Chặng 14: chứng khoán VN thực chiến.
+      "mo-tai-khoan-chung-khoan",
+      "ke-hoach-dau-tu-dau-tien",
     ],
     relatedCfaSubjectIds: ["portfolio", "equity", "alternatives"],
     dayInLife: "Họp ban đầu tư thảo luận chiến lược vĩ mô, phê duyệt giao dịch mua/bán cổ phiếu tỷ trọng lớn, gặp gỡ lãnh đạo doanh nghiệp niêm yết để đánh giá triển vọng kinh doanh thực tế.",
@@ -1130,6 +1140,10 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
       "ngan-hang-ngam-shadow-banking",
       "frm-rui-ro-hanh-vi-va-tuan-thu",
       "frm-garp-code-of-conduct",
+    
+      // Chặng 16: nhận diện lừa đảo theo cấu trúc.
+      "vi-sao-ai-cung-co-the-bi-lua",
+      "quy-tac-an-toan-cho-ca-nha",
     ],
     relatedCfaSubjectIds: ["ethics"],
     dayInLife: "Rà soát danh sách giao dịch giá trị lớn phát sinh trong ngày để phát hiện dấu hiệu rửa tiền, cập nhật chính sách nội bộ theo thông tư mới của NHNN, và tổ chức buổi đào tạo tuân thủ cho phòng kinh doanh.",
@@ -1357,6 +1371,10 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
       "cau-truc-von-du-an-bat-dong-san",
       "du-an-cho-thue-noi-va-cap-rate",
       "rui-ro-du-an-bat-dong-san-va-kich-ban",
+    
+      // Chặng 17: giao dịch bất động sản cá nhân.
+      "phap-ly-truoc-khi-dat-coc",
+      "checklist-truoc-khi-xuong-tien",
     ],
     relatedCfaSubjectIds: ["alternatives", "corporate"],
     dayInLife: "Cập nhật mô hình tài chính một dự án căn hộ theo tiến độ xây dựng thực tế, tính toán Cap Rate cho một tòa văn phòng đang chào bán, và làm việc với ngân hàng để thu xếp gói vay tài trợ dự án mới.",
@@ -1496,6 +1514,10 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
       "fintech-cho-vay-so-va-chi-phi-rui-ro",
       "fintech-gian-lan-va-chi-phi-chargeback",
       "fintech-duong-toi-hoa-von-va-dot-tien",
+    
+      // Chặng 15: cơ chế và rủi ro tài sản số.
+      "crypto-la-gi-ve-mat-tai-chinh",
+      "lua-dao-trong-tai-san-so",
     ],
     relatedCfaSubjectIds: ["economics", "fsa"],
     dayInLife: "Phân tích tỷ lệ nợ xấu của sản phẩm cho vay tiêu dùng số theo từng phân khúc khách hàng, họp với đội sản phẩm về tính năng trả góp mới, và cập nhật mô hình dự báo doanh thu ví điện tử quý tới.",
@@ -1581,6 +1603,16 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
       "luong-gross-vs-net-thuc-nhan",
       "giam-tru-gia-canh-nguoi-phu-thuoc",
       "quyet-toan-thue-tncn-hoan-thue",
+    
+      // Chặng 13: vàng và ngoại tệ trong danh mục cá nhân.
+      "vang-la-gi-ve-mat-tai-chinh",
+      "khi-nao-vang-dang-giu",
+
+      // Chặng 20: cùng một lời khuyên đúng có thể sai nếu đưa sai giai đoạn.
+      "tai-chinh-tuoi-hai-muoi",
+      "tai-chinh-tuoi-ba-muoi",
+      "tai-chinh-tuoi-bon-muoi-nam-muoi",
+      "chuyen-tu-tich-luy-sang-su-dung",
     ],
     relatedCfaSubjectIds: ["portfolio"],
     dayInLife: "Gặp một khách hàng mới đang muốn bắt đầu đầu tư, xây dựng kế hoạch tiết kiệm/đầu tư dựa trên mục tiêu mua nhà trong 5 năm, và cập nhật tiến độ đầu tư ETF cho một khách hàng cũ.",
@@ -1625,6 +1657,10 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
       "audit-tai-chinh-ca-nhan",
       "lap-ngan-sach-50-30-20",
       "tra-no-thong-minh-snowball-avalanche",
+    
+      // Chặng 11: vế thu nhập.
+      "tang-thu-nhap-don-bay-manh-hon-cat-chi",
+      "dam-phan-luong-khi-nhan-viec-moi",
     ],
     dayInLife: "Có buổi coaching 1-1 với khách hàng đang muốn thoát nợ tiêu dùng, viết bài chia sẻ về sai lầm tâm lý FOMO trong đầu tư, và chuẩn bị nội dung workshop tiết kiệm cuối tuần.",
     careerPath: ["Financial Coach", "Coach cấp cao/Có thương hiệu riêng", "Nhà sáng lập chương trình giáo dục tài chính", "Diễn giả/Tác giả"],
@@ -1671,6 +1707,14 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
       "bao-hiem",
       "lua-chon-bat-loi-va-rui-ro-dao-duc",
       "bang-ty-le-tu-vong-va-gia-cua-loi-hua",
+    
+      // Chặng 18: các khoản chi lớn theo lịch đời người.
+      "khoan-chi-lon-biet-truoc",
+      "ban-do-cac-khoan-lon-trong-doi",
+
+      // Chặng 19: rủi ro y tế tấn công cả vế chi phí lẫn vế thu nhập.
+      "rui-ro-y-te-la-rui-ro-tai-chinh",
+      "bao-ve-ve-thu-nhap",
     ],
     relatedCfaSubjectIds: ["alternatives"],
     dayInLife: "Gặp khách hàng trẻ mới lập gia đình để tư vấn bảo hiểm nhân thọ bảo vệ thu nhập, xử lý hồ sơ yêu cầu bồi thường cho một khách hàng cũ, và tham gia buổi đào tạo sản phẩm bảo hiểm mới.",
@@ -1712,6 +1756,15 @@ export const FINANCE_CAREERS: FinanceCareer[] = [
       "thien-kien-hien-tai-va-tiet-kiem-huu-tri",
       "luong-gross-vs-net-thuc-nhan",
       "bhxh-bhyt-bhtn-10-phay-5-phan-tram",
+    
+      // Chặng 12: nơi hộ gia đình thật sự để tiền.
+      "gui-tiet-kiem-hoat-dong-the-nao",
+      "dat-tien-o-dau-cho-tung-muc-dich",
+
+      // Chặng 19: BHYT và lớp bảo hiểm bổ sung của một hộ gia đình.
+      "bhyt-chi-tra-toi-dau",
+      "chon-lop-bao-hiem-bo-sung",
+      "danh-sach-kiem-suc-khoe-tai-chinh",
     ],
     relatedCfaSubjectIds: ["portfolio"],
     dayInLife: "Ngồi cùng một gia đình trẻ để lập ngân sách chi tiêu hàng tháng, tính toán số tiền cần tiết kiệm mỗi tháng để đủ vốn mua nhà sau 7 năm, và tư vấn quỹ giáo dục cho con nhỏ.",

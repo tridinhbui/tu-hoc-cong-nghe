@@ -128,6 +128,108 @@ export const trackStagesVi = {
             "Tiền bạc, thời gian và xây kỷ luật tài chính",
           ],
         },
+        {
+          label: "Chặng 11",
+          name: "Tăng thu nhập & đầu tư vào bản thân",
+          parts: [
+            "Đòn bẩy thu nhập và giá thị trường của bạn",
+            "Đàm phán lương và tổng đãi ngộ",
+            "Nguồn thu thứ hai",
+            "Đầu tư vào bản thân và bản đồ 12 tháng",
+          ],
+        },
+        {
+          label: "Chặng 12",
+          name: "Ngân hàng, tiết kiệm & tiền gửi",
+          parts: [
+            "Sổ tiết kiệm và lãi suất thực",
+            "Kỳ hạn, rút trước hạn và bậc thang",
+            "Sản phẩm khác và mức bảo vệ",
+            "Phí, kênh số và sắp xếp toàn bộ",
+          ],
+        },
+        {
+          label: "Chặng 13",
+          name: "Vàng, ngoại tệ và tỷ giá",
+          parts: [
+            "Vàng là tài sản gì",
+            "Chi phí thật và chuyện chống lạm phát",
+            "Tỷ giá và ngoại tệ",
+            "Tỷ trọng hợp lý và tổng kết",
+          ],
+        },
+        {
+          label: "Chặng 14",
+          name: "Chứng khoán Việt Nam trong thực tế",
+          parts: [
+            "Mở tài khoản và đặt lệnh",
+            "Thanh toán, phí và chỉ số",
+            "Quỹ, cổ tức và đòn bẩy",
+            "Bảng giá và lệnh đầu tiên",
+          ],
+        },
+        {
+          label: "Chặng 15",
+          name: "Crypto & tài sản số",
+          parts: [
+            "Bản chất tài sản và cách nắm giữ",
+            "Sàn, stablecoin và pháp lý",
+            "Lừa đảo, tỷ trọng và tổng kết",
+          ],
+        },
+        {
+          label: "Chặng 16",
+          name: "Phòng lừa đảo & an toàn tài chính",
+          parts: [
+            "Cơ chế và kịch bản mạo danh",
+            "Việc làm, đầu tư và bảo mật",
+            "Khi đã có chuyện và quy tắc gia đình",
+          ],
+        },
+        {
+          label: "Chặng 17",
+          name: "Bất động sản Việt Nam thực chiến",
+          parts: [
+            "Pháp lý và đặt cọc",
+            "Chi phí thật và khoản vay",
+            "Chung cư, đất nền và cho thuê",
+            "Danh sách trước khi xuống tiền",
+          ],
+        },
+        {
+          label: "Chặng 18",
+          name: "Những khoản chi lớn trong đời",
+          parts: [
+            "Nguyên tắc chung và mua xe",
+            "Cưới hỏi, sinh con và học phí",
+            "Chăm bố mẹ và bản đồ tổng thể",
+          ],
+        },
+        {
+          label: "Chặng 19",
+          name: "Y tế, BHYT và rủi ro con người",
+          parts: [
+            "Rủi ro hai vế và BHYT",
+            "Bảo hiểm bổ sung và thu nhập",
+            "Danh sách kiểm",
+          ],
+        },
+        {
+          label: "Chặng 20",
+          name: "Tài chính theo giai đoạn tuổi",
+          parts: [
+            "Tuổi hai mươi và ba mươi",
+            "Bốn mươi, năm mươi và sau đó",
+          ],
+        },
+        {
+          label: "Chặng 21",
+          name: "Công cụ và vận hành",
+          parts: [
+            "Hệ thống tối thiểu và tự động hóa",
+            "Rà soát hằng năm và tổng kết",
+          ],
+        },
       ],
     },
     professional: {
@@ -578,6 +680,108 @@ export const trackStagesEn: typeof trackStagesVi = {
           parts: [
             "Biases in personal investing",
             "Money, time and building financial discipline",
+          ],
+        },
+        {
+          label: "Stage 11",
+          name: "Growing your income & investing in yourself",
+          parts: [
+            "Income leverage and your market rate",
+            "Salary negotiation and total compensation",
+            "A second income stream",
+            "Investing in yourself and a 12-month map",
+          ],
+        },
+        {
+          label: "Stage 12",
+          name: "Banking, savings & deposits",
+          parts: [
+            "Savings accounts and the real interest rate",
+            "Terms, early withdrawal and laddering",
+            "Other products and how far you are protected",
+            "Fees, digital channels and putting it together",
+          ],
+        },
+        {
+          label: "Stage 13",
+          name: "Gold, foreign currency and exchange rates",
+          parts: [
+            "What kind of asset gold is",
+            "The real costs and the inflation claim",
+            "Exchange rates and foreign currency",
+            "A sensible weighting, and a wrap-up",
+          ],
+        },
+        {
+          label: "Stage 14",
+          name: "The Vietnamese stock market in practice",
+          parts: [
+            "Opening an account and placing orders",
+            "Settlement, costs and the index",
+            "Funds, dividends and leverage",
+            "The price board and your first order",
+          ],
+        },
+        {
+          label: "Stage 15",
+          name: "Crypto & digital assets",
+          parts: [
+            "What the asset is and how it is held",
+            "Exchanges, stablecoins and the legal picture",
+            "Scams, position sizing and a wrap-up",
+          ],
+        },
+        {
+          label: "Stage 16",
+          name: "Fraud protection & financial safety",
+          parts: [
+            "How scams work, and impersonation scripts",
+            "Job offers, fake investments and account security",
+            "After it happens, and a rule for the household",
+          ],
+        },
+        {
+          label: "Stage 17",
+          name: "Vietnamese real estate in practice",
+          parts: [
+            "Legal checks and the deposit",
+            "The real costs and the mortgage",
+            "Apartments, land plots and renting out",
+            "A checklist before you commit",
+          ],
+        },
+        {
+          label: "Stage 18",
+          name: "Life's big expenses",
+          parts: [
+            "The general rule, and buying a car",
+            "Weddings, children and tuition",
+            "Caring for parents, and the full map",
+          ],
+        },
+        {
+          label: "Stage 19",
+          name: "Health, insurance and human risk",
+          parts: [
+            "Two-sided risk and health insurance",
+            "Supplementary cover and income",
+            "The checklist",
+          ],
+        },
+        {
+          label: "Stage 20",
+          name: "Finance by life stage",
+          parts: [
+            "Your twenties and thirties",
+            "Forties, fifties and beyond",
+          ],
+        },
+        {
+          label: "Stage 21",
+          name: "Tools and operations",
+          parts: [
+            "A minimum system, and automation",
+            "The annual review, and wrapping up",
           ],
         },
       ],

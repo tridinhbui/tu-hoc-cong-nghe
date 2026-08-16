@@ -20,6 +20,19 @@ export type StageTopicId =
   | "bonds-rates"
   | "portfolio-retirement"
   | "housing-protection"
+  // Chặng 12: ngân hàng và tiền gửi. Tách khỏi "money-foundations" vì gộp vào
+  // đó sẽ khiến một chủ đề gánh 4 trong 12 chặng của track - stage-topics.test
+  // chặn ở mức 1/4.
+  | "banking-deposits"
+  | "gold-fx"
+  | "vn-stock-practical"
+  | "digital-assets-risk"
+  | "fraud-safety"
+  | "real-estate-vn"
+  | "life-expenses"
+  | "health-risk"
+  | "life-stage"
+  | "personal-ops"
   // Dùng ở cả hai track: track cá nhân Chặng 10, chuyên ngành Chặng 12
   | "investing-psychology"
   // Track chuyên ngành
@@ -62,6 +75,16 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
   "bonds-rates": "bonds",
   "portfolio-retirement": "investing",
   "housing-protection": "generic",
+  "banking-deposits": "generic",
+  "gold-fx": "generic",
+  "vn-stock-practical": "generic",
+  "digital-assets-risk": "generic",
+  "fraud-safety": "generic",
+  "real-estate-vn": "generic",
+  "life-expenses": "generic",
+  "health-risk": "generic",
+  "life-stage": "generic",
+  "personal-ops": "generic",
   "investing-psychology": "generic",
   "accounting-reporting": "accounting",
   "valuation-corp-finance": "valuation",
@@ -116,6 +139,19 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 8": "portfolio-retirement",
   "Chặng 9": "housing-protection",
   "Chặng 10": "investing-psychology",
+  // Chặng 11 nói về vế thu nhập, không phải vế phân bổ - nên nó thuộc nhóm nền
+  // tảng tiền bạc chứ không thuộc nhóm đầu tư cá nhân.
+  "Chặng 11": "money-foundations",
+  "Chặng 12": "banking-deposits",
+  "Chặng 13": "gold-fx",
+  "Chặng 14": "vn-stock-practical",
+  "Chặng 15": "digital-assets-risk",
+  "Chặng 16": "fraud-safety",
+  "Chặng 17": "real-estate-vn",
+  "Chặng 18": "life-expenses",
+  "Chặng 19": "health-risk",
+  "Chặng 20": "life-stage",
+  "Chặng 21": "personal-ops",
 };
 
 /** Track chuyên ngành, 43 chặng, 16 chủ đề.
