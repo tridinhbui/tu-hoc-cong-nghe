@@ -1,7 +1,7 @@
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL, isLessonInRange } from "@/lib/track-stages";
-import { CFA_LEVEL_1_SUBJECTS } from "@/lib/cfa-track";
+import { CFA_LEVEL_1_SUBJECTS, type CfaSubjectId } from "@/lib/cfa-track";
 import { CFA_EXAM, pickCfaWeighted, toThreeOptions } from "@/lib/cfa-exam";
 import { frmLessonIds, pickFrmWeighted, type FrmPart } from "@/lib/frm-exam";
 import { IB_TECHNICAL_QUESTIONS, formatCategoryLabel } from "@/lib/ib-question-bank";
@@ -68,9 +68,27 @@ function shuffle<T>(arr: T[]): T[] {
 
 type PoolTrack = "personal" | "professional" | "cfa" | "frm";
 
-async function idsForTrack(track: PoolTrack, frmPart: FrmPart): Promise<Set<number>> {
+/** `?subject=` chỉ có nghĩa với track `cfa`.
+ *
+ *  Thu hẹp về ĐÚNG một trong mười môn, để một "checkpoint Ethics" là đề ra từ
+ *  bài Ethics chứ không phải đề trộn mười môn dán nhãn Ethics. Trước đây route
+ *  chỉ lọc tới mức track, nên trang CFA không có cách nào hỏi một môn.
+ *
+ *  Giá trị lạ thì BỎ QUA, không báo lỗi: người học gõ tay một URL sai vẫn nên
+ *  nhận được đề mười môn như cũ, thay vì một trang trắng. */
+function cfaSubjectIds(subject: string | null): Set<number> | null {
+  if (!subject) return null;
+  const match = CFA_LEVEL_1_SUBJECTS.find((s) => s.id === (subject as CfaSubjectId));
+  return match ? new Set(match.lessonIds) : null;
+}
+
+async function idsForTrack(
+  track: PoolTrack,
+  frmPart: FrmPart,
+  cfaSubject: string | null
+): Promise<Set<number>> {
   if (track === "cfa") {
-    return new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
+    return cfaSubjectIds(cfaSubject) ?? new Set(CFA_LEVEL_1_SUBJECTS.flatMap((s) => s.lessonIds));
   }
   // FRM thu hẹp theo phần thi ngay từ khâu lấy bài: Part I và Part II là hai kỳ
   // thi riêng, và một câu Credit Risk lọt vào đề Part I là hỏi ngoài phạm vi.
@@ -217,6 +235,7 @@ export async function GET(request: NextRequest) {
   /** Phần thi FRM. Mặc định Part I - đó là phần người học gặp trước, và một
    *  tham số sai chính tả không nên đẩy họ sang đề Part II. */
   const frmPart: FrmPart = searchParams.get("part") === "II" ? "II" : "I";
+  const cfaSubject = searchParams.get("subject");
   const requestedCount = Math.min(
     MAX_QUESTION_COUNT,
     Math.max(1, Number(searchParams.get("count")) || QUESTION_COUNT)
@@ -275,7 +294,7 @@ export async function GET(request: NextRequest) {
     track === "cfa" ||
     track === "frm"
   ) {
-    const trackIds = await idsForTrack(track, frmPart);
+    const trackIds = await idsForTrack(track, frmPart, cfaSubject);
     let candidateIds = Array.from(trackIds);
     if (difficulty && difficulty !== "tat-ca" && DIFFICULTY_LABELS[difficulty]) {
       const allLessons = await getLessonsMeta();
@@ -332,8 +351,14 @@ export async function GET(request: NextRequest) {
   const want = Math.min(requestedCount, pool.length);
   // Hai chứng chỉ đều phải cân theo trọng số môn của đề thi thật; các track còn
   // lại không có trọng số công bố nên xáo đều là đúng.
+  //
+  // NHƯNG khi `?subject=` đã thu kho về đúng một môn thì cân trọng số là vô
+  // nghĩa - `pickCfaWeighted` chia chỉ tiêu cho mười môn, mà chín trong số đó
+  // giờ không còn câu nào, nên nó trả về ít hơn số câu được yêu cầu và một
+  // "checkpoint 5 câu" ra 1-2 câu. Một môn thì xáo đều mới đúng.
+  const cfaNarrowed = track === "cfa" && cfaSubjectIds(cfaSubject) !== null;
   const picked =
-    track === "cfa"
+    track === "cfa" && !cfaNarrowed
       ? pickCfaWeighted(pool, want)
       : track === "frm"
         ? pickFrmWeighted(pool, want, frmPart).map((r) => ({ ...r.item, subjectId: r.subject }))

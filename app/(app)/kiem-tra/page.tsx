@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { Suspense, useEffect, useState, useCallback } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { BriefcaseBusiness, Check, CheckCircle2, ChevronLeft } from "lucide-react";
 import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/supabase-quiz-sessions";
 import { recalculateUserStats } from "@/lib/supabase-user";
@@ -34,8 +35,23 @@ const PASS_RATIO = 0.6;
 
 type Stage = "setup" | "loading" | "empty" | "error" | "ready" | "done";
 
-export default function KiemTraPage() {
+/** `useSearchParams()` buộc phải nằm trong một ranh giới <Suspense>.
+ *
+ *  Không phải chuyện thẩm mỹ: Next prerender trang này lúc build, và ở đó chưa
+ *  có URL nào để đọc tham số. Thiếu ranh giới thì `next build` DỪNG với
+ *  "Error occurred prerendering page /kiem-tra" - đã xảy ra đúng một lần, ngay
+ *  khi `?subject=` được thêm vào để trang CFA mở checkpoint theo môn.
+ *
+ *  Vỏ mỏng ở ngoài, toàn bộ trang ở trong, `fallback={null}` vì phần khung đã
+ *  do app/(app)/layout.tsx dựng - một khung xương nhấp nháy trong vài mili giây
+ *  còn khó chịu hơn không có gì. */
+function KiemTraPageInner() {
   const { t } = useI18n();
+  // `?subject=` để trang CFA mở thẳng một "checkpoint" của đúng một môn. Chỉ có
+  // nghĩa với track `cfa`; API bỏ qua nó ở các track khác, và bỏ qua cả giá trị
+  // lạ - xem `cfaSubjectIds` trong app/api/knowledge-challenge/route.ts.
+  const searchParams = useSearchParams();
+  const cfaSubject = searchParams.get("subject");
   const [userId, setUserId] = useState<string | null>(null);
   const [track, setTrack] = useState<QuizTrack>("personal");
   const [difficulty, setDifficulty] = useState<QuizDifficulty>("tat-ca");
@@ -81,7 +97,10 @@ export default function KiemTraPage() {
     setAnswers([]);
     setXpAwarded(null);
     try {
-      const res = await fetch(`/api/knowledge-challenge?track=${effectiveTrack}&difficulty=${effectiveDifficulty}`);
+      const subjectParam = effectiveTrack === "cfa" && cfaSubject ? `&subject=${encodeURIComponent(cfaSubject)}` : "";
+      const res = await fetch(
+        `/api/knowledge-challenge?track=${effectiveTrack}&difficulty=${effectiveDifficulty}${subjectParam}`
+      );
       if (!res.ok) throw new Error("failed");
       const data = await res.json();
       if (!data.questions || data.questions.length === 0) {
@@ -95,7 +114,7 @@ export default function KiemTraPage() {
       console.error("Error loading kiểm tra:", error);
       setStage("error");
     }
-  }, [track, difficulty]);
+  }, [track, difficulty, cfaSubject]);
 
   const q = questions[activeQ];
   const allDone = submitted && activeQ === questions.length - 1;
@@ -536,5 +555,13 @@ export default function KiemTraPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function KiemTraPage() {
+  return (
+    <Suspense fallback={null}>
+      <KiemTraPageInner />
+    </Suspense>
   );
 }

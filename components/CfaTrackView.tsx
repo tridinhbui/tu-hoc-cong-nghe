@@ -14,6 +14,8 @@ import type { CfaSubject } from "@/lib/cfa-track";
 import { CFA_GLOSSARY_TERMS } from "@/lib/cfa-glossary-terms";
 import { CFA_FORMULAS_DATA } from "@/lib/cfa-formulas-data";
 import { toTitleCase } from "@/lib/cfa-format";
+import { buildCfaCampaign } from "@/lib/cfa-progression";
+import { booksForSubject } from "@/lib/cfa-library-map";
 import { useRoutePrefetch } from "@/lib/use-route-prefetch";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -62,6 +64,15 @@ let cachedBooks: Book[] | null = null;
 
 export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
   const { t } = useI18n();
+  // Quyển nào phục vụ môn ĐANG HỌC. Trước đây bốn bìa sách hiện y hệt nhau dù
+  // người học đang ở môn nào, vì thư viện (Book/Reading/Module trong Supabase)
+  // và lộ trình mười môn (bài học trong repo) chưa có đường nối - xem
+  // lib/cfa-library-map.ts.
+  const missionBookIds = useMemo(() => {
+    const campaign = buildCfaCampaign(new Set(completedLessonIds));
+    return new Set(booksForSubject(campaign.currentSubjectId));
+  }, [completedLessonIds]);
+
   const [viewMode, setViewMode] = useState<ViewMode>("library");
   const [openSubjects, setOpenSubjects] = useState<Set<string>>(new Set());
   const completedSet = new Set(completedLessonIds);
@@ -557,7 +568,13 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                   className="group cursor-pointer"
                 >
                   <div>
-                    <div className="aspect-[3/4] overflow-hidden rounded-sm bg-stone-200 dark:bg-stone-800 relative shadow-[0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-stone-900/5 dark:ring-stone-100/10">
+                    <div
+                      className={`aspect-[3/4] overflow-hidden rounded-sm bg-stone-200 dark:bg-stone-800 relative shadow-[0_1px_3px_rgba(0,0,0,0.12)] ${
+                        missionBookIds.has(book.id)
+                          ? "ring-2 ring-emerald-600 dark:ring-emerald-500"
+                          : "ring-1 ring-stone-900/5 dark:ring-stone-100/10"
+                      }`}
+                    >
                       {book.coverImage ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
@@ -569,6 +586,14 @@ export default function CfaTrackView({ subjects, completedLessonIds }: Props) {
                         <div className="w-full h-full flex items-center justify-center text-stone-400 dark:text-stone-600">
                           <BookOpen className="w-8 h-8" />
                         </div>
+                      )}
+                      {/* Nhãn chữ, không chỉ viền màu: một vòng xanh quanh bìa
+                          nói "có gì đó đặc biệt" chứ không nói ĐIỀU GÌ, và người
+                          không phân biệt được màu thì không nhận được gì cả. */}
+                      {missionBookIds.has(book.id) && (
+                        <span className="absolute left-0 bottom-0 right-0 bg-emerald-600 px-1.5 py-1 text-[10px] font-semibold leading-tight text-white">
+                          {t.finalTwo.cfaCampaign.bookForMission}
+                        </span>
                       )}
                     </div>
                     <div className="pt-2.5">

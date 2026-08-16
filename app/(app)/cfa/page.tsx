@@ -56,15 +56,6 @@ export default async function CfaPage() {
     };
   });
 
-  // Bài kế tiếp của từng môn, cho phần đầu trang. Tính ở ĐÂY chứ không trong
-  // lib/cfa-progression: chỗ này đã lọc `isVisible !== false`, còn thư viện
-  // logic chỉ biết danh sách lessonIds tĩnh và sẽ trỏ vào một bài đang ẩn.
-  const nextLessonBySubject = Object.fromEntries(
-    subjects
-      .filter((s) => s.nextLessonSlug && s.nextLessonTitle)
-      .map((s) => [s.subject.id, { slug: s.nextLessonSlug!, title: s.nextLessonTitle! }])
-  );
-
   return (
     <div className="min-h-screen bg-white dark:bg-stone-950">
       <div className="border-b border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950">
@@ -107,10 +98,7 @@ export default async function CfaPage() {
           />
         </div>
 
-        <CfaCampaignHeader
-          completedLessonIds={completedLessonIds}
-          nextLessonBySubject={nextLessonBySubject}
-        />
+        <CfaCampaignHeader completedLessonIds={completedLessonIds} />
         <CfaTrackView subjects={subjects} completedLessonIds={completedLessonIds} />
         <CfaNextLevels />
       </div>

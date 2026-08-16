@@ -2,18 +2,13 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { buildCfaCampaign, type CfaSubjectState } from "@/lib/cfa-progression";
-import type { CfaSubjectId } from "@/lib/cfa-track";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 
 interface CfaCampaignHeaderProps {
   completedLessonIds: number[];
-  /** Bài kế tiếp của từng môn, tính ở server (app/(app)/cfa/page.tsx đã có sẵn
-   *  vì nó cần cho danh sách bên dưới). Truyền vào thay vì tính lại: trang đã
-   *  lọc `isVisible !== false`, thứ mà lib/cfa-progression không biết. */
-  nextLessonBySubject: Partial<Record<CfaSubjectId, { slug: string; title: string }>>;
 }
 
 /** Phần đầu trang CFA: người học đang ở đâu, làm gì tiếp, và được gì nếu làm.
@@ -26,10 +21,7 @@ interface CfaCampaignHeaderProps {
  *  học trọn FSA (80 bài) rồi bỏ trắng bốn môn nhỏ sẽ thấy một con số đẹp trong
  *  khi khả năng qua kỳ thi thì không.
  */
-export default function CfaCampaignHeader({
-  completedLessonIds,
-  nextLessonBySubject,
-}: CfaCampaignHeaderProps) {
+export default function CfaCampaignHeader({ completedLessonIds }: CfaCampaignHeaderProps) {
   const { t } = useI18n();
   const campaign = useMemo(
     () => buildCfaCampaign(new Set(completedLessonIds)),
@@ -45,7 +37,6 @@ export default function CfaCampaignHeader({
   };
 
   const current = campaign.subjects.find((s) => s.subject.id === campaign.currentSubjectId) ?? null;
-  const nextLesson = current ? nextLessonBySubject[current.subject.id] : undefined;
   const milestone = campaign.nextMilestone;
   const milestoneSubjectName = milestone
     ? campaign.subjects.find((s) => s.subject.id === milestone.subjectId)?.subject.name ?? ""
@@ -56,27 +47,16 @@ export default function CfaCampaignHeader({
 
   return (
     <section className="mb-8">
-      {/* NHIỆM VỤ đứng trước mọi con số. Câu hỏi đầu tiên của người mở trang là
-          "làm gì bây giờ", không phải "tôi được bao nhiêu phần trăm". */}
+      {/* KHÔNG lặp lại hero.
+          `components/cfa/CfaCurrentStage.tsx` (thêm ở bd91dac, một phiên khác)
+          đã đứng ngay trên khối này và đã nói: môn hiện tại, bài kế tiếp, nút
+          "học tiếp", +10 XP. Hai khối trả lời cùng một câu hỏi, xếp chồng nhau,
+          là đúng thứ trang này vừa được dọn để thoát ra.
+          Nên phần dưới đây chỉ giữ những gì hero KHÔNG nói: mốc kèm thứ nó mở
+          ra, ba con số không trùng nhau, đường mười môn, và các công cụ. */}
       <div className="border-l-2 border-stone-900 pl-4 dark:border-stone-100">
-        <p className="eyebrow text-stone-400 dark:text-stone-500">
-          {t.finalTwo.cfaCampaign.missionLabel}
-        </p>
         {current ? (
           <>
-            <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h2 className="text-lg font-semibold tracking-tight text-stone-900 dark:text-stone-100">
-                {current.subject.name}
-              </h2>
-              <span className="text-xs text-stone-500 dark:text-stone-400">
-                {stateLabel[current.state]} · {current.done}/{current.total} · {current.percent}%
-              </span>
-            </div>
-            {nextLesson && (
-              <p className="mt-1 line-clamp-1 text-[13px] text-stone-600 dark:text-stone-300">
-                {nextLesson.title}
-              </p>
-            )}
             {milestone && (
               // Mốc nói ĐỦ BA VẾ: còn bao nhiêu, được gì, mở ra gì. Thiếu vế
               // cuối thì nó chỉ là một thanh tiến độ viết bằng chữ.
@@ -95,15 +75,23 @@ export default function CfaCampaignHeader({
                     })}
               </p>
             )}
-            {nextLesson && (
-              <Link
-                href={`/bai-hoc/${nextLesson.slug}`}
-                className="mt-3 inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-700"
-              >
-                {t.finalTwo.cfaCampaign.continueCta}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            )}
+            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
+              {/* Nút "Học tiếp" đã ở hero phía trên, không dựng lại.
+                  Checkpoint của ĐÚNG môn này. `?subject=` là tham số mới ở
+                  app/api/knowledge-challenge - trước đây route chỉ lọc tới mức
+                  track, nên "kiểm tra Ethics" sẽ là đề trộn mười môn.
+                  Hành động PHỤ, nên là liên kết chữ: kiểm tra là để soi lại thứ
+                  vừa học, không phải việc thay cho học. */}
+              {current.done > 0 && (
+                <Link
+                  href={`/kiem-tra?track=cfa&subject=${current.subject.id}`}
+                  className="text-sm font-medium text-stone-600 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-stone-900 dark:text-stone-400 dark:decoration-stone-600 dark:hover:text-stone-200"
+                  title={t.finalTwo.cfaCampaign.checkpointHint}
+                >
+                  {format(t.finalTwo.cfaCampaign.checkpointCta, { subject: current.subject.name })}
+                </Link>
+              )}
+            </div>
           </>
         ) : (
           <p className="mt-1 text-lg font-semibold tracking-tight text-stone-900 dark:text-stone-100">
