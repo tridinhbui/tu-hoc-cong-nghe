@@ -18,8 +18,8 @@
 export const PREVIEW_LESSON_SLUGS = [
   "he-dieu-hanh-lam-gi", // TRACKS.personal.previewSlug
   "ke-toan-la-gi", // TRACKS.professional.previewSlug
-  "tai-chinh-la-gi",
-  "lai-suat-la-gi",
+  "chuong-trinh-la-gi",
+  "bien-va-phep-gan",
 ] as const;
 
 const PREVIEW_SET: ReadonlySet<string> = new Set(PREVIEW_LESSON_SLUGS);

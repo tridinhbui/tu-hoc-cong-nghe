@@ -32,8 +32,8 @@ export const REAL_CASE_STUDIES: CaseStudyItem[] = [
     xpReward: 800,
     coinReward: 100,
     relatedLessonSlugs: [
-      { slug: "chi-so-tai-chinh-co-ban", title: "Các chỉ số tài chính cơ bản" },
-      { slug: "dong-tien", title: "Day 4: Dòng tiền là gì?" },
+      { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?" },
+      { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền" },
     ],
     questions: [
       {
@@ -87,8 +87,8 @@ export const REAL_CASE_STUDIES: CaseStudyItem[] = [
     xpReward: 600,
     coinReward: 80,
     relatedLessonSlugs: [
-      { slug: "dong-tien", title: "Day 4: Dòng tiền là gì?" },
-      { slug: "tai-san-tieu-san", title: "Day 5: Tài sản và tiêu sản" },
+      { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền" },
+      { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán" },
     ],
     questions: [
       {
@@ -140,8 +140,8 @@ export const REAL_CASE_STUDIES: CaseStudyItem[] = [
     xpReward: 850,
     coinReward: 120,
     relatedLessonSlugs: [
-      { slug: "thu-nhap-chi-phi-tiet-kiem", title: "Day 3: Thu nhập, chi phí, tiết kiệm" },
-      { slug: "tai-san-tieu-san", title: "Day 5: Tài sản và tiêu sản" },
+      { slug: "income-statement-la-gi", title: "Income Statement: Báo cáo kết quả kinh doanh" },
+      { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán" },
     ],
     questions: [
       {

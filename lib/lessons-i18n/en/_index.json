@@ -836,11 +836,6 @@
     "subtitle": "A development project's cash flow, the peak funding requirement, and why a handsome IRR can still kill the developer",
     "duration": "11 min"
   },
-  "dong-tien": {
-    "title": "What is cash flow? Why the wealthy look at cash before profit.",
-    "subtitle": "Profit shows efficiency on the statement. Cash flow shows financial capacity in reality.",
-    "duration": "7 min"
-  },
   "du-an-cho-thue-noi-va-cap-rate": {
     "title": "Property projects, Lesson 4: Rental assets - NOI and why it differs from accounting profit",
     "subtitle": "How to calculate net operating income, the relationship between NOI and the cap rate, and the three deductions beginners always forget",
@@ -1091,11 +1086,6 @@
     "title": "Bond price and interest rates",
     "subtitle": "The foundational inverse relationship of the debt market",
     "duration": "6 min"
-  },
-  "gia-tri-thoi-gian-cua-tien": {
-    "title": "The time value of money: 1 million today is not 1 million a year from now.",
-    "subtitle": "Present Value and Future Value are the foundation of every quantitative financial decision.",
-    "duration": "8 min"
   },
   "gian-lan-va-trach-nhiem-kiem-toan-vien": {
     "title": "Auditing, Lesson 5: Fraud - the fraud triangle and the limits of the auditor's responsibility",
@@ -1420,11 +1410,6 @@
     "subtitle": "Bond laddering strategy",
     "duration": "6 min"
   },
-  "lai-don-lai-kep": {
-    "title": "Simple interest and compound interest.",
-    "subtitle": "Einstein called compounding the eighth wonder of the world. Here's why.",
-    "duration": "7 min"
-  },
   "lai-kep-huu-tri-bat-dau-som": {
     "title": "Stage 8, Lesson 2: Compounding in retirement saving - why the first ten years matter most",
     "subtitle": "Starting to save for retirement at 25 instead of 35 makes a far bigger difference than most people expect, even while paying in less.",
@@ -1434,11 +1419,6 @@
     "title": "Floating rate bonds and fixed rate bonds",
     "subtitle": "Fixed vs floating rate bonds",
     "duration": "6 min"
-  },
-  "lai-suat-la-gi": {
-    "title": "What is an interest rate? Why rates move everything.",
-    "subtitle": "An interest rate is the price of money. When it changes, everything changes with it.",
-    "duration": "7 min"
   },
   "lai-suat-tang-gia-giam": {
     "title": "Why a rate rise makes bond prices fall",
@@ -1458,11 +1438,6 @@
   "lam-phat-huu-tri": {
     "title": "Inflation and retirement: why you need to invest",
     "subtitle": "Inflation impact on retirement",
-    "duration": "7 min"
-  },
-  "lam-phat-la-gi": {
-    "title": "What is inflation? Why money loses value.",
-    "subtitle": "Inflation isn't an accident. It is a built-in feature of every modern economy.",
     "duration": "7 min"
   },
   "lam-phat-va-dau-tu": {
@@ -2253,11 +2228,6 @@
     "title": "Strike Price and Expiration Date",
     "subtitle": "The two factors that determine the value and life span of every option contract"
   },
-  "suc-manh-thoi-gian": {
-    "title": "The power of time in finance.",
-    "subtitle": "Time is the most valuable asset in investing. And it doesn't wait.",
-    "duration": "6 min"
-  },
   "swap-la-gi": {
     "title": "What Is a Swap?",
     "subtitle": "Two parties exchange future cash flows according to an agreed formula"
@@ -2302,11 +2272,6 @@
     "subtitle": "Pre-money, post-money, dilution, the option pool and liquidation preference - how to read a term sheet properly.",
     "duration": "15 min"
   },
-  "tai-chinh-la-gi": {
-    "title": "What is finance? Why finance is not just about money.",
-    "subtitle": "Finance is the science of allocating scarce resources across time under uncertainty.",
-    "duration": "6 min"
-  },
   "tai-chinh-xanh-tieu-chuan-esg-tin-chi-carbon": {
     "title": "Masterclass 5: Green finance and sustainable investing - ESG standards and the carbon credit market",
     "subtitle": "ESG, materiality, greenwashing, green bonds and how carbon credits are priced.",
@@ -2325,11 +2290,6 @@
   "tai-khoan-tu-quan": {
     "title": "Self-directed vs managed accounts",
     "subtitle": "Account types"
-  },
-  "tai-san-tieu-san": {
-    "title": "Assets and liabilities: getting it right, without going to extremes.",
-    "subtitle": "An asset puts money in your pocket; a liability takes money out of it.",
-    "duration": "6 min"
   },
   "tai-san-trong-ke-toan": {
     "title": "What is an asset in accounting?",
@@ -2405,11 +2365,6 @@
     "subtitle": "The four exit routes, fund life pressure, and the role of the market in fund interests",
     "duration": "11 min"
   },
-  "thu-nhap-chi-phi-tiet-kiem": {
-    "title": "Income, expenses, saving and investing.",
-    "subtitle": "Four basic concepts that build the whole of personal finance.",
-    "duration": "6 min"
-  },
   "thue-co-phieu": {
     "title": "Calculating tax on stock investment profit",
     "subtitle": "Tax implications"
@@ -2448,11 +2403,6 @@
     "title": "How much money for a comfortable retirement",
     "subtitle": "Setting a retirement savings target in VND",
     "duration": "7 min"
-  },
-  "tien-la-gi": {
-    "title": "What is money? How money differs from an asset.",
-    "subtitle": "Money is a medium of exchange, not the end goal itself.",
-    "duration": "6 min"
   },
   "tien-mat-bctc": {
     "title": "Cash on the financial statements",
