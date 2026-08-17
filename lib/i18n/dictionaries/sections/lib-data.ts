@@ -3,7 +3,7 @@
 // `libData` key, grouped by the module it labels:
 //
 //   lib/document-categories.ts        -> libData.documentCategories
-//   lib/finance-cards.ts              -> libData.financeCards
+//   lib/tech-cards.ts              -> libData.techCards
 //   lib/highlight-stage-grouping.ts   -> libData.highlightStages
 //
 // Keys are the modules' own stable ids (a document category's `value`, a
@@ -72,7 +72,7 @@ export const libDataVi = {
       "cong-cu": "Công cụ (Excel/Sheet)",
       khac: "Khác",
     },
-    financeCards: {
+    techCards: {
       "card-fpt": {
         name: "Tập đoàn FPT",
         sector: "Phần mềm & dịch vụ CNTT",
@@ -198,7 +198,7 @@ export const libDataEn: typeof libDataVi = {
       "cong-cu": "Tool (Excel/Sheet)",
       khac: "Other",
     },
-    financeCards: {
+    techCards: {
       "card-fpt": {
         name: "FPT Corporation",
         sector: "Software & IT services",

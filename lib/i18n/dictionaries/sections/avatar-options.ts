@@ -146,7 +146,7 @@ export const avatarOptionsVi = {
 export const avatarOptionsEn: typeof avatarOptionsVi = {
   bonusCategories: {
     "Định giá doanh nghiệp": "Company valuation",
-    "Đọc báo cáo tài chính": "Reading financial statements",
+    "Đọc báo cáo tài chính": "Reading other people's code",
     "Case công ty thực tế": "Real company cases",
     "Vốn & cổ đông": "Capital & shareholders",
     "Đầu tư & danh mục": "Investing & portfolios",
@@ -243,7 +243,7 @@ export const avatarOptionsEn: typeof avatarOptionsVi = {
       "penthouse-office": "88th-Floor Penthouse Office",
       "gold-vault": "The Gold Vault",
       "neon-broadway": "Times Square Neon",
-      "zen-garden": "Financial Balance Zen Garden",
+      "zen-garden": "System Balance Zen Garden",
       "minimal-gradient": "Minimal Gradient",
     } as Record<string, string>,
   },

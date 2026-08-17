@@ -114,7 +114,7 @@ const OVERLAY_COMPLETE = new Map([
   // Ba module dưới đây dịch qua TỪ ĐIỂN (`libData.*`) chứ không qua thư mục
   // `-i18n/`. Điều kiện để có mặt ở đây vẫn y hệt - một cổng bắt buộc đủ - nên
   // đường dịch khác nhau không đổi tiêu chuẩn.
-  ["lib/finance-cards.ts", "lib/__tests__/lib-data-translations.test.ts"],
+  ["lib/tech-cards.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/document-categories.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/highlight-stage-grouping.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/study-room-lighting.ts", "lib/__tests__/lib-data-translations.test.ts"],

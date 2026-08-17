@@ -239,7 +239,7 @@ export const dataRestEn: typeof dataRestVi = {
         "Click here to jump straight to the next lesson in your track, no need to search for it.",
       trackSelectorTitle: "Choose a track",
       trackSelectorText:
-        "You have 2 tracks: Personal Finance (shorter, for beginners) and Professional Finance (deeper). You can switch between them any time.",
+        "You have 2 tracks: Tech Foundations (shorter, for beginners) and Advanced Technology (deeper). You can switch between them any time.",
       stageListTitle: "Learning path",
       stageListText:
         "All lessons are split into Stages, unlocked in order. Click a Stage to see the lessons inside it.",

@@ -5,2027 +5,3127 @@ import type { LevelExamTranslations } from "./index";
 
 export const LEVEL_EXAMS_EN: LevelExamTranslations = {
   2: {
-    title: "Entry Exam - Level 2: Finance Student",
+    title: "Entry Exam - Level 2: Technology Student",
     questions: {
       l2_q1: {
-        question: "Which of these assets is the most liquid on the balance sheet?",
+        question: "What does `pwd` do at the command line?",
         options: [
-          "Finished inventory, ready to ship to the customer",
-          "A demand bank deposit you can withdraw and use right away",
-          "A customer receivable falling due within 30 days",
-          "Investment property that is rented out steadily",
+          "Prints the full path of the directory you are standing in",
+          "Lists every file contained in the current directory",
+          "Changes the password of the account you signed in with",
+          "Moves you up into the parent of the current directory",
         ],
         explanation:
-          "A demand deposit is usable instantly - nothing has to be sold or collected first. Inventory and property both take time to turn into cash.",
+          "pwd is short for \"print working directory\": it answers only \"where am I\". Listing files is ls, changing directory is cd, and pwd touches no password despite what the three letters suggest.",
       },
       l2_q2: {
-        question: "The 50/30/20 rule puts 20% of income towards what?",
+        question: "How does an absolute path differ from a relative one?",
         options: [
-          "Wants, such as entertainment and travel",
-          "Saving and investing for long-term goals",
-          "Essentials: rent, food and getting around",
-          "Interest on the consumer loans you already have",
+          "It starts at the root, so it holds wherever you happen to be",
+          "It is shorter to type, which helps in day-to-day work",
+          "It only works inside your own personal home directory",
+          "It always begins with a dot to mark the current position",
         ],
         explanation:
-          "50% for needs, 30% for wants, 20% for saving and investing. That 20% should be moved automatically the moment your salary arrives.",
+          "An absolute path starts at / so it names exactly one place regardless of the current directory. The relative path is the shorter one that starts with . or .., and its meaning shifts with where you stand.",
       },
       l2_q3: {
-        question: "Which formula gives gross profit?",
+        question: "Where does `cd ..` take you?",
         options: [
-          "Net revenue minus the cost of goods sold in the period",
-          "Net revenue minus all selling expenses incurred",
-          "Pre-tax profit plus corporate income tax added back",
-          "Net revenue minus general and administrative expenses",
+          "Up to the parent directory, one level back out",
+          "Straight to the root directory of the whole disk",
+          "To the home directory of the signed-in user",
+          "Back to the directory you were in just before",
         ],
         explanation:
-          "Gross profit = net revenue - cost of goods sold. It measures how well the making or buying step works, before any other operating cost.",
+          "Two dots always mean the parent, exactly one level up. Root is cd /, home is cd ~, and the previous directory is cd - - three commands that get mixed up constantly.",
       },
       l2_q4: {
-        question: "How many months of spending should an emergency fund hold?",
+        question: "What does `rwx` on a file mean?",
         options: [
-          "One to two weeks of spending is enough",
-          "Three to six months of the household's essential spending",
-          "At least three years of spending to be truly safe",
-          "Exactly one month of your own income",
+          "Read the contents, overwrite the contents, and run the file",
+          "Read it, write it, and delete it out of the directory",
+          "Read it, rewrite it, and rename it to something else",
+          "Read it, write it, and grant that access to other people",
         ],
         explanation:
-          "Three to six months carries you through job loss or illness without having to sell investments at the worst possible moment.",
+          "r is read, w is write, x is execute. Deleting and renaming are NOT governed by permissions on the file itself but by write permission on the DIRECTORY holding it - the most common confusion here, because both operations edit the directory listing rather than the file.",
       },
       l2_q5: {
-        question: "How does inflation affect the purchasing power of cash?",
+        question: "What is the core job of an operating system?",
         options: [
-          "It raises purchasing power because the nominal value goes up",
-          "It lowers what your money can buy as time passes",
-          "No effect, as long as the money sits in a savings account",
-          "It only affects borrowers, not people holding cash",
+          "Sharing the machine's resources among programs running at once",
+          "Raising the processing speed of the processor inside the machine",
+          "Translating a programmer's source code into a running program",
+          "Storing user data so that it survives the machine shutting down",
         ],
         explanation:
-          "The same amount of money buys fewer goods over time. A savings account only helps if the rate beats inflation.",
+          "The operating system sits between hardware and programs, handing out CPU, memory and devices to several programs at a time. It does not make the CPU faster, compiling is a compiler's job, and storing data is what the disk does.",
       },
       l2_q6: {
-        question: "What is the core difference between simple and compound interest?",
+        question: "Why does RAM lose its contents at shutdown while a disk does not?",
         options: [
-          "Compound interest earns interest on the interest already generated",
-          "Compound interest always carries a higher headline rate than simple",
-          "Simple interest is only for deposits, compound only for loans",
-          "Simple interest pays at the end of the term, compound pays monthly",
+          "RAM needs a constant supply of power to hold what is in it",
+          "RAM is small, so it has to be cleared out after every session",
+          "The operating system wipes RAM deliberately to protect privacy",
+          "RAM only holds a temporary copy; the original lives on the disk",
         ],
         explanation:
-          "Simple interest is always computed on the original principal. Compound adds interest to the principal and computes again, so the gap between the two widens fast over time.",
+          "RAM is volatile memory: its circuits need power to keep their state, so cutting power loses the contents. This is a physical property rather than a policy the operating system chose, and it has nothing to do with capacity.",
       },
       l2_q7: {
-        question: "A car bought on instalments for personal travel is which of these?",
+        question: "How does `ls -a` differ from `ls`?",
         options: [
-          "An asset, because it has value and can be resold when cash is needed",
-          "A liability in practice, because it produces an outgoing cash flow every month",
-          "An asset, because it is recorded on your personal balance sheet",
-          "Neither, until the loan has been fully repaid",
+          "It also shows files whose names begin with a dot",
+          "It also shows the size and modified date of each file",
+          "It also shows files inside the subdirectories below",
+          "It sorts files alphabetically rather than at random",
         ],
         explanation:
-          "The car gives you utility but keeps taking money out: instalments, fuel, servicing, insurance - while losing value the whole time.",
+          "A leading dot is the convention for a hidden file, and -a (all) drops that convention. Size and date come from -l, descending into subdirectories is -R, and ls already sorts alphabetically.",
       },
       l2_q8: {
-        question: "What does the basic accounting equation state?",
+        question: "What is a variable for in a program?",
         options: [
-          "Assets equal Liabilities plus Owners' Equity",
-          "Assets equal Revenue minus all expenses in the period",
-          "Owners' Equity equals Assets plus Liabilities",
-          "Liabilities equal Assets plus Owners' Equity",
+          "Naming a value so you can reuse it in several places later",
+          "Holding values that are certain to change while it runs",
+          "Declaring up front how much memory the program will need",
+          "Marking a block of code so the machine knows what runs first",
         ],
         explanation:
-          "Every dong of assets came from somewhere: it was either borrowed or put in by the owners. That is why the two sides always balance.",
+          "A variable is a name bound to a value, and the biggest benefit is that changing it in one place changes every use of that name. The word \"variable\" suggests the value must change, but plenty of variables are assigned once and left alone.",
       },
       l2_q9: {
-        question: "A company reports a profit but cannot pay salaries. What is the most likely cause?",
+        question: "Why does `\"5\" + \"3\"` produce `\"53\"` rather than `8` in many languages?",
         options: [
-          "Revenue has been recognised but customers have not paid yet",
-          "The reported profit must certainly have been recorded wrongly",
-          "The company paid the whole profit out to shareholders in the period",
-          "Depreciation for the period was recorded far too low",
+          "Because both are strings, and plus joins strings together",
+          "Because plus only adds whole numbers, not other kinds of number",
+          "Because the machine reads strings as codes and adds the codes",
+          "Because a missing bracket made the addition happen out of order",
         ],
         explanation:
-          "Accounting recognises revenue when the obligation arises, not when the cash lands. Profit is an accounting opinion; the bank balance is the fact.",
+          "The quotation marks make 5 and 3 strings, and for strings + means concatenate. To get 8 you drop the quotes or convert to a number first. This is a type error, not an operator-precedence one.",
       },
       l2_q10: {
-        question: "The debt snowball method pays down which debt first?",
+        question: "What problem does a loop solve?",
         options: [
-          "The one with the highest rate, to save the most interest",
-          "The one with the smallest remaining balance on the list",
-          "The one with the longest remaining term on the list",
-          "The bank loan rather than the loan from a family member",
+          "Running the same block many times while writing it once",
+          "Running several different blocks at once to save time",
+          "Returning to the start of the program on error to run again",
+          "Repeating an old result so it need not be computed again",
         ],
         explanation:
-          "The snowball clears the smallest balance first to build momentum. It is the avalanche method that targets the highest rate and saves more arithmetically.",
+          "A loop lets you write once and run many times, usually walking through each element of a list. Doing several things at once is concurrency, and keeping an old result to reuse is caching.",
       },
       l2_q11: {
-        question: "How is the real interest rate derived from the nominal rate?",
+        question: "What does an `if` statement do?",
         options: [
-          "Take the nominal rate and subtract the inflation rate",
-          "Take the nominal rate and add the inflation rate for the period",
-          "Multiply the nominal rate by the number of years to get total interest",
-          "Divide the nominal rate by the number of compounding periods in a year",
+          "Runs a block only when the tested expression comes out true",
+          "Stops the program altogether when the tested expression is false",
+          "Compares two values and returns whichever of the two is larger",
+          "Prints an error to the screen when the input data is not valid",
         ],
         explanation:
-          "The real rate is roughly the nominal rate minus inflation. Earning 6% while inflation runs at 5% lifts your purchasing power by about 1% - that is the number that says how much richer you actually got.",
+          "if is a fork: true runs the inner branch, false skips it and carries on - it does not halt the program. Reporting an error or picking the larger value is something you write INSIDE that branch yourself.",
       },
       l2_q12: {
-        question: "What is the opportunity cost of spending 100 million in cash on a car?",
+        question: "Why pull a repeated block of code out into its own function?",
         options: [
-          "The return given up on the best alternative you passed over",
-          "The registration tax and number-plate fees you have to pay",
-          "The fuel and monthly servicing you now have to cover",
-          "The value the car loses to depreciation over time",
+          "Fixing it in one place fixes it everywhere that calls it",
+          "The program runs faster because the source gets much shorter",
+          "The machine loads that block into memory exactly once only",
+          "The compiler can skip duplicated sections while translating",
         ],
         explanation:
-          "Opportunity cost is the value of the best alternative forgone. Fuel, servicing and depreciation are real costs but a different kind - they arise whether you paid cash or took a loan.",
+          "The point of a function is having a single place to change, so one bug is patched once instead of in five copies. Calling a function actually costs a little at run time - you trade that for code you can change safely.",
       },
       l2_q13: {
-        question: "What is the core difference between good debt and bad debt?",
+        question: "How does a syntax error differ from a logic error?",
         options: [
-          "Good debt funds an asset that can produce income or gain value",
-          "Good debt always carries a rate below the bank's own deposit rate",
-          "Good debt is long-term borrowing, bad debt is short-term borrowing",
-          "Good debt comes from banks, bad debt comes from finance companies",
+          "A syntax error stops the program from running in the first place",
+          "A syntax error only shows up when the input data is unusual",
+          "A syntax error lives in an outside library rather than your code",
+          "A syntax error only slows the program without changing results",
         ],
         explanation:
-          "The line is drawn by what the borrowing funds. Borrowing to buy something that produces cash flow or raises your earning power is good debt; borrowing to consume something that loses value fast is bad debt, whatever the rate or the term.",
+          "A syntax error breaks the grammar of the language, so the machine refuses to run it - you find out immediately. A logic error runs perfectly and returns the wrong answer, which is exactly why it is far harder to find.",
       },
       l2_q14: {
-        question: "How is a personal savings rate calculated?",
+        question: "What belongs in a comment in your source code?",
         options: [
-          "Money saved divided by total income over the same period",
-          "Money saved divided by total spending over the same period",
-          "The savings account balance divided by total assets held",
-          "Income minus spending, divided by the number of months saved",
+          "Why the code is written this way, which the code cannot say",
+          "Each step the code performs, restated in ordinary language",
+          "The author's name and the date of the most recent change",
+          "A list of the other functions that call into this block",
         ],
         explanation:
-          "Savings rate = savings / income. It matters more than the absolute amount, because it says what share of what you earn you actually keep - and it compares across very different income levels.",
+          "The code already states WHAT it does; what it cannot state is WHY - why this approach, what else was tried, how that failed. A comment restating each step goes stale the moment the code changes, and git already keeps names and dates.",
       },
       l2_q15: {
-        question: "Why is life insurance considered a risk-management tool rather than an investment?",
+        question: "What does `mv old.txt new.txt` do?",
         options: [
-          "Because its main purpose is transferring the risk of lost income to the insurer",
-          "Because the return on an insurance contract is always below a bank deposit",
-          "Because the law does not permit premiums to be invested at all",
-          "Because an insurance contract has no surrender value under any circumstances",
+          "Renames old.txt to new.txt inside the same directory",
+          "Makes a copy called new.txt and keeps old.txt as it was",
+          "Appends the contents of old.txt to the end of new.txt",
+          "Moves old.txt into a directory that is named new.txt",
         ],
         explanation:
-          "Insurance exists to move a large, hard-to-bear risk - lost income, death, critical illness - onto someone else, at the cost of a steady premium. The savings component in some products is a secondary function.",
+          "mv is both move and rename: when the target is a filename in the same directory, it is a rename, and the old name is gone. Use cp to keep the original, and >> to append contents.",
       },
       l2_q16: {
-        question: "How do fixed costs differ from variable costs when you budget?",
+        question: "What does the `.txt` extension mean on Linux?",
         options: [
-          "Fixed costs barely move month to month and are hard to cut in the short run",
-          "Fixed costs are always larger than variable costs each month",
-          "Fixed costs are only payments to banks and to the state",
-          "Fixed costs are recorded at year end, variable ones monthly",
+          "A convention letting people and software guess the contents",
+          "A requirement; without it the system cannot open the file",
+          "A rule deciding which programs are allowed to write to it",
+          "A marker saying the file is text, so the system compresses it",
         ],
         explanation:
-          "Rent, instalments and insurance are fixed - cutting them means changing how you live. Food, entertainment and shopping are variable - they can be cut today. Telling the two apart shows where saving is actually possible.",
+          "On Linux the extension is just part of the name - the system looks at the contents, not the suffix, to tell what a file is. Renaming .txt to .jpg breaks nothing; it only misleads readers and some applications.",
       },
       l2_q17: {
-        question: "What is the best description of passive income?",
+        question: "Why is the command line still used when a graphical interface exists?",
         options: [
-          "Cash flow you receive without trading your working hours for it",
-          "Income that is exempt from personal income tax under the rules",
-          "Bonuses and allowances received on top of base monthly salary",
-          "Income from a second job worked in the evenings",
+          "Because what you type is recorded and can be replayed exactly",
+          "Because it runs faster with nothing to draw on the screen",
+          "Because a graphical interface cannot perform operations on files",
+          "Because it is the only way to work with a machine over the network",
         ],
         explanation:
-          "What defines passive income is that it is detached from hours worked: rent, dividends, bond coupons. An evening job is still time traded for money, so it is active income.",
+          "What the command line does that a mouse cannot is leave a record: a sequence of commands saved to a file replays exactly and can be handed to someone else. Remote machines can have graphical interfaces too - they just rarely do.",
       },
       l2_q18: {
-        question: "What does the time value of money state?",
+        question: "What is a process?",
         options: [
-          "A dong today is worth more than a dong received in the future",
-          "The longer money sits in an account, the lower its nominal value falls",
-          "The value of money only changes when the central bank moves rates",
-          "Cash and term deposits always have equal value at every point in time",
+          "A program that is running, along with its own memory",
+          "A program file already installed on the machine's disk",
+          "A task the operating system schedules to run at a set time",
+          "A sub-thread of execution living inside a larger program",
         ],
         explanation:
-          "A dong today is worth more because it can be put to work immediately. This is the foundation of every discounted cash flow, from bond pricing to project appraisal.",
+          "A program sitting on disk is a file; loaded into memory and running, it becomes a process. Opening the same program twice gives two separate processes. A thread lives INSIDE a process.",
       },
       l2_q19: {
-        question: "What does zero-based budgeting require?",
+        question: "Why keep a backup somewhere other than the same disk?",
         options: [
-          "Assigning every dong of income to a specific line, saving and investing included",
-          "Spending exactly what you spent last month, to keep things stable",
-          "Bringing the current account balance to 0 on the last day of each month",
-          "Budgeting only for items above a million dong and ignoring small ones",
+          "Because a failed disk takes the original and the copy together",
+          "Because sharing one disk noticeably slows the machine down",
+          "Because the operating system forbids copying within one disk",
+          "Because a copy on the same disk gets overwritten in time",
         ],
         explanation:
-          "Zero-based means every dong of income is given a job until the unassigned amount reaches 0 - saving and investing are lines of their own, not whatever happens to be left at month end.",
+          "A backup exists to survive losing what you have, and a disk failure loses everything on that disk. A same-disk copy only rescues you from deleting a file by accident, not from hardware failure or a stolen machine.",
       },
       l2_q20: {
-        question: "Why should an emergency fund sit apart from your day-to-day account?",
+        question: "What does `|` between two commands do?",
         options: [
-          "It cuts the chance of spending it on something that is not an emergency, and shows the true balance",
-          "Because the law requires a reserve fund to sit in a separate account",
-          "Because a separate account always pays a substantially higher rate",
-          "Because money in a spending account is charged much higher management fees",
+          "Feeds the output of the first command into the second one",
+          "Runs both commands at once and merges what they produce",
+          "Runs the second command only if the first one had no error",
+          "Writes the first command's output to a file named after it",
         ],
         explanation:
-          "An emergency fund sharing the spending account gets eaten away without anyone noticing. Separating it adds a small psychological barrier, and lets you see how much is genuinely ready for the unexpected.",
+          "A pipe connects one command's output to the next one's input, so ls | wc -l counts files. Running only on success is &&, and writing to a file is > - three symbols that get swapped for each other.",
       },
     },
   },
   3: {
-    title: "Insight Exam - Level 3: Practical Investor",
+    title: "Comprehension Exam - Level 3: Working Programmer",
     questions: {
       l3_q1: {
-        question: "What does a P/E of 15x mean?",
+        question: "What does `git add` do before you commit?",
         options: [
-          "The company is losing 15% on its equity for the period",
-          "Investors are paying 15 dong for every dong of net profit",
-          "The share price is 15% of book value per share",
-          "The dividend yield to investors is 15% a year",
+          "Puts changes in a staging area so you pick what the commit holds",
+          "Writes the change into the repository history at that moment",
+          "Uploads the change to the shared repository for teammates to see",
+          "Makes a backup copy of the file before you carry on editing",
         ],
         explanation:
-          "P/E = price / EPS. Read another way, it is the number of years to break even if profit stays flat.",
+          "git add moves changes into the staging area, where you choose exactly what goes into the next commit. Writing history is git commit and publishing is git push - keeping those three steps separate is the thing people confuse.",
       },
       l3_q2: {
-        question: "What makes compounding work hardest for you?",
+        question: "What should a good commit contain?",
         options: [
-          "The larger the starting capital, the stronger the effect",
-          "A long holding period with returns continuously reinvested",
-          "Trading as often as possible within the session",
-          "Using margin leverage up to the maximum allowed",
+          "One complete change you can explain in a single sentence",
+          "Everything you did that day, gathered up to keep history short",
+          "Exactly one file, so each file's history is easy to follow",
+          "Only the code that already works, leaving the rest for later",
         ],
         explanation:
-          "A = P(1+r)^t is exponential in the number of periods t, so time matters far more than the size of the initial capital.",
+          "The unit of a commit is a coherent change, not a file or a day. Squashing a whole day removes the ability to revert one piece; splitting by file scatters a single change that touched three files across three commits.",
       },
       l3_q3: {
-        question: "What does an excessively high debt-to-equity ratio indicate?",
+        question: "What is a branch in Git for?",
         options: [
-          "The company faces higher inflation pressure than its peers",
-          "Heavy leverage risk, and distress if rates rise",
-          "The company barely uses outside borrowing at all",
-          "The company's free cash flow is very abundant",
+          "Separating a line of work without disturbing the main branch",
+          "Keeping a backup of the repository as it was when you made it",
+          "Splitting the repository into parts each person is responsible for",
+          "Marking a released version so it can be found again later",
         ],
         explanation:
-          "A high D/E means heavy dependence on borrowing, so interest expense eats profit quickly once rates start climbing.",
+          "A branch lets work sit half-finished while the main branch stays in a state that runs. It is not a backup - every branch shares one history - and marking a release is what a tag does.",
       },
       l3_q4: {
-        question: "What does FOMO in investing typically lead to?",
+        question: "When does a merge conflict happen?",
         options: [
-          "Chasing the price at the top because the crowd is buying",
-          "Dumping the entire portfolio the moment the market bottoms",
-          "Risk management becoming so cautious that chances are missed",
-          "More accurate valuation, because you follow the market closely",
+          "Two branches edit the same spot and Git cannot pick a side",
+          "Two branches edit the same file, even in entirely separate places",
+          "The branch you merge into has moved far ahead of your own branch",
+          "You forgot to pull the latest version from the shared repository",
         ],
         explanation:
-          "FOMO makes investors chase a stock that has just run hot - paying the highest price at exactly the moment risk is greatest.",
+          "Git merges cleanly when each side touched a different region, even within one file. It only stops to ask when the edits OVERLAP - at that point no answer can be derived mechanically.",
       },
       l3_q5: {
-        question: "P/B is best suited to valuing which kind of business?",
+        question: "What is `.gitignore` for?",
         options: [
-          "Software firms whose main asset is their people",
-          "Banks and financial institutions, whose assets are easy to value",
-          "Media businesses living off advertising revenue",
-          "Biotech startups with no stable revenue yet",
+          "Listing files Git should not track, such as build output",
+          "Removing files from the repository that were committed earlier",
+          "Hiding certain files from teammates browsing the shared repository",
+          "Marking files read-only so nobody edits the contents by accident",
         ],
         explanation:
-          "P/B suits businesses whose value sits in assets recorded on the balance sheet - banks being the classic case.",
+          "gitignore stops Git from tracking new files matching a pattern - usually build directories, node_modules, environment files. For a file ALREADY tracked it has no effect; you must untrack it with git rm --cached.",
       },
       l3_q6: {
-        question: "What does ROE measure?",
+        question: "How does `git pull` differ from `git fetch`?",
         options: [
-          "The return generated on each dong of shareholders' equity",
-          "Profit as a share of the total assets the company holds",
-          "The percentage of revenue left after every cost is deducted",
-          "How fast net profit grew against the same period last year",
+          "pull downloads and merges into your branch; fetch only downloads",
+          "pull takes every branch, while fetch takes the current one only",
+          "pull needs a network connection, while fetch reads a saved copy",
+          "pull overwrites local changes, while fetch leaves them untouched",
         ],
         explanation:
-          "ROE = net profit / shareholders' equity. The second option describes ROA; the third is the net profit margin.",
+          "fetch updates your knowledge of the remote without touching the code you are working on; pull is fetch plus a merge. So fetch is always safe, and pull is the step that can raise a conflict.",
       },
       l3_q7: {
-        question: "Which kind of risk does diversification reduce?",
+        question: "Why write small pull requests instead of bundling several jobs?",
         options: [
-          "Systematic risk, which moves the whole market at once",
-          "The risk specific to each individual company in the portfolio",
-          "Both systematic risk and each company's own specific risk",
-          "Inflation risk eroding the purchasing power of the whole portfolio",
+          "Reviewers read them properly, so genuine bugs actually get caught",
+          "Automated test servers run faster when there are fewer files",
+          "Git merges branches faster when the number of changed lines is small",
+          "Repository history stays tidier because fewer commits are created",
         ],
         explanation:
-          "Diversification cancels out company-specific risk. Systematic risk cannot be removed no matter how many names you hold.",
+          "The real limit is the reviewer: past a few hundred lines, review quality collapses and people start approving to be done. Small pull requests create MORE commits, not fewer, so tidy history is not the reason.",
       },
       l3_q8: {
-        question: "When market rates rise, what happens to the price of bonds already outstanding?",
+        question: "How does returning a value differ from printing to the screen?",
         options: [
-          "It rises, because bonds become more attractive to investors",
-          "It falls, and falls harder the longer the remaining term",
-          "It stays flat, because the coupon was fixed at issue",
-          "It moves with rates one-for-one in the same direction",
+          "A returned value can be used further; printing is only for a reader",
+          "A returned value is faster because nothing is drawn on the screen",
+          "A returned value can be used once and is then dropped from memory",
+          "A returned value is compulsory, while printing is entirely optional",
         ],
         explanation:
-          "An older bond pays a coupon below the new market level, so its price has to drop until the yield on buying it matches a newly issued bond.",
+          "A function that returns gives the caller a result to carry on with; a function that only prints loses the result into the screen. This is why a calculating function should return rather than print - a very common beginner mistake.",
       },
       l3_q9: {
-        question: "What is the main difference between an index ETF and an active fund?",
+        question: "What is the scope of a variable declared inside a function?",
         options: [
-          "An ETF tracks an index, so its management fee is far lower",
-          "An ETF always delivers a higher return than an active fund",
-          "Active funds are not permitted to hold listed shares",
-          "An ETF can only be traded once, at the end of each session",
+          "It exists only inside that function and vanishes when it ends",
+          "It exists until the program has finished running completely",
+          "It is usable in any function called after the declaring one",
+          "It exists only in the enclosing block rather than the whole function",
         ],
         explanation:
-          "An ETF follows a ready-made basket, so running costs are low. Nothing guarantees it returns more than an active fund.",
+          "A local variable is born when the function runs and dies when it returns. That is a good thing: two functions using the same variable name do not tread on each other. Some languages narrow scope to each block, but the function boundary is the common case.",
       },
       l3_q10: {
-        question: "On the ex-dividend date, how is the reference price adjusted?",
+        question: "Why is catching an error with `try/catch` better than letting it stop the program?",
         options: [
-          "Unchanged, because the dividend is paid in the company's cash",
-          "Reduced by the amount of the dividend about to be paid",
-          "Increased by exactly the dividend shareholders are about to receive",
-          "Set by the exchange, depending on how liquid the stock is",
+          "The program can handle the failure and tell the user something useful",
+          "The error gets written to a log so developers can find it more easily",
+          "The program skips the broken section and carries on as if nothing happened",
+          "An error inside try does not slow down the rest of the program",
         ],
         explanation:
-          "The dividend cash leaves the company, so the value of each share falls by the same amount. An investor is not richer merely for receiving a dividend.",
+          "try/catch gives you a place to decide what failure means: retry, fall back to a default, or show a sentence the user understands. The danger is catching and then silently ignoring - the fault is still there, just invisible.",
       },
       l3_q11: {
-        question: "How does paying a cash dividend affect a company's equity?",
+        question: "What does a good unit test check?",
         options: [
-          "It reduces equity, because retained earnings are drawn back out",
-          "It raises equity, because it shows the business is profitable",
-          "It leaves equity untouched and only affects the income statement",
-          "It raises total assets, because shareholders usually reinvest",
+          "One specific behaviour, so a failure points straight at the fault",
+          "The whole path from input to output through the entire program",
+          "That the function finishes without throwing an error along the way",
+          "That as many lines of code as possible are exercised by the run",
         ],
         explanation:
-          "Paying a cash dividend takes money out of the company: assets fall and retained earnings within equity fall by the same amount. It is a distribution of profit, not a cost, so it never passes through the income statement.",
+          "The value of a unit test is narrowing the search: one test per behaviour means a red test names the broken thing. A test that only checks \"nothing was thrown\" stays green while the function returns the wrong answer.",
       },
       l3_q12: {
-        question: "How does diluted EPS differ from basic EPS?",
+        question: "Why does 100% test coverage not prove the code is correct?",
         options: [
-          "It also counts shares that could arise from options and convertibles",
-          "Diluted EPS counts only profit after all preferred dividends are removed",
-          "Diluted EPS uses the closing share count instead of the period average",
-          "Diluted EPS strips out one-off, non-recurring profits",
+          "Running a line says nothing about whether you checked its result",
+          "Coverage only counts lines inside functions that are exported outward",
+          "Coverage tools routinely miss the branches of complex conditionals",
+          "Code can still break through an outside library, which is not counted",
         ],
         explanation:
-          "Diluted EPS assumes every instrument convertible into shares is converted, swelling the denominator. It is the more conservative number: earnings per share under the worst case for dilution.",
+          "Coverage measures which lines RAN, not whether you asserted anything about them. A test that calls every function and asserts nothing still reports 100%. Read the number as a minimum floor, not as evidence.",
       },
       l3_q13: {
-        question: "Why can a negative P/E not be used to compare valuations?",
+        question: "Why name a variable `orderCount` rather than `n`?",
         options: [
-          "Because the company is loss-making, so the ratio loses economic meaning in comparison",
-          "Because accounting rules forbid publishing a P/E while a company is loss-making",
-          "Because a negative P/E always means the company will go bankrupt shortly",
-          "Because the exchange automatically suspends any stock with a negative P/E",
+          "A later reader understands it without tracing back up the file",
+          "The compiler optimises better when names carry clear meaning",
+          "A longer name avoids clashing with other names in the same scope",
+          "Naming conventions require it in most modern programming languages",
         ],
         explanation:
-          "A negative P/E means the denominator, earnings, is negative. A P/E of -5 is not cheaper than -20; the ordering stops meaning anything. For loss-making companies, multiples on revenue or EBITDA are usually more useful.",
+          "Code is read far more often than written, and the reader is usually you six months later. Variable names have no effect on speed - the compiler discards them. Short names are fine only where the scope is tiny, like i in a loop.",
       },
       l3_q14: {
-        question: "What does short selling a stock mean?",
+        question: "When a program misbehaves, what is the sensible first step?",
         options: [
-          "Borrowing shares to sell first, hoping to buy back cheaper and return them",
-          "Placing a sell order larger than the number of shares actually held",
-          "Selling a stock in the same session in which it was bought",
-          "Selling a stock below that day's reference price",
+          "Reproduce the fault reliably before changing anything at all",
+          "Reread the surrounding code looking for a mistake in the syntax",
+          "Try changing a few suspect spots and rerun to see if it clears",
+          "Wrap the suspect section in try/catch so it stops crashing",
         ],
         explanation:
-          "Short selling reverses the usual order: sell first with borrowed shares, buy back later. The profit comes when the price falls, but the loss is theoretically unlimited, because a price can rise without limit.",
+          "Without a reliable reproduction you cannot tell whether you fixed it or merely hid it, and you have no way to confirm you are done. Guess-and-change and wrapping in try/catch both remove the fault from view rather than from the code.",
       },
       l3_q15: {
-        question: "How is a company's market capitalisation calculated?",
+        question: "How does a list differ from a dictionary?",
         options: [
-          "The price of one share multiplied by the total shares outstanding",
-          "Total assets on the balance sheet minus total liabilities",
-          "After-tax profit multiplied by the industry's average P/E",
-          "Registered charter capital plus cumulative retained earnings",
+          "A list is looked up by position, a dictionary by a key you choose",
+          "A list preserves order, whereas a dictionary does not keep any order",
+          "A list holds one type only, while a dictionary holds several types",
+          "A list is faster because its data sits contiguously in memory",
         ],
         explanation:
-          "Market cap is what the market is currently paying for the whole of the equity. It differs from book value (assets minus liabilities) - the gap between the two reflects what the market expects of the company's future.",
+          "The essential difference is how you look things up: a numeric index versus a key you name. Dictionaries in most modern languages DO preserve insertion order, so that is no longer the distinguishing point older books claim.",
       },
       l3_q16: {
-        question: "What problem does dollar-cost averaging solve for an investor?",
+        question: "Why avoid copying a block of code into several places?",
         options: [
-          "It cuts the risk of picking the wrong moment by spreading orders evenly over time",
-          "It guarantees the average purchase price is always below the market price",
-          "It raises expected return above lump-sum investing in every market",
-          "It removes all risk of loss when the market enters a deep decline",
+          "Fixing one bug means remembering every copy, and one gets missed",
+          "The source file grows, which slows the program down at startup",
+          "The compiler raises an error when it finds two identical blocks",
+          "Each copy occupies extra memory for the whole time it runs",
         ],
         explanation:
-          "Averaging in handles the psychology and the timing risk; it promises no extra return. In a long rising market, lump-sum investing usually does better in pure expected-value terms.",
+          "The cost of a copy is paid when you CHANGE it, not when you run it: the bug gets patched in three places and missed in the fourth, so two different behaviours now coexist. File size is negligible next to that.",
       },
       l3_q17: {
-        question: "A stock's liquidity is judged mainly by what?",
+        question: "What does `git log` tell you?",
         options: [
-          "Average trading volume and how wide the bid-ask spread is",
-          "The market capitalisation of the company that issued the stock",
-          "The cash dividend the company pays shareholders each year",
-          "How many brokerages publish research reports on the stock",
+          "The history of commits so far, with who made them and when",
+          "The list of files currently changed but not yet committed",
+          "The diagnostic log Git writes when its commands fail",
+          "A detailed comparison between your branch and the main one",
         ],
         explanation:
-          "Liquidity is the ability to trade size without pushing the price far. Steady volume and a narrow bid-ask spread are the two most direct signs.",
+          "git log reads the recorded history. Files changed but uncommitted is git status, and comparisons are git diff. The word \"log\" makes people expect a tool error log, but Git keeps no such thing.",
       },
       l3_q18: {
-        question: "Why is an unusually high dividend yield sometimes a warning sign?",
+        question: "Why should a file with a password or API key never be committed?",
         options: [
-          "Because it may come from a collapsed share price rather than a raised dividend",
-          "Because a company paying a high dividend is certainly breaching profit-distribution rules",
-          "Because a high dividend yield always brings a higher tax bill for shareholders",
-          "Because large funds are barred from holding stocks yielding above average",
+          "It stays in the repository history even after you delete it",
+          "Git refuses to push when it spots a string resembling a secret",
+          "Secret files make the repository heavier and slower to clone",
+          "A key stops working the moment it is written into a plain file",
         ],
         explanation:
-          "Dividend yield is the dividend divided by the price. A denominator that has collapsed because the market fears what is coming pushes the ratio up too - and that dividend may be cut next period.",
+          "Deleting the file only adds another commit; the old commit remains and anyone with the repository can read it. A key that was ever committed must be treated as leaked and rotated, not merely deleted.",
       },
       l3_q19: {
-        question: "How does an open-ended fund differ from a stock in how it trades?",
+        question: "A program works on your machine and fails on another. Why, usually?",
         options: [
-          "It is bought and sold at the net asset value struck after the close, not matched continuously",
-          "Open-ended fund certificates may be traded only once per financial year",
-          "Open-ended fund certificates have a fixed price regardless of performance",
-          "Open-ended fund certificates may not be sold back to the managing company",
+          "The environment differs: versions, libraries or configuration",
+          "The source code was corrupted while travelling across the network",
+          "The other machine is weaker and lacks the resources to run it",
+          "Each operating system translates the same code in a different way",
         ],
         explanation:
-          "An open-ended fund issues and redeems certificates at the NAV determined after the session closes, so you do not know the exact price when you place the order. Stocks and ETFs match continuously on supply and demand.",
+          "It is nearly always the environment: a different language version, a missing library, or an environment variable that only exists on your machine. This is precisely the problem dependency manifests and containers were invented to solve.",
       },
       l3_q20: {
-        question: "How does systematic risk differ from unsystematic risk?",
+        question: "Why run the tests before opening a pull request?",
         options: [
-          "Systematic risk hits the whole market, so diversification cannot remove it",
-          "Systematic risk only appears in companies with a large market capitalisation",
-          "Systematic risk always causes greater damage than unsystematic risk, in every case",
-          "Systematic risk exists only in emerging markets, never in developed ones",
+          "To catch faults while they are cheap, not at review or in production",
+          "Because the shared repository rejects pull requests with no test run",
+          "Because tests run considerably faster on your machine than on a server",
+          "Because reviewers can then skip the parts the tests already cover",
         ],
         explanation:
-          "Recessions, interest rates and wars move every asset at once, so holding another name does not help. Risk specific to one company can be removed by holding many.",
+          "A fault gets more expensive the further it travels: minutes on your machine, a whole release once users hit it. Reviewers still read tested code - tests say what the code does, not whether it should do that.",
       },
     },
   },
   4: {
-    title: "Advanced Exam - Level 4: Financial Analyst",
+    title: "Depth Exam - Level 4: Web Engineer",
     questions: {
       l4_q1: {
-        question: "In a DCF model, what role does WACC play?",
+        question: "How does a semantic tag like `<nav>` beat a plain `<div>`?",
         options: [
-          "The discount rate that brings future cash flows back to today",
-          "The long-term growth rate used for the terminal value",
-          "The target margin the business needs to hit",
-          "The return shareholders actually received in the period",
+          "Screen readers and search engines understand the block's role",
+          "The browser paints it faster since it knows the layout in advance",
+          "It carries built-in styling, so less CSS has to be written for it",
+          "It prevents other tags from being nested inside it by mistake",
         ],
         explanation:
-          "WACC is the blended cost of both debt and equity, so it is the right discount rate for cash flows that belong to the whole firm.",
+          "A semantic tag states the FUNCTION of a block, which div does not. Screen reader users jump straight to the navigation because of it. Paint speed is identical, and nav has almost no default styling.",
       },
       l4_q2: {
-        question: "What does an ROE of 25% tell you?",
+        question: "How does `id` differ from `class` in HTML?",
         options: [
-          "The company retains 25% of profit for reinvestment",
-          "Every 100 dong of equity produces 25 dong of net profit",
-          "Revenue grew 25% against the same period last year",
-          "The net margin on net revenue reached 25%",
+          "An id must be unique on the page; a class can repeat freely",
+          "An id is for JavaScript, while a class is only for CSS styling",
+          "An id has lower priority than a class when both set a property",
+          "An id can only go on block tags, while a class goes on any tag",
         ],
         explanation:
-          "ROE = net profit / shareholders' equity. It measures how well the capital belonging to shareholders is being used.",
+          "The real constraint is uniqueness: an id may appear only once per page. Both work for CSS and for JavaScript alike, and an id has HIGHER specificity than a class, not lower.",
       },
       l4_q3: {
-        question: "What does a beta of 1.5 mean?",
+        question: "In the CSS box model, how does `padding` differ from `margin`?",
         options: [
-          "The stock moves the same way as the market, but harder",
-          "The stock is certain to beat the market by 50% a year",
-          "The stock moves in the opposite direction to the index",
-          "The company's specific risk is 1.5x the industry average",
+          "Padding sits inside the border; margin sits outside and pushes others",
+          "Padding is measured in pixels, while margin is a percentage of width",
+          "Padding applies only to block tags, while margin applies to any tag",
+          "Padding takes the tag's background; margin takes the page background",
         ],
         explanation:
-          "Beta measures sensitivity to the market: when the index moves 1%, the stock tends to move about 1.5% the same way. It promises nothing about returns.",
+          "Padding is the cushion inside the border, so it carries the element's background colour; margin is empty space outside the border and is always transparent. That is why adding a background tints the padding but never the margin.",
       },
       l4_q4: {
-        question: "How does FCFF differ from FCFE?",
+        question: "What does `display: flex` on an element do?",
         options: [
-          "FCFF belongs to lenders and shareholders both; FCFE only to shareholders",
-          "FCFF is measured before depreciation and FCFE after it",
-          "FCFF is for listed companies, FCFE for unlisted ones",
-          "FCFF is always smaller than FCFE, having deducted all interest",
+          "Lets its children be laid out along an axis, sharing the space",
+          "Makes the element resize itself to suit the viewer's screen size",
+          "Lets children overflow outside without the excess being clipped",
+          "Places the element into a grid with a preset number of rows and columns",
         ],
         explanation:
-          "FCFF is the cash flow to every capital provider, so it is discounted at WACC. FCFE has already met the debt obligations, so it is discounted at the cost of equity.",
+          "flex turns an element into a layout container FOR ITS CHILDREN, along one axis. The element itself does not resize with the screen - that is the job of relative units and media queries.",
       },
       l4_q5: {
-        question: "What does a current ratio below 1.0 warn about?",
+        question: "What is the `alt` attribute on `<img>` for?",
         options: [
-          "The company is losing money in its main operations",
-          "Current assets do not cover the current liabilities coming due",
-          "The company uses far less leverage than its industry",
-          "Inventory makes up too large a share of total assets",
+          "Describing the image for people who cannot see the image",
+          "Showing a small caption below the image when the pointer hovers",
+          "Naming a fallback file the browser loads if the main image fails",
+          "Supplying keywords so search engines rank the page more highly",
         ],
         explanation:
-          "Current ratio = current assets / current liabilities. Below 1 means the obligations of the next 12 months exceed the resources on hand to meet them.",
+          "alt is the text alternative for screen readers, and it also appears when the image fails to load. The hover caption is the title attribute - a different thing - and stuffing keywords into alt is an abuse of it, not its purpose.",
       },
       l4_q6: {
-        question: "What share of a DCF's value does the terminal value usually carry?",
+        question: "When two CSS rules set the same property, which one wins?",
         options: [
-          "Under 10%, since it is only the remainder after the forecast period",
-          "Usually more than half, so its assumptions dominate the result",
-          "Exactly the same as the discounted cash flows of the forecast period",
-          "Negligible, if the forecast period runs five years or more",
+          "The more specific selector, and if equal, whichever is written later",
+          "Whichever is declared later, no matter how specific the selectors are",
+          "Whichever sits in the stylesheet loaded later in the document head",
+          "Whichever is set directly on the tag, since inline style always wins",
         ],
         explanation:
-          "This is why a small change to the long-term growth rate or the exit multiple moves the valuation so violently.",
+          "Specificity is judged first; order only breaks ties. This is why adding a line at the end of your stylesheet sometimes changes nothing: an existing rule has a more specific selector. Inline style is strong but still loses to !important.",
       },
       l4_q7: {
-        question: "What is the relationship between enterprise value and equity value?",
+        question: "What is the DOM?",
         options: [
-          "Enterprise value equals equity plus debt minus cash",
-          "Enterprise value equals equity plus all current assets",
-          "The two are equal for any listed company",
-          "Equity value equals enterprise value plus debt",
+          "The tree of page elements that JavaScript can read and change",
+          "The original HTML file the server sent down to the browser",
+          "The set of rules deciding which tags may nest inside which others",
+          "The area the browser uses to store data belonging to each page",
         ],
         explanation:
-          "A buyer of the whole business pays the shareholders and takes on the debt, but gets back the cash sitting on the balance sheet.",
+          "The browser reads the HTML and builds a tree of objects in memory; that is the DOM, and JavaScript edits this tree rather than the original file. Which is why viewing page source does not show what JavaScript added.",
       },
       l4_q8: {
-        question: "Which item does EBITDA leave out, in a way that can mislead?",
+        question: "What does `addEventListener` on a button do?",
         options: [
-          "Selling expenses and general administrative expenses for the period",
-          "The capital spending needed to keep the business running",
-          "Financial income and one-off, non-recurring gains",
-          "The cost of every product sold during the period",
+          "Registers a function to run each time that event fires on the button",
+          "Runs a function once immediately and remembers the result for later",
+          "Checks whether the user has ever clicked that particular button",
+          "Stops the button submitting a form until the fields are filled in",
         ],
         explanation:
-          "EBITDA adds depreciation back, so for a capital-intensive business it hides the money that has to be spent again and again just to keep the assets working.",
+          "It attaches a function to an event, and the function runs only when the event happens. The classic beginner slip is writing onClick={handle()} - the parentheses run the function AT ATTACH TIME, and what gets attached is its return value.",
       },
       l4_q9: {
-        question: "Inventory turnover has risen sharply year on year. What does that usually show?",
+        question: "What does `const` guarantee in JavaScript?",
         options: [
-          "Goods are selling faster, so less capital is stuck in the warehouse",
-          "The company is stocking up ahead of the peak season",
-          "The cost of goods sold has fallen considerably from before",
-          "The company is stretching out payments to its suppliers",
+          "That the name will not be reassigned to a different value later",
+          "That the value inside cannot be altered in any way whatsoever",
+          "That the variable exists only within the block that declared it",
+          "That the value is computed once at compile time, so it runs faster",
         ],
         explanation:
-          "Read it with context: turnover can also rise because stock is being cleared at a discount, so check the gross margin alongside it.",
+          "const locks REASSIGNMENT, not contents. An array declared const can still be pushed to and an object can still have properties changed - the most common misunderstanding about const. Block scope applies to let as well.",
       },
       l4_q10: {
-        question: "How does a higher depreciation charge affect cash flow?",
+        question: "What does HTTP status 404 mean?",
         options: [
-          "It lowers cash flow by exactly the extra depreciation",
-          "It raises cash flow, through the tax it saves",
-          "No effect, because it is a non-cash item",
-          "It lowers cash flow, as after-tax profit falls by the same amount",
+          "The server received the request but has no such resource",
+          "The server hit an internal fault while handling your request",
+          "The browser could not reach the server to send the request at all",
+          "You are not signed in, so you may not view that resource",
         ],
         explanation:
-          "Depreciation is a non-cash charge but it is deductible for tax, so it creates a tax shield and actual cash flow goes up.",
+          "404 means the server answered - so the connection is fine - but the path points at nothing. An internal server fault is 500, not signed in is 401, and failing to connect produces no status code at all.",
       },
       l4_q11: {
-        question: "What is the problem with comparing P/E across two companies with very different leverage?",
+        question: "What is JSON for?",
         options: [
-          "No problem, since P/E is already normalised by earnings",
-          "P/E is affected by interest expense, so it is hard to compare directly",
-          "P/E only works for companies that carry no debt at all",
-          "The P/E of a heavily borrowed company is systematically higher",
+          "Representing structured data as text so it can be sent around",
+          "Declaring the types of variables inside a JavaScript program",
+          "Compressing data to make it smaller before crossing the network",
+          "Running JavaScript code that arrived inside a server's response",
         ],
         explanation:
-          "Net profit sits below interest expense, so leverage distorts the denominator. Across two different capital structures, EV/EBITDA is the fairer comparison.",
+          "JSON is a text format two parties use to exchange data, and every language reads it - not just JavaScript. It compresses nothing; JSON is usually longer than the equivalent binary format.",
       },
       l4_q12: {
-        question: "How does CAPM determine the cost of equity?",
+        question: "What is a CSS media query for?",
         options: [
-          "The risk-free rate plus beta times the market risk premium",
-          "After-tax profit divided by the book value of equity",
-          "The dividend payout ratio plus expected revenue growth",
-          "The average lending rate of the large commercial banks",
+          "Applying a different set of rules when the display meets a condition",
+          "Loading image and video files sized to suit the device in use",
+          "Asking the browser which kind of device the user is on right now",
+          "Delaying the page paint until the screen dimensions are known",
         ],
         explanation:
-          "CAPM sets the cost of equity at the risk-free rate plus a risk premium scaled by beta. It is the minimum return shareholders demand for taking on the company's systematic risk.",
+          "A media query is a condition on display characteristics, most often width. It does not detect a \"device type\" - a narrowed desktop browser window matches the same condition a phone does.",
       },
       l4_q13: {
-        question: "How is net working capital calculated?",
+        question: "Why should validation in the browser never be trusted?",
         options: [
-          "Current assets minus current liabilities",
-          "Total assets minus all liabilities of the company",
-          "Cash plus financial investments that can be sold immediately",
-          "Inventory plus receivables minus payables to suppliers",
+          "Users can alter or bypass it, so the server has to check again",
+          "JavaScript may be switched off, so the validation will not run",
+          "Older browsers do not support all the modern validation rules",
+          "Validating in the browser makes the page heavier and slower to load",
         ],
         explanation:
-          "Net working capital = current assets - current liabilities, measuring the long-term capital tied up in day-to-day operations. The last option is the operating working-capital cycle, a narrower measure.",
+          "Anything running on the user's machine can be edited, and a request can be sent straight to the server without going through the page at all. Browser validation gives fast feedback; server validation is what actually protects you.",
       },
       l4_q14: {
-        question: "Why is depreciation added back when computing operating cash flow?",
+        question: "How does `localStorage` differ from a cookie?",
         options: [
-          "Because it is an accounting charge that moves no money out of the company",
-          "Because it is already deducted for tax, so it need not be counted twice",
-          "Because it is always offset by new capital spending in the same period",
-          "Because accounting standards require depreciation to be shown under investing",
+          "localStorage is not attached automatically to every server request",
+          "localStorage is cleared when the tab closes, while a cookie persists",
+          "localStorage stores only numbers, while a cookie stores any type",
+          "localStorage is shared across different domains, unlike a cookie",
         ],
         explanation:
-          "Depreciation reduces accounting profit, but the money left when the asset was bought. Going from profit to cash flow means adding this non-cash item back.",
+          "A cookie rides along with every request to the same domain, which suits a login session but adds weight to each request. localStorage stays in the browser, survives closing the tab, and holds strings only.",
       },
       l4_q15: {
-        question: "Gross margin is falling while revenue is still growing. What does that usually reflect?",
+        question: "Why prefer relative units over fixed pixels?",
         options: [
-          "Input costs are rising faster than selling prices",
-          "The company has sharply cut selling and administrative expenses",
-          "The company has just booked a large one-off financial gain",
-          "The number of shares outstanding has just been increased",
+          "Text and layout scale with the font size the user has chosen",
+          "The browser paints faster with no sizes left to recalculate",
+          "Relative units make the stylesheet lighter when rules are numerous",
+          "Pixels do not work on screens with a high pixel density",
         ],
         explanation:
-          "Gross margin depends on revenue and cost of goods sold alone. Revenue up with the margin squeezed means the company is sacrificing price, or absorbing higher input costs, to keep growing.",
+          "Users change their default font size because they need to, and a fixed unit ignores that choice. Pixels work fine on high-density screens - the browser converts them - so that is not the reason.",
       },
       l4_q16: {
-        question: "In a DCF, how does raising the long-term growth assumption affect the valuation?",
+        question: "When a page loads slowly, what is worth measuring first?",
         options: [
-          "It lifts the terminal value and with it the whole enterprise value",
-          "It lowers the terminal value, because cash flows are discounted harder",
-          "No effect, because the terminal value is fixed from the start",
-          "It only affects the forecast-period cash flows, not the terminal value",
+          "Where the time goes: fetching files, waiting on the server, or painting",
+          "The combined size of every file the page has to download",
+          "The number of network requests the page issues on first load",
+          "The time the server takes to handle the page's first request",
         ],
         explanation:
-          "Terminal value usually comes from the Gordon formula, whose denominator is WACC minus the growth rate. Raising g shrinks the denominator and the terminal value swells fast - it is the model's most sensitive assumption.",
+          "Those three causes need three completely different fixes, so guessing wrong means optimising the wrong thing. File size and request count are USEFUL numbers, but only after you know where the time actually goes.",
       },
       l4_q17: {
-        question: "What does a high receivables turnover ratio mean?",
+        question: "What does `git checkout -b feature-name` do?",
         options: [
-          "The company collects from customers quickly, with little capital tied up",
-          "The company is selling more on credit to push revenue",
-          "The company has an unusually high rate of bad customer debt",
-          "The company is stockpiling inventory while it waits for prices to rise",
+          "Creates a new branch and switches you onto it in one step",
+          "Switches to an existing branch that already carries that name",
+          "Copies the current branch into an entirely new repository",
+          "Renames the current branch to the new name you supplied",
         ],
         explanation:
-          "Receivables turnover is revenue divided by average receivables. A high figure means a short collection cycle - good for cash flow, though an extreme one can mean credit terms so tight they cost you customers.",
+          "The -b flag means \"create then switch\", collapsing two steps into one. Without it the command only switches to an existing branch and errors if the name is new. Renaming a branch is git branch -m.",
       },
       l4_q18: {
-        question: "Why should accounting profit not stand in for cash flow when appraising a project?",
+        question: "Where does `position: absolute` place an element?",
         options: [
-          "Because profit is shaped by accounting estimates and non-cash items",
-          "Because accounting profit is always smaller than actual cash flow, in every case",
-          "Because accounting standards forbid using profit in project appraisal models",
-          "Because profit is only determined at the financial year end, too late to decide",
+          "Relative to the nearest ancestor whose position is not static",
+          "Relative to the top-left corner of the browser window on screen",
+          "Relative to where it would have sat before it was shifted",
+          "Relative to its immediate parent, whatever that parent is set to",
         ],
         explanation:
-          "Depreciation, provisions and the timing of revenue recognition are all accounting choices that pull profit away from real money. A project is paid for in cash, so NPV has to rest on cash flow.",
+          "absolute walks up looking for the nearest ancestor with a position other than static and uses that as its origin; failing that, the whole page. Anchoring to the window is fixed, and shifting from its own spot is relative.",
       },
       l4_q19: {
-        question: "Through what mechanism does financial leverage amplify ROE?",
+        question: "Why put CSS in a separate file rather than inline on the tag?",
         options: [
-          "Debt replaces equity, shrinking the denominator while the profit still belongs to shareholders",
-          "It lowers interest expense, because banks give better rates on large loans",
-          "It raises revenue, because there is more capital to expand the business with",
-          "It cuts corporate income tax to the lowest rate the rules allow",
+          "Several pages reuse it, and the browser caches that file",
+          "Inline styles do not support all the modern CSS properties",
+          "The browser paints faster with styling outside the HTML document",
+          "Inline styles are ignored entirely by screen reading software",
         ],
         explanation:
-          "Borrowing in place of equity shrinks the ROE denominator. If the return on assets beats the borrowing rate, the whole difference accrues to shareholders - but the same mechanism amplifies losses too.",
+          "A separate file is shared and cached, so the second page load does not fetch it again. Inline styles support every property - their problems are repetition on every tag and being very hard to override, given their high specificity.",
       },
       l4_q20: {
-        question: "Comparing two companies in one industry, why look at EV/EBIT alongside EV/EBITDA?",
+        question: "What does HTTPS add over HTTP?",
         options: [
-          "Because EBIT keeps depreciation in, exposing the business that eats fixed assets",
-          "Because EBIT always gives a lower multiple, making cheap stocks easier to find",
-          "Because EBITDA is not recognised as an official measure by accounting standards",
-          "Because EV/EBIT removes the effect of capital structure on valuation entirely",
+          "Encryption in transit and proof the server is who it claims",
+          "Compression, so pages arrive faster over a weak connection",
+          "A scan of the page contents for malicious code before display",
+          "A requirement that users sign in before the content is shown",
         ],
         explanation:
-          "EBITDA adds depreciation back, treating a software company and a steel mill the same by accident. EBIT keeps it in, which exposes who has to reinvest heavily just to keep operating.",
+          "HTTPS wraps HTTP in encryption, and the certificate confirms you are talking to the server that owns that domain. It says nothing about the contents - a fraudulent site carries the same padlock.",
       },
     },
   },
   5: {
-    title: "Rigorous Exam - Level 5: Seasoned Financial Adviser",
+    title: "Advanced Exam - Level 5: JavaScript Developer",
     questions: {
       l5_q1: {
-        question: "What are the three sections of a cash flow statement?",
+        question: "How does `===` differ from `==` in JavaScript?",
         options: [
-          "Cash flow from operating, from investing and from financing",
-          "Short-term, medium-term and long-term cash flow",
-          "Cash flow from revenue, from costs and from tax payable",
-          "Cash received, cash paid and the closing balance",
+          "`===` compares type too; `==` converts type first, then compares",
+          "`===` compares character by character; `==` compares only lengths",
+          "`===` is for objects, while `==` is for numbers and strings",
+          "`===` runs faster because it skips the value-checking step",
         ],
         explanation:
-          "Three core activities: operating, investing and financing. The split tells you whether the money came from running the business or from borrowing.",
+          "`==` coerces before comparing, so `\"1\" == 1` is true while `\"1\" === 1` is false. That implicit coercion is what produces surprising results, so default to `===` and reach for `==` only when you actually want coercion.",
       },
       l5_q2: {
-        question: "What is the central bank's main purpose in raising its policy rate?",
+        question: "How does `map` differ from `forEach` on an array?",
         options: [
-          "Making borrowing dearer and cooling demand to hold inflation down",
-          "Encouraging companies to expand investment and production",
-          "Weakening the local currency to support exports",
-          "Pumping more liquidity into the commercial banking system",
+          "`map` returns a new array, while `forEach` returns nothing at all",
+          "`map` edits the original array in place, while `forEach` leaves it",
+          "`map` runs in parallel, while `forEach` walks elements in sequence",
+          "`map` skips empty slots, while `forEach` visits every one of them",
         ],
         explanation:
-          "Higher rates make borrowing dearer and saving more attractive, so consumption and investment fall and price pressure eases.",
+          "`map` builds a new array of the same length from what you return; `forEach` just runs a function per element and yields `undefined`. Neither touches the original, and both run in sequence.",
       },
       l5_q3: {
-        question: "The three-factor DuPont model breaks ROE into which components?",
+        question: "What does `await` before an async call do?",
         options: [
-          "Net margin, asset turnover and financial leverage",
-          "Revenue, operating costs and corporate income tax",
-          "Current assets, non-current assets and total equity",
-          "Revenue growth, gross margin and interest expense",
+          "Pauses the current function until a result arrives, without blocking all",
+          "Locks the whole browser up until the call has finished returning",
+          "Runs that call on a separate thread away from the main one",
+          "Guarantees the call succeeds by retrying it whenever it fails",
         ],
         explanation:
-          "The decomposition says whether a high ROE comes from selling profitably, from using assets well, or simply from borrowing a lot - three very different causes.",
+          "`await` suspends only the containing function and hands control back; other work continues. It creates no thread and does not retry - a failed call makes `await` throw, so you still need `try/catch`.",
       },
       l5_q4: {
-        question: "When does a margin call happen?",
+        question: "What does binary search require?",
         options: [
-          "When the margin ratio drops below the required maintenance level",
-          "When the investor asks for a higher margin borrowing limit",
-          "When the broker lowers its margin lending rate",
-          "When a stock in the portfolio is put under a warning notice",
+          "The data must already be sorted by the key you search on",
+          "The data must sit contiguously in memory rather than scattered",
+          "The element count must be a power of two so halving stays even",
+          "The values must be numbers; it does not work with text strings",
         ],
         explanation:
-          "A falling price shrinks your own equity in the position. Once the margin ratio breaks the maintenance threshold, the broker demands more cash or force-sells.",
+          "It halves and discards the side that cannot hold the answer - reasoning that only holds on sorted data. On unsorted data the result is wrong, not slow. Strings work fine given an ordering.",
       },
       l5_q5: {
-        question: "What does a positive NPV on a project mean?",
+        question: "Why is a hash map lookup faster than scanning an array?",
         options: [
-          "The project pays back sooner than originally expected",
-          "The present value of cash inflows exceeds the capital invested",
-          "The project is certain to be profitable in every market scenario",
-          "The project's internal rate of return is above inflation",
+          "The key is hashed into a position, so you jump straight there",
+          "A hash map always fits entirely inside the processor's cache",
+          "A hash map keeps data sorted, so binary search applies directly",
+          "A hash map compresses data, so fewer elements must be walked",
         ],
         explanation:
-          "NPV > 0 means the project adds value after fully charging for the opportunity cost of capital through the discount rate.",
+          "A hash function turns the key into an index, so cost barely depends on size. A hash map does NOT keep sorted order - that is what separates it from a search tree, and why range queries are not possible.",
       },
       l5_q6: {
-        question: "What is IRR's main weakness against NPV?",
+        question: "How does a stack differ from a queue?",
         options: [
-          "IRR cannot be computed for projects lasting over ten years",
-          "IRR can have several solutions when cash flows change sign repeatedly",
-          "IRR always comes out lower than NPV, so it is too conservative",
-          "IRR only applies to projects investing in tangible fixed assets",
+          "A stack removes the last item added; a queue removes the first",
+          "A stack has a fixed size, while a queue can grow as required",
+          "A stack holds numbers only, while a queue holds any data type",
+          "A stack lives in memory, while a queue is written down to disk",
         ],
         explanation:
-          "IRR also implicitly assumes cash flows are reinvested at the IRR itself, which is usually unrealistic. NPV adds value up, so it ranks projects more reliably.",
+          "The only difference is removal order: last in first out versus first in first out. Neither constrains the data type or where the structure is stored.",
       },
       l5_q7: {
-        question: "What does a bond's duration measure?",
+        question: "Two nested loops each running n times give what complexity?",
         options: [
-          "The number of years left until the bond matures",
-          "How sensitive the bond's price is to a change in interest rates",
-          "The total coupon interest received until maturity",
-          "The probability that the issuer defaults on the principal",
+          "O(n squared), since the step count grows with the square of n",
+          "O(2n), since exactly two loops run over the very same data",
+          "O(n), since each element is still touched exactly once",
+          "O(log n), since each loop halves the data it works through",
         ],
         explanation:
-          "The higher the duration, the more the price moves with rates. It equals the remaining term only for a zero-coupon bond.",
+          "The outer runs n times and the inner runs n times per outer pass, so n by n steps. Two loops SIDE BY SIDE would be n plus n, that is O(n); nesting multiplies rather than adds - the commonest slip here.",
       },
       l5_q8: {
-        question: "What does the Sharpe ratio measure?",
+        question: "What must every recursive function have?",
         options: [
-          "Excess return per unit of risk taken on",
-          "The absolute return the portfolio achieved in a year",
-          "The weight of stocks against bonds in the portfolio",
-          "The gap between the portfolio's return and the risk-free rate",
+          "A stopping condition, so it does not call itself forever",
+          "A counter of calls made, to cap how deep it is allowed to go",
+          "A return value at every call, including the intermediate ones",
+          "An array parameter, since recursion only suits sequence data",
         ],
         explanation:
-          "Sharpe = (portfolio return - risk-free rate) / standard deviation. The last option is only the numerator, with nothing dividing by risk.",
+          "Without a base case the function calls itself until the stack overflows. A counter is one way to implement a base case rather than a requirement, and recursion works with any data type.",
       },
       l5_q9: {
-        question: "What is the effect of combining two negatively correlated assets in a portfolio?",
+        question: "You write `const b = a` then modify `b`. What happens to `a`?",
         options: [
-          "Total risk falls below the average of the two assets",
-          "Expected return rises above either asset on its own",
-          "Portfolio risk equals exactly the average risk of the two",
-          "Both assets will rise and fall in the same rhythm",
+          "It changes too, because both names point at the same array",
+          "It stays as it was, because assignment always makes a fresh copy",
+          "It stays as it was, because `const` forbids editing the contents",
+          "An error is raised on modification, because `b` was declared const",
         ],
         explanation:
-          "Negative correlation means one asset tends to rise when the other falls, so the swings of the combined portfolio are smoothed out.",
+          "Assignment copies the REFERENCE, so both names point at one array. For a real copy use `[...a]` or `slice()`. `const` only forbids rebinding the name, never editing what it points to.",
       },
       l5_q10: {
-        question: "What does periodic portfolio rebalancing achieve?",
+        question: "What is a closure in JavaScript?",
         options: [
-          "It returns weights to target, meaning you trim what has run up",
-          "It guarantees the portfolio beats its benchmark index",
-          "It removes market risk from the portfolio entirely",
-          "It cuts trading costs by reducing the number of trades a year",
+          "A function that remembers the variables where it was defined",
+          "A function that calls itself immediately after being declared",
+          "A function passed into another function to be called back later",
+          "A function that runs exactly once and is then freed from memory",
         ],
         explanation:
-          "Rebalancing keeps risk at the level you actually chose. It promises no outperformance and it cannot erase market risk.",
+          "A closure is a function retaining access to the scope it was born in, even after the enclosing function has returned. A function passed to another is a callback, and one that runs on declaration is an IIFE - three separate ideas.",
       },
       l5_q11: {
-        question: "What does the opportunity cost of capital mean in project appraisal?",
+        question: "What does event bubbling in the DOM mean?",
         options: [
-          "The bank rate currently charged on the company's borrowing",
-          "The return on the best alternative that was passed over",
-          "All the money actually spent to get the project running",
-          "Expected inflation over the life of the project",
+          "The event runs from the touched element outward up to its parents",
+          "The event runs from the outermost element inward to the touched one",
+          "Events are queued up and then handled together in a single pass",
+          "The event repeats several times if the user clicks too quickly",
         ],
         explanation:
-          "Capital always has an alternative use. The discount rate has to reflect that return, or the project will look better than it is.",
+          "Bubbling travels inside out, so one listener on a parent catches clicks on all its children - the event delegation technique. The opposite direction, outside in, is called capture.",
       },
       l5_q12: {
-        question: "What is the payback period's basic weakness against NPV?",
+        question: "How does `null` differ from `undefined` in JavaScript?",
         options: [
-          "It ignores every cash flow arising after the payback point",
-          "It cannot be computed for projects with very large upfront capital",
-          "It always contradicts NPV, for every kind of project",
-          "It only works for projects with identical cash flows each year",
+          "`null` is emptiness you assigned; `undefined` means nothing was set",
+          "`null` is for objects, while `undefined` is for numbers and strings",
+          "`null` signals an error, while `undefined` is a valid variable state",
+          "`null` occupies memory, while `undefined` occupies none at all",
         ],
         explanation:
-          "Payback stops counting the moment the capital is recovered, so a project that earns heavily later is rated the same as one that dies right after. It also does not discount cash flows for time.",
+          "`undefined` is the default for an unassigned variable or a missing property; `null` is a developer saying \"deliberately empty here\". Keeping them apart lets a reader tell an oversight from an intention.",
       },
       l5_q13: {
-        question: "When two mutually exclusive projects give conflicting NPV and IRR answers, which do you follow?",
+        question: "What does debouncing a keystroke handler achieve?",
         options: [
-          "NPV, because it measures the absolute value added to the owners directly",
-          "IRR, because it shows the return earned on each dong invested",
-          "The project with the shorter payback, to cut liquidity risk",
-          "The project needing less capital, to preserve resources",
+          "It runs only after the user has stopped typing for a set interval",
+          "It caps the function at a maximum of one run per fixed interval",
+          "It gathers several keystrokes into a batch handled in one go",
+          "It ignores keys that do not change the contents of the input",
         ],
         explanation:
-          "NPV wins when the two conflict, because the goal is maximising value, not maximising a rate. IRR also assumes cash flows are reinvested at the IRR itself, which is rarely realistic.",
+          "Debounce pushes the run to the end of a burst: type continuously and nothing fires; stop and it fires once. Capping to one run per interval is throttling - two techniques whose names get swapped.",
       },
       l5_q14: {
-        question: "How does the depreciation tax shield create value?",
+        question: "Why store the result of `document.querySelector` in a variable?",
         options: [
-          "Depreciation lowers taxable income, so less tax is paid in actual cash",
-          "Depreciation is refunded directly from the state budget at year end",
-          "Depreciation raises the carrying value of fixed assets on the balance sheet",
-          "Depreciation lets the company defer principal repayments to the bank",
+          "Each call walks the DOM tree again, which is wasted work",
+          "The returned result can be used only once before being released",
+          "Calling repeatedly creates several copies of the same element",
+          "The browser limits how many times a page may query the DOM",
         ],
         explanation:
-          "Depreciation costs no cash but is deductible for tax, so it keeps real money inside the company. The shield is worth roughly depreciation times the tax rate.",
+          "Every call searches from scratch, and inside a loop that cost multiplies. The returned value is a reference to the live element and can be reused as often as you like.",
       },
       l5_q15: {
-        question: "How does the quick ratio differ from the current ratio?",
+        question: "What happens when `JSON.parse` receives invalid input?",
         options: [
-          "The quick ratio takes inventory out of the numerator",
-          "The quick ratio counts only debts due within three months",
-          "The quick ratio uses total assets instead of current assets",
-          "The quick ratio is computed on the market value of assets",
+          "It throws, so wrap it in `try/catch` when the data is not certain",
+          "It returns `null` so the caller can check and handle it onward",
+          "It returns the part it could read and drops the broken remainder",
+          "It returns the original string because nothing could be parsed",
         ],
         explanation:
-          "Inventory is the hardest current asset to turn into cash quickly, especially when the business is struggling. Removing it gives a harsher picture of short-term solvency.",
+          "It throws a `SyntaxError` rather than returning anything. That is why every call on data from the network or from `localStorage` should be wrapped - data outside your control can always be malformed.",
       },
       l5_q16: {
-        question: "What does prolonged high inflation do to the holder of a fixed-rate bond?",
+        question: "Why is the language's built-in sort usually better than your own?",
         options: [
-          "It erodes the real value of the coupons and the principal received later",
-          "It raises the real value of the coupons, as the issuer must compensate for inflation",
-          "No effect, because the coupon was fixed at the moment of issue",
-          "It forces the issuer to redeem the bond early under the rules",
+          "It is optimised and tested across every kind of input imaginable",
+          "It runs directly on the hardware, so it beats any hand-written code",
+          "It always preserves the original order of elements that compare equal",
+          "It uses no extra memory because it sorts in place on the original",
         ],
         explanation:
-          "The coupon is fixed in nominal terms while inflation eats the purchasing power of every dong received. This is why long-dated fixed-rate bonds suffer worst in an inflationary environment.",
+          "The standard library has survived millions of uses and every edge case. Stability and sorting in place vary by language - not universal guarantees, so do not rely on them without reading the documentation.",
       },
       l5_q17: {
-        question: "Why can a fast-growing company still be desperately short of cash?",
+        question: "How does `arr.push(x)` differ from `arr = [...arr, x]`?",
         options: [
-          "Because inventory and receivables have to swell before the money comes in",
-          "Because fast-growing companies are legally restricted from bank borrowing",
-          "Because revenue growth always drags the gross margin below zero",
-          "Because accounting standards force revenue to be recognised later than the cash arrives",
+          "`push` mutates the original; the other builds an entirely new array",
+          "`push` adds only one element, while the other can add several",
+          "`push` is slower because memory has to be reallocated each time",
+          "`push` returns nothing, so it cannot be used inside an expression",
         ],
         explanation:
-          "Selling more means holding more stock and extending more credit - the money goes out first and comes back later. This is why many companies with handsome profits die of an empty bank account.",
+          "`push` changes in place, while spreading creates a fresh array - a crucial difference when something else holds a reference to the old one. `push` accepts several arguments and returns the new length.",
       },
       l5_q18: {
-        question: "What does the efficient frontier show in portfolio theory?",
+        question: "Why avoid editing the DOM inside a long loop?",
         options: [
-          "The set of portfolios with the highest expected return at each level of risk",
-          "The list of assets whose beta is close to one in the market",
-          "The maximum loss a portfolio can suffer in a single session",
-          "The asset weights the regulator recommends for pension funds",
+          "Each edit can force the browser to recompute the whole page layout",
+          "The browser caps how many elements may be added in one pass",
+          "The changes overwrite each other so only the last one takes effect",
+          "The loop runs before the DOM tree has finished being built",
         ],
         explanation:
-          "Every point on the frontier is a portfolio that cannot be improved: a higher return demands accepting higher risk. Any portfolio below the frontier is inefficient.",
+          "Interleaving reads and writes forces repeated layout recalculation, known as layout thrashing. Build in memory and insert once, or group all reads apart from all writes.",
       },
       l5_q19: {
-        question: "In what situation does a bond's reinvestment risk arise?",
+        question: "How does an array differ from a linked list?",
         options: [
-          "When the coupons received have to be reinvested at a lower rate than before",
-          "When the issuer becomes unable to repay the principal at maturity",
-          "When the bond is downgraded partway through the holding period",
-          "When there is no buyer for the bond on the secondary market",
+          "An array indexes instantly; a list must walk node by node",
+          "An array holds one type only, while a list holds several types",
+          "An array lives in memory, while a linked list lives on disk",
+          "An array has a fixed size, while a linked list has no limit",
         ],
         explanation:
-          "Yield to maturity implicitly assumes every coupon is reinvested at that same rate. Falling rates break the assumption, so the realised total return comes in below the original YTM.",
+          "An array is contiguous, so the address of element i is computed directly; a linked list follows pointers. In exchange, inserting into the middle of a list is cheap because nothing has to shift.",
       },
       l5_q20: {
-        question: "Why is asset allocation usually considered a bigger decision than picking individual stocks?",
+        question: "Why avoid global variables in a large program?",
         options: [
-          "Because the weights between asset classes drive most of the variation in returns",
-          "Because picking individual stocks is legally restricted for retail investors",
-          "Because asset classes always return more than individual stocks, in every period",
-          "Because asset allocation incurs no trading costs while stock picking does",
+          "Any code at all can write to them, so faults are hard to trace",
+          "Global variables occupy memory for the entire run of the program",
+          "Reading a global variable is markedly slower than reading a local",
+          "Modern languages no longer permit declaring globals at all",
         ],
         explanation:
-          "Empirical work shows the stock-bond-cash mix drives most of the variation in returns over time, far more than which particular name was chosen inside each class.",
+          "The problem is blast radius: a wrong value with a thousand lines able to write it cannot be narrowed down. Memory and access cost are negligible next to that.",
       },
     },
   },
   6: {
-    title: "Peak Exam - Level 6: Finance Adept",
+    title: "Advanced Exam - Level 6: API Integration Engineer",
     questions: {
       l6_q1: {
-        question: "What does holding a call option give you?",
+        question: "What distinguishes `GET` from `POST` in meaning?",
         options: [
-          "The right to buy the underlying at a strike price fixed in advance",
-          "The obligation to sell the underlying when the buyer exercises",
-          "The right to sell the underlying at the market price on expiry",
-          "The right to a fixed dividend from the issuing company",
+          "`GET` only reads and can repeat; `POST` changes state on the server",
+          "`GET` sends less data, while `POST` can carry large file uploads",
+          "`GET` is faster because the request body needs no encoding",
+          "`GET` requires no sign-in, whereas `POST` always needs authentication",
         ],
         explanation:
-          "The key word is right, not obligation: if the market price sits below the strike, the holder simply does not exercise.",
+          "The core difference is semantics: `GET` is safe and repeating it changes nothing, so browsers and proxies may cache or replay it freely. Size limits are a technical consequence, not the distinction.",
       },
       l6_q2: {
-        question: "What does the CAPM model compute?",
+        question: "What does an idempotent endpoint mean?",
         options: [
-          "The required rate of return on equity",
-          "The company's cost of goods sold for the period",
-          "The effective tax rate the company actually pays",
-          "Forecast net profit for the next financial year",
+          "Calling it repeatedly with the same input leaves the same state",
+          "Calling it repeatedly makes the server reject the later attempts",
+          "Calling it always returns exactly the same content every time",
+          "Calling it from several clients at once produces no conflicts",
         ],
         explanation:
-          "CAPM produces the cost of equity: the risk-free rate plus the market risk premium multiplied by the stock's beta.",
+          "Idempotency describes the STATE afterwards, not the response body. It is the property that makes retrying safe - if the network drops mid-call, calling again creates no second record.",
       },
       l6_q3: {
-        question: "When does a bond trade above par?",
+        question: "How does 401 differ from 403?",
         options: [
-          "When its coupon rate is above the market's yield to maturity",
-          "When its coupon rate is below the market's yield to maturity",
-          "When the issuer is about to default on the principal",
-          "When the issuing company reported a loss in the latest period",
+          "401 means you are unidentified; 403 means known but not permitted",
+          "401 means a wrong password, while 403 means the account is locked",
+          "401 is caused by the client, while 403 comes from server misconfiguration",
+          "401 means the session expired, while 403 means you never signed in",
         ],
         explanation:
-          "A coupon above the market level means the interest stream beats a newly issued bond, so investors will pay more than par for it.",
+          "401 says \"tell me who you are\" - signing in may fix it. 403 says \"I know who you are, and you may not\" - signing in again achieves nothing; you need a permission granted.",
       },
       l6_q4: {
-        question: "How does a sharply stronger local currency affect an exporter?",
+        question: "How do 4xx and 5xx codes differ?",
         options: [
-          "Its goods become more expensive to foreign buyers",
-          "Revenue converted into local currency rises considerably",
-          "No effect, since contracts are already priced in foreign currency",
-          "Margins improve, because imported input costs fall",
+          "4xx means the request was faulty; 5xx means the server broke",
+          "4xx is a temporary fault, while 5xx is permanent and unfixable",
+          "4xx comes from a flaky network, while 5xx comes from wrong logic",
+          "4xx should be retried at once, while 5xx should be shown to users",
         ],
         explanation:
-          "A strong local currency makes exports dearer in the eyes of foreign buyers, and each unit of foreign currency earned converts into less local currency.",
+          "4xx points at the caller: missing parameter, wrong permission, wrong path - resending the same request fails again. 5xx points at the server, and that is the class worth retrying because it may be transient.",
       },
       l6_q5: {
-        question: "What advantage does EV/EBITDA have over P/E when comparing companies?",
+        question: "What does status 429 signal?",
         options: [
-          "It is neutral to different capital structures and depreciation policies",
-          "It always gives a lower valuation, so it is safer for investors",
-          "It only works for technology companies making accounting losses",
-          "It is unaffected by the size of the company's revenue",
+          "You have called too many times within the permitted window",
+          "Your request carries data larger than the server's size limit",
+          "The server is overloaded and temporarily refusing new requests",
+          "Your account has exhausted the quota on its paid plan",
         ],
         explanation:
-          "EBITDA sits above interest and depreciation, and EV includes debt, so a heavily borrowed company and a lightly borrowed one can still be compared.",
+          "429 is a rate limit applied to you specifically, usually with a `Retry-After` header saying when to return. An overloaded server is 503 and an oversized body is 413 - three situations needing three responses.",
       },
       l6_q6: {
-        question: "Where do retained earnings sit on the balance sheet?",
+        question: "Why send an API key in a header rather than a URL parameter?",
         options: [
-          "Current liabilities, due within the next twelve months",
-          "Shareholders' equity, alongside the capital shareholders paid in",
-          "Tangible fixed assets, net of accumulated depreciation",
-          "Operating cash flow for the reporting period",
+          "URLs get written into server logs and browser history",
+          "Headers are encrypted, whereas the URL travels in the clear",
+          "URL parameters have a length cap, so a long key gets truncated",
+          "Servers read headers faster and so respond a little sooner",
         ],
         explanation:
-          "These are accumulated profits not yet distributed to shareholders, so they belong to the owners rather than being an obligation to anyone outside.",
+          "Under HTTPS both the URL and the headers are encrypted in transit - the difference is that URLs are RECORDED: server logs, browser history, the `Referer` header sent to other sites. The key leaks in those places.",
       },
       l6_q7: {
-        question: "In what situation does the buyer of a put option profit?",
+        question: "Why should retries back off rather than fire immediately?",
         options: [
-          "When the underlying price falls below the strike price",
-          "When the underlying price rises above the strike price",
-          "When the underlying's volatility collapses before expiry",
-          "When the issuer raises the dividend paid to shareholders",
+          "Hammering a struggling service makes recovery even harder for it",
+          "The server bans your IP address after too many rapid requests",
+          "Backing off keeps requests in the order they were originally sent",
+          "A longer wait makes the next attempt more likely to succeed",
         ],
         explanation:
-          "The right to sell above the market price is what has value, so a put pays off as the underlying falls - it works like an insurance contract.",
+          "A slow service being retried instantly by thousands of clients sees its load rise - the mechanism that turns a small wobble into an outage. Back off and add random jitter so clients do not synchronise.",
       },
       l6_q8: {
-        question: "What is WACC made up of?",
+        question: "Why should every outbound call carry a timeout?",
         options: [
-          "The cost of equity and the after-tax cost of debt, weighted at market values",
-          "The average bank rate plus expected inflation for the period",
-          "The industry's average return over the last five years",
-          "The cost of equity minus the tax shield on interest",
+          "Without one the call hangs forever, holding your own resources",
+          "Without one the other server treats the request as malformed",
+          "Without one the networking library picks a very short default",
+          "Without one the call is never written into the system logs",
         ],
         explanation:
-          "Interest is deductible for tax, so the cost of debt has to be taken after tax. The weights use market values, not book values.",
+          "A hanging call holds a connection and a worker of YOURS; enough of them and there is no room to accept anything new. Many libraries default to NO timeout, so this is something you must set by hand.",
       },
       l6_q9: {
-        question: "How does a sharp rise in net working capital affect operating cash flow?",
+        question: "What is CORS blocking a browser request for?",
         options: [
-          "It lowers cash flow, because capital is trapped in receivables and inventory",
-          "It raises cash flow, because the company holds more current assets",
-          "No effect, because working capital is a balance sheet item",
-          "It only affects investing cash flow, not operating cash flow",
+          "Stopping this site reading data from a different domain unbidden",
+          "Stopping the server accepting requests from unfamiliar addresses",
+          "Stopping sensitive data being sent before it has been encrypted",
+          "Stopping users calling the API directly without the interface",
         ],
         explanation:
-          "Selling without collecting, or holding more stock, is money already spent that has not come back yet - profit rises while cash flow does not.",
+          "CORS is a BROWSER rule protecting the user: a malicious page cannot read data from a site you are signed into. It does not protect the server - `curl` or another server calls straight through.",
       },
       l6_q10: {
-        question: "What characterises a company with high operating leverage?",
+        question: "What problem does pagination on a list endpoint solve?",
         options: [
-          "Large fixed costs, so profit swings hard with revenue",
-          "A debt-to-equity ratio above the industry average",
-          "Variable costs making up most of the product's cost structure",
-          "Faster inventory turnover than its industry rivals",
+          "It stops responses growing so large they slow down both ends",
+          "It allows results to be sorted by several different criteria",
+          "It guarantees each record is returned exactly once and no more",
+          "It reduces how many times the client must call the server",
         ],
         explanation:
-          "Operating leverage is about the mix of fixed and variable costs. The second option describes financial leverage, a different concept.",
+          "Pagination keeps each response a predictable size. It INCREASES the number of calls rather than reducing them - many small calls traded against never having to swallow a million records at once.",
       },
       l6_q11: {
-        question: "How does a share buyback affect EPS, if profit is unchanged?",
+        question: "How does a webhook differ from repeated polling?",
         options: [
-          "EPS rises, because the share count falls",
-          "EPS falls, because the company spends cash on the buyback",
-          "EPS is unchanged, because a buyback does not affect profit",
-          "EPS only changes once the treasury shares are cancelled",
+          "The other side calls you when there is news, sparing empty checks",
+          "A webhook uses its own protocol, so it beats ordinary HTTP for speed",
+          "A webhook cannot lose events, whereas polling may miss some",
+          "A webhook needs no authentication since the sender is known ahead",
         ],
         explanation:
-          "The denominator shrinks so EPS rises, even though the company earned not one dong more. This is why rising EPS does not automatically mean the business improved.",
+          "Polling asks repeatedly and mostly hears nothing new; a webhook reverses direction so traffic only exists when there is work. But a webhook is still HTTP and can be lost if you are down - so you need a catch-up path too.",
       },
       l6_q12: {
-        question: "What does the semi-strong form of the efficient market hypothesis state?",
+        question: "What should an API error response contain?",
         options: [
-          "Prices already reflect all public information, financial statements included",
-          "Prices reflect only past price and volume data",
-          "Prices reflect inside information that has not been disclosed",
-          "Prices always equal intrinsic value, under any market conditions",
+          "A machine-readable code plus a sentence a person can understand",
+          "The full stack trace so the caller knows precisely which line broke",
+          "Only the HTTP status code, with an empty body to keep it light",
+          "An English description, since error codes are a server-side matter",
         ],
         explanation:
-          "The weak form covers only past price data, the strong form covers inside information too. Semi-strong sits between them, and implies public fundamental analysis rarely produces a durable edge.",
+          "The caller needs a stable code to branch on and a sentence to show a user. Stack traces must never leave the building - they expose internal structure and are a gift to an attacker.",
       },
       l6_q13: {
-        question: "What is a call option's intrinsic value at expiry?",
+        question: "What is the `ETag` header for?",
         options: [
-          "The gap between the underlying price and the strike, floored at 0",
-          "The whole premium paid to the seller when the contract was signed",
-          "The underlying price multiplied by the market's implied volatility",
-          "The strike price minus the underlying price on the expiry date",
+          "Letting a client ask again and get 304 if nothing has changed",
+          "Marking which version of the API the server is currently running",
+          "Signing the response body so the client can detect tampering",
+          "Declaring the data type carried in the body of the response",
         ],
         explanation:
-          "A call is only exercised when it pays to, so its value at expiry is max(S - K, 0). The last option is the put formula - a very common mix-up.",
+          "An ETag is a fingerprint of the content. Next time the client sends `If-None-Match`, and if nothing changed the server answers 304 with an empty body - saving bandwidth while still guaranteeing freshness.",
       },
       l6_q14: {
-        question: "Why is the after-tax cost of debt below the loan's headline rate?",
+        question: "Why should an access token have a short lifetime?",
         options: [
-          "Because interest is deductible against corporate income tax",
-          "Because banks usually refund part of the interest to borrowers who pay on time",
-          "Because interest is spread over several years, so its present value falls",
-          "Because companies may pay interest in shares instead of cash",
+          "A leaked token then does damage for only a short window of time",
+          "A short-lived token is smaller in size, so it is lighter to send",
+          "The server saves memory by not having to store tokens for long",
+          "Users must sign in again, so their profile details stay current",
         ],
         explanation:
-          "The after-tax cost of debt is the rate times (1 - tax rate). Because interest is deductible, every dong of interest paid really costs (1 - t) dong - this is the root of the tax shield.",
+          "There is no way to withdraw an issued token instantly unless it expires. Short lifetimes plus a refresh token bound the damage window without forcing constant re-authentication.",
       },
       l6_q15: {
-        question: "What kind of business typically runs persistently negative working capital?",
+        question: "Why attach an identifier to every request?",
         options: [
-          "One that collects from customers immediately but pays suppliers later",
-          "One losing solvency, at risk of bankruptcy in the short term",
-          "One whose fixed assets are a very small share of total assets",
-          "One that is barred from listing its shares on the exchange",
+          "It lets you follow one request across several services end to end",
+          "It stops the same request being processed twice in a row",
+          "It lets the server order requests exactly as they were received",
+          "It lets the server recognise requests from the same user",
         ],
         explanation:
-          "Supermarkets and subscription models collect first and pay suppliers later, so negative working capital signals bargaining power rather than trouble - the suppliers are funding them.",
+          "When a request crosses five services, a shared identifier is the only thing stitching scattered log lines into one story. Preventing double processing needs an idempotency key - a different mechanism.",
       },
       l6_q16: {
-        question: "What risk position does the seller of an option hold?",
+        question: "Why version an API as v1, v2 and so on?",
         options: [
-          "Maximum profit is the premium collected, while the loss can be very large",
-          "Both profit and loss are capped at the value of the premium",
-          "Profit is unlimited while loss is capped at the premium received",
-          "No risk at all, since the premium was collected up front",
+          "To make breaking changes without breaking existing callers",
+          "To let several servers run with different configurations at once",
+          "To signal how stable each part is so callers know what to trust",
+          "To let the server pick a data format suited to each caller",
         ],
         explanation:
-          "The seller's payoff is the mirror image of the buyer's: a fixed premium collected, the tail risk carried. Selling a call without owning the underlying is a theoretically unlimited loss.",
+          "You do not control when callers update, so changing the contract in place breaks their applications. Versioning lets two contracts coexist while everyone migrates.",
       },
       l6_q17: {
-        question: "How is the interest coverage ratio calculated?",
+        question: "What does `Content-Type: application/json` declare?",
         options: [
-          "EBIT divided by interest expense for the period",
-          "After-tax profit divided by total outstanding debt",
-          "Operating cash flow divided by average total assets",
-          "Total liabilities divided by shareholders' equity",
+          "That the body of this message is written in the JSON format",
+          "That the server accepts only JSON in requests sent to it",
+          "That the data was validated before it was sent on its way",
+          "That the response will be compressed before crossing the network",
         ],
         explanation:
-          "The ratio says how many times profit before interest and tax covers the interest bill. Below about 1.5x is usually a worry: one small dip in profit and the interest cannot be paid.",
+          "It only declares the body's format so the receiver knows how to read it. To say what you WANT BACK you use the `Accept` header - two headers that get confused. It is no guarantee the data is valid.",
       },
       l6_q18: {
-        question: "Why is free cash flow to the firm discounted at WACC rather than the cost of equity?",
+        question: "How should partial failure across several services be handled?",
         options: [
-          "Because FCFF is the cash flow belonging to lenders and shareholders both",
-          "Because WACC is always lower than the cost of equity, giving a higher valuation",
-          "Because international valuation standards mandate WACC for every kind of cash flow",
-          "Because the cost of equity only works for companies carrying no debt",
+          "Decide which parts are essential and which can be missing for now",
+          "Return an error to the user whenever any single service fails",
+          "Always retry every call until every part has finally succeeded",
+          "Call them in sequence so a failure stops the later ones running",
         ],
         explanation:
-          "The rule is that the discount rate must match whoever receives the cash flow. FCFF feeds both groups, so WACC; FCFE is what is left for shareholders, so the cost of equity.",
+          "A product page without recommendations still works; without a price it does not. Treating every call as essential lets one minor service take down the page, and retrying forever turns slow into stuck.",
       },
       l6_q19: {
-        question: "What is a company's economic exchange-rate exposure?",
+        question: "Why should data sent by a client never be trusted?",
         options: [
-          "The long-run effect of exchange rates on its competitiveness",
-          "The FX loss arising when foreign-currency balances are revalued at period end",
-          "The spread between a commercial bank's quoted buy and sell rates",
-          "The risk of not being able to buy foreign currency to settle an import contract",
+          "Anyone can send whatever request they like straight to the server",
+          "Data may be corrupted while travelling across the network",
+          "Older browsers encode data in ways the server cannot read",
+          "The client cannot know the business rules the system enforces",
         ],
         explanation:
-          "Economic exposure lives outside the books: a stronger local currency makes exports relatively dearer than a foreign rival's and erodes market share over years. The second option is accounting translation exposure.",
+          "The web interface is only one way to call the API; `curl` calls it directly and is bound by none of the interface's rules. So every security-relevant check must live on the server, even when the interface already checks.",
       },
       l6_q20: {
-        question: "Why can a company with stable cash flow carry a higher debt ratio?",
+        question: "Why move secrets into environment variables?",
         options: [
-          "Because meeting interest and principal on time depends little on the business cycle",
-          "Because banks are required to lend more to stable companies",
-          "Because stable companies get statutory interest-rate reductions",
-          "Because stable cash flow means no audited financial statements are needed",
+          "Code can be shared without the secrets travelling along with it",
+          "Environment variables are encrypted by the operating system",
+          "A secret held there expires automatically after each session",
+          "Programs read environment variables faster than they read files",
         ],
         explanation:
-          "Debt imposes fixed obligations, so what decides capacity is the reliability of the cash flow, not its size. Utilities and infrastructure borrow heavily because revenue barely moves; cyclical tech companies are the opposite.",
+          "Separating secrets from code lets one codebase run in several environments with different keys, and code pushed to a shared repository carries no secrets. Environment variables are NOT encrypted - anyone who can read the process can read them.",
       },
     },
   },
   7: {
-    title: "Expert Exam - Level 7: Finance Specialist",
+    title: "Advanced Exam - Level 7: Data & Operations Engineer",
     questions: {
       l7_q1: {
-        question: "What does an inverted yield curve usually forecast?",
+        question: "What does a primary key guarantee about a table?",
         options: [
-          "The economy is about to enter a period of booming growth",
-          "Recession risk within roughly twelve to eighteen months",
-          "Inflation will reach zero within the next year",
-          "The stock market will keep setting new highs in the short term",
+          "Each row carries a distinct value that is never repeated or empty",
+          "Rows are always stored in ascending order of that key's value",
+          "The column is indexed, so every query against the table is faster",
+          "Nobody can delete a row while another table still references it",
         ],
         explanation:
-          "Short rates above long rates reflect an expectation that the central bank will have to cut - which is to say the economy is expected to weaken.",
+          "A primary key is an identity promise: unique and never null. It usually brings an index along, but that only helps queries FILTERING ON THAT KEY. Blocking deletes with references is a foreign key's job.",
       },
       l7_q2: {
-        question: "What does the Sharpe ratio measure in portfolio management?",
+        question: "What does an index trade away?",
         options: [
-          "Excess return per unit of the portfolio's standard deviation",
-          "Return earned on each dong of margin borrowing used",
-          "Total debt against the total assets the portfolio holds",
-          "Average slippage when large buy orders are filled",
+          "Faster reads, at the cost of slower writes and extra storage",
+          "Faster reads, at the cost of results that may be slightly stale",
+          "Faster writes, at the cost of periodically re-sorting the table",
+          "Faster reads, but only ever on tables with very few rows",
         ],
         explanation:
-          "Sharpe = (portfolio return - risk-free return) divided by standard deviation: return measured against the total risk carried.",
+          "Every insert, update and delete must maintain the index too, so writes slow down. That is why indexing every column backfires - index only the columns that genuinely appear in filters and sorts.",
       },
       l7_q3: {
-        question: "What is the core improvement the Sortino ratio makes on Sharpe?",
+        question: "Why avoid `SELECT *` in production code?",
         options: [
-          "It counts only downside volatility in the denominator",
-          "It removes the risk-free rate from the numerator entirely",
-          "It applies only to bond and credit portfolios",
-          "It adds the volatility of gold into the formula",
+          "It fetches unused columns and breaks when a column is added",
+          "It forces the database to scan the whole table instead of an index",
+          "The query cannot reuse results that were cached earlier on",
+          "The server rejects the query if the table has too many columns",
         ],
         explanation:
-          "Sharpe punishes upside and downside volatility alike. Sortino punishes only the downside, which is more sensible: nobody fears their portfolio rising sharply.",
+          "`SELECT *` moves more data than needed and ties your code to the table's current shape - adding one large column silently makes the query heavier. Whether the table is scanned is decided by the `WHERE` clause, not the column list.",
       },
       l7_q4: {
-        question: "What is a value trap in equity investing?",
+        question: "What is the N+1 query problem?",
         options: [
-          "Valuation that looks cheap while the business itself keeps deteriorating",
-          "A stock that multiplies several times over within a single trading year",
-          "A company delisted for paying an excessively high dividend",
-          "An investor buying into an IPO at far too high a price",
+          "Fetching a list then looping one more query for each row",
+          "A query returning more rows than the caller was expecting",
+          "A nested query making the database execute two passes",
+          "An index with one extra column so the query cannot use it",
         ],
         explanation:
-          "A low P/E can mean the market has correctly priced a business that is getting worse, rather than an opportunity everyone else missed.",
+          "One query fetches 100 orders, then a loop issues 100 more to get each customer name - 101 round trips instead of one. It hides with three rows of test data and shows up loudly in production.",
       },
       l7_q5: {
-        question: "How is FCFE derived from FCFF?",
+        question: "What does a database transaction guarantee?",
         options: [
-          "Subtract after-tax interest, then add net borrowing for the period",
-          "Add back all capital expenditure incurred in the period",
-          "Subtract net revenue, then divide by the shares outstanding",
-          "Divide FCFF by the average shares outstanding in the period",
+          "Several operations all take effect, or none of them do",
+          "Operations run in exactly the order in which you wrote them",
+          "Nobody can read the data while the operations are under way",
+          "Operations are written to disk rather than held in memory",
         ],
         explanation:
-          "FCFE is what remains for shareholders after the lenders have been served, so after-tax interest comes out and newly raised net borrowing goes back in.",
+          "Atomicity: debiting account A and crediting B must live or die together. Blocking other readers is the isolation level - a separate, tunable property, not something a transaction implicitly promises.",
       },
       l7_q6: {
-        question: "What is central bank quantitative tightening, in substance?",
+        question: "Why is building a query by concatenating user input dangerous?",
         options: [
-          "Shrinking the balance sheet by letting bonds mature or selling them",
-          "Printing money to buy shares on the secondary market",
-          "Cutting corporate income tax to stimulate private investment",
-          "Raising credit limits for the commercial banks in the system",
+          "Users can inject SQL syntax and change what the query means",
+          "An over-long string makes the database reject the query outright",
+          "An apostrophe in a surname causes the query to fail on syntax",
+          "Concatenation is much slower than passing parameters in",
         ],
         explanation:
-          "Quantitative tightening drains liquidity from the system - the reverse of quantitative easing, which injects money by buying assets.",
+          "This is SQL injection: data gets read as code. A parameterised query sends the statement and the data separately, so data is never interpreted as syntax - and it handles the apostrophe problem as a side effect.",
       },
       l7_q7: {
-        question: "What does a sudden widening of credit spreads usually signal?",
+        question: "What is a foreign key for?",
         options: [
-          "The market is demanding a higher premium for default risk",
-          "The central bank has just cut its policy rate",
-          "The issuing company has just been upgraded",
-          "Liquidity in the bond market is improving markedly",
+          "Constraining a column's value to exist in the referenced table",
+          "Indexing that column so joins against it run more quickly",
+          "Copying data across from the other table to avoid joining",
+          "Marking which columns are permitted to appear in a join clause",
         ],
         explanation:
-          "The credit spread is the price of default risk. It widens when investors turn anxious, and it usually widens ahead of economic downturns.",
+          "A foreign key is the database promising no child row points at a parent that does not exist. Joins work perfectly well without one - it is an integrity constraint, not a syntax requirement.",
       },
       l7_q8: {
-        question: "What does a portfolio's alpha measure?",
+        question: "How does `WHERE` differ from `HAVING`?",
         options: [
-          "The return beyond what systematic risk can explain",
-          "The total absolute return the portfolio achieved in the period",
-          "How volatile the portfolio is against its benchmark index",
-          "The weight of large-cap stocks held in the portfolio",
+          "`WHERE` filters rows before grouping; `HAVING` filters after",
+          "`WHERE` is for numeric columns, while `HAVING` is for text ones",
+          "`WHERE` runs on the base table; `HAVING` runs on a new temp table",
+          "`WHERE` takes one condition, while `HAVING` combines several",
         ],
         explanation:
-          "Beta explains the return that comes from accepting market risk. Alpha is what is left - the manager's actual contribution.",
+          "The order is filter rows, group, then filter groups. So a condition on an aggregate like `COUNT(*) > 5` must sit in `HAVING` - when `WHERE` runs there are no groups yet to count.",
       },
       l7_q9: {
-        question: "Which assumption is the Gordon growth model most sensitive to?",
+        question: "What is a backup that has never been restored?",
         options: [
-          "The gap between the discount rate and the long-term growth rate",
-          "The dividend the company paid in the most recent period",
-          "The number of shares outstanding at the valuation date",
-          "The company's retention ratio for the current year",
+          "Not yet a backup, since nobody knows whether it can be used",
+          "Still safe, provided the backup file is the expected size",
+          "Only risky if the database version changed since it was taken",
+          "Still usable, though restoring it will take a long time",
         ],
         explanation:
-          "The denominator is the difference between two numbers that sit close together, so as growth approaches the discount rate the valuation explodes to nonsense.",
+          "Backups fail quietly in many ways: a missing table, a wrong character encoding, a corrupt archive, or a file that runs and writes nothing. Restoring is the only way to know - and finding out when you need it is too late.",
       },
       l7_q10: {
-        question: "What is delta hedging an option position meant to achieve?",
+        question: "What are database migrations for?",
         options: [
-          "Neutralising the effect of small moves in the underlying price",
-          "Removing every risk from the position until expiry",
-          "Maximising profit when the underlying moves violently",
-          "Fixing the option premium payable at the moment of signing",
+          "Turning schema changes into code that replays in every environment",
+          "Moving data from an old server to a new one during an upgrade",
+          "Backing up the schema before anybody alters the table structure",
+          "Synchronising data between the test and production environments",
         ],
         explanation:
-          "Delta only holds for small moves. When the price shifts hard, gamma changes the delta and the position has to be rebalanced continuously.",
+          "Migrations put the schema in the repository alongside the application, so test and production certainly share a structure. Editing by hand on a server is the fastest way to let two environments drift apart unnoticed.",
       },
       l7_q11: {
-        question: "What does it mean when a company's ROIC exceeds its WACC over the long run?",
+        question: "What does a DNS A record point a domain at?",
         options: [
-          "Every additional dong invested creates value for the owners",
-          "The company is borrowing below the prevailing market rate",
-          "The company needs no new capital to keep expanding",
-          "The company's gross margin is above the industry average",
+          "A specific IP address of the machine serving that domain",
+          "Another domain name, so both names lead to the same place",
+          "The mail server that receives email for that domain",
+          "The list of name servers authoritative for that domain",
         ],
         explanation:
-          "That is the definition of value creation. A company whose ROIC sits below its WACC destroys shareholder value the faster it grows.",
+          "An A record maps a name to an IP address. Pointing at another name is CNAME, mail is MX, and name servers are NS - four record types that get used in each other's place.",
       },
       l7_q12: {
-        question: "Why is operating cash flow harder to manipulate than profit?",
+        question: "Why is SSH key authentication safer than a password?",
         options: [
-          "Because it reflects money actually received and paid, with little room for estimates",
-          "Because it is audited more thoroughly than the other measures",
-          "Because accounting standards forbid adjusting this line",
-          "Because it is always published before profit in the financial statements",
+          "The private key never leaves your machine, so nothing is sent to leak",
+          "A key is longer than a password, so cracking it takes more time",
+          "A key rotates after each sign-in, so it cannot be reused later",
+          "A key only works from the IP address registered in advance",
         ],
         explanation:
-          "Profit carries estimates: provisions, depreciation, the timing of revenue recognition. Money landing in the bank account is far harder to invent.",
+          "The server holds the public key and sends a challenge; your machine signs it without transmitting the key. So there is no secret to intercept, and nothing to guess one attempt at a time.",
       },
       l7_q13: {
-        question: "What does the term premium on a yield curve reflect?",
+        question: "What should a firewall's default be?",
         options: [
-          "The compensation investors demand for holding long bonds instead of short ones",
-          "The yield gap between government and corporate bonds of the same maturity",
-          "The rate the central bank commits to holding through the financial year",
-          "The extra yield from buying bonds in the primary market",
+          "Deny everything, then open only the ports genuinely required",
+          "Allow everything, then close the ports known to be risky",
+          "Deny ports below 1024 and allow everything above them",
+          "Allow by IP address rather than by individual port number",
         ],
         explanation:
-          "Holding a long bond means carrying interest-rate and inflation risk for longer, so investors demand extra yield. The second option describes the credit spread, a different component.",
+          "Deny by default means a new service opening a port by accident still cannot reach the internet. Allow by default requires you to know every dangerous thing in advance - a list that is never complete.",
       },
       l7_q14: {
-        question: "What characterises a barbell strategy in bond portfolio management?",
+        question: "Why should a staging environment resemble production?",
         options: [
-          "Concentrating on very short and very long maturities, leaving the middle empty",
-          "Spreading weight evenly across every maturity on the curve",
-          "Holding bonds of a single maturity to match a repayment obligation",
-          "Combining government bonds with equities in a fixed fifty-fifty split",
+          "Faults caused by environment differences surface before users hit them",
+          "Users can try new features there before they are released widely",
+          "It relieves production because part of the traffic goes there instead",
+          "It allows a fast rollback by redirecting traffic to the other one",
         ],
         explanation:
-          "A barbell puts the weight at both ends of the curve. It gives the same duration as a concentrated middle but higher convexity, so it gains when rates move sharply either way.",
+          "Most release incidents come from the two environments differing: library versions, configuration values, real data versus sample data. The closer they are, the more faults get caught where they are cheap.",
       },
       l7_q15: {
-        question: "Why is the dividend discount model hard to apply to high-growth technology companies?",
+        question: "Why should every release have a way back?",
         options: [
-          "Because many pay no dividend, retaining all profit to reinvest",
-          "Because technology dividends are taxed at a higher rate than usual",
-          "Because accounting standards bar the technology sector from announcing dividend plans",
-          "Because dividend growth in the sector always exceeds the discount rate",
+          "Restore the service first and investigate once it is stable again",
+          "A new version always needs a trial period before it can be trusted",
+          "Rolling back costs less than running a full test suite beforehand",
+          "Users should be able to keep using the older version if they prefer",
         ],
         explanation:
-          "The model needs a dividend stream to discount. A company retaining all its profit makes the numerator zero, forcing a switch to free-cash-flow or multiple-based models.",
+          "While a service is broken, the priority is making it work rather than understanding why. Fixing in haste under pressure tends to create a second fault; rolling back returns the system to a state known to be good.",
       },
       l7_q16: {
-        question: "What does the PEG ratio add to the P/E ratio?",
+        question: "What is database normalisation for?",
         options: [
-          "It puts the earnings growth rate into the denominator of the multiple",
-          "It removes the effect of capital structure from the valuation multiple",
-          "It swaps accounting profit for free cash flow to equity",
-          "It adjusts the share price for the last year's inflation rate",
+          "Each fact lives in exactly one place, so one edit is enough",
+          "Reducing storage by compressing the duplicated tables together",
+          "Speeding queries up because far fewer tables must be read",
+          "Ensuring each column carries a data type suited to its contents",
         ],
         explanation:
-          "PEG divides P/E by the growth rate, so a stock on 30x growing at 30% is viewed alongside one on 10x growing at 10%. Its weakness is extreme sensitivity to whichever growth forecast you choose.",
+          "Normalisation removes duplication so a customer's address cannot be updated in one table while another keeps the old value. In exchange it SLOWS reads by requiring joins - which is exactly why people sometimes denormalise on purpose.",
       },
       l7_q17: {
-        question: "Why can accounting profit be flattered through the timing of revenue recognition?",
+        question: "How does `LEFT JOIN` differ from `INNER JOIN`?",
         options: [
-          "Because revenue is booked when control transfers, not when the cash arrives",
-          "Because accounting standards let a company pick any financial year it likes",
-          "Because the tax authority only inspects revenue once every five years",
-          "Because external auditors have no right of access to sales contracts",
+          "`LEFT JOIN` keeps every left row even when nothing matches",
+          "`LEFT JOIN` is faster because only one table has to be scanned",
+          "`LEFT JOIN` permits joining on a column that carries no index",
+          "`LEFT JOIN` returns fewer rows because duplicates are removed",
         ],
         explanation:
-          "Accrual accounting separates when revenue is booked from when the cash lands, which leaves room for judgement. This is why receivables growing faster than revenue is a signal worth examining closely.",
+          "`LEFT JOIN` keeps the whole left table and fills the missing side with `NULL`; `INNER JOIN` keeps only rows matching on both sides. So `LEFT JOIN` returns at least as many rows, never fewer.",
       },
       l7_q18: {
-        question: "What is duration matching used for in asset-liability management?",
+        question: "Why does an HTTPS server need a certificate?",
         options: [
-          "Balancing the duration of assets against liabilities to cut interest-rate risk",
-          "Ensuring every investment matures on the same date each year",
-          "Holding equal weights of stocks and bonds throughout the fund's life",
-          "Investing only in bonds rated the same as the issuing institution",
+          "To prove the server really owns the domain the user typed",
+          "To supply the encryption algorithm the two sides will use",
+          "To hold the private key for the browser to download and use",
+          "To record encrypted sessions so they can be audited later",
         ],
         explanation:
-          "When both durations match, a shift in rates moves the value of assets and liabilities by almost the same amount, so the funding gap is protected. This underpins pension and insurance fund management.",
+          "Encryption without knowing who you are talking to is meaningless - a man in the middle encrypts too. The certificate, signed by a trusted third party, binds the domain to the server. The private key never leaves the server.",
       },
       l7_q19: {
-        question: "Why do agency costs arise between shareholders and management?",
+        question: "Why not sign in to a server as the administrator day to day?",
         options: [
-          "Because managers do not own the whole business, so incentives diverge",
-          "Because company law bars managers from holding shares in their own firm",
-          "Because shareholders have no right of access to audited financial statements",
-          "Because management is always paid above the market rate",
+          "A mistyped command then does far more damage than it needs to",
+          "The administrator account signs in more slowly due to extra checks",
+          "The system only writes logs for ordinary accounts, not administrators",
+          "The administrator account locks automatically if used too frequently",
         ],
         explanation:
-          "The decision-maker does not bear the full financial consequence, so size, personal safety or short-term gain can win out. Pay design and corporate governance exist to narrow that gap.",
+          "Least privilege bounds the damage from both slips and stolen accounts. Elevating temporarily also forces a pause before a dangerous command - and that pause is the point.",
       },
       l7_q20: {
-        question: "What does the yield gap between a corporate bond and a government bond of the same maturity mainly reflect?",
+        question: "What should system logs avoid recording?",
         options: [
-          "The issuer's credit risk and liquidity risk",
-          "The difference in tax rates applied to the two kinds of bond",
-          "The difference in how often each pays its coupon",
-          "The brokerage cost incurred when trading corporate bonds",
+          "Passwords, keys and users' personal data",
+          "The identifier of the request being processed at the time",
+          "How long the slow steps in a flow took to complete",
+          "The function and file where the log line was written",
         ],
         explanation:
-          "The credit spread compensates for the chance of default plus the fact that a corporate bond is harder to sell quickly. It widens when the market takes fright and narrows as risk appetite returns.",
+          "Logs are usually centralised, retained for a long time and read by many people - so a secret landing there spreads furthest. The other three are exactly what makes a log useful during an investigation.",
       },
     },
   },
   8: {
-    title: "Master Exam - Level 8: Finance Master",
+    title: "Master Exam - Level 8: Cloud Infrastructure Engineer",
     questions: {
       l8_q1: {
-        question: "Which measure captures a bond's price sensitivity to interest rates?",
+        question: "What is cloud computing really?",
         options: [
-          "Duration, the weighted average life of the cash flows",
-          "The yield to maturity at the moment the investor bought",
-          "The coupon rate fixed in the contract at issue",
-          "The credit rating published by an independent agency",
+          "Renting someone else's machines and services, paying for what you use",
+          "A network splitting work across thousands of machines at once",
+          "A distributed storage technology that makes data loss impossible",
+          "Software running in a browser rather than installed on a machine",
         ],
         explanation:
-          "Duration says how many percent the price moves when rates move one percentage point. The other three describe different properties of a bond.",
+          "Strip the marketing away and the cloud is somebody else's servers, in their data centre, billed by the hour. Understanding it that way explains why it still fails, still has latency and still costs money.",
       },
       l8_q2: {
-        question: "What characterises a leveraged buyout?",
+        question: "Why do cloud bills spike unexpectedly?",
         options: [
-          "Most of the price is funded with debt, secured on the target's own assets",
-          "The fund buys only a small share stake on the exchange",
-          "The whole price is paid from the investors' own cash",
-          "It targets only newly founded technology companies with no revenue",
+          "Resources switched on and forgotten, plus charges for outbound data",
+          "The provider revises its server rental prices from month to month",
+          "Servers upgrade themselves automatically when they detect high load",
+          "Storage charges climb the longer data sits on the system",
         ],
         explanation:
-          "The target's own cash flow services the debt, so the ideal target is a business with steady cash flow and modest reinvestment needs.",
+          "The two biggest leaks are both invisible: a test machine left running for six months, and the fee for moving data OUT of the provider - very cheap coming in and surprisingly expensive going out.",
       },
       l8_q3: {
-        question: "What characterises unsystematic risk?",
+        question: "How does a region differ from an availability zone?",
         options: [
-          "Most of it can be removed by diversifying the portfolio",
-          "It cannot be removed no matter how many stocks are held",
-          "It is driven mainly by the monetary policy of large economies",
-          "It hits every listed stock on the market at the same time",
+          "A region is a geographic area holding several separate data centres",
+          "A region is for servers, while an availability zone is for storage",
+          "A region is chosen by the provider, a zone is chosen by the customer",
+          "A region holds the primary copy, while a zone only holds backups",
         ],
         explanation:
-          "Company-specific risks cancel each other out once a portfolio is broad enough. The other three all describe systematic risk.",
+          "Zones within one region have independent power and networking, so losing one does not take the other - the cheapest failure protection available. Two REGIONS survive a wide disaster, at the cost of latency.",
       },
       l8_q4: {
-        question: "In an interest rate swap, what do the two parties exchange?",
+        question: "Why put servers in a region near your users?",
         options: [
-          "A fixed interest stream for a floating interest stream",
-          "Ownership of shares in two different companies",
-          "Government bonds for physical gold at market prices",
-          "The principal repayment obligations of two loans of equal remaining term",
+          "Signals still travel through cable, so distance becomes latency",
+          "The provider charges less for the region closest to the customer",
+          "Many countries legally require data to remain inside the country",
+          "Servers in a nearby region receive priority in resource allocation",
         ],
         explanation:
-          "Only the interest streams are swapped; the principal stays where it is. It is a tool for changing the interest structure without restructuring the loan.",
+          "Light in fibre takes roughly 100 milliseconds to cross half the planet one way, and no software optimisation shortens that. Data residency rules are a separate reason, real but distinct.",
       },
       l8_q5: {
-        question: "What is a company's economic moat?",
+        question: "What does autoscaling NOT solve?",
         options: [
-          "A durable competitive advantage that stops rivals eroding the margin",
-          "A large cash pile that carries the company through hard times",
-          "A short-term debt ratio well below the industry average",
-          "A patent portfolio whose protection expires in a few years",
+          "A badly written query, which stays bad on every machine you add",
+          "Traffic spiking during the busiest hours of the working day",
+          "A server failing in hardware and needing to be replaced",
+          "Money wasted while the system sits idle overnight",
         ],
         explanation:
-          "A moat can come from brand, network effects, switching costs or a cost advantage. What they share is durability - not a passing advantage.",
+          "Scaling replicates the problem rather than fixing it: a query missing an index becomes ten slow queries and one overloaded database. It only solves a genuine shortage of processing capacity.",
       },
       l8_q6: {
-        question: "What is the Blume adjustment to beta for?",
+        question: "What does serverless trade away?",
         options: [
-          "Pulling the historical beta back towards the market average of one",
-          "Doubling beta to reflect risk more conservatively",
-          "Removing the effect of beta from the valuation model entirely",
-          "Estimating the cost of debt in place of the cost of equity",
+          "No servers to manage, but the first call after idling is slow",
+          "Lower cost, but data is not encrypted while it is stored",
+          "Faster deployment, but asynchronous code cannot be run",
+          "Unlimited scaling, but only in one specific language",
         ],
         explanation:
-          "A company's beta tends to drift towards one over time, so a raw historical beta usually overstates how far it sits from the market.",
+          "A function that is not running costs nothing, but it is also not ready - the first call must rebuild its environment, known as a cold start. Fine for background work, very visible on an API a user waits on.",
       },
       l8_q7: {
-        question: "How is enterprise value calculated?",
+        question: "What happens when a cron job runs longer than its own interval?",
         options: [
-          "Market capitalisation plus total debt, minus cash",
-          "Market capitalisation minus all the debt on the balance sheet",
-          "Net revenue for the period multiplied by the price-earnings ratio",
-          "Shareholders' equity plus closing inventory",
+          "The next run starts on top of the previous one unless you lock",
+          "The system postpones the next run until the previous one finishes",
+          "The previous run is halted midway to make room for the new one",
+          "Cron reports an error and suspends the schedule until someone acts",
         ],
         explanation:
-          "It is the real cost of buying the business outright: pay the shareholders, assume the debt, but receive the cash already sitting on the balance sheet.",
+          "Cron only knows that the time has come; it does not check whether the last run finished. Two runs processing one queue is where duplicate data and deadlocks come from, so a periodic script needs its own lock.",
       },
       l8_q8: {
-        question: "What does convexity add that duration cannot capture?",
+        question: "Why should a shell script begin with `set -e`?",
         options: [
-          "That the price-rate relationship is a curve, not a straight line",
-          "The probability that the issuer defaults when rates rise",
-          "The effect of expected inflation on the bond's real yield",
-          "The gap between the bid and the offer in the market",
+          "The script stops on the first failing command rather than continuing",
+          "Every command is printed before running so it is easy to follow",
+          "An undeclared variable becomes an error instead of an empty string",
+          "The script runs under any shell rather than only the current one",
         ],
         explanation:
-          "Duration is a linear approximation, so its error grows as rates move further. Convexity is the second-order term that corrects for it.",
+          "By default a shell carries on regardless of failure, so a failed `cd` can leave a later `rm` deleting the wrong directory. Printing commands is `set -x`, and erroring on undeclared variables is `set -u`.",
       },
       l8_q9: {
-        question: "In an LBO, which source of return does NOT depend on operational improvement?",
+        question: "Why should a deployment script be safe to run again?",
         options: [
-          "Paying debt down with cash flow, so the equity slice grows",
-          "Cutting operating costs and slimming the management structure",
-          "Expanding revenue into new markets and customer groups",
-          "Improving gross margin by renegotiating with suppliers",
+          "A run that failed halfway can be repeated without breaking more",
+          "Repeated runs help surface faults that only appear at random",
+          "The system reruns the script automatically whenever it detects change",
+          "Several people on the team can then run it without colliding",
         ],
         explanation:
-          "Debt repayment shifts value from lenders to owners without the business having to get any better. The other three all require operations to genuinely improve.",
+          "Deployments failing at step seven of ten are ordinary, and at that point you need to start again. A script whose step three errors with \"already exists\" on the second run forces manual cleanup under pressure.",
       },
       l8_q10: {
-        question: "How should a sunk cost be treated in an investment decision?",
+        question: "What problem do containers solve?",
         options: [
-          "Ignored entirely, since it does not change with the decision ahead",
-          "Added to total capital, to get the project's return right",
-          "Spread evenly across the remaining years of the project",
-          "Deducted from the first year's cash flow in the appraisal",
+          "Packaging code with its dependencies so it runs the same anywhere",
+          "Isolating an application completely from the host operating system",
+          "Dividing a host's resources among applications by fixed proportions",
+          "Letting an application run on any processor architecture at all",
         ],
         explanation:
-          "Money already spent cannot be recovered whichever option you pick, so it does not belong in the comparison. Including it is the sunk cost fallacy.",
+          "A container carries its libraries and configuration, turning \"works on my machine\" into \"works everywhere\". It SHARES the kernel with the host rather than isolating fully - which is also why it cannot change processor architecture.",
       },
       l8_q11: {
-        question: "How does a futures contract differ from a forward?",
+        question: "Why keep container images small?",
         options: [
-          "Futures are standardised, exchange-listed and settled daily",
-          "Futures require no initial margin from the participants",
-          "Forwards always have deeper liquidity on the secondary market",
-          "Forwards are guaranteed by a central clearing house",
+          "They pull and start faster, and carry less software to be attacked",
+          "The provider charges by image size stored in the registry",
+          "Large images will not run on hosts with limited memory",
+          "Smaller images allow more containers per host machine",
         ],
         explanation:
-          "Daily settlement and a clearing house standing in the middle make counterparty risk nearly vanish - the price is losing flexibility in the terms.",
+          "A small image crosses the network faster on every deployment, and each unnecessary package is another vulnerability to track. How many containers fit is decided by runtime memory, not image size.",
       },
       l8_q12: {
-        question: "What is the limitation of valuing a company on its industry peers' multiples?",
+        question: "What should a service health check verify?",
         options: [
-          "It assumes the market is pricing the comparable group correctly",
-          "It requires a detailed cash flow forecast for at least five years",
-          "It only applies to companies not yet listed on the market",
-          "It ignores the revenue size of the company being valued",
+          "Whether it can genuinely serve, including its essential dependencies",
+          "Whether the process is still alive or has exited from memory",
+          "Whether memory and processor use have crossed a set threshold",
+          "Whether the running version matches the one just deployed",
         ],
         explanation:
-          "Relative valuation tells you whether a company is cheap or dear against its peers; it cannot tell you whether the whole peer group is mispriced.",
+          "A live process that has lost its database still accepts requests and fails them all, while the load balancer believes it is healthy. But do not check too deeply, or one minor dependency drops the whole fleet.",
       },
       l8_q13: {
-        question: "How does the interest tax shield create value?",
+        question: "What does a canary release mean?",
         options: [
-          "Interest is deductible for tax, so the company pays less tax",
-          "Interest lowers accounting profit, so shareholders demand less dividend",
-          "Debt always carries a lower headline cost than equity",
-          "Lenders take on part of the business risk on behalf of shareholders",
+          "Giving the new version to a small slice of users, then widening",
+          "Running two versions side by side and comparing their results",
+          "Releasing during quiet hours so the fewest people are affected",
+          "Keeping the old version running so traffic can switch back at once",
         ],
         explanation:
-          "The value comes from the tax saved, not from debt being cheaper than equity. The benefit is capped by the cost of financial distress once borrowing goes too far.",
+          "A canary bounds how many people meet a fault while the fault still exists: 1% first, watch the metrics, then increase. Keeping both versions ready for an instant switch is blue-green - same aim, different mechanism.",
       },
       l8_q14: {
-        question: "In a sum-of-the-parts valuation, how is the company's value determined?",
+        question: "What should an alert be based on?",
         options: [
-          "Value each business line on its own suitable multiple, add them up and deduct net debt",
-          "Take market capitalisation and add all fixed assets at book value",
-          "Multiply consolidated revenue by the average multiple of the whole market",
-          "Add up the last five years of after-tax profit and discount it to today",
+          "A symptom users feel, and one somebody must act on right now",
+          "Every metric crossing a threshold, so nothing is ever missed",
+          "Server resource usage such as memory and processor load",
+          "Error counts in the logs exceeding the daily average",
         ],
         explanation:
-          "The method is useful for conglomerates, where a single blended multiple hides how differently each arm is worth. The result usually exceeds the market price, and the gap is called the conglomerate discount.",
+          "An alert nobody must act on immediately teaches the on-call engineer to ignore alerts - and then the important one is ignored too. CPU at 90% may be perfectly normal; \"users cannot place orders\" is not.",
       },
       l8_q15: {
-        question: "What purpose do financial covenants serve for the lender?",
+        question: "How does an SLO differ from an SLA?",
         options: [
-          "An early warning, and the right to step in when the borrower deteriorates",
-          "Fixing the lending rate for the whole life of the loan",
-          "Giving the lender voting rights at the shareholders' meeting",
-          "Excusing the borrower from providing security for the loan",
+          "An SLO is an internal target; an SLA is a binding customer promise",
+          "An SLO measures availability, while an SLA measures response speed",
+          "An SLO is set by engineering, while an SLA is set by the provider",
+          "An SLO is measured monthly, while an SLA runs on a financial year",
         ],
         explanation:
-          "Covenants set thresholds on ratios such as debt to EBITDA or interest cover. Breaching one triggers the right to renegotiate or call the loan early - before things get bad enough to lose the money.",
+          "An SLO is what you aim at internally and is usually stricter; an SLA is a contract term with consequences when breached. Setting the SLO tighter leaves room to react before the commitment is touched.",
       },
       l8_q16: {
-        question: "In an M&A deal, why are cost synergies usually more reliable than revenue synergies?",
+        question: "Why centralise logs from every server?",
         options: [
-          "Because cutting duplication is within the acquirer's own control",
-          "Because cost synergies are always larger in absolute terms",
-          "Because accounting standards only allow cost synergies into goodwill",
-          "Because competition regulators forbid revenue synergies in deal valuation",
+          "One incident crosses many machines; reading each apart joins nothing",
+          "Logs on a server are deleted automatically after a period of time",
+          "Centralising saves storage by removing lines that are duplicated",
+          "Only centralised logs get backed up on a regular schedule",
         ],
         explanation:
-          "Closing a duplicate head office is an internal decision that can simply be executed. Cross-selling into the other side's customer base depends on outsiders' behaviour, so it usually runs late and lands short.",
+          "When servers are created and destroyed constantly, signing into each to read logs is impossible - and a destroyed machine takes its logs with it. Centralising is also the only way to search by request identifier.",
       },
       l8_q17: {
-        question: "Why does free cash flow matter more than accounting profit in an LBO model?",
+        question: "What does the 3-2-1 backup rule say?",
         options: [
-          "Because cash flow sets the pace of debt repayment, the key driver of the fund's return",
-          "Because banks funding the deal do not accept accounting profit",
-          "Because an LBO model does not use the income statement at all",
-          "Because accounting profit in the acquired company is always negative after the deal",
+          "Three copies, on two kinds of media, with one kept elsewhere",
+          "Three copies daily, kept two weeks, with one retained forever",
+          "Three full backups, two incremental ones, and one weekly check",
+          "Three people able to restore, two to approve, and one to run it",
         ],
         explanation:
-          "The LBO structure bets on using the company's cash flow to work down a large debt. Every dong of debt repaid is a dong of value transferred to the fund's equity - accounting profit says nothing about that capacity.",
+          "Three copies survive random corruption, two media types survive a systematic fault in one kind, and the off-site copy survives fire or ransomware sweeping the local network. Each number defends against a different kind of loss.",
       },
       l8_q18: {
-        question: "What is model risk in financial risk management?",
+        question: "Why is depending too deeply on one provider a risk?",
         options: [
-          "The risk of loss because the model rests on wrong assumptions",
-          "The risk that the computer running the model fails or loses power",
-          "The risk that the staff who built the model leave without documentation",
-          "The risk that a competitor copies the proprietary valuation model",
+          "Leaving becomes so costly that you lose all negotiating power",
+          "The provider is able to read the data you store on their systems",
+          "Proprietary services are typically less stable than open-source ones",
+          "You cannot control when your systems are upgraded by the provider",
         ],
         explanation:
-          "A model is always a simplification of reality. The risk appears when its founding assumptions stop holding - for instance assuming normally distributed returns while the market has fat tails.",
+          "The issue is not service quality but the cost of exit: when a rewrite takes six months, any price increase must simply be paid. That is why people keep the core in a portable form.",
       },
       l8_q19: {
-        question: "Why does goodwill arise in a business combination?",
+        question: "Why have an error budget?",
         options: [
-          "Because the price paid exceeds the fair value of the identifiable net assets acquired",
-          "Because the acquirer must capitalise all deal advisory fees as a long-term asset",
-          "Because the acquired company has been profitable for several years running",
-          "Because accounting standards require a provision against consolidation risk",
+          "It permits calculated risk instead of avoiding every change",
+          "It helps forecast the cost of incident recovery in the annual plan",
+          "It forces the development team to cut defects below a set level",
+          "It reveals which team causes the most incidents in a quarter",
         ],
         explanation:
-          "Goodwill is the gap between what was paid and the fair value of identifiable net assets - it stands for brand, customer relationships and expected synergies. It has to be tested for impairment every year.",
+          "100% availability is impossible and not worth buying. An error budget turns \"do not break things\" into a number: budget remaining means ship; budget spent means stop feature work and go fix stability.",
       },
       l8_q20: {
-        question: "What is a natural hedge for an exporting company?",
+        question: "What does infrastructure as code give you?",
         options: [
-          "Creating costs in the same currency as the revenue, so inflows and outflows offset",
-          "Buying FX put options for the same volume as export revenue",
-          "Converting all foreign revenue into local currency the day it arrives",
-          "Selling in local currency and leaving the customer to handle the exchange rate",
+          "Rebuildable identical infrastructure, with every change in history",
+          "Infrastructure that scales with load without anyone intervening",
+          "Lower cost because resources are provisioned more precisely",
+          "No need to sign in to servers to run administrative commands",
         ],
         explanation:
-          "A natural hedge needs no derivative: borrowing in the foreign currency, or putting a plant in the export market, creates an outflow in the same currency as the inflow, so most of the FX movement cancels itself out.",
+          "Declaring infrastructure in files puts it in the repository: reviewable, revertable, and reproducible as a second identical environment. Clicking in a console leaves nobody knowing who changed what and when.",
       },
     },
   },
   9: {
-    title: "CFA Exam - Level 9: CFA Candidate",
+    title: "Master Exam - Level 9: Security & Career",
     questions: {
       l9_q1: {
-        question: "What does the Fair Dealing standard in the CFA Code require?",
+        question: "What does two-factor authentication protect you from?",
         options: [
-          "Dealing fairly with all clients when making investment recommendations",
-          "Filling orders for the largest-asset client group first",
-          "Filling an analyst's personal orders ahead of client orders",
-          "Offering discounted management fees to family members",
+          "Someone who knows your password but does not hold the second device",
+          "Spyware recording every key you press on your own machine",
+          "A site you use leaking its entire user database to the public",
+          "An attacker guessing your password by trying millions of combinations",
         ],
         explanation:
-          "Fair does not mean identical: service tiers are allowed, but no tier may profit ahead of another from the same recommendation.",
+          "The second factor makes a leaked password insufficient on its own. It does not save you if your machine is already compromised - the one-time code is read too - and guessing is stopped by attempt limits.",
       },
       l9_q2: {
-        question: "The semi-strong form of market efficiency says prices already reflect what?",
+        question: "Why use a password manager?",
         options: [
-          "All past data and every piece of publicly disclosed information",
-          "Past price and trading volume data alone",
-          "Everything, including inside information not yet disclosed",
-          "No category of information, in any reliable way",
+          "A different password everywhere, so one leak does not spread",
+          "Passwords are encrypted so the website cannot read the contents",
+          "You never type the password, so key-logging software is defeated",
+          "The manager rotates your passwords on every site periodically",
         ],
         explanation:
-          "The practical consequence: fundamental analysis of public information rarely gives a durable edge, while inside information still would.",
+          "The biggest damage from a breach is password reuse: the attacker tries that pair at your bank and your email. A manager makes a long unique password per site practical - that is the real value.",
       },
       l9_q3: {
-        question: "Which variable dominates an option's price in the Black-Scholes model?",
+        question: "What is the most telling sign of a phishing email?",
         options: [
-          "The volatility of the underlying over the remaining life",
-          "The number of existing shareholders in the issuing company",
-          "The inflation target the central bank is pursuing",
-          "The net revenue the company booked in the latest quarter",
+          "It presses you to act at once and leads to a sign-in page",
+          "It comes from an address on a domain you have never seen before",
+          "It contains spelling mistakes and phrasing that reads unnaturally",
+          "It carries an attachment that you never asked anybody to send",
         ],
         explanation:
-          "Volatility is the one input in the model that cannot be observed directly, which makes it both the most important and the most argued-over.",
+          "Urgency plus a page asking for a password is the core pair - the sense of haste is what stops people checking. Spelling was once a good signal but no longer is, since fraudulent mail is now written well.",
       },
       l9_q4: {
-        question: "What does a one-day VaR of $10 million at 95% confidence mean?",
+        question: "You suspect an account is compromised. What comes first?",
         options: [
-          "On 5% of days, the loss will exceed $10 million",
-          "The portfolio's maximum loss in a day is $10 million",
-          "The portfolio will certainly gain $10 million on the other 95% of days",
-          "There is a 95% chance the loss lands exactly at $10 million",
+          "Sign out every open session, then change the password and add 2FA",
+          "Change the password immediately so the attacker cannot get back in",
+          "Review the sign-in logs to establish where the attacker came from",
+          "Notify the provider and wait for them to lock the account down",
         ],
         explanation:
-          "VaR is a threshold, not a ceiling. It says nothing at all about how deep the loss goes once the threshold is breached - that is what Expected Shortfall is for.",
+          "Changing a password without ending sessions leaves the attacker's open session alive - many services do not invalidate old sessions. So cut sessions first, then change the password and add the second factor.",
       },
       l9_q5: {
-        question: "Where does a cash-and-carry arbitrage make its profit?",
+        question: "How should passwords be stored in a database?",
         options: [
-          "A temporary mispricing between the spot market and the futures contract",
-          "Correctly predicting the market's short-term direction",
-          "Holding growth stocks over a long enough horizon",
-          "Buying shares just before the cash dividend record date",
+          "Hashed with a deliberately slow algorithm and a per-user salt",
+          "Encrypted with a system key so they can be decrypted when needed",
+          "Hashed with a fast algorithm so signing in does not become slow",
+          "Stored as written, with read access to that table tightly limited",
         ],
         explanation:
-          "Buying spot and selling the future at the same moment locks the gap in, so the profit does not depend on which way the price goes.",
+          "Hashing is one-way, so a leak exposes no passwords; the salt makes two identical passwords hash differently; and SLOWNESS is the feature - it makes trying billions of combinations impractical.",
       },
       l9_q6: {
-        question: "What does unlevered beta strip out?",
+        question: "Why track vulnerabilities in the libraries you use?",
         options: [
-          "The debt structure within the company's funding",
-          "The gross margin the company achieved in the reporting period",
-          "The prevailing lending rate of the commercial banking system",
-          "The headcount and organisational structure of the company",
+          "A published vulnerability is a map for everyone, attackers included",
+          "Older libraries run noticeably slower than the newest releases",
+          "The maintainer withdraws support so the application stops working",
+          "Older versions stop being compatible with other project libraries",
         ],
         explanation:
-          "Taking leverage out leaves pure business risk, which is what lets you compare betas across companies with very different capital structures.",
+          "Disclosure comes with a description of how to exploit it, and automated scanners sweep the internet within hours. Most of the code in your application was written by other people, so this is the largest attack surface you have.",
       },
       l9_q7: {
-        question: "What does it mean for a commodity market to be in contango?",
+        question: "Why is hiding how a system works not a security measure?",
         options: [
-          "The futures price sits above the current spot price",
-          "The futures price sits below the current spot price",
-          "Futures and spot prices are exactly equal",
-          "Trading is suspended because prices moved too far",
+          "Attackers work it out anyway, while you cannot see your own gaps",
+          "Source code always leaks eventually on any project of any size",
+          "Users need to understand a system before they will trust using it",
+          "Concealment makes maintenance and debugging considerably harder",
         ],
         explanation:
-          "Contango reflects storage costs and the cost of capital tied up in holding the goods. Commodity funds bleed return when they have to roll contracts in this state.",
+          "The only secret worth relying on is a key, because a key can be rotated when leaked. Architecture can be probed out, and when it is the only thing between an attacker and the data, you have no defence at all.",
       },
       l9_q8: {
-        question: "What does the standard on material non-public information require of whoever holds it?",
+        question: "What should a code reviewer look for above all?",
         options: [
-          "Do not trade on it, and do not tip anyone else to trade",
-          "Trading is allowed if compliance has been notified beforehand",
-          "Trading is allowed once the information is more than seven days old",
-          "Only disclose the personal holding in the year-end report",
+          "Places the code betrays its promise, and edge cases left unhandled",
+          "Places where naming is inconsistent with the rest of the project",
+          "Places that could be shorter using newer language syntax",
+          "Places missing a comment explaining what the code is doing",
         ],
         explanation:
-          "Tipping breaches the standard exactly as trading does. The right course is to urge the issuer to disclose the information to the market.",
+          "Correctness first, style second - and most style belongs to an automatic formatter anyway. A review spent entirely on variable names while an unhandled error branch slips past is a review wasted.",
       },
       l9_q9: {
-        question: "Which performance measure fits when a portfolio is only one part of the investor's total wealth?",
+        question: "Why is it hard to spot faults in your own code?",
         options: [
-          "The Treynor ratio, because it divides by beta rather than standard deviation",
-          "The Sharpe ratio, because it uses the portfolio's total risk",
-          "The absolute return achieved over the evaluation period",
-          "The largest drawdown the portfolio has ever suffered",
+          "You read what you meant to write rather than what you wrote",
+          "You know the code so well that you read too fast and skip lines",
+          "You no longer remember all the original requirements afterwards",
+          "You are biased toward your own work and reluctant to admit flaws",
         ],
         explanation:
-          "When the portfolio is only a part, specific risk has already been diversified away at the total level, so only systematic risk counts - that is, beta.",
+          "The brain fills gaps with your intention, so a wrong line still reads as right. That is why another reader is valuable, and why reading aloud or leaving it a day works better than staring harder.",
       },
       l9_q10: {
-        question: "What does the efficient frontier represent in portfolio theory?",
+        question: "What should project documentation prioritise?",
         options: [
-          "The set of portfolios with the highest return at each level of risk",
-          "The set of portfolios with the lowest risk the investor can accept",
-          "The relationship between the risk-free rate and the holding period",
-          "The boundary between equity portfolios and bond portfolios",
+          "How to get it running, and why the key decisions were made",
+          "A detailed description of what every function in the code does",
+          "A complete architecture diagram covering every system component",
+          "A list of finished features and the ones still outstanding",
         ],
         explanation:
-          "Every portfolio below the frontier is dominated: there is always another portfolio offering a higher return at the same level of risk.",
+          "A newcomer needs to run it first, and an old hand needs to know why it was built this way - neither is stated by the code. Per-function documentation goes stale after a few edits and usually just restates the name.",
       },
       l9_q11: {
-        question: "In GIPS, what behaviour does the composite requirement prevent?",
+        question: "What matters most when handing a project over?",
         options: [
-          "Showing only the portfolios that performed well and hiding the rest",
-          "Charging a higher management fee than the contract promised",
-          "Changing investment strategy without telling clients first",
-          "Using leverage beyond the limit set in the fund prospectus",
+          "The receiver can run and deploy it alone, without asking anybody",
+          "A thorough meeting explaining the entire system architecture",
+          "A detailed document describing every component of the project",
+          "Contact details for the previous owner to ask when stuck",
         ],
         explanation:
-          "Every portfolio run on the same strategy must sit in the same composite, so a firm cannot cherry-pick its best results to display.",
+          "The only trustworthy test is the receiver doing it while the previous owner stays silent. Meetings and documents create a feeling of handover; only doing it reveals which steps existed solely in someone's head.",
       },
       l9_q12: {
-        question: "Why is an American option never worth less than an otherwise identical European one?",
+        question: "When should technical debt be repaid?",
         options: [
-          "Because it grants the extra right of early exercise with no added obligation",
-          "Because it always has a longer time to expiry",
-          "Because it trades on markets with deeper liquidity",
-          "Because it requires no initial margin from the buyer",
+          "When it is slowing down the very work you are about to do",
+          "As soon as it is found, since the cost only grows over time",
+          "At the end of each development cycle, with time set aside",
+          "When the team has run out of new work and has spare capacity",
         ],
         explanation:
-          "Adding a right without adding an obligation cannot reduce value. For a call on a non-dividend-paying asset, though, that right is rarely worth using.",
+          "Not all debt is worth repaying - ugly code nobody touches can stay. Debt worth repaying is debt charging interest: the part you must edit this time and next time too. Waiting for spare capacity means waiting forever.",
       },
       l9_q13: {
-        question: "What does the suitability rule require of an adviser before recommending an investment?",
+        question: "Why are developers' time estimates usually short?",
         options: [
-          "Understanding the client's finances, objectives and risk tolerance",
-          "Giving every client the same recommendation, to be fair",
-          "Favouring products issued by the adviser's own firm",
-          "Guaranteeing a return above the bank deposit rate",
+          "They estimate the writing and forget review, fixes and deployment",
+          "They deliberately understate so the work gets approved more easily",
+          "Requirements always change after the estimate has been given",
+          "Nobody measures actual time afterwards, so no lessons are drawn",
         ],
         explanation:
-          "A recommendation that is right for one person can be entirely wrong for another, so the client profile has to come before the recommendation, not after.",
+          "The question in your head is \"how long to write it\", but real time includes review, addressing comments, testing, deploying and patching afterwards. That forgotten part is often as large as the writing.",
       },
       l9_q14: {
-        question: "Whose interests does the Loyalty, Prudence and Care standard put first?",
+        question: "What does an open-source library's licence decide?",
         options: [
-          "The client's, ahead of the firm's and your own",
-          "The employer's, since it pays the salary",
-          "The firm's shareholders', since they carry the greatest capital risk",
-          "The market regulator's, since it holds the power to sanction",
+          "On what terms you may use, modify and redistribute it",
+          "Whether the library will be maintained and supported long term",
+          "Whether you must pay to use it for commercial purposes",
+          "Who is liable if the library causes harm to your users",
         ],
         explanation:
-          "The order of priority in the Code is explicit: client first, then employer, and personal interest last. This is what separates a fiduciary duty from an ordinary commercial relationship.",
+          "A licence sets the terms of use, and some require you to open your own source when you distribute - which can sink a closed product if nobody read it first. Nearly every licence disclaims all liability.",
       },
       l9_q15: {
-        question: "Under international standards, what is the effect of capitalising development costs?",
+        question: "What should a developer's CV emphasise?",
         options: [
-          "Assets and current-period profit rise, but amortisation rises in later periods",
-          "Both assets and profit fall in the period the cost is incurred",
-          "No effect on the financial statements, as this is only a note disclosure",
-          "Operating cash flow rises while profit stays unchanged",
+          "Work done and measurable outcomes, rather than a list of technologies",
+          "Every language and tool ever touched, so that nothing is left out",
+          "The learning path taken and the certifications passed in the field",
+          "Length of tenure at each company, to demonstrate stability",
         ],
         explanation:
-          "Capitalising puts the cost on the balance sheet instead of straight against profit, so this period looks better and later ones worse through amortisation. It also moves the cash outflow from operating into investing.",
+          "A technology list cannot separate someone who read a book from someone who ran it at real scale. \"Cut page load from 4 seconds to 1\" says more than ten lines of library names.",
       },
       l9_q16: {
-        question: "The capital asset pricing model assumes investors are compensated for which risk only?",
+        question: "Why think aloud during a technical interview?",
         options: [
-          "Systematic risk, the part diversification cannot remove",
-          "The entire risk of each individual asset in the portfolio",
-          "The asset's liquidity risk on the secondary market",
-          "The credit risk of whoever issued the asset",
+          "The interviewer is judging how you think, not just the final answer",
+          "Speaking helps you catch flaws in your own reasoning sooner",
+          "The interviewer will hint when they see you heading the wrong way",
+          "Long silences are read as a sign of low confidence at work",
         ],
         explanation:
-          "The core logic of CAPM: the market does not pay for risk an investor could have removed for free. Only the undiversifiable part, measured by beta, earns compensation.",
+          "The puzzle is a pretext; what is being measured is how you decompose a problem and handle being stuck - because that is the daily job. Silence followed by a correct answer conveys far less.",
       },
       l9_q17: {
-        question: "Why does a callable bond usually yield more than a straight bond?",
+        question: "How does working at an outsourcing firm differ from a product company?",
         options: [
-          "Because the issuer can call it in exactly when rates fall",
-          "Because callable bonds always carry a lower credit rating",
-          "Because callable bonds always have a longer maturity",
-          "Because this type of bond may not be traded on the secondary market",
+          "Outsourcing means many short projects; product means depth in one",
+          "Outsourcing pays less but offers more flexible working hours",
+          "Outsourcing uses older technology, while product work is always current",
+          "Outsourcing offers no path into management positions later on",
         ],
         explanation:
-          "The call is an option belonging to the issuer, and they will use it at the worst moment for the investor - when rates fall and the bond is appreciating. The higher yield is the price of that option.",
+          "The essential difference is breadth versus depth: hand over and move on, or live with the consequences of a decision you made two years ago. Pay and technology depend on the company, not the model.",
       },
       l9_q18: {
-        question: "What is the Independence and Objectivity standard aimed at preventing?",
+        question: "What is an early sign of professional burnout?",
         options: [
-          "Gifts, hospitality or outside pressure distorting professional judgement",
-          "A professional working for two financial firms at the same time",
-          "An analyst issuing a recommendation that differs from market consensus",
-          "The use of third-party analysis software at work",
+          "Still putting in the hours while work slows and starting feels hard",
+          "Working overtime continuously for many weeks without a break",
+          "Frequent disagreements with colleagues about how to work",
+          "Losing interest in new technology and avoiding learning more",
         ],
         explanation:
-          "The focus is protecting the objectivity of judgement. A recommendation against the crowd is entirely legitimate if it is well founded - the problem only arises when judgement is swayed by interests outside the analysis.",
+          "Burnout arrives before it is recognised, and it shows in output rather than hours - still at the desk, but every task now takes twice as long. Overtime is a common cause, not a symptom.",
       },
       l9_q19: {
-        question: "In portfolio theory, how does the capital market line differ from the security market line?",
+        question: "What is the most effective way to learn a new technology?",
         options: [
-          "The capital market line measures risk by standard deviation, the other by beta",
-          "The capital market line applies only to bonds and the other only to equities",
-          "The capital market line slopes downward while the security market line slopes up",
-          "The capital market line is built from past data and the other from forecasts",
+          "Get something small working, then read the docs where you got stuck",
+          "Read the official documentation right through before starting",
+          "Watch a full video course and rebuild the sample project exactly",
+          "Read the library's source code to understand how it operates",
         ],
         explanation:
-          "The capital market line describes efficient portfolios combining the risk-free asset with the market portfolio, measuring total risk by standard deviation. The security market line applies to any asset and measures systematic risk only.",
+          "Knowledge sticks when it attaches to a problem you actually have. Reading everything before having any questions mostly evaporates, and rebuilding a sample gives a feeling of understanding you cannot verify.",
       },
       l9_q20: {
-        question: "Why is yield to maturity not the return actually realised in most cases?",
+        question: "How should you begin contributing to an open-source project?",
         options: [
-          "Because it assumes holding to maturity and reinvesting coupons at that same rate",
-          "Because it is stated before the tax the investor owes on the interest",
-          "Because it is computed on par value rather than the actual market price",
-          "Because it applies only to bonds that pay no periodic coupon",
+          "Fix a small bug or the documentation to learn the project's process",
+          "Propose a large feature you believe the project is currently missing",
+          "Read the whole source before submitting your first contribution",
+          "Ask the maintainer which part they would like you to work on first",
         ],
         explanation:
-          "Both implicit assumptions rarely hold: the investor may sell early, and reinvestment rates move with the market. The gap between YTM and the realised return is precisely reinvestment risk.",
+          "A first contribution should be small so you learn the process - running the tests, commit conventions, the review cycle - without much at stake. Large features proposed cold are usually declined as off-direction.",
       },
     },
   },
   10: {
-    title: "Legend Exam - Level 10: Investing Legend",
+    title: "Legend Exam - Level 10: Technology Legend",
     questions: {
       l10_q1: {
-        question: "Beyond the market factor, which two factors does the Fama-French three-factor model add?",
+        question: "Under the CAP theorem, what must a distributed system choose when the network partitions?",
         options: [
-          "Company size and valuation against book value",
-          "Expected inflation and exchange-rate volatility",
-          "The world crude oil price and the international gold price",
-          "The dividend yield and the prevailing policy rate",
+          "Between answering with possibly stale data, and refusing to answer",
+          "Between fast responses, and durability of the data already written",
+          "Between spreading load evenly, and keeping data in one place",
+          "Between encrypting traffic, and cutting latency between data centres",
         ],
         explanation:
-          "Fama-French adds a size factor and a value factor to the market risk premium of the original single-factor model.",
+          "A partition happens to you rather than being chosen, so the real choice is only between consistency and availability. A system choosing availability still answers but may be stale; one choosing consistency returns an error.",
       },
       l10_q2: {
-        question: "A credit default swap works like which product?",
+        question: "What does eventual consistency mean?",
         options: [
-          "An insurance contract against a bond defaulting",
-          "A mortgage secured on property you already own",
-          "Preferred shares paying a fixed annual dividend",
-          "A term deposit at a commercial bank",
+          "Replicas converge on one value if writing stops for long enough",
+          "Every read sees the newest write after a fixed, known delay",
+          "Data is flushed to disk before success is reported to the caller",
+          "Replicas synchronise instantly thanks to batched transmission",
         ],
         explanation:
-          "The buyer pays a periodic fee and is compensated if the issuer defaults. Unlike insurance, the buyer does not need to own the bond at all.",
+          "The only promise is convergence, with no time bound attached. So code that reads after writing must tolerate a stale value - not seeing the record you just created is very common.",
       },
       l10_q3: {
-        question: "What characterises a black swan event, in Nassim Taleb's sense?",
+        question: "What does an idempotency key on a payment API solve?",
         options: [
-          "Very rare, enormous impact, and only sounds reasonable after it happened",
-          "Predictable precisely, on a regular repeating cycle",
-          "Occurring only in emerging and developing economies",
-          "Causing violent price moves without creating real financial risk",
+          "A dropped connection retried does not create a second transaction",
+          "Several users at once cannot overwrite each other's transactions",
+          "Transactions are processed in the order the client submitted them",
+          "The server refuses requests arriving too quickly from one source",
         ],
         explanation:
-          "The third element is the sharp one: after the event, everyone can build a story that makes it look inevitable, and that story hides the fact that nobody saw it coming.",
+          "A client cannot distinguish \"the server never received it\" from \"it succeeded but the response was lost\". The key lets the server recognise the repeat and return the earlier result rather than charging again.",
       },
       l10_q4: {
-        question: "Which set of portfolios does the Markowitz efficient frontier represent?",
+        question: "What is the core problem with a transaction spanning several services?",
         options: [
-          "Those with the highest return at each defined level of risk",
-          "Those allocated entirely to the highest-risk equities",
-          "Those holding only cash and other risk-free assets",
-          "Those with equal weights across every asset class",
+          "No single authority can guarantee they all succeed or all fail",
+          "Network latency pushes total processing past the allowed limit",
+          "Each service uses a different database with different syntax",
+          "The number of calls grows exponentially as services are added",
         ],
         explanation:
-          "Every portfolio below the frontier is dominated: there is always another offering a higher return at the same level of risk.",
+          "Within one database the transaction handles it; across five services nothing spans all five. That is why people use sagas: a sequence of steps with compensating steps, accepting a period of being half done.",
       },
       l10_q5: {
-        question: "What is a currency carry trade?",
+        question: "How does the circuit breaker pattern work?",
         options: [
-          "Borrowing a low-rate currency to invest in a high-rate one",
-          "Trading physical gold between markets in different countries",
-          "Borrowing short-term to invest in rental property",
-          "Sending remittances home through official banking channels",
+          "It stops calling a failing service for a while, then probes gently",
+          "It redirects calls to a standby service that is currently healthy",
+          "It caps how many calls may be in flight to one service at a time",
+          "It retries failed calls with a wait that grows with each attempt",
         ],
         explanation:
-          "The profit comes from the rate differential and the risk sits in the exchange rate: one currency move can wipe out years of accumulated carry.",
+          "Once a service is down, continuing to call wastes resources on both sides and lengthens its recovery. The breaker opens so calls fail fast, then half-opens to test. Capping concurrency is a bulkhead; growing waits are backoff.",
       },
       l10_q6: {
-        question: "How does the Treynor ratio's denominator differ from Sharpe's?",
+        question: "Why should a service be stateless when running several copies?",
         options: [
-          "It uses beta instead of the portfolio's standard deviation",
-          "It uses the portfolio's revenue instead of its profit",
-          "It removes risk from the calculation entirely",
-          "It counts only the dividends received in the period",
+          "Any request can go to any copy, so copies are easy to add or remove",
+          "Each copy's memory is released after every request has been handled",
+          "A service without state runs considerably faster than one with it",
+          "State held in memory is easily lost when the process restarts",
         ],
         explanation:
-          "Sharpe measures against total risk, Treynor only against systematic risk - which makes Treynor the right one when the portfolio is part of a larger whole.",
+          "Keeping a session in memory forces a user back to the copy that served them, which destroys the freedom to add copies or restart any of them. Pushing state outside is the precondition for scaling out.",
       },
       l10_q7: {
-        question: "What does bearish RSI divergence warn of?",
+        question: "What is the main benefit of a message queue?",
         options: [
-          "Price is making new highs while the momentum behind it fades",
-          "Price is about to enter a stronger, more decisive rally",
-          "The current uptrend is being confirmed and will run for a long time",
-          "The market will trade sideways in a narrow range for a long stretch",
+          "The sender need not wait, and traffic peaks get smoothed out",
+          "Messages are guaranteed to be processed exactly once and in order",
+          "The receiver processes faster because data is already in memory",
+          "Neither side needs to know the other's network address",
         ],
         explanation:
-          "Divergence is a warning, not an entry signal: momentum can fade for a long time before the price actually turns.",
+          "A queue decouples the pace of the two sides: submit ten thousand jobs in a second, process them over ten minutes. Exactly-once is what most queues do NOT promise - they promise at least once, so the receiver must be idempotent.",
       },
       l10_q8: {
-        question: "How does the Fama-French three-factor model challenge CAPM?",
+        question: "Why are microservices not always the right answer?",
         options: [
-          "Beta alone does not explain the return differences between stocks",
-          "The risk-free rate does not exist in practice, so the model is meaningless",
-          "Investors in practice pay no attention to risk when deciding",
-          "Markets are always efficient, so every pricing model gives the same answer",
+          "You trade independence for network latency and much harder debugging",
+          "Microservices need more servers, so infrastructure costs rise sharply",
+          "Each service has to be written in a different language to suit it",
+          "Databases must be split, so data ends up duplicated in many places",
         ],
         explanation:
-          "Empirical data shows small-cap and value stocks return more than beta predicts, which means more factors are needed.",
+          "An in-process call always succeeds and takes nanoseconds; over the network there is latency, failure and timeout. A team of ten splitting into twenty services usually manufactures more work than it removes.",
       },
       l10_q9: {
-        question: "Where does a portfolio's liquidity risk show up most clearly?",
+        question: "How does event sourcing differ from storing current state?",
         options: [
-          "The cost and time it takes to exit a position when you must sell fast",
-          "The daily price volatility of the assets in the portfolio",
-          "The cash weight the portfolio holds at each month end",
-          "How many different assets the portfolio is spread across",
+          "It stores the sequence of changes and rebuilds state, rather than overwriting",
+          "It keeps state in memory and writes it down to disk periodically",
+          "It keeps several copies of the state in case one becomes corrupt",
+          "It stores state with a timestamp showing the most recent edit",
         ],
         explanation:
-          "An asset can be marked at a very high value and still be unsellable at that price, and the gap only reveals itself exactly when markets are tight.",
+          "The source of truth is the sequence of events that happened, and state is merely the result of replaying them. You gain full history and the ability to build new views from old data - at the cost of much harder querying.",
       },
       l10_q10: {
-        question: "Why is the geometric average return lower than the arithmetic average?",
+        question: "What does backpressure mean in a streaming system?",
         options: [
-          "Because volatility erodes accumulated value across consecutive periods",
-          "Because the geometric average already deducts trading costs",
-          "Because the arithmetic average counts dividends and the geometric does not",
-          "Because the geometric average only applies to periods with positive returns",
+          "The receiver signals the sender to slow when it cannot keep up",
+          "The sender slows itself when it detects network latency rising",
+          "The system discards messages once the queue passes a threshold",
+          "Older messages are evicted to make room for newer arrivals",
         ],
         explanation:
-          "Losing 50% then gaining 50% averages arithmetically to zero, while you are actually down 25%. The more volatile the series, the wider the gap between the two figures.",
+          "Without a channel back, the sender keeps pushing until the receiver runs out of memory. Discarding messages is a way of COPING without backpressure, not the mechanism itself.",
       },
       l10_q11: {
-        question: "What characterises a protective put hedging strategy?",
+        question: "Why separate the read and write paths under heavy load?",
         options: [
-          "It caps the maximum loss but the premium must be paid up front",
-          "It removes all risk at no cost whatsoever",
-          "It raises profit when the market rises, through the option's leverage",
-          "It transfers all risk to the seller without capping the upside",
+          "The two have entirely different load shapes and tuning needs",
+          "The write path needs higher security, so it runs on its own machines",
+          "Separating lets each side use a programming language that suits it",
+          "A database cannot handle reads and writes on one table at once",
         ],
         explanation:
-          "This is portfolio insurance: the premium is the insurance cost, and it drags on returns through every stretch in which the market does not fall.",
+          "Reads are often a hundred times writes and tolerate data a few seconds old; writes are fewer but need consistency. Separating lets you replicate reads freely without touching the write path - the idea behind CQRS.",
       },
       l10_q12: {
-        question: "How does survivorship bias affect fund performance statistics?",
+        question: "What is a cache stampede?",
         options: [
-          "It flatters the average, because the poor funds have disappeared",
-          "It worsens the average, because good funds tend to close earlier",
-          "No effect, as long as the sample contains enough funds",
-          "It only affects venture funds, not ordinary open-ended funds",
+          "One key expires and thousands of requests hit the source at once",
+          "The cache fills, so old keys are evicted before they expire",
+          "Cached data drifts from the source because an update failed",
+          "Several processes write one key and corrupt its stored value",
         ],
         explanation:
-          "Funds that perform badly are closed or merged away and leave the database, so the remaining sample is only the survivors - the difference is often over a percentage point a year.",
+          "A hot key expiring during peak traffic means thousands of requests all miss and all call the database. The fix is letting one request fetch while the rest wait, or spreading expiry times randomly.",
       },
       l10_q13: {
-        question: "What is the largest hidden trading cost on a large order?",
+        question: "What does database sharding trade away?",
         options: [
-          "Market impact: your own order pushing the price against you",
-          "The brokerage commission charged on each fill",
-          "The tax owed on the capital gain when you sell",
-          "The custody fee charged on the value of assets held",
+          "More write capacity, at the cost of expensive cross-shard queries",
+          "Faster reads, at the cost of data a few seconds behind the source",
+          "More capacity, at the cost of accepting data loss during failures",
+          "Lower cost, at the cost of needing specialised hardware to operate",
         ],
         explanation:
-          "Commissions and tax both appear on the statement. Market impact appears nowhere, and for a large fund it usually exceeds both.",
+          "Splitting data across machines raises write capacity, but any query not filtering on the shard key must ask every shard and merge. Choosing the wrong shard key is very hard to undo later.",
       },
       l10_q14: {
-        question: "Why can rebalancing a portfolio produce additional return?",
+        question: "What does a read replica NOT solve?",
         options: [
-          "Because it forces you to trim what has risen and add to what has fallen",
-          "Because it lowers the total trading cost incurred over the year",
-          "Because it keeps the portfolio closely tracking the chosen benchmark",
-          "Because it lets the investor avoid tax on realised capital gains",
+          "A primary overloaded by writes, since every write still goes there",
+          "Read traffic climbing during the busiest hours of the working day",
+          "High latency for users far from the main data centre",
+          "The risk of losing data when the primary's disk fails completely",
         ],
         explanation:
-          "The effect only appears when assets tend to revert to a mean. For assets that trend persistently, rebalancing reduces returns instead.",
+          "Replicas take reads only; every write still passes through the primary, so no number of replicas raises write capacity. For that you must shard or change the data model.",
       },
       l10_q15: {
-        question: "In factor investing, the quality factor is usually measured by which group of metrics?",
+        question: "Why is pessimistic locking dangerous under heavy load?",
         options: [
-          "Stable profitability, low leverage and low earnings volatility",
-          "How far the share price has risen over the last twelve months",
-          "Market capitalisation against the median of the whole exchange",
-          "Trading volume against the number of shares outstanding",
+          "Transactions queue behind each other, so one slow spot blocks all",
+          "Locks are not released if the process holding one stops abruptly",
+          "The database must keep an extra table tracking every held lock",
+          "Locks only work within one server rather than across machines",
         ],
         explanation:
-          "The quality factor captures businesses with durable foundations: high and stable ROE, low debt, earnings that do not swing. The second option is momentum, the third is size.",
+          "A lock turns parallel access into serial access, so throughput is capped by the slowest transaction. Optimistic locking - check a version at write time and retry on collision - usually suits better when conflicts are rare.",
       },
       l10_q16: {
-        question: "Why is a strategy built on historical data prone to data mining?",
+        question: "Why design a system to fail fast?",
         options: [
-          "Because testing enough rules on one dataset is certain to find one that fits by chance",
-          "Because historical market data may not legally be used commercially",
-          "Because the longer the data, the more statistical reliability decays exponentially",
-          "Because exchanges only keep historical data for a maximum of five years",
+          "The fault surfaces at its source rather than spreading as bad state",
+          "Failing fast saves server resources during an incident",
+          "Users prefer an error message to waiting for a long time",
+          "The system can restart itself as soon as a fault is detected",
         ],
         explanation:
-          "This is the multiple-comparisons problem: test thousands of rules against one price series and a few will look excellent purely by luck. Validating out of sample is the minimum defence.",
+          "Swallowing an error and continuing with a default sends wrong data far from its origin, surfacing three layers later somewhere unrelated. Stopping on the spot keeps cause and symptom close together.",
       },
       l10_q17: {
-        question: "What does a portfolio's tail risk refer to?",
+        question: "Why are machine clocks unreliable for ordering events in a distributed system?",
         options: [
-          "The chance of an extreme loss at low probability, far beyond the normal distribution",
-          "The risk of the portfolio being liquidated in the last sessions of the year",
-          "The return lost to trading costs on small odd-lot orders",
-          "The risk of the fund manager leaving at the end of the evaluation period",
+          "Clocks drift between machines, so two events can be ordered wrongly",
+          "Clocks run progressively slower if a machine is never restarted",
+          "Different time zones across data centres introduce large errors",
+          "The system clock resets whenever the server software is updated",
         ],
         explanation:
-          "Financial returns have fatter tails than the normal distribution, so severe crashes happen more often than the model predicts. This is the inherent weakness of VaR built on a normality assumption.",
+          "Even with NTP synchronisation, a few milliseconds of skew is enough to invert two events a millisecond apart. So distributed systems use logical clocks or version numbers instead of absolute timestamps.",
       },
       l10_q18: {
-        question: "How is the Calmar ratio calculated?",
+        question: "What does the bulkhead pattern mean in system design?",
         options: [
-          "Average annual return divided by the portfolio's maximum drawdown",
-          "Excess return divided by the standard deviation of negative returns",
-          "Return against the benchmark divided by tracking error",
-          "Portfolio return divided by beta against the broad market",
+          "Splitting resources into compartments so one failure cannot spread",
+          "Placing a barrier between the internal network and outside connections",
+          "Backing data up to several places to survive losing one data centre",
+          "Capping each message's size to stop the transport being congested",
         ],
         explanation:
-          "Calmar sets return against the worst pain the investor had to sit through. It fits when maximum drawdown, not standard deviation, is what makes people quit.",
+          "The name comes from a ship's sealed compartments: flood one and the ship floats. In software it means a separate connection pool per dependency, so one slow service cannot consume every thread in the application.",
       },
       l10_q19: {
-        question: "Why does even a small management fee matter so much to long-run results?",
+        question: "Why set resource limits on each container?",
         options: [
-          "Because the slice taken each year no longer compounds afterwards",
-          "Because management fees are charged progressively on the investor's assets",
-          "Because the tax authority treats management fees as taxable income",
-          "Because management fees always double every ten years of holding",
+          "One container leaking memory then cannot drag down the whole host",
+          "The scheduler needs the limits to place containers on the right hosts",
+          "Limits allow accurate costing of what each service consumes",
+          "A container over its limit is automatically replicated with a new copy",
         ],
         explanation:
-          "One percent a year sounds small, but over thirty years it eats roughly a quarter of the final value - because every dong taken in fees also takes away all the compounding that dong would have produced.",
+          "Without limits a leaking process consumes the host's RAM and the operating system starts killing other processes indiscriminately. Limits turn a whole-machine incident into a single-service one.",
       },
       l10_q20: {
-        question: "How does anchoring bias show up in investment decisions?",
+        question: "What is chaos engineering for?",
         options: [
-          "Clinging to an initial reference number, such as your purchase price",
-          "Seeking only information that supports a view you already hold",
-          "Overrating the probability of an event that has been all over the news",
-          "Selling winners too early and holding losers far too long",
+          "Breaking things deliberately while staffed, to expose wrong assumptions",
+          "Checking how many requests per second the system can withstand",
+          "Finding security holes by simulating genuine attacks on the system",
+          "Generating random data to test rare edge cases in the code",
         ],
         explanation:
-          "Anchoring turns your purchase price into the yardstick, even though the market does not care what you paid. The other three are confirmation bias, availability bias and loss aversion.",
+          "Distributed systems always fail; the question is when. Breaking them on purpose in daylight with people ready reveals what you believed you could survive and actually cannot - before it happens at three in the morning.",
+      },
+      l10_q21: {
+        question: "Why separate configuration from application source code?",
+        options: [
+          "One build then runs in every environment without being rebuilt",
+          "Configuration changes often, so it needs faster storage to read",
+          "Source code compresses smaller when it carries no configuration",
+          "Operators do not have access to the project's code repository",
+        ],
+        explanation:
+          "Building once and carrying that exact artefact from test to production is the only way to be sure what you tested is what runs. Configuration inside the code means a different build per environment.",
+      },
+      l10_q22: {
+        question: "What is an API gateway in front of many services for?",
+        options: [
+          "Centralising authentication, rate limiting and routing in one place",
+          "Caching every service's responses to reduce load on the system",
+          "Converting data between the formats each service happens to use",
+          "Monitoring service health and restarting them when they fail",
+        ],
+        explanation:
+          "Without a gateway every service implements authentication, rate limiting and logging itself - twenty slightly different versions. In exchange the gateway becomes a single point of failure unless carefully replicated.",
+      },
+      l10_q23: {
+        question: "Why set a deadline for a whole call chain rather than each call?",
+        options: [
+          "Five calls waiting two seconds each becomes ten seconds for the user",
+          "A total deadline lets the system prioritise the important requests",
+          "Per-call deadlines set by each service will conflict with each other",
+          "Per-call deadlines cannot be applied to asynchronous calls",
+        ],
+        explanation:
+          "A user waits for the total, not each hop, so the time budget must be divided and passed down: 300 milliseconds left means the service below knows not to spend more. Without it, deadlines simply add up.",
+      },
+      l10_q24: {
+        question: "Why are distributed locks hard to get right?",
+        options: [
+          "The holder can stall and the lease expire while it is still running",
+          "No database offers locking that spans several server machines",
+          "The network cost makes acquiring a lock slower than the work itself",
+          "Many processes requesting a lock at once will cause a deadlock",
+        ],
+        explanation:
+          "You believe you still hold the lock, but one garbage-collection pause longer than the lease means it has passed to someone else while you keep writing. Distributed locks therefore need fencing with an increasing version number.",
+      },
+      l10_q25: {
+        question: "Why use percentiles rather than an average to measure performance?",
+        options: [
+          "An average hides the tail, where the worst experience actually lives",
+          "An average is hard to compute accurately once samples grow numerous",
+          "Percentiles better reflect the speed of an average server machine",
+          "An average shifts sharply whenever new samples join the data set",
+        ],
+        explanation:
+          "One percent of users waiting ten seconds dissolves completely into a 200-millisecond average - and one percent at scale is thousands of people a day. p99 looks straight at that group.",
+      },
+      l10_q26: {
+        question: "Why measure before optimising?",
+        options: [
+          "Intuition about slowness is usually wrong, so effort gets wasted",
+          "Before-and-after figures are evidence to report to management",
+          "Automated profilers indicate precisely which code to rewrite",
+          "Unmeasured optimisation makes code harder to read for no clear gain",
+        ],
+        explanation:
+          "The most complicated-looking part is rarely the expensive one; a trivial N+1 query usually eats more than the algorithm you are worried about. Measure so the effort lands where the time actually goes.",
+      },
+      l10_q27: {
+        question: "Why does adding threads not always increase throughput?",
+        options: [
+          "When the bottleneck is a shared resource, more threads add contention",
+          "The operating system caps how many threads one process may create",
+          "Each thread uses memory, so RAM runs out before speed improves",
+          "Threads only run truly in parallel on machines with several processors",
+        ],
+        explanation:
+          "If every thread waits on the same database or the same lock, more threads only lengthen the queue and raise context-switching cost. Find the bottleneck before raising concurrency.",
+      },
+      l10_q28: {
+        question: "Why cap the size of a database connection pool?",
+        options: [
+          "A database performs best at one concurrency level and worse beyond",
+          "Each connection uses a network port and a machine has a finite number",
+          "Idle connections are still billed by the hour on cloud services",
+          "Many connections make establishing a new one noticeably slower",
+        ],
+        explanation:
+          "Too many concurrent connections make the database spend its time context switching and contending for locks rather than working - throughput falls as load rises. A pool keeps concurrency in the productive range.",
+      },
+      l10_q29: {
+        question: "Why avoid a network call inside a loop?",
+        options: [
+          "Per-round-trip cost multiplies, and one failure spoils the whole loop",
+          "The loop holds connections open long enough for the server to close them",
+          "Asynchronous code inside a loop cannot actually run in parallel",
+          "Networking libraries do not guarantee response order between calls",
+        ],
+        explanation:
+          "A hundred round trips at twenty milliseconds each is two seconds, nearly all of it waiting. Batch into one call, or run in parallel with a limit - this is the network version of the N+1 problem.",
+      },
+      l10_q30: {
+        question: "Why compress data before sending it over a wide-area network?",
+        options: [
+          "Bandwidth is usually the bottleneck, and compression costs little CPU",
+          "Compressed data encrypts better, so it is safer while in transit",
+          "The receiving server decompresses faster than it receives the data",
+          "Providers charge by packet count rather than by data volume",
+        ],
+        explanation:
+          "Over long distances, pushing bytes down the wire takes far longer than compressing and decompressing them, so the trade is nearly always favourable. Inside one data centre reconsider, since bandwidth there is much cheaper.",
+      },
+      l10_q31: {
+        question: "Why does skewed training data make a model learn the wrong thing?",
+        options: [
+          "The model learns exactly what it saw, and what it saw is not reality",
+          "Skewed data makes the training process converge more slowly",
+          "The model raises an error when it meets data unlike the training set",
+          "The optimiser gets trapped in a poor local minimum during training",
+        ],
+        explanation:
+          "A model knows nothing beyond the data you gave it; if the training set holds one group of users it will be excellent for them and poor for everyone else - while overall accuracy still looks fine.",
+      },
+      l10_q32: {
+        question: "How does overfitting show itself?",
+        options: [
+          "Excellent on the training data but markedly worse on new data",
+          "Poor on the training data and on the test data alike",
+          "Results swinging widely between separate training runs",
+          "Training taking much longer than originally anticipated",
+        ],
+        explanation:
+          "The model memorised the noise in the training set instead of the general rule. Poor on both sides is underfitting - the opposite problem with the opposite remedy, so diagnosing it wrongly sends you in exactly the wrong direction.",
+      },
+      l10_q33: {
+        question: "Why hold the test set out before doing anything else?",
+        options: [
+          "Touching it while choosing a model leaks the answers into your process",
+          "The test set must be normalised differently from the training set",
+          "Its size has to be fixed before the total data volume is known",
+          "Test data usually arrives later, so you must wait to gather it",
+        ],
+        explanation:
+          "Each time you look at the test score and adjust, a little of that information seeps into your choices. After twenty rounds the number no longer says anything about data the model has never seen.",
+      },
+      l10_q34: {
+        question: "Why is accuracy a poor metric on imbalanced data?",
+        options: [
+          "Always guessing the majority class scores high while detecting nothing",
+          "Accuracy cannot be computed when there are more than two classes",
+          "Accuracy shifts sharply with the classification threshold chosen",
+          "Accuracy can only be measured on the test set, not the training set",
+        ],
+        explanation:
+          "If one percent of transactions are fraudulent, a model always saying \"not fraud\" is 99% accurate and catches zero cases. Imbalanced data needs precision, recall and a confusion matrix.",
+      },
+      l10_q35: {
+        question: "What is data leakage in machine learning?",
+        options: [
+          "A feature carrying information only available after the outcome",
+          "Users' personal data escaping during the training process",
+          "The training and test sets sharing some identical records",
+          "The model memorising training data and reciting it back verbatim",
+        ],
+        explanation:
+          "The classic case is predicting churn with a \"cancellation date\" feature. The model scores 99% in testing and is useless in production, because at prediction time that feature does not yet exist.",
+      },
+      l10_q36: {
+        question: "Why must a deployed model be re-evaluated periodically?",
+        options: [
+          "The world changes, so the data drifts away from what it trained on",
+          "The model loses accuracy as errors accumulate over many predictions",
+          "Library updates alter how the computations produce their results",
+          "The weights degrade if the model runs continuously for too long",
+        ],
+        explanation:
+          "The weights do not change; what changes is the data arriving. User behaviour, seasonality, a new competitor - all shift the distribution, and the model keeps answering confidently while no longer being right.",
+      },
+      l10_q37: {
+        question: "Why can a large language model be confidently wrong?",
+        options: [
+          "It generates likely text rather than looking facts up to verify them",
+          "It is limited by its training data, so much information is missing",
+          "It favours a fast answer and skips the step of checking its work",
+          "It cannot distinguish a difficult question from an easy one",
+        ],
+        explanation:
+          "The mechanism is predicting a plausible next token, and a fabricated sentence is perfectly plausible as language. No step in that process compares against reality, so fluency says nothing about correctness.",
+      },
+      l10_q38: {
+        question: "Why log the inputs and outputs of a model used in a product?",
+        options: [
+          "Without them you cannot trace why a wrong result was produced",
+          "The provider requires logs in order to bill by number of calls",
+          "The logged data becomes the training set for the next version",
+          "Logging reveals when the model responds more slowly than usual",
+        ],
+        explanation:
+          "The model is a black box, so the exact input at the time is the only clue when a complaint arrives. But these logs hold user data, so retention and privacy need deciding deliberately.",
+      },
+      l10_q39: {
+        question: "Why have a fallback when calling an external model service?",
+        options: [
+          "It is a network dependency, so it will be slow, failing or rate limited",
+          "The external model may change version without any prior notice",
+          "Model calls are expensive, so the number of calls must be reduced",
+          "Model results are unstable between calls on the same input",
+        ],
+        explanation:
+          "A model service is just an HTTP API and carries every risk of one - plus much higher latency and tighter quotas. A feature depending on it must degrade gracefully rather than take the screen down.",
+      },
+      l10_q40: {
+        question: "How does an analytics warehouse differ from an operational database?",
+        options: [
+          "It is tuned for wide scans; the other for writing and reading single rows",
+          "It stores older data, while the operational database keeps only recent",
+          "It forbids editing data, while the operational one allows it freely",
+          "It uses its own query language rather than SQL like the other",
+        ],
+        explanation:
+          "The two workloads differ completely: fetching one order by id, versus scanning three years to compute a total. Running heavy reports straight against the operational database is how you slow the product down.",
+      },
+      l10_q41: {
+        question: "Why is columnar storage faster for analytical queries?",
+        options: [
+          "Only the needed columns are read, not whole rows of unused fields",
+          "Column data stays in the processor cache longer than row data does",
+          "Each column carries its own index, so lookups are always faster",
+          "The column format lets a query run in parallel across many machines",
+        ],
+        explanation:
+          "Summing one column of a fifty-column table forces a row store to read all fifty. Column storage also compresses far better because values in a column tend to be alike - two benefits compounding.",
+      },
+      l10_q42: {
+        question: "Why should a data pipeline be re-runnable over a past window?",
+        options: [
+          "A logic fault found late requires recomputing days already processed",
+          "Source data usually arrives late, so everything must be redone",
+          "Re-running checks whether the pipeline is still working correctly",
+          "The storage system requires data to be rewritten periodically",
+        ],
+        explanation:
+          "Mistakes in a transformation typically surface weeks later, and then you need to recompute exactly that window without disturbing the rest. A pipeline that only runs for today turns the fix into a disaster.",
+      },
+      l10_q43: {
+        question: "Why check data quality inside the pipeline itself?",
+        options: [
+          "Bad data spreads into every report and model downstream of it",
+          "Early checks speed the pipeline up by discarding fewer records",
+          "The source will correct itself if told as soon as a fault appears",
+          "Regulations require every data anomaly to be formally recorded",
+        ],
+        explanation:
+          "A column that suddenly goes entirely empty flows quietly into reports and models, and people only notice when a decision goes wrong. Stopping it at the door is far cheaper than tracing back from the result.",
+      },
+      l10_q44: {
+        question: "How does batch processing differ from stream processing?",
+        options: [
+          "Batch gathers data and runs periodically; streams process on arrival",
+          "Batch runs across many machines, while a stream runs on just one",
+          "Batch suits large data, while streams suit smaller data volumes",
+          "Batch guarantees no data loss, while streaming accepts some loss",
+        ],
+        explanation:
+          "The difference is the latency you can accept: a daily report is simpler and cheaper as a batch; fraud detection has to be a stream. Both run distributed and both can guarantee delivery.",
+      },
+      l10_q45: {
+        question: "Why keep raw data alongside the processed version?",
+        options: [
+          "Transformations can be wrong, and only raw data allows redoing them",
+          "Raw data occupies less space than the processed version does",
+          "Regulations require the original of all collected data to be kept",
+          "Raw data queries faster because it has not been transformed yet",
+        ],
+        explanation:
+          "When you discover a formula was wrong six months ago, raw data is the only thing that lets you rebuild. It usually costs MORE space and queries more slowly - that is the price of being able to go back.",
+      },
+      l10_q46: {
+        question: "Why anonymise personal data in test environments?",
+        options: [
+          "Test environments are less controlled while the data is just as real",
+          "Anonymised data makes the test environment run faster than production",
+          "The reduced data volume saves a considerable amount on storage",
+          "Developers are not permitted to see the data of genuine users",
+        ],
+        explanation:
+          "Copying the production database into testing is the most common way personal data leaks: identical sensitivity, fewer protections, more people with access, and routinely forgotten at cleanup time.",
+      },
+      l10_q47: {
+        question: "Why is honouring a deletion request difficult?",
+        options: [
+          "The record has been copied into backups, logs and the warehouse",
+          "Databases cannot delete permanently, only mark rows as deleted",
+          "Removing a row breaks the foreign key constraints of other tables",
+          "Users cannot usually identify precisely which data is theirs",
+        ],
+        explanation:
+          "A record rarely lives in one place: it is in a three-month-old backup, in logs, in the analytics warehouse and in a cache. Designing for deletion must happen up front; it cannot be retrofitted.",
+      },
+      l10_q48: {
+        question: "Why put a limit on how long data is retained?",
+        options: [
+          "Data no longer needed remains a liability if it ever leaks",
+          "Databases slow down once the row count passes a threshold",
+          "Storage is the largest single cost of most running systems",
+          "Old data skews analysis away from the current situation",
+        ],
+        explanation:
+          "Data you do not hold cannot be stolen. That is why a retention lifecycle counts as a security control rather than merely as housekeeping.",
+      },
+      l10_q49: {
+        question: "Why define a business metric in exactly one place?",
+        options: [
+          "Teams computing it separately produce different numbers for one name",
+          "Central computation speeds queries up by reusing earlier results",
+          "Reporting tools can only read definitions from a single source",
+          "A central definition reduces the storage the warehouse consumes",
+        ],
+        explanation:
+          "\"Active users\" over seven days or thirty, counting trial accounts or not - each team choosing gives two reports with one name and two numbers, and the meeting becomes an argument about data.",
+      },
+      l10_q50: {
+        question: "Why fix the sample size before running an A/B test?",
+        options: [
+          "Stopping the moment results look good is a way of fooling yourself",
+          "The sample size determines the infrastructure the test will need",
+          "Without it users cannot be divided evenly between the two groups",
+          "A larger sample lets the test finish sooner than expected",
+        ],
+        explanation:
+          "Watching continuously and stopping at significance almost always finds a \"result\", even between two identical groups. Fixing the size and duration up front is what keeps the number meaningful.",
+      },
+      l10_q51: {
+        question: "What does correlation not implying causation mean in practice?",
+        options: [
+          "Two metrics rising together may both be caused by a third thing",
+          "Observational data is always less trustworthy than experimental data",
+          "A high correlation usually indicates an error somewhere in the data",
+          "Causation can only be demonstrated with a very large sample size",
+        ],
+        explanation:
+          "Heavy users retain better - but perhaps because they liked the product already, not because usage causes loyalty. Pushing people to use it more may improve nothing at all.",
+      },
+      l10_q52: {
+        question: "Why measure by cohort rather than in aggregate?",
+        options: [
+          "New arrivals mask existing users quietly leaving the product",
+          "Splitting into groups makes queries run faster on large data",
+          "Aggregates cannot be computed when users have several devices",
+          "Cohorts allow comparison against competitors in the same industry",
+        ],
+        explanation:
+          "Total active users climbs steadily while every cohort churns quickly - you only need to recruit fast enough. Cohorts are the only way to see whether the product actually holds people.",
+      },
+      l10_q53: {
+        question: "Why can a badly chosen metric cause harm?",
+        options: [
+          "The team will optimise that number even where it damages the product",
+          "A wrong metric makes collecting the data more expensive than needed",
+          "Reports will contradict the other metrics currently being tracked",
+          "Leadership will lose confidence in the data team over time",
+        ],
+        explanation:
+          "Measure time spent in the app and people will make it harder to use so users stay longer. A metric that becomes a target stops being a good measure - and that happens fast.",
+      },
+      l10_q54: {
+        question: "Why sample when exploring an enormous data set?",
+        options: [
+          "An approximate answer in ten seconds beats an exact one in half an hour",
+          "Sampling makes outliers easier to spot than the full data would",
+          "Querying everything can damage the index on the source table",
+          "Results on a sample are more accurate because noise is removed",
+        ],
+        explanation:
+          "While hunting for a hypothesis you need a fast loop, not a final number. Run on one percent to eliminate nine wrong hypotheses, then run fully on the one that survives.",
+      },
+      l10_q55: {
+        question: "Why version both the model and its training data?",
+        options: [
+          "Without it you cannot reproduce the result a given model produced",
+          "Versioning saves space by storing only the differences between runs",
+          "Several models running in parallel must be told apart from each other",
+          "Deployment tooling requires every component to carry a version",
+        ],
+        explanation:
+          "A model behaving oddly cannot be investigated if you do not know which data, which code and which parameters produced it. Code has git, but data and weights need their own mechanism.",
+      },
+      l10_q56: {
+        question: "Why is batch inference cheaper than per-request inference?",
+        options: [
+          "The fixed cost of each invocation is shared across many records",
+          "The model is more accurate when handling many records together",
+          "Batch results are cached, so the next run need not recompute",
+          "Graphics processors only operate in batch mode at all",
+        ],
+        explanation:
+          "Loading the model, moving data to the device and starting the compute kernels cost roughly the same for one record as for a thousand. You pay for it in latency, so it only suits work nobody is waiting on.",
+      },
+      l10_q57: {
+        question: "Why keep a human in the loop for high-stakes decisions?",
+        options: [
+          "A model cannot be accountable, while the consequences are very real",
+          "Humans handle the cases the model has never encountered before",
+          "Regulations forbid automating these decisions entirely in all cases",
+          "Human judgements become training data for the following version",
+        ],
+        explanation:
+          "Refusing a loan or flagging an account for fraud affects someone's life, and the model's error rate is not zero. How much you automate should fall as the harm from being wrong rises.",
+      },
+      l10_q58: {
+        question: "Why monitor the input distribution of a running model?",
+        options: [
+          "Drifting inputs are an early signal, before poor results become visible",
+          "The input distribution determines the server resources to provision",
+          "Monitoring inputs reveals users submitting deliberately harmful data",
+          "The model must be retrained whenever its inputs change at all",
+        ],
+        explanation:
+          "True labels arrive very late - whether a loan defaults takes months. But you can see today that the average age of applicants has shifted, and that is a signal you can act on.",
+      },
+      l10_q59: {
+        question: "Why start with a simple solution before reaching for machine learning?",
+        options: [
+          "Simple rules are often good enough, and they set the baseline to beat",
+          "Machine learning only works once a large volume of data exists",
+          "A simple solution ships sooner, so the product launches earlier",
+          "Machine learning models cost far more to operate than rules do",
+        ],
+        explanation:
+          "Without a baseline, \"85% accurate\" says nothing - a three-line rule might score 84%. And if it does, the entire operating cost of the model buys one percentage point.",
+      },
+      l10_q60: {
+        question: "Why does explainability of a model matter?",
+        options: [
+          "Those affected need a reason, and you need one to fix it when wrong",
+          "Explainable models are always more accurate than opaque ones",
+          "Explanations shorten training time on subsequent runs",
+          "Only explainable models can be deployed into production at all",
+        ],
+        explanation:
+          "When a model refuses someone, \"the model said so\" does not work for the user, for legal, or for you while debugging. Explainability usually costs some accuracy.",
+      },
+      l10_q61: {
+        question: "What does an XSS attack exploit?",
+        options: [
+          "A page rendering user input without neutralising the code within it",
+          "A server not checking permissions before returning sensitive data",
+          "An attacker guessing another user's session identifier correctly",
+          "A browser attaching cookies when a user clicks through to another site",
+        ],
+        explanation:
+          "User-supplied content is embedded into the page and becomes code running in the victim's browser with the full rights of their session. The defence is escaping on output, not filtering on input.",
+      },
+      l10_q62: {
+        question: "What essentially separates CSRF from XSS?",
+        options: [
+          "CSRF borrows an existing session; XSS runs code in the victim's page",
+          "CSRF targets the server, while XSS only affects the browser",
+          "CSRF needs the victim's password, while XSS needs nothing at all",
+          "CSRF works only with forms, while XSS works on any page",
+        ],
+        explanation:
+          "CSRF reads nothing - it merely causes the victim's browser to send a request carrying existing cookies. Which is why an anti-CSRF token works: the attacker can trigger a request but cannot read the token to attach.",
+      },
+      l10_q63: {
+        question: "Why does the SameSite cookie attribute reduce CSRF risk?",
+        options: [
+          "The browser stops attaching the cookie to requests from other sites",
+          "The cookie gets an extra layer of encryption before transmission",
+          "The cookie becomes readable only by JavaScript on that same domain",
+          "The cookie expires as soon as the user navigates away from the site",
+        ],
+        explanation:
+          "SameSite cuts exactly the mechanism CSRF depends on: cookies riding along automatically. Blocking JavaScript access is `HttpOnly` and requiring HTTPS is `Secure` - three attributes for three separate risks.",
+      },
+      l10_q64: {
+        question: "Why not write your own encryption algorithm?",
+        options: [
+          "Subtle flaws never surface in testing, only under real attack",
+          "A hand-written algorithm runs far slower than the standard library",
+          "Regulations require using algorithms approved by an authority",
+          "A custom algorithm will not interoperate with partners' systems",
+        ],
+        explanation:
+          "Broken encryption still produces random-looking output and still decrypts correctly - every test passes. The weakness only shows to someone who knows how to analyse it, and by then the data is long gone.",
+      },
+      l10_q65: {
+        question: "How is a man-in-the-middle attack prevented?",
+        options: [
+          "By verifying the server's identity with a certificate a trusted party signed",
+          "By encrypting all data before it is sent across the network",
+          "By using a password long enough that an attacker cannot guess it",
+          "By checking the server's IP address before each connection is made",
+        ],
+        explanation:
+          "Encryption alone is not enough - the man in the middle establishes an encrypted channel with both sides. What stops it is authentication: the certificate proving the far end owns that domain, which is precisely what is skipped when people disable certificate checks.",
+      },
+      l10_q66: {
+        question: "Why filter with an allow list rather than a deny list?",
+        options: [
+          "A deny list is always incomplete, since you must foresee every attack",
+          "An allow list is shorter, so the system checks it more quickly",
+          "A deny list must be updated constantly as new threats emerge",
+          "An allow list is easier for a newcomer to read in the configuration",
+        ],
+        explanation:
+          "A deny list asks you to enumerate everything bad - a list that is never finished, and each gap is a way in. An allow list asks you to enumerate the good, which is what you actually know.",
+      },
+      l10_q67: {
+        question: "Why rotate secrets on a schedule?",
+        options: [
+          "A key leaked unnoticed loses its access when the rotation happens",
+          "A key used for a long time is rejected by the encryption algorithm",
+          "Rotation makes it possible to tell who used the key and when",
+          "Regulations require every key to be replaced each period",
+        ],
+        explanation:
+          "Most key leaks are never detected. Rotation puts an expiry on every copy in circulation, including copies you do not know exist - turning an open-ended incident into a bounded one.",
+      },
+      l10_q68: {
+        question: "Why can server-side validation not be replaced by checks in a mobile app?",
+        options: [
+          "The app sits on the user's device, so it can be decompiled and altered",
+          "A mobile app lacks the resources to run thorough validation",
+          "Older app versions will not carry the newest validation rules",
+          "A flaky network makes validation results untrustworthy",
+        ],
+        explanation:
+          "The installation package can be downloaded, opened and edited, and requests can be crafted by hand without the app at all. Everything running on a user's device is under their control.",
+      },
+      l10_q69: {
+        question: "What does certificate pinning protect against?",
+        options: [
+          "A certificate authority being compromised and signing a fake certificate",
+          "The server's certificate expiring before anyone renews it",
+          "An attacker intercepting and reading already-encrypted packets",
+          "A user installing a counterfeit app from an unofficial source",
+        ],
+        explanation:
+          "Browsers trust hundreds of certificate authorities; compromising any one of them yields a valid certificate for your domain. Pinning narrows that trust down to the certificate you nominate.",
+      },
+      l10_q70: {
+        question: "Why divide a network into separate zones?",
+        options: [
+          "Compromising one machine does not mean reaching the database",
+          "Traffic is distributed more evenly, so network performance improves",
+          "Each zone can use its own address range for easier administration",
+          "Zoning reduces the cost of transferring data between servers",
+        ],
+        explanation:
+          "The correct assumption is that a machine will be compromised eventually. Segmentation decides how far the attacker gets - a web server sharing a zone with the database means one flaw loses everything.",
+      },
+      l10_q71: {
+        question: "Why disable password authentication for SSH?",
+        options: [
+          "A port open to the internet is subjected to automated guessing constantly",
+          "Passwords sent over SSH are not encrypted the way public keys are",
+          "Password sign-in is slower because the server has to verify it",
+          "Passwords are not written to logs, so tracing afterwards is harder",
+        ],
+        explanation:
+          "Any server exposing port 22 receives thousands of attempts a day from botnets. Public keys make guessing pointless. Passwords ARE encrypted in transit - that is not the issue.",
+      },
+      l10_q72: {
+        question: "Why run services under a low-privilege account?",
+        options: [
+          "A flaw in the service grants the attacker only that account's rights",
+          "A low-privilege account consumes fewer system resources",
+          "The operating system logs low-privilege accounts in more detail",
+          "Services running as root are limited by the system in connections",
+        ],
+        explanation:
+          "Remote code execution as administrator loses the machine; under an account that can only read the application directory the damage is bounded. This is also why containers should not run as root.",
+      },
+      l10_q73: {
+        question: "Why write audit logs somewhere the application cannot delete?",
+        options: [
+          "An attacker with control will erase traces stored in the same place",
+          "Audit logs are large, so they need separate storage anyway",
+          "Slow log writing would otherwise degrade the main service",
+          "Regulations require logs to be stored in several locations",
+        ],
+        explanation:
+          "The first thing an attacker with privileges does is clear the logs. Append-only writes to a separate system the application cannot delete from is what preserves the story after everything else is lost.",
+      },
+      l10_q74: {
+        question: "Why rehearse security incident response?",
+        options: [
+          "Under real pressure nobody reads documents; people do what they practised",
+          "Rehearsal uncovers vulnerabilities not previously known about",
+          "Regulations require organisations to rehearse annually",
+          "Rehearsal is the cheapest way to train new staff in security",
+        ],
+        explanation:
+          "A real incident happens at midnight with incomplete information and high pressure - exactly when the ability to read documentation is zero. Rehearsal also exposes gaps like nobody knowing the provider's phone number.",
+      },
+      l10_q75: {
+        question: "How does zero trust differ from the perimeter model?",
+        options: [
+          "Every request is authenticated, including those from the internal network",
+          "No device is permitted to connect to the company network at all",
+          "All data is encrypted even when stored on internal machines",
+          "Staff reach systems only through one tightly controlled gateway",
+        ],
+        explanation:
+          "The perimeter model treats the internal network as safe, so compromising one laptop grants free movement inside. Zero trust drops that assumption: network location is no longer evidence of permission.",
+      },
+      l10_q76: {
+        question: "Why scan dependencies in continuous integration?",
+        options: [
+          "New vulnerabilities are published for libraries you have long used",
+          "Scanning finds libraries that nobody is maintaining any more",
+          "A growing dependency count makes builds progressively slower",
+          "A library's licence may change between one version and the next",
+        ],
+        explanation:
+          "Your code does not change but its safety does, every day, as vulnerabilities are disclosed for libraries already in the project. Automated scanning is the only way to learn that.",
+      },
+      l10_q77: {
+        question: "Why encrypt data at rest as well?",
+        options: [
+          "A stolen disk or backup then still cannot be read by anyone",
+          "Encryption at rest detects when data has been tampered with",
+          "Regulations require all data to be encrypted in every state",
+          "Encrypted data takes less space because it is compressed too",
+        ],
+        explanation:
+          "Transport encryption protects data only while it moves. Disks get replaced, backups end up on public storage, machine images get copied - those are the leak paths only at-rest encryption closes.",
+      },
+      l10_q78: {
+        question: "Why limit the lifetime of an administrative session?",
+        options: [
+          "An abandoned or stolen machine is dangerous only for a short window",
+          "Long sessions consume server memory holding the session state",
+          "The administrator must sign in again so new permissions apply",
+          "Short sessions reveal administrator accounts nobody uses",
+        ],
+        explanation:
+          "The higher the privilege, the narrower the risk window must be. An administrative session left open all week on a laptop is the keys to the system sitting outside your control that whole time.",
+      },
+      l10_q79: {
+        question: "Why should error messages not reveal technical detail?",
+        options: [
+          "That detail lets an attacker map out the system's internals",
+          "Users generally do not understand the technical terms involved",
+          "Long messages break the layout on small screens",
+          "Printing detail to the screen slows the application down",
+        ],
+        explanation:
+          "Table names, library versions and file paths in an error are the pieces for reconstructing the architecture and finding known holes. Detail belongs in internal logs; the user gets a reference code.",
+      },
+      l10_q80: {
+        question: "Why must brute-force protection live at the application layer?",
+        options: [
+          "A network firewall cannot tell a successful sign-in from a failed one",
+          "Brute-force attacks usually come from legitimate registered addresses",
+          "The network layer cannot encrypt the contents of a sign-in request",
+          "The application knows which passwords are weak so it can warn users",
+        ],
+        explanation:
+          "To the network layer, a thousand failed sign-ins look identical to a thousand successful ones - only the application knows the outcome. So attempt limits, progressive delays and temporary locks belong there.",
+      },
+      l10_q81: {
+        question: "Why separate signing keys from encryption keys?",
+        options: [
+          "One key one job, so leaking one does not compromise the other",
+          "Signing and encryption algorithms use different key lengths",
+          "Signing keys need rotating more often than encryption keys",
+          "Key management systems forbid one key having two purposes",
+        ],
+        explanation:
+          "Sharing a key across purposes widens the blast radius when it leaks, and occasionally creates attacks because two protocols interact unexpectedly. One key, one job is the basic rule.",
+      },
+      l10_q82: {
+        question: "Why treat every third-party library as attack surface?",
+        options: [
+          "Their code runs with the full privileges of the application you wrote",
+          "Libraries are generally tested less thoroughly than your own code",
+          "Popular libraries are the most heavily probed for vulnerabilities",
+          "A new version of a library may break backwards compatibility",
+        ],
+        explanation:
+          "An installed package can read environment variables, open network connections and write files - there is no boundary. Which is why supply-chain attacks work so well: compromise one small package and reach thousands of projects.",
+      },
+      l10_q83: {
+        question: "Why sign builds and container images?",
+        options: [
+          "Whoever deploys can verify that what they run is what you built",
+          "Signatures compress container images to a smaller size",
+          "Signing records who created the build and at what time",
+          "Registries only accept images signed with a valid key",
+        ],
+        explanation:
+          "Between building and running sit a registry, a network and several pairs of hands. A signature is the only proof nobody inserted anything in between - especially when images travel over infrastructure you do not control.",
+      },
+      l10_q84: {
+        question: "Why is capping upload size a security measure?",
+        options: [
+          "Without a cap, one large enough request exhausts server resources",
+          "Large files are more likely to contain malicious code than small ones",
+          "The server cannot verify the format of a very large file",
+          "Storage costs climb quickly when users upload oversized files",
+        ],
+        explanation:
+          "A request of a few gigabytes is enough to consume the memory and disk of the handling process - denial of service without needing a botnet. The limit must apply before reading, not after receiving.",
+      },
+      l10_q85: {
+        question: "Why invalidate a token the moment a user signs out?",
+        options: [
+          "A token still within its lifetime works if someone copied it earlier",
+          "An uncleared token occupies server memory until it finally expires",
+          "The user needs a fresh token issued at each subsequent sign-in",
+          "An old token conflicts with the new one when the same user returns",
+        ],
+        explanation:
+          "Signing out on the client merely deletes the token from the browser; a stolen copy stays valid until expiry. For sign-out to mean anything, the server must keep a revocation list.",
+      },
+      l10_q86: {
+        question: "Why check permissions at the data layer and not only in the interface?",
+        options: [
+          "Hiding a button does not stop anyone calling the API underneath",
+          "The interface cannot know all of the complex permission rules",
+          "Checking at the data layer runs faster by being nearer the data",
+          "The interface updates more slowly, so its rules become outdated",
+        ],
+        explanation:
+          "Hiding a button is user experience, not security. The most common vulnerability in bug reports is changing an id in a URL to view somebody else's data - a URL the interface never displayed.",
+      },
+      l10_q87: {
+        question: "Why compare secret strings in constant time?",
+        options: [
+          "Comparison stops early on a mismatch, and that timing reveals characters",
+          "Ordinary comparison can be wrong when the two strings differ in length",
+          "The standard comparison cannot handle strings with special characters",
+          "Constant-time comparison runs faster on strings that are very long",
+        ],
+        explanation:
+          "A normal comparison returns as soon as characters differ, so a guess sharing more leading characters takes marginally longer. Measure enough times and each character can be recovered - a timing side channel.",
+      },
+      l10_q88: {
+        question: "Why limit the scope of an access token?",
+        options: [
+          "A leaked token then opens only its granted part, not everything",
+          "A narrow-scope token is smaller, so it travels more quickly",
+          "The server processes narrow tokens faster with fewer rights to check",
+          "Users understand better what the application is permitted to do",
+        ],
+        explanation:
+          "A read-write-everything token issued to a read-only feature multiplies the damage when it leaks. Narrow scope also makes revocation less disruptive, since it affects exactly one area.",
+      },
+      l10_q89: {
+        question: "Why is SMS two-factor weaker than an authenticator app?",
+        options: [
+          "A phone number can be seized through the carrier without the device",
+          "Messages arrive late, so users often enter an expired code",
+          "Codes in messages are shorter and therefore easier to guess",
+          "Carriers store message contents, so codes could be read again",
+        ],
+        explanation:
+          "A SIM swap is an administrative procedure an attacker performs with forged documents or bribery - no contact with the victim's phone required. An authenticator app is bound to the device, so that path does not exist.",
+      },
+      l10_q90: {
+        question: "Why assume the system will be breached?",
+        options: [
+          "The design then focuses on early detection and limiting damage",
+          "The assumption helps persuade leadership to fund more security",
+          "No system has ever withstood every attack directed at it",
+          "A pessimistic assumption keeps the security team alert at all times",
+        ],
+        explanation:
+          "If every effort goes into prevention, then when a breach happens you have nothing: no detection, no containment, no trail. Segmentation, least privilege and audit logs all follow from this assumption.",
+      },
+      l10_q91: {
+        question: "What does a cross-platform app trade against a native one?",
+        options: [
+          "Write once run twice, at the cost of reaching newest features late",
+          "Faster on weak devices, at the cost of a less attractive interface",
+          "A smaller install size, at the cost of consuming more battery",
+          "Quicker releases, at the cost of not reaching the app stores",
+        ],
+        explanation:
+          "The big saving is one team and one codebase. The price is always being behind: a new operating-system feature waits for the framework, and anything touching hardware deeply still needs native code.",
+      },
+      l10_q92: {
+        question: "Why must a mobile app handle being offline?",
+        options: [
+          "Patchy mobile networks are the normal condition, not an exception",
+          "The operating system closes an app that waits on the network too long",
+          "App stores reject applications that do not work offline",
+          "Users often disable connectivity to save on their data allowance",
+        ],
+        explanation:
+          "In a lift, on a train, in poor coverage - being offline is a permanent state rather than a rare fault. An app assuming the network is always there fails precisely when the user needs it most.",
+      },
+      l10_q93: {
+        question: "Why limit background work on a mobile device?",
+        options: [
+          "The system kills battery-hungry apps, and users uninstall them too",
+          "Background work cannot access the application's own stored data",
+          "Mobile devices cannot run several processes at the same time",
+          "Background work is always deferred until the app is reopened",
+        ],
+        explanation:
+          "A mobile operating system puts battery ahead of your app: it suspends, defers and throttles background processes. And users see the battery-usage list in settings - that list is a death row.",
+      },
+      l10_q94: {
+        question: "Why plan the release lifecycle of a mobile app?",
+        options: [
+          "Users do not update immediately, so old versions live a long time",
+          "App stores only allow releases on a fixed monthly schedule",
+          "Every release waits weeks in review before it can be published",
+          "Users uninstall an app that updates itself too frequently",
+        ],
+        explanation:
+          "Unlike the web, you cannot push a fix to everyone - some users run a version a year old. So the API must stay backwards compatible for a long time, and you need a forced-update path for serious faults.",
+      },
+      l10_q95: {
+        question: "Why is storing a secret inside a mobile app wrong?",
+        options: [
+          "The package can be downloaded and decompiled, exposing the string",
+          "Device storage is unencrypted, so anyone holding the phone can read it",
+          "App stores scan submissions and reject apps containing secret keys",
+          "Secrets leak when the app sends an automatic crash report",
+        ],
+        explanation:
+          "The app lives on somebody else's device. Decompilation tools are free and available, so every string in the package must be treated as public - even after obfuscation.",
+      },
+      l10_q96: {
+        question: "What problem does a blockchain solve?",
+        options: [
+          "Parties who distrust each other agreeing on one shared ledger",
+          "Storing data at lower cost than a traditional database does",
+          "Querying data faster because it is replicated in many places",
+          "Securing data better because every record is encrypted",
+        ],
+        explanation:
+          "The problem is consensus without an intermediary. If the parties already trust each other, or one can coordinate, a database is cheaper, faster and far easier to operate.",
+      },
+      l10_q97: {
+        question: "Why is losing a wallet's private key a permanent loss?",
+        options: [
+          "No party holds a copy or can reissue the key to you",
+          "The key stops being valid after a period of no activity",
+          "The network reassigns assets if a wallet stays dormant too long",
+          "The key only works on the device that originally generated it",
+        ],
+        explanation:
+          "The very property that gives it value - no intermediary - also means there is nobody to call. No password reset, no support desk, no recovery path.",
+      },
+      l10_q98: {
+        question: "Why must a smart contract be audited before deployment?",
+        options: [
+          "Deployed code cannot be changed, and a fault costs real money",
+          "Execution cost depends on the quality of the source code",
+          "Networks reject contracts that have not been independently audited",
+          "Contracts must be compatible with several protocol versions",
+        ],
+        explanation:
+          "Ordinary software gets patched; a deployed contract is immutable, and the assets can be drained immediately. Combining immutability with real value makes the cost of a fault unusually high.",
+      },
+      l10_q99: {
+        question: "Why should most projects not use a blockchain?",
+        options: [
+          "They have a trusted coordinator, so they pay the price for nothing",
+          "Transaction costs are too high for ordinary consumer users",
+          "The technology is not yet mature enough for production use",
+          "Regulation in most countries does not yet permit such applications",
+        ],
+        explanation:
+          "A blockchain pays dearly in speed, cost and complexity to buy exactly one thing: no need for a trusted intermediary. If you already have one - and most projects do - you pay and buy nothing.",
+      },
+      l10_q100: {
+        question: "What is the clearest warning sign of a digital-asset scam?",
+        options: [
+          "Promising high guaranteed returns and pressing you to recruit others",
+          "The development team not disclosing their real identities",
+          "The project's source code not being published for the public",
+          "The asset's value swinging sharply over very short periods",
+        ],
+        explanation:
+          "Guaranteed high return is a financial contradiction, and rewarding recruitment is the definition of a pyramid scheme. The other three are suspicious but also true of many genuine projects.",
+      },
+      l10_q101: {
+        question: "Why do software projects run late?",
+        options: [
+          "The unknown parts only appear once work starts, but estimates come first",
+          "Developers deliberately quote short so the work gets assigned to them",
+          "Business requirements always change partway through the project",
+          "The team is short-staffed, so the workload piles up over time",
+        ],
+        explanation:
+          "You can estimate what you understand; what you have not understood you do not yet know you have not. Which is why slicing small and tackling the risky part early beats estimating more carefully.",
+      },
+      l10_q102: {
+        question: "Why does adding people to a late project make it later?",
+        options: [
+          "Existing staff stop to teach, and communication paths multiply",
+          "Newcomers need equipment and accounts, which takes time to arrange",
+          "The budget is split, so critical work no longer has enough funding",
+          "Newcomers write code that does not follow the project's conventions",
+        ],
+        explanation:
+          "Newcomers are unproductive for weeks and consume the time of the people who were productive. The number of pairs who must coordinate grows with the square, so a larger team manufactures its own overhead.",
+      },
+      l10_q103: {
+        question: "Why release a small version early?",
+        options: [
+          "Real feedback beats any amount of speculation in a meeting room",
+          "Releasing early captures the market before a competitor arrives",
+          "A small version has fewer defects, so releasing carries less risk",
+          "Investors need to see something running before funding continues",
+        ],
+        explanation:
+          "The largest risk is not building it wrong but building the wrong thing. Six months of building in silence is six months betting on an assumption nobody has tested.",
+      },
+      l10_q104: {
+        question: "Why write architecture decision records?",
+        options: [
+          "Later readers see why it was chosen rather than assuming carelessness",
+          "The document helps persuade management to approve the approach",
+          "The development process requires documentation for major changes",
+          "It helps newcomers understand the whole structure of the system",
+        ],
+        explanation:
+          "Six months on, even you have forgotten what was weighed. Without that context the next person either leaves it alone out of fear or changes it and falls into the same hole - and the rejected options are the most valuable part.",
+      },
+      l10_q105: {
+        question: "Why does working code still need reworking over time?",
+        options: [
+          "Requirements change, so yesterday's sensible structure gets in the way",
+          "Language updates mean the older syntax will no longer run",
+          "Old code gets slower as the volume of data keeps increasing",
+          "Dependencies stop being supported, forcing a rewrite from scratch",
+        ],
+        explanation:
+          "Code structure reflects what you knew when you wrote it. When the product moves in another direction, the old structure starts resisting every change - and that is when reworking is cheaper than enduring.",
+      },
+      l10_q106: {
+        question: "What is the main benefit of a feature flag?",
+        options: [
+          "Separating deploying the code from enabling it for users",
+          "Allowing a faster rollback of source code when a fault appears",
+          "Reducing deployments by shipping several features together",
+          "Letting each user choose which features they wish to use",
+        ],
+        explanation:
+          "Code reaches production switched off, so you can deploy continuously without exposing unfinished work, enable for 1% then 10%, and switch off in seconds without redeploying. The cost is the debt of cleaning up old flags.",
+      },
+      l10_q107: {
+        question: "Why automate the deployment process?",
+        options: [
+          "People doing it by hand make mistakes exactly when pressure is highest",
+          "Automation deploys considerably faster than doing it manually",
+          "An automated process needs no approval before it runs",
+          "Servers only accept deployments from an automated system",
+        ],
+        explanation:
+          "Twelve manual steps at midnight after an incident is a recipe for error. Automation makes the process repeatable and reviewable - speed is a consequence rather than the main reason.",
+      },
+      l10_q108: {
+        question: "Why write blameless incident reviews?",
+        options: [
+          "People only tell the truth when unafraid, and truth is what fixes things",
+          "Assigning blame slows down the writing of the incident report",
+          "Incidents are mostly caused by systems rather than by people",
+          "A good company culture requires never criticising employees",
+        ],
+        explanation:
+          "If speaking up means being disciplined, the report becomes vague and the real cause is buried. Blamelessness is not leniency - it is the condition for getting the information needed to fix the system.",
+      },
+      l10_q109: {
+        question: "Why measure work in progress across a team?",
+        options: [
+          "Running many things at once lengthens the time every one of them takes",
+          "The count reflects each person's genuine productivity accurately",
+          "Managers need the figure to allocate staff between projects",
+          "Work left open too long becomes outdated against current requirements",
+        ],
+        explanation:
+          "Five items running in parallel all finish late, and every context switch costs the effort of reloading the problem. Capping work in progress finishes things sooner even though total volume is unchanged.",
+      },
+      l10_q110: {
+        question: "Why is reading other people's code a skill worth practising?",
+        options: [
+          "Most of the job is understanding existing code, not writing new code",
+          "Reading others' code teaches new programming techniques",
+          "Reviewers must read quickly so as not to hold up the team",
+          "Other people's code is usually written in a harder-to-read style",
+        ],
+        explanation:
+          "Real work is almost always adding a feature to something with hundreds of thousands of existing lines. Whoever reads quickly and accurately edits in the right place; whoever cannot rewrites what already exists.",
+      },
+      l10_q111: {
+        question: "Why ask for help early when stuck?",
+        options: [
+          "Struggling is useful, but past a threshold it is only waste",
+          "Colleagues think well of people who communicate proactively",
+          "Experienced people always solve problems faster than newcomers",
+          "Asking early reveals which parts of the documentation are missing",
+        ],
+        explanation:
+          "Struggling for a while is how you learn; struggling for three days on something the person beside you solves in ten minutes is not. Many teams set an explicit rule - try for thirty minutes, then ask.",
+      },
+      l10_q112: {
+        question: "Why restate the problem in your own words before starting?",
+        options: [
+          "A misreading surfaces immediately rather than after the work is done",
+          "Restating helps you remember the requirements while working",
+          "The restatement becomes the description for later related work",
+          "The requester needs confirmation that you received the request",
+        ],
+        explanation:
+          "The most expensive kind of mistake is doing perfectly something nobody asked for. Restating and sending it back takes five minutes and catches the misunderstanding before it becomes two weeks of effort.",
+      },
+      l10_q113: {
+        question: "Why does writing matter for a developer?",
+        options: [
+          "Most technical decisions are won in prose, not in code",
+          "Good documentation reduces the questions other teams ask",
+          "Writing well makes commit messages and pull requests clearer",
+          "Companies assess performance through written work reports",
+        ],
+        explanation:
+          "Architecture proposals, incident reviews, pull request descriptions - that is where ideas are accepted or ignored. A clear writer has far more influence than an equally skilled colleague who cannot express it.",
+      },
+      l10_q114: {
+        question: "Why build a portfolio of personal projects?",
+        options: [
+          "It is verifiable evidence, unlike a self-description on a CV",
+          "Personal projects teach new technology faster than a course does",
+          "Employers require candidates to have an open-source account",
+          "A personal project can become a second source of income later",
+        ],
+        explanation:
+          "Anyone can write \"proficient\" on a CV. Something that runs, with readable code, solving a real problem, can be verified by an interviewer in five minutes - and gives you both something to talk about.",
+      },
+      l10_q115: {
+        question: "Why understand the business context of the product you build?",
+        options: [
+          "Without it you optimise the right technique toward the wrong goal",
+          "Understanding the business is a condition for promotion into management",
+          "The business context decides which technologies you may use",
+          "People who understand the business estimate time more accurately",
+        ],
+        explanation:
+          "Two approaches can both be technically correct, and only context says which is worth doing: a product still searching for customers values speed of experiment; a settled one values reliability.",
+      },
+      l10_q116: {
+        question: "Why keep a steady learning habit rather than cramming?",
+        options: [
+          "The field keeps moving, and spaced learning sticks far better",
+          "Cramming takes more total hours than the same learning spread out",
+          "Companies usually require a number of learning hours each year",
+          "Steady learning keeps you current with the newest technology",
+        ],
+        explanation:
+          "Knowledge reviewed at intervals is retained far better than the same hours packed into one sitting - that is the main reason. Chasing every new technology is the opposite, and usually a waste.",
+      },
+      l10_q117: {
+        question: "Why assess people risk in a project?",
+        options: [
+          "One person holding all knowledge of a part is a single point of failure",
+          "Staff leaving raises the project's recruitment costs",
+          "Larger teams have more conflict during the course of the work",
+          "Leadership pays more attention to people risk than technical risk",
+        ],
+        explanation:
+          "Systems have redundancy, but \"only he knows how that works\" does not. That person taking leave during an incident stops the project - and the cure is rotation and documentation, not retention bonuses.",
+      },
+      l10_q118: {
+        question: "Why refuse some feature requests?",
+        options: [
+          "Every feature added is a permanent maintenance cost thereafter",
+          "Too many features make the application heavy and slow to load",
+          "The development team lacks the people to build everything requested",
+          "Rarely used features clutter the interface and confuse users",
+        ],
+        explanation:
+          "The true cost of a feature is not the first writing but every subsequent edit, test and migration - for the life of the product. That is why a rarely used feature is still expensive.",
+      },
+      l10_q119: {
+        question: "Why measure the impact of a feature after release?",
+        options: [
+          "Many features change nothing, and only measurement reveals that",
+          "Post-release figures help report results to leadership",
+          "Measurement uncovers technical faults that testing did not reveal",
+          "Users want to see the product improving continually over time",
+        ],
+        explanation:
+          "Most ideas produce no measurable change - a consistent finding wherever anyone measures. Without measuring you keep building on the assumption that everything shipped helped, and that assumption is nearly always wrong.",
+      },
+      l10_q120: {
+        question: "Why treat health as part of professional capability?",
+        options: [
+          "This work runs on concentration, the first thing burnout destroys",
+          "Companies require staff to have annual health check-ups",
+          "Healthier people work longer hours and so finish more work",
+          "Sitting at a computer causes well-known occupational illnesses",
+        ],
+        explanation:
+          "The output of this job is decisions and attention, not hours in a chair. Poor sleep and exhaustion strike exactly that - and working longer hours to compensate is the spiral that makes it worse.",
       },
     },
   },

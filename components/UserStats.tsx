@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { Flame, BookOpen, Target, Sparkles } from "lucide-react";
 import { getLevelByXp, getNextLevel, getXpToNextLevel, getLevelProgress, getCfaGateRemaining, LEVELS } from "@/lib/levels";
 import { createClient } from "@/lib/supabase";
-import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
+import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 import { getLevelStats, getCfaCompletedCount, type LevelStats } from "@/lib/supabase-user";
 import {
   getUserStreak,
@@ -239,7 +239,7 @@ export default function UserStats({
           className="relative shrink-0 cursor-pointer group/avatar"
           title={t.userStats.clickToActivate}
         >
-          <FinanceCharacterAvatar level={currentLevel.level} equipments={equippedGear} size="xs" />
+          <TechCharacterAvatar level={currentLevel.level} equipments={equippedGear} size="xs" />
         </motion.div>
         <div className="min-w-0 flex-1">
           <span className="text-[8px] sm:text-[9px] font-black text-stone-400 dark:text-stone-400 uppercase tracking-widest block leading-none">

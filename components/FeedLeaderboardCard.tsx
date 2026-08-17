@@ -7,7 +7,7 @@ import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/supabase-user
 import Avatar from "@/components/Avatar";
 import { useI18n } from "@/lib/i18n/context";
 
-/** Bảng xếp hạng thu nhỏ ở cột phải của FinSocial.
+/** Bảng xếp hạng thu nhỏ ở cột phải của Bảng tin.
  *
  *  Đọc qua `getLeaderboardByMetric` - cùng RPC `get_leaderboard` mà trang /bxh
  *  dùng, nên hai chỗ không thể nói hai thứ tự khác nhau. Không truy vấn

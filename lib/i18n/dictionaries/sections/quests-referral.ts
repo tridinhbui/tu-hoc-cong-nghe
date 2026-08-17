@@ -186,7 +186,7 @@ export const questsReferralEn: typeof questsReferralVi = {
     topicNewbie: "Getting Started",
     topicInvesting: "Investing",
     topicAccounting: "Accounting",
-    topicPfBasic: "Personal Finance",
+    topicPfBasic: "Tech Foundations",
     topicPfDebt: "Credit & Debt",
     topicBiSave: "Saving",
     topicBiRisk: "Risk & Planning",

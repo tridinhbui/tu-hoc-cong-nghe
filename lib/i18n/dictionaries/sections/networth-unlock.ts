@@ -29,7 +29,7 @@ export const networthUnlockVi = {
     // purpose so the coverage script has an entry for them without
     // anglicising anyone's name.
     name1: "Thúy Đặng",
-    name2: "Con đố finance",
+    name2: "Con đố công nghệ",
     name3: "Kim Anh Vũ",
     name4: "Minh Huy",
     name5: "Ân Triệu Ca",
@@ -146,7 +146,7 @@ export const networthUnlockEn: typeof networthUnlockVi = {
     // Illustrative learner names in the mock leaderboard data - proper
     // nouns, kept identical to the Vietnamese side rather than translated.
     name1: "Thúy Đặng",
-    name2: "Con đố finance",
+    name2: "Con đố công nghệ",
     name3: "Kim Anh Vũ",
     name4: "Minh Huy",
     name5: "Ân Triệu Ca",

@@ -1,17 +1,17 @@
 import { describe, expect, it } from "vitest";
 import { libDataVi, libDataEn } from "@/lib/i18n/dictionaries/sections/lib-data";
-import { FINANCE_CARDS } from "@/lib/finance-cards";
+import { TECH_CARDS } from "@/lib/tech-cards";
 import { DOCUMENT_CATEGORIES } from "@/lib/document-categories";
 import { SHOUTOUT_VARIANTS } from "@/lib/supabase-user";
 
 /** Ba module dữ liệu được dịch qua TỪ ĐIỂN chứ không qua thư mục `-i18n/`:
- *  lib/finance-cards.ts, lib/document-categories.ts và
+ *  lib/tech-cards.ts, lib/document-categories.ts và
  *  lib/highlight-stage-grouping.ts đều tra vào `libData.*` theo id.
  *
  *  Cách đó hợp lý - chúng nhỏ, và khoá là id ổn định nên tra cứu không trôi
  *  theo vị trí. Nhưng nó thiếu đúng thứ mà các bộ overlay có: một cổng bắt buộc
  *  đủ. `Record<string, string>` nhận mọi khoá, nên thêm một thẻ mới vào
- *  FINANCE_CARDS mà quên thêm khoá từ điển thì thẻ ấy hiện tiếng Việt giữa giao
+ *  TECH_CARDS mà quên thêm khoá từ điển thì thẻ ấy hiện tiếng Việt giữa giao
  *  diện tiếng Anh, và không có gì báo.
  *
  *  Bộ kiểm này là điều kiện để ba tệp đó được tách khỏi tổng trong
@@ -25,9 +25,9 @@ const vi = libDataVi.libData as unknown as Record<string, any>;
 
 describe("libData: module dữ liệu dịch qua từ điển", () => {
   it("mọi thẻ tài chính đều có khoá trong cả hai ngôn ngữ", () => {
-    const ids = FINANCE_CARDS.map((c) => c.id);
-    const missingEn = ids.filter((id) => !en.financeCards?.[id]);
-    const missingVi = ids.filter((id) => !vi.financeCards?.[id]);
+    const ids = TECH_CARDS.map((c) => c.id);
+    const missingEn = ids.filter((id) => !en.techCards?.[id]);
+    const missingVi = ids.filter((id) => !vi.techCards?.[id]);
     expect(missingEn, `thiếu bản EN: ${missingEn.join(", ")}`).toEqual([]);
     expect(missingVi, `thiếu bản VI: ${missingVi.join(", ")}`).toEqual([]);
   });

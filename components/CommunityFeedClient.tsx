@@ -900,7 +900,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
     }
   };
 
-  // Deep-link support: NotificationBell links to /finsocial?post=<id> so
+  // Deep-link support: NotificationBell links to /bang-tin?post=<id> so
   // tapping "X đã bình luận vào bài viết của bạn" lands directly on that
   // post with its thread open, instead of dumping the reader at the top of
   // a feed they'd then have to hunt through. Guarded by a ref (not just
@@ -987,21 +987,21 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   return (
     <div className={shellClass}>
       <style>{`
-        @keyframes finsocial-shimmer {
+        @keyframes feed-shimmer {
           0% { transform: translateX(-120%); }
           100% { transform: translateX(220%); }
         }
-        .finsocial-progress-shimmer {
+        .feed-progress-shimmer {
           position: relative;
           overflow: hidden;
         }
-        .finsocial-progress-shimmer::after {
+        .feed-progress-shimmer::after {
           content: "";
           position: absolute;
           inset: 0;
           width: 42%;
           background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
-          animation: finsocial-shimmer 2.6s ease-in-out infinite;
+          animation: feed-shimmer 2.6s ease-in-out infinite;
         }
       `}</style>
       {!embedded && (
@@ -1009,7 +1009,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         // riêng. Trước đây chỗ này là ảnh skyline ở opacity 70% phủ HAI lớp
         // gradient chồng nhau, viền dưới, và ba tấm thẻ số bo 2xl mang ba màu
         // nhấn khác nhau kèm shadow-xl - tức mọi thứ trang chủ cố ý không làm.
-        // Đó là lý do FinSocial đọc như một ứng dụng khác dán vào cạnh sản
+        // Đó là lý do Bảng tin đọc như một ứng dụng khác dán vào cạnh sản
         // phẩm chứ không phải một chương của nó.
         <div className="band band-ink band-divider text-white">
           {/* Ảnh giữ lại nhưng hạ xuống mức HOA VĂN NỀN: nó mang bản sắc Sài
@@ -1463,7 +1463,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             project này, tức `<ref>.supabase.co`, mà
                             remotePatterns có `*.supabase.co`. Nhưng kết luận
                             "vậy thì đổi sang next/image được" lại không được
-                            KIỂM: /finsocial cần đăng nhập, không phiên nào mở
+                            KIỂM: /bang-tin cần đăng nhập, không phiên nào mở
                             được nó, và ảnh chết ngay trên production sau khi
                             đổi.
 

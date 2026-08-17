@@ -1,8 +1,8 @@
-import { FINANCE_GLOSSARY } from "@/lib/finance-glossary";
+import { TECH_GLOSSARY } from "@/lib/tech-glossary";
 import { appendGameSession, getLocalPlayer, listGameSessions } from "@/lib/local-store";
 
 export type GameType =
-  | "financial-statement-match"
+  | "system-dashboard-match"
   | "en-vi-terms"
   | "ratio-category"
   | "term-definition"
@@ -96,7 +96,7 @@ export const GAMES: GameMeta[] = [
     accent: "rose",
   },
   {
-    id: "financial-statement-match",
+    id: "system-dashboard-match",
     title: "Tầng của hệ thống",
     description: "Kéo từng thành phần vào đúng tầng (Giao diện / Dịch vụ / Dữ liệu & hạ tầng).",
     emoji: "📊",
@@ -172,7 +172,7 @@ export interface RelatedLesson {
 }
 
 export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
-  "financial-statement-match": [
+  "system-dashboard-match": [
     { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Phân biệt Báo cáo kết quả kinh doanh, Bảng cân đối & Lưu chuyển tiền tệ" },
     { slug: "ke-toan-la-gi", title: "Kế toán là gì?", subtitle: "Nền tảng phân bổ nguồn lực và đọc hiểu thông số" },
     { slug: "income-statement-la-gi", title: "Income Statement: Báo cáo kết quả kinh doanh", subtitle: "Phân loại dòng tiền vào ra" },
@@ -306,7 +306,7 @@ export interface TermPair {
 }
 
 export function pickTermRound(count = 8): TermPair[] {
-  const entries = Object.entries(FINANCE_GLOSSARY).map(([vi, en]) => ({ vi, en }));
+  const entries = Object.entries(TECH_GLOSSARY).map(([vi, en]) => ({ vi, en }));
   const shuffled = [...entries].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, Math.min(count, shuffled.length));
 }
@@ -370,7 +370,7 @@ const COST_ITEMS: BucketItem[] = [
 ];
 
 const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
-  "financial-statement-match": {
+  "system-dashboard-match": {
     buckets: [
       { id: "frontend", label: STATEMENT_LABELS["frontend"] },
       { id: "backend", label: STATEMENT_LABELS["backend"] },
@@ -413,7 +413,7 @@ const BUCKET_CONFIGS: Partial<Record<GameType, BucketConfig>> = {
 };
 
 export function getBucketConfig(gameType: GameType, difficulty: GameDifficulty = "trung-binh"): BucketConfig {
-  const base = BUCKET_CONFIGS[gameType] ?? BUCKET_CONFIGS["financial-statement-match"]!;
+  const base = BUCKET_CONFIGS[gameType] ?? BUCKET_CONFIGS["system-dashboard-match"]!;
   return { ...base, roundSize: scaleRoundSize(base.roundSize, base.items.length, difficulty) };
 }
 
@@ -494,7 +494,7 @@ const PAIR_CONFIGS: Partial<Record<GameType, PairConfig>> = {
 
 export function getPairConfig(gameType: GameType, difficulty: GameDifficulty = "trung-binh"): PairConfig {
   if (gameType === "random-mix") {
-    const glossaryPairs = Object.entries(FINANCE_GLOSSARY).map(([vi, en]) => ({ left: vi, right: en }));
+    const glossaryPairs = Object.entries(TECH_GLOSSARY).map(([vi, en]) => ({ left: vi, right: en }));
     const allPools = [
       ...TERM_DEFINITION_PAIRS,
       ...FORMULA_PAIRS,
@@ -514,7 +514,7 @@ export function getPairConfig(gameType: GameType, difficulty: GameDifficulty = "
   const cfg = PAIR_CONFIGS[gameType];
   const base = cfg ?? {
     // Fallback: en-vi-terms built from the glossary.
-    pool: Object.entries(FINANCE_GLOSSARY).map(([vi, en]) => ({ left: vi, right: en })),
+    pool: Object.entries(TECH_GLOSSARY).map(([vi, en]) => ({ left: vi, right: en })),
     roundSize: 8,
     leftLabel: "Tiếng Việt",
     rightLabel: "English",
@@ -690,7 +690,7 @@ export async function getCombinedGameLeaderboard(_limit = 10): Promise<CombinedL
 
 const GAME_TITLES: Record<GameType, [string, string, string]> = {
   "random-mix": ["Đại Sư Trộn Ngẫu Nhiên", "Phù Thủy Tổng Hợp", "Cao Thủ Ngẫu Nhiên"],
-  "financial-statement-match": ["Kiến Trúc Sư Vũ Trụ", "Thần Phân Tầng Hệ Thống", "Đại Sư Kiến Trúc"],
+  "system-dashboard-match": ["Kiến Trúc Sư Vũ Trụ", "Thần Phân Tầng Hệ Thống", "Đại Sư Kiến Trúc"],
   "en-vi-terms": ["Phù Thuỷ Song Ngữ Công Nghệ", "Thánh Thuật Ngữ", "Dịch Giả Silicon Valley"],
   "ratio-category": ["Bậc Thầy Chỉ Số", "Nhà Phân Tích Thượng Thừa", "Trùm Đo Lường Hệ Thống"],
   "term-definition": ["Từ Điển Sống", "Học Giả Công Nghệ", "Bộ Não Bách Khoa"],

@@ -10,7 +10,7 @@ import {
   getGameTitle,
   type GameType,
 } from "@/lib/games";
-import { FINANCE_GLOSSARY } from "@/lib/finance-glossary";
+import { TECH_GLOSSARY } from "@/lib/tech-glossary";
 import { gamesEn } from "@/lib/games-i18n/en";
 import {
   localizeBucketConfig,
@@ -79,7 +79,7 @@ describe("bản dịch phần vỏ của games.ts", () => {
   // ĐÂY LÀ BÀI KIỂM QUAN TRỌNG NHẤT CỦA TỆP NÀY.
   //
   // `en-vi-terms` ghép thuật ngữ tiếng Việt với thuật ngữ tiếng Anh, và pool
-  // của nó dựng thẳng từ FINANCE_GLOSSARY. Dịch vế trái sang tiếng Anh thì hai
+  // của nó dựng thẳng từ TECH_GLOSSARY. Dịch vế trái sang tiếng Anh thì hai
   // cột cùng một thứ tiếng và trò chơi không còn gì để ghép - hỏng hoàn toàn
   // mà không có lỗi nào, chỉ là một màn hình vô nghĩa. `ticker-match` là danh
   // từ riêng, dịch là sai chứ không phải là thừa.
@@ -99,7 +99,7 @@ describe("bản dịch phần vỏ của games.ts", () => {
   it("ván trộn tiếng Anh không còn cặp vi↔en nào", () => {
     const en = localizePairConfig(getPairConfig("random-mix"), "random-mix", "en");
     const glossaryPairs = en.pool.filter(
-      (p) => FINANCE_GLOSSARY[p.left.toLowerCase()] === p.right
+      (p) => TECH_GLOSSARY[p.left.toLowerCase()] === p.right
     );
     expect(glossaryPairs).toEqual([]);
     expect(en.roundSize).toBeLessThanOrEqual(en.pool.length);
@@ -121,7 +121,7 @@ describe("bản dịch phần vỏ của games.ts", () => {
   // Việt lẫn giữa các thẻ tiếng Anh. Không có gì báo, nên bài kiểm này báo.
   it("mọi chuỗi nội dung chơi đều đã sang tiếng Anh", () => {
     const left: string[] = [];
-    for (const gameType of ["financial-statement-match", "ratio-category", "risk-category", "cost-category"] as GameType[]) {
+    for (const gameType of ["system-dashboard-match", "ratio-category", "risk-category", "cost-category"] as GameType[]) {
       const en = localizeBucketConfig(getBucketConfig(gameType), gameType, "en");
       left.push(...en.items.map((i) => i.term).filter((t) => DIACRITICS.test(t)));
     }
@@ -141,7 +141,7 @@ describe("bản dịch phần vỏ của games.ts", () => {
   // gốc vẫn còn nguyên ở games.ts dưới một cách viết khác.
   it("không khoá `content` nào chết", () => {
     const reachable = new Set<string>();
-    for (const gameType of ["financial-statement-match", "ratio-category", "risk-category", "cost-category"] as GameType[]) {
+    for (const gameType of ["system-dashboard-match", "ratio-category", "risk-category", "cost-category"] as GameType[]) {
       for (const it of getBucketConfig(gameType).items) reachable.add(it.term);
     }
     for (const gameType of ["term-definition", "formula-match"] as GameType[]) {

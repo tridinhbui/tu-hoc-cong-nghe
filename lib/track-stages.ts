@@ -601,7 +601,7 @@ export const TRACK_PROFESSIONAL = {
       // working through Track 2 in order never met them. This stage gives the
       // topic a proper sequence - the three existing foundation lessons first,
       // then the four new ones covering what 805 doesn't: disclosure regimes,
-      // climate risk as financial risk, ESG inside a valuation model, and the
+      // rủi ro khí hậu như rủi ro vận hành, ESG inside a valuation model, and the
       // governance pillar in depth.
       label: "Chặng 16",
       name: "Phần mềm xanh (Green Software & hiệu quả năng lượng)",
@@ -650,7 +650,7 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // The whole Track 2 spine assumes a non-financial company, so it breaks
+      // The whole Track 2 spine assumes a doanh nghiệp không thuộc mảng tài chính, so it breaks
       // silently on banks - the largest sector on the local market. 1401-1402
       // are new; the rest already existed but were reachable only by learners
       // who happened to pick the credit-analyst or compliance career path.
@@ -859,7 +859,7 @@ export const TRACK_PROFESSIONAL = {
       // Chặng 23 dừng ở SQL cơ bản vì với một mô hình định giá thì Excel vẫn
       // là công cụ đúng. Hai chặng này là phần công việc còn lại - phần mà
       // bảng tính thành gánh nặng - và là nền cho ba nghề dữ liệu vừa thêm
-      // vào lib/finance-careers.ts.
+      // vào lib/career-paths.ts (đã gỡ).
       label: "Chặng 29",
       name: "Công cụ phân tích dữ liệu",
       days: [1491, 1496] as [number, number],
@@ -916,7 +916,7 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // Có hai nghề kiểm toán trong lib/finance-careers.ts và trước chặng này
+      // Có hai nghề kiểm toán trong lib/career-paths.ts (đã gỡ) và trước chặng này
       // cả kho chỉ có đúng một bài liên quan (1254, khung COSO). Lộ trình của
       // nghề "Kiểm toán viên" gồm năm bài kế toán chung, không bài nào nói
       // kiểm toán làm gì.
@@ -1035,14 +1035,14 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // Nghề "Chuyên viên Tài chính Sản phẩm FinTech" trong lib/finance-careers.ts
+      // Nghề "Kỹ sư sản phẩm thanh toán" trong lib/career-paths.ts (đã gỡ)
       // là nghề duy nhất trong 44 nghề mà kho bài học thực sự mỏng - quét cả
       // 689 bài chỉ ra vài bài chung chung để nối vào, trong khi mọi nghề khác
       // đều đã có bài đúng chủ đề nằm rải rác. Chặng này lấp chỗ đó, và cố ý
       // không dạy công nghệ: người làm tài chính sản phẩm không viết code, họ
       // trả lời câu sản phẩm này kiếm tiền ở đâu và mỗi khách lãi hay lỗ.
       label: "Chặng 39",
-      name: "Sản phẩm FinTech và thanh toán",
+      name: "Sản phẩm thanh toán và ví điện tử",
       days: [1701, 1706] as [number, number],
       available: true,
       isNew: true,
@@ -1182,7 +1182,7 @@ export const PROFESSIONAL_BRANCHES = [
     // Tách khỏi nhánh "quant" thay vì nối thêm vào đó: nhánh kia phục vụ
     // người làm phân tích tài chính cần công cụ định lượng, còn nhánh này là
     // lộ trình của ba nghề dữ liệu (data-analyst, bi-analyst, data-engineer)
-    // trong lib/finance-careers.ts - cùng dùng SQL nhưng đích đến khác nhau.
+    // trong lib/career-paths.ts (đã gỡ) - cùng dùng SQL nhưng đích đến khác nhau.
     id: "data",
     label: "Phân tích dữ liệu",
     subtitle: "Python, làm sạch dữ liệu, dashboard, chọn chỉ số, thử nghiệm A/B và đạo đức dữ liệu",

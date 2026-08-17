@@ -63,7 +63,7 @@ export const questsEn: typeof questsVi = {
     },
     daily_game: {
       title: "Explore the Game Kingdom",
-      description: "Step into the Finance Game world today",
+      description: "Step into the Tech Game World today",
     },
     daily_lessons_3: {
       title: "A proper session",

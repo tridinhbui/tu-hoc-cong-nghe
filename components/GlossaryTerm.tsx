@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { findGlossaryMatches } from "@/lib/finance-glossary";
+import { findGlossaryMatches } from "@/lib/tech-glossary";
 import { createClient } from "@/lib/supabase";
 import { saveFlashcard, getFlashcards } from "@/lib/supabase-flashcards";
 import { toast } from "sonner";

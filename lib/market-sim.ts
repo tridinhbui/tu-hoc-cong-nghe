@@ -1,4 +1,4 @@
-// Bước giá của sàn giả lập trong FinancialGuildWidget.
+// Bước giá của sàn giả lập trong TechGuildWidget.
 //
 // Tách khỏi component vì hai lý do, và lý do thứ hai mới là lý do thật:
 //

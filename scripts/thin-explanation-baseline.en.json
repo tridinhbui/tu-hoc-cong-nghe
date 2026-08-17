@@ -1,17 +1,4 @@
 {
   "_comment": "Nợ tồn của cổng giải thích quiz mỏng trong scripts/audit-lesson-content.mjs. Bài nằm trong danh sách này có ít nhất một câu quiz mà phần giải thích ngắn hơn MIN_QUIZ_EXPLANATION_LEN và không mang phép tính - tức là nó nhắc lại đáp án chứ không nói vì sao các phương án kia sai. Danh sách CHỈ được co lại: bài không nằm ở đây bắt buộc phải qua cổng, nên một bài mới viết không thể thêm vào nợ này. Sửa xong một bài thì chạy `node scripts/audit-lesson-content.mjs --write-baseline` để bỏ nó ra.",
-  "lessons": [
-    "accrual-accounting",
-    "bang-can-doi-can-bang",
-    "cash-accounting",
-    "interest-tax-expense",
-    "khoan-phai-tra-la-gi",
-    "no-ngan-han-dai-han",
-    "on-tap-ke-toan-co-ban",
-    "on-tap-wacc",
-    "revenue-cogs-gross-profit",
-    "tien-mat-bctc",
-    "von-luu-dong-la-gi",
-    "working-capital-van-hanh"
-  ]
+  "lessons": []
 }

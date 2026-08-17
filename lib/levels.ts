@@ -84,21 +84,13 @@ export const DOMAIN_WEIGHTS: Record<DomainType, number> = {
   ai_for_finance: 1.0
 };
 
-/* i18n-ignore-start: bảy tên lĩnh vực này ĐÃ là tiếng Anh trong bản gốc
-   ("Accounting", "Corporate Finance", "AI for Finance") - chúng là tên môn/lĩnh
-   vực dùng chung ở cả hai ngôn ngữ. Đưa vào từ điển sẽ tạo bảy cặp giá trị
-   giống hệt nhau giữa vi và en, mà dictionary-parity không phân biệt được với
-   bản dịch bị bỏ quên. */
-export const DOMAIN_NAMES: Record<DomainType, string> = {
-  accounting: "Accounting",
-  corporate_finance: "Corporate Finance",
-  valuation: "Valuation",
-  economics: "Economics",
-  investment: "Investment",
-  risk_management: "Risk Management",
-  ai_for_finance: "AI for Finance"
-};
-/* i18n-ignore-end */
+// DOMAIN_NAMES đã bị gỡ: nó là export chết (không nơi nào import) và
+// mang bảy tên lĩnh vực tài chính. Nhãn hiển thị thật đi qua từ điển
+// (t.domains[...]), nơi corporate_finance đã là "Backend & API".
+//
+// Bản thân các KHOÁ - corporate_finance, ai_for_finance - thì ở lại: chúng là
+// giá trị đã ghi xuống Supabase kèm ràng buộc check trong
+// 20260806_gamification_system.sql, nên đổi tên là mồ côi mọi hàng đã có.
 
 /** Công thức tính XP yêu cầu cho mỗi level của từng Domain: 200 * (L_d - 1)^1.5 + 100 */
 export function getDomainXpForLevel(level: number): number {

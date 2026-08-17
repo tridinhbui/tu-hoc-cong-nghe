@@ -72,7 +72,7 @@ export const libStringsVi = {
   // của người chơi, nên nó là khoá chứ không phải chữ.
   //
   // Tôi từng kết luận nhầm rằng `.name` không được vẽ ra: hai chỗ đọc
-  // `ITEM_DESCRIPTIONS` mà tôi kiểm (FinanceCharacterAvatar, CosmeticStore)
+  // `ITEM_DESCRIPTIONS` mà tôi kiểm (TechCharacterAvatar, CosmeticStore)
   // chỉ lấy `.icon`. Chỗ thứ ba - cửa hàng trong quận 3D
   // (components/career-district/CivicPanel.tsx) - vẽ thẳng `{item.name}`.
   rpgItems: {
@@ -142,7 +142,7 @@ export const libStringsEn: typeof libStringsVi = {
     "Danh hiệu dành cho người làm chủ tài chính": "A title for whoever has their money in hand",
     "Danh hiệu của bậc thầy phân tích thị trường": "The title of a master market analyst",
     "Danh hiệu dành cho tín đồ dòng tiền dài hạn": "A title for the devotee of long-run cash flow",
-    "Danh hiệu của chuyên gia đọc báo cáo tài chính": "The title of an expert reader of financial statements",
+    "Danh hiệu của chuyên gia đọc báo cáo tài chính": "The title of an expert reader of other people's code",
     "Cộng nhẹ +10 XP vào tổng điểm tích lũy": "A small +10 XP added to your total",
     "Cộng nhẹ +15 XP vào tổng điểm tích lũy": "A small +15 XP added to your total",
     "Mở khóa Giao diện Hoàng Kim quý tộc": "Unlocks the noble Gold theme",

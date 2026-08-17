@@ -209,8 +209,8 @@ export const placementFocusEn: typeof placementFocusVi = {
     sharedToast: "Message shared!",
     downloadedToast: "Image downloaded - post it to your story/Facebook with this image attached!",
     errorToast: "Couldn't create the image right now.",
-    brandHeader: "LEARN FINANCE EVERY DAY",
-    brandFooter: "LEARN FINANCE EVERY DAY · TUHOCTAICHINH.COM",
+    brandHeader: "LEARN TECH EVERY DAY",
+    brandFooter: "LEARN TECH EVERY DAY · TUHOCTAICHINH.COM",
   },
   userMenu: {
     defaultUserName: "User",

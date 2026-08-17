@@ -1,15 +1,17 @@
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import CommunityFeedClient from "@/components/CommunityFeedClient";
 
-// Vỏ tĩnh: trang này không đọc gì ở phía server - mọi dữ liệu do client
-// component bên trong tự lấy từ Supabase sau khi tải. Không có `force-static`
-// thì nó bị dựng lại ở server cho MỖI lượt xem, để trả về đúng một khung HTML
-// không đổi.
-//
-// Vẫn được proxy chặn trước khi tới đây, nên tĩnh không có nghĩa là công khai.
-export const dynamic = "force-static";
-
-
-
+// Bảng tin cộng đồng. Trước đây trang này chỉ là vỏ chuyển hướng sang một
+// route mang tên cũ của phần tài chính; nội dung đã được đưa thẳng về đây và
+// route kia bị gỡ - bớt luôn một lượt chuyển hướng.
 export default function CommunityFeedPage() {
-  redirect("/finsocial");
+  // CommunityFeedClient reads useSearchParams() (for ?post=<id> deep links
+  // from NotificationBell), which Next.js requires a Suspense boundary
+  // around - without one, `next build` fails even though `dynamic =
+  // "force-dynamic"` already opts this route out of static generation.
+  return (
+    <Suspense fallback={null}>
+      <CommunityFeedClient />
+    </Suspense>
+  );
 }

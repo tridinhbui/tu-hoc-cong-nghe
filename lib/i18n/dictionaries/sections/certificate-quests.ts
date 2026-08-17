@@ -192,7 +192,7 @@ export const certificateQuestsEn: typeof certificateQuestsVi = {
     academyBadge: "Never Stop Learning",
     modalTitle: "Milestone Completion Certificate",
     modalSubtitle: "The learner excellently completed every lesson and qualifying exam in this learning stage.",
-    svgHeaderName: "LEARN FINANCE EVERY DAY",
+    svgHeaderName: "LEARN TECH EVERY DAY",
     svgTitle: "CERTIFICATE OF COMPLETION",
     svgPresentedBy: "The Learn Technology Academy proudly presents this certificate to",
     svgMilestoneIntro: "For excellently passing the macro lessons and qualifying exam of the learning stage:",

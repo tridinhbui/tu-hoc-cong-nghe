@@ -19,7 +19,7 @@ import PairGame from "@/components/games/PairGame";
 import CombinedGameLeaderboard from "@/components/games/CombinedGameLeaderboard";
 import GameLessonRecommendation from "@/components/games/GameLessonRecommendation";
 import PvpDuelModal from "@/components/PvpDuelModal";
-import FinancialGuildWidget from "@/components/FinancialGuildWidget";
+import TechGuildWidget from "@/components/TechGuildWidget";
 import ModeLeaderboard from "@/components/games/ModeLeaderboard";
 
 type InnerTab = "play" | "leaderboard" | "history";
@@ -222,7 +222,7 @@ export default function GameHubClient() {
             </div>
           ) : hubTab === "guild" ? (
             <div className="space-y-6">
-              <FinancialGuildWidget userId={userId} />
+              <TechGuildWidget userId={userId} />
             </div>
           ) : (
             <div className="space-y-6">

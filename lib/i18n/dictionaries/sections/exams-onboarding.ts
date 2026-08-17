@@ -155,7 +155,7 @@ export const examsOnboardingEn: typeof examsOnboardingVi = {
     nextQuestion: "Next question",
     xpGainedLabel: "Stage cleared with flying colors!",
     passToast: "Congratulations! You cleared {stageLabel} and earned +50 XP! 🏆🌟",
-    chestToast: "Boss reward: 1 extra Financial Reward Chest! 🎁",
+    chestToast: "Boss reward: 1 extra Reward Chest! 🎁",
     saveFailedToast: "Could not save your exam result.{errorSuffix}",
     failToast: "You did not clear this stage (scored {correct}/{total} - need >= 80%). Review the material and try again!",
   },

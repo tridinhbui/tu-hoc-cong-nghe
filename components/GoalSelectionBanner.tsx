@@ -12,13 +12,13 @@ interface GoalSelectionBannerProps {
   userId: string;
 }
 
-export type LearningGoal = "personal-finance" | "basic-investing" | "corporate-finance";
+export type LearningGoal = "tech-foundations" | "basic-investing" | "corporate-finance";
 
 export function goalsOf(t: Dictionary): { id: LearningGoal; name: string; desc: string; icon: LucideIcon; color: string; bg: string }[] {
   const d = t.dataRest.goalSelectionBanner.goals;
   return [
     {
-      id: "personal-finance",
+      id: "tech-foundations",
       name: d.personalFinance.name,
       desc: d.personalFinance.desc,
       icon: Wallet,

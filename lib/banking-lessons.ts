@@ -3,7 +3,7 @@ import type { Lesson } from "./lesson-types";
 // Chặng "Ngân hàng, tín dụng & tuân thủ" (ids 1401-1402, professional track).
 //
 // Why these two lessons exist: the whole Track 2 spine - đọc 3 báo cáo, chỉ số,
-// WACC, DCF - quietly assumes a non-financial company. Applied to a bank it
+// WACC, DCF - quietly assumes a doanh nghiệp không thuộc mảng tài chính. Applied to a bank it
 // produces nonsense (a bank has no "working capital", its debt IS its raw
 // material, and EV/EBITDA is meaningless). Banks are ~40% of VN-Index market
 // cap, so a learner who finishes Track 2 without this cannot analyse the

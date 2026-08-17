@@ -268,7 +268,7 @@ export const en: Dictionary = {
       weeklyBoard: "Weekly leaderboard",
       spacedRepetition: "Spaced repetition built in",
       gameKingdom: "Game Kingdom opens as you progress",
-      finsocial: "FinSocial to challenge ideas",
+      feed: "the feed to challenge ideas",
       studyGroup: "Study groups to keep the rhythm",
     },
 
@@ -288,7 +288,7 @@ export const en: Dictionary = {
       eyebrow: "More than lessons",
       titlePart1: "Learn, play, ask and share inside one",
       titleHighlight: "technology ecosystem",
-      sub: "Once you've created an account, you don't just work through the lesson track. You also get the Active Recall track for deliberate review, 3D study groups to keep your rhythm, and FinSocial to trade knowledge with the community.",
+      sub: "Once you've created an account, you don't just work through the lesson track. You also get the Active Recall track for deliberate review, 3D study groups to keep your rhythm, and the feed to trade knowledge with the community.",
     },
 
     vision: {
@@ -320,7 +320,7 @@ export const en: Dictionary = {
       ecoTitle: "Ecosystem",
       ecoStudyRoom: "Study rooms (3D)",
       ecoHot: "Hot",
-      ecoFinsocial: "FinSocial - post feed",
+      ecoFeed: "Community feed - posts",
       ecoShop: "Cosmetic & avatar shop",
       supportTitle: "Support & legal",
       terms: "Terms of use",
@@ -338,7 +338,7 @@ export const en: Dictionary = {
     subtitle: "Today's macro-news challenge, and build your own test",
     xpPerQuestion: "Reward +{xp} XP per correct answer",
 
-    leftEyebrow: "Left • Today's financial news",
+    leftEyebrow: "Left • Today's tech news",
     newsTitle: "The daily news challenge",
     newsDone: "Completed (the menu warning is cleared)",
     newsPending: "Not done",
@@ -916,9 +916,9 @@ export const en: Dictionary = {
     groupTitle: "A shared room so you're not studying alone",
     groupBody:
       "A virtual 3D round table, matched by topic, with daily check-in XP and an interactive group chat.",
-    finsocialTab: "FinSocial",
-    finsocialTitle: "A social network for sharing what you're learning",
-    finsocialBody:
+    feedTab: " the feed",
+    feedTitle: "A social network for sharing what you're learning",
+    feedBody:
       "A feed of short posts, real questions, code-review discussion and reactions.",
 
     roadmapPanelTitle: "The tech foundations & certification track",
@@ -958,9 +958,9 @@ export const en: Dictionary = {
     adminMessage: "Today's update: Hà Tường Vy and Hà Hồng have studied. Keep it up!",
     chatPlaceholder: "Send encouragement, ask a question...",
 
-    feedPanelTitle: "The FinSocial feed, live",
+    feedPanelTitle: "The community feed, live",
     feedPanelSub: "Try the ❤️ button to interact with a real post",
-    feedCta: "Go to the FinSocial feed",
+    feedCta: "Go to the community feed",
     postStats: "{comments} comments · {shares} shares",
 
     post1Time: "2 hours ago",
@@ -1296,7 +1296,7 @@ export const en: Dictionary = {
       "thanh-tuu": { label: "Achievements", short: "Wins" },
       "hoi-dap": { label: "Q&A", short: "Q&A" },
       "tin-nong": { label: "Breaking", short: "Breaking" },
-      "ai-finance": { label: "AI & tooling", short: "AI" },
+      "ai-tooling": { label: "AI & tooling", short: "AI" },
     },
 
 
@@ -1329,7 +1329,7 @@ export const en: Dictionary = {
     addTopic: "Topic",
     addFeeling: "Feeling",
     createPost: "Create a post",
-    memberRole: "FinSocial member",
+    memberRole: "Community member",
     visibilityPublic: "Public",
     previewAlt: "Preview",
     createPoll: "Create a poll",
@@ -1345,9 +1345,9 @@ export const en: Dictionary = {
 
     backToDashboard: "Back to dashboard",
     eyebrow: "The technology learning network",
-    title: "FinSocial feed",
+    title: "Community feed",
     subtitle:
-      "Where the community shares short updates, questions, real financial-statement analysis, and celebrates what they've learned each day.",
+      "Where the community shares short updates, questions, real system analysis, and celebrates what they've learned each day.",
 
     highlightsTitle: "Standing out today",
     highlightsSub: "The posts worth opening first to catch up quickly",
@@ -1404,7 +1404,7 @@ export const en: Dictionary = {
     promptsTitle: "Post ideas",
     prompt1: "Something I understood today...",
     prompt2: "I'm stuck on this question...",
-    prompt3: "One tip I have for reading financial statements...",
+    prompt3: "One tip I have for reading other people's code...",
     prompt4: "A picture of today's progress/streak:",
   },
 
@@ -1506,7 +1506,7 @@ export const en: Dictionary = {
     "personal-ops": "Tooling and workflow",
     "investing-psychology": "User psychology & product",
     "accounting-reporting": "Web & front end",
-    "valuation-corp-finance": "System design & back end",
+    "system-design-backend": "System design & back end",
     "bonds-credit": "Queues & service communication",
     "risk-portfolio-derivatives": "Reliability, monitoring & incidents",
     "risk-frm": "Security in depth",
@@ -1519,9 +1519,9 @@ export const en: Dictionary = {
     "private-markets": "Open source & the ecosystem",
     "wealth-insurance": "Scale & handling load",
     "real-estate-project": "Infrastructure & platform projects",
-    fintech: "AI & intelligent products",
-    "personal-finance": "Tech foundations",
-    "professional-finance": "Advanced technology",
+    "ai-products": "AI & intelligent products",
+    "tech-foundations": "Tech foundations",
+    "advanced-tech": "Advanced technology",
     "bonus-cases": "Case studies & application",
   },
 
@@ -1556,8 +1556,8 @@ export const en: Dictionary = {
     promotedTitle: "You have officially been promoted to Level {level} ({name})!",
     promotedBody:
       "The pass has been recorded on your profile and the certification holds for the next 14 days.",
-    sharedToast: "Shared to FinSocial. (+10 XP)",
-    shareCta: "Share this on FinSocial (+10 XP)",
+    sharedToast: "Shared to the feed. (+10 XP)",
+    shareCta: "Share this on the feed (+10 XP)",
     reviewTitle: "Some concepts still need reviewing",
     reviewBody:
       "Don't be discouraged. Read the answer explanations below carefully to shore things up before retaking it.",
@@ -1611,7 +1611,7 @@ export const en: Dictionary = {
     bossRaidLabel: "WORLD BOSS RAID · 1,000,000 HP",
     bossName: "The Silicon Valley large-scale outage boss",
     bossBody:
-      "Every learner on the platform joins the boss fight each day by answering finance questions correctly.",
+      "Every learner on the platform joins the boss fight each day by answering tech questions correctly.",
     bossHpLabel: "Boss HP right now",
     bossHpValue: "742,500 / 1,000,000 HP",
     damageToday: "Damage today",
@@ -2376,7 +2376,7 @@ export const en: Dictionary = {
     noQuiz: "No quiz",
 
     recentPosts: "Recent posts",
-    viewFinsocial: "View FinSocial →",
+    viewFeed: "View feed →",
   },
   // components/lobby/LobbyClient.tsx - the shared 3D library lobby.
   lobby: {
@@ -2634,7 +2634,7 @@ export const en: Dictionary = {
     markAllRead: "Mark all as read",
     loading: "Loading...",
     empty:
-      "Nothing yet. Post or comment on FinSocial and you'll hear about it here when someone responds.",
+      "Nothing yet. Post or comment on the feed and you'll hear about it here when someone responds.",
     comment: "{actor} commented on your post",
     reaction: "{actor} reacted {emoji} to your post",
     reactionFallback: "to",

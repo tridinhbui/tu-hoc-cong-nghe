@@ -249,7 +249,7 @@ export async function deleteOwnComment(commentId: number): Promise<void> {
 // `filter`, và đúng là chúng không thể có: feed là chung. Nhưng cả ba gọi cùng
 // một `onChange()` không mang payload, còn bên nhận thì tải lại TOÀN BỘ feed
 // cộng một truy vấn bình luận cho mỗi thread đang mở. Nên một người thả cảm
-// xúc ở bất kỳ đâu làm MỌI người đang mở /finsocial chạy một truy vấn feed.
+// xúc ở bất kỳ đâu làm MỌI người đang mở /bang-tin chạy một truy vấn feed.
 // Phần đắt không phải message realtime mà là số truy vấn và lượng dữ liệu ra.
 //
 // Hai chỗ cắt ở đây, không chỗ nào đổi thứ người dùng nhìn thấy:

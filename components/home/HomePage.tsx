@@ -665,7 +665,7 @@ export default function HomePage() {
               t.home.ticker.weeklyBoard,
               t.home.ticker.spacedRepetition,
               t.home.ticker.gameKingdom,
-              t.home.ticker.finsocial,
+              t.home.ticker.feed,
               t.home.ticker.studyGroup,
             ].map((item) => (
               <li key={item} className="flex items-center gap-2">
@@ -905,7 +905,7 @@ export default function HomePage() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/finsocial" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoFinsocial}</Link>
+                    <Link href="/bang-tin" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoFeed}</Link>
                   </li>
                   <li>
                     <Link href="/cua-hang" className="hover:text-emerald-400 transition-colors">{t.home.footer.ecoShop}</Link>

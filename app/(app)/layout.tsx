@@ -4,7 +4,7 @@ import XpFloatingPopup from "@/components/XpFloatingPopup";
 
 export default function AppShellLayout({ children }: { children: React.ReactNode }) {
   // Giấy ngà #fbfaf7, cùng đúng giá trị `.band-paper` dùng ở trang chủ và
-  // FinSocial - KHÔNG phải bg-white.
+  // Bảng tin - KHÔNG phải bg-white.
   //
   // Đây là đường nối rõ nhất giữa trang giới thiệu và sản phẩm: bên ngoài là
   // giấy ngà ấm, bước qua cửa đăng nhập thì thành trắng tinh, và mắt đọc ra

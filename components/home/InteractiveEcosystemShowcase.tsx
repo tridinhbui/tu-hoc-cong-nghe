@@ -27,13 +27,13 @@ import {
 import { useI18n } from "@/lib/i18n/context";
 import { format, type Dictionary } from "@/lib/i18n";
 
-type TabId = "roadmap" | "study-group" | "finsocial";
+type TabId = "roadmap" | "study-group" | "feed";
 
-// Sample posts for the FinSocial preview. A function of the dictionary rather
+// Sample posts for the Bảng tin preview. A function of the dictionary rather
 // than a module constant: it is module scope, so there is no useI18n() to call
 // here - the same reason getUserBadge in CommunityFeedClient takes `t` as an
 // argument. Author names, avatars, levels, roles and hashtags stay as they are.
-function finsocialPosts(t: Dictionary) {
+function feedPosts(t: Dictionary) {
   return [
   {
     id: "p1",
@@ -90,7 +90,7 @@ export default function InteractiveEcosystemShowcase() {
   ]);
   const [cheerInput, setCheerInput] = useState("");
 
-  // FinSocial Interactive Mock State
+  // Bảng tin Interactive Mock State
   const [postLikes, setPostLikes] = useState<Record<string, { count: number; liked: boolean }>>({
     p1: { count: 42, liked: false },
     p2: { count: 89, liked: false },
@@ -206,11 +206,11 @@ export default function InteractiveEcosystemShowcase() {
           </div>
         </div>
 
-        {/* Card 3: FinSocial Feed */}
+        {/* Card 3: Bảng tin Feed */}
         <div
-          onClick={() => setActiveTab("finsocial")}
+          onClick={() => setActiveTab("feed")}
           className={`group cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300 p-4.5 flex flex-col justify-between ${
-            activeTab === "finsocial"
+            activeTab === "feed"
               ? "border-emerald-500 bg-white shadow-md ring-1 ring-emerald-400/50"
               : "border-stone-200/90 dark:border-stone-800 bg-white/80 hover:border-emerald-400/60"
           }`}
@@ -219,9 +219,9 @@ export default function InteractiveEcosystemShowcase() {
             <div className="flex items-center justify-between mb-2.5">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-black uppercase text-emerald-700">
                 <MessageSquareMore className="w-3 h-3 text-emerald-600" />
-                {t.ecosystem.finsocialTab}
+                {t.ecosystem.feedTab}
               </span>
-              {activeTab === "finsocial" && (
+              {activeTab === "feed" && (
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -229,18 +229,18 @@ export default function InteractiveEcosystemShowcase() {
               )}
             </div>
             <h3 className="text-sm sm:text-base font-black text-stone-900 leading-snug">
-              {t.ecosystem.finsocialTitle}
+              {t.ecosystem.feedTitle}
             </h3>
             <p className="mt-1.5 text-xs text-stone-600 leading-relaxed font-medium">
-              {t.ecosystem.finsocialBody}
+              {t.ecosystem.feedBody}
             </p>
           </div>
 
           <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] font-bold">
-            <span className={activeTab === "finsocial" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
-              {activeTab === "finsocial" ? t.ecosystem.livePreview : t.ecosystem.tapToTry}
+            <span className={activeTab === "feed" ? "text-emerald-700 font-extrabold" : "text-stone-400"}>
+              {activeTab === "feed" ? t.ecosystem.livePreview : t.ecosystem.tapToTry}
             </span>
-            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "finsocial" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
+            <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeTab === "feed" ? "translate-x-1 text-emerald-600" : "text-stone-400 group-hover:translate-x-1"}`} />
           </div>
         </div>
       </div>
@@ -495,7 +495,7 @@ export default function InteractiveEcosystemShowcase() {
         )}
 
         {/* VIEW 3: FINSOCIAL LIVE FEED PREVIEW (LIGHT MODE) */}
-        {activeTab === "finsocial" && (
+        {activeTab === "feed" && (
           <motion.div
             key="social-stage"
             initial={{ opacity: 0, y: 15 }}
@@ -514,7 +514,7 @@ export default function InteractiveEcosystemShowcase() {
               </div>
 
               <Link
-                href="/finsocial"
+                href="/bang-tin"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-stone-950 font-black text-xs transition-colors cursor-pointer"
               >
                 <span>{t.ecosystem.feedCta}</span>
@@ -524,7 +524,7 @@ export default function InteractiveEcosystemShowcase() {
 
             {/* Post Feed List (Light Theme) */}
             <div className="grid gap-4 sm:grid-cols-2">
-              {finsocialPosts(t).map((post) => {
+              {feedPosts(t).map((post) => {
                 const likeData = postLikes[post.id] || { count: post.likes, liked: false };
                 return (
                   <div

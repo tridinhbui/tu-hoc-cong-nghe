@@ -18,7 +18,7 @@ import { cfaCalculatorsVi, cfaCalculatorsEn } from "./cfa-calculators";
 import { communityLearningVi, communityLearningEn } from "./community-learning";
 import { cosmeticsDuelVi, cosmeticsDuelEn } from "./cosmetics-duel";
 import { dataRestVi, dataRestEn } from "./data-rest";
-import { financeToolsVi, financeToolsEn } from "./finance-tools";
+import { toolsSectionVi, toolsSectionEn } from "./tools-section";
 import { dataTablesVi, dataTablesEn } from "./data-tables";
 import { docsAuthVi, docsAuthEn } from "./docs-auth";
 import { examsOnboardingVi, examsOnboardingEn } from "./exams-onboarding";
@@ -62,7 +62,7 @@ import { worldSpacesVi, worldSpacesEn } from "./world-spaces";
 import { searchUploadVi, searchUploadEn } from "./search-upload";
 
 export const viSections = {
-  ...financeToolsVi,
+  ...toolsSectionVi,
   ...cfaCalculatorsVi,
   ...adminOneVi,
   ...adminThreeVi,
@@ -116,7 +116,7 @@ export const viSections = {
 };
 
 export const enSections: typeof viSections = {
-  ...financeToolsEn,
+  ...toolsSectionEn,
   ...cfaCalculatorsEn,
   ...adminOneEn,
   ...adminThreeEn,

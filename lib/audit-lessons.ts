@@ -3,7 +3,7 @@ import type { Lesson } from "./lesson-types";
 // Chặng "Kiểm toán: cách một báo cáo được xác nhận" (ids 1531-1536,
 // professional track).
 //
-// Có hai nghề kiểm toán trong lib/finance-careers.ts (auditor, internal-audit)
+// Có hai nghề kiểm toán trong lib/career-paths.ts (đã gỡ) (auditor, internal-audit)
 // và trước chặng này cả kho chỉ có đúng một bài liên quan - 1254 về khung
 // COSO. Lộ trình học của nghề "Kiểm toán viên" gồm năm bài kế toán chung,
 // không bài nào nói kiểm toán làm gì.

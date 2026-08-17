@@ -327,8 +327,8 @@ export default async function PublicUserProfilePage({
                 <h3 className="text-lg font-extrabold text-stone-900 dark:text-stone-100">
                   {t.publicProfile.recentPosts}
                 </h3>
-                <Link href="/finsocial" className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
-                  {t.publicProfile.viewFinsocial}
+                <Link href="/bang-tin" className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+                  {t.publicProfile.viewFeed}
                 </Link>
               </div>
               <ProfileWallPosts userId={userId} />

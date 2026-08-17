@@ -3,7 +3,7 @@ import LobbyClient from "@/components/lobby/LobbyClient";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary } from "@/lib/i18n";
 
-// Trước đây route này chỉ redirect sang /finsocial. Giờ nó là một thư viện 3D -
+// Trước đây route này chỉ redirect sang /bang-tin. Giờ nó là một thư viện 3D -
 // phòng đọc mở ra phố Sài Gòn, nơi mọi người đang online cùng hiện diện, mỗi
 // người một nhân vật đi lại được bằng phím.
 //

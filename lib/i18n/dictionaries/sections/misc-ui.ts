@@ -106,7 +106,7 @@ export const miscUiVi = {
       turnOnRain: "Bật tiếng mưa",
     },
     roomFixtures: {
-      communityBoard: "Bảng tin cộng đồng",
+      communityBoard: " the feed cộng đồng",
       weeklyLeaderboard: "Bảng vàng tuần này",
     },
     scrollytellingPinnedSection: {

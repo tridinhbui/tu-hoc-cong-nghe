@@ -41,7 +41,7 @@ function clearLocalGoal() {
  *  to avoid promising cross-device persistence that didn't happen. */
 export type CareerGoalWriteResult = "persisted" | "local-only";
 
-/** The career id (matches FinanceCareer.id in lib/finance-careers.ts) the
+/** The career id (matches FinanceCareer.id in lib/career-paths.ts (đã gỡ)) the
  *  user has pinned as their target career, or null if none set.
  *
  *  Reads stay non-throwing - a stale-but-present local value beats blocking

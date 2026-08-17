@@ -8,10 +8,10 @@ import { getUserCommunityPosts } from "@/lib/supabase-follows";
 import { timeAgo } from "@/lib/time-ago";
 import { useI18n } from "@/lib/i18n/context";
 
-/** Read-only preview of one person's own FinSocial posts, for their public
+/** Read-only preview of one person's own Bảng tin posts, for their public
  *  profile page (app/(app)/nguoi-hoc/[userId]/page.tsx) - the "tường" (wall)
  *  requested alongside follow. Deliberately not interactive here (no
- *  inline react/comment) - each card links to /finsocial?post=<id>, the
+ *  inline react/comment) - each card links to /bang-tin?post=<id>, the
  *  same deep link NotificationBell uses, which opens the real feed with the
  *  full comment thread rather than duplicating that UI a second time. */
 export default function ProfileWallPosts({ userId }: { userId: string }) {
@@ -52,7 +52,7 @@ export default function ProfileWallPosts({ userId }: { userId: string }) {
       {posts.map((post) => (
         <Link
           key={post.id}
-          href={`/finsocial?post=${post.id}`}
+          href={`/bang-tin?post=${post.id}`}
           className="block rounded-xl border border-stone-200 dark:border-stone-800 px-4 py-3 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-colors"
         >
           {post.content && (

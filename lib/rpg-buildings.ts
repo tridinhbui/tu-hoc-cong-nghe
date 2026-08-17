@@ -2,7 +2,7 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 /** Mười ba địa điểm của Thế Giới Game Tài Chính.
  *
- *  Tách khỏi FinancialRpgWorldMap để khu game trong thế giới 3D dựng được từ
+ *  Tách khỏi TechRpgWorldMap để khu game trong thế giới 3D dựng được từ
  *  ĐÚNG danh sách này. Trước đó nó là một const nằm trong một client component
  *  923 dòng - muốn dùng lại phải kéo cả component vào bundle, mà chép lại thì
  *  hai bản đồ sẽ lệch nhau ngay lần thêm địa điểm đầu tiên.

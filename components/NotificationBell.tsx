@@ -49,7 +49,7 @@ function systemIcon(type: CommunityNotification["type"]) {
   return null;
 }
 
-/** Bell icon for FinSocial's comment/reaction notifications (see
+/** Bell icon for Bảng tin's comment/reaction notifications (see
  *  supabase/migrations/20260821_community_notifications.sql). Mounted once
  *  in AppNavbar, same as the rest of the always-visible chrome, so it works
  *  from any page - not just while looking at the feed itself. */
@@ -159,13 +159,13 @@ export default function NotificationBell({ userId }: { userId: string }) {
 
   const handleItemClick = async (n: CommunityNotification) => {
     setOpen(false);
-    // Ba loại mới trỏ về chính bài học đang nói tới chứ không phải FinSocial.
-    // Bấm vào "khiếu nại đã được duyệt" mà rơi vào `/finsocial?post=null` là
+    // Ba loại mới trỏ về chính bài học đang nói tới chứ không phải Bảng tin.
+    // Bấm vào "khiếu nại đã được duyệt" mà rơi vào `/bang-tin?post=null` là
     // đúng cái luồng cụt mà thay đổi này đang chữa.
     if (n.lesson_slug) {
       router.push(`/bai-hoc/${n.lesson_slug}`);
     } else if (n.post_id !== null) {
-      router.push(`/finsocial?post=${n.post_id}`);
+      router.push(`/bang-tin?post=${n.post_id}`);
     }
     if (!n.read_at) {
       setUnreadCount((prev) => Math.max(0, prev - 1));

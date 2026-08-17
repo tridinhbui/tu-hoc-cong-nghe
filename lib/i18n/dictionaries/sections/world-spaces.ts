@@ -138,7 +138,7 @@ export const worldSpacesVi = {
       },
     },
     worldBoss: {
-      fallbackName: "Bạo Chúa Khủng Hoảng Tài Chính (Financial Crisis Titan)",
+      fallbackName: "Bạo Chúa Sự Cố Hệ Thống (Outage Titan)",
       fallbackDescription:
         "Trùm World Boss Server hàng tuần cực mạnh sở hữu 1.000.000 HP. Toàn bộ người học trên server cùng nhau gây sát thương để giải cứu thị trường!",
       defaultLeaderboardNames: ["Sói Già Silicon Valley", "Thầy Giáo Kiến Trúc", "Chiến Thần Thuật Toán"],
@@ -347,7 +347,7 @@ export const worldSpacesEn: typeof worldSpacesVi = {
         },
         vongQuayTien: {
           label: "Cash Cycle Room",
-          blurb: "Does cash arrive before it goes out - and who's financing whom",
+          blurb: "Does cash arrive before it goes out - and who depends on whom",
         },
         phanBoRuiRo: {
           label: "Risk & Allocation Room",
@@ -410,7 +410,7 @@ export const worldSpacesEn: typeof worldSpacesVi = {
       },
     },
     worldBoss: {
-      fallbackName: "Financial Crisis Titan",
+      fallbackName: "Outage Titan",
       fallbackDescription:
         "A massive weekly Server World Boss with 1,000,000 HP. Every learner on the server deals damage together to rescue the market!",
       defaultLeaderboardNames: ["Silicon Valley Old Wolf", "The Architecture Teacher", "Algorithm War God"],

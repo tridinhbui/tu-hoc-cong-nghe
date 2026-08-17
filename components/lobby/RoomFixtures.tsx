@@ -256,7 +256,7 @@ export default function RoomFixtures({
 
   return (
     <group>
-      {/* Bảng tin FinSocial - tường trái, giữa phòng. Hạ xuống dưới cốt 6,4:
+      {/* Bảng tin Bảng tin - tường trái, giữa phòng. Hạ xuống dưới cốt 6,4:
           phía trên là sàn ban công, treo cao hơn là bảng nằm sau gầm sàn. */}
       <WallBoard
         position={[-halfW + 0.3, 3.5, -6]}

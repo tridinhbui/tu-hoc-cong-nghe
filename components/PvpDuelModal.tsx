@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Brain, CheckCircle2, Shield, Trophy, X, XCircle } from "lucide-react";
-import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
+import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 import { toast } from "sonner";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { recordCustomGameSession } from "@/lib/games";
@@ -247,7 +247,7 @@ export default function PvpDuelModal({
 
             <div className={`grid ${embedded ? "grid-cols-1 sm:grid-cols-[auto_1fr]" : "md:grid-cols-[auto_1fr]"} gap-4 items-center bg-gradient-to-br from-sky-50 to-emerald-50 border border-sky-100 ${embedded ? "p-4" : "p-5 sm:p-6"} rounded-2xl`}>
               <div className={embedded ? "justify-self-center sm:justify-self-start" : ""}>
-                <FinanceCharacterAvatar level={userLevel} equipments={equipments} size={embedded ? "sm" : "md"} />
+                <TechCharacterAvatar level={userLevel} equipments={equipments} size={embedded ? "sm" : "md"} />
               </div>
               <div className={embedded ? "text-center sm:text-left" : ""}>
                 <p className="text-xs font-black uppercase tracking-wide text-sky-700">{format(t.pvpDuel.learnerLevelLabel, { level: userLevel })}</p>
@@ -293,7 +293,7 @@ export default function PvpDuelModal({
             <div className={`bg-stone-900 border border-sky-500/30 rounded-2xl ${embedded ? "p-3 sm:p-4 mb-4" : "p-4 sm:p-5 mb-5"} text-white`}>
               <div className="grid grid-cols-3 items-center gap-2 sm:gap-3">
                 <div className="flex flex-col items-center text-center">
-                  <FinanceCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
+                  <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
                   <span className="text-[10px] sm:text-[11px] font-extrabold text-sky-300 mt-1">{format(t.pvpDuel.youLabel, { level: userLevel })}</span>
                 </div>
 

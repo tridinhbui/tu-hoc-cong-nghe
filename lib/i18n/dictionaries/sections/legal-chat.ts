@@ -204,11 +204,11 @@ export const legalChatEn: typeof legalChatVi = {
     toastShareError: "Couldn't share right now.",
     shareCaption: "I just reached Level {level} on Tự Học Công Nghệ 🎉",
     shareCaptionWithName: "I just reached Level {level} - {name} on Tự học Công nghệ! 🎉",
-    svgHeaderName: "LEARN FINANCE EVERY DAY",
+    svgHeaderName: "LEARN TECH EVERY DAY",
     svgTitle: "LEVEL-UP ACHIEVEMENT",
     svgUserAchieved: "{userName} just reached",
     svgLevel: "Level {level}",
     svgLevelWithName: "Level {level} · {name}",
-    svgFooter: "LEARN FINANCE EVERY DAY · TUHOCTAICHINH.COM",
+    svgFooter: "LEARN TECH EVERY DAY · TUHOCTAICHINH.COM",
   },
 };

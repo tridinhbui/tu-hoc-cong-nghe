@@ -97,11 +97,6 @@
     "subtitle": "The reliability hierarchy of evidence, tests of controls versus substantive tests, and the main procedures",
     "duration": "11 min"
   },
-  "bang-ho-tro-khau-hao-von-luu-dong": {
-    "title": "Financial Modelling, Lesson 4: supporting schedules - depreciation and working capital",
-    "subtitle": "The two supporting schedules that decide whether your cash flow is trustworthy",
-    "duration": "9 min"
-  },
   "bang-ty-le-tu-vong-va-gia-cua-loi-hua": {
     "title": "Pricing, Lesson 1: the mortality table - putting a price on a long-term promise",
     "subtitle": "How a table of probabilities becomes a premium, why it has to be discounted to today, and which assumption carries the risk",
@@ -299,11 +294,6 @@
   "case-hang-hang-khong-phong-ho-gia-dau": {
     "title": "Small Case - An Airline Hedges Oil Prices",
     "subtitle": "Applying theory in practice: building a hedging strategy for fuel cost"
-  },
-  "case-tong-ket-mo-hinh-tai-chinh": {
-    "title": "Financial modelling, lesson 10: wrap-up - the full model-building process",
-    "subtitle": "Assembling the previous nine lessons into one working process",
-    "duration": "10 min"
   },
   "case-xay-danh-muc-3-tai-san": {
     "title": "Small Case - Building a 3-Asset Portfolio",
@@ -518,11 +508,6 @@
     "subtitle": "The return shareholders expect - no interest paid, but not free",
     "duration": "7 min"
   },
-  "country-risk-premium-va-dinh-gia-xuyen-bien-gioi": {
-    "title": "International Finance, Lesson 3: Cross-border valuation - discount in the right currency, add the right country risk",
-    "subtitle": "Country risk premium, currency-consistent discounting and the errors that double-count risk",
-    "duration": "12 min"
-  },
   "credit-analysis-co-ban-cho-nha-phan-tich": {
     "title": "IB & Analysis, Lesson 4: Credit analysis basics for the credit analyst",
     "subtitle": "Assessing the ability to repay is an entirely different job from assessing a share's growth potential",
@@ -636,11 +621,6 @@
     "title": "What is DCF?",
     "subtitle": "Valuing a company as the present value of all its future cash flows",
     "duration": "11 min"
-  },
-  "dcf-trong-mo-hinh-fcf-wacc-terminal-value": {
-    "title": "Financial Modelling, Lesson 6: DCF inside the model - FCF, WACC and terminal value",
-    "subtitle": "Turning a forecast into a single valuation number",
-    "duration": "10 min"
   },
   "deal-structure-stock-vs-cash": {
     "title": "IB & Analysis, Lesson 7: Deal structure - is the deal paid in cash or in stock?",
@@ -811,11 +791,6 @@
     "subtitle": "Why many modern businesses are abandoning the fixed one-year budget",
     "duration": "7 min"
   },
-  "du-phong-doanh-thu-revenue-build": {
-    "title": "Financial modelling, Lesson 2: Forecasting revenue from real drivers",
-    "subtitle": "Why 'grows 10% a year' is a lazy assumption",
-    "duration": "8 min"
-  },
   "du-phong-nghiep-vu-bao-hiem": {
     "title": "Actuarial pricing, Lesson 2: Technical reserves - why an insurer's profit is an estimate",
     "subtitle": "Three kinds of reserve, the IBNR held for losses nobody has reported yet, and why reported profit can be wrong for years before anyone notices",
@@ -964,36 +939,6 @@
     "title": "What is Financing Cash Flow?",
     "subtitle": "Cash flow from borrowing, issuing shares, and paying dividends",
     "duration": "5 min"
-  },
-  "fintech-cac-ltv-va-thoi-gian-hoan-von": {
-    "title": "FinTech, Lesson 2: CAC, LTV and payback - is each customer profitable or not",
-    "subtitle": "How to compute the cost of acquiring a customer, the value they bring, and why the LTV/CAC ratio says less than the payback period",
-    "duration": "11 min"
-  },
-  "fintech-cho-vay-so-va-chi-phi-rui-ro": {
-    "title": "FinTech, Lesson 4: Digital lending - approved in three seconds, and what that costs",
-    "subtitle": "Credit risk cost in an app-based lending model, and why a high interest rate does not mean a high profit",
-    "duration": "12 min"
-  },
-  "fintech-duong-toi-hoa-von-va-dot-tien": {
-    "title": "FinTech, Lesson 6: The road to breakeven - how long can you keep burning cash",
-    "subtitle": "Burn rate, runway, and how to read a growth plan to tell whether it leads to breakeven or to the next funding round",
-    "duration": "11 min"
-  },
-  "fintech-gian-lan-va-chi-phi-chargeback": {
-    "title": "FinTech, Lesson 5: Fraud and chargebacks - the cost nobody puts in the forecast",
-    "subtitle": "How payment fraud eats into margin, and why over-tightening costs more than the losses themselves",
-    "duration": "10 min"
-  },
-  "fintech-so-du-vi-float-va-tien-cua-khach": {
-    "title": "FinTech, Lesson 3: Wallet balances and float - where the customers' money sits, and who earns the interest",
-    "subtitle": "Why money in a wallet is not revenue, is not the company's asset, and why regulation requires it to be held separately",
-    "duration": "10 min"
-  },
-  "fintech-take-rate-doanh-thu-den-tu-dau": {
-    "title": "FinTech, Lesson 1: Take rate - where this product actually makes its money",
-    "subtitle": "The four revenue sources of a digital financial product, and why a tiny percentage decides the whole model",
-    "duration": "10 min"
   },
   "forward-contract-la-gi": {
     "title": "What Is a Forward Contract?",
@@ -1323,11 +1268,6 @@
     "subtitle": "Understanding why a single valuation number is never enough.",
     "duration": "15 min"
   },
-  "kiem-tra-mo-hinh-va-bay-thuong-gap": {
-    "title": "Financial Modelling, Lesson 9: Checking the model and the traps you will meet",
-    "subtitle": "The review checklist to run before you hand a model to anyone else",
-    "duration": "9 min"
-  },
   "kiem-tra-va-do-loi-mo-hinh-excel": {
     "title": "Excel, Lesson 4: Checking and debugging - turning a model into something that reports its own errors",
     "subtitle": "Trace precedents, partial F9, check cells, conditional formatting and the review routine before you send it",
@@ -1468,20 +1408,10 @@
     "subtitle": "Why every estimate has to carry an interval, and why 36 months of data is nowhere near enough",
     "duration": "11 min"
   },
-  "mo-hinh-ba-bao-cao-lien-ket": {
-    "title": "Financial Modelling, Lesson 3: the linked three-statement model",
-    "subtitle": "How the P&L, the balance sheet and the cash flow statement fit together",
-    "duration": "10 min"
-  },
   "mo-hinh-cham-diem-tin-dung-credit-scoring": {
     "title": "Credit Scoring Models: from data to a lending decision",
     "subtitle": "The 5C framework is the qualitative approach - a credit scoring model is the systematic quantitative approach the large banks actually run",
     "duration": "8 min"
-  },
-  "mo-hinh-lbo-don-gian": {
-    "title": "Financial Modelling, Lesson 8: a simple LBO model",
-    "subtitle": "Why leverage creates returns for a private equity fund",
-    "duration": "10 min"
   },
   "mo-hinh-tc-nganh-dac-thu": {
     "title": "Modelling Special Topics: adapting the model for banks and real estate",
@@ -1532,25 +1462,10 @@
     "subtitle": "From forecast to replanning when reality moves",
     "duration": "8 min"
   },
-  "ngang-gia-lai-suat-va-ty-gia-ky-han": {
-    "title": "International finance, part 1: interest rate parity - why a forward rate is not a forecast",
-    "subtitle": "The interest rate gap sets the forward points, and why a high rate does not mean a profit",
-    "duration": "11 min"
-  },
-  "ngang-gia-suc-mua-va-ty-gia-thuc": {
-    "title": "International finance, part 2: purchasing power parity and the real exchange rate - the long-run anchor",
-    "subtitle": "Inflation, the real effective exchange rate, and how to judge whether a currency is expensive or cheap",
-    "duration": "10 min"
-  },
   "nguon-va-su-dung-von-trong-thuong-vu": {
     "title": "Deals, part 2: sources and uses - where the money comes from and where it goes",
     "subtitle": "The sources & uses table, why enterprise value differs from cash required, and the items that get forgotten",
     "duration": "11 min"
-  },
-  "nguyen-tac-dung-mo-hinh-tai-chinh": {
-    "title": "Financial modelling, part 1: modelling principles - structure before formulas",
-    "subtitle": "Why a broken model is usually a layout problem rather than an arithmetic one",
-    "duration": "8 min"
   },
   "no-co-loi-ich-gi": {
     "title": "What benefit does debt provide a business?",
@@ -1566,11 +1481,6 @@
     "title": "What are liabilities?",
     "subtitle": "Financial obligations and how they affect a business",
     "duration": "5 min"
-  },
-  "no-vay-lai-vay-vong-lap-circularity": {
-    "title": "Financial modelling, part 5: debt, interest and circularity in a model",
-    "subtitle": "Why interest expense creates a circular reference, and how to deal with it",
-    "duration": "9 min"
   },
   "npv-co-ban": {
     "title": "NPV: Net Present Value",
@@ -1725,11 +1635,6 @@
     "title": "Cost-Volume-Profit (CVP) analysis & the breakeven point",
     "subtitle": "The core management accounting tool for answering: how much do we have to sell to make money, and what does a change in price do to profit",
     "duration": "7 min"
-  },
-  "phan-tich-do-nhay-va-kich-ban": {
-    "title": "Financial Modelling, Lesson 7: Sensitivity and scenario analysis",
-    "subtitle": "From a single number to a range that actually means something",
-    "duration": "8 min"
   },
   "phan-tich-ky-thuat-cho-moi-gioi": {
     "title": "Technical analysis for stockbrokers",
@@ -1999,11 +1904,6 @@
     "title": "Climate risk as a financial risk",
     "subtitle": "Physical risk, transition risk and stranded assets - how to quantify instead of just worrying",
     "duration": "9 min"
-  },
-  "rui-ro-ty-gia-tren-bao-cao-hop-nhat": {
-    "title": "International Finance, Lesson 4: FX risk in the accounts - transaction, translation and economic",
-    "subtitle": "Three different exposures, and why only one of the three actually costs the business money",
-    "duration": "11 min"
   },
   "sai-lam-tam-ly-fomo-thien-kien": {
     "title": "Track 7, Lesson 9: Common psychological mistakes - FOMO and confirmation bias",

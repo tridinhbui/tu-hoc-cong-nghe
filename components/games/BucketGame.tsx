@@ -26,7 +26,7 @@ interface RoundItem {
 }
 
 // Generic "drag each item into the correct category column" game, driven by
-// getBucketConfig(gameType) - one component powers financial-statement-match,
+// getBucketConfig(gameType) - one component powers system-dashboard-match,
 // ratio-category, and any future bucket game without code changes.
 export default function BucketGame({ userId, gameType, difficulty = "trung-binh", onFinished }: BucketGameProps) {
   const { t, locale } = useI18n();

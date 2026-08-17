@@ -8,7 +8,7 @@ import type {
   SpecialGameMeta,
   StatementBucket,
 } from "@/lib/games";
-import { FINANCE_GLOSSARY } from "@/lib/finance-glossary";
+import { TECH_GLOSSARY } from "@/lib/tech-glossary";
 import { gamesEn } from "./en";
 
 /**
@@ -171,7 +171,7 @@ export function localizePairConfig(
  * nghĩa thành "Liquidity", mà "Liquidity" đang là VẾ PHẢI của chính từ đó
  * trong pool vi↔en: người chơi thấy "Liquidity" ở cả hai cột, ghép vào nhau
  * theo phản xạ, và bị chấm sai. Nên với tiếng Anh, các cặp vi↔en bị LOẠI khỏi
- * ván trộn thay vì được dịch - lọc theo chính FINANCE_GLOSSARY chứ không cắt
+ * ván trộn thay vì được dịch - lọc theo chính TECH_GLOSSARY chứ không cắt
  * theo vị trí, để việc thêm bớt mục trong từ điển không làm lệch lát cắt.
  */
 function localizePool(
@@ -185,7 +185,7 @@ function localizePool(
   if (!TRANSLATABLE_POOLS.has(gameType)) return pool;
   const translatable =
     gameType === "random-mix"
-      ? pool.filter((p) => FINANCE_GLOSSARY[p.left.toLowerCase()] !== p.right)
+      ? pool.filter((p) => TECH_GLOSSARY[p.left.toLowerCase()] !== p.right)
       : pool;
   return translatable.map((p) => ({
     left: pack.content[p.left] ?? p.left,

@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swords, Heart, ShieldAlert, Trophy, Sparkles, X } from "lucide-react";
-import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
+import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -175,7 +175,7 @@ export default function BossBattleModal({
           <div className="flex flex-col items-center">
             <span className="text-xs font-bold text-emerald-400 mb-1">{t.bossBattle.heroLabel}</span>
             <motion.div animate={battleState === "hit_hero" ? { x: [-10, 10, -10, 0] } : {}}>
-              <FinanceCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
+              <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
             </motion.div>
             
             {/* Hero HP */}

@@ -7,7 +7,7 @@
 // BA BỘ KHÔNG AI VẼ RA. `SHOP_ITEMS`, `CHEST_REWARDS[].desc` và
 // `ITEM_DESCRIPTIONS[].name` đều có HÌNH DẠNG của chuỗi hiển thị nhưng không
 // component nào đọc: `SHOP_ITEMS` không được import ở đâu cả, còn
-// `ITEM_DESCRIPTIONS` chỉ có `.icon` được vẽ (FinanceCharacterAvatar,
+// `ITEM_DESCRIPTIONS` chỉ có `.icon` được vẽ (TechCharacterAvatar,
 // CosmeticStore). Dịch chúng không sai, nó chỉ vô ích - và nó làm một con số
 // "đã dịch" trông như tiến bộ. Chúng cố ý KHÔNG được đánh `i18n-ignore`: nếu
 // ngày nào có component đọc tới, chúng phải hiện lại trong danh sách còn thiếu.

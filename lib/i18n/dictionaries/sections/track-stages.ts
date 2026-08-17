@@ -524,7 +524,7 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 39",
-          name: "Sản phẩm FinTech và thanh toán",
+          name: "Sản phẩm thanh toán và ví điện tử",
           parts: [
             "Doanh thu và đơn vị kinh tế: take rate, CAC/LTV, số dư ví",
             "Phần mất đi và đường tới hoà vốn: lỗi giao dịch, gian lận, chi phí hạ tầng",
@@ -1100,7 +1100,7 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 39",
-          name: "FinTech products and payments",
+          name: "Payment and wallet products",
           parts: [
             "Revenue and unit economics: take rate, CAC/LTV, wallet balances",
             "The leakage and the road to break-even: failed transactions, fraud, infrastructure cost",

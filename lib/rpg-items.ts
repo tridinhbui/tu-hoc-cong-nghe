@@ -1,6 +1,6 @@
 /** Vốn từ vựng vật phẩm RPG: khoá món đồ, tên, ô trang bị, biểu tượng.
  *
- *  Tách khỏi FinanceCharacterAvatar để thế giới 3D dựng được đồ đeo từ ĐÚNG
+ *  Tách khỏi TechCharacterAvatar để thế giới 3D dựng được đồ đeo từ ĐÚNG
  *  danh sách này. Trước đó nó là một const trong một client component, nên
  *  muốn dùng lại phải kéo cả component 2D vào cảnh three.js - và chép lại thì
  *  cửa hàng bán một tên còn nhân vật đeo một tên khác.

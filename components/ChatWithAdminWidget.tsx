@@ -52,7 +52,7 @@ const REACTION_EMOJIS = ["👍", "❤️", "🔥", "🚀", "💡", "😂"];
    marker to the message body before it is stored, and the renderer parses it
    back out. Translating it would leave every quoted reply already in the
    database unparseable, so it stays Vietnamese in both languages - the same
-   reason the FinSocial topic hashtags are not translated. */
+   reason the Bảng tin topic hashtags are not translated. */
 const QUOTE_REPLY_PREFIX = "↩️ [Trả lời ";
 /* i18n-ignore-end */
 

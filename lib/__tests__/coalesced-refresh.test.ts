@@ -4,7 +4,7 @@ import { createCoalescer } from "@/lib/coalesced-refresh";
 /** Gộp sự kiện feed cộng đồng.
  *
  *  Ba kênh realtime không lọc đều gọi cùng một hàm tải lại, nên một người thả
- *  cảm xúc làm mọi người đang mở /finsocial chạy một truy vấn feed. Bộ gộp này
+ *  cảm xúc làm mọi người đang mở /bang-tin chạy một truy vấn feed. Bộ gộp này
  *  là chỗ chặn, và nó chỉ được phép cắt những lần tải lại KHÔNG đổi thứ người
  *  dùng nhìn thấy - vì thế nửa số bài dưới đây kiểm rằng nó vẫn chạy. */
 

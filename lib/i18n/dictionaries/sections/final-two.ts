@@ -70,7 +70,7 @@ export const finalTwoVi = {
       defaultConceptTableSubtitle: "Chạm hoặc di chuột vào từng dòng",
     },
     profileWallPosts: {
-      noPosts: "Người học này chưa đăng bài nào trên FinSocial.",
+      noPosts: "Người học này chưa đăng bài nào trên  the feed.",
     },
     roadmap: {
       title: "Roadmap",
@@ -203,7 +203,7 @@ export const finalTwoEn: typeof finalTwoVi = {
       defaultConceptTableSubtitle: "Tap or hover over each row",
     },
     profileWallPosts: {
-      noPosts: "This learner hasn't posted anything on FinSocial yet.",
+      noPosts: "This learner hasn't posted anything on the feed yet.",
     },
     roadmap: {
       title: "Roadmap",
@@ -226,7 +226,7 @@ export const finalTwoEn: typeof finalTwoVi = {
       subtitle: "CFA Level I - 10 official exam topics",
     },
     gamePage: {
-      metaTitle: "Financial Game World | TuHocTaiChinh.org",
+      metaTitle: "Tech Game World | TuHocCongNghe.org",
       metaDescription:
         "An RPG town map with Server Boss Hunt, Guild, and 1v1 PvP Arena modes for technology role-play.",
       loading: "Loading the Game World...",

@@ -5,7 +5,7 @@
  *  `onChange()` không mang payload. Client nhận được nó thì tải lại TOÀN BỘ
  *  feed, cộng thêm một truy vấn bình luận cho mỗi thread đang mở.
  *
- *  Nghĩa là một người thả cảm xúc ở đâu đó làm MỌI người đang mở /finsocial
+ *  Nghĩa là một người thả cảm xúc ở đâu đó làm MỌI người đang mở /bang-tin
  *  chạy một truy vấn feed. N người xem nhân M sự kiện, và cảm xúc là loại sự
  *  kiện dày nhất trong một mạng xã hội. Đây không phải chuyện số message
  *  realtime - đó là phần rẻ - mà là chuyện số truy vấn và lượng dữ liệu ra.
@@ -16,7 +16,7 @@
  *     tươi tới từng phần nghìn giây, và mười lần tải lại liên tiếp thì chín
  *     lần đầu bị lần cuối ghi đè ngay.
  *
- *  2. HOÃN KHI TAB BỊ ẨN. Một tab /finsocial để nền vẫn đang trả tiền cho mọi
+ *  2. HOÃN KHI TAB BỊ ẨN. Một tab /bang-tin để nền vẫn đang trả tiền cho mọi
  *     hoạt động của cả nền tảng để dựng lại thứ không ai nhìn. Khi tab hiện
  *     lại, nếu có sự kiện bị bỏ lỡ thì tải lại đúng MỘT lần - người dùng thấy
  *     nội dung mới ngay lúc họ quay lại nhìn, không sớm hơn.

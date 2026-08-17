@@ -151,7 +151,7 @@ export const VN_STANDARDS_TAX_LESSONS: Lesson[] = [
         concepts: [
           { vi: "Tài sản cố định", en: "PP&E", def: "VAS giữ giá gốc trừ khấu hao. IFRS cho chọn mô hình đánh giá lại theo giá trị hợp lý, nên tổng tài sản và vốn chủ có thể chênh nhau rất lớn." },
           { vi: "Bất động sản đầu tư", en: "Investment property", def: "Chỗ lệch lớn nhất với doanh nghiệp bất động sản Việt Nam: quỹ đất giá gốc từ nhiều năm trước so với giá thị trường hiện tại." },
-          { vi: "Công cụ tài chính", en: "Financial instruments", def: "IFRS có khung phân loại và đo lường chi tiết theo giá trị hợp lý; VAS xử lý hạn chế hơn, đặc biệt với các khoản đầu tư và phái sinh." },
+          { vi: "Công cụ tài chính", en: "System interfaces", def: "IFRS có khung phân loại và đo lường chi tiết theo giá trị hợp lý; VAS xử lý hạn chế hơn, đặc biệt với các khoản đầu tư và phái sinh." },
           { vi: "Tổn thất tài sản", en: "Impairment", def: "IFRS bắt buộc rà soát định kỳ và ghi giảm khi giá trị thu hồi thấp hơn giá trị ghi sổ; VAS xử lý rời rạc qua các khoản dự phòng." },
           { vi: "Thuê tài sản", en: "Leases", def: "IFRS đưa gần như mọi hợp đồng thuê lên bảng cân đối thành tài sản quyền sử dụng và nợ thuê, làm đòn bẩy tăng rõ so với cách trình bày cũ." },
         ],

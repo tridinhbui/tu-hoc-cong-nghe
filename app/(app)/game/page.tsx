@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import FinancialRpgWorldMap from "@/components/FinancialRpgWorldMap";
+import TechRpgWorldMap from "@/components/TechRpgWorldMap";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary } from "@/lib/i18n";
 
@@ -20,7 +20,7 @@ export default async function GamePage() {
   const t = getDictionary(locale);
   return (
     <Suspense fallback={<div className="min-h-screen bg-stone-50 flex items-center justify-center text-stone-500">{t.finalTwo.gamePage.loading}</div>}>
-      <FinancialRpgWorldMap />
+      <TechRpgWorldMap />
     </Suspense>
   );
 }

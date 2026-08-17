@@ -68,7 +68,7 @@ describe("đường ghi coins", () => {
     // ném 'Nguồn không hợp lệ' và người chơi mất phần thưởng.
     const expected: Array<[string, string]> = [
       ["components/FortuneWheelModal.tsx", "wheel"],
-      ["components/FinancialRpgWorldMap.tsx", "building"],
+      ["components/TechRpgWorldMap.tsx", "building"],
       ["components/DashboardClient.tsx", "game"],
       ["components/WeeklyChallengeWidget.tsx", "challenge"],
     ];

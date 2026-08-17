@@ -7,7 +7,7 @@ import type { GamesTranslation } from "./index";
  * KHÔNG dịch nội dung chơi, và ranh giới đó không phải để tiết kiệm công:
  *
  *   - `en-vi-terms` ghép thuật ngữ TIẾNG VIỆT với thuật ngữ TIẾNG ANH, và pool
- *     của nó dựng thẳng từ FINANCE_GLOSSARY. Dịch vế trái sang tiếng Anh thì
+ *     của nó dựng thẳng từ TECH_GLOSSARY. Dịch vế trái sang tiếng Anh thì
  *     hai cột cùng một thứ tiếng và trò chơi không còn gì để ghép. `random-mix`
  *     trộn chính pool đó vào nên dính theo.
  *   - `TICKER_PAIRS` là tên doanh nghiệp ↔ mã cổ phiếu ("Vingroup ↔ VIC").
@@ -23,7 +23,7 @@ export const gamesEn: GamesTranslation = {
     "wall-street-millionaire": {
       title: "Who Wants to Be a Wall Street Millionaire",
       description:
-        "15 advanced finance questions with game-show style lifelines.",
+        "15 advanced technology questions with game-show style lifelines.",
     },
     "dcf-mastermind": {
       title: "DCF & M&A Valuation Arena",
@@ -49,24 +49,24 @@ export const gamesEn: GamesTranslation = {
       description:
         "The all-round challenge: statements, terms, ratios, formulas and risk, shuffled together.",
     },
-    "financial-statement-match": {
-      title: "Financial statements",
+    "system-dashboard-match": {
+      title: "System dashboards",
       description:
         "Drag each component onto the right tier (client / service / data & infrastructure).",
     },
     "en-vi-terms": {
       title: "English - Vietnamese terms",
       description:
-        "Match each finance term in English with its Vietnamese counterpart, taken from the lessons you have studied.",
+        "Match each technology term in English with its Vietnamese counterpart, taken from the lessons you have studied.",
     },
     "ratio-category": {
-      title: "Sorting financial ratios",
+      title: "Sorting system metrics",
       description:
         "Drag each ratio into the right family: liquidity / profitability / leverage / efficiency.",
     },
     "term-definition": {
       title: "Terms & definitions",
-      description: "Match each finance term with the short definition that fits it.",
+      description: "Match each technology term with the short definition that fits it.",
     },
     "formula-match": {
       title: "Names & formulas",
@@ -94,7 +94,7 @@ export const gamesEn: GamesTranslation = {
   },
 
   buckets: {
-    "financial-statement-match": {
+    "system-dashboard-match": {
       sourceHint: "Drag or tap a card, then drop it on the right statement",
     },
     "ratio-category": {
@@ -156,7 +156,7 @@ export const gamesEn: GamesTranslation = {
 
   titles: {
     "random-mix": ["Grandmaster of the Random Mix", "Wizard of All Topics", "Shuffle Champion"],
-    "financial-statement-match": [
+    "system-dashboard-match": [
       "Architect of the Universe",
       "Deity of System Tiers",
       "Grandmaster of System Tiers",
@@ -174,7 +174,7 @@ export const gamesEn: GamesTranslation = {
     ],
   },
 
-  combinedTitles: ["Mini Game Legend", "Finance Grandmaster", "All-Round Champion"],
+  combinedTitles: ["Mini Game Legend", "Tech Grandmaster", "All-Round Champion"],
 
   // ─────────────────────────────────────────────────────────────────────────
   // NỘI DUNG CHƠI. Khoá là CHUỖI TIẾNG VIỆT, không phải id - những mảng này

@@ -13,12 +13,12 @@ import { extractStreakDays } from "@/lib/streak-post-days";
 /** Chuỗi ngày học của người khác, một góc nhỏ trên dashboard.
  *
  *  Bài chuỗi ngày là loại bài đông nhất trong feed cộng đồng và cũng là loại
- *  ít ai mở /finsocial để đọc - nên nó nằm ở nơi có nhiều người qua lại nhất
+ *  ít ai mở /bang-tin để đọc - nên nó nằm ở nơi có nhiều người qua lại nhất
  *  thay vì chờ người ta đi tìm. Ở đây nó làm được đúng việc mà một dòng
  *  "đã học 7 ngày liên tiếp" làm tốt nhất: cho thấy có người khác đang học,
  *  hôm nay, cùng lúc với bạn.
  *
- *  Chỉ đọc, không nút thả cảm xúc: mọi hành động vẫn nằm ở /finsocial, và một
+ *  Chỉ đọc, không nút thả cảm xúc: mọi hành động vẫn nằm ở /bang-tin, và một
  *  góc nhỏ mọc thêm nút bấm sẽ thành một feed thứ hai phải bảo trì song song.
  */
 const MAX_ROWS = 4;
@@ -66,7 +66,7 @@ export default function CommunityStreakWidget() {
           </div>
         </div>
         <Link
-          href="/finsocial"
+          href="/bang-tin"
           className="shrink-0 text-[11px] font-bold text-stone-500 transition-colors hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
         >
           {t.dashboard.seeAll}

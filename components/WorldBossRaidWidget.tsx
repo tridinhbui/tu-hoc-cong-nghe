@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swords, Flame, Trophy, ShieldAlert, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
-import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
+import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { DAMAGE_PER_CORRECT, bossHpPercent } from "@/lib/world-boss";
 import { useI18n } from "@/lib/i18n/context";
@@ -321,7 +321,7 @@ export default function WorldBossRaidWidget({
                       {t.worldBoss.gearTitle}
                     </h4>
                     <div className="flex items-center gap-4 bg-gradient-to-br from-orange-50 to-white p-3 rounded-xl border border-orange-100">
-                      <FinanceCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
+                      <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
                       <div>
                         <span className="text-xs font-bold text-stone-900 block">{t.worldBoss.heroPower}</span>
                         <span className="text-[11px] text-stone-500">{t.worldBoss.levelPrefix}<strong className="text-orange-600">{format(t.worldBoss.levelValue, { level: userLevel })}</strong></span>
@@ -406,7 +406,7 @@ export default function WorldBossRaidWidget({
                         className="flex flex-col items-center text-center"
                       >
                         <div className="relative">
-                          <FinanceCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
+                          <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
                           <span className="absolute -bottom-1 -right-1 text-[9px] font-black bg-emerald-500 text-white px-1.5 py-0.5 rounded-full shadow-xs">
                             {format(t.worldBoss.levelShort, { level: userLevel })}
                           </span>

@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
-import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
+import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
@@ -214,7 +214,7 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
 
           <div className="my-5 flex justify-center">
             <div className="flex h-36 w-36 items-center justify-center rounded-full border-4 border-amber-400 bg-gradient-to-b from-amber-100 to-amber-50 shadow-xl">
-              <FinanceCharacterAvatar level={level} equipments={equippedGear} size="lg" />
+              <TechCharacterAvatar level={level} equipments={equippedGear} size="lg" />
             </div>
           </div>
 

@@ -69,15 +69,15 @@ type NavLink =
  * hành từ trước lần sửa thứ tự nhóm này, chỉ là chú thích chưa theo kịp.)
  */
 const TOP_LEVEL_LINKS: NavLink[] = [
-  /* i18n-ignore-start: proper nouns / product names, identical in both languages (Dashboard, FinSocial) */
+  /* i18n-ignore-start: proper nouns / product names, identical in both languages (Dashboard, Bảng tin) */
   { href: "/dashboard", label: "Dashboard", icon: Home },
-  // FinSocial ra khỏi nhóm "Cộng đồng" để đứng ngay dưới Dashboard.
+  // Bảng tin ra khỏi nhóm "Cộng đồng" để đứng ngay dưới Dashboard.
   //
   // Nhóm đó gập lại được, và một mục nằm trong tiêu đề gập thì chỉ tồn tại với
   // người đã từng bấm mở tiêu đề ấy - cùng lý do đã ghi ở chú thích của nhóm
   // này. Với một nguồn tin cần người vào đọc thường xuyên thì đứng sau một cú
   // bấm là quá xa; hai dòng đầu navbar là chỗ duy nhất luôn thấy.
-  { href: "/finsocial", label: "FinSocial", icon: MessageSquareMore },
+  { href: "/bang-tin", label: "Bảng tin", icon: MessageSquareMore },
   /* i18n-ignore-end */
   // Thống kê và Tài liệu KHÔNG còn ở đây - chúng xuống BOTTOM_LEVEL_LINKS,
   // dưới các nhóm. Xem chú thích ở đó.
@@ -89,7 +89,7 @@ const TOP_LEVEL_LINKS: NavLink[] = [
  *  được đặt trên đúng một dòng thì luôn lỗ - tốn một dòng để giấu một dòng, và
  *  bắt người đọc bấm một lần để thấy thứ lẽ ra đã thấy sẵn.
  *
- *  Cái đổi là VỊ TRÍ. Trước đây chúng đứng ngay dưới Dashboard và FinSocial,
+ *  Cái đổi là VỊ TRÍ. Trước đây chúng đứng ngay dưới Dashboard và Bảng tin,
  *  tức chen vào giữa hai dòng hay dùng nhất và các nhóm việc chính. Cả hai đều
  *  là chỗ người ta ghé lại chứ không phải chỗ bắt đầu một buổi học, nên chúng
  *  thuộc về cuối danh sách.
@@ -182,7 +182,7 @@ const NAV_SECTIONS: NavSection[] = [
     titleKey: "sectionCommunity",
     links: [
       // "Thư viện" was hardcoded here as the 3D space's own name, like
-      // FinSocial. But the room's own header is translated (t.lobby.title,
+      // Bảng tin. But the room's own header is translated (t.lobby.title,
       // "Library · Saigon Reading Room"), so the nav and the page it opens
       // named the same room two different ways in English. It is a common
       // noun; it gets translated.

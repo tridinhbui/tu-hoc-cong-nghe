@@ -6,7 +6,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase";
 import { toast } from "sonner";
 import { ShoppingBag, Check, Zap } from "lucide-react";
-import FinanceCharacterAvatar, { CharacterEquipments, ITEM_DESCRIPTIONS } from "@/components/FinanceCharacterAvatar";
+import TechCharacterAvatar, { CharacterEquipments, ITEM_DESCRIPTIONS } from "@/components/TechCharacterAvatar";
 import GoldCoinIcon from "@/components/GoldCoinIcon";
 import CharacterCustomizerModal from "@/components/CharacterCustomizerModal";
 import { useI18n } from "@/lib/i18n/context";
@@ -290,7 +290,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
           <span className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">
             {t.cosmeticStore.currentAppearanceLabel}
           </span>
-          <FinanceCharacterAvatar level={userLevel} equipments={equippedGear} size="md" />
+          <TechCharacterAvatar level={userLevel} equipments={equippedGear} size="md" />
           <button
             onClick={() => setShowCustomizer(true)}
             className="mt-1 bg-gradient-to-r from-amber-500 to-yellow-500 hover:brightness-110 text-stone-950 text-xs font-black px-3.5 py-1.5 rounded-xl transition-all shadow-sm flex items-center gap-1.5 cursor-pointer"

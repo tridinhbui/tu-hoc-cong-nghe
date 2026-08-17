@@ -11,5 +11,5 @@ export const dynamic = "force-static";
 
 
 export default function StudyGroupCommunityFeedPage() {
-  redirect("/finsocial");
+  redirect("/bang-tin");
 }

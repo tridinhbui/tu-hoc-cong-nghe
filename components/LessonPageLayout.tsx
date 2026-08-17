@@ -24,7 +24,7 @@ import { getLessonProgress } from "@/lib/supabase-progress";
 import { queueOfflineCompletion, removeOfflineCompletion } from "@/lib/offline-sync";
 import { recalculateUserStats } from "@/lib/supabase-user";
 import { updateStreak, MAX_STREAK_FREEZES } from "@/lib/supabase-streak";
-import { maybeAwardFinanceCardDrop } from "@/lib/finance-cards";
+import { maybeAwardTechCardDrop } from "@/lib/tech-cards";
 import { getReadingProgress, updateReadingProgress } from "@/lib/supabase-reading";
 import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getRecallItemsAction } from "@/lib/recall-actions";
@@ -721,7 +721,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
         const remaining = MAX_STREAK_FREEZES - (streakResult.freezes_used ?? 0);
         toast.info(format(t.miscUi.lessonPageLayout.streakFreezeUsed, { streak: streakResult.current_streak, remaining }));
       }
-      const cardDrop = await maybeAwardFinanceCardDrop(uid, finalScore);
+      const cardDrop = await maybeAwardTechCardDrop(uid, finalScore);
       if (cardDrop.dropped && cardDrop.card) {
         toast.success(format(t.miscUi.lessonPageLayout.cardDropped, { ticker: cardDrop.card.ticker, name: cardDrop.card.name }));
         if (typeof window !== "undefined") {

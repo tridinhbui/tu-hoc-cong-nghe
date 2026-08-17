@@ -55,10 +55,10 @@ import { getUserBookmarks, type LessonBookmark } from "@/lib/supabase-bookmarks"
 import { getPassedMilestones, savePassedMilestone, type MilestoneCompletion } from "@/lib/supabase-milestones";
 import { syncOfflineQueue } from "@/lib/offline-sync";
 import { isValidAvatar } from "@/lib/avatar-utils";
-// CosmeticStore/FinanceCardCollection/WeeklyChallengeWidget không còn import ở
+// CosmeticStore/TechCardCollection/WeeklyChallengeWidget không còn import ở
 // đây: các nhánh render của chúng đã bỏ cùng những giá trị tab không ai chọn
 // được. Ba widget đó sống ở RPG hub.
-import FinanceCharacterAvatar, { CharacterEquipments } from "@/components/FinanceCharacterAvatar";
+import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
 import BossBattleModal from "@/components/BossBattleModal";
 import PvpDuelModal from "@/components/PvpDuelModal";
 import DashboardStreakWidget from "@/components/DashboardStreakWidget";

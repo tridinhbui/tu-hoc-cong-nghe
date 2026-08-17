@@ -64,7 +64,7 @@ export function shuffle<T>(arr: T[], rng: Rng = Math.random): T[] {
  *  PHÁ HOÀ NGẪU NHIÊN khi nhiều môn cùng phần dư. Không có bước này thì bài
  *  luyện ngắn ra y hệt nhau mãi mãi: FRM Part I có bốn môn 20/20/30/30, đề 5
  *  câu cho phần dư 0/0/0,5/0,5 và câu lẻ luôn rơi vào cùng một môn - đo ra
- *  Financial Markets 40% trong mọi phiên, không bao giờ hội tụ về 30%. Đề dài
+ *  Thị trường 40% trong mọi phiên, không bao giờ hội tụ về 30%. Đề dài
  *  hiếm khi hoà nên bước này không đụng tới độ chính xác của thi thử. */
 export function subjectPlan<Id extends string>(
   shares: Array<{ id: Id; share: number }>,

@@ -37,7 +37,7 @@ export const gamesMetaVi = {
       description:
         "Thách thức tổng hợp: Trộn ngẫu nhiên kiến thức từ Tầng hệ thống, Thuật ngữ, Chỉ số, Công thức và Rủi ro!",
     },
-    "financial-statement-match": {
+    "system-dashboard-match": {
       title: "Tầng của hệ thống",
       description:
         "Kéo từng thành phần vào đúng tầng (Giao diện / Dịch vụ / Dữ liệu & hạ tầng).",
@@ -91,8 +91,8 @@ export const gamesMetaEn: typeof gamesMetaVi = {
       description:
         "The all-in challenge: system tiers, terminology, metrics, formulas and risk, drawn at random.",
     },
-    "financial-statement-match": {
-      title: "Financial statements",
+    "system-dashboard-match": {
+      title: "System dashboards",
       description:
         "Drag each component onto the tier it belongs to (Client / Service / Data & infrastructure).",
     },

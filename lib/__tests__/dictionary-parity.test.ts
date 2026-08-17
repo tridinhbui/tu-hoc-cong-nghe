@@ -227,7 +227,7 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // source: "SaaS & AI Software", "Fintech & Digital Payments", "Private Equity
   // Syndicate" are how the industry names itself in Vietnamese finance too.
   "finalOne.dcfGame.industries.tech-titan",
-  "finalOne.dcfGame.industries.fintech-disruptor",
+  "finalOne.dcfGame.industries.payments-platform",
   "finalOne.guildsRoute.fallbackNames.guild-pe",
   // The comps table's column header: three multiple names and separators. They
   // are the multiples' own names in both languages.

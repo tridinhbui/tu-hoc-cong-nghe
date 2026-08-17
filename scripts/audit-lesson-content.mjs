@@ -581,6 +581,26 @@ function jaccard(a, b) {
 // mà AGENTS.md nói là sẽ bị người ta học cách phớt lờ.
 const OPTION_LETTER_RE = /(phương án|đáp án|lựa chọn|option|câu trả lời)\s*["']?([A-D])(?![\p{L}\p{M}])/giu;
 
+// Cùng một rủi ro với chữ cái, nhưng bằng TỪ CHỈ VỊ TRÍ - và bộ dò trên không
+// thấy nó. "The second option describes a high-variance measurement", "phương
+// án cuối có đúng con số nhưng sai lý do": cả hai đặt tên cho một Ô, không cho
+// một mệnh đề.
+//
+// Chúng ĐANG đúng, và không phải nhờ may mắn theo nghĩa xấu: người dịch được
+// AGENTS.md dặn viết theo lib/lessons-data (thứ tự đã qua balanceLessonQuizzes)
+// chứ không theo lib/lessons.ts, còn trang bài học thì không xáo lại lúc hiển
+// thị - chỉ BossBattleModal mới gọi shuffleQuiz. Đo mới biết: 3 trong 4 bài lấy
+// mẫu có thứ tự dựng KHÁC thứ tự soạn, nên viết theo bản soạn là sai ngay.
+//
+// Cái mong manh là chỗ khác: thêm hay sửa một câu trong bài thì balance có thể
+// xếp lại cả mảng, và mọi tham chiếu vị trí trong phần giải thích của bài đó
+// lặng lẽ trỏ sang ô khác. Không cổng nào đỏ, vì không cổng nào đang đếm.
+//
+// ĐẾM chứ không GÁC, đúng như dòng chữ cái ngay trên: 31 chỗ hiện có đều đang
+// đúng, nên một cổng ở mức 0 sẽ đỏ ngay từ lượt chạy đầu và bị học cách phớt lờ.
+const OPTION_POSITION_RE =
+  /\b(?:the (?:last|first|second|third|fourth|final|other) option|options? (?:above|below))\b|(?:phương án|đáp án|lựa chọn)\s+(?:cuối|đầu|trên|dưới|thứ (?:nhất|hai|ba|tư))/giu;
+
 // Một chữ cái do CHÍNH CÂU HỎI đặt ra thì không phải tham chiếu vị trí.
 //
 // `ca-nhan-doanh-nghiep-chinh-phu` q2 dựng ba kịch bản ngay trong đề - "Lựa
@@ -745,6 +765,7 @@ const miskeyedNumeric = [];
 
 /** Mọi tham chiếu chữ cái - nợ tiềm ẩn, chỉ báo cáo. */
 const letterRefs = [];
+const positionRefs = [];
 /** Chữ cái trỏ đúng vào đáp án đúng - gate ở đây. */
 const contradictoryLetterRefs = [];
 /** Baselined lessons that now pass, so the baseline must shrink. */
@@ -1101,6 +1122,10 @@ for (const lesson of corpus) {
     // Margin cao có tốt không?" khoá đáp án vào "Không ảnh hưởng", trong khi
     // phần giải thích của chính câu đó nói "cần xem ngành: Retail 20-30%,
     // Software 70-80%". Tìm ra hoàn toàn tình cờ khi đang soi độ dài.
+    OPTION_POSITION_RE.lastIndex = 0;
+    if (OPTION_POSITION_RE.test(String(question?.explanation ?? ""))) {
+      positionRefs.push({ slug: lesson.slug, question: String(question.question ?? "").slice(0, 70) });
+    }
     for (const ref of findOptionLetterRefs(question)) {
       const row = {
         slug: lesson.slug,
@@ -1557,6 +1582,10 @@ if (miskeyedNumeric.length > 0) {
 console.log(
   `\nOption-letter refs in explanations: ${letterRefs.length} total, ` +
     `${contradictoryLetterRefs.length} contradicting the keyed answer`
+);
+console.log(
+  `Option-position refs in explanations: ${positionRefs.length}` +
+    ` (\u0111\u1ebfm, kh\u00f4ng g\u00e1c - xem ch\u00fa th\u00edch \u1edf OPTION_POSITION_RE)`
 );
 if (letterRefs.length > contradictoryLetterRefs.length) {
   console.log(

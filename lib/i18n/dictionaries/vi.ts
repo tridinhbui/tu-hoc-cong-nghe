@@ -308,7 +308,7 @@ export const vi = {
       weeklyBoard: "Bảng xếp hạng theo tuần",
       spacedRepetition: "Hệ thống ôn tập ngắt quãng",
       gameKingdom: "Game Kingdom mở theo tiến độ",
-      finsocial: "FinSocial phản biện ý tưởng",
+      feed: "Bảng tin phản biện ý tưởng",
       studyGroup: "Học nhóm giữ nhịp mỗi ngày",
     },
 
@@ -328,7 +328,7 @@ export const vi = {
       eyebrow: "Không chỉ là bài học",
       titlePart1: "Học, chơi, hỏi đáp và chia sẻ trong cùng một",
       titleHighlight: "hệ sinh thái công nghệ",
-      sub: "Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có lộ trình active recall ôn tập chủ động, học nhóm 3D để giữ nhịp, và FinSocial để trao đổi kiến thức với cộng đồng.",
+      sub: "Sau khi tạo tài khoản, bạn không chỉ đi qua lộ trình bài học. Bạn còn có lộ trình active recall ôn tập chủ động, học nhóm 3D để giữ nhịp, và Bảng tin để trao đổi kiến thức với cộng đồng.",
     },
 
     vision: {
@@ -360,7 +360,7 @@ export const vi = {
       ecoTitle: "Hệ sinh thái",
       ecoStudyRoom: "Phòng học nhóm (3D)",
       ecoHot: "Hot",
-      ecoFinsocial: "FinSocial - feed bài viết",
+      ecoFeed: "Bảng tin - feed bài viết",
       ecoShop: "Cửa hàng Cosmetic & Avatar",
       supportTitle: "Hỗ trợ & Pháp lý",
       terms: "Điều khoản sử dụng",
@@ -680,7 +680,7 @@ export const vi = {
 
   // components/tools/ValuationDCFCalculator.tsx
 
-  // components/FinancialRpgWorldMap.tsx - the Game Kingdom map.
+  // components/TechRpgWorldMap.tsx - the Game Kingdom map.
   worldMap: {
     levelShort: "Lv.{level}",
     empireTitle: "Đế chế Silicon Valley",
@@ -985,9 +985,9 @@ export const vi = {
     groupTitle: "Phòng học chung không để bạn tự học 1 mình",
     groupBody:
       "Bàn tròn 3D ảo, ghép nhóm theo chủ đề, check-in nhận XP và khung chat nhóm tương tác.",
-    finsocialTab: "FinSocial",
-    finsocialTitle: "Mạng xã hội học công nghệ chia sẻ bài học",
-    finsocialBody:
+    feedTab: "Bảng tin",
+    feedTitle: "Mạng xã hội học công nghệ chia sẻ bài học",
+    feedBody:
       "Feed tin tức bài viết ngắn, hỏi đáp thực tế, thảo luận rà soát mã và thả cảm xúc.",
 
     roadmapPanelTitle: "Lộ trình học nền tảng công nghệ & chứng chỉ",
@@ -1029,9 +1029,9 @@ export const vi = {
     adminMessage: "Cập nhật hôm nay: Hà tường vy, hà hồng đã học bài. Cùng cố gắng nhé!",
     chatPlaceholder: "Gửi lời chúc, hỏi bài...",
 
-    feedPanelTitle: "FinSocial feed trực tuyến",
+    feedPanelTitle: "Bảng tin feed trực tuyến",
     feedPanelSub: "Bấm thử nút Thả tim ❤️ tương tác với bài viết thực tế",
-    feedCta: "Vào FinSocial Feed",
+    feedCta: "Vào Bảng tin Feed",
     postStats: "{comments} bình luận · {shares} chia sẻ",
 
     // The two demo posts. Author names and hashtags stay as they are.
@@ -1261,7 +1261,7 @@ export const vi = {
     deleteCardTitle: "Xoá thẻ",
   },
 
-  // components/FinancialGuildWidget.tsx - the VN30 fund simulator.
+  // components/TechGuildWidget.tsx - the VN30 fund simulator.
   guild: {
     stopLossTitle: "Bài học nguyên tắc cắt lỗ stop-loss ({ticker} {percent}%)",
     stopLossDesc:
@@ -1343,7 +1343,7 @@ export const vi = {
     confirmSuffix: "Cổ Phần",
   },
 
-  // components/CommunityFeedClient.tsx - the FinSocial feed (/finsocial).
+  // components/CommunityFeedClient.tsx - the Bảng tin feed (/bang-tin).
   feed: {
     sentimentPost: "#PhanTich #MarketSentiment Hôm nay mình nhận định thị trường {view}. Khảo sát cộng đồng: {bull}% Bullish · {bear}% Bearish.",
     voteBullish: "Biển Xanh (Bullish - Tăng trưởng)",
@@ -1383,7 +1383,7 @@ export const vi = {
       "thanh-tuu": { label: "Thành tựu", short: "Thành tựu" },
       "hoi-dap": { label: "Hỏi đáp", short: "Hỏi đáp" },
       "tin-nong": { label: "Tin nóng", short: "Tin nóng" },
-      "ai-finance": { label: "AI & công cụ", short: "AI" },
+      "ai-tooling": { label: "AI & công cụ", short: "AI" },
     },
 
 
@@ -1419,7 +1419,7 @@ export const vi = {
     addTopic: "Chủ đề",
     addFeeling: "Cảm xúc",
     createPost: "Tạo bài viết",
-    memberRole: "Thành viên FinSocial",
+    memberRole: "Thành viên Bảng tin",
     visibilityPublic: "Công khai",
     previewAlt: "Preview",
     createPoll: "Tạo bình chọn / Thăm dò ý kiến",
@@ -1436,7 +1436,7 @@ export const vi = {
     // Header
     backToDashboard: "Về Dashboard",
     eyebrow: "Mạng xã hội học công nghệ",
-    title: "FinSocial Feed",
+    title: "Bảng tin Feed",
     subtitle:
       "Nơi cộng đồng chia sẻ bản tin ngắn, câu hỏi, phân tích BCTC thực tế và ăn mừng thành tựu học tập mỗi ngày.",
 
@@ -1610,7 +1610,7 @@ export const vi = {
     "personal-ops": "Công cụ và vận hành",
     "investing-psychology": "Tâm lý người dùng & sản phẩm",
     "accounting-reporting": "Web & giao diện",
-    "valuation-corp-finance": "Thiết kế hệ thống & backend",
+    "system-design-backend": "Thiết kế hệ thống & backend",
     "bonds-credit": "Hàng đợi & giao tiếp dịch vụ",
     "risk-portfolio-derivatives": "Độ tin cậy, giám sát & sự cố",
     "risk-frm": "Bảo mật chuyên sâu",
@@ -1623,9 +1623,9 @@ export const vi = {
     "private-markets": "Mã nguồn mở & hệ sinh thái",
     "wealth-insurance": "Quy mô lớn & chịu tải",
     "real-estate-project": "Hạ tầng & dự án nền tảng",
-    fintech: "AI & sản phẩm thông minh",
-    "personal-finance": "Nền tảng công nghệ",
-    "professional-finance": "Công nghệ chuyên sâu",
+    "ai-products": "AI & sản phẩm thông minh",
+    "tech-foundations": "Nền tảng công nghệ",
+    "advanced-tech": "Công nghệ chuyên sâu",
     "bonus-cases": "Bài case & ứng dụng",
   },
 
@@ -1665,8 +1665,8 @@ export const vi = {
     promotedTitle: "Bạn chính thức thăng thâm niên Cấp độ {level} ({name})!",
     promotedBody:
       "Trạng thái thi đỗ đã được ghi nhận trong hồ sơ và duy trì chứng nhận trong 14 ngày tới.",
-    sharedToast: "Đã chia sẻ thành tích lên FinSocial! (+10 XP)",
-    shareCta: "Chia sẻ chiến tích lên FinSocial (+10 XP)",
+    sharedToast: "Đã chia sẻ thành tích lên Bảng tin! (+10 XP)",
+    shareCta: "Chia sẻ chiến tích lên Bảng tin (+10 XP)",
     reviewTitle: "Bạn cần ôn lại các khái niệm chưa nắm vững",
     reviewBody:
       "Đừng nản lòng! Đọc kỹ giải thích đáp án bên dưới để củng cố kiến thức trước khi làm bài thi lại.",
@@ -2565,7 +2565,7 @@ export const vi = {
     noQuiz: "Không có quiz",
 
     recentPosts: "Bài đăng gần đây",
-    viewFinsocial: "Xem FinSocial →",
+    viewFeed: "Xem Bảng tin →",
   },
   // components/lobby/LobbyClient.tsx - the shared 3D library lobby.
   lobby: {
@@ -2826,7 +2826,7 @@ export const vi = {
     markAllRead: "Đánh dấu đã đọc tất cả",
     loading: "Đang tải...",
     empty:
-      "Chưa có thông báo nào. Đăng bài hoặc bình luận trên FinSocial để bắt đầu nhận thông báo khi có người tương tác.",
+      "Chưa có thông báo nào. Đăng bài hoặc bình luận trên Bảng tin để bắt đầu nhận thông báo khi có người tương tác.",
     comment: "{actor} đã bình luận vào bài viết của bạn",
     reaction: "{actor} đã thả {emoji} vào bài viết của bạn",
     reactionFallback: "cảm xúc",
