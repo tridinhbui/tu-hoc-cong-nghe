@@ -121,15 +121,20 @@ function auditLesson(lesson) {
  * gates would just re-measure the Vietnamese corpus under a second name.
  */
 function loadCorpus() {
+  // Bỏ MỌI tệp mở đầu bằng "_", không chỉ _index.json. Bộ sinh dữ liệu ghi
+  // thêm _track-totals.json, và bộ lọc cũ nạp nó vào như một bài học: không
+  // id, không slug, không quiz - báo về thành "[undefined] undefined" trượt cả
+  // năm phép kiểm nội dung, và cổng đỏ vì một bài không tồn tại. Dấu gạch dưới
+  // ở đầu tên đã là quy ước "đây là metadata" của chính thư mục này.
   const lessonFiles = readdirSync(dataDir).filter(
-    (f) => f.endsWith(".json") && f !== "_index.json"
+    (f) => f.endsWith(".json") && !f.startsWith("_")
   );
   if (isSourceLocale) {
     return lessonFiles.map((f) => JSON.parse(readFileSync(path.join(dataDir, f), "utf8")));
   }
 
   const translated = readdirSync(translationsDir).filter(
-    (f) => f.endsWith(".json") && f !== "_index.json"
+    (f) => f.endsWith(".json") && !f.startsWith("_")
   );
   const corpus = [];
   for (const file of translated) {
