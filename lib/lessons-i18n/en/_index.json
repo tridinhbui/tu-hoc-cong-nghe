@@ -241,11 +241,6 @@
     "title": "What Is a Call Option?",
     "subtitle": "The right to buy an asset at a fixed price - expecting the price to rise"
   },
-  "can-bang-tuoi": {
-    "title": "Balancing stocks and bonds by age",
-    "subtitle": "Age-based allocation",
-    "duration": "7 min"
-  },
   "cap-rate": {
     "title": "Cap Rate in Property",
     "subtitle": "Property Value = NOI / Cap Rate",
@@ -557,11 +552,6 @@
     "subtitle": "Vietnam's market is only a very small part of the global economic picture.",
     "duration": "6 min"
   },
-  "dac-tinh-ca-nhan": {
-    "title": "Personal temperament: cautious or bold",
-    "subtitle": "Risk tolerance assessment",
-    "duration": "6 min"
-  },
   "danh-gia-deal-dau-tu": {
     "title": "Evaluating an investment deal",
     "subtitle": "A framework for reading a buyout the way a private equity fund reads one",
@@ -571,11 +561,6 @@
     "title": "Appraising an internal investment project: NPV, IRR and Payback",
     "subtitle": "An $80m project - how long until it breaks even, and is it worth doing?",
     "duration": "7 min"
-  },
-  "danh-muc-la-gi": {
-    "title": "What is a portfolio? Why you shouldn't put it all in one basket",
-    "subtitle": "Portfolio diversification",
-    "duration": "6 min"
   },
   "dao-duc-du-lieu-va-thien-lech-thuat-toan": {
     "title": "Data Thinking, Lesson 6: Data ethics - privacy, bias and accountability",
@@ -1293,11 +1278,6 @@
     "subtitle": "The Fisher Equation and the real purchasing power of an interest rate",
     "duration": "6 min"
   },
-  "lam-phat-huu-tri": {
-    "title": "Inflation and retirement: why you need to invest",
-    "subtitle": "Inflation impact on retirement",
-    "duration": "7 min"
-  },
   "lam-phat-va-dau-tu": {
     "title": "Inflation and its effect on investing",
     "subtitle": "Which assets protect purchasing power best?",
@@ -1342,11 +1322,6 @@
     "title": "Pricing, Lesson 5: Where an insurer makes its money - underwriting or investing",
     "subtitle": "The combined ratio, float, and why a company losing money on underwriting can still be a good company",
     "duration": "11 min"
-  },
-  "loi-the-thue-huu-tri": {
-    "title": "The tax advantage of a retirement account",
-    "subtitle": "Personal income tax relief for joining a voluntary supplementary pension",
-    "duration": "6 min"
   },
   "lua-chon-bat-loi-va-rui-ro-dao-duc": {
     "title": "Pricing, Lesson 4: Adverse selection and moral hazard - two forces pulling opposite ways",
@@ -1656,11 +1631,6 @@
     "subtitle": "The hurdle rate, the catch-up mechanism and the order in which money is distributed",
     "duration": "12 min"
   },
-  "phi-quan-ly": {
-    "title": "Expense ratios: the cost of your portfolio",
-    "subtitle": "Expense optimization",
-    "duration": "7 min"
-  },
   "phim-tat-excel-va-ky-luat-ban-phim": {
     "title": "Excel, Lesson 1: Keyboard discipline - why a modelling test bans the mouse",
     "subtitle": "The core shortcut groups, navigating a data range, and the working habits of a professional modeller",
@@ -1799,11 +1769,6 @@
     "title": "The Vietnamese market, Lesson 7: open-ended funds, domestic ETFs and fund certificates",
     "subtitle": "How to reach diversification while your capital is still small",
     "duration": "10 min"
-  },
-  "quy-tac-4-phan-tram": {
-    "title": "The 4% rule: how much you can withdraw in retirement",
-    "subtitle": "Safe withdrawal rate - use caution applying it in Vietnam",
-    "duration": "7 min"
   },
   "quy-tac-rut-4-phan-tram": {
     "title": "Stage 8, Lesson 3: The 4% rule - how much to draw from a retirement pot without running out",
@@ -1992,11 +1957,6 @@
     "subtitle": "Without rebalancing, your portfolio drifts away from the risk level you originally picked.",
     "duration": "6 min"
   },
-  "tai-can-bang": {
-    "title": "Rebalancing your portfolio every year",
-    "subtitle": "Portfolio rebalancing",
-    "duration": "6 min"
-  },
   "tai-chinh-bat-dong-san-cap-rate-noi-rental-yield": {
     "title": "Masterclass 1: Real estate finance - cash flow modelling and the capitalisation rate",
     "subtitle": "Analysing NOI, cap rate, rental yield and bank leverage when investing in income-producing property.",
@@ -2016,11 +1976,6 @@
     "title": "Masterclass 5: Green finance and sustainable investing - ESG standards and the carbon credit market",
     "subtitle": "ESG, materiality, greenwashing, green bonds and how carbon credits are priced.",
     "duration": "13 min"
-  },
-  "tai-khoan-huu-tri": {
-    "title": "Retirement accounts: BHXH and voluntary options in Vietnam",
-    "subtitle": "Social insurance (BHXH) and voluntary supplementary pension funds",
-    "duration": "7 min"
   },
   "tai-san-trong-ke-toan": {
     "title": "What is an asset in accounting?",
@@ -2106,11 +2061,6 @@
     "title": "Deals, Lesson 1: Accretion or dilution - the first calculation of every transaction",
     "subtitle": "The three costs of a deal, the P/E rule for all-stock transactions, and why it is not a measure of value",
     "duration": "12 min"
-  },
-  "tien-huu-tri": {
-    "title": "How much money for a comfortable retirement",
-    "subtitle": "Setting a retirement savings target in VND",
-    "duration": "7 min"
   },
   "tien-mat-bctc": {
     "title": "Cash on the financial statements",
