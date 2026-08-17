@@ -41,20 +41,18 @@ export const vi = {
     // mock: bảng `weekly_challenges` trên Supabase không có migration nào seed
     // và không chỗ nào trong repo ghi vào, nên nhánh này là thứ mọi người dùng
     // thực sự thấy.
-    mockTitle: "Định giá SOTP Tập đoàn FPT",
-    mockDescription:
-      "Thực hiện định giá từng cấu phần của FPT bao gồm mảng Công nghệ, Viễn thông và Giáo dục để tìm ra giá trị hợp lý.",
-    q1Prompt: "Mảng nào đóng góp tỷ trọng doanh thu cao nhất cho FPT năm 2025?",
-    q1Options: ["Công nghệ", "Viễn thông", "Giáo dục"],
-    q2Prompt: "Biên lợi nhuận gộp mảng Công nghệ của FPT có xu hướng như thế nào?",
-    q2Options: ["Tăng trưởng liên tục", "Đi ngang", "Suy giảm nhẹ"],
-    q3Prompt:
-      "P/E hợp lý áp dụng cho mảng Giáo dục trong mô hình SOTP nên lấy theo mức trung bình khu vực là bao nhiêu?",
-    q3Options: ["10x", "18x", "25x"],
-    q4Prompt: "Dòng tiền thuần hoạt động kinh doanh (CFO) của FPT năm qua đạt trạng thái nào?",
-    q4Options: ["Dương mạnh", "Âm nhẹ do tồn kho", "Không đổi"],
-    q5Prompt: "Định giá trị hợp lý của cổ phiếu FPT theo SOTP khoảng bao nhiêu?",
-    q5Options: ["120,000 - 130,000 đ/cp", "150,000 - 160,000 đ/cp", "180,000 - 190,000 đ/cp"],
+    mockTitle: "Rà soát kiến trúc hệ thống đặt hàng",
+    mockDescription: "Đọc sơ đồ một hệ thống đặt hàng đang quá tải, tìm điểm nghẽn và xếp thứ tự xử lý.",
+    q1Prompt: "Thành phần nào thường nghẽn đầu tiên khi lượng đơn tăng gấp mười?",
+    q1Options: ["Cơ sở dữ liệu ghi đơn", "Mạng phân phối ảnh tĩnh", "Trình duyệt của người dùng"],
+    q2Prompt: "Độ trễ p99 tăng gấp ba trong khi độ trễ trung bình không đổi nghĩa là gì?",
+    q2Options: ["Một phần nhỏ request bị chậm rất nặng", "Toàn bộ hệ thống chậm đều nhau", "Số người dùng đang giảm dần"],
+    q3Prompt: "Đặt bộ nhớ đệm trước cơ sở dữ liệu là đánh đổi lấy điều gì?",
+    q3Options: ["Số dòng mã phải viết nhiều hơn hẳn", "Dữ liệu đọc ra có thể cũ trong một khoảng", "Chi phí phần cứng tăng theo số người dùng"],
+    q4Prompt: "Hàng đợi xử lý đơn cứ dài ra liên tục nói lên điều gì?",
+    q4Options: ["Bên tiêu thụ đang chậm hơn bên sản xuất", "Hàng đợi bị đặt sai kích thước tối đa", "Người dùng đang gửi trùng rất nhiều đơn"],
+    q5Prompt: "Việc nên làm đầu tiên khi nhận báo cáo hệ thống chậm là gì?",
+    q5Options: ["Tăng gấp đôi số máy chủ đang chạy", "Đo xem thời gian đang mất ở chặng nào", "Viết lại phần mã bị nghi là chậm nhất"],
   },
 
   apiErrors: {
@@ -342,6 +340,7 @@ export const vi = {
       stat2Label: "Khoảng trống",
       stat2Note: "sinh viên CNTT ra trường cần thêm 3-6 tháng mới làm được việc.",
       stat3Label: "Quy mô ngành",
+      stat3Value: "1,2 triệu",
       stat3Note: "người đang làm trong 74.000 doanh nghiệp công nghệ.",
       missionLabel: "Tầm nhìn & Sứ mệnh",
       missionBody:
@@ -660,7 +659,7 @@ export const vi = {
     explanationTitle: "Đáp án đúng & giải thích",
     flipBack: "Lật về mặt câu hỏi",
     correctAnswer: "Đáp án chính xác:",
-    financeExplanation: "Giải thích tài chính:",
+    financeExplanation: "Giải thích kỹ thuật:",
     noExplanation: "Không có giải thích chi tiết cho câu hỏi này.",
 
     ratePrompt: "Đánh giá mức độ nhớ để xếp lịch Spaced Repetition tiếp theo:",
@@ -680,59 +679,6 @@ export const vi = {
   },
 
   // components/tools/ValuationDCFCalculator.tsx
-  dcf: {
-    tabDcf: "Định giá cổ phiếu DCF",
-    tabWacc: "Chi phí vốn WACC",
-    standardBadge: "Chuẩn CFA & Corporate Finance",
-
-    resultTitle: "KẾT QUẢ MÔ PHỎNG ĐỊNH GIÁ DCF",
-    intrinsicValue: "Giá trị nội tại: {value} VNĐ / CP",
-    undervalued: "HẤP DẪN ({sign}{percent}%)",
-    overvalued: "ĐỊNH GIÁ CAO ({percent}%)",
-    fairValue: "HỢP LÝ ({sign}{percent}%)",
-
-    marketPriceLabel: "Giá thị trường hiện tại",
-    currency: "{value} VNĐ",
-    evLabel: "Giá trị Doanh nghiệp (EV)",
-    billions: "{value} tỷ VNĐ",
-    equityLabel: "Giá trị Vốn CSH (Equity)",
-    tvShareLabel: "Tỷ trọng Giá trị Cuối (TV)",
-    percentOfEv: "{percent}% EV",
-
-    inputsTitle: "Thông số đầu vào Mô hình Chiết khấu Dòng tiền",
-    inFcf: "Dòng tiền tự do FCF hiện tại (tỷ VNĐ)",
-    inGrowth: "Tốc độ tăng trưởng FCF 5 năm (%)",
-    inWacc: "Tỷ lệ chiết khấu WACC (%)",
-    inTerminalGrowth: "Tăng trưởng vĩnh viễn g_term (%)",
-    inCash: "Tiền mặt & Đầu tư ngắn hạn (tỷ VNĐ)",
-    inDebt: "Tổng Nợ vay tài chính (tỷ VNĐ)",
-    inShares: "Số lượng cổ phiếu lưu hành (triệu CP)",
-    inMarketPrice: "Giá thị trường hiện tại (VNĐ/CP)",
-
-    forecastTitle: "Dự báo Dòng tiền tự do & Hiện giá PV từng năm",
-    colYear: "Năm",
-    colFcf: "Dòng tiền FCF (tỷ VNĐ)",
-    colDiscount: "Hệ số Chiết khấu PV",
-    colPv: "Hiện giá PV (tỷ VNĐ)",
-    rowYear: "Năm {year}",
-    billionsShort: "{value} tỷ",
-    total5Years: "Tổng 5 Năm",
-
-    waccResultTitle: "KẾT QUẢ TÍNH CHI PHÍ VỐN BÌNH QUÂN WACC",
-    waccValue: "WACC = {value}%",
-    equityWeight: "Tỷ trọng Vốn CSH (E/V)",
-    debtWeight: "Tỷ trọng Nợ vay (D/V)",
-    afterTaxKd: "Chi phí Nợ sau thuế (Kd*)",
-    taxShield: "Lá chắn thuế Nợ vay",
-    taxShieldValue: "-{rate}% Thuế TNDN",
-
-    waccInputsTitle: "Thông số cấu trúc vốn & chi phí từng thành phần",
-    inEquity: "Giá trị Vốn chủ sở hữu E (tỷ VNĐ)",
-    inDebtValue: "Giá trị Nợ vay tài chính D (tỷ VNĐ)",
-    inKe: "Chi phí vốn CSH Ke (%)",
-    inKd: "Lãi suất nợ vay bình quân Kd (%)",
-    inTaxRate: "Thuế suất thuế TNDN t (%)",
-  },
 
   // components/FinancialRpgWorldMap.tsx - the Game Kingdom map.
   worldMap: {
@@ -1479,7 +1425,7 @@ export const vi = {
     createPoll: "Tạo bình chọn / Thăm dò ý kiến",
     cancel: "Hủy",
     pollQuestionPlaceholder:
-      "Nhập câu hỏi thăm dò ý kiến (Ví dụ: Fed sẽ hạ bao nhiêu bps lãi suất?)",
+      "Nhập câu hỏi thăm dò ý kiến (Ví dụ: REST hay GraphQL cho API nội bộ?)",
     addPollOption: "+ Thêm lựa chọn",
     addToPost: "Thêm vào bài viết của bạn",
     addImageTitle: "Thêm ảnh",
@@ -1750,7 +1696,7 @@ export const vi = {
     tabMap: "Bản đồ vương quốc",
     tabMinigame: "Chơi thử Mini Game",
     tabBoss: "Săn boss máy chủ",
-    bgAlt: "Ảnh nền sàn giao dịch phố Wall",
+    bgAlt: "Ảnh nền đường chân trời thành phố",
     eyebrow: "VƯƠNG QUỐC GAME CÔNG NGHỆ INTERACTIVE",
     headingMap: "Bản đồ nhiệm vụ & Công trình",
     headingMinigame: "Thử phản xạ active recall trực tiếp",
@@ -1897,54 +1843,6 @@ export const vi = {
   },
 
   // components/CareerProfilePanel.tsx
-  careerProfile: {
-    claimed: "Đã nhận +{xp} XP · +{coins} xu",
-    claimFailed: "Không nhận được thưởng",
-    bulletSaveFailed: "Không lưu được bullet",
-    bulletDeleteFailed: "Không xoá được bullet",
-    requirementMet: "Đã đạt yêu cầu về {hint}.",
-    requirementGap: "Còn thiếu {hint} · học thêm ~{count} bài.",
-    bulletSaved: "Đã lưu CV bullet",
-
-    signInPrompt: "Đăng nhập để xem hồ sơ năng lực nghề nghiệp của bạn.",
-    signIn: "Đăng nhập",
-    computing: "Đang tính hồ sơ năng lực...",
-    loadFailed: "Không tải được hồ sơ năng lực.",
-    retry: "Thử lại",
-
-    title: "Hồ sơ năng lực",
-    lessonsCompleted: "{count} bài đã hoàn thành",
-    mockInterview: "Làm mock interview (10 câu, có tính giờ)",
-
-    gapTitle: "Job skill gap",
-    groupCertifications: "Chứng chỉ",
-    groupCareers: "Nghề nghiệp",
-    pickGoal: "Chọn một mục tiêu ở trên để xem bạn còn thiếu gì.",
-    readinessBody:
-      "mức sẵn sàng cho mục tiêu này. Các nhóm còn thiếu được xếp trên cùng - đó là việc đáng làm tiếp theo.",
-    required: "bắt buộc",
-
-    missionsTitle: "Nhiệm vụ nghề nghiệp tuần này",
-    missionReward: "+{xp} XP · +{coins} xu",
-    alreadyClaimed: "Đã nhận",
-    claim: "Nhận thưởng",
-    claiming: "Đang nhận...",
-    perfectWeek: "Tuần hoàn hảo · +{xp} XP · +{coins} xu",
-    perfectWeekBody: "Hoàn thành cả {count} nhiệm vụ trong tuần.",
-
-    bulletsTitle: "CV bullets",
-    // Split around the inline <strong> holding the formula.
-    bulletsHintPart1: "Mỗi bullet theo công thức ",
-    bulletsFormula: "Hành động - Con số - Kết quả",
-    bulletsHintPart2:
-      ". Ví dụ: \"Dựng mô hình DCF 3 báo cáo cho 5 công ty niêm yết, rút ngắn thời gian định giá từ 3 ngày xuống 1 ngày.\"",
-    bulletPlaceholder: "Viết một bullet cho CV của bạn...",
-    bulletCounter: "{count}/{max} · tối thiểu {min}",
-    savingBullet: "Đang lưu...",
-    addBullet: "Thêm bullet",
-    bulletsEmpty: "Chưa có bullet nào. Viết 3 bullet trong tuần để hoàn thành nhiệm vụ.",
-    deleteBulletAria: "Xoá bullet",
-  },
 
   // Message-action vocabulary shared by all three chat surfaces:
   // components/StudyGroupsClient.tsx, components/FloatingStudyGroupChat.tsx and
@@ -2050,7 +1948,7 @@ export const vi = {
     botRules: "Tài tài đây 👋 nhóm này đang học theo hướng {topic}, hiện có khoảng {count} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.",
     botTopicPersonal: "Nền tảng công nghệ",
     botTopicProfessional: "Công nghệ chuyên sâu",
-    botTopicCfa: "CFA Level I",
+    botTopicCfa: "Chứng chỉ AWS",
     dropImage: "Thả ảnh vào đây để gửi 📂",
     emptyPart1: "Chưa có tin nhắn nào.",
     emptyPart2: "Nhắn gì đó chào các bạn trong nhóm nhé!",
@@ -2265,193 +2163,6 @@ export const vi = {
   // components/JobSearchClient.tsx - the finance job map (/pho-nghe).
   // Renders twice, desktop and mobile, so several labels appear in two places
   // with different styling; they share one key.
-  jobs: {
-    quizDone: "Đã hoàn thành khảo sát",
-    // Bốn nhóm nghề của bài khảo sát. `topType` là ID nội bộ, câu chữ ở đây.
-    quizTypeLabel: {
-      Analytical: "Phân tích & Đầu tư (Analytical)",
-      Compliance: "Kế toán & Kiểm toán (Compliance)",
-      "Client-facing": "Quan hệ Khách hàng & Giao dịch (Client-facing)",
-      Quantitative: "Nguồn vốn & Định lượng (Quantitative)",
-    },
-    quizTypeRoles: {
-      Analytical: "Phân tích Tài chính, Investment Banking, FP&A, Đầu tư (CFA Track).",
-      Compliance: "Kế toán viên, Kiểm toán viên, Kế toán trưởng / CFO Track.",
-      "Client-facing": "Chuyên viên Tín dụng, Chuyên viên Môi giới Chứng khoán.",
-      Quantitative: "Quản lý Quỹ, Quản lý Rủi ro, Chuyên viên Nguồn vốn.",
-    },
-    quizResultLine: "{type} - Gợi ý: {roles}",
-    careerAlt: "Nghề nghiệp",
-    examWeightTitle: "Tỷ trọng đề thi: {weight}",
-    cfaRelated: "Liên quan CFA:",
-
-    // Career-path step copy. Four seniority bands, in a full and a compact
-    // form because the desktop and mobile panels have different room.
-    goalSet: "Đã đặt làm Mục tiêu",
-    goalSetAction: "Đặt làm Mục tiêu sự nghiệp",
-    goalSetShort: "Đã đặt mục tiêu",
-    goalSetActionShort: "Đặt Mục tiêu sự nghiệp",
-
-    tabDuties: "Nhiệm vụ & Một ngày",
-    tabAdvice: "Lời khuyên & Ưu/Nhược",
-    tabPath: "Lộ trình & Chứng chỉ",
-    tabSkills: "Kỹ năng & Công cụ",
-    tabProfile: "Hồ sơ năng lực",
-    tabFindJobs: "Tìm việc ngay",
-    tabDutiesShort: "Nhiệm vụ",
-    tabAdviceShort: "Lời khuyên",
-    tabPathShort: "Lộ trình",
-    tabSkillsShort: "Kỹ năng",
-    tabProfileShort: "Hồ sơ",
-    tabFindJobsShort: "Tìm việc",
-
-    ladderStart: "Khởi đầu",
-    ladderMiddle: "Nấc thang phát triển",
-    ladderEnd: "Mục tiêu dài hạn",
-
-    years0: "0 - 2 năm",
-    years1: "2 - 5 năm",
-    years2: "5 - 8 năm",
-    years3: "8+ năm",
-    years0Short: "0-2 năm",
-    years1Short: "2-5 năm",
-    years2Short: "5-8 năm",
-    years3Short: "8+ năm",
-
-    focus0: "Học hỏi quy trình, xử lý số liệu thô, thực thi các nghiệp vụ cơ bản dưới sự kèm cặp sát sao.",
-    focus1: "Làm chủ nghiệp vụ, quản lý dự án độc lập, bắt đầu tư vấn trực tiếp và hướng dẫn thực tập sinh.",
-    focus2: "Lập kế hoạch, quản lý nhóm hoặc phòng ban, chịu trách nhiệm chính về hiệu quả hoạt động tài chính.",
-    focus3: "Quyết định tối cao, làm việc trực tiếp với HĐQT/Cổ đông ngoại, định đoạt cấu trúc dòng vốn toàn tập đoàn.",
-    focus0Short: "Học hỏi quy trình, xử lý số liệu thô, thực thi các nghiệp vụ cơ bản.",
-    focus1Short: "Làm chủ nghiệp vụ, quản lý độc lập, hướng dẫn thực tập sinh.",
-    focus2Short: "Lập kế hoạch, quản lý nhóm/phòng ban, chịu trách nhiệm tài chính chính.",
-    focus3Short: "Quyết định tối cao, làm việc với HĐQT/Cổ đông, định đoạt cấu trúc vốn.",
-
-    tip0: "Cẩn thận tuyệt đối trong tính toán, không ngại việc nhỏ, nâng cao tối đa Excel và hoàn thành CFA/ACCA Level 1.",
-    tip1: "Chủ động đề xuất giải pháp thay vì chỉ báo cáo vấn đề, rèn luyện kỹ năng thuyết trình & đàm phán với khách hàng.",
-    tip2: "Học cách ủy quyền hiệu quả, rèn luyện kỹ năng quản trị cảm xúc và thấu hiểu chính trị nội bộ doanh nghiệp.",
-    tip3: "Tầm nhìn vĩ mô toàn cầu, giữ vững uy tín tối thượng và duy trì mối quan hệ cấp cao với các tổ chức tài chính lớn.",
-    tip0Short: "Cẩn thận tuyệt đối, không ngại việc nhỏ, nâng cao Excel, học CFA/ACCA Level 1.",
-    tip1Short: "Chủ động đề xuất giải pháp thay vì báo cáo vấn đề, rèn kỹ năng slide & đàm phán.",
-    tip2Short: "Học cách ủy quyền, rèn quản trị cảm xúc & chính trị nội bộ doanh nghiệp.",
-    tip3Short: "Tầm nhìn vĩ mô toàn cầu, giữ vững chữ tín tối thượng, quan hệ cấp cao.",
-
-    studyTheseLessons: "Học các bài này để chuẩn bị cho nghề này",
-    loading: "Đang tải...",
-    signInForProgress: "Đăng nhập để xem tiến độ học các bài liên quan.",
-    fullTrackLink: "Xem lộ trình học đầy đủ theo nghề",
-
-    radarTitle: "Biểu đồ phẩm chất",
-    radarOverlayTitle: "So sánh Phẩm chất năng lực (Overlay Radar)",
-    // Axis labels on the radar chart. The short form exists because the
-    // single-position chart has less room than the overlay.
-    axisAnalysis: "PHÂN TÍCH",
-    axisQuantShort: "Đ.LƯỢNG",
-    axisQuant: "ĐỊNH LƯỢNG",
-    axisCommunication: "GIAO TIẾP",
-    axisCompliance: "TUÂN THỦ",
-
-    compareTitle: "So sánh vị trí công việc",
-    compareShort: "So sánh vị trí",
-    compareShortest: "So sánh",
-    current: "Hiện tại",
-    pickToCompare: "Chọn vị trí để so sánh",
-    pickPlaceholder: "-- Chọn một vị trí --",
-    pickSecond: "Chọn vị trí thứ hai để đối chiếu",
-
-    difficulty: "Độ khó",
-    pressure: "Áp lực",
-    balance: "Cân bằng",
-    difficultyFull: "Độ khó đầu vào",
-    pressureFull: "Mức độ áp lực",
-    balanceFull: "Cân bằng (WLB)",
-    expectedSalary: "Mức lương dự kiến",
-    mainCertificates: "Chứng chỉ chính",
-    mainTools: "Công cụ chính",
-
-    goalCleared: "Đã hủy theo dõi mục tiêu sự nghiệp.",
-    goalClearedLocalOnly: "Đã hủy trên máy này, nhưng chưa lưu được lên server - thử lại sau.",
-    goalSaveFailed: "Chưa lưu được mục tiêu lên server - hiện chỉ áp dụng trên máy này.",
-
-    backToDashboard: "Quay lại Dashboard",
-    pageTitle: "Bản đồ việc làm tài chính",
-    walk3d: "Đi dạo Phố nghề 3D",
-    pageSubtitle:
-      "Khám phá chi tiết công việc (JD), lộ trình thăng tiến sự nghiệp, yêu cầu kỹ năng và kết nối tuyển dụng trực tuyến.",
-
-    goalChosen: "Mục tiêu sự nghiệp bạn đã chọn",
-    goalOutsider: "Học viên ngoài ngành",
-    goalDetailLink: "Xem lộ trình chi tiết →",
-    goalClear: "Bỏ chọn mục tiêu",
-    noGoalTitle: "Bạn chưa chọn Mục tiêu Sự nghiệp!",
-    // Split around the inline <strong> quoting the outsider option.
-    noGoalPart1: "Hãy bấm chọn 1 vị trí bên dưới (hoặc chọn ",
-    noGoalOptionName: "\"Học viên / Người ngoài ngành 🌱\"",
-    noGoalPart2:
-      " nếu bạn học để quản lý tài chính cá nhân) để hệ thống theo dõi tiến độ dành riêng cho bạn.",
-
-    searchPlaceholder: "Tìm kiếm vị trí tài chính...",
-    scrollLeft: "Cuộn sang trái",
-    scrollRight: "Cuộn sang phải",
-    noResults: "Không tìm thấy vị trí phù hợp",
-    noResultsHint: "Hãy thử tìm kiếm với từ khóa khác.",
-
-    quizTitle: "Trắc nghiệm Hướng nghiệp",
-    // Split around the inline <strong>+50 XP</strong>.
-    quizBlurbPart1:
-      "Trả lời 5 câu hỏi để định hướng xem bạn phù hợp nhất với vị trí tài chính nào và nhận ngay ",
-    quizBlurbShortPart1: "Trả lời nhanh 5 câu hỏi nhận ngay ",
-    quizXpReward: "+50 XP",
-    quizBlurbPart2: ".",
-    quizStart: "Bắt đầu trắc nghiệm (+50 XP)",
-    quizResultTitle: "Hướng nghiệp của bạn",
-    quizBestMatch: "Phù hợp nhất:",
-    quizRetake: "Làm lại trắc nghiệm",
-    quizQuestionCounter: "Câu hỏi {current}/{total}",
-
-    salaryRange: "• Dải lương: {range}",
-    salaryDisclaimer:
-      "* Mức lương chỉ mang tính ước tính tham khảo, thay đổi theo công ty, khu vực và kinh nghiệm thực tế - không phải số liệu khảo sát chính thức.",
-
-    prepProgress: "Tiến độ chuẩn bị sự nghiệp",
-    prepProgressHint:
-      "Đánh dấu các kỹ năng và chứng chỉ bạn đã tích lũy được để theo sát lộ trình sự nghiệp này:",
-
-    typicalDay: "Một ngày làm việc điển hình:",
-    typicalDayShort: "Một ngày điển hình:",
-    jobDescription: "Nhiệm vụ chính (Job Description)",
-    jobDescriptionShort: "Nhiệm vụ chính",
-    pros: "Ưu điểm chính",
-    prosShort: "ƯU ĐIỂM",
-    cons: "Nhược điểm & Thách thức",
-    consShort: "NHƯỢC ĐIỂM",
-    applyTips: "Bí quyết ứng tuyển & Lời khuyên sự nghiệp:",
-    applyTipsShort: "Lời khuyên tuyển dụng:",
-
-    careerPath: "Lộ trình thăng tiến (Career Path)",
-    careerPathShort: "Lộ trình thăng tiến",
-    careerPathHint: "(Nhấp vào từng cấp độ để xem bí quyết thăng tiến)",
-    careerPathHintShort: "(Nhấp vào từng cấp độ để xem bí quyết)",
-    pathStep: "Bậc {step}: {name}",
-    pathFocus: "Trọng tâm: ",
-    pathTip: "Bí quyết: ",
-
-    certifications: "Chứng chỉ khuyên học (Certifications)",
-    certificationsShort: "Chứng chỉ khuyên học",
-    skills: "Kỹ năng chuyên môn & Mềm",
-    tools: "Hệ thống & Công cụ chuyên ngành",
-    toolsShort: "Hệ thống & Công cụ",
-
-    keywordsTitle: "Từ khóa tìm kiếm gợi ý:",
-    keywordsHint:
-      "Hệ thống sẽ tự động tìm kiếm trực tiếp trên các nền tảng tuyển dụng lớn theo từ khóa này.",
-    findJobs: "Tìm việc trên các nền tảng lớn",
-    findJobsShort: "Tìm kiếm trực tiếp trên các nền tảng:",
-    otherPositions: "Hoặc tìm nhanh vị trí khác",
-    otherPositionsShort: "Hoặc tìm nhanh vị trí khác:",
-    cvReminder:
-      "* Lưu ý: Hãy cập nhật đầy đủ các kỹ năng & chứng chỉ trên CV trước khi bắt đầu ứng tuyển.",
-  },
 
   // components/DashboardClient.tsx
   dashboard: {
@@ -2546,7 +2257,7 @@ export const vi = {
     levelMapTab: "Bản đồ cấp độ",
     learningPathTab: "Lộ trình học",
     learningPathTitle: "Lộ trình học của bạn",
-    learningPathNote: "Bốn lộ trình, từ tài chính cá nhân tới CFA và FRM - vào học tiếp từ đúng chỗ đang dở",
+    learningPathNote: "Bốn lộ trình, từ nền tảng công nghệ tới chứng chỉ hạ tầng - vào học tiếp từ đúng chỗ đang dở",
     levelMapTitle: "Bản đồ cấp độ học viên",
     levelMapNote:
       "XP là tiến độ học; sát hạch và điểm kiểm tra mới xác nhận năng lực thật",
@@ -2596,13 +2307,13 @@ export const vi = {
     // the Vietnamese ones. (The Vietnamese side has the length tell and is
     // tracked separately, along with 190 other unaudited questions.)
     boss: {
-      name: "Boss bẫy nợ nần & lạm phát",
-      q1: "Để chống chọi với Lạm Phát 8%, danh mục đầu tư cần có tỷ suất sinh lời tối thiểu là bao nhiêu?",
-      q2: "Bẫy nợ tín dụng nguy hiểm nhất ở điểm nào?",
-      q2o1: "Lãi suất thả nổi cao & Lãi nhập gốc",
-      q2o2: "Không cho gia hạn",
-      q2o3: "Không có chiết khấu",
-      q3: "Tỷ lệ Nợ/Vốn chủ sở hữu (D/E) an toàn tuyệt đối thường nằm dưới mức nào?",
+      name: "Boss nợ kỹ thuật & sự cố dây chuyền",
+      q1: "Một dịch vụ cam kết SLO 99,9% thì mỗi tháng được phép lỗi tối đa bao lâu?",
+      q2: "Nợ kỹ thuật nguy hiểm nhất ở điểm nào?",
+      q2o1: "Không ai ghi lại, nên nó lớn dần trong im lặng",
+      q2o2: "Không thể gỡ bỏ sau khi đã phát hành",
+      q2o3: "Chỉ xuất hiện ở những dự án đã quá cũ",
+      q3: "Độ phủ kiểm thử cho phần lõi thường được đặt tối thiểu ở mức nào?",
     },
   },
 
@@ -2626,7 +2337,7 @@ export const vi = {
       namePlaceholder: "Tên bạn muốn mọi người nhìn thấy",
       bioLabel: "Giới thiệu ngắn",
       bioPlaceholder:
-        "Ví dụ: Mình đang học để hiểu tiền của bản thân tốt hơn và bắt đầu đầu tư bài bản.",
+        "Ví dụ: Mình đang học để dựng được sản phẩm của riêng mình và đi làm nghề công nghệ.",
       bioCount: "{count}/240 ký tự",
       save: "Lưu hồ sơ",
       saving: "Đang lưu hồ sơ...",
@@ -2759,7 +2470,7 @@ export const vi = {
     avgScore: "Điểm TB",
     streakDays: "Chuỗi ngày",
     career: "Sự nghiệp",
-    cfaArena: "Đấu trường CFA",
+    cfaArena: "Đấu trường chứng chỉ",
     contribution: "Đóng góp",
     gamer: "Game thủ",
 
@@ -3125,22 +2836,6 @@ export const vi = {
   },
 
   // components/CareerGoalWidget.tsx
-  jobKeywords: {
-    financialAnalysis: "Phân tích tài chính",
-    accounting: "Kế toán",
-    audit: "Kiểm toán",
-    investmentBanking: "Ngân hàng đầu tư",
-    creditOfficer: "Chuyên viên tín dụng",
-    fpa: "FP&A",
-    fundManagement: "Quản lý quỹ đầu tư",
-    investmentOfficer: "Chuyên viên đầu tư",
-    chiefAccountant: "Kế toán trưởng",
-    riskAnalyst: "Chuyên viên phân tích rủi ro",
-    financialPlanning: "Hoạch định tài chính",
-    quant: "Quantitative Analyst",
-    valuation: "Định giá tài sản",
-    investorRelations: "Quan hệ cổ đông",
-  },
   connectMenu: {
     title: "Kết nối",
     open: "Mở menu kết nối",
@@ -3165,61 +2860,6 @@ export const vi = {
 
   // Bốn trang chứng chỉ: CFA thẻ thuật ngữ, CFA sổ tay công thức, FRM, và
   // khối "chặng sau" dưới lộ trình CFA.
-  certPages: {
-    tabsAria: "Chuyển giữa hai chứng chỉ",
-    tabCfa: "CFA Level I",
-    tabCfaHint: "10 môn nền tảng",
-    tabFrm: "FRM",
-    tabFrmHint: "Quản trị rủi ro",
-    frmTipLabel: "Bẫy hay gặp",
-    frmAllLabel: "Tất cả (10 Môn FRM)",
-    frmLearnedToast: "✓ Đã đánh dấu thuộc thuật ngữ FRM!",
-    // metadata của trang. Dịch được vì các trang này vốn đã dựng động (layout
-    // gốc đọc cookie ngôn ngữ), và bọ tìm kiếm không mang cookie nên vẫn nhận
-    // bản tiếng Việt mặc định - đúng thứ mình muốn cho một site tiếng Việt.
-    flashcardsMetaTitle: "Bộ thẻ thuật ngữ CFA song ngữ en-vi | Tuhoctaichinh.org",
-    flashcardsMetaDesc:
-      "Bộ thẻ Flashcard 3D thuật ngữ tiếng Anh chuyên ngành CFA Level 1 kèm định nghĩa tiếng Việt chuẩn và công thức liên quan.",
-    formulasMetaTitle: "Sổ tay công thức CFA level 1 | Tuhoctaichinh.org",
-    formulasMetaDesc:
-      "Sổ tay công thức CFA Level 1: thẻ phân số tầng trực quan, giải thích từng biến số và ví dụ tính toán bằng số thực tế cho cả mười môn thi.",
-
-    backToCfa: "Về trang CFA Track",
-    backToDashboard: "Về Dashboard",
-    flashcardsTitle: "Bộ thẻ thuật ngữ CFA level 1",
-    flashcardsSubtitle: "Flashcard song ngữ anh - việt & công thức liên quan",
-    formulasTitle: "Sổ tay công thức CFA level 1",
-    formulasSubtitle: "Công thức trọng yếu cả mười môn, kèm ví dụ tính bằng số thực tế",
-
-    frmMockExam: "Thi thử",
-    // Tên riêng của chứng chỉ, giữ nguyên ở mọi ngôn ngữ - đã khai trong
-    // INTENTIONALLY_UNTRANSLATED của dictionary-parity.test.ts.
-    frmTitle: "FRM",
-    frmSubtitle: "Financial risk manager - GARP part I & part II",
-    frmGlossary: "Thẻ thuật ngữ",
-    frmFormulas: "Sổ tay công thức",
-
-    frmFlashcardsMetaTitle: "Bộ thẻ thuật ngữ FRM song ngữ en-vi | Tuhoctaichinh.org",
-    frmFlashcardsMetaDesc:
-      "Thẻ ghi nhớ thuật ngữ FRM Part I và Part II - VaR, Expected Shortfall, CVA, LCR, NSFR, PD/LGD/EAD - kèm định nghĩa tiếng Việt và cái bẫy hay gặp ở từng khái niệm.",
-    frmFormulasMetaTitle: "Sổ tay công thức FRM part I & II | Tuhoctaichinh.org",
-    frmFormulasMetaDesc:
-      "Công thức thi FRM theo mười môn của GARP: VaR, Expected Shortfall, EL, LCR, NSFR, DV01, Greeks - kèm giải thích ký hiệu và ví dụ tính bằng số.",
-    backToFrm: "Về trang FRM Track",
-    backToFrmTrack: "Về lộ trình FRM",
-    frmFlashcardsTitle: "Bộ thẻ thuật ngữ FRM",
-    frmFlashcardsSubtitle: "Part I & Part II - song ngữ Anh - Việt kèm bẫy hay gặp",
-    frmFormulasTitle: "Sổ tay công thức FRM",
-    frmFormulasSubtitle: "Part I & II - kèm ví dụ tính bằng số",
-
-    noLessonsYet: "chưa có bài",
-    pickTrack: "Chọn một hướng chuyên sâu:",
-    examWeight: "Trọng số đề thi",
-    scaleTo: "thang 0–",
-    nextStages: "Chặng sau: Level II và Level III",
-    nextStagesBlurb:
-      "Bài học của TuHocTaiChinh hiện dừng ở Level I. Phần dưới là đề cương chính thức của hai cấp còn lại - trọng số và cấu trúc lấy từ trang candidate resources của CFA Institute - để bạn biết mình đang leo một cái thang cao bao nhiêu.",
-  },
 
 
   // lib/career-categories.ts - tên và mô tả năm nhóm ngành. Dùng ở phố nghề,

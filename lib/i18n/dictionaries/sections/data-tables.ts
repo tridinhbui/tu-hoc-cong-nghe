@@ -132,27 +132,27 @@ export const dataTablesVi = {
       items: {
         suit_armani: {
           name: "Vest Armani Executive",
-          description: "Vest doanh nhân xa xỉ tăng +45 Sức mạnh định giá và phong thái Silicon Valley.",
+          description: "Vest doanh nhân xa xỉ tăng +45 Sức mạnh thuyết trình và phong thái Silicon Valley.",
         },
         watch_rolex: {
           name: "Rolex Submariner Gold",
-          description: "Đồng hồ mạ vàng Thụy Sĩ giúp tăng tốc độ đọc BCTC lên +40%.",
+          description: "Đồng hồ mạ vàng Thụy Sĩ giúp tăng tốc độ đọc mã nguồn lên +40%.",
         },
         glasses_bloomberg: {
-          name: "Kính Bloomberg Terminal",
-          description: "Kính nhìn thấu dòng tiền và chỉ số tài chính thời gian thực.",
+          name: "Kính Terminal Đa Màn",
+          description: "Kính nhìn thấu log và chỉ số hệ thống thời gian thực.",
         },
         pen_gold: {
-          name: "Bút Vàng Ký Hợp Đồng M&A",
-          description: "Bút máy mạ vàng chuyên dùng chốt các thương vụ M&A triệu đô.",
+          name: "Bút Vàng Duyệt Pull Request",
+          description: "Bút máy mạ vàng chuyên dùng duyệt những bản phát hành quan trọng nhất.",
         },
         potion_x2xp: {
           name: "Thuốc X2 XP Silicon Valley (24H)",
           description: "Nhân đôi toàn bộ XP nhận được khi hoàn thành bài học và Quiz.",
         },
         card_vinamilk: {
-          name: "Thẻ Doanh Nghiệp Vinamilk (VNM)",
-          description: "Thẻ cổ phiếu đầu ngành tiêu dùng Việt Nam.",
+          name: "Thẻ Doanh Nghiệp FPT (FPT)",
+          description: "Thẻ công ty đầu ngành công nghệ Việt Nam.",
         },
       },
       rarityLabels: {
@@ -172,7 +172,7 @@ export const dataTablesVi = {
           items: [
             { title: "Chống quên bài học", desc: "Spaced Repetition tự động nhắc ôn lại đúng thời điểm sắp quên." },
             { title: "100% Miễn phí mãi mãi", desc: "Không khoá học trả phí đắt đỏ ẩn phía sau. Tự do học hoàn toàn." },
-            { title: "Lộ trình rõ ràng", desc: "Chia chặng từng bước từ cơ bản đến phân tích báo cáo tài chính." },
+            { title: "Lộ trình rõ ràng", desc: "Chia chặng từng bước từ cơ bản đến thiết kế hệ thống." },
             { title: "Đo lường phản xạ", desc: "Quiz Active Recall + XP bảng xếp hạng giúp biết ngay độ hiểu bài." },
           ],
         },
@@ -185,7 +185,7 @@ export const dataTablesVi = {
             { title: "5-7 phút / bài", desc: "Bài học ngắn gọn, tập trung đúng 1 khái niệm cốt lõi." },
             { title: "Active Recall", desc: "Bắt não kích hoạt nhớ lại kiến thức qua Quiz kiểm tra." },
             { title: "Nhắc ôn đúng lúc", desc: "Câu hỏi ôn lặp lại xuất hiện tự động sau ~5 bài tiếp." },
-            { title: "Khắc sâu bản chất", desc: "Biến lý thuyết thành phản xạ đọc báo cáo tài chính." },
+            { title: "Khắc sâu bản chất", desc: "Biến lý thuyết thành phản xạ đọc mã nguồn." },
           ],
         },
         panel2: {
@@ -194,19 +194,19 @@ export const dataTablesVi = {
           title: "Lộ trình được thiết kế dành riêng cho bạn",
           subtitle: "Dù bạn bắt đầu từ con số 0 hay cần chuẩn hóa kiến thức chuyên sâu.",
           items: [
-            { title: "Nền tảng công nghệ", tag: "Dòng tiền", desc: "Dành cho ai muốn quản lý tiền, tiết kiệm và đầu tư an toàn." },
-            { title: "Người học CFA", tag: "Candidates", desc: "Cần nạp nền tảng kiến thức chắc chắn và phản xạ lý thuyết." },
-            { title: "Financial Planner", tag: "Tư vấn", desc: "Chuẩn hóa khung tư duy hoạch định tài chính bài bản." },
-            { title: "Nhà đầu tư cá nhân", tag: "Cổ phiếu", desc: "Nắm vững cách đọc chỉ số tài chính và bóc tách doanh nghiệp." },
+            { title: "Người mới bắt đầu", tag: "Nền tảng", desc: "Dành cho ai muốn viết được chương trình đầu tiên và hiểu máy tính." },
+            { title: "Người thi chứng chỉ", tag: "Candidates", desc: "Cần nạp nền tảng kiến thức chắc chắn và phản xạ lý thuyết." },
+            { title: "Kỹ sư chuyển ngành", tag: "Tư vấn", desc: "Chuẩn hóa khung tư duy thiết kế hệ thống bài bản." },
+            { title: "Người tự học", tag: "Thực chiến", desc: "Nắm vững cách đọc chỉ số hệ thống và bóc tách một dự án thật." },
           ],
         },
       },
     },
 
     toolsIndex: {
-      eyebrow: "Công cụ tài chính & Định giá",
+      eyebrow: "Công cụ đo lường & Ước lượng",
       title: "Áp dụng số liệu vào thực tế",
-      subtitle: "Mô phỏng tài chính cá nhân & định giá doanh nghiệp chuẩn CFA.",
+      subtitle: "Mô phỏng dung lượng hệ thống & ước lượng chi phí hạ tầng.",
       loading: "Đang tải...",
       tabs: {
         netWorth: "Tài sản ròng",
@@ -347,27 +347,27 @@ export const dataTablesEn: typeof dataTablesVi = {
       items: {
         suit_armani: {
           name: "Armani Executive Suit",
-          description: "A luxury business suit that adds +45 Valuation Power and Silicon Valley poise.",
+          description: "A luxury business suit that adds +45 Presenting Power and Silicon Valley poise.",
         },
         watch_rolex: {
           name: "Rolex Submariner Gold",
-          description: "A gold-plated Swiss watch that boosts financial-statement reading speed by +40%.",
+          description: "A gold-plated Swiss watch that boosts code-reading speed by +40%.",
         },
         glasses_bloomberg: {
-          name: "Bloomberg Terminal Glasses",
-          description: "Glasses that see straight through cash flow and financial metrics in real time.",
+          name: "Multi-Monitor Terminal Glasses",
+          description: "Glasses that see straight through logs and system metrics in real time.",
         },
         pen_gold: {
-          name: "Golden M&A Signing Pen",
-          description: "A gold-plated fountain pen made for closing multi-million-dollar M&A deals.",
+          name: "Golden Pull-Request Approval Pen",
+          description: "A gold-plated fountain pen reserved for approving the releases that matter most.",
         },
         potion_x2xp: {
           name: "Silicon Valley 2X XP Potion (24H)",
           description: "Doubles all XP earned from completing lessons and quizzes.",
         },
         card_vinamilk: {
-          name: "Vinamilk (VNM) Corporate Card",
-          description: "A stock card for Vietnam's leading consumer-goods company.",
+          name: "FPT (FPT) Corporate Card",
+          description: "A company card for Vietnam's leading technology firm.",
         },
       },
       rarityLabels: {
@@ -387,7 +387,7 @@ export const dataTablesEn: typeof dataTablesVi = {
           items: [
             { title: "Beats forgetting", desc: "Spaced repetition automatically resurfaces a review right before you'd forget it." },
             { title: "100% free, forever", desc: "No expensive paywall hiding behind it. Completely free to learn." },
-            { title: "A clear path", desc: "Broken into stages, step by step, from the basics to reading financial statements." },
+            { title: "A clear path", desc: "Broken into stages, step by step, from the basics to system design." },
             { title: "Measured, not guessed", desc: "Active-recall quizzes plus an XP leaderboard show exactly how well you understood a lesson." },
           ],
         },
@@ -400,7 +400,7 @@ export const dataTablesEn: typeof dataTablesVi = {
             { title: "5-7 minutes a lesson", desc: "Short lessons, each focused on exactly one core concept." },
             { title: "Active recall", desc: "Quizzes force your brain to actively retrieve what it just learned." },
             { title: "Reviews at the right time", desc: "Spaced-repetition questions resurface automatically after roughly 5 more lessons." },
-            { title: "Makes it second nature", desc: "Turns theory into the reflex of actually reading a financial statement." },
+            { title: "Makes it second nature", desc: "Turns theory into the reflex of actually reading code." },
           ],
         },
         panel2: {
@@ -409,19 +409,19 @@ export const dataTablesEn: typeof dataTablesVi = {
           title: "A path designed around who you are",
           subtitle: "Whether you're starting from zero or need to formalize deep expertise.",
           items: [
-            { title: "Tech foundations", tag: "Cash flow", desc: "For anyone who wants to manage money, save, and invest safely." },
-            { title: "CFA candidates", tag: "Candidates", desc: "For building a solid theoretical foundation and sharp recall of it." },
-            { title: "Financial planners", tag: "Advisory", desc: "For formalizing a rigorous financial-planning framework." },
-            { title: "Individual investors", tag: "Equities", desc: "For mastering how to read financial ratios and dissect a company." },
+            { title: "Complete beginners", tag: "Foundations", desc: "For anyone who wants to write their first program and understand the machine." },
+            { title: "Certification candidates", tag: "Candidates", desc: "For building a solid theoretical foundation and sharp recall of it." },
+            { title: "Career switchers", tag: "Advisory", desc: "For formalizing a rigorous system-design framework." },
+            { title: "Self-taught developers", tag: "In practice", desc: "For mastering how to read system metrics and dissect a real project." },
           ],
         },
       },
     },
 
     toolsIndex: {
-      eyebrow: "Financial Tools & Valuation",
+      eyebrow: "Measurement & Estimation Tools",
       title: "Put the numbers to work",
-      subtitle: "Personal-finance simulations and CFA-standard business valuation.",
+      subtitle: "System capacity simulations and infrastructure cost estimation.",
       loading: "Loading...",
       tabs: {
         netWorth: "Net Worth",

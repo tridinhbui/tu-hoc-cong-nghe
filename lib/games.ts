@@ -17,10 +17,7 @@ export type SpecialGameType =
   | "world-boss-raid"
   | "solo-knowledge-boss"
   | "vn30-fund-sim"
-  | "pvp-duel"
-  | "wall-street-millionaire"
-  | "snowball-racer"
-  | "dcf-mastermind";
+  | "pvp-duel";
 
 // Special game metadata for non-bucket/pair games
 export interface SpecialGameMeta {
@@ -51,27 +48,6 @@ export interface SpecialGameMeta {
    định ĐÁP ÁN: lệch một phần tử là thẻ mang nhãn của thẻ bên cạnh và ô đúng
    thành ô sai. */
 export const SPECIAL_GAMES: SpecialGameMeta[] = [
-  {
-    id: "wall-street-millionaire",
-    title: "Ai Là Triệu Phú Silicon Valley",
-    description: "15 câu hỏi tài chính cấp độ cao kết hợp với cơ chế trợ giúp kiểu game show.",
-    emoji: "💰",
-    accent: "amber",
-  },
-  {
-    id: "dcf-mastermind",
-    title: "Đấu Trường Định Giá DCF & M&A",
-    description: "Phân tích 5 thương vụ M&A, xác định giá trị nội tại (Target Price) và phán quyết mua/né.",
-    emoji: "🧮",
-    accent: "indigo",
-  },
-  {
-    id: "snowball-racer",
-    title: "Đua Xe Lãi Kép & Hòn Tuyết Lăn",
-    description: "Lựa chọn chiến lược đầu tư qua 20 năm để đạt mục tiêu $1,000,000 thông qua sức mạnh lãi kép.",
-    emoji: "🏎️",
-    accent: "emerald",
-  },
 ];
 
 export type AnyGameType = GameType | SpecialGameType;

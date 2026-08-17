@@ -6,7 +6,7 @@ export const rpgStudyRoomVi = {
   rpgInventory: {
     badge: "RPG Gear Hub",
     title: "Tủ đồ & trang bị",
-    description: "Quản lý ngoại hình, vật phẩm và chỉ số chiến đấu tài chính của nhân vật ngay trong hub riêng.",
+    description: "Quản lý ngoại hình, vật phẩm và chỉ số chiến đấu của nhân vật ngay trong hub riêng.",
     equippedCount: "{count} món đang trang bị",
     levelLabel: "Lv.{level} Silicon Valley Analyst",
     idLabel: "ID: {id}",
@@ -64,7 +64,7 @@ export const rpgStudyRoomEn: typeof rpgStudyRoomVi = {
   rpgInventory: {
     badge: "RPG Gear Hub",
     title: "Wardrobe & Gear",
-    description: "Manage your character's look, items, and financial combat stats right in your own hub.",
+    description: "Manage your character's look, items, and combat stats right in your own hub.",
     equippedCount: "{count} items equipped",
     levelLabel: "Lv.{level} Silicon Valley Analyst",
     idLabel: "ID: {id}",

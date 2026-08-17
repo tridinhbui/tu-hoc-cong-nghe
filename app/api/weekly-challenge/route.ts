@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
       title: c.mockTitle,
       description: c.mockDescription,
       difficulty: "gold",
-      case_study_url: "https://example.com/fpt-bctc-2025.pdf",
+      case_study_url: "https://example.com/order-system-architecture.pdf",
       questions: [
         { prompt: c.q1Prompt, options: c.q1Options, correct: 0 },
         { prompt: c.q2Prompt, options: c.q2Options, correct: 0 },

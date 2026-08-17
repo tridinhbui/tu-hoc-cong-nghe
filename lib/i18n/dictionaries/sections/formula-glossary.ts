@@ -5,32 +5,6 @@
 // from lib/cfa-formulas-data.ts / lib/frm-formulas-data.ts and are not
 // translated here - only the UI chrome around them is.
 export const formulaGlossaryVi = {
-  cfaFormulas: {
-    badge: "📐 SỔ TAY CÔNG THỨC CFA LEVEL 1",
-    countBadge: "{count} Công thức chuẩn",
-    title: "CFA Level I Formula Cheat Sheet",
-    subtitle:
-      "Tổng hợp công thức thi CFA với hiển thị phân số tầng trực quan, giải thích ký hiệu biến số, ví dụ tính bằng số và nút copy công thức tức thì.",
-    printCta: "In / Xuất PDF Sổ tay",
-    searchPlaceholder: "Tìm kiếm công thức (VD: WACC, ROE, TVM, DDM, CAPM...)...",
-    allSubjects: "Tất cả Môn thi",
-    subjectOption: "{name} ({weight})",
-    defaultBadge: "CFA FORMULA",
-    noResults: "Không tìm thấy công thức phù hợp với từ khóa tìm kiếm.",
-  },
-  frmFormulas: {
-    badge: "📐 Sổ tay công thức FRM",
-    countBadge: "{count} công thức",
-    title: "FRM Part I & II Formula Sheet",
-    subtitle:
-      "Công thức theo đúng mười môn của GARP, kèm giải thích từng ký hiệu và một ví dụ tính bằng số - phần thường bị bỏ qua nhưng lại là chỗ công thức trở nên dùng được.",
-    printCta: "In / Xuất PDF",
-    searchPlaceholder: "Tìm công thức (VD: VaR, LCR, Sharpe, DV01, EL...)",
-    allSubjects: "Tất cả ({count})",
-    subjectOption: "{name} ({count})",
-    defaultBadge: "FRM FORMULA",
-    noResults: "Không có công thức nào khớp với từ khoá này.",
-  },
   formulaBlock: {
     defaultLabel: "Công thức tính toán",
     copyTooltip: "Sao chép công thức",
@@ -92,32 +66,6 @@ export const formulaGlossaryVi = {
 };
 
 export const formulaGlossaryEn: typeof formulaGlossaryVi = {
-  cfaFormulas: {
-    badge: "📐 CFA LEVEL 1 FORMULA HANDBOOK",
-    countBadge: "{count} standard formulas",
-    title: "CFA Level I Formula Cheat Sheet",
-    subtitle:
-      "A collection of CFA exam formulas with clear stacked-fraction display, variable explanations, worked numeric examples, and an instant copy button.",
-    printCta: "Print / Export handbook as PDF",
-    searchPlaceholder: "Search formulas (e.g. WACC, ROE, TVM, DDM, CAPM...)",
-    allSubjects: "All subjects",
-    subjectOption: "{name} ({weight})",
-    defaultBadge: "CFA FORMULA",
-    noResults: "No formulas match this search term.",
-  },
-  frmFormulas: {
-    badge: "📐 FRM Formula Handbook",
-    countBadge: "{count} formulas",
-    title: "FRM Part I & II Formula Sheet",
-    subtitle:
-      "Formulas organized by GARP's ten topics, each with a symbol-by-symbol explanation and a worked numeric example - the part that usually gets skipped but is where a formula becomes usable.",
-    printCta: "Print / Export as PDF",
-    searchPlaceholder: "Search formulas (e.g. VaR, LCR, Sharpe, DV01, EL...)",
-    allSubjects: "All ({count})",
-    subjectOption: "{name} ({count})",
-    defaultBadge: "FRM FORMULA",
-    noResults: "No formulas match this search term.",
-  },
   formulaBlock: {
     defaultLabel: "Formula",
     copyTooltip: "Copy formula",

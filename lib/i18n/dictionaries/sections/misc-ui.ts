@@ -141,8 +141,8 @@ export const miscUiVi = {
           prompt: "Chạm để xem một lời nhắn",
         },
         steady: {
-          label: "Thẻ kinh nghiệm tài chính",
-          prompt: "Chạm để xem một câu kinh nghiệm tài chính",
+          label: "Thẻ kinh nghiệm nghề",
+          prompt: "Chạm để xem một câu kinh nghiệm nghề",
         },
       },
       visitQuietCorner: "Ghé góc yên tĩnh một phút ›",
@@ -300,8 +300,8 @@ export const miscUiEn: typeof miscUiVi = {
           prompt: "Tap to see a message",
         },
         steady: {
-          label: "Finance wisdom card",
-          prompt: "Tap to see a finance insight",
+          label: "Craft wisdom card",
+          prompt: "Tap to see a craft insight",
         },
       },
       visitQuietCorner: "Visit the quiet corner for a minute ›",

@@ -106,7 +106,7 @@ export const libStringsVi = {
   studyRoomTopics: {
     personal: "Nền tảng công nghệ",
     professional: "Công nghệ chuyên sâu",
-    cfa: "CFA Level I",
+    cfa: "Chứng chỉ AWS",
   } as Record<string, string>,
   lessonLabel: {
     /** "Chặng 3 · Bài 12" - phần sau dấu chấm giữa. */
@@ -139,7 +139,7 @@ export const libStringsEn: typeof libStringsVi = {
     "Danh hiệu dành cho tín đồ tối ưu hiệu năng": "A title for the devotee of performance tuning",
     "Danh hiệu của chuyên gia đọc nhật ký hệ thống": "The title of an expert reader of system logs",
     "Danh hiệu tôn vinh kỷ luật tích sản": "A title honouring the discipline of building assets",
-    "Danh hiệu dành cho người làm chủ tài chính": "A title for whoever has their finances in hand",
+    "Danh hiệu dành cho người làm chủ tài chính": "A title for whoever has their money in hand",
     "Danh hiệu của bậc thầy phân tích thị trường": "The title of a master market analyst",
     "Danh hiệu dành cho tín đồ dòng tiền dài hạn": "A title for the devotee of long-run cash flow",
     "Danh hiệu của chuyên gia đọc báo cáo tài chính": "The title of an expert reader of financial statements",
@@ -179,7 +179,7 @@ export const libStringsEn: typeof libStringsVi = {
   studyRoomTopics: {
     personal: "Tech Foundations",
     professional: "Advanced Technology",
-    cfa: "CFA Level I",
+    cfa: "AWS certification",
   },
   lessonLabel: {
     stageAndNumber: "{stage} · Lesson {number}",

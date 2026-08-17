@@ -51,10 +51,6 @@ const GRANDFATHERED = new Set([
   "exams.xpAmountLabel",
   "exams.passToast",
   "finalOne.milestoneBonusXp",
-  // Trắc nghiệm hướng nghiệp: khớp QUEST_XP_REWARDS.career_assessment = 50,
-  // nhưng hai chuỗi bị cắt quanh thẻ <strong> nên chưa nội suy được gọn.
-  "jobs.quizXpReward",
-  "jobs.quizStart",
   // Ôn tập chủ động: 10 XP/chặng, nằm trong recalculateUserStats (recallXp).
   "recall.passedToast",
   // Chia sẻ lên FinSocial.

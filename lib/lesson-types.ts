@@ -111,7 +111,6 @@ export interface Lesson {
     | "chart"
     | "risk"
     | "payoff"
-    | "multiples"
     | "prospect"
     | "accretion"
     | "ethics-case"

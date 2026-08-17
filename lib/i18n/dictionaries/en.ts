@@ -35,20 +35,18 @@ export const en: Dictionary = {
     // calling it a mock: no migration seeds the `weekly_challenges` table on
     // Supabase and nothing in the repo writes to it, so this branch is what
     // every user actually sees.
-    mockTitle: "FPT Corporation SOTP Valuation",
-    mockDescription:
-      "Value each of FPT's segments - Technology, Telecoms and Education - to arrive at a fair value for the whole.",
-    q1Prompt: "Which segment contributed the largest share of FPT's revenue in 2025?",
-    q1Options: ["Technology", "Telecoms", "Education"],
-    q2Prompt: "What is the trend in the gross margin of FPT's Technology segment?",
-    q2Options: ["Rising steadily", "Flat", "Slightly declining"],
-    q3Prompt:
-      "What regional average P/E should be applied to the Education segment in the SOTP model?",
-    q3Options: ["10x", "18x", "25x"],
-    q4Prompt: "What state was FPT's operating cash flow (CFO) in over the past year?",
-    q4Options: ["Strongly positive", "Slightly negative on inventory", "Unchanged"],
-    q5Prompt: "Roughly what fair value does the SOTP give for FPT shares?",
-    q5Options: ["VND 120,000 - 130,000/share", "VND 150,000 - 160,000/share", "VND 180,000 - 190,000/share"],
+    mockTitle: "Reviewing an order system's architecture",
+    mockDescription: "Read the diagram of an overloaded order system, find the bottleneck and rank what to fix first.",
+    q1Prompt: "Which component usually saturates first when order volume grows tenfold?",
+    q1Options: ["The database writing the orders", "The CDN serving static images", "The user's own browser"],
+    q2Prompt: "p99 latency triples while average latency stays flat - what does that mean?",
+    q2Options: ["A small share of requests got very slow", "The whole system slowed down evenly", "The number of users is falling"],
+    q3Prompt: "Putting a cache in front of the database trades away what?",
+    q3Options: ["Considerably more code to write", "Reads that may be stale for a window", "Hardware cost rising with user count"],
+    q4Prompt: "An order queue that keeps growing tells you what?",
+    q4Options: ["Consumers are slower than producers", "The queue's max size is misconfigured", "Users are submitting many duplicates"],
+    q5Prompt: "What should you do first when a slowness report comes in?",
+    q5Options: ["Double the number of running servers", "Measure where the time is actually going", "Rewrite the code you suspect is slowest"],
   },
 
   apiErrors: {
@@ -302,6 +300,7 @@ export const en: Dictionary = {
       stat2Label: "The gap",
       stat2Note: "of IT graduates need another 3-6 months before they can do the job.",
       stat3Label: "Industry size",
+      stat3Value: "1.2 million",
       stat3Note: "people working across 74,000 technology companies.",
       missionLabel: "Vision & mission",
       missionBody:
@@ -607,7 +606,7 @@ export const en: Dictionary = {
     explanationTitle: "The correct answer & explanation",
     flipBack: "Flip back to the question",
     correctAnswer: "Correct answer:",
-    financeExplanation: "The finance behind it:",
+    financeExplanation: "Technical explanation:",
     noExplanation: "No detailed explanation for this question.",
 
     ratePrompt: "Rate how well you remembered it, to schedule the next review:",
@@ -626,59 +625,6 @@ export const en: Dictionary = {
     rateSrs: "Rate for SRS:",
   },
 
-  dcf: {
-    tabDcf: "DCF equity valuation",
-    tabWacc: "Cost of capital (WACC)",
-    standardBadge: "To CFA & corporate finance standards",
-
-    resultTitle: "DCF VALUATION RESULT",
-    intrinsicValue: "Intrinsic value: {value} VND per share",
-    undervalued: "UNDERVALUED ({sign}{percent}%)",
-    overvalued: "OVERVALUED ({percent}%)",
-    fairValue: "FAIRLY VALUED ({sign}{percent}%)",
-
-    marketPriceLabel: "Current market price",
-    currency: "{value} VND",
-    evLabel: "Enterprise value (EV)",
-    billions: "{value}bn VND",
-    equityLabel: "Equity value",
-    tvShareLabel: "Terminal value as a share of EV",
-    percentOfEv: "{percent}% of EV",
-
-    inputsTitle: "Discounted cash flow model inputs",
-    inFcf: "Current free cash flow (bn VND)",
-    inGrowth: "FCF growth over 5 years (%)",
-    inWacc: "Discount rate, WACC (%)",
-    inTerminalGrowth: "Perpetual growth, g_term (%)",
-    inCash: "Cash & short-term investments (bn VND)",
-    inDebt: "Total financial debt (bn VND)",
-    inShares: "Shares outstanding (millions)",
-    inMarketPrice: "Current market price (VND per share)",
-
-    forecastTitle: "Free cash flow forecast and present value by year",
-    colYear: "Year",
-    colFcf: "FCF (bn VND)",
-    colDiscount: "Discount factor",
-    colPv: "Present value (bn VND)",
-    rowYear: "Year {year}",
-    billionsShort: "{value}bn",
-    total5Years: "5-year total",
-
-    waccResultTitle: "WEIGHTED AVERAGE COST OF CAPITAL RESULT",
-    waccValue: "WACC = {value}%",
-    equityWeight: "Equity weight (E/V)",
-    debtWeight: "Debt weight (D/V)",
-    afterTaxKd: "After-tax cost of debt (Kd*)",
-    taxShield: "Debt tax shield",
-    taxShieldValue: "-{rate}% corporate tax",
-
-    waccInputsTitle: "Capital structure and component costs",
-    inEquity: "Equity value E (bn VND)",
-    inDebtValue: "Financial debt value D (bn VND)",
-    inKe: "Cost of equity Ke (%)",
-    inKd: "Average borrowing rate Kd (%)",
-    inTaxRate: "Corporate tax rate t (%)",
-  },
 
   worldMap: {
     levelShort: "Lv.{level}",
@@ -1389,7 +1335,7 @@ export const en: Dictionary = {
     createPoll: "Create a poll",
     cancel: "Cancel",
     pollQuestionPlaceholder:
-      "Enter your poll question (for example: how many bps will the Fed cut?)",
+      "Enter your poll question (for example: REST or GraphQL for an internal API?)",
     addPollOption: "+ Add an option",
     addToPost: "Add to your post",
     addImageTitle: "Add an image",
@@ -1640,7 +1586,7 @@ export const en: Dictionary = {
     tabMap: "Kingdom map",
     tabMinigame: "Try a mini game",
     tabBoss: "Hunt the Server boss",
-    bgAlt: "Silicon Valley trading floor background",
+    bgAlt: "City skyline background",
     eyebrow: "THE INTERACTIVE TECH GAME KINGDOM",
     headingMap: "The quest map & its buildings",
     headingMinigame: "Try your active-recall reflexes live",
@@ -1776,53 +1722,6 @@ export const en: Dictionary = {
     pickAnotherCase: "Pick another case study",
   },
 
-  careerProfile: {
-    claimed: "Claimed +{xp} XP · +{coins} coins",
-    claimFailed: "Couldn't claim the reward",
-    bulletSaveFailed: "Couldn't save the bullet",
-    bulletDeleteFailed: "Couldn't delete the bullet",
-    requirementMet: "You've met the {hint} requirement.",
-    requirementGap: "Still short on {hint} · about {count} more lessons.",
-    bulletSaved: "CV bullet saved",
-
-    signInPrompt: "Sign in to see your career competency profile.",
-    signIn: "Sign in",
-    computing: "Calculating your competency profile...",
-    loadFailed: "Couldn't load your competency profile.",
-    retry: "Try again",
-
-    title: "Competency profile",
-    lessonsCompleted: "{count} lessons completed",
-    mockInterview: "Take a mock interview (10 questions, timed)",
-
-    gapTitle: "Job skill gap",
-    groupCertifications: "Certifications",
-    groupCareers: "Careers",
-    pickGoal: "Choose a goal above to see what you're missing.",
-    readinessBody:
-      "readiness for this goal. The groups you're short on are listed first - that's what's worth doing next.",
-    required: "required",
-
-    missionsTitle: "This week's career missions",
-    missionReward: "+{xp} XP · +{coins} coins",
-    alreadyClaimed: "Claimed",
-    claim: "Claim the reward",
-    claiming: "Claiming...",
-    perfectWeek: "Perfect week · +{xp} XP · +{coins} coins",
-    perfectWeekBody: "Complete all {count} missions in the week.",
-
-    bulletsTitle: "CV bullets",
-    bulletsHintPart1: "Each bullet follows the formula ",
-    bulletsFormula: "action - number - result",
-    bulletsHintPart2:
-      ". For example: \"Built three-statement DCF models for 5 listed companies, cutting valuation time from 3 days to 1.\"",
-    bulletPlaceholder: "Write a bullet for your CV...",
-    bulletCounter: "{count}/{max} · minimum {min}",
-    savingBullet: "Saving...",
-    addBullet: "Add bullet",
-    bulletsEmpty: "No bullets yet. Write 3 in a week to complete the mission.",
-    deleteBulletAria: "Delete bullet",
-  },
 
   chat: {
     copied: "Message copied",
@@ -1913,7 +1812,7 @@ export const en: Dictionary = {
     botRules: "Tài Tài here 👋 This group is studying {topic}, with around {count} lessons to work through together. The rules, briefly: keep to at least 3 lessons a week each, hit the target and the group carries on, and hold it for 3 weeks running to become a permanent group.",
     botTopicPersonal: "Tech foundations",
     botTopicProfessional: "Advanced technology",
-    botTopicCfa: "CFA Level I",
+    botTopicCfa: "AWS certification",
     dropImage: "Drop an image here to send it 📂",
     emptyPart1: "No messages yet.",
     emptyPart2: "Say hello to the group.",
@@ -2108,188 +2007,6 @@ export const en: Dictionary = {
     leaveFailed: "Couldn't leave the room right now",
   },
 
-  jobs: {
-    quizDone: "Assessment completed",
-    // The assessment's four career buckets. `topType` is an internal id; the
-    // copy lives here.
-    quizTypeLabel: {
-      Analytical: "Analysis & Investment (Analytical)",
-      Compliance: "Accounting & Audit (Compliance)",
-      "Client-facing": "Client Relations & Dealing (Client-facing)",
-      Quantitative: "Treasury & Quantitative",
-    },
-    quizTypeRoles: {
-      Analytical: "Financial Analyst, Investment Banking, FP&A, Investing (CFA track).",
-      Compliance: "Accountant, Auditor, Chief Accountant / CFO track.",
-      "Client-facing": "Credit Officer, Securities Broker.",
-      Quantitative: "Fund Manager, Risk Manager, Treasury Officer.",
-    },
-    quizResultLine: "{type} - Suggested roles: {roles}",
-    careerAlt: "Career",
-    examWeightTitle: "Exam weight: {weight}",
-    cfaRelated: "CFA relevance:",
-
-    goalSet: "Goal set",
-    goalSetAction: "Set as my career goal",
-    goalSetShort: "Goal set",
-    goalSetActionShort: "Set career goal",
-
-    tabDuties: "Duties & a typical day",
-    tabAdvice: "Advice & pros/cons",
-    tabPath: "Path & certifications",
-    tabSkills: "Skills & tools",
-    tabProfile: "Competency profile",
-    tabFindJobs: "Find jobs now",
-    tabDutiesShort: "Duties",
-    tabAdviceShort: "Advice",
-    tabPathShort: "Path",
-    tabSkillsShort: "Skills",
-    tabProfileShort: "Profile",
-    tabFindJobsShort: "Jobs",
-
-    ladderStart: "Starting out",
-    ladderMiddle: "Rungs of the ladder",
-    ladderEnd: "Long-term goal",
-
-    years0: "0 - 2 years",
-    years1: "2 - 5 years",
-    years2: "5 - 8 years",
-    years3: "8+ years",
-    years0Short: "0-2 yrs",
-    years1Short: "2-5 yrs",
-    years2Short: "5-8 yrs",
-    years3Short: "8+ yrs",
-
-    focus0: "Learning the process, handling raw data, executing basic tasks under close supervision.",
-    focus1: "Owning the work, running projects independently, starting to advise clients directly and mentoring interns.",
-    focus2: "Planning, managing a team or department, holding primary responsibility for financial performance.",
-    focus3: "Final decisions, working directly with the board and outside shareholders, setting the group's capital structure.",
-    focus0Short: "Learning the process, handling raw data, executing basic tasks.",
-    focus1Short: "Owning the work, managing independently, mentoring interns.",
-    focus2Short: "Planning, running a team or department, primary financial responsibility.",
-    focus3Short: "Final decisions, working with the board, setting capital structure.",
-
-    tip0: "Be absolutely careful with the numbers, don't shy away from small jobs, push your Excel as far as it goes and finish CFA/ACCA Level 1.",
-    tip1: "Propose solutions rather than just reporting problems, and work on presenting and negotiating with clients.",
-    tip2: "Learn to delegate properly, work on managing your own emotions, and understand internal company politics.",
-    tip3: "A global macro view, an unimpeachable reputation, and senior relationships with the major financial institutions.",
-    tip0Short: "Absolute care, no job too small, strong Excel, CFA/ACCA Level 1.",
-    tip1Short: "Propose solutions rather than problems; work on slides & negotiation.",
-    tip2Short: "Learn to delegate; work on emotional control & internal politics.",
-    tip3Short: "Global macro view, unimpeachable reputation, senior relationships.",
-
-    studyTheseLessons: "Study these lessons to prepare for this role",
-    loading: "Loading...",
-    signInForProgress: "Sign in to see your progress on the related lessons.",
-    fullTrackLink: "See the full learning track for this role",
-
-    radarTitle: "Attribute profile",
-    radarOverlayTitle: "Competency comparison (overlay radar)",
-    axisAnalysis: "ANALYSIS",
-    axisQuantShort: "QUANT",
-    axisQuant: "QUANTITATIVE",
-    axisCommunication: "COMMUNICATION",
-    axisCompliance: "COMPLIANCE",
-
-    compareTitle: "Compare roles",
-    compareShort: "Compare roles",
-    compareShortest: "Compare",
-    current: "Current",
-    pickToCompare: "Pick a role to compare",
-    pickPlaceholder: "-- Pick a role --",
-    pickSecond: "Pick a second role to compare against",
-
-    difficulty: "Difficulty",
-    pressure: "Pressure",
-    balance: "Balance",
-    difficultyFull: "Entry difficulty",
-    pressureFull: "Pressure level",
-    balanceFull: "Work-life balance",
-    expectedSalary: "Expected salary",
-    mainCertificates: "Key certifications",
-    mainTools: "Key tools",
-
-    goalCleared: "Career goal tracking cancelled.",
-    goalClearedLocalOnly: "Cancelled on this device, but not yet saved to the server - try again later.",
-    goalSaveFailed: "Couldn't save your goal to the server - it applies on this device only for now.",
-
-    backToDashboard: "Back to dashboard",
-    pageTitle: "Finance job map",
-    walk3d: "Walk the 3D career street",
-    pageSubtitle:
-      "Explore the job description in detail, the promotion path, the skills required, and connect to live recruitment.",
-
-    goalChosen: "The career goal you've chosen",
-    goalOutsider: "Learner from outside the industry",
-    goalDetailLink: "See the detailed track →",
-    goalClear: "Clear this goal",
-    noGoalTitle: "You haven't chosen a career goal yet.",
-    noGoalPart1: "Pick a role below (or choose ",
-    noGoalOptionName: "\"Learner / outside the industry 🌱\"",
-    noGoalPart2:
-      " if you're studying to manage your own money) so the system can track progress specifically for you.",
-
-    searchPlaceholder: "Search finance roles...",
-    scrollLeft: "Scroll left",
-    scrollRight: "Scroll right",
-    noResults: "No matching role found",
-    noResultsHint: "Try searching for a different keyword.",
-
-    quizTitle: "Career-fit quiz",
-    quizBlurbPart1:
-      "Answer 5 questions to work out which finance role suits you best, and get ",
-    quizBlurbShortPart1: "Answer 5 quick questions and get ",
-    quizXpReward: "+50 XP",
-    quizBlurbPart2: " right away.",
-    quizStart: "Start the quiz (+50 XP)",
-    quizResultTitle: "Your career direction",
-    quizBestMatch: "Best match:",
-    quizRetake: "Retake the quiz",
-    quizQuestionCounter: "Question {current}/{total}",
-
-    salaryRange: "• Salary range: {range}",
-    salaryDisclaimer:
-      "* Salary figures are indicative estimates only and vary by company, region and actual experience - they are not official survey data.",
-
-    prepProgress: "Career preparation progress",
-    prepProgressHint:
-      "Tick off the skills and certifications you've accumulated to track this career path closely:",
-
-    typicalDay: "A typical working day:",
-    typicalDayShort: "A typical day:",
-    jobDescription: "Core responsibilities (job description)",
-    jobDescriptionShort: "Core responsibilities",
-    pros: "Main advantages",
-    prosShort: "PROS",
-    cons: "Drawbacks & challenges",
-    consShort: "CONS",
-    applyTips: "Application tips & career advice:",
-    applyTipsShort: "Recruitment advice:",
-
-    careerPath: "Promotion path (career path)",
-    careerPathShort: "Promotion path",
-    careerPathHint: "(Tap each level to see how to get promoted)",
-    careerPathHintShort: "(Tap each level for the tips)",
-    pathStep: "Level {step}: {name}",
-    pathFocus: "Focus: ",
-    pathTip: "Tip: ",
-
-    certifications: "Recommended certifications",
-    certificationsShort: "Recommended certifications",
-    skills: "Technical & soft skills",
-    tools: "Systems & specialist tools",
-    toolsShort: "Systems & tools",
-
-    keywordsTitle: "Suggested search keywords:",
-    keywordsHint:
-      "The system will search the major recruitment platforms directly using these keywords.",
-    findJobs: "Search the major job platforms",
-    findJobsShort: "Search directly on these platforms:",
-    otherPositions: "Or jump to another role",
-    otherPositionsShort: "Or jump to another role:",
-    cvReminder:
-      "* Note: bring your CV's skills and certifications fully up to date before you start applying.",
-  },
 
   dashboard: {
     branchesShowAll: "See all topics",
@@ -2371,7 +2088,7 @@ export const en: Dictionary = {
     levelMapTab: "Level map",
     learningPathTab: "Learning path",
     learningPathTitle: "Your learning path",
-    learningPathNote: "Four tracks, from personal finance to CFA and FRM - pick up where you left off",
+    learningPathNote: "Four paths, from technology fundamentals to an infrastructure certification - pick up where you left off",
     levelMapTitle: "Learner level map",
     levelMapNote:
       "XP measures progress; only the exams and quiz scores confirm real competence",
@@ -2411,17 +2128,17 @@ export const en: Dictionary = {
     },
 
     boss: {
-      name: "The Debt Trap & Inflation Boss",
-      q1: "To withstand 8% inflation, what is the minimum return a portfolio needs?",
-      q2: "What makes a credit debt trap most dangerous?",
+      name: "The technical-debt & cascading-failure boss",
+      q1: "A service promising a 99.9% SLO may be down for at most how long per month?",
+      q2: "What makes technical debt most dangerous?",
       // Written to AGENTS.md rule 2 rather than translated literally: the
       // Vietnamese correct option is 16 characters longer than its longest
       // distractor, and length survives the shuffle. Here the correct option is
       // not the longest, and all three sit within a comparable band.
-      q2o1: "High floating rate plus interest capitalisation",
-      q2o2: "The lender refuses to roll the debt over at maturity",
-      q2o3: "There is no early-settlement discount available",
-      q3: "An absolutely safe debt-to-equity (D/E) ratio usually sits below what level?",
+      q2o1: "Nobody wrote it down, so it grows in silence",
+      q2o2: "It cannot be removed once released",
+      q2o3: "It only shows up in very old projects",
+      q3: "What minimum test coverage is usually set for core code?",
     },
   },
 
@@ -2444,7 +2161,7 @@ export const en: Dictionary = {
       namePlaceholder: "The name you want people to see",
       bioLabel: "Short bio",
       bioPlaceholder:
-        "For example: I'm learning to understand my own money better and start investing properly.",
+        "For example: I'm learning so I can build my own products and work in technology.",
       bioCount: "{count}/240 characters",
       save: "Save profile",
       saving: "Saving profile...",
@@ -2568,7 +2285,7 @@ export const en: Dictionary = {
     avgScore: "Avg. score",
     streakDays: "Streak",
     career: "Career",
-    cfaArena: "CFA arena",
+    cfaArena: "Certification arena",
     contribution: "Contribution",
     gamer: "Gamer",
 
@@ -2927,22 +2644,6 @@ export const en: Dictionary = {
   },
 
   // components/CareerGoalWidget.tsx
-  jobKeywords: {
-    financialAnalysis: "Financial analysis",
-    accounting: "Accounting",
-    audit: "Audit",
-    investmentBanking: "Investment banking",
-    creditOfficer: "Credit officer",
-    fpa: "FP&A",
-    fundManagement: "Fund management",
-    investmentOfficer: "Investment officer",
-    chiefAccountant: "Chief accountant",
-    riskAnalyst: "Risk analyst",
-    financialPlanning: "Financial planning",
-    quant: "Quantitative Analyst",
-    valuation: "Asset valuation",
-    investorRelations: "Investor relations",
-  },
   connectMenu: {
     title: "Connect",
     open: "Open the connect menu",
@@ -2967,61 +2668,6 @@ export const en: Dictionary = {
 
   // Four certification screens: CFA glossary cards, CFA formula book, FRM, and
   // the "what comes next" block under the CFA track.
-  certPages: {
-    tabsAria: "Switch between the two certifications",
-    tabCfa: "CFA Level I",
-    tabCfaHint: "10 foundation subjects",
-    tabFrm: "FRM",
-    tabFrmHint: "Risk management",
-    frmTipLabel: "Common trap",
-    frmAllLabel: "All (10 FRM subjects)",
-    frmLearnedToast: "✓ Marked this FRM term as learned!",
-    // Page metadata. Safe to translate: these pages already render
-    // dynamically (the root layout reads the locale cookie), and crawlers
-    // carry no cookie so they still get the Vietnamese default - which is what
-    // a Vietnamese site wants indexed.
-    flashcardsMetaTitle: "CFA Glossary Flashcards, English-Vietnamese | TuHocTaiChinh.org",
-    flashcardsMetaDesc:
-      "3D flashcards for CFA Level 1 English terminology, each with a precise Vietnamese definition and the formulas that go with it.",
-    formulasMetaTitle: "CFA Level 1 Formula Book | TuHocTaiChinh.org",
-    formulasMetaDesc:
-      "The CFA Level 1 formula book: layered fraction cards, every variable explained, and worked examples with real numbers across all ten topics.",
-
-    backToCfa: "Back to the CFA track",
-    backToDashboard: "Back to the dashboard",
-    flashcardsTitle: "CFA Level 1 glossary cards",
-    flashcardsSubtitle: "English-Vietnamese flashcards and the related formulas",
-    formulasTitle: "CFA Level 1 formula book",
-    formulasSubtitle: "The formulas that matter across all ten topics, with worked examples",
-
-    frmMockExam: "Mock exam",
-    // The certification's own name - identical in every language.
-    frmTitle: "FRM",
-    frmSubtitle: "Financial Risk Manager - GARP Part I & Part II",
-    frmGlossary: "Glossary cards",
-    frmFormulas: "Formula book",
-
-    frmFlashcardsMetaTitle: "FRM Glossary Flashcards, English-Vietnamese | TuHocTaiChinh.org",
-    frmFlashcardsMetaDesc:
-      "Flashcards for FRM Part I and Part II terminology - VaR, Expected Shortfall, CVA, LCR, NSFR, PD/LGD/EAD - each with a Vietnamese definition and the trap people fall into.",
-    frmFormulasMetaTitle: "FRM Part I & II Formula Book | TuHocTaiChinh.org",
-    frmFormulasMetaDesc:
-      "FRM exam formulas across GARP's ten topics: VaR, Expected Shortfall, EL, LCR, NSFR, DV01, Greeks - every symbol explained, with worked numeric examples.",
-    backToFrm: "Back to the FRM track",
-    backToFrmTrack: "Back to the FRM path",
-    frmFlashcardsTitle: "FRM glossary cards",
-    frmFlashcardsSubtitle: "Part I & Part II - English-Vietnamese, with the usual traps",
-    frmFormulasTitle: "FRM formula book",
-    frmFormulasSubtitle: "Part I & II - with worked numeric examples",
-
-    noLessonsYet: "no lessons yet",
-    pickTrack: "Pick a specialisation:",
-    examWeight: "Exam weight",
-    scaleTo: "on a 0–",
-    nextStages: "What comes next: Level II and Level III",
-    nextStagesBlurb:
-      "TuHocTaiChinh's lessons stop at Level I. Below is the official outline for the other two levels - weights and structure taken from the CFA Institute candidate resources - so you can see how tall the ladder is.",
-  },
 
 
   // lib/career-categories.ts - the five career-category names and one-liners.

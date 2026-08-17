@@ -50,7 +50,10 @@ const kingdomBuildings = (t: Dictionary): KingdomBuilding[] => [
     id: "goldman",
     name: t.kingdomPreview.goldmanName,
     subtitle: t.kingdomPreview.goldmanSubtitle,
-    image: "/rpg/goldman_sachs.png",
+    // Ảnh khu công nghệ, không phải toà Goldman Sachs: thẻ này giờ tên là
+    // "Trung tâm dữ liệu Silicon Valley". `goldman_sachs.png` vẫn nằm trong
+    // public/ vì lib/rpg-buildings.ts còn trỏ tới nó ở bản đồ đầy đủ.
+    image: "/rpg/silicon_valley.png",
     minLevel: 5,
     progress: "72%",
     xpReward: 350,
@@ -239,7 +242,7 @@ export default function InteractiveKingdomPreview() {
         {/* Ambient Wall Street & Particle Background */}
         <div className="absolute inset-0 pointer-events-none">
           <Image
-            src="/wallstreet-nyse-header.jpg"
+            src="/saigon-skyline.jpg"
             alt={t.kingdomPreview.bgAlt}
             fill
             sizes="100vw"

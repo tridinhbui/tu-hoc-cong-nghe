@@ -2593,7 +2593,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             // `correct: 0` is safe here: BossBattleModal shuffles via
             // lib/quiz-shuffle, so position leaks nothing. Option length does
             // survive the shuffle - see the note on t.dashboard.boss.
-            { prompt: t.dashboard.boss.q1, options: ["> 8%", "= 8%", "< 8%"], correct: 0 },
+            { prompt: t.dashboard.boss.q1, options: ["~43 phút/tháng", "~4 phút/tháng", "~7 giờ/tháng"], correct: 0 },
             {
               prompt: t.dashboard.boss.q2,
               options: [
@@ -2603,7 +2603,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               ],
               correct: 0,
             },
-            { prompt: t.dashboard.boss.q3, options: ["1.0x", "5.0x", "10.0x"], correct: 0 }
+            { prompt: t.dashboard.boss.q3, options: ["80%", "30%", "5%"], correct: 0 }
           ]}
           onVictory={async ({ xp, coins }) => {
             // XP goes in as a game_sessions row, not a direct total_xp write.

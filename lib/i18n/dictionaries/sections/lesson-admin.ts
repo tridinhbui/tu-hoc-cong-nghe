@@ -10,20 +10,24 @@ export const lessonAdminVi = {
     // đo nào với tới, nên file đó báo 0 chuỗi trong khi mỗi bài học đều hiện một
     // câu ở đây.
     metaphors: {
-      compound: "quả cầu tuyết lăn từ đỉnh núi: càng lăn xa càng hút thêm tuyết và phình to khổng lồ",
-      cashFlow:
-        "nguồn nước chảy trong sinh hoạt: dù bể nhà bạn to (tài sản lớn) nhưng nếu đường ống bị tắc (thiếu tiền mặt), bạn vẫn không có nước tắm rửa",
-      interest:
-        "phí thuê một chiếc xe máy: bạn mượn xe người khác đi thì cuối ngày phải trả một số tiền nhỏ gọi là tiền thuê",
-      debt: "một chiếc ba lô chứa đá: giúp bạn lao dốc nhanh hơn nhờ quán tính nếu mang vừa sức, nhưng sẽ đè bẹp bạn nếu quá nặng",
-      dividend:
-        "vườn táo chung: bạn góp vốn mua cây con, khi cây ra trái ngọt, chủ vườn hái chia đều cho mỗi người vài trái mang về",
-      inflation: "cục nước đá để ngoài nắng: cứ mỗi giờ trôi qua nó lại bị chảy bớt đi một chút giá trị mua sắm",
-      valuation:
-        "mua một món đồ cũ: bạn phải soi kỹ đường may, chất liệu để xem mức giá người bán nói có bị đắt quá không",
-      asset: "con gà đẻ trứng vàng: mỗi ngày nó đẻ ra một quả trứng vàng để bạn đem bán kiếm tiền",
+      commandLine:
+        "gọi món ở quán quen: thay vì chỉ trỏ vào ảnh trên thực đơn, bạn nói thẳng tên món và số lượng - nhanh hơn, và gọi được cả những món không có ảnh",
+      fileSystem:
+        "tủ hồ sơ nhiều ngăn: mỗi ngăn lại có ngăn nhỏ bên trong, còn đường dẫn chính là câu chỉ đường \"ngăn thứ ba, kẹp xanh, tờ thứ hai\"",
+      version:
+        "sổ nhật ký lật ngược được: mỗi lần sửa bạn ghi thêm một trang chứ không tẩy trang cũ, nên lúc nào cũng quay lại được bản hôm qua mà không mất bản hôm nay",
+      algorithm:
+        "tìm một cái tên trong danh bạ: lật từng trang thì sách càng dày càng lâu, còn mở giữa rồi bỏ hẳn nửa sai thì dày gấp đôi cũng chỉ tốn thêm một lần lật",
+      database:
+        "mục lục cuối sách: không có nó bạn phải đọc cả cuốn để tìm một từ, có nó thì tra một dòng là ra số trang",
+      cache:
+        "để sẵn chai nước trên bàn: bình vẫn ở trong bếp, nhưng thứ bạn với tay tới mười lần một buổi thì để gần cho đỡ mất công đi lại",
+      api:
+        "ô cửa nhỏ ở quầy tiếp tân: bạn không được vào trong phòng, chỉ đưa phiếu qua ô cửa rồi nhận lại kết quả - hai bên không cần biết bên kia sắp xếp thế nào",
+      debug:
+        "tìm chỗ dột trên trần: vệt nước hiện ra giữa phòng nhưng lỗ thủng thường nằm lệch đi một quãng, nên phải lần ngược theo đường nước chảy chứ không vá ngay chỗ ướt",
       fallback:
-        "trò chơi trao đổi sticker ở trường: để đổi được sticker hiếm, bạn phải hiểu rõ giá trị của những tấm sticker mình đang sở hữu",
+        "học đi xe đạp: đọc bao nhiêu hướng dẫn cũng không thay được lần đầu tự giữ thăng bằng",
     },
 
     whyItMattersTitle: "Vì sao bài này quan trọng",
@@ -70,20 +74,24 @@ export const lessonAdminVi = {
 export const lessonAdminEn: typeof lessonAdminVi = {
   lessonPage: {
     metaphors: {
-      compound: "a snowball rolling down a mountain: the further it rolls, the more snow it picks up and the bigger it grows",
-      cashFlow:
-        "the plumbing in your house: the tank on the roof may be huge (plenty of assets), but if the pipe is blocked (no cash), you still cannot take a shower",
-      interest:
-        "the fee for borrowing a motorbike: you ride someone else's bike for the day, and at the end of it you hand over a small amount for the use of it",
-      debt: "a backpack full of rocks: carry a sensible load and momentum takes you downhill faster, carry too much and it flattens you",
-      dividend:
-        "a shared apple orchard: you chip in to buy the saplings, and when the trees fruit the keeper picks the crop and hands everyone a few apples to take home",
-      inflation: "an ice cube left out in the sun: every hour that passes, a little more of its purchasing power melts away",
-      valuation:
-        "buying something second-hand: you check the stitching and the material closely to judge whether the seller's price is too high",
-      asset: "a hen that lays golden eggs: every day it lays one more egg you can sell",
+      commandLine:
+        "ordering at a regular haunt: instead of pointing at a photo on the menu, you say the dish and the quantity outright - faster, and it reaches dishes with no photo at all",
+      fileSystem:
+        "a filing cabinet of nested drawers: each drawer holds smaller drawers, and a path is just the direction \"third drawer, green folder, second sheet\"",
+      version:
+        "a logbook you can page backwards through: each edit adds a page rather than erasing the old one, so yesterday's version is always recoverable without losing today's",
+      algorithm:
+        "finding a name in a phone book: page by page and a thicker book costs proportionally more, but open in the middle and discard the wrong half and doubling the book costs one extra flip",
+      database:
+        "the index at the back of a book: without it you read the whole thing to find one word, with it a single line gives you the page",
+      cache:
+        "keeping a bottle of water on the desk: the jug is still in the kitchen, but what you reach for ten times an hour belongs within arm's length",
+      api:
+        "the small hatch at a reception desk: you never enter the room, you pass a slip through the hatch and take back the result - neither side needs to know how the other is arranged",
+      debug:
+        "tracing a leak in the ceiling: the stain shows in the middle of the room but the hole is usually offset, so you follow the water back rather than patching where it is wet",
       fallback:
-        "trading stickers in the schoolyard: to swap for a rare one, you have to know exactly what the stickers you already hold are worth",
+        "learning to ride a bicycle: no amount of reading replaces the first time you hold the balance yourself",
     },
 
     whyItMattersTitle: "Why this lesson matters",

@@ -71,20 +71,6 @@ export const gamesMetaVi = {
       title: "Phân loại chi phí",
       description: "Kéo từng khoản chi phí hạ tầng vào đúng nhóm: Cố định (Fixed) hay Biến đổi (Variable).",
     },
-    "wall-street-millionaire": {
-      title: "Ai Là Triệu Phú Silicon Valley",
-      description: "15 câu hỏi tài chính cấp độ cao kết hợp với cơ chế trợ giúp kiểu game show.",
-    },
-    "dcf-mastermind": {
-      title: "Đấu Trường Định Giá DCF & M&A",
-      description:
-        "Phân tích 5 thương vụ M&A, xác định giá trị nội tại (Target Price) và phán quyết mua/né.",
-    },
-    "snowball-racer": {
-      title: "Đua Xe Lãi Kép & Hòn Tuyết Lăn",
-      description:
-        "Lựa chọn chiến lược đầu tư qua 20 năm để đạt mục tiêu $1,000,000 thông qua sức mạnh lãi kép.",
-    },
   } as Record<string, { title: string; description: string }>,
 };
 
@@ -138,20 +124,6 @@ export const gamesMetaEn: typeof gamesMetaVi = {
     "cost-category": {
       title: "Sorting costs",
       description: "Drag each infrastructure cost into the right group: Fixed or Variable.",
-    },
-    "wall-street-millionaire": {
-      title: "Who Wants to Be a Silicon Valley Millionaire",
-      description: "Fifteen advanced finance questions, with game-show lifelines to help you through.",
-    },
-    "dcf-mastermind": {
-      title: "The DCF & M&A Valuation Arena",
-      description:
-        "Work through five M&A deals, put a target price on each, and call it: buy or walk away.",
-    },
-    "snowball-racer": {
-      title: "The Compounding Snowball Race",
-      description:
-        "Pick an investment strategy and run it across 20 years, chasing $1,000,000 on the strength of compounding alone.",
     },
   },
 };

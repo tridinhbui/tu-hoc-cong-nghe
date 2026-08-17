@@ -37,5 +37,8 @@ export function rememberOAuthNext(next: string) {
 /** Chuỗi xoá cookie, để callback dọn sau khi đã dùng. Không dọn thì một lần
  *  đăng nhập sau bằng email cũng thừa hưởng đích đến của lần OAuth trước. */
 export function clearOAuthNextCookie(): string {
+  /* i18n-ignore-start: thuộc tính của một Set-Cookie header, không phải câu chữ
+     hiển thị. `Path`, `Max-Age`, `SameSite` là từ khoá trong đặc tả cookie. */
   return `${OAUTH_NEXT_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
+  /* i18n-ignore-end */
 }

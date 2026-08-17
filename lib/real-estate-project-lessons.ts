@@ -536,7 +536,6 @@ export const REAL_ESTATE_PROJECT_LESSONS: Lesson[] = [
       { label: "= NOI", arrow: true },
       { label: "÷ cap rate = giá trị tài sản" },
     ],
-    interactiveType: "multiples",
     realWorldExample: {
       company: "Hồ sơ chào bán toà nhà văn phòng",
       description:

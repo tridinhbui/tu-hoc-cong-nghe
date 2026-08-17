@@ -39,7 +39,6 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       { label: "Mô tả bằng 4 mô men: trung bình, độ lệch chuẩn, độ lệch, độ nhọn", arrow: true },
       { label: "Kiểm tra giả định trước khi mô hình hóa" },
     ],
-    interactiveType: "tail-risk",
     realWorldExample: {
       company: "Ngày 19/10/1987",
       description:

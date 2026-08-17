@@ -39,10 +39,10 @@ export const legalChatVi = {
     updatedAt: "Cập nhật lần cuối: {date}",
     section1Heading: "1. Về sản phẩm này",
     section1Body:
-      "Tự học Công nghệ là một dự án giáo dục cá nhân, phi thương mại, được xây dựng để giúp người Việt Nam tiếp cận kiến thức tài chính cá nhân và tài chính chuyên ngành theo lộ trình từng ngày. Nội dung do một cá nhân biên soạn, không phải sản phẩm của một tổ chức tài chính, công ty tư vấn đầu tư, hay cơ quan được cấp phép hành nghề tư vấn tài chính.",
-    section2Heading: "2. Không phải lời khuyên đầu tư",
+      "Tự học Công nghệ là một dự án giáo dục cá nhân, phi thương mại, được xây dựng để giúp người Việt Nam tiếp cận kiến thức công nghệ từ nền tảng tới chuyên sâu theo lộ trình từng ngày. Nội dung do một cá nhân biên soạn, không phải sản phẩm của một tổ chức đào tạo, công ty công nghệ, hay cơ quan được cấp phép cấp chứng chỉ nghề.",
+    section2Heading: "2. Không phải tư vấn kỹ thuật cho hệ thống của bạn",
     section2Body:
-      "Toàn bộ nội dung bài học, ví dụ, số liệu minh họa trên trang này chỉ nhằm mục đích giáo dục. Đây không phải lời khuyên đầu tư, khuyến nghị mua/bán tài sản tài chính cụ thể, hay tư vấn thuế/pháp lý. Bạn tự chịu trách nhiệm với các quyết định tài chính của mình và nên tham khảo chuyên gia được cấp phép cho các quyết định quan trọng.",
+      "Toàn bộ nội dung bài học, ví dụ, đoạn mã minh họa trên trang này chỉ nhằm mục đích giáo dục. Đây không phải tư vấn kiến trúc, khuyến nghị chọn công nghệ cụ thể cho hệ thống của bạn, hay tư vấn bảo mật/pháp lý. Bạn tự chịu trách nhiệm với các quyết định kỹ thuật của mình và nên tham khảo chuyên gia cho các quyết định quan trọng.",
     section3Heading: "3. Tài khoản của bạn",
     section3Body:
       "Bạn cần tạo tài khoản (qua email hoặc Google) để lưu tiến độ học tập. Bạn chịu trách nhiệm bảo mật thông tin đăng nhập của mình. Chúng tôi có thể tạm khóa tài khoản nếu phát hiện hành vi lạm dụng hệ thống (spam, cố tình khai thác lỗ hổng, v.v).",
@@ -51,7 +51,7 @@ export const legalChatVi = {
       "Nội dung bài học và tài liệu ở mục \"Tài liệu miễn phí\" được cung cấp miễn phí cho mục đích học tập cá nhân. Vui lòng không sao chép, phân phối lại với mục đích thương mại mà không xin phép.",
     section5Heading: "5. Giới hạn trách nhiệm",
     section5Body:
-      "Sản phẩm được cung cấp \"nguyên trạng\", không đảm bảo không có lỗi hay luôn sẵn sàng 100% thời gian. Chúng tôi không chịu trách nhiệm cho các thiệt hại phát sinh từ việc sử dụng thông tin trên trang vào quyết định tài chính thực tế.",
+      "Sản phẩm được cung cấp \"nguyên trạng\", không đảm bảo không có lỗi hay luôn sẵn sàng 100% thời gian. Chúng tôi không chịu trách nhiệm cho các thiệt hại phát sinh từ việc áp dụng thông tin trên trang vào hệ thống thật.",
     section6Heading: "6. Thay đổi điều khoản",
     section6Body:
       "Điều khoản này có thể được cập nhật khi sản phẩm phát triển thêm. Phiên bản mới nhất luôn được đăng tại trang này.",
@@ -88,7 +88,7 @@ export const legalChatVi = {
     kicker: "Lên cấp!",
     heading: "Level {level}",
     headingWithName: "Level {level} · {name}",
-    subtitle: "Kiến thức tài chính của bạn đang tích luỹ thật sự. Tiếp tục phát huy nhé!",
+    subtitle: "Kiến thức công nghệ của bạn đang tích luỹ thật sự. Tiếp tục phát huy nhé!",
     download: "Tải ảnh",
     share: "Chia sẻ",
     confirm: "Tuyệt vời! 🎉",
@@ -143,10 +143,10 @@ export const legalChatEn: typeof legalChatVi = {
     updatedAt: "Last updated: {date}",
     section1Heading: "1. About this product",
     section1Body:
-      "Tự học Công nghệ is a personal, non-commercial educational project, built to help Vietnamese people access personal finance and specialized finance knowledge on a day-by-day path. The content is written by an individual, and is not the product of a financial institution, an investment advisory firm, or an agency licensed to practice financial advisory services.",
-    section2Heading: "2. Not investment advice",
+      "Tự học Công nghệ is a personal, non-commercial educational project, built to help Vietnamese people access technology knowledge, from the fundamentals to advanced topics, on a day-by-day path. The content is written by an individual, and is not the product of a training institution, a technology company, or an agency licensed to award professional certifications.",
+    section2Heading: "2. Not technical advice for your own systems",
     section2Body:
-      "All lesson content, examples, and illustrative figures on this site are for educational purposes only. This is not investment advice, a recommendation to buy/sell any specific financial asset, or tax/legal advice. You are solely responsible for your own financial decisions and should consult a licensed professional for important decisions.",
+      "All lesson content, examples, and illustrative code on this site are for educational purposes only. This is not architectural advice, a recommendation to adopt any specific technology for your system, or security/legal advice. You are solely responsible for your own technical decisions and should consult a professional for important ones.",
     section3Heading: "3. Your account",
     section3Body:
       "You need to create an account (via email or Google) to save your learning progress. You are responsible for keeping your login information secure. We may temporarily suspend an account if we detect abuse of the system (spam, deliberate exploitation of vulnerabilities, etc.).",
@@ -155,7 +155,7 @@ export const legalChatEn: typeof legalChatVi = {
       "Lesson content and materials in the \"Free materials\" section are provided free of charge for personal learning purposes. Please do not copy or redistribute them for commercial purposes without permission.",
     section5Heading: "5. Limitation of liability",
     section5Body:
-      "The product is provided \"as is\", with no guarantee that it is free of errors or available 100% of the time. We are not responsible for damages arising from using the information on this site for actual financial decisions.",
+      "The product is provided \"as is\", with no guarantee that it is free of errors or available 100% of the time. We are not responsible for damages arising from applying the information on this site to real systems.",
     section6Heading: "6. Changes to these terms",
     section6Body:
       "These terms may be updated as the product develops further. The latest version is always posted on this page.",
@@ -192,7 +192,7 @@ export const legalChatEn: typeof legalChatVi = {
     kicker: "Level up!",
     heading: "Level {level}",
     headingWithName: "Level {level} · {name}",
-    subtitle: "Your financial knowledge is really building up. Keep it going!",
+    subtitle: "Your technology knowledge is really building up. Keep it going!",
     download: "Download",
     share: "Share",
     confirm: "Awesome! 🎉",

@@ -1,8 +1,8 @@
 // Dictionary section for the last tail of components/pages picked up in the
-// i18n sweep: CFA item-set practice, the financial guild trading widget, the
+// i18n sweep: certification item-set practice, the tech fund widget, the
 // mistake-review widget, the opening-question block, the analytics
 // competency stats card, the reading-mode control, the lobby room fixtures'
-// gate labels, the CFA content renderer's YouTube embed title, the character
+// gate labels, the certification content renderer's YouTube embed title, the character
 // avatar level tag, the lesson-sections concept-table default subtitle, the
 // profile wall empty state, the Roadmap card title, and a handful of
 // page-level titles/subtitles/metadata across app/(app)/* and app/*. See
@@ -21,7 +21,7 @@ export const finalTwoVi = {
     },
     financialGuildWidget: {
       advancedDays: "📈 Đã tua +{numDays} ngày giao dịch thị trường!",
-      boughtShares: "Đã MUA {shares} cổ phiếu {ticker} tại giá {price} VNĐ",
+      boughtShares: "Đã MUA {shares} cổ phần {ticker} tại giá {price} VNĐ",
       soldProfit: "Đã BÁN {shares} {ticker}. Lãi thực tế: +{pnl} VNĐ! 🎉",
       soldLoss: "Đã BÁN {shares} {ticker}. Lỗ thực tế: {pnl} VNĐ!",
     },
@@ -39,7 +39,7 @@ export const finalTwoVi = {
     competencyStatsSection: {
       loading: "Đang tải...",
       failed: "Không tải được dữ liệu năng lực.",
-      title: "Năng lực tài chính",
+      title: "Năng lực công nghệ",
       lessonsCompletedSuffix: "{count} bài đã hoàn thành",
     },
     readingModeControl: {
@@ -58,7 +58,7 @@ export const finalTwoVi = {
       studyShort: "Nhóm học",
       studyBlurb: "Phòng học chung, ngồi cùng bạn bè theo thời gian thực",
       districtShort: "Phố nghề",
-      districtBlurb: "Thành phố nghề tài chính ngay ngoài cửa thư viện",
+      districtBlurb: "Thành phố nghề công nghệ ngay ngoài cửa thư viện",
     },
     cfaContentRenderer: {
       youtubeTitle: "YouTube video",
@@ -95,7 +95,7 @@ export const finalTwoVi = {
     gamePage: {
       metaTitle: "Thế Giới Game Tài Chính | TuHocTaiChinh.org",
       metaDescription:
-        "Bản đồ thị trấn RPG Tài chính nhập vai với các chế độ săn boss máy chủ, Bang Hội và Đấu Trường 1v1 PvP.",
+        "Bản đồ thị trấn RPG Công nghệ nhập vai với các chế độ săn boss máy chủ, Bang Hội và Đấu Trường 1v1 PvP.",
       loading: "Đang tải Thế Giới Game...",
     },
     ghiChuPage: {
@@ -177,7 +177,7 @@ export const finalTwoEn: typeof finalTwoVi = {
     competencyStatsSection: {
       loading: "Loading...",
       failed: "Couldn't load competency data.",
-      title: "Financial competency",
+      title: "Technology competency",
       lessonsCompletedSuffix: "{count} lesson(s) completed",
     },
     readingModeControl: {
@@ -191,7 +191,7 @@ export const finalTwoEn: typeof finalTwoVi = {
       studyShort: "Study Group",
       studyBlurb: "A shared study room, sitting with your friends in real time",
       districtShort: "Career District",
-      districtBlurb: "The finance career city just outside the library door",
+      districtBlurb: "The technology career city just outside the library door",
     },
     cfaContentRenderer: {
       youtubeTitle: "YouTube video",
@@ -228,7 +228,7 @@ export const finalTwoEn: typeof finalTwoVi = {
     gamePage: {
       metaTitle: "Financial Game World | TuHocTaiChinh.org",
       metaDescription:
-        "An RPG town map with Server Boss Hunt, Guild, and 1v1 PvP Arena modes for finance role-play.",
+        "An RPG town map with Server Boss Hunt, Guild, and 1v1 PvP Arena modes for technology role-play.",
       loading: "Loading the Game World...",
     },
     ghiChuPage: {
@@ -263,10 +263,10 @@ export const finalTwoEn: typeof finalTwoVi = {
       siteTitle: "Learn Technology Every Day",
     },
     privacyPolicyPage: {
-      metaTitle: "Privacy Policy - Learn Finance",
+      metaTitle: "Privacy Policy - Learn Technology",
     },
     termsPage: {
-      metaTitle: "Terms of Use - Learn Finance",
+      metaTitle: "Terms of Use - Learn Technology",
     },
     uistatsPreview: {
       sidebarTrueLabel: "sidebar=true (screenshot case)",

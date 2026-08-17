@@ -338,7 +338,7 @@ export default function FinancialRpgWorldMap() {
           {/* Wall Street Photo Background (Ultra Vivid & High Clarity) */}
           <div className="absolute inset-0 pointer-events-none opacity-70 z-0 overflow-hidden">
             <Image
-              src="/wallstreet-bg.jpg"
+              src="/saigon-skyline.jpg"
               alt={t.worldMap.bgAlt}
               fill
               className="object-cover blur-0 contrast-[1.08] brightness-[1.02]"

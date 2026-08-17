@@ -25,31 +25,6 @@ export const badgesCompetencyVi = {
   // Phần chi tiết dưới mỗi thanh năng lực. `computeCompetencyScores` chạy ở
   // route API rồi gửi chuỗi xuống client, nên nó gửi kèm `key` và giao diện tra
   // ở đây; `label` tiếng Việt trong lib/career-competency.ts chỉ là dự phòng.
-  competencyParts: {
-    accounting: "Kế toán & BCTC",
-    equityPortfolio: "Cổ phiếu & danh mục",
-    fixedIncome: "Trái phiếu",
-    modeling: "Mô hình tài chính",
-    budgeting: "Ngân sách & dự báo",
-    valuationLessons: "Bài định giá",
-    ma: "M&A",
-    ibQuestions: "Câu hỏi IB đã làm",
-    ibAccuracy: "Độ chính xác IB",
-    mockInterview: "Mock interview",
-    cfaLessons: "Bài thuộc 10 môn CFA",
-    cfaModules: "Module CFA",
-    cfaQuiz: "Quiz CFA",
-    frmLessons: "Bài thuộc 10 môn FRM",
-    derivativesRisk: "Phái sinh & rủi ro",
-    quant: "Định lượng",
-    valuation: "Định giá",
-    technicalsDrilled: "Technicals đã luyện",
-  } as Record<string, string>,
-  competencyUnits: {
-    lessons: "bài",
-    questions: "câu",
-    sessions: "lần",
-  } as Record<string, string>,
   badgeLevelDescription: "Đạt level {level}",
   badges: {
     leaderboard_xp_top_10: {
@@ -81,65 +56,9 @@ export const badgesCompetencyVi = {
       description: "Học xong toàn bộ bài học liên quan tới mục tiêu sự nghiệp đang theo dõi",
     },
   } as Record<string, { name: string; description: string }>,
-  competencies: {
-    finance_knowledge: {
-      label: "Kiến thức tài chính",
-      blurb: "Nền tảng kế toán, doanh nghiệp, cổ phiếu, trái phiếu và tài chính cá nhân",
-      actionLabel: "Học tiếp bài mới",
-    },
-    excel_modeling: {
-      blurb: "Dựng mô hình tài chính, bảng độ nhạy, ngân sách và dự báo",
-      actionLabel: "Luyện mô hình",
-    },
-    valuation: {
-      blurb: "DCF, comps, precedent transactions và báo cáo định giá",
-      actionLabel: "Học bài định giá",
-    },
-    interview_readiness: {
-      blurb: "Mức sẵn sàng cho vòng phỏng vấn technical + behavioral",
-      actionLabel: "Luyện phỏng vấn",
-    },
-    cfa_readiness: {
-      blurb: "Độ phủ 10 môn thi CFA Level I và kết quả quiz CFA",
-      actionLabel: "Vào lộ trình CFA",
-    },
-    frm_readiness: {
-      blurb: "Độ phủ 10 môn thi FRM Part I & II - đo lường và quản trị rủi ro",
-      actionLabel: "Vào lộ trình FRM",
-    },
-    ib_readiness: {
-      blurb: "Accounting - valuation - M&A - technical interview cho Investment Banking",
-      actionLabel: "Luyện IB technicals",
-    },
-  } as Record<string, { label?: string; blurb: string; actionLabel: string }>,
 };
 
 export const badgesCompetencyEn: typeof badgesCompetencyVi = {
-  competencyParts: {
-    accounting: "Accounting & statements",
-    equityPortfolio: "Equities & portfolios",
-    fixedIncome: "Fixed income",
-    modeling: "Financial modelling",
-    budgeting: "Budgeting & forecasting",
-    valuationLessons: "Valuation lessons",
-    ma: "M&A",
-    ibQuestions: "IB questions answered",
-    ibAccuracy: "IB accuracy",
-    mockInterview: "Mock interviews",
-    cfaLessons: "Lessons across the 10 CFA subjects",
-    cfaModules: "CFA modules",
-    cfaQuiz: "CFA quiz",
-    frmLessons: "Lessons across the 10 FRM subjects",
-    derivativesRisk: "Derivatives & risk",
-    quant: "Quantitative",
-    valuation: "Valuation",
-    technicalsDrilled: "Technicals drilled",
-  },
-  competencyUnits: {
-    lessons: "lessons",
-    questions: "questions",
-    sessions: "sessions",
-  },
   badgeLevelDescription: "Reached level {level}",
   badges: {
     leaderboard_xp_top_10: {
@@ -169,37 +88,6 @@ export const badgesCompetencyEn: typeof badgesCompetencyVi = {
     career_path_complete: {
       name: "Career Path Completed",
       description: "Finished every lesson tied to the career goal you are tracking",
-    },
-  },
-  competencies: {
-    finance_knowledge: {
-      label: "Finance knowledge",
-      blurb: "The foundations: accounting, corporates, equities, bonds and personal finance",
-      actionLabel: "Continue with a new lesson",
-    },
-    excel_modeling: {
-      blurb: "Building financial models, sensitivity tables, budgets and forecasts",
-      actionLabel: "Practise modelling",
-    },
-    valuation: {
-      blurb: "DCF, comps, precedent transactions and the valuation write-up",
-      actionLabel: "Study valuation",
-    },
-    interview_readiness: {
-      blurb: "How ready you are for the technical and behavioural rounds",
-      actionLabel: "Practise interviews",
-    },
-    cfa_readiness: {
-      blurb: "Coverage of the ten CFA Level I subjects, and your CFA quiz results",
-      actionLabel: "Open the CFA path",
-    },
-    frm_readiness: {
-      blurb: "Coverage of the ten FRM Part I & II subjects - risk measurement and management",
-      actionLabel: "Open the FRM path",
-    },
-    ib_readiness: {
-      blurb: "Accounting, valuation, M&A and technical interviews for Investment Banking",
-      actionLabel: "Practise IB technicals",
     },
   },
 };

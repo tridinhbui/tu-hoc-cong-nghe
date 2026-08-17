@@ -237,11 +237,6 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // matching the lesson that teaches them.
   "games.millionaire.questions.6.explanation",
   "games.snowballRacer.quizBoosts.compoundFormula.options",
-  // District names on the game map, already English in the Vietnamese source -
-  // the game's own geography, the same as the Goldman and Fed badges.
-  "games.algoTrader.subtitleBadge",
-  "games.candlestick.districtBadge",
-  "games.maSpeedrun.districtBadge",
   // A URL, not a sentence: the example YouTube link in the admin video field.
   "adminTwo.cfaLibrary.videoLinkPlaceholder",
   // Already English in the Vietnamese source: the file-type fallback label the

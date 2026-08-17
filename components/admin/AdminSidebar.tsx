@@ -11,7 +11,6 @@ import {
   ShieldQuestion,
   Users,
   BookOpen,
-  GraduationCap,
   FileText,
   Settings,
   Menu,
@@ -38,7 +37,6 @@ function getNavItems(t: Dictionary) {
     { href: "/admin/lessons", label: nav.lessons, icon: BookOpen, badgeKey: "unlocks" as const },
     { href: "/admin/videos", label: nav.videos, icon: Play },
     { href: "/admin/games", label: nav.games, icon: Gamepad2 },
-    { href: "/admin/cfa-library", label: nav.cfaLibrary, icon: GraduationCap },
     { href: "/admin/documents", label: nav.documents, icon: FileText, badgeKey: "documents" as const },
     { href: "/admin/settings", label: nav.settings, icon: Settings },
   ];

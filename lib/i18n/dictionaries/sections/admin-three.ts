@@ -24,11 +24,6 @@ export const adminThreeVi = {
       title: "Tài liệu giveaway",
       subtitle: 'Tải lên mẫu biểu, ebook, checklist để học viên tải miễn phí ở trang "Tài liệu"',
     },
-    cfaLibraryPage: {
-      title: "Thư viện CFA",
-      subtitle:
-        "Quản lý sách, chương đọc, bài học, video, widget tương tác và câu hỏi luyện tập của thư viện giáo trình CFA",
-    },
     appealsPage: {
       title: "Khiếu nại & Báo lỗi AI",
       subtitle: "Quản lý yêu cầu khiếu nại bài học và danh sách văn bản bị báo lỗi nội dung AI từ người học",
@@ -335,11 +330,6 @@ export const adminThreeEn: typeof adminThreeVi = {
     documentsPage: {
       title: "Giveaway Documents",
       subtitle: 'Upload templates, ebooks, and checklists for learners to download for free on the "Documents" page',
-    },
-    cfaLibraryPage: {
-      title: "CFA Library",
-      subtitle:
-        "Manage books, reading chapters, lessons, videos, interactive widgets, and practice questions for the CFA curriculum library",
     },
     appealsPage: {
       title: "Appeals & AI Reports",

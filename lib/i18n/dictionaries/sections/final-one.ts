@@ -28,7 +28,7 @@ export const finalOneVi = {
       title: "Kho Tài liệu Miễn phí",
       freeBadge: "Miễn phí 100% 🎁",
       subtitle:
-        "Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học tài chính của bạn - tải về hoàn toàn miễn phí không giới hạn. Đóng góp tài liệu của riêng bạn để chia sẻ cho cộng đồng nhé!",
+        "Mẫu biểu, ebook, checklist và công cụ hỗ trợ hành trình học công nghệ của bạn - tải về hoàn toàn miễn phí không giới hạn. Đóng góp tài liệu của riêng bạn để chia sẻ cho cộng đồng nhé!",
       giftTitle: "Món quà tri thức từ cộng đồng",
       giftBody:
         "Tất cả tài liệu, ebook, biểu mẫu Excel và checklist tại đây đều được chia sẻ hoàn toàn miễn phí để phục vụ mục đích học tập cá nhân.",
@@ -40,7 +40,7 @@ export const finalOneVi = {
       // Cấp có thêm cổng CFA (hiện chỉ L9) phải nói ra điều đó ngay trên thẻ:
       // thẻ chỉ ghi ngưỡng XP là lý do người học 5.036 XP tưởng mình đang bị
       // xếp sai cấp.
-      levelCfaGate: "+ {count} mô-đun CFA",
+      levelCfaGate: "+ {count} mô-đun chứng chỉ",
       milestoneBonusXp: "+50 XP",
       bonusLabel: "Bonus",
       bossDefeatedToast: "🎉 Hạ gục Boss thành công! Nhận +{xp} XP & 🪙 +{coins} Coins!",
@@ -93,7 +93,7 @@ export const finalOneEn: typeof finalOneVi = {
       title: "Free Document Library",
       freeBadge: "100% Free 🎁",
       subtitle:
-        "Templates, ebooks, checklists and tools to support your finance learning journey - download for free with no limits. Contribute your own documents to share with the community!",
+        "Templates, ebooks, checklists and tools to support your technology learning journey - download for free with no limits. Contribute your own documents to share with the community!",
       giftTitle: "A gift of knowledge from the community",
       giftBody:
         "All documents, ebooks, Excel templates and checklists here are shared completely free for personal learning purposes.",
@@ -101,7 +101,7 @@ export const finalOneEn: typeof finalOneVi = {
     dashboardClient: {
       soloLabel: "🧠 Solo",
       xpValue: "{xp} XP",
-      levelCfaGate: "+ {count} CFA modules",
+      levelCfaGate: "+ {count} certification modules",
       milestoneBonusXp: "+50 XP",
       bonusLabel: "Bonus",
       bossDefeatedToast: "🎉 Boss defeated! Earned +{xp} XP & 🪙 +{coins} Coins!",

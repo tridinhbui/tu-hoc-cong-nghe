@@ -12,7 +12,7 @@ export type StudyRoomTopic = "personal" | "professional" | "cfa";
 export const STUDY_ROOM_TOPICS: { id: StudyRoomTopic; label: string }[] = [
   { id: "personal", label: "Nền tảng công nghệ" },
   { id: "professional", label: "Công nghệ chuyên sâu" },
-  { id: "cfa", label: "CFA Level I" },
+  { id: "cfa", label: "Chứng chỉ AWS" },
 ];
 
 export interface StudyRoomSummary {

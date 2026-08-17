@@ -821,7 +821,7 @@ export default function HomePage() {
                         {t.home.vision.stat3Label}
                       </div>
                       <div className="mt-1 text-2xl font-black text-stone-800 dark:text-stone-100">
-                        1,2 triệu
+                        {t.home.vision.stat3Value}
                       </div>
                       <p className="mt-1 text-[11px] leading-snug text-stone-600 dark:text-stone-300">
                         {t.home.vision.stat3Note}

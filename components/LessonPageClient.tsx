@@ -40,26 +40,40 @@ interface Props {
  *  "compound"), nên bộ dò vẫn khớp khi bài đã được dịch. Đây là toán hạng so
  *  sánh, không phải câu chữ. */
 type MetaphorId =
-  | "compound"
-  | "cashFlow"
-  | "interest"
-  | "debt"
-  | "dividend"
-  | "inflation"
-  | "valuation"
-  | "asset"
+  | "commandLine"
+  | "fileSystem"
+  | "version"
+  | "algorithm"
+  | "database"
+  | "cache"
+  | "api"
+  | "debug"
   | "fallback";
 
+/** Chủ đề nào thì hiện câu ví von nào, đoán từ tiêu đề bài.
+ *
+ *  Thứ tự các nhánh là thứ tự ưu tiên, không phải ngẫu nhiên: một bài tên
+ *  "Chỉ mục trong cơ sở dữ liệu" khớp cả `database` lẫn `cache` nếu nó nhắc tới
+ *  bộ nhớ đệm, nên nhánh hẹp hơn phải đứng trước. Mỗi nhánh mang cả từ khoá
+ *  tiếng Việt lẫn tiếng Anh vì tiêu đề bài trộn hai thứ tiếng - "Big-O",
+ *  "commit", "API" không có bản Việt nào được dùng thật. */
 function getMetaphorForLesson(title: string): MetaphorId {
   const t = title.toLowerCase();
-  if (t.includes("lãi kép") || t.includes("compound")) return "compound";
-  if (t.includes("dòng tiền") || t.includes("cash flow")) return "cashFlow";
-  if (t.includes("lãi suất") || t.includes("interest")) return "interest";
-  if (t.includes("nợ") || t.includes("debt") || t.includes("vay")) return "debt";
-  if (t.includes("cổ tức") || t.includes("dividend")) return "dividend";
-  if (t.includes("lạm phát") || t.includes("inflation")) return "inflation";
-  if (t.includes("định giá") || t.includes("valuation")) return "valuation";
-  if (t.includes("tài sản") || t.includes("asset")) return "asset";
+  if (t.includes("dòng lệnh") || t.includes("terminal") || t.includes("shell")) return "commandLine";
+  if (t.includes("thư mục") || t.includes("đường dẫn") || t.includes("tệp") || t.includes("directory") || t.includes("path"))
+    return "fileSystem";
+  if (t.includes("git") || t.includes("commit") || t.includes("nhánh") || t.includes("phiên bản")) return "version";
+  if (t.includes("thuật toán") || t.includes("big-o") || t.includes("độ phức tạp") || t.includes("sắp xếp"))
+    return "algorithm";
+  if (t.includes("bộ nhớ đệm") || t.includes("cache")) return "cache";
+  if (t.includes("cơ sở dữ liệu") || t.includes("truy vấn") || t.includes("chỉ mục") || t.includes("sql"))
+    return "database";
+  // `\bapi\b` chứ không phải `includes("api")`: "api" là chuỗi con của
+  // "capital", nên bản dùng includes gán ẩn dụ API cho "Venture Capital",
+  // "Working Capital" và "Cost of Capital". Ba từ khoá kia đủ hiếm để dùng
+  // includes, riêng từ này thì không.
+  if (/\bapi\b/.test(t) || t.includes("endpoint") || t.includes("http")) return "api";
+  if (t.includes("gỡ lỗi") || t.includes("debug") || t.includes("kiểm thử") || t.includes("test")) return "debug";
   return "fallback";
 }
 

@@ -137,60 +137,60 @@ export const WORRY_REFRAMES: WorryReframe[] = [
   },
   {
     id: "wr-03",
-    worry: "Mình sợ nhìn vào số dư tài khoản.",
+    worry: "Mình sợ mở lại đoạn mã mình viết sáu tháng trước.",
     reframe:
-      "Né tránh làm nỗi lo lớn lên chứ không nhỏ đi - phần đáng sợ nhất thường là khoảng trống bạn tự lấp bằng tưởng tượng. Con số thật, dù xấu, vẫn là thứ hữu hạn và xử lý được.",
+      "Né tránh làm nỗi lo lớn lên chứ không nhỏ đi - phần đáng sợ nhất thường là khoảng trống bạn tự lấp bằng tưởng tượng. Đoạn mã thật, dù tệ, vẫn là thứ hữu hạn và sửa được.",
   },
   {
     id: "wr-04",
-    worry: "Mình thấy tệ vì đã ra một quyết định tiền bạc sai.",
+    worry: "Mình thấy tệ vì đã chọn sai công nghệ cho dự án.",
     reframe:
-      "Bạn quyết định bằng thông tin có lúc đó, không phải thông tin bây giờ. Đánh giá lại quyết định bằng những gì chỉ sau này mới biết là tự phạt mình vì một việc bất khả.",
+      "Bạn quyết định bằng thông tin có lúc đó, không phải thông tin bây giờ. Đánh giá lại lựa chọn bằng những gì chỉ sau này mới biết là tự phạt mình vì một việc bất khả.",
   },
   {
     id: "wr-05",
-    worry: "Nghĩ tới tiền là mình thấy nghẹt thở, không biết bắt đầu từ đâu.",
+    worry: "Nhìn vào đống thứ phải học là mình thấy nghẹt thở, không biết bắt đầu từ đâu.",
     reframe:
       "Cảm giác đó thường đến từ việc ôm tất cả cùng lúc chứ không từ độ khó thật. Chọn đúng một thứ nhỏ cho hôm nay và cho phép mình bỏ qua phần còn lại tới mai.",
   },
   {
     id: "wr-06",
-    worry: "Mình thấy mình kém cỏi vì không hiểu mấy thứ tài chính này.",
+    worry: "Mình thấy mình kém cỏi vì không hiểu mấy thứ kỹ thuật này.",
     reframe:
       "Không ai sinh ra đã biết. Đây là kiến thức chuyên môn phải học, không phải bản năng ai cũng có sẵn - việc bạn thấy khó là dấu hiệu bạn đang học thật, không phải dấu hiệu bạn kém.",
   },
   {
     id: "wr-07",
-    worry: "Mình thấy có lỗi mỗi khi tiêu tiền cho bản thân.",
+    worry: "Mình thấy có lỗi mỗi khi nghỉ ngơi thay vì học thêm.",
     reframe:
-      "Một kế hoạch mà mọi khoản chi cho bản thân đều kèm cảm giác tội lỗi là kế hoạch sẽ bị bỏ. Chỗ cho những thứ khiến đời sống dễ chịu hơn không phải là lỗ hổng của kế hoạch - nó là thứ giữ kế hoạch sống được.",
+      "Một nhịp học mà mọi lúc nghỉ đều kèm cảm giác tội lỗi là nhịp sẽ bị bỏ. Chỗ cho việc nghỉ không phải là lỗ hổng của kế hoạch - nó là thứ giữ kế hoạch sống được.",
   },
   {
     id: "wr-08",
-    worry: "Mình lo mình sẽ chẳng bao giờ đủ tiền.",
+    worry: "Mình lo mình sẽ chẳng bao giờ giỏi đủ.",
     reframe:
-      "\"Đủ\" không có con số mặc định - nếu không tự định nghĩa, nó sẽ luôn lùi ra xa đúng bằng tốc độ bạn tiến tới. Viết ra một con số cụ thể biến nỗi lo vô hạn thành một mục tiêu hữu hạn.",
+      "\"Đủ\" không có mốc mặc định - nếu không tự định nghĩa, nó sẽ luôn lùi ra xa đúng bằng tốc độ bạn tiến tới. Viết ra một thứ cụ thể bạn muốn làm được biến nỗi lo vô hạn thành một mục tiêu hữu hạn.",
   },
   // Bốn mục dưới đây là nhóm nỗi lo đặc thù nhất với người học Việt Nam -
   // tiền trong quan hệ gia đình - mà tám mục đầu chưa chạm tới. Vẫn đúng
   // nguyên tắc cũ: thừa nhận trước, không chỉ dẫn hành động tài chính.
   {
     id: "wr-09",
-    worry: "Mình đang giấu người thân một khoản nợ.",
+    worry: "Mình đang giấu đội một chỗ trong hệ thống mà mình biết là hỏng.",
     reframe:
-      "Khoản nợ có con số, còn sự giấu giếm thì không - và thứ không đo được mới là thứ nặng thêm mỗi ngày. Không cần nói với tất cả mọi người; một người đáng tin biết chuyện là gánh đã được chia đôi.",
+      "Chỗ hỏng có phạm vi, còn sự giấu giếm thì không - và thứ không đo được mới là thứ nặng thêm mỗi ngày. Không cần báo cho tất cả mọi người; một người trong đội biết chuyện là gánh đã được chia đôi.",
   },
   {
     id: "wr-10",
-    worry: "Người thân hỏi vay tiền, mình không biết từ chối sao cho phải.",
+    worry: "Đồng nghiệp nhờ làm giúp ngoài giờ, mình không biết từ chối sao cho phải.",
     reframe:
-      "Từ chối một khoản vay không phải là từ chối một con người. Một lời không rõ ràng và tử tế thường giữ được quan hệ lâu hơn một cái gật đầu miễn cưỡng kèm theo ấm ức.",
+      "Từ chối một việc không phải là từ chối một con người. Một lời không rõ ràng và tử tế thường giữ được quan hệ lâu hơn một cái gật đầu miễn cưỡng kèm theo ấm ức.",
   },
   {
     id: "wr-11",
-    worry: "Xung quanh ai cũng khoe lãi, chỉ mình đứng ngoài.",
+    worry: "Xung quanh ai cũng khoe dự án mới, chỉ mình vẫn loay hoay.",
     reframe:
-      "Bạn đang nghe những khoản lãi được kể lại - khoản lỗ hiếm khi được đem đi khoe. Đứng ngoài một thứ mình chưa hiểu không phải là chậm chân; đó là kỷ luật đang làm đúng việc của nó.",
+      "Bạn đang nghe những dự án chạy được kể lại - phần hỏng giữa chừng hiếm khi được đem đi khoe. Đi chậm ở một thứ mình chưa hiểu không phải là tụt lại; đó là sự cẩn thận đang làm đúng việc của nó.",
   },
   {
     id: "wr-12",
@@ -205,7 +205,7 @@ export const WORRY_REFRAMES: WorryReframe[] = [
     id: "wr-13",
     worry: "Mình sợ mất việc và không có gì để dựa vào.",
     reframe:
-      "Nỗi sợ đó đang chỉ đúng chỗ: nó không phải chuyện tính cách, nó là chuyện chưa có đệm. Đệm không cần lớn ngay - một tháng chi phí đã đổi hẳn cảm giác so với con số không, và nó xây được bằng những khoản rất nhỏ.",
+      "Nỗi sợ đó đang chỉ đúng chỗ: nó không phải chuyện tính cách, nó là chuyện chưa có đệm. Đệm không cần lớn ngay - một kỹ năng nữa dùng được ở nơi khác đã đổi hẳn cảm giác so với con số không, và nó xây được bằng những buổi rất ngắn.",
   },
   {
     id: "wr-14",
@@ -291,7 +291,7 @@ export const QUIET_CORNER_CLOSING = {
 export const QUIET_CORNER_LIMITS = {
   title: "Trang này không thay thế được điều gì",
   body:
-    "Đây là một góc để dừng lại một phút, không phải tư vấn tâm lý và cũng không phải tư vấn tài chính cá nhân. Nếu sự lo lắng kéo dài, ảnh hưởng tới giấc ngủ, công việc hay các mối quan hệ của bạn, hãy nói chuyện với một người bạn tin tưởng hoặc tìm tới chuyên gia sức khoẻ tâm thần. Việc đó không phải là yếu đuối - nó cũng giống như đi khám khi cơ thể có vấn đề vậy.",
+    "Đây là một góc để dừng lại một phút, không phải tư vấn tâm lý và cũng không phải tư vấn nghề nghiệp. Nếu sự lo lắng kéo dài, ảnh hưởng tới giấc ngủ, công việc hay các mối quan hệ của bạn, hãy nói chuyện với một người bạn tin tưởng hoặc tìm tới chuyên gia sức khoẻ tâm thần. Việc đó không phải là yếu đuối - nó cũng giống như đi khám khi cơ thể có vấn đề vậy.",
 } as const;
 
 /* i18n-ignore-end */

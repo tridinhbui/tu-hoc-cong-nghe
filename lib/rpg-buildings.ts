@@ -59,7 +59,7 @@ const BUILDING_STRUCT: OrganicBuildingStruct[] = [
     badgeBg: "bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white font-black animate-pulse",
     posClass: "top-64 left-1/2 -translate-x-1/2 sm:top-60 scale-110 sm:scale-125 z-30",
     desktopClass: "lg:col-start-2 lg:row-start-3",
-    imageSrc: "/nyse-building.jpg",
+    imageSrc: "/images/dau-truong-kien-thuc.jpg",
   },
   {
     id: "weekly-challenge",

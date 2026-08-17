@@ -20,7 +20,6 @@ import { cosmeticsDuelVi, cosmeticsDuelEn } from "./cosmetics-duel";
 import { dataRestVi, dataRestEn } from "./data-rest";
 import { financeToolsVi, financeToolsEn } from "./finance-tools";
 import { dataTablesVi, dataTablesEn } from "./data-tables";
-import { districtContentVi, districtContentEn } from "./district-content";
 import { docsAuthVi, docsAuthEn } from "./docs-auth";
 import { examsOnboardingVi, examsOnboardingEn } from "./exams-onboarding";
 import { finalOneVi, finalOneEn } from "./final-one";
@@ -73,7 +72,6 @@ export const viSections = {
   ...cosmeticsDuelVi,
   ...dataRestVi,
   ...dataTablesVi,
-  ...districtContentVi,
   ...docsAuthVi,
   ...examsOnboardingVi,
   ...finalOneVi,
@@ -128,7 +126,6 @@ export const enSections: typeof viSections = {
   ...cosmeticsDuelEn,
   ...dataRestEn,
   ...dataTablesEn,
-  ...districtContentEn,
   ...docsAuthEn,
   ...examsOnboardingEn,
   ...finalOneEn,

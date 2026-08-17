@@ -15,8 +15,9 @@
 //
 // Nhãn "Chặng" dịch thành "Stage", không phải "Chapter": nó là một quãng của lộ
 // trình đo bằng dải bài học, còn "chapter" gợi ý một cuốn sách có mục lục cố
-// định. Tên môn FRM/CFA giữ nguyên tiếng Anh ở cả hai bản vì đó là tên môn
-// trong đề cương thật - người học tra cứu bằng đúng chữ đó.
+// định. Thuật ngữ kỹ thuật đã là tiếng Anh trong bản gốc - "SLO", "REST",
+// "Foundations of Reliability" - giữ nguyên ở cả hai bản, vì người học gặp
+// đúng chữ đó trong tài liệu và trong tin tuyển dụng.
 //
 // Xem AGENTS.md, mục "Translating the UI".
 

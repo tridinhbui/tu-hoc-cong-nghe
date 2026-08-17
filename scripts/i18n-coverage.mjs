@@ -110,22 +110,13 @@ const IS_LESSON_CONTENT = (rel) =>
  *  Khác với IS_TRANSLATION_DIR ở trên - cái đó khớp mẫu vì nó lặp lại một cách
  *  máy móc ở mọi bộ. Cái này thì không: mỗi dòng là một lời khẳng định riêng. */
 const OVERLAY_COMPLETE = new Map([
-  ["lib/finance-careers.ts", "lib/__tests__/career-translations.test.ts"],
-  ["lib/cfa-glossary-terms.ts", "lib/__tests__/glossary-translations.test.ts"],
-  ["lib/frm-glossary-terms.ts", "lib/__tests__/frm-glossary-translations.test.ts"],
-  ["lib/cfa-formulas-data.ts", "lib/__tests__/cfa-formulas-translations.test.ts"],
-  ["lib/frm-formulas-data.ts", "lib/__tests__/frm-formulas-translations.test.ts"],
   ["lib/case-studies-data.ts", "lib/__tests__/case-study-translations.test.ts"],
-  ["lib/cfa-levels.ts", "lib/__tests__/cfa-levels-translations.test.ts"],
-  ["lib/lesson-room-links.ts", "lib/__tests__/lesson-room-links-translations.test.ts"],
-  ["lib/cfa-essays.ts", "lib/__tests__/cfa-essays-translations.test.ts"],
   // Ba module dưới đây dịch qua TỪ ĐIỂN (`libData.*`) chứ không qua thư mục
   // `-i18n/`. Điều kiện để có mặt ở đây vẫn y hệt - một cổng bắt buộc đủ - nên
   // đường dịch khác nhau không đổi tiêu chuẩn.
   ["lib/finance-cards.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/document-categories.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/highlight-stage-grouping.ts", "lib/__tests__/lib-data-translations.test.ts"],
-  ["lib/weekly-career-mission.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/study-room-lighting.ts", "lib/__tests__/lib-data-translations.test.ts"],
   ["lib/time-ago.ts", "lib/__tests__/time-ago.test.ts"],
   ["lib/streak-reminders.ts", "lib/__tests__/streak-reminders.test.ts"],
@@ -137,6 +128,16 @@ const OVERLAY_COMPLETE = new Map([
 ]);
 
 for (const [source, gate] of OVERLAY_COMPLETE) {
+  // Nguồn biến mất thì mục miễn trừ phải đi theo nó. Chín mục đã ở lại sau khi
+  // module của chúng bị gỡ, và vì cổng cũng bị gỡ cùng lúc, script thoát ngay ở
+  // vòng này - bộ đếm chuỗi chưa dịch im lặng suốt từ đó, không in ra con số nào.
+  if (!existsSync(path.join(root, source))) {
+    console.error(
+      `OVERLAY_COMPLETE còn giữ ${source}, nhưng tệp đó không còn tồn tại.\n` +
+        `Gỡ module thì gỡ luôn mục miễn trừ của nó.`
+    );
+    process.exit(1);
+  }
   if (!existsSync(path.join(root, gate))) {
     console.error(
       `OVERLAY_COMPLETE trỏ tới một bộ kiểm không tồn tại: ${gate} (cho ${source}).\n` +

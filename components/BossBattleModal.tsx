@@ -253,14 +253,14 @@ export default function BossBattleModal({
             </p>
             <div className="grid grid-cols-2 gap-2 text-left pt-2">
               <Link
-                href="/bai-hoc/dong-tien"
+                href="/bai-hoc/dong-lenh-bon-lenh-dau-tien"
                 className="p-3 rounded-xl bg-stone-800 border border-stone-700 hover:border-amber-500 text-xs font-bold text-amber-400 transition-all flex items-center justify-between"
               >
                 <span>{t.bossBattle.reviewLesson4}</span>
                 <span>→</span>
               </Link>
               <Link
-                href="/bai-hoc/tai-chinh-la-gi"
+                href="/bai-hoc/he-dieu-hanh-lam-gi"
                 className="p-3 rounded-xl bg-stone-800 border border-stone-700 hover:border-amber-500 text-xs font-bold text-amber-400 transition-all flex items-center justify-between"
               >
                 <span>{t.bossBattle.reviewLesson1}</span>
