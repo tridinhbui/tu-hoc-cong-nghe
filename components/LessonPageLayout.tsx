@@ -98,7 +98,6 @@ const CANONICAL_LESSON_IDS_BY_SLUG: Record<string, number> = {
   "bds-business-model": 1028,
   "bitcoin-crypto": 1025,
   "cap-rate": 1009,
-  "commodity": 261,
   "commodity-phan-2": 1005,
   "discontinued-operations": 1001,
   "disney-pixar-ma": 1021,

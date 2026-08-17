@@ -132,16 +132,6 @@
     "subtitle": "Two very different philosophies, not one product under two names",
     "duration": "7 min"
   },
-  "bao-hiem": {
-    "title": "Insurance: protecting your portfolio from risk",
-    "subtitle": "Insurance role in planning",
-    "duration": "7 min"
-  },
-  "bao-mat-tai-chinh": {
-    "title": "Financial security: protecting your money from fraud",
-    "subtitle": "Financial security",
-    "duration": "7 min"
-  },
   "bao-ve-tai-san-khoi-lam-phat": {
     "title": "Stage 8, Lesson 7: Protecting wealth from long-run inflation",
     "subtitle": "Inflation is the quiet enemy - it does not take your money overnight, it erodes your purchasing power across decades.",
@@ -265,11 +255,6 @@
     "title": "What is CAPM?",
     "subtitle": "Capital Asset Pricing Model",
     "duration": "7 min"
-  },
-  "case-danh-muc-gia-dinh": {
-    "title": "Case study: Building a portfolio for a family",
-    "subtitle": "Family portfolio example",
-    "duration": "8 min"
   },
   "case-dinh-gia-pe-va-dcf": {
     "title": "Mini case - Valuing a company with P/E and a simple DCF",
@@ -432,11 +417,6 @@
     "title": "Deep-dive case: Commodities Part 2",
     "subtitle": "Supply, demand, inventory - the three things that price a commodity",
     "duration": "6 min"
-  },
-  "commodity": {
-    "title": "What is a commodity?",
-    "subtitle": "Standardized goods - the cost driver of the entire economy",
-    "duration": "7 min"
   },
   "comparable-company-analysis-la-gi": {
     "title": "What is Comparable Company Analysis?",
@@ -1036,11 +1016,6 @@
     "subtitle": "The slope, R-squared, residuals, and how to read a regression output table",
     "duration": "11 min"
   },
-  "huu-tri-som": {
-    "title": "Early retirement: how much money you need",
-    "subtitle": "Early retirement planning",
-    "duration": "7 min"
-  },
   "income-affiliates-jv": {
     "title": "Income from affiliates and joint ventures",
     "subtitle": "Equity method (20-50%) versus consolidation (>50%)",
@@ -1148,11 +1123,6 @@
     "title": "Stage 8, Lesson 5: Basic estate planning - what you leave behind",
     "subtitle": "Not making an estate plan does not avoid the problem. It hands the problem to your family at the moment they are grieving hardest.",
     "duration": "6 min"
-  },
-  "ke-hoach-thua-ke": {
-    "title": "Estate planning: what to leave your children",
-    "subtitle": "Estate planning basics",
-    "duration": "7 min"
   },
   "ke-toan-don-tich-vs-ke-toan-tien-mat": {
     "title": "Accrual vs cash accounting: the foundational distinction every accountant must hold",
@@ -2007,11 +1977,6 @@
     "subtitle": "You can't budget money when you don't know where it is currently going",
     "duration": "6 min"
   },
-  "theo-doi-danh-muc": {
-    "title": "Monitoring your portfolio: how often should you check",
-    "subtitle": "Monitoring frequency",
-    "duration": "6 min"
-  },
   "thien-kien-hanh-vi-trong-phan-tich-equity": {
     "title": "Behavioural bias in equity research: when the experts are wrong too",
     "subtitle": "Overconfidence, herding and analyst optimism bias - why professional analysts' forecasts are still systematically skewed",
@@ -2077,11 +2042,6 @@
     "subtitle": "A practical application: opening a new branch - is it worth it?",
     "duration": "7 min"
   },
-  "to-khai-tai-chinh": {
-    "title": "A personal financial statement: knowing what you actually have",
-    "subtitle": "Net worth statement",
-    "duration": "6 min"
-  },
   "tom-tat-hop-va-dhdcd-bang-ai": {
     "title": "AI in Finance, Lesson 7: Summarising meetings and the AGM with AI",
     "subtitle": "Turn a long document into plans, dividends, projects and shareholder questions.",
@@ -2096,11 +2056,6 @@
     "title": "AI in Finance, Lesson 20: Wrap-up - an AI workflow in finance for beginners",
     "subtitle": "Putting it all together into a daily working and learning routine.",
     "duration": "15 min"
-  },
-  "tong-ket-hanh-trinh-tai-chinh-ca-nhan": {
-    "title": "262-day journey review - building sustainable financial habits",
-    "subtitle": "From money mindset to portfolios and retirement: looking back at the whole program",
-    "duration": "9 min"
   },
   "tong-ket-track-ca-nhan-toan-dien": {
     "title": "Stage 8, Lesson 10: Recap of the whole personal finance journey",
@@ -2180,11 +2135,6 @@
     "subtitle": "Four questions that decide the chart type, and the axis tricks that make true numbers tell the wrong story",
     "duration": "11 min"
   },
-  "tu-do-tai-chinh": {
-    "title": "Track review: from safety net to financial freedom",
-    "subtitle": "Stage 4 summary",
-    "duration": "8 min"
-  },
   "tu-dong-hoa-tai-chinh-ca-nhan": {
     "title": "Track 1, Lesson 8: Automation - so the plan doesn't depend on willpower",
     "subtitle": "Why a correct budget still collapses, and how to fix it with mechanism rather than resolve",
@@ -2193,11 +2143,6 @@
   "tu-duy-tai-chinh": {
     "title": "Financial thinking",
     "subtitle": "Knowledge is not the missing part - how you think is",
-    "duration": "6 min"
-  },
-  "tu-van-tai-chinh": {
-    "title": "When you need a professional financial advisor",
-    "subtitle": "When to hire an advisor",
     "duration": "6 min"
   },
   "tuong-quan-khong-phai-nhan-qua": {
@@ -2229,11 +2174,6 @@
     "title": "Standards & Tax, Lesson 1: Where VAS and IFRS differ",
     "subtitle": "Historical cost versus fair value: one philosophical difference that drags a long list of numerical differences behind it",
     "duration": "11 min"
-  },
-  "vay-gia-dinh": {
-    "title": "Siblings, friends, family: how to lend money",
-    "subtitle": "Lending to loved ones",
-    "duration": "6 min"
   },
   "vay-mua-nha-co-ban": {
     "title": "Stage 9, Lesson 1: How does a mortgage actually work?",
