@@ -305,11 +305,6 @@
     "subtitle": "Assembling the previous nine lessons into one working process",
     "duration": "10 min"
   },
-  "case-trai-phieu": {
-    "title": "Case study: building a simple bond portfolio",
-    "subtitle": "Bond portfolio example",
-    "duration": "6 min"
-  },
   "case-xay-danh-muc-3-tai-san": {
     "title": "Small Case - Building a 3-Asset Portfolio",
     "subtitle": "Applying theory in practice: combining stocks, bonds, and gold based on correlation"
@@ -597,11 +592,6 @@
     "subtitle": "Portfolio diversification",
     "duration": "6 min"
   },
-  "danh-muc-toi-uu": {
-    "title": "The optimal portfolio: how much in bonds, how much in stocks",
-    "subtitle": "Allocation between bonds and stocks",
-    "duration": "6 min"
-  },
   "dao-duc-du-lieu-va-thien-lech-thuat-toan": {
     "title": "Data Thinking, Lesson 6: Data ethics - privacy, bias and accountability",
     "subtitle": "Why a credit scoring model can discriminate without using any sensitive data at all",
@@ -850,11 +840,6 @@
     "title": "Duration and Convexity: measuring a bond's price sensitivity to interest rates",
     "subtitle": "Duration gives the first-order estimate, convexity corrects the error - and why that difference matters when rates move sharply",
     "duration": "10 min"
-  },
-  "duration": {
-    "title": "Duration: a bond's sensitivity to interest rates",
-    "subtitle": "Bond duration concept",
-    "duration": "6 min"
   },
   "earnings-call-va-guidance-quan-ly-ky-vong": {
     "title": "Earnings Calls & Guidance: how IR prepares for and manages market expectations",
@@ -1358,34 +1343,14 @@
     "subtitle": "Why does a client have to 'hand the money back' the moment the market turns against them?",
     "duration": "8 min"
   },
-  "ladder": {
-    "title": "The ladder strategy: buying bonds of different terms",
-    "subtitle": "Bond laddering strategy",
-    "duration": "6 min"
-  },
   "lai-kep-huu-tri-bat-dau-som": {
     "title": "Stage 8, Lesson 2: Compounding in retirement saving - why the first ten years matter most",
     "subtitle": "Starting to save for retirement at 25 instead of 35 makes a far bigger difference than most people expect, even while paying in less.",
     "duration": "6 min"
   },
-  "lai-noi-va-lai-co-dinh": {
-    "title": "Floating rate bonds and fixed rate bonds",
-    "subtitle": "Fixed vs floating rate bonds",
-    "duration": "6 min"
-  },
-  "lai-suat-tang-gia-giam": {
-    "title": "Why a rate rise makes bond prices fall",
-    "subtitle": "Inverse relationship explained",
-    "duration": "6 min"
-  },
   "lai-suat-thuc-vs-danh-nghia": {
     "title": "Real interest rate vs. nominal interest rate",
     "subtitle": "The Fisher Equation and the real purchasing power of an interest rate",
-    "duration": "6 min"
-  },
-  "lai-suat-trai-phieu": {
-    "title": "Interest rates and bond prices",
-    "subtitle": "Bond pricing basics",
     "duration": "6 min"
   },
   "lam-phat-huu-tri": {
@@ -1427,11 +1392,6 @@
     "title": "Professional Skills, Lesson 4: The career path - from analyst to decision maker",
     "subtitle": "How the skills change by level, choosing between depth and management, and how to build a professional record",
     "duration": "11 min"
-  },
-  "loai-trai-phieu-khac": {
-    "title": "Other bond-like products: insurance, deposits",
-    "subtitle": "Other bond types",
-    "duration": "6 min"
   },
   "loi-nhuan-cac-cap-do": {
     "title": "Gross, operating, and net profit",
@@ -1542,11 +1502,6 @@
     "title": "The Modigliani-Miller Theorem",
     "subtitle": "Does capital structure matter? - a controversial answer",
     "duration": "10 min"
-  },
-  "mua-trai-phieu": {
-    "title": "When should you buy bonds",
-    "subtitle": "Bond investment decision",
-    "duration": "6 min"
   },
   "municipal-bond-la-gi": {
     "title": "What is a municipal bond?",
@@ -1950,11 +1905,6 @@
     "subtitle": "A classic rule for estimating how much you can withdraw each year in retirement without running dry halfway through.",
     "duration": "7 min"
   },
-  "quy-trai-phieu": {
-    "title": "Bond funds: lending without picking each bond yourself",
-    "subtitle": "Bond funds",
-    "duration": "6 min"
-  },
   "quy-trinh-dau-tu-quy-tu-thesis-den-portfolio": {
     "title": "A fund's investment process: from investment thesis to portfolio construction",
     "subtitle": "A professional fund does not buy shares at random - this is the systematic process behind every decision",
@@ -2050,20 +2000,10 @@
     "subtitle": "Physical risk, transition risk and stranded assets - how to quantify instead of just worrying",
     "duration": "9 min"
   },
-  "rui-ro-lai-suat": {
-    "title": "Interest rate risk: how bond prices change",
-    "subtitle": "Interest rate risk",
-    "duration": "6 min"
-  },
   "rui-ro-ty-gia-tren-bao-cao-hop-nhat": {
     "title": "International Finance, Lesson 4: FX risk in the accounts - transaction, translation and economic",
     "subtitle": "Three different exposures, and why only one of the three actually costs the business money",
     "duration": "11 min"
-  },
-  "rui-ro-vo-no": {
-    "title": "Default risk: bond credit ratings",
-    "subtitle": "Credit ratings for bonds",
-    "duration": "6 min"
   },
   "sai-lam-tam-ly-fomo-thien-kien": {
     "title": "Track 7, Lesson 9: Common psychological mistakes - FOMO and confirmation bias",
@@ -2177,11 +2117,6 @@
     "subtitle": "ESG, materiality, greenwashing, green bonds and how carbon credits are priced.",
     "duration": "13 min"
   },
-  "tai-dau-tu-coupon": {
-    "title": "Reinvesting coupons: the actual return",
-    "subtitle": "Reinvestment considerations",
-    "duration": "6 min"
-  },
   "tai-khoan-huu-tri": {
     "title": "Retirement accounts: BHXH and voluntary options in Vietnam",
     "subtitle": "Social insurance (BHXH) and voluntary supplementary pension funds",
@@ -2267,11 +2202,6 @@
     "subtitle": "Deductible costs, non-deductible costs, loss carry-forward and tax incentives",
     "duration": "12 min"
   },
-  "thue-trai-phieu": {
-    "title": "Tax on bond interest income",
-    "subtitle": "Bond tax implications",
-    "duration": "6 min"
-  },
   "thuong-vu-lam-tang-hay-giam-eps": {
     "title": "Deals, Lesson 1: Accretion or dilution - the first calculation of every transaction",
     "subtitle": "The three costs of a deal, the P/E rule for all-stock transactions, and why it is not a measure of value",
@@ -2337,11 +2267,6 @@
     "subtitle": "The 5 biases covered, and the self-check questions to run before every important money decision",
     "duration": "7 min"
   },
-  "tong-on-chang-3": {
-    "title": "Stage 5 review: bonds for the conservative investor",
-    "subtitle": "Stage 3 summary",
-    "duration": "8 min"
-  },
   "tong-on-chang-8-trai-phieu": {
     "title": "Review: Bonds, Interest Rates and Credit - Bonds are a world of interest rates and trust",
     "subtitle": "Connecting coupon, yield, credit risk and the yield curve into one complete picture",
@@ -2360,16 +2285,6 @@
     "subtitle": "Measuring how far a fund strays from the benchmark it tracks",
     "duration": "6 min"
   },
-  "trai-phieu-chinh-phu": {
-    "title": "Government bonds vs. corporate bonds",
-    "subtitle": "Government vs corporate bonds",
-    "duration": "6 min"
-  },
-  "trai-phieu-co-ban": {
-    "title": "What is a bond? Who is the money lent to",
-    "subtitle": "Introduction to bonds",
-    "duration": "6 min"
-  },
   "trai-phieu-doanh-nghiep-rieng-le-bai-hoc": {
     "title": "Vietnam Markets, Lesson 3: Privately placed corporate bonds - anatomy of a crisis",
     "subtitle": "Private placement, professional investors, and the lesson about refinancing risk",
@@ -2384,21 +2299,6 @@
     "title": "What is a bond?",
     "subtitle": "A basic debt instrument - you lend, they pay interest",
     "duration": "5 min"
-  },
-  "trai-phieu-lua-chon-tot": {
-    "title": "When bonds are the right choice",
-    "subtitle": "When to choose bonds",
-    "duration": "6 min"
-  },
-  "trai-phieu-quoc-te": {
-    "title": "International bonds: currency risk",
-    "subtitle": "International bonds",
-    "duration": "6 min"
-  },
-  "trai-phieu-vs-co-phieu": {
-    "title": "Bond returns vs. stock returns",
-    "subtitle": "Bonds vs stocks return comparison",
-    "duration": "6 min"
   },
   "transfer-pricing": {
     "title": "Transfer Pricing",
