@@ -100,7 +100,9 @@ for (const locale of TARGET_LOCALES) {
   const dir = path.join(translationsRoot, locale);
   mkdirSync(dir, { recursive: true });
 
-  const files = readdirSync(dir).filter((f) => f.endsWith(".json") && f !== "_index.json");
+  // Tiền tố "_" chứ không phải một tên tệp cụ thể - xem chú thích cùng loại
+  // trong audit-lesson-content.mjs.
+  const files = readdirSync(dir).filter((f) => f.endsWith(".json") && !f.startsWith("_"));
   const index = {};
   const drifted = [];
   const orphaned = [];

@@ -95,7 +95,10 @@ function processLesson(lesson) {
   return { lesson, changed };
 }
 
-const files = readdirSync(dataDir).filter((f) => f.endsWith(".json") && f !== "_index.json");
+// Tiền tố "_" là quy ước metadata của thư mục này, và nó không chỉ có
+// _index.json - bộ sinh còn ghi _track-totals.json. Lọc theo đúng một tên
+// tệp là nạp metadata vào như một bài học.
+const files = readdirSync(dataDir).filter((f) => f.endsWith(".json") && !f.startsWith("_"));
 let updatedCount = 0;
 
 for (const file of files) {

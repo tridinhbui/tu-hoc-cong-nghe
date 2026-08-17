@@ -34,7 +34,9 @@ function place(options, correct) {
 
 const files = fs
   .readdirSync(enDir)
-  .filter((f) => f.endsWith(".json") && f !== "_index.json")
+  // Lọc theo tiền tố "_", không theo một tên tệp: thư mục dữ liệu bài học
+  // có nhiều hơn một tệp metadata.
+  .filter((f) => f.endsWith(".json") && !f.startsWith("_"))
   .filter((f) => (args.length ? args.includes(f.replace(/\.json$/, "")) : true));
 
 const tally = {};
