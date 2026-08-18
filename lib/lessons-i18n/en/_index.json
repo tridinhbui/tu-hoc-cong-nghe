@@ -112,11 +112,6 @@
     "subtitle": "After the 2008 crisis the world decided: banks must hold enough capital to survive the next one.",
     "duration": "8 min"
   },
-  "bat-dong-san-o-hay-dau-tu": {
-    "title": "Track 7, Lesson 8: Property - how buying to live differs from buying to invest",
-    "subtitle": "Many people confuse 'buying a home to live in' with 'investing in property' - two entirely different financial decisions.",
-    "duration": "7 min"
-  },
   "bds-business-model": {
     "title": "Four property business models in Vietnam",
     "subtitle": "Housing development, industrial parks, property leasing and brokerage",
@@ -432,16 +427,6 @@
     "title": "Currency Swap",
     "subtitle": "Swapping cash flows between two different currencies"
   },
-  "da-dang-hoa-danh-muc-theo-nganh": {
-    "title": "Track 7, Lesson 4: Diversifying across sectors - don't put the eggs in one basket",
-    "subtitle": "A portfolio of 10 different technology shares is still not real diversification.",
-    "duration": "6 min"
-  },
-  "da-dang-hoa-dia-ly-quoc-te": {
-    "title": "Track 7, Lesson 7: Investing internationally - don't bet on one market alone",
-    "subtitle": "Vietnam's market is only a very small part of the global economic picture.",
-    "duration": "6 min"
-  },
   "danh-gia-deal-dau-tu": {
     "title": "Evaluating an investment deal",
     "subtitle": "A framework for reading a buyout the way a private equity fund reads one",
@@ -467,16 +452,6 @@
     "subtitle": "Why working by column instead of by row completely changes how you think about data",
     "duration": "11 min"
   },
-  "dau-tu-gia-tri-ca-nhan": {
-    "title": "Track 7, Lesson 1: Value investing - finding shares priced below what they are worth",
-    "subtitle": "The school that made Warren Buffett famous: buying good businesses for less than they are actually worth.",
-    "duration": "7 min"
-  },
-  "dau-tu-tang-truong-ca-nhan": {
-    "title": "Track 7, Lesson 2: Growth investing - betting on the future instead of today's value",
-    "subtitle": "Unlike value investing, growth investing accepts a high price today in exchange for rapid growth tomorrow.",
-    "duration": "6 min"
-  },
   "dau-tu-trai-phieu-doanh-nghiep-ytm-credit-rating": {
     "title": "Masterclass 2: Corporate bonds - pricing with YTM and managing default risk",
     "subtitle": "YTM, credit spread, credit ratings and covenants - how to read a corporate bond before buying it.",
@@ -486,11 +461,6 @@
     "title": "Day 1 Readiness & Integration Playbook: the first 100 days after M&A",
     "subtitle": "Why most of a deal's synergy value is decided (or destroyed) within the first 100 days",
     "duration": "8 min"
-  },
-  "dca-nang-cao-khi-nao-nen-dung": {
-    "title": "Track 7, Lesson 5: DCA in depth - when to invest in instalments and when not to",
-    "subtitle": "Dollar-cost averaging is not always the optimal strategy - knowing its limits helps you use it at the right time.",
-    "duration": "6 min"
   },
   "dcf-la-gi-day133": {
     "title": "What is DCF?",
@@ -590,11 +560,6 @@
     "title": "AI for finance, lesson 5: reading financial statements with AI - the basics",
     "subtitle": "How to get AI to find revenue, profit, cash flow and borrowings.",
     "duration": "15 min"
-  },
-  "doc-chi-so-co-ban-cho-nguoi-moi": {
-    "title": "Track 7, Lesson 3: Three basic ratios to read before buying any share",
-    "subtitle": "You don't need to be a financial analyst - just enough P/E, ROE and debt ratio to avoid the most basic mistakes.",
-    "duration": "7 min"
   },
   "doc-dieu-khoan-bao-hiem": {
     "title": "Choosing insurance, Part 1: The clauses that decide whether you get paid",
@@ -1237,11 +1202,6 @@
     "subtitle": "Bond pricing, YTM, credit risk, yield curve - connecting the Bonds, Interest Rates and Credit track",
     "duration": "7 min"
   },
-  "on-tap-wacc": {
-    "title": "Deep-dive case: WACC review",
-    "subtitle": "5 quiz questions on the cost of capital - understand it, don't memorise it",
-    "duration": "6 min"
-  },
   "operating-leverage": {
     "title": "Operating leverage",
     "subtitle": "SaaS versus airlines - fixed costs and margin expansion",
@@ -1525,11 +1485,6 @@
     "subtitle": "Physical risk, transition risk and stranded assets - how to quantify instead of just worrying",
     "duration": "9 min"
   },
-  "sai-lam-tam-ly-fomo-thien-kien": {
-    "title": "Track 7, Lesson 9: Common psychological mistakes - FOMO and confirmation bias",
-    "subtitle": "Investors usually lose to their own psychology rather than to a lack of analytical knowledge.",
-    "duration": "6 min"
-  },
   "samsung-ai-finance": {
     "title": "Samsung Q1 2026 - AI through the financial lens",
     "subtitle": "HBM, the memory cycle, pricing power and AI capex",
@@ -1601,11 +1556,6 @@
     "title": "Pricing, Lesson 3: Reinsurance - who does an insurer buy insurance from",
     "subtitle": "Proportional and excess-of-loss reinsurance, the real reason risk gets ceded, and where it stops working",
     "duration": "10 min"
-  },
-  "tai-can-bang-danh-muc-ca-nhan": {
-    "title": "Track 7, Lesson 6: Rebalancing - holding the risk level you actually chose",
-    "subtitle": "Without rebalancing, your portfolio drifts away from the risk level you originally picked.",
-    "duration": "6 min"
   },
   "tai-chinh-bat-dong-san-cap-rate-noi-rental-yield": {
     "title": "Masterclass 1: Real estate finance - cash flow modelling and the capitalisation rate",
@@ -1907,11 +1857,6 @@
     "title": "Working Capital Management",
     "subtitle": "Cash, inventory, receivables - the turnover cycle",
     "duration": "6 min"
-  },
-  "xay-dung-danh-muc-hoan-chinh-chang5": {
-    "title": "Track 7, Lesson 10: Building a complete personal portfolio - Track 7 summary",
-    "subtitle": "Combining everything covered: value, growth, the basic ratios, diversification, rebalancing and psychological discipline.",
-    "duration": "7 min"
   },
   "xay-dung-ngan-sach-doanh-nghiep": {
     "title": "CFO & Operations, Lesson 1: Building a corporate budget",

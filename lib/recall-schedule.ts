@@ -931,8 +931,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Đo lường: vì sao giá trị trung bình nói dối",
       "text": "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99.",
       "distractors": [
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
-        "Ratios chuẩn hóa số liệu để so sánh công bằng"
+        "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     },
     {
@@ -951,8 +951,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Mọi thứ gửi tới bạn đều có thể là dối trá",
       "text": "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
       "distractors": [
-        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99.",
-        "Ratios chuẩn hóa số liệu để so sánh công bằng"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã."
       ]
     },
     {
@@ -971,8 +971,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: đường đi của một lời gọi",
       "text": "Gói tin có thể mất, tới trùng và tới lệch thứ tự - mọi thứ khác là hệ quả.",
       "distractors": [
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
-        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99."
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     },
     {
@@ -988,11 +988,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "66": [
     {
       "fromDay": 61,
-      "fromTitle": "Financial Ratios là gì?",
-      "text": "Ratios chuẩn hóa số liệu để so sánh công bằng",
+      "fromTitle": "Dựng mã: từ văn bản tới thứ máy chạy được",
+      "text": "Bước dựng biến mã nguồn thành sản phẩm chạy được, và nó phụ thuộc vào môi trường.",
       "distractors": [
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
-        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99."
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     },
     {
@@ -1008,11 +1008,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "67": [
     {
       "fromDay": 62,
-      "fromTitle": "Gross Margin: Biên lợi nhuận gộp",
-      "text": "Gross Margin = Gross Profit / Revenue",
+      "fromTitle": "Phụ thuộc: mã bạn không viết nhưng vẫn phải chịu trách nhiệm",
+      "text": "Phần lớn mã chạy trong sản phẩm của bạn là mã bạn không viết.",
       "distractors": [
-        "Current Ratio = Current Assets / Current Liabilities",
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     },
     {
@@ -1028,11 +1028,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "68": [
     {
       "fromDay": 63,
-      "fromTitle": "Operating Margin: Biên lợi nhuận hoạt động",
-      "text": "Operating Margin = EBIT / Revenue",
+      "fromTitle": "Số phiên bản: một lời hứa, không phải một cái nhãn",
+      "text": "Số phiên bản mô tả rủi ro cho người nhận, không mô tả công sức của người phát hành.",
       "distractors": [
-        "Current Ratio = Current Assets / Current Liabilities",
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     },
     {
@@ -1048,11 +1048,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "69": [
     {
       "fromDay": 64,
-      "fromTitle": "Net Profit Margin: Biên lợi nhuận ròng",
-      "text": "Net Margin = Net Income / Revenue",
+      "fromTitle": "Cấu hình: thứ khác nhau giữa các môi trường",
+      "text": "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã.",
       "distractors": [
-        "Current Ratio = Current Assets / Current Liabilities",
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     },
     {
@@ -1068,11 +1068,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "70": [
     {
       "fromDay": 65,
-      "fromTitle": "ROA: Lợi nhuận trên tài sản",
-      "text": "ROA = Net Income / Total Assets",
+      "fromTitle": "Bí mật: thứ không bao giờ được vào kho mã",
+      "text": "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
       "distractors": [
-        "Current Ratio = Current Assets / Current Liabilities",
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng.",
+        "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã."
       ]
     },
     {
@@ -1080,19 +1080,19 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Đo lường: vì sao giá trị trung bình nói dối",
       "text": "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99.",
       "distractors": [
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
-        "Ratios chuẩn hóa số liệu để so sánh công bằng"
+        "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     }
   ],
   "71": [
     {
       "fromDay": 66,
-      "fromTitle": "ROE: Lợi nhuận trên vốn chủ",
-      "text": "ROE = Net Income / Equity - quan trọng nhất với cổ đông",
+      "fromTitle": "Kiểm thử: nhiều bài nhanh, ít bài chậm",
+      "text": "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "Current Ratio = Current Assets / Current Liabilities"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã."
       ]
     },
     {
@@ -1100,19 +1100,19 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Mọi thứ gửi tới bạn đều có thể là dối trá",
       "text": "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
       "distractors": [
-        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99.",
-        "Ratios chuẩn hóa số liệu để so sánh công bằng"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã."
       ]
     }
   ],
   "72": [
     {
       "fromDay": 67,
-      "fromTitle": "ROIC: Lợi nhuận trên vốn đầu tư",
-      "text": "ROIC = NOPAT / Invested Capital",
+      "fromTitle": "Tích hợp liên tục: máy chạy kiểm thử thay cho lời hứa",
+      "text": "Cổng tự động biến quy ước thành thứ không phụ thuộc trí nhớ hay áp lực.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "Current Ratio = Current Assets / Current Liabilities"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     },
     {
@@ -1120,268 +1120,268 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: đường đi của một lời gọi",
       "text": "Gói tin có thể mất, tới trùng và tới lệch thứ tự - mọi thứ khác là hệ quả.",
       "distractors": [
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
-        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99."
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     }
   ],
   "73": [
     {
       "fromDay": 68,
-      "fromTitle": "Current Ratio: Khả năng thanh toán ngắn hạn",
-      "text": "Current Ratio = Current Assets / Current Liabilities",
+      "fromTitle": "Độ phủ: con số dễ đạt và dễ hiểu sai",
+      "text": "Độ phủ đo dòng được chạy qua, không đo điều được khẳng định.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "D/E = Total Debt / Equity - đo đòn bẩy tài chính"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     },
     {
       "fromDay": 61,
-      "fromTitle": "Financial Ratios là gì?",
-      "text": "Ratios chuẩn hóa số liệu để so sánh công bằng",
+      "fromTitle": "Dựng mã: từ văn bản tới thứ máy chạy được",
+      "text": "Bước dựng biến mã nguồn thành sản phẩm chạy được, và nó phụ thuộc vào môi trường.",
       "distractors": [
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
-        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99."
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     }
   ],
   "74": [
     {
       "fromDay": 69,
-      "fromTitle": "Quick Ratio: Thanh toán nhanh",
-      "text": "Quick Ratio loại hàng tồn kho khỏi tài sản ngắn hạn",
+      "fromTitle": "Rà soát mã: cái máy không bắt được",
+      "text": "Để máy lo định dạng và quy ước, dành thời gian người cho thiết kế và ý nghĩa.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     },
     {
       "fromDay": 62,
-      "fromTitle": "Gross Margin: Biên lợi nhuận gộp",
-      "text": "Gross Margin = Gross Profit / Revenue",
+      "fromTitle": "Phụ thuộc: mã bạn không viết nhưng vẫn phải chịu trách nhiệm",
+      "text": "Phần lớn mã chạy trong sản phẩm của bạn là mã bạn không viết.",
       "distractors": [
-        "Current Ratio = Current Assets / Current Liabilities",
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     }
   ],
   "75": [
     {
       "fromDay": 70,
-      "fromTitle": "Debt-to-Equity: Nợ trên vốn chủ",
-      "text": "D/E = Total Debt / Equity - đo đòn bẩy tài chính",
+      "fromTitle": "Nhánh: càng sống lâu càng đắt",
+      "text": "Xung đột là hàm của khoảng cách, và khoảng cách là hàm của thời gian.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     },
     {
       "fromDay": 63,
-      "fromTitle": "Operating Margin: Biên lợi nhuận hoạt động",
-      "text": "Operating Margin = EBIT / Revenue",
+      "fromTitle": "Số phiên bản: một lời hứa, không phải một cái nhãn",
+      "text": "Số phiên bản mô tả rủi ro cho người nhận, không mô tả công sức của người phát hành.",
       "distractors": [
-        "Current Ratio = Current Assets / Current Liabilities",
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     }
   ],
   "76": [
     {
       "fromDay": 71,
-      "fromTitle": "Interest Coverage: Khả năng trả lãi vay",
-      "text": "Interest Coverage = EBIT / Interest Expense",
+      "fromTitle": "Cờ tính năng: tách lúc triển khai khỏi lúc phát hành",
+      "text": "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     },
     {
       "fromDay": 64,
-      "fromTitle": "Net Profit Margin: Biên lợi nhuận ròng",
-      "text": "Net Margin = Net Income / Revenue",
+      "fromTitle": "Cấu hình: thứ khác nhau giữa các môi trường",
+      "text": "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã.",
       "distractors": [
-        "Current Ratio = Current Assets / Current Liabilities",
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     }
   ],
   "77": [
     {
       "fromDay": 72,
-      "fromTitle": "Asset Turnover: Hiệu quả sử dụng tài sản",
-      "text": "Asset Turnover = Revenue / Total Assets",
+      "fromTitle": "Triển khai: thay máy đang chạy mà không ai nhận ra",
+      "text": "Triển khai từng phần biến lỗi toàn phần thành lỗi cục bộ trong thời gian ngắn.",
       "distractors": [
-        "CCC = DIO + DSO − DPO",
-        "Current Ratio = Current Assets / Current Liabilities"
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng.",
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
       ]
     },
     {
       "fromDay": 65,
-      "fromTitle": "ROA: Lợi nhuận trên tài sản",
-      "text": "ROA = Net Income / Total Assets",
+      "fromTitle": "Bí mật: thứ không bao giờ được vào kho mã",
+      "text": "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
       "distractors": [
-        "Current Ratio = Current Assets / Current Liabilities",
-        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng.",
+        "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã."
       ]
     }
   ],
   "78": [
     {
       "fromDay": 73,
-      "fromTitle": "Inventory Turnover: Vòng quay hàng tồn kho",
-      "text": "Inventory Turnover = COGS / Average Inventory",
+      "fromTitle": "Đổi cấu trúc dữ liệu: phần không quay lui được",
+      "text": "Thay đổi cấu trúc dữ liệu phải tương thích với cả bản mã cũ lẫn bản mới.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
       ]
     },
     {
       "fromDay": 66,
-      "fromTitle": "ROE: Lợi nhuận trên vốn chủ",
-      "text": "ROE = Net Income / Equity - quan trọng nhất với cổ đông",
+      "fromTitle": "Kiểm thử: nhiều bài nhanh, ít bài chậm",
+      "text": "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "Current Ratio = Current Assets / Current Liabilities"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Cấu hình là thứ khác nhau giữa các môi trường; mọi thứ khác thuộc về mã."
       ]
     }
   ],
   "79": [
     {
       "fromDay": 74,
-      "fromTitle": "Receivables Turnover: Vòng quay khoản phải thu",
-      "text": "Receivables Turnover = Revenue / AR; DSO = 365 / Turnover",
+      "fromTitle": "Quan sát được: biết hệ thống đang làm gì lúc này",
+      "text": "Chỉ số phát hiện bất thường, nhật ký giải thích một trường hợp, vết chỉ ra thời gian đi đâu.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
       ]
     },
     {
       "fromDay": 67,
-      "fromTitle": "ROIC: Lợi nhuận trên vốn đầu tư",
-      "text": "ROIC = NOPAT / Invested Capital",
+      "fromTitle": "Tích hợp liên tục: máy chạy kiểm thử thay cho lời hứa",
+      "text": "Cổng tự động biến quy ước thành thứ không phụ thuộc trí nhớ hay áp lực.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "Current Ratio = Current Assets / Current Liabilities"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     }
   ],
   "80": [
     {
       "fromDay": 75,
-      "fromTitle": "Cash Conversion Cycle",
-      "text": "CCC = DIO + DSO − DPO",
+      "fromTitle": "Cảnh báo: đánh thức người đúng, vì việc đáng thức",
+      "text": "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "D/E = Total Debt / Equity - đo đòn bẩy tài chính"
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra.",
+        "Thay đổi cấu trúc dữ liệu phải tương thích với cả bản mã cũ lẫn bản mới."
       ]
     },
     {
       "fromDay": 68,
-      "fromTitle": "Current Ratio: Khả năng thanh toán ngắn hạn",
-      "text": "Current Ratio = Current Assets / Current Liabilities",
+      "fromTitle": "Độ phủ: con số dễ đạt và dễ hiểu sai",
+      "text": "Độ phủ đo dòng được chạy qua, không đo điều được khẳng định.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "D/E = Total Debt / Equity - đo đòn bẩy tài chính"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     }
   ],
   "81": [
     {
       "fromDay": 76,
-      "fromTitle": "EPS: Lợi nhuận trên mỗi cổ phiếu",
-      "text": "EPS = Net Income / Diluted Shares Outstanding",
+      "fromTitle": "Sự cố: khôi phục trước, hiểu nguyên nhân sau",
+      "text": "Khôi phục và điều tra là hai việc tách biệt; chỉ việc đầu là gấp.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
       ]
     },
     {
       "fromDay": 69,
-      "fromTitle": "Quick Ratio: Thanh toán nhanh",
-      "text": "Quick Ratio loại hàng tồn kho khỏi tài sản ngắn hạn",
+      "fromTitle": "Rà soát mã: cái máy không bắt được",
+      "text": "Để máy lo định dạng và quy ước, dành thời gian người cho thiết kế và ý nghĩa.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     }
   ],
   "82": [
     {
       "fromDay": 77,
-      "fromTitle": "P/E Ratio là gì?",
-      "text": "P/E = Price / EPS - trả bao nhiêu lần lợi nhuận",
+      "fromTitle": "Sau sự cố: tìm nguyên nhân, không tìm người",
+      "text": "Con người mắc lỗi là hằng số; thứ thay đổi được là hệ thống quanh họ.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
       ]
     },
     {
       "fromDay": 70,
-      "fromTitle": "Debt-to-Equity: Nợ trên vốn chủ",
-      "text": "D/E = Total Debt / Equity - đo đòn bẩy tài chính",
+      "fromTitle": "Nhánh: càng sống lâu càng đắt",
+      "text": "Xung đột là hàm của khoảng cách, và khoảng cách là hàm của thời gian.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     }
   ],
   "83": [
     {
       "fromDay": 78,
-      "fromTitle": "P/B Ratio là gì?",
-      "text": "P/B = Market Cap / Book Value",
+      "fromTitle": "Nợ kỹ thuật: khoản vay có lãi, không phải rác",
+      "text": "Nợ kỹ thuật là lựa chọn có ý thức kèm kế hoạch trả, không phải mọi đoạn mã xấu.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Compounding: lãi trên lãi trên lãi - hàm mũ"
       ]
     },
     {
       "fromDay": 71,
-      "fromTitle": "Interest Coverage: Khả năng trả lãi vay",
-      "text": "Interest Coverage = EBIT / Interest Expense",
+      "fromTitle": "Cờ tính năng: tách lúc triển khai khỏi lúc phát hành",
+      "text": "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng."
       ]
     }
   ],
   "84": [
     {
       "fromDay": 79,
-      "fromTitle": "EV/EBITDA là gì?",
-      "text": "EV/EBITDA trung lập với cơ cấu vốn và khấu hao",
+      "fromTitle": "Tài liệu: viết cho người sáu tháng sau, thường là chính bạn",
+      "text": "Mã và kiểm thử nói cái gì và như thế nào; chỉ tài liệu nói vì sao.",
       "distractors": [
-        "CCC = DIO + DSO − DPO",
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
         "Compounding: lãi trên lãi trên lãi - hàm mũ"
       ]
     },
     {
       "fromDay": 72,
-      "fromTitle": "Asset Turnover: Hiệu quả sử dụng tài sản",
-      "text": "Asset Turnover = Revenue / Total Assets",
+      "fromTitle": "Triển khai: thay máy đang chạy mà không ai nhận ra",
+      "text": "Triển khai từng phần biến lỗi toàn phần thành lỗi cục bộ trong thời gian ngắn.",
       "distractors": [
-        "CCC = DIO + DSO − DPO",
-        "Current Ratio = Current Assets / Current Liabilities"
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng.",
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
       ]
     }
   ],
   "85": [
     {
       "fromDay": 80,
-      "fromTitle": "Ôn tập: Dùng chỉ số để so sánh doanh nghiệp",
-      "text": "4 nhóm ratios: Profitability, Liquidity, Leverage, Valuation",
+      "fromTitle": "Ôn tập: đường đi từ một dòng mã tới người dùng",
+      "text": "Bước dựng phải lặp lại được, nếu không thì mọi kết luận từ kiểm thử đều yếu.",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
       ]
     },
     {
       "fromDay": 73,
-      "fromTitle": "Inventory Turnover: Vòng quay hàng tồn kho",
-      "text": "Inventory Turnover = COGS / Average Inventory",
+      "fromTitle": "Đổi cấu trúc dữ liệu: phần không quay lui được",
+      "text": "Thay đổi cấu trúc dữ liệu phải tương thích với cả bản mã cũ lẫn bản mới.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
       ]
     }
   ],
@@ -1392,16 +1392,16 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "PV = FV / (1+r)^n",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
       ]
     },
     {
       "fromDay": 74,
-      "fromTitle": "Receivables Turnover: Vòng quay khoản phải thu",
-      "text": "Receivables Turnover = Revenue / AR; DSO = 365 / Turnover",
+      "fromTitle": "Quan sát được: biết hệ thống đang làm gì lúc này",
+      "text": "Chỉ số phát hiện bất thường, nhật ký giải thích một trường hợp, vết chỉ ra thời gian đi đâu.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
       ]
     }
   ],
@@ -1417,11 +1417,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 75,
-      "fromTitle": "Cash Conversion Cycle",
-      "text": "CCC = DIO + DSO − DPO",
+      "fromTitle": "Cảnh báo: đánh thức người đúng, vì việc đáng thức",
+      "text": "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "D/E = Total Debt / Equity - đo đòn bẩy tài chính"
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra.",
+        "Thay đổi cấu trúc dữ liệu phải tương thích với cả bản mã cũ lẫn bản mới."
       ]
     }
   ],
@@ -1437,11 +1437,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 76,
-      "fromTitle": "EPS: Lợi nhuận trên mỗi cổ phiếu",
-      "text": "EPS = Net Income / Diluted Shares Outstanding",
+      "fromTitle": "Sự cố: khôi phục trước, hiểu nguyên nhân sau",
+      "text": "Khôi phục và điều tra là hai việc tách biệt; chỉ việc đầu là gấp.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
       ]
     }
   ],
@@ -1457,11 +1457,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 77,
-      "fromTitle": "P/E Ratio là gì?",
-      "text": "P/E = Price / EPS - trả bao nhiêu lần lợi nhuận",
+      "fromTitle": "Sau sự cố: tìm nguyên nhân, không tìm người",
+      "text": "Con người mắc lỗi là hằng số; thứ thay đổi được là hệ thống quanh họ.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
       ]
     }
   ],
@@ -1477,11 +1477,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 78,
-      "fromTitle": "P/B Ratio là gì?",
-      "text": "P/B = Market Cap / Book Value",
+      "fromTitle": "Nợ kỹ thuật: khoản vay có lãi, không phải rác",
+      "text": "Nợ kỹ thuật là lựa chọn có ý thức kèm kế hoạch trả, không phải mọi đoạn mã xấu.",
       "distractors": [
-        "Asset Turnover = Revenue / Total Assets",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Compounding: lãi trên lãi trên lãi - hàm mũ"
       ]
     }
   ],
@@ -1497,10 +1497,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 79,
-      "fromTitle": "EV/EBITDA là gì?",
-      "text": "EV/EBITDA trung lập với cơ cấu vốn và khấu hao",
+      "fromTitle": "Tài liệu: viết cho người sáu tháng sau, thường là chính bạn",
+      "text": "Mã và kiểm thử nói cái gì và như thế nào; chỉ tài liệu nói vì sao.",
       "distractors": [
-        "CCC = DIO + DSO − DPO",
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
         "Compounding: lãi trên lãi trên lãi - hàm mũ"
       ]
     }
@@ -1517,11 +1517,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 80,
-      "fromTitle": "Ôn tập: Dùng chỉ số để so sánh doanh nghiệp",
-      "text": "4 nhóm ratios: Profitability, Liquidity, Leverage, Valuation",
+      "fromTitle": "Ôn tập: đường đi từ một dòng mã tới người dùng",
+      "text": "Bước dựng phải lặp lại được, nếu không thì mọi kết luận từ kiểm thử đều yếu.",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
       ]
     }
   ],
@@ -1541,7 +1541,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "PV = FV / (1+r)^n",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "CCC = DIO + DSO − DPO"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
       ]
     }
   ],
@@ -4886,8 +4886,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Chặng 1, Bài 2: Hệ điều hành làm gì khi bạn không nhìn",
       "text": "Hệ điều hành là lớp trung gian giữa chương trình bạn viết và phần cứng thật.",
       "distractors": [
-        "Hệ thống tệp là một cây: một gốc duy nhất, các thư mục lồng nhau bên dưới.",
-        "Câu hỏi đầu tiên luôn là: thao tác nào tôi sẽ làm nhiều nhất trên dữ liệu này?"
+        "API là hợp đồng: gửi gì, nhận lại gì - và nó cố tình không mô tả bên trong.",
+        "Hệ thống tệp là một cây: một gốc duy nhất, các thư mục lồng nhau bên dưới."
       ]
     }
   ],
