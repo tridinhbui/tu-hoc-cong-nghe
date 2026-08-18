@@ -393,18 +393,17 @@ export const TRACK_PROFESSIONAL = {
     },
     {
       label: "Chặng 2",
-      name: "Đọc mã nguồn người khác viết",
+      name: "Mạng và giao tiếp giữa các hệ thống",
       days: [41, 60] as [number, number],
-      // Ba bài đọc-sâu nằm ngoài dải ngày vì chúng được viết sau, khi đo ra
-      // rằng chặng này dạy đọc ba bảng số mà không dạy đọc thuyết minh, không
-      // dạy chuẩn hoá theo tỷ trọng, và không nhắc tới ý kiến kiểm toán ở đâu.
-      // 1053 (bao-cao-luu-chuyen-tien-te) là bài bổ trợ của 52
-      // (cash-flow-statement-la-gi), vốn nằm trong dải 41-60 này.
+      // 1053, 1690, 1691 và 1692 là bốn bài tài chính từng bổ trợ cho chặng ba
+      // báo cáo cũ ở dải 41-60. Nội dung dải này đã chuyển sang mạng và dịch
+      // vụ, nên chúng không còn liên quan - giữ tạm để không rơi khỏi giáo
+      // trình, tới khi chặng tài chính tương ứng được chuyển đổi.
       extraLessonIds: [1053, 1690, 1691, 1692],
       available: true,
       parts: [
-        { name: "Lần theo luồng gọi và trạng thái", days: [41, 50] as [number, number] },
-        { name: "Đọc log, stack trace và case thực tế", days: [51, 60] as [number, number] },
+        { name: "Đường đi của một lời gọi", days: [41, 50] as [number, number] },
+        { name: "Chịu lỗi, đo lường và bảo mật", days: [51, 60] as [number, number] },
         {
           name: "Đọc sâu: chú thích, độ phủ kiểm thử và kết quả review",
           days: [0, 0] as [number, number],

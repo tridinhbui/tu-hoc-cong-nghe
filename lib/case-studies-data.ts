@@ -140,7 +140,7 @@ export const REAL_CASE_STUDIES: CaseStudyItem[] = [
     xpReward: 850,
     coinReward: 120,
     relatedLessonSlugs: [
-      { slug: "income-statement-la-gi", title: "Income Statement: Báo cáo kết quả kinh doanh" },
+      { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền" },
       { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán" },
     ],
     questions: [

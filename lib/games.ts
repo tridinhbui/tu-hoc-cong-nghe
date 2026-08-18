@@ -174,19 +174,19 @@ export interface RelatedLesson {
 export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
   "system-dashboard-match": [
     { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Phân biệt Báo cáo kết quả kinh doanh, Bảng cân đối & Lưu chuyển tiền tệ" },
-    { slug: "ke-toan-la-gi", title: "Kế toán là gì?", subtitle: "Nền tảng phân bổ nguồn lực và đọc hiểu thông số" },
-    { slug: "income-statement-la-gi", title: "Income Statement: Báo cáo kết quả kinh doanh", subtitle: "Phân loại dòng tiền vào ra" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Nền tảng phân bổ nguồn lực và đọc hiểu thông số" },
+    { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Phân loại dòng tiền vào ra" },
   ],
   "en-vi-terms": [
-    { slug: "ke-toan-la-gi", title: "Kế toán là gì?", subtitle: "Các thuật ngữ tài chính Anh - Việt cốt lõi" },
-    { slug: "ke-toan-la-gi", title: "Kế toán là gì?", subtitle: "Các thuộc tính và từ vựng tiền tệ" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Các thuật ngữ tài chính Anh - Việt cốt lõi" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Các thuộc tính và từ vựng tiền tệ" },
   ],
   "ratio-category": [
     { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?", subtitle: "Hiểu rõ nhóm chỉ số Thanh khoản, Sinh lời, Đòn bẩy" },
     { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Chỉ số lưu chuyển tiền tệ và khả năng thanh toán" },
   ],
   "term-definition": [
-    { slug: "ke-toan-la-gi", title: "Kế toán là gì?", subtitle: "Thuật ngữ và khái niệm định nghĩa gốc" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Thuật ngữ và khái niệm định nghĩa gốc" },
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Hiểu đúng bản chất từng khái niệm" },
   ],
   "formula-match": [
@@ -199,15 +199,15 @@ export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
     { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?", subtitle: "Rủi ro biến động lãi suất và thị trường" },
   ],
   "ticker-match": [
-    { slug: "ke-toan-la-gi", title: "Kế toán là gì?", subtitle: "Tìm hiểu doanh nghiệp và niêm yết trên thị trường" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tìm hiểu doanh nghiệp và niêm yết trên thị trường" },
     { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?", subtitle: "Đánh giá các doanh nghiệp VN30 hàng đầu" },
   ],
   "cost-category": [
-    { slug: "income-statement-la-gi", title: "Income Statement: Báo cáo kết quả kinh doanh", subtitle: "Phân loại chi phí cố định và chi phí biến đổi" },
+    { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Phân loại chi phí cố định và chi phí biến đổi" },
     { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Tác động của chi phí đến dòng tiền doanh nghiệp" },
   ],
   "random-mix": [
-    { slug: "ke-toan-la-gi", title: "Kế toán là gì?", subtitle: "Tổng hợp kiến thức nền tảng tài chính" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tổng hợp kiến thức nền tảng tài chính" },
     { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Tổng hợp phân tích dòng tiền & Báo cáo" },
     { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?", subtitle: "Tổng hợp công thức và tỷ số tài chính" },
   ],

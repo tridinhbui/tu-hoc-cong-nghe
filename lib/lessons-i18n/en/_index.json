@@ -67,11 +67,6 @@
     "title": "Final lesson - Analyze a complete company from A to Z yourself",
     "subtitle": "Applying all 200 days to a real analysis workflow"
   },
-  "balance-sheet-doc": {
-    "title": "Reading a Balance Sheet from start to finish",
-    "subtitle": "How to read a balance sheet in 5 minutes",
-    "duration": "7 min"
-  },
   "ban-cheo-san-pham-va-kpi-cua-rm-ngan-hang": {
     "title": "Cross-selling bank products and the RM's KPIs: balancing sales against the customer's interest",
     "subtitle": "How to hit the sales target while genuinely advising on real needs, rather than pushing product at people",
@@ -177,11 +172,6 @@
     "subtitle": "Five inputs, one idea about dynamic hedging, and the assumptions that make the model wrong in a crisis",
     "duration": "13 min"
   },
-  "bo-3-bao-cao": {
-    "title": "What makes up the three financial statements?",
-    "subtitle": "Income Statement, Balance Sheet, Cash Flow Statement - three views of one business",
-    "duration": "5 min"
-  },
   "bo-bao-cao-quan-tri-hang-thang": {
     "title": "Planning, lesson 6: the FP&A monthly rhythm - close, explain, and sit with the business",
     "subtitle": "What goes into a management reporting pack, how to write the commentary, and why most of the value lies outside the numbers",
@@ -281,11 +271,6 @@
   "cash-conversion-cycle": {
     "title": "Cash Conversion Cycle",
     "subtitle": "From cash → inventory → sale → cash collected",
-    "duration": "6 min"
-  },
-  "cash-flow-statement-la-gi": {
-    "title": "What is the Cash Flow Statement?",
-    "subtitle": "The three sections of the cash flow statement",
     "duration": "6 min"
   },
   "cau-truc-family-office-single-vs-multi": {
@@ -418,16 +403,6 @@
     "subtitle": "Related-party transactions, cross-ownership, major shareholders and the signals to read in AGM documents",
     "duration": "11 min"
   },
-  "cong-ty-lai-ma-het-tien": {
-    "title": "Why can a profitable company run short of cash?",
-    "subtitle": "The accounting-profit trap versus real cash flow",
-    "duration": "6 min"
-  },
-  "cong-ty-lo-ma-con-tien": {
-    "title": "Why can a company post a loss and still have cash?",
-    "subtitle": "The depreciation shield and the timing gap between P&L and cash",
-    "duration": "5 min"
-  },
   "corporate-bond-la-gi": {
     "title": "What is a corporate bond?",
     "subtitle": "A company borrowing directly from investors, bypassing banks",
@@ -481,16 +456,6 @@
   "currency-swap-chuyen-sau": {
     "title": "Currency Swap",
     "subtitle": "Swapping cash flows between two different currencies"
-  },
-  "current-long-term-liabilities": {
-    "title": "Current and Long-term Liabilities",
-    "subtitle": "Classifying debt by maturity",
-    "duration": "5 min"
-  },
-  "current-non-current-assets": {
-    "title": "Current Assets and Non-current Assets",
-    "subtitle": "Classifying assets by liquidity",
-    "duration": "5 min"
   },
   "current-ratio": {
     "title": "Current Ratio: Short-Term Solvency",
@@ -661,11 +626,6 @@
     "subtitle": "NIM, CASA, LDR, NPL, CIR and the provisioning buffer - the private language of a bank's accounts",
     "duration": "12 min"
   },
-  "doc-bctc-apple": {
-    "title": "Case study: reading Apple's / Vinamilk's financial statements",
-    "subtitle": "Applying the three statements to a real example",
-    "duration": "7 min"
-  },
   "doc-bctc-bang-ai-phan-co-ban": {
     "title": "AI for finance, lesson 5: reading financial statements with AI - the basics",
     "subtitle": "How to get AI to find revenue, profit, cash flow and borrowings.",
@@ -755,11 +715,6 @@
     "title": "Earnings Calls & Guidance: how IR prepares for and manages market expectations",
     "subtitle": "Why a company growing well can still see its stock sold off the moment earnings land",
     "duration": "7 min"
-  },
-  "ebit-operating-income": {
-    "title": "EBIT and Operating Income",
-    "subtitle": "Earnings before interest and tax - measuring pure operating efficiency",
-    "duration": "6 min"
   },
   "efficient-frontier-la-gi": {
     "title": "What is the Efficient Frontier?",
@@ -870,11 +825,6 @@
     "subtitle": "Credit, liquidity, interest rate, market and concentration risk",
     "duration": "6 min"
   },
-  "financing-cash-flow": {
-    "title": "What is Financing Cash Flow?",
-    "subtitle": "Cash flow from borrowing, issuing shares, and paying dividends",
-    "duration": "5 min"
-  },
   "forward-contract-la-gi": {
     "title": "What Is a Forward Contract?",
     "subtitle": "A commitment to buy/sell an asset at a price agreed today, settled in the future"
@@ -887,11 +837,6 @@
   "fpt-cfo-cash": {
     "title": "FPT's CFO and 8,500bn of cash",
     "subtitle": "Balancing liquidity, financial income and capital allocation",
-    "duration": "6 min"
-  },
-  "free-cash-flow-co-ban": {
-    "title": "What is Free Cash Flow?",
-    "subtitle": "OCF − CapEx = the cash a business is genuinely free to use",
     "duration": "6 min"
   },
   "future-value": {
@@ -986,11 +931,6 @@
     "subtitle": "Equity method (20-50%) versus consolidation (>50%)",
     "duration": "6 min"
   },
-  "income-statement-la-gi": {
-    "title": "Income Statement: the profit-and-loss report",
-    "subtitle": "From revenue down to net income - the story of efficiency",
-    "duration": "6 min"
-  },
   "index-match-xlookup-va-sumifs": {
     "title": "Excel, Lesson 2: Looking data up - INDEX/MATCH, XLOOKUP and SUMIFS",
     "subtitle": "Why finance people abandon VLOOKUP, and how to join data from several sources without getting a single row wrong",
@@ -1004,11 +944,6 @@
   "interest-rate-swap-chuyen-sau": {
     "title": "Interest Rate Swap",
     "subtitle": "Swapping between a fixed interest rate and a floating interest rate"
-  },
-  "interest-tax-expense": {
-    "title": "Interest Expense and Tax Expense",
-    "subtitle": "The last two items before Net Income - the effect of debt and tax",
-    "duration": "5 min"
   },
   "interim-comprehensive-income": {
     "title": "Interim Statement & OCI",
@@ -1028,11 +963,6 @@
     "title": "Inventory",
     "subtitle": "Inventory turnover, DSI, DOH and the supply chain",
     "duration": "6 min"
-  },
-  "investing-cash-flow": {
-    "title": "What is Investing Cash Flow?",
-    "subtitle": "Cash spent on buying assets and long-term investments",
-    "duration": "5 min"
   },
   "investment-thesis-research-report-structure": {
     "title": "Investment Thesis & Research Report - how to convince an investor",
@@ -1332,11 +1262,6 @@
     "subtitle": "Human Life Value and Capital Needs Analysis - the two ways of working out how much life cover is genuinely required",
     "duration": "7 min"
   },
-  "net-income-y-nghia": {
-    "title": "Net Income: meaning and limits",
-    "subtitle": "The final line of the P&L - it doesn't always tell the whole truth",
-    "duration": "6 min"
-  },
   "net-profit-margin": {
     "title": "Net Profit Margin",
     "subtitle": "After everything - costs, interest, and tax - how much is left?",
@@ -1382,11 +1307,6 @@
     "subtitle": "Production, services, transport, refining",
     "duration": "7 min"
   },
-  "on-tap-3-bao-cao": {
-    "title": "Review: the three financial statements",
-    "subtitle": "Connecting the P&L, Balance Sheet, and Cash Flow Statement",
-    "duration": "7 min"
-  },
   "on-tap-chi-so-tai-chinh": {
     "title": "Review: Using Ratios to Compare Businesses",
     "subtitle": "Combining ratios for a comprehensive view",
@@ -1415,16 +1335,6 @@
   "on-tap-wacc": {
     "title": "Deep-dive case: WACC review",
     "subtitle": "5 quiz questions on the cost of capital - understand it, don't memorise it",
-    "duration": "6 min"
-  },
-  "operating-cash-flow": {
-    "title": "What is Operating Cash Flow?",
-    "subtitle": "Real cash from operations - how it differs from Net Income",
-    "duration": "6 min"
-  },
-  "operating-expense": {
-    "title": "Operating Expense: SG&A, R&D",
-    "subtitle": "Operating costs - sitting between Gross Profit and Operating Income",
     "duration": "6 min"
   },
   "operating-leverage": {
@@ -1705,11 +1615,6 @@
     "subtitle": "Store productivity, same-store sales growth and payback period",
     "duration": "6 min"
   },
-  "revenue-cogs-gross-profit": {
-    "title": "Revenue, COGS, and Gross Profit",
-    "subtitle": "The first three lines of the P&L - the foundation of every analysis",
-    "duration": "6 min"
-  },
   "revenue-multiple-dung-khi-nao": {
     "title": "When should Revenue Multiple be used?",
     "subtitle": "The last resort when a company has no profit yet to value it by",
@@ -1779,11 +1684,6 @@
     "title": "What is Sensitivity Analysis?",
     "subtitle": "Testing how a valuation result changes when key assumptions change",
     "duration": "9 min"
-  },
-  "shareholders-equity": {
-    "title": "What makes up Shareholders' Equity?",
-    "subtitle": "The components of equity - from paid-in capital to retained earnings",
-    "duration": "6 min"
   },
   "sharpe-ratio-la-gi": {
     "title": "What is the Sharpe Ratio?",

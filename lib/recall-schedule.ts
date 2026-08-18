@@ -269,737 +269,737 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "26": [
     {
       "fromDay": 21,
-      "fromTitle": "Kế toán là ngôn ngữ của kinh doanh",
-      "text": "Kế toán là ngôn ngữ của kinh doanh - ai cũng cần biết đọc",
+      "fromTitle": "Kiểu dữ liệu: vì sao máy phải biết trước",
+      "text": "Bộ nhớ chỉ chứa bit; kiểu dữ liệu là cách diễn giải các bit đó.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
-        "Doanh thu ≠ tiền nhận được"
+        "Chặn dữ liệu xấu ngay tại cửa vào, để thông báo lỗi chỉ đúng chỗ.",
+        "Bộ dọn rác thu hồi vùng nhớ không còn ai trỏ tới - nhưng không cứu được rò rỉ do bạn giữ."
       ]
     }
   ],
   "27": [
     {
       "fromDay": 22,
-      "fromTitle": "Doanh thu: khi nào được ghi nhận?",
-      "text": "Doanh thu ≠ tiền nhận được",
+      "fromTitle": "Số nguyên: phạm vi hữu hạn và cái bẫy tràn số",
+      "text": "Kiểu số nguyên có phạm vi hữu hạn, quyết định bởi số bit dành cho nó.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
-        "Assets = Liabilities + Equity - luôn luôn cân bằng"
+        "Chép mã bốn chỗ nghĩa là phải giữ bốn bản đồng bộ bằng trí nhớ - trí nhớ luôn thua.",
+        "Bắt lỗi rồi không làm gì là cách tệ nhất - tệ hơn cả để chương trình dừng hẳn."
       ]
     }
   ],
   "28": [
     {
       "fromDay": 23,
-      "fromTitle": "Chi phí khác dòng tiền ra thế nào?",
-      "text": "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
+      "fromTitle": "Số thực: vì sao 0,1 cộng 0,2 không ra 0,3",
+      "text": "Số thực nhị phân không biểu diễn chính xác được phần lớn số thập phân.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Assets = Liabilities + Equity - luôn luôn cân bằng"
+        "Hàm chỉ phụ thuộc tham số thì dễ kiểm thử vì không cần dựng trạng thái xung quanh.",
+        "Thông báo tốt nói: hỏng gì, dữ liệu nào gây ra, và nên làm gì tiếp."
       ]
     }
   ],
   "29": [
     {
       "fromDay": 24,
-      "fromTitle": "Lợi nhuận gộp, hoạt động, ròng",
-      "text": "Gross Profit đo hiệu quả sản xuất/kinh doanh cốt lõi",
+      "fromTitle": "Văn bản: chuỗi này dài bao nhiêu ký tự?",
+      "text": "Byte, đơn vị mã và ký tự người đọc là ba đơn vị đo khác nhau của văn bản.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ"
+        "Biến cục bộ sống trong một lượt gọi rồi biến mất, nên hai lượt gọi độc lập nhau.",
+        "Chia đôi phạm vi bằng cách in giá trị ở giữa chuỗi xử lý; vài lần là đủ."
       ]
     }
   ],
   "30": [
     {
       "fromDay": 25,
-      "fromTitle": "Tài sản là gì trong kế toán?",
-      "text": "Tài sản = những gì doanh nghiệp sở hữu và kiểm soát",
+      "fromTitle": "Giá trị rỗng: sai lầm tỉ đô",
+      "text": "Rỗng nghĩa là không biết; số không và chuỗi trống là những câu trả lời cụ thể.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ"
+        "Muốn hàm không đụng dữ liệu người gọi thì tự sao chép bên trong hoặc trả về bản mới.",
+        "Sửa xong thì viết bài kiểm thử tái hiện lỗi đó, để nó không quay lại."
       ]
     }
   ],
   "31": [
     {
       "fromDay": 26,
-      "fromTitle": "Nợ phải trả là gì?",
-      "text": "Nợ phải trả = nghĩa vụ phải thanh toán trong tương lai",
+      "fromTitle": "Biến và tham chiếu: vì sao sửa cái này lại đổi cái kia",
+      "text": "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ"
+        "Bộ dọn rác thu hồi vùng nhớ không còn ai trỏ tới - nhưng không cứu được rò rỉ do bạn giữ.",
+        "Thư mục thư viện đã tải thì không đưa vào Git, vì dựng lại được từ hai tệp nhỏ."
       ]
     }
   ],
   "32": [
     {
       "fromDay": 27,
-      "fromTitle": "Vốn chủ sở hữu là gì?",
-      "text": "Equity = Tài sản − Nợ phải trả",
+      "fromTitle": "Bất biến: khi không sửa được lại là tính năng",
+      "text": "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ"
+        "Bắt lỗi rồi không làm gì là cách tệ nhất - tệ hơn cả để chương trình dừng hẳn.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     }
   ],
   "33": [
     {
       "fromDay": 28,
-      "fromTitle": "Tài sản = Nợ + Vốn chủ",
-      "text": "Assets = Liabilities + Equity - luôn luôn cân bằng",
+      "fromTitle": "Lược đồ dữ liệu: bản hợp đồng giữa hai hệ thống",
+      "text": "Lược đồ là hợp đồng: bên đọc viết mã dựa vào nó và không hỏi lại bạn.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ"
+        "Thông báo tốt nói: hỏng gì, dữ liệu nào gây ra, và nên làm gì tiếp.",
+        "Đọc kỹ ba mục: tham số, giá trị trả về, trường hợp gây lỗi."
       ]
     },
     {
       "fromDay": 21,
-      "fromTitle": "Kế toán là ngôn ngữ của kinh doanh",
-      "text": "Kế toán là ngôn ngữ của kinh doanh - ai cũng cần biết đọc",
+      "fromTitle": "Kiểu dữ liệu: vì sao máy phải biết trước",
+      "text": "Kiểu quyết định phép toán nào hợp lệ, không chỉ giá trị hiện ra.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
-        "Doanh thu ≠ tiền nhận được"
+        "Viết năm dòng rồi chạy, thay vì viết bốn mươi dòng rồi mới chạy lần đầu.",
+        "Đệ quy sâu làm tràn ngăn xếp; vòng lặp không có nguy cơ đó."
       ]
     }
   ],
   "34": [
     {
       "fromDay": 29,
-      "fromTitle": "Tại sao bảng cân đối luôn phải cân?",
-      "text": "Bảng cân đối không cân = lỗi hoặc gian lận",
+      "fromTitle": "JSON, CSV và nhị phân: mỗi định dạng mất một thứ",
+      "text": "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
-        "Assets = Liabilities + Equity - luôn luôn cân bằng"
+        "Chia đôi phạm vi bằng cách in giá trị ở giữa chuỗi xử lý; vài lần là đủ.",
+        "Chú thích nói vì sao, không nói cái gì - mã đã tự nói được cái gì rồi."
       ]
     },
     {
       "fromDay": 22,
-      "fromTitle": "Doanh thu: khi nào được ghi nhận?",
-      "text": "Doanh thu ≠ tiền nhận được",
+      "fromTitle": "Số nguyên: phạm vi hữu hạn và cái bẫy tràn số",
+      "text": "Vượt phạm vi thì giá trị quay vòng chứ không dừng, và thường không báo lỗi.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
-        "Assets = Liabilities + Equity - luôn luôn cân bằng"
+        "Một hàm làm một việc; phải dùng chữ và trong tên là dấu hiệu nó làm hai.",
+        "Bắt ngoại lệ ở tầng biết phải làm gì với nó, thường không phải tầng gần chỗ lỗi."
       ]
     }
   ],
   "35": [
     {
       "fromDay": 30,
-      "fromTitle": "Khấu hao là gì?",
-      "text": "Khấu hao phân bổ chi phí tài sản dài hạn qua nhiều năm",
+      "fromTitle": "Thời gian: mốc tuyệt đối và cách con người đọc nó",
+      "text": "Lưu mốc tuyệt đối theo giờ chuẩn quốc tế, đổi sang giờ địa phương khi hiển thị.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Assets = Liabilities + Equity - luôn luôn cân bằng"
+        "Sửa xong thì viết bài kiểm thử tái hiện lỗi đó, để nó không quay lại.",
+        "Đặt tên cho các con số xuất hiện trong mã, đừng để chúng trần trụi."
       ]
     },
     {
       "fromDay": 23,
-      "fromTitle": "Chi phí khác dòng tiền ra thế nào?",
-      "text": "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
+      "fromTitle": "Số thực: vì sao 0,1 cộng 0,2 không ra 0,3",
+      "text": "Không so sánh bằng hai số thực; so khoảng cách giữa chúng với một ngưỡng.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Assets = Liabilities + Equity - luôn luôn cân bằng"
+        "Tên hàm là động từ; tên biến là danh từ.",
+        "Việc dọn dẹp tài nguyên phải chạy trên mọi đường đi, kể cả đường có lỗi."
       ]
     }
   ],
   "36": [
     {
       "fromDay": 31,
-      "fromTitle": "Hàng tồn kho là gì?",
-      "text": "Hàng tồn kho là vốn bị kẹt - cần quản lý chặt",
+      "fromTitle": "Định danh: khoá tự tăng hay mã ngẫu nhiên",
+      "text": "Khoá tự tăng gọn và sắp xếp tự nhiên, nhưng rò rỉ quy mô và cho phép đoán.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Assets = Liabilities + Equity - luôn luôn cân bằng"
+        "Thư mục thư viện đã tải thì không đưa vào Git, vì dựng lại được từ hai tệp nhỏ.",
+        "Viết bài kiểm cho trường hợp biên trước - trường hợp thường bạn đã thử tay rồi."
       ]
     },
     {
       "fromDay": 24,
-      "fromTitle": "Lợi nhuận gộp, hoạt động, ròng",
-      "text": "Gross Profit đo hiệu quả sản xuất/kinh doanh cốt lõi",
+      "fromTitle": "Văn bản: chuỗi này dài bao nhiêu ký tự?",
+      "text": "UTF-8 dùng số byte thay đổi: một byte cho chữ Latin, ba byte cho chữ tiếng Việt có dấu.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ"
+        "Biến toàn cục khiến thủ phạm sửa giá trị có thể là bất kỳ dòng nào trong chương trình.",
+        "Đổi một thứ mỗi lần, chạy, quan sát - đổi ba thứ thì không biết thứ nào có tác dụng."
       ]
     }
   ],
   "37": [
     {
       "fromDay": 32,
-      "fromTitle": "Khoản phải thu là gì?",
-      "text": "AR là tiền khách nợ - chưa chắc đã thu được",
+      "fromTitle": "Quan hệ giữa các bảng: khoá ngoại giữ dữ liệu khỏi mồ côi",
+      "text": "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Bảng cân đối không cân = lỗi hoặc gian lận"
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả.",
+        "Bốn nhóm: giữ dữ liệu, điều khiển luồng, xử lý khi hỏng, viết cho người khác đọc."
       ]
     },
     {
       "fromDay": 25,
-      "fromTitle": "Tài sản là gì trong kế toán?",
-      "text": "Tài sản = những gì doanh nghiệp sở hữu và kiểm soát",
+      "fromTitle": "Giá trị rỗng: sai lầm tỉ đô",
+      "text": "Mọi phép toán trên giá trị rỗng đều là chỗ chương trình có thể dừng đột ngột.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ"
+        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte.",
+        "Mô-đun là tệp công khai phần cần dùng và giữ phần còn lại cho riêng mình."
       ]
     }
   ],
   "38": [
     {
       "fromDay": 33,
-      "fromTitle": "Khoản phải trả là gì?",
-      "text": "AP cao = doanh nghiệp mạnh dùng tiền NCC miễn lãi",
+      "fromTitle": "Chuẩn hoá: mỗi sự thật chỉ nên nằm ở một chỗ",
+      "text": "Chuẩn hoá đưa mỗi sự thật về một chỗ duy nhất, các bảng khác trỏ tới bằng định danh.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Bảng cân đối không cân = lỗi hoặc gian lận"
+        "Đọc kỹ ba mục: tham số, giá trị trả về, trường hợp gây lỗi.",
+        "Gỡ lỗi kết thúc bằng một bài kiểm thử, không kết thúc bằng dòng sửa cuối cùng."
       ]
     },
     {
       "fromDay": 26,
-      "fromTitle": "Nợ phải trả là gì?",
-      "text": "Nợ phải trả = nghĩa vụ phải thanh toán trong tương lai",
+      "fromTitle": "Biến và tham chiếu: vì sao sửa cái này lại đổi cái kia",
+      "text": "Bản sao nông chỉ tách lớp ngoài cùng, các lớp bên trong vẫn dùng chung.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ"
+        "Đệ quy sâu làm tràn ngăn xếp; vòng lặp không có nguy cơ đó.",
+        "Cài một thư viện là kéo theo cả cây phụ thuộc gián tiếp mà bạn không kiểm soát."
       ]
     }
   ],
   "39": [
     {
       "fromDay": 34,
-      "fromTitle": "Tiền mặt trên báo cáo tài chính",
-      "text": "Cash = tài sản thanh khoản nhất, rủi ro thấp nhất",
+      "fromTitle": "Chỉ mục: vì sao cùng một truy vấn lúc nhanh lúc chậm",
+      "text": "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Bảng cân đối không cân = lỗi hoặc gian lận"
+        "Chú thích nói vì sao, không nói cái gì - mã đã tự nói được cái gì rồi.",
+        "Kiểu quyết định phép toán nào hợp lệ, không chỉ giá trị hiện ra."
       ]
     },
     {
       "fromDay": 27,
-      "fromTitle": "Vốn chủ sở hữu là gì?",
-      "text": "Equity = Tài sản − Nợ phải trả",
+      "fromTitle": "Bất biến: khi không sửa được lại là tính năng",
+      "text": "Nó đổi bộ nhớ và chút tốc độ lấy khả năng đọc hiểu và an toàn nhiều luồng.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ"
+        "Bắt ngoại lệ ở tầng biết phải làm gì với nó, thường không phải tầng gần chỗ lỗi.",
+        "Trong dấu vết ngăn xếp, tìm dòng đầu tiên thuộc mã dự án của bạn."
       ]
     }
   ],
   "40": [
     {
       "fromDay": 35,
-      "fromTitle": "Nợ ngắn hạn và nợ dài hạn",
-      "text": "Nợ ngắn hạn: đáo hạn ≤ 12 tháng - rủi ro thanh khoản cao hơn",
+      "fromTitle": "Giao dịch: hoặc cả hai cùng xảy ra, hoặc không có gì xảy ra",
+      "text": "Giao dịch biến nhiều thao tác ghi thành một đơn vị được ăn cả hoặc bỏ cả.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Bảng cân đối không cân = lỗi hoặc gian lận"
+        "Đặt tên cho các con số xuất hiện trong mã, đừng để chúng trần trụi.",
+        "Kiểu số nguyên có phạm vi hữu hạn, quyết định bởi số bit dành cho nó."
       ]
     },
     {
       "fromDay": 28,
-      "fromTitle": "Tài sản = Nợ + Vốn chủ",
-      "text": "Assets = Liabilities + Equity - luôn luôn cân bằng",
+      "fromTitle": "Lược đồ dữ liệu: bản hợp đồng giữa hai hệ thống",
+      "text": "Thêm trường cho phép rỗng là an toàn; đổi tên, đổi kiểu, xoá trường thì không.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ"
+        "Việc dọn dẹp tài nguyên phải chạy trên mọi đường đi, kể cả đường có lỗi.",
+        "Thu nhỏ đoạn mã tái hiện lỗi thường tự làm bạn tìm ra nguyên nhân."
       ]
     }
   ],
   "41": [
     {
       "fromDay": 36,
-      "fromTitle": "Vốn lưu động là gì?",
-      "text": "WC = Tài sản ngắn hạn − Nợ ngắn hạn",
+      "fromTitle": "Chất lượng dữ liệu: đo trước khi tin vào con số",
+      "text": "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "P&L: lợi nhuận qua thời gian"
+        "Viết bài kiểm cho trường hợp biên trước - trường hợp thường bạn đã thử tay rồi.",
+        "Chia số nguyên cắt cụt phần thập phân chứ không làm tròn."
       ]
     },
     {
       "fromDay": 29,
-      "fromTitle": "Tại sao bảng cân đối luôn phải cân?",
-      "text": "Bảng cân đối không cân = lỗi hoặc gian lận",
+      "fromTitle": "JSON, CSV và nhị phân: mỗi định dạng mất một thứ",
+      "text": "JSON giữ được cấu trúc lồng nhưng chỉ có vài kiểu cơ bản và không có ngày tháng.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
-        "Assets = Liabilities + Equity - luôn luôn cân bằng"
+        "Đổi một thứ mỗi lần, chạy, quan sát - đổi ba thứ thì không biết thứ nào có tác dụng.",
+        "Chú thích lỗi thời tệ hơn không có chú thích, vì người đọc tin nó."
       ]
     }
   ],
   "42": [
     {
       "fromDay": 37,
-      "fromTitle": "Working Capital vận hành doanh nghiệp",
-      "text": "CCC = DIO + DSO − DPO - đo hiệu quả quản lý vốn lưu động",
+      "fromTitle": "Nhật ký: dữ liệu về chính hệ thống của bạn",
+      "text": "Mã định danh yêu cầu là thứ nối các dòng nhật ký rời rạc thành một chuỗi.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "P&L: lợi nhuận qua thời gian"
+        "Bốn nhóm: giữ dữ liệu, điều khiển luồng, xử lý khi hỏng, viết cho người khác đọc.",
+        "Sai số tích luỹ theo số phép tính, nên vòng lặp dài là chỗ nguy hiểm nhất."
       ]
     },
     {
       "fromDay": 30,
-      "fromTitle": "Khấu hao là gì?",
-      "text": "Khấu hao phân bổ chi phí tài sản dài hạn qua nhiều năm",
+      "fromTitle": "Thời gian: mốc tuyệt đối và cách con người đọc nó",
+      "text": "Giờ địa phương không kèm múi giờ là dữ liệu đã mất thông tin.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Assets = Liabilities + Equity - luôn luôn cân bằng"
+        "Mô-đun là tệp công khai phần cần dùng và giữ phần còn lại cho riêng mình.",
+        "Bộ kiểm thử xanh chỉ chứng minh các trường hợp đã viết ra là đúng, không hơn."
       ]
     }
   ],
   "43": [
     {
       "fromDay": 38,
-      "fromTitle": "Accrual Accounting là gì?",
-      "text": "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
+      "fromTitle": "Sao lưu: bản chưa khôi phục thử thì chưa phải bản sao lưu",
+      "text": "Bản sao lưu chưa khôi phục thử chỉ là một giả định, không phải sự bảo đảm.",
       "distractors": [
-        "P&L: lợi nhuận qua thời gian",
-        "Cash accounting: ghi nhận khi tiền thực sự vào/ra"
+        "Gỡ lỗi kết thúc bằng một bài kiểm thử, không kết thúc bằng dòng sửa cuối cùng.",
+        "UTF-8 dùng số byte thay đổi: một byte cho chữ Latin, ba byte cho chữ tiếng Việt có dấu."
       ]
     },
     {
       "fromDay": 31,
-      "fromTitle": "Hàng tồn kho là gì?",
-      "text": "Hàng tồn kho là vốn bị kẹt - cần quản lý chặt",
+      "fromTitle": "Định danh: khoá tự tăng hay mã ngẫu nhiên",
+      "text": "Mã ngẫu nhiên không đoán được và sinh được ở nhiều nơi mà không xung đột.",
       "distractors": [
-        "Bảng cân đối không cân = lỗi hoặc gian lận",
-        "Assets = Liabilities + Equity - luôn luôn cân bằng"
+        "Cài một thư viện là kéo theo cả cây phụ thuộc gián tiếp mà bạn không kiểm soát.",
+        "Bài kiểm chập chờn dạy cả nhóm bỏ qua màu đỏ, nên phải sửa hoặc gỡ bỏ."
       ]
     }
   ],
   "44": [
     {
       "fromDay": 39,
-      "fromTitle": "Cash Accounting là gì?",
-      "text": "Cash accounting: ghi nhận khi tiền thực sự vào/ra",
+      "fromTitle": "Dữ liệu cá nhân: thứ không thu thập thì không làm rò rỉ được",
+      "text": "Thu thập tối thiểu: không lưu trường nào mà nghiệp vụ không thật sự cần.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "P&L: lợi nhuận qua thời gian"
+        "Kiểu quyết định phép toán nào hợp lệ, không chỉ giá trị hiện ra.",
+        "Rỗng nghĩa là không biết; số không và chuỗi trống là những câu trả lời cụ thể."
       ]
     },
     {
       "fromDay": 32,
-      "fromTitle": "Khoản phải thu là gì?",
-      "text": "AR là tiền khách nợ - chưa chắc đã thu được",
+      "fromTitle": "Quan hệ giữa các bảng: khoá ngoại giữ dữ liệu khỏi mồ côi",
+      "text": "Không có khoá ngoại thì dữ liệu mồ côi sinh ra âm thầm, không báo lỗi.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Bảng cân đối không cân = lỗi hoặc gian lận"
+        "Trong dấu vết ngăn xếp, tìm dòng đầu tiên thuộc mã dự án của bạn.",
+        "Trường hợp biên là chủ đề chạy suốt chặng - và là nơi lỗi tập trung."
       ]
     }
   ],
   "45": [
     {
       "fromDay": 40,
-      "fromTitle": "Ôn tập: Đọc ngôn ngữ kế toán",
-      "text": "Assets = Liabilities + Equity - luôn cân",
+      "fromTitle": "Ôn tập: từ một dãy bit tới một hệ thống đáng tin",
+      "text": "Kiểu dữ liệu quyết định cả giá trị lẫn phép toán hợp lệ trên một vùng bit.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "P&L: lợi nhuận qua thời gian"
+        "Kiểu số nguyên có phạm vi hữu hạn, quyết định bởi số bit dành cho nó.",
+        "Chặn rỗng ở ranh giới nhận dữ liệu tốt hơn là kiểm tra rải rác khắp nơi."
       ]
     },
     {
       "fromDay": 33,
-      "fromTitle": "Khoản phải trả là gì?",
-      "text": "AP cao = doanh nghiệp mạnh dùng tiền NCC miễn lãi",
+      "fromTitle": "Chuẩn hoá: mỗi sự thật chỉ nên nằm ở một chỗ",
+      "text": "Cái giá của chuẩn hoá là phải nối nhiều bảng khi đọc dữ liệu.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Bảng cân đối không cân = lỗi hoặc gian lận"
+        "Thu nhỏ đoạn mã tái hiện lỗi thường tự làm bạn tìm ra nguyên nhân.",
+        "Phép thử duy nhất không đánh lừa được ai: đóng tài liệu lại và tự viết."
       ]
     }
   ],
   "46": [
     {
       "fromDay": 41,
-      "fromTitle": "Bộ 3 báo cáo tài chính gồm gì?",
-      "text": "P&L: lợi nhuận qua thời gian",
+      "fromTitle": "Mạng: dữ liệu đi thành từng gói, không thành dòng liền",
+      "text": "Dữ liệu đi thành gói rời, mỗi gói tự tìm đường qua các thiết bị trung gian.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Cash accounting: ghi nhận khi tiền thực sự vào/ra"
+        "Kiểu không dấu đẩy trần trên lên gấp đôi nhưng bỏ hẳn phần âm.",
+        "Bản sao nông chỉ tách lớp ngoài cùng, các lớp bên trong vẫn dùng chung."
       ]
     },
     {
       "fromDay": 34,
-      "fromTitle": "Tiền mặt trên báo cáo tài chính",
-      "text": "Cash = tài sản thanh khoản nhất, rủi ro thấp nhất",
+      "fromTitle": "Chỉ mục: vì sao cùng một truy vấn lúc nhanh lúc chậm",
+      "text": "Chỉ mục làm đọc nhanh nhưng làm ghi chậm hơn và chiếm thêm dung lượng.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Bảng cân đối không cân = lỗi hoặc gian lận"
+        "Chú thích lỗi thời tệ hơn không có chú thích, vì người đọc tin nó.",
+        "Ngôn ngữ kiểu tĩnh bắt lỗi kiểu lúc dịch; kiểu động bắt lúc chạy."
       ]
     }
   ],
   "47": [
     {
       "fromDay": 42,
-      "fromTitle": "Income Statement: Báo cáo kết quả kinh doanh",
-      "text": "P&L đi từ Revenue xuống Net Income",
+      "fromTitle": "Địa chỉ và tên miền: bước đầu tiên của mọi lần gọi mạng",
+      "text": "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước"
+        "Không so sánh bằng hai số thực; so khoảng cách giữa chúng với một ngưỡng.",
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ."
       ]
     },
     {
       "fromDay": 35,
-      "fromTitle": "Nợ ngắn hạn và nợ dài hạn",
-      "text": "Nợ ngắn hạn: đáo hạn ≤ 12 tháng - rủi ro thanh khoản cao hơn",
+      "fromTitle": "Giao dịch: hoặc cả hai cùng xảy ra, hoặc không có gì xảy ra",
+      "text": "Thay đổi chỉ có hiệu lực với người khác sau khi được xác nhận.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Bảng cân đối không cân = lỗi hoặc gian lận"
+        "Bộ kiểm thử xanh chỉ chứng minh các trường hợp đã viết ra là đúng, không hơn.",
+        "Vượt phạm vi thì giá trị quay vòng chứ không dừng, và thường không báo lỗi."
       ]
     }
   ],
   "48": [
     {
       "fromDay": 43,
-      "fromTitle": "Revenue, COGS và Gross Profit",
-      "text": "COGS = chi phí trực tiếp để tạo ra sản phẩm",
+      "fromTitle": "Bảo đảm hay nhanh: hai cách gửi dữ liệu",
+      "text": "Cách bảo đảm giữ đúng thứ tự và gửi lại gói mất, đổi lại có độ trễ và nghẽn dòng.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước"
+        "Byte, đơn vị mã và ký tự người đọc là ba đơn vị đo khác nhau của văn bản.",
+        "Hằng số chỉ khoá cái tên, không khoá dữ liệu mà tên đó trỏ tới."
       ]
     },
     {
       "fromDay": 36,
-      "fromTitle": "Vốn lưu động là gì?",
-      "text": "WC = Tài sản ngắn hạn − Nợ ngắn hạn",
+      "fromTitle": "Chất lượng dữ liệu: đo trước khi tin vào con số",
+      "text": "Thiếu, trùng, sai định dạng và giá trị vô lý là bốn nhóm hay gặp nhất.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "P&L: lợi nhuận qua thời gian"
+        "Bài kiểm chập chờn dạy cả nhóm bỏ qua màu đỏ, nên phải sửa hoặc gỡ bỏ.",
+        "Số thực nhị phân không biểu diễn chính xác được phần lớn số thập phân."
       ]
     }
   ],
   "49": [
     {
       "fromDay": 44,
-      "fromTitle": "Operating Expense: SG&A, R&D",
-      "text": "SG&A = chi phí vận hành gián tiếp (bán hàng + quản lý)",
+      "fromTitle": "Yêu cầu và phản hồi: hình dạng của một lần gọi",
+      "text": "Một yêu cầu gồm phương thức, địa chỉ, tiêu đề và nội dung; phản hồi cũng có cấu trúc tương tự.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước"
+        "Luôn khai báo mã hoá ở mọi ranh giới: tệp, cơ sở dữ liệu, giao thức mạng.",
+        "Thay đổi phá vỡ tương thích phải làm nhiều bước, không làm trong một lần."
       ]
     },
     {
       "fromDay": 37,
-      "fromTitle": "Working Capital vận hành doanh nghiệp",
-      "text": "CCC = DIO + DSO − DPO - đo hiệu quả quản lý vốn lưu động",
+      "fromTitle": "Nhật ký: dữ liệu về chính hệ thống của bạn",
+      "text": "Ghi bằng cấu trúc có trường thay vì câu văn thì lọc và thống kê được.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "P&L: lợi nhuận qua thời gian"
+        "Trường hợp biên là chủ đề chạy suốt chặng - và là nơi lỗi tập trung.",
+        "Với tiền, dùng số nguyên đơn vị nhỏ nhất hoặc kiểu thập phân chuyên dụng."
       ]
     }
   ],
   "50": [
     {
       "fromDay": 45,
-      "fromTitle": "EBIT và Operating Income",
-      "text": "EBIT đo hiệu quả hoạt động, độc lập với cơ cấu vốn",
+      "fromTitle": "Mã trạng thái: lỗi của ai, và có nên thử lại không",
+      "text": "Nhóm lỗi người gọi nghĩa là sửa yêu cầu rồi hãy gọi lại.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "P&L: lợi nhuận qua thời gian"
+        "So sánh với rỗng thường không cho kết quả đúng như trực giác, nhất là trong SQL.",
+        "JSON giữ được cấu trúc lồng nhưng chỉ có vài kiểu cơ bản và không có ngày tháng."
       ]
     },
     {
       "fromDay": 38,
-      "fromTitle": "Accrual Accounting là gì?",
-      "text": "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
+      "fromTitle": "Sao lưu: bản chưa khôi phục thử thì chưa phải bản sao lưu",
+      "text": "Hai con số phải chốt trước: mất tối đa bao nhiêu dữ liệu, và ngừng tối đa bao lâu.",
       "distractors": [
-        "P&L: lợi nhuận qua thời gian",
-        "Cash accounting: ghi nhận khi tiền thực sự vào/ra"
+        "Phép thử duy nhất không đánh lừa được ai: đóng tài liệu lại và tự viết.",
+        "Hai chuỗi hiện ra giống hệt nhau vẫn có thể khác nhau về bit do khác dạng chuẩn hoá."
       ]
     }
   ],
   "51": [
     {
       "fromDay": 46,
-      "fromTitle": "Interest Expense và Tax Expense",
-      "text": "EBIT − Interest = EBT; EBT × (1−Tax) = Net Income",
+      "fromTitle": "API: bản hợp đồng giữa hai đội không ngồi cạnh nhau",
+      "text": "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "P&L: lợi nhuận qua thời gian"
+        "Bản sao nông chỉ tách lớp ngoài cùng, các lớp bên trong vẫn dùng chung.",
+        "Lưu mốc tuyệt đối theo giờ chuẩn quốc tế, đổi sang giờ địa phương khi hiển thị."
       ]
     },
     {
       "fromDay": 39,
-      "fromTitle": "Cash Accounting là gì?",
-      "text": "Cash accounting: ghi nhận khi tiền thực sự vào/ra",
+      "fromTitle": "Dữ liệu cá nhân: thứ không thu thập thì không làm rò rỉ được",
+      "text": "Mỗi trường cá nhân cần có mục đích rõ ràng và một thời hạn lưu trữ.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "P&L: lợi nhuận qua thời gian"
+        "Ngôn ngữ kiểu tĩnh bắt lỗi kiểu lúc dịch; kiểu động bắt lúc chạy.",
+        "Mọi phép toán trên giá trị rỗng đều là chỗ chương trình có thể dừng đột ngột."
       ]
     }
   ],
   "52": [
     {
       "fromDay": 47,
-      "fromTitle": "Net Income: ý nghĩa và giới hạn",
-      "text": "Net Income là bottom line - nhưng chỉ là con số kế toán",
+      "fromTitle": "Tài nguyên và phương thức: đặt tên cho thứ, không cho việc",
+      "text": "Địa chỉ đặt tên cho tài nguyên; phương thức mang ý định thao tác.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "P&L: lợi nhuận qua thời gian"
+        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
+        "Lịch hẹn tương lai là ngoại lệ: phải lưu kèm tên vùng, không phải độ lệch."
       ]
     },
     {
       "fromDay": 40,
-      "fromTitle": "Ôn tập: Đọc ngôn ngữ kế toán",
-      "text": "Assets = Liabilities + Equity - luôn cân",
+      "fromTitle": "Ôn tập: từ một dãy bit tới một hệ thống đáng tin",
+      "text": "Số nguyên tràn, số thực có sai số, văn bản có ba đơn vị đo - ba cái bẫy nền tảng.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "P&L: lợi nhuận qua thời gian"
+        "Vượt phạm vi thì giá trị quay vòng chứ không dừng, và thường không báo lỗi.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     }
   ],
   "53": [
     {
       "fromDay": 48,
-      "fromTitle": "Đọc Balance Sheet từ đầu đến cuối",
-      "text": "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
+      "fromTitle": "Bạn là ai và bạn được phép làm gì",
+      "text": "Xác thực trả lời bạn là ai; uỷ quyền trả lời bạn được làm gì với thứ này.",
       "distractors": [
-        "3 phần: Operating, Investing, Financing",
-        "Nợ ≤ 12 tháng = current; > 12 tháng = long-term"
+        "Hằng số chỉ khoá cái tên, không khoá dữ liệu mà tên đó trỏ tới.",
+        "Đừng dùng dữ liệu nghiệp vụ như số điện thoại làm khoá chính, vì nó đổi được."
       ]
     },
     {
       "fromDay": 41,
-      "fromTitle": "Bộ 3 báo cáo tài chính gồm gì?",
-      "text": "P&L: lợi nhuận qua thời gian",
+      "fromTitle": "Mạng: dữ liệu đi thành từng gói, không thành dòng liền",
+      "text": "Gói có thể tới lệch thứ tự, tới trùng, hoặc mất hẳn giữa đường.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Cash accounting: ghi nhận khi tiền thực sự vào/ra"
+        "Chia số nguyên cắt cụt phần thập phân chứ không làm tròn.",
+        "Truyền một đối tượng vào hàm là trao cho hàm đó quyền sửa dữ liệu gốc."
       ]
     }
   ],
   "54": [
     {
       "fromDay": 49,
-      "fromTitle": "Current Assets và Non-current Assets",
-      "text": "Current assets: tiền mặt, AR, hàng tồn kho - thanh khoản trong 1 năm",
+      "fromTitle": "Mã hoá đường truyền: vì sao ổ khoá kia có ý nghĩa",
+      "text": "Mã hoá đường truyền giải quyết ba việc: giấu nội dung, chống sửa đổi, và xác minh danh tính máy chủ.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "3 phần: Operating, Investing, Financing"
+        "Thay đổi phá vỡ tương thích phải làm nhiều bước, không làm trong một lần.",
+        "Không có khoá ngoại thì dữ liệu mồ côi sinh ra âm thầm, không báo lỗi."
       ]
     },
     {
       "fromDay": 42,
-      "fromTitle": "Income Statement: Báo cáo kết quả kinh doanh",
-      "text": "P&L đi từ Revenue xuống Net Income",
+      "fromTitle": "Địa chỉ và tên miền: bước đầu tiên của mọi lần gọi mạng",
+      "text": "Kết quả phân giải được nhớ tạm ở nhiều tầng, mỗi bản ghi có thời gian sống riêng.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước"
+        "Sai số tích luỹ theo số phép tính, nên vòng lặp dài là chỗ nguy hiểm nhất.",
+        "Nó đổi bộ nhớ và chút tốc độ lấy khả năng đọc hiểu và an toàn nhiều luồng."
       ]
     }
   ],
   "55": [
     {
       "fromDay": 50,
-      "fromTitle": "Current và Long-term Liabilities",
-      "text": "Nợ ≤ 12 tháng = current; > 12 tháng = long-term",
+      "fromTitle": "Độ trễ và băng thông: hai thứ hoàn toàn khác nhau",
+      "text": "Băng thông là lưu lượng mỗi giây; độ trễ là thời gian cho một vòng đi về.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "3 phần: Operating, Investing, Financing"
+        "JSON giữ được cấu trúc lồng nhưng chỉ có vài kiểu cơ bản và không có ngày tháng.",
+        "Chuẩn hoá đưa mỗi sự thật về một chỗ duy nhất, các bảng khác trỏ tới bằng định danh."
       ]
     },
     {
       "fromDay": 43,
-      "fromTitle": "Revenue, COGS và Gross Profit",
-      "text": "COGS = chi phí trực tiếp để tạo ra sản phẩm",
+      "fromTitle": "Bảo đảm hay nhanh: hai cách gửi dữ liệu",
+      "text": "Cách nhanh gửi xong là thôi, không thứ tự, không gửi lại, không thiết lập kết nối.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước"
+        "UTF-8 dùng số byte thay đổi: một byte cho chữ Latin, ba byte cho chữ tiếng Việt có dấu.",
+        "Lược đồ là hợp đồng: bên đọc viết mã dựa vào nó và không hỏi lại bạn."
       ]
     }
   ],
   "56": [
     {
       "fromDay": 51,
-      "fromTitle": "Shareholders' Equity gồm những gì?",
-      "text": "Equity gồm: common stock, APIC, retained earnings, treasury stock",
+      "fromTitle": "Bộ nhớ đệm: lời gọi nhanh nhất là lời gọi không xảy ra",
+      "text": "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "3 phần: Operating, Investing, Financing"
+        "Lưu mốc tuyệt đối theo giờ chuẩn quốc tế, đổi sang giờ địa phương khi hiển thị.",
+        "Ảnh chụp lịch sử không phải lặp dữ liệu, vì nó ghi lại sự thật ở một thời điểm."
       ]
     },
     {
       "fromDay": 44,
-      "fromTitle": "Operating Expense: SG&A, R&D",
-      "text": "SG&A = chi phí vận hành gián tiếp (bán hàng + quản lý)",
+      "fromTitle": "Yêu cầu và phản hồi: hình dạng của một lần gọi",
+      "text": "Mỗi yêu cầu là độc lập: máy chủ không tự nhớ yêu cầu trước.",
       "distractors": [
-        "Accrual: ghi nhận theo nghĩa vụ kinh tế, không theo tiền mặt",
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước"
+        "Rỗng nghĩa là không biết; số không và chuỗi trống là những câu trả lời cụ thể.",
+        "Mã bưu chính, số điện thoại và mã số thuế là chuỗi, dù trông như số."
       ]
     }
   ],
   "57": [
     {
       "fromDay": 52,
-      "fromTitle": "Cash Flow Statement là gì?",
-      "text": "3 phần: Operating, Investing, Financing",
+      "fromTitle": "Giới hạn tốc độ: từ chối bớt để còn phục vụ được ai đó",
+      "text": "Giới hạn theo từng người gọi ngăn lỗi của một bên lan thành sự cố chung.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "Lợi nhuận kế toán ≠ tiền thực trong tay"
+        "Lịch hẹn tương lai là ngoại lệ: phải lưu kèm tên vùng, không phải độ lệch.",
+        "Thứ tự các cột trong chỉ mục nhiều cột quyết định truy vấn nào dùng được nó."
       ]
     },
     {
       "fromDay": 45,
-      "fromTitle": "EBIT và Operating Income",
-      "text": "EBIT đo hiệu quả hoạt động, độc lập với cơ cấu vốn",
+      "fromTitle": "Mã trạng thái: lỗi của ai, và có nên thử lại không",
+      "text": "Nhóm lỗi máy chủ nghĩa là yêu cầu ổn, thử lại sau có thể thành công.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "P&L: lợi nhuận qua thời gian"
+        "Chặn rỗng ở ranh giới nhận dữ liệu tốt hơn là kiểm tra rải rác khắp nơi.",
+        "Định dạng nhị phân gọn và nhanh nhất nhưng không đọc bằng mắt được."
       ]
     }
   ],
   "58": [
     {
       "fromDay": 53,
-      "fromTitle": "Operating Cash Flow là gì?",
-      "text": "OCF = tiền thực từ kinh doanh, điều chỉnh từ Net Income",
+      "fromTitle": "Gọi hai lần: thao tác nào lặp lại được mà không hại",
+      "text": "Hết thời gian chờ không cho biết thao tác đã xảy ra hay chưa.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "3 phần: Operating, Investing, Financing"
+        "Đừng dùng dữ liệu nghiệp vụ như số điện thoại làm khoá chính, vì nó đổi được.",
+        "Thay đổi chỉ có hiệu lực với người khác sau khi được xác nhận."
       ]
     },
     {
       "fromDay": 46,
-      "fromTitle": "Interest Expense và Tax Expense",
-      "text": "EBIT − Interest = EBT; EBT × (1−Tax) = Net Income",
+      "fromTitle": "API: bản hợp đồng giữa hai đội không ngồi cạnh nhau",
+      "text": "Thêm trường mới thường an toàn; đổi tên, đổi kiểu và xoá thì không.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "P&L: lợi nhuận qua thời gian"
+        "Truyền một đối tượng vào hàm là trao cho hàm đó quyền sửa dữ liệu gốc.",
+        "Giờ địa phương không kèm múi giờ là dữ liệu đã mất thông tin."
       ]
     }
   ],
   "59": [
     {
       "fromDay": 54,
-      "fromTitle": "Investing Cash Flow là gì?",
-      "text": "ICF âm = đang đầu tư vào tương lai (CapEx, M&A)",
+      "fromTitle": "Khi một phụ thuộc chết: đừng chết theo nó",
+      "text": "Mọi lời gọi ra ngoài phải có thời hạn chờ; không có thì mặc định là chờ mãi.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "3 phần: Operating, Investing, Financing"
+        "Không có khoá ngoại thì dữ liệu mồ côi sinh ra âm thầm, không báo lỗi.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     },
     {
       "fromDay": 47,
-      "fromTitle": "Net Income: ý nghĩa và giới hạn",
-      "text": "Net Income là bottom line - nhưng chỉ là con số kế toán",
+      "fromTitle": "Tài nguyên và phương thức: đặt tên cho thứ, không cho việc",
+      "text": "Phương thức đọc phải không gây thay đổi, nên hạ tầng mới lưu đệm được nó.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "P&L: lợi nhuận qua thời gian"
+        "Nó đổi bộ nhớ và chút tốc độ lấy khả năng đọc hiểu và an toàn nhiều luồng.",
+        "Khoá tự tăng gọn và sắp xếp tự nhiên, nhưng rò rỉ quy mô và cho phép đoán."
       ]
     }
   ],
   "60": [
     {
       "fromDay": 55,
-      "fromTitle": "Financing Cash Flow là gì?",
-      "text": "FCF: vay (+), trả nợ (−), phát hành CP (+), buyback (−), cổ tức (−)",
+      "fromTitle": "Hàng đợi: nhận việc trước, làm sau",
+      "text": "Đưa vào hàng đợi những việc mà người dùng không cần kết quả ngay.",
       "distractors": [
-        "3 phần: Operating, Investing, Financing",
-        "Lợi nhuận kế toán ≠ tiền thực trong tay"
+        "Chuẩn hoá đưa mỗi sự thật về một chỗ duy nhất, các bảng khác trỏ tới bằng định danh.",
+        "Một đỉnh nhọn bất thường trong phân bố thường là dấu vết của quy trình, không phải sự thật."
       ]
     },
     {
       "fromDay": 48,
-      "fromTitle": "Đọc Balance Sheet từ đầu đến cuối",
-      "text": "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
+      "fromTitle": "Bạn là ai và bạn được phép làm gì",
+      "text": "Quyền phải kiểm trên từng bản ghi, không chỉ trên từng đường dẫn.",
       "distractors": [
-        "3 phần: Operating, Investing, Financing",
-        "Nợ ≤ 12 tháng = current; > 12 tháng = long-term"
+        "Lược đồ là hợp đồng: bên đọc viết mã dựa vào nó và không hỏi lại bạn.",
+        "Định danh nội bộ và định danh phơi ra ngoài có thể là hai trường khác nhau."
       ]
     }
   ],
   "61": [
     {
       "fromDay": 56,
-      "fromTitle": "Vì sao công ty lãi nhưng thiếu tiền?",
-      "text": "Lợi nhuận kế toán ≠ tiền thực trong tay",
+      "fromTitle": "Sự kiện: báo cho bên kia thay vì bắt họ hỏi liên tục",
+      "text": "Báo khi có chuyện đúng lúc hơn và rẻ hơn việc hỏi liên tục.",
       "distractors": [
-        "3 phần: Operating, Investing, Financing",
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt"
+        "Ảnh chụp lịch sử không phải lặp dữ liệu, vì nó ghi lại sự thật ở một thời điểm.",
+        "Không bao giờ ghi mật khẩu, thẻ ngân hàng hay dữ liệu cá nhân nhạy cảm vào nhật ký."
       ]
     },
     {
       "fromDay": 49,
-      "fromTitle": "Current Assets và Non-current Assets",
-      "text": "Current assets: tiền mặt, AR, hàng tồn kho - thanh khoản trong 1 năm",
+      "fromTitle": "Mã hoá đường truyền: vì sao ổ khoá kia có ý nghĩa",
+      "text": "Chứng chỉ chỉ chứng minh quyền kiểm soát tên miền, không chứng minh trang web lành mạnh.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "3 phần: Operating, Investing, Financing"
+        "Mã bưu chính, số điện thoại và mã số thuế là chuỗi, dù trông như số.",
+        "Quan hệ nhiều - nhiều cần một bảng trung gian, không nhồi vào một cột."
       ]
     }
   ],
   "62": [
     {
       "fromDay": 57,
-      "fromTitle": "Vì sao công ty lỗ nhưng vẫn còn tiền?",
-      "text": "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt",
+      "fromTitle": "Phiên bản: sống chung với nhiều thế hệ máy khách",
+      "text": "Chỉ ra phiên bản mới khi thay đổi phá vỡ tương thích, vì mỗi phiên bản là chi phí bảo trì.",
       "distractors": [
-        "3 phần: Operating, Investing, Financing",
-        "Lợi nhuận kế toán ≠ tiền thực trong tay"
+        "Thứ tự các cột trong chỉ mục nhiều cột quyết định truy vấn nào dùng được nó.",
+        "Hai con số phải chốt trước: mất tối đa bao nhiêu dữ liệu, và ngừng tối đa bao lâu."
       ]
     },
     {
       "fromDay": 50,
-      "fromTitle": "Current và Long-term Liabilities",
-      "text": "Nợ ≤ 12 tháng = current; > 12 tháng = long-term",
+      "fromTitle": "Độ trễ và băng thông: hai thứ hoàn toàn khác nhau",
+      "text": "Nâng băng thông không giảm được độ trễ, vì độ trễ do khoảng cách quyết định.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "3 phần: Operating, Investing, Financing"
+        "Định dạng nhị phân gọn và nhanh nhất nhưng không đọc bằng mắt được.",
+        "Cái giá của chuẩn hoá là phải nối nhiều bảng khi đọc dữ liệu."
       ]
     }
   ],
   "63": [
     {
       "fromDay": 58,
-      "fromTitle": "Free Cash Flow là gì?",
-      "text": "FCF = OCF − CapEx",
+      "fromTitle": "Đo lường: vì sao giá trị trung bình nói dối",
+      "text": "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99.",
       "distractors": [
-        "3 phần: Operating, Investing, Financing",
-        "Lợi nhuận kế toán ≠ tiền thực trong tay"
+        "Thay đổi chỉ có hiệu lực với người khác sau khi được xác nhận.",
+        "Thu thập tối thiểu: không lưu trường nào mà nghiệp vụ không thật sự cần."
       ]
     },
     {
       "fromDay": 51,
-      "fromTitle": "Shareholders' Equity gồm những gì?",
-      "text": "Equity gồm: common stock, APIC, retained earnings, treasury stock",
+      "fromTitle": "Bộ nhớ đệm: lời gọi nhanh nhất là lời gọi không xảy ra",
+      "text": "Phần khó là làm mới: biết khi nào bản đã lưu không còn đúng nữa.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "3 phần: Operating, Investing, Financing"
+        "Giờ địa phương không kèm múi giờ là dữ liệu đã mất thông tin.",
+        "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng."
       ]
     }
   ],
   "64": [
     {
       "fromDay": 59,
-      "fromTitle": "Case: Đọc báo cáo tài chính Apple/Vinamilk",
-      "text": "Apple: OCF mạnh, FCF gần bằng OCF, buyback liên tục",
+      "fromTitle": "Mọi thứ gửi tới bạn đều có thể là dối trá",
+      "text": "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
       "distractors": [
-        "Lợi nhuận kế toán ≠ tiền thực trong tay",
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt"
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ.",
+        "Dữ liệu cá nhân trong nhật ký và bản sao lưu cũng là dữ liệu cá nhân."
       ]
     },
     {
       "fromDay": 52,
-      "fromTitle": "Cash Flow Statement là gì?",
-      "text": "3 phần: Operating, Investing, Financing",
+      "fromTitle": "Giới hạn tốc độ: từ chối bớt để còn phục vụ được ai đó",
+      "text": "Phản hồi bị giới hạn nên nói rõ khi nào được gọi lại.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "Lợi nhuận kế toán ≠ tiền thực trong tay"
+        "Khoá tự tăng gọn và sắp xếp tự nhiên, nhưng rò rỉ quy mô và cho phép đoán.",
+        "Bọc cột trong một hàm ở mệnh đề lọc thường làm chỉ mục mất tác dụng."
       ]
     }
   ],
   "65": [
     {
       "fromDay": 60,
-      "fromTitle": "Ôn tập: 3 báo cáo tài chính",
-      "text": "3 báo cáo liên kết với nhau qua NI và tiền mặt",
+      "fromTitle": "Ôn tập: đường đi của một lời gọi",
+      "text": "Gói tin có thể mất, tới trùng và tới lệch thứ tự - mọi thứ khác là hệ quả.",
       "distractors": [
-        "Lợi nhuận kế toán ≠ tiền thực trong tay",
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt"
+        "Một đỉnh nhọn bất thường trong phân bố thường là dấu vết của quy trình, không phải sự thật.",
+        "Lược đồ là hợp đồng với mọi hệ thống đang đọc, nên đổi nó phải theo từng bước."
       ]
     },
     {
       "fromDay": 53,
-      "fromTitle": "Operating Cash Flow là gì?",
-      "text": "OCF = tiền thực từ kinh doanh, điều chỉnh từ Net Income",
+      "fromTitle": "Gọi hai lần: thao tác nào lặp lại được mà không hại",
+      "text": "Thao tác lặp lại vô hại thì thử lại được an toàn; thao tác không thì phải có mã chống lặp.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "3 phần: Operating, Investing, Financing"
+        "Định danh nội bộ và định danh phơi ra ngoài có thể là hai trường khác nhau.",
+        "Mức cô lập quyết định một giao dịch nhìn thấy gì từ giao dịch đang chạy song song."
       ]
     }
   ],
@@ -1009,17 +1009,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Financial Ratios là gì?",
       "text": "Ratios chuẩn hóa số liệu để so sánh công bằng",
       "distractors": [
-        "Lợi nhuận kế toán ≠ tiền thực trong tay",
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt"
+        "Ghi bằng cấu trúc có trường thay vì câu văn thì lọc và thống kê được.",
+        "Dữ liệu hỏng không báo lỗi, nên chất lượng phải được đo chủ động và định kỳ."
       ]
     },
     {
       "fromDay": 54,
-      "fromTitle": "Investing Cash Flow là gì?",
-      "text": "ICF âm = đang đầu tư vào tương lai (CapEx, M&A)",
+      "fromTitle": "Khi một phụ thuộc chết: đừng chết theo nó",
+      "text": "Ngắt mạch dừng gọi tạm thời khi một phụ thuộc đang hỏng, để không phí tài nguyên.",
       "distractors": [
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "3 phần: Operating, Investing, Financing"
+        "Quan hệ nhiều - nhiều cần một bảng trung gian, không nhồi vào một cột.",
+        "Thiếu, trùng, sai định dạng và giá trị vô lý là bốn nhóm hay gặp nhất."
       ]
     }
   ],
@@ -1029,17 +1029,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Gross Margin: Biên lợi nhuận gộp",
       "text": "Gross Margin = Gross Profit / Revenue",
       "distractors": [
-        "Lợi nhuận kế toán ≠ tiền thực trong tay",
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt"
+        "Hai con số phải chốt trước: mất tối đa bao nhiêu dữ liệu, và ngừng tối đa bao lâu.",
+        "Mỗi tầng mạng thêm phần tiêu đề riêng, nên dữ liệu thật luôn nhỏ hơn lưu lượng."
       ]
     },
     {
       "fromDay": 55,
-      "fromTitle": "Financing Cash Flow là gì?",
-      "text": "FCF: vay (+), trả nợ (−), phát hành CP (+), buyback (−), cổ tức (−)",
+      "fromTitle": "Hàng đợi: nhận việc trước, làm sau",
+      "text": "Hàng đợi làm hệ thống bền hơn và đổi lại có độ trễ nhất quán.",
       "distractors": [
-        "3 phần: Operating, Investing, Financing",
-        "Lợi nhuận kế toán ≠ tiền thực trong tay"
+        "Cái giá của chuẩn hoá là phải nối nhiều bảng khi đọc dữ liệu.",
+        "Mã định danh yêu cầu là thứ nối các dòng nhật ký rời rạc thành một chuỗi."
       ]
     }
   ],
@@ -1049,17 +1049,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Operating Margin: Biên lợi nhuận hoạt động",
       "text": "Operating Margin = EBIT / Revenue",
       "distractors": [
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt",
+        "Mỗi trường cá nhân cần có mục đích rõ ràng và một thời hạn lưu trữ.",
         "Current Ratio = Current Assets / Current Liabilities"
       ]
     },
     {
       "fromDay": 56,
-      "fromTitle": "Vì sao công ty lãi nhưng thiếu tiền?",
-      "text": "Lợi nhuận kế toán ≠ tiền thực trong tay",
+      "fromTitle": "Sự kiện: báo cho bên kia thay vì bắt họ hỏi liên tục",
+      "text": "Bên gửi phải gửi lại khi thất bại và ghi lại những lần không thành công.",
       "distractors": [
-        "3 phần: Operating, Investing, Financing",
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt"
+        "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng.",
+        "Nhật ký nhiều mà không lọc được thì cũng như không có."
       ]
     }
   ],
@@ -1075,11 +1075,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 57,
-      "fromTitle": "Vì sao công ty lỗ nhưng vẫn còn tiền?",
-      "text": "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt",
+      "fromTitle": "Phiên bản: sống chung với nhiều thế hệ máy khách",
+      "text": "Đo lưu lượng theo phiên bản, nếu không sẽ không biết khi nào tắt được cái cũ.",
       "distractors": [
-        "3 phần: Operating, Investing, Financing",
-        "Lợi nhuận kế toán ≠ tiền thực trong tay"
+        "Bọc cột trong một hàm ở mệnh đề lọc thường làm chỉ mục mất tác dụng.",
+        "Bản sao nằm cùng chỗ với dữ liệu gốc thì cùng chết trong một sự cố."
       ]
     }
   ],
@@ -1095,11 +1095,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 58,
-      "fromTitle": "Free Cash Flow là gì?",
-      "text": "FCF = OCF − CapEx",
+      "fromTitle": "Đo lường: vì sao giá trị trung bình nói dối",
+      "text": "Người dùng chậm nhất thường là khách hàng lớn nhất, không phải ngẫu nhiên.",
       "distractors": [
-        "3 phần: Operating, Investing, Financing",
-        "Lợi nhuận kế toán ≠ tiền thực trong tay"
+        "Mức cô lập quyết định một giao dịch nhìn thấy gì từ giao dịch đang chạy song song.",
+        "Mỗi trường cá nhân cần có mục đích rõ ràng và một thời hạn lưu trữ."
       ]
     }
   ],
@@ -1115,11 +1115,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 59,
-      "fromTitle": "Case: Đọc báo cáo tài chính Apple/Vinamilk",
-      "text": "Apple: OCF mạnh, FCF gần bằng OCF, buyback liên tục",
+      "fromTitle": "Mọi thứ gửi tới bạn đều có thể là dối trá",
+      "text": "Kiểm theo danh sách cho phép chặt hơn nhiều so với danh sách cấm.",
       "distractors": [
-        "Lợi nhuận kế toán ≠ tiền thực trong tay",
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt"
+        "Thiếu, trùng, sai định dạng và giá trị vô lý là bốn nhóm hay gặp nhất.",
+        "Kiểu dữ liệu quyết định cả giá trị lẫn phép toán hợp lệ trên một vùng bit."
       ]
     }
   ],
@@ -1135,11 +1135,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 60,
-      "fromTitle": "Ôn tập: 3 báo cáo tài chính",
-      "text": "3 báo cáo liên kết với nhau qua NI và tiền mặt",
+      "fromTitle": "Ôn tập: đường đi của một lời gọi",
+      "text": "Mỗi lời gọi phải có thời hạn chờ, và thao tác ghi phải chịu được việc lặp.",
       "distractors": [
-        "Lợi nhuận kế toán ≠ tiền thực trong tay",
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt"
+        "Mã định danh yêu cầu là thứ nối các dòng nhật ký rời rạc thành một chuỗi.",
+        "Giao dịch chặn trạng thái nửa vời; chỉ mục đổi tốc độ ghi lấy tốc độ đọc."
       ]
     }
   ],
@@ -1158,8 +1158,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Financial Ratios là gì?",
       "text": "Ratios chuẩn hóa số liệu để so sánh công bằng",
       "distractors": [
-        "Lợi nhuận kế toán ≠ tiền thực trong tay",
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt"
+        "Không bao giờ ghi mật khẩu, thẻ ngân hàng hay dữ liệu cá nhân nhạy cảm vào nhật ký.",
+        "Dữ liệu đi thành gói rời, mỗi gói tự tìm đường qua các thiết bị trung gian."
       ]
     }
   ],
@@ -1178,8 +1178,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Gross Margin: Biên lợi nhuận gộp",
       "text": "Gross Margin = Gross Profit / Revenue",
       "distractors": [
-        "Lợi nhuận kế toán ≠ tiền thực trong tay",
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt"
+        "Bản sao nằm cùng chỗ với dữ liệu gốc thì cùng chết trong một sự cố.",
+        "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi."
       ]
     }
   ],
@@ -1198,7 +1198,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Operating Margin: Biên lợi nhuận hoạt động",
       "text": "Operating Margin = EBIT / Revenue",
       "distractors": [
-        "Lỗ kế toán ≠ hết tiền - D&A và WC tạo ra sự khác biệt",
+        "Ẩn danh thật sự khó hơn vẻ ngoài, vì ghép nhiều trường lại vẫn định danh được.",
         "Current Ratio = Current Assets / Current Liabilities"
       ]
     }
@@ -1407,7 +1407,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 81,
       "fromTitle": "Present Value: Giá trị hiện tại",
-      "text": "PV = FV / (1+r)^n",
+      "text": "Discount rate cao → PV thấp hơn",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
         "CCC = DIO + DSO − DPO"
@@ -1547,7 +1547,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 88,
       "fromTitle": "NPV: Giá trị hiện tại ròng",
-      "text": "NPV > 0: tạo giá trị; NPV < 0: phá hủy giá trị",
+      "text": "Nhạy cảm với discount rate và dự báo FCF",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
         "Compounding: lãi trên lãi trên lãi - hàm mũ"
@@ -1556,7 +1556,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 81,
       "fromTitle": "Present Value: Giá trị hiện tại",
-      "text": "PV = FV / (1+r)^n",
+      "text": "Nền tảng của DCF valuation và mọi quyết định đầu tư",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
         "CCC = DIO + DSO − DPO"
@@ -1696,7 +1696,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 88,
       "fromTitle": "NPV: Giá trị hiện tại ròng",
-      "text": "NPV > 0: tạo giá trị; NPV < 0: phá hủy giá trị",
+      "text": "NPV > 0 là tiêu chí chính để chấp nhận dự án",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
         "Compounding: lãi trên lãi trên lãi - hàm mũ"
@@ -3709,7 +3709,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kiểm thử - chứng minh mã làm đúng",
       "text": "Bộ kiểm thử xanh chỉ chứng minh các trường hợp đã viết ra là đúng, không hơn.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
+        "Tra khoá không tồn tại: có ngôn ngữ báo lỗi, có ngôn ngữ trả về rỗng.",
         "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
       ]
     },
@@ -3729,8 +3729,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Tổng ôn chặng lập trình",
       "text": "Bốn nhóm: giữ dữ liệu, điều khiển luồng, xử lý khi hỏng, viết cho người khác đọc.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
-        "Doanh thu ≠ tiền nhận được"
+        "Bắt đầu bằng cách viết ra dữ liệu vào là gì và kết quả ra trông thế nào.",
+        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
       ]
     },
     {
@@ -3791,7 +3791,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Đọc tài liệu và thông báo lỗi",
       "text": "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
+        "Từ điển gồm các cặp khoá và giá trị; khoá là duy nhất trong một từ điển.",
         "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
       ]
     }
@@ -3811,7 +3811,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Viết mã người khác đọc được",
       "text": "Mã được đọc nhiều lần hơn số lần được viết, nên tối ưu cho người đọc gần như luôn đúng.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
+        "Gán lại một khoá đã có là ghi đè lặng lẽ - nguồn của lỗi mất dữ liệu khó thấy.",
         "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
       ]
     }
@@ -3831,7 +3831,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kiểm thử - chứng minh mã làm đúng",
       "text": "Bộ kiểm thử xanh chỉ chứng minh các trường hợp đã viết ra là đúng, không hơn.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
+        "Duyệt qua tất cả thì dùng danh sách; tra theo định danh thì dùng từ điển.",
         "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
       ]
     }
@@ -3851,8 +3851,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Tổng ôn chặng lập trình",
       "text": "Bốn nhóm: giữ dữ liệu, điều khiển luồng, xử lý khi hỏng, viết cho người khác đọc.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
-        "Doanh thu ≠ tiền nhận được"
+        "Khuôn hình bốn bước: đọc vào, kiểm tra, xử lý, xuất ra.",
+        "Vùng nhớ động giữ dữ liệu lớn và sống lâu hơn một lượt gọi hàm."
       ]
     }
   ],
@@ -3904,7 +3904,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Đọc tài liệu và thông báo lỗi",
       "text": "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
+        "Cần hỏi 'giá trị này có trong đó không' thì dùng tập hợp, không dùng danh sách.",
         "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
       ]
     },
@@ -3924,7 +3924,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Viết mã người khác đọc được",
       "text": "Mã được đọc nhiều lần hơn số lần được viết, nên tối ưu cho người đọc gần như luôn đúng.",
       "distractors": [
-        "Chi phí kế toán ≠ dòng tiền ra trong cùng kỳ",
+        "Tra theo khoá gần như tức thì bất kể kích thước, vì vị trí được tính từ khoá.",
         "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
       ]
     },

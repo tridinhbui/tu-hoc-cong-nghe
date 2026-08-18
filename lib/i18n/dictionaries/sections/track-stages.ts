@@ -239,10 +239,10 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 2",
-          name: "Đọc mã nguồn người khác viết",
+          name: "Mạng và giao tiếp giữa các hệ thống",
           parts: [
-            "Lần theo luồng gọi và trạng thái",
-            "Đọc log, stack trace và case thực tế",
+            "Đường đi của một lời gọi",
+            "Chịu lỗi, đo lường và bảo mật",
             "Đọc sâu: chú thích, độ phủ kiểm thử và kết quả review",
           ],
         },
@@ -803,10 +803,10 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 2",
-          name: "Reading code somebody else wrote",
+          name: "Networking and service-to-service calls",
           parts: [
-            "Following the call flow and the state",
-            "Reading logs, stack traces and a real case",
+            "The path of a single request",
+            "Failure, measurement and security",
             "Deeper reading: comments, test coverage and review outcomes",
           ],
         },
