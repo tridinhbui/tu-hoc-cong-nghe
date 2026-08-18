@@ -253,8 +253,11 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 4",
-          name: "Độ phức tạp và chi phí tính toán",
-          parts: ["Big-O, phân tích khấu hao và cận dưới", "Cache, độ định vị dữ liệu và ứng dụng"],
+          name: "Đo lường sản phẩm và chọn việc",
+          parts: [
+            "Đo cho đúng: chỉ số, nhóm và thử nghiệm",
+            "Chọn cho đúng: ưu tiên và kiểm chứng",
+          ],
         },
         {
           label: "Chặng 5",
@@ -817,10 +820,10 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 4",
-          name: "Complexity and the cost of computation",
+          name: "Product measurement and choosing work",
           parts: [
-            "Big-O, amortised analysis and lower bounds",
-            "Caches, data locality and where it applies",
+            "Measuring right: metrics, cohorts and experiments",
+            "Choosing right: prioritisation and validation",
           ],
         },
         {

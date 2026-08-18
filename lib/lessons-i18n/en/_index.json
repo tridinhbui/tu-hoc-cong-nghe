@@ -53,11 +53,6 @@
     "subtitle": "The concrete steps a compliance officer takes, and the legal lines that cannot be crossed",
     "duration": "10 min"
   },
-  "annuity": {
-    "title": "Annuity: level cash flows",
-    "subtitle": "A series of equal payments over a fixed period",
-    "duration": "6 min"
-  },
   "bai-cuoi-phan-tich-doanh-nghiep-hoan-chinh": {
     "title": "Final lesson - Analyze a complete company from A to Z yourself",
     "subtitle": "Applying all 200 days to a real analysis workflow"
@@ -121,11 +116,6 @@
     "title": "Behavioral portfolio management: building a system against the portfolio manager's own biases",
     "subtitle": "Checklists, pre-mortems and the structural rules professional fund managers use to protect decisions from emotion",
     "duration": "8 min"
-  },
-  "beta-la-gi": {
-    "title": "What is Beta in finance?",
-    "subtitle": "Measuring a stock's sensitivity to the broader market",
-    "duration": "6 min"
   },
   "beta-trong-danh-muc": {
     "title": "Beta in a portfolio",
@@ -205,11 +195,6 @@
     "title": "Capital Structure",
     "subtitle": "Finding the optimal mix of debt and equity",
     "duration": "9 min"
-  },
-  "capm-la-gi": {
-    "title": "What is CAPM?",
-    "subtitle": "Capital Asset Pricing Model",
-    "duration": "7 min"
   },
   "case-dinh-gia-pe-va-dcf": {
     "title": "Mini case - Valuing a company with P/E and a simple DCF",
@@ -358,11 +343,6 @@
     "subtitle": "Valuing a company by how the market is pricing similar ones",
     "duration": "9 min"
   },
-  "compounding-dau-tu": {
-    "title": "Compounding in Investing",
-    "subtitle": "The power of time and continuous reinvestment",
-    "duration": "6 min"
-  },
   "comps-thuc-chien": {
     "title": "IB & Analysis, Lesson 2: Comps in practice - choosing the right comparable companies",
     "subtitle": "Comparable company analysis goes wrong at the selection step, not at the arithmetic",
@@ -386,21 +366,6 @@
   "correlation-tuong-quan-tai-san": {
     "title": "Correlation between assets",
     "subtitle": "A measure of how much two assets move together or apart",
-    "duration": "7 min"
-  },
-  "cost-of-capital": {
-    "title": "Cost of Capital",
-    "subtitle": "Whose money are you using? How expensive is it?",
-    "duration": "6 min"
-  },
-  "cost-of-debt": {
-    "title": "Cost of Debt",
-    "subtitle": "The real after-tax interest rate on a loan",
-    "duration": "5 min"
-  },
-  "cost-of-equity": {
-    "title": "Cost of Equity",
-    "subtitle": "The return shareholders expect - no interest paid, but not free",
     "duration": "7 min"
   },
   "credit-analysis-co-ban-cho-nha-phan-tich": {
@@ -510,16 +475,6 @@
     "title": "Deep-dive case: Discontinued Operations",
     "subtitle": "Don't let Net Income fool you",
     "duration": "5 min"
-  },
-  "discount-rate": {
-    "title": "Discount Rate",
-    "subtitle": "The discount rate reflects risk and opportunity cost",
-    "duration": "6 min"
-  },
-  "discounting": {
-    "title": "Discounting: Pulling Future Money Back to the Present",
-    "subtitle": "The reverse of compounding - the basis of every valuation",
-    "duration": "6 min"
   },
   "disney-pixar-ma": {
     "title": "Disney-Pixar: horizontal M&A",
@@ -749,11 +704,6 @@
     "subtitle": "Balancing liquidity, financial income and capital allocation",
     "duration": "6 min"
   },
-  "future-value": {
-    "title": "Future Value",
-    "subtitle": "What will 1 million today become after 10 years?",
-    "duration": "5 min"
-  },
   "futures-contract-la-gi": {
     "title": "What Is a Futures Contract?",
     "subtitle": "Like a forward but standardized, exchange-traded, and safer"
@@ -893,11 +843,6 @@
     "title": "IR, Part 5: Bad news and crisis - say it before you are asked",
     "subtitle": "The sequence to follow when something goes wrong, how to write a bad-news announcement, and why drip-feeding is the worst option",
     "duration": "11 min"
-  },
-  "irr-co-ban": {
-    "title": "IRR: Internal Rate of Return",
-    "subtitle": "The discount rate that makes NPV = 0 - measuring a project's true return",
-    "duration": "7 min"
   },
   "ke-chuyen-bang-du-lieu": {
     "title": "Data Thinking, Part 5: Telling a story with data - from a table to a decision",
@@ -1157,16 +1102,6 @@
     "subtitle": "The tax shield and financial leverage",
     "duration": "6 min"
   },
-  "npv-co-ban": {
-    "title": "NPV: Net Present Value",
-    "subtitle": "Does the project create value? NPV gives the answer",
-    "duration": "7 min"
-  },
-  "npv-vs-payback": {
-    "title": "Why is NPV better than Payback?",
-    "subtitle": "Comparing project appraisal methods",
-    "duration": "6 min"
-  },
   "nudge-theory-thiet-ke-san-pham-tai-chinh": {
     "title": "Nudge theory & choice architecture: designing financial products responsibly",
     "subtitle": "From auto-enrolment to robo-advisers - how behavioural biases are applied deliberately to help customers make better decisions",
@@ -1180,11 +1115,6 @@
   "oil-gas-business-model": {
     "title": "The 4 oil & gas business models",
     "subtitle": "Production, services, transport, refining",
-    "duration": "7 min"
-  },
-  "on-tap-gia-tri-thoi-gian": {
-    "title": "Review: The Time Value of Money",
-    "subtitle": "PV, FV, NPV, IRR, WACC - connecting the whole Time Value of Money track",
     "duration": "7 min"
   },
   "on-tap-npv": {
@@ -1211,11 +1141,6 @@
     "title": "What Is an Option?",
     "subtitle": "A right - not an obligation - to buy or sell an asset"
   },
-  "payback-period": {
-    "title": "Payback Period",
-    "subtitle": "How long does it take to recover the initial investment?",
-    "duration": "5 min"
-  },
   "pb-dung-khi-nao": {
     "title": "When should P/B be used?",
     "subtitle": "Most useful for asset-heavy or financial businesses",
@@ -1225,11 +1150,6 @@
     "title": "When should P/E be used?",
     "subtitle": "The most popular ratio, but you need to understand its limits to use it right",
     "duration": "7 min"
-  },
-  "perpetuity": {
-    "title": "Perpetuity: cash flows forever",
-    "subtitle": "A level cash flow that continues indefinitely",
-    "duration": "5 min"
   },
   "phan-bo-chi-phi-va-loi-nhuan-bo-phan": {
     "title": "Planning, part 5: cost allocation - why segment profit is always contested",
@@ -1320,11 +1240,6 @@
     "title": "IB & Analysis, Lesson 3: Precedent transactions - valuing from past M&A deals",
     "subtitle": "Why M&A multiples usually sit above the trading multiples of listed companies in the same industry",
     "duration": "7 min"
-  },
-  "present-value": {
-    "title": "Present Value",
-    "subtitle": "How much is a dong received in the future worth today?",
-    "duration": "6 min"
   },
   "private-equity-la-gi": {
     "title": "What is Private Equity?",
@@ -1448,11 +1363,6 @@
   "revenue-multiple-dung-khi-nao": {
     "title": "When should Revenue Multiple be used?",
     "subtitle": "The last resort when a company has no profit yet to value it by",
-    "duration": "6 min"
-  },
-  "risk-free-rate": {
-    "title": "Risk-Free Rate and Market Risk Premium",
-    "subtitle": "The foundation of every risk pricing model",
     "duration": "6 min"
   },
   "risk-return-tradeoff": {
@@ -1657,11 +1567,6 @@
     "subtitle": "Focus on cash flow, receivables, inventory, borrowings and the notes.",
     "duration": "16 min"
   },
-  "tinh-npv-du-an": {
-    "title": "Case study: Calculating the NPV of a simple project",
-    "subtitle": "A practical application: opening a new branch - is it worth it?",
-    "duration": "7 min"
-  },
   "tom-tat-hop-va-dhdcd-bang-ai": {
     "title": "AI in Finance, Lesson 7: Summarising meetings and the AGM with AI",
     "subtitle": "Turn a long document into plans, dividends, projects and shareholder questions.",
@@ -1837,11 +1742,6 @@
     "title": "Contractors, Part 2: Retention, bonds and negative working capital",
     "subtitle": "Why winning more work leaves a contractor shorter of cash, and how much of a contract stays locked up until after the defects period",
     "duration": "11 min"
-  },
-  "wacc-co-ban": {
-    "title": "What is WACC?",
-    "subtitle": "Weighted average cost of capital - the discount rate in DCF",
-    "duration": "10 min"
   },
   "walmart-earnings": {
     "title": "The Walmart earnings story",

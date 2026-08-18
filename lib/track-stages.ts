@@ -423,15 +423,16 @@ export const TRACK_PROFESSIONAL = {
     },
     {
       label: "Chặng 4",
-      name: "Độ phức tạp và chi phí tính toán",
+      name: "Đo lường sản phẩm và chọn việc",
       days: [81, 100] as [number, number],
-      // 1047 (on-tap-npv) đúng chủ đề chặng này - bài mở màn của nó là 81
-      // present-value. Không có dòng này thì bài chỉ vào được từ trang CFA.
+      // 1047 (on-tap-npv) là bài tài chính từng bổ trợ cho chặng giá trị thời
+      // gian của tiền ở dải 81-100. Nội dung dải này đã chuyển sang đo lường
+      // sản phẩm, nên giữ tạm để bài đó không rơi khỏi giáo trình.
       extraLessonIds: [1047],
       available: true,
       parts: [
-        { name: "Big-O, phân tích khấu hao và cận dưới", days: [81, 90] as [number, number] },
-        { name: "Cache, độ định vị dữ liệu và ứng dụng", days: [91, 100] as [number, number] },
+        { name: "Đo cho đúng: chỉ số, nhóm và thử nghiệm", days: [81, 90] as [number, number] },
+        { name: "Chọn cho đúng: ưu tiên và kiểm chứng", days: [91, 100] as [number, number] },
       ],
     },
     {

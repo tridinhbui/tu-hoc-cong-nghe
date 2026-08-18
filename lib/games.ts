@@ -192,7 +192,7 @@ export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
   "formula-match": [
     { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Công thức ROE, ROA, P/E, Current Ratio" },
     { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Công thức và tác động của lãi suất" },
-    { slug: "present-value", title: "Present Value: giá trị hiện tại", subtitle: "Công thức tính giá trị theo thời gian của tiền" },
+    { slug: "10-cong-thuc-finance", title: "Present Value: giá trị hiện tại", subtitle: "Công thức tính giá trị theo thời gian của tiền" },
   ],
   "risk-category": [
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Đánh giá mức độ rủi ro và giá trị tài sản" },

@@ -22,12 +22,16 @@
    bằng lỗi mà chú thích đầu tệp mô tả: bài về GARCH hiện ra biểu đồ lãi kép,
    không lỗi, không cảnh báo. */
 export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
-  chart: ["lãi kép", "lãi đơn", "compound", "kép", "tăng trưởng", "dài hạn"],
+  // Widget này vẽ một đường cong theo thời gian. Danh sách từ khoá ban đầu chỉ
+  // có từ vựng lãi kép vì kho bài khi đó thuần tài chính; đường cong giữ chân
+  // theo nhóm người dùng dùng đúng widget ấy nên các từ sản phẩm được thêm vào.
+  chart: ["lãi kép", "lãi đơn", "compound", "kép", "tăng trưởng", "dài hạn", "giữ chân", "nhóm theo thời điểm", "cohort", "đường cong"],
   "profit-calc": ["lợi nhuận", "dòng tiền", "tiền mặt", "doanh thu", "chi phí", "ebitda", "biên", "expense", "net income", "free cash flow", "lỗ", "tồn kho", "cổ tức", "oci", "affiliate"],
   process: ["báo cáo tài chính", "ba báo cáo", "lưu chuyển", "cân đối", "p&l", "tài sản", "nợ", "vốn chủ", "dồn tích"],
   "interest-rate": ["lãi suất", "interest", "chiết khấu", "npv", "wacc", "capm", "hiện tại", "annuity", "perpetuity", "dcf", "chi phí vốn", "terminal value"],
   risk: ["rủi ro", "risk", "lợi nhuận kỳ vọng", "biến động", "danh mục"],
   bond: ["trái phiếu", "coupon", "ytm", "bond", "lợi suất", "tín dụng", "spread", "vỡ nợ", "xếp hạng"],
+  multiples: ["dung lượng", "capacity", "ước lượng", "hệ số so sánh", "số máy", "mở rộng", "tải cao điểm"],
   payoff: ["quyền chọn", "option", "payoff", "phái sinh", "call", "put", "forward", "future", "swap", "phòng hộ", "chênh lệch giá"],
   "money-vs-asset": ["tài sản", "tiêu sản", "tiền", "thuê", "mua"],
   // Loại multiples đã tạm rút khỏi WIDGET_TYPES (xem chú thích trong
