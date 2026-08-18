@@ -85,7 +85,7 @@ describe("answer positions survive the request path", () => {
   // The second pass replayed the authored `correct` indices and flattened
   // the balancing: 211 of 576 lessons came back with every answer at index
   // 0. These pin the served content to the generated content.
-  const SAMPLE_SLUGS = ["accrual-accounting", "annuity", "asset-turnover"];
+  const SAMPLE_SLUGS = ["npv-co-ban", "annuity", "asset-turnover"];
 
   it("serves the exact answer positions the generator produced", async () => {
     for (const slug of SAMPLE_SLUGS) {

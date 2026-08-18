@@ -14,11 +14,6 @@
     "subtitle": "Your brain reacts to a loss about twice as strongly as to an equivalent gain - and that quietly wrecks investment decisions",
     "duration": "6 min"
   },
-  "accrual-accounting": {
-    "title": "What is accrual accounting?",
-    "subtitle": "Recognised by economic obligation, not by cash flow",
-    "duration": "6 min"
-  },
   "active-vs-passive-investing": {
     "title": "Active vs Passive Investing",
     "subtitle": "Trying to beat the market, or simply owning the whole market?"
@@ -81,11 +76,6 @@
     "title": "Cross-selling bank products and the RM's KPIs: balancing sales against the customer's interest",
     "subtitle": "How to hit the sales target while genuinely advising on real needs, rather than pushing product at people",
     "duration": "7 min"
-  },
-  "bang-can-doi-can-bang": {
-    "title": "Why must a balance sheet always balance?",
-    "subtitle": "Double-entry bookkeeping and the logic behind every number",
-    "duration": "5 min"
   },
   "bang-can-doi-ke-toan": {
     "title": "Reading a Balance Sheet",
@@ -283,11 +273,6 @@
     "title": "Small case - An exporter hedges its FX exposure",
     "subtitle": "Real-world application: protecting export revenue from exchange-rate swings"
   },
-  "cash-accounting": {
-    "title": "What is cash accounting?",
-    "subtitle": "Recognised by actual cash flow - simple but limited",
-    "duration": "5 min"
-  },
   "cash-conversion-cycle-2": {
     "title": "Cash Conversion Cycle (CCC)",
     "subtitle": "How long from putting money out to getting money back?",
@@ -327,11 +312,6 @@
     "title": "Standards & Tax, Lesson 6: Deductible and non-deductible expenses",
     "subtitle": "Why accounting profit and taxable profit are never the same number",
     "duration": "10 min"
-  },
-  "chi-phi-vs-dong-tien-ra": {
-    "title": "How does an expense differ from cash going out?",
-    "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
-    "duration": "6 min"
   },
   "chi-so-vn-index-va-von-hoa-chi-phoi": {
     "title": "Vietnam Market, Lesson 5: What the VN-Index says and what it hides",
@@ -437,11 +417,6 @@
     "title": "Vietnam Market, Lesson 4: Disclosure and corporate governance - the small investor's first line of defence",
     "subtitle": "Related-party transactions, cross-ownership, major shareholders and the signals to read in AGM documents",
     "duration": "11 min"
-  },
-  "cong-thuc-ke-toan": {
-    "title": "Assets = Liabilities + Equity",
-    "subtitle": "The basic accounting equation and why it always holds",
-    "duration": "5 min"
   },
   "cong-ty-lai-ma-het-tien": {
     "title": "Why can a profitable company run short of cash?",
@@ -675,11 +650,6 @@
     "title": "Private markets, lesson 3: measuring fund performance - IRR, MOIC, DPI, TVPI and the J-curve",
     "subtitle": "Why IRR can mislead, and which set of metrics actually tells you the money has come back",
     "duration": "12 min"
-  },
-  "doanh-thu-ghi-nhan": {
-    "title": "Revenue: when is it recognised?",
-    "subtitle": "Accrual vs cash - two different views of the same transaction",
-    "duration": "6 min"
   },
   "doanh-thu-nha-thau-theo-tien-do": {
     "title": "Contractors, Part 1: Revenue follows progress, not invoices",
@@ -973,11 +943,6 @@
     "subtitle": "Measuring production efficiency and pricing power",
     "duration": "5 min"
   },
-  "hang-ton-kho-la-gi": {
-    "title": "What is inventory?",
-    "subtitle": "Asset or burden - it depends on how it's managed",
-    "duration": "5 min"
-  },
   "hedge-fund-la-gi": {
     "title": "What is a Hedge Fund?",
     "subtitle": "A flexible fund for institutions and wealthy individuals, with lighter regulation"
@@ -1129,11 +1094,6 @@
     "subtitle": "Why recognised revenue does not always coincide with money arriving in the bank",
     "duration": "7 min"
   },
-  "ke-toan-la-gi": {
-    "title": "Accounting is the language of business",
-    "subtitle": "Why every financial decision needs accounting",
-    "duration": "5 min"
-  },
   "ke-toan-tam-ly-mental-accounting": {
     "title": "Mental accounting: why 10 million of bonus is spent differently from 10 million of salary",
     "subtitle": "Your brain files money into invisible drawers - and that makes you overspend in a way that feels perfectly logical, without your noticing",
@@ -1146,11 +1106,6 @@
   "kha-nang-chi-tra-mua-nha": {
     "title": "Stage 9, Lesson 2: How much borrowing is safe? The DTI rule",
     "subtitle": "Debt-to-income - the ratio the bank uses, and the one you should set yourself",
-    "duration": "6 min"
-  },
-  "khau-hao-co-ban": {
-    "title": "What is depreciation?",
-    "subtitle": "Why buying a 1-billion machine doesn't cut profit by 1 billion right away",
     "duration": "6 min"
   },
   "khau-hao": {
@@ -1177,16 +1132,6 @@
     "title": "Bookkeeping, Lesson 5: Closing the books - the closing entry, and why revenue restarts at zero",
     "subtitle": "Temporary and permanent accounts, the order of the closing entries, and how an accounting period actually shuts",
     "duration": "11 min"
-  },
-  "khoan-phai-thu-la-gi": {
-    "title": "What are accounts receivable?",
-    "subtitle": "Goods already sold but cash not yet in - a hidden risk in a pretty number",
-    "duration": "5 min"
-  },
-  "khoan-phai-tra-la-gi": {
-    "title": "What is accounts payable?",
-    "subtitle": "Supplier debt - a burden, or a negotiating edge?",
-    "duration": "5 min"
   },
   "khung-bao-cao-esg-csrd-sfdr-issb": {
     "title": "ESG reporting frameworks and rules: CSRD, SFDR, ISSB and TCFD",
@@ -1282,11 +1227,6 @@
     "title": "Professional Skills, Lesson 4: The career path - from analyst to decision maker",
     "subtitle": "How the skills change by level, choosing between depth and management, and how to build a professional record",
     "duration": "11 min"
-  },
-  "loi-nhuan-cac-cap-do": {
-    "title": "Gross, operating, and net profit",
-    "subtitle": "Three tiers of profit - each tells a different story",
-    "duration": "7 min"
   },
   "loi-nhuan-cong-ty-bao-hiem-va-float": {
     "title": "Pricing, Lesson 5: Where an insurer makes its money - underwriting or investing",
@@ -1417,16 +1357,6 @@
     "subtitle": "The tax shield and financial leverage",
     "duration": "6 min"
   },
-  "no-ngan-han-dai-han": {
-    "title": "Current and long-term liabilities",
-    "subtitle": "Maturity determines liquidity risk",
-    "duration": "5 min"
-  },
-  "no-phai-tra": {
-    "title": "What are liabilities?",
-    "subtitle": "Financial obligations and how they affect a business",
-    "duration": "5 min"
-  },
   "npv-co-ban": {
     "title": "NPV: Net Present Value",
     "subtitle": "Does the project create value? NPV gives the answer",
@@ -1465,11 +1395,6 @@
   "on-tap-gia-tri-thoi-gian": {
     "title": "Review: The Time Value of Money",
     "subtitle": "PV, FV, NPV, IRR, WACC - connecting the whole Time Value of Money track",
-    "duration": "7 min"
-  },
-  "on-tap-ke-toan-co-ban": {
-    "title": "Review: reading the language of accounting",
-    "subtitle": "Connecting assets, liabilities, equity and cash flow together",
     "duration": "7 min"
   },
   "on-tap-npv": {
@@ -1947,11 +1872,6 @@
     "subtitle": "ESG, materiality, greenwashing, green bonds and how carbon credits are priced.",
     "duration": "13 min"
   },
-  "tai-san-trong-ke-toan": {
-    "title": "What is an asset in accounting?",
-    "subtitle": "Current assets, non-current assets, and how they create value",
-    "duration": "6 min"
-  },
   "tam-ly-bay-dan-va-fomo-trong-dau-tu": {
     "title": "Herd behaviour and FOMO: why we buy the top and sell the bottom",
     "subtitle": "When everyone around you is talking about a stock, that is usually the most dangerous moment to buy it",
@@ -2026,11 +1946,6 @@
     "title": "Deals, Lesson 1: Accretion or dilution - the first calculation of every transaction",
     "subtitle": "The three costs of a deal, the P/E rule for all-stock transactions, and why it is not a measure of value",
     "duration": "12 min"
-  },
-  "tien-mat-bctc": {
-    "title": "Cash on the financial statements",
-    "subtitle": "Cash & equivalents - the safest slice of assets",
-    "duration": "5 min"
   },
   "tim-rui-ro-trong-bctc-bang-ai": {
     "title": "AI in Finance, Lesson 6: Finding risk in financial statements with AI",
@@ -2218,16 +2133,6 @@
     "subtitle": "A measure of how much an asset's price swings over time",
     "duration": "6 min"
   },
-  "von-chu-so-huu": {
-    "title": "What is equity?",
-    "subtitle": "What's left after subtracting all debt - who does it really belong to?",
-    "duration": "5 min"
-  },
-  "von-luu-dong-la-gi": {
-    "title": "What is working capital?",
-    "subtitle": "Working Capital - the daily fuel that runs a business",
-    "duration": "6 min"
-  },
   "von-luu-dong-nha-thau-xay-dung": {
     "title": "Contractors, Part 2: Retention, bonds and negative working capital",
     "subtitle": "Why winning more work leaves a contractor shorter of cash, and how much of a contract stays locked up until after the defects period",
@@ -2252,11 +2157,6 @@
     "title": "Working Capital Management",
     "subtitle": "Cash, inventory, receivables - the turnover cycle",
     "duration": "6 min"
-  },
-  "working-capital-van-hanh": {
-    "title": "Working Capital in running a business",
-    "subtitle": "The Cash Conversion Cycle and how to optimise operating cash flow",
-    "duration": "7 min"
   },
   "xay-dung-danh-muc-hoan-chinh-chang5": {
     "title": "Track 7, Lesson 10: Building a complete personal portfolio - Track 7 summary",

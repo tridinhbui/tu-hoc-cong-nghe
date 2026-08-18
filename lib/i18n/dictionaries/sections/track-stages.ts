@@ -231,8 +231,11 @@ export const trackStagesVi = {
       stages: [
         {
           label: "Chặng 1",
-          name: "Nền tảng ngôn ngữ và bộ nhớ",
-          parts: ["Kiểu dữ liệu và mô hình bộ nhớ", "Tham chiếu, vòng đời biến và thu gom rác"],
+          name: "Nền tảng dữ liệu",
+          parts: [
+            "Giá trị: kiểu, phạm vi và cái rỗng",
+            "Hệ thống dữ liệu: quan hệ, giao dịch và độ tin cậy",
+          ],
         },
         {
           label: "Chặng 2",
@@ -792,10 +795,10 @@ export const trackStagesEn: typeof trackStagesVi = {
       stages: [
         {
           label: "Stage 1",
-          name: "Language foundations and memory",
+          name: "Data foundations",
           parts: [
-            "Data types and the memory model",
-            "References, variable lifetime and garbage collection",
+            "Values: types, ranges and the empty case",
+            "Data systems: relations, transactions and trust",
           ],
         },
         {

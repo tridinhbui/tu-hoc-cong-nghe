@@ -373,17 +373,19 @@ export const TRACK_PROFESSIONAL = {
   stages: [
     {
       label: "Chặng 1",
-      name: "Nền tảng ngôn ngữ và bộ nhớ",
+      name: "Nền tảng dữ liệu",
       days: [21, 40] as [number, number],
-      // 1051 (khau-hao) là bài bổ trợ của 30 (khau-hao-co-ban), vốn nằm trong
-      // dải 21-40 này. Không có dòng này thì bài chỉ vào được từ trang CFA và
-      // không hiện trong giáo trình chuyên ngành.
+      // 1051 và 1244 là hai bài tài chính (khấu hao, kế toán dồn tích) từng bổ
+      // trợ cho chặng kế toán cũ ở dải 21-40. Nội dung dải này đã chuyển sang
+      // nền tảng dữ liệu, nên hai bài đó không còn liên quan - giữ tạm ở đây
+      // để chúng vẫn vào được từ giáo trình, tới khi chặng tài chính tương ứng
+      // được chuyển đổi.
       extraLessonIds: [1051, 1244],
       available: true,
       parts: [
-        { name: "Kiểu dữ liệu và mô hình bộ nhớ", days: [21, 30] as [number, number] },
+        { name: "Giá trị: kiểu, phạm vi và cái rỗng", days: [21, 30] as [number, number] },
         {
-          name: "Tham chiếu, vòng đời biến và thu gom rác",
+          name: "Hệ thống dữ liệu: quan hệ, giao dịch và độ tin cậy",
           days: [31, 40] as [number, number],
           extraLessonIds: [1244],
         },
