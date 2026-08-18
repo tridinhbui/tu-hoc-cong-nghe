@@ -32,7 +32,7 @@ export const REAL_CASE_STUDIES: CaseStudyItem[] = [
     xpReward: 800,
     coinReward: 100,
     relatedLessonSlugs: [
-      { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?" },
+      { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview" },
       { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền" },
     ],
     questions: [

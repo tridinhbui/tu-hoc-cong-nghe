@@ -85,7 +85,11 @@ describe("answer positions survive the request path", () => {
   // The second pass replayed the authored `correct` indices and flattened
   // the balancing: 211 of 576 lessons came back with every answer at index
   // 0. These pin the served content to the generated content.
-  const SAMPLE_SLUGS = ["npv-co-ban", "annuity", "asset-turnover"];
+  // Chọn từ track bonus chứ không từ dải 21-200: dải đó đang được chuyển sang
+  // nội dung công nghệ theo từng chặng hai mươi bài, nên mọi slug ở đó đều là
+  // một quả bom hẹn giờ cho bộ kiểm này. Đã nổ hai lần: accrual-accounting ở
+  // chặng 7 và asset-turnover ở chặng 9.
+  const SAMPLE_SLUGS = ["dupont-analysis", "roic", "10-cong-thuc-finance"];
 
   it("serves the exact answer positions the generator produced", async () => {
     for (const slug of SAMPLE_SLUGS) {

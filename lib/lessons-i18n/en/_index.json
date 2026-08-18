@@ -58,11 +58,6 @@
     "subtitle": "A series of equal payments over a fixed period",
     "duration": "6 min"
   },
-  "asset-turnover": {
-    "title": "Asset Turnover",
-    "subtitle": "How much revenue does each dong of assets generate?",
-    "duration": "5 min"
-  },
   "bai-cuoi-phan-tich-doanh-nghiep-hoan-chinh": {
     "title": "Final lesson - Analyze a complete company from A to Z yourself",
     "subtitle": "Applying all 200 days to a real analysis workflow"
@@ -253,11 +248,6 @@
     "subtitle": "How long from putting money out to getting money back?",
     "duration": "6 min"
   },
-  "cash-conversion-cycle": {
-    "title": "Cash Conversion Cycle",
-    "subtitle": "From cash → inventory → sale → cash collected",
-    "duration": "6 min"
-  },
   "cau-truc-family-office-single-vs-multi": {
     "title": "Family office structures: single-family, multi-family, and when to choose which",
     "subtitle": "Why a very wealthy family may still be better off without an office of its own",
@@ -442,11 +432,6 @@
     "title": "Currency Swap",
     "subtitle": "Swapping cash flows between two different currencies"
   },
-  "current-ratio": {
-    "title": "Current Ratio: Short-Term Solvency",
-    "subtitle": "Does the business have enough cash to pay its debts in the next 12 months?",
-    "duration": "5 min"
-  },
   "da-dang-hoa-danh-muc-theo-nganh": {
     "title": "Track 7, Lesson 4: Diversifying across sectors - don't put the eggs in one basket",
     "subtitle": "A portfolio of 10 different technology shares is still not real diversification.",
@@ -516,11 +501,6 @@
     "title": "IB & Analysis, Lesson 7: Deal structure - is the deal paid in cash or in stock?",
     "subtitle": "How an M&A deal is paid for decides who carries the risk and who captures the upside",
     "duration": "7 min"
-  },
-  "debt-to-equity": {
-    "title": "Debt-to-Equity",
-    "subtitle": "Financial leverage and capital-structure risk",
-    "duration": "6 min"
   },
   "default-la-gi": {
     "title": "What is a default?",
@@ -716,11 +696,6 @@
     "subtitle": "EV = market cap + debt − cash",
     "duration": "6 min"
   },
-  "eps-chi-so": {
-    "title": "EPS: Earnings Per Share",
-    "subtitle": "How much profit does each share held earn a shareholder?",
-    "duration": "5 min"
-  },
   "equity-value-vs-enterprise-value": {
     "title": "Equity Value vs Enterprise Value",
     "subtitle": "The value that belongs to shareholders differs from the value of the whole operating business",
@@ -749,11 +724,6 @@
     "title": "When should EV/EBITDA be used?",
     "subtitle": "The preferred ratio when comparing companies with different capital structures",
     "duration": "7 min"
-  },
-  "ev-ebitda-la-gi": {
-    "title": "What is EV/EBITDA?",
-    "subtitle": "The most common multiple in M&A and business comparisons",
-    "duration": "6 min"
   },
   "exit-multiple-method": {
     "title": "Exit Multiple Method",
@@ -794,11 +764,6 @@
     "title": "What is a Financial Model?",
     "subtitle": "The analyst's financial forecasting tool",
     "duration": "7 min"
-  },
-  "financial-ratios-la-gi": {
-    "title": "What are Financial Ratios?",
-    "subtitle": "Why you need ratios to compare businesses",
-    "duration": "5 min"
   },
   "financial-risk": {
     "title": "The categories of financial risk",
@@ -863,11 +828,6 @@
     "subtitle": "Delta, Gamma, Vega, Theta and Rho: the risk map of any derivatives book",
     "duration": "12 min"
   },
-  "gross-margin": {
-    "title": "Gross Margin",
-    "subtitle": "Measuring production efficiency and pricing power",
-    "duration": "5 min"
-  },
   "hedge-fund-la-gi": {
     "title": "What is a Hedge Fund?",
     "subtitle": "A flexible fund for institutions and wealthy individuals, with lighter regulation"
@@ -916,11 +876,6 @@
     "subtitle": "Why finance people abandon VLOOKUP, and how to join data from several sources without getting a single row wrong",
     "duration": "11 min"
   },
-  "interest-coverage-chi-so": {
-    "title": "Interest Coverage",
-    "subtitle": "How many times over can profit cover interest?",
-    "duration": "5 min"
-  },
   "interest-rate-swap-chuyen-sau": {
     "title": "Interest Rate Swap",
     "subtitle": "Swapping between a fixed interest rate and a floating interest rate"
@@ -933,11 +888,6 @@
   "intrinsic-value-time-value": {
     "title": "Intrinsic Value and Time Value",
     "subtitle": "The two components that make up every option's price"
-  },
-  "inventory-turnover-co-ban": {
-    "title": "Inventory Turnover: how fast stock moves",
-    "subtitle": "Whether goods sell fast or slow - a signal of operating efficiency",
-    "duration": "5 min"
   },
   "inventory-turnover": {
     "title": "Inventory",
@@ -1227,11 +1177,6 @@
     "subtitle": "Human Life Value and Capital Needs Analysis - the two ways of working out how much life cover is genuinely required",
     "duration": "7 min"
   },
-  "net-profit-margin": {
-    "title": "Net Profit Margin",
-    "subtitle": "After everything - costs, interest, and tax - how much is left?",
-    "duration": "5 min"
-  },
   "ngan-sach-va-du-bao-tai-chinh": {
     "title": "Budgeting & financial forecasting - planning in order to steer",
     "subtitle": "From forecast to replanning when reality moves",
@@ -1272,11 +1217,6 @@
     "subtitle": "Production, services, transport, refining",
     "duration": "7 min"
   },
-  "on-tap-chi-so-tai-chinh": {
-    "title": "Review: Using Ratios to Compare Businesses",
-    "subtitle": "Combining ratios for a comprehensive view",
-    "duration": "7 min"
-  },
   "on-tap-gia-tri-thoi-gian": {
     "title": "Review: The Time Value of Money",
     "subtitle": "PV, FV, NPV, IRR, WACC - connecting the whole Time Value of Money track",
@@ -1307,11 +1247,6 @@
     "subtitle": "SaaS versus airlines - fixed costs and margin expansion",
     "duration": "6 min"
   },
-  "operating-margin": {
-    "title": "Operating Margin",
-    "subtitle": "Measuring operating efficiency after indirect costs too",
-    "duration": "5 min"
-  },
   "option-la-gi": {
     "title": "What Is an Option?",
     "subtitle": "A right - not an obligation - to buy or sell an asset"
@@ -1326,20 +1261,10 @@
     "subtitle": "Most useful for asset-heavy or financial businesses",
     "duration": "6 min"
   },
-  "pb-la-gi": {
-    "title": "What is the P/B Ratio?",
-    "subtitle": "Market value versus book value - when should you use it?",
-    "duration": "5 min"
-  },
   "pe-dung-khi-nao": {
     "title": "When should P/E be used?",
     "subtitle": "The most popular ratio, but you need to understand its limits to use it right",
     "duration": "7 min"
-  },
-  "pe-la-gi": {
-    "title": "What is the P/E Ratio?",
-    "subtitle": "How many times profit does an investor pay to buy a share",
-    "duration": "6 min"
   },
   "perpetuity": {
     "title": "Perpetuity: cash flows forever",
@@ -1525,11 +1450,6 @@
     "subtitle": "The three most common families of quantitative strategy - and the mathematical or psychological logic behind each",
     "duration": "8 min"
   },
-  "quick-ratio": {
-    "title": "Quick Ratio: Acid-Test Liquidity",
-    "subtitle": "Excludes inventory - stricter than the Current Ratio",
-    "duration": "5 min"
-  },
   "quy-mo-etf-noi-va-chung-chi-quy": {
     "title": "The Vietnamese market, Lesson 7: open-ended funds, domestic ETFs and fund certificates",
     "subtitle": "How to reach diversification while your capital is still small",
@@ -1560,11 +1480,6 @@
     "subtitle": "What happens when the tax authority re-examines what has already been declared",
     "duration": "9 min"
   },
-  "receivables-turnover": {
-    "title": "Receivables Turnover",
-    "subtitle": "Collecting cash from customers fast or slow?",
-    "duration": "5 min"
-  },
   "retail-store-analysis": {
     "title": "Analysing a retail business",
     "subtitle": "Store productivity, same-store sales growth and payback period",
@@ -1584,21 +1499,6 @@
     "title": "The Risk-Return Tradeoff",
     "subtitle": "To get a higher expected return, you have to accept correspondingly higher risk",
     "duration": "6 min"
-  },
-  "roa-chi-so": {
-    "title": "ROA: Return on Assets",
-    "subtitle": "Measuring how efficiently assets generate profit",
-    "duration": "5 min"
-  },
-  "roe-chi-so": {
-    "title": "ROE: Return on Equity",
-    "subtitle": "How much do shareholders get per dong of capital invested?",
-    "duration": "6 min"
-  },
-  "roic-chi-so": {
-    "title": "ROIC: Return on Invested Capital",
-    "subtitle": "The best metric for judging the quality of a business",
-    "duration": "7 min"
   },
   "roic-phan-2": {
     "title": "Deep-dive case: ROIC Part 2 - the link to valuation",

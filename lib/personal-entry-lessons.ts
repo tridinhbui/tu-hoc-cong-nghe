@@ -240,7 +240,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
           "Chuyển 4 triệu ngay ngày lương về rồi sống bằng 16 triệu",
           "Tiêu bình thường rồi dồn phần còn lại vào cuối tháng",
           "Chia đều 4 triệu thành 30 phần nhỏ chuyển mỗi ngày",
-          "Chờ tới khi có tháng dư nhiều rồi chuyển một lần cho đủ"
+          "Chờ tới khi có một tháng dư nhiều rồi chuyển hết một lần cho đủ"
         ],
         correct: 0,
         explanation:

@@ -182,7 +182,7 @@ export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Các thuộc tính và từ vựng tiền tệ" },
   ],
   "ratio-category": [
-    { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?", subtitle: "Hiểu rõ nhóm chỉ số Thanh khoản, Sinh lời, Đòn bẩy" },
+    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Hiểu rõ nhóm chỉ số Thanh khoản, Sinh lời, Đòn bẩy" },
     { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Chỉ số lưu chuyển tiền tệ và khả năng thanh toán" },
   ],
   "term-definition": [
@@ -190,17 +190,17 @@ export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Hiểu đúng bản chất từng khái niệm" },
   ],
   "formula-match": [
-    { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?", subtitle: "Công thức ROE, ROA, P/E, Current Ratio" },
-    { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?", subtitle: "Công thức và tác động của lãi suất" },
+    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Công thức ROE, ROA, P/E, Current Ratio" },
+    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Công thức và tác động của lãi suất" },
     { slug: "present-value", title: "Present Value: giá trị hiện tại", subtitle: "Công thức tính giá trị theo thời gian của tiền" },
   ],
   "risk-category": [
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Đánh giá mức độ rủi ro và giá trị tài sản" },
-    { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?", subtitle: "Rủi ro biến động lãi suất và thị trường" },
+    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Rủi ro biến động lãi suất và thị trường" },
   ],
   "ticker-match": [
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tìm hiểu doanh nghiệp và niêm yết trên thị trường" },
-    { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?", subtitle: "Đánh giá các doanh nghiệp VN30 hàng đầu" },
+    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Đánh giá các doanh nghiệp VN30 hàng đầu" },
   ],
   "cost-category": [
     { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Phân loại chi phí cố định và chi phí biến đổi" },
@@ -209,7 +209,7 @@ export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
   "random-mix": [
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tổng hợp kiến thức nền tảng tài chính" },
     { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Tổng hợp phân tích dòng tiền & Báo cáo" },
-    { slug: "financial-ratios-la-gi", title: "Financial Ratios là gì?", subtitle: "Tổng hợp công thức và tỷ số tài chính" },
+    { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Tổng hợp công thức và tỷ số tài chính" },
   ],
 };
 

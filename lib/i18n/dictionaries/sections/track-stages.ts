@@ -248,8 +248,8 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 3",
-          name: "Chỉ số hiệu năng cơ bản",
-          parts: ["Thông lượng và độ trễ", "Hiệu quả tài nguyên và đo lường cơ bản"],
+          name: "Từ mã nguồn tới người dùng",
+          parts: ["Dựng, kiểm và đưa mã ra", "Triển khai, vận hành và học từ sự cố"],
         },
         {
           label: "Chặng 4",
@@ -812,8 +812,8 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 3",
-          name: "Basic performance metrics",
-          parts: ["Throughput and latency", "Resource efficiency and basic measurement"],
+          name: "From source code to users",
+          parts: ["Build, verify and ship", "Deploy, operate and learn from incidents"],
         },
         {
           label: "Stage 4",

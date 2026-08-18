@@ -413,12 +413,12 @@ export const TRACK_PROFESSIONAL = {
     },
     {
       label: "Chặng 3",
-      name: "Chỉ số hiệu năng cơ bản",
+      name: "Từ mã nguồn tới người dùng",
       days: [61, 80] as [number, number],
       available: true,
       parts: [
-        { name: "Thông lượng và độ trễ", days: [61, 70] as [number, number] },
-        { name: "Hiệu quả tài nguyên và đo lường cơ bản", days: [71, 80] as [number, number] },
+        { name: "Dựng, kiểm và đưa mã ra", days: [61, 70] as [number, number] },
+        { name: "Triển khai, vận hành và học từ sự cố", days: [71, 80] as [number, number] },
       ],
     },
     {
