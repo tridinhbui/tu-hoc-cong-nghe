@@ -272,8 +272,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kiểu dữ liệu: vì sao máy phải biết trước",
       "text": "Bộ nhớ chỉ chứa bit; kiểu dữ liệu là cách diễn giải các bit đó.",
       "distractors": [
-        "Chặn dữ liệu xấu ngay tại cửa vào, để thông báo lỗi chỉ đúng chỗ.",
-        "Bộ dọn rác thu hồi vùng nhớ không còn ai trỏ tới - nhưng không cứu được rò rỉ do bạn giữ."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     }
   ],
@@ -283,8 +283,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Số nguyên: phạm vi hữu hạn và cái bẫy tràn số",
       "text": "Kiểu số nguyên có phạm vi hữu hạn, quyết định bởi số bit dành cho nó.",
       "distractors": [
-        "Chép mã bốn chỗ nghĩa là phải giữ bốn bản đồng bộ bằng trí nhớ - trí nhớ luôn thua.",
-        "Bắt lỗi rồi không làm gì là cách tệ nhất - tệ hơn cả để chương trình dừng hẳn."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     }
   ],
@@ -294,8 +294,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Số thực: vì sao 0,1 cộng 0,2 không ra 0,3",
       "text": "Số thực nhị phân không biểu diễn chính xác được phần lớn số thập phân.",
       "distractors": [
-        "Hàm chỉ phụ thuộc tham số thì dễ kiểm thử vì không cần dựng trạng thái xung quanh.",
-        "Thông báo tốt nói: hỏng gì, dữ liệu nào gây ra, và nên làm gì tiếp."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau."
       ]
     }
   ],
@@ -305,8 +305,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Văn bản: chuỗi này dài bao nhiêu ký tự?",
       "text": "Byte, đơn vị mã và ký tự người đọc là ba đơn vị đo khác nhau của văn bản.",
       "distractors": [
-        "Biến cục bộ sống trong một lượt gọi rồi biến mất, nên hai lượt gọi độc lập nhau.",
-        "Chia đôi phạm vi bằng cách in giá trị ở giữa chuỗi xử lý; vài lần là đủ."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau."
       ]
     }
   ],
@@ -316,8 +316,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Giá trị rỗng: sai lầm tỉ đô",
       "text": "Rỗng nghĩa là không biết; số không và chuỗi trống là những câu trả lời cụ thể.",
       "distractors": [
-        "Muốn hàm không đụng dữ liệu người gọi thì tự sao chép bên trong hoặc trả về bản mới.",
-        "Sửa xong thì viết bài kiểm thử tái hiện lỗi đó, để nó không quay lại."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau."
       ]
     }
   ],
@@ -327,8 +327,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Biến và tham chiếu: vì sao sửa cái này lại đổi cái kia",
       "text": "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
       "distractors": [
-        "Bộ dọn rác thu hồi vùng nhớ không còn ai trỏ tới - nhưng không cứu được rò rỉ do bạn giữ.",
-        "Thư mục thư viện đã tải thì không đưa vào Git, vì dựng lại được từ hai tệp nhỏ."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau."
       ]
     }
   ],
@@ -338,8 +338,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Bất biến: khi không sửa được lại là tính năng",
       "text": "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
       "distractors": [
-        "Bắt lỗi rồi không làm gì là cách tệ nhất - tệ hơn cả để chương trình dừng hẳn.",
-        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     }
   ],
@@ -349,17 +349,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Lược đồ dữ liệu: bản hợp đồng giữa hai hệ thống",
       "text": "Lược đồ là hợp đồng: bên đọc viết mã dựa vào nó và không hỏi lại bạn.",
       "distractors": [
-        "Thông báo tốt nói: hỏng gì, dữ liệu nào gây ra, và nên làm gì tiếp.",
-        "Đọc kỹ ba mục: tham số, giá trị trả về, trường hợp gây lỗi."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     },
     {
       "fromDay": 21,
       "fromTitle": "Kiểu dữ liệu: vì sao máy phải biết trước",
-      "text": "Kiểu quyết định phép toán nào hợp lệ, không chỉ giá trị hiện ra.",
+      "text": "Bộ nhớ chỉ chứa bit; kiểu dữ liệu là cách diễn giải các bit đó.",
       "distractors": [
-        "Viết năm dòng rồi chạy, thay vì viết bốn mươi dòng rồi mới chạy lần đầu.",
-        "Đệ quy sâu làm tràn ngăn xếp; vòng lặp không có nguy cơ đó."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     }
   ],
@@ -369,17 +369,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "JSON, CSV và nhị phân: mỗi định dạng mất một thứ",
       "text": "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau.",
       "distractors": [
-        "Chia đôi phạm vi bằng cách in giá trị ở giữa chuỗi xử lý; vài lần là đủ.",
-        "Chú thích nói vì sao, không nói cái gì - mã đã tự nói được cái gì rồi."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     },
     {
       "fromDay": 22,
       "fromTitle": "Số nguyên: phạm vi hữu hạn và cái bẫy tràn số",
-      "text": "Vượt phạm vi thì giá trị quay vòng chứ không dừng, và thường không báo lỗi.",
+      "text": "Kiểu số nguyên có phạm vi hữu hạn, quyết định bởi số bit dành cho nó.",
       "distractors": [
-        "Một hàm làm một việc; phải dùng chữ và trong tên là dấu hiệu nó làm hai.",
-        "Bắt ngoại lệ ở tầng biết phải làm gì với nó, thường không phải tầng gần chỗ lỗi."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     }
   ],
@@ -389,17 +389,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Thời gian: mốc tuyệt đối và cách con người đọc nó",
       "text": "Lưu mốc tuyệt đối theo giờ chuẩn quốc tế, đổi sang giờ địa phương khi hiển thị.",
       "distractors": [
-        "Sửa xong thì viết bài kiểm thử tái hiện lỗi đó, để nó không quay lại.",
-        "Đặt tên cho các con số xuất hiện trong mã, đừng để chúng trần trụi."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     },
     {
       "fromDay": 23,
       "fromTitle": "Số thực: vì sao 0,1 cộng 0,2 không ra 0,3",
-      "text": "Không so sánh bằng hai số thực; so khoảng cách giữa chúng với một ngưỡng.",
+      "text": "Số thực nhị phân không biểu diễn chính xác được phần lớn số thập phân.",
       "distractors": [
-        "Tên hàm là động từ; tên biến là danh từ.",
-        "Việc dọn dẹp tài nguyên phải chạy trên mọi đường đi, kể cả đường có lỗi."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau."
       ]
     }
   ],
@@ -409,17 +409,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Định danh: khoá tự tăng hay mã ngẫu nhiên",
       "text": "Khoá tự tăng gọn và sắp xếp tự nhiên, nhưng rò rỉ quy mô và cho phép đoán.",
       "distractors": [
-        "Thư mục thư viện đã tải thì không đưa vào Git, vì dựng lại được từ hai tệp nhỏ.",
-        "Viết bài kiểm cho trường hợp biên trước - trường hợp thường bạn đã thử tay rồi."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     },
     {
       "fromDay": 24,
       "fromTitle": "Văn bản: chuỗi này dài bao nhiêu ký tự?",
-      "text": "UTF-8 dùng số byte thay đổi: một byte cho chữ Latin, ba byte cho chữ tiếng Việt có dấu.",
+      "text": "Byte, đơn vị mã và ký tự người đọc là ba đơn vị đo khác nhau của văn bản.",
       "distractors": [
-        "Biến toàn cục khiến thủ phạm sửa giá trị có thể là bất kỳ dòng nào trong chương trình.",
-        "Đổi một thứ mỗi lần, chạy, quan sát - đổi ba thứ thì không biết thứ nào có tác dụng."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau."
       ]
     }
   ],
@@ -429,17 +429,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Quan hệ giữa các bảng: khoá ngoại giữ dữ liệu khỏi mồ côi",
       "text": "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
       "distractors": [
-        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả.",
-        "Bốn nhóm: giữ dữ liệu, điều khiển luồng, xử lý khi hỏng, viết cho người khác đọc."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     },
     {
       "fromDay": 25,
       "fromTitle": "Giá trị rỗng: sai lầm tỉ đô",
-      "text": "Mọi phép toán trên giá trị rỗng đều là chỗ chương trình có thể dừng đột ngột.",
+      "text": "Rỗng nghĩa là không biết; số không và chuỗi trống là những câu trả lời cụ thể.",
       "distractors": [
-        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte.",
-        "Mô-đun là tệp công khai phần cần dùng và giữ phần còn lại cho riêng mình."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau."
       ]
     }
   ],
@@ -449,17 +449,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Chuẩn hoá: mỗi sự thật chỉ nên nằm ở một chỗ",
       "text": "Chuẩn hoá đưa mỗi sự thật về một chỗ duy nhất, các bảng khác trỏ tới bằng định danh.",
       "distractors": [
-        "Đọc kỹ ba mục: tham số, giá trị trả về, trường hợp gây lỗi.",
-        "Gỡ lỗi kết thúc bằng một bài kiểm thử, không kết thúc bằng dòng sửa cuối cùng."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     },
     {
       "fromDay": 26,
       "fromTitle": "Biến và tham chiếu: vì sao sửa cái này lại đổi cái kia",
-      "text": "Bản sao nông chỉ tách lớp ngoài cùng, các lớp bên trong vẫn dùng chung.",
+      "text": "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
       "distractors": [
-        "Đệ quy sâu làm tràn ngăn xếp; vòng lặp không có nguy cơ đó.",
-        "Cài một thư viện là kéo theo cả cây phụ thuộc gián tiếp mà bạn không kiểm soát."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau."
       ]
     }
   ],
@@ -469,37 +469,28 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Chỉ mục: vì sao cùng một truy vấn lúc nhanh lúc chậm",
       "text": "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng.",
       "distractors": [
-        "Chú thích nói vì sao, không nói cái gì - mã đã tự nói được cái gì rồi.",
-        "Kiểu quyết định phép toán nào hợp lệ, không chỉ giá trị hiện ra."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     },
     {
       "fromDay": 27,
       "fromTitle": "Bất biến: khi không sửa được lại là tính năng",
-      "text": "Nó đổi bộ nhớ và chút tốc độ lấy khả năng đọc hiểu và an toàn nhiều luồng.",
+      "text": "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
       "distractors": [
-        "Bắt ngoại lệ ở tầng biết phải làm gì với nó, thường không phải tầng gần chỗ lỗi.",
-        "Trong dấu vết ngăn xếp, tìm dòng đầu tiên thuộc mã dự án của bạn."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     }
   ],
   "40": [
     {
-      "fromDay": 35,
-      "fromTitle": "Giao dịch: hoặc cả hai cùng xảy ra, hoặc không có gì xảy ra",
-      "text": "Giao dịch biến nhiều thao tác ghi thành một đơn vị được ăn cả hoặc bỏ cả.",
-      "distractors": [
-        "Đặt tên cho các con số xuất hiện trong mã, đừng để chúng trần trụi.",
-        "Kiểu số nguyên có phạm vi hữu hạn, quyết định bởi số bit dành cho nó."
-      ]
-    },
-    {
       "fromDay": 28,
       "fromTitle": "Lược đồ dữ liệu: bản hợp đồng giữa hai hệ thống",
-      "text": "Thêm trường cho phép rỗng là an toàn; đổi tên, đổi kiểu, xoá trường thì không.",
+      "text": "Lược đồ là hợp đồng: bên đọc viết mã dựa vào nó và không hỏi lại bạn.",
       "distractors": [
-        "Việc dọn dẹp tài nguyên phải chạy trên mọi đường đi, kể cả đường có lỗi.",
-        "Thu nhỏ đoạn mã tái hiện lỗi thường tự làm bạn tìm ra nguyên nhân."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     }
   ],
@@ -509,17 +500,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Chất lượng dữ liệu: đo trước khi tin vào con số",
       "text": "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ.",
       "distractors": [
-        "Viết bài kiểm cho trường hợp biên trước - trường hợp thường bạn đã thử tay rồi.",
-        "Chia số nguyên cắt cụt phần thập phân chứ không làm tròn."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng."
       ]
     },
     {
       "fromDay": 29,
       "fromTitle": "JSON, CSV và nhị phân: mỗi định dạng mất một thứ",
-      "text": "JSON giữ được cấu trúc lồng nhưng chỉ có vài kiểu cơ bản và không có ngày tháng.",
+      "text": "CSV mất thông tin kiểu và không mô tả được dữ liệu lồng nhau.",
       "distractors": [
-        "Đổi một thứ mỗi lần, chạy, quan sát - đổi ba thứ thì không biết thứ nào có tác dụng.",
-        "Chú thích lỗi thời tệ hơn không có chú thích, vì người đọc tin nó."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     }
   ],
@@ -529,17 +520,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Nhật ký: dữ liệu về chính hệ thống của bạn",
       "text": "Mã định danh yêu cầu là thứ nối các dòng nhật ký rời rạc thành một chuỗi.",
       "distractors": [
-        "Bốn nhóm: giữ dữ liệu, điều khiển luồng, xử lý khi hỏng, viết cho người khác đọc.",
-        "Sai số tích luỹ theo số phép tính, nên vòng lặp dài là chỗ nguy hiểm nhất."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     },
     {
       "fromDay": 30,
       "fromTitle": "Thời gian: mốc tuyệt đối và cách con người đọc nó",
-      "text": "Giờ địa phương không kèm múi giờ là dữ liệu đã mất thông tin.",
+      "text": "Lưu mốc tuyệt đối theo giờ chuẩn quốc tế, đổi sang giờ địa phương khi hiển thị.",
       "distractors": [
-        "Mô-đun là tệp công khai phần cần dùng và giữ phần còn lại cho riêng mình.",
-        "Bộ kiểm thử xanh chỉ chứng minh các trường hợp đã viết ra là đúng, không hơn."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     }
   ],
@@ -549,17 +540,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Sao lưu: bản chưa khôi phục thử thì chưa phải bản sao lưu",
       "text": "Bản sao lưu chưa khôi phục thử chỉ là một giả định, không phải sự bảo đảm.",
       "distractors": [
-        "Gỡ lỗi kết thúc bằng một bài kiểm thử, không kết thúc bằng dòng sửa cuối cùng.",
-        "UTF-8 dùng số byte thay đổi: một byte cho chữ Latin, ba byte cho chữ tiếng Việt có dấu."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     },
     {
       "fromDay": 31,
       "fromTitle": "Định danh: khoá tự tăng hay mã ngẫu nhiên",
-      "text": "Mã ngẫu nhiên không đoán được và sinh được ở nhiều nơi mà không xung đột.",
+      "text": "Khoá tự tăng gọn và sắp xếp tự nhiên, nhưng rò rỉ quy mô và cho phép đoán.",
       "distractors": [
-        "Cài một thư viện là kéo theo cả cây phụ thuộc gián tiếp mà bạn không kiểm soát.",
-        "Bài kiểm chập chờn dạy cả nhóm bỏ qua màu đỏ, nên phải sửa hoặc gỡ bỏ."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
       ]
     }
   ],
@@ -569,17 +560,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Dữ liệu cá nhân: thứ không thu thập thì không làm rò rỉ được",
       "text": "Thu thập tối thiểu: không lưu trường nào mà nghiệp vụ không thật sự cần.",
       "distractors": [
-        "Kiểu quyết định phép toán nào hợp lệ, không chỉ giá trị hiện ra.",
-        "Rỗng nghĩa là không biết; số không và chuỗi trống là những câu trả lời cụ thể."
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ.",
+        "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng."
       ]
     },
     {
       "fromDay": 32,
       "fromTitle": "Quan hệ giữa các bảng: khoá ngoại giữ dữ liệu khỏi mồ côi",
-      "text": "Không có khoá ngoại thì dữ liệu mồ côi sinh ra âm thầm, không báo lỗi.",
+      "text": "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
       "distractors": [
-        "Trong dấu vết ngăn xếp, tìm dòng đầu tiên thuộc mã dự án của bạn.",
-        "Trường hợp biên là chủ đề chạy suốt chặng - và là nơi lỗi tập trung."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     }
   ],
@@ -589,17 +580,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: từ một dãy bit tới một hệ thống đáng tin",
       "text": "Kiểu dữ liệu quyết định cả giá trị lẫn phép toán hợp lệ trên một vùng bit.",
       "distractors": [
-        "Kiểu số nguyên có phạm vi hữu hạn, quyết định bởi số bit dành cho nó.",
-        "Chặn rỗng ở ranh giới nhận dữ liệu tốt hơn là kiểm tra rải rác khắp nơi."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     },
     {
       "fromDay": 33,
       "fromTitle": "Chuẩn hoá: mỗi sự thật chỉ nên nằm ở một chỗ",
-      "text": "Cái giá của chuẩn hoá là phải nối nhiều bảng khi đọc dữ liệu.",
+      "text": "Chuẩn hoá đưa mỗi sự thật về một chỗ duy nhất, các bảng khác trỏ tới bằng định danh.",
       "distractors": [
-        "Thu nhỏ đoạn mã tái hiện lỗi thường tự làm bạn tìm ra nguyên nhân.",
-        "Phép thử duy nhất không đánh lừa được ai: đóng tài liệu lại và tự viết."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     }
   ],
@@ -609,17 +600,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Mạng: dữ liệu đi thành từng gói, không thành dòng liền",
       "text": "Dữ liệu đi thành gói rời, mỗi gói tự tìm đường qua các thiết bị trung gian.",
       "distractors": [
-        "Kiểu không dấu đẩy trần trên lên gấp đôi nhưng bỏ hẳn phần âm.",
-        "Bản sao nông chỉ tách lớp ngoài cùng, các lớp bên trong vẫn dùng chung."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     },
     {
       "fromDay": 34,
       "fromTitle": "Chỉ mục: vì sao cùng một truy vấn lúc nhanh lúc chậm",
-      "text": "Chỉ mục làm đọc nhanh nhưng làm ghi chậm hơn và chiếm thêm dung lượng.",
+      "text": "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng.",
       "distractors": [
-        "Chú thích lỗi thời tệ hơn không có chú thích, vì người đọc tin nó.",
-        "Ngôn ngữ kiểu tĩnh bắt lỗi kiểu lúc dịch; kiểu động bắt lúc chạy."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     }
   ],
@@ -629,17 +620,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Địa chỉ và tên miền: bước đầu tiên của mọi lần gọi mạng",
       "text": "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi.",
       "distractors": [
-        "Không so sánh bằng hai số thực; so khoảng cách giữa chúng với một ngưỡng.",
-        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ."
-      ]
-    },
-    {
-      "fromDay": 35,
-      "fromTitle": "Giao dịch: hoặc cả hai cùng xảy ra, hoặc không có gì xảy ra",
-      "text": "Thay đổi chỉ có hiệu lực với người khác sau khi được xác nhận.",
-      "distractors": [
-        "Bộ kiểm thử xanh chỉ chứng minh các trường hợp đã viết ra là đúng, không hơn.",
-        "Vượt phạm vi thì giá trị quay vòng chứ không dừng, và thường không báo lỗi."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     }
   ],
@@ -649,17 +631,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Bảo đảm hay nhanh: hai cách gửi dữ liệu",
       "text": "Cách bảo đảm giữ đúng thứ tự và gửi lại gói mất, đổi lại có độ trễ và nghẽn dòng.",
       "distractors": [
-        "Byte, đơn vị mã và ký tự người đọc là ba đơn vị đo khác nhau của văn bản.",
-        "Hằng số chỉ khoá cái tên, không khoá dữ liệu mà tên đó trỏ tới."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi."
       ]
     },
     {
       "fromDay": 36,
       "fromTitle": "Chất lượng dữ liệu: đo trước khi tin vào con số",
-      "text": "Thiếu, trùng, sai định dạng và giá trị vô lý là bốn nhóm hay gặp nhất.",
+      "text": "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ.",
       "distractors": [
-        "Bài kiểm chập chờn dạy cả nhóm bỏ qua màu đỏ, nên phải sửa hoặc gỡ bỏ.",
-        "Số thực nhị phân không biểu diễn chính xác được phần lớn số thập phân."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng."
       ]
     }
   ],
@@ -669,17 +651,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Yêu cầu và phản hồi: hình dạng của một lần gọi",
       "text": "Một yêu cầu gồm phương thức, địa chỉ, tiêu đề và nội dung; phản hồi cũng có cấu trúc tương tự.",
       "distractors": [
-        "Luôn khai báo mã hoá ở mọi ranh giới: tệp, cơ sở dữ liệu, giao thức mạng.",
-        "Thay đổi phá vỡ tương thích phải làm nhiều bước, không làm trong một lần."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi."
       ]
     },
     {
       "fromDay": 37,
       "fromTitle": "Nhật ký: dữ liệu về chính hệ thống của bạn",
-      "text": "Ghi bằng cấu trúc có trường thay vì câu văn thì lọc và thống kê được.",
+      "text": "Mã định danh yêu cầu là thứ nối các dòng nhật ký rời rạc thành một chuỗi.",
       "distractors": [
-        "Trường hợp biên là chủ đề chạy suốt chặng - và là nơi lỗi tập trung.",
-        "Với tiền, dùng số nguyên đơn vị nhỏ nhất hoặc kiểu thập phân chuyên dụng."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     }
   ],
@@ -689,17 +671,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Mã trạng thái: lỗi của ai, và có nên thử lại không",
       "text": "Nhóm lỗi người gọi nghĩa là sửa yêu cầu rồi hãy gọi lại.",
       "distractors": [
-        "So sánh với rỗng thường không cho kết quả đúng như trực giác, nhất là trong SQL.",
-        "JSON giữ được cấu trúc lồng nhưng chỉ có vài kiểu cơ bản và không có ngày tháng."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     },
     {
       "fromDay": 38,
       "fromTitle": "Sao lưu: bản chưa khôi phục thử thì chưa phải bản sao lưu",
-      "text": "Hai con số phải chốt trước: mất tối đa bao nhiêu dữ liệu, và ngừng tối đa bao lâu.",
+      "text": "Bản sao lưu chưa khôi phục thử chỉ là một giả định, không phải sự bảo đảm.",
       "distractors": [
-        "Phép thử duy nhất không đánh lừa được ai: đóng tài liệu lại và tự viết.",
-        "Hai chuỗi hiện ra giống hệt nhau vẫn có thể khác nhau về bit do khác dạng chuẩn hoá."
+        "Khoá ngoại bảo đảm cột tham chiếu luôn trỏ tới một dòng có thật.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     }
   ],
@@ -709,17 +691,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "API: bản hợp đồng giữa hai đội không ngồi cạnh nhau",
       "text": "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
       "distractors": [
-        "Bản sao nông chỉ tách lớp ngoài cùng, các lớp bên trong vẫn dùng chung.",
-        "Lưu mốc tuyệt đối theo giờ chuẩn quốc tế, đổi sang giờ địa phương khi hiển thị."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi."
       ]
     },
     {
       "fromDay": 39,
       "fromTitle": "Dữ liệu cá nhân: thứ không thu thập thì không làm rò rỉ được",
-      "text": "Mỗi trường cá nhân cần có mục đích rõ ràng và một thời hạn lưu trữ.",
+      "text": "Thu thập tối thiểu: không lưu trường nào mà nghiệp vụ không thật sự cần.",
       "distractors": [
-        "Ngôn ngữ kiểu tĩnh bắt lỗi kiểu lúc dịch; kiểu động bắt lúc chạy.",
-        "Mọi phép toán trên giá trị rỗng đều là chỗ chương trình có thể dừng đột ngột."
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ.",
+        "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng."
       ]
     }
   ],
@@ -729,17 +711,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Tài nguyên và phương thức: đặt tên cho thứ, không cho việc",
       "text": "Địa chỉ đặt tên cho tài nguyên; phương thức mang ý định thao tác.",
       "distractors": [
-        "Bất biến nghĩa là tạo giá trị mới thay vì sửa giá trị cũ.",
-        "Lịch hẹn tương lai là ngoại lệ: phải lưu kèm tên vùng, không phải độ lệch."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     },
     {
       "fromDay": 40,
       "fromTitle": "Ôn tập: từ một dãy bit tới một hệ thống đáng tin",
-      "text": "Số nguyên tràn, số thực có sai số, văn bản có ba đơn vị đo - ba cái bẫy nền tảng.",
+      "text": "Kiểu dữ liệu quyết định cả giá trị lẫn phép toán hợp lệ trên một vùng bit.",
       "distractors": [
-        "Vượt phạm vi thì giá trị quay vòng chứ không dừng, và thường không báo lỗi.",
-        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     }
   ],
@@ -749,17 +731,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Bạn là ai và bạn được phép làm gì",
       "text": "Xác thực trả lời bạn là ai; uỷ quyền trả lời bạn được làm gì với thứ này.",
       "distractors": [
-        "Hằng số chỉ khoá cái tên, không khoá dữ liệu mà tên đó trỏ tới.",
-        "Đừng dùng dữ liệu nghiệp vụ như số điện thoại làm khoá chính, vì nó đổi được."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     },
     {
       "fromDay": 41,
       "fromTitle": "Mạng: dữ liệu đi thành từng gói, không thành dòng liền",
-      "text": "Gói có thể tới lệch thứ tự, tới trùng, hoặc mất hẳn giữa đường.",
+      "text": "Dữ liệu đi thành gói rời, mỗi gói tự tìm đường qua các thiết bị trung gian.",
       "distractors": [
-        "Chia số nguyên cắt cụt phần thập phân chứ không làm tròn.",
-        "Truyền một đối tượng vào hàm là trao cho hàm đó quyền sửa dữ liệu gốc."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     }
   ],
@@ -769,17 +751,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Mã hoá đường truyền: vì sao ổ khoá kia có ý nghĩa",
       "text": "Mã hoá đường truyền giải quyết ba việc: giấu nội dung, chống sửa đổi, và xác minh danh tính máy chủ.",
       "distractors": [
-        "Thay đổi phá vỡ tương thích phải làm nhiều bước, không làm trong một lần.",
-        "Không có khoá ngoại thì dữ liệu mồ côi sinh ra âm thầm, không báo lỗi."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     },
     {
       "fromDay": 42,
       "fromTitle": "Địa chỉ và tên miền: bước đầu tiên của mọi lần gọi mạng",
-      "text": "Kết quả phân giải được nhớ tạm ở nhiều tầng, mỗi bản ghi có thời gian sống riêng.",
+      "text": "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi.",
       "distractors": [
-        "Sai số tích luỹ theo số phép tính, nên vòng lặp dài là chỗ nguy hiểm nhất.",
-        "Nó đổi bộ nhớ và chút tốc độ lấy khả năng đọc hiểu và an toàn nhiều luồng."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
       ]
     }
   ],
@@ -789,17 +771,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Độ trễ và băng thông: hai thứ hoàn toàn khác nhau",
       "text": "Băng thông là lưu lượng mỗi giây; độ trễ là thời gian cho một vòng đi về.",
       "distractors": [
-        "JSON giữ được cấu trúc lồng nhưng chỉ có vài kiểu cơ bản và không có ngày tháng.",
-        "Chuẩn hoá đưa mỗi sự thật về một chỗ duy nhất, các bảng khác trỏ tới bằng định danh."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     },
     {
       "fromDay": 43,
       "fromTitle": "Bảo đảm hay nhanh: hai cách gửi dữ liệu",
-      "text": "Cách nhanh gửi xong là thôi, không thứ tự, không gửi lại, không thiết lập kết nối.",
+      "text": "Cách bảo đảm giữ đúng thứ tự và gửi lại gói mất, đổi lại có độ trễ và nghẽn dòng.",
       "distractors": [
-        "UTF-8 dùng số byte thay đổi: một byte cho chữ Latin, ba byte cho chữ tiếng Việt có dấu.",
-        "Lược đồ là hợp đồng: bên đọc viết mã dựa vào nó và không hỏi lại bạn."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi."
       ]
     }
   ],
@@ -809,17 +791,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Bộ nhớ đệm: lời gọi nhanh nhất là lời gọi không xảy ra",
       "text": "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
       "distractors": [
-        "Lưu mốc tuyệt đối theo giờ chuẩn quốc tế, đổi sang giờ địa phương khi hiển thị.",
-        "Ảnh chụp lịch sử không phải lặp dữ liệu, vì nó ghi lại sự thật ở một thời điểm."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Băng thông là lưu lượng mỗi giây; độ trễ là thời gian cho một vòng đi về."
       ]
     },
     {
       "fromDay": 44,
       "fromTitle": "Yêu cầu và phản hồi: hình dạng của một lần gọi",
-      "text": "Mỗi yêu cầu là độc lập: máy chủ không tự nhớ yêu cầu trước.",
+      "text": "Một yêu cầu gồm phương thức, địa chỉ, tiêu đề và nội dung; phản hồi cũng có cấu trúc tương tự.",
       "distractors": [
-        "Rỗng nghĩa là không biết; số không và chuỗi trống là những câu trả lời cụ thể.",
-        "Mã bưu chính, số điện thoại và mã số thuế là chuỗi, dù trông như số."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi."
       ]
     }
   ],
@@ -829,17 +811,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Giới hạn tốc độ: từ chối bớt để còn phục vụ được ai đó",
       "text": "Giới hạn theo từng người gọi ngăn lỗi của một bên lan thành sự cố chung.",
       "distractors": [
-        "Lịch hẹn tương lai là ngoại lệ: phải lưu kèm tên vùng, không phải độ lệch.",
-        "Thứ tự các cột trong chỉ mục nhiều cột quyết định truy vấn nào dùng được nó."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     },
     {
       "fromDay": 45,
       "fromTitle": "Mã trạng thái: lỗi của ai, và có nên thử lại không",
-      "text": "Nhóm lỗi máy chủ nghĩa là yêu cầu ổn, thử lại sau có thể thành công.",
+      "text": "Nhóm lỗi người gọi nghĩa là sửa yêu cầu rồi hãy gọi lại.",
       "distractors": [
-        "Chặn rỗng ở ranh giới nhận dữ liệu tốt hơn là kiểm tra rải rác khắp nơi.",
-        "Định dạng nhị phân gọn và nhanh nhất nhưng không đọc bằng mắt được."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     }
   ],
@@ -849,17 +831,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Gọi hai lần: thao tác nào lặp lại được mà không hại",
       "text": "Hết thời gian chờ không cho biết thao tác đã xảy ra hay chưa.",
       "distractors": [
-        "Đừng dùng dữ liệu nghiệp vụ như số điện thoại làm khoá chính, vì nó đổi được.",
-        "Thay đổi chỉ có hiệu lực với người khác sau khi được xác nhận."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     },
     {
       "fromDay": 46,
       "fromTitle": "API: bản hợp đồng giữa hai đội không ngồi cạnh nhau",
-      "text": "Thêm trường mới thường an toàn; đổi tên, đổi kiểu và xoá thì không.",
+      "text": "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
       "distractors": [
-        "Truyền một đối tượng vào hàm là trao cho hàm đó quyền sửa dữ liệu gốc.",
-        "Giờ địa phương không kèm múi giờ là dữ liệu đã mất thông tin."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi."
       ]
     }
   ],
@@ -869,17 +851,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Khi một phụ thuộc chết: đừng chết theo nó",
       "text": "Mọi lời gọi ra ngoài phải có thời hạn chờ; không có thì mặc định là chờ mãi.",
       "distractors": [
-        "Không có khoá ngoại thì dữ liệu mồ côi sinh ra âm thầm, không báo lỗi.",
-        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     },
     {
       "fromDay": 47,
       "fromTitle": "Tài nguyên và phương thức: đặt tên cho thứ, không cho việc",
-      "text": "Phương thức đọc phải không gây thay đổi, nên hạ tầng mới lưu đệm được nó.",
+      "text": "Địa chỉ đặt tên cho tài nguyên; phương thức mang ý định thao tác.",
       "distractors": [
-        "Nó đổi bộ nhớ và chút tốc độ lấy khả năng đọc hiểu và an toàn nhiều luồng.",
-        "Khoá tự tăng gọn và sắp xếp tự nhiên, nhưng rò rỉ quy mô và cho phép đoán."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     }
   ],
@@ -889,17 +871,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Hàng đợi: nhận việc trước, làm sau",
       "text": "Đưa vào hàng đợi những việc mà người dùng không cần kết quả ngay.",
       "distractors": [
-        "Chuẩn hoá đưa mỗi sự thật về một chỗ duy nhất, các bảng khác trỏ tới bằng định danh.",
-        "Một đỉnh nhọn bất thường trong phân bố thường là dấu vết của quy trình, không phải sự thật."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     },
     {
       "fromDay": 48,
       "fromTitle": "Bạn là ai và bạn được phép làm gì",
-      "text": "Quyền phải kiểm trên từng bản ghi, không chỉ trên từng đường dẫn.",
+      "text": "Xác thực trả lời bạn là ai; uỷ quyền trả lời bạn được làm gì với thứ này.",
       "distractors": [
-        "Lược đồ là hợp đồng: bên đọc viết mã dựa vào nó và không hỏi lại bạn.",
-        "Định danh nội bộ và định danh phơi ra ngoài có thể là hai trường khác nhau."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     }
   ],
@@ -909,17 +891,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Sự kiện: báo cho bên kia thay vì bắt họ hỏi liên tục",
       "text": "Báo khi có chuyện đúng lúc hơn và rẻ hơn việc hỏi liên tục.",
       "distractors": [
-        "Ảnh chụp lịch sử không phải lặp dữ liệu, vì nó ghi lại sự thật ở một thời điểm.",
-        "Không bao giờ ghi mật khẩu, thẻ ngân hàng hay dữ liệu cá nhân nhạy cảm vào nhật ký."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     },
     {
       "fromDay": 49,
       "fromTitle": "Mã hoá đường truyền: vì sao ổ khoá kia có ý nghĩa",
-      "text": "Chứng chỉ chỉ chứng minh quyền kiểm soát tên miền, không chứng minh trang web lành mạnh.",
+      "text": "Mã hoá đường truyền giải quyết ba việc: giấu nội dung, chống sửa đổi, và xác minh danh tính máy chủ.",
       "distractors": [
-        "Mã bưu chính, số điện thoại và mã số thuế là chuỗi, dù trông như số.",
-        "Quan hệ nhiều - nhiều cần một bảng trung gian, không nhồi vào một cột."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     }
   ],
@@ -929,17 +911,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Phiên bản: sống chung với nhiều thế hệ máy khách",
       "text": "Chỉ ra phiên bản mới khi thay đổi phá vỡ tương thích, vì mỗi phiên bản là chi phí bảo trì.",
       "distractors": [
-        "Thứ tự các cột trong chỉ mục nhiều cột quyết định truy vấn nào dùng được nó.",
-        "Hai con số phải chốt trước: mất tối đa bao nhiêu dữ liệu, và ngừng tối đa bao lâu."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     },
     {
       "fromDay": 50,
       "fromTitle": "Độ trễ và băng thông: hai thứ hoàn toàn khác nhau",
-      "text": "Nâng băng thông không giảm được độ trễ, vì độ trễ do khoảng cách quyết định.",
+      "text": "Băng thông là lưu lượng mỗi giây; độ trễ là thời gian cho một vòng đi về.",
       "distractors": [
-        "Định dạng nhị phân gọn và nhanh nhất nhưng không đọc bằng mắt được.",
-        "Cái giá của chuẩn hoá là phải nối nhiều bảng khi đọc dữ liệu."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     }
   ],
@@ -949,17 +931,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Đo lường: vì sao giá trị trung bình nói dối",
       "text": "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99.",
       "distractors": [
-        "Thay đổi chỉ có hiệu lực với người khác sau khi được xác nhận.",
-        "Thu thập tối thiểu: không lưu trường nào mà nghiệp vụ không thật sự cần."
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
+        "Ratios chuẩn hóa số liệu để so sánh công bằng"
       ]
     },
     {
       "fromDay": 51,
       "fromTitle": "Bộ nhớ đệm: lời gọi nhanh nhất là lời gọi không xảy ra",
-      "text": "Phần khó là làm mới: biết khi nào bản đã lưu không còn đúng nữa.",
+      "text": "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
       "distractors": [
-        "Giờ địa phương không kèm múi giờ là dữ liệu đã mất thông tin.",
-        "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Băng thông là lưu lượng mỗi giây; độ trễ là thời gian cho một vòng đi về."
       ]
     }
   ],
@@ -969,17 +951,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Mọi thứ gửi tới bạn đều có thể là dối trá",
       "text": "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
       "distractors": [
-        "Dữ liệu hỏng không báo lỗi, nên phải kiểm tra chủ động và định kỳ.",
-        "Dữ liệu cá nhân trong nhật ký và bản sao lưu cũng là dữ liệu cá nhân."
+        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99.",
+        "Ratios chuẩn hóa số liệu để so sánh công bằng"
       ]
     },
     {
       "fromDay": 52,
       "fromTitle": "Giới hạn tốc độ: từ chối bớt để còn phục vụ được ai đó",
-      "text": "Phản hồi bị giới hạn nên nói rõ khi nào được gọi lại.",
+      "text": "Giới hạn theo từng người gọi ngăn lỗi của một bên lan thành sự cố chung.",
       "distractors": [
-        "Khoá tự tăng gọn và sắp xếp tự nhiên, nhưng rò rỉ quy mô và cho phép đoán.",
-        "Bọc cột trong một hàm ở mệnh đề lọc thường làm chỉ mục mất tác dụng."
+        "Hợp đồng là hành vi quan sát được, không chỉ là tài liệu đã viết.",
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng."
       ]
     }
   ],
@@ -989,17 +971,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: đường đi của một lời gọi",
       "text": "Gói tin có thể mất, tới trùng và tới lệch thứ tự - mọi thứ khác là hệ quả.",
       "distractors": [
-        "Một đỉnh nhọn bất thường trong phân bố thường là dấu vết của quy trình, không phải sự thật.",
-        "Lược đồ là hợp đồng với mọi hệ thống đang đọc, nên đổi nó phải theo từng bước."
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
+        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99."
       ]
     },
     {
       "fromDay": 53,
       "fromTitle": "Gọi hai lần: thao tác nào lặp lại được mà không hại",
-      "text": "Thao tác lặp lại vô hại thì thử lại được an toàn; thao tác không thì phải có mã chống lặp.",
+      "text": "Hết thời gian chờ không cho biết thao tác đã xảy ra hay chưa.",
       "distractors": [
-        "Định danh nội bộ và định danh phơi ra ngoài có thể là hai trường khác nhau.",
-        "Mức cô lập quyết định một giao dịch nhìn thấy gì từ giao dịch đang chạy song song."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     }
   ],
@@ -1009,17 +991,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Financial Ratios là gì?",
       "text": "Ratios chuẩn hóa số liệu để so sánh công bằng",
       "distractors": [
-        "Ghi bằng cấu trúc có trường thay vì câu văn thì lọc và thống kê được.",
-        "Dữ liệu hỏng không báo lỗi, nên chất lượng phải được đo chủ động và định kỳ."
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
+        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99."
       ]
     },
     {
       "fromDay": 54,
       "fromTitle": "Khi một phụ thuộc chết: đừng chết theo nó",
-      "text": "Ngắt mạch dừng gọi tạm thời khi một phụ thuộc đang hỏng, để không phí tài nguyên.",
+      "text": "Mọi lời gọi ra ngoài phải có thời hạn chờ; không có thì mặc định là chờ mãi.",
       "distractors": [
-        "Quan hệ nhiều - nhiều cần một bảng trung gian, không nhồi vào một cột.",
-        "Thiếu, trùng, sai định dạng và giá trị vô lý là bốn nhóm hay gặp nhất."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     }
   ],
@@ -1029,17 +1011,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Gross Margin: Biên lợi nhuận gộp",
       "text": "Gross Margin = Gross Profit / Revenue",
       "distractors": [
-        "Hai con số phải chốt trước: mất tối đa bao nhiêu dữ liệu, và ngừng tối đa bao lâu.",
-        "Mỗi tầng mạng thêm phần tiêu đề riêng, nên dữ liệu thật luôn nhỏ hơn lưu lượng."
+        "Current Ratio = Current Assets / Current Liabilities",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     },
     {
       "fromDay": 55,
       "fromTitle": "Hàng đợi: nhận việc trước, làm sau",
-      "text": "Hàng đợi làm hệ thống bền hơn và đổi lại có độ trễ nhất quán.",
+      "text": "Đưa vào hàng đợi những việc mà người dùng không cần kết quả ngay.",
       "distractors": [
-        "Cái giá của chuẩn hoá là phải nối nhiều bảng khi đọc dữ liệu.",
-        "Mã định danh yêu cầu là thứ nối các dòng nhật ký rời rạc thành một chuỗi."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     }
   ],
@@ -1049,17 +1031,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Operating Margin: Biên lợi nhuận hoạt động",
       "text": "Operating Margin = EBIT / Revenue",
       "distractors": [
-        "Mỗi trường cá nhân cần có mục đích rõ ràng và một thời hạn lưu trữ.",
-        "Current Ratio = Current Assets / Current Liabilities"
+        "Current Ratio = Current Assets / Current Liabilities",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     },
     {
       "fromDay": 56,
       "fromTitle": "Sự kiện: báo cho bên kia thay vì bắt họ hỏi liên tục",
-      "text": "Bên gửi phải gửi lại khi thất bại và ghi lại những lần không thành công.",
+      "text": "Báo khi có chuyện đúng lúc hơn và rẻ hơn việc hỏi liên tục.",
       "distractors": [
-        "Không có chỉ mục thì thời gian truy vấn tăng tỷ lệ với số dòng của bảng.",
-        "Nhật ký nhiều mà không lọc được thì cũng như không có."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     }
   ],
@@ -1070,16 +1052,16 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Net Margin = Net Income / Revenue",
       "distractors": [
         "Current Ratio = Current Assets / Current Liabilities",
-        "D/E = Total Debt / Equity - đo đòn bẩy tài chính"
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     },
     {
       "fromDay": 57,
       "fromTitle": "Phiên bản: sống chung với nhiều thế hệ máy khách",
-      "text": "Đo lưu lượng theo phiên bản, nếu không sẽ không biết khi nào tắt được cái cũ.",
+      "text": "Chỉ ra phiên bản mới khi thay đổi phá vỡ tương thích, vì mỗi phiên bản là chi phí bảo trì.",
       "distractors": [
-        "Bọc cột trong một hàm ở mệnh đề lọc thường làm chỉ mục mất tác dụng.",
-        "Bản sao nằm cùng chỗ với dữ liệu gốc thì cùng chết trong một sự cố."
+        "Bộ nhớ đệm tồn tại ở nhiều tầng cùng lúc, và mỗi tầng có vòng đời riêng.",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     }
   ],
@@ -1090,16 +1072,16 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "ROA = Net Income / Total Assets",
       "distractors": [
         "Current Ratio = Current Assets / Current Liabilities",
-        "D/E = Total Debt / Equity - đo đòn bẩy tài chính"
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     },
     {
       "fromDay": 58,
       "fromTitle": "Đo lường: vì sao giá trị trung bình nói dối",
-      "text": "Người dùng chậm nhất thường là khách hàng lớn nhất, không phải ngẫu nhiên.",
+      "text": "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99.",
       "distractors": [
-        "Mức cô lập quyết định một giao dịch nhìn thấy gì từ giao dịch đang chạy song song.",
-        "Mỗi trường cá nhân cần có mục đích rõ ràng và một thời hạn lưu trữ."
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
+        "Ratios chuẩn hóa số liệu để so sánh công bằng"
       ]
     }
   ],
@@ -1116,10 +1098,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 59,
       "fromTitle": "Mọi thứ gửi tới bạn đều có thể là dối trá",
-      "text": "Kiểm theo danh sách cho phép chặt hơn nhiều so với danh sách cấm.",
+      "text": "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
       "distractors": [
-        "Thiếu, trùng, sai định dạng và giá trị vô lý là bốn nhóm hay gặp nhất.",
-        "Kiểu dữ liệu quyết định cả giá trị lẫn phép toán hợp lệ trên một vùng bit."
+        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99.",
+        "Ratios chuẩn hóa số liệu để so sánh công bằng"
       ]
     }
   ],
@@ -1136,10 +1118,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 60,
       "fromTitle": "Ôn tập: đường đi của một lời gọi",
-      "text": "Mỗi lời gọi phải có thời hạn chờ, và thao tác ghi phải chịu được việc lặp.",
+      "text": "Gói tin có thể mất, tới trùng và tới lệch thứ tự - mọi thứ khác là hệ quả.",
       "distractors": [
-        "Mã định danh yêu cầu là thứ nối các dòng nhật ký rời rạc thành một chuỗi.",
-        "Giao dịch chặn trạng thái nửa vời; chỉ mục đổi tốc độ ghi lấy tốc độ đọc."
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
+        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99."
       ]
     }
   ],
@@ -1158,8 +1140,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Financial Ratios là gì?",
       "text": "Ratios chuẩn hóa số liệu để so sánh công bằng",
       "distractors": [
-        "Không bao giờ ghi mật khẩu, thẻ ngân hàng hay dữ liệu cá nhân nhạy cảm vào nhật ký.",
-        "Dữ liệu đi thành gói rời, mỗi gói tự tìm đường qua các thiết bị trung gian."
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào.",
+        "Trung bình che mất phần đuôi, nên đọc theo phân vị 95 và 99."
       ]
     }
   ],
@@ -1178,8 +1160,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Gross Margin: Biên lợi nhuận gộp",
       "text": "Gross Margin = Gross Profit / Revenue",
       "distractors": [
-        "Bản sao nằm cùng chỗ với dữ liệu gốc thì cùng chết trong một sự cố.",
-        "Tên miền phải được đổi thành địa chỉ trước khi bất kỳ gói tin nào được gửi."
+        "Current Ratio = Current Assets / Current Liabilities",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     }
   ],
@@ -1198,8 +1180,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Operating Margin: Biên lợi nhuận hoạt động",
       "text": "Operating Margin = EBIT / Revenue",
       "distractors": [
-        "Ẩn danh thật sự khó hơn vẻ ngoài, vì ghép nhiều trường lại vẫn định danh được.",
-        "Current Ratio = Current Assets / Current Liabilities"
+        "Current Ratio = Current Assets / Current Liabilities",
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     }
   ],
@@ -1219,7 +1201,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Net Margin = Net Income / Revenue",
       "distractors": [
         "Current Ratio = Current Assets / Current Liabilities",
-        "D/E = Total Debt / Equity - đo đòn bẩy tài chính"
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     }
   ],
@@ -1239,7 +1221,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "ROA = Net Income / Total Assets",
       "distractors": [
         "Current Ratio = Current Assets / Current Liabilities",
-        "D/E = Total Debt / Equity - đo đòn bẩy tài chính"
+        "Mọi kiểm tra ở phía máy khách chỉ để cải thiện trải nghiệm, không phải hàng rào."
       ]
     }
   ],
@@ -1407,7 +1389,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 81,
       "fromTitle": "Present Value: Giá trị hiện tại",
-      "text": "Discount rate cao → PV thấp hơn",
+      "text": "PV = FV / (1+r)^n",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
         "CCC = DIO + DSO − DPO"
@@ -1547,7 +1529,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 88,
       "fromTitle": "NPV: Giá trị hiện tại ròng",
-      "text": "Nhạy cảm với discount rate và dự báo FCF",
+      "text": "NPV > 0: tạo giá trị; NPV < 0: phá hủy giá trị",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
         "Compounding: lãi trên lãi trên lãi - hàm mũ"
@@ -1556,7 +1538,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 81,
       "fromTitle": "Present Value: Giá trị hiện tại",
-      "text": "Nền tảng của DCF valuation và mọi quyết định đầu tư",
+      "text": "PV = FV / (1+r)^n",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
         "CCC = DIO + DSO − DPO"
@@ -1696,7 +1678,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 88,
       "fromTitle": "NPV: Giá trị hiện tại ròng",
-      "text": "NPV > 0 là tiêu chí chính để chấp nhận dự án",
+      "text": "NPV > 0: tạo giá trị; NPV < 0: phá hủy giá trị",
       "distractors": [
         "Annuity = chuỗi thanh toán đều trong thời gian cố định",
         "Compounding: lãi trên lãi trên lãi - hàm mũ"
@@ -3709,8 +3691,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kiểm thử - chứng minh mã làm đúng",
       "text": "Bộ kiểm thử xanh chỉ chứng minh các trường hợp đã viết ra là đúng, không hơn.",
       "distractors": [
-        "Tra khoá không tồn tại: có ngôn ngữ báo lỗi, có ngôn ngữ trả về rỗng.",
-        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
+        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     },
     {
@@ -3729,8 +3711,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Tổng ôn chặng lập trình",
       "text": "Bốn nhóm: giữ dữ liệu, điều khiển luồng, xử lý khi hỏng, viết cho người khác đọc.",
       "distractors": [
-        "Bắt đầu bằng cách viết ra dữ liệu vào là gì và kết quả ra trông thế nào.",
-        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     },
     {
@@ -3791,8 +3773,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Đọc tài liệu và thông báo lỗi",
       "text": "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả.",
       "distractors": [
-        "Từ điển gồm các cặp khoá và giá trị; khoá là duy nhất trong một từ điển.",
-        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
+        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte.",
+        "Bước đầu tiên luôn là tái hiện lỗi ổn định - không có nó thì không biết đã sửa xong chưa."
       ]
     }
   ],
@@ -3811,8 +3793,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Viết mã người khác đọc được",
       "text": "Mã được đọc nhiều lần hơn số lần được viết, nên tối ưu cho người đọc gần như luôn đúng.",
       "distractors": [
-        "Gán lại một khoá đã có là ghi đè lặng lẽ - nguồn của lỗi mất dữ liệu khó thấy.",
-        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
+        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     }
   ],
@@ -3831,8 +3813,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kiểm thử - chứng minh mã làm đúng",
       "text": "Bộ kiểm thử xanh chỉ chứng minh các trường hợp đã viết ra là đúng, không hơn.",
       "distractors": [
-        "Duyệt qua tất cả thì dùng danh sách; tra theo định danh thì dùng từ điển.",
-        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
+        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     }
   ],
@@ -3851,8 +3833,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Tổng ôn chặng lập trình",
       "text": "Bốn nhóm: giữ dữ liệu, điều khiển luồng, xử lý khi hỏng, viết cho người khác đọc.",
       "distractors": [
-        "Khuôn hình bốn bước: đọc vào, kiểm tra, xử lý, xuất ra.",
-        "Vùng nhớ động giữ dữ liệu lớn và sống lâu hơn một lượt gọi hàm."
+        "Kiểu tham chiếu lưu địa chỉ; phép gán sao chép địa chỉ chứ không sao chép dữ liệu.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     }
   ],
@@ -3904,8 +3886,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Đọc tài liệu và thông báo lỗi",
       "text": "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả.",
       "distractors": [
-        "Cần hỏi 'giá trị này có trong đó không' thì dùng tập hợp, không dùng danh sách.",
-        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
+        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte.",
+        "Bước đầu tiên luôn là tái hiện lỗi ổn định - không có nó thì không biết đã sửa xong chưa."
       ]
     },
     {
@@ -3924,8 +3906,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Viết mã người khác đọc được",
       "text": "Mã được đọc nhiều lần hơn số lần được viết, nên tối ưu cho người đọc gần như luôn đúng.",
       "distractors": [
-        "Tra theo khoá gần như tức thì bất kể kích thước, vì vị trí được tính từ khoá.",
-        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte."
+        "Ngăn xếp giữ khung của từng lượt gọi hàm; nhanh nhưng nhỏ, thường vài megabyte.",
+        "Đọc dòng cuối của thông báo lỗi trước - đó là loại lỗi và mô tả."
       ]
     },
     {

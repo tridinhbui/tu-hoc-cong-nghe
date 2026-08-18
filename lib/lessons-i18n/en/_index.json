@@ -92,11 +92,6 @@
     "subtitle": "Four adjusting lines, and the ratio that says whether profit turns into money",
     "duration": "8 min"
   },
-  "bao-hiem-bao-ve-tai-san": {
-    "title": "Stage 8, Lesson 4: Insurance - the protective layer that comes before investing",
-    "subtitle": "A good portfolio can be destroyed in one night if the basic insurance is missing.",
-    "duration": "6 min"
-  },
   "bao-hiem-co-ban-cho-nguoi-moi": {
     "title": "Track 1, Lesson 9: Basic insurance - the layer behind the emergency fund",
     "subtitle": "An emergency fund handles small shocks; insurance handles the kind that can wipe out everything",
@@ -116,16 +111,6 @@
     "title": "Stage 9, Lesson 6: Life insurance - term or whole life?",
     "subtitle": "Two very different philosophies, not one product under two names",
     "duration": "7 min"
-  },
-  "bao-ve-tai-san-khoi-lam-phat": {
-    "title": "Stage 8, Lesson 7: Protecting wealth from long-run inflation",
-    "subtitle": "Inflation is the quiet enemy - it does not take your money overnight, it erodes your purchasing power across decades.",
-    "duration": "6 min"
-  },
-  "bao-ve-tai-san-khoi-lua-dao": {
-    "title": "Stage 8, Lesson 6: Protecting your money from financial fraud",
-    "subtitle": "The more you have, the more attractive a target you become for the more sophisticated scams.",
-    "duration": "6 min"
   },
   "basel-iii-regulatory-capital-requirements": {
     "title": "Basel III & capital rules - how banks are kept from failing",
@@ -571,11 +556,6 @@
     "subtitle": "Asset-based valuation, NAV and RNAV - the valuation strand, following on from ROIC and Enterprise Value",
     "duration": "6 min"
   },
-  "dinh-nghia-lai-tu-do-tai-chinh": {
-    "title": "Stage 8, Lesson 1: Redefining \"rich\" - what is financial independence?",
-    "subtitle": "Financial independence is not having a lot of money. It is no longer working just to stay alive.",
-    "duration": "6 min"
-  },
   "discontinued-operations": {
     "title": "Deep-dive case: Discontinued Operations",
     "subtitle": "Don't let Net Income fool you",
@@ -1014,11 +994,6 @@
     "subtitle": "Why payroll has to be built role by role and month by month, not as a single annual figure",
     "duration": "11 min"
   },
-  "ke-hoach-thua-ke-co-ban": {
-    "title": "Stage 8, Lesson 5: Basic estate planning - what you leave behind",
-    "subtitle": "Not making an estate plan does not avoid the problem. It hands the problem to your family at the moment they are grieving hardest.",
-    "duration": "6 min"
-  },
   "ke-toan-don-tich-vs-ke-toan-tien-mat": {
     "title": "Accrual vs cash accounting: the foundational distinction every accountant must hold",
     "subtitle": "Why recognised revenue does not always coincide with money arriving in the bank",
@@ -1047,11 +1022,6 @@
     "title": "When you buy a stock, what do you actually own?",
     "subtitle": "Not just a line of numbers on a screen - but a real economic right",
     "duration": "6 min"
-  },
-  "khi-nao-can-tu-van-tai-chinh": {
-    "title": "Stage 8, Lesson 8: When you need professional financial advice",
-    "subtitle": "Teaching yourself finance is excellent, but some situations are complicated enough that an expert can save you from a costly mistake.",
-    "duration": "5 min"
   },
   "khi-nao-excel-het-du-va-chuyen-sang-python": {
     "title": "Data, Part 1: When Excel runs out - and why the answer is not row count",
@@ -1112,11 +1082,6 @@
     "title": "Margin & Margin Calls - Risk Management Is Priority Number One",
     "subtitle": "Why does a client have to 'hand the money back' the moment the market turns against them?",
     "duration": "8 min"
-  },
-  "lai-kep-huu-tri-bat-dau-som": {
-    "title": "Stage 8, Lesson 2: Compounding in retirement saving - why the first ten years matter most",
-    "subtitle": "Starting to save for retirement at 25 instead of 35 makes a far bigger difference than most people expect, even while paying in less.",
-    "duration": "6 min"
   },
   "lai-suat-thuc-vs-danh-nghia": {
     "title": "Real interest rate vs. nominal interest rate",
@@ -1545,11 +1510,6 @@
     "subtitle": "An exchange rate move can wipe out the entire margin on a large order",
     "duration": "7 min"
   },
-  "quan-ly-tai-san-qua-cac-giai-doan": {
-    "title": "Stage 8, Lesson 9: Managing wealth across the stages of life",
-    "subtitle": "The financial strategy that fits at 25 no longer fits at 55 - and that is entirely normal.",
-    "duration": "6 min"
-  },
   "quan-tri-doanh-nghiep-g-trong-esg": {
     "title": "Corporate governance (G): the least discussed pillar, and the most important",
     "subtitle": "The board, shareholder rights, related-party transactions - reading the signs before the money evaporates",
@@ -1574,11 +1534,6 @@
     "title": "The Vietnamese market, Lesson 7: open-ended funds, domestic ETFs and fund certificates",
     "subtitle": "How to reach diversification while your capital is still small",
     "duration": "10 min"
-  },
-  "quy-tac-rut-4-phan-tram": {
-    "title": "Stage 8, Lesson 3: The 4% rule - how much to draw from a retirement pot without running out",
-    "subtitle": "A classic rule for estimating how much you can withdraw each year in retirement without running dry halfway through.",
-    "duration": "7 min"
   },
   "quy-trinh-dau-tu-quy-tu-thesis-den-portfolio": {
     "title": "A fund's investment process: from investment thesis to portfolio construction",
@@ -1871,11 +1826,6 @@
     "title": "AI in Finance, Lesson 20: Wrap-up - an AI workflow in finance for beginners",
     "subtitle": "Putting it all together into a daily working and learning routine.",
     "duration": "15 min"
-  },
-  "tong-ket-track-ca-nhan-toan-dien": {
-    "title": "Stage 8, Lesson 10: Recap of the whole personal finance journey",
-    "subtitle": "From knowing where you stand, to building a portfolio, to managing wealth across a lifetime - the whole picture.",
-    "duration": "7 min"
   },
   "tong-ket-vai-tro-cfo-hien-dai": {
     "title": "CFO & Operations, Lesson 9: Wrap-up - the role of the modern CFO",

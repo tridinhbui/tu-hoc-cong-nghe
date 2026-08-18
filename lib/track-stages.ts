@@ -149,7 +149,7 @@ export const TRACK_PERSONAL = {
       available: true,
       parts: [
         { name: "Bảng, quan hệ, SELECT và chỉ mục", days: [279, 283] as [number, number] },
-        { name: "Tìm kiếm, sắp xếp và tổng kết hành trình", days: [284, 288] as [number, number] },
+        { name: "Ghép bảng, giao dịch và truy vấn chậm", days: [284, 288] as [number, number] },
       ],
     },
     {

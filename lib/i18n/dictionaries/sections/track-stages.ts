@@ -112,7 +112,7 @@ export const trackStagesVi = {
         {
           label: "Chặng 8",
           name: "Cơ sở dữ liệu và truy vấn",
-          parts: ["Bảng, quan hệ, SELECT và chỉ mục", "Tìm kiếm, sắp xếp và tổng kết hành trình"],
+          parts: ["Bảng, quan hệ, SELECT và chỉ mục", "Ghép bảng, giao dịch và truy vấn chậm"],
         },
         {
           label: "Chặng 9",
