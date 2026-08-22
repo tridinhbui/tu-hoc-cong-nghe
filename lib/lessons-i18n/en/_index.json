@@ -18,16 +18,6 @@
     "subtitle": "Mortality tables, expected present value, and the mathematics behind every life insurance contract",
     "duration": "8 min"
   },
-  "ai-lam-duoc-va-khong-lam-duoc-gi": {
-    "title": "AI in Finance, Lesson 2: what AI can do and what it cannot",
-    "subtitle": "Draw the boundary correctly and you use AI without illusions.",
-    "duration": "12 min"
-  },
-  "ai-trong-tai-chinh-bat-dau-tu-dau": {
-    "title": "AI in Finance, Lesson 1: AI in finance - where do you start?",
-    "subtitle": "Understand what AI does for a finance learner, with no programming required.",
-    "duration": "12 min"
-  },
   "alpha-la-gi": {
     "title": "What is alpha?",
     "subtitle": "The excess return a fund manager generates over the market",
@@ -127,11 +117,6 @@
     "subtitle": "15 common ESG indicators, how an ESG score is built, and the red flags to watch for in a report",
     "duration": "8 min"
   },
-  "cach-giao-viec-cho-ai-bang-khung-rcto": {
-    "title": "AI in finance, lesson 3: briefing AI with the R-C-T-O framework",
-    "subtitle": "A simple formula so the AI understands what you actually want.",
-    "duration": "14 min"
-  },
   "call-option-la-gi": {
     "title": "What Is a Call Option?",
     "subtitle": "The right to buy an asset at a fixed price - expecting the price to rise"
@@ -188,11 +173,6 @@
     "subtitle": "Why the index can be green while most portfolios are red",
     "duration": "10 min"
   },
-  "cho-ai-tinh-tung-buoc-qua-vi-du-dinh-gia": {
-    "title": "Finance AI, Lesson 11: Making AI calculate step by step through a valuation example",
-    "subtitle": "DCF as the advanced example, explained in plain language.",
-    "duration": "16 min"
-  },
   "chon-chi-so-do-luong-va-vanity-metric": {
     "title": "Data Thinking, Lesson 1: Choosing a metric - and why the pretty ones are usually useless",
     "subtitle": "Telling a vanity metric from one that drives action, and the trap of turning a metric into a target",
@@ -212,11 +192,6 @@
     "title": "Choosing a Valuation Method",
     "subtitle": "\"How do you choose the valuation method?\" - the interview question with a trap in it",
     "duration": "7 min"
-  },
-  "chong-ai-bia-so-lieu": {
-    "title": "Finance AI, Lesson 13: Stopping AI from inventing figures",
-    "subtitle": "Locking the source and making the AI say 'data not found'.",
-    "duration": "15 min"
   },
   "chuan-bi-modeling-test-va-case-interview": {
     "title": "Professional Skills, Lesson 3: Preparing for the modelling test and the case interview",
@@ -366,11 +341,6 @@
     "subtitle": "NIM, CASA, LDR, NPL, CIR and the provisioning buffer - the private language of a bank's accounts",
     "duration": "12 min"
   },
-  "doc-bctc-bang-ai-phan-co-ban": {
-    "title": "AI for finance, lesson 5: reading financial statements with AI - the basics",
-    "subtitle": "How to get AI to find revenue, profit, cash flow and borrowings.",
-    "duration": "15 min"
-  },
   "doc-dieu-khoan-bao-hiem": {
     "title": "Choosing insurance, Part 1: The clauses that decide whether you get paid",
     "subtitle": "Exclusions, waiting periods, pre-existing conditions, indemnity or fixed benefit - five places that turn two identical-looking policies into two different outcomes",
@@ -385,11 +355,6 @@
     "title": "Reading the notes - the longest section, and the least read",
     "subtitle": "The three statements say how much the company earned; the notes say how that number was produced",
     "duration": "10 min"
-  },
-  "doc-tin-tai-chinh-bang-ai": {
-    "title": "AI for finance, lesson 4: reading financial news with AI",
-    "subtitle": "Turning a long article into the key point, the impact, and the questions to check.",
-    "duration": "13 min"
   },
   "doi-chieu-va-tim-sai-sot-so-sach": {
     "title": "Bookkeeping, lesson 4: reconciliation - finding the error before anyone else does",
@@ -678,11 +643,6 @@
     "subtitle": "How it differs from external audit, why it reports straight to the audit committee, and the three lines model",
     "duration": "11 min"
   },
-  "kiem-tra-gia-dinh-va-bang-nhay-cam": {
-    "title": "AI in Finance, Lesson 12: Testing assumptions and the sensitivity table",
-    "subtitle": "Understanding why a single valuation number is never enough.",
-    "duration": "15 min"
-  },
   "kiem-tra-va-do-loi-mo-hinh-excel": {
     "title": "Excel, Lesson 4: Checking and debugging - turning a model into something that reports its own errors",
     "subtitle": "Trace precedents, partial F9, check cells, conditional formatting and the review routine before you send it",
@@ -732,11 +692,6 @@
     "title": "Pricing, Lesson 4: Adverse selection and moral hazard - two forces pulling opposite ways",
     "subtitle": "Why the people who buy the most insurance are the ones who need it most, and why having cover makes people a little less careful",
     "duration": "11 min"
-  },
-  "luu-vet-khi-dung-ai": {
-    "title": "AI in Finance, Lesson 14: Keeping an audit trail when you use AI",
-    "subtitle": "Keep the prompts, the sources and the edited versions so you can trace it back when you need to.",
-    "duration": "13 min"
   },
   "ma-cau-truc-earnout": {
     "title": "Advanced M&A: The earnout structure in deal valuation",
@@ -856,11 +811,6 @@
     "subtitle": "Restate every line as a percentage of a shared base, before you compare anything at all",
     "duration": "9 min"
   },
-  "phan-tich-cam-xuc-tin-tuc-bang-ai": {
-    "title": "AI in Finance, Lesson 8: News sentiment analysis with AI",
-    "subtitle": "Read whether the news is positive or negative, without mistaking mood for value.",
-    "duration": "15 min"
-  },
   "phan-tich-cohort-va-cai-bay-trung-binh": {
     "title": "Data Thinking, Lesson 2: Cohort analysis - when the average hides the truth",
     "subtitle": "Why splitting data by start date exposes trends the aggregate keeps buried",
@@ -920,26 +870,6 @@
     "title": "IB & Analysis, Lesson 3: Precedent transactions - valuing from past M&A deals",
     "subtitle": "Why M&A multiples usually sit above the trading multiples of listed companies in the same industry",
     "duration": "7 min"
-  },
-  "project-doc-mot-tai-lieu-tai-chinh": {
-    "title": "AI in Finance, Lesson 16: A small project - reading one financial document",
-    "subtitle": "Practice, from a real document to a sourced summary.",
-    "duration": "16 min"
-  },
-  "project-tim-rui-ro-va-cau-hoi-kiem-chung": {
-    "title": "AI in Finance, Lesson 17: A small project - finding risks and verification questions",
-    "subtitle": "Turning AI into an assistant that points out where to dig deeper.",
-    "duration": "16 min"
-  },
-  "project-tu-phan-bien-va-kiem-chung": {
-    "title": "AI in Finance, Lesson 19: A small project - self-critique and verification",
-    "subtitle": "Making AI pick holes in its own draft before you use it.",
-    "duration": "16 min"
-  },
-  "project-viet-ban-ghi-nho-mot-trang": {
-    "title": "AI in Finance, Lesson 18: A small project - writing a one-page memo",
-    "subtitle": "From document and risks to a short, readable memo.",
-    "duration": "16 min"
   },
   "prospect-theory-khung-ly-thuyet-chinh-thuc": {
     "title": "Prospect Theory: the formal framework behind every behavioural bias",
@@ -1102,11 +1032,6 @@
     "subtitle": "ESG, materiality, greenwashing, green bonds and how carbon credits are priced.",
     "duration": "13 min"
   },
-  "tao-tro-ly-ai-rieng-cho-tai-chinh": {
-    "title": "AI in Finance, Lesson 9: Building your own AI assistant for finance",
-    "subtitle": "Set the ground rules so the AI answers the way you want and stops inventing numbers.",
-    "duration": "16 min"
-  },
   "tesla-cash-flow": {
     "title": "Tesla Q1 2026 Cash Flow",
     "subtitle": "Net income vs operating cash flow - where the gap comes from",
@@ -1156,21 +1081,6 @@
     "title": "Deals, Lesson 1: Accretion or dilution - the first calculation of every transaction",
     "subtitle": "The three costs of a deal, the P/E rule for all-stock transactions, and why it is not a measure of value",
     "duration": "12 min"
-  },
-  "tim-rui-ro-trong-bctc-bang-ai": {
-    "title": "AI in Finance, Lesson 6: Finding risk in financial statements with AI",
-    "subtitle": "Focus on cash flow, receivables, inventory, borrowings and the notes.",
-    "duration": "16 min"
-  },
-  "tom-tat-hop-va-dhdcd-bang-ai": {
-    "title": "AI in Finance, Lesson 7: Summarising meetings and the AGM with AI",
-    "subtitle": "Turn a long document into plans, dividends, projects and shareholder questions.",
-    "duration": "14 min"
-  },
-  "tong-ket-chang-ai-trong-tai-chinh": {
-    "title": "AI in Finance, Lesson 20: Wrap-up - an AI workflow in finance for beginners",
-    "subtitle": "Putting it all together into a daily working and learning routine.",
-    "duration": "15 min"
   },
   "tong-ket-vai-tro-cfo-hien-dai": {
     "title": "CFO & Operations, Lesson 9: Wrap-up - the role of the modern CFO",
@@ -1263,11 +1173,6 @@
     "title": "Why Can Derivatives Be So Dangerous?",
     "subtitle": "High leverage, complexity, and systemic risk"
   },
-  "viet-ban-ghi-nho-tai-chinh-bang-ai": {
-    "title": "AI in Finance, Lesson 10: Writing a financial memo with AI",
-    "subtitle": "From scattered data to a memo that is short, clear, and honest about its risks.",
-    "duration": "15 min"
-  },
   "viet-memo-dau-tu-mot-trang": {
     "title": "Professional Skills, Lesson 1: The one-page investment memo - conclusion first, evidence after",
     "subtitle": "The pyramid structure, testable claims, and writing for a reader who only gets through three lines",
@@ -1297,11 +1202,6 @@
     "title": "CFO & Operations, Lesson 1: Building a corporate budget",
     "subtitle": "Top-down, bottom-up, or a mix - each approach carries its own trade-off",
     "duration": "7 min"
-  },
-  "xay-thu-vien-prompt-ca-nhan": {
-    "title": "AI in Finance, Lesson 15: Building your own prompt library",
-    "subtitle": "Save the prompts you use often so you never write them from scratch again.",
-    "duration": "14 min"
   },
   "y-kien-cong-bang-va-nghia-vu-hoi-dong": {
     "title": "Deals, Lesson 6: The fairness opinion and the duties of the board",

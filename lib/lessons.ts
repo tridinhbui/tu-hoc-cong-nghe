@@ -73046,4234 +73046,3810 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1261,
-    "slug": "ai-trong-tai-chinh-bat-dau-tu-dau",
-    "title": "AI Tài chính, Bài 1: AI trong tài chính - bắt đầu từ đâu?",
-    "subtitle": "Hiểu AI giúp gì cho người học tài chính mà không cần biết lập trình.",
-    "duration": "12 phút",
-    "estimatedMinutes": 12,
+    "slug": "ai-trong-cong-viec-lap-trinh-bat-dau-tu-dau",
+    "title": "AI trong sản phẩm, Bài 1: Bắt đầu từ đâu",
+    "subtitle": "Không phải học câu lệnh - mà là biết việc nào giao được và việc nào không.",
+    "duration": "6 phút",
     "difficulty": "Dễ",
-    "openingQuestion": "Nếu bạn có 1 báo cáo dài và chỉ có 15 phút, AI nên giúp việc gì trước?",
+    "emoji": "🤖",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": true,
+    "whyItMatters": "Phần lớn người dùng AI để viết mã dừng lại ở mức hỏi vặt, và họ bỏ lỡ đúng những việc AI làm tốt nhất. Biết phân loại việc trước khi học câu lệnh tiết kiệm được rất nhiều thời gian thử sai.",
+    "openingQuestion": "Việc nào AI hỗ trợ viết mã làm tốt nhất?",
     "openingOptions": [
-      "Tóm tắt ý chính, gom số liệu và gợi ý câu hỏi cần kiểm tra",
-      "Tự mua bán cổ phiếu thay bạn",
-      "Bảo đảm mọi số liệu luôn đúng",
-      "Thay thế hoàn toàn kiến thức tài chính mà người dùng cần phải có"
+      "Những việc bạn đánh giá được kết quả nhanh: đọc mã lạ, sinh khuôn mẫu, đề xuất trường hợp biên",
+      "Những việc tốn thời gian nhất trong ngày làm việc của bạn, bất kể loại việc gì",
+      "Những việc bạn chưa biết làm, vì AI có kiến thức rộng hơn một người trong nhiều lĩnh vực",
+      "Những việc lặp đi lặp lại theo đúng một khuôn mà bạn đã làm nhiều lần trước đây"
     ],
     "correctOption": 0,
-    "explanation": "AI hữu ích nhất khi giúp bạn đọc nhanh, gom thông tin và tạo bản nháp - ba việc chiếm phần lớn thời gian của người học tài chính. Nhưng AI không tự bảo đảm con số nào đúng: nó đọc tài liệu bạn đưa và diễn giải lại, nên nếu bạn đưa sai nguồn hoặc hỏi mơ hồ, nó vẫn trả lời rất trôi chảy. Vì vậy quy trình đúng luôn có hai nửa: giao việc rõ cho AI, rồi tự kiểm tra nguồn và logic trước khi dùng kết quả.",
+    "explanation": "Tiêu chí quyết định là bạn ĐÁNH GIÁ ĐƯỢC kết quả nhanh tới đâu, không phải việc đó tốn bao nhiêu thời gian. AI sai với vẻ tự tin y hệt lúc nó đúng, nên giá trị thật chỉ xuất hiện khi bạn phát hiện được cái sai trong vài giây. Giao đúng việc bạn chưa biết làm là trường hợp tệ nhất: đó chính là lúc bạn không có gì để đối chiếu.",
+    "diagram": [
+      {
+        "label": "Tiêu chí: bạn đánh giá được kết quả nhanh tới đâu?",
+        "arrow": true
+      },
+      {
+        "label": "Nhanh → giao được: đọc mã lạ, sinh khuôn, gợi ý biên",
+        "arrow": true
+      },
+      {
+        "label": "Chậm hoặc không → tự làm: quyết định kiến trúc, ràng buộc riêng",
+        "arrow": true
+      },
+      {
+        "label": "Sai với vẻ tự tin y hệt lúc đúng - đó là rủi ro gốc"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Đọc một kho mã lạ",
+      "description": "Nhận bàn giao một dự án không có tài liệu là việc AI giúp được nhiều nhất: bạn dán một tệp vào và hỏi nó đang làm gì, rồi đối chiếu ngay với mã trước mắt. Sai thì bạn thấy trong vài giây - và đó chính là điều kiện làm cho việc này an toàn."
+    },
+    "quiz": [
+      {
+        "question": "Tiêu chí nào quyết định một việc có nên giao cho AI không?",
+        "options": [
+          "Bạn kiểm chứng được kết quả nhanh tới đâu, chứ không phải việc đó tốn bao nhiêu thời gian",
+          "Việc đó có được mô tả rõ ràng trong tài liệu công khai mà AI đã học qua hay không",
+          "Việc đó có nằm trong phạm vi chuyên môn mà bạn đã có kinh nghiệm làm trong nhiều năm không",
+          "Việc đó có cần truy cập vào dữ liệu nội bộ của công ty bạn để hoàn thành hay không"
+        ],
+        "correct": 0,
+        "explanation": "Vì AI sai với vẻ tự tin y hệt lúc nó đúng, giá trị chỉ xuất hiện khi bạn phát hiện được cái sai nhanh. Một việc tốn hai ngày mà bạn không kiểm chứng được thì giao đi vẫn là lỗ, dù nó tốn nhiều thời gian tới đâu."
+      },
+      {
+        "question": "Vì sao giao việc bạn chưa biết làm cho AI lại rủi ro nhất?",
+        "options": [
+          "Vì đó chính là lúc bạn không có gì để đối chiếu, nên sai hay đúng bạn cũng chấp nhận",
+          "Vì AI thường sẽ từ chối trả lời những câu hỏi nằm ngoài phạm vi kiến thức phổ thông của nó",
+          "Vì bạn sẽ mất cơ hội học kỹ năng mới do đã có sẵn câu trả lời từ công cụ",
+          "Vì các câu trả lời cho việc khó thường dài nên bạn khó đọc hết một cách kỹ càng"
+        ],
+        "correct": 0,
+        "explanation": "Nghe ngược với trực giác vì người ta hay nghĩ AI hữu ích nhất ở chỗ mình yếu nhất. Mất cơ hội học cũng là hệ quả có thật, nhưng nó nhẹ hơn nhiều so với việc đưa vào sản phẩm một thứ sai mà không ai phát hiện."
+      },
+      {
+        "question": "Vì sao dùng AI để đọc mã nguồn lạ lại an toàn?",
+        "options": [
+          "Vì bạn có mã ngay trước mắt để đối chiếu, nên phát hiện sai chỉ mất vài giây",
+          "Vì mã nguồn có cấu trúc rõ ràng nên AI hiếm khi hiểu sai ý nghĩa của nó",
+          "Vì việc đọc mã không tạo ra thay đổi nào nên dù có sai cũng không gây hậu quả",
+          "Vì AI đã được huấn luyện trên rất nhiều mã nguồn mở nên nó quen với mọi khuôn mẫu"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba nghe hợp lý nhưng sai ở chỗ quan trọng: hiểu sai một đoạn mã dẫn tới sửa sai đoạn mã đó, và hậu quả xuất hiện ở bước sau. An toàn đến từ khả năng đối chiếu, không đến từ việc thao tác này không ghi gì."
+      },
+      {
+        "question": "Vì sao không nên bắt đầu bằng việc học các mẫu câu lệnh?",
+        "options": [
+          "Vì mẫu câu lệnh chỉ giúp diễn đạt tốt hơn một yêu cầu mà bạn đã biết là nên giao",
+          "Vì các mẫu câu lệnh thay đổi liên tục theo từng phiên bản mô hình nên nhanh lỗi thời",
+          "Vì mỗi công cụ AI có cú pháp câu lệnh riêng nên học mẫu của cái này không dùng được cho cái kia",
+          "Vì việc học thuộc mẫu khiến bạn phụ thuộc vào chúng và mất khả năng diễn đạt tự nhiên"
+        ],
+        "correct": 0,
+        "explanation": "Thứ tự đúng là phân loại việc trước, diễn đạt sau. Một câu lệnh viết rất khéo cho một việc không nên giao thì vẫn cho ra kết quả bạn không kiểm chứng được, và khéo hơn chỉ làm nó trông đáng tin hơn."
+      },
+      {
+        "question": "Loại việc nào nên tự làm thay vì giao cho AI?",
+        "options": [
+          "Quyết định kiến trúc phụ thuộc vào ràng buộc riêng mà chỉ đội của bạn biết",
+          "Những đoạn mã dài và phức tạp vì AI thường mắc lỗi khi xử lý khối lượng lớn",
+          "Những phần liên quan tới bảo mật vì AI không được cập nhật các lỗ hổng mới nhất",
+          "Những công việc có hạn chót gấp vì chờ AI trả lời sẽ làm chậm tiến độ chung"
+        ],
+        "correct": 0,
+        "explanation": "Chữ RÀNG BUỘC RIÊNG là mấu chốt: AI không biết đội bạn có mấy người, hệ thống cũ nào phải tương thích, hay quyết định nào đã bị bác từ năm ngoái. Nó đưa ra phương án hợp lý chung chung, và hợp lý chung chung là thứ sai một cách khó thấy nhất."
+      }
+    ],
+    "keyTakeaways": [
+      "Tiêu chí giao việc: bạn kiểm chứng được kết quả nhanh tới đâu, không phải việc đó tốn bao lâu.",
+      "AI sai với vẻ tự tin y hệt lúc nó đúng - đó là rủi ro gốc của mọi thứ trong chặng này.",
+      "Giao việc bạn chưa biết làm là trường hợp tệ nhất: không có gì để đối chiếu.",
+      "Đọc mã lạ an toàn vì mã nằm ngay trước mắt để so.",
+      "Tự làm phần phụ thuộc vào ràng buộc riêng mà chỉ đội bạn biết."
+    ],
+    "practicePrompt": {
+      "question": "Bạn cần chọn giữa hai cơ sở dữ liệu cho dự án mới. Có nên hỏi AI không?",
+      "options": [
+        "Hỏi để liệt kê các tiêu chí cần cân nhắc, nhưng tự quyết vì ràng buộc là của đội bạn",
+        "Không nên, vì đây là quyết định kiến trúc quan trọng cần dựa vào kinh nghiệm thật",
+        "Nên, vì AI đã đọc rất nhiều tài liệu so sánh nên nó biết rõ ưu nhược của từng lựa chọn",
+        "Nên hỏi và làm theo nếu lý do nó đưa ra nghe hợp lý và không mâu thuẫn với nhau"
+      ],
+      "correct": 0,
+      "explanation": "Đây là cách tách một việc thành phần giao được và phần không: liệt kê tiêu chí là việc bạn đối chiếu được ngay, còn cân nhắc chúng thì cần biết đội có mấy người và hệ thống cũ ra sao. Lý do nghe hợp lý là tiêu chuẩn nguy hiểm nhất vì AI luôn đưa ra được lý do nghe hợp lý."
+    },
     "summary": {
-      "keyIdea": "AI giống một trợ lý rất nhanh: đọc, tóm tắt, gom số và viết nháp; bạn vẫn là người kiểm tra.",
-      "commonMistake": "Nghĩ AI biết hết và có thể tự quyết định thay mình.",
-      "action": "Thử đưa một bài báo tài chính ngắn cho AI và yêu cầu tóm tắt 3 ý chính."
+      "keyIdea": "Phân loại việc trước, học cách diễn đạt sau - thứ tự ngược lại tốn rất nhiều thời gian.",
+      "formula": "Kiểm chứng nhanh → giao được. Kiểm chứng chậm hoặc không → tự làm.",
+      "commonMistake": "Giao đúng việc mình chưa biết làm, tức đúng lúc không có gì để đối chiếu.",
+      "action": "Liệt kê năm việc bạn làm tuần qua và xếp chúng theo tốc độ kiểm chứng."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê năm việc bạn đã làm trong tuần qua và với từng cái, hỏi: nếu có ai đưa cho mình lời giải, mình mất bao lâu để biết nó đúng hay sai?",
+      "secondary": "Những việc trả lời được trong dưới một phút là những việc nên thử giao. Những việc mất hàng giờ mới biết là chỗ AI dễ gây hại nhất."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Bài đầu tiên chỉ trả lời một câu: người mới học tài chính nên dùng AI như thế nào cho an toàn và có ích?"
+        "text": "Chặng này về việc dùng trợ lý AI trong công việc viết mã. Bài đầu không dạy câu lệnh nào cả - nó dạy cách phân loại việc, vì đó là thứ quyết định mọi thứ còn lại."
       },
       {
         "type": "heading",
-        "text": "Nói đơn giản"
-      },
-      {
-        "type": "paragraph",
-        "text": "AI là trợ lý đọc và viết rất nhanh. Nó giúp bạn xử lý tài liệu dài, nhưng không tự bảo đảm rằng mọi con số đều đúng. Vì vậy, dùng AI tốt nghĩa là biết giao việc rõ và biết kiểm tra lại."
+        "text": "Rủi ro gốc"
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "AI: trí tuệ nhân tạo. Câu lệnh: câu lệnh hoặc yêu cầu bạn đưa cho AI. Quy trình: các bước làm việc lặp lại được gồm nhiều bước lặp lại được."
+        "label": "Nó sai với vẻ tự tin y hệt lúc nó đúng",
+        "text": "Một người không chắc thì giọng họ lộ ra. Mô hình ngôn ngữ thì không - câu trả lời sai và câu trả lời đúng có cùng độ trôi chảy, cùng cấu trúc, cùng vẻ chắc chắn. Mọi kỹ thuật trong chặng này đều xoay quanh việc bù cho đặc điểm đó."
       },
       {
         "type": "heading",
-        "text": "AI làm tốt gì?"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Tóm tắt văn bản dài thành vài ý chính",
-          "Trích số liệu từ tài liệu nếu nguồn rõ",
-          "Gợi ý câu hỏi cần kiểm tra thêm",
-          "Viết bản nháp báo cáo hoặc email"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "AI không thay bạn ở đâu?"
+        "text": "Tiêu chí phân loại"
       },
       {
         "type": "paragraph",
-        "text": "AI không chịu trách nhiệm quyết định đầu tư. AI cũng có thể hiểu sai tài liệu hoặc tự suy đoán nếu bạn không khóa nguồn. Người học cần kiểm tra số liệu, đơn vị, kỳ báo cáo và logic tài chính."
-      },
-      {
-        "type": "heading",
-        "text": "Ba mức độ dùng AI, đi theo thứ tự"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Mức 1 - Đọc hộ: tóm tắt một bài báo, một chương báo cáo. Rất dễ kiểm tra vì bạn có thể đọc lại bản gốc.",
-          "Mức 2 - Gom số: trích các chỉ tiêu vào bảng kèm trang nguồn. Kiểm tra bằng cách mở đúng trang đối chiếu.",
-          "Mức 3 - Viết nháp: bản ghi nhớ, danh sách rủi ro, câu hỏi cần hỏi. Kiểm tra bằng cách soi từng luận điểm xem có bằng chứng chưa."
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Đừng nhảy thẳng lên mức 3. Người mới thường bắt đầu bằng câu hỏi to nhất - 'cổ phiếu này có nên mua không' - và đó cũng là câu khó kiểm chứng nhất, nên nếu AI sai bạn cũng không biết. Làm mức 1 vài lần cho quen cảm giác đối chiếu nguồn, rồi mới đi tiếp."
+        "text": "Câu hỏi không phải việc này tốn bao nhiêu thời gian, mà: nếu có ai đưa cho tôi lời giải, tôi mất bao lâu để biết nó đúng hay sai? Vì AI sai một cách khó nhận ra, giá trị thật chỉ xuất hiện khi bạn phát hiện được cái sai nhanh."
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Câu lệnh mơ hồ",
-          "text": "\"Phân tích giúp tôi công ty này.\" AI sẽ viết một đoạn nghe rất chuyên nghiệp, gồm cả những nhận định nó tự suy ra. Bạn không có cách nào kiểm tra vì không biết nó dựa vào đâu."
+          "label": "Kiểm chứng nhanh - giao được",
+          "text": "Đọc mã lạ và giải thích nó làm gì. Sinh khuôn mẫu lặp lại. Đề xuất trường hợp biên cho một hàm. Dịch một đoạn mã sang ngôn ngữ khác. Với cả bốn, bạn có sẵn thứ để đối chiếu."
         },
         "right": {
-          "label": "Câu lệnh rõ",
-          "text": "\"Dựa trên file báo cáo đính kèm, trích doanh thu và lợi nhuận sau thuế 3 năm gần nhất vào bảng, mỗi số ghi rõ số trang. Nếu không tìm thấy, ghi 'Không tìm thấy'.\" Kết quả này bạn kiểm tra được trong 2 phút."
+          "label": "Kiểm chứng chậm - tự làm",
+          "text": "Quyết định kiến trúc, chọn giữa hai cách tổ chức dữ liệu, đánh giá đánh đổi dài hạn. Chúng phụ thuộc vào ràng buộc riêng mà chỉ đội bạn biết."
         }
       },
       {
-        "type": "conceptTable",
-        "title": "Thuật ngữ cần nhớ",
-        "subtitle": "Bốn từ này sẽ lặp lại suốt chặng 13",
-        "concepts": [
-          {
-            "vi": "Câu lệnh",
-            "en": "Prompt",
-            "def": "Yêu cầu bạn viết cho AI. Câu lệnh càng rõ vai trò, dữ liệu, nhiệm vụ và định dạng thì kết quả càng dùng được."
-          },
-          {
-            "vi": "Bịa số / ảo giác",
-            "en": "Hallucination",
-            "def": "Hiện tượng AI đưa ra thông tin nghe hợp lý nhưng không có trong nguồn. Đây là rủi ro lớn nhất khi dùng AI cho tài chính."
-          },
-          {
-            "vi": "Khóa nguồn",
-            "en": "Grounding",
-            "def": "Ràng buộc AI chỉ được dùng tài liệu bạn cung cấp, và phải ghi 'Không tìm thấy' khi dữ liệu không có."
-          },
-          {
-            "vi": "Lưu vết",
-            "en": "Audit trail",
-            "def": "Hồ sơ ghi lại câu lệnh, tài liệu nguồn và bản chỉnh sửa, để sau này giải thích được một con số từ đâu ra."
-          }
-        ]
+        "type": "paragraph",
+        "text": "Cột bên phải có một lý do cụ thể: AI không biết đội bạn có mấy người, hệ thống cũ nào phải tương thích, hay quyết định nào đã bị bác từ năm ngoái. Nó đưa ra phương án hợp lý chung chung - và hợp lý chung chung là thứ sai một cách khó thấy nhất."
       },
       {
         "type": "heading",
-        "text": "Ba sai lầm của người mới"
+        "text": "Điều ngược trực giác"
       },
       {
-        "type": "list",
-        "items": [
-          "Hỏi câu quá lớn ngay từ đầu, ví dụ 'nên mua cổ phiếu nào', rồi tin luôn câu trả lời.",
-          "Không đính kèm tài liệu mà vẫn hỏi số liệu cụ thể - lúc này AI buộc phải suy đoán.",
-          "Copy nguyên output đi gửi cho người khác mà chưa mở lại nguồn để đối chiếu dù chỉ một con số."
-        ]
+        "type": "paragraph",
+        "text": "Người ta hay nghĩ AI hữu ích nhất ở chỗ mình yếu nhất. Thực ra đó là chỗ nguy hiểm nhất: khi bạn chưa biết làm, bạn không có gì để đối chiếu, nên sai hay đúng bạn cũng chấp nhận như nhau."
       },
       {
         "type": "closing",
         "lines": [
-          "Hãy bắt đầu nhỏ: một bài báo, một bảng số, một bản tóm tắt.",
-          "Kỹ năng quan trọng nhất là giao việc rõ và kiểm tra lại."
+          "Nó vẫn dùng được ở lĩnh vực bạn chưa biết, nhưng với một mục đích khác: để học, với thái độ nghi ngờ, và luôn kiểm chứng lại bằng nguồn khác trước khi dùng thật.",
+          "Bài sau đi vào chi tiết hơn: cụ thể nó làm được gì và không làm được gì."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Người mới nên dùng AI cho việc nào trước?",
-        "options": [
-          "Tóm tắt tài liệu ngắn và kiểm tra lại ý chính",
-          "Ra quyết định mua bán ngay",
-          "Bỏ qua nguồn dữ liệu",
-          "Tin mọi câu trả lời của AI"
-        ],
-        "correct": 0,
-        "explanation": "Tác vụ nhỏ, dễ kiểm tra là cách bắt đầu an toàn nhất."
-      },
-      {
-        "question": "AI không thay thế phần nào của người học tài chính?",
-        "options": [
-          "Kiểm tra số liệu và chịu trách nhiệm kết luận",
-          "Tóm tắt văn bản",
-          "Sắp xếp ý chính",
-          "Viết bản nháp"
-        ],
-        "correct": 0,
-        "explanation": "AI hỗ trợ tốc độ, còn người học chịu trách nhiệm chất lượng và quyết định."
-      },
-      {
-        "question": "Bạn nên bắt đầu dùng AI trong tài chính ở mức độ nào?",
-        "options": [
-          "Mức đọc hộ - tóm tắt tài liệu ngắn, vì dễ đối chiếu với bản gốc nhất",
-          "Mức khuyến nghị mua bán, vì đó mới là thứ hữu ích",
-          "Mức dự báo giá cổ phiếu 12 tháng tới",
-          "Không cần theo thứ tự nào cả"
-        ],
-        "correct": 0,
-        "explanation": "Tác vụ dễ kiểm chứng nhất nên làm trước. Khi bạn quen với việc đối chiếu output và nguồn, bạn mới đủ phản xạ để phát hiện lỗi ở những tác vụ khó hơn."
-      },
-      {
-        "question": "Vì sao câu lệnh 'phân tích giúp tôi công ty này' lại rủi ro?",
-        "options": [
-          "Vì không có nguồn ràng buộc, nên AI có thể tự suy đoán và bạn không có cách kiểm chứng",
-          "Vì câu lệnh quá ngắn nên AI sẽ từ chối trả lời",
-          "Vì AI chỉ hiểu tiếng Anh",
-          "Vì phân tích doanh nghiệp luôn cần mô hình DCF"
-        ],
-        "correct": 0,
-        "explanation": "Vấn đề không nằm ở độ dài câu lệnh mà ở việc không khóa nguồn. Không nguồn thì output không kiểm chứng được, và một kết luận không kiểm chứng được thì không dùng được trong tài chính."
-      }
-    ],
-    "day": 1261,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Bạn giao việc rõ (vai trò · dữ liệu · nhiệm vụ · định dạng)",
-        "arrow": true
-      },
-      {
-        "label": "AI đọc, tóm tắt, gom số, viết nháp",
-        "arrow": true
-      },
-      {
-        "label": "Bạn kiểm tra nguồn, đơn vị, kỳ báo cáo",
-        "arrow": true
-      },
-      {
-        "label": "Kết quả dùng được và giải thích được"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Một buổi tối đọc báo cáo thường niên",
-      "description": "Bạn tải về báo cáo thường niên 120 trang của một doanh nghiệp niêm yết và chỉ có một tiếng. Cách cũ: đọc từ đầu, đến trang 30 thì mệt và bỏ dở. Cách dùng AI: yêu cầu tóm tắt phần thư gửi cổ đông, trích doanh thu - lợi nhuận - dòng tiền kinh doanh ba năm kèm số trang, rồi tự mở đúng ba trang đó để đối chiếu. Bạn vẫn đọc báo cáo gốc, chỉ khác là đọc đúng chỗ. Đây là cách dùng AI phổ biến nhất trong thực tế: không phải để thay việc đọc, mà để biết nên đọc trang nào trước."
-    },
-    "keyTakeaways": [
-      "AI là trợ lý đọc - viết rất nhanh, không phải người chịu trách nhiệm cho kết luận tài chính của bạn.",
-      "Giá trị lớn nhất của AI với người mới là rút ngắn thời gian tiếp cận tài liệu dài, không phải đưa ra khuyến nghị mua bán.",
-      "Mọi con số AI đưa ra chỉ đáng tin khi kèm nguồn: tài liệu nào, trang nào, đơn vị gì, kỳ nào.",
-      "Bắt đầu từ tác vụ nhỏ và dễ kiểm tra, rồi mới tăng độ khó - đó là cách học an toàn nhất."
-    ],
-    "practicePrompt": {
-      "question": "Nếu bạn có 1 báo cáo dài và chỉ có 15 phút, AI nên giúp việc gì trước?",
-      "options": [
-        "Tóm tắt ý chính, gom số liệu và gợi ý câu hỏi cần kiểm tra",
-        "Tự mua bán cổ phiếu thay bạn",
-        "Bảo đảm mọi số liệu luôn đúng",
-        "Thay thế hoàn toàn kiến thức tài chính"
-      ],
-      "correct": 0,
-      "explanation": "AI hữu ích nhất khi giúp đọc nhanh, gom thông tin và tạo bản nháp. Người học vẫn phải kiểm tra nguồn và hiểu kết luận."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Thử đưa một bài báo tài chính ngắn cho AI và yêu cầu tóm tắt 3 ý chính.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Người mới học tài chính thường bỏ cuộc vì tài liệu quá dài và quá nhiều thuật ngữ. AI xử lý được đúng phần đó, giúp bạn dành thời gian cho việc thật sự khó: hiểu và ra quyết định."
+    ]
   },
   {
     "id": 1262,
-    "slug": "ai-lam-duoc-va-khong-lam-duoc-gi",
-    "title": "AI Tài chính, Bài 2: AI làm được gì và không làm được gì?",
-    "subtitle": "Đặt ranh giới đúng để dùng AI không bị ảo tưởng.",
-    "duration": "12 phút",
-    "estimatedMinutes": 12,
-    "difficulty": "Dễ",
-    "openingQuestion": "Câu nào mô tả đúng nhất về AI trong tài chính?",
+    "slug": "ai-lam-duoc-gi-va-khong-lam-duoc-gi",
+    "title": "AI trong sản phẩm, Bài 2: Làm được gì và không làm được gì",
+    "subtitle": "Nó dự đoán chữ tiếp theo - và gần như mọi giới hạn đều suy ra được từ câu đó.",
+    "duration": "7 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🔍",
+    "track": "professional",
+    "interactiveType": "ai-verify",
+    "isFundamental": true,
+    "whyItMatters": "Hiểu cơ chế giúp bạn dự đoán được nó sẽ sai ở đâu, thay vì phải học thuộc một danh sách các trường hợp lỗi. Và danh sách đó thì đổi mỗi phiên bản, còn cơ chế thì không.",
+    "openingQuestion": "Vì sao AI bịa ra tên hàm và thư viện không tồn tại?",
     "openingOptions": [
-      "AI hỗ trợ đọc, lọc, viết nháp; người dùng vẫn phải kiểm chứng",
-      "AI luôn đúng",
-      "AI thay được kiểm toán viên trong việc soát xét toàn bộ báo cáo",
-      "AI tự biết dữ liệu mật của công ty"
+      "Vì nó sinh ra chuỗi chữ có xác suất cao, mà tên nghe hợp lý thì có xác suất cao",
+      "Vì dữ liệu huấn luyện của nó chứa nhiều mã nguồn sai và nó học theo những mã đó",
+      "Vì nó không truy cập được internet nên không kiểm tra được thư viện có tồn tại không",
+      "Vì các thư viện thay đổi tên hàm qua từng phiên bản nên thông tin của nó đã lỗi thời"
     ],
     "correctOption": 0,
-    "explanation": "AI là công cụ hỗ trợ, không phải bên chịu trách nhiệm. Nó rất mạnh ở những việc mang tính xử lý ngôn ngữ: đọc, tóm tắt, sắp xếp, chuyển thành bảng, viết nháp. Nó yếu ở những việc cần trách nhiệm và bối cảnh riêng của bạn: xác nhận số liệu đúng, hiểu khẩu vị rủi ro của bạn, và ra quyết định mua bán. Vẽ được ranh giới này ngay từ đầu là cách nhanh nhất để dùng AI vừa hiệu quả vừa an toàn.",
+    "explanation": "Nó không tra cứu rồi trả lời - nó sinh ra chuỗi chữ tiếp theo có xác suất cao nhất. Một tên hàm nghe rất hợp lý cho việc đó có xác suất cao dù nó chưa từng tồn tại. Đây là lý do hiện tượng này không phải lỗi sẽ được vá: nó là hệ quả trực tiếp của cách mô hình hoạt động. Thông tin lỗi thời cũng là vấn đề thật nhưng nó tạo ra kiểu sai khác - dùng hàm cũ đã bỏ, chứ không phải bịa hàm chưa từng có.",
+    "diagram": [
+      {
+        "label": "Cơ chế: sinh chuỗi chữ có xác suất cao nhất",
+        "arrow": true
+      },
+      {
+        "label": "→ Rất mạnh ở việc có khuôn mẫu rõ",
+        "arrow": true
+      },
+      {
+        "label": "→ Rất yếu ở việc cần biết sự thật cụ thể",
+        "arrow": true
+      },
+      {
+        "label": "Nghe hợp lý và đúng là hai chuyện khác nhau"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Thư viện không tồn tại",
+      "description": "Đề xuất cài một gói với cái tên nghe rất hợp lý cho việc bạn cần là hiện tượng phổ biến tới mức có người đã lợi dụng nó: đăng ký đúng những cái tên hay bị bịa ra rồi đặt mã độc vào đó. Kiểm tra gói có thật trước khi cài không còn là chuyện cẩn thận thừa."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao AI rất mạnh ở việc sinh mã theo khuôn mẫu?",
+        "options": [
+          "Vì khuôn mẫu là thứ xuất hiện nhiều lần trong dữ liệu, nên chuỗi đúng có xác suất rất cao",
+          "Vì nó ghi nhớ được toàn bộ các đoạn mã mẫu rồi lấy chúng ra khi gặp một yêu cầu tương tự",
+          "Vì mã theo khuôn mẫu thường ngắn nên khả năng sai sót giảm đi đáng kể",
+          "Vì các khuôn mẫu đã được kiểm chứng bởi cộng đồng nên chúng không còn lỗi nào"
+        ],
+        "correct": 0,
+        "explanation": "Đây là mặt tốt của cùng một cơ chế gây ra việc bịa đặt. Nó không ghi nhớ và lấy ra nguyên văn - nó sinh lại, và khi khuôn mẫu đủ mạnh thì thứ nó sinh ra gần như trùng với thứ đúng."
+      },
+      {
+        "question": "AI yếu nhất ở loại việc nào?",
+        "options": [
+          "Việc cần biết một sự thật cụ thể mà không suy ra được từ khuôn mẫu chung",
+          "Việc đòi hỏi xử lý một lượng lớn mã nguồn trong cùng một lần yêu cầu",
+          "Việc cần kết hợp nhiều ngôn ngữ lập trình khác nhau trong cùng một giải pháp",
+          "Việc phải tuân theo các quy ước định dạng mã rất chặt chẽ của một dự án cụ thể"
+        ],
+        "correct": 0,
+        "explanation": "Phiên bản hiện tại của một thư viện, hàm nào đã bị bỏ, cấu hình nội bộ của công ty bạn - đây là những thứ không suy ra được từ khuôn mẫu. Xử lý khối lượng lớn cũng là giới hạn thật nhưng nó là giới hạn kỹ thuật đang được nới rộng dần, còn cái kia thì thuộc về bản chất."
+      },
+      {
+        "question": "Vì sao nói bịa đặt không phải một lỗi sẽ được vá?",
+        "options": [
+          "Vì nó là hệ quả trực tiếp của việc sinh chuỗi theo xác suất chứ không phải một khiếm khuyết",
+          "Vì các nhà phát triển mô hình chưa tìm được cách phát hiện thông tin bịa đặt",
+          "Vì việc vá nó sẽ làm giảm đi đáng kể khả năng sáng tạo của mô hình trong những tác vụ khác",
+          "Vì dữ liệu huấn luyện quá lớn nên không thể kiểm tra hết tính chính xác của từng phần"
+        ],
+        "correct": 0,
+        "explanation": "Các phiên bản mới giảm được tần suất nhưng không xoá được cơ chế. Đó là lý do quy trình làm việc của bạn phải giả định nó vẫn xảy ra, thay vì chờ một phiên bản không còn bịa nữa."
+      },
+      {
+        "question": "Vì sao cửa sổ ngữ cảnh lớn không có nghĩa là dán bao nhiêu cũng được?",
+        "options": [
+          "Vì chất lượng chú ý giảm với thông tin nằm giữa một khối rất dài",
+          "Vì chi phí xử lý tăng theo lượng thông tin nên câu trả lời sẽ tốn kém hơn nhiều",
+          "Vì thời gian phản hồi tăng lên khiến trải nghiệm sử dụng trở nên khó chịu",
+          "Vì các công cụ thường cắt bớt phần đầu khi lượng thông tin vượt quá giới hạn"
+        ],
+        "correct": 0,
+        "explanation": "Hiện tượng này đã được đo: thông tin ở đầu và cuối được sử dụng tốt hơn hẳn phần ở giữa. Chi phí và thời gian đều là mối lo có thật nhưng chúng không ảnh hưởng tới độ đúng của câu trả lời."
+      },
+      {
+        "question": "Vì sao hỏi lại cùng một câu có thể cho hai câu trả lời khác nhau?",
+        "options": [
+          "Vì quá trình sinh chuỗi có yếu tố ngẫu nhiên, nên cùng đầu vào không cho cùng đầu ra",
+          "Vì mô hình học thêm từ mỗi lần trao đổi nên câu trả lời sau sẽ chính xác hơn câu trước",
+          "Vì hệ thống cân bằng tải giữa nhiều phiên bản mô hình có chất lượng khác nhau",
+          "Vì ngữ cảnh của cuộc trò chuyện tích tụ dần nên câu trả lời bị ảnh hưởng theo"
+        ],
+        "correct": 0,
+        "explanation": "Điều này có một hệ quả thực dụng đáng dùng: hỏi lại cùng một câu trong hai cuộc trò chuyện riêng biệt là cách kiểm tra rẻ. Hai câu trả lời khác hẳn nhau là dấu hiệu mô hình đang không chắc chắn về phần đó."
+      }
+    ],
+    "keyTakeaways": [
+      "Cơ chế: sinh chuỗi chữ có xác suất cao nhất - mọi giới hạn suy ra được từ câu đó.",
+      "Mạnh ở việc có khuôn mẫu rõ; yếu ở việc cần biết một sự thật cụ thể.",
+      "Bịa đặt không phải lỗi sẽ được vá - quy trình của bạn phải giả định nó vẫn xảy ra.",
+      "Cửa sổ ngữ cảnh lớn không có nghĩa dán bao nhiêu cũng được: phần giữa bị chú ý kém hơn.",
+      "Hỏi lại trong hai cuộc riêng biệt là cách kiểm tra rẻ mức độ chắc chắn."
+    ],
+    "practicePrompt": {
+      "question": "AI đề xuất dùng một thư viện bạn chưa nghe tên bao giờ. Việc đầu tiên nên làm?",
+      "options": [
+        "Kiểm tra thư viện đó có thật không trước khi cài, vì tên nghe hợp lý không có nghĩa là có thật",
+        "Cài thử vào môi trường phát triển để xem nó hoạt động thế nào trong thực tế",
+        "Hỏi AI thêm về thư viện đó để biết chi tiết cách sử dụng trước khi quyết định",
+        "Tìm các bài viết so sánh thư viện đó với những lựa chọn phổ biến hơn cùng loại"
+      ],
+      "correct": 0,
+      "explanation": "Cài thử là cách nguy hiểm nhất trong bốn cách: đã có người đăng ký đúng những cái tên hay bị bịa ra rồi đặt mã độc vào đó. Hỏi thêm AI cũng vô ích vì nó sẽ mô tả rất thuyết phục một thư viện không tồn tại."
+    },
     "summary": {
-      "keyIdea": "Dùng AI tốt bắt đầu từ việc biết ranh giới: việc nào giao được, việc nào phải tự kiểm tra.",
-      "commonMistake": "Đưa câu hỏi quá lớn như 'cổ phiếu này có mua được không' rồi tin câu trả lời.",
-      "action": "Viết danh sách 3 việc bạn có thể giao AI và 3 việc bạn phải tự quyết."
+      "keyIdea": "Một câu về cơ chế giải thích được gần như mọi điểm mạnh và điểm yếu.",
+      "formula": "Sinh chuỗi xác suất cao → mạnh ở khuôn mẫu, yếu ở sự thật cụ thể.",
+      "commonMistake": "Chờ một phiên bản không còn bịa đặt thay vì xây quy trình giả định nó còn.",
+      "action": "Hỏi cùng một câu kỹ thuật trong hai cuộc trò chuyện riêng và so hai câu trả lời."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một câu hỏi kỹ thuật cụ thể và hỏi nó trong hai cuộc trò chuyện riêng biệt. So hai câu trả lời với nhau.",
+      "secondary": "Nếu chúng khác nhau ở phần cốt lõi, đó là dấu hiệu mô hình không chắc và bạn phải kiểm chứng bằng nguồn khác. Nếu chúng trùng nhau, mức tin cậy cao hơn hẳn - nhưng vẫn chưa phải bằng chứng."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "AI mạnh, nhưng không phải chuyên gia tài chính chịu trách nhiệm thay bạn."
+        "text": "Có rất nhiều danh sách những việc AI làm được và không làm được, và chúng lỗi thời sau mỗi phiên bản. Bài này đi theo hướng khác: một câu về cơ chế, rồi suy ra phần còn lại."
       },
       {
         "type": "heading",
-        "text": "Ba việc nên giao cho AI"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Đọc nhanh và tóm tắt",
-          "Chuyển thông tin thành bảng",
-          "Gợi ý rủi ro và câu hỏi cần kiểm chứng"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ba việc không nên giao trọn cho AI"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Quyết định mua bán",
-          "Tự xác nhận số liệu đúng",
-          "Đánh giá dữ liệu mật hoặc nội bộ nếu không được phép"
-        ]
+        "text": "Câu đó là gì"
       },
       {
         "type": "callout",
-        "label": "Quy tắc an toàn",
-        "text": "Nếu output có con số, hãy hỏi: số này từ nguồn nào, trang nào, đơn vị gì, kỳ nào?"
+        "label": "Nó sinh ra chuỗi chữ có xác suất cao nhất",
+        "text": "Không tra cứu rồi trả lời. Không suy luận rồi diễn đạt. Nó nhận vào một chuỗi và sinh ra phần tiếp theo có khả năng cao nhất, dựa trên những gì đã thấy trong dữ liệu huấn luyện."
       },
       {
         "type": "heading",
-        "text": "Ví dụ dễ hiểu"
+        "text": "Suy ra điểm mạnh"
       },
       {
         "type": "paragraph",
-        "text": "Bạn có thể nhờ AI tóm tắt báo cáo ngành thép. Nhưng nếu AI nói biên lợi nhuận tăng 3 điểm phần trăm, bạn phải kiểm tra số đó trong báo cáo gốc trước khi dùng."
+        "text": "Việc nào có KHUÔN MẪU rõ thì chuỗi đúng cũng là chuỗi có xác suất cao - nên nó làm rất tốt. Sinh mã lặp lại theo khuôn, chuyển đổi giữa các định dạng, viết lại một đoạn theo phong cách khác, đề xuất trường hợp biên cho một hàm quen thuộc."
       },
       {
         "type": "heading",
-        "text": "Vì sao AI mạnh ở nhóm việc này mà yếu ở nhóm kia?"
-      },
-      {
-        "type": "paragraph",
-        "text": "AI được huấn luyện để dự đoán chuỗi ngôn ngữ hợp lý tiếp theo. Điều đó khiến nó rất giỏi diễn đạt lại, sắp xếp và tóm gọn - vì đó đều là bài toán ngôn ngữ. Nhưng 'đúng' trong tài chính không phải là 'nghe hợp lý': một con số chỉ đúng khi nó khớp với báo cáo gốc, đúng đơn vị và đúng kỳ. Đó là bài toán đối chiếu dữ liệu, không phải bài toán ngôn ngữ, nên nó nằm ngoài thứ AI tự bảo đảm được."
+        "text": "Và suy ra điểm yếu"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Cảnh báo vô dụng",
-          "text": "\"Doanh nghiệp có rủi ro thanh khoản.\" Câu này đúng với gần như mọi doanh nghiệp, không chỉ ra được điều gì để kiểm tra tiếp."
+          "label": "Nghe hợp lý",
+          "text": "Một tên hàm rất khớp với việc bạn cần có xác suất cao, dù nó chưa từng tồn tại. Mô hình không phân biệt được hai chuyện đó, vì nó không kiểm tra sự tồn tại của bất cứ gì."
         },
         "right": {
-          "label": "Cảnh báo dùng được",
-          "text": "\"Phải thu tăng 42% trong khi doanh thu chỉ tăng 9% (trang 47, BCTC hợp nhất 2024). Cần kiểm tra tuổi nợ và mức độ tập trung khách hàng ở thuyết minh số 8.\""
+          "label": "Và đúng",
+          "text": "Phiên bản hiện tại của một thư viện, hàm nào đã bị bỏ, cấu hình nội bộ của công ty bạn. Những thứ này không suy ra được từ khuôn mẫu chung."
         }
       },
       {
+        "type": "paragraph",
+        "text": "Hiện tượng đề xuất gói không tồn tại phổ biến tới mức có người đã lợi dụng nó: đăng ký đúng những cái tên hay bị bịa ra rồi đặt mã độc vào đó. Kiểm tra gói có thật trước khi cài không còn là chuyện cẩn thận thừa."
+      },
+      {
         "type": "heading",
-        "text": "Danh sách kiểm tra trước khi tin một output"
+        "text": "Hai đặc điểm nữa"
       },
       {
         "type": "list",
         "items": [
-          "Kết luận này dựa trên tài liệu nào? Có tên file và số trang không?",
-          "Con số có đơn vị rõ ràng không (tỷ đồng hay triệu đồng, hợp nhất hay công ty mẹ)?",
-          "Kỳ báo cáo có đúng không (quý hay lũy kế, năm tài chính hay năm dương lịch)?",
-          "Nếu bỏ câu kết luận đi, phần bằng chứng còn lại có tự đứng vững không?",
-          "Có chỗ nào AI đang suy đoán mà không nói rõ là suy đoán không?"
+          "Cửa sổ ngữ cảnh lớn không có nghĩa là dán bao nhiêu cũng được: chất lượng chú ý giảm với thông tin nằm giữa một khối rất dài. Đặt phần quan trọng ở đầu hoặc cuối.",
+          "Cùng một câu hỏi có thể cho hai câu trả lời khác nhau, vì quá trình sinh chuỗi có yếu tố ngẫu nhiên."
         ]
-      },
-      {
-        "type": "callout",
-        "label": "Về dữ liệu nội bộ",
-        "text": "Trước khi tải bất kỳ tài liệu công ty nào lên công cụ AI, hãy kiểm tra chính sách nội bộ. Nhiều nơi cấm đưa dữ liệu chưa công bố, hợp đồng, hoặc thông tin khách hàng lên dịch vụ bên ngoài - và đây là loại lỗi khó sửa sau khi đã xảy ra."
       },
       {
         "type": "closing",
         "lines": [
-          "AI là máy tăng tốc, không phải người chịu trách nhiệm.",
-          "Ranh giới rõ thì dùng AI càng an toàn."
+          "Đặc điểm thứ hai có một hệ quả đáng dùng: hỏi lại cùng một câu trong hai cuộc trò chuyện riêng biệt là cách kiểm tra rất rẻ. Hai câu trả lời khác hẳn nhau nghĩa là mô hình đang không chắc.",
+          "Bài sau là cách diễn đạt yêu cầu sao cho phần trả lời có ích ngay từ lần đầu."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Khi AI đưa một con số tài chính, bạn nên làm gì?",
-        "options": [
-          "Hỏi nguồn, trang, đơn vị và kỳ báo cáo",
-          "Dùng ngay",
-          "Làm tròn tùy ý",
-          "Xóa phần nguồn"
-        ],
-        "correct": 0,
-        "explanation": "Con số không có nguồn rất nguy hiểm trong tài chính."
-      },
-      {
-        "question": "Việc nào không nên giao trọn cho AI?",
-        "options": [
-          "Ra quyết định mua/bán cuối cùng",
-          "Tóm tắt tài liệu",
-          "Gợi ý câu hỏi",
-          "Chuyển dữ liệu thành bảng"
-        ],
-        "correct": 0,
-        "explanation": "AI hỗ trợ phân tích, nhưng quyết định cuối cùng thuộc về con người."
-      },
-      {
-        "question": "Vì sao AI có thể viết một đoạn phân tích nghe rất thuyết phục nhưng vẫn sai số liệu?",
-        "options": [
-          "Vì AI tối ưu cho việc tạo ngôn ngữ hợp lý, không phải cho việc đối chiếu số với tài liệu gốc",
-          "Vì AI cố tình giấu thông tin",
-          "Vì AI chỉ được huấn luyện trên dữ liệu tiếng Anh",
-          "Vì báo cáo tài chính luôn có lỗi"
-        ],
-        "correct": 0,
-        "explanation": "'Nghe hợp lý' và 'khớp với nguồn' là hai chuyện khác nhau. AI mạnh ở vế đầu, còn vế sau vẫn phải do bạn đối chiếu."
-      },
-      {
-        "question": "Đâu là cảnh báo rủi ro dùng được?",
-        "options": [
-          "\"Phải thu tăng 42% trong khi doanh thu tăng 9% (trang 47); cần kiểm tra tuổi nợ ở thuyết minh 8\"",
-          "\"Doanh nghiệp có rủi ro thanh khoản\"",
-          "\"Ngành này đang cạnh tranh gay gắt\"",
-          "\"Nhà đầu tư nên thận trọng\""
-        ],
-        "correct": 0,
-        "explanation": "Cảnh báo tốt phải có bằng chứng số, nguồn trang và một việc cụ thể để kiểm tra tiếp. Ba phương án còn lại đúng với hầu hết doanh nghiệp nên không giúp bạn quyết định gì."
-      }
-    ],
-    "day": 1262,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Việc xử lý ngôn ngữ: đọc · tóm tắt · lập bảng · viết nháp",
-        "arrow": true
-      },
-      {
-        "label": "→ Giao cho AI, kiểm tra ngẫu nhiên",
-        "arrow": false
-      },
-      {
-        "label": "Việc cần trách nhiệm: xác nhận số · đánh giá rủi ro của riêng bạn · quyết định",
-        "arrow": true
-      },
-      {
-        "label": "→ Bạn tự làm, AI chỉ gợi ý câu hỏi"
-      }
-    ],
-    interactiveType: "ai-verify",
-    "realWorldExample": {
-      "company": "Ranh giới trong các nhóm phân tích chuyên nghiệp",
-      "description": "Ở các tổ chức đầu tư và ngân hàng, AI được đưa vào quy trình chủ yếu ở khâu đọc và soạn thảo: tóm tắt tài liệu, trích số vào mẫu, soạn nháp báo cáo. Khâu ký duyệt khuyến nghị và chịu trách nhiệm trước khách hàng vẫn thuộc về con người, và các bộ quy tắc nghề nghiệp (như chuẩn mực đạo đức CFA về cơ sở hợp lý cho khuyến nghị) không có ngoại lệ cho việc 'AI nói vậy'. Nói cách khác, ranh giới bạn học ở bài này chính là ranh giới ngành đang áp dụng."
-    },
-    "keyTakeaways": [
-      "Giao cho AI những việc xử lý ngôn ngữ; giữ lại cho mình những việc gắn với trách nhiệm và bối cảnh riêng.",
-      "Một cảnh báo hay kết luận từ AI chỉ có giá trị khi kèm bằng chứng số liệu và nguồn.",
-      "Đừng đưa dữ liệu nội bộ hoặc dữ liệu mật lên công cụ AI nếu chưa được phép.",
-      "Quyết định cuối cùng - và trách nhiệm cho quyết định đó - luôn thuộc về bạn."
-    ],
-    "practicePrompt": {
-      "question": "Câu nào mô tả đúng nhất về AI trong tài chính?",
-      "options": [
-        "AI hỗ trợ đọc, lọc, viết nháp; người dùng vẫn phải kiểm chứng",
-        "AI luôn đúng",
-        "AI thay được kiểm toán",
-        "AI tự biết dữ liệu mật của công ty"
-      ],
-      "correct": 0,
-      "explanation": "AI là công cụ hỗ trợ. Kết quả tài chính cần kiểm chứng bằng nguồn và logic."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Viết danh sách 3 việc bạn có thể giao AI và 3 việc bạn phải tự quyết.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Hầu hết tai nạn khi dùng AI trong tài chính không đến từ việc AI kém, mà từ việc giao cho nó việc nó không được thiết kế để làm."
+    ]
   },
   {
     "id": 1263,
-    "slug": "cach-giao-viec-cho-ai-bang-khung-rcto",
-    "title": "AI Tài chính, Bài 3: Cách giao việc cho AI bằng khung R-C-T-O",
-    "subtitle": "Một công thức đơn giản để AI hiểu bạn muốn gì.",
-    "duration": "14 phút",
-    "estimatedMinutes": 14,
-    "difficulty": "Dễ",
-    "openingQuestion": "R-C-T-O giúp gì khi đặt câu hỏi cho AI?",
+    "slug": "giao-viec-cho-ai-mo-ta-bai-toan",
+    "title": "AI trong sản phẩm, Bài 3: Giao việc - mô tả bài toán, không mô tả lời giải",
+    "subtitle": "Bốn thành phần, và thành phần hay thiếu nhất là ràng buộc.",
+    "duration": "7 phút",
+    "difficulty": "Trung bình",
+    "emoji": "📝",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": true,
+    "whyItMatters": "Phần lớn câu trả lời vô dụng đến từ câu hỏi thiếu thông tin chứ không từ giới hạn của mô hình. Bốn thành phần trong bài này biến việc hỏi lại năm lần thành hỏi đúng một lần.",
+    "openingQuestion": "Thành phần nào hay bị thiếu nhất khi giao việc cho AI?",
     "openingOptions": [
-      "Vai trò, dữ liệu, nhiệm vụ, và định dạng trả lời",
-      "Giúp AI luôn biết giá cổ phiếu tương lai",
-      "Giúp bỏ qua kiểm chứng",
-      "Giúp câu lệnh càng mơ hồ càng tốt"
+      "Ràng buộc: ngôn ngữ, phiên bản, quy ước của dự án và những gì không được dùng",
+      "Mô tả chi tiết về kết quả mong muốn và định dạng mà bạn muốn nhận về",
+      "Bối cảnh về dự án và về mục đích cuối cùng mà công việc này phục vụ",
+      "Ví dụ cụ thể về đầu vào và đầu ra để mô hình hiểu đúng yêu cầu của bạn"
     ],
     "correctOption": 0,
-    "explanation": "R-C-T-O là bốn câu hỏi bạn trả lời thay cho AI trước khi nó phải tự đoán: Role - AI đóng vai ai; Context - nó được dùng dữ liệu gì; Task - nó phải làm chính xác việc gì; Output - trả lời theo định dạng nào. Mỗi phần bạn bỏ trống là một chỗ AI sẽ tự điền, và trong tài chính thì mọi chỗ tự điền đều là rủi ro. Khung này không làm câu lệnh dài hơn nhiều, nhưng làm kết quả kiểm chứng được.",
+    "explanation": "Bối cảnh và định dạng thì người ta thường nhớ vì thiếu chúng là câu trả lời lệch rõ. Ràng buộc thì bị quên vì chúng hiển nhiên với bạn: dự án dùng phiên bản nào, thư viện nào bị cấm, quy ước đặt tên ra sao. AI không có cách nào biết những thứ đó, nên nó chọn mặc định phổ biến nhất - và mặc định phổ biến nhất thường không phải mặc định của bạn.",
+    "diagram": [
+      {
+        "label": "Bối cảnh: đây là gì, phục vụ mục đích gì",
+        "arrow": true
+      },
+      {
+        "label": "Nhiệm vụ: cần làm gì, cụ thể",
+        "arrow": true
+      },
+      {
+        "label": "Ràng buộc: phiên bản, quy ước, thứ không được dùng",
+        "arrow": true
+      },
+      {
+        "label": "Định dạng: muốn nhận về dạng nào"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Mô tả lời giải thay vì bài toán",
+      "description": "Yêu cầu viết một vòng lặp lồng nhau để tìm phần tử trùng thì bạn nhận đúng thứ mình yêu cầu. Mô tả bài toán là tìm phần tử trùng trong danh sách một triệu phần tử thì bạn có cơ hội nhận về một cách tốt hơn cách bạn đang nghĩ."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao nên mô tả bài toán thay vì mô tả lời giải?",
+        "options": [
+          "Vì mô tả lời giải khoá bạn vào cách bạn đã nghĩ ra, kể cả khi có cách tốt hơn",
+          "Vì mô tả bài toán ngắn hơn nên tiết kiệm được thời gian gõ và chi phí xử lý",
+          "Vì AI không hiểu được các mô tả kỹ thuật chi tiết về cách triển khai cụ thể",
+          "Vì mô tả lời giải khiến câu trả lời quá dài và chứa nhiều phần bạn không cần"
+        ],
+        "correct": 0,
+        "explanation": "Đây chính là cái neo ở bài về thiên kiến, xuất hiện lại ở một chỗ mới. Yêu cầu viết vòng lặp lồng nhau thì bạn nhận đúng thứ mình yêu cầu; mô tả bài toán thì bạn có cơ hội nhận về cách tốt hơn."
+      },
+      {
+        "question": "Vì sao đưa ví dụ đầu vào và đầu ra lại hiệu quả?",
+        "options": [
+          "Vì một ví dụ cụ thể loại bỏ được các cách hiểu khác mà mô tả bằng lời còn để ngỏ",
+          "Vì mô hình học từ ví dụ của bạn và ghi nhớ nó cho những lần sử dụng sau",
+          "Vì ví dụ giúp mô hình xác định được ngôn ngữ lập trình mà bạn đang sử dụng",
+          "Vì các mô hình được huấn luyện chủ yếu trên các cặp đầu vào và đầu ra tương tự"
+        ],
+        "correct": 0,
+        "explanation": "Ngày tháng là ví dụ rõ nhất: mô tả bằng lời thế nào cũng còn chỗ mơ hồ, còn một dòng ví dụ thì đóng lại hết. Mô hình không ghi nhớ ví dụ của bạn giữa các cuộc trò chuyện, nên lựa chọn thứ hai mô tả sai cơ chế."
+      },
+      {
+        "question": "Khi câu trả lời đầu tiên không đúng ý, cách sửa nào hiệu quả hơn?",
+        "options": [
+          "Nói rõ chỗ nào chưa đúng và vì sao, thay vì lặp lại yêu cầu cũ bằng cách khác",
+          "Bắt đầu một cuộc trò chuyện mới với câu hỏi được viết lại kỹ càng hơn từ đầu",
+          "Yêu cầu đưa ra nhiều phương án khác nhau rồi chọn phương án gần đúng nhất",
+          "Chia yêu cầu thành nhiều phần nhỏ và hỏi từng phần một cách riêng biệt"
+        ],
+        "correct": 0,
+        "explanation": "Câu trả lời sai vẫn mang thông tin: nó cho biết chỗ nào trong mô tả của bạn bị hiểu khác. Lặp lại yêu cầu bằng cách khác thì bỏ mất thông tin đó và thường cho ra cùng loại kết quả."
+      },
+      {
+        "question": "Vì sao nên nói rõ mức độ chi tiết mong muốn?",
+        "options": [
+          "Vì mặc định nó viết dài và giải thích nhiều, phù hợp cho người mới hơn cho người đã biết",
+          "Vì câu trả lời dài tốn nhiều chi phí xử lý hơn so với câu trả lời ngắn gọn",
+          "Vì mô hình sẽ chọn mức độ chi tiết một cách ngẫu nhiên nếu bạn không chỉ định rõ ràng từ đầu",
+          "Vì câu trả lời quá ngắn thường bỏ sót những phần quan trọng của vấn đề"
+        ],
+        "correct": 0,
+        "explanation": "Một câu ngắn như chỉ đưa mã, không giải thích tiết kiệm được rất nhiều thời gian đọc mỗi ngày. Nó không chọn ngẫu nhiên - nó chọn mức phổ biến nhất trong dữ liệu, và mức đó thiên về giải thích kỹ."
+      },
+      {
+        "question": "Vì sao yêu cầu AI nêu giả định nó đã đặt lại hữu ích?",
+        "options": [
+          "Vì nó buộc những chỗ mơ hồ trong mô tả của bạn phải hiện ra thành chữ",
+          "Vì các giả định được nêu ra sẽ được mô hình áp dụng nhất quán trong cả cuộc trò chuyện",
+          "Vì đó là cách duy nhất để biết mô hình có hiểu đúng ngôn ngữ lập trình bạn dùng không",
+          "Vì danh sách giả định giúp bạn có tài liệu để giải trình khi kết quả không như mong đợi"
+        ],
+        "correct": 0,
+        "explanation": "Nó chuyển những thứ bị bỏ ngỏ thành một danh sách bạn đọc và sửa được. Nhiều lỗi lộ ra ngay ở bước này - trước khi có dòng mã nào được viết ra, và đó là lúc sửa rẻ nhất."
+      }
+    ],
+    "keyTakeaways": [
+      "Bốn thành phần: bối cảnh, nhiệm vụ, ràng buộc, định dạng.",
+      "Ràng buộc hay bị quên nhất vì chúng hiển nhiên với bạn mà AI không có cách nào biết.",
+      "Mô tả BÀI TOÁN, không mô tả lời giải - mô tả lời giải là neo bạn vào cách đã nghĩ.",
+      "Câu trả lời sai mang thông tin: nói rõ chỗ nào chưa đúng thay vì lặp lại yêu cầu.",
+      "Yêu cầu nêu giả định - nhiều lỗi lộ ra trước khi có dòng mã nào được viết."
+    ],
+    "practicePrompt": {
+      "question": "Bạn xin một hàm xử lý ngày tháng và nhận về thứ dùng sai định dạng. Nguyên nhân nhiều khả năng?",
+      "options": [
+        "Bạn không nêu ràng buộc về định dạng, nên nó chọn mặc định phổ biến nhất",
+        "Mô hình chưa được cập nhật các chuẩn định dạng ngày tháng mới nhất hiện nay",
+        "Yêu cầu của bạn quá ngắn nên mô hình phải suy đoán phần lớn các chi tiết",
+        "Định dạng ngày tháng khác nhau giữa các vùng nên mô hình không xác định được"
+      ],
+      "correct": 0,
+      "explanation": "Đây là ví dụ điển hình của ràng buộc bị bỏ quên vì nó hiển nhiên với bạn. Một dòng ví dụ đầu vào và đầu ra đóng lại được toàn bộ chỗ mơ hồ này, và nó nhanh hơn mọi cách mô tả bằng lời."
+    },
     "summary": {
-      "keyIdea": "R-C-T-O là 4 câu hỏi: AI là ai, có dữ liệu gì, cần làm gì, trả lời kiểu nào.",
-      "commonMistake": "Hỏi quá chung như 'phân tích giúp tôi cổ phiếu này'.",
-      "action": "Viết lại một câu hỏi bạn hay dùng theo mẫu R-C-T-O."
+      "keyIdea": "Phần lớn câu trả lời vô dụng đến từ câu hỏi thiếu thông tin, không từ giới hạn mô hình.",
+      "formula": "Bối cảnh + nhiệm vụ + ràng buộc + định dạng, và ví dụ khi có thể.",
+      "commonMistake": "Mô tả lời giải mình đã nghĩ ra thay vì mô tả bài toán cần giải.",
+      "action": "Viết lại một yêu cầu gần đây theo bốn thành phần và so hai kết quả."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy một yêu cầu bạn đã gõ gần đây, viết lại nó theo bốn thành phần, rồi so kết quả với lần trước. Chú ý riêng phần ràng buộc.",
+      "secondary": "Thêm một câu vào cuối: hãy nêu những giả định bạn đã đặt trước khi trả lời. Bạn sẽ thấy ngay mô tả của mình đang để ngỏ những gì."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Câu lệnh không cần phức tạp. Chỉ cần bạn giao việc đủ rõ."
+        "text": "Bài trước nói AI mạnh ở đâu. Bài này về việc diễn đạt yêu cầu - và phần lớn câu trả lời vô dụng đến từ câu hỏi thiếu thông tin chứ không từ giới hạn của mô hình."
       },
       {
         "type": "heading",
-        "text": "R-C-T-O là gì?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Role là vai trò. Context là bối cảnh. Task là nhiệm vụ. Output là định dạng trả lời. Dịch đơn giản: AI là ai, biết gì, làm gì, trả lời kiểu nào."
-      },
-      {
-        "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "Câu lệnh: câu lệnh cho AI. Role: vai trò. Context: dữ liệu/bối cảnh. Task: nhiệm vụ. Output: đầu ra mong muốn."
-      },
-      {
-        "type": "heading",
-        "text": "Mẫu điền chỗ trống"
-      },
-      {
-        "type": "paragraph",
-        "text": "Bạn là [vai trò]. Dựa trên [dữ liệu]. Hãy [nhiệm vụ]. Trả lời dưới dạng [bảng/gạch đầu dòng/checklist]. Nếu thiếu dữ liệu, hãy ghi 'Không tìm thấy dữ liệu'."
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ tài chính"
-      },
-      {
-        "type": "paragraph",
-        "text": "Bạn là chuyên viên phân tích. Dựa trên doanh thu, lợi nhuận và dòng tiền 3 năm. Hãy đánh giá chất lượng lợi nhuận. Trả lời bằng bảng gồm Nhận xét, Bằng chứng, Rủi ro."
+        "text": "Bốn thành phần"
       },
       {
         "type": "conceptTable",
-        "title": "Bốn phần của R-C-T-O",
-        "subtitle": "Thiếu phần nào thì AI sẽ tự điền phần đó",
+        "title": "Thiếu cái nào thì hỏng theo cách nào",
         "concepts": [
           {
-            "vi": "Vai trò",
-            "en": "Role",
-            "def": "Cho AI biết nên trả lời ở góc nhìn nào: chuyên viên phân tích, kiểm toán viên, người tư vấn tài chính cá nhân. Nó quyết định giọng văn và mức độ chi tiết."
-          },
-          {
             "vi": "Bối cảnh",
-            "en": "Context",
-            "def": "Dữ liệu và ràng buộc: file nào, kỳ nào, được phép suy đoán hay không. Đây là phần quan trọng nhất và cũng là phần hay bị bỏ quên nhất."
+            "en": "context",
+            "def": "Đây là gì, phục vụ mục đích gì. Thiếu thì câu trả lời đúng về kỹ thuật mà lệch về mục đích."
           },
           {
             "vi": "Nhiệm vụ",
-            "en": "Task",
-            "def": "Việc cụ thể cần làm: trích số, tìm rủi ro, viết nháp, so sánh hai kỳ. Một câu lệnh nên có một nhiệm vụ chính."
+            "en": "task",
+            "def": "Cần làm gì, cụ thể. Thiếu thì bạn nhận về một bài giảng thay vì một lời giải."
+          },
+          {
+            "vi": "Ràng buộc",
+            "en": "constraints",
+            "def": "Phiên bản nào, quy ước gì, thứ nào không được dùng. Thành phần bị quên nhiều nhất."
           },
           {
             "vi": "Định dạng",
-            "en": "Output",
-            "def": "Bảng, gạch đầu dòng, tối đa bao nhiêu chữ, có cột nguồn hay không. Định dạng rõ giúp bạn soi thiếu sót nhanh."
+            "en": "format",
+            "def": "Muốn nhận về dạng nào, dài bao nhiêu. Thiếu thì mặc định là dài và giải thích kỹ."
           }
         ]
       },
       {
+        "type": "callout",
+        "label": "Vì sao ràng buộc bị quên",
+        "text": "Vì chúng hiển nhiên với BẠN. Dự án dùng phiên bản nào, thư viện nào bị cấm, quy ước đặt tên ra sao - bạn biết những thứ đó tới mức không nghĩ tới việc nói ra. AI không có cách nào biết, nên nó chọn mặc định phổ biến nhất, và mặc định phổ biến nhất thường không phải mặc định của bạn."
+      },
+      {
         "type": "heading",
-        "text": "Nâng cấp một câu lệnh, từng bước"
+        "text": "Mô tả bài toán, không mô tả lời giải"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Mô tả lời giải",
+          "text": "Viết cho tôi một vòng lặp lồng nhau để tìm phần tử trùng. Bạn nhận đúng thứ mình yêu cầu - và bị khoá vào cách bạn đã nghĩ ra."
+        },
+        "right": {
+          "label": "Mô tả bài toán",
+          "text": "Tìm phần tử trùng trong danh sách một triệu phần tử, ưu tiên tốc độ. Bạn có cơ hội nhận về một cách tốt hơn cách mình đang nghĩ."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây chính là cái neo ở bài về thiên kiến trong chặng rà soát code, xuất hiện lại ở một chỗ mới - và ở đây nó còn dễ mắc hơn, vì gõ ra lời giải mình đã nghĩ thì nhanh hơn mô tả bài toán."
+      },
+      {
+        "type": "heading",
+        "text": "Hai kỹ thuật nhỏ mà hiệu quả"
       },
       {
         "type": "list",
         "items": [
-          "Bản 0: \"Phân tích cổ phiếu ABC.\" - Không có gì để kiểm tra.",
-          "Bản 1 (thêm C): \"Chỉ dùng báo cáo tài chính đính kèm, phân tích cổ phiếu ABC.\" - Đã khóa nguồn.",
-          "Bản 2 (thêm T): \"... hãy so sánh doanh thu, biên lợi nhuận gộp và dòng tiền kinh doanh giữa 2023 và 2024.\" - Nhiệm vụ đã đo được.",
-          "Bản 3 (thêm O): \"... trình bày dạng bảng 4 cột: Chỉ tiêu | 2023 | 2024 | Trang nguồn.\" - Giờ bạn soi được ngay ô nào thiếu.",
-          "Bản 4 (thêm R): \"Bạn là chuyên viên phân tích cẩn trọng, không suy đoán ngoài tài liệu.\" - Giọng văn và mức thận trọng đã đúng."
+          "Đưa một ví dụ đầu vào và đầu ra. Với ngày tháng hay định dạng dữ liệu, một dòng ví dụ đóng lại toàn bộ chỗ mơ hồ mà mô tả bằng lời còn để ngỏ.",
+          "Thêm một câu: hãy nêu những giả định bạn đã đặt. Nó chuyển những chỗ bị bỏ ngỏ thành một danh sách bạn đọc và sửa được, trước khi có dòng mã nào."
         ]
-      },
-      {
-        "type": "callout",
-        "label": "Mẹo dùng ngay",
-        "text": "Luôn đóng câu lệnh bằng một dòng cố định: \"Nếu dữ liệu không có trong tài liệu, ghi 'Không tìm thấy' thay vì suy đoán.\" Một dòng này loại bỏ phần lớn trường hợp AI bịa số."
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi đã quen, bạn không cần viết đủ bốn phần theo thứ tự nữa - nhưng vẫn nên tự hỏi lại đủ bốn câu trước khi bấm gửi. Đó là khác biệt giữa người dùng AI theo cảm hứng và người có quy trình."
       },
       {
         "type": "closing",
         "lines": [
-          "Câu lệnh rõ thì kết quả dễ dùng hơn.",
-          "Người mới chỉ cần nhớ: ai, biết gì, làm gì, trả lời kiểu nào."
+          "Và khi câu trả lời đầu chưa đúng: nói rõ chỗ nào chưa đúng và vì sao, đừng lặp lại yêu cầu cũ bằng cách khác. Câu trả lời sai vẫn mang thông tin - nó cho biết chỗ nào trong mô tả của bạn bị hiểu khác đi.",
+          "Bài sau là ứng dụng đầu tiên và cũng an toàn nhất: đọc tài liệu kỹ thuật."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Trong R-C-T-O, Output nghĩa là gì?",
-        "options": [
-          "Định dạng câu trả lời mong muốn",
-          "Tên công ty",
-          "Mức giá cổ phiếu",
-          "Lãi suất thị trường"
-        ],
-        "correct": 0,
-        "explanation": "Output giúp AI trả lời đúng kiểu bạn cần: bảng, checklist, bản ghi nhớ..."
-      },
-      {
-        "question": "Câu lệnh nào rõ hơn?",
-        "options": [
-          "Bạn là chuyên viên phân tích, dựa trên số liệu này, hãy đánh giá rủi ro và xuất bảng",
-          "Phân tích cổ phiếu này đi",
-          "Nói gì đó về tài chính",
-          "Có nên mua không"
-        ],
-        "correct": 0,
-        "explanation": "Câu lệnh rõ có vai trò, dữ liệu, nhiệm vụ và đầu ra."
-      },
-      {
-        "question": "Trong bốn phần R-C-T-O, phần nào quan trọng nhất khi làm việc với số liệu tài chính?",
-        "options": [
-          "Context - vì khóa nguồn là điều kiện để output kiểm chứng được",
-          "Role - vì giọng văn quyết định chất lượng phân tích",
-          "Output - vì bảng luôn tốt hơn đoạn văn",
-          "Task - vì AI không hiểu được nhiệm vụ nếu không mô tả dài"
-        ],
-        "correct": 0,
-        "explanation": "Ba phần kia cải thiện chất lượng trình bày, nhưng Context mới quyết định output có đối chiếu được với tài liệu gốc hay không - điều kiện bắt buộc trong tài chính."
-      },
-      {
-        "question": "Thêm dòng \"nếu không có dữ liệu thì ghi 'Không tìm thấy'\" vào cuối câu lệnh có tác dụng gì?",
-        "options": [
-          "Giảm mạnh khả năng AI suy đoán và điền số không có thật",
-          "Làm AI trả lời nhanh hơn",
-          "Bắt AI trả lời ngắn hơn",
-          "Không có tác dụng gì, chỉ là hình thức"
-        ],
-        "correct": 0,
-        "explanation": "Khi không được phép để trống, AI có xu hướng điền một câu nghe hợp lý. Cho nó một lối thoát hợp lệ - 'Không tìm thấy' - là cách đơn giản và hiệu quả nhất để tránh bịa số."
-      }
-    ],
-    "day": 1263,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "R - Role: AI đóng vai ai",
-        "arrow": true
-      },
-      {
-        "label": "C - Context: được dùng dữ liệu nào",
-        "arrow": true
-      },
-      {
-        "label": "T - Task: làm chính xác việc gì",
-        "arrow": true
-      },
-      {
-        "label": "O - Output: trả lời theo định dạng nào",
-        "arrow": true
-      },
-      {
-        "label": "= Câu lệnh kiểm chứng được"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Cùng một tài liệu, hai câu lệnh",
-      "description": "Lấy cùng một báo cáo quý và thử hai cách hỏi. Cách một: 'Công ty này thế nào?' - bạn nhận về một đoạn văn chung chung, không có số trang, không rõ dựa vào đâu. Cách hai: 'Bạn là chuyên viên phân tích. Chỉ dùng báo cáo quý đính kèm. Hãy lập bảng doanh thu, lợi nhuận gộp, lợi nhuận sau thuế và dòng tiền kinh doanh của quý này và cùng kỳ năm trước, mỗi ô ghi số trang; ô nào không có dữ liệu ghi Không tìm thấy.' - bạn nhận về một bảng đối chiếu được trong vài phút. Khác biệt nằm hoàn toàn ở câu lệnh, không phải ở AI."
-    },
-    "keyTakeaways": [
-      "R-C-T-O = Role, Context, Task, Output: bốn phần một câu lệnh tốt luôn có.",
-      "Context là phần quan trọng nhất trong tài chính - không khóa nguồn thì output không kiểm chứng được.",
-      "Task nên là một việc cụ thể và đo được, không phải một câu hỏi mở như 'đánh giá giúp tôi'.",
-      "Output định trước dạng bảng hoặc gạch đầu dòng giúp bạn phát hiện chỗ thiếu dữ liệu ngay lập tức."
-    ],
-    "practicePrompt": {
-      "question": "R-C-T-O giúp gì khi đặt câu hỏi cho AI?",
-      "options": [
-        "Giúp giao việc rõ: vai trò, dữ liệu, nhiệm vụ, định dạng trả lời",
-        "Giúp AI luôn biết giá cổ phiếu tương lai",
-        "Giúp bỏ qua kiểm chứng",
-        "Giúp câu lệnh càng mơ hồ càng tốt"
-      ],
-      "correct": 0,
-      "explanation": "R-C-T-O là cách giao việc rõ ràng cho AI."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Viết lại một câu hỏi bạn hay dùng theo mẫu R-C-T-O.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Phần lớn kết quả tệ khi dùng AI không phải do mô hình yếu, mà do câu lệnh thiếu một trong bốn phần này. Sửa câu lệnh thường nhanh hơn và hiệu quả hơn đổi công cụ."
+    ]
   },
   {
     "id": 1264,
-    "slug": "doc-tin-tai-chinh-bang-ai",
-    "title": "AI Tài chính, Bài 4: Đọc tin tài chính bằng AI",
-    "subtitle": "Từ một bài báo dài thành ý chính, tác động và câu hỏi cần kiểm tra.",
-    "duration": "13 phút",
-    "estimatedMinutes": 13,
+    "slug": "doc-tai-lieu-ky-thuat-bang-ai",
+    "title": "AI trong sản phẩm, Bài 4: Đọc tài liệu kỹ thuật bằng AI",
+    "subtitle": "Dùng nó để tìm đường trong tài liệu, không dùng nó thay cho tài liệu.",
+    "duration": "6 phút",
     "difficulty": "Dễ",
-    "openingQuestion": "Khi đọc một tin tài chính bằng AI, câu hỏi quan trọng nhất là gì?",
+    "emoji": "📚",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": false,
+    "whyItMatters": "Đọc tài liệu là việc chiếm nhiều thời gian và ít ai thích, nên nó là chỗ người ta muốn giao đi nhất. Nó cũng là chỗ khác biệt giữa dùng đúng và dùng sai rất rõ ràng.",
+    "openingQuestion": "Cách dùng AI với tài liệu kỹ thuật nào an toàn hơn?",
     "openingOptions": [
-      "Tin này ảnh hưởng đến doanh thu, chi phí, dòng tiền hay chỉ là cảm xúc thị trường?",
-      "Tin này có nhiều chữ và nhiều số liệu không, và đọc hết thì có mất thời gian không nữa",
-      "Tiêu đề có hấp dẫn không?",
-      "Có nên mua ngay không?"
+      "Dán tài liệu vào rồi hỏi, thay vì hỏi chay dựa vào thứ mô hình nhớ được",
+      "Hỏi chay để tiết kiệm thời gian, rồi chỉ tra tài liệu khi câu trả lời có vẻ lạ",
+      "Yêu cầu mô hình trích dẫn nguồn cho từng phần trong câu trả lời của nó",
+      "Hỏi cùng lúc nhiều công cụ AI khác nhau rồi so các câu trả lời với nhau"
     ],
     "correctOption": 0,
-    "explanation": "Một bài báo tài chính thường trộn ba thứ: sự kiện đã xảy ra, con số minh họa, và nhận định của người viết. Người mới hay đọc lẫn cả ba thành một cảm giác chung là 'tin tốt' hoặc 'tin xấu'. Dùng AI để tách bài báo thành sự kiện - tác động - rủi ro - câu hỏi cần kiểm chứng buộc bạn phải nhìn thấy đâu là dữ kiện và đâu là ý kiến, và đó chính là kỹ năng đọc tin quan trọng nhất.",
+    "explanation": "Hỏi chay thì bạn nhận về thứ mô hình nhớ được từ dữ liệu huấn luyện, tức là một phiên bản nào đó không xác định. Dán tài liệu thật vào thì nó làm việc trên nguồn đúng, và bạn kiểm tra lại được ngay trong chính đoạn đã dán. Yêu cầu trích dẫn nghe hợp lý nhưng khi hỏi chay thì trích dẫn cũng có thể bịa - đó là cùng một cơ chế sinh chuỗi.",
+    "diagram": [
+      {
+        "label": "Dán tài liệu THẬT vào, đừng hỏi chay",
+        "arrow": true
+      },
+      {
+        "label": "Hỏi để TÌM ĐƯỜNG: phần nào nói về việc này?",
+        "arrow": true
+      },
+      {
+        "label": "Rồi tự đọc phần đó",
+        "arrow": true
+      },
+      {
+        "label": "Nó là mục lục thông minh, không phải nguồn sự thật"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Tài liệu ba trăm trang",
+      "description": "Với một bộ tài liệu lớn, việc tốn thời gian nhất không phải đọc mà là tìm đúng phần cần đọc. Hỏi phần nào nói về giới hạn tần suất rồi tự đọc phần đó là cách dùng đúng - nó cắt được phần tốn thời gian mà không đụng vào phần cần chính xác."
+    },
+    "quiz": [
+      {
+        "question": "Cách dùng nào đúng với tài liệu kỹ thuật?",
+        "options": [
+          "Hỏi phần nào nói về vấn đề này, rồi tự đọc phần đó để lấy chi tiết chính xác",
+          "Hỏi câu trả lời cuối cùng để khỏi phải đọc tài liệu, tiết kiệm thời gian nhất",
+          "Yêu cầu tóm tắt toàn bộ tài liệu thành một trang rồi làm việc dựa trên bản tóm tắt",
+          "Hỏi từng phần một theo thứ tự để đảm bảo không bỏ sót nội dung nào quan trọng"
+        ],
+        "correct": 0,
+        "explanation": "Việc tốn thời gian nhất với tài liệu lớn không phải đọc mà là tìm đúng phần cần đọc. Cách này cắt được phần tốn thời gian mà không đụng vào phần cần chính xác - còn bản tóm tắt thì làm mất đúng những chi tiết quyết định."
+      },
+      {
+        "question": "Vì sao hỏi chay về một thư viện lại rủi ro?",
+        "options": [
+          "Vì bạn nhận về thứ mô hình nhớ được, tức một phiên bản nào đó không xác định",
+          "Vì mô hình có thể từ chối trả lời nếu thư viện đó ít phổ biến trong cộng đồng",
+          "Vì câu trả lời sẽ chung chung và không áp dụng được vào trường hợp cụ thể của bạn",
+          "Vì các thư viện có nhiều bản phân nhánh khác nhau nên thông tin dễ bị lẫn lộn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là kiểu sai khó phát hiện nhất khi làm việc với tài liệu: câu trả lời đúng cho một phiên bản cũ trông y hệt câu trả lời đúng cho phiên bản bạn đang dùng. Không có dấu hiệu nào phân biệt hai thứ đó."
+      },
+      {
+        "question": "Vì sao yêu cầu trích dẫn nguồn không giải quyết được vấn đề khi hỏi chay?",
+        "options": [
+          "Vì trích dẫn cũng được sinh ra theo cùng cơ chế, nên nó cũng có thể được bịa ra",
+          "Vì tài liệu kỹ thuật thường không có số trang cố định để trích dẫn chính xác",
+          "Vì mô hình không nhớ được nguồn gốc của từng phần trong dữ liệu huấn luyện",
+          "Vì các trích dẫn thường trỏ tới phiên bản tài liệu đã bị thay thế bằng bản mới"
+        ],
+        "correct": 0,
+        "explanation": "Một trích dẫn nghe rất thật với tên mục và số phần cụ thể vẫn có thể không tồn tại. Trích dẫn chỉ có giá trị khi nó trỏ vào đúng đoạn văn bản bạn đã dán vào - lúc đó bạn kiểm tra được ngay."
+      },
+      {
+        "question": "Khi so sánh hai thư viện, nên dùng AI thế nào?",
+        "options": [
+          "Hỏi các tiêu chí nên cân nhắc, rồi tự kiểm chứng từng tiêu chí trên tài liệu thật",
+          "Hỏi thẳng nên chọn cái nào rồi làm theo nếu lý do đưa ra nghe hợp lý",
+          "Yêu cầu lập ra một bảng so sánh thật chi tiết hai thư viện theo tất cả các khía cạnh",
+          "Hỏi thư viện nào được cộng đồng ưa chuộng hơn để chọn theo số đông"
+        ],
+        "correct": 0,
+        "explanation": "Danh sách tiêu chí là thứ có khuôn mẫu rõ nên nó làm tốt; con số cụ thể về hiệu năng hay tính năng thì phải kiểm chứng. Bảng so sánh chi tiết trông thuyết phục nhất nhưng nó cũng chính là dạng dễ chứa số bịa nhất."
+      },
+      {
+        "question": "Vì sao nên hỏi về khái niệm thay vì về cú pháp?",
+        "options": [
+          "Vì khái niệm ổn định qua các phiên bản còn cú pháp thì thay đổi thường xuyên",
+          "Vì các câu hỏi về khái niệm thường được trả lời chi tiết và dễ hiểu hơn",
+          "Vì cú pháp có thể tra cứu nhanh trong tài liệu nên hỏi AI là thừa",
+          "Vì mô hình được huấn luyện chủ yếu trên những tài liệu giải thích các khái niệm"
+        ],
+        "correct": 0,
+        "explanation": "Giải thích một cơ chế hoạt động thì đúng cho nhiều năm; tên tham số của một hàm thì có thể đã đổi từ phiên bản trước. Đây là cách chọn câu hỏi để rơi vào vùng mô hình mạnh thay vì vùng nó yếu."
+      }
+    ],
+    "keyTakeaways": [
+      "Dán tài liệu THẬT vào; hỏi chay thì bạn nhận về một phiên bản không xác định.",
+      "Dùng nó để TÌM ĐƯỜNG trong tài liệu, rồi tự đọc phần đó.",
+      "Trích dẫn cũng bịa được - nó chỉ có giá trị khi trỏ vào đoạn bạn đã dán.",
+      "Hỏi tiêu chí so sánh thì tốt; con số cụ thể thì phải kiểm chứng.",
+      "Hỏi về khái niệm ổn định hơn hỏi về cú pháp, vốn đổi theo phiên bản."
+    ],
+    "practicePrompt": {
+      "question": "AI trả lời về một hàm với tên tham số cụ thể mà bạn hỏi chay. Nên làm gì?",
+      "options": [
+        "Mở tài liệu chính thức của đúng phiên bản bạn dùng và đối chiếu tên tham số đó",
+        "Thử chạy luôn, vì nếu tên tham số sai thì chương trình sẽ báo lỗi ngay lập tức",
+        "Hỏi lại để xác nhận, vì nếu nó trả lời giống lần đầu thì thông tin đáng tin hơn",
+        "Tìm trên các diễn đàn xem có ai từng dùng hàm đó với tham số như vậy không"
+      ],
+      "correct": 0,
+      "explanation": "Thử chạy bắt được tên sai hoàn toàn nhưng không bắt được tham số có thật ở phiên bản cũ mà nay đã đổi nghĩa - kiểu sai tệ hơn nhiều vì nó chạy được. Hỏi lại cũng yếu vì cùng một sai lệch trong dữ liệu sẽ cho cùng một câu trả lời."
+    },
     "summary": {
-      "keyIdea": "AI giúp biến bài báo dài thành ý chính, tác động tài chính và câu hỏi cần kiểm chứng.",
-      "commonMistake": "Thấy tin tích cực rồi kết luận cổ phiếu chắc chắn tốt.",
-      "action": "Dán một bài báo và yêu cầu AI tách: sự kiện, tác động, rủi ro, câu hỏi kiểm chứng."
+      "keyIdea": "Nó là mục lục thông minh cho tài liệu, không phải nguồn thay thế tài liệu.",
+      "formula": "Dán nguồn thật → hỏi tìm đường → tự đọc phần được chỉ.",
+      "commonMistake": "Hỏi chay rồi nhận câu trả lời đúng cho một phiên bản không phải phiên bản mình dùng.",
+      "action": "Lần tới khi tra tài liệu, dán đúng trang đó vào rồi mới hỏi."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lần tới khi cần tra tài liệu, dán đúng trang tài liệu đó vào rồi hỏi, thay vì hỏi chay. So thời gian với cách bạn vẫn làm.",
+      "secondary": "Với bộ tài liệu lớn, thử hỏi phần nào nói về việc này rồi tự đọc phần được chỉ. Đó là cách cắt được phần tốn thời gian mà không đụng vào phần cần chính xác."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Tin tức có thể làm người mới bị cuốn theo cảm xúc. AI giúp bạn đọc có cấu trúc hơn."
+        "text": "Đọc tài liệu chiếm nhiều thời gian và ít ai thích, nên nó là chỗ người ta muốn giao đi nhất. Nó cũng là chỗ mà khác biệt giữa dùng đúng và dùng sai rất rõ ràng."
       },
       {
         "type": "heading",
-        "text": "Đọc tin theo 4 ô"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Sự kiện chính là gì?",
-          "Ai hưởng lợi hoặc bị ảnh hưởng?",
-          "Tác động đến doanh thu, chi phí, nợ hay dòng tiền?",
-          "Cần kiểm chứng thêm điều gì?"
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "Tác động ngắn hạn: ảnh hưởng trong vài ngày/vài tuần. Tác động dài hạn: ảnh hưởng đến lợi nhuận, dòng tiền hoặc vị thế cạnh tranh trong nhiều quý/năm."
-      },
-      {
-        "type": "heading",
-        "text": "Câu lệnh mẫu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Hãy đọc bài báo sau. Trả lời bằng bảng gồm: Sự kiện chính, Tác động tích cực, Tác động tiêu cực, Tác động ngắn hạn/dài hạn, Câu hỏi cần kiểm chứng."
-      },
-      {
-        "type": "heading",
-        "text": "Đầu ra đạt là gì?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một đầu ra tốt không chỉ nói 'tin tốt'. Nó phải giải thích tốt ở đâu: tăng doanh thu, giảm chi phí, giảm rủi ro hay chỉ giúp tâm lý thị trường hưng phấn."
-      },
-      {
-        "type": "heading",
-        "text": "Bốn câu hỏi tiêu đề không bao giờ trả lời"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Con số này rơi vào chỉ tiêu nào - doanh thu, lợi nhuận gộp hay lợi nhuận sau thuế?",
-          "Nó là khoản một lần hay lặp lại hằng năm?",
-          "Nó trải trong bao nhiêu năm, và năm nay ghi nhận bao nhiêu?",
-          "Để đạt được nó, doanh nghiệp phải bỏ thêm chi phí hay vay thêm bao nhiêu?"
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Bốn câu này biến một tin 'tốt' thành một con số ước lượng được. Nếu bài báo không đủ dữ liệu để trả lời, đó chính là danh sách việc cần tra cứu ở báo cáo tài chính hoặc công bố thông tin của doanh nghiệp - và AI có thể giúp bạn tìm đúng chỗ đó ở bài sau."
+        "text": "Khác biệt nằm ở nguồn"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Đọc theo cảm xúc",
-          "text": "\"Doanh nghiệp trúng thầu nghìn tỷ - tin rất tốt, chắc cổ phiếu sẽ tăng.\" Kết luận đi trước dữ liệu, và không có gì để kiểm tra lại sau ba tháng."
+          "label": "Hỏi chay",
+          "text": "Bạn nhận về thứ mô hình nhớ được từ dữ liệu huấn luyện - tức là một phiên bản nào đó không xác định. Và câu trả lời đúng cho phiên bản cũ trông y hệt câu trả lời đúng cho phiên bản bạn dùng."
         },
         "right": {
-          "label": "Đọc theo cấu trúc",
-          "text": "\"Hợp đồng 1.200 tỷ, ghi nhận trong 4 năm, tức khoảng 300 tỷ/năm. Doanh thu hiện tại 5.000 tỷ nên tác động khoảng 6%. Cần kiểm tra biên lợi nhuận mảng này ở thuyết minh bộ phận.\""
+          "label": "Dán tài liệu vào",
+          "text": "Nó làm việc trên nguồn đúng, và bạn kiểm tra lại được ngay trong chính đoạn đã dán. Đây là khác biệt lớn nhất giữa hai cách dùng."
         }
       },
       {
         "type": "callout",
-        "label": "Câu lệnh đầy đủ để dùng lại",
-        "text": "\"Bạn là chuyên viên phân tích thận trọng. Chỉ dùng bài báo dưới đây, không bổ sung kiến thức bên ngoài. Hãy lập bảng 4 cột: Sự kiện | Tác động lên chỉ tiêu tài chính nào | Một lần hay lặp lại | Câu hỏi cần kiểm chứng. Cuối bảng, liệt kê những thông tin bài báo KHÔNG cung cấp nhưng cần có để đánh giá. Không đưa khuyến nghị mua bán.\""
+        "label": "Trích dẫn không cứu được cột bên trái",
+        "text": "Yêu cầu nêu nguồn nghe rất hợp lý, nhưng khi hỏi chay thì trích dẫn cũng được sinh ra bằng cùng cơ chế - một trích dẫn với tên mục và số phần cụ thể vẫn có thể không tồn tại. Nó chỉ có giá trị khi trỏ vào đoạn văn bản bạn đã dán."
+      },
+      {
+        "type": "heading",
+        "text": "Vai trò đúng: mục lục thông minh"
+      },
+      {
+        "type": "paragraph",
+        "text": "Với một bộ tài liệu lớn, việc tốn thời gian nhất không phải đọc mà là tìm đúng phần cần đọc. Hỏi phần nào nói về giới hạn tần suất rồi tự đọc phần đó cắt được phần tốn thời gian mà không đụng vào phần cần chính xác."
+      },
+      {
+        "type": "paragraph",
+        "text": "Yêu cầu tóm tắt cả tài liệu thì ngược lại: nó làm mất đúng những chi tiết quyết định - ngoại lệ, điều kiện, giới hạn - vì tóm tắt theo định nghĩa là bỏ bớt, và thứ bị bỏ là thứ ít lặp lại nhất."
+      },
+      {
+        "type": "heading",
+        "text": "Chọn câu hỏi rơi vào vùng nó mạnh"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hỏi về KHÁI NIỆM: một cơ chế hoạt động thế nào, hai cách tiếp cận khác nhau ra sao. Những thứ này ổn định qua nhiều năm.",
+          "Cẩn thận với CÚ PHÁP: tên tham số, thứ tự đối số, tên hàm. Chúng đổi theo phiên bản và đó là vùng nó yếu.",
+          "Khi so sánh hai thư viện: hỏi các tiêu chí nên cân nhắc thì tốt, nhưng con số cụ thể thì phải kiểm chứng trên tài liệu thật."
+        ]
       },
       {
         "type": "closing",
         "lines": [
-          "Đọc tin bằng AI là đọc có cấu trúc.",
-          "Đừng để tiêu đề thay thế phân tích."
+          "Mục cuối đáng nhấn: bảng so sánh chi tiết trông thuyết phục nhất và cũng chính là dạng dễ chứa số bịa nhất, vì một con số nghe hợp lý có xác suất cao y như một con số đúng.",
+          "Bài sau là ứng dụng có giá trị nhất của cả chặng: đọc mã nguồn lạ."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Tin tích cực nhưng chưa có số liệu cụ thể nên được xem là gì?",
-        "options": [
-          "Tín hiệu cần theo dõi và kiểm chứng",
-          "Lý do mua ngay",
-          "Bằng chứng chắc chắn lợi nhuận tăng",
-          "Không cần đọc thêm"
-        ],
-        "correct": 0,
-        "explanation": "Tin tốt cần được nối với số liệu trước khi thành luận điểm đầu tư."
-      },
-      {
-        "question": "Một bảng tóm tắt tin tốt nên có cột nào?",
-        "options": [
-          "Sự kiện, tác động, thời hạn ảnh hưởng, câu hỏi kiểm chứng",
-          "Màu chữ",
-          "Tên người viết",
-          "Số lượt xem"
-        ],
-        "correct": 0,
-        "explanation": "Các cột này giúp tách cảm xúc khỏi tác động tài chính."
-      },
-      {
-        "question": "Vì sao cần phân biệt khoản 'một lần' và khoản 'lặp lại hằng năm' khi đọc tin?",
-        "options": [
-          "Vì khoản một lần không làm thay đổi khả năng sinh lời dài hạn, trong khi khoản lặp lại thì có",
-          "Vì khoản một lần luôn là tin xấu",
-          "Vì kế toán không ghi nhận khoản một lần",
-          "Vì khoản lặp lại không ảnh hưởng đến dòng tiền"
-        ],
-        "correct": 0,
-        "explanation": "Một khoản thu nhập bất thường có thể làm lợi nhuận năm nay đẹp lên nhưng không nói gì về năm sau. Nhầm hai loại này với nhau là lỗi định giá phổ biến nhất của người mới."
-      },
-      {
-        "question": "Sản phẩm cuối cùng của việc đọc một tin tài chính bằng AI nên là gì?",
-        "options": [
-          "Một danh sách câu hỏi cần kiểm chứng và ước lượng tác động lên chỉ tiêu cụ thể",
-          "Một quyết định mua hoặc bán ngay trong phiên",
-          "Một điểm số cảm xúc từ 1 đến 10",
-          "Một bản tóm tắt càng dài càng tốt"
-        ],
-        "correct": 0,
-        "explanation": "Tin tức hiếm khi đủ dữ liệu để ra quyết định. Vai trò của nó là chỉ cho bạn biết nên đi tra cứu chỗ nào tiếp theo."
-      }
-    ],
-    "day": 1264,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Bài báo (sự kiện + số + nhận định trộn lẫn)",
-        "arrow": true
-      },
-      {
-        "label": "AI tách: sự kiện · tác động · rủi ro · câu hỏi kiểm chứng",
-        "arrow": true
-      },
-      {
-        "label": "Bạn đối chiếu số với nguồn gốc",
-        "arrow": true
-      },
-      {
-        "label": "Ghi vào danh sách theo dõi, không mua bán ngay"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Tin 'ký hợp đồng lớn'",
-      "description": "Một dạng tin rất phổ biến: doanh nghiệp công bố ký hợp đồng trị giá nghìn tỷ và cổ phiếu tăng ngay trong phiên. Đọc theo cấu trúc, bạn sẽ hỏi những câu mà tiêu đề không trả lời: giá trị hợp đồng ghi nhận trong bao nhiêu năm, biên lợi nhuận của mảng đó là bao nhiêu, đã ký chính thức hay mới là biên bản ghi nhớ, và doanh nghiệp có cần vay thêm để thực hiện không. Rất nhiều trường hợp, một hợp đồng nghìn tỷ trải đều 5 năm với biên lợi nhuận mỏng có tác động lên lợi nhuận nhỏ hơn nhiều so với phản ứng của giá trong phiên công bố."
-    },
-    "keyTakeaways": [
-      "Tách bài báo thành sự kiện - tác động - rủi ro - câu hỏi kiểm chứng, thay vì đọc thành một cảm giác chung.",
-      "Luôn hỏi tác động chảy vào đâu: doanh thu, chi phí, biên lợi nhuận hay dòng tiền.",
-      "Phân biệt tác động một lần với tác động lặp lại hằng năm - đây là điểm tiêu đề hay làm mờ nhất.",
-      "Kết quả của việc đọc tin là một danh sách câu hỏi cần kiểm chứng, không phải một lệnh mua."
-    ],
-    "practicePrompt": {
-      "question": "Khi đọc một tin tài chính bằng AI, câu hỏi quan trọng nhất là gì?",
-      "options": [
-        "Ảnh hưởng dòng tiền không?",
-        "Tin này có nhiều chữ không?",
-        "Tiêu đề có hấp dẫn không?",
-        "Có nên mua ngay không?"
-      ],
-      "correct": 0,
-      "explanation": "Tin tức cần được nối với tác động tài chính thật."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Dán một bài báo và yêu cầu AI tách: sự kiện, tác động, rủi ro, câu hỏi kiểm chứng.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Tin tức là nguồn thông tin bạn tiếp xúc nhiều nhất, và cũng là nơi cảm xúc dễ thay quyết định nhất. Có cấu trúc đọc cố định là cách rẻ nhất để giảm sai lầm."
+    ]
   },
   {
     "id": 1265,
-    "slug": "doc-bctc-bang-ai-phan-co-ban",
-    "title": "AI Tài chính, Bài 5: Đọc báo cáo tài chính bằng AI - phần cơ bản",
-    "subtitle": "Biết cách nhờ AI tìm doanh thu, lợi nhuận, dòng tiền và nợ vay.",
-    "duration": "15 phút",
-    "estimatedMinutes": 15,
-    "difficulty": "Dễ",
-    "openingQuestion": "Người mới nên bắt đầu đọc BCTC bằng AI từ nhóm số liệu nào?",
+    "slug": "doc-ma-nguon-la-bang-ai",
+    "title": "AI trong sản phẩm, Bài 5: Đọc mã nguồn lạ bằng AI",
+    "subtitle": "Ứng dụng có tỷ lệ hoàn vốn cao nhất, vì bạn có sẵn thứ để đối chiếu.",
+    "duration": "7 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🗺️",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": true,
+    "whyItMatters": "Nhận bàn giao một kho mã không tài liệu là việc ai cũng gặp và ai cũng sợ. Đây là chỗ AI rút ngắn được nhiều thời gian nhất mà rủi ro lại thấp nhất, vì mã nằm ngay trước mắt để so.",
+    "openingQuestion": "Vì sao đọc mã lạ là ứng dụng có tỷ lệ hoàn vốn cao nhất?",
     "openingOptions": [
-      "Doanh thu, lợi nhuận, dòng tiền kinh doanh, tiền mặt và nợ vay",
-      "Đọc hết mọi dòng trong phần thuyết minh của báo cáo, cùng một lúc",
-      "Chỉ logo công ty",
-      "Chỉ giá cổ phiếu"
+      "Vì việc tốn nhiều thời gian, mà bạn lại đối chiếu được ngay bằng chính đoạn mã đó",
+      "Vì mã nguồn có cú pháp chặt chẽ nên AI hiểu nó chính xác hơn văn bản thông thường",
+      "Vì phần lớn mã nguồn tuân theo các khuôn mẫu phổ biến đã có nhiều trong dữ liệu",
+      "Vì việc đọc mã không tạo ra thay đổi nào nên sai sót không gây ra hậu quả gì"
     ],
     "correctOption": 0,
-    "explanation": "Báo cáo tài chính là hồ sơ sức khỏe của doanh nghiệp, và cách vào an toàn nhất cho người mới là năm chỉ tiêu cốt lõi: doanh thu, lợi nhuận sau thuế, dòng tiền kinh doanh, tiền mặt và nợ vay. AI giúp bạn tìm năm con số đó trong vài phút thay vì vài chục phút lật trang - nhưng chỉ khi bạn bắt nó ghi rõ số trang cho từng số. Không có trang nguồn thì bạn không phân biệt được số nó đọc được với số nó suy ra.",
+    "explanation": "Hai vế phải có cùng lúc. Tốn nhiều thời gian nghĩa là có nhiều thứ để tiết kiệm; đối chiếu được ngay nghĩa là rủi ro thấp. Đây đúng là tiêu chí phân loại ở bài đầu chặng, và đọc mã lạ đạt điểm cao ở cả hai. Việc đọc mã không gây hậu quả là sai: hiểu sai một đoạn mã dẫn tới sửa sai nó, và hậu quả xuất hiện ở bước sau.",
+    "diagram": [
+      {
+        "label": "1. Bản đồ trước: kho này gồm những phần nào",
+        "arrow": true
+      },
+      {
+        "label": "2. Từng phần: tệp này chịu trách nhiệm gì",
+        "arrow": true
+      },
+      {
+        "label": "3. Từng hàm: hàm này làm gì, ai gọi nó",
+        "arrow": true
+      },
+      {
+        "label": "Đối chiếu ở mỗi bước, đừng tin cả chuỗi"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Câu hỏi hay nhất khi đọc mã lạ",
+      "description": "Đoạn này có gì bất thường so với cách người ta thường viết? Câu này khai thác đúng chỗ mô hình mạnh - nó thấy rất nhiều mã nên nhận ra được chỗ lệch khuôn - và chỗ lệch khuôn thường là chỗ có lý do lịch sử hoặc chỗ có lỗi."
+    },
+    "quiz": [
+      {
+        "question": "Thứ tự đọc một kho mã lạ nào hợp lý nhất?",
+        "options": [
+          "Từ bản đồ tổng thể xuống từng phần, rồi mới tới từng hàm cụ thể",
+          "Từ điểm khởi động của chương trình rồi lần theo luồng thực thi tới cuối",
+          "Từ những tệp có nhiều dòng nhất vì đó là nơi chứa phần lớn logic nghiệp vụ",
+          "Từ các bài kiểm thử vì chúng mô tả hành vi mong đợi của toàn bộ hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Đi từ tổng thể xuống cho bạn khung để đặt mọi thứ vào, nên chi tiết có chỗ để bám. Lần theo luồng thực thi cũng là kỹ thuật tốt nhưng nó dễ dẫn bạn đi rất sâu vào một nhánh trước khi kịp thấy bức tranh chung."
+      },
+      {
+        "question": "Câu hỏi nào khai thác đúng điểm mạnh của mô hình khi đọc mã?",
+        "options": [
+          "Đoạn này có gì bất thường so với cách người ta thường viết cho việc tương tự",
+          "Đoạn mã này có chứa lỗi bảo mật nào nghiêm trọng cần được xử lý ngay không",
+          "Đoạn mã này chạy mất bao lâu với dữ liệu đầu vào có kích thước một triệu phần tử",
+          "Đoạn mã này được viết vào khoảng thời gian nào dựa trên phong cách lập trình"
+        ],
+        "correct": 0,
+        "explanation": "Nhận ra chỗ lệch khuôn là đúng thứ mô hình làm tốt, vì nó đã thấy rất nhiều mã. Và chỗ lệch khuôn thường là chỗ có lý do lịch sử hoặc chỗ có lỗi - cả hai đều đáng để bạn dừng lại xem."
+      },
+      {
+        "question": "Vì sao không nên tin bản tóm tắt của cả một kho mã?",
+        "options": [
+          "Vì nó dựa trên khuôn mẫu chung, nên đúng ở phần điển hình và sai ở phần đặc thù",
+          "Vì kho mã quá lớn để đưa hết vào một lần nên bản tóm tắt luôn thiếu thông tin",
+          "Vì mã nguồn thay đổi liên tục nên bản tóm tắt sẽ lỗi thời ngay sau khi được tạo",
+          "Vì các tệp cấu hình không được đưa vào nên bản tóm tắt bỏ sót phần quan trọng"
+        ],
+        "correct": 0,
+        "explanation": "Điểm nguy hiểm là phần đặc thù mới chính là phần bạn cần biết - phần điển hình thì bạn đoán được mà không cần hỏi. Nên bản tóm tắt đúng ở chỗ bạn không cần và sai ở chỗ bạn cần."
+      },
+      {
+        "question": "Cách kiểm chứng nhanh nhất một lời giải thích về đoạn mã là gì?",
+        "options": [
+          "Chọn một chi tiết cụ thể trong lời giải thích và tìm nó trong mã trước mắt",
+          "Hỏi lại cùng câu hỏi đó một lần nữa và xem hai câu trả lời có khớp nhau không",
+          "Yêu cầu giải thích lại chi tiết hơn để xem có phần nào mâu thuẫn với phần trước",
+          "Chạy thử đoạn mã đó với dữ liệu mẫu và xem kết quả có khớp với mô tả không"
+        ],
+        "correct": 0,
+        "explanation": "Nó mất mười giây và bắt được phần lớn lỗi. Chạy thử thì tốt nhưng chậm hơn nhiều và không phải đoạn mã nào cũng chạy độc lập được; hỏi lại thì có thể lặp lại cùng một hiểu sai."
+      },
+      {
+        "question": "Vì sao nói hiểu sai mã vẫn gây hậu quả dù việc đọc không thay đổi gì?",
+        "options": [
+          "Vì hiểu sai dẫn tới sửa sai, và hậu quả xuất hiện ở bước sau chứ không ở bước đọc",
+          "Vì thời gian bỏ ra để đọc theo hướng sai không lấy lại được nữa",
+          "Vì lời giải thích sai có thể được ghi vào tài liệu và lan sang người khác",
+          "Vì bạn sẽ mất dần niềm tin vào công cụ và không dùng nó cho cả những việc vốn phù hợp"
+        ],
+        "correct": 0,
+        "explanation": "Đây là điểm dễ bị đánh giá thấp nhất về việc đọc mã. Lựa chọn thứ ba cũng là rủi ro thật và nó chính là lý do bài về lưu vết ở cuối chặng tồn tại, nhưng hậu quả trực tiếp nhất là bước sửa."
+      }
+    ],
+    "keyTakeaways": [
+      "Tốn nhiều thời gian VÀ đối chiếu được ngay - đọc mã lạ đạt điểm cao ở cả hai tiêu chí.",
+      "Đi từ bản đồ tổng thể xuống từng phần, rồi mới tới từng hàm.",
+      "Câu hỏi hay nhất: đoạn này có gì bất thường so với cách người ta thường viết.",
+      "Đừng tin bản tóm tắt cả kho: nó đúng ở phần điển hình, sai ở phần đặc thù bạn cần.",
+      "Kiểm chứng bằng cách chọn một chi tiết và tìm nó trong mã - mười giây, bắt phần lớn lỗi."
+    ],
+    "practicePrompt": {
+      "question": "AI giải thích một hàm và nói nó xử lý trường hợp danh sách rỗng. Cách kiểm nhanh nhất?",
+      "options": [
+        "Tìm trong hàm đó xem có nhánh nào kiểm tra danh sách rỗng không - mất mười giây",
+        "Chạy thử hàm với danh sách rỗng và xem nó có báo lỗi hay trả về giá trị hợp lệ",
+        "Hỏi AI chỉ ra chính xác dòng nào trong hàm thực hiện việc kiểm tra đó",
+        "Đọc lại toàn bộ hàm từ đầu tới cuối để tự xác minh mọi phần trong lời giải thích"
+      ],
+      "correct": 0,
+      "explanation": "Chọn một chi tiết kiểm chứng được và tra thẳng vào mã là cách rẻ nhất. Hỏi AI chỉ dòng nào cũng hữu ích nhưng nó có thể chỉ vào một dòng và mô tả sai việc dòng đó làm - bạn vẫn phải tự nhìn."
+    },
     "summary": {
-      "keyIdea": "BCTC là hồ sơ sức khỏe doanh nghiệp; AI giúp tìm số nhanh nhưng phải ghi rõ nguồn.",
-      "commonMistake": "Upload báo cáo rồi hỏi chung chung 'công ty này tốt không'.",
-      "action": "Dùng AI trích 5 chỉ tiêu cơ bản và yêu cầu ghi trang nguồn."
+      "keyIdea": "Ứng dụng có tỷ lệ hoàn vốn cao nhất, vì thứ để đối chiếu nằm ngay trước mắt.",
+      "formula": "Bản đồ → từng phần → từng hàm, đối chiếu ở mỗi bước.",
+      "commonMistake": "Tin bản tóm tắt cả kho, vốn đúng ở phần điển hình và sai ở phần đặc thù.",
+      "action": "Lấy một tệp bạn chưa từng đọc và thử quy trình ba bước trên nó."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một tệp trong dự án mà bạn chưa từng đọc kỹ. Hỏi nó chịu trách nhiệm gì, rồi chọn một chi tiết trong câu trả lời và tra thẳng vào mã.",
+      "secondary": "Sau đó hỏi câu quan trọng nhất: đoạn này có gì bất thường so với cách người ta thường viết? Những chỗ nó chỉ ra là chỗ đáng đọc kỹ nhất."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Báo cáo tài chính dài không đáng sợ nếu bắt đầu từ vài con số cốt lõi."
+        "text": "Nhận bàn giao một kho mã không tài liệu là việc ai cũng gặp và ai cũng sợ. Đây là chỗ AI rút ngắn được nhiều thời gian nhất trong cả chặng, và cũng là chỗ rủi ro thấp nhất."
       },
       {
         "type": "heading",
-        "text": "5 con số người mới cần tìm"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Doanh thu",
-          "Lợi nhuận sau thuế",
-          "Dòng tiền từ hoạt động kinh doanh",
-          "Tiền và tương đương tiền",
-          "Nợ vay ngắn hạn và dài hạn"
-        ]
+        "text": "Vì sao nó đạt điểm cao ở cả hai tiêu chí"
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "BCTC: báo cáo tài chính. Dòng tiền kinh doanh: tiền thật tạo ra từ hoạt động chính. Nợ vay: tiền doanh nghiệp đi vay và phải trả lại."
+        "label": "Tốn nhiều thời gian, và đối chiếu được ngay",
+        "text": "Bài đầu chặng nói giá trị nằm ở chỗ giao của hai điều kiện: việc tốn thời gian, và bạn kiểm chứng được nhanh. Đọc mã lạ đạt điểm cao ở cả hai - thứ để so nằm ngay trước mắt bạn."
       },
       {
         "type": "heading",
-        "text": "Câu lệnh mẫu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Đọc báo cáo đính kèm. Trích 5 chỉ tiêu: doanh thu, lợi nhuận sau thuế, dòng tiền kinh doanh, tiền mặt, nợ vay. Xuất bảng gồm Chỉ tiêu, Giá trị, Đơn vị, Năm, Trang nguồn."
-      },
-      {
-        "type": "heading",
-        "text": "Cách kiểm tra"
-      },
-      {
-        "type": "paragraph",
-        "text": "Chọn ngẫu nhiên 2 con số AI đưa ra và mở đúng trang nguồn để kiểm tra. Nếu sai trang hoặc sai đơn vị, phải yêu cầu AI làm lại."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Năm chỉ tiêu và câu hỏi mỗi chỉ tiêu trả lời",
-        "concepts": [
-          {
-            "vi": "Doanh thu",
-            "en": "Revenue",
-            "def": "Doanh nghiệp bán được bao nhiêu trong kỳ. Nằm ở dòng đầu báo cáo kết quả kinh doanh. Xem xu hướng 3 năm quan trọng hơn con số một năm."
-          },
-          {
-            "vi": "Lợi nhuận sau thuế",
-            "en": "Net income",
-            "def": "Còn lại bao nhiêu sau tất cả chi phí, lãi vay và thuế. Đây là con số trên sổ sách, chưa chắc là tiền đã về."
-          },
-          {
-            "vi": "Dòng tiền kinh doanh",
-            "en": "Operating cash flow",
-            "def": "Tiền thật thu về từ hoạt động chính. Nằm ở báo cáo lưu chuyển tiền tệ. Nếu lệch xa lợi nhuận trong nhiều năm, cần tìm hiểu vì sao."
-          },
-          {
-            "vi": "Tiền và tương đương tiền",
-            "en": "Cash & equivalents",
-            "def": "Doanh nghiệp còn bao nhiêu tiền sẵn sàng dùng. Nằm ở bảng cân đối kế toán, phần tài sản ngắn hạn."
-          },
-          {
-            "vi": "Nợ vay",
-            "en": "Borrowings / debt",
-            "def": "Tổng vay ngắn hạn và dài hạn. Đặt cạnh tiền mặt và dòng tiền kinh doanh để xem doanh nghiệp trả nợ bằng gì."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Hai phép so sánh làm ngay sau khi có bảng"
+        "text": "Ba bước, đối chiếu ở mỗi bước"
       },
       {
         "type": "list",
         "items": [
-          "Dòng tiền kinh doanh so với lợi nhuận sau thuế: nếu lợi nhuận dương mà dòng tiền âm nhiều năm liền, đó là dấu hiệu cần đào sâu.",
-          "Nợ vay so với tiền mặt và dòng tiền kinh doanh: nợ lớn không đáng sợ bằng nợ lớn mà dòng tiền tạo ra quá nhỏ so với nghĩa vụ trả nợ."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Câu lệnh đầy đủ để dùng lại",
-        "text": "\"Chỉ dùng báo cáo tài chính đính kèm. Lập bảng 5 dòng (doanh thu, lợi nhuận sau thuế, dòng tiền từ hoạt động kinh doanh, tiền và tương đương tiền, tổng nợ vay) × 3 cột năm gần nhất. Mỗi ô ghi kèm số trang và đơn vị. Ghi rõ đây là số hợp nhất hay công ty mẹ. Ô nào không tìm thấy thì ghi 'Không tìm thấy', tuyệt đối không ước lượng.\""
-      },
-      {
-        "type": "heading",
-        "text": "Ba lỗi hay gặp khi trích số bằng AI"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lẫn số hợp nhất với số công ty mẹ - hai bảng nằm cạnh nhau trong cùng một file, rất dễ nhầm.",
-          "Lẫn số lũy kế với số quý - nhất là ở báo cáo quý 2 và quý 3.",
-          "Lẫn đơn vị - báo cáo có thể trình bày bằng đồng, triệu đồng hoặc tỷ đồng ở các bảng khác nhau."
+          "Bản đồ tổng thể: kho này gồm những phần nào, phần nào gọi phần nào. Đi từ trên xuống cho bạn khung để đặt mọi chi tiết vào.",
+          "Từng phần: tệp hoặc thư mục này chịu trách nhiệm gì, dữ liệu đi vào và đi ra là gì.",
+          "Từng hàm: hàm này làm gì, ai gọi nó, nó giả định gì về đầu vào."
         ]
       },
       {
         "type": "paragraph",
-        "text": "Cả ba lỗi này đều không được AI tự phát hiện, vì output vẫn 'đúng ngữ pháp'. Cách phòng duy nhất là bắt ghi trang, rồi tự mở hai trang bất kỳ để đối chiếu. Mất hai phút, nhưng đó là hai phút phân biệt một bảng dùng được với một bảng chỉ nhìn có vẻ đúng."
+        "text": "Ở mỗi bước, chọn MỘT chi tiết cụ thể trong câu trả lời và tra thẳng vào mã. Việc đó mất mười giây và bắt được phần lớn lỗi - nhanh hơn nhiều so với chạy thử, và không phải đoạn mã nào cũng chạy độc lập được."
+      },
+      {
+        "type": "heading",
+        "text": "Câu hỏi hay nhất"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đoạn này có gì bất thường so với cách người ta thường viết cho việc tương tự? Câu này khai thác đúng chỗ mô hình mạnh - nó đã thấy rất nhiều mã nên nhận ra được chỗ lệch khuôn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Và chỗ lệch khuôn thường là một trong hai thứ: một lý do lịch sử mà không ai ghi lại, hoặc một lỗi. Cả hai đều đáng để bạn dừng lại xem kỹ."
+      },
+      {
+        "type": "heading",
+        "text": "Một cái bẫy"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Bản tóm tắt cả kho",
+          "text": "Nghe rất tiện và nó dựa trên khuôn mẫu chung - nên nó đúng ở phần ĐIỂN HÌNH của kho mã."
+        },
+        "right": {
+          "label": "Vì sao đó là vấn đề",
+          "text": "Phần điển hình là phần bạn đoán được mà không cần hỏi. Phần bạn cần biết là phần ĐẶC THÙ - và đó đúng là phần bản tóm tắt sai."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Đọc BCTC bằng AI bắt đầu từ số cơ bản.",
-          "Nguồn trang quan trọng hơn câu trả lời nghe hay."
+          "Cuối cùng, một điểm dễ bị đánh giá thấp: đọc mã không thay đổi gì, nhưng hiểu sai dẫn tới sửa sai, và hậu quả xuất hiện ở bước sau chứ không ở bước đọc.",
+          "Bài sau là ranh giới an toàn: cái gì không được đưa vào một câu lệnh."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Khi AI trích số từ BCTC, bảng kết quả cần có gì?",
-        "options": [
-          "Giá trị, đơn vị, năm và trang nguồn",
-          "Chỉ nhận xét chung",
-          "Chỉ màu sắc",
-          "Chỉ tên công ty"
-        ],
-        "correct": 0,
-        "explanation": "Nguồn và đơn vị giúp kiểm tra lại số liệu."
-      },
-      {
-        "question": "Câu hỏi nào quá chung khi đọc BCTC bằng AI?",
-        "options": [
-          "Công ty này tốt không?",
-          "Doanh thu năm 2025 là bao nhiêu và ở trang nào?",
-          "OCF năm 2025 là bao nhiêu?",
-          "Nợ vay ngắn hạn nằm ở trang nào?"
-        ],
-        "correct": 0,
-        "explanation": "Câu hỏi quá chung dễ tạo câu trả lời mơ hồ."
-      },
-      {
-        "question": "Doanh nghiệp báo lãi đều đặn nhưng dòng tiền kinh doanh âm nhiều năm. Điều này thường gợi ý gì?",
-        "options": [
-          "Cần kiểm tra phải thu và tồn kho - lợi nhuận đã ghi nhận nhưng tiền chưa về",
-          "Doanh nghiệp chắc chắn gian lận",
-          "Đây là hiện tượng bình thường, không cần quan tâm",
-          "Doanh nghiệp đang trả cổ tức quá nhiều"
-        ],
-        "correct": 0,
-        "explanation": "Chênh lệch giữa lợi nhuận và dòng tiền không tự nó là gian lận, nhưng nó luôn là câu hỏi phải trả lời. Nơi tìm câu trả lời thường là phải thu, tồn kho và thuyết minh liên quan."
-      },
-      {
-        "question": "Lỗi nào sau đây AI KHÔNG tự phát hiện được khi trích số từ báo cáo?",
-        "options": [
-          "Lấy nhầm số công ty mẹ thay vì số hợp nhất",
-          "Viết sai chính tả tên chỉ tiêu",
-          "Trình bày bảng lệch cột",
-          "Dùng sai dấu phân cách hàng nghìn"
-        ],
-        "correct": 0,
-        "explanation": "Nhầm hợp nhất với công ty mẹ tạo ra một bảng hoàn toàn hợp lệ về hình thức nhưng sai về bản chất. Chỉ có việc đối chiếu trang nguồn mới bắt được lỗi loại này."
-      }
-    ],
-    "day": 1265,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Doanh thu (bán được bao nhiêu)",
-        "arrow": true
-      },
-      {
-        "label": "Lợi nhuận sau thuế (còn lại bao nhiêu trên sổ)",
-        "arrow": true
-      },
-      {
-        "label": "Dòng tiền kinh doanh (thu về bao nhiêu tiền thật)",
-        "arrow": true
-      },
-      {
-        "label": "Tiền mặt & nợ vay (trụ được bao lâu)"
-      }
-    ],
-    "interactiveType": "process",
-    "realWorldExample": {
-      "company": "Khi lợi nhuận và dòng tiền không đi cùng nhau",
-      "description": "Một trong những tình huống kinh điển trong phân tích: doanh nghiệp báo lãi năm này qua năm khác nhưng dòng tiền từ hoạt động kinh doanh liên tục âm. Chênh lệch đó thường nằm ở phải thu và tồn kho - tức là doanh nghiệp đã ghi nhận doanh thu nhưng chưa thu được tiền, hoặc đã bỏ tiền mua hàng mà chưa bán được. Đây là lý do bảng năm chỉ tiêu luôn phải có dòng tiền kinh doanh bên cạnh lợi nhuận: nhìn một mình lợi nhuận, bạn sẽ không thấy gì bất thường."
-    },
-    "keyTakeaways": [
-      "Năm chỉ tiêu vào cửa: doanh thu, lợi nhuận sau thuế, dòng tiền kinh doanh, tiền mặt, nợ vay.",
-      "Luôn lấy tối thiểu 3 năm hoặc 3 kỳ - một con số đơn lẻ không nói lên xu hướng.",
-      "Bắt AI ghi số trang cho từng ô; ô nào không có thì ghi 'Không tìm thấy'.",
-      "Tự mở lại 2 trang bất kỳ để đối chiếu trước khi dùng bảng cho việc gì khác."
-    ],
-    "practicePrompt": {
-      "question": "Người mới nên bắt đầu đọc BCTC bằng AI từ nhóm số liệu nào?",
-      "options": [
-        "Doanh thu, lợi nhuận, dòng tiền kinh doanh, tiền mặt và nợ vay",
-        "Mọi dòng trong thuyết minh cùng lúc",
-        "Chỉ logo công ty",
-        "Chỉ giá cổ phiếu"
-      ],
-      "correct": 0,
-      "explanation": "Các chỉ tiêu cơ bản giúp người mới nắm sức khỏe doanh nghiệp trước."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Dùng AI trích 5 chỉ tiêu cơ bản và yêu cầu ghi trang nguồn.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Đọc được năm chỉ tiêu này và hiểu quan hệ giữa chúng đã đủ để bạn tự nhận ra phần lớn doanh nghiệp có vấn đề rõ ràng về tài chính."
+    ]
   },
   {
     "id": 1266,
-    "slug": "tim-rui-ro-trong-bctc-bang-ai",
-    "title": "AI Tài chính, Bài 6: Tìm rủi ro trong báo cáo tài chính bằng AI",
-    "subtitle": "Tập trung vào dòng tiền, phải thu, tồn kho, nợ vay và thuyết minh.",
-    "duration": "16 phút",
-    "estimatedMinutes": 16,
+    "slug": "ranh-gioi-an-toan-khi-dung-ai",
+    "title": "AI trong sản phẩm, Bài 6: Ranh giới an toàn - cái gì không đưa vào",
+    "subtitle": "Một câu lệnh gửi đi là một lần dữ liệu rời khỏi hệ thống của bạn.",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "openingQuestion": "Dấu hiệu nào thường là cảnh báo chất lượng lợi nhuận?",
+    "emoji": "🚧",
+    "track": "professional",
+    "interactiveType": "ai-verify",
+    "isFundamental": true,
+    "whyItMatters": "Người ta dán cả tệp cấu hình vào ô chat mà không nghĩ, vì ô chat trông như một cuộc trò chuyện riêng tư. Nó không phải - và ranh giới này dễ vẽ trước hơn nhiều so với dọn hậu quả sau.",
+    "openingQuestion": "Vì sao dán một tệp cấu hình vào ô chat lại là vấn đề?",
     "openingOptions": [
-      "Lợi nhuận dương nhưng dòng tiền kinh doanh âm kéo dài",
-      "Tiền mặt tăng đều",
-      "Nợ vay giảm",
-      "Doanh thu và dòng tiền cùng tăng"
+      "Vì đó là một lần dữ liệu rời khỏi hệ thống, và bí mật trong đó phải coi như đã lộ",
+      "Vì tệp cấu hình thường dài nên nó chiếm hết cửa sổ ngữ cảnh dành cho câu hỏi",
+      "Vì mô hình sẽ dùng nội dung đó để trả lời cho những người dùng khác về sau",
+      "Vì các tệp cấu hình có định dạng đặc thù mà mô hình thường hiểu sai ý nghĩa"
     ],
     "correctOption": 0,
-    "explanation": "Sau khi biết trích số cơ bản, bước tiếp theo là tìm chỗ bất thường. AI quét rất nhanh những mẫu hình quen thuộc - phải thu chạy nhanh hơn doanh thu, tồn kho phình ra, lợi nhuận dương mà dòng tiền âm - nhưng nó cũng rất dễ đưa ra cảnh báo chung chung đúng với mọi doanh nghiệp. Vì vậy luật của bài này là: mỗi cảnh báo phải kèm bằng chứng số liệu, số trang, và một câu hỏi cụ thể để kiểm tra tiếp. Cảnh báo không có ba thứ đó thì bỏ đi.",
+    "explanation": "Ô chat trông như một cuộc trò chuyện riêng tư nên người ta đối xử với nó như vậy. Thực tế đó là một lần gửi dữ liệu ra một hệ thống bên ngoài, đi qua nhật ký và có thể được lưu lại theo chính sách của nhà cung cấp. Việc mô hình có học từ dữ liệu đó hay không tuỳ nhà cung cấp và gói dịch vụ, nhưng đó là mối lo thứ hai - mối lo thứ nhất là dữ liệu đã ra ngoài rồi.",
+    "diagram": [
+      {
+        "label": "Câu lệnh gửi đi = dữ liệu rời khỏi hệ thống",
+        "arrow": true
+      },
+      {
+        "label": "Không đưa: khoá, dữ liệu cá nhân thật, mã có ràng buộc hợp đồng",
+        "arrow": true
+      },
+      {
+        "label": "Thay bằng: dữ liệu giả cùng hình dạng",
+        "arrow": true
+      },
+      {
+        "label": "Vẽ ranh giới trước rẻ hơn dọn hậu quả sau"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Thay bằng dữ liệu giả cùng hình dạng",
+      "description": "Phần lớn câu hỏi kỹ thuật không cần giá trị thật - chúng chỉ cần đúng hình dạng dữ liệu. Đổi tên thật thành tên giả, số căn cước thành dãy số cùng độ dài, khoá thành một chuỗi giữ nguyên định dạng. Câu trả lời không đổi chút nào."
+    },
+    "quiz": [
+      {
+        "question": "Thứ nào tuyệt đối không nên đưa vào câu lệnh?",
+        "options": [
+          "Khoá truy cập, mật khẩu, và dữ liệu cá nhân thật của người dùng",
+          "Mã nguồn của dự án, vì nó là tài sản trí tuệ của công ty bạn",
+          "Thông tin về kiến trúc hệ thống, vì nó giúp kẻ tấn công hiểu điểm yếu",
+          "Tên các thư viện nội bộ, vì chúng tiết lộ công nghệ mà công ty đang dùng"
+        ],
+        "correct": 0,
+        "explanation": "Nhóm này là nhóm không có cách nào chữa sau khi lộ. Ba nhóm còn lại là chuyện chính sách của từng công ty - nhiều nơi cho phép trong khi nhiều nơi cấm, và bạn phải hỏi chứ không tự quyết."
+      },
+      {
+        "question": "Cách nào giữ được tính hữu ích mà không đưa dữ liệu thật ra ngoài?",
+        "options": [
+          "Thay bằng dữ liệu giả có cùng hình dạng: cùng độ dài, cùng định dạng, cùng cấu trúc",
+          "Chỉ đưa một phần nhỏ dữ liệu thật đủ để mô tả vấn đề cần hỏi",
+          "Mã hoá dữ liệu trước khi dán vào rồi giải mã lại kết quả nhận về",
+          "Xoá hết tên các trường dữ liệu và chỉ giữ lại giá trị để không nhận dạng được nữa"
+        ],
+        "correct": 0,
+        "explanation": "Phần lớn câu hỏi kỹ thuật không cần giá trị thật, chúng chỉ cần đúng hình dạng - và câu trả lời không đổi chút nào. Xoá tên trường thì làm hỏng câu hỏi mà vẫn để lộ giá trị, tức là mất cả hai phía."
+      },
+      {
+        "question": "Vì sao nói khoá đã dán vào phải coi như đã lộ?",
+        "options": [
+          "Vì bạn không kiểm soát được nó đi qua những nhật ký và hệ thống lưu trữ nào",
+          "Vì nhà cung cấp dịch vụ AI công khai toàn bộ nội dung các cuộc trò chuyện",
+          "Vì mô hình sẽ ghi nhớ khoá đó và có thể đọc lại nó trong các phiên sau",
+          "Vì các cuộc trò chuyện được lưu vĩnh viễn và không thể yêu cầu xoá đi được"
+        ],
+        "correct": 0,
+        "explanation": "Chữ KHÔNG KIỂM SOÁT ĐƯỢC là mấu chốt, và nó dẫn tới hành động cụ thể: thu hồi khoá và cấp khoá mới, giống hệt cách xử lý khi lỡ đẩy khoá lên kho công khai. Xoá cuộc trò chuyện không đủ vì bạn không biết nó đã đi qua đâu."
+      },
+      {
+        "question": "Vì sao nên hỏi chính sách của công ty trước khi dùng?",
+        "options": [
+          "Vì ranh giới cho mã nguồn và dữ liệu nội bộ khác nhau giữa các nơi và có thể ràng buộc hợp đồng",
+          "Vì công ty có thể đã mua sẵn gói dịch vụ với mức giá ưu đãi hơn cho nhân viên",
+          "Vì việc dùng một công cụ chưa được phê duyệt có thể ảnh hưởng tới kết quả đánh giá công việc của bạn",
+          "Vì các công cụ khác nhau có mức độ chính xác khác nhau cho từng loại công việc"
+        ],
+        "correct": 0,
+        "explanation": "Vế hợp đồng là vế nghiêm trọng nhất: một số hợp đồng với khách hàng cấm đưa mã hoặc dữ liệu của họ ra bên thứ ba, và vi phạm là chuyện pháp lý chứ không phải chuyện nội bộ."
+      },
+      {
+        "question": "Bản chạy trên hạ tầng riêng giải quyết được vấn đề gì?",
+        "options": [
+          "Dữ liệu không rời khỏi hệ thống của bạn, đổi lại là chi phí và công vận hành",
+          "Mô hình được huấn luyện riêng trên mã nguồn của công ty nên trả lời chính xác hơn",
+          "Không còn hiện tượng bịa đặt vì mô hình chỉ trả lời dựa trên dữ liệu nội bộ",
+          "Tốc độ phản hồi nhanh hơn vì không phải gửi yêu cầu qua mạng internet"
+        ],
+        "correct": 0,
+        "explanation": "Nó giải đúng một vấn đề - vấn đề dữ liệu ra ngoài - và không giải bất cứ vấn đề nào khác trong chặng này. Bịa đặt vẫn còn nguyên vì đó là cơ chế của mô hình, không phải chuyện nó chạy ở đâu."
+      }
+    ],
+    "keyTakeaways": [
+      "Câu lệnh gửi đi là một lần dữ liệu rời khỏi hệ thống, dù ô chat trông riêng tư.",
+      "Không đưa: khoá, mật khẩu, dữ liệu cá nhân thật - nhóm không chữa được sau khi lộ.",
+      "Thay bằng dữ liệu giả CÙNG HÌNH DẠNG; câu trả lời không đổi chút nào.",
+      "Khoá đã dán vào thì phải thu hồi và cấp mới, như lỡ đẩy lên kho công khai.",
+      "Bản chạy trên hạ tầng riêng giải đúng vấn đề dữ liệu, không giải vấn đề bịa đặt."
+    ],
+    "practicePrompt": {
+      "question": "Bạn cần hỏi về một lỗi trong đoạn mã xử lý thông tin khách hàng. Nên làm gì?",
+      "options": [
+        "Thay dữ liệu khách hàng bằng dữ liệu giả cùng hình dạng rồi mới hỏi",
+        "Hỏi mô tả lỗi bằng lời mà không dán đoạn mã nào vào cuộc trò chuyện",
+        "Dán mã nhưng xoá hết phần giá trị dữ liệu, chỉ giữ lại phần logic xử lý",
+        "Chỉ dán những dòng liên quan trực tiếp tới lỗi để giảm lượng dữ liệu ra ngoài"
+      ],
+      "correct": 0,
+      "explanation": "Nó giữ được toàn bộ tính hữu ích mà không đưa gì thật ra ngoài. Mô tả bằng lời thì mất phần lớn thông tin hữu ích, còn dán ít dòng hơn thì chỉ giảm lượng chứ không đổi được tính chất của việc đưa dữ liệu ra ngoài."
+    },
     "summary": {
-      "keyIdea": "AI giúp quét rủi ro nhanh, nhưng mỗi cảnh báo phải có bằng chứng số liệu.",
-      "commonMistake": "Chỉ đọc lợi nhuận mà bỏ qua dòng tiền và thuyết minh.",
-      "action": "Yêu cầu AI tạo bảng red flag gồm Cảnh báo, Bằng chứng, Trang nguồn, Câu hỏi cần hỏi."
+      "keyIdea": "Ô chat trông riêng tư nhưng nó là một lần gửi dữ liệu ra hệ thống bên ngoài.",
+      "formula": "Dữ liệu giả cùng hình dạng = giữ nguyên câu trả lời, bỏ hết rủi ro.",
+      "commonMistake": "Dán cả tệp cấu hình vào vì đang vội và ô chat trông như chỗ riêng.",
+      "action": "Kiểm tra lịch sử trò chuyện xem có khoá nào đã từng bị dán vào không."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Nhìn lại lịch sử các cuộc trò chuyện của bạn và tìm xem có khoá, mật khẩu hay dữ liệu cá nhân thật nào đã từng được dán vào không.",
+      "secondary": "Nếu có khoá, thu hồi và cấp mới ngay - xoá cuộc trò chuyện là chưa đủ vì bạn không biết nó đã đi qua những đâu. Và hỏi chính sách của công ty về mã nguồn nếu bạn chưa từng hỏi."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Sau khi biết trích số cơ bản, bước tiếp theo là tìm điểm bất thường."
+        "text": "Năm bài trước về việc dùng sao cho có ích. Bài này về ranh giới - và nó dễ vẽ trước hơn nhiều so với dọn hậu quả sau."
       },
       {
         "type": "heading",
-        "text": "5 rủi ro nên quét"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lợi nhuận dương nhưng dòng tiền yếu",
-          "Phải thu tăng nhanh hơn doanh thu",
-          "Tồn kho tăng bất thường",
-          "Nợ vay ngắn hạn cao so với tiền mặt",
-          "Giao dịch bên liên quan khó hiểu"
-        ]
+        "text": "Vì sao người ta hay quên"
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "Red flag: dấu hiệu cảnh báo. Phải thu: tiền khách hàng còn nợ doanh nghiệp. Tồn kho: hàng còn nằm trong kho chưa bán được."
+        "label": "Ô chat trông như một cuộc trò chuyện riêng tư",
+        "text": "Nên người ta đối xử với nó như vậy: dán cả tệp cấu hình vào vì đang vội. Thực tế đó là một lần gửi dữ liệu ra một hệ thống bên ngoài, đi qua nhật ký và có thể được lưu lại theo chính sách của nhà cung cấp."
       },
       {
         "type": "heading",
-        "text": "Câu lệnh mẫu"
+        "text": "Hai nhóm khác nhau"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Tuyệt đối không",
+          "text": "Khoá truy cập, mật khẩu, dữ liệu cá nhân thật của người dùng. Đây là nhóm không có cách nào chữa sau khi lộ, nên nó không phụ thuộc vào chính sách của ai."
+        },
+        "right": {
+          "label": "Phải hỏi chính sách",
+          "text": "Mã nguồn, kiến trúc hệ thống, tên thư viện nội bộ. Ranh giới khác nhau giữa các nơi - và một số hợp đồng với khách hàng cấm đưa mã của họ ra bên thứ ba."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Đọc BCTC và tìm 5 dấu hiệu cảnh báo. Với mỗi dấu hiệu, ghi bằng chứng số liệu, trang nguồn, mức độ rủi ro và câu hỏi cần hỏi ban lãnh đạo."
+        "text": "Vế hợp đồng ở cột bên phải là vế nghiêm trọng nhất, vì vi phạm nó là chuyện pháp lý chứ không phải chuyện nội bộ. Nếu bạn chưa từng hỏi thì đó là câu hỏi đáng đặt ra trước khi dán thêm bất cứ gì."
       },
       {
         "type": "heading",
-        "text": "Đừng kết luận quá nhanh"
+        "text": "Cách giữ được cả hai phía"
       },
       {
         "type": "paragraph",
-        "text": "Một cảnh báo không có nghĩa công ty xấu ngay. Nó chỉ nói rằng bạn cần kiểm tra sâu hơn trước khi tin vào lợi nhuận hoặc câu chuyện tăng trưởng."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Năm mẫu hình cảnh báo và ý nghĩa",
-        "subtitle": "Không cái nào tự nó là kết luận - tất cả đều là câu hỏi",
-        "concepts": [
-          {
-            "vi": "Lãi nhưng không có tiền",
-            "en": "Earnings without cash",
-            "def": "Lợi nhuận dương nhiều năm nhưng dòng tiền kinh doanh yếu hoặc âm. Cần tìm chênh lệch nằm ở phải thu, tồn kho hay chi phí trả trước."
-          },
-          {
-            "vi": "Phải thu chạy trước doanh thu",
-            "en": "Receivables outpacing revenue",
-            "def": "Phải thu tăng nhanh hơn doanh thu đáng kể. Cần đọc tuổi nợ, dự phòng nợ khó đòi và mức độ tập trung khách hàng."
-          },
-          {
-            "vi": "Tồn kho phình",
-            "en": "Inventory build-up",
-            "def": "Tồn kho tăng mạnh trong khi doanh thu đi ngang. Cần xem doanh nghiệp đang chuẩn bị cho mùa cao điểm hay hàng đang khó bán."
-          },
-          {
-            "vi": "Nợ vay tăng nhanh",
-            "en": "Rising leverage",
-            "def": "Nợ vay tăng nhưng tài sản sinh lời không tăng tương ứng. Cần xem tiền vay dùng để làm gì và lãi vay đang ăn bao nhiêu phần lợi nhuận."
-          },
-          {
-            "vi": "Thay đổi trong thuyết minh",
-            "en": "Note changes",
-            "def": "Đổi chính sách khấu hao, đổi cách ghi nhận doanh thu, đổi kiểm toán viên, phát sinh giao dịch bên liên quan lớn. Đây là chỗ ít người đọc nhất."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao phải bắt AI dẫn nguồn cho từng cảnh báo?"
+        "text": "Thay dữ liệu thật bằng dữ liệu giả CÙNG HÌNH DẠNG: cùng độ dài, cùng định dạng, cùng cấu trúc. Phần lớn câu hỏi kỹ thuật không cần giá trị thật - chúng chỉ cần đúng hình dạng, và câu trả lời không đổi chút nào."
       },
       {
         "type": "paragraph",
-        "text": "Một mô hình ngôn ngữ biết rất rõ các mẫu hình cảnh báo phổ biến, nên nó có thể liệt kê đúng năm nhóm trên mà không cần đọc tài liệu của bạn. Kết quả nhìn thì chuyên nghiệp nhưng có thể chẳng liên quan gì đến doanh nghiệp bạn đang xem. Ràng buộc phải trích số và trang là cách duy nhất phân biệt cảnh báo đọc-ra-từ-tài-liệu với cảnh báo nhớ-từ-kiến-thức-chung."
-      },
-      {
-        "type": "callout",
-        "label": "Câu lệnh đầy đủ để dùng lại",
-        "text": "\"Chỉ dùng báo cáo tài chính đính kèm, bao gồm cả phần thuyết minh. Tìm tối đa 5 dấu hiệu cảnh báo. Trình bày dạng bảng 4 cột: Dấu hiệu | Bằng chứng số liệu (kèm kỳ và đơn vị) | Trang nguồn | Câu hỏi cần kiểm chứng tiếp. Không nêu dấu hiệu nào mà bạn không trích được số từ tài liệu. Nếu tài liệu không đủ để tìm ra 5 dấu hiệu, hãy nêu ít hơn và nói rõ vì sao.\""
+        "text": "Đừng nhầm cách này với việc xoá tên trường dữ liệu: xoá tên trường làm hỏng câu hỏi mà vẫn để lộ giá trị, tức là mất cả hai phía cùng lúc."
       },
       {
         "type": "heading",
-        "text": "Sau khi có bảng thì làm gì?"
+        "text": "Nếu đã lỡ"
       },
       {
-        "type": "list",
-        "items": [
-          "Chọn 2 dấu hiệu nghiêm trọng nhất, mở đúng trang nguồn để tự đối chiếu.",
-          "Với mỗi dấu hiệu còn đứng vững, tra phần thuyết minh liên quan để tìm lời giải thích của doanh nghiệp.",
-          "Nếu thuyết minh không giải thích, đó là câu hỏi mang vào cuộc họp cổ đông hoặc gửi bộ phận quan hệ nhà đầu tư.",
-          "Ghi lại dấu hiệu chưa kết luận được để kiểm tra lại ở báo cáo quý sau - xu hướng qua nhiều kỳ mới là bằng chứng mạnh."
-        ]
+        "type": "paragraph",
+        "text": "Khoá đã dán vào thì coi như đã lộ: thu hồi và cấp khoá mới, giống hệt cách xử lý khi lỡ đẩy khoá lên kho công khai ở chặng triển khai. Xoá cuộc trò chuyện không đủ, vì bạn không kiểm soát được nó đã đi qua những nhật ký nào."
       },
       {
         "type": "closing",
         "lines": [
-          "Rủi ro tốt nhất là rủi ro được viết rõ và kiểm chứng được.",
-          "AI giúp tìm dấu hiệu; bạn quyết định cần đào sâu gì."
+          "Với dữ liệu thật sự nhạy cảm, có lựa chọn chạy mô hình trên hạ tầng riêng. Nó giải đúng một vấn đề - dữ liệu không ra ngoài - và không giải bất cứ vấn đề nào khác trong chặng này.",
+          "Phần sau của chặng chuyển sang thực hành: rà soát, sinh kiểm thử, gỡ lỗi và viết tài liệu."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Red flag nghĩa là gì?",
-        "options": [
-          "Dấu hiệu cảnh báo cần kiểm tra thêm",
-          "Kết luận chắc chắn công ty xấu",
-          "Một loại cổ tức",
-          "Tên bảng cân đối kế toán"
-        ],
-        "correct": 0,
-        "explanation": "Red flag là điểm cần đào sâu, chưa phải kết luận cuối cùng."
-      },
-      {
-        "question": "Vì sao OCF âm kéo dài đáng chú ý?",
-        "options": [
-          "Vì lợi nhuận có thể chưa chuyển thành tiền thật",
-          "Vì luôn tốt",
-          "Vì không liên quan lợi nhuận",
-          "Vì làm giá chắc chắn tăng"
-        ],
-        "correct": 0,
-        "explanation": "Dòng tiền yếu khiến chất lượng lợi nhuận cần được kiểm tra."
-      },
-      {
-        "question": "Vì sao AI có thể liệt kê đúng các dấu hiệu cảnh báo mà vẫn không hữu ích?",
-        "options": [
-          "Vì nó có thể đang nhớ lại mẫu hình chung chứ không đọc ra từ tài liệu của bạn",
-          "Vì các dấu hiệu cảnh báo đã lỗi thời",
-          "Vì AI không đọc được bảng số",
-          "Vì báo cáo tài chính không chứa thông tin rủi ro"
-        ],
-        "correct": 0,
-        "explanation": "Đây chính là lý do bắt buộc trích số và trang nguồn: nó buộc cảnh báo phải xuất phát từ tài liệu cụ thể, chứ không phải từ kiến thức chung về ngành."
-      },
-      {
-        "question": "Tìm được một dấu hiệu cảnh báo có bằng chứng rõ ràng, bước tiếp theo đúng nhất là gì?",
-        "options": [
-          "Đọc thuyết minh liên quan để xem doanh nghiệp giải thích thế nào, rồi ghi lại câu hỏi còn bỏ ngỏ",
-          "Kết luận doanh nghiệp có vấn đề và loại khỏi danh sách",
-          "Bỏ qua vì một dấu hiệu chưa đủ để làm gì",
-          "Yêu cầu AI đưa ra khuyến nghị mua bán dựa trên dấu hiệu đó"
-        ],
-        "correct": 0,
-        "explanation": "Dấu hiệu là điểm khởi đầu của việc điều tra, không phải kết luận. Thuyết minh thường là nơi có lời giải thích đầu tiên, và chỗ nó không giải thích chính là câu hỏi đáng giá nhất."
-      }
-    ],
-    "day": 1266,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Quét 5 nhóm dấu hiệu",
-        "arrow": true
-      },
-      {
-        "label": "Mỗi dấu hiệu: bằng chứng số + trang nguồn",
-        "arrow": true
-      },
-      {
-        "label": "Đổi thành câu hỏi kiểm chứng",
-        "arrow": true
-      },
-      {
-        "label": "Tra thuyết minh / hỏi ban lãnh đạo"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Phải thu chạy nhanh hơn doanh thu",
-      "description": "Đây là mẫu hình cảnh báo kinh điển và cũng dễ kiểm tra nhất với người mới. Nếu doanh thu tăng 10% mà phải thu khách hàng tăng 40%, nghĩa là doanh nghiệp đang bán chịu nhiều hơn hẳn trước. Có thể là chiến lược mở rộng chấp nhận được, cũng có thể là dấu hiệu đẩy hàng cuối kỳ để đạt kế hoạch. Bạn phân biệt được hai khả năng đó bằng cách đọc thuyết minh phải thu: tuổi nợ đang giãn ra hay giữ nguyên, dự phòng nợ khó đòi có tăng tương ứng không, và tỷ trọng của một vài khách hàng lớn có bất thường không."
-    },
-    "keyTakeaways": [
-      "Cảnh báo chỉ dùng được khi có đủ ba thứ: bằng chứng số, trang nguồn, câu hỏi kiểm chứng tiếp theo.",
-      "So sánh tốc độ tăng của phải thu và tồn kho với tốc độ tăng doanh thu là phép soi nhanh và hiệu quả nhất.",
-      "Thuyết minh báo cáo tài chính là nơi giấu nhiều thông tin quan trọng nhất, và cũng là phần AI hay bỏ sót nếu bạn không yêu cầu rõ.",
-      "Một dấu hiệu cảnh báo không kết luận doanh nghiệp xấu - nó chỉ nói bạn cần kiểm tra thêm ở đâu."
-    ],
-    "practicePrompt": {
-      "question": "Dấu hiệu nào thường là cảnh báo chất lượng lợi nhuận?",
-      "options": [
-        "Lợi nhuận dương nhưng dòng tiền kinh doanh âm kéo dài",
-        "Tiền mặt tăng đều",
-        "Nợ vay giảm",
-        "Doanh thu và dòng tiền cùng tăng"
-      ],
-      "correct": 0,
-      "explanation": "Lợi nhuận kế toán có thể đẹp trong khi tiền thật chưa về."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Yêu cầu AI tạo bảng red flag gồm Cảnh báo, Bằng chứng, Trang nguồn, Câu hỏi cần hỏi.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Phần lớn vấn đề của một doanh nghiệp lộ ra ở dòng tiền và thuyết minh chứ không ở dòng lợi nhuận - đúng phần mà người mới ít đọc nhất."
+    ]
   },
   {
     "id": 1267,
-    "slug": "tom-tat-hop-va-dhdcd-bang-ai",
-    "title": "AI Tài chính, Bài 7: Tóm tắt cuộc họp và ĐHĐCĐ bằng AI",
-    "subtitle": "Biến tài liệu dài thành kế hoạch, cổ tức, dự án và câu hỏi cổ đông.",
-    "duration": "14 phút",
-    "estimatedMinutes": 14,
-    "difficulty": "Dễ",
-    "openingQuestion": "Phần nào của ĐHĐCĐ thường rất đáng đọc?",
+    "slug": "ra-soat-ma-bang-ai",
+    "title": "AI trong sản phẩm, Bài 7: Rà soát mã bằng AI",
+    "subtitle": "Nó là lượt rà soát thứ nhất, không phải lượt cuối cùng.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🔎",
+    "track": "professional",
+    "interactiveType": "ai-verify",
+    "isFundamental": false,
+    "whyItMatters": "Rà soát bằng AI bắt được đúng nhóm lỗi mà người rà soát hay bỏ qua vì mệt, và bỏ sót đúng nhóm mà con người bắt tốt nhất. Biết ranh giới đó giúp hai lượt rà soát bổ sung cho nhau thay vì thay thế nhau.",
+    "openingQuestion": "AI rà soát mã bắt tốt nhất loại lỗi nào?",
     "openingOptions": [
-      "Phần hỏi đáp giữa cổ đông và ban lãnh đạo",
-      "Màu nền slide",
-      "Danh sách ghế ngồi",
-      "Ảnh hội trường"
+      "Lỗi cục bộ có khuôn mẫu rõ: quên xử lý giá trị rỗng, rò rỉ tài nguyên, sai điều kiện biên",
+      "Lỗi thiết kế khiến hệ thống khó mở rộng khi số người dùng tăng lên nhiều lần",
+      "Lỗi do hiểu sai yêu cầu nghiệp vụ nên mã chạy đúng nhưng làm sai việc cần làm",
+      "Lỗi chỉ xuất hiện khi nhiều phần của hệ thống tương tác với nhau trong thực tế"
     ],
     "correctOption": 0,
-    "explanation": "Tài liệu đại hội cổ đông và biên bản họp là nơi ban lãnh đạo nói ra kế hoạch, cam kết và cách họ nhìn rủi ro - những thứ không có trong báo cáo tài chính. Vấn đề là chúng rất dài và phần giá trị nhất, mục hỏi đáp, thường nằm ở cuối. AI giúp bạn rút gọn thành bốn nhóm thông tin theo dõi được: kế hoạch, cổ tức, dự án mới, và câu hỏi khó cùng câu trả lời. Giá trị thật đến ở kỳ sau, khi bạn mở lại bảng đó và đối chiếu xem lời hứa có thành hiện thực không.",
+    "explanation": "Nhóm lỗi cục bộ có khuôn mẫu rõ là nhóm nó mạnh nhất, và cũng là nhóm người rà soát hay bỏ qua nhất vì chúng nhàm chán và đòi đọc kỹ từng dòng. Ba nhóm còn lại đều cần biết bối cảnh mà mô hình không có: nó không biết hệ thống của bạn sẽ lớn tới đâu, yêu cầu nghiệp vụ thật là gì, hay các phần khác đang giả định gì.",
+    "diagram": [
+      {
+        "label": "AI bắt tốt: lỗi cục bộ có khuôn mẫu rõ",
+        "arrow": true
+      },
+      {
+        "label": "AI bỏ sót: lỗi cần bối cảnh nghiệp vụ và kiến trúc",
+        "arrow": true
+      },
+      {
+        "label": "Người bắt tốt đúng nhóm AI bỏ sót",
+        "arrow": true
+      },
+      {
+        "label": "Nên đây là lượt rà soát THỨ NHẤT, không phải lượt cuối"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Rà soát chính mã mình vừa viết",
+      "description": "Bài về điểm mù nói bạn đọc thứ mình định viết chứ không phải thứ mình đã viết. AI không có ý định nào để lấp, nên nó đọc đúng thứ nằm trên màn hình - đó là lý do nó bắt được lỗi mà chính bạn đọc mười lần không thấy."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao AI bỏ sót lỗi thiết kế và lỗi nghiệp vụ?",
+        "options": [
+          "Vì cả hai đòi biết bối cảnh mà nó không có: hệ thống sẽ lớn tới đâu, yêu cầu thật là gì",
+          "Vì những lỗi đó nằm rải rác ở nhiều tệp nên vượt quá cửa sổ ngữ cảnh của mô hình",
+          "Vì lỗi thiết kế không có khuôn mẫu chung nên không xuất hiện trong dữ liệu huấn luyện",
+          "Vì các mô hình được huấn luyện chủ yếu trên mã nguồn mở vốn ít có lỗi nghiệp vụ"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng lý do đã nêu ở bài đầu chặng về việc không giao quyết định kiến trúc. Cửa sổ ngữ cảnh cũng là giới hạn thật, nhưng dán hết cả hệ thống vào cũng không giúp gì nếu ràng buộc nằm trong đầu người khác."
+      },
+      {
+        "question": "Vì sao AI rà soát chính mã bạn vừa viết lại hiệu quả?",
+        "options": [
+          "Vì nó không có ý định nào để lấp, nên nó đọc đúng thứ nằm trên màn hình",
+          "Vì nó đọc nhanh hơn người nên phát hiện được nhiều lỗi hơn trong cùng thời gian",
+          "Vì nó không bị ảnh hưởng bởi áp lực thời gian nên luôn rà soát một cách kỹ lưỡng",
+          "Vì nó đã học từ rất nhiều mã nguồn nên biết được các lỗi phổ biến nhất"
+        ],
+        "correct": 0,
+        "explanation": "Đây chính là cơ chế của điểm mù ở chặng rà soát code, và AI đóng đúng vai người thứ hai. Lựa chọn cuối cũng đúng nhưng nó giải thích vì sao AI bắt được lỗi nói chung, không giải thích vì sao nó bắt được lỗi mà CHÍNH BẠN không thấy."
+      },
+      {
+        "question": "Vì sao không nên để AI là lượt rà soát cuối cùng?",
+        "options": [
+          "Vì nhóm lỗi nó bỏ sót lại chính là nhóm gây hậu quả nặng nhất khi lọt qua",
+          "Vì các công cụ rà soát tự động không được phép phê duyệt việc gộp mã theo quy định",
+          "Vì nó không nắm được lịch sử thay đổi của dự án nên đánh giá thiếu ngữ cảnh",
+          "Vì kết quả rà soát của nó không nhất quán giữa các lần chạy trên cùng đoạn mã"
+        ],
+        "correct": 0,
+        "explanation": "Lỗi cục bộ thì thường lộ ra sớm và sửa rẻ; lỗi thiết kế và lỗi nghiệp vụ thì lộ ra muộn và sửa đắt. Nên bỏ lượt rà soát của người là bỏ đúng lớp bảo vệ cho nhóm lỗi tốn kém nhất."
+      },
+      {
+        "question": "Câu hỏi rà soát nào cho kết quả hữu ích hơn?",
+        "options": [
+          "Đoạn mã này sai ở đâu và trong trường hợp nào thì nó hỏng",
+          "Đoạn mã này có tốt không và có cần cải thiện gì thêm không",
+          "Đoạn mã này có tuân theo các nguyên tắc lập trình tốt hay không",
+          "Đoạn mã này có thể được viết ngắn gọn hơn theo cách nào khác không"
+        ],
+        "correct": 0,
+        "explanation": "Câu hỏi mở kiểu có tốt không thường cho về một danh sách gợi ý chung chung áp dụng cho mọi đoạn mã. Hỏi trong trường hợp nào thì hỏng buộc nó phải nêu điều kiện cụ thể - và điều kiện cụ thể thì bạn kiểm chứng được."
+      },
+      {
+        "question": "Nên xử lý thế nào khi AI báo một vấn đề mà bạn cho là không phải?",
+        "options": [
+          "Kiểm tra bằng cách tự dựng trường hợp nó mô tả, thay vì bỏ qua hoặc sửa ngay",
+          "Bỏ qua nếu bạn hiểu rõ đoạn mã đó hơn và biết chắc nó hoạt động đúng",
+          "Sửa theo gợi ý vì sửa thêm một chút cũng không tốn kém gì mà lại an toàn hơn",
+          "Hỏi lại để xem nó có giữ nguyên ý kiến hay đổi sang một đánh giá khác"
+        ],
+        "correct": 0,
+        "explanation": "Bỏ qua thì bạn đang dùng chính hiểu biết có thể đang sai để bác một cảnh báo. Sửa mù thì thêm mã cho một trường hợp không tồn tại, làm mã phức tạp hơn mà không tăng độ đúng - và về sau không ai biết dòng đó để làm gì."
+      }
+    ],
+    "keyTakeaways": [
+      "AI bắt tốt lỗi cục bộ có khuôn mẫu rõ - đúng nhóm người rà soát hay bỏ qua vì mệt.",
+      "Nó bỏ sót lỗi thiết kế và nghiệp vụ, vì cả hai đòi bối cảnh nó không có.",
+      "Nó không có ý định nào để lấp, nên nó đóng đúng vai người thứ hai cho điểm mù của bạn.",
+      "Là lượt rà soát THỨ NHẤT: nhóm nó bỏ sót là nhóm gây hậu quả nặng nhất.",
+      "Hỏi sai ở đâu và khi nào thì hỏng, đừng hỏi đoạn này có tốt không."
+    ],
+    "practicePrompt": {
+      "question": "AI báo một vấn đề mà bạn khá chắc là không tồn tại. Cách xử lý tốt nhất?",
+      "options": [
+        "Tự dựng đúng trường hợp nó mô tả và chạy thử để biết chắc bên nào đúng",
+        "Bỏ qua vì bạn hiểu đoạn mã đó rõ hơn nên đánh giá của bạn đáng tin hơn",
+        "Sửa theo gợi ý cho chắc, vì thêm một lớp kiểm tra không gây hại gì cả",
+        "Ghi lại vào phần chú thích để người rà soát tiếp theo tự đánh giá xem có đúng không"
+      ],
+      "correct": 0,
+      "explanation": "Nó mất vài phút và kết thúc tranh luận bằng bằng chứng. Sửa cho chắc là cách phổ biến nhất và nó âm thầm làm mã phức tạp lên - vài tháng sau không ai biết dòng kiểm tra đó để làm gì và cũng không ai dám xoá."
+    },
     "summary": {
-      "keyIdea": "AI giúp tóm tắt họp dài thành cam kết, kế hoạch và câu hỏi cần theo dõi.",
-      "commonMistake": "Chỉ đọc nghị quyết mà bỏ qua phần hỏi đáp.",
-      "action": "Tạo bảng cam kết sau họp gồm mục tiêu, thời hạn, rủi ro và cách kiểm tra."
+      "keyIdea": "Hai lượt rà soát bắt hai nhóm lỗi khác nhau, nên chúng bổ sung chứ không thay thế nhau.",
+      "formula": "AI bắt lỗi cục bộ; người bắt lỗi thiết kế và nghiệp vụ.",
+      "commonMistake": "Sửa mù theo mọi cảnh báo, làm mã phức tạp hơn mà không đúng hơn.",
+      "action": "Cho AI rà soát bản thay đổi tiếp theo TRƯỚC khi gửi cho người rà soát."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Trước khi gửi bản thay đổi tiếp theo cho người rà soát, cho AI đọc nó với câu hỏi: đoạn này sai ở đâu và trong trường hợp nào thì nó hỏng.",
+      "secondary": "Đếm xem nó nêu ra mấy điểm và mấy điểm trong đó là thật. Tỷ lệ đó cho bạn biết nên tin nó tới mức nào trong loại mã mà bạn hay viết."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Tài liệu họp thường dài. AI giúp bạn lọc phần quan trọng để theo dõi doanh nghiệp."
+        "text": "Chặng rà soát code có một bài về việc bạn không thấy lỗi trong mã của chính mình. Bài này là cách dùng AI cho đúng chỗ đó - và cách biết nó không thay được lượt rà soát của người."
       },
       {
         "type": "heading",
-        "text": "4 nhóm thông tin cần lấy"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kế hoạch doanh thu/lợi nhuận",
-          "Cổ tức",
-          "Dự án hoặc vốn đầu tư mới",
-          "Câu hỏi khó và câu trả lời của lãnh đạo"
-        ]
+        "text": "Vì sao nó bắt được thứ bạn không thấy"
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "ĐHĐCĐ: Đại hội đồng cổ đông. Q&A: phần hỏi đáp. Cam kết: điều lãnh đạo nói sẽ làm, thường có mục tiêu hoặc thời hạn."
+        "label": "Nó không có ý định nào để lấp",
+        "text": "Điểm mù xảy ra vì não bạn lấy chính ý định lúc viết lấp vào khoảng trống lúc đọc. AI không có ý định đó, nên nó đọc đúng thứ nằm trên màn hình - đúng vai người thứ hai mà bài về điểm mù mô tả."
       },
       {
         "type": "heading",
-        "text": "Câu lệnh mẫu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Tóm tắt tài liệu họp thành bảng gồm: Kế hoạch năm tới, Cổ tức, Dự án mới, Câu hỏi cổ đông, Câu trả lời lãnh đạo, Cam kết cần theo dõi."
-      },
-      {
-        "type": "heading",
-        "text": "Theo dõi sau họp"
-      },
-      {
-        "type": "paragraph",
-        "text": "Sau cuộc họp, đừng để cam kết nằm yên trong ghi chú. Hãy kiểm tra lại ở BCTC quý sau xem doanh thu, lợi nhuận, tiến độ dự án có đi đúng lời hứa không."
-      },
-      {
-        "type": "heading",
-        "text": "Câu trả lời né tránh trông như thế nào?"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Trả lời bằng định hướng chung mà không có con số nào, dù câu hỏi hỏi về con số.",
-          "Chuyển hướng sang thành tích quá khứ thay vì trả lời về vấn đề hiện tại.",
-          "Hứa 'sẽ cung cấp sau' đối với thông tin lẽ ra đã phải công bố.",
-          "Trả lời một phần nhỏ của câu hỏi rồi kết thúc, bỏ qua phần khó nhất."
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Không có câu nào trong số này chứng minh doanh nghiệp có vấn đề. Nhưng nếu bạn ghi lại và thấy cùng một câu hỏi bị né qua nhiều kỳ, đó là thông tin đáng giá - và nó chỉ hiện ra khi bạn có bảng lưu lại từ kỳ trước."
+        "text": "Hai nhóm lỗi"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Cam kết không theo dõi được",
-          "text": "\"Công ty sẽ tiếp tục tăng trưởng bền vững và nâng cao hiệu quả hoạt động.\" Không có con số, không có mốc thời gian - kỳ sau bạn không có cách nào nói là đạt hay không đạt."
+          "label": "Nó bắt tốt",
+          "text": "Lỗi cục bộ có khuôn mẫu rõ: quên xử lý giá trị rỗng, rò rỉ tài nguyên, sai điều kiện biên. Đây cũng là nhóm người rà soát hay bỏ qua nhất, vì chúng nhàm chán và đòi đọc kỹ từng dòng."
         },
         "right": {
-          "label": "Cam kết theo dõi được",
-          "text": "\"Doanh thu kế hoạch 2025 là 8.000 tỷ, lợi nhuận sau thuế 600 tỷ, cổ tức tiền mặt 10%, nhà máy số 3 chạy thương mại từ quý 3.\" Bốn mốc này kỳ sau đều đối chiếu được."
+          "label": "Nó bỏ sót",
+          "text": "Lỗi thiết kế, lỗi hiểu sai nghiệp vụ, lỗi do tương tác giữa các phần. Cả ba đòi biết bối cảnh nó không có: hệ thống sẽ lớn tới đâu, yêu cầu thật là gì, các phần khác đang giả định gì."
         }
       },
       {
-        "type": "callout",
-        "label": "Câu lệnh đầy đủ để dùng lại",
-        "text": "\"Chỉ dùng tài liệu họp đính kèm, bao gồm cả phần hỏi đáp. Lập bảng 4 cột: Nội dung cam kết | Con số cụ thể | Thời hạn | Trang nguồn, cho bốn nhóm: kế hoạch kinh doanh, cổ tức, dự án/đầu tư mới, cam kết khác. Sau bảng, liệt kê riêng những câu hỏi của cổ đông mà câu trả lời không có số liệu hoặc không trả lời trực tiếp, trích nguyên văn phần trả lời. Không suy đoán ngoài tài liệu.\""
+        "type": "paragraph",
+        "text": "Sự phân chia này có một hệ quả quan trọng: hai lượt rà soát bổ sung cho nhau chứ không thay thế nhau. Và bỏ lượt của người là bỏ đúng lớp bảo vệ cho nhóm lỗi tốn kém nhất - lỗi cục bộ lộ ra sớm và sửa rẻ, còn lỗi thiết kế lộ ra muộn và sửa đắt."
       },
       {
         "type": "heading",
-        "text": "Việc cần làm ở kỳ sau"
+        "text": "Hỏi thế nào"
       },
       {
         "type": "list",
         "items": [
-          "Mở lại bảng cam kết kỳ trước trước khi đọc báo cáo mới - đọc theo thứ tự này bạn sẽ khó bị dẫn dắt hơn.",
-          "Đánh dấu từng cam kết: đạt, chưa đạt, hoặc không còn được nhắc tới.",
-          "Cam kết 'không còn được nhắc tới' đáng chú ý nhất - đó thường là cách im lặng thay cho thừa nhận."
+          "Hỏi: đoạn này sai ở đâu, và TRONG TRƯỜNG HỢP NÀO thì nó hỏng. Điều kiện cụ thể thì bạn kiểm chứng được.",
+          "Đừng hỏi: đoạn này có tốt không. Câu mở kiểu đó cho về một danh sách gợi ý chung chung áp dụng cho mọi đoạn mã.",
+          "Đưa kèm bối cảnh: hàm này được gọi từ đâu, dữ liệu vào có ràng buộc gì. Càng nhiều ràng buộc thì càng ít cảnh báo giả."
         ]
       },
       {
         "type": "closing",
         "lines": [
-          "Tóm tắt họp tốt là biến lời nói thành việc cần theo dõi.",
-          "AI giúp bạn không bỏ sót câu hỏi quan trọng."
+          "Khi nó báo một vấn đề bạn cho là không phải: tự dựng đúng trường hợp nó mô tả và chạy thử. Bỏ qua thì bạn dùng chính hiểu biết có thể đang sai để bác một cảnh báo.",
+          "Còn sửa mù cho chắc là cách phổ biến nhất và cũng âm thầm nhất - vài tháng sau không ai biết dòng kiểm tra đó để làm gì và cũng không ai dám xoá. Bài sau là một việc AI làm tốt hơn hẳn: sinh kiểm thử."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Bảng cam kết sau ĐHĐCĐ nên có gì?",
-        "options": [
-          "Mục tiêu, thời hạn, rủi ro và cách kiểm tra",
-          "Chỉ lời khen",
-          "Chỉ ảnh slide",
-          "Chỉ tên chủ tịch"
-        ],
-        "correct": 0,
-        "explanation": "Cam kết có thể theo dõi mới hữu ích cho phân tích."
-      },
-      {
-        "question": "Vì sao phần hỏi đáp quan trọng?",
-        "options": [
-          "Vì thể hiện vấn đề cổ đông quan tâm và cách lãnh đạo trả lời",
-          "Vì luôn ngắn nhất",
-          "Vì không cần kiểm tra",
-          "Vì thay thế BCTC"
-        ],
-        "correct": 0,
-        "explanation": "Q&A thường có nhiều tín hiệu quản trị và rủi ro."
-      },
-      {
-        "question": "Vì sao phần hỏi đáp thường có giá trị hơn phần nghị quyết?",
-        "options": [
-          "Vì đó là phần ban lãnh đạo phải trả lời không chuẩn bị trước, nên bộc lộ nhiều hơn",
-          "Vì nghị quyết không có giá trị pháp lý",
-          "Vì phần hỏi đáp luôn có nhiều số liệu hơn",
-          "Vì nghị quyết đã được công bố trước nên không cần đọc"
-        ],
-        "correct": 0,
-        "explanation": "Nghị quyết là văn bản đã được soạn và duyệt kỹ. Phần hỏi đáp là chỗ duy nhất bạn thấy ban lãnh đạo phản ứng với câu hỏi khó theo thời gian thực."
-      },
-      {
-        "question": "Trong bảng đối chiếu cam kết ở kỳ sau, trạng thái nào đáng chú ý nhất?",
-        "options": [
-          "Cam kết không còn được nhắc tới nữa",
-          "Cam kết đạt đúng kế hoạch",
-          "Cam kết vượt kế hoạch",
-          "Cam kết đạt 95% kế hoạch"
-        ],
-        "correct": 0,
-        "explanation": "Không đạt mà có giải thích là chuyện bình thường của kinh doanh. Im lặng hoàn toàn về một cam kết cũ là cách tránh phải giải thích, và mẫu hình đó lặp lại thì nói rất nhiều về chất lượng quản trị."
-      }
-    ],
-    "day": 1267,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Tài liệu họp + biên bản Q&A",
-        "arrow": true
-      },
-      {
-        "label": "Rút thành 4 nhóm: kế hoạch · cổ tức · dự án · câu hỏi khó",
-        "arrow": true
-      },
-      {
-        "label": "Lưu thành bảng cam kết có thời hạn",
-        "arrow": true
-      },
-      {
-        "label": "Kỳ sau đối chiếu: hứa gì, làm được gì"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Kế hoạch năm và kết quả thực tế",
-      "description": "Rất nhiều doanh nghiệp đặt kế hoạch doanh thu và lợi nhuận đầy tham vọng tại đại hội cổ đông, rồi cuối năm chỉ đạt một phần. Bản thân việc không đạt kế hoạch chưa nói lên nhiều - thị trường có thể đã đổi. Điều nói lên nhiều là mẫu hình lặp lại: một doanh nghiệp năm nào cũng đặt kế hoạch cao rồi năm nào cũng hụt xa, và không bao giờ giải thích lý do ở kỳ sau, đang cho bạn biết chất lượng quản trị và mức độ đáng tin của mọi con số họ công bố. Bảng đối chiếu 'hứa gì - làm được gì' qua ba năm là cách rẻ nhất để thấy mẫu hình đó."
-    },
-    "keyTakeaways": [
-      "Bốn nhóm cần rút ra: kế hoạch kinh doanh, chính sách cổ tức, dự án/vốn đầu tư mới, và phần hỏi đáp.",
-      "Phần hỏi đáp thường có giá trị hơn nghị quyết, vì đó là chỗ ban lãnh đạo phải trả lời không chuẩn bị trước.",
-      "Cam kết chỉ có ý nghĩa khi kèm con số và thời hạn - hãy ghi lại đúng như vậy.",
-      "Đối chiếu cam kết với kết quả ở các kỳ sau là cách đánh giá độ tin cậy của ban lãnh đạo."
-    ],
-    "practicePrompt": {
-      "question": "Phần nào của ĐHĐCĐ thường rất đáng đọc?",
-      "options": [
-        "Phần hỏi đáp giữa cổ đông và ban lãnh đạo",
-        "Màu nền slide",
-        "Danh sách ghế ngồi",
-        "Ảnh hội trường"
-      ],
-      "correct": 0,
-      "explanation": "Phần hỏi đáp thường hé lộ vấn đề cổ đông quan tâm và cách lãnh đạo phản ứng."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Tạo bảng cam kết sau họp gồm mục tiêu, thời hạn, rủi ro và cách kiểm tra.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Đọc một kỳ đại hội chỉ cho bạn thông tin; đọc và đối chiếu qua ba kỳ cho bạn biết ban lãnh đạo có đáng tin không - và đó là thứ khó thay thế trong đầu tư."
+    ]
   },
   {
     "id": 1268,
-    "slug": "phan-tich-cam-xuc-tin-tuc-bang-ai",
-    "title": "AI Tài chính, Bài 8: Phân tích cảm xúc tin tức bằng AI",
-    "subtitle": "Hiểu tin đang tích cực hay tiêu cực, nhưng không nhầm cảm xúc với giá trị thật.",
-    "duration": "15 phút",
-    "estimatedMinutes": 15,
-    "difficulty": "Dễ",
-    "openingQuestion": "Cảm xúc tin tức tích cực có đủ để mua cổ phiếu không?",
+    "slug": "sinh-kiem-thu-bang-ai",
+    "title": "AI trong sản phẩm, Bài 8: Sinh kiểm thử bằng AI",
+    "subtitle": "Nó giải đúng cái bẫy mà bài về điểm mù để lại: bạn chỉ nghĩ ra được trường hợp mình đã nghĩ tới.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🧪",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": true,
+    "whyItMatters": "Đây có lẽ là ứng dụng có giá trị rõ nhất trong cả chặng, vì nó tấn công một điểm yếu mà con người không tự khắc phục được: bạn viết kiểm thử cho những trường hợp mình đã nghĩ tới, tức đúng những chỗ mã đã đúng.",
+    "openingQuestion": "Vì sao AI đặc biệt hữu ích cho việc sinh kiểm thử?",
     "openingOptions": [
-      "Không, cần kiểm tra tác động tài chính và định giá",
-      "Có, cứ tin tốt là mua",
-      "Có, không cần phải xem số liệu tài chính nào nữa cả",
-      "Chắc chắn giá tăng"
+      "Vì nó đề xuất được những trường hợp biên mà bạn không nghĩ tới, và bạn kiểm chứng ngay được",
+      "Vì viết kiểm thử là công việc lặp lại nhàm chán nên giao đi tiết kiệm nhiều thời gian",
+      "Vì nó biết được các khung kiểm thử phổ biến nên viết đúng cú pháp ngay từ đầu",
+      "Vì nó có thể sinh ra số lượng lớn kiểm thử trong thời gian rất ngắn"
     ],
     "correctOption": 0,
-    "explanation": "Cảm xúc tin tức là sắc thái tích cực hay tiêu cực của những gì đang được viết về một doanh nghiệp. Nó đo tâm lý đám đông, và tâm lý đám đông ảnh hưởng đến giá trong ngắn hạn - điều đó có thật. Nhưng cảm xúc không phải giá trị: một chuỗi tin tích cực không tự làm doanh thu tăng, còn một tin tiêu cực về sự cố một lần không làm hỏng mô hình kinh doanh. Dùng cảm xúc đúng cách nghĩa là dùng nó để chọn cổ phiếu đưa vào danh sách theo dõi, rồi mới mở báo cáo tài chính ra kiểm tra.",
+    "explanation": "Bài về điểm mù để lại một cái bẫy chưa có lời giải: cùng một điểm mù tạo ra cả mã lẫn kiểm thử, nên bộ kiểm thử của bạn xanh mà vẫn sót lỗi. AI không chia sẻ điểm mù đó - nó đã thấy hàng nghìn hàm tương tự và biết chúng thường hỏng ở đâu. Số lượng thì ngược lại là cái bẫy: một trăm kiểm thử vô nghĩa còn tệ hơn năm kiểm thử tốt.",
+    "diagram": [
+      {
+        "label": "Điểm mù: bạn chỉ nghĩ ra trường hợp mình đã nghĩ tới",
+        "arrow": true
+      },
+      {
+        "label": "AI không chia sẻ điểm mù đó của bạn",
+        "arrow": true
+      },
+      {
+        "label": "Dùng nó để LIỆT KÊ trường hợp, rồi tự chọn",
+        "arrow": true
+      },
+      {
+        "label": "Số lượng là bẫy: một trăm kiểm thử rỗng tệ hơn năm cái tốt"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Liệt kê trước, viết sau",
+      "description": "Cách dùng hiệu quả nhất không phải xin luôn mã kiểm thử mà xin một danh sách trường hợp cần kiểm: đầu vào rỗng, giá trị âm, chuỗi rất dài, ký tự đặc biệt, gọi đồng thời. Bạn đọc danh sách trong ba mươi giây và biết ngay cái nào áp dụng được."
+    },
+    "quiz": [
+      {
+        "question": "Cách dùng nào hiệu quả hơn khi sinh kiểm thử?",
+        "options": [
+          "Xin danh sách trường hợp cần kiểm trước, tự chọn, rồi mới xin mã cho các trường hợp đã chọn",
+          "Xin luôn mã kiểm thử đầy đủ rồi xoá bớt những phần mình thấy không cần thiết",
+          "Xin càng nhiều kiểm thử càng tốt rồi chạy hết chúng để xem cái nào phát hiện được lỗi thật",
+          "Xin kiểm thử cho từng nhánh điều kiện trong hàm để đạt độ phủ cao nhất có thể"
+        ],
+        "correct": 0,
+        "explanation": "Danh sách trường hợp đọc trong ba mươi giây, còn mã kiểm thử đầy đủ thì mất lâu hơn nhiều để đánh giá. Bạn chỉ trả chi phí đọc mã cho những trường hợp mình đã quyết là đáng."
+      },
+      {
+        "question": "Vì sao số lượng kiểm thử nhiều lại là một cái bẫy?",
+        "options": [
+          "Vì kiểm thử phải bảo trì mãi, nên một trăm cái vô nghĩa còn tệ hơn năm cái tốt",
+          "Vì chạy nhiều kiểm thử làm quy trình tự động chậm đi đáng kể mỗi lần phát hành",
+          "Vì càng nhiều kiểm thử thì càng nhiều khả năng có kiểm thử chập chờn xuất hiện",
+          "Vì độ phủ cao khiến người ta tin tưởng quá mức vào chất lượng của bộ kiểm thử"
+        ],
+        "correct": 0,
+        "explanation": "Chi phí bảo trì là chi phí lặp lại suốt vòng đời dự án, khác với ba lựa chọn kia vốn là những vấn đề thật nhưng nhẹ hơn. Đây cũng là lý do bài về kiểm thử nhấn mạnh việc chọn đúng chỗ quan trọng hơn số lượng."
+      },
+      {
+        "question": "Vì sao phải kiểm tra kỹ giá trị mong đợi trong kiểm thử do AI sinh?",
+        "options": [
+          "Vì nó đoán hành vi đúng từ tên hàm, và tên hàm có thể không mô tả đúng việc hàm làm",
+          "Vì nó thường dùng các giá trị ngẫu nhiên nên kết quả sẽ không ổn định giữa những lần chạy",
+          "Vì nó không truy cập được vào phần triển khai thật nên phải suy đoán toàn bộ",
+          "Vì các giá trị mong đợi phụ thuộc vào cấu hình môi trường mà nó không biết được"
+        ],
+        "correct": 0,
+        "explanation": "Đây là kiểu hỏng nguy hiểm nhất của kiểm thử sinh tự động: nó khoá lại hành vi HIỆN TẠI thay vì hành vi ĐÚNG. Kiểm thử xanh, mã sai, và bạn còn có thêm một lớp giả bảo đảm rằng mọi thứ ổn."
+      },
+      {
+        "question": "Nhóm trường hợp nào AI đề xuất tốt nhất?",
+        "options": [
+          "Trường hợp biên phổ biến: đầu vào rỗng, giá trị âm, chuỗi rất dài, ký tự đặc biệt",
+          "Trường hợp phản ánh cách người dùng thật sự sử dụng tính năng trong sản phẩm",
+          "Trường hợp liên quan tới quy định pháp lý mà hệ thống của bạn phải tuân thủ",
+          "Trường hợp chỉ xảy ra khi nhiều dịch vụ trong hệ thống của bạn cùng tương tác với nhau"
+        ],
+        "correct": 0,
+        "explanation": "Nhóm này có khuôn mẫu rõ nên nó thuộc vùng mô hình mạnh. Ba nhóm còn lại đều đòi biết sản phẩm và bối cảnh cụ thể của bạn - đúng vùng nó yếu, và cũng đúng vùng bạn phải tự làm."
+      },
+      {
+        "question": "Vì sao nên yêu cầu kiểm thử theo hành vi thay vì theo cài đặt?",
+        "options": [
+          "Vì kiểm thử theo cài đặt sẽ đỏ mỗi lần bạn dọn mã dù hành vi không đổi",
+          "Vì kiểm thử theo hành vi chạy nhanh hơn do không phải kiểm tra chi tiết bên trong",
+          "Vì AI không đọc được phần cài đặt bên trong nên nó chỉ suy đoán được hành vi",
+          "Vì kiểm thử theo hành vi dễ đọc hơn nên người mới vào dự án hiểu nhanh hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là điểm cần nói rõ trong yêu cầu, vì AI có xu hướng sinh kiểm thử bám sát cấu trúc mã mà nó vừa đọc. Không nói thì bạn nhận về một bộ kiểm thử cản chính việc cải thiện thiết kế."
+      }
+    ],
+    "keyTakeaways": [
+      "Nó giải đúng cái bẫy điểm mù: bạn chỉ nghĩ ra trường hợp mình đã nghĩ tới.",
+      "Xin DANH SÁCH trường hợp trước, tự chọn, rồi mới xin mã cho phần đã chọn.",
+      "Số lượng là bẫy - kiểm thử phải bảo trì mãi, nên một trăm cái rỗng tệ hơn năm cái tốt.",
+      "Kiểm kỹ giá trị mong đợi: nó khoá lại hành vi HIỆN TẠI, không phải hành vi ĐÚNG.",
+      "Nói rõ muốn kiểm thử theo hành vi, nếu không nó bám sát cấu trúc mã vừa đọc."
+    ],
+    "practicePrompt": {
+      "question": "AI sinh một kiểm thử xanh ngay từ lần chạy đầu tiên. Nên hiểu thế nào?",
+      "options": [
+        "Cần kiểm giá trị mong đợi, vì nó có thể đang khoá lại hành vi sai hiện tại của mã",
+        "Tốt, vì điều đó chứng tỏ mã của bạn đã xử lý đúng trường hợp mà kiểm thử đó bao phủ",
+        "Bình thường, vì kiểm thử sinh tự động thường bám sát mã nên hiếm khi đỏ ngay",
+        "Cần thêm kiểm thử khác, vì một kiểm thử xanh chưa đủ để kết luận điều gì"
+      ],
+      "correct": 0,
+      "explanation": "Một kiểm thử xanh ngay có thể nghĩa là mã đúng, hoặc nghĩa là kiểm thử được viết theo đúng thứ mã đang làm - kể cả khi thứ đó sai. Cách phân biệt duy nhất là tự đọc giá trị mong đợi và hỏi nó có phải hành vi đúng không."
+    },
     "summary": {
-      "keyIdea": "Cảm xúc tin tức giúp đo tâm lý thị trường, nhưng phải nối với tác động tài chính.",
-      "commonMistake": "Mua bán theo tiêu đề mà không kiểm tra doanh thu, lợi nhuận, dòng tiền.",
-      "action": "Dán 5 tin và yêu cầu AI phân loại tích cực/tiêu cực, ngắn hạn/dài hạn, cần kiểm chứng gì."
+      "keyIdea": "Ứng dụng có giá trị rõ nhất, vì nó tấn công điểm yếu con người không tự khắc phục được.",
+      "formula": "Xin danh sách trường hợp → tự chọn → xin mã → kiểm giá trị mong đợi.",
+      "commonMistake": "Nhận một trăm kiểm thử rồi phải bảo trì chúng suốt vòng đời dự án.",
+      "action": "Lấy một hàm bạn đã viết và xin danh sách trường hợp biên cho nó."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một hàm bạn đã viết và đã có kiểm thử. Xin một danh sách trường hợp biên cho nó, rồi so với những trường hợp bạn đã nghĩ ra.",
+      "secondary": "Số trường hợp trong danh sách mà bộ kiểm thử của bạn chưa bao phủ chính là kích thước điểm mù của bạn ở đúng hàm đó."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Tin tức có cảm xúc. Người học cần biết cảm xúc đó có biến thành tiền thật cho doanh nghiệp không."
+        "text": "Bài về điểm mù trong chặng rà soát code kết thúc ở một chỗ khó chịu mà không đưa ra lời giải: cùng một điểm mù tạo ra cả mã lẫn kiểm thử, nên bộ kiểm thử của bạn xanh mà vẫn sót lỗi. Bài này là lời giải."
       },
       {
         "type": "heading",
-        "text": "Cảm xúc tin tức là gì?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Cảm xúc tin tức là sắc thái tích cực hoặc tiêu cực của bài viết. Ví dụ: ký hợp đồng lớn thường tích cực; bị phạt hoặc mất khách hàng lớn thường tiêu cực."
+        "text": "Vì sao nó giải được"
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "Sentiment: cảm xúc/sắc thái tin tức. Catalyst: sự kiện có thể làm thị trường chú ý. Fundamental: nền tảng thật của doanh nghiệp như doanh thu, lợi nhuận, nợ, dòng tiền."
+        "label": "Nó không chia sẻ điểm mù của bạn",
+        "text": "Bạn nghĩ ra được những trường hợp bạn đã nghĩ tới - đó là một câu lặp thừa, và cũng chính là vấn đề. AI đã thấy hàng nghìn hàm tương tự và biết chúng thường hỏng ở đâu, nên nó đề xuất được đúng những chỗ bạn không nhìn thấy."
       },
       {
         "type": "heading",
-        "text": "Câu lệnh mẫu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Đọc 5 tin sau. Chấm điểm cảm xúc từ -10 đến +10. Ghi rõ tác động ngắn hạn, tác động dài hạn, điều cần kiểm chứng bằng số liệu."
-      },
-      {
-        "type": "heading",
-        "text": "Dùng kết quả thế nào?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Điểm cảm xúc cao không có nghĩa mua ngay. Nó chỉ giúp đưa cổ phiếu vào danh sách theo dõi hoặc đặt câu hỏi sâu hơn."
-      },
-      {
-        "type": "heading",
-        "text": "Ba câu hỏi biến điểm cảm xúc thành thông tin dùng được"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Tin này nếu đúng thì chảy vào chỉ tiêu nào - doanh thu, chi phí, biên lợi nhuận, hay chỉ là hình ảnh thương hiệu?",
-          "Đây là sự kiện một lần hay thay đổi cấu trúc lâu dài của mô hình kinh doanh?",
-          "Thị trường đã biết tin này chưa - giá đã phản ứng rồi hay chưa phản ứng?"
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Câu thứ ba là câu người mới hay bỏ qua nhất. Một tin tốt mà cả thị trường đã biết và giá đã tăng 20% thì cơ hội nằm ở đâu? Đọc tin muộn hơn đám đông mà vẫn hành động như đọc sớm là cách mất tiền rất phổ biến."
+        "text": "Cách dùng: liệt kê trước, viết sau"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Cảm xúc âm, tác động nhỏ",
-          "text": "Sự cố một lần, được bảo hiểm phần lớn, không ảnh hưởng năng lực sản xuất dài hạn. Tin dày đặc, giá giảm mạnh, nhưng mô hình kinh doanh không đổi."
+          "label": "Xin danh sách trường hợp",
+          "text": "Đầu vào rỗng, giá trị âm, chuỗi rất dài, ký tự đặc biệt, gọi đồng thời. Bạn đọc trong ba mươi giây và biết ngay cái nào áp dụng được cho hàm của mình."
         },
         "right": {
-          "label": "Cảm xúc dương, tác động nhỏ",
-          "text": "Hợp đồng lớn nhưng biên lợi nhuận mỏng, ghi nhận trải nhiều năm, cần vay thêm để thực hiện. Tiêu đề rất đẹp, đóng góp vào lợi nhuận rất khiêm tốn."
+          "label": "Xin luôn mã kiểm thử",
+          "text": "Bạn nhận về một khối mã phải đọc kỹ mới đánh giá được - kể cả những trường hợp bạn sẽ bỏ. Trả chi phí đọc cho cả phần không dùng."
         }
       },
       {
-        "type": "callout",
-        "label": "Câu lệnh đầy đủ để dùng lại",
-        "text": "\"Đọc các tin dưới đây, chỉ dùng nội dung trong tin. Với mỗi tin, lập một dòng gồm: Điểm cảm xúc từ -10 đến +10 | Chỉ tiêu tài chính bị ảnh hưởng | Một lần hay lặp lại | Thông tin còn thiếu để đánh giá tác động. Cuối cùng, tổng hợp: bức tranh cảm xúc chung là gì, và những câu hỏi nào cần tra ở báo cáo tài chính. Không đưa khuyến nghị mua bán.\""
+        "type": "paragraph",
+        "text": "Số lượng là một cái bẫy riêng. Kiểm thử không phải thứ viết xong rồi thôi - nó phải bảo trì suốt vòng đời dự án, nên một trăm kiểm thử vô nghĩa còn tệ hơn năm kiểm thử tốt. Đây đúng là điều bài về kiểm thử đã nói: chọn đúng chỗ quan trọng hơn số lượng."
       },
       {
-        "type": "callout",
-        "label": "Lưu ý về nguồn tin",
-        "text": "Điểm cảm xúc chỉ đáng tin bằng chất lượng nguồn bạn đưa vào. Nếu 5 bài báo đều viết lại từ cùng một thông cáo báo chí của doanh nghiệp, bạn không có 5 quan điểm - bạn có 1 quan điểm được lặp 5 lần. Hãy ghi rõ nguồn từng tin trong bảng."
+        "type": "heading",
+        "text": "Hai thứ phải kiểm lại"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Giá trị mong đợi. Nó đoán hành vi đúng từ tên hàm, mà tên hàm có thể không mô tả đúng việc hàm làm - lúc đó kiểm thử khoá lại hành vi HIỆN TẠI thay vì hành vi ĐÚNG.",
+          "Kiểu kiểm thử. Nói rõ bạn muốn kiểm thử theo HÀNH VI; không nói thì nó bám sát cấu trúc mã vừa đọc, và bạn nhận về bộ kiểm thử cản chính việc dọn mã."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Mục đầu là kiểu hỏng nguy hiểm nhất của kiểm thử sinh tự động: kiểm thử xanh, mã sai, và bạn có thêm một lớp giả bảo đảm rằng mọi thứ ổn. Một kiểm thử xanh ngay từ lần chạy đầu là lúc đáng nghi nhất."
       },
       {
         "type": "closing",
         "lines": [
-          "Tin tốt chưa chắc là khoản đầu tư tốt.",
-          "AI giúp đọc tâm lý, bạn vẫn phải đọc số liệu."
+          "Nó đề xuất tốt nhất ở nhóm trường hợp biên phổ biến, vốn có khuôn mẫu rõ. Trường hợp phản ánh cách người dùng thật sự dùng sản phẩm thì bạn phải tự nghĩ - nó không biết sản phẩm của bạn.",
+          "Bài sau là một việc khác mà nó thay đổi được cách làm: gỡ lỗi."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Sentiment nghĩa là gì trong bài này?",
-        "options": [
-          "Cảm xúc hoặc sắc thái tích cực/tiêu cực của tin tức",
-          "Dòng tiền",
-          "Nợ vay",
-          "Cổ tức"
-        ],
-        "correct": 0,
-        "explanation": "Sentiment là cách gọi tiếng Anh của cảm xúc tin tức."
-      },
-      {
-        "question": "Khi tin tích cực nhưng chưa có số liệu, nên làm gì?",
-        "options": [
-          "Theo dõi và kiểm chứng thêm",
-          "Mua ngay",
-          "Kết luận lợi nhuận tăng chắc chắn",
-          "Bỏ qua rủi ro"
-        ],
-        "correct": 0,
-        "explanation": "Cần nối tin với tác động tài chính trước khi quyết định."
-      },
-      {
-        "question": "Năm bài báo cùng viết lại từ một thông cáo báo chí của doanh nghiệp. Điểm cảm xúc tổng hợp nói lên gì?",
-        "options": [
-          "Rất ít - đó là một quan điểm được lặp lại năm lần, không phải năm quan điểm độc lập",
-          "Rất nhiều - năm nguồn cùng tích cực là tín hiệu mạnh",
-          "Không nói gì cả, vì thông cáo báo chí luôn sai",
-          "Nó cho thấy thị trường đã định giá đúng"
-        ],
-        "correct": 0,
-        "explanation": "Đây là bẫy phổ biến khi tổng hợp cảm xúc: nhiều bài không đồng nghĩa nhiều nguồn. Ghi rõ nguồn gốc từng tin giúp bạn không đếm trùng."
-      },
-      {
-        "question": "Một tin tiêu cực về sự cố một lần, tổn thất được bảo hiểm phần lớn. Cách đọc đúng là gì?",
-        "options": [
-          "Ghi nhận tác động một lần, kiểm tra tỷ trọng thiệt hại và thời gian khôi phục, không kết luận mô hình kinh doanh đã hỏng",
-          "Bán ngay vì tin tiêu cực luôn kéo giá xuống tiếp",
-          "Bỏ qua hoàn toàn vì có bảo hiểm",
-          "Mua ngay vì giá đang giảm"
-        ],
-        "correct": 0,
-        "explanation": "Phân biệt sự kiện một lần với thay đổi cấu trúc là bước quan trọng nhất. Cả 'bán ngay' lẫn 'mua ngay' đều là phản ứng theo giá, không phải theo tác động tài chính đã kiểm chứng."
-      }
-    ],
-    "day": 1268,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Nhiều tin trong một khoảng thời gian",
-        "arrow": true
-      },
-      {
-        "label": "Chấm điểm cảm xúc + phân loại ngắn/dài hạn",
-        "arrow": true
-      },
-      {
-        "label": "Nối mỗi tin với chỉ tiêu tài chính bị ảnh hưởng",
-        "arrow": true
-      },
-      {
-        "label": "Đưa vào danh sách theo dõi, kiểm tra bằng báo cáo"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Khi tin xấu không phải là vấn đề dài hạn",
-      "description": "Một doanh nghiệp gặp sự cố cháy kho hàng: tin tức tiêu cực dày đặc trong hai tuần, giá cổ phiếu giảm. Đọc theo cảm xúc, đây rõ ràng là tin xấu. Đọc theo tác động tài chính, câu hỏi thành ra: giá trị hàng trong kho là bao nhiêu so với tổng tài sản, có bảo hiểm không và mức bồi thường thế nào, kho đó chiếm bao nhiêu phần công suất, và mất bao lâu để khôi phục. Nếu tổn thất được bảo hiểm phần lớn và kho chiếm tỷ trọng nhỏ, đây là sự kiện một lần chứ không phải thay đổi mô hình kinh doanh - dù điểm cảm xúc rất âm. Chiều ngược lại cũng đúng: chuỗi tin tích cực về một hợp đồng biên lợi nhuận mỏng có thể có điểm cảm xúc rất cao mà tác động thật rất nhỏ."
-    },
-    "keyTakeaways": [
-      "Cảm xúc tin tức đo tâm lý thị trường, không đo giá trị doanh nghiệp - đừng dùng lẫn hai thứ.",
-      "Luôn nối mỗi tin với một chỉ tiêu tài chính cụ thể: doanh thu, chi phí, biên lợi nhuận hay dòng tiền.",
-      "Phân biệt sự kiện một lần với thay đổi cấu trúc là bước quan trọng nhất khi đọc tin tiêu cực.",
-      "Kết quả của phân tích cảm xúc là một danh sách theo dõi, không phải một lệnh đặt mua."
-    ],
-    "practicePrompt": {
-      "question": "Cảm xúc tin tức tích cực có đủ để mua cổ phiếu không?",
-      "options": [
-        "Không, cần kiểm tra tác động tài chính và định giá",
-        "Có, cứ tin tốt là mua",
-        "Có, không cần xem số liệu",
-        "Chắc chắn giá tăng"
-      ],
-      "correct": 0,
-      "explanation": "Tin tích cực chỉ là tín hiệu ban đầu, chưa phải luận điểm đầu tư."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Dán 5 tin và yêu cầu AI phân loại tích cực/tiêu cực, ngắn hạn/dài hạn, cần kiểm chứng gì.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Đây là nơi ranh giới giữa 'thị trường đang nghĩ gì' và 'doanh nghiệp thực sự thế nào' bị xóa nhòa nhiều nhất - và cũng là nơi người mới mất tiền nhiều nhất."
+    ]
   },
   {
     "id": 1269,
-    "slug": "tao-tro-ly-ai-rieng-cho-tai-chinh",
-    "title": "AI Tài chính, Bài 9: Tạo trợ lý AI riêng cho tài chính",
-    "subtitle": "Thiết lập luật chơi để AI trả lời đúng khẩu vị và không bịa số.",
-    "duration": "16 phút",
-    "estimatedMinutes": 16,
+    "slug": "go-loi-cung-ai",
+    "title": "AI trong sản phẩm, Bài 9: Gỡ lỗi cùng AI",
+    "subtitle": "Dùng nó để mở rộng danh sách giả thuyết, không dùng nó để chọn giả thuyết.",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "openingQuestion": "Trợ lý AI riêng cần điều gì nhất?",
+    "emoji": "🐞",
+    "track": "professional",
+    "interactiveType": "ai-verify",
+    "isFundamental": false,
+    "whyItMatters": "Gỡ lỗi là chỗ người ta mất nhiều thời gian nhất và cũng là chỗ dễ dùng AI sai nhất, vì áp lực khiến người ta muốn có ngay một câu trả lời. Phân biệt được vai trò đúng của nó giúp tránh những buổi chiều đi sai hướng.",
+    "openingQuestion": "Vai trò đúng của AI trong việc gỡ lỗi là gì?",
     "openingOptions": [
-      "Luật rõ: dùng nguồn nào, làm gì, không được bịa gì",
-      "Tên thật hay",
-      "Trả lời càng dài và càng chi tiết thì lại càng tốt hơn",
-      "Không cần tài liệu"
+      "Mở rộng danh sách giả thuyết, còn việc chọn và kiểm chứng thì vẫn là của bạn",
+      "Đưa ra nguyên nhân có khả năng nhất để bạn tiết kiệm thời gian tìm kiếm",
+      "Phân tích thông báo lỗi và chỉ ra chính xác dòng mã nào đang gây ra vấn đề",
+      "Đề xuất bản sửa để bạn áp dụng ngay và kiểm tra xem lỗi đã hết chưa"
     ],
     "correctOption": 0,
-    "explanation": "Trợ lý AI riêng không phải một mô hình khác thông minh hơn - nó vẫn là công cụ bạn đang dùng, chỉ khác ở chỗ bạn nạp sẵn cho nó ba thứ: kho tài liệu bạn tin, bộ luật làm việc cố định, và mẫu trả lời chuẩn. Lợi ích thật là tính nhất quán: bạn không phải viết lại ràng buộc nguồn mỗi lần hỏi, và mỗi câu trả lời đều ra cùng một định dạng nên dễ soi thiếu sót. Phép thử quan trọng nhất của một trợ lý tốt là nó dám trả lời 'Không tìm thấy'.",
+    "explanation": "Nó không có quyền truy cập vào hệ thống của bạn, không thấy dữ liệu thật, không biết thay đổi nào vừa được triển khai - nên nó không chọn được giả thuyết đúng. Thứ nó làm tốt là nghĩ ra những nguyên nhân bạn chưa nghĩ tới, vì nó đã thấy rất nhiều lỗi tương tự. Chọn một nguyên nhân có khả năng nhất là đúng cách bạn mất một buổi chiều đi sai hướng, vì một nguyên nhân nghe hợp lý bám rất chặt.",
+    "diagram": [
+      {
+        "label": "Mô tả triệu chứng, không mô tả nguyên nhân bạn đoán",
+        "arrow": true
+      },
+      {
+        "label": "Xin DANH SÁCH giả thuyết, không xin một câu trả lời",
+        "arrow": true
+      },
+      {
+        "label": "Xin kèm cách kiểm chứng cho từng giả thuyết",
+        "arrow": true
+      },
+      {
+        "label": "Bạn chọn, bạn kiểm - vì chỉ bạn chạy được hệ thống"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Nói ra thành lời",
+      "description": "Bài về điểm mù nhắc tới hiện tượng tìm ra lỗi ngay khi bắt đầu giải thích cho đồng nghiệp. Viết mô tả lỗi cho AI có đúng tác dụng đó, và nhiều người tìm ra nguyên nhân trong lúc gõ câu hỏi - trước khi kịp bấm gửi."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao nên mô tả triệu chứng thay vì nguyên nhân bạn đoán?",
+        "options": [
+          "Vì nêu nguyên nhân đoán sẽ khoá cuộc trao đổi vào giả thuyết đó và bỏ qua các hướng khác",
+          "Vì mô tả triệu chứng thường ngắn hơn nên tiết kiệm được cả thời gian gõ lẫn chi phí xử lý",
+          "Vì AI không có đủ thông tin để đánh giá xem nguyên nhân bạn đoán có đúng không",
+          "Vì triệu chứng là thứ khách quan còn nguyên nhân là suy đoán chủ quan của bạn"
+        ],
+        "correct": 0,
+        "explanation": "Mô hình sẽ đi theo hướng bạn gợi ý và tìm cách giải thích tại sao giả thuyết đó đúng - đây lại là cái neo, lần này bạn tự đặt cho chính mình rồi nhờ máy củng cố."
+      },
+      {
+        "question": "Vì sao nên xin cách kiểm chứng kèm mỗi giả thuyết?",
+        "options": [
+          "Vì nó biến một danh sách phỏng đoán thành một danh sách việc làm được ngay",
+          "Vì cách kiểm chứng giúp bạn đánh giá xem giả thuyết đó có hợp lý không",
+          "Vì nó cho thấy mô hình có thật sự hiểu vấn đề hay chỉ đang liệt kê chung chung",
+          "Vì các cách kiểm chứng thường đơn giản hơn nhiều so với việc sửa lỗi thật"
+        ],
+        "correct": 0,
+        "explanation": "Khác biệt nằm ở chỗ bạn chuyển từ suy nghĩ sang hành động ngay: một danh sách giả thuyết không kèm cách kiểm thì bạn vẫn phải tự nghĩ ra cách thử từng cái, và đó thường là phần khó hơn."
+      },
+      {
+        "question": "Vì sao việc viết mô tả lỗi đã có ích ngay cả khi chưa gửi đi?",
+        "options": [
+          "Vì diễn đạt thành lời buộc bạn sắp xếp lại thông tin và nhiều lỗi lộ ra ở bước đó",
+          "Vì bản mô tả đó dùng lại được khi bạn cần báo lỗi cho đồng nghiệp hoặc nhà cung cấp",
+          "Vì viết ra giúp bạn nhớ được các chi tiết mà nếu chỉ nghĩ trong đầu thì dễ quên",
+          "Vì việc dừng lại viết cho bạn thời gian nghỉ ngắn khiến đầu óc tỉnh táo hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng hiện tượng với việc giải thích code cho đồng nghiệp ở chặng rà soát: nó hoạt động kể cả khi người nghe không nói gì, vì cơ chế nằm ở việc diễn đạt chứ không ở phản hồi."
+      },
+      {
+        "question": "Vì sao nên cẩn thận khi áp dụng ngay bản sửa mà AI đề xuất?",
+        "options": [
+          "Vì nó có thể làm triệu chứng biến mất mà không chạm tới nguyên nhân gốc",
+          "Vì bản sửa có thể dùng cú pháp của phiên bản ngôn ngữ khác với phiên bản bạn dùng",
+          "Vì nó thường sửa theo cách phức tạp hơn mức cần thiết cho vấn đề đang gặp",
+          "Vì bản sửa có thể ảnh hưởng tới các phần khác của hệ thống mà nó không nhìn thấy"
+        ],
+        "correct": 0,
+        "explanation": "Kiểu hỏng này tệ hơn không sửa gì: lỗi quay lại sau vài tuần dưới một hình dạng khác, và lúc đó không ai nhớ tới bản sửa cũ. Lựa chọn cuối cũng là rủi ro thật nhưng nó lộ ra sớm hơn nhiều."
+      },
+      {
+        "question": "Thông tin nào quan trọng nhất cần đưa vào khi mô tả lỗi?",
+        "options": [
+          "Điều gì thay đổi gần đây, vì phần lớn lỗi mới xuất hiện đều có nguyên nhân từ một thay đổi",
+          "Toàn bộ thông báo lỗi và dấu vết ngăn xếp đầy đủ không cắt bớt phần nào",
+          "Cấu hình môi trường và phiên bản của tất cả các thư viện đang được sử dụng",
+          "Lịch sử của những lần lỗi tương tự đã từng xảy ra trong dự án này và cách mà chúng được xử lý"
+        ],
+        "correct": 0,
+        "explanation": "Thông báo lỗi thì ai cũng nhớ đưa vào; thông tin về thay đổi gần đây thì hay bị quên dù nó thu hẹp phạm vi tìm kiếm mạnh nhất. Một hệ thống chạy ổn hai năm rồi hỏng hôm nay thì nguyên nhân gần như luôn nằm trong thứ vừa đổi."
+      }
+    ],
+    "keyTakeaways": [
+      "Mở rộng danh sách giả thuyết; việc chọn và kiểm chứng vẫn là của bạn.",
+      "Mô tả TRIỆU CHỨNG, không mô tả nguyên nhân bạn đoán - nêu ra là tự đặt neo cho mình.",
+      "Xin kèm cách kiểm chứng: nó biến danh sách phỏng đoán thành danh sách việc làm được.",
+      "Viết mô tả lỗi đã có ích trước khi gửi - cùng cơ chế với giải thích code cho đồng nghiệp.",
+      "Nói rõ điều gì vừa thay đổi: đó là thông tin thu hẹp phạm vi mạnh nhất."
+    ],
+    "practicePrompt": {
+      "question": "AI đưa ra một nguyên nhân nghe rất hợp lý cho lỗi của bạn. Nên làm gì tiếp?",
+      "options": [
+        "Hỏi thêm bốn nguyên nhân khác kèm cách kiểm chứng, rồi tự kiểm từng cái",
+        "Kiểm chứng nguyên nhân đó trước, vì nó có khả năng đúng cao nhất trong các khả năng",
+        "Sửa theo hướng đó và xem lỗi có hết không, đó cũng là một cách kiểm chứng",
+        "Hỏi lại để xác nhận xem nó có giữ nguyên đánh giá về nguyên nhân đó không"
+      ],
+      "correct": 0,
+      "explanation": "Một nguyên nhân nghe hợp lý bám rất chặt, và đó là cách người ta mất một buổi chiều đi sai hướng. Sửa để xem lỗi có hết là cách tệ nhất: triệu chứng biến mất không chứng minh được nguyên nhân, và bạn vừa thêm một đoạn mã không ai hiểu."
+    },
     "summary": {
-      "keyIdea": "Trợ lý AI riêng hữu ích khi có luật rõ, nguồn rõ và định dạng trả lời ổn định.",
-      "commonMistake": "Tải nhiều tài liệu lên nhưng không viết chỉ dẫn hệ thống.",
-      "action": "Viết 10 dòng luật cho trợ lý: phạm vi, nguồn, điều cấm, định dạng, cách báo thiếu dữ liệu."
+      "keyIdea": "Nó mở rộng không gian giả thuyết; nó không thu hẹp được vì không chạy được hệ thống của bạn.",
+      "formula": "Triệu chứng + thay đổi gần đây → danh sách giả thuyết + cách kiểm → bạn tự kiểm.",
+      "commonMistake": "Nhận một nguyên nhân nghe hợp lý rồi đi theo nó cả buổi chiều.",
+      "action": "Lần gỡ lỗi tới, xin năm giả thuyết kèm cách kiểm thay vì xin một câu trả lời."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lần gỡ lỗi tiếp theo, mô tả triệu chứng và những gì vừa thay đổi, rồi xin năm giả thuyết kèm cách kiểm chứng cho từng cái - đừng xin một câu trả lời.",
+      "secondary": "Chú ý xem bạn có tìm ra nguyên nhân ngay trong lúc gõ mô tả không. Chuyện đó xảy ra thường xuyên hơn bạn nghĩ, và khi đó bạn không cần gửi câu hỏi nữa."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Trợ lý AI riêng không phải phép màu. Nó là chatbot được bạn dạy cách làm việc."
+        "text": "Gỡ lỗi là chỗ người ta mất nhiều thời gian nhất, nên nó là chỗ người ta muốn giao đi nhất. Nó cũng là chỗ dễ dùng sai nhất, vì áp lực khiến người ta muốn có ngay một câu trả lời."
       },
       {
         "type": "heading",
-        "text": "Trợ lý riêng gồm 3 phần"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kho tài liệu sạch",
-          "Luật làm việc rõ",
-          "Mẫu trả lời cố định"
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "trợ lý AI tùy chỉnh: trợ lý AI tùy chỉnh. Kho tài liệu: kho tài liệu. Chỉ dẫn hệ thống: luật làm việc của trợ lý."
-      },
-      {
-        "type": "heading",
-        "text": "Luật mẫu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Chỉ dùng dữ liệu tôi cung cấp. Nếu thiếu dữ liệu, ghi 'Không tìm thấy'. Mỗi kết luận phải có bằng chứng. Luôn nêu rủi ro trước khi khuyến nghị. Không tự bịa số liệu."
-      },
-      {
-        "type": "heading",
-        "text": "Cách kiểm tra trợ lý"
-      },
-      {
-        "type": "paragraph",
-        "text": "Hỏi một câu có dữ liệu trong tài liệu và một câu không có dữ liệu. Nếu trợ lý bịa ở câu thứ hai, cần sửa lại luật."
-      },
-      {
-        "type": "heading",
-        "text": "Mười dòng luật nên có"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Chỉ sử dụng tài liệu trong kho đã nạp; không dùng kiến thức bên ngoài.",
-          "Mỗi con số phải kèm tên tài liệu, số trang, đơn vị và kỳ báo cáo.",
-          "Nếu dữ liệu không có, ghi 'Không tìm thấy trong tài liệu' và dừng lại, không ước lượng.",
-          "Phân biệt rõ dữ kiện trích từ tài liệu với suy luận của bạn; suy luận phải ghi rõ là suy luận.",
-          "Không đưa khuyến nghị mua, bán hoặc nắm giữ trong bất kỳ trường hợp nào.",
-          "Nếu hai tài liệu mâu thuẫn nhau, nêu cả hai và chỉ rõ chỗ mâu thuẫn thay vì tự chọn một.",
-          "Luôn ghi rõ số liệu là hợp nhất hay công ty mẹ.",
-          "Trả lời bằng tiếng Việt, ưu tiên dạng bảng, tối đa 300 từ trừ khi được yêu cầu dài hơn.",
-          "Kết thúc mỗi câu trả lời bằng mục 'Dữ liệu còn thiếu' nếu có.",
-          "Nếu câu hỏi vượt ngoài phạm vi tài liệu, nói rõ điều đó thay vì trả lời một phần."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Về kho tài liệu",
-        "text": "Kho sạch quan trọng hơn kho lớn. Một trợ lý được nạp đúng ba báo cáo bạn đã kiểm tra kỹ sẽ đáng tin hơn nhiều so với một trợ lý nạp ba mươi file lẫn lộn bản nháp, bản cũ và tài liệu không rõ nguồn. Hãy đặt tên file có kỳ và loại báo cáo, và bỏ bản trùng trước khi nạp."
+        "text": "Nó làm được gì và không làm được gì"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Trợ lý không đáng tin",
-          "text": "Hỏi một chỉ tiêu của năm chưa nạp báo cáo, nó vẫn đưa ra con số kèm giải thích trôi chảy. Bạn không có cách nào biết câu nào là trích, câu nào là đoán."
+          "label": "Mở rộng giả thuyết",
+          "text": "Nó đã thấy rất nhiều lỗi tương tự, nên nó nghĩ ra được những nguyên nhân bạn chưa nghĩ tới. Đây là giá trị thật và nó lớn."
         },
         "right": {
-          "label": "Trợ lý đáng tin",
-          "text": "Trả lời: 'Không tìm thấy dữ liệu năm 2022 trong tài liệu đã nạp. Kho hiện có báo cáo 2023 và 2024.' Nó vừa từ chối đúng, vừa cho bạn biết cần nạp thêm gì."
+          "label": "Không thu hẹp được",
+          "text": "Nó không truy cập được hệ thống của bạn, không thấy dữ liệu thật, không biết thay đổi nào vừa triển khai. Việc chọn và kiểm chứng vẫn là của bạn."
         }
       },
       {
+        "type": "callout",
+        "label": "Cách mất một buổi chiều",
+        "text": "Xin một nguyên nhân có khả năng nhất và đi theo nó. Một nguyên nhân nghe hợp lý bám rất chặt - bạn sẽ tìm cách giải thích mọi bằng chứng theo hướng đó thay vì để bằng chứng dẫn đường."
+      },
+      {
+        "type": "heading",
+        "text": "Cách hỏi"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Mô tả TRIỆU CHỨNG, đừng mô tả nguyên nhân bạn đoán. Nêu ra là bạn tự đặt neo cho mình rồi nhờ máy củng cố nó.",
+          "Nói rõ điều gì vừa thay đổi. Đây là thông tin thu hẹp phạm vi mạnh nhất và cũng hay bị quên nhất.",
+          "Xin một DANH SÁCH giả thuyết, kèm cách kiểm chứng cho từng cái.",
+          "Rồi tự kiểm - vì chỉ bạn chạy được hệ thống."
+        ]
+      },
+      {
         "type": "paragraph",
-        "text": "Cuối cùng, đừng quên rằng luật của bạn cũng là một tài liệu cần bảo trì. Mỗi lần phát hiện trợ lý mắc lỗi lặp lại, hãy thêm một dòng luật chặn đúng lỗi đó thay vì nhắc thủ công ở từng câu hỏi. Sau vài vòng như vậy, bộ luật sẽ phản ánh chính những sai lầm bạn hay gặp - và đó là tài sản riêng của bạn."
+        "text": "Mục thứ hai đáng nhấn: một hệ thống chạy ổn hai năm rồi hỏng hôm nay thì nguyên nhân gần như luôn nằm trong thứ vừa đổi. Còn mục thứ ba biến một danh sách phỏng đoán thành một danh sách việc làm được ngay."
+      },
+      {
+        "type": "heading",
+        "text": "Hai điều đáng lưu ý"
+      },
+      {
+        "type": "paragraph",
+        "text": "Việc viết mô tả lỗi đã có ích trước khi bạn bấm gửi. Đây là cùng hiện tượng với việc giải thích code cho đồng nghiệp ở chặng rà soát - nó hoạt động vì cơ chế nằm ở việc diễn đạt, không ở phản hồi của người nghe."
       },
       {
         "type": "closing",
         "lines": [
-          "Trợ lý riêng tốt là trợ lý biết nói 'không tìm thấy'.",
-          "Nguồn sạch và luật rõ quan trọng hơn tên gọi."
+          "Và cẩn thận với bản sửa được đề xuất: nó có thể làm triệu chứng biến mất mà không chạm tới nguyên nhân gốc. Kiểu hỏng đó tệ hơn không sửa gì, vì lỗi quay lại sau vài tuần dưới hình dạng khác và không ai nhớ tới bản sửa cũ.",
+          "Bài sau là việc mà gần như ai cũng ngại và AI làm rất tốt: viết tài liệu."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Kho tài liệu nghĩa là gì?",
-        "options": [
-          "Kho tài liệu dùng làm nền cho trợ lý AI",
-          "Giá cổ phiếu",
-          "Lãi suất",
-          "Bảng cân đối kế toán"
-        ],
-        "correct": 0,
-        "explanation": "Kho tài liệu là thuật ngữ tiếng Anh, nghĩa là kho tri thức/tài liệu."
-      },
-      {
-        "question": "Vì sao cần hỏi trợ lý một câu không có dữ liệu?",
-        "options": [
-          "Để xem trợ lý có biết nói không tìm thấy hay tự bịa",
-          "Để làm câu hỏi dài hơn",
-          "Để tăng điểm",
-          "Để bỏ qua nguồn"
-        ],
-        "correct": 0,
-        "explanation": "Trợ lý tài chính phải biết từ chối bịa dữ liệu."
-      },
-      {
-        "question": "Phép thử tốt nhất để biết một trợ lý AI có đáng tin không là gì?",
-        "options": [
-          "Hỏi một câu mà dữ liệu chắc chắn không có trong kho, xem nó có nói 'Không tìm thấy' không",
-          "Hỏi một câu khó về lý thuyết tài chính",
-          "Xem nó trả lời nhanh đến đâu",
-          "Đếm số tài liệu đã nạp vào kho"
-        ],
-        "correct": 0,
-        "explanation": "Một trợ lý trả lời đúng câu có dữ liệu chưa chứng minh được gì, vì đó là phần dễ. Chỗ phân biệt nằm ở việc nó có dám từ chối khi không có dữ liệu hay không."
-      },
-      {
-        "question": "Khi trợ lý mắc đi mắc lại cùng một lỗi, cách xử lý tốt nhất là gì?",
-        "options": [
-          "Thêm một dòng luật chặn đúng lỗi đó vào bộ luật hệ thống",
-          "Nhắc lại thủ công ở mỗi câu hỏi",
-          "Đổi sang công cụ AI khác",
-          "Chấp nhận vì AI nào cũng có lỗi"
-        ],
-        "correct": 0,
-        "explanation": "Bộ luật là nơi tích lũy kinh nghiệm. Nhắc thủ công thì đến lần quên là lần sai; đưa vào luật thì ràng buộc được áp tự động cho mọi câu hỏi sau."
-      }
-    ],
-    "day": 1269,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Kho tài liệu sạch (biết rõ nguồn, kỳ, đơn vị)",
-        "arrow": true
-      },
-      {
-        "label": "Luật làm việc: chỉ dùng nguồn · phải dẫn trang · thiếu thì nói thiếu",
-        "arrow": true
-      },
-      {
-        "label": "Mẫu trả lời cố định",
-        "arrow": true
-      },
-      {
-        "label": "Kiểm tra bằng câu hỏi có dữ liệu và câu hỏi không có dữ liệu"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Phép thử bẫy",
-      "description": "Cách kiểm tra một trợ lý AI đáng tin hay không rất đơn giản và ai cũng làm được. Hỏi hai câu: một câu mà bạn biết chắc câu trả lời nằm trong tài liệu đã nạp, và một câu về thông tin bạn biết chắc không có trong đó - ví dụ hỏi về một chỉ tiêu của năm mà bạn chưa hề nạp báo cáo. Nếu ở câu thứ hai trợ lý vẫn đưa ra một con số nghe hợp lý thay vì nói 'Không tìm thấy trong tài liệu', thì mọi câu trả lời khác của nó cũng không đáng tin, kể cả những câu tình cờ đúng. Nên chạy lại phép thử này mỗi khi bạn đổi bộ luật hoặc nạp thêm tài liệu."
-    },
-    "keyTakeaways": [
-      "Trợ lý riêng gồm ba phần: kho tài liệu sạch, bộ luật làm việc rõ, và mẫu trả lời cố định.",
-      "Giá trị chính không phải thông minh hơn mà là nhất quán hơn - cùng một ràng buộc áp cho mọi câu hỏi.",
-      "Bộ luật quan trọng nhất là: chỉ dùng tài liệu đã nạp, luôn dẫn nguồn, thiếu dữ liệu thì ghi 'Không tìm thấy'.",
-      "Luôn chạy phép thử bẫy sau mỗi lần đổi luật hoặc thêm tài liệu."
-    ],
-    "practicePrompt": {
-      "question": "Trợ lý AI riêng cần điều gì nhất?",
-      "options": [
-        "Luật rõ: dùng nguồn nào, làm gì, không được bịa gì",
-        "Tên thật hay",
-        "Trả lời càng dài càng tốt",
-        "Không cần tài liệu"
-      ],
-      "correct": 0,
-      "explanation": "Trợ lý riêng cần chỉ dẫn rõ và kho tài liệu sạch."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Viết 10 dòng luật cho trợ lý: phạm vi, nguồn, điều cấm, định dạng, cách báo thiếu dữ liệu.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Khi bạn lặp đi lặp lại cùng một loại công việc, dán lại ràng buộc mỗi lần vừa mất thời gian vừa dễ quên - và lần quên chính là lần output sai."
+    ]
   },
   {
     "id": 1270,
-    "slug": "viet-ban-ghi-nho-tai-chinh-bang-ai",
-    "title": "AI Tài chính, Bài 10: Viết bản ghi nhớ tài chính bằng AI",
-    "subtitle": "Từ dữ liệu rời rạc thành một bản ghi nhớ ngắn, rõ và có rủi ro.",
-    "duration": "15 phút",
-    "estimatedMinutes": 15,
+    "slug": "viet-tai-lieu-va-thong-diep-commit",
+    "title": "AI trong sản phẩm, Bài 10: Viết tài liệu và thông điệp commit",
+    "subtitle": "Nó viết được phần mô tả cái gì; phần VÌ SAO thì chỉ bạn có.",
+    "duration": "6 phút",
     "difficulty": "Dễ",
-    "openingQuestion": "Một bản ghi nhớ tài chính tốt cần có gì?",
+    "emoji": "📄",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": false,
+    "whyItMatters": "Tài liệu là việc ai cũng biết nên làm và ai cũng hoãn, đúng như bài về thiên kiến hiện tại mô tả. AI hạ chi phí của nó xuống đủ để việc đó thật sự được làm - nhưng chỉ với đúng một nửa của tài liệu.",
+    "openingQuestion": "Phần nào của tài liệu AI không viết thay được?",
     "openingOptions": [
-      "Kết luận, bằng chứng, rủi ro và điều cần kiểm chứng",
-      "Chỉ lời khen",
-      "Chỉ biểu tượng đẹp",
-      "Không cần số liệu"
+      "Phần vì sao: lý do đằng sau một quyết định, và những phương án đã bị bác bỏ",
+      "Phần hướng dẫn cài đặt và các bước chạy dự án trên máy của người mới",
+      "Phần mô tả các hàm và tham số của chúng trong tài liệu tham chiếu kỹ thuật",
+      "Phần ví dụ minh hoạ cách sử dụng thư viện trong các tình huống phổ biến"
     ],
     "correctOption": 0,
-    "explanation": "Bản ghi nhớ tài chính là tài liệu ngắn giúp người đọc hiểu kết luận, bằng chứng và rủi ro trong vài phút. Đây là đầu ra thực tế của rất nhiều công việc phân tích, và cũng là chỗ AI giúp nhiều nhất: nó viết bản nháp có cấu trúc rất nhanh. Nhưng bản nháp AI có một điểm yếu cố hữu - nó viết trôi chảy kể cả ở những chỗ bằng chứng yếu, nên câu văn tự tin có thể che đi một luận điểm chưa có số liệu. Việc của bạn là soi từng luận điểm và cắt những gì không chứng minh được.",
+    "explanation": "Nó đọc mã và mô tả được rất tốt mã đang LÀM GÌ. Nhưng lý do bạn chọn cách này thay vì cách kia, phương án nào đã thử và thất bại, ràng buộc nào buộc phải làm xấu như vậy - những thứ đó không nằm trong mã, nên không đọc ra được. Và đó lại đúng là phần có giá trị nhất của tài liệu, vì phần cái gì thì người sau đọc mã cũng suy ra được.",
+    "diagram": [
+      {
+        "label": "Nó viết được: cái gì, thế nào, tham số ra sao",
+        "arrow": true
+      },
+      {
+        "label": "Chỉ bạn có: vì sao, đã bác phương án nào, ràng buộc gì",
+        "arrow": true
+      },
+      {
+        "label": "Phần vì sao mới là phần có giá trị nhất",
+        "arrow": true
+      },
+      {
+        "label": "Chia việc: nó viết nửa dễ, bạn thêm nửa quý"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Thông điệp commit nói lại điều mã đã nói",
+      "description": "Một thông điệp mô tả đã đổi những dòng nào là thông điệp vô dụng, vì bản khác biệt đã nói điều đó rồi. Thứ đáng ghi là vì sao đổi - và đó đúng là phần AI không đọc ra được từ bản khác biệt."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao phần vì sao lại có giá trị hơn phần cái gì?",
+        "options": [
+          "Vì phần cái gì thì người sau đọc mã cũng suy ra được, còn phần vì sao thì mất luôn",
+          "Vì phần vì sao thường ngắn hơn nên dễ đọc và dễ bảo trì hơn về lâu dài",
+          "Vì phần cái gì nhanh lỗi thời mỗi khi mã thay đổi, còn phần vì sao thì lại ổn định",
+          "Vì người đọc tài liệu thường đã hiểu mã làm gì và chỉ cần biết thêm lý do"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba cũng đúng và là một lý do thật, nhưng lý do đầu mạnh hơn: thông tin về lý do không tồn tại ở bất cứ đâu khác. Khi người biết nó rời dự án thì nó biến mất hoàn toàn."
+      },
+      {
+        "question": "Cách chia việc nào hợp lý khi viết tài liệu?",
+        "options": [
+          "Để nó viết phần mô tả từ mã, rồi bạn thêm phần lý do và ràng buộc vào",
+          "Tự viết dàn ý rồi để nó điền nội dung cho từng phần theo dàn ý đó",
+          "Để nó viết ra toàn bộ rồi bạn đọc lại và sửa lại những chỗ chưa chính xác",
+          "Tự viết toàn bộ rồi nhờ nó rà soát lại về mặt diễn đạt và cấu trúc"
+        ],
+        "correct": 0,
+        "explanation": "Nó chia theo đúng ranh giới thông tin: phần suy ra được từ mã và phần không. Để nó viết toàn bộ thì bạn nhận về một tài liệu nghe đầy đủ nhưng phần lý do là bịa - và đó là dạng tài liệu nguy hiểm nhất."
+      },
+      {
+        "question": "Thông điệp commit nên ghi gì?",
+        "options": [
+          "Vì sao thay đổi này được thực hiện, vì bản khác biệt đã nói rõ những dòng nào đổi",
+          "Danh sách các tệp đã được sửa đổi và tóm tắt thay đổi trong từng tệp",
+          "Tên tính năng hoặc mã số công việc để có thể truy ngược lại yêu cầu ban đầu",
+          "Mô tả thật chi tiết cách thức triển khai để người rà soát hiểu nhanh hơn lúc đọc mã"
+        ],
+        "correct": 0,
+        "explanation": "Mã số công việc cũng nên có nhưng nó là liên kết chứ không phải nội dung - và hệ thống quản lý công việc có thể ngừng hoạt động trong khi kho mã thì còn mãi. Mô tả lại thay đổi là lặp lại thứ bản khác biệt đã nói."
+      },
+      {
+        "question": "Vì sao tài liệu do AI sinh dễ trở nên lỗi thời hơn?",
+        "options": [
+          "Vì sinh ra rất nhanh nên người ta viết nhiều hơn mức mình bảo trì nổi",
+          "Vì nó viết theo phong cách chung chung nên khó nhận ra khi nội dung đã sai",
+          "Vì nó thường mô tả chi tiết cài đặt vốn thay đổi thường xuyên hơn phần giao diện",
+          "Vì tài liệu sinh tự động thường không được lưu cùng chỗ với mã nguồn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là một mặt trái của việc hạ chi phí: chi phí VIẾT giảm nhưng chi phí BẢO TRÌ thì không, và tài liệu sai còn tệ hơn không có tài liệu vì người ta tin nó."
+      },
+      {
+        "question": "Vì sao AI hợp với việc viết tài liệu?",
+        "options": [
+          "Vì nó hạ chi phí trả ngay của một việc mà lợi ích nằm ở tương lai",
+          "Vì viết tài liệu là công việc có khuôn mẫu rõ nên nó làm chính xác gần như tuyệt đối",
+          "Vì tài liệu không phải mã chạy nên sai sót trong đó không gây hậu quả nghiêm trọng",
+          "Vì nó viết nhanh hơn người rất nhiều nên tiết kiệm được phần lớn thời gian"
+        ],
+        "correct": 0,
+        "explanation": "Bài về thiên kiến hiện tại nói chi phí trả ngay còn lợi ích rải ra tương lai là lý do tài liệu luôn bị hoãn. Hạ chi phí trả ngay là can thiệp đúng vào cơ chế đó, chứ không phải chỉ là làm nhanh hơn."
+      }
+    ],
+    "keyTakeaways": [
+      "Nó viết được phần CÁI GÌ; phần VÌ SAO thì không nằm trong mã nên không đọc ra được.",
+      "Phần vì sao có giá trị hơn, vì phần cái gì thì người sau đọc mã cũng suy ra được.",
+      "Chia việc theo ranh giới thông tin: nó viết từ mã, bạn thêm lý do và ràng buộc.",
+      "Thông điệp commit ghi VÌ SAO - bản khác biệt đã nói rõ những dòng nào đổi.",
+      "Chi phí viết giảm nhưng chi phí bảo trì thì không: đừng viết nhiều hơn mức bảo trì nổi."
+    ],
+    "practicePrompt": {
+      "question": "AI viết cho bạn một trang tài liệu đầy đủ gồm cả phần giải thích lý do thiết kế. Nên làm gì?",
+      "options": [
+        "Kiểm phần lý do rất kỹ, vì nó không đọc được lý do từ mã nên phần đó là suy đoán",
+        "Dùng luôn vì có tài liệu vẫn tốt hơn không có tài liệu nào cho phần đó",
+        "Xoá phần lý do đi vì nó không đáng tin, chỉ giữ lại phần mô tả kỹ thuật",
+        "Yêu cầu nó nêu nguồn cho từng phần lý do để biết phần nào đáng tin hơn"
+      ],
+      "correct": 0,
+      "explanation": "Một lý do thiết kế nghe hợp lý nhưng không phải lý do thật là dạng tài liệu nguy hiểm nhất: người sau đọc, tin, và giữ nguyên một quyết định vì một lý do chưa từng tồn tại. Xoá đi thì an toàn nhưng lãng phí - phần đó thường gần đúng và sửa nhanh hơn viết mới."
+    },
     "summary": {
-      "keyIdea": "AI giúp viết bản nháp, nhưng bạn phải kiểm tra số liệu và rủi ro trước khi gửi.",
-      "commonMistake": "Gửi nguyên bản AI viết mà không kiểm tra nguồn và văn phong.",
-      "action": "Yêu cầu AI viết bản ghi nhớ 1 trang từ một bài báo hoặc BCTC, rồi tự kiểm tra 3 con số."
+      "keyIdea": "Nó viết được nửa dễ của tài liệu; nửa quý thì chỉ bạn có.",
+      "formula": "Nó viết CÁI GÌ từ mã → bạn thêm VÌ SAO và ràng buộc.",
+      "commonMistake": "Nhận cả phần lý do thiết kế do nó suy đoán và tin đó là lý do thật.",
+      "action": "Lấy một tệp không có tài liệu, để nó viết phần mô tả, rồi bạn thêm phần vì sao."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một tệp trong dự án chưa có tài liệu. Để AI viết phần mô tả nó làm gì, rồi bạn tự thêm hai câu: vì sao làm thế này, và phương án nào đã bị bác.",
+      "secondary": "Hai câu đó là phần mà sáu tháng sau người đọc sẽ cảm ơn - và cũng là phần duy nhất trong cả trang mà không ai khác viết thay bạn được."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Bản ghi nhớ là bản ghi nhớ ngắn giúp người đọc ra quyết định hoặc biết cần kiểm tra gì tiếp."
+        "text": "Viết tài liệu là việc ai cũng biết nên làm và ai cũng hoãn - đúng khuôn mà bài về thiên kiến hiện tại mô tả. AI hạ chi phí trả ngay của nó xuống, nhưng chỉ cho đúng một nửa."
+      },
+      {
+        "type": "heading",
+        "text": "Ranh giới giữa hai nửa"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Nó viết được",
+          "text": "Cái gì và thế nào: hàm này nhận gì trả gì, luồng dữ liệu đi ra sao, các bước cài đặt. Nó đọc mã và mô tả rất tốt phần này."
+        },
+        "right": {
+          "label": "Chỉ bạn có",
+          "text": "Vì sao: lý do chọn cách này thay vì cách kia, phương án nào đã thử và thất bại, ràng buộc nào buộc phải làm xấu như vậy. Những thứ này không nằm trong mã."
+        }
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "Bản ghi nhớ: bản ghi nhớ ngắn. Bản một trang: tài liệu một trang. Thesis đầu tư: luận điểm chính vì sao nên hoặc không nên đầu tư."
+        "label": "Và nửa bên phải mới là nửa quý",
+        "text": "Phần CÁI GÌ thì người sau đọc mã cũng suy ra được - chỉ là chậm hơn. Phần VÌ SAO thì không tồn tại ở bất cứ đâu khác, nên khi người biết nó rời dự án thì nó biến mất hoàn toàn."
       },
       {
         "type": "heading",
-        "text": "Cấu trúc 5 phần"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kết luận ngắn",
-          "3 bằng chứng chính",
-          "Rủi ro lớn nhất",
-          "Dữ liệu còn thiếu",
-          "Việc cần làm tiếp theo"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Câu lệnh mẫu"
+        "text": "Cách chia việc"
       },
       {
         "type": "paragraph",
-        "text": "Dựa trên thông tin sau, hãy viết bản ghi nhớ 1 trang. Gồm: Kết luận, Bằng chứng, Rủi ro, Dữ liệu thiếu, Câu hỏi cần kiểm chứng. Không bịa số liệu."
-      },
-      {
-        "type": "heading",
-        "text": "Trước khi gửi"
+        "text": "Để nó viết phần mô tả từ mã, rồi bạn thêm phần lý do và ràng buộc vào. Cách chia này đi theo đúng ranh giới thông tin, nên nó không tuỳ tiện: mỗi bên làm phần mà chỉ mình bên đó làm được."
       },
       {
         "type": "paragraph",
-        "text": "Kiểm tra nguồn số liệu, đơn vị, rủi ro và giọng văn. Bản gửi đi là trách nhiệm của bạn, không phải của AI."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Khung 5 phần và tiêu chí đạt",
-        "concepts": [
-          {
-            "vi": "Kết luận",
-            "en": "Bottom line",
-            "def": "Tối đa 2-3 câu, nói thẳng điều bạn tin và mức độ chắc chắn. Người đọc chỉ có 2 phút thì phần này phải đủ."
-          },
-          {
-            "vi": "Bằng chứng",
-            "en": "Evidence",
-            "def": "Ba luận điểm chính, mỗi luận điểm kèm số liệu và nguồn. Không có số thì đó là ý kiến, không phải bằng chứng."
-          },
-          {
-            "vi": "Rủi ro",
-            "en": "Risks",
-            "def": "Hai rủi ro lớn nhất, viết cụ thể đủ để người đọc biết theo dõi cái gì. Tránh rủi ro chung chung kiểu 'biến động thị trường'."
-          },
-          {
-            "vi": "Dữ liệu còn thiếu",
-            "en": "What we don't know",
-            "def": "Những thông tin cần có nhưng chưa có. Phần này làm bản ghi nhớ đáng tin hơn chứ không yếu đi."
-          },
-          {
-            "vi": "Việc cần làm tiếp",
-            "en": "Next steps",
-            "def": "Hành động cụ thể: tra thuyết minh nào, hỏi ai, theo dõi chỉ tiêu gì ở quý sau."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Câu lệnh đầy đủ để dùng lại",
-        "text": "\"Dựa hoàn toàn vào dữ liệu tôi cung cấp bên dưới, viết bản ghi nhớ tối đa 500 từ theo đúng 5 mục: Kết luận (2-3 câu), Bằng chứng (3 luận điểm, mỗi luận điểm bắt buộc kèm số liệu và nguồn), Rủi ro (2 rủi ro cụ thể), Dữ liệu còn thiếu, Việc cần làm tiếp. Không dùng tính từ đánh giá nếu không có số liệu đi kèm. Không đưa khuyến nghị mua bán. Nếu một mục không đủ dữ liệu, ghi rõ thay vì viết chung chung.\""
+        "text": "Điều phải tránh là để nó viết TOÀN BỘ. Bạn sẽ nhận về một tài liệu nghe đầy đủ trong đó phần lý do là suy đoán - và một lý do thiết kế nghe hợp lý nhưng không phải lý do thật là dạng tài liệu nguy hiểm nhất, vì người sau đọc, tin, và giữ nguyên một quyết định vì một lý do chưa từng tồn tại."
       },
       {
         "type": "heading",
-        "text": "Ba vòng soát trước khi gửi"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Vòng 1 - Số liệu: mở lại nguồn, đối chiếu từng con số, kiểm tra đơn vị và kỳ báo cáo.",
-          "Vòng 2 - Luận điểm: gạch chân mọi tính từ đánh giá, hỏi 'số nào chứng minh?', cắt những chỗ không trả lời được.",
-          "Vòng 3 - Người đọc: đưa cho ai đó chưa biết gì về doanh nghiệp đọc trong 2 phút, hỏi họ tóm tắt lại kết luận và rủi ro."
-        ]
+        "text": "Thông điệp commit"
       },
       {
         "type": "paragraph",
-        "text": "Nếu ở vòng 3 người đọc tóm tắt sai, vấn đề nằm ở bản ghi nhớ chứ không ở người đọc. Bản ghi nhớ tốt không phải bản viết hay nhất, mà là bản khó hiểu sai nhất."
+        "text": "Cùng một nguyên tắc, ở quy mô nhỏ hơn. Một thông điệp mô tả đã đổi những dòng nào là vô dụng vì bản khác biệt đã nói điều đó. Thứ đáng ghi là VÌ SAO đổi - và đó đúng là phần AI không đọc ra được từ bản khác biệt."
+      },
+      {
+        "type": "heading",
+        "text": "Một mặt trái"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chi phí VIẾT giảm mạnh, nhưng chi phí BẢO TRÌ thì không đổi. Hệ quả là người ta viết nhiều tài liệu hơn mức mình bảo trì nổi, và tài liệu sai còn tệ hơn không có tài liệu - vì người ta tin nó."
       },
       {
         "type": "closing",
         "lines": [
-          "AI viết nháp nhanh, bạn làm nó đáng tin.",
-          "Bản ghi nhớ tốt là bản ghi nhớ giúp người đọc biết nên hỏi gì tiếp."
+          "Quy tắc thực dụng: chỉ viết tài liệu cho thứ bạn sẽ cập nhật khi nó đổi. Số lượng ít mà đúng hơn nhiều mà sai.",
+          "Bài sau là một kỹ thuật nhỏ nhưng đổi hẳn chất lượng câu trả lời cho việc phức tạp: bắt nó làm từng bước."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Bản ghi nhớ nghĩa là gì?",
-        "options": [
-          "Bản ghi nhớ ngắn",
-          "Báo cáo kiểm toán",
-          "Bảng giá cổ phiếu",
-          "Hợp đồng vay"
-        ],
-        "correct": 0,
-        "explanation": "Bản ghi nhớ là thuật ngữ tiếng Anh thường dùng cho bản ghi nhớ ngắn."
-      },
-      {
-        "question": "Trước khi gửi bản AI viết, cần làm gì?",
-        "options": [
-          "Kiểm tra nguồn, số liệu, đơn vị và rủi ro",
-          "Gửi ngay",
-          "Xóa rủi ro",
-          "Để AI chịu trách nhiệm"
-        ],
-        "correct": 0,
-        "explanation": "AI viết nháp, người gửi chịu trách nhiệm chất lượng."
-      },
-      {
-        "question": "Vì sao mục 'dữ liệu còn thiếu' lại làm bản ghi nhớ đáng tin hơn?",
-        "options": [
-          "Vì nó cho người đọc biết ranh giới của kết luận, thay vì để họ tưởng mọi thứ đã được kiểm chứng",
-          "Vì nó làm bản ghi nhớ dài hơn",
-          "Vì quy định bắt buộc phải có",
-          "Vì nó giúp người viết tránh trách nhiệm"
-        ],
-        "correct": 0,
-        "explanation": "Một kết luận nêu rõ mình dựa trên gì và chưa biết gì thì kiểm chứng được. Một kết luận trông chắc chắn tuyệt đối thường là kết luận đã giấu đi phần chưa biết."
-      },
-      {
-        "question": "Cách nhanh nhất để phát hiện luận điểm không có bằng chứng trong bản nháp AI là gì?",
-        "options": [
-          "Gạch chân mọi tính từ đánh giá và hỏi 'số liệu nào chứng minh điều này?'",
-          "Đếm số từ của bản nháp",
-          "Yêu cầu AI viết lại ngắn hơn",
-          "Kiểm tra lỗi chính tả"
-        ],
-        "correct": 0,
-        "explanation": "Tính từ đánh giá - 'tích cực', 'dẫn đầu', 'cải thiện', 'bền vững' - chính là chỗ nhận định lẻn vào giữa các dữ kiện. Có số thì giữ, không có số thì cắt."
-      }
-    ],
-    "day": 1270,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Dữ liệu + bảng rủi ro đã kiểm chứng",
-        "arrow": true
-      },
-      {
-        "label": "AI viết nháp theo khung 5 phần",
-        "arrow": true
-      },
-      {
-        "label": "Bạn soi từng luận điểm: có bằng chứng chưa?",
-        "arrow": true
-      },
-      {
-        "label": "Cắt phần không chứng minh được → bản gửi đi"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Câu văn tự tin che luận điểm yếu",
-      "description": "Một mẫu câu rất hay xuất hiện trong bản nháp do AI viết: 'Với vị thế dẫn đầu ngành và biên lợi nhuận cải thiện, doanh nghiệp có triển vọng tăng trưởng tích cực trong trung hạn.' Câu này đọc rất mượt, nhưng chứa ba khẳng định không có bằng chứng: dẫn đầu ngành theo tiêu chí nào và số liệu ở đâu, biên lợi nhuận cải thiện từ mức nào lên mức nào, và 'trung hạn' là bao lâu. Bài kiểm tra đơn giản: gạch chân mọi tính từ đánh giá trong bản nháp, rồi với mỗi tính từ hỏi 'số liệu nào chứng minh?'. Câu nào không trả lời được thì hoặc bổ sung số, hoặc xóa."
-    },
-    "keyTakeaways": [
-      "Khung 5 phần: kết luận, bằng chứng, rủi ro, dữ liệu còn thiếu, việc cần làm tiếp.",
-      "Mục 'dữ liệu còn thiếu' là phần làm nên uy tín - đừng bỏ nó để bản ghi nhớ trông chắc chắn hơn.",
-      "Gạch chân mọi tính từ đánh giá và yêu cầu số liệu chứng minh; không có số thì cắt.",
-      "Kiểm tra lại số liệu trong bản nháp với nguồn gốc trước khi gửi - trách nhiệm thuộc về bạn."
-    ],
-    "practicePrompt": {
-      "question": "Một bản ghi nhớ tài chính tốt cần có gì?",
-      "options": [
-        "Kết luận, bằng chứng, rủi ro và điều cần kiểm chứng",
-        "Chỉ lời khen",
-        "Chỉ biểu tượng đẹp",
-        "Không cần số liệu"
-      ],
-      "correct": 0,
-      "explanation": "Bản ghi nhớ tốt phải giúp người đọc hiểu kết luận và cơ sở."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Yêu cầu AI viết bản ghi nhớ 1 trang từ một bài báo hoặc BCTC, rồi tự kiểm tra 3 con số.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Bản ghi nhớ là thứ người khác đọc và ra quyết định dựa vào - tên bạn nằm trên đó, không phải tên AI."
+    ]
   },
   {
     "id": 1271,
-    "slug": "cho-ai-tinh-tung-buoc-qua-vi-du-dinh-gia",
-    "title": "AI Tài chính, Bài 11: Cho AI tính từng bước qua ví dụ định giá",
-    "subtitle": "Dùng DCF như ví dụ nâng cao, nhưng giải thích bằng ngôn ngữ dễ hiểu.",
-    "duration": "16 phút",
-    "estimatedMinutes": 16,
+    "slug": "bat-ai-lam-tung-buoc",
+    "title": "AI trong sản phẩm, Bài 11: Bắt nó làm từng bước",
+    "subtitle": "Một câu thêm vào cuối yêu cầu, và chất lượng đổi rõ với việc nhiều bước.",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "openingQuestion": "Mục tiêu chính của bài định giá bằng AI là gì?",
+    "emoji": "🪜",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": false,
+    "whyItMatters": "Với việc có nhiều bước phụ thuộc nhau, khác biệt giữa hỏi thẳng và bắt làm từng bước là khác biệt giữa một câu trả lời nghe hợp lý và một câu trả lời kiểm chứng được.",
+    "openingQuestion": "Vì sao bắt AI trình bày từng bước lại cải thiện kết quả với việc phức tạp?",
     "openingOptions": [
-      "Bắt AI trình bày giả định, công thức và từng bước tính",
-      "Tin ngay giá mục tiêu",
-      "Không cần hiểu giả định",
-      "Luôn chọn kết quả cho ra mức giá cao nhất trong các phương án"
+      "Vì mỗi bước trở thành đầu vào cho bước sau, nên nó không phải nhảy thẳng tới kết luận",
+      "Vì trình bày dài hơn nên mô hình có nhiều thời gian xử lý hơn trước khi trả lời",
+      "Vì người đọc dễ theo dõi hơn nên phát hiện lỗi nhanh hơn khi rà soát lại",
+      "Vì mô hình được huấn luyện chủ yếu trên các tài liệu hướng dẫn theo từng bước"
     ],
     "correctOption": 0,
-    "explanation": "Định giá là phần nâng cao, nhưng nó là ví dụ tốt nhất để học một thói quen quan trọng: bắt AI tách rõ giả định, công thức, phép tính và kết quả thay vì trả về một con số duy nhất. Khi bốn phần đó nằm tách biệt, bạn kiểm tra được từng khâu và thấy ngay con số cuối nhạy với giả định nào. Nếu chỉ xin 'giá mục tiêu', bạn nhận về một con số không kiểm chứng được - và một con số không kiểm chứng được thì tệ hơn là không có con số nào.",
+    "explanation": "Mô hình sinh chuỗi tuần tự, nên những gì đã sinh ra trở thành ngữ cảnh cho phần tiếp theo. Bắt nó viết ra bước một buộc bước hai phải dựa trên một thứ cụ thể thay vì nhảy thẳng tới đáp án. Việc người đọc dễ theo dõi hơn cũng là lợi ích thật và quan trọng - nhưng nó là lợi ích thứ hai, không phải cơ chế làm câu trả lời đúng hơn.",
+    "diagram": [
+      {
+        "label": "Việc một bước: hỏi thẳng là đủ",
+        "arrow": true
+      },
+      {
+        "label": "Việc nhiều bước: bắt viết ra từng bước",
+        "arrow": true
+      },
+      {
+        "label": "Mỗi bước thành đầu vào cho bước sau",
+        "arrow": true
+      },
+      {
+        "label": "Và bạn kiểm chứng được ở đúng bước sai"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Chuyển đổi dữ liệu nhiều tầng",
+      "description": "Một yêu cầu như đọc tệp, lọc theo điều kiện, gộp nhóm rồi tính tỷ lệ có bốn bước phụ thuộc nhau. Hỏi thẳng thì bạn nhận một khối mã phải đọc hết mới biết sai ở đâu; bắt làm từng bước thì bạn dừng lại được ngay ở bước lọc nếu điều kiện bị hiểu nhầm."
+    },
+    "quiz": [
+      {
+        "question": "Khi nào kỹ thuật này KHÔNG cần thiết?",
+        "options": [
+          "Với việc một bước như đổi định dạng một chuỗi hay đặt lại tên một biến",
+          "Với việc mà bạn đã biết trước lời giải và chỉ cần xác nhận lại cho chắc",
+          "Với việc mà bạn cần câu trả lời gấp nên không có thời gian đọc phần trình bày",
+          "Với việc liên quan tới một thư viện mà mô hình đã quen thuộc từ trước"
+        ],
+        "correct": 0,
+        "explanation": "Với việc một bước thì phần trình bày chỉ thêm chữ để đọc mà không thêm độ đúng. Cần gấp không phải lý do bỏ nó - đọc thêm ba dòng nhanh hơn nhiều so với gỡ một lỗi lọt qua."
+      },
+      {
+        "question": "Vì sao bắt liệt kê các bước TRƯỚC khi viết mã lại hữu ích?",
+        "options": [
+          "Vì bạn phát hiện được hiểu nhầm ở mức kế hoạch, trước khi có mã nào được viết ra",
+          "Vì danh sách các bước có thể dùng lại làm tài liệu mô tả cho phần mã đó về sau",
+          "Vì viết mã theo một kế hoạch có sẵn thì ít lỗi hơn so với viết trực tiếp",
+          "Vì bạn có thể yêu cầu viết mã cho từng bước riêng để dễ kiểm tra hơn"
+        ],
+        "correct": 0,
+        "explanation": "Sửa ở mức kế hoạch là một câu; sửa ở mức mã là đọc lại cả khối rồi mô tả lại yêu cầu. Đây cũng là cùng ý với việc yêu cầu nêu giả định ở bài về giao việc - làm cho hiểu nhầm hiện ra sớm."
+      },
+      {
+        "question": "Vì sao nên kiểm bước trung gian thay vì chỉ kiểm kết quả cuối?",
+        "options": [
+          "Vì một kết quả cuối trông hợp lý vẫn có thể đến từ một bước giữa sai",
+          "Vì các bước trung gian thường chứa nhiều lỗi hơn so với bước cuối cùng",
+          "Vì kiểm bước trung gian nhanh hơn do chúng đơn giản hơn kết quả tổng hợp",
+          "Vì kết quả cuối phụ thuộc vào dữ liệu đầu vào nên khó đánh giá đúng sai"
+        ],
+        "correct": 0,
+        "explanation": "Hai bước sai có thể triệt tiêu nhau và cho ra một kết quả trông đúng - đó là kiểu hỏng khó chịu nhất vì nó lọt qua mọi lần kiểm ở đầu ra. Trình bày từng bước chính là thứ cho bạn chỗ để nhìn vào."
+      },
+      {
+        "question": "Vì sao yêu cầu tự rà lại lời giải vừa đưa ra lại có tác dụng?",
+        "options": [
+          "Vì lúc đó lời giải đã nằm trong ngữ cảnh nên nó rà một văn bản cụ thể thay vì tự sinh",
+          "Vì mô hình đã được huấn luyện riêng để tự sửa lỗi mỗi khi được yêu cầu kiểm tra lại kết quả",
+          "Vì lần thứ hai nó sẽ dùng nhiều tài nguyên xử lý hơn nên kết quả chính xác hơn",
+          "Vì việc rà soát dễ hơn việc tạo ra lời giải nên tỷ lệ đúng cao hơn hẳn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là bài toán khác hẳn về bản chất: rà một văn bản cụ thể đang nằm trước mắt dễ hơn nhiều so với sinh ra một lời giải đúng. Nhưng nó không thay được việc bạn tự kiểm - nó chỉ lọc bớt tầng lỗi rõ ràng."
+      },
+      {
+        "question": "Cách nào giúp phát hiện chỗ mô hình không chắc chắn?",
+        "options": [
+          "Yêu cầu nêu mức độ chắc chắn cho từng bước và lý do vì sao ở những bước ít chắc",
+          "So sánh độ dài của các bước, vì bước nào dài hơn thì thường là bước ít chắc chắn hơn",
+          "Hỏi lại toàn bộ lời giải một lần nữa và xem phần nào thay đổi giữa hai lần",
+          "Yêu cầu nó chấm điểm độ khó cho từng bước trong lời giải vừa đưa ra"
+        ],
+        "correct": 0,
+        "explanation": "Nó không cho ra một con số đáng tin về mặt xác suất, nhưng nó thường chỉ đúng vào những chỗ đáng nghi. Hỏi lại cả lời giải cũng là kỹ thuật tốt và đã nêu ở bài về cơ chế, nhưng nó tốn hơn nhiều cho cùng loại thông tin."
+      }
+    ],
+    "keyTakeaways": [
+      "Mỗi bước viết ra thành ngữ cảnh cho bước sau, nên nó không nhảy thẳng tới kết luận.",
+      "Việc một bước thì không cần - phần trình bày chỉ thêm chữ mà không thêm độ đúng.",
+      "Bắt liệt kê các bước TRƯỚC khi viết mã: sửa ở mức kế hoạch chỉ tốn một câu.",
+      "Kiểm bước trung gian: hai bước sai có thể triệt tiêu nhau và cho kết quả trông đúng.",
+      "Yêu cầu tự rà lại có tác dụng vì rà một văn bản cụ thể dễ hơn tự sinh lời giải."
+    ],
+    "practicePrompt": {
+      "question": "Bạn cần một hàm làm bốn việc nối tiếp nhau. Cách hỏi nào tốt hơn?",
+      "options": [
+        "Xin bốn bước bằng lời trước, đọc và sửa nếu cần, rồi mới xin mã",
+        "Xin luôn cả hàm hoàn chỉnh rồi đọc kỹ toàn bộ để tìm chỗ chưa đúng",
+        "Xin từng phần một trong bốn cuộc trò chuyện riêng rồi tự ghép lại với nhau",
+        "Xin hàm hoàn chỉnh kèm chú thích giải thích từng phần để dễ theo dõi hơn"
+      ],
+      "correct": 0,
+      "explanation": "Sửa một hiểu nhầm ở mức kế hoạch tốn một câu; sửa nó ở mức mã tốn cả vòng đọc và mô tả lại. Hỏi trong bốn cuộc riêng thì mất ngữ cảnh giữa các bước - đúng thứ làm cho bốn việc này nối được với nhau."
+    },
     "summary": {
-      "keyIdea": "Bài này không bắt người mới giỏi định giá ngay; chỉ dạy cách yêu cầu AI tính rõ từng bước.",
-      "commonMistake": "Xin một giá mục tiêu duy nhất rồi tin luôn.",
-      "action": "Yêu cầu AI luôn tách giả định, công thức, kết quả và bước kiểm tra."
+      "keyIdea": "Bắt viết ra từng bước biến một câu trả lời nghe hợp lý thành một câu kiểm chứng được.",
+      "formula": "Nhiều bước → xin kế hoạch bằng lời → sửa → mới xin mã.",
+      "commonMistake": "Chỉ kiểm kết quả cuối, bỏ lọt trường hợp hai bước sai triệt tiêu nhau.",
+      "action": "Lần tới với một việc nhiều bước, xin kế hoạch bằng lời trước khi xin mã."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một việc có từ ba bước trở lên và xin kế hoạch bằng lời trước. Đọc kế hoạch, sửa chỗ hiểu nhầm, rồi mới xin mã.",
+      "secondary": "So thời gian với cách bạn vẫn làm. Phần lớn người thấy tổng thời gian giảm dù có thêm một lượt trao đổi, vì lượt đó cắt được vòng đọc và mô tả lại."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Định giá là phần nâng cao. Nếu mới học, chỉ cần hiểu cách AI trình bày từng bước."
+        "text": "Đây là một kỹ thuật nhỏ - thêm một câu vào cuối yêu cầu - nhưng nó đổi rõ chất lượng với những việc có nhiều bước phụ thuộc nhau."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao nó có tác dụng"
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "DCF: phương pháp chiết khấu dòng tiền. FCF: dòng tiền tự do. WACC: tỷ suất yêu cầu/chi phí vốn. Terminal Value: giá trị giai đoạn rất xa trong tương lai."
-      },
-      {
-        "type": "heading",
-        "text": "Nói cực đơn giản"
+        "label": "Những gì đã sinh ra trở thành ngữ cảnh",
+        "text": "Mô hình sinh chuỗi tuần tự. Bắt nó viết ra bước một buộc bước hai phải dựa trên một thứ cụ thể đang nằm trước mặt, thay vì nhảy thẳng tới đáp án. Đó là cơ chế, và nó suy ra được từ câu về cách mô hình hoạt động ở bài 2."
       },
       {
         "type": "paragraph",
-        "text": "Doanh nghiệp có giá trị vì tạo tiền trong tương lai. Nhưng tiền tương lai phải quy về hiện tại. DCF là cách làm việc đó."
+        "text": "Lợi ích thứ hai cũng lớn: bạn kiểm chứng được ở đúng bước sai. Một khối mã hoàn chỉnh thì phải đọc hết mới biết sai ở đâu; bốn bước được viết ra thì bạn dừng lại được ngay ở bước hai."
       },
       {
         "type": "heading",
-        "text": "Câu lệnh mẫu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Hãy tính từng bước. Tách rõ: giả định đầu vào, công thức, phép tính, kết quả, điểm cần kiểm tra. Nếu giả định nào không hợp lý, hãy cảnh báo."
-      },
-      {
-        "type": "heading",
-        "text": "Cảnh báo"
-      },
-      {
-        "type": "paragraph",
-        "text": "Không dùng bài này để mua/bán nếu bạn chưa hiểu giả định. AI có thể tính đúng công thức nhưng vẫn sai nếu giả định đầu vào sai."
-      },
-      {
-        "type": "formula",
-        "title": "Ý tưởng cốt lõi của chiết khấu",
-        "label": "Giá trị hiện tại của một khoản tiền tương lai",
-        "equation": "PV = FV ÷ (1 + r)^n",
-        "variables": [
-          {
-            "symbol": "PV",
-            "name": "Giá trị hiện tại",
-            "description": "Khoản tiền tương lai đó đáng giá bao nhiêu với bạn ở thời điểm hôm nay."
-          },
-          {
-            "symbol": "FV",
-            "name": "Giá trị tương lai",
-            "description": "Số tiền bạn sẽ nhận được sau n năm."
-          },
-          {
-            "symbol": "r",
-            "name": "Tỷ suất chiết khấu",
-            "description": "Mức sinh lời bạn đòi hỏi để chấp nhận rủi ro và việc phải chờ đợi."
-          },
-          {
-            "symbol": "n",
-            "name": "Số năm",
-            "description": "Khoảng thời gian từ hôm nay đến lúc nhận tiền."
-          }
-        ],
-        "example": {
-          "title": "Ví dụ đơn giản",
-          "calculation": "110 ÷ (1 + 0,10)^1",
-          "result": "= 100",
-          "explanation": "110 đồng nhận sau một năm chỉ đáng 100 đồng hôm nay, nếu bạn đòi hỏi mức sinh lời 10%/năm. Toàn bộ DCF chỉ là phép này lặp lại cho từng năm rồi cộng lại."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Bốn phần bắt buộc trong output"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Giả định: liệt kê từng con số đầu vào kèm lý do chọn và nguồn nếu có. Đây là phần bạn phải soi kỹ nhất.",
-          "Công thức: viết ra công thức đang dùng, không để ẩn trong lời văn.",
-          "Phép tính: thay số vào công thức và hiện từng bước, để bạn dò được chỗ nào lệch.",
-          "Kết quả và điểm cần kiểm tra: con số cuối, kèm những giả định mà nếu sai sẽ làm kết quả đổi nhiều nhất."
-        ]
+        "text": "Dùng khi nào"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Output không dùng được",
-          "text": "\"Giá trị hợp lý của doanh nghiệp khoảng 45.000 đồng/cổ phiếu.\" Bạn không biết giả định nào tạo ra con số này, nên không có cách nào phản biện hay cập nhật khi tình hình đổi."
+          "label": "Cần",
+          "text": "Việc có nhiều bước phụ thuộc nhau: đọc tệp, lọc, gộp nhóm, tính tỷ lệ. Chuyển đổi dữ liệu nhiều tầng. Suy luận về hành vi của một hệ thống qua nhiều lớp."
         },
         "right": {
-          "label": "Output dùng được",
-          "text": "\"Giả định: dòng tiền tự do năm 1 là 500 tỷ, tăng 8%/năm trong 5 năm, chiết khấu 12%, tăng trưởng dài hạn 3%. Công thức, phép tính từng năm, kết quả 45.000 đồng. Nhạy nhất với tỷ suất chiết khấu và tăng trưởng dài hạn.\""
+          "label": "Không cần",
+          "text": "Việc một bước: đổi định dạng một chuỗi, đặt lại tên biến, viết một biểu thức đơn giản. Phần trình bày chỉ thêm chữ để đọc mà không thêm độ đúng."
         }
       },
       {
-        "type": "callout",
-        "label": "Câu lệnh đầy đủ để dùng lại",
-        "text": "\"Hãy tính từng bước và trình bày theo đúng bốn mục: (1) Giả định - liệt kê từng con số đầu vào và lý do; (2) Công thức áp dụng; (3) Phép tính - thay số và hiện từng bước; (4) Kết quả và các giả định nhạy nhất. Không đưa ra một con số duy nhất mà không có ba mục trước. Nếu tôi chưa cung cấp đủ giả định, hãy hỏi lại thay vì tự chọn giúp tôi.\""
+        "type": "heading",
+        "text": "Ba biến thể đáng dùng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Xin KẾ HOẠCH bằng lời trước khi xin mã. Sửa một hiểu nhầm ở mức kế hoạch tốn một câu; sửa nó ở mức mã tốn cả vòng đọc và mô tả lại.",
+          "Yêu cầu nêu mức độ chắc chắn cho từng bước. Con số không đáng tin về mặt xác suất, nhưng nó thường chỉ đúng vào chỗ đáng nghi.",
+          "Yêu cầu tự rà lại lời giải vừa đưa ra. Rà một văn bản cụ thể đang nằm trước mắt là bài toán dễ hơn hẳn so với sinh ra lời giải đúng."
+        ]
       },
       {
         "type": "paragraph",
-        "text": "Dòng cuối của câu lệnh - 'hãy hỏi lại thay vì tự chọn giúp tôi' - là dòng quan trọng nhất. Nếu không có nó, AI sẽ tự điền tỷ suất chiết khấu và tốc độ tăng trưởng bằng những con số 'trông hợp lý', và bạn sẽ nhận được một kết quả có vẻ nghiêm túc nhưng thực chất dựa trên giả định của máy chứ không phải của bạn."
+        "text": "Biến thể thứ ba lọc được tầng lỗi rõ ràng nhưng nó không thay được việc bạn tự kiểm - nó vẫn là cùng một mô hình đánh giá chính nó."
       },
       {
         "type": "closing",
         "lines": [
-          "Định giá bằng AI là công cụ học tư duy từng bước.",
-          "Giả định quan trọng hơn con số cuối."
+          "Và khi kiểm, đừng chỉ kiểm kết quả cuối: hai bước sai có thể triệt tiêu nhau và cho ra một kết quả trông đúng. Trình bày từng bước chính là thứ cho bạn chỗ để nhìn vào.",
+          "Bài sau đi vào một loại lỗi tinh vi hơn: những giả định nó đặt mà không nói ra."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "DCF là gì?",
-        "options": [
-          "Phương pháp ước tính giá trị bằng dòng tiền tương lai quy về hiện tại",
-          "Một loại nợ vay",
-          "Một sàn chứng khoán",
-          "Một chỉ số lạm phát"
-        ],
-        "correct": 0,
-        "explanation": "DCF là viết tắt tiếng Anh của chiết khấu dòng tiền."
-      },
-      {
-        "question": "Vì sao không nên tin ngay giá mục tiêu AI đưa ra?",
-        "options": [
-          "Vì kết quả phụ thuộc mạnh vào giả định",
-          "Vì AI luôn quá chậm",
-          "Vì định giá không có công thức",
-          "Vì không cần kiểm tra"
-        ],
-        "correct": 0,
-        "explanation": "Giả định sai làm kết quả sai dù phép tính có vẻ đúng."
-      },
-      {
-        "question": "Trong một mô hình DCF, vì sao giả định tăng trưởng dài hạn lại nhạy đến vậy?",
-        "options": [
-          "Vì phần giá trị cuối thường chiếm tỷ trọng rất lớn trong tổng giá trị, mà giá trị cuối phụ thuộc trực tiếp vào giả định đó",
-          "Vì nó là con số duy nhất không thể tra được",
-          "Vì kế toán bắt buộc phải dùng một mức cố định",
-          "Vì nó ảnh hưởng đến dòng tiền năm đầu tiên nhiều nhất"
-        ],
-        "correct": 0,
-        "explanation": "Dòng tiền các năm dự báo cụ thể thường chỉ chiếm một phần; phần lớn giá trị nằm ở giá trị cuối. Vì thế một thay đổi nhỏ ở tăng trưởng dài hạn hoặc tỷ suất chiết khấu kéo theo thay đổi rất lớn ở kết quả."
-      },
-      {
-        "question": "Vì sao cần thêm dòng \"hãy hỏi lại nếu tôi chưa cung cấp đủ giả định\" vào câu lệnh?",
-        "options": [
-          "Vì nếu không, AI sẽ tự chọn giả định trông hợp lý và bạn nhận kết quả dựa trên giả định của máy",
-          "Vì AI không biết công thức DCF",
-          "Vì nó giúp AI tính nhanh hơn",
-          "Vì đó là yêu cầu bắt buộc của mọi công cụ AI"
-        ],
-        "correct": 0,
-        "explanation": "Đây là dạng bịa số tinh vi nhất: không bịa số liệu quá khứ mà bịa giả định tương lai. Kết quả vẫn tính đúng công thức nên rất khó phát hiện nếu giả định không được liệt kê ra."
-      }
-    ],
-    "day": 1271,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Giả định đầu vào (ghi rõ từng con số và lý do)",
-        "arrow": true
-      },
-      {
-        "label": "Công thức áp dụng",
-        "arrow": true
-      },
-      {
-        "label": "Phép tính từng bước",
-        "arrow": true
-      },
-      {
-        "label": "Kết quả + điểm cần kiểm tra lại"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Vì sao hai nhà phân tích cùng dùng DCF lại ra hai con số rất khác nhau",
-      "description": "Chuyện này xảy ra thường xuyên và không phải vì ai đó tính sai. DCF quy dòng tiền tương lai về hiện tại, nên kết quả phụ thuộc rất mạnh vào ba giả định: tốc độ tăng trưởng dòng tiền, tỷ suất chiết khấu, và tốc độ tăng trưởng dài hạn dùng cho giá trị cuối. Chỉ cần lệch một hai điểm phần trăm ở tỷ suất chiết khấu hoặc ở tăng trưởng dài hạn, giá trị cuối cùng có thể thay đổi hàng chục phần trăm - đặc biệt vì phần giá trị cuối thường chiếm tỷ trọng rất lớn trong tổng giá trị. Đó là lý do trong thực tế người ta trình bày DCF kèm bảng nhạy cảm chứ hiếm khi công bố một con số đơn lẻ."
-    },
-    "keyTakeaways": [
-      "Luôn bắt AI tách bốn phần: giả định, công thức, phép tính, kết quả - đừng nhận một con số trần trụi.",
-      "Trong DCF, phần lớn giá trị thường nằm ở giá trị cuối, nên giả định tăng trưởng dài hạn cực kỳ nhạy.",
-      "AI có thể tính đúng công thức trên một bộ giả định vô lý; kiểm tra giả định quan trọng hơn kiểm tra phép tính.",
-      "Người mới dùng bài này để học tư duy từng bước, không phải để ra quyết định mua bán."
-    ],
-    "practicePrompt": {
-      "question": "Mục tiêu chính của bài định giá bằng AI là gì?",
-      "options": [
-        "Bắt AI trình bày giả định, công thức và từng bước tính",
-        "Tin ngay giá mục tiêu",
-        "Không cần hiểu giả định",
-        "Luôn chọn kết quả cao nhất"
-      ],
-      "correct": 0,
-      "explanation": "Điểm chính là học cách kiểm soát quá trình tính, không chỉ lấy đáp án."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Yêu cầu AI luôn tách giả định, công thức, kết quả và bước kiểm tra.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Thói quen 'bắt tách từng bước' dùng được cho mọi phép tính tài chính, không riêng định giá: tính lãi vay, tính hiệu quả dự án, tính số tiền cần cho hưu trí."
+    ]
   },
   {
     "id": 1272,
-    "slug": "kiem-tra-gia-dinh-va-bang-nhay-cam",
-    "title": "AI Tài chính, Bài 12: Kiểm tra giả định và bảng nhạy cảm",
-    "subtitle": "Hiểu vì sao chỉ một con số định giá là chưa đủ.",
-    "duration": "15 phút",
-    "estimatedMinutes": 15,
-    "difficulty": "Trung bình",
-    "openingQuestion": "Bảng nhạy cảm giúp gì trong định giá?",
+    "slug": "kiem-tra-gia-dinh-ai-ngam-dat",
+    "title": "AI trong sản phẩm, Bài 12: Những giả định nó đặt mà không nói ra",
+    "subtitle": "Mã chạy đúng với dữ liệu của nó, và hỏng với dữ liệu của bạn.",
+    "duration": "6 phút",
+    "difficulty": "Khó",
+    "emoji": "🫥",
+    "track": "professional",
+    "interactiveType": "ai-verify",
+    "isFundamental": true,
+    "whyItMatters": "Đây là loại lỗi khó phát hiện nhất vì mã chạy, kiểm thử xanh, và mọi thứ trông ổn cho tới khi gặp đúng dữ liệu phá vỡ giả định. Lúc đó nó đã ở trên môi trường thật.",
+    "openingQuestion": "Vì sao giả định ngầm nguy hiểm hơn một lỗi cú pháp?",
     "openingOptions": [
-      "Cho thấy kết quả thay đổi thế nào khi giả định thay đổi",
-      "Làm cho giá cổ phiếu chắc chắn sẽ tăng lên trong tương lai",
-      "Xóa rủi ro",
-      "Thay thế BCTC"
+      "Vì mã vẫn chạy và kiểm thử vẫn xanh, nên nó lọt qua mọi lớp kiểm tra tự động",
+      "Vì giả định ngầm thường nằm ở nhiều chỗ trong mã nên khó tìm và sửa hết",
+      "Vì nó chỉ xuất hiện trong mã do AI sinh chứ không có trong mã người viết",
+      "Vì mô hình không thông báo cho bạn biết là nó đã đặt ra giả định nào"
     ],
     "correctOption": 0,
-    "explanation": "Một con số định giá đơn lẻ tạo ra cảm giác chắc chắn mà mô hình không hề có. Bảng nhạy cảm sửa đúng điều đó: nó cho bạn thấy kết quả thay đổi thế nào khi từng giả định dịch chuyển trong khoảng hợp lý. Sau khi lập bảng, câu hỏi đúng không còn là 'giá trị là bao nhiêu' mà là 'giả định phải sai đến mức nào thì kết luận của tôi đổi' - và đó là câu hỏi giúp bạn khiêm tốn đúng chỗ.",
+    "explanation": "Lỗi cú pháp thì trình dịch bắt được ngay. Giả định ngầm thì mã chạy đúng với dữ liệu mẫu, kiểm thử xanh với những trường hợp bạn nghĩ tới, và chỉ hỏng khi gặp đúng dữ liệu phá vỡ giả định - thường là trên môi trường thật. Việc nó không thông báo cũng đúng và đó là lý do bài này tồn tại, nhưng đó là nguyên nhân chứ không phải điều làm cho nó nguy hiểm.",
+    "diagram": [
+      {
+        "label": "Nó phải điền vào chỗ bạn không nói rõ",
+        "arrow": true
+      },
+      {
+        "label": "Điền bằng mặc định phổ biến nhất trong dữ liệu",
+        "arrow": true
+      },
+      {
+        "label": "Mặc định đó thường không phải mặc định của bạn",
+        "arrow": true
+      },
+      {
+        "label": "Hỏi thẳng: bạn đã giả định gì?"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Bốn giả định phổ biến nhất",
+      "description": "Dữ liệu vừa đủ nhỏ để nằm hết trong bộ nhớ. Đầu vào đã được kiểm tra hợp lệ ở đâu đó trước. Không có lượt gọi đồng thời nào. Và văn bản chỉ chứa chữ cái không dấu. Bốn thứ này đúng trong phần lớn ví dụ trên mạng và sai trong phần lớn hệ thống thật."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao AI đặt ra giả định ngầm?",
+        "options": [
+          "Vì mô tả của bạn không nói rõ mọi thứ, nên nó điền vào bằng mặc định phổ biến nhất",
+          "Vì nó cố ý đơn giản hoá bài toán để đưa ra được câu trả lời ngắn gọn hơn",
+          "Vì nó không có khả năng đặt câu hỏi làm rõ trước khi bắt đầu trả lời",
+          "Vì các giả định đó có trong dữ liệu huấn luyện nên nó lặp lại chúng theo thói quen"
+        ],
+        "correct": 0,
+        "explanation": "Mọi mô tả đều có chỗ chưa nói rõ, và mô hình phải điền để sinh ra được một lời giải cụ thể. Vấn đề không nằm ở việc nó điền mà ở việc nó điền theo mặc định phổ biến nhất trong dữ liệu, còn hệ thống của bạn thì không phổ biến."
+      },
+      {
+        "question": "Giả định nào phổ biến nhất trong mã do AI sinh?",
+        "options": [
+          "Dữ liệu vừa đủ nhỏ để nằm hết trong bộ nhớ và không có lượt gọi đồng thời nào",
+          "Hệ thống luôn chạy trên đúng một máy chủ duy nhất với cấu hình mạnh và rất ổn định",
+          "Dữ liệu đầu vào luôn được cung cấp theo đúng thứ tự mà hàm mong đợi",
+          "Các thư viện bên ngoài luôn phản hồi thành công trong thời gian ngắn"
+        ],
+        "correct": 0,
+        "explanation": "Hai giả định này đúng trong phần lớn ví dụ trên mạng - vốn là ví dụ dạy học - và sai trong phần lớn hệ thống thật. Bốn lựa chọn đều là giả định có thật, nhưng hai cái đầu xuất hiện với tần suất cao hơn hẳn."
+      },
+      {
+        "question": "Cách phát hiện giả định ngầm hiệu quả nhất là gì?",
+        "options": [
+          "Hỏi thẳng: đoạn mã này giả định gì về đầu vào và về môi trường chạy",
+          "Đọc kỹ toàn bộ mã và tự tìm ra những chỗ có thể có giả định chưa được kiểm tra",
+          "Chạy thử với nhiều bộ dữ liệu khác nhau để xem trường hợp nào gây ra lỗi",
+          "So sánh mã đó với các đoạn mã tương tự đã được kiểm chứng trong dự án"
+        ],
+        "correct": 0,
+        "explanation": "Nó rẻ tới mức nên thành phản xạ, và nó thường liệt kê ra được cả những thứ bạn không nghĩ tới khi tự đọc. Chạy thử thì chỉ bắt được giả định mà bộ dữ liệu của bạn tình cờ phá vỡ."
+      },
+      {
+        "question": "Vì sao nên nói rõ ràng buộc ngay trong yêu cầu ban đầu?",
+        "options": [
+          "Vì mỗi ràng buộc bạn nêu ra là một giả định nó không phải tự điền",
+          "Vì yêu cầu chi tiết hơn sẽ được xử lý kỹ hơn nên chất lượng câu trả lời cao hơn",
+          "Vì nêu ràng buộc trước giúp bạn không phải sửa lại nhiều lần sau đó",
+          "Vì các ràng buộc sẽ được ghi nhớ và áp dụng cho những yêu cầu tiếp theo"
+        ],
+        "correct": 0,
+        "explanation": "Đây là mối liên hệ trực tiếp với bài về bốn thành phần khi giao việc: ràng buộc là thành phần hay bị quên nhất, và giả định ngầm chính là hậu quả của việc quên đó."
+      },
+      {
+        "question": "Vì sao mã dùng được cho ví dụ dạy học lại không dùng được cho hệ thống thật?",
+        "options": [
+          "Vì ví dụ dạy học cố ý bỏ qua phần xử lý lỗi và trường hợp biên để dễ hiểu hơn",
+          "Vì ví dụ dạy học thường dùng phiên bản thư viện cũ hơn so với bản đang dùng",
+          "Vì ví dụ dạy học được viết bởi nhiều người khác nhau nên phong cách không nhất quán",
+          "Vì ví dụ dạy học không được kiểm thử kỹ nên có thể chứa lỗi chưa được phát hiện"
+        ],
+        "correct": 0,
+        "explanation": "Bỏ qua là có chủ đích và hợp lý cho mục đích dạy học. Vấn đề là loại mã đó chiếm phần lớn trong dữ liệu huấn luyện, nên nó cũng chiếm phần lớn trong thứ mô hình sinh ra."
+      }
+    ],
+    "keyTakeaways": [
+      "Mã chạy, kiểm thử xanh, và chỉ hỏng khi gặp đúng dữ liệu phá vỡ giả định.",
+      "Nó phải điền vào chỗ bạn không nói rõ, và nó điền bằng mặc định phổ biến nhất.",
+      "Bốn giả định hay gặp: dữ liệu nhỏ, đầu vào đã kiểm, không có gọi đồng thời, chữ không dấu.",
+      "Hỏi thẳng đoạn mã này giả định gì - rẻ tới mức nên thành phản xạ.",
+      "Ví dụ dạy học cố ý bỏ xử lý lỗi, và loại mã đó chiếm phần lớn dữ liệu huấn luyện."
+    ],
+    "practicePrompt": {
+      "question": "AI viết một hàm đọc tệp và xử lý toàn bộ nội dung. Giả định nào cần kiểm trước tiên?",
+      "options": [
+        "Tệp đủ nhỏ để nằm hết trong bộ nhớ - đúng với ví dụ dạy học, sai với tệp thật",
+        "Tệp luôn tồn tại và có quyền đọc, nên hàm không cần xử lý trường hợp thiếu tệp",
+        "Nội dung tệp được mã hoá theo đúng bảng mã mà hàm đang mong đợi",
+        "Tệp không bị tiến trình khác ghi vào trong lúc hàm đang đọc nó"
+      ],
+      "correct": 0,
+      "explanation": "Cả bốn đều là giả định thật và đáng kiểm, nhưng cái đầu là cái hỏng nặng nhất và im lặng nhất: nó chạy hoàn hảo suốt quá trình phát triển với tệp mẫu, rồi làm cạn bộ nhớ trên môi trường thật với tệp thật."
+    },
     "summary": {
-      "keyIdea": "Một con số định giá đơn lẻ dễ gây ảo tưởng; bảng nhạy cảm giúp thấy vùng kết quả.",
-      "commonMistake": "Chỉ nhìn kịch bản đẹp nhất.",
-      "action": "Yêu cầu AI tạo 3 kịch bản: thận trọng, cơ sở, lạc quan."
+      "keyIdea": "Loại lỗi khó phát hiện nhất, vì mọi lớp kiểm tra tự động đều báo xanh.",
+      "formula": "Bạn không nói rõ → nó điền mặc định phổ biến → mặc định đó không phải của bạn.",
+      "commonMistake": "Chỉ kiểm mã có chạy không, mà không hỏi nó đang giả định gì.",
+      "action": "Với đoạn mã AI viết gần nhất, hỏi nó đã giả định gì về đầu vào và môi trường."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy đoạn mã AI viết cho bạn gần nhất và hỏi: đoạn này giả định gì về đầu vào và về môi trường chạy? Đọc danh sách và đối chiếu với hệ thống thật của bạn.",
+      "secondary": "Nếu bạn chưa từng hỏi câu này, khả năng cao danh sách sẽ dài hơn bạn nghĩ - và ít nhất một mục trong đó không đúng với hệ thống của bạn."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Định giá không phải câu trả lời duy nhất. Nó là một vùng kết quả phụ thuộc vào giả định."
+        "text": "Bài trước là cách làm cho lời giải kiểm chứng được. Bài này là loại lỗi mà ngay cả lời giải trình bày từng bước cũng che được - vì nó không nằm trong bước nào cả."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao nó xảy ra"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mọi mô tả đều có chỗ chưa nói rõ, và mô hình phải điền vào để sinh ra được một lời giải cụ thể. Vấn đề không nằm ở việc nó điền - mà ở việc nó điền bằng mặc định PHỔ BIẾN NHẤT trong dữ liệu, còn hệ thống của bạn thì không phổ biến."
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "Giả định: con số đầu vào bạn tin là hợp lý. Bảng nhạy cảm: bảng cho thấy kết quả đổi ra sao khi giả định đổi."
+        "label": "Vì sao khó phát hiện nhất",
+        "text": "Lỗi cú pháp thì trình dịch bắt ngay. Giả định ngầm thì mã chạy đúng với dữ liệu mẫu, kiểm thử xanh với những trường hợp bạn nghĩ tới, và chỉ hỏng khi gặp đúng dữ liệu phá vỡ nó - thường là trên môi trường thật."
       },
       {
         "type": "heading",
-        "text": "Ví dụ dễ hiểu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nếu bạn giả định doanh nghiệp tăng trưởng 10%, giá trị khác. Nếu chỉ tăng 5%, giá trị thấp hơn. Bảng nhạy cảm cho bạn nhìn cả hai thay vì chỉ một đáp án."
-      },
-      {
-        "type": "heading",
-        "text": "Câu lệnh mẫu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Tạo 3 kịch bản thận trọng, cơ sở, lạc quan. Với mỗi kịch bản, ghi giả định, kết quả, điều kiện để kịch bản đúng và rủi ro khiến kịch bản sai."
-      },
-      {
-        "type": "heading",
-        "text": "Cách dùng cho người mới"
-      },
-      {
-        "type": "paragraph",
-        "text": "Đừng cố tìm con số chính xác tuyệt đối. Hãy hỏi: nếu mình sai một chút ở giả định, kết luận có còn đứng vững không?"
-      },
-      {
-        "type": "heading",
-        "text": "Cách chọn giả định để soi"
-      },
-      {
-        "type": "paragraph",
-        "text": "Không phải giả định nào cũng đáng soi. Hai tiêu chí để chọn: giả định đó có ảnh hưởng lớn đến kết quả không, và bạn có chắc chắn về nó không. Giả định vừa ảnh hưởng lớn vừa khó chắc chắn chính là giả định phải đưa vào bảng nhạy cảm. Ngược lại, một giả định ảnh hưởng lớn nhưng bạn tra được số liệu chắc chắn thì không cần soi - chỉ cần ghi nguồn."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba kịch bản nên có",
-        "subtitle": "Mỗi kịch bản phải nói được điều kiện để nó xảy ra",
-        "concepts": [
-          {
-            "vi": "Thận trọng",
-            "en": "Bear / downside",
-            "def": "Giả định xấu nhưng vẫn hợp lý, không phải thảm họa. Câu hỏi cần trả lời: ở kịch bản này tôi có chịu được không?"
-          },
-          {
-            "vi": "Cơ sở",
-            "en": "Base case",
-            "def": "Giả định bạn thực sự tin, dựa trên số liệu quá khứ và kế hoạch đã công bố. Đây là kịch bản phải giải thích được kỹ nhất."
-          },
-          {
-            "vi": "Lạc quan",
-            "en": "Bull / upside",
-            "def": "Giả định tốt nhưng vẫn hợp lý. Cần ghi rõ điều gì phải xảy ra để đạt được, chứ không chỉ ghi con số."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Câu lệnh đầy đủ để dùng lại",
-        "text": "\"Với mô hình vừa tính, hãy xác định 2 giả định có ảnh hưởng lớn nhất đến kết quả. Sau đó lập bảng nhạy cảm 3×3 cho hai giả định đó. Với mỗi kịch bản thận trọng / cơ sở / lạc quan, ghi rõ: giả định cụ thể, điều kiện thực tế phải xảy ra để giả định đó đúng, và kết quả tương ứng. Cuối cùng nêu: giả định phải lệch bao nhiêu thì kết luận đảo chiều. Không đưa khuyến nghị mua bán.\""
-      },
-      {
-        "type": "heading",
-        "text": "Đọc bảng nhạy cảm thế nào"
+        "text": "Bốn giả định phổ biến nhất"
       },
       {
         "type": "list",
         "items": [
-          "Nếu kết luận giữ nguyên ở cả 9 ô, kết luận của bạn khá vững - nhưng hãy kiểm tra lại xem khoảng giả định có quá hẹp không.",
-          "Nếu kết luận chỉ đúng ở góc lạc quan, hãy coi đó là cảnh báo: bạn đang đặt cược vào việc mọi thứ diễn ra thuận lợi cùng lúc.",
-          "Nếu kết quả đảo chiều chỉ với một thay đổi rất nhỏ, mô hình quá nhạy để dùng làm cơ sở duy nhất - cần thêm phương pháp khác đối chiếu."
+          "Dữ liệu vừa đủ nhỏ để nằm hết trong bộ nhớ.",
+          "Đầu vào đã được kiểm tra hợp lệ ở đâu đó trước rồi.",
+          "Không có lượt gọi đồng thời nào chạm vào cùng dữ liệu.",
+          "Văn bản chỉ chứa chữ cái không dấu, một byte mỗi ký tự."
         ]
       },
       {
+        "type": "comparison",
+        "left": {
+          "label": "Vì sao bốn cái này",
+          "text": "Chúng đúng trong phần lớn ví dụ dạy học - vốn cố ý bỏ qua xử lý lỗi và trường hợp biên để dễ hiểu."
+        },
+        "right": {
+          "label": "Và vì sao đó là vấn đề",
+          "text": "Loại mã đó chiếm phần lớn dữ liệu huấn luyện, nên nó cũng chiếm phần lớn thứ mô hình sinh ra. Còn hệ thống thật thì phá vỡ cả bốn."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Hai cách xử lý"
+      },
+      {
         "type": "paragraph",
-        "text": "Lưu ý một cái bẫy: đừng chọn khoảng giả định quá hẹp để bảng trông ổn định. Nếu tăng trưởng thực tế của ngành dao động từ 2% đến 15% trong năm năm qua, mà bạn chỉ soi từ 7% đến 9%, thì bảng nhạy cảm chỉ đang phản chiếu lại sự tự tin của bạn chứ không kiểm tra nó."
+        "text": "Cách rẻ nhất là hỏi thẳng: đoạn mã này giả định gì về đầu vào và về môi trường chạy? Nó rẻ tới mức nên thành phản xạ, và nó thường liệt kê ra được cả những thứ bạn không nghĩ tới khi tự đọc."
       },
       {
         "type": "closing",
         "lines": [
-          "Bảng nhạy cảm giúp bạn khiêm tốn với mô hình.",
-          "Một vùng giá trị tốt hơn một con số đẹp."
+          "Cách phòng thì nằm ở bài về giao việc: mỗi ràng buộc bạn nêu ra ngay từ đầu là một giả định nó không phải tự điền. Giả định ngầm chính là hậu quả của thành phần bị quên nhiều nhất.",
+          "Bài sau là một trường hợp riêng của cùng vấn đề, đủ nghiêm trọng để có bài riêng: nó bịa ra thứ không tồn tại."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Bảng nhạy cảm là gì?",
-        "options": [
-          "Bảng cho thấy kết quả thay đổi khi giả định thay đổi",
-          "Bảng giá hàng hóa",
-          "Danh sách cổ đông",
-          "Lịch họp"
-        ],
-        "correct": 0,
-        "explanation": "Nó giúp kiểm tra độ bền của kết luận."
-      },
-      {
-        "question": "Cách dùng định giá thận trọng hơn là gì?",
-        "options": [
-          "Xem nhiều kịch bản thay vì một con số",
-          "Chỉ xem kịch bản đẹp nhất",
-          "Bỏ qua giả định",
-          "Không kiểm tra công thức"
-        ],
-        "correct": 0,
-        "explanation": "Nhiều kịch bản giúp tránh tự tin quá mức."
-      },
-      {
-        "question": "Giả định nào đáng đưa vào bảng nhạy cảm nhất?",
-        "options": [
-          "Giả định vừa ảnh hưởng lớn đến kết quả vừa khó chắc chắn",
-          "Giả định có con số lớn nhất",
-          "Giả định dễ tra cứu nhất",
-          "Tất cả các giả định, càng nhiều càng tốt"
-        ],
-        "correct": 0,
-        "explanation": "Ảnh hưởng lớn nhưng chắc chắn thì chỉ cần ghi nguồn. Khó chắc chắn nhưng ảnh hưởng nhỏ thì không đáng bận tâm. Giao của hai điều kiện mới là chỗ cần soi."
-      },
-      {
-        "question": "Bảng nhạy cảm cho thấy kết luận chỉ đúng ở kịch bản lạc quan nhất. Điều đó nghĩa là gì?",
-        "options": [
-          "Kết luận yếu - nó đòi hỏi nhiều điều thuận lợi xảy ra cùng lúc",
-          "Kết luận mạnh - vì có ít nhất một kịch bản ủng hộ",
-          "Mô hình bị tính sai và cần làm lại",
-          "Nên bỏ kịch bản thận trọng đi cho đơn giản"
-        ],
-        "correct": 0,
-        "explanation": "Đây chính là giá trị của bảng nhạy cảm: nó phơi ra điều mà một con số đơn lẻ giấu đi - rằng kết luận đang phụ thuộc vào một tổ hợp giả định thuận lợi hiếm khi xảy ra đồng thời."
-      }
-    ],
-    "day": 1272,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Chọn 2 giả định nhạy nhất",
-        "arrow": true
-      },
-      {
-        "label": "Cho mỗi giả định 3 mức: thận trọng · cơ sở · lạc quan",
-        "arrow": true
-      },
-      {
-        "label": "Lập bảng kết quả 3×3",
-        "arrow": true
-      },
-      {
-        "label": "Hỏi: kết luận đổi ở ô nào?"
-      }
-    ],
-    interactiveType: "ai-verify",
-    "realWorldExample": {
-      "company": "Khoảng giá trị thay vì một con số",
-      "description": "Trong các báo cáo phân tích chuyên nghiệp, phần định giá hiếm khi dừng ở một con số. Người ta trình bày một khoảng, kèm bảng cho thấy kết quả theo các mức tỷ suất chiết khấu và tăng trưởng khác nhau, và nói rõ kịch bản cơ sở dựa trên giả định gì. Lý do không phải là để tránh trách nhiệm mà vì đó mới là mô tả trung thực: mô hình định giá là một hàm số của các giả định về tương lai, và tương lai thì không ai biết chắc. Một báo cáo đưa ra con số lẻ đến từng đồng mà không nói khoảng dao động thường là báo cáo đang tự tin quá mức so với dữ liệu nó có."
-    },
-    "keyTakeaways": [
-      "Định giá cho ra một khoảng giá trị, không phải một con số - hãy trình bày đúng như vậy.",
-      "Chỉ cần soi 2 giả định nhạy nhất là đủ; soi 10 giả định làm bảng rối mà không thêm thông tin.",
-      "Câu hỏi đúng là 'giả định phải sai bao nhiêu thì kết luận đổi', không phải 'con số chính xác là bao nhiêu'.",
-      "Nếu kết luận chỉ đúng ở kịch bản lạc quan nhất, đó là kết luận yếu dù con số có đẹp."
-    ],
-    "practicePrompt": {
-      "question": "Bảng nhạy cảm giúp gì trong định giá?",
-      "options": [
-        "Cho thấy kết quả thay đổi thế nào khi giả định thay đổi",
-        "Làm giá cổ phiếu chắc chắn tăng",
-        "Xóa rủi ro",
-        "Thay thế BCTC"
-      ],
-      "correct": 0,
-      "explanation": "Định giá rất nhạy với giả định nên cần xem nhiều kịch bản."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Yêu cầu AI tạo 3 kịch bản: thận trọng, cơ sở, lạc quan.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Sai lầm đắt nhất trong định giá không phải tính nhầm, mà là tin vào một con số đẹp được sinh ra từ những giả định chưa bao giờ bị chất vấn."
+    ]
   },
   {
     "id": 1273,
-    "slug": "chong-ai-bia-so-lieu",
-    "title": "AI Tài chính, Bài 13: Chống AI bịa số liệu",
-    "subtitle": "Biết cách khóa nguồn và bắt AI nói 'không tìm thấy dữ liệu'.",
-    "duration": "15 phút",
-    "estimatedMinutes": 15,
-    "difficulty": "Dễ",
-    "openingQuestion": "Khi AI không tìm thấy số liệu, câu trả lời đúng là gì?",
+    "slug": "chong-ai-bia-thu-vien-va-ham",
+    "title": "AI trong sản phẩm, Bài 13: Chống bịa thư viện và hàm",
+    "subtitle": "Ba mức độ, và mức nguy hiểm nhất là mức chạy được.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "emoji": "👻",
+    "track": "professional",
+    "interactiveType": "ai-verify",
+    "isFundamental": true,
+    "whyItMatters": "Việc bịa ra tên gọi không tồn tại đã trở thành một lỗ hổng bảo mật thật chứ không còn là chuyện phiền phức. Và không phải mọi mức đều bị trình dịch bắt được.",
+    "openingQuestion": "Mức bịa đặt nào nguy hiểm nhất?",
     "openingOptions": [
-      "Không tìm thấy dữ liệu",
-      "Tự ước lượng một con số hợp lý",
-      "Lấy từ công ty khác",
-      "Bịa cho hợp lý"
+      "Hàm có thật nhưng đã đổi hành vi ở phiên bản bạn dùng, nên mã chạy mà kết quả sai",
+      "Thư viện hoàn toàn không tồn tại, khiến bạn mất thời gian tìm kiếm vô ích",
+      "Hàm không tồn tại trong thư viện có thật, khiến chương trình báo lỗi khi chạy",
+      "Tham số không tồn tại được truyền vào một hàm có thật trong thư viện đó"
     ],
     "correctOption": 0,
-    "explanation": "Rủi ro nguy hiểm nhất khi dùng AI trong tài chính không phải là AI trả lời 'tôi không biết', mà là nó đưa ra một con số sai với giọng điệu hoàn toàn tự tin. Hiện tượng này xảy ra vì mô hình được tối ưu để tạo ra câu trả lời trôi chảy, và một con số cụ thể luôn trông trôi chảy hơn một lời từ chối. Cách phòng không nằm ở việc dặn 'đừng bịa' - câu đó gần như không có tác dụng - mà nằm ở việc khóa nguồn, bắt dẫn trang, và cho AI một lối thoát hợp lệ để nói rằng dữ liệu không có.",
+    "explanation": "Ba mức kia đều bị trình dịch hoặc lần chạy đầu tiên bắt được - chúng gây phiền chứ không gây hại. Mức nguy hiểm là mức CHẠY ĐƯỢC: hàm có thật, tham số hợp lệ, không lỗi nào cả, chỉ là ở phiên bản bạn dùng thì nó làm việc hơi khác so với thứ mô hình nhớ. Không có lớp kiểm tra tự động nào bắt được kiểu này.",
+    "diagram": [
+      {
+        "label": "Mức 1: không tồn tại → trình dịch bắt được",
+        "arrow": true
+      },
+      {
+        "label": "Mức 2: tồn tại nhưng sai tham số → chạy là lỗi",
+        "arrow": true
+      },
+      {
+        "label": "Mức 3: chạy được, hành vi khác → không ai bắt được",
+        "arrow": true
+      },
+      {
+        "label": "Đối chiếu với tài liệu ĐÚNG PHIÊN BẢN bạn dùng"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Đăng ký tên gói hay bị bịa",
+      "description": "Có người đã thống kê những tên gói mà mô hình hay đề xuất nhưng không tồn tại, rồi đăng ký đúng những tên đó và đặt mã độc vào. Việc kiểm tra một gói có thật trước khi cài đã chuyển từ chuyện cẩn thận thừa thành một bước bắt buộc."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao mức chạy được lại nguy hiểm hơn mức báo lỗi?",
+        "options": [
+          "Vì không lớp kiểm tra tự động nào bắt được, nên nó đi thẳng vào môi trường thật",
+          "Vì nó thường xuất hiện ở những phần quan trọng nhất của hệ thống",
+          "Vì việc sửa nó đòi hỏi phải viết lại toàn bộ đoạn mã liên quan",
+          "Vì nó chỉ xuất hiện với những thư viện ít phổ biến nên rất khó tìm được tài liệu đối chiếu"
+        ],
+        "correct": 0,
+        "explanation": "Trình dịch và lần chạy đầu là hai lớp lọc miễn phí, và chúng bắt hết hai mức đầu. Mức thứ ba lọt qua cả hai, nên nó là mức duy nhất cần đến việc bạn chủ động đối chiếu tài liệu."
+      },
+      {
+        "question": "Vì sao việc bịa tên gói trở thành lỗ hổng bảo mật?",
+        "options": [
+          "Vì có người đăng ký sẵn những tên hay bị bịa ra rồi đặt mã độc vào đó",
+          "Vì các gói không tồn tại khiến trình quản lý gói tải về từ nguồn không an toàn",
+          "Vì mã độc có thể được chèn vào chính câu trả lời mà mô hình sinh ra",
+          "Vì việc tìm kiếm tên gói không tồn tại để lộ thông tin về dự án của bạn"
+        ],
+        "correct": 0,
+        "explanation": "Cách tấn công này khai thác đúng thói quen cài trước rồi xem sau. Nó biến một hiện tượng phiền phức thành một đường xâm nhập thật, và đó là lý do việc kiểm tra gói có thật đã thành bước bắt buộc."
+      },
+      {
+        "question": "Cách kiểm chứng nào đúng cho mức chạy được?",
+        "options": [
+          "Đối chiếu với tài liệu chính thức của đúng phiên bản mà dự án bạn đang dùng",
+          "Chạy thử với nhiều bộ dữ liệu để xem hành vi có đúng như mong đợi không",
+          "Hỏi lại AI để xác nhận xem hàm đó có hoạt động đúng như nó vừa mô tả không",
+          "Tìm trên các diễn đàn xem có ai gặp vấn đề tương tự với hàm đó chưa"
+        ],
+        "correct": 0,
+        "explanation": "Chữ ĐÚNG PHIÊN BẢN là mấu chốt - tài liệu của bản mới nhất cũng có thể không khớp với bản bạn đang dùng. Hỏi lại AI thì vô ích vì cùng sai lệch trong dữ liệu sẽ cho cùng câu trả lời."
+      },
+      {
+        "question": "Vì sao nên nghi ngờ khi câu trả lời quá vừa vặn với nhu cầu?",
+        "options": [
+          "Vì một hàm giải đúng bài toán hẹp của bạn có xác suất cao mà không cần có thật",
+          "Vì các thư viện thường không cung cấp sẵn hàm cho những trường hợp quá cụ thể",
+          "Vì mô hình có xu hướng tạo ra câu trả lời làm hài lòng người hỏi",
+          "Vì những hàm quá chuyên biệt thường đã bị loại bỏ ở các phiên bản mới"
+        ],
+        "correct": 0,
+        "explanation": "Đây là ứng dụng trực tiếp của cơ chế sinh chuỗi: nghe hợp lý và có thật là hai chuyện khác nhau, và càng vừa vặn thì càng nghe hợp lý. Một tên hàm khớp hoàn hảo với việc bạn cần là dấu hiệu đáng kiểm chứ không phải may mắn."
+      },
+      {
+        "question": "Vì sao dán tài liệu thật vào lại giảm mạnh hiện tượng này?",
+        "options": [
+          "Vì lúc đó nó làm việc trên một nguồn cụ thể thay vì sinh lại từ trí nhớ",
+          "Vì tài liệu chính thức có định dạng chuẩn nên mô hình xử lý chính xác hơn",
+          "Vì việc dán tài liệu vào khiến mô hình chuyển sang chế độ tra cứu thay vì sinh",
+          "Vì độ dài của tài liệu buộc mô hình phải trả lời ngắn gọn và tập trung hơn"
+        ],
+        "correct": 0,
+        "explanation": "Nó không chuyển sang chế độ nào cả - vẫn là sinh chuỗi. Nhưng khi nguồn đúng nằm ngay trong ngữ cảnh thì chuỗi có xác suất cao nhất cũng chính là chuỗi đúng, nên hai thứ trùng nhau."
+      }
+    ],
+    "keyTakeaways": [
+      "Ba mức: không tồn tại, sai tham số, và chạy được nhưng hành vi khác.",
+      "Mức chạy được là mức nguy hiểm nhất - không lớp kiểm tra tự động nào bắt được.",
+      "Đăng ký sẵn tên gói hay bị bịa rồi đặt mã độc đã là cách tấn công có thật.",
+      "Đối chiếu tài liệu ĐÚNG PHIÊN BẢN bạn dùng, không phải bản mới nhất.",
+      "Câu trả lời càng vừa vặn với nhu cầu hẹp thì càng đáng kiểm chứng."
+    ],
+    "practicePrompt": {
+      "question": "AI đề xuất một hàm khớp hoàn hảo với nhu cầu rất cụ thể của bạn. Nên hiểu thế nào?",
+      "options": [
+        "Đó là dấu hiệu đáng kiểm chứng, vì càng vừa vặn thì càng nghe hợp lý mà chưa chắc có thật",
+        "Đó là may mắn, vì thư viện lớn thường có sẵn hàm cho hầu hết các nhu cầu phổ biến",
+        "Đó là kết quả của việc bạn mô tả yêu cầu đủ rõ ràng nên nó tìm được đúng hàm cần",
+        "Đó là bình thường vì mô hình đã học từ rất nhiều mã nên biết hàm nào phù hợp nhất"
+      ],
+      "correct": 0,
+      "explanation": "Cơ chế sinh chuỗi nghĩa là một tên hàm nghe rất khớp có xác suất cao dù nó chưa từng tồn tại. Mô tả rõ ràng cải thiện chất lượng câu trả lời thật, nhưng nó không làm cho một hàm không có thật trở nên có thật."
+    },
     "summary": {
-      "keyIdea": "AI có thể bịa rất tự tin, nên phải khóa nguồn và yêu cầu trích dẫn.",
-      "commonMistake": "Chỉ dặn 'đừng bịa' nhưng không yêu cầu nguồn cụ thể.",
-      "action": "Thêm câu: chỉ dùng tài liệu đính kèm, thiếu thì ghi không tìm thấy."
+      "keyIdea": "Ba mức bịa đặt, và mức lọt qua mọi lớp kiểm tra tự động là mức đáng lo.",
+      "formula": "Trình dịch bắt mức 1, lần chạy đầu bắt mức 2, chỉ bạn bắt được mức 3.",
+      "commonMistake": "Cài một gói được đề xuất trước rồi mới kiểm tra nó có thật không.",
+      "action": "Kiểm tra mọi gói được đề xuất trên kho chính thức TRƯỚC khi cài."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Đặt một quy tắc cho mình: mọi gói được AI đề xuất đều phải kiểm trên kho chính thức trước khi chạy lệnh cài. Mất mười giây.",
+      "secondary": "Và với những hàm nghe quá vừa vặn với nhu cầu hẹp của bạn, mở tài liệu của đúng phiên bản dự án đang dùng - không phải bản mới nhất."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Một lỗi nguy hiểm nhất khi dùng AI trong tài chính là AI bịa số nhưng nói rất chắc."
+        "text": "Bài trước về giả định ngầm. Bài này là một trường hợp riêng của cùng vấn đề, đủ nghiêm trọng để có bài riêng - và đủ nghiêm trọng để trở thành một lỗ hổng bảo mật thật."
+      },
+      {
+        "type": "heading",
+        "text": "Ba mức"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Ai bắt được mức nào",
+        "concepts": [
+          {
+            "vi": "Không tồn tại",
+            "en": "mức 1",
+            "def": "Thư viện hoặc hàm hoàn toàn không có. Trình dịch bắt được ngay - gây phiền chứ không gây hại."
+          },
+          {
+            "vi": "Sai tham số",
+            "en": "mức 2",
+            "def": "Hàm có thật, tham số không có. Lần chạy đầu tiên bắt được. Vẫn thuộc loại phiền phức."
+          },
+          {
+            "vi": "Chạy được, khác hành vi",
+            "en": "mức 3",
+            "def": "Hàm có thật, tham số hợp lệ, không lỗi nào - chỉ là ở phiên bản bạn dùng nó làm việc hơi khác. Không lớp kiểm tra tự động nào bắt được."
+          }
+        ]
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "Hallucination: hiện tượng AI bịa hoặc nói sai nhưng rất tự tin. Dịch dễ hiểu: AI 'ảo giác'. Khóa nguồn: chỉ cho AI dùng tài liệu bạn đưa."
+        "label": "Chỉ mức 3 đáng lo",
+        "text": "Trình dịch và lần chạy đầu là hai lớp lọc miễn phí, và chúng bắt hết hai mức đầu. Mức thứ ba lọt qua cả hai - nên nó là mức duy nhất cần đến việc bạn chủ động đối chiếu tài liệu."
       },
       {
         "type": "heading",
-        "text": "Câu lệnh an toàn"
+        "text": "Khi mức 1 thành lỗ hổng"
       },
       {
         "type": "paragraph",
-        "text": "Chỉ sử dụng số liệu trong tài liệu đính kèm. Nếu không tìm thấy, ghi 'Không tìm thấy dữ liệu'. Với mỗi con số, ghi trang nguồn và đơn vị."
-      },
-      {
-        "type": "heading",
-        "text": "Kiểm tra 4 điểm"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Số nằm ở trang nào?",
-          "Đơn vị là gì?",
-          "Kỳ báo cáo nào?",
-          "Công thức tính ra sao?"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ"
+        "text": "Có người đã thống kê những tên gói mà mô hình hay đề xuất nhưng không tồn tại, rồi đăng ký đúng những tên đó và đặt mã độc vào. Cách tấn công này khai thác đúng thói quen cài trước rồi xem sau."
       },
       {
         "type": "paragraph",
-        "text": "Nếu AI nói nợ vay là 2.000 tỷ nhưng không chỉ trang, bạn chưa nên dùng số đó. Hãy yêu cầu AI tìm lại và ghi nguồn."
+        "text": "Nên mức 1 không còn thuộc loại phiền phức nữa, ít nhất ở bước cài gói: kiểm tra một gói có thật trên kho chính thức trước khi chạy lệnh cài mất mười giây và nó đã thành bước bắt buộc."
       },
       {
         "type": "heading",
-        "text": "Bốn dạng bịa số hay gặp nhất"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Bịa con số hoàn toàn: đưa ra chỉ tiêu của một kỳ mà tài liệu không hề có.",
-          "Bịa nguồn: ghi số trang nhưng trang đó không chứa con số ấy - dạng này nguy hiểm vì trông đã có dẫn nguồn.",
-          "Bịa giả định: khi thiếu dữ liệu tương lai, tự chọn một mức tăng trưởng hoặc tỷ suất 'trông hợp lý' mà không nói rõ là do nó chọn.",
-          "Bịa mối liên hệ: nối hai dữ kiện có thật thành một quan hệ nhân quả không có trong tài liệu."
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Dạng thứ hai - bịa nguồn - là lý do bạn không thể chỉ tin vào việc output có số trang. Phải mở thật hai trang bất kỳ để đối chiếu. Đây là bước hai phút mà rất nhiều người bỏ qua, và nó chính là bước phân biệt giữa dùng AI có kỷ luật và dùng AI theo cảm tính."
+        "text": "Hai dấu hiệu và một cách phòng"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Ràng buộc yếu",
-          "text": "\"Đọc báo cáo này và cho tôi các chỉ tiêu chính. Nhớ đừng bịa số nhé.\" Không khóa nguồn, không bắt dẫn trang, không có lối thoát khi thiếu dữ liệu."
+          "label": "Dấu hiệu đáng kiểm",
+          "text": "Câu trả lời quá vừa vặn với một nhu cầu rất hẹp. Một hàm khớp hoàn hảo với đúng việc bạn cần có xác suất cao mà không cần phải có thật - càng vừa vặn thì càng nghe hợp lý."
         },
         "right": {
-          "label": "Ràng buộc mạnh",
-          "text": "\"Chỉ dùng file đính kèm. Mỗi con số phải kèm số trang, đơn vị, kỳ báo cáo và ghi rõ hợp nhất hay công ty mẹ. Không tìm thấy thì ghi 'Không tìm thấy' và dừng, tuyệt đối không ước lượng hay nội suy.\""
+          "label": "Cách phòng tốt nhất",
+          "text": "Dán tài liệu thật vào. Khi nguồn đúng nằm ngay trong ngữ cảnh thì chuỗi có xác suất cao nhất cũng chính là chuỗi đúng - hai thứ trùng nhau thay vì tách rời."
         }
-      },
-      {
-        "type": "callout",
-        "label": "Bốn câu hỏi cho mọi con số",
-        "text": "Trước khi dùng bất kỳ con số nào AI đưa ra, hỏi đủ bốn câu: Số này nằm ở trang nào? Đơn vị là gì? Kỳ báo cáo nào? Nếu là số tính ra thì tính bằng công thức gì, từ những số nào? Con số không trả lời được cả bốn câu là con số chưa dùng được."
-      },
-      {
-        "type": "callout",
-        "label": "Mẹo kiểm tra chéo",
-        "text": "Hỏi lại cùng một câu ở một cuộc trò chuyện mới, không nhắc gì đến câu trả lời trước. Nếu hai lần cho hai con số khác nhau trong khi tài liệu không đổi, gần như chắc chắn ít nhất một trong hai là suy đoán."
       },
       {
         "type": "closing",
         "lines": [
-          "AI biết nói 'không tìm thấy' mới đáng tin.",
-          "Số liệu không nguồn là số liệu nguy hiểm."
+          "Và khi đối chiếu tài liệu, chú ý đúng phiên bản dự án bạn đang dùng. Tài liệu của bản mới nhất cũng có thể không khớp, và đó chính là cách mức 3 sinh ra.",
+          "Phần cuối chặng chuyển sang việc dùng AI trong một đội: lưu vết, thư viện câu lệnh, và một dự án nhỏ để ghép tất cả lại."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Hallucination nghĩa là gì?",
-        "options": [
-          "AI bịa hoặc nói sai nhưng rất tự tin",
-          "AI chạy nhanh",
-          "AI tóm tắt đúng",
-          "AI trích nguồn đầy đủ"
-        ],
-        "correct": 0,
-        "explanation": "Trong bài này, hallucination được hiểu là AI 'ảo giác' thông tin."
-      },
-      {
-        "question": "Câu nào giúp giảm bịa số?",
-        "options": [
-          "Nếu không tìm thấy dữ liệu, hãy ghi Không tìm thấy",
-          "Cứ đoán nếu thiếu",
-          "Không cần nguồn",
-          "Luôn trả lời có"
-        ],
-        "correct": 0,
-        "explanation": "Yêu cầu này buộc AI không tự lấp khoảng trống."
-      },
-      {
-        "question": "Dạng bịa số nào nguy hiểm nhất vì khó phát hiện nhất?",
-        "options": [
-          "Ghi số trang nhưng trang đó không thực sự chứa con số ấy",
-          "Từ chối trả lời khi không có dữ liệu",
-          "Trả lời quá dài dòng",
-          "Trình bày sai định dạng bảng"
-        ],
-        "correct": 0,
-        "explanation": "Có dẫn nguồn tạo cảm giác đã được kiểm chứng, nên người đọc thường không mở lại trang để đối chiếu. Đó chính là lý do bước đối chiếu ngẫu nhiên hai con số là bắt buộc."
-      },
-      {
-        "question": "Hỏi cùng một câu ở hai cuộc trò chuyện riêng biệt và nhận hai con số khác nhau. Điều này gợi ý gì?",
-        "options": [
-          "Ít nhất một trong hai là suy đoán, không phải trích từ tài liệu",
-          "Tài liệu có lỗi",
-          "Cả hai đều đúng ở hai góc nhìn khác nhau",
-          "Cần hỏi lần thứ ba và lấy con số xuất hiện nhiều nhất"
-        ],
-        "correct": 0,
-        "explanation": "Một con số thực sự đọc từ tài liệu thì không đổi giữa các lần hỏi. Sự dao động là dấu hiệu mô hình đang sinh ra con số chứ không đang trích nó."
-      }
-    ],
-    "day": 1273,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Khóa nguồn: chỉ dùng tài liệu đính kèm",
-        "arrow": true
-      },
-      {
-        "label": "Bắt dẫn trang, đơn vị, kỳ báo cáo",
-        "arrow": true
-      },
-      {
-        "label": "Cho lối thoát: 'Không tìm thấy' thay vì suy đoán",
-        "arrow": true
-      },
-      {
-        "label": "Tự đối chiếu ngẫu nhiên 2 con số"
-      }
-    ],
-    interactiveType: "ai-verify",
-    "realWorldExample": {
-      "company": "Vì sao 'đừng bịa nhé' không hiệu quả",
-      "description": "Nhiều người dặn AI 'không được bịa số' rồi yên tâm dùng kết quả. Vấn đề là mô hình không có cơ chế tự biết chỗ nào nó đang bịa - với nó, một con số đọc được từ tài liệu và một con số suy ra từ mẫu hình quen thuộc đều là những chuỗi ký tự có xác suất cao như nhau. Lời dặn chung chung không thay đổi được điều đó. Ngược lại, ba ràng buộc cụ thể - chỉ dùng tài liệu đính kèm, mỗi số phải có số trang, không tìm thấy thì ghi 'Không tìm thấy' - lại rất hiệu quả, vì chúng biến việc dẫn nguồn thành một phần bắt buộc của định dạng câu trả lời, và một con số không có trang đi kèm sẽ lộ ra ngay lập tức khi bạn nhìn vào bảng."
-    },
-    "keyTakeaways": [
-      "AI có thể sai với giọng điệu rất tự tin - độ chắc chắn trong câu văn không nói gì về độ chính xác.",
-      "Dặn 'đừng bịa' gần như vô tác dụng; ràng buộc định dạng có dẫn nguồn thì hiệu quả.",
-      "Luôn cho AI một lối thoát hợp lệ: 'Không tìm thấy trong tài liệu'.",
-      "Kiểm tra bốn điểm với mọi con số: trang nào, đơn vị gì, kỳ nào, tính bằng công thức nào."
-    ],
-    "practicePrompt": {
-      "question": "Khi AI không tìm thấy số liệu, câu trả lời đúng là gì?",
-      "options": [
-        "Không tìm thấy dữ liệu",
-        "Tự ước lượng",
-        "Lấy từ công ty khác",
-        "Bịa cho hợp lý"
-      ],
-      "correct": 0,
-      "explanation": "Trong tài chính, thiếu dữ liệu phải nói rõ là thiếu."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Thêm câu: chỉ dùng tài liệu đính kèm, thiếu thì ghi không tìm thấy.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Một con số sai lọt vào bản ghi nhớ hay bảng tính của bạn sẽ đi tiếp vào mọi thứ dựng trên đó, và thường chỉ bị phát hiện khi đã quá muộn."
+    ]
   },
   {
     "id": 1274,
-    "slug": "luu-vet-khi-dung-ai",
-    "title": "AI Tài chính, Bài 14: Lưu vết khi dùng AI",
-    "subtitle": "Giữ lại câu lệnh, nguồn và bản chỉnh sửa để truy lại khi cần.",
-    "duration": "13 phút",
-    "estimatedMinutes": 13,
-    "difficulty": "Dễ",
-    "openingQuestion": "Lưu vết khi dùng AI có ích gì?",
+    "slug": "luu-vet-khi-dung-ai-trong-du-an-chung",
+    "title": "AI trong sản phẩm, Bài 14: Lưu vết khi làm việc trong đội",
+    "subtitle": "Trách nhiệm về đoạn mã vẫn là của người gửi nó đi, không của công cụ.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🧾",
+    "track": "professional",
+    "interactiveType": "ai-verify",
+    "isFundamental": false,
+    "whyItMatters": "Dùng AI một mình thì chỉ mình bạn chịu hậu quả. Trong một đội thì mã của bạn thành nền cho người khác xây lên, và một hiểu sai lan xa hơn nhiều so với khi bạn làm một mình.",
+    "openingQuestion": "Ai chịu trách nhiệm về một đoạn mã do AI viết mà bạn gửi đi?",
     "openingOptions": [
-      "Giúp truy lại nguồn, câu lệnh, output và chỉnh sửa",
-      "Làm cho bản báo cáo trông dài hơn và đầy đủ hơn hẳn",
-      "Thay thế kiểm chứng",
-      "Giúp AI luôn đúng"
+      "Bạn, hoàn toàn - vì công cụ không phải một đồng nghiệp mà bạn chia trách nhiệm cùng",
+      "Chia sẻ giữa bạn và người rà soát, vì cả hai đều đã xem qua đoạn mã đó",
+      "Đội, vì việc cho phép dùng công cụ đó là quyết định chung của cả đội",
+      "Không xác định được rõ ràng, và đó là lý do cần ghi lại nguồn gốc của mã"
     ],
     "correctOption": 0,
-    "explanation": "Trong công việc tài chính, bạn luôn có thể bị hỏi 'con số này ở đâu ra' - bởi sếp, bởi khách hàng, bởi kiểm toán, hoặc bởi chính bạn ba tháng sau. Nếu quy trình có AI ở giữa mà bạn chỉ lưu kết quả cuối, bạn sẽ không trả lời được. Lưu vết nghĩa là giữ lại đủ bốn thứ: câu lệnh đã dùng, tài liệu đầu vào, output gốc chưa chỉnh, và bản cuối sau khi bạn sửa. Bộ bốn này vừa giúp bạn giải thích được, vừa là tài liệu học tập tốt nhất về chính cách bạn giao việc.",
+    "explanation": "Điều này nghe hiển nhiên nhưng nó bị mờ đi trong thực tế: người ta nói mã này AI viết như một cách giảm nhẹ, và câu đó không có giá trị nào. Công cụ không phải một đồng nghiệp - bạn không chia trách nhiệm với trình soạn thảo hay với trình dịch, và cũng vậy ở đây. Việc ghi lại nguồn gốc có ích cho mục đích khác, không phải để phân chia trách nhiệm.",
+    "diagram": [
+      {
+        "label": "Trách nhiệm: hoàn toàn của người gửi mã đi",
+        "arrow": true
+      },
+      {
+        "label": "Ghi lại nguồn: để người sau biết mức kiểm chứng, không để giảm nhẹ",
+        "arrow": true
+      },
+      {
+        "label": "Đừng gửi đi thứ mình không giải thích được",
+        "arrow": true
+      },
+      {
+        "label": "Trong đội, một hiểu sai lan xa hơn nhiều"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Quy ước của đội, viết ra",
+      "description": "Một đội nên có ba dòng viết ra: phần nào được dùng AI, phần nào không, và ai kiểm gì trước khi gộp mã. Không viết ra thì mỗi người tự đặt ranh giới riêng, và ranh giới lỏng nhất trong đội trở thành ranh giới thật của cả đội."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao câu mã này AI viết không phải một lời giảm nhẹ?",
+        "options": [
+          "Vì công cụ không phải đồng nghiệp, nên không có ai để chia trách nhiệm cùng",
+          "Vì đội không thể kiểm chứng được đoạn mã đó có thật sự do AI viết hay không",
+          "Vì việc dùng AI thường không được ghi lại nên không có bằng chứng nào cả",
+          "Vì trách nhiệm cuối cùng luôn thuộc về người quản lý dự án chứ không phải cá nhân"
+        ],
+        "correct": 0,
+        "explanation": "Bạn không chia trách nhiệm với trình soạn thảo hay trình dịch, và đây cũng vậy. Câu đó chỉ có tác dụng làm người nghe hạ mức kỳ vọng, chứ nó không chuyển được trách nhiệm sang đâu cả."
+      },
+      {
+        "question": "Ghi lại việc đã dùng AI phục vụ mục đích gì?",
+        "options": [
+          "Để người rà soát biết đoạn nào cần kiểm kỹ hơn và ở khía cạnh nào",
+          "Để phân chia trách nhiệm rõ ràng khi có sự cố xảy ra với đoạn mã đó",
+          "Để đội thống kê được mức độ sử dụng công cụ và đánh giá hiệu quả của nó",
+          "Để tuân thủ các quy định về minh bạch trong việc sử dụng công cụ tự động"
+        ],
+        "correct": 0,
+        "explanation": "Nó là thông tin cho người rà soát, không phải lời khai. Biết một đoạn được sinh ra rồi kiểm chứng ở mức nào giúp người rà soát phân bổ sự chú ý - và đó là lợi ích thật duy nhất của việc ghi lại."
+      },
+      {
+        "question": "Quy tắc nào quan trọng nhất khi làm việc trong đội?",
+        "options": [
+          "Không gửi đi đoạn mã nào mà bạn không giải thích được cho người rà soát",
+          "Luôn ghi rõ phần nào do AI sinh ra trong mô tả của bản thay đổi",
+          "Chỉ dùng AI cho những phần không nằm trong luồng nghiệp vụ chính",
+          "Luôn viết thêm kiểm thử cho mọi đoạn mã có sự tham gia của công cụ AI"
+        ],
+        "correct": 0,
+        "explanation": "Đây là ranh giới tận dụng và lệ thuộc ở bài về công cụ, áp vào bối cảnh đội. Ba quy tắc kia đều hữu ích nhưng chúng không cứu được tình huống bạn đưa vào một thứ không ai trong đội hiểu."
+      },
+      {
+        "question": "Vì sao đội nên viết quy ước ra thay vì để mỗi người tự hiểu?",
+        "options": [
+          "Vì không viết ra thì ranh giới lỏng nhất trong đội trở thành ranh giới thật của cả đội",
+          "Vì quy ước viết ra giúp người mới vào đội nắm được cách làm việc nhanh hơn",
+          "Vì các quy định về bảo mật thông tin yêu cầu phải có quy trình được ghi lại",
+          "Vì viết ra giúp cả đội thống nhất được công cụ nào nên dùng và công cụ nào thì không"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng lập luận với hợp đồng API nội bộ ở chặng gọi dịch vụ ngoài: thứ không viết ra thì phụ thuộc vào việc ai nhớ gì, và trong một đội thì mức lỏng nhất là mức có hiệu lực."
+      },
+      {
+        "question": "Vì sao hiểu sai lan xa hơn khi làm việc trong đội?",
+        "options": [
+          "Vì mã của bạn thành nền cho người khác xây lên, nên sai lệch được nhân lên theo",
+          "Vì các thành viên khác thường tin tưởng mã đã được gộp vào nhánh chính",
+          "Vì trong đội có nhiều người cùng dùng một công cụ nên tất cả cùng mắc một loại lỗi",
+          "Vì quy trình rà soát trong đội thường không đủ kỹ để phát hiện lỗi tinh vi"
+        ],
+        "correct": 0,
+        "explanation": "Làm một mình thì hậu quả dừng ở bạn. Trong đội thì người khác đọc mã của bạn, học theo khuôn của nó, và xây tiếp lên nó - nên một hiểu sai ở nền lan ra toàn bộ phần xây bên trên."
+      }
+    ],
+    "keyTakeaways": [
+      "Trách nhiệm hoàn toàn thuộc người gửi mã đi - công cụ không phải đồng nghiệp.",
+      "Ghi lại nguồn là thông tin cho người rà soát, không phải lời giảm nhẹ.",
+      "Quy tắc quan trọng nhất: đừng gửi đi thứ bạn không giải thích được.",
+      "Đội phải viết quy ước ra, nếu không ranh giới lỏng nhất thành ranh giới thật.",
+      "Trong đội, mã của bạn thành nền cho người khác nên hiểu sai lan xa hơn."
+    ],
+    "practicePrompt": {
+      "question": "Đồng nghiệp gửi một bản thay đổi và ghi phần này do AI sinh. Bạn nên rà soát thế nào?",
+      "options": [
+        "Rà kỹ hơn ở các giả định ngầm và tên hàm, vì đó là hai chỗ đặc trưng dễ sai",
+        "Rà soát như bình thường, vì nguồn gốc của mã không nên ảnh hưởng tới cách đánh giá",
+        "Yêu cầu đồng nghiệp viết lại bằng tay để đảm bảo họ thật sự hiểu đoạn mã đó",
+        "Chạy thêm các công cụ phân tích tự động để bù cho việc mã không do người viết"
+      ],
+      "correct": 0,
+      "explanation": "Thông tin về nguồn gốc có giá trị đúng ở chỗ này: nó cho biết nên phân bổ sự chú ý vào đâu. Rà như bình thường thì bỏ phí thông tin đó, còn bắt viết lại bằng tay thì bỏ luôn lợi ích của công cụ mà không tăng được độ đúng."
+    },
     "summary": {
-      "keyIdea": "Công việc tài chính cần truy vết: bạn đã hỏi gì, dùng nguồn nào, chỉnh gì.",
-      "commonMistake": "Chỉ lưu kết quả cuối mà không biết nó đến từ đâu.",
-      "action": "Tạo thư mục lưu câu lệnh, tài liệu nguồn, output gốc và bản cuối."
+      "keyIdea": "Công cụ không chia trách nhiệm với bạn, giống như trình dịch không chia trách nhiệm.",
+      "formula": "Ghi lại để phân bổ sự chú ý khi rà soát, không để giảm nhẹ trách nhiệm.",
+      "commonMistake": "Nói mã này AI viết như một cách hạ mức kỳ vọng của người rà soát.",
+      "action": "Đề xuất đội viết ra ba dòng quy ước về việc dùng AI."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Nếu đội bạn chưa có quy ước viết ra về việc dùng AI, đề xuất ba dòng: phần nào được dùng, phần nào không, và ai kiểm gì trước khi gộp mã.",
+      "secondary": "Ba dòng đó quan trọng không phải vì nội dung mà vì việc chúng tồn tại - không viết ra thì ranh giới lỏng nhất trong đội trở thành ranh giới thật của cả đội."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Nếu sau này ai hỏi 'số này từ đâu ra?', bạn cần trả lời được."
+        "text": "Mười ba bài trước giả định bạn làm một mình. Bài này về việc dùng AI trong một đội - nơi mã của bạn thành nền cho người khác xây lên."
+      },
+      {
+        "type": "heading",
+        "text": "Câu hỏi về trách nhiệm"
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "Lưu vết kiểm tra: dấu vết kiểm tra. Dịch dễ hiểu: hồ sơ lưu lại quá trình làm việc gồm câu lệnh, nguồn, output và chỉnh sửa."
+        "label": "Hoàn toàn của người gửi mã đi",
+        "text": "Điều này nghe hiển nhiên nhưng nó bị mờ đi trong thực tế: người ta nói mã này AI viết như một cách giảm nhẹ. Câu đó không chuyển được trách nhiệm sang đâu cả - bạn không chia trách nhiệm với trình soạn thảo hay với trình dịch, và ở đây cũng vậy."
       },
       {
         "type": "heading",
-        "text": "Nên lưu gì?"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Câu lệnh đã dùng",
-          "Tài liệu đầu vào",
-          "Output gốc từ AI",
-          "Bản bạn đã chỉnh",
-          "Quyết định cuối cùng"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao người mới cần lưu?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Lưu vết giúp bạn học nhanh hơn. Khi output sai, bạn nhìn lại câu lệnh để biết mình giao việc thiếu gì."
-      },
-      {
-        "type": "heading",
-        "text": "Cách làm đơn giản"
-      },
-      {
-        "type": "paragraph",
-        "text": "Mỗi bài tập tạo một ghi chú gồm: mục tiêu, câu lệnh, nguồn, kết quả, lỗi phát hiện, phiên bản câu lệnh tốt hơn."
-      },
-      {
-        "type": "heading",
-        "text": "Mẫu ghi chú một trang cho mỗi lần dùng AI"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Ngày và mục tiêu: hôm đó bạn cần ra sản phẩm gì.",
-          "Tài liệu đầu vào: tên file, kỳ báo cáo, đã kiểm toán hay chưa, tải từ đâu.",
-          "Câu lệnh: dán nguyên văn, kể cả phần bạn hỏi lại giữa chừng.",
-          "Output gốc: dán nguyên, không chỉnh sửa gì.",
-          "Lỗi phát hiện: liệt kê từng lỗi và cách bạn phát hiện ra.",
-          "Bản cuối và lý do sửa: sửa gì, vì sao sửa."
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Nghe có vẻ nhiều, nhưng thực tế mỗi ghi chú mất chừng năm phút và bạn chỉ cần làm với những sản phẩm sẽ gửi đi cho người khác. Với bài tập cá nhân, giữ ba mục đầu là đủ."
-      },
-      {
-        "type": "callout",
-        "label": "Lưu ý về phiên bản tài liệu",
-        "text": "Hãy lưu chính file bạn đã đưa cho AI, đừng chỉ lưu đường link. Báo cáo trên website doanh nghiệp có thể được thay bằng bản đã kiểm toán hoặc bản đính chính, và khi đó link cũ sẽ dẫn tới một tài liệu khác với tài liệu bạn thực sự đã dùng."
-      },
-      {
-        "type": "heading",
-        "text": "Lưu vết biến lỗi thành cải tiến câu lệnh"
+        "text": "Ghi lại để làm gì"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Không lưu vết",
-          "text": "Phát hiện output thiếu đơn vị, bạn tự sửa tay rồi quên. Tháng sau gặp đúng lỗi đó, lại sửa tay. Lỗi lặp lại mãi vì nguyên nhân nằm ở câu lệnh mà bạn không bao giờ nhìn lại."
+          "label": "Không phải để",
+          "text": "Phân chia trách nhiệm khi có sự cố. Đó là mục đích duy nhất mà việc ghi lại KHÔNG phục vụ được, dù nó là mục đích người ta hay nghĩ tới đầu tiên."
         },
         "right": {
-          "label": "Có lưu vết",
-          "text": "Ghi 'lỗi: thiếu đơn vị' vào ghi chú, rồi thêm một dòng vào câu lệnh mẫu: 'mỗi số phải kèm đơn vị'. Lần sau lỗi không xuất hiện nữa, và cải tiến đó áp cho mọi lần dùng về sau."
+          "label": "Mà là để",
+          "text": "Người rà soát biết nên phân bổ sự chú ý vào đâu: giả định ngầm và tên hàm là hai chỗ đặc trưng dễ sai, và biết trước thì rà nhanh hơn."
         }
+      },
+      {
+        "type": "heading",
+        "text": "Quy tắc quan trọng nhất"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đừng gửi đi đoạn mã nào bạn không giải thích được cho người rà soát. Đây chính là ranh giới tận dụng và lệ thuộc ở bài về công cụ, áp vào bối cảnh đội - và trong đội thì hậu quả của việc vượt ranh giới lớn hơn nhiều."
+      },
+      {
+        "type": "paragraph",
+        "text": "Vì sao lớn hơn: làm một mình thì hậu quả dừng ở bạn. Trong đội thì người khác đọc mã của bạn, học theo khuôn của nó, và xây tiếp lên nó - nên một hiểu sai ở nền lan ra toàn bộ phần xây bên trên."
+      },
+      {
+        "type": "heading",
+        "text": "Ba dòng viết ra"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Phần nào được dùng AI, phần nào không.",
+          "Cái gì không bao giờ được đưa vào câu lệnh - nối với ranh giới an toàn ở bài 6.",
+          "Ai kiểm gì trước khi gộp mã."
+        ]
       },
       {
         "type": "closing",
         "lines": [
-          "Lưu vết không làm chậm bạn; nó giúp bạn bớt sai lặp lại.",
-          "Tài chính cần giải thích được nguồn gốc kết luận."
+          "Ba dòng này quan trọng không phải vì nội dung mà vì việc chúng tồn tại. Không viết ra thì mỗi người tự đặt ranh giới riêng, và ranh giới LỎNG NHẤT trong đội trở thành ranh giới thật của cả đội.",
+          "Bài sau là thứ giúp bạn không phải nghĩ lại từ đầu mỗi lần: thư viện câu lệnh."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Lưu vết kiểm tra nghĩa dễ hiểu là gì?",
-        "options": [
-          "Dấu vết lưu lại quá trình làm việc",
-          "Một loại lãi suất",
-          "Một mô hình định giá",
-          "Một loại cổ phiếu"
-        ],
-        "correct": 0,
-        "explanation": "Lưu vết kiểm tra giúp truy lại câu lệnh, nguồn và output."
-      },
-      {
-        "question": "Khi output AI sai, lưu vết giúp gì?",
-        "options": [
-          "Biết câu lệnh hoặc nguồn sai ở đâu để sửa",
-          "Che lỗi",
-          "Không cần kiểm tra",
-          "Tự động đúng lại"
-        ],
-        "correct": 0,
-        "explanation": "Lưu vết giúp cải tiến cách dùng AI."
-      },
-      {
-        "question": "Trong bốn thứ cần lưu, vì sao output gốc chưa chỉnh lại quan trọng?",
-        "options": [
-          "Vì nó cho biết chỗ nào là AI viết và chỗ nào là bạn đã sửa - thông tin này mất hẳn nếu chỉ lưu bản cuối",
-          "Vì bản gốc luôn chính xác hơn bản đã sửa",
-          "Vì cần nộp cho kiểm toán theo quy định",
-          "Vì nó ngắn hơn bản cuối"
-        ],
-        "correct": 0,
-        "explanation": "Bản cuối trộn lẫn phần AI viết với phần bạn sửa. Chỉ khi so được với output gốc bạn mới biết mình đã phải can thiệp ở đâu, và đó chính là danh sách việc cần cải tiến ở câu lệnh."
-      },
-      {
-        "question": "Vì sao nên lưu chính file tài liệu thay vì chỉ lưu đường link?",
-        "options": [
-          "Vì tài liệu trên mạng có thể được thay bằng bản kiểm toán hoặc bản đính chính, khiến link cũ dẫn tới nội dung khác",
-          "Vì đường link luôn hết hạn sau 30 ngày",
-          "Vì file luôn nhẹ hơn link",
-          "Vì AI không đọc được đường link"
-        ],
-        "correct": 0,
-        "explanation": "Lưu vết chỉ có giá trị khi tái hiện được đúng đầu vào. Một đường link trỏ tới nội dung đã thay đổi thì không tái hiện được gì."
-      }
-    ],
-    "day": 1274,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Câu lệnh đã dùng",
-        "arrow": true
-      },
-      {
-        "label": "Tài liệu đầu vào (bản đúng kỳ, đúng phiên bản)",
-        "arrow": true
-      },
-      {
-        "label": "Output gốc từ AI (chưa chỉnh)",
-        "arrow": true
-      },
-      {
-        "label": "Bản cuối + ghi chú những chỗ bạn đã sửa và vì sao"
-      }
-    ],
-    interactiveType: "ai-verify",
-    "realWorldExample": {
-      "company": "Ba tháng sau, sếp hỏi lại một con số",
-      "description": "Tình huống rất thật: bạn nộp một bản phân tích, ba tháng sau sếp hỏi vì sao con số nợ vay trong đó lệch với báo cáo mới. Nếu bạn chỉ lưu file cuối, câu trả lời duy nhất là 'em không nhớ'. Nếu bạn lưu đủ bốn thứ, bạn mở ra trong hai phút và thấy ngay: tài liệu đầu vào là báo cáo quý 2 chưa kiểm toán, câu lệnh đã yêu cầu số hợp nhất, và output gốc ghi rõ trang. Vậy là lệch do khác kỳ và khác trạng thái kiểm toán, không phải do sai sót. Khác biệt giữa hai tình huống này không nằm ở năng lực phân tích mà chỉ nằm ở thói quen lưu vết."
-    },
-    "keyTakeaways": [
-      "Lưu đủ bốn thứ: câu lệnh, tài liệu đầu vào, output gốc chưa chỉnh, và bản cuối.",
-      "Output gốc quan trọng nhất - nó cho biết chỗ nào là AI viết và chỗ nào là bạn sửa.",
-      "Ghi lại cả lý do sửa, không chỉ nội dung sửa; đó là phần dạy bạn cách viết câu lệnh tốt hơn.",
-      "Lưu vết vừa để giải thích cho người khác, vừa để chính bạn không lặp lại cùng một lỗi."
-    ],
-    "practicePrompt": {
-      "question": "Lưu vết khi dùng AI có ích gì?",
-      "options": [
-        "Giúp truy lại nguồn, câu lệnh, output và chỉnh sửa",
-        "Làm báo cáo dài hơn",
-        "Thay thế kiểm chứng",
-        "Giúp AI luôn đúng"
-      ],
-      "correct": 0,
-      "explanation": "Lưu vết giúp bạn giải thích quy trình và sửa lỗi khi cần."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Tạo thư mục lưu câu lệnh, tài liệu nguồn, output gốc và bản cuối.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Không lưu vết thì mỗi lỗi chỉ là một lần xui; có lưu vết thì mỗi lỗi thành một bài học sửa được ở câu lệnh."
+    ]
   },
   {
     "id": 1275,
-    "slug": "xay-thu-vien-prompt-ca-nhan",
-    "title": "AI Tài chính, Bài 15: Xây thư viện câu lệnh cá nhân",
-    "subtitle": "Lưu các câu lệnh hay dùng để không phải viết lại từ đầu.",
-    "duration": "14 phút",
-    "estimatedMinutes": 14,
+    "slug": "xay-thu-vien-cau-lenh-ca-nhan",
+    "title": "AI trong sản phẩm, Bài 15: Thư viện câu lệnh cá nhân",
+    "subtitle": "Không phải bộ sưu tập mẫu tải về - mà là những câu đã hoạt động với đúng dự án của bạn.",
+    "duration": "6 phút",
     "difficulty": "Dễ",
-    "openingQuestion": "Thư viện câu lệnh giúp gì?",
+    "emoji": "🗂️",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": false,
+    "whyItMatters": "Phần giá trị nhất của một câu lệnh tốt là phần ràng buộc riêng của dự án bạn, và đó đúng là phần không có trong bất kỳ bộ sưu tập mẫu nào. Xây riêng là cách duy nhất có được nó.",
+    "openingQuestion": "Vì sao bộ sưu tập câu lệnh mẫu trên mạng thường ít giá trị?",
     "openingOptions": [
-      "Giúp dùng lại câu lệnh tốt cho các việc lặp lại",
-      "Giúp không cần kiểm chứng",
-      "Giúp AI biết mọi thứ",
-      "Giúp bỏ qua dữ liệu"
+      "Vì phần quý nhất là ràng buộc riêng của dự án bạn, mà mẫu chung không có phần đó",
+      "Vì chúng được viết cho các mô hình cũ hơn nên không còn hiệu quả với bản mới",
+      "Vì số lượng mẫu quá lớn nên bạn mất nhiều thời gian tìm cái phù hợp",
+      "Vì chúng thường được viết bằng tiếng Anh nên khó áp dụng vào công việc"
     ],
     "correctOption": 0,
-    "explanation": "Khi một câu lệnh cho kết quả tốt, đừng để nó trôi mất trong lịch sử trò chuyện. Thư viện câu lệnh là sổ tay riêng của bạn, mỗi mục gồm năm phần: tên tác vụ, khi nào dùng, đầu vào cần chuẩn bị, câu lệnh mẫu, và cách kiểm tra output. Điểm khác biệt giữa một thư viện có ích và một thư mục lộn xộn nằm ở mục cuối - nếu không ghi cách kiểm tra, bạn chỉ đang lưu lại mẹo, chứ chưa xây được quy trình.",
+    "explanation": "Một mẫu chung dạy bạn cách diễn đạt, và đó là phần dễ - bài về giao việc đã đưa đủ khung. Phần khó và quý là ràng buộc: dự án dùng phiên bản nào, quy ước đặt tên ra sao, thư viện nào bị cấm. Không mẫu nào biết những thứ đó, nên thư viện có giá trị nhất là thư viện bạn tự xây từ những câu đã thật sự hoạt động.",
+    "diagram": [
+      {
+        "label": "Câu nào cho kết quả tốt thì lưu lại ngay",
+        "arrow": true
+      },
+      {
+        "label": "Lưu kèm bối cảnh: dùng cho việc gì, đã hiệu quả ra sao",
+        "arrow": true
+      },
+      {
+        "label": "Phần quý là ràng buộc riêng của dự án bạn",
+        "arrow": true
+      },
+      {
+        "label": "Xoá câu không còn dùng - thư viện phình ra là thư viện chết"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Một khối ràng buộc dùng lại được",
+      "description": "Phần lớn giá trị nằm ở một khối mô tả ngắn về dự án: ngôn ngữ và phiên bản, khung làm việc, quy ước đặt tên, những thứ không được dùng. Viết một lần rồi dán vào đầu mỗi cuộc trao đổi - nó cắt được phần lớn cảnh báo giả và giả định sai."
+    },
+    "quiz": [
+      {
+        "question": "Phần nào của một câu lệnh có giá trị lâu dài nhất?",
+        "options": [
+          "Khối mô tả ràng buộc của dự án, vì nó dùng lại được cho gần như mọi loại yêu cầu",
+          "Cách diễn đạt nhiệm vụ sao cho thật rõ ràng và không gây hiểu nhầm cho mô hình",
+          "Phần quy định định dạng đầu ra để nhận về kết quả đúng dạng mình cần",
+          "Phần ví dụ đầu vào và đầu ra minh hoạ cho yêu cầu cụ thể đang đặt ra"
+        ],
+        "correct": 0,
+        "explanation": "Ba phần kia đổi theo từng yêu cầu; khối ràng buộc thì gần như không đổi trong suốt dự án. Đó là lý do viết nó một lần rồi dán vào đầu mỗi cuộc trao đổi cho tỷ lệ hoàn vốn cao nhất."
+      },
+      {
+        "question": "Nên lưu gì kèm theo mỗi câu lệnh?",
+        "options": [
+          "Bối cảnh nó đã hoạt động: dùng cho việc gì và kết quả tốt ở khía cạnh nào",
+          "Ngày tháng lưu và phiên bản mô hình đã dùng để biết khi nào cần cập nhật lại",
+          "Toàn bộ câu trả lời nhận được để so sánh khi dùng lại câu lệnh đó lần sau",
+          "Số lần đã sử dụng để biết câu nào là câu hữu ích nhất trong thư viện"
+        ],
+        "correct": 0,
+        "explanation": "Không có bối cảnh thì sáu tháng sau bạn nhìn một câu lệnh và không biết vì sao mình lưu nó. Lưu cả câu trả lời thì làm thư viện phình ra rất nhanh mà không thêm được gì cho lần dùng sau."
+      },
+      {
+        "question": "Vì sao nên xoá bớt câu lệnh trong thư viện?",
+        "options": [
+          "Vì thư viện phình ra thì tìm trong nó lâu hơn tự viết lại, và lúc đó nó thành thư viện chết",
+          "Vì các câu lệnh cũ có thể không còn hoạt động tốt với những phiên bản mô hình mới hơn về sau",
+          "Vì thư viện lớn khó chia sẻ và đồng bộ giữa các thành viên trong đội",
+          "Vì việc duy trì quá nhiều câu lệnh tốn thời gian hơn lợi ích chúng mang lại"
+        ],
+        "correct": 0,
+        "explanation": "Ngưỡng chết của một thư viện rất cụ thể: khi tìm lâu hơn viết lại. Lựa chọn thứ hai cũng đúng nhưng cách xử lý cho nó là cập nhật chứ không phải xoá."
+      },
+      {
+        "question": "Vì sao đội nên chia sẻ khối ràng buộc chung?",
+        "options": [
+          "Vì mọi người dùng cùng một mô tả dự án thì kết quả nhất quán hơn giữa các thành viên",
+          "Vì nó giúp giảm số lượng câu lệnh mà mỗi người phải tự viết và duy trì",
+          "Vì việc chia sẻ giúp những người mới vào đội nhanh chóng làm quen được với công cụ đó",
+          "Vì mô hình sẽ nhận ra khối ràng buộc quen thuộc và trả lời chính xác hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là phần duy nhất trong thư viện cá nhân mà chia sẻ có ý nghĩa rõ, vì nó mô tả một thứ chung - dự án. Các câu lệnh còn lại thì gắn với cách làm việc của từng người nên chia sẻ ít giá trị hơn."
+      },
+      {
+        "question": "Xây thư viện thế nào cho đúng cách?",
+        "options": [
+          "Lưu lại ngay khi một câu cho kết quả tốt, thay vì ngồi viết trước một bộ đầy đủ",
+          "Dành hẳn ra một buổi để viết đủ các câu lệnh cho mọi loại công việc mình thường gặp",
+          "Tải một bộ mẫu về rồi chỉnh sửa dần cho phù hợp với dự án của mình",
+          "Ghi lại mọi câu lệnh đã dùng rồi định kỳ xem lại và giữ những cái tốt"
+        ],
+        "correct": 0,
+        "explanation": "Ngồi viết trước một bộ đầy đủ thì bạn đang đoán mình sẽ cần gì, và phần lớn sẽ không được dùng. Ghi lại mọi câu đã dùng thì thư viện phình ra ngay từ đầu - việc chọn lọc phải xảy ra lúc lưu, không phải lúc xem lại."
+      }
+    ],
+    "keyTakeaways": [
+      "Phần quý nhất là ràng buộc riêng của dự án, mà không mẫu chung nào có được.",
+      "Khối mô tả dự án dùng lại được cho mọi yêu cầu - viết một lần, dán vào đầu mỗi cuộc.",
+      "Lưu kèm bối cảnh nó đã hoạt động, nếu không sáu tháng sau bạn không biết vì sao lưu.",
+      "Xoá bớt: thư viện chết khi tìm trong nó lâu hơn tự viết lại.",
+      "Xây bằng cách lưu lại thứ đã hoạt động, đừng ngồi viết trước một bộ đầy đủ."
+    ],
+    "practicePrompt": {
+      "question": "Bạn muốn bắt đầu xây thư viện câu lệnh. Việc đầu tiên có tỷ lệ hoàn vốn cao nhất?",
+      "options": [
+        "Viết một khối mô tả ràng buộc của dự án và dán nó vào đầu mỗi cuộc trao đổi",
+        "Ghi lại tất cả các câu lệnh bạn đã dùng trong tuần qua để có dữ liệu ban đầu",
+        "Tìm một bộ mẫu tốt trên mạng rồi chọn lọc những câu phù hợp với công việc của bạn",
+        "Phân loại các công việc bạn hay giao cho AI rồi viết câu lệnh cho từng loại"
+      ],
+      "correct": 0,
+      "explanation": "Nó dùng lại được cho gần như mọi yêu cầu và cắt được phần lớn cảnh báo giả cùng giả định sai. Ba cách kia đều tạo ra một tập câu lệnh mà bạn chưa biết có dùng tới không."
+    },
     "summary": {
-      "keyIdea": "Thư viện câu lệnh là sổ tay câu lệnh dùng lại cho đọc tin, BCTC, rủi ro, bản ghi nhớ.",
-      "commonMistake": "Lưu nhiều câu lệnh nhưng không ghi dùng khi nào và kiểm tra ra sao.",
-      "action": "Tạo 5 câu lệnh đầu tiên cho công việc của bạn."
+      "keyIdea": "Thư viện có giá trị là thư viện bạn tự xây từ những câu đã thật sự hoạt động.",
+      "formula": "Khối ràng buộc dùng chung + những câu đã hiệu quả + xoá đều đặn.",
+      "commonMistake": "Tải một bộ mẫu về, vốn chỉ dạy phần dễ là cách diễn đạt.",
+      "action": "Viết một khối mô tả ràng buộc dự án và dùng nó trong tuần này."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Viết một khối ngắn mô tả dự án của bạn: ngôn ngữ và phiên bản, khung làm việc, quy ước đặt tên, những thứ không được dùng. Dán nó vào đầu mỗi cuộc trao đổi trong tuần này.",
+      "secondary": "Cuối tuần, so số lần bạn phải sửa lại câu trả lời với tuần trước. Đây là thay đổi có tỷ lệ hoàn vốn cao nhất trong cả chặng vì bạn viết một lần và dùng mãi."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Khi một câu lệnh dùng tốt, hãy lưu lại để lần sau không làm từ đầu."
+        "text": "Có rất nhiều bộ sưu tập câu lệnh mẫu, và phần lớn chúng ít giá trị hơn vẻ ngoài. Bài này giải thích vì sao, và cách xây một thư viện thật sự dùng được."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao mẫu chung ít giá trị"
       },
       {
         "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "Thư viện câu lệnh: nơi lưu các câu lệnh dùng lại. Mẫu điền chỗ trống: khung có sẵn để bạn thay thông tin. Phiên bản: bản đã được sửa tốt hơn sau mỗi lần dùng."
+        "label": "Chúng dạy phần dễ",
+        "text": "Một mẫu chung dạy bạn cách DIỄN ĐẠT, và bài về giao việc đã đưa đủ khung cho phần đó. Phần khó và quý là RÀNG BUỘC: dự án dùng phiên bản nào, quy ước đặt tên ra sao, thư viện nào bị cấm. Không mẫu nào biết những thứ đó."
       },
       {
         "type": "heading",
-        "text": "Mỗi câu lệnh nên có gì?"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Tên tác vụ",
-          "Khi nào dùng",
-          "Input cần chuẩn bị",
-          "Câu lệnh mẫu",
-          "Cách kiểm tra output"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "5 câu lệnh nên có"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Tóm tắt tin",
-          "Trích số BCTC",
-          "Tìm rủi ro",
-          "Viết bản ghi nhớ",
-          "Tự phản biện và kiểm chứng"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Cải tiến prompt"
+        "text": "Phần có tỷ lệ hoàn vốn cao nhất"
       },
       {
         "type": "paragraph",
-        "text": "Sau mỗi lần dùng, ghi lỗi: quá dài, thiếu nguồn, quên đơn vị, chưa nêu rủi ro. Sau đó sửa câu lệnh thành phiên bản mới."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Năm phần của một mục trong thư viện",
-        "concepts": [
-          {
-            "vi": "Tên tác vụ",
-            "en": "Task name",
-            "def": "Đặt tên theo việc cần làm, không theo công cụ. Ví dụ 'Trích 5 chỉ tiêu từ BCTC' chứ không phải 'Câu lệnh số 3'."
-          },
-          {
-            "vi": "Khi nào dùng",
-            "en": "When to use",
-            "def": "Một dòng mô tả tình huống. Giúp bạn chọn đúng câu lệnh mà không phải đọc lại cả thư viện."
-          },
-          {
-            "vi": "Đầu vào cần chuẩn bị",
-            "en": "Inputs",
-            "def": "Tài liệu gì, định dạng gì, cần biết trước thông tin nào. Thiếu bước này là lý do câu lệnh tốt vẫn cho kết quả tệ."
-          },
-          {
-            "vi": "Câu lệnh mẫu",
-            "en": "Prompt template",
-            "def": "Dán nguyên văn, để chỗ trống dạng [tên file], [kỳ báo cáo] cho phần thay đổi theo lần dùng."
-          },
-          {
-            "vi": "Cách kiểm tra output",
-            "en": "Verification",
-            "def": "Các bước cụ thể để xác nhận kết quả dùng được: đối chiếu mấy con số, kiểm tra mục nào. Không có phần này thì đây chỉ là mẹo, chưa phải quy trình."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Vòng cải tiến sau mỗi lần dùng"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Ghi lại lỗi cụ thể: thiếu nguồn, sai đơn vị, kết luận quá mạnh, bỏ sót rủi ro, output quá dài.",
-          "Với mỗi lỗi, thêm đúng một câu ràng buộc vào câu lệnh - đừng viết lại toàn bộ.",
-          "Đánh số phiên bản và ghi ngày cùng lý do sửa.",
-          "Nếu một ràng buộc thêm vào mà lỗi vẫn còn, vấn đề thường nằm ở đầu vào chứ không ở câu lệnh."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Hai khối nên tái sử dụng ở mọi câu lệnh",
-        "text": "Khối khóa nguồn: \"Chỉ dùng tài liệu đính kèm; mỗi con số kèm trang, đơn vị, kỳ; không tìm thấy thì ghi 'Không tìm thấy'.\" Khối định dạng: \"Trả lời bằng bảng, tiếng Việt, tối đa N từ, kết thúc bằng mục Dữ liệu còn thiếu.\" Hai khối này gần như không đổi giữa các tác vụ, nên hãy lưu riêng và ghép vào."
+        "text": "Một khối mô tả ngắn về dự án: ngôn ngữ và phiên bản, khung làm việc, quy ước đặt tên, những thứ không được dùng. Viết một lần rồi dán vào đầu mỗi cuộc trao đổi."
       },
       {
         "type": "paragraph",
-        "text": "Sau vài tháng, thư viện của bạn sẽ khác thư viện của người khác - vì nó được hình thành từ chính những lỗi bạn đã gặp và loại công việc bạn thực sự làm. Đó là lý do không nên chép nguyên một bộ câu lệnh có sẵn của ai đó rồi dừng lại: bộ đó phản ánh quy trình của họ, không phải của bạn."
+        "text": "Nó cắt được phần lớn cảnh báo giả và giả định sai - đúng hai vấn đề của bài về rà soát và bài về giả định ngầm. Và khác với mọi phần khác của câu lệnh, nó gần như không đổi trong suốt dự án."
+      },
+      {
+        "type": "heading",
+        "text": "Xây thế nào"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đúng",
+          "text": "Lưu lại NGAY khi một câu cho kết quả tốt, kèm bối cảnh nó đã hoạt động: dùng cho việc gì, tốt ở khía cạnh nào. Việc chọn lọc xảy ra lúc lưu."
+        },
+        "right": {
+          "label": "Sai",
+          "text": "Ngồi một buổi viết trước một bộ đầy đủ - bạn đang đoán mình sẽ cần gì. Hoặc ghi lại mọi câu đã dùng - thư viện phình ra ngay từ đầu."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Chữ KÈM BỐI CẢNH quan trọng hơn vẻ ngoài của nó: không có nó thì sáu tháng sau bạn nhìn một câu lệnh và không biết vì sao mình lưu nó, cũng không biết nó đã hiệu quả cho việc gì."
+      },
+      {
+        "type": "heading",
+        "text": "Và xoá đều đặn"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ngưỡng chết của một thư viện rất cụ thể: khi tìm trong nó lâu hơn tự viết lại. Xoá những câu bạn không dùng tới trong vài tháng - chúng không mất gì cả, vì nếu cần thì bạn viết lại nhanh hơn tìm."
       },
       {
         "type": "closing",
         "lines": [
-          "Thư viện câu lệnh biến mẹo dùng AI thành quy trình.",
-          "Câu lệnh tốt là câu lệnh đã được dùng và sửa qua thực tế."
+          "Một phần đáng chia sẻ trong đội: khối ràng buộc chung. Nó mô tả một thứ chung - dự án - nên mọi người dùng cùng một bản thì kết quả nhất quán hơn giữa các thành viên.",
+          "Năm bài cuối chặng là một dự án nhỏ ghép mọi thứ lại: hiểu một kho mã lạ từ đầu tới cuối."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Câu lệnh Library nghĩa là gì?",
-        "options": [
-          "Thư viện câu lệnh dùng lại",
-          "Bảng cân đối kế toán",
-          "Lịch họp cổ đông",
-          "Một loại quỹ"
-        ],
-        "correct": 0,
-        "explanation": "Đây là nơi lưu câu lệnh tốt để dùng lại."
-      },
-      {
-        "question": "Mỗi câu lệnh nên có thêm gì ngoài câu lệnh?",
-        "options": [
-          "Input cần chuẩn bị và cách kiểm tra output",
-          "Chỉ tên đẹp",
-          "Chỉ màu sắc",
-          "Không cần mô tả"
-        ],
-        "correct": 0,
-        "explanation": "Input và checklist giúp câu lệnh dùng ổn định hơn."
-      },
-      {
-        "question": "Phần nào trong một mục thư viện câu lệnh hay bị bỏ quên nhất nhưng lại quan trọng nhất?",
-        "options": [
-          "Cách kiểm tra output",
-          "Tên tác vụ",
-          "Câu lệnh mẫu",
-          "Khi nào dùng"
-        ],
-        "correct": 0,
-        "explanation": "Không có bước kiểm tra thì bạn chỉ lưu lại một mẹo. Có bước kiểm tra thì đó là quy trình - dùng lại được và bàn giao được cho người khác."
-      },
-      {
-        "question": "Bạn đã thêm ràng buộc vào câu lệnh nhưng lỗi vẫn lặp lại. Nguyên nhân thường ở đâu?",
-        "options": [
-          "Ở đầu vào - tài liệu thiếu, sai kỳ, hoặc không chứa thông tin cần tìm",
-          "Ở công cụ AI, cần đổi sang công cụ khác",
-          "Ở việc câu lệnh còn quá ngắn",
-          "Ở việc bạn chưa lưu đủ nhiều câu lệnh"
-        ],
-        "correct": 0,
-        "explanation": "Câu lệnh chỉ điều khiển được cách xử lý, không tạo ra được dữ liệu không tồn tại. Khi ràng buộc đã rõ mà lỗi vẫn còn, hãy quay lại kiểm tra tài liệu đầu vào."
-      }
-    ],
-    "day": 1275,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Câu lệnh cho kết quả tốt",
-        "arrow": true
-      },
-      {
-        "label": "Ghi lại đủ 5 phần (có cả cách kiểm tra)",
-        "arrow": true
-      },
-      {
-        "label": "Dùng lại - ghi lỗi phát hiện",
-        "arrow": true
-      },
-      {
-        "label": "Sửa câu lệnh, đánh số phiên bản"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Năm câu lệnh đầu tiên nên có",
-      "description": "Với người học tài chính, năm câu lệnh phủ được phần lớn công việc thường ngày: tóm tắt một bài báo theo cấu trúc sự kiện - tác động - câu hỏi; trích năm chỉ tiêu cơ bản từ báo cáo tài chính kèm số trang; quét dấu hiệu cảnh báo kèm bằng chứng; viết bản ghi nhớ một trang theo khung năm phần; và bắt AI tự phản biện chính bản nháp của nó. Năm câu lệnh này chính là năm bài trước của chặng, và điểm chung của chúng là đều có phần khóa nguồn cùng phần định dạng đầu ra - hai thứ bạn nên giữ nguyên khi sao chép sang tác vụ mới."
-    },
-    "keyTakeaways": [
-      "Mỗi mục trong thư viện gồm năm phần, trong đó 'cách kiểm tra output' là phần hay bị bỏ nhất và cũng quan trọng nhất.",
-      "Đánh số phiên bản câu lệnh và ghi lý do thay đổi - thư viện là thứ cần bảo trì, không phải kho lưu trữ.",
-      "Hai thành phần nên giữ nguyên khi tái sử dụng: phần khóa nguồn và phần định dạng đầu ra.",
-      "Bắt đầu từ năm câu lệnh cho công việc bạn làm nhiều nhất, đừng cố xây thư viện lớn ngay."
-    ],
-    "practicePrompt": {
-      "question": "Thư viện câu lệnh giúp gì?",
-      "options": [
-        "Giúp dùng lại câu lệnh tốt cho các việc lặp lại",
-        "Giúp không cần kiểm chứng",
-        "Giúp AI biết mọi thứ",
-        "Giúp bỏ qua dữ liệu"
-      ],
-      "correct": 0,
-      "explanation": "Thư viện câu lệnh giúp chuẩn hóa công việc lặp lại."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Tạo 5 câu lệnh đầu tiên cho công việc của bạn.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Đây là bước biến kỹ năng dùng AI từ chuyện phụ thuộc trí nhớ thành một tài sản tích lũy được theo thời gian."
+    ]
   },
   {
     "id": 1276,
-    "slug": "project-doc-mot-tai-lieu-tai-chinh",
-    "title": "AI Tài chính, Bài 16: Dự án nhỏ - đọc một tài liệu tài chính",
-    "subtitle": "Thực hành từ tài liệu thật đến bản tóm tắt có nguồn.",
-    "duration": "16 phút",
-    "estimatedMinutes": 16,
-    "difficulty": "Dễ",
-    "openingQuestion": "Project này yêu cầu đầu ra quan trọng nhất là gì?",
+    "slug": "du-an-nho-hieu-mot-kho-ma-la",
+    "title": "AI trong sản phẩm, Bài 16: Dự án nhỏ - hiểu một kho mã lạ",
+    "subtitle": "Mục tiêu không phải hiểu hết, mà là biết đủ để sửa được một thứ.",
+    "duration": "7 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🧭",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": false,
+    "whyItMatters": "Năm bài cuối chặng là một dự án chạy từ đầu tới cuối, vì đọc mười lăm bài lý thuyết không đổi được cách bạn làm việc. Bài này là bước một, và nó cũng là việc bạn gặp thật mỗi lần đổi dự án.",
+    "openingQuestion": "Mục tiêu đúng khi tiếp cận một kho mã lạ là gì?",
     "openingOptions": [
-      "Bản tóm tắt có ý chính, số liệu và nguồn kiểm chứng",
-      "Một câu trả lời thật dài và thật chi tiết về mọi mặt",
-      "Một khuyến nghị mua ngay",
-      "Một đoạn không có nguồn"
+      "Biết đủ để sửa được một thứ cụ thể, chứ không phải hiểu toàn bộ hệ thống",
+      "Hiểu toàn bộ kiến trúc trước khi chạm vào bất kỳ phần nào của mã nguồn",
+      "Đọc hết các bài kiểm thử để nắm được hành vi mong đợi của mọi thành phần",
+      "Vẽ lại sơ đồ phụ thuộc giữa các module để có bức tranh tổng thể chính xác"
     ],
     "correctOption": 0,
-    "explanation": "Dự án đầu tiên của chặng cố tình để rất nhỏ: một tài liệu ngắn, năm ý chính, ba con số có nguồn, ba câu hỏi cần kiểm chứng. Mục tiêu không phải tạo ra một bản phân tích ấn tượng, mà là chạy trọn vẹn vòng lặp đọc - trích - đối chiếu ít nhất một lần, để bạn có cảm giác thật về việc kiểm tra output thay vì chỉ đọc lý thuyết. Tiêu chí đạt duy nhất: mọi con số trong bài nộp đều mở lại được đúng chỗ trong tài liệu gốc.",
+    "explanation": "Hiểu toàn bộ một hệ thống thật là việc tính bằng tháng và phần lớn hiểu biết đó sẽ mờ đi trước khi bạn dùng tới. Đặt mục tiêu là sửa được một thứ cụ thể cho bạn một đích rõ ràng, một cách kiểm chứng rõ ràng, và nó dẫn bạn đi qua đúng những phần thật sự liên quan. Vẽ sơ đồ phụ thuộc là việc có ích nhưng nó phục vụ mục tiêu, không phải là mục tiêu.",
+    "diagram": [
+      {
+        "label": "1. Bản đồ: kho này gồm những phần nào",
+        "arrow": true
+      },
+      {
+        "label": "2. Chọn một thứ cụ thể muốn sửa được",
+        "arrow": true
+      },
+      {
+        "label": "3. Lần theo đường đi của nó qua hệ thống",
+        "arrow": true
+      },
+      {
+        "label": "4. Kiểm chứng bằng một thay đổi nhỏ chạy được"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Thay đổi nhỏ nhất có thể",
+      "description": "Cách kiểm chứng hiểu biết rẻ nhất là làm một thay đổi cực nhỏ - đổi một dòng chữ hiển thị - rồi chạy và xem nó có xuất hiện đúng chỗ mình nghĩ không. Nếu không, bạn vừa phát hiện một hiểu sai trước khi nó tốn của bạn cả ngày."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao nên chọn một thứ cụ thể muốn sửa thay vì đọc lan man?",
+        "options": [
+          "Vì nó cho bạn một đích rõ ràng và một cách kiểm chứng xem mình đã hiểu chưa",
+          "Vì đọc lan man sẽ mất nhiều thời gian hơn so với đọc có mục tiêu cụ thể",
+          "Vì phần lớn kho mã có những phần không còn được sử dụng nên đọc là lãng phí",
+          "Vì bạn sẽ được giao sửa lỗi ngay sau khi nhận bàn giao nên cần chuẩn bị trước"
+        ],
+        "correct": 0,
+        "explanation": "Vế thứ hai là vế quan trọng: không có cách kiểm chứng thì bạn không phân biệt được hiểu và tưởng là hiểu. Một mục tiêu cụ thể biến việc đọc thành một bài toán có đáp án kiểm được."
+      },
+      {
+        "question": "Bước đầu tiên nên hỏi AI điều gì?",
+        "options": [
+          "Kho này gồm những phần nào và phần nào gọi phần nào, để có khung đặt chi tiết vào",
+          "Đoạn mã nào trong kho này có khả năng chứa lỗi cao nhất cần chú ý",
+          "Kho này được viết theo kiến trúc nào và có tuân theo các nguyên tắc thiết kế nào",
+          "Những phần nào trong kho này đã lỗi thời và nên được viết lại trước tiên"
+        ],
+        "correct": 0,
+        "explanation": "Đi từ trên xuống cho bạn khung để đặt mọi chi tiết vào, đúng như bài về đọc mã lạ đã nói. Ba câu hỏi kia đều là câu hỏi đánh giá, và chúng cần hiểu biết mà bạn chưa có ở bước này."
+      },
+      {
+        "question": "Cách kiểm chứng hiểu biết rẻ nhất là gì?",
+        "options": [
+          "Làm một thay đổi cực nhỏ rồi chạy và xem nó xuất hiện đúng chỗ mình nghĩ không",
+          "Giải thích lại toàn bộ phần kiến trúc cho một đồng nghiệp đã quen với kho mã đó",
+          "Đọc lại các bài kiểm thử để xác nhận hành vi mình hiểu là hành vi mong đợi",
+          "Vẽ sơ đồ luồng dữ liệu rồi đối chiếu với mã nguồn ở từng bước một"
+        ],
+        "correct": 0,
+        "explanation": "Nó mất vài phút và cho một câu trả lời dứt khoát, khác với ba cách kia vốn vẫn nằm trong đầu bạn. Đây cũng là cách phát hiện hiểu sai trước khi nó tốn của bạn cả ngày."
+      },
+      {
+        "question": "Nên xử lý thế nào khi AI mô tả một phần khác với thứ bạn thấy trong mã?",
+        "options": [
+          "Tin mã, và coi chỗ lệch đó là dấu hiệu có thứ đáng tìm hiểu ở đó",
+          "Tin AI, vì nó đã đọc toàn bộ kho mã còn bạn mới chỉ xem một phần",
+          "Bỏ qua chỗ lệch đó vì nó không ảnh hưởng tới mục tiêu bạn đang theo đuổi",
+          "Hỏi lại để xem nó có giữ nguyên mô tả hay đưa ra một cách hiểu khác"
+        ],
+        "correct": 0,
+        "explanation": "Mã là sự thật, mọi mô tả đều là diễn giải. Nhưng vế thứ hai mới là phần đáng chú ý: chỗ mô tả lệch khỏi mã thường là chỗ có gì đó bất thường - một ngoại lệ, một bản vá vội, hoặc một lỗi."
+      },
+      {
+        "question": "Vì sao nên ghi lại những gì mình hiểu ngay trong lúc đọc?",
+        "options": [
+          "Vì hiểu biết về một kho mã mờ đi rất nhanh, và bản ghi đó thành tài liệu cho người sau",
+          "Vì viết ra giúp bạn phát hiện những chỗ mình chưa thật sự hiểu rõ",
+          "Vì đội có thể yêu cầu bạn báo cáo lại quá trình tìm hiểu kho mã đó",
+          "Vì bản ghi giúp bạn quay lại nhanh hơn nhiều khi phải tạm dừng công việc giữa chừng"
+        ],
+        "correct": 0,
+        "explanation": "Hai vế cộng lại làm việc này đáng làm ngay chứ không phải để sau. Lựa chọn thứ hai cũng đúng và nó chính là cơ chế ở bài về điểm mù, nhưng nó là lợi ích phụ ở đây."
+      }
+    ],
+    "keyTakeaways": [
+      "Mục tiêu là biết đủ để sửa được MỘT thứ, không phải hiểu toàn bộ hệ thống.",
+      "Hỏi bản đồ trước: kho gồm những phần nào, phần nào gọi phần nào.",
+      "Kiểm chứng bằng một thay đổi cực nhỏ chạy được - vài phút, câu trả lời dứt khoát.",
+      "Mã là sự thật; chỗ mô tả lệch khỏi mã là chỗ có gì đó đáng tìm hiểu.",
+      "Ghi lại ngay trong lúc đọc: hiểu biết mờ rất nhanh và bản ghi thành tài liệu."
+    ],
+    "practicePrompt": {
+      "question": "Bạn nhận một kho mã mới và có hai giờ. Cách dùng hai giờ đó hiệu quả nhất?",
+      "options": [
+        "Lấy bản đồ tổng thể, chọn một tính năng nhỏ, lần theo nó, rồi sửa một dòng chữ hiển thị",
+        "Đọc toàn bộ các tệp chính từ đầu tới cuối để nắm được cấu trúc chung của dự án",
+        "Chạy toàn bộ bộ kiểm thử và đọc các bài kiểm thử để hiểu hành vi mong đợi",
+        "Đọc lịch sử các commit gần đây để biết đội đang tập trung vào phần nào"
+      ],
+      "correct": 0,
+      "explanation": "Nó đi hết một vòng từ tổng thể xuống chi tiết và kết thúc bằng một kiểm chứng dứt khoát. Ba cách kia đều tích luỹ thông tin mà không có điểm nào để biết mình đã hiểu đúng hay chưa."
+    },
     "summary": {
-      "keyIdea": "Project đầu tiên: dùng AI đọc một tài liệu thật và tạo bản tóm tắt kiểm chứng được.",
-      "commonMistake": "Chọn tài liệu quá dài ngay từ đầu.",
-      "action": "Chọn một bài báo hoặc báo cáo ngắn và làm đủ 4 bước."
+      "keyIdea": "Đặt mục tiêu sửa được một thứ cụ thể - nó cho cả đích lẫn cách kiểm chứng.",
+      "formula": "Bản đồ → chọn một thứ → lần theo → sửa một dòng để kiểm chứng.",
+      "commonMistake": "Đặt mục tiêu hiểu toàn bộ, vốn tính bằng tháng và mờ đi trước khi dùng tới.",
+      "action": "Chọn một kho mã bạn chưa quen và chạy bốn bước này trong hai giờ."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một kho mã bạn chưa quen - của công ty hoặc mã nguồn mở. Dành hai giờ chạy bốn bước: bản đồ, chọn một tính năng, lần theo nó, sửa một dòng chữ hiển thị.",
+      "secondary": "Ghi lại những gì bạn hiểu ngay trong lúc làm. Bản ghi đó vừa là cách phát hiện chỗ mình chưa hiểu, vừa là tài liệu cho người vào sau bạn."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Đã học lý thuyết thì phải làm thử. Project này rất nhỏ để ai cũng bắt đầu được."
+        "text": "Năm bài cuối chặng là một dự án chạy từ đầu tới cuối, vì mười lăm bài lý thuyết không đổi được cách bạn làm việc. Bài này là bước một - và nó cũng là việc bạn gặp thật mỗi lần đổi dự án."
       },
       {
         "type": "heading",
-        "text": "Chọn tài liệu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Hãy chọn một bài báo tài chính hoặc 5-10 trang trong một báo cáo. Đừng chọn tài liệu quá dài ở lần đầu."
-      },
-      {
-        "type": "heading",
-        "text": "4 bước thực hành"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Tóm tắt 5 ý chính",
-          "Trích 3 con số quan trọng",
-          "Ghi nguồn cho từng con số",
-          "Viết 3 câu hỏi cần kiểm tra thêm"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Mẫu nộp bài"
-      },
-      {
-        "type": "paragraph",
-        "text": "Tên tài liệu, 5 ý chính, bảng 3 con số có nguồn, 3 rủi ro/câu hỏi, điều bạn chưa chắc chắn."
-      },
-      {
-        "type": "heading",
-        "text": "Ba gợi ý tài liệu để bắt đầu"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Một bài báo về kết quả kinh doanh quý của một doanh nghiệp niêm yết - có số liệu cụ thể, độ dài vừa phải.",
-          "Phần thuyết minh về nợ vay hoặc phải thu trong báo cáo tài chính quý gần nhất của một doanh nghiệp bạn biết.",
-          "Nghị quyết đại hội cổ đông của một doanh nghiệp - ngắn, có kế hoạch và cổ tức bằng số."
-        ]
+        "text": "Đặt mục tiêu đúng"
       },
       {
         "type": "callout",
-        "label": "Câu lệnh cho dự án này",
-        "text": "\"Chỉ dùng tài liệu đính kèm. (1) Tóm tắt 5 ý chính, mỗi ý một câu. (2) Trích 3 con số quan trọng nhất, mỗi con số kèm trang/đoạn, đơn vị và kỳ báo cáo. (3) Nêu 3 câu hỏi cần kiểm chứng thêm mà tài liệu này chưa trả lời. Nếu không tìm thấy thông tin nào, ghi 'Không tìm thấy' thay vì suy đoán. Không đưa khuyến nghị mua bán.\""
+        "label": "Biết đủ để sửa được MỘT thứ",
+        "text": "Hiểu toàn bộ một hệ thống thật là việc tính bằng tháng, và phần lớn hiểu biết đó mờ đi trước khi bạn dùng tới. Một mục tiêu cụ thể cho bạn ba thứ: một đích rõ ràng, một cách kiểm chứng, và một đường đi qua đúng những phần liên quan."
       },
       {
         "type": "heading",
-        "text": "Bảng tự chấm trước khi coi là xong"
+        "text": "Bốn bước"
       },
       {
         "type": "list",
         "items": [
-          "Cả 3 con số đều mở lại được đúng chỗ trong tài liệu gốc? (bắt buộc đạt)",
-          "Mỗi con số đều có đơn vị và kỳ báo cáo rõ ràng? (bắt buộc đạt)",
-          "5 ý chính có ý nào là nhận định của người viết bài chứ không phải dữ kiện? Đã đánh dấu chưa?",
-          "3 câu hỏi kiểm chứng có đủ cụ thể để biết phải tra ở đâu không, hay còn chung chung?",
-          "Đã ghi lại chỗ nào bạn chưa chắc chắn chưa?"
+          "Bản đồ: hỏi kho này gồm những phần nào, phần nào gọi phần nào. Đi từ trên xuống cho bạn khung để đặt chi tiết vào.",
+          "Chọn một thứ cụ thể bạn muốn sửa được - một tính năng nhỏ, một màn hình, một điểm truy cập.",
+          "Lần theo đường đi của nó qua hệ thống, hỏi từng chặng và đối chiếu với mã ở mỗi chặng.",
+          "Kiểm chứng: làm một thay đổi CỰC NHỎ và chạy."
         ]
       },
       {
         "type": "paragraph",
-        "text": "Nếu ở mục đầu tiên bạn phát hiện dù chỉ một con số không khớp, đừng chỉ sửa con số đó - hãy đối chiếu lại cả ba. Một lỗi trong output thường không đi một mình, và đây cũng là bài học chính của dự án đầu tiên."
+        "text": "Bước bốn là bước hay bị bỏ và nó là bước quan trọng nhất. Đổi một dòng chữ hiển thị rồi xem nó có xuất hiện đúng chỗ mình nghĩ không mất vài phút, và nó cho một câu trả lời dứt khoát - khác với mọi cách kiểm chứng còn nằm trong đầu bạn."
+      },
+      {
+        "type": "heading",
+        "text": "Khi mô tả lệch khỏi mã"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Tin cái nào",
+          "text": "Mã. Mã là sự thật, mọi mô tả - của AI hay của tài liệu cũ - đều là diễn giải."
+        },
+        "right": {
+          "label": "Và chú ý chỗ lệch",
+          "text": "Chỗ mô tả lệch khỏi mã thường là chỗ có gì đó bất thường: một ngoại lệ, một bản vá vội, hoặc một lỗi. Đó là chỗ đáng đọc kỹ nhất."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Dự án nhỏ giúp người mới tự tin.",
-          "Quan trọng nhất là có nguồn, không phải viết thật dài."
+          "Ghi lại những gì bạn hiểu ngay trong lúc đọc, đừng để sau. Hiểu biết về một kho mã mờ đi rất nhanh, và bản ghi đó thành tài liệu cho người vào sau bạn - phần vì sao mà bài về tài liệu nói chỉ bạn mới có.",
+          "Bài sau là bước hai của dự án: tìm lỗi trong chính kho mã đó."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Người mới nên chọn tài liệu thế nào?",
-        "options": [
-          "Ngắn, rõ nguồn, dễ kiểm tra",
-          "Càng dài càng tốt",
-          "Không có nguồn",
-          "Tài liệu mật chưa được phép dùng"
-        ],
-        "correct": 0,
-        "explanation": "Tài liệu nhỏ giúp luyện quy trình an toàn."
-      },
-      {
-        "question": "Bản tóm tắt project cần có gì?",
-        "options": [
-          "Ý chính, số liệu, nguồn và câu hỏi cần kiểm tra",
-          "Chỉ kết luận",
-          "Chỉ tên tài liệu",
-          "Chỉ hình ảnh"
-        ],
-        "correct": 0,
-        "explanation": "Đây là đầu ra kiểm chứng được."
-      },
-      {
-        "question": "Vì sao dự án đầu tiên nên dùng tài liệu ngắn?",
-        "options": [
-          "Vì mục tiêu là chạy trọn vòng lặp đọc - trích - đối chiếu ít nhất một lần, không phải xử lý tài liệu lớn",
-          "Vì AI không đọc được tài liệu dài",
-          "Vì tài liệu dài thường kém chính xác hơn",
-          "Vì tài liệu ngắn không cần kiểm chứng"
-        ],
-        "correct": 0,
-        "explanation": "Quy trình cho tài liệu 5 trang và 150 trang là như nhau, chỉ khác số vòng lặp. Học quy trình trên tài liệu nhỏ thì khả năng đi đến cuối cao hơn nhiều."
-      },
-      {
-        "question": "Đối chiếu và phát hiện một trong ba con số không khớp nguồn. Bạn nên làm gì?",
-        "options": [
-          "Đối chiếu lại cả ba con số, vì một lỗi thường không đi một mình",
-          "Chỉ sửa con số sai rồi nộp bài",
-          "Bỏ con số đó ra khỏi bài",
-          "Hỏi lại AI và tin vào câu trả lời lần hai"
-        ],
-        "correct": 0,
-        "explanation": "Một con số sai cho biết quy trình trích xuất lần đó không đáng tin, chứ không chỉ riêng con số ấy có vấn đề. Kiểm tra lại toàn bộ là phản ứng đúng."
-      }
-    ],
-    "day": 1276,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Chọn tài liệu ngắn (1 bài báo hoặc 5-10 trang)",
-        "arrow": true
-      },
-      {
-        "label": "AI tóm tắt 5 ý + trích 3 số kèm trang",
-        "arrow": true
-      },
-      {
-        "label": "Bạn mở lại nguồn, đối chiếu từng số",
-        "arrow": true
-      },
-      {
-        "label": "Nộp bản tóm tắt + 3 câu hỏi cần kiểm chứng"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Chọn tài liệu vừa sức",
-      "description": "Sai lầm phổ biến nhất ở dự án đầu tiên là chọn tài liệu quá lớn - một báo cáo thường niên 150 trang hoặc một bản cáo bạch. Người học mất cả buổi mà chưa đối chiếu xong con số nào, rồi bỏ dở và kết luận rằng phương pháp này không thực tế. Tài liệu vừa sức cho lần đầu là một bài báo tài chính có số liệu cụ thể, hoặc phần thuyết minh của một chỉ tiêu trong báo cáo quý - khoảng năm đến mười trang. Khi vòng lặp đã quen tay, kích thước tài liệu gần như không còn là vấn đề, vì quy trình vẫn y hệt, chỉ lặp nhiều lần hơn."
-    },
-    "keyTakeaways": [
-      "Chọn tài liệu ngắn cho lần đầu - mục tiêu là chạy hết quy trình, không phải xử lý tài liệu lớn.",
-      "Ba con số có nguồn giá trị hơn mười ý tóm tắt không kiểm chứng được.",
-      "Bước bắt buộc là tự mở lại tài liệu gốc để đối chiếu, không được bỏ.",
-      "Sản phẩm cuối gồm cả những chỗ bạn chưa chắc chắn - đó là phần trung thực nhất của bài nộp."
-    ],
-    "practicePrompt": {
-      "question": "Project này yêu cầu đầu ra quan trọng nhất là gì?",
-      "options": [
-        "Bản tóm tắt có ý chính, số liệu và nguồn kiểm chứng",
-        "Một câu trả lời thật dài",
-        "Một khuyến nghị mua ngay",
-        "Một đoạn không có nguồn"
-      ],
-      "correct": 0,
-      "explanation": "Project giúp luyện quy trình đọc có nguồn."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Chọn một bài báo hoặc báo cáo ngắn và làm đủ 4 bước.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Cảm giác đối chiếu một con số với nguồn không học được bằng cách đọc - phải tự làm một lần thì phản xạ mới hình thành."
+    ]
   },
   {
     "id": 1277,
-    "slug": "project-tim-rui-ro-va-cau-hoi-kiem-chung",
-    "title": "AI Tài chính, Bài 17: Dự án nhỏ - tìm rủi ro và câu hỏi kiểm chứng",
-    "subtitle": "Biến AI thành người phụ giúp soi điểm cần đào sâu.",
-    "duration": "16 phút",
-    "estimatedMinutes": 16,
+    "slug": "du-an-nho-tim-loi-va-kiem-chung",
+    "title": "AI trong sản phẩm, Bài 17: Dự án nhỏ - tìm lỗi và kiểm chứng",
+    "subtitle": "Mỗi nghi ngờ phải đi kèm một cách chứng minh, nếu không nó chỉ là một ý kiến.",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "openingQuestion": "Một rủi ro do AI nêu ra chỉ đáng dùng khi nào?",
+    "emoji": "🎯",
+    "track": "professional",
+    "interactiveType": "ai-verify",
+    "isFundamental": false,
+    "whyItMatters": "Danh sách nghi ngờ thì dễ có, và nó vô dụng nếu không kèm cách chứng minh. Bước này là chỗ bạn học cách biến một danh sách phỏng đoán thành một danh sách kết luận.",
+    "openingQuestion": "Bạn nhận về mười điểm nghi ngờ từ AI. Việc tiếp theo là gì?",
     "openingOptions": [
-      "Khi có bằng chứng hoặc câu hỏi kiểm chứng rõ",
-      "Khi nghe qua thì thấy nó đáng sợ và nghiêm trọng",
-      "Khi không có nguồn",
-      "Khi thật dài"
+      "Xin cách chứng minh cho từng điểm, rồi tự chạy các cách đó để lọc ra cái thật",
+      "Sắp xếp mười điểm theo mức độ nghiêm trọng rồi xử lý lần lượt từ trên xuống",
+      "Sửa hết cả mười điểm vì sửa thêm không tốn kém mà lại an toàn hơn",
+      "Hỏi lại để xem điểm nào được nhắc lại, vì những điểm đó có khả năng là thật"
     ],
     "correctOption": 0,
-    "explanation": "Dự án thứ hai nâng độ khó: từ tóm tắt sang tìm điểm cần đào sâu. Điểm mấu chốt là phân biệt rủi ro chung chung với rủi ro kiểm chứng được. 'Doanh nghiệp chịu rủi ro cạnh tranh' đúng với mọi doanh nghiệp nên không giúp bạn làm gì tiếp. 'Phải thu tăng 40% trong khi doanh thu tăng 10%, cần kiểm tra tuổi nợ ở thuyết minh 8' thì chỉ đúng với doanh nghiệp này và cho bạn biết chính xác việc phải làm tiếp. Bảng bốn cột trong bài buộc mọi rủi ro phải đạt chuẩn thứ hai.",
+    "explanation": "Mười điểm nghi ngờ chưa phải mười vấn đề - phần lớn danh sách kiểu này chứa cả cảnh báo thật lẫn cảnh báo giả trộn lẫn, và không có dấu hiệu nào phân biệt từ bên ngoài. Xin cách chứng minh biến mỗi điểm thành một việc làm được trong vài phút. Sắp xếp theo mức nghiêm trọng thì bạn đang xếp hạng những thứ chưa biết có thật hay không.",
+    "diagram": [
+      {
+        "label": "Nghi ngờ + cách chứng minh = việc làm được",
+        "arrow": true
+      },
+      {
+        "label": "Nghi ngờ không kèm cách chứng minh = một ý kiến",
+        "arrow": true
+      },
+      {
+        "label": "Tự chạy cách chứng minh, đừng hỏi nó xác nhận",
+        "arrow": true
+      },
+      {
+        "label": "Kết luận: thật, giả, hoặc chưa xác định được"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Ba loại kết luận",
+      "description": "Sau khi kiểm, mỗi điểm rơi vào một trong ba nhóm: thật và cần sửa, giả và bỏ đi, hoặc chưa xác định được. Nhóm thứ ba là nhóm hay bị bỏ quên - và ghi nó lại kèm lý do có giá trị hơn là ép nó vào một trong hai nhóm kia."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao nghi ngờ không kèm cách chứng minh lại ít giá trị?",
+        "options": [
+          "Vì bạn vẫn phải tự nghĩ ra cách kiểm, và đó thường là phần khó hơn",
+          "Vì không có cách chứng minh thì không biết nghi ngờ đó có nghiêm trọng không",
+          "Vì các nghi ngờ chung chung thường áp dụng được cho mọi đoạn mã nên vô nghĩa",
+          "Vì bạn không thể báo cáo lại cho đội nếu không có bằng chứng cụ thể"
+        ],
+        "correct": 0,
+        "explanation": "Sinh ra danh sách nghi ngờ là phần dễ và mô hình làm rất nhanh. Nghĩ ra cách kiểm từng cái thì tốn hơn nhiều, và nếu bạn vẫn phải tự làm phần đó thì bạn chưa tiết kiệm được bao nhiêu."
+      },
+      {
+        "question": "Vì sao không nên hỏi AI xác nhận một nghi ngờ nó vừa nêu?",
+        "options": [
+          "Vì nó sẽ tìm cách giải thích tại sao nghi ngờ đó đúng thay vì đánh giá lại độc lập",
+          "Vì nó không nhớ được nghi ngờ đó trong các lượt trao đổi tiếp theo",
+          "Vì việc xác nhận đòi hỏi chạy mã mà nó không có khả năng thực hiện",
+          "Vì câu trả lời xác nhận thường rất ngắn gọn nên nó không chứa đủ thông tin hữu ích nào"
+        ],
+        "correct": 0,
+        "explanation": "Nghi ngờ đó đã nằm trong ngữ cảnh nên nó trở thành tiền đề, và phần sinh tiếp theo sẽ nhất quán với tiền đề đó. Đây là cùng cơ chế với cái neo - lần này do chính mô hình tự đặt."
+      },
+      {
+        "question": "Ba loại kết luận sau khi kiểm là gì?",
+        "options": [
+          "Thật và cần sửa, giả và bỏ đi, hoặc chưa xác định được",
+          "Nghiêm trọng, trung bình và nhẹ tuỳ theo mức ảnh hưởng tới hệ thống",
+          "Cần sửa ngay, cần sửa sau và không cần sửa trong phạm vi công việc hiện tại",
+          "Đã xác nhận bằng kiểm thử, đã xác nhận bằng đọc mã, và chưa được xác nhận"
+        ],
+        "correct": 0,
+        "explanation": "Nhóm thứ ba hay bị bỏ quên vì nó không cho cảm giác hoàn thành. Nhưng ghi nó lại kèm lý do có giá trị hơn là ép nó vào một trong hai nhóm kia - người sau đọc sẽ biết chỗ đó đã được xem và vì sao chưa kết luận được."
+      },
+      {
+        "question": "Cách chứng minh tốt cho một nghi ngờ trông thế nào?",
+        "options": [
+          "Một việc cụ thể làm được trong vài phút và cho kết quả dứt khoát đúng hoặc sai",
+          "Một lập luận logic chặt chẽ giải thích vì sao nghi ngờ đó là có cơ sở",
+          "Một tham chiếu tới tài liệu hoặc bài viết mô tả cùng loại vấn đề đó",
+          "Một danh sách các điều kiện cần có để vấn đề đó thật sự xảy ra trong thực tế"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn cuối gần đúng nhưng nó dừng lại ở mô tả điều kiện chứ chưa nói cách tạo ra điều kiện đó. Chữ DỨT KHOÁT là mấu chốt: một cách chứng minh cho ra kết quả còn phải diễn giải thì chưa phải cách chứng minh."
+      },
+      {
+        "question": "Vì sao bước này quan trọng với cả những nghi ngờ hoá ra là giả?",
+        "options": [
+          "Vì tỷ lệ thật trên giả cho bạn biết nên tin công cụ tới mức nào ở loại mã của mình",
+          "Vì mỗi nghi ngờ giả cũng chỉ ra được một chỗ mà mã chưa đủ rõ ràng và cần cải thiện",
+          "Vì việc kiểm chứng giúp bạn hiểu sâu hơn về đoạn mã đang làm việc",
+          "Vì bạn cần ghi lại đầy đủ để chứng minh mình đã rà soát kỹ lưỡng"
+        ],
+        "correct": 0,
+        "explanation": "Không có tỷ lệ đó thì bạn hoặc tin quá nhiều hoặc tin quá ít, và cả hai đều tốn kém. Đây là con số riêng của từng người vì nó phụ thuộc vào loại mã bạn hay viết."
+      }
+    ],
+    "keyTakeaways": [
+      "Nghi ngờ + cách chứng minh = việc làm được; thiếu vế sau thì đó chỉ là một ý kiến.",
+      "Tự chạy cách chứng minh, đừng hỏi AI xác nhận - nghi ngờ đã thành tiền đề của nó.",
+      "Ba loại kết luận: thật, giả, và chưa xác định được. Nhóm ba hay bị bỏ quên.",
+      "Cách chứng minh tốt cho kết quả DỨT KHOÁT trong vài phút.",
+      "Tỷ lệ thật trên giả cho bạn biết nên tin công cụ tới mức nào ở loại mã của mình."
+    ],
+    "practicePrompt": {
+      "question": "Một nghi ngờ bạn kiểm mãi mà không kết luận được. Nên làm gì?",
+      "options": [
+        "Ghi lại vào nhóm chưa xác định kèm lý do, thay vì ép nó thành thật hoặc giả",
+        "Coi như giả và bỏ qua, vì nếu là vấn đề thật thì nó đã lộ ra khi kiểm chứng rồi",
+        "Coi như thật và sửa cho chắc, vì chi phí sửa nhỏ hơn chi phí bỏ sót một lỗi",
+        "Hỏi lại AI với nhiều thông tin hơn để nó đưa ra kết luận rõ ràng hơn"
+      ],
+      "correct": 0,
+      "explanation": "Nhóm thứ ba tồn tại vì nó có thật, và ép một điểm vào nhóm khác chỉ để có cảm giác hoàn thành là tự lừa mình. Sửa cho chắc thì thêm mã cho một trường hợp chưa ai chứng minh là tồn tại - đúng vấn đề bài về rà soát đã nêu."
+    },
     "summary": {
-      "keyIdea": "AI tìm rủi ro tốt khi bạn yêu cầu bằng chứng và câu hỏi kiểm chứng.",
-      "commonMistake": "Liệt kê rủi ro chung chung không gắn với dữ liệu.",
-      "action": "Tạo bảng rủi ro gồm: rủi ro, bằng chứng, nguồn, câu hỏi kiểm chứng."
+      "keyIdea": "Biến một danh sách phỏng đoán thành một danh sách kết luận, bằng cách chứng minh.",
+      "formula": "Xin nghi ngờ kèm cách kiểm → tự chạy → xếp vào một trong ba nhóm.",
+      "commonMistake": "Sửa hết mọi điểm được nêu, kể cả những điểm chưa ai chứng minh là thật.",
+      "action": "Trên kho mã ở bài trước, xin mười điểm nghi ngờ kèm cách kiểm rồi tự kiểm."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Trên kho mã bạn đã hiểu ở bài trước, xin mười điểm nghi ngờ kèm cách chứng minh cho từng điểm. Rồi tự chạy từng cách và xếp kết quả vào ba nhóm.",
+      "secondary": "Ghi lại tỷ lệ thật trên giả. Đó là con số riêng của bạn, và nó quyết định bạn nên tin công cụ tới mức nào trong loại mã mà bạn hay làm việc."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Rủi ro chung chung không giúp phân tích. Rủi ro tốt phải kiểm chứng được."
+        "text": "Bước một cho bạn hiểu biết về kho mã. Bước hai là dùng hiểu biết đó để tìm vấn đề - và quan trọng hơn, để phân biệt vấn đề thật với cảnh báo giả."
       },
       {
         "type": "heading",
-        "text": "Bảng rủi ro 4 cột"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Rủi ro là gì?",
-          "Bằng chứng nằm ở đâu?",
-          "Mức độ nghiêm trọng?",
-          "Cần hỏi gì tiếp?"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Câu lệnh mẫu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Dựa trên tài liệu này, hãy tìm 5 rủi ro. Không nêu rủi ro chung chung. Với mỗi rủi ro, ghi bằng chứng, nguồn và câu hỏi kiểm chứng."
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ"
-      },
-      {
-        "type": "paragraph",
-        "text": "Rủi ro tốt: phải thu tăng 40% trong khi doanh thu tăng 10%, cần kiểm tra tuổi nợ và khách hàng lớn. Rủi ro kém: công ty có thể gặp khó khăn."
-      },
-      {
-        "type": "heading",
-        "text": "Phép thử: rủi ro của bạn có mang thông tin không?"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Thử thay tên doanh nghiệp bằng một doanh nghiệp khác cùng ngành. Nếu câu đó vẫn đúng, nó chưa mang thông tin.",
-          "Thử xóa phần bằng chứng số đi. Nếu câu còn lại vẫn nghe hợp lý, nghĩa là bằng chứng chưa gắn chặt với kết luận.",
-          "Thử hỏi 'tôi phải mở trang nào tiếp theo?'. Nếu không trả lời được, rủi ro đó chưa dùng được."
-        ]
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Rủi ro chung chung",
-          "text": "\"Doanh nghiệp chịu rủi ro thanh khoản và rủi ro cạnh tranh trong bối cảnh thị trường nhiều biến động.\" Không có số, không có nguồn, không chỉ ra việc gì để làm tiếp."
-        },
-        "right": {
-          "label": "Rủi ro kiểm chứng được",
-          "text": "\"Nợ vay ngắn hạn 1.800 tỷ đến hạn trong 12 tháng (tr.53) trong khi tiền và tương đương tiền là 240 tỷ và dòng tiền kinh doanh năm 2024 là 310 tỷ (tr.61). Cần xem kế hoạch tái cấp vốn ở thuyết minh 15.\""
-        }
+        "text": "Vế thiếu của một danh sách nghi ngờ"
       },
       {
         "type": "callout",
-        "label": "Câu lệnh cho dự án này",
-        "text": "\"Chỉ dùng tài liệu đính kèm, bao gồm phần thuyết minh. Tìm tối đa 5 rủi ro. Trình bày bảng 4 cột: Rủi ro | Bằng chứng số liệu (kèm kỳ, đơn vị, trang) | Mức độ nghiêm trọng và lý do | Việc cần kiểm tra tiếp (nêu rõ thuyết minh nào hoặc câu hỏi nào). Loại bỏ mọi rủi ro không trích được số từ tài liệu. Nếu chỉ tìm được ít hơn 5, hãy nêu ít hơn và giải thích vì sao.\""
+        "label": "Nghi ngờ không kèm cách chứng minh là một ý kiến",
+        "text": "Sinh ra danh sách nghi ngờ là phần dễ và mô hình làm rất nhanh. Nghĩ ra cách kiểm từng cái thì tốn hơn nhiều - nên nếu bạn vẫn phải tự làm phần đó thì bạn chưa tiết kiệm được bao nhiêu."
+      },
+      {
+        "type": "paragraph",
+        "text": "Một cách chứng minh tốt là một việc cụ thể làm được trong vài phút và cho kết quả DỨT KHOÁT. Nếu kết quả còn phải diễn giải thì đó chưa phải cách chứng minh - bạn chỉ vừa đổi một câu hỏi thành một câu hỏi khác."
       },
       {
         "type": "heading",
-        "text": "Đánh giá mức độ nghiêm trọng thế nào cho có cơ sở"
+        "text": "Tự chạy, đừng hỏi xác nhận"
       },
       {
-        "type": "list",
-        "items": [
-          "Cao: ảnh hưởng trực tiếp đến khả năng trả nợ hoặc duy trì hoạt động trong 12 tháng tới.",
-          "Trung bình: ảnh hưởng đến lợi nhuận hoặc dòng tiền nhưng doanh nghiệp còn đệm để xử lý.",
-          "Thấp: ảnh hưởng đến một mảng nhỏ, hoặc là sự kiện một lần đã được xử lý."
+        "type": "paragraph",
+        "text": "Hỏi AI xác nhận một nghi ngờ chính nó vừa nêu là cách chắc chắn nhận được câu đồng ý. Nghi ngờ đó đã nằm trong ngữ cảnh nên nó trở thành tiền đề, và phần sinh tiếp theo sẽ nhất quán với tiền đề đó."
+      },
+      {
+        "type": "paragraph",
+        "text": "Đây là cùng cơ chế với cái neo ở chặng rà soát code, lần này do chính mô hình tự đặt cho mình. Chỉ có việc bạn tự chạy cách chứng minh mới phá được nó."
+      },
+      {
+        "type": "heading",
+        "text": "Ba nhóm kết luận"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Mỗi điểm rơi vào một nhóm",
+        "concepts": [
+          {
+            "vi": "Thật",
+            "en": "confirmed",
+            "def": "Cách chứng minh cho kết quả rõ ràng là có vấn đề. Đưa vào danh sách việc cần sửa."
+          },
+          {
+            "vi": "Giả",
+            "en": "refuted",
+            "def": "Cách chứng minh cho thấy không có vấn đề. Bỏ đi - và đừng sửa cho chắc, vì đó là thêm mã cho một trường hợp không tồn tại."
+          },
+          {
+            "vi": "Chưa xác định",
+            "en": "unresolved",
+            "def": "Kiểm mãi mà không kết luận được. Ghi lại KÈM LÝ DO - nhóm này hay bị bỏ quên vì nó không cho cảm giác hoàn thành."
+          }
         ]
       },
       {
         "type": "paragraph",
-        "text": "Ghi rõ lý do xếp mức, đừng chỉ ghi 'cao'. Lý do mới là phần người đọc - và chính bạn ở kỳ sau - cần để đánh giá lại khi tình hình thay đổi."
+        "text": "Ghi lại nhóm thứ ba có giá trị hơn là ép nó vào một trong hai nhóm kia: người sau đọc sẽ biết chỗ đó đã được xem, và biết vì sao chưa kết luận được."
       },
       {
         "type": "closing",
         "lines": [
-          "Rủi ro càng cụ thể càng hữu ích.",
-          "AI giúp gợi ý, bạn biến nó thành câu hỏi điều tra."
+          "Và một con số đáng ghi lại: tỷ lệ thật trên giả. Không có nó thì bạn hoặc tin quá nhiều hoặc tin quá ít, và cả hai đều tốn kém.",
+          "Đó là con số riêng của từng người vì nó phụ thuộc vào loại mã bạn hay viết. Bài sau là bước ba: viết lại những gì bạn vừa hiểu."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Rủi ro nào tốt hơn?",
-        "options": [
-          "Phải thu tăng nhanh hơn doanh thu, cần kiểm tra tuổi nợ",
-          "Công ty có thể rủi ro",
-          "Thị trường khó đoán",
-          "Có thể có vấn đề"
-        ],
-        "correct": 0,
-        "explanation": "Rủi ro tốt gắn với dữ liệu và hướng kiểm tra."
-      },
-      {
-        "question": "Bảng rủi ro nên có gì?",
-        "options": [
-          "Rủi ro, bằng chứng, nguồn, câu hỏi kiểm chứng",
-          "Chỉ tên rủi ro",
-          "Chỉ màu sắc",
-          "Chỉ lời khuyên mua bán"
-        ],
-        "correct": 0,
-        "explanation": "Bảng này giúp biến rủi ro thành việc cần làm."
-      },
-      {
-        "question": "Phép thử nhanh nào cho biết một câu rủi ro chưa mang thông tin?",
-        "options": [
-          "Thay tên doanh nghiệp bằng một doanh nghiệp khác cùng ngành mà câu đó vẫn đúng",
-          "Câu đó dài hơn hai dòng",
-          "Câu đó có chứa con số",
-          "Câu đó nhắc đến thuyết minh"
-        ],
-        "correct": 0,
-        "explanation": "Rủi ro có giá trị phải gắn với dữ liệu riêng của doanh nghiệp đó. Câu nào áp được cho cả ngành thì chỉ là mô tả bối cảnh, không phải phát hiện."
-      },
-      {
-        "question": "Khi xếp mức độ nghiêm trọng cho một rủi ro, điều gì quan trọng nhất?",
-        "options": [
-          "Ghi rõ lý do xếp mức, dựa trên tác động lên dòng tiền và khả năng trả nợ",
-          "Xếp càng cao càng an toàn cho người phân tích",
-          "Dùng đúng ba mức cao - trung bình - thấp",
-          "Xếp theo mức độ tin tức đang nói nhiều đến đâu"
-        ],
-        "correct": 0,
-        "explanation": "Nhãn mức độ không có giá trị nếu thiếu lý do. Lý do là thứ cho phép bạn và người đọc đánh giá lại khi có dữ liệu mới, thay vì phải tin vào cảm nhận ban đầu."
-      }
-    ],
-    "day": 1277,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Rủi ro là gì (nêu cụ thể)",
-        "arrow": true
-      },
-      {
-        "label": "Bằng chứng nằm ở đâu (số + trang)",
-        "arrow": true
-      },
-      {
-        "label": "Mức độ nghiêm trọng",
-        "arrow": true
-      },
-      {
-        "label": "Cần hỏi/tra gì tiếp"
-      }
-    ],
-    interactiveType: "ai-verify",
-    "realWorldExample": {
-      "company": "Cùng một doanh nghiệp, hai cách viết rủi ro",
-      "description": "Giả sử bạn đang xem một doanh nghiệp bán lẻ. Cách viết thứ nhất: 'Rủi ro cạnh tranh gay gắt, rủi ro biến động giá đầu vào, rủi ro thay đổi thói quen tiêu dùng.' Ba dòng này áp được cho bất kỳ doanh nghiệp bán lẻ nào trên thế giới, nên chúng không mang thông tin. Cách viết thứ hai: 'Tồn kho tăng 35% trong khi doanh thu đi ngang, số ngày tồn kho tăng từ 62 lên 84 ngày; cần kiểm tra cơ cấu tồn kho theo nhóm hàng ở thuyết minh và chính sách trích lập dự phòng giảm giá.' Dòng này chỉ đúng với doanh nghiệp cụ thể, có bằng chứng số, và chỉ thẳng ra hai việc phải làm tiếp. Đó là khác biệt giữa liệt kê rủi ro và phân tích rủi ro."
-    },
-    "keyTakeaways": [
-      "Rủi ro chỉ dùng được khi có bằng chứng số, nguồn trang, và một việc cụ thể để kiểm tra tiếp.",
-      "Kiểm tra nhanh: nếu câu rủi ro đó áp được cho mọi doanh nghiệp cùng ngành thì nó chưa mang thông tin.",
-      "Mức độ nghiêm trọng nên đánh giá theo tác động lên dòng tiền và khả năng trả nợ, không theo cảm giác.",
-      "Rủi ro chưa kết luận được thì ghi lại để đối chiếu ở kỳ sau - xu hướng nhiều kỳ mới là bằng chứng mạnh."
-    ],
-    "practicePrompt": {
-      "question": "Một rủi ro do AI nêu ra chỉ đáng dùng khi nào?",
-      "options": [
-        "Khi có bằng chứng hoặc câu hỏi kiểm chứng rõ",
-        "Khi nghe đáng sợ",
-        "Khi không có nguồn",
-        "Khi thật dài"
-      ],
-      "correct": 0,
-      "explanation": "Rủi ro cần có bằng chứng hoặc hướng kiểm chứng."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Tạo bảng rủi ro gồm: rủi ro, bằng chứng, nguồn, câu hỏi kiểm chứng.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Đây là kỹ năng phân biệt người đọc báo cáo có phương pháp với người chỉ đọc lướt - và nó chuyển được sang mọi loại tài liệu, không riêng báo cáo tài chính."
+    ]
   },
   {
     "id": 1278,
-    "slug": "project-viet-ban-ghi-nho-mot-trang",
-    "title": "AI Tài chính, Bài 18: Dự án nhỏ - viết bản ghi nhớ 1 trang",
-    "subtitle": "Từ tài liệu và rủi ro thành bản ghi nhớ ngắn, dễ hiểu.",
-    "duration": "16 phút",
-    "estimatedMinutes": 16,
-    "difficulty": "Trung bình",
-    "openingQuestion": "Bản ghi nhớ 1 trang tốt nên giúp người đọc làm gì?",
+    "slug": "du-an-nho-viet-tai-lieu-mot-trang",
+    "title": "AI trong sản phẩm, Bài 18: Dự án nhỏ - viết tài liệu một trang",
+    "subtitle": "Một trang là ràng buộc, không phải mục tiêu - nó buộc bạn chọn cái gì quan trọng.",
+    "duration": "6 phút",
+    "difficulty": "Dễ",
+    "emoji": "📃",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": false,
+    "whyItMatters": "Viết ra là bước kiểm chứng cuối cùng cho hiểu biết của bạn, và nó cũng là thứ duy nhất trong dự án này còn lại sau khi bạn chuyển sang việc khác.",
+    "openingQuestion": "Vì sao giới hạn một trang lại quan trọng?",
     "openingOptions": [
-      "Hiểu kết luận, bằng chứng, rủi ro và việc cần kiểm tra tiếp",
-      "Đọc càng lâu càng tốt",
-      "Không thấy rủi ro",
-      "Tin ngay mà không cần phải hỏi lại thêm bất cứ điều gì nữa cả"
+      "Vì nó buộc bạn chọn cái gì quan trọng, và việc chọn đó chính là phần bạn phải làm",
+      "Vì tài liệu ngắn thì người đọc dễ tiếp thu hơn và nhớ được lâu hơn",
+      "Vì tài liệu dài sẽ tốn nhiều thời gian bảo trì mỗi khi mã nguồn thay đổi",
+      "Vì một trang là độ dài tiêu chuẩn cho tài liệu mô tả một module phần mềm"
     ],
     "correctOption": 0,
-    "explanation": "Dự án thứ ba đóng gói hai dự án trước thành một sản phẩm hoàn chỉnh: bản ghi nhớ một trang. Ràng buộc độ dài không phải để cho đẹp - nó buộc bạn phải chọn, và việc chọn chính là phần phân tích. Khi chỉ có một trang, bạn không thể vừa kể lại toàn bộ tài liệu vừa nêu kết luận, nên bạn phải quyết định đâu là ba bằng chứng thực sự quan trọng. Bản ghi nhớ tốt được đo bằng việc người đọc trong hai phút có tóm tắt lại đúng kết luận và rủi ro hay không.",
+    "explanation": "Không giới hạn thì AI viết được mười trang trong ba mươi giây, và mười trang đó chủ yếu là phần mô tả mã đang làm gì - phần người sau đọc mã cũng suy ra được. Giới hạn buộc bạn phải quyết định cái gì đáng nằm trong một trang, và quyết định đó cần hiểu biết mà chỉ bạn có. Người đọc dễ tiếp thu hơn là lợi ích thật nhưng nó là hệ quả, không phải cơ chế.",
+    "diagram": [
+      {
+        "label": "Không giới hạn → mười trang mô tả cái gì",
+        "arrow": true
+      },
+      {
+        "label": "Một trang → buộc chọn, và chọn cần hiểu biết",
+        "arrow": true
+      },
+      {
+        "label": "Bốn phần: làm gì, vào đâu để sửa, vì sao thế, bẫy ở đâu",
+        "arrow": true
+      },
+      {
+        "label": "Hai phần sau là hai phần chỉ bạn có"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Phần bẫy ở đâu",
+      "description": "Phần có giá trị nhất trong một trang tài liệu thường là danh sách những chỗ dễ hiểu nhầm - và bạn viết được nó chính vì bạn vừa hiểu nhầm chúng hôm qua. Người đã quen kho mã một năm không viết được phần này, vì họ không còn nhớ chỗ nào từng khó."
+    },
+    "quiz": [
+      {
+        "question": "Bốn phần của một trang tài liệu tốt là gì?",
+        "options": [
+          "Phần này làm gì, muốn sửa thì vào đâu, vì sao làm thế này, và bẫy nằm ở đâu",
+          "Mô tả tổng quan, hướng dẫn cài đặt, danh sách hàm và ví dụ sử dụng",
+          "Kiến trúc, luồng dữ liệu, các phụ thuộc bên ngoài và cách chạy kiểm thử",
+          "Lịch sử phát triển, trạng thái hiện tại, kế hoạch cải tiến và người phụ trách"
+        ],
+        "correct": 0,
+        "explanation": "Bốn phần này được chọn theo câu hỏi mà người đọc thật sự có khi mở tài liệu ra. Ba lựa chọn kia đều là cấu trúc hợp lý nhưng chúng tổ chức theo góc nhìn của người viết chứ không của người cần dùng."
+      },
+      {
+        "question": "Phần nào AI viết được và phần nào không?",
+        "options": [
+          "Nó viết được hai phần đầu từ mã; hai phần sau là lý do và bẫy thì chỉ bạn có",
+          "Nó viết được cả bốn phần nếu bạn cung cấp đủ thông tin về ngữ cảnh dự án",
+          "Nó chỉ viết được phần mô tả tổng quan, ba phần còn lại đều cần người viết",
+          "Nó viết được phần mô tả và phần bẫy, còn phần lý do thì cần người bổ sung"
+        ],
+        "correct": 0,
+        "explanation": "Ranh giới đi theo đúng nguyên tắc ở bài về tài liệu: thứ suy ra được từ mã thì nó làm được, thứ không nằm trong mã thì không. Cả lý do lẫn danh sách bẫy đều nằm ngoài mã."
+      },
+      {
+        "question": "Vì sao người vừa tìm hiểu kho mã viết phần bẫy tốt hơn người đã quen?",
+        "options": [
+          "Vì họ còn nhớ chỗ nào mình vừa hiểu nhầm, còn người quen thì đã quên chỗ từng khó",
+          "Vì họ đọc kỹ hơn do chưa có nhiều kinh nghiệm nên phát hiện được nhiều chi tiết hơn hẳn",
+          "Vì người đã quen thường bận với công việc khác nên không có thời gian viết",
+          "Vì họ tiếp cận kho mã một cách hệ thống hơn nên bao quát được đầy đủ hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lý do việc viết tài liệu nên làm NGAY sau khi tìm hiểu, không phải để sau. Cơ hội viết được phần này chỉ tồn tại trong một cửa sổ ngắn, và nó đóng lại khi bạn quen tay."
+      },
+      {
+        "question": "Vì sao viết ra là cách kiểm chứng hiểu biết tốt?",
+        "options": [
+          "Vì mọi chỗ bạn chưa hiểu rõ sẽ hiện ra thành câu văn mơ hồ khi bạn cố viết nó",
+          "Vì người khác đọc và góp ý sẽ chỉ ra được những chỗ bạn hiểu sai",
+          "Vì viết ra buộc bạn phải đọc lại mã thêm một lần nữa để xác nhận thông tin",
+          "Vì việc diễn đạt lại bằng lời giúp bạn ghi nhớ thông tin lâu hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng cơ chế với việc giải thích code thành lời ở chặng rà soát: nó hoạt động ngay trong lúc viết, trước khi có ai đọc. Bạn không viết rõ được một thứ mình chưa hiểu rõ."
+      },
+      {
+        "question": "Nên đặt tài liệu ở đâu?",
+        "options": [
+          "Trong kho mã, cạnh phần nó mô tả, để nó được sửa cùng lúc với mã",
+          "Trong hệ thống quản lý tài liệu chung để mọi người trong công ty tìm được",
+          "Trong phần mô tả của bản thay đổi để gắn với thời điểm mã được viết",
+          "Trong chú thích ở đầu tệp mã nguồn để người đọc mã thấy ngay lập tức"
+        ],
+        "correct": 0,
+        "explanation": "Khoảng cách giữa tài liệu và mã tỷ lệ thuận với tốc độ nó lỗi thời. Đặt ngoài kho thì nó không xuất hiện trong bản khác biệt, nên không ai nhớ sửa khi mã đổi."
+      }
+    ],
+    "keyTakeaways": [
+      "Một trang là ràng buộc buộc bạn chọn, và việc chọn cần hiểu biết mà chỉ bạn có.",
+      "Bốn phần: làm gì, vào đâu để sửa, vì sao làm thế, và bẫy nằm ở đâu.",
+      "AI viết hai phần đầu từ mã; hai phần sau nằm ngoài mã nên chỉ bạn có.",
+      "Người vừa tìm hiểu viết phần bẫy tốt nhất - cửa sổ đó đóng lại khi bạn quen tay.",
+      "Đặt tài liệu trong kho mã, cạnh phần nó mô tả, để nó được sửa cùng lúc với mã."
+    ],
+    "practicePrompt": {
+      "question": "Bạn viết được ba phần nhưng phần vì sao làm thế này thì không biết. Nên làm gì?",
+      "options": [
+        "Ghi rõ là chưa rõ lý do, và nếu có thể thì hỏi người đã viết phần mã đó",
+        "Để AI suy đoán lý do dựa trên mã rồi ghi vào phần đó cho tài liệu đầy đủ",
+        "Bỏ hẳn phần đó đi, chỉ giữ ba phần mà bạn viết được một cách chắc chắn",
+        "Ghi lý do mà bạn cho là hợp lý nhất dựa trên cách đoạn mã được viết"
+      ],
+      "correct": 0,
+      "explanation": "Một dòng ghi chưa rõ lý do là thông tin thật và nó mời người biết bổ sung. Ghi một lý do bạn suy đoán thì tệ hơn để trống, vì người sau đọc sẽ tin và giữ nguyên một quyết định vì một lý do chưa từng tồn tại."
+    },
     "summary": {
-      "keyIdea": "Bản ghi nhớ 1 trang là đầu ra thực tế của nhiều công việc phân tích.",
-      "commonMistake": "Viết quá dài và thiếu kết luận rõ.",
-      "action": "Dùng tài liệu project trước để viết bản ghi nhớ 1 trang."
+      "keyIdea": "Viết ra là bước kiểm chứng cuối, và là thứ duy nhất còn lại sau khi bạn chuyển việc.",
+      "formula": "Một trang, bốn phần; AI viết hai phần đầu, bạn viết hai phần sau.",
+      "commonMistake": "Để AI suy đoán phần lý do, tạo ra tài liệu nghe đầy đủ mà sai ở chỗ quý nhất.",
+      "action": "Viết một trang cho phần kho mã bạn vừa tìm hiểu, ngay hôm nay."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Viết một trang cho phần kho mã bạn vừa tìm hiểu ở hai bài trước. Để AI viết phần mô tả, bạn viết phần lý do và phần bẫy.",
+      "secondary": "Làm ngay hôm nay chứ đừng để tuần sau: phần bẫy chỉ viết được khi bạn còn nhớ mình vừa hiểu nhầm chỗ nào, và cửa sổ đó đóng lại rất nhanh."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Sau khi đọc tài liệu và tìm rủi ro, hãy đóng gói thành bản ghi nhớ."
+        "text": "Bước một cho bạn hiểu biết, bước hai cho bạn danh sách vấn đề. Bước ba là viết ra - vừa là kiểm chứng cuối cùng, vừa là thứ duy nhất còn lại sau khi bạn chuyển sang việc khác."
       },
       {
         "type": "heading",
-        "text": "Khung 1 trang"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kết luận 2 câu",
-          "3 bằng chứng chính",
-          "2 rủi ro lớn",
-          "Dữ liệu còn thiếu",
-          "Việc cần làm tiếp theo"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Câu lệnh mẫu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Dựa trên bảng ý chính và rủi ro, hãy viết bản ghi nhớ 1 trang bằng tiếng Việt dễ hiểu. Không thêm số liệu mới nếu không có nguồn."
-      },
-      {
-        "type": "heading",
-        "text": "Cách tự kiểm tra"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nếu người đọc chỉ có 2 phút, họ có hiểu kết luận và rủi ro không? Nếu không, bản ghi nhớ còn quá rối."
-      },
-      {
-        "type": "heading",
-        "text": "Thứ tự trình bày và lý do"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kết luận trước - vì người đọc có thể dừng ở bất kỳ đâu, nên thông tin quan trọng nhất phải ở trên cùng.",
-          "Bằng chứng sau kết luận - mỗi bằng chứng một dòng, có số và nguồn, không viết thành đoạn văn dài.",
-          "Rủi ro tiếp theo - viết đủ cụ thể để người đọc biết theo dõi cái gì.",
-          "Dữ liệu còn thiếu gần cuối - phần này định ranh giới cho kết luận ở trên.",
-          "Việc cần làm tiếp ở cuối - để người đọc biết hành động kế tiếp là gì."
-        ]
+        "text": "Vì sao giới hạn một trang"
       },
       {
         "type": "callout",
-        "label": "Câu lệnh cho dự án này",
-        "text": "\"Dựa hoàn toàn vào bảng ý chính và bảng rủi ro tôi cung cấp bên dưới, viết bản ghi nhớ tối đa 500 từ, tiếng Việt, theo đúng thứ tự: Kết luận (2-3 câu) | 3 bằng chứng, mỗi bằng chứng một dòng kèm số liệu và nguồn | 2 rủi ro cụ thể | Dữ liệu còn thiếu | Việc cần làm tiếp. Không dùng tính từ đánh giá nếu không có số liệu đi kèm. Không bổ sung thông tin ngoài dữ liệu tôi cung cấp. Không đưa khuyến nghị mua bán.\""
+        "label": "Nó là ràng buộc, không phải mục tiêu",
+        "text": "Không giới hạn thì AI viết được mười trang trong ba mươi giây - và mười trang đó chủ yếu mô tả mã đang làm gì, tức phần người sau đọc mã cũng suy ra được. Giới hạn buộc bạn quyết định cái gì đáng nằm trong một trang, và quyết định đó cần hiểu biết mà chỉ bạn có."
       },
       {
         "type": "heading",
-        "text": "Ba lỗi làm hỏng một bản ghi nhớ"
+        "text": "Bốn phần"
       },
       {
         "type": "list",
         "items": [
-          "Kể lại tài liệu thay vì kết luận: người đọc nhận được bản tóm tắt dài, không nhận được câu trả lời.",
-          "Trộn dữ kiện với nhận định trong cùng một câu, khiến người đọc không phân biệt được đâu là số thật.",
-          "Bỏ mục dữ liệu còn thiếu để bài trông chắc chắn hơn - đây là cách nhanh nhất làm mất uy tín khi người đọc phát hiện ra."
+          "Phần này làm gì - một đoạn ngắn.",
+          "Muốn sửa thì vào đâu - các điểm bắt đầu cho những thay đổi hay gặp.",
+          "Vì sao làm thế này - lý do đằng sau các quyết định, và phương án đã bị bác.",
+          "Bẫy nằm ở đâu - những chỗ dễ hiểu nhầm."
         ]
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Trộn dữ kiện và nhận định",
-          "text": "\"Doanh nghiệp tăng trưởng ấn tượng với doanh thu 8.200 tỷ và triển vọng còn rất tích cực.\" Người đọc không biết 'ấn tượng' và 'tích cực' dựa trên gì."
+          "label": "AI viết được",
+          "text": "Hai phần đầu. Chúng suy ra được từ mã, nên nó làm nhanh và làm tốt."
         },
         "right": {
-          "label": "Tách rõ hai phần",
-          "text": "\"Dữ kiện: doanh thu 2024 đạt 8.200 tỷ, tăng 18% so với 2023 (tr.12). Nhận định của tôi: mức tăng này khó lặp lại năm 2025 vì phần lớn đến từ một hợp đồng đã ghi nhận xong.\""
+          "label": "Chỉ bạn có",
+          "text": "Hai phần sau. Cả lý do lẫn danh sách bẫy đều nằm ngoài mã - và đó cũng là hai phần có giá trị nhất."
         }
       },
       {
+        "type": "heading",
+        "text": "Vì sao bây giờ là lúc đúng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Phần BẪY chỉ viết được khi bạn còn nhớ chỗ nào mình vừa hiểu nhầm. Người đã quen kho mã một năm không viết được phần này - không phải vì họ bận, mà vì họ không còn nhớ chỗ nào từng khó."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cửa sổ đó rất ngắn và nó đóng lại khi bạn quen tay. Đó là lý do bước này nằm ngay sau hai bước kia trong dự án, chứ không phải ở cuối danh sách việc cần làm."
+      },
+      {
+        "type": "heading",
+        "text": "Hai chi tiết"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu không biết lý do đằng sau một quyết định, hãy ghi rõ là chưa rõ lý do. Một dòng như vậy là thông tin thật và nó mời người biết bổ sung - còn ghi một lý do bạn suy đoán thì tệ hơn để trống."
+      },
+      {
         "type": "closing",
         "lines": [
-          "Bản ghi nhớ tốt là rõ, ngắn và có bằng chứng.",
-          "AI viết nháp; bạn chỉnh cho dễ hiểu và đáng tin."
+          "Và đặt tài liệu trong kho mã, cạnh phần nó mô tả. Khoảng cách giữa tài liệu và mã tỷ lệ thuận với tốc độ nó lỗi thời: đặt ngoài kho thì nó không xuất hiện trong bản khác biệt, nên không ai nhớ sửa khi mã đổi.",
+          "Bài sau là bước cuối và cũng là bước khó nhất: tự phản biện chính thứ mình vừa làm."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Bản ghi nhớ 1 trang nên tránh điều gì?",
-        "options": [
-          "Thêm số liệu mới không có nguồn",
-          "Có kết luận rõ",
-          "Có rủi ro",
-          "Có dữ liệu còn thiếu"
-        ],
-        "correct": 0,
-        "explanation": "Số liệu không nguồn làm bản ghi nhớ kém tin cậy."
-      },
-      {
-        "question": "Một bản ghi nhớ tốt nên bắt đầu bằng gì?",
-        "options": [
-          "Kết luận ngắn",
-          "Phụ lục dài",
-          "Danh sách thuật ngữ",
-          "Màu sắc"
-        ],
-        "correct": 0,
-        "explanation": "Người đọc cần nắm kết luận trước."
-      },
-      {
-        "question": "Vì sao kết luận phải đặt ngay đầu bản ghi nhớ?",
-        "options": [
-          "Vì người đọc có thể dừng ở bất kỳ đâu, nên thông tin quan trọng nhất phải ở trên cùng",
-          "Vì quy chuẩn báo cáo tài chính yêu cầu như vậy",
-          "Vì phần đầu dễ viết nhất",
-          "Vì AI luôn viết kết luận trước"
-        ],
-        "correct": 0,
-        "explanation": "Bản ghi nhớ được viết cho người bận. Cấu trúc kết luận trước, bằng chứng sau bảo đảm dù họ chỉ đọc ba dòng thì vẫn nhận được phần quan trọng nhất."
-      },
-      {
-        "question": "Vì sao không nên bỏ mục 'dữ liệu còn thiếu' dù nó làm bài trông kém chắc chắn hơn?",
-        "options": [
-          "Vì nó định ranh giới cho kết luận; giấu đi thì người đọc tưởng mọi thứ đã được kiểm chứng",
-          "Vì mục này bắt buộc theo chuẩn mực kế toán",
-          "Vì nó giúp bài dài đủ một trang",
-          "Vì AI không viết được nếu thiếu mục đó"
-        ],
-        "correct": 0,
-        "explanation": "Một kết luận nói rõ mình chưa biết gì thì kiểm chứng được và người đọc biết cần thận trọng ở đâu. Che phần chưa biết đi là cách nhanh nhất mất uy tín khi nó lộ ra."
-      }
-    ],
-    "day": 1278,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Kết luận (2-3 câu)",
-        "arrow": true
-      },
-      {
-        "label": "3 bằng chứng có số và nguồn",
-        "arrow": true
-      },
-      {
-        "label": "2 rủi ro cụ thể",
-        "arrow": true
-      },
-      {
-        "label": "Dữ liệu còn thiếu + việc cần làm tiếp"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Bài kiểm tra hai phút",
-      "description": "Cách đánh giá một bản ghi nhớ đơn giản đến bất ngờ: đưa cho một người chưa biết gì về doanh nghiệp đó, cho họ đúng hai phút, rồi hỏi lại ba câu - kết luận của bài là gì, dựa trên bằng chứng nào, và rủi ro lớn nhất là gì. Nếu họ trả lời sai hoặc phải đọc lại, vấn đề nằm ở bản ghi nhớ chứ không ở người đọc. Phần lớn trường hợp nguyên nhân là kết luận bị chôn ở giữa bài, hoặc bằng chứng bị trộn với nhận định nên người đọc không biết đâu là số thật. Bản ghi nhớ tốt không phải bản viết hay nhất mà là bản khó hiểu sai nhất."
-    },
-    "keyTakeaways": [
-      "Giới hạn một trang là công cụ buộc bạn phải chọn - việc chọn chính là phần phân tích.",
-      "Kết luận đặt ngay đầu, không chôn ở giữa; người đọc bận luôn đọc từ trên xuống và có thể dừng bất cứ lúc nào.",
-      "Tách rõ dữ kiện có nguồn với nhận định của bạn, để người đọc biết chỗ nào cần tự đánh giá.",
-      "Đo chất lượng bằng bài kiểm tra hai phút, không bằng cảm giác của người viết."
-    ],
-    "practicePrompt": {
-      "question": "Bản ghi nhớ 1 trang tốt nên giúp người đọc làm gì?",
-      "options": [
-        "Hiểu kết luận, bằng chứng, rủi ro và việc cần kiểm tra tiếp",
-        "Đọc càng lâu càng tốt",
-        "Không thấy rủi ro",
-        "Tin ngay không cần hỏi"
-      ],
-      "correct": 0,
-      "explanation": "Bản ghi nhớ tốt giúp người đọc hiểu và ra bước tiếp theo."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Dùng tài liệu project trước để viết bản ghi nhớ 1 trang.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Đây là định dạng đầu ra phổ biến nhất trong công việc thật - từ báo cáo gửi sếp đến ghi chú đầu tư cá nhân bạn đọc lại sau sáu tháng."
+    ]
   },
   {
     "id": 1279,
-    "slug": "project-tu-phan-bien-va-kiem-chung",
-    "title": "AI Tài chính, Bài 19: Dự án nhỏ - tự phản biện và kiểm chứng",
-    "subtitle": "Bắt AI soi lỗi chính bản nháp trước khi bạn dùng.",
-    "duration": "16 phút",
-    "estimatedMinutes": 16,
-    "difficulty": "Trung bình",
-    "openingQuestion": "Vì sao cần tự phản biện bản nháp AI?",
+    "slug": "du-an-nho-tu-phan-bien",
+    "title": "AI trong sản phẩm, Bài 19: Dự án nhỏ - tự phản biện",
+    "subtitle": "Câu hỏi cuối: chỗ nào tôi tin mà chưa kiểm?",
+    "duration": "6 phút",
+    "difficulty": "Khó",
+    "emoji": "🪞",
+    "track": "professional",
+    "interactiveType": "ai-verify",
+    "isFundamental": true,
+    "whyItMatters": "Ba bước trước tạo ra hiểu biết, danh sách vấn đề và một trang tài liệu - tất cả đều có phần dựa trên thứ chưa được kiểm. Bước này là chỗ tìm ra phần đó trước khi người khác tìm ra hộ bạn.",
+    "openingQuestion": "Câu hỏi tự phản biện nào hiệu quả nhất?",
     "openingOptions": [
-      "Để tìm giả định yếu, số thiếu nguồn và kết luận quá mạnh",
-      "Để làm văn bản dài hơn",
-      "Để bỏ qua rủi ro",
-      "Để cho chính AI tự chịu trách nhiệm về kết quả cuối cùng đó"
+      "Chỗ nào trong kết luận của tôi dựa vào thứ tôi chưa tự kiểm chứng?",
+      "Kết luận của tôi có mâu thuẫn với thông tin nào mà tôi đã thu thập được không?",
+      "Tôi đã dành đủ thời gian cho từng bước trong quá trình tìm hiểu hay chưa?",
+      "Có phần nào trong kho mã mà tôi chưa đọc tới và có thể ảnh hưởng tới kết luận không?"
     ],
     "correctOption": 0,
-    "explanation": "Bản nháp đầu tiên luôn nghe trôi chảy, và đó chính là vấn đề: sự trôi chảy che đi những chỗ bằng chứng còn yếu. Dự án cuối cùng thêm một bước bắt buộc trước khi bạn dùng bất cứ thứ gì - bắt AI đóng vai người phản biện soi chính bản nháp của nó, rồi bạn tự kiểm chứng ba con số quan trọng nhất với tài liệu gốc. Đây là bước phân biệt một bản nháp với một sản phẩm, và nó chỉ tốn thêm mười phút.",
+    "explanation": "Câu này nhắm thẳng vào ranh giới giữa thứ bạn biết và thứ bạn tin - và ranh giới đó mờ đi rất nhanh khi làm việc với AI, vì mọi câu trả lời đều có cùng vẻ chắc chắn. Ba câu kia đều hữu ích nhưng chúng hỏi về quá trình; câu đầu hỏi về nền của kết luận, tức chỗ mà một sai lệch gây hậu quả lớn nhất.",
+    "diagram": [
+      {
+        "label": "Ba bước trước tạo ra kết luận",
+        "arrow": true
+      },
+      {
+        "label": "Một phần kết luận đó dựa trên thứ chưa kiểm",
+        "arrow": true
+      },
+      {
+        "label": "Hỏi: chỗ nào tôi tin mà chưa kiểm?",
+        "arrow": true
+      },
+      {
+        "label": "Đánh dấu chúng, và kiểm những chỗ hậu quả nặng"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Ranh giới mờ đi rất nhanh",
+      "description": "Sau một buổi làm việc với AI, bạn không còn nhớ điều nào mình tự xác minh và điều nào mình đọc rồi gật đầu. Cả hai loại đều nằm trong đầu với cùng mức độ chắc chắn - và đó chính là lý do phải hỏi lại một cách có hệ thống thay vì dựa vào cảm giác."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao ranh giới giữa biết và tin mờ đi khi làm việc với AI?",
+        "options": [
+          "Vì mọi câu trả lời đều có cùng vẻ chắc chắn nên không có tín hiệu nào phân biệt",
+          "Vì khối lượng thông tin nhận được quá lớn nên không thể ghi nhớ hết nguồn gốc",
+          "Vì các câu trả lời được diễn đạt trôi chảy nên dễ tạo ra cảm giác đã hiểu rõ",
+          "Vì quá trình trao đổi diễn ra nhanh nên không có thời gian dừng lại kiểm chứng"
+        ],
+        "correct": 0,
+        "explanation": "Đây là hệ quả trực tiếp của đặc điểm nêu ở bài 2: nó sai với vẻ tự tin y hệt lúc đúng. Không có tín hiệu phân biệt nghĩa là bạn không thể dựa vào cảm giác, mà phải hỏi lại một cách có hệ thống."
+      },
+      {
+        "question": "Nên ưu tiên kiểm lại những chỗ nào?",
+        "options": [
+          "Chỗ mà nếu sai thì hậu quả nặng nhất, chứ không phải chỗ có khả năng sai cao nhất",
+          "Chỗ mà bạn cảm thấy ít chắc chắn nhất khi ngồi nhìn lại toàn bộ kết luận của mình",
+          "Chỗ mà AI đã tham gia nhiều nhất trong quá trình tìm ra kết luận đó",
+          "Chỗ mà bạn dành ít thời gian nhất trong toàn bộ quá trình làm việc"
+        ],
+        "correct": 0,
+        "explanation": "Với thời gian có hạn thì hậu quả là tiêu chí xếp ưu tiên đúng: một chỗ khả năng sai thấp nhưng sai thì mất dữ liệu vẫn xếp trên một chỗ khả năng sai cao mà sai thì chỉ hiển thị lệch. Cảm giác ít chắc chắn thì không đáng tin, đúng vì lý do câu trước."
+      },
+      {
+        "question": "Vì sao nên nhờ một người thật đọc lại kết luận?",
+        "options": [
+          "Vì họ có ràng buộc và ngữ cảnh mà cả bạn lẫn công cụ đều không có đầy đủ",
+          "Vì hai người sẽ phát hiện được nhiều lỗi hơn so với một người làm việc độc lập",
+          "Vì quy trình làm việc trong đội yêu cầu phải có người rà soát trước khi hoàn tất",
+          "Vì người khác không bị ảnh hưởng bởi những gì AI đã nói trong quá trình làm việc"
+        ],
+        "correct": 0,
+        "explanation": "Đồng nghiệp biết những thứ không nằm trong mã và cũng không nằm trong đầu bạn: quyết định cũ, ràng buộc từ khách hàng, lý do lịch sử. Đó là loại thông tin mà không cách kiểm chứng tự động nào thay được."
+      },
+      {
+        "question": "Vì sao yêu cầu AI tự phản biện có ích nhưng không đủ?",
+        "options": [
+          "Vì nó phản biện được tầng lập luận nhưng vẫn là cùng mô hình đánh giá chính nó",
+          "Vì nó thường sẽ đồng ý với kết luận trước đó thay vì đưa ra một ý kiến trái chiều",
+          "Vì nó không có quyền truy cập vào quá trình bạn đã kiểm chứng từng phần",
+          "Vì phần phản biện thường chung chung và không chỉ ra được vấn đề cụ thể"
+        ],
+        "correct": 0,
+        "explanation": "Nó bắt được tầng lỗi rõ ràng nên vẫn đáng làm - nhưng nó không phải một góc nhìn độc lập, vì cùng một sai lệch trong dữ liệu sẽ dẫn tới cùng một điểm mù ở cả lượt viết lẫn lượt phản biện."
+      },
+      {
+        "question": "Vì sao bước tự phản biện nên có ngay cả khi bạn tự tin?",
+        "options": [
+          "Vì tự tin sau một buổi làm việc trôi chảy không phản ánh mức độ đã kiểm chứng",
+          "Vì đây là bước bắt buộc trong quy trình nên bỏ qua sẽ không được chấp nhận",
+          "Vì mức độ tự tin thường giảm khi bạn có thêm thời gian nhìn lại vấn đề",
+          "Vì việc phản biện giúp bạn chuẩn bị trước cho các câu hỏi từ người rà soát"
+        ],
+        "correct": 0,
+        "explanation": "Cảm giác tự tin đến từ việc mọi thứ diễn ra trôi chảy, mà trôi chảy là đặc điểm của mọi câu trả lời - kể cả câu sai. Nên tự tin ở đây là tín hiệu về trải nghiệm, không phải về độ đúng."
+      }
+    ],
+    "keyTakeaways": [
+      "Ranh giới giữa BIẾT và TIN mờ đi nhanh, vì mọi câu trả lời có cùng vẻ chắc chắn.",
+      "Câu hỏi cốt lõi: chỗ nào trong kết luận của tôi dựa vào thứ tôi chưa tự kiểm?",
+      "Ưu tiên kiểm theo HẬU QUẢ nếu sai, không theo khả năng sai.",
+      "AI tự phản biện bắt được tầng lỗi rõ, nhưng nó vẫn là cùng mô hình đánh giá chính nó.",
+      "Một người thật có ràng buộc và ngữ cảnh mà cả bạn lẫn công cụ đều không có."
+    ],
+    "practicePrompt": {
+      "question": "Bạn thấy rất tự tin sau một buổi làm việc trôi chảy với AI. Nên hiểu tín hiệu đó thế nào?",
+      "options": [
+        "Đó là tín hiệu về trải nghiệm, không phải về độ đúng - vẫn phải rà chỗ chưa kiểm",
+        "Đó là dấu hiệu tốt cho thấy bạn đã nắm chắc vấn đề nên có thể bỏ qua bước rà lại",
+        "Đó là dấu hiệu đáng lo, nên bạn cần kiểm lại toàn bộ kết luận từ đầu",
+        "Đó là tín hiệu trung tính, mức độ tin cậy phụ thuộc vào việc bạn dành bao nhiêu thời gian"
+      ],
+      "correct": 0,
+      "explanation": "Trôi chảy là đặc điểm của MỌI câu trả lời, kể cả câu sai - nên nó không mang thông tin về độ đúng. Kiểm lại toàn bộ thì lãng phí; cách đúng là rà có chọn lọc theo mức hậu quả."
+    },
     "summary": {
-      "keyIdea": "Bước phản biện biến bản nháp AI thành sản phẩm có thể dùng.",
-      "commonMistake": "Dùng bản nháp đầu tiên như bản cuối.",
-      "action": "Yêu cầu AI đóng vai người phản biện khó tính và soi 5 lỗi."
+      "keyIdea": "Tìm ra phần dựa trên thứ chưa kiểm, trước khi người khác tìm ra hộ bạn.",
+      "formula": "Đánh dấu chỗ tin mà chưa kiểm → xếp theo hậu quả → kiểm từ trên xuống.",
+      "commonMistake": "Dựa vào cảm giác tự tin, vốn phản ánh trải nghiệm chứ không phản ánh độ đúng.",
+      "action": "Đọc lại một trang tài liệu vừa viết và đánh dấu mọi câu chưa tự kiểm."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Đọc lại trang tài liệu bạn vừa viết và đánh dấu mọi câu mà bạn tin nhưng chưa tự kiểm chứng. Đừng dựa vào cảm giác - đi từng câu.",
+      "secondary": "Xếp các câu đã đánh dấu theo mức hậu quả nếu sai, rồi kiểm từ trên xuống trong thời gian bạn có. Những câu còn lại thì ghi rõ là chưa kiểm."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Bản nháp đầu tiên thường nghe trôi chảy, nhưng có thể thiếu nguồn hoặc quá tự tin."
+        "text": "Ba bước trước tạo ra hiểu biết, một danh sách vấn đề và một trang tài liệu. Bước này là chỗ hỏi: trong ba thứ đó, phần nào đang dựa trên nền chưa được kiểm?"
       },
       {
         "type": "heading",
-        "text": "5 lỗi cần soi"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Số liệu không nguồn",
-          "Đơn vị không rõ",
-          "Kết luận quá mạnh",
-          "Rủi ro bị viết nhẹ",
-          "Dữ liệu còn thiếu nhưng không nói rõ"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Câu lệnh phản biện"
-      },
-      {
-        "type": "paragraph",
-        "text": "Hãy đóng vai người phản biện khó tính. Tìm 5 điểm yếu nhất trong bản ghi nhớ này. Với mỗi điểm, ghi vì sao yếu và cần bổ sung dữ liệu gì."
-      },
-      {
-        "type": "heading",
-        "text": "Kiểm chứng cuối"
-      },
-      {
-        "type": "paragraph",
-        "text": "Chọn 3 con số quan trọng nhất, mở tài liệu gốc và kiểm tra. Nếu sai một số, kiểm tra lại toàn bộ bảng."
+        "text": "Vì sao bước này cần thiết"
       },
       {
         "type": "callout",
-        "label": "Câu lệnh phản biện đầy đủ",
-        "text": "\"Dưới đây là một bản ghi nhớ tài chính và tài liệu gốc kèm theo. Hãy đóng vai người phản biện khó tính. Tìm 5 điểm yếu nhất, xếp theo mức độ nghiêm trọng. Với mỗi điểm, ghi: trích nguyên văn câu có vấn đề | vấn đề là gì (thiếu nguồn, sai đơn vị, kết luận vượt quá bằng chứng, rủi ro bị viết nhẹ, dữ liệu thiếu mà không nói rõ) | cần bổ sung dữ liệu gì để khắc phục. Đừng khen bất cứ điều gì. Nếu có con số trong bản ghi nhớ không khớp với tài liệu gốc, hãy chỉ ra ngay ở đầu.\""
-      },
-      {
-        "type": "heading",
-        "text": "Năm dạng điểm yếu và cách xử lý"
-      },
-      {
-        "type": "conceptTable",
-        "title": "Soi gì và sửa thế nào",
-        "concepts": [
-          {
-            "vi": "Số không nguồn",
-            "en": "Unsourced figure",
-            "def": "Con số không có trang, đơn vị hoặc kỳ báo cáo. Xử lý: tra lại nguồn và bổ sung, hoặc bỏ con số."
-          },
-          {
-            "vi": "Kết luận vượt bằng chứng",
-            "en": "Overreach",
-            "def": "Kết luận mạnh hơn mức dữ liệu cho phép. Xử lý: hạ mức chắc chắn của câu chữ, hoặc bổ sung bằng chứng."
-          },
-          {
-            "vi": "Rủi ro bị viết nhẹ",
-            "en": "Understated risk",
-            "def": "Rủi ro thật bị diễn đạt thành lưu ý nhỏ. Xử lý: nêu lại kèm số liệu và tác động cụ thể."
-          },
-          {
-            "vi": "Thiếu dữ liệu bị giấu",
-            "en": "Hidden gap",
-            "def": "Chỗ chưa có dữ liệu nhưng bài vẫn viết như đã biết. Xử lý: đưa vào mục 'Dữ liệu còn thiếu'."
-          },
-          {
-            "vi": "Nhận định trá hình dữ kiện",
-            "en": "Opinion as fact",
-            "def": "Câu nhận định viết như thể là dữ kiện đã kiểm chứng. Xử lý: tách rõ và ghi 'nhận định của tôi'."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Kiểm chứng cuối cùng - bước không được bỏ"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Chọn 3 con số mà kết luận phụ thuộc vào nhiều nhất, không phải 3 con số dễ tra nhất.",
-          "Mở tài liệu gốc, kiểm tra đủ bốn điểm: giá trị, đơn vị, kỳ báo cáo, hợp nhất hay công ty mẹ.",
-          "Nếu sai một con số, rà lại toàn bộ số liệu trong bài - đừng chỉ sửa chỗ đã phát hiện.",
-          "Ghi lại lỗi vào ghi chú lưu vết, rồi thêm một ràng buộc tương ứng vào câu lệnh mẫu của bạn."
-        ]
+        "label": "Ranh giới giữa biết và tin mờ rất nhanh",
+        "text": "Sau một buổi làm việc, bạn không còn nhớ điều nào mình tự xác minh và điều nào mình đọc rồi gật đầu. Cả hai loại nằm trong đầu với cùng mức chắc chắn - vì mọi câu trả lời đều có cùng vẻ chắc chắn, đúng như bài 2 đã nói."
       },
       {
         "type": "paragraph",
-        "text": "Bước cuối cùng - đưa lỗi trở lại thành ràng buộc trong câu lệnh - là thứ khép vòng lặp của cả chặng. Không có nó, mỗi lần phản biện chỉ cứu được đúng một bản nháp. Có nó, mỗi lần phản biện làm tốt hơn tất cả những lần sau."
+        "text": "Hệ quả: bạn không dựa được vào cảm giác. Cảm giác tự tin đến từ việc mọi thứ diễn ra trôi chảy, mà trôi chảy là đặc điểm của MỌI câu trả lời, kể cả câu sai. Nên phải hỏi lại một cách có hệ thống, đi từng câu."
+      },
+      {
+        "type": "heading",
+        "text": "Câu hỏi và cách xếp ưu tiên"
+      },
+      {
+        "type": "paragraph",
+        "text": "Câu hỏi: chỗ nào trong kết luận của tôi dựa vào thứ tôi chưa tự kiểm chứng? Đánh dấu hết, rồi xếp chúng theo mức HẬU QUẢ nếu sai - không phải theo khả năng sai."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Xếp theo hậu quả",
+          "text": "Một chỗ khả năng sai thấp nhưng sai thì mất dữ liệu vẫn xếp trên một chỗ khả năng sai cao mà sai thì chỉ hiển thị lệch."
+        },
+        "right": {
+          "label": "Đừng xếp theo cảm giác",
+          "text": "Cảm giác ít chắc chắn không đáng tin, đúng vì lý do ở phần trên: không có tín hiệu nào phân biệt câu đúng với câu sai."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Hai lớp phản biện"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lớp một: yêu cầu AI tự phản biện kết luận của chính nó. Nó bắt được tầng lỗi rõ ràng nên vẫn đáng làm - nhưng nó không phải một góc nhìn độc lập, vì cùng một sai lệch trong dữ liệu dẫn tới cùng một điểm mù ở cả lượt viết lẫn lượt phản biện."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lớp hai: một người thật. Đồng nghiệp biết những thứ không nằm trong mã và cũng không nằm trong đầu bạn - quyết định cũ, ràng buộc từ khách hàng, lý do lịch sử. Đó là loại thông tin mà không cách kiểm chứng tự động nào thay được."
       },
       {
         "type": "closing",
         "lines": [
-          "Phản biện không làm bạn chậm; nó tránh lỗi đắt giá.",
-          "Bản nháp tốt phải sống sót qua kiểm chứng."
+          "Với những chỗ bạn không kịp kiểm, ghi rõ là chưa kiểm. Một dòng như vậy là thông tin thật, và nó khác hẳn với việc để chúng lẫn vào phần đã xác minh.",
+          "Bài cuối chặng gom hai mươi bài thành một quy trình chạy được hằng ngày."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Bản nháp AI thường cần bước nào trước khi dùng?",
-        "options": [
-          "Phản biện và kiểm chứng nguồn",
-          "Gửi ngay",
-          "Xóa dữ liệu thiếu",
-          "Bỏ phần rủi ro"
-        ],
-        "correct": 0,
-        "explanation": "Đây là bước biến bản nháp thành sản phẩm đáng tin."
-      },
-      {
-        "question": "Nếu một con số quan trọng bị sai nguồn, nên làm gì?",
-        "options": [
-          "Kiểm tra lại toàn bộ bảng liên quan",
-          "Bỏ qua",
-          "Đoán lại",
-          "Chỉ sửa màu chữ"
-        ],
-        "correct": 0,
-        "explanation": "Sai nguồn ở một số có thể báo hiệu quy trình trích xuất có vấn đề."
-      },
-      {
-        "question": "Vì sao nên mở một cuộc trò chuyện mới khi yêu cầu AI phản biện bản nháp?",
-        "options": [
-          "Vì trong cùng ngữ cảnh, phản biện có xu hướng nhẹ tay để giữ nhất quán với lập luận vừa viết",
-          "Vì cuộc trò chuyện cũ đã hết dung lượng",
-          "Vì AI không nhớ được nội dung quá dài",
-          "Vì như vậy sẽ nhanh hơn"
-        ],
-        "correct": 0,
-        "explanation": "Ngữ cảnh cũ tạo áp lực nhất quán. Bỏ ngữ cảnh đi và không nói ai viết bản nháp thường cho ra phần phản biện sắc hơn hẳn."
-      },
-      {
-        "question": "Khi chọn 3 con số để kiểm chứng cuối cùng, nên chọn theo tiêu chí nào?",
-        "options": [
-          "Ba con số mà kết luận phụ thuộc vào nhiều nhất",
-          "Ba con số dễ tra nhất trong tài liệu",
-          "Ba con số lớn nhất về giá trị",
-          "Ba con số xuất hiện đầu tiên trong bài"
-        ],
-        "correct": 0,
-        "explanation": "Mục đích của kiểm chứng là bảo vệ kết luận. Kiểm tra những con số kết luận không phụ thuộc vào thì tốn thời gian mà không giảm được rủi ro nào."
-      }
-    ],
-    "day": 1279,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "Bản nháp",
-        "arrow": true
-      },
-      {
-        "label": "AI phản biện: soi 5 điểm yếu nhất",
-        "arrow": true
-      },
-      {
-        "label": "Bạn tự kiểm chứng 3 con số quan trọng nhất",
-        "arrow": true
-      },
-      {
-        "label": "Sửa hoặc cắt → bản dùng được"
-      }
-    ],
-    interactiveType: "ai-verify",
-    "realWorldExample": {
-      "company": "Vì sao phải mở cuộc trò chuyện mới để phản biện",
-      "description": "Nếu bạn yêu cầu phản biện ngay trong cùng cuộc trò chuyện vừa viết bản nháp, phần phản biện có xu hướng nhẹ tay - toàn bộ lập luận trước đó vẫn nằm trong ngữ cảnh và mô hình có khuynh hướng giữ nhất quán với những gì nó vừa viết. Cách hiệu quả hơn là mở một cuộc trò chuyện mới, dán vào đó bản nháp cùng tài liệu gốc, và không nói gì về việc ai viết bản nháp này. Khi đó phản biện thường sắc hơn hẳn, vì không có áp lực phải bảo vệ lập luận cũ. Đây là mẹo nhỏ nhưng tạo khác biệt lớn về chất lượng."
-    },
-    "keyTakeaways": [
-      "Bắt buộc có bước phản biện trước khi dùng bất kỳ bản nháp nào do AI viết.",
-      "Mở cuộc trò chuyện mới để phản biện - phản biện trong cùng ngữ cảnh thường nhẹ tay hơn.",
-      "Sau phản biện, tự kiểm chứng ba con số quan trọng nhất với tài liệu gốc; sai một số thì rà lại tất cả.",
-      "Với mỗi điểm yếu, chỉ có hai lựa chọn hợp lệ: bổ sung bằng chứng, hoặc cắt bỏ luận điểm."
-    ],
-    "practicePrompt": {
-      "question": "Vì sao cần tự phản biện bản nháp AI?",
-      "options": [
-        "Để tìm giả định yếu, số thiếu nguồn và kết luận quá mạnh",
-        "Để làm văn bản dài hơn",
-        "Để bỏ qua rủi ro",
-        "Để AI tự chịu trách nhiệm"
-      ],
-      "correct": 0,
-      "explanation": "Phản biện giúp bản nháp đáng tin hơn."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Yêu cầu AI đóng vai người phản biện khó tính và soi 5 lỗi.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Chi phí của mười phút phản biện luôn nhỏ hơn chi phí của một kết luận sai đã gửi đi cho người khác."
+    ]
   },
   {
     "id": 1280,
-    "slug": "tong-ket-chang-ai-trong-tai-chinh",
-    "title": "AI Tài chính, Bài 20: Tổng kết - quy trình AI trong tài chính cho người mới",
-    "subtitle": "Ghép tất cả thành một quy trình học và làm việc hằng ngày.",
-    "duration": "15 phút",
-    "estimatedMinutes": 15,
-    "difficulty": "Dễ",
-    "openingQuestion": "Sau chặng này, người học nên có sản phẩm gì?",
+    "slug": "tong-ket-quy-trinh-dung-ai-cho-nguoi-viet-ma",
+    "title": "AI trong sản phẩm, Bài 20: Tổng kết - quy trình dùng được hằng ngày",
+    "subtitle": "Một câu hỏi trước, một câu hỏi sau, và một ranh giới không đổi.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🏁",
+    "track": "professional",
+    "interactiveType": "prompt-craft",
+    "isFundamental": false,
+    "whyItMatters": "Hai mươi bài không đổi được thói quen; một quy trình ba câu thì có. Và ba câu đó vẫn đúng khi mô hình đổi phiên bản, vì chúng nói về bạn chứ không về công cụ.",
+    "openingQuestion": "Thứ nào từ chặng này còn giá trị lâu nhất?",
     "openingOptions": [
-      "Một quy trình AI nhỏ có câu lệnh, nguồn, output và bước kiểm chứng",
-      "Một niềm tin rằng AI luôn đúng",
-      "Một quyết định mua bán chưa kiểm tra",
-      "Không cần lưu gì"
+      "Thói quen hỏi mình kiểm chứng được kết quả này nhanh tới đâu, trước khi giao việc",
+      "Bộ câu lệnh mẫu đã được kiểm nghiệm cho các loại công việc lập trình phổ biến",
+      "Hiểu biết về điểm mạnh và điểm yếu của các mô hình đang phổ biến hiện nay",
+      "Kinh nghiệm nhận biết những dấu hiệu cho thấy câu trả lời có khả năng bị bịa"
     ],
     "correctOption": 0,
-    "explanation": "Kết thúc chặng này, thứ bạn mang đi không phải là danh sách mẹo mà là một quy trình năm bước lặp lại được: đọc và tóm tắt, trích số có nguồn, tìm rủi ro kiểm chứng được, viết bản ghi nhớ một trang, phản biện và kiểm chứng. Xuyên suốt cả năm bước là một nguyên tắc duy nhất - mọi thứ AI đưa ra đều phải truy được về nguồn, và chỗ nào không truy được thì phải nói rõ là không truy được. Giữ nguyên tắc đó thì bạn dùng được AI cho gần như mọi tài liệu tài chính; bỏ nó đi thì mọi kỹ thuật khác đều mất giá trị.",
+    "explanation": "Ba lựa chọn kia đều gắn với một thế hệ mô hình cụ thể và sẽ lỗi thời. Câu hỏi về tốc độ kiểm chứng thì nói về BẠN - về việc bạn có gì để đối chiếu - nên nó đúng với mọi công cụ, kể cả những công cụ chưa ra đời. Đây cũng đúng là câu hỏi mở đầu chặng, và nó quay lại ở cuối vì nó là thứ duy nhất không đổi.",
+    "diagram": [
+      {
+        "label": "TRƯỚC: tôi kiểm chứng kết quả này nhanh tới đâu?",
+        "arrow": true
+      },
+      {
+        "label": "SAU: chỗ nào tôi tin mà chưa kiểm?",
+        "arrow": true
+      },
+      {
+        "label": "RANH GIỚI: đừng gửi đi thứ mình không giải thích được",
+        "arrow": true
+      },
+      {
+        "label": "Ba thứ này nói về bạn, không về công cụ"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Vì sao chỉ ba thứ",
+      "description": "Một quy trình mười bước thì tuần sau không ai nhớ. Ba thứ thì đủ ít để thành phản xạ, và chúng bao được phần lớn giá trị - vì hai câu hỏi kia đứng ở hai đầu của mọi việc bạn giao đi."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao ba thứ trong quy trình không lỗi thời khi mô hình đổi?",
+        "options": [
+          "Vì chúng nói về việc bạn có gì để đối chiếu, không nói về khả năng của công cụ",
+          "Vì chúng được viết ở mức trừu tượng cao nên áp dụng được cho nhiều tình huống",
+          "Vì các mô hình mới vẫn giữ nguyên cơ chế hoạt động cơ bản như hiện nay",
+          "Vì chúng đã được kiểm nghiệm qua nhiều thế hệ mô hình khác nhau trước đây"
+        ],
+        "correct": 0,
+        "explanation": "Đây là tiêu chí phân biệt kiến thức lâu bền với kiến thức có hạn sử dụng trong cả chặng. Mọi thứ mô tả khả năng của một mô hình cụ thể đều là loại thứ hai."
+      },
+      {
+        "question": "Việc nào vẫn nên tự làm dù công cụ có tốt tới đâu?",
+        "options": [
+          "Quyết định phụ thuộc vào ràng buộc riêng mà chỉ đội của bạn biết",
+          "Những phần mã liên quan trực tiếp tới bảo mật và xử lý thanh toán",
+          "Những đoạn mã sẽ được nhiều thành viên khác trong đội sử dụng lại",
+          "Những phần đòi hỏi hiệu năng cao nên cần tối ưu ở mức chi tiết nhất"
+        ],
+        "correct": 0,
+        "explanation": "Đây không phải vấn đề công cụ chưa đủ tốt mà là vấn đề thông tin: ràng buộc riêng không nằm ở đâu để nó đọc được. Ba nhóm kia thì dùng công cụ được, chỉ là phải kiểm kỹ hơn."
+      },
+      {
+        "question": "Ranh giới giữa tận dụng và lệ thuộc nằm ở đâu?",
+        "options": [
+          "Ở chỗ bạn có giải thích được thứ mình gửi đi hay không",
+          "Ở tỷ lệ phần trăm mã do công cụ sinh ra so với phần bạn tự viết",
+          "Ở việc bạn có kiểm tra lại toàn bộ kết quả trước khi sử dụng hay không",
+          "Ở chỗ bạn có còn tự viết được đoạn mã tương tự khi không có công cụ không"
+        ],
+        "correct": 0,
+        "explanation": "Ranh giới này xuất hiện ở ba bài khác nhau trong chặng vì nó là ranh giới quan trọng nhất. Tỷ lệ không nói lên gì - người hiểu rõ để công cụ sinh phần lớn mã vẫn an toàn hơn người không hiểu chỉ dùng một phần nhỏ."
+      },
+      {
+        "question": "Việc nào có tỷ lệ hoàn vốn cao nhất nếu bạn chỉ làm được một thứ?",
+        "options": [
+          "Viết một khối mô tả ràng buộc dự án và dán vào đầu mỗi cuộc trao đổi",
+          "Xây một thư viện câu lệnh đầy đủ cho các loại công việc bạn hay làm",
+          "Thiết lập quy trình kiểm chứng cho mọi đoạn mã trước khi đưa vào dự án",
+          "Học kỹ các kỹ thuật diễn đạt yêu cầu để nhận được câu trả lời tốt hơn"
+        ],
+        "correct": 0,
+        "explanation": "Viết một lần, dùng cho mọi yêu cầu, và nó cắt được cả cảnh báo giả lẫn giả định sai - hai vấn đề lớn nhất trong chặng. Ba việc kia đều tốt nhưng chúng đòi công sức lặp lại hoặc thời gian học."
+      },
+      {
+        "question": "Vì sao hai câu hỏi trong quy trình đứng ở hai đầu?",
+        "options": [
+          "Vì một câu quyết định có nên giao việc, câu kia quyết định có nên tin kết quả",
+          "Vì việc chia thành hai bước giúp bạn dễ nhớ hơn so với một danh sách dài",
+          "Vì câu đầu áp dụng cho việc lớn còn câu sau áp dụng cho việc nhỏ hơn",
+          "Vì hai câu đó tương ứng với hai giai đoạn của quy trình phát triển phần mềm"
+        ],
+        "correct": 0,
+        "explanation": "Chúng bao hai quyết định duy nhất bạn thật sự phải đưa ra: giao hay không, và tin hay không. Mọi kỹ thuật khác trong chặng đều là cách thực hiện tốt hơn một trong hai quyết định đó."
+      }
+    ],
+    "keyTakeaways": [
+      "Ba thứ: câu hỏi trước khi giao, câu hỏi sau khi nhận, và một ranh giới không đổi.",
+      "Chúng nói về BẠN chứ không về công cụ, nên chúng không lỗi thời theo phiên bản.",
+      "Vẫn tự làm phần phụ thuộc ràng buộc riêng - đó là vấn đề thông tin, không phải chất lượng.",
+      "Ranh giới quan trọng nhất: đừng gửi đi thứ bạn không giải thích được.",
+      "Nếu chỉ làm một thứ: viết khối ràng buộc dự án và dán vào đầu mỗi cuộc trao đổi."
+    ],
+    "practicePrompt": {
+      "question": "Một mô hình mới ra đời và mạnh hơn hẳn. Phần nào của chặng này cần học lại?",
+      "options": [
+        "Phần mô tả điểm mạnh điểm yếu cụ thể; ba thứ trong quy trình thì vẫn nguyên",
+        "Toàn bộ, vì mô hình mạnh hơn sẽ thay đổi cách làm việc một cách căn bản",
+        "Không phần nào, vì các nguyên tắc trong chặng đều độc lập với công cụ cụ thể",
+        "Phần về kiểm chứng, vì mô hình mạnh hơn thì ít cần kiểm chứng hơn trước"
+      ],
+      "correct": 0,
+      "explanation": "Chặng này cố ý tách hai loại nội dung: phần mô tả khả năng thì có hạn sử dụng, phần về cách bạn làm việc thì không. Mô hình mạnh hơn giảm tần suất sai chứ không xoá được cơ chế, nên nhu cầu kiểm chứng vẫn còn."
+    },
     "summary": {
-      "keyIdea": "Chặng AI kết thúc bằng một quy trình: đọc, trích số, tìm rủi ro, viết bản ghi nhớ, kiểm chứng.",
-      "commonMistake": "Học nhiều mẹo rời rạc mà không tạo quy trình dùng lại.",
-      "action": "Lưu bộ 5 câu lệnh và dùng thử với một tài liệu thật trong tuần này."
+      "keyIdea": "Hai câu hỏi ở hai đầu và một ranh giới - đủ ít để thành phản xạ.",
+      "formula": "Kiểm chứng nhanh tới đâu → giao → chỗ nào tin mà chưa kiểm → dừng.",
+      "commonMistake": "Học thuộc mô tả khả năng của một thế hệ mô hình, vốn có hạn sử dụng.",
+      "action": "Viết ba thứ đó ra và dán cạnh màn hình trong hai tuần."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Viết ba thứ ra một tờ giấy và dán cạnh màn hình: kiểm chứng nhanh tới đâu, chỗ nào tin mà chưa kiểm, và đừng gửi đi thứ mình không giải thích được.",
+      "secondary": "Nếu chỉ làm được một việc khác nữa: viết khối mô tả ràng buộc dự án. Viết một lần, dùng cho mọi yêu cầu, và nó cắt được cả cảnh báo giả lẫn giả định sai."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Bạn không cần nhớ mọi thuật ngữ. Bạn cần một quy trình an toàn để dùng AI trong tài chính."
+        "text": "Chặng này đi từ việc phân loại công việc tới một dự án nhỏ chạy hết bốn bước. Bài cuối rút nó thành ba thứ - vì một quy trình mười bước thì tuần sau không ai nhớ."
       },
       {
         "type": "heading",
-        "text": "Quy trình 5 bước"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Đọc và tóm tắt tài liệu",
-          "Trích số liệu có nguồn",
-          "Tìm rủi ro và câu hỏi kiểm chứng",
-          "Viết bản ghi nhớ 1 trang",
-          "Phản biện và kiểm tra lại"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Bộ 5 câu lệnh cần lưu"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Câu lệnh tóm tắt",
-          "Câu lệnh trích số",
-          "Câu lệnh tìm rủi ro",
-          "Câu lệnh viết bản ghi nhớ",
-          "Câu lệnh phản biện/kiểm chứng"
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Thuật ngữ",
-        "text": "Kiểm chứng: kiểm tra lại sự thật và số liệu. Quy trình: các bước làm việc lặp lại được. Thư viện câu lệnh: nơi lưu các câu lệnh dùng lại."
-      },
-      {
-        "type": "heading",
-        "text": "Học tiếp thế nào?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Mỗi tuần chọn một tài liệu thật và chạy quy trình 5 bước. Sau mỗi lần, sửa câu lệnh để output rõ hơn, có nguồn hơn và ngắn gọn hơn."
+        "text": "Ba thứ"
       },
       {
         "type": "conceptTable",
-        "title": "Năm bước và tiêu chí đạt của từng bước",
-        "subtitle": "Không đạt tiêu chí thì đừng chuyển sang bước sau",
+        "title": "Hai câu hỏi và một ranh giới",
         "concepts": [
           {
-            "vi": "Đọc & tóm tắt",
-            "en": "Read & summarize",
-            "def": "Đạt khi tách được dữ kiện với nhận định, và mỗi ý chính chỉ ra được nằm ở phần nào của tài liệu."
+            "vi": "Trước khi giao",
+            "en": "before",
+            "def": "Nếu có ai đưa cho tôi lời giải, tôi mất bao lâu để biết nó đúng hay sai? Nhanh thì giao; chậm hoặc không thì tự làm."
           },
           {
-            "vi": "Trích số",
-            "en": "Extract",
-            "def": "Đạt khi mọi con số có trang, đơn vị, kỳ báo cáo, ghi rõ hợp nhất hay công ty mẹ, và bạn đã đối chiếu ngẫu nhiên hai số."
+            "vi": "Sau khi nhận",
+            "en": "after",
+            "def": "Chỗ nào trong kết luận của tôi dựa vào thứ tôi chưa tự kiểm? Đánh dấu, xếp theo hậu quả, kiểm từ trên xuống."
           },
           {
-            "vi": "Tìm rủi ro",
-            "en": "Flag risks",
-            "def": "Đạt khi mỗi rủi ro có bằng chứng số, nguồn trang, và một việc cụ thể để kiểm tra tiếp."
-          },
-          {
-            "vi": "Viết bản ghi nhớ",
-            "en": "Write the memo",
-            "def": "Đạt khi người chưa biết gì đọc trong 2 phút và tóm tắt lại đúng kết luận cùng rủi ro."
-          },
-          {
-            "vi": "Phản biện & kiểm chứng",
-            "en": "Challenge & verify",
-            "def": "Đạt khi mọi điểm yếu đã được bổ sung bằng chứng hoặc cắt bỏ, và 3 con số then chốt đã đối chiếu với nguồn."
+            "vi": "Ranh giới",
+            "en": "boundary",
+            "def": "Đừng gửi đi thứ bạn không giải thích được. Ranh giới này xuất hiện ở ba bài khác nhau trong chặng vì nó là ranh giới quan trọng nhất."
           }
         ]
       },
       {
-        "type": "heading",
-        "text": "Bốn nguyên tắc mang theo cho mọi công cụ AI sau này"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Khóa nguồn trước, hỏi sau - không có nguồn thì không có kết luận dùng được.",
-          "Luôn cho AI một lối thoát hợp lệ để nói 'Không tìm thấy' thay vì suy đoán.",
-          "Tách dữ kiện với nhận định ở mọi đầu ra, kể cả khi viết cho chính mình đọc.",
-          "Mỗi lỗi phát hiện được phải quay lại thành một ràng buộc trong câu lệnh mẫu."
-        ]
-      },
-      {
         "type": "callout",
-        "label": "Một điều không đổi",
-        "text": "AI sẽ tiếp tục mạnh lên và các công cụ sẽ tiếp tục thay đổi. Nhưng trách nhiệm cho một con số trong báo cáo mang tên bạn thì không chuyển sang máy được, ở bất kỳ phiên bản nào. Đó là lý do toàn bộ chặng này xoay quanh việc dẫn nguồn và kiểm chứng chứ không xoay quanh mẹo dùng công cụ."
+        "label": "Vì sao chúng không lỗi thời",
+        "text": "Cả ba nói về BẠN - về việc bạn có gì để đối chiếu, bạn đã kiểm gì, bạn hiểu tới đâu. Chúng không mô tả khả năng của một mô hình cụ thể, nên chúng đúng với cả những công cụ chưa ra đời."
+      },
+      {
+        "type": "heading",
+        "text": "Hai loại nội dung trong chặng này"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Có hạn sử dụng",
+          "text": "Mô tả điểm mạnh điểm yếu cụ thể, mức độ hay bịa đặt, giới hạn cửa sổ ngữ cảnh. Những thứ này đổi theo từng thế hệ mô hình."
+        },
+        "right": {
+          "label": "Không có hạn",
+          "text": "Ba thứ trong quy trình, và một câu về cơ chế: nó sinh chuỗi có xác suất cao nhất. Từ câu đó suy ra được phần lớn những gì còn lại."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Thứ vẫn tự làm"
       },
       {
         "type": "paragraph",
-        "text": "Nếu bạn chỉ giữ lại một thứ từ chặng này, hãy giữ thói quen hỏi bốn câu với mọi con số: trang nào, đơn vị gì, kỳ nào, tính bằng công thức gì. Bốn câu đó lọc được phần lớn rủi ro, và chúng đúng dù bạn đang dùng AI hay đang đọc một bản phân tích của người khác."
+        "text": "Quyết định phụ thuộc vào ràng buộc riêng mà chỉ đội của bạn biết. Đây không phải vấn đề công cụ chưa đủ tốt - nó là vấn đề THÔNG TIN: ràng buộc đó không nằm ở đâu để nó đọc được, nên không phiên bản nào giải quyết được."
+      },
+      {
+        "type": "heading",
+        "text": "Nếu chỉ làm một việc"
+      },
+      {
+        "type": "paragraph",
+        "text": "Viết một khối mô tả ràng buộc dự án và dán vào đầu mỗi cuộc trao đổi: ngôn ngữ và phiên bản, khung làm việc, quy ước, những thứ không được dùng."
       },
       {
         "type": "closing",
         "lines": [
-          "AI trong tài chính không phải mẹo vặt; nó là quy trình làm việc.",
-          "Người mới giỏi lên khi biết hỏi rõ, kiểm chứng kỹ và lưu lại cách làm."
+          "Viết một lần, dùng cho mọi yêu cầu, và nó cắt được cả cảnh báo giả lẫn giả định sai - hai vấn đề lớn nhất trong cả chặng.",
+          "Còn nếu phải chọn một câu để mang theo: nếu có ai đưa cho tôi lời giải, tôi mất bao lâu để biết nó đúng hay sai? Câu đó mở đầu chặng và nó kết thúc chặng, vì nó là thứ duy nhất không đổi."
         ]
       }
-    ],
-    "quiz": [
-      {
-        "question": "Quy trình AI trong tài chính nên kết thúc bằng bước nào?",
-        "options": [
-          "Phản biện và kiểm tra lại",
-          "Tin ngay output",
-          "Xóa nguồn",
-          "Chỉ xem tiêu đề"
-        ],
-        "correct": 0,
-        "explanation": "Kiểm chứng là bước bảo vệ chất lượng."
-      },
-      {
-        "question": "Bộ câu lệnh tối thiểu nên có mấy nhóm?",
-        "options": [
-          "5 nhóm: tóm tắt, trích số, tìm rủi ro, viết bản ghi nhớ, kiểm chứng",
-          "1 nhóm dùng cho mọi thứ",
-          "Không cần prompt",
-          "Chỉ câu lệnh mua bán"
-        ],
-        "correct": 0,
-        "explanation": "5 nhóm này tạo thành một quy trình hoàn chỉnh."
-      },
-      {
-        "question": "Nguyên tắc xuyên suốt cả năm bước của quy trình là gì?",
-        "options": [
-          "Mọi thứ phải truy được về nguồn, chỗ nào không truy được thì nói rõ",
-          "Càng dùng nhiều công cụ AI càng tốt",
-          "Luôn viết output càng chi tiết càng tốt",
-          "Ưu tiên tốc độ hơn kiểm chứng"
-        ],
-        "correct": 0,
-        "explanation": "Đây là điều kiện làm cho mọi bước còn lại có ý nghĩa. Bỏ nguyên tắc dẫn nguồn đi thì tóm tắt, trích số hay bản ghi nhớ đều trở thành thứ không kiểm chứng được."
-      },
-      {
-        "question": "Vì sao quy trình lại quan trọng hơn việc thuộc các câu lệnh cụ thể?",
-        "options": [
-          "Vì công cụ và câu lệnh sẽ thay đổi, còn thứ tự đọc - trích - soi rủi ro - viết - kiểm chứng thì không",
-          "Vì câu lệnh dài rất khó nhớ",
-          "Vì quy trình giúp trả lời nhanh hơn",
-          "Vì các công cụ AI không cho lưu câu lệnh"
-        ],
-        "correct": 0,
-        "explanation": "Câu lệnh là cách diễn đạt của quy trình trên một công cụ tại một thời điểm. Khi công cụ đổi, bạn viết lại câu lệnh trong vài phút nếu còn giữ quy trình; ngược lại thì phải học lại từ đầu."
-      }
-    ],
-    "day": 1280,
-    "track": "professional",
-    "emoji": "🤖",
-    "diagram": [
-      {
-        "label": "1. Đọc & tóm tắt có cấu trúc",
-        "arrow": true
-      },
-      {
-        "label": "2. Trích số kèm trang, đơn vị, kỳ",
-        "arrow": true
-      },
-      {
-        "label": "3. Tìm rủi ro có bằng chứng",
-        "arrow": true
-      },
-      {
-        "label": "4. Viết bản ghi nhớ 1 trang",
-        "arrow": true
-      },
-      {
-        "label": "5. Phản biện & kiểm chứng → lưu vết"
-      }
-    ],
-    interactiveType: "prompt-craft",
-    "realWorldExample": {
-      "company": "Kế hoạch bốn tuần để quy trình thành phản xạ",
-      "description": "Đọc xong một chặng không làm nên kỹ năng; lặp lại mới làm. Một cách chạy đơn giản: tuần 1 chọn một bài báo tài chính và chỉ làm bước 1-2, mục tiêu là đối chiếu đúng ba con số. Tuần 2 chuyển sang báo cáo quý của một doanh nghiệp bạn quan tâm, làm bước 1-3. Tuần 3 làm trọn bước 1-5 trên cùng doanh nghiệp đó và cho một người khác đọc bản ghi nhớ trong hai phút. Tuần 4 lấy lại chính bản ghi nhớ tuần 3, đối chiếu với thông tin mới công bố, và sửa câu lệnh mẫu dựa trên những lỗi đã gặp. Sau bốn tuần bạn có một quy trình đã chạy thật, một thư viện câu lệnh đã sửa qua vài vòng, và quan trọng nhất là phản xạ đối chiếu nguồn."
-    },
-    "keyTakeaways": [
-      "Quy trình 5 bước quan trọng hơn bất kỳ câu lệnh cụ thể nào - công cụ đổi thì quy trình vẫn dùng được.",
-      "Nguyên tắc xuyên suốt: mọi thứ phải truy được về nguồn, chỗ nào không truy được thì nói rõ.",
-      "Thư viện câu lệnh và ghi chú lưu vết là hai tài sản tích lũy được theo thời gian.",
-      "Kỹ năng chỉ hình thành qua lặp lại trên tài liệu thật, không qua việc đọc thêm lý thuyết."
-    ],
-    "practicePrompt": {
-      "question": "Sau chặng này, người học nên có sản phẩm gì?",
-      "options": [
-        "Một quy trình AI nhỏ có câu lệnh, nguồn, output và bước kiểm chứng",
-        "Một niềm tin rằng AI luôn đúng",
-        "Một quyết định mua bán chưa kiểm tra",
-        "Không cần lưu gì"
-      ],
-      "correct": 0,
-      "explanation": "Đầu ra tốt nhất là quy trình dùng được và kiểm chứng được."
-    },
-    "application": {
-      "title": "Thực hành ngay",
-      "message": "Lưu bộ 5 câu lệnh và dùng thử với một tài liệu thật trong tuần này.",
-      "secondary": "Làm nhỏ, kiểm chứng rõ, rồi mới tăng độ khó."
-    },
-    "whyItMatters": "Một quy trình dùng lại được có giá trị lâu dài hơn nhiều so với việc nhớ vài câu lệnh hay - công cụ sẽ đổi, quy trình thì không."
+    ]
   },
   {
     "id": 1281,
