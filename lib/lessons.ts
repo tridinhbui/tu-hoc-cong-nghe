@@ -2595,7 +2595,7 @@ export const lessons: Lesson[] = [
       "question": "Chương trình đọc một tệp hai gigabyte và báo hết bộ nhớ. Cách xử lý đúng là gì?",
       "options": [
         "Đọc và xử lý theo từng dòng thay vì nạp cả tệp vào bộ nhớ cùng lúc",
-        "Tăng kích thước ngăn xếp lên để chứa được toàn bộ nội dung tệp đó",
+        "Tăng kích thước ngăn xếp lên để chứa được toàn bộ nội dung của tệp đó",
         "Chia tệp thành nhiều tệp nhỏ rồi chạy chương trình nhiều lần liên tiếp",
         "Nén tệp lại trước khi đọc để nó chiếm ít bộ nhớ hơn khi được nạp vào"
       ],
@@ -5206,7 +5206,7 @@ export const lessons: Lesson[] = [
       "question": "Một hàm nhận danh sách người dùng rồi sắp xếp nó tại chỗ. Sau khi gọi hàm, thứ tự danh sách ở nơi gọi cũng đổi theo. Cách sửa gọn nhất là gì?",
       "options": [
         "Sắp xếp trên một bản sao rồi trả bản sao đó về nơi gọi",
-        "Sắp xếp xong thì đảo danh sách về đúng thứ tự ban đầu",
+        "Sắp xếp xong thì đảo danh sách trở lại đúng thứ tự ban đầu của nó",
         "Khai báo tham số của hàm là hằng để ngăn không cho sửa",
         "Gọi hàm bằng cách truyền từng phần tử thay vì cả danh sách"
       ],
@@ -6099,7 +6099,7 @@ export const lessons: Lesson[] = [
       "options": [
         "Dùng mã ngẫu nhiên đủ dài, mỗi máy tự sinh mà không cần hỏi nhau",
         "Cho bốn máy cùng hỏi một bộ đếm trung tâm trước mỗi lần ghi dữ liệu",
-        "Chia dải số cho mỗi máy và mở rộng dải khi một máy dùng gần hết",
+        "Chia dải số cho mỗi máy và mở rộng dải ra khi một máy dùng gần hết",
         "Ghép định danh tự tăng của mỗi máy với tên của máy đó thành khoá"
       ],
       "correct": 0,
@@ -6919,6 +6919,7 @@ export const lessons: Lesson[] = [
   {
     "id": 36,
     "slug": "chat-luong-du-lieu",
+    "interactiveType": "sampling",
     "title": "Chất lượng dữ liệu: đo trước khi tin vào con số",
     "subtitle": "Một báo cáo sai không trông khác gì một báo cáo đúng.",
     "duration": "9 phút",
@@ -8276,7 +8277,7 @@ export const lessons: Lesson[] = [
       "options": [
         "Cách nhanh, vì điểm đo mới luôn thay thế được điểm đo vừa mất",
         "Cách bảo đảm, để chuỗi số đo không bị thiếu điểm nào khi phân tích",
-        "Cách bảo đảm, nhưng tắt cơ chế giữ thứ tự để giảm bớt độ trễ",
+        "Cách bảo đảm, nhưng tắt cơ chế giữ thứ tự lại để giảm bớt độ trễ",
         "Tuỳ số lượng cảm biến, ít thì dùng cách nhanh còn nhiều thì ngược lại"
       ],
       "correct": 0,
@@ -9714,7 +9715,7 @@ export const lessons: Lesson[] = [
       "options": [
         "Sản phẩm vừa hết hàng vẫn hiện là còn hàng trong tối đa một giờ",
         "Máy chủ phải chịu tải cao hơn vì phải làm mới bộ nhớ đệm mỗi giờ",
-        "Người dùng phải tải lại trang thủ công sau mỗi một giờ sử dụng",
+        "Người dùng phải tự tải lại trang thủ công sau mỗi một giờ sử dụng",
         "Dữ liệu trong bộ nhớ đệm chiếm dung lượng lớn dần theo thời gian"
       ],
       "correct": 0,
@@ -13605,6 +13606,7 @@ export const lessons: Lesson[] = [
   {
     "id": 74,
     "slug": "quan-sat-he-thong-dang-chay",
+    "interactiveType": "sampling",
     "title": "Quan sát được: biết hệ thống đang làm gì lúc này",
     "subtitle": "Kiểm thử nói mã đúng với những gì bạn nghĩ ra; quan sát nói nó đang làm gì thật.",
     "duration": "9 phút",
@@ -15493,6 +15495,7 @@ export const lessons: Lesson[] = [
   {
     "id": 85,
     "slug": "thu-nghiem-a-b",
+    "interactiveType": "sampling",
     "title": "Thử nghiệm A/B: so với chính mình, cùng thời điểm",
     "subtitle": "So tuần này với tuần trước không phải thử nghiệm - đó là so với thời tiết.",
     "duration": "9 phút",
@@ -16155,6 +16158,7 @@ export const lessons: Lesson[] = [
   {
     "id": 89,
     "slug": "dinh-nghia-chi-so-va-su-troi-dat",
+    "interactiveType": "chart",
     "title": "Định nghĩa chỉ số: con số đổi vì cách tính đổi",
     "subtitle": "Người dùng hoạt động nghĩa là gì? Hai người trả lời khác nhau thì hai báo cáo sẽ cãi nhau.",
     "duration": "8 phút",
@@ -16638,6 +16642,7 @@ export const lessons: Lesson[] = [
   {
     "id": 92,
     "slug": "chia-nho-va-giao-tung-phan",
+    "interactiveType": "process",
     "title": "Chia nhỏ: giao từng phần thay vì giao một lần",
     "subtitle": "Ba tháng không có gì chạy được là ba tháng không ai biết mình đang đi đúng hay sai.",
     "duration": "8 phút",
@@ -20015,6 +20020,7 @@ export const lessons: Lesson[] = [
   {
     "id": 112,
     "slug": "phoi-hop-trien-khai-nhieu-doi",
+    "interactiveType": "process",
     "title": "Khi buộc phải triển khai cùng nhau",
     "subtitle": "Mỗi lần phải khớp lịch giữa các đội là một dấu hiệu, không phải một quy trình cần hoàn thiện.",
     "duration": "8 phút",
@@ -20839,6 +20845,7 @@ export const lessons: Lesson[] = [
   {
     "id": 117,
     "slug": "go-he-thong-cu",
+    "interactiveType": "process",
     "title": "Gỡ hệ thống cũ: phần không ai muốn làm",
     "subtitle": "Di trú chưa xong khi bản mới chạy - nó xong khi bản cũ đã tắt.",
     "duration": "8 phút",
@@ -21498,6 +21505,7 @@ export const lessons: Lesson[] = [
   {
     "id": 121,
     "slug": "mo-hinh-moi-de-doa",
+    "interactiveType": "process",
     "title": "Mô hình mối đe doạ: ai muốn gì, và bạn mất gì",
     "subtitle": "Bảo vệ mọi thứ như nhau nghĩa là không bảo vệ được thứ quan trọng nhất.",
     "duration": "8 phút",
@@ -24671,6 +24679,7 @@ export const lessons: Lesson[] = [
   {
     "id": 140,
     "slug": "on-tap-bao-mat-ung-dung",
+    "interactiveType": "process",
     "title": "Ôn tập: bảo mật là chuỗi quyết định, không phải danh sách việc",
     "subtitle": "Hai mươi bài vừa rồi đều quay về một câu hỏi: bảo vệ cái gì, khỏi ai, và khi hỏng thì tới đâu.",
     "duration": "10 phút",
@@ -24922,7 +24931,7 @@ export const lessons: Lesson[] = [
         "question": "Kết quả của một lần đo hiệu năng nên là gì?",
         "options": [
           "Một danh sách các bước xếp theo thời gian chúng chiếm",
-          "Một con số tổng cho biết thao tác mất bao lâu",
+          "Một con số tổng cho biết cả thao tác mất bao lâu",
           "Một kết luận về thành phần nào của hệ thống đang bị lỗi",
           "Một so sánh với thời gian phản hồi của đối thủ"
         ],
@@ -24933,7 +24942,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao phải đo lại sau khi tối ưu?",
         "options": [
           "Vì cải thiện tưởng tượng rất dễ xảy ra khi chỉ nhìn vào mã",
-          "Vì các công cụ đo cần được hiệu chỉnh sau mỗi lần thay đổi",
+          "Vì các công cụ đo cần được hiệu chỉnh lại sau mỗi lần thay đổi",
           "Vì kết quả đo lần đầu thường có sai số rất lớn",
           "Vì tối ưu có thể làm hỏng tính đúng đắn của chương trình"
         ],
@@ -24946,7 +24955,7 @@ export const lessons: Lesson[] = [
           "Mã trở nên khó đọc hơn mà không đổi lại được gì",
           "Hệ thống tiêu tốn nhiều tài nguyên hơn trước khi tối ưu",
           "Các bài kiểm thử hiện có không còn chạy được nữa",
-          "Đội mất khả năng đo lại hiệu năng ở lần sau"
+          "Đội mất khả năng đo lại hiệu năng ở những lần sau"
         ],
         "correct": 0,
         "explanation": "Mã nhanh thường phức tạp hơn mã rõ ràng, nên bạn trả bằng khả năng bảo trì. Trả cái giá đó cho một cải thiện bằng không là dạng lãng phí kép."
@@ -25004,6 +25013,7 @@ export const lessons: Lesson[] = [
   {
     "id": 142,
     "slug": "chi-so-hieu-nang-phan-anh-trai-nghiem",
+    "interactiveType": "sampling",
     "title": "Đo con số nào: thứ người dùng cảm nhận",
     "subtitle": "Thời gian máy chủ trả lời xong không phải thời gian người dùng thấy trang.",
     "duration": "8 phút",
@@ -25073,7 +25083,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì nó chỉ là một đoạn trong hành trình của người dùng",
           "Vì đồng hồ trên máy chủ có sai số theo thời gian",
-          "Vì nó thay đổi quá nhanh để theo dõi một cách ổn định",
+          "Vì nó thay đổi quá nhanh để có thể theo dõi một cách ổn định",
           "Vì mỗi máy chủ trong nhóm cho một con số khác nhau"
         ],
         "correct": 0,
@@ -25084,8 +25094,8 @@ export const lessons: Lesson[] = [
         "options": [
           "Việc người dùng làm được thứ họ định làm",
           "Sự kiện kỹ thuật rõ ràng và dễ ghi lại chính xác",
-          "Thời điểm máy chủ hoàn thành phản hồi",
-          "Thời điểm mọi tài nguyên đã tải xong"
+          "Thời điểm mà máy chủ hoàn thành phản hồi",
+          "Thời điểm mọi tài nguyên của trang đã tải xong"
         ],
         "correct": 0,
         "explanation": "Một trang có thể tải đủ tài nguyên mà vẫn trắng, hoặc hiện nội dung mà chưa bấm được. Chỉ mốc gắn với khả năng thao tác mới phản ánh đúng thứ người dùng trải qua."
@@ -25096,7 +25106,7 @@ export const lessons: Lesson[] = [
           "Một phía cho biết có vấn đề, phía kia giúp tìm ra nguyên nhân",
           "Hai phép đo giúp kiểm tra chéo độ chính xác của nhau",
           "Đo hai phía là yêu cầu bắt buộc của các công cụ giám sát",
-          "Phía máy chủ dùng cho vận hành, phía trình duyệt cho sản phẩm"
+          "Phía máy chủ dùng cho vận hành, còn phía trình duyệt cho sản phẩm"
         ],
         "correct": 0,
         "explanation": "Đo từ phía người dùng cho biết trải nghiệm thật; đo bên trong hệ thống cho biết thời gian đi vào bước nào. Thiếu cái đầu thì bạn không biết có vấn đề, thiếu cái sau thì không biết sửa ở đâu."
@@ -25105,7 +25115,7 @@ export const lessons: Lesson[] = [
         "question": "Người dùng ở xa trung tâm dữ liệu ảnh hưởng thế nào tới phép đo?",
         "options": [
           "Phần mạng chiếm tỷ trọng lớn nên đo ở máy chủ càng lệch",
-          "Máy chủ mất nhiều thời gian hơn để xử lý yêu cầu của họ",
+          "Máy chủ mất nhiều thời gian hơn để xử lý các yêu cầu của họ",
           "Trình duyệt của họ chạy chậm hơn do cấu hình thiết bị",
           "Số lượng tài nguyên phải tải về nhiều hơn bình thường"
         ],
@@ -25165,6 +25175,7 @@ export const lessons: Lesson[] = [
   {
     "id": 143,
     "slug": "ho-so-hieu-nang",
+    "interactiveType": "tail-risk",
     "title": "Hồ sơ hiệu năng: thời gian đi đâu bên trong một thao tác",
     "subtitle": "Công cụ chia thời gian theo từng hàm, và câu trả lời hiếm khi trùng dự đoán.",
     "duration": "9 phút",
@@ -25233,7 +25244,7 @@ export const lessons: Lesson[] = [
         "question": "Một hàm chiếm tỷ trọng lớn với rất nhiều lần gọi gợi ý điều gì?",
         "options": [
           "Nên tìm cách giảm số lần gọi thay vì tối ưu bên trong hàm",
-          "Nên viết lại hàm đó bằng thuật toán hiệu quả hơn",
+          "Nên viết lại hàm đó bằng một thuật toán hiệu quả hơn hẳn",
           "Nên chuyển hàm đó sang chạy trên một luồng riêng",
           "Nên thêm bộ nhớ đệm cho kết quả trả về của hàm"
         ],
@@ -25257,7 +25268,7 @@ export const lessons: Lesson[] = [
           "Vì nhiều chỗ chậm chỉ xuất hiện khi dữ liệu đủ lớn",
           "Vì dữ liệu thật có nhiều trường hợp lỗi hơn dữ liệu mẫu",
           "Vì công cụ đo cần thời gian chạy đủ dài để ổn định",
-          "Vì dữ liệu mẫu thường được lưu ở định dạng khác"
+          "Vì dữ liệu mẫu thường được lưu ở một định dạng khác"
         ],
         "correct": 0,
         "explanation": "Chi phí phụ thuộc quy mô là loại chỗ chậm phổ biến nhất, và trên trăm dòng dữ liệu thì nó hoàn toàn vô hình. Đo trên dữ liệu nhỏ cho một hồ sơ đúng về một tình huống không tồn tại."
@@ -25268,7 +25279,7 @@ export const lessons: Lesson[] = [
           "Đo trải nghiệm tổng thể từ phía người dùng",
           "Đo thời gian phản hồi của từng truy vấn dữ liệu",
           "Đo mức sử dụng bộ nhớ trong suốt quá trình chạy",
-          "Đo số lần một hàm cụ thể được gọi tới"
+          "Đo số lần mà một hàm cụ thể nào đó được gọi tới"
         ],
         "correct": 0,
         "explanation": "Nó đo một thao tác trong một tiến trình, nên nó không thấy mạng, không thấy trình duyệt, không thấy hàng đợi giữa các dịch vụ. Hai loại phép đo bổ sung nhau chứ không thay nhau."
@@ -25411,7 +25422,7 @@ export const lessons: Lesson[] = [
           "Phần này chiếm bao nhiêu phần trăm tổng thời gian",
           "Phần này có thể được làm nhanh hơn tối đa bao nhiêu lần",
           "Phần này có bao nhiêu dòng mã cần được viết lại",
-          "Phần này đã được viết cách đây bao lâu rồi"
+          "Phần này đã được viết ra cách đây bao lâu rồi"
         ],
         "correct": 0,
         "explanation": "Mức cải thiện khả dĩ nghe hấp dẫn hơn nhưng nó vô nghĩa nếu tỷ trọng nhỏ. Hai con số nhân với nhau mới ra lợi ích thật, và tỷ trọng là con số bị bỏ qua thường xuyên hơn."
@@ -25421,7 +25432,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì tỷ trọng của mọi phần đều đổi nên nút thắt đã chuyển chỗ",
           "Vì cần xác nhận rằng thay đổi không làm hỏng tính đúng đắn của kết quả",
-          "Vì công cụ đo cần được hiệu chỉnh lại sau thay đổi lớn",
+          "Vì công cụ đo cần được hiệu chỉnh lại sau mỗi thay đổi lớn",
           "Vì kết quả đo lần trước có thể đã bị ảnh hưởng bởi tải"
         ],
         "correct": 0,
@@ -25432,8 +25443,8 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì phần được cải thiện vốn chỉ chiếm một tỷ trọng rất nhỏ",
           "Vì cải thiện bị mất đi do chi phí của lớp trừu tượng thêm vào",
-          "Vì hệ thống bị giới hạn bởi tài nguyên phần cứng có sẵn",
-          "Vì phép đo tổng có sai số lớn hơn mức cải thiện đạt được"
+          "Vì hệ thống bị giới hạn bởi tài nguyên phần cứng đang có sẵn",
+          "Vì phép đo tổng có sai số lớn hơn cả mức cải thiện đạt được"
         ],
         "correct": 0,
         "explanation": "Con số tỷ trọng ấy thường đã nằm sẵn trong hồ sơ hiệu năng trước khi công việc bắt đầu. Đọc nó trước là cách rẻ nhất để không bỏ hai tuần vào một cải thiện ba phần trăm."
@@ -25442,7 +25453,7 @@ export const lessons: Lesson[] = [
         "question": "Khi nào một cải thiện lớn về tốc độ vẫn không đáng làm?",
         "options": [
           "Khi phần được cải thiện chiếm tỷ trọng quá nhỏ trong tổng",
-          "Khi kỹ thuật tối ưu đó chưa được đội nào áp dụng trước đây",
+          "Khi kỹ thuật tối ưu đó chưa được đội nào dùng tới trước đây",
           "Khi phần đó nằm trong mã của một thư viện bên ngoài",
           "Khi việc tối ưu đòi hỏi thay đổi nhiều tệp mã nguồn"
         ],
@@ -25566,8 +25577,8 @@ export const lessons: Lesson[] = [
         "options": [
           "Khoảng một nghìn lần",
           "Khoảng mười lần",
-          "Khoảng hai tới ba lần",
-          "Khoảng một trăm lần"
+          "Khoảng ba lần",
+          "Khoảng một trăm lần trở lên"
         ],
         "correct": 0,
         "explanation": "Bộ nhớ chính tính bằng nano giây, đĩa thể rắn bằng micro giây, mạng bằng trăm micro giây trở lên. Chính khoảng cách lớn ấy làm cho việc nhận ra bậc quan trọng hơn nhiều so với việc nhớ con số chính xác."
@@ -25576,7 +25587,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao đọc mã không cho biết chi phí?",
         "options": [
           "Vì một dòng có thể là vài lệnh máy hoặc một vòng gọi mạng",
-          "Vì trình biên dịch sắp xếp lại thứ tự các câu lệnh",
+          "Vì trình biên dịch sắp xếp lại thứ tự của các câu lệnh",
           "Vì chi phí phụ thuộc vào phiên bản ngôn ngữ lập trình đang dùng",
           "Vì mã nguồn không thể hiện số lần mỗi dòng được chạy"
         ],
@@ -25588,7 +25599,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Lời gọi ra ngoài tiến trình được đặt bên trong một vòng lặp",
           "Thuật toán có độ phức tạp cao trên tập dữ liệu lớn",
-          "Phép tính dấu phẩy động lặp lại nhiều lần liên tiếp",
+          "Phép tính dấu phẩy động được lặp lại rất nhiều lần liên tiếp nhau",
           "Việc cấp phát bộ nhớ cho các đối tượng nhỏ"
         ],
         "correct": 0,
@@ -25598,9 +25609,9 @@ export const lessons: Lesson[] = [
         "question": "Bảng độ lớn tương đối dùng để làm gì?",
         "options": [
           "Đoán nhanh chỗ đáng đo trước khi chạy công cụ",
-          "Thay thế cho việc phải đo hiệu năng thực tế",
+          "Thay thế cho việc phải đo hiệu năng trong thực tế",
           "Tính chính xác thời gian mà một thao tác cụ thể sẽ mất",
-          "So sánh hiệu năng giữa các loại phần cứng"
+          "So sánh hiệu năng giữa các loại phần cứng với nhau"
         ],
         "correct": 0,
         "explanation": "Nó không thay được phép đo nhưng nó thu hẹp danh sách nghi ngờ rất nhanh. Biết mạng đắt hơn bộ nhớ một triệu lần thì bạn nhìn vào vòng lặp có lời gọi mạng trước tiên."
@@ -25678,6 +25689,7 @@ export const lessons: Lesson[] = [
   {
     "id": 146,
     "slug": "bo-nho-va-thu-gom-rac",
+    "interactiveType": "tail-risk",
     "title": "Bộ nhớ: cấp phát rẻ, dọn dẹp thì không",
     "subtitle": "Thu gom rác giúp bạn khỏi nghĩ về bộ nhớ, cho tới lúc nó dừng chương trình lại để dọn.",
     "duration": "9 phút",
@@ -25746,7 +25758,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao thu gom rác không hiện ở thời gian trung bình?",
         "options": [
           "Vì nó chỉ ảnh hưởng một phần nhỏ số yêu cầu, nhưng ảnh hưởng nặng",
-          "Vì các công cụ đo thường loại bỏ những giá trị bất thường",
+          "Vì các công cụ đo thường tự loại bỏ bớt những giá trị bất thường nhất",
           "Vì thời gian dừng được tính riêng vào phần hệ điều hành",
           "Vì nó chạy vào lúc hệ thống có ít yêu cầu đi tới nhất"
         ],
@@ -25757,9 +25769,9 @@ export const lessons: Lesson[] = [
         "question": "Vì sao tăng giới hạn bộ nhớ không phải giải pháp tốt?",
         "options": [
           "Vì bộ thu gom chạy thưa hơn nhưng mỗi lần dừng lại lâu hơn",
-          "Vì hệ điều hành sẽ không cấp thêm bộ nhớ khi máy đã đầy",
+          "Vì hệ điều hành sẽ không cấp thêm bộ nhớ khi máy đã dùng đầy",
           "Vì chương trình sẽ tự động dùng hết phần bộ nhớ vừa được cấp thêm",
-          "Vì chi phí thuê máy tăng theo lượng bộ nhớ được cấu hình"
+          "Vì chi phí thuê máy tăng theo đúng lượng bộ nhớ được cấu hình"
         ],
         "correct": 0,
         "explanation": "Lượng rác phải dọn không đổi, chỉ có nhịp trả chi phí là đổi. Với hệ thống nhạy cảm về độ trễ thì gộp chi phí thành những lần dừng dài hơn là đi sai hướng."
@@ -25768,7 +25780,7 @@ export const lessons: Lesson[] = [
         "question": "Loại đối tượng nào tốn kém nhất cho bộ thu gom?",
         "options": [
           "Đối tượng sống đủ lâu để bị kiểm tra qua nhiều lần dọn",
-          "Đối tượng có kích thước lớn nhất trong bộ nhớ",
+          "Đối tượng có kích thước lớn nhất nằm trong bộ nhớ",
           "Đối tượng đang được nhiều đối tượng khác cùng tham chiếu tới",
           "Đối tượng được tạo ra nhiều nhất trong một giây"
         ],
@@ -25791,7 +25803,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì nó thường chỉ là việc dịch một con trỏ đi về phía trước",
           "Vì hệ điều hành đã dành sẵn bộ nhớ cho tiến trình từ đầu",
-          "Vì bộ nhớ hiện nay có dung lượng lớn hơn nhu cầu rất nhiều",
+          "Vì bộ nhớ hiện nay có dung lượng lớn hơn nhu cầu thật rất nhiều",
           "Vì phần lớn đối tượng đủ nhỏ để nằm vừa trong bộ nhớ đệm"
         ],
         "correct": 0,
@@ -25937,7 +25949,7 @@ export const lessons: Lesson[] = [
         "question": "Duyệt một bảng hai chiều theo thứ tự nào thì nhanh hơn?",
         "options": [
           "Theo đúng thứ tự các phần tử được xếp trong bộ nhớ",
-          "Theo thứ tự cột, vì cột thường ngắn hơn hàng",
+          "Theo thứ tự cột, vì cột thường ngắn hơn so với hàng",
           "Theo thứ tự nào cũng như nhau nếu tổng số phép tính bằng nhau",
           "Theo thứ tự ngược lại để tận dụng dự đoán của bộ xử lý"
         ],
@@ -25949,8 +25961,8 @@ export const lessons: Lesson[] = [
         "options": [
           "Ở vòng lặp nóng xử lý khối lượng lớn hoàn toàn trong bộ nhớ",
           "Ở mọi đoạn mã có duyệt qua một cấu trúc dữ liệu",
-          "Ở những chỗ có gọi tới cơ sở dữ liệu hoặc dịch vụ ngoài",
-          "Ở phần mã khởi tạo được chạy một lần lúc chương trình bắt đầu"
+          "Ở những chỗ có gọi tới cơ sở dữ liệu hoặc các dịch vụ bên ngoài",
+          "Ở phần mã khởi tạo chỉ chạy một lần lúc khởi động"
         ],
         "correct": 0,
         "explanation": "Ở chỗ có thao tác ra ngoài tiến trình, chi phí ấy nuốt mất mọi khoản tiết kiệm cỡ nano giây. Còn mã chạy một lần thì tổng chi phí nhỏ nên không đáng làm phức tạp thêm."
@@ -26084,7 +26096,7 @@ export const lessons: Lesson[] = [
         "question": "Bộ tối ưu chọn kế hoạch dựa trên cái gì?",
         "options": [
           "Ước lượng về số dòng dựa trên thống kê của các bảng",
-          "Thứ tự các mệnh đề mà người viết đặt trong truy vấn",
+          "Thứ tự các mệnh đề mà người viết đặt trong câu truy vấn",
           "Lịch sử thời gian chạy của truy vấn đó trước đây",
           "Danh sách chỉ mục đang có trên các bảng liên quan"
         ],
@@ -26106,9 +26118,9 @@ export const lessons: Lesson[] = [
         "question": "Quét toàn bảng khi nào là lựa chọn hợp lý?",
         "options": [
           "Khi truy vấn lấy phần lớn số dòng hoặc khi bảng còn nhỏ",
-          "Khi bảng chưa có chỉ mục nào được tạo trên các cột lọc",
+          "Khi bảng chưa có chỉ mục nào được tạo trên các cột dùng lọc",
           "Khi truy vấn cần sắp xếp kết quả theo một cột bất kỳ",
-          "Khi cơ sở dữ liệu đang có ít truy vấn khác chạy cùng lúc"
+          "Khi cơ sở dữ liệu đang có ít truy vấn khác chạy"
         ],
         "correct": 0,
         "explanation": "Đi qua chỉ mục rồi nhảy về bảng ở mỗi dòng đắt hơn đọc tuần tự khi số dòng cần lấy đủ lớn. Bộ tối ưu biết điều đó, nên thấy quét toàn bảng chưa đủ để kết luận là có lỗi."
@@ -26129,8 +26141,8 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì chỉ mục làm chậm ghi và có thể không được bộ tối ưu dùng tới",
           "Vì cơ sở dữ liệu giới hạn số chỉ mục có thể tạo trên mỗi bảng dữ liệu",
-          "Vì chỉ mục phải được xây lại thủ công sau mỗi lần dữ liệu đổi",
-          "Vì việc tạo chỉ mục luôn khoá bảng trong suốt quá trình tạo"
+          "Vì chỉ mục phải được xây lại thủ công sau mỗi lần dữ liệu thay đổi",
+          "Vì việc tạo chỉ mục luôn khoá bảng trong suốt cả quá trình tạo nó"
         ],
         "correct": 0,
         "explanation": "Mỗi chỉ mục là một cấu trúc phải cập nhật ở mỗi lần thêm, sửa, xoá, nên chi phí là có thật và trả liên tục. Đọc kế hoạch trước cho bạn biết chỉ mục nào sẽ thật sự được dùng."
@@ -26255,7 +26267,7 @@ export const lessons: Lesson[] = [
           "Vì từng truy vấn đều nhanh nên không có gì vào nhật ký truy vấn chậm",
           "Vì các truy vấn con được lớp dữ liệu che giấu khỏi nhật ký",
           "Vì nó chỉ xuất hiện khi hệ thống đang chịu tải cao",
-          "Vì số truy vấn thay đổi tuỳ theo dữ liệu của từng người dùng"
+          "Vì số truy vấn thay đổi tuỳ theo dữ liệu riêng của từng người dùng"
         ],
         "correct": 0,
         "explanation": "Mọi công cụ nhìn từng truy vấn một đều báo rằng tình hình bình thường. Phép đo phát hiện ra nó là đếm số truy vấn trên một yêu cầu, một con số ít ai theo dõi."
@@ -26266,7 +26278,7 @@ export const lessons: Lesson[] = [
           "Ở số lần phải đi về tới cơ sở dữ liệu và chờ nối tiếp",
           "Ở việc cơ sở dữ liệu phải phân tích cú pháp nhiều truy vấn",
           "Ở lượng dữ liệu được truyền về từ cơ sở dữ liệu",
-          "Ở việc mở và đóng kết nối cho mỗi truy vấn con"
+          "Ở việc mở và đóng kết nối cho từng truy vấn con một"
         ],
         "correct": 0,
         "explanation": "Bảng chi phí ở bài trước đã cho biết một vòng đi về mạng đắt hơn phần xử lý bên trong nhiều bậc. Nhân nó với bốn trăm lần nối tiếp thì ra vài giây, dù mỗi lần chỉ nửa mili giây."
@@ -26277,7 +26289,7 @@ export const lessons: Lesson[] = [
           "Ở lời gọi tới dịch vụ khác đặt bên trong một vòng lặp",
           "Ở các phép tính phức tạp được lặp lại nhiều lần liên tiếp",
           "Ở việc cấp phát bộ nhớ cho từng phần tử trong danh sách",
-          "Ở việc đọc cấu hình mỗi khi một hàm được gọi tới"
+          "Ở việc đọc lại cấu hình mỗi khi có một hàm được gọi tới"
         ],
         "correct": 0,
         "explanation": "Bản chất là một thao tác đắt đặt trong vòng lặp, nên nó lặp lại y hệt với lời gọi dịch vụ, đọc tệp, hay gọi tới bộ nhớ đệm ngoài. Ba lựa chọn còn lại đều rẻ hơn nhiều bậc nên chúng không tạo ra cùng mức độ thiệt hại."
@@ -26297,9 +26309,9 @@ export const lessons: Lesson[] = [
         "question": "Phép đo nào phát hiện được vấn đề này?",
         "options": [
           "Đếm số truy vấn được thực hiện trong một yêu cầu",
-          "Đo thời gian chạy trung bình của các truy vấn",
+          "Đo thời gian chạy trung bình của tất cả các truy vấn",
           "Theo dõi mức sử dụng bộ xử lý của máy chủ cơ sở dữ liệu",
-          "Xem kế hoạch thực thi của từng truy vấn một"
+          "Xem kế hoạch thực thi của từng truy vấn một cách riêng lẻ"
         ],
         "correct": 0,
         "explanation": "Mọi phép đo nhìn vào chất lượng của từng truy vấn đều cho kết quả tốt, vì từng truy vấn thật sự tốt. Chỉ con số đếm mới lộ ra rằng có bốn trăm truy vấn ở nơi lẽ ra chỉ cần hai."
@@ -26433,7 +26445,7 @@ export const lessons: Lesson[] = [
           "Lấy các dòng có giá trị lớn hơn giá trị cuối cùng của trang trước",
           "Ghi nhớ số thứ tự của dòng cuối rồi bỏ qua tới đó",
           "Giữ một kết nối mở để cơ sở dữ liệu nhớ vị trí đang đọc",
-          "Chia sẵn dữ liệu thành các trang cố định khi ghi vào bảng"
+          "Chia sẵn dữ liệu thành các trang có kích thước cố định khi ghi vào bảng"
         ],
         "correct": 0,
         "explanation": "Đó là một điều kiện lọc bình thường, nên chỉ mục dùng được và cơ sở dữ liệu nhảy thẳng tới đúng chỗ. Nhờ vậy trang thứ một nghìn tốn đúng bằng trang đầu tiên."
@@ -26454,8 +26466,8 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì cột không dùng vẫn tốn công đọc và truyền qua mạng",
           "Vì cơ sở dữ liệu tính phí theo số cột được truy vấn",
-          "Vì các cột thừa làm bộ tối ưu chọn sai kế hoạch thực thi",
-          "Vì cột lớn không thể được nén khi truyền về ứng dụng"
+          "Vì các cột thừa làm bộ tối ưu chọn sai kế hoạch",
+          "Vì cột lớn không thể được nén lại khi truyền về ứng dụng"
         ],
         "correct": 0,
         "explanation": "Một cột văn bản dài nhân với hai mươi dòng mỗi trang là lượng dữ liệu đáng kể phải đọc và truyền cho mỗi lần lật trang. Lấy cả dòng theo thói quen là chi phí trả liên tục mà không ai nhìn thấy."
@@ -26466,7 +26478,7 @@ export const lessons: Lesson[] = [
           "Những trang cuối trở nên rất đắt và đẩy tải cơ sở dữ liệu lên cao",
           "Cơ sở dữ liệu tự động giới hạn tốc độ để bảo vệ chính nó",
           "Kết quả trả về bị lặp lại do bộ nhớ đệm của truy vấn",
-          "Các trang cuối trả về nhanh hơn vì dữ liệu đã được đọc sẵn"
+          "Các trang cuối trả về nhanh hơn vì dữ liệu đã được đọc sẵn từ trước"
         ],
         "correct": 0,
         "explanation": "Chi phí mỗi trang tăng dần, nên tổng chi phí của một lượt duyệt hết tăng theo bình phương số trang. Danh sách chạy êm suốt nhiều tháng có thể sập ngay lần đầu có ai đó duyệt tới cuối."
@@ -26590,7 +26602,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Phần chi phí cố định không phụ thuộc vào lượng dữ liệu",
           "Phần chi phí tỷ lệ với số dòng cần được ghi xuống",
-          "Phần kiểm tra ràng buộc trên từng dòng dữ liệu",
+          "Phần kiểm tra ràng buộc trên từng dòng dữ liệu một",
           "Phần chuyển đổi định dạng của dữ liệu trước khi được gửi đi"
         ],
         "correct": 0,
@@ -26758,7 +26770,7 @@ export const lessons: Lesson[] = [
           "Đồng thời là cách sắp xếp việc, song song là chạy thật sự cùng lúc",
           "Đồng thời dùng nhiều luồng, song song dùng nhiều tiến trình",
           "Đồng thời áp dụng cho việc đọc, còn song song cho việc ghi dữ liệu xuống",
-          "Đồng thời chạy trên một máy, song song chạy trên nhiều máy"
+          "Đồng thời chạy trên một máy, còn song song chạy trên nhiều máy"
         ],
         "correct": 0,
         "explanation": "Một lõi duy nhất có thể xử lý đồng thời hàng nghìn kết nối đang chờ, vì nó chỉ cần luân phiên giữa những việc đang rảnh. Song song thì đòi hỏi nhiều đơn vị tính toán thật."
@@ -26769,7 +26781,7 @@ export const lessons: Lesson[] = [
           "Công việc giữ bộ xử lý bận liên tục và chia nhỏ được",
           "Công việc dành phần lớn thời gian chờ dịch vụ khác trả lời",
           "Công việc phải đọc và ghi nhiều tệp trên ổ đĩa",
-          "Công việc xử lý nhiều kết nối mạng cùng lúc"
+          "Công việc xử lý nhiều kết nối mạng trong cùng lúc"
         ],
         "correct": 0,
         "explanation": "Ba lựa chọn còn lại đều bị chặn bởi chờ đợi, nên thêm đơn vị tính toán không giúp gì. Song song chỉ có nghĩa khi bạn thật sự đang thiếu sức tính toán."
@@ -26779,7 +26791,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Mức sử dụng bộ xử lý trong lúc hệ thống đang chậm",
           "Số yêu cầu được xử lý trong một giây",
-          "Lượng bộ nhớ mà tiến trình đang chiếm giữ",
+          "Lượng bộ nhớ mà tiến trình đang chiếm giữ lúc đó",
           "Số luồng đang tồn tại trong tiến trình"
         ],
         "correct": 0,
@@ -26800,7 +26812,7 @@ export const lessons: Lesson[] = [
         "question": "Khi nút thắt là số kết nối tới cơ sở dữ liệu, nên làm gì?",
         "options": [
           "Giảm số truy vấn mỗi yêu cầu hoặc mở rộng nguồn kết nối",
-          "Tăng thêm số luồng để phục vụ nhiều yêu cầu hơn",
+          "Tăng thêm số luồng để phục vụ được nhiều yêu cầu hơn",
           "Chuyển toàn bộ mã xử lý sang mô hình bất đồng bộ",
           "Chia dịch vụ thành nhiều tiến trình con chạy song song nhau"
         ],
@@ -26857,6 +26869,7 @@ export const lessons: Lesson[] = [
   {
     "id": 153,
     "slug": "tranh-chap-va-khoa",
+    "interactiveType": "chart",
     "title": "Tranh chấp: thêm người làm mà việc chậm đi",
     "subtitle": "Khi mọi luồng đều cần cùng một thứ, thêm luồng chỉ làm hàng chờ dài hơn.",
     "duration": "9 phút",
@@ -26949,7 +26962,7 @@ export const lessons: Lesson[] = [
           "Vì không có tài nguyên chung thì không có gì để tranh chấp",
           "Vì mỗi khoá đều có chi phí cố định rất cao ngay khi được tạo ra",
           "Vì các ngôn ngữ hiện đại không còn hỗ trợ khoá thủ công",
-          "Vì tài nguyên riêng cho mỗi luồng tốn ít bộ nhớ hơn"
+          "Vì tài nguyên riêng cho mỗi luồng sẽ tốn ít bộ nhớ hơn"
         ],
         "correct": 0,
         "explanation": "Cho mỗi luồng một vùng làm việc riêng rồi gộp kết quả ở cuối là mô hình mở rộng gần như tuyến tính. Mọi cách khoá khéo léo đến đâu cũng chỉ đẩy trần lên cao hơn chứ không bỏ được nó."
@@ -27023,6 +27036,7 @@ export const lessons: Lesson[] = [
   {
     "id": 154,
     "slug": "ap-luc-nguoc",
+    "interactiveType": "tail-risk",
     "title": "Áp lực ngược: nói không thay vì gục ngã",
     "subtitle": "Khi nhu cầu vượt khả năng, hàng đợi không cứu bạn - nó chỉ giấu vấn đề rồi làm nó tệ hơn.",
     "duration": "9 phút",
@@ -27102,9 +27116,9 @@ export const lessons: Lesson[] = [
         "question": "Vì sao từ chối sớm tốt hơn phục vụ chậm cho tất cả?",
         "options": [
           "Vì phần được nhận vẫn được phục vụ đúng chất lượng cam kết",
-          "Vì việc từ chối tốn ít tài nguyên hơn việc xếp vào hàng đợi",
+          "Vì việc từ chối tốn ít tài nguyên hơn việc xếp hàng",
           "Vì người dùng thích nhận lỗi hơn là phải chờ đợi lâu",
-          "Vì hệ thống có thời gian phục hồi trước khi nhận tiếp"
+          "Vì hệ thống có thời gian phục hồi trước khi nhận thêm yêu cầu mới"
         ],
         "correct": 0,
         "explanation": "Phục vụ chậm cho tất cả nghĩa là không ai được phục vụ đủ tốt, và phần lớn công sức đổ vào những yêu cầu đã bị bỏ dở. Từ chối một phần giữ cho phần còn lại vẫn có giá trị."
@@ -27202,7 +27216,7 @@ export const lessons: Lesson[] = [
       "Phép thử dùng dữ liệu và hình dạng tải không giống thực tế",
       "Sản phẩm thật chạy trên phần cứng yếu hơn môi trường thử",
       "Con số năm nghìn được đo trong khoảng thời gian quá ngắn",
-      "Người dùng thật gửi yêu cầu vào cùng một thời điểm cao điểm"
+      "Người dùng thật gửi yêu cầu vào cùng một thời điểm"
     ],
     "correctOption": 0,
     "explanation": "Nguyên nhân phổ biến nhất là phép thử lặp lại vài yêu cầu giống nhau trên một tập dữ liệu nhỏ, nên mọi thứ đều nằm sẵn trong bộ nhớ đệm và không truy vấn nào phải làm việc thật. Tải thật thì trải trên hàng triệu bản ghi khác nhau, có cả đọc lẫn ghi, có cả những người dùng có dữ liệu lớn bất thường. Ba nguyên nhân còn lại đều có thể góp phần, nhưng chúng giải thích chênh lệch vài chục phần trăm chứ không phải chênh lệch năm lần.",
@@ -27258,9 +27272,9 @@ export const lessons: Lesson[] = [
         "question": "Sai lầm phổ biến nhất trong kiểm thử tải là gì?",
         "options": [
           "Dùng tập dữ liệu nhỏ và lặp lại vài yêu cầu giống nhau",
-          "Chạy phép thử trong khoảng thời gian quá ngắn để ổn định",
+          "Chạy phép thử trong khoảng thời gian quá ngắn",
           "Không tính tới độ trễ mạng của người dùng ở xa",
-          "Chạy phép thử trên môi trường chia sẻ với các đội khác"
+          "Chạy phép thử trên môi trường dùng chung với các đội khác"
         ],
         "correct": 0,
         "explanation": "Khi ấy mọi thứ nằm sẵn trong bộ nhớ đệm và bạn đang đo tốc độ của bộ nhớ đệm chứ không phải của hệ thống. Ba vấn đề còn lại đều có thật nhưng chúng làm lệch kết quả vài chục phần trăm, không phải vài lần."
@@ -27271,7 +27285,7 @@ export const lessons: Lesson[] = [
           "Vì hỏng có kiểm soát và sụp đổ hoàn toàn là hai kết quả rất khác nhau",
           "Vì cách hỏng cho biết nên mua thêm phần cứng loại nào",
           "Vì con số chịu tải thay đổi theo từng lần chạy phép thử",
-          "Vì các công cụ đo không ghi lại được mức tải tối đa chính xác"
+          "Vì các công cụ đo không ghi lại được mức tải tối đa một cách chính xác"
         ],
         "correct": 0,
         "explanation": "Một hệ thống từ chối bớt yêu cầu và giữ nguyên độ trễ cho phần còn lại thì vẫn dùng được ở quá tải. Một hệ thống để hàng đợi dài ra rồi ngừng hẳn thì không, dù hai hệ thống có cùng con số tối đa."
@@ -27281,7 +27295,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Tỷ lệ trộn giữa các loại thao tác như trong thực tế",
           "Số lượng người dùng đăng ký của toàn bộ sản phẩm",
-          "Tốc độ tăng trưởng dự kiến trong mười hai tháng tới",
+          "Tốc độ tăng trưởng dự kiến trong mười hai tháng sắp tới",
           "Phân bố địa lý của những người dùng đang hoạt động"
         ],
         "correct": 0,
@@ -27291,7 +27305,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao một phép thử tải sai còn tệ hơn không thử?",
         "options": [
           "Vì nó cho một con số khiến đội yên tâm về một giới hạn không có thật",
-          "Vì nó tiêu tốn tài nguyên hạ tầng mà không mang lại thông tin",
+          "Vì nó tiêu tốn tài nguyên hạ tầng mà không mang lại thông tin gì mới cả",
           "Vì nó có thể làm hỏng dữ liệu trong môi trường được thử",
           "Vì nó chiếm thời gian mà đội có thể dùng để tối ưu mã"
         ],
@@ -27302,7 +27316,7 @@ export const lessons: Lesson[] = [
         "question": "Dữ liệu thử cần giống dữ liệu thật ở khía cạnh nào?",
         "options": [
           "Cả quy mô lẫn hình dạng, gồm những bản ghi lớn bất thường",
-          "Chỉ cần đúng quy mô tổng số bản ghi trong các bảng",
+          "Chỉ cần đúng quy mô tổng số bản ghi có trong các bảng",
           "Chỉ cần đúng cấu trúc bảng và các ràng buộc đặt trên dữ liệu",
           "Chỉ cần đủ đa dạng để không bị bộ nhớ đệm ảnh hưởng"
         ],
@@ -27459,7 +27473,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì nó đổi thành một vòng đi về mạng và tốn năng lực máy chủ",
           "Vì máy chủ thường có ít năng lực tính toán hơn thiết bị người dùng",
-          "Vì dữ liệu cần tính toán không thể gửi qua mạng được",
+          "Vì dữ liệu cần cho tính toán không thể gửi qua mạng được",
           "Vì kết quả tính ở máy chủ sẽ khác với kết quả tính tại chỗ"
         ],
         "correct": 0,
@@ -27625,7 +27639,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao dùng thư viện lớn cho một tính năng nhỏ là đánh đổi tồi?",
         "options": [
           "Vì bạn trả chi phí cho toàn bộ thư viện mà chỉ dùng một phần nhỏ",
-          "Vì thư viện lớn thường có nhiều lỗi bảo mật hơn các thư viện nhỏ",
+          "Vì thư viện lớn thường có nhiều lỗi bảo mật hơn so với thư viện nhỏ",
           "Vì thư viện lớn khó cập nhật lên phiên bản mới hơn",
           "Vì thư viện lớn làm thời gian dựng dự án lâu hơn nhiều"
         ],
@@ -27637,7 +27651,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì việc phân tích và biên dịch mã phụ thuộc vào sức mạnh bộ xử lý",
           "Vì thiết bị tầm trung có bộ nhớ đệm nhỏ hơn nhiều",
-          "Vì trình duyệt trên thiết bị ấy thường là phiên bản cũ hơn",
+          "Vì trình duyệt trên thiết bị ấy thường là một phiên bản khá cũ rồi",
           "Vì thiết bị ấy thường kết nối qua mạng di động chậm hơn"
         ],
         "correct": 0,
@@ -27767,7 +27781,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Khi thao tác ấy được lặp lại rất nhiều lần trong một quy trình",
           "Khi nó nằm trong phần mã mới được viết gần đây",
-          "Khi kỹ thuật tối ưu đó dễ áp dụng và không tốn nhiều thời gian",
+          "Khi kỹ thuật tối ưu đó dễ áp dụng và không tốn quá nhiều thời gian",
           "Khi nó giúp giảm mức sử dụng bộ nhớ của tiến trình"
         ],
         "correct": 0,
@@ -27778,8 +27792,8 @@ export const lessons: Lesson[] = [
         "options": [
           "Mọi thay đổi và mọi lần sửa lỗi về sau đều tốn kém hơn",
           "Thời gian mà đội bỏ ra để thực hiện việc tối ưu đó",
-          "Nguy cơ tối ưu ấy không còn hiệu quả trên phần cứng mới",
-          "Việc phải viết thêm nhiều bài kiểm thử cho phần mã mới"
+          "Nguy cơ tối ưu ấy hết hiệu quả trên phần cứng mới",
+          "Việc phải viết thêm nhiều bài kiểm thử cho phần mã vừa sửa"
         ],
         "correct": 0,
         "explanation": "Thời gian thực hiện là chi phí trả một lần và nhìn thấy được. Khoản kia trả dần trong nhiều năm bởi những người không tham gia quyết định ban đầu, và tổng của nó thường lớn hơn nhiều."
@@ -27790,7 +27804,7 @@ export const lessons: Lesson[] = [
           "Vì không có nó thì không có thời điểm nào được coi là đủ tốt",
           "Vì các công cụ giám sát cần một ngưỡng để phát cảnh báo",
           "Vì nó giúp so sánh hệ thống của bạn với các sản phẩm khác",
-          "Vì nó là yêu cầu bắt buộc trong hầu hết quy trình phát triển"
+          "Vì nó là yêu cầu bắt buộc trong hầu hết các quy trình phát triển"
         ],
         "correct": 0,
         "explanation": "Tối ưu là loại công việc luôn còn chỗ để làm tiếp, nên nếu không có điểm dừng viết sẵn thì nó ăn hết thời gian dành cho việc khác. Một con số cụ thể biến nó thành một mục tiêu có thể hoàn thành."
@@ -27799,7 +27813,7 @@ export const lessons: Lesson[] = [
         "question": "Ngưỡng cảm nhận của người dùng ảnh hưởng thế nào tới quyết định?",
         "options": [
           "Cải thiện nằm hoàn toàn dưới ngưỡng ấy không tạo ra giá trị nào",
-          "Cải thiện dưới ngưỡng ấy vẫn có giá trị nhưng rất khó đo được",
+          "Cải thiện dưới ngưỡng ấy vẫn có giá trị nhưng rất khó đo lường được",
           "Ngưỡng ấy chỉ áp dụng cho giao diện chứ không cho máy chủ",
           "Ngưỡng ấy khác nhau nhiều giữa các nhóm người dùng"
         ],
@@ -27932,8 +27946,8 @@ export const lessons: Lesson[] = [
         "options": [
           "Vì nó có thể chỉ phản ánh việc lượng công việc đã tăng lên",
           "Vì giá của nhà cung cấp thay đổi theo từng tháng",
-          "Vì các khoản chi thường được ghi nhận trễ một chu kỳ",
-          "Vì nó gộp chung nhiều loại dịch vụ khác nhau vào một con số"
+          "Vì các khoản chi thường được ghi nhận trễ mất một chu kỳ thanh toán",
+          "Vì nó gộp chung nhiều loại dịch vụ vào một con số"
         ],
         "correct": 0,
         "explanation": "Một hệ thống phục vụ gấp đôi số người dùng thì tốn nhiều tiền hơn là điều bình thường. Chỉ khi chia cho lượng công việc thì bạn mới phân biệt được tăng trưởng với lãng phí."
@@ -27953,8 +27967,8 @@ export const lessons: Lesson[] = [
         "question": "Khi nào nâng cấp phần cứng là lựa chọn đúng?",
         "options": [
           "Khi đang có sự cố và cần mua thời gian để sửa nguyên nhân sau",
-          "Khi chi phí nâng cấp thấp hơn công sức bỏ ra để tối ưu mã",
-          "Khi hệ thống đã được tối ưu tới giới hạn của thiết kế hiện tại",
+          "Khi chi phí nâng cấp thấp hơn công sức bỏ ra để tối ưu lại phần mã",
+          "Khi hệ thống đã được tối ưu tới giới hạn thiết kế",
           "Khi đội không có ai đủ kinh nghiệm để phân tích hiệu năng"
         ],
         "correct": 0,
@@ -27976,7 +27990,7 @@ export const lessons: Lesson[] = [
         "options": [
           "Hệ thống đang hiệu quả hơn hay kém hiệu quả hơn theo thời gian",
           "Sản phẩm đang tăng trưởng nhanh hay chậm lại",
-          "Nhà cung cấp hạ tầng có đang tăng giá dịch vụ hay không",
+          "Nhà cung cấp hạ tầng có đang tăng giá các dịch vụ thuê hay không",
           "Đội đang đầu tư nhiều hay ít cho công việc tối ưu"
         ],
         "correct": 0,
@@ -28107,7 +28121,7 @@ export const lessons: Lesson[] = [
           "Tỷ trọng thời gian của phần đó trong tổng",
           "Mức cải thiện có thể đạt được ở phần đó",
           "Độ dễ của việc thực hiện thay đổi",
-          "Mức độ quan trọng của tính năng liên quan"
+          "Mức độ quan trọng của tính năng có liên quan"
         ],
         "correct": 0,
         "explanation": "Tỷ trọng là trần cứng của cải thiện, nên nó phải là tiêu chí đầu. Ba tiêu chí còn lại chỉ có ý nghĩa khi so giữa những phần đã có tỷ trọng đủ lớn."
@@ -28127,7 +28141,7 @@ export const lessons: Lesson[] = [
         "question": "Điều gì phân biệt một hệ thống chịu tải tốt với một hệ thống sụp đổ?",
         "options": [
           "Có giới hạn cho hàng đợi và thời gian chờ ở mọi ranh giới",
-          "Có nhiều máy chủ hơn để phân bổ tải khi cần thiết",
+          "Có nhiều máy chủ hơn để phân bổ tải ra khi cần thiết",
           "Có bộ nhớ đệm được cấu hình đúng cho những dữ liệu hay dùng nhất",
           "Có công cụ giám sát phát cảnh báo sớm khi tải tăng"
         ],
@@ -28872,7 +28886,7 @@ export const lessons: Lesson[] = [
     "emoji": "📘",
     "openingQuestion": "Quỹ A có lợi nhuận trung bình 10%/năm, độ lệch chuẩn 5%. Quỹ B cũng lợi nhuận trung bình 10%/năm nhưng độ lệch chuẩn 20%. Quỹ nào 'dễ đoán' hơn?",
     "openingOptions": [
-      "Không thể so sánh nếu thiếu thời gian quan sát dài hơn",
+      "Không thể so sánh nếu còn thiếu thời gian quan sát dài hơn",
       "Cả hai như nhau vì lợi nhuận trung bình giống nhau",
       "Quỹ A - độ lệch chuẩn thấp hơn nghĩa là ổn định hơn hẳn",
       "Quỹ B, vì độ lệch chuẩn cao hơn"
@@ -29140,7 +29154,7 @@ export const lessons: Lesson[] = [
       "Cực kỳ nghi ngờ: lãi cao luôn đi kèm rủi ro",
       "Đầu tư ngay vì cơ hội hiếm có",
       "Đầu tư một phần nhỏ để thử nghiệm",
-      "Không có nguyên tắc nào về mối quan hệ này"
+      "Không có nguyên tắc nào về mối quan hệ giữa hai bên"
     ],
     "correctOption": 0,
     "explanation": "Risk-return tradeoff là nguyên tắc nền tảng nhất của tài chính: thị trường hiệu quả không cho phép lợi nhuận cao mà không có rủi ro tương ứng - nếu có, mọi nhà đầu tư sẽ đổ xô vào cơ hội đó, đẩy giá lên và triệt tiêu lợi thế. 'Lợi nhuận cao, rủi ro bằng 0' luôn là cờ đỏ cảnh báo lừa đảo (như Ponzi scheme của Bernard Madoff).",
@@ -35189,7 +35203,7 @@ export const lessons: Lesson[] = [
     "openingOptions": [
       "Quá nhiều lựa chọn khác nhau: nhiều cỡ chữ, nhiều màu, nhiều khoảng cách không theo thang nào",
       "Màu sắc bạn chọn không hợp nhau nên cần đổi sang một bảng màu khác hẳn",
-      "Phông chữ mặc định của trình duyệt quá đơn giản và cũ kỹ nên cả trang trông như thiếu đầu tư",
+      "Phông chữ mặc định của trình duyệt quá đơn giản và cũ kỹ nên cả trang trông như thiếu đầu tư nghiêm túc",
       "Các khối nội dung chưa được căn giữa nên bố cục bị lệch về một bên của trang"
     ],
     "correctOption": 0,
@@ -35784,7 +35798,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Trang của bạn cuộn ngang được trên điện thoại dù bạn không đặt chiều rộng nào vượt màn hình. Nên tìm nguyên nhân thế nào?",
     "openingOptions": [
       "Tìm phần tử rộng hơn màn hình bằng cách viền tạm mọi phần tử hoặc dùng công cụ nhà phát triển",
-      "Đặt cho toàn trang thuộc tính ẩn phần tràn theo chiều ngang để chặn hẳn việc cuộn ngang lại",
+      "Đặt cho toàn trang thuộc tính ẩn phần tràn theo chiều ngang để chặn hẳn việc cuộn ngang lại từ đầu",
       "Giảm cỡ chữ và đệm của mọi thành phần cho tới khi thanh cuộn ngang biến mất",
       "Đặt chiều rộng cố định cho thẻ gốc bằng đúng chiều rộng màn hình điện thoại"
     ],
@@ -53197,6 +53211,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1003,
     "slug": "case-chi-phi-moi-request",
+    "interactiveType": "chart",
     "title": "Case chuyên sâu: Chi phí mỗi request",
     "subtitle": "Hoá đơn hạ tầng chia cho lưu lượng - con số nói lên nhiều hơn bạn tưởng",
     "duration": "6 phút",
@@ -55078,202 +55093,203 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1006,
-    "slug": "market-fair-value",
-    "title": "Case chuyên sâu: Market Fair Value",
-    "subtitle": "P/E multiple và growth companies",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🔮",
-    "openingQuestion": "Cổ phiếu tăng mạnh nhưng P/E cũng tăng nhanh, làm sao biết còn đang ở fair value hay đã quá đắt?",
+    "title": "Case chuyên sâu: Chi Phí Mỗi Request Có Hợp Lý?",
+    "subtitle": "Hệ số chi phí và dịch vụ đang tăng trưởng",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "emoji": "🔬",
+    "openingQuestion": "Chi phí hạ tầng tăng mạnh và chi phí mỗi request cũng tăng theo, làm sao biết vẫn hợp lý hay đã lãng phí?",
     "openingOptions": [
-      "Nhìn thấy giá cao là biết cổ phiếu đó đang đắt rồi",
-      "Chỉ cần P/E thấp là mua",
-      "Phải so growth, biên lợi nhuận và discount rate",
-      "Không thể biết"
+      "Thấy hoá đơn cao là biết đang lãng phí rồi",
+      "Chỉ cần chi phí mỗi request thấp là ổn",
+      "Phải so tốc độ tăng trưởng, phần việc mỗi request và mức dự phòng",
+      "Không thể biết được"
     ],
     "correctOption": 2,
-    "explanation": "Fair value là một vùng giá hợp lý dựa trên tăng trưởng kỳ vọng, chất lượng lợi nhuận và chi phí vốn - không phải một con số cố định. Hai nhà phân tích dùng cùng dữ liệu nhưng khác giả định tăng trưởng hoàn toàn có thể ra hai vùng fair value khác nhau, cả hai đều hợp lý.",
+    "explanation": "Chi phí mỗi request là một hệ số, và hệ số nào cũng vô nghĩa khi đứng một mình. Hai dịch vụ cùng chi phí mỗi request có thể ở hai tình huống trái ngược: một cái làm ba lệnh gọi cơ sở dữ liệu và một lệnh gọi mô hình cho mỗi request, cái kia chỉ trả về nội dung tĩnh từ cache. Ba thứ phải so cùng lúc: dịch vụ đang tăng trưởng nhanh tới đâu (vì tăng trưởng luôn kéo theo dung lượng dư tạm thời), mỗi request thật sự làm bao nhiêu việc, và mức dự phòng đang giữ là bao nhiêu.",
     "diagram": [
       {
-        "label": "Growth",
+        "label": "Chi phí mỗi request cao",
         "arrow": true
       },
       {
-        "label": "Profit quality",
+        "label": "So với dịch vụ làm cùng lượng việc",
         "arrow": true
       },
       {
-        "label": "Discount rate",
+        "label": "Trừ phần dự phòng và phần tăng trưởng",
         "arrow": true
       },
       {
-        "label": "Fair value range",
-        "arrow": false
+        "label": "Phần còn lại mới là lãng phí thật"
       }
     ],
     "realWorldExample": {
-      "company": "P/E cao nói lên điều gì",
-      "description": "P/E không phải thước đo đắt rẻ mà là thước đo kỳ vọng. Một doanh nghiệp giao dịch ở P/E 30 nghĩa là thị trường đang đặt cược lợi nhuận sẽ tăng đáng kể trong nhiều năm tới; nếu tăng trưởng thực tế đạt được, mức giá đó có thể hoàn toàn hợp lý. Ngược lại, P/E 8 không tự động là rẻ - nó có thể phản ánh việc thị trường tin lợi nhuận sắp giảm, hoặc lợi nhuận hiện tại đang ở đỉnh chu kỳ. Câu hỏi hữu ích không phải 'P/E bao nhiêu là hợp lý' mà là 'mức giá này đang giả định điều gì về tương lai, và giả định đó có thực tế không'."
-    },
-    "quiz": [
-      {
-        "question": "Khi nào multiple cao vẫn có thể hợp lý?",
-        "options": [
-          "Khi tăng trưởng và ROIC đủ mạnh để tạo tiền tương lai",
-          "Khi công ty được nhiều công ty chứng khoán khuyến nghị mua",
-          "Khi giá cổ phiếu đã tăng mạnh trong mười hai tháng qua",
-          "Khi công ty không có nợ vay nên rủi ro tài chính thấp"
-        ],
-        "correct": 0,
-        "explanation": "Multiple cao có thể hợp lý nếu doanh nghiệp có khả năng tăng trưởng bền vững và tạo cash mạnh."
-      },
-      {
-        "question": "Hai công ty cùng ngành có P/E khác nhau 2 lần. Điều này có tự động nghĩa là công ty P/E thấp hơn đang rẻ hơn không?",
-        "options": [
-          "Không - phải so cùng tăng trưởng và chất lượng lợi nhuận",
-          "Chỉ đúng nếu hai công ty cùng vốn hóa và cơ cấu nợ",
-          "Không thể so sánh P/E giữa hai công ty khác nhau bao giờ",
-          "Có - P/E thấp hơn luôn nghĩa là cổ phiếu đang rẻ hơn"
-        ],
-        "correct": 0,
-        "explanation": "P/E chỉ là một điểm dữ liệu. Công ty P/E cao hơn có thể xứng đáng nếu tăng trưởng nhanh hơn và lợi nhuận chất lượng hơn - so sánh multiple mà bỏ qua growth và profit quality dễ dẫn đến kết luận sai."
-      },
-      {
-        "question": "Một doanh nghiệp chu kỳ có P/E rất thấp. Vì sao điều này chưa chắc là dấu hiệu rẻ?",
-        "options": [
-          "Vì lợi nhuận có thể đang ở đỉnh chu kỳ nên mẫu số cao bất thường",
-          "Vì P/E thấp ở doanh nghiệp chu kỳ luôn phản ánh gian lận sổ sách kế toán",
-          "Vì P/E chỉ áp dụng được cho doanh nghiệp công nghệ tăng trưởng",
-          "Vì doanh nghiệp chu kỳ phải dùng P/B chứ không được dùng P/E"
-        ],
-        "correct": 0,
-        "explanation": "Với doanh nghiệp chu kỳ, P/E thấp nhất thường xuất hiện ngay trước khi lợi nhuận đảo chiều đi xuống, và P/E cao nhất xuất hiện ở đáy. Đây là bẫy kinh điển của định giá tương đối."
-      },
-      {
-        "question": "Cách 'đọc ngược từ giá ra giả định' hữu ích ở điểm nào?",
-        "options": [
-          "Nó biến 'đắt hay rẻ' thành giả định kiểm chứng được",
-          "Nó cho ra con số giá trị chính xác hơn mô hình DCF thông thường",
-          "Nó loại bỏ hoàn toàn nhu cầu phải đặt giả định khi định giá",
-          "Nó chỉ dùng được cho doanh nghiệp chưa niêm yết trên sàn"
-        ],
-        "correct": 0,
-        "explanation": "Cách này không loại bỏ giả định, nhưng đưa giả định ra ánh sáng để đối chiếu với lịch sử doanh nghiệp và quy mô thị trường - tức là biến nó thành thứ có thể phản biện."
-      },
-      {
-        "question": "Phân tích độ nhạy trong định giá phục vụ mục đích gì?",
-        "options": [
-          "Cho biết kết luận đổi bao nhiêu khi từng giả định thay đổi",
-          "Cho ra một con số giá trị hợp lý chính xác hơn so với ước tính ban đầu",
-          "Loại bỏ các giả định không chắc chắn",
-          "Xác định xác suất để giá cổ phiếu chạm mức mục tiêu trong mười hai tháng tới"
-        ],
-        "correct": 0,
-        "explanation": "Giá trị của bảng độ nhạy không nằm ở con số cuối mà ở chỗ nó chỉ ra giả định nào thực sự chi phối kết luận. Nếu đổi tăng trưởng dài hạn một điểm phần trăm làm định giá lệch bốn mươi phần trăm, thì công việc thật nằm ở việc bảo vệ đúng giả định đó."
-      }
-    ],
-    "keyTakeaways": [
-      "Fair value là một vùng, không phải một điểm",
-      "P/E phải đọc cùng growth và chất lượng lợi nhuận",
-      "Margin of safety vẫn quan trọng ngay cả với công ty tốt"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Giá hợp lý phụ thuộc vào tăng trưởng và chất lượng cash flow.",
-      "commonMistake": "Chỉ nhìn một multiple rồi kết luận rẻ/đắt.",
-      "action": "So sánh một công ty tăng trưởng với 2-3 công ty cùng ngành bằng cùng một bội số."
+      "company": "Hai dịch vụ, cùng một con số",
+      "description": "Hai dịch vụ đều tốn khoảng 0,4 đồng mỗi request. Cái thứ nhất trả nội dung tĩnh qua CDN - con số ấy là đắt gấp mười lần mức nên có. Cái thứ hai mỗi request phải gọi một mô hình ngôn ngữ và ba truy vấn cơ sở dữ liệu - con số ấy là rẻ đáng ngạc nhiên. Cùng một hệ số, hai kết luận ngược nhau, và chỉ nhìn hệ số thì không phân biệt được."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Một cổ phiếu tăng giá mạnh, P/E cũng tăng theo - làm sao biết đây là 'đắt hợp lý' hay 'đắt quá đà'? Câu trả lời không nằm ở một con số duy nhất."
+        "text": "Chi phí mỗi request là hệ số phổ biến nhất khi so hai kiến trúc, và cũng là hệ số bị đọc sai nhiều nhất - vì nó gộp cả phần việc thật lẫn phần lãng phí vào một con số."
       },
       {
         "type": "heading",
-        "text": "Fair value là một vùng, không phải một điểm"
+        "text": "Hệ số cao chưa chắc là đắt"
       },
       {
         "type": "paragraph",
-        "text": "Giá trị hợp lý của một cổ phiếu phụ thuộc vào tốc độ tăng trưởng kỳ vọng, chất lượng lợi nhuận, và chi phí vốn - ba yếu tố đều mang tính giả định về tương lai. Hai nhà phân tích dùng cùng dữ liệu quá khứ nhưng khác giả định tăng trưởng hoàn toàn có thể đưa ra hai vùng fair value khác nhau, và cả hai đều có thể hợp lý theo góc nhìn riêng."
+        "text": "Một dịch vụ đang tăng trưởng nhanh gần như luôn có chi phí mỗi request cao hơn mức ổn định, vì dung lượng phải đặt trước theo mức đỉnh của tương lai gần chứ không theo tải hôm nay. Điều đó không phải lãng phí mà là cái giá của việc không sập vào tháng sau. Cách đọc đúng là hỏi hệ số ấy sẽ về đâu khi tăng trưởng chậm lại, chứ không phải so nó với một dịch vụ đã ổn định."
       },
       {
         "type": "list",
         "items": [
-          "Multiple cao vẫn có thể hợp lý nếu growth và ROIC đủ mạnh để tạo dòng tiền tương lai lớn",
-          "So sánh P/E giữa hai công ty mà bỏ qua tốc độ tăng trưởng và chất lượng lợi nhuận dễ dẫn đến kết luận sai",
-          "Margin of safety vẫn quan trọng ngay cả khi phân tích một công ty tốt"
+          "So với dịch vụ làm cùng lượng việc mỗi request, không so với dịch vụ cùng ngành",
+          "Trừ phần dung lượng đặt trước cho tăng trưởng, vì nó chưa phục vụ ai",
+          "Trừ phần dự phòng bắt buộc, vì đó là chi phí của cam kết chứ không của request",
+          "Phần còn lại mới đem so, và chỉ phần đó mới gọi là lãng phí"
         ]
       },
       {
         "type": "heading",
-        "text": "Đọc ngược từ giá ra giả định"
+        "text": "Đọc ngược từ hoá đơn ra giả định"
       },
       {
         "type": "paragraph",
-        "text": "Thay vì cố tính ra một giá trị hợp lý rồi so với thị giá, nhiều nhà phân tích làm ngược lại: lấy thị giá hiện tại, rồi tìm xem cần tốc độ tăng trưởng và biên lợi nhuận nào để mức giá đó hợp lý. Cách này biến câu hỏi mơ hồ 'đắt hay rẻ' thành câu hỏi kiểm chứng được: doanh nghiệp có từng đạt mức tăng trưởng đó chưa, ngành có đủ lớn để hấp thụ không, và đối thủ sẽ phản ứng thế nào."
+        "text": "Cách hữu ích nhất khi không có dịch vụ nào để so là làm ngược lại: lấy hoá đơn hiện tại, chia ra, rồi hỏi con số ấy ngụ ý điều gì. Nếu chi phí mỗi request ngụ ý mỗi request đang tốn nửa giây CPU trong khi bạn biết nó chỉ tra một khoá trong cache, thì chênh lệch ấy nằm ở đâu đó - máy chạy không tải, môi trường thử nghiệm quên tắt, hoặc một tầng nào đó đang làm nhiều việc hơn bạn tưởng."
       },
       {
         "type": "comparison",
         "left": {
-          "label": "So sánh P/E thuần",
-          "text": "\"Công ty A P/E 12, công ty B P/E 25, vậy A rẻ hơn.\" Bỏ qua chênh lệch tăng trưởng, chất lượng lợi nhuận, mức nợ và vị thế chu kỳ - bốn thứ giải thích phần lớn khoảng cách bội số."
+          "label": "Hệ số cao có lý do",
+          "text": "Mỗi request gọi mô hình, ghi vào nhiều nơi, hoặc phải trả lời trong vài chục mili giây. Chi phí cao là cái giá của phần việc thật, và nó không giảm được nếu không bỏ bớt việc."
         },
         "right": {
-          "label": "So sánh có điều chỉnh",
-          "text": "\"A tăng trưởng 5%, ROIC 9%, nợ cao; B tăng trưởng 18%, ROIC 22%, gần như không nợ. Chênh lệch bội số phản ánh khác biệt thật, câu hỏi là chênh lệch đó đã đủ hay quá mức.\""
+          "label": "Hệ số cao là lãng phí",
+          "text": "Mỗi request chỉ đọc một khoá từ cache nhưng vẫn tốn bằng dịch vụ gọi mô hình. Chênh lệch ấy nằm ở máy chạy không tải, môi trường quên tắt, hoặc dự phòng đặt gấp nhiều lần mức cần."
         }
       },
       {
         "type": "heading",
-        "text": "Ba nguồn sai lệch phổ biến khi định giá tương đối"
+        "text": "Phân tích độ nhạy trước khi kết luận"
       },
       {
         "type": "list",
         "items": [
-          "Lợi nhuận ở đỉnh hoặc đáy chu kỳ: doanh nghiệp chu kỳ thường trông rẻ nhất đúng lúc lợi nhuận sắp giảm.",
-          "Lợi nhuận có khoản bất thường: một khoản lãi một lần làm E tăng, kéo P/E xuống và tạo cảm giác rẻ giả tạo.",
-          "Bỏ qua nợ: P/E chỉ nhìn phần vốn chủ. Hai doanh nghiệp cùng P/E nhưng khác hẳn về nợ thì rủi ro rất khác nhau - đây là lý do EV/EBITDA thường được dùng bổ sung."
+          "Nếu lưu lượng gấp đôi, chi phí mỗi request đi lên hay đi xuống",
+          "Nếu tắt hết môi trường không phải môi trường thật, hệ số đổi bao nhiêu",
+          "Nếu tỷ lệ trúng cache tăng mười điểm, phần nào của hoá đơn biến mất",
+          "Nếu bỏ mức dự phòng xuống một bậc, tiết kiệm bao nhiêu và mất gì"
         ]
       },
       {
         "type": "callout",
-        "label": "Biên an toàn",
-        "text": "Vì giá trị hợp lý luôn là một vùng chứ không phải một điểm, khoảng chênh giữa giá mua và cận dưới của vùng đó chính là phần đệm cho việc bạn có thể sai. Doanh nghiệp tốt mua ở mức giá không còn biên an toàn vẫn có thể là một khoản đầu tư kém."
+        "label": "Một con số không kết luận được điều gì",
+        "text": "Chi phí mỗi request của một tháng là một điểm, và một điểm thì không có hướng. Thứ nói lên vấn đề là hệ số ấy đi theo hướng nào qua sáu tháng trong khi lưu lượng cũng đang đổi. Hệ số đi lên trong lúc lưu lượng tăng là dấu hiệu xấu rõ ràng, vì quy mô lớn hơn lẽ ra phải làm nó rẻ đi."
       },
       {
         "type": "closing",
         "lines": [
-          "Đừng hỏi 'cổ phiếu này đắt hay rẻ' bằng một con số duy nhất.",
-          "Hãy hỏi: giả định tăng trưởng đằng sau mức giá này có thực tế không?"
+          "Hệ số chỉ có nghĩa khi đặt cạnh lượng việc mà mỗi request thật sự làm.",
+          "Và luôn hỏi thêm: hệ số này sẽ về đâu khi tăng trưởng chậm lại."
         ]
       },
       {
         "type": "list",
         "items": [
-          "Neo vào giá hiện tại: bắt đầu từ thị giá rồi dựng mô hình quanh nó, và kết quả chỉ xác nhận lại điểm khởi đầu",
-          "Tốc độ tăng trưởng dài hạn đặt cao hơn tăng trưởng của cả nền kinh tế - một giả định không doanh nghiệp nào duy trì được mãi",
-          "Nhóm so sánh không thực sự so sánh được: khác ngành, hoặc đang ở một pha chu kỳ khác",
-          "Quên chiết khấu thanh khoản khi định giá doanh nghiệp chưa niêm yết"
+          "Chia hoá đơn theo tầng trước khi chia theo request",
+          "Tách riêng phần dự phòng và phần đặt trước cho tăng trưởng",
+          "So với chính mình sáu tháng trước, không chỉ so với dịch vụ khác"
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Khi nào chi phí mỗi request cao vẫn có thể hợp lý?",
+        "options": [
+          "Khi mỗi request thật sự làm nhiều việc, hoặc dịch vụ đang đặt trước dung lượng cho tăng trưởng",
+          "Khi đội vừa chuyển sang một nhà cung cấp hạ tầng khác có đơn giá niêm yết cao hơn hẳn trước đây",
+          "Khi số người dùng đăng ký đang tăng nhanh hơn số request thực tế mỗi ngày",
+          "Khi hệ thống đã chạy nhiều năm nên phần lớn chi phí là chi phí cố định"
+        ],
+        "correct": 0,
+        "explanation": "Hai lý do này khác hẳn nhau nhưng đều chính đáng. Cái đầu là chi phí của phần việc thật và nó không giảm nếu không bỏ bớt việc; cái sau là chi phí tạm thời và nó tự giảm khi tải bắt kịp phần đã đặt."
+      },
+      {
+        "question": "Hai dịch vụ có chi phí mỗi request chênh nhau hai lần. Điều đầu tiên nên kiểm là gì?",
+        "options": [
+          "Mỗi request của hai bên thật sự làm bao nhiêu việc",
+          "Bên nào đang dùng nhà cung cấp hạ tầng có giá niêm yết rẻ hơn",
+          "Bên nào có nhiều người dùng hoạt động hằng tháng hơn",
+          "Bên nào đã chạy lâu hơn nên có nhiều thời gian tối ưu hơn"
+        ],
+        "correct": 0,
+        "explanation": "So hai hệ số mà chưa chuẩn hoá phần việc thì giống so giá hai món hàng khác hẳn nhau. Một request gọi mô hình và một request trả nội dung tĩnh không nằm trên cùng một thang đo."
+      },
+      {
+        "question": "Một dịch vụ có chi phí mỗi request rất thấp. Vì sao vẫn nên nghi ngờ?",
+        "options": [
+          "Vì nó có thể đang thiếu dự phòng, và con số đẹp ấy là chi phí của rủi ro chưa hiện ra",
+          "Vì chi phí thấp thường có nghĩa là dịch vụ đó chưa có nhiều người dùng thật sự trên môi trường thật",
+          "Vì các nhà cung cấp thường tính thiếu trong những tháng đầu sử dụng",
+          "Vì hệ số thấp luôn được tính trên khoảng thời gian quá ngắn để đáng tin"
+        ],
+        "correct": 0,
+        "explanation": "Cùng cái bẫy với một hệ số thấp bất thường ở bất kỳ đâu: nó thường có nguyên nhân, và nguyên nhân phổ biến nhất là một khoản chi phí đang bị hoãn chứ không phải bị loại bỏ. Chạy sát dung lượng thì rẻ, cho tới lần đầu tiên có đỉnh tải."
+      },
+      {
+        "question": "Cách đọc ngược từ hoá đơn ra giả định hữu ích nhất khi nào?",
+        "options": [
+          "Khi không có dịch vụ nào tương đương để so, nên phải tự kiểm tính hợp lý",
+          "Khi hoá đơn đã được nhà cung cấp chia sẵn theo từng dịch vụ và từng vùng",
+          "Khi đội cần trình bày con số cho người không có nền tảng kỹ thuật",
+          "Khi chi phí đang giảm và cần giải thích nguyên nhân của việc giảm đó"
+        ],
+        "correct": 0,
+        "explanation": "Không có gì để so thì vẫn còn một mốc: chính phép tính. Lấy hoá đơn chia ngược ra thời gian CPU hoặc số truy vấn mỗi request, rồi đối chiếu với thứ bạn biết hệ thống đang làm - chênh lệch giữa hai con số ấy chỉ thẳng vào chỗ cần tìm."
+      },
+      {
+        "question": "Phân tích độ nhạy trong ước lượng chi phí phục vụ mục đích gì?",
+        "options": [
+          "Cho thấy kết luận phụ thuộc mạnh vào giả định nào, để biết cần đo lại cái gì trước",
+          "Cho ra một khoảng chi phí thay vì một con số để dễ trình bày hơn với cấp trên",
+          "Chứng minh rằng ước lượng ban đầu là đúng trong phần lớn các kịch bản có thể",
+          "Giúp thương lượng với nhà cung cấp bằng cách cho thấy nhiều mức sử dụng khác nhau"
+        ],
+        "correct": 0,
+        "explanation": "Giá trị nằm ở việc chỉ ra biến nào lay chuyển kết quả nhiều nhất. Nếu tỷ lệ trúng cache đổi mười điểm mà hoá đơn đổi một nửa, thì việc đáng làm tiếp theo là đo lại tỷ lệ ấy cho chắc, chứ không phải tinh chỉnh những biến ít ảnh hưởng."
+      }
+    ],
+    "keyTakeaways": [
+      "Chi phí mỗi request là hệ số, và hệ số nào cũng vô nghĩa khi đứng một mình",
+      "Chuẩn hoá theo lượng việc mỗi request trước khi so hai dịch vụ",
+      "Trừ riêng phần dự phòng và phần đặt trước cho tăng trưởng - chúng không phục vụ request nào",
+      "Hệ số đi lên trong khi lưu lượng cũng tăng là dấu hiệu xấu rõ ràng"
+    ],
     "practicePrompt": {
-      "question": "Một công ty công nghệ có tốc độ tăng trưởng doanh thu 35%/năm đang được giao dịch ở P/E = 45x. Nhận định nào sau đây về P/E multiple này là chuẩn xác nhất?",
+      "question": "Chi phí mỗi request tăng 30% trong sáu tháng, lưu lượng cũng tăng gấp đôi. Nên nghĩ gì?",
       "options": [
-        "P/E cao có thể hợp lý nếu tăng trưởng cao: PEG = 45/35 = 1,28x",
-        "P/E 45x luôn là bong bóng tài chính bất kể tốc độ tăng trưởng là bao nhiêu",
-        "P/E 45x có nghĩa là cổ phiếu này rẻ hơn cổ phiếu ngân hàng có P/E 8x",
-        "P/E không áp dụng được cho các công ty tăng trưởng"
+        "Bất thường - quy mô lớn hơn lẽ ra phải làm hệ số rẻ đi, nên có chỗ đang rò",
+        "Bình thường - lưu lượng tăng thì chi phí tăng theo là điều hiển nhiên",
+        "Tốt - chi phí tăng chậm hơn lưu lượng nên hiệu quả đang cải thiện",
+        "Chưa kết luận được vì cần biết thêm số người dùng đăng ký mới"
       ],
       "correct": 0,
-      "explanation": "Với các công ty tăng trưởng cao (Growth Companies), chỉ số PEG (P/E chia cho tỷ lệ tăng trưởng EPS) giúp đánh giá xem mức P/E cao có được bảo chứng bởi tốc độ tăng trưởng lợi nhuận tương ứng hay không."
+      "explanation": "Chi phí mỗi request đã là con số đã chia cho lưu lượng, nên tăng trưởng không giải thích được nó. Quy mô lớn hơn thường kéo hệ số xuống nhờ dùng hết dung lượng đã đặt - đi ngược lại nghĩa là có thứ khác đang lớn nhanh hơn cả lưu lượng."
+    },
+    "summary": {
+      "keyIdea": "Một hệ số chi phí chỉ đọc được khi đã chuẩn hoá theo lượng việc mỗi request làm",
+      "commonMistake": "So chi phí mỗi request của hai dịch vụ làm những việc hoàn toàn khác nhau",
+      "action": "Chia hoá đơn theo tầng, tách phần dự phòng ra, rồi mới chia cho số request."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Case chuyên sâu: Market Fair Value",
-      "message": "Một công ty công nghệ có tốc độ tăng trưởng doanh thu 35%/năm đang được giao dịch ở P/E = 45x. Nhận định nào sau đây về P/E multiple này là chuẩn xác nhất?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+      "title": "Sáu tháng và bốn câu hỏi độ nhạy",
+      "message": "Vẽ chi phí mỗi request theo sáu tháng cạnh đường lưu lượng. Nếu hai đường cùng đi lên thì có chỗ đang rò, và nó không nằm ở chỗ bạn đoán đầu tiên.",
+      "secondary": "Sau đó chạy bốn câu hỏi độ nhạy: gấp đôi lưu lượng, tắt môi trường thử nghiệm, tăng trúng cache mười điểm, hạ dự phòng một bậc. Biến nào lay chuyển nhiều nhất là biến cần đo lại trước."
+    },
+    "id": 1006,
+    "slug": "market-fair-value",
+    "track": "bonus"
   },
   {
     "id": 1007,
@@ -56618,198 +56634,201 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1014,
-    "slug": "maple-leaf-leverage",
-    "title": "Maple Leaf - Leverage Ratio",
-    "subtitle": "Net Debt/EBITDA: đọc nợ đúng cách",
+    "title": "Tỷ Lệ Nợ Kỹ Thuật",
+    "subtitle": "Nợ kỹ thuật / năng lực dọn mỗi quý: đọc nợ đúng cách",
     "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "🍁",
-    "openingQuestion": "Net Debt/EBITDA cho biết điều gì trước tiên?",
+    "emoji": "📊",
+    "openingQuestion": "Tỷ lệ nợ kỹ thuật trên năng lực dọn mỗi quý cho biết điều gì trước tiên?",
     "openingOptions": [
-      "Khả năng trả nợ bằng dòng tiền vận hành",
-      "Biên gộp",
-      "Tốc độ tăng trưởng doanh thu hằng năm của công ty",
-      "Số lượng cổ phiếu lưu hành"
+      "Khả năng dọn hết nợ bằng năng lực hiện có",
+      "Chất lượng mã nguồn",
+      "Tốc độ ra tính năng mới của đội trong từng quý",
+      "Số lập trình viên đang làm trong dự án"
     ],
     "correctOption": 0,
-    "explanation": "Nợ ròng chia EBITDA quy gánh nặng nợ về số năm cần để trả hết bằng dòng tiền hiện tại, nên nó dễ đọc hơn con số dư nợ tuyệt đối. Mức chấp nhận được phụ thuộc hoàn toàn vào độ ổn định của dòng tiền: ba lần là bình thường với ngành điện nước nhưng rất căng với ngành thép. Cũng cần nhớ EBITDA bỏ qua chi đầu tư, nên với doanh nghiệp thâm dụng vốn, nó phóng đại khả năng trả nợ thật.",
+    "explanation": "Tỷ lệ này trả lời đúng một câu: nếu đội dừng làm tính năng và chỉ dọn nợ, thì mất bao nhiêu quý mới hết. Đó là lý do nó hữu ích hơn một con số nợ tuyệt đối - hai đội cùng nợ ba tháng công việc nhưng một đội dọn được một tháng mỗi quý còn đội kia dọn được một tuần thì đang ở hai tình huống hoàn toàn khác nhau. Chất lượng mã và số người là những thứ ảnh hưởng tới mẫu số, nhưng bản thân chúng không nói được bao lâu thì thoát.",
     "diagram": [
       {
-        "label": "Net debt",
+        "label": "Nợ kỹ thuật tồn đọng",
         "arrow": true
       },
       {
-        "label": "Chia EBITDA",
+        "label": "÷ năng lực dọn mỗi quý",
         "arrow": true
       },
       {
-        "label": "Ra leverage ratio",
+        "label": "= số quý cần để trả hết",
         "arrow": true
       },
       {
-        "label": "So với ngưỡng an toàn",
-        "arrow": false
+        "label": "Trên 4 quý là vùng khó thoát bằng nỗ lực thường"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Vì sao tỷ lệ nợ xấu đi khi chu kỳ đảo chiều",
-      "description": "Một doanh nghiệp ngành chu kỳ có nợ ròng 3.000 tỷ và EBITDA 1.000 tỷ, tức tỷ lệ 3 lần - nhìn qua khá bình thường. Nhưng khi chu kỳ đảo chiều và EBITDA rơi xuống 400 tỷ, tỷ lệ lập tức thành 7,5 lần dù doanh nghiệp chưa vay thêm một đồng nào. Đây là điểm khiến chỉ số này dễ gây hiểu lầm: mẫu số biến động mạnh hơn tử số rất nhiều. Vì vậy cách đọc đúng là thử tính lại tỷ lệ với mức EBITDA của năm tệ nhất trong chu kỳ trước, thay vì chỉ nhìn con số của năm hiện tại."
-    },
-    "quiz": [
-      {
-        "question": "Tỷ lệ net debt/EBITDA quá cao thường hàm ý gì?",
-        "options": [
-          "Rủi ro thanh khoản cao hơn",
-          "Doanh thu năm sau chắc chắn tăng",
-          "Cổ tức chi trả sẽ cao hơn",
-          "Giá trị sổ sách tăng lên"
-        ],
-        "correct": 0,
-        "explanation": "Tỷ lệ này ước lượng cần bao nhiêu năm lợi nhuận trước lãi thuế và khấu hao mới trả hết nợ ròng, nên cao nghĩa là biên an toàn mỏng: chỉ cần EBITDA sụt một năm là có thể vi phạm điều kiện vay hoặc không xoay kịp khoản đến hạn. Đòn bẩy cao thường đi kèm cổ tức thấp hơn vì tiền phải ưu tiên trả nợ, và nó không nói gì về doanh thu năm sau hay giá trị sổ sách."
-      },
-      {
-        "question": "Một doanh nghiệp chu kỳ (như thép, dầu khí) có net debt/EBITDA = 3x ở đỉnh chu kỳ. Vì sao con số này đáng lo hơn cùng tỷ lệ ở một doanh nghiệp phòng thủ (như bán lẻ thực phẩm)?",
-        "options": [
-          "Vì EBITDA chu kỳ sụt mạnh khi đảo chiều, tỷ lệ vọt lên nhanh",
-          "Vì doanh nghiệp thép luôn vay bằng ngoại tệ nên có rủi ro tỷ giá",
-          "Vì ngành thép luôn tệ hơn ngành bán lẻ thực phẩm về mọi mặt",
-          "Không có khác biệt đáng kể, cùng tỷ lệ thì cùng mức rủi ro"
-        ],
-        "correct": 0,
-        "explanation": "Net debt/EBITDA đo bằng EBITDA hiện tại, nhưng với doanh nghiệp chu kỳ, chính EBITDA đó rất dễ biến động mạnh theo chu kỳ ngành - cùng một tỷ lệ nợ có thể an toàn ở doanh nghiệp phòng thủ nhưng rủi ro cao ở doanh nghiệp chu kỳ khi EBITDA sụt giảm đột ngột."
-      },
-      {
-        "question": "Doanh nghiệp không vay thêm nhưng tỷ lệ nợ ròng trên EBITDA tăng từ 3 lên 7,5 lần. Nguyên nhân là gì?",
-        "options": [
-          "EBITDA sụt mạnh làm mẫu số nhỏ đi trong khi nợ giữ nguyên",
-          "Doanh nghiệp đổi chính sách khấu hao làm tài sản giảm giá trị",
-          "Doanh nghiệp đã dùng tiền mặt trả cổ tức nên nợ ròng tăng",
-          "Chi phí lãi vay tăng làm nghĩa vụ nợ ròng lớn hơn trước"
-        ],
-        "correct": 0,
-        "explanation": "Với ngành chu kỳ, mẫu số dao động mạnh hơn tử số rất nhiều. Đó là lý do nên thử tính lại tỷ lệ ở mức EBITDA của năm tệ nhất trong chu kỳ trước."
-      },
-      {
-        "question": "Vì sao EBITDA có thể phóng đại khả năng trả nợ ở doanh nghiệp thâm dụng vốn?",
-        "options": [
-          "Vì nó bỏ qua khấu hao trong khi vẫn phải tái đầu tư tài sản",
-          "Vì EBITDA đã trừ chi phí lãi vay tới hai lần",
-          "Vì EBITDA không bao gồm doanh thu tài chính và cổ tức nhận",
-          "Vì EBITDA luôn nhỏ hơn lợi nhuận sau thuế ở nhóm này"
-        ],
-        "correct": 0,
-        "explanation": "Khấu hao là chi phí phi tiền mặt trong kỳ nhưng phản ánh nhu cầu chi tiền thật để duy trì tài sản. Bỏ qua nó khiến phần tiền thực sự còn lại để trả nợ bị đánh giá cao hơn thực tế."
-      },
-      {
-        "question": "Vì sao chủ nợ thường quan tâm tới lịch đáo hạn nợ hơn là tổng dư nợ?",
-        "options": [
-          "Vì rủi ro nằm ở chỗ khoản nào phải trả trước khi dòng tiền kịp quay về",
-          "Vì tổng dư nợ không được công bố chi tiết trong thuyết minh báo cáo tài chính",
-          "Vì các khoản đáo hạn sớm luôn có lãi suất cao hơn các khoản đáo hạn muộn",
-          "Vì lịch đáo hạn quyết định mức xếp hạng tín nhiệm mà doanh nghiệp được nhận"
-        ],
-        "correct": 0,
-        "explanation": "Một doanh nghiệp phá sản không phải vì tổng nợ lớn mà vì một khoản cụ thể đến hạn đúng lúc không xoay được tiền. Nợ trải đều nhiều năm dễ xử lý hơn hẳn cùng số dư nhưng dồn hết vào một năm - nhất là nếu năm đó thị trường vốn đóng cửa."
-      }
-    ],
-    "keyTakeaways": [
-      "Net debt/EBITDA là thước đo leverage phổ biến",
-      "Cần so sánh theo ngành, không đọc độc lập",
-      "Đòn bẩy cao đi kèm rủi ro tái cấp vốn"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Net debt/EBITDA là thước đo leverage phổ biến",
-      "commonMistake": "Dễ bỏ qua: cần so sánh theo ngành, không đọc độc lập",
-      "action": "Đòn bẩy cao đi kèm rủi ro tái cấp vốn"
+      "company": "Hai đội cùng nợ ba tháng",
+      "description": "Hai đội đều ước lượng nợ kỹ thuật khoảng ba tháng công việc. Đội thứ nhất dành hai mươi phần trăm mỗi quý cho việc dọn, tức khoảng hai tuần rưỡi - họ mất chừng ba quý. Đội thứ hai luôn hết chỗ vì việc gấp, thực tế dọn được vài ngày mỗi quý - với họ ba tháng nợ ấy là hơn năm năm. Cùng một con số nợ, hai bài toán khác hẳn nhau, và chỉ tỷ lệ mới cho thấy điều đó."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Net Debt/EBITDA là một trong những chỉ số đòn bẩy được theo dõi sát sao nhất - nhưng cùng một con số có thể mang ý nghĩa rủi ro rất khác nhau tùy ngành."
+        "text": "Một con số nợ kỹ thuật tuyệt đối gần như vô nghĩa. Điều làm nó có nghĩa là đặt nó cạnh năng lực dọn thật của đội trong một quý."
       },
       {
         "type": "heading",
-        "text": "Net Debt/EBITDA đo gì"
+        "text": "Vì sao phải chia, không phải đếm"
       },
       {
         "type": "paragraph",
-        "text": "Tỷ lệ này cho biết nếu dùng toàn bộ EBITDA hiện tại để trả nợ, doanh nghiệp cần bao nhiêu năm để trả hết nợ ròng. Tỷ lệ càng cao, biên an toàn tài chính càng mỏng. Với doanh nghiệp chu kỳ (thép, dầu khí), rủi ro lớn hơn nhiều so với doanh nghiệp phòng thủ ở cùng tỷ lệ nợ, vì chính EBITDA của họ có thể sụt mạnh khi chu kỳ đảo chiều, khiến tỷ lệ này vọt lên rất nhanh."
+        "text": "Đếm số việc tồn đọng cho ra một con số to và gây lo lắng nhưng không dẫn tới quyết định nào. Chia nó cho phần năng lực thật sự dành cho việc dọn mỗi quý thì ra một đơn vị dùng được: số quý. Con số ấy so sánh được giữa các đội, theo dõi được qua thời gian, và quan trọng nhất là nó nói thẳng liệu tình hình đang khá lên hay xấu đi."
       },
       {
         "type": "list",
         "items": [
-          "Net Debt/EBITDA cao đồng nghĩa rủi ro thanh khoản cao hơn nếu EBITDA giảm",
-          "Luôn cần so sánh theo ngành - cùng tỷ lệ nợ có thể an toàn ở ngành phòng thủ nhưng rủi ro ở ngành chu kỳ",
-          "Đòn bẩy cao đi kèm rủi ro tái cấp vốn khi khoản nợ đến hạn"
+          "Tử số là nợ đã ghi lại, không phải nợ cảm thấy",
+          "Mẫu số là năng lực THẬT của quý vừa rồi, không phải phần trăm đã hứa",
+          "Dưới 2 quý là lành; 2-4 quý cần kế hoạch; trên 4 quý khó thoát bằng nỗ lực thường",
+          "Xu hướng qua ba quý quan trọng hơn con số của một quý"
         ]
       },
       {
         "type": "formula",
-        "title": "Công thức và cách đọc",
-        "equation": "Nợ ròng ÷ EBITDA = (Nợ vay − Tiền mặt) ÷ EBITDA",
+        "title": "Đọc tỷ lệ đúng cách",
         "variables": [
           {
-            "symbol": "Nợ ròng",
-            "name": "Net debt",
-            "description": "Tổng nợ vay ngắn hạn và dài hạn trừ tiền và tương đương tiền."
+            "symbol": "D",
+            "name": "Nợ kỹ thuật = tổng công việc dọn đã ghi lại",
+            "description": "Chỉ tính thứ đã được viết ra thành việc cụ thể. Nợ chưa ai ghi thì không đo được, và nó luôn lớn hơn phần đã ghi."
           },
           {
-            "symbol": "EBITDA",
-            "name": "Lợi nhuận trước lãi vay, thuế và khấu hao",
-            "description": "Xấp xỉ dòng tiền vận hành trước các khoản đầu tư - dùng làm nguồn trả nợ giả định."
+            "symbol": "C",
+            "name": "Năng lực dọn = phần công việc dọn hoàn thành trong quý",
+            "description": "Lấy số thật của quý vừa rồi. Con số hứa trong kế hoạch gần như luôn cao hơn con số thật, thường là hai tới ba lần."
+          },
+          {
+            "symbol": "R",
+            "name": "Tỷ lệ = D / C",
+            "description": "Đơn vị là quý. Đây là câu trả lời cho: nếu dừng mọi việc khác thì bao lâu mới hết."
+          },
+          {
+            "symbol": "Trend",
+            "name": "Xu hướng = R quý này so với R ba quý trước",
+            "description": "Tỷ lệ tăng dù đội vẫn dọn đều nghĩa là nợ mới sinh ra nhanh hơn tốc độ trả."
           }
-        ],
-        "example": {
-          "title": "Cùng nợ, hai giai đoạn chu kỳ",
-          "calculation": "3.000 ÷ 1.000 so với 3.000 ÷ 400",
-          "result": "3,0 lần so với 7,5 lần",
-          "explanation": "Doanh nghiệp không vay thêm đồng nào, nhưng mức đòn bẩy đo được tăng gấp 2,5 lần chỉ vì EBITDA giảm. Rủi ro thực đã tăng đúng như con số phản ánh - và đó là lúc các điều khoản ràng buộc trong hợp đồng vay dễ bị vi phạm nhất."
-        }
+        ]
       },
       {
         "type": "heading",
-        "text": "Ba yếu tố phải đọc kèm"
+        "text": "Ba chỗ tỷ lệ này đánh lừa"
       },
       {
         "type": "list",
         "items": [
-          "Cơ cấu kỳ hạn nợ: 3 lần nhưng phần lớn đáo hạn trong 12 tháng tới rủi ro hơn nhiều so với 4 lần trải đều trong 7 năm.",
-          "Khả năng trả lãi: tỷ lệ EBIT chia chi phí lãi vay cho biết doanh nghiệp còn đệm bao nhiêu trước khi không đủ trả lãi.",
-          "Điều khoản ràng buộc trong hợp đồng vay: nhiều hợp đồng quy định trần cho tỷ lệ nợ ròng trên EBITDA; vượt trần có thể kích hoạt yêu cầu trả nợ trước hạn ngay giữa lúc khó khăn nhất."
+          "Đội mùa vụ: quý thấp điểm dọn được nhiều nên tỷ lệ đẹp, rồi quý cao điểm sập",
+          "Năng lực danh nghĩa: hai mươi phần trăm trên giấy thường là năm phần trăm trên thực tế",
+          "Nợ chưa ghi: tử số chỉ đếm phần đã viết ra, nên tỷ lệ luôn lạc quan hơn thực tế"
         ]
       },
       {
         "type": "callout",
-        "label": "Hạn chế của EBITDA",
-        "text": "EBITDA bỏ qua khấu hao, nên với doanh nghiệp thâm dụng vốn phải tái đầu tư liên tục, nó phóng đại dòng tiền thực sự dùng để trả nợ được. Với các ngành này nên đối chiếu thêm dòng tiền kinh doanh trừ chi đầu tư duy trì."
+        "label": "Hạn chót mới là thứ giết dự án",
+        "text": "Tỷ lệ nói bao lâu thì hết nợ, nhưng nó không nói khi nào phải hết. Một thư viện hết hỗ trợ vào tháng sáu, một phiên bản ngôn ngữ ngừng nhận bản vá bảo mật, một API bên thứ ba tắt vào cuối năm - đó là những hạn chót không thương lượng được. Một đội có tỷ lệ ba quý nghe ổn, cho tới khi nhìn ra phần lớn nợ ấy đáo hạn trong hai quý tới."
       },
       {
         "type": "closing",
         "lines": [
-          "Một con số Net Debt/EBITDA không có ý nghĩa gì nếu tách khỏi bối cảnh ngành.",
-          "Luôn hỏi: EBITDA của doanh nghiệp này ổn định đến đâu qua các chu kỳ?"
+          "Nợ kỹ thuật tuyệt đối gây lo lắng; nợ chia cho năng lực dọn mới dẫn tới quyết định.",
+          "Và luôn hỏi thêm một câu: phần nào trong đống nợ ấy có hạn chót do người ngoài đặt."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Tỷ lệ nợ kỹ thuật trên năng lực dọn quá cao thường hàm ý gì?",
+        "options": [
+          "Đội không thể thoát bằng nhịp làm việc hiện tại, cần một quyết định riêng",
+          "Chất lượng mã nguồn của dự án đang ở mức thấp hơn mặt bằng chung của ngành",
+          "Đội đang dành quá nhiều thời gian cho việc dọn dẹp thay vì làm tính năng mới",
+          "Số lượng lập trình viên trong đội chưa đủ so với quy mô của sản phẩm hiện tại"
+        ],
+        "correct": 0,
+        "explanation": "Tỷ lệ cao nghĩa là dù đội vẫn dọn đều thì đích vẫn ở quá xa. Lúc đó không có cách nào thoát bằng cố gắng thêm; phải là một quyết định khác - dừng tính năng một quý, cắt bớt phạm vi sản phẩm, hoặc chấp nhận sống chung và ghi rõ điều đó."
+      },
+      {
+        "question": "Một đội có nhịp làm việc theo mùa vụ, tỷ lệ đo ở quý thấp điểm thì sao?",
+        "options": [
+          "Nó đẹp giả tạo, vì mẫu số của quý thấp điểm cao hơn hẳn mức bình thường",
+          "Nó chính xác hơn các quý khác vì đội có nhiều thời gian để ghi nhận đầy đủ",
+          "Nó không dùng được vì nợ kỹ thuật chỉ phát sinh trong các quý cao điểm",
+          "Nó cần được nhân thêm hệ số mùa vụ do nhà cung cấp công cụ đề xuất"
+        ],
+        "correct": 0,
+        "explanation": "Cùng cái bẫy mà mọi tỷ lệ có mẫu số biến động đều gặp. Cách xử lý là lấy trung bình bốn quý gần nhất cho mẫu số, hoặc luôn đo ở quý cao điểm để có con số bi quan mà đáng tin."
+      },
+      {
+        "question": "Đội không nhận thêm việc mới nhưng tỷ lệ vẫn tăng. Nguyên nhân phổ biến nhất là gì?",
+        "options": [
+          "Năng lực dọn tụt xuống vì việc gấp ăn hết phần dành cho dọn",
+          "Nợ kỹ thuật tự sinh thêm do mã nguồn cũ đi theo thời gian mà không ai đụng tới",
+          "Công cụ đo đã đổi cách tính nên các con số giữa các quý không còn so được",
+          "Số người trong đội giảm nên tổng năng lực của cả quý cũng giảm theo tỷ lệ"
+        ],
+        "correct": 0,
+        "explanation": "Tỷ lệ có hai vế và người ta hay chỉ nhìn tử số. Khi tử số đứng yên mà tỷ lệ vẫn xấu đi thì thủ phạm nằm ở mẫu số - và mẫu số tụt gần như luôn là vì phần dành cho dọn dẹp bị việc gấp lấy mất."
+      },
+      {
+        "question": "Vì sao năng lực dọn theo kế hoạch thường phóng đại khả năng thật?",
+        "options": [
+          "Vì phần trăm đã hứa là thứ đầu tiên bị cắt khi có việc gấp",
+          "Vì kế hoạch luôn được lập bởi người không trực tiếp làm phần việc dọn dẹp",
+          "Vì công việc dọn dẹp khó ước lượng nên thường bị đánh giá thấp hơn thực tế",
+          "Vì các công cụ theo dõi không phân loại được đâu là việc dọn đâu là việc mới"
+        ],
+        "correct": 0,
+        "explanation": "Hai mươi phần trăm trên giấy và năm phần trăm trên thực tế là khoảng cách rất thường gặp. Đó là lý do mẫu số phải lấy từ số liệu quý vừa rồi chứ không lấy từ cam kết trong kế hoạch."
+      },
+      {
+        "question": "Vì sao phải xem lịch hạn chót của nợ chứ không chỉ xem tổng?",
+        "options": [
+          "Vì nợ có hạn chót do bên ngoài đặt không hoãn được, dù tổng có nhỏ tới đâu",
+          "Vì nợ cũ luôn khó sửa hơn nợ mới nên cần được ưu tiên xử lý trước",
+          "Vì các công cụ theo dõi chỉ cảnh báo khi một việc đã quá hạn quá lâu",
+          "Vì tổng nợ thay đổi liên tục nên chỉ có lịch hạn chót là con số ổn định"
+        ],
+        "correct": 0,
+        "explanation": "Thư viện hết hỗ trợ, phiên bản ngừng nhận bản vá bảo mật, API bên thứ ba tắt - những mốc này không thương lượng được. Một đội có tỷ lệ ba quý vẫn gặp khủng hoảng nếu phần lớn nợ đáo hạn trong hai quý."
+      }
+    ],
+    "keyTakeaways": [
+      "Nợ tuyệt đối gây lo lắng; nợ chia cho năng lực dọn mới ra một con số dùng được",
+      "Mẫu số phải là năng lực THẬT của quý vừa rồi, không phải phần trăm đã hứa",
+      "Tỷ lệ tăng dù tử số đứng yên nghĩa là việc gấp đang ăn hết phần dành cho dọn dẹp",
+      "Tổng nợ không nói gì về hạn chót - phải xem riêng phần do bên ngoài đặt"
+    ],
     "practicePrompt": {
-      "question": "Chỉ số Nợ thuần / EBITDA (Net Debt / EBITDA) được các ngân hàng và tổ chức xếp hạng tín dụng sử dụng để đo lường điều gì?",
+      "question": "Nợ tồn đọng 24 tuần công việc, quý vừa rồi dọn được 3 tuần. Tỷ lệ là bao nhiêu?",
       "options": [
-        "Số năm doanh nghiệp cần để trả hết nợ vay thuần từ dòng tiền EBITDA hoạt động",
-        "Tỷ lệ cổ tức tiền mặt chi trả cho cổ đông phổ thông",
-        "Tốc độ tăng trưởng giá cổ phiếu trên thị trường",
-        "Hiệu quả sử dụng hàng tồn kho của doanh nghiệp"
+        "8 quý",
+        "3 quý (= lấy thẳng số tuần dọn được làm số quý)",
+        "24 quý (= lấy thẳng tử số, quên chia)",
+        "2 quý (= chia cho 12 tuần một quý thay vì cho năng lực thật)"
       ],
       "correct": 0,
-      "explanation": "Net Debt / EBITDA đo lường năng lực trả nợ. Tỷ lệ này < 2.0x phản ánh sức khỏe tài chính an toàn; nếu > 4.0x là mức cảnh báo rủi ro đòn bẩy nợ cao."
+      "explanation": "24 chia 3 ra 8 quý, tức hai năm nếu không có gì đổi. Ba phương án còn lại đều là kết quả của việc dùng sai mẫu số hoặc bỏ hẳn phép chia."
+    },
+    "summary": {
+      "keyIdea": "Nợ kỹ thuật chỉ có nghĩa khi đặt cạnh năng lực dọn thật của một quý",
+      "commonMistake": "Lấy phần trăm đã hứa làm mẫu số thay vì số liệu thật của quý vừa rồi",
+      "action": "Tính tỷ lệ cho ba quý gần nhất và nhìn xu hướng chứ không nhìn một điểm."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Maple Leaf - Leverage Ratio",
-      "message": "Chỉ số Nợ thuần / EBITDA (Net Debt / EBITDA) được các ngân hàng và tổ chức xếp hạng tín dụng sử dụng để đo lường điều gì?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+      "title": "Ba quý và một danh sách hạn chót",
+      "message": "Đếm việc dọn đã ghi lại, lấy số thật đã hoàn thành trong ba quý gần nhất, rồi chia. Ghi lại cả ba tỷ lệ để thấy hướng đi.",
+      "secondary": "Sau đó lọc riêng phần nợ có hạn chót do bên ngoài đặt. Đó mới là phần quyết định bạn có được chọn thời điểm hay không."
+    },
+    "id": 1014,
+    "slug": "maple-leaf-leverage",
+    "track": "bonus"
   },
   {
     "id": 1015,
@@ -58335,202 +58354,198 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1023,
-    "slug": "fpt-cfo-cash",
-    "title": "CFO FPT và 8.500 tỷ tiền mặt",
-    "subtitle": "Cân bằng Liquidity, Financial Income và Capital Allocation",
+    "title": "Đội Có 20% Năng Lực Dư",
+    "subtitle": "Cân bằng giữa tính năng mới, trả nợ kỹ thuật và độ tin cậy",
     "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "💧",
-    "openingQuestion": "Khi một doanh nghiệp có nhiều tiền mặt, câu hỏi quan trọng nhất là gì?",
+    "emoji": "💼",
+    "openingQuestion": "Khi một đội có phần năng lực dư đều đặn, câu hỏi quan trọng nhất là gì?",
     "openingOptions": [
-      "Làm sao giữ được càng nhiều tiền mặt trong két càng tốt",
-      "Sẽ dùng cash cho đâu: đầu tư, mua lại hay cổ tức",
-      "Có nên giấu cash không",
-      "Cash nhiều thì không cần hoạch định"
+      "Làm sao giữ được càng nhiều phần dư càng tốt cho những lúc bất ngờ",
+      "Sẽ dùng phần dư vào đâu: tính năng, trả nợ hay độ tin cậy",
+      "Có nên giấu phần dư khỏi các bộ phận khác không",
+      "Dư nhiều thì không cần lên kế hoạch nữa"
     ],
     "correctOption": 1,
-    "explanation": "Một núi tiền mặt trên bảng cân đối không tự nó là điểm mạnh - nó là câu hỏi chưa được trả lời về phân bổ vốn. Năm lựa chọn thường thấy là đầu tư mở rộng, mua lại doanh nghiệp khác, trả bớt nợ, mua lại cổ phiếu, hoặc giữ làm đệm an toàn. Xếp thứ tự chúng bằng cùng một thước đo: lợi suất kỳ vọng của mỗi phương án so với chi phí vốn. Tiền nằm im nhiều năm mà không có kế hoạch là một dạng phá hủy giá trị âm thầm.",
+    "explanation": "Phần năng lực dư không tự tạo ra giá trị - nó chỉ tạo ra khi được phân bổ. Giữ mãi phần dư mà không dùng là lãng phí đúng bằng cách một khoản tiền nằm im mất giá: đội quen với nhịp thong thả, và tới lúc cần dồn sức thì phần dư ấy đã tan vào những việc không ai nhớ. Câu hỏi đúng luôn là phân bổ vào đâu, và ba lựa chọn ấy - tính năng mới, trả nợ kỹ thuật, gia cố độ tin cậy - cạnh tranh trực tiếp với nhau vì chúng lấy từ cùng một nguồn.",
     "diagram": [
       {
-        "label": "Cash",
+        "label": "Năng lực dư đều đặn mỗi quý",
         "arrow": true
       },
       {
-        "label": "Growth investment",
+        "label": "Ba đích cạnh tranh nhau",
         "arrow": true
       },
       {
-        "label": "Buyback / dividend",
+        "label": "Chọn theo lợi ích biên, không chia đều",
         "arrow": true
       },
       {
-        "label": "Capital allocation",
-        "arrow": false
+        "label": "Không chọn cũng là một lựa chọn, và thường là lựa chọn tệ nhất"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "FPT",
-      "description": "Doanh nghiệp có dòng tiền mạnh thường được xem xét ở góc độ capital allocation hơn là chỉ nhìn số dư tiền mặt."
-    },
-    "quiz": [
-      {
-        "question": "Cash dồi dào có thể làm gì cho cổ đông?",
-        "options": [
-          "Tạo đệm an toàn và linh hoạt về vốn",
-          "Bắt buộc phải trả hết ngay cho cổ đông",
-          "Làm báo cáo tài chính xấu đi",
-          "Không có tác dụng gì đáng kể"
-        ],
-        "correct": 0,
-        "explanation": "Tiền dư cho doanh nghiệp quyền lựa chọn: chịu được một quý xấu mà không phải bán tài sản, và mua được cơ hội xuất hiện đúng lúc thị trường khó vay. Nó không phải nghĩa vụ phải chia hết - giữ lại hay trả về là quyết định tùy tỷ suất sinh lời của cơ hội đang có. Tiền cũng là tài sản nên không làm báo cáo xấu đi; điều đáng bàn là giữ quá mức cần thiết thì vốn nằm không."
-      },
-      {
-        "question": "Giữa việc dùng cash để mua lại cổ phiếu (buyback) và trả cổ tức, điều gì quyết định lựa chọn nào tốt hơn cho cổ đông?",
-        "options": [
-          "Phụ thuộc cổ phiếu có đang bị định giá thấp hay không",
-          "Không có khác biệt nào giữa hai lựa chọn về mặt giá trị",
-          "Cổ tức luôn tốt hơn vì cổ đông nhận được tiền ngay",
-          "Buyback luôn tốt hơn cổ tức trong mọi trường hợp"
-        ],
-        "correct": 0,
-        "explanation": "Buyback chỉ thực sự tạo giá trị cho cổ đông còn lại khi công ty mua cổ phiếu với giá thấp hơn giá trị nội tại - nếu mua ở giá cao, đó là phân bổ vốn kém. Cổ tức đơn giản và dễ dự đoán hơn nhưng không tận dụng được cơ hội khi cổ phiếu đang bị định giá thấp."
-      },
-      {
-        "question": "Vì sao mua lại cổ phiếu (buyback) chỉ thực sự tạo giá trị khi cổ phiếu đang bị định giá thấp?",
-        "options": [
-          "Vì khi đó doanh nghiệp mua tài sản dưới giá trị thực",
-          "Vì luật quy định chỉ được buyback khi giá đang xuống thấp",
-          "Vì buyback thực hiện ở giá cao sẽ bị đánh thuế nặng hơn",
-          "Vì buyback luôn làm tăng EPS bất kể mua ở mức giá nào"
-        ],
-        "correct": 0,
-        "explanation": "EPS tăng do giảm số cổ phiếu lưu hành xảy ra bất kể giá mua, nên đó không phải thước đo đúng. Thước đo đúng là so giá mua với giá trị nội tại của doanh nghiệp."
-      },
-      {
-        "question": "Thứ tự ưu tiên phổ biến khi phân bổ tiền mặt dư thừa là gì?",
-        "options": [
-          "Đệm thanh khoản, rồi dự án ROIC cao, rồi trả cổ đông",
-          "Không có thứ tự nào, tùy hoàn toàn vào cảm tính ban lãnh đạo",
-          "Luôn ưu tiên M&A trước để tăng quy mô nhanh nhất có thể",
-          "Luôn ưu tiên buyback trước mọi lựa chọn phân bổ khác"
-        ],
-        "correct": 0,
-        "explanation": "An toàn trước, cơ hội sinh lời cao nhất trước, phần còn lại mới trả về cho cổ đông - đây là logic phân bổ vốn kỷ luật mà một CFO giỏi thường theo đuổi."
-      },
-      {
-        "question": "Doanh nghiệp mua lại cổ phiếu khi thị giá đang cao hơn giá trị nội tại. Điều gì xảy ra với cổ đông ở lại?",
-        "options": [
-          "Họ bị thiệt, vì công ty dùng tiền chung mua tài sản với giá đắt",
-          "Họ được lợi, vì số cổ phiếu lưu hành giảm nên lợi nhuận mỗi cổ phiếu tăng",
-          "Không ảnh hưởng gì, vì mua lại cổ phiếu chỉ là một nghiệp vụ kỹ thuật",
-          "Họ được lợi, vì thị trường luôn phản ứng tích cực với tin mua lại cổ phiếu"
-        ],
-        "correct": 0,
-        "explanation": "Mua lại cổ phiếu là một quyết định đầu tư: công ty đang mua chính mình. Mua rẻ thì chuyển giá trị từ người bán sang người ở lại, mua đắt thì chuyển theo chiều ngược lại - dù lợi nhuận mỗi cổ phiếu vẫn tăng lên trong cả hai trường hợp."
-      }
-    ],
-    "keyTakeaways": [
-      "Quan trọng không phải chỉ có cash, mà là dùng cash thế nào",
-      "Capital allocation là kỹ năng sống còn của quản trị",
-      "Đừng nhầm cash lớn với hiệu quả vốn cao"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Quan trọng không phải chỉ có cash, mà là dùng cash thế nào",
-      "commonMistake": "Dễ bỏ qua: capital allocation là kỹ năng sống còn của quản trị",
-      "action": "Đừng nhầm cash lớn với hiệu quả vốn cao"
+      "company": "Hai mươi phần trăm tan đi đâu",
+      "description": "Một đội thống nhất dành hai mươi phần trăm mỗi quý cho việc dọn dẹp, nhưng không ghi nó thành việc cụ thể trong kế hoạch. Cuối năm nhìn lại, phần ấy đã đi vào họp, hỗ trợ khách hàng, và những việc gấp không ai từ chối được. Không ai quyết định bỏ nó - nó chỉ đơn giản là chưa bao giờ được gán cho một việc nào, nên mọi việc khác đều đến trước."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Khi một doanh nghiệp có nhiều tiền mặt, câu hỏi quan trọng nhất không phải là 'có bao nhiêu' mà là 'sẽ dùng nó thế nào'."
+        "text": "Có năng lực dư là tình huống dễ chịu và cũng dễ lãng phí nhất. Phần dư không được gán cho một đích cụ thể sẽ tự tan vào những việc đến trước."
       },
       {
         "type": "heading",
-        "text": "Capital Allocation - kỹ năng sống còn của CFO"
+        "text": "Ba đích, cùng một nguồn"
       },
       {
         "type": "paragraph",
-        "text": "Tiền mặt chỉ thực sự hữu ích khi được phân bổ đúng: tái đầu tư tăng trưởng, mua lại cổ phiếu (buyback), M&A, giảm nợ, hoặc giữ làm đệm an toàn. Giữa buyback và trả cổ tức, lựa chọn tốt hơn phụ thuộc vào việc cổ phiếu có đang bị định giá thấp hay không - buyback chỉ thực sự tạo giá trị cho cổ đông còn lại khi mua ở giá thấp hơn giá trị nội tại, ngược lại đó là phân bổ vốn kém."
+        "text": "Tính năng mới tạo giá trị thấy được ngay và dễ được ưu tiên. Trả nợ kỹ thuật không ai thấy nhưng nó làm mọi việc sau này rẻ đi. Gia cố độ tin cậy cũng không ai thấy cho tới khi có sự cố, và lúc đó thì đã muộn. Ba đích này không xếp hạng cố định được - thứ tự đúng phụ thuộc vào việc đích nào đang có lợi ích biên cao nhất, và điều đó đổi theo từng quý."
       },
       {
         "type": "list",
         "items": [
-          "Tiền mặt tốt khi nó tạo đệm an toàn và sự linh hoạt trước cơ hội/cú sốc",
-          "Buyback chỉ tạo giá trị khi cổ phiếu đang bị định giá thấp hơn giá trị thực",
-          "Capital allocation là kỹ năng quan trọng bậc nhất của một CFO giỏi"
+          "Phần dư chưa được gán việc sẽ tan vào việc gấp, không phải vào nghỉ ngơi",
+          "Chia đều ba đích nghe công bằng nhưng thường cho kết quả kém nhất",
+          "Lợi ích biên đổi theo quý, nên thứ tự ưu tiên phải xem lại chứ không đặt một lần",
+          "Ghi phần dư thành việc cụ thể trong kế hoạch là cách duy nhất giữ được nó"
         ]
       },
       {
         "type": "conceptTable",
-        "title": "Năm lựa chọn dùng tiền mặt và tiêu chí chọn",
+        "title": "Ba đích và lúc nào nên chọn",
+        "subtitle": "Cùng lấy từ một nguồn, nên chọn cái này là bỏ cái kia",
         "concepts": [
           {
-            "vi": "Tái đầu tư tăng trưởng",
-            "en": "Growth capex",
-            "def": "Ưu tiên khi còn nhiều dự án nội bộ có ROIC vượt WACC rõ rệt."
+            "vi": "Tính năng mới",
+            "en": "New features",
+            "def": "Chọn khi sản phẩm còn chưa rõ hướng và mỗi tính năng còn trả lời một câu hỏi lớn. Giá trị thấy ngay nhưng nó cộng thêm vào phần phải bảo trì."
           },
           {
-            "vi": "Mua lại cổ phiếu",
-            "en": "Buyback",
-            "def": "Chỉ tạo giá trị khi cổ phiếu đang giao dịch dưới giá trị nội tại - mua ở giá cao là phân bổ vốn kém."
+            "vi": "Trả nợ kỹ thuật",
+            "en": "Paying down debt",
+            "def": "Chọn khi tỷ lệ nợ trên năng lực dọn đã vượt bốn quý, hoặc khi có hạn chót do bên ngoài đặt. Nó làm mọi việc sau rẻ đi."
           },
           {
-            "vi": "M&A",
-            "en": "Mua doanh nghiệp khác",
-            "def": "Hợp lý khi mục tiêu có giá hợp lý và tạo cộng hưởng thật, không chỉ để 'tiêu' bớt tiền mặt dư thừa."
+            "vi": "Gia cố độ tin cậy",
+            "en": "Reliability work",
+            "def": "Chọn khi ngân sách lỗi bị tiêu sạch nhiều kỳ liên tiếp. Không ai thấy kết quả cho tới lúc có sự cố mà không thành sự cố."
           },
           {
-            "vi": "Giảm nợ",
-            "en": "Trả bớt nợ vay",
-            "def": "Ưu tiên khi chi phí nợ cao hơn lợi suất kỳ vọng của các lựa chọn khác, hoặc khi cần giảm rủi ro tài chính."
-          },
-          {
-            "vi": "Giữ làm đệm",
-            "en": "Cash reserve",
-            "def": "Cần thiết cho an toàn thanh khoản, nhưng giữ quá mức cần thiết trở thành chi phí cơ hội."
+            "vi": "Giữ nguyên phần dư",
+            "en": "Keeping slack",
+            "def": "Chỉ hợp lý khi biết trước một đợt việc lớn sắp tới. Giữ vô thời hạn thì phần dư ấy sẽ biến mất mà không ai quyết định gì."
           }
         ]
       },
       {
         "type": "heading",
-        "text": "Vì sao buyback chỉ tốt khi cổ phiếu đang rẻ"
+        "text": "Vì sao chia đều thường là lựa chọn kém"
       },
       {
         "type": "paragraph",
-        "text": "Mua lại cổ phiếu về bản chất là doanh nghiệp dùng tiền mặt để mua chính mình. Nếu giá thị trường thấp hơn giá trị nội tại, mỗi cổ phiếu mua lại tạo ra giá trị dôi ra cho các cổ đông còn lại - tương đương một khoản đầu tư có lợi suất cao. Nếu mua ở giá đã cao hơn giá trị thực, điều ngược lại xảy ra: tiền mặt bị tiêu tốn để mua tài sản đắt, làm giảm giá trị cho cổ đông còn lại dù về mặt kế toán EPS vẫn tăng do số cổ phiếu lưu hành giảm."
+        "text": "Chia đều ba phần nghe công bằng và tránh được tranh cãi, nhưng nó bỏ qua thứ quan trọng nhất: ba đích ấy hiếm khi có lợi ích biên bằng nhau. Một đội đang tiêu sạch ngân sách lỗi mỗi kỳ thì đồng công sức bỏ vào độ tin cậy đáng giá hơn hẳn đồng bỏ vào tính năng thứ mười. Một đội có hệ thống ổn định và sản phẩm chưa rõ hướng thì ngược lại. Chia đều đảm bảo không đích nào được làm tới nơi."
       },
       {
         "type": "callout",
-        "label": "Thứ tự ưu tiên phổ biến trong thực tế",
-        "text": "Nhiều CFO đi theo thứ tự: trước hết bảo đảm đủ đệm thanh khoản, sau đó tài trợ các dự án nội bộ có ROIC cao nhất trước, rồi mới cân nhắc M&A hoặc trả lại vốn cho cổ đông qua cổ tức hoặc buyback với phần còn dư."
+        "label": "Làm đúng lúc quan trọng hơn làm đủ",
+        "text": "Gia cố độ tin cậy khi hệ thống đang ổn định là đổ công sức vào chỗ ít lợi ích nhất, và nó cũng khó thuyết phục người khác. Nhưng làm nó sau khi đã có sự cố lớn thì luôn đắt hơn - vừa phải sửa, vừa phải xử lý hậu quả, vừa mất niềm tin. Tín hiệu đúng để bắt đầu không phải một sự cố, mà là ngân sách lỗi bị tiêu sạch vài kỳ liên tiếp."
       },
       {
         "type": "closing",
         "lines": [
-          "Đừng nhầm 'có nhiều tiền mặt' với 'hiệu quả sử dụng vốn cao'.",
-          "Quan trọng không phải là có bao nhiêu, mà là dùng nó tạo ra thêm bao nhiêu giá trị."
+          "Phần năng lực dư chỉ tạo giá trị khi được gán cho một đích cụ thể trong kế hoạch.",
+          "Và thứ tự ưu tiên giữa ba đích phải xem lại mỗi quý, vì lợi ích biên đổi liên tục."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Năng lực dư đều đặn có thể làm gì cho một đội?",
+        "options": [
+          "Cho phép trả nợ kỹ thuật hoặc gia cố độ tin cậy mà không phải dừng làm sản phẩm",
+          "Giúp đội hoàn thành các tính năng đã hứa sớm hơn so với kế hoạch ban đầu đặt ra từ đầu quý",
+          "Giảm số người cần thiết trong đội xuống mà vẫn giữ được nhịp làm việc cũ",
+          "Làm cho các ước lượng thời gian trở nên chính xác hơn qua từng quý"
+        ],
+        "correct": 0,
+        "explanation": "Đây là giá trị thật của phần dư: nó là thứ duy nhất trả cho những việc không tạo ra tính năng nào. Không có nó thì mọi công việc dọn dẹp đều phải cạnh tranh trực tiếp với một thứ khách hàng nhìn thấy được, và nó luôn thua."
+      },
+      {
+        "question": "Giữa việc trả nợ kỹ thuật và làm thêm tính năng, điều gì quyết định nên chọn cái nào?",
+        "options": [
+          "Lợi ích biên của mỗi đồng công sức tại thời điểm đó, chứ không phải một thứ tự cố định",
+          "Nợ kỹ thuật luôn nên được ưu tiên trước vì nó làm mọi việc sau này rẻ đi và nhanh hơn hẳn",
+          "Tính năng luôn nên được ưu tiên trước vì đó là thứ khách hàng trả tiền",
+          "Nên chia đôi phần dư để cả hai đích đều tiến được đồng thời"
+        ],
+        "correct": 0,
+        "explanation": "Không có thứ tự đúng cho mọi lúc. Một đội có tỷ lệ nợ tám quý thì đồng bỏ vào dọn dẹp đáng giá hơn hẳn; một đội có nợ thấp và sản phẩm chưa rõ hướng thì ngược lại. Câu hỏi luôn là lợi ích biên tại quý này."
+      },
+      {
+        "question": "Vì sao gia cố độ tin cậy chỉ thực sự đáng làm khi có tín hiệu?",
+        "options": [
+          "Vì làm khi hệ thống đang ổn định là đổ công vào chỗ lợi ích thấp nhất",
+          "Vì công việc gia cố cần một đội chuyên trách mà phần lớn nhóm sản phẩm không có",
+          "Vì các thay đổi về độ tin cậy luôn tạo ra rủi ro mới lớn hơn phần chúng khắc phục",
+          "Vì kết quả của việc gia cố không đo lường được nên khó chứng minh với cấp trên"
+        ],
+        "correct": 0,
+        "explanation": "Cùng logic với mọi khoản đầu tư: bỏ công vào chỗ đã tốt thì phần cải thiện nhỏ. Tín hiệu đúng là ngân sách lỗi bị tiêu sạch vài kỳ liên tiếp - nó xuất hiện trước sự cố lớn, và đó là toàn bộ giá trị của nó."
+      },
+      {
+        "question": "Thứ tự ưu tiên phổ biến khi phân bổ năng lực dư là gì?",
+        "options": [
+          "Trước hết là nợ có hạn chót bên ngoài, rồi tới đích có lợi ích biên cao nhất",
+          "Trước hết là tính năng đã hứa với khách, rồi mới tới mọi việc nội bộ khác",
+          "Trước hết chia đều ba đích, sau đó điều chỉnh dần theo kết quả từng quý",
+          "Trước hết là việc mà đội thấy hứng thú nhất để giữ được động lực làm việc"
+        ],
+        "correct": 0,
+        "explanation": "Nợ có hạn chót do bên ngoài đặt không thương lượng được, nên nó đi trước mọi so sánh lợi ích. Sau khi trừ phần ấy ra, phần còn lại mới đem so lợi ích biên - và so lại mỗi quý chứ không đặt một lần."
+      },
+      {
+        "question": "Một đội gia cố độ tin cậy ngay sau một sự cố lớn. Điều đó có vấn đề gì?",
+        "options": [
+          "Quyết định đang chạy theo sự kiện gần nhất, nên dễ làm quá tay vào đúng chỗ vừa hỏng",
+          "Việc gia cố ngay sau sự cố luôn tốn kém hơn nhiều nên đội nên chờ tới quý sau mới bắt đầu làm",
+          "Sau sự cố thì nguyên nhân đã rõ nên việc gia cố không còn cần thiết nữa",
+          "Đội sẽ không có đủ dữ liệu để biết nên gia cố phần nào của hệ thống trước"
+        ],
+        "correct": 0,
+        "explanation": "Sự cố vừa xảy ra luôn có sức nặng lớn hơn thực tế trong mọi cuộc họp. Kết quả thường thấy là phần vừa hỏng được gia cố quá mức trong khi ba chỗ yếu khác chưa từng hỏng vẫn nguyên - và chúng mới là chỗ hỏng lần sau."
+      }
+    ],
+    "keyTakeaways": [
+      "Phần dư không được gán việc cụ thể sẽ tan vào việc gấp, không vào chỗ bạn muốn",
+      "Ba đích lấy từ cùng một nguồn, nên chọn cái này luôn là bỏ cái kia",
+      "Chia đều nghe công bằng nhưng đảm bảo không đích nào được làm tới nơi",
+      "Nợ có hạn chót bên ngoài đi trước mọi so sánh lợi ích biên"
+    ],
     "practicePrompt": {
-      "question": "CFO của FPT quản lý lượng tiền mặt và tiền gửi tiết kiệm hơn 8.500 tỷ đồng nhằm mục tiêu chiến lược nào?",
+      "question": "Đội có 20% dư mỗi quý, ngân sách lỗi tiêu sạch ba kỳ liên tiếp, nợ kỹ thuật ở mức 2 quý. Nên ưu tiên gì?",
       "options": [
-        "Đệm thanh khoản, lãi tiền gửi, sẵn cho M&A",
-        "Để tiền nhàn rỗi không làm gì",
-        "Dùng tiền mua trái phiếu rác lãi suất cao rủi ro",
-        "Rút tiền mặt ra chia đều cho nhân viên"
+        "Gia cố độ tin cậy, vì đó là chỗ đang có tín hiệu rõ nhất",
+        "Trả nợ kỹ thuật, vì hai quý đã là mức cần xử lý ngay",
+        "Làm tính năng, vì hai tín hiệu kia đều chưa gây ra sự cố nào",
+        "Chia đều cho cả ba để không đích nào bị bỏ lại phía sau"
       ],
       "correct": 0,
-      "explanation": "Lượng tiền mặt lớn giúp FPT vừa có đệm thanh khoản vững chắc, vừa hưởng lợi nhuận tài chính từ lãi tiền gửi, vừa sẵn sàng vốn tự có cho M&A công nghệ tại Mỹ/Nhật."
+      "explanation": "Tỷ lệ nợ hai quý nằm trong vùng lành, còn ngân sách lỗi tiêu sạch ba kỳ liên tiếp là tín hiệu rõ và đến trước sự cố. Chọn theo tín hiệu mạnh nhất, không chia đều và không chờ tới lúc có sự cố mới làm."
+    },
+    "summary": {
+      "keyIdea": "Năng lực dư chỉ tạo giá trị khi được gán cho một đích cụ thể trong kế hoạch",
+      "commonMistake": "Thống nhất dành phần trăm cho việc dọn nhưng không ghi nó thành việc cụ thể",
+      "action": "Chọn một đích duy nhất cho phần dư của quý này và ghi nó vào kế hoạch."
     },
     "application": {
-      "title": "Ứng dụng thực tế: CFO FPT và 8.500 tỷ tiền mặt",
-      "message": "CFO của FPT quản lý lượng tiền mặt và tiền gửi tiết kiệm hơn 8.500 tỷ đồng nhằm mục tiêu chiến lược nào?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+      "title": "Một đích cho quý này",
+      "message": "Nhìn ba tín hiệu: tỷ lệ nợ trên năng lực dọn, ngân sách lỗi của ba kỳ gần nhất, và mức độ rõ ràng của hướng sản phẩm. Chọn đích có tín hiệu mạnh nhất.",
+      "secondary": "Ghi phần dư thành việc cụ thể có người phụ trách. Phần trăm không gắn với việc nào là phần trăm sẽ biến mất trước khi hết quý."
+    },
+    "id": 1023,
+    "slug": "fpt-cfo-cash",
+    "track": "bonus"
   },
   {
     "id": 1024,
@@ -62992,6 +63007,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1108,
     "slug": "due-diligence-quy-trinh-tham-dinh",
+    "interactiveType": "process",
     "title": "IB & Phân tích, Bài 8: Due Diligence - quy trình thẩm định trước M&A",
     "subtitle": "Vì sao nhiều thương vụ đổ vỡ ở giai đoạn 'kiểm tra kỹ trước khi ký'",
     "duration": "7 phút",
@@ -64599,6 +64615,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1208,
     "slug": "quan-ly-rui-ro-ty-gia-doanh-nghiep-xnk",
+    "interactiveType": "risk",
     "title": "CFO & Vận hành, Bài 7: Quản lý rủi ro tỷ giá cho doanh nghiệp xuất nhập khẩu",
     "subtitle": "Biến động tỷ giá có thể xóa sạch biên lợi nhuận của cả một đơn hàng lớn",
     "duration": "7 phút",
@@ -65905,6 +65922,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1217,
     "slug": "value-at-risk-var-stress-testing",
+    "interactiveType": "risk",
     "title": "Value at Risk (VaR) & Stress Testing - Đo lường rủi ro tối đa",
     "subtitle": "Khi bạn không thể loại bỏ rủi ro, điều tiếp theo tốt nhất là đo lường nó một cách chính xác.",
     "duration": "8 phút",
@@ -66087,6 +66105,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1218,
     "slug": "basel-iii-regulatory-capital-requirements",
+    "interactiveType": "risk",
     "title": "Basel III & Quy định vốn - Làm sao ngân hàng không phá sản",
     "subtitle": "Sau khủng hoảng 2008, thế giới quyết định: các ngân hàng phải giữ đủ vốn dự phòng để sống sót qua các cuộc khủng hoảng.",
     "duration": "8 phút",
@@ -67352,6 +67371,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1328,
     "slug": "rui-ro-khi-hau-nhu-rui-ro-tai-chinh",
+    "interactiveType": "risk",
     "title": "Rủi ro khí hậu như một rủi ro tài chính",
     "subtitle": "Rủi ro vật lý, rủi ro chuyển đổi và tài sản mắc kẹt - cách định lượng thay vì chỉ lo lắng",
     "duration": "9 phút",
@@ -67971,7 +67991,7 @@ export const lessons: Lesson[] = [
     "emoji": "📊",
     "openingQuestion": "Hai công ty cùng ngành sản xuất có ESG score gần bằng nhau từ một tổ chức xếp hạng (MSCI, Sustainalytics). Điều này có nghĩa là rủi ro ESG của hai công ty hoàn toàn giống nhau không?",
     "openingOptions": [
-      "Có, ESG score là thước đo tuyệt đối và khách quan, hai công ty điểm bằng nhau nghĩa là rủi ro y hệt nhau",
+      "Có, ESG score là thước đo tuyệt đối và khách quan, hai công ty điểm bằng nhau nghĩa là rủi ro y hệt nhau của nhau",
       "Không nhất thiết - mỗi tổ chức xếp hạng lại dùng phương pháp luận và trọng số khác nhau khá là nhiều đấy chứ",
       "ESG score chỉ áp dụng cho công ty niêm yết ở Mỹ",
       "ESG score luôn chính xác 100% và không cần kiểm chứng thêm"
@@ -68431,6 +68451,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1233,
     "slug": "actuarial-science-xac-suat-thong-ke",
+    "interactiveType": "regression",
     "title": "Actuarial Science: Xác suất & thống kê ứng dụng trong định phí bảo hiểm",
     "subtitle": "Bảng tử suất, giá trị hiện tại kỳ vọng, và toán học đằng sau mỗi hợp đồng bảo hiểm nhân thọ",
     "duration": "8 phút",
@@ -70418,6 +70439,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1246,
     "slug": "quant-strategies-momentum-mean-reversion",
+    "interactiveType": "regression",
     "title": "Quant Strategies cơ bản: Momentum, Mean Reversion và Statistical Arbitrage",
     "subtitle": "Ba trường phái chiến lược định lượng phổ biến nhất - và logic toán học/tâm lý học đằng sau mỗi loại",
     "duration": "8 phút",
