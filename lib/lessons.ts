@@ -59960,184 +59960,242 @@ export const lessons: Lesson[] = [
   {
     "id": 1054,
     "slug": "10-cong-thuc-finance",
-    "title": "10 Công Thức Finance Interview",
-    "subtitle": "Revenue → FCF → EV → Giá cổ phiếu - một dòng chảy liên thông",
+    "title": "10 Công Thức Phỏng Vấn Kỹ Thuật",
+    "subtitle": "Lưu lượng → tải tới gốc → số node → chi phí mỗi request - một dòng chảy liên thông",
     "duration": "10 phút",
     "difficulty": "Trung bình",
     "emoji": "🧮",
     "track": "bonus",
-    "openingQuestion": "Bạn đã có EPS và P/E của một cổ phiếu. Muốn ra Enterprise Value thì còn thiếu thứ gì?",
+    "whyItMatters": "Phỏng vấn thiết kế hệ thống gần như luôn bắt đầu bằng một con số lưu lượng và kết thúc bằng một con số hạ tầng. Mười công thức này là đường nối giữa hai đầu ấy, và biết chúng nghĩa là ước lượng được thay vì đoán.",
+    "openingQuestion": "Bạn đã có số request mỗi ngày và thông lượng mỗi node. Muốn ra số node cần triển khai thì còn thiếu thứ gì?",
     "openingOptions": [
-      "Nợ vay và tiền mặt của doanh nghiệp",
-      "Nhân EPS với P/E rồi nhân số cổ phiếu là ra EV",
-      "Doanh thu và giá vốn hàng bán trong kỳ",
-      "Tỷ lệ chi trả cổ tức của ba năm gần nhất"
+      "Hệ số tải đỉnh và tỷ lệ trúng cache",
+      "Chia request mỗi ngày cho thông lượng là ra số node",
+      "Dung lượng ổ đĩa và băng thông của từng node",
+      "Số người dùng đăng ký trong ba tháng gần nhất"
     ],
     "correctOption": 0,
-    "explanation": "EPS nhân P/E ra giá mỗi cổ phiếu, nhân số cổ phiếu ra Market Cap - đó là phần thuộc về cổ đông. Enterprise Value là giá phải trả để mua CẢ doanh nghiệp, nên phải cộng thêm nợ vay và trừ đi tiền mặt: người mua gánh khoản nợ ấy, và được dùng khoản tiền ấy. Hai doanh nghiệp cùng Market Cap mà một bên nợ ròng 10.000 tỷ, một bên tiền ròng 10.000 tỷ, có EV lệch nhau 20.000 tỷ. Đó là lý do so hai công ty bằng P/E có thể ra kết luận trái ngược với so bằng EV/EBITDA.",
+    "explanation": "Chia thẳng request mỗi ngày cho thông lượng cho ra số node đủ dùng vào lúc trung bình, tức là thiếu vào đúng lúc cần nhất. Hai thứ còn thiếu đều nhân vào con số ấy theo hai chiều ngược nhau: hệ số đỉnh đẩy tải lên vì lưu lượng không rải đều trong ngày, còn tỷ lệ trúng cache kéo tải xuống vì phần lớn request không bao giờ tới máy chủ gốc. Bỏ qua cái thứ nhất thì sập vào giờ cao điểm; bỏ qua cái thứ hai thì trả tiền cho gấp mười lần số node cần thiết.",
     "diagram": [
-      { "label": "Revenue", "arrow": true },
-      { "label": "EBITDA", "arrow": true },
-      { "label": "FCF", "arrow": true },
-      { "label": "Enterprise Value", "arrow": true },
-      { "label": "Giá mỗi cổ phiếu", "arrow": false }
+      {
+        "label": "Request mỗi ngày",
+        "arrow": true
+      },
+      {
+        "label": "× hệ số đỉnh → tải đỉnh",
+        "arrow": true
+      },
+      {
+        "label": "× (1 − tỷ lệ trúng cache) → tải tới gốc",
+        "arrow": true
+      },
+      {
+        "label": "÷ thông lượng mỗi node → số node, rồi × đơn giá"
+      }
     ],
     "realWorldExample": {
-      "company": "FPT Corporation",
-      "description": "Doanh thu khoảng 55.000 tỷ, EBITDA khoảng 9.000 tỷ, lợi nhuận ròng khoảng 6.500 tỷ, EPS khoảng 5.000 đồng. Với P/E thị trường khoảng 20x thì giá quanh 100.000 đồng - cùng một chuỗi công thức, chạy từ dòng đầu báo cáo xuống tới giá cổ phiếu."
+      "company": "Một triệu request và bốn node",
+      "description": "Một dịch vụ nhận một triệu request mỗi ngày, nghe như phải cần nhiều máy. Chia ra thì trung bình chỉ khoảng mười hai request mỗi giây. Nhân hệ số đỉnh ba lần thành ba mươi sáu, trừ đi tám mươi phần trăm trúng cache còn hơn bảy. Với một node chịu được ba trăm request mỗi giây thì một node là thừa, và bốn node chỉ là để chịu được lúc một vùng chết. Con số đáng sợ ban đầu và con số thật cách nhau hai bậc."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Trong bất kỳ cuộc phỏng vấn finance nào - IB, PE, equity research hay corporate finance - mười công thức này đều được hỏi. Nhưng câu hỏi thật không phải \"công thức là gì\", mà là \"tại sao nó quan trọng\" và \"khi nào dùng cái nào\"."
+        "text": "Trong bất kỳ buổi phỏng vấn thiết kế hệ thống nào, mười công thức này đều được hỏi tới dưới dạng này hay dạng khác. Chúng không khó, nhưng người trả lời tốt là người nối được chúng thành một chuỗi thay vì nhớ rời từng cái."
       },
       {
         "type": "paragraph",
-        "text": "Điều quan trọng hơn việc nhớ từng công thức là thấy chúng nối vào nhau thành một dòng chảy: từ Revenue xuống FCF, rồi từ FCF lên Enterprise Value, rồi từ EV về giá mỗi cổ phiếu. Người nhớ rời rạc mười công thức sẽ tắc ở câu hỏi thứ hai; người thấy dòng chảy thì tự suy ra được công thức mình quên."
+        "text": "Điều quan trọng hơn việc nhớ từng công thức là thấy chúng nối vào nhau thành một dòng chảy: từ lưu lượng thô xuống tải thật tới máy chủ gốc, rồi từ tải ấy ra số node, và từ số node ra chi phí mỗi request. Mỗi bước chỉ là một phép nhân hoặc một phép chia, nhưng bỏ sót một bước là lệch hẳn một bậc."
       },
-      { "type": "heading", "text": "Dòng chảy từ Revenue xuống FCF" },
+      {
+        "type": "heading",
+        "text": "Dòng chảy từ lưu lượng xuống chi phí"
+      },
       {
         "type": "list",
         "items": [
-          "Revenue",
-          "− COGS → = Gross Profit",
-          "− Operating Expenses (SG&A, R&D) → = EBITDA",
-          "− D&A → = EBIT",
-          "− Interest Expense → = EBT (lợi nhuận trước thuế)",
-          "− Taxes → = Net Income",
-          "+ D&A (cộng lại vì là chi phí phi tiền mặt)",
-          "± ΔNWC (thay đổi vốn lưu động) → = OCF",
-          "− CapEx → = Free Cash Flow"
+          "Request mỗi ngày",
+          "÷ 86.400 → = RPS trung bình",
+          "× hệ số đỉnh (thường 2-5 lần) → = RPS đỉnh",
+          "× (1 − tỷ lệ trúng cache) → = tải tới máy chủ gốc",
+          "÷ thông lượng mỗi node → = số node tối thiểu",
+          "+ dự phòng (N+1 hoặc nhân đôi) → = số node triển khai",
+          "× đơn giá mỗi node → = chi phí hạ tầng",
+          "÷ số request → = chi phí mỗi request"
         ]
       },
       {
         "type": "callout",
-        "label": "Chỗ hay nhầm",
-        "text": "D&A bị trừ một lần ở EBIT rồi cộng lại một lần ở OCF. Nó không phải kế toán hai lần: trừ vì báo cáo kết quả kinh doanh phải ghi nhận hao mòn, cộng lại vì không có đồng tiền nào thật sự rời khỏi doanh nghiệp trong kỳ."
+        "label": "Hai hệ số ngược chiều nhau",
+        "text": "Hệ số đỉnh nhân lên còn tỷ lệ trúng cache chia xuống, và hai cái này thường triệt tiêu gần hết nhau. Đó là lý do bỏ cả hai cùng lúc vẫn ra con số gần đúng - rồi tới ngày cache bị xoá sạch sau một lần triển khai, và con số ấy sai gấp năm lần vào đúng lúc tệ nhất."
       },
-      { "type": "heading", "text": "Mười công thức" },
+      {
+        "type": "heading",
+        "text": "Mười công thức"
+      },
       {
         "type": "formula",
-        "title": "Từ dòng đầu báo cáo tới giá cổ phiếu",
+        "title": "Từ dòng lưu lượng đầu tiên tới chi phí mỗi request",
         "variables": [
-          { "symbol": "GP", "name": "Gross Profit = Revenue − COGS", "description": "Biên lợi nhuận gộp = GP/Revenue. Cao nghĩa là có sức định giá tốt, hoặc chi phí sản xuất thấp." },
-          { "symbol": "EBITDA", "name": "EBITDA = Gross Profit − Operating Expenses", "description": "Đại diện gần đúng cho khả năng tạo tiền từ hoạt động. Dùng nhiều trong M&A qua bội số EV/EBITDA." },
-          { "symbol": "EBIT", "name": "EBIT = EBITDA − D&A", "description": "Lợi nhuận trước lãi vay và thuế. Phản ánh hiệu quả hoạt động, không phụ thuộc cấu trúc vốn." },
-          { "symbol": "NI", "name": "Net Income = (EBIT − Interest) × (1 − Tax Rate)", "description": "Lợi nhuận cuối cùng thuộc cổ đông. Nhưng coi chừng: nó chịu ảnh hưởng lớn từ lựa chọn kế toán." },
-          { "symbol": "FCF", "name": "Free Cash Flow = OCF − CapEx", "description": "Tiền thực sự tự do. Đây là cơ sở của mọi mô hình DCF, và là \"owner earnings\" theo cách gọi của Buffett." },
-          { "symbol": "EV", "name": "Enterprise Value = Market Cap + Total Debt − Cash", "description": "Giá thực phải trả để mua cả doanh nghiệp. Chuẩn hoá được giữa các công ty có cấu trúc vốn khác nhau." },
-          { "symbol": "Equity", "name": "Equity Value = EV − Net Debt", "description": "Phần thuộc về cổ đông. Chia cho số cổ phiếu ra giá lý thuyết mỗi cổ phiếu." },
-          { "symbol": "P/E", "name": "P/E = Price per Share / EPS", "description": "Nhà đầu tư trả bao nhiêu đồng cho một đồng lợi nhuận. P/E cao thường là kỳ vọng tăng trưởng cao." },
-          { "symbol": "EV/EBITDA", "name": "EV/EBITDA = Enterprise Value / EBITDA", "description": "Bội số phổ biến nhất trong M&A. Trung lập với đòn bẩy và với chính sách khấu hao." },
-          { "symbol": "EPS", "name": "EPS = Net Income / Diluted Shares", "description": "Phải dùng số cổ phiếu pha loãng, tức đã tính cả options và warrants - không dùng số đang lưu hành." }
+          {
+            "symbol": "RPS",
+            "name": "RPS trung bình = Request mỗi ngày / 86.400",
+            "description": "Con số nền của mọi ước lượng. Một triệu request mỗi ngày chỉ là khoảng mười hai mỗi giây - nhỏ hơn nhiều so với cảm giác."
+          },
+          {
+            "symbol": "Peak",
+            "name": "RPS đỉnh = RPS trung bình × hệ số đỉnh",
+            "description": "Lưu lượng không rải đều. Hệ số hai tới năm là thường gặp; sản phẩm theo giờ hành chính có thể tới mười."
+          },
+          {
+            "symbol": "Hit",
+            "name": "Tỷ lệ trúng cache = Trúng / (Trúng + Trượt)",
+            "description": "Chín mươi phần trăm trúng nghĩa là máy chủ gốc chỉ thấy một phần mười tải. Đây là đòn bẩy rẻ nhất trong cả chuỗi."
+          },
+          {
+            "symbol": "Origin",
+            "name": "Tải tới gốc = RPS đỉnh × (1 − tỷ lệ trúng cache)",
+            "description": "Con số duy nhất mà máy chủ của bạn thật sự phải chịu. Mọi tính toán dung lượng đều dựa trên nó, không dựa trên lưu lượng thô."
+          },
+          {
+            "symbol": "L",
+            "name": "Little's Law: L = λ × W",
+            "description": "Số việc đang nằm trong hệ thống bằng tốc độ đến nhân thời gian ở lại. Đây là công thức nói cho bạn cần bao nhiêu kết nối đồng thời."
+          },
+          {
+            "symbol": "N",
+            "name": "Số node = Tải tới gốc / Thông lượng mỗi node",
+            "description": "Làm tròn lên, rồi cộng dự phòng. Một node vừa đủ nghĩa là không có node nào được phép chết."
+          },
+          {
+            "symbol": "p99",
+            "name": "p99 = ngưỡng mà 99% request nhanh hơn",
+            "description": "Không phải trung bình. Trung bình đẹp mà p99 xấu là tình huống phổ biến nhất, và người dùng nhớ đúng phần đuôi ấy."
+          },
+          {
+            "symbol": "Uptime",
+            "name": "Uptime = Thời gian hoạt động / Tổng thời gian",
+            "description": "99,9% trong một tháng cho phép hỏng khoảng bốn mươi ba phút. Thêm một số chín là chia con số ấy cho mười."
+          },
+          {
+            "symbol": "EB",
+            "name": "Ngân sách lỗi = 1 − SLO",
+            "description": "Phần được phép hỏng. Tiêu hết thì dừng phát hành tính năng và quay về sửa độ tin cậy - đó là toàn bộ ý nghĩa của nó."
+          },
+          {
+            "symbol": "CPR",
+            "name": "Chi phí mỗi request = Tổng chi phí hạ tầng / Số request",
+            "description": "Con số cuối chuỗi, và là con số duy nhất so sánh được giữa hai kiến trúc khác hẳn nhau."
+          }
         ]
       },
-      { "type": "heading", "text": "FPT - chạy thử cả chuỗi" },
+      {
+        "type": "heading",
+        "text": "Chạy thử cả chuỗi"
+      },
       {
         "type": "list",
         "items": [
-          "Revenue: khoảng 55.000 tỷ",
-          "Gross Profit: khoảng 18.000 tỷ (GPM khoảng 33%)",
-          "EBITDA: khoảng 9.000 tỷ (biên khoảng 16%)",
-          "Net Income: khoảng 6.500 tỷ (biên ròng khoảng 12%)",
-          "EPS: khoảng 5.000 đồng",
-          "P/E thị trường khoảng 20x → giá quanh 100.000 đồng",
-          "EV/EBITDA khoảng 15x, mức thường thấy ở nhóm công nghệ Việt Nam"
+          "Request mỗi ngày: khoảng 5 triệu",
+          "RPS trung bình: khoảng 58",
+          "Hệ số đỉnh 3 lần → RPS đỉnh khoảng 174",
+          "Trúng cache 85% → tải tới gốc khoảng 26",
+          "Thông lượng mỗi node 200 → 1 node là đủ, triển khai 3 để chịu mất một vùng",
+          "Đơn giá mỗi node 2 triệu/tháng → chi phí hạ tầng 6 triệu/tháng",
+          "Chi phí mỗi request: khoảng 0,04 đồng"
         ]
       },
       {
         "type": "closing",
         "lines": [
-          "Revenue → Gross Profit → EBITDA → EBIT → NI → OCF → FCF là một dòng chảy, không phải bảy công thức rời.",
-          "EV/EBITDA trung lập với đòn bẩy, nên nó là bội số để so hai công ty vay nợ khác nhau.",
-          "FCF là cơ sở của mọi mô hình DCF."
+          "Lưu lượng → RPS → đỉnh → tải tới gốc → số node → chi phí là một dòng chảy, không phải bảy công thức rời.",
+          "Tỷ lệ trúng cache là chỗ đòn bẩy lớn nhất trong chuỗi: nó chia tải tới gốc trước khi bất kỳ phép tính dung lượng nào bắt đầu."
         ]
       }
     ],
     "quiz": [
       {
-        "question": "Gross Profit Margin = 40% có nghĩa là gì?",
+        "question": "Tỷ lệ trúng cache 80% có nghĩa là gì?",
         "options": [
-          "Còn 40 đồng trên mỗi 100 đồng doanh thu sau giá vốn",
-          "Còn 40 đồng lãi trên mỗi 100 đồng doanh thu sau mọi chi phí",
-          "Doanh thu kỳ này tăng 40% so với cùng kỳ năm trước",
-          "Chi phí marketing chiếm 40% doanh thu trong kỳ"
+          "Bốn trong năm request được trả từ cache, máy chủ gốc chỉ thấy một phần năm",
+          "Cache đang dùng hết tám mươi phần trăm dung lượng được cấp cho nó",
+          "Tám mươi phần trăm dữ liệu trong cache vẫn còn hạn sử dụng",
+          "Máy chủ gốc trả lời nhanh hơn tám mươi phần trăm so với lúc chưa có cache"
         ],
         "correct": 0,
-        "explanation": "Gross Profit = Revenue − COGS, và GPM = GP/Revenue. 40% nghĩa là 60% doanh thu đã bị tiêu bởi chi phí sản xuất hoặc mua hàng trực tiếp. Đây là biên GỘP, chưa trừ chi phí bán hàng, quản lý, lãi vay hay thuế - lẫn nó với biên ròng là chỗ nhầm phổ biến nhất."
+        "explanation": "Nó là tỷ lệ trên số LẦN gọi, không phải trên dung lượng hay tốc độ. Và vì nó nhân trực tiếp vào tải tới gốc, chênh lệch giữa 80% và 95% không phải mười lăm phần trăm mà là bốn lần tải."
       },
       {
-        "question": "EBITDA khác EBIT ở điểm gì?",
+        "question": "RPS đỉnh khác RPS trung bình ở điểm gì?",
         "options": [
-          "EBITDA cộng ngược thuế vào EBIT",
-          "EBIT cho sản xuất, EBITDA cho công nghệ",
-          "EBITDA cộng ngược D&A vào EBIT",
-          "Hai chỉ số chỉ khác tên gọi"
+          "Trung bình chia đều cả ngày, còn đỉnh là mức cao nhất trong ngày",
+          "Trung bình tính trên request thành công, còn đỉnh tính cả request lỗi",
+          "Trung bình đo ở phía máy chủ, còn đỉnh đo ở phía người dùng cuối",
+          "Trung bình tính theo giây, còn đỉnh luôn được tính theo phút"
         ],
-        "correct": 2,
-        "explanation": "EBITDA = EBIT + D&A. D&A là chi phí phi tiền mặt - hao mòn tài sản - nên cộng lại cho ra con số gần với khả năng tạo tiền hơn. Đó là lý do EV/EBITDA được dùng khi so các doanh nghiệp có mức đầu tư tài sản cố định rất khác nhau."
+        "correct": 0,
+        "explanation": "Đây là chỗ ước lượng hay hỏng nhất. Dung lượng phải chịu được đỉnh chứ không phải trung bình, và với sản phẩm theo giờ hành chính thì hai con số cách nhau cả chục lần."
       },
       {
-        "question": "Enterprise Value bằng gì?",
+        "question": "Little's Law nói lên điều gì?",
         "options": [
-          "Tổng tài sản trên bảng cân đối kế toán",
-          "Market Cap cộng tổng nợ rồi trừ tiền mặt",
-          "Market Cap cộng tổng nợ rồi cộng tiền mặt",
-          "Lợi nhuận ròng nhân P/E của thị trường"
+          "Số việc trong hệ thống bằng tốc độ đến nhân thời gian ở lại",
+          "Thông lượng của hệ thống luôn bằng nghịch đảo của độ trễ trung bình",
+          "Số node cần thiết tăng tuyến tính theo số người dùng đăng ký",
+          "Độ trễ đuôi luôn gấp khoảng mười lần độ trễ trung vị"
         ],
-        "correct": 1,
-        "explanation": "EV = Market Cap + Total Debt − Cash. Người mua cả doanh nghiệp phải gánh khoản nợ và được dùng khoản tiền mặt, nên nợ cộng vào còn tiền trừ ra. Cộng tiền mặt thay vì trừ là lỗi đảo dấu hay gặp, và nó làm EV của một doanh nghiệp nhiều tiền bị phóng đại."
+        "correct": 0,
+        "explanation": "L = λ × W. Nó cho biết cần bao nhiêu kết nối hay luồng đồng thời: một trăm request mỗi giây, mỗi cái ở lại nửa giây, thì luôn có khoảng năm mươi việc đang chạy cùng lúc."
       },
       {
-        "question": "P/E là 25x và EPS là 4.000 đồng. Giá cổ phiếu là bao nhiêu?",
+        "question": "SLO là 99,9% trong một tháng. Ngân sách lỗi là bao nhiêu?",
         "options": [
-          "6.250 đồng (chia ngược)",
-          "100.000 đồng (= 25 × 4.000)",
-          "16.000 đồng (= 4.000 × 4, dùng sai số nhân)",
-          "4.025 đồng (= 4.000 + 25, cộng thay vì nhân)"
+          "Khoảng 43 phút",
+          "Khoảng 7 giờ (= 30 ngày × 1%, nhầm 99,9% thành 99%)",
+          "Khoảng 4 phút (= 43 phút ÷ 10, nhầm sang 99,99%)",
+          "Khoảng 22 giờ (= 30 ngày × 3%, nhầm ba số chín thành 3%)"
         ],
-        "correct": 1,
-        "explanation": "P/E = Price / EPS, nên Price = P/E × EPS = 25 × 4.000 = 100.000 đồng. Nhớ chiều của phép chia là đủ để không đảo ngược: P/E nói \"trả bao nhiêu đồng cho một đồng lợi nhuận\", nên nó là giá chia lợi nhuận."
+        "correct": 0,
+        "explanation": "0,1% của ba mươi ngày là khoảng bốn mươi ba phút. Mỗi số chín thêm vào chia con số ấy cho mười, nên 99,99% chỉ còn hơn bốn phút - và đó là khác biệt giữa hai kiến trúc rất khác nhau về giá."
       },
       {
-        "question": "Tại sao nhà phân tích dùng EV/EBITDA thay vì P/E?",
+        "question": "Vì sao nên so hai kiến trúc bằng chi phí mỗi request thay vì tổng hoá đơn?",
         "options": [
-          "Vì EV/EBITDA luôn thấp hơn P/E nên bội số nhìn hấp dẫn hơn",
-          "Vì EBITDA dễ tính hơn lợi nhuận ròng nên đỡ mất thời gian",
-          "Vì nó trung lập với cấu trúc vốn và chính sách khấu hao",
-          "Vì P/E không áp dụng được cho doanh nghiệp Việt Nam"
+          "Vì tổng hoá đơn còn phụ thuộc lưu lượng, nên hai hệ thống khác quy mô không so được",
+          "Vì chi phí mỗi request luôn thấp hơn và dễ trình bày với người không kỹ thuật",
+          "Vì nhà cung cấp đám mây chỉ xuất hoá đơn theo từng request chứ không theo giờ",
+          "Vì tổng hoá đơn thay đổi theo tỷ giá còn chi phí mỗi request thì không"
         ],
-        "correct": 2,
-        "explanation": "EV bao gồm cả nợ nên bội số không bị đòn bẩy làm lệch, và EBITDA đứng trước D&A nên không bị chính sách khấu hao làm lệch. Hai tính chất đó cho phép so hai doanh nghiệp có cấu trúc vốn khác nhau, hoặc so trong một thương vụ M&A nơi cấu trúc vốn sẽ đổi sau khi mua."
+        "correct": 0,
+        "explanation": "Cùng vai trò mà bội số đảm nhiệm khi so hai doanh nghiệp khác quy mô: chuẩn hoá đi phần quy mô để còn lại phần hiệu quả. Một hệ thống rẻ hơn về tổng có thể đắt hơn hẳn trên mỗi request."
       }
     ],
-    "summary": {
-      "keyIdea": "Mười công thức này là một chuỗi, không phải một danh sách: Revenue → FCF → EV → giá mỗi cổ phiếu.",
-      "formula": "EV = Market Cap + Total Debt − Cash;  EV/EBITDA = EV / EBITDA",
-      "commonMistake": "Cộng tiền mặt vào EV thay vì trừ ra, và so hai công ty vay nợ khác nhau bằng P/E.",
-      "action": "Lấy một cổ phiếu bạn đang theo, chạy đủ chuỗi từ doanh thu xuống FCF rồi lên EV - viết ra giấy, không dùng máy tính bảng tính."
-    },
-    "application": {
-      "message": "Trước buổi phỏng vấn tiếp theo, tự viết lại chuỗi từ Revenue xuống FCF trên giấy trắng trong hai phút. Nếu có dòng nào phải nghĩ quá năm giây, đó là dòng cần đọc lại.",
-      "secondary": "Trong công việc thật, chuỗi này là bộ khung của mọi mô hình ba báo cáo - nhớ nó rồi thì bảng tính chỉ còn là chỗ điền số."
-    },
+    "keyTakeaways": [
+      "Lưu lượng thô không phải tải: chia cho 86.400, nhân hệ số đỉnh, rồi trừ phần cache đã đỡ",
+      "Tỷ lệ trúng cache là đòn bẩy rẻ nhất - nó chia tải trước mọi phép tính dung lượng",
+      "Little's Law cho biết số việc đồng thời, tức số kết nối và luồng cần chuẩn bị",
+      "Chi phí mỗi request là con số duy nhất so được giữa hai kiến trúc khác quy mô"
+    ],
     "practicePrompt": {
-      "question": "Hai công ty cùng Market Cap 10.000 tỷ và cùng EBITDA 1.000 tỷ. Công ty A nợ ròng 5.000 tỷ, công ty B có tiền ròng 2.000 tỷ. Theo EV/EBITDA, thị trường đang trả giá cao hơn cho công ty nào?",
+      "question": "Một dịch vụ có 2 triệu request/ngày, hệ số đỉnh 4, trúng cache 90%. Tải tới gốc khoảng bao nhiêu?",
       "options": [
-        "Công ty A, vì EV của A là 15.000 tỷ nên bội số 15x",
-        "Công ty B, vì EV của B là 12.000 tỷ nên bội số 12x",
-        "Hai bên bằng nhau vì cùng Market Cap và cùng EBITDA",
-        "Công ty B, vì nhiều tiền mặt hơn nên đáng giá hơn"
+        "Khoảng 9 request/giây",
+        "Khoảng 93 request/giây (= đỉnh, quên trừ phần cache đã đỡ)",
+        "Khoảng 23 request/giây (= trung bình, quên nhân hệ số đỉnh)",
+        "Khoảng 2 request/giây (= chia thêm cho hệ số đỉnh thay vì nhân)"
       ],
       "correct": 0,
-      "explanation": "EV của A = 10.000 + 5.000 = 15.000 tỷ, tức 15x EBITDA. EV của B = 10.000 − 2.000 = 8.000 tỷ, tức 8x. Cùng Market Cap, cùng EBITDA, mà bội số lệch gần hai lần - đó chính là thứ P/E không nhìn thấy. Phương án 12.000 tỷ là lỗi đảo dấu: cộng tiền mặt thay vì trừ."
+      "explanation": "2.000.000 ÷ 86.400 ≈ 23 mỗi giây. Nhân 4 thành 93. Nhân với phần trượt cache là 10% ra khoảng 9. Ba phương án còn lại đều là kết quả của việc bỏ đúng một bước trong chuỗi."
     },
-    "keyTakeaways": [
-      "Revenue → Gross Profit → EBITDA → EBIT → Net Income → OCF → FCF là một chuỗi liên thông, không phải bảy công thức rời rạc.",
-      "EV = Market Cap + Nợ − Tiền mặt: nợ cộng vào vì người mua gánh nó, tiền trừ ra vì người mua được dùng nó.",
-      "EV/EBITDA trung lập với đòn bẩy và khấu hao, nên nó là bội số để so hai doanh nghiệp vay nợ khác nhau.",
-      "FCF là cơ sở của mọi mô hình DCF - nhớ nó trước khi nhớ bất kỳ bội số nào."
-    ]
+    "summary": {
+      "keyIdea": "Mười công thức này là một chuỗi từ lưu lượng tới chi phí, không phải mười mảnh rời",
+      "commonMistake": "Tính dung lượng theo lưu lượng trung bình, rồi sập vào đúng giờ cao điểm",
+      "action": "Lấy một dịch vụ bạn biết và chạy hết chuỗi từ request mỗi ngày xuống chi phí mỗi request."
+    },
+    "application": {
+      "title": "Chạy chuỗi trên một dịch vụ thật",
+      "message": "Lấy số request mỗi ngày, chia cho 86.400, nhân hệ số đỉnh, trừ phần cache đỡ được, chia cho thông lượng mỗi node. Con số cuối cùng thường nhỏ hơn nhiều so với cảm giác ban đầu.",
+      "secondary": "Nếu kết quả ra ít hơn một node, đó không phải lỗi phép tính - đó là lý do phần lớn hệ thống chạy thừa máy mà không ai kiểm lại."
+    }
   },
   {
     "id": 1055,
