@@ -995,7 +995,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         "Mô hình mới có độ chính xác tổng thể cao hơn mô hình cũ, nhưng tỷ lệ từ chối nhầm ở nhóm khách hàng thu nhập thấp tăng gấp đôi. Nên làm gì?",
       options: [
         "Triển khai vì độ chính xác tổng thể đã tốt hơn",
-        "Xem đây là vấn đề phải xử lý trước khi triển khai, vì chi phí sai lệch không chia đều cho các nhóm",
+        "Xem đây là vấn đề phải xử lý trước khi triển khai",
         "Giữ mô hình cũ vì mô hình mới có lỗi kỹ thuật",
         "Bổ sung thêm dữ liệu về nhóm thu nhập thấp rồi triển khai ngay",
       ],
