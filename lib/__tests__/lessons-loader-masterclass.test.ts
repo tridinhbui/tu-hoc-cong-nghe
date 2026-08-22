@@ -89,7 +89,7 @@ describe("answer positions survive the request path", () => {
   // nội dung công nghệ theo từng chặng hai mươi bài, nên mọi slug ở đó đều là
   // một quả bom hẹn giờ cho bộ kiểm này. Đã nổ hai lần: accrual-accounting ở
   // chặng 7 và asset-turnover ở chặng 9.
-  const SAMPLE_SLUGS = ["dupont-analysis", "roic", "10-cong-thuc-finance"];
+  const SAMPLE_SLUGS = ["case-tach-do-tre-thanh-phan", "case-chi-phi-moi-request", "10-cong-thuc-finance"];
 
   it("serves the exact answer positions the generator produced", async () => {
     for (const slug of SAMPLE_SLUGS) {

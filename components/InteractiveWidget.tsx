@@ -133,6 +133,7 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "risk",
   "chart",
   "process",
+  "multiples",
   "payoff",
   // Loại multiples tạm rút khỏi danh sách khai báo, KHÔNG xoá.
   //
