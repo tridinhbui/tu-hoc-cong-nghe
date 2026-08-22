@@ -137,11 +137,6 @@
     "subtitle": "What goes into a management reporting pack, how to write the commentary, and why most of the value lies outside the numbers",
     "duration": "11 min"
   },
-  "burn-rate-runway": {
-    "title": "Burn Rate and Runway",
-    "subtitle": "How fast is a startup burning cash, and how long can it survive?",
-    "duration": "6 min"
-  },
   "but-toan-dieu-chinh-cuoi-ky": {
     "title": "The books, lesson 3: adjusting entries - why there is still work at period end",
     "subtitle": "Accruals, prepayments, depreciation, provisions: four families of entry that no document ever reminds you to make",
@@ -151,11 +146,6 @@
     "title": "Bookkeeping, Lesson 1: Double entry - why every transaction has two sides",
     "subtitle": "What debit and credit actually mean, the increase/decrease rule for each account type, and why the totals always balance",
     "duration": "11 min"
-  },
-  "buyback-co-phieu": {
-    "title": "Share Buyback",
-    "subtitle": "A way to pay shareholders that isn't a dividend",
-    "duration": "6 min"
   },
   "cach-danh-gia-esg-cua-doanh-nghiep": {
     "title": "How to assess a company's ESG: from indicator to score",
@@ -180,16 +170,6 @@
     "title": "Cap table & vesting: the startup capital structure every PE/VC analyst must be able to read",
     "subtitle": "A complex cap table is the first tool you need to master when analysing a startup investment",
     "duration": "8 min"
-  },
-  "capex-vs-opex": {
-    "title": "CapEx vs OpEx",
-    "subtitle": "Capital spending vs operating expense - different effects on the financials",
-    "duration": "6 min"
-  },
-  "capital-structure": {
-    "title": "Capital Structure",
-    "subtitle": "Finding the optimal mix of debt and equity",
-    "duration": "9 min"
   },
   "case-dinh-gia-pe-va-dcf": {
     "title": "Mini case - Valuing a company with P/E and a simple DCF",
@@ -217,11 +197,6 @@
   "case-xuat-khau-phong-ho-ty-gia": {
     "title": "Small case - An exporter hedges its FX exposure",
     "subtitle": "Real-world application: protecting export revenue from exchange-rate swings"
-  },
-  "cash-conversion-cycle-2": {
-    "title": "Cash Conversion Cycle (CCC)",
-    "subtitle": "How long from putting money out to getting money back?",
-    "duration": "6 min"
   },
   "cau-truc-family-office-single-vs-multi": {
     "title": "Family office structures: single-family, multi-family, and when to choose which",
@@ -313,11 +288,6 @@
     "subtitle": "A certificate of ownership in part of a business",
     "duration": "6 min"
   },
-  "co-tuc-chinh-sach": {
-    "title": "Dividend Policy",
-    "subtitle": "Pay a dividend or retain earnings for reinvestment?",
-    "duration": "6 min"
-  },
   "commodity-phan-2": {
     "title": "Deep-dive case: Commodities Part 2",
     "subtitle": "Supply, demand, inventory - the three things that price a commodity",
@@ -341,11 +311,6 @@
   "corporate-bond-la-gi": {
     "title": "What is a corporate bond?",
     "subtitle": "A company borrowing directly from investors, bypassing banks",
-    "duration": "6 min"
-  },
-  "corporate-finance-la-gi": {
-    "title": "What is Corporate Finance?",
-    "subtitle": "The three core financial decisions of every business",
     "duration": "6 min"
   },
   "correlation-tuong-quan-tai-san": {
@@ -521,11 +486,6 @@
     "subtitle": "Bank, receivables and inventory reconciliation, plus an arithmetic trick that finds a transposed digit in three seconds",
     "duration": "10 min"
   },
-  "don-bay-tai-chinh-2": {
-    "title": "Financial Leverage",
-    "subtitle": "Amplifying profit - and risk",
-    "duration": "7 min"
-  },
   "dong-tien-du-an-phat-trien-bat-dong-san": {
     "title": "Property projects, lesson 2: the J-curve - money out first, money in later",
     "subtitle": "A development project's cash flow, the peak funding requirement, and why a handsome IRR can still kill the developer",
@@ -660,11 +620,6 @@
     "subtitle": "DCF, WACC, terminal value and the valuation multiples",
     "duration": "7 min"
   },
-  "financial-model-la-gi": {
-    "title": "What is a Financial Model?",
-    "subtitle": "The analyst's financial forecasting tool",
-    "duration": "7 min"
-  },
   "financial-risk": {
     "title": "The categories of financial risk",
     "subtitle": "Credit, liquidity, interest rate, market and concentration risk",
@@ -793,11 +748,6 @@
     "title": "Investment Thesis & Research Report - how to convince an investor",
     "subtitle": "A good investment thesis is not just 'this company will go up' - it needs an explicit chain of logic.",
     "duration": "7 min"
-  },
-  "ipo-la-gi": {
-    "title": "What is an IPO?",
-    "subtitle": "The first time a company sells shares to the public",
-    "duration": "6 min"
   },
   "ir-bo-tai-lieu-va-buoi-gap-nha-dau-tu": {
     "title": "IR, Part 4: The deck and the meeting - answering hard questions without promising anything extra",
@@ -938,11 +888,6 @@
     "subtitle": "Tie revenue and cost back to operating quantities, so that when the plan slips you know where it slipped",
     "duration": "11 min"
   },
-  "lbo-la-gi": {
-    "title": "What is an LBO?",
-    "subtitle": "Leveraged Buyout - buying a company using debt leverage",
-    "duration": "11 min"
-  },
   "lbo-model-co-che-co-ban": {
     "title": "IB & Analysis, Lesson 6: The LBO model - the basic mechanics of a leveraged buyout",
     "subtitle": "Why a Private Equity fund can buy a company with very little equity of its own",
@@ -977,11 +922,6 @@
     "title": "Advanced M&A: The earnout structure in deal valuation",
     "subtitle": "When buyer and seller cannot agree on what the company is worth, an earnout is the way to \"pay later, based on actual results\"",
     "duration": "8 min"
-  },
-  "ma-la-gi": {
-    "title": "What is M&A?",
-    "subtitle": "Buying and merging companies",
-    "duration": "7 min"
   },
   "ma-phong-thu-thau-tom-thu-dich": {
     "title": "Advanced M&A: Defensive tactics against a hostile takeover",
@@ -1043,11 +983,6 @@
     "subtitle": "Correlation, the efficient frontier and spreading risk",
     "duration": "7 min"
   },
-  "modigliani-miller": {
-    "title": "The Modigliani-Miller Theorem",
-    "subtitle": "Does capital structure matter? - a controversial answer",
-    "duration": "10 min"
-  },
   "municipal-bond-la-gi": {
     "title": "What is a municipal bond?",
     "subtitle": "Local-government bonds that fund public infrastructure",
@@ -1072,11 +1007,6 @@
     "subtitle": "The sources & uses table, why enterprise value differs from cash required, and the items that get forgotten",
     "duration": "11 min"
   },
-  "no-co-loi-ich-gi": {
-    "title": "What benefit does debt provide a business?",
-    "subtitle": "The tax shield and financial leverage",
-    "duration": "6 min"
-  },
   "nudge-theory-thiet-ke-san-pham-tai-chinh": {
     "title": "Nudge theory & choice architecture: designing financial products responsibly",
     "subtitle": "From auto-enrolment to robo-advisers - how behavioural biases are applied deliberately to help customers make better decisions",
@@ -1095,11 +1025,6 @@
   "on-tap-npv": {
     "title": "NPV review - Net Present Value",
     "subtitle": "The single most important tool in capital budgeting and company valuation",
-    "duration": "7 min"
-  },
-  "on-tap-tai-chinh-doanh-nghiep": {
-    "title": "Review: Corporate Finance",
-    "subtitle": "Corporate Finance, Capital Structure, M&A, PE/VC - tying the Corporate Finance track together",
     "duration": "7 min"
   },
   "on-tap-trai-phieu": {
@@ -1215,11 +1140,6 @@
     "title": "IB & Analysis, Lesson 3: Precedent transactions - valuing from past M&A deals",
     "subtitle": "Why M&A multiples usually sit above the trading multiples of listed companies in the same industry",
     "duration": "7 min"
-  },
-  "private-equity-la-gi": {
-    "title": "What is Private Equity?",
-    "subtitle": "Investing in unlisted companies to create value",
-    "duration": "6 min"
   },
   "project-doc-mot-tai-lieu-tai-chinh": {
     "title": "AI in Finance, Lesson 16: A small project - reading one financial document",
@@ -1417,11 +1337,6 @@
     "subtitle": "The number on the slide, the premium paid, and five ways to cut the optimism out",
     "duration": "8 min"
   },
-  "synergy-trong-ma": {
-    "title": "Synergy in M&A",
-    "subtitle": "1+1=3 - or just an illusion?",
-    "duration": "9 min"
-  },
   "tai-bao-hiem-chia-rui-ro": {
     "title": "Pricing, Lesson 3: Reinsurance - who does an insurer buy insurance from",
     "subtitle": "Proportional and excess-of-loss reinsurance, the real reason risk gets ceded, and where it stops working",
@@ -1615,11 +1530,6 @@
     "subtitle": "Confounding, reverse causality, survivorship bias: three mechanisms that turn real data into a wrong conclusion",
     "duration": "11 min"
   },
-  "unit-economics": {
-    "title": "Unit Economics",
-    "subtitle": "Profit per unit - the foundation of every business model",
-    "duration": "7 min"
-  },
   "uu-dai-thue-va-chuyen-gia": {
     "title": "Standards & Tax, Lesson 7: Tax incentives and related-party transactions",
     "subtitle": "Two mechanisms that shape the tax burden of a foreign-invested business",
@@ -1639,11 +1549,6 @@
     "title": "Standards & Tax, Lesson 1: Where VAS and IFRS differ",
     "subtitle": "Historical cost versus fair value: one philosophical difference that drags a long list of numerical differences behind it",
     "duration": "11 min"
-  },
-  "venture-capital-la-gi": {
-    "title": "What is Venture Capital?",
-    "subtitle": "Risk capital for early-stage startups",
-    "duration": "6 min"
   },
   "vi-sao-doanh-nghiep-dung-phai-sinh-phong-ho": {
     "title": "Why Do Businesses Use Derivatives to Hedge?",
@@ -1691,11 +1596,6 @@
   "wealth-management": {
     "title": "What is wealth management?",
     "subtitle": "Net worth, asset allocation and the portfolio you should expect",
-    "duration": "6 min"
-  },
-  "working-capital-management": {
-    "title": "Working Capital Management",
-    "subtitle": "Cash, inventory, receivables - the turnover cycle",
     "duration": "6 min"
   },
   "xay-dung-ngan-sach-doanh-nghiep": {

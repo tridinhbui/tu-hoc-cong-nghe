@@ -437,22 +437,23 @@ export const TRACK_PROFESSIONAL = {
     },
     {
       label: "Chặng 5",
-      name: "Kiến trúc dịch vụ",
+      name: "Quy mô và nhiều đội",
       days: [101, 120] as [number, number],
+      // Tám bài bổ trợ ở đây đều là bài tài chính từng gắn với chặng tài chính
+      // doanh nghiệp cũ ở dải 101-120. Nội dung dải này đã chuyển sang quy mô
+      // tổ chức, nên chúng không còn liên quan - giữ tạm để không rơi khỏi
+      // giáo trình, tới khi chặng tài chính tương ứng được chuyển đổi.
       extraLessonIds: [1247, 1257, 1337, 1338, 1339, 1751, 1752, 1753],
       available: true,
       parts: [
         {
-          name: "Tách dịch vụ và tích hợp hệ thống",
+          name: "Ranh giới và hợp đồng giữa các đội",
           days: [101, 110] as [number, number],
           extraLessonIds: [1337, 1338, 1339],
         },
         {
-          name: "Vận hành hạ tầng cho sản phẩm giai đoạn đầu",
+          name: "Phối hợp, di trú lớn và hình dạng tổ chức",
           days: [111, 120] as [number, number],
-          // 1751-1753: cụm nhà thầu xây dựng. Đặt ở phần này vì cả ba đều nói
-          // về vốn vận hành của một hợp đồng - ghi nhận, tiền bị giam, và giá
-          // phải bỏ để bù thời gian giam - chứ không phải về cơ cấu vốn.
           extraLessonIds: [1247, 1257, 1751, 1752, 1753],
         },
       ],

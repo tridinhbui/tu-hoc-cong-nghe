@@ -261,10 +261,10 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 5",
-          name: "Kiến trúc dịch vụ",
+          name: "Quy mô và nhiều đội",
           parts: [
-            "Tách dịch vụ và tích hợp hệ thống",
-            "Vận hành hạ tầng cho sản phẩm giai đoạn đầu",
+            "Ranh giới và hợp đồng giữa các đội",
+            "Phối hợp, di trú lớn và hình dạng tổ chức",
           ],
         },
         {
@@ -828,10 +828,10 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 5",
-          name: "Service architecture",
+          name: "Scale and multiple teams",
           parts: [
-            "Splitting services and integrating systems",
-            "Running infrastructure for an early-stage product",
+            "Boundaries and contracts between teams",
+            "Coordination, large migrations and org shape",
           ],
         },
         {
