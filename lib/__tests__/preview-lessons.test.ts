@@ -41,13 +41,22 @@ describe("đường dẫn bài xem thử", () => {
     expect(isPreviewLessonSlug(`${slug}/`)).toBe(false);
   });
 
-  it("proxy thật sự hỏi tới nó", () => {
-    // Bài kiểm đọc nguồn: proxy.ts import cả NextRequest nên không dựng được
-    // trong vitest, mà thứ cần khoá ở đây chỉ là "hàng rào có gọi hàm này
-    // không". Gỡ lời gọi đi thì bốn bài lại biến mất sau tường đăng nhập, và
-    // không có gì khác báo động.
-    const source = readFileSync(path.join(repoRoot, "proxy.ts"), "utf8");
-    expect(source).toContain("isPreviewLessonPath");
+  it("hàng rào thật sự hỏi tới nó", () => {
+    // Bài kiểm đọc NGUỒN chứ không gọi hàm: thứ cần khoá ở đây là "hàng rào có
+    // hỏi tới danh sách này không". Gỡ lời gọi đi thì bốn bài xem thử lặng lẽ
+    // biến mất sau tường đăng nhập, và không có gì khác báo động - một bài test
+    // gọi thẳng isPreviewLessonSlug() vẫn xanh khi không ai gọi nó.
+    //
+    // Hàng rào từng là `proxy.ts`, dùng isPreviewLessonPath trên cả đường dẫn.
+    // Proxy đã đi vì Workers không chạy được Node middleware; cổng giờ nằm ở
+    // layout của route bài học và nhận sẵn `params.slug`, nên nó hỏi bằng
+    // isPreviewLessonSlug - không còn đường dẫn để mà cắt.
+    const gate = path.join(repoRoot, "app", "bai-hoc", "[slug]", "layout.tsx");
+    const source = readFileSync(gate, "utf8");
+    expect(source).toContain("isPreviewLessonSlug");
+    // Và phải là điều kiện phủ định: gọi hàm rồi vẫn gác hết thì bốn bài kia
+    // cũng không vào được.
+    expect(source).toMatch(/if\s*\(!isPreviewLessonSlug\(/);
   });
 });
 

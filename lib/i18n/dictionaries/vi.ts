@@ -1603,7 +1603,7 @@ export const vi = {
     "vn-tech-market": "Thị trường IT Việt Nam thực chiến",
     "digital-assets-risk": "Blockchain & rủi ro",
     "fraud-safety": "An toàn thông tin & phòng tấn công",
-    "real-estate-vn": "Ứng dụng di động Việt Nam",
+    "mobile-apps-vn": "Ứng dụng di động Việt Nam",
     "life-expenses": "Dự án lớn trong nghề",
     "health-risk": "Sức khoẻ nghề nghiệp & rủi ro con người",
     "life-stage": "Nghề công nghệ theo giai đoạn",

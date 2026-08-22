@@ -20,7 +20,7 @@ import { CLOUD_LESSONS } from "./cloud-lessons";
 import { VN_TECH_MARKET_LESSONS } from "./vn-tech-market-lessons";
 import { CRYPTO_LESSONS } from "./crypto-lessons";
 import { FRAUD_SAFETY_LESSONS } from "./fraud-safety-lessons";
-import { REAL_ESTATE_VN_LESSONS } from "./real-estate-vn-lessons";
+import { MOBILE_APPS_VN_LESSONS } from "./mobile-apps-vn-lessons";
 import { LIFE_EXPENSES_LESSONS } from "./life-expenses-lessons";
 import { OCCUPATIONAL_HEALTH_LESSONS } from "./occupational-health-lessons";
 import { LIFE_STAGE_LESSONS } from "./life-stage-lessons";
@@ -57,7 +57,7 @@ export const lessons: Lesson[] = [
   ...VN_TECH_MARKET_LESSONS,
   ...CRYPTO_LESSONS,
   ...FRAUD_SAFETY_LESSONS,
-  ...REAL_ESTATE_VN_LESSONS,
+  ...MOBILE_APPS_VN_LESSONS,
   ...LIFE_EXPENSES_LESSONS,
   ...OCCUPATIONAL_HEALTH_LESSONS,
   ...LIFE_STAGE_LESSONS,
@@ -27211,7 +27211,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Phép thử tải cho biết hệ thống chịu được năm nghìn yêu cầu mỗi giây. Sản phẩm sập ở một nghìn. Vì sao?",
     "openingOptions": [
       "Phép thử dùng dữ liệu và hình dạng tải không giống thực tế",
-      "Sản phẩm thật chạy trên phần cứng yếu hơn môi trường thử",
+      "Sản phẩm thật chạy trên phần cứng yếu hơn nhiều so với môi trường thử",
       "Con số năm nghìn được đo trong khoảng thời gian quá ngắn",
       "Người dùng thật gửi yêu cầu vào cùng một thời điểm"
     ],
@@ -28222,2604 +28222,3482 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 161,
-    "slug": "portfolio-la-gi",
-    "title": "Tự học Tài chính Day 161: Portfolio là gì?",
-    "subtitle": "Tập hợp các khoản đầu tư được quản lý như một thể thống nhất",
-    "duration": "5 phút",
-    "difficulty": "Dễ",
-    "emoji": "🧩",
-    "openingQuestion": "Bạn có 100 triệu, chia đều mua 5 cổ phiếu ngành khác nhau. Tập hợp 5 cổ phiếu này gọi là gì?",
+    "slug": "do-tin-cay-la-mot-danh-doi",
+    "title": "Độ tin cậy là một đánh đổi, không phải một lời hứa",
+    "subtitle": "Không ai xây hệ thống không bao giờ hỏng. Người ta chọn mức hỏng chấp nhận được rồi trả giá cho nó.",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "⚖️",
+    "track": "professional",
+    "whyItMatters": "Đội nào coi độ tin cậy là mục tiêu tuyệt đối sẽ tiêu hết ngân sách vào chín số chín mà không ai cần, hoặc kiệt sức vì mọi cảnh báo đều khẩn cấp. Đặt nó thành một con số biến nó thành thứ có thể quyết định được.",
+    "openingQuestion": "Đội đề xuất nâng độ sẵn sàng từ 99,9% lên 99,99%. Câu hỏi đầu tiên nên hỏi là gì?",
     "openingOptions": [
-      "Chỉ là 5 giao dịch riêng lẻ không liên quan",
-      "Một quỹ đầu tư",
-      "Không có tên gọi riêng",
-      "Portfolio - tập hợp tài sản được quản lý chung"
+      "Người dùng có nhận ra khác biệt ấy không, và nó đáng bao nhiêu",
+      "Cần thêm bao nhiêu máy chủ và bao nhiêu vùng để đạt được mức đó",
+      "Hệ thống hiện tại đang hỏng ở đâu nhiều nhất trong sáu tháng qua",
+      "Các đối thủ cùng ngành đang cam kết mức độ sẵn sàng là bao nhiêu"
     ],
-    "correctOption": 3,
-    "explanation": "Portfolio là tập hợp tất cả các khoản đầu tư (cổ phiếu, trái phiếu, tiền mặt, bất động sản...) mà một nhà đầu tư nắm giữ, được nhìn nhận và quản lý như MỘT thể thống nhất - không phải từng khoản riêng lẻ. Tư duy portfolio là nền tảng của toàn bộ lý thuyết đầu tư hiện đại.",
+    "correctOption": 0,
+    "explanation": "Khoảng cách giữa hai con số đó là bốn mươi ba phút ngừng mỗi tháng so với bốn phút. Chi phí để đi từ mức này lên mức kia thường gấp nhiều lần, và với phần lớn sản phẩm thì người dùng không phân biệt được - họ chịu ảnh hưởng của mạng di động nhiều hơn. Ba câu hỏi còn lại đều hợp lý nhưng chúng đều là câu hỏi thực hiện; chúng chỉ có nghĩa sau khi đã trả lời được rằng mục tiêu ấy đáng theo đuổi.",
     "diagram": [
       {
-        "label": "Nhiều khoản đầu tư riêng lẻ",
+        "label": "99,9% = ~43 phút ngừng mỗi tháng",
         "arrow": true
       },
       {
-        "label": "Gộp lại, quản lý như một thể thống nhất",
+        "label": "99,99% = ~4 phút mỗi tháng",
         "arrow": true
       },
       {
-        "label": "= Portfolio (danh mục)"
+        "label": "Chi phí chênh nhau nhiều lần",
+        "arrow": true
+      },
+      {
+        "label": "Câu hỏi: ai được lợi, và lợi bao nhiêu"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Quỹ hưu trí quốc gia",
-      "description": "Các quỹ hưu trí lớn trên thế giới quản lý portfolio hàng trăm tỷ USD trải rộng qua cổ phiếu, trái phiếu, bất động sản và tài sản thay thế - không đầu tư dồn vào một loại tài sản duy nhất."
+      "company": "Chín số chín không ai cần",
+      "description": "Một đội dành hai quý xây dự phòng đa vùng cho công cụ nội bộ mà cả công ty dùng trong giờ hành chính. Mức ngừng thực tế trước đó là vài phút mỗi quý, và không ai từng phàn nàn."
+    },
+    "keyTakeaways": [
+      "Mỗi chín thêm vào thường tốn gấp nhiều lần chín trước đó.",
+      "Mục tiêu độ tin cậy phải xuất phát từ nhu cầu người dùng, không từ tham vọng.",
+      "Độ tin cậy của hệ thống bị chặn bởi mắt xích yếu nhất mà nó phụ thuộc.",
+      "Một mục tiêu quá cao gây kiệt sức, vì mọi trục trặc đều thành khẩn cấp."
+    ],
+    "summary": {
+      "keyIdea": "Chọn mức độ tin cậy phù hợp rồi trả giá cho nó, thay vì đuổi theo con số tuyệt đối.",
+      "formula": "Mỗi chín thêm vào đắt gấp nhiều lần chín trước.",
+      "commonMistake": "Đặt mục tiêu bằng cảm giác chứ không bằng nhu cầu người dùng."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Hỏi xem dịch vụ của bạn đang nhắm mức độ sẵn sàng nào và ai đã quyết định con số ấy. Nếu không ai trả lời được thì bạn vừa tìm ra việc đầu tiên phải làm."
+    },
+    "practicePrompt": {
+      "question": "Vì sao mục tiêu độ tin cậy quá cao lại gây hại cho đội?",
+      "options": [
+        "Vì mọi trục trặc nhỏ đều trở thành việc khẩn cấp phải xử lý ngay",
+        "Vì đội sẽ không còn thời gian để viết tài liệu kỹ thuật cho đầy đủ",
+        "Vì hệ thống sẽ trở nên phức tạp tới mức không ai hiểu được nữa",
+        "Vì chi phí hạ tầng vượt quá ngân sách được duyệt cho cả năm"
+      ],
+      "correct": 0,
+      "explanation": "Khi không còn khoảng đệm nào, mỗi sự cố dù nhỏ cũng phải được xử lý ngay lập tức, kể cả lúc nửa đêm. Ba hậu quả còn lại đều có thật nhưng chúng đến sau; cái đầu tiên đội cảm nhận được là lịch trực trở nên không sống nổi."
     },
     "quiz": [
       {
-        "question": "Vì sao nhà đầu tư nên nghĩ về portfolio thay vì từng khoản đầu tư riêng lẻ?",
+        "question": "Khoảng cách giữa 99,9% và 99,99% là bao nhiêu thời gian ngừng mỗi tháng?",
         "options": [
-          "Vì rủi ro và lợi nhuận thực sự quan trọng là của TOÀN BỘ danh mục, không phải từng tài sản đơn lẻ - một tài sản rủi ro cao vẫn có thể làm giảm rủi ro tổng thể nếu tương quan thấp với phần còn lại",
-          "Vì portfolio giúp tránh phải trả thuế",
-          "Không có lý do đặc biệt nào",
-          "Vì portfolio luôn có lợi nhuận cao hơn từng cổ phiếu riêng lẻ"
+          "Khoảng bốn mươi ba phút so với khoảng bốn phút",
+          "Khoảng bốn giờ so với khoảng bốn mươi phút mỗi tháng",
+          "Khoảng bảy phút so với khoảng bốn mươi giây mỗi tháng",
+          "Khoảng một ngày so với khoảng hai giờ rưỡi mỗi tháng"
         ],
         "correct": 0,
-        "explanation": "Đây là nền tảng của Modern Portfolio Theory: một tài sản có thể rủi ro cao khi đứng một mình nhưng lại làm GIẢM rủi ro tổng thể của danh mục nếu nó biến động ngược chiều với các tài sản khác. Đánh giá từng khoản đầu tư riêng lẻ mà bỏ qua bối cảnh danh mục là sai lầm phổ biến của nhà đầu tư mới."
+        "explanation": "Một tháng có khoảng bốn mươi ba nghìn phút, nên một phần nghìn của nó là bốn mươi ba phút. Nhớ con số này giúp bạn nhận ra ngay khi một mục tiêu được đặt ra mà không ai tính xem nó nghĩa là gì."
       },
       {
-        "question": "Một danh mục chỉ gồm 2 cổ phiếu cùng ngành ngân hàng có thực sự được xem là \"đa dạng hóa\" chỉ vì có 2 tài sản khác nhau?",
+        "question": "Độ tin cậy của một dịch vụ bị chặn bởi điều gì?",
         "options": [
-          "Có, vì có nhiều hơn 1 tài sản là đã đa dạng hóa",
-          "Không thực sự - đa dạng hóa hiệu quả cần các tài sản có tương quan thấp; hai cổ phiếu cùng ngành ngân hàng thường di chuyển khá cùng chiều (cùng chịu ảnh hưởng lãi suất, quy định ngành), nên lợi ích giảm rủi ro rất hạn chế so với việc thêm tài sản từ ngành khác biệt hoàn toàn",
-          "Đa dạng hóa chỉ có ý nghĩa với từ 10 tài sản trở lên",
-          "Chỉ cần có từ 2 tài sản trở lên là đủ tiêu chuẩn đa dạng hóa"
+          "Mắt xích kém tin cậy nhất trong chuỗi nó phụ thuộc",
+          "Số lượng máy chủ đang chạy trong nhóm phục vụ",
+          "Chất lượng mã nguồn của chính dịch vụ đó",
+          "Tần suất triển khai phiên bản mới lên môi trường thật"
         ],
-        "correct": 1,
-        "explanation": "Số lượng tài sản không phải yếu tố duy nhất quyết định mức độ đa dạng hóa thực sự - điều quan trọng hơn là mức độ tương quan (correlation) giữa các tài sản đó; danh mục \"đa dạng\" về số lượng nhưng tập trung vào một ngành/yếu tố rủi ro vẫn có thể rất rủi ro."
+        "correct": 0,
+        "explanation": "Một dịch vụ hoàn hảo gọi tới một phụ thuộc đạt 99% thì không thể vượt quá 99%. Đây là lý do cam kết độ tin cậy phải được tính từ cả chuỗi chứ không chỉ từ phần mình viết."
+      },
+      {
+        "question": "Mục tiêu độ tin cậy nên xuất phát từ đâu?",
+        "options": [
+          "Từ mức mà người dùng thật sự nhận ra và quan tâm",
+          "Từ mức cao nhất mà công nghệ hiện tại cho phép đạt",
+          "Từ mức mà các công ty cùng ngành đang công bố ra",
+          "Từ mức mà hệ thống đã đạt được trong năm vừa rồi"
+        ],
+        "correct": 0,
+        "explanation": "Người dùng vào bằng mạng di động đã chịu tỷ lệ lỗi cao hơn nhiều so với khoảng chênh giữa hai mục tiêu bạn đang cân nhắc. Vượt qua ngưỡng ấy thì mọi đồng chi thêm là chi cho một khác biệt không ai cảm nhận được."
+      },
+      {
+        "question": "Vì sao mỗi chín thêm vào lại đắt hơn chín trước đó?",
+        "options": [
+          "Vì nó đòi hỏi loại bỏ những nguyên nhân ngày càng hiếm và khó lường",
+          "Vì giá của phần cứng tăng theo cấp số nhân khi mua số lượng lớn",
+          "Vì đội phải tuyển thêm người để trực suốt hai mươi tư giờ mỗi ngày",
+          "Vì các nhà cung cấp hạ tầng tính phí theo mức cam kết dịch vụ"
+        ],
+        "correct": 0,
+        "explanation": "Những nguyên nhân dễ đã bị xử lý ở các mức trước. Còn lại là lỗi hiếm, lỗi phối hợp giữa nhiều thành phần, và lỗi con người - loại phải chống bằng kiến trúc và quy trình chứ không bằng một khoản chi."
+      },
+      {
+        "question": "Đặt mục tiêu độ tin cậy thành một con số cụ thể mang lại điều gì?",
+        "options": [
+          "Biến nó thành thứ có thể đem ra cân nhắc và đánh đổi được",
+          "Bảo đảm rằng hệ thống sẽ đạt được đúng mức đã đặt ra",
+          "Cho phép so sánh chất lượng vận hành giữa các đội trong công ty",
+          "Giúp phát hiện sớm những dịch vụ đang hoạt động kém"
+        ],
+        "correct": 0,
+        "explanation": "Không có con số thì mọi cuộc tranh luận về việc có nên dừng tính năng để sửa hạ tầng hay không đều là tranh luận cảm tính. Có con số thì câu hỏi trở thành đang thừa hay đang thiếu bao nhiêu."
       }
     ],
-    "keyTakeaways": [
-      "Portfolio: tập hợp tài sản được quản lý như một thể thống nhất",
-      "Rủi ro và lợi nhuận cần đánh giá ở cấp độ danh mục, không phải từng tài sản riêng lẻ",
-      "Tư duy portfolio là nền tảng của toàn bộ lý thuyết đầu tư hiện đại"
-    ],
-    "practicePrompt": {
-      "question": "Bạn sở hữu 5 cổ phiếu, 2 quỹ trái phiếu, và một khoản tiền gửi tiết kiệm. Khi đánh giá hiệu quả đầu tư, bạn nên nhìn từng khoản riêng lẻ hay nhìn tổng thể? Khái niệm nào mô tả cách tiếp cận 'nhìn tổng thể' này?",
-      "options": [
-        "Nên chỉ nhìn từng khoản đầu tư riêng lẻ, vì mỗi loại tài sản có đặc điểm rủi ro-lợi nhuận hoàn toàn độc lập với các khoản khác",
-        "Portfolio là tập hợp tài sản được quản lý như một thể thống nhất, không phải tổng các khoản rời",
-        "Khái niệm này không có tên gọi cụ thể trong tài chính, chỉ là một cách nhìn thông thường",
-        "Nên bán bớt một số tài sản để chỉ giữ lại một loại duy nhất, dễ theo dõi và đánh giá hơn"
-      ],
-      "correct": 1,
-      "explanation": "Portfolio: tập hợp tài sản được quản lý như một thể thống nhất. Rủi ro và lợi nhuận cần đánh giá ở cấp độ danh mục, không phải từng tài sản riêng lẻ - vì cách các tài sản tương quan với nhau (correlation) ảnh hưởng lớn đến rủi ro tổng thể."
-    },
-    "summary": {
-      "keyIdea": "Portfolio: tập hợp tài sản được quản lý như một thể thống nhất",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Rủi ro và lợi nhuận cần đánh giá ở cấp độ danh mục, không phải từng tài sản riêng lẻ"
-    },
-    "application": {
-      "title": "Liệt kê portfolio của chính bạn",
-      "message": "Ghi ra tất cả những gì bạn đang nắm giữ có giá trị tài chính - tiền tiết kiệm, cổ phiếu, vàng, bảo hiểm nhân thọ có giá trị hoàn lại - và nhìn chúng như một danh mục thống nhất thay vì từng khoản riêng lẻ.",
-      "secondary": "Nhiều người có portfolio mà chưa từng nhìn nó như một tổng thể."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Portfolio (danh mục đầu tư) là tất cả những gì bạn đang nắm giữ - cổ phiếu, trái phiếu, tiền mặt, vàng, bất động sản - nhìn như MỘT khối thống nhất, chứ không phải một đống tài sản rời rạc xếp cạnh nhau. Đây là bước chuyển tư duy quan trọng nhất khi một nhà đầu tư nghiệp dư trở thành người quản lý vốn nghiêm túc: câu hỏi không còn là \"cổ phiếu này có tốt không\" mà là \"cổ phiếu này làm gì cho danh mục của tôi\"."
+        "text": "Chặng trước hỏi hệ thống nhanh chậm thế nào. Chặng này hỏi một câu khác: khi nó hỏng thì sao - và trước hết, hỏng bao nhiêu thì được coi là chấp nhận được."
       },
       {
         "type": "heading",
-        "text": "Vì sao phải nhìn ở cấp độ danh mục?"
+        "text": "Không có hệ thống nào không hỏng"
       },
       {
         "type": "paragraph",
-        "text": "Một tài sản đơn lẻ có thể rủi ro cao khi đứng một mình, nhưng khi đặt cạnh các tài sản khác biến động ngược chiều, nó lại làm GIẢM rủi ro chung. Đây chính là nền tảng của Modern Portfolio Theory: rủi ro và lợi nhuận thực sự quan trọng là của cả danh mục, không phải của từng khoản đầu tư riêng lẻ. Đánh giá từng cổ phiếu tách rời khỏi bối cảnh danh mục là sai lầm phổ biến nhất của nhà đầu tư mới."
+        "text": "Phần cứng chết, mạng đứt, người triển khai nhầm, phụ thuộc bên thứ ba ngừng. Câu hỏi không phải làm sao để không bao giờ hỏng mà là hỏng bao nhiêu thì chấp nhận được, và bạn sẵn sàng trả bao nhiêu để giữ nó ở mức ấy."
       },
       {
-        "type": "heading",
-        "text": "Đa dạng hóa không chỉ là \"có nhiều tài sản\""
-      },
-      {
-        "type": "paragraph",
-        "text": "Một danh mục chỉ gồm 2 cổ phiếu ngân hàng chưa chắc đã đa dạng hóa thực sự - cả hai đều chịu ảnh hưởng gần như giống nhau từ lãi suất và quy định ngành, nên chúng có xu hướng di chuyển cùng chiều. Số lượng tài sản không phải yếu tố quyết định; mức độ tương quan (correlation) giữa chúng mới là điều quan trọng. Một danh mục 10 cổ phiếu công nghệ vẫn có thể rủi ro hơn một danh mục 3 tài sản thuộc 3 ngành khác biệt hoàn toàn."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Portfolio bao gồm mọi loại tài sản bạn sở hữu, không chỉ cổ phiếu",
-          "Đánh giá rủi ro/lợi nhuận ở cấp độ toàn danh mục, không phải từng khoản riêng lẻ",
-          "Số lượng tài sản không bằng chất lượng đa dạng hóa - tương quan mới là chìa khóa",
-          "Tư duy này là nền tảng cho mọi khái niệm sẽ học trong Chặng Danh mục đầu tư và quản trị rủi ro: correlation, volatility, Sharpe Ratio, MPT..."
+        "type": "conceptTable",
+        "title": "Một tháng có khoảng 43.200 phút",
+        "subtitle": "Con số đáng nhớ, vì nó biến phần trăm thành thời gian thật",
+        "concepts": [
+          {
+            "vi": "99%",
+            "en": "two nines",
+            "def": "Khoảng 7 giờ ngừng mỗi tháng. Đủ cho công cụ nội bộ dùng trong giờ hành chính."
+          },
+          {
+            "vi": "99,9%",
+            "en": "three nines",
+            "def": "Khoảng 43 phút mỗi tháng. Mức phổ biến cho sản phẩm thương mại thông thường."
+          },
+          {
+            "vi": "99,99%",
+            "en": "four nines",
+            "def": "Khoảng 4 phút mỗi tháng. Đòi hỏi dự phòng thật và quy trình triển khai rất kỷ luật."
+          }
         ]
       },
       {
         "type": "callout",
-        "label": "Ví dụ thực tế",
-        "text": "Các quỹ hưu trí quốc gia quản lý hàng trăm tỷ USD trải rộng qua cổ phiếu, trái phiếu, bất động sản và tài sản thay thế - không bao giờ dồn hết vào một loại tài sản duy nhất, dù loại đó có vẻ hấp dẫn đến đâu."
+        "label": "Mắt xích yếu nhất đặt trần",
+        "text": "Một dịch vụ hoàn hảo gọi tới một phụ thuộc đạt 99% thì không thể vượt quá 99%. Cam kết độ tin cậy phải được tính từ cả chuỗi, và đó thường là lúc người ta phát hiện ra con số mình vừa hứa là bất khả thi."
+      },
+      {
+        "type": "heading",
+        "text": "Cái giá của mục tiêu quá cao"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nó không chỉ là tiền. Khi không còn khoảng đệm nào, mọi trục trặc dù nhỏ cũng thành việc khẩn cấp phải xử lý ngay, kể cả lúc nửa đêm. Đội kiệt sức, người giỏi nghỉ việc, và độ tin cậy thực tế đi xuống - đúng cái mà mục tiêu ấy định bảo vệ."
       },
       {
         "type": "closing",
         "lines": [
-          "Trước khi hỏi \"cổ phiếu này có nên mua không\", hãy hỏi \"nó sẽ làm gì cho danh mục của tôi\".",
-          "Portfolio là đơn vị phân tích đúng - không phải từng tài sản riêng lẻ."
+          "Độ tin cậy là một con số được chọn, không phải một lời hứa được giữ bằng ý chí.",
+          "Bài sau về việc chọn đúng thứ để đo, vì một mục tiêu đặt trên sai chỉ số thì không bảo vệ được gì."
         ]
       }
     ]
   },
   {
     "id": 162,
-    "slug": "vi-sao-khong-nen-nhin-tung-khoan-dau-tu",
-    "title": "Tự học Tài chính Day 162: Vì sao không nên nhìn từng khoản đầu tư riêng lẻ?",
-    "subtitle": "Rủi ro của một tài sản có thể biến mất khi đặt trong bối cảnh danh mục",
-    "duration": "6 phút",
+    "slug": "chi-so-do-suc-khoe-dich-vu",
+    "title": "Chọn chỉ số: dịch vụ có đang phục vụ được không",
+    "subtitle": "Máy chủ còn sống không giống với người dùng làm được việc.",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "⚖️",
-    "openingQuestion": "Cổ phiếu hãng bảo hiểm thiên tai có giá biến động mạnh mỗi khi có bão lớn. Đứng riêng lẻ, đây có phải khoản đầu tư 'rủi ro cao'?",
+    "emoji": "🩺",
+    "track": "professional",
+    "whyItMatters": "Mọi mục tiêu độ tin cậy đều đặt trên một chỉ số. Chọn nhầm chỉ số thì bảng theo dõi xanh trong lúc người dùng không dùng được, và không cảnh báo nào nổ.",
+    "openingQuestion": "Chỉ số nào phản ánh đúng nhất việc dịch vụ đang phục vụ được?",
     "openingOptions": [
-      "Rủi ro của từng cổ phiếu luôn cộng dồn tuyến tính vào danh mục",
-      "Không, cổ phiếu bảo hiểm luôn an toàn",
-      "Riêng lẻ thì rủi ro cao, nhưng trong danh mục thì khác",
-      "Có, và luôn nên tránh vì biến động mạnh"
+      "Tỷ lệ yêu cầu được trả lời đúng và đủ nhanh",
+      "Tỷ lệ thời gian máy chủ ở trạng thái đang chạy",
+      "Mức sử dụng bộ xử lý và bộ nhớ của các máy chủ",
+      "Số lượng yêu cầu mà hệ thống nhận được mỗi giây"
     ],
-    "correctOption": 2,
-    "explanation": "Đây là nghịch lý cốt lõi của lý thuyết danh mục: rủi ro của MỘT tài sản (đo bằng độ lệch chuẩn riêng lẻ) không phản ánh đúng mức độ nó góp phần vào rủi ro CHUNG của danh mục. Điều quyết định là tương quan (correlation) của nó với các tài sản khác - một tài sản biến động mạnh nhưng đi ngược chiều với phần còn lại có thể là 'thuốc giải' cho rủi ro danh mục.",
+    "correctOption": 0,
+    "explanation": "Một tiến trình đang chạy vẫn có thể trả về lỗi cho mọi yêu cầu, hoặc trả lời sau ba mươi giây. Chỉ số tốt phải gộp cả tính đúng lẫn tính kịp thời, vì một câu trả lời đến quá muộn thì với người dùng không khác gì không có câu trả lời. Mức dùng tài nguyên và lưu lượng là thông tin để chẩn đoán chứ không cho biết dịch vụ có phục vụ được hay không.",
     "diagram": [
       {
-        "label": "Nhìn rủi ro TỪNG tài sản riêng lẻ",
+        "label": "Tiến trình còn sống - chưa nói lên gì",
         "arrow": true
       },
       {
-        "label": "Bỏ qua tương quan với các tài sản khác",
+        "label": "Yêu cầu được trả lời - gần hơn",
         "arrow": true
       },
       {
-        "label": "Đánh giá sai mức rủi ro thực của danh mục"
+        "label": "Trả lời đúng và trong ngưỡng thời gian",
+        "arrow": true
+      },
+      {
+        "label": "Đó là chỉ số đặt mục tiêu lên được"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Vàng trong danh mục cổ phiếu",
-      "description": "Vàng thường tăng giá khi thị trường chứng khoán hoảng loạn (khủng hoảng, chiến tranh) - dù bản thân giá vàng biến động, việc thêm một phần nhỏ vàng vào danh mục cổ phiếu thường làm giảm biến động tổng thể của danh mục."
+      "company": "Xanh toàn bảng, không ai đăng nhập được",
+      "description": "Dịch vụ xác thực trả về lỗi cho mọi yêu cầu suốt hai mươi phút. Mọi máy chủ đều đang chạy, mức tài nguyên bình thường, và không cảnh báo nào nổ vì cảnh báo được đặt trên trạng thái tiến trình."
+    },
+    "keyTakeaways": [
+      "Chỉ số phải gộp cả tính đúng lẫn tính kịp thời của câu trả lời.",
+      "Đo ở chỗ gần người dùng nhất mà bạn còn kiểm soát được.",
+      "Mỗi hành trình quan trọng cần chỉ số riêng, không gộp làm một.",
+      "Mức dùng tài nguyên dùng để chẩn đoán, không dùng để đặt mục tiêu."
+    ],
+    "summary": {
+      "keyIdea": "Chỉ số độ tin cậy phải trả lời được câu hỏi người dùng có làm được việc hay không.",
+      "formula": "Tỷ lệ yêu cầu vừa đúng vừa kịp.",
+      "commonMistake": "Đặt cảnh báo trên trạng thái tiến trình thay vì trên kết quả phục vụ."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê ba hành trình quan trọng nhất của người dùng và viết ra chỉ số đo được cho từng cái. Nếu một hành trình không có chỉ số nào thì nó đang không được bảo vệ."
+    },
+    "practicePrompt": {
+      "question": "Vì sao không nên gộp mọi hành trình vào một chỉ số duy nhất?",
+      "options": [
+        "Vì hành trình ít lưu lượng sẽ bị hành trình nhiều lưu lượng che mất",
+        "Vì mỗi hành trình có một đội khác nhau chịu trách nhiệm vận hành",
+        "Vì các hành trình có yêu cầu về thời gian phản hồi khác nhau",
+        "Vì công cụ giám sát không cho phép tổng hợp nhiều nguồn dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Nếu chín mươi lăm phần trăm lưu lượng là một hành trình đơn giản, thì chức năng thanh toán hỏng hoàn toàn cũng chỉ kéo con số chung xuống vài phần trăm. Yêu cầu thời gian khác nhau cũng là lý do thật, nhưng nó chỉ làm ngưỡng khó đặt chứ không giấu hẳn một sự cố đi."
     },
     "quiz": [
       {
-        "question": "Điều gì quyết định mức độ một tài sản 'rủi ro' đóng góp vào danh mục tổng thể?",
+        "question": "Vì sao trạng thái tiến trình là chỉ số kém?",
         "options": [
-          "Chỉ giá trị tuyệt đối của tài sản đó trong danh mục",
-          "Chỉ số P/E của tài sản đó",
-          "Chỉ độ lệch chuẩn (volatility) riêng của tài sản đó",
-          "Sự kết hợp giữa độ biến động riêng của tài sản VÀ tương quan (correlation) của nó với các tài sản còn lại trong danh mục"
-        ],
-        "correct": 3,
-        "explanation": "Rủi ro đóng góp vào danh mục = f(volatility riêng, correlation với phần còn lại). Một tài sản biến động rất mạnh nhưng có correlation âm với phần lớn danh mục có thể làm GIẢM rủi ro tổng thể, trong khi một tài sản biến động nhẹ nhưng correlation cao có thể làm TĂNG rủi ro tập trung."
-      },
-      {
-        "question": "Nếu bạn có một cổ phiếu duy nhất chiếm 80% giá trị danh mục và biến động rất mạnh, chiến lược nào giúp giảm rủi ro tổng thể nhanh nhất mà không cần bán cổ phiếu đó?",
-        "options": [
-          "Thêm các tài sản có tương quan thấp hoặc âm với cổ phiếu đó vào phần 20% còn lại của danh mục - dù không thay đổi tỷ trọng của cổ phiếu chính, việc bổ sung tài sản bù trừ rủi ro vẫn có thể giảm biến động tổng thể của cả danh mục",
-          "Rủi ro danh mục không thể giảm nếu không bán bớt tài sản lớn nhất",
-          "Chỉ có cách duy nhất là chờ cổ phiếu đó tự ổn định",
-          "Không có cách nào ngoài bán bớt cổ phiếu đó"
+          "Vì tiến trình đang chạy vẫn có thể trả lỗi cho mọi yêu cầu",
+          "Vì trạng thái tiến trình chỉ được cập nhật sau mỗi vài phút",
+          "Vì một số hệ điều hành báo trạng thái tiến trình không chính xác",
+          "Vì tiến trình có thể được khởi động lại tự động khi gặp lỗi"
         ],
         "correct": 0,
-        "explanation": "Đây là ứng dụng thực tế của tư duy danh mục: dù không thể thay đổi tỷ trọng của khoản đầu tư lớn, việc khéo léo bổ sung các tài sản có tương quan thấp/âm vẫn có thể cải thiện đáng kể hồ sơ rủi ro tổng thể - một chiến lược thực tế hơn là bán tháo tài sản chính."
+        "explanation": "Đây là kiểu sự cố khó chịu nhất: mọi thứ trông sống, không cảnh báo nào nổ, và người dùng thì không đăng nhập được suốt hai mươi phút. Chỉ có chỉ số nhìn vào kết quả trả về mới bắt được nó."
+      },
+      {
+        "question": "Vì sao chỉ số phải gộp cả yếu tố thời gian?",
+        "options": [
+          "Vì câu trả lời đến quá muộn thì với người dùng cũng như không có",
+          "Vì thời gian phản hồi là thứ dễ đo nhất trong các chỉ số",
+          "Vì các trình duyệt tự động huỷ yêu cầu sau một khoảng thời gian chờ",
+          "Vì thời gian phản hồi phản ánh mức tải hiện tại của hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Một dịch vụ trả về đúng kết quả sau ba mươi giây thì tỷ lệ thành công của nó là một trăm phần trăm trong khi người dùng đã bỏ đi. Ngưỡng thời gian phải nằm ngay trong định nghĩa của chỉ số."
+      },
+      {
+        "question": "Nên đo ở vị trí nào trong hệ thống?",
+        "options": [
+          "Ở chỗ gần người dùng nhất mà bạn vẫn còn kiểm soát được",
+          "Ở ngay bên trong dịch vụ, nơi số liệu là chính xác nhất",
+          "Ở tầng cơ sở dữ liệu, nơi phần lớn thời gian bị tiêu tốn",
+          "Ở nhiều tầng cùng lúc rồi lấy giá trị trung bình của chúng"
+        ],
+        "correct": 0,
+        "explanation": "Càng đo sâu bên trong thì càng bỏ sót các tầng phía ngoài - cân bằng tải, cổng vào, tầng bộ nhớ đệm - và đó chính là chỗ nhiều sự cố xảy ra. Đo bên trong vẫn cần, nhưng để chẩn đoán chứ không để đặt mục tiêu."
+      },
+      {
+        "question": "Mức sử dụng bộ xử lý nên được dùng vào việc gì?",
+        "options": [
+          "Chẩn đoán nguyên nhân sau khi đã biết dịch vụ có vấn đề",
+          "Đặt mục tiêu độ tin cậy vì nó phản ánh sức khoẻ hệ thống",
+          "Phát cảnh báo chính cho đội trực khi vượt một ngưỡng nhất định",
+          "Báo cáo cho lãnh đạo về chất lượng vận hành trong từng tháng"
+        ],
+        "correct": 0,
+        "explanation": "Bộ xử lý cạn mà người dùng không bị ảnh hưởng thì không phải sự cố; bộ xử lý rảnh mà mọi yêu cầu đều lỗi thì là sự cố nặng. Nó không tương ứng với trải nghiệm nên không đặt mục tiêu lên được."
+      },
+      {
+        "question": "Một hành trình quan trọng không có chỉ số riêng nghĩa là gì?",
+        "options": [
+          "Nó đang không được bảo vệ, và sự cố ở đó sẽ không ai biết",
+          "Nó sẽ được tính vào chỉ số chung của toàn bộ dịch vụ",
+          "Nó cần được bổ sung vào bảng theo dõi trong quý tới",
+          "Nó có thể chưa đủ lưu lượng để đo lường được một cách ổn định"
+        ],
+        "correct": 0,
+        "explanation": "Chỉ số chung có tồn tại nhưng nó bị lưu lượng lớn chi phối, nên một hành trình nhỏ hỏng hoàn toàn cũng gần như không dịch được con số. Không có chỉ số riêng thì không có cảnh báo riêng."
       }
     ],
-    "keyTakeaways": [
-      "Rủi ro của một tài sản riêng lẻ không phản ánh đúng đóng góp của nó vào rủi ro danh mục",
-      "Tương quan (correlation) với các tài sản khác quan trọng hơn độ biến động riêng lẻ",
-      "Một tài sản 'rủi ro' đứng một mình có thể làm giảm rủi ro khi đặt đúng trong danh mục"
-    ],
-    "practicePrompt": {
-      "question": "Một cổ phiếu công nghệ biến động rất mạnh khi đứng riêng lẻ (volatility cao), nhưng khi thêm vào một danh mục đã có sẵn cổ phiếu ngành tiêu dùng và trái phiếu (các tài sản ít tương quan), rủi ro TỔNG THỂ của danh mục lại tăng rất ít. Vì sao lại có sự khác biệt này?",
-      "options": [
-        "Đây là một sai lầm tính toán, vì thêm một tài sản biến động mạnh luôn phải làm tăng rủi ro danh mục tương ứng",
-        "Rủi ro của một tài sản riêng lẻ không phản ánh đúng đóng góp của nó vào rủi ro danh mục",
-        "Rủi ro danh mục chỉ phụ thuộc vào tài sản có volatility thấp nhất, các tài sản biến động mạnh không ảnh hưởng gì",
-        "Hiện tượng này chỉ xảy ra với cổ phiếu công nghệ, không áp dụng cho các loại tài sản khác"
-      ],
-      "correct": 1,
-      "explanation": "Rủi ro của một tài sản riêng lẻ không phản ánh đúng đóng góp của nó vào rủi ro danh mục. Đây là nền tảng của lý thuyết danh mục hiện đại (MPT): mức độ tương quan (correlation) giữa các tài sản quyết định rủi ro tổng thể nhiều hơn là volatility riêng lẻ của từng tài sản."
-    },
-    "summary": {
-      "keyIdea": "Rủi ro của một tài sản riêng lẻ không phản ánh đúng đóng góp của nó vào rủi ro danh mục",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Tương quan (correlation) với các tài sản khác quan trọng hơn độ biến động riêng lẻ"
-    },
-    "application": {
-      "title": "Tìm một tài sản 'rủi ro nhưng có ích'",
-      "message": "Nghĩ về một tài sản trong danh mục của bạn biến động mạnh riêng lẻ, rồi tự hỏi liệu nó có đi ngược chiều với phần còn lại của danh mục hay không - nếu có, nó đang làm giảm rủi ro chung chứ không phải tăng.",
-      "secondary": "Đây là nghịch lý khiến nhiều nhà đầu tư mới hiểu sai về rủi ro."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Đây là một trong những nghịch lý thú vị nhất của đầu tư: độ lệch chuẩn (volatility) riêng lẻ của một tài sản không phản ánh đúng mức độ nó góp phần vào rủi ro của cả danh mục. Điều quyết định thực sự là tương quan (correlation) giữa tài sản đó và phần còn lại - một tài sản biến động dữ dội nhưng đi ngược chiều với danh mục có thể chính là \"thuốc giải\" cho rủi ro tổng thể."
+        "text": "Bài trước nói mục tiêu độ tin cậy phải là một con số. Bài này về việc con số ấy đo cái gì - và đây là chỗ nhiều hệ thống chọn sai ngay từ đầu."
       },
       {
         "type": "heading",
-        "text": "Rủi ro đóng góp = biến động riêng × tương quan"
-      },
-      {
-        "type": "paragraph",
-        "text": "Mức độ một tài sản \"rủi ro\" đóng góp vào danh mục là sự kết hợp giữa hai yếu tố: độ biến động riêng của nó VÀ tương quan với các tài sản còn lại. Một tài sản biến động rất mạnh nhưng có correlation âm với phần lớn danh mục có thể làm GIẢM rủi ro tổng thể; ngược lại, một tài sản biến động nhẹ nhưng correlation cao với mọi thứ khác có thể làm TĂNG rủi ro tập trung mà bạn không nhận ra."
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ: vàng trong danh mục cổ phiếu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Vàng thường tăng giá khi thị trường chứng khoán hoảng loạn (khủng hoảng, chiến tranh, lạm phát cao). Bản thân giá vàng cũng biến động, nhưng vì nó có xu hướng đi ngược chiều với cổ phiếu trong những giai đoạn căng thẳng nhất, việc thêm một tỷ trọng nhỏ vàng vào danh mục cổ phiếu thường làm giảm biến động TỔNG THỂ của cả danh mục - dù vàng đứng một mình chẳng hề \"an toàn\"."
-      },
-      {
-        "type": "heading",
-        "text": "Áp dụng khi không thể bán tài sản lớn"
-      },
-      {
-        "type": "paragraph",
-        "text": "Giả sử một cổ phiếu chiếm 80% giá trị danh mục và biến động rất mạnh - có thể vì lý do thuế, hạn chế chuyển nhượng, hoặc bạn tin vào công ty đó. Không cần bán bớt, bạn vẫn có thể giảm rủi ro tổng thể bằng cách bổ sung vào 20% còn lại những tài sản có tương quan thấp hoặc âm với cổ phiếu chính. Tỷ trọng không đổi nhưng biến động chung của danh mục có thể giảm đáng kể."
+        "text": "Ba tầng chỉ số, chỉ tầng cuối đáng đặt mục tiêu"
       },
       {
         "type": "list",
         "items": [
-          "Rủi ro đóng góp vào danh mục = f(volatility riêng, correlation với phần còn lại)",
-          "Tài sản biến động mạnh nhưng correlation âm có thể là công cụ giảm rủi ro hữu hiệu",
-          "Tài sản biến động nhẹ nhưng correlation cao có thể âm thầm làm tăng rủi ro tập trung",
-          "Không cần bán tài sản lớn để giảm rủi ro - có thể bù trừ bằng tài sản bổ sung phù hợp"
+          "Tiến trình đang chạy: rẻ nhất để đo, và gần như không nói gì về việc người dùng có dùng được không.",
+          "Yêu cầu được trả lời: tốt hơn, nhưng trả về lỗi cũng là một câu trả lời.",
+          "Yêu cầu được trả lời đúng, trong ngưỡng thời gian: đây mới là thứ tương ứng với trải nghiệm."
         ]
+      },
+      {
+        "type": "callout",
+        "label": "Thời gian nằm trong định nghĩa",
+        "text": "Một dịch vụ trả đúng kết quả sau ba mươi giây có tỷ lệ thành công một trăm phần trăm và không người dùng nào còn ở đó để nhận. Ngưỡng thời gian phải là một phần của chỉ số, không phải một chỉ số riêng đứng cạnh."
+      },
+      {
+        "type": "heading",
+        "text": "Mỗi hành trình một chỉ số"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nếu chín mươi lăm phần trăm lưu lượng là một hành trình đơn giản, thì chức năng thanh toán hỏng hoàn toàn cũng chỉ kéo chỉ số chung xuống vài phần trăm - dưới mọi ngưỡng cảnh báo. Tách chỉ số theo hành trình là cách duy nhất để những phần quan trọng nhưng ít lưu lượng không bị che mất."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chỉ số để đặt mục tiêu",
+          "text": "Đo ở chỗ gần người dùng nhất mà bạn còn kiểm soát. Ít con số, mỗi con số ứng với một việc người dùng làm."
+        },
+        "right": {
+          "label": "Chỉ số để chẩn đoán",
+          "text": "Mức tài nguyên, độ dài hàng đợi, số kết nối. Rất nhiều, rất chi tiết, và không cái nào đặt mục tiêu lên được."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Câu hỏi đúng không phải \"tài sản này rủi ro thế nào\" mà là \"nó rủi ro thế nào SO VỚI phần còn lại của danh mục\"."
+          "Bảng theo dõi xanh trong lúc không ai đăng nhập được là một lỗi chọn chỉ số, không phải một lỗi giám sát.",
+          "Bài sau biến chỉ số ấy thành một mục tiêu có ngưỡng và có khung thời gian."
         ]
       }
     ]
   },
   {
     "id": 163,
-    "slug": "diversification-da-dang-hoa",
-    "title": "Tự học Tài chính Day 163: Diversification - Đa dạng hóa",
-    "subtitle": "Không bỏ tất cả trứng vào một giỏ - nguyên tắc đầu tư lâu đời nhất",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "📘",
-    "openingQuestion": "Nhà đầu tư A dồn 100% vốn vào một cổ phiếu. Nhà đầu tư B chia đều vào 20 cổ phiếu khác ngành. Ai chịu rủi ro cao hơn nếu một công ty gặp scandal bất ngờ?",
+    "slug": "muc-tieu-dich-vu-va-nguong",
+    "title": "Mục tiêu dịch vụ: ngưỡng, tỷ lệ và khung thời gian",
+    "subtitle": "Một mục tiêu thiếu khung thời gian thì không bao giờ vi phạm được, và cũng không bảo vệ được gì.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🎯",
+    "track": "professional",
+    "whyItMatters": "Mục tiêu dịch vụ là chỗ độ tin cậy chuyển từ ý kiến sang số liệu. Nó quyết định khi nào đội được phép làm tính năng và khi nào phải dừng lại sửa nền móng.",
+    "openingQuestion": "Ba thành phần bắt buộc của một mục tiêu dịch vụ là gì?",
     "openingOptions": [
-      "Không thể so sánh nếu thiếu thông tin khác",
-      "A - toàn bộ vốn phụ thuộc một công ty",
-      "B, vì có nhiều cổ phiếu hơn nên phức tạp hơn",
-      "Cả hai chịu rủi ro như nhau"
+      "Ngưỡng của chỉ số, tỷ lệ phải đạt, và khung thời gian đo",
+      "Ngưỡng của chỉ số, người chịu trách nhiệm, và mức cảnh báo",
+      "Tỷ lệ phải đạt, khung thời gian, và hình phạt khi vi phạm",
+      "Chỉ số được chọn, công cụ đo, và tần suất báo cáo kết quả"
     ],
-    "correctOption": 1,
-    "explanation": "Diversification (đa dạng hóa) là chiến lược phân bổ vốn vào nhiều tài sản khác nhau để giảm rủi ro không hệ thống (unsystematic risk) - rủi ro đặc thù của từng công ty/ngành. Khi một khoản đầu tư gặp vấn đề, các khoản còn lại không bị ảnh hưởng tương tự, giúp bảo vệ tổng giá trị danh mục.",
+    "correctOption": 0,
+    "explanation": "Ví dụ đầy đủ: chín mươi chín phẩy chín phần trăm số yêu cầu được trả lời đúng trong dưới ba trăm mili giây, đo trên cửa sổ hai mươi tám ngày trượt. Thiếu ngưỡng thì không biết thế nào là đạt; thiếu tỷ lệ thì một yêu cầu chậm cũng thành vi phạm; thiếu khung thời gian thì con số không bao giờ kết thúc để mà so. Người chịu trách nhiệm và cách xử lý vi phạm đều quan trọng nhưng chúng là chính sách đi kèm chứ không phải thành phần của phép đo.",
     "diagram": [
       {
-        "label": "Vốn dồn vào một tài sản duy nhất",
+        "label": "Ngưỡng: trả lời đúng, dưới 300 mili giây",
         "arrow": true
       },
       {
-        "label": "Tài sản đó gặp rủi ro riêng",
+        "label": "Tỷ lệ: 99,9% số yêu cầu đạt ngưỡng đó",
         "arrow": true
       },
       {
-        "label": "Phân bổ vào nhiều tài sản khác nhau",
+        "label": "Khung thời gian: 28 ngày trượt",
         "arrow": true
       },
       {
-        "label": "Rủi ro không hệ thống giảm"
+        "label": "Thiếu một phần thì mục tiêu không dùng được"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Enron (2001)",
-      "description": "Nhân viên Enron dồn phần lớn quỹ hưu trí vào cổ phiếu công ty mình - khi Enron sụp đổ vì gian lận kế toán, hàng nghìn nhân viên mất gần như toàn bộ khoản tiết kiệm hưu trí, minh chứng đau đớn cho hậu quả của việc không đa dạng hóa."
+      "company": "Mục tiêu không bao giờ vi phạm",
+      "description": "Một đội viết mục tiêu là dịch vụ phải phản hồi nhanh và ổn định. Sau một năm không ai từng tuyên bố nó bị vi phạm, kể cả trong tuần có ba sự cố lớn."
+    },
+    "keyTakeaways": [
+      "Một mục tiêu cần đủ ngưỡng, tỷ lệ và khung thời gian mới đo được.",
+      "Cửa sổ trượt phản ánh hiện trạng tốt hơn cửa sổ theo tháng lịch.",
+      "Đặt mục tiêu thấp hơn mức đang đạt là tự tạo nợ, không phải an toàn.",
+      "Mục tiêu là cam kết nội bộ; cam kết với khách hàng phải lỏng hơn nó."
+    ],
+    "summary": {
+      "keyIdea": "Mục tiêu dịch vụ phải viết đủ ba phần để có thể kết luận đạt hay không đạt.",
+      "formula": "X% số yêu cầu đạt ngưỡng Y, đo trong Z ngày.",
+      "commonMistake": "Viết mục tiêu bằng tính từ thay vì bằng con số."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy mục tiêu dịch vụ hiện tại của bạn và kiểm tra xem nó có đủ ba phần không. Nếu thiếu khung thời gian thì bạn chưa từng có cách nào tuyên bố vi phạm."
+    },
+    "practicePrompt": {
+      "question": "Vì sao cam kết với khách hàng nên lỏng hơn mục tiêu nội bộ?",
+      "options": [
+        "Để còn khoảng đệm phát hiện và xử lý trước khi vi phạm hợp đồng",
+        "Để bộ phận kinh doanh dễ đàm phán hơn khi đi ký các hợp đồng mới",
+        "Để đội kỹ thuật không phải chịu áp lực từ phía khách hàng",
+        "Để tránh phải công bố số liệu vận hành thật ra bên ngoài"
+      ],
+      "correct": 0,
+      "explanation": "Nếu hai con số bằng nhau thì lần đầu tiên bạn biết mình có vấn đề cũng là lần đầu tiên bạn đã vi phạm hợp đồng. Khoảng cách giữa chúng chính là thời gian để đội phát hiện xu hướng xấu và can thiệp trước khi nó chạm ngưỡng phải bồi thường."
     },
     "quiz": [
       {
-        "question": "Đa dạng hóa có thể loại bỏ hoàn toàn mọi loại rủi ro đầu tư không?",
+        "question": "Điều gì xảy ra khi mục tiêu thiếu khung thời gian?",
         "options": [
-          "Đa dạng hóa chỉ có tác dụng với cổ phiếu, không áp dụng cho trái phiếu",
-          "Chỉ loại bỏ được nếu đầu tư vào trái phiếu chính phủ",
-          "Không - đa dạng hóa chỉ loại bỏ rủi ro không hệ thống (đặc thù từng công ty); rủi ro hệ thống (thị trường chung, suy thoái, lãi suất) vẫn tồn tại dù danh mục đa dạng đến đâu",
-          "Có, đa dạng hóa đủ rộng sẽ loại bỏ 100% rủi ro"
+          "Không bao giờ kết luận được là đạt hay không đạt",
+          "Kết quả đo sẽ dao động mạnh giữa các lần kiểm tra",
+          "Đội phải tự chọn khung thời gian cho mỗi lần báo cáo",
+          "Chỉ số sẽ được tính từ ngày dịch vụ bắt đầu hoạt động"
         ],
-        "correct": 2,
-        "explanation": "Rủi ro tổng thể = Rủi ro hệ thống (systematic, không thể đa dạng hóa) + Rủi ro không hệ thống (unsystematic, có thể giảm qua đa dạng hóa). Khi thị trường chứng khoán toàn cầu sụp đổ (như 2008, 2020), hầu hết mọi loại tài sản rủi ro đều giảm giá cùng lúc - đây là rủi ro hệ thống không thể tránh khỏi bằng đa dạng hóa."
+        "correct": 0,
+        "explanation": "Một tỷ lệ luôn phải tính trên một tập hợp; không xác định tập hợp thì con số không tồn tại. Đó là lý do một mục tiêu như phải phản hồi nhanh và ổn định không bao giờ bị tuyên bố vi phạm, kể cả trong tuần có ba sự cố."
       },
       {
-        "question": "Đa dạng hóa QUỐC TẾ (đầu tư vào cổ phiếu nhiều quốc gia khác nhau, không chỉ đa dạng theo ngành trong một nước) mang lại lợi ích gì khác biệt so với chỉ đa dạng hóa trong nước?",
+        "question": "Vì sao nên dùng cửa sổ trượt thay vì tháng lịch?",
         "options": [
-          "Chỉ nhà đầu tư tổ chức lớn mới nên đa dạng hóa quốc tế",
-          "Đa dạng hóa quốc tế luôn rủi ro hơn đa dạng hóa trong nước",
-          "Không có lợi ích gì khác biệt so với đa dạng hóa trong nước",
-          "Giảm thêm được rủi ro liên quan đến chu kỳ kinh tế, chính sách tiền tệ, và biến động chính trị đặc thù của TỪNG QUỐC GIA - các thị trường khác nhau không phải lúc nào cũng di chuyển đồng bộ với nhau, tạo thêm lớp bảo vệ ngoài đa dạng hóa ngành trong một quốc gia"
+          "Vì tháng lịch xoá sạch lịch sử vào nửa đêm ngày cuối tháng",
+          "Vì cửa sổ trượt cho kết quả ổn định hơn về mặt thống kê",
+          "Vì tháng lịch có số ngày khác nhau nên khó so sánh",
+          "Vì cửa sổ trượt dễ cài đặt hơn trong phần lớn công cụ giám sát"
         ],
-        "correct": 3,
-        "explanation": "Đa dạng hóa quốc tế bổ sung thêm một lớp giảm rủi ro khác với đa dạng hóa ngành: rủi ro vĩ mô đặc thù quốc gia (chính sách tiền tệ, chu kỳ kinh tế, ổn định chính trị) - dù đôi khi trong khủng hoảng toàn cầu, tương quan giữa các thị trường quốc tế cũng tăng lên tạm thời."
+        "correct": 0,
+        "explanation": "Một sự cố lớn ngày hai mươi chín được xoá sổ sau hai ngày, và đội bước sang tháng mới với bảng điểm sạch trong khi hệ thống chưa hề được sửa. Cửa sổ trượt giữ sự cố ấy trong tầm nhìn đủ lâu để nó được xử lý."
+      },
+      {
+        "question": "Vì sao đặt mục tiêu thấp hơn nhiều so với mức đang đạt là sai?",
+        "options": [
+          "Vì nó cho phép chất lượng trượt xuống mà không có tín hiệu nào",
+          "Vì khách hàng sẽ so sánh với số liệu thực tế và mất niềm tin",
+          "Vì đội sẽ không còn động lực cải thiện hệ thống hiện có",
+          "Vì các công cụ giám sát cần một ngưỡng sát với thực tế để hoạt động"
+        ],
+        "correct": 0,
+        "explanation": "Nếu bạn đang ở chín mươi chín phẩy chín mà đặt mục tiêu chín mươi chín, hệ thống có thể xấu đi gấp mười lần trước khi bất kỳ ai được báo. Mục tiêu là một cái phanh, và đặt nó quá xa thì phanh không bao giờ ăn."
+      },
+      {
+        "question": "Thành phần nào KHÔNG thuộc về phép đo của mục tiêu dịch vụ?",
+        "options": [
+          "Người chịu trách nhiệm khi mục tiêu bị vi phạm",
+          "Ngưỡng thời gian phản hồi được coi là đạt",
+          "Tỷ lệ phần trăm số yêu cầu phải đạt ngưỡng",
+          "Độ dài của cửa sổ thời gian dùng để tính tỷ lệ"
+        ],
+        "correct": 0,
+        "explanation": "Nó rất quan trọng, nhưng nó là chính sách đi kèm chứ không phải một phần của công thức. Phân biệt hai thứ này giúp mục tiêu không phình thành một tài liệu dài mà không ai đo được."
+      },
+      {
+        "question": "Một mục tiêu viết bằng tính từ có vấn đề gì?",
+        "options": [
+          "Mỗi người hiểu một kiểu nên không ai kết luận được điều gì",
+          "Nó không thể được đưa vào trong các công cụ giám sát tự động được",
+          "Nó khiến khách hàng hiểu nhầm về chất lượng dịch vụ",
+          "Nó cần được viết lại mỗi khi hệ thống có thay đổi lớn"
+        ],
+        "correct": 0,
+        "explanation": "Nhanh với người vận hành là ba trăm mili giây, với người viết giao diện là hai giây, với giám đốc là cảm giác khi họ mở ứng dụng. Một tài liệu ba bên cùng gật đầu mà không ai hiểu giống nhau còn tệ hơn không có tài liệu."
       }
     ],
-    "keyTakeaways": [
-      "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống",
-      "Không loại bỏ được rủi ro hệ thống (thị trường chung, vĩ mô)",
-      "Nguyên tắc đầu tư cơ bản và lâu đời nhất, áp dụng cho mọi quy mô danh mục"
-    ],
-    "practicePrompt": {
-      "question": "Một nhà đầu tư chỉ mua duy nhất một cổ phiếu bất động sản, tin rằng ngành này sẽ tăng mạnh. Nếu ngành bất động sản gặp khủng hoảng, toàn bộ danh mục của họ sẽ bị ảnh hưởng nặng nề. Chiến lược nào có thể giúp giảm loại rủi ro này (rủi ro riêng của một công ty/ngành)?",
-      "options": [
-        "Nên dồn hết vốn vào một cổ phiếu khác có tiềm năng cao hơn để bù đắp rủi ro của cổ phiếu bất động sản",
-        "Đa dạng hóa là phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống",
-        "Nên rút hết tiền khỏi thị trường chứng khoán và chỉ giữ tiền mặt để tránh mọi rủi ro",
-        "Đa dạng hóa không có tác dụng gì với rủi ro riêng của từng công ty hay ngành cụ thể"
-      ],
-      "correct": 1,
-      "explanation": "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống (unsystematic risk - rủi ro riêng của một công ty/ngành). Đa dạng hóa thực sự dựa trên mức tương quan thấp giữa các tài sản, không chỉ đơn thuần mua nhiều mã cổ phiếu cùng ngành."
-    },
-    "summary": {
-      "keyIdea": "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Không loại bỏ được rủi ro hệ thống (thị trường chung, vĩ mô)"
-    },
-    "application": {
-      "title": "Kiểm tra mức độ đa dạng hóa",
-      "message": "Xem lại danh mục đầu tư hiện tại của bạn - nếu hơn 50% giá trị nằm ở một cổ phiếu hoặc một ngành duy nhất, đó là dấu hiệu bạn đang gánh nhiều rủi ro không hệ thống hơn mức cần thiết.",
-      "secondary": "Không cần đa dạng hóa hoàn hảo ngay, chỉ cần nhận ra điểm tập trung rủi ro của mình."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Diversification (đa dạng hóa) là nguyên tắc đầu tư lâu đời nhất và đơn giản nhất: đừng bỏ tất cả trứng vào một giỏ. Về mặt kỹ thuật, đó là chiến lược phân bổ vốn vào nhiều tài sản khác nhau để giảm rủi ro không hệ thống (unsystematic risk) - loại rủi ro đặc thù của riêng từng công ty hoặc từng ngành, chứ không phải rủi ro của cả nền kinh tế."
+        "text": "Bài trước chọn được chỉ số. Bài này biến nó thành một mục tiêu - và điều làm nên một mục tiêu dùng được không phải là con số cao, mà là nó viết đủ chi tiết để kết luận đạt hay không đạt."
       },
       {
         "type": "heading",
-        "text": "Đa dạng hóa không xóa được mọi rủi ro"
+        "text": "Ba phần bắt buộc"
+      },
+      {
+        "type": "formula",
+        "expression": "99,9% số yêu cầu trả lời đúng trong dưới 300 mili giây, đo trên 28 ngày trượt",
+        "explanation": "Ngưỡng, tỷ lệ, khung thời gian. Bỏ bất kỳ phần nào thì câu này không còn kết luận được điều gì."
       },
       {
         "type": "paragraph",
-        "text": "Rủi ro tổng thể của một tài sản gồm hai phần: rủi ro hệ thống (systematic risk - lãi suất, suy thoái, khủng hoảng toàn cầu, ảnh hưởng đến gần như mọi tài sản cùng lúc) và rủi ro không hệ thống (unsystematic risk - vấn đề riêng của một công ty như gian lận kế toán, sản phẩm lỗi, ban lãnh đạo yếu kém). Đa dạng hóa chỉ triệt tiêu được phần thứ hai. Khi thị trường toàn cầu sụp đổ như năm 2008 hay 2020, gần như mọi tài sản rủi ro đều giảm giá đồng loạt - đó là rủi ro hệ thống, không cách đa dạng hóa nào tránh được."
+        "text": "Thiếu ngưỡng thì không biết thế nào là một yêu cầu tốt. Thiếu tỷ lệ thì một yêu cầu chậm cũng thành vi phạm, và mọi hệ thống đều vi phạm mọi lúc. Thiếu khung thời gian thì tỷ lệ được tính trên một tập hợp không xác định, tức là nó không tồn tại."
+      },
+      {
+        "type": "callout",
+        "label": "Cửa sổ trượt, không phải tháng lịch",
+        "text": "Tháng lịch xoá sạch lịch sử vào nửa đêm ngày cuối tháng. Một sự cố lớn ngày hai mươi chín biến mất sau hai ngày và đội bước sang tháng mới với bảng điểm sạch, trong khi nguyên nhân vẫn nằm nguyên đó."
       },
       {
         "type": "heading",
-        "text": "Bài học đắt giá từ Enron"
+        "text": "Hai con số khác nhau"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Mục tiêu nội bộ",
+          "text": "Chặt hơn. Nó là cái phanh: chạm vào thì đội đổi ưu tiên. Không có hậu quả pháp lý."
+        },
+        "right": {
+          "label": "Cam kết với khách hàng",
+          "text": "Lỏng hơn, có hậu quả hợp đồng. Khoảng cách giữa hai con số là thời gian bạn có để can thiệp."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Năm 2001, nhiều nhân viên Enron dồn phần lớn quỹ hưu trí của mình vào cổ phiếu công ty - vừa là nơi làm việc, vừa là khoản đầu tư duy nhất. Khi Enron sụp đổ vì gian lận kế toán, hàng nghìn người mất gần như toàn bộ khoản tiết kiệm hưu trí cùng lúc với công việc. Đây là minh chứng đau đớn cho việc gộp chung rủi ro thu nhập và rủi ro đầu tư vào một nguồn duy nhất."
-      },
-      {
-        "type": "heading",
-        "text": "Đa dạng hóa quốc tế - một lớp bảo vệ khác"
-      },
-      {
-        "type": "paragraph",
-        "text": "Đa dạng hóa theo ngành trong một nước là chưa đủ. Đầu tư vào cổ phiếu nhiều quốc gia khác nhau giúp giảm thêm rủi ro liên quan đến chu kỳ kinh tế, chính sách tiền tệ và bất ổn chính trị đặc thù của TỪNG QUỐC GIA - các thị trường không phải lúc nào cũng di chuyển đồng bộ. Dù vậy, trong khủng hoảng toàn cầu, tương quan giữa các thị trường quốc tế cũng có xu hướng tăng lên tạm thời."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Đa dạng hóa giảm rủi ro không hệ thống (đặc thù công ty/ngành)",
-          "Không loại bỏ được rủi ro hệ thống (thị trường chung, vĩ mô, lãi suất)",
-          "Đừng dồn thu nhập và đầu tư vào cùng một nguồn (bài học Enron)",
-          "Đa dạng hóa quốc tế bổ sung lớp bảo vệ trước rủi ro vĩ mô riêng của từng nước"
-        ]
+        "text": "Nếu đặt hai con số bằng nhau, lần đầu tiên bạn biết mình có vấn đề cũng là lần đầu tiên bạn phải bồi thường. Đó là một lỗi thiết kế chính sách chứ không phải xui rủi."
       },
       {
         "type": "closing",
         "lines": [
-          "Đa dạng hóa không làm bạn hết rủi ro - nó chỉ đảm bảo bạn không mất tất cả vì một sai lầm duy nhất."
+          "Một mục tiêu viết bằng tính từ là một tài liệu ba bên cùng gật đầu mà không ai hiểu giống nhau.",
+          "Bài sau về thứ mục tiêu này sinh ra: phần được phép hỏng, và cách tiêu nó."
         ]
       }
     ]
   },
   {
     "id": 164,
-    "slug": "correlation-tuong-quan-tai-san",
-    "title": "Tự học Tài chính Day 164: Correlation - Tương quan giữa các tài sản",
-    "subtitle": "Thước đo mức độ hai tài sản di chuyển cùng chiều hay ngược chiều",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "⚖️",
-    "openingQuestion": "Hai cổ phiếu có hệ số tương quan (correlation) = -0.8. Điều này có nghĩa gì?",
+    "slug": "ngan-sach-loi",
+    "title": "Ngân sách lỗi: phần được phép hỏng",
+    "subtitle": "Mục tiêu 99,9% nghĩa là bạn được phép hỏng 0,1%. Đó là ngân sách, và tiêu hết nó không phải thất bại.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "💸",
+    "track": "professional",
+    "whyItMatters": "Đây là cơ chế duy nhất biến cuộc tranh cãi muôn thuở giữa làm tính năng và giữ ổn định thành một quyết định có dữ liệu, thay vì thành một trận đấu giữa hai nhóm người.",
+    "openingQuestion": "Ngân sách lỗi của tháng còn dư rất nhiều. Điều đó gợi ý gì?",
     "openingOptions": [
-      "Hai cổ phiếu di chuyển ngược chiều",
-      "Hai cổ phiếu luôn có cùng mức giá",
-      "Một trong hai cổ phiếu đang giảm giá",
-      "Hai cổ phiếu không liên quan gì đến nhau"
+      "Đội có thể mạnh dạn triển khai nhanh hơn hoặc chấp nhận nhiều rủi ro hơn",
+      "Hệ thống đang hoạt động tốt và không cần thay đổi cách làm hiện tại",
+      "Mục tiêu đang được đặt ở mức quá dễ so với năng lực của hệ thống",
+      "Đội nên tận dụng khoảng dư để nâng mục tiêu lên mức cao hơn"
     ],
     "correctOption": 0,
-    "explanation": "Correlation đo mức độ hai tài sản di chuyển cùng chiều (giá trị từ -1 đến +1). +1: di chuyển hoàn toàn cùng chiều. -1: di chuyển hoàn toàn ngược chiều. 0: không có mối liên hệ tuyến tính. Correlation càng gần -1 giữa các tài sản trong danh mục, hiệu quả giảm rủi ro của đa dạng hóa càng mạnh.",
+    "explanation": "Ngân sách dư nghĩa là bạn đang trả tiền cho một mức ổn định vượt nhu cầu - bằng tốc độ ra tính năng chậm hơn mức cần thiết. Cách dùng khoản dư ấy là đẩy nhanh nhịp triển khai, chạy thử nghiệm rủi ro hơn, hoặc làm những việc di trú vốn bị hoãn vì sợ. Nâng mục tiêu là hướng ngược lại: nó biến khoản dư thành ràng buộc mới mà chưa ai chứng minh là người dùng cần.",
     "diagram": [
       {
-        "label": "Hai tài sản cùng tăng/giảm",
+        "label": "Mục tiêu 99,9% → ngân sách 0,1%",
         "arrow": true
       },
       {
-        "label": "Correlation gần +1",
+        "label": "Còn nhiều: đi nhanh hơn, chấp nhận rủi ro",
         "arrow": true
       },
       {
-        "label": "Hai tài sản di chuyển ngược chiều",
+        "label": "Sắp hết: dừng tính năng, sửa nền móng",
         "arrow": true
       },
       {
-        "label": "Correlation gần -1"
+        "label": "Quy tắc thoả thuận trước, không tranh cãi lúc sự cố"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Cổ phiếu dầu khí và hãng hàng không",
-      "description": "Cổ phiếu công ty dầu khí và cổ phiếu hãng hàng không thường có correlation âm vừa phải: giá dầu tăng có lợi cho công ty dầu khí nhưng làm tăng chi phí nhiên liệu của hãng hàng không, khiến lợi nhuận hai bên đi ngược chiều nhau."
+      "company": "Cuộc tranh cãi không có dữ liệu",
+      "description": "Nhóm sản phẩm muốn ra tính năng, nhóm vận hành muốn dừng lại vá hạ tầng, và cả hai đều đúng theo góc nhìn của mình. Ngân sách lỗi trả lời câu hỏi ấy bằng một con số thay vì bằng thâm niên của người nói."
+    },
+    "keyTakeaways": [
+      "Ngân sách lỗi là phần được phép hỏng, không phải hạn mức đáng xấu hổ.",
+      "Tiêu hết ngân sách kích hoạt một quy tắc đã thoả thuận từ trước.",
+      "Ngân sách dư nhiều nghĩa là đang đi chậm hơn mức cần thiết.",
+      "Quy tắc phải được viết ra trước sự cố, không phải bàn giữa lúc đang cháy."
+    ],
+    "summary": {
+      "keyIdea": "Ngân sách lỗi biến đánh đổi giữa tốc độ và ổn định thành một quyết định có dữ liệu.",
+      "formula": "Ngân sách = 100% trừ mục tiêu.",
+      "commonMistake": "Coi mọi lần tiêu ngân sách là một thất bại cần điều tra."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Tính ngân sách lỗi tháng này của dịch vụ bạn và xem đã tiêu bao nhiêu phần trăm. Rồi hỏi đội xem chuyện gì sẽ xảy ra nếu nó cạn."
+    },
+    "practicePrompt": {
+      "question": "Điều gì nên xảy ra khi ngân sách lỗi cạn?",
+      "options": [
+        "Dừng phát hành tính năng mới cho tới khi độ tin cậy hồi phục",
+        "Tổ chức một cuộc họp để tìm ra ai đã gây ra phần lớn các sự cố",
+        "Tạm thời nới mục tiêu để đội có thêm khoảng đệm hoạt động",
+        "Tăng tần suất báo cáo tình hình vận hành lên hằng ngày"
+      ],
+      "correct": 0,
+      "explanation": "Điểm mấu chốt là quy tắc này phải được viết ra và đồng thuận từ trước, khi chưa ai đang chịu áp lực. Nới mục tiêu giữa chừng là cách nhanh nhất để biến cả cơ chế thành trang trí, vì lần sau ai cũng biết ngưỡng ấy có thể xê dịch."
     },
     "quiz": [
       {
-        "question": "Thêm một tài sản có correlation gần +1 với toàn bộ danh mục hiện tại vào sẽ có tác dụng gì?",
+        "question": "Ngân sách lỗi được tính thế nào?",
         "options": [
-          "Loại bỏ hoàn toàn rủi ro hệ thống",
-          "Gần như không giảm được rủi ro - vì tài sản mới di chuyển gần như cùng chiều với những gì đã có, không mang lại lợi ích đa dạng hóa đáng kể",
-          "Giảm mạnh rủi ro tổng thể của danh mục",
-          "Tăng lợi nhuận kỳ vọng lên gấp đôi"
+          "Bằng phần còn lại sau khi lấy một trăm phần trăm trừ mục tiêu",
+          "Bằng số phút ngừng trung bình của mười hai tháng gần nhất",
+          "Bằng mức thiệt hại tài chính mà công ty chấp nhận được mỗi tháng",
+          "Bằng số sự cố tối đa mà đội trực có thể xử lý trong tháng"
         ],
-        "correct": 1,
-        "explanation": "Lợi ích của đa dạng hóa đến từ việc kết hợp các tài sản có correlation THẤP hoặc ÂM. Thêm một tài sản gần như luôn di chuyển cùng chiều với danh mục hiện tại (correlation gần +1) về bản chất không khác gì tăng thêm cùng một loại rủi ro, chứ không giảm được rủi ro tổng thể."
+        "correct": 0,
+        "explanation": "Mục tiêu chín mươi chín phẩy chín cho ngân sách một phần nghìn, tức khoảng bốn mươi ba phút mỗi tháng. Nó là một hệ quả số học của mục tiêu chứ không phải một con số được thương lượng riêng."
       },
       {
-        "question": "Hai loại tài sản có correlation gần bằng 0 (không phải âm, chỉ là gần 0). Việc kết hợp chúng có mang lại lợi ích đa dạng hóa không?",
+        "question": "Vì sao ngân sách dư nhiều lại là một tín hiệu đáng chú ý?",
         "options": [
-          "Chỉ correlation dương mới có lợi ích đa dạng hóa",
-          "Không, chỉ correlation âm mới mang lại lợi ích đa dạng hóa",
-          "Có - correlation gần 0 vẫn mang lại lợi ích đa dạng hóa đáng kể, vì hai tài sản di chuyển KHÔNG LIÊN QUAN đến nhau, giúp giảm biến động tổng thể của danh mục dù không mạnh bằng correlation âm hoàn hảo",
-          "Correlation không liên quan gì đến lợi ích đa dạng hóa"
+          "Vì nó cho thấy đội đang trả cho sự ổn định bằng tốc độ ra tính năng",
+          "Vì nó cho thấy hệ thống đã được xây dựng vượt quá yêu cầu kỹ thuật",
+          "Vì nó cho thấy các phép đo có thể đang bỏ sót một số loại lỗi",
+          "Vì nó cho thấy người dùng chưa sử dụng hết các chức năng có sẵn"
         ],
-        "correct": 2,
-        "explanation": "Lợi ích đa dạng hóa tồn tại ở BẤT KỲ mức correlation nào dưới +1 - correlation càng thấp (kể cả gần 0, không cần âm), lợi ích giảm rủi ro càng lớn; correlation âm hoàn hảo chỉ là trường hợp lý tưởng hiếm gặp trong thực tế."
+        "correct": 0,
+        "explanation": "Mỗi lần hoãn một thay đổi vì sợ, mỗi vòng kiểm duyệt thêm vào, đều là một khoản trả bằng thời gian. Nếu ngân sách không bao giờ được tiêu tới thì những khoản trả ấy đang mua một mức ổn định không ai yêu cầu."
+      },
+      {
+        "question": "Vì sao quy tắc xử lý phải được viết trước sự cố?",
+        "options": [
+          "Vì giữa lúc đang cháy thì mọi cuộc thương lượng đều nghiêng theo áp lực",
+          "Vì các công cụ giám sát cần được cấu hình trước để tự động thực thi",
+          "Vì viết trước giúp đội nhớ được nội dung quy tắc khi cần dùng",
+          "Vì quy tắc cần được cấp quản lý phê duyệt trước khi có hiệu lực"
+        ],
+        "correct": 0,
+        "explanation": "Lúc ngân sách vừa cạn cũng là lúc có một tính năng đã hứa với khách hàng và một hạn chót đang tới. Một quy tắc thoả thuận lúc bình yên là thứ duy nhất đứng vững được trong tình huống đó."
+      },
+      {
+        "question": "Coi mỗi lần tiêu ngân sách là một thất bại dẫn tới hậu quả gì?",
+        "options": [
+          "Đội sẽ tránh mọi rủi ro và mất luôn công dụng của cơ chế này",
+          "Đội sẽ báo cáo sai số liệu để tránh bị đánh giá tiêu cực",
+          "Ngân sách sẽ không bao giờ được tiêu hết trong bất kỳ tháng nào",
+          "Các sự cố nhỏ sẽ không được ghi nhận vào hệ thống theo dõi"
+        ],
+        "correct": 0,
+        "explanation": "Ngân sách sinh ra để được tiêu; nó là giấy phép thử nghiệm chứ không phải hạn mức đáng xấu hổ. Một đội bị phạt vì tiêu nó sẽ tiêu càng ít càng tốt, và cả cơ chế biến thành một con số trên bảng theo dõi."
+      },
+      {
+        "question": "Ngân sách lỗi giải quyết được mâu thuẫn nào?",
+        "options": [
+          "Giữa nhu cầu ra tính năng nhanh và nhu cầu giữ hệ thống ổn định",
+          "Giữa đội phát triển và đội vận hành về quyền truy cập môi trường thật",
+          "Giữa chi phí hạ tầng và mức chất lượng dịch vụ cam kết",
+          "Giữa yêu cầu của khách hàng lớn và khách hàng nhỏ"
+        ],
+        "correct": 0,
+        "explanation": "Trước khi có nó, hai bên tranh luận bằng lập luận và cuộc tranh luận nghiêng về ai có thâm niên cao hơn. Sau khi có nó, câu hỏi trở thành ngân sách còn bao nhiêu, và cả hai bên đọc cùng một con số."
       }
     ],
-    "keyTakeaways": [
-      "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)",
-      "Correlation càng thấp hoặc âm, hiệu quả đa dạng hóa càng mạnh",
-      "Đây là biến số quan trọng nhất khi xây dựng danh mục, quan trọng hơn cả lợi nhuận kỳ vọng riêng lẻ của từng tài sản"
-    ],
-    "practicePrompt": {
-      "question": "Cổ phiếu A và cổ phiếu B có hệ số correlation = +0,9 (gần như luôn di chuyển cùng chiều). Cổ phiếu A và tài sản C có correlation = -0,3 (thường di chuyển ngược chiều nhẹ). Nếu muốn giảm rủi ro danh mục hiệu quả nhất, nên kết hợp A với B hay A với C?",
-      "options": [
-        "Nên kết hợp A với B vì correlation cao hơn (+0,9) mang lại sự ổn định tốt hơn cho danh mục",
-        "Nên kết hợp A với C, vì correlation âm (-0,3) giảm rủi ro danh mục hiệu quả hơn",
-        "Không có sự khác biệt nào giữa việc kết hợp A với B hay A với C về mặt giảm rủi ro danh mục",
-        "Correlation dương luôn tốt hơn correlation âm khi xây dựng danh mục đầu tư đa dạng"
-      ],
-      "correct": 1,
-      "explanation": "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1). Kết hợp tài sản có correlation thấp hoặc âm (như A và C) mang lại hiệu ứng đa dạng hóa mạnh hơn nhiều so với kết hợp tài sản có correlation cao (như A và B, gần như không giảm được rủi ro vì di chuyển cùng nhau)."
-    },
-    "summary": {
-      "keyIdea": "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Correlation càng thấp hoặc âm, hiệu quả đa dạng hóa càng mạnh"
-    },
-    "application": {
-      "title": "Ước lượng correlation bằng mắt",
-      "message": "Mở biểu đồ giá 1 năm của hai tài sản bạn đang quan tâm (ví dụ VN-Index và vàng) đặt cạnh nhau, và quan sát xem chúng có xu hướng tăng giảm cùng lúc hay ngược chiều.",
-      "secondary": "Đây chỉ là ước lượng trực quan, nhưng đủ để bạn cảm nhận được khái niệm correlation."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Correlation (tương quan) là thước đo mức độ hai tài sản di chuyển cùng chiều hay ngược chiều với nhau, biểu diễn bằng một con số từ -1 đến +1. Đây là biến số quan trọng nhất khi xây dựng danh mục - quan trọng hơn cả lợi nhuận kỳ vọng riêng lẻ của từng tài sản, vì nó quyết định lợi ích thực sự của việc đa dạng hóa."
+        "text": "Mục tiêu chín mươi chín phẩy chín phần trăm có một mặt sau ít được nói tới: bạn được phép hỏng một phần nghìn. Đó không phải một lỗ hổng trong cam kết mà là phần quan trọng nhất của nó."
       },
       {
         "type": "heading",
-        "text": "Đọc con số correlation"
+        "text": "Một con số, hai hướng đọc"
       },
       {
-        "type": "paragraph",
-        "text": "Correlation = +1 nghĩa là hai tài sản luôn di chuyển hoàn toàn cùng chiều. Correlation = -1 nghĩa là chúng luôn di chuyển hoàn toàn ngược chiều. Correlation = 0 nghĩa là không có mối liên hệ tuyến tính nào giữa chúng. Correlation càng gần -1, hiệu quả giảm rủi ro của việc kết hợp hai tài sản đó càng mạnh - khi một cái giảm, cái kia có xu hướng tăng, bù trừ cho nhau."
+        "type": "comparison",
+        "left": {
+          "label": "Còn nhiều ngân sách",
+          "text": "Đi nhanh hơn: triển khai dày hơn, chạy thử nghiệm rủi ro hơn, làm những việc di trú vẫn bị hoãn vì sợ."
+        },
+        "right": {
+          "label": "Sắp cạn ngân sách",
+          "text": "Dừng tính năng, dồn sức vào nền móng, siết quy trình phát hành cho tới khi con số hồi phục."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Tiêu hết không phải thất bại",
+        "text": "Ngân sách sinh ra để được tiêu. Một đội bị khiển trách mỗi lần chạm ngưỡng sẽ học cách không bao giờ chạm tới nó, và khi ấy cơ chế chỉ còn là một con số trang trí trên bảng theo dõi."
       },
       {
         "type": "heading",
-        "text": "Correlation gần +1: gần như vô nghĩa khi đa dạng hóa"
+        "text": "Giá trị thật nằm ở chỗ khác"
       },
       {
         "type": "paragraph",
-        "text": "Thêm một tài sản có correlation gần +1 với danh mục hiện tại gần như không giảm được rủi ro gì, vì nó di chuyển gần như cùng chiều với những gì đã có - về bản chất chỉ là thêm cùng một loại rủi ro dưới một cái tên khác. Ngược lại, ví dụ kinh điển là cổ phiếu dầu khí và hãng hàng không: giá dầu tăng có lợi cho công ty dầu khí nhưng làm tăng chi phí nhiên liệu của hãng hàng không, khiến lợi nhuận hai bên có xu hướng đi ngược chiều nhau."
+        "text": "Nhóm sản phẩm muốn ra tính năng, nhóm vận hành muốn vá hạ tầng, và cả hai đều đúng theo góc nhìn của mình. Không có ngân sách lỗi thì cuộc tranh luận ấy được giải quyết bằng thâm niên hoặc bằng ai to tiếng hơn. Có nó thì cả hai bên đọc cùng một con số và câu hỏi trở thành còn dư bao nhiêu."
       },
       {
-        "type": "heading",
-        "text": "Correlation gần 0 vẫn có giá trị"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một hiểu lầm phổ biến là chỉ correlation ÂM mới mang lại lợi ích đa dạng hóa. Thực tế, lợi ích tồn tại ở BẤT KỲ mức correlation nào dưới +1 - kể cả correlation gần 0, vì hai tài sản di chuyển không liên quan đến nhau vẫn giúp giảm biến động tổng thể của danh mục, dù không mạnh bằng trường hợp correlation âm hoàn hảo (vốn cực kỳ hiếm trong thực tế)."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Correlation +1: di chuyển hoàn toàn cùng chiều - không có lợi ích đa dạng hóa",
-          "Correlation 0: không liên quan - vẫn có lợi ích đa dạng hóa vừa phải",
-          "Correlation -1: di chuyển hoàn toàn ngược chiều - lợi ích đa dạng hóa tối đa (hiếm gặp)",
-          "Luôn kiểm tra correlation trước khi cho rằng thêm một tài sản mới sẽ \"đa dạng hóa\" danh mục"
-        ]
+        "type": "callout",
+        "label": "Viết quy tắc lúc bình yên",
+        "text": "Lúc ngân sách vừa cạn cũng thường là lúc có một tính năng đã hứa và một hạn chót đang tới. Quy tắc thoả thuận từ trước là thứ duy nhất đứng vững trong tình huống đó - và nới mục tiêu giữa chừng thì lần sau không ai còn tin vào ngưỡng nữa."
       },
       {
         "type": "closing",
         "lines": [
-          "Đa dạng hóa thực sự không phải là thêm nhiều tài sản - mà là thêm những tài sản KHÔNG di chuyển giống nhau."
+          "Ngân sách lỗi không làm hệ thống ổn định hơn. Nó làm cho quyết định về độ ổn định trở thành một phép tính thay vì một cuộc tranh cãi.",
+          "Bài sau về việc chuyển từ con số sang hành động: khi nào thì đánh thức một người đang ngủ."
         ]
       }
     ]
   },
   {
     "id": 165,
-    "slug": "volatility-bien-dong",
-    "title": "Tự học Tài chính Day 165: Volatility - Biến động",
-    "subtitle": "Thước đo mức độ dao động giá của một tài sản qua thời gian",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "⚖️",
-    "openingQuestion": "Cổ phiếu A dao động 2-3% mỗi ngày, cổ phiếu B dao động 0.3-0.5% mỗi ngày. Cổ phiếu nào có volatility cao hơn?",
+    "slug": "khi-nao-danh-thuc-mot-nguoi",
+    "title": "Báo động: khi nào thì đánh thức một người",
+    "subtitle": "Mỗi cảnh báo lúc ba giờ sáng phải trả lời được câu hỏi vì sao việc này không đợi tới sáng được.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🔔",
+    "track": "professional",
+    "whyItMatters": "Cảnh báo quá nhiều còn nguy hiểm hơn cảnh báo quá ít: đội học cách bỏ qua, và cái duy nhất thật sự quan trọng cũng chìm cùng những cái kia.",
+    "openingQuestion": "Một cảnh báo nổ mỗi đêm và lần nào người trực cũng đóng nó lại mà không làm gì. Nên xử lý thế nào?",
     "openingOptions": [
-      "Không thể xác định nếu thiếu thời gian quan sát",
-      "Cả hai bằng nhau nếu giá cuối kỳ giống nhau",
-      "Cổ phiếu B",
-      "Cổ phiếu A - dao động giá mạnh hơn nhiều"
+      "Xoá nó, hoặc hạ xuống mức không đánh thức người",
+      "Nâng ngưỡng của nó lên để nó nổ ít lần hơn mỗi tuần",
+      "Ghi chú vào tài liệu trực rằng cảnh báo này có thể bỏ qua",
+      "Chuyển nó sang một kênh riêng để đội xem lại vào buổi sáng"
     ],
-    "correctOption": 3,
-    "explanation": "Volatility (biến động) đo mức độ dao động của giá một tài sản qua thời gian, thường tính bằng độ lệch chuẩn (standard deviation) của lợi suất. Volatility cao không nhất thiết xấu - nó chỉ phản ánh mức độ không chắc chắn, và thường đi kèm tiềm năng lợi nhuận cao hơn (đền bù rủi ro).",
+    "correctOption": 0,
+    "explanation": "Một cảnh báo mà phản ứng đúng là không làm gì thì nó không phải cảnh báo, và giữ nó lại chỉ dạy người trực thói quen bỏ qua - thói quen ấy không phân biệt được cảnh báo nào. Nâng ngưỡng chỉ làm nó nổ thưa hơn mà vẫn vô nghĩa. Chuyển sang kênh xem sau thì hợp lý nếu nó thật sự đáng xem, nhưng đó là một quyết định riêng phải chứng minh, còn mặc định của một cảnh báo không dẫn tới hành động là xoá.",
     "diagram": [
       {
-        "label": "Giá tài sản dao động qua thời gian",
+        "label": "Có ai phải làm gì ngay bây giờ không?",
         "arrow": true
       },
       {
-        "label": "Đo bằng độ lệch chuẩn lợi suất",
+        "label": "Không → không đánh thức, đưa vào việc ban ngày",
         "arrow": true
       },
       {
-        "label": "= Volatility"
+        "label": "Có → cảnh báo phải kèm việc cần làm",
+        "arrow": true
+      },
+      {
+        "label": "Không rõ → chưa đủ điều kiện làm cảnh báo"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Cổ phiếu công nghệ vs tiện ích",
-      "description": "Cổ phiếu công nghệ tăng trưởng cao (như các startup mới niêm yết) thường có volatility rất cao, trong khi cổ phiếu ngành tiện ích công cộng (điện, nước) thường ổn định, volatility thấp hơn nhiều."
+      "company": "Mỏi vì cảnh báo",
+      "description": "Một đội nhận trung bình bốn mươi cảnh báo mỗi đêm, trong đó khoảng hai cái là thật. Sau vài tháng, người trực đóng hàng loạt theo phản xạ - và bỏ lỡ một sự cố thật vì nó nằm giữa đám ấy."
+    },
+    "keyTakeaways": [
+      "Cảnh báo đánh thức người phải gắn với ảnh hưởng lên người dùng.",
+      "Một cảnh báo mà phản ứng đúng là không làm gì thì phải bị xoá.",
+      "Cảnh báo trên triệu chứng ít hơn cảnh báo trên từng nguyên nhân.",
+      "Mỗi cảnh báo cần một tài liệu ngắn nói rõ phải làm gì tiếp theo."
+    ],
+    "summary": {
+      "keyIdea": "Chỉ đánh thức người khi có việc phải làm ngay và người dùng đang chịu ảnh hưởng.",
+      "formula": "Không có hành động thì không có cảnh báo.",
+      "commonMistake": "Đặt cảnh báo cho mọi nguyên nhân có thể thay vì cho triệu chứng."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy danh sách cảnh báo đã nổ trong ba mươi ngày qua, đếm xem bao nhiêu cái dẫn tới một hành động thật. Những cái còn lại là ứng viên để xoá."
+    },
+    "practicePrompt": {
+      "question": "Vì sao nên cảnh báo trên triệu chứng thay vì trên từng nguyên nhân?",
+      "options": [
+        "Vì một cảnh báo triệu chứng bắt được cả những nguyên nhân chưa ai nghĩ tới",
+        "Vì cảnh báo triệu chứng có độ trễ thấp hơn cảnh báo nguyên nhân",
+        "Vì các công cụ giám sát xử lý chỉ số triệu chứng hiệu quả hơn",
+        "Vì nguyên nhân thường thay đổi mỗi khi hệ thống được nâng cấp"
+      ],
+      "correct": 0,
+      "explanation": "Bạn không thể liệt kê trước mọi cách một hệ thống có thể hỏng, và những sự cố tệ nhất thường đến từ tổ hợp không ai lường được. Một cảnh báo đặt trên tỷ lệ lỗi của người dùng thì nổ bất kể nguyên nhân là gì, kể cả nguyên nhân mới tinh."
     },
     "quiz": [
       {
-        "question": "Volatility cao có luôn đồng nghĩa với 'rủi ro xấu' cần tránh không?",
+        "question": "Điều kiện để một cảnh báo được phép đánh thức người là gì?",
         "options": [
-          "Không nhất thiết - volatility cao phản ánh sự không chắc chắn, nhưng nếu đi kèm lợi nhuận kỳ vọng tương xứng và phù hợp với khẩu vị rủi ro của nhà đầu tư, nó có thể là lựa chọn hợp lý",
-          "Volatility chỉ áp dụng cho thị trường tiền điện tử",
-          "Đúng, luôn nên tránh mọi tài sản có volatility cao",
-          "Chỉ tài sản có volatility thấp mới có thể sinh lời"
+          "Có người dùng đang chịu ảnh hưởng và có việc phải làm ngay",
+          "Có một ngưỡng kỹ thuật nào đó vừa bị vượt qua trên bảng theo dõi",
+          "Có nguy cơ sự cố xảy ra trong vài giờ tới nếu không can thiệp",
+          "Có một thành phần trong hệ thống đang ở trạng thái bất thường"
         ],
         "correct": 0,
-        "explanation": "Volatility là con dao hai lưỡi: nó khuếch đại cả khả năng lãi lớn lẫn lỗ lớn. Nhà đầu tư trẻ với chân trời đầu tư dài có thể chấp nhận volatility cao để đổi lấy lợi nhuận kỳ vọng cao hơn; nhà đầu tư gần nghỉ hưu thường ưu tiên volatility thấp để bảo toàn vốn."
+        "explanation": "Nguy cơ trong vài giờ tới là loại việc để lại cho ban ngày, trừ khi vài giờ ấy rơi vào lúc không có ai. Hai lựa chọn còn lại đều là chỉ số kỹ thuật và chúng thường xuyên bất thường mà không ai chịu ảnh hưởng."
       },
       {
-        "question": "Volatility của một cổ phiếu được đo trong 3 tháng gần đây rất thấp. Điều này có đảm bảo volatility trong 3 tháng tới cũng sẽ thấp tương tự không?",
+        "question": "Cảnh báo mà phản ứng đúng là không làm gì gây ra tác hại nào?",
         "options": [
-          "Có, volatility luôn ổn định và dự báo chính xác cho tương lai",
-          "Không đảm bảo - volatility có thể thay đổi đột ngột theo sự kiện bất ngờ (tin tức, khủng hoảng, thay đổi cơ bản trong kinh doanh); volatility lịch sử chỉ là một ước tính tham khảo, không phải một cam kết cho tương lai",
-          "Volatility chỉ thay đổi mỗi 10 năm một lần",
-          "Volatility trong quá khứ luôn bằng chính xác volatility tương lai"
+          "Nó dạy người trực thói quen bỏ qua, và thói quen ấy không phân biệt được",
+          "Nó làm tăng chi phí lưu trữ dữ liệu giám sát của hệ thống",
+          "Nó khiến các báo cáo vận hành hằng tháng trông xấu hơn thực tế",
+          "Nó chiếm chỗ trong danh sách cảnh báo khiến khó tìm cảnh báo khác"
         ],
-        "correct": 1,
-        "explanation": "Đây là giới hạn quan trọng của mọi thước đo dựa trên dữ liệu lịch sử: volatility có thể tăng đột biến (volatility clustering) khi có sự kiện bất ngờ - giai đoạn \"yên tĩnh\" kéo dài đôi khi lại là dấu hiệu cảnh báo về một đợt biến động mạnh sắp tới, không phải sự đảm bảo ổn định lâu dài."
+        "correct": 0,
+        "explanation": "Đây là chi phí thật và nó không hiện trên bất kỳ bảng nào cho tới ngày một sự cố nghiêm trọng bị đóng nhầm cùng với đám còn lại. Một đội nhận bốn mươi cảnh báo mỗi đêm không có bốn mươi vấn đề, họ có một vấn đề."
+      },
+      {
+        "question": "Mỗi cảnh báo nên đi kèm với cái gì?",
+        "options": [
+          "Một tài liệu ngắn nói rõ việc cần kiểm tra và cần làm tiếp",
+          "Tên của người đã tạo ra cảnh báo đó và ngày tạo",
+          "Đường dẫn tới bảng theo dõi chứa chỉ số liên quan",
+          "Mức độ nghiêm trọng được phân loại theo một thang gồm bốn bậc"
+        ],
+        "correct": 0,
+        "explanation": "Người bị đánh thức lúc ba giờ sáng có khả năng suy luận kém hơn nhiều so với chính họ lúc mười giờ sáng. Một liên kết tới bảng theo dõi thì hữu ích, nhưng nó không thay được câu trả lời cho câu hỏi bây giờ tôi phải làm gì."
+      },
+      {
+        "question": "Vì sao nâng ngưỡng không sửa được một cảnh báo vô nghĩa?",
+        "options": [
+          "Vì nó chỉ làm cảnh báo nổ thưa hơn chứ không làm nó có ích hơn",
+          "Vì ngưỡng mới sẽ nhanh chóng bị vượt qua khi hệ thống lớn lên",
+          "Vì việc thay đổi ngưỡng cần được cả đội xem xét và phê duyệt",
+          "Vì các công cụ giám sát không cho phép đặt ngưỡng động theo tải"
+        ],
+        "correct": 0,
+        "explanation": "Vấn đề không nằm ở tần suất mà ở chỗ nó không dẫn tới hành động nào. Nổ mười lần một tháng thay vì ba mươi lần thì vẫn là mười lần đánh thức người vì một thứ không cần ai làm gì."
+      },
+      {
+        "question": "Cảnh báo dựa trên nguyên nhân có hạn chế gì?",
+        "options": [
+          "Chỉ bắt được những cách hỏng mà ai đó đã nghĩ ra từ trước",
+          "Cần nhiều tài nguyên tính toán hơn để theo dõi được liên tục",
+          "Khó cấu hình hơn so với cảnh báo dựa trên triệu chứng",
+          "Thường nổ chậm hơn vì phải chờ dữ liệu từ nhiều nguồn"
+        ],
+        "correct": 0,
+        "explanation": "Sự cố tệ nhất thường là tổ hợp không ai lường trước, và không có cảnh báo nguyên nhân nào phủ được nó. Chúng vẫn có chỗ - để chẩn đoán nhanh - nhưng lớp bảo vệ chính phải là triệu chứng."
       }
     ],
-    "keyTakeaways": [
-      "Volatility: thước đo mức độ dao động giá của một tài sản",
-      "Volatility cao không xấu về bản chất - cần cân nhắc cùng lợi nhuận kỳ vọng và khẩu vị rủi ro",
-      "Là một trong những đầu vào quan trọng nhất của mọi mô hình quản trị rủi ro danh mục"
-    ],
-    "practicePrompt": {
-      "question": "Cổ phiếu A dao động giữa 90.000đ và 110.000đ trong một tháng. Cổ phiếu B dao động giữa 98.000đ và 102.000đ trong cùng thời gian, dù cả hai đều kết thúc tháng ở mức giá tương tự nhau (khoảng 100.000đ). Khái niệm nào mô tả sự khác biệt về mức độ 'nhảy múa' giá giữa hai cổ phiếu này?",
-      "options": [
-        "Đây là sự khác biệt về Expected Return, vì hai cổ phiếu có mức lợi nhuận kỳ vọng khác nhau",
-        "Volatility là thước đo mức độ dao động giá; A có biên độ lớn hơn B",
-        "Đây là sự khác biệt về Correlation giữa hai cổ phiếu với thị trường chung",
-        "Không có khái niệm tài chính nào mô tả được sự khác biệt này giữa hai cổ phiếu"
-      ],
-      "correct": 1,
-      "explanation": "Volatility: thước đo mức độ dao động giá của một tài sản. Cổ phiếu A có volatility cao hơn (biên độ dao động lớn: 90.000-110.000) so với B (98.000-102.000) - volatility cao thường đi kèm rủi ro cao hơn dù lợi nhuận cuối kỳ có thể giống nhau."
-    },
-    "summary": {
-      "keyIdea": "Volatility: thước đo mức độ dao động giá của một tài sản",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Volatility cao không xấu về bản chất - cần cân nhắc cùng lợi nhuận kỳ vọng và khẩu vị rủi ro"
-    },
-    "application": {
-      "title": "So sánh volatility hai tài sản",
-      "message": "Nhìn biểu đồ giá 6 tháng gần nhất của một cổ phiếu và một quỹ trái phiếu, tự đánh giá xem đường giá nào 'gồ ghề' hơn - đó chính là volatility bạn đang cảm nhận bằng mắt.",
-      "secondary": "Volatility cao không có nghĩa là xấu, chỉ là bạn cần chuẩn bị tâm lý kỹ hơn."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Volatility (biến động) đo mức độ dao động giá của một tài sản qua thời gian, thường tính bằng độ lệch chuẩn của lợi suất. Volatility cao không tự động là điều xấu - nó chỉ phản ánh mức độ không chắc chắn, và thường đi kèm tiềm năng lợi nhuận cao hơn như một khoản đền bù cho sự bất ổn đó."
+        "text": "Có mục tiêu và có ngân sách rồi, câu hỏi tiếp theo là khi nào một con số xấu đi thì phải có người bị đánh thức. Đây là chỗ nhiều đội đi từ thiếu thông tin sang ngập thông tin mà không dừng lại ở giữa."
       },
       {
         "type": "heading",
-        "text": "Volatility cao: con dao hai lưỡi"
-      },
-      {
-        "type": "paragraph",
-        "text": "Volatility khuếch đại cả khả năng lãi lớn lẫn lỗ lớn. Cổ phiếu công nghệ tăng trưởng cao (như các startup mới niêm yết) thường có volatility rất cao, trong khi cổ phiếu ngành tiện ích công cộng (điện, nước) ổn định hơn nhiều. Nhà đầu tư trẻ với chân trời đầu tư dài có thể chấp nhận volatility cao để đổi lấy lợi nhuận kỳ vọng cao hơn; người gần nghỉ hưu thường ưu tiên volatility thấp để bảo toàn vốn đã tích lũy."
-      },
-      {
-        "type": "heading",
-        "text": "Volatility quá khứ không đảm bảo tương lai"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một cổ phiếu có volatility rất thấp trong 3 tháng gần đây không đảm bảo 3 tháng tới cũng sẽ yên bình. Volatility có thể tăng đột biến khi có sự kiện bất ngờ - tin tức xấu, khủng hoảng, thay đổi cơ bản trong kinh doanh. Đây là hiện tượng gọi là \"volatility clustering\": một giai đoạn yên tĩnh kéo dài đôi khi lại là dấu hiệu cảnh báo một đợt biến động mạnh sắp tới, chứ không phải sự đảm bảo ổn định lâu dài."
+        "text": "Ba câu hỏi trước khi tạo một cảnh báo"
       },
       {
         "type": "list",
         "items": [
-          "Volatility đo mức độ dao động giá, không đo hướng đi (tăng hay giảm)",
-          "Volatility cao cần đi kèm lợi nhuận kỳ vọng tương xứng để hợp lý",
-          "Chân trời đầu tư càng dài, càng có thể chấp nhận volatility cao hơn",
-          "Dữ liệu volatility lịch sử chỉ là ước tính tham khảo, không phải cam kết cho tương lai"
+          "Có người dùng đang chịu ảnh hưởng không? Nếu không, đây là việc ban ngày.",
+          "Có việc gì phải làm ngay không? Nếu phản ứng đúng là chờ xem, thì không đánh thức ai.",
+          "Người bị đánh thức sẽ biết làm gì chứ? Nếu chưa, viết tài liệu trước khi bật cảnh báo."
         ]
+      },
+      {
+        "type": "callout",
+        "label": "Chi phí không hiện trên bảng nào",
+        "text": "Một đội nhận bốn mươi cảnh báo mỗi đêm không có bốn mươi vấn đề - họ có một vấn đề. Người trực học cách đóng hàng loạt theo phản xạ, và phản xạ ấy không phân biệt được cảnh báo thật với cảnh báo giả."
+      },
+      {
+        "type": "heading",
+        "text": "Triệu chứng trước, nguyên nhân sau"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Cảnh báo triệu chứng",
+          "text": "Tỷ lệ lỗi người dùng gặp, độ trễ ở phân vị cao. Nổ bất kể nguyên nhân là gì, kể cả nguyên nhân mới tinh."
+        },
+        "right": {
+          "label": "Cảnh báo nguyên nhân",
+          "text": "Đĩa đầy, hàng đợi dài, một máy chủ chết. Hữu ích để chẩn đoán nhanh, nhưng chỉ bắt được cách hỏng đã nghĩ ra."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách thu gọn danh sách cảnh báo hiệu quả nhất là đếm: trong ba mươi ngày qua, cảnh báo nào đã dẫn tới một hành động thật? Những cái còn lại hoặc phải được sửa cho có ích, hoặc phải bị xoá. Giữ lại vì biết đâu có ngày cần là cách một danh sách bốn mươi cảnh báo hình thành."
       },
       {
         "type": "closing",
         "lines": [
-          "Volatility không phải kẻ thù của nhà đầu tư - thiếu hiểu biết về nó mới là kẻ thù thực sự."
+          "Mỗi cảnh báo lúc ba giờ sáng là một khoản rút từ sức bền của đội. Tiêu nó cho thứ không ai làm gì được là lãng phí đắt nhất trong vận hành.",
+          "Bài sau chuyển từ phát hiện sang phòng ngừa: dự phòng, và chỗ nó không giúp được gì."
         ]
       }
     ]
   },
   {
     "id": 166,
-    "slug": "standard-deviation-dau-tu",
-    "title": "Tự học Tài chính Day 166: Standard Deviation trong đầu tư",
-    "subtitle": "Công cụ toán học đo lường chính xác mức độ biến động",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📘",
-    "openingQuestion": "Quỹ A có lợi nhuận trung bình 10%/năm, độ lệch chuẩn 5%. Quỹ B cũng lợi nhuận trung bình 10%/năm nhưng độ lệch chuẩn 20%. Quỹ nào 'dễ đoán' hơn?",
+    "slug": "du-phong-va-diem-hong-don-le",
+    "title": "Dự phòng: nhân đôi cái gì, và cái gì không nhân đôi được",
+    "subtitle": "Hai máy chủ không giúp gì nếu cả hai cùng đọc một cơ sở dữ liệu, và cơ sở dữ liệu ấy chết.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🧯",
+    "track": "professional",
+    "whyItMatters": "Dự phòng là khoản đầu tư đắt nhất trong vận hành, và rất dễ mua nhầm chỗ. Tìm ra điểm hỏng đơn lẻ thật sự thường rẻ hơn và hiệu quả hơn việc nhân đôi mọi thứ.",
+    "openingQuestion": "Dịch vụ chạy trên ba máy chủ nhưng vẫn ngừng hoàn toàn khi một thành phần hỏng. Vì sao?",
     "openingOptions": [
-      "Không thể so sánh nếu còn thiếu thời gian quan sát dài hơn",
-      "Cả hai như nhau vì lợi nhuận trung bình giống nhau",
-      "Quỹ A - độ lệch chuẩn thấp hơn nghĩa là ổn định hơn hẳn",
-      "Quỹ B, vì độ lệch chuẩn cao hơn"
+      "Vì cả ba cùng phụ thuộc vào một thành phần không được nhân đôi",
+      "Vì cơ chế chuyển đổi giữa các máy chủ chưa được cấu hình cho đúng",
+      "Vì ba máy chủ đó cùng nằm trên một máy vật lý duy nhất",
+      "Vì tải dồn hết sang hai máy còn lại khiến chúng quá tải theo"
     ],
-    "correctOption": 2,
-    "explanation": "Standard deviation (độ lệch chuẩn) đo lường chính xác bằng số mức độ phân tán của lợi suất xung quanh giá trị trung bình. Hai tài sản có cùng lợi nhuận kỳ vọng nhưng độ lệch chuẩn khác nhau mang mức độ rủi ro rất khác: độ lệch chuẩn thấp hơn nghĩa là kết quả thực tế ít 'bất ngờ' hơn qua các năm.",
+    "correctOption": 0,
+    "explanation": "Nhân đôi tầng ứng dụng là phần dễ nhất và cũng là phần ít khi là nút thắt. Bên dưới nó thường còn một cơ sở dữ liệu, một dịch vụ xác thực, một bộ cân bằng tải, một vùng hạ tầng - và chỉ cần một thứ trong đó không có bản thay thế thì độ tin cậy của cả hệ thống rơi về đúng mức của nó. Ba nguyên nhân còn lại đều có thật và đều xảy ra, nhưng chúng là những cách hỏng cụ thể chứ không giải thích được vì sao dự phòng nói chung lại không có tác dụng.",
     "diagram": [
       {
-        "label": "Lợi suất trung bình của tài sản",
+        "label": "3 máy chủ ứng dụng - phần dễ nhân đôi",
         "arrow": true
       },
       {
-        "label": "Đo độ phân tán quanh giá trị đó",
+        "label": "1 cơ sở dữ liệu, 1 dịch vụ xác thực",
         "arrow": true
       },
       {
-        "label": "= Standard Deviation (độ lệch chuẩn)"
+        "label": "Độ tin cậy rơi về mức của mắt xích đơn lẻ",
+        "arrow": true
+      },
+      {
+        "label": "Vẽ sơ đồ ra rồi tìm chỗ chỉ có một"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "So sánh quỹ trái phiếu và quỹ cổ phiếu",
-      "description": "Quỹ trái phiếu chính phủ thường có độ lệch chuẩn lợi suất hàng năm chỉ 2-5%, trong khi quỹ cổ phiếu tăng trưởng có thể lên tới 15-25% - phản ánh rõ sự khác biệt về mức độ rủi ro giữa hai loại tài sản."
+      "company": "Bản sao chưa từng được thử",
+      "description": "Nhiều hệ thống có bản sao dự phòng nhưng chưa bao giờ chạy thử chuyển đổi sang nó. Lần đầu tiên thử là lúc bản chính đã chết, và đó cũng là lúc phát hiện ra bản sao thiếu một phần cấu hình."
+    },
+    "keyTakeaways": [
+      "Nhân đôi tầng dễ nhất thường không phải nhân đôi đúng chỗ.",
+      "Vẽ sơ đồ phụ thuộc rồi tìm mọi chỗ chỉ có đúng một.",
+      "Bản sao chưa từng được chuyển sang thì chưa phải bản sao.",
+      "Dự phòng không cứu được lỗi lan theo cấu hình hoặc theo mã."
+    ],
+    "summary": {
+      "keyIdea": "Dự phòng chỉ có giá trị ở đúng điểm hỏng đơn lẻ, và chỉ khi đã được thử.",
+      "formula": "Tìm chỗ chỉ có một, rồi hỏi nếu nó chết thì sao.",
+      "commonMistake": "Nhân đôi phần dễ nhân đôi rồi coi hệ thống đã an toàn."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Vẽ mọi thứ dịch vụ của bạn phụ thuộc vào và khoanh tròn những chỗ chỉ có đúng một bản. Với mỗi vòng tròn, hỏi lần cuối cùng ai đó thử cho nó chết là khi nào."
+    },
+    "practicePrompt": {
+      "question": "Vì sao dự phòng không cứu được một bản phát hành có lỗi?",
+      "options": [
+        "Vì mọi bản sao đều chạy cùng một đoạn mã và cùng hỏng như nhau",
+        "Vì bản phát hành mới thường được đưa lên từng máy chủ một",
+        "Vì cơ chế chuyển đổi chỉ hoạt động khi máy chủ ngừng hẳn",
+        "Vì lỗi trong mã không được các phép kiểm tra sức khoẻ phát hiện"
+      ],
+      "correct": 0,
+      "explanation": "Dự phòng chống được lỗi độc lập - một máy chết, một đĩa hỏng - chứ không chống được nguyên nhân chung. Mã sai, cấu hình sai và chứng chỉ hết hạn đều lan tới mọi bản sao cùng lúc, và chống chúng cần triển khai theo đợt cùng khả năng quay lui chứ không cần thêm máy."
     },
     "quiz": [
       {
-        "question": "Trong phân phối chuẩn (normal distribution), khoảng bao nhiêu phần trăm kết quả nằm trong phạm vi ±1 độ lệch chuẩn quanh giá trị trung bình?",
+        "question": "Điểm hỏng đơn lẻ là gì?",
         "options": [
-          "Khoảng 50%",
-          "100% luôn luôn",
-          "Không thể xác định nếu thiếu dữ liệu thực tế",
-          "Khoảng 68% - đây là quy tắc thống kê cơ bản (68-95-99.7 rule) áp dụng rộng rãi trong tài chính để ước lượng xác suất"
-        ],
-        "correct": 3,
-        "explanation": "Quy tắc 68-95-99.7: nếu lợi suất phân phối chuẩn, khoảng 68% quan sát nằm trong ±1 độ lệch chuẩn, 95% trong ±2 độ lệch chuẩn, 99.7% trong ±3 độ lệch chuẩn quanh giá trị trung bình. Đây là cơ sở để ước lượng xác suất các kịch bản lợi nhuận trong quản trị rủi ro danh mục."
-      },
-      {
-        "question": "Nếu phân phối lợi suất của một tài sản không tuân theo phân phối chuẩn (có \"đuôi béo\" - fat tails, tức xác suất xảy ra sự kiện cực đoan cao hơn dự đoán), việc chỉ dùng độ lệch chuẩn để đo rủi ro có đủ không?",
-        "options": [
-          "Không đủ - độ lệch chuẩn dựa trên giả định phân phối chuẩn có thể đánh giá THẤP xác suất các sự kiện cực đoan (như sụp đổ thị trường) xảy ra trong thực tế với tài sản có \"đuôi béo\", cần bổ sung thêm các thước đo khác như Value at Risk hay stress testing",
-          "Đủ, độ lệch chuẩn luôn phản ánh chính xác mọi loại rủi ro",
-          "Phân phối chuẩn luôn đúng với mọi loại tài sản tài chính",
-          "Chỉ cần dùng độ lệch chuẩn cho mọi loại tài sản trong mọi tình huống"
+          "Thành phần mà nếu nó chết thì cả hệ thống ngừng theo",
+          "Thành phần có tần suất hỏng cao nhất trong cả hệ thống",
+          "Thành phần chưa được đưa vào hệ thống giám sát tự động",
+          "Thành phần được nhiều dịch vụ khác nhau cùng sử dụng"
         ],
         "correct": 0,
-        "explanation": "Đây là một hạn chế quan trọng đã được nhiều nhà kinh tế học (như Nassim Taleb với khái niệm \"Black Swan\") chỉ ra: thị trường tài chính thực tế thường có nhiều sự kiện cực đoan hơn phân phối chuẩn dự đoán - độ lệch chuẩn đơn thuần có thể khiến nhà đầu tư đánh giá thấp rủi ro đuôi (tail risk)."
+        "explanation": "Chia sẻ giữa nhiều dịch vụ làm hậu quả rộng hơn nhưng tự nó chưa phải điều kiện - một thành phần dùng chung mà có bản thay thế thì không phải điểm hỏng đơn lẻ. Điều kiện duy nhất là không có gì thay thế nó được."
+      },
+      {
+        "question": "Vì sao bản sao chưa được thử chuyển sang thì chưa đáng tin?",
+        "options": [
+          "Vì nó có thể thiếu cấu hình hoặc dữ liệu mà không ai phát hiện ra",
+          "Vì dữ liệu trên bản sao luôn cũ hơn bản chính một khoảng thời gian",
+          "Vì phần cứng của bản sao thường yếu hơn phần cứng bản chính",
+          "Vì các phép kiểm tra sức khoẻ không chạy trên bản sao dự phòng"
+        ],
+        "correct": 0,
+        "explanation": "Một bản sao chỉ ngồi đó nhận dữ liệu trông giống hệt một bản sao đã sẵn sàng, cho tới lúc phải dùng. Diễn tập chuyển đổi định kỳ là cách duy nhất biến giả định thành sự thật đã kiểm chứng."
+      },
+      {
+        "question": "Loại lỗi nào dự phòng không giúp được?",
+        "options": [
+          "Lỗi có nguyên nhân chung, lan tới mọi bản sao cùng lúc",
+          "Lỗi phần cứng xảy ra đồng thời trên nhiều máy khác nhau",
+          "Lỗi mạng làm mất kết nối giữa các vùng hạ tầng",
+          "Lỗi do quá tải khi lượng truy cập tăng đột biến"
+        ],
+        "correct": 0,
+        "explanation": "Mã sai, cấu hình sai, chứng chỉ hết hạn - chúng đi cùng nhau tới mọi bản sao. Cách chống là triển khai theo đợt và có đường quay lui, tức là một loại biện pháp hoàn toàn khác với việc thêm máy."
+      },
+      {
+        "question": "Vì sao nhân đôi tầng ứng dụng thường chưa đủ?",
+        "options": [
+          "Vì bên dưới nó vẫn còn những thành phần chỉ có đúng một bản",
+          "Vì tầng ứng dụng ít khi là nơi xảy ra sự cố nhất trong hệ thống",
+          "Vì các bản sao ứng dụng cần một cơ chế đồng bộ phức tạp",
+          "Vì chi phí nhân đôi tầng ứng dụng cao hơn các tầng khác"
+        ],
+        "correct": 0,
+        "explanation": "Đó là phần dễ nhân đôi nhất, nên nó luôn được làm trước, và cảm giác an toàn đến ngay sau đó. Cơ sở dữ liệu, dịch vụ xác thực, bộ cân bằng tải hay cả một vùng hạ tầng vẫn có thể là chỗ chỉ có một."
+      },
+      {
+        "question": "Cách rẻ nhất để tìm điểm hỏng đơn lẻ là gì?",
+        "options": [
+          "Vẽ sơ đồ phụ thuộc rồi tìm mọi chỗ chỉ có đúng một bản",
+          "Chờ sự cố xảy ra rồi ghi lại thành phần đã gây ra nó",
+          "Chạy công cụ quét hạ tầng để liệt kê toàn bộ tài nguyên",
+          "Xem lại nhật ký hệ thống của mười hai tháng gần nhất"
+        ],
+        "correct": 0,
+        "explanation": "Nó mất một buổi chiều và không tốn đồng nào, mà thường tìm ra hai hoặc ba thứ không ai để ý. Ba cách còn lại đều cho dữ liệu về những gì đã hỏng, chứ không cho danh sách những gì sẽ kéo sập hệ thống nếu hỏng."
       }
     ],
-    "keyTakeaways": [
-      "Standard deviation: công cụ toán học chính xác đo mức độ phân tán của lợi suất",
-      "Hai tài sản cùng lợi nhuận trung bình nhưng độ lệch chuẩn khác nhau có mức rủi ro rất khác",
-      "Quy tắc 68-95-99.7 giúp ước lượng xác suất các kịch bản lợi nhuận thực tế"
-    ],
-    "practicePrompt": {
-      "question": "Bạn muốn định lượng volatility của một cổ phiếu bằng một con số cụ thể (không chỉ mô tả định tính 'biến động mạnh' hay 'ổn định'), dựa trên lịch sử lợi suất hàng tháng trong 3 năm qua. Công cụ toán học nào được dùng để tính ra con số này?",
-      "options": [
-        "Beta, vì đây là công cụ duy nhất đo lường mức độ biến động của một cổ phiếu",
-        "Standard deviation đo mức độ phân tán của lợi suất quanh giá trị trung bình",
-        "Correlation, vì đây là công cụ đo lường mức độ dao động giá của một tài sản riêng lẻ",
-        "Không có công cụ toán học nào có thể định lượng chính xác volatility, chỉ có thể ước lượng định tính"
-      ],
-      "correct": 1,
-      "explanation": "Standard deviation: công cụ toán học chính xác đo mức độ phân tán của lợi suất quanh giá trị trung bình. Đây là cách định lượng volatility phổ biến nhất trong tài chính - độ lệch chuẩn càng lớn, lợi suất càng phân tán rộng, tài sản càng biến động mạnh."
-    },
-    "summary": {
-      "keyIdea": "Standard deviation: công cụ toán học chính xác đo mức độ phân tán của lợi suất",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Hai tài sản cùng lợi nhuận trung bình nhưng độ lệch chuẩn khác nhau có mức rủi ro rất khác"
-    },
-    "application": {
-      "title": "Tra standard deviation một quỹ",
-      "message": "Bài học đã hướng dẫn cách đọc độ lệch chuẩn trên factsheet quỹ thật (ví dụ VESAF) - xem lại phần phía trên. Giờ hãy tự tải factsheet của một quỹ bạn quan tâm và tìm số liệu đó.",
-      "secondary": "Con số này thường bị bỏ qua nhưng nói lên rất nhiều về mức độ 'bất ngờ' bạn sẽ gặp."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Standard deviation (độ lệch chuẩn) là công cụ toán học biến khái niệm \"biến động\" thành một con số chính xác - đo mức độ phân tán của lợi suất xung quanh giá trị trung bình. Hai tài sản có cùng lợi nhuận kỳ vọng nhưng độ lệch chuẩn khác nhau mang mức rủi ro rất khác nhau: độ lệch chuẩn thấp hơn nghĩa là kết quả thực tế ít \"bất ngờ\" hơn qua từng năm."
+        "text": "Sau khi biết khi nào phải phản ứng, câu hỏi tiếp theo là làm sao để phải phản ứng ít hơn. Dự phòng là câu trả lời quen thuộc nhất, và cũng là câu trả lời hay được mua nhầm chỗ nhất."
       },
       {
         "type": "heading",
-        "text": "Quy tắc 68-95-99.7"
+        "text": "Nhân đôi phần dễ không giải quyết được gì"
       },
       {
         "type": "paragraph",
-        "text": "Nếu lợi suất của một tài sản phân phối chuẩn (normal distribution), khoảng 68% kết quả nằm trong phạm vi ±1 độ lệch chuẩn quanh giá trị trung bình, 95% nằm trong ±2 độ lệch chuẩn, và 99.7% nằm trong ±3 độ lệch chuẩn. Đây là quy tắc thống kê cơ bản được dùng rộng rãi trong tài chính để ước lượng xác suất các kịch bản lợi nhuận. Ví dụ, quỹ trái phiếu chính phủ thường có độ lệch chuẩn lợi suất hàng năm chỉ 2-5%, trong khi quỹ cổ phiếu tăng trưởng có thể lên tới 15-25% - phản ánh rõ sự khác biệt về mức độ rủi ro."
-      },
-      {
-        "type": "heading",
-        "text": "Giới hạn: đuôi béo (fat tails)"
-      },
-      {
-        "type": "paragraph",
-        "text": "Vấn đề là thị trường tài chính thực tế không phải lúc nào cũng tuân theo phân phối chuẩn - nhiều tài sản có \"đuôi béo\" (fat tails), nghĩa là xác suất xảy ra sự kiện cực đoan (sụp đổ thị trường, khủng hoảng) cao hơn nhiều so với những gì phân phối chuẩn dự đoán. Nassim Taleb gọi những sự kiện này là \"Black Swan\". Chỉ dùng độ lệch chuẩn để đo rủi ro có thể khiến nhà đầu tư đánh giá THẤP xác suất các cú sốc lớn - cần bổ sung thêm các công cụ khác như Value at Risk hay stress testing."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Standard deviation lượng hóa chính xác mức độ phân tán của lợi suất",
-          "Quy tắc 68-95-99.7 giúp ước lượng xác suất các kịch bản lợi nhuận",
-          "Trái phiếu chính phủ: độ lệch chuẩn thấp (2-5%); cổ phiếu tăng trưởng: cao (15-25%)",
-          "Tài sản có \"đuôi béo\" khiến độ lệch chuẩn đơn thuần đánh giá thấp rủi ro cực đoan"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Cách đọc độ lệch chuẩn trên factsheet quỹ thật"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Factsheet của các quỹ mở VN (VESAF, VEOF, SSI-SCA...) thường công bố \"Độ lệch chuẩn\" (Standard Deviation) hàng năm bên cạnh lợi nhuận bình quân - đây là thước đo mức dao động của lợi nhuận qua các năm, không phải bản thân lợi nhuận",
-          "Hai quỹ có cùng lợi nhuận bình quân nhưng độ lệch chuẩn khác nhau: quỹ có độ lệch chuẩn thấp hơn đáng tin cậy hơn vì lợi nhuận ổn định qua từng năm, thay vì có năm rất cao có năm rất thấp",
-          "VESAF đạt bình quân 22,9%/năm (5 năm) - con số này riêng nó không nói lên độ ổn định, cần đặt cạnh độ lệch chuẩn để đánh giá đầy đủ"
-        ]
+        "text": "Tầng ứng dụng không giữ trạng thái nên nhân đôi nó rất rẻ, và vì thế nó luôn được làm trước. Nhưng bên dưới thường còn một cơ sở dữ liệu, một dịch vụ xác thực, một bộ cân bằng tải, đôi khi cả một vùng hạ tầng. Chỉ cần một thứ trong đó không có bản thay thế thì độ tin cậy của cả hệ thống rơi về đúng mức của nó."
       },
       {
         "type": "callout",
-        "label": "Cách tự tra cứu",
-        "text": "Mở factsheet PDF của quỹ (tải trên trang công ty quản lý quỹ, ví dụ VinaCapital, SSIAM), tìm mục \"Statistics\" hoặc \"Thống kê\", đối chiếu độ lệch chuẩn giữa 2 quỹ cùng mức lợi nhuận kỳ vọng."
+        "label": "Chưa thử thì chưa có",
+        "text": "Một bản sao ngồi nhận dữ liệu trông giống hệt một bản sao sẵn sàng phục vụ. Khác biệt chỉ lộ ra vào lần đầu tiên bạn chuyển sang nó - và nếu lần đầu tiên ấy là lúc bản chính đã chết thì bạn đang gỡ lỗi trong sự cố."
+      },
+      {
+        "type": "heading",
+        "text": "Có loại lỗi thêm máy không chữa được"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Lỗi độc lập",
+          "text": "Một máy chết, một đĩa hỏng, một vùng mất điện. Đây đúng là chỗ dự phòng phát huy tác dụng."
+        },
+        "right": {
+          "label": "Lỗi nguyên nhân chung",
+          "text": "Mã sai, cấu hình sai, chứng chỉ hết hạn. Lan tới mọi bản sao cùng lúc; chống bằng triển khai theo đợt và đường quay lui."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Phân biệt hai loại này quyết định bạn tiêu tiền vào đâu. Một đội gặp toàn sự cố loại thứ hai mà lại đầu tư vào dự phòng đa vùng sẽ trả rất nhiều để phòng một thứ chưa từng xảy ra với mình."
       },
       {
         "type": "closing",
         "lines": [
-          "Độ lệch chuẩn cho bạn một con số - nhưng con số đó chỉ đúng nếu thế giới thực cư xử đúng như mô hình giả định."
+          "Câu hỏi hiệu quả nhất trong cả bài này chỉ có một dòng: chỗ nào trong sơ đồ chỉ có đúng một?",
+          "Bài sau về lựa chọn khác khi không nhân đôi được: hỏng một phần thay vì hỏng toàn bộ."
         ]
       }
     ]
   },
   {
     "id": 167,
-    "slug": "expected-return-danh-muc",
-    "title": "Tự học Tài chính Day 167: Expected Return của danh mục",
-    "subtitle": "Lợi nhuận kỳ vọng của cả danh mục là trung bình có trọng số của từng tài sản",
-    "duration": "6 phút",
+    "slug": "suy-giam-co-kiem-soat",
+    "title": "Suy giảm có kiểm soát: hỏng một phần thay vì hỏng hết",
+    "subtitle": "Trang chủ mất phần gợi ý vẫn là trang chủ. Trang chủ trắng thì không.",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "🧩",
-    "openingQuestion": "Danh mục gồm 60% cổ phiếu (kỳ vọng lợi nhuận 12%/năm) và 40% trái phiếu (kỳ vọng 5%/năm). Expected return của cả danh mục là bao nhiêu?",
+    "emoji": "🪫",
+    "track": "professional",
+    "whyItMatters": "Phần lớn sự cố lớn không bắt đầu bằng một cú sập mà bằng một thành phần phụ hỏng và kéo theo mọi thứ. Tách phần thiết yếu khỏi phần phụ là cách rẻ nhất để một sự cố nhỏ ở lại nhỏ.",
+    "openingQuestion": "Dịch vụ gợi ý sản phẩm ngừng hoạt động. Trang danh sách nên phản ứng thế nào?",
     "openingOptions": [
-      "12%, lấy theo tài sản có lợi nhuận cao nhất",
-      "9,2% (0,6×12% + 0,4×5%)",
-      "17%",
-      "8.5% (trung bình cộng đơn giản)"
+      "Hiển thị danh sách như bình thường và bỏ qua phần gợi ý",
+      "Hiển thị thông báo lỗi để người dùng biết có sự cố đang xảy ra",
+      "Thử gọi lại dịch vụ gợi ý cho tới khi nó phản hồi thành công",
+      "Dùng dữ liệu gợi ý cũ nhất còn lưu lại trong bộ nhớ đệm"
     ],
-    "correctOption": 1,
-    "explanation": "Expected Return của danh mục = tổng của (tỷ trọng mỗi tài sản × lợi nhuận kỳ vọng của tài sản đó). Đây là phép tính trung bình có TRỌNG SỐ (weighted average), không phải trung bình cộng đơn giản - tài sản chiếm tỷ trọng lớn hơn ảnh hưởng nhiều hơn đến kết quả chung.",
+    "correctOption": 0,
+    "explanation": "Gợi ý là phần làm trải nghiệm tốt hơn, không phải phần khiến trang có ý nghĩa. Người dùng vào để xem danh sách, nên bỏ phần gợi ý đi là mất mát nhỏ nhất có thể. Dùng dữ liệu cũ trong bộ nhớ đệm cũng là một lựa chọn hợp lý và thường tốt hơn nữa, nhưng nó chỉ khả dụng khi có sẵn dữ liệu; nguyên tắc chung phải là trang vẫn dựng được kể cả khi không có gì để thay thế.",
     "diagram": [
       {
-        "label": "Tỷ trọng tài sản A × lợi nhuận kỳ vọng A",
+        "label": "Phân loại: thiết yếu hay phụ trợ",
         "arrow": true
       },
       {
-        "label": "+ Tỷ trọng tài sản B × lợi nhuận kỳ vọng B",
+        "label": "Phụ trợ hỏng → bỏ qua, trang vẫn dựng",
         "arrow": true
       },
       {
-        "label": "= Expected Return của danh mục"
+        "label": "Thiết yếu hỏng → báo lỗi rõ ràng",
+        "arrow": true
+      },
+      {
+        "label": "Mặc định nguy hiểm: phụ trợ kéo sập cả trang"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Danh mục 60/40 kinh điển",
-      "description": "Danh mục 60% cổ phiếu / 40% trái phiếu là công thức phân bổ tài sản kinh điển được nhiều cố vấn tài chính khuyến nghị, cân bằng giữa tăng trưởng (cổ phiếu) và ổn định (trái phiếu)."
+      "company": "Một dịch vụ phụ kéo sập trang chủ",
+      "description": "Dịch vụ xếp hạng đánh giá chậm lại, mỗi lời gọi treo ba mươi giây, và trang chủ chờ nó trước khi dựng. Kết quả là toàn bộ trang chủ ngừng hoạt động vì một khối chiếm chưa tới một phần mười màn hình."
+    },
+    "keyTakeaways": [
+      "Phân loại từng phụ thuộc là thiết yếu hay phụ trợ, viết ra rõ ràng.",
+      "Phụ thuộc phụ trợ phải có thời gian chờ ngắn và đường đi khi thất bại.",
+      "Mặc định của mã là để lỗi lan ra, nên phải chặn nó một cách chủ động.",
+      "Thất bại từng phần cần được đo, nếu không nó thành lỗi thầm lặng."
+    ],
+    "summary": {
+      "keyIdea": "Tách phần thiết yếu khỏi phần phụ để một phần hỏng không kéo theo cả trang.",
+      "formula": "Phụ trợ hỏng thì bỏ qua, thiết yếu hỏng thì báo rõ.",
+      "commonMistake": "Để một lời gọi phụ trợ nằm trên đường dựng trang chính."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê mọi dịch vụ mà màn hình quan trọng nhất của bạn gọi tới, đánh dấu cái nào thiết yếu. Với mỗi cái phụ trợ, kiểm tra xem nó có thời gian chờ riêng chưa."
+    },
+    "practicePrompt": {
+      "question": "Vì sao thất bại từng phần cần được ghi nhận và đo riêng?",
+      "options": [
+        "Vì nếu không thì một phần có thể hỏng suốt nhiều tuần mà không ai biết",
+        "Vì các công cụ giám sát cần dữ liệu này để tính toán độ sẵn sàng",
+        "Vì người dùng cần được thông báo về phần chức năng đang thiếu",
+        "Vì đội cần số liệu để quyết định có nên giữ tính năng đó không"
+      ],
+      "correct": 0,
+      "explanation": "Điểm mạnh của suy giảm có kiểm soát cũng chính là điểm yếu của nó: không ai phàn nàn, nên không ai để ý. Một khối gợi ý biến mất khỏi trang trong sáu tuần là chuyện hoàn toàn có thể xảy ra nếu việc bỏ qua nó không được đếm."
     },
     "quiz": [
       {
-        "question": "Nếu một nhà đầu tư tăng tỷ trọng cổ phiếu từ 60% lên 80% (giảm trái phiếu tương ứng), điều gì xảy ra với Expected Return của danh mục (giả sử lợi nhuận kỳ vọng từng tài sản không đổi)?",
+        "question": "Phụ thuộc thiết yếu khác phụ thuộc phụ trợ ở điểm nào?",
         "options": [
-          "Expected Return không đổi",
-          "Expected Return giảm xuống",
-          "Expected Return tăng lên, vì tỷ trọng của tài sản có lợi nhuận kỳ vọng cao hơn (cổ phiếu) tăng lên trong công thức trung bình có trọng số",
-          "Không thể tính được nếu thiếu dữ liệu lịch sử"
+          "Thiếu nó thì màn hình không còn ý nghĩa với người dùng nữa",
+          "Nó được gọi tới nhiều lần hơn trong một lần dựng trang",
+          "Nó do đội khác vận hành nên bạn không kiểm soát được",
+          "Nó có thời gian phản hồi chậm hơn so với các phụ thuộc còn lại"
         ],
-        "correct": 2,
-        "explanation": "Vì cổ phiếu có expected return cao hơn trái phiếu, tăng tỷ trọng cổ phiếu trong công thức trung bình có trọng số sẽ kéo Expected Return tổng thể của danh mục lên cao hơn - nhưng đồng thời rủi ro (volatility) của danh mục cũng tăng theo, đây là sự đánh đổi risk-return cơ bản."
+        "correct": 0,
+        "explanation": "Danh sách sản phẩm mà không có sản phẩm thì trang vô nghĩa; danh sách không có gợi ý thì vẫn dùng được. Ranh giới nằm ở mục đích người dùng đến, không ở đặc điểm kỹ thuật của lời gọi."
       },
       {
-        "question": "Nếu bạn ước tính sai lợi nhuận kỳ vọng của một tài sản trong danh mục (ví dụ ước tính quá lạc quan), điều gì xảy ra với toàn bộ Expected Return của danh mục?",
+        "question": "Vì sao phải chặn lỗi lan ra một cách chủ động?",
         "options": [
-          "Không ảnh hưởng gì đến Expected Return của toàn danh mục",
-          "Sai số luôn tự triệt tiêu lẫn nhau trong danh mục",
-          "Chỉ ảnh hưởng nếu tài sản đó chiếm 100% danh mục",
-          "Sai số sẽ lan truyền theo đúng tỷ trọng của tài sản đó trong danh mục - nếu tài sản chiếm tỷ trọng lớn và bị ước tính sai nhiều, Expected Return của cả danh mục sẽ bị lệch đáng kể theo cùng hướng sai lầm đó"
+          "Vì mặc định của mã là để lỗi ném lên và làm hỏng cả lời gọi",
+          "Vì các thư viện mạng thường không có sẵn cơ chế xử lý lỗi nào",
+          "Vì lỗi từ dịch vụ khác không được ghi vào nhật ký của bạn",
+          "Vì hệ thống giám sát chỉ theo dõi lỗi ở tầng ngoài cùng"
         ],
-        "correct": 3,
-        "explanation": "Vì Expected Return là trung bình có trọng số, sai số ước tính ở bất kỳ tài sản nào cũng lan truyền vào kết quả cuối cùng theo đúng tỷ trọng của nó - đây là lý do các giả định về lợi nhuận kỳ vọng luôn cần được xem xét thận trọng, đặc biệt với tài sản chiếm tỷ trọng lớn trong danh mục."
+        "correct": 0,
+        "explanation": "Không ai cố ý viết mã để một khối gợi ý kéo sập trang chủ - nó xảy ra vì đó là hành vi mặc định khi không có gì ngăn lại. Suy giảm có kiểm soát luôn là thứ phải được viết vào, không bao giờ là thứ tự có."
+      },
+      {
+        "question": "Vì sao phụ thuộc phụ trợ cần thời gian chờ ngắn hơn?",
+        "options": [
+          "Vì chờ lâu một phần không quan trọng làm chậm cả trang",
+          "Vì dịch vụ phụ trợ thường kém tin cậy hơn dịch vụ chính",
+          "Vì thời gian chờ dài chiếm nhiều kết nối mạng hơn",
+          "Vì người dùng ít khi để ý tới phần nội dung phụ trợ"
+        ],
+        "correct": 0,
+        "explanation": "Một dịch vụ chậm nguy hiểm hơn một dịch vụ chết, vì chết thì lỗi trả về ngay còn chậm thì mọi thứ phía sau xếp hàng chờ. Thời gian chờ của phần phụ nên được đặt theo mức mà trang chính chấp nhận trễ được."
+      },
+      {
+        "question": "Khi phụ thuộc thiết yếu hỏng thì nên làm gì?",
+        "options": [
+          "Báo lỗi rõ ràng thay vì hiển thị một trang trống rỗng",
+          "Thử gọi lại liên tục cho tới khi dịch vụ đó phản hồi",
+          "Hiển thị dữ liệu cũ nhất còn lưu lại trong bộ nhớ đệm",
+          "Chuyển người dùng sang một màn hình chức năng khác"
+        ],
+        "correct": 0,
+        "explanation": "Suy giảm có kiểm soát không có nghĩa là giấu mọi lỗi. Khi phần cốt lõi không hoạt động, thứ tử tế nhất là nói rõ điều đó thay vì để người dùng nhìn một khoảng trắng và tự đoán."
+      },
+      {
+        "question": "Điểm yếu của suy giảm có kiểm soát là gì?",
+        "options": [
+          "Sự cố trở nên im lặng nên dễ tồn tại rất lâu mà không ai biết",
+          "Nó làm tăng đáng kể độ phức tạp của mã xử lý giao diện",
+          "Nó khiến người dùng hiểu nhầm rằng hệ thống vẫn đang bình thường",
+          "Nó đòi hỏi mỗi phụ thuộc phải có một phương án thay thế sẵn"
+        ],
+        "correct": 0,
+        "explanation": "Không có ai phàn nàn thì không có tín hiệu nào. Đó là lý do mỗi lần bỏ qua một phần phải được đếm và có ngưỡng cảnh báo riêng, dù ngưỡng ấy không cần đánh thức ai lúc nửa đêm."
       }
     ],
-    "keyTakeaways": [
-      "Expected Return của danh mục = trung bình có trọng số theo tỷ trọng từng tài sản",
-      "Tăng tỷ trọng tài sản lợi nhuận cao hơn sẽ kéo expected return tổng thể lên, kèm rủi ro tăng theo",
-      "Đây là phép tính nền tảng để so sánh các phương án phân bổ tài sản khác nhau"
-    ],
-    "practicePrompt": {
-      "question": "Danh mục gồm 60% cổ phiếu (expected return 12%/năm) và 40% trái phiếu (expected return 5%/năm). Expected Return của toàn bộ danh mục là bao nhiêu?",
-      "options": [
-        "Expected Return của danh mục = trung bình có trọng số theo tỷ trọng từng tài sản = 0,6×12% + 0,4×5% = 7,2% + 2% = 9,2%",
-        "Expected Return = (12%+5%)/2 = 8,5%, tính trung bình cộng đơn giản không theo tỷ trọng",
-        "Expected Return = 12% + 5% = 17%, cộng dồn trực tiếp lợi nhuận kỳ vọng của cả hai loại tài sản",
-        "Expected Return của danh mục luôn bằng đúng expected return của tài sản chiếm tỷ trọng cao nhất, tức 12%"
-      ],
-      "correct": 0,
-      "explanation": "Expected Return của danh mục = trung bình có trọng số theo tỷ trọng từng tài sản = 0,6×12% + 0,4×5% = 9,2%. Đây là công thức nền tảng khi xây dựng danh mục - lợi nhuận kỳ vọng tổng thể là trung bình gia quyền theo đúng tỷ trọng vốn phân bổ vào mỗi tài sản."
-    },
-    "summary": {
-      "keyIdea": "Expected Return của danh mục = trung bình có trọng số theo tỷ trọng từng tài sản",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Tăng tỷ trọng tài sản lợi nhuận cao hơn sẽ kéo expected return tổng thể lên, kèm rủi ro tăng theo"
-    },
-    "application": {
-      "title": "Tự tính expected return danh mục",
-      "message": "Giả sử danh mục của bạn có 60% cổ phiếu (kỳ vọng 10%/năm) và 40% trái phiếu (kỳ vọng 5%/năm), tự tính expected return theo trọng số: 0.6×10% + 0.4×5%.",
-      "secondary": "Phép tính này chỉ mất 30 giây nhưng là nền tảng của mọi quyết định phân bổ tài sản."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Expected Return của cả danh mục không phải trung bình cộng đơn giản của các tài sản bên trong, mà là trung bình có TRỌNG SỐ (weighted average): tổng của (tỷ trọng mỗi tài sản × lợi nhuận kỳ vọng của tài sản đó). Tài sản chiếm tỷ trọng lớn hơn sẽ ảnh hưởng nhiều hơn đến kết quả chung, dù lợi nhuận kỳ vọng của nó cao hay thấp."
+        "text": "Bài trước về việc nhân đôi những thứ không được phép chết. Bài này về những thứ được phép chết - miễn là chúng chết một mình."
       },
       {
         "type": "heading",
-        "text": "Công thức và ví dụ 60/40"
+        "text": "Hai loại phụ thuộc"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Thiết yếu",
+          "text": "Thiếu nó thì màn hình mất ý nghĩa. Danh sách sản phẩm không có sản phẩm. Khi nó hỏng, hãy báo lỗi rõ ràng."
+        },
+        "right": {
+          "label": "Phụ trợ",
+          "text": "Làm trải nghiệm tốt hơn nhưng không phải lý do người dùng tới. Gợi ý, xếp hạng, huy hiệu. Khi hỏng thì lặng lẽ bỏ qua."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Với danh mục kinh điển 60% cổ phiếu / 40% trái phiếu, nếu cổ phiếu có expected return 9%/năm và trái phiếu có 3%/năm, Expected Return của danh mục = 0.6 × 9% + 0.4 × 3% = 5.4% + 1.2% = 6.6%/năm. Đây là công thức phân bổ tài sản kinh điển được nhiều cố vấn tài chính khuyến nghị, cân bằng giữa tăng trưởng và ổn định."
+        "text": "Ranh giới nằm ở mục đích người dùng đến, không ở đặc điểm kỹ thuật. Đây là một quyết định sản phẩm, và nó phải được viết ra - vì nếu không viết ra thì mặc định của mã sẽ quyết định thay bạn."
+      },
+      {
+        "type": "callout",
+        "label": "Chậm nguy hiểm hơn chết",
+        "text": "Một dịch vụ chết trả lỗi về ngay. Một dịch vụ chậm giữ lời gọi ba mươi giây, và mọi thứ phía sau xếp hàng chờ nó. Đó là cách một khối chiếm một phần mười màn hình kéo sập cả trang chủ."
       },
       {
         "type": "heading",
-        "text": "Tăng tỷ trọng tài sản lợi nhuận cao"
+        "text": "Cái giá: sự cố trở nên im lặng"
       },
       {
         "type": "paragraph",
-        "text": "Nếu tăng tỷ trọng cổ phiếu từ 60% lên 80% (giảm trái phiếu tương ứng, giữ nguyên lợi nhuận kỳ vọng từng tài sản), Expected Return của danh mục sẽ tăng lên: 0.8 × 9% + 0.2 × 3% = 7.8%. Vì cổ phiếu có expected return cao hơn trái phiếu, tăng tỷ trọng của nó trong công thức trung bình có trọng số kéo Expected Return tổng thể lên cao hơn - nhưng đồng thời volatility của danh mục cũng tăng theo. Đây là đánh đổi risk-return cơ bản, không có bữa trưa miễn phí ở bước này."
+        "text": "Khi phần phụ hỏng mà trang vẫn chạy, không ai phàn nàn - và không ai để ý. Một khối gợi ý biến mất suốt sáu tuần là chuyện hoàn toàn có thể xảy ra. Vì thế mỗi lần bỏ qua một phần phải được đếm, với ngưỡng cảnh báo riêng, dù ngưỡng ấy chỉ cần vào danh sách việc ban ngày."
       },
       {
-        "type": "heading",
-        "text": "Sai số ước tính lan truyền theo tỷ trọng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nếu bạn ước tính sai lợi nhuận kỳ vọng của một tài sản (ví dụ quá lạc quan), sai số đó sẽ lan truyền vào Expected Return của cả danh mục theo đúng tỷ trọng của tài sản đó. Một tài sản chiếm 50% danh mục bị ước tính sai 3 điểm phần trăm sẽ kéo lệch Expected Return chung tới 1.5 điểm phần trăm - đây là lý do các giả định về lợi nhuận kỳ vọng luôn cần được xem xét thận trọng, đặc biệt với tài sản tỷ trọng lớn."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Expected Return danh mục = Σ (tỷ trọng × lợi nhuận kỳ vọng) của từng tài sản",
-          "Đây là trung bình có TRỌNG SỐ, không phải trung bình cộng đơn giản",
-          "Tăng tỷ trọng tài sản lợi nhuận cao kéo Expected Return lên, kèm rủi ro tăng theo",
-          "Sai số ước tính ở tài sản tỷ trọng lớn ảnh hưởng mạnh đến kết quả toàn danh mục"
+        "type": "closing",
+        "lines": [
+          "Suy giảm có kiểm soát không bao giờ tự có. Nó là thứ phải được viết vào từng chỗ một, ngược lại hành vi mặc định.",
+          "Bài sau nhìn ra ngoài ranh giới dịch vụ: độ tin cậy của bạn phụ thuộc vào ai."
         ]
       }
     ]
   },
   {
     "id": 168,
-    "slug": "risk-return-tradeoff",
-    "title": "Tự học Tài chính Day 168: Risk-Return Tradeoff",
-    "subtitle": "Muốn lợi nhuận kỳ vọng cao hơn, phải chấp nhận rủi ro cao hơn tương ứng",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "⚠️",
-    "openingQuestion": "Một quảng cáo đầu tư hứa hẹn 'lợi nhuận 30%/năm, hoàn toàn không rủi ro'. Bạn nên phản ứng thế nào?",
+    "slug": "chuoi-phu-thuoc-va-do-tin-cay",
+    "title": "Chuỗi phụ thuộc: bạn chỉ đáng tin bằng thứ bạn gọi tới",
+    "subtitle": "Bốn phụ thuộc, mỗi cái 99,9%, và trần của bạn đã tụt xuống 99,6%.",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "🔗",
+    "track": "professional",
+    "whyItMatters": "Rất nhiều cam kết độ tin cậy được đưa ra mà không ai nhân các con số lại với nhau. Phép nhân ấy thường cho thấy mục tiêu đã hứa là bất khả thi ngay từ ngày ký.",
+    "openingQuestion": "Dịch vụ của bạn gọi bốn phụ thuộc, mỗi cái đạt 99,9%. Trần độ tin cậy của bạn là bao nhiêu?",
     "openingOptions": [
-      "Cực kỳ nghi ngờ: lãi cao luôn đi kèm rủi ro",
-      "Đầu tư ngay vì cơ hội hiếm có",
-      "Đầu tư một phần nhỏ để thử nghiệm",
-      "Không có nguyên tắc nào về mối quan hệ giữa hai bên"
+      "Khoảng 99,6%, vì các xác suất nhân với nhau",
+      "Vẫn là 99,9%, vì các phụ thuộc hiếm khi cùng hỏng một lúc",
+      "Khoảng 99,975%, vì lỗi được chia đều cho bốn thành phần",
+      "Không xác định được nếu chưa biết tần suất gọi từng phụ thuộc"
     ],
     "correctOption": 0,
-    "explanation": "Risk-return tradeoff là nguyên tắc nền tảng nhất của tài chính: thị trường hiệu quả không cho phép lợi nhuận cao mà không có rủi ro tương ứng - nếu có, mọi nhà đầu tư sẽ đổ xô vào cơ hội đó, đẩy giá lên và triệt tiêu lợi thế. 'Lợi nhuận cao, rủi ro bằng 0' luôn là cờ đỏ cảnh báo lừa đảo (như Ponzi scheme của Bernard Madoff).",
+    "explanation": "Nếu mọi phụ thuộc đều bắt buộc cho một yêu cầu, xác suất thành công là tích của bốn con số: chín mươi chín phẩy chín phần trăm mũ bốn, tức khoảng chín mươi chín phẩy sáu. Bạn mất bốn lần ngân sách lỗi trước khi viết dòng mã nào. Tần suất gọi có ảnh hưởng thật khi một phụ thuộc chỉ được dùng trong một phần số yêu cầu, nhưng với các phụ thuộc bắt buộc thì phép nhân này là trần cứng.",
     "diagram": [
       {
-        "label": "Muốn lợi nhuận kỳ vọng cao hơn",
+        "label": "Mỗi phụ thuộc bắt buộc: 99,9%",
         "arrow": true
       },
       {
-        "label": "Phải chấp nhận rủi ro cao hơn tương ứng",
+        "label": "Bốn cái nối tiếp: 0,999 mũ 4",
         "arrow": true
       },
       {
-        "label": "Thị trường hiệu quả không cho 'free lunch'"
+        "label": "≈ 99,6% - mất gấp bốn lần ngân sách",
+        "arrow": true
+      },
+      {
+        "label": "Trước khi tính tới lỗi của chính bạn"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Bernard Madoff Ponzi Scheme",
-      "description": "Bernard Madoff hứa hẹn lợi nhuận ổn định 10-12%/năm 'không rủi ro' suốt nhiều năm, thu hút hàng chục tỷ USD trước khi bị phát hiện là mô hình Ponzi lớn nhất lịch sử tài chính Mỹ năm 2008."
+      "company": "Cam kết bất khả thi từ ngày ký",
+      "description": "Một đội cam kết chín mươi chín phẩy chín chín phần trăm trong khi gọi tới ba dịch vụ nội bộ mà không dịch vụ nào cam kết quá chín mươi chín phẩy chín. Không có cách nào đạt được, và điều đó đã đúng ngay từ trước khi hệ thống chạy."
+    },
+    "keyTakeaways": [
+      "Phụ thuộc bắt buộc nối tiếp thì xác suất thành công nhân với nhau.",
+      "Biến phụ thuộc từ bắt buộc thành tuỳ chọn là cách nâng trần hiệu quả nhất.",
+      "Cam kết của bạn không được cao hơn tích các cam kết bạn dựa vào.",
+      "Phụ thuộc bên thứ ba nằm ngoài tầm sửa, nên phải có phương án khi nó hỏng."
+    ],
+    "summary": {
+      "keyIdea": "Độ tin cậy của một chuỗi là tích các mắt xích, không phải mức của mắt xích tốt nhất.",
+      "formula": "Trần = tích độ tin cậy của mọi phụ thuộc bắt buộc.",
+      "commonMistake": "Hứa một mức cao hơn tích các cam kết mình đang dựa vào."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê mọi phụ thuộc bắt buộc của một hành trình quan trọng, tra cam kết của từng cái, rồi nhân chúng lại. So kết quả với mục tiêu bạn đang tuyên bố."
+    },
+    "practicePrompt": {
+      "question": "Cách hiệu quả nhất để nâng trần độ tin cậy của một chuỗi là gì?",
+      "options": [
+        "Biến bớt phụ thuộc từ bắt buộc thành tuỳ chọn hoặc bỏ hẳn",
+        "Yêu cầu từng đội phụ thuộc nâng cam kết của họ lên một mức",
+        "Thêm bản sao dự phòng cho chính dịch vụ của đội mình",
+        "Tăng số lần thử lại khi một phụ thuộc trả về lỗi tạm thời"
+      ],
+      "correct": 0,
+      "explanation": "Một phụ thuộc bị loại khỏi tích thì trần tăng ngay lập tức, và nó nằm hoàn toàn trong tay bạn. Yêu cầu đội khác nâng cam kết thì phải chờ họ, còn thêm bản sao cho chính mình không đụng gì tới các thừa số trong tích ấy."
     },
     "quiz": [
       {
-        "question": "Vì sao trái phiếu chính phủ có lợi suất thấp hơn nhiều so với cổ phiếu trong dài hạn?",
+        "question": "Vì sao xác suất của các phụ thuộc bắt buộc lại nhân với nhau?",
         "options": [
-          "Vì cổ phiếu luôn là lựa chọn tốt hơn trong mọi trường hợp",
-          "Vì trái phiếu chính phủ có rủi ro thấp hơn nhiều (gần như phi rủi ro), theo nguyên tắc risk-return tradeoff nên lợi nhuận kỳ vọng cũng thấp hơn tương ứng",
-          "Không có mối liên hệ nào giữa rủi ro và lợi suất trái phiếu",
-          "Vì chính phủ không muốn trả lãi cao"
+          "Vì yêu cầu chỉ thành công khi mọi phụ thuộc đều thành công",
+          "Vì các phụ thuộc thường hỏng cùng lúc do dùng chung hạ tầng",
+          "Vì mỗi phụ thuộc làm tăng thời gian xử lý của cả yêu cầu",
+          "Vì lỗi từ một phụ thuộc sẽ lan sang các phụ thuộc còn lại"
         ],
-        "correct": 1,
-        "explanation": "Đây chính là risk-return tradeoff thể hiện qua thực tế: tài sản an toàn hơn (trái phiếu chính phủ) mang lợi suất thấp hơn; tài sản rủi ro hơn (cổ phiếu, đặc biệt cổ phiếu tăng trưởng) mang lợi nhuận kỳ vọng cao hơn để đền bù cho rủi ro biến động và khả năng mất vốn cao hơn."
+        "correct": 0,
+        "explanation": "Đó là định nghĩa của bắt buộc: thiếu bất kỳ cái nào thì yêu cầu hỏng. Xác suất của một hợp các sự kiện độc lập là tích của chúng, nên bốn mắt xích chín mươi chín phẩy chín cho khoảng chín mươi chín phẩy sáu."
       },
       {
-        "question": "Nếu hai tài sản có CÙNG mức rủi ro (volatility) nhưng lợi nhuận kỳ vọng khác nhau, risk-return tradeoff gợi ý điều gì về việc chọn lựa giữa hai tài sản này?",
+        "question": "Vì sao nhiều cam kết độ tin cậy là bất khả thi ngay từ đầu?",
         "options": [
-          "Cả hai tài sản có giá trị đầu tư như nhau bất kể lợi nhuận kỳ vọng",
-          "Nên chọn tài sản có lợi nhuận kỳ vọng thấp hơn vì an toàn hơn",
-          "Nên ưu tiên tài sản có lợi nhuận kỳ vọng CAO HƠN - vì cùng mức rủi ro nhưng lợi nhuận cao hơn nghĩa là tài sản đó vượt trội hơn về hiệu quả risk-return, không có lý do hợp lý để chọn tài sản kém hiệu quả hơn khi rủi ro như nhau",
-          "Risk-return tradeoff không áp dụng khi rủi ro bằng nhau"
+          "Vì không ai nhân cam kết của các phụ thuộc lại trước khi hứa",
+          "Vì các phụ thuộc thường không công bố cam kết chính thức",
+          "Vì cam kết được đưa ra bởi bộ phận kinh doanh chứ không phải kỹ thuật",
+          "Vì mức cam kết phải cao hơn đối thủ nên bị đẩy lên quá cao"
         ],
-        "correct": 2,
-        "explanation": "Đây là nguyên tắc \"dominance\" trong lý thuyết danh mục: khi hai tài sản có cùng mức rủi ro, tài sản có lợi nhuận kỳ vọng cao hơn luôn được ưu tiên - không có nhà đầu tư hợp lý nào chọn tài sản kém hiệu quả hơn khi không phải đánh đổi thêm rủi ro nào."
+        "correct": 0,
+        "explanation": "Phép tính này mất năm phút và nó chặn được một lời hứa sẽ theo đội suốt nhiều năm. Ba nguyên nhân còn lại đều góp phần nhưng chúng chỉ gây hại vì phép nhân đã bị bỏ qua."
+      },
+      {
+        "question": "Phụ thuộc bên thứ ba khác phụ thuộc nội bộ ở điểm nào?",
+        "options": [
+          "Bạn không sửa được nó, nên phải chuẩn bị phương án khi nó hỏng",
+          "Nó thường có độ tin cậy thấp hơn các dịch vụ nội bộ",
+          "Nó không được tính vào phép nhân độ tin cậy của cả chuỗi phụ thuộc",
+          "Nó cần được giám sát bằng một hệ thống công cụ riêng"
+        ],
+        "correct": 0,
+        "explanation": "Với dịch vụ nội bộ bạn còn có thể nhắn cho đội bên kia; với bên thứ ba thì bạn chỉ còn cách chờ. Vì thế mỗi phụ thuộc ngoài phải đi kèm câu trả lời cho câu hỏi làm gì trong lúc chờ."
+      },
+      {
+        "question": "Khi nào một phụ thuộc không kéo trần xuống theo cách này?",
+        "options": [
+          "Khi nó là tuỳ chọn và hệ thống vẫn hoạt động được nếu thiếu nó",
+          "Khi nó được gọi tới song song cùng lúc với những phụ thuộc còn lại",
+          "Khi nó có bản sao dự phòng ở một vùng hạ tầng khác",
+          "Khi kết quả của nó được lưu trong bộ nhớ đệm cục bộ"
+        ],
+        "correct": 0,
+        "explanation": "Gọi song song rút ngắn thời gian chứ không đổi xác suất thành công. Dự phòng và bộ nhớ đệm thì nâng độ tin cậy của chính thừa số ấy - hữu ích, nhưng nó vẫn nằm trong tích."
+      },
+      {
+        "question": "Thêm một phụ thuộc bắt buộc mới có tác động gì?",
+        "options": [
+          "Trần độ tin cậy tụt xuống ngay, trước khi viết dòng mã nào",
+          "Trần độ tin cậy không đổi cho tới khi phụ thuộc đó gặp sự cố",
+          "Trần độ tin cậy giảm tỷ lệ với số lần phụ thuộc đó được gọi",
+          "Trần độ tin cậy chỉ giảm nếu phụ thuộc mới kém tin cậy hơn"
+        ],
+        "correct": 0,
+        "explanation": "Tích có thêm một thừa số nhỏ hơn một thì kết quả nhỏ đi, bất kể thừa số ấy tốt tới đâu. Đây là lý do việc thêm một lời gọi tưởng như vô hại vẫn là một quyết định về độ tin cậy."
       }
     ],
-    "keyTakeaways": [
-      "Risk-return tradeoff: lợi nhuận kỳ vọng cao hơn luôn đi kèm rủi ro cao hơn",
-      "Lời hứa 'lãi cao, không rủi ro' là dấu hiệu cảnh báo lừa đảo kinh điển",
-      "Đây là nguyên tắc nền tảng chi phối mọi quyết định phân bổ tài sản"
-    ],
-    "practicePrompt": {
-      "question": "Một quảng cáo đầu tư hứa hẹn 'lợi nhuận 40%/năm, hoàn toàn không rủi ro'. Dựa trên nguyên lý cơ bản nhất của tài chính đầu tư, bạn nên phản ứng thế nào với lời hứa này?",
-      "options": [
-        "Nên tin tưởng vì có thể đây là một cơ hội đầu tư đặc biệt hiếm có mà thị trường chưa phát hiện ra",
-        "Nên cảnh giác cao độ: lợi nhuận kỳ vọng cao luôn đi kèm rủi ro cao, không ngoại lệ",
-        "Nên đầu tư một phần nhỏ để thử nghiệm trước khi quyết định đầu tư số tiền lớn hơn",
-        "Lời hứa này hoàn toàn hợp lý nếu công ty đầu tư có uy tín lâu năm trên thị trường"
-      ],
-      "correct": 1,
-      "explanation": "Risk-return tradeoff: lợi nhuận kỳ vọng cao hơn luôn đi kèm rủi ro cao hơn, không có ngoại lệ. Đây là nguyên lý nền tảng của tài chính - bất kỳ lời hứa nào vi phạm nguyên tắc này (lợi nhuận cao + không rủi ro) đều là dấu hiệu cảnh báo lừa đảo rõ ràng nhất cần tránh xa."
-    },
-    "summary": {
-      "keyIdea": "Risk-return tradeoff: lợi nhuận kỳ vọng cao hơn luôn đi kèm rủi ro cao hơn",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Lời hứa 'lãi cao, không rủi ro' là dấu hiệu cảnh báo lừa đảo kinh điển"
-    },
-    "application": {
-      "title": "Săn tìm một lời hứa lãi cao vô lý",
-      "message": "Bài học đã có ví dụ thật với 2 mốc tham chiếu (lãi suất phi rủi ro ~4,11% và quỹ vượt trội nhất ~22,9%) - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự tìm một quảng cáo đầu tư và đối chiếu với 2 mốc đó.",
-      "secondary": "Đây là kỹ năng phòng vệ quan trọng nhất bạn học được từ bài này."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Risk-return tradeoff là nguyên tắc nền tảng nhất của tài chính: thị trường không cho phép lợi nhuận cao mà không có rủi ro tương ứng đi kèm - nếu cơ hội như vậy tồn tại, mọi nhà đầu tư sẽ đổ xô vào, đẩy giá lên và triệt tiêu lợi thế đó ngay lập tức."
+        "text": "Bài đầu chặng nói mắt xích yếu nhất đặt trần. Đó chưa phải toàn bộ sự thật, và phần còn lại tệ hơn: nhiều mắt xích tốt nối lại vẫn cho một chuỗi kém hơn từng cái."
       },
       {
         "type": "heading",
-        "text": "Vì sao trái phiếu chính phủ lãi thấp hơn cổ phiếu"
+        "text": "Phép nhân"
+      },
+      {
+        "type": "formula",
+        "expression": "Trần = 0,999 × 0,999 × 0,999 × 0,999 ≈ 0,996",
+        "explanation": "Bốn phụ thuộc bắt buộc, mỗi cái 99,9%. Bạn mất gấp bốn lần ngân sách lỗi trước khi tính tới lỗi của chính mình."
       },
       {
         "type": "paragraph",
-        "text": "Trái phiếu chính phủ có rủi ro thấp hơn nhiều (gần như phi rủi ro) so với cổ phiếu, nên theo risk-return tradeoff, lợi nhuận kỳ vọng của nó cũng thấp hơn tương ứng. Cổ phiếu, đặc biệt cổ phiếu tăng trưởng, mang lợi nhuận kỳ vọng cao hơn để đền bù cho rủi ro biến động mạnh và khả năng mất vốn cao hơn. Đây không phải sự bất công - đó là cách thị trường định giá rủi ro."
-      },
-      {
-        "type": "heading",
-        "text": "Nguyên tắc dominance"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nếu hai tài sản có CÙNG mức rủi ro nhưng lợi nhuận kỳ vọng khác nhau, nên luôn ưu tiên tài sản có lợi nhuận kỳ vọng CAO HƠN - vì cùng rủi ro nhưng lợi nhuận cao hơn nghĩa là tài sản đó vượt trội hơn về hiệu quả risk-return. Không có nhà đầu tư hợp lý nào chọn tài sản kém hiệu quả hơn khi không phải đánh đổi thêm bất kỳ rủi ro nào."
-      },
-      {
-        "type": "heading",
-        "text": "Cờ đỏ: lãi cao, rủi ro bằng 0"
-      },
-      {
-        "type": "paragraph",
-        "text": "Bất kỳ lời hứa nào về \"lợi nhuận cao, hoàn toàn không rủi ro\" đều là dấu hiệu cảnh báo lừa đảo kinh điển. Bernard Madoff hứa hẹn lợi nhuận ổn định 10-12%/năm \"không rủi ro\" suốt nhiều năm, thu hút hàng chục tỷ USD trước khi bị phát hiện là mô hình Ponzi lớn nhất lịch sử tài chính Mỹ năm 2008. Không tài sản hợp pháp nào phá vỡ được quy luật risk-return tradeoff bền vững."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lợi nhuận kỳ vọng cao hơn luôn đi kèm rủi ro cao hơn tương ứng",
-          "Cùng mức rủi ro, luôn ưu tiên tài sản có lợi nhuận kỳ vọng cao hơn (dominance)",
-          "\"Lãi cao, không rủi ro\" là dấu hiệu lừa đảo, không phải cơ hội đầu tư",
-          "Nguyên tắc này chi phối mọi quyết định phân bổ tài sản trong Chặng Danh mục đầu tư và quản trị rủi ro"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ thật: đối chiếu lãi suất hứa hẹn với hai mốc tham chiếu thật"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lợi suất trái phiếu chính phủ VN kỳ hạn 10 năm hiện khoảng 4,11%/năm - đây gần như là mức lợi nhuận \"phi rủi ro\" cao nhất bạn có thể kỳ vọng mà gần như chắc chắn nhận được",
-          "Quỹ chủ động vượt trội nhất thị trường (VESAF, 5 năm) đạt bình quân 22,9%/năm - nhưng đi kèm rủi ro biến động NAV theo thị trường cổ phiếu, không đảm bảo",
-          "Nếu một sản phẩm nào đó hứa \"15-20%/năm, không rủi ro\", mức lãi đó cao gần bằng hoặc hơn quỹ cổ phiếu rủi ro nhất, nhưng lại tự nhận \"không rủi ro\" - đó chính là dấu hiệu đáng ngờ theo đúng nguyên tắc risk-return tradeoff"
-        ]
+        "text": "Phép tính này mất năm phút và nó là thứ nên chạy trước khi bất kỳ ai ký một cam kết. Rất nhiều mục tiêu bất khả thi được phát hiện đúng ở bước này - và phát hiện sớm thì nó là một cuộc trò chuyện, phát hiện muộn thì nó là một lời hứa bị vỡ."
       },
       {
         "type": "callout",
-        "label": "Cách tự áp dụng",
-        "text": "Mỗi khi thấy quảng cáo đầu tư hứa lãi suất cụ thể, so với 2 mốc tham chiếu thật ở trên (khoảng 4% phi rủi ro, khoảng 20%+ là mức hiếm gặp và đi kèm rủi ro cao) để tự đánh giá độ hợp lý."
+        "label": "Cách nâng trần rẻ nhất",
+        "text": "Không phải yêu cầu đội khác làm tốt hơn, mà là bỏ bớt thừa số. Mỗi phụ thuộc chuyển từ bắt buộc sang tuỳ chọn là một thừa số rời khỏi tích - và quyết định ấy nằm hoàn toàn trong tay bạn."
+      },
+      {
+        "type": "heading",
+        "text": "Phụ thuộc bên ngoài"
+      },
+      {
+        "type": "paragraph",
+        "text": "Với dịch vụ nội bộ, bạn còn nhắn được cho đội bên kia. Với nhà cung cấp bên thứ ba, bạn chỉ còn cách chờ và cập nhật cho khách hàng. Mỗi phụ thuộc ngoài vì thế phải đi kèm một câu trả lời viết sẵn cho câu hỏi làm gì trong lúc chờ - dữ liệu cũ, chế độ hạn chế, hay chỉ là một thông báo trung thực."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Thêm một lời gọi tưởng như vô hại vẫn là một quyết định về độ tin cậy, vì tích luôn nhỏ đi.",
+          "Bài sau về cách giữ cho một phụ thuộc hỏng không kéo theo phần còn lại của hệ thống."
+        ]
       }
     ]
   },
   {
     "id": 169,
-    "slug": "modern-portfolio-theory-la-gi",
-    "title": "Tự học Tài chính Day 169: Modern Portfolio Theory là gì?",
-    "subtitle": "Harry Markowitz và cách toán học hóa việc xây dựng danh mục tối ưu",
-    "duration": "7 phút",
+    "slug": "vach-ngan-va-cau-dao",
+    "title": "Vách ngăn và cầu dao: giữ đám cháy trong một phòng",
+    "subtitle": "Một dịch vụ chậm chiếm hết luồng của bạn, và mọi thứ khác chết theo dù chúng không liên quan gì.",
+    "duration": "9 phút",
     "difficulty": "Khó",
-    "emoji": "🧩",
-    "openingQuestion": "MPT (Modern Portfolio Theory) của Harry Markowitz (1952) nói gì về cách xây dựng danh mục tối ưu?",
+    "emoji": "🚪",
+    "track": "professional",
+    "whyItMatters": "Đây là cơ chế biến một sự cố ở một phụ thuộc thành một sự cố cục bộ thay vì một sự cố toàn hệ thống. Không có nó, mọi phụ thuộc đều là một điểm hỏng đơn lẻ của mọi thứ khác.",
+    "openingQuestion": "Một phụ thuộc chậm lại và toàn bộ dịch vụ ngừng phản hồi, kể cả những phần không gọi tới nó. Vì sao?",
     "openingOptions": [
-      "Chỉ nên đầu tư vào tài sản an toàn tuyệt đối",
-      "Chỉ cần chọn tài sản có lợi nhuận kỳ vọng cao nhất",
-      "Đa dạng hóa càng nhiều tài sản càng tốt, không giới hạn",
-      "Mỗi mức rủi ro có một danh mục lợi nhuận cao nhất"
+      "Vì các lời gọi treo chiếm hết nguồn luồng dùng chung của cả dịch vụ",
+      "Vì lỗi từ phụ thuộc đó được ném lên và làm hỏng tiến trình chính",
+      "Vì bộ nhớ bị chiếm hết bởi các yêu cầu đang chờ phản hồi",
+      "Vì hệ thống tự động dừng lại để tránh trả về dữ liệu không nhất quán"
     ],
-    "correctOption": 3,
-    "explanation": "Modern Portfolio Theory (Markowitz, 1952) là nền tảng toán học của quản lý danh mục hiện đại: dùng expected return, volatility và correlation của từng tài sản để tính toán danh mục tối ưu - mang lại lợi nhuận kỳ vọng cao nhất cho một mức rủi ro cho trước, hoặc rủi ro thấp nhất cho một mức lợi nhuận kỳ vọng cho trước.",
+    "correctOption": 0,
+    "explanation": "Đây là cách lây lan phổ biến nhất và cũng khó đoán nhất, vì nó không đi qua mã của bạn. Mỗi lời gọi treo giữ một luồng hoặc một kết nối; nếu chúng lấy từ cùng một nguồn chung thì chỉ cần vài trăm lời gọi chậm là nguồn ấy cạn, và những yêu cầu hoàn toàn không liên quan cũng không còn chỗ để chạy. Bộ nhớ đầy cũng xảy ra nhưng nó thường tới sau, khi số yêu cầu đang chờ đã tích tụ đủ lâu.",
     "diagram": [
       {
-        "label": "Expected Return từng tài sản",
+        "label": "Nguồn luồng dùng chung cho mọi lời gọi",
         "arrow": true
       },
       {
-        "label": "Volatility và Correlation giữa các tài sản",
+        "label": "Một phụ thuộc chậm → luồng bị giữ",
         "arrow": true
       },
       {
-        "label": "Tính toán danh mục tối ưu (Markowitz)"
+        "label": "Nguồn cạn → mọi yêu cầu khác chết theo",
+        "arrow": true
+      },
+      {
+        "label": "Vách ngăn: mỗi phụ thuộc một nguồn riêng"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Giải Nobel Kinh tế 1990",
-      "description": "Harry Markowitz nhận giải Nobel Kinh tế năm 1990 nhờ công trình Modern Portfolio Theory - lý thuyết này đã thay đổi hoàn toàn cách các quỹ đầu tư và quỹ hưu trí trên toàn thế giới xây dựng danh mục."
+      "company": "Đám cháy đi qua nguồn luồng",
+      "description": "Dịch vụ tìm kiếm chậm lại, và trang thanh toán ngừng hoạt động dù nó không gọi tới tìm kiếm. Cả hai dùng chung một nguồn kết nối, và tìm kiếm đã giữ hết."
+    },
+    "keyTakeaways": [
+      "Chia nguồn tài nguyên theo phụ thuộc để một cái cạn không kéo theo cái khác.",
+      "Cầu dao ngừng gọi khi tỷ lệ lỗi vượt ngưỡng, rồi thử lại dè dặt.",
+      "Thời gian chờ phải có ở mọi lời gọi ra ngoài, không có ngoại lệ.",
+      "Chậm nguy hiểm hơn chết, vì chậm giữ tài nguyên còn chết thì trả ngay."
+    ],
+    "summary": {
+      "keyIdea": "Cô lập tài nguyên theo phụ thuộc để sự cố ở một chỗ không lan ra cả dịch vụ.",
+      "formula": "Nguồn riêng cho mỗi phụ thuộc, thời gian chờ cho mọi lời gọi.",
+      "commonMistake": "Dùng một nguồn kết nối chung cho mọi phụ thuộc."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Kiểm tra xem các lời gọi ra ngoài trong dịch vụ của bạn có dùng chung một nguồn kết nối không, và có bao nhiêu lời gọi đang không đặt thời gian chờ."
+    },
+    "practicePrompt": {
+      "question": "Cầu dao khác thời gian chờ ở điểm nào?",
+      "options": [
+        "Cầu dao ngừng gọi hẳn một thời gian sau khi thấy quá nhiều lỗi",
+        "Cầu dao chỉ hoạt động với các lời gọi tới dịch vụ bên ngoài",
+        "Cầu dao đo tổng thời gian còn thời gian chờ đo từng lời gọi",
+        "Cầu dao cần cấu hình ở tầng hạ tầng thay vì ở trong mã của ứng dụng"
+      ],
+      "correct": 0,
+      "explanation": "Thời gian chờ giới hạn thiệt hại của từng lời gọi nhưng bạn vẫn trả cái giá ấy cho mọi lời gọi. Cầu dao nhớ rằng dịch vụ kia đang hỏng và trả về lỗi ngay lập tức, nên nó vừa cứu tài nguyên của bạn vừa cho bên kia khoảng lặng để hồi phục."
     },
     "quiz": [
       {
-        "question": "Đóng góp cốt lõi của MPT so với cách đầu tư truyền thống trước đó là gì?",
+        "question": "Vách ngăn hoạt động theo nguyên tắc nào?",
         "options": [
-          "MPT lượng hóa được lợi ích của việc kết hợp tài sản dựa trên tương quan - chứng minh bằng toán học rằng một danh mục có thể có rủi ro thấp hơn tổng rủi ro riêng lẻ của từng tài sản cộng lại",
-          "MPT chỉ áp dụng được cho trái phiếu",
-          "MPT khuyên nên tránh hoàn toàn cổ phiếu rủi ro",
-          "MPT là người đầu tiên đề xuất nên mua cổ phiếu"
+          "Mỗi phụ thuộc có nguồn tài nguyên riêng, cạn cái này không ảnh hưởng cái kia",
+          "Mỗi phụ thuộc chạy trong một tiến trình riêng biệt hoàn toàn",
+          "Mỗi phụ thuộc được gán một mức độ ưu tiên khác nhau",
+          "Mỗi phụ thuộc được giám sát bằng một bộ chỉ số riêng"
         ],
         "correct": 0,
-        "explanation": "Trước Markowitz, nhà đầu tư thường chỉ nhìn từng tài sản riêng lẻ. MPT là lý thuyết đầu tiên chứng minh bằng toán học rằng việc kết hợp các tài sản có correlation thấp có thể tạo ra một danh mục với rủi ro tổng thể THẤP HƠN trung bình rủi ro của từng tài sản riêng lẻ cộng lại - đây là 'bữa trưa miễn phí' duy nhất trong tài chính."
+        "explanation": "Tên gọi mượn từ đóng tàu: nước tràn vào một khoang thì khoang đó ngập, còn con tàu vẫn nổi. Chia tiến trình cũng đạt được điều tương tự nhưng đắt hơn nhiều, và thường không cần thiết."
       },
       {
-        "question": "MPT giả định nhà đầu tư có thể tự do vay và cho vay ở mức risk-free rate để tối ưu hóa danh mục. Giả định này có hoàn toàn đúng với nhà đầu tư cá nhân thông thường trong thực tế không?",
+        "question": "Vì sao một dịch vụ chậm nguy hiểm hơn một dịch vụ chết?",
         "options": [
-          "Hoàn toàn đúng, mọi nhà đầu tư đều có thể vay ở mức risk-free rate",
-          "Không hoàn toàn đúng - nhà đầu tư cá nhân thường phải vay ở lãi suất cao hơn nhiều so với risk-free rate (như vay margin, thẻ tín dụng), khiến các kết luận lý thuyết thuần túy của MPT cần điều chỉnh khi áp dụng vào thực tế đầu tư cá nhân",
-          "Giả định này không quan trọng đối với kết luận của MPT",
-          "Chỉ đúng với nhà đầu tư tổ chức lớn, không bao giờ đúng với bất kỳ ai khác"
+          "Vì chậm giữ tài nguyên của bên gọi còn chết thì trả lỗi về ngay",
+          "Vì chậm không kích hoạt các cảnh báo đã được cấu hình sẵn",
+          "Vì chậm khiến người dùng thử lại nhiều lần làm tăng tải",
+          "Vì chậm khó phát hiện hơn trong những bảng theo dõi thông thường nhất"
         ],
-        "correct": 1,
-        "explanation": "Đây là một trong những giả định lý tưởng hóa của MPT thường bị phê phán khi áp dụng thực tế - khoảng cách giữa lãi suất vay và cho vay (borrowing-lending rate gap) khiến các kết luận lý thuyết về danh mục tối ưu cần điều chỉnh cho phù hợp với ràng buộc thực tế của từng loại nhà đầu tư."
+        "correct": 0,
+        "explanation": "Một lỗi trả về ngay chỉ tốn vài mili giây; một lời gọi treo ba mươi giây giữ một luồng suốt ba mươi giây đó. Đây là lý do thời gian chờ quan trọng hơn hầu hết các biện pháp chống lỗi khác."
+      },
+      {
+        "question": "Vì sao cầu dao cũng có lợi cho dịch vụ đang hỏng?",
+        "options": [
+          "Vì nó cắt bớt tải để dịch vụ đó có khoảng lặng mà hồi phục",
+          "Vì nó gửi tín hiệu cho đội vận hành của dịch vụ đó cùng biết",
+          "Vì nó chuyển hướng yêu cầu sang một bản sao khác của dịch vụ",
+          "Vì nó lưu lại các yêu cầu để gửi lại sau khi dịch vụ trở lại"
+        ],
+        "correct": 0,
+        "explanation": "Một dịch vụ đang chật vật mà tiếp tục nhận đủ tải, cộng thêm các lần thử lại, thì gần như không có cơ hội đứng dậy. Cầu dao là phiên bản tự động của việc lùi lại một bước."
+      },
+      {
+        "question": "Lời gọi nào cần đặt thời gian chờ?",
+        "options": [
+          "Mọi lời gọi rời khỏi tiến trình, không có ngoại lệ nào",
+          "Những lời gọi tới dịch vụ bên ngoài công ty",
+          "Những lời gọi nằm trên đường xử lý của người dùng",
+          "Những lời gọi tới dịch vụ đã từng gặp sự cố trong quá khứ"
+        ],
+        "correct": 0,
+        "explanation": "Dịch vụ nội bộ, cơ sở dữ liệu, bộ nhớ đệm - tất cả đều có thể treo, và thư viện mặc định thường không đặt thời gian chờ hoặc đặt ở mức vô lý như vài phút. Một lời gọi thiếu thời gian chờ là một lời hứa rằng nó sẽ luôn trả lời."
+      },
+      {
+        "question": "Vì sao lây lan qua nguồn luồng khó đoán?",
+        "options": [
+          "Vì nó không đi qua mã của bạn nên không hiện ra khi đọc mã",
+          "Vì các luồng bị giữ không được ghi vào nhật ký hệ thống",
+          "Vì số lượng luồng thay đổi liên tục theo mức tải của hệ thống",
+          "Vì hiện tượng chỉ xảy ra khi có nhiều phụ thuộc cùng chậm"
+        ],
+        "correct": 0,
+        "explanation": "Trang thanh toán không gọi tới tìm kiếm, và không dòng mã nào nối hai thứ ấy với nhau - chúng chỉ dùng chung một nguồn kết nối được cấu hình ở đâu đó. Đường lây nằm trong hạ tầng chứ không trong logic."
       }
     ],
-    "keyTakeaways": [
-      "MPT: nền tảng toán học để xây dựng danh mục tối ưu dựa trên return, risk, correlation",
-      "Đóng góp cốt lõi: chứng minh đa dạng hóa đúng cách có thể giảm rủi ro mà không giảm lợi nhuận kỳ vọng tương ứng",
-      "Nền tảng lý thuyết cho hầu hết các mô hình quản lý danh mục hiện đại"
-    ],
-    "practicePrompt": {
-      "question": "Một nhà quản lý quỹ dùng công cụ toán học để tính toán tỷ trọng tối ưu giữa cổ phiếu, trái phiếu, và các tài sản khác - kết hợp cả expected return, volatility, và correlation của từng cặp tài sản - nhằm tối đa hóa lợi nhuận cho mỗi mức rủi ro chấp nhận được. Khung lý thuyết nào làm nền tảng cho cách tiếp cận này?",
-      "options": [
-        "Đây là ứng dụng của CAPM, công thức duy nhất tính toán tỷ trọng tài sản tối ưu trong danh mục",
-        "MPT: nền tảng toán học để xây dựng danh mục tối ưu từ return, risk, correlation",
-        "Đây là ứng dụng của DCF, phương pháp định giá dòng tiền chiết khấu áp dụng cho toàn bộ danh mục",
-        "Không có khung lý thuyết cụ thể nào cho cách tiếp cận xây dựng danh mục kết hợp nhiều yếu tố như vậy"
-      ],
-      "correct": 1,
-      "explanation": "MPT: nền tảng toán học để xây dựng danh mục tối ưu dựa trên return, risk, correlation. Đây là lý thuyết nền tảng của đầu tư hiện đại, do Harry Markowitz phát triển, chỉ ra cách kết hợp tài sản để đạt hiệu quả tối ưu (Efficient Frontier) thay vì chỉ nhìn từng tài sản riêng lẻ."
-    },
-    "summary": {
-      "keyIdea": "MPT: nền tảng toán học để xây dựng danh mục tối ưu dựa trên return, risk, correlation",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Đóng góp cốt lõi: chứng minh đa dạng hóa đúng cách có thể giảm rủi ro mà không giảm lợi nhuận kỳ vọng tương ứng"
-    },
-    "application": {
-      "title": "Tìm hiểu về Harry Markowitz",
-      "message": "Đọc nhanh về bài báo năm 1952 của Harry Markowitz và ghi ra một câu tóm tắt đóng góp cốt lõi của ông theo cách hiểu của riêng bạn.",
-      "secondary": "Hiểu được ý tưởng gốc giúp bạn dùng công cụ hiện đại có chủ đích hơn, không chỉ máy móc."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Modern Portfolio Theory (MPT), do Harry Markowitz đề xuất năm 1952, là nền tảng toán học của quản lý danh mục hiện đại: dùng expected return, volatility và correlation của từng tài sản để tính toán danh mục tối ưu - lợi nhuận kỳ vọng cao nhất cho một mức rủi ro cho trước, hoặc rủi ro thấp nhất cho một mức lợi nhuận kỳ vọng cho trước."
+        "text": "Bài trước cho thấy mỗi phụ thuộc kéo trần độ tin cậy xuống. Bài này về chuyện tệ hơn: một phụ thuộc hỏng có thể kéo theo cả những phần không liên quan gì tới nó."
       },
       {
         "type": "heading",
-        "text": "Đóng góp cốt lõi: \"bữa trưa miễn phí\" duy nhất trong tài chính"
+        "text": "Đám cháy đi qua tài nguyên dùng chung"
       },
       {
         "type": "paragraph",
-        "text": "Trước Markowitz, nhà đầu tư thường chỉ đánh giá từng tài sản riêng lẻ. MPT là lý thuyết đầu tiên chứng minh bằng toán học rằng việc kết hợp các tài sản có correlation thấp có thể tạo ra một danh mục với rủi ro tổng thể THẤP HƠN trung bình rủi ro của từng tài sản riêng lẻ cộng lại. Đây là lý do đa dạng hóa được gọi là \"bữa trưa miễn phí\" (free lunch) duy nhất trong tài chính - giảm rủi ro mà không nhất thiết phải giảm lợi nhuận kỳ vọng tương ứng."
+        "text": "Mỗi lời gọi đang chờ giữ một luồng hoặc một kết nối. Nếu mọi lời gọi lấy từ cùng một nguồn, thì một phụ thuộc chậm chỉ cần vài trăm yêu cầu là vét sạch nguồn ấy - và những yêu cầu hoàn toàn không liên quan cũng không còn chỗ để chạy. Trang thanh toán chết vì dịch vụ tìm kiếm chậm, dù không dòng mã nào nối hai thứ đó."
       },
       {
-        "type": "heading",
-        "text": "Giả định lý tưởng hóa và giới hạn thực tế"
-      },
-      {
-        "type": "paragraph",
-        "text": "MPT giả định nhà đầu tư có thể tự do vay và cho vay ở mức risk-free rate để tối ưu hóa danh mục. Trong thực tế, nhà đầu tư cá nhân thường phải vay với lãi suất cao hơn nhiều so với risk-free rate (vay margin, thẻ tín dụng), khiến các kết luận lý thuyết thuần túy của MPT cần điều chỉnh khi áp dụng vào đầu tư cá nhân. Đây là một trong những giả định lý tưởng hóa thường bị phê phán của mô hình."
-      },
-      {
-        "type": "list",
-        "items": [
-          "MPT: nền tảng toán học xây dựng danh mục tối ưu dựa trên return, risk, correlation",
-          "Chứng minh đa dạng hóa đúng cách giảm rủi ro danh mục xuống dưới trung bình rủi ro từng tài sản",
-          "Giả định vay/cho vay ở risk-free rate không hoàn toàn đúng với nhà đầu tư cá nhân",
-          "Markowitz nhận giải Nobel Kinh tế năm 1990 nhờ công trình này"
+        "type": "conceptTable",
+        "title": "Ba lớp bảo vệ, dùng cùng nhau",
+        "subtitle": "Mỗi lớp chặn một giai đoạn khác nhau của cùng một chuỗi",
+        "concepts": [
+          {
+            "vi": "Thời gian chờ",
+            "en": "timeout",
+            "def": "Giới hạn thiệt hại của một lời gọi. Bắt buộc ở mọi lời gọi rời khỏi tiến trình, không ngoại lệ."
+          },
+          {
+            "vi": "Vách ngăn",
+            "en": "bulkhead",
+            "def": "Nguồn tài nguyên riêng cho mỗi phụ thuộc. Cạn khoang này thì khoang khác vẫn đầy."
+          },
+          {
+            "vi": "Cầu dao",
+            "en": "circuit breaker",
+            "def": "Thấy quá nhiều lỗi thì ngừng gọi hẳn một lúc, trả lỗi ngay, rồi thử lại dè dặt."
+          }
         ]
+      },
+      {
+        "type": "callout",
+        "label": "Cầu dao cứu cả hai bên",
+        "text": "Nó giữ tài nguyên cho bạn, và nó cắt tải cho bên kia. Một dịch vụ đang chật vật mà vẫn nhận đủ lưu lượng cộng thêm các lần thử lại thì gần như không có cơ hội đứng dậy."
+      },
+      {
+        "type": "heading",
+        "text": "Điều dễ bỏ sót nhất"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thư viện mạng thường mặc định không đặt thời gian chờ, hoặc đặt ở mức vô lý như vài phút. Một lời gọi thiếu thời gian chờ là một lời hứa ngầm rằng phía bên kia sẽ luôn trả lời - và đó là lời hứa duy nhất trong hệ thống mà bạn chắc chắn không kiểm soát được."
       },
       {
         "type": "closing",
         "lines": [
-          "MPT không hứa hẹn đánh bại thị trường - nó chỉ ra cách kết hợp tài sản thông minh hơn để đạt cùng lợi nhuận với ít rủi ro hơn."
+          "Không có cô lập thì mọi phụ thuộc đều là điểm hỏng đơn lẻ của mọi thứ khác.",
+          "Bài sau về tình huống xấu nhất: khi phải dựng lại từ bản sao lưu."
         ]
       }
     ]
   },
   {
     "id": 170,
-    "slug": "efficient-frontier-la-gi",
-    "title": "Tự học Tài chính Day 170: Efficient Frontier là gì?",
-    "subtitle": "Đường biên hiệu quả - tập hợp mọi danh mục tối ưu có thể có",
-    "duration": "7 phút",
+    "slug": "khoi-phuc-sau-tham-hoa",
+    "title": "Khôi phục sau thảm hoạ: mất bao lâu, và mất bao nhiêu dữ liệu",
+    "subtitle": "Hai con số phải trả lời được trước khi cần tới chúng, vì lúc cần thì đã quá muộn để hỏi.",
+    "duration": "9 phút",
     "difficulty": "Khó",
-    "emoji": "🧩",
-    "openingQuestion": "Nếu vẽ đồ thị với trục X là rủi ro (volatility) và trục Y là lợi nhuận kỳ vọng, Efficient Frontier là gì trên đồ thị đó?",
+    "emoji": "🧭",
+    "track": "professional",
+    "whyItMatters": "Sao lưu là thứ ai cũng có và ít ai thử. Hai con số này biến một niềm tin mơ hồ thành một cam kết đã được kiểm chứng, và chúng thường lộ ra rằng niềm tin ấy sai.",
+    "openingQuestion": "Hai câu hỏi cần trả lời trước khi một thảm hoạ xảy ra là gì?",
     "openingOptions": [
-      "Đường thẳng nối điểm rủi ro thấp nhất và lợi nhuận cao nhất",
-      "Một điểm duy nhất tối ưu nhất",
-      "Đường nối các danh mục tối ưu cho mỗi mức rủi ro",
-      "Không có ý nghĩa hình học cụ thể"
+      "Khôi phục mất bao lâu, và mất dữ liệu của khoảng thời gian nào",
+      "Ai chịu trách nhiệm khôi phục, và ai phê duyệt cho việc bắt đầu làm",
+      "Bản sao lưu nằm ở đâu, và ai có quyền truy cập vào nó",
+      "Chi phí của thời gian ngừng, và mức bồi thường phải trả"
     ],
-    "correctOption": 2,
-    "explanation": "Efficient Frontier (đường biên hiệu quả) là tập hợp tất cả các danh mục 'tối ưu Pareto'- với mỗi mức rủi ro cho trước, đó là danh mục mang lại lợi nhuận kỳ vọng cao nhất có thể (hoặc với mỗi mức lợi nhuận, đó là danh mục có rủi ro thấp nhất). Danh mục nằm dưới đường biên này luôn có thể cải thiện - tăng lợi nhuận mà không tăng rủi ro, hoặc giảm rủi ro mà không giảm lợi nhuận.",
+    "correctOption": 0,
+    "explanation": "Hai con số ấy quyết định toàn bộ thiết kế của hệ thống sao lưu. Thời gian khôi phục nói lên bạn cần bản sao nóng hay chỉ cần bản lưu trên kho lạnh; lượng dữ liệu chấp nhận mất nói lên bạn cần nhân bản liên tục hay sao lưu mỗi đêm là đủ. Ba nhóm câu hỏi còn lại đều cần thiết cho một kế hoạch hoàn chỉnh, nhưng chúng chỉ có câu trả lời hợp lý sau khi hai con số này đã được chọn.",
     "diagram": [
       {
-        "label": "Với mỗi mức rủi ro cho trước",
+        "label": "Thời gian khôi phục: mất bao lâu để hoạt động lại",
         "arrow": true
       },
       {
-        "label": "Tìm danh mục lợi nhuận kỳ vọng cao nhất",
+        "label": "Lượng dữ liệu mất: sao lưu gần nhất cách đây bao lâu",
         "arrow": true
       },
       {
-        "label": "Tập hợp các điểm đó → Efficient Frontier"
+        "label": "Hai con số quyết định kiến trúc và chi phí",
+        "arrow": true
+      },
+      {
+        "label": "Chưa diễn tập thì cả hai chỉ là ước đoán"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Quỹ đầu tư quốc tế đa tài sản",
-      "description": "Các quỹ đầu tư đa tài sản chuyên nghiệp thường xuyên tính toán lại efficient frontier với dữ liệu cập nhật để điều chỉnh phân bổ tài sản, đảm bảo danh mục luôn nằm gần đường biên hiệu quả nhất có thể."
+      "company": "Bản sao lưu không khôi phục được",
+      "description": "Sao lưu chạy đều đặn suốt hai năm và báo thành công mỗi đêm. Lần đầu tiên có người thử khôi phục, tệp giải nén ra lỗi - công việc đã sao lưu một thư mục sai từ tháng thứ ba."
+    },
+    "keyTakeaways": [
+      "Thời gian khôi phục và lượng dữ liệu chấp nhận mất phải được chọn trước.",
+      "Sao lưu báo thành công không chứng minh được là khôi phục được.",
+      "Chỉ có diễn tập khôi phục mới biến hai con số thành sự thật.",
+      "Bản sao lưu phải nằm ngoài phạm vi ảnh hưởng của thứ nó bảo vệ."
+    ],
+    "summary": {
+      "keyIdea": "Kế hoạch khôi phục bắt đầu bằng hai con số và chỉ có giá trị sau khi đã diễn tập.",
+      "formula": "Bao lâu để trở lại, và mất dữ liệu từ lúc nào.",
+      "commonMistake": "Coi công việc sao lưu chạy thành công là bằng chứng đã an toàn."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Hỏi xem lần cuối cùng có ai khôi phục thật từ bản sao lưu là khi nào. Nếu câu trả lời là chưa bao giờ thì bạn chưa có bản sao lưu, bạn có một công việc chạy hằng đêm."
+    },
+    "practicePrompt": {
+      "question": "Vì sao bản sao lưu phải nằm ngoài phạm vi ảnh hưởng của hệ thống chính?",
+      "options": [
+        "Vì thứ phá hỏng dữ liệu gốc thường phá luôn bản sao nằm cùng chỗ",
+        "Vì lưu ở nơi khác giúp giảm chi phí lưu trữ dài hạn đáng kể",
+        "Vì các quy định về dữ liệu yêu cầu lưu trữ ở nhiều địa điểm",
+        "Vì đọc từ nơi khác nhanh hơn khi cần khôi phục lượng lớn dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Một lệnh xoá nhầm, một mã độc, hay một tài khoản bị chiếm quyền đều với tới mọi thứ nằm trong cùng phạm vi truy cập. Cách ly bằng vùng khác, tài khoản khác, hoặc bản lưu không cho phép ghi đè là điều kiện để bản sao còn tồn tại đúng lúc bạn cần nó."
     },
     "quiz": [
       {
-        "question": "Nếu danh mục hiện tại của bạn nằm DƯỚI Efficient Frontier, điều đó có nghĩa gì?",
+        "question": "Con số thời gian khôi phục quyết định điều gì?",
         "options": [
-          "Điều này không có ý nghĩa thực tiễn gì",
-          "Danh mục của bạn đã tối ưu, không cần thay đổi gì",
-          "Bạn nên bán hết danh mục ngay lập tức",
-          "Danh mục chưa tối ưu - về mặt lý thuyết, có thể tái cơ cấu để đạt lợi nhuận kỳ vọng cao hơn ở CÙNG mức rủi ro, hoặc giảm rủi ro mà KHÔNG giảm lợi nhuận kỳ vọng"
-        ],
-        "correct": 3,
-        "explanation": "Một danh mục dưới efficient frontier đang 'lãng phí' tiềm năng - luôn tồn tại một cách phân bổ khác tốt hơn về mặt risk-return. Trong thực tế, khoảng cách này thường đến từ chi phí giao dịch cao, thiếu đa dạng hóa, hoặc thiên kiến hành vi (behavioral bias) khiến nhà đầu tư không tối ưu hóa danh mục đúng cách."
-      },
-      {
-        "question": "Nếu bạn thêm một tài sản mới vào danh mục và nó khiến Efficient Frontier dịch chuyển sang trái (lên trên), điều này có ý nghĩa gì?",
-        "options": [
-          "Tài sản mới đang cải thiện tập hợp các lựa chọn tối ưu có thể có - với cùng mức rủi ro, giờ đây có thể đạt lợi nhuận kỳ vọng cao hơn (hoặc cùng lợi nhuận với rủi ro thấp hơn) nhờ tài sản mới mang lại lợi ích đa dạng hóa hoặc lợi nhuận hấp dẫn",
-          "Danh mục đang trở nên tệ hơn",
-          "Efficient Frontier không bao giờ thay đổi khi thêm tài sản mới",
-          "Việc dịch chuyển Efficient Frontier không có ý nghĩa thực tế nào"
+          "Bạn cần bản sao nóng sẵn sàng hay chỉ cần kho lưu trữ lạnh",
+          "Bao lâu một lần công việc sao lưu cần được chạy lại",
+          "Lượng dữ liệu tối đa được phép mất trong một sự cố",
+          "Số người cần có mặt trong suốt quá trình khôi phục lại hệ thống"
         ],
         "correct": 0,
-        "explanation": "Efficient Frontier không phải một đường cố định - nó thay đổi khi tập hợp tài sản có sẵn để lựa chọn thay đổi; thêm một tài sản mang lại lợi ích đa dạng hóa tốt hoặc lợi nhuận hấp dẫn có thể \"nới rộng\" biên giới tối ưu, mang lại nhiều lựa chọn tốt hơn cho nhà đầu tư."
+        "explanation": "Mục tiêu mười lăm phút và mục tiêu hai ngày dẫn tới hai kiến trúc khác nhau hoàn toàn, chênh nhau nhiều lần về chi phí. Tần suất sao lưu thì do con số còn lại quyết định."
+      },
+      {
+        "question": "Lượng dữ liệu chấp nhận mất quyết định điều gì?",
+        "options": [
+          "Khoảng cách giữa hai lần sao lưu hoặc mức độ nhân bản liên tục",
+          "Khoảng thời gian tối đa mà cả hệ thống được phép ngừng hoạt động",
+          "Dung lượng lưu trữ cần chuẩn bị cho các bản sao lưu",
+          "Số lượng bản sao lưu cần giữ lại trong kho lưu trữ"
+        ],
+        "correct": 0,
+        "explanation": "Chấp nhận mất một giờ thì sao lưu mỗi giờ là đủ; chấp nhận mất vài giây thì phải nhân bản gần như liên tục. Đây là một quyết định nghiệp vụ chứ không phải quyết định kỹ thuật, vì nó nói về việc mất bao nhiêu đơn hàng."
+      },
+      {
+        "question": "Vì sao công việc sao lưu báo thành công vẫn chưa đủ?",
+        "options": [
+          "Vì nó chỉ chứng minh việc ghi đã chạy, không chứng minh việc đọc lại được",
+          "Vì thông báo thành công có thể bị mất trên đường gửi tới đội",
+          "Vì công việc sao lưu thường bỏ qua các tệp đang được mở",
+          "Vì bản sao lưu có thể bị hỏng trong quá trình lưu trữ dài hạn"
+        ],
+        "correct": 0,
+        "explanation": "Sao lưu nhầm thư mục, thiếu một bảng, mã hoá bằng khoá đã mất - mọi trường hợp ấy đều cho một công việc chạy thành công mỗi đêm. Chỉ có một lần khôi phục thật mới kiểm tra được toàn bộ chuỗi."
+      },
+      {
+        "question": "Diễn tập khôi phục nên được làm thế nào?",
+        "options": [
+          "Khôi phục thật vào môi trường riêng rồi kiểm tra dữ liệu có dùng được",
+          "Kiểm tra kích thước tệp sao lưu có nằm trong khoảng dự kiến",
+          "Mở thử tệp sao lưu để xác nhận nó không bị hỏng cấu trúc",
+          "Đối chiếu danh sách bảng trong bản sao với danh sách trong hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách còn lại đều kiểm tra tệp chứ không kiểm tra quy trình, mà quy trình mới là chỗ hay hỏng: thiếu quyền truy cập, thiếu khoá giải mã, thiếu bước cấu hình, hoặc mất nhiều giờ hơn dự kiến."
+      },
+      {
+        "question": "Vì sao hai con số này phải được chọn từ trước?",
+        "options": [
+          "Vì chúng quyết định kiến trúc, và không đổi được giữa lúc sự cố",
+          "Vì các nhà cung cấp hạ tầng yêu cầu khai báo chúng khi ký hợp đồng",
+          "Vì đội cần chúng để lập ngân sách hạ tầng cho năm tài chính",
+          "Vì chúng là thông tin bắt buộc trong hồ sơ tuân thủ quy định"
+        ],
+        "correct": 0,
+        "explanation": "Giữa lúc mất dữ liệu, bạn dùng bất kỳ bản sao lưu nào đang có và mất bất kỳ lượng dữ liệu nào đã mất. Hai con số ấy chỉ có ý nghĩa nếu chúng đã định hình hệ thống từ trước đó rất lâu."
       }
     ],
-    "keyTakeaways": [
-      "Efficient Frontier: tập hợp các danh mục tối ưu cho mỗi mức rủi ro",
-      "Danh mục dưới đường biên này luôn có thể cải thiện về risk-return",
-      "Là công cụ trực quan hóa cốt lõi của Modern Portfolio Theory"
-    ],
-    "practicePrompt": {
-      "question": "Trong không gian rủi ro-lợi nhuận, có vô số cách kết hợp tài sản khác nhau để tạo danh mục, nhưng chỉ một số ít trong đó thực sự 'tối ưu' - đạt lợi nhuận kỳ vọng cao nhất cho mỗi mức rủi ro chấp nhận được. Đường cong biểu diễn tập hợp các danh mục tối ưu này gọi là gì?",
-      "options": [
-        "Đây được gọi là Yield Curve, biểu diễn mối quan hệ giữa lợi suất và kỳ hạn trái phiếu",
-        "Efficient Frontier: tập hợp tất cả các danh mục tối ưu ứng với từng mức rủi ro khác nhau",
-        "Đây được gọi là Yield to Maturity Curve, biểu diễn lợi suất thực nếu giữ trái phiếu đến đáo hạn",
-        "Không có đường cong cụ thể nào biểu diễn được mối quan hệ giữa rủi ro và lợi nhuận tối ưu của danh mục"
-      ],
-      "correct": 1,
-      "explanation": "Efficient Frontier: tập hợp các danh mục tối ưu cho mỗi mức rủi ro. Đây là khái niệm trung tâm của MPT - danh mục nằm dưới đường này chưa tối ưu (có thể cải thiện), danh mục trên đường này là không khả thi với các tài sản hiện có."
-    },
-    "summary": {
-      "keyIdea": "Efficient Frontier: tập hợp các danh mục tối ưu cho mỗi mức rủi ro",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Danh mục dưới đường biên này luôn có thể cải thiện về risk-return"
-    },
-    "application": {
-      "title": "Phác họa efficient frontier của bạn",
-      "message": "Vẽ tay một trục tọa độ với rủi ro nằm ngang và lợi nhuận kỳ vọng thẳng đứng, rồi thử chấm điểm 2-3 danh mục phân bổ tài sản khác nhau bạn đang cân nhắc lên đó.",
-      "secondary": "Không cần chính xác tuyệt đối, chỉ cần hình dung được sự đánh đổi risk-return."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Efficient Frontier (đường biên hiệu quả) là tập hợp tất cả các danh mục \"tối ưu Pareto\": với mỗi mức rủi ro cho trước, đó là danh mục mang lại lợi nhuận kỳ vọng cao nhất có thể; hoặc với mỗi mức lợi nhuận, đó là danh mục có rủi ro thấp nhất. Danh mục nằm dưới đường biên này luôn có thể cải thiện được."
+        "text": "Dự phòng và cô lập lo cho những cách hỏng thông thường. Bài này về tình huống mọi thứ đã mất: trung tâm dữ liệu cháy, dữ liệu bị xoá, mã độc mã hoá toàn bộ."
       },
       {
         "type": "heading",
-        "text": "Danh mục nằm dưới đường biên nghĩa là gì?"
+        "text": "Hai con số"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Bao lâu để trở lại",
+          "text": "Mười lăm phút và hai ngày là hai kiến trúc khác nhau hoàn toàn, chênh nhau nhiều lần chi phí. Quyết định bạn cần bản sao nóng hay kho lạnh."
+        },
+        "right": {
+          "label": "Mất dữ liệu từ lúc nào",
+          "text": "Chấp nhận mất một giờ thì sao lưu mỗi giờ là đủ. Chấp nhận mất vài giây thì phải nhân bản liên tục."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Nếu danh mục hiện tại của bạn nằm dưới Efficient Frontier, về mặt lý thuyết luôn tồn tại một cách phân bổ khác giúp bạn đạt lợi nhuận kỳ vọng cao hơn ở CÙNG mức rủi ro, hoặc giảm rủi ro mà KHÔNG giảm lợi nhuận kỳ vọng. Danh mục dưới đường biên đang \"lãng phí\" tiềm năng. Trong thực tế, khoảng cách này thường đến từ chi phí giao dịch cao, thiếu đa dạng hóa, hoặc thiên kiến hành vi khiến nhà đầu tư không tối ưu hóa danh mục đúng cách."
+        "text": "Con số thứ hai là một quyết định nghiệp vụ, không phải quyết định kỹ thuật: nó nói về việc mất bao nhiêu đơn hàng, bao nhiêu giao dịch, bao nhiêu bài viết của người dùng. Người trả lời đúng cho nó là người chịu trách nhiệm về sản phẩm chứ không phải người vận hành."
+      },
+      {
+        "type": "callout",
+        "label": "Sao lưu chạy thành công không nói lên gì",
+        "text": "Sao lưu nhầm thư mục, thiếu một bảng, mã hoá bằng khoá đã mất - mọi trường hợp ấy đều cho một công việc báo thành công mỗi đêm suốt hai năm. Chỉ có một lần khôi phục thật mới kiểm tra được toàn bộ chuỗi."
       },
       {
         "type": "heading",
-        "text": "Đường biên không cố định"
+        "text": "Diễn tập kiểm tra quy trình, không kiểm tra tệp"
       },
       {
         "type": "paragraph",
-        "text": "Efficient Frontier không phải một đường vẽ một lần rồi để đó - nó thay đổi khi tập hợp tài sản có sẵn thay đổi. Nếu thêm một tài sản mới khiến đường biên dịch chuyển sang trái (lên trên), nghĩa là tài sản đó đang cải thiện tập hợp lựa chọn tối ưu: với cùng mức rủi ro, giờ đây có thể đạt lợi nhuận kỳ vọng cao hơn, nhờ tài sản mới mang lại lợi ích đa dạng hóa hoặc lợi nhuận hấp dẫn. Các quỹ đầu tư đa tài sản chuyên nghiệp thường xuyên tính lại efficient frontier với dữ liệu cập nhật để điều chỉnh phân bổ."
+        "text": "Chỗ hỏng thường không nằm trong dữ liệu mà nằm quanh nó: thiếu quyền truy cập, mất khoá giải mã, thiếu một bước cấu hình không ai ghi lại, hoặc đơn giản là mất nhiều giờ hơn con số đã hứa. Khôi phục thật vào một môi trường riêng rồi kiểm tra dữ liệu có dùng được là cách duy nhất tìm ra chúng trước."
       },
       {
-        "type": "list",
-        "items": [
-          "Efficient Frontier: tập hợp các danh mục tối ưu cho mỗi mức rủi ro",
-          "Danh mục dưới đường biên luôn có thể cải thiện về risk-return",
-          "Đường biên thay đổi khi tập hợp tài sản khả dụng thay đổi",
-          "Là công cụ trực quan hóa cốt lõi của Modern Portfolio Theory"
+        "type": "callout",
+        "label": "Để bản sao ngoài tầm với của tai hoạ",
+        "text": "Một lệnh xoá nhầm, một mã độc, một tài khoản bị chiếm quyền đều với tới mọi thứ trong cùng phạm vi truy cập. Vùng khác, tài khoản khác, hoặc bản lưu không cho phép ghi đè - đó là điều kiện để bản sao còn tồn tại đúng lúc bạn cần."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Chưa từng khôi phục thì bạn chưa có bản sao lưu, bạn có một công việc chạy hằng đêm.",
+          "Nửa sau của chặng chuyển từ chuẩn bị sang ứng phó: chuyện gì xảy ra trong ba mươi phút đầu của một sự cố."
         ]
       }
     ]
   },
   {
     "id": 171,
-    "slug": "sharpe-ratio-la-gi",
-    "title": "Tự học Tài chính Day 171: Sharpe Ratio là gì?",
-    "subtitle": "Đo lợi nhuận kiếm được trên mỗi đơn vị rủi ro đã chấp nhận",
-    "duration": "6 phút",
+    "slug": "phat-hien-va-tuyen-bo-su-co",
+    "title": "Tuyên bố sự cố: ngưỡng thấp thì tốt hơn",
+    "subtitle": "Chi phí của một lần tuyên bố nhầm là vài phút. Chi phí của việc tuyên bố muộn là cả sự cố.",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "⚠️",
-    "openingQuestion": "Quỹ A lợi nhuận 20%/năm với volatility 25%. Quỹ B lợi nhuận 12%/năm với volatility 10%. Risk-free rate là 3%. Quỹ nào có Sharpe Ratio cao hơn?",
+    "emoji": "📣",
+    "track": "professional",
+    "whyItMatters": "Phần lớn sự cố kéo dài không phải vì khó sửa mà vì mất bốn mươi phút để mọi người đồng ý rằng đang có sự cố. Hạ ngưỡng tuyên bố là cải thiện rẻ nhất trong toàn bộ quy trình ứng phó.",
+    "openingQuestion": "Bạn thấy dấu hiệu bất thường nhưng chưa chắc có phải sự cố hay không. Nên làm gì?",
     "openingOptions": [
-      "Quỹ A vì lợi nhuận tuyệt đối cao hơn",
-      "Quỹ B - Sharpe A = (20-3)/25 = 0,68; Sharpe B = (12-3)/10 = 0,9",
-      "Không thể tính được nếu như còn thiếu các thông tin quan trọng khác",
-      "Cả hai bằng nhau"
+      "Tuyên bố sự cố, vì đóng lại sớm rẻ hơn phát hiện muộn",
+      "Điều tra thêm mười lăm phút rồi quyết định dựa trên dữ liệu",
+      "Hỏi ý kiến một đồng nghiệp có kinh nghiệm trước khi tuyên bố",
+      "Theo dõi thêm cho tới khi có người dùng đầu tiên phàn nàn"
     ],
-    "correctOption": 1,
-    "explanation": "Sharpe Ratio = (Lợi nhuận danh mục − Risk-free rate) / Độ lệch chuẩn danh mục. Đây là chỉ số đo lợi nhuận vượt trội (so với tài sản phi rủi ro) kiếm được trên MỖI đơn vị rủi ro đã chấp nhận. Sharpe Ratio cao hơn nghĩa là quản lý rủi ro hiệu quả hơn, không chỉ đơn thuần lợi nhuận tuyệt đối cao hơn.",
+    "correctOption": 0,
+    "explanation": "Tuyên bố rồi đóng lại sau mười phút vì hoá ra không có gì tốn của đội mười phút. Phát hiện muộn bốn mươi phút thì cộng bốn mươi phút vào thời gian ngừng của mọi người dùng, và trong khoảng ấy sự cố còn kịp lan rộng. Điều tra thêm và hỏi đồng nghiệp đều là việc nên làm - nhưng làm chúng sau khi đã tuyên bố, chứ không phải như điều kiện để tuyên bố.",
     "diagram": [
       {
-        "label": "Lợi nhuận danh mục − Risk-free rate",
+        "label": "Tuyên bố nhầm: mất vài phút của đội",
         "arrow": true
       },
       {
-        "label": "Chia Độ lệch chuẩn danh mục",
+        "label": "Tuyên bố muộn: cộng thẳng vào thời gian ngừng",
         "arrow": true
       },
       {
-        "label": "= Sharpe Ratio (lợi nhuận/rủi ro)"
+        "label": "Hai chi phí lệch nhau rất xa",
+        "arrow": true
+      },
+      {
+        "label": "Nên đặt ngưỡng tuyên bố thấp"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "So sánh quỹ đầu tư chuyên nghiệp",
-      "description": "Các nhà phân tích quỹ (fund analyst) luôn so sánh Sharpe Ratio thay vì chỉ nhìn lợi nhuận tuyệt đối - một quỹ lãi 30%/năm nhưng biến động cực mạnh có thể kém hấp dẫn hơn một quỹ lãi 15%/năm ổn định nếu xét trên rủi ro đã chấp nhận."
+      "company": "Bốn mươi phút để đồng ý rằng đang cháy",
+      "description": "Trong nhiều dòng thời gian sự cố, khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố dài hơn khoảng cách từ lúc tuyên bố tới lúc sửa xong. Phần lâu nhất là phần bàn xem đây có phải sự cố không."
+    },
+    "keyTakeaways": [
+      "Đặt ngưỡng tuyên bố thấp, vì hai loại chi phí lệch nhau rất xa.",
+      "Ai cũng được quyền tuyên bố, không cần chờ phê duyệt.",
+      "Tuyên bố mở ra kênh liên lạc và phân vai, chứ không phải kết luận nguyên nhân.",
+      "Đóng nhầm nhiều lần là dấu hiệu tốt, không phải dấu hiệu xấu."
+    ],
+    "summary": {
+      "keyIdea": "Tuyên bố sớm và sẵn sàng đóng lại, thay vì chờ chắc chắn rồi mới bắt đầu.",
+      "formula": "Nghi ngờ thì tuyên bố.",
+      "commonMistake": "Coi việc tuyên bố là một kết luận cần chứng minh trước."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Xem lại ba sự cố gần nhất và đo khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố. Nếu nó dài hơn một phần tư tổng thời gian thì ngưỡng của đội đang quá cao."
+    },
+    "practicePrompt": {
+      "question": "Vì sao mọi người đều nên có quyền tuyên bố sự cố?",
+      "options": [
+        "Vì chờ phê duyệt cộng thêm thời gian vào đúng lúc đắt nhất",
+        "Vì người quản lý thường không nắm được chi tiết kỹ thuật",
+        "Vì như vậy trách nhiệm được chia đều cho cả đội cùng gánh",
+        "Vì các công cụ ứng phó không phân biệt vai trò người tuyên bố"
+      ],
+      "correct": 0,
+      "explanation": "Người phát hiện dấu hiệu đầu tiên thường là người trực hoặc một kỹ sư đang làm việc khác, và bắt họ tìm ai đó phê duyệt là thêm mười lăm phút vào giai đoạn đắt nhất của sự cố. Quyền tuyên bố phải rẻ tới mức không ai phải cân nhắc."
     },
     "quiz": [
       {
-        "question": "Vì sao chỉ so sánh lợi nhuận tuyệt đối giữa hai quỹ đầu tư có thể gây hiểu lầm?",
+        "question": "Vì sao ngưỡng tuyên bố nên thấp?",
         "options": [
-          "Không có vấn đề gì khi so sánh lợi nhuận tuyệt đối",
-          "Vì lợi nhuận tuyệt đối không thể đo lường chính xác",
-          "Vì nó bỏ qua mức độ rủi ro mà quỹ đã chấp nhận để đạt được lợi nhuận đó - một quỹ có thể lãi cao chỉ vì chấp nhận rủi ro cực lớn, không hẳn vì quản lý giỏi hơn",
-          "Vì lợi nhuận tuyệt đối luôn chính xác và đủ để so sánh"
+          "Vì chi phí tuyên bố nhầm nhỏ hơn nhiều so với chi phí phát hiện muộn",
+          "Vì các công cụ giám sát thường bỏ sót những sự cố nhỏ",
+          "Vì đội cần dữ liệu về số lượng sự cố để báo cáo hằng quý",
+          "Vì tuyên bố sớm giúp thông báo cho khách hàng kịp thời hơn"
         ],
-        "correct": 2,
-        "explanation": "Đây chính là giá trị của risk-adjusted return metrics như Sharpe Ratio: chúng buộc phải xem xét CẢ lợi nhuận LẪN rủi ro cùng lúc. Một quỹ hedge fund lãi 40%/năm bằng cách đặt cược đòn bẩy cực cao không nhất thiết 'giỏi' hơn một quỹ index lãi 12%/năm ổn định - Sharpe Ratio giúp so sánh công bằng hơn."
+        "correct": 0,
+        "explanation": "Mười phút của vài người so với bốn mươi phút nhân với toàn bộ người dùng - hai con số không cùng bậc. Khi hai loại sai lầm lệch nhau xa như vậy thì luôn nên nghiêng về phía sai lầm rẻ hơn."
       },
       {
-        "question": "Một quỹ có Sharpe Ratio âm (lợi nhuận thấp hơn cả risk-free rate). Điều này nói lên điều gì về hiệu suất của quỹ đó?",
+        "question": "Tuyên bố sự cố nghĩa là gì?",
         "options": [
-          "Sharpe Ratio âm là điều bình thường và không đáng lo ngại",
-          "Quỹ này vẫn có thể là lựa chọn tốt nếu volatility thấp",
-          "Sharpe Ratio không thể âm trong thực tế",
-          "Quỹ đang hoạt động kém hơn cả việc đơn giản giữ tài sản phi rủi ro (như gửi tiết kiệm hoặc mua trái phiếu chính phủ) - một tín hiệu rất tiêu cực về khả năng quản lý rủi ro và tạo lợi nhuận của quỹ đó"
+          "Mở kênh liên lạc chung và phân vai để bắt đầu ứng phó",
+          "Xác nhận rằng hệ thống đang có lỗi nghiêm trọng",
+          "Thông báo cho khách hàng rằng dịch vụ đang gián đoạn",
+          "Chuyển quyền quyết định kỹ thuật cho người quản lý cấp trên"
         ],
-        "correct": 3,
-        "explanation": "Sharpe Ratio âm là một tín hiệu cảnh báo nghiêm trọng: nó có nghĩa là nhà đầu tư đã chấp nhận rủi ro (volatility) nhưng nhận lại lợi nhuận còn THẤP HƠN cả việc không chấp nhận rủi ro gì (risk-free rate) - về bản chất là \"trả giá\" để có kết quả tệ hơn phương án an toàn nhất."
+        "correct": 0,
+        "explanation": "Nó là một hành động tổ chức chứ không phải một kết luận kỹ thuật. Hiểu nhầm điểm này chính là nguyên nhân khiến người ta ngại tuyên bố - họ tưởng mình đang khẳng định một điều gì đó cần chứng minh."
+      },
+      {
+        "question": "Việc đóng nhầm nhiều lần nói lên điều gì?",
+        "options": [
+          "Ngưỡng tuyên bố đang ở mức lành mạnh",
+          "Hệ thống giám sát đang phát quá nhiều tín hiệu sai",
+          "Đội chưa hiểu rõ các tiêu chí phân loại sự cố",
+          "Cần nâng ngưỡng lên để giảm số lần huy động không cần thiết"
+        ],
+        "correct": 0,
+        "explanation": "Một đội chưa từng đóng nhầm lần nào là một đội đang tuyên bố quá muộn. Con số cần theo dõi không phải số lần tuyên bố mà là khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố."
+      },
+      {
+        "question": "Đâu là phần thường dài nhất trong một dòng thời gian sự cố?",
+        "options": [
+          "Khoảng từ dấu hiệu đầu tiên tới lúc có người tuyên bố",
+          "Khoảng từ lúc tuyên bố tới lúc tìm ra nguyên nhân gốc",
+          "Khoảng từ lúc tìm ra nguyên nhân tới lúc triển khai bản sửa",
+          "Khoảng từ lúc sửa xong tới lúc xác nhận hệ thống ổn định"
+        ],
+        "correct": 0,
+        "explanation": "Đây là phát hiện gây ngạc nhiên nhất khi một đội bắt đầu đo dòng thời gian của mình. Nó cũng là phần rẻ nhất để rút ngắn, vì nó không đòi hỏi kỹ thuật gì mà chỉ đòi hỏi một quy ước."
+      },
+      {
+        "question": "Sau khi tuyên bố sự cố thì việc điều tra nên diễn ra thế nào?",
+        "options": [
+          "Tiến hành song song, trong khuôn khổ đã có kênh và có vai",
+          "Tạm dừng cho tới khi người chỉ huy sự cố có mặt đầy đủ",
+          "Chỉ do người đã tuyên bố thực hiện để tránh chồng chéo",
+          "Bắt đầu lại từ đầu với dữ liệu được thu thập một cách hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Tuyên bố không dừng việc điều tra lại mà đặt nó vào một cấu trúc. Khác biệt là từ lúc ấy có một chỗ để mọi phát hiện đổ về, thay vì ba người cùng đào ba hướng mà không ai biết về nhau."
       }
     ],
-    "keyTakeaways": [
-      "Sharpe Ratio = (Return − Risk-free rate) / Độ lệch chuẩn",
-      "Đo hiệu quả sinh lời trên mỗi đơn vị rủi ro, không chỉ lợi nhuận tuyệt đối",
-      "Là chỉ số chuẩn để so sánh hiệu suất giữa các quỹ đầu tư khác nhau"
-    ],
-    "practicePrompt": {
-      "question": "Quỹ A đạt lợi nhuận 15%/năm với độ lệch chuẩn (volatility) 20%; Quỹ B đạt lợi nhuận 10%/năm với độ lệch chuẩn chỉ 8%. Risk-free rate là 4%. Quỹ nào có hiệu suất điều chỉnh theo rủi ro tốt hơn (Sharpe Ratio cao hơn)?",
-      "options": [
-        "Quỹ A tốt hơn vì có lợi nhuận tuyệt đối cao hơn, không cần quan tâm đến độ lệch chuẩn",
-        "Sharpe: A = (15-4)/20 = 0,55; B = (10-4)/8 = 0,75 nên B tốt hơn",
-        "Cả hai quỹ có hiệu suất điều chỉnh rủi ro bằng nhau vì đều vượt trội hơn risk-free rate",
-        "Quỹ B kém hơn vì có lợi nhuận tuyệt đối thấp hơn Quỹ A"
-      ],
-      "correct": 1,
-      "explanation": "Sharpe Ratio = (Return − Risk-free rate) / Độ lệch chuẩn. B có Sharpe Ratio (0,75) cao hơn A (0,55) dù lợi nhuận tuyệt đối thấp hơn - đây là lý do Sharpe Ratio quan trọng hơn lợi nhuận tuyệt đối khi so sánh hiệu suất quỹ, vì nó tính đến cả rủi ro đã chấp nhận để đạt được lợi nhuận đó."
-    },
-    "summary": {
-      "keyIdea": "Sharpe Ratio = (Return − Risk-free rate) / Độ lệch chuẩn",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Đo hiệu quả sinh lời trên mỗi đơn vị rủi ro, không chỉ lợi nhuận tuyệt đối"
-    },
-    "application": {
-      "title": "Tính Sharpe Ratio một quỹ",
-      "message": "Bài học đã có ví dụ thật tính phần tử số Sharpe Ratio của VESAF (excess return ~18,8 điểm %) - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự tra độ lệch chuẩn của quỹ đó để hoàn thành phép tính.",
-      "secondary": "So sánh với một quỹ khác cùng loại sẽ cho bạn thấy quỹ nào quản lý rủi ro hiệu quả hơn."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Sharpe Ratio là câu trả lời cho câu hỏi: \"lợi nhuận này đạt được với cái giá rủi ro nào?\" **Công thức:** Sharpe Ratio = (Lợi nhuận danh mục − Risk-free rate) / Độ lệch chuẩn danh mục. Chỉ số càng cao, danh mục càng sinh lời hiệu quả trên mỗi đơn vị rủi ro đã chấp nhận - không chỉ đơn thuần là lợi nhuận tuyệt đối cao hơn."
+        "text": "Nửa đầu chặng là chuẩn bị. Từ đây trở đi là chuyện xảy ra khi mọi chuẩn bị đã không đủ - và bước đầu tiên hoá ra là bước bị làm chậm nhiều nhất."
       },
       {
         "type": "heading",
-        "text": "Vì sao chỉ nhìn lợi nhuận tuyệt đối là chưa đủ"
+        "text": "Hai loại sai lầm, hai cái giá rất khác nhau"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Tuyên bố nhầm",
+          "text": "Vài người bỏ dở việc trong mười phút rồi quay lại. Chi phí thấp, dễ đo, và không ai bị ảnh hưởng ngoài đội."
+        },
+        "right": {
+          "label": "Tuyên bố muộn",
+          "text": "Bốn mươi phút cộng thẳng vào thời gian ngừng của mọi người dùng, và sự cố còn kịp lan rộng trong khoảng ấy."
+        }
       },
       {
         "type": "paragraph",
-        "text": "So sánh lợi nhuận tuyệt đối giữa hai quỹ có thể gây hiểu lầm vì nó bỏ qua mức độ rủi ro đã chấp nhận. Một quỹ hedge fund lãi 40%/năm bằng cách đặt cược đòn bẩy cực cao không nhất thiết \"giỏi\" hơn một quỹ index lãi 12%/năm ổn định. **Ví dụ:** nếu Quỹ A lãi 15% với độ lệch chuẩn 10% và risk-free rate 3%, Sharpe = (15-3)/10 = 1.2. Quỹ B lãi 30% nhưng độ lệch chuẩn 35%, Sharpe = (30-3)/35 ≈ 0.77. Dù lãi tuyệt đối thấp hơn, Quỹ A hiệu quả hơn xét trên rủi ro."
-      },
-      {
-        "type": "heading",
-        "text": "Sharpe Ratio âm là tín hiệu nghiêm trọng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi Sharpe Ratio âm (lợi nhuận thấp hơn cả risk-free rate), điều đó nghĩa là quỹ đang hoạt động kém hơn cả việc đơn giản giữ tài sản phi rủi ro - nhà đầu tư đã chấp nhận biến động nhưng nhận lại kết quả còn tệ hơn phương án an toàn nhất, về bản chất là \"trả giá\" để có kết quả tồi tệ hơn."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Sharpe Ratio = (Return − Risk-free rate) / Độ lệch chuẩn",
-          "So sánh lợi nhuận điều chỉnh rủi ro, không chỉ lợi nhuận tuyệt đối",
-          "Sharpe càng cao, hiệu quả sinh lời trên mỗi đơn vị rủi ro càng tốt",
-          "Sharpe âm: quỹ hoạt động kém hơn cả tài sản phi rủi ro - tín hiệu cảnh báo mạnh"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ thật: ước tính Sharpe Ratio của VESAF"
-      },
-      {
-        "type": "list",
-        "items": [
-          "VESAF: lợi nhuận bình quân 22,9%/năm (5 năm tính đến 30/6/2025)",
-          "Lợi suất phi rủi ro tham chiếu: trái phiếu chính phủ 10 năm khoảng 4,11%/năm",
-          "Phần lợi nhuận vượt trội (excess return) = 22,9% - 4,11% ≈ 18,8 điểm % - đây là tử số của Sharpe Ratio; mẫu số là độ lệch chuẩn (mức biến động) của quỹ, số này bạn cần tự tra trên factsheet quỹ vì nó thay đổi theo từng giai đoạn"
-        ]
+        "text": "Khi hai loại sai lầm lệch nhau xa như vậy, câu trả lời đúng luôn là nghiêng hẳn về phía rẻ hơn. Một đội chưa từng đóng nhầm lần nào không phải một đội chính xác - đó là một đội đang tuyên bố quá muộn."
       },
       {
         "type": "callout",
-        "label": "Công thức đầy đủ để tự hoàn thành",
-        "text": "Sharpe Ratio = (Lợi nhuận quỹ - Lợi suất phi rủi ro) / Độ lệch chuẩn của quỹ. Tra \"Standard Deviation\" hoặc \"Độ lệch chuẩn\" trên factsheet quỹ (thường công bố theo năm) để hoàn thành phép tính với đúng số liệu của quỹ bạn quan tâm."
+        "label": "Tuyên bố là hành động tổ chức",
+        "text": "Nó không khẳng định nguyên nhân, không kết luận mức nghiêm trọng, không hứa gì với khách hàng. Nó chỉ mở một kênh và phân vai. Hiểu nhầm nó thành một kết luận cần chứng minh chính là lý do người ta ngại bấm nút."
+      },
+      {
+        "type": "heading",
+        "text": "Ai được bấm nút"
+      },
+      {
+        "type": "paragraph",
+        "text": "Người phát hiện dấu hiệu đầu tiên thường là người trực hoặc một kỹ sư đang làm việc khác. Bắt họ đi tìm ai đó phê duyệt là cộng thêm mười lăm phút vào giai đoạn đắt nhất. Quyền tuyên bố phải rẻ tới mức không ai phải cân nhắc trước khi dùng."
       },
       {
         "type": "closing",
         "lines": [
-          "Lợi nhuận cao chưa nói lên điều gì - phải chia cho rủi ro đã bỏ ra mới biết ai thực sự quản lý giỏi."
+          "Con số đáng theo dõi không phải số lần tuyên bố, mà là khoảng cách từ dấu hiệu đầu tiên tới lúc tuyên bố.",
+          "Bài sau về việc xảy ra ngay sau đó: ai làm gì, và ai không làm gì."
         ]
       }
     ]
   },
   {
     "id": 172,
-    "slug": "alpha-la-gi",
-    "title": "Tự học Tài chính Day 172: Alpha là gì?",
-    "subtitle": "Phần lợi nhuận vượt trội mà một nhà quản lý quỹ tạo ra so với thị trường",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📘",
-    "openingQuestion": "Một quỹ đầu tư lãi 15%/năm trong khi chỉ số thị trường (benchmark) tương ứng chỉ tăng 10%/năm với cùng mức rủi ro. Phần chênh lệch 5% này gọi là gì?",
+    "slug": "vai-tro-trong-su-co",
+    "title": "Phân vai: người chỉ huy không phải người sửa",
+    "subtitle": "Người giỏi nhất về hệ thống mà đi chỉ huy thì bạn mất cả người sửa lẫn người điều phối.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🎽",
+    "track": "professional",
+    "whyItMatters": "Sự cố kéo dài vì hỗn loạn nhiều hơn vì kỹ thuật khó. Ba vai trò rõ ràng cắt được phần lớn sự hỗn loạn ấy, và chúng không cần thêm người nào.",
+    "openingQuestion": "Người chỉ huy sự cố nên là ai?",
     "openingOptions": [
-      "Alpha - phần lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-      "Beta - độ nhạy của quỹ so với biến động chung của cả thị trường",
-      "Sharpe Ratio - phần lợi nhuận vượt trội tính trên mỗi đơn vị của độ lệch chuẩn",
-      "Risk premium - phần bù rủi ro mà thị trường đòi hỏi"
+      "Người điều phối được, kể cả khi họ không phải chuyên gia về hệ thống",
+      "Kỹ sư hiểu rõ hệ thống nhất trong số những người đang có mặt",
+      "Người quản lý cấp cao nhất tham gia vào cuộc ứng phó",
+      "Người đã phát hiện và tuyên bố sự cố ngay từ đầu"
     ],
     "correctOption": 0,
-    "explanation": "Alpha đo phần lợi nhuận một danh mục/quỹ tạo ra VƯỢT TRỘI so với những gì thị trường (benchmark có cùng mức rủi ro) mang lại. Alpha dương nghĩa là nhà quản lý đang tạo ra giá trị thực sự qua kỹ năng chọn lựa tài sản hoặc thời điểm; Alpha âm nghĩa là quỹ đang kém hơn benchmark dù đã tính đến rủi ro.",
+    "explanation": "Chỉ huy là việc theo dõi ai đang làm gì, quyết định thứ tự ưu tiên và giữ nhịp - nó chiếm toàn bộ sự chú ý của một người. Nếu giao cho chuyên gia giỏi nhất thì họ vừa phải đọc nhật ký vừa phải trả lời câu hỏi từ năm phía, và làm hỏng cả hai việc. Người quản lý cấp cao cũng có thể chỉ huy nếu họ điều phối tốt, nhưng chức vụ không phải tiêu chí - và cấp cao có mặt lại thường khiến người khác ngại phản đối một hướng sai.",
     "diagram": [
       {
-        "label": "Lợi nhuận quỹ thực tế",
+        "label": "Chỉ huy: giữ nhịp, phân việc, quyết ưu tiên",
         "arrow": true
       },
       {
-        "label": "Trừ lợi nhuận benchmark cùng mức rủi ro",
+        "label": "Người sửa: tập trung vào một hướng điều tra",
         "arrow": true
       },
       {
-        "label": "= Alpha (dương = tạo giá trị thực)"
+        "label": "Người liên lạc: cập nhật ra ngoài định kỳ",
+        "arrow": true
+      },
+      {
+        "label": "Ba vai tách nhau, kể cả khi chỉ có ba người"
       }
     ],
     "realWorldExample": {
-      "company": "Warren Buffett và Berkshire Hathaway",
-      "description": "Warren Buffett được xem là một trong số ít nhà quản lý tạo ra Alpha dương bền vững qua nhiều thập kỷ - vượt trội hơn chỉ số S&P 500 sau khi điều chỉnh rủi ro, điều cực kỳ hiếm trong ngành quản lý quỹ."
+      "company": "Chuyên gia bị hỏi mỗi ba mươi giây",
+      "description": "Kỹ sư duy nhất hiểu hệ thống ngồi giữa kênh chat, vừa đọc nhật ký vừa trả lời câu hỏi của bảy người. Sự cố kéo dài thêm một giờ, và phần lớn thời gian ấy là chờ họ gõ xong câu trả lời."
+    },
+    "keyTakeaways": [
+      "Chỉ huy điều phối chứ không gõ lệnh, kể cả khi họ biết cách sửa.",
+      "Một hướng điều tra một người, để không ai làm trùng và không ai bị bỏ sót.",
+      "Người liên lạc tách riêng, vì cập nhật ra ngoài chiếm nhiều thời gian hơn ta tưởng.",
+      "Vai trò được tuyên bố ra tiếng, không ai tự hiểu ngầm."
+    ],
+    "summary": {
+      "keyIdea": "Ba vai trò tách bạch cắt phần lớn sự hỗn loạn mà không cần thêm người.",
+      "formula": "Chỉ huy điều phối, người sửa tập trung, người liên lạc nói ra ngoài.",
+      "commonMistake": "Giao chỉ huy cho chuyên gia giỏi nhất về hệ thống."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Viết ba vai trò này vào tài liệu ứng phó của đội kèm một câu mô tả cho mỗi vai. Lần sự cố tới, câu đầu tiên trong kênh là ai nhận vai nào."
+    },
+    "practicePrompt": {
+      "question": "Vì sao cần một người liên lạc riêng?",
+      "options": [
+        "Vì cập nhật cho bên ngoài chiếm nhiều thời gian và làm đứt mạch người sửa",
+        "Vì thông tin gửi ra ngoài cần được kiểm duyệt trước khi công bố",
+        "Vì các bên liên quan thường yêu cầu một đầu mối cố định duy nhất",
+        "Vì người sửa không nắm được bức tranh tổng thể để mô tả tình hình"
+      ],
+      "correct": 0,
+      "explanation": "Câu hỏi khi nào xong đến từ bộ phận hỗ trợ, từ kinh doanh, từ lãnh đạo, và mỗi lần trả lời là một lần người sửa phải chuyển ngữ cảnh. Tách vai này ra bảo vệ sự tập trung của người đang thật sự gỡ vấn đề."
     },
     "quiz": [
       {
-        "question": "Vì sao phần lớn quỹ đầu tư chủ động (active fund) thường có Alpha gần 0 hoặc âm trong dài hạn?",
+        "question": "Nhiệm vụ chính của người chỉ huy sự cố là gì?",
         "options": [
-          "Vì các nhà quản lý quỹ không đủ trình độ",
-          "Vì thị trường tài chính khá hiệu quả - thông tin được phản ánh nhanh vào giá, khiến việc liên tục 'đánh bại thị trường' sau khi trừ phí quản lý là cực kỳ khó khăn với đa số người tham gia",
-          "Vì các quỹ chủ động luôn gian lận số liệu",
-          "Vì Alpha không thể đo lường chính xác"
+          "Biết ai đang làm gì, quyết thứ tự ưu tiên và giữ nhịp cuộc ứng phó",
+          "Tìm ra nguyên nhân gốc rồi hướng dẫn cho cả đội cách khắc phục vấn đề",
+          "Phê duyệt mọi thay đổi được triển khai trong lúc sự cố",
+          "Ghi lại dòng thời gian để phục vụ việc hồi cứu về sau"
         ],
-        "correct": 1,
-        "explanation": "Lý thuyết thị trường hiệu quả (Efficient Market Hypothesis) cho rằng giá tài sản đã phản ánh gần như toàn bộ thông tin công khai, khiến việc tìm kiếm Alpha dương bền vững cực kỳ khó. Nghiên cứu SPIVA hàng năm cho thấy phần lớn quỹ chủ động không vượt qua được benchmark sau khi trừ phí trong khoảng thời gian 10-15 năm."
+        "correct": 0,
+        "explanation": "Ghi dòng thời gian là việc thật nhưng nó thường giao cho một người khác, vì chỉ huy đã kín việc. Điều quan trọng nhất là chỉ huy không gõ lệnh - ngay khi họ bắt đầu gõ, không còn ai giữ bức tranh tổng thể."
       },
       {
-        "question": "Một quỹ có Alpha dương trong 3 năm liên tiếp nhưng dựa trên chỉ một chiến lược đầu tư duy nhất (ví dụ chỉ mua cổ phiếu giá trị). Điều gì cần cân nhắc trước khi kết luận đây là \"kỹ năng\" thực sự bền vững?",
+        "question": "Vì sao mỗi hướng điều tra nên do một người phụ trách?",
         "options": [
-          "Không cần cân nhắc gì thêm, Alpha dương 3 năm liên tiếp là đủ bằng chứng về kỹ năng",
-          "3 năm luôn là khoảng thời gian đủ dài để chứng minh kỹ năng bền vững",
-          "Cần xem xét liệu Alpha dương có đến từ việc \"đặt cược\" đúng vào một yếu tố (factor) đang được ưa chuộng trong giai đoạn đó (như cổ phiếu giá trị outperform trong chu kỳ này), hay thực sự đến từ kỹ năng chọn lựa cổ phiếu vượt trội - hai nguồn gốc này có ý nghĩa rất khác nhau về tính bền vững trong tương lai",
-          "Alpha không liên quan gì đến chiến lược đầu tư được sử dụng"
+          "Để không có hướng nào bị bỏ sót và không có hướng nào bị làm trùng",
+          "Để mỗi người chịu trách nhiệm rõ ràng khi hồi cứu về sau",
+          "Để giảm số lượng tin nhắn trao đổi trong kênh ứng phó",
+          "Để người chỉ huy dễ theo dõi tiến độ của từng nhánh công việc"
         ],
-        "correct": 2,
-        "explanation": "Đây là phân biệt quan trọng giữa \"factor exposure\" (được hưởng lợi từ một yếu tố thị trường đang thịnh hành) và \"true alpha\" (kỹ năng chọn lựa vượt trội thực sự) - nhiều quỹ có vẻ tạo Alpha nhưng thực chất chỉ đang \"lướt sóng\" đúng yếu tố đang được ưa chuộng, một sự khác biệt chỉ lộ rõ khi chu kỳ yếu tố đó đảo chiều."
+        "correct": 0,
+        "explanation": "Không phân công thì ba người cùng đào một hướng dễ nhất và không ai đụng tới hướng khó. Đây là dạng lãng phí âm thầm nhất trong sự cố vì trông thì ai cũng đang bận."
+      },
+      {
+        "question": "Vì sao chuyên gia giỏi nhất không nên chỉ huy?",
+        "options": [
+          "Vì chỉ huy chiếm toàn bộ sự chú ý nên họ không còn sửa được nữa",
+          "Vì họ thường thiếu kỹ năng giao tiếp với các bên liên quan",
+          "Vì họ thường có xu hướng bám theo giả thuyết của riêng mình quá lâu",
+          "Vì vai trò chỉ huy cần một người có thẩm quyền trong tổ chức"
+        ],
+        "correct": 0,
+        "explanation": "Bạn đánh đổi người sửa giỏi nhất lấy một người điều phối trung bình, rồi mất luôn cả hai vì họ cố làm cùng lúc. Hai việc này đều cần toàn bộ sự chú ý và không ai chia được sự chú ý làm đôi."
+      },
+      {
+        "question": "Vì sao vai trò phải được tuyên bố ra tiếng?",
+        "options": [
+          "Vì hiểu ngầm dẫn tới việc hai người cùng làm hoặc không ai làm",
+          "Vì các công cụ ứng phó cần được gán vai trò thì mới hoạt động đúng",
+          "Vì tài liệu hồi cứu yêu cầu ghi rõ ai đảm nhận vai trò nào",
+          "Vì người mới tham gia cần biết ai là người có thẩm quyền"
+        ],
+        "correct": 0,
+        "explanation": "Ai cũng nghĩ người kia đang cập nhật cho bên ngoài, và bốn mươi phút trôi qua không có thông báo nào. Một dòng chữ tôi nhận vai chỉ huy trong kênh chat đủ để loại bỏ toàn bộ nhóm vấn đề này."
+      },
+      {
+        "question": "Với một sự cố nhỏ chỉ có hai người thì nên làm gì?",
+        "options": [
+          "Vẫn phân vai, một người chỉ huy kiêm liên lạc, một người sửa",
+          "Bỏ qua việc phân vai vì hai người dễ dàng phối hợp trực tiếp",
+          "Gọi thêm một người thứ ba để đủ ba vai trò theo đúng quy trình",
+          "Để cả hai cùng điều tra rồi ai tìm ra trước thì người đó dẫn dắt"
+        ],
+        "correct": 0,
+        "explanation": "Gộp vai thì được, bỏ vai thì không. Điều quan trọng vẫn giữ nguyên: có đúng một người không gõ lệnh, đang giữ bức tranh tổng thể và trả lời câu hỏi từ bên ngoài."
       }
     ],
-    "keyTakeaways": [
-      "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-      "Alpha dương phản ánh kỹ năng thực sự của nhà quản lý quỹ, không phải may mắn ngắn hạn",
-      "Rất khó tạo ra Alpha dương bền vững trong thị trường hiệu quả - lý do quỹ index thụ động ngày càng phổ biến"
-    ],
-    "practicePrompt": {
-      "question": "Một quỹ đầu tư đạt lợi nhuận 18%/năm trong khi chỉ số tham chiếu (benchmark) cùng mức rủi ro chỉ đạt 13%/năm. Phần chênh lệch 5% vượt trội này gọi là gì trong giới đầu tư?",
-      "options": [
-        "Đây gọi là Beta, thước đo mức độ nhạy cảm của quỹ so với biến động thị trường chung",
-        "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-        "Đây gọi là Tracking Error, đo mức độ lệch giữa lợi suất quỹ và benchmark",
-        "Chênh lệch này không có ý nghĩa gì đặc biệt, chỉ là biến động ngẫu nhiên trong một năm"
-      ],
-      "correct": 1,
-      "explanation": "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro. Đây là 'thánh chỉ' mà các quỹ chủ động theo đuổi - nhưng thực tế rất khó tạo ra alpha dương bền vững trong thị trường hiệu quả, đây là lý do quỹ index thụ động ngày càng phổ biến."
-    },
-    "summary": {
-      "keyIdea": "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Alpha dương phản ánh kỹ năng thực sự của nhà quản lý quỹ, không phải may mắn ngắn hạn"
-    },
-    "application": {
-      "title": "Tìm một quỹ có Alpha dương",
-      "message": "Tra cứu hiệu suất 3-5 năm của một quỹ chủ động và so sánh với benchmark cùng loại tài sản của nó - nếu quỹ vượt trội sau khi trừ phí, đó là dấu hiệu Alpha dương thực sự.",
-      "secondary": "Bạn sẽ nhận ra Alpha dương bền vững hiếm hơn nhiều so với những gì quảng cáo hứa hẹn."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Alpha đo phần lợi nhuận một danh mục hoặc quỹ tạo ra VƯỢT TRỘI so với những gì một benchmark có cùng mức rủi ro mang lại. Alpha dương nghĩa là nhà quản lý đang tạo ra giá trị thực sự qua kỹ năng chọn lựa tài sản hoặc thời điểm giao dịch; Alpha âm nghĩa là quỹ kém hơn benchmark dù đã tính đến rủi ro."
+        "text": "Sự cố đã được tuyên bố. Trong năm phút tiếp theo, thứ quyết định nó kéo dài hai mươi phút hay hai giờ thường không phải kỹ thuật mà là ai làm gì."
       },
       {
         "type": "heading",
-        "text": "Vì sao Alpha dương bền vững rất hiếm"
+        "text": "Ba vai"
       },
       {
-        "type": "paragraph",
-        "text": "Theo lý thuyết thị trường hiệu quả (Efficient Market Hypothesis), giá tài sản đã phản ánh gần như toàn bộ thông tin công khai, khiến việc liên tục \"đánh bại thị trường\" sau khi trừ phí quản lý cực kỳ khó khăn. Báo cáo SPIVA hàng năm cho thấy phần lớn quỹ chủ động không vượt qua được benchmark sau khi trừ phí trong khoảng 10-15 năm. Warren Buffett là một trong số ít nhà quản lý tạo Alpha dương bền vững qua nhiều thập kỷ - chính vì hiếm nên ông trở thành huyền thoại."
+        "type": "conceptTable",
+        "title": "Tách bạch, kể cả khi ít người",
+        "subtitle": "Gộp vai thì được, bỏ vai thì không",
+        "concepts": [
+          {
+            "vi": "Chỉ huy",
+            "en": "incident commander",
+            "def": "Biết ai đang làm gì, quyết thứ tự ưu tiên, giữ nhịp. Không gõ lệnh - ngay khi họ gõ, không còn ai giữ bức tranh tổng thể."
+          },
+          {
+            "vi": "Người sửa",
+            "en": "responder",
+            "def": "Một hướng điều tra, một người. Được bảo vệ khỏi mọi câu hỏi không liên quan tới hướng của mình."
+          },
+          {
+            "vi": "Người liên lạc",
+            "en": "comms lead",
+            "def": "Cập nhật cho hỗ trợ, kinh doanh, lãnh đạo theo nhịp cố định. Chắn cho người sửa khỏi câu hỏi khi nào xong."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Cái bẫy phổ biến nhất",
+        "text": "Giao chỉ huy cho người hiểu hệ thống nhất. Họ ngồi giữa kênh chat, vừa đọc nhật ký vừa trả lời bảy người, và làm hỏng cả hai việc. Bạn vừa mất người sửa giỏi nhất vừa có một người điều phối đang bị phân tâm."
       },
       {
         "type": "heading",
-        "text": "Alpha thật hay chỉ là \"đặt cược đúng yếu tố\"?"
+        "text": "Vì sao phải nói ra tiếng"
       },
       {
         "type": "paragraph",
-        "text": "Một quỹ có Alpha dương 3 năm liên tiếp dựa trên một chiến lược duy nhất (ví dụ chỉ mua cổ phiếu giá trị) chưa chắc đã có \"kỹ năng\" bền vững. Cần phân biệt giữa \"factor exposure\" (được hưởng lợi vì đặt cược đúng vào một yếu tố đang thịnh hành trong chu kỳ đó) và \"true alpha\" (kỹ năng chọn lựa cổ phiếu vượt trội thực sự). Sự khác biệt này chỉ lộ rõ khi chu kỳ yếu tố đó đảo chiều - nhiều quỹ tưởng như đang tạo Alpha thực chất chỉ đang lướt đúng con sóng."
+        "text": "Ai cũng nghĩ người kia đang cập nhật cho bên ngoài, và bốn mươi phút trôi qua mà bộ phận hỗ trợ chưa nhận được dòng nào. Ba người cùng đào một hướng dễ trong khi hướng khó không ai đụng tới. Toàn bộ nhóm vấn đề này biến mất khi có người gõ vào kênh một dòng: tôi nhận vai chỉ huy."
       },
       {
-        "type": "list",
-        "items": [
-          "Alpha: lợi nhuận vượt trội so với benchmark sau khi điều chỉnh rủi ro",
-          "Alpha dương phản ánh kỹ năng thực sự, không phải may mắn ngắn hạn",
-          "Cần phân biệt factor exposure (đặt cược đúng xu hướng) và true alpha (kỹ năng thực)",
-          "Alpha dương bền vững cực kỳ hiếm - lý do đầu tư thụ động ngày càng phổ biến"
+        "type": "closing",
+        "lines": [
+          "Ba vai không cần thêm người. Chúng chỉ cần được đặt tên trước khi cần tới.",
+          "Bài sau đi sâu vào vai khó nhất trong ba vai: nói gì với bên ngoài khi bạn chưa biết chuyện gì đang xảy ra."
         ]
       }
     ]
   },
   {
     "id": 173,
-    "slug": "beta-trong-danh-muc",
-    "title": "Tự học Tài chính Day 173: Beta trong danh mục",
-    "subtitle": "Đo độ nhạy cảm của danh mục so với biến động chung của thị trường",
-    "duration": "6 phút",
+    "slug": "giao-tiep-trong-su-co",
+    "title": "Nói gì khi bạn chưa biết chuyện gì đang xảy ra",
+    "subtitle": "Im lặng không phải trung lập. Người dùng lấp khoảng trống ấy bằng giả định tệ hơn sự thật.",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "🧩",
-    "openingQuestion": "Một danh mục có Beta = 1.5. Nếu thị trường chung tăng 10%, danh mục này dự kiến biến động thế nào?",
+    "emoji": "📢",
+    "track": "professional",
+    "whyItMatters": "Cách một sự cố được kể lại ảnh hưởng tới niềm tin nhiều hơn độ dài của nó. Một sự cố hai giờ có cập nhật đều đặn để lại ít tổn thất hơn một sự cố hai mươi phút trong im lặng hoàn toàn.",
+    "openingQuestion": "Mười phút sau khi tuyên bố, bạn vẫn chưa biết nguyên nhân. Nên thông báo gì ra ngoài?",
     "openingOptions": [
-      "Tăng đúng 10% như thị trường",
-      "Giảm 15%",
-      "Không liên quan gì đến biến động thị trường",
-      "Tăng khoảng 15% (1,5 × 10%)"
+      "Nói rõ cái gì đang hỏng, ai bị ảnh hưởng, và khi nào sẽ cập nhật tiếp",
+      "Chờ tới khi xác định được nguyên nhân rồi thông báo một lần cho đầy đủ",
+      "Thông báo rằng hệ thống đang gặp sự cố kỹ thuật và đội đang xử lý",
+      "Ước tính thời gian khắc phục để người dùng biết mà sắp xếp công việc"
     ],
-    "correctOption": 3,
-    "explanation": "Beta đo độ nhạy cảm của một danh mục/cổ phiếu so với biến động của toàn bộ thị trường. Beta = 1: biến động đúng bằng thị trường. Beta > 1: biến động mạnh hơn thị trường (khuếch đại cả lãi và lỗ). Beta < 1: biến động nhẹ hơn thị trường (phòng thủ hơn). Beta âm (hiếm): di chuyển ngược chiều thị trường.",
+    "correctOption": 0,
+    "explanation": "Điều người bị ảnh hưởng cần không phải nguyên nhân mà là ba thứ: cái gì đang không dùng được, có phải mình không, và bao giờ biết thêm. Cả ba đều trả lời được ngay từ phút thứ mười mà không cần biết nguyên nhân. Một thông báo chung chung kiểu đang gặp sự cố kỹ thuật thì không nói được gì trong ba thứ ấy, còn ước tính thời gian khi chưa biết nguyên nhân là cách nhanh nhất để phải xin lỗi lần thứ hai.",
     "diagram": [
       {
-        "label": "Thị trường biến động ±1%",
+        "label": "Cái gì đang không dùng được",
         "arrow": true
       },
       {
-        "label": "Beta đo độ nhạy của danh mục",
+        "label": "Ai bị ảnh hưởng, ai không",
         "arrow": true
       },
       {
-        "label": "Beta > 1: khuếch đại cả lãi và lỗ"
+        "label": "Khi nào có cập nhật tiếp",
+        "arrow": true
+      },
+      {
+        "label": "Ba điều này trả lời được trước khi biết nguyên nhân"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Cổ phiếu công nghệ tăng trưởng vs tiện ích",
-      "description": "Cổ phiếu công nghệ tăng trưởng cao thường có Beta 1.3-1.8 (biến động mạnh hơn thị trường), trong khi cổ phiếu ngành tiện ích công cộng thường có Beta 0.3-0.6 (ổn định hơn nhiều so với thị trường chung)."
+      "company": "Im lặng bị đọc thành tệ hơn",
+      "description": "Một dịch vụ gián đoạn hai mươi phút không có thông báo nào. Diễn đàn khách hàng kết luận rằng dữ liệu đã mất, và đội mất ba ngày để sửa lại nhận định đó - lâu hơn nhiều so với chính sự cố."
+    },
+    "keyTakeaways": [
+      "Cập nhật theo nhịp cố định, kể cả khi chưa có gì mới để nói.",
+      "Hứa thời điểm cập nhật tiếp, không hứa thời điểm khắc phục.",
+      "Nói phạm vi ảnh hưởng cụ thể để người không bị ảnh hưởng yên tâm.",
+      "Tránh thuật ngữ nội bộ, vì người đọc không ở trong hệ thống của bạn."
+    ],
+    "summary": {
+      "keyIdea": "Thông báo sớm về phạm vi và nhịp cập nhật, thay vì chờ đủ thông tin.",
+      "formula": "Cái gì hỏng, ai bị ảnh hưởng, khi nào cập nhật tiếp.",
+      "commonMistake": "Hứa thời điểm khắc phục khi còn chưa biết nguyên nhân."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Viết sẵn mẫu thông báo đầu tiên với ba chỗ trống cho phạm vi, ảnh hưởng và thời điểm cập nhật. Lúc sự cố, không ai còn đầu óc để nghĩ cách diễn đạt."
+    },
+    "practicePrompt": {
+      "question": "Vì sao nên hứa thời điểm cập nhật thay vì thời điểm khắc phục?",
+      "options": [
+        "Vì thời điểm cập nhật là thứ bạn kiểm soát được, còn thời điểm sửa xong thì không",
+        "Vì người dùng quan tâm tới tần suất thông tin hơn là tới kết quả cuối",
+        "Vì thời điểm khắc phục cần được cấp quản lý phê duyệt trước khi công bố",
+        "Vì hứa thời điểm khắc phục có thể tạo ra ràng buộc pháp lý với khách hàng"
+      ],
+      "correct": 0,
+      "explanation": "Bạn chắc chắn viết được một dòng sau ba mươi phút nữa, kể cả khi dòng đó nói rằng chưa có gì mới. Còn hứa sửa xong trong một giờ khi chưa biết nguyên nhân là đặt cược, và nếu thua thì bạn mất niềm tin lần thứ hai ngay giữa lúc đang xử lý sự cố."
     },
     "quiz": [
       {
-        "question": "Một nhà đầu tư gần nghỉ hưu, ưu tiên bảo toàn vốn, nên tìm kiếm danh mục có Beta như thế nào?",
+        "question": "Ba điều cần có trong thông báo đầu tiên là gì?",
         "options": [
-          "Beta thấp (<1) - biến động nhẹ hơn thị trường, giảm rủi ro sụt giảm mạnh giá trị danh mục ngay trước hoặc trong giai đoạn cần rút tiền để chi tiêu",
-          "Beta âm là bắt buộc trong mọi trường hợp",
-          "Beta cao (>1.5) để tối đa hóa lợi nhuận trước khi nghỉ hưu",
-          "Beta không liên quan gì đến quyết định phân bổ tài sản theo độ tuổi"
+          "Cái gì đang hỏng, ai bị ảnh hưởng, và khi nào cập nhật tiếp",
+          "Nguyên nhân sơ bộ, mức độ nghiêm trọng, và thời gian khắc phục",
+          "Thời điểm bắt đầu, số người bị ảnh hưởng, và kênh liên hệ hỗ trợ",
+          "Lời xin lỗi, cam kết khắc phục, và biện pháp bồi thường dự kiến"
         ],
         "correct": 0,
-        "explanation": "Nhà đầu tư gần nghỉ hưu có chân trời đầu tư ngắn và cần rút tiền đều đặn để chi tiêu - họ đặc biệt dễ tổn thương trước một đợt sụt giảm mạnh ngay trước khi cần rút vốn (sequence of returns risk). Danh mục Beta thấp giúp giảm biên độ dao động, bảo vệ giá trị vốn tích lũy tốt hơn."
+        "explanation": "Cả ba đều trả lời được từ phút thứ mười mà không cần biết nguyên nhân. Nguyên nhân và thời gian khắc phục thì không, nên đưa chúng vào thông báo đầu là tự tạo ra một lời hứa sẽ phải rút lại."
       },
       {
-        "question": "Beta của một danh mục được tính bằng cách nào khi danh mục gồm nhiều cổ phiếu có Beta khác nhau?",
+        "question": "Vì sao im lặng gây hại?",
         "options": [
-          "Beta danh mục luôn bằng 1 bất kể thành phần cổ phiếu",
-          "Beta danh mục = trung bình có trọng số của Beta từng cổ phiếu theo tỷ trọng của chúng trong danh mục - tương tự cách tính Expected Return của danh mục",
-          "Beta danh mục luôn bằng Beta cao nhất trong số các cổ phiếu",
-          "Không thể tính được Beta của một danh mục nhiều cổ phiếu"
+          "Vì người dùng lấp khoảng trống bằng giả định thường tệ hơn sự thật",
+          "Vì các quy định về dịch vụ yêu cầu thông báo trong một khung giờ nhất định",
+          "Vì bộ phận hỗ trợ không có thông tin để trả lời khách hàng",
+          "Vì đối thủ có thể lợi dụng khoảng lặng để tiếp cận khách hàng"
         ],
-        "correct": 1,
-        "explanation": "Beta có tính chất cộng gộp tuyến tính theo tỷ trọng - giống Expected Return, Beta danh mục = tổng của (tỷ trọng mỗi cổ phiếu × Beta của cổ phiếu đó); đây là lý do nhà đầu tư có thể chủ động điều chỉnh Beta tổng thể danh mục bằng cách thay đổi tỷ trọng các cổ phiếu có Beta cao/thấp khác nhau."
+        "correct": 0,
+        "explanation": "Một gián đoạn hai mươi phút không thông báo có thể bị đọc thành mất dữ liệu, và sửa lại nhận định đó tốn nhiều ngày. Bộ phận hỗ trợ thiếu thông tin cũng là vấn đề thật nhưng nó là hệ quả, không phải nguyên nhân gốc."
+      },
+      {
+        "question": "Vì sao nên nói rõ phạm vi ảnh hưởng?",
+        "options": [
+          "Để những người không bị ảnh hưởng không phải lo lắng và liên hệ hỗ trợ",
+          "Để bộ phận hỗ trợ ưu tiên xử lý đúng nhóm khách hàng bị ảnh hưởng",
+          "Để đội kỹ thuật khoanh vùng được nguyên nhân nhanh hơn",
+          "Để có cơ sở tính mức bồi thường theo cam kết dịch vụ đã ký"
+        ],
+        "correct": 0,
+        "explanation": "Một thông báo nói cả hệ thống đang gián đoạn khi thật ra chỉ chức năng xuất báo cáo bị ảnh hưởng sẽ tạo ra một làn sóng liên hệ từ những người vốn không gặp vấn đề gì. Cụ thể hoá phạm vi là cách giảm tải cho chính đội hỗ trợ."
+      },
+      {
+        "question": "Khi chưa có gì mới thì nên làm gì vào thời điểm đã hứa cập nhật?",
+        "options": [
+          "Vẫn cập nhật, nói rằng chưa có tiến triển và hẹn mốc tiếp theo",
+          "Lùi thời điểm cập nhật lại cho tới khi có được thông tin gì đáng kể",
+          "Gửi thông báo ngắn cho riêng nhóm khách hàng lớn nhất",
+          "Chuyển sang cập nhật qua kênh hỗ trợ thay vì kênh công khai"
+        ],
+        "correct": 0,
+        "explanation": "Bỏ lỡ một mốc đã hứa gây tổn thất lớn hơn nội dung của mốc ấy, vì nó khiến mọi mốc sau đó mất giá trị. Một dòng thừa nhận chưa có tiến triển vẫn giữ được cam kết về nhịp."
+      },
+      {
+        "question": "Vì sao nên tránh thuật ngữ nội bộ trong thông báo?",
+        "options": [
+          "Vì người đọc không biết các thành phần bên trong hệ thống của bạn",
+          "Vì thuật ngữ kỹ thuật có thể tiết lộ thông tin về kiến trúc hệ thống",
+          "Vì các bản dịch sang ngôn ngữ khác sẽ không chính xác",
+          "Vì thuật ngữ làm thông báo dài hơn mức cần thiết"
+        ],
+        "correct": 0,
+        "explanation": "Nói rằng cụm xử lý hàng đợi đang suy giảm thì với người dùng cũng như không nói gì. Điều họ cần biết là chức năng nào của sản phẩm hiện không dùng được, diễn đạt bằng tên mà họ nhìn thấy trên màn hình."
       }
     ],
-    "keyTakeaways": [
-      "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường",
-      "Beta > 1: biến động mạnh hơn thị trường; Beta < 1: ổn định hơn thị trường",
-      "Lựa chọn Beta phù hợp nên dựa trên chân trời đầu tư và khẩu vị rủi ro của từng nhà đầu tư"
-    ],
-    "practicePrompt": {
-      "question": "Danh mục của bạn gồm nhiều cổ phiếu, và khi tính Beta tổng thể của cả danh mục (trung bình có trọng số Beta từng cổ phiếu), kết quả là 1,3. Nếu thị trường chung giảm 10% trong một đợt điều chỉnh, danh mục của bạn có xu hướng biến động thế nào?",
-      "options": [
-        "Danh mục sẽ giảm ít hơn thị trường, khoảng 7-8%, vì Beta cao thường đi kèm khả năng chống chịu tốt hơn",
-        "Beta 1,3 nghĩa là danh mục có xu hướng giảm khoảng 13% khi thị trường giảm 10%",
-        "Danh mục sẽ không bị ảnh hưởng gì vì Beta chỉ áp dụng cho từng cổ phiếu riêng lẻ, không áp dụng được ở cấp độ danh mục",
-        "Danh mục sẽ giảm đúng bằng 10% như thị trường bất kể mức Beta là bao nhiêu"
-      ],
-      "correct": 1,
-      "explanation": "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường. Beta > 1 (như 1,3) nghĩa là danh mục biến động mạnh hơn thị trường theo cả hai chiều - rủi ro cao hơn khi thị trường giảm, nhưng cũng tiềm năng lợi nhuận cao hơn khi thị trường tăng."
-    },
-    "summary": {
-      "keyIdea": "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Beta > 1: biến động mạnh hơn thị trường; Beta < 1: ổn định hơn thị trường"
-    },
-    "application": {
-      "title": "Tra Beta một cổ phiếu",
-      "message": "Bài học đã có ví dụ thật tính beta danh mục từ PNJ (beta 0,60) - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự tra Beta của một cổ phiếu bạn đang nắm giữ và áp dụng công thức đó.",
-      "secondary": "Beta cao không xấu, chỉ cần bạn biết mình đang chấp nhận điều gì."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Beta đo độ nhạy cảm của một danh mục hoặc cổ phiếu so với biến động của toàn bộ thị trường. Beta = 1 nghĩa là biến động đúng bằng thị trường; Beta > 1 nghĩa là biến động mạnh hơn (khuếch đại cả lãi và lỗ); Beta < 1 nghĩa là biến động nhẹ hơn (phòng thủ hơn); Beta âm - hiếm gặp - nghĩa là di chuyển ngược chiều thị trường."
+        "text": "Vai liên lạc là vai bị bỏ trống nhiều nhất, vì nó có vẻ ít quan trọng hơn việc sửa. Nhưng cách một sự cố được kể lại ảnh hưởng tới niềm tin nhiều hơn độ dài của nó."
       },
       {
         "type": "heading",
-        "text": "Beta trong thực tế"
-      },
-      {
-        "type": "paragraph",
-        "text": "Cổ phiếu công nghệ tăng trưởng cao thường có Beta 1.3-1.8 - biến động mạnh hơn thị trường đáng kể. Cổ phiếu ngành tiện ích công cộng thường có Beta 0.3-0.6 - ổn định hơn nhiều so với thị trường chung. Một nhà đầu tư gần nghỉ hưu, ưu tiên bảo toàn vốn, nên tìm kiếm danh mục Beta thấp (<1) để giảm rủi ro sụt giảm mạnh giá trị ngay trước hoặc trong giai đoạn cần rút tiền chi tiêu - đây gọi là \"sequence of returns risk\"."
-      },
-      {
-        "type": "heading",
-        "text": "Tính Beta của cả danh mục"
-      },
-      {
-        "type": "paragraph",
-        "text": "Beta có tính chất cộng gộp tuyến tính theo tỷ trọng, giống hệt cách tính Expected Return: Beta danh mục = Σ (tỷ trọng mỗi cổ phiếu × Beta của cổ phiếu đó). Ví dụ danh mục 50% cổ phiếu Beta 1.5 và 50% cổ phiếu Beta 0.5 sẽ có Beta danh mục = 0.5×1.5 + 0.5×0.5 = 1.0. Nhờ tính chất này, nhà đầu tư có thể chủ động điều chỉnh Beta tổng thể bằng cách thay đổi tỷ trọng các cổ phiếu Beta cao/thấp khác nhau."
+        "text": "Ba thứ trả lời được ngay"
       },
       {
         "type": "list",
         "items": [
-          "Beta đo độ nhạy cảm của danh mục so với biến động chung của thị trường",
-          "Beta > 1: khuếch đại biến động thị trường; Beta < 1: giảm nhẹ biến động",
-          "Beta danh mục = trung bình có trọng số của Beta từng tài sản",
-          "Lựa chọn Beta phù hợp nên dựa trên chân trời đầu tư và khẩu vị rủi ro cá nhân"
+          "Cái gì đang không dùng được - bằng tên chức năng người dùng nhìn thấy, không bằng tên dịch vụ nội bộ.",
+          "Ai bị ảnh hưởng và ai không - để người ngoài phạm vi không phải lo và không phải liên hệ.",
+          "Khi nào có cập nhật tiếp - một mốc cụ thể, và giữ đúng mốc ấy."
         ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ thật: beta 0,60 của PNJ ảnh hưởng danh mục thế nào"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Nếu danh mục của bạn có 50% PNJ (beta 0,60) và 50% một cổ phiếu beta 1,4, beta trung bình có trọng số của cả danh mục là (0,5×0,60)+(0,5×1,4) = 1,0 - đúng bằng thị trường chung",
-          "Muốn danh mục ít rủi ro hơn thị trường, tăng tỷ trọng cổ phiếu beta thấp như PNJ",
-          "Muốn khuếch đại lợi nhuận (và rủi ro) khi kỳ vọng thị trường tăng, tăng tỷ trọng cổ phiếu beta cao"
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Beta đến từ đâu, và vì sao mẫu số là phương sai thị trường",
-        "equation": "\u03b2\u1d62 = Cov(R\u1d62, R\u2098) / \u03c3\u00b2\u2098",
-        "variables": [
-          {
-            "symbol": "Cov(R\u1d62, R\u2098)",
-            "name": "Hiệp phương sai giữa cổ phiếu và thị trường",
-            "description": "Đo hai bên đi cùng chiều tới mức nào, tính bằng đơn vị bình phương nên tự nó không đọc được."
-          },
-          {
-            "symbol": "\u03c3\u00b2\u2098",
-            "name": "Phương sai của thị trường",
-            "description": "Chia cho nó là để chuẩn hoá: kết quả thành 'so với thị trường', và beta của chính thị trường ra đúng 1."
-          }
-        ],
-        "example": {
-          "title": "Một cổ phiếu ngân hàng",
-          "calculation": "Cov = 0,0288; thị trường có σ = 16% nên σ² = 0,0256. β = 0,0288 / 0,0256",
-          "result": "β = 1,125",
-          "explanation": "Thị trường tăng 10% thì kỳ vọng cổ phiếu tăng khoảng 11,25% - và giảm 10% thì kỳ vọng giảm 11,25%. Beta không phân biệt chiều: nó là độ khuếch đại theo cả hai hướng, nên 'beta cao' không đồng nghĩa với 'cổ phiếu tốt'."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Beta không nói cổ phiếu rủi ro tới đâu"
       },
       {
         "type": "paragraph",
-        "text": "Beta chỉ đo phần biến động ĐI THEO thị trường - rủi ro hệ thống. Phần còn lại, rủi ro riêng của doanh nghiệp, hoàn toàn không có mặt trong con số đó. Một công ty dược đang chờ kết quả thử nghiệm lâm sàng có thể có beta 0,4 mà vẫn mất một nửa giá trị trong một phiên khi kết quả xấu - biến động đó lớn, chỉ là nó không liên quan gì tới thị trường. Đại lượng cho biết beta giải thích được bao nhiêu phần biến động của cổ phiếu là R², thường in ngay cạnh beta trong các bản tin phân tích: R² = 0,25 nghĩa là ba phần tư biến động của cổ phiếu ấy nằm ngoài tầm giải thích của beta."
+        "text": "Không có thứ nào trong ba thứ này cần biết nguyên nhân. Đó là lý do thông báo đầu tiên gửi được sau mười phút chứ không phải sau hai giờ."
       },
       {
         "type": "callout",
-        "label": "Beta của quá khứ không phải beta của tương lai",
-        "text": "Beta đo từ dữ liệu quá khứ, thường 2-5 năm, nên nó mô tả doanh nghiệp của giai đoạn đó. Một công ty vừa vay nợ lớn để mở rộng sẽ có beta tương lai cao hơn beta lịch sử, vì đòn bẩy tài chính khuếch đại biến động lợi nhuận về tay cổ đông. Đây cũng là lý do khi định giá một công ty chưa niêm yết, người ta lấy beta của các công ty cùng ngành, gỡ đòn bẩy của họ ra rồi lắp đòn bẩy của công ty mình vào, chứ không mượn thẳng con số."
+        "label": "Hứa nhịp, đừng hứa kết quả",
+        "text": "Bạn chắc chắn viết được một dòng sau ba mươi phút nữa. Bạn không chắc sửa xong trong một giờ khi còn chưa biết nguyên nhân. Hứa cái thứ hai rồi trượt là mất niềm tin lần thứ hai, ngay giữa lúc đang xử lý lần thứ nhất."
+      },
+      {
+        "type": "heading",
+        "text": "Im lặng không phải trung lập"
+      },
+      {
+        "type": "paragraph",
+        "text": "Khoảng trống thông tin luôn được lấp, và thứ lấp vào thường tệ hơn sự thật. Một gián đoạn hai mươi phút không thông báo có thể bị hiểu thành mất dữ liệu, và việc sửa lại nhận định ấy tốn nhiều ngày - dài hơn chính sự cố nhiều lần."
       },
       {
         "type": "callout",
-        "label": "Cách tự áp dụng cho danh mục của bạn",
-        "text": "Tra beta từng cổ phiếu đang nắm giữ, nhân với tỷ trọng % vốn của cổ phiếu đó trong danh mục, rồi cộng lại để ra beta trung bình có trọng số - so con số đó với khẩu vị rủi ro cá nhân của bạn."
+        "label": "Viết mẫu trước",
+        "text": "Giữa lúc sự cố, không ai còn đầu óc để cân nhắc cách diễn đạt. Một mẫu có ba chỗ trống cho phạm vi, ảnh hưởng và mốc cập nhật biến việc soạn thông báo từ mười phút thành một phút."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Người bị ảnh hưởng không cần biết nguyên nhân. Họ cần biết mình có bị ảnh hưởng không và bao giờ được nghe tin tiếp.",
+          "Bài sau về thứ tự ưu tiên bên trong cuộc ứng phó: chữa cháy trước hay tìm nguồn lửa trước."
+        ]
       }
     ]
   },
   {
     "id": 174,
-    "slug": "tracking-error-la-gi",
-    "title": "Tự học Tài chính Day 174: Tracking Error là gì?",
-    "subtitle": "Đo mức độ một quỹ lệch khỏi chỉ số benchmark mà nó theo dõi",
-    "duration": "6 phút",
+    "slug": "giam-thieu-truoc-nguyen-nhan-sau",
+    "title": "Giảm thiểu trước, nguyên nhân sau",
+    "subtitle": "Mục tiêu trong sự cố là dừng thiệt hại, không phải hiểu chuyện gì đã xảy ra.",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "🔢",
-    "openingQuestion": "Một quỹ index cam kết theo dõi VN30 nhưng lợi nhuận thực tế của quỹ thường xuyên chênh lệch 2-3% mỗi năm so với chỉ số VN30. Điều này phản ánh chỉ số gì?",
+    "emoji": "🩹",
+    "track": "professional",
+    "whyItMatters": "Đây là thói quen khó bỏ nhất với kỹ sư giỏi: bản năng nghề nghiệp là hiểu rồi mới sửa. Trong sự cố thì thứ tự ấy đắt, vì đồng hồ vẫn chạy trong lúc bạn đang hiểu.",
+    "openingQuestion": "Sự cố bắt đầu ngay sau một lần triển khai. Việc nên làm trước tiên là gì?",
     "openingOptions": [
-      "Beta của quỹ",
-      "Alpha của quỹ",
-      "Tracking Error - đo mức độ sai lệch giữa lợi suất thực tế của quỹ và benchmark nó cam kết theo dõi; tracking error càng thấp, quỹ càng bám sát chỉ số",
-      "Sharpe Ratio của quỹ"
+      "Quay lui bản triển khai đó rồi mới tìm hiểu nó đã làm gì",
+      "Đọc thay đổi trong bản triển khai để xác nhận nó là nguyên nhân",
+      "Kiểm tra xem có thay đổi nào khác cùng thời điểm hay không",
+      "Thu thập nhật ký và số liệu trước khi trạng thái hệ thống thay đổi"
     ],
-    "correctOption": 2,
-    "explanation": "Tracking Error đo độ lệch chuẩn của phần chênh lệch lợi suất giữa một danh mục/quỹ và benchmark mà nó theo dõi. Với quỹ chủ động, tracking error cao có thể chấp nhận được (phản ánh chiến lược khác biệt). Với quỹ index thụ động, tracking error nên rất thấp - vì mục tiêu chính là bám sát chỉ số càng chính xác càng tốt.",
+    "correctOption": 0,
+    "explanation": "Quay lui thường mất vài phút và nó dừng thiệt hại ngay lập tức; nếu sự cố không hết thì bạn vừa loại được một giả thuyết với chi phí rất thấp. Đọc mã để xác nhận trước thì có thể mất nửa giờ, và trong nửa giờ ấy người dùng vẫn chịu ảnh hưởng. Thu thập dữ liệu trước khi trạng thái đổi là một lo ngại có thật và nên làm - nhưng làm song song, bằng cách chụp lại nhật ký và biểu đồ, chứ không phải bằng cách hoãn việc giảm thiểu.",
     "diagram": [
       {
-        "label": "Lợi suất danh mục/quỹ",
+        "label": "Sự cố đang diễn ra",
         "arrow": true
       },
       {
-        "label": "Trừ lợi suất benchmark theo dõi",
+        "label": "Ưu tiên 1: dừng thiệt hại cho người dùng",
         "arrow": true
       },
       {
-        "label": "Độ lệch chuẩn chênh lệch = Tracking Error"
+        "label": "Chụp lại bằng chứng song song",
+        "arrow": true
+      },
+      {
+        "label": "Ưu tiên 2: tìm nguyên nhân, sau khi đã yên"
       }
     ],
     "realWorldExample": {
-      "company": "Quỹ ETF theo dõi chỉ số",
-      "description": "Các quỹ ETF chất lượng cao (như theo dõi S&P 500) thường có tracking error rất thấp, chỉ vài phần trăm điểm cơ bản mỗi năm - đây là một tiêu chí quan trọng để đánh giá chất lượng vận hành của quỹ ETF."
+      "company": "Nửa giờ đọc mã trước khi quay lui",
+      "description": "Đội dành ba mươi phút đọc bản thay đổi để chắc chắn nó là nguyên nhân trước khi dám quay lui. Việc quay lui sau đó mất bốn phút, và nó đúng là nguyên nhân."
+    },
+    "keyTakeaways": [
+      "Trong sự cố, mục tiêu là dừng thiệt hại chứ không phải hiểu nguyên nhân.",
+      "Ưu tiên các hành động đảo ngược được: quay lui, tắt tính năng, chuyển lưu lượng.",
+      "Chụp lại bằng chứng song song để việc hồi cứu về sau vẫn làm được.",
+      "Một giả thuyết bị loại nhanh có giá trị hơn một giả thuyết được xác nhận chậm."
+    ],
+    "summary": {
+      "keyIdea": "Dừng thiệt hại trước bằng hành động rẻ và đảo ngược được, điều tra sau.",
+      "formula": "Giảm thiểu, chụp bằng chứng, rồi mới hiểu.",
+      "commonMistake": "Đòi hiểu chắc chắn nguyên nhân trước khi dám hành động."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê các đòn bẩy giảm thiểu mà đội có thể kéo trong hai phút: quay lui, tắt tính năng, chuyển vùng, hạ tải. Nếu danh sách trống thì đó là việc cần làm trước sự cố tới."
+    },
+    "practicePrompt": {
+      "question": "Vì sao nên ưu tiên những hành động đảo ngược được?",
+      "options": [
+        "Vì nếu đoán sai thì bạn quay lại được mà không mất thêm gì",
+        "Vì chúng thường thực hiện nhanh hơn các hành động khác",
+        "Vì chúng không cần được phê duyệt bởi chính người chỉ huy sự cố",
+        "Vì chúng ít có nguy cơ gây ra lỗi mới trong hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Trong sự cố bạn hành động dựa trên thông tin không đầy đủ, nên khả năng đoán sai là cao. Một hành động đảo ngược được biến việc đoán sai thành mất vài phút, còn một hành động không đảo ngược được biến nó thành một sự cố thứ hai chồng lên sự cố thứ nhất."
     },
     "quiz": [
       {
-        "question": "Vì sao tracking error cao là một vấn đề nghiêm trọng đối với quỹ index thụ động (passive index fund)?",
+        "question": "Mục tiêu chính trong lúc sự cố đang diễn ra là gì?",
         "options": [
-          "Không phải vấn đề gì, quỹ nào cũng có tracking error",
-          "Chỉ quan trọng với quỹ trái phiếu, không quan trọng với quỹ cổ phiếu",
-          "Tracking error cao luôn nghĩa là quỹ đang lãi nhiều hơn benchmark",
-          "Vì mục tiêu cốt lõi của quỹ index là mô phỏng chính xác hiệu suất của chỉ số - tracking error cao nghĩa là quỹ đang thất bại trong việc thực hiện đúng lời hứa cơ bản nhất của nó với nhà đầu tư"
-        ],
-        "correct": 3,
-        "explanation": "Nhà đầu tư chọn quỹ index chính vì muốn có hiệu suất SÁT với chỉ số ở chi phí thấp, không phải để nhận một kết quả khác biệt khó đoán. Tracking error cao ở quỹ index thường xuất phát từ chi phí quản lý cao, sai lệch trong tái cân bằng danh mục, hoặc chiến lược sao chép chỉ số không hiệu quả - đều là dấu hiệu chất lượng vận hành kém."
-      },
-      {
-        "question": "Một quỹ chủ động (active fund) có Tracking Error rất thấp so với benchmark dù được quảng cáo là quản lý chủ động tích cực. Điều này có thể là dấu hiệu của điều gì đáng ngờ?",
-        "options": [
-          "Có thể là dấu hiệu \"closet indexing\" - quỹ thực chất đang gần như sao chép benchmark (giống một quỹ index) nhưng vẫn thu phí quản lý cao như một quỹ chủ động thực sự, không tạo ra giá trị tương xứng với chi phí bỏ ra",
-          "Tracking Error thấp luôn là dấu hiệu tích cực với mọi loại quỹ",
-          "Không có gì đáng ngờ, đây là dấu hiệu quỹ quản lý rất tốt",
-          "Quỹ chủ động không bao giờ có Tracking Error thấp"
+          "Dừng thiệt hại đang gây ra cho người dùng",
+          "Xác định chính xác nguyên nhân gốc của vấn đề",
+          "Thu thập đầy đủ dữ liệu cho báo cáo hồi cứu",
+          "Khôi phục hệ thống về đúng trạng thái trước sự cố"
         ],
         "correct": 0,
-        "explanation": "\"Closet indexing\" là một vấn đề thực tế trong ngành quản lý quỹ: một số quỹ tự nhận là chủ động nhưng danh mục thực chất rất gần với benchmark (Tracking Error thấp), khiến nhà đầu tư trả phí quản lý chủ động cao nhưng thực chất chỉ nhận được hiệu suất gần giống quỹ index rẻ hơn nhiều."
+        "explanation": "Nguyên nhân gốc là mục tiêu của giai đoạn sau, khi không còn ai đang chịu ảnh hưởng. Khôi phục về trạng thái cũ thì đôi khi cũng không phải mục tiêu - một chế độ hạn chế vẫn phục vụ được thì tốt hơn một hệ thống đầy đủ nhưng chưa sẵn sàng."
+      },
+      {
+        "question": "Vì sao quay lui thường là hành động đầu tiên tốt?",
+        "options": [
+          "Vì nó rẻ, nhanh, và loại được một giả thuyết ngay cả khi không hiệu quả",
+          "Vì phần lớn sự cố đều bắt nguồn từ một lần triển khai gần đó",
+          "Vì nó khôi phục hệ thống về trạng thái đã được kiểm chứng",
+          "Vì nó không đòi hỏi hiểu biết sâu về phần mã đang có vấn đề"
+        ],
+        "correct": 0,
+        "explanation": "Giá trị lớn nhất nằm ở nhánh thất bại: quay lui mà sự cố vẫn còn thì bạn vừa loại được nguyên nhân khả dĩ nhất với chi phí bốn phút. Một giả thuyết bị loại nhanh đáng giá hơn một giả thuyết được xác nhận sau nửa giờ."
+      },
+      {
+        "question": "Làm sao vừa giảm thiểu vừa giữ được bằng chứng?",
+        "options": [
+          "Chụp lại nhật ký, biểu đồ và trạng thái song song với việc xử lý",
+          "Giữ nguyên một máy chủ ở trạng thái lỗi để điều tra sau",
+          "Hoãn hành động giảm thiểu vài phút để thu thập dữ liệu",
+          "Ghi lại chi tiết mọi thao tác đã được thực hiện trong kênh ứng phó"
+        ],
+        "correct": 0,
+        "explanation": "Giữ một máy ở trạng thái lỗi cũng là kỹ thuật hợp lệ trong vài trường hợp, nhưng nó phức tạp và không phải lúc nào cũng làm được. Chụp ảnh màn hình biểu đồ và lưu một đoạn nhật ký thì mất mười giây và làm được ở mọi sự cố."
+      },
+      {
+        "question": "Vì sao bản năng hiểu rồi mới sửa lại đắt trong sự cố?",
+        "options": [
+          "Vì đồng hồ thiệt hại vẫn chạy trong suốt thời gian bạn đang tìm hiểu",
+          "Vì việc tìm hiểu dưới áp lực thường dẫn tới kết luận sai lệch",
+          "Vì thông tin cần thiết để hiểu thường chưa có sẵn lúc đó",
+          "Vì người chỉ huy sự cố cần một quyết định nhanh để phân công"
+        ],
+        "correct": 0,
+        "explanation": "Bản năng ấy hoàn toàn đúng trong công việc thường ngày, và đó là lý do nó khó bỏ. Khác biệt duy nhất là trong sự cố có một chi phí chạy theo từng phút, và chi phí ấy không xuất hiện khi bạn gỡ lỗi một cách bình thường."
+      },
+      {
+        "question": "Danh sách đòn bẩy giảm thiểu nên được chuẩn bị khi nào?",
+        "options": [
+          "Trước sự cố, vì lúc đang xử lý thì không ai nghĩ ra được đủ",
+          "Trong lúc hồi cứu, dựa trên những gì đã dùng ở sự cố vừa rồi",
+          "Ngay khi tuyên bố sự cố, do người chỉ huy liệt kê ra",
+          "Định kỳ mỗi quý, cùng với việc rà soát kiến trúc hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Dưới áp lực, người ta chỉ nhớ được một hoặc hai lựa chọn quen thuộc nhất. Một danh sách viết sẵn - quay lui, tắt tính năng, chuyển vùng, hạ tải, chặn nguồn - biến việc nhớ thành việc đọc."
       }
     ],
-    "keyTakeaways": [
-      "Tracking Error: đo mức độ lệch giữa lợi suất quỹ và benchmark nó theo dõi",
-      "Quỹ index thụ động cần tracking error thấp; quỹ chủ động có thể chấp nhận tracking error cao hơn",
-      "Là tiêu chí quan trọng để đánh giá chất lượng vận hành của quỹ ETF/index"
-    ],
-    "practicePrompt": {
-      "question": "Một quỹ ETF tuyên bố theo dõi chỉ số VN30, nhưng lợi suất thực tế của quỹ trong năm chênh lệch 2% so với lợi suất của chính chỉ số VN30 (do phí quản lý, chi phí giao dịch, sai số kỹ thuật). Con số chênh lệch 2% này được gọi là gì, và nó đánh giá điều gì về chất lượng vận hành quỹ?",
-      "options": [
-        "Đây gọi là Alpha, thể hiện khả năng vượt trội của quỹ so với thị trường chung",
-        "Tracking Error đo mức lệch giữa lợi suất quỹ và chỉ số nó theo dõi",
-        "Đây gọi là Beta, đo độ nhạy cảm của quỹ so với biến động chung của thị trường",
-        "Chênh lệch này không có ý nghĩa đánh giá gì về chất lượng của quỹ ETF"
-      ],
-      "correct": 1,
-      "explanation": "Tracking Error: đo mức độ lệch giữa lợi suất quỹ và benchmark nó theo dõi. Đây là tiêu chí quan trọng để đánh giá chất lượng vận hành của quỹ ETF/index - Tracking Error thấp cho thấy quỹ mô phỏng chỉ số chính xác, đúng với mục tiêu passive investing."
-    },
-    "summary": {
-      "keyIdea": "Tracking Error: đo mức độ lệch giữa lợi suất quỹ và benchmark nó theo dõi",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Quỹ index thụ động cần tracking error thấp; quỹ chủ động có thể chấp nhận tracking error cao hơn"
-    },
-    "application": {
-      "title": "Kiểm tra tracking error một ETF",
-      "message": "Nếu bạn đang hoặc định mua một quỹ ETF index, tìm thông tin tracking error của nó trên bản cáo bạch - số càng gần 0 nghĩa là quỹ bám sát chỉ số càng chính xác.",
-      "secondary": "Đây là một trong những chỉ số ít người kiểm tra trước khi mua ETF."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Tracking Error đo độ lệch chuẩn của phần chênh lệch lợi suất giữa một quỹ và benchmark mà nó theo dõi. Ý nghĩa của con số này phụ thuộc hoàn toàn vào loại quỹ: với quỹ chủ động, tracking error cao có thể chấp nhận được vì phản ánh chiến lược khác biệt; với quỹ index thụ động, tracking error nên rất thấp."
+        "text": "Kỹ sư giỏi được rèn để hiểu vấn đề trước khi sửa. Đó là thói quen tốt trong mọi hoàn cảnh trừ một: khi đồng hồ thiệt hại đang chạy."
       },
       {
         "type": "heading",
-        "text": "Vì sao tracking error cao là vấn đề với quỹ index"
+        "text": "Hai giai đoạn, hai mục tiêu"
       },
       {
-        "type": "paragraph",
-        "text": "Mục tiêu cốt lõi của một quỹ index là mô phỏng chính xác hiệu suất của chỉ số. Tracking error cao nghĩa là quỹ đang thất bại trong việc thực hiện đúng lời hứa cơ bản nhất với nhà đầu tư. Nguyên nhân thường đến từ chi phí quản lý cao, sai lệch trong tái cân bằng danh mục, hoặc chiến lược sao chép chỉ số không hiệu quả - đều là dấu hiệu chất lượng vận hành kém. Các ETF chất lượng cao theo dõi S&P 500 thường có tracking error chỉ vài phần trăm điểm cơ bản mỗi năm."
+        "type": "comparison",
+        "left": {
+          "label": "Trong sự cố",
+          "text": "Mục tiêu là dừng thiệt hại. Hành động rẻ, nhanh, đảo ngược được. Không cần hiểu đúng, chỉ cần hết chảy máu."
+        },
+        "right": {
+          "label": "Sau sự cố",
+          "text": "Mục tiêu là hiểu. Có thời gian, có dữ liệu, không ai đang chịu ảnh hưởng. Đây mới là chỗ tìm nguyên nhân gốc."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Giá trị nằm ở nhánh thất bại",
+        "text": "Quay lui rồi mà sự cố vẫn còn thì bạn không thất bại - bạn vừa loại được giả thuyết khả dĩ nhất với chi phí bốn phút. Một giả thuyết bị loại nhanh đáng giá hơn một giả thuyết được xác nhận sau nửa giờ đọc mã."
       },
       {
         "type": "heading",
-        "text": "\"Closet indexing\" - dấu hiệu đáng ngờ ở chiều ngược lại"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một quỹ chủ động có Tracking Error rất thấp dù được quảng cáo là quản lý tích cực có thể là dấu hiệu \"closet indexing\": quỹ thực chất đang gần như sao chép benchmark nhưng vẫn thu phí quản lý cao như một quỹ chủ động thực sự, không tạo ra giá trị tương xứng với chi phí bỏ ra. Đây là vấn đề thực tế khiến nhà đầu tư trả phí cao nhưng thực chất chỉ nhận được hiệu suất gần giống một quỹ index rẻ hơn nhiều."
+        "text": "Đòn bẩy chuẩn bị sẵn"
       },
       {
         "type": "list",
         "items": [
-          "Tracking Error: độ lệch chuẩn của (lợi suất quỹ − lợi suất benchmark)",
-          "Quỹ index thụ động cần tracking error thấp - đúng với lời hứa của nó",
-          "Quỹ chủ động có thể chấp nhận tracking error cao hơn, phản ánh chiến lược riêng",
-          "Tracking error thấp bất thường ở quỹ chủ động có thể là dấu hiệu closet indexing"
+          "Quay lui bản triển khai gần nhất.",
+          "Tắt tính năng mới bằng công tắc, nếu có.",
+          "Chuyển lưu lượng sang vùng hoặc bản sao khác.",
+          "Hạ tải: tạm ngắt công việc nền, giảm tần suất, chặn nguồn gây tải bất thường."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Dưới áp lực, người ta chỉ nhớ được một hoặc hai lựa chọn quen thuộc nhất. Một danh sách viết sẵn biến việc nhớ thành việc đọc - và nếu danh sách của đội bạn đang trống, thì đó là việc phải làm trước sự cố tới chứ không phải trong sự cố tới."
+      },
+      {
+        "type": "callout",
+        "label": "Bằng chứng chụp song song",
+        "text": "Chụp ảnh biểu đồ, lưu một đoạn nhật ký, ghi lại thời điểm. Mất mười giây và giữ cho việc hồi cứu về sau vẫn làm được - không cần hoãn việc giảm thiểu để thu thập dữ liệu."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Trong sự cố, hiểu là việc để sau. Điều duy nhất không hoãn được là người dùng đang chịu ảnh hưởng.",
+          "Bài sau về giai đoạn thứ hai: hiểu, và làm sao để việc hiểu ấy không biến thành đi tìm người có lỗi."
         ]
       }
     ]
   },
   {
     "id": 175,
-    "slug": "active-vs-passive-investing",
-    "title": "Tự học Tài chính Day 175: Active vs Passive Investing",
-    "subtitle": "Cố gắng đánh bại thị trường hay đơn giản là sở hữu cả thị trường?",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📘",
-    "openingQuestion": "Quỹ A thuê đội ngũ chuyên gia phân tích, chọn lọc cổ phiếu để cố gắng vượt qua chỉ số thị trường, phí quản lý 2%/năm. Quỹ B chỉ đơn giản mua theo đúng tỷ trọng chỉ số VN-Index, phí 0.2%/năm. Đây là hai trường phái gì?",
+    "slug": "hoi-cuu-khong-do-loi",
+    "title": "Hồi cứu không đổ lỗi: tìm điều kiện, không tìm người",
+    "subtitle": "Ai gõ lệnh ấy là câu hỏi rẻ tiền. Vì sao lệnh ấy gõ được và không ai chặn lại mới là câu hỏi có ích.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🔎",
+    "track": "professional",
+    "whyItMatters": "Một buổi hồi cứu tìm người có lỗi dạy cả đội một bài học duy nhất: lần sau đừng báo sớm. Từ đó trở đi bạn mất luôn nguồn thông tin quan trọng nhất về hệ thống của mình.",
+    "openingQuestion": "Một kỹ sư gõ nhầm lệnh và xoá dữ liệu thật. Buổi hồi cứu nên tập trung vào đâu?",
     "openingOptions": [
-      "Cả hai đều là passive investing, vì đều theo dõi thị trường",
-      "Quỹ A là active investing, Quỹ B là passive investing",
-      "Không có tên gọi phân biệt cụ thể",
-      "Cả hai đều là active investing"
+      "Vì sao hệ thống cho phép lệnh đó chạy mà không có bước xác nhận nào",
+      "Vì sao kỹ sư đó không kiểm tra kỹ lệnh trước khi nhấn phím",
+      "Vì sao quy trình chưa yêu cầu có người thứ hai xem lại thao tác",
+      "Vì sao kỹ sư đó được cấp quyền truy cập vào môi trường thật"
     ],
-    "correctOption": 1,
-    "explanation": "Active investing: cố gắng vượt trội hơn thị trường thông qua chọn lọc cổ phiếu, thời điểm giao dịch, phân tích chuyên sâu - chi phí cao hơn do cần đội ngũ chuyên gia. Passive investing: đơn giản mua và nắm giữ theo đúng cấu trúc một chỉ số, không cố gắng đánh bại thị trường - chi phí thấp hơn nhiều nhờ không cần nghiên cứu chọn lọc.",
+    "correctOption": 0,
+    "explanation": "Con người gõ nhầm - đó là hằng số chứ không phải biến số, và không quy trình nào loại bỏ được nó. Câu hỏi có ích là vì sao một thao tác không thể đảo ngược lại chạy được mà không có ma sát nào chặn: không xác nhận, không giới hạn phạm vi, không sao lưu tự động trước khi xoá. Hai lựa chọn về quy trình và quyền truy cập cũng hướng ra ngoài cá nhân, nhưng chúng thêm thủ tục cho con người trong khi lựa chọn đầu sửa chính hệ thống.",
     "diagram": [
       {
-        "label": "Active: chọn lọc, cố đánh bại thị trường",
+        "label": "Ai gây ra? - câu hỏi dừng cuộc điều tra",
         "arrow": true
       },
       {
-        "label": "Passive: mua và giữ cả thị trường",
+        "label": "Điều kiện nào cho phép? - câu hỏi mở nó ra",
         "arrow": true
       },
       {
-        "label": "Passive thường phí thấp hơn, phù hợp đa số"
+        "label": "Thường ra 3-5 điều kiện chồng lên nhau",
+        "arrow": true
+      },
+      {
+        "label": "Mỗi điều kiện là một chỗ có thể sửa"
       }
     ],
-    interactiveType: "fee-drag",
     "realWorldExample": {
-      "company": "John Bogle và Vanguard",
-      "description": "John Bogle, người sáng lập Vanguard, đã tiên phong quỹ index thụ động đầu tiên năm 1976, với niềm tin rằng đa số nhà đầu tư sẽ có kết quả tốt hơn với chi phí thấp và đơn giản thay vì cố gắng đánh bại thị trường."
+      "company": "Bài học duy nhất: đừng báo sớm",
+      "description": "Sau một buổi hồi cứu tìm ra người chịu trách nhiệm, số sự cố được báo cáo trong quý tiếp theo giảm mạnh. Số sự cố thật thì không giảm - chúng chỉ được xử lý âm thầm và không ai học được gì."
+    },
+    "keyTakeaways": [
+      "Sai sót của con người là điều kiện đầu vào, không phải nguyên nhân gốc.",
+      "Một sự cố lớn thường cần nhiều điều kiện xảy ra cùng lúc.",
+      "Hồi cứu phải sinh ra việc cụ thể có người nhận và có hạn.",
+      "Đội không dám báo sớm thì mọi cơ chế học hỏi đều ngừng hoạt động."
+    ],
+    "summary": {
+      "keyIdea": "Hồi cứu tìm những điều kiện đã cho phép sự cố xảy ra, không tìm người gây ra nó.",
+      "formula": "Hỏi điều gì cho phép, đừng hỏi ai đã làm.",
+      "commonMistake": "Kết thúc bằng kết luận do lỗi con người."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Mở báo cáo hồi cứu gần nhất của đội và tìm xem có câu nào kết luận là do lỗi con người không. Nếu có, viết lại nó thành câu hỏi hệ thống đã cho phép điều gì."
+    },
+    "practicePrompt": {
+      "question": "Vì sao kết luận do lỗi con người là một kết luận vô dụng?",
+      "options": [
+        "Vì nó không chỉ ra được thứ gì có thể sửa để lần sau không lặp lại",
+        "Vì nó khiến những người liên quan cảm thấy bị đối xử không công bằng",
+        "Vì nó thường không phản ánh đúng chuỗi sự kiện đã diễn ra",
+        "Vì nó không đáp ứng yêu cầu của các quy định về tuân thủ"
+      ],
+      "correct": 0,
+      "explanation": "Hành động duy nhất suy ra được từ nó là hãy cẩn thận hơn, và đó không phải một thay đổi mà là một lời khuyên. Cảm giác bất công cũng có thật và nó gây hại theo cách riêng, nhưng cái chết của buổi hồi cứu nằm ở chỗ nó kết thúc mà không sinh ra được việc gì để làm."
     },
     "quiz": [
       {
-        "question": "Nghiên cứu SPIVA (S&P Indices Versus Active) trong dài hạn thường cho thấy kết quả gì?",
+        "question": "Vì sao sai sót của con người không được coi là nguyên nhân gốc?",
         "options": [
-          "Quỹ chủ động luôn rẻ hơn quỹ thụ động",
-          "Đa số quỹ chủ động vượt trội hơn quỹ index rõ rệt",
-          "Đa số quỹ chủ động (thường 80-90% sau 10-15 năm) KHÔNG vượt qua được benchmark tương ứng sau khi trừ phí quản lý",
-          "Không có sự khác biệt đáng kể nào giữa hai trường phái"
+          "Vì con người luôn sai, nên nó là điều kiện đầu vào chứ không phải biến số",
+          "Vì thường có nhiều người cùng tham gia vào chuỗi sự kiện",
+          "Vì khó xác định chính xác ai đã thực hiện thao tác nào",
+          "Vì việc quy trách nhiệm không thuộc phạm vi của buổi hồi cứu"
         ],
-        "correct": 2,
-        "explanation": "Báo cáo SPIVA công bố định kỳ hàng năm cho thấy một tỷ lệ rất lớn quỹ chủ động không vượt qua được chỉ số benchmark sau khi trừ phí trong các khoảng thời gian dài (10-15 năm) - đây là lý do chính khiến đầu tư thụ động ngày càng phổ biến trong vài thập kỷ gần đây, đặc biệt với nhà đầu tư cá nhân."
+        "correct": 0,
+        "explanation": "Bạn không thiết kế được một hệ thống dựa trên giả định không ai gõ nhầm. Chấp nhận sai sót là hằng số buộc câu hỏi phải chuyển sang chỗ có thể thay đổi được: hệ thống đã cho phép sai sót ấy gây hậu quả tới đâu."
       },
       {
-        "question": "Trong một thị trường có nhiều nhà đầu tư kém hiểu biết hoặc thông tin bất cân xứng lớn (như thị trường chứng khoán một số quốc gia đang phát triển), liệu active investing có cơ hội tạo Alpha cao hơn so với thị trường phát triển như Mỹ không?",
+        "question": "Một sự cố lớn thường có bao nhiêu điều kiện góp phần?",
         "options": [
-          "Passive investing luôn tốt hơn active investing ở mọi thị trường",
-          "Active investing luôn thất bại ở mọi thị trường không có ngoại lệ",
-          "Không, cơ hội tạo Alpha luôn giống nhau ở mọi thị trường",
-          "Có thể - thị trường kém hiệu quả hơn (ít nhà đầu tư tổ chức chuyên nghiệp, thông tin bất cân xứng lớn hơn) tạo ra nhiều cơ hội định giá sai hơn để nhà quản lý chủ động có kỹ năng khai thác, khác với thị trường Mỹ đã rất hiệu quả và cạnh tranh khốc liệt giữa các quỹ chuyên nghiệp"
+          "Nhiều điều kiện chồng lên nhau, không phải một nguyên nhân duy nhất",
+          "Một nguyên nhân gốc duy nhất kèm vài yếu tố làm nặng thêm",
+          "Hai nguyên nhân độc lập xảy ra gần nhau về thời gian",
+          "Số lượng thay đổi tuỳ theo độ phức tạp của hệ thống"
         ],
-        "correct": 3,
-        "explanation": "Đây là lý do lập luận \"active vs passive\" không phải là tuyệt đối cho mọi thị trường - ở các thị trường kém hiệu quả hơn (small-cap, thị trường mới nổi), có nhiều bằng chứng cho thấy active management có cơ hội tạo Alpha tốt hơn so với thị trường lớn, hiệu quả và cạnh tranh cao như Mỹ."
+        "correct": 0,
+        "explanation": "Cảnh báo không nổ, tài liệu đã cũ, thao tác không có bước xác nhận, người trực mới nhận việc - từng cái một thì không gây ra sự cố. Đi tìm một nguyên nhân duy nhất thường dẫn tới việc chọn ra cái dễ thấy nhất rồi bỏ qua phần còn lại."
+      },
+      {
+        "question": "Một buổi hồi cứu tốt phải kết thúc bằng gì?",
+        "options": [
+          "Danh sách việc cụ thể, mỗi việc có người nhận và có hạn hoàn thành",
+          "Bản mô tả đầy đủ dòng thời gian và nguyên nhân của sự cố",
+          "Cam kết của cả đội về việc cẩn thận hơn trong các thao tác tương tự",
+          "Đánh giá mức độ nghiêm trọng và thiệt hại mà sự cố đã gây ra"
+        ],
+        "correct": 0,
+        "explanation": "Một báo cáo mô tả đầy đủ mà không sinh ra việc gì là một tài liệu lịch sử. Giá trị của hồi cứu nằm ở chỗ hệ thống sau đó khác đi, và điều đó chỉ xảy ra khi có việc được giao cho người cụ thể."
+      },
+      {
+        "question": "Hậu quả của một buổi hồi cứu tìm người có lỗi là gì?",
+        "options": [
+          "Đội ngừng báo sự cố sớm, và nguồn thông tin quan trọng nhất bị mất",
+          "Người bị quy trách nhiệm sẽ xin chuyển sang đội khác",
+          "Các báo cáo hồi cứu sau đó sẽ được viết chung chung hơn",
+          "Quy trình sẽ được bổ sung thêm nhiều bước phê duyệt không cần thiết"
+        ],
+        "correct": 0,
+        "explanation": "Số sự cố được báo giảm mạnh trong khi số sự cố thật không đổi. Từ lúc đó, tổ chức mất khả năng nhìn thấy hệ thống của chính mình, và đó là tổn thất lớn hơn nhiều so với bất kỳ sự cố đơn lẻ nào."
+      },
+      {
+        "question": "Câu hỏi nào thay thế được câu hỏi ai đã gây ra?",
+        "options": [
+          "Điều gì đã khiến hành động đó trở nên hợp lý với người thực hiện lúc ấy",
+          "Người thực hiện có được đào tạo đầy đủ về quy trình chưa",
+          "Có thể thêm bước phê duyệt nào để ngăn hành động đó lại",
+          "Đã có tài liệu nào cảnh báo về hành động đó từ trước chưa"
+        ],
+        "correct": 0,
+        "explanation": "Không ai cố ý phá hệ thống; với thông tin họ có lúc đó, hành động ấy trông đúng. Tìm hiểu vì sao nó trông đúng sẽ lộ ra tài liệu sai, giao diện gây hiểu nhầm, hoặc một cảnh báo lẽ ra phải có mà không có."
       }
     ],
-    "keyTakeaways": [
-      "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-      "Passive investing: mô phỏng chỉ số, chi phí thấp hơn nhiều",
-      "Dữ liệu dài hạn cho thấy đa số quỹ chủ động khó vượt qua benchmark sau khi trừ phí"
-    ],
-    "practicePrompt": {
-      "question": "Quỹ X thuê một đội ngũ chuyên gia phân tích để chọn lọc từng cổ phiếu, với mục tiêu tạo ra lợi nhuận vượt trội hơn chỉ số VN-Index, và thu phí quản lý 2%/năm. Quỹ Y chỉ đơn giản mô phỏng chỉ số VN-Index với phí quản lý 0,2%/năm. Cách tiếp cận của quỹ X gọi là gì, và đánh đổi lớn nhất là gì?",
-      "options": [
-        "Đây gọi là Passive investing, vì quỹ đang cố gắng bám sát diễn biến chung của thị trường",
-        "Active investing: cố gắng vượt trội thị trường, đổi lại chi phí cao hơn nhiều",
-        "Không có sự khác biệt đáng kể nào giữa hai quỹ ngoài mức phí quản lý",
-        "Đây gọi là Hedge fund investing, một hình thức đầu tư hoàn toàn khác với quỹ thông thường"
-      ],
-      "correct": 1,
-      "explanation": "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn. Chi phí quản lý cao (như cấu trúc '2 và 20' phổ biến ở một số quỹ) là đánh đổi lớn nhất, trong khi nghiên cứu dài hạn cho thấy phần lớn quỹ chủ động không vượt trội hơn benchmark sau khi trừ phí."
-    },
-    "summary": {
-      "keyIdea": "Active investing: cố gắng vượt trội thị trường, chi phí cao hơn",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Passive investing: mô phỏng chỉ số, chi phí thấp hơn nhiều"
-    },
-    "application": {
-      "title": "So sánh phí active vs passive",
-      "message": "Bài học đã có ví dụ thật so sánh phí E1VFVN30 (ETF) và VESAF (quỹ chủ động) - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự tìm phí quản lý của một quỹ chủ động và một ETF khác đang giao dịch tại VN để so sánh.",
-      "secondary": "Chênh lệch phí nhỏ mỗi năm có thể cộng dồn thành số tiền rất lớn về sau."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Active investing cố gắng vượt trội hơn thị trường thông qua chọn lọc cổ phiếu, canh thời điểm giao dịch và phân tích chuyên sâu - chi phí cao hơn vì cần đội ngũ chuyên gia. Passive investing đơn giản mua và nắm giữ theo đúng cấu trúc một chỉ số, không cố gắng đánh bại thị trường - chi phí thấp hơn nhiều vì không cần nghiên cứu chọn lọc."
+        "text": "Sự cố đã yên. Giờ mới tới phần quyết định liệu nó có xảy ra lần nữa hay không - và phần này hỏng rất dễ, chỉ bằng cách hỏi sai một câu."
+      },
+      {
+        "type": "heading",
+        "text": "Hai câu hỏi, hai kết cục"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Active Investing",
-          "text": "Cố gắng đánh bại thị trường qua chọn lọc và canh thời điểm. Chi phí quản lý cao (đội ngũ phân tích, giao dịch thường xuyên). Có thể tạo Alpha nhưng đa số không vượt qua benchmark sau phí."
+          "label": "Ai đã gây ra?",
+          "text": "Có câu trả lời nhanh, và cuộc điều tra dừng lại ở đó. Việc duy nhất suy ra được là hãy cẩn thận hơn - một lời khuyên, không phải một thay đổi."
         },
         "right": {
-          "label": "Passive Investing",
-          "text": "Mô phỏng chỉ số, không cố đánh bại thị trường. Chi phí cực thấp. Đảm bảo nhận đúng lợi suất thị trường trừ một khoản phí nhỏ, không có rủi ro \"quản lý tệ hơn thị trường\"."
+          "label": "Điều gì đã cho phép?",
+          "text": "Thường ra ba tới năm điều kiện chồng lên nhau, và mỗi cái là một chỗ có thể sửa thật."
         }
       },
       {
-        "type": "heading",
-        "text": "SPIVA: bằng chứng dài hạn"
-      },
-      {
         "type": "paragraph",
-        "text": "Báo cáo SPIVA (S&P Indices Versus Active) công bố định kỳ hàng năm cho thấy đa số quỹ chủ động - thường 80-90% sau 10-15 năm - KHÔNG vượt qua được benchmark tương ứng sau khi trừ phí quản lý. Đây là lý do chính khiến đầu tư thụ động ngày càng phổ biến, đặc biệt với nhà đầu tư cá nhân. John Bogle, người sáng lập Vanguard, tiên phong quỹ index thụ động đầu tiên năm 1976 dựa trên chính niềm tin này."
-      },
-      {
-        "type": "heading",
-        "text": "Không phải tuyệt đối cho mọi thị trường"
-      },
-      {
-        "type": "paragraph",
-        "text": "Ở các thị trường kém hiệu quả hơn (small-cap, thị trường mới nổi, thông tin bất cân xứng lớn), có nhiều bằng chứng cho thấy active management có cơ hội tạo Alpha tốt hơn so với thị trường lớn, hiệu quả và cạnh tranh cao như Mỹ - vì ít nhà đầu tư tổ chức chuyên nghiệp tham gia hơn, tạo ra nhiều cơ hội định giá sai hơn để khai thác."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Active: chi phí cao, mục tiêu vượt trội thị trường, đa số thất bại sau phí",
-          "Passive: chi phí thấp, mục tiêu bám sát thị trường, kết quả nhất quán hơn",
-          "SPIVA: 80-90% quỹ chủ động thua benchmark sau 10-15 năm",
-          "Active có cơ hội tốt hơn ở thị trường kém hiệu quả (small-cap, mới nổi)"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ thật: so sánh phí E1VFVN30 (ETF) và một quỹ chủ động"
-      },
-      {
-        "type": "list",
-        "items": [
-          "E1VFVN30 (ETF thụ động theo dõi VN30): phí quản lý 0,65%/năm, tổng chi phí (expense ratio) khoảng 0,9%/năm",
-          "VESAF (quỹ mở chủ động của VinaCapital): phí quản lý quỹ chủ động tại VN phổ biến 1,5-2%/năm - cao hơn ETF 2-3 lần",
-          "VESAF đạt lợi nhuận bình quân 22,9%/năm trong 5 năm tính đến 30/6/2025, cao hơn VN-Index (10,8%/năm cùng giai đoạn) - nhưng đây là một trong số ít quỹ chủ động thực sự vượt trội dài hạn, không phải kết quả phổ biến"
-        ]
+        "text": "Con người gõ nhầm. Đó là hằng số, không phải biến số, và không quy trình nào loại bỏ được nó. Điều thiết kế được là hậu quả: một thao tác không đảo ngược được thì phải có ma sát trước nó - bước xác nhận, giới hạn phạm vi, bản sao tự động trước khi xoá."
       },
       {
         "type": "callout",
-        "label": "Cách tự tính chênh lệch phí sau 20 năm",
-        "text": "Với 100 triệu đồng đầu tư ở lợi nhuận gộp 8%/năm trong 20 năm: không phí sẽ thành khoảng 466 triệu đồng. Trừ đi 1%/năm phí (còn 7%/năm ròng), chỉ còn khoảng 387 triệu đồng - mất khoảng 79 triệu đồng chỉ vì chênh lệch phí 1%/năm, do lãi kép bị bào mòn theo thời gian."
+        "label": "Vì sao nó trông đúng lúc đó",
+        "text": "Không ai cố ý phá hệ thống. Với thông tin họ có tại thời điểm ấy, hành động đó là hợp lý. Tìm hiểu vì sao nó hợp lý sẽ lộ ra tài liệu đã cũ, một giao diện gây hiểu nhầm, hoặc một cảnh báo lẽ ra phải có."
+      },
+      {
+        "type": "heading",
+        "text": "Cái giá của việc tìm người"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sau một buổi hồi cứu quy trách nhiệm, số sự cố được báo cáo giảm mạnh trong quý tiếp theo. Số sự cố thật thì không đổi - chúng chỉ được xử lý âm thầm. Tổ chức vừa mất khả năng nhìn thấy hệ thống của chính mình, và đó là tổn thất lớn hơn bất kỳ sự cố đơn lẻ nào."
+      },
+      {
+        "type": "callout",
+        "label": "Kết thúc bằng việc, không bằng bản mô tả",
+        "text": "Một báo cáo đầy đủ mà không sinh ra việc nào là một tài liệu lịch sử. Mỗi buổi hồi cứu phải để lại danh sách việc có người nhận và có hạn, nếu không thì hệ thống sau đó không khác gì hệ thống trước đó."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Không đổ lỗi không phải là tử tế với nhau. Nó là điều kiện để còn có thông tin mà học.",
+          "Bài sau về việc đo chính quá trình này: những con số nào thật sự nói lên đội đang ứng phó tốt hơn."
+        ]
       }
     ]
   },
   {
     "id": 176,
-    "slug": "etf-la-gi-day176",
-    "title": "Tự học Tài chính Day 176: ETF là gì?",
-    "subtitle": "Quỹ hoán đổi danh mục - giao dịch như cổ phiếu, đa dạng hóa như một quỹ",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "🧺",
-    "openingQuestion": "ETF (Exchange-Traded Fund) khác gì so với việc mua từng cổ phiếu riêng lẻ?",
+    "slug": "chi-so-ve-su-co",
+    "title": "Đo chính việc ứng phó: con số nào nói lên điều gì",
+    "subtitle": "Đếm số sự cố là cách nhanh nhất để đội ngừng ghi nhận sự cố.",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "📊",
+    "track": "professional",
+    "whyItMatters": "Chỉ số về sự cố rất dễ chọn sai, và chọn sai thì nó không chỉ vô dụng mà còn tạo ra động cơ ngược - đội tối ưu cho con số thay vì cho hệ thống.",
+    "openingQuestion": "Chỉ số nào phản ánh tốt nhất việc đội đang ứng phó hiệu quả hơn?",
     "openingOptions": [
-      "ETF là một giỏ chứa nhiều tài sản, giao dịch như một cổ phiếu duy nhất",
-      "ETF chỉ dành cho nhà đầu tư tổ chức",
-      "ETF chỉ chứa duy nhất một loại tài sản trong giỏ, nên không đa dạng được",
-      "Không có khác biệt gì đáng kể"
+      "Thời gian từ lúc bắt đầu ảnh hưởng tới lúc thiệt hại được chặn lại",
+      "Tổng số sự cố được ghi nhận trong mỗi tháng",
+      "Tỷ lệ sự cố được xử lý xong trong vòng một giờ",
+      "Số lượng các việc cải tiến sinh ra từ những buổi hồi cứu sau mỗi sự cố"
     ],
     "correctOption": 0,
-    "explanation": "ETF (Exchange-Traded Fund) là quỹ đầu tư nắm giữ một rổ tài sản (cổ phiếu, trái phiếu, hàng hóa...) nhưng được giao dịch trên sàn chứng khoán giống hệt một cổ phiếu đơn lẻ - có thể mua bán bất kỳ lúc nào trong phiên giao dịch. ETF kết hợp lợi ích đa dạng hóa của quỹ với tính thanh khoản và linh hoạt của cổ phiếu.",
+    "explanation": "Con số này đo đúng thứ người dùng chịu đựng, và nó rút ngắn được bằng những cải thiện thật: phát hiện sớm hơn, tuyên bố sớm hơn, có sẵn đòn bẩy giảm thiểu. Đếm tổng số sự cố thì tạo động cơ ngược, vì cách dễ nhất để giảm nó là ghi nhận ít đi. Số việc cải tiến sinh ra thì đo hoạt động chứ không đo kết quả, và nó cũng bị thổi phồng dễ dàng.",
     "diagram": [
       {
-        "label": "Rổ tài sản (cổ phiếu, trái phiếu...)",
+        "label": "Bắt đầu ảnh hưởng → phát hiện",
         "arrow": true
       },
       {
-        "label": "Đóng gói thành một quỹ ETF",
+        "label": "Phát hiện → tuyên bố",
         "arrow": true
       },
       {
-        "label": "Giao dịch trên sàn như một cổ phiếu"
+        "label": "Tuyên bố → chặn được thiệt hại",
+        "arrow": true
+      },
+      {
+        "label": "Tách ba đoạn thì biết phải cải thiện đoạn nào"
       }
     ],
-    interactiveType: "fee-drag",
     "realWorldExample": {
-      "company": "SPY - ETF theo dõi S&P 500",
-      "description": "SPY là ETF lâu đời và lớn nhất theo dõi chỉ số S&P 500, cho phép nhà đầu tư sở hữu gián tiếp 500 công ty lớn nhất nước Mỹ chỉ bằng một lệnh mua duy nhất, với chi phí quản lý cực thấp."
+      "company": "Số sự cố giảm, hệ thống không đổi",
+      "description": "Một tổ chức đặt mục tiêu giảm số sự cố mỗi quý và đạt được nó. Cách đạt là nâng ngưỡng phân loại: những gì trước đây gọi là sự cố nay được ghi thành trục trặc vận hành."
+    },
+    "keyTakeaways": [
+      "Tách thời gian ứng phó thành ba đoạn để biết cải thiện chỗ nào.",
+      "Đừng đặt mục tiêu giảm số lượng sự cố được ghi nhận.",
+      "Dùng trung vị và phân vị thay vì trung bình, vì vài sự cố dài kéo lệch tất cả.",
+      "Chỉ số về sự cố dùng để tìm chỗ cải thiện, không dùng để đánh giá người."
+    ],
+    "summary": {
+      "keyIdea": "Đo thời gian người dùng chịu ảnh hưởng, tách theo đoạn, và đừng đo số lượng.",
+      "formula": "Ảnh hưởng → phát hiện → tuyên bố → chặn.",
+      "commonMistake": "Đặt mục tiêu trên số lượng sự cố được ghi nhận."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy năm sự cố gần nhất và ghi ba mốc thời gian cho mỗi cái. Đoạn nào dài nhất trên cả năm sự cố chính là chỗ cải thiện đầu tiên."
+    },
+    "practicePrompt": {
+      "question": "Vì sao nên dùng trung vị thay vì trung bình cho thời gian xử lý?",
+      "options": [
+        "Vì một sự cố kéo dài bất thường sẽ làm lệch hẳn con số trung bình",
+        "Vì trung vị dễ tính hơn khi số lượng sự cố còn ít",
+        "Vì trung bình không phản ánh được xu hướng thay đổi theo thời gian",
+        "Vì các công cụ theo dõi thường chỉ hỗ trợ tính trung vị"
+      ],
+      "correct": 0,
+      "explanation": "Một sự cố kéo mười hai giờ giữa mười sự cố kéo hai mươi phút sẽ đẩy trung bình lên hơn một giờ, và con số ấy không mô tả đúng bất kỳ sự cố nào trong nhóm. Nhìn cả trung vị lẫn phân vị cao thì bạn thấy được cả trường hợp thường gặp lẫn trường hợp tệ nhất."
     },
     "quiz": [
       {
-        "question": "Vì sao ETF thường có chi phí quản lý (expense ratio) thấp hơn nhiều so với quỹ tương hỗ (mutual fund) truyền thống?",
+        "question": "Vì sao đặt mục tiêu giảm số sự cố lại nguy hiểm?",
         "options": [
-          "Vì ETF chỉ chứa một loại tài sản duy nhất",
-          "Phần lớn ETF là quỹ thụ động theo dõi chỉ số, không cần đội ngũ phân tích chọn lọc cổ phiếu tốn kém như quỹ chủ động, cộng thêm cơ chế giao dịch hiệu quả hơn",
-          "ETF luôn có phí quản lý cao hơn mutual fund",
-          "Vì ETF không cần tuân thủ quy định nào"
+          "Vì cách dễ nhất để đạt mục tiêu là ghi nhận ít sự cố đi",
+          "Vì số sự cố phụ thuộc vào quy mô hệ thống nên khó so sánh",
+          "Vì nó khiến đội tập trung vào phòng ngừa thay vì ứng phó",
+          "Vì số sự cố dao động mạnh giữa các tháng nên khó đặt mục tiêu"
         ],
-        "correct": 1,
-        "explanation": "Đa số ETF theo dõi thụ động một chỉ số có sẵn (S&P 500, VN30...), không cần đội ngũ nghiên cứu chọn lọc cổ phiếu như quỹ chủ động - giúp giảm mạnh chi phí vận hành. Cơ chế tạo lập/hoàn trả (creation/redemption) qua các nhà tạo lập thị trường (market maker) cũng giúp ETF hiệu quả về thuế và chi phí hơn mutual fund truyền thống."
+        "correct": 0,
+        "explanation": "Nâng ngưỡng phân loại là cách rẻ nhất và không ai phải nói dối: những gì trước gọi là sự cố nay ghi thành trục trặc vận hành. Con số đi xuống, hệ thống không đổi, và tổ chức mất luôn dữ liệu thật."
       },
       {
-        "question": "ETF theo dõi một chỉ số có thanh khoản thấp (ít nhà đầu tư giao dịch chỉ số đó) có thể gặp vấn đề gì so với ETF theo dõi S&P 500?",
+        "question": "Vì sao nên tách thời gian ứng phó thành nhiều đoạn?",
         "options": [
-          "Thanh khoản của chỉ số cơ sở không ảnh hưởng gì đến ETF theo dõi nó",
-          "ETF thanh khoản thấp luôn có phí quản lý cao hơn",
-          "Có thể gặp chênh lệch giá mua-bán (bid-ask spread) rộng hơn và giá giao dịch trên sàn có thể lệch đáng kể so với giá trị tài sản ròng thực (NAV) của quỹ, do thiếu nhà tạo lập thị trường tích cực tham gia",
-          "Không có sự khác biệt nào về rủi ro giữa hai loại ETF"
+          "Vì mỗi đoạn được rút ngắn bằng một loại cải thiện khác nhau",
+          "Vì tổng thời gian dao động quá mạnh giữa các sự cố",
+          "Vì các đoạn khác nhau do những người khác nhau cùng phụ trách",
+          "Vì một số đoạn không đo được một cách chính xác"
         ],
-        "correct": 2,
-        "explanation": "Thanh khoản của ETF phụ thuộc nhiều vào hoạt động của market maker và độ thanh khoản của các tài sản cơ sở - ETF theo dõi chỉ số ít phổ biến có thể có bid-ask spread rộng và premium/discount so với NAV lớn hơn, một rủi ro thực tế nhà đầu tư cần cân nhắc ngoài chi phí quản lý (expense ratio)."
+        "correct": 0,
+        "explanation": "Đoạn từ ảnh hưởng tới phát hiện rút ngắn bằng giám sát; đoạn từ phát hiện tới tuyên bố rút ngắn bằng quy ước; đoạn từ tuyên bố tới chặn rút ngắn bằng đòn bẩy giảm thiểu. Một con số tổng không cho biết nên đầu tư vào đâu."
+      },
+      {
+        "question": "Chỉ số về sự cố nên được dùng để làm gì?",
+        "options": [
+          "Tìm chỗ cần cải thiện trong quy trình và hệ thống",
+          "Đánh giá hiệu quả làm việc của từng thành viên trong đội",
+          "So sánh chất lượng vận hành giữa các đội trong công ty",
+          "Báo cáo mức độ tin cậy của dịch vụ cho khách hàng"
+        ],
+        "correct": 0,
+        "explanation": "Ngay khi chúng được dùng để đánh giá người, chúng ngừng phản ánh sự thật - cùng một cơ chế đã làm hỏng chỉ số đếm số sự cố. Đây là một trường hợp cụ thể của quy luật rằng một phép đo trở thành mục tiêu thì nó thôi làm một phép đo tốt."
+      },
+      {
+        "question": "Đoạn nào trong dòng thời gian thường bị bỏ quên nhất?",
+        "options": [
+          "Đoạn từ lúc bắt đầu ảnh hưởng tới lúc có người phát hiện ra",
+          "Đoạn từ lúc tuyên bố tới lúc phân vai xong cho cả đội",
+          "Đoạn từ lúc chặn được thiệt hại tới lúc xác nhận hệ thống đã ổn định",
+          "Đoạn từ lúc sự cố kết thúc tới lúc tổ chức buổi hồi cứu"
+        ],
+        "correct": 0,
+        "explanation": "Nó thường không được ghi vì không ai biết chính xác lúc nào ảnh hưởng bắt đầu. Nhưng nó lại là đoạn dài nhất trong nhiều sự cố, và nó chỉ rút ngắn được bằng cách đầu tư vào giám sát chứ không bằng cách chạy nhanh hơn."
+      },
+      {
+        "question": "Vì sao số việc cải tiến sinh ra từ hồi cứu là chỉ số kém?",
+        "options": [
+          "Vì nó đo hoạt động chứ không đo kết quả, và rất dễ bị thổi phồng",
+          "Vì các việc cải tiến thường không được hoàn thành đúng hạn",
+          "Vì số lượng việc phụ thuộc vào mức độ nghiêm trọng của sự cố",
+          "Vì nhiều việc cải tiến trùng lặp giữa các buổi hồi cứu khác nhau"
+        ],
+        "correct": 0,
+        "explanation": "Chia một việc thành năm việc nhỏ thì con số tăng gấp năm mà không có gì thay đổi. Chỉ số đáng theo dõi ở đây là tỷ lệ việc đã hoàn thành, và tốt hơn nữa là thời gian ứng phó có thật sự ngắn lại hay không."
       }
     ],
-    "keyTakeaways": [
-      "ETF: quỹ chứa rổ tài sản nhưng giao dịch linh hoạt như một cổ phiếu",
-      "Kết hợp lợi ích đa dạng hóa của quỹ và thanh khoản của cổ phiếu",
-      "Thường có chi phí quản lý thấp hơn nhiều so với quỹ tương hỗ truyền thống"
-    ],
-    "practicePrompt": {
-      "question": "Bạn muốn đầu tư vào một rổ 30 cổ phiếu blue-chip cùng lúc, nhưng thay vì mua từng cổ phiếu riêng lẻ, bạn mua một chứng chỉ quỹ có thể đặt lệnh mua/bán ngay trong phiên giao dịch giống hệt như mua một cổ phiếu đơn lẻ, với giá thay đổi liên tục theo cung cầu thị trường. Loại quỹ này gọi là gì?",
-      "options": [
-        "Đây gọi là Mutual Fund, chỉ định giá và giao dịch một lần mỗi ngày theo NAV",
-        "ETF: quỹ chứa rổ tài sản nhưng giao dịch liên tục trong phiên như cổ phiếu",
-        "Đây gọi là Hedge Fund, một loại quỹ tư nhân linh hoạt và ít ràng buộc quy định",
-        "Loại hình đầu tư này không tồn tại trên thị trường chứng khoán thực tế"
-      ],
-      "correct": 1,
-      "explanation": "ETF: quỹ chứa rổ tài sản nhưng giao dịch linh hoạt như một cổ phiếu. Đây là ưu điểm lớn của ETF so với mutual fund truyền thống - kết hợp đa dạng hóa (nhiều cổ phiếu trong một quỹ) với thanh khoản cao (giao dịch liên tục trong phiên như cổ phiếu)."
-    },
-    "summary": {
-      "keyIdea": "ETF: quỹ chứa rổ tài sản nhưng giao dịch linh hoạt như một cổ phiếu",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Kết hợp lợi ích đa dạng hóa của quỹ và thanh khoản của cổ phiếu"
-    },
-    "application": {
-      "title": "Tìm một ETF phù hợp với bạn",
-      "message": "Tra cứu một ETF đang giao dịch trên sàn (trong hoặc ngoài nước) theo chủ đề bạn quan tâm, xem nó nắm giữ rổ tài sản gì và phí quản lý bao nhiêu.",
-      "secondary": "Việc tự tra cứu giúp khái niệm ETF không còn trừu tượng nữa."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "ETF (Exchange-Traded Fund) là quỹ đầu tư nắm giữ một rổ tài sản - cổ phiếu, trái phiếu, hàng hóa - nhưng được giao dịch trên sàn chứng khoán giống hệt một cổ phiếu đơn lẻ, mua bán bất kỳ lúc nào trong phiên. ETF kết hợp lợi ích đa dạng hóa của một quỹ với tính thanh khoản và linh hoạt của cổ phiếu."
+        "text": "Đội đã có quy trình ứng phó và có hồi cứu. Câu hỏi tiếp theo là làm sao biết những thứ ấy đang có tác dụng - và đây là chỗ rất dễ chọn nhầm con số."
       },
       {
         "type": "heading",
-        "text": "Vì sao ETF thường rẻ hơn mutual fund"
+        "text": "Ba đoạn, ba loại cải thiện"
       },
       {
-        "type": "paragraph",
-        "text": "Phần lớn ETF là quỹ thụ động theo dõi chỉ số, không cần đội ngũ phân tích chọn lọc cổ phiếu tốn kém như quỹ chủ động. Cộng thêm cơ chế tạo lập/hoàn trả (creation/redemption) thông qua các nhà tạo lập thị trường (market maker), ETF thường hiệu quả về thuế và chi phí hơn mutual fund truyền thống. SPY, ETF theo dõi S&P 500, cho phép sở hữu gián tiếp 500 công ty lớn nhất nước Mỹ chỉ bằng một lệnh mua duy nhất với chi phí quản lý cực thấp."
+        "type": "conceptTable",
+        "title": "Tách ra thì mới biết đầu tư vào đâu",
+        "subtitle": "Một con số tổng không chỉ được chỗ nào cần sửa",
+        "concepts": [
+          {
+            "vi": "Ảnh hưởng tới phát hiện",
+            "en": "time to detect",
+            "def": "Rút ngắn bằng giám sát và cảnh báo. Thường là đoạn dài nhất, và cũng hay bị bỏ quên nhất vì khó xác định mốc bắt đầu."
+          },
+          {
+            "vi": "Phát hiện tới tuyên bố",
+            "en": "time to declare",
+            "def": "Rút ngắn bằng quy ước, không bằng công nghệ. Hạ ngưỡng tuyên bố là cải thiện rẻ nhất trong ba đoạn."
+          },
+          {
+            "vi": "Tuyên bố tới chặn được",
+            "en": "time to mitigate",
+            "def": "Rút ngắn bằng đòn bẩy giảm thiểu chuẩn bị sẵn và bằng việc phân vai rõ ràng."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Đừng đếm số sự cố",
+        "text": "Cách rẻ nhất để giảm con số ấy là nâng ngưỡng phân loại, và không ai phải nói dối để làm điều đó. Con số đi xuống, hệ thống không đổi, và tổ chức mất luôn dữ liệu thật về chính mình."
       },
       {
         "type": "heading",
-        "text": "Rủi ro thanh khoản của ETF nhỏ"
+        "text": "Trung vị và phân vị, không phải trung bình"
       },
       {
         "type": "paragraph",
-        "text": "ETF theo dõi một chỉ số ít thanh khoản có thể gặp chênh lệch giá mua-bán (bid-ask spread) rộng hơn, và giá giao dịch trên sàn có thể lệch đáng kể so với giá trị tài sản ròng thực (NAV) của quỹ, do thiếu nhà tạo lập thị trường tích cực tham gia. Đây là rủi ro thực tế cần cân nhắc ngoài chi phí quản lý (expense ratio) khi chọn một ETF."
+        "text": "Một sự cố kéo mười hai giờ giữa mười sự cố kéo hai mươi phút sẽ đẩy trung bình lên hơn một giờ - một con số không mô tả đúng bất kỳ sự cố nào trong nhóm. Trung vị cho biết trường hợp thường gặp, phân vị cao cho biết trường hợp tệ nhất, và bạn cần cả hai."
       },
       {
-        "type": "list",
-        "items": [
-          "ETF: rổ tài sản đa dạng, giao dịch linh hoạt như một cổ phiếu",
-          "Đa số ETF thụ động, chi phí quản lý thấp hơn nhiều so với quỹ chủ động",
-          "ETF thanh khoản thấp: bid-ask spread rộng hơn, giá có thể lệch khỏi NAV",
-          "Kiểm tra volume giao dịch và expense ratio trước khi chọn ETF"
+        "type": "callout",
+        "label": "Không dùng để đánh giá người",
+        "text": "Ngay khi một chỉ số được dùng để chấm điểm cá nhân, nó ngừng phản ánh sự thật - đúng cùng cơ chế đã làm hỏng phép đếm số sự cố. Giữ chúng ở vai trò công cụ tìm chỗ cải thiện là điều kiện để chúng còn dùng được."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Con số duy nhất đáng đặt mục tiêu là thời gian người dùng chịu ảnh hưởng. Mọi con số khác là để chẩn đoán.",
+          "Bài sau về nguồn lực đứng sau toàn bộ quy trình này, và cũng là nguồn lực dễ cạn nhất: con người trực."
         ]
       }
     ]
   },
   {
     "id": 177,
-    "slug": "mutual-fund-la-gi",
-    "title": "Tự học Tài chính Day 177: Mutual Fund là gì?",
-    "subtitle": "Quỹ tương hỗ - góp vốn chung, chuyên gia quản lý, định giá một lần mỗi ngày",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "🤝",
-    "openingQuestion": "Mutual Fund (quỹ tương hỗ) khác ETF ở điểm quan trọng nào về cách giao dịch?",
+    "slug": "lich-truc-ben-vung",
+    "title": "Lịch trực bền vững: đội kiệt sức thì hệ thống kém tin cậy",
+    "subtitle": "Người trực là một thành phần của hệ thống, và nó cũng có giới hạn tải như mọi thành phần khác.",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🌙",
+    "track": "professional",
+    "whyItMatters": "Mọi cơ chế trong chặng này đều dựa vào một người tỉnh táo ở đầu bên kia. Khi lịch trực không sống nổi, người giỏi nghỉ việc và độ tin cậy đi xuống theo - chậm và không ai quy được cho nguyên nhân nào.",
+    "openingQuestion": "Dấu hiệu rõ nhất cho thấy lịch trực đang không bền vững là gì?",
     "openingOptions": [
-      "Không có khác biệt nào cả",
-      "Mutual Fund luôn rẻ hơn ETF",
-      "Mutual Fund chỉ dành cho nhà đầu tư tổ chức lớn",
-      "Chỉ mua/bán một lần mỗi ngày theo NAV"
+      "Người trực bị đánh thức nhiều đêm liên tiếp trong một ca",
+      "Số lượng sự cố nghiêm trọng tăng lên so với quý trước",
+      "Đội phải thêm người vào danh sách trực để đủ một vòng quay",
+      "Thời gian xử lý trung bình mỗi sự cố đang dài dần ra"
     ],
-    "correctOption": 3,
-    "explanation": "Mutual Fund (quỹ tương hỗ) gom vốn từ nhiều nhà đầu tư để đầu tư vào một danh mục tài sản đa dạng, do một nhà quản lý quỹ chuyên nghiệp điều hành. Khác với ETF, mutual fund chỉ định giá và cho phép mua/bán MỘT LẦN mỗi ngày, dựa trên Net Asset Value (NAV) tính vào cuối phiên giao dịch - không giao dịch liên tục trong ngày.",
+    "correctOption": 0,
+    "explanation": "Đây là dấu hiệu đo được trực tiếp và nó dẫn thẳng tới hậu quả: mất ngủ tích lại, khả năng phán đoán giảm, và người ta bắt đầu tìm cách rời khỏi vòng trực. Ba dấu hiệu còn lại đều đáng chú ý nhưng chúng có nhiều cách giải thích khác - hệ thống lớn lên, sản phẩm phức tạp hơn, hoặc đội đang nhận thêm phạm vi. Số đêm bị đánh thức thì chỉ có một cách đọc.",
     "diagram": [
       {
-        "label": "Nhiều nhà đầu tư góp vốn chung",
+        "label": "Cảnh báo đêm nhiều → thiếu ngủ tích lại",
         "arrow": true
       },
       {
-        "label": "Chuyên gia quản lý chọn danh mục",
+        "label": "Phán đoán kém đi, sự cố xử lý chậm hơn",
         "arrow": true
       },
       {
-        "label": "Định giá và giao dịch một lần mỗi ngày"
+        "label": "Người giỏi rời vòng trực hoặc rời đội",
+        "arrow": true
+      },
+      {
+        "label": "Độ tin cậy đi xuống mà không ai quy được nguyên nhân"
       }
     ],
-    interactiveType: "fee-drag",
     "realWorldExample": {
-      "company": "Quỹ mở tại Việt Nam",
-      "description": "Các quỹ mở (open-end fund) tại Việt Nam như quỹ cổ phiếu, quỹ trái phiếu của các công ty quản lý quỹ trong nước hoạt động theo mô hình mutual fund - nhà đầu tư mua/bán chứng chỉ quỹ theo NAV công bố cuối ngày."
+      "company": "Vòng trực bốn người",
+      "description": "Một đội bốn người trực xoay vòng nghĩa là mỗi người trực một tuần trong bốn tuần. Nếu mỗi ca có ba đêm bị đánh thức thì đó là ba đêm mất ngủ mỗi tháng, đều đặn, năm này qua năm khác."
+    },
+    "keyTakeaways": [
+      "Số đêm bị đánh thức mỗi ca là chỉ số sức khoẻ của lịch trực.",
+      "Việc dọn cảnh báo phải được tính là công việc, không phải việc làm thêm.",
+      "Vòng trực quá ít người thì không có ca nào là ca nhẹ.",
+      "Sau một ca nặng cần thời gian bù, và điều đó phải được thừa nhận."
+    ],
+    "summary": {
+      "keyIdea": "Người trực là một thành phần có giới hạn, và vượt giới hạn thì cả hệ thống kém đi.",
+      "formula": "Đếm số đêm bị đánh thức, không đếm số cảnh báo.",
+      "commonMistake": "Coi mệt mỏi khi trực là chuyện đương nhiên của nghề."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Đếm số đêm có người bị đánh thức trong ba tháng gần nhất, chia cho số ca. Nếu con số vượt một hai đêm mỗi ca thì việc cần làm là dọn cảnh báo, không phải thêm người trực."
+    },
+    "practicePrompt": {
+      "question": "Cách bền vững nhất để giảm tải cho người trực là gì?",
+      "options": [
+        "Sửa nguyên nhân của những cảnh báo lặp lại nhiều lần nhất",
+        "Thêm người vào vòng trực để mỗi người phải trực ít tuần hơn",
+        "Chuyển các cảnh báo ít nghiêm trọng sang xử lý vào ban ngày",
+        "Chia lịch trực theo múi giờ để không ai phải trực ban đêm"
+      ],
+      "correct": 0,
+      "explanation": "Ba cách còn lại đều phân phối lại gánh nặng chứ không giảm nó, và cách đầu tiên trong số đó còn che mất vấn đề bằng cách làm cho nó ít lộ ra hơn. Chỉ có việc loại bỏ nguyên nhân mới làm tổng số lần bị đánh thức đi xuống thật."
     },
     "quiz": [
       {
-        "question": "Vì sao mutual fund chủ động (actively managed) thường có phí quản lý cao hơn ETF thụ động?",
+        "question": "Vì sao thêm người vào vòng trực chưa phải giải pháp?",
         "options": [
-          "Vì mutual fund chủ động cần đội ngũ nghiên cứu, phân tích, chọn lọc cổ phiếu liên tục để cố gắng vượt trội thị trường - chi phí vận hành này được chuyển vào phí quản lý mà nhà đầu tư phải trả",
-          "Vì quy định pháp luật yêu cầu vậy",
-          "Không có sự khác biệt đáng kể về chi phí",
-          "Vì mutual fund luôn có hiệu suất tốt hơn ETF"
+          "Vì tổng số lần bị đánh thức không đổi, chỉ được chia cho nhiều người hơn",
+          "Vì người mới cần thời gian để làm quen với hệ thống",
+          "Vì đội thường không có sẵn người để bổ sung vào vòng trực",
+          "Vì ca trực dài hơn sẽ khiến việc bàn giao trở nên khó khăn"
         ],
         "correct": 0,
-        "explanation": "Chi phí vận hành của một quỹ chủ động (lương chuyên gia phân tích, nghiên cứu thị trường, giao dịch thường xuyên hơn) cao hơn nhiều so với một quỹ ETF thụ động chỉ đơn giản sao chép cấu trúc một chỉ số có sẵn - chênh lệch chi phí này phản ánh trực tiếp vào expense ratio mà nhà đầu tư phải gánh chịu hàng năm."
+        "explanation": "Nó có giúp trong ngắn hạn và đôi khi là việc đúng phải làm ngay, nhưng nó không đụng tới nguyên nhân. Nếu hệ thống sinh ra ba mươi lần đánh thức mỗi tháng thì ba mươi lần ấy vẫn còn nguyên."
       },
       {
-        "question": "Vì sao Mutual Fund thường yêu cầu số tiền đầu tư tối thiểu ban đầu (ví dụ 1 triệu đồng hoặc nhiều hơn), trong khi ETF có thể mua với số lượng cổ phiếu nhỏ tùy ý trên sàn?",
+        "question": "Vì sao việc dọn cảnh báo phải được tính là công việc chính thức?",
         "options": [
-          "Ngưỡng đầu tư tối thiểu không liên quan gì đến cơ chế giao dịch của quỹ",
-          "Mutual Fund giao dịch trực tiếp với công ty quản lý quỹ (không qua sàn), công ty quản lý thường đặt ra ngưỡng tối thiểu để quản lý chi phí vận hành hiệu quả; ETF giao dịch như cổ phiếu trên sàn nên có thể mua bán với số lượng nhỏ tùy khả năng tài chính của nhà đầu tư",
-          "Không có sự khác biệt về ngưỡng đầu tư tối thiểu giữa hai loại quỹ",
-          "ETF luôn yêu cầu số vốn đầu tư lớn hơn Mutual Fund"
+          "Vì nếu chỉ làm khi rảnh thì nó không bao giờ được làm",
+          "Vì nó đòi hỏi kiến thức sâu về hệ thống nên tốn nhiều thời gian",
+          "Vì cần sự đồng thuận của cả đội trước khi xoá một cảnh báo",
+          "Vì các công cụ giám sát cần được cấu hình lại sau mỗi thay đổi"
         ],
-        "correct": 1,
-        "explanation": "Sự khác biệt về cơ chế phân phối (Mutual Fund qua công ty quản lý quỹ trực tiếp, ETF qua sàn giao dịch như cổ phiếu) tạo ra sự khác biệt tự nhiên về ngưỡng đầu tư tối thiểu và tính linh hoạt khi mua bán giữa hai loại sản phẩm đầu tư này."
+        "correct": 0,
+        "explanation": "Nó luôn thua mọi việc có hạn chót, và nó không bao giờ có hạn chót của riêng mình. Đưa nó vào kế hoạch như một hạng mục có người nhận là cách duy nhất nó thực sự diễn ra."
+      },
+      {
+        "question": "Sau một ca trực nặng thì điều gì nên xảy ra?",
+        "options": [
+          "Người đó được nghỉ bù và điều đó được thừa nhận công khai",
+          "Người đó viết báo cáo tổng kết những gì đã xảy ra trong ca",
+          "Đội họp lại để phân công xử lý những việc còn tồn đọng lại",
+          "Ca trực tiếp theo được rút ngắn để giảm áp lực cho cả đội"
+        ],
+        "correct": 0,
+        "explanation": "Thiếu ngủ không tự biến mất khi ca trực kết thúc, và một người vừa thức ba đêm không làm việc hiệu quả trong tuần kế tiếp. Điều quan trọng là nó được thừa nhận, vì nếu phải tự xin thì phần lớn người ta sẽ không xin."
+      },
+      {
+        "question": "Vì sao một vòng trực quá ít người lại có hại?",
+        "options": [
+          "Vì tần suất trực dày tới mức không ai có được khoảng nghỉ thật sự",
+          "Vì rủi ro sẽ không còn ai xử lý được khi có một người nghỉ phép dài",
+          "Vì kiến thức về hệ thống tập trung vào quá ít người",
+          "Vì việc bàn giao giữa các ca diễn ra quá thường xuyên"
+        ],
+        "correct": 0,
+        "explanation": "Vòng hai người nghĩa là mỗi người trực một tuần trong hai tuần, tức là một nửa cuộc sống của họ luôn có điện thoại bên cạnh. Hai rủi ro còn lại đều có thật nhưng chúng là vấn đề về năng lực dự phòng chứ không phải về sức bền."
+      },
+      {
+        "question": "Vì sao lịch trực kém lại làm hệ thống kém tin cậy?",
+        "options": [
+          "Vì mọi cơ chế ứng phó đều dựa vào một người còn tỉnh táo",
+          "Vì đội sẽ không còn thời gian nào để cải thiện hạ tầng nữa",
+          "Vì các cảnh báo sẽ bị tắt bớt để giảm số lần bị đánh thức",
+          "Vì người mới sẽ được đưa vào trực trước khi đủ kinh nghiệm"
+        ],
+        "correct": 0,
+        "explanation": "Ba hậu quả còn lại đều xảy ra và đều làm mọi thứ tệ hơn, nhưng chúng đến sau. Điều đầu tiên mất đi là chất lượng phán đoán của người đang xử lý sự cố lúc ba giờ sáng sau đêm thứ ba mất ngủ."
       }
     ],
-    "keyTakeaways": [
-      "Mutual Fund: quỹ tương hỗ, định giá và giao dịch một lần mỗi ngày theo NAV",
-      "Khác ETF ở cơ chế giao dịch - không mua bán liên tục trong phiên",
-      "Thường có phí quản lý cao hơn nếu là quỹ chủ động, do chi phí nghiên cứu và vận hành"
-    ],
-    "practicePrompt": {
-      "question": "Bạn đặt lệnh mua chứng chỉ quỹ vào buổi sáng, nhưng giá thực tế bạn mua được chỉ được xác định vào cuối ngày giao dịch (dựa trên tổng giá trị tài sản ròng của quỹ chia cho số chứng chỉ đang lưu hành), không phải giá biến động liên tục như cổ phiếu. Loại quỹ này gọi là gì, và khác gì với ETF?",
-      "options": [
-        "Đây gọi là ETF, vì ETF cũng chỉ định giá một lần mỗi ngày giống như mô tả trên",
-        "Mutual Fund: chỉ định giá và giao dịch một lần mỗi ngày, theo NAV chốt vào cuối phiên",
-        "Đây gọi là Hedge Fund, chỉ dành cho nhà đầu tư tổ chức và cá nhân có tài sản lớn",
-        "Không có sự khác biệt nào giữa Mutual Fund và ETF về cách thức định giá và giao dịch"
-      ],
-      "correct": 1,
-      "explanation": "Mutual Fund: quỹ tương hỗ, định giá và giao dịch một lần mỗi ngày theo NAV. Khác với ETF giao dịch linh hoạt trong phiên, Mutual Fund chỉ cho phép mua/bán ở một mức giá duy nhất được xác định vào cuối ngày giao dịch."
-    },
-    "summary": {
-      "keyIdea": "Mutual Fund: quỹ tương hỗ, định giá và giao dịch một lần mỗi ngày theo NAV",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Khác ETF ở cơ chế giao dịch - không mua bán liên tục trong phiên"
-    },
-    "application": {
-      "title": "So sánh cách định giá ETF và mutual fund",
-      "message": "Bài học đã có ví dụ thật so sánh cách định giá E1VFVN30 và VESAF - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự tìm một cặp ETF/mutual fund khác để đối chiếu.",
-      "secondary": "Sự khác biệt này ảnh hưởng trực tiếp đến khi nào bạn có thể mua bán."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Mutual Fund (quỹ tương hỗ) gom vốn từ nhiều nhà đầu tư để đầu tư vào một danh mục tài sản đa dạng, do một nhà quản lý quỹ chuyên nghiệp điều hành. Khác với ETF, mutual fund chỉ định giá và cho phép mua/bán MỘT LẦN mỗi ngày, dựa trên Net Asset Value (NAV) tính vào cuối phiên giao dịch."
+        "text": "Mọi thứ trong chặng này - cảnh báo, tuyên bố, phân vai, giảm thiểu - đều giả định có một người tỉnh táo ở đầu bên kia. Bài này về thành phần đó, và về việc nó cũng có giới hạn tải."
       },
       {
         "type": "heading",
-        "text": "Vì sao mutual fund chủ động đắt hơn"
+        "text": "Con số đáng đếm"
       },
       {
         "type": "paragraph",
-        "text": "Một mutual fund chủ động cần đội ngũ nghiên cứu, phân tích và chọn lọc cổ phiếu liên tục để cố gắng vượt trội thị trường - chi phí vận hành này được chuyển trực tiếp vào phí quản lý mà nhà đầu tư phải trả. Chi phí này cao hơn nhiều so với một ETF thụ động chỉ đơn giản sao chép cấu trúc một chỉ số có sẵn. Tại Việt Nam, các quỹ mở (open-end fund) của các công ty quản lý quỹ trong nước hoạt động theo mô hình này - mua/bán chứng chỉ quỹ theo NAV công bố cuối ngày."
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao có ngưỡng đầu tư tối thiểu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Mutual Fund giao dịch trực tiếp với công ty quản lý quỹ (không qua sàn), nên công ty thường đặt ra ngưỡng tối thiểu (ví dụ 1 triệu đồng hoặc nhiều hơn) để quản lý chi phí vận hành hiệu quả. ETF giao dịch như cổ phiếu trên sàn nên có thể mua bán với số lượng nhỏ tùy khả năng tài chính của nhà đầu tư. Sự khác biệt này đến từ cơ chế phân phối khác nhau, không phải một quy định tùy tiện."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Mutual Fund: định giá và giao dịch một lần mỗi ngày theo NAV cuối phiên",
-          "Khác ETF ở cơ chế giao dịch - không mua bán liên tục trong phiên",
-          "Thường có phí quản lý cao hơn nếu là quỹ chủ động",
-          "Thường yêu cầu số vốn đầu tư tối thiểu do giao dịch trực tiếp qua công ty quản lý quỹ"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ thật: E1VFVN30 (ETF) và VESAF (mutual fund) định giá khác nhau thế nào"
-      },
-      {
-        "type": "list",
-        "items": [
-          "E1VFVN30 (ETF): niêm yết trên HOSE, giá khớp lệnh liên tục trong phiên giống một cổ phiếu, mua/bán được bất kỳ lúc nào thị trường mở cửa",
-          "VESAF (quỹ mở/mutual fund của VinaCapital): không niêm yết, chỉ định giá 1 lần/ngày theo NAV cuối ngày, lệnh mua/bán khớp theo giá NAV đó, không giao dịch real-time",
-          "Đây là khác biệt cấu trúc quan trọng nhất giữa ETF và mutual fund truyền thống, không phải khác biệt về chiến lược đầu tư"
-        ]
+        "text": "Không phải số cảnh báo, mà là số đêm có người bị đánh thức, tính trên mỗi ca. Một đội bốn người xoay vòng nghĩa là mỗi người trực một tuần trong bốn tuần; nếu mỗi ca có ba đêm bị đánh thức thì đó là ba đêm mất ngủ mỗi tháng, đều đặn, năm này qua năm khác."
       },
       {
         "type": "callout",
-        "label": "Cách tự so sánh một cặp quỹ khác",
-        "text": "Chọn 1 ETF và 1 quỹ mở cùng đầu tư cổ phiếu VN, xem trang thông tin quỹ có công bố giá \"real-time\" (ETF) hay chỉ \"NAV/CCQ cuối ngày\" (quỹ mở)."
+        "label": "Chuỗi hậu quả không ai quy được",
+        "text": "Thiếu ngủ tích lại, phán đoán kém đi, sự cố xử lý chậm hơn, người giỏi rời vòng trực rồi rời đội. Độ tin cậy đi xuống dần, và không có sự cố nào để chỉ vào - nên nguyên nhân này gần như không bao giờ xuất hiện trong một buổi hồi cứu."
+      },
+      {
+        "type": "heading",
+        "text": "Ba việc thật sự giảm tải"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Sửa nguyên nhân của những cảnh báo lặp nhiều nhất - đây là việc duy nhất làm tổng số lần đánh thức giảm thật.",
+          "Đưa việc dọn cảnh báo vào kế hoạch như một hạng mục có người nhận; nếu chỉ làm khi rảnh thì nó không bao giờ được làm.",
+          "Thừa nhận thời gian bù sau ca nặng, chủ động chứ không bắt người ta phải xin."
+        ]
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Phân phối lại gánh nặng",
+          "text": "Thêm người vào vòng trực, chia theo múi giờ, đẩy cảnh báo sang ban ngày. Giúp ngay, nhưng tổng số lần đánh thức không đổi."
+        },
+        "right": {
+          "label": "Giảm gánh nặng",
+          "text": "Loại bỏ nguyên nhân. Chậm hơn, khó hơn, và là cách duy nhất con số đi xuống thật."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Mệt mỏi khi trực không phải chuyện đương nhiên của nghề. Nó là một chỉ số, và nó đang nói điều gì đó về hệ thống.",
+          "Bài sau về cách kiểm tra toàn bộ những gì chặng này đã dựng lên, trước khi thực tế kiểm tra hộ bạn."
+        ]
       }
     ]
   },
   {
     "id": 178,
-    "slug": "hedge-fund-la-gi",
-    "title": "Tự học Tài chính Day 178: Hedge Fund là gì?",
-    "subtitle": "Quỹ đầu tư linh hoạt cho nhà đầu tư tổ chức và cá nhân giàu có, ít bị quản lý hơn",
-    "duration": "7 phút",
+    "slug": "dien-tap-su-co",
+    "title": "Diễn tập: tự làm hỏng trước khi thực tế làm hỏng",
+    "subtitle": "Mọi giả định về độ tin cậy đều đúng cho tới lần đầu tiên có người thử.",
+    "duration": "9 phút",
     "difficulty": "Khó",
-    "emoji": "🔄",
-    "openingQuestion": "Hedge fund khác mutual fund và ETF ở điểm quan trọng nào về chiến lược đầu tư?",
+    "emoji": "🎭",
+    "track": "professional",
+    "whyItMatters": "Cả chặng này dựng lên một loạt cơ chế - dự phòng, cầu dao, sao lưu, quy trình ứng phó - và mỗi cơ chế là một giả định chưa được kiểm chứng cho tới khi ai đó cố tình phá thứ nó bảo vệ.",
+    "openingQuestion": "Diễn tập sự cố nên bắt đầu ở đâu?",
     "openingOptions": [
-      "Không có khác biệt về chiến lược",
-      "Hedge fund có phí quản lý thấp hơn ETF",
-      "Linh hoạt hơn: đòn bẩy và bán khống",
-      "Hedge fund chỉ được đầu tư vào trái phiếu"
+      "Ở môi trường thử, với một kịch bản hẹp và một nút dừng rõ ràng",
+      "Ở môi trường thật, vì chỉ ở đó kết quả mới phản ánh đúng thực tế",
+      "Ở một buổi thảo luận trên giấy, không đụng tới hệ thống nào",
+      "Ở thành phần mà đội tin là kém tin cậy nhất trong hệ thống"
     ],
-    "correctOption": 2,
-    "explanation": "Hedge fund là quỹ đầu tư tư nhân dành cho nhà đầu tư tổ chức và cá nhân có tài sản lớn (accredited investors), ít bị ràng buộc bởi quy định như mutual fund/ETF. Được phép dùng chiến lược đa dạng: đòn bẩy cao, bán khống, phái sinh phức tạp, đầu tư tài sản kém thanh khoản - nhằm tạo Alpha trong mọi điều kiện thị trường (kể cả khi thị trường giảm).",
+    "correctOption": 0,
+    "explanation": "Bắt đầu nhỏ và có kiểm soát là cách xây được niềm tin để đi tiếp; bài học từ vài lần đầu thường đủ nhiều mà chưa cần chạm vào môi trường thật. Thảo luận trên giấy cũng là một hình thức diễn tập có giá trị thật, đặc biệt cho phần quy trình và phân vai, nhưng nó không kiểm chứng được hệ thống. Chọn thành phần đội nghi là yếu nhất nghe hợp lý mà thường sai, vì chỗ đổ vỡ hay nằm ở thứ không ai nghi.",
     "diagram": [
       {
-        "label": "Vốn từ nhà đầu tư tổ chức/giàu có",
+        "label": "Giả thuyết: hệ thống chịu được X",
         "arrow": true
       },
       {
-        "label": "Ít bị ràng buộc quy định",
+        "label": "Gây ra X trong phạm vi hẹp, có nút dừng",
         "arrow": true
       },
       {
-        "label": "Dùng chiến lược đa dạng: đòn bẩy, phái sinh"
+        "label": "Quan sát: có đúng như giả thuyết không",
+        "arrow": true
+      },
+      {
+        "label": "Chỗ lệch chính là thứ bạn vừa học được"
       }
     ],
     "realWorldExample": {
-      "company": "Renaissance Technologies",
-      "description": "Renaissance Technologies, một trong những hedge fund thành công nhất lịch sử, dùng mô hình toán học và thuật toán phức tạp để giao dịch - quỹ Medallion Fund nội bộ của họ đạt lợi nhuận trung bình vượt trội hàng chục năm liên tiếp."
+      "company": "Cầu dao chưa từng ngắt",
+      "description": "Một hệ thống có cầu dao cho mọi phụ thuộc ngoài. Lần đầu diễn tập cho một phụ thuộc chậm lại, cầu dao không ngắt - ngưỡng đã được đặt cao tới mức không tình huống thực tế nào chạm tới."
+    },
+    "keyTakeaways": [
+      "Diễn tập là một phép thử có giả thuyết, không phải phá hoại ngẫu nhiên.",
+      "Bắt đầu hẹp, có nút dừng, và thông báo cho những người liên quan.",
+      "Diễn tập cả phần con người, không chỉ phần hệ thống.",
+      "Diễn tập không tìm ra gì cũng là kết quả, nếu giả thuyết đủ chặt."
+    ],
+    "summary": {
+      "keyIdea": "Chủ động gây ra tình huống hỏng trong phạm vi kiểm soát để kiểm chứng giả định.",
+      "formula": "Giả thuyết, phạm vi hẹp, nút dừng, quan sát.",
+      "commonMistake": "Coi diễn tập là gây hỗn loạn ngẫu nhiên để xem chuyện gì xảy ra."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một giả định bạn chưa từng kiểm chứng - bản sao chuyển đổi được, cầu dao ngắt được, sao lưu khôi phục được - và lên lịch một phép thử hẹp cho nó."
+    },
+    "practicePrompt": {
+      "question": "Vì sao diễn tập phải bắt đầu bằng một giả thuyết cụ thể?",
+      "options": [
+        "Vì không có giả thuyết thì không biết kết quả nào là bất thường",
+        "Vì giả thuyết giúp thuyết phục lãnh đạo phê duyệt buổi diễn tập",
+        "Vì các công cụ diễn tập yêu cầu khai báo kịch bản trước khi chạy",
+        "Vì giả thuyết cho phép ước lượng trước mức rủi ro của buổi diễn tập"
+      ],
+      "correct": 0,
+      "explanation": "Nếu bạn chỉ tắt một máy chủ rồi xem chuyện gì xảy ra, thì bất kỳ điều gì diễn ra cũng đều là chuyện đã diễn ra và bạn không học được gì. Viết trước rằng lưu lượng phải chuyển sang hai máy còn lại trong dưới ba mươi giây thì bạn có một câu để đối chiếu."
     },
     "quiz": [
       {
-        "question": "Cấu trúc phí '2 và 20' phổ biến của hedge fund nghĩa là gì?",
+        "question": "Diễn tập khác phá hoại ngẫu nhiên ở điểm nào?",
         "options": [
-          "Phí cố định 2% và 20% một lần duy nhất khi rút vốn",
-          "20% phí quản lý và 2% phí lợi nhuận",
-          "Không có cấu trúc phí chuẩn nào cho hedge fund",
-          "2% phí quản lý tài sản mỗi năm (management fee) cộng với 20% trên phần lợi nhuận tạo ra (performance fee) - cấu trúc khuyến khích nhà quản lý tạo ra lợi nhuận thực sự"
-        ],
-        "correct": 3,
-        "explanation": "'2 và 20' là cấu trúc phí kinh điển: 2% phí quản lý tài sản mỗi năm bất kể hiệu suất, cộng thêm 20% trên phần lợi nhuận vượt trội tạo ra (thường có ngưỡng hurdle rate). Cấu trúc này liên kết lợi ích của nhà quản lý quỹ với hiệu suất thực tế, nhưng cũng khiến chi phí tổng thể cho nhà đầu tư cao hơn nhiều so với ETF/mutual fund thông thường."
-      },
-      {
-        "question": "Vì sao các quỹ Hedge Fund thường yêu cầu nhà đầu tư cam kết \"khóa vốn\" (lock-up period) trong một khoảng thời gian nhất định, không cho rút tiền tự do bất kỳ lúc nào?",
-        "options": [
-          "Vì nhiều chiến lược của Hedge Fund đầu tư vào tài sản kém thanh khoản hoặc cần thời gian dài để hiện thực hóa lợi nhuận - nếu cho phép rút vốn tự do, quỹ có thể buộc phải bán tháo tài sản ở thời điểm bất lợi để đáp ứng yêu cầu rút vốn đột ngột, ảnh hưởng đến các nhà đầu tư còn lại",
-          "Đây chỉ là một quy định tùy tiện không có lý do thực sự",
-          "Mutual Fund và ETF cũng có lock-up period giống hệt Hedge Fund",
-          "Lock-up period chỉ nhằm mục đích giữ chân nhà đầu tư một cách không công bằng"
+          "Nó có giả thuyết viết trước, phạm vi hẹp và một nút dừng",
+          "Nó được thực hiện trên môi trường thử thay vì môi trường thật",
+          "Nó được lên lịch vào giờ có ít người dùng nhất trong ngày",
+          "Nó có sự tham gia của toàn bộ đội thay vì chỉ một vài người"
         ],
         "correct": 0,
-        "explanation": "Lock-up period bảo vệ cả quỹ lẫn các nhà đầu tư còn lại khỏi tình huống phải bán tháo tài sản kém thanh khoản ở mức giá bất lợi để đáp ứng yêu cầu rút vốn đột ngột - đây là sự đánh đổi giữa tính thanh khoản và khả năng theo đuổi các chiến lược đầu tư phức tạp, dài hạn hơn."
+        "explanation": "Diễn tập trưởng thành vẫn chạy trên môi trường thật, và điều làm nó an toàn không phải là chọn môi trường mà là ba yếu tố kia. Không có chúng thì đó là một sự cố tự gây ra, có thêm cái tên nghe hay hơn."
+      },
+      {
+        "question": "Vì sao chọn thành phần đội nghi là yếu nhất thường không hiệu quả?",
+        "options": [
+          "Vì chỗ thật sự đổ vỡ thường là thứ không ai nghi ngờ",
+          "Vì thành phần yếu nhất thường đã được đội theo dõi sát rồi",
+          "Vì việc gây lỗi ở đó có nguy cơ ảnh hưởng tới người dùng thật",
+          "Vì kết quả sẽ đúng như dự đoán nên không thu được thông tin"
+        ],
+        "correct": 0,
+        "explanation": "Chỗ đội đã nghi ngờ thì thường đã có phòng bị. Giá trị lớn nhất của diễn tập nằm ở những giả định vững tới mức không ai nghĩ tới việc kiểm chứng chúng."
+      },
+      {
+        "question": "Vì sao nên diễn tập cả phần con người?",
+        "options": [
+          "Vì quy trình ứng phó cũng là một giả định chưa được kiểm chứng",
+          "Vì đội cần làm quen với áp lực trước khi gặp sự cố thật",
+          "Vì các vai trò cần được phân công lại sau mỗi lần thay đổi nhân sự",
+          "Vì tài liệu ứng phó cần được cập nhật định kỳ theo quy định"
+        ],
+        "correct": 0,
+        "explanation": "Cùng loại phát hiện với hệ thống: tài liệu chỉ tới một bảng theo dõi đã bị xoá, không ai có quyền truy cập cần thiết, danh sách liên lạc đã cũ hai năm. Chúng chỉ lộ ra khi có người thật sự đi theo quy trình từ đầu tới cuối."
+      },
+      {
+        "question": "Một buổi diễn tập không tìm ra vấn đề nào nghĩa là gì?",
+        "options": [
+          "Là một kết quả hợp lệ, nếu giả thuyết đủ cụ thể để có thể sai",
+          "Là dấu hiệu kịch bản được chọn quá dễ so với thực tế",
+          "Là dấu hiệu hệ thống đã đủ tin cậy cho tình huống đó",
+          "Là dấu hiệu cần mở rộng phạm vi trong lần diễn tập kế tiếp theo"
+        ],
+        "correct": 0,
+        "explanation": "Kiểm chứng được một giả định là kết quả thật, và nó có giá trị vì bạn không còn phải đoán về nó nữa. Điều kiện duy nhất là giả thuyết phải đủ cụ thể để có khả năng bị bác bỏ."
+      },
+      {
+        "question": "Vì sao phải thông báo trước cho những người liên quan?",
+        "options": [
+          "Để không có ai tưởng đây là sự cố thật và bắt đầu ứng phó nhầm",
+          "Để mọi người có thời gian chuẩn bị cho tình huống được diễn tập",
+          "Để có đủ người quan sát và ghi lại kết quả của buổi diễn tập",
+          "Để đội có thể tạm dừng các thay đổi khác trong thời gian đó"
+        ],
+        "correct": 0,
+        "explanation": "Một buổi diễn tập không báo trước có thể kích hoạt một cuộc ứng phó thật với đầy đủ chi phí của nó. Diễn tập bất ngờ có chỗ trong những tổ chức đã rất trưởng thành, nhưng khi ấy vẫn phải có người biết và có nút dừng."
       }
     ],
-    "keyTakeaways": [
-      "Hedge fund: quỹ tư nhân linh hoạt, ít bị ràng buộc quy định hơn mutual fund/ETF",
-      "Có thể dùng đòn bẩy cao, bán khống, phái sinh phức tạp để tạo Alpha",
-      "Cấu trúc phí '2 và 20' điển hình khiến chi phí đầu tư cao hơn nhiều so với quỹ thụ động"
-    ],
-    "practicePrompt": {
-      "question": "Một quỹ chỉ nhận vốn từ các nhà đầu tư tổ chức và cá nhân giàu có (không mở cho công chúng đại trà), được tự do sử dụng đòn bẩy cao, bán khống, và các chiến lược phái sinh phức tạp mà mutual fund thông thường không được phép làm. Loại quỹ này gọi là gì?",
-      "options": [
-        "Đây gọi là Mutual Fund, một loại quỹ mở cho mọi nhà đầu tư đại chúng tham gia",
-        "Hedge fund: quỹ tư nhân linh hoạt, ít bị ràng buộc quy định hơn mutual fund",
-        "Đây gọi là ETF, một loại quỹ giao dịch linh hoạt như cổ phiếu trên sàn chứng khoán",
-        "Loại quỹ này không tồn tại trong thực tế, chỉ là một khái niệm lý thuyết trong tài chính"
-      ],
-      "correct": 1,
-      "explanation": "Hedge fund: quỹ tư nhân linh hoạt, ít bị ràng buộc quy định hơn mutual fund/ETF. Có thể dùng đòn bẩy cao, bán khống, phái sinh phức tạp để tạo Alpha, nhưng cấu trúc phí thường cao ('2 và 20') và chỉ dành cho nhà đầu tư đủ điều kiện."
-    },
-    "summary": {
-      "keyIdea": "Hedge fund: quỹ tư nhân linh hoạt, ít bị ràng buộc quy định hơn mutual fund/ETF",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Có thể dùng đòn bẩy cao, bán khống, phái sinh phức tạp để tạo Alpha"
-    },
-    "application": {
-      "title": "Tìm hiểu cấu trúc phí 2 và 20",
-      "message": "Tự tính thử: nếu một hedge fund quản lý 1 tỷ đồng cho bạn với phí '2 và 20', bạn sẽ trả bao nhiêu phí quản lý cố định và phí hiệu suất nếu quỹ lãi 20% trong năm.",
-      "secondary": "Con số này giúp bạn hiểu vì sao hedge fund cần tạo Alpha rất lớn mới thực sự đáng đầu tư."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Hedge fund là quỹ đầu tư tư nhân dành cho nhà đầu tư tổ chức và cá nhân có tài sản lớn (accredited investors), ít bị ràng buộc bởi quy định như mutual fund hay ETF. Hedge fund được phép dùng chiến lược đa dạng - đòn bẩy cao, bán khống, phái sinh phức tạp, tài sản kém thanh khoản - nhằm tạo Alpha trong mọi điều kiện thị trường, kể cả khi thị trường giảm."
+        "text": "Chặng này đã dựng lên nhiều cơ chế: dự phòng, cầu dao, sao lưu, quy trình ứng phó. Mỗi cơ chế là một giả định, và mọi giả định đều đúng cho tới lần đầu tiên có người thử."
       },
       {
         "type": "heading",
-        "text": "Cấu trúc phí \"2 và 20\""
-      },
-      {
-        "type": "paragraph",
-        "text": "\"2 và 20\" là cấu trúc phí kinh điển của hedge fund: 2% phí quản lý tài sản mỗi năm (management fee) bất kể hiệu suất, cộng thêm 20% trên phần lợi nhuận vượt trội tạo ra (performance fee), thường có ngưỡng hurdle rate. Cấu trúc này liên kết lợi ích của nhà quản lý với hiệu suất thực tế, nhưng cũng khiến chi phí tổng thể cho nhà đầu tư cao hơn nhiều so với ETF hay mutual fund thông thường. Renaissance Technologies, dùng mô hình toán học và thuật toán để giao dịch, là một trong những hedge fund thành công nhất lịch sử."
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao có lock-up period"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nhiều chiến lược của hedge fund đầu tư vào tài sản kém thanh khoản hoặc cần thời gian dài để hiện thực hóa lợi nhuận. Nếu cho phép rút vốn tự do bất kỳ lúc nào, quỹ có thể buộc phải bán tháo tài sản ở thời điểm bất lợi để đáp ứng yêu cầu rút vốn đột ngột, ảnh hưởng đến các nhà đầu tư còn lại. Lock-up period là sự đánh đổi giữa tính thanh khoản và khả năng theo đuổi các chiến lược đầu tư phức tạp, dài hạn hơn."
+        "text": "Bốn phần của một phép thử"
       },
       {
         "type": "list",
         "items": [
-          "Hedge fund: quỹ tư nhân linh hoạt, ít ràng buộc quy định hơn mutual fund/ETF",
-          "Được phép dùng đòn bẩy, bán khống, phái sinh phức tạp để tạo Alpha",
-          "Phí \"2 và 20\": 2% quản lý + 20% trên lợi nhuận vượt trội",
-          "Lock-up period bảo vệ quỹ khỏi phải bán tháo tài sản kém thanh khoản"
+          "Giả thuyết viết trước: lưu lượng sẽ chuyển sang hai máy còn lại trong dưới ba mươi giây.",
+          "Phạm vi hẹp: một máy, một vùng, một phần trăm lưu lượng - không phải cả hệ thống.",
+          "Nút dừng: một cách quay lại trạng thái bình thường trong vài giây, đã thử trước.",
+          "Quan sát: so kết quả với giả thuyết, và chỗ lệch chính là thứ vừa học được."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Không có giả thuyết thì không có bài học",
+        "text": "Tắt một máy rồi xem chuyện gì xảy ra thì bất kỳ điều gì diễn ra cũng đều là chuyện đã diễn ra. Chỉ khi có một câu viết trước, bạn mới phân biệt được kết quả bình thường với kết quả bất thường."
+      },
+      {
+        "type": "heading",
+        "text": "Phần dễ bỏ sót: con người"
+      },
+      {
+        "type": "paragraph",
+        "text": "Quy trình ứng phó cũng là một giả định. Cho một người đi hết quy trình từ đầu tới cuối sẽ lộ ra những thứ cùng loại với lỗi hệ thống: tài liệu chỉ tới một bảng theo dõi đã bị xoá, người trực không có quyền truy cập cần thiết, danh sách liên lạc đã cũ hai năm."
+      },
+      {
+        "type": "callout",
+        "label": "Chỗ đổ vỡ nằm ở thứ không ai nghi",
+        "text": "Thành phần đội đã nghi ngờ thì thường đã có phòng bị. Giá trị lớn nhất nằm ở những giả định vững tới mức không ai nghĩ tới việc kiểm chứng - như một cầu dao có ngưỡng cao tới mức chưa tình huống thực tế nào chạm tới."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Câu hỏi không phải hệ thống có chịu được không, mà là bạn muốn biết điều đó vào lúc nào và trong hoàn cảnh nào.",
+          "Bài sau đi qua một dòng thời gian sự cố cụ thể, áp dụng mọi thứ chặng này đã dựng."
         ]
       }
     ]
   },
   {
     "id": 179,
-    "slug": "case-xay-danh-muc-3-tai-san",
-    "title": "Tự học Tài chính Day 179: Case nhỏ - Xây danh mục 3 tài sản",
-    "subtitle": "Áp dụng thực tế: kết hợp cổ phiếu, trái phiếu và vàng dựa trên tương quan",
-    "duration": "8 phút",
+    "slug": "case-ba-muoi-phut-dau-su-co",
+    "title": "Case: ba mươi phút đầu của một sự cố",
+    "subtitle": "Cùng một sự cố kỹ thuật, hai cách ứng phó, và chênh nhau bảy mươi phút thời gian ngừng.",
+    "duration": "10 phút",
     "difficulty": "Khó",
-    "emoji": "⚖️",
-    "openingQuestion": "Bạn có 3 tài sản: cổ phiếu (return kỳ vọng 12%, volatility 20%), trái phiếu (return 5%, volatility 6%), vàng (return 6%, volatility 15%, correlation âm nhẹ với cổ phiếu). Nguyên tắc nào nên áp dụng khi phân bổ?",
+    "emoji": "🕐",
+    "track": "professional",
+    "whyItMatters": "Mọi nguyên tắc trong chặng này đều dễ đồng ý khi đọc. Đặt chúng vào một dòng thời gian cụ thể thì mới thấy chỗ nào thật sự tốn thời gian, và nó hiếm khi là chỗ ta tưởng.",
+    "openingQuestion": "Sự cố bắt đầu lúc 14:00. Đội A chặn được thiệt hại lúc 14:20, đội B lúc 15:30, cùng nguyên nhân. Khác biệt lớn nhất thường nằm ở đâu?",
     "openingOptions": [
-      "Phân bổ đều 33/33/33 luôn luôn là lựa chọn tối ưu",
-      "Kết hợp cả ba theo đúng khẩu vị rủi ro của riêng bạn",
-      "Dồn 100% vào cổ phiếu vì return kỳ vọng cao nhất",
-      "Chỉ nên chọn tài sản có volatility thấp nhất"
+      "Ở thời gian phát hiện và tuyên bố, không ở thời gian sửa",
+      "Ở kinh nghiệm của người đang trực với chính hệ thống cụ thể đó",
+      "Ở chất lượng công cụ chẩn đoán mà mỗi đội đang có",
+      "Ở việc đội nào có mặt đủ người ngay từ đầu sự cố"
     ],
-    "correctOption": 1,
-    "explanation": "Xây dựng danh mục 3 tài sản là bài tập thực hành áp dụng toàn bộ lý thuyết đã học: (1) xác định expected return và volatility từng tài sản; (2) đánh giá correlation giữa các cặp tài sản; (3) tìm tỷ trọng phân bổ sao cho danh mục nằm gần Efficient Frontier nhất, phù hợp với khẩu vị rủi ro cá nhân. Vàng với correlation âm nhẹ với cổ phiếu đóng vai trò như một 'bộ giảm xóc' trong giai đoạn thị trường biến động mạnh.",
+    "correctOption": 0,
+    "explanation": "Khi cùng một nguyên nhân, bước sửa thường mất thời gian như nhau ở cả hai đội - quay lui là quay lui. Chênh lệch nằm ở phần trước đó: bao lâu để có người nhận ra, bao lâu để mọi người đồng ý rằng đang có sự cố, và bao lâu để có người bắt đầu hành động thay vì bàn bạc. Kinh nghiệm và công cụ đều rút ngắn được các đoạn ấy, nhưng chúng là phương tiện chứ không phải chỗ thời gian bị mất.",
     "diagram": [
       {
-        "label": "Xác định return và volatility từng tài sản",
+        "label": "14:00 lỗi bắt đầu - chưa ai biết",
         "arrow": true
       },
       {
-        "label": "Đánh giá correlation giữa các cặp",
+        "label": "14:06 cảnh báo nổ - đội A tuyên bố ngay",
         "arrow": true
       },
       {
-        "label": "Tìm tỷ trọng tối ưu cổ phiếu-trái phiếu-vàng"
+        "label": "14:08 quay lui bản triển khai gần nhất",
+        "arrow": true
+      },
+      {
+        "label": "14:20 xác nhận đã ổn, chuyển sang điều tra"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Danh mục All Weather của Ray Dalio",
-      "description": "Ray Dalio, nhà sáng lập Bridgewater Associates, phát triển danh mục 'All Weather' kết hợp cổ phiếu, trái phiếu dài/ngắn hạn và hàng hóa (bao gồm vàng) với tỷ trọng được tính toán để cân bằng rủi ro qua mọi kịch bản kinh tế."
+      "company": "Hai dòng thời gian, một nguyên nhân",
+      "description": "Đội B mất hai mươi hai phút để phát hiện, mười tám phút bàn xem đây có phải sự cố không, ba mươi phút đọc mã để chắc chắn bản triển khai là nguyên nhân, rồi bốn phút quay lui."
+    },
+    "keyTakeaways": [
+      "Phần lớn thời gian ngừng thường nằm trước bước sửa, không phải trong nó.",
+      "Ba mốc cần ghi lại: bắt đầu ảnh hưởng, tuyên bố, chặn được thiệt hại.",
+      "Hành động rẻ và đảo ngược được nên đi trước việc xác nhận giả thuyết.",
+      "Thông báo ra ngoài đi song song, không chờ tới khi hiểu nguyên nhân."
+    ],
+    "summary": {
+      "keyIdea": "Chênh lệch giữa ứng phó tốt và kém nằm ở các bước trước khi sửa.",
+      "formula": "Phát hiện nhanh, tuyên bố sớm, hành động rẻ trước.",
+      "commonMistake": "Đầu tư vào tốc độ sửa trong khi thời gian mất ở chỗ khác."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Dựng lại dòng thời gian của sự cố gần nhất với ba mốc trên. So tỷ lệ giữa phần trước khi sửa và phần sửa - đó là bản đồ cải thiện của đội bạn."
+    },
+    "practicePrompt": {
+      "question": "Trong dòng thời gian của đội B, đoạn nào đáng cắt trước tiên?",
+      "options": [
+        "Ba mươi phút đọc mã trước khi dám quay lui",
+        "Hai mươi hai phút từ lúc lỗi bắt đầu tới lúc phát hiện",
+        "Mười tám phút bàn xem đây có phải sự cố hay không",
+        "Bốn phút thực hiện thao tác quay lui bản triển khai"
+      ],
+      "correct": 0,
+      "explanation": "Nó dài nhất và cũng rẻ nhất để cắt: quay lui trước rồi đọc sau không đòi hỏi công cụ mới hay kỹ năng mới, chỉ đòi hỏi đổi thứ tự. Hai đoạn kia cũng đáng cắt nhưng cần đầu tư vào giám sát và vào quy ước tuyên bố, tức là mất nhiều thời gian hơn để có hiệu quả."
     },
     "quiz": [
       {
-        "question": "Nếu correlation giữa vàng và cổ phiếu chuyển từ âm sang dương mạnh trong một giai đoạn khủng hoảng đặc biệt, điều gì xảy ra với hiệu quả bảo vệ của vàng trong danh mục?",
+        "question": "Vì sao thời gian sửa thường không phải chỗ chênh lệch?",
         "options": [
-          "Correlation không bao giờ thay đổi theo thời gian",
-          "Vàng sẽ tự động tăng giá bù đắp",
-          "Hiệu quả giảm thiểu rủi ro của vàng sẽ suy yếu đáng kể - đây là rủi ro thực tế đã xảy ra trong một số cuộc khủng hoảng thanh khoản, khi nhà đầu tư buộc phải bán MỌI tài sản (kể cả vàng) để có tiền mặt",
-          "Không ảnh hưởng gì, vàng luôn bảo vệ danh mục trong mọi trường hợp"
+          "Vì cùng một nguyên nhân thì thao tác khắc phục gần như giống nhau",
+          "Vì các đội thường dùng chung một bộ công cụ triển khai",
+          "Vì thao tác sửa luôn được tự động hoá trong mọi hệ thống hiện đại ngày nay",
+          "Vì bước sửa được thực hiện bởi người có kinh nghiệm nhất"
         ],
-        "correct": 2,
-        "explanation": "Đây là bài học quan trọng về giới hạn của lý thuyết danh mục: correlation giữa các tài sản không cố định vĩnh viễn - trong khủng hoảng thanh khoản cực đoan (như tháng 3/2020), correlation giữa hầu hết tài sản có thể tăng đột biến khi mọi người đồng loạt bán ra để có tiền mặt, làm giảm tạm thời hiệu quả đa dạng hóa đúng lúc cần nó nhất."
+        "correct": 0,
+        "explanation": "Quay lui mất bốn phút ở mọi đội có công cụ quay lui. Điều khác nhau là mất bao lâu để tới được thời điểm bấm nút ấy, và đó là phần chiếm phần lớn dòng thời gian."
       },
       {
-        "question": "Nếu bạn thêm một tài sản thứ 4 (ví dụ bất động sản) vào danh mục 3 tài sản (cổ phiếu, trái phiếu, vàng) đã có sẵn, lợi ích đa dạng hóa biên (marginal diversification benefit) từ tài sản thứ 4 này thường lớn hơn hay nhỏ hơn so với lợi ích từ tài sản thứ 2 (khi danh mục ban đầu chỉ có 1 tài sản)?",
+        "question": "Ba mốc cần ghi lại trong mọi sự cố là gì?",
         "options": [
-          "Luôn luôn lớn hơn bất kể danh mục hiện tại có bao nhiêu tài sản",
-          "Không có mối liên hệ nào giữa số lượng tài sản hiện có và lợi ích biên của tài sản mới",
-          "Lợi ích đa dạng hóa biên luôn không đổi bất kể thêm bao nhiêu tài sản",
-          "Thường NHỎ HƠN - lợi ích đa dạng hóa biên giảm dần (diminishing returns) khi danh mục đã có sẵn nhiều tài sản với tương quan đa dạng; tài sản đầu tiên thêm vào từ một tài sản duy nhất mang lại lợi ích lớn nhất, các tài sản thêm sau đó mang lại lợi ích biên giảm dần"
+          "Bắt đầu ảnh hưởng, tuyên bố sự cố, và chặn được thiệt hại",
+          "Cảnh báo nổ, phân vai xong, và triển khai bản sửa",
+          "Người trực nhận thông báo, đội tập hợp, và hệ thống ổn định",
+          "Phát hiện vấn đề, xác định nguyên nhân, và đóng sự cố"
         ],
-        "correct": 3,
-        "explanation": "Đây là nguyên tắc \"diminishing marginal benefit of diversification\" đã gợi ý từ nghiên cứu Statman (30-40 cổ phiếu là đủ cho phần lớn lợi ích) - nguyên tắc tương tự áp dụng khi đa dạng hóa qua các LOẠI tài sản khác nhau, không chỉ trong nội bộ một loại tài sản như cổ phiếu."
+        "correct": 0,
+        "explanation": "Ba mốc này chia dòng thời gian thành các đoạn mà mỗi đoạn được cải thiện bằng một loại đầu tư khác nhau. Xác định nguyên nhân thì đáng ghi nhưng nó thường xảy ra sau khi thiệt hại đã được chặn, nên nó không nằm trên đường quan trọng."
+      },
+      {
+        "question": "Vì sao thông báo ra ngoài nên đi song song?",
+        "options": [
+          "Vì ba điều cần nói đều trả lời được mà không cần biết nguyên nhân",
+          "Vì bộ phận hỗ trợ sẽ liên tục hỏi nếu không nhận được thông tin",
+          "Vì quy định về dịch vụ yêu cầu thông báo trong một khung thời gian",
+          "Vì thông báo sớm giúp giảm số lượng người dùng bị ảnh hưởng"
+        ],
+        "correct": 0,
+        "explanation": "Cái gì hỏng, ai bị ảnh hưởng, khi nào cập nhật tiếp - cả ba đã biết từ phút thứ sáu. Chờ hiểu nguyên nhân rồi mới nói là tự đặt ra một điều kiện mà nội dung thông báo không hề cần tới."
+      },
+      {
+        "question": "Bài học chính từ việc so hai dòng thời gian là gì?",
+        "options": [
+          "Nên đầu tư vào phát hiện và quyết định, không chỉ vào tốc độ sửa",
+          "Nên có thêm người trong vòng trực để phản ứng nhanh hơn",
+          "Nên tự động hoá bước quay lui để rút ngắn thời gian thực hiện thao tác",
+          "Nên phân loại sự cố kỹ hơn để ưu tiên đúng mức nghiêm trọng"
+        ],
+        "correct": 0,
+        "explanation": "Tự động hoá bước quay lui thì cắt được vài phút trong một đoạn vốn đã ngắn. Phát hiện nhanh hơn và quyết định sớm hơn cắt được hàng chục phút, và chúng thường rẻ hơn để cải thiện."
+      },
+      {
+        "question": "Vì sao đội A quay lui trước khi xác nhận nguyên nhân?",
+        "options": [
+          "Vì nếu đoán sai thì họ chỉ mất bốn phút và loại được một giả thuyết",
+          "Vì họ đã có bằng chứng đủ mạnh ngay từ những phút đầu tiên",
+          "Vì quy trình của họ bắt buộc quay lui khi có sự cố sau triển khai",
+          "Vì họ không có công cụ để phân tích bản thay đổi một cách nhanh chóng"
+        ],
+        "correct": 0,
+        "explanation": "Đây là toàn bộ nội dung của nguyên tắc giảm thiểu trước: hành động rẻ và đảo ngược được thì không cần chờ chắc chắn. Nhánh thất bại vẫn có giá trị vì nó loại bỏ khả năng khả dĩ nhất với chi phí rất thấp."
       }
     ],
-    "keyTakeaways": [
-      "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản",
-      "Tài sản có correlation âm/thấp với phần còn lại có giá trị bảo vệ danh mục cao",
-      "Correlation không cố định - có thể thay đổi bất lợi đúng vào giai đoạn khủng hoảng, đây là giới hạn thực tế cần lưu ý"
-    ],
-    "practicePrompt": {
-      "question": "Bạn muốn xây danh mục gồm cổ phiếu, trái phiếu và vàng. Nếu chỉ dựa vào expected return của từng tài sản (bỏ qua volatility và correlation), bạn có thể xây được một danh mục thực sự tối ưu về rủi ro-lợi nhuận không?",
-      "options": [
-        "Có, chỉ cần chọn tài sản có expected return cao nhất và phân bổ toàn bộ vốn vào đó là đủ tối ưu",
-        "Không - cần kết hợp expected return, volatility và correlation của từng cặp",
-        "Correlation và volatility chỉ quan trọng khi danh mục có hơn 10 loại tài sản khác nhau",
-        "Không có công thức nào có thể kết hợp cả ba yếu tố này để xây dựng danh mục thực tế"
-      ],
-      "correct": 1,
-      "explanation": "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản - đây là ba yếu tố đầu vào cốt lõi của Modern Portfolio Theory, thiếu bất kỳ yếu tố nào cũng dẫn đến danh mục không thực sự tối ưu."
-    },
-    "summary": {
-      "keyIdea": "Xây dựng danh mục thực tế cần kết hợp expected return, volatility và correlation của từng cặp tài sản",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Tài sản có correlation âm/thấp với phần còn lại có giá trị bảo vệ danh mục cao"
-    },
-    "application": {
-      "title": "Thử xây danh mục 3 tài sản",
-      "message": "Chọn 3 tài sản bạn có thể đầu tư (ví dụ cổ phiếu, trái phiếu, vàng), ước lượng correlation giữa từng cặp bằng cảm nhận, rồi thử phân bổ tỷ trọng sao cho tài sản có correlation âm đóng vai trò giảm xóc.",
-      "secondary": "Đây là bài tập thực hành gộp toàn bộ lý thuyết portfolio bạn vừa học."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Xây dựng danh mục 3 tài sản là bài tập áp dụng toàn bộ lý thuyết đã học vào thực tế: xác định expected return và volatility của từng tài sản, đánh giá correlation giữa các cặp, rồi tìm tỷ trọng phân bổ sao cho danh mục nằm gần Efficient Frontier nhất, phù hợp với khẩu vị rủi ro cá nhân."
+        "text": "Mọi nguyên tắc trong chặng này dễ đồng ý khi đọc. Bài này đặt chúng vào một dòng thời gian cụ thể, vì đó là chỗ ta thấy được thời gian thật sự bị mất ở đâu."
       },
       {
         "type": "heading",
-        "text": "Vàng làm \"bộ giảm xóc\""
-      },
-      {
-        "type": "paragraph",
-        "text": "Với danh mục cổ phiếu - trái phiếu - vàng, vàng thường có correlation âm nhẹ với cổ phiếu, đóng vai trò như một bộ giảm xóc trong giai đoạn thị trường biến động mạnh. Ray Dalio, nhà sáng lập Bridgewater Associates, phát triển danh mục \"All Weather\" kết hợp cổ phiếu, trái phiếu dài/ngắn hạn và hàng hóa (bao gồm vàng) với tỷ trọng được tính toán để cân bằng rủi ro qua mọi kịch bản kinh tế - lạm phát cao, giảm phát, tăng trưởng, suy thoái."
-      },
-      {
-        "type": "heading",
-        "text": "Correlation có thể sụp đổ đúng lúc cần nhất"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nếu correlation giữa vàng và cổ phiếu chuyển từ âm sang dương mạnh trong một khủng hoảng đặc biệt, hiệu quả bảo vệ của vàng sẽ suy yếu đáng kể. Đây là rủi ro thực tế đã xảy ra trong một số cuộc khủng hoảng thanh khoản (như tháng 3/2020), khi nhà đầu tư buộc phải bán MỌI tài sản - kể cả vàng - để có tiền mặt. Correlation không cố định vĩnh viễn, đây là giới hạn quan trọng của lý thuyết danh mục."
-      },
-      {
-        "type": "heading",
-        "text": "Lợi ích đa dạng hóa biên giảm dần"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nếu thêm tài sản thứ 4 (ví dụ bất động sản) vào danh mục 3 tài sản đã có, lợi ích đa dạng hóa biên từ tài sản này thường NHỎ HƠN lợi ích từ việc thêm tài sản thứ 2 vào một danh mục 1 tài sản duy nhất. Đây là nguyên tắc diminishing marginal benefit: tài sản đầu tiên thêm vào mang lại lợi ích lớn nhất, các tài sản thêm sau đó mang lợi ích biên giảm dần - tương tự nguyên tắc đã thấy khi đa dạng hóa nội bộ cổ phiếu (khoảng 30-40 cổ phiếu là đủ cho phần lớn lợi ích)."
+        "text": "Đội A"
       },
       {
         "type": "list",
         "items": [
-          "Xây danh mục thực tế cần kết hợp expected return, volatility và correlation từng cặp tài sản",
-          "Tài sản correlation âm/thấp có giá trị bảo vệ danh mục cao",
-          "Correlation không cố định - có thể tăng đột biến đúng lúc khủng hoảng, làm giảm hiệu quả bảo vệ",
-          "Lợi ích đa dạng hóa biên giảm dần khi thêm ngày càng nhiều loại tài sản"
+          "14:00 - một bản triển khai đưa lên, tỷ lệ lỗi bắt đầu tăng ở một phần lưu lượng.",
+          "14:06 - cảnh báo trên tỷ lệ lỗi người dùng nổ. Người trực tuyên bố sự cố ngay, chưa biết nguyên nhân.",
+          "14:07 - phân vai trong kênh. Một người sửa, một người liên lạc, người trực làm chỉ huy.",
+          "14:08 - quay lui bản triển khai gần nhất. Song song, thông báo đầu tiên gửi đi: chức năng nào, ai bị ảnh hưởng, cập nhật sau 30 phút.",
+          "14:20 - tỷ lệ lỗi về bình thường, xác nhận đã ổn. Chuyển sang điều tra nguyên nhân, không còn ai chịu ảnh hưởng."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Đội B, cùng nguyên nhân"
+      },
+      {
+        "type": "list",
+        "items": [
+          "14:00 - lỗi bắt đầu. Không có cảnh báo trên tỷ lệ lỗi, chỉ có cảnh báo trên tài nguyên.",
+          "14:22 - một khách hàng báo qua bộ phận hỗ trợ. Kỹ sư bắt đầu xem.",
+          "14:40 - sau mười tám phút trao đổi xem đây có phải sự cố không, sự cố được tuyên bố.",
+          "15:10 - ba mươi phút đọc bản thay đổi để chắc chắn nó là nguyên nhân.",
+          "15:14 - quay lui, mất bốn phút. 15:30 - xác nhận đã ổn."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Bước sửa giống hệt nhau",
+        "text": "Bốn phút ở cả hai đội. Bảy mươi phút chênh lệch nằm hoàn toàn ở phần trước đó - phát hiện, quyết định, và thứ tự giữa hành động với việc xác nhận."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Cắt được rẻ nhất",
+          "text": "Ba mươi phút đọc mã trước khi quay lui. Chỉ cần đổi thứ tự, không cần công cụ hay kỹ năng mới."
+        },
+        "right": {
+          "label": "Cắt được nhưng cần đầu tư",
+          "text": "Hai mươi hai phút phát hiện cần cảnh báo đặt trên tỷ lệ lỗi. Mười tám phút bàn bạc cần một quy ước về ngưỡng tuyên bố."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Nếu chỉ được sửa một thứ trong quy trình ứng phó, hãy sửa thứ tự: hành động rẻ đi trước việc xác nhận.",
+          "Bài sau tổng kết cả chặng."
         ]
       }
     ]
   },
   {
     "id": 180,
-    "slug": "tong-on-chang-9-danh-muc",
-    "title": "Tự học Tài chính Day 180: Tổng ôn Chặng Danh mục đầu tư và quản trị rủi ro - Đầu tư là quản lý rủi ro, không chỉ săn lợi nhuận",
-    "subtitle": "Kết nối diversification, correlation, MPT, Sharpe Ratio và các loại quỹ",
-    "duration": "8 phút",
+    "slug": "tong-on-chang-do-tin-cay",
+    "title": "Tổng ôn: chọn mức, chuẩn bị, ứng phó, học",
+    "subtitle": "Hai mươi bài về độ tin cậy gói lại thành bốn giai đoạn có thứ tự.",
+    "duration": "10 phút",
     "difficulty": "Trung bình",
-    "emoji": "⚠️",
-    "openingQuestion": "Nếu chỉ được rút ra một bài học duy nhất sau 20 ngày học về danh mục đầu tư, đó nên là gì?",
+    "emoji": "🧩",
+    "track": "professional",
+    "whyItMatters": "Độ tin cậy dễ bị hiểu thành một danh sách kỹ thuật rời rạc. Nhìn nó thành bốn giai đoạn thì bạn biết đội mình đang thiếu ở đâu, và thứ tự nên bổ sung.",
+    "openingQuestion": "Đội chưa có gì về độ tin cậy. Nên bắt đầu từ đâu?",
     "openingOptions": [
-      "Đầu tư thành công chính là quản lý rủi ro một cách có hệ thống",
-      "Timing thị trường quan trọng hơn mọi yếu tố khác",
-      "Chỉ cần đầu tư vào quỹ có phí thấp nhất là đủ",
-      "Chọn cổ phiếu tốt là yếu tố quyết định duy nhất để thành công"
+      "Chọn một chỉ số cho hành trình quan trọng nhất và đặt mục tiêu cho nó",
+      "Xây dự phòng cho những thành phần quan trọng nhất của hệ thống",
+      "Thiết lập quy trình ứng phó sự cố với các vai trò rõ ràng",
+      "Cài đặt hệ thống giám sát đầy đủ cho toàn bộ hạ tầng"
     ],
     "correctOption": 0,
-    "explanation": "Hành trình Chặng Danh mục đầu tư và quản trị rủi ro: từ khái niệm Portfolio → tại sao không nên nhìn riêng lẻ từng tài sản → Diversification và Correlation → đo lường rủi ro (Volatility, Standard Deviation) → Expected Return và Risk-return tradeoff → Modern Portfolio Theory và Efficient Frontier → các thước đo hiệu suất điều chỉnh rủi ro (Sharpe, Alpha, Beta, Tracking Error) → Active vs Passive → các loại quỹ (ETF, Mutual Fund, Hedge Fund) → case thực hành xây danh mục. Tất cả đều phục vụ một mục tiêu: quản lý rủi ro có hệ thống thay vì phó mặc cho may rủi.",
+    "explanation": "Không có mục tiêu thì mọi việc còn lại đều thiếu tiêu chí: dự phòng bao nhiêu là đủ, cảnh báo ở ngưỡng nào, khi nào thì được coi là sự cố. Giám sát đầy đủ toàn hạ tầng nghe hợp lý nhưng nó thường sinh ra hàng trăm chỉ số mà không cái nào gắn với một quyết định. Một chỉ số kèm một mục tiêu cho một hành trình đã đủ để mọi thứ phía sau có chỗ bám.",
     "diagram": [
       {
-        "label": "Portfolio và vì sao không nhìn riêng lẻ",
+        "label": "1. Chọn mức: chỉ số, mục tiêu, ngân sách lỗi",
         "arrow": true
       },
       {
-        "label": "Diversification, Correlation, MPT",
+        "label": "2. Chuẩn bị: dự phòng, cô lập, suy giảm, sao lưu",
         "arrow": true
       },
       {
-        "label": "Sharpe Ratio đo hiệu quả rủi ro-lợi nhuận"
+        "label": "3. Ứng phó: tuyên bố, phân vai, giảm thiểu, thông báo",
+        "arrow": true
+      },
+      {
+        "label": "4. Học: hồi cứu, chỉ số, diễn tập, lịch trực"
       }
     ],
-    "interactiveType": "risk",
     "realWorldExample": {
-      "company": "Ba nguyên tắc vàng của John Bogle",
-      "description": "John Bogle tóm gọn triết lý đầu tư thành ba nguyên tắc: đầu tư sớm và duy trì (tận dụng lãi kép), đa dạng hóa rộng rãi (giảm rủi ro không hệ thống), và giữ chi phí thấp (tối đa hóa lợi nhuận ròng dài hạn) - đơn giản nhưng đã được kiểm chứng hiệu quả hơn hầu hết chiến lược phức tạp."
+      "company": "Bốn giai đoạn dùng được ở mọi quy mô",
+      "description": "Một đội ba người và một tổ chức ba nghìn người đều đi qua đúng bốn giai đoạn này. Khác nhau ở mức độ trang trọng của từng bước, không ở việc bỏ bước nào."
+    },
+    "keyTakeaways": [
+      "Không có mục tiêu thì mọi quyết định về độ tin cậy đều thiếu tiêu chí.",
+      "Phần lớn thời gian ngừng nằm trước bước sửa, không nằm trong nó.",
+      "Sai sót con người là điều kiện đầu vào; thứ thiết kế được là hậu quả.",
+      "Mọi cơ chế đều là giả định cho tới khi có người diễn tập nó."
+    ],
+    "summary": {
+      "keyIdea": "Độ tin cậy là bốn giai đoạn nối nhau, và mỗi giai đoạn cần giai đoạn trước.",
+      "formula": "Chọn mức → chuẩn bị → ứng phó → học.",
+      "commonMistake": "Bắt đầu từ giai đoạn hai mà bỏ qua giai đoạn một."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chấm điểm đội mình trên bốn giai đoạn, mỗi giai đoạn một câu. Giai đoạn sớm nhất bị bỏ trống chính là chỗ nên bắt đầu, kể cả khi giai đoạn sau trông cấp bách hơn."
+    },
+    "practicePrompt": {
+      "question": "Vì sao không nên bắt đầu bằng việc xây dự phòng?",
+      "options": [
+        "Vì chưa có mục tiêu thì không biết bao nhiêu dự phòng là đủ",
+        "Vì dự phòng là hạng mục tốn kém nhất trong toàn bộ danh sách",
+        "Vì dự phòng chỉ có tác dụng với một số loại sự cố nhất định",
+        "Vì đội cần có kinh nghiệm vận hành trước khi bắt tay xây dự phòng"
+      ],
+      "correct": 0,
+      "explanation": "Không có con số thì câu hỏi bao nhiêu là đủ không có đáp án, và đội hoặc xây quá ít hoặc xây quá nhiều mà không cách nào biết mình đang ở đâu. Dự phòng đúng là tốn kém và đúng là chỉ chữa một số loại lỗi, nhưng cả hai điều ấy chỉ trở thành vấn đề khi chưa có tiêu chí để quyết định."
     },
     "quiz": [
       {
-        "question": "Vì sao 'risk-adjusted return' (lợi nhuận điều chỉnh theo rủi ro) là khái niệm quan trọng hơn lợi nhuận tuyệt đối khi đánh giá một chiến lược đầu tư?",
+        "question": "Giai đoạn đầu tiên trong bốn giai đoạn là gì?",
         "options": [
-          "Vì lợi nhuận tuyệt đối không bao giờ chính xác",
-          "Vì hai danh mục có thể cùng đạt lợi nhuận tuyệt đối như nhau nhưng mức độ rủi ro (biến động, khả năng mất vốn) hoàn toàn khác nhau - danh mục ít rủi ro hơn để đạt cùng kết quả luôn tốt hơn về mặt quản trị vốn dài hạn",
-          "Lợi nhuận tuyệt đối luôn là thước đo duy nhất cần quan tâm",
-          "Vì rủi ro không thể đo lường được bằng số liệu"
+          "Chọn mức độ tin cậy và biến nó thành mục tiêu có con số",
+          "Chuẩn bị hạ tầng để chịu được các loại sự cố phổ biến nhất",
+          "Xây dựng quy trình ứng phó và phân công vai trò trực",
+          "Thiết lập hệ thống giám sát và cảnh báo cho dịch vụ"
         ],
-        "correct": 1,
-        "explanation": "Đây là chủ đề xuyên suốt cả Chặng Danh mục đầu tư và quản trị rủi ro: Sharpe Ratio, Alpha, Beta đều nhằm trả lời câu hỏi 'lợi nhuận này đạt được với cái giá rủi ro nào?' Một nhà đầu tư dài hạn thành công không chỉ cần lợi nhuận cao mà cần khả năng DUY TRÌ chiến lược qua các giai đoạn biến động - điều này chỉ khả thi khi rủi ro được quản lý ở mức chấp nhận được, không phải tối đa hóa lợi nhuận bằng mọi giá."
+        "correct": 0,
+        "explanation": "Ba giai đoạn còn lại đều cần tiêu chí từ giai đoạn này: dự phòng tới mức nào, cảnh báo ở ngưỡng nào, sự cố tính từ đâu. Bắt đầu từ giữa là lý do nhiều đội có rất nhiều công cụ mà vẫn không trả lời được câu hỏi hệ thống có đủ tin cậy chưa."
       },
       {
-        "question": "Nếu phải tóm gọn toàn bộ Chặng Danh mục đầu tư và quản trị rủi ro thành một câu hỏi mà nhà đầu tư nên tự hỏi trước MỌI quyết định đầu tư, câu hỏi đó nên là gì?",
+        "question": "Phát hiện nào lặp lại nhiều lần nhất trong chặng này?",
         "options": [
-          "Tôi có thể kiếm lời nhanh từ khoản đầu tư này trong ngắn hạn không?",
-          "Cổ phiếu này có tăng giá trong tuần tới không?",
-          "Khoản đầu tư này ảnh hưởng thế nào đến rủi ro và lợi nhuận của TOÀN BỘ danh mục của tôi, không chỉ đứng một mình?",
-          "Cổ phiếu này có đang được nhiều người nói đến trên mạng xã hội không?"
+          "Thời gian mất ở các bước trước khi sửa nhiều hơn ở bước sửa",
+          "Hệ thống phân tán khó vận hành hơn hệ thống tập trung",
+          "Chi phí độ tin cậy tăng nhanh hơn phần lợi ích mà nó mang lại",
+          "Công cụ tự động hoá quan trọng hơn quy trình thủ công"
         ],
-        "correct": 2,
-        "explanation": "Đây chính là tư duy xuyên suốt toàn bộ Chặng Danh mục đầu tư và quản trị rủi ro - từ Portfolio, Diversification, Correlation đến MPT và các thước đo risk-adjusted return: mọi quyết định đầu tư nên được đánh giá trong bối cảnh TOÀN BỘ danh mục, không phải như một quyết định độc lập tách rời."
+        "correct": 0,
+        "explanation": "Nó xuất hiện ở bài tuyên bố sự cố, bài giảm thiểu trước, bài chỉ số, và cả bài case cuối chặng. Đó cũng là lý do những cải thiện rẻ nhất thường là quy ước chứ không phải công nghệ."
+      },
+      {
+        "question": "Điều gì được coi là điều kiện đầu vào chứ không phải nguyên nhân?",
+        "options": [
+          "Sai sót của con người trong thao tác vận hành",
+          "Lỗi phần cứng xảy ra ngoài dự kiến của cả đội",
+          "Sự cố từ phía nhà cung cấp dịch vụ bên thứ ba",
+          "Tải tăng đột biến vượt quá năng lực đã chuẩn bị"
+        ],
+        "correct": 0,
+        "explanation": "Con người luôn sai, nên nó không phải biến số để loại bỏ. Thứ thiết kế được là hậu quả: một thao tác không đảo ngược được thì phải có ma sát đứng trước nó."
+      },
+      {
+        "question": "Vì sao giai đoạn học lại đứng cuối nhưng không kém quan trọng?",
+        "options": [
+          "Vì nó là cơ chế duy nhất khiến ba giai đoạn kia tốt lên theo thời gian",
+          "Vì nó tạo ra tài liệu cần thiết cho việc đào tạo người mới",
+          "Vì các quy định về vận hành yêu cầu ghi nhận sau mỗi sự cố",
+          "Vì nó giúp lãnh đạo nắm được tình hình vận hành của hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Không có hồi cứu, không có chỉ số, không có diễn tập thì ba giai đoạn kia đứng yên ở mức chúng được dựng lên ban đầu. Đây là vòng phản hồi, và bỏ nó đi thì cả hệ thống mất khả năng tự cải thiện."
+      },
+      {
+        "question": "Điểm chung giữa dự phòng, cầu dao và bản sao lưu là gì?",
+        "options": [
+          "Cả ba đều là giả định cho tới khi có người diễn tập chúng",
+          "Cả ba đều đòi hỏi chi phí hạ tầng tăng thêm đáng kể",
+          "Cả ba đều chỉ có tác dụng với lỗi ở tầng hạ tầng",
+          "Cả ba đều cần được cấu hình lại sau mỗi lần triển khai mới"
+        ],
+        "correct": 0,
+        "explanation": "Bản sao chưa từng chuyển sang, cầu dao chưa từng ngắt, sao lưu chưa từng khôi phục - cả ba trông giống hệt như khi chúng hoạt động tốt. Diễn tập là cách duy nhất phân biệt hai trạng thái ấy trước khi thực tế phân biệt hộ bạn."
       }
     ],
-    "keyTakeaways": [
-      "Đầu tư thành công là quản lý rủi ro có hệ thống, không chỉ săn lợi nhuận cao nhất",
-      "Diversification, correlation và các thước đo risk-adjusted return là bộ công cụ cốt lõi",
-      "Lựa chọn giữa active/passive và loại quỹ nên dựa trên hiểu biết thực sự về chi phí, rủi ro và mục tiêu cá nhân, không chỉ theo xu hướng"
-    ],
-    "practicePrompt": {
-      "question": "Sau khi ôn tập toàn bộ chặng Xây dựng danh mục (portfolio, diversification, correlation, volatility, Sharpe Ratio, Alpha, Beta, MPT, Efficient Frontier), bài học cốt lõi xuyên suốt mà một nhà đầu tư nên rút ra là gì?",
-      "options": [
-        "Bài học cốt lõi là tìm cổ phiếu có expected return cao nhất và dồn toàn bộ vốn vào đó để tối đa hóa lợi nhuận",
-        "Đầu tư thành công là quản lý rủi ro một cách có hệ thống, không chỉ săn lợi nhuận cao nhất",
-        "Bài học cốt lõi là luôn chọn quỹ chủ động vì có khả năng tạo Alpha cao hơn quỹ thụ động",
-        "Đa dạng hóa và các công cụ đo lường rủi ro chỉ có ý nghĩa lý thuyết, không cần áp dụng thực tế"
-      ],
-      "correct": 1,
-      "explanation": "Đầu tư thành công là quản lý rủi ro có hệ thống, không chỉ săn lợi nhuận cao nhất. Đây là bài học xuyên suốt: từ đa dạng hóa, correlation, đến các công cụ đo lường (Sharpe Ratio, Beta) - tất cả đều phục vụ mục tiêu kiểm soát rủi ro có kỷ luật để đạt lợi nhuận bền vững dài hạn."
-    },
-    "summary": {
-      "keyIdea": "Đầu tư thành công là quản lý rủi ro có hệ thống, không chỉ săn lợi nhuận cao nhất",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Diversification, correlation và các thước đo risk-adjusted return là bộ công cụ cốt lõi"
-    },
-    "application": {
-      "title": "Tổng kết Chặng Danh mục đầu tư và quản trị rủi ro bằng một câu",
-      "message": "Viết ra một câu duy nhất tóm tắt vì sao 'đầu tư là quản lý rủi ro, không chỉ săn lợi nhuận' theo cách bạn sẽ áp dụng cho chính danh mục của mình.",
-      "secondary": "Nếu câu đó cụ thể được với tình huống của bạn, nghĩa là chặng này đã thực sự ngấm."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Chặng Danh mục đầu tư và quản trị rủi ro đi từ khái niệm Portfolio, qua Diversification và Correlation, đến các thước đo rủi ro (Volatility, Standard Deviation), Expected Return và Risk-return tradeoff, Modern Portfolio Theory và Efficient Frontier, các thước đo hiệu suất điều chỉnh rủi ro (Sharpe, Alpha, Beta, Tracking Error), Active vs Passive, các loại quỹ (ETF, Mutual Fund, Hedge Fund) và một case thực hành xây danh mục. Tất cả phục vụ một mục tiêu duy nhất: quản lý rủi ro có hệ thống thay vì phó mặc cho may rủi."
+        "text": "Hai mươi bài vừa rồi có một trật tự, và trật tự ấy quan trọng: mỗi giai đoạn cần giai đoạn trước làm tiêu chí."
       },
       {
         "type": "heading",
-        "text": "Vì sao risk-adjusted return quan trọng hơn lợi nhuận tuyệt đối"
-      },
-      {
-        "type": "paragraph",
-        "text": "Hai danh mục có thể cùng đạt lợi nhuận tuyệt đối như nhau nhưng mức độ rủi ro (biến động, khả năng mất vốn) hoàn toàn khác nhau - danh mục ít rủi ro hơn để đạt cùng kết quả luôn tốt hơn về mặt quản trị vốn dài hạn. Đây là chủ đề xuyên suốt cả Chặng Danh mục đầu tư và quản trị rủi ro: Sharpe Ratio, Alpha, Beta đều nhằm trả lời câu hỏi \"lợi nhuận này đạt được với cái giá rủi ro nào?\". Một nhà đầu tư dài hạn thành công cần khả năng DUY TRÌ chiến lược qua các giai đoạn biến động, điều chỉ khả thi khi rủi ro được quản lý ở mức chấp nhận được."
-      },
-      {
-        "type": "heading",
-        "text": "Ba nguyên tắc vàng của John Bogle"
-      },
-      {
-        "type": "paragraph",
-        "text": "John Bogle tóm gọn triết lý đầu tư thành ba nguyên tắc: đầu tư sớm và duy trì (tận dụng lãi kép), đa dạng hóa rộng rãi (giảm rủi ro không hệ thống), và giữ chi phí thấp (tối đa hóa lợi nhuận ròng dài hạn). Đơn giản nhưng đã được kiểm chứng hiệu quả hơn hầu hết các chiến lược phức tạp - một bản tóm tắt gọn gàng cho toàn bộ những gì Chặng Danh mục đầu tư và quản trị rủi ro đã trình bày."
+        "text": "Bốn giai đoạn"
       },
       {
         "type": "list",
         "items": [
-          "Portfolio → Diversification → Correlation: nền tảng tư duy quản lý rủi ro",
-          "Volatility, Standard Deviation, Expected Return: công cụ đo lường",
-          "MPT, Efficient Frontier: khung lý thuyết xây dựng danh mục tối ưu",
-          "Sharpe, Alpha, Beta, Tracking Error: thước đo hiệu suất điều chỉnh rủi ro",
-          "Active vs Passive, ETF/Mutual Fund/Hedge Fund: lựa chọn công cụ thực thi phù hợp"
+          "Chọn mức: chỉ số bám trải nghiệm, mục tiêu đủ ba phần, ngân sách lỗi làm cơ chế đánh đổi.",
+          "Chuẩn bị: dự phòng đúng chỗ, cô lập bằng vách ngăn và cầu dao, suy giảm có kiểm soát, kế hoạch khôi phục.",
+          "Ứng phó: tuyên bố sớm, phân ba vai, giảm thiểu trước, thông báo song song.",
+          "Học: hồi cứu không đổ lỗi, chỉ số tách theo đoạn, diễn tập, lịch trực bền vững."
         ]
+      },
+      {
+        "type": "heading",
+        "text": "Ba ý xuyên suốt"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Chúng quay lại ở nhiều bài khác nhau",
+        "subtitle": "Vì chúng là cùng một quy luật nhìn từ các góc khác",
+        "concepts": [
+          {
+            "vi": "Thời gian mất trước bước sửa",
+            "en": "time before the fix",
+            "def": "Phát hiện và quyết định chiếm phần lớn dòng thời gian. Cải thiện chúng thường là quy ước, không phải công nghệ."
+          },
+          {
+            "vi": "Con người là hằng số",
+            "en": "humans are constant",
+            "def": "Sai sót không loại bỏ được. Thứ thiết kế được là hậu quả của sai sót - ma sát trước thao tác nguy hiểm."
+          },
+          {
+            "vi": "Chưa thử thì chưa có",
+            "en": "untested is unproven",
+            "def": "Bản sao, cầu dao, sao lưu, quy trình - tất cả trông giống hệt nhau dù hoạt động hay không, cho tới khi diễn tập."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Bắt đầu từ giai đoạn một",
+        "text": "Nhiều đội bắt đầu từ giai đoạn hai vì nó có vẻ cụ thể hơn, rồi kết thúc với rất nhiều công cụ mà vẫn không trả lời được câu hỏi hệ thống đã đủ tin cậy chưa. Một chỉ số kèm một mục tiêu cho một hành trình là đủ để mọi thứ phía sau có chỗ bám."
+      },
+      {
+        "type": "paragraph",
+        "text": "Bốn giai đoạn này dùng được ở mọi quy mô. Một đội ba người và một tổ chức ba nghìn người đi qua đúng các bước ấy; khác nhau ở mức độ trang trọng của từng bước chứ không ở việc được phép bỏ bước nào."
       },
       {
         "type": "closing",
         "lines": [
-          "Câu hỏi nên tự hỏi trước mọi quyết định đầu tư: khoản này ảnh hưởng thế nào đến rủi ro và lợi nhuận của TOÀN BỘ danh mục, không chỉ đứng một mình?",
-          "Đầu tư thành công là quản lý rủi ro có hệ thống, không chỉ săn lợi nhuận cao nhất."
+          "Độ tin cậy không phải một tính chất của hệ thống. Nó là một vòng lặp gồm chọn mức, chuẩn bị, ứng phó và học.",
+          "Chặng sau chuyển sang một góc khác của cùng nghề: cách dữ liệu được lưu, được đọc và được giữ đúng."
         ]
       }
     ]
@@ -53402,214 +54280,205 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1047,
-    "slug": "on-tap-npv",
-    "title": "Ôn tập NPV - Net Present Value",
-    "subtitle": "Công cụ quan trọng nhất trong capital budgeting và định giá doanh nghiệp",
-    "duration": "7 phút",
-    "difficulty": "Khó",
-    "emoji": "🔢",
-    "openingQuestion": "Một dự án tính ra NPV đúng bằng 0. Điều đó nghĩa là gì?",
+    "title": "Ôn tập: quy lợi ích tương lai về hiện tại",
+    "subtitle": "Vì sao một giờ tiết kiệm được năm sau không bằng một giờ tiết kiệm được tháng sau",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "emoji": "⏳",
+    "interactiveType": "interest-rate",
+    "whyItMatters": "Mọi quyết định kỹ thuật lớn đều so một khoản trả ngay với một chuỗi lợi ích trải dài. Không quy về cùng thời điểm thì hai vế không so được, và bản năng luôn nghiêng về vế nghe hấp dẫn hơn.",
+    "openingQuestion": "Hai phương án cùng tiết kiệm 12 giờ. A trả hết trong tháng tới, B trải đều 12 tháng. Chọn gì?",
     "openingOptions": [
-      "Dự án không sinh lời, nên loại bỏ ngay từ vòng sàng lọc",
-      "Dự án sinh lời đúng bằng chi phí vốn",
-      "Dòng tiền danh nghĩa vào bằng ra, chưa tính chiết khấu",
-      "Discount rate đang bị đặt sai nên kết quả không dùng được"
+      "A, vì lợi ích đến sớm thì chắc chắn hơn",
+      "B, vì trải dài nên ổn định và dễ duy trì hơn cho đội",
+      "Hai phương án tương đương vì tổng số giờ tiết kiệm bằng nhau",
+      "Chưa đủ dữ kiện, cần biết công sức bỏ ra của từng phương án"
     ],
-    "correctOption": 1,
-    "explanation": "NPV = 0 không phải là hoà vốn theo nghĩa thông thường, và đây là chỗ nhầm phổ biến nhất. Chiết khấu đã tính chi phí vốn vào rồi: mỗi đồng dòng tiền tương lai bị chia cho (1+r)^t, trong đó r chính là mức sinh lời tối thiểu mà người góp vốn và chủ nợ đòi hỏi. Nên NPV = 0 nghĩa là dự án trả đủ cho toàn bộ vốn đúng bằng cái giá của vốn đó - không thừa một đồng, cũng không thiếu. Nhà đầu tư vẫn nhận được suất sinh lời họ yêu cầu; thứ không có là phần giá trị tăng thêm. Vì thế NPV = 0 là ranh giới chấp nhận, không phải ngưỡng lỗ.",
+    "correctOption": 0,
+    "explanation": "Cùng một tổng nhưng khác thời điểm thì không bằng nhau. Mười hai giờ nhận trong tháng tới là gần như chắc chắn; mười hai giờ trải qua một năm phải sống sót qua mọi thay đổi hướng, thay đổi người và thay đổi nhu cầu trong năm ấy. Đó là toàn bộ nội dung của phép chiết khấu.",
     "diagram": [
       {
-        "label": "Dòng tiền từng năm",
+        "label": "Lợi ích hứa hẹn theo từng kỳ",
         "arrow": true
       },
       {
-        "label": "Chiết khấu về hiện tại bằng WACC",
+        "label": "Nhân hệ số giảm dần theo độ xa",
         "arrow": true
       },
       {
-        "label": "Cộng lại rồi trừ vốn ban đầu",
+        "label": "Cộng lại thành giá trị hiện tại",
         "arrow": true
       },
       {
-        "label": "NPV > 0 thì nhận dự án",
-        "arrow": false
+        "label": "So với công sức bỏ ra hôm nay"
       }
     ],
-    "interactiveType": "interest-rate",
     "realWorldExample": {
-      "company": "Hòa Phát",
-      "description": "Một quyết định mở lò cao mới là một bài toán NPV: vốn bỏ ra nằm gọn ở năm 0, còn dòng tiền trải suốt hàng chục năm. Càng ra xa, phần giá trị nằm ở giai đoạn cuối càng lớn, nên kết luận nhận hay bỏ phụ thuộc vào hai giả định dễ bị bỏ qua nhất: tốc độ tăng trưởng dài hạn và chi phí vốn."
-    },
-    "checkpointIndex": 4,
-    "keyTakeaways": [
-      "NPV > 0 thì nhận, NPV < 0 thì bỏ, NPV = 0 là ranh giới chấp nhận chứ không phải ngưỡng lỗ",
-      "IRR là mức chiết khấu làm NPV bằng 0",
-      "Terminal value thường chiếm 60-80% tổng giá trị một mô hình DCF, nên phải kiểm độ nhạy của nó",
-      "WACC tăng thì NPV giảm - quan hệ nghịch"
-    ],
-    "summary": {
-      "keyIdea": "NPV quy mọi dòng tiền về cùng một thời điểm rồi hỏi: sau khi đã trả đủ giá vốn, còn lại bao nhiêu?",
-      "formula": "NPV = Σ [CF_t / (1+r)^t] − C₀",
-      "commonMistake": "Đọc NPV = 0 là lỗ, hoặc chọn dự án theo IRR cao khi hai dự án loại trừ nhau",
-      "action": "Trước khi tin một con số NPV, đổi thử terminal growth và WACC mỗi thứ một điểm phần trăm rồi xem kết luận có đổi không"
+      "company": "Hai đề xuất cùng một con số",
+      "description": "Một đội trình hai phương án giảm tải, cả hai đều ghi tiết kiệm 40% chi phí hạ tầng. Phương án đầu đạt ngay sau khi triển khai; phương án sau chỉ đạt đủ 40% khi lượng người dùng tăng gấp ba, dự kiến sau hai năm. Trên trang trình bày hai con số giống hệt nhau. Quy về hiện tại thì phương án sau chỉ còn giá trị bằng khoảng một nửa."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "NPV trả lời câu hỏi mà mọi quyết định đầu tư đều quy về: bỏ tiền ra hôm nay, dòng tiền nhận về sau này có bù đắp nổi cái giá của đồng vốn không? Vì tiền ở hai thời điểm khác nhau không so trực tiếp được, phải kéo tất cả về cùng hiện tại trước đã."
+        "text": "Chiết khấu thường bị dạy như một công thức. Nó thực ra là một câu hỏi: lời hứa này càng xa thì càng dễ sai ở đâu, và sai bao nhiêu."
       },
       {
         "type": "heading",
-        "text": "Công thức NPV"
-      },
-      {
-        "type": "formula",
-        "title": "Net Present Value",
-        "equation": "NPV = Σ [CF_t / (1+r)^t] − C₀",
-        "variables": [
-          {
-            "symbol": "CF_t",
-            "name": "Cash Flow",
-            "description": "Dòng tiền tạo ra tại thời điểm t"
-          },
-          {
-            "symbol": "r",
-            "name": "Discount Rate",
-            "description": "WACC hoặc suất sinh lời yêu cầu"
-          },
-          {
-            "symbol": "C₀",
-            "name": "Initial Cost",
-            "description": "Vốn đầu tư ban đầu, bỏ ra tại t = 0"
-          }
-        ],
-        "example": {
-          "title": "Dự án hai năm",
-          "calculation": "PV = 120/1,1 + 120/1,21 = 109,1 + 99,2 = 208,3 → NPV = 208,3 − 200",
-          "result": "+8,3 triệu",
-          "explanation": "Bỏ 200 triệu hôm nay để nhận 120 triệu mỗi năm trong hai năm, chiết khấu 10%. Tổng danh nghĩa 240 triệu trông như lãi 40 triệu, nhưng sau chiết khấu phần tạo thêm chỉ còn 8,3 triệu."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "NPV và IRR - khi nào dùng cái nào"
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "NPV",
-          "text": "Đo giá trị tuyệt đối bằng tiền. Với hai dự án loại trừ nhau, chọn NPV cao nhất là đúng. Giả định dòng tiền thu về được tái đầu tư ở mức WACC - sát thực tế hơn."
-        },
-        "right": {
-          "label": "IRR",
-          "text": "Đo tỷ suất sinh lời bằng phần trăm. Có thể chỉ sai đường khi hai dự án khác nhau về quy mô. Giả định tái đầu tư ngay tại chính IRR, thường quá lạc quan."
-        }
-      },
-      {
-        "type": "paragraph",
-        "text": "Với các dự án độc lập thì hai thước đo cho cùng kết luận: NPV > 0 tương đương IRR > WACC. Chúng chỉ tách nhau khi phải chọn một trong hai dự án, và khi đó IRR là thước đo dễ dẫn sai, vì một dự án nhỏ có thể có phần trăm rất đẹp mà số tiền tạo thêm lại ít hơn hẳn."
-      },
-      {
-        "type": "heading",
-        "text": "Bốn điều cần nhớ"
+        "text": "Ba thứ bào mòn lợi ích ở xa"
       },
       {
         "type": "list",
         "items": [
-          "NPV > 0 thì nhận, NPV < 0 thì bỏ, NPV = 0 thì dự án trả đúng bằng chi phí vốn",
-          "IRR là mức chiết khấu làm NPV bằng 0",
-          "Terminal value thường chiếm 60-80% tổng giá trị DCF, nên luôn phải kiểm độ nhạy của giả định này",
-          "WACC tăng thì NPV giảm - quan hệ nghịch, và độ nhạy càng lớn khi dòng tiền càng nằm xa"
+          "Hướng đổi: sản phẩm đi đường khác và phần tối ưu ấy không còn nằm trên đường đi",
+          "Người đổi: người hiểu hệ thống rời đi, phần tiết kiệm cần bảo trì thì không ai bảo trì",
+          "Nền đổi: công cụ, phiên bản hoặc hạ tầng thay đổi và làm phần tối ưu ấy thành thừa"
         ]
       },
       {
+        "type": "paragraph",
+        "text": "Ba thứ trên không phải rủi ro hiếm gặp mà là chuyện thường ngày. Chúng cũng không cộng dồn tuyến tính - xác suất một lời hứa còn nguyên vẹn sau tám quý thấp hơn nhiều so với xác suất nó còn nguyên sau hai quý nhân bốn. Đó là lý do hệ số chiết khấu giảm theo cấp số nhân chứ không giảm đều."
+      },
+      {
+        "type": "formula",
+        "title": "Hệ số theo từng kỳ",
+        "variables": [
+          {
+            "symbol": "r",
+            "name": "Mức chiết khấu mỗi kỳ",
+            "description": "Đọc là xác suất lời hứa này hỏng trong một kỳ. Hạ tầng ổn định thì thấp, sản phẩm đang dò đường thì cao."
+          },
+          {
+            "symbol": "n",
+            "name": "Số kỳ tới lúc nhận",
+            "description": "Đếm theo quý là đủ. Đếm theo tháng tạo cảm giác chính xác mà dữ liệu không đỡ nổi."
+          },
+          {
+            "symbol": "DF",
+            "name": "Hệ số quy đổi = 1 ÷ (1 + r) mũ n",
+            "description": "Với r = 15% mỗi quý, kỳ thứ tư còn 0,57 và kỳ thứ tám còn 0,33. Lời hứa ở kỳ tám chỉ đáng một phần ba."
+          },
+          {
+            "symbol": "PV",
+            "name": "Giá trị hiện tại = tổng của lợi ích từng kỳ nhân DF",
+            "description": "Con số duy nhất đặt cạnh công sức bỏ ra được, vì cả hai giờ đã cùng đứng ở hôm nay."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Chọn mức chiết khấu"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Mức thấp, khoảng 5% mỗi quý",
+          "text": "Hạ tầng nền, nhu cầu đã rõ nhiều năm, ít khả năng bị thay thế. Lợi ích ở kỳ tám vẫn còn hai phần ba giá trị."
+        },
+        "right": {
+          "label": "Mức cao, khoảng 20% mỗi quý",
+          "text": "Sản phẩm mới, hướng đi còn dò, đội có thể tái cấu trúc. Lợi ích ở kỳ tám chỉ còn khoảng một phần năm."
+        }
+      },
+      {
         "type": "callout",
-        "label": "Kiểm lại trước khi tin",
-        "text": "Một mô hình DCF cho ra con số tới hai chữ số thập phân vẫn có thể sai hoàn toàn nếu terminal growth lệch nửa điểm phần trăm. Con số đáng tin không phải NPV, mà là khoảng NPV khi các giả định chính dao động trong biên hợp lý."
+        "label": "Mức chiết khấu là một tuyên bố, không phải hằng số",
+        "text": "Chọn 5% cho một dự án trên sản phẩm mới ra mắt là nói rằng bạn tin sản phẩm ấy còn nguyên hình dạng này sau hai năm. Đó có thể đúng, nhưng nó phải được nói ra thành lời chứ không giấu trong một ô của bảng tính. Khi ai đó hỏi vì sao con số ra như vậy, mức chiết khấu là chỗ đầu tiên nên nhìn."
       },
       {
         "type": "closing",
         "lines": [
-          "NPV không nói dự án có tốt không - nó nói dự án có tốt hơn việc để nguyên đồng vốn ở chỗ khác với cùng mức rủi ro hay không.",
-          "Đó là lý do discount rate quan trọng ngang dòng tiền: đổi r là đổi chuẩn so sánh."
+          "Cùng một tổng ở hai thời điểm khác nhau là hai giá trị khác nhau.",
+          "Mức chiết khấu là cách bạn nói ra mình tin tương lai giống hôm nay tới đâu."
         ]
       }
     ],
-    "practicePrompt": {
-      "question": "Dự án mở rộng cần 500 triệu vốn ban đầu, dự kiến mang về 150 triệu dòng tiền mỗi năm trong 5 năm. WACC 12%. Bạn kết luận thế nào?",
-      "options": [
-        "Nhận dự án: NPV ≈ +40,7 triệu (= 150 × 3,605 − 500)",
-        "Bỏ: 750 triệu chiết khấu một lần về t=5 chỉ còn 426 triệu",
-        "Bỏ vì hoàn vốn mất 3,3 năm, dài hơn ngưỡng 3 năm",
-        "Chưa kết luận được vì thiếu giá trị thanh lý cuối kỳ"
-      ],
-      "correct": 0,
-      "explanation": "Dòng tiền đều 150 triệu trong 5 năm ở mức 12% có hệ số niên kim (1 − 1,12⁻⁵)/0,12 = 3,605, nên PV = 150 × 3,605 = 540,7 triệu và NPV = 540,7 − 500 = +40,7 triệu. Phương án thứ hai mắc đúng lỗi hay gặp: gom cả 750 triệu thành một khoản rồi chiết khấu một lần về năm 5, trong khi tiền về rải đều từng năm. Thời gian hoàn vốn không phải tiêu chí quyết định vì nó bỏ qua dòng tiền sau điểm hoàn vốn và bỏ qua giá vốn."
-    },
-    "application": {
-      "title": "Áp vào một quyết định thật",
-      "message": "Lấy một khoản chi lớn mà bạn hoặc công ty bạn đang cân nhắc, viết ra dòng tiền từng năm rồi chiết khấu ở mức sinh lời bạn đòi hỏi - con số cuối cùng nói nên làm hay không.",
-      "secondary": "Đổi thử discount rate lên xuống hai điểm phần trăm: nếu kết luận đảo chiều, quyết định đang nằm trên giả định chứ không nằm trên dòng tiền."
-    },
-    "track": "bonus",
     "quiz": [
       {
-        "question": "Dự án cần đầu tư 200 triệu ngay hôm nay, tạo ra 120 triệu/năm trong 2 năm. Discount rate 10%. NPV là?",
+        "question": "Hệ số chiết khấu giảm theo cấp số nhân thay vì giảm đều. Vì sao?",
         "options": [
-          "+40 triệu (= 240 − 200, quên chiết khấu)",
-          "NPV = +8.3 triệu (nên đầu tư)",
-          "−8,3 triệu (đảo dấu dòng tiền vào và ra)",
-          "0, tức hoà vốn đúng bằng chi phí vốn"
-        ],
-        "correct": 1,
-        "explanation": "PV(120M, Y1) = 120/1.1 = 109.1M. PV(120M, Y2) = 120/1.21 = 99.2M. Tổng PV = 208.3M. NPV = 208.3 - 200 = +8.3M → nên đầu tư."
-      },
-      {
-        "question": "Nếu IRR của một dự án = 15% và WACC = 18%, bạn nên:",
-        "options": [
-          "Đầu tư, vì IRR dương là đã có lãi",
-          "Không đầu tư, vì NPV âm",
-          "Đầu tư nếu vẫn còn hạn mức vốn chưa dùng",
-          "Phụ thuộc ngành, vì mỗi ngành một ngưỡng IRR"
-        ],
-        "correct": 1,
-        "explanation": "IRR < WACC → NPV < 0. Dự án tạo ra return thấp hơn chi phí vốn → hủy giá trị. Nguyên tắc: chỉ đầu tư khi IRR > WACC (hoặc NPV > 0)."
-      },
-      {
-        "question": "Mutually exclusive projects: Dự án A NPV = 50M, IRR = 30%. Dự án B NPV = 80M, IRR = 20%. Chọn dự án nào?",
-        "options": [
-          "Dự án A, vì IRR cao hơn nên đồng vốn hiệu quả hơn",
-          "Dự án B, vì NPV cao hơn",
-          "Phụ thuộc vào vốn có sẵn",
-          "Cần thêm thông tin về thời gian hoàn vốn"
-        ],
-        "correct": 1,
-        "explanation": "Với mutually exclusive projects, NPV rule cho kết quả đúng. Dự án B tạo ra 80M giá trị tuyệt đối nhiều hơn dù IRR thấp hơn. IRR có thể mislead khi scale dự án khác nhau."
-      },
-      {
-        "question": "Terminal Value trong DCF thường chiếm bao nhiêu % tổng giá trị?",
-        "options": [
-          "10-20% - phần lớn là dòng tiền trong kỳ dự báo",
-          "60-80%",
-          "50%, vì hai phần thường chia đôi giá trị",
-          "100% - forecast period không đáng kể"
-        ],
-        "correct": 1,
-        "explanation": "Trong thực tế, terminal value thường chiếm 60-80% tổng enterprise value trong DCF. Điều này có nghĩa là DCF rất nhạy cảm với terminal growth rate và exit multiple assumptions."
-      },
-      {
-        "question": "WACC = 10%, risk-free rate = 4%, equity risk premium = 6%, beta = 1.5, Kd = 7%, tax = 20%, D/(D+E) = 40%. WACC tính đúng là?",
-        "options": [
-          "Ke = 4% + 1.5×6% = 13%; WACC = 13%×0.6 + 7%×(1-20%)×0.4 = 10%",
-          "Ke = 13%; WACC = 13%×0.6 + 7%×0.4 = 10.6%",
-          "Ke = 10%; WACC = 10%×0.6 + 7%×0.8×0.4 = 8.24%",
-          "Không đủ thông tin để tính ra WACC"
+          "Vì lời hứa phải sống sót qua mọi kỳ trước đó",
+          "Vì chi phí cơ hội của đội tăng dần lên theo từng kỳ trong suốt dự án",
+          "Vì các công thức tài chính chuẩn đều dùng luỹ thừa cho phép tính loại này",
+          "Vì mức độ sai số của ước lượng nhân lên sau mỗi lần đội cập nhật kế hoạch"
         ],
         "correct": 0,
-        "explanation": "Ke = Rf + β×ERP = 4% + 1.5×6% = 13%. WACC = Ke×We + Kd×(1-t)×Wd = 13%×0.6 + 7%×0.8×0.4 = 7.8% + 2.24% = 10.04% ≈ 10%."
+        "explanation": "Xác suất còn nguyên sau tám kỳ là xác suất còn nguyên mỗi kỳ nhân với chính nó tám lần. Phép nhân lặp lại chính là luỹ thừa, nên hình dạng của công thức đến từ bản chất chứ không từ quy ước."
+      },
+      {
+        "question": "Với r = 15% mỗi quý, lợi ích ở quý thứ tám đáng khoảng bao nhiêu phần giá trị gốc?",
+        "options": [
+          "Khoảng một phần ba",
+          "Khoảng một nửa (= dùng hệ số của quý thứ tư cho quý thứ tám)",
+          "Khoảng 88% (= lấy 100% trừ 15% một lần thay vì luỹ thừa tám lần)",
+          "Bằng không (= coi mọi lợi ích quá bốn quý là không tính được)"
+        ],
+        "correct": 0,
+        "explanation": "1 chia cho 1,15 mũ 8 ra khoảng 0,33. Con số này đáng nhớ vì nó nói rằng ở mức chiết khấu vừa phải, lợi ích cách hai năm chỉ đáng một phần ba - đủ để lật ngược phần lớn so sánh."
+      },
+      {
+        "question": "Dự án trên sản phẩm mới ra mắt được tính với mức chiết khấu 5% mỗi quý. Điều đó ngầm khẳng định gì?",
+        "options": [
+          "Rằng sản phẩm ấy sẽ giữ nguyên hình dạng suốt hai năm",
+          "Rằng đội thực hiện có đủ năng lực để hoàn thành dự án đúng theo tiến độ đề ra",
+          "Rằng chi phí hạ tầng của công ty sẽ không tăng đáng kể trong hai năm tới",
+          "Rằng phần tiết kiệm đã được đo bằng số liệu thật chứ không phải ước đoán"
+        ],
+        "correct": 0,
+        "explanation": "Mức chiết khấu thấp là một tuyên bố về độ ổn định của bối cảnh, không phải về chất lượng của đội hay của phép đo. Với sản phẩm mới, tuyên bố ấy hầu như luôn quá lạc quan."
+      },
+      {
+        "question": "Hai đề xuất cùng ghi 'tiết kiệm 40%'. Câu hỏi đầu tiên nên hỏi là gì?",
+        "options": [
+          "Bao giờ thì đạt được con số ấy",
+          "Con số 40% được đo bằng phương pháp nào và trên tập dữ liệu ra sao",
+          "Mỗi phương án cần bao nhiêu người tham gia và trong khoảng thời gian bao lâu",
+          "Hai phương án có thể triển khai song song với nhau được hay không"
+        ],
+        "correct": 0,
+        "explanation": "Ba câu kia đều đáng hỏi nhưng đều đến sau. Một con số phần trăm không có mốc thời gian thì chưa phải một lời hứa hoàn chỉnh, và đó chính là chỗ hai đề xuất trông giống nhau nhất lại khác nhau nhất."
+      },
+      {
+        "question": "Vì sao đếm theo quý thay vì theo tháng?",
+        "options": [
+          "Vì dữ liệu không đủ mịn để đỡ mức chính xác đó",
+          "Vì hầu hết các chu kỳ lập kế hoạch trong công ty đều được tổ chức theo quý",
+          "Vì mức chiết khấu tính theo tháng sẽ cho ra kết quả khác hẳn so với theo quý",
+          "Vì phần tiết kiệm thường chỉ bắt đầu xuất hiện sau tháng thứ ba của dự án"
+        ],
+        "correct": 0,
+        "explanation": "Toàn bộ phép tính đứng trên những ước lượng lệch hàng chục phần trăm. Chia nhỏ tới từng tháng tạo ra vẻ chính xác mà đầu vào không hề có, và vẻ chính xác giả là thứ khiến người đọc thôi đặt câu hỏi."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Cùng một tổng ở hai thời điểm khác nhau là hai giá trị khác nhau",
+      "Hệ số giảm theo luỹ thừa vì lời hứa phải sống sót qua mọi kỳ trước đó",
+      "Mức chiết khấu là tuyên bố về độ ổn định của bối cảnh, nên nói ra thành lời",
+      "Một con số phần trăm không có mốc thời gian thì chưa phải lời hứa hoàn chỉnh"
+    ],
+    "practicePrompt": {
+      "question": "r = 10% mỗi quý. Lợi ích 100 giờ ở quý thứ tư quy về hiện tại còn khoảng bao nhiêu?",
+      "options": [
+        "68 giờ",
+        "60 giờ (= lấy 100 trừ đi 10% nhân với bốn kỳ, tức trừ tuyến tính)",
+        "90 giờ (= chỉ áp dụng mức chiết khấu cho đúng một kỳ duy nhất)",
+        "40 giờ (= dùng nhầm hệ số của quý thứ chín thay vì quý thứ tư)"
+      ],
+      "correct": 0,
+      "explanation": "1,1 mũ 4 bằng 1,464, và 100 chia cho 1,464 ra khoảng 68. Chênh lệch giữa 68 và cách trừ tuyến tính ra 60 nhỏ ở kỳ gần nhưng lớn dần rất nhanh ở kỳ xa."
+    },
+    "summary": {
+      "keyIdea": "Quy mọi lợi ích về hôm nay trước khi so với công sức bỏ ra hôm nay",
+      "commonMistake": "Cộng thẳng các lợi ích ở những thời điểm khác nhau",
+      "action": "Tìm một đề xuất gần đây ghi phần trăm mà không ghi mốc thời gian."
+    },
+    "application": {
+      "title": "Ba câu khi đọc một đề xuất",
+      "message": "Lợi ích này đến vào kỳ nào? Mức chiết khấu nào đang được dùng ngầm? Bối cảnh có đủ ổn định để đỡ mức ấy không?",
+      "secondary": "Ba câu này thường đủ để tách một đề xuất đứng vững khỏi một đề xuất chỉ nghe hay."
+    },
+    "id": 1047,
+    "slug": "on-tap-npv",
+    "track": "bonus"
   },
   {
     "id": 1048,
@@ -55689,7 +56558,7 @@ export const lessons: Lesson[] = [
     "openingQuestion": "Tỷ lệ trúng đệm giảm từ 95% xuống 90%. Tải xuống cơ sở dữ liệu đổi thế nào?",
     "openingOptions": [
       "Tăng gấp đôi, vì phần trượt đi thẳng xuống mới là thứ tạo tải",
-      "Tăng khoảng 5%, đúng bằng phần trăm tỷ lệ trúng đã giảm đi",
+      "Tăng khoảng 5%, đúng bằng số phần trăm mà tỷ lệ trúng đã giảm",
       "Gần như không đổi, vì 90% vẫn là một tỷ lệ trúng rất cao",
       "Giảm đi, vì đệm giữ ít dữ liệu hơn nên truy vấn nhẹ hơn"
     ],
@@ -61579,191 +62448,214 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1038,
-    "slug": "danh-gia-du-an-npv-irr",
-    "title": "Đánh giá dự án đầu tư nội bộ: NPV, IRR và Payback",
-    "subtitle": "Dự án 80 triệu USD - bao lâu hòa vốn, và có đáng đầu tư không?",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📊",
-    "openingQuestion": "Một dự án cần đầu tư 80 triệu USD, dự kiến tạo dòng tiền đều 25 triệu USD/năm trong 5 năm. WACC của công ty là 12%. Dự án này có đáng đầu tư không?",
+    "title": "Đánh giá một dự án nền tảng nội bộ",
+    "subtitle": "Bỏ ra bao nhiêu, thu lại bao lâu, và vì sao phải chiết khấu phần thu",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "🏗️",
+    "interactiveType": "interest-rate",
+    "whyItMatters": "Mọi dự án nền tảng đều là đánh đổi giữa công sức bỏ ra ngay và thời gian tiết kiệm được về sau. Không có cách nào so hai thứ ấy nếu không quy chúng về cùng một thời điểm, và đó là lý do phép chiết khấu tồn tại.",
+    "openingQuestion": "Dự án nền tảng tốn 6 tháng công, tiết kiệm 1 tháng công mỗi quý. Bao lâu thì hoàn vốn?",
     "openingOptions": [
-      "Không - vì phải 3,2 năm mới hoàn vốn, quá lâu",
-      "Có - NPV dương khoảng +10 triệu USD và IRR (~17%) cao hơn hẳn WACC 12%",
-      "Không thể kết luận nếu chỉ có 3 chỉ số này",
-      "Có - vì tổng dòng tiền 125 triệu USD lớn hơn vốn đầu tư 80 triệu USD"
+      "Sáu quý, nếu phần tiết kiệm giữ nguyên",
+      "Sáu tháng, vì đó là công sức bỏ ra",
+      "Một quý, vì mỗi quý tiết kiệm được một tháng",
+      "Không tính được nếu chưa biết số người trong đội"
     ],
-    "correctOption": 1,
-    "explanation": "PV annuity (25 triệu × hệ số annuity 12%/5 năm ≈ 3,605) = 25 × 3,605 ≈ 90,1 triệu USD. NPV = 90,1 − 80 = +10,1 triệu USD - dương nên tạo giá trị. IRR (tỷ lệ chiết khấu làm NPV = 0) của dòng tiền này xấp xỉ 17%, cao hơn WACC 12%, nên IRR cũng đồng ý nên đầu tư. Payback period = 80/25 = 3,2 năm - chỉ cho biết tốc độ thu hồi vốn, không nói lên dự án có tạo giá trị hay không, nên không nên dùng một mình để quyết định.",
+    "correctOption": 0,
+    "explanation": "Sáu tháng công chia cho một tháng công mỗi quý ra sáu quý, tức một năm rưỡi. Con số ấy là điểm khởi đầu chứ chưa phải câu trả lời, vì nó giả định phần tiết kiệm giữ nguyên suốt sáu quý và đội vẫn còn làm đúng sản phẩm ấy. Cả hai giả định đều mong manh, và đó chính là lý do phần thu về phải được chiết khấu chứ không cộng thẳng.",
     "diagram": [
       {
-        "label": "Dự báo dòng tiền dự án qua các năm",
+        "label": "Công sức bỏ ra, trả ngay",
         "arrow": true
       },
       {
-        "label": "Chiết khấu bằng WACC ra NPV",
+        "label": "Thời gian tiết kiệm, trải nhiều quý",
         "arrow": true
       },
       {
-        "label": "Tìm tỷ lệ làm NPV bằng 0 để có IRR",
+        "label": "Chiết khấu phần trải dài về hiện tại",
         "arrow": true
       },
       {
-        "label": "Payback chỉ nói tốc độ thu hồi - khi phải chọn một dự án thì theo NPV"
+        "label": "Hiệu số mới là lý do làm hay không làm"
       }
     ],
     "realWorldExample": {
-      "company": "Vinamilk",
-      "description": "Khi cân nhắc đầu tư nhà máy mới, các tập đoàn sản xuất lớn như Vinamilk thường trình bày cả ba chỉ số NPV, IRR và Payback trong hồ sơ phê duyệt dự án - NPV và IRR để đánh giá dự án có tạo giá trị hay không, Payback để ước lượng rủi ro thanh khoản (bao lâu thì vốn bỏ ra quay trở lại)."
+      "company": "Nền tảng dựng xong lúc sản phẩm đổi hướng",
+      "description": "Một đội bỏ tám tháng dựng nền tảng nội bộ để mỗi nhóm sản phẩm bớt được hai tuần mỗi quý. Tính ra hoàn vốn sau bốn quý. Tới quý thứ hai công ty đổi hướng, hai trong bốn nhóm dùng nền tảng ấy bị giải thể, và phần tiết kiệm còn lại một nửa. Dự án không sai về kỹ thuật - nó chỉ được tính với giả định rằng bốn quý tới trông giống hôm nay."
     },
-    "quiz": [
-      {
-        "question": "NPV và IRR của một dự án đôi khi đưa ra kết luận trái ngược nhau khi so sánh giữa nhiều dự án loại trừ lẫn nhau (chỉ chọn một). Trong trường hợp đó, nên ưu tiên chỉ số nào?",
-        "options": [
-          "Payback Period vì đơn giản và trực quan nhất",
-          "IRR vì thể hiện tỷ suất sinh lời phần trăm, dễ so sánh giữa các dự án",
-          "NPV vì đo trực tiếp bằng số tiền giá trị tạo ra, phản ánh đúng mục tiêu tối đa hóa giá trị doanh nghiệp",
-          "Cả hai chỉ số quan trọng như nhau, không có ưu tiên nào đúng trong mọi trường hợp"
-        ],
-        "correct": 2,
-        "explanation": "NPV đo giá trị tuyệt đối tạo ra (bằng tiền), còn IRR đo tỷ suất sinh lời (phần trăm) và có thể gây hiểu lầm khi so sánh các dự án có quy mô vốn khác nhau - một dự án IRR 40% trên vốn 1 triệu USD tạo ra ít giá trị hơn một dự án IRR 15% trên vốn 100 triệu USD. Vì mục tiêu doanh nghiệp là tối đa hóa giá trị (bằng tiền), NPV là chỉ số nên ưu tiên khi hai chỉ số mâu thuẫn."
-      },
-      {
-        "question": "Payback Period = 3,2 năm cho dự án trên có ý nghĩa gì, và tại sao không nên dùng một mình để ra quyết định đầu tư?",
-        "options": [
-          "Nó cho biết dự án có sinh lời hay không, đủ để ra quyết định",
-          "Nó chỉ đo tốc độ thu hồi vốn danh nghĩa, hoàn toàn bỏ qua dòng tiền sau năm hoàn vốn và giá trị thời gian của tiền",
-          "Nó tương đương với NPV nhưng tính bằng năm thay vì tiền",
-          "Nó chỉ áp dụng được cho dự án có dòng tiền không đều"
-        ],
-        "correct": 1,
-        "explanation": "Payback Period chỉ trả lời câu hỏi \"bao lâu thì lấy lại vốn\", không chiết khấu dòng tiền về hiện tại (bỏ qua time value of money) và hoàn toàn bỏ qua giá trị các dòng tiền phát sinh sau mốc hoàn vốn - hai dự án cùng payback 3,2 năm nhưng một dự án còn tạo dòng tiền lớn ở năm 4-5, một dự án dừng lại, sẽ có NPV rất khác nhau dù payback giống hệt."
-      },
-      {
-        "question": "Dự án A cần 10 tỷ, IRR 40%, giá trị hiện tại ròng 3 tỷ. Dự án B cần 100 tỷ, IRR 18%, giá trị hiện tại ròng 12 tỷ. Chỉ chọn được một và doanh nghiệp đủ vốn. Nên chọn gì?",
-        "options": [
-          "Dự án B, vì nó làm tăng giá trị doanh nghiệp thêm 12 tỷ thay vì 3 tỷ",
-          "Dự án A, vì tỷ suất sinh lời cao hơn nhiều",
-          "Không chọn dự án nào vì hai chỉ số mâu thuẫn",
-          "Chọn dự án A rồi dùng phần vốn còn lại cho dự án khác"
-        ],
-        "correct": 0,
-        "explanation": "Mục tiêu là tối đa hóa giá trị tuyệt đối, không phải tối đa hóa tỷ suất phần trăm. Khi hai chỉ số mâu thuẫn ở các dự án loại trừ nhau, giá trị hiện tại ròng là chỉ số quyết định."
-      },
-      {
-        "question": "Vì sao thời gian hoàn vốn không nên dùng một mình để quyết định đầu tư?",
-        "options": [
-          "Vì nó bỏ qua giá trị thời gian của tiền và toàn bộ dòng tiền phát sinh sau mốc hoàn vốn",
-          "Vì nó luôn cho kết quả sai",
-          "Vì nó chỉ áp dụng cho dự án dưới 5 năm",
-          "Vì nó đòi hỏi phải biết trước tỷ suất chiết khấu"
-        ],
-        "correct": 0,
-        "explanation": "Một dự án hoàn vốn nhanh rồi hết dòng tiền có thể kém hơn nhiều so với dự án hoàn vốn chậm nhưng tạo dòng tiền lớn kéo dài. Chỉ số này hữu ích như một thước đo rủi ro bổ sung, không phải tiêu chí quyết định."
-      }
-    ],
-    "keyTakeaways": [
-      "NPV dương và IRR cao hơn WACC đều là tín hiệu nên đầu tư - hai chỉ số này thường đồng thuận với dòng tiền thông thường",
-      "Khi so sánh nhiều dự án loại trừ lẫn nhau, ưu tiên NPV vì nó đo giá trị tuyệt đối, đúng mục tiêu tối đa hóa giá trị doanh nghiệp",
-      "Payback Period chỉ nên dùng bổ sung để đánh giá rủi ro thanh khoản, không thay thế được NPV/IRR vì bỏ qua time value of money và dòng tiền sau mốc hoàn vốn"
-    ],
-    "track": "bonus",
     "sections": [
       {
         "type": "lead",
-        "text": "NPV, IRR và Payback Period - ba chỉ số thường được dùng cùng nhau để đánh giá một dự án đầu tư, nhưng đôi khi chúng đưa ra kết luận trái ngược nhau."
+        "text": "Dự án nền tảng luôn có cùng một hình dạng: trả trước bằng công sức, thu về bằng thời gian tiết kiệm trải dài. Câu hỏi khó không phải tính toán mà là phần thu về đáng tin tới đâu."
       },
       {
         "type": "heading",
-        "text": "Khi ba chỉ số đồng thuận - và khi chúng mâu thuẫn"
+        "text": "Vì sao phải chiết khấu phần thu"
       },
       {
         "type": "paragraph",
-        "text": "Với dự án 80 triệu USD, NPV dương (+10,1 triệu) và IRR (~17%) cao hơn WACC (12%) đều đồng thuận nên đầu tư - đây là trường hợp thông thường với dòng tiền đều đặn. Nhưng khi so sánh nhiều dự án loại trừ lẫn nhau, NPV và IRR có thể mâu thuẫn: NPV đo giá trị tuyệt đối tạo ra, còn IRR đo tỷ suất phần trăm và có thể gây hiểu lầm khi so sánh các dự án quy mô vốn khác nhau. Payback Period (3,2 năm) chỉ đo tốc độ thu hồi vốn, bỏ qua time value of money và dòng tiền sau mốc hoàn vốn - không nên dùng một mình để quyết định."
+        "text": "Một tháng công tiết kiệm được vào quý sau đáng giá hơn một tháng công tiết kiệm được vào quý thứ tám, vì quý sau thì gần như chắc chắn còn đúng, còn quý thứ tám thì phụ thuộc vào việc sản phẩm còn tồn tại, đội còn nguyên, và nhu cầu chưa đổi. Chiết khấu không phải một thủ thuật kế toán - nó là cách đưa mức độ không chắc chắn ấy vào con số thay vì để nó nằm ngoài."
       },
       {
         "type": "list",
         "items": [
-          "NPV dương và IRR cao hơn WACC đều là tín hiệu nên đầu tư khi dòng tiền thông thường",
-          "Khi so sánh nhiều dự án loại trừ lẫn nhau, ưu tiên NPV vì đo giá trị tuyệt đối, đúng mục tiêu tối đa hóa giá trị doanh nghiệp",
-          "Payback Period chỉ nên dùng bổ sung đánh giá rủi ro thanh khoản, không thay thế NPV/IRR"
+          "Công sức bỏ ra: đếm bằng tháng công, và luôn nhân đôi ước lượng đầu tiên",
+          "Thời gian thu về: chỉ tính phần đo được, bỏ phần dự đoán đội sẽ đi nhanh hơn",
+          "Mức chiết khấu: cao khi hướng sản phẩm còn mơ hồ, thấp khi hạ tầng đã ổn định",
+          "Chân trời: không tính quá tám quý, vì xa hơn thế thì mọi giả định đều vô nghĩa"
         ]
       },
       {
-        "type": "conceptTable",
-        "title": "Ba chỉ số, ba câu hỏi",
-        "concepts": [
+        "type": "formula",
+        "title": "Hai con số và một điều kiện",
+        "variables": [
           {
-            "vi": "Giá trị hiện tại ròng",
-            "en": "NPV",
-            "def": "Dự án tạo thêm bao nhiêu giá trị tuyệt đối sau khi đã trừ chi phí vốn? Dương nghĩa là đáng làm. Đây là chỉ số khớp trực tiếp với mục tiêu tối đa hóa giá trị doanh nghiệp."
+            "symbol": "C",
+            "name": "Chi phí = tổng tháng công bỏ ra",
+            "description": "Gồm cả phần đội bị hút khỏi việc khác. Đây là khoản duy nhất chắc chắn trong cả phép tính."
           },
           {
-            "vi": "Tỷ suất hoàn vốn nội bộ",
-            "en": "IRR",
-            "def": "Dự án sinh lời bao nhiêu phần trăm mỗi năm? Dễ so sánh với chi phí vốn, nhưng không nói gì về quy mô giá trị tạo ra."
+            "symbol": "S",
+            "name": "Tiết kiệm mỗi quý = tháng công không phải bỏ ra nữa",
+            "description": "Đo bằng thứ đang tốn thật hôm nay, không bằng thứ bạn nghĩ sẽ tốn nếu không làm gì."
           },
           {
-            "vi": "Thời gian hoàn vốn",
-            "en": "Payback",
-            "def": "Bao lâu thì thu lại đủ vốn bỏ ra? Đo rủi ro thanh khoản và mức độ phơi nhiễm với bất định, nhưng bỏ qua giá trị thời gian của tiền và toàn bộ dòng tiền sau mốc hoàn vốn."
+            "symbol": "PV",
+            "name": "Giá trị hiện tại = tổng S đã chiết khấu theo từng quý",
+            "description": "Mỗi quý xa hơn thì phần đóng góp nhỏ đi. Quý thứ tám thường chỉ còn đóng góp một nửa."
+          },
+          {
+            "symbol": "Net",
+            "name": "Hiệu số = PV − C",
+            "description": "Dương thì đáng làm. Nhưng hiệu số dương mỏng cộng ước lượng lạc quan thì thực chất là âm."
           }
         ]
       },
       {
         "type": "heading",
-        "text": "Khi hai chỉ số mâu thuẫn thì tin cái nào"
-      },
-      {
-        "type": "paragraph",
-        "text": "Tình huống điển hình: dự án A cần 10 tỷ và có IRR 40%, tạo giá trị hiện tại ròng 3 tỷ. Dự án B cần 100 tỷ với IRR 18%, tạo giá trị hiện tại ròng 12 tỷ. Nếu chỉ được chọn một và doanh nghiệp không thiếu vốn, dự án B đáng chọn hơn dù tỷ suất thấp hơn, vì nó làm doanh nghiệp giàu thêm 12 tỷ thay vì 3 tỷ. Tỷ suất phần trăm cao trên một số vốn nhỏ không bằng tỷ suất vừa phải trên một số vốn lớn - đây là lý do khi phải chọn một trong nhiều dự án loại trừ nhau, giá trị hiện tại ròng là chỉ số quyết định."
-      },
-      {
-        "type": "callout",
-        "label": "Hai hạn chế kỹ thuật của IRR",
-        "text": "Một: nếu dòng tiền đổi dấu nhiều lần - ví dụ có một đợt tái đầu tư lớn ở giữa vòng đời dự án - phương trình có thể cho nhiều giá trị IRR khác nhau, và không giá trị nào có ý nghĩa. Hai: IRR ngầm giả định dòng tiền thu về được tái đầu tư ở chính mức IRR đó, một giả định thường quá lạc quan với các dự án có IRR rất cao."
-      },
-      {
-        "type": "heading",
-        "text": "Ba việc nên làm trước khi trình một dự án"
+        "text": "Ba cách phép tính này bị bẻ cong"
       },
       {
         "type": "list",
         "items": [
-          "Liệt kê rõ giả định về doanh thu, chi phí và thời điểm dòng tiền, cùng nguồn của từng giả định.",
-          "Chạy bảng nhạy cảm cho hai biến quan trọng nhất, và nêu rõ giả định phải lệch bao nhiêu thì giá trị hiện tại ròng chuyển sang âm.",
-          "Kiểm tra tỷ suất chiết khấu đang dùng có phản ánh đúng rủi ro của chính dự án này không, thay vì mặc định lấy chi phí vốn bình quân của cả doanh nghiệp."
+          "Đếm phần tiết kiệm bằng thứ chưa từng đo, chỉ bằng cảm giác là sẽ nhanh hơn",
+          "Kéo dài chân trời tới mười hai quý để hiệu số thành dương",
+          "Bỏ qua phần công sức duy trì chính nền tảng ấy sau khi dựng xong"
         ]
+      },
+      {
+        "type": "callout",
+        "label": "Nền tảng cũng phải được nuôi",
+        "text": "Phần bị quên nhiều nhất là chi phí duy trì. Một nền tảng nội bộ cần người sửa lỗi, trả lời câu hỏi, nâng phiên bản, và viết tài liệu - thường tốn khoảng một phần năm công sức dựng nó mỗi năm. Trừ khoản ấy ra khỏi phần tiết kiệm trước khi so, nếu không bạn đang so chi phí một lần với lợi ích vĩnh viễn."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Dự án đáng làm",
+          "text": "Phần tiết kiệm đo được từ số liệu hôm nay, chân trời ngắn, và hiệu số vẫn dương sau khi trừ chi phí duy trì."
+        },
+        "right": {
+          "label": "Dự án nghe hay",
+          "text": "Phần tiết kiệm là ước đoán, chân trời kéo dài tới lúc hiệu số thành dương, và chi phí duy trì chưa ai tính."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Không có chỉ số đơn lẻ nào kể hết câu chuyện về một dự án đầu tư.",
-          "NPV, IRR và Payback mỗi cái trả lời một câu hỏi khác nhau - cần đọc cả ba cùng nhau."
+          "Chi phí trả ngay và đo được; lợi ích trải dài và phụ thuộc vào tương lai còn giống hôm nay.",
+          "Chiết khấu là cách đưa điều đó vào con số thay vì để nó nằm ngoài bảng tính."
         ]
       }
     ],
-    "summary": {
-      "keyIdea": "NPV dương và IRR cao hơn WACC đều là tín hiệu nên đầu tư - hai chỉ số này thường đồng thuận với dòng tiền thông thường",
-      "commonMistake": "Dễ bỏ qua: khi so sánh nhiều dự án loại trừ lẫn nhau, ưu tiên NPV vì nó đo giá trị tuyệt đối, đúng mục tiêu tối đa hóa giá trị doanh nghiệp",
-      "action": "Payback Period chỉ nên dùng bổ sung để đánh giá rủi ro thanh khoản, không thay thế được NPV/IRR vì bỏ qua time value of money và dòng tiền sau mốc hoàn vốn"
-    },
+    "quiz": [
+      {
+        "question": "Vì sao phần tiết kiệm ở quý xa phải được chiết khấu mạnh hơn?",
+        "options": [
+          "Vì càng xa thì càng ít chắc chắn rằng nó còn đúng",
+          "Vì chi phí nhân sự của đội sẽ tăng dần theo từng quý trong khoảng thời gian đó",
+          "Vì công cụ đo lường mất dần độ chính xác khi khoảng thời gian kéo dài ra",
+          "Vì phần tiết kiệm ở quý xa thường được tính trùng với phần của quý gần"
+        ],
+        "correct": 0,
+        "explanation": "Chiết khấu ở đây không phải về lạm phát mà về xác suất. Quý thứ tám đòi hỏi sản phẩm còn sống, đội còn nguyên và nhu cầu chưa đổi - ba điều kiện mà mỗi cái đều có thể sai."
+      },
+      {
+        "question": "Chi phí 6 tháng công, tiết kiệm 1 tháng mỗi quý, chân trời 8 quý. Chưa chiết khấu thì hiệu số là bao nhiêu?",
+        "options": [
+          "Dương 2 tháng công",
+          "Dương 8 tháng công (= tổng tiết kiệm, quên trừ chi phí bỏ ra ban đầu)",
+          "Âm 6 tháng công (= chỉ tính chi phí, quên cộng phần tiết kiệm)",
+          "Dương 14 tháng công (= cộng cả chi phí vào phần tiết kiệm)"
+        ],
+        "correct": 0,
+        "explanation": "Tám quý nhân một tháng ra tám, trừ sáu còn hai. Biên độ hai tháng trên tám quý là rất mỏng, nên chỉ cần chiết khấu nhẹ hoặc ước lượng lệch một chút là nó thành âm."
+      },
+      {
+        "question": "Điều gì bị quên nhiều nhất khi tính lợi ích của nền tảng nội bộ?",
+        "options": [
+          "Chi phí duy trì chính nền tảng ấy sau khi dựng xong",
+          "Thời gian đội cần để học cách sử dụng nền tảng mới trong tháng đầu tiên",
+          "Chi phí hạ tầng tăng thêm do phải chạy nền tảng song song với hệ thống cũ",
+          "Phần công sức bỏ ra để thuyết phục các nhóm khác chuyển sang dùng nó"
+        ],
+        "correct": 0,
+        "explanation": "Ba khoản kia đều có thật nhưng chúng là chi phí một lần và thường được nhớ. Chi phí duy trì thì lặp lại mãi, khoảng một phần năm công sức dựng mỗi năm, và nó biến một hiệu số dương mỏng thành âm."
+      },
+      {
+        "question": "Kéo dài chân trời từ 8 lên 12 quý để hiệu số thành dương. Vấn đề là gì?",
+        "options": [
+          "Đang chọn giả định để hợp thức hoá kết luận đã có sẵn",
+          "Chân trời dài hơn đòi hỏi phải dùng mức chiết khấu khác nên phép tính phức tạp hơn",
+          "Các công cụ lập kế hoạch nội bộ thường không hỗ trợ chân trời quá tám quý",
+          "Phần tiết kiệm ở quý thứ chín trở đi rất khó đo lường một cách chính xác"
+        ],
+        "correct": 0,
+        "explanation": "Đây là dấu hiệu rõ nhất của một phép tính được làm ngược. Chân trời phải được chọn theo mức độ đáng tin của giả định, chứ không theo con số bạn muốn nhìn thấy ở ô cuối."
+      },
+      {
+        "question": "Hiệu số dương mỏng, ước lượng công sức do chính đội đề xuất dự án đưa ra. Nên làm gì?",
+        "options": [
+          "Nhân đôi phần chi phí rồi tính lại trước khi quyết",
+          "Chấp nhận con số vì đội đề xuất là nơi hiểu rõ khối lượng công việc nhất",
+          "Giảm chân trời xuống một nửa để có con số thận trọng hơn hẳn",
+          "Yêu cầu một đội khác ước lượng lại toàn bộ dự án từ đầu"
+        ],
+        "correct": 0,
+        "explanation": "Ước lượng công sức lệch thấp là quy luật chứ không phải ngoại lệ, và nó lệch mạnh nhất khi người ước lượng cũng là người muốn dự án được duyệt. Nhân đôi là cách thô nhưng nó bắt được phần lớn trường hợp."
+      }
+    ],
+    "keyTakeaways": [
+      "Chi phí trả ngay và đo được; lợi ích trải dài và phụ thuộc vào giả định",
+      "Chiết khấu ở đây là về xác suất giả định còn đúng, không phải về lạm phát",
+      "Trừ chi phí duy trì trước khi so, nếu không là so chi phí một lần với lợi ích vĩnh viễn",
+      "Chân trời chọn theo độ tin cậy của giả định, không theo con số muốn thấy"
+    ],
     "practicePrompt": {
-      "question": "Khi đánh giá một dự án đầu tư nội bộ trị giá 80 triệu USD, quy tắc quyết định dựa trên Giá trị hiện tại thuần (NPV) và Tỷ suất hoàn vốn nội bộ (IRR) là gì?",
+      "question": "Dự án 10 tháng công, tiết kiệm 2 tháng mỗi quý, duy trì tốn 2 tháng mỗi năm. Tiết kiệm ròng mỗi quý là bao nhiêu?",
       "options": [
-        "Chấp nhận nếu NPV > 0 và IRR > WACC",
-        "Chấp nhận dự án nếu thời gian hoàn vốn > 50 năm",
-        "Chấp nhận dự án khi NPV < 0",
-        "Chỉ đầu tư nếu IRR bằng 0%"
+        "1,5 tháng",
+        "2 tháng (= phần tiết kiệm gộp, quên trừ chi phí duy trì hằng năm)",
+        "0 tháng (= trừ nguyên 2 tháng duy trì vào mỗi quý thay vì mỗi năm)",
+        "1 tháng (= chia đôi phần tiết kiệm thay vì trừ phần duy trì)"
       ],
       "correct": 0,
-      "explanation": "Quy tắc thẩm định dự án đầu tư: NPV > 0 có nghĩa dự án tạo ra giá trị thặng dư cho cổ đông; IRR > WACC đảm bảo tỷ suất sinh lời của dự án vượt qua chi phí cơ hội vốn."
+      "explanation": "Hai tháng duy trì mỗi năm là nửa tháng mỗi quý. Hai trừ nửa còn một rưỡi, nên thời gian hoàn vốn không phải năm quý mà là gần bảy quý."
+    },
+    "summary": {
+      "keyIdea": "Quy công sức bỏ ra và thời gian thu về cùng một thời điểm, rồi mới so",
+      "commonMistake": "So chi phí một lần với phần tiết kiệm coi như vĩnh viễn",
+      "action": "Tính lại dự án gần nhất với chân trời tám quý và trừ chi phí duy trì."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Đánh giá dự án đầu tư nội bộ: NPV, IRR và Payback",
-      "message": "Khi đánh giá một dự án đầu tư nội bộ trị giá 80 triệu USD, quy tắc quyết định dựa trên Giá trị hiện tại thuần (NPV) và Tỷ suất hoàn vốn nội bộ (IRR) là gì?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+      "title": "Bốn con số trước khi trình bày",
+      "message": "Công sức bỏ ra đã nhân đôi. Tiết kiệm mỗi quý đo từ số liệu hôm nay. Chi phí duy trì mỗi năm. Chân trời tối đa tám quý.",
+      "secondary": "Nếu hiệu số vẫn dương sau bốn nhát ấy thì dự án đứng vững. Nếu nó chỉ dương khi kéo chân trời dài ra, bạn vừa biết câu trả lời thật."
+    },
+    "id": 1038,
+    "slug": "danh-gia-du-an-npv-irr",
+    "track": "bonus"
   },
 
 

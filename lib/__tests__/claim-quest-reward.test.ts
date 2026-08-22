@@ -37,13 +37,28 @@ function mockFetchOnce(status: number, body: unknown) {
   });
 }
 
+// Registry module phải sạch TRƯỚC mỗi câu kiểm, không phải chỉ sau.
+//
+// Bản cũ chỉ gọi `vi.resetModules()` trong `afterEach`, nên câu kiểm ĐẦU TIÊN
+// của tệp này chạy với bất cứ thứ gì tệp chạy trước đó để lại trong registry -
+// kể cả một bản `lib/supabase-quests` đã nạp sẵn và đóng gói một `fetch` khác.
+// Chạy riêng tệp thì registry vốn đã sạch nên 6/6 xanh; chạy trong cả bộ thì
+// đỏ lúc được lúc không, tuỳ tệp nào rơi vào cùng worker trước nó.
+//
+// `globalThis.fetch` cũng phải tự dọn: nó được GÁN THẲNG chứ không phải spy,
+// nên `vi.restoreAllMocks()` không đụng tới nó, và bản mock sống tiếp sang tệp
+// sau trong cùng worker.
+const originalFetch = (globalThis as Record<string, unknown>).fetch;
+
 beforeEach(() => {
+  vi.resetModules();
   localStorage.clear();
 });
 
 afterEach(() => {
   vi.resetModules();
   vi.restoreAllMocks();
+  (globalThis as Record<string, unknown>).fetch = originalFetch;
 });
 
 async function claimQuestReward(...args: Parameters<typeof import("../supabase-quests").claimQuestReward>) {

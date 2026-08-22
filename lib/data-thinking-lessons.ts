@@ -905,7 +905,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
     openingOptions: [
       "Không, vì biến giới tính đã bị loại khỏi mô hình",
       "Có, vì các biến khác có thể tương quan với giới tính",
-      "Không, trừ khi người xây mô hình cố tình can thiệp",
+      "Không, trừ khi người xây mô hình cố tình đưa giới tính vào",
       "Có, nhưng chỉ khi dữ liệu huấn luyện quá nhỏ",
     ],
     correctOption: 1,

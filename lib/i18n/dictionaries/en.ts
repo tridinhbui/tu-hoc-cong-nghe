@@ -1499,7 +1499,7 @@ export const en: Dictionary = {
     "vn-tech-market": "The Vietnamese tech market in practice",
     "digital-assets-risk": "Blockchain & its risks",
     "fraud-safety": "Security & defending against attacks",
-    "real-estate-vn": "Mobile apps in Vietnam",
+    "mobile-apps-vn": "Mobile apps in Vietnam",
     "life-expenses": "The big projects in a career",
     "health-risk": "Occupational health & human risk",
     "life-stage": "A tech career by stage",

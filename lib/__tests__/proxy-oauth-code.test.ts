@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import path from "path";
 
 /** Mã OAuth rơi xuống trang chủ thì phải được chuyển tiếp sang /auth/callback.
@@ -8,46 +8,57 @@ import path from "path";
  *  dự án. Không khớp thì nó rơi về "Site URL" - trang chủ - và gắn `?code=` vào
  *  đó, không báo lỗi gì. Người dùng đứng ở `/?code=<uuid>` và chưa đăng nhập.
  *
- *  Bộ kiểm đọc mã nguồn chứ không gọi hàm: `proxy.ts` chạy `setInterval` ở tầng
- *  module và import `next/server`, nên nạp nó vào vitest kéo theo một bộ hẹn
- *  giờ sống mãi và một nửa runtime của Next. Thứ đáng gác ở đây là THỨ TỰ, và
- *  thứ tự đọc được từ nguồn.
+ *  Nhánh này đã đi qua ba chỗ, và bài test đi theo:
  *
- *  THỨ TỰ MỚI LÀ PHẦN DỄ HỎNG. Nhánh này phải đứng TRƯỚC phép kiểm cookie
- *  phiên: người vừa đăng nhập bằng Google chưa có cookie nào cả - đó là điều
- *  họ đang cố lấy - nên nếu nhánh cookie chạy trước, request sẽ rơi vào lối
- *  "khách chưa đăng nhập", trang chủ dựng ra bình thường, và mã không bao giờ
- *  được đổi lấy phiên. Đúng cái lỗi ban đầu, chỉ khác là lần này do mình tự
- *  dựng lại. */
+ *   1. `proxy.ts`. Đi cùng proxy, vì Next 16 chạy Proxy ở runtime Node còn
+ *      Workers thì chưa hỗ trợ.
+ *   2. `redirects()` trong next.config.ts - đúng ra là chỗ tốt nhất, vì nó
+ *      chạy ở tầng định tuyến trước mọi mã ứng dụng. KHÔNG DÙNG ĐƯỢC:
+ *      `@opennextjs/cloudflare` bỏ qua điều kiện `has`, nên quy tắc khớp cả
+ *      request KHÔNG có `?code=`. Đo trên cùng một routes-manifest: `next dev`
+ *      trả 200 cho `/`, Worker trả 307 - trang chủ bị đá đi ở mọi lượt vào.
+ *   3. `components/home/RedirectSignedIn.tsx`, phía trình duyệt.
+ *
+ *  Bài test đọc nguồn chứ không dựng component: thứ đáng gác ở đây là THỨ TỰ,
+ *  và thứ tự đọc được từ nguồn. */
 
-const source = readFileSync(path.join(process.cwd(), "proxy.ts"), "utf8");
+const repoRoot = process.cwd();
+const gate = path.join(repoRoot, "components", "home", "RedirectSignedIn.tsx");
+const source = readFileSync(gate, "utf8");
+
+// Đo trên nguồn ĐÃ BỎ CHÚ THÍCH. Bản đầu của bài test này đo trên nguồn thô và
+// hỏng ngay: tệp mở đầu bằng một chú thích kể lại lịch sử ba chỗ nhánh này từng
+// nằm, trong đó có chữ "getSession()", nên phép so vị trí đọc phải một câu văn
+// chứ không phải một lời gọi. Chú thích càng kỹ thì bẫy này càng dễ sập.
+const code = source
+  .replace(/\/\*[\s\S]*?\*\//g, "")
+  .split("\n")
+  .filter((line) => !line.trim().startsWith("//"))
+  .join("\n");
 
 describe("mã OAuth rơi xuống trang chủ", () => {
-  it("proxy có nhánh chuyển tiếp sang /auth/callback", () => {
-    expect(source).toMatch(/pathname === "\/"[\s\S]{0,80}searchParams\.has\("code"\)/);
-    expect(source).toContain('new URL("/auth/callback", request.url)');
+  it("trang chủ có nhánh chuyển tiếp sang /auth/callback", () => {
+    expect(code).toContain('get("code")');
+    expect(code).toMatch(/router\.replace\(`\/auth\/callback/);
   });
 
-  it("giữ nguyên query để `code` và `next` cùng đi tiếp", () => {
-    // Dựng lại URL mà bỏ query là đổi một lần đăng nhập hỏng thành một lần
-    // đăng nhập hỏng theo kiểu khác: callback không có mã thì đá thẳng /login.
-    expect(source).toMatch(/callback\.search = request\.nextUrl\.search/);
+  it("nhánh mã OAuth chạy TRƯỚC phép kiểm phiên", () => {
+    // Người vừa đăng nhập bằng Google chưa có phiên nào - đó chính là thứ họ
+    // đang cố lấy. Kiểm phiên trước thì hàm thoát ở nhánh "chưa đăng nhập" và
+    // mã không bao giờ được đổi lấy phiên: đúng lỗi ban đầu, tự dựng lại.
+    const codeAt = code.indexOf('get("code")');
+    const sessionAt = code.indexOf("getSession()");
+    expect(codeAt).toBeGreaterThan(-1);
+    expect(sessionAt).toBeGreaterThan(-1);
+    expect(codeAt).toBeLessThan(sessionAt);
   });
 
-  it("đứng TRƯỚC phép kiểm cookie phiên", () => {
-    const codeBranch = source.indexOf('searchParams.has("code")');
-    const cookieBranch = source.indexOf("hasSupabaseAuthCookie(");
-    expect(codeBranch, "không tìm thấy nhánh mã OAuth").toBeGreaterThan(-1);
-    expect(cookieBranch, "không tìm thấy nhánh cookie phiên").toBeGreaterThan(-1);
-    expect(
-      codeBranch,
-      "người vừa đăng nhập chưa có cookie phiên, nên nhánh cookie chạy trước sẽ nuốt mất mã"
-    ).toBeLessThan(cookieBranch);
+  it("không quay lại next.config, nơi adapter bỏ qua điều kiện has", () => {
+    const config = readFileSync(path.join(repoRoot, "next.config.ts"), "utf8");
+    expect(config).not.toMatch(/type:\s*"query",\s*key:\s*"code"/);
   });
 
-  it("chỉ nhận ở trang chủ, không phải mọi đường dẫn có ?code=", () => {
-    // Trang chủ là nơi DUY NHẤT Supabase rơi về. Bắt rộng hơn là nhận cả những
-    // trang có tham số `code` mang nghĩa khác.
-    expect(source).toMatch(/pathname === "\/" && request\.nextUrl\.searchParams\.has\("code"\)/);
+  it("proxy.ts không quay lại", () => {
+    expect(existsSync(path.join(repoRoot, "proxy.ts"))).toBe(false);
   });
 });

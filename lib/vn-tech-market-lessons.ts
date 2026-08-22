@@ -37,7 +37,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
       "Bằng chứng ứng viên đã làm được thứ gần giống việc mà công ty đang cần tuyển",
       "Số lượng công nghệ được liệt kê, vì càng nhiều thì càng dễ ghép vào dự án",
       "Điểm trung bình đại học và tên trường, vì đó là thước đo khách quan nhất",
-      "Số năm kinh nghiệm cộng dồn, vì thời gian phản ánh độ thành thạo tương ứng",
+      "Số năm kinh nghiệm cộng dồn, vì thời gian phản ánh đúng độ thành thạo tương ứng",
     ],
     correctOption: 0,
     explanation:
@@ -70,7 +70,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "README của một kho mã trong hồ sơ nên đạt điều gì trước hết?",
         options: [
           "Người lạ chạy được dự án mà không phải hỏi thêm câu nào",
-          "Trình bày đầy đủ kiến trúc hệ thống kèm sơ đồ các thành phần và luồng dữ liệu",
+          "Trình bày đầy đủ kiến trúc hệ thống kèm sơ đồ các thành phần",
           "Liệt kê hết mọi thư viện đã dùng cùng phiên bản chính xác của từng thư viện",
           "Kể lại quá trình học công nghệ đó và những khó khăn đã gặp trong lúc làm",
         ],
@@ -82,7 +82,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Cách mô tả một dự án trong CV nào có sức thuyết phục hơn?",
         options: [
           "Nói rõ vấn đề, cách giải và kết quả đo được",
-          "Liệt kê tên các công nghệ đã dùng trong dự án theo thứ tự từ nền tảng tới giao diện",
+          "Liệt kê tên các công nghệ đã dùng trong dự án",
           "Mô tả đầy đủ mọi tính năng của sản phẩm để người đọc hình dung được toàn bộ phạm vi",
           "Ghi thời lượng thực hiện và số người tham gia để người đọc ước lượng được quy mô",
         ],
@@ -94,9 +94,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Đóng góp mã nguồn mở giúp hồ sơ ở điểm nào là chính?",
         options: [
           "Nó là bằng chứng công khai rằng bạn làm việc được trong mã của người khác",
-          "Nó chứng minh năng lực kỹ thuật cao hơn hẳn so với các dự án cá nhân tự làm",
-          "Nó giúp hồ sơ được các công cụ tìm kiếm của nhà tuyển dụng xếp lên vị trí cao hơn",
-          "Nó thay thế được phần kinh nghiệm làm việc với những ai chưa từng đi làm chính thức",
+          "Nó chứng minh năng lực cao hơn hẳn các dự án cá nhân tự làm",
+          "Nó giúp hồ sơ được các công cụ tìm kiếm của nhà tuyển dụng xếp lên cao hơn",
+          "Nó thay được kinh nghiệm với người chưa đi làm",
         ],
         correct: 0,
         explanation:
@@ -108,7 +108,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Có, nếu bạn đã mở rộng nó thêm và nói rõ phần nào là của mình",
           "Không, vì mọi dự án làm theo hướng dẫn đều bị nhà tuyển dụng nhận ra và loại ngay",
           "Có, và nên đưa càng nhiều càng tốt vì số lượng dự án là thứ được đếm trước tiên",
-          "Không, trừ khi bạn đã viết lại toàn bộ mã nguồn từ đầu mà không nhìn hướng dẫn nữa",
+          "Không, trừ khi đã viết lại từ đầu",
         ],
         correct: 0,
         explanation:
@@ -121,7 +121,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
       options: [
         "Ghim hai kho tốt nhất và viết README tử tế cho chúng",
         "Xóa hết bốn kho bài tập đi vì hồ sơ có kho dở sẽ bị đánh giá thấp ngay lập tức",
-        "Giữ nguyên tất cả vì số lượng kho mã cho thấy bạn hoạt động đều đặn và chăm chỉ",
+        "Giữ nguyên tất cả, vì số kho mã cho thấy bạn hoạt động đều",
         "Bổ sung README ngắn cho cả sáu kho để không kho nào bị trống khi người ta mở ra",
       ],
       correct: 0,
@@ -207,7 +207,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
     openingQuestion: "Ở vòng thuật toán, người phỏng vấn quan tâm nhất điều gì?",
     openingOptions: [
       "Cách bạn đi từ đề bài mơ hồ tới lời giải, nói ra thành lời",
-      "Bạn có đưa ra được lời giải tối ưu nhất về độ phức tạp trong thời gian cho phép hay không",
+      "Bạn có ra được lời giải tối ưu trong thời gian cho phép không",
       "Số lượng bài tập tương tự bạn đã từng luyện qua trước đó trên các nền tảng trực tuyến",
       "Mã bạn viết có biên dịch và chạy đúng ngay lần đầu mà không cần sửa lại dòng nào",
     ],
@@ -232,7 +232,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Hỏi lại để làm rõ đầu vào, ràng buộc và điều được coi là đúng",
           "Chọn cách hiểu hợp lý nhất rồi ghi chú giả định vào mã và tiếp tục giải luôn",
           "Giải cho trường hợp tổng quát nhất để chắc chắn phủ được mọi cách hiểu có thể",
-          "Đề nghị người phỏng vấn cho một ví dụ đầu vào rồi suy ngược ra yêu cầu từ ví dụ đó",
+          "Xin một ví dụ đầu vào rồi suy ngược ra đề",
         ],
         correct: 0,
         explanation:
@@ -244,7 +244,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Khả năng đánh đổi giữa các phương án và nói rõ lý do chọn",
           "Mức độ thuộc lòng kiến trúc của các hệ thống lớn đang phổ biến trong ngành hiện nay",
           "Số lượng thành phần bạn vẽ được lên bảng trong khoảng thời gian được cho phép",
-          "Khả năng nhớ chính xác giới hạn kỹ thuật và thông số của từng công nghệ được nhắc tới",
+          "Khả năng nhớ thông số của từng công nghệ",
         ],
         correct: 0,
         explanation:
@@ -254,7 +254,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Vòng phỏng vấn hành vi phục vụ mục đích gì?",
         options: [
           "Dự đoán cách bạn xử sự khi có bất đồng hoặc khi mọi thứ hỏng",
-          "Kiểm tra xem tính cách của bạn có phù hợp với văn hóa chung của toàn công ty hay không",
+          "Kiểm tính cách có hợp văn hóa công ty không",
           "Xác nhận lại những thông tin đã ghi trong hồ sơ và bổ sung các chi tiết còn thiếu sót",
           "Đánh giá khả năng diễn đạt bằng lời nói vì đây là kỹ năng cần cho các cuộc họp sau này",
         ],
@@ -268,7 +268,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Nói ra chỗ mình đang mắc và hướng đang cân nhắc",
           "Giữ im lặng để tập trung suy nghĩ cho tới khi tìm ra hướng đi rồi mới trình bày lại",
           "Chuyển sang một cách tiếp cận khác hẳn để tránh mất thêm thời gian ở chỗ đang bí",
-          "Thừa nhận là không giải được và đề nghị chuyển sang câu hỏi tiếp theo cho đỡ mất giờ",
+          "Nhận là không giải được và xin chuyển sang câu khác",
         ],
         correct: 0,
         explanation:
@@ -280,7 +280,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Vì bạn cũng đang chọn nơi làm, và có thứ chỉ hỏi mới biết",
           "Vì phần lớn công ty có tính điểm cho việc ứng viên đặt câu hỏi ở cuối mỗi buổi phỏng vấn",
           "Vì nó kéo dài buổi phỏng vấn và tạo ấn tượng rằng bạn quan tâm nghiêm túc tới vị trí này",
-          "Vì câu trả lời sẽ cho bạn thông tin để trả lời tốt hơn ở các vòng phỏng vấn tiếp theo sau",
+          "Vì câu trả lời giúp bạn làm tốt vòng sau",
         ],
         correct: 0,
         explanation:
@@ -292,9 +292,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         "Bạn được hẹn ba vòng: thuật toán, thiết kế hệ thống, và hành vi. Chỉ còn một tuần. Phân bổ thế nào là hợp lý nhất?",
       options: [
         "Chia theo vòng bạn yếu nhất, và viết sẵn tình huống thật cho vòng hành vi",
-        "Dồn toàn bộ cho vòng thuật toán vì đây là vòng có tiêu chí rõ ràng và dễ luyện tập nhất",
-        "Chia đều thời gian cho cả ba vòng để không vòng nào bị bỏ sót trong lúc chuẩn bị gấp",
-        "Ưu tiên vòng thiết kế hệ thống vì đây là vòng khó nhất và cần nhiều thời gian nhất",
+        "Dồn hết cho vòng thuật toán, vòng dễ luyện nhất",
+        "Chia đều thời gian cho cả ba vòng để không vòng nào bị bỏ sót trong lúc chuẩn bị",
+        "Ưu tiên vòng thiết kế hệ thống vì đây là vòng khó nhất",
       ],
       correct: 0,
       explanation:
@@ -374,9 +374,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
     openingQuestion: "Thời điểm nào là an toàn để nộp đơn xin nghỉ ở công ty cũ?",
     openingOptions: [
       "Sau khi đã ký hợp đồng lao động hoặc thư mời chính thức với nơi mới",
-      "Ngay khi nhận được thông báo miệng rằng bạn đã qua hết các vòng và được chọn",
-      "Trước khi phỏng vấn vòng cuối để chủ động về thời gian và tránh trùng lịch bàn giao",
-      "Sau khi thỏa thuận xong mức lương với nơi mới dù hợp đồng còn đang được soạn thảo",
+      "Ngay khi nghe báo miệng là bạn đã được chọn",
+      "Trước vòng cuối, để chủ động về thời gian",
+      "Sau khi đã chốt xong mức lương với nơi mới, dù hợp đồng vẫn còn đang được soạn thảo",
     ],
     correctOption: 0,
     explanation:
@@ -399,7 +399,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Giảm khả năng bạn so sánh với lời mời khác đang chờ",
           "Giúp bộ phận nhân sự sắp xếp lịch tiếp nhận người mới cho kịp với kế hoạch của quý",
           "Đảm bảo ứng viên đủ nghiêm túc với vị trí này chứ không dùng nó làm quân bài dự phòng",
-          "Tuân thủ quy định về thời hạn hiệu lực của thư mời làm việc theo luật lao động hiện hành",
+          "Tuân thủ thời hạn hiệu lực theo luật lao động hiện hành",
         ],
         correct: 0,
         explanation:
@@ -409,7 +409,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Thời gian báo trước khi nghỉ việc phụ thuộc chủ yếu vào đâu?",
         options: [
           "Loại hợp đồng lao động bạn đang ký và điều khoản trong đó",
-          "Thỏa thuận riêng giữa bạn với quản lý trực tiếp về khối lượng công việc cần bàn giao lại",
+          "Thỏa thuận riêng với quản lý trực tiếp về việc bàn giao lại",
           "Số năm bạn đã làm ở công ty đó, càng lâu thì thời gian báo trước càng phải kéo dài thêm",
           "Chính sách nội bộ của phòng nhân sự, mỗi công ty tự quy định một mức khác nhau",
         ],
@@ -421,7 +421,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Lời mời làm việc bằng miệng có giá trị thế nào?",
         options: [
           "Là ý định của nơi tuyển, chưa ràng buộc cho tới khi có văn bản",
-          "Có giá trị pháp lý tương đương văn bản nếu có người thứ ba chứng kiến cuộc trao đổi đó",
+          "Ngang văn bản nếu có người thứ ba chứng kiến",
           "Ràng buộc bên tuyển nhưng không ràng buộc ứng viên cho tới khi ứng viên xác nhận lại",
           "Không có giá trị gì và chỉ nên coi là một lời động viên sau khi kết thúc phỏng vấn",
         ],
@@ -435,7 +435,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Nói rõ ràng buộc hiện có và đề xuất một ngày khả thi",
           "Nhận lời rồi thương lượng với nơi cũ sau, vì phần lớn công ty đều linh động về việc này",
           "Từ chối lời mời vì lệch ngày đi làm là dấu hiệu nơi mới không tôn trọng quy trình chuẩn",
-          "Nghỉ phép hết số ngày còn lại ở nơi cũ để rút ngắn thời gian bàn giao xuống mức cần thiết",
+          "Nghỉ hết số phép còn lại để rút ngắn thời gian bàn giao",
         ],
         correct: 0,
         explanation:
@@ -445,7 +445,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Không nhận được phản hồi sau khi nộp hồ sơ hai tuần thì nên hiểu thế nào?",
         options: [
           "Là chuyện thường gặp; gửi một thư hỏi ngắn rồi tiếp tục nộp nơi khác",
-          "Là hồ sơ đã bị loại, vì các công ty đều phản hồi trong vòng một tuần nếu thấy phù hợp",
+          "Là đã bị loại, vì nơi phù hợp sẽ hồi trong tuần",
           "Là hồ sơ đang được chuyển qua nhiều cấp duyệt và sắp có lịch phỏng vấn được gửi tới",
           "Là nên gọi trực tiếp cho bộ phận nhân sự để hỏi kết quả vì thư điện tử dễ bị bỏ sót",
         ],
@@ -459,9 +459,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         "Bạn nhận lời mời từ công ty A với hạn trả lời ba ngày, trong khi công ty B hẹn phỏng vấn vòng cuối sau một tuần. Nên làm gì?",
       options: [
         "Xin A lùi hạn, đồng thời báo B rằng bạn đang có lời mời và hỏi họ đẩy lịch được không",
-        "Nhận lời A ngay cho chắc rồi vẫn đi phỏng vấn B, nếu B tốt hơn thì rút lời với A sau",
-        "Từ chối A vì ba ngày là quá gấp và một nơi ép thời gian như vậy thường không đáng vào",
-        "Bỏ vòng cuối của B vì trong tay đã có một lời mời chắc chắn còn B thì vẫn chưa có gì",
+        "Nhận lời A ngay cho chắc rồi vẫn đi phỏng vấn B, và nếu B tốt hơn thì rút lời với A",
+        "Từ chối A vì ba ngày là quá gấp và nơi ép thời gian thì không đáng vào",
+        "Bỏ vòng cuối của B vì trong tay đã có một lời mời chắc chắn, còn B thì vẫn chưa có gì cả",
       ],
       correct: 0,
       explanation:
@@ -548,7 +548,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
       "Gross là trước khi trừ bảo hiểm bắt buộc và thuế thu nhập cá nhân",
       "Gross là tổng thu nhập cả năm còn net là phần được chia đều ra theo từng tháng làm việc",
       "Gross đã gồm thưởng và phụ cấp còn net chỉ tính riêng phần lương cứng theo hợp đồng",
-      "Gross là mức công ty đề xuất ban đầu còn net là mức cuối cùng sau khi hai bên thương lượng",
+      "Gross là mức đề xuất, net là mức chốt cuối",
     ],
     correctOption: 0,
     explanation:
@@ -570,7 +570,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Vì thuế tính lũy tiến từng bậc và giảm trừ khác nhau theo từng người",
           "Vì mỗi công ty áp dụng một cách tính bảo hiểm riêng tùy theo chính sách nội bộ của họ",
-          "Vì tỷ lệ đóng bảo hiểm được điều chỉnh hằng năm nên hệ số của năm trước không còn đúng",
+          "Vì tỷ lệ đóng bảo hiểm đổi hằng năm",
           "Vì phần thưởng và phụ cấp được cộng vào gross theo những cách khác nhau ở mỗi nơi",
         ],
         correct: 0,
@@ -583,7 +583,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Giảm phần thu nhập chịu thuế, nên net tăng lên",
           "Giảm trực tiếp số thuế phải nộp đúng bằng mức giảm trừ được quy định cho mỗi người",
           "Giảm mức đóng bảo hiểm xã hội bắt buộc tương ứng với số người phụ thuộc đã đăng ký",
-          "Không đổi net trong năm hiện tại mà chỉ được hoàn lại vào kỳ quyết toán thuế cuối năm",
+          "Chỉ được hoàn lại vào kỳ quyết toán thuế cuối năm",
         ],
         correct: 0,
         explanation:
@@ -594,7 +594,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Net cao hơn ngay, đổi lại quyền lợi sau này tính trên mức đã đóng",
           "Không ảnh hưởng tới quyền lợi vì các chế độ bảo hiểm đều tính theo mức lương thực nhận",
-          "Người lao động phải bù phần chênh lệch khi làm thủ tục hưởng chế độ ở thời điểm sau này",
+          "Phải bù phần chênh khi hưởng chế độ",
           "Chỉ ảnh hưởng tới trợ cấp thất nghiệp còn lương hưu vẫn được tính trên thu nhập thật",
         ],
         correct: 0,
@@ -606,7 +606,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Cộng vào thu nhập chịu thuế của kỳ nhận nên có thể đẩy lên bậc cao hơn",
           "Được miễn thuế thu nhập cá nhân vì đây là khoản thưởng chứ không phải tiền lương",
-          "Chịu một mức thuế suất cố định riêng, tách khỏi cách tính lũy tiến của lương hằng tháng",
+          "Chịu một thuế suất cố định riêng",
           "Được chia đều cho mười hai tháng khi tính thuế nên không làm thay đổi bậc thuế của bạn",
         ],
         correct: 0,
@@ -618,7 +618,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Quy cả hai về cùng một gốc, gross hoặc net, rồi mới so",
           "Cộng hết mọi khoản thưởng và phúc lợi được nêu vào để có bức tranh đầy đủ nhất về thu nhập",
-          "So phần lương cứng trước vì đây là khoản chắc chắn còn thưởng thì phụ thuộc kết quả kinh doanh",
+          "So phần lương cứng trước, vì đó là khoản chắc chắn nhất",
           "Hỏi mức lương trung bình của vị trí đó trên thị trường rồi xem nơi nào gần mức đó hơn",
         ],
         correct: 0,
@@ -633,7 +633,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         "Tính net của B rồi cộng thêm phần tháng thứ 13 chia đều cho mười hai tháng",
         "Chọn B vì 30 triệu lớn hơn 25 triệu và còn có thêm một tháng lương thưởng vào cuối năm",
         "Chọn A vì net là con số chắc chắn còn gross thì còn phụ thuộc vào nhiều khoản khấu trừ",
-        "So mức đóng bảo hiểm của hai nơi trước vì đó là khoản chênh lệch lớn nhất giữa gross và net",
+        "So mức đóng bảo hiểm của hai nơi trước",
       ],
       correct: 0,
       explanation:
@@ -718,7 +718,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
     openingQuestion: "Vì sao trung vị thường phản ánh mức lương phổ biến tốt hơn trung bình?",
     openingOptions: [
       "Vì một nhóm nhỏ lương rất cao kéo trung bình lên nhưng không kéo trung vị",
-      "Vì trung vị được tính trên toàn bộ mẫu còn trung bình chỉ tính trên phần mẫu đã xác minh được",
+      "Vì trung vị tính trên toàn mẫu, trung bình thì không",
       "Vì trung vị loại bỏ những giá trị bất thường ở cả hai đầu trước khi thực hiện phép tính",
       "Vì trung vị được cập nhật thường xuyên hơn nên phản ánh sát thị trường ở thời điểm hiện tại",
     ],
@@ -742,7 +742,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Người có lương tốt sẵn lòng trả lời hơn, nên mẫu lệch lên trên",
           "Người trả lời thường khai thấp hơn thực tế vì e ngại thông tin bị lộ ra ngoài công ty",
-          "Mẫu nghiêng về người mới đi làm vì họ quan tâm tới báo cáo lương nhiều hơn người lâu năm",
+          "Mẫu nghiêng về người mới đi làm",
           "Số liệu bị lặp do một người có thể trả lời nhiều lần trong cùng một đợt khảo sát",
         ],
         correct: 0,
@@ -753,8 +753,8 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Cùng một chức danh ở hai công ty có thể khác nhau thế nào?",
         options: [
           "Phạm vi trách nhiệm khác hẳn, nên chức danh không so sánh trực tiếp được",
-          "Chức danh được chuẩn hóa theo cấp bậc chung của ngành nên khác biệt chủ yếu là ở mức lương",
-          "Khác nhau về số năm kinh nghiệm tối thiểu mà công ty yêu cầu cho chức danh đó",
+          "Chức danh đã chuẩn hóa nên chỉ khác mức lương",
+          "Khác nhau ở số năm kinh nghiệm tối thiểu được yêu cầu",
           "Khác nhau chủ yếu ở quy mô đội nhóm mà người giữ chức danh đó phải quản lý trực tiếp",
         ],
         correct: 0,
@@ -765,7 +765,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Khoảng giữa phân vị 25 và phân vị 75 cho biết điều gì?",
         options: [
           "Nửa số người ở giữa nhận mức nằm trong khoảng đó",
-          "Mức lương thấp nhất và cao nhất mà báo cáo ghi nhận được sau khi loại các giá trị bất thường",
+          "Mức lương thấp nhất và cao nhất mà báo cáo ghi nhận",
           "Khoảng mà công ty thường đề nghị cho ứng viên mới trước khi bước vào vòng thương lượng",
           "Độ tin cậy của số liệu, khoảng càng hẹp thì mẫu khảo sát càng lớn và càng đáng tin cậy",
         ],
@@ -777,7 +777,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Báo cáo lương của năm ngoái nên dùng thế nào?",
         options: [
           "Dùng để thấy khoảng và thứ bậc, không dùng làm mức đề nghị",
-          "Cộng thêm tỷ lệ lạm phát của năm để quy đổi con số về mặt bằng giá của thời điểm hiện tại",
+          "Cộng lạm phát để quy về giá hiện tại",
           "Không dùng được vì thị trường lao động ngành IT thay đổi quá nhanh trong vòng một năm",
           "Dùng nguyên vẹn vì các báo cáo lương thường có độ trễ và số liệu đã phản ánh xu hướng",
         ],
@@ -791,7 +791,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Vài tin tuyển dụng đang mở có ghi khoảng lương cho đúng vị trí bạn nhắm",
           "Số liệu thống kê thu nhập bình quân của ngành do các cơ quan quản lý công bố hằng năm",
           "Mức lương của bạn bè cùng khóa vì họ có xuất phát điểm và số năm kinh nghiệm tương đương",
-          "Các bài viết tổng hợp xu hướng lương được đăng trên những trang tin về công nghệ trong nước",
+          "Các bài tổng hợp xu hướng lương trên trang tin",
         ],
         correct: 0,
         explanation:
@@ -803,7 +803,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         "Báo cáo ghi trung bình cho vị trí của bạn là 35 triệu, trung vị 28 triệu. Nên lấy mốc nào khi thương lượng?",
       options: [
         "Lấy trung vị làm mốc, rồi điều chỉnh theo loại hình công ty và thành phố",
-        "Lấy trung bình vì đó là con số đại diện cho toàn bộ mẫu khảo sát chứ không phải một điểm giữa",
+        "Lấy trung bình, con số đại diện cho cả mẫu",
         "Lấy khoảng giữa hai con số vì như vậy cân bằng được cả hai cách tính và giảm rủi ro sai lệch",
         "Lấy trung bình rồi trừ đi một khoản dự phòng để chừa chỗ cho bên tuyển thương lượng xuống",
       ],
@@ -891,7 +891,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
     openingOptions: [
       "Bạn có sống cùng hậu quả của quyết định kỹ thuật mình đưa ra hay không",
       "Mức độ hiện đại của công nghệ được sử dụng, công ty sản phẩm thường dùng công nghệ mới hơn",
-      "Quy mô đội ngũ kỹ thuật, công ty sản phẩm thường có đội lớn hơn và phân chia vai trò rõ hơn",
+      "Quy mô đội, công ty sản phẩm thường đông hơn",
       "Áp lực thời hạn, làm outsourcing thì thời hạn do khách hàng đặt nên luôn gấp hơn đáng kể",
     ],
     correctOption: 0,
@@ -914,7 +914,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Vì bạn đi qua nhiều dự án và nhiều miền nghiệp vụ trong thời gian ngắn",
           "Vì các công ty outsourcing đầu tư nhiều hơn cho đào tạo nội bộ và chứng chỉ chuyên môn",
-          "Vì khách hàng nước ngoài thường yêu cầu áp dụng những công nghệ mới nhất của thị trường",
+          "Vì khách nước ngoài đòi công nghệ mới nhất",
           "Vì quy trình làm việc chuẩn hóa cao nên người mới tiếp cận được nhiều mảng cùng lúc",
         ],
         correct: 0,
@@ -925,9 +925,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Nợ kỹ thuật được nhìn nhận khác nhau thế nào giữa hai loại hình?",
         options: [
           "Ở công ty sản phẩm nó là chi phí của chính đội; ở dự án bàn giao thì thường không",
-          "Ở công ty sản phẩm nó được ghi nhận và ưu tiên xử lý theo quy trình còn ở nơi khác thì không",
-          "Ở outsourcing nó nghiêm trọng hơn vì khách hàng sẽ kiểm tra chất lượng mã trước khi nghiệm thu",
-          "Không khác nhau vì nợ kỹ thuật đều làm chậm tiến độ như nhau ở bất kỳ loại hình nào",
+          "Ở công ty sản phẩm nó được ghi nhận và xử lý theo quy trình",
+          "Ở outsourcing nặng hơn vì khách kiểm mã khi nghiệm thu",
+          "Không khác nhau vì nợ kỹ thuật đều làm chậm tiến độ như nhau",
         ],
         correct: 0,
         explanation:
@@ -937,7 +937,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Đặc trưng nhịp làm việc ở agency là gì?",
         options: [
           "Nhiều dự án ngắn, thời hạn cứng, thiên về phần người dùng nhìn thấy",
-          "Chu kỳ phát triển dài với nhiều giai đoạn phân tích yêu cầu trước khi bắt đầu viết mã",
+          "Chu kỳ dài, nhiều giai đoạn phân tích trước",
           "Đội ngũ lớn chia theo chuyên môn hẹp nên mỗi người chỉ phụ trách một phần rất nhỏ",
           "Ít áp lực thời hạn hơn vì khách hàng của agency thường là các dự án dài hạn nhiều năm",
         ],
@@ -951,7 +951,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Có người đi trước để học và có quy trình review mã tử tế",
           "Mức lương khởi điểm cao nhất trong các lời mời nhận được để tạo nền cho những lần sau",
           "Công nghệ mới nhất để hồ sơ trông hấp dẫn hơn với các nhà tuyển dụng trong vài năm tới",
-          "Công ty lớn và có tên tuổi vì tên công ty trong hồ sơ sẽ mở được nhiều cánh cửa hơn về sau",
+          "Công ty lớn có tên tuổi, vì cái tên đó mở được nhiều cửa sau",
         ],
         correct: 0,
         explanation:
@@ -962,7 +962,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Câu hỏi về đánh đổi dài hạn, thứ ít gặp khi dự án kết thúc lúc bàn giao",
           "Yêu cầu về công nghệ vì công ty sản phẩm thường dùng bộ công nghệ hoàn toàn khác biệt",
-          "Số năm kinh nghiệm vì công ty sản phẩm quy đổi kinh nghiệm outsourcing ở tỷ lệ thấp hơn",
+          "Số năm, vì kinh nghiệm outsourcing bị quy đổi thấp",
           "Quy trình phỏng vấn dài hơn với nhiều vòng nên ứng viên khó sắp xếp thời gian tham dự",
         ],
         correct: 0,
@@ -975,7 +975,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         "Bạn đã làm outsourcing ba năm và muốn đi sâu hơn về hệ thống. Nên ưu tiên gì khi chọn nơi tiếp theo?",
       options: [
         "Nơi bạn ở lại đủ lâu với một hệ thống và có cơ hội thấy nó lớn lên",
-        "Nơi trả lương cao hơn rõ rệt vì ba năm kinh nghiệm đã đủ để yêu cầu mức tương xứng hơn",
+        "Nơi trả cao hơn, vì ba năm là đủ để đòi hỏi",
         "Nơi dùng công nghệ mà bạn chưa từng làm để mở rộng thêm diện kỹ năng đã có sẵn",
         "Nơi có đội ngũ đông và cơ cấu rõ ràng để có nhiều đồng nghiệp giàu kinh nghiệm hơn",
       ],
@@ -1057,7 +1057,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
     openingQuestion: "Vesting trong một gói cổ phần thưởng nghĩa là gì?",
     openingOptions: [
       "Lịch trình mà theo đó bạn dần thật sự sở hữu số cổ phần được hứa",
-      "Thời điểm công ty xác định giá trị của mỗi cổ phần dựa trên kết quả kinh doanh trong kỳ",
+      "Lúc công ty định giá lại mỗi cổ phần",
       "Quá trình chuyển đổi cổ phần thưởng thành cổ phiếu phổ thông sau khi công ty niêm yết",
       "Khoảng thời gian bạn không được phép bán số cổ phần đã nhận cho bất kỳ bên thứ ba nào",
     ],
@@ -1080,7 +1080,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Mốc chặn năm đầu trong lịch vesting có tác dụng gì với người lao động?",
         options: [
           "Nghỉ trước mốc thì không nhận được phần nào, kể cả phần đã tích lũy",
-          "Trì hoãn việc nhận cổ phần sang năm sau nhưng phần tích lũy vẫn được giữ nguyên cho bạn",
+          "Hoãn sang năm sau nhưng phần tích lũy vẫn còn",
           "Cho phép công ty mua lại số cổ phần đã trao với giá gốc nếu bạn nghỉ trong năm đầu tiên",
           "Giới hạn số cổ phần được trao trong năm đầu ở một tỷ lệ thấp hơn các năm tiếp theo",
         ],
@@ -1092,7 +1092,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Cổ phần của một công ty chưa niêm yết khác cổ phiếu niêm yết ở điểm nào là chính?",
         options: [
           "Không có nơi bán, nên giá trị ghi trên giấy chưa phải tiền có thể tiêu",
-          "Không được chia lợi nhuận cho tới khi công ty hoàn tất thủ tục niêm yết trên sàn chứng khoán",
+          "Không được chia lợi nhuận cho tới khi niêm yết",
           "Số lượng cổ phần thay đổi liên tục nên tỷ lệ sở hữu của bạn không được xác định rõ ràng",
           "Giá trị được công ty công bố mỗi quý nên biến động ít hơn nhiều so với cổ phiếu trên sàn",
         ],
@@ -1106,7 +1106,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Vì số lượng cổ phần không có ý nghĩa nếu không biết tổng số đang lưu hành",
           "Vì tỷ lệ phần trăm là căn cứ để tính số cổ tức bạn sẽ được nhận hằng năm từ công ty",
           "Vì các công ty có nghĩa vụ công bố tỷ lệ này cho người lao động theo quy định hiện hành",
-          "Vì tỷ lệ phần trăm quyết định bạn có quyền biểu quyết trong các cuộc họp cổ đông hay không",
+          "Vì tỷ lệ quyết định quyền biểu quyết của bạn",
         ],
         correct: 0,
         explanation:
@@ -1117,7 +1117,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Tỷ lệ sở hữu giảm đi, dù số cổ phần bạn nắm không đổi",
           "Số cổ phần được điều chỉnh tăng tương ứng để giữ nguyên tỷ lệ sở hữu ban đầu của bạn",
-          "Không ảnh hưởng vì phần dành cho nhân viên được tách riêng khỏi phần dành cho nhà đầu tư",
+          "Không ảnh hưởng, vì phần nhân viên đã được tách riêng ra",
           "Giá trị mỗi cổ phần giảm theo tỷ lệ pha loãng nên tổng giá trị phần của bạn không đổi",
         ],
         correct: 0,
@@ -1129,7 +1129,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Coi phần cổ phần là khoản không chắc chắn và so phần tiền mặt trước",
           "Chia giá trị cổ phần theo định giá hiện tại cho số năm vesting rồi cộng vào lương hằng năm",
-          "Ưu tiên lời mời có cổ phần vì đó là phần có khả năng tăng giá trị nhiều lần trong tương lai",
+          "Ưu tiên nơi có cổ phần vì nó tăng nhiều lần",
           "Ước lượng xác suất công ty thành công rồi nhân với giá trị cổ phần để có con số kỳ vọng",
         ],
         correct: 0,
@@ -1142,9 +1142,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         "Lời mời gồm lương thấp hơn nơi khác 4 triệu mỗi tháng, bù lại có cổ phần vesting 4 năm với mốc chặn 1 năm. Đánh giá thế nào?",
       options: [
         "Hỏi tỷ lệ phần trăm và điều kiện thanh khoản, rồi xem phần tiền mặt có đủ sống không",
-        "Nhận vì bốn năm vesting cho thấy công ty có kế hoạch dài hạn và tin vào giá trị của cổ phần",
-        "Từ chối vì mốc chặn một năm là điều khoản bất lợi và cho thấy công ty không tin nhân viên",
-        "Tính giá trị cổ phần theo định giá gần nhất rồi so với phần lương bị thiếu trong bốn năm",
+        "Nhận, vì bốn năm cho thấy công ty tính dài hạn",
+        "Từ chối vì mốc chặn một năm cho thấy công ty không tin nhân viên",
+        "Tính giá trị cổ phần theo định giá gần nhất rồi so với phần lương bị thiếu mỗi tháng",
       ],
       correct: 0,
       explanation:
@@ -1229,9 +1229,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
     openingQuestion: "Cam kết đào tạo trong hợp đồng lao động thường ràng buộc điều gì?",
     openingOptions: [
       "Bạn phải làm đủ một thời gian nhất định, nếu nghỉ sớm thì hoàn lại chi phí",
-      "Bạn phải hoàn thành toàn bộ chương trình đào tạo và đạt kết quả tối thiểu theo yêu cầu",
-      "Bạn không được chia sẻ nội dung đào tạo ra bên ngoài trong suốt thời gian còn làm việc",
-      "Công ty được quyền phân công bạn vào bất kỳ dự án nào sau khi kết thúc khóa đào tạo",
+      "Phải học xong và đạt kết quả tối thiểu",
+      "Không được chia sẻ nội dung đào tạo ra bên ngoài",
+      "Công ty được phân công bạn vào bất kỳ dự án nào",
     ],
     correctOption: 0,
     explanation:
@@ -1252,9 +1252,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Điều khoản hoàn chi phí đào tạo giảm dần theo thời gian khác gì loại giữ nguyên?",
         options: [
           "Càng làm lâu thì số phải hoàn càng nhỏ, nên bạn dần lấy lại quyền lựa chọn",
-          "Số phải hoàn được chia đều cho các tháng còn lại thay vì phải trả một lần khi nghỉ việc",
-          "Chỉ áp dụng cho phần học phí còn các chi phí khác vẫn phải hoàn lại đầy đủ như ban đầu",
-          "Thời gian cam kết được rút ngắn tương ứng với phần chi phí mà bạn đã hoàn lại trước đó",
+          "Số phải hoàn được chia đều cho tháng còn lại",
+          "Chỉ áp dụng cho học phí, chi phí khác hoàn đủ",
+          "Thời gian cam kết rút ngắn theo phần đã hoàn",
         ],
         correct: 0,
         explanation:
@@ -1265,7 +1265,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Xem phạm vi và thời hạn có cụ thể không, vì phạm vi rộng vô hạn là dấu hiệu đáng hỏi lại",
           "Bỏ qua vì các điều khoản loại này không có giá trị thực thi trong lĩnh vực phần mềm",
-          "Chấp nhận như một thủ tục chuẩn vì mọi hợp đồng lao động ngành IT đều có điều khoản này",
+          "Chấp nhận như một thủ tục chuẩn, vì mọi hợp đồng lao động ngành IT đều có điều khoản này",
           "Yêu cầu xóa bỏ hoàn toàn vì nó hạn chế quyền làm việc được pháp luật bảo vệ",
         ],
         correct: 0,
@@ -1276,9 +1276,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Vì sao nên hỏi rõ con số tối đa phải hoàn ngay khi ký?",
         options: [
           "Vì chi phí đào tạo có thể gồm nhiều khoản mà bạn không hình dung được lúc đó",
-          "Vì con số này được dùng làm căn cứ tính thuế thu nhập cá nhân trong năm bạn nghỉ việc",
-          "Vì công ty có nghĩa vụ giảm số tiền phải hoàn nếu bạn yêu cầu làm rõ ngay từ lúc ký kết",
-          "Vì con số đó sẽ thay đổi theo thời giá nếu không được ghi cố định trong văn bản hợp đồng",
+          "Vì con số này là căn cứ tính thuế trong năm bạn nghỉ",
+          "Vì công ty phải giảm số phải hoàn nếu bạn hỏi rõ lúc ký",
+          "Vì con số sẽ đổi theo thời giá nếu không ghi rõ",
         ],
         correct: 0,
         explanation:
@@ -1289,8 +1289,8 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Nó là tiền ứng trước, không phải tiền thưởng, cho tới khi qua mốc quy định",
           "Nó được tính vào thu nhập chịu thuế nên phần thực nhận thấp hơn con số được công bố",
-          "Nó thường có giá trị lớn hơn phần chênh lệch lương nên bù được cho mức lương thấp hơn",
-          "Nó chỉ phải hoàn lại nếu bạn chủ động nghỉ việc chứ không áp dụng khi công ty cho nghỉ",
+          "Nó thường lớn hơn phần chênh lương nên bù được mức thấp",
+          "Chỉ phải hoàn nếu bạn chủ động nghỉ việc",
         ],
         correct: 0,
         explanation:
@@ -1302,7 +1302,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Đề nghị ghi rõ bằng văn bản trước khi ký, không dựa vào giải thích miệng",
           "Ghi lại lời giải thích của bộ phận nhân sự vào thư điện tử để làm bằng chứng khi cần tới",
           "Ký trước rồi đề nghị bổ sung phụ lục làm rõ trong thời gian thử việc còn hiệu lực",
-          "Tham khảo cách các công ty khác trong ngành diễn giải điều khoản tương tự để suy ra ý nghĩa",
+          "Xem các công ty khác diễn giải thế nào",
         ],
         correct: 0,
         explanation:
@@ -1314,7 +1314,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         "Hợp đồng có cam kết đào tạo hai năm, hoàn toàn bộ chi phí nếu nghỉ sớm, không nêu con số cụ thể. Nên làm gì?",
       options: [
         "Đề nghị ghi rõ con số tối đa và xin cơ chế giảm dần theo thời gian đã làm",
-        "Ký và giữ liên lạc tốt với quản lý để sau này có thể thương lượng miễn giảm nếu cần nghỉ sớm",
+        "Ký, rồi thương lượng miễn giảm với quản lý sau",
         "Từ chối lời mời vì cam kết hai năm là quá dài đối với một vị trí kỹ sư ở giai đoạn đầu",
         "Ký nhưng lập kế hoạch tiết kiệm đủ số tiền dự kiến phải hoàn để giữ được quyền lựa chọn",
       ],
@@ -1402,7 +1402,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
     openingOptions: [
       "Vẫn nộp nếu đáp ứng được phần lớn nhóm yêu cầu cốt lõi",
       "Chỉ nộp khi đáp ứng đủ toàn bộ yêu cầu bắt buộc để tránh mất thời gian của cả hai bên",
-      "Nộp kèm thư giải thích lý do vì sao những yêu cầu còn thiếu không quan trọng với vị trí này",
+      "Nộp kèm thư giải thích phần còn thiếu",
       "Chờ tích lũy thêm kinh nghiệm cho những phần còn thiếu rồi nộp ở đợt tuyển dụng tiếp theo",
     ],
     correctOption: 0,
@@ -1424,7 +1424,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Phần nào trong tin tuyển dụng cho biết công việc thật sự là gì?",
         options: [
           "Phần mô tả công việc hằng ngày, không phải danh sách yêu cầu",
-          "Danh sách công nghệ được liệt kê vì đó là thứ bạn sẽ dùng trong phần lớn thời gian làm việc",
+          "Danh sách công nghệ, thứ bạn sẽ dùng trong phần lớn thời gian",
           "Phần giới thiệu về công ty vì nó cho biết sản phẩm và định hướng phát triển sắp tới",
           "Phần quyền lợi và phúc lợi vì mức đầu tư cho vị trí phản ánh tầm quan trọng của công việc",
         ],
@@ -1436,7 +1436,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Tin ghi tuyển một vị trí nhưng liệt kê cả giao diện, hệ thống và triển khai thì gợi ý gì?",
         options: [
           "Đội có thể đang ít người, nên một người phải kiêm nhiều mảng",
-          "Công ty đang tìm ứng viên có nền tảng rộng để phát triển thành vị trí quản lý kỹ thuật sau này",
+          "Công ty đang tìm ứng viên có nền tảng rộng để lên quản lý về sau",
           "Đây là cách viết chuẩn của các tin tuyển dụng nhằm thu hút được nhiều ứng viên hơn",
           "Vị trí này sẽ được phân công cụ thể vào một mảng sau khi ứng viên hoàn thành thử việc",
         ],
@@ -1448,7 +1448,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Tin không ghi khoảng lương thường nên hiểu thế nào?",
         options: [
           "Là chuyện phổ biến ở Việt Nam; hỏi khoảng lương sớm là hợp lệ",
-          "Là dấu hiệu mức lương thấp hơn mặt bằng nên công ty tránh công bố công khai trên tin tuyển",
+          "Là dấu hiệu lương thấp nên họ tránh công bố",
           "Là công ty muốn ứng viên đưa ra con số trước để có lợi thế trong quá trình thương lượng",
           "Là mức lương sẽ được quyết định hoàn toàn dựa trên kết quả các vòng phỏng vấn kỹ thuật",
         ],
@@ -1460,7 +1460,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Yêu cầu số năm kinh nghiệm nên được đọc thế nào?",
         options: [
           "Là ước lượng thô về mức độ tự chủ mong đợi, không phải ngưỡng cứng",
-          "Là ngưỡng bắt buộc mà bộ phận nhân sự dùng để lọc hồ sơ trước khi chuyển cho đội kỹ thuật",
+          "Là ngưỡng cứng nhân sự dùng để lọc hồ sơ",
           "Là căn cứ để xác định mức lương khởi điểm nên khai đúng số năm là quan trọng nhất",
           "Là yêu cầu tối thiểu theo cấp bậc mà công ty áp dụng thống nhất cho mọi vị trí kỹ thuật",
         ],
@@ -1472,9 +1472,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Dấu hiệu nào trong tin tuyển dụng đáng để hỏi thêm trước khi nộp?",
         options: [
           "Mô tả công việc chung chung tới mức không suy ra được một ngày làm việc trông thế nào",
-          "Danh sách yêu cầu dài hơn mười gạch đầu dòng vì điều đó cho thấy kỳ vọng không thực tế",
-          "Tin được đăng lại nhiều lần trong vài tháng vì điều đó cho thấy vị trí khó tuyển được người",
-          "Phần giới thiệu công ty dài hơn phần mô tả công việc vì công ty đang tập trung quảng bá",
+          "Danh sách yêu cầu dài hơn mười gạch đầu dòng, tức là kỳ vọng của họ đã không còn thực tế",
+          "Tin đăng lại nhiều lần trong vài tháng",
+          "Phần giới thiệu công ty dài hơn hẳn phần mô tả công việc thực tế",
         ],
         correct: 0,
         explanation:
@@ -1486,7 +1486,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         "Một tin có mười yêu cầu, bạn đáp ứng bảy và thiếu ba, trong đó có một thứ nằm ngay dòng đầu. Nên làm gì?",
       options: [
         "Nộp, và chuẩn bị sẵn cách nói về thứ thiếu ở dòng đầu",
-        "Không nộp vì thiếu yêu cầu ở dòng đầu tiên nghĩa là thiếu đúng thứ quan trọng nhất của vị trí",
+        "Không nộp, vì dòng đầu là thứ quan trọng nhất của vị trí",
         "Nộp mà không nhắc gì tới ba thứ còn thiếu để hồ sơ tập trung vào bảy thứ bạn đã đáp ứng được",
         "Dành vài tuần học thứ thiếu ở dòng đầu rồi mới nộp để hồ sơ không có điểm yếu rõ ràng nào",
       ],
@@ -1573,7 +1573,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
     openingQuestion: "Việc nào nên làm đầu tiên khi bắt đầu tìm việc?",
     openingOptions: [
       "Đọc kỹ vài tin tuyển dụng cho vị trí bạn nhắm tới",
-      "Cập nhật lại toàn bộ hồ sơ và các kho mã trên GitHub cho thật hoàn chỉnh trước khi nộp đi đâu",
+      "Hoàn thiện toàn bộ hồ sơ và các kho mã trước khi nộp",
       "Luyện thuật toán mỗi ngày trong vài tuần để sẵn sàng cho vòng phỏng vấn kỹ thuật đầu tiên",
       "Học thêm một công nghệ đang được nhiều nơi tuyển để hồ sơ cạnh tranh hơn với ứng viên khác",
     ],
@@ -1596,9 +1596,9 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Vì sao nên nộp song song nhiều nơi thay vì lần lượt từng nơi?",
         options: [
           "Vì lời mời cùng lúc cho bạn thứ để so, và vì im lặng là chuyện thường gặp",
-          "Vì các công ty thường trao đổi thông tin với nhau nên nộp lần lượt sẽ bị đánh giá là thiếu quyết tâm",
-          "Vì nộp nhiều nơi giúp hồ sơ của bạn được các hệ thống tuyển dụng xếp hạng cao hơn",
-          "Vì tỷ lệ được gọi phỏng vấn tăng lên theo cấp số nhân khi số hồ sơ đang chạy tăng lên",
+          "Vì nộp lần lượt bị coi là thiếu quyết tâm",
+          "Vì nộp nhiều nơi giúp hồ sơ được xếp hạng cao hơn",
+          "Vì tỷ lệ được gọi tăng theo cấp số nhân khi nộp nhiều",
         ],
         correct: 0,
         explanation:
@@ -1608,7 +1608,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Sau mỗi buổi phỏng vấn nên làm gì ngay?",
         options: [
           "Ghi lại các câu đã được hỏi và chỗ mình trả lời chưa tốt",
-          "Gửi thư cảm ơn tới người phỏng vấn để tạo ấn tượng tốt trước khi họ đưa ra quyết định cuối",
+          "Gửi thư cảm ơn để tạo ấn tượng tốt",
           "Ôn lại ngay những phần kiến thức đã bị hỏi để chuẩn bị cho vòng tiếp theo của chính nơi đó",
           "Đánh giá lại mức lương mong muốn dựa trên những thông tin thu được trong buổi phỏng vấn",
         ],
@@ -1620,8 +1620,8 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         question: "Bị từ chối ở vài nơi liên tiếp thì nên xử lý thế nào?",
         options: [
           "Xem lại chúng bị dừng ở vòng nào, vì mỗi vòng chỉ ra một vấn đề khác nhau",
-          "Hạ mức lương mong muốn xuống để tăng khả năng được nhận ở những nơi tiếp theo",
-          "Nộp thêm thật nhiều nơi nữa vì tuyển dụng là quá trình có yếu tố may rủi rất lớn",
+          "Hạ mức lương mong muốn xuống để dễ được nhận hơn ở nơi sau",
+          "Nộp thêm thật nhiều nơi, vì có yếu tố may rủi",
           "Dừng lại vài tuần để bổ sung kỹ năng rồi mới quay lại tìm việc với hồ sơ tốt hơn",
         ],
         correct: 0,
@@ -1634,7 +1634,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
           "Đọc kỹ toàn bộ văn bản, gồm cả phần điều khoản ràng buộc ở cuối",
           "So mức lương với báo cáo thị trường để biết chắc con số được đề nghị có hợp lý hay không",
           "Thông báo cho các nơi khác đang trong quy trình để họ đẩy nhanh tiến độ xét duyệt hồ sơ",
-          "Xác nhận lại với quản lý trực tiếp về phạm vi công việc và định hướng phát triển của vị trí",
+          "Hỏi lại quản lý về phạm vi công việc",
         ],
         correct: 0,
         explanation:
@@ -1645,7 +1645,7 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         options: [
           "Số hồ sơ đang chạy và vòng mà mỗi hồ sơ đang dừng lại",
           "Số giờ đã dành cho việc luyện tập và ôn thi để đảm bảo tiến độ chuẩn bị được duy trì đều",
-          "Mức lương cao nhất được đề nghị cho tới thời điểm hiện tại để làm mốc cho các cuộc thương lượng",
+          "Mức lương cao nhất từng được đề nghị",
           "Số lượng công nghệ mới bạn đã học được trong thời gian tìm việc để bổ sung vào hồ sơ",
         ],
         correct: 0,
@@ -1658,8 +1658,8 @@ export const VN_TECH_MARKET_LESSONS: Lesson[] = [
         "Bạn có hai tuần trước khi muốn bắt đầu nộp hồ sơ nghiêm túc. Phân bổ thế nào là hợp lý nhất?",
       options: [
         "Một buổi đọc tin tuyển dụng, hai buổi sửa hồ sơ, rồi nộp và ôn theo lịch được hẹn",
-        "Hai tuần luyện thuật toán liên tục vì đây là phần khó nhất và cần nhiều thời gian nhất để tiến bộ",
-        "Một tuần hoàn thiện các kho mã trên GitHub và một tuần viết lại hồ sơ cho thật chỉn chu",
+        "Hai tuần luyện thuật toán, phần khó nhất",
+        "Một tuần hoàn thiện kho mã và một tuần viết lại hồ sơ cho chỉn chu",
         "Chia đều cho bốn việc: đọc tin, sửa hồ sơ, luyện thuật toán và ôn thiết kế hệ thống",
       ],
       correct: 0,
