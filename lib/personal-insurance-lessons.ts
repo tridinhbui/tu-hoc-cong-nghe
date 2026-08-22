@@ -366,7 +366,7 @@ export const PERSONAL_INSURANCE_LESSONS: Lesson[] = [
           "Từ chính giá trị tài khoản đầu tư, và tăng dần theo tuổi",
           "Từ phí đóng thêm, nên không ảnh hưởng tài khoản đầu tư",
           "Từ lợi nhuận của quỹ, nên chỉ trừ trong năm quỹ có lãi",
-          "Từ phí ban đầu đã trừ, nên không bị trừ lần thứ hai nữa",
+          "Từ khoản phí ban đầu đã trừ, nên không bị trừ lần thứ hai nữa",
         ],
         correct: 0,
         explanation:
@@ -589,7 +589,7 @@ export const PERSONAL_INSURANCE_LESSONS: Lesson[] = [
         "Bạn 34 tuổi, hai con nhỏ, đang có bảo hiểm y tế và một hợp đồng sức khỏe. Ngân sách còn 6 triệu một năm. Bước hợp lý tiếp theo?",
       options: [
         "Mua term life với số tiền tính theo nhu cầu của gia đình",
-        "Nâng hạn mức hợp đồng sức khỏe hiện có lên mức cao nhất",
+        "Nâng hạn mức của hợp đồng sức khỏe hiện có lên mức cao nhất",
         "Mua hợp đồng liên kết đầu tư để vừa bảo vệ vừa tích lũy",
         "Mua thêm bảo hiểm bệnh hiểm nghèo cho cả hai vợ chồng",
       ],

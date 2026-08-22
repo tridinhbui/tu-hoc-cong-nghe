@@ -932,7 +932,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
           "Kết thúc TLS, phân phối lưu lượng và chặn bớt trước khi tới ứng dụng",
           "Tăng tốc độ xử lý của ứng dụng bằng cách biên dịch lại mã trước khi chạy",
           "Thay thế tường lửa vì nó đã lọc được toàn bộ lưu lượng đi vào máy chủ",
-          "Lưu trữ dữ liệu người dùng để ứng dụng không phải gọi cơ sở dữ liệu",
+          "Lưu trữ dữ liệu người dùng để ứng dụng không phải gọi tới cơ sở dữ liệu",
         ],
         correct: 0,
         explanation:
@@ -954,7 +954,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         question: "Vì sao chỉ cấu hình TLS ở proxy ngược là chưa đủ trong mạng nội bộ?",
         options: [
           "Vì chặng từ proxy tới ứng dụng vẫn có thể đang chạy không mã hoá",
-          "Vì proxy ngược không hỗ trợ các phiên bản TLS mới nhất hiện nay",
+          "Vì proxy ngược không hỗ trợ được các phiên bản TLS mới nhất hiện nay",
           "Vì mỗi ứng dụng bắt buộc phải có chứng chỉ riêng theo chuẩn hiện hành",
           "Vì trình duyệt sẽ cảnh báo nếu phát hiện có proxy đứng giữa đường truyền",
         ],
@@ -1285,7 +1285,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         options: [
           "Ghi mật khẩu hoặc khoá thẳng vào trong tệp script",
           "Dùng vòng lặp để xử lý danh sách tệp trong một thư mục",
-          "Gọi một script khác từ bên trong script hiện tại",
+          "Gọi một script khác từ bên trong chính script hiện tại",
           "In ra màn hình từng bước mà script đang thực hiện",
         ],
         correct: 0,

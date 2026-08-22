@@ -598,7 +598,7 @@ export const LIFE_STAGE_LESSONS: Lesson[] = [
         options: [
           "Giữ mức rút linh hoạt, giảm bớt trong những năm thị trường xấu",
           "Rút một mức cố định mỗi năm bất kể thị trường diễn biến thế nào",
-          "Rút toàn bộ phần lợi nhuận mỗi năm và giữ nguyên phần vốn gốc",
+          "Rút toàn bộ phần lợi nhuận mỗi năm và giữ nguyên lại phần vốn gốc",
           "Chuyển toàn bộ danh mục sang tiền gửi để có dòng tiền chắc chắn",
         ],
         correct: 0,

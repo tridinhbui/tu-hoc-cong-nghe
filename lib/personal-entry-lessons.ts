@@ -120,7 +120,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
       question:
         "Bạn ghi chép hai tuần rồi bỏ vì thấy mất công. Cách xử lý thực tế nhất là gì?",
       options: [
-        "Bỏ hẳn việc theo dõi và lập ngân sách dựa trên ước lượng của mình",
+        "Bỏ hẳn việc theo dõi và lập ngân sách chỉ dựa trên ước lượng của mình",
         "Giảm độ chi tiết lại: chỉ ghi theo nhóm lớn thay vì từng khoản một",
         "Bắt đầu lại từ đầu và cố gắng ghi thật chi tiết trong ba tháng",
         "Chờ tới đầu năm sau rồi bắt đầu lại với quyết tâm cao hơn",
@@ -251,7 +251,7 @@ export const PERSONAL_ENTRY_LESSONS: Lesson[] = [
         options: [
           "Tiết kiệm định kỳ và các khoản cố định bắt buộc",
           "Chi tiêu ăn uống và giải trí hằng tháng của gia đình",
-          "Các khoản mua sắm lớn đã có kế hoạch trong năm",
+          "Các khoản mua sắm lớn đã có kế hoạch từ trong năm",
           "Tiền mặt dự phòng để trong ví cho các tình huống bất ngờ"
         ],
         correct: 0,

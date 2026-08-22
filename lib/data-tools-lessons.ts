@@ -199,7 +199,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
     openingOptions: [
       "Bảng dữ liệu trong code có thể chứa nhiều dòng hơn",
       "Bảng tính theo ô, còn code theo cả cột dữ liệu",
-      "Bảng dữ liệu trong code không cần đặt tên cột",
+      "Bảng dữ liệu trong code không cần đặt tên cột, chỉ cần số thứ tự",
       "Bảng tính không lưu được kiểu dữ liệu ngày tháng",
     ],
     correctOption: 1,
@@ -345,6 +345,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
   {
     id: 1493,
     slug: "lam-sach-du-lieu-va-cai-gia-cua-du-lieu-ban",
+    interactiveType: "sampling",
     title: "Dữ liệu, Bài 3: Làm sạch dữ liệu - phần chiếm nhiều thời gian nhất và ít được kể nhất",
     subtitle: "Thiếu, trùng, sai kiểu, sai đơn vị: bốn dạng bẩn và vì sao xóa không phải lúc nào cũng đúng",
     duration: "12 phút",
@@ -725,7 +726,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
       "Vì dữ liệu cập nhật chậm",
       "Vì nó trả lời câu hỏi không dẫn tới hành động",
       "Vì thiếu màu sắc và hình ảnh hấp dẫn",
-      "Vì người dùng chưa được đào tạo cách sử dụng",
+      "Vì người dùng chưa được đào tạo cách sử dụng công cụ",
     ],
     correctOption: 1,
     explanation:

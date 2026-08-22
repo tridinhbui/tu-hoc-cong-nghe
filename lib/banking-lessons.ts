@@ -254,6 +254,7 @@ export const BANKING_LESSONS: Lesson[] = [
   {
     id: 1402,
     slug: "dinh-gia-ngan-hang-pb-roe",
+    interactiveType: "process",
     title: "Ngân hàng, Bài 2: Định giá ngân hàng - P/B, ROE và mô hình thu nhập thặng dư",
     subtitle: "Vì sao P/B là bội số đúng cho ngân hàng, và mối liên hệ toán học giữa P/B với ROE",
     duration: "12 phút",
@@ -300,7 +301,7 @@ export const BANKING_LESSONS: Lesson[] = [
       {
         question: "Vì sao thị trường có thể định giá một ngân hàng dưới giá trị sổ sách dù ngân hàng vẫn báo lãi?",
         options: [
-          "Vì ngân hàng đó nhiều năm liền không chi trả cổ tức tiền mặt",
+          "Vì ngân hàng đó đã nhiều năm liền không chi trả cổ tức tiền mặt",
           "Vì thị trường nghi ngờ chính giá trị sổ sách của ngân hàng đó",
           "Vì ngân hàng đó có mạng lưới chi nhánh lớn và chi phí vận hành cao",
           "Vì quy định kế toán buộc ghi nhận vốn chủ theo giá gốc lịch sử",

@@ -74,7 +74,7 @@ export const GOLD_FX_LESSONS: Lesson[] = [
         question: "Vàng và tiền gửi khác nhau thế nào về nguồn sinh lời?",
         options: [
           "Tiền gửi trả lãi đều đặn còn vàng chỉ lãi khi bán được giá cao hơn lúc mua",
-          "Cả hai đều trả lãi nhưng vàng trả bằng hiện vật thay vì trả bằng tiền mặt",
+          "Cả hai đều trả lãi nhưng vàng thì trả bằng hiện vật thay vì trả bằng tiền mặt",
           "Vàng sinh lời cao hơn nên nó thay thế được vai trò của tiền gửi tiết kiệm",
           "Tiền gửi phụ thuộc vào ngân hàng còn vàng phụ thuộc vào giá thế giới",
         ],
@@ -396,7 +396,7 @@ export const GOLD_FX_LESSONS: Lesson[] = [
         options: [
           "Mỗi vòng mua bán đều mất khoản đó, nên giao dịch càng nhiều càng bào mòn lợi nhuận",
           "Không ảnh hưởng vì người lướt sóng mua và bán ở cùng một cửa hàng",
-          "Chỉ ảnh hưởng khi giữ vàng dài hạn vì khoảng chênh đó tích lũy dần theo thời gian",
+          "Chỉ ảnh hưởng khi giữ vàng dài hạn, vì khoảng chênh đó tích lũy dần theo thời gian",
           "Ảnh hưởng giảm dần vì cửa hàng ưu đãi cho khách giao dịch thường xuyên",
         ],
         correct: 0,
@@ -535,6 +535,7 @@ export const GOLD_FX_LESSONS: Lesson[] = [
   {
     id: 323,
     slug: "vang-co-chong-lam-phat-khong",
+    interactiveType: "inflation-calculator",
     title: "Chặng 13, Bài 4: Vàng có chống lạm phát không",
     subtitle: "Đúng trên khung thời gian rất dài, và không đáng tin trên khung mà bạn thật sự sống",
     duration: "8 phút",

@@ -17,7 +17,7 @@ import { PERSONAL_ENTRY_LESSONS } from "./personal-entry-lessons";
 import { INCOME_GROWTH_LESSONS } from "./income-growth-lessons";
 import { PERSONAL_BANKING_LESSONS } from "./personal-banking-lessons";
 import { GOLD_FX_LESSONS } from "./gold-fx-lessons";
-import { VN_STOCK_PRACTICAL_LESSONS } from "./vn-stock-practical-lessons";
+import { VN_TECH_MARKET_LESSONS } from "./vn-tech-market-lessons";
 import { CRYPTO_LESSONS } from "./crypto-lessons";
 import { FRAUD_SAFETY_LESSONS } from "./fraud-safety-lessons";
 import { REAL_ESTATE_VN_LESSONS } from "./real-estate-vn-lessons";
@@ -54,7 +54,7 @@ export const lessons: Lesson[] = [
   ...INCOME_GROWTH_LESSONS,
   ...PERSONAL_BANKING_LESSONS,
   ...GOLD_FX_LESSONS,
-  ...VN_STOCK_PRACTICAL_LESSONS,
+  ...VN_TECH_MARKET_LESSONS,
   ...CRYPTO_LESSONS,
   ...FRAUD_SAFETY_LESSONS,
   ...REAL_ESTATE_VN_LESSONS,
@@ -16642,7 +16642,6 @@ export const lessons: Lesson[] = [
   {
     "id": 92,
     "slug": "chia-nho-va-giao-tung-phan",
-    "interactiveType": "process",
     "title": "Chia nhỏ: giao từng phần thay vì giao một lần",
     "subtitle": "Ba tháng không có gì chạy được là ba tháng không ai biết mình đang đi đúng hay sai.",
     "duration": "8 phút",
@@ -20020,7 +20019,6 @@ export const lessons: Lesson[] = [
   {
     "id": 112,
     "slug": "phoi-hop-trien-khai-nhieu-doi",
-    "interactiveType": "process",
     "title": "Khi buộc phải triển khai cùng nhau",
     "subtitle": "Mỗi lần phải khớp lịch giữa các đội là một dấu hiệu, không phải một quy trình cần hoàn thiện.",
     "duration": "8 phút",
@@ -20845,7 +20843,6 @@ export const lessons: Lesson[] = [
   {
     "id": 117,
     "slug": "go-he-thong-cu",
-    "interactiveType": "process",
     "title": "Gỡ hệ thống cũ: phần không ai muốn làm",
     "subtitle": "Di trú chưa xong khi bản mới chạy - nó xong khi bản cũ đã tắt.",
     "duration": "8 phút",
@@ -21505,7 +21502,6 @@ export const lessons: Lesson[] = [
   {
     "id": 121,
     "slug": "mo-hinh-moi-de-doa",
-    "interactiveType": "process",
     "title": "Mô hình mối đe doạ: ai muốn gì, và bạn mất gì",
     "subtitle": "Bảo vệ mọi thứ như nhau nghĩa là không bảo vệ được thứ quan trọng nhất.",
     "duration": "8 phút",
@@ -24679,7 +24675,6 @@ export const lessons: Lesson[] = [
   {
     "id": 140,
     "slug": "on-tap-bao-mat-ung-dung",
-    "interactiveType": "process",
     "title": "Ôn tập: bảo mật là chuỗi quyết định, không phải danh sách việc",
     "subtitle": "Hai mươi bài vừa rồi đều quay về một câu hỏi: bảo vệ cái gì, khỏi ai, và khi hỏng thì tới đâu.",
     "duration": "10 phút",
@@ -60606,6 +60601,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1036,
     "slug": "dinh-gia-tai-san-rong",
+    "interactiveType": "process",
     "title": "Định giá DN kiểu bán hết tài sản rồi trả nợ",
     "subtitle": "Asset-based Valuation, NAV và RNAV - phần định giá doanh nghiệp, tiếp nối ROIC & Enterprise Value",
     "duration": "6 phút",
@@ -61013,6 +61009,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1055,
     "slug": "bang-can-doi-ke-toan",
+    "interactiveType": "process",
     "title": "Đọc Bảng Cân Đối Kế Toán",
     "subtitle": "Doanh nghiệp đang có gì và tiền đến từ đâu?",
     "duration": "8 phút",
@@ -63007,7 +63004,6 @@ export const lessons: Lesson[] = [
   {
     "id": 1108,
     "slug": "due-diligence-quy-trinh-tham-dinh",
-    "interactiveType": "process",
     "title": "IB & Phân tích, Bài 8: Due Diligence - quy trình thẩm định trước M&A",
     "subtitle": "Vì sao nhiều thương vụ đổ vỡ ở giai đoạn 'kiểm tra kỹ trước khi ký'",
     "duration": "7 phút",
@@ -68740,922 +68736,1165 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1235,
-    "slug": "ac-cam-mat-mat-va-hieu-ung-so-huu",
-    "title": "Ác cảm mất mát: Tại sao mất 1 triệu đau hơn được 1 triệu vui",
-    "subtitle": "Bộ não bạn phản ứng với mất mát mạnh gấp đôi so với thắng lợi tương đương - và điều đó âm thầm phá hỏng quyết định đầu tư",
+    "slug": "diem-mu-khi-doc-code-cua-chinh-minh",
+    "title": "Điểm mù: vì sao bạn không thấy lỗi trong code của chính mình",
+    "subtitle": "Bạn đọc lại thứ mình định viết, không phải thứ mình đã viết.",
     "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "😖",
+    "difficulty": "Trung bình",
+    "emoji": "🙈",
     "track": "personal",
-    "openingQuestion": "Bạn được đề nghị 2 lựa chọn: (A) Chắc chắn nhận 5 triệu, hoặc (B) 50% nhận 11 triệu, 50% không nhận gì. Về mặt toán học B có kỳ vọng cao hơn (5.5 triệu), nhưng đa số người vẫn chọn A. Vì sao?",
+    "interactiveType": "prospect",
+    "isFundamental": true,
+    "whyItMatters": "Đây là một thiên kiến nhận thức chứ không phải chuyện cẩu thả, nên cố gắng đọc kỹ hơn không giải quyết được. Hiểu cơ chế của nó cho bạn những cách chữa thật sự có tác dụng.",
+    "openingQuestion": "Vì sao bạn đọc lại code của mình mười lần vẫn không thấy lỗi mà người khác thấy trong ba mươi giây?",
     "openingOptions": [
-      "Vì đa số người không biết tính toán xác suất cơ bản",
-      "Vì ác cảm mất mát khiến việc tránh một khoản lỗ được coi trọng hơn",
-      "Vì 5 triệu luôn là con số tốt hơn 11 triệu trong mọi trường hợp",
-      "Vì con người luôn thích rủi ro cao khi có cơ hội thắng lớn"
+      "Vì bạn đọc thứ mình ĐỊNH viết, còn họ đọc thứ thật sự có trên màn hình",
+      "Vì bạn đã mệt sau khi viết xong nên khả năng tập trung giảm đi đáng kể",
+      "Vì họ có nhiều kinh nghiệm hơn nên nhận ra các khuôn lỗi phổ biến nhanh hơn",
+      "Vì bạn đọc quá nhanh do đã quen với đoạn code đó nên bỏ sót nhiều chi tiết"
     ],
-    "correctOption": 1,
-    "explanation": "Đây chính là hiện tượng ác cảm mất mát (loss aversion) mà Kahneman và Tversky phát hiện: con người cảm nhận nỗi đau của việc MẤT một khoản tiền mạnh gấp khoảng 2-2.5 lần so với niềm vui khi ĐƯỢC cùng khoản đó. Vì thế, dù lựa chọn B có giá trị kỳ vọng cao hơn về mặt toán học, não bộ vẫn ưu tiên sự an toàn của lựa chọn A để tránh rủi ro của việc 'không nhận gì'.",
+    "correctOption": 0,
+    "explanation": "Não bạn giữ nguyên ý định lúc viết và lấp đầy khoảng trống bằng ý định đó khi đọc lại. Bạn nhìn vào một biến sai tên nhưng đọc ra cái tên đúng, vì đó là cái bạn định gõ. Người khác không có ý định nào để lấp, nên họ thấy thứ thật sự nằm trên màn hình. Mệt và quen thuộc đều làm chuyện này tệ hơn, nhưng chúng là yếu tố phụ - cơ chế gốc vẫn hoạt động ngay cả khi bạn tỉnh táo và đang đọc chậm.",
+    "diagram": [
+      {
+        "label": "Lúc viết, bạn tạo ra một ý định trong đầu",
+        "arrow": true
+      },
+      {
+        "label": "Lúc đọc lại, não lấp khoảng trống bằng ý định đó",
+        "arrow": true
+      },
+      {
+        "label": "Bạn thấy thứ mình muốn thấy, không phải thứ có thật",
+        "arrow": true
+      },
+      {
+        "label": "Cố đọc kỹ hơn không chữa được - phải đổi góc nhìn"
+      }
+    ],
     "realWorldExample": {
-      "company": "Nhà đầu tư cá nhân giữ cổ phiếu lỗ quá lâu",
-      "description": "Một khảo sát kinh điển trên tài khoản môi giới cho thấy nhà đầu tư cá nhân bán cổ phiếu ĐANG LÃI nhanh hơn nhiều so với cổ phiếu ĐANG LỖ - họ 'chốt lời' sớm để tận hưởng cảm giác thắng, nhưng lại ôm cổ phiếu lỗ chờ 'về bờ' vì không chịu nổi cảm giác thừa nhận thua lỗ (bán = hiện thực hóa mất mát). Kết quả: danh mục dần chất đầy những cổ phiếu tệ nhất, trong khi các khoản lãi tốt bị bán quá sớm."
+      "company": "Đọc to thành tiếng",
+      "description": "Một mẹo cũ mà hiệu quả bất ngờ: đọc từng dòng thành tiếng. Nó buộc bạn xử lý ký tự thật thay vì lướt theo khuôn quen, và nó là lý do nhiều người tìm ra lỗi ngay khi bắt đầu giải thích code cho đồng nghiệp - trước cả khi đồng nghiệp kịp trả lời."
     },
     "quiz": [
       {
-        "question": "'Hiệu ứng chênh lệch xử lý' (disposition effect) trong đầu tư là gì?",
+        "question": "Vì sao cố gắng đọc kỹ hơn không chữa được điểm mù này?",
         "options": [
-          "Xu hướng bán cổ phiếu đang lãi quá sớm và giữ cổ phiếu đang lỗ quá lâu, vì bán lỗ đồng nghĩa với việc thừa nhận thất bại - một hệ quả trực tiếp của ác cảm mất mát",
-          "Xu hướng chỉ đầu tư vào cổ phiếu công nghệ",
-          "Xu hướng phân bổ tài sản đều cho tất cả các loại tài sản",
-          "Xu hướng luôn mua thêm khi giá giảm bất kể lý do"
+          "Vì đó là cơ chế nhận thức tự động, nó vẫn chạy kể cả khi bạn đang tập trung cao",
+          "Vì code thường quá dài để một người có thể đọc kỹ toàn bộ trong một lần",
+          "Vì lỗi thường nằm ở phần tương tác giữa các tệp chứ không nằm gọn trong một tệp nào",
+          "Vì việc đọc kỹ làm bạn tập trung vào cú pháp mà bỏ qua phần logic nghiệp vụ"
         ],
         "correct": 0,
-        "explanation": "Disposition effect là hệ quả trực tiếp của loss aversion trong đầu tư: bán một cổ phiếu lỗ nghĩa là chính thức 'chốt' khoản thua lỗ đó - một hành động đau đớn về tâm lý hơn nhiều so với chỉ đơn giản nhìn số dư tài khoản giảm trên giấy. Vì thế nhà đầu tư trì hoãn bán lỗ, hy vọng giá 'về bờ', trong khi lại vội vàng bán chốt lời để tận hưởng cảm giác chiến thắng ngay lập tức."
+        "explanation": "Đây là điểm phân biệt thiên kiến với sự cẩu thả. Cẩu thả thì cố gắng hơn sẽ đỡ; thiên kiến thì không, vì nó hoạt động dưới mức ý thức. Mọi cách chữa có tác dụng đều là đổi GÓC NHÌN chứ không phải tăng nỗ lực."
       },
       {
-        "question": "Tại sao ác cảm mất mát khiến nhiều người giữ tiền mặt quá nhiều thay vì đầu tư, dù biết lạm phát sẽ bào mòn giá trị?",
+        "question": "Vì sao để cách một đêm rồi đọc lại thì hiệu quả?",
         "options": [
-          "Vì tiền mặt luôn sinh lời tốt hơn đầu tư trong dài hạn",
-          "Vì nỗi sợ mất tiền khi đầu tư (nhìn thấy) cảm thấy đáng sợ hơn nhiều so với việc mất giá trị mua sắm do lạm phát (vô hình, không nhìn thấy trực tiếp trên tài khoản) - dù thiệt hại thực tế của lạm phát có thể lớn hơn",
-          "Vì các ngân hàng luôn khuyến khích khách hàng giữ tiền mặt",
-          "Vì đầu tư luôn có rủi ro cao hơn gửi tiết kiệm trong mọi trường hợp"
+          "Vì ý định lúc viết đã mờ đi, nên bạn đọc code gần giống như người ngoài đọc",
+          "Vì sau một đêm nghỉ ngơi thì khả năng tập trung của bạn được phục hồi hoàn toàn",
+          "Vì trong lúc ngủ thì não vẫn tiếp tục xử lý vấn đề đó và tìm ra lời giải tốt hơn",
+          "Vì khoảng cách thời gian giúp bạn nhớ lại những yêu cầu mà lúc viết đã bỏ sót"
         ],
-        "correct": 1,
-        "explanation": "Đây là một biến thể tinh vi của ác cảm mất mát: mất mát 'nhìn thấy được' (số dư tài khoản đầu tư giảm khi thị trường điều chỉnh) gây đau đớn tâm lý nhiều hơn mất mát 'vô hình' (sức mua giảm dần do lạm phát dù số dư tiền mặt không đổi) - dù về lâu dài, lạm phát 4-5%/năm có thể bào mòn tài sản nhiều hơn biến động ngắn hạn của thị trường đầu tư."
+        "correct": 0,
+        "explanation": "Cách chữa này tấn công đúng nguyên nhân: xoá cái ý định đang lấp khoảng trống. Đó cũng là lý do nó hiệu quả hơn nhiều so với việc đọc lại ngay sau khi viết xong, dù lúc đó bạn còn nhớ rõ mọi thứ hơn."
       },
       {
-        "question": "Cách hiệu quả nhất để giảm ảnh hưởng của ác cảm mất mát lên quyết định đầu tư là gì?",
+        "question": "Vì sao giải thích code cho người khác lại hay tìm ra lỗi?",
         "options": [
-          "Kiểm tra tài khoản đầu tư mỗi giờ để phản ứng kịp thời với biến động",
-          "Đặt quy tắc bán/mua rõ ràng TRƯỚC khi đầu tư (stop-loss, mục tiêu lợi nhuận, lịch tái cân bằng định kỳ) và tuân thủ kỷ luật thay vì ra quyết định cảm tính khi nhìn số dư tài khoản dao động",
-          "Không bao giờ nhìn vào số dư tài khoản đầu tư của mình",
-          "Chỉ đầu tư vào một loại tài sản duy nhất để đơn giản hóa quyết định"
+          "Vì diễn đạt thành lời buộc bạn theo đúng thứ tự code chạy, không nhảy cóc theo ý định",
+          "Vì người nghe đặt câu hỏi giúp bạn nhận ra những chỗ mình chưa suy nghĩ kỹ",
+          "Vì việc nói chậm hơn đọc nên bạn có nhiều thời gian hơn để xử lý từng dòng",
+          "Vì bạn phải đơn giản hoá vấn đề để người khác hiểu được, nên những logic thừa sẽ lộ ra"
         ],
-        "correct": 1,
-        "explanation": "Đặt quy tắc rõ ràng trước (pre-commitment) là chiến lược 'debiasing' được khuyến nghị rộng rãi: khi bạn quyết định trước 'tôi sẽ bán nếu giá giảm 20%' hoặc 'tôi tái cân bằng danh mục mỗi quý', bạn loại bỏ được yếu tố cảm xúc trong khoảnh khắc thị trường biến động mạnh - đúng lúc ác cảm mất mát hoạt động mạnh nhất."
+        "correct": 0,
+        "explanation": "Điểm mấu chốt là nó hoạt động kể cả khi người nghe không nói gì, thậm chí khi bạn nói với một vật vô tri. Nếu cơ chế là nhờ câu hỏi của người nghe thì hiện tượng đó đã không xảy ra."
+      },
+      {
+        "question": "Vì sao nên đọc bản khác biệt thay vì đọc lại toàn bộ tệp?",
+        "options": [
+          "Vì nó cô lập đúng phần bạn vừa đổi, tách khỏi phần code cũ mà mắt bạn đã quen lướt qua",
+          "Vì bản khác biệt ngắn hơn nên bạn đọc hết được trong thời gian ngắn hơn nhiều",
+          "Vì công cụ so sánh tự động phát hiện được những thay đổi có khả năng gây lỗi cao",
+          "Vì đọc toàn bộ tệp sẽ khiến bạn sửa thêm những chỗ không nằm trong phạm vi công việc"
+        ],
+        "correct": 0,
+        "explanation": "Đổi cách trình bày là một cách đổi góc nhìn, cùng họ với việc đọc to hay đổi phông chữ. Việc nó ngắn hơn cũng có ích thật, nhưng lợi ích chính là phá vỡ khuôn quen thuộc mà mắt bạn đang lướt theo."
+      },
+      {
+        "question": "Điểm mù này ảnh hưởng tới việc viết kiểm thử thế nào?",
+        "options": [
+          "Bạn viết kiểm thử cho những trường hợp mình đã nghĩ tới, tức đúng những chỗ code đã đúng",
+          "Bạn viết quá nhiều kiểm thử cho một phần nhỏ mà bỏ qua các phần còn lại của hệ thống",
+          "Bạn viết kiểm thử sau khi viết code nên chúng chỉ mô tả lại những gì code đang làm",
+          "Bạn viết kiểm thử quá phụ thuộc vào chi tiết cài đặt nên chúng hỏng mỗi khi bạn sửa lại code"
+        ],
+        "correct": 0,
+        "explanation": "Đây là hệ quả khó chịu nhất: bộ kiểm thử của bạn xanh mà vẫn sót lỗi, vì cùng một điểm mù tạo ra cả code lẫn kiểm thử. Ba lựa chọn kia đều là vấn đề có thật nhưng chúng đến từ nguyên nhân khác."
       }
     ],
     "keyTakeaways": [
-      "Ác cảm mất mát (loss aversion): não bộ cảm nhận nỗi đau mất tiền mạnh gấp 2-2.5 lần niềm vui được cùng khoản tiền đó",
-      "Disposition effect: xu hướng bán cổ phiếu lãi quá sớm, giữ cổ phiếu lỗ quá lâu - hệ quả trực tiếp của ác cảm mất mát",
-      "Ác cảm mất mát khiến nhiều người giữ quá nhiều tiền mặt, sợ rủi ro nhìn thấy được hơn là rủi ro vô hình như lạm phát",
-      "Đặt quy tắc đầu tư rõ ràng trước khi thị trường biến động là cách hiệu quả nhất để trung hòa ảnh hưởng của thiên kiến này"
+      "Bạn đọc thứ mình ĐỊNH viết; người khác đọc thứ thật sự nằm trên màn hình.",
+      "Đây là thiên kiến nhận thức, nên cố gắng hơn không chữa được - phải đổi góc nhìn.",
+      "Để cách một đêm có tác dụng vì nó xoá đi cái ý định đang lấp khoảng trống.",
+      "Giải thích thành lời hiệu quả kể cả khi người nghe không nói gì.",
+      "Cùng điểm mù tạo ra cả code lẫn kiểm thử, nên bộ kiểm xanh vẫn có thể sót lỗi."
     ],
     "practicePrompt": {
-      "question": "Bạn mua một cổ phiếu ở giá 100, hiện đang ở giá 70 (lỗ 30%). Bạn tin rằng công ty đã thay đổi cơ bản (mô hình kinh doanh không còn tốt như trước) nhưng vẫn không muốn bán vì 'chờ về bờ'. Đây là biểu hiện của thiên kiến gì, và cách xử lý đúng là gì?",
+      "question": "Bạn vừa viết xong một tính năng và muốn tự soát trước khi gửi đi. Cách nào có tác dụng nhất?",
       "options": [
-        "Đây là quyết định hợp lý, luôn nên chờ giá về bờ trước khi bán bất kỳ cổ phiếu nào",
-        "Disposition effect: nên nhìn triển vọng tương lai, không phải giá mua ban đầu",
-        "Nên mua thêm để hạ giá vốn trung bình bất kể triển vọng công ty ra sao",
-        "Giá mua ban đầu luôn là yếu tố quan trọng nhất khi quyết định bán"
+        "Đọc bản khác biệt vào sáng hôm sau, thay vì đọc lại toàn bộ tệp ngay lúc này",
+        "Đọc lại ngay lập tức khi mọi chi tiết còn rõ trong đầu để không bỏ sót gì",
+        "Chạy lại toàn bộ bộ kiểm thử và xem có phần nào chưa được kiểm tra tới không",
+        "Đọc từ dòng cuối lên dòng đầu để phá vỡ thứ tự đọc quen thuộc của mình"
       ],
-      "correct": 1,
-      "explanation": "Đây là bài học cốt lõi để vượt qua ác cảm mất mát: giá mua ban đầu là 'sunk cost' - chi phí đã bỏ ra, không thể thay đổi, và về lý thuyết quyết định tài chính không nên bị chi phối bởi nó. Câu hỏi đúng cần đặt ra là 'Nếu hôm nay tôi CHƯA sở hữu cổ phiếu này, với triển vọng hiện tại, tôi có mua nó không?' - nếu câu trả lời là không, thì nên bán, bất kể đang lãi hay lỗ bao nhiêu phần trăm."
+      "correct": 0,
+      "explanation": "Nó kết hợp hai cách chữa cùng lúc: khoảng cách thời gian xoá ý định, và bản khác biệt cô lập phần vừa đổi. Đọc ngược từ dưới lên có tác dụng với việc soát chính tả nhưng nó phá luôn mạch logic, nên không dùng được cho code."
     },
     "summary": {
-      "keyIdea": "Ác cảm mất mát khiến con người cảm nhận nỗi đau mất tiền mạnh hơn nhiều niềm vui được tiền tương đương, dẫn đến các quyết định tài chính phi lý như giữ cổ phiếu lỗ quá lâu hoặc giữ quá nhiều tiền mặt.",
-      "commonMistake": "Ra quyết định bán/giữ dựa vào giá mua ban đầu (sunk cost) thay vì triển vọng tương lai thực sự của khoản đầu tư",
-      "action": "Viết ra quy tắc bán/mua rõ ràng trước khi đầu tư, và tự hỏi 'Nếu chưa sở hữu, tôi có mua ở giá này không?' mỗi khi cân nhắc giữ một khoản đầu tư đang lỗ"
+      "keyIdea": "Điểm mù không phải cẩu thả - nó là não bạn lấp khoảng trống bằng ý định của chính bạn.",
+      "formula": "Đổi góc nhìn > tăng nỗ lực. Thời gian, giọng nói, cách trình bày, người khác.",
+      "commonMistake": "Nghĩ rằng đọc kỹ hơn sẽ tìm ra - cơ chế này chạy dưới mức ý thức.",
+      "action": "Lần tới trước khi gửi code đi, để cách một đêm rồi đọc bản khác biệt."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Nhìn lại danh mục đầu tư hiện tại của bạn - có khoản nào bạn đang giữ chỉ vì 'chưa muốn lỗ' dù không còn tin vào triển vọng của nó? Viết ra quyết định thực sự nên làm nếu bỏ qua giá mua ban đầu.",
-      "secondary": "Ác cảm mất mát không chỉ ảnh hưởng đến đầu tư - nó còn khiến bạn giữ công việc không phù hợp, mối quan hệ không lành mạnh chỉ vì đã 'đầu tư' quá nhiều thời gian vào đó."
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy một đoạn code bạn viết tuần trước và đọc to từng dòng thành tiếng. Đếm xem bạn dừng lại ở bao nhiêu chỗ vì thấy có gì đó không khớp.",
+      "secondary": "Nếu bạn không dừng lại lần nào, thử lại với đoạn code bạn viết hôm nay. Chênh lệch giữa hai lần chính là tác dụng của khoảng cách thời gian."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Năm 1979, hai nhà tâm lý học Daniel Kahneman và Amos Tversky công bố một phát hiện làm thay đổi cả kinh tế học: con người không quyết định theo lý trí thuần túy như các mô hình kinh tế truyền thống giả định - và ác cảm mất mát là viên gạch đầu tiên của lý thuyết đó."
+        "text": "Chặng này về việc đọc code - của mình và của người khác. Bài đầu tiên là lý do vì sao hai việc đó khó khác nhau tới vậy, và nó không phải chuyện kinh nghiệm."
       },
       {
         "type": "heading",
-        "text": "Prospect Theory - Nền tảng của Behavioral Finance"
+        "text": "Cơ chế"
       },
       {
         "type": "paragraph",
-        "text": "Kahneman và Tversky phát triển 'Prospect Theory' (Lý thuyết triển vọng) dựa trên quan sát: con người đánh giá được/mất không đối xứng. Một khoản lỗ 1 triệu đồng gây ra nỗi đau tâm lý gấp khoảng 2-2.5 lần niềm vui từ một khoản lãi 1 triệu đồng tương đương. Phát hiện này giúp Kahneman đoạt giải Nobel Kinh tế năm 2002, và trở thành nền tảng của toàn bộ ngành Behavioral Finance (Tài chính hành vi)."
-      },
-      {
-        "type": "heading",
-        "text": "Disposition Effect - Ác cảm mất mát trong đầu tư thực tế"
-      },
-      {
-        "type": "paragraph",
-        "text": "Trong đầu tư, ác cảm mất mát biểu hiện rõ nhất qua 'disposition effect': nhà đầu tư có xu hướng bán cổ phiếu đang LÃI quá sớm (để 'khóa' cảm giác chiến thắng) nhưng giữ cổ phiếu đang LỖ quá lâu (vì bán = chính thức thừa nhận thất bại). Hệ quả là danh mục dần chứa đầy những khoản đầu tư tệ nhất, trong khi những khoản tốt bị bán đi quá sớm trước khi kịp tăng trưởng hết tiềm năng."
-      },
-      {
-        "type": "heading",
-        "text": "Sunk Cost Fallacy - Người bạn đồng hành của ác cảm mất mát"
-      },
-      {
-        "type": "paragraph",
-        "text": "'Sunk cost' (chi phí chìm) là khoản tiền/thời gian/công sức đã bỏ ra và KHÔNG THỂ LẤY LẠI, bất kể quyết định tiếp theo là gì. Về lý thuyết, sunk cost không nên ảnh hưởng đến quyết định tương lai - nhưng ác cảm mất mát khiến con người liên tục 'đổ thêm tiền' vào những khoản đầu tư tệ chỉ để tránh cảm giác 'công sức đã bỏ ra là lãng phí'. Câu hỏi đúng luôn là: với thông tin và triển vọng HIỆN TẠI, đây có còn là quyết định tốt không - bất kể đã đầu tư bao nhiêu trước đó?"
+        "text": "Lúc viết, bạn tạo ra một ý định trong đầu: biến này giữ cái gì, vòng lặp này chạy tới đâu. Lúc đọc lại, não lấy chính ý định đó lấp vào khoảng trống. Bạn nhìn vào một biến sai tên nhưng đọc ra cái tên đúng, vì đó là cái bạn định gõ."
       },
       {
         "type": "callout",
-        "label": "Bài học thực tế",
-        "text": "Lần tới khi bạn ngần ngại bán một khoản đầu tư đang lỗ, hãy tự hỏi: 'Nếu hôm nay tôi chưa sở hữu khoản này, với thông tin hiện tại, tôi có mua nó không?' Nếu câu trả lời là không, giá mua ban đầu không còn quan trọng nữa - đó là lúc nên bán."
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Mất mát gây đau gấp khoảng hai lần niềm vui tương đương",
-        "arrow": true
-      },
-      {
-        "label": "Nên trì hoãn hiện thực hóa lỗ, chốt lời quá sớm",
-        "arrow": true
-      },
-      {
-        "label": "Cộng thêm ngụy biện chi phí đã bỏ ra",
-        "arrow": true
-      },
-      {
-        "label": "Đối phó: đặt trước quy tắc cắt lỗ và chốt lời",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
-  },
-  {
-    "id": 1236,
-    "slug": "qua-tu-tin-va-neo-gia-trong-dau-tu",
-    "title": "Quá tự tin & Neo giá: Vì sao ai cũng nghĩ mình giỏi hơn mức trung bình",
-    "subtitle": "93% tài xế tự tin lái xe giỏi hơn mức trung bình - và nhà đầu tư cũng mắc lỗi tương tự với tiền của mình",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "🎯",
-    "track": "personal",
-    "openingQuestion": "Bạn mua một cổ phiếu ở giá 50.000đ. Sau đó giá tăng lên 80.000đ, bạn nghĩ 'chờ nó về lại 50.000đ tôi sẽ mua thêm'. Giá không bao giờ về 50.000đ nữa, và bạn bỏ lỡ cơ hội tăng trưởng tiếp theo. Đây là biểu hiện của thiên kiến gì?",
-    "openingOptions": [
-      "Thiên kiến xác nhận (confirmation bias)",
-      "Hiệu ứng neo giá - bạn neo vào mức 50.000đ ban đầu",
-      "Ác cảm mất mát (loss aversion)",
-      "Đây không phải là một thiên kiến tâm lý, chỉ là quyết định đầu tư thông thường"
-    ],
-    "correctOption": 1,
-    "explanation": "Đây là hiệu ứng neo giá (anchoring) kinh điển: mức giá 50.000đ ban đầu trở thành một 'điểm neo' tâm lý, khiến bạn đánh giá mọi mức giá sau đó dựa trên khoảng cách với con số này, thay vì đánh giá độc lập giá trị thực của cổ phiếu ở thời điểm hiện tại. Giá cổ phiếu không 'biết' hay 'quan tâm' bạn từng mua ở giá nào - đó chỉ là một con số trong đầu bạn.",
-    "realWorldExample": {
-      "company": "Nhà đầu tư bỏ lỡ Bitcoin, Apple, Amazon vì neo giá quá khứ",
-      "description": "Rất nhiều người từng nói 'Bitcoin đã 1.000 USD rồi, quá đắt để mua' - rồi bỏ lỡ khi nó lên 60.000 USD. Tương tự với cổ phiếu Apple hay Amazon: nhà đầu tư neo vào mức giá họ từng thấy 'rẻ' trong quá khứ, rồi từ chối mua khi giá tăng, dù triển vọng công ty vẫn tốt lên theo thời gian - giá cổ phiếu quá khứ không phải là thước đo cho giá trị hợp lý ở hiện tại."
-    },
-    "quiz": [
-      {
-        "question": "Quá tự tin (overconfidence bias) khiến nhà đầu tư cá nhân thường mắc lỗi gì phổ biến nhất?",
-        "options": [
-          "Đầu tư quá ít vào thị trường chứng khoán",
-          "Giao dịch (mua/bán) quá thường xuyên vì tin rằng bản thân có thể 'đánh bại thị trường' bằng cách đoán đúng thời điểm - trong khi phí giao dịch và sai lầm về thời điểm thường làm giảm lợi nhuận so với việc mua-giữ dài hạn",
-          "Không bao giờ kiểm tra danh mục đầu tư của mình",
-          "Luôn đầu tư theo lời khuyên của chuyên gia mà không tự nghiên cứu"
-        ],
-        "correct": 1,
-        "explanation": "Các nghiên cứu học thuật (như của Barber & Odean) cho thấy nhà đầu tư cá nhân giao dịch nhiều nhất có lợi nhuận trung bình THẤP HƠN đáng kể so với nhà đầu tư giao dịch ít - phần lớn do quá tự tin vào khả năng 'đoán đúng' thời điểm mua/bán, dẫn đến giao dịch quá nhiều, tốn phí, và thường xuyên sai thời điểm."
-      },
-      {
-        "question": "Trong một cuộc đàm phán lương, tại sao con số đầu tiên được đưa ra (dù bởi bên nào) thường ảnh hưởng mạnh đến kết quả cuối cùng?",
-        "options": [
-          "Vì con số đầu tiên luôn là con số công bằng nhất",
-          "Vì hiệu ứng neo giá khiến mọi đề xuất tiếp theo được đánh giá TƯƠNG ĐỐI so với con số neo ban đầu, thay vì được đánh giá độc lập theo giá trị thực tế của công việc/kỹ năng",
-          "Vì luật lao động quy định con số đầu tiên phải được chấp nhận",
-          "Neo giá chỉ áp dụng cho đầu tư chứng khoán, không áp dụng cho đàm phán lương"
-        ],
-        "correct": 1,
-        "explanation": "Anchoring không chỉ giới hạn ở đầu tư - nó xuất hiện trong mọi tình huống có con số: đàm phán lương, mặc cả giá nhà, mua xe. Con số đầu tiên được nêu ra trở thành điểm neo tâm lý, và các đề xuất tiếp theo (dù của bên nào) có xu hướng bị 'kéo' về gần con số neo đó, thay vì được đánh giá hoàn toàn độc lập dựa trên giá trị thực."
-      },
-      {
-        "question": "Cách hiệu quả để giảm ảnh hưởng của quá tự tin khi đầu tư là gì?",
-        "options": [
-          "Tin tưởng hoàn toàn vào trực giác và kinh nghiệm cá nhân khi ra quyết định",
-          "Ghi lại lý do đầu tư TRƯỚC khi mua, và định kỳ xem lại xem những dự đoán trước đây của mình chính xác đến đâu - việc theo dõi lịch sử dự đoán giúp hiệu chỉnh mức độ tự tin sát thực tế hơn",
-          "Giao dịch càng nhiều càng tốt để tích lũy kinh nghiệm nhanh hơn",
-          "Không bao giờ tham khảo ý kiến từ nguồn khác để tránh bị ảnh hưởng"
-        ],
-        "correct": 1,
-        "explanation": "Ghi 'nhật ký đầu tư' (investment journal) - lý do mua, kỳ vọng, và sau đó đối chiếu với kết quả thực tế - là kỹ thuật debiasing được khuyến nghị rộng rãi. Nó buộc nhà đầu tư đối mặt với việc bao nhiêu dự đoán của mình thực sự đúng, thường thấp hơn nhiều so với cảm giác tự tin ban đầu, từ đó điều chỉnh hành vi giao dịch thực tế hơn."
-      }
-    ],
-    "keyTakeaways": [
-      "Quá tự tin (overconfidence) khiến nhà đầu tư giao dịch quá nhiều, tin rằng có thể đoán đúng thời điểm thị trường - thường dẫn đến lợi nhuận thấp hơn chiến lược mua-giữ dài hạn",
-      "Hiệu ứng neo giá (anchoring): một con số ban đầu (giá mua, mức giá từng thấy) trở thành điểm tham chiếu tâm lý ảnh hưởng đến mọi đánh giá sau đó, dù không còn liên quan đến giá trị thực",
-      "Neo giá xuất hiện ở khắp nơi: đàm phán lương, mặc cả giá nhà/xe, không chỉ riêng đầu tư chứng khoán",
-      "Ghi nhật ký đầu tư và đối chiếu dự đoán với kết quả thực tế là cách hiệu chỉnh quá tự tin hiệu quả nhất"
-    ],
-    "practicePrompt": {
-      "question": "Bạn đang cân nhắc mua một căn hộ giá 3 tỷ đồng. Người bán ban đầu ra giá 3.5 tỷ, sau đó 'giảm' xuống 3 tỷ và nói đây là 'ưu đãi đặc biệt'. Bạn cảm thấy 3 tỷ là hời. Điều gì có thể đang xảy ra về mặt tâm lý?",
-      "options": [
-        "3 tỷ chắc chắn là giá hời vì đã giảm so với giá ban đầu",
-        "Chiến thuật neo giá: mức 3,5 tỷ ban đầu làm cho 3 tỷ trông có vẻ hời",
-        "Người bán không có động cơ gì khi đưa ra giá ban đầu cao hơn",
-        "Giá đã giảm 500 triệu nên giờ phản ánh đúng giá trị thị trường"
-      ],
-      "correct": 1,
-      "explanation": "Đây là chiến thuật neo giá kinh điển trong đàm phán/bán hàng: đưa ra một con số cao ban đầu (dù không thực sự là mức giá kỳ vọng) để các con số 'giảm giá' sau đó có vẻ hấp dẫn hơn theo cảm nhận tương đối. Cách phòng vệ đúng là luôn tự định giá độc lập (so sánh với các căn hộ tương tự đã giao dịch gần đây trong khu vực) TRƯỚC khi nghe bất kỳ đề xuất giá nào từ người bán, để tránh bị 'neo' vào con số của họ."
-    },
-    "summary": {
-      "keyIdea": "Quá tự tin khiến nhà đầu tư giao dịch quá nhiều và tin sai vào khả năng đoán thị trường; hiệu ứng neo giá khiến các con số quá khứ (không còn liên quan) tiếp tục chi phối quyết định hiện tại.",
-      "commonMistake": "Đánh giá một mức giá là 'rẻ' hay 'đắt' dựa vào so sánh với một con số neo trong quá khứ, thay vì định giá độc lập dựa trên giá trị thực tại thời điểm hiện tại",
-      "action": "Trước khi đàm phán bất kỳ giao dịch nào (lương, nhà, xe), tự nghiên cứu và định ra mức giá hợp lý ĐỘC LẬP trước khi nghe bất kỳ con số nào từ đối phương"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Xem lại 3 quyết định tài chính gần nhất của bạn - có quyết định nào bị chi phối bởi một con số bạn từng thấy trong quá khứ (giá mua cũ, mức lương cũ, giá nhà từng thấy) hơn là giá trị thực tế hiện tại?",
-      "secondary": "Kỹ năng nhận diện neo giá đặc biệt hữu ích khi đàm phán lương, mua nhà, hoặc mua xe - những giao dịch lớn mà một sai lầm neo giá có thể khiến bạn thiệt hại đáng kể."
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Một nghiên cứu nổi tiếng hỏi các tài xế tự đánh giá kỹ năng lái xe của mình so với người khác - 93% trả lời họ giỏi hơn mức trung bình, một điều toán học không thể đúng cho tất cả mọi người. Nhà đầu tư cũng mắc lỗi tương tự với tiền bạc."
-      },
-      {
-        "type": "heading",
-        "text": "Overconfidence Bias - Khi tự tin trở thành kẻ thù"
+        "label": "Vì sao cố gắng hơn không giúp gì",
+        "text": "Đây là thiên kiến nhận thức, không phải sự cẩu thả. Cẩu thả thì cố gắng hơn sẽ đỡ. Thiên kiến thì chạy dưới mức ý thức, nên nó vẫn hoạt động khi bạn tỉnh táo, đang tập trung cao và đọc rất chậm."
       },
       {
         "type": "paragraph",
-        "text": "Quá tự tin trong đầu tư biểu hiện qua: (1) tin rằng mình có thể đoán đúng thời điểm thị trường tăng/giảm; (2) đánh giá quá cao độ chính xác của thông tin/phân tích cá nhân; (3) giao dịch quá thường xuyên vì tin mỗi quyết định của mình đều đúng. Nghiên cứu học thuật cho thấy nhà đầu tư giao dịch nhiều nhất thường có lợi nhuận thấp nhất - không phải vì họ thiếu kiến thức, mà vì quá tự tin dẫn đến hành động thái quá."
+        "text": "Từ đó ra nguyên tắc cho mọi cách chữa: đổi GÓC NHÌN, đừng tăng nỗ lực. Mọi mẹo có tác dụng dưới đây đều là một biến thể của việc làm cho đoạn code trở nên lạ trở lại."
       },
       {
         "type": "heading",
-        "text": "Anchoring Effect - Sức mạnh của con số đầu tiên"
-      },
-      {
-        "type": "paragraph",
-        "text": "Hiệu ứng neo giá xảy ra khi một con số (dù ngẫu nhiên hay không liên quan) trở thành điểm tham chiếu ảnh hưởng đến mọi phán đoán tiếp theo. Trong đầu tư, đó thường là giá mua ban đầu hoặc mức giá cao nhất/thấp nhất từng thấy. Trong đàm phán, đó là con số đầu tiên được đưa ra. Điều nguy hiểm là bộ não xử lý con số neo một cách vô thức - ngay cả khi biết về hiện tượng này, người ta vẫn khó tránh khỏi ảnh hưởng của nó hoàn toàn."
-      },
-      {
-        "type": "heading",
-        "text": "Cách phòng vệ trước cả hai thiên kiến"
+        "text": "Bốn cách đổi góc nhìn"
       },
       {
         "type": "list",
         "items": [
-          "Ghi nhật ký đầu tư: lý do mua, kỳ vọng, sau đó đối chiếu với kết quả thực tế để hiệu chỉnh mức độ tự tin",
-          "Tự định giá độc lập TRƯỚC khi biết bất kỳ con số nào từ bên bán/đối phương, để tránh bị 'neo' vào con số của họ",
-          "Giới hạn tần suất giao dịch bằng quy tắc rõ ràng (ví dụ: chỉ tái cân bằng danh mục mỗi quý), thay vì phản ứng theo cảm tính mỗi ngày",
-          "Tìm kiếm chủ động những thông tin/ý kiến TRÁI NGƯỢC với quan điểm hiện tại của mình để cân bằng lại sự tự tin thái quá"
+          "Khoảng cách thời gian: để cách một đêm. Ý định mờ đi và bạn đọc gần giống như người ngoài.",
+          "Đổi kênh: đọc to thành tiếng. Nó buộc bạn xử lý ký tự thật thay vì lướt theo khuôn quen.",
+          "Đổi cách trình bày: đọc bản khác biệt thay vì đọc lại cả tệp, để cô lập đúng phần vừa đổi.",
+          "Đổi người: nhờ người khác đọc. Họ không có ý định nào để lấp."
         ]
       },
       {
-        "type": "closing",
-        "lines": [
-          "Quá tự tin và neo giá không phải là dấu hiệu của sự kém hiểu biết - chúng là những lối tắt tư duy (mental shortcuts) mà bộ não con người sử dụng để xử lý thông tin nhanh hơn, nhưng đôi khi phải trả giá bằng độ chính xác.",
-          "Biết về những thiên kiến này là bước đầu tiên; xây dựng quy trình/kỷ luật để chống lại chúng mới là bước quan trọng thực sự."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Quá tự tin → giao dịch nhiều, đa dạng hóa ít",
-        "arrow": true
-      },
-      {
-        "label": "Neo giá → dính vào giá mua hoặc con số đầu tiên nghe được",
-        "arrow": true
-      },
-      {
-        "label": "Cả hai làm hẹp khoảng ước lượng của bạn lại",
-        "arrow": true
-      },
-      {
-        "label": "Đối phó: ghi lại dự báo, tự phản biện, dùng khoảng thay vì một số",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
-  },
-  {
-    "id": 1237,
-    "slug": "tam-ly-bay-dan-va-fomo-trong-dau-tu",
-    "title": "Tâm lý bầy đàn & FOMO: Vì sao ta mua đỉnh, bán đáy",
-    "subtitle": "Khi mọi người xung quanh đều nói về một cổ phiếu, đó thường là lúc nguy hiểm nhất để mua nó",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "🐑",
-    "track": "personal",
-    "openingQuestion": "Một loại tài sản (cổ phiếu, coin, bất động sản) đang tăng giá mạnh, ai xung quanh bạn cũng đang bàn tán và khoe lợi nhuận. Bạn cảm thấy sợ bị bỏ lỡ (FOMO) và quyết định mua vào dù chưa từng tìm hiểu kỹ. Đây là ví dụ điển hình của hiện tượng tâm lý nào?",
-    "openingOptions": [
-      "Phân tích cơ bản (fundamental analysis) - đánh giá công ty dựa trên báo cáo tài chính",
-      "Tâm lý bầy đàn kết hợp FOMO - quyết định dựa trên đám đông",
-      "Chiến lược đầu tư giá trị (value investing)",
-      "Đa dạng hóa danh mục đầu tư (diversification)"
-    ],
-    "correctOption": 1,
-    "explanation": "Đây là sự kết hợp kinh điển của tâm lý bầy đàn (bắt chước hành vi đám đông vì cho rằng 'nhiều người làm vậy chắc phải đúng') và FOMO (nỗi sợ bị bỏ lỡ cơ hội mà người khác đang tận hưởng). Vấn đề là: khi MỌI NGƯỜI đều đã biết và đang bàn tán về một cơ hội đầu tư, phần lớn giá trị tăng trưởng thường đã được phản ánh vào giá - người mua sau cùng thường là người mua ở vùng giá cao nhất, ngay trước khi đợt điều chỉnh bắt đầu.",
-    "realWorldExample": {
-      "company": "Bong bóng Dotcom (2000) và cơn sốt GameStop (2021)",
-      "description": "Trong bong bóng Dotcom cuối những năm 1990, hàng triệu nhà đầu tư cá nhân đổ xô mua cổ phiếu công nghệ chỉ vì 'ai cũng mua', không hiểu công ty đó kinh doanh gì - nhiều công ty sụp đổ hoàn toàn sau đó. Tương tự, cơn sốt GameStop năm 2021 khiến nhiều nhà đầu tư mới tham gia mua ở vùng giá đỉnh vì thấy mạng xã hội bùng nổ thông tin, không ít người mua ở đỉnh 480 USD rồi chứng kiến giá rơi về dưới 50 USD chỉ vài tuần sau."
-    },
-    "quiz": [
-      {
-        "question": "Tại sao tâm lý bầy đàn thường khiến nhà đầu tư 'mua đỉnh, bán đáy' - ngược hoàn toàn với chiến lược đầu tư khôn ngoan (mua thấp, bán cao)?",
-        "options": [
-          "Vì tâm lý bầy đàn luôn giúp nhà đầu tư đưa ra quyết định chính xác hơn",
-          "Vì con người có xu hướng cảm thấy AN TOÀN khi hành động giống đám đông - họ mua vào khi giá đã tăng mạnh và truyền thông/xã hội đang phấn khích (gần đỉnh), và hoảng loạn bán ra khi giá đã giảm mạnh và ai cũng đang lo sợ (gần đáy) - phản ứng theo cảm xúc đám đông thay vì phân tích độc lập",
-          "Vì thị trường luôn vận động theo quy luật ngẫu nhiên hoàn toàn không liên quan đến tâm lý",
-          "Vì các chuyên gia tài chính luôn khuyên nên mua khi giá đã tăng cao"
-        ],
-        "correct": 1,
-        "explanation": "Cảm giác 'an toàn trong số đông' (safety in numbers) là bản năng sinh tồn tiến hóa của con người, nhưng lại phản tác dụng trong đầu tư: khi giá đã tăng mạnh và ai cũng phấn khích, đó thường là lúc thị trường đã 'quá nóng' - gần đỉnh. Ngược lại, khi giá giảm mạnh và hoảng loạn lan rộng, đó có thể là cơ hội mua tốt nhất - nhưng bản năng bầy đàn lại thúc đẩy bán ra đúng lúc đó."
-      },
-      {
-        "question": "Warren Buffett có câu nói nổi tiếng: 'Hãy sợ hãi khi người khác tham lam, và tham lam khi người khác sợ hãi.' Câu này áp dụng nguyên lý gì để chống lại tâm lý bầy đàn?",
-        "options": [
-          "Khuyên nhà đầu tư nên luôn làm ngược lại đám đông trong mọi trường hợp mà không cần phân tích gì thêm",
-          "Khuyến khích tư duy độc lập (contrarian thinking) có cơ sở phân tích - khi thị trường quá phấn khích (tham lam lan rộng), rủi ro định giá quá cao tăng lên; khi thị trường quá hoảng loạn (sợ hãi lan rộng), cơ hội mua tài sản tốt ở giá rẻ có thể xuất hiện - nhưng vẫn cần phân tích cơ bản, không phải chỉ 'làm ngược' một cách máy móc",
-          "Khuyên nhà đầu tư nên bán hết tài sản ngay khi thị trường tăng",
-          "Không liên quan gì đến tâm lý học hành vi"
-        ],
-        "correct": 1,
-        "explanation": "Câu nói của Buffett không có nghĩa là 'luôn làm ngược đám đông một cách máy móc' - mà là nhận thức được rằng cảm xúc đám đông (tham lam cực độ hoặc sợ hãi cực độ) thường đẩy giá tài sản lệch xa khỏi giá trị thực, tạo ra cơ hội cho nhà đầu tư giữ được sự tỉnh táo và phân tích độc lập, thay vì bị cuốn theo làn sóng cảm xúc tập thể."
-      },
-      {
-        "question": "Cách thực tế để tự bảo vệ mình khỏi FOMO khi thấy một cơ hội đầu tư 'hot' đang được bàn tán khắp nơi là gì?",
-        "options": [
-          "Mua ngay lập tức trước khi 'lỡ mất cơ hội' mà không cần tìm hiểu thêm",
-          "Đặt ra quy tắc chờ đợi (cooling-off period) - ví dụ chờ ít nhất 48-72 giờ và tự nghiên cứu độc lập trước khi quyết định đầu tư vào bất kỳ tài sản nào đang 'hot', để cảm xúc FOMO lắng xuống và có thời gian đánh giá lý trí",
-          "Hỏi càng nhiều người xung quanh càng tốt trước khi quyết định",
-          "Luôn tin tưởng hoàn toàn vào những gì thấy trên mạng xã hội về cơ hội đầu tư"
-        ],
-        "correct": 1,
-        "explanation": "Quy tắc 'thời gian chờ' (cooling-off period) là kỹ thuật debiasing hiệu quả cho FOMO: cảm xúc thôi thúc hành động ngay lập tức thường giảm đáng kể sau vài ngày, cho phép tư duy lý trí quay lại kiểm soát quyết định. Nếu sau 48-72 giờ nghiên cứu độc lập, cơ hội đầu tư vẫn có vẻ hợp lý dựa trên phân tích cơ bản (không chỉ vì đám đông đang mua), đó mới là lúc nên cân nhắc tham gia."
-      }
-    ],
-    "keyTakeaways": [
-      "Tâm lý bầy đàn: xu hướng bắt chước hành vi đám đông vì cảm giác 'an toàn trong số đông', dù điều đó thường dẫn đến mua ở vùng giá cao và bán ở vùng giá thấp",
-      "FOMO (sợ bỏ lỡ) là động lực cảm xúc chính khiến nhà đầu tư mua vào những tài sản đang 'hot' mà không phân tích kỹ",
-      "Khi một cơ hội đầu tư được bàn tán RỘNG RÃI, phần lớn giá trị tăng trưởng thường đã phản ánh vào giá - đó là tín hiệu cẩn trọng, không phải tín hiệu 'phải mua ngay'",
-      "Quy tắc thời gian chờ (48-72 giờ) trước khi quyết định đầu tư vào tài sản 'hot' giúp cảm xúc lắng xuống và tư duy lý trí quay lại"
-    ],
-    "practicePrompt": {
-      "question": "Một loại tiền mã hóa mới tăng 300% trong 2 tuần, mọi nền tảng mạng xã hội đều tràn ngập bài đăng khoe lợi nhuận. Bạn cảm thấy sợ bỏ lỡ mạnh mẽ. Hành động hợp lý nhất là gì?",
-      "options": [
-        "Mua ngay lập tức toàn bộ số tiền tiết kiệm để không bỏ lỡ cơ hội",
-        "Nhận diện bầy đàn + FOMO, áp dụng quy tắc chờ và tự nghiên cứu độc lập",
-        "Vay tiền để đầu tư nhiều hơn vì cơ hội quá tốt để bỏ lỡ",
-        "Bán hết các khoản đầu tư khác để dồn toàn bộ vào cơ hội này"
-      ],
-      "correct": 1,
-      "explanation": "Tăng giá cực nhanh (300% trong 2 tuần) kết hợp với sự bùng nổ thảo luận trên mạng xã hội là combo cảnh báo kinh điển của tâm lý bầy đàn + FOMO, thường xuất hiện gần đỉnh của một đợt tăng giá đầu cơ. Phản ứng khôn ngoan không phải là 'tránh hoàn toàn' (có thể bỏ lỡ cơ hội thực sự) mà là làm chậm lại quá trình ra quyết định, tự nghiên cứu độc lập, và giới hạn số vốn tham gia ở mức có thể chấp nhận mất hoàn toàn - không bao giờ vay nợ hay dồn hết tài sản vào một cơ hội đang 'nóng'."
-    },
-    "summary": {
-      "keyIdea": "Tâm lý bầy đàn và FOMO khiến nhà đầu tư mua vào khi giá đã tăng cao (đám đông phấn khích) và bán ra khi giá đã giảm sâu (đám đông hoảng loạn) - ngược lại hoàn toàn với chiến lược mua thấp bán cao.",
-      "commonMistake": "Coi sự phổ biến/bàn tán rộng rãi của một cơ hội đầu tư là tín hiệu 'nên mua', trong khi thực tế đó thường là tín hiệu cẩn trọng vì giá đã phản ánh phần lớn thông tin tích cực",
-      "action": "Áp dụng quy tắc chờ 48-72 giờ và tự nghiên cứu độc lập trước khi đầu tư vào bất kỳ tài sản nào đang được bàn tán rầm rộ trên mạng xã hội"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Nhớ lại lần gần nhất bạn cảm thấy FOMO về một cơ hội đầu tư - bạn có mua theo cảm xúc đám đông hay đã tự nghiên cứu độc lập trước khi quyết định?",
-      "secondary": "Tâm lý bầy đàn mạnh nhất trong các thị trường mới, ít quy định, và có tính lan truyền xã hội cao như tiền mã hóa - đây là nơi cần cảnh giác cao nhất."
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Con người tiến hóa để cảm thấy an toàn khi hành động giống đám đông - một bản năng sinh tồn tuyệt vời trong tự nhiên, nhưng lại là cái bẫy nguy hiểm nhất trong đầu tư tài chính."
+        "type": "paragraph",
+        "text": "Mục thứ hai có một biến thể đáng chú ý: rất nhiều người tìm ra lỗi ngay khi bắt đầu giải thích code cho đồng nghiệp, trước cả khi đồng nghiệp kịp trả lời. Nó hoạt động kể cả khi bạn nói với một vật vô tri - nếu cơ chế là nhờ câu hỏi của người nghe thì hiện tượng đó đã không xảy ra."
       },
       {
         "type": "heading",
-        "text": "Vì sao tâm lý bầy đàn dẫn đến 'mua đỉnh, bán đáy'"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi giá một tài sản tăng mạnh, truyền thông đưa tin, mạng xã hội tràn ngập câu chuyện thành công - đám đông cảm thấy hưng phấn và đổ xô mua vào, đẩy giá lên cao hơn nữa (gần đỉnh). Ngược lại, khi giá giảm mạnh, tin xấu lan truyền, nỗi sợ hãi tập thể khiến đám đông hoảng loạn bán tháo, đẩy giá xuống thấp hơn cả giá trị thực (gần đáy). Nhà đầu tư theo tâm lý bầy đàn luôn hành động SAU đám đông - mua sau khi giá đã tăng, bán sau khi giá đã giảm."
-      },
-      {
-        "type": "heading",
-        "text": "FOMO - Nỗi sợ bỏ lỡ trong thời đại mạng xã hội"
-      },
-      {
-        "type": "paragraph",
-        "text": "FOMO (Fear of Missing Out) được khuếch đại mạnh mẽ bởi mạng xã hội: nhìn thấy bạn bè, người quen khoe lợi nhuận đầu tư tạo ra áp lực tâm lý mạnh để 'không bị bỏ lại phía sau'. Vấn đề là những bài đăng khoe lợi nhuận thường xuất hiện NHIỀU NHẤT khi giá đã tăng mạnh (tạo động lực khoe khoang), chính là lúc rủi ro đảo chiều cao nhất - tạo ra một vòng lặp nguy hiểm: giá tăng → khoe khoang tăng → FOMO tăng → mua vào tăng → giá tăng thêm (bong bóng)."
-      },
-      {
-        "type": "heading",
-        "text": "Chiến lược Contrarian - Đi ngược đám đông một cách có cơ sở"
-      },
-      {
-        "type": "paragraph",
-        "text": "'Đi ngược đám đông' không có nghĩa là làm ngược lại một cách máy móc, mà là giữ được khả năng phân tích độc lập khi cảm xúc tập thể đang ở mức cực đoan. Chỉ báo tâm lý thị trường (như Fear & Greed Index) có thể giúp nhận diện khi nào thị trường đang ở trạng thái cực đoan - tham lam cực độ (cần thận trọng) hoặc sợ hãi cực độ (có thể là cơ hội, nếu phân tích cơ bản vẫn tốt)."
+        "text": "Hệ quả khó chịu nhất"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Đi theo đám đông",
-          "text": "Cảm giác an toàn vì nhiều người cùng làm, nhưng giá đã phản ánh chính sự đồng thuận đó. Rủi ro không giảm đi khi chia cho nhiều người - nó chỉ khó nhìn thấy hơn."
+          "label": "Bạn tưởng",
+          "text": "Bộ kiểm thử xanh nghĩa là code đúng. Bạn đã nghĩ ra các trường hợp và viết kiểm thử cho từng cái."
         },
         "right": {
-          "label": "Đi ngược có cơ sở",
-          "text": "Không phải cứ ngược đám đông là đúng. Contrarian có cơ sở đòi một luận điểm định lượng về vì sao giá lệch khỏi giá trị, và một mốc thời gian để biết mình sai."
+          "label": "Thực tế",
+          "text": "Bạn viết kiểm thử cho những trường hợp mình ĐÃ NGHĨ TỚI - tức đúng những chỗ code đã đúng. Cùng một điểm mù tạo ra cả hai."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Đó là lý do bộ kiểm thử của chính bạn không thay được một đôi mắt khác, và cũng là lý do bài về kiểm thử ở phần sau chặng này bắt đầu từ câu hỏi cái gì KHÔNG đáng viết.",
+          "Bài sau là một thiên kiến khác, hoạt động sớm hơn: lúc bạn chọn cách giải."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1236,
+    "slug": "qua-tu-tin-va-neo-vao-cach-lam-dau-tien",
+    "title": "Quá tự tin và neo vào cách làm đầu tiên",
+    "subtitle": "Hai thiên kiến đánh vào hai thời điểm khác nhau, và cả hai đều đắt.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "emoji": "⚓",
+    "track": "personal",
+    "interactiveType": "prospect",
+    "isFundamental": true,
+    "whyItMatters": "Ước lượng sai thời gian và bám vào cách làm đầu tiên là hai nguyên nhân phổ biến nhất khiến một công việc hai ngày kéo dài hai tuần. Cả hai đều là thiên kiến có tên và có cách chữa đã được kiểm chứng.",
+    "openingQuestion": "Vì sao ước lượng thời gian của lập trình viên gần như luôn thiếu?",
+    "openingOptions": [
+      "Vì bạn hình dung đường đi thuận lợi, còn thời gian thật gồm cả những chỗ rẽ chưa thấy",
+      "Vì áp lực từ quản lý khiến người ta đưa ra con số thấp hơn mức mình thật sự nghĩ",
+      "Vì công việc lập trình có quá nhiều yếu tố ngẫu nhiên nên về bản chất không ước lượng được",
+      "Vì người ta thường quên tính thời gian dành cho họp hành và các việc xen ngang khác"
+    ],
+    "correctOption": 0,
+    "explanation": "Bạn ước lượng bằng cách tưởng tượng các bước cần làm, và bạn chỉ tưởng tượng được những bước mình đã biết. Thư viện không chạy như tài liệu mô tả, dữ liệu thật có hình dạng khác, một yêu cầu lộ ra khi đã viết được nửa đường - những thứ đó không có trong bức tranh lúc ước lượng, nhưng chúng luôn xuất hiện. Áp lực và việc xen ngang đều làm mọi thứ tệ hơn, nhưng thiên kiến này vẫn còn nguyên ngay cả khi bạn ước lượng cho chính mình, không ai gây áp lực.",
+    "diagram": [
+      {
+        "label": "Ước lượng = tưởng tượng các bước mình BIẾT",
+        "arrow": true
+      },
+      {
+        "label": "Thời gian thật = các bước đó cộng những chỗ rẽ chưa thấy",
+        "arrow": true
+      },
+      {
+        "label": "Chữa bằng dữ liệu quá khứ, không bằng cách nghĩ kỹ hơn",
+        "arrow": true
+      },
+      {
+        "label": "Neo: cách làm đầu tiên trở thành mốc để so mọi cách khác"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Nhân đôi rồi lên đơn vị tiếp theo",
+      "description": "Một mẹo ước lượng cũ trong nghề: lấy con số đầu tiên bạn nghĩ ra, nhân đôi, rồi đổi lên đơn vị tiếp theo - hai ngày thành bốn tuần. Nghe như đùa, nhưng nó thường sát hơn con số ban đầu, và điều đó nói lên khoảng cách thật giữa hai bên."
+    },
+    "quiz": [
+      {
+        "question": "Cách chữa hiệu quả nhất cho việc ước lượng thiếu là gì?",
+        "options": [
+          "Nhìn lại những công việc tương tự đã làm mất bao lâu, thay vì nghĩ lại cho kỹ hơn",
+          "Chia công việc thành các phần nhỏ rồi cộng ước lượng của từng phần lại với nhau",
+          "Cộng thêm một khoảng dự phòng cố định vào con số mình vừa ước lượng ra",
+          "Ước lượng cả trường hợp tốt nhất và xấu nhất rồi lấy trung bình của hai con số"
+        ],
+        "correct": 0,
+        "explanation": "Dữ liệu quá khứ đã bao gồm những chỗ rẽ mà bạn không tưởng tượng ra được - vì chúng đã thật sự xảy ra. Chia nhỏ nghe hợp lý nhưng nó thường làm ước lượng THIẾU hơn nữa, vì mỗi phần nhỏ lại bỏ sót phần chi phí kết nối giữa chúng."
+      },
+      {
+        "question": "Neo trong lập trình biểu hiện thế nào?",
+        "options": [
+          "Cách làm đầu tiên nghĩ ra trở thành mốc, và mọi cách khác bị đánh giá theo nó",
+          "Bạn lặp lại đúng cấu trúc code của dự án trước dù bài toán lần này khác hẳn",
+          "Bạn giữ nguyên thư viện đã chọn ban đầu dù đã tìm thấy thư viện tốt hơn",
+          "Bạn ước lượng thời gian dựa vào con số mà người khác đã nêu ra trước đó"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là hệ quả của cùng một cơ chế, nhưng lựa chọn đầu mô tả chính cơ chế đó. Điểm nguy hiểm là cái neo hoạt động ngay cả khi bạn biết nó tồn tại - biết mình đang bị neo không gỡ được neo."
+      },
+      {
+        "question": "Vì sao nên nghĩ ra ba cách giải trước khi bắt đầu viết?",
+        "options": [
+          "Vì cách thứ ba thường lộ ra một khía cạnh mà hai cách đầu đều bỏ qua",
+          "Vì có nhiều lựa chọn giúp bạn thuyết phục đồng đội dễ hơn khi bàn phương án",
+          "Vì viết ra nhiều cách làm là yêu cầu bắt buộc trong tài liệu thiết kế kỹ thuật",
+          "Vì so sánh nhiều cách giúp bạn ước lượng thời gian chính xác hơn cho từng cách"
+        ],
+        "correct": 0,
+        "explanation": "Con số ba không tuỳ tiện: một cách thì không có gì để so, hai cách thì bạn chỉ đang bảo vệ cái đầu tiên. Tới cách thứ ba bạn mới buộc phải nhìn bài toán từ một hướng thật sự khác."
+      },
+      {
+        "question": "Hiệu ứng nào khiến người mới học hay đánh giá quá cao khả năng của mình?",
+        "options": [
+          "Càng biết ít thì càng khó nhận ra mình chưa biết gì, vì nhận ra cũng cần kiến thức",
+          "Người mới thường học từ tài liệu đơn giản nên tưởng mọi bài toán đều đơn giản",
+          "Người mới nhận được nhiều lời khen khích lệ nên hình thành đánh giá sai về mình",
+          "Người mới chưa gặp sự cố lớn nào nên chưa có cơ sở nào để đánh giá đúng năng lực của mình"
+        ],
+        "correct": 0,
+        "explanation": "Đây là vòng lặp kín và đó là điều làm nó khó thoát: chính kiến thức cần để làm đúng cũng là kiến thức cần để biết mình đang làm sai. Lối ra không nằm trong đầu bạn mà nằm ở phản hồi từ bên ngoài."
+      },
+      {
+        "question": "Vì sao viết ra dự đoán TRƯỚC khi gỡ lỗi lại hữu ích?",
+        "options": [
+          "Vì nếu không viết ra, bạn sẽ nhớ lại rằng mình đã đoán đúng dù thực tế không phải",
+          "Vì viết ra giúp bạn sắp xếp các giả thuyết theo thứ tự ưu tiên để kiểm tra dần",
+          "Vì đồng đội có thể đọc dự đoán của bạn và góp ý thêm những khả năng khác",
+          "Vì bản ghi đó dùng làm tài liệu tham khảo khi gặp lại lỗi tương tự về sau"
+        ],
+        "correct": 0,
+        "explanation": "Thiên kiến nhận thức muộn viết lại ký ức của bạn cho khớp với kết quả, nên bạn không bao giờ học được rằng trực giác của mình sai. Một dòng viết trước là bằng chứng mà ký ức không sửa được."
+      }
+    ],
+    "keyTakeaways": [
+      "Ước lượng thiếu vì bạn chỉ tưởng tượng được những bước mình đã biết.",
+      "Chữa bằng dữ liệu quá khứ, không bằng cách nghĩ kỹ hơn - nghĩ kỹ vẫn thiếu.",
+      "Cái neo hoạt động ngay cả khi bạn biết nó tồn tại; biết không gỡ được neo.",
+      "Nghĩ ba cách giải: một thì không có gì để so, hai thì chỉ đang bảo vệ cái đầu.",
+      "Viết dự đoán TRƯỚC khi gỡ lỗi, vì ký ức sẽ tự sửa lại cho khớp kết quả."
+    ],
+    "practicePrompt": {
+      "question": "Bạn ước lượng một việc mất hai ngày và nó mất chín ngày. Rút ra được gì hữu ích nhất?",
+      "options": [
+        "Ghi lại tỷ lệ đó và dùng nó để điều chỉnh những ước lượng tiếp theo của mình",
+        "Lần sau ước lượng kỹ hơn bằng cách liệt kê chi tiết hơn các bước cần làm",
+        "Tìm ra nguyên nhân cụ thể khiến việc kéo dài để tránh lặp lại đúng nguyên nhân đó",
+        "Cộng thêm bảy ngày dự phòng vào mọi ước lượng có quy mô tương tự trong tương lai"
+      ],
+      "correct": 0,
+      "explanation": "Tỷ lệ chuyển được sang việc khác còn nguyên nhân cụ thể thì không - lần sau sẽ là một chỗ rẽ khác mà bạn cũng không lường trước. Và cộng một số ngày cố định thì không co giãn theo quy mô công việc."
+    },
+    "summary": {
+      "keyIdea": "Hai thiên kiến: một đánh vào lúc bạn ước lượng, một đánh vào lúc bạn chọn cách giải.",
+      "formula": "Ước lượng bằng dữ liệu quá khứ; chống neo bằng cách bắt mình nghĩ đủ ba cách.",
+      "commonMistake": "Nghĩ rằng biết mình đang bị neo là đủ để không bị neo nữa.",
+      "action": "Ghi lại ước lượng và thời gian thật của ba công việc gần nhất."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Với ba công việc gần nhất, ghi lại hai con số: bạn ước lượng bao lâu và thực tế mất bao lâu. Tính tỷ lệ trung bình.",
+      "secondary": "Dùng tỷ lệ đó nhân vào ước lượng tiếp theo của bạn. Nó sẽ khó chịu vì con số trông quá lớn - đó chính là dấu hiệu cho thấy thiên kiến đang hoạt động."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Bài trước là thiên kiến lúc đọc lại. Bài này là hai thiên kiến đánh sớm hơn: lúc bạn ước lượng thời gian, và lúc bạn chọn cách giải. Cả hai đều đắt hơn nhiều so với một lỗi cú pháp."
+      },
+      {
+        "type": "heading",
+        "text": "Quá tự tin: vì sao ước lượng luôn thiếu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Bạn ước lượng bằng cách tưởng tượng các bước cần làm - và bạn chỉ tưởng tượng được những bước mình ĐÃ BIẾT. Thư viện không chạy như tài liệu mô tả, dữ liệu thật có hình dạng khác, một yêu cầu lộ ra khi đã viết được nửa đường."
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao nghĩ kỹ hơn không cứu được",
+        "text": "Những chỗ rẽ đó theo định nghĩa là thứ bạn chưa thấy, nên nghĩ kỹ hơn về bức tranh hiện tại không làm chúng xuất hiện. Cách chữa duy nhất có tác dụng là nhìn vào DỮ LIỆU QUÁ KHỨ: những việc tương tự đã mất bao lâu, vì con số đó đã bao gồm các chỗ rẽ có thật."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chia nhỏ công việc nghe hợp lý nhưng nó thường làm ước lượng thiếu HƠN, vì mỗi phần nhỏ lại bỏ sót chi phí kết nối giữa chúng. Và thiên kiến này vẫn còn nguyên khi bạn ước lượng cho chính mình, không ai gây áp lực - nên nó không phải chuyện quản lý."
+      },
+      {
+        "type": "heading",
+        "text": "Neo: cách làm đầu tiên"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Bạn nghĩ mình đang làm",
+          "text": "Cân nhắc các phương án rồi chọn cái tốt nhất."
+        },
+        "right": {
+          "label": "Thực tế đang xảy ra",
+          "text": "Cách đầu tiên nghĩ ra đã thành cái mốc, và mọi cách khác bị đánh giá theo nó chứ không theo bài toán. Cái neo hoạt động ngay cả khi bạn biết nó tồn tại."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách chữa là một quy tắc máy móc: bắt mình nghĩ ra ĐỦ BA cách trước khi viết dòng nào. Một cách thì không có gì để so; hai cách thì bạn chỉ đang bảo vệ cái đầu tiên; tới cách thứ ba bạn mới buộc phải nhìn bài toán từ một hướng thật sự khác."
+      },
+      {
+        "type": "heading",
+        "text": "Hai thiên kiến đi kèm"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Càng biết ít càng khó nhận ra mình chưa biết gì, vì nhận ra cũng cần chính kiến thức đó. Lối ra không nằm trong đầu bạn mà ở phản hồi từ bên ngoài.",
+          "Nhận thức muộn: sau khi biết nguyên nhân, bạn nhớ lại rằng mình đã đoán đúng - dù thực tế không phải. Cách chặn là viết dự đoán ra TRƯỚC khi gỡ lỗi."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Một dòng viết trước khi bắt đầu là bằng chứng mà ký ức không sửa lại được, và nó là cách duy nhất để bạn biết trực giác của mình đang đúng bao nhiêu phần trăm.",
+          "Bài sau chuyển sang phía bên kia: đọc code của người khác, và cách nói sao cho có ích."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1237,
+    "slug": "doc-code-nguoi-khac-va-nhan-xet-co-ich",
+    "title": "Đọc code người khác và nhận xét sao cho có ích",
+    "subtitle": "Người khác không có điểm mù của bạn - nhưng họ có tâm lý của họ.",
+    "duration": "7 phút",
+    "difficulty": "Trung bình",
+    "emoji": "👀",
+    "track": "personal",
+    "interactiveType": "prospect",
+    "isFundamental": true,
+    "whyItMatters": "Rà soát code là nơi hai thứ gặp nhau: chất lượng kỹ thuật và quan hệ giữa người với người. Làm tốt thì cả đội học được; làm dở thì người ta học cách né bạn, và chất lượng còn tệ hơn lúc chưa rà soát.",
+    "openingQuestion": "Nhận xét nào có ích nhất khi rà soát code?",
+    "openingOptions": [
+      "Nói rõ vấn đề, hậu quả cụ thể, và phân biệt việc bắt buộc sửa với gợi ý tuỳ chọn",
+      "Nêu ra mọi chỗ có thể cải thiện được để tác giả có bức tranh đầy đủ nhất",
+      "Chỉ nêu những lỗi nghiêm trọng, còn các vấn đề nhỏ thì bỏ qua để không làm mất thời gian",
+      "Đề xuất thẳng đoạn code thay thế thay vì mô tả vấn đề, để tác giả áp dụng được ngay"
+    ],
+    "correctOption": 0,
+    "explanation": "Ba thành phần này giải ba vấn đề khác nhau. Nói rõ vấn đề để tác giả biết bạn đang nói về cái gì; nêu hậu quả để họ hiểu vì sao nó quan trọng; phân biệt bắt buộc với tuỳ chọn để họ biết cái nào chặn việc gộp mã. Thiếu vế thứ ba là lỗi phổ biến nhất: hai mươi nhận xét không phân loại khiến tác giả phải đoán, và họ thường đoán rằng tất cả đều bắt buộc.",
+    "diagram": [
+      {
+        "label": "Nói rõ VẤN ĐỀ, không nói về người",
+        "arrow": true
+      },
+      {
+        "label": "Nêu HẬU QUẢ cụ thể, không nói chung chung",
+        "arrow": true
+      },
+      {
+        "label": "Phân loại: bắt buộc sửa hay gợi ý tuỳ chọn",
+        "arrow": true
+      },
+      {
+        "label": "Rà soát nhỏ và thường xuyên hơn rà soát lớn hiếm khi"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Bản thay đổi bốn trăm dòng",
+      "description": "Có một hiệu ứng đã được đo trong nghề: bản thay đổi càng lớn thì số nhận xét trên mỗi dòng càng ít. Người rà soát mở một bản bốn trăm dòng ra, lướt qua và viết trông ổn. Bản năm mươi dòng thì họ đọc thật - nên rà soát nhỏ mà thường xuyên hiệu quả hơn hẳn."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao nên nhận xét về code chứ không về người viết?",
+        "options": [
+          "Vì nói về người kích hoạt phản ứng phòng vệ, và lúc đó nội dung kỹ thuật không lọt vào",
+          "Vì các quy định về văn hoá làm việc trong công ty thường cấm nhận xét cá nhân",
+          "Vì tác giả có thể đã rời dự án nên nhận xét về họ không còn tác dụng gì nữa",
+          "Vì code thường do nhiều người cùng viết nên rất khó xác định ai là người chịu trách nhiệm"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lý do thực dụng chứ không phải chuyện lịch sự. Khác biệt giữa hàm này chưa xử lý trường hợp rỗng và bạn quên xử lý trường hợp rỗng nghe rất nhỏ, nhưng câu thứ hai làm người nghe bận rộn với việc tự vệ."
+      },
+      {
+        "question": "Vì sao nên phân biệt nhận xét bắt buộc với nhận xét tuỳ chọn?",
+        "options": [
+          "Vì không phân loại thì tác giả phải đoán, và họ thường đoán rằng tất cả đều bắt buộc",
+          "Vì nhận xét tuỳ chọn không cần tác giả trả lời nên tiết kiệm được thời gian trao đổi",
+          "Vì công cụ rà soát tự động chặn việc gộp mã khi còn nhận xét chưa được xử lý",
+          "Vì phân loại giúp người quản lý biết được ai đang gây ra nhiều vấn đề nhất"
+        ],
+        "correct": 0,
+        "explanation": "Hai mươi nhận xét không phân loại biến một bản thay đổi nhỏ thành một buổi chiều. Chỉ cần thêm hai chữ tuỳ chọn ở đầu là tác giả biết ngay cái nào chặn việc gộp mã và cái nào để lần sau."
+      },
+      {
+        "question": "Bản thay đổi lớn ảnh hưởng tới chất lượng rà soát thế nào?",
+        "options": [
+          "Càng lớn thì số nhận xét trên mỗi dòng càng ít, vì người rà soát lướt thay vì đọc",
+          "Càng lớn thì càng nhiều nhận xét vì có nhiều code hơn để tìm ra vấn đề",
+          "Kích thước không ảnh hưởng vì người rà soát vẫn đọc hết toàn bộ nội dung",
+          "Càng lớn thì nhận xét càng tập trung vào kiến trúc thay vì vào chi tiết cài đặt"
+        ],
+        "correct": 0,
+        "explanation": "Người rà soát mở một bản bốn trăm dòng ra, lướt qua và viết trông ổn. Đây là lý do thực dụng nhất để chia nhỏ công việc, và nó mạnh hơn mọi lập luận về tính sạch sẽ của lịch sử kho mã."
+      },
+      {
+        "question": "Khi bạn không đồng ý với nhận xét của người rà soát thì nên làm gì?",
+        "options": [
+          "Nêu lý do kỹ thuật và hỏi lại, vì họ có thể đang thiếu thông tin mà bạn có",
+          "Sửa theo nhận xét vì người rà soát có góc nhìn khách quan hơn tác giả",
+          "Giữ nguyên và giải thích trong phần mô tả bản thay đổi để tránh tranh luận kéo dài",
+          "Nhờ một người thứ ba vào rà soát để có ý kiến quyết định giữa hai bên"
+        ],
+        "correct": 0,
+        "explanation": "Rà soát là một cuộc trao đổi chứ không phải một bản án. Người rà soát thường thiếu ngữ cảnh mà tác giả có, và nếu bạn phải giải thích thì đó cũng là dấu hiệu code cần một dòng chú thích."
+      },
+      {
+        "question": "Vì sao nên nói ra cả những chỗ làm tốt khi rà soát?",
+        "options": [
+          "Vì nó truyền đi thông tin về chuẩn mực, không chỉ là chuyện động viên tinh thần",
+          "Vì nếu chỉ nêu vấn đề thì tác giả sẽ mất dần động lực và làm việc kém hiệu quả hơn hẳn",
+          "Vì các nhận xét tích cực giúp cân bằng lại số lượng nhận xét tiêu cực trong bản rà soát",
+          "Vì người quản lý đọc phần rà soát nên cần thấy cả mặt tích cực của mỗi thành viên"
+        ],
+        "correct": 0,
+        "explanation": "Một câu như cách tách hàm này làm phần kiểm thử dễ hơn hẳn dạy cho cả người viết lẫn người đọc sau này biết đội coi cái gì là tốt. Chỉ nêu vấn đề thì người ta chỉ học được danh sách những thứ cần tránh."
+      }
+    ],
+    "keyTakeaways": [
+      "Nói về code, không về người - nói về người kích hoạt phòng vệ và nội dung không lọt vào.",
+      "Nêu hậu quả cụ thể, để tác giả hiểu vì sao chỗ đó quan trọng.",
+      "Phân loại bắt buộc và tuỳ chọn; không phân loại thì tác giả đoán là tất cả bắt buộc.",
+      "Bản thay đổi càng lớn thì nhận xét trên mỗi dòng càng ít - chia nhỏ ra.",
+      "Nói ra chỗ làm tốt: nó truyền đi chuẩn mực, không chỉ là động viên."
+    ],
+    "practicePrompt": {
+      "question": "Bạn nhận được hai mươi nhận xét trên một bản thay đổi nhỏ và thấy nản. Cách xử lý tốt nhất?",
+      "options": [
+        "Hỏi người rà soát cái nào chặn việc gộp mã, để tách phần phải sửa ngay khỏi phần để sau",
+        "Sửa hết cả hai mươi nhận xét để bản thay đổi được gộp vào càng sớm càng tốt",
+        "Chỉ sửa những nhận xét bạn đồng ý và bỏ qua phần còn lại mà không trả lời",
+        "Đề nghị trao đổi trực tiếp để đi qua từng nhận xét một cho nhanh hơn"
+      ],
+      "correct": 0,
+      "explanation": "Câu hỏi đó biến hai mươi việc thành có thể là ba việc, và nó cũng nhắc người rà soát rằng họ đã quên phân loại. Trao đổi trực tiếp thì hữu ích cho những điểm phức tạp nhưng nó mất luôn bản ghi mà người sau đọc được."
+    },
+    "summary": {
+      "keyIdea": "Rà soát là nơi chất lượng kỹ thuật gặp quan hệ giữa người với người.",
+      "formula": "Vấn đề + hậu quả + phân loại bắt buộc hay tuỳ chọn.",
+      "commonMistake": "Không phân loại, khiến tác giả đoán rằng cả hai mươi nhận xét đều bắt buộc.",
+      "action": "Trong lần rà soát tới, gắn nhãn tuỳ chọn cho mọi nhận xét không chặn việc gộp mã."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Trong lần rà soát tới, gắn nhãn tuỳ chọn vào mọi nhận xét không chặn việc gộp mã, và thêm một câu về một chỗ tác giả làm tốt.",
+      "secondary": "Nếu bạn là người gửi code đi, thử chia bản thay đổi tiếp theo xuống dưới một trăm dòng và so số nhận xét nhận được với lần trước."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Hai bài trước là thiên kiến của chính bạn. Bài này là phía bên kia: đọc code người khác. Họ không có điểm mù của bạn - đó là lý do rà soát có tác dụng - nhưng họ có tâm lý của họ."
+      },
+      {
+        "type": "heading",
+        "text": "Ba thành phần của một nhận xét có ích"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Vấn đề: nói rõ bạn đang nói về cái gì, và nói về CODE chứ không về người viết.",
+          "Hậu quả: nêu điều gì sẽ xảy ra. Không có vế này thì nhận xét nghe như sở thích cá nhân.",
+          "Phân loại: đây là chỗ bắt buộc sửa, hay là gợi ý cho lần sau?"
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Vế thứ ba hay bị bỏ nhất",
+        "text": "Hai mươi nhận xét không phân loại khiến tác giả phải đoán, và họ thường đoán rằng tất cả đều bắt buộc - biến một bản thay đổi nhỏ thành một buổi chiều. Thêm hai chữ tuỳ chọn ở đầu là đủ."
+      },
+      {
+        "type": "paragraph",
+        "text": "Còn vế đầu là lý do thực dụng chứ không phải chuyện lịch sự. Khác biệt giữa hàm này chưa xử lý trường hợp rỗng và bạn quên xử lý trường hợp rỗng nghe rất nhỏ, nhưng câu thứ hai làm người nghe bận rộn với việc tự vệ - và lúc đó nội dung kỹ thuật không lọt vào."
+      },
+      {
+        "type": "heading",
+        "text": "Kích thước quyết định chất lượng"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Bốn trăm dòng",
+          "text": "Người rà soát mở ra, lướt qua, viết trông ổn. Số nhận xét trên mỗi dòng giảm mạnh - đây là hiệu ứng đã được đo, không phải cảm giác."
+        },
+        "right": {
+          "label": "Năm mươi dòng",
+          "text": "Họ đọc thật, từng dòng một. Đây là lý do thực dụng nhất để chia nhỏ công việc, mạnh hơn mọi lập luận về lịch sử kho mã sạch sẽ."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Ở phía nhận"
+      },
+      {
+        "type": "paragraph",
+        "text": "Rà soát là một cuộc trao đổi, không phải một bản án. Nếu bạn không đồng ý, hãy nêu lý do kỹ thuật và hỏi lại - người rà soát thường thiếu ngữ cảnh mà bạn có. Và nếu bạn phải giải thích, đó cũng là dấu hiệu code cần một dòng chú thích."
+      },
+      {
+        "type": "paragraph",
+        "text": "Một chi tiết nhỏ đáng thêm vào thói quen: nói ra cả những chỗ làm tốt. Nó không phải để động viên - một câu như cách tách hàm này làm phần kiểm thử dễ hơn hẳn dạy cho cả người viết lẫn người đọc sau này biết đội coi cái gì là tốt."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Chỉ nêu vấn đề thì người ta chỉ học được một danh sách những thứ cần tránh, chứ không học được hình dạng của một giải pháp tốt.",
+          "Phần sau của chặng chuyển sang thứ chạy tự động thay cho một đôi mắt: kiểm thử."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1238,
+    "slug": "kiem-thu-viet-cai-gi-va-khong-viet-cai-gi",
+    "title": "Kiểm thử: viết cái gì, và cái gì không đáng viết",
+    "subtitle": "Một bộ kiểm thử xanh mà không phát hiện được gì thì tệ hơn không có.",
+    "duration": "7 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🧪",
+    "track": "personal",
+    "interactiveType": "prospect",
+    "isFundamental": true,
+    "whyItMatters": "Người ta bỏ rất nhiều công viết kiểm thử rồi vẫn để lọt lỗi, vì họ viết cho những chỗ dễ viết chứ không phải những chỗ dễ sai. Chọn đúng chỗ quan trọng hơn nhiều so với số lượng.",
+    "openingQuestion": "Bộ kiểm thử đạt chín mươi phần trăm độ phủ. Nó nói lên điều gì?",
+    "openingOptions": [
+      "Chín mươi phần trăm số dòng đã được chạy qua, không phải đã được kiểm tra là đúng",
+      "Chín mươi phần trăm các trường hợp sử dụng đã được kiểm tra và cho kết quả đúng",
+      "Xác suất còn lỗi trong hệ thống chỉ còn khoảng mười phần trăm so với lúc chưa kiểm thử",
+      "Chín mươi phần trăm số hàm trong dự án đã có ít nhất một kiểm thử tương ứng"
+    ],
+    "correctOption": 0,
+    "explanation": "Độ phủ đo dòng nào được CHẠY QUA, không đo có khẳng định nào kiểm tra kết quả hay không. Một kiểm thử gọi hàm rồi không kiểm tra gì cả vẫn làm độ phủ tăng lên. Đó là lý do con số này dùng được để tìm vùng chưa ai chạm tới, nhưng dùng làm mục tiêu thì nó tạo ra đúng loại kiểm thử vô dụng đó - và tệ hơn, nó tạo ra cảm giác an toàn.",
+    "diagram": [
+      {
+        "label": "Viết cho chỗ DỄ SAI, không phải chỗ dễ viết",
+        "arrow": true
+      },
+      {
+        "label": "Kiểm tra hành vi, không kiểm tra chi tiết cài đặt",
+        "arrow": true
+      },
+      {
+        "label": "Mỗi lỗi tìm được là một kiểm thử mới",
+        "arrow": true
+      },
+      {
+        "label": "Độ phủ là công cụ tìm vùng trống, không phải mục tiêu"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Kiểm thử chập chờn",
+      "description": "Một kiểm thử lúc xanh lúc đỏ mà không ai sửa sẽ dạy cả đội bỏ qua màu đỏ. Vài tuần sau, khi một kiểm thử thật sự phát hiện lỗi, phản xạ đầu tiên của mọi người là chạy lại. Một kiểm thử chập chờn gây hại nhiều hơn là không có nó."
+    },
+    "quiz": [
+      {
+        "question": "Nên ưu tiên viết kiểm thử cho phần nào?",
+        "options": [
+          "Phần logic phức tạp, phần hay đổi, và phần mà lỗi ở đó gây hậu quả nặng nhất",
+          "Phần nhiều dòng code nhất vì đó là nơi có xác suất chứa lỗi cao nhất",
+          "Phần mới viết gần đây nhất vì nó chưa được chạy thật nhiều trong môi trường thật",
+          "Phần giao diện người dùng vì đó là chỗ người dùng nhìn thấy trực tiếp nhất"
+        ],
+        "correct": 0,
+        "explanation": "Ba tiêu chí này nhân với nhau chứ không cộng. Một hàm phức tạp mà không bao giờ đổi và lỗi ở đó chỉ làm lệch một con số hiển thị thì xếp sau một hàm đơn giản xử lý thanh toán."
+      },
+      {
+        "question": "Vì sao kiểm thử không nên phụ thuộc vào chi tiết cài đặt?",
+        "options": [
+          "Vì lúc đó nó đỏ mỗi khi bạn dọn lại code, dù hành vi bên ngoài không đổi chút nào",
+          "Vì chi tiết cài đặt thường không được ghi lại trong tài liệu nên khó viết chính xác",
+          "Vì kiểm thử phụ thuộc cài đặt chạy chậm hơn nhiều so với kiểm thử hành vi",
+          "Vì các thư viện hỗ trợ kiểm thử không truy cập được vào phần bên trong của hàm"
+        ],
+        "correct": 0,
+        "explanation": "Một bộ kiểm thử như vậy biến việc dọn code thành việc tốn kém, nên nó lặng lẽ ngăn đội cải thiện thiết kế - đúng ngược với mục đích của nó. Dấu hiệu nhận biết là bạn phải sửa kiểm thử mỗi lần đổi cách làm dù kết quả vẫn thế."
+      },
+      {
+        "question": "Việc đầu tiên nên làm khi phát hiện một lỗi là gì?",
+        "options": [
+          "Viết một kiểm thử tái hiện được lỗi đó, rồi mới sửa cho kiểm thử chuyển sang xanh",
+          "Sửa lỗi ngay để giảm thời gian người dùng chịu ảnh hưởng rồi viết kiểm thử sau",
+          "Tìm hiểu vì sao bộ kiểm thử hiện tại đã không phát hiện được lỗi này ngay từ trước đó",
+          "Kiểm tra xem lỗi tương tự có xuất hiện ở những phần khác của hệ thống không"
+        ],
+        "correct": 0,
+        "explanation": "Nó cho bạn hai thứ cùng lúc: bằng chứng rằng bạn đã hiểu đúng lỗi, và một lớp chặn để nó không quay lại. Đây cũng là cách bộ kiểm thử lớn dần theo đúng những chỗ hệ thống thật sự hay sai."
+      },
+      {
+        "question": "Vì sao một kiểm thử chập chờn gây hại nhiều hơn là không có nó?",
+        "options": [
+          "Vì nó dạy cả đội bỏ qua màu đỏ, nên kiểm thử thật phát hiện lỗi cũng bị chạy lại",
+          "Vì nó làm quy trình kiểm thử tự động chạy lâu hơn do phải thử lại nhiều lần",
+          "Vì nó chiếm chỗ của một kiểm thử tốt lẽ ra đã được viết cho đúng cùng phần code ấy rồi",
+          "Vì nó khiến người mới vào dự án hiểu sai về hành vi mong đợi của hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Thiệt hại nằm ở thói quen chứ không ở bản thân kiểm thử đó. Sau vài tuần, phản xạ đầu tiên khi thấy màu đỏ là chạy lại - và lúc đó bộ kiểm thử đã mất hết giá trị cảnh báo."
+      },
+      {
+        "question": "Vì sao độ phủ dùng được để tìm vùng trống nhưng không dùng được làm mục tiêu?",
+        "options": [
+          "Vì đặt làm mục tiêu sẽ sinh ra kiểm thử chạy code mà không kiểm tra kết quả",
+          "Vì công cụ đo độ phủ không chính xác với những đoạn code chạy bất đồng bộ",
+          "Vì tỷ lệ phù hợp khác nhau giữa các dự án nên không có con số chung nào đúng",
+          "Vì đo độ phủ làm bộ kiểm thử chạy chậm hơn đáng kể trong quy trình tự động"
+        ],
+        "correct": 0,
+        "explanation": "Đây là ví dụ điển hình cho việc một phép đo thành mục tiêu thì nó không còn là phép đo tốt nữa. Người ta viết kiểm thử gọi hàm rồi không khẳng định gì - độ phủ tăng, giá trị bằng không, và cảm giác an toàn thì tăng theo."
+      }
+    ],
+    "keyTakeaways": [
+      "Viết cho chỗ dễ sai, không phải chỗ dễ viết: phức tạp × hay đổi × hậu quả nặng.",
+      "Kiểm tra hành vi, không kiểm tra chi tiết cài đặt - nếu không, dọn code thành đắt.",
+      "Gặp lỗi thì viết kiểm thử tái hiện TRƯỚC, rồi mới sửa.",
+      "Kiểm thử chập chờn dạy cả đội bỏ qua màu đỏ - hại hơn là không có.",
+      "Độ phủ là công cụ tìm vùng trống; đặt làm mục tiêu thì nó sinh ra kiểm thử rỗng."
+    ],
+    "practicePrompt": {
+      "question": "Bộ kiểm thử của bạn đỏ mỗi lần bạn dọn lại code dù hành vi không đổi. Vấn đề nằm ở đâu?",
+      "options": [
+        "Kiểm thử đang kiểm tra cách làm thay vì kiểm tra kết quả, nên nó cản việc cải thiện thiết kế",
+        "Việc dọn code của bạn đang vô tình làm đổi hành vi mà bạn chưa nhận ra",
+        "Bộ kiểm thử thiếu các trường hợp biên nên nó nhạy cảm với mọi thay đổi nhỏ",
+        "Các kiểm thử đang phụ thuộc lẫn nhau nên sửa một chỗ làm hỏng nhiều chỗ khác"
+      ],
+      "correct": 0,
+      "explanation": "Đây chính là dấu hiệu nhận biết kiểm thử phụ thuộc chi tiết cài đặt. Hệ quả tệ nhất không phải là mất thời gian sửa, mà là nó lặng lẽ khiến cả đội ngại dọn code - đúng ngược với lý do người ta viết kiểm thử."
+    },
+    "summary": {
+      "keyIdea": "Chọn đúng chỗ quan trọng hơn số lượng; một bộ kiểm xanh vô dụng còn tạo cảm giác an toàn.",
+      "formula": "Phức tạp × hay đổi × hậu quả = mức ưu tiên viết kiểm thử.",
+      "commonMistake": "Đặt độ phủ làm mục tiêu, và nhận về những kiểm thử không khẳng định gì.",
+      "action": "Tìm ba phần rủi ro nhất trong dự án và kiểm tra chúng đã có kiểm thử chưa."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê ba phần trong dự án mà lỗi ở đó gây hậu quả nặng nhất. Kiểm tra xem chúng đã có kiểm thử chưa, và kiểm thử đó có khẳng định gì không.",
+      "secondary": "Sau đó tìm xem có kiểm thử nào đang chập chờn không. Nếu có, sửa hoặc xoá nó ngay - để nguyên là đang dạy cả đội bỏ qua màu đỏ."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Bài đầu chặng kết thúc ở một điểm khó chịu: cùng một điểm mù tạo ra cả code lẫn kiểm thử. Bài này là cách viết kiểm thử sao cho nó bắt được thứ bạn không nghĩ tới."
+      },
+      {
+        "type": "heading",
+        "text": "Chọn chỗ, không chọn số lượng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Người ta hay viết kiểm thử cho những chỗ DỄ VIẾT - hàm thuần tuý, không phụ thuộc gì. Nhưng chỗ dễ viết thường cũng là chỗ dễ đúng. Ba tiêu chí đáng dùng, và chúng NHÂN với nhau chứ không cộng:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Logic phức tạp: nhiều nhánh, nhiều điều kiện, nhiều trường hợp biên.",
+          "Hay thay đổi: phần nào bị sửa nhiều thì phần đó có nhiều cơ hội hỏng.",
+          "Hậu quả nặng: lỗi ở đó làm mất tiền, mất dữ liệu, hay lộ thông tin."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Vì sao nhân chứ không cộng",
+        "text": "Một hàm phức tạp mà không bao giờ đổi và lỗi ở đó chỉ làm lệch một con số hiển thị thì xếp sau một hàm đơn giản xử lý thanh toán. Điểm cao ở một tiêu chí không kéo được cả ba."
+      },
+      {
+        "type": "heading",
+        "text": "Kiểm tra hành vi, không kiểm tra cách làm"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Kiểm tra hành vi",
+          "text": "Cho đầu vào này thì ra kết quả kia. Bạn dọn lại code bên trong bao nhiêu lần cũng được, kiểm thử vẫn xanh - và nó vẫn bắt được lỗi thật."
+        },
+        "right": {
+          "label": "Kiểm tra cách làm",
+          "text": "Hàm này gọi hàm kia đúng hai lần. Đỏ mỗi lần bạn dọn code dù kết quả không đổi, nên nó lặng lẽ khiến cả đội ngại cải thiện thiết kế."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Cột bên phải là dạng hỏng nguy hiểm vì nó đi ngược đúng lý do người ta viết kiểm thử: viết để dám sửa code, rồi cuối cùng chính kiểm thử làm việc sửa trở nên đắt."
+      },
+      {
+        "type": "heading",
+        "text": "Hai thói quen"
+      },
+      {
+        "type": "paragraph",
+        "text": "Gặp lỗi thì viết kiểm thử tái hiện nó TRƯỚC, rồi mới sửa. Bạn được hai thứ: bằng chứng rằng mình đã hiểu đúng lỗi, và một lớp chặn để nó không quay lại. Đây cũng là cách bộ kiểm thử lớn dần theo đúng những chỗ hệ thống thật sự hay sai."
+      },
+      {
+        "type": "paragraph",
+        "text": "Và xử lý ngay kiểm thử chập chờn. Một kiểm thử lúc xanh lúc đỏ mà không ai sửa sẽ dạy cả đội bỏ qua màu đỏ - vài tuần sau, khi một kiểm thử thật sự phát hiện lỗi, phản xạ đầu tiên của mọi người là chạy lại."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Về độ phủ: nó đo dòng nào được CHẠY QUA, không đo có ai kiểm tra kết quả hay không. Dùng nó để tìm vùng chưa ai chạm tới thì tốt; đặt làm mục tiêu thì bạn nhận về những kiểm thử gọi hàm rồi không khẳng định gì.",
+          "Bài sau là lý do những việc này luôn bị hoãn lại: thiên kiến hiện tại."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1239,
+    "slug": "thien-kien-hien-tai-va-no-ky-thuat",
+    "title": "Thiên kiến hiện tại: vì sao nợ kỹ thuật luôn để mai tính",
+    "subtitle": "Chi phí trả ngay, lợi ích nhận về sau - bộ não bạn đánh giá hai thứ đó bằng hai thước đo khác nhau.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "emoji": "⏰",
+    "track": "personal",
+    "interactiveType": "prospect",
+    "isFundamental": true,
+    "whyItMatters": "Ai cũng biết nên viết kiểm thử, nên dọn code, nên cập nhật thư viện - và ai cũng hoãn. Biết mà không làm là một khuôn tâm lý có tên, và cách chữa không nằm ở việc quyết tâm hơn.",
+    "openingQuestion": "Vì sao ai cũng biết nên dọn nợ kỹ thuật mà gần như không ai làm?",
+    "openingOptions": [
+      "Vì chi phí trả ngay hôm nay còn lợi ích thì rải ra trong tương lai, nên nó luôn thua việc gấp",
+      "Vì phần lớn lập trình viên không đủ kinh nghiệm để nhận ra đâu là nợ kỹ thuật thật sự",
+      "Vì người quản lý không cho phép dành thời gian cho những việc không tạo ra tính năng mới",
+      "Vì việc dọn nợ kỹ thuật có rủi ro làm hỏng những phần đang chạy ổn định trong hệ thống"
+    ],
+    "correctOption": 0,
+    "explanation": "Não bạn chiết khấu lợi ích tương lai rất mạnh, nên một giờ tốn hôm nay luôn nặng hơn năm giờ tiết kiệm được trong sáu tháng tới. Đây là lý do việc này thua ngay cả khi bạn tự quyết định lịch của mình và không ai gây áp lực. Thiếu kinh nghiệm và áp lực từ quản lý đều làm mọi thứ tệ hơn, nhưng chúng không giải thích được vì sao chính người biết rõ nhất cũng hoãn.",
+    "diagram": [
+      {
+        "label": "Chi phí: trả ngay, thấy rõ, đau ngay",
+        "arrow": true
+      },
+      {
+        "label": "Lợi ích: rải ra, mơ hồ, ai đó khác hưởng",
+        "arrow": true
+      },
+      {
+        "label": "Bộ não chiết khấu tương lai rất mạnh",
+        "arrow": true
+      },
+      {
+        "label": "Chữa bằng cơ chế, không bằng quyết tâm"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Quy tắc hướng đạo sinh",
+      "description": "Một quy tắc lan rộng trong nghề: để lại chỗ code bạn vừa chạm vào sạch hơn lúc bạn tới. Nó hiệu quả vì nó không đòi một khoảng thời gian riêng nào cả - việc dọn dẹp đi kèm với việc bạn đằng nào cũng phải làm, nên nó không phải cạnh tranh với việc gấp."
+    },
+    "quiz": [
+      {
+        "question": "Vì sao quyết tâm hơn không giải quyết được việc hoãn nợ kỹ thuật?",
+        "options": [
+          "Vì cấu trúc chi phí không đổi: hôm sau vẫn có một việc gấp và nó vẫn thắng",
+          "Vì nợ kỹ thuật tích tụ nhanh hơn hẳn tốc độ mà một người có thể dọn được",
+          "Vì phần lớn nợ kỹ thuật nằm ở code do người khác viết nên bạn không được sửa",
+          "Vì quyết tâm chỉ duy trì được trong thời gian ngắn rồi sẽ giảm dần theo thời gian"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lý do mọi cách chữa có tác dụng đều là CƠ CHẾ chứ không phải ý chí. Cơ chế đổi cấu trúc chi phí; quyết tâm thì cố thắng cấu trúc đó bằng sức, và bạn phải thắng lại mỗi ngày."
+      },
+      {
+        "question": "Vì sao quy tắc dọn chỗ mình vừa chạm vào lại hiệu quả?",
+        "options": [
+          "Vì nó đi kèm việc bạn đằng nào cũng làm, nên không phải cạnh tranh với việc gấp",
+          "Vì nó chia nợ kỹ thuật thành các phần nhỏ nên tổng công sức bỏ ra giảm đi",
+          "Vì chỗ bạn vừa chạm vào thường là chỗ có nhiều nợ kỹ thuật nhất trong dự án",
+          "Vì nó giúp bạn hiểu rõ phần code đó hơn trước khi thực hiện thay đổi chính của mình"
+        ],
+        "correct": 0,
+        "explanation": "Nó đổi cấu trúc chi phí thay vì đòi thêm ý chí: không cần xin một khoảng thời gian riêng, không cần thuyết phục ai, không phải xếp hàng sau việc gấp. Đó là hình dạng chung của mọi cơ chế có tác dụng."
+      },
+      {
+        "question": "Vì sao nên cập nhật thư viện thường xuyên thay vì gom lại làm một lần?",
+        "options": [
+          "Vì để lâu thì các bản cập nhật chồng lên nhau, biến việc nhỏ thành một dự án riêng",
+          "Vì các phiên bản mới thường chạy nhanh hơn nên hệ thống được cải thiện dần đều",
+          "Vì nhà cung cấp thư viện chỉ hỗ trợ những người dùng đang ở phiên bản mới nhất",
+          "Vì cập nhật thường xuyên giúp cả đội quen với quy trình nên những lần sau làm nhanh hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là loại nợ có lãi kép rõ nhất: mỗi tháng trì hoãn làm lần cập nhật sau đắt hơn chứ không phải chỉ muộn hơn. Và tới lúc có một lỗ hổng bảo mật cần vá gấp thì bạn không vá riêng được nữa."
+      },
+      {
+        "question": "Cách nào biến nợ kỹ thuật thành thứ nhìn thấy được?",
+        "options": [
+          "Ghi nó thành mục công việc có mô tả và chi phí, thay vì để nó trong đầu vài người",
+          "Đặt một ngưỡng cảnh báo tự động khi các chỉ số chất lượng code vượt quá mức cho phép",
+          "Báo cáo định kỳ cho quản lý về tình trạng nợ kỹ thuật hiện tại của cả dự án",
+          "Đánh dấu bằng chú thích trong code ở mọi chỗ mà bạn thấy cần cải thiện về sau"
+        ],
+        "correct": 0,
+        "explanation": "Thứ không nằm trong danh sách công việc thì không bao giờ được xếp lịch. Chú thích trong code thì hầu như không ai đọc lại, và sau vài tháng chúng thành một lớp nền mà mắt tự động lướt qua."
+      },
+      {
+        "question": "Vì sao nói nợ kỹ thuật không phải lúc nào cũng xấu?",
+        "options": [
+          "Vì vay có ý thức để ra sản phẩm sớm là quyết định hợp lý, miễn là bạn ghi lại khoản vay",
+          "Vì phần lớn nợ kỹ thuật sẽ tự biến mất khi code cũ được thay thế trong quá trình phát triển",
+          "Vì code sạch quá mức thường phức tạp hơn cần thiết nên khó bảo trì hơn về lâu dài",
+          "Vì thời gian dành để dọn nợ luôn lớn hơn thời gian mà việc dọn đó tiết kiệm được"
+        ],
+        "correct": 0,
+        "explanation": "Chữ CÓ Ý THỨC và GHI LẠI là hai điều kiện. Khoản vay có ghi thì trả được; khoản vay không ghi thì sáu tháng sau không ai nhớ vì sao chỗ này lại viết như vậy, và người ta bắt chước nó."
+      }
+    ],
+    "keyTakeaways": [
+      "Chi phí trả ngay, lợi ích rải ra tương lai - nên nợ kỹ thuật luôn thua việc gấp.",
+      "Chữa bằng CƠ CHẾ, không bằng quyết tâm - quyết tâm phải thắng lại mỗi ngày.",
+      "Dọn chỗ mình vừa chạm vào hiệu quả vì nó không phải cạnh tranh với việc gấp.",
+      "Cập nhật thư viện là loại nợ có lãi kép rõ nhất - để lâu thì đắt hơn, không chỉ muộn hơn.",
+      "Vay có ý thức thì hợp lý; điều kiện là ghi lại khoản vay đó ở chỗ người sau đọc được."
+    ],
+    "practicePrompt": {
+      "question": "Bạn phải chọn giữa viết đúng cách mất ba ngày và viết tạm mất một ngày để kịp hạn. Nên làm gì?",
+      "options": [
+        "Viết tạm nếu hạn đó thật sự quan trọng, nhưng ghi lại khoản nợ kèm lý do và cách trả",
+        "Viết đúng cách và thương lượng lại hạn, vì nợ kỹ thuật luôn đắt hơn mức người ta nghĩ",
+        "Viết tạm và tự nhắc mình quay lại sửa ngay sau khi bản phát hành này ổn định",
+        "Viết tạm nhưng thêm chú thích trong code để người sau biết chỗ này cần được cải thiện"
+      ],
+      "correct": 0,
+      "explanation": "Vay có ý thức là quyết định hợp lý; vấn đề nằm ở chỗ ghi lại. Tự nhắc mình thì chính bài này nói vì sao không hiệu quả, còn chú thích trong code thì sau vài tháng thành lớp nền mà mắt tự động lướt qua."
+    },
+    "summary": {
+      "keyIdea": "Biết mà không làm là một khuôn tâm lý có tên, và nó không chữa được bằng ý chí.",
+      "formula": "Cơ chế đổi cấu trúc chi phí; quyết tâm chỉ cố thắng cấu trúc đó bằng sức.",
+      "commonMistake": "Tự hứa sẽ quay lại sửa sau khi bản phát hành này ổn định.",
+      "action": "Chuyển ba khoản nợ kỹ thuật trong đầu bạn thành ba mục công việc có mô tả."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Viết ra ba khoản nợ kỹ thuật bạn đang biết mà chưa xử lý. Với mỗi cái, ghi chi phí để lại và chi phí để sửa. Rồi đưa chúng vào danh sách công việc thật.",
+      "secondary": "Sau đó áp dụng quy tắc dọn chỗ mình vừa chạm vào cho lần sửa code tiếp theo. Không cần xin thời gian riêng - đó chính là lý do nó hiệu quả."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Ba bài trước đưa ra những việc nên làm: đổi góc nhìn khi soát, nghĩ đủ ba cách, viết kiểm thử cho chỗ rủi ro. Bài này về lý do những việc đó luôn bị hoãn - kể cả bởi người hoàn toàn đồng ý với chúng."
+      },
+      {
+        "type": "heading",
+        "text": "Cấu trúc chi phí"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chi phí",
+          "text": "Trả NGAY hôm nay. Thấy rõ, đo được, và nó lấy đi thời gian của một việc đang gấp."
+        },
+        "right": {
+          "label": "Lợi ích",
+          "text": "Rải ra nhiều tháng, mơ hồ, và một phần thuộc về người khác - có thể là bạn của sáu tháng sau, người mà bạn không cảm thấy gắn bó lắm."
         }
       },
       {
         "type": "callout",
-        "label": "Cái bẫy",
-        "text": "FOMO không đo bằng việc bạn có mua hay không, mà bằng việc bạn có đổi quy trình ra quyết định hay không. Mua một tài sản sau khi đã phân tích là đầu tư; mua vì thấy người khác đang lãi là bỏ qua đúng bước mà quy trình tồn tại để bắt."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Câu hỏi quan trọng nhất khi cân nhắc một cơ hội đầu tư 'hot': tôi đang mua vì đã phân tích và tin vào giá trị thực, hay tôi đang mua vì sợ bỏ lỡ những gì người khác đang có?",
-          "Sự khác biệt giữa hai câu trả lời đó chính là ranh giới giữa đầu tư có kỷ luật và đầu cơ theo cảm xúc đám đông."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Đám đông mua → giá tăng → thu hút thêm người mua",
-        "arrow": true
-      },
-      {
-        "label": "FOMO đẩy quyết định vào đúng vùng giá cao",
-        "arrow": true
-      },
-      {
-        "label": "Khi dòng tiền cạn, chiều ngược lại diễn ra nhanh hơn",
-        "arrow": true
-      },
-      {
-        "label": "Đối phó: luận điểm viết trước, mua theo kế hoạch chứ không theo tin",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
-  },
-  {
-    "id": 1238,
-    "slug": "ke-toan-tam-ly-mental-accounting",
-    "title": "Kế toán tâm lý: Vì sao 10 triệu tiền thưởng tiêu khác 10 triệu tiền lương",
-    "subtitle": "Não bạn chia tiền vào những 'ngăn kéo' vô hình - và điều đó khiến bạn tiêu hoang một cách rất logic mà không hề nhận ra",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "🗂️",
-    "track": "personal",
-    "openingQuestion": "Bạn nhận được 10 triệu tiền thưởng Tết bất ngờ và 10 triệu tiền lương tháng như thường lệ. Dù giá trị hoàn toàn giống nhau, nhiều người tiêu tiền thưởng dễ dàng hơn nhiều (mua sắm, du lịch) so với tiền lương (ưu tiên trả hóa đơn, tiết kiệm). Đây là biểu hiện của hiện tượng tâm lý nào?",
-    "openingOptions": [
-      "Không có gì đặc biệt, đây chỉ là sự trùng hợp ngẫu nhiên",
-      "Kế toán tâm lý - não tự động phân loại tiền theo nguồn gốc của nó",
-      "Vì tiền thưởng luôn có giá trị thấp hơn tiền lương",
-      "Vì tiền thưởng chịu thuế thấp hơn nên có giá trị thực tế cao hơn"
-    ],
-    "correctOption": 1,
-    "explanation": "Đây là hiện tượng kế toán tâm lý (mental accounting) do nhà kinh tế học Richard Thaler mô tả: dù tiền bạc về bản chất là 'fungible' (1 đồng có thể thay thế hoàn toàn cho 1 đồng khác, bất kể nguồn gốc), não bộ con người lại tự động gán nhãn tâm lý khác nhau cho tiền dựa trên nguồn gốc (lương, thưởng, trúng số, quà tặng) - tiền có nguồn gốc 'bất ngờ' hoặc 'ngoài kế hoạch' thường được coi là 'tiền dễ' và chi tiêu phóng khoáng hơn nhiều so với tiền có nguồn gốc từ công sức lao động đều đặn.",
-    "realWorldExample": {
-      "company": "Hiệu ứng 'House Money' trong cờ bạc và đầu tư",
-      "description": "Các nghiên cứu hành vi cờ bạc phát hiện: người chơi có xu hướng đặt cược mạo hiểm hơn nhiều với tiền họ VỪA THẮNG được (gọi là 'house money' - tiền của nhà cái) so với tiền vốn ban đầu họ mang theo, dù cả hai đều là tiền thật trong túi họ ở thời điểm đó. Hiện tượng tương tự xảy ra trong đầu tư: nhà đầu tư thường mạo hiểm hơn với khoản lợi nhuận vừa kiếm được so với vốn gốc, dù về bản chất tài chính không có sự khác biệt nào giữa hai khoản tiền này."
-    },
-    "quiz": [
-      {
-        "question": "Một người có khoản nợ thẻ tín dụng lãi suất 20%/năm nhưng vẫn giữ 50 triệu trong tài khoản tiết kiệm lãi suất 5%/năm, thay vì dùng tiền tiết kiệm để trả bớt nợ. Đây có thể là biểu hiện của mental accounting như thế nào?",
-        "options": [
-          "Đây luôn là quyết định tài chính khôn ngoan trong mọi trường hợp",
-          "Người này có thể đang coi 'tiền tiết kiệm' và 'nợ thẻ tín dụng' là hai tài khoản tâm lý hoàn toàn tách biệt, không nhận ra rằng về mặt toán học, giữ tiền tiết kiệm lãi 5% trong khi trả lãi nợ 20% là một quyết định gây thiệt hại tài chính rõ ràng (mất ròng 15%/năm) - tách biệt tâm lý này khiến người ta bỏ qua phép tính đơn giản",
-          "Lãi suất tiết kiệm luôn cao hơn lãi suất nợ trong thực tế",
-          "Đây không liên quan gì đến kế toán tâm lý"
-        ],
-        "correct": 1,
-        "explanation": "Đây là ví dụ kinh điển của mental accounting gây thiệt hại tài chính thực sự: về mặt toán học thuần túy, giữ tiền tiết kiệm (5%/năm) trong khi vẫn nợ thẻ tín dụng lãi cao (20%/năm) là một quyết định thua lỗ ròng 15%/năm - nhưng vì não bộ coi 'quỹ tiết kiệm' và 'nợ tín dụng' là hai 'ngăn kéo' tâm lý riêng biệt (một để 'an toàn', một để 'xử lý sau'), nhiều người không nhận ra sự phi lý này."
-      },
-      {
-        "question": "'Ngân sách theo phong bì' (envelope budgeting - chia tiền mặt vào các phong bì riêng cho từng mục chi tiêu) là một ứng dụng TÍCH CỰC của mental accounting như thế nào?",
-        "options": [
-          "Phương pháp này hoàn toàn không liên quan đến mental accounting",
-          "Đây là cách CHỦ ĐỘNG lợi dụng xu hướng tự nhiên của não bộ trong việc phân loại tiền theo 'ngăn kéo' để tạo kỷ luật chi tiêu - khi tiền trong phong bì 'ăn uống' đã hết, não bộ tự nhiên cảm thấy khó tiêu thêm dù vẫn còn tiền trong phong bì khác, giúp kiểm soát chi tiêu tốt hơn so với việc chỉ nhìn một số dư tài khoản chung",
-          "Phương pháp này chỉ hiệu quả với người có thu nhập cao",
-          "Ngân sách theo phong bì luôn kém hiệu quả hơn quản lý tiền qua một tài khoản duy nhất"
-        ],
-        "correct": 1,
-        "explanation": "Đây là minh chứng thú vị: mental accounting không phải lúc nào cũng là 'lỗi tư duy' cần loại bỏ - nó có thể được CHỦ ĐỘNG khai thác để tạo kỷ luật tài chính. Bằng cách tạo ra các 'tài khoản tâm lý' rõ ràng (phong bì vật lý hoặc tài khoản ngân hàng riêng cho từng mục tiêu), người dùng lợi dụng chính xu hướng tự nhiên của não bộ để tự kiểm soát chi tiêu tốt hơn."
-      },
-      {
-        "question": "Tại sao nhiều người sẵn sàng trả phí giao dịch/phí chuyển đổi cao để rút tiền từ 'quỹ hưu trí' sớm, trong khi lại có thể vay tiêu dùng lãi suất cao hơn nhiều để chi tiêu ngắn hạn, thay vì đơn giản là điều chỉnh mức đóng góp vào quỹ hưu trí?",
-        "options": [
-          "Vì quỹ hưu trí luôn có tính thanh khoản thấp hơn các khoản vay tiêu dùng",
-          "Vì mental accounting khiến người ta coi 'tiền hưu trí' là một tài khoản 'bất khả xâm phạm' về mặt tâm lý (dù có thể rút được), trong khi lại dễ dàng chấp nhận vay nợ mới - dẫn đến quyết định tài chính không tối ưu khi so sánh tổng chi phí thực tế giữa hai lựa chọn",
-          "Vay tiêu dùng luôn có lãi suất thấp hơn phí rút quỹ hưu trí sớm",
-          "Đây là quyết định tài chính hoàn toàn hợp lý trong mọi trường hợp"
-        ],
-        "correct": 1,
-        "explanation": "Đây là một biểu hiện phức tạp hơn của mental accounting: quỹ hưu trí được não bộ 'niêm phong' tâm lý như một tài khoản không được động vào, tạo ra kỷ luật tiết kiệm hữu ích trong hầu hết trường hợp - nhưng đôi khi dẫn đến quyết định phi lý khi người ta thà chấp nhận vay nợ lãi cao hơn là 'phá vỡ' ranh giới tâm lý của tài khoản hưu trí, dù xét thuần túy về chi phí tài chính, phương án khác có thể rẻ hơn."
-      }
-    ],
-    "keyTakeaways": [
-      "Kế toán tâm lý (mental accounting): não bộ tự động phân loại tiền vào các 'tài khoản' tinh thần riêng biệt dựa trên nguồn gốc, dù tiền bạc về bản chất có thể thay thế hoàn toàn cho nhau (fungible)",
-      "Hiệu ứng 'house money': người ta mạo hiểm hơn với tiền vừa kiếm được (thưởng, lợi nhuận đầu tư) so với tiền vốn ban đầu, dù cả hai đều là tiền thật như nhau",
-      "Mental accounting có thể gây thiệt hại tài chính thực sự (giữ tiết kiệm lãi thấp trong khi vẫn nợ lãi cao) nhưng cũng có thể được khai thác TÍCH CỰC (ngân sách theo phong bì) để tạo kỷ luật chi tiêu",
-      "Nhận diện được các 'ngăn kéo' tâm lý của chính mình giúp đưa ra quyết định tài chính nhất quán hơn, thay vì để nguồn gốc của tiền chi phối cách chi tiêu nó"
-    ],
-    "practicePrompt": {
-      "question": "Bạn vừa nhận được khoản hoàn thuế 15 triệu đồng và đang cân nhắc: (A) dùng để trả bớt khoản vay mua xe lãi suất 12%/năm, hay (B) mở một 'quỹ du lịch' riêng để đi chơi cuối năm. Về mặt tài chính thuần túy, lựa chọn nào tối ưu hơn, và mental accounting đang ảnh hưởng thế nào đến quyết định này?",
-      "options": [
-        "Lựa chọn B luôn tốt hơn vì tiền hoàn thuế là 'tiền thưởng bất ngờ' nên có thể tiêu thoải mái",
-        "Trả nợ lãi 12% là lãi chắc chắn 12%; mental accounting coi hoàn thuế là tiền ngoài kế hoạch",
-        "Cả hai lựa chọn hoàn toàn tương đương nhau về mặt tài chính",
-        "Nên chia đôi số tiền cho cả hai mục đích mà không cần phân tích thêm"
-      ],
-      "correct": 1,
-      "explanation": "Đây là ứng dụng thực hành của bài học: nhận diện mental accounting giúp bạn tách biệt QUYẾT ĐỊNH TÀI CHÍNH THUẦN TÚY (trả nợ lãi cao luôn có giá trị tương đương một khoản đầu tư chắc chắn sinh lời bằng đúng lãi suất đó) khỏi CẢM GIÁC TÂM LÝ về nguồn gốc của tiền (tiền hoàn thuế 'cảm giác' như tiền thưởng nên dễ tiêu hơn). Nhận ra được sự khác biệt này giúp đưa ra quyết định tối ưu hơn."
-    },
-    "summary": {
-      "keyIdea": "Kế toán tâm lý khiến con người xử lý tiền khác nhau tùy theo nguồn gốc của nó, dù về bản chất tài chính mọi đồng tiền đều có thể thay thế cho nhau - hiểu được điều này giúp tránh những quyết định chi tiêu/tiết kiệm không nhất quán và tối ưu hóa việc sử dụng công cụ này để tạo kỷ luật tài chính.",
-      "commonMistake": "Coi tiền từ các nguồn khác nhau (lương, thưởng, hoàn thuế, trúng thưởng) có 'giá trị sử dụng' khác nhau, dẫn đến chi tiêu phóng khoáng với tiền 'bất ngờ' trong khi vẫn giữ kỷ luật với tiền lương thông thường",
-      "action": "Trước khi chi tiêu bất kỳ khoản tiền 'bất ngờ' nào (thưởng, hoàn thuế, trúng thưởng), tự hỏi: 'Nếu đây là tiền lương bình thường của tôi, tôi có quyết định chi tiêu như vậy không?'"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Liệt kê các 'tài khoản tâm lý' bạn đang vô thức duy trì (quỹ khẩn cấp, tiền tiêu vặt, tiền thưởng...) - có tài khoản nào đang khiến bạn ra quyết định tài chính không tối ưu (như giữ tiết kiệm lãi thấp trong khi vẫn có nợ lãi cao) không?",
-      "secondary": "Thử áp dụng ngân sách theo 'ngăn kéo' có chủ đích (nhiều tài khoản ngân hàng con, hoặc ứng dụng quản lý ngân sách theo mục tiêu) để biến mental accounting thành công cụ có lợi thay vì cản trở."
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Tiền là tiền - nhưng não bộ của bạn không nghĩ vậy. Kế toán tâm lý là một trong những phát hiện thú vị nhất của kinh tế học hành vi, giải thích tại sao con người xử lý những đồng tiền giống hệt nhau theo những cách hoàn toàn khác biệt."
+        "label": "Vì sao nó luôn thắng",
+        "text": "Não bạn chiết khấu lợi ích tương lai rất mạnh, nên một giờ tốn hôm nay luôn nặng hơn năm giờ tiết kiệm được trong sáu tháng tới. Nó thắng ngay cả khi bạn tự quyết định lịch của mình và không ai gây áp lực - nên đây không phải chuyện quản lý."
       },
       {
         "type": "heading",
-        "text": "Fungibility - Nguyên lý bị vi phạm thường xuyên nhất"
+        "text": "Vì sao quyết tâm không cứu được"
       },
       {
         "type": "paragraph",
-        "text": "Trong lý thuyết kinh tế cổ điển, tiền có tính 'fungible' (thay thế hoàn toàn cho nhau) - 1 đồng từ lương, 1 đồng từ thưởng, và 1 đồng từ trúng số có giá trị và sức mua hoàn toàn như nhau, không có lý do gì để xử lý chúng khác nhau. Nhưng thực tế tâm lý học hành vi cho thấy con người liên tục vi phạm nguyên lý này: tiền 'khó kiếm' (lương tháng) được bảo vệ kỹ càng, trong khi tiền 'dễ đến' (thưởng, quà, trúng thưởng) bị tiêu xài phóng khoáng hơn nhiều."
-      },
-      {
-        "type": "heading",
-        "text": "Hiệu ứng House Money trong đầu tư"
+        "text": "Bạn có thể quyết tâm và làm được một hôm. Nhưng cấu trúc chi phí không đổi: hôm sau vẫn có một việc gấp, và nó vẫn thắng. Quyết tâm là cố thắng cấu trúc đó bằng sức, và bạn phải thắng lại mỗi ngày."
       },
       {
         "type": "paragraph",
-        "text": "Hiện tượng này đặc biệt nguy hiểm trong đầu tư: sau khi kiếm được lợi nhuận từ một khoản đầu tư, nhiều nhà đầu tư có xu hướng mạo hiểm hơn với phần lợi nhuận đó (coi đó là 'tiền của nhà cái', không phải 'tiền thật' của mình), dẫn đến các quyết định đầu tư rủi ro cao mà họ sẽ không bao giờ chấp nhận nếu đó là tiền vốn ban đầu. Về bản chất tài chính, không có sự khác biệt nào giữa 'vốn gốc' và 'lợi nhuận đã kiếm được' - cả hai đều là tài sản thực của bạn."
-      },
-      {
-        "type": "heading",
-        "text": "Khai thác Mental Accounting một cách tích cực"
+        "text": "Mọi cách chữa có tác dụng đều đổi chính CẤU TRÚC đó, chứ không đòi thêm ý chí. Đó là điểm chung của ba cơ chế dưới đây."
       },
       {
         "type": "list",
         "items": [
-          "Ngân sách theo 'ngăn kéo': mở nhiều tài khoản ngân hàng con cho từng mục tiêu (quỹ khẩn cấp, du lịch, mua nhà) để tạo ranh giới tâm lý rõ ràng, giúp kỷ luật chi tiêu tốt hơn",
-          "Tự động chuyển khoản ngay khi nhận lương vào 'tài khoản tiết kiệm' trước khi kịp coi đó là 'tiền tiêu vặt'",
-          "Đặt tên cụ thể cho từng khoản tiết kiệm (thay vì 'tiết kiệm chung chung') để tăng cường cam kết tâm lý với mục tiêu đó"
+          "Dọn chỗ mình vừa chạm vào: việc dọn đi kèm việc bạn đằng nào cũng làm, nên nó không phải xếp hàng sau việc gấp.",
+          "Ghi nợ thành mục công việc có mô tả và chi phí: thứ không nằm trong danh sách thì không bao giờ được xếp lịch.",
+          "Cập nhật thư viện theo lịch cố định thay vì khi nào rảnh - vì khi nào rảnh không bao giờ tới."
         ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Mục cuối đáng nhấn: đây là loại nợ có lãi kép rõ nhất. Để lâu thì các bản cập nhật chồng lên nhau và việc nhỏ thành một dự án riêng - và tới lúc có lỗ hổng bảo mật cần vá gấp thì bạn không vá riêng được nữa."
+      },
+      {
+        "type": "heading",
+        "text": "Nợ không phải lúc nào cũng xấu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Vay có ý thức để ra sản phẩm sớm là quyết định hợp lý. Điều kiện là GHI LẠI khoản vay: khoản có ghi thì trả được, còn khoản không ghi thì sáu tháng sau không ai nhớ vì sao chỗ này lại viết như vậy - và người ta bắt chước nó."
       },
       {
         "type": "closing",
         "lines": [
-          "Mental accounting không phải là kẻ thù cần tiêu diệt hoàn toàn - nó là một công cụ tâm lý có thể phản tác dụng (khi khiến bạn tiêu hoang tiền 'bất ngờ' hoặc giữ tiền tiết kiệm lãi thấp trong khi vẫn nợ lãi cao) hoặc trở thành đồng minh (khi được thiết kế có chủ đích để tạo kỷ luật tài chính).",
-          "Câu hỏi quan trọng không phải là 'làm sao để loại bỏ mental accounting' mà là 'làm sao để dùng nó có lợi cho mình'."
+          "Ghi ở đâu cũng được trừ một chỗ: chú thích trong code. Sau vài tháng chúng thành một lớp nền mà mắt tự động lướt qua, đúng như bài đầu chặng mô tả.",
+          "Bài cuối chặng gom bốn bài lại thành một bộ thói quen chạy được hằng ngày."
         ]
       }
-    ],
-    "diagram": [
-      {
-        "label": "Não chia tiền vào các 'ngăn kéo' theo nguồn gốc",
-        "arrow": true
-      },
-      {
-        "label": "Tiền thưởng, tiền lãi được tiêu dễ hơn tiền lương",
-        "arrow": true
-      },
-      {
-        "label": "Vi phạm nguyên lý tiền có thể thay thế lẫn nhau",
-        "arrow": true
-      },
-      {
-        "label": "Khai thác tích cực: đặt tên mục tiêu cho từng quỹ tiết kiệm",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
-  },
-  {
-    "id": 1239,
-    "slug": "thien-kien-hien-tai-va-tiet-kiem-huu-tri",
-    "title": "Thiên kiến hiện tại: Vì sao biết cần tiết kiệm hưu trí mà vẫn không làm",
-    "subtitle": "Não bạn định giá 1 triệu hôm nay cao hơn nhiều 1 triệu sau 10 năm - ngay cả khi phần thưởng tương lai lớn hơn nhiều lần",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "⏳",
-    "track": "personal",
-    "openingQuestion": "Bạn được đề nghị: (A) Nhận 2 triệu đồng NGAY HÔM NAY, hoặc (B) Nhận 2.2 triệu đồng sau 1 THÁNG. Nhiều người chọn (A) dù (B) có lợi hơn về mặt toán học (10% lợi nhuận trong 1 tháng là rất cao). Nhưng nếu đổi thành: (A') Nhận 2 triệu sau 12 tháng, hay (B') Nhận 2.2 triệu sau 13 tháng - đa số người lại chọn (B'). Tại sao cùng một khoảng chênh lệch thời gian (1 tháng) lại dẫn đến lựa chọn khác nhau?",
-    "openingOptions": [
-      "Vì mọi người tính toán sai ở một trong hai trường hợp",
-      "Chiết khấu hyperbolic - phần thưởng ngay lập tức được coi trọng quá mức",
-      "Vì 2.2 triệu luôn tốt hơn 2 triệu trong mọi trường hợp nên câu hỏi này không có ý nghĩa",
-      "Vì con người luôn ưu tiên số tiền lớn hơn bất kể thời gian"
-    ],
-    "correctOption": 1,
-    "explanation": "Đây chính là 'chiết khấu hyperbolic' (hyperbolic discounting) - một trong những phát hiện quan trọng nhất về thiên kiến hiện tại (present bias): con người không chiết khấu giá trị tương lai theo một tỷ lệ NHẤT QUÁN theo thời gian như mô hình kinh tế cổ điển giả định, mà đặc biệt coi trọng phần thưởng 'NGAY BÂY GIỜ' một cách không cân xứng. Khoảng cách tâm lý giữa 'hôm nay' và '1 tháng nữa' cảm thấy lớn hơn nhiều so với khoảng cách giữa '12 tháng nữa' và '13 tháng nữa', dù về mặt lịch, cả hai đều là chênh lệch đúng 1 tháng.",
-    "realWorldExample": {
-      "company": "Khủng hoảng tiết kiệm hưu trí toàn cầu",
-      "description": "Present bias được xem là một trong những nguyên nhân tâm lý chính đằng sau tình trạng thiếu hụt tiết kiệm hưu trí ở nhiều quốc gia: mọi người đều 'biết' về mặt lý trí rằng cần tiết kiệm cho tuổi già, nhưng liên tục trì hoãn hành động vì lợi ích của việc tiết kiệm (an toàn tài chính lúc 60-70 tuổi) cảm thấy quá xa xôi và trừu tượng so với niềm vui tiêu dùng ngay trong hiện tại. Đây là lý do các chương trình hưu trí tự động ghi danh (auto-enrollment) - nơi nhân viên MẶC ĐỊNH được đăng ký tiết kiệm trừ khi họ chủ động từ chối - đã cải thiện đáng kể tỷ lệ tham gia so với chương trình yêu cầu đăng ký chủ động."
-    },
-    "quiz": [
-      {
-        "question": "Tại sao các chương trình 'auto-enrollment' (tự động đăng ký tiết kiệm hưu trí, người lao động phải chủ động từ chối nếu không muốn tham gia) lại hiệu quả hơn nhiều so với chương trình yêu cầu đăng ký chủ động, dù về lý thuyết người lao động vẫn có toàn quyền lựa chọn ở cả hai trường hợp?",
-        "options": [
-          "Vì auto-enrollment bắt buộc, người lao động không có quyền từ chối",
-          "Vì thiên kiến hiện tại khiến việc 'trì hoãn hành động' (không làm gì) trở thành lựa chọn mặc định dễ dàng nhất - khi phải CHỦ ĐỘNG đăng ký, nhiều người trì hoãn vô thời hạn dù có ý định tốt; khi đăng ký là MẶC ĐỊNH và cần chủ động để rút lui, quán tính tương tự lại có lợi cho việc tiết kiệm",
-          "Vì auto-enrollment có mức đóng góp thấp hơn nhiều so với đăng ký chủ động",
-          "Không có sự khác biệt thực sự nào về tỷ lệ tham gia giữa hai loại chương trình"
-        ],
-        "correct": 1,
-        "explanation": "Đây là ứng dụng nổi tiếng của 'nudge theory' (thuyết cú hích) - do Richard Thaler và Cass Sunstein phát triển, dựa trực tiếp trên hiểu biết về thiên kiến hiện tại: vì con người có xu hướng trì hoãn hành động đòi hỏi nỗ lực chủ động (ngay cả khi hành động đó có lợi rõ ràng), việc thay đổi lựa chọn MẶC ĐỊNH (từ 'không tham gia trừ khi đăng ký' sang 'tham gia trừ khi từ chối') tận dụng chính quán tính tâm lý đó để mang lại kết quả tốt hơn cho người lao động, mà không hề hạn chế quyền tự do lựa chọn của họ."
-      },
-      {
-        "question": "'Ủy thác cam kết' (commitment device) như việc tự động trích một phần lương vào tài khoản tiết kiệm KHÔNG THỂ RÚT trước một ngày nhất định, giúp chống lại present bias như thế nào?",
-        "options": [
-          "Phương pháp này không có tác dụng gì vì con người luôn có thể tìm cách phá vỡ cam kết",
-          "Bằng cách LOẠI BỎ khả năng lựa chọn 'chi tiêu ngay bây giờ' khỏi tương lai (tiền đã bị khóa), commitment device giúp con người ở HIỆN TẠI tự bảo vệ mình khỏi chính bản thân họ ở TƯƠNG LAI - người mà thiên kiến hiện tại sẽ khiến ưu tiên tiêu dùng ngay hơn là giữ đúng kế hoạch tiết kiệm ban đầu",
-          "Phương pháp này chỉ phù hợp với người có thu nhập rất cao",
-          "Commitment device luôn khiến người dùng mất nhiều tiền hơn do phí phạt"
-        ],
-        "correct": 1,
-        "explanation": "Commitment devices hoạt động dựa trên một insight sâu sắc về present bias: con người ở thời điểm LẬP KẾ HOẠCH (ví dụ đầu tháng, khi lương vừa về) thường có ý chí mạnh mẽ và tầm nhìn dài hạn tốt, nhưng con người ở thời điểm THỰC HIỆN (khi đối mặt với cám dỗ chi tiêu tức thời) lại dễ bị chi phối bởi ưu tiên hiện tại. Khóa tiền trước giúp 'con người kế hoạch' chiến thắng 'con người thực hiện' bằng cách loại bỏ lựa chọn phá vỡ kế hoạch."
-      },
-      {
-        "question": "Tại sao nhiều người dễ dàng cam kết 'từ tháng sau tôi sẽ bắt đầu tiết kiệm/tập thể dục/ăn kiêng' nhưng lại khó thực hiện điều tương tự 'ngay hôm nay'?",
-        "options": [
-          "Vì tháng sau luôn có nhiều thời gian rảnh hơn tháng này",
-          "Vì present bias khiến chi phí của sự hy sinh (không tiêu tiền, không ăn ngon) cảm thấy nặng nề hơn nhiều khi phải chịu đựng NGAY BÂY GIỜ so với khi nó được đặt vào một thời điểm tương lai trừu tượng - dù về nguyên tắc, 'tháng sau' rồi cũng sẽ trở thành 'hôm nay' và đối mặt với chính vấn đề tâm lý y hệt",
-          "Vì cam kết cho tương lai không có giá trị thực tế nào",
-          "Đây không phải là hiện tượng tâm lý phổ biến, chỉ là sự lười biếng cá nhân"
-        ],
-        "correct": 1,
-        "explanation": "Đây là bản chất của 'procrastination' (trì hoãn) nhìn từ góc độ present bias: khi lên kế hoạch cho tương lai, chi phí của sự hy sinh cảm thấy trừu tượng và dễ chịu đựng hơn nhiều so với khi phải đối mặt trực tiếp NGAY BÂY GIỜ. Vấn đề là khi 'tháng sau' đến, nó lại trở thành 'bây giờ' của thời điểm đó, và vòng lặp trì hoãn tiếp tục - đây là lý do tại sao chỉ 'lên kế hoạch' thường không đủ, cần có cơ chế cam kết cụ thể (commitment devices) để phá vỡ vòng lặp này."
-      }
-    ],
-    "keyTakeaways": [
-      "Chiết khấu hyperbolic (hyperbolic discounting): con người coi trọng phần thưởng NGAY BÂY GIỜ một cách không cân xứng so với logic chiết khấu thời gian nhất quán - khoảng cách 'hôm nay vs 1 tháng nữa' cảm thấy lớn hơn nhiều so với 'năm sau vs năm sau + 1 tháng'",
-      "Auto-enrollment (tự động đăng ký, phải chủ động từ chối) tận dụng quán tính tâm lý để cải thiện tỷ lệ tiết kiệm hưu trí, so với đăng ký chủ động",
-      "Commitment devices (khóa tiền, cam kết không thể phá vỡ dễ dàng) giúp 'con người kế hoạch' ở hiện tại bảo vệ bản thân khỏi 'con người thực hiện' dễ bị cám dỗ ở tương lai gần",
-      "Trì hoãn xảy ra vì chi phí hy sinh cảm thấy nhẹ nhàng hơn khi đặt vào tương lai trừu tượng - nhưng tương lai đó rồi cũng sẽ trở thành hiện tại với cùng vấn đề tâm lý"
-    ],
-    "practicePrompt": {
-      "question": "Công ty bạn cung cấp chương trình tiết kiệm hưu trí tự nguyện với mức đóng góp công ty match 50% (công ty góp thêm 50% số tiền bạn đóng). Bạn đã 'định sẽ đăng ký' trong 6 tháng qua nhưng chưa làm. Dựa trên hiểu biết về present bias, chiến lược nào hiệu quả nhất để thực sự bắt đầu tiết kiệm?",
-      "options": [
-        "Tiếp tục 'định làm' và đợi đến khi thực sự sẵn sàng về mặt tâm lý",
-        "Đăng ký ngay với 2-3% lương thay vì đợi đến 'thời điểm hoàn hảo'",
-        "Chờ đến khi lương tăng đáng kể mới bắt đầu tiết kiệm",
-        "Present bias không áp dụng cho quyết định tiết kiệm hưu trí"
-      ],
-      "correct": 1,
-      "explanation": "Đây là nguyên tắc thực hành quan trọng nhất khi đối phó với present bias: 'bắt đầu nhỏ nhưng bắt đầu ngay' luôn hiệu quả hơn 'chờ đợi kế hoạch hoàn hảo', vì present bias đảm bảo rằng bất kỳ thời điểm tương lai nào cũng sẽ gặp phải chính rào cản tâm lý tương tự khi nó trở thành 'hiện tại'. Bỏ lỡ khoản công ty match 50% mỗi tháng trì hoãn là một chi phí cơ hội thực sự và có thể tính toán được."
-    },
-    "summary": {
-      "keyIdea": "Thiên kiến hiện tại khiến con người định giá phần thưởng ngay lập tức cao hơn nhiều so với logic chiết khấu thời gian nhất quán, gây khó khăn cho việc tiết kiệm dài hạn - các cơ chế như auto-enrollment và commitment devices giúp vượt qua rào cản tâm lý này.",
-      "commonMistake": "Chờ đợi 'thời điểm hoàn hảo' hoặc 'kế hoạch hoàn chỉnh' để bắt đầu tiết kiệm, thay vì hành động nhỏ ngay lập tức",
-      "action": "Nếu có bất kỳ chương trình tiết kiệm tự động nào (hưu trí công ty, trích lương tự động), đăng ký NGAY với số tiền nhỏ thay vì chờ đợi thời điểm 'thích hợp hơn'"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Xác định một mục tiêu tài chính bạn đã 'định làm' nhưng liên tục trì hoãn - thiết lập một commitment device cụ thể (chuyển khoản tự động, khóa tài khoản tiết kiệm) để biến ý định thành hành động ngay hôm nay, dù chỉ với số tiền nhỏ.",
-      "secondary": "Bài tiếp theo sẽ tổng kết lại 5 thiên kiến đã học và xây dựng một 'bộ lọc' quyết định tài chính giúp bạn tự kiểm tra trước mỗi quyết định lớn."
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Ai cũng biết nên tiết kiệm cho tương lai - nhưng biết là một chuyện, hành động lại là chuyện khác. Thiên kiến hiện tại giải thích khoảng cách đau đớn giữa ý định tốt và hành động thực tế."
-      },
-      {
-        "type": "heading",
-        "text": "Chiết khấu Hyperbolic - Khi 'bây giờ' quan trọng bất cân xứng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Mô hình kinh tế cổ điển giả định con người chiết khấu giá trị tương lai theo một tỷ lệ CỐ ĐỊNH và NHẤT QUÁN theo thời gian (exponential discounting). Nhưng thực tế hành vi cho thấy con người dùng 'chiết khấu hyperbolic' - một mô hình trong đó khoảng cách giữa HIỆN TẠI và TƯƠNG LAI GẦN được coi trọng bất cân xứng so với khoảng cách tương đương giữa hai điểm trong TƯƠNG LAI XA. Đây là lý do phần thưởng 'ngay bây giờ' luôn hấp dẫn một cách không tương xứng so với logic thuần túy."
-      },
-      {
-        "type": "heading",
-        "text": "Nudge Theory - Thiết kế lựa chọn thông minh"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nudge theory (thuyết cú hích), do Richard Thaler (giải Nobel Kinh tế 2017) và Cass Sunstein phát triển, ứng dụng trực tiếp hiểu biết về present bias: thay vì cố gắng 'sửa' tâm lý con người (khó và tốn kém), hãy THIẾT KẾ LẠI lựa chọn mặc định để làm cho hành động tốt trở thành con đường ít trở ngại nhất. Auto-enrollment vào quỹ hưu trí là ví dụ kinh điển - biến 'tiết kiệm' từ một hành động đòi hỏi nỗ lực chủ động thành lựa chọn mặc định, trong khi vẫn giữ nguyên quyền tự do lựa chọn (opt-out) của mỗi người."
-      },
-      {
-        "type": "heading",
-        "text": "Commitment Devices - Tự trói mình vào cột buồm"
-      },
-      {
-        "type": "paragraph",
-        "text": "Lấy cảm hứng từ câu chuyện Ulysses tự trói mình vào cột buồm để không bị tiếng hát của các nàng tiên cá (Siren) mê hoặc, commitment devices là các cơ chế giúp 'con người ở hiện tại' (với ý chí và tầm nhìn dài hạn) tự bảo vệ bản thân khỏi 'con người ở tương lai gần' (dễ bị cám dỗ bởi tiêu dùng tức thời). **Ví dụ:** chuyển khoản tự động vào tài khoản tiết kiệm ngay khi lương về (trước khi có cơ hội chi tiêu), hoặc các tài khoản tiết kiệm có kỳ hạn với phí phạt rút trước hạn."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba lớp phòng vệ trước thiên kiến hiện tại",
-        "subtitle": "Không lớp nào chữa được thiên kiến; cả ba đều là cách sống chung với nó",
-        "concepts": [
-          {
-            "vi": "Chiết khấu hyperbolic",
-            "en": "Hyperbolic Discounting",
-            "def": "Vấn đề gốc: giá trị của phần thưởng rơi rất nhanh trong ngắn hạn rồi phẳng ra. Vì thế hôm nay ta luôn muốn tiêu, và luôn dự định tháng sau sẽ tiết kiệm."
-          },
-          {
-            "vi": "Thiết kế lựa chọn",
-            "en": "Nudge / Default",
-            "def": "Đổi lựa chọn mặc định thay vì thuyết phục. Tự động trích lương vào tiết kiệm hiệu quả hơn mọi lời khuyên, vì nó không cần ý chí ở thời điểm chi tiêu."
-          },
-          {
-            "vi": "Công cụ tự ràng buộc",
-            "en": "Commitment Device",
-            "def": "Tự lấy đi lựa chọn của chính mình trong tương lai - sổ tiết kiệm có kỳ hạn, tài khoản khó rút. Bạn ở hiện tại đang chống lại bạn ở tương lai."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Đáng nhớ",
-        "text": "Thứ tự thao tác quan trọng hơn ý chí. Tiết kiệm phần còn lại sau khi tiêu gần như luôn thất bại, vì chi tiêu giãn ra vừa đúng bằng số dư nhìn thấy được."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Thiên kiến hiện tại không phải là dấu hiệu của sự yếu đuối ý chí - nó là một đặc điểm phổ quát của não bộ con người, được hình thành qua hàng triệu năm tiến hóa khi 'phần thưởng ngay bây giờ' (thức ăn, an toàn) thực sự quan trọng hơn phần thưởng trừu tượng trong tương lai.",
-          "Chiến thắng present bias không đến từ ý chí mạnh mẽ hơn, mà từ việc THIẾT KẾ hệ thống và môi trường xung quanh để hành động đúng trở thành con đường dễ dàng nhất."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Chiết khấu hyperbolic - 'bây giờ' được ưu tiên bất cân xứng",
-        "arrow": true
-      },
-      {
-        "label": "Biết cần tiết kiệm nhưng luôn hoãn sang tháng sau",
-        "arrow": true
-      },
-      {
-        "label": "Nudge: đăng ký tự động, tăng tỷ lệ tiết kiệm theo lương",
-        "arrow": true
-      },
-      {
-        "label": "Cam kết trước: trích tự động ngay ngày nhận lương",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
+    ]
   },
   {
     "id": 1240,
-    "slug": "tong-ket-xay-he-mien-dich-tam-ly-tai-chinh",
-    "title": "Tổng kết: Xây 'hệ miễn dịch tâm lý' cho quyết định tài chính",
-    "subtitle": "5 thiên kiến đã học, và bộ câu hỏi tự kiểm tra trước mỗi quyết định tiền bạc quan trọng",
-    "duration": "7 phút",
+    "slug": "tong-ket-thoi-quen-chong-diem-mu",
+    "title": "Tổng kết: bộ thói quen chống điểm mù",
+    "subtitle": "Bốn thiên kiến, và bốn cơ chế chạy được mà không cần nhớ tới chúng.",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "🛡️",
+    "emoji": "🏁",
     "track": "personal",
-    "openingQuestion": "Sau khi học về 5 thiên kiến tâm lý (ác cảm mất mát, quá tự tin/neo giá, tâm lý bầy đàn/FOMO, kế toán tâm lý, thiên kiến hiện tại), điều gì là chiến lược HIỆU QUẢ NHẤT để áp dụng những kiến thức này vào thực tế, thay vì chỉ 'biết' mà không thay đổi hành vi?",
+    "interactiveType": "prospect",
+    "isFundamental": false,
+    "whyItMatters": "Biết tên bốn thiên kiến không làm bạn tránh được chúng - đó chính là điều làm chúng khác với sự thiếu hiểu biết. Thứ có tác dụng là cơ chế, và bài này biến bốn bài trước thành cơ chế.",
+    "openingQuestion": "Sau chặng này, thứ nào thật sự thay đổi cách bạn làm việc?",
     "openingOptions": [
-      "Chỉ cần đọc và ghi nhớ tên các thiên kiến là đủ để tự động tránh được chúng",
-      "Xây sẵn các quy tắc và quy trình cụ thể từ trước khi phải đối mặt với một quyết định thật sự nào đó",
-      "Tránh hoàn toàn việc đưa ra bất kỳ quyết định tài chính nào để không bị ảnh hưởng bởi thiên kiến",
-      "Chỉ những người có IQ cao mới có thể tránh được các thiên kiến tâm lý này"
+      "Những cơ chế chạy được mà không cần bạn nhớ tới thiên kiến nào lúc đó",
+      "Việc biết tên và cơ chế của bốn thiên kiến để nhận ra chúng khi chúng xuất hiện",
+      "Thói quen tự hỏi mình có đang bị thiên kiến nào chi phối trước mỗi quyết định",
+      "Khả năng chỉ ra cho đồng đội biết khi họ đang mắc phải một trong các thiên kiến đó"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là phát hiện quan trọng nhất của behavioral finance ứng dụng: chỉ BIẾT về một thiên kiến không đủ để tránh nó - đây gọi là 'bias blind spot' (điểm mù thiên kiến), nơi con người dễ nhận ra thiên kiến ở người khác hơn ở chính mình, ngay cả khi đã học về nó. Chiến lược hiệu quả thực sự là xây dựng các QUY TẮC, QUY TRÌNH, và CÔNG CỤ CỤ THỂ được thiết lập trước, hoạt động như một 'hệ miễn dịch' tự động bảo vệ bạn ngay cả khi cảm xúc đang chi phối mạnh nhất.",
+    "correctOption": 0,
+    "explanation": "Thiên kiến hoạt động dưới mức ý thức, nên việc biết tên chúng không tạo ra một lớp phòng vệ nào - đây là điểm phân biệt chúng với sự thiếu hiểu biết, thứ mà học là chữa được. Tự hỏi trước mỗi quyết định thì đòi bạn nhận ra đúng lúc, mà nhận ra đúng lúc chính là thứ thiên kiến ngăn cản. Cơ chế thì hoạt động ngay cả khi bạn không nghĩ gì về nó.",
+    "diagram": [
+      {
+        "label": "Điểm mù khi đọc → để cách một đêm, đọc bản khác biệt",
+        "arrow": true
+      },
+      {
+        "label": "Quá tự tin → ước lượng bằng dữ liệu quá khứ",
+        "arrow": true
+      },
+      {
+        "label": "Neo → bắt mình nghĩ đủ ba cách",
+        "arrow": true
+      },
+      {
+        "label": "Thiên kiến hiện tại → dọn chỗ mình vừa chạm vào"
+      }
+    ],
     "realWorldExample": {
-      "company": "Checklist của phi công và bác sĩ phẫu thuật",
-      "description": "Ngành hàng không và y tế phẫu thuật là hai lĩnh vực đi đầu trong việc nhận ra rằng ngay cả chuyên gia dày dạn kinh nghiệm nhất vẫn dễ mắc sai lầm do thiên kiến nhận thức trong tình huống áp lực cao - giải pháp không phải là 'đào tạo thêm' mà là bắt buộc sử dụng CHECKLIST cụ thể trước mỗi lần cất cánh/phẫu thuật. Nghiên cứu của bác sĩ Atul Gawande (tác giả 'The Checklist Manifesto') cho thấy việc áp dụng checklist đơn giản đã giảm đáng kể tỷ lệ biến chứng phẫu thuật - một nguyên lý hoàn toàn có thể áp dụng cho quyết định tài chính cá nhân."
+      "company": "Danh sách kiểm của phi công",
+      "description": "Phi công có hàng nghìn giờ bay vẫn đọc danh sách kiểm trước mỗi chuyến. Không phải vì họ không nhớ, mà vì trí nhớ là thứ hỏng đúng lúc bạn cần nó nhất. Đó là lý do một danh sách bốn dòng dán cạnh màn hình có tác dụng hơn việc hiểu sâu bốn thiên kiến."
     },
     "quiz": [
       {
-        "question": "'Bias blind spot' (điểm mù thiên kiến) là gì, và tại sao nó khiến việc chỉ 'học lý thuyết' về behavioral finance không đủ để thay đổi hành vi thực tế?",
+        "question": "Vì sao biết tên một thiên kiến không giúp bạn tránh được nó?",
         "options": [
-          "Là hiện tượng mắt bị mờ khi nhìn vào màn hình quá lâu",
-          "Là xu hướng con người dễ nhận diện thiên kiến ở NGƯỜI KHÁC hơn nhiều so với ở CHÍNH BẢN THÂN mình - ngay cả những người đã học kỹ về loss aversion hay overconfidence vẫn thường tin rằng 'tôi thì khác, tôi sẽ không mắc lỗi đó', khiến kiến thức lý thuyết không tự động chuyển hóa thành hành vi thực tế tốt hơn",
-          "Là một loại bệnh về mắt phổ biến ở nhà đầu tư",
-          "Bias blind spot chỉ ảnh hưởng đến người mới bắt đầu đầu tư, không ảnh hưởng đến chuyên gia"
+          "Vì nó hoạt động dưới mức ý thức, nên bạn không nhận ra lúc nó đang xảy ra",
+          "Vì các thiên kiến thường xuất hiện cùng lúc nên khó phân biệt cái nào đang chi phối",
+          "Vì tên gọi khoa học của chúng khó nhớ nên người ta quên mất khi cần dùng tới",
+          "Vì mỗi thiên kiến có nhiều biểu hiện khác nhau nên khó nhận ra hết mọi trường hợp"
         ],
-        "correct": 1,
-        "explanation": "Bias blind spot là một trong những phát hiện gây tranh cãi nhất của behavioral finance: các nghiên cứu cho thấy ngay cả các nhà kinh tế học hành vi chuyên nghiệp - những người hiểu rõ nhất về các thiên kiến này - vẫn không miễn nhiễm với chúng trong quyết định cá nhân. Đây là lý do tại sao 'biết' không đủ, và tại sao cần các cơ chế CẤU TRÚC (checklist, quy tắc tự động) thay vì chỉ dựa vào ý chí và kiến thức."
+        "correct": 0,
+        "explanation": "Đây là điểm phân biệt thiên kiến với sự thiếu hiểu biết. Thiếu hiểu biết thì học là chữa được; thiên kiến thì bạn hiểu nó hoàn hảo và vẫn mắc, vì phần mắc phải xảy ra ở nơi lời giải thích không với tới."
       },
       {
-        "question": "Tại sao 'thời gian chờ bắt buộc' (cooling-off period) trước các quyết định tài chính lớn lại là một công cụ hiệu quả chống lại NHIỀU thiên kiến cùng lúc (không chỉ FOMO)?",
+        "question": "Đặc điểm chung của những cơ chế có tác dụng là gì?",
         "options": [
-          "Vì thời gian chờ chỉ có tác dụng với thiên kiến FOMO, không có tác dụng gì với các thiên kiến khác",
-          "Vì hầu hết các thiên kiến tâm lý (ác cảm mất mát, quá tự tin, tâm lý bầy đàn) hoạt động MẠNH NHẤT trong khoảnh khắc cảm xúc cao độ - khi để thời gian trôi qua, phản ứng cảm xúc tự nhiên giảm dần (emotional habituation), cho phép phần tư duy lý trí (System 2 trong mô hình Kahneman) có cơ hội đánh giá lại quyết định một cách khách quan hơn",
-          "Thời gian chờ luôn khiến nhà đầu tư bỏ lỡ mọi cơ hội tốt",
-          "Đây không phải là một chiến lược được khuyến nghị bởi các chuyên gia tài chính"
+          "Chúng không đòi bạn nhận ra thiên kiến đúng lúc nó đang xảy ra",
+          "Chúng đơn giản tới mức ai cũng thực hiện được mà không cần đào tạo trước",
+          "Chúng có thể tự động hoá bằng công cụ nên không phụ thuộc vào con người",
+          "Chúng cho kết quả thấy được ngay nên người ta có động lực duy trì lâu dài"
         ],
-        "correct": 1,
-        "explanation": "Đây là lý do 'cooling-off period' là công cụ đa năng: theo mô hình 'hai hệ thống tư duy' của Daniel Kahneman (System 1 - nhanh, cảm xúc, trực giác; System 2 - chậm, lý trí, phân tích), hầu hết các thiên kiến hành vi xuất phát từ việc System 1 chi phối quyết định trong khoảnh khắc áp lực cảm xúc cao. Để thời gian trôi qua cho phép System 2 'bắt kịp' và đánh giá lại quyết định với góc nhìn khách quan hơn, bất kể đó là ác cảm mất mát, FOMO, hay quá tự tin."
+        "correct": 0,
+        "explanation": "Đây là tiêu chí để đánh giá bất kỳ cơ chế nào bạn định thêm vào. Nếu nó bắt đầu bằng câu khi bạn nhận thấy mình đang thì nó không phải cơ chế - nó là một lời khuyên đội lốt cơ chế."
       },
       {
-        "question": "Tại sao việc tự động hóa các quyết định tài chính tốt (chuyển khoản tiết kiệm tự động, tái cân bằng danh mục định kỳ theo lịch cố định) lại hiệu quả hơn nhiều so với việc dựa vào 'kỷ luật cá nhân' để đưa ra quyết định đúng mỗi lần?",
+        "question": "Vì sao viết ra dự đoán và ước lượng lại quan trọng tới vậy?",
         "options": [
-          "Vì tự động hóa luôn tốn kém hơn quyết định thủ công",
-          "Vì tự động hóa LOẠI BỎ HOÀN TOÀN cơ hội cho các thiên kiến tâm lý can thiệp vào từng quyết định riêng lẻ - một quy tắc tốt được thiết lập MỘT LẦN duy nhất (khi tư duy lý trí đang chi phối) sẽ tự động thực thi đúng đắn hàng trăm lần sau đó, thay vì phải 'chiến thắng' thiên kiến của chính mình mỗi lần ra quyết định riêng lẻ",
-          "Kỷ luật cá nhân luôn đáng tin cậy hơn tự động hóa trong mọi trường hợp",
-          "Tự động hóa chỉ phù hợp với nhà đầu tư chuyên nghiệp, không phù hợp với người bình thường"
+          "Vì ký ức tự sửa lại cho khớp kết quả, nên không viết thì bạn không bao giờ học được",
+          "Vì bản ghi đó giúp đồng đội hiểu được cách bạn suy nghĩ khi gặp vấn đề tương tự",
+          "Vì viết ra buộc bạn phải diễn đạt rõ ràng nên suy nghĩ cũng trở nên mạch lạc hơn",
+          "Vì bạn cần bằng chứng để giải trình khi ước lượng bị lệch quá xa so với thực tế"
         ],
-        "correct": 1,
-        "explanation": "Đây là nguyên lý cốt lõi của 'hệ miễn dịch tâm lý' hiệu quả nhất: thay vì phải chiến đấu chống lại thiên kiến của bản thân MỖI LẦN đưa ra quyết định (một cuộc chiến bạn sẽ thua nhiều lần), hãy thiết lập QUY TẮC TỰ ĐỘNG một lần duy nhất khi tâm lý bạn đang ở trạng thái lý trí nhất (đầu tháng, sau khi đã nghiên cứu kỹ). Từ đó, hệ thống tự động sẽ thực thi đúng quyết định đó lặp đi lặp lại mà không cần bạn phải 'thắng' cuộc chiến tâm lý mỗi lần."
+        "correct": 0,
+        "explanation": "Không có bản ghi thì mỗi lần sai bạn đều nhớ rằng mình đã gần đúng, nên vòng lặp học tập không bao giờ khép lại. Một dòng viết trước là thứ duy nhất ký ức không sửa được."
+      },
+      {
+        "question": "Vì sao một danh sách kiểm ngắn lại hiệu quả hơn hiểu biết sâu?",
+        "options": [
+          "Vì trí nhớ hỏng đúng lúc bạn cần nó nhất, còn danh sách thì không phụ thuộc vào trí nhớ",
+          "Vì danh sách kiểm ngắn nên đọc nhanh, không làm gián đoạn công việc đang làm",
+          "Vì hiểu biết sâu cần thời gian tích luỹ còn danh sách thì dùng được ngay lập tức",
+          "Vì danh sách kiểm dùng chung được cho cả đội, còn hiểu biết thì chỉ thuộc về từng người một"
+        ],
+        "correct": 0,
+        "explanation": "Phi công có hàng nghìn giờ bay vẫn đọc danh sách kiểm trước mỗi chuyến, và họ không làm vậy vì không nhớ. Áp lực, mệt mỏi và sự quen thuộc đều tấn công trí nhớ đúng vào lúc rủi ro cao nhất."
+      },
+      {
+        "question": "Điều gì làm một đội chống được điểm mù tốt hơn một cá nhân?",
+        "options": [
+          "Mỗi người có điểm mù ở chỗ khác nhau, nên chỗ bạn không thấy thì người khác thấy",
+          "Đội có nhiều thời gian hơn nên rà soát được kỹ lưỡng hơn so với một người",
+          "Trong đội luôn có người nhiều kinh nghiệm hơn để hướng dẫn những người còn lại",
+          "Đội có quy trình chính thức bắt buộc nên không ai bỏ qua được các bước kiểm tra"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lý do cốt lõi khiến rà soát chéo có giá trị, và nó cũng nói vì sao một đội mà mọi người nghĩ giống hệt nhau thì mất phần lớn lợi thế đó - điểm mù của họ chồng lên nhau."
       }
     ],
     "keyTakeaways": [
-      "Bias blind spot: con người dễ nhận diện thiên kiến ở người khác hơn ở chính mình - chỉ 'biết' về thiên kiến không đủ để tránh được nó trong thực tế",
-      "Checklist và quy trình cụ thể (như ngành hàng không/y tế) hiệu quả hơn nhiều so với chỉ dựa vào kiến thức và ý chí cá nhân",
-      "Thời gian chờ (cooling-off period) hiệu quả với nhiều thiên kiến cùng lúc vì cho phép tư duy lý trí (System 2) đánh giá lại quyết định sau khi cảm xúc lắng xuống",
-      "Tự động hóa quyết định tốt (chuyển khoản tự động, tái cân bằng định kỳ) loại bỏ hoàn toàn cơ hội cho thiên kiến can thiệp vào từng quyết định riêng lẻ"
+      "Biết tên thiên kiến không tạo ra lớp phòng vệ nào - nó hoạt động dưới mức ý thức.",
+      "Cơ chế tốt là cơ chế không đòi bạn nhận ra thiên kiến đúng lúc nó đang xảy ra.",
+      "Viết dự đoán và ước lượng ra, vì ký ức tự sửa lại cho khớp kết quả.",
+      "Danh sách kiểm hiệu quả hơn hiểu biết sâu, vì trí nhớ hỏng đúng lúc cần nhất.",
+      "Đội chống điểm mù tốt hơn cá nhân vì điểm mù của mỗi người nằm ở chỗ khác nhau."
     ],
     "practicePrompt": {
-      "question": "Dựa trên 5 bài học về ác cảm mất mát, quá tự tin/neo giá, tâm lý bầy đàn/FOMO, kế toán tâm lý, và thiên kiến hiện tại - hãy thiết kế MỘT bộ quy tắc cá nhân cụ thể (ít nhất 3 quy tắc) mà bạn sẽ áp dụng cho các quyết định đầu tư/chi tiêu lớn từ nay trở đi.",
+      "question": "Bạn muốn thêm một thói quen mới. Cách nào có khả năng duy trì được lâu nhất?",
       "options": [
-        "Không cần quy tắc cụ thể nào, chỉ cần 'cố gắng nhớ' về các thiên kiến đã học là đủ",
-        "Chờ 48-72 giờ, tự động trích tiết kiệm khi nhận lương, xét lại khoản lỗ",
-        "Chỉ cần đọc lại 5 bài học này mỗi tháng một lần là đủ để tránh các thiên kiến",
-        "Thuê một cố vấn tài chính là cách duy nhất để tránh hoàn toàn các thiên kiến tâm lý"
+        "Gắn nó vào một việc bạn đằng nào cũng làm, thay vì đặt ra một khoảng thời gian riêng",
+        "Đặt lời nhắc hằng ngày vào đúng khung giờ cố định để không bao giờ quên mất",
+        "Cam kết với đồng đội để có thêm áp lực xã hội giúp bạn duy trì thói quen đó",
+        "Bắt đầu bằng mục tiêu nhỏ rồi tăng dần lên khi đã quen với nhịp làm việc mới"
       ],
-      "correct": 1,
-      "explanation": "Đây chính là bài tập thực hành quan trọng nhất của toàn bộ chặng học: biến kiến thức lý thuyết thành QUY TẮC CỤ THỂ, CÓ THỂ THỰC THI - mỗi quy tắc trực tiếp đối phó với một thiên kiến cụ thể đã học (thời gian chờ chống FOMO/quá tự tin, tự động hóa chống thiên kiến hiện tại, câu hỏi 'sunk cost' chống ác cảm mất mát, coi tiền bất ngờ như tiền thường chống mental accounting). Đây là cách duy nhất để kiến thức thực sự thay đổi hành vi tài chính trong dài hạn."
+      "correct": 0,
+      "explanation": "Một khoảng thời gian riêng phải cạnh tranh với việc gấp và nó thua - đúng như bài trước mô tả. Gắn vào việc sẵn có thì không có cuộc cạnh tranh nào, và đó là lý do quy tắc dọn chỗ mình vừa chạm vào lan rộng được."
     },
     "summary": {
-      "keyIdea": "Biết về thiên kiến tâm lý không đủ để tránh được chúng (bias blind spot) - cần xây dựng quy tắc, quy trình, và cơ chế tự động cụ thể được thiết lập trước để tạo ra một 'hệ miễn dịch tâm lý' thực sự bảo vệ quyết định tài chính.",
-      "commonMistake": "Tin rằng chỉ cần 'biết' về các thiên kiến (ác cảm mất mát, FOMO, quá tự tin...) là đủ để tự động tránh được chúng trong thực tế",
-      "action": "Viết ra ít nhất 3 quy tắc tài chính cá nhân cụ thể, mỗi quy tắc đối phó trực tiếp với một thiên kiến đã học, và cam kết tuân thủ chúng như một checklist bắt buộc"
+      "keyIdea": "Hiểu biết không chặn được thiên kiến; chỉ có cơ chế mới chặn được.",
+      "formula": "Cơ chế tốt = không đòi bạn nhận ra thiên kiến đúng lúc nó xảy ra.",
+      "commonMistake": "Tin rằng hiểu rõ một thiên kiến là đủ để không mắc phải nó nữa.",
+      "action": "Chọn đúng một cơ chế từ chặng này và làm nó trong hai tuần."
     },
     "application": {
-      "title": "Áp dụng ngay",
-      "message": "Tạo một 'Checklist quyết định tài chính' cá nhân (viết tay hoặc trong ghi chú điện thoại) với ít nhất 5 câu hỏi tự kiểm tra, dựa trên 5 thiên kiến đã học trong chặng này - tham khảo lại checklist này TRƯỚC mỗi quyết định tài chính lớn (trên một ngưỡng tiền bạn tự đặt ra).",
-      "secondary": "Chặng Behavioral Finance dành cho Tài chính chuyên ngành sẽ đi sâu hơn vào cách các thiên kiến này ảnh hưởng đến thị trường tài chính ở quy mô lớn, và cách các nhà quản lý quỹ chuyên nghiệp xây dựng hệ thống chống lại chính thiên kiến của bản thân họ."
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn ĐÚNG MỘT cơ chế từ chặng này và làm nó trong hai tuần. Chọn bốn cái cùng lúc thì hai tuần nữa bạn làm được không cái nào.",
+      "secondary": "Gợi ý cho lựa chọn đầu tiên: ghi lại ước lượng và thời gian thật. Nó rẻ nhất, và nó cho bạn con số để đánh giá mọi thứ khác."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Học về 5 thiên kiến tâm lý chỉ là bước đầu tiên. Bước quan trọng hơn nhiều - và khó hơn nhiều - là biến kiến thức đó thành hành vi thực tế khác đi. Đây là bài học về CÁCH làm điều đó."
+        "text": "Chặng này đi qua bốn thiên kiến: điểm mù khi đọc code của mình, quá tự tin khi ước lượng, neo vào cách làm đầu tiên, và thiên kiến hiện tại khiến nợ kỹ thuật bị hoãn mãi."
       },
       {
         "type": "heading",
-        "text": "Ôn lại 5 thiên kiến đã học"
+        "text": "Điều khó chịu về cả bốn"
+      },
+      {
+        "type": "callout",
+        "label": "Biết tên chúng không giúp gì",
+        "text": "Thiên kiến hoạt động dưới mức ý thức, nên bạn hiểu nó hoàn hảo và vẫn mắc. Đây là điểm phân biệt nó với sự thiếu hiểu biết - thứ mà học là chữa được. Phần mắc phải xảy ra ở nơi lời giải thích không với tới."
+      },
+      {
+        "type": "paragraph",
+        "text": "Từ đó ra tiêu chí đánh giá mọi cơ chế bạn định thêm vào: nó có đòi bạn NHẬN RA thiên kiến đúng lúc nó đang xảy ra không? Nếu có thì nó không phải cơ chế - nó là một lời khuyên đội lốt cơ chế, vì nhận ra đúng lúc chính là thứ thiên kiến ngăn cản."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn cơ chế"
       },
       {
         "type": "conceptTable",
-        "title": "Tổng hợp Behavioral Finance - Tài chính cá nhân",
+        "title": "Mỗi cơ chế chặn một thiên kiến",
         "concepts": [
           {
-            "vi": "Ác cảm mất mát",
-            "en": "Loss Aversion",
-            "def": "Nỗi đau mất tiền mạnh gấp 2-2.5 lần niềm vui được tiền tương đương - dẫn đến giữ cổ phiếu lỗ quá lâu, bán cổ phiếu lãi quá sớm"
+            "vi": "Đọc bản khác biệt sáng hôm sau",
+            "en": "delay + diff",
+            "def": "Chặn điểm mù khi đọc lại. Không cần bạn nghi ngờ gì cả - chỉ cần dời thời điểm và đổi cách trình bày."
           },
           {
-            "vi": "Quá tự tin & Neo giá",
-            "en": "Overconfidence & Anchoring",
-            "def": "Tin thái quá vào khả năng đoán thị trường; bị chi phối bởi các con số quá khứ không còn liên quan"
+            "vi": "Ghi ước lượng và thời gian thật",
+            "en": "track estimates",
+            "def": "Chặn quá tự tin. Con số quá khứ đã bao gồm những chỗ rẽ mà bạn không tưởng tượng được."
           },
           {
-            "vi": "Tâm lý bầy đàn & FOMO",
-            "en": "Herding & FOMO",
-            "def": "Mua theo đám đông ở vùng giá cao, bán tháo theo đám đông ở vùng giá thấp - ngược chiến lược mua thấp bán cao"
+            "vi": "Bắt mình nghĩ đủ ba cách",
+            "en": "rule of three",
+            "def": "Chặn neo. Một cách thì không có gì để so; hai cách thì bạn chỉ đang bảo vệ cái đầu tiên."
           },
           {
-            "vi": "Kế toán tâm lý",
-            "en": "Mental Accounting",
-            "def": "Xử lý tiền khác nhau tùy nguồn gốc, dù về bản chất tài chính mọi đồng tiền đều có thể thay thế cho nhau"
-          },
-          {
-            "vi": "Thiên kiến hiện tại",
-            "en": "Present Bias",
-            "def": "Định giá phần thưởng ngay lập tức cao hơn bất cân xứng so với phần thưởng tương lai, gây khó khăn cho tiết kiệm dài hạn"
+            "vi": "Dọn chỗ mình vừa chạm vào",
+            "en": "boy scout rule",
+            "def": "Chặn thiên kiến hiện tại. Việc dọn đi kèm việc bạn đằng nào cũng làm, nên nó không phải cạnh tranh với việc gấp."
           }
         ]
       },
       {
         "type": "heading",
-        "text": "Từ Kiến thức đến Hành vi: 3 nguyên lý xây hệ miễn dịch tâm lý"
+        "text": "Hai điểm chung đáng để ý"
       },
       {
-        "type": "list",
-        "items": [
-          "Checklist thay vì trí nhớ: viết ra quy tắc cụ thể, tham khảo TRƯỚC mỗi quyết định lớn - đừng tin vào việc 'nhớ' áp dụng lý thuyết trong khoảnh khắc cảm xúc cao độ",
-          "Thời gian chờ thay vì phản ứng tức thời: cooling-off period cho phép tư duy lý trí (System 2) có cơ hội đánh giá lại quyết định của tư duy cảm tính (System 1)",
-          "Tự động hóa thay vì ý chí: thiết lập quy tắc MỘT LẦN khi lý trí đang chi phối (chuyển khoản tự động, tái cân bằng định kỳ) để hệ thống tự thực thi đúng đắn nhiều lần sau đó"
-        ]
+        "type": "comparison",
+        "left": {
+          "label": "Viết ra",
+          "text": "Dự đoán trước khi gỡ lỗi, ước lượng trước khi bắt đầu. Ký ức tự sửa lại cho khớp kết quả, nên không viết thì mỗi lần sai bạn đều nhớ rằng mình đã gần đúng - và vòng lặp học tập không bao giờ khép lại."
+        },
+        "right": {
+          "label": "Người khác",
+          "text": "Rà soát chéo, giải thích thành lời, hỏi lại. Điểm mù của mỗi người nằm ở chỗ khác nhau - đó cũng là lý do một đội mà ai cũng nghĩ giống hệt nhau thì mất phần lớn lợi thế này."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Và một lưu ý về hình thức: danh sách kiểm bốn dòng dán cạnh màn hình có tác dụng hơn việc hiểu sâu bốn thiên kiến. Phi công có hàng nghìn giờ bay vẫn đọc danh sách kiểm trước mỗi chuyến - không phải vì họ không nhớ, mà vì trí nhớ hỏng đúng lúc bạn cần nó nhất."
       },
       {
         "type": "closing",
         "lines": [
-          "Behavioral finance không dạy bạn cách trở thành một cỗ máy tính toán hoàn hảo, không cảm xúc - điều đó không thực tế và cũng không cần thiết.",
-          "Nó dạy bạn cách THIẾT KẾ môi trường và quy trình quyết định của mình để những cảm xúc và thiên kiến tự nhiên đó không phá hỏng các mục tiêu tài chính dài hạn mà chính bạn đã đặt ra khi còn tỉnh táo nhất."
+          "Lời khuyên cuối, và nó là lời khuyên thực dụng nhất trong cả chặng: chọn ĐÚNG MỘT cơ chế và làm nó trong hai tuần. Chọn bốn cái cùng lúc thì hai tuần nữa bạn làm được không cái nào.",
+          "Nếu phải chọn hộ: ghi lại ước lượng và thời gian thật. Nó rẻ nhất, và nó cho bạn con số để đánh giá mọi thứ khác."
         ]
       }
-    ],
-    "diagram": [
-      {
-        "label": "Nhận diện 5 thiên kiến đã học",
-        "arrow": true
-      },
-      {
-        "label": "Biến chúng thành checklist câu hỏi tự kiểm tra",
-        "arrow": true
-      },
-      {
-        "label": "Thiết kế quy tắc và môi trường quyết định trước",
-        "arrow": true
-      },
-      {
-        "label": "Ghi lại quyết định để đối chiếu về sau",
-        "arrow": false
-      }
-    ],
-    "interactiveType": "prospect",
+    ]
   },
   {
     "id": 1241,

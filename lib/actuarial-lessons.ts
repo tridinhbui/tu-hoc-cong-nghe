@@ -226,7 +226,7 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
         question: "Dự phòng phí chưa được hưởng phản ánh điều gì?",
         options: [
           "Phần phí đã thu nhưng thuộc về thời gian bảo hiểm còn lại",
-          "Phần phí công ty dự kiến thu được trong các kỳ tiếp theo",
+          "Phần phí mà công ty dự kiến thu được trong các kỳ tiếp theo",
           "Phần phí phải hoàn lại cho khách hàng khi huỷ hợp đồng giữa chừng",
           "Phần phí đã thu nhưng chưa được cơ quan quản lý phê duyệt ghi nhận",
         ],
@@ -411,7 +411,7 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
           "Vì phần vượt khả năng giữ lại được chuyển đi ngay từ lúc ký",
           "Vì cơ quan quản lý cho phép tính phần nhượng vào vốn chủ sở hữu",
           "Vì nhà tái bảo hiểm bảo lãnh toàn bộ nghĩa vụ của công ty gốc",
-          "Vì phí thu được từ hợp đồng lớn đủ bù cho rủi ro tăng thêm",
+          "Vì phí thu được từ hợp đồng lớn đủ bù lại cho rủi ro tăng thêm",
         ],
         correct: 0,
         explanation:
@@ -603,7 +603,7 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
         "Sau khi bỏ thời gian chờ 30 ngày của sản phẩm bảo hiểm nha khoa, tỷ lệ bồi thường trong hai tháng đầu hợp đồng tăng vọt. Đây là vấn đề nào, và xử lý bằng gì?",
       options: [
         "Lựa chọn bất lợi - khôi phục thời gian chờ và thẩm định",
-        "Rủi ro đạo đức - tăng mức miễn thường cho hợp đồng mới",
+        "Rủi ro đạo đức - tăng mức miễn thường cho những hợp đồng ký mới",
         "Rủi ro đạo đức - hạ hoa hồng cho đại lý bán sản phẩm này",
         "Lựa chọn bất lợi - nâng phí đều cho toàn bộ tập khách hàng",
       ],

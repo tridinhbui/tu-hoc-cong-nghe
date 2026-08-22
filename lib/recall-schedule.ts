@@ -1672,7 +1672,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó.",
       "distractors": [
         "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
-        "Bí mật nên đi qua kho quản lý riêng và được nạp lúc chạy."
+        "Mỗi chỉ số cần một định nghĩa viết ra, ở một chỗ duy nhất ai cũng tra được."
       ]
     },
     {
@@ -1691,8 +1691,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kiểm chứng trước khi xây: mua thông tin với giá rẻ",
       "text": "Hành vi đã xảy ra là bằng chứng mạnh hơn nhiều so với ý kiến khi được hỏi.",
       "distractors": [
-        "Thêm một thư viện là thêm một thứ phải theo dõi lỗ hổng và bảo trì lâu dài.",
-        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
+        "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả."
       ]
     },
     {
@@ -1711,8 +1711,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Thất bại phổ biến nhất: làm rất tốt một thứ không ai cần",
       "text": "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ.",
       "distractors": [
-        "Đổi hành vi mặc định cũng là phá vỡ tương thích, dù giao diện không đổi.",
-        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
+        "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả."
       ]
     },
     {
@@ -1731,8 +1731,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Giải thích đánh đổi cho người không viết mã",
       "text": "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được.",
       "distractors": [
-        "Một sản phẩm dựng duy nhất đi qua mọi môi trường, chỉ đổi cấu hình.",
-        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
+        "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả."
       ]
     },
     {
@@ -1751,8 +1751,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Dự án: đi trọn một vòng từ ý tưởng tới con số",
       "text": "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả.",
       "distractors": [
-        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
-        "Phủ nhánh chặt hơn phủ dòng vì nó đòi hỏi cả hai hướng của điều kiện được chạy."
+        "Chi phí phối hợp tăng theo bình phương số người, năng lực chỉ tăng tuyến tính.",
+        "Hợp đồng chỉ có giá trị khi được kiểm tự động ở cả hai phía."
       ]
     },
     {
@@ -1771,8 +1771,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: đo cho đúng rồi chọn cho đúng",
       "text": "Chỉ số chỉ có nghĩa khi nói rõ nó thay mặt cho điều gì, và nó phải giảm được.",
       "distractors": [
-        "Xoay vòng khoá định kỳ biến việc thay khoá thành thao tác quen thuộc thay vì tình huống khẩn cấp.",
-        "Bình luận nên nói rõ đâu là điều kiện bắt buộc và đâu là gợi ý."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả."
       ]
     },
     {
@@ -1791,8 +1791,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Quy mô: vấn đề đổi chất chứ không chỉ đổi lượng",
       "text": "Chi phí phối hợp tăng theo bình phương số người, năng lực chỉ tăng tuyến tính.",
       "distractors": [
-        "Bài đầu cuối đắt nhưng là thứ duy nhất chứng minh các mảnh ghép được với nhau.",
-        "Xung đột là hàm của khoảng cách, và khoảng cách là hàm của thời gian."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     },
     {
@@ -1809,10 +1809,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 102,
       "fromTitle": "Ranh giới: mỗi phần có đúng một chủ",
-      "text": "Mỗi phần mã nên có đúng một đội chịu trách nhiệm.",
+      "text": "Vẽ ranh giới theo lý do thay đổi, không theo tầng kỹ thuật.",
       "distractors": [
-        "Cổng tự động biến quy ước thành thứ không phụ thuộc trí nhớ hay áp lực.",
-        "Nhánh dài còn giấu công việc khỏi đội, nên hai người dễ làm trùng nhau."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     },
     {
@@ -1821,7 +1821,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó.",
       "distractors": [
         "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
-        "Xoay vòng khoá định kỳ biến việc thay khoá thành thao tác quen thuộc thay vì tình huống khẩn cấp."
+        "Mỗi chỉ số cần một định nghĩa viết ra, ở một chỗ duy nhất ai cũng tra được."
       ]
     }
   ],
@@ -1831,8 +1831,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Phụ thuộc chéo: khi ranh giới có lỗ",
       "text": "Chi phí bị chặn lớn hơn số ngày chờ, vì mất ngữ cảnh và phải quay lại.",
       "distractors": [
-        "Độ phủ đo dòng được chạy qua, không đo điều được khẳng định.",
-        "Cờ để lâu quá thành nợ: số tổ hợp trạng thái tăng theo cấp số nhân."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     },
     {
@@ -1840,8 +1840,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kiểm chứng trước khi xây: mua thông tin với giá rẻ",
       "text": "Hành vi đã xảy ra là bằng chứng mạnh hơn nhiều so với ý kiến khi được hỏi.",
       "distractors": [
-        "Số phiên bản mô tả rủi ro cho người nhận, không mô tả công sức của người phát hành.",
-        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
+        "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả."
       ]
     }
   ],
@@ -1851,8 +1851,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Hợp đồng giữa các đội: lời hứa phải kiểm chứng được",
       "text": "Hợp đồng chỉ có giá trị khi được kiểm tự động ở cả hai phía.",
       "distractors": [
-        "Phủ nhánh chặt hơn phủ dòng vì nó đòi hỏi cả hai hướng của điều kiện được chạy.",
-        "Đường lui phải được kiểm chứng, không chỉ tồn tại trên giấy."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     },
     {
@@ -1860,8 +1860,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Thất bại phổ biến nhất: làm rất tốt một thứ không ai cần",
       "text": "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ.",
       "distractors": [
-        "Ghi chú phát hành phải nói rõ cần sửa gì, không chỉ liệt kê thay đổi.",
-        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
+        "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả."
       ]
     }
   ],
@@ -1871,8 +1871,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kho mã chung hay tách: đánh đổi chứ không có đáp án đúng",
       "text": "Kho chung làm thay đổi xuyên ranh giới rẻ, đổi lại cần công cụ mạnh.",
       "distractors": [
-        "Bình luận nên nói rõ đâu là điều kiện bắt buộc và đâu là gợi ý.",
-        "Tách thành nhiều lần triển khai để mỗi bước luôn còn đường lui."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     },
     {
@@ -1880,8 +1880,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Giải thích đánh đổi cho người không viết mã",
       "text": "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được.",
       "distractors": [
-        "Mã không nên biết nó đang chạy ở môi trường nào.",
-        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
+        "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả."
       ]
     }
   ],
@@ -1891,8 +1891,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Chuẩn chung và tự chủ: chọn chỗ để thống nhất",
       "text": "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
       "distractors": [
-        "Gộp thường xuyên giữ mỗi lần chỉ có một khoảng cách nhỏ phải giải.",
-        "Chỉ số phát hiện bất thường, nhật ký giải thích một trường hợp, vết chỉ ra thời gian đi đâu."
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng.",
+        "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm."
       ]
     },
     {
@@ -1900,8 +1900,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Dự án: đi trọn một vòng từ ý tưởng tới con số",
       "text": "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả.",
       "distractors": [
-        "Việc đầu tiên luôn là vô hiệu hoá khoá cũ, không phải dọn lịch sử.",
-        "Để máy lo định dạng và quy ước, dành thời gian người cho thiết kế và ý nghĩa."
+        "Chi phí phối hợp tăng theo bình phương số người, năng lực chỉ tăng tuyến tính.",
+        "Hợp đồng chỉ có giá trị khi được kiểm tự động ở cả hai phía."
       ]
     }
   ],
@@ -1911,8 +1911,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Nền tảng nội bộ: sản phẩm mà khách hàng là đồng nghiệp",
       "text": "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng.",
       "distractors": [
-        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra.",
-        "Đo cả những thứ không bao giờ được xảy ra, vì số không bất ngờ khác không là tín hiệu mạnh."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm."
       ]
     },
     {
@@ -1920,8 +1920,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: đo cho đúng rồi chọn cho đúng",
       "text": "Chỉ số chỉ có nghĩa khi nói rõ nó thay mặt cho điều gì, và nó phải giảm được.",
       "distractors": [
-        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng.",
-        "Rà soát cũng là cách lan truyền hiểu biết, nên đừng để một người gác mọi thứ."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả."
       ]
     }
   ],
@@ -1931,17 +1931,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Dùng chung hay nhân bản: một chút lặp rẻ hơn một ràng buộc sai",
       "text": "Giống nhau tình cờ và giống nhau vì cùng quy tắc là hai chuyện khác hẳn.",
       "distractors": [
-        "Cờ để lâu quá thành nợ: số tổ hợp trạng thái tăng theo cấp số nhân.",
-        "Cảnh báo giả nhiều lần sẽ huấn luyện đội bỏ qua cả cảnh báo thật."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     },
     {
       "fromDay": 101,
       "fromTitle": "Quy mô: vấn đề đổi chất chứ không chỉ đổi lượng",
-      "text": "Lời giải cho quy mô là ranh giới rõ ràng, không phải quy trình dày hơn.",
+      "text": "Chi phí phối hợp tăng theo bình phương số người, năng lực chỉ tăng tuyến tính.",
       "distractors": [
-        "Bài kiểm thử đỏ vặt còn hại hơn không có, vì nó dạy người ta bỏ qua tín hiệu.",
-        "Gộp thường xuyên giữ mỗi lần chỉ có một khoảng cách nhỏ phải giải."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     }
   ],
@@ -1951,17 +1951,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Dữ liệu dùng chung: ranh giới khó giữ nhất",
       "text": "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm.",
       "distractors": [
-        "Đường lui phải được kiểm chứng, không chỉ tồn tại trên giấy.",
-        "Quay lui về trạng thái đã biết là tốt luôn an toàn hơn sửa vội."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     },
     {
       "fromDay": 102,
       "fromTitle": "Ranh giới: mỗi phần có đúng một chủ",
-      "text": "Ranh giới tốt là ranh giới mà thay đổi thông thường chỉ chạm một bên.",
+      "text": "Vẽ ranh giới theo lý do thay đổi, không theo tầng kỹ thuật.",
       "distractors": [
-        "Nó phải chạy trên môi trường sạch, nếu không sẽ lặp lại chuyện chạy được trên máy tôi.",
-        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     }
   ],
@@ -1971,17 +1971,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Sự kiện nội bộ: kể chuyện đã xảy ra, đừng ra lệnh",
       "text": "Sự kiện mô tả việc đã xảy ra, ở thì quá khứ, không mang mệnh lệnh.",
       "distractors": [
-        "Thêm cột cho phép rỗng là an toàn; xoá và đổi tên thì không.",
-        "Đi tìm người chịu trách nhiệm dạy tổ chức cách giấu sự cố lần sau."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng."
       ]
     },
     {
       "fromDay": 103,
       "fromTitle": "Phụ thuộc chéo: khi ranh giới có lỗ",
-      "text": "Cho phép đóng góp có rà soát giữ được cả tốc độ lẫn quyền kiểm soát.",
+      "text": "Chi phí bị chặn lớn hơn số ngày chờ, vì mất ngữ cảnh và phải quay lại.",
       "distractors": [
-        "Phủ thấp là tín hiệu đáng tin; phủ cao không bảo đảm gì.",
-        "Triển khai từng phần biến lỗi toàn phần thành lỗi cục bộ trong thời gian ngắn."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     }
   ],
@@ -1991,17 +1991,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Nhất quán cuối cùng: hai đội, hai câu trả lời, cùng một lúc",
       "text": "Nhất quán cuối cùng là cái giá của việc các đội độc lập, không phải lỗi.",
       "distractors": [
-        "Kiểm thử phủ những gì bạn nghĩ tới; quan sát cho thấy những gì thật sự xảy ra.",
-        "Nợ kỹ thuật là lựa chọn có ý thức kèm kế hoạch trả, không phải mọi đoạn mã xấu."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng."
       ]
     },
     {
       "fromDay": 104,
       "fromTitle": "Hợp đồng giữa các đội: lời hứa phải kiểm chứng được",
-      "text": "Bên tiêu thụ nên kiểm rằng mình chỉ dựa vào những gì được hứa.",
+      "text": "Hợp đồng chỉ có giá trị khi được kiểm tự động ở cả hai phía.",
       "distractors": [
-        "Để máy lo định dạng và quy ước, dành thời gian người cho thiết kế và ý nghĩa.",
-        "Nỗi sợ triển khai là dấu hiệu của đường lui yếu, không phải của mã yếu."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     }
   ],
@@ -2011,17 +2011,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Khi buộc phải triển khai cùng nhau",
       "text": "Phải triển khai đồng thời luôn là dấu hiệu của thay đổi phá vỡ tương thích chưa chia nhỏ.",
       "distractors": [
-        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
-        "Không đo được thì không quản được: cần dấu vết trong mã hoặc trong danh sách công việc."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng."
       ]
     },
     {
       "fromDay": 105,
       "fromTitle": "Kho mã chung hay tách: đánh đổi chứ không có đáp án đúng",
-      "text": "Kho tách cho tự chủ khi phát hành, đổi lại thay đổi xuyên ranh giới đắt.",
+      "text": "Kho chung làm thay đổi xuyên ranh giới rẻ, đổi lại cần công cụ mạnh.",
       "distractors": [
-        "Rà soát cũng là cách lan truyền hiểu biết, nên đừng để một người gác mọi thứ.",
-        "Thêm cột cho phép rỗng là an toàn; xoá và đổi tên thì không."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     }
   ],
@@ -2031,17 +2031,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Đường găng: chuỗi dài nhất quyết định ngày xong",
       "text": "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi.",
       "distractors": [
-        "Không có gì cần làm ngay thì để tới giờ hành chính, đừng đánh thức ai.",
-        "Ghi lại cả những phương án đã bị loại và lý do loại."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     },
     {
       "fromDay": 106,
       "fromTitle": "Chuẩn chung và tự chủ: chọn chỗ để thống nhất",
-      "text": "Mỗi chuẩn là thuế đánh vào tự chủ, nên phải trả lời được nó mua lại thứ gì.",
+      "text": "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
       "distractors": [
-        "Thay đổi lớn nên chia thành nhiều bước gộp được, thay vì một nhánh dài.",
-        "Kiểm thử phủ những gì bạn nghĩ tới; quan sát cho thấy những gì thật sự xảy ra."
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng.",
+        "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm."
       ]
     }
   ],
@@ -2051,17 +2051,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ghi lại quyết định: vì sao mọi thứ như hiện tại",
       "text": "Ghi lại các phương án đã loại và lý do, vì mã chỉ cho thấy phương án được chọn.",
       "distractors": [
-        "Phải có một người điều phối, tách khỏi người đang gõ lệnh.",
-        "Cổng tự động biến quy ước thành ràng buộc; rà soát mã lo phần máy không làm được."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm."
       ]
     },
     {
       "fromDay": 107,
       "fromTitle": "Nền tảng nội bộ: sản phẩm mà khách hàng là đồng nghiệp",
-      "text": "Nền tảng nên là thư viện và khuôn mẫu, không phải một hàng đợi yêu cầu.",
+      "text": "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng.",
       "distractors": [
-        "Tắt cờ mất vài giây, còn quay lui một lần triển khai mất nhiều phút.",
-        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm."
       ]
     }
   ],
@@ -2071,17 +2071,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Rà soát kiến trúc: cửa sổ hay cửa ải",
       "text": "Tiêu chí rà soát là chi phí sửa sai, không phải quy mô mã hay ngân sách.",
       "distractors": [
-        "Đi tìm người chịu trách nhiệm dạy tổ chức cách giấu sự cố lần sau.",
-        "Sau sự cố, sửa hệ thống chứ đừng sửa con người."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm."
       ]
     },
     {
       "fromDay": 108,
       "fromTitle": "Dùng chung hay nhân bản: một chút lặp rẻ hơn một ràng buộc sai",
-      "text": "Câu hỏi phân biệt: một bên đổi thì bên kia có bắt buộc đổi theo không.",
+      "text": "Giống nhau tình cờ và giống nhau vì cùng quy tắc là hai chuyện khác hẳn.",
       "distractors": [
-        "Triển khai từng phần biến lỗi toàn phần thành lỗi cục bộ trong thời gian ngắn.",
-        "Không có gì cần làm ngay thì để tới giờ hành chính, đừng đánh thức ai."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     }
   ],
@@ -2091,17 +2091,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Thay hệ thống cũ: bóp nghẹt dần thay vì viết lại",
       "text": "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
       "distractors": [
-        "Nợ kỹ thuật là lựa chọn có ý thức kèm kế hoạch trả, không phải mọi đoạn mã xấu.",
-        "Cùng một con số có thể mang hai nghĩa trái ngược tuỳ mục đích sản phẩm."
+        "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi.",
+        "Ghi lại các phương án đã loại và lý do, vì mã chỉ cho thấy phương án được chọn."
       ]
     },
     {
       "fromDay": 109,
       "fromTitle": "Dữ liệu dùng chung: ranh giới khó giữ nhất",
-      "text": "Cung cấp dữ liệu qua giao diện có phiên bản, hoặc qua bản sao dành cho đọc.",
+      "text": "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm.",
       "distractors": [
-        "Nỗi sợ triển khai là dấu hiệu của đường lui yếu, không phải của mã yếu.",
-        "Phải có một người điều phối, tách khỏi người đang gõ lệnh."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     }
   ],
@@ -2111,17 +2111,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Gỡ hệ thống cũ: phần không ai muốn làm",
       "text": "Cuộc di trú chỉ xong khi hệ thống cũ đã tắt, không phải khi bản mới chạy.",
       "distractors": [
-        "Không đo được thì không quản được: cần dấu vết trong mã hoặc trong danh sách công việc.",
-        "Chỉ số dùng được phải giảm được khi sản phẩm tệ đi."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi."
       ]
     },
     {
       "fromDay": 110,
       "fromTitle": "Sự kiện nội bộ: kể chuyện đã xảy ra, đừng ra lệnh",
-      "text": "Bên phát không cần biết ai đang nghe - đó là toàn bộ lợi ích của mô hình này.",
+      "text": "Sự kiện mô tả việc đã xảy ra, ở thì quá khứ, không mang mệnh lệnh.",
       "distractors": [
-        "Di trú dữ liệu lớn nên chạy theo lô, không khoá bảng trong một giao dịch dài.",
-        "Mỗi hành động rút ra phải có người phụ trách và thời hạn, nếu không nó không tồn tại."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng."
       ]
     }
   ],
@@ -2131,17 +2131,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Hệ thống có hình dạng của tổ chức làm ra nó",
       "text": "Ranh giới nằm trong nội bộ một đội có xu hướng bị bào mòn.",
       "distractors": [
-        "Ghi lại cả những phương án đã bị loại và lý do loại.",
-        "Nhóm theo thời điểm bắt đầu tách chất lượng sản phẩm khỏi quy mô, và đường cong giữ chân của từng nhóm là thứ đáng đọc."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi."
       ]
     },
     {
       "fromDay": 111,
       "fromTitle": "Nhất quán cuối cùng: hai đội, hai câu trả lời, cùng một lúc",
-      "text": "Phải quyết định giao diện nói gì trong khoảng chưa khớp.",
+      "text": "Nhất quán cuối cùng là cái giá của việc các đội độc lập, không phải lỗi.",
       "distractors": [
-        "Chỉ số quan trọng nhất là chỉ số phản ánh trải nghiệm người dùng, không phải tài nguyên máy.",
-        "Lãi của nó là thời gian tăng thêm cho mọi thay đổi đi qua vùng đó."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng."
       ]
     }
   ],
@@ -2151,17 +2151,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Khi nào tách dịch vụ, khi nào đừng",
       "text": "Tách dịch vụ mua sự độc lập vận hành, trả bằng độ phức tạp phân tán.",
       "distractors": [
-        "Cổng tự động biến quy ước thành ràng buộc; rà soát mã lo phần máy không làm được.",
-        "Nhóm cũng chia được theo kênh, theo thiết bị hay theo gói dịch vụ."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi."
       ]
     },
     {
       "fromDay": 112,
       "fromTitle": "Khi buộc phải triển khai cùng nhau",
-      "text": "Chia thành các bước tương thích hai chiều thì mỗi bên tự chọn lịch của mình.",
+      "text": "Phải triển khai đồng thời luôn là dấu hiệu của thay đổi phá vỡ tương thích chưa chia nhỏ.",
       "distractors": [
-        "Mỗi cảnh báo phải kèm hành động cụ thể; không có hành động thì đó là bảng theo dõi.",
-        "Mã và kiểm thử nói cái gì và như thế nào; chỉ tài liệu nói vì sao."
+        "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng."
       ]
     }
   ],
@@ -2171,17 +2171,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: mọi thứ đổi khác khi có nhiều đội",
       "text": "Chi phí phối hợp tăng theo bình phương số người; ranh giới là công cụ cắt nó.",
       "distractors": [
-        "Sau sự cố, sửa hệ thống chứ đừng sửa con người.",
-        "Phải định nghĩa rõ từng bước, nếu không hai người sẽ đọc ra hai kết quả."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Ghi lại các phương án đã loại và lý do, vì mã chỉ cho thấy phương án được chọn."
       ]
     },
     {
       "fromDay": 113,
       "fromTitle": "Đường găng: chuỗi dài nhất quyết định ngày xong",
-      "text": "Thêm người không rút ngắn được chuỗi nối tiếp.",
+      "text": "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi.",
       "distractors": [
-        "Khôi phục và điều tra là hai việc tách biệt; chỉ việc đầu là gấp.",
-        "Tài liệu sai còn hại hơn không có, vì người đọc tin vào nó."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng."
       ]
     }
   ],
@@ -2189,19 +2189,19 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 121,
       "fromTitle": "Mô hình mối đe doạ: ai muốn gì, và bạn mất gì",
-      "text": "Phần lớn tấn công là cơ hội và tự động, không nhắm riêng vào bạn.",
+      "text": "Bắt đầu từ tài sản và kẻ tấn công, không từ danh sách biện pháp.",
       "distractors": [
-        "Đo hành vi hoàn thành việc quan trọng hơn đo hoạt động bề mặt.",
-        "Chạy tới đủ mẫu rồi mới đọc, đừng dừng ngay khi thấy con số đẹp."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Cuộc di trú chỉ xong khi hệ thống cũ đã tắt, không phải khi bản mới chạy."
       ]
     },
     {
       "fromDay": 114,
       "fromTitle": "Ghi lại quyết định: vì sao mọi thứ như hiện tại",
-      "text": "Ghi cả điều kiện nào sẽ khiến quyết định này cần xem lại.",
+      "text": "Ghi lại các phương án đã loại và lý do, vì mã chỉ cho thấy phương án được chọn.",
       "distractors": [
-        "Ghi lại dòng thời gian ngay trong lúc xử lý, vì sau đó không ai nhớ chính xác nữa.",
-        "Cờ tính năng tách triển khai khỏi phát hành, biến việc tắt thành thao tác vài giây."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm."
       ]
     }
   ],
@@ -2211,17 +2211,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Mật khẩu: thứ yếu nhất mà ai cũng còn dùng",
       "text": "Rủi ro lớn nhất là dùng lại mật khẩu, không phải mật khẩu bị bẻ khoá.",
       "distractors": [
-        "Chỉ số trung bình che mất phân bố, giống hệt vấn đề của độ trễ trung bình.",
-        "Không đủ lưu lượng thì hãy thử những thay đổi lớn hơn, đừng thử tinh chỉnh nhỏ."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Cuộc di trú chỉ xong khi hệ thống cũ đã tắt, không phải khi bản mới chạy."
       ]
     },
     {
       "fromDay": 115,
       "fromTitle": "Rà soát kiến trúc: cửa sổ hay cửa ải",
-      "text": "Rà soát nên là nơi lấy góc nhìn, không phải cửa xin phép.",
+      "text": "Tiêu chí rà soát là chi phí sửa sai, không phải quy mô mã hay ngân sách.",
       "distractors": [
-        "Mỗi hành động rút ra phải có người phụ trách và thời hạn, nếu không nó không tồn tại.",
-        "Một chỉ số chỉ có nghĩa khi bạn nói rõ nó thay mặt cho điều gì."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm."
       ]
     }
   ],
@@ -2231,17 +2231,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Phiên đăng nhập: chìa khoá được cấp sau khi mở cửa",
       "text": "Mã phiên có quyền tương đương mật khẩu nhưng lộ ra ở nhiều chỗ hơn.",
       "distractors": [
-        "Xu hướng giữa các nhóm quan trọng hơn con số tuyệt đối của một nhóm.",
-        "Ngẫu nhiên hoá là thứ duy nhất cắt đứt được mối liên hệ sẵn có giữa hai nhóm."
+        "Cuộc di trú chỉ xong khi hệ thống cũ đã tắt, không phải khi bản mới chạy.",
+        "Tách dịch vụ mua sự độc lập vận hành, trả bằng độ phức tạp phân tán."
       ]
     },
     {
       "fromDay": 116,
       "fromTitle": "Thay hệ thống cũ: bóp nghẹt dần thay vì viết lại",
-      "text": "Chạy song song và so kết quả là cách rẻ nhất để tìm ra hành vi chưa biết.",
+      "text": "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
       "distractors": [
-        "Lãi của nó là thời gian tăng thêm cho mọi thay đổi đi qua vùng đó.",
-        "Đo hành vi hoàn thành việc quan trọng hơn đo hoạt động bề mặt."
+        "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi.",
+        "Ghi lại các phương án đã loại và lý do, vì mã chỉ cho thấy phương án được chọn."
       ]
     }
   ],
@@ -2251,17 +2251,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Lưu mật khẩu: giả định cơ sở dữ liệu sẽ bị lấy",
       "text": "Thiết kế với giả định cơ sở dữ liệu sẽ bị lấy vào một ngày nào đó.",
       "distractors": [
-        "Cú rơi lớn nhất là nơi đáng sửa trước, không phải bước có tỷ lệ thấp nhất trong tuyệt đối.",
-        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi."
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt.",
+        "Tách dịch vụ mua sự độc lập vận hành, trả bằng độ phức tạp phân tán."
       ]
     },
     {
       "fromDay": 117,
       "fromTitle": "Gỡ hệ thống cũ: phần không ai muốn làm",
-      "text": "Chi phí giữ hệ thống cũ tăng theo thời gian vì hiểu biết về nó mất dần.",
+      "text": "Cuộc di trú chỉ xong khi hệ thống cũ đã tắt, không phải khi bản mới chạy.",
       "distractors": [
-        "Mã và kiểm thử nói cái gì và như thế nào; chỉ tài liệu nói vì sao.",
-        "Tỷ lệ thường giàu thông tin hơn số tuyệt đối."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi."
       ]
     }
   ],
@@ -2271,17 +2271,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Phân quyền: theo vai trò là chưa đủ",
       "text": "Vai trò trả lời loại thao tác; quan hệ trả lời với dữ liệu nào.",
       "distractors": [
-        "Chia ngẫu nhiên và chạy song song là thứ tách tác động của thay đổi khỏi nhiễu bên ngoài.",
-        "Đặt chỉ tiêu cho một chỉ số sẽ làm nó bị tối ưu theo cách bạn không mong."
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt.",
+        "Tách dịch vụ mua sự độc lập vận hành, trả bằng độ phức tạp phân tán."
       ]
     },
     {
       "fromDay": 118,
       "fromTitle": "Hệ thống có hình dạng của tổ chức làm ra nó",
-      "text": "Muốn đổi kiến trúc bền vững thì phải đổi cả cách tổ chức đội.",
+      "text": "Ranh giới nằm trong nội bộ một đội có xu hướng bị bào mòn.",
       "distractors": [
-        "Tài liệu sai còn hại hơn không có, vì người đọc tin vào nó.",
-        "So các nhóm ở cùng độ tuổi, không so ở cùng thời điểm lịch."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi."
       ]
     }
   ],
@@ -2291,17 +2291,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Mã hoá dữ liệu nằm yên: bảo vệ trước ai",
       "text": "Mã hoá toàn ổ chỉ bảo vệ khi ổ ở trạng thái tắt và rời khỏi tầm kiểm soát.",
       "distractors": [
-        "Không phải thay đổi nào cũng cần thử nghiệm - việc sửa lỗi rõ ràng thì cứ làm.",
-        "Biến động đột ngột nên nghi đường dữ liệu trước khi nghi thế giới thật."
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt.",
+        "Mã hoá theo ngữ cảnh lúc hiển thị, không lọc lúc nhận vào."
       ]
     },
     {
       "fromDay": 119,
       "fromTitle": "Khi nào tách dịch vụ, khi nào đừng",
-      "text": "Nếu cùng một đội sở hữu cả hai phần thì lợi ích gần như bằng không.",
+      "text": "Tách dịch vụ mua sự độc lập vận hành, trả bằng độ phức tạp phân tán.",
       "distractors": [
-        "Cờ tính năng tách triển khai khỏi phát hành, biến việc tắt thành thao tác vài giây.",
-        "Chia hành trình thành bước để biến một con số tổng thành một danh sách việc."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi."
       ]
     }
   ],
@@ -2311,17 +2311,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Quản lý khoá: chỗ mọi lớp mã hoá quy về",
       "text": "Khoá phải nằm ở nơi chịu kịch bản xâm nhập khác với dữ liệu.",
       "distractors": [
-        "Không đủ lưu lượng thì hãy thử những thay đổi lớn hơn, đừng thử tinh chỉnh nhỏ.",
-        "Hỏi về hành vi đã xảy ra, đừng hỏi người dùng dự đoán hành vi tương lai."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt."
       ]
     },
     {
       "fromDay": 120,
       "fromTitle": "Ôn tập: mọi thứ đổi khác khi có nhiều đội",
-      "text": "Phải triển khai đồng thời luôn là dấu hiệu của thay đổi chưa chia nhỏ.",
+      "text": "Chi phí phối hợp tăng theo bình phương số người; ranh giới là công cụ cắt nó.",
       "distractors": [
-        "Một chỉ số chỉ có nghĩa khi bạn nói rõ nó thay mặt cho điều gì.",
-        "Phễu cho biết chỗ rơi chứ không cho biết vì sao rơi - phần đó cần hỏi người dùng."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Ghi lại các phương án đã loại và lý do, vì mã chỉ cho thấy phương án được chọn."
       ]
     }
   ],
@@ -2331,17 +2331,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Tiêm lệnh: dữ liệu bị đọc thành câu lệnh",
       "text": "Nguyên nhân luôn là dữ liệu và câu lệnh bị trộn vào một chuỗi.",
       "distractors": [
-        "Ngẫu nhiên hoá là thứ duy nhất cắt đứt được mối liên hệ sẵn có giữa hai nhóm.",
-        "Sai lệch của ước lượng không đối xứng: nó lệch về phía lâu hơn."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     },
     {
       "fromDay": 121,
       "fromTitle": "Mô hình mối đe doạ: ai muốn gì, và bạn mất gì",
-      "text": "Mọi biện pháp đều có giá, nên chúng phải được xếp thứ tự.",
+      "text": "Bắt đầu từ tài sản và kẻ tấn công, không từ danh sách biện pháp.",
       "distractors": [
-        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề.",
-        "Không phải thay đổi nào cũng cần thử nghiệm - việc sửa lỗi rõ ràng thì cứ làm."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Cuộc di trú chỉ xong khi hệ thống cũ đã tắt, không phải khi bản mới chạy."
       ]
     }
   ],
@@ -2351,17 +2351,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kịch bản chèn vào trang: nạn nhân là người dùng của bạn",
       "text": "Mã hoá theo ngữ cảnh lúc hiển thị, không lọc lúc nhận vào.",
       "distractors": [
-        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
-        "Ước lượng theo khoảng và mức tin cậy trung thực hơn một con số duy nhất."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     },
     {
       "fromDay": 122,
       "fromTitle": "Mật khẩu: thứ yếu nhất mà ai cũng còn dùng",
-      "text": "Yếu tố thứ hai là biện pháp có tỷ lệ lợi ích trên công sức cao nhất.",
+      "text": "Rủi ro lớn nhất là dùng lại mật khẩu, không phải mật khẩu bị bẻ khoá.",
       "distractors": [
-        "Nhóm theo thời điểm bắt đầu tách chất lượng sản phẩm khỏi quy mô, và đường cong giữ chân của từng nhóm là thứ đáng đọc.",
-        "Có ý nghĩa thống kê không đồng nghĩa với đáng làm về mặt kinh doanh."
+        "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
+        "Cuộc di trú chỉ xong khi hệ thống cũ đã tắt, không phải khi bản mới chạy."
       ]
     }
   ],
@@ -2371,17 +2371,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Giả mạo yêu cầu: mượn phiên đăng nhập của nạn nhân",
       "text": "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt.",
       "distractors": [
-        "Đặt chỉ tiêu cho một chỉ số sẽ làm nó bị tối ưu theo cách bạn không mong.",
-        "Mỗi phần giao được là một cơ hội phát hiện mình đang sai với giá rẻ."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     },
     {
       "fromDay": 123,
       "fromTitle": "Phiên đăng nhập: chìa khoá được cấp sau khi mở cửa",
-      "text": "Phiên phải có hạn và phải huỷ được ngay lập tức khi cần.",
+      "text": "Mã phiên có quyền tương đương mật khẩu nhưng lộ ra ở nhiều chỗ hơn.",
       "distractors": [
-        "Nhóm cũng chia được theo kênh, theo thiết bị hay theo gói dịch vụ.",
-        "Nhóm tự chọn luôn khác nhóm được chọn ngẫu nhiên ở nhiều thứ bạn không đo."
+        "Cuộc di trú chỉ xong khi hệ thống cũ đã tắt, không phải khi bản mới chạy.",
+        "Tách dịch vụ mua sự độc lập vận hành, trả bằng độ phức tạp phân tán."
       ]
     }
   ],
@@ -2391,17 +2391,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Tải tệp lên: nhận một tệp là nhận một rủi ro",
       "text": "Phần mở rộng và loại nội dung khai báo đều do người gửi đặt nên không tin được.",
       "distractors": [
-        "Biến động đột ngột nên nghi đường dữ liệu trước khi nghi thế giới thật.",
-        "Cắt chất lượng là khoản vay lãi suất cao, và nó bị vay trong im lặng."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     },
     {
       "fromDay": 124,
       "fromTitle": "Lưu mật khẩu: giả định cơ sở dữ liệu sẽ bị lấy",
-      "text": "Dùng hàm băm chuyên cho mật khẩu, chậm có chủ đích, không dùng hàm băm nhanh.",
+      "text": "Thiết kế với giả định cơ sở dữ liệu sẽ bị lấy vào một ngày nào đó.",
       "distractors": [
-        "Phải định nghĩa rõ từng bước, nếu không hai người sẽ đọc ra hai kết quả.",
-        "Chỉ số dẫn dắt phải là thứ đội thật sự tác động được, không phải doanh thu tổng."
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt.",
+        "Tách dịch vụ mua sự độc lập vận hành, trả bằng độ phức tạp phân tán."
       ]
     }
   ],
@@ -2411,17 +2411,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Lỗ hổng trong thư viện: mã bạn không viết vẫn là mã của bạn",
       "text": "Cửa sổ nguy hiểm nhất bắt đầu ngay khi lỗ hổng được công bố.",
       "distractors": [
-        "Hỏi về hành vi đã xảy ra, đừng hỏi người dùng dự đoán hành vi tương lai.",
-        "Chi phí trì hoãn phân biệt được những việc mà lợi ích đơn thuần không phân biệt nổi."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     },
     {
       "fromDay": 125,
       "fromTitle": "Phân quyền: theo vai trò là chưa đủ",
-      "text": "Kiểm quyền nên đặt ở tầng gần dữ liệu để mọi đường gọi đều đi qua.",
+      "text": "Vai trò trả lời loại thao tác; quan hệ trả lời với dữ liệu nào.",
       "distractors": [
-        "Phải quyết định chỉ số và cỡ mẫu trước khi bắt đầu, không phải sau khi nhìn kết quả.",
-        "Mỗi chỉ số cần một định nghĩa viết ra, ở một chỗ duy nhất ai cũng tra được."
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt.",
+        "Tách dịch vụ mua sự độc lập vận hành, trả bằng độ phức tạp phân tán."
       ]
     }
   ],
@@ -2431,17 +2431,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Lạm dụng: dùng đúng chức năng nhưng sai mục đích",
       "text": "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
       "distractors": [
-        "Sai lệch của ước lượng không đối xứng: nó lệch về phía lâu hơn.",
-        "Danh sách không có thứ tự nghĩa là thứ tự sẽ do người nói to nhất quyết định."
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi.",
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt."
       ]
     },
     {
       "fromDay": 126,
       "fromTitle": "Mã hoá dữ liệu nằm yên: bảo vệ trước ai",
-      "text": "Máy đang chạy thì ổ đã mở khoá, nên tiến trình có quyền đọc được hết.",
+      "text": "Mã hoá toàn ổ chỉ bảo vệ khi ổ ở trạng thái tắt và rời khỏi tầm kiểm soát.",
       "distractors": [
-        "Cỡ mẫu cần thiết tăng theo bình phương khi hiệu ứng nhỏ đi.",
-        "Số liệu quá khứ chỉ so sánh được nếu định nghĩa không đổi trong khoảng đó."
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt.",
+        "Mã hoá theo ngữ cảnh lúc hiển thị, không lọc lúc nhận vào."
       ]
     }
   ],
@@ -2451,17 +2451,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Dấu vết kiểm toán: ai đã làm gì, lúc nào",
       "text": "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi.",
       "distractors": [
-        "Ước lượng theo khoảng và mức tin cậy trung thực hơn một con số duy nhất.",
-        "Danh sách công khai biến việc từ chối thành một quyết định về thứ tự, không phải về con người."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt."
       ]
     },
     {
       "fromDay": 127,
       "fromTitle": "Quản lý khoá: chỗ mọi lớp mã hoá quy về",
-      "text": "Kho quản lý khoá chuyên dụng cho phép phân quyền và ghi lại ai đã đọc.",
+      "text": "Khoá phải nằm ở nơi chịu kịch bản xâm nhập khác với dữ liệu.",
       "distractors": [
-        "Có ý nghĩa thống kê không đồng nghĩa với đáng làm về mặt kinh doanh.",
-        "Một vài phiên quan sát đủ để loại phần lớn giả thuyết sai."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt."
       ]
     }
   ],
@@ -2471,17 +2471,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Quyền tối thiểu: mỗi phần chỉ được đúng thứ nó cần",
       "text": "Quyền tối thiểu không giảm xác suất sự cố; nó giới hạn phạm vi hậu quả.",
       "distractors": [
-        "Mỗi phần giao được là một cơ hội phát hiện mình đang sai với giá rẻ.",
-        "Cách kiểm chứng rẻ nhất thường không cần viết dòng mã nào."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     },
     {
       "fromDay": 128,
       "fromTitle": "Tiêm lệnh: dữ liệu bị đọc thành câu lệnh",
-      "text": "Truyền tham số là cách chữa tận gốc; lọc ký tự thì luôn thiếu.",
+      "text": "Nguyên nhân luôn là dữ liệu và câu lệnh bị trộn vào một chuỗi.",
       "distractors": [
-        "Nhóm tự chọn luôn khác nhóm được chọn ngẫu nhiên ở nhiều thứ bạn không đo.",
-        "Việc càng lớn thì ước lượng càng kém tin cậy, vì phần chưa biết càng nhiều."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     }
   ],
@@ -2491,17 +2491,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Nhiều lớp: giả định mỗi lớp đều sẽ hỏng",
       "text": "Giả định mỗi lớp đều có xác suất hỏng, rồi thiết kế cho tình huống đó.",
       "distractors": [
-        "Cắt chất lượng là khoản vay lãi suất cao, và nó bị vay trong im lặng.",
-        "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ."
+        "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua.",
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác."
       ]
     },
     {
       "fromDay": 129,
       "fromTitle": "Kịch bản chèn vào trang: nạn nhân là người dùng của bạn",
-      "text": "Cùng một chuỗi có mức nguy hiểm khác nhau tuỳ chỗ nó được chèn vào.",
+      "text": "Mã hoá theo ngữ cảnh lúc hiển thị, không lọc lúc nhận vào.",
       "distractors": [
-        "Chỉ số dẫn dắt phải là thứ đội thật sự tác động được, không phải doanh thu tổng.",
-        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     }
   ],
@@ -2511,17 +2511,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Nhận báo cáo lỗ hổng: đường liên lạc bạn nên có sẵn",
       "text": "Rào cản lớn nhất là không biết gửi cho ai và sợ bị quy kết.",
       "distractors": [
-        "Chi phí trì hoãn phân biệt được những việc mà lợi ích đơn thuần không phân biệt nổi.",
-        "Mỗi tính năng giữ lại đều có chi phí bảo trì và làm sản phẩm khó hiểu thêm."
+        "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua.",
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác."
       ]
     },
     {
       "fromDay": 130,
       "fromTitle": "Giả mạo yêu cầu: mượn phiên đăng nhập của nạn nhân",
-      "text": "Chỉ những thao tác thay đổi dữ liệu mới thật sự nguy hiểm với kiểu tấn công này.",
+      "text": "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt.",
       "distractors": [
-        "Mỗi chỉ số cần một định nghĩa viết ra, ở một chỗ duy nhất ai cũng tra được.",
-        "Phần đầu tiên nên nhắm vào giả định rủi ro nhất, không nhắm vào phần dễ nhất."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     }
   ],
@@ -2531,17 +2531,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Sự cố bảo mật: khác sự cố vận hành ở ba điểm",
       "text": "Trạng thái hiện tại là bằng chứng; giữ lại trước khi can thiệp.",
       "distractors": [
-        "Danh sách không có thứ tự nghĩa là thứ tự sẽ do người nói to nhất quyết định.",
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
+        "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua.",
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác."
       ]
     },
     {
       "fromDay": 131,
       "fromTitle": "Tải tệp lên: nhận một tệp là nhận một rủi ro",
-      "text": "Tên tệp cũng là dữ liệu người dùng; hệ thống nên tự sinh tên khi lưu.",
+      "text": "Phần mở rộng và loại nội dung khai báo đều do người gửi đặt nên không tin được.",
       "distractors": [
-        "Số liệu quá khứ chỉ so sánh được nếu định nghĩa không đổi trong khoảng đó.",
-        "Thêm người vào việc đang trễ thường làm nó trễ thêm."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     }
   ],
@@ -2551,17 +2551,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Quyền riêng tư: nghĩa vụ đi kèm mỗi trường dữ liệu",
       "text": "Riêng tư hỏi có nên giữ; bảo mật hỏi ai chạm được vào thứ đã giữ.",
       "distractors": [
-        "Danh sách công khai biến việc từ chối thành một quyết định về thứ tự, không phải về con người.",
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
+        "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc.",
+        "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua."
       ]
     },
     {
       "fromDay": 132,
       "fromTitle": "Lỗ hổng trong thư viện: mã bạn không viết vẫn là mã của bạn",
-      "text": "Quét phải phủ toàn bộ cây phụ thuộc, gồm cả phụ thuộc gián tiếp.",
+      "text": "Cửa sổ nguy hiểm nhất bắt đầu ngay khi lỗ hổng được công bố.",
       "distractors": [
-        "Một vài phiên quan sát đủ để loại phần lớn giả thuyết sai.",
-        "Việc chặn người khác có chi phí trì hoãn nhân lên theo số người bị chặn."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     }
   ],
@@ -2569,419 +2569,419 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 140,
       "fromTitle": "Ôn tập: bảo mật là chuỗi quyết định, không phải danh sách việc",
-      "text": "Mọi lỗ hổng tiêm lệnh đều là dữ liệu bị trộn vào câu lệnh - chữa bằng cách tách chúng.",
+      "text": "Bắt đầu từ tài sản và kẻ tấn công, không từ danh sách biện pháp.",
       "distractors": [
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
-        "Sau khi đo, ba lựa chọn đều hợp lệ: làm tiếp, đổi hướng, hoặc dừng."
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục.",
+        "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc."
       ]
     },
     {
       "fromDay": 133,
       "fromTitle": "Lạm dụng: dùng đúng chức năng nhưng sai mục đích",
-      "text": "Thông báo khác nhau cho hai trường hợp thường là một kênh rò rỉ thông tin.",
+      "text": "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
       "distractors": [
-        "Việc càng lớn thì ước lượng càng kém tin cậy, vì phần chưa biết càng nhiều.",
-        "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó."
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi.",
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt."
       ]
     }
   ],
   "146": [
     {
       "fromDay": 141,
-      "fromTitle": "Trái phiếu là gì?",
-      "text": "Trái phiếu = cho vay, nhận coupon + hoàn vốn khi đáo hạn",
+      "fromTitle": "Hiệu năng: đo trước, đoán sau",
+      "text": "Trực giác về chỗ chậm sai thường xuyên, kể cả với người viết chính đoạn mã đó.",
       "distractors": [
-        "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục.",
+        "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc."
       ]
     },
     {
       "fromDay": 134,
       "fromTitle": "Dấu vết kiểm toán: ai đã làm gì, lúc nào",
-      "text": "Nó phải chống sửa đổi, kể cả bởi người có quyền quản trị.",
+      "text": "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi.",
       "distractors": [
-        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
-        "Đồng ý với tất cả làm mọi bên cùng thất vọng, chỉ là muộn hơn."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt."
       ]
     }
   ],
   "147": [
     {
       "fromDay": 142,
-      "fromTitle": "Giá trái phiếu và lãi suất",
-      "text": "Lãi suất tăng → giá trái phiếu giảm (và ngược lại)",
+      "fromTitle": "Đo con số nào: thứ người dùng cảm nhận",
+      "text": "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua.",
       "distractors": [
-        "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục.",
+        "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc."
       ]
     },
     {
       "fromDay": 135,
       "fromTitle": "Quyền tối thiểu: mỗi phần chỉ được đúng thứ nó cần",
-      "text": "Mỗi dịch vụ nên có danh tính riêng, không dùng chung một tài khoản quyền cao.",
+      "text": "Quyền tối thiểu không giảm xác suất sự cố; nó giới hạn phạm vi hậu quả.",
       "distractors": [
-        "Phần đầu tiên nên nhắm vào giả định rủi ro nhất, không nhắm vào phần dễ nhất.",
-        "Người đã tự xoay xở là người chắc chắn có vấn đề thật."
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
+        "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi."
       ]
     }
   ],
   "148": [
     {
       "fromDay": 143,
-      "fromTitle": "Yield to Maturity (YTM)",
-      "text": "YTM = lợi suất thực nếu giữ đến đáo hạn",
+      "fromTitle": "Hồ sơ hiệu năng: thời gian đi đâu bên trong một thao tác",
+      "text": "Đọc cả tỷ trọng lẫn số lần gọi, vì hai chẩn đoán khác nhau tuỳ tổ hợp.",
       "distractors": [
-        "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục."
       ]
     },
     {
       "fromDay": 136,
       "fromTitle": "Nhiều lớp: giả định mỗi lớp đều sẽ hỏng",
-      "text": "Hai lớp chỉ có giá trị khi chúng hỏng vì những nguyên nhân khác nhau.",
+      "text": "Giả định mỗi lớp đều có xác suất hỏng, rồi thiết kế cho tình huống đó.",
       "distractors": [
-        "Thêm người vào việc đang trễ thường làm nó trễ thêm.",
-        "Giả thuyết vấn đề không đủ đau nên được kiểm trước vì nó rẻ nhất và khó chịu nhất."
+        "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua.",
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác."
       ]
     }
   ],
   "149": [
     {
       "fromDay": 144,
-      "fromTitle": "Credit Rating (Xếp hạng tín dụng)",
-      "text": "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
+      "fromTitle": "Trần của tối ưu: phần bạn không động vào quyết định tất cả",
+      "text": "Trần cải thiện bằng đúng tỷ trọng của phần bạn động vào.",
       "distractors": [
-        "Chỉ số chỉ có nghĩa khi nói rõ nó thay mặt cho điều gì, và nó phải giảm được.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục."
       ]
     },
     {
       "fromDay": 137,
       "fromTitle": "Nhận báo cáo lỗ hổng: đường liên lạc bạn nên có sẵn",
-      "text": "Một địa chỉ liên hệ dễ tìm cộng cam kết không truy cứu là bước rẻ nhất.",
+      "text": "Rào cản lớn nhất là không biết gửi cho ai và sợ bị quy kết.",
       "distractors": [
-        "Việc chặn người khác có chi phí trì hoãn nhân lên theo số người bị chặn.",
-        "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được."
+        "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua.",
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác."
       ]
     }
   ],
   "150": [
     {
       "fromDay": 145,
-      "fromTitle": "Yield Curve",
-      "text": "Yield curve: lợi suất trái phiếu theo kỳ hạn",
+      "fromTitle": "Chi phí thật: mã nguồn khiến mọi dòng trông như nhau",
+      "text": "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc.",
       "distractors": [
-        "Ưu tiên là so sánh chi phí trì hoãn, và mỗi lời đồng ý là một lời từ chối.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục."
       ]
     },
     {
       "fromDay": 138,
       "fromTitle": "Sự cố bảo mật: khác sự cố vận hành ở ba điểm",
-      "text": "Có một bên đối kháng đang phản ứng, nên hành động lộ liễu có thể phản tác dụng.",
+      "text": "Trạng thái hiện tại là bằng chứng; giữ lại trước khi can thiệp.",
       "distractors": [
-        "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó.",
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
+        "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua.",
+        "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác."
       ]
     }
   ],
   "151": [
     {
       "fromDay": 146,
-      "fromTitle": "Lãi suất thực vs Lãi suất danh nghĩa",
-      "text": "Lãi suất thực ≈ Lãi suất danh nghĩa − Lạm phát",
+      "fromTitle": "Bộ nhớ: cấp phát rẻ, dọn dẹp thì không",
+      "text": "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục.",
       "distractors": [
-        "Nhiều thực hành đúng ở quy mô nhỏ trở thành sai ở quy mô lớn, và ngược lại.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc."
       ]
     },
     {
       "fromDay": 139,
       "fromTitle": "Quyền riêng tư: nghĩa vụ đi kèm mỗi trường dữ liệu",
-      "text": "Mỗi trường dữ liệu cá nhân cần mục đích rõ ràng và một thời hạn.",
+      "text": "Riêng tư hỏi có nên giữ; bảo mật hỏi ai chạm được vào thứ đã giữ.",
       "distractors": [
-        "Đồng ý với tất cả làm mọi bên cùng thất vọng, chỉ là muộn hơn.",
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
+        "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc.",
+        "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua."
       ]
     }
   ],
   "152": [
     {
       "fromDay": 147,
-      "fromTitle": "Chính sách tiền tệ và lãi suất",
-      "text": "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
+      "fromTitle": "Dữ liệu nằm cạnh nhau chạy nhanh hơn dữ liệu nằm rải rác",
+      "text": "Bộ xử lý đọc theo khối, nên dữ liệu liền kề gần như được đọc miễn phí.",
       "distractors": [
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
-        "Credit spread = yield corporate − yield risk-free"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục."
       ]
     },
     {
       "fromDay": 140,
       "fromTitle": "Ôn tập: bảo mật là chuỗi quyết định, không phải danh sách việc",
-      "text": "Phân quyền cần cả vai trò lẫn quan hệ với chính bản ghi đang được yêu cầu.",
+      "text": "Bắt đầu từ tài sản và kẻ tấn công, không từ danh sách biện pháp.",
       "distractors": [
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
-        "Dừng lại vì đã học được điều gì đó không phải thất bại."
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục.",
+        "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc."
       ]
     }
   ],
   "153": [
     {
       "fromDay": 148,
-      "fromTitle": "Lạm phát và tác động đến đầu tư",
-      "text": "Lãi suất thực âm = tích lũy tiền mặt mất sức mua",
+      "fromTitle": "Kế hoạch thực thi: cơ sở dữ liệu nói nó sẽ làm gì",
+      "text": "Kế hoạch thực thi cho biết cơ sở dữ liệu sẽ tìm dữ liệu bằng cách nào.",
       "distractors": [
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     },
     {
       "fromDay": 141,
-      "fromTitle": "Trái phiếu là gì?",
-      "text": "Trái phiếu = cho vay, nhận coupon + hoàn vốn khi đáo hạn",
+      "fromTitle": "Hiệu năng: đo trước, đoán sau",
+      "text": "Trực giác về chỗ chậm sai thường xuyên, kể cả với người viết chính đoạn mã đó.",
       "distractors": [
-        "Giả thuyết vấn đề không đủ đau nên được kiểm trước vì nó rẻ nhất và khó chịu nhất.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục.",
+        "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc."
       ]
     }
   ],
   "154": [
     {
       "fromDay": 149,
-      "fromTitle": "Credit Spread",
-      "text": "Credit spread = yield corporate − yield risk-free",
+      "fromTitle": "Bài toán N cộng một: một trăm truy vấn thay vì một",
+      "text": "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
       "distractors": [
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục."
       ]
     },
     {
       "fromDay": 142,
-      "fromTitle": "Giá trái phiếu và lãi suất",
-      "text": "Lãi suất tăng → giá trái phiếu giảm (và ngược lại)",
+      "fromTitle": "Đo con số nào: thứ người dùng cảm nhận",
+      "text": "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua.",
       "distractors": [
-        "Đưa ra phương án kèm hệ quả, thay vì đưa ra kết luận đã chốt.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục.",
+        "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc."
       ]
     }
   ],
   "155": [
     {
       "fromDay": 150,
-      "fromTitle": "Trái phiếu doanh nghiệp Việt Nam",
-      "text": "TPDN VN: phát triển nhanh nhưng thiếu minh bạch",
+      "fromTitle": "Phân trang: đừng lấy về thứ bạn không hiển thị",
+      "text": "Bỏ qua là đếm, không phải nhảy - chi phí tăng theo số trang.",
       "distractors": [
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     },
     {
       "fromDay": 143,
-      "fromTitle": "Yield to Maturity (YTM)",
-      "text": "YTM = lợi suất thực nếu giữ đến đáo hạn",
+      "fromTitle": "Hồ sơ hiệu năng: thời gian đi đâu bên trong một thao tác",
+      "text": "Đọc cả tỷ trọng lẫn số lần gọi, vì hai chẩn đoán khác nhau tuỳ tổ hợp.",
       "distractors": [
-        "Lát cắt đầu tiên nhắm vào giả định rủi ro nhất.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục."
       ]
     }
   ],
   "156": [
     {
       "fromDay": 151,
-      "fromTitle": "Rủi ro vỡ nợ và Default Rate",
-      "text": "Expected Loss = PD × LGD",
+      "fromTitle": "Xử lý theo lô: trả chi phí cố định một lần",
+      "text": "Mọi thao tác đều có phần chi phí cố định; gộp lô chia nó cho cả lô.",
       "distractors": [
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     },
     {
       "fromDay": 144,
-      "fromTitle": "Credit Rating (Xếp hạng tín dụng)",
-      "text": "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
+      "fromTitle": "Trần của tối ưu: phần bạn không động vào quyết định tất cả",
+      "text": "Trần cải thiện bằng đúng tỷ trọng của phần bạn động vào.",
       "distractors": [
-        "Chia theo nhóm và theo bước làm lộ ra thứ con số tổng che đi.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục."
       ]
     }
   ],
   "157": [
     {
       "fromDay": 152,
-      "fromTitle": "Ôn tập: Trái phiếu & Lãi suất",
-      "text": "Lãi suất: công cụ điều hành kinh tế mạnh nhất",
+      "fromTitle": "Song song và đồng thời: hai thứ khác nhau",
+      "text": "Đồng thời là cách sắp xếp việc; song song là chạy thật sự cùng lúc.",
       "distractors": [
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     },
     {
       "fromDay": 145,
-      "fromTitle": "Yield Curve",
-      "text": "Yield curve: lợi suất trái phiếu theo kỳ hạn",
+      "fromTitle": "Chi phí thật: mã nguồn khiến mọi dòng trông như nhau",
+      "text": "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc.",
       "distractors": [
-        "Chi phí phối hợp tăng theo bình phương số người, năng lực chỉ tăng tuyến tính.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục."
       ]
     }
   ],
   "158": [
     {
       "fromDay": 153,
-      "fromTitle": "Default là gì?",
-      "text": "Default: vi phạm nghĩa vụ trả nợ, không nhất thiết là phá sản",
+      "fromTitle": "Tranh chấp: thêm người làm mà việc chậm đi",
+      "text": "Thông lượng theo số luồng là đường cong có đỉnh, không phải đường thẳng.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     },
     {
       "fromDay": 146,
-      "fromTitle": "Lãi suất thực vs Lãi suất danh nghĩa",
-      "text": "Lãi suất thực ≈ Lãi suất danh nghĩa − Lạm phát",
+      "fromTitle": "Bộ nhớ: cấp phát rẻ, dọn dẹp thì không",
+      "text": "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục.",
       "distractors": [
-        "Mỗi phần mã nên có đúng một đội chịu trách nhiệm.",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc."
       ]
     }
   ],
   "159": [
     {
       "fromDay": 154,
-      "fromTitle": "Spread là gì?",
-      "text": "Spread = Yield rủi ro − Yield phi rủi ro cùng kỳ hạn",
+      "fromTitle": "Áp lực ngược: nói không thay vì gục ngã",
+      "text": "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
       ]
     },
     {
       "fromDay": 147,
-      "fromTitle": "Chính sách tiền tệ và lãi suất",
-      "text": "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
+      "fromTitle": "Dữ liệu nằm cạnh nhau chạy nhanh hơn dữ liệu nằm rải rác",
+      "text": "Bộ xử lý đọc theo khối, nên dữ liệu liền kề gần như được đọc miễn phí.",
       "distractors": [
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
-        "Credit spread = yield corporate − yield risk-free"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục."
       ]
     }
   ],
   "160": [
     {
       "fromDay": 155,
-      "fromTitle": "Treasury Bond là gì?",
-      "text": "Treasury bond: chuẩn tham chiếu risk-free toàn cầu",
+      "fromTitle": "Kiểm thử tải: tìm giới hạn trước khi người dùng tìm hộ",
+      "text": "Dữ liệu thử phải có quy mô và hình dạng giống dữ liệu thật.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     },
     {
       "fromDay": 148,
-      "fromTitle": "Lạm phát và tác động đến đầu tư",
-      "text": "Lãi suất thực âm = tích lũy tiền mặt mất sức mua",
+      "fromTitle": "Kế hoạch thực thi: cơ sở dữ liệu nói nó sẽ làm gì",
+      "text": "Kế hoạch thực thi cho biết cơ sở dữ liệu sẽ tìm dữ liệu bằng cách nào.",
       "distractors": [
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     }
   ],
   "161": [
     {
       "fromDay": 156,
-      "fromTitle": "Corporate Bond là gì?",
-      "text": "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư",
+      "fromTitle": "Phía trình duyệt: một luồng duy nhất phải làm mọi thứ",
+      "text": "Luồng chính lo cả chạy mã, nhận thao tác và vẽ màn hình.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Default: vi phạm nghĩa vụ trả nợ, không nhất thiết là phá sản"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
       ]
     },
     {
       "fromDay": 149,
-      "fromTitle": "Credit Spread",
-      "text": "Credit spread = yield corporate − yield risk-free",
+      "fromTitle": "Bài toán N cộng một: một trăm truy vấn thay vì một",
+      "text": "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
       "distractors": [
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-        "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục."
       ]
     }
   ],
   "162": [
     {
       "fromDay": 157,
-      "fromTitle": "Municipal Bond là gì?",
-      "text": "Municipal bond: tài trợ hạ tầng công cộng ở cấp địa phương",
+      "fromTitle": "Kích thước gói: mã phải tải về, giải nén và phân tích",
+      "text": "Chi phí lớn nhất là phân tích và chạy mã, không phải truyền dữ liệu.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
       ]
     },
     {
       "fromDay": 150,
-      "fromTitle": "Trái phiếu doanh nghiệp Việt Nam",
-      "text": "TPDN VN: phát triển nhanh nhưng thiếu minh bạch",
+      "fromTitle": "Phân trang: đừng lấy về thứ bạn không hiển thị",
+      "text": "Bỏ qua là đếm, không phải nhảy - chi phí tăng theo số trang.",
       "distractors": [
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     }
   ],
   "163": [
     {
       "fromDay": 158,
-      "fromTitle": "Yield Curve là gì?",
-      "text": "Yield curve bình thường: dốc lên, kỳ hạn dài lợi suất cao hơn",
+      "fromTitle": "Khi nào nên dừng: tối ưu cũng có chi phí",
+      "text": "Tính lợi ích bằng thời gian tuyệt đối nhân số lần, không bằng phần trăm.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
       ]
     },
     {
       "fromDay": 151,
-      "fromTitle": "Rủi ro vỡ nợ và Default Rate",
-      "text": "Expected Loss = PD × LGD",
+      "fromTitle": "Xử lý theo lô: trả chi phí cố định một lần",
+      "text": "Mọi thao tác đều có phần chi phí cố định; gộp lô chia nó cho cả lô.",
       "distractors": [
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     }
   ],
   "164": [
     {
       "fromDay": 159,
-      "fromTitle": "Case nhỏ - Đọc đường cong lợi suất",
-      "text": "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
+      "fromTitle": "Tiền cũng là một chỉ số hiệu năng",
+      "text": "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
       "distractors": [
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư",
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
         "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
       ]
     },
     {
       "fromDay": 152,
-      "fromTitle": "Ôn tập: Trái phiếu & Lãi suất",
-      "text": "Lãi suất: công cụ điều hành kinh tế mạnh nhất",
+      "fromTitle": "Song song và đồng thời: hai thứ khác nhau",
+      "text": "Đồng thời là cách sắp xếp việc; song song là chạy thật sự cùng lúc.",
       "distractors": [
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     }
   ],
   "165": [
     {
       "fromDay": 160,
-      "fromTitle": "Tổng ôn Chặng Trái phiếu, lãi suất và tín dụng - Trái phiếu là thế giới của lãi suất và niềm tin",
-      "text": "Trái phiếu vận hành trên hai trục: giá trị thời gian của tiền và niềm tin tín dụng",
+      "fromTitle": "Tổng ôn: đo, tìm, sửa, dừng",
+      "text": "Đo trước, và đo từ phía người dùng chứ không ở ranh giới hệ thống.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
       ]
     },
     {
       "fromDay": 153,
-      "fromTitle": "Default là gì?",
-      "text": "Default: vi phạm nghĩa vụ trả nợ, không nhất thiết là phá sản",
+      "fromTitle": "Tranh chấp: thêm người làm mà việc chậm đi",
+      "text": "Thông lượng theo số luồng là đường cong có đỉnh, không phải đường thẳng.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     }
   ],
@@ -2991,17 +2991,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Portfolio là gì?",
       "text": "Portfolio: tập hợp tài sản được quản lý như một thể thống nhất",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
+        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
       ]
     },
     {
       "fromDay": 154,
-      "fromTitle": "Spread là gì?",
-      "text": "Spread = Yield rủi ro − Yield phi rủi ro cùng kỳ hạn",
+      "fromTitle": "Áp lực ngược: nói không thay vì gục ngã",
+      "text": "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
       ]
     }
   ],
@@ -3011,17 +3011,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Vì sao không nên nhìn từng khoản đầu tư riêng lẻ?",
       "text": "Rủi ro của một tài sản riêng lẻ không phản ánh đúng đóng góp của nó vào rủi ro danh mục",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
+        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
       ]
     },
     {
       "fromDay": 155,
-      "fromTitle": "Treasury Bond là gì?",
-      "text": "Treasury bond: chuẩn tham chiếu risk-free toàn cầu",
+      "fromTitle": "Kiểm thử tải: tìm giới hạn trước khi người dùng tìm hộ",
+      "text": "Dữ liệu thử phải có quy mô và hình dạng giống dữ liệu thật.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn."
       ]
     }
   ],
@@ -3031,17 +3031,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Diversification - Đa dạng hóa",
       "text": "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
         "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
       ]
     },
     {
       "fromDay": 156,
-      "fromTitle": "Corporate Bond là gì?",
-      "text": "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư",
+      "fromTitle": "Phía trình duyệt: một luồng duy nhất phải làm mọi thứ",
+      "text": "Luồng chính lo cả chạy mã, nhận thao tác và vẽ màn hình.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Default: vi phạm nghĩa vụ trả nợ, không nhất thiết là phá sản"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
       ]
     }
   ],
@@ -3051,17 +3051,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Correlation - Tương quan giữa các tài sản",
       "text": "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
         "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống"
       ]
     },
     {
       "fromDay": 157,
-      "fromTitle": "Municipal Bond là gì?",
-      "text": "Municipal bond: tài trợ hạ tầng công cộng ở cấp địa phương",
+      "fromTitle": "Kích thước gói: mã phải tải về, giải nén và phân tích",
+      "text": "Chi phí lớn nhất là phân tích và chạy mã, không phải truyền dữ liệu.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
       ]
     }
   ],
@@ -3071,17 +3071,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Volatility - Biến động",
       "text": "Volatility: thước đo mức độ dao động giá của một tài sản",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
         "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
       ]
     },
     {
       "fromDay": 158,
-      "fromTitle": "Yield Curve là gì?",
-      "text": "Yield curve bình thường: dốc lên, kỳ hạn dài lợi suất cao hơn",
+      "fromTitle": "Khi nào nên dừng: tối ưu cũng có chi phí",
+      "text": "Tính lợi ích bằng thời gian tuyệt đối nhân số lần, không bằng phần trăm.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
       ]
     }
   ],
@@ -3097,10 +3097,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 159,
-      "fromTitle": "Case nhỏ - Đọc đường cong lợi suất",
-      "text": "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
+      "fromTitle": "Tiền cũng là một chỉ số hiệu năng",
+      "text": "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
       "distractors": [
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư",
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
         "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
       ]
     }
@@ -3117,11 +3117,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 160,
-      "fromTitle": "Tổng ôn Chặng Trái phiếu, lãi suất và tín dụng - Trái phiếu là thế giới của lãi suất và niềm tin",
-      "text": "Trái phiếu vận hành trên hai trục: giá trị thời gian của tiền và niềm tin tín dụng",
+      "fromTitle": "Tổng ôn: đo, tìm, sửa, dừng",
+      "text": "Đo trước, và đo từ phía người dùng chứ không ở ranh giới hệ thống.",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí."
       ]
     }
   ],
@@ -3140,8 +3140,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Portfolio là gì?",
       "text": "Portfolio: tập hợp tài sản được quản lý như một thể thống nhất",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
+        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
       ]
     }
   ],
@@ -3160,8 +3160,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Vì sao không nên nhìn từng khoản đầu tư riêng lẻ?",
       "text": "Rủi ro của một tài sản riêng lẻ không phản ánh đúng đóng góp của nó vào rủi ro danh mục",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-        "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư"
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
+        "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
       ]
     }
   ],
@@ -3180,7 +3180,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Diversification - Đa dạng hóa",
       "text": "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
         "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
       ]
     }
@@ -3200,7 +3200,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Correlation - Tương quan giữa các tài sản",
       "text": "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
         "Đa dạng hóa: phân bổ vốn vào nhiều tài sản để giảm rủi ro không hệ thống"
       ]
     }
@@ -3220,7 +3220,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Volatility - Biến động",
       "text": "Volatility: thước đo mức độ dao động giá của một tài sản",
       "distractors": [
-        "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
         "Correlation đo mức độ hai tài sản di chuyển cùng/ngược chiều (từ -1 đến +1)"
       ]
     }

@@ -1081,7 +1081,7 @@ export const LIFE_EXPENSES_LESSONS: Lesson[] = [
         options: [
           "Sự chồng lấn - nhiều khoản lớn rơi vào cùng một quãng vài năm",
           "Việc ước tính sai chi phí của từng khoản riêng lẻ ngay từ đầu",
-          "Lạm phát làm mọi khoản đắt hơn dự kiến khi tới thời điểm chi",
+          "Lạm phát làm mọi khoản đắt hơn dự kiến khi tới đúng thời điểm chi",
           "Thu nhập không tăng đúng như kỳ vọng trong nhiều năm liên tiếp",
         ],
         correct: 0,

@@ -87,7 +87,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
           "Vì nó đòi hỏi quá nhiều dữ liệu lịch sử mới ước lượng được chính xác",
           "Vì nó coi biến động tăng và giảm như nhau, nên bỏ sót rủi ro đuôi",
           "Vì nó luôn cho kết quả cao hơn mức rủi ro mà nhà đầu tư thực sự chịu",
-          "Vì nó chỉ áp dụng được cho danh mục có trên một trăm mã cổ phiếu",
+          "Vì nó chỉ áp dụng được cho danh mục có trên một trăm mã cổ phiếu khác nhau",
         ],
         correct: 1,
         explanation:
@@ -191,6 +191,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
   {
     id: 1422,
     slug: "mau-sai-so-chuan-va-khoang-tin-cay",
+    interactiveType: "sampling",
     title: "Định lượng, Bài 2: Mẫu, sai số chuẩn và khoảng tin cậy - con số của bạn chính xác đến đâu",
     subtitle: "Vì sao mọi ước lượng đều phải đi kèm một khoảng, và vì sao 36 tháng dữ liệu là quá ít",
     duration: "11 phút",
@@ -719,7 +720,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       "Vì biến mới luôn chứa thông tin hữu ích",
       "Vì thêm biến không bao giờ làm khớp kém đi cả",
       "Vì phần mềm tự động loại bỏ biến vô dụng",
-      "Vì R bình phương không phụ thuộc vào số biến",
+      "Vì R bình phương không phụ thuộc vào số lượng biến",
     ],
     correctOption: 1,
     explanation:
@@ -740,7 +741,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
       {
         question: "Đa cộng tuyến gây ra hậu quả gì?",
         options: [
-          "Làm R bình phương của mô hình giảm mạnh so với hồi quy đơn biến",
+          "Làm R bình phương của mô hình giảm mạnh so với mô hình hồi quy đơn biến",
           "Làm sai số chuẩn phình to, khiến từng hệ số riêng lẻ mất ý nghĩa",
           "Làm mô hình không chạy được và phần mềm sẽ báo lỗi ma trận suy biến",
           "Làm phần dư của mọi quan sát đều bằng 0 nên không kiểm định được nữa",

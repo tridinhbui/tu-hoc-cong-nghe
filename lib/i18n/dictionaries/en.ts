@@ -1496,7 +1496,7 @@ export const en: Dictionary = {
     "housing-protection": "Deployment & operations",
     "banking-deposits": "Cloud & managed services",
     "gold-fx": "Containers & orchestration",
-    "vn-stock-practical": "The Vietnamese tech market in practice",
+    "vn-tech-market": "The Vietnamese tech market in practice",
     "digital-assets-risk": "Blockchain & its risks",
     "fraud-safety": "Security & defending against attacks",
     "real-estate-vn": "Mobile apps in Vietnam",

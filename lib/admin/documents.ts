@@ -1,6 +1,6 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase-admin";
-import { generateExcelPreviewPng, isExcelFileName } from "@/lib/excel-preview";
+import { generateExcelPreviewSvg, isExcelFileName } from "@/lib/excel-preview";
 import { STORAGE_CACHE_CONTROL } from "@/lib/storage-cache";
 
 export type DocumentStatus = "pending" | "approved" | "rejected";
@@ -120,13 +120,16 @@ async function uploadAutoExcelPreview(
   if (!isExcelFileName(file.name)) return null;
   try {
     const buffer = await file.arrayBuffer();
-    const png = await generateExcelPreviewPng(buffer);
-    if (!png) return null;
+    const svg = await generateExcelPreviewSvg(buffer);
+    if (!svg) return null;
 
-    const path = `covers/${Date.now()}-${Math.random().toString(36).slice(2, 8)}-auto.png`;
+    // SVG thay cho PNG: @napi-rs/canvas là thư viện nhị phân gốc và Workers
+    // không nạp được mã máy - xem lib/excel-preview.ts. Ảnh bìa vẫn chỉ là một
+    // URL đặt vào <img>, nên phía hiển thị không đổi gì.
+    const path = `covers/${Date.now()}-${Math.random().toString(36).slice(2, 8)}-auto.svg`;
     const { error: uploadError } = await supabase.storage
       .from("documents")
-      .upload(path, png, { contentType: "image/png", cacheControl: STORAGE_CACHE_CONTROL });
+      .upload(path, svg, { contentType: "image/svg+xml", cacheControl: STORAGE_CACHE_CONTROL });
     if (uploadError) {
       console.error("Error uploading auto-generated Excel preview:", uploadError);
       return null;

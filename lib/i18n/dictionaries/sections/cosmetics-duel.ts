@@ -110,7 +110,7 @@ export const cosmeticsDuelVi = {
         description: "Vương miện vinh danh các bậc thầy giám đốc công nghệ.",
       },
       pet_bull: {
-        name: "Linh vật Cá Heo Deploy",
+        name: "Linh vật Rồng Con Triển Khai",
         description: "Linh vật mang lại may mắn và tăng điểm thưởng XP.",
       },
     },
@@ -296,7 +296,7 @@ export const cosmeticsDuelEn: typeof cosmeticsDuelVi = {
         description: "A crown honoring master chief technology officers.",
       },
       pet_bull: {
-        name: "Deploy Dolphin Companion",
+        name: "Little Deploy Dragon Companion",
         description: "A companion that brings luck and boosts XP rewards.",
       },
     },

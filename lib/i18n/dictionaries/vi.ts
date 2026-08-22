@@ -1600,7 +1600,7 @@ export const vi = {
     "housing-protection": "Triển khai & vận hành",
     "banking-deposits": "Đám mây & dịch vụ thuê ngoài",
     "gold-fx": "Container & điều phối",
-    "vn-stock-practical": "Thị trường IT Việt Nam thực chiến",
+    "vn-tech-market": "Thị trường IT Việt Nam thực chiến",
     "digital-assets-risk": "Blockchain & rủi ro",
     "fraud-safety": "An toàn thông tin & phòng tấn công",
     "real-estate-vn": "Ứng dụng di động Việt Nam",

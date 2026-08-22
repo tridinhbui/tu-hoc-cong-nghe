@@ -66,7 +66,7 @@ export const TRACKS = {
       "Dữ liệu: pipeline, kho dữ liệu và phân tích",
       "AI trong sản phẩm: LLM, RAG và đánh giá chất lượng",
     ],
-    previewSlug: "ke-toan-la-gi",
+    previewSlug: "do-phuc-tap-va-ky-hieu-o-lon",
     previewLabel: "Bài mở đầu: Độ phức tạp là ngôn ngữ của hiệu năng",
   },
   cfa: {

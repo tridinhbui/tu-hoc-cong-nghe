@@ -689,7 +689,7 @@ export const AUDIT_LESSONS: Lesson[] = [
       "Vì gian lận thường có giá trị lớn hơn nhầm lẫn",
       "Vì nó cố ý và có người chủ động che giấu đi",
       "Vì chuẩn mực kiểm toán không yêu cầu tìm gian lận",
-      "Vì gian lận chỉ xảy ra ở doanh nghiệp lớn",
+      "Vì gian lận chỉ xảy ra ở doanh nghiệp lớn, nơi tiền đủ nhiều để đáng làm",
     ],
     correctOption: 1,
     explanation:

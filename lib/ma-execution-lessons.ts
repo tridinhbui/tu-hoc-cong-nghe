@@ -201,6 +201,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
   {
     id: 1522,
     slug: "nguon-va-su-dung-von-trong-thuong-vu",
+    interactiveType: "process",
     title: "Thương vụ, Bài 2: Nguồn và sử dụng vốn - tiền ở đâu ra và đi về đâu",
     subtitle: "Bảng Sources & Uses, vì sao giá trị doanh nghiệp khác số tiền phải chi, và các khoản hay bị quên",
     duration: "11 phút",
@@ -875,6 +876,7 @@ export const MA_EXECUTION_LESSONS: Lesson[] = [
   {
     id: 1526,
     slug: "y-kien-cong-bang-va-nghia-vu-hoi-dong",
+    interactiveType: "ethics-case",
     title: "Thương vụ, Bài 6: Ý kiến về tính công bằng và nghĩa vụ của hội đồng quản trị",
     subtitle: "Ai bảo vệ cổ đông nhỏ, ngân hàng đầu tư ký vào cái gì, và vì sao xung đột lợi ích là vấn đề cấu trúc",
     duration: "11 phút",

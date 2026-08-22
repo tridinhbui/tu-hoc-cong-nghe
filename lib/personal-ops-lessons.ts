@@ -255,7 +255,7 @@ export const PERSONAL_OPS_LESSONS: Lesson[] = [
         question: "Rủi ro của một quy trình tự động là gì?",
         options: [
           "Nó chạy tiếp cả khi hoàn cảnh đã đổi, nếu không ai rà soát định kỳ",
-          "Nó có thể bỏ sót thay đổi nếu máy chủ tích hợp gặp sự cố kỹ thuật",
+          "Nó có thể bỏ sót thay đổi nếu máy chủ tích hợp gặp phải sự cố kỹ thuật",
           "Nó làm người viết mã mất dần khả năng tự kiểm tra công việc của mình",
           "Nó khiến các bước đã chạy không được ghi lại vào lịch sử của dự án",
         ],
@@ -377,7 +377,7 @@ export const PERSONAL_OPS_LESSONS: Lesson[] = [
         question: "Loại sai lệch nào chỉ buổi rà soát mới phát hiện được?",
         options: [
           "Quy trình vẫn chạy đúng thiết lập cũ trong khi dự án đã thay đổi",
-          "Bước dựng bị lỗi do máy chủ tích hợp gặp sự cố kỹ thuật kéo dài",
+          "Bước dựng bị lỗi do máy chủ tích hợp gặp phải sự cố kỹ thuật kéo dài",
           "Một bước bị cấu hình trùng nên cùng việc được chạy hai lần mỗi lần đẩy",
           "Chi phí máy chủ tăng lên mà nhà cung cấp không gửi thông báo trước",
         ],
@@ -447,7 +447,7 @@ export const PERSONAL_OPS_LESSONS: Lesson[] = [
         "Tỷ lệ giữa ngưỡng đã đặt và độ trễ thực tế hiện nay",
         "Số lần cảnh báo đó đã kêu trong suốt ba năm vừa qua",
         "Chi phí mà công cụ giám sát đã thu trong cùng khoảng thời gian",
-        "Danh sách người đang nhận thông báo từ cảnh báo đó",
+        "Danh sách những người đang nhận thông báo từ cảnh báo đó",
       ],
       correct: 0,
       explanation:

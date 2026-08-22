@@ -108,7 +108,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         "Cuộn chuột xuống tìm dòng cuối rồi gõ vùng bằng tay",
         "Ctrl + Shift + mũi tên xuống rồi tự động tính tổng",
         "Chọn toàn bộ cột rồi cộng, chấp nhận cộng cả ô trống",
-        "Nhập công thức cho từng nhóm 50 dòng rồi cộng lại",
+        "Nhập công thức cho từng nhóm 50 dòng rồi cộng lại với nhau",
       ],
       correct: 1,
       explanation:
@@ -506,7 +506,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     openingOptions: [
       "Xóa công thức và gõ lại từ đầu",
       "Bôi đen từng phần công thức rồi bấm phím F9",
-      "Chuyển sang máy tính cầm tay để tính lại",
+      "Chuyển sang máy tính cầm tay để tính lại từng bước",
       "Sao chép công thức sang một file mới",
     ],
     correctOption: 1,
@@ -722,7 +722,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       {
         question: "Power Query lưu lại điều gì mà thao tác thủ công không lưu?",
         options: [
-          "Một bản sao đầy đủ của dữ liệu gốc trước khi được làm sạch",
+          "Một bản sao đầy đủ của dữ liệu gốc trước khi nó được làm sạch",
           "Danh sách các bước biến đổi theo đúng thứ tự, chạy lại được",
           "Nhật ký ghi lại những người đã mở và chỉnh sửa tệp dữ liệu này",
           "Kết quả trung gian của từng công thức trong mỗi bước xử lý dữ liệu",

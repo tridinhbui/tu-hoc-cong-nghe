@@ -474,12 +474,12 @@ export const TRACK_PROFESSIONAL = {
     },
     {
       label: "Chặng 7",
-      name: "Mạng, độ trễ và giao thức",
+      name: "Hiệu năng: đo và tối ưu",
       days: [141, 160] as [number, number],
       available: true,
       parts: [
-        { name: "TCP, HTTP/2 và chi phí một vòng gọi", days: [141, 150] as [number, number] },
-        { name: "Mất gói, timeout và các kiểu thử lại", days: [151, 160] as [number, number] },
+        { name: "Đo trước, tìm nút thắt sau", days: [141, 150] as [number, number] },
+        { name: "Thông lượng, quá tải và điểm dừng", days: [151, 160] as [number, number] },
       ],
     },
     {

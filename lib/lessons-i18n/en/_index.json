@@ -9,11 +9,6 @@
     "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
     "duration": "12 min"
   },
-  "ac-cam-mat-mat-va-hieu-ung-so-huu": {
-    "title": "Loss aversion: why losing 1 million hurts more than gaining 1 million pleases",
-    "subtitle": "Your brain reacts to a loss about twice as strongly as to an equivalent gain - and that quietly wrecks investment decisions",
-    "duration": "6 min"
-  },
   "active-vs-passive-investing": {
     "title": "Active vs Passive Investing",
     "subtitle": "Trying to beat the market, or simply owning the whole market?"
@@ -151,11 +146,6 @@
     "subtitle": "DCF, comps and precedent transactions give three different numbers - so which do you believe?",
     "duration": "8 min"
   },
-  "case-doc-duong-cong-loi-suat": {
-    "title": "Mini case - reading the yield curve",
-    "subtitle": "A practical application: reading the yield curve to guess the economic cycle",
-    "duration": "7 min"
-  },
   "case-hang-hang-khong-phong-ho-gia-dau": {
     "title": "Small Case - An Airline Hedges Oil Prices",
     "subtitle": "Applying theory in practice: building a hedging strategy for fuel cost"
@@ -197,11 +187,6 @@
     "title": "Vietnam Market, Lesson 5: What the VN-Index says and what it hides",
     "subtitle": "Why the index can be green while most portfolios are red",
     "duration": "10 min"
-  },
-  "chinh-sach-tien-te": {
-    "title": "Monetary policy and interest rates",
-    "subtitle": "How do the Fed and the State Bank steer the economy through interest rates?",
-    "duration": "7 min"
   },
   "cho-ai-tinh-tung-buoc-qua-vi-du-dinh-gia": {
     "title": "Finance AI, Lesson 11: Making AI calculate step by step through a valuation example",
@@ -268,11 +253,6 @@
     "subtitle": "Related-party transactions, cross-ownership, major shareholders and the signals to read in AGM documents",
     "duration": "11 min"
   },
-  "corporate-bond-la-gi": {
-    "title": "What is a corporate bond?",
-    "subtitle": "A company borrowing directly from investors, bypassing banks",
-    "duration": "6 min"
-  },
   "correlation-tuong-quan-tai-san": {
     "title": "Correlation between assets",
     "subtitle": "A measure of how much two assets move together or apart",
@@ -287,16 +267,6 @@
     "title": "Journal entries in practice: from the rule to the ledger",
     "subtitle": "Debits and credits for the transactions you meet every day, and a startup's first month",
     "duration": "7 min"
-  },
-  "credit-rating": {
-    "title": "Credit Rating",
-    "subtitle": "How do Moody's, S&P, and Fitch assess default risk?",
-    "duration": "6 min"
-  },
-  "credit-spread": {
-    "title": "Credit Spread",
-    "subtitle": "The credit risk premium over the risk-free rate",
-    "duration": "6 min"
   },
   "currency-swap-chuyen-sau": {
     "title": "Currency Swap",
@@ -341,16 +311,6 @@
     "title": "IB & Analysis, Lesson 7: Deal structure - is the deal paid in cash or in stock?",
     "subtitle": "How an M&A deal is paid for decides who carries the risk and who captures the upside",
     "duration": "7 min"
-  },
-  "default-la-gi": {
-    "title": "What is a default?",
-    "subtitle": "When a borrower fails to pay debt on time",
-    "duration": "6 min"
-  },
-  "default-risk": {
-    "title": "Default risk and the default rate",
-    "subtitle": "The probability of not repaying debt, and the recovery rate",
-    "duration": "6 min"
   },
   "derivatives-la-gi": {
     "title": "What Are Derivatives?",
@@ -548,11 +508,6 @@
     "subtitle": "Why two packages on the same 10% margin can return wildly different IRRs, and how to read payment terms as a financial variable",
     "duration": "11 min"
   },
-  "gia-trai-phieu-va-lai-suat": {
-    "title": "Bond price and interest rates",
-    "subtitle": "The foundational inverse relationship of the debt market",
-    "duration": "6 min"
-  },
   "gian-lan-va-trach-nhiem-kiem-toan-vien": {
     "title": "Auditing, Lesson 5: Fraud - the fraud triangle and the limits of the auditor's responsibility",
     "subtitle": "Why fraud is harder to detect than error, the three conditions that produce it, and the warning signs on the face of the accounts",
@@ -674,11 +629,6 @@
     "subtitle": "Why recognised revenue does not always coincide with money arriving in the bank",
     "duration": "7 min"
   },
-  "ke-toan-tam-ly-mental-accounting": {
-    "title": "Mental accounting: why 10 million of bonus is spent differently from 10 million of salary",
-    "subtitle": "Your brain files money into invisible drawers - and that makes you overspend in a way that feels perfectly logical, without your noticing",
-    "duration": "6 min"
-  },
   "ket-noi-tat-ca-tai-chinh": {
     "title": "Connecting it all - Financial statements, Valuation, Risk, Markets",
     "subtitle": "Looking back at the whole journey as one tightly linked system"
@@ -747,16 +697,6 @@
     "title": "Margin & Margin Calls - Risk Management Is Priority Number One",
     "subtitle": "Why does a client have to 'hand the money back' the moment the market turns against them?",
     "duration": "8 min"
-  },
-  "lai-suat-thuc-vs-danh-nghia": {
-    "title": "Real interest rate vs. nominal interest rate",
-    "subtitle": "The Fisher Equation and the real purchasing power of an interest rate",
-    "duration": "6 min"
-  },
-  "lam-phat-va-dau-tu": {
-    "title": "Inflation and its effect on investing",
-    "subtitle": "Which assets protect purchasing power best?",
-    "duration": "6 min"
   },
   "lam-sach-du-lieu-va-cai-gia-cua-du-lieu-ban": {
     "title": "Data, Lesson 3: Cleaning data - the part that takes the most time and gets talked about the least",
@@ -858,11 +798,6 @@
     "subtitle": "Correlation, the efficient frontier and spreading risk",
     "duration": "7 min"
   },
-  "municipal-bond-la-gi": {
-    "title": "What is a municipal bond?",
-    "subtitle": "Local-government bonds that fund public infrastructure",
-    "duration": "6 min"
-  },
   "mutual-fund-la-gi": {
     "title": "What is a Mutual Fund?",
     "subtitle": "A pooled fund - professionally managed, priced once a day"
@@ -890,11 +825,6 @@
   "on-tap-npv": {
     "title": "NPV review - Net Present Value",
     "subtitle": "The single most important tool in capital budgeting and company valuation",
-    "duration": "7 min"
-  },
-  "on-tap-trai-phieu": {
-    "title": "Review: Bonds & Interest Rates",
-    "subtitle": "Bond pricing, YTM, credit risk, yield curve - connecting the Bonds, Interest Rates and Credit track",
     "duration": "7 min"
   },
   "operating-leverage": {
@@ -1025,11 +955,6 @@
     "title": "What Is a Put Option?",
     "subtitle": "The right to sell an asset at a fixed price - expecting a price drop or wanting to insure a portfolio"
   },
-  "qua-tu-tin-va-neo-gia-trong-dau-tu": {
-    "title": "Overconfidence and anchoring: why everyone thinks they are above average",
-    "subtitle": "93% of drivers are confident they drive better than average - and investors make the same mistake with their money",
-    "duration": "6 min"
-  },
   "quality-of-earnings-nang-cao": {
     "title": "IB & Analysis, Lesson 1: Quality of earnings - reading profit like a real analyst",
     "subtitle": "Two companies can report the same EPS and have very different earnings quality",
@@ -1129,11 +1054,6 @@
     "title": "What Is Speculation?",
     "subtitle": "Using derivatives to bet on price direction for profit - with no underlying risk to protect"
   },
-  "spread-la-gi": {
-    "title": "What is a spread?",
-    "subtitle": "The yield gap that reflects perceived risk",
-    "duration": "6 min"
-  },
   "sql-co-ban-cho-dan-tai-chinh": {
     "title": "Excel, Lesson 6: Basic SQL for finance people - getting exactly the data you need",
     "subtitle": "SELECT, WHERE, GROUP BY, JOIN: enough to query for yourself instead of waiting on the data team",
@@ -1182,11 +1102,6 @@
     "subtitle": "ESG, materiality, greenwashing, green bonds and how carbon credits are priced.",
     "duration": "13 min"
   },
-  "tam-ly-bay-dan-va-fomo-trong-dau-tu": {
-    "title": "Herd behaviour and FOMO: why we buy the top and sell the bottom",
-    "subtitle": "When everyone around you is talking about a stock, that is usually the most dangerous moment to buy it",
-    "duration": "6 min"
-  },
   "tao-tro-ly-ai-rieng-cho-tai-chinh": {
     "title": "AI in Finance, Lesson 9: Building your own AI assistant for finance",
     "subtitle": "Set the ground rules so the AI answers the way you want and stops inventing numbers.",
@@ -1211,11 +1126,6 @@
     "title": "Behavioural bias in corporate finance: M&A, capital budgeting and CEO overconfidence",
     "subtitle": "Why 70% of M&A deals create no value for the buyer's shareholders - and what that has to do with psychology",
     "duration": "8 min"
-  },
-  "thien-kien-hien-tai-va-tiet-kiem-huu-tri": {
-    "title": "Present bias: why we know we should save for retirement and still do not",
-    "subtitle": "Your brain values 1 million today far above 1 million in 10 years - even when the future reward is many times larger",
-    "duration": "6 min"
   },
   "thoai-von-carve-out-va-spin-off": {
     "title": "Deals, Lesson 4: Divestment - why selling one unit is harder than buying a whole company",
@@ -1267,16 +1177,6 @@
     "subtitle": "From bookkeeper to strategic partner of the CEO",
     "duration": "7 min"
   },
-  "tong-ket-xay-he-mien-dich-tam-ly-tai-chinh": {
-    "title": "Recap: building a psychological immune system for financial decisions",
-    "subtitle": "The 5 biases covered, and the self-check questions to run before every important money decision",
-    "duration": "7 min"
-  },
-  "tong-on-chang-8-trai-phieu": {
-    "title": "Review: Bonds, Interest Rates and Credit - Bonds are a world of interest rates and trust",
-    "subtitle": "Connecting coupon, yield, credit risk and the yield curve into one complete picture",
-    "duration": "8 min"
-  },
   "tong-on-chang-9-danh-muc": {
     "title": "Review - Portfolio and Risk Management Track: Investing Is Managing Risk, Not Just Hunting Returns",
     "subtitle": "Connecting diversification, correlation, MPT, the Sharpe Ratio, and fund types"
@@ -1294,21 +1194,6 @@
     "title": "Vietnam Markets, Lesson 3: Privately placed corporate bonds - anatomy of a crisis",
     "subtitle": "Private placement, professional investors, and the lesson about refinancing risk",
     "duration": "12 min"
-  },
-  "trai-phieu-doanh-nghiep": {
-    "title": "Vietnamese corporate bonds",
-    "subtitle": "Characteristics, risks, and lessons from Vietnam's bond market",
-    "duration": "6 min"
-  },
-  "trai-phieu-la-gi": {
-    "title": "What is a bond?",
-    "subtitle": "A basic debt instrument - you lend, they pay interest",
-    "duration": "5 min"
-  },
-  "treasury-bond-la-gi": {
-    "title": "What is a Treasury bond?",
-    "subtitle": "Government bonds - the market's safest reference point",
-    "duration": "6 min"
   },
   "treasury-management-quan-ly-dong-tien": {
     "title": "CFO & Operations, Lesson 5: Treasury management - running corporate cash flow",
@@ -1427,20 +1312,5 @@
     "title": "The audit opinion - the line worth reading before the numbers",
     "subtitle": "Four types of opinion, and why three of them are reasons to stop",
     "duration": "9 min"
-  },
-  "yield-curve-la-gi": {
-    "title": "What is the yield curve?",
-    "subtitle": "A curve connecting yields across different maturities",
-    "duration": "7 min"
-  },
-  "yield-curve": {
-    "title": "The Yield Curve",
-    "subtitle": "The yield curve - a macroeconomic barometer",
-    "duration": "7 min"
-  },
-  "yield-to-maturity": {
-    "title": "Yield to Maturity (YTM)",
-    "subtitle": "The real return if you hold a bond until maturity",
-    "duration": "7 min"
   }
 }

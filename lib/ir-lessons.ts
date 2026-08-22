@@ -53,7 +53,7 @@ export const IR_LESSONS: Lesson[] = [
         question: "Người nghe chính của IR là ai?",
         options: [
           "Nhà đầu tư và chuyên viên phân tích",
-          "Khách hàng và người tiêu dùng cuối",
+          "Khách hàng và những người tiêu dùng cuối",
           "Nhân viên và ứng viên tuyển dụng của công ty",
           "Cơ quan báo chí và các kênh truyền thông đại chúng",
         ],

@@ -226,7 +226,7 @@ export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
       "Tăng mạnh, vì mỗi hợp đồng ngốn tiền trước rồi mới trả tiền sau",
       "Giảm, vì quy mô lớn hơn cho phép thương lượng điều khoản tốt hơn",
       "Không đổi, vì tiền của hợp đồng cũ về bù cho hợp đồng mới chi ra",
-      "Tăng nhẹ, chủ yếu do chi phí quản lý và nhân sự gián tiếp tăng",
+      "Tăng nhẹ, chủ yếu do chi phí quản lý và nhân sự gián tiếp tăng theo quy mô",
     ],
     correctOption: 0,
     explanation:
@@ -417,7 +417,7 @@ export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
       "Gói A hiệu quả hơn hẳn vì cùng khoản lãi nhưng vốn bị giam ngắn hơn",
       "Hai gói tương đương vì biên lợi nhuận và giá trị hợp đồng như nhau",
       "Gói B hiệu quả hơn vì kỳ thanh toán dài giúp giảm chi phí làm hồ sơ",
-      "Không so sánh được nếu chưa biết chủ đầu tư nào có uy tín tốt hơn",
+      "Không so sánh được nếu chưa biết chủ đầu tư nào có uy tín thanh toán tốt hơn",
     ],
     correctOption: 0,
     explanation:

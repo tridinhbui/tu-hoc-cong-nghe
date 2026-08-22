@@ -655,6 +655,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
   {
     id: 804,
     slug: "quan-tri-rui-ro-dinh-luong-var-black-swan",
+    interactiveType: "risk",
     title: "Chuyên Đề Masterclass 4: Quản Trị Rủi Ro Định Lượng - Chỉ Số VaR & Giả Lập Kịch Bản Thiên Nga Đen",
     subtitle: "VaR, Expected Shortfall, backtesting và stress testing - và giới hạn nguy hiểm của mọi mô hình rủi ro.",
     whyItMatters:
@@ -665,7 +666,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
     openingQuestion: "Một danh mục đầu tư 10 tỷ VNĐ có 'Daily VaR 95% = 200 triệu VNĐ'. Con số này có ý nghĩa gì?",
     openingOptions: [
       "Tỷ suất lợi nhuận kỳ vọng là 95%/năm",
-      "Danh mục chắc chắn mất 200 triệu VNĐ mỗi ngày",
+      "Danh mục chắc chắn mất đúng 200 triệu VNĐ mỗi ngày",
       "Trong 95% số ngày, lỗ không vượt quá 200 triệu",
       "Có 5% khả năng danh mục lãi 200 triệu VNĐ",
     ],

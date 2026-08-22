@@ -23,6 +23,7 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
   {
     id: 1690,
     slug: "doc-thuyet-minh-bao-cao-tai-chinh",
+    interactiveType: "process",
     title: "Đọc thuyết minh - phần dài nhất và ít người đọc nhất",
     subtitle: "Ba bảng số nói doanh nghiệp lãi bao nhiêu; thuyết minh nói con số đó được tạo ra thế nào",
     duration: "10 phút",

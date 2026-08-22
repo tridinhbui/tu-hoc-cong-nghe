@@ -891,6 +891,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
   {
     id: 1506,
     slug: "dao-duc-du-lieu-va-thien-lech-thuat-toan",
+    interactiveType: "ethics-case",
     title: "Tư duy DL, Bài 6: Đạo đức dữ liệu - quyền riêng tư, thiên lệch và trách nhiệm giải trình",
     subtitle: "Vì sao một mô hình chấm điểm tín dụng có thể phân biệt đối xử mà không dùng bất kỳ dữ liệu nhạy cảm nào",
     duration: "11 phút",

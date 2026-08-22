@@ -327,7 +327,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         "Mở sổ cái tài khoản doanh thu và lần ngược từng bút toán",
         "Đọc lại toàn bộ nhật ký chung từ đầu tháng theo thứ tự thời gian",
         "Cộng lại bảng cân đối thử để loại trừ khả năng sai số học",
-        "Đối chiếu với sao kê ngân hàng xem tiền đã thực về chưa",
+        "Đối chiếu với sao kê ngân hàng xem khoản tiền đã thực sự về chưa",
       ],
       correct: 0,
       explanation:
@@ -479,7 +479,7 @@ export const BOOKKEEPING_LESSONS: Lesson[] = [
         options: [
           "Vì nó dựa trên ước tính chứ không dựa trên một con số có sẵn",
           "Vì chuẩn mực không quy định gì về cách trích lập các khoản dự phòng",
-          "Vì dự phòng không xuất hiện trên báo cáo kết quả kinh doanh",
+          "Vì dự phòng không hề xuất hiện trên báo cáo kết quả kinh doanh",
           "Vì kiểm toán viên không có quyền yêu cầu điều chỉnh khoản mục này",
         ],
         correct: 0,

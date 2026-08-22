@@ -154,7 +154,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "What belongs in a comment in your source code?",
         options: [
           "Why the code is written this way, which the code cannot say",
-          "Each step the code performs, restated in ordinary language",
+          "Each step the code performs, restated again in ordinary language",
           "The author's name and the date of the most recent change",
           "A list of the other functions that call into this block",
         ],
@@ -210,7 +210,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "Because a failed disk takes the original and the copy together",
           "Because sharing one disk noticeably slows the machine down",
-          "Because the operating system forbids copying within one disk",
+          "Because the operating system forbids copying within a single disk",
           "Because a copy on the same disk gets overwritten in time",
         ],
         explanation:
@@ -402,7 +402,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "Fixing one bug means remembering every copy, and one gets missed",
           "The source file grows, which slows the program down at startup",
-          "The compiler raises an error when it finds two identical blocks",
+          "The compiler raises an error whenever it finds two identical blocks",
           "Each copy occupies extra memory for the whole time it runs",
         ],
         explanation:
@@ -483,7 +483,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "In the CSS box model, how does `padding` differ from `margin`?",
         options: [
           "Padding sits inside the border; margin sits outside and pushes others",
-          "Padding is measured in pixels, while margin is a percentage of width",
+          "Padding is measured in pixels, while margin is a percentage of the width",
           "Padding applies only to block tags, while margin applies to any tag",
           "Padding takes the tag's background; margin takes the page background",
         ],
@@ -538,7 +538,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "What does `addEventListener` on a button do?",
         options: [
           "Registers a function to run each time that event fires on the button",
-          "Runs a function once immediately and remembers the result for later",
+          "Runs a function once immediately and remembers that result for later use",
           "Checks whether the user has ever clicked that particular button",
           "Stops the button submitting a form until the fields are filled in",
         ],
@@ -818,7 +818,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "What does debouncing a keystroke handler achieve?",
         options: [
           "It runs only after the user has stopped typing for a set interval",
-          "It caps the function at a maximum of one run per fixed interval",
+          "It caps the function at a maximum of one single run per fixed interval",
           "It gathers several keystrokes into a batch handled in one go",
           "It ignores keys that do not change the contents of the input",
         ],
@@ -841,7 +841,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "It throws, so wrap it in `try/catch` when the data is not certain",
           "It returns `null` so the caller can check and handle it onward",
-          "It returns the part it could read and drops the broken remainder",
+          "It returns the part it could read and quietly drops the broken remainder",
           "It returns the original string because nothing could be parsed",
         ],
         explanation:
@@ -864,7 +864,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
           "`push` mutates the original; the other builds an entirely new array",
           "`push` adds only one element, while the other can add several",
           "`push` is slower because memory has to be reallocated each time",
-          "`push` returns nothing, so it cannot be used inside an expression",
+          "`push` returns nothing at all, so it cannot be used inside an expression",
         ],
         explanation:
           "`push` changes in place, while spreading creates a fresh array - a crucial difference when something else holds a reference to the old one. `push` accepts several arguments and returns the new length.",
@@ -989,7 +989,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "Without one the call hangs forever, holding your own resources",
           "Without one the other server treats the request as malformed",
-          "Without one the networking library picks a very short default",
+          "Without one the networking library picks a very short default itself",
           "Without one the call is never written into the system logs",
         ],
         explanation:
@@ -1066,7 +1066,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "It lets you follow one request across several services end to end",
           "It stops the same request being processed twice in a row",
-          "It lets the server order requests exactly as they were received",
+          "It lets the server order the requests exactly as they were received",
           "It lets the server recognise requests from the same user",
         ],
         explanation:
@@ -1100,7 +1100,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
           "Decide which parts are essential and which can be missing for now",
           "Return an error to the user whenever any single service fails",
           "Always retry every call until every part has finally succeeded",
-          "Call them in sequence so a failure stops the later ones running",
+          "Call them in strict sequence so a failure stops the later ones running",
         ],
         explanation:
           "A product page without recommendations still works; without a price it does not. Treating every call as essential lets one minor service take down the page, and retrying forever turns slow into stuck.",
@@ -1280,7 +1280,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "Faults caused by environment differences surface before users hit them",
           "Users can try new features there before they are released widely",
-          "It relieves production because part of the traffic goes there instead",
+          "It relieves production because part of the live traffic goes there instead",
           "It allows a fast rollback by redirecting traffic to the other one",
         ],
         explanation:
@@ -1439,7 +1439,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "The script stops on the first failing command rather than continuing",
           "Every command is printed before running so it is easy to follow",
-          "An undeclared variable becomes an error instead of an empty string",
+          "An undeclared variable becomes an error instead of a silent empty string",
           "The script runs under any shell rather than only the current one",
         ],
         explanation:
@@ -1642,7 +1642,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "A published vulnerability is a map for everyone, attackers included",
           "Older libraries run noticeably slower than the newest releases",
-          "The maintainer withdraws support so the application stops working",
+          "The maintainer withdraws support and so the application stops working",
           "Older versions stop being compatible with other project libraries",
         ],
         explanation:
@@ -1663,7 +1663,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "What should a code reviewer look for above all?",
         options: [
           "Places the code betrays its promise, and edge cases left unhandled",
-          "Places where naming is inconsistent with the rest of the project",
+          "Places where the naming is inconsistent with the rest of the project",
           "Places that could be shorter using newer language syntax",
           "Places missing a comment explaining what the code is doing",
         ],
@@ -1752,7 +1752,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "The interviewer is judging how you think, not just the final answer",
           "Speaking helps you catch flaws in your own reasoning sooner",
-          "The interviewer will hint when they see you heading the wrong way",
+          "The interviewer will drop a hint when they see you heading the wrong way",
           "Long silences are read as a sign of low confidence at work",
         ],
         explanation:
@@ -1855,7 +1855,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "How does the circuit breaker pattern work?",
         options: [
           "It stops calling a failing service for a while, then probes gently",
-          "It redirects calls to a standby service that is currently healthy",
+          "It redirects the calls to a standby service that is currently healthy",
           "It caps how many calls may be in flight to one service at a time",
           "It retries failed calls with a wait that grows with each attempt",
         ],
@@ -1934,7 +1934,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
           "One key expires and thousands of requests hit the source at once",
           "The cache fills, so old keys are evicted before they expire",
           "Cached data drifts from the source because an update failed",
-          "Several processes write one key and corrupt its stored value",
+          "Several processes write to one key and corrupt its stored value there",
         ],
         explanation:
           "A hot key expiring during peak traffic means thousands of requests all miss and all call the database. The fix is letting one request fetch while the rest wait, or spreading expiry times randomly.",
@@ -1954,7 +1954,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "What does a read replica NOT solve?",
         options: [
           "A primary overloaded by writes, since every write still goes there",
-          "Read traffic climbing during the busiest hours of the working day",
+          "Read traffic climbing during the very busiest hours of the working day",
           "High latency for users far from the main data centre",
           "The risk of losing data when the primary's disk fails completely",
         ],
@@ -1965,7 +1965,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why is pessimistic locking dangerous under heavy load?",
         options: [
           "Transactions queue behind each other, so one slow spot blocks all",
-          "Locks are not released if the process holding one stops abruptly",
+          "Locks are never released if the process holding one stops abruptly",
           "The database must keep an extra table tracking every held lock",
           "Locks only work within one server rather than across machines",
         ],
@@ -1987,7 +1987,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why are machine clocks unreliable for ordering events in a distributed system?",
         options: [
           "Clocks drift between machines, so two events can be ordered wrongly",
-          "Clocks run progressively slower if a machine is never restarted",
+          "Clocks run progressively slower whenever a machine is never restarted",
           "Different time zones across data centres introduce large errors",
           "The system clock resets whenever the server software is updated",
         ],
@@ -2043,7 +2043,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "Centralising authentication, rate limiting and routing in one place",
           "Caching every service's responses to reduce load on the system",
-          "Converting data between the formats each service happens to use",
+          "Converting data between whichever formats each service happens to use",
           "Monitoring service health and restarting them when they fail",
         ],
         explanation:
@@ -2075,7 +2075,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why use percentiles rather than an average to measure performance?",
         options: [
           "An average hides the tail, where the worst experience actually lives",
-          "An average is hard to compute accurately once samples grow numerous",
+          "An average is hard to compute accurately once the samples grow numerous",
           "Percentiles better reflect the speed of an average server machine",
           "An average shifts sharply whenever new samples join the data set",
         ],
@@ -2207,7 +2207,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why can a large language model be confidently wrong?",
         options: [
           "It generates likely text rather than looking facts up to verify them",
-          "It is limited by its training data, so much information is missing",
+          "It is limited by its training data, so a great deal of information is missing",
           "It favours a fast answer and skips the step of checking its work",
           "It cannot distinguish a difficult question from an easy one",
         ],
@@ -2284,7 +2284,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "How does batch processing differ from stream processing?",
         options: [
           "Batch gathers data and runs periodically; streams process on arrival",
-          "Batch runs across many machines, while a stream runs on just one",
+          "Batch runs across many machines, while a stream runs on only one of them",
           "Batch suits large data, while streams suit smaller data volumes",
           "Batch guarantees no data loss, while streaming accepts some loss",
         ],
@@ -2296,7 +2296,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "Transformations can be wrong, and only raw data allows redoing them",
           "Raw data occupies less space than the processed version does",
-          "Regulations require the original of all collected data to be kept",
+          "Regulations require that the original of all collected data is kept",
           "Raw data queries faster because it has not been transformed yet",
         ],
         explanation:
@@ -2339,7 +2339,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why define a business metric in exactly one place?",
         options: [
           "Teams computing it separately produce different numbers for one name",
-          "Central computation speeds queries up by reusing earlier results",
+          "Central computation speeds the queries up by reusing earlier results",
           "Reporting tools can only read definitions from a single source",
           "A central definition reduces the storage the warehouse consumes",
         ],
@@ -2350,7 +2350,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why fix the sample size before running an A/B test?",
         options: [
           "Stopping the moment results look good is a way of fooling yourself",
-          "The sample size determines the infrastructure the test will need",
+          "The sample size determines what infrastructure the test is going to need",
           "Without it users cannot be divided evenly between the two groups",
           "A larger sample lets the test finish sooner than expected",
         ],
@@ -2383,7 +2383,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why can a badly chosen metric cause harm?",
         options: [
           "The team will optimise that number even where it damages the product",
-          "A wrong metric makes collecting the data more expensive than needed",
+          "A wrong metric makes collecting the data far more expensive than needed",
           "Reports will contradict the other metrics currently being tracked",
           "Leadership will lose confidence in the data team over time",
         ],
@@ -2416,7 +2416,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why is batch inference cheaper than per-request inference?",
         options: [
           "The fixed cost of each invocation is shared across many records",
-          "The model is more accurate when handling many records together",
+          "The model is more accurate when it handles many records together",
           "Batch results are cached, so the next run need not recompute",
           "Graphics processors only operate in batch mode at all",
         ],
@@ -2528,7 +2528,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
           "A deny list is always incomplete, since you must foresee every attack",
           "An allow list is shorter, so the system checks it more quickly",
           "A deny list must be updated constantly as new threats emerge",
-          "An allow list is easier for a newcomer to read in the configuration",
+          "An allow list is far easier for a newcomer to read in the configuration",
         ],
         explanation:
           "A deny list asks you to enumerate everything bad - a list that is never finished, and each gap is a way in. An allow list asks you to enumerate the good, which is what you actually know.",
@@ -2691,7 +2691,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why separate signing keys from encryption keys?",
         options: [
           "One key one job, so leaking one does not compromise the other",
-          "Signing and encryption algorithms use different key lengths",
+          "Signing and encryption algorithms each use different key lengths",
           "Signing keys need rotating more often than encryption keys",
           "Key management systems forbid one key having two purposes",
         ],
@@ -2735,7 +2735,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why invalidate a token the moment a user signs out?",
         options: [
           "A token still within its lifetime works if someone copied it earlier",
-          "An uncleared token occupies server memory until it finally expires",
+          "An uncleared token occupies server memory right until it finally expires",
           "The user needs a fresh token issued at each subsequent sign-in",
           "An old token conflicts with the new one when the same user returns",
         ],
@@ -2757,7 +2757,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why compare secret strings in constant time?",
         options: [
           "Comparison stops early on a mismatch, and that timing reveals characters",
-          "Ordinary comparison can be wrong when the two strings differ in length",
+          "Ordinary comparison can be wrong whenever the two strings differ in length",
           "The standard comparison cannot handle strings with special characters",
           "Constant-time comparison runs faster on strings that are very long",
         ],
@@ -2835,7 +2835,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "Users do not update immediately, so old versions live a long time",
           "App stores only allow releases on a fixed monthly schedule",
-          "Every release waits weeks in review before it can be published",
+          "Every release waits for weeks in review before it can be published",
           "Users uninstall an app that updates itself too frequently",
         ],
         explanation:
@@ -2857,7 +2857,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "Parties who distrust each other agreeing on one shared ledger",
           "Storing data at lower cost than a traditional database does",
-          "Querying data faster because it is replicated in many places",
+          "Querying data faster because it is replicated across many places",
           "Securing data better because every record is encrypted",
         ],
         explanation:
@@ -2911,7 +2911,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "Why do software projects run late?",
         options: [
           "The unknown parts only appear once work starts, but estimates come first",
-          "Developers deliberately quote short so the work gets assigned to them",
+          "Developers deliberately quote short so that the work gets assigned to them",
           "Business requirements always change partway through the project",
           "The team is short-staffed, so the workload piles up over time",
         ],
@@ -3001,7 +3001,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
           "Running many things at once lengthens the time every one of them takes",
           "The count reflects each person's genuine productivity accurately",
           "Managers need the figure to allocate staff between projects",
-          "Work left open too long becomes outdated against current requirements",
+          "Work left open too long becomes outdated against the current requirements",
         ],
         explanation:
           "Five items running in parallel all finish late, and every context switch costs the effort of reloading the problem. Capping work in progress finishes things sooner even though total volume is unchanged.",
@@ -3122,7 +3122,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
           "This work runs on concentration, the first thing burnout destroys",
           "Companies require staff to have annual health check-ups",
           "Healthier people work longer hours and so finish more work",
-          "Sitting at a computer causes well-known occupational illnesses",
+          "Sitting at a computer all day causes well-known occupational illnesses",
         ],
         explanation:
           "The output of this job is decisions and attention, not hours in a chair. Poor sleep and exhaustion strike exactly that - and working longer hours to compensate is the spiral that makes it worse.",
@@ -3192,7 +3192,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "Recording the intent on disk before touching data, so you can recover after a crash",
           "Compressing data before writing it to save on storage space",
-          "Recording every single read query so that user behaviour can be analysed later on",
+          "Recording every single read query so that all user behaviour can be analysed later on",
           "Taking a periodic backup of the whole database every night",
         ],
         explanation:
@@ -3483,7 +3483,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         options: [
           "The same query run twice inside one transaction returns two different results",
           "A query is only allowed to run once per transaction",
-          "Query results are never cached, so the very next call has to read them again",
+          "Query results are never cached, so even the very next call has to read them again",
           "A query returns its rows in a different order on each run",
         ],
         explanation:
@@ -3586,7 +3586,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
         question: "What is the first thing to do when optimising performance?",
         options: [
           "Measure to find what is actually slow, because intuition here is nearly always wrong",
-          "Rewrite the most complicated-looking code, since that is usually the expensive part",
+          "Rewrite the most complicated-looking code, since that is nearly always the expensive part",
           "Bump the server up one tier and re-measure to see whether it helped",
           "Add a cache in front of every expensive call across the system",
         ],
@@ -3720,7 +3720,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
           "Setting a hard limit every change must stay under, checked automatically on each build",
           "Allocating money for annual server hardware upgrades",
           "Capping the hours the team may spend on performance work",
-          "Setting the maximum amount of resources that the operating system grants each process",
+          "Setting the maximum amount of resources that the operating system grants to each process",
         ],
         explanation:
           "Without a budget a page gets a few dozen milliseconds slower each week and after a year nobody can say what happened. A budget turns performance into something with a gate rather than a periodic cleanup project.",
@@ -4000,7 +4000,7 @@ export const LEVEL_EXAMS_EN: LevelExamTranslations = {
           "The old system encodes thousands of small decisions whose reasons nobody remembers",
           "Because a rewrite always costs more than hiring more maintenance staff",
           "Because the new technology will be obsolete before the rewrite finishes",
-          "Because users never accept a new interface once they have got used to the old one",
+          "Because users will never accept a new interface once they have got used to the old one",
         ],
         explanation:
           "Code that looks nonsensical is usually the residue of a real bug that once happened - exactly the point made in the readable-code lesson. A rewrite will rediscover each of those bugs, while the old system still needs maintaining in parallel.",

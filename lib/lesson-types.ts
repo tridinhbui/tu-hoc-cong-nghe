@@ -110,6 +110,7 @@ export interface Lesson {
     | "budget"
     | "chart"
     | "risk"
+    | "multiples"
     | "payoff"
     | "prospect"
     | "accretion"

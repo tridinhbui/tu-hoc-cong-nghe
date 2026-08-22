@@ -17,7 +17,7 @@
  *  nhận được phần xử lý "khách chưa đăng nhập" ở đó. */
 export const PREVIEW_LESSON_SLUGS = [
   "he-dieu-hanh-lam-gi", // TRACKS.personal.previewSlug
-  "ke-toan-la-gi", // TRACKS.professional.previewSlug
+  "do-phuc-tap-va-ky-hieu-o-lon", // TRACKS.professional.previewSlug
   "chuong-trinh-la-gi",
   "bien-va-phep-gan",
 ] as const;

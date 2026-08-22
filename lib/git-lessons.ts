@@ -435,7 +435,7 @@ export const GIT_LESSONS: Lesson[] = [
         question: "git log --oneline khác git log ở điểm nào?",
         options: [
           "In mỗi mốc trên một dòng, chỉ gồm mã rút gọn và dòng mô tả đầu tiên",
-          "Chỉ in đúng một mốc duy nhất là mốc mới nhất trong lịch sử của kho",
+          "Chỉ in đúng một mốc duy nhất là mốc mới nhất trong toàn bộ lịch sử của kho",
           "In lịch sử theo thứ tự ngược lại, tức mốc cũ nhất được hiện lên trước",
           "In kèm toàn bộ nội dung các dòng đã thay đổi bên trong từng mốc một",
         ],
@@ -650,7 +650,7 @@ export const GIT_LESSONS: Lesson[] = [
         question: "HEAD trong Git chỉ cái gì?",
         options: [
           "Nhánh mà bạn đang đứng, hay chính xác hơn là mốc hiện tại của bạn",
-          "Mốc mới nhất trong toàn bộ kho, bất kể bạn đang đứng ở nhánh nào",
+          "Mốc mới nhất trong toàn bộ kho, bất kể bạn đang đứng ở nhánh nào đi nữa",
           "Dòng đầu tiên trong tệp cấu hình của kho, nơi ghi tên người tạo kho",
           "Nhánh chính của dự án, tức nhánh mà mọi nhánh khác cuối cùng gộp vào",
         ],
@@ -869,7 +869,7 @@ export const GIT_LESSONS: Lesson[] = [
           "Vì bạn hoà giải từng chút mỗi ngày thay vì dồn toàn bộ khác biệt lại một lần cuối",
           "Vì Git ghi nhớ các lần hoà giải trước đó và tự áp dụng lại cho những lần sau này",
           "Vì thao tác cập nhật thường xuyên khiến Git ưu tiên giữ bản của nhánh bạn hơn",
-          "Vì main sẽ tự động khoá lại không cho ai khác commit trong lúc bạn đang cập nhật",
+          "Vì nhánh main sẽ tự động khoá lại, không cho ai khác commit trong lúc bạn cập nhật",
         ],
         correct: 0,
         explanation:

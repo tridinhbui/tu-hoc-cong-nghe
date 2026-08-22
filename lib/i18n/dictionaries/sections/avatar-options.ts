@@ -35,6 +35,7 @@ export const avatarOptionsVi = {
   // cho ~90 slug trong lib/bonus-lesson-categories.ts.
   bonusCategories: {
     "Định giá doanh nghiệp": "Định giá doanh nghiệp",
+    "Đo lường & vận hành hệ thống": "Đo lường & vận hành hệ thống",
     "Đọc báo cáo tài chính": "Đọc báo cáo tài chính",
     "Case công ty thực tế": "Case công ty thực tế",
     "Vốn & cổ đông": "Vốn & cổ đông",
@@ -146,7 +147,8 @@ export const avatarOptionsVi = {
 export const avatarOptionsEn: typeof avatarOptionsVi = {
   bonusCategories: {
     "Định giá doanh nghiệp": "Company valuation",
-    "Đọc báo cáo tài chính": "Reading other people's code",
+    "Đo lường & vận hành hệ thống": "Measuring & running systems",
+    "Đọc báo cáo tài chính": "Reading financial statements",
     "Case công ty thực tế": "Real company cases",
     "Vốn & cổ đông": "Capital & shareholders",
     "Đầu tư & danh mục": "Investing & portfolios",

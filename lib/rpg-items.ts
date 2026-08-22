@@ -34,7 +34,7 @@ export const ITEM_DESCRIPTIONS: Record<string, { name: string; type: keyof Chara
   acc_glasses: { name: "Kính Soi Nhật Ký Hệ Thống", type: "accessory", icon: "👓" },
   acc_crown: { name: "Vương Miện CTO", type: "accessory", icon: "👑" },
 
-  pet_bull: { name: "Linh vật Cá Heo Deploy", type: "companion", icon: "🐬" },
+  pet_bull: { name: "Linh vật Rồng Con Triển Khai", type: "companion", icon: "🐉" },
   pet_bear: { name: "Gấu Trúc Sao Lưu", type: "companion", icon: "🐼" },
 
   booster_xp_24h: { name: "Thẻ X2 XP Booster (24h)", type: "accessory", icon: "⚡" },

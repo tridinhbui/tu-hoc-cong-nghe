@@ -277,8 +277,8 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 7",
-          name: "Mạng, độ trễ và giao thức",
-          parts: ["TCP, HTTP/2 và chi phí một vòng gọi", "Mất gói, timeout và các kiểu thử lại"],
+          name: "Hiệu năng: đo và tối ưu",
+          parts: ["Đo trước, tìm nút thắt sau", "Thông lượng, quá tải và điểm dừng"],
         },
         {
           label: "Chặng 8",
@@ -847,10 +847,10 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 7",
-          name: "Networking, latency and protocols",
+          name: "Performance: measure, then optimise",
           parts: [
-            "TCP, HTTP/2 and the cost of a round trip",
-            "Packet loss, timeouts and retry strategies",
+            "Measure first, find the bottleneck second",
+            "Throughput, overload and when to stop",
           ],
         },
         {

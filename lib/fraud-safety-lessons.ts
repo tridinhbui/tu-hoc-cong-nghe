@@ -1137,7 +1137,7 @@ export const FRAUD_SAFETY_LESSONS: Lesson[] = [
           "Đổi ngay mật khẩu các tài khoản liên quan, bắt đầu từ email",
           "Chờ ngân hàng xác nhận rồi mới đổi để không ảnh hưởng tới điều tra",
           "Đóng toàn bộ tài khoản ngân hàng hiện có và mở tài khoản mới",
-          "Chỉ cần đổi mật khẩu của đúng tài khoản đã bị lộ thông tin",
+          "Chỉ cần đổi mật khẩu của đúng cái tài khoản đã bị lộ thông tin",
         ],
         correct: 0,
         explanation:
