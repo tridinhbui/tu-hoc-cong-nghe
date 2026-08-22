@@ -77,11 +77,6 @@
     "subtitle": "How a table of probabilities becomes a premium, why it has to be discounted to today, and which assumption carries the risk",
     "duration": "12 min"
   },
-  "bao-cao-luu-chuyen-tien-te": {
-    "title": "From profit to cash: reading the quality of earnings",
-    "subtitle": "Four adjusting lines, and the ratio that says whether profit turns into money",
-    "duration": "8 min"
-  },
   "bao-hiem-co-ban-cho-nguoi-moi": {
     "title": "Track 1, Lesson 9: Basic insurance - the layer behind the emergency fund",
     "subtitle": "An emergency fund handles small shocks; insurance handles the kind that can wipe out everything",
@@ -102,11 +97,6 @@
     "subtitle": "After the 2008 crisis the world decided: banks must hold enough capital to survive the next one.",
     "duration": "8 min"
   },
-  "bds-business-model": {
-    "title": "Four property business models in Vietnam",
-    "subtitle": "Housing development, industrial parks, property leasing and brokerage",
-    "duration": "7 min"
-  },
   "behavioral-portfolio-management-checklist": {
     "title": "Behavioral portfolio management: building a system against the portfolio manager's own biases",
     "subtitle": "Checklists, pre-mortems and the structural rules professional fund managers use to protect decisions from emotion",
@@ -115,16 +105,6 @@
   "beta-trong-danh-muc": {
     "title": "Beta in a portfolio",
     "subtitle": "Measuring how sensitive a portfolio is to the broad market's swings",
-    "duration": "6 min"
-  },
-  "bien-so-r-twr-mwrr": {
-    "title": "The variable r: TWR vs MWRR in valuation and investing",
-    "subtitle": "IRR, discount rate and YTM are all r - and why fund performance needs both the TWR and the MWRR lens",
-    "duration": "8 min"
-  },
-  "bitcoin-crypto": {
-    "title": "Bitcoin back down to 60k - does crypto have real value?",
-    "subtitle": "Supply and demand, macro, the network effect and market sentiment",
     "duration": "6 min"
   },
   "black-scholes-hieu-cong-thuc-thay-vi-hoc-thuoc": {
@@ -161,20 +141,10 @@
     "title": "What Is a Call Option?",
     "subtitle": "The right to buy an asset at a fixed price - expecting the price to rise"
   },
-  "cap-rate": {
-    "title": "Cap Rate in Property",
-    "subtitle": "Property Value = NOI / Cap Rate",
-    "duration": "6 min"
-  },
   "cap-table-va-vesting-cau-truc-von-startup": {
     "title": "Cap table & vesting: the startup capital structure every PE/VC analyst must be able to read",
     "subtitle": "A complex cap table is the first tool you need to master when analysing a startup investment",
     "duration": "8 min"
-  },
-  "case-dinh-gia-pe-va-dcf": {
-    "title": "Mini case - Valuing a company with P/E and a simple DCF",
-    "subtitle": "Practical application: combining relative and absolute methods to make a decision",
-    "duration": "9 min"
   },
   "case-dinh-gia-tong-hop-nhieu-phuong-phap": {
     "title": "IB & Analysis, Lesson 5: A combined case - valuing one company by several methods",
@@ -283,20 +253,10 @@
     "subtitle": "Authorized Participants and the arbitrage loop that keeps an ETF aligned with NAV - and when that mechanism stops working",
     "duration": "9 min"
   },
-  "co-phieu-la-gi-day121": {
-    "title": "What is a stock?",
-    "subtitle": "A certificate of ownership in part of a business",
-    "duration": "6 min"
-  },
   "commodity-phan-2": {
     "title": "Deep-dive case: Commodities Part 2",
     "subtitle": "Supply, demand, inventory - the three things that price a commodity",
     "duration": "6 min"
-  },
-  "comparable-company-analysis-la-gi": {
-    "title": "What is Comparable Company Analysis?",
-    "subtitle": "Valuing a company by how the market is pricing similar ones",
-    "duration": "9 min"
   },
   "comps-thuc-chien": {
     "title": "IB & Analysis, Lesson 2: Comps in practice - choosing the right comparable companies",
@@ -377,11 +337,6 @@
     "subtitle": "Why most of a deal's synergy value is decided (or destroyed) within the first 100 days",
     "duration": "8 min"
   },
-  "dcf-la-gi-day133": {
-    "title": "What is DCF?",
-    "subtitle": "Valuing a company as the present value of all its future cash flows",
-    "duration": "11 min"
-  },
   "deal-structure-stock-vs-cash": {
     "title": "IB & Analysis, Lesson 7: Deal structure - is the deal paid in cash or in stock?",
     "subtitle": "How an M&A deal is paid for decides who carries the risk and who captures the upside",
@@ -420,11 +375,6 @@
     "title": "Deep-dive case: Discontinued Operations",
     "subtitle": "Don't let Net Income fool you",
     "duration": "5 min"
-  },
-  "disney-pixar-ma": {
-    "title": "Disney-Pixar: horizontal M&A",
-    "subtitle": "Revenue synergy and the content engine strategy",
-    "duration": "6 min"
   },
   "diversification-da-dang-hoa": {
     "title": "Diversification",
@@ -521,11 +471,6 @@
     "subtitle": "From sheet layout to a balance check of zero: how to build a model that actually runs",
     "duration": "13 min"
   },
-  "dupont-analysis": {
-    "title": "DuPont Analysis",
-    "subtitle": "ROE = Net Margin × Asset Turnover × Equity Multiplier",
-    "duration": "6 min"
-  },
   "duration-va-convexity-do-nhay-gia-trai-phieu": {
     "title": "Duration and Convexity: measuring a bond's price sensitivity to interest rates",
     "subtitle": "Duration gives the first-order estimate, convexity corrects the error - and why that difference matters when rates move sharply",
@@ -546,21 +491,6 @@
     "subtitle": "How Grab and Shopee can lend money and sell insurance without a banking licence",
     "duration": "7 min"
   },
-  "enterprise-value-la-gi-day125": {
-    "title": "What is Enterprise Value?",
-    "subtitle": "The value of the whole business - including debt, minus cash",
-    "duration": "7 min"
-  },
-  "enterprise-value": {
-    "title": "Enterprise value",
-    "subtitle": "EV = market cap + debt − cash",
-    "duration": "6 min"
-  },
-  "equity-value-vs-enterprise-value": {
-    "title": "Equity Value vs Enterprise Value",
-    "subtitle": "The value that belongs to shareholders differs from the value of the whole operating business",
-    "duration": "6 min"
-  },
   "esg-investing-screening-den-portfolio": {
     "title": "ESG Investing: from screening to portfolio construction",
     "subtitle": "Exclusionary screening, best-in-class, impact investing - the different ESG investing strategies and when to use which",
@@ -580,45 +510,15 @@
     "title": "What is an ETF?",
     "subtitle": "Exchange-traded fund - trades like a stock, diversifies like a fund"
   },
-  "ev-ebitda-dung-khi-nao": {
-    "title": "When should EV/EBITDA be used?",
-    "subtitle": "The preferred ratio when comparing companies with different capital structures",
-    "duration": "7 min"
-  },
-  "exit-multiple-method": {
-    "title": "Exit Multiple Method",
-    "subtitle": "An alternative approach to calculating Terminal Value based on market multiples",
-    "duration": "6 min"
-  },
   "expected-return-danh-muc": {
     "title": "A portfolio's expected return",
     "subtitle": "A portfolio's expected return is the weighted average of its components",
     "duration": "6 min"
   },
-  "fcf-deep-dive": {
-    "title": "Free Cash Flow - a closer reading",
-    "subtitle": "FCF = OCF − CapEx, NOPAT and working capital",
-    "duration": "7 min"
-  },
-  "fcfe-la-gi": {
-    "title": "What is FCFE?",
-    "subtitle": "Free cash flow reserved for shareholders alone, after debt obligations are paid",
-    "duration": "7 min"
-  },
-  "fcff-la-gi": {
-    "title": "What is FCFF?",
-    "subtitle": "Free cash flow available to all investors - both shareholders and creditors",
-    "duration": "7 min"
-  },
   "ffo-affo-chi-so-loi-nhuan-cua-reit": {
     "title": "FFO and AFFO: why you do not value a REIT on accounting profit",
     "subtitle": "Property depreciation makes a REIT's earnings look worse than reality - here are the two measures that replace them",
     "duration": "9 min"
-  },
-  "finance-as-math": {
-    "title": "Finance reduced to mathematical formulas",
-    "subtitle": "DCF, WACC, terminal value and the valuation multiples",
-    "duration": "7 min"
   },
   "financial-risk": {
     "title": "The categories of financial risk",
@@ -643,11 +543,6 @@
     "title": "What Is a Futures Contract?",
     "subtitle": "Like a forward but standardized, exchange-traded, and safer"
   },
-  "gia-co-phieu-vs-gia-tri-doanh-nghiep": {
-    "title": "How do stock price and business value differ?",
-    "subtitle": "Price is what the market is paying right now; value is what the business is really worth",
-    "duration": "7 min"
-  },
   "gia-goi-thau-va-hieu-qua-du-an-xay-dung": {
     "title": "Contractors, Part 3: Pricing a bid and measuring what it really returns",
     "subtitle": "Why two packages on the same 10% margin can return wildly different IRRs, and how to read payment terms as a financial variable",
@@ -667,11 +562,6 @@
     "title": "Vietnam Market, Lesson 6: Margin trading and the call-margin spiral",
     "subtitle": "The mechanism that turns one down session into a run of limit-down sessions",
     "duration": "11 min"
-  },
-  "gordon-growth-method": {
-    "title": "Gordon Growth Method",
-    "subtitle": "The most common formula for calculating Terminal Value based on perpetual growth",
-    "duration": "7 min"
   },
   "greeks-delta-gamma-vega-theta": {
     "title": "Derivatives, Lesson 3: the Greeks - measuring the sensitivity of an option position",
@@ -700,11 +590,6 @@
     "title": "Comprehensive financial planning: fitting six pieces into one plan",
     "subtitle": "Why optimising each piece on its own can still produce a poor overall plan",
     "duration": "9 min"
-  },
-  "hoc-tai-chinh-hanh-trinh": {
-    "title": "3 Things That Make Finance Discouraging",
-    "subtitle": "And why it is still worth carrying on",
-    "duration": "4 min"
   },
   "hoi-quy-da-bien-va-cac-bay-thuong-gap": {
     "title": "Quantitative, Lesson 5: Multiple regression and its traps - multicollinearity, overfitting, omitted variables",
@@ -802,11 +687,6 @@
     "title": "Depreciation: three methods and the path through three statements",
     "subtitle": "Which method to pick, and everywhere a dong of depreciation touches",
     "duration": "7 min"
-  },
-  "khi-mua-co-phieu-so-huu-gi": {
-    "title": "When you buy a stock, what do you actually own?",
-    "subtitle": "Not just a line of numbers on a screen - but a real economic right",
-    "duration": "6 min"
   },
   "khi-nao-excel-het-du-va-chuyen-sang-python": {
     "title": "Data, Part 1: When Excel runs out - and why the answer is not row count",
@@ -943,11 +823,6 @@
     "subtitle": "Momentum, the value premium, the size effect - the widely documented anomalies and how behavioural finance accounts for them",
     "duration": "8 min"
   },
-  "market-cap-la-gi": {
-    "title": "What is Market Cap?",
-    "subtitle": "The total market value of all a company's shares outstanding",
-    "duration": "5 min"
-  },
   "market-fair-value": {
     "title": "Deep-dive case: Market Fair Value",
     "subtitle": "The P/E multiple and growth companies",
@@ -1012,16 +887,6 @@
     "subtitle": "From auto-enrolment to robo-advisers - how behavioural biases are applied deliberately to help customers make better decisions",
     "duration": "8 min"
   },
-  "nvidia-cash-securities": {
-    "title": "NVIDIA Q1/26 - Cash & Marketable Securities",
-    "subtitle": "Treasury vs FP&A: one balance, two ways of reading it",
-    "duration": "7 min"
-  },
-  "oil-gas-business-model": {
-    "title": "The 4 oil & gas business models",
-    "subtitle": "Production, services, transport, refining",
-    "duration": "7 min"
-  },
   "on-tap-npv": {
     "title": "NPV review - Net Present Value",
     "subtitle": "The single most important tool in capital budgeting and company valuation",
@@ -1040,16 +905,6 @@
   "option-la-gi": {
     "title": "What Is an Option?",
     "subtitle": "A right - not an obligation - to buy or sell an asset"
-  },
-  "pb-dung-khi-nao": {
-    "title": "When should P/B be used?",
-    "subtitle": "Most useful for asset-heavy or financial businesses",
-    "duration": "6 min"
-  },
-  "pe-dung-khi-nao": {
-    "title": "When should P/E be used?",
-    "subtitle": "The most popular ratio, but you need to understand its limits to use it right",
-    "duration": "7 min"
   },
   "phan-bo-chi-phi-va-loi-nhuan-bo-phan": {
     "title": "Planning, part 5: cost allocation - why segment profit is always contested",
@@ -1131,11 +986,6 @@
     "subtitle": "A repeatable cleaning process instead of copying and hand-fixing every month",
     "duration": "11 min"
   },
-  "precedent-transaction-la-gi": {
-    "title": "What is Precedent Transaction analysis?",
-    "subtitle": "Valuing a company based on prices actually paid in similar past M&A deals",
-    "duration": "9 min"
-  },
   "precedent-transactions-thuc-chien": {
     "title": "IB & Analysis, Lesson 3: Precedent transactions - valuing from past M&A deals",
     "subtitle": "Why M&A multiples usually sit above the trading multiples of listed companies in the same industry",
@@ -1174,11 +1024,6 @@
   "put-option-la-gi": {
     "title": "What Is a Put Option?",
     "subtitle": "The right to sell an asset at a fixed price - expecting a price drop or wanting to insure a portfolio"
-  },
-  "pvgas-bad-debt": {
-    "title": "PVGas bad debt, Q1/2026",
-    "subtitle": "Receivables, concentration risk and the quality of revenue",
-    "duration": "6 min"
   },
   "qua-tu-tin-va-neo-gia-trong-dau-tu": {
     "title": "Overconfidence and anchoring: why everyone thinks they are above average",
@@ -1245,16 +1090,6 @@
     "subtitle": "What happens when the tax authority re-examines what has already been declared",
     "duration": "9 min"
   },
-  "retail-store-analysis": {
-    "title": "Analysing a retail business",
-    "subtitle": "Store productivity, same-store sales growth and payback period",
-    "duration": "6 min"
-  },
-  "revenue-multiple-dung-khi-nao": {
-    "title": "When should Revenue Multiple be used?",
-    "subtitle": "The last resort when a company has no profit yet to value it by",
-    "duration": "6 min"
-  },
   "risk-return-tradeoff": {
     "title": "The Risk-Return Tradeoff",
     "subtitle": "To get a higher expected return, you have to accept correspondingly higher risk",
@@ -1273,16 +1108,6 @@
   "rui-ro-khi-hau-nhu-rui-ro-tai-chinh": {
     "title": "Climate risk as a financial risk",
     "subtitle": "Physical risk, transition risk and stranded assets - how to quantify instead of just worrying",
-    "duration": "9 min"
-  },
-  "samsung-ai-finance": {
-    "title": "Samsung Q1 2026 - AI through the financial lens",
-    "subtitle": "HBM, the memory cycle, pricing power and AI capex",
-    "duration": "6 min"
-  },
-  "sensitivity-analysis-la-gi": {
-    "title": "What is Sensitivity Analysis?",
-    "subtitle": "Testing how a valuation result changes when key assumptions change",
     "duration": "9 min"
   },
   "sharpe-ratio-la-gi": {
@@ -1366,11 +1191,6 @@
     "title": "AI in Finance, Lesson 9: Building your own AI assistant for finance",
     "subtitle": "Set the ground rules so the AI answers the way you want and stops inventing numbers.",
     "duration": "16 min"
-  },
-  "terminal-value-la-gi": {
-    "title": "What is Terminal Value?",
-    "subtitle": "The single largest share of value in most DCF models",
-    "duration": "10 min"
   },
   "tesla-cash-flow": {
     "title": "Tesla Q1 2026 Cash Flow",
@@ -1485,11 +1305,6 @@
     "subtitle": "A basic debt instrument - you lend, they pay interest",
     "duration": "5 min"
   },
-  "transfer-pricing": {
-    "title": "Transfer Pricing",
-    "subtitle": "The arm's length principle - the Apple Ireland case",
-    "duration": "6 min"
-  },
   "treasury-bond-la-gi": {
     "title": "What is a Treasury bond?",
     "subtitle": "Government bonds - the market's safest reference point",
@@ -1587,11 +1402,6 @@
     "title": "Contractors, Part 2: Retention, bonds and negative working capital",
     "subtitle": "Why winning more work leaves a contractor shorter of cash, and how much of a contract stays locked up until after the defects period",
     "duration": "11 min"
-  },
-  "walmart-earnings": {
-    "title": "The Walmart earnings story",
-    "subtitle": "Reading the CEO/CFO Q&A - the business model behind the numbers",
-    "duration": "6 min"
   },
   "wealth-management": {
     "title": "What is wealth management?",

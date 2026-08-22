@@ -269,8 +269,11 @@ export const trackStagesVi = {
         },
         {
           label: "Chặng 6",
-          name: "Thiết kế API và hợp đồng dịch vụ",
-          parts: ["REST và quy ước tài nguyên", "GraphQL và gRPC"],
+          name: "Bảo mật ứng dụng",
+          parts: [
+            "Danh tính, quyền và dữ liệu nhạy cảm",
+            "Giới hạn hậu quả và chuẩn bị cho sự cố",
+          ],
         },
         {
           label: "Chặng 7",
@@ -836,8 +839,11 @@ export const trackStagesEn: typeof trackStagesVi = {
         },
         {
           label: "Stage 6",
-          name: "API design and service contracts",
-          parts: ["REST and resource conventions", "GraphQL and gRPC"],
+          name: "Application security",
+          parts: [
+            "Identity, permissions and sensitive data",
+            "Limiting blast radius and preparing for incidents",
+          ],
         },
         {
           label: "Stage 7",

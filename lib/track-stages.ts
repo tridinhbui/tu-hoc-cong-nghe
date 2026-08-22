@@ -460,13 +460,16 @@ export const TRACK_PROFESSIONAL = {
     },
     {
       label: "Chặng 6",
-      name: "Thiết kế API và hợp đồng dịch vụ",
+      name: "Bảo mật ứng dụng",
       days: [121, 140] as [number, number],
       available: true,
+      // 1036 là bài định giá tài sản ròng, từng bổ trợ cho chặng định giá cũ ở
+      // dải 121-140. Giữ tạm để nó không rơi khỏi giáo trình, tới khi chặng
+      // tài chính tương ứng được chuyển đổi.
       extraLessonIds: [1036],
       parts: [
-        { name: "REST và quy ước tài nguyên", days: [121, 130] as [number, number] },
-        { name: "GraphQL và gRPC", days: [131, 140] as [number, number], extraLessonIds: [1036] },
+        { name: "Danh tính, quyền và dữ liệu nhạy cảm", days: [121, 130] as [number, number] },
+        { name: "Giới hạn hậu quả và chuẩn bị cho sự cố", days: [131, 140] as [number, number], extraLessonIds: [1036] },
       ],
     },
     {

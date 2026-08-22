@@ -1672,7 +1672,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó.",
       "distractors": [
         "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
-        "Ba quyết định: Đầu tư, Tài trợ, Cổ tức"
+        "Bí mật nên đi qua kho quản lý riêng và được nạp lúc chạy."
       ]
     },
     {
@@ -1691,7 +1691,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kiểm chứng trước khi xây: mua thông tin với giá rẻ",
       "text": "Hành vi đã xảy ra là bằng chứng mạnh hơn nhiều so với ý kiến khi được hỏi.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Thêm một thư viện là thêm một thứ phải theo dõi lỗ hổng và bảo trì lâu dài.",
         "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
@@ -1711,7 +1711,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Thất bại phổ biến nhất: làm rất tốt một thứ không ai cần",
       "text": "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Đổi hành vi mặc định cũng là phá vỡ tương thích, dù giao diện không đổi.",
         "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
@@ -1731,7 +1731,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Giải thích đánh đổi cho người không viết mã",
       "text": "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Một sản phẩm dựng duy nhất đi qua mọi môi trường, chỉ đổi cấu hình.",
         "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
@@ -1751,8 +1751,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Dự án: đi trọn một vòng từ ý tưởng tới con số",
       "text": "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
-        "Ba quyết định: Đầu tư, Tài trợ, Cổ tức"
+        "Bí mật đã vào kho mã thì coi như đã lộ, kể cả với kho riêng tư.",
+        "Phủ nhánh chặt hơn phủ dòng vì nó đòi hỏi cả hai hướng của điều kiện được chạy."
       ]
     },
     {
@@ -1771,8 +1771,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: đo cho đúng rồi chọn cho đúng",
       "text": "Chỉ số chỉ có nghĩa khi nói rõ nó thay mặt cho điều gì, và nó phải giảm được.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
-        "Giữ lại nếu ROIC > cost of capital"
+        "Xoay vòng khoá định kỳ biến việc thay khoá thành thao tác quen thuộc thay vì tình huống khẩn cấp.",
+        "Bình luận nên nói rõ đâu là điều kiện bắt buộc và đâu là gợi ý."
       ]
     },
     {
@@ -1788,11 +1788,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "106": [
     {
       "fromDay": 101,
-      "fromTitle": "Corporate Finance là gì?",
-      "text": "Ba quyết định: Đầu tư, Tài trợ, Cổ tức",
+      "fromTitle": "Quy mô: vấn đề đổi chất chứ không chỉ đổi lượng",
+      "text": "Chi phí phối hợp tăng theo bình phương số người, năng lực chỉ tăng tuyến tính.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Bài đầu cuối đắt nhưng là thứ duy nhất chứng minh các mảnh ghép được với nhau.",
+        "Xung đột là hàm của khoảng cách, và khoảng cách là hàm của thời gian."
       ]
     },
     {
@@ -1808,11 +1808,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "107": [
     {
       "fromDay": 102,
-      "fromTitle": "Cơ cấu vốn (Capital Structure)",
-      "text": "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+      "fromTitle": "Ranh giới: mỗi phần có đúng một chủ",
+      "text": "Mỗi phần mã nên có đúng một đội chịu trách nhiệm.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Giữ lại nếu ROIC > cost of capital"
+        "Cổng tự động biến quy ước thành thứ không phụ thuộc trí nhớ hay áp lực.",
+        "Nhánh dài còn giấu công việc khỏi đội, nên hai người dễ làm trùng nhau."
       ]
     },
     {
@@ -1821,18 +1821,18 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó.",
       "distractors": [
         "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
-        "Ba quyết định: Đầu tư, Tài trợ, Cổ tức"
+        "Xoay vòng khoá định kỳ biến việc thay khoá thành thao tác quen thuộc thay vì tình huống khẩn cấp."
       ]
     }
   ],
   "108": [
     {
       "fromDay": 103,
-      "fromTitle": "Nợ có lợi ích gì cho doanh nghiệp?",
-      "text": "Tax shield = Lãi vay × Thuế suất",
+      "fromTitle": "Phụ thuộc chéo: khi ranh giới có lỗ",
+      "text": "Chi phí bị chặn lớn hơn số ngày chờ, vì mất ngữ cảnh và phải quay lại.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Độ phủ đo dòng được chạy qua, không đo điều được khẳng định.",
+        "Cờ để lâu quá thành nợ: số tổ hợp trạng thái tăng theo cấp số nhân."
       ]
     },
     {
@@ -1840,7 +1840,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Kiểm chứng trước khi xây: mua thông tin với giá rẻ",
       "text": "Hành vi đã xảy ra là bằng chứng mạnh hơn nhiều so với ý kiến khi được hỏi.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Số phiên bản mô tả rủi ro cho người nhận, không mô tả công sức của người phát hành.",
         "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
@@ -1848,11 +1848,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "109": [
     {
       "fromDay": 104,
-      "fromTitle": "Đòn bẩy tài chính (Financial Leverage)",
-      "text": "Đòn bẩy khuếch đại cả lợi nhuận lẫn rủi ro",
+      "fromTitle": "Hợp đồng giữa các đội: lời hứa phải kiểm chứng được",
+      "text": "Hợp đồng chỉ có giá trị khi được kiểm tự động ở cả hai phía.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Phủ nhánh chặt hơn phủ dòng vì nó đòi hỏi cả hai hướng của điều kiện được chạy.",
+        "Đường lui phải được kiểm chứng, không chỉ tồn tại trên giấy."
       ]
     },
     {
@@ -1860,7 +1860,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Thất bại phổ biến nhất: làm rất tốt một thứ không ai cần",
       "text": "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Ghi chú phát hành phải nói rõ cần sửa gì, không chỉ liệt kê thay đổi.",
         "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
@@ -1868,11 +1868,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "110": [
     {
       "fromDay": 105,
-      "fromTitle": "Lý thuyết Modigliani-Miller",
-      "text": "MM (no tax): cơ cấu vốn không quan trọng trong thị trường hoàn hảo",
+      "fromTitle": "Kho mã chung hay tách: đánh đổi chứ không có đáp án đúng",
+      "text": "Kho chung làm thay đổi xuyên ranh giới rẻ, đổi lại cần công cụ mạnh.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Bình luận nên nói rõ đâu là điều kiện bắt buộc và đâu là gợi ý.",
+        "Tách thành nhiều lần triển khai để mỗi bước luôn còn đường lui."
       ]
     },
     {
@@ -1880,7 +1880,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Giải thích đánh đổi cho người không viết mã",
       "text": "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Mã không nên biết nó đang chạy ở môi trường nào.",
         "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
@@ -1888,11 +1888,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "111": [
     {
       "fromDay": 106,
-      "fromTitle": "Chính sách cổ tức",
-      "text": "Giữ lại nếu ROIC > cost of capital",
+      "fromTitle": "Chuẩn chung và tự chủ: chọn chỗ để thống nhất",
+      "text": "Chuẩn hoá ở ranh giới thì lợi nhiều mất ít; chuẩn hoá bên trong thì ngược lại.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Gộp thường xuyên giữ mỗi lần chỉ có một khoảng cách nhỏ phải giải.",
+        "Chỉ số phát hiện bất thường, nhật ký giải thích một trường hợp, vết chỉ ra thời gian đi đâu."
       ]
     },
     {
@@ -1900,19 +1900,19 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Dự án: đi trọn một vòng từ ý tưởng tới con số",
       "text": "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
-        "Ba quyết định: Đầu tư, Tài trợ, Cổ tức"
+        "Việc đầu tiên luôn là vô hiệu hoá khoá cũ, không phải dọn lịch sử.",
+        "Để máy lo định dạng và quy ước, dành thời gian người cho thiết kế và ý nghĩa."
       ]
     }
   ],
   "112": [
     {
       "fromDay": 107,
-      "fromTitle": "Mua lại cổ phiếu (Share Buyback)",
-      "text": "Buyback = giảm shares outstanding → EPS tăng",
+      "fromTitle": "Nền tảng nội bộ: sản phẩm mà khách hàng là đồng nghiệp",
+      "text": "Thước đo của nền tảng nội bộ là lựa chọn tự nguyện, không phải tỷ lệ sử dụng.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
-        "CCC = DSO + DIO − DPO"
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra.",
+        "Đo cả những thứ không bao giờ được xảy ra, vì số không bất ngờ khác không là tín hiệu mạnh."
       ]
     },
     {
@@ -1920,668 +1920,668 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: đo cho đúng rồi chọn cho đúng",
       "text": "Chỉ số chỉ có nghĩa khi nói rõ nó thay mặt cho điều gì, và nó phải giảm được.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
-        "Giữ lại nếu ROIC > cost of capital"
+        "Bài kiểm thử càng nhỏ càng nhanh và càng chỉ rõ chỗ hỏng.",
+        "Rà soát cũng là cách lan truyền hiểu biết, nên đừng để một người gác mọi thứ."
       ]
     }
   ],
   "113": [
     {
       "fromDay": 108,
-      "fromTitle": "M&A là gì?",
-      "text": "Merger: hợp nhất bình đẳng; Acquisition: mua và kiểm soát",
+      "fromTitle": "Dùng chung hay nhân bản: một chút lặp rẻ hơn một ràng buộc sai",
+      "text": "Giống nhau tình cờ và giống nhau vì cùng quy tắc là hai chuyện khác hẳn.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Cờ để lâu quá thành nợ: số tổ hợp trạng thái tăng theo cấp số nhân.",
+        "Cảnh báo giả nhiều lần sẽ huấn luyện đội bỏ qua cả cảnh báo thật."
       ]
     },
     {
       "fromDay": 101,
-      "fromTitle": "Corporate Finance là gì?",
-      "text": "Ba quyết định: Đầu tư, Tài trợ, Cổ tức",
+      "fromTitle": "Quy mô: vấn đề đổi chất chứ không chỉ đổi lượng",
+      "text": "Lời giải cho quy mô là ranh giới rõ ràng, không phải quy trình dày hơn.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Bài kiểm thử đỏ vặt còn hại hơn không có, vì nó dạy người ta bỏ qua tín hiệu.",
+        "Gộp thường xuyên giữ mỗi lần chỉ có một khoảng cách nhỏ phải giải."
       ]
     }
   ],
   "114": [
     {
       "fromDay": 109,
-      "fromTitle": "Synergy trong M&A",
-      "text": "Cost synergy dễ đạt hơn revenue synergy",
+      "fromTitle": "Dữ liệu dùng chung: ranh giới khó giữ nhất",
+      "text": "Đọc thẳng dữ liệu của đội khác biến cấu trúc nội bộ thành hợp đồng ngầm.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Đường lui phải được kiểm chứng, không chỉ tồn tại trên giấy.",
+        "Quay lui về trạng thái đã biết là tốt luôn an toàn hơn sửa vội."
       ]
     },
     {
       "fromDay": 102,
-      "fromTitle": "Cơ cấu vốn (Capital Structure)",
-      "text": "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+      "fromTitle": "Ranh giới: mỗi phần có đúng một chủ",
+      "text": "Ranh giới tốt là ranh giới mà thay đổi thông thường chỉ chạm một bên.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Giữ lại nếu ROIC > cost of capital"
+        "Nó phải chạy trên môi trường sạch, nếu không sẽ lặp lại chuyện chạy được trên máy tôi.",
+        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
       ]
     }
   ],
   "115": [
     {
       "fromDay": 110,
-      "fromTitle": "IPO là gì?",
-      "text": "IPO = lần đầu bán cổ phiếu ra công chúng",
+      "fromTitle": "Sự kiện nội bộ: kể chuyện đã xảy ra, đừng ra lệnh",
+      "text": "Sự kiện mô tả việc đã xảy ra, ở thì quá khứ, không mang mệnh lệnh.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Thêm cột cho phép rỗng là an toàn; xoá và đổi tên thì không.",
+        "Đi tìm người chịu trách nhiệm dạy tổ chức cách giấu sự cố lần sau."
       ]
     },
     {
       "fromDay": 103,
-      "fromTitle": "Nợ có lợi ích gì cho doanh nghiệp?",
-      "text": "Tax shield = Lãi vay × Thuế suất",
+      "fromTitle": "Phụ thuộc chéo: khi ranh giới có lỗ",
+      "text": "Cho phép đóng góp có rà soát giữ được cả tốc độ lẫn quyền kiểm soát.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Phủ thấp là tín hiệu đáng tin; phủ cao không bảo đảm gì.",
+        "Triển khai từng phần biến lỗi toàn phần thành lỗi cục bộ trong thời gian ngắn."
       ]
     }
   ],
   "116": [
     {
       "fromDay": 111,
-      "fromTitle": "Unit Economics",
-      "text": "LTV/CAC ≥ 3: mô hình kinh doanh khả thi",
+      "fromTitle": "Nhất quán cuối cùng: hai đội, hai câu trả lời, cùng một lúc",
+      "text": "Nhất quán cuối cùng là cái giá của việc các đội độc lập, không phải lỗi.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Kiểm thử phủ những gì bạn nghĩ tới; quan sát cho thấy những gì thật sự xảy ra.",
+        "Nợ kỹ thuật là lựa chọn có ý thức kèm kế hoạch trả, không phải mọi đoạn mã xấu."
       ]
     },
     {
       "fromDay": 104,
-      "fromTitle": "Đòn bẩy tài chính (Financial Leverage)",
-      "text": "Đòn bẩy khuếch đại cả lợi nhuận lẫn rủi ro",
+      "fromTitle": "Hợp đồng giữa các đội: lời hứa phải kiểm chứng được",
+      "text": "Bên tiêu thụ nên kiểm rằng mình chỉ dựa vào những gì được hứa.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Để máy lo định dạng và quy ước, dành thời gian người cho thiết kế và ý nghĩa.",
+        "Nỗi sợ triển khai là dấu hiệu của đường lui yếu, không phải của mã yếu."
       ]
     }
   ],
   "117": [
     {
       "fromDay": 112,
-      "fromTitle": "Quản lý vốn lưu động",
-      "text": "Working Capital = Current Assets − Current Liabilities",
+      "fromTitle": "Khi buộc phải triển khai cùng nhau",
+      "text": "Phải triển khai đồng thời luôn là dấu hiệu của thay đổi phá vỡ tương thích chưa chia nhỏ.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Không đo được thì không quản được: cần dấu vết trong mã hoặc trong danh sách công việc."
       ]
     },
     {
       "fromDay": 105,
-      "fromTitle": "Lý thuyết Modigliani-Miller",
-      "text": "MM (no tax): cơ cấu vốn không quan trọng trong thị trường hoàn hảo",
+      "fromTitle": "Kho mã chung hay tách: đánh đổi chứ không có đáp án đúng",
+      "text": "Kho tách cho tự chủ khi phát hành, đổi lại thay đổi xuyên ranh giới đắt.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Rà soát cũng là cách lan truyền hiểu biết, nên đừng để một người gác mọi thứ.",
+        "Thêm cột cho phép rỗng là an toàn; xoá và đổi tên thì không."
       ]
     }
   ],
   "118": [
     {
       "fromDay": 113,
-      "fromTitle": "Cash Conversion Cycle (CCC)",
-      "text": "CCC = DSO + DIO − DPO",
+      "fromTitle": "Đường găng: chuỗi dài nhất quyết định ngày xong",
+      "text": "Công sức cộng lại được, thời gian thì phụ thuộc vào cấu trúc của chuỗi.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Không có gì cần làm ngay thì để tới giờ hành chính, đừng đánh thức ai.",
+        "Ghi lại cả những phương án đã bị loại và lý do loại."
       ]
     },
     {
       "fromDay": 106,
-      "fromTitle": "Chính sách cổ tức",
-      "text": "Giữ lại nếu ROIC > cost of capital",
+      "fromTitle": "Chuẩn chung và tự chủ: chọn chỗ để thống nhất",
+      "text": "Mỗi chuẩn là thuế đánh vào tự chủ, nên phải trả lời được nó mua lại thứ gì.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Thay đổi lớn nên chia thành nhiều bước gộp được, thay vì một nhánh dài.",
+        "Kiểm thử phủ những gì bạn nghĩ tới; quan sát cho thấy những gì thật sự xảy ra."
       ]
     }
   ],
   "119": [
     {
       "fromDay": 114,
-      "fromTitle": "CapEx vs OpEx",
-      "text": "CapEx: tài sản dài hạn, khấu hao dần",
+      "fromTitle": "Ghi lại quyết định: vì sao mọi thứ như hiện tại",
+      "text": "Ghi lại các phương án đã loại và lý do, vì mã chỉ cho thấy phương án được chọn.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CCC = DSO + DIO − DPO"
+        "Phải có một người điều phối, tách khỏi người đang gõ lệnh.",
+        "Cổng tự động biến quy ước thành ràng buộc; rà soát mã lo phần máy không làm được."
       ]
     },
     {
       "fromDay": 107,
-      "fromTitle": "Mua lại cổ phiếu (Share Buyback)",
-      "text": "Buyback = giảm shares outstanding → EPS tăng",
+      "fromTitle": "Nền tảng nội bộ: sản phẩm mà khách hàng là đồng nghiệp",
+      "text": "Nền tảng nên là thư viện và khuôn mẫu, không phải một hàng đợi yêu cầu.",
       "distractors": [
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
-        "CCC = DSO + DIO − DPO"
+        "Tắt cờ mất vài giây, còn quay lui một lần triển khai mất nhiều phút.",
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
       ]
     }
   ],
   "120": [
     {
       "fromDay": 115,
-      "fromTitle": "Burn Rate và Runway",
-      "text": "Runway = Cash ÷ Net Burn Rate",
+      "fromTitle": "Rà soát kiến trúc: cửa sổ hay cửa ải",
+      "text": "Tiêu chí rà soát là chi phí sửa sai, không phải quy mô mã hay ngân sách.",
       "distractors": [
-        "CapEx: tài sản dài hạn, khấu hao dần",
-        "CCC = DSO + DIO − DPO"
+        "Đi tìm người chịu trách nhiệm dạy tổ chức cách giấu sự cố lần sau.",
+        "Sau sự cố, sửa hệ thống chứ đừng sửa con người."
       ]
     },
     {
       "fromDay": 108,
-      "fromTitle": "M&A là gì?",
-      "text": "Merger: hợp nhất bình đẳng; Acquisition: mua và kiểm soát",
+      "fromTitle": "Dùng chung hay nhân bản: một chút lặp rẻ hơn một ràng buộc sai",
+      "text": "Câu hỏi phân biệt: một bên đổi thì bên kia có bắt buộc đổi theo không.",
       "distractors": [
-        "Buyback = giảm shares outstanding → EPS tăng",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Triển khai từng phần biến lỗi toàn phần thành lỗi cục bộ trong thời gian ngắn.",
+        "Không có gì cần làm ngay thì để tới giờ hành chính, đừng đánh thức ai."
       ]
     }
   ],
   "121": [
     {
       "fromDay": 116,
-      "fromTitle": "Financial Model là gì?",
-      "text": "Financial model: dự báo tài chính theo giả định",
+      "fromTitle": "Thay hệ thống cũ: bóp nghẹt dần thay vì viết lại",
+      "text": "Bóp nghẹt dần: đặt lớp trung gian, chuyển từng phần, mỗi bước có giá trị riêng.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Nợ kỹ thuật là lựa chọn có ý thức kèm kế hoạch trả, không phải mọi đoạn mã xấu.",
+        "Cùng một con số có thể mang hai nghĩa trái ngược tuỳ mục đích sản phẩm."
       ]
     },
     {
       "fromDay": 109,
-      "fromTitle": "Synergy trong M&A",
-      "text": "Cost synergy dễ đạt hơn revenue synergy",
+      "fromTitle": "Dữ liệu dùng chung: ranh giới khó giữ nhất",
+      "text": "Cung cấp dữ liệu qua giao diện có phiên bản, hoặc qua bản sao dành cho đọc.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Nỗi sợ triển khai là dấu hiệu của đường lui yếu, không phải của mã yếu.",
+        "Phải có một người điều phối, tách khỏi người đang gõ lệnh."
       ]
     }
   ],
   "122": [
     {
       "fromDay": 117,
-      "fromTitle": "LBO là gì?",
-      "text": "LBO: mua công ty với 60-80% nợ",
+      "fromTitle": "Gỡ hệ thống cũ: phần không ai muốn làm",
+      "text": "Cuộc di trú chỉ xong khi hệ thống cũ đã tắt, không phải khi bản mới chạy.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Không đo được thì không quản được: cần dấu vết trong mã hoặc trong danh sách công việc.",
+        "Chỉ số dùng được phải giảm được khi sản phẩm tệ đi."
       ]
     },
     {
       "fromDay": 110,
-      "fromTitle": "IPO là gì?",
-      "text": "IPO = lần đầu bán cổ phiếu ra công chúng",
+      "fromTitle": "Sự kiện nội bộ: kể chuyện đã xảy ra, đừng ra lệnh",
+      "text": "Bên phát không cần biết ai đang nghe - đó là toàn bộ lợi ích của mô hình này.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Di trú dữ liệu lớn nên chạy theo lô, không khoá bảng trong một giao dịch dài.",
+        "Mỗi hành động rút ra phải có người phụ trách và thời hạn, nếu không nó không tồn tại."
       ]
     }
   ],
   "123": [
     {
       "fromDay": 118,
-      "fromTitle": "Venture Capital là gì?",
-      "text": "VC: đầu tư mạo hiểm, chấp nhận rủi ro cao",
+      "fromTitle": "Hệ thống có hình dạng của tổ chức làm ra nó",
+      "text": "Ranh giới nằm trong nội bộ một đội có xu hướng bị bào mòn.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Ghi lại cả những phương án đã bị loại và lý do loại.",
+        "Nhóm theo thời điểm bắt đầu tách chất lượng sản phẩm khỏi quy mô, và đường cong giữ chân của từng nhóm là thứ đáng đọc."
       ]
     },
     {
       "fromDay": 111,
-      "fromTitle": "Unit Economics",
-      "text": "LTV/CAC ≥ 3: mô hình kinh doanh khả thi",
+      "fromTitle": "Nhất quán cuối cùng: hai đội, hai câu trả lời, cùng một lúc",
+      "text": "Phải quyết định giao diện nói gì trong khoảng chưa khớp.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Chỉ số quan trọng nhất là chỉ số phản ánh trải nghiệm người dùng, không phải tài nguyên máy.",
+        "Lãi của nó là thời gian tăng thêm cho mọi thay đổi đi qua vùng đó."
       ]
     }
   ],
   "124": [
     {
       "fromDay": 119,
-      "fromTitle": "Private Equity là gì?",
-      "text": "PE: mua công ty trưởng thành, tái cơ cấu, exit sau 5-7 năm",
+      "fromTitle": "Khi nào tách dịch vụ, khi nào đừng",
+      "text": "Tách dịch vụ mua sự độc lập vận hành, trả bằng độ phức tạp phân tán.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Cổng tự động biến quy ước thành ràng buộc; rà soát mã lo phần máy không làm được.",
+        "Nhóm cũng chia được theo kênh, theo thiết bị hay theo gói dịch vụ."
       ]
     },
     {
       "fromDay": 112,
-      "fromTitle": "Quản lý vốn lưu động",
-      "text": "Working Capital = Current Assets − Current Liabilities",
+      "fromTitle": "Khi buộc phải triển khai cùng nhau",
+      "text": "Chia thành các bước tương thích hai chiều thì mỗi bên tự chọn lịch của mình.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Mỗi cảnh báo phải kèm hành động cụ thể; không có hành động thì đó là bảng theo dõi.",
+        "Mã và kiểm thử nói cái gì và như thế nào; chỉ tài liệu nói vì sao."
       ]
     }
   ],
   "125": [
     {
       "fromDay": 120,
-      "fromTitle": "Ôn tập: Tài chính doanh nghiệp",
-      "text": "Ba quyết định: Đầu tư, Tài trợ, Phân phối",
+      "fromTitle": "Ôn tập: mọi thứ đổi khác khi có nhiều đội",
+      "text": "Chi phí phối hợp tăng theo bình phương số người; ranh giới là công cụ cắt nó.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Sau sự cố, sửa hệ thống chứ đừng sửa con người.",
+        "Phải định nghĩa rõ từng bước, nếu không hai người sẽ đọc ra hai kết quả."
       ]
     },
     {
       "fromDay": 113,
-      "fromTitle": "Cash Conversion Cycle (CCC)",
-      "text": "CCC = DSO + DIO − DPO",
+      "fromTitle": "Đường găng: chuỗi dài nhất quyết định ngày xong",
+      "text": "Thêm người không rút ngắn được chuỗi nối tiếp.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Khôi phục và điều tra là hai việc tách biệt; chỉ việc đầu là gấp.",
+        "Tài liệu sai còn hại hơn không có, vì người đọc tin vào nó."
       ]
     }
   ],
   "126": [
     {
       "fromDay": 121,
-      "fromTitle": "Cổ phiếu là gì?",
-      "text": "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
+      "fromTitle": "Mô hình mối đe doạ: ai muốn gì, và bạn mất gì",
+      "text": "Phần lớn tấn công là cơ hội và tự động, không nhắm riêng vào bạn.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Enterprise Value = Market Cap + Nợ − Tiền mặt"
+        "Đo hành vi hoàn thành việc quan trọng hơn đo hoạt động bề mặt.",
+        "Chạy tới đủ mẫu rồi mới đọc, đừng dừng ngay khi thấy con số đẹp."
       ]
     },
     {
       "fromDay": 114,
-      "fromTitle": "CapEx vs OpEx",
-      "text": "CapEx: tài sản dài hạn, khấu hao dần",
+      "fromTitle": "Ghi lại quyết định: vì sao mọi thứ như hiện tại",
+      "text": "Ghi cả điều kiện nào sẽ khiến quyết định này cần xem lại.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CCC = DSO + DIO − DPO"
+        "Ghi lại dòng thời gian ngay trong lúc xử lý, vì sau đó không ai nhớ chính xác nữa.",
+        "Cờ tính năng tách triển khai khỏi phát hành, biến việc tắt thành thao tác vài giây."
       ]
     }
   ],
   "127": [
     {
       "fromDay": 122,
-      "fromTitle": "Khi mua cổ phiếu, thực chất mình sở hữu gì?",
-      "text": "Sở hữu cổ phiếu = sở hữu tỷ lệ tương ứng trong tài sản, lợi nhuận và quyền biểu quyết",
+      "fromTitle": "Mật khẩu: thứ yếu nhất mà ai cũng còn dùng",
+      "text": "Rủi ro lớn nhất là dùng lại mật khẩu, không phải mật khẩu bị bẻ khoá.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Enterprise Value = Market Cap + Nợ − Tiền mặt"
+        "Chỉ số trung bình che mất phân bố, giống hệt vấn đề của độ trễ trung bình.",
+        "Không đủ lưu lượng thì hãy thử những thay đổi lớn hơn, đừng thử tinh chỉnh nhỏ."
       ]
     },
     {
       "fromDay": 115,
-      "fromTitle": "Burn Rate và Runway",
-      "text": "Runway = Cash ÷ Net Burn Rate",
+      "fromTitle": "Rà soát kiến trúc: cửa sổ hay cửa ải",
+      "text": "Rà soát nên là nơi lấy góc nhìn, không phải cửa xin phép.",
       "distractors": [
-        "CapEx: tài sản dài hạn, khấu hao dần",
-        "CCC = DSO + DIO − DPO"
+        "Mỗi hành động rút ra phải có người phụ trách và thời hạn, nếu không nó không tồn tại.",
+        "Một chỉ số chỉ có nghĩa khi bạn nói rõ nó thay mặt cho điều gì."
       ]
     }
   ],
   "128": [
     {
       "fromDay": 123,
-      "fromTitle": "Giá cổ phiếu và giá trị doanh nghiệp khác nhau thế nào?",
-      "text": "Giá cổ phiếu (price): kết quả cung-cầu tức thời, có thể lệch khỏi giá trị thực",
+      "fromTitle": "Phiên đăng nhập: chìa khoá được cấp sau khi mở cửa",
+      "text": "Mã phiên có quyền tương đương mật khẩu nhưng lộ ra ở nhiều chỗ hơn.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Enterprise Value = Market Cap + Nợ − Tiền mặt"
+        "Xu hướng giữa các nhóm quan trọng hơn con số tuyệt đối của một nhóm.",
+        "Ngẫu nhiên hoá là thứ duy nhất cắt đứt được mối liên hệ sẵn có giữa hai nhóm."
       ]
     },
     {
       "fromDay": 116,
-      "fromTitle": "Financial Model là gì?",
-      "text": "Financial model: dự báo tài chính theo giả định",
+      "fromTitle": "Thay hệ thống cũ: bóp nghẹt dần thay vì viết lại",
+      "text": "Chạy song song và so kết quả là cách rẻ nhất để tìm ra hành vi chưa biết.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Lãi của nó là thời gian tăng thêm cho mọi thay đổi đi qua vùng đó.",
+        "Đo hành vi hoàn thành việc quan trọng hơn đo hoạt động bề mặt."
       ]
     }
   ],
   "129": [
     {
       "fromDay": 124,
-      "fromTitle": "Market Cap là gì?",
-      "text": "Market Cap = Giá cổ phiếu × Số lượng cổ phiếu đang lưu hành",
+      "fromTitle": "Lưu mật khẩu: giả định cơ sở dữ liệu sẽ bị lấy",
+      "text": "Thiết kế với giả định cơ sở dữ liệu sẽ bị lấy vào một ngày nào đó.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Enterprise Value = Market Cap + Nợ − Tiền mặt"
+        "Cú rơi lớn nhất là nơi đáng sửa trước, không phải bước có tỷ lệ thấp nhất trong tuyệt đối.",
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi."
       ]
     },
     {
       "fromDay": 117,
-      "fromTitle": "LBO là gì?",
-      "text": "LBO: mua công ty với 60-80% nợ",
+      "fromTitle": "Gỡ hệ thống cũ: phần không ai muốn làm",
+      "text": "Chi phí giữ hệ thống cũ tăng theo thời gian vì hiểu biết về nó mất dần.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Mã và kiểm thử nói cái gì và như thế nào; chỉ tài liệu nói vì sao.",
+        "Tỷ lệ thường giàu thông tin hơn số tuyệt đối."
       ]
     }
   ],
   "130": [
     {
       "fromDay": 125,
-      "fromTitle": "Enterprise Value là gì?",
-      "text": "Enterprise Value = Market Cap + Nợ − Tiền mặt",
+      "fromTitle": "Phân quyền: theo vai trò là chưa đủ",
+      "text": "Vai trò trả lời loại thao tác; quan hệ trả lời với dữ liệu nào.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Chia ngẫu nhiên và chạy song song là thứ tách tác động của thay đổi khỏi nhiễu bên ngoài.",
+        "Đặt chỉ tiêu cho một chỉ số sẽ làm nó bị tối ưu theo cách bạn không mong."
       ]
     },
     {
       "fromDay": 118,
-      "fromTitle": "Venture Capital là gì?",
-      "text": "VC: đầu tư mạo hiểm, chấp nhận rủi ro cao",
+      "fromTitle": "Hệ thống có hình dạng của tổ chức làm ra nó",
+      "text": "Muốn đổi kiến trúc bền vững thì phải đổi cả cách tổ chức đội.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Tài liệu sai còn hại hơn không có, vì người đọc tin vào nó.",
+        "So các nhóm ở cùng độ tuổi, không so ở cùng thời điểm lịch."
       ]
     }
   ],
   "131": [
     {
       "fromDay": 126,
-      "fromTitle": "Equity Value vs Enterprise Value",
-      "text": "Equity Value: giá trị dành cho cổ đông; Enterprise Value: giá trị toàn bộ doanh nghiệp",
+      "fromTitle": "Mã hoá dữ liệu nằm yên: bảo vệ trước ai",
+      "text": "Mã hoá toàn ổ chỉ bảo vệ khi ổ ở trạng thái tắt và rời khỏi tầm kiểm soát.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Không phải thay đổi nào cũng cần thử nghiệm - việc sửa lỗi rõ ràng thì cứ làm.",
+        "Biến động đột ngột nên nghi đường dữ liệu trước khi nghi thế giới thật."
       ]
     },
     {
       "fromDay": 119,
-      "fromTitle": "Private Equity là gì?",
-      "text": "PE: mua công ty trưởng thành, tái cơ cấu, exit sau 5-7 năm",
+      "fromTitle": "Khi nào tách dịch vụ, khi nào đừng",
+      "text": "Nếu cùng một đội sở hữu cả hai phần thì lợi ích gần như bằng không.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Cờ tính năng tách triển khai khỏi phát hành, biến việc tắt thành thao tác vài giây.",
+        "Chia hành trình thành bước để biến một con số tổng thành một danh sách việc."
       ]
     }
   ],
   "132": [
     {
       "fromDay": 127,
-      "fromTitle": "P/E dùng khi nào?",
-      "text": "P/E = Giá cổ phiếu / EPS, phù hợp nhất với công ty lợi nhuận dương và ổn định",
+      "fromTitle": "Quản lý khoá: chỗ mọi lớp mã hoá quy về",
+      "text": "Khoá phải nằm ở nơi chịu kịch bản xâm nhập khác với dữ liệu.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Không đủ lưu lượng thì hãy thử những thay đổi lớn hơn, đừng thử tinh chỉnh nhỏ.",
+        "Hỏi về hành vi đã xảy ra, đừng hỏi người dùng dự đoán hành vi tương lai."
       ]
     },
     {
       "fromDay": 120,
-      "fromTitle": "Ôn tập: Tài chính doanh nghiệp",
-      "text": "Ba quyết định: Đầu tư, Tài trợ, Phân phối",
+      "fromTitle": "Ôn tập: mọi thứ đổi khác khi có nhiều đội",
+      "text": "Phải triển khai đồng thời luôn là dấu hiệu của thay đổi chưa chia nhỏ.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "CapEx: tài sản dài hạn, khấu hao dần"
+        "Một chỉ số chỉ có nghĩa khi bạn nói rõ nó thay mặt cho điều gì.",
+        "Phễu cho biết chỗ rơi chứ không cho biết vì sao rơi - phần đó cần hỏi người dùng."
       ]
     }
   ],
   "133": [
     {
       "fromDay": 128,
-      "fromTitle": "P/B dùng khi nào?",
-      "text": "P/B = Giá cổ phiếu / Book Value per Share",
+      "fromTitle": "Tiêm lệnh: dữ liệu bị đọc thành câu lệnh",
+      "text": "Nguyên nhân luôn là dữ liệu và câu lệnh bị trộn vào một chuỗi.",
       "distractors": [
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
-        "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai"
+        "Ngẫu nhiên hoá là thứ duy nhất cắt đứt được mối liên hệ sẵn có giữa hai nhóm.",
+        "Sai lệch của ước lượng không đối xứng: nó lệch về phía lâu hơn."
       ]
     },
     {
       "fromDay": 121,
-      "fromTitle": "Cổ phiếu là gì?",
-      "text": "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
+      "fromTitle": "Mô hình mối đe doạ: ai muốn gì, và bạn mất gì",
+      "text": "Mọi biện pháp đều có giá, nên chúng phải được xếp thứ tự.",
       "distractors": [
-        "Runway = Cash ÷ Net Burn Rate",
-        "Enterprise Value = Market Cap + Nợ − Tiền mặt"
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề.",
+        "Không phải thay đổi nào cũng cần thử nghiệm - việc sửa lỗi rõ ràng thì cứ làm."
       ]
     }
   ],
   "134": [
     {
       "fromDay": 129,
-      "fromTitle": "EV/EBITDA dùng khi nào?",
-      "text": "EV/EBITDA = Enterprise Value / EBITDA",
+      "fromTitle": "Kịch bản chèn vào trang: nạn nhân là người dùng của bạn",
+      "text": "Mã hoá theo ngữ cảnh lúc hiển thị, không lọc lúc nhận vào.",
       "distractors": [
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
-        "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Ước lượng theo khoảng và mức tin cậy trung thực hơn một con số duy nhất."
       ]
     },
     {
       "fromDay": 122,
-      "fromTitle": "Khi mua cổ phiếu, thực chất mình sở hữu gì?",
-      "text": "Sở hữu cổ phiếu = sở hữu tỷ lệ tương ứng trong tài sản, lợi nhuận và quyền biểu quyết",
+      "fromTitle": "Mật khẩu: thứ yếu nhất mà ai cũng còn dùng",
+      "text": "Yếu tố thứ hai là biện pháp có tỷ lệ lợi ích trên công sức cao nhất.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Enterprise Value = Market Cap + Nợ − Tiền mặt"
+        "Nhóm theo thời điểm bắt đầu tách chất lượng sản phẩm khỏi quy mô, và đường cong giữ chân của từng nhóm là thứ đáng đọc.",
+        "Có ý nghĩa thống kê không đồng nghĩa với đáng làm về mặt kinh doanh."
       ]
     }
   ],
   "135": [
     {
       "fromDay": 130,
-      "fromTitle": "Revenue Multiple dùng khi nào?",
-      "text": "EV/Revenue: dùng khi công ty chưa có lợi nhuận dương để áp dụng các chỉ số khác",
+      "fromTitle": "Giả mạo yêu cầu: mượn phiên đăng nhập của nạn nhân",
+      "text": "Cookie gắn theo tên miền nên đi kèm cả những yêu cầu do trang lạ kích hoạt.",
       "distractors": [
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
-        "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai"
+        "Đặt chỉ tiêu cho một chỉ số sẽ làm nó bị tối ưu theo cách bạn không mong.",
+        "Mỗi phần giao được là một cơ hội phát hiện mình đang sai với giá rẻ."
       ]
     },
     {
       "fromDay": 123,
-      "fromTitle": "Giá cổ phiếu và giá trị doanh nghiệp khác nhau thế nào?",
-      "text": "Giá cổ phiếu (price): kết quả cung-cầu tức thời, có thể lệch khỏi giá trị thực",
+      "fromTitle": "Phiên đăng nhập: chìa khoá được cấp sau khi mở cửa",
+      "text": "Phiên phải có hạn và phải huỷ được ngay lập tức khi cần.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Enterprise Value = Market Cap + Nợ − Tiền mặt"
+        "Nhóm cũng chia được theo kênh, theo thiết bị hay theo gói dịch vụ.",
+        "Nhóm tự chọn luôn khác nhóm được chọn ngẫu nhiên ở nhiều thứ bạn không đo."
       ]
     }
   ],
   "136": [
     {
       "fromDay": 131,
-      "fromTitle": "Comparable Company Analysis là gì?",
-      "text": "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
+      "fromTitle": "Tải tệp lên: nhận một tệp là nhận một rủi ro",
+      "text": "Phần mở rộng và loại nội dung khai báo đều do người gửi đặt nên không tin được.",
       "distractors": [
-        "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai",
-        "Enterprise Value = Market Cap + Nợ − Tiền mặt"
+        "Biến động đột ngột nên nghi đường dữ liệu trước khi nghi thế giới thật.",
+        "Cắt chất lượng là khoản vay lãi suất cao, và nó bị vay trong im lặng."
       ]
     },
     {
       "fromDay": 124,
-      "fromTitle": "Market Cap là gì?",
-      "text": "Market Cap = Giá cổ phiếu × Số lượng cổ phiếu đang lưu hành",
+      "fromTitle": "Lưu mật khẩu: giả định cơ sở dữ liệu sẽ bị lấy",
+      "text": "Dùng hàm băm chuyên cho mật khẩu, chậm có chủ đích, không dùng hàm băm nhanh.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Enterprise Value = Market Cap + Nợ − Tiền mặt"
+        "Phải định nghĩa rõ từng bước, nếu không hai người sẽ đọc ra hai kết quả.",
+        "Chỉ số dẫn dắt phải là thứ đội thật sự tác động được, không phải doanh thu tổng."
       ]
     }
   ],
   "137": [
     {
       "fromDay": 132,
-      "fromTitle": "Precedent Transaction là gì?",
-      "text": "Precedent Transaction: dùng giá thực tế từ các thương vụ M&A đã hoàn tất",
+      "fromTitle": "Lỗ hổng trong thư viện: mã bạn không viết vẫn là mã của bạn",
+      "text": "Cửa sổ nguy hiểm nhất bắt đầu ngay khi lỗ hổng được công bố.",
       "distractors": [
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
-        "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai"
+        "Hỏi về hành vi đã xảy ra, đừng hỏi người dùng dự đoán hành vi tương lai.",
+        "Chi phí trì hoãn phân biệt được những việc mà lợi ích đơn thuần không phân biệt nổi."
       ]
     },
     {
       "fromDay": 125,
-      "fromTitle": "Enterprise Value là gì?",
-      "text": "Enterprise Value = Market Cap + Nợ − Tiền mặt",
+      "fromTitle": "Phân quyền: theo vai trò là chưa đủ",
+      "text": "Kiểm quyền nên đặt ở tầng gần dữ liệu để mọi đường gọi đều đi qua.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Phải quyết định chỉ số và cỡ mẫu trước khi bắt đầu, không phải sau khi nhìn kết quả.",
+        "Mỗi chỉ số cần một định nghĩa viết ra, ở một chỗ duy nhất ai cũng tra được."
       ]
     }
   ],
   "138": [
     {
       "fromDay": 133,
-      "fromTitle": "DCF là gì?",
-      "text": "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai",
+      "fromTitle": "Lạm dụng: dùng đúng chức năng nhưng sai mục đích",
+      "text": "Lạm dụng dùng đúng tính năng nên không lỗ hổng nào bị khai thác.",
       "distractors": [
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
-        "EV/EBITDA = Enterprise Value / EBITDA"
+        "Sai lệch của ước lượng không đối xứng: nó lệch về phía lâu hơn.",
+        "Danh sách không có thứ tự nghĩa là thứ tự sẽ do người nói to nhất quyết định."
       ]
     },
     {
       "fromDay": 126,
-      "fromTitle": "Equity Value vs Enterprise Value",
-      "text": "Equity Value: giá trị dành cho cổ đông; Enterprise Value: giá trị toàn bộ doanh nghiệp",
+      "fromTitle": "Mã hoá dữ liệu nằm yên: bảo vệ trước ai",
+      "text": "Máy đang chạy thì ổ đã mở khoá, nên tiến trình có quyền đọc được hết.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Cỡ mẫu cần thiết tăng theo bình phương khi hiệu ứng nhỏ đi.",
+        "Số liệu quá khứ chỉ so sánh được nếu định nghĩa không đổi trong khoảng đó."
       ]
     }
   ],
   "139": [
     {
       "fromDay": 134,
-      "fromTitle": "FCFF là gì?",
-      "text": "FCFF: dòng tiền tự do thuộc về toàn bộ nhà cung cấp vốn (cổ đông và chủ nợ)",
+      "fromTitle": "Dấu vết kiểm toán: ai đã làm gì, lúc nào",
+      "text": "Dấu vết trả lời câu hỏi ai chạm vào dữ liệu nào, khác với nhật ký gỡ lỗi.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Ước lượng theo khoảng và mức tin cậy trung thực hơn một con số duy nhất.",
+        "Danh sách công khai biến việc từ chối thành một quyết định về thứ tự, không phải về con người."
       ]
     },
     {
       "fromDay": 127,
-      "fromTitle": "P/E dùng khi nào?",
-      "text": "P/E = Giá cổ phiếu / EPS, phù hợp nhất với công ty lợi nhuận dương và ổn định",
+      "fromTitle": "Quản lý khoá: chỗ mọi lớp mã hoá quy về",
+      "text": "Kho quản lý khoá chuyên dụng cho phép phân quyền và ghi lại ai đã đọc.",
       "distractors": [
-        "Cổ phiếu: chứng nhận quyền sở hữu một phần doanh nghiệp",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Có ý nghĩa thống kê không đồng nghĩa với đáng làm về mặt kinh doanh.",
+        "Một vài phiên quan sát đủ để loại phần lớn giả thuyết sai."
       ]
     }
   ],
   "140": [
     {
       "fromDay": 135,
-      "fromTitle": "FCFE là gì?",
-      "text": "FCFE: dòng tiền tự do còn lại chỉ thuộc về cổ đông, sau nghĩa vụ nợ",
+      "fromTitle": "Quyền tối thiểu: mỗi phần chỉ được đúng thứ nó cần",
+      "text": "Quyền tối thiểu không giảm xác suất sự cố; nó giới hạn phạm vi hậu quả.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Mỗi phần giao được là một cơ hội phát hiện mình đang sai với giá rẻ.",
+        "Cách kiểm chứng rẻ nhất thường không cần viết dòng mã nào."
       ]
     },
     {
       "fromDay": 128,
-      "fromTitle": "P/B dùng khi nào?",
-      "text": "P/B = Giá cổ phiếu / Book Value per Share",
+      "fromTitle": "Tiêm lệnh: dữ liệu bị đọc thành câu lệnh",
+      "text": "Truyền tham số là cách chữa tận gốc; lọc ký tự thì luôn thiếu.",
       "distractors": [
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
-        "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai"
+        "Nhóm tự chọn luôn khác nhóm được chọn ngẫu nhiên ở nhiều thứ bạn không đo.",
+        "Việc càng lớn thì ước lượng càng kém tin cậy, vì phần chưa biết càng nhiều."
       ]
     }
   ],
   "141": [
     {
       "fromDay": 136,
-      "fromTitle": "Terminal Value là gì?",
-      "text": "Terminal Value: giá trị đại diện cho dòng tiền từ sau giai đoạn dự báo chi tiết đến vô hạn",
+      "fromTitle": "Nhiều lớp: giả định mỗi lớp đều sẽ hỏng",
+      "text": "Giả định mỗi lớp đều có xác suất hỏng, rồi thiết kế cho tình huống đó.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Cắt chất lượng là khoản vay lãi suất cao, và nó bị vay trong im lặng.",
+        "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ."
       ]
     },
     {
       "fromDay": 129,
-      "fromTitle": "EV/EBITDA dùng khi nào?",
-      "text": "EV/EBITDA = Enterprise Value / EBITDA",
+      "fromTitle": "Kịch bản chèn vào trang: nạn nhân là người dùng của bạn",
+      "text": "Cùng một chuỗi có mức nguy hiểm khác nhau tuỳ chỗ nó được chèn vào.",
       "distractors": [
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
-        "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai"
+        "Chỉ số dẫn dắt phải là thứ đội thật sự tác động được, không phải doanh thu tổng.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
   ],
   "142": [
     {
       "fromDay": 137,
-      "fromTitle": "Gordon Growth Method",
-      "text": "Gordon Growth Method: Terminal Value = FCF cuối × (1+g) / (WACC − g)",
+      "fromTitle": "Nhận báo cáo lỗ hổng: đường liên lạc bạn nên có sẵn",
+      "text": "Rào cản lớn nhất là không biết gửi cho ai và sợ bị quy kết.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Chi phí trì hoãn phân biệt được những việc mà lợi ích đơn thuần không phân biệt nổi.",
+        "Mỗi tính năng giữ lại đều có chi phí bảo trì và làm sản phẩm khó hiểu thêm."
       ]
     },
     {
       "fromDay": 130,
-      "fromTitle": "Revenue Multiple dùng khi nào?",
-      "text": "EV/Revenue: dùng khi công ty chưa có lợi nhuận dương để áp dụng các chỉ số khác",
+      "fromTitle": "Giả mạo yêu cầu: mượn phiên đăng nhập của nạn nhân",
+      "text": "Chỉ những thao tác thay đổi dữ liệu mới thật sự nguy hiểm với kiểu tấn công này.",
       "distractors": [
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
-        "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai"
+        "Mỗi chỉ số cần một định nghĩa viết ra, ở một chỗ duy nhất ai cũng tra được.",
+        "Phần đầu tiên nên nhắm vào giả định rủi ro nhất, không nhắm vào phần dễ nhất."
       ]
     }
   ],
   "143": [
     {
       "fromDay": 138,
-      "fromTitle": "Exit Multiple Method",
-      "text": "Exit Multiple Method: Terminal Value dựa trên bội số thị trường điển hình (như EV/EBITDA)",
+      "fromTitle": "Sự cố bảo mật: khác sự cố vận hành ở ba điểm",
+      "text": "Trạng thái hiện tại là bằng chứng; giữ lại trước khi can thiệp.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Danh sách không có thứ tự nghĩa là thứ tự sẽ do người nói to nhất quyết định.",
         "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
       ]
     },
     {
       "fromDay": 131,
-      "fromTitle": "Comparable Company Analysis là gì?",
-      "text": "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
+      "fromTitle": "Tải tệp lên: nhận một tệp là nhận một rủi ro",
+      "text": "Tên tệp cũng là dữ liệu người dùng; hệ thống nên tự sinh tên khi lưu.",
       "distractors": [
-        "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai",
-        "Enterprise Value = Market Cap + Nợ − Tiền mặt"
+        "Số liệu quá khứ chỉ so sánh được nếu định nghĩa không đổi trong khoảng đó.",
+        "Thêm người vào việc đang trễ thường làm nó trễ thêm."
       ]
     }
   ],
   "144": [
     {
       "fromDay": 139,
-      "fromTitle": "Sensitivity Analysis là gì?",
-      "text": "Sensitivity Analysis: kiểm tra kết quả định giá thay đổi thế nào khi giả định chính thay đổi",
+      "fromTitle": "Quyền riêng tư: nghĩa vụ đi kèm mỗi trường dữ liệu",
+      "text": "Riêng tư hỏi có nên giữ; bảo mật hỏi ai chạm được vào thứ đã giữ.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Danh sách công khai biến việc từ chối thành một quyết định về thứ tự, không phải về con người.",
         "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
       ]
     },
     {
       "fromDay": 132,
-      "fromTitle": "Precedent Transaction là gì?",
-      "text": "Precedent Transaction: dùng giá thực tế từ các thương vụ M&A đã hoàn tất",
+      "fromTitle": "Lỗ hổng trong thư viện: mã bạn không viết vẫn là mã của bạn",
+      "text": "Quét phải phủ toàn bộ cây phụ thuộc, gồm cả phụ thuộc gián tiếp.",
       "distractors": [
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
-        "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai"
+        "Một vài phiên quan sát đủ để loại phần lớn giả thuyết sai.",
+        "Việc chặn người khác có chi phí trì hoãn nhân lên theo số người bị chặn."
       ]
     }
   ],
   "145": [
     {
       "fromDay": 140,
-      "fromTitle": "Case nhỏ - Định giá một công ty bằng P/E và DCF đơn giản",
-      "text": "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+      "fromTitle": "Ôn tập: bảo mật là chuỗi quyết định, không phải danh sách việc",
+      "text": "Mọi lỗ hổng tiêm lệnh đều là dữ liệu bị trộn vào câu lệnh - chữa bằng cách tách chúng.",
       "distractors": [
         "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
-        "Exit Multiple Method: Terminal Value dựa trên bội số thị trường điển hình (như EV/EBITDA)"
+        "Sau khi đo, ba lựa chọn đều hợp lệ: làm tiếp, đổi hướng, hoặc dừng."
       ]
     },
     {
       "fromDay": 133,
-      "fromTitle": "DCF là gì?",
-      "text": "DCF: giá trị doanh nghiệp = tổng giá trị hiện tại của dòng tiền tự do tương lai",
+      "fromTitle": "Lạm dụng: dùng đúng chức năng nhưng sai mục đích",
+      "text": "Thông báo khác nhau cho hai trường hợp thường là một kênh rò rỉ thông tin.",
       "distractors": [
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết",
-        "EV/EBITDA = Enterprise Value / EBITDA"
+        "Việc càng lớn thì ước lượng càng kém tin cậy, vì phần chưa biết càng nhiều.",
+        "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó."
       ]
     }
   ],
@@ -2591,17 +2591,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Trái phiếu là gì?",
       "text": "Trái phiếu = cho vay, nhận coupon + hoàn vốn khi đáo hạn",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     },
     {
       "fromDay": 134,
-      "fromTitle": "FCFF là gì?",
-      "text": "FCFF: dòng tiền tự do thuộc về toàn bộ nhà cung cấp vốn (cổ đông và chủ nợ)",
+      "fromTitle": "Dấu vết kiểm toán: ai đã làm gì, lúc nào",
+      "text": "Nó phải chống sửa đổi, kể cả bởi người có quyền quản trị.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
+        "Đồng ý với tất cả làm mọi bên cùng thất vọng, chỉ là muộn hơn."
       ]
     }
   ],
@@ -2611,17 +2611,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Giá trái phiếu và lãi suất",
       "text": "Lãi suất tăng → giá trái phiếu giảm (và ngược lại)",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     },
     {
       "fromDay": 135,
-      "fromTitle": "FCFE là gì?",
-      "text": "FCFE: dòng tiền tự do còn lại chỉ thuộc về cổ đông, sau nghĩa vụ nợ",
+      "fromTitle": "Quyền tối thiểu: mỗi phần chỉ được đúng thứ nó cần",
+      "text": "Mỗi dịch vụ nên có danh tính riêng, không dùng chung một tài khoản quyền cao.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Phần đầu tiên nên nhắm vào giả định rủi ro nhất, không nhắm vào phần dễ nhất.",
+        "Người đã tự xoay xở là người chắc chắn có vấn đề thật."
       ]
     }
   ],
@@ -2631,17 +2631,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Yield to Maturity (YTM)",
       "text": "YTM = lợi suất thực nếu giữ đến đáo hạn",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     },
     {
       "fromDay": 136,
-      "fromTitle": "Terminal Value là gì?",
-      "text": "Terminal Value: giá trị đại diện cho dòng tiền từ sau giai đoạn dự báo chi tiết đến vô hạn",
+      "fromTitle": "Nhiều lớp: giả định mỗi lớp đều sẽ hỏng",
+      "text": "Hai lớp chỉ có giá trị khi chúng hỏng vì những nguyên nhân khác nhau.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Thêm người vào việc đang trễ thường làm nó trễ thêm.",
+        "Giả thuyết vấn đề không đủ đau nên được kiểm trước vì nó rẻ nhất và khó chịu nhất."
       ]
     }
   ],
@@ -2651,17 +2651,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Credit Rating (Xếp hạng tín dụng)",
       "text": "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Chỉ số chỉ có nghĩa khi nói rõ nó thay mặt cho điều gì, và nó phải giảm được.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     },
     {
       "fromDay": 137,
-      "fromTitle": "Gordon Growth Method",
-      "text": "Gordon Growth Method: Terminal Value = FCF cuối × (1+g) / (WACC − g)",
+      "fromTitle": "Nhận báo cáo lỗ hổng: đường liên lạc bạn nên có sẵn",
+      "text": "Một địa chỉ liên hệ dễ tìm cộng cam kết không truy cứu là bước rẻ nhất.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
-        "Comps: định giá dựa trên bội số của các công ty tương đồng đã niêm yết"
+        "Việc chặn người khác có chi phí trì hoãn nhân lên theo số người bị chặn.",
+        "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được."
       ]
     }
   ],
@@ -2671,16 +2671,16 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Yield Curve",
       "text": "Yield curve: lợi suất trái phiếu theo kỳ hạn",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Ưu tiên là so sánh chi phí trì hoãn, và mỗi lời đồng ý là một lời từ chối.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     },
     {
       "fromDay": 138,
-      "fromTitle": "Exit Multiple Method",
-      "text": "Exit Multiple Method: Terminal Value dựa trên bội số thị trường điển hình (như EV/EBITDA)",
+      "fromTitle": "Sự cố bảo mật: khác sự cố vận hành ở ba điểm",
+      "text": "Có một bên đối kháng đang phản ứng, nên hành động lộ liễu có thể phản tác dụng.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó.",
         "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
       ]
     }
@@ -2691,16 +2691,16 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Lãi suất thực vs Lãi suất danh nghĩa",
       "text": "Lãi suất thực ≈ Lãi suất danh nghĩa − Lạm phát",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Nhiều thực hành đúng ở quy mô nhỏ trở thành sai ở quy mô lớn, và ngược lại.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     },
     {
       "fromDay": 139,
-      "fromTitle": "Sensitivity Analysis là gì?",
-      "text": "Sensitivity Analysis: kiểm tra kết quả định giá thay đổi thế nào khi giả định chính thay đổi",
+      "fromTitle": "Quyền riêng tư: nghĩa vụ đi kèm mỗi trường dữ liệu",
+      "text": "Mỗi trường dữ liệu cá nhân cần mục đích rõ ràng và một thời hạn.",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Đồng ý với tất cả làm mọi bên cùng thất vọng, chỉ là muộn hơn.",
         "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk"
       ]
     }
@@ -2717,11 +2717,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 140,
-      "fromTitle": "Case nhỏ - Định giá một công ty bằng P/E và DCF đơn giản",
-      "text": "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+      "fromTitle": "Ôn tập: bảo mật là chuỗi quyết định, không phải danh sách việc",
+      "text": "Phân quyền cần cả vai trò lẫn quan hệ với chính bản ghi đang được yêu cầu.",
       "distractors": [
         "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
-        "Exit Multiple Method: Terminal Value dựa trên bội số thị trường điển hình (như EV/EBITDA)"
+        "Dừng lại vì đã học được điều gì đó không phải thất bại."
       ]
     }
   ],
@@ -2740,7 +2740,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Trái phiếu là gì?",
       "text": "Trái phiếu = cho vay, nhận coupon + hoàn vốn khi đáo hạn",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Giả thuyết vấn đề không đủ đau nên được kiểm trước vì nó rẻ nhất và khó chịu nhất.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     }
@@ -2760,7 +2760,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Giá trái phiếu và lãi suất",
       "text": "Lãi suất tăng → giá trái phiếu giảm (và ngược lại)",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Đưa ra phương án kèm hệ quả, thay vì đưa ra kết luận đã chốt.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     }
@@ -2780,7 +2780,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Yield to Maturity (YTM)",
       "text": "YTM = lợi suất thực nếu giữ đến đáo hạn",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Lát cắt đầu tiên nhắm vào giả định rủi ro nhất.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     }
@@ -2800,7 +2800,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Credit Rating (Xếp hạng tín dụng)",
       "text": "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Chia theo nhóm và theo bước làm lộ ra thứ con số tổng che đi.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     }
@@ -2820,7 +2820,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Yield Curve",
       "text": "Yield curve: lợi suất trái phiếu theo kỳ hạn",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Chi phí phối hợp tăng theo bình phương số người, năng lực chỉ tăng tuyến tính.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     }
@@ -2840,7 +2840,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Lãi suất thực vs Lãi suất danh nghĩa",
       "text": "Lãi suất thực ≈ Lãi suất danh nghĩa − Lạm phát",
       "distractors": [
-        "Thực hành định giá chuyên nghiệp luôn kết hợp nhiều phương pháp, không chỉ dựa vào một con số",
+        "Mỗi phần mã nên có đúng một đội chịu trách nhiệm.",
         "Lãi suất = công cụ chính sách tiền tệ chủ yếu"
       ]
     }

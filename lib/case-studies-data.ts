@@ -33,7 +33,7 @@ export const REAL_CASE_STUDIES: CaseStudyItem[] = [
     coinReward: 100,
     relatedLessonSlugs: [
       { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview" },
-      { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền" },
+      { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán" },
     ],
     questions: [
       {
@@ -87,7 +87,7 @@ export const REAL_CASE_STUDIES: CaseStudyItem[] = [
     xpReward: 600,
     coinReward: 80,
     relatedLessonSlugs: [
-      { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền" },
+      { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán" },
       { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán" },
     ],
     questions: [
@@ -140,7 +140,7 @@ export const REAL_CASE_STUDIES: CaseStudyItem[] = [
     xpReward: 850,
     coinReward: 120,
     relatedLessonSlugs: [
-      { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền" },
+      { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán" },
       { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán" },
     ],
     questions: [

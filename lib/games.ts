@@ -173,9 +173,9 @@ export interface RelatedLesson {
 
 export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
   "system-dashboard-match": [
-    { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Phân biệt Báo cáo kết quả kinh doanh, Bảng cân đối & Lưu chuyển tiền tệ" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Phân biệt Báo cáo kết quả kinh doanh, Bảng cân đối & Lưu chuyển tiền tệ" },
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Nền tảng phân bổ nguồn lực và đọc hiểu thông số" },
-    { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Phân loại dòng tiền vào ra" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Phân loại dòng tiền vào ra" },
   ],
   "en-vi-terms": [
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Các thuật ngữ tài chính Anh - Việt cốt lõi" },
@@ -183,7 +183,7 @@ export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
   ],
   "ratio-category": [
     { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Hiểu rõ nhóm chỉ số Thanh khoản, Sinh lời, Đòn bẩy" },
-    { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Chỉ số lưu chuyển tiền tệ và khả năng thanh toán" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Chỉ số lưu chuyển tiền tệ và khả năng thanh toán" },
   ],
   "term-definition": [
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Thuật ngữ và khái niệm định nghĩa gốc" },
@@ -203,12 +203,12 @@ export const GAME_RELATED_LESSONS: Record<GameType, RelatedLesson[]> = {
     { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Đánh giá các doanh nghiệp VN30 hàng đầu" },
   ],
   "cost-category": [
-    { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Phân loại chi phí cố định và chi phí biến đổi" },
-    { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Tác động của chi phí đến dòng tiền doanh nghiệp" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Phân loại chi phí cố định và chi phí biến đổi" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tác động của chi phí đến dòng tiền doanh nghiệp" },
   ],
   "random-mix": [
     { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tổng hợp kiến thức nền tảng tài chính" },
-    { slug: "bao-cao-luu-chuyen-tien-te", title: "Từ lợi nhuận về dòng tiền", subtitle: "Tổng hợp phân tích dòng tiền & Báo cáo" },
+    { slug: "bang-can-doi-ke-toan", title: "Đọc Bảng Cân Đối Kế Toán", subtitle: "Tổng hợp phân tích dòng tiền & Báo cáo" },
     { slug: "10-cong-thuc-finance", title: "10 Công Thức Finance Interview", subtitle: "Tổng hợp công thức và tỷ số tài chính" },
   ],
 };
