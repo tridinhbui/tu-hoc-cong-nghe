@@ -20,187 +20,189 @@ import type { Lesson } from "./lesson-types";
 
 export const INCOME_GROWTH_LESSONS: Lesson[] = [
   {
-    id: 300,
-    slug: "tang-thu-nhap-don-bay-manh-hon-cat-chi",
-    title: "Chặng 11, Bài 1: Vì sao tăng thu nhập là đòn bẩy mạnh hơn cắt chi",
-    subtitle: "Tiết kiệm có trần, thu nhập thì không - và trần đó thấp hơn bạn tưởng",
-    duration: "7 phút",
-    difficulty: "Dễ",
-    emoji: "📈",
-    track: "personal",
-    whyItMatters:
-      "Gần như toàn bộ lời khuyên tài chính cá nhân phổ biến nói về cắt chi, vì cắt chi là việc làm được ngay. Nhưng cắt chi bị chặn bởi một trần cứng: bạn không thể cắt quá 100% chi tiêu của mình. Thu nhập không có trần tương ứng, và với người mới đi làm thì đó thường là biến có thể thay đổi nhiều nhất.",
-    openingQuestion:
-      "Thu nhập 15 triệu, chi 13 triệu. Cắt chi tối đa được thêm bao nhiêu mỗi tháng?",
-    openingOptions: [
-      "Tối đa 13 triệu, nhưng thực tế thấp hơn nhiều vì có khoản không cắt được",
-      "Không giới hạn, vì luôn còn khoản có thể tối ưu thêm nếu đủ kỷ luật",
-      "Đúng 2 triệu, tức bằng phần chênh lệch giữa thu nhập và chi tiêu hiện tại",
-      "Khoảng 6,5 triệu, tức một nửa chi tiêu theo quy tắc cắt giảm phổ biến",
+    "id": 300,
+    "slug": "don-bay-ky-nang-trong-nghe-lap-trinh",
+    "title": "Chặng 11, Bài 1: Đòn bẩy kỹ năng - vì sao hai người cùng kinh nghiệm lại chênh nhau xa",
+    "subtitle": "Thị trường không trả cho số năm, nó trả cho việc bạn gỡ được nút thắt nào.",
+    "duration": "7 phút",
+    "difficulty": "Dễ",
+    "emoji": "🎚️",
+    "track": "personal",
+    "isFundamental": true,
+    "whyItMatters": "Hai người cùng năm kinh nghiệm có thể chênh nhau gấp đôi về mức lương, và khác biệt hiếm khi nằm ở việc ai gõ nhanh hơn. Hiểu cái gì tạo ra đòn bẩy giúp bạn chọn thứ để học thay vì học thêm cho có.",
+    "openingQuestion": "Hai lập trình viên cùng năm kinh nghiệm, một người được trả gấp đôi. Khác biệt thường nằm ở đâu?",
+    "openingOptions": [
+      "Ở loại vấn đề họ gỡ được: người kia xử lý được thứ mà ít người trong công ty làm nổi",
+      "Ở số lượng ngôn ngữ và công nghệ mà họ thành thạo trong quá trình làm việc",
+      "Ở tốc độ hoàn thành công việc, vì cùng thời gian họ tạo ra nhiều kết quả hơn",
+      "Ở khả năng đàm phán khi nhận việc, vì mức lương phụ thuộc vào cuộc trao đổi đó"
     ],
-    correctOption: 0,
-    explanation:
-      "Trần lý thuyết của việc cắt chi là toàn bộ chi tiêu - 13 triệu. Trần thực tế thấp hơn hẳn, vì tiền nhà, ăn uống và đi lại không về 0 được. Nói cách khác, dư địa cắt chi của người này có thể là ba tới bốn triệu, và đó là mức trần vĩnh viễn: cắt xong thì hết. Trong khi đó một lần tăng lương 20% cho thêm ba triệu mỗi tháng, lặp lại mọi tháng sau đó, và còn làm nền cho lần tăng tiếp theo. Đây không phải lý do để tiêu bừa - ngân sách vẫn là nền - mà là lý do để không dừng ở đó.",
-    diagram: [
-      { label: "Cắt chi: trần cứng bằng tổng chi tiêu", arrow: true },
-      { label: "Thực tế thấp hơn vì có khoản cố định", arrow: true },
-      { label: "Tăng thu nhập: không có trần tương ứng", arrow: true },
-      { label: "Và nó cộng dồn qua từng năm" },
+    "correctOption": 0,
+    "explanation": "Thị trường trả theo mức độ khan hiếm của việc bạn làm được, không theo số năm hay số công nghệ trong hồ sơ. Người biết mười công nghệ ở mức trung bình dễ thay thế hơn người gỡ được đúng loại nút thắt mà công ty đang tắc. Đàm phán có ảnh hưởng thật và bài sau nói riêng về nó, nhưng nó chỉ quyết định bạn lấy được bao nhiêu phần của giá trị mình tạo ra, chứ không tạo ra giá trị đó.",
+    "diagram": [
+      {
+        "label": "Thị trường trả theo mức khan hiếm, không theo số năm",
+        "arrow": true
+      },
+      {
+        "label": "Khan hiếm = ít người làm được VÀ có người cần",
+        "arrow": true
+      },
+      {
+        "label": "Kỹ năng nhân lên nhau, không cộng vào nhau",
+        "arrow": true
+      },
+      {
+        "label": "Đòn bẩy lớn nhất: hiểu bài toán nghiệp vụ, không chỉ mã"
+      }
     ],
-    interactiveType: "budget",
-    realWorldExample: {
-      company: "Hai người cùng xuất phát 15 triệu",
-      description:
-        "Người thứ nhất dành ba năm tối ưu chi tiêu, đưa chi từ 13 xuống 9,5 triệu - tiết kiệm thêm 3,5 triệu mỗi tháng và không cắt được nữa. Người thứ hai giữ nguyên chi tiêu nhưng đổi việc hai lần, lương lên 26 triệu, dư ra 13 triệu mỗi tháng. Cả hai đều làm việc đúng, nhưng một người chạm trần còn người kia thì chưa.",
+    "realWorldExample": {
+      "company": "Người duy nhất hiểu hệ thống thanh toán",
+      "description": "Trong nhiều công ty có một người mà mọi sự cố thanh toán đều dẫn tới. Họ không giỏi thuật toán hơn ai, nhưng họ là người duy nhất hiểu cả phần mã lẫn phần nghiệp vụ của mảng đó. Đòn bẩy đến từ chỗ giao nhau, không đến từ một phía."
     },
-    quiz: [
+    "quiz": [
       {
-        question: "Vì sao cắt chi có trần còn tăng thu nhập thì không?",
-        options: [
-          "Vì chi tiêu không thể giảm xuống dưới 0, còn thu nhập không có mức chặn trên tương đương",
-          "Vì lạm phát làm chi phí sinh hoạt tăng đều qua mỗi năm nên cắt giảm được bao nhiêu rồi cũng vô ích",
-          "Vì ngân hàng giới hạn số tiền một cá nhân được gửi tiết kiệm trong mỗi năm",
-          "Vì thuế thu nhập cá nhân tăng theo bậc nên phần cắt chi bị đánh thuế lại",
+        "question": "Khan hiếm trên thị trường lao động nghĩa là gì?",
+        "options": [
+          "Ít người làm được việc đó VÀ có nơi thật sự cần nó - thiếu một vế thì không có giá trị",
+          "Số lượng người có kỹ năng đó trên thị trường thấp hơn nhiều so với số vị trí đang tuyển",
+          "Kỹ năng đó khó học nên cần nhiều thời gian và công sức mới đạt được mức thành thạo",
+          "Công nghệ đó mới xuất hiện nên chưa có nhiều người kịp tìm hiểu và làm quen với nó"
         ],
-        correct: 0,
-        explanation:
-          "Đây là bất đối xứng toán học chứ không phải quan điểm sống. Chi tiêu bị chặn dưới bởi 0 và trên thực tế bị chặn bởi các khoản không cắt được; thu nhập không có ràng buộc đối xứng nào ở phía trên.",
+        "correct": 0,
+        "explanation": "Vế thứ hai là vế hay bị quên. Có những công nghệ rất ít người biết và cũng rất ít nơi cần - học chúng cho bạn sự hiếm mà không cho bạn đòn bẩy nào. Khó học cũng không tự động tạo ra giá trị nếu không ai cần kết quả."
       },
       {
-        question: "Cắt chi có ưu điểm gì mà tăng thu nhập không có?",
-        options: [
-          "Nó có tác dụng gần như ngay lập tức và hoàn toàn nằm trong tầm kiểm soát của bạn",
-          "Nó làm tăng điểm tín dụng cá nhân nên khi vay mua nhà sẽ được hưởng lãi suất thấp hơn",
-          "Nó được miễn thuế thu nhập cá nhân trong khi phần lương tăng thêm thì không",
-          "Nó không đòi hỏi bất kỳ sự thay đổi nào trong thói quen sinh hoạt hằng ngày",
+        "question": "Vì sao kỹ năng nhân lên nhau chứ không cộng vào nhau?",
+        "options": [
+          "Vì người vừa viết được mã vừa hiểu nghiệp vụ hiếm hơn nhiều so với người chỉ giỏi một bên",
+          "Vì mỗi kỹ năng mới học được giúp bạn học các kỹ năng tiếp theo nhanh hơn trước",
+          "Vì nhà tuyển dụng đánh giá ứng viên theo tổng số kỹ năng liệt kê trong hồ sơ",
+          "Vì các công nghệ hiện đại thường phụ thuộc lẫn nhau nên biết một cái là chưa đủ"
         ],
-        correct: 0,
-        explanation:
-          "Đổi việc hay đàm phán lương phụ thuộc vào thị trường và vào người khác đồng ý; hủy một gói đăng ký thì có hiệu lực tối nay. Đó là lý do ngân sách vẫn là bước đầu tiên, chứ không phải bước duy nhất.",
+        "correct": 0,
+        "explanation": "Đứng trong nhóm mười phần trăm ở hai lĩnh vực khác nhau hiếm hơn nhiều so với đứng trong nhóm một phần trăm ở một lĩnh vực - và thường dễ đạt tới hơn. Đó là lý do chỗ giao nhau là nơi đòn bẩy lớn nhất."
       },
       {
-        question:
-          "Thu nhập 20 triệu, chi 18 triệu. Tăng lương 15% và cắt chi 15% - phương án nào cho thêm nhiều tiền hơn mỗi tháng?",
-        options: [
-          "Cắt chi 15%, vì 2,7 triệu lớn hơn phần lương tăng thêm sau thuế",
-          "Tăng lương 15%, vì 3 triệu gross luôn lớn hơn 2,7 triệu tiết kiệm được",
-          "Hai phương án cho kết quả bằng nhau vì cùng tỷ lệ phần trăm 15%",
-          "Không so sánh được vì lương và chi tiêu là hai đại lượng khác nhau",
+        "question": "Vì sao học thêm một công nghệ nữa thường không tăng được giá trị nhiều?",
+        "options": [
+          "Vì nó thêm một mục vào danh sách chứ không đưa bạn tới chỗ giao nhau nào mới",
+          "Vì các công nghệ mới thường nhanh chóng lỗi thời nên kiến thức không giữ được lâu",
+          "Vì nhà tuyển dụng chỉ quan tâm tới những công nghệ được nêu trong tin tuyển dụng",
+          "Vì học nhiều thứ cùng lúc khiến bạn không đạt được mức thành thạo ở bất kỳ thứ nào"
         ],
-        correct: 0,
-        explanation:
-          "15% của 18 triệu là 2,7 triệu, giữ nguyên trong túi. 15% của 20 triệu là 3 triệu gross, sau thuế và bảo hiểm còn khoảng 2,5 triệu. Ở kỳ đầu tiên cắt chi thắng - nhưng phần tăng lương lặp lại mọi tháng sau và làm nền cho lần tăng kế, còn phần cắt chi thì đã dùng hết dư địa.",
+        "correct": 0,
+        "explanation": "Người biết mười công nghệ ở mức trung bình dễ thay thế hơn người biết ba nhưng ở chỗ giao nhau hiếm. Câu hỏi đúng khi chọn thứ để học không phải cái này có hữu ích không mà là nó đưa mình tới chỗ giao nào."
       },
       {
-        question: "Vì sao một lần tăng lương có giá trị lớn hơn con số của chính nó?",
-        options: [
-          "Vì lần tăng sau thường tính theo phần trăm trên mức lương đã cao hơn",
-          "Vì công ty bắt buộc phải tăng lương tiếp trong vòng mười hai tháng kế",
-          "Vì thuế suất giảm khi thu nhập vượt qua ngưỡng của bậc thuế hiện tại",
-          "Vì bảo hiểm xã hội chi trả theo mức lương cao nhất từng đạt được",
+        "question": "Kỹ năng nào thường bị đánh giá thấp nhất so với đòn bẩy nó tạo ra?",
+        "options": [
+          "Hiểu bài toán nghiệp vụ mà phần mềm đang giải, chứ không chỉ hiểu phần mã",
+          "Nắm vững cấu trúc dữ liệu và thuật toán ở mức có thể tự cài lại khi cần",
+          "Thành thạo công cụ dòng lệnh và các thao tác tự động hoá công việc lặp lại",
+          "Đọc hiểu tài liệu kỹ thuật bằng tiếng Anh mà không cần phải dịch lại"
         ],
-        correct: 0,
-        explanation:
-          "Lương gần như luôn được điều chỉnh theo tỷ lệ phần trăm trên mức hiện tại, ở cả công ty cũ lẫn công ty mới. Một mức nền cao hơn hôm nay làm mọi lần tăng sau đó lớn hơn về số tuyệt đối - cùng cơ chế cộng dồn như lãi kép.",
+        "correct": 0,
+        "explanation": "Ba kỹ năng kia đều quan trọng nhưng chúng phổ biến trong nghề, nên chúng là điều kiện chứ không phải đòn bẩy. Hiểu nghiệp vụ thì hiếm hơn nhiều, và nó là thứ biến bạn từ người thực hiện thành người được hỏi ý kiến."
       },
       {
-        question: "Kết luận đúng từ bài này là gì?",
-        options: [
-          "Lập ngân sách trước để có nền, rồi dồn sức vào tăng thu nhập vì dư địa ở đó lớn hơn",
-          "Bỏ hẳn việc ghi chép chi tiêu hằng tháng và chỉ tập trung vào việc kiếm được nhiều tiền hơn",
-          "Chỉ cắt chi cho tới khi đạt tỷ lệ tiết kiệm 20% rồi ngừng mọi nỗ lực khác",
-          "Tăng thu nhập trước, khi nào thu nhập đủ cao thì mới cần tới ngân sách",
+        "question": "Vì sao ở lại quá lâu một chỗ có thể làm giảm đòn bẩy của bạn?",
+        "options": [
+          "Vì kỹ năng bạn tích luỹ dần trở nên đặc thù cho hệ thống đó và khó chuyển sang nơi khác",
+          "Vì các công ty thường ưu tiên tăng lương cho người mới hơn là cho người đã gắn bó lâu",
+          "Vì thị trường đánh giá thấp những ứng viên chỉ có kinh nghiệm ở một công ty duy nhất",
+          "Vì công nghệ trong một công ty thường không được cập nhật kịp với xu hướng chung"
         ],
-        correct: 0,
-        explanation:
-          "Không có ngân sách thì lương tăng bao nhiêu cũng biến mất - đó là hiện tượng lạm phát lối sống, và bài Chặng 1 đã nói. Bài này không thay thế ngân sách, nó chỉ ra rằng dừng lại ở ngân sách là dừng ở nửa bài toán.",
-      },
+        "correct": 0,
+        "explanation": "Điểm tinh tế là bạn vẫn đang giỏi lên, chỉ là giỏi lên theo hướng chỉ có một nơi trả tiền. Đó là lý do đáng thỉnh thoảng kiểm tra xem kỹ năng mình đang tích luỹ có bán được ở chỗ khác không."
+      }
     ],
-    keyTakeaways: [
-      "Cắt chi bị chặn bởi tổng chi tiêu, và trên thực tế bởi các khoản không cắt được - đó là trần cứng",
-      "Tăng thu nhập không có trần đối xứng, và mỗi lần tăng làm nền cho lần tăng sau",
-      "Cắt chi thắng ở tốc độ và quyền kiểm soát; tăng thu nhập thắng ở quy mô và tính lặp lại",
-      "Không có ngân sách thì lương tăng thêm bị lạm phát lối sống nuốt mất - hai việc bổ sung nhau",
+    "keyTakeaways": [
+      "Thị trường trả theo mức khan hiếm của việc bạn làm được, không theo số năm kinh nghiệm.",
+      "Khan hiếm cần cả hai vế: ít người làm được VÀ có nơi thật sự cần.",
+      "Kỹ năng nhân lên nhau - chỗ giao giữa hai lĩnh vực hiếm hơn đỉnh cao của một lĩnh vực.",
+      "Hiểu nghiệp vụ là kỹ năng bị đánh giá thấp nhất so với đòn bẩy nó tạo ra.",
+      "Ở quá lâu một chỗ thì kỹ năng thành đặc thù - giỏi lên theo hướng chỉ một nơi trả tiền."
     ],
-    practicePrompt: {
-      question:
-        "Bạn đang tiêu 92% thu nhập và đã cắt hết các khoản dễ cắt. Bước tiếp theo hợp lý nhất là gì?",
-      options: [
-        "Chuyển trọng tâm sang tăng thu nhập, vì dư địa cắt chi đã gần cạn",
-        "Tiếp tục cắt sâu vào tiền ăn và tiền đi lại cho tới khi đạt mục tiêu 20%",
-        "Vay tiêu dùng để đầu tư nhằm bù phần chênh lệch giữa thu và chi hiện tại",
-        "Giữ nguyên mọi thứ và chờ tăng lương định kỳ hằng năm của công ty",
+    "practicePrompt": {
+      "question": "Bạn có thời gian học một thứ trong ba tháng tới. Câu hỏi nào giúp chọn đúng?",
+      "options": [
+        "Thứ này kết hợp với cái mình đã có để tạo ra chỗ giao nào ít người đứng được?",
+        "Thứ này có đang được nhắc tới nhiều trong các tin tuyển dụng gần đây không?",
+        "Thứ này có phải công nghệ mới nhất trong lĩnh vực mình đang làm việc không?",
+        "Thứ này có giúp mình hoàn thành công việc hiện tại nhanh hơn bao nhiêu phần trăm?"
       ],
-      correct: 0,
-      explanation:
-        "Khi các khoản dễ cắt đã hết, mỗi đồng tiếp theo phải trả bằng chất lượng sống, và tỷ lệ đánh đổi ngày càng xấu. Đó chính là tín hiệu cho biết đòn bẩy đã chuyển sang phía thu nhập.",
+      "correct": 0,
+      "explanation": "Ba câu kia đều dẫn tới việc thêm một mục vào danh sách. Câu đầu buộc bạn nghĩ về vị trí của mình chứ không về bản thân công nghệ, và đó là khác biệt giữa học thêm với học để tạo đòn bẩy."
     },
-    summary: {
-      keyIdea: "Cắt chi có trần, tăng thu nhập thì không - và phần lớn người học dừng lại ở vế có trần",
-      commonMistake: "Coi tối ưu chi tiêu là toàn bộ tài chính cá nhân, rồi bế tắc khi đã cắt hết khoản dễ cắt",
-      action: "Tính dư địa cắt chi còn lại của bạn bằng số tuyệt đối, rồi so nó với một lần tăng lương 20%.",
+    "summary": {
+      "keyIdea": "Đòn bẩy đến từ mức khan hiếm của việc bạn làm được, không từ số năm hay số công nghệ.",
+      "formula": "Ít người làm được × có nơi cần = giá thị trường của bạn.",
+      "commonMistake": "Học thêm công nghệ thứ mười một thay vì tìm một chỗ giao ít người đứng được.",
+      "action": "Viết ra hai lĩnh vực bạn khá nhất và tìm chỗ chúng giao nhau."
     },
-    application: {
-      title: "Đo dư địa còn lại của bạn",
-      message:
-        "Lấy bảng chi tiêu tháng gần nhất, đánh dấu những khoản thật sự cắt được mà không đổi chỗ ở hay công việc. Cộng lại - đó là toàn bộ dư địa cắt chi còn lại của bạn, tính bằng tiền chứ không phải cảm giác.",
-      secondary:
-        "So con số đó với 20% lương hiện tại. Nếu nó nhỏ hơn, phần còn lại của chặng này đáng giá hơn mọi mẹo tiết kiệm tiếp theo.",
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Viết ra hai lĩnh vực bạn khá nhất - có thể là một mảng kỹ thuật và một mảng nghiệp vụ - rồi viết một câu mô tả người đứng ở chỗ giao của hai cái đó làm được gì.",
+      "secondary": "Nếu câu đó mô tả một người mà công ty bạn đang cần, bạn vừa tìm ra hướng đầu tư ba tháng tới. Nếu không, thử đổi một trong hai lĩnh vực và viết lại."
     },
-    sections: [
+    "sections": [
       {
-        type: "lead",
-        text: "Mười chặng vừa qua dạy bạn cách xử lý số tiền đang có: đo nó, chia nó, giữ nó, đầu tư nó. Chặng này nói về vế còn lại của phương trình - số tiền đi vào - và đó là vế mà phần lớn lời khuyên tài chính cá nhân bỏ qua vì nó khó hơn.",
-      },
-      { type: "heading", text: "Bất đối xứng mà ai cũng biết nhưng ít ai tính ra" },
-      {
-        type: "paragraph",
-        text: "Chi tiêu bị chặn dưới bởi số 0, và trên thực tế bị chặn cao hơn thế nhiều: tiền nhà, tiền ăn, đi lại và các nghĩa vụ đã cam kết không biến mất được. Với người chi 13 triệu, dư địa thật thường nằm quanh ba tới bốn triệu - và khi đã cắt xong thì con số đó không lặp lại. Thu nhập không có ràng buộc đối xứng ở phía trên, nên mọi mức tăng đều lặp lại hằng tháng và làm nền cho lần tăng kế tiếp.",
+        "type": "lead",
+        "text": "Chặng này về thu nhập từ nghề. Bài đầu không nói về tiền mà nói về thứ tạo ra tiền - và về lý do hai người cùng năm kinh nghiệm có thể chênh nhau gấp đôi."
       },
       {
-        type: "conceptTable",
-        title: "Hai đòn bẩy, hai tính chất khác nhau",
-        subtitle: "Không phải chọn một, mà là biết cái nào đang còn dư địa",
-        concepts: [
-          {
-            vi: "Cắt chi",
-            en: "Expense reduction",
-            def: "Nhanh, hoàn toàn trong tầm kiểm soát của bạn, có hiệu lực ngay. Nhưng bị chặn bởi tổng chi tiêu và cạn dần: khoản dễ cắt luôn được cắt trước.",
-          },
-          {
-            vi: "Tăng thu nhập",
-            en: "Income growth",
-            def: "Chậm hơn, phụ thuộc thị trường và người khác đồng ý. Bù lại không có trần, lặp lại mỗi tháng, và mỗi lần tăng nâng nền cho lần sau.",
-          },
-          {
-            vi: "Lạm phát lối sống",
-            en: "Lifestyle inflation",
-            def: "Chi tiêu tăng theo thu nhập nên phần dư không đổi. Đây là lý do tăng thu nhập mà không có ngân sách thì không đổi được kết quả nào.",
-          },
-        ],
+        "type": "heading",
+        "text": "Thị trường trả cho cái gì"
       },
       {
-        type: "callout",
-        label: "Bài này không phủ nhận chín chặng trước",
-        text: "Ngân sách vẫn là điều kiện cần: không có nó thì lương tăng bao nhiêu cũng bị lạm phát lối sống nuốt, và bạn sẽ kiếm nhiều hơn mà vẫn không dư ra đồng nào. Điều bài này bác bỏ chỉ là việc DỪNG LẠI ở tối ưu chi tiêu, khi phần lớn dư địa nằm ở phía bên kia.",
+        "type": "paragraph",
+        "text": "Không phải số năm, không phải số công nghệ trong hồ sơ, không phải tốc độ gõ phím. Nó trả theo mức KHAN HIẾM của việc bạn làm được - và khan hiếm cần đủ hai vế cùng lúc."
       },
       {
-        type: "list",
-        items: [
-          "Dư địa cắt chi là con số hữu hạn - hãy tính nó ra bằng tiền, đừng ước lượng bằng cảm giác",
-          "Một lần tăng lương lặp lại mọi tháng sau đó, một lần cắt chi cũng vậy, nhưng chỉ cắt được một lần",
-          "Mức lương hôm nay là nền tính phần trăm cho mọi lần tăng sau - kể cả ở công ty khác",
-          "Hai đòn bẩy bổ sung nhau: ngân sách giữ phần chênh lệch, thu nhập tạo ra phần chênh lệch",
-        ],
+        "type": "callout",
+        "label": "Hai vế của khan hiếm",
+        "text": "Ít người làm được, VÀ có nơi thật sự cần. Có những công nghệ rất ít người biết và cũng rất ít nơi cần - học chúng cho bạn sự hiếm mà không cho bạn đòn bẩy nào. Vế thứ hai là vế hay bị quên nhất khi chọn thứ để học."
       },
       {
-        type: "closing",
-        lines: [
-          "Tiết kiệm quyết định bạn giữ được bao nhiêu phần của cái bánh; thu nhập quyết định cái bánh to cỡ nào.",
-          "Bài sau: trước khi đàm phán bất cứ điều gì, bạn cần biết giá thị trường thật của công việc mình đang làm.",
-        ],
+        "type": "heading",
+        "text": "Kỹ năng nhân lên nhau"
       },
-    ],
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Cộng vào nhau",
+          "text": "Biết thêm ngôn ngữ thứ tư, thư viện thứ mười. Nó thêm một mục vào danh sách, và người biết mười thứ ở mức trung bình vẫn dễ thay thế."
+        },
+        "right": {
+          "label": "Nhân lên nhau",
+          "text": "Đứng trong nhóm mười phần trăm ở HAI lĩnh vực khác nhau. Hiếm hơn nhiều so với đứng trong nhóm một phần trăm ở một lĩnh vực - và thường dễ đạt tới hơn."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Trong nhiều công ty có một người mà mọi sự cố thanh toán đều dẫn tới. Họ không giỏi thuật toán hơn ai, nhưng họ là người duy nhất hiểu cả phần mã lẫn phần nghiệp vụ của mảng đó. Đòn bẩy đến từ chỗ giao nhau, không đến từ một phía."
+      },
+      {
+        "type": "heading",
+        "text": "Kỹ năng bị đánh giá thấp nhất"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hiểu bài toán nghiệp vụ mà phần mềm đang giải. Thuật toán, dòng lệnh, đọc tài liệu tiếng Anh đều quan trọng nhưng chúng phổ biến trong nghề - chúng là điều kiện chứ không phải đòn bẩy."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hiểu nghiệp vụ thì hiếm hơn hẳn, và nó là thứ biến bạn từ người thực hiện yêu cầu thành người được hỏi ý kiến trước khi yêu cầu được viết ra. Khoảng cách giữa hai vị trí đó thường lớn hơn khoảng cách giữa hai bậc kỹ thuật."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Một cảnh báo đi kèm: ở quá lâu một chỗ thì kỹ năng bạn tích luỹ dần thành đặc thù cho hệ thống đó. Bạn vẫn đang giỏi lên, chỉ là giỏi lên theo hướng chỉ có một nơi trả tiền.",
+          "Bài sau là bước tiếp theo của cùng câu chuyện: biết giá thị trường của mình trước khi mở lời."
+        ]
+      }
+    ]
   },
   {
     id: 301,

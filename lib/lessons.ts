@@ -22,7 +22,7 @@ import { CRYPTO_LESSONS } from "./crypto-lessons";
 import { FRAUD_SAFETY_LESSONS } from "./fraud-safety-lessons";
 import { REAL_ESTATE_VN_LESSONS } from "./real-estate-vn-lessons";
 import { LIFE_EXPENSES_LESSONS } from "./life-expenses-lessons";
-import { HEALTH_RISK_LESSONS } from "./health-risk-lessons";
+import { OCCUPATIONAL_HEALTH_LESSONS } from "./occupational-health-lessons";
 import { LIFE_STAGE_LESSONS } from "./life-stage-lessons";
 import { PERSONAL_OPS_LESSONS } from "./personal-ops-lessons";
 import { PRIVATE_MARKETS_LESSONS } from "./private-markets-lessons";
@@ -59,7 +59,7 @@ export const lessons: Lesson[] = [
   ...FRAUD_SAFETY_LESSONS,
   ...REAL_ESTATE_VN_LESSONS,
   ...LIFE_EXPENSES_LESSONS,
-  ...HEALTH_RISK_LESSONS,
+  ...OCCUPATIONAL_HEALTH_LESSONS,
   ...LIFE_STAGE_LESSONS,
   ...PERSONAL_OPS_LESSONS,
   ...PRIVATE_MARKETS_LESSONS,
