@@ -16,7 +16,7 @@ import { VN_MARKET_LESSONS } from "./vn-market-lessons";
 import { PERSONAL_ENTRY_LESSONS } from "./personal-entry-lessons";
 import { INCOME_GROWTH_LESSONS } from "./income-growth-lessons";
 import { PERSONAL_BANKING_LESSONS } from "./personal-banking-lessons";
-import { GOLD_FX_LESSONS } from "./gold-fx-lessons";
+import { CLOUD_LESSONS } from "./cloud-lessons";
 import { VN_TECH_MARKET_LESSONS } from "./vn-tech-market-lessons";
 import { CRYPTO_LESSONS } from "./crypto-lessons";
 import { FRAUD_SAFETY_LESSONS } from "./fraud-safety-lessons";
@@ -53,7 +53,7 @@ export const lessons: Lesson[] = [
   ...PERSONAL_ENTRY_LESSONS,
   ...INCOME_GROWTH_LESSONS,
   ...PERSONAL_BANKING_LESSONS,
-  ...GOLD_FX_LESSONS,
+  ...CLOUD_LESSONS,
   ...VN_TECH_MARKET_LESSONS,
   ...CRYPTO_LESSONS,
   ...FRAUD_SAFETY_LESSONS,

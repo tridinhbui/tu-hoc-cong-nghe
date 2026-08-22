@@ -105,7 +105,11 @@ export interface Lesson {
     | "profit-calc"
     | "bond"
     | "money-vs-asset"
-    | "inflation-calculator"
+    // Loai tinh lam phat tam rut cung luc voi WIDGET_TYPES trong
+    // components/InteractiveWidget.tsx - hai danh sach nay phai luon bang
+    // nhau, xem lesson-widget-types.test.ts. Khong viet ten loai trong ngoac
+    // kep o day: typesFromUnion() cat khoi roi bat khoa bang regex tren chuoi
+    // co ngoac.
     | "process"
     | "budget"
     | "chart"

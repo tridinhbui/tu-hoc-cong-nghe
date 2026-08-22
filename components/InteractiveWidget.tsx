@@ -128,7 +128,20 @@ export const WIDGET_TYPES: readonly WidgetType[] = [
   "profit-calc",
   "bond",
   "money-vs-asset",
-  "inflation-calculator",
+  // Loại tinh lam phat tam rut khoi danh sach khai bao, KHONG xoa.
+  //
+  // Bai duy nhat dung no la Chang 13 Bai 4 ve vang chong lam phat, va bai do
+  // da chuyen sang tiet kiem ha tang dam may. Kho bai cong nghe hien khong co
+  // bai nao noi ve suc mua theo thoi gian de gan vao.
+  //
+  // interactive-widgets.test.ts bat dung chuyen do: mot widget khong bai nao
+  // dung la ma chet. Gan ep vao mot bai sai chu de thi cong kia im, nhung
+  // nguoi hoc mo bai Tiet kiem ha tang ra lai thay may tinh lam phat.
+  //
+  // Nhanh dispatcher ben duoi van con, nen chi can them lai mot dong o day la
+  // widget song lai. Dung dat ten loai trong ngoac kep o chu thich nay:
+  // declaredWidgetTypes() cat khoi roi bat khoa bang regex tren chuoi co
+  // ngoac, nen mot cai ten trong chu thich cung bi tinh la da khai bao.
   "budget",
   "risk",
   "chart",

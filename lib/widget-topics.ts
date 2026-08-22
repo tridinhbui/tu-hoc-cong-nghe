@@ -42,7 +42,10 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   prospect: ["tâm lý", "hành vi", "prospect", "mất mát", "thiên kiến", "behavioral", "sai lầm"],
   accretion: ["eps", "m&a", "sáp nhập", "pha loãng", "thâu tóm", "thương vụ"],
   "supply-demand": ["cung", "cầu", "giá cân bằng", "thị trường", "chi phí biên", "sức mua"],
-  "inflation-calculator": ["lạm phát", "sức mua"],
+  // Loại tính lạm phát đã tạm rút khỏi WIDGET_TYPES (xem chú thích trong
+  // components/InteractiveWidget.tsx), và bảng này chỉ được chứa widget có
+  // thật. Khi có bài về sức mua theo thời gian, thêm lại cả hai chỗ cùng lúc:
+  // ["lạm phát", "sức mua"]
   "ethics-case": ["đạo đức", "ethics", "chuẩn mực", "standard", "xung đột lợi ích", "tuân thủ", "aml", "kyc", "gian lận", "công bố", "trọng yếu", "khủng hoảng"],
   "tail-risk": ["p99", "độ trễ", "latency", "percentile", "phân vị", "đuôi", "tail", "tốc độ tải", "thời gian chờ", "biến động", "phân phối"],
   ratios: ["chỉ số", "tỷ số", "ratio", "cân đối", "thanh toán", "đòn bẩy", "turnover", "vòng quay", "hiệu quả sử dụng"],
