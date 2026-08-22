@@ -8226,7 +8226,8 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🚦",
     "track": "professional",
-    "whyItMatters": "Cuộc gọi video giật vài khung hình thì vẫn xem được, nhưng chờ gửi lại khung hình cũ thì hỏng cả cuộc gọi. Một lệnh chuyển tiền thì ngược lại: chậm cũng được, sai thì không. Chọn cách gửi là chọn cái nào chấp nhận đánh mất.",
+    "interactiveType": "tail-risk",
+"whyItMatters": "Cuộc gọi video giật vài khung hình thì vẫn xem được, nhưng chờ gửi lại khung hình cũ thì hỏng cả cuộc gọi. Một lệnh chuyển tiền thì ngược lại: chậm cũng được, sai thì không. Chọn cách gửi là chọn cái nào chấp nhận đánh mất.",
     "openingQuestion": "Cuộc gọi video nên dùng cách gửi nào?",
     "openingOptions": [
       "Cách không gửi lại gói mất, vì khung hình cũ tới muộn cũng vô dụng",
@@ -11194,7 +11195,8 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🎓",
     "track": "professional",
-    "whyItMatters": "Chặng này không dạy một khung làm việc cụ thể nào. Nó dạy những câu hỏi phải đặt ra mỗi khi hai hệ thống nói chuyện với nhau, và những câu hỏi đó không đổi khi công nghệ đổi.",
+    "interactiveType": "tail-risk",
+"whyItMatters": "Chặng này không dạy một khung làm việc cụ thể nào. Nó dạy những câu hỏi phải đặt ra mỗi khi hai hệ thống nói chuyện với nhau, và những câu hỏi đó không đổi khi công nghệ đổi.",
     "openingQuestion": "Sợi chỉ xuyên suốt cả chặng này là gì?",
     "openingOptions": [
       "Mạng không đáng tin, nên mọi thiết kế phải coi lỗi là đường chạy bình thường",
@@ -52822,204 +52824,207 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1001,
-    "slug": "discontinued-operations",
-    "title": "Case chuyên sâu: Discontinued Operations",
-    "subtitle": "Đừng để Net Income đánh lừa bạn",
-    "duration": "5 phút",
+    "title": "Case chuyên sâu: Một lần tối ưu lớn",
+    "subtitle": "Đừng để con số tổng đánh lừa bạn",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "🔀",
-    "openingQuestion": "Net Income = 50 tỷ, trong đó Discontinued Ops gain = 80 tỷ. Continuing Operations thực chất là bao nhiêu?",
+    "emoji": "🔍",
+    "openingQuestion": "Độ trễ trung bình giảm 40% trong quý, nhưng 60% mức giảm đến từ việc gỡ hẳn một tính năng nặng. Phần còn lại của hệ thống nhanh lên bao nhiêu?",
     "openingOptions": [
-      "-30 tỷ",
-      "0 tỷ",
-      "50 tỷ",
-      "130 tỷ (cộng cả hai phần)"
+      "Khoảng 16%",
+      "0%, vì toàn bộ mức giảm đến từ việc gỡ tính năng",
+      "40%, vì đó là con số đo được của cả hệ thống",
+      "100%, vì phải cộng cả hai phần lại"
     ],
     "correctOption": 0,
-    "explanation": "Chuẩn kế toán buộc tách kết quả của mảng đã ngừng hoặc sắp bán ra khỏi hoạt động tiếp diễn, và lý do rất thực dụng: chỉ phần tiếp diễn mới còn tồn tại ở các kỳ sau. Một doanh nghiệp báo lãi ròng dương hoàn toàn có thể đang lỗ ở hoạt động lõi, với phần chênh đến từ khoản lãi một lần khi bán mảng kinh doanh. Vì thế việc đầu tiên khi thấy lợi nhuận nhảy vọt là tìm dòng này trong báo cáo.",
+    "explanation": "Bốn mươi phần trăm là con số của cả hệ thống, và sáu mươi phần trăm trong đó đến từ một thay đổi một lần không lặp lại được. Phần thuộc về hệ thống đang chạy tiếp là bốn mươi phần trăm của mức giảm, tức khoảng mười sáu phần trăm trên tổng. Đây là con số duy nhất dùng được để dự báo quý sau, vì bạn không thể gỡ tính năng ấy lần thứ hai. Nhầm hai con số này là cách phổ biến nhất để tin rằng hệ thống đang khoẻ lên trong khi phần lõi vẫn đứng yên hoặc đang xấu đi.",
     "diagram": [
       {
-        "label": "Net Income tổng",
+        "label": "Chỉ số tổng cải thiện mạnh",
         "arrow": true
       },
       {
-        "label": "Tách discontinued ops",
+        "label": "Tách phần một lần ra",
         "arrow": true
       },
       {
-        "label": "Ra continuing operations",
+        "label": "Phần còn lại là xu hướng thật",
         "arrow": true
       },
       {
-        "label": "Chỉ nhìn phần continuing để đánh giá core business",
-        "arrow": false
+        "label": "Chỉ phần ấy mới dự báo được quý sau"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Doanh nghiệp thoái vốn một mảng kinh doanh",
-      "description": "Khi một tập đoàn bán đứt một công ty con, khoản lãi từ giao dịch đó được ghi vào phần Discontinued Operations chứ không phải kết quả hoạt động lõi. Nếu năm đó mảng lõi lỗ, con số Net Income tổng vẫn có thể dương nhờ khoản lãi một lần này. Nhà phân tích vì vậy luôn đọc theo thứ tự ngược lại: bắt đầu từ dòng lợi nhuận từ hoạt động tiếp tục, rồi mới xem phần một lần đóng góp bao nhiêu - chứ không đọc từ dòng cuối lên."
+      "company": "Quý đẹp nhất và quý sau đó",
+      "description": "Một đội báo cáo p99 giảm từ 800 xuống 480 mili giây trong một quý và được khen. Phần lớn mức giảm đến từ việc tắt một tính năng xuất báo cáo mà chỉ vài chục người dùng - nó nặng nhưng hiếm, và việc gỡ nó cắt luôn phần đuôi. Quý sau p99 đứng yên ở 470, và không ai giải thích được vì sao đà cải thiện dừng lại. Nó chưa bao giờ có đà - chỉ có một nhát cắt."
     },
-    "quiz": [
-      {
-        "question": "Điều nào nên làm đầu tiên khi thấy một khoản lợi nhuận đột biến trong báo cáo?",
-        "options": [
-          "Tách xem là continuing hay discontinued",
-          "Cộng luôn vào giá trị doanh nghiệp khi định giá",
-          "Quy về biên lợi nhuận gộp để so với ngành",
-          "Dùng ngay để dự báo lợi nhuận năm sau"
-        ],
-        "correct": 0,
-        "explanation": "Bài học quan trọng nhất là tách lợi nhuận lõi khỏi khoản một lần để tránh bị Net Income đánh lừa."
-      },
-      {
-        "question": "Nếu một công ty liên tục có discontinued gains mỗi năm, tín hiệu đó thường nói gì?",
-        "options": [
-          "Cần soi lại chất lượng phân bổ vốn và tính bền vững lợi nhuận",
-          "Doanh nghiệp rất khỏe vì năm nào cũng có thêm nguồn lợi nhuận mới",
-          "Đó là kết quả của việc kế toán ghi nhận trễ qua nhiều kỳ liền",
-          "Đó chỉ là may mắn ngẫu nhiên, không mang thêm thông tin gì"
-        ],
-        "correct": 0,
-        "explanation": "Khoản một lần lặp lại nhiều kỳ thường không còn là 'one-off' nữa, mà là dấu hiệu cần đọc kỹ mô hình kinh doanh."
-      },
-      {
-        "question": "Một doanh nghiệp có khoản lãi từ hoạt động đã ngừng xuất hiện đều trong 4 năm liên tiếp. Điều này gợi ý gì?",
-        "options": [
-          "Doanh nghiệp có thể đang bán tài sản để bù hoạt động lõi yếu",
-          "Đây là hiện tượng kế toán bình thường ở doanh nghiệp",
-          "Doanh nghiệp đang rất khỏe vì năm nào cũng có thêm lợi nhuận",
-          "Nên cộng toàn bộ vào lợi nhuận lõi để so sánh giữa các năm"
-        ],
-        "correct": 0,
-        "explanation": "Bản chất của khoản một lần là không lặp lại. Khi nó lặp lại đều đặn, câu hỏi đúng là doanh nghiệp đang sống bằng bán tài sản hay bằng kinh doanh."
-      },
-      {
-        "question": "Khi phân tích một doanh nghiệp vừa bán một mảng kinh doanh, câu hỏi quan trọng nhất về phần doanh thu bị hụt là gì?",
-        "options": [
-          "Mảng đó từng đóng góp bao nhiêu, năm sau lấy gì bù đắp",
-          "Giao dịch đã được kiểm toán độc lập xác nhận đầy đủ hay chưa",
-          "Giá bán có cao hơn giá trị sổ sách của mảng đó không",
-          "Bên mua là ai và họ có phải bên liên quan hay không"
-        ],
-        "correct": 0,
-        "explanation": "Khoản lãi từ giao dịch chỉ ảnh hưởng một kỳ, nhưng phần doanh thu và lợi nhuận mất đi ảnh hưởng mọi kỳ sau. Đó mới là thứ định hình bức tranh tương lai."
-      },
-      {
-        "question": "Vì sao chuẩn kế toán yêu cầu trình bày hoạt động đã ngừng tách riêng khỏi hoạt động tiếp diễn?",
-        "options": [
-          "Để người đọc dự phóng được phần hoạt động sẽ còn tồn tại ở các kỳ tới",
-          "Để doanh nghiệp không phải nộp thuế trên phần lợi nhuận của mảng đã bán đi",
-          "Để cơ quan quản lý theo dõi được số lượng thương vụ thoái vốn trong năm",
-          "Để kiểm toán viên có cơ sở loại trừ mảng đó khỏi phạm vi kiểm toán năm đó"
-        ],
-        "correct": 0,
-        "explanation": "Giá trị của báo cáo kết quả kinh doanh nằm ở khả năng dự phóng, mà mảng đã bán thì năm sau không còn đóng góp gì. Tách riêng để người đọc biết đâu là phần lặp lại được - và đó cũng là lý do lợi nhuận một lần từ thương vụ bán không nên đưa vào bội số định giá."
-      }
-    ],
-    "keyTakeaways": [
-      "Luôn tách Continuing Operations khi phân tích",
-      "Discontinued ops là khoản một lần, không dùng để value core business",
-      "Lợi nhuận đột biến lặp lại nhiều kỳ là red flag"
-    ],
-    "practicePrompt": {
-      "question": "Ý nào dưới đây đúng với nội dung bài học này?",
-      "options": [
-        "Risk-free rate là nền tảng của mọi mô hình định giá tài chính",
-        "Luôn tách Continuing Operations ra khi phân tích",
-        "Đọc BS: tài sản ngắn hạn vs nợ ngắn hạn trước",
-        "Exit Multiple Method: Terminal Value dựa trên bội số thị trường điển hình (như EV/EBITDA)"
-      ],
-      "correct": 1,
-      "explanation": "Luôn tách Continuing Operations ra khi phân tích"
-    },
-    "summary": {
-      "keyIdea": "Đọc lợi nhuận lõi trước khi tin vào Net Income.",
-      "commonMistake": "Nhìn số lãi cuối cùng mà quên hỏi lãi đó đến từ đâu.",
-      "action": "Mở báo cáo tài chính và so sánh Net Income với Continuing Operations trong 2-3 kỳ gần nhất."
-    },
-    "application": {
-      "title": "Đọc báo cáo thật",
-      "message": "Lấy một báo cáo tài chính gần nhất, tìm dòng continuing vs discontinued operations rồi đánh dấu khoản nào là lõi, khoản nào là một lần.",
-      "secondary": "Nếu khoản một lần quá lớn so với core business, đừng dự báo tương lai dựa trên Net Income tổng."
-    },
-    "track": "bonus",
     "sections": [
       {
         "type": "lead",
-        "text": "Net Income đẹp không phải lúc nào cũng nghĩa là hoạt động kinh doanh chính đang khỏe. Khi một công ty thoái vốn hoặc bán mảng kinh doanh, khoản lãi/lỗ một lần đó có thể làm con số cuối cùng trông rất khác với thực tế vận hành."
+        "text": "Một chỉ số tổng cải thiện mạnh luôn dễ được kể như một câu chuyện thành công. Câu hỏi đầu tiên phải là: phần nào trong mức cải thiện ấy lặp lại được vào quý sau."
       },
       {
         "type": "heading",
-        "text": "Tách Continuing Operations khỏi Discontinued Operations"
+        "text": "Tách phần một lần khỏi phần đang chạy"
       },
       {
         "type": "paragraph",
-        "text": "Báo cáo kết quả kinh doanh chuẩn tách riêng lợi nhuận từ hoạt động đang tiếp tục (Continuing Operations) và lợi nhuận/lỗ từ mảng đã hoặc sắp ngừng hoạt động (Discontinued Operations). Một khoản lãi lớn từ việc bán mảng kinh doanh có thể đẩy Net Income tổng lên rất cao trong một kỳ, nhưng không nói lên gì về khả năng sinh lời của phần công ty còn lại."
+        "text": "Gỡ một tính năng, xoá một bảng dữ liệu khổng lồ, chuyển sang một vùng gần người dùng hơn - đây đều là những thay đổi một lần. Chúng làm chỉ số nhảy một bậc rồi thôi. Phần còn lại - tối ưu truy vấn, giảm số vòng gọi, sửa chỗ khoá tài nguyên - là thứ tạo ra đà và lặp lại được. Cùng một mức cải thiện tổng, hai thành phần này nói hai chuyện hoàn toàn khác nhau về quý sau."
       },
       {
         "type": "list",
         "items": [
-          "Luôn tách Continuing Operations trước khi đánh giá sức khỏe kinh doanh",
-          "Discontinued ops là khoản một lần, không dùng để dự báo tương lai",
-          "Lợi nhuận đột biến lặp lại nhiều kỳ là dấu hiệu cần soi kỹ, không còn là 'one-off' nữa"
+          "Hỏi mức cải thiện nào lặp lại được, không hỏi mức cải thiện tổng là bao nhiêu",
+          "Một lần: gỡ tính năng, xoá dữ liệu cũ, đổi vùng, đổi loại máy",
+          "Lặp lại được: tối ưu truy vấn, bớt vòng gọi, sửa chỗ tranh chấp tài nguyên",
+          "Chỉ phần lặp lại được mới dùng để dự báo và để đặt mục tiêu quý sau"
         ]
       },
       {
         "type": "formula",
-        "title": "Tách hai phần trong báo cáo kết quả kinh doanh",
-        "equation": "Net Income = Lợi nhuận từ hoạt động tiếp tục + Lãi/lỗ từ hoạt động đã ngừng",
+        "title": "Tách hai thành phần",
         "variables": [
           {
-            "symbol": "Continuing",
-            "name": "Hoạt động tiếp tục",
-            "description": "Phần kinh doanh doanh nghiệp còn giữ - đây mới là cơ sở để dự báo tương lai."
+            "symbol": "Total",
+            "name": "Cải thiện tổng = chỉ số đầu kỳ − chỉ số cuối kỳ",
+            "description": "Con số được báo cáo, và là con số duy nhất phần lớn người đọc nhìn thấy."
           },
           {
-            "symbol": "Discontinued",
-            "name": "Hoạt động đã/sắp ngừng",
-            "description": "Mảng đã bán hoặc sắp đóng, gồm cả lãi/lỗ từ chính giao dịch bán."
+            "symbol": "One",
+            "name": "Phần một lần = mức đóng góp của các thay đổi không lặp lại",
+            "description": "Đo bằng cách chạy lại phép đo với tính năng đã gỡ được tính vào. Nếu không đo được thì ước lượng và ghi rõ là ước lượng."
+          },
+          {
+            "symbol": "Run",
+            "name": "Phần lặp lại được = Cải thiện tổng − Phần một lần",
+            "description": "Đây là con số nói lên hệ thống có đang khoẻ lên hay không, và là con số duy nhất dự báo được."
+          },
+          {
+            "symbol": "Ratio",
+            "name": "Tỷ trọng một lần = Phần một lần / Cải thiện tổng",
+            "description": "Trên 50% nghĩa là câu chuyện thành công chủ yếu là một nhát cắt. Điều đó không xấu, nhưng nó không phải đà."
           }
-        ],
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "Net Income 50 tỷ = Continuing + 80 tỷ",
-          "result": "Continuing = −30 tỷ",
-          "explanation": "Doanh nghiệp báo lãi 50 tỷ, nhưng toàn bộ đến từ khoản lãi 80 tỷ khi bán mảng kinh doanh. Hoạt động lõi thực tế lỗ 30 tỷ - và đó mới là con số nói lên năm sau sẽ ra sao."
-        }
+        ]
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Đọc từ dòng cuối lên",
-          "text": "\"Net Income 50 tỷ, tăng so với năm trước - doanh nghiệp đang cải thiện.\" Kết luận sai vì phần tăng đến từ một giao dịch không lặp lại."
+          "label": "Cải thiện có đà",
+          "text": "Phần lặp lại được chiếm phần lớn. Quý sau có thể đặt mục tiêu tiếp theo trên cùng đường, và các kỹ thuật đã dùng vẫn còn dùng được."
         },
         "right": {
-          "label": "Đọc từ hoạt động lõi xuống",
-          "text": "\"Hoạt động tiếp tục lỗ 30 tỷ; lãi 80 tỷ đến từ bán mảng X, là khoản một lần. Cần xem mảng lõi năm sau còn nguồn thu bù đắp nào không.\""
+          "label": "Cải thiện một nhát",
+          "text": "Phần một lần chiếm phần lớn. Quý sau chỉ số đứng yên, và đội phải tìm một nhát cắt mới - thứ ngày càng hiếm sau lần đầu tiên."
         }
       },
       {
         "type": "heading",
-        "text": "Ba chỗ cần soi khi thấy khoản một lần lớn"
+        "text": "Ba dấu hiệu con số đang bị thổi"
       },
       {
         "type": "list",
         "items": [
-          "Khoản đó có thực sự một lần không - kiểm tra 3-5 năm gần nhất xem 'one-off' có xuất hiện đều đặn hay không.",
-          "Mảng bị bán đóng góp bao nhiêu doanh thu và lợi nhuận trước đây - phần hụt này năm sau lấy gì bù?",
-          "Tiền bán thu về được dùng làm gì: trả nợ, tái đầu tư, hay chia cổ tức. Đây là chỉ dấu về chất lượng phân bổ vốn."
+          "Mức cải thiện đến gần hết từ một thay đổi duy nhất trong quý",
+          "Chỉ số cải thiện mạnh nhưng số người dùng chạm phần được cải thiện lại rất nhỏ",
+          "Quý nào cũng có một khoản một lần, và lần nào cũng được kể như xu hướng"
         ]
       },
       {
         "type": "closing",
         "lines": [
-          "Con số cuối cùng trên báo cáo chỉ là điểm khởi đầu.",
-          "Luôn hỏi: lợi nhuận này đến từ đâu, và nó có lặp lại được không?"
+          "Chỉ số tổng trả lời quý vừa rồi thế nào; phần lặp lại được trả lời quý sau sẽ thế nào.",
+          "Và một đội quý nào cũng có khoản một lần thì đó chính là xu hướng cần nhìn."
         ]
       }
-    ]
+    ],
+    "quiz": [
+      {
+        "question": "Thấy một mức cải thiện lớn bất thường trong quý, việc nên làm đầu tiên là gì?",
+        "options": [
+          "Tách xem bao nhiêu phần đến từ thay đổi một lần không lặp lại được",
+          "Kiểm tra lại xem hệ thống đo lường có thay đổi cách tính trong quý không",
+          "So sánh mức cải thiện đó với các đội khác trong cùng tổ chức",
+          "Ghi nhận kết quả rồi đặt mục tiêu quý sau ở mức tương đương"
+        ],
+        "correct": 0,
+        "explanation": "Ba việc kia đều hợp lý nhưng đến sau. Không tách phần một lần ra thì mọi so sánh và mọi mục tiêu đặt tiếp đều dựa trên một con số không lặp lại được."
+      },
+      {
+        "question": "Một đội quý nào cũng có một khoản cải thiện một lần. Nên đọc thế nào?",
+        "options": [
+          "Bản thân việc đó là xu hướng, và nó thường che một phần lõi đang xấu đi",
+          "Đó là dấu hiệu đội đang tối ưu tốt và liên tục tìm ra chỗ cải thiện mới",
+          "Các khoản một lần liên tiếp nhau thì cộng lại thành một xu hướng thật",
+          "Cần chờ thêm vài quý nữa mới đủ dữ liệu để kết luận bất cứ điều gì"
+        ],
+        "correct": 0,
+        "explanation": "Một khoản một lần là bình thường; quý nào cũng có thì từ định nghĩa nó không còn là một lần. Mẫu hình thường gặp là phần lõi đứng yên hoặc xấu đi, và mỗi quý lại có một nhát cắt mới đắp lên."
+      },
+      {
+        "question": "Một hệ thống có p99 giảm mạnh nhờ tắt một tính năng ít người dùng. Nên báo cáo thế nào?",
+        "options": [
+          "Báo cả hai con số, và nói rõ phần nào không lặp lại được vào quý sau",
+          "Báo con số tổng, vì đó là mức cải thiện mà người dùng thật sự nhận được",
+          "Không báo, vì mức cải thiện này không đến từ nỗ lực tối ưu của đội",
+          "Báo con số sau khi đã loại tính năng đó khỏi phép đo của cả hai kỳ"
+        ],
+        "correct": 0,
+        "explanation": "Con số tổng là thật và đáng báo. Vấn đề chỉ xuất hiện khi nó được dùng để dự báo, nên cách xử lý là báo kèm phần tách chứ không phải giấu đi hay chỉnh sửa phép đo."
+      },
+      {
+        "question": "Khi phân tích một hệ thống vừa gỡ bỏ một mảng lớn, cần cẩn thận điều gì?",
+        "options": [
+          "Các chỉ số trước và sau không so trực tiếp được vì phạm vi đo đã đổi",
+          "Dữ liệu lịch sử của mảng đã gỡ sẽ bị xoá nên không đối chiếu lại được",
+          "Chi phí hạ tầng giảm ngay lập tức nên chỉ số hiệu quả bị thổi lên",
+          "Đội phụ trách mảng đó không còn nên không ai giải thích được số liệu cũ"
+        ],
+        "correct": 0,
+        "explanation": "Đây là vấn đề cơ bản khi phạm vi đo thay đổi giữa hai kỳ. Muốn so được thì phải dựng lại chỉ số của kỳ trước trên cùng phạm vi với kỳ này, và con số ấy hầu như luôn kém ấn tượng hơn."
+      },
+      {
+        "question": "Vì sao nên tách riêng phần một lần khi trình bày kết quả?",
+        "options": [
+          "Vì người đọc cần biết phần nào dùng để dự báo được, phần nào thì không",
+          "Vì các khoản một lần thường có sai số đo lớn hơn nên cần được ghi chú riêng",
+          "Vì quy trình báo cáo nội bộ yêu cầu phân loại mọi thay đổi theo nguồn gốc",
+          "Vì phần một lần thường do đội khác thực hiện nên cần ghi nhận đúng công"
+        ],
+        "correct": 0,
+        "explanation": "Toàn bộ giá trị của việc tách nằm ở khả năng dự báo. Một con số gộp trả lời được câu hỏi về quá khứ nhưng không trả lời được câu hỏi duy nhất mà người đọc thật sự quan tâm."
+      }
+    ],
+    "keyTakeaways": [
+      "Hỏi phần nào của mức cải thiện lặp lại được, không hỏi mức cải thiện tổng",
+      "Một lần: gỡ tính năng, xoá dữ liệu, đổi vùng. Lặp lại được: tối ưu truy vấn, bớt vòng gọi",
+      "Tỷ trọng một lần trên 50% nghĩa là câu chuyện thành công là một nhát cắt, không phải đà",
+      "Quý nào cũng có khoản một lần thì bản thân điều đó mới là xu hướng"
+    ],
+    "practicePrompt": {
+      "question": "Chi phí hạ tầng giảm 35% trong quý, trong đó 30 điểm đến từ việc tắt một môi trường thử nghiệm. Xu hướng thật là gì?",
+      "options": [
+        "Khoảng 5% - phần còn lại sau khi trừ khoản một lần",
+        "35% - đó là con số đo được của cả hệ thống",
+        "30% - phần lớn mức giảm nên lấy làm đại diện",
+        "0% - vì mức giảm chủ yếu đến từ một thay đổi duy nhất"
+      ],
+      "correct": 0,
+      "explanation": "Tắt một môi trường là việc làm được đúng một lần. Năm điểm còn lại mới là thứ đến từ vận hành thường ngày, và đó là con số duy nhất dùng để đặt mục tiêu quý sau."
+    },
+    "summary": {
+      "keyIdea": "Chỉ số tổng nói về quý vừa rồi; phần lặp lại được nói về quý sau",
+      "commonMistake": "Dùng mức cải thiện tổng để đặt mục tiêu cho kỳ tiếp theo",
+      "action": "Với báo cáo gần nhất, tách riêng phần đến từ thay đổi một lần."
+    },
+    "application": {
+      "title": "Hai con số cho mỗi báo cáo",
+      "message": "Mỗi lần báo một mức cải thiện, kèm luôn con số thứ hai: phần lặp lại được. Ghi rõ thay đổi một lần nào đã đóng góp và bao nhiêu.",
+      "secondary": "Nếu ba quý liên tiếp đều có khoản một lần lớn, hãy vẽ riêng đường của phần lặp lại được. Đường ấy mới cho biết hệ thống đang đi đâu."
+    },
+    "id": 1001,
+    "slug": "discontinued-operations",
+    "track": "bonus"
   },
   {
     "id": 1002,
@@ -54204,280 +54209,233 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1051,
-    "slug": "khau-hao",
-    "title": "Khấu hao: ba phương pháp và đường đi qua ba báo cáo",
-    "subtitle": "Chọn phương pháp nào, và một đồng khấu hao chạm vào những đâu",
+    "title": "Phân bổ chi phí trả trước: ba cách và đường đi qua hoá đơn",
+    "subtitle": "Chọn cách nào, và một đồng phân bổ chạm vào những đâu",
     "duration": "7 phút",
     "difficulty": "Trung bình",
-    "emoji": "🏗️",
-    "openingQuestion": "Khấu hao 50 triệu trong kỳ làm tiền trong quỹ giảm bao nhiêu?",
+    "emoji": "📉",
+    "openingQuestion": "Phân bổ 50 triệu chi phí hạ tầng trả trước trong kỳ làm tiền chi ra tháng này tăng bao nhiêu?",
     "openingOptions": [
-      "Giảm 50 triệu, vì đó là chi phí trong kỳ",
-      "Không giảm đồng nào trong kỳ",
-      "Giảm 50 triệu nhân thuế suất đang áp",
-      "Giảm dần từng tháng tới hết năm"
+      "Tăng 50 triệu, vì đó là chi phí của kỳ này",
+      "Không tăng đồng nào trong kỳ",
+      "Tăng 50 triệu chia cho số tháng còn lại",
+      "Tăng dần từng tháng cho tới hết năm"
     ],
     "correctOption": 1,
-    "explanation": "Tiền đã ra khỏi quỹ từ lúc mua tài sản, không phải lúc khấu hao. Khấu hao chỉ là cách chia giá mua đó ra nhiều kỳ để mỗi kỳ gánh một phần, nên nó làm giảm lợi nhuận trên báo cáo mà không có đồng nào rời quỹ. Đó chính là lý do báo cáo lưu chuyển tiền tệ theo phương pháp gián tiếp cộng khấu hao trở lại ngay dòng đầu: lợi nhuận đã bị trừ nó, mà tiền thì chưa. Nói cách khác khấu hao dịch chuyển con số lợi nhuận chứ không dịch chuyển tiền - và nó chỉ ảnh hưởng tới tiền một cách gián tiếp, qua phần thuế phải nộp ít hơn.",
+    "explanation": "Tiền đã ra khỏi tài khoản từ lúc ký cam kết ba năm, không phải tháng này. Phần 50 triệu ở đây chỉ là cách chia khoản đã trả ấy cho các kỳ được hưởng lợi, để mỗi tháng nhìn thấy đúng phần chi phí thuộc về nó. Đây là chỗ nhầm phổ biến nhất khi đọc bảng chi phí hạ tầng: một dòng có số tiền không có nghĩa là tháng đó có một khoản chi. Muốn biết tiền thật sự ra bao nhiêu thì phải nhìn dòng tiền, và ở đó khoản trả trước xuất hiện đúng một lần vào kỳ ký.",
     "diagram": [
       {
-        "label": "Mua tài sản, tiền ra một lần",
+        "label": "Trả trước 1,8 tỷ cho cam kết 3 năm",
         "arrow": true
       },
       {
-        "label": "Chia giá mua cho số năm sử dụng",
+        "label": "Tiền ra một lần, ngay kỳ đầu",
         "arrow": true
       },
       {
-        "label": "Mỗi kỳ ghi một phần vào chi phí",
+        "label": "Chi phí chia đều 50 triệu mỗi tháng",
         "arrow": true
       },
       {
-        "label": "Lợi nhuận giảm, quỹ tiền không đổi",
-        "arrow": false
+        "label": "Hai con số khác nhau, và cả hai đều đúng"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Một hãng hàng không",
-      "description": "Ngành nặng tài sản có khấu hao lớn, nên biên lợi nhuận trông thấp hơn hẳn một công ty phần mềm dù dòng tiền có thể tốt. Đó là lý do người ta hay so bằng EBITDA - cộng khấu hao trở lại để đặt hai mô hình vốn khác nhau lên cùng một thước."
-    },
-    "checkpointIndex": 4,
-    "keyTakeaways": [
-      "Đường thẳng chia đều; số dư giảm dần đẩy chi phí về các năm đầu; theo sản lượng gắn chi phí với mức dùng thật",
-      "Tổng khấu hao cả đời tài sản không đổi theo phương pháp - chỉ thời điểm ghi thay đổi",
-      "Khấu hao giảm lợi nhuận trên P&L, giảm giá trị tài sản ròng trên bảng cân đối, và được cộng lại trong dòng tiền hoạt động",
-      "Capex xấp xỉ khấu hao là doanh nghiệp đang giữ nguyên quy mô; Capex lớn hơn khấu hao là đang mở rộng"
-    ],
-    "summary": {
-      "keyIdea": "Khấu hao là phép chia một khoản đã trả cho những kỳ sẽ dùng, không phải một khoản chi mới",
-      "formula": "Đường thẳng: (Nguyên giá − Giá trị thanh lý) / Số năm sử dụng",
-      "commonMistake": "Coi khấu hao là tiền đi ra, hoặc tưởng đổi phương pháp thì tổng chi phí đổi theo",
-      "action": "Lấy một báo cáo thật, so Capex với khấu hao trong cùng kỳ để đọc ra doanh nghiệp đang mở rộng hay chỉ duy trì"
-    },
-    "application": {
-      "title": "Đọc trên báo cáo thật",
-      "message": "Tìm dòng khấu hao trong báo cáo lưu chuyển tiền tệ, rồi tìm khấu hao lũy kế trên bảng cân đối. Con số thứ nhất là phần của kỳ này, con số thứ hai là tổng đã ghi từ đầu.",
-      "secondary": "Nếu khấu hao lũy kế gần bằng nguyên giá, phần lớn tài sản đã hết đời sổ sách - và một đợt đầu tư thay thế thường không còn xa."
-    },
-    "practicePrompt": {
-      "question": "Máy 600 triệu, đời 10 năm, không giá trị thanh lý. Theo số dư giảm dần với tỷ lệ gấp đôi, chi phí khấu hao năm thứ hai là bao nhiêu?",
-      "options": [
-        "96 triệu (= 480 × 20%, sau năm 1 ghi 120)",
-        "120 triệu (= 600 × 20%, dùng lại nguyên giá)",
-        "60 triệu (= 600 / 10, đó là đường thẳng)",
-        "108 triệu (= 540 × 20%, trừ nửa năm đầu)"
-      ],
-      "correct": 0,
-      "explanation": "Tỷ lệ gấp đôi đường thẳng là 2/10 = 20%, và nó áp lên giá trị còn lại trên sổ chứ không lên nguyên giá. Năm 1: 600 × 20% = 120 triệu, còn lại 480. Năm 2: 480 × 20% = 96 triệu. Phương án 120 mắc đúng lỗi hay gặp là áp tỷ lệ lên nguyên giá mỗi năm, khiến tài sản khấu hao hết sau đúng 5 năm thay vì giảm dần mãi. Phương án 60 là kết quả của đường thẳng, không phải số dư giảm dần."
+      "company": "Hoá đơn đẹp và tài khoản trống",
+      "description": "Một đội ký cam kết ba năm để được giảm bốn mươi phần trăm, trả trước 1,8 tỷ. Từ tháng sau bảng chi phí hằng tháng của họ đẹp hẳn - chỉ còn 50 triệu phân bổ thay vì 100 triệu trả theo giờ. Nhưng quý ấy ngân sách tiền mặt thủng một lỗ 1,8 tỷ mà không dòng nào trên bảng chi phí tháng cho thấy điều đó. Hai bảng nói hai chuyện khác nhau, và người chỉ đọc một bảng luôn ngạc nhiên."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Khấu hao là gì và vì sao nó không phải tiền đi ra - phần đó đã có ở bài Khấu hao là gì. Ở đây là hai câu tiếp theo: chọn phương pháp nào cho loại tài sản nào, và một đồng khấu hao chạm vào những đâu trên bộ báo cáo."
+        "text": "Một khoản trả trước lớn và chi phí hằng tháng là hai con số khác nhau của cùng một thứ. Lẫn lộn chúng là cách nhanh nhất để vừa thấy hoá đơn đẹp vừa hết tiền."
       },
       {
         "type": "heading",
-        "text": "Ba phương pháp"
+        "text": "Ba cách phân bổ, ba hình dạng chi phí"
       },
       {
         "type": "list",
         "items": [
-          "Đường thẳng: (Nguyên giá − Giá trị thanh lý) / Số năm. Chia đều, đơn giản, phổ biến nhất - máy 600 triệu đời 10 năm thì mỗi năm 60 triệu",
-          "Số dư giảm dần tỷ lệ gấp đôi: Giá trị còn lại × (2 / Số năm). Đẩy chi phí về các năm đầu, phù hợp tài sản mất giá nhanh như thiết bị công nghệ - năm 1 là 600 × 20% = 120 triệu, năm 2 là 480 × 20% = 96 triệu",
-          "Theo sản lượng: (Nguyên giá − Giá trị thanh lý) / Tổng sản lượng × Sản lượng đã dùng. Gắn chi phí với mức dùng thật, phù hợp xe tải và máy móc - xe 500 triệu chạy được 500.000 km, năm đầu chạy 60.000 km thì ghi 60 triệu"
+          "Chia đều: lấy tổng chia cho số kỳ. Đơn giản, dễ dự báo, hợp với cam kết dung lượng cố định.",
+          "Giảm dần: kỳ đầu gánh nhiều hơn. Hợp khi giá trị dùng được giảm theo thời gian, như phần cứng.",
+          "Theo mức dùng: chia theo số request thật sự chạy qua. Chính xác nhất nhưng chỉ làm được khi có số đo.",
+          "Cả ba đều cho cùng một tổng sau khi hết kỳ - chúng chỉ khác ở chỗ đặt gánh nặng vào đâu."
         ]
       },
       {
         "type": "callout",
-        "label": "Tổng không đổi, chỉ thời điểm đổi",
-        "text": "Ba phương pháp cho cùng một tổng khấu hao trên cả đời tài sản. Chọn phương pháp là chọn ghi nhiều ở năm nào, không phải chọn tốn bao nhiêu - nên đổi phương pháp làm lợi nhuận từng năm khác đi mà không làm doanh nghiệp giàu hay nghèo hơn."
+        "label": "Phân bổ không phải là chi",
+        "text": "Dòng phân bổ trên bảng chi phí không tương ứng với đồng nào rời khỏi tài khoản trong kỳ đó. Đây là lý do khi tính tiền mặt thật sự cần, người ta phải cộng ngược phần phân bổ vào rồi trừ riêng các khoản đã trả trước - hai thao tác ngược nhau nhưng không triệt tiêu, vì chúng thuộc hai kỳ khác nhau."
       },
       {
         "type": "heading",
-        "text": "Đường đi qua ba báo cáo"
+        "text": "Một đồng phân bổ chạm vào những đâu"
       },
       {
         "type": "list",
         "items": [
-          "Kết quả kinh doanh: chi phí khấu hao làm giảm lợi nhuận hoạt động, rồi giảm lợi nhuận sau thuế",
-          "Bảng cân đối: khấu hao lũy kế lớn dần và trừ vào nguyên giá, nên giá trị tài sản ròng nhỏ đi qua từng kỳ",
-          "Lưu chuyển tiền tệ: theo phương pháp gián tiếp, khấu hao được cộng trở lại vào dòng tiền hoạt động, vì nó đã bị trừ khỏi lợi nhuận mà không có đồng tiền nào rời quỹ"
+          "Bảng chi phí theo dịch vụ: dòng phân bổ làm chi phí mỗi request của dịch vụ ấy tăng lên",
+          "Dự báo ngân sách: phần chưa phân bổ hết vẫn là một khoản đã trả nhưng chưa ghi nhận",
+          "Dòng tiền: không xuất hiện, vì tiền đã ra ở kỳ ký cam kết",
+          "Quyết định gia hạn: chỉ phần còn lại chưa phân bổ mới đáng đưa vào so sánh"
         ]
       },
       {
         "type": "heading",
-        "text": "Bốn điều đọc ra được từ con số khấu hao"
+        "text": "Ba chỗ dễ nhầm"
       },
       {
         "type": "list",
         "items": [
-          "EBITDA = lợi nhuận hoạt động + khấu hao: cộng lại để đặt hai doanh nghiệp có mức đầu tư tài sản khác nhau lên cùng một thước",
-          "Ngành nặng tài sản như sản xuất hay hàng không có khấu hao lớn, nên biên lợi nhuận trông thấp hơn ngành nhẹ tài sản dù dòng tiền có thể không kém",
-          "Ở trạng thái ổn định, chi đầu tư thay thế xấp xỉ khấu hao; chi đầu tư lớn hơn khấu hao là dấu hiệu đang mở rộng",
-          "Khấu hao cho mục đích thuế thường nhanh hơn khấu hao trên báo cáo, và khoảng lệch đó sinh ra thuế thu nhập hoãn lại phải trả"
+          "So chi phí mỗi request giữa hai dịch vụ mà một bên trả trước còn bên kia trả theo giờ",
+          "Coi phần chưa phân bổ hết là tiền còn giữ được, trong khi nó đã ra khỏi tài khoản",
+          "Đổi cách phân bổ giữa chừng làm hai kỳ không so được với nhau"
         ]
       },
       {
         "type": "closing",
         "lines": [
-          "Khấu hao là chỗ kế toán và tiền tách nhau rõ nhất: một con số lớn trên báo cáo mà quỹ tiền không nhúc nhích.",
-          "Vì thế đọc nó cùng chi đầu tư mới có nghĩa - một mình nó chỉ nói tài sản đang già đi."
+          "Phân bổ nói chi phí thuộc về kỳ nào; dòng tiền nói tiền ra khi nào. Hai câu hỏi khác nhau.",
+          "Và khi so hai dịch vụ, luôn hỏi trước: bên nào đang trả trước, bên nào trả theo giờ."
         ]
       }
     ],
-    "track": "bonus",
     "quiz": [
       {
-        "question": "Mua máy móc 600 triệu, tuổi thọ 10 năm, giá trị còn lại (salvage value) = 0. Straight-line depreciation mỗi năm là?",
+        "question": "Cam kết 3 năm trả trước 1,8 tỷ, chia đều. Chi phí phân bổ mỗi tháng là bao nhiêu?",
         "options": [
-          "60 triệu/năm",
-          "600 triệu ngay năm 1",
-          "6 triệu/năm",
-          "Phụ thuộc vào doanh thu"
-        ],
-        "correct": 0,
-        "explanation": "Straight-line: D&A = (Cost - Salvage Value) / Useful Life = (600 - 0) / 10 = 60 triệu/năm. Sau 10 năm, Book Value = 0."
-      },
-      {
-        "question": "Tại sao D&A được cộng lại trong Cash Flow Statement (indirect method)?",
-        "options": [
-          "Để tăng lợi nhuận",
-          "D&A là non-cash expense - làm giảm Net Income nhưng không thực sự chi tiền mặt",
-          "Vì D&A là chi phí đầu tư",
-          "Để giảm thuế"
-        ],
-        "correct": 1,
-        "explanation": "Indirect method bắt đầu từ Net Income (đã trừ D&A) và cộng lại D&A vì không có dòng tiền ra thực tế. D&A là bút toán phi tiền mặt - chỉ ảnh hưởng đến P&L, không phải bank account."
-      },
-      {
-        "question": "Book Value của tài sản sau 3 năm với cost 900M, useful life 15 năm, salvage 0, straight-line là?",
-        "options": [
-          "720 triệu",
-          "600 triệu",
-          "180 triệu",
-          "900 triệu"
-        ],
-        "correct": 0,
-        "explanation": "Annual D&A = 900/15 = 60M/năm. Sau 3 năm: Accumulated Depreciation = 3 × 60 = 180M. Book Value = 900 - 180 = 720M."
-      },
-      {
-        "question": "Cùng chiếc máy 600 triệu, tuổi thọ 10 năm, nhưng giá trị thanh lý ước tính 100 triệu. Khấu hao thẳng mỗi năm là?",
-        "options": [
-          "60 triệu (= 600/10, bỏ quên giá trị thanh lý)",
           "50 triệu",
-          "70 triệu (= (600+100)/10, cộng nhầm dấu)",
-          "10 triệu (= 100/10, khấu hao đúng phần thanh lý)"
+          "150 triệu (= chia cho 12 tháng thay vì cho 36)",
+          "600 triệu (= chia cho 3 năm, quên đổi ra tháng)",
+          "1,8 tỷ ở tháng đầu, các tháng sau bằng không"
         ],
-        "correct": 1,
-        "explanation": "Khấu hao thẳng = (nguyên giá − giá trị thanh lý) / số năm = (600 − 100) / 10 = 50 triệu. Giá trị thanh lý là phần KHÔNG được khấu hao, vì đó là số tiền dự kiến vẫn thu về được khi bán thanh lý; khấu hao chỉ phân bổ phần giá trị thực sự tiêu hao đi."
+        "correct": 0,
+        "explanation": "1,8 tỷ chia 36 tháng ra 50 triệu. Phương án cuối chính là cách dòng tiền ghi nhận khoản này - đúng cho câu hỏi tiền ra khi nào, sai cho câu hỏi chi phí thuộc kỳ nào."
       },
       {
-        "question": "Khấu hao tăng thêm 100 triệu trong kỳ, thuế suất 20%. Tiền mặt cuối kỳ thay đổi thế nào?",
+        "question": "Vì sao phần phân bổ phải được cộng lại khi tính tiền mặt thật sự cần trong kỳ?",
         "options": [
-          "Giảm 100 triệu vì đó là một khoản chi phí",
-          "Tăng 20 triệu",
-          "Không đổi vì khấu hao không phải khoản chi tiền",
-          "Giảm 80 triệu, đúng bằng phần lợi nhuận sau thuế mất đi"
+          "Vì nó là chi phí đã ghi nhận nhưng không có đồng nào rời tài khoản trong kỳ đó",
+          "Vì nó luôn được nhà cung cấp hoàn lại một phần vào cuối mỗi kỳ thanh toán",
+          "Vì nó được tính hai lần, một lần ở bảng chi phí và một lần ở bảng dự báo ngân sách",
+          "Vì nó thay đổi theo mức sử dụng nên không dự báo trước được chính xác"
         ],
-        "correct": 1,
-        "explanation": "Khấu hao +100 làm lợi nhuận trước thuế −100, nên thuế phải nộp giảm 20. Bản thân khấu hao không ra khỏi két, nên thứ duy nhất thực sự động đến tiền là khoản thuế tiết kiệm được: tiền mặt TĂNG 20 triệu. Đây gọi là lá chắn thuế của khấu hao, và nó là lý do hai doanh nghiệp giống hệt nhau nhưng khấu hao khác nhau sẽ có dòng tiền khác nhau."
+        "correct": 0,
+        "explanation": "Đây là điều chỉnh cơ bản nhất khi đi từ bảng chi phí sang nhu cầu tiền mặt. Phân bổ là một bút toán chia phần, không phải một lần chuyển tiền, nên nó phải bị loại ra khi câu hỏi là tiền."
+      },
+      {
+        "question": "Cam kết 900 triệu, 3 năm, chia đều. Phần chưa phân bổ sau 1 năm là bao nhiêu?",
+        "options": [
+          "600 triệu",
+          "300 triệu (= phần đã phân bổ, không phải phần còn lại)",
+          "900 triệu (= toàn bộ, quên trừ năm đầu)",
+          "450 triệu (= chia đôi tổng cam kết)"
+        ],
+        "correct": 0,
+        "explanation": "Mỗi năm phân bổ 300 triệu, hết một năm thì còn 600 triệu chưa ghi nhận. Con số này quan trọng khi cân nhắc bỏ cam kết giữa chừng: nó là phần đã trả mà chưa được hưởng."
+      },
+      {
+        "question": "Cùng một cam kết, chọn phân bổ theo mức dùng thay vì chia đều thì đổi gì?",
+        "options": [
+          "Chi phí dồn về các kỳ có lưu lượng cao, làm chi phí mỗi request ổn định hơn",
+          "Tổng chi phí của cả cam kết giảm xuống vì phần không dùng không bị tính",
+          "Tiền phải trả cho nhà cung cấp được giãn ra theo từng kỳ sử dụng",
+          "Phần chưa phân bổ hết được nhà cung cấp hoàn lại khi kết thúc cam kết"
+        ],
+        "correct": 0,
+        "explanation": "Cả ba cách đều cho cùng một tổng và không đổi một đồng nào đã trả. Điều chúng đổi là hình dạng: chia theo mức dùng làm chi phí mỗi request phẳng hơn, còn chia đều làm nó dao động theo lưu lượng."
+      },
+      {
+        "question": "Chi phí phân bổ tăng thêm 100 triệu trong kỳ. Ngân sách tiền mặt của kỳ đổi thế nào?",
+        "options": [
+          "Không đổi, vì phần tăng thêm này không kèm theo khoản chi nào",
+          "Giảm đúng 100 triệu vì đó là chi phí phát sinh thêm trong kỳ",
+          "Giảm 100 triệu chia cho số kỳ còn lại của cam kết",
+          "Tăng 100 triệu vì phần phân bổ được hoàn lại vào ngân sách"
+        ],
+        "correct": 0,
+        "explanation": "Đây là hệ quả trực tiếp của việc phân bổ không phải là chi. Nếu phần tăng ấy đến từ một cam kết đã ký từ trước thì tiền đã ra rồi; nếu nó đến từ một cam kết mới ký thì khoản chi nằm ở kỳ ký, không nằm ở đây."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Phân bổ trả lời chi phí thuộc kỳ nào; dòng tiền trả lời tiền ra khi nào",
+      "Ba cách phân bổ cho cùng một tổng, chỉ khác chỗ đặt gánh nặng",
+      "Phần chưa phân bổ hết là tiền đã ra khỏi tài khoản, không phải tiền còn giữ",
+      "So hai dịch vụ thì phải biết bên nào trả trước, bên nào trả theo giờ"
+    ],
+    "practicePrompt": {
+      "question": "Dịch vụ A trả trước cam kết, B trả theo giờ. Chi phí mỗi request của A thấp hơn 30%. Nên kết luận gì?",
+      "options": [
+        "Chưa kết luận được - phải quy hai bên về cùng một cách ghi nhận trước đã",
+        "A hiệu quả hơn B, vì cùng một request mà tốn ít tiền hơn",
+        "B hiệu quả hơn A, vì B không phải chôn tiền vào cam kết dài hạn",
+        "Hai bên tương đương, vì phần giảm giá đúng bằng chi phí cơ hội của tiền trả trước"
+      ],
+      "correct": 0,
+      "explanation": "So hai con số ghi nhận theo hai cách khác nhau là so hai thang đo. Quy về cùng cách - hoặc cùng tính theo tiền thật đã ra trong kỳ, hoặc cùng phân bổ - rồi mới so được."
+    },
+    "summary": {
+      "keyIdea": "Một khoản trả trước cho hai con số khác nhau, và cả hai đều đúng cho câu hỏi của nó",
+      "commonMistake": "Đọc dòng phân bổ như một khoản chi của kỳ đó",
+      "action": "Mở bảng chi phí và đánh dấu dòng nào là phân bổ, dòng nào là tiền ra trong kỳ."
+    },
+    "application": {
+      "title": "Hai cột, một khoản cam kết",
+      "message": "Với cam kết hạ tầng gần nhất, viết hai cột: tiền đã ra ở kỳ nào, và chi phí được ghi nhận ở những kỳ nào. Hai cột ấy gần như không bao giờ trùng nhau.",
+      "secondary": "Sau đó tính phần chưa phân bổ hết. Đó là con số duy nhất đáng đưa vào bàn khi cân nhắc có nên đổi nhà cung cấp giữa chừng."
+    },
+    "id": 1051,
+    "slug": "khau-hao",
+    "track": "bonus"
   },
   {
-    "id": 1052,
-    "slug": "synergy-ma",
-    "title": "Ước lượng synergy cho tỉnh: vì sao phần lớn thương vụ không đạt",
-    "subtitle": "Con số trên slide, khoản phí trả thêm, và năm cách cắt bớt lạc quan",
+    "title": "Ước lượng lợi ích khi gộp hai dịch vụ: vì sao phần lớn không đạt",
+    "subtitle": "Con số trên slide, chi phí di trú, và năm cách cắt bớt lạc quan",
     "duration": "8 phút",
     "difficulty": "Khó",
     "emoji": "🔗",
-    "openingQuestion": "Bên mua trả thêm 30% trên giá thị trường. Điều gì phải đúng để thương vụ tạo giá trị?",
+    "openingQuestion": "Gộp hai dịch vụ tốn thêm 30% công sức so với để nguyên. Điều gì phải đúng để việc gộp đáng làm?",
     "openingOptions": [
-      "Doanh thu hợp nhất phải lớn hơn tổng hai bên",
-      "Synergy chiết khấu lớn hơn phần trả thêm",
-      "Lợi nhuận trên mỗi cổ phần tăng ngay năm đầu",
-      "Bên bị mua phải có biên lợi nhuận cao hơn"
+      "Tổng lưu lượng sau khi gộp phải lớn hơn tổng hai bên hiện nay",
+      "Lợi ích quy về hiện tại phải lớn hơn chi phí di trú",
+      "Chi phí hạ tầng phải giảm ngay trong quý đầu tiên",
+      "Dịch vụ bị gộp vào phải có mã nguồn sạch hơn"
     ],
     "correctOption": 1,
-    "explanation": "Khoản trả thêm trên giá thị trường đi ngay cho cổ đông bên bán, nên bên mua chỉ còn lại phần synergy để bù. Nếu giá trị hiện tại của synergy nhỏ hơn phần đã trả thêm, giá trị chuyển từ cổ đông bên mua sang cổ đông bên bán - thương vụ vẫn xong, doanh nghiệp vẫn lớn hơn, mà cổ đông bên mua thì nghèo đi. Doanh thu hợp nhất lớn hơn là điều đương nhiên khi cộng hai công ty và không nói gì về giá trị. Lợi nhuận trên mỗi cổ phần tăng cũng không kết luận được, vì nó phụ thuộc cách trả bằng tiền hay bằng cổ phiếu chứ không phụ thuộc thương vụ có đáng hay không.",
+    "explanation": "Chi phí di trú là khoản trả ngay và gần như luôn ước đúng, còn lợi ích là dòng trải ra nhiều quý và gần như luôn ước quá lạc quan. Phép so duy nhất có nghĩa là quy cả hai về cùng một thời điểm rồi trừ. Lưu lượng tăng và mã sạch hơn đều là thứ tốt nhưng chúng không trả lời câu hỏi đáng hỏi; còn đòi giảm chi phí ngay quý đầu thì gần như loại bỏ mọi thương vụ gộp đáng làm, vì quý đầu luôn là quý tốn nhất.",
     "diagram": [
       {
-        "label": "Giá thị trường của bên bị mua",
+        "label": "Lợi ích ước lượng trên slide",
         "arrow": true
       },
       {
-        "label": "Cộng phần trả thêm 20-40%",
+        "label": "− chi phí di trú, trả ngay",
         "arrow": true
       },
       {
-        "label": "So với giá trị hiện tại của synergy",
+        "label": "− phần lợi ích không bao giờ tới",
         "arrow": true
       },
       {
-        "label": "Synergy lớn hơn thì mới tạo giá trị",
-        "arrow": false
+        "label": "Phần còn lại mới là lý do để làm"
       }
     ],
-    "interactiveType": "accretion",
     "realWorldExample": {
-      "company": "Một thương vụ ngân hàng sáp nhập",
-      "description": "Phần tiết giảm chi phí từ đóng các điểm giao dịch trùng nhau thường về đúng như tính, vì nó phụ thuộc một quyết định nội bộ. Phần bán chéo sản phẩm cho tập khách của nhau thì hay hụt, vì nó phụ thuộc khách hàng có ở lại và có mua thêm hay không - hai điều không ai trong thương vụ kiểm soát được."
-    },
-    "checkpointIndex": 4,
-    "keyTakeaways": [
-      "Phần trả thêm đi cho cổ đông bên bán ngay; bên mua chỉ còn synergy để bù lại",
-      "Tiết giảm chi phí đáng tin hơn tăng doanh thu, vì nó nằm trong tay bên mua",
-      "Người dựng số có động cơ để thương vụ xảy ra, nên con số đầu tiên gần như luôn lạc quan",
-      "Chi phí hợp nhất một lần thường bằng một đến hai năm synergy và hay bị bỏ ra ngoài mô hình"
-    ],
-    "summary": {
-      "keyIdea": "Thương vụ tạo giá trị khi synergy quy về hiện tại lớn hơn phần trả thêm - phần còn lại chỉ là quy mô",
-      "commonMistake": "Lấy nguyên con số synergy trên slide, bỏ chi phí hợp nhất, và giả định synergy về đủ ngay năm đầu",
-      "action": "Cắt con số synergy còn một nửa đến bảy phần mười, trừ chi phí hợp nhất, rồi xem thương vụ còn đứng được không"
-    },
-    "application": {
-      "title": "Thử trên một thương vụ đã công bố",
-      "message": "Tìm phần trả thêm so với giá trước khi tin ra, rồi tìm con số synergy bên mua công bố. Chiết khấu synergy về hiện tại và so hai số - phần lớn thương vụ nằm rất sát ranh giới.",
-      "secondary": "Nếu bên mua chỉ nói synergy theo mức chạy đủ năm mà không nói mất bao lâu mới đạt, con số đó chưa đủ để so."
-    },
-    "practicePrompt": {
-      "question": "Banker đưa synergy 100 tỷ mỗi năm. Bạn cắt còn 60%, và chi phí hợp nhất một lần bằng một năm synergy đã cắt. Năm đầu còn lại bao nhiêu?",
-      "options": [
-        "0 tỷ: 60 synergy trừ 60 chi phí hợp nhất",
-        "60 tỷ: chi phí hợp nhất tính vào các năm sau",
-        "40 tỷ: 100 tỷ trừ 60 tỷ chi phí hợp nhất",
-        "100 tỷ: chi phí hợp nhất không nằm ở đây"
-      ],
-      "correct": 0,
-      "explanation": "Cắt 100 tỷ còn 60% được 60 tỷ, và chi phí hợp nhất một lần bằng một năm synergy đã cắt cũng là 60 tỷ - nên năm đầu bằng không. Đó là lý do một thương vụ trông đẹp trên slide vẫn có thể không đóng góp gì trong năm đầu, và vì sao phải xem synergy theo từng năm chứ không chỉ theo mức chạy đủ năm. Phương án 40 tỷ mắc lỗi trừ chi phí khỏi con số CHƯA cắt. Hai phương án còn lại đẩy chi phí hợp nhất ra khỏi năm đầu, trong khi nó phát sinh đúng lúc hợp nhất."
+      "company": "Sáu tháng thành mười tám",
+      "description": "Hai đội gộp hai dịch vụ xác thực làm một, ước tính tiết kiệm được một phần ba chi phí vận hành và ba tháng công sức mỗi năm. Việc gộp mất mười tám tháng thay vì sáu, vì mỗi bên có một tập ngoại lệ mà bên kia không biết. Chi phí vận hành cuối cùng giảm khoảng mười lăm phần trăm - một nửa con số hứa - và ba tháng công sức tiết kiệm được thì bị ăn mất bởi việc bảo trì lớp tương thích còn lại."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Hai loại synergy và vì sao phần tăng doanh thu phải chiết khấu mạnh - phần đó đã có ở bài Synergy trong M&A. Ở đây là câu hỏi tiếp: con số trên slide đến từ đâu, vì sao nó gần như luôn lạc quan, và cắt nó thế nào cho còn dùng được."
+        "text": "Gộp hai dịch vụ luôn nghe hợp lý trên slide: bớt một hệ thống phải nuôi, bớt một chỗ để hỏng. Phần lớn thương vụ gộp không đạt con số đã hứa, và lý do gần như luôn giống nhau."
       },
       {
         "type": "heading",
-        "text": "Phần trả thêm là thước đo"
+        "text": "Hai loại lợi ích, hai độ tin cậy khác hẳn"
       },
       {
         "type": "paragraph",
-        "text": "Bên mua thường trả cao hơn giá thị trường 20-40%. Khoản đó đi ngay cho cổ đông bên bán, nên bên mua chỉ còn synergy để bù lại. Quy tắc gọn: giá trị hiện tại của synergy phải lớn hơn phần trả thêm, còn không thì thương vụ chuyển giá trị từ cổ đông bên mua sang cổ đông bên bán. Đó là cách đọc đúng con số hay được nhắc rằng phần lớn thương vụ sáp nhập không đạt kỳ vọng - chúng không sụp đổ, chúng chỉ trả quá tay."
-      },
-      {
-        "type": "heading",
-        "text": "Ba lý do con số luôn lạc quan"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Người dựng số có động cơ để thương vụ xảy ra: bên tư vấn có phí, ban điều hành có một doanh nghiệp lớn hơn để quản",
-          "Synergy khó tính chính xác, và cái gì khó tính thì hay được làm tròn lên",
-          "Hợp nhất luôn lâu hơn dự kiến - khác biệt văn hoá, hệ thống thông tin phải ghép, và khách hàng có thể rời đi trong lúc đó"
-        ]
+        "text": "Lợi ích do bớt trùng lặp - một cụm máy chủ thay vì hai, một quy trình trực thay vì hai - là loại đếm được và thường đạt được, vì nó chỉ phụ thuộc vào việc bạn có thật sự tắt hệ thống cũ hay không. Lợi ích do làm được việc mới - dữ liệu gộp lại nên phân tích tốt hơn, đội gộp lại nên đi nhanh hơn - là loại gần như không bao giờ đạt, vì nó phụ thuộc vào hàng loạt điều kiện mà không ai kiểm soát được."
       },
       {
         "type": "heading",
@@ -54486,84 +54444,126 @@ export const lessons: Lesson[] = [
       {
         "type": "list",
         "items": [
-          "Cắt con số nhận được còn một nửa đến bảy phần mười trước khi dùng",
-          "Tách tiết giảm chi phí khỏi tăng doanh thu, và cho phần chi phí trọng số cao hơn - nó nằm trong tay bên mua, phần doanh thu thì nằm ở khách hàng",
-          "Dựng đường cong theo thời gian: synergy không về đủ trong năm đầu, thường phải hai đến ba năm",
-          "Cộng chi phí hợp nhất một lần vào mô hình - nó thường bằng một đến hai năm synergy và hay bị để ngoài",
-          "Thử độ nhạy: nếu synergy chỉ đạt bảy phần mười kế hoạch, thương vụ còn đứng được không"
+          "Chỉ tính phần bớt trùng lặp, bỏ hẳn phần lợi ích do làm được việc mới",
+          "Nhân đôi thời gian di trú so với ước lượng đầu tiên, và nhân đôi luôn chi phí",
+          "Trừ chi phí duy trì lớp tương thích - nó luôn sống lâu hơn kế hoạch",
+          "Trừ phần năng lực đội bị hút vào việc gộp, tính bằng tính năng không ra được",
+          "Đặt mốc tắt hệ thống cũ: lợi ích chỉ bắt đầu tính từ ngày đó, không phải từ ngày gộp xong"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Chi phí ngược chiều mà không ai đưa lên slide"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hệ thống gộp phức tạp hơn cả hai hệ thống cũ, nên mỗi thay đổi sau này đắt hơn",
+          "Một chỗ hỏng giờ ảnh hưởng cả hai nhóm người dùng thay vì một",
+          "Hai đội quen hai cách làm, và cách làm chung thường chậm hơn cả hai",
+          "Phần ngoại lệ của mỗi bên phải được giữ lại, nên mã gộp có cả hai tập ngoại lệ"
         ]
       },
       {
         "type": "callout",
-        "label": "Mức chạy đủ năm không phải năm đầu",
-        "text": "Con số synergy thường được công bố theo mức chạy đủ năm - tức mức đạt được khi mọi thứ đã ổn định. Nếu bản công bố không nói mất bao lâu mới tới đó, con số ấy chưa so được với phần trả thêm, vì phần trả thêm thì trả ngay còn synergy thì đến sau."
+        "label": "Ngày tắt hệ thống cũ mới là ngày lợi ích bắt đầu",
+        "text": "Thương vụ gộp thất bại điển hình không phải thất bại ở phần kỹ thuật - hệ thống mới chạy được, dữ liệu chuyển xong, mọi thứ đều ổn. Nó thất bại ở chỗ hệ thống cũ không bao giờ được tắt, vì luôn còn vài khách hàng chưa chuyển hoặc vài luồng chưa ai dám đụng. Nuôi hai hệ thống thay vì một là kết quả tệ hơn cả điểm xuất phát."
       },
       {
         "type": "closing",
         "lines": [
-          "Thương vụ hỏng ít khi vì chọn sai đối tượng mua; nó hỏng vì trả đúng giá của một synergy không xảy ra.",
-          "Nên phần đáng tranh luận nhất trong mô hình không phải bội số, mà là con số synergy và thời điểm nó về."
+          "Chi phí di trú trả ngay và ước đúng; lợi ích trải dài và ước quá lạc quan.",
+          "Đặt một mốc tắt hệ thống cũ trước khi bắt đầu, nếu không thì đừng bắt đầu."
         ]
       }
     ],
-    "track": "bonus",
     "quiz": [
       {
-        "question": "Cost synergy và revenue synergy khác nhau như thế nào về độ chắc chắn?",
+        "question": "Lợi ích do bớt trùng lặp khác lợi ích do làm được việc mới ở điểm gì?",
         "options": [
-          "Revenue synergy chắc chắn hơn vì dễ tính toán",
-          "Cost synergy chắc chắn hơn",
-          "Hai loại chắc chắn như nhau",
-          "Phụ thuộc ngành, vì mỗi ngành một kiểu cộng hưởng"
-        ],
-        "correct": 1,
-        "explanation": "Cost synergy (lay-off trùng lặp, đóng cửa hàng duplicate, consolidate IT systems) là việc internal - manageable. Revenue synergy (cross-sell, upsell cho customer base của nhau) phụ thuộc vào customer behavior - khó predict hơn nhiều."
-      },
-      {
-        "question": "Acquisition premium thường được justified bằng gì?",
-        "options": [
-          "Giá trị sổ sách của target",
-          "Giá trị hiện tại của phần cộng hưởng kỳ vọng",
-          "Cảm xúc và cái tôi của ban lãnh đạo bên mua",
-          "Áp lực chốt thương vụ từ ngân hàng tư vấn"
-        ],
-        "correct": 1,
-        "explanation": "Acquisition premium (20-40% trên market price) phải được justified bởi synergy. Nếu PV(synergy) > premium paid → deal creates value. Nếu không → M&A hủy giá trị (đây là lý do 50-70% M&A thất bại)."
-      },
-      {
-        "question": "Tại sao synergy thường bị overestimate?",
-        "options": [
-          "Banker và management có incentive để make deal happen",
-          "Khó tính chính xác nên ai cũng làm tròn lên",
-          "Integration luôn mất nhiều thời gian hơn dự kiến",
-          "Cả ba lý do trên cùng góp phần"
-        ],
-        "correct": 3,
-        "explanation": "Banker có phí tư vấn, management muốn expand empire → cả hai có incentive overstate synergy. Thực tế integration phức tạp hơn nhiều: culture clash, IT systems, customer retention."
-      },
-      {
-        "question": "Run-rate synergy là gì?",
-        "options": [
-          "Synergy đạt được trong năm đầu tiên",
-          "Mức cộng hưởng quy về cả năm khi đã đạt đủ",
-          "Cộng hưởng đến từ khâu vận hành chứ không từ doanh thu",
-          "Revenue synergy từ cross-selling"
-        ],
-        "correct": 1,
-        "explanation": "Run-rate synergy = annual synergy khi fully implemented. Ví dụ: đóng 10 văn phòng tiết kiệm 100 tỷ/năm, nhưng phải mất 18 tháng để đóng hết → run-rate 100 tỷ nhưng năm 1 chỉ realized 50 tỷ."
-      },
-      {
-        "question": "Trong synergy analysis, 'dis-synergy' là gì?",
-        "options": [
-          "Synergy âm - giá trị bị mất đi sau khi sáp nhập",
-          "Synergy khó đo bằng con số cụ thể",
-          "Synergy cần nhiều năm để achieve",
-          "Phần cộng hưởng bị chậm lại chứ không mất đi"
+          "Loại đầu đếm được và thường đạt; loại sau phụ thuộc nhiều điều kiện nên hiếm khi đạt",
+          "Loại đầu chỉ xuất hiện sau nhiều năm còn loại sau xuất hiện ngay trong quý đầu",
+          "Loại đầu cần thêm người để thực hiện còn loại sau tự đến khi hệ thống gộp xong",
+          "Loại đầu khó đo lường hơn vì nó nằm rải rác ở nhiều bộ phận khác nhau"
         ],
         "correct": 0,
-        "explanation": "Dis-synergy = negative synergy. Ví dụ: mua lại brand xa xỉ nhưng làm mất exclusive image → revenue giảm; hay culture clash khiến key talent nghỉ việc → mất value. Phải netted off synergy estimate."
+        "explanation": "Đây là lý do mọi ước lượng thận trọng đều chỉ tính loại đầu. Bớt một cụm máy chủ là việc bạn tự quyết định làm được; còn đội gộp lại đi nhanh hơn là một hy vọng phụ thuộc vào hàng chục thứ khác."
+      },
+      {
+        "question": "Chi phí di trú thường được biện minh bằng gì trên slide?",
+        "options": [
+          "Bằng tổng lợi ích của nhiều năm, chưa quy về hiện tại và chưa trừ phần không đạt",
+          "Bằng việc so sánh với chi phí của những thương vụ gộp tương tự đã làm trong ngành",
+          "Bằng số lượng hệ thống sẽ được gỡ bỏ sau khi việc gộp hoàn tất",
+          "Bằng mức độ hài lòng của đội sau khi không phải duy trì hai hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Cộng dồn lợi ích nhiều năm rồi đặt cạnh chi phí trả ngay là phép so sai thang. Quy về cùng thời điểm thường làm con số thu hẹp lại đáng kể, và đó là lúc nhiều thương vụ gộp lộ ra là không đáng."
+      },
+      {
+        "question": "Vì sao lợi ích của việc gộp thường bị ước quá cao?",
+        "options": [
+          "Vì người ước lượng biết rõ phần trùng lặp nhưng không biết phần ngoại lệ của bên kia",
+          "Vì các công cụ đo lường hiện có không tính được chi phí vận hành thật của mỗi hệ thống",
+          "Vì lợi ích chỉ xuất hiện đầy đủ sau vài năm nên khó kiểm chứng trong ngắn hạn",
+          "Vì đội thực hiện luôn có động cơ làm cho con số trông đẹp hơn thực tế"
+        ],
+        "correct": 0,
+        "explanation": "Phần trùng lặp thì nhìn từ ngoài cũng thấy, còn phần ngoại lệ chỉ người đã sống trong hệ thống mới biết - và chính nó quyết định việc gộp mất sáu tháng hay mười tám tháng."
+      },
+      {
+        "question": "Mức lợi ích ổn định sau khi gộp xong nghĩa là gì?",
+        "options": [
+          "Mức tiết kiệm mỗi kỳ khi hệ thống cũ đã tắt và lớp tương thích đã gỡ",
+          "Mức tiết kiệm trung bình tính trên toàn bộ thời gian thực hiện việc gộp",
+          "Mức tiết kiệm cao nhất đạt được trong một kỳ bất kỳ sau khi gộp",
+          "Mức tiết kiệm còn lại sau khi trừ chi phí di trú đã bỏ ra ban đầu"
+        ],
+        "correct": 0,
+        "explanation": "Hai điều kiện đều bắt buộc và cái thứ hai hay bị quên. Còn lớp tương thích thì vẫn còn thứ phải nuôi, nên con số ổn định thật sự chỉ đến sau khi nó được gỡ."
+      },
+      {
+        "question": "Chi phí ngược chiều khi gộp hai dịch vụ là gì?",
+        "options": [
+          "Những khoản phát sinh do việc gộp, như hệ thống phức tạp hơn và phạm vi hỏng rộng hơn",
+          "Chi phí trả cho nhà cung cấp trong giai đoạn chạy song song cả hai hệ thống",
+          "Phần lợi ích bị mất do một số khách hàng rời đi trong quá trình di trú",
+          "Chi phí đào tạo lại đội để làm quen với hệ thống mới sau khi gộp"
+        ],
+        "correct": 0,
+        "explanation": "Đây là nhóm hiếm khi xuất hiện trên slide vì nó là hệ quả lâu dài chứ không phải một khoản chi. Một chỗ hỏng ảnh hưởng cả hai nhóm người dùng là cái giá phải trả mãi, không phải một lần."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Chỉ tính lợi ích do bớt trùng lặp; bỏ hẳn phần lợi ích do làm được việc mới",
+      "Nhân đôi cả thời gian lẫn chi phí di trú so với ước lượng đầu tiên",
+      "Lợi ích chỉ bắt đầu tính từ ngày tắt hệ thống cũ, không phải ngày gộp xong",
+      "Chi phí ngược chiều - phức tạp hơn, phạm vi hỏng rộng hơn - phải trả mãi"
+    ],
+    "practicePrompt": {
+      "question": "Ước tiết kiệm 400 triệu/năm, chi phí di trú 600 triệu. Điều gì cần biết trước khi quyết?",
+      "options": [
+        "Bao nhiêu phần trong 400 triệu là bớt trùng lặp, và bao giờ tắt được hệ thống cũ",
+        "Tổng chi phí vận hành hiện tại của cả hai hệ thống cộng lại",
+        "Đội nào sẽ chịu trách nhiệm cho hệ thống sau khi gộp xong",
+        "Nhà cung cấp có giảm giá thêm khi gộp hai hợp đồng làm một không"
+      ],
+      "correct": 0,
+      "explanation": "Hai câu này quyết định con số 400 triệu có thật hay không. Nếu một nửa là lợi ích do làm được việc mới, và nếu hệ thống cũ phải nuôi thêm hai năm, thì thương vụ đã lỗ trước khi bắt đầu."
+    },
+    "summary": {
+      "keyIdea": "Chi phí di trú trả ngay và ước đúng; lợi ích trải dài và ước quá lạc quan",
+      "commonMistake": "Cộng dồn lợi ích nhiều năm rồi đặt cạnh chi phí trả ngay",
+      "action": "Cắt bỏ phần lợi ích do làm được việc mới, rồi tính lại xem còn đáng không."
+    },
+    "application": {
+      "title": "Năm nhát cắt trước khi trình bày",
+      "message": "Lấy con số lợi ích đang có, bỏ phần do làm được việc mới, nhân đôi chi phí di trú, trừ chi phí lớp tương thích, trừ năng lực đội bị hút vào, rồi đặt một ngày tắt hệ thống cũ.",
+      "secondary": "Nếu sau năm nhát cắt ấy con số vẫn dương thì thương vụ đáng làm. Nếu không, phần chênh lệch bạn vừa cắt đi chính là thứ lẽ ra sẽ trở thành mười tám tháng thay vì sáu."
+    },
+    "id": 1052,
+    "slug": "synergy-ma",
+    "track": "bonus"
   },
   {
     "id": 1053,
@@ -60277,7 +60277,8 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🤖",
     "track": "bonus",
-    "openingQuestion": "Bản demo dùng mô hình ngôn ngữ chạy rất tốt. Phần khó nhất còn lại là gì?",
+    "interactiveType": "tail-risk",
+"openingQuestion": "Bản demo dùng mô hình ngôn ngữ chạy rất tốt. Phần khó nhất còn lại là gì?",
     "openingOptions": [
       "Xử lý khi mô hình trả lời sai hoặc chậm, và người dùng vẫn phải dùng được",
       "Tối ưu chi phí gọi mô hình để nó không vượt ngân sách hằng tháng",
