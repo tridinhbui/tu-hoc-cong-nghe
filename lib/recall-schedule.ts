@@ -1292,7 +1292,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Khôi phục và điều tra là hai việc tách biệt; chỉ việc đầu là gấp.",
       "distractors": [
         "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
-        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1312,7 +1312,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Con người mắc lỗi là hằng số; thứ thay đổi được là hệ thống quanh họ.",
       "distractors": [
         "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
-        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1332,7 +1332,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Nợ kỹ thuật là lựa chọn có ý thức kèm kế hoạch trả, không phải mọi đoạn mã xấu.",
       "distractors": [
         "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1352,7 +1352,7 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Mã và kiểm thử nói cái gì và như thế nào; chỉ tài liệu nói vì sao.",
       "distractors": [
         "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1371,8 +1371,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: đường đi từ một dòng mã tới người dùng",
       "text": "Bước dựng phải lặp lại được, nếu không thì mọi kết luận từ kiểm thử đều yếu.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1388,11 +1388,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "86": [
     {
       "fromDay": 81,
-      "fromTitle": "Present Value: Giá trị hiện tại",
-      "text": "PV = FV / (1+r)^n",
+      "fromTitle": "Đo cái gì: chỉ số nói lên điều bạn cần biết",
+      "text": "Một chỉ số chỉ có nghĩa khi bạn nói rõ nó thay mặt cho điều gì.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1408,11 +1408,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "87": [
     {
       "fromDay": 82,
-      "fromTitle": "Future Value: Giá trị tương lai",
-      "text": "FV = PV × (1+r)^n",
+      "fromTitle": "Chỉ số phù phiếm: con số chỉ biết tăng",
+      "text": "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cỡ mẫu cần thiết tăng theo bình phương khi hiệu ứng nhỏ đi."
       ]
     },
     {
@@ -1428,11 +1428,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "88": [
     {
       "fromDay": 83,
-      "fromTitle": "Discount Rate: Tỷ lệ chiết khấu",
-      "text": "Discount rate = chi phí cơ hội + phần bù rủi ro",
+      "fromTitle": "Nhóm theo thời điểm: tách chất lượng khỏi quy mô",
+      "text": "Nhóm theo thời điểm bắt đầu tách chất lượng sản phẩm khỏi quy mô, và đường cong giữ chân của từng nhóm là thứ đáng đọc.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1441,18 +1441,18 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Khôi phục và điều tra là hai việc tách biệt; chỉ việc đầu là gấp.",
       "distractors": [
         "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
-        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "89": [
     {
       "fromDay": 84,
-      "fromTitle": "Compounding: Lãi kép trong đầu tư",
-      "text": "Compounding: lãi trên lãi trên lãi - hàm mũ",
+      "fromTitle": "Phễu: tìm chỗ người dùng rơi ra",
+      "text": "Chia hành trình thành bước để biến một con số tổng thành một danh sách việc.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Discount rate = chi phí cơ hội + phần bù rủi ro"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1461,18 +1461,18 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Con người mắc lỗi là hằng số; thứ thay đổi được là hệ thống quanh họ.",
       "distractors": [
         "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
-        "Triển khai là kỹ thuật; phát hành là quyết định kinh doanh - cờ tách hai việc ra."
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "90": [
     {
       "fromDay": 85,
-      "fromTitle": "Discounting: Kéo tiền tương lai về hiện tại",
-      "text": "Discounting = compounding ngược lại",
+      "fromTitle": "Thử nghiệm A/B: so với chính mình, cùng thời điểm",
+      "text": "Chia ngẫu nhiên và chạy song song là thứ tách tác động của thay đổi khỏi nhiễu bên ngoài.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1481,18 +1481,18 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Nợ kỹ thuật là lựa chọn có ý thức kèm kế hoạch trả, không phải mọi đoạn mã xấu.",
       "distractors": [
         "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "91": [
     {
       "fromDay": 86,
-      "fromTitle": "Annuity: Dòng tiền đều",
-      "text": "Annuity = chuỗi thanh toán đều trong thời gian cố định",
+      "fromTitle": "Cỡ mẫu: vì sao thử nghiệm cần lâu hơn bạn tưởng",
+      "text": "Cỡ mẫu cần thiết tăng theo bình phương khi hiệu ứng nhỏ đi.",
       "distractors": [
-        "Compounding: lãi trên lãi trên lãi - hàm mũ",
-        "Mọi nguồn vốn đều có chi phí cơ hội"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1501,18 +1501,18 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "text": "Mã và kiểm thử nói cái gì và như thế nào; chỉ tài liệu nói vì sao.",
       "distractors": [
         "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "92": [
     {
       "fromDay": 87,
-      "fromTitle": "Perpetuity: Dòng tiền vĩnh viễn",
-      "text": "PV Perpetuity = C / r",
+      "fromTitle": "Đi cùng nhau không có nghĩa là gây ra nhau",
+      "text": "Hai đại lượng đi cùng nhau có thể do nhân quả ngược chiều hoặc do nguyên nhân thứ ba.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     },
     {
@@ -1520,268 +1520,268 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Ôn tập: đường đi từ một dòng mã tới người dùng",
       "text": "Bước dựng phải lặp lại được, nếu không thì mọi kết luận từ kiểm thử đều yếu.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "93": [
     {
       "fromDay": 88,
-      "fromTitle": "NPV: Giá trị hiện tại ròng",
-      "text": "NPV > 0: tạo giá trị; NPV < 0: phá hủy giá trị",
+      "fromTitle": "Một chỉ số dẫn dắt: thứ cả đội cùng nhìn",
+      "text": "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
     {
       "fromDay": 81,
-      "fromTitle": "Present Value: Giá trị hiện tại",
-      "text": "PV = FV / (1+r)^n",
+      "fromTitle": "Đo cái gì: chỉ số nói lên điều bạn cần biết",
+      "text": "Một chỉ số chỉ có nghĩa khi bạn nói rõ nó thay mặt cho điều gì.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên."
+        "Cảnh báo phải gắn với triệu chứng người dùng cảm nhận, không với chỉ số tài nguyên.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "94": [
     {
       "fromDay": 89,
-      "fromTitle": "IRR: Tỷ suất hoàn vốn nội bộ",
-      "text": "IRR là discount rate làm NPV = 0",
+      "fromTitle": "Định nghĩa chỉ số: con số đổi vì cách tính đổi",
+      "text": "Mỗi chỉ số cần một định nghĩa viết ra, ở một chỗ duy nhất ai cũng tra được.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
     {
       "fromDay": 82,
-      "fromTitle": "Future Value: Giá trị tương lai",
-      "text": "FV = PV × (1+r)^n",
+      "fromTitle": "Chỉ số phù phiếm: con số chỉ biết tăng",
+      "text": "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cỡ mẫu cần thiết tăng theo bình phương khi hiệu ứng nhỏ đi."
       ]
     }
   ],
   "95": [
     {
       "fromDay": 90,
-      "fromTitle": "Payback Period: Thời gian hoàn vốn",
-      "text": "Payback = Vốn đầu tư / Dòng tiền hàng năm",
+      "fromTitle": "Nói chuyện với người dùng: thứ số liệu không nói được",
+      "text": "Số liệu trả lời cái gì và ở đâu; phản hồi định tính trả lời vì sao.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Beta = độ biến động tương đối so với thị trường"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
     {
       "fromDay": 83,
-      "fromTitle": "Discount Rate: Tỷ lệ chiết khấu",
-      "text": "Discount rate = chi phí cơ hội + phần bù rủi ro",
+      "fromTitle": "Nhóm theo thời điểm: tách chất lượng khỏi quy mô",
+      "text": "Nhóm theo thời điểm bắt đầu tách chất lượng sản phẩm khỏi quy mô, và đường cong giữ chân của từng nhóm là thứ đáng đọc.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "96": [
     {
       "fromDay": 91,
-      "fromTitle": "Vì sao NPV tốt hơn Payback?",
-      "text": "NPV > IRR > Payback về mặt lý thuyết tài chính",
+      "fromTitle": "Ước lượng: vì sao nó luôn thấp hơn thực tế",
+      "text": "Sai lệch của ước lượng không đối xứng: nó lệch về phía lâu hơn.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Beta = độ biến động tương đối so với thị trường"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
     {
       "fromDay": 84,
-      "fromTitle": "Compounding: Lãi kép trong đầu tư",
-      "text": "Compounding: lãi trên lãi trên lãi - hàm mũ",
+      "fromTitle": "Phễu: tìm chỗ người dùng rơi ra",
+      "text": "Chia hành trình thành bước để biến một con số tổng thành một danh sách việc.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Discount rate = chi phí cơ hội + phần bù rủi ro"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "97": [
     {
       "fromDay": 92,
-      "fromTitle": "Cost of Capital: Chi phí vốn",
-      "text": "Mọi nguồn vốn đều có chi phí cơ hội",
+      "fromTitle": "Chia nhỏ: giao từng phần thay vì giao một lần",
+      "text": "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Beta = độ biến động tương đối so với thị trường"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cỡ mẫu cần thiết tăng theo bình phương khi hiệu ứng nhỏ đi."
       ]
     },
     {
       "fromDay": 85,
-      "fromTitle": "Discounting: Kéo tiền tương lai về hiện tại",
-      "text": "Discounting = compounding ngược lại",
+      "fromTitle": "Thử nghiệm A/B: so với chính mình, cùng thời điểm",
+      "text": "Chia ngẫu nhiên và chạy song song là thứ tách tác động của thay đổi khỏi nhiễu bên ngoài.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "98": [
     {
       "fromDay": 93,
-      "fromTitle": "WACC là gì?",
-      "text": "WACC = Ke×(E/V) + Kd×(1−T)×(D/V)",
+      "fromTitle": "Phạm vi, thời gian, chất lượng: chọn thứ để nhường",
+      "text": "Cắt phạm vi là lựa chọn có hậu quả rõ ràng và ai cũng nhìn thấy.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "CAPM: Ke = Rf + β(Rm − Rf)"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
     {
       "fromDay": 86,
-      "fromTitle": "Annuity: Dòng tiền đều",
-      "text": "Annuity = chuỗi thanh toán đều trong thời gian cố định",
+      "fromTitle": "Cỡ mẫu: vì sao thử nghiệm cần lâu hơn bạn tưởng",
+      "text": "Cỡ mẫu cần thiết tăng theo bình phương khi hiệu ứng nhỏ đi.",
       "distractors": [
-        "Compounding: lãi trên lãi trên lãi - hàm mũ",
-        "Mọi nguồn vốn đều có chi phí cơ hội"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "99": [
     {
       "fromDay": 94,
-      "fromTitle": "Cost of Debt: Chi phí nợ",
-      "text": "Cost of Debt after-tax = Lãi suất × (1 − Thuế suất)",
+      "fromTitle": "Ưu tiên: danh sách luôn dài hơn thời gian",
+      "text": "Chi phí trì hoãn phân biệt được những việc mà lợi ích đơn thuần không phân biệt nổi.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "CAPM: Ke = Rf + β(Rm − Rf)"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
     {
       "fromDay": 87,
-      "fromTitle": "Perpetuity: Dòng tiền vĩnh viễn",
-      "text": "PV Perpetuity = C / r",
+      "fromTitle": "Đi cùng nhau không có nghĩa là gây ra nhau",
+      "text": "Hai đại lượng đi cùng nhau có thể do nhân quả ngược chiều hoặc do nguyên nhân thứ ba.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề."
       ]
     }
   ],
   "100": [
     {
       "fromDay": 95,
-      "fromTitle": "Cost of Equity: Chi phí vốn chủ",
-      "text": "Cost of Equity > Cost of Debt - cổ đông chịu rủi ro cao hơn",
+      "fromTitle": "Nói không: mỗi lời đồng ý là một lời từ chối với việc khác",
+      "text": "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "CAPM: Ke = Rf + β(Rm − Rf)"
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
+        "Ba quyết định: Đầu tư, Tài trợ, Cổ tức"
       ]
     },
     {
       "fromDay": 88,
-      "fromTitle": "NPV: Giá trị hiện tại ròng",
-      "text": "NPV > 0: tạo giá trị; NPV < 0: phá hủy giá trị",
+      "fromTitle": "Một chỉ số dẫn dắt: thứ cả đội cùng nhìn",
+      "text": "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Chỉ số cộng dồn chỉ tăng nên không phát hiện được vấn đề.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
   ],
   "101": [
     {
       "fromDay": 96,
-      "fromTitle": "Beta là gì trong tài chính?",
-      "text": "Beta = độ biến động tương đối so với thị trường",
+      "fromTitle": "Kiểm chứng trước khi xây: mua thông tin với giá rẻ",
+      "text": "Hành vi đã xảy ra là bằng chứng mạnh hơn nhiều so với ý kiến khi được hỏi.",
       "distractors": [
         "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
-        "CAPM: Ke = Rf + β(Rm − Rf)"
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
     {
       "fromDay": 89,
-      "fromTitle": "IRR: Tỷ suất hoàn vốn nội bộ",
-      "text": "IRR là discount rate làm NPV = 0",
+      "fromTitle": "Định nghĩa chỉ số: con số đổi vì cách tính đổi",
+      "text": "Mỗi chỉ số cần một định nghĩa viết ra, ở một chỗ duy nhất ai cũng tra được.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Compounding: lãi trên lãi trên lãi - hàm mũ"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
   ],
   "102": [
     {
       "fromDay": 97,
-      "fromTitle": "CAPM là gì?",
-      "text": "CAPM: Ke = Rf + β(Rm − Rf)",
+      "fromTitle": "Thất bại phổ biến nhất: làm rất tốt một thứ không ai cần",
+      "text": "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
     {
       "fromDay": 90,
-      "fromTitle": "Payback Period: Thời gian hoàn vốn",
-      "text": "Payback = Vốn đầu tư / Dòng tiền hàng năm",
+      "fromTitle": "Nói chuyện với người dùng: thứ số liệu không nói được",
+      "text": "Số liệu trả lời cái gì và ở đâu; phản hồi định tính trả lời vì sao.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Beta = độ biến động tương đối so với thị trường"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
   ],
   "103": [
     {
       "fromDay": 98,
-      "fromTitle": "Risk-Free Rate và Market Risk Premium",
-      "text": "Risk-free rate = T-bill Mỹ hoặc trái phiếu chính phủ dài hạn",
+      "fromTitle": "Giải thích đánh đổi cho người không viết mã",
+      "text": "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     },
     {
       "fromDay": 91,
-      "fromTitle": "Vì sao NPV tốt hơn Payback?",
-      "text": "NPV > IRR > Payback về mặt lý thuyết tài chính",
+      "fromTitle": "Ước lượng: vì sao nó luôn thấp hơn thực tế",
+      "text": "Sai lệch của ước lượng không đối xứng: nó lệch về phía lâu hơn.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Beta = độ biến động tương đối so với thị trường"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
   ],
   "104": [
     {
       "fromDay": 99,
-      "fromTitle": "Case: Tính NPV một dự án đơn giản",
-      "text": "NPV = PV(dòng tiền) − Đầu tư ban đầu",
+      "fromTitle": "Dự án: đi trọn một vòng từ ý tưởng tới con số",
+      "text": "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Ba quyết định: Đầu tư, Tài trợ, Cổ tức"
       ]
     },
     {
       "fromDay": 92,
-      "fromTitle": "Cost of Capital: Chi phí vốn",
-      "text": "Mọi nguồn vốn đều có chi phí cơ hội",
+      "fromTitle": "Chia nhỏ: giao từng phần thay vì giao một lần",
+      "text": "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
       "distractors": [
-        "Annuity = chuỗi thanh toán đều trong thời gian cố định",
-        "Beta = độ biến động tương đối so với thị trường"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cỡ mẫu cần thiết tăng theo bình phương khi hiệu ứng nhỏ đi."
       ]
     }
   ],
   "105": [
     {
       "fromDay": 100,
-      "fromTitle": "Ôn tập: Giá trị thời gian của tiền",
-      "text": "TVM: 1 đồng hôm nay > 1 đồng tương lai",
+      "fromTitle": "Ôn tập: đo cho đúng rồi chọn cho đúng",
+      "text": "Chỉ số chỉ có nghĩa khi nói rõ nó thay mặt cho điều gì, và nó phải giảm được.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Giữ lại nếu ROIC > cost of capital"
       ]
     },
     {
       "fromDay": 93,
-      "fromTitle": "WACC là gì?",
-      "text": "WACC = Ke×(E/V) + Kd×(1−T)×(D/V)",
+      "fromTitle": "Phạm vi, thời gian, chất lượng: chọn thứ để nhường",
+      "text": "Cắt phạm vi là lựa chọn có hậu quả rõ ràng và ai cũng nhìn thấy.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "CAPM: Ke = Rf + β(Rm − Rf)"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
   ],
@@ -1791,17 +1791,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Corporate Finance là gì?",
       "text": "Ba quyết định: Đầu tư, Tài trợ, Cổ tức",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Buyback = giảm shares outstanding → EPS tăng",
+        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
       ]
     },
     {
       "fromDay": 94,
-      "fromTitle": "Cost of Debt: Chi phí nợ",
-      "text": "Cost of Debt after-tax = Lãi suất × (1 − Thuế suất)",
+      "fromTitle": "Ưu tiên: danh sách luôn dài hơn thời gian",
+      "text": "Chi phí trì hoãn phân biệt được những việc mà lợi ích đơn thuần không phân biệt nổi.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "CAPM: Ke = Rf + β(Rm − Rf)"
+        "Một chỉ số dẫn dắt để phân xử, các chỉ số khác thành ràng buộc không được xấu đi.",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
   ],
@@ -1811,17 +1811,17 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Cơ cấu vốn (Capital Structure)",
       "text": "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Buyback = giảm shares outstanding → EPS tăng",
+        "Giữ lại nếu ROIC > cost of capital"
       ]
     },
     {
       "fromDay": 95,
-      "fromTitle": "Cost of Equity: Chi phí vốn chủ",
-      "text": "Cost of Equity > Cost of Debt - cổ đông chịu rủi ro cao hơn",
+      "fromTitle": "Nói không: mỗi lời đồng ý là một lời từ chối với việc khác",
+      "text": "Nhận thêm mà không bỏ bớt chỉ là hoãn lời từ chối, không phải tránh được nó.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "CAPM: Ke = Rf + β(Rm − Rf)"
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn.",
+        "Ba quyết định: Đầu tư, Tài trợ, Cổ tức"
       ]
     }
   ],
@@ -1837,11 +1837,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 96,
-      "fromTitle": "Beta là gì trong tài chính?",
-      "text": "Beta = độ biến động tương đối so với thị trường",
+      "fromTitle": "Kiểm chứng trước khi xây: mua thông tin với giá rẻ",
+      "text": "Hành vi đã xảy ra là bằng chứng mạnh hơn nhiều so với ý kiến khi được hỏi.",
       "distractors": [
         "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
-        "CAPM: Ke = Rf + β(Rm − Rf)"
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
   ],
@@ -1857,11 +1857,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 97,
-      "fromTitle": "CAPM là gì?",
-      "text": "CAPM: Ke = Rf + β(Rm − Rf)",
+      "fromTitle": "Thất bại phổ biến nhất: làm rất tốt một thứ không ai cần",
+      "text": "Chất lượng kỹ thuật không bảo vệ được khỏi việc xây nhầm thứ.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
   ],
@@ -1877,11 +1877,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 98,
-      "fromTitle": "Risk-Free Rate và Market Risk Premium",
-      "text": "Risk-free rate = T-bill Mỹ hoặc trái phiếu chính phủ dài hạn",
+      "fromTitle": "Giải thích đánh đổi cho người không viết mã",
+      "text": "Diễn đạt đánh đổi kỹ thuật bằng thời gian, rủi ro hoặc tiền để nó so sánh được.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Cắt dọc: mỗi phần đi từ giao diện tới dữ liệu và làm được một việc trọn vẹn."
       ]
     }
   ],
@@ -1897,11 +1897,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 99,
-      "fromTitle": "Case: Tính NPV một dự án đơn giản",
-      "text": "NPV = PV(dòng tiền) − Đầu tư ban đầu",
+      "fromTitle": "Dự án: đi trọn một vòng từ ý tưởng tới con số",
+      "text": "Viết vấn đề và chỉ số thành công trước khi có dữ liệu, để không chọn chỉ số theo kết quả.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Ba quyết định: Đầu tư, Tài trợ, Cổ tức"
       ]
     }
   ],
@@ -1917,11 +1917,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 100,
-      "fromTitle": "Ôn tập: Giá trị thời gian của tiền",
-      "text": "TVM: 1 đồng hôm nay > 1 đồng tương lai",
+      "fromTitle": "Ôn tập: đo cho đúng rồi chọn cho đúng",
+      "text": "Chỉ số chỉ có nghĩa khi nói rõ nó thay mặt cho điều gì, và nó phải giảm được.",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
+        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
+        "Giữ lại nếu ROIC > cost of capital"
       ]
     }
   ],
@@ -1940,8 +1940,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Corporate Finance là gì?",
       "text": "Ba quyết định: Đầu tư, Tài trợ, Cổ tức",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Buyback = giảm shares outstanding → EPS tăng",
+        "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ"
       ]
     }
   ],
@@ -1960,8 +1960,8 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
       "fromTitle": "Cơ cấu vốn (Capital Structure)",
       "text": "Cơ cấu vốn = tỷ lệ Nợ / Vốn chủ",
       "distractors": [
-        "Beta = độ biến động tương đối so với thị trường",
-        "Buyback = giảm shares outstanding → EPS tăng"
+        "Buyback = giảm shares outstanding → EPS tăng",
+        "Giữ lại nếu ROIC > cost of capital"
       ]
     }
   ],

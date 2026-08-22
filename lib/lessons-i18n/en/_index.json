@@ -97,11 +97,6 @@
     "subtitle": "Why the first-year surrender value is close to zero, which interest column is a promise, and the only comparison that means anything",
     "duration": "13 min"
   },
-  "bao-hiem-nhan-tho-term-vs-whole-life": {
-    "title": "Stage 9, Lesson 6: Life insurance - term or whole life?",
-    "subtitle": "Two very different philosophies, not one product under two names",
-    "duration": "7 min"
-  },
   "basel-iii-regulatory-capital-requirements": {
     "title": "Basel III & capital rules - how banks are kept from failing",
     "subtitle": "After the 2008 crisis the world decided: banks must hold enough capital to survive the next one.",
@@ -268,11 +263,6 @@
     "subtitle": "DCF as the advanced example, explained in plain language.",
     "duration": "16 min"
   },
-  "cho-vay-muon-tien-nguoi-than": {
-    "title": "Stage 9, Lesson 9: Lending to family - the rules that keep the relationship",
-    "subtitle": "Money and affection are the two things most capable of damaging each other once they are mixed",
-    "duration": "6 min"
-  },
   "chon-chi-so-do-luong-va-vanity-metric": {
     "title": "Data Thinking, Lesson 1: Choosing a metric - and why the pretty ones are usually useless",
     "subtitle": "Telling a vanity metric from one that drives action, and the trap of turning a metric into a target",
@@ -307,11 +297,6 @@
     "title": "Quantitative, Lesson 6: Time series and out-of-sample validation - why a backtest always looks better than reality",
     "subtitle": "Stationarity, autoregression, volatility clustering, and the quiet biases that wreck every backtest",
     "duration": "12 min"
-  },
-  "chuyen-giao-tai-san-nang-cao": {
-    "title": "Stage 9, Lesson 7: Advanced estate transfer - beyond a basic will",
-    "subtitle": "Once the estate is large or complicated, an ordinary will may not be enough",
-    "duration": "6 min"
   },
   "co-che-giao-dich-tren-thi-truong-viet-nam": {
     "title": "Vietnam Market, Lesson 1: Trading mechanics - settlement cycle, price bands and order types",
@@ -450,11 +435,6 @@
   "derivatives-la-gi": {
     "title": "What Are Derivatives?",
     "subtitle": "Instruments whose value depends on another underlying asset"
-  },
-  "diem-tin-dung-la-gi": {
-    "title": "Stage 9, Lesson 4: Credit score - why it matters",
-    "subtitle": "Your borrowing and repayment history sets what borrowing costs you in future",
-    "duration": "6 min"
   },
   "dinh-gia-bat-dong-san-tai-san-vo-hinh": {
     "title": "Valuing real estate & intangible assets - when DCF is not enough",
@@ -867,11 +847,6 @@
   "ket-noi-tat-ca-tai-chinh": {
     "title": "Connecting it all - Financial statements, Valuation, Risk, Markets",
     "subtitle": "Looking back at the whole journey as one tightly linked system"
-  },
-  "kha-nang-chi-tra-mua-nha": {
-    "title": "Stage 9, Lesson 2: How much borrowing is safe? The DTI rule",
-    "subtitle": "Debt-to-income - the ratio the bank uses, and the one you should set yourself",
-    "duration": "6 min"
   },
   "khau-hao": {
     "title": "Depreciation: three methods and the path through three statements",
@@ -1295,11 +1270,6 @@
     "subtitle": "Two companies can report the same EPS and have very different earnings quality",
     "duration": "8 min"
   },
-  "quan-ly-no-tieu-dung": {
-    "title": "Stage 9, Lesson 5: Managing consumer debt - car loans, credit cards, cash loans",
-    "subtitle": "Not every debt deserves to be paid off at the same speed",
-    "duration": "7 min"
-  },
   "quan-ly-rui-ro-lai-suat-doanh-nghiep": {
     "title": "CFO & Operations, Lesson 6: Managing corporate interest rate risk",
     "subtitle": "A heavily borrowed business has to manage rate volatility actively, not just 'wait and see'",
@@ -1369,16 +1339,6 @@
     "title": "The Risk-Return Tradeoff",
     "subtitle": "To get a higher expected return, you have to accept correspondingly higher risk",
     "duration": "6 min"
-  },
-  "roic-phan-2": {
-    "title": "Deep-dive case: ROIC Part 2 - the link to valuation",
-    "subtitle": "The core driver behind free cash flow and enterprise value",
-    "duration": "6 min"
-  },
-  "roic": {
-    "title": "Deep-dive case: ROIC",
-    "subtitle": "Return on Invested Capital - measuring genuine value creation",
-    "duration": "7 min"
   },
   "room-ngoai-va-nang-hang-thi-truong": {
     "title": "The Vietnamese market, Lesson 2: foreign ownership room and market reclassification - where foreign capital comes from",
@@ -1472,11 +1432,6 @@
     "subtitle": "Analysing NOI, cap rate, rental yield and bank leverage when investing in income-producing property.",
     "duration": "14 min"
   },
-  "tai-chinh-khi-ket-hon": {
-    "title": "Stage 9, Lesson 8: Money and marriage - joint property and separate property",
-    "subtitle": "Talking about money before marriage is not romantic, but it is necessary",
-    "duration": "6 min"
-  },
   "tai-chinh-khoi-nghiep-cap-table-vc-valuation": {
     "title": "Masterclass 3: Startup finance - the cap table and venture capital valuation",
     "subtitle": "Pre-money, post-money, dilution, the option pool and liquidation preference - how to read a term sheet properly.",
@@ -1547,11 +1502,6 @@
     "subtitle": "Temporary differences between accounting and tax, and why they tell you about the future",
     "duration": "11 min"
   },
-  "thue-nha-hay-mua-nha": {
-    "title": "Stage 9, Lesson 3: Rent or buy - which calculation is the right one?",
-    "subtitle": "There is no single answer that fits everybody",
-    "duration": "7 min"
-  },
   "thue-thu-nhap-doanh-nghiep-cach-tinh": {
     "title": "Standards & Tax, Lesson 3: Corporate income tax - from accounting profit to tax payable",
     "subtitle": "Deductible costs, non-deductible costs, loss carry-forward and tax incentives",
@@ -1571,11 +1521,6 @@
     "title": "AI in Finance, Lesson 7: Summarising meetings and the AGM with AI",
     "subtitle": "Turn a long document into plans, dividends, projects and shareholder questions.",
     "duration": "14 min"
-  },
-  "tong-ket-chang-7-quyet-dinh-tai-chinh-lon": {
-    "title": "Stage 9, Lesson 10: Recap - a checklist for the big financial decisions of a life",
-    "subtitle": "Housing, credit, insurance, marriage, inheritance - looking back over the whole stage",
-    "duration": "7 min"
   },
   "tong-ket-chang-ai-trong-tai-chinh": {
     "title": "AI in Finance, Lesson 20: Wrap-up - an AI workflow in finance for beginners",
@@ -1694,11 +1639,6 @@
     "title": "Standards & Tax, Lesson 1: Where VAS and IFRS differ",
     "subtitle": "Historical cost versus fair value: one philosophical difference that drags a long list of numerical differences behind it",
     "duration": "11 min"
-  },
-  "vay-mua-nha-co-ban": {
-    "title": "Stage 9, Lesson 1: How does a mortgage actually work?",
-    "subtitle": "The mechanics behind the largest loan of most people's lives",
-    "duration": "7 min"
   },
   "venture-capital-la-gi": {
     "title": "What is Venture Capital?",
