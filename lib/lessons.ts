@@ -24841,2604 +24841,3370 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 141,
-    "slug": "trai-phieu-la-gi",
-    "title": "Tự học Tài chính Day 141: Trái phiếu là gì?",
-    "subtitle": "Công cụ nợ cơ bản - bạn cho vay, họ trả lãi",
-    "duration": "5 phút",
-    "difficulty": "Dễ",
-    "emoji": "📜",
-    "openingQuestion": "Mua trái phiếu khác mua cổ phiếu ở điểm nào?",
+    "slug": "hieu-nang-bat-dau-bang-do",
+    "title": "Hiệu năng: đo trước, đoán sau",
+    "subtitle": "Trực giác về chỗ chậm sai nhiều tới mức không đáng dùng làm căn cứ.",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "⏱️",
+    "track": "professional",
+    "isFundamental": true,
+    "whyItMatters": "Tối ưu nhầm chỗ tốn đúng bằng tối ưu đúng chỗ nhưng không đổi được gì. Và vì mã sau khi tối ưu thường khó đọc hơn, bạn còn trả thêm một khoản nữa cho phần không mang lại lợi ích.",
+    "openingQuestion": "Trang tải chậm. Việc đầu tiên nên làm là gì?",
     "openingOptions": [
-      "Cổ phiếu an toàn hơn",
-      "Không khác",
-      "Trái phiếu đắt hơn",
-      "Mua trái phiếu = cho vay, nhận lãi cố định; Mua cổ phiếu = sở hữu, không có lãi cố định"
+      "Đo xem thời gian thật sự đi vào những bước nào",
+      "Tối ưu truy vấn cơ sở dữ liệu vì đó thường là chỗ chậm nhất",
+      "Thêm bộ nhớ đệm cho những dữ liệu được đọc nhiều lần nhất",
+      "Nâng cấu hình máy chủ để có thêm tài nguyên xử lý"
     ],
-    "correctOption": 3,
-    "explanation": "Trái phiếu là một khoản vay được chia nhỏ và mua bán được: bên phát hành nhận tiền, cam kết trả lãi định kỳ và hoàn mệnh giá khi đáo hạn. Người mua là chủ nợ chứ không phải chủ sở hữu, nên họ được trả trước cổ đông nếu doanh nghiệp phá sản, nhưng cũng không hưởng phần tăng trưởng. Ba yếu tố định hình mọi trái phiếu là mệnh giá, lãi suất coupon và kỳ hạn - mọi khái niệm về sau đều xoay quanh ba thứ này.",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn còn lại đều là những cách tối ưu hợp lý, và cả ba đều có thể hoàn toàn không liên quan tới nguyên nhân thật. Thời gian có thể đang nằm ở một lời gọi mạng lặp trong vòng lặp, ở một phép tuần tự hoá tốn kém, hoặc ở chính bước dựng giao diện. Đo trước biến một cuộc tranh luận về giả thuyết thành một danh sách xếp theo thời gian, và danh sách ấy gần như luôn có một mục chiếm phần lớn mà không ai đoán ra.",
     "diagram": [
       {
-        "label": "Tổ chức phát hành cần vốn, bán trái phiếu",
+        "label": "Trang chậm - ba người có ba giả thuyết",
         "arrow": true
       },
       {
-        "label": "Nhà đầu tư bỏ tiền mua, thành chủ nợ",
+        "label": "Đo: thời gian đi vào những bước nào",
         "arrow": true
       },
       {
-        "label": "Nhận coupon định kỳ trong suốt kỳ hạn",
+        "label": "Một mục chiếm phần lớn, thường ngoài dự đoán",
         "arrow": true
       },
       {
-        "label": "Đáo hạn: nhận lại mệnh giá - và được ưu tiên trước cổ đông nếu phá sản"
+        "label": "Tối ưu đúng chỗ đó, đo lại để xác nhận"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Trái phiếu Chính phủ Việt Nam",
-      "description": "Khi Kho bạc Nhà nước Việt Nam phát hành trái phiếu chính phủ, về bản chất đây là việc nhà nước vay tiền từ nhà đầu tư (bao gồm ngân hàng, quỹ đầu tư, cá nhân) với cam kết trả lãi định kỳ và hoàn vốn gốc khi đáo hạn - một trong những công cụ huy động vốn lớn nhất của chính phủ."
+      "company": "Tối ưu xong không nhanh hơn",
+      "description": "Một đội bỏ hai tuần tối ưu truy vấn và thời gian tải không đổi, vì truy vấn chỉ chiếm bốn phần trăm tổng thời gian. Phần lớn nằm ở một lời gọi dịch vụ ngoài chạy tuần tự - thứ không ai nghi ngờ vì nó trông vô hại trong mã."
+    },
+    "keyTakeaways": [
+      "Trực giác về chỗ chậm sai thường xuyên, kể cả với người viết chính đoạn mã đó.",
+      "Đo cho ra một danh sách xếp theo thời gian, không phải một giả thuyết.",
+      "Tối ưu xong phải đo lại, vì cải thiện tưởng tượng rất dễ xảy ra.",
+      "Mã tối ưu thường khó đọc hơn, nên tối ưu nhầm chỗ tốn hai lần."
+    ],
+    "summary": {
+      "keyIdea": "Hiệu năng là công việc dựa trên phép đo; đoán chỉ dẫn tới việc tối ưu nhầm chỗ.",
+      "formula": "Đo, tìm mục lớn nhất, sửa, đo lại.",
+      "commonMistake": "Bắt đầu từ giả thuyết về nguyên nhân thay vì từ số liệu."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy một thao tác chậm trong sản phẩm và đo thời gian của từng bước bên trong nó. So kết quả với dự đoán của bạn trước khi đo - khoảng cách ấy thường lớn hơn bạn nghĩ."
+    },
+    "practicePrompt": {
+      "question": "Bạn tối ưu một hàm chạy nhanh gấp mười lần, nhưng tổng thời gian gần như không đổi. Vì sao?",
+      "options": [
+        "Vì hàm đó vốn chỉ chiếm một phần rất nhỏ trong tổng thời gian",
+        "Vì phần được tối ưu đã bị trình biên dịch loại bỏ lúc biên dịch",
+        "Vì việc đo thời gian tổng có sai số lớn hơn mức cải thiện",
+        "Vì hàm đó được gọi ít lần hơn so với các hàm còn lại"
+      ],
+      "correct": 0,
+      "explanation": "Cải thiện tổng bị chặn bởi tỷ trọng của phần bạn động vào: một hàm chiếm hai phần trăm thì có nhanh vô hạn cũng chỉ cắt được hai phần trăm. Đây là lý do bước đo phải đi trước, và nó cũng là nội dung của một trong những bài tiếp theo trong chặng."
     },
     "quiz": [
       {
-        "question": "Coupon rate 5%, Face value 1 triệu. Tiền lãi nhận mỗi năm là bao nhiêu?",
+        "question": "Vì sao không nên bắt đầu tối ưu từ giả thuyết?",
         "options": [
-          "50.000đ - 5% × 1.000.000đ",
-          "50.000đ",
-          "500.000đ",
-          "5.000đ"
+          "Vì trực giác về chỗ chậm sai rất thường xuyên",
+          "Vì giả thuyết cần được ban lãnh đạo phê duyệt trước",
+          "Vì các công cụ đo chỉ hoạt động khi chưa có thay đổi nào",
+          "Vì việc tối ưu luôn làm mã trở nên khó bảo trì hơn"
         ],
         "correct": 0,
-        "explanation": "Coupon = Coupon Rate × Face Value = 5% × 1.000.000 = 50.000đ/năm. Trả semi-annual thì mỗi 6 tháng nhận 25.000đ. Coupon rate cố định suốt kỳ hạn - không đổi dù lãi suất thị trường thay đổi."
+        "explanation": "Ngay cả người viết đoạn mã cũng đoán sai chỗ chậm với tỷ lệ rất cao, vì chi phí thật phụ thuộc dữ liệu, hình dạng tải và những lớp bên dưới mà mã không thể hiện."
       },
       {
-        "question": "Vì sao trái chủ (bondholder) được xem là an toàn hơn cổ đông (stockholder) khi một công ty gặp khó khăn tài chính?",
+        "question": "Kết quả của một lần đo hiệu năng nên là gì?",
         "options": [
-          "Vì trái chủ luôn nhận lãi suất cao hơn cổ tức",
-          "Vì trái chủ có quyền pháp lý ưu tiên nhận thanh toán trước cổ đông khi công ty phá sản hoặc thanh lý tài sản - họ là chủ nợ (creditor) trong khi cổ đông chỉ là chủ sở hữu phần còn lại (residual claimant)",
-          "Vì trái phiếu không bao giờ mất giá trị",
-          "Vì cổ đông không có quyền pháp lý gì đối với công ty"
+          "Một danh sách các bước xếp theo thời gian chúng chiếm",
+          "Một con số tổng cho biết thao tác mất bao lâu",
+          "Một kết luận về thành phần nào của hệ thống đang bị lỗi",
+          "Một so sánh với thời gian phản hồi của đối thủ"
         ],
-        "correct": 1,
-        "explanation": "Thứ tự ưu tiên thanh toán khi phá sản luôn đặt chủ nợ (bao gồm trái chủ) trước cổ đông - đây là lý do cơ bản khiến trái phiếu được xem là công cụ đầu tư an toàn hơn cổ phiếu, dù đổi lại tiềm năng lợi nhuận thường thấp hơn."
+        "correct": 0,
+        "explanation": "Con số tổng nói có vấn đề, danh sách xếp theo thời gian nói vấn đề ở đâu. Đó là khác biệt giữa một cảm giác và một việc cụ thể có thể giao cho ai đó."
+      },
+      {
+        "question": "Vì sao phải đo lại sau khi tối ưu?",
+        "options": [
+          "Vì cải thiện tưởng tượng rất dễ xảy ra khi chỉ nhìn vào mã",
+          "Vì các công cụ đo cần được hiệu chỉnh sau mỗi lần thay đổi",
+          "Vì kết quả đo lần đầu thường có sai số rất lớn",
+          "Vì tối ưu có thể làm hỏng tính đúng đắn của chương trình"
+        ],
+        "correct": 0,
+        "explanation": "Một thay đổi trông rõ ràng là nhanh hơn vẫn có thể không đổi gì, hoặc thậm chí chậm đi vì tác động tới bộ nhớ đệm. Chỉ phép đo mới phân biệt được hai khả năng đó."
+      },
+      {
+        "question": "Chi phí ẩn của việc tối ưu nhầm chỗ là gì?",
+        "options": [
+          "Mã trở nên khó đọc hơn mà không đổi lại được gì",
+          "Hệ thống tiêu tốn nhiều tài nguyên hơn trước khi tối ưu",
+          "Các bài kiểm thử hiện có không còn chạy được nữa",
+          "Đội mất khả năng đo lại hiệu năng ở lần sau"
+        ],
+        "correct": 0,
+        "explanation": "Mã nhanh thường phức tạp hơn mã rõ ràng, nên bạn trả bằng khả năng bảo trì. Trả cái giá đó cho một cải thiện bằng không là dạng lãng phí kép."
+      },
+      {
+        "question": "Điều gì làm cho việc đoán chỗ chậm khó tới vậy?",
+        "options": [
+          "Chi phí thật phụ thuộc dữ liệu và các lớp bên dưới mà mã không thể hiện",
+          "Các công cụ đo hiệu năng thường cho kết quả mâu thuẫn nhau",
+          "Hệ thống hiện đại có quá nhiều thành phần để theo dõi hết",
+          "Thời gian chạy thay đổi liên tục theo tải của hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Một dòng mã trông vô hại có thể là một lời gọi mạng, một phép cấp phát lớn, hoặc một truy vấn chạy trong vòng lặp. Mã nguồn không hiển thị chi phí, nên đọc mã không thay được đo."
       }
     ],
-    "keyTakeaways": [
-      "Trái phiếu = cho vay, nhận coupon + hoàn vốn khi đáo hạn",
-      "Coupon = Coupon Rate × Face Value",
-      "Bondholders ưu tiên trước stockholders trong phá sản"
-    ],
-    "practicePrompt": {
-      "question": "Bạn mua một trái phiếu doanh nghiệp mệnh giá 100 triệu, kỳ hạn 5 năm, coupon 8%/năm. Bản chất giao dịch này là gì, và bạn sẽ nhận lại những gì trong suốt 5 năm?",
-      "options": [
-        "Bạn đang mua một phần sở hữu của doanh nghiệp, giống như mua cổ phiếu, và sẽ nhận cổ tức hàng năm",
-        "Trái phiếu là cho vay: nhận coupon 8 triệu/năm và hoàn vốn khi đáo hạn",
-        "Bạn đang gửi tiết kiệm tại doanh nghiệp và có thể rút tiền bất cứ lúc nào mà không mất lãi",
-        "Bạn đang mua một hợp đồng bảo hiểm, và 8%/năm là phí bảo hiểm bạn phải trả cho doanh nghiệp"
-      ],
-      "correct": 1,
-      "explanation": "Trái phiếu = cho vay, nhận coupon + hoàn vốn khi đáo hạn. Người mua trái phiếu là chủ nợ (không phải chủ sở hữu như cổ phiếu), nhận lãi cố định (coupon) định kỳ và nhận lại vốn gốc khi trái phiếu đáo hạn."
-    },
-    "summary": {
-      "keyIdea": "Trái phiếu = cho vay, nhận coupon + hoàn vốn khi đáo hạn",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Coupon = Coupon Rate × Face Value"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Tra một trái phiếu doanh nghiệp hoặc trái phiếu chính phủ đang chào bán, xác định rõ: coupon rate là bao nhiêu, face value bao nhiêu, và bạn nhận lại gì khi đáo hạn.",
-      "secondary": "Đọc kỹ một bản chào bán thật giúp khái niệm trái phiếu bớt trừu tượng."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Trái phiếu (bond) là một hợp đồng vay nợ được chuẩn hóa: người phát hành - có thể là chính phủ hoặc doanh nghiệp - vay một khoản tiền cố định từ nhà đầu tư, cam kết trả lãi định kỳ (coupon) và hoàn trả toàn bộ vốn gốc (face value/mệnh giá) vào một ngày đã định (đáo hạn). Khác với cổ phiếu - nơi bạn mua một phần quyền sở hữu công ty - mua trái phiếu là cho vay, và người mua trở thành chủ nợ chứ không phải chủ sở hữu."
+        "text": "Hiệu năng là lĩnh vực mà trực giác sai nhiều nhất, kể cả trực giác của người vừa viết chính đoạn mã ấy. Đó là lý do mọi công việc ở đây bắt đầu bằng một phép đo."
       },
       {
         "type": "heading",
-        "text": "Ba con số cốt lõi của một trái phiếu"
+        "text": "Vì sao đọc mã không đủ"
       },
       {
         "type": "paragraph",
-        "text": "Mọi trái phiếu đều được xác định bởi ba yếu tố: face value (mệnh giá - số tiền nhận lại khi đáo hạn, thường là 1 triệu hoặc 100 triệu đồng theo lô), coupon rate (lãi suất danh nghĩa cố định tính trên mệnh giá) và maturity (kỳ hạn - thời gian đến khi đáo hạn). **Ví dụ:** trái phiếu mệnh giá 1.000.000đ, coupon rate 5%, kỳ hạn 5 năm. Mỗi năm nhà đầu tư nhận 5% × 1.000.000đ = 50.000đ tiền lãi, và sau 5 năm nhận lại đúng 1.000.000đ vốn gốc. Nếu trả lãi theo kỳ nửa năm (semi-annual, phổ biến ở Mỹ), mỗi 6 tháng nhận 25.000đ."
+        "text": "Mã nguồn không hiển thị chi phí. Một dòng gọi hàm có thể là mười lệnh máy hoặc một vòng gọi mạng xuyên châu lục. Một vòng lặp trông gọn có thể chạy ba lần hoặc ba triệu lần tuỳ dữ liệu. Và những lớp bên dưới - bộ nhớ đệm, cấp phát, trình tối ưu - đều tác động theo cách không nhìn thấy được trên trang mã."
       },
       {
-        "type": "heading",
-        "text": "Vì sao trái chủ được ưu tiên hơn cổ đông"
+        "type": "comparison",
+        "left": {
+          "label": "Đoán rồi sửa",
+          "text": "Nhanh để bắt đầu, và thường dẫn tới hai tuần tối ưu một thứ chiếm bốn phần trăm tổng thời gian."
+        },
+        "right": {
+          "label": "Đo rồi sửa",
+          "text": "Tốn một buổi để dựng phép đo, và cho ra một danh sách xếp theo thời gian - trong đó mục đầu tiên thường ngoài dự đoán của mọi người."
+        }
       },
       {
-        "type": "paragraph",
-        "text": "Khi một công ty phá sản, tài sản còn lại được chia theo thứ tự pháp lý nghiêm ngặt: chủ nợ có đảm bảo trước, rồi chủ nợ không đảm bảo (bao gồm phần lớn trái chủ), sau đó mới đến cổ đông ưu đãi và cuối cùng là cổ đông phổ thông. Trái chủ là creditor - có quyền pháp lý đòi lại tiền trước. Cổ đông là residual claimant - chỉ nhận phần còn lại sau khi mọi nghĩa vụ nợ đã được thanh toán, và trong nhiều vụ phá sản, phần còn lại đó bằng 0. Đây chính là lý do trái phiếu được xem là kênh đầu tư an toàn hơn cổ phiếu, dù đổi lại tiềm năng sinh lời thường thấp hơn nhiều."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Coupon = Coupon Rate × Face Value, cố định suốt vòng đời trái phiếu bất kể lãi suất thị trường biến động",
-          "Face value là số tiền nhận lại khi đáo hạn, không phải giá mua trái phiếu trên thị trường",
-          "Bondholders (trái chủ) = chủ nợ; Stockholders (cổ đông) = chủ sở hữu phần dư",
-          "Trái phiếu chính phủ (như trái phiếu Kho bạc Việt Nam) và trái phiếu doanh nghiệp cùng tuân theo cơ chế coupon - face value - maturity này"
-        ]
+        "type": "callout",
+        "label": "Đo lại là bắt buộc",
+        "text": "Một thay đổi trông chắc chắn nhanh hơn vẫn có thể không đổi gì. Nếu bạn không đo lại thì bạn không biết mình vừa mua được gì bằng khoản phức tạp vừa thêm vào."
       },
       {
         "type": "closing",
         "lines": [
-          "Hiểu ba con số face value - coupon - maturity là bước đầu tiên để đọc bất kỳ trái phiếu nào.",
-          "Thứ tự ưu tiên phá sản là lý do gốc rễ khiến trái phiếu an toàn hơn cổ phiếu."
+          "Hiệu năng là công việc của số liệu. Trực giác dùng để chọn chỗ đo, không dùng để chọn chỗ sửa.",
+          "Bài sau nói về việc chọn đúng con số để đo, vì đo sai chỉ số cũng dẫn tới sai chỗ y như đoán."
         ]
       }
     ]
   },
   {
     "id": 142,
-    "slug": "gia-trai-phieu-va-lai-suat",
-    "title": "Tự học Tài chính Day 142: Giá trái phiếu và lãi suất",
-    "subtitle": "Quan hệ nghịch đảo nền tảng của thị trường nợ",
-    "duration": "6 phút",
+    "slug": "chi-so-hieu-nang-phan-anh-trai-nghiem",
+    "title": "Đo con số nào: thứ người dùng cảm nhận",
+    "subtitle": "Thời gian máy chủ trả lời xong không phải thời gian người dùng thấy trang.",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "💹",
-    "openingQuestion": "Lãi suất thị trường tăng từ 5% lên 7%. Giá trái phiếu đang lưu hành thay đổi thế nào?",
+    "emoji": "📐",
+    "track": "professional",
+    "whyItMatters": "Rất nhiều bảng theo dõi hiệu năng xanh trong khi người dùng thấy sản phẩm chậm. Nguyên nhân gần như luôn là đo ở sai chỗ - đo phần bạn kiểm soát thay vì phần người dùng trải qua.",
+    "openingQuestion": "Máy chủ trả lời trong 80 mili giây nhưng người dùng vẫn thấy chậm. Nguyên nhân nào khả dĩ?",
     "openingOptions": [
-      "Không đổi",
-      "Tăng theo",
-      "Giảm - coupon 5% kém hấp dẫn khi lãi thị trường 7%, giá phải giảm để yield tương đương",
-      "Phụ thuộc vào kỳ hạn còn lại của trái phiếu và cả xếp hạng tín nhiệm của bên phát hành nữa"
+      "Thời gian người dùng trải qua còn gồm mạng, tải tài nguyên và dựng giao diện",
+      "Máy chủ đang đo sai vì đồng hồ hệ thống không chính xác",
+      "Người dùng đang so sánh với một sản phẩm khác nhanh hơn",
+      "Con số 80 mili giây là trung bình nên che mất nhóm chậm"
     ],
-    "correctOption": 2,
-    "explanation": "Giá trái phiếu và lãi suất thị trường luôn đi ngược chiều nhau, và lý do nằm ở chỗ coupon đã cố định từ ngày phát hành. Khi lãi suất lên, trái phiếu mới trả cao hơn, nên trái phiếu cũ chỉ bán được nếu hạ giá xuống tới mức người mua đạt cùng lợi suất. Mức độ giá dịch chuyển phụ thuộc kỳ hạn còn lại: dòng tiền càng nằm xa thì càng nhạy, đó chính là ý nghĩa của khái niệm duration.",
+    "correctOption": 0,
+    "explanation": "Thời gian máy chủ chỉ là một đoạn trong hành trình. Từ lúc người dùng bấm tới lúc họ thấy nội dung còn có phân giải tên miền, thiết lập kết nối, truyền dữ liệu qua mạng, tải các tài nguyên phụ, chạy mã ở trình duyệt và dựng giao diện. Với một trang bình thường, phần máy chủ thường chỉ chiếm một phần nhỏ. Đo trung bình cũng là một vấn đề thật, nhưng nó là vấn đề của bài về phân vị ở chặng mạng chứ không giải thích được khoảng cách giữa hai đầu đo.",
     "diagram": [
       {
-        "label": "Lãi suất thị trường tăng",
+        "label": "Người dùng bấm",
         "arrow": true
       },
       {
-        "label": "Trái phiếu mới phát hành trả coupon cao hơn",
+        "label": "Phân giải tên, kết nối, truyền dữ liệu",
         "arrow": true
       },
       {
-        "label": "Trái phiếu cũ coupon thấp kém hấp dẫn",
+        "label": "Máy chủ xử lý - phần bạn hay đo",
         "arrow": true
       },
       {
-        "label": "Giá của nó phải giảm cho tới khi lợi suất ngang bằng"
+        "label": "Tải tài nguyên, chạy mã, dựng giao diện"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Thị trường trái phiếu Mỹ 2022",
-      "description": "Khi Fed tăng lãi suất mạnh trong năm 2022 để chống lạm phát, giá trị các quỹ trái phiếu dài hạn tại Mỹ sụt giảm hàng chục phần trăm - một trong những năm tệ nhất lịch sử với nhà đầu tư trái phiếu, minh chứng rõ ràng cho quan hệ nghịch đảo giữa lãi suất và giá trái phiếu."
+      "company": "Bảng theo dõi xanh, người dùng phàn nàn",
+      "description": "Đội đo thời gian xử lý ở máy chủ và thấy nó ổn định dưới trăm mili giây suốt nhiều tháng. Người dùng ở xa trung tâm dữ liệu vẫn chờ vài giây, vì phần lớn thời gian nằm ở những đoạn không ai đo."
+    },
+    "keyTakeaways": [
+      "Thời gian máy chủ chỉ là một đoạn trong hành trình người dùng trải qua.",
+      "Đo từ phía người dùng thật mới phản ánh được trải nghiệm.",
+      "Chọn mốc theo việc người dùng làm được gì, không theo sự kiện kỹ thuật.",
+      "Đo cả hai phía: một cái để chẩn đoán, một cái để biết có vấn đề hay không."
+    ],
+    "summary": {
+      "keyIdea": "Chỉ số hiệu năng phải bám vào trải nghiệm người dùng, không vào ranh giới hệ thống.",
+      "formula": "Đo từ lúc họ bấm tới lúc họ dùng được.",
+      "commonMistake": "Đo phần mình kiểm soát rồi kết luận về phần người dùng trải qua."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "So thời gian máy chủ với thời gian đo từ phía trình duyệt cho cùng một thao tác. Khoảng cách giữa hai con số là phần bạn đang không nhìn thấy."
+    },
+    "practicePrompt": {
+      "question": "Nên chọn mốc nào để đo thời gian tải một trang danh sách?",
+      "options": [
+        "Lúc người dùng nhìn thấy và thao tác được với danh sách",
+        "Lúc máy chủ gửi xong byte cuối cùng của phản hồi",
+        "Lúc trình duyệt nhận đủ toàn bộ tài nguyên của cả trang web",
+        "Lúc mã khởi tạo của ứng dụng chạy xong hoàn toàn"
+      ],
+      "correct": 0,
+      "explanation": "Ba mốc còn lại đều là sự kiện kỹ thuật và không mốc nào tương ứng với việc người dùng làm được thứ họ định làm. Một trang có thể nhận đủ tài nguyên mà vẫn hiện màn hình trắng, hoặc hiện nội dung mà chưa bấm được - nên mốc phải bám vào khả năng thao tác."
     },
     "quiz": [
       {
-        "question": "Trái phiếu 10 năm hay 1 năm nhạy cảm hơn với lãi suất?",
+        "question": "Vì sao thời gian xử lý ở máy chủ không đủ để đánh giá hiệu năng?",
         "options": [
-          "Phụ thuộc coupon rate",
-          "Như nhau",
-          "1 năm",
-          "10 năm - duration dài hơn → giá biến động mạnh hơn khi lãi suất thay đổi"
-        ],
-        "correct": 3,
-        "explanation": "Duration (thời lượng) đo độ nhạy cảm của giá trái phiếu với lãi suất. Duration 10 năm: lãi suất tăng 1% → giá giảm ~10%. Duration 1 năm: giá giảm ~1%. Trái phiếu dài hạn = rủi ro lãi suất cao hơn."
-      },
-      {
-        "question": "Trái phiếu kỳ hạn 30 năm và trái phiếu kỳ hạn 2 năm cùng có coupon 5%. Khi lãi suất thị trường tăng 1%, trái phiếu nào giảm giá mạnh hơn?",
-        "options": [
-          "Trái phiếu 30 năm giảm giá mạnh hơn nhiều - kỳ hạn càng dài, độ nhạy cảm với thay đổi lãi suất (duration) càng lớn, vì có nhiều dòng tiền coupon trong tương lai xa bị ảnh hưởng bởi mức chiết khấu mới",
-          "Không có mối liên hệ giữa kỳ hạn và mức độ nhạy cảm với lãi suất",
-          "Cả hai giảm giá như nhau vì cùng coupon",
-          "Trái phiếu 2 năm giảm giá mạnh hơn"
+          "Vì nó chỉ là một đoạn trong hành trình của người dùng",
+          "Vì đồng hồ trên máy chủ có sai số theo thời gian",
+          "Vì nó thay đổi quá nhanh để theo dõi một cách ổn định",
+          "Vì mỗi máy chủ trong nhóm cho một con số khác nhau"
         ],
         "correct": 0,
-        "explanation": "Đây là khái niệm Duration sẽ học chi tiết sau: trái phiếu kỳ hạn càng dài, giá càng nhạy cảm với biến động lãi suất, vì có nhiều dòng tiền tương lai hơn phải chiết khấu lại theo mức lãi suất mới."
+        "explanation": "Mạng, tải tài nguyên và dựng giao diện đều nằm ngoài phép đo ấy, và với nhiều sản phẩm chúng chiếm phần lớn thời gian. Đo phần mình kiểm soát thì dễ, nhưng nó trả lời một câu hỏi khác."
+      },
+      {
+        "question": "Mốc đo tốt cần bám vào điều gì?",
+        "options": [
+          "Việc người dùng làm được thứ họ định làm",
+          "Sự kiện kỹ thuật rõ ràng và dễ ghi lại chính xác",
+          "Thời điểm máy chủ hoàn thành phản hồi",
+          "Thời điểm mọi tài nguyên đã tải xong"
+        ],
+        "correct": 0,
+        "explanation": "Một trang có thể tải đủ tài nguyên mà vẫn trắng, hoặc hiện nội dung mà chưa bấm được. Chỉ mốc gắn với khả năng thao tác mới phản ánh đúng thứ người dùng trải qua."
+      },
+      {
+        "question": "Vì sao nên đo ở cả hai phía?",
+        "options": [
+          "Một phía cho biết có vấn đề, phía kia giúp tìm ra nguyên nhân",
+          "Hai phép đo giúp kiểm tra chéo độ chính xác của nhau",
+          "Đo hai phía là yêu cầu bắt buộc của các công cụ giám sát",
+          "Phía máy chủ dùng cho vận hành, phía trình duyệt cho sản phẩm"
+        ],
+        "correct": 0,
+        "explanation": "Đo từ phía người dùng cho biết trải nghiệm thật; đo bên trong hệ thống cho biết thời gian đi vào bước nào. Thiếu cái đầu thì bạn không biết có vấn đề, thiếu cái sau thì không biết sửa ở đâu."
+      },
+      {
+        "question": "Người dùng ở xa trung tâm dữ liệu ảnh hưởng thế nào tới phép đo?",
+        "options": [
+          "Phần mạng chiếm tỷ trọng lớn nên đo ở máy chủ càng lệch",
+          "Máy chủ mất nhiều thời gian hơn để xử lý yêu cầu của họ",
+          "Trình duyệt của họ chạy chậm hơn do cấu hình thiết bị",
+          "Số lượng tài nguyên phải tải về nhiều hơn bình thường"
+        ],
+        "correct": 0,
+        "explanation": "Máy chủ xử lý y hệt nhau; thứ khác là quãng đường. Đó là lý do một bảng theo dõi chỉ nhìn phía máy chủ có thể xanh suốt nhiều tháng trong khi một nhóm người dùng vẫn chờ vài giây."
+      },
+      {
+        "question": "Điều gì thường bị bỏ sót khi chỉ đo phía máy chủ?",
+        "options": [
+          "Thời gian tải tài nguyên và dựng giao diện ở trình duyệt",
+          "Thời gian truy vấn cơ sở dữ liệu bên trong yêu cầu",
+          "Thời gian chờ khi hệ thống đang chịu tải cao",
+          "Thời gian xử lý của các dịch vụ nội bộ được gọi tới trong yêu cầu"
+        ],
+        "correct": 0,
+        "explanation": "Ba thứ còn lại đều nằm trong phạm vi phép đo phía máy chủ. Phần chạy trên thiết bị người dùng thì hoàn toàn vô hình với nó, và với ứng dụng giao diện nặng thì phần ấy thường lớn nhất."
       }
     ],
-    "keyTakeaways": [
-      "Lãi suất tăng → giá trái phiếu giảm (và ngược lại)",
-      "Trái phiếu dài hạn: nhạy cảm hơn với lãi suất",
-      "Duration: đo độ nhạy giá với lãi suất"
-    ],
-    "practicePrompt": {
-      "question": "Bạn đang giữ một trái phiếu coupon cố định 6%/năm. Sau đó lãi suất thị trường tăng lên 9%/năm cho các trái phiếu phát hành mới cùng kỳ hạn. Điều gì xảy ra với giá trái phiếu bạn đang nắm giữ trên thị trường thứ cấp nếu muốn bán lại?",
-      "options": [
-        "Giá trái phiếu của bạn sẽ tăng lên vì lãi suất thị trường cao hơn làm trái phiếu trở nên hấp dẫn hơn",
-        "Lãi suất tăng thì giá trái phiếu giảm: trái phiếu 6% của bạn kém hấp dẫn hơn hẳn loại mới phát hành ở mức 9%",
-        "Giá trái phiếu không thay đổi vì coupon đã được ấn định cố định ngay từ đầu và không phụ thuộc vào lãi suất thị trường",
-        "Giá trái phiếu chỉ thay đổi khi có thay đổi về credit rating của công ty phát hành, không liên quan đến lãi suất thị trường"
-      ],
-      "correct": 1,
-      "explanation": "Lãi suất tăng → giá trái phiếu giảm (và ngược lại). Vì coupon của trái phiếu đã phát hành không đổi, khi lãi suất thị trường tăng, giá trái phiếu phải giảm để lợi suất thực tế (YTM) tương xứng với mặt bằng lãi suất mới - đây là mối quan hệ nghịch đảo cơ bản nhất trong đầu tư trái phiếu."
-    },
-    "summary": {
-      "keyIdea": "Lãi suất tăng → giá trái phiếu giảm (và ngược lại)",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Trái phiếu dài hạn: nhạy cảm hơn với lãi suất"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Theo dõi tin tức lãi suất điều hành gần nhất (tăng hoặc giảm), thử dự đoán trước: giá trái phiếu đang lưu hành trên thị trường sẽ tăng hay giảm theo hướng nào, rồi kiểm tra lại sau vài ngày.",
-      "secondary": "Dự đoán trước rồi đối chiếu thực tế giúp quy luật nghịch đảo này in sâu vào trí nhớ."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Đây là quy luật sắt của thị trường nợ: giá trái phiếu và lãi suất thị trường luôn di chuyển ngược chiều nhau. Hiểu được cơ chế này là chìa khóa để đọc mọi bản tin về Fed, NHNN, hay quỹ trái phiếu tăng giảm giá trị."
+        "text": "Bài trước kết luận rằng phải đo trước khi sửa. Bài này về việc đo cái gì, vì một phép đo chính xác ở sai chỗ vẫn dẫn tới sai kết luận."
       },
       {
         "type": "heading",
-        "text": "Vì sao giá và lãi suất nghịch chiều"
+        "text": "Hành trình dài hơn phần bạn kiểm soát"
       },
       {
         "type": "paragraph",
-        "text": "Giả sử bạn đang giữ một trái phiếu cũ với coupon 5%/năm. Nếu lãi suất thị trường tăng lên 7%, trái phiếu mới phát hành sẽ trả 7% - hấp dẫn hơn hẳn trái phiếu cũ của bạn. Để bán được trái phiếu cũ, bạn buộc phải giảm giá bán xuống dưới mệnh giá, đủ để lợi suất thực tế người mua nhận được tương đương mức 7% của thị trường. Ngược lại, nếu lãi suất thị trường giảm xuống 3%, trái phiếu coupon 5% cũ của bạn bỗng trở nên hấp dẫn hơn hẳn - nhà đầu tư sẵn sàng trả giá cao hơn mệnh giá để sở hữu nó. Đó chính là quan hệ nghịch đảo: lãi suất tăng → giá trái phiếu giảm; lãi suất giảm → giá trái phiếu tăng."
+        "text": "Từ lúc người dùng bấm tới lúc họ dùng được, thời gian đi qua nhiều đoạn: phân giải tên miền, thiết lập kết nối, truyền dữ liệu, xử lý ở máy chủ, tải tài nguyên phụ, chạy mã trình duyệt, dựng giao diện. Đoạn bạn hay đo nằm ở giữa, và với nhiều sản phẩm nó không phải đoạn lớn nhất."
       },
       {
-        "type": "heading",
-        "text": "Duration: kỳ hạn càng dài, biến động càng mạnh"
-      },
-      {
-        "type": "paragraph",
-        "text": "Không phải mọi trái phiếu phản ứng với lãi suất giống nhau. Trái phiếu kỳ hạn càng dài, càng có nhiều dòng tiền coupon trong tương lai xa phải chiết khấu lại theo mức lãi suất mới - nên giá càng nhạy cảm. Đại khái: trái phiếu 10 năm, lãi suất tăng 1% thì giá giảm khoảng 10%; trái phiếu 1 năm, lãi suất tăng 1% thì giá chỉ giảm khoảng 1%. Con số đo chính xác độ nhạy này gọi là duration (thời lượng), sẽ được học kỹ ở phần sau. Đây là lý do năm 2022, khi Fed tăng lãi suất mạnh để chống lạm phát, các quỹ trái phiếu dài hạn tại Mỹ mất giá hàng chục phần trăm - một trong những năm tệ nhất lịch sử với nhà đầu tư trái phiếu."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lãi suất thị trường tăng → trái phiếu cũ (coupon thấp) kém hấp dẫn → giá giảm",
-          "Lãi suất thị trường giảm → trái phiếu cũ (coupon cao hơn thị trường mới) hấp dẫn hơn → giá tăng",
-          "Kỳ hạn càng dài → duration càng lớn → giá càng nhạy cảm với biến động lãi suất",
-          "Trái phiếu ngắn hạn (T-bill, kỳ hạn dưới 1 năm) gần như miễn nhiễm với rủi ro lãi suất"
-        ]
+        "type": "comparison",
+        "left": {
+          "label": "Đo bên trong hệ thống",
+          "text": "Chi tiết, ổn định, dễ chia nhỏ theo bước. Dùng để chẩn đoán khi đã biết có vấn đề."
+        },
+        "right": {
+          "label": "Đo từ phía người dùng",
+          "text": "Nhiễu hơn và khó chia nhỏ, nhưng là phép đo duy nhất trả lời câu hỏi sản phẩm có chậm hay không."
+        }
       },
       {
         "type": "callout",
-        "label": "Ghi nhớ nhanh",
-        "text": "Nếu bạn tin lãi suất sắp tăng, tránh trái phiếu dài hạn. Nếu tin lãi suất sắp giảm, trái phiếu dài hạn mang lại cơ hội lãi vốn (capital gain) lớn hơn nhiều."
+        "label": "Mốc phải là một việc làm được",
+        "text": "Nhận đủ tài nguyên không có nghĩa là thấy nội dung, và thấy nội dung không có nghĩa là bấm được. Chọn mốc theo khả năng thao tác thì con số của bạn nói cùng ngôn ngữ với lời phàn nàn của người dùng."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Đo phần mình kiểm soát thì dễ, nhưng nó trả lời một câu hỏi khác với câu người dùng đang hỏi.",
+          "Bài sau nói về công cụ chia nhỏ thời gian bên trong một thao tác để tìm ra nút thắt thật."
+        ]
       }
     ]
   },
   {
     "id": 143,
-    "slug": "yield-to-maturity",
-    "title": "Tự học Tài chính Day 143: Yield to Maturity (YTM)",
-    "subtitle": "Lợi suất thực tế nếu giữ trái phiếu đến đáo hạn",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📜",
-    "openingQuestion": "YTM khác coupon rate ở điểm nào?",
+    "slug": "ho-so-hieu-nang",
+    "title": "Hồ sơ hiệu năng: thời gian đi đâu bên trong một thao tác",
+    "subtitle": "Công cụ chia thời gian theo từng hàm, và câu trả lời hiếm khi trùng dự đoán.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🔬",
+    "track": "professional",
+    "whyItMatters": "Biết thao tác mất ba giây chưa cho bạn việc gì để làm. Hồ sơ hiệu năng biến ba giây ấy thành một danh sách hàm kèm tỷ trọng, và mục đầu tiên trong danh sách thường là thứ chưa ai nghi ngờ.",
+    "openingQuestion": "Hồ sơ hiệu năng cho biết một hàm chiếm 60% thời gian nhưng chỉ được gọi ba lần. Điều đó gợi ý gì?",
     "openingOptions": [
-      "Không khác",
-      "YTM tính cả chênh lệch giá mua/mệnh giá + coupon, phản ánh lợi suất thực tế đầu tư trái phiếu",
-      "YTM chỉ tính lãi",
-      "Coupon rate cao hơn YTM"
+      "Mỗi lần gọi rất tốn kém, có thể nó đang chờ một thứ gì đó bên ngoài",
+      "Hàm đó có lỗi khiến nó chạy lâu hơn dự kiến rất nhiều",
+      "Công cụ đo đang tính nhầm thời gian của các hàm con",
+      "Ba lần gọi ấy diễn ra khi hệ thống đang chịu tải cao"
     ],
-    "correctOption": 1,
-    "explanation": "Lợi suất đến khi đáo hạn là mức sinh lời thật của người mua trái phiếu ở giá thị trường hôm nay và giữ tới hết kỳ hạn - nó gộp cả coupon nhận được lẫn phần lãi hoặc lỗ so với mệnh giá. Vì thế đây mới là con số để so sánh giữa các trái phiếu, chứ không phải lãi suất coupon. Mua dưới mệnh giá thì lợi suất cao hơn coupon, mua trên mệnh giá thì thấp hơn, và mua đúng mệnh giá thì hai con số trùng nhau.",
+    "correctOption": 0,
+    "explanation": "Tổng thời gian bằng số lần gọi nhân chi phí mỗi lần, nên ít lần mà chiếm nhiều nghĩa là mỗi lần rất đắt. Với chi phí lớn trên một lời gọi đơn lẻ, khả năng cao nhất là nó đang chờ: một truy vấn, một lời gọi mạng, một thao tác đọc ghi tệp. Đó là loại chờ đợi không tiêu tốn bộ xử lý nên nó vô hình với những phép đo chỉ nhìn vào mức dùng tài nguyên - và cũng là lý do phải đọc cả số lần gọi lẫn tỷ trọng chứ không chỉ một trong hai.",
     "diagram": [
       {
-        "label": "Giá mua trên thị trường hôm nay",
+        "label": "Tổng thời gian = số lần gọi × chi phí mỗi lần",
         "arrow": true
       },
       {
-        "label": "Cộng toàn bộ coupon sẽ nhận",
+        "label": "Nhiều lần, mỗi lần rẻ → giảm số lần gọi",
         "arrow": true
       },
       {
-        "label": "Cộng phần lãi hoặc lỗ so với mệnh giá khi đáo hạn",
+        "label": "Ít lần, mỗi lần đắt → xem nó đang chờ gì",
         "arrow": true
       },
       {
-        "label": "Quy về một tỷ lệ duy nhất: đó là YTM"
+        "label": "Hai chẩn đoán khác nhau từ cùng một tỷ trọng"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "So sánh trái phiếu mua trên/dưới mệnh giá",
-      "description": "Nhà đầu tư mua trái phiếu doanh nghiệp ở mức giá chiết khấu (dưới mệnh giá) trên thị trường thứ cấp thường được lợi suất YTM cao hơn coupon rate niêm yết - vì họ vừa nhận coupon định kỳ vừa hưởng thêm khoản chênh lệch giá khi trái phiếu đáo hạn ở đúng mệnh giá."
+      "company": "Hàm không ai nghi ngờ",
+      "description": "Trong phần lớn hồ sơ hiệu năng đầu tiên của một hệ thống, mục chiếm nhiều nhất là thứ không nằm trong danh sách nghi ngờ của đội: một phép tuần tự hoá, một lần đọc cấu hình lặp lại, một thư viện ghi nhật ký chạy đồng bộ."
+    },
+    "keyTakeaways": [
+      "Đọc cả tỷ trọng lẫn số lần gọi, vì hai chẩn đoán khác nhau tuỳ tổ hợp.",
+      "Thời gian chờ không tiêu tốn bộ xử lý nên nó vô hình với nhiều phép đo.",
+      "Đo trên dữ liệu và tải giống thật, vì hình dạng dữ liệu quyết định chỗ chậm.",
+      "Hồ sơ hiệu năng đo một thao tác; nó không thay được đo trải nghiệm tổng thể."
+    ],
+    "summary": {
+      "keyIdea": "Hồ sơ hiệu năng biến một con số tổng thành danh sách hàm kèm tỷ trọng và số lần gọi.",
+      "formula": "Tỷ trọng cho biết ở đâu, số lần gọi cho biết vì sao.",
+      "commonMistake": "Đo trên dữ liệu mẫu nhỏ, nơi chỗ chậm thật chưa xuất hiện."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chạy hồ sơ hiệu năng cho thao tác chậm nhất của bạn, trên dữ liệu gần với thật nhất có thể. Đọc năm mục đầu và so với những gì đội đang nghi ngờ."
+    },
+    "practicePrompt": {
+      "question": "Vì sao đo hiệu năng trên dữ liệu mẫu nhỏ hay cho kết luận sai?",
+      "options": [
+        "Vì chỗ chậm thật thường chỉ xuất hiện khi dữ liệu đủ lớn",
+        "Vì công cụ đo cần nhiều mẫu mới cho kết quả ổn định",
+        "Vì dữ liệu mẫu thường không có đủ các trường hợp biên hiếm gặp",
+        "Vì máy phát triển có cấu hình khác với máy chủ thật"
+      ],
+      "correct": 0,
+      "explanation": "Một truy vấn quét toàn bảng chạy trong một mili giây trên trăm dòng và trong ba giây trên ba triệu dòng, nên nó không xuất hiện trong hồ sơ đo trên dữ liệu mẫu. Chi phí phụ thuộc quy mô là loại chỗ chậm phổ biến nhất và cũng là loại bị dữ liệu nhỏ giấu đi kỹ nhất."
     },
     "quiz": [
       {
-        "question": "Trái phiếu mệnh giá 1 triệu, coupon 6%, đang bán ở 950.000đ. YTM so với 6%?",
+        "question": "Một hàm chiếm tỷ trọng lớn với rất nhiều lần gọi gợi ý điều gì?",
         "options": [
-          "YTM = 0",
-          "YTM = 6%",
-          "YTM > 6% - mua dưới mệnh giá + coupon = tổng lợi suất cao hơn coupon rate",
-          "YTM < 6%"
+          "Nên tìm cách giảm số lần gọi thay vì tối ưu bên trong hàm",
+          "Nên viết lại hàm đó bằng thuật toán hiệu quả hơn",
+          "Nên chuyển hàm đó sang chạy trên một luồng riêng",
+          "Nên thêm bộ nhớ đệm cho kết quả trả về của hàm"
         ],
-        "correct": 2,
-        "explanation": "Mua ở 950.000đ → khi đáo hạn nhận 1.000.000đ = capital gain 50.000đ + coupon hàng năm. YTM bao gồm cả hai → cao hơn coupon rate 6%. YTM là con số quan trọng nhất khi so sánh trái phiếu."
+        "correct": 0,
+        "explanation": "Mỗi lần gọi đã rẻ thì tối ưu bên trong cho lợi ích nhỏ. Câu hỏi đáng hỏi là vì sao nó được gọi nhiều tới vậy - thường là một vòng lặp lồng hoặc một lời gọi lặp trong danh sách."
       },
       {
-        "question": "Một trái phiếu có coupon rate 6% nhưng đang giao dịch ở mức giá cao hơn mệnh giá (premium). YTM của trái phiếu này sẽ như thế nào so với 6%?",
+        "question": "Vì sao thời gian chờ khó nhìn thấy trong một số phép đo?",
         "options": [
-          "YTM sẽ cao hơn 6%",
-          "YTM luôn bằng đúng coupon rate bất kể giá mua",
-          "Không thể xác định nếu thiếu thông tin về kỳ hạn",
-          "YTM sẽ THẤP hơn 6% - vì nhà đầu tư phải trả giá cao hơn mệnh giá để mua, nhưng khi đáo hạn chỉ nhận lại đúng mệnh giá (thấp hơn giá đã trả), khoản lỗ vốn này làm giảm lợi suất thực tế xuống dưới coupon rate"
+          "Vì chờ không tiêu tốn bộ xử lý nên nó không hiện ở mức dùng tài nguyên",
+          "Vì các công cụ đo bỏ qua những hàm chạy quá nhanh",
+          "Vì thời gian chờ được tính vào phần hệ điều hành",
+          "Vì việc chờ thường xảy ra ở những luồng nền không được đo"
         ],
-        "correct": 3,
-        "explanation": "Đây là mối quan hệ đối xứng với trường hợp mua giá chiết khấu: mua trái phiếu ở giá premium (trên mệnh giá) sẽ có YTM thấp hơn coupon rate, vì phần chênh lệch giá bị lỗ khi đáo hạn sẽ kéo lợi suất thực tế xuống dưới mức lãi coupon danh nghĩa."
+        "correct": 0,
+        "explanation": "Máy nhàn rỗi trong lúc chờ truy vấn hoặc chờ mạng, nên nhìn vào mức dùng bộ xử lý thì mọi thứ trông nhẹ nhàng. Đây là lý do bảng theo dõi tài nguyên có thể xanh trong khi người dùng chờ rất lâu."
+      },
+      {
+        "question": "Vì sao phải đo trên dữ liệu gần với thật?",
+        "options": [
+          "Vì nhiều chỗ chậm chỉ xuất hiện khi dữ liệu đủ lớn",
+          "Vì dữ liệu thật có nhiều trường hợp lỗi hơn dữ liệu mẫu",
+          "Vì công cụ đo cần thời gian chạy đủ dài để ổn định",
+          "Vì dữ liệu mẫu thường được lưu ở định dạng khác"
+        ],
+        "correct": 0,
+        "explanation": "Chi phí phụ thuộc quy mô là loại chỗ chậm phổ biến nhất, và trên trăm dòng dữ liệu thì nó hoàn toàn vô hình. Đo trên dữ liệu nhỏ cho một hồ sơ đúng về một tình huống không tồn tại."
+      },
+      {
+        "question": "Hồ sơ hiệu năng không thay được phép đo nào?",
+        "options": [
+          "Đo trải nghiệm tổng thể từ phía người dùng",
+          "Đo thời gian phản hồi của từng truy vấn dữ liệu",
+          "Đo mức sử dụng bộ nhớ trong suốt quá trình chạy",
+          "Đo số lần một hàm cụ thể được gọi tới"
+        ],
+        "correct": 0,
+        "explanation": "Nó đo một thao tác trong một tiến trình, nên nó không thấy mạng, không thấy trình duyệt, không thấy hàng đợi giữa các dịch vụ. Hai loại phép đo bổ sung nhau chứ không thay nhau."
+      },
+      {
+        "question": "Vì sao mục đầu tiên trong hồ sơ thường nằm ngoài dự đoán?",
+        "options": [
+          "Vì chi phí thật không hiện ra khi đọc mã nguồn",
+          "Vì công cụ đo sắp xếp theo tiêu chí khác với trực giác",
+          "Vì đội thường chỉ nghi ngờ phần mã mới viết gần đây",
+          "Vì các hàm hệ thống luôn chiếm phần lớn thời gian"
+        ],
+        "correct": 0,
+        "explanation": "Một dòng gọi thư viện ghi nhật ký trông vô hại có thể là một thao tác ghi đĩa đồng bộ. Mã nguồn không hiển thị chi phí, nên phép đo và trực giác thường xuyên lệch nhau."
       }
     ],
-    "keyTakeaways": [
-      "YTM = lợi suất thực nếu giữ đến đáo hạn",
-      "Mua discount: YTM > coupon; Mua premium: YTM < coupon",
-      "YTM là tiêu chí so sánh trái phiếu, không phải coupon rate"
-    ],
-    "practicePrompt": {
-      "question": "Một trái phiếu đang giao dịch dưới mệnh giá (mua rẻ hơn 100 triệu gốc) với coupon 6%/năm. Người bán quảng cáo 'lợi suất 6%' nhưng thực tế Yield to Maturity (YTM) của trái phiếu này cao hơn 6%. Vì sao YTM khác với coupon rate, và nó đại diện cho điều gì?",
-      "options": [
-        "YTM luôn bằng đúng coupon rate, sự chênh lệch trong ví dụ này là do lỗi tính toán của người bán",
-        "YTM là lợi suất thực nếu giữ đến đáo hạn, gồm cả coupon lẫn lãi vốn khi đáo hạn",
-        "YTM chỉ áp dụng cho trái phiếu chính phủ, không áp dụng được cho trái phiếu doanh nghiệp mua dưới mệnh giá",
-        "YTM là lợi suất công ty phát hành cam kết trả, khác với coupon là lợi suất nhà đầu tư thực nhận"
-      ],
-      "correct": 1,
-      "explanation": "YTM = lợi suất thực nếu giữ đến đáo hạn. Đây là chỉ số tổng hợp bao gồm cả coupon lẫn chênh lệch giá mua so với mệnh giá - mua dưới mệnh giá làm YTM cao hơn coupon rate, mua trên mệnh giá làm YTM thấp hơn coupon rate."
-    },
-    "summary": {
-      "keyIdea": "YTM = lợi suất thực nếu giữ đến đáo hạn",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Mua discount: YTM > coupon; Mua premium: YTM < coupon"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Bài học đã có ví dụ thật áp dụng YTM với trái phiếu chính phủ 10 năm (~4,11%/năm) - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự tìm một trái phiếu giao dịch dưới mệnh giá và kiểm tra YTM của nó.",
-      "secondary": "Khi so sánh trái phiếu để mua, luôn dùng YTM, đừng chỉ nhìn coupon rate."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Coupon rate là con số cố định in trên trái phiếu, nhưng nó không phản ánh lợi suất thực tế bạn nhận được nếu mua trái phiếu ở một mức giá khác mệnh giá. Yield to Maturity (YTM) mới là con số quan trọng nhất: nó gộp cả tiền lãi coupon lẫn khoản lãi/lỗ vốn (capital gain/loss) nếu giữ trái phiếu đến ngày đáo hạn."
+        "text": "Bài trước chọn được con số cần đo. Bài này về công cụ chia con số ấy thành từng phần - và về cách đọc kết quả, vì đọc sai cũng dẫn tới tối ưu nhầm chỗ."
       },
       {
         "type": "heading",
-        "text": "Mua dưới mệnh giá: YTM cao hơn coupon rate"
+        "text": "Hai cột phải đọc cùng nhau"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Nhiều lần, mỗi lần rẻ",
+          "text": "Tối ưu bên trong hàm cho lợi ích nhỏ. Câu hỏi đúng là vì sao nó được gọi nhiều tới vậy - thường là một vòng lặp lồng."
+        },
+        "right": {
+          "label": "Ít lần, mỗi lần đắt",
+          "text": "Gần như luôn là chờ đợi: truy vấn, lời gọi mạng, đọc ghi tệp. Tối ưu ở đây nghĩa là giảm chờ, không phải giảm tính toán."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Chờ đợi không hiện lên mức tài nguyên"
       },
       {
         "type": "paragraph",
-        "text": "**Ví dụ:** trái phiếu mệnh giá 1.000.000đ, coupon 6%/năm, nhưng đang giao dịch trên thị trường thứ cấp ở mức giá chiết khấu (discount) 950.000đ. Nếu bạn mua ở giá này và giữ đến đáo hạn, bạn vẫn nhận đủ 1.000.000đ vốn gốc - tức có thêm 50.000đ lãi vốn, cộng với coupon 60.000đ mỗi năm suốt kỳ hạn. Tổng lợi suất thực tế (YTM) vì vậy cao hơn hẳn 6% coupon rate niêm yết. Đây là lý do YTM luôn là tiêu chí đúng để so sánh hai trái phiếu, chứ không phải coupon rate - vì hai trái phiếu cùng coupon 6% nhưng giá mua khác nhau sẽ mang lại lợi suất thực rất khác nhau."
-      },
-      {
-        "type": "heading",
-        "text": "Mua trên mệnh giá: YTM thấp hơn coupon rate"
-      },
-      {
-        "type": "paragraph",
-        "text": "Ngược lại, nếu trái phiếu coupon 6% đang giao dịch ở mức giá premium (trên mệnh giá), nhà đầu tư phải trả nhiều hơn 1.000.000đ để mua, nhưng khi đáo hạn chỉ nhận lại đúng mệnh giá - một khoản lỗ vốn. Khoản lỗ này kéo lợi suất thực tế xuống dưới 6%. Quan hệ này hoàn toàn đối xứng với trường hợp mua giá chiết khấu: giá mua càng cao hơn mệnh giá, YTM càng thấp hơn coupon rate."
-      },
-      {
-        "type": "list",
-        "items": [
-          "YTM là internal rate of return (IRR) của toàn bộ dòng tiền trái phiếu: giá mua, các khoản coupon, và vốn gốc khi đáo hạn",
-          "Mua ở giá discount (dưới mệnh giá) → YTM > coupon rate",
-          "Mua ở giá premium (trên mệnh giá) → YTM < coupon rate",
-          "Mua đúng bằng mệnh giá (par) → YTM = coupon rate"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ thật: áp dụng YTM với dữ liệu trái phiếu chính phủ 10 năm"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Trái phiếu chính phủ VN kỳ hạn 10 năm hiện lợi suất trúng thầu (gần đúng YTM khi mua mới, đúng mệnh giá) khoảng 4,11%/năm",
-          "Nếu trái phiếu này sau đó giao dịch trên thị trường thứ cấp với giá THẤP hơn mệnh giá (ví dụ giá giảm do lãi suất thị trường tăng), YTM thực tế cho người mua ở mức giá thấp đó sẽ CAO hơn 4,11% - vì họ vừa nhận coupon cố định, vừa lời thêm phần chênh giữa giá mua và mệnh giá khi đáo hạn",
-          "Ngược lại, mua trên mệnh giá thì YTM sẽ thấp hơn coupon rate"
-        ]
+        "text": "Khi tiến trình chờ một truy vấn trả về, bộ xử lý rảnh. Bảng theo dõi tài nguyên xanh, và mọi chỉ số hạ tầng đều bình thường - trong khi người dùng đang chờ ba giây. Đây là lý do hồ sơ hiệu năng cần đo thời gian trôi qua chứ không chỉ thời gian bộ xử lý làm việc."
       },
       {
         "type": "callout",
-        "label": "Cách tự kiểm tra hiểu đúng",
-        "text": "Tìm một trái phiếu đang giao dịch dưới mệnh giá (giá dưới 100% mệnh giá) trên HNX hoặc thông tin trái phiếu công ty chứng khoán, so YTM công bố với coupon rate của nó - nếu giá dưới mệnh giá, YTM phải cao hơn coupon, nếu không thì công thức bạn áp dụng đang sai."
+        "label": "Dữ liệu nhỏ giấu chỗ chậm",
+        "text": "Truy vấn quét toàn bảng chạy trong một mili giây trên trăm dòng. Hồ sơ đo trên dữ liệu mẫu sẽ hoàn toàn chính xác về một tình huống không tồn tại, và nó bỏ sót đúng loại chỗ chậm phổ biến nhất."
       },
       {
         "type": "closing",
         "lines": [
-          "Đừng bao giờ so sánh hai trái phiếu chỉ bằng coupon rate - luôn nhìn vào YTM.",
-          "YTM chính là lãi suất thực sự bạn khóa được nếu giữ trái phiếu trọn kỳ hạn."
+          "Hồ sơ hiệu năng cho bạn một danh sách xếp theo tỷ trọng. Đọc kèm số lần gọi thì danh sách ấy còn nói cả nguyên nhân.",
+          "Bài sau nói về giới hạn cứng của việc tối ưu: phần bạn không động vào quyết định trần của cải thiện."
         ]
       }
     ]
   },
   {
     "id": 144,
-    "slug": "credit-rating",
-    "title": "Tự học Tài chính Day 144: Credit Rating (Xếp hạng tín dụng)",
-    "subtitle": "Moody's, S&P, Fitch đánh giá rủi ro vỡ nợ thế nào?",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📜",
-    "openingQuestion": "Trái phiếu AAA và BB có gì khác nhau về lãi suất?",
+    "slug": "tran-cua-viec-toi-uu",
+    "title": "Trần của tối ưu: phần bạn không động vào quyết định tất cả",
+    "subtitle": "Làm nhanh vô hạn một thứ chiếm hai mươi phần trăm thì tổng chỉ nhanh hơn được một phần tư.",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "📉",
+    "track": "professional",
+    "whyItMatters": "Quy tắc này quyết định việc tối ưu nào đáng làm trước khi bạn bỏ ra một ngày nào cho nó. Nó cũng giải thích vì sao rất nhiều nỗ lực tối ưu kết thúc với cải thiện vài phần trăm dù phần được sửa nhanh hơn hàng chục lần.",
+    "openingQuestion": "Một bước chiếm 20% tổng thời gian. Bạn làm nó nhanh gấp mười. Tổng thời gian giảm bao nhiêu?",
     "openingOptions": [
-      "BB phải trả lãi cao hơn AAA vì rủi ro vỡ nợ cao hơn",
-      "AAA phải trả lãi cao hơn vì uy tín của bên phát hành tốt hơn",
-      "Lãi suất như nhau",
-      "BB lãi thấp hơn vì ít người mua"
+      "Khoảng 18%, vì tám mươi phần trăm còn lại không đổi",
+      "Khoảng 90%, tương ứng với mức cải thiện của bước đó",
+      "Khoảng 50%, vì cải thiện lan sang các bước phía sau",
+      "Khoảng 20%, đúng bằng tỷ trọng của bước được tối ưu"
     ],
     "correctOption": 0,
-    "explanation": "Xếp hạng tín nhiệm là đánh giá của bên thứ ba về khả năng bên phát hành trả nợ đúng hạn, chia thành hai nhóm lớn: đầu tư và đầu cơ. Ranh giới giữa hai nhóm quan trọng hơn khoảng cách giữa các bậc trong cùng nhóm, vì nhiều quỹ bị điều lệ cấm nắm giữ nhóm dưới - nên một doanh nghiệp bị đẩy qua ranh giới đó sẽ mất một lượng lớn người mua cùng lúc, và giá trái phiếu rơi mạnh hơn mức rủi ro thật thay đổi.",
+    "explanation": "Phần chiếm hai mươi phần trăm giảm còn hai phần trăm, nên tổng đi từ một trăm xuống tám mươi hai - tức là nhanh hơn khoảng mười tám phần trăm. Kể cả khi bạn làm bước ấy mất không thời gian, trần cải thiện vẫn là hai mươi phần trăm, vì phần còn lại không đổi. Đây là lý do câu hỏi đầu tiên trước mọi việc tối ưu phải là phần này chiếm bao nhiêu, chứ không phải phần này có thể nhanh hơn bao nhiêu.",
     "diagram": [
       {
-        "label": "Tổ chức xếp hạng đánh giá khả năng trả nợ",
+        "label": "Bước A chiếm 20%, phần còn lại 80%",
         "arrow": true
       },
       {
-        "label": "Gán bậc từ AAA xuống D",
+        "label": "A nhanh gấp mười → còn 2%",
         "arrow": true
       },
       {
-        "label": "Bậc càng thấp, nhà đầu tư đòi lợi suất càng cao",
+        "label": "Tổng: 82% so với ban đầu",
         "arrow": true
       },
       {
-        "label": "Bị hạ bậc: giá trái phiếu giảm và chi phí vay mới tăng"
+        "label": "Trần tuyệt đối vẫn là 20%, dù A nhanh vô hạn"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Hạ bậc tín nhiệm quốc gia và doanh nghiệp",
-      "description": "Khi các tổ chức xếp hạng như S&P hay Moody's hạ bậc tín nhiệm của một quốc gia hoặc doanh nghiệp lớn, chi phí vay nợ của họ trong tương lai tăng lên ngay lập tức - một sự kiện được theo dõi sát sao vì ảnh hưởng trực tiếp đến toàn bộ nền kinh tế hoặc ngành liên quan."
+      "company": "Cải thiện hàng chục lần, tổng vài phần trăm",
+      "description": "Một đội viết lại phần xử lý ảnh nhanh hơn mười lăm lần và thời gian tải trang giảm ba phần trăm. Phần xử lý ảnh vốn chỉ chiếm ba phẩy hai phần trăm tổng thời gian - con số ấy đã có sẵn trong hồ sơ hiệu năng trước khi họ bắt đầu."
+    },
+    "keyTakeaways": [
+      "Trần cải thiện bằng đúng tỷ trọng của phần bạn động vào.",
+      "Hỏi phần này chiếm bao nhiêu trước khi hỏi nó nhanh hơn được bao nhiêu.",
+      "Sau mỗi lần tối ưu, nút thắt chuyển sang chỗ khác - phải đo lại.",
+      "Với phần chiếm tỷ trọng nhỏ, cải thiện lớn tới đâu cũng gần như vô nghĩa."
+    ],
+    "summary": {
+      "keyIdea": "Cải thiện tổng bị chặn bởi tỷ trọng của phần được tối ưu.",
+      "formula": "Trần cải thiện = tỷ trọng của phần bạn sửa.",
+      "commonMistake": "Chọn chỗ tối ưu theo mức cải thiện khả dĩ thay vì theo tỷ trọng."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Trước khi bắt đầu bất kỳ việc tối ưu nào, viết ra hai con số: phần này chiếm bao nhiêu phần trăm, và trần cải thiện tổng là bao nhiêu. Nếu trần dưới năm phần trăm thì hãy đi tìm chỗ khác."
+    },
+    "practicePrompt": {
+      "question": "Sau khi tối ưu thành công một nút thắt, việc tiếp theo nên là gì?",
+      "options": [
+        "Đo lại, vì nút thắt giờ đã chuyển sang một chỗ khác",
+        "Tiếp tục tối ưu sâu hơn chính phần vừa được cải thiện",
+        "Áp dụng cùng kỹ thuật đó cho các phần tương tự trong hệ thống",
+        "Ghi lại kết quả và chuyển sang công việc tính năng mới"
+      ],
+      "correct": 0,
+      "explanation": "Tỷ trọng của mọi phần đều đổi sau khi một phần co lại, nên bản đồ cũ không còn đúng. Tối ưu tiếp phần vừa sửa là sai lầm phổ biến nhất ở bước này, vì trần của nó giờ đã rất nhỏ trong khi một chỗ khác vừa trở thành mục lớn nhất."
     },
     "quiz": [
       {
-        "question": "Fallen Angel là gì?",
+        "question": "Trần cải thiện tổng khi tối ưu một phần bằng gì?",
         "options": [
-          "Trái phiếu chính phủ",
-          "Trái phiếu bị hạ rating từ Investment Grade xuống High-Yield - nhiều quỹ buộc phải bán → giá giảm mạnh",
-          "Trái phiếu vỡ nợ",
-          "Trái phiếu coupon cao"
+          "Đúng bằng tỷ trọng thời gian của phần đó",
+          "Bằng mức cải thiện đạt được ở chính phần đó",
+          "Bằng trung bình của tỷ trọng và mức cải thiện",
+          "Không có trần nếu phần đó được tối ưu đủ tốt"
         ],
-        "correct": 1,
-        "explanation": "Fallen Angel: từng là investment grade, bị hạ xuống junk (BB hoặc thấp hơn). Nhiều quỹ có mandate chỉ giữ IG → phải bán → giá giảm mạnh dù doanh nghiệp vẫn khả thi. Đây có thể là cơ hội mua nếu downgrade là quá mức."
+        "correct": 0,
+        "explanation": "Phần còn lại không đổi, nên kể cả khi phần được sửa mất không thời gian thì bạn cũng chỉ cắt được đúng tỷ trọng của nó. Đó là một trần cứng, không phải một ước lượng."
       },
       {
-        "question": "Vì sao một trái phiếu bị hạ bậc tín nhiệm từ Investment Grade xuống High-Yield (junk) thường gây ra một đợt bán tháo mạnh, vượt xa mức độ rủi ro thực tế mới tăng thêm?",
+        "question": "Câu hỏi nào nên đặt trước khi bắt đầu tối ưu?",
         "options": [
-          "Việc hạ bậc tín nhiệm không ảnh hưởng gì đến hành vi của nhà đầu tư tổ chức",
-          "Vì đây chỉ là phản ứng cảm tính không có cơ sở",
-          "Vì nhiều quỹ đầu tư tổ chức (quỹ hưu trí, bảo hiểm) bị RÀNG BUỘC theo quy định chỉ được nắm giữ trái phiếu Investment Grade - khi bị hạ bậc xuống junk, các quỹ này BUỘC PHẢI bán ra ngay lập tức bất kể giá, tạo áp lực bán mạnh vượt xa mức độ thay đổi rủi ro thực tế",
-          "Trái phiếu junk luôn có giá trị bằng 0"
+          "Phần này chiếm bao nhiêu phần trăm tổng thời gian",
+          "Phần này có thể được làm nhanh hơn tối đa bao nhiêu lần",
+          "Phần này có bao nhiêu dòng mã cần được viết lại",
+          "Phần này đã được viết cách đây bao lâu rồi"
         ],
-        "correct": 2,
-        "explanation": "Đây là hiện tượng \"fallen angel\" - khi trái phiếu Investment Grade bị hạ xuống High-Yield, các quy định đầu tư bắt buộc của nhiều quỹ tổ chức lớn kích hoạt làn sóng bán bắt buộc, tạo ra áp lực giá giảm mạnh hơn nhiều so với mức độ rủi ro tín dụng thực tế mới."
+        "correct": 0,
+        "explanation": "Mức cải thiện khả dĩ nghe hấp dẫn hơn nhưng nó vô nghĩa nếu tỷ trọng nhỏ. Hai con số nhân với nhau mới ra lợi ích thật, và tỷ trọng là con số bị bỏ qua thường xuyên hơn."
+      },
+      {
+        "question": "Vì sao phải đo lại sau mỗi lần tối ưu thành công?",
+        "options": [
+          "Vì tỷ trọng của mọi phần đều đổi nên nút thắt đã chuyển chỗ",
+          "Vì cần xác nhận rằng thay đổi không làm hỏng tính đúng đắn của kết quả",
+          "Vì công cụ đo cần được hiệu chỉnh lại sau thay đổi lớn",
+          "Vì kết quả đo lần trước có thể đã bị ảnh hưởng bởi tải"
+        ],
+        "correct": 0,
+        "explanation": "Bản đồ cũ mô tả một hệ thống không còn tồn tại. Tiếp tục làm theo nó là cách phổ biến nhất để tối ưu sâu vào một phần giờ đã chiếm tỷ trọng rất nhỏ."
+      },
+      {
+        "question": "Vì sao cải thiện gấp mười lăm lần có thể chỉ đổi được ba phần trăm?",
+        "options": [
+          "Vì phần được cải thiện vốn chỉ chiếm một tỷ trọng rất nhỏ",
+          "Vì cải thiện bị mất đi do chi phí của lớp trừu tượng thêm vào",
+          "Vì hệ thống bị giới hạn bởi tài nguyên phần cứng có sẵn",
+          "Vì phép đo tổng có sai số lớn hơn mức cải thiện đạt được"
+        ],
+        "correct": 0,
+        "explanation": "Con số tỷ trọng ấy thường đã nằm sẵn trong hồ sơ hiệu năng trước khi công việc bắt đầu. Đọc nó trước là cách rẻ nhất để không bỏ hai tuần vào một cải thiện ba phần trăm."
+      },
+      {
+        "question": "Khi nào một cải thiện lớn về tốc độ vẫn không đáng làm?",
+        "options": [
+          "Khi phần được cải thiện chiếm tỷ trọng quá nhỏ trong tổng",
+          "Khi kỹ thuật tối ưu đó chưa được đội nào áp dụng trước đây",
+          "Khi phần đó nằm trong mã của một thư viện bên ngoài",
+          "Khi việc tối ưu đòi hỏi thay đổi nhiều tệp mã nguồn"
+        ],
+        "correct": 0,
+        "explanation": "Lợi ích bị chặn bởi tỷ trọng, còn chi phí thì vẫn phải trả đủ: thời gian, độ phức tạp thêm vào, và rủi ro của thay đổi. Đó là một khoản đầu tư có trần lợi nhuận rất thấp."
       }
     ],
-    "keyTakeaways": [
-      "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
-      "Rating thấp → lãi suất cao (credit spread)",
-      "Fallen Angel: IG bị hạ xuống HY → giá giảm mạnh"
-    ],
-    "practicePrompt": {
-      "question": "Một trái phiếu doanh nghiệp được S&P xếp hạng BB. Nhà đầu tư nên hiểu mức xếp hạng này thuộc nhóm nào, và điều đó ảnh hưởng thế nào đến mức lãi suất công ty phải trả để huy động vốn?",
-      "options": [
-        "BB thuộc nhóm Investment Grade (đầu tư an toàn), nên công ty có thể huy động vốn với lãi suất thấp gần bằng trái phiếu chính phủ",
-        "AAA→BBB là Investment Grade; BB trở xuống là High-Yield nên phải trả lãi suất cao hơn hẳn",
-        "Xếp hạng BB không có ý nghĩa thực tế nào trong việc quyết định mức lãi suất trái phiếu",
-        "BB là mức xếp hạng cao nhất có thể, cho thấy công ty gần như không có rủi ro vỡ nợ"
-      ],
-      "correct": 1,
-      "explanation": "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk. Rating thấp hơn (như BB) đi kèm rủi ro vỡ nợ cao hơn, nên thị trường đòi hỏi credit spread (chênh lệch lãi suất so với trái phiếu phi rủi ro) lớn hơn để bù đắp rủi ro đó."
-    },
-    "summary": {
-      "keyIdea": "AAA→BBB: Investment Grade; BB và thấp hơn: High-Yield/Junk",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Rating thấp → lãi suất cao (credit spread)"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Tra credit rating của một trái phiếu doanh nghiệp Việt Nam hoặc quốc tế bạn từng nghe tên, xác định nó thuộc Investment Grade hay High-Yield, và lãi suất nó phải trả có tương xứng với rating đó không.",
-      "secondary": "Nếu không tìm thấy rating công khai, đó tự nó đã là một tín hiệu rủi ro."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Trước khi cho ai vay tiền, bạn muốn biết xác suất họ trả nợ đúng hạn. Với trái phiếu, công việc đánh giá đó được các tổ chức xếp hạng tín dụng như Moody's, S&P và Fitch thực hiện chuyên nghiệp, đóng gói thành một ký hiệu chữ cái dễ hiểu."
+        "text": "Có một quy tắc số học đơn giản quyết định việc tối ưu nào đáng làm. Nó không phức tạp, và nó bị bỏ qua thường xuyên tới mức đáng ngạc nhiên."
       },
       {
         "type": "heading",
-        "text": "Thang xếp hạng: từ AAA đến D"
+        "text": "Phần không đổi đặt ra trần"
       },
       {
         "type": "paragraph",
-        "text": "Thang điểm phổ biến của S&P/Fitch chạy từ AAA (an toàn nhất) xuống D (đã vỡ nợ): AAA, AA, A, BBB nằm trong nhóm Investment Grade (IG) - được xem là đủ an toàn cho các quỹ hưu trí, bảo hiểm. Từ BB trở xuống (BB, B, CCC, CC, C) là High-Yield hay còn gọi là Junk bond - rủi ro vỡ nợ cao hơn hẳn, đổi lại lợi suất (yield) cao hơn để bù đắp. Moody's dùng thang tương đương: Aaa, Aa, A, Baa (Investment Grade) và Ba, B, Caa trở xuống (High-Yield). Rating càng thấp, credit spread - phần lãi suất cộng thêm so với trái phiếu chính phủ cùng kỳ hạn - càng rộng."
+        "text": "Nếu một bước chiếm hai mươi phần trăm tổng thời gian, thì kể cả khi bạn làm nó mất không thời gian, tổng cũng chỉ giảm hai mươi phần trăm. Tám mươi phần trăm còn lại nằm nguyên đó. Trong thực tế bạn không đạt được vô hạn, nên cải thiện thật còn thấp hơn - làm nhanh gấp mười cho khoảng mười tám phần trăm."
       },
       {
-        "type": "heading",
-        "text": "Fallen Angel: khi trái phiếu 'rơi hạng'"
+        "type": "conceptTable",
+        "title": "Hai con số quyết định",
+        "subtitle": "Nhân với nhau mới ra lợi ích thật",
+        "concepts": [
+          {
+            "vi": "Tỷ trọng",
+            "en": "share",
+            "def": "Phần này chiếm bao nhiêu phần trăm tổng thời gian. Đây là trần cứng của mọi cải thiện."
+          },
+          {
+            "vi": "Mức cải thiện",
+            "en": "speedup",
+            "def": "Phần này có thể nhanh hơn bao nhiêu lần. Nghe hấp dẫn hơn, và vô nghĩa nếu tỷ trọng nhỏ."
+          }
+        ]
       },
       {
-        "type": "paragraph",
-        "text": "Một hiện tượng đáng chú ý là Fallen Angel: trái phiếu từng ở nhóm Investment Grade bị hạ xuống High-Yield (ví dụ từ BBB xuống BB). Vấn đề không chỉ nằm ở rủi ro tăng thêm - nhiều quỹ đầu tư tổ chức lớn (quỹ hưu trí, bảo hiểm) bị ràng buộc theo quy định chỉ được nắm giữ trái phiếu Investment Grade. Khi bị hạ bậc, các quỹ này buộc phải bán ra ngay lập tức bất kể giá, tạo ra một đợt bán tháo vượt xa mức độ rủi ro tín dụng thực tế mới tăng thêm. Với nhà đầu tư hiểu rõ cơ chế này, đây đôi khi lại là cơ hội mua nếu đánh giá downgrade là quá mức so với sức khỏe tài chính thực của doanh nghiệp."
+        "type": "callout",
+        "label": "Nút thắt di chuyển",
+        "text": "Sau khi bạn cắt mục lớn nhất, mục thứ hai trở thành mục lớn nhất và tỷ trọng của mọi thứ đều đổi. Bản đồ cũ mô tả một hệ thống không còn tồn tại, nên mỗi vòng tối ưu phải bắt đầu bằng một phép đo mới."
       },
       {
-        "type": "list",
-        "items": [
-          "Investment Grade (AAA-BBB): an toàn, lãi suất thấp, phù hợp quỹ hưu trí/bảo hiểm",
-          "High-Yield/Junk (BB trở xuống): rủi ro cao, lãi suất cao, biến động mạnh",
-          "Rating bị hạ (downgrade) → giá trái phiếu giảm ngay cả khi công ty chưa vỡ nợ",
-          "Ba tổ chức lớn nhất: Moody's, S&P Global Ratings, Fitch Ratings - luôn kiểm tra rating từ nhiều nguồn, không chỉ một"
+        "type": "closing",
+        "lines": [
+          "Hỏi phần này chiếm bao nhiêu trước khi hỏi nó nhanh hơn được bao nhiêu. Con số thứ nhất đặt trần cho con số thứ hai.",
+          "Bài sau đi xuống một tầng: chi phí thật của những thao tác mà mã nguồn khiến chúng trông như nhau."
         ]
       }
     ]
   },
   {
     "id": 145,
-    "slug": "yield-curve",
-    "title": "Tự học Tài chính Day 145: Yield Curve",
-    "subtitle": "Đường cong lãi suất - phong vũ biểu kinh tế vĩ mô",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "💹",
-    "openingQuestion": "Yield curve đảo ngược (inverted) báo hiệu điều gì?",
+    "slug": "chi-phi-that-cua-mot-thao-tac",
+    "title": "Chi phí thật: mã nguồn khiến mọi dòng trông như nhau",
+    "subtitle": "Một lời gọi hàm và một vòng gọi mạng chiếm cùng một dòng, và chênh nhau hàng triệu lần.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "📊",
+    "track": "professional",
+    "whyItMatters": "Trực giác về hiệu năng sai chủ yếu vì mã nguồn không hiển thị chi phí. Có sẵn một bảng độ lớn tương đối trong đầu là cách rẻ nhất để đoán đúng chỗ đáng đo trước.",
+    "openingQuestion": "Xếp theo thứ tự chi phí tăng dần: đọc từ bộ nhớ chính, đọc từ ổ đĩa thể rắn, một vòng gọi mạng trong cùng trung tâm dữ liệu.",
     "openingOptions": [
-      "Kinh tế tốt",
-      "Lạm phát cao",
-      "Không có ý nghĩa",
-      "Khả năng cao sắp có suy thoái - thị trường kỳ vọng Fed cắt lãi suất trong tương lai"
+      "Bộ nhớ chính, rồi ổ đĩa thể rắn, rồi vòng gọi mạng",
+      "Ổ đĩa thể rắn, rồi bộ nhớ chính, rồi vòng gọi mạng",
+      "Bộ nhớ chính, rồi vòng gọi mạng, rồi ổ đĩa thể rắn",
+      "Cả ba xấp xỉ nhau trên phần cứng hiện đại ngày nay"
     ],
-    "correctOption": 3,
-    "explanation": "Đường cong lợi suất nối lợi suất trái phiếu chính phủ ở các kỳ hạn khác nhau, và hình dạng của nó tóm tắt kỳ vọng của thị trường về lãi suất tương lai. Dốc lên là trạng thái bình thường. Đảo ngược - ngắn hạn cao hơn dài hạn - nghĩa là thị trường đang đặt cược lãi suất sẽ phải hạ, tức kinh tế sẽ yếu đi. Đây là một trong số ít chỉ báo có thành tích dự báo suy thoái đủ dài để đáng chú ý, dù độ trễ rất khác nhau giữa các lần.",
+    "correctOption": 0,
+    "explanation": "Thứ tự này gần như không đổi qua các thế hệ phần cứng, và khoảng cách giữa các bậc lớn hơn nhiều so với cảm nhận thông thường: đọc bộ nhớ chính tính bằng chục nano giây, đọc ổ đĩa thể rắn tính bằng chục micro giây, còn một vòng gọi mạng trong cùng trung tâm dữ liệu tính bằng vài trăm micro giây. Mỗi bậc chênh nhau khoảng một nghìn lần. Biết thứ tự ấy giúp bạn nhận ra ngay rằng một lời gọi mạng đặt trong vòng lặp là vấn đề, còn một phép tính trong cùng vòng lặp thì thường không.",
     "diagram": [
       {
-        "label": "Vẽ lợi suất trái phiếu chính phủ theo từng kỳ hạn",
+        "label": "Bộ nhớ đệm bộ xử lý - vài nano giây",
         "arrow": true
       },
       {
-        "label": "Bình thường: kỳ hạn dài trả cao hơn",
+        "label": "Bộ nhớ chính - vài chục nano giây",
         "arrow": true
       },
       {
-        "label": "Đảo ngược: ngắn hạn cao hơn dài hạn",
+        "label": "Ổ đĩa thể rắn - vài chục micro giây",
         "arrow": true
       },
       {
-        "label": "Thị trường đang kỳ vọng lãi suất sẽ phải hạ vì kinh tế yếu đi"
+        "label": "Vòng gọi mạng - vài trăm micro giây trở lên"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Yield Curve Mỹ 2022-2023",
-      "description": "Yield curve của trái phiếu Chính phủ Mỹ đảo ngược sâu và kéo dài nhất trong hơn 40 năm giai đoạn 2022-2023 khi Fed tăng lãi suất mạnh để chống lạm phát - nhiều nhà kinh tế học dựa vào tín hiệu này để dự báo khả năng suy thoái kinh tế Mỹ."
+      "company": "Lời gọi mạng trong vòng lặp",
+      "description": "Đây là chỗ chậm phổ biến nhất trong mọi hệ thống, và nó trông vô hại trong mã: một dòng gọi hàm bên trong một vòng duyệt danh sách. Với một trăm phần tử thì đó là một trăm vòng gọi mạng nối tiếp."
+    },
+    "keyTakeaways": [
+      "Chi phí các bậc lưu trữ chênh nhau khoảng một nghìn lần mỗi bậc.",
+      "Mã nguồn không hiển thị chi phí, nên một dòng có thể đắt gấp triệu lần dòng bên cạnh.",
+      "Lời gọi mạng hoặc truy vấn trong vòng lặp là chỗ chậm phổ biến nhất.",
+      "Phép tính thuần tuý hiếm khi là nút thắt trong mã nghiệp vụ."
+    ],
+    "summary": {
+      "keyIdea": "Giữ trong đầu bảng độ lớn tương đối để nhận ra chỗ đắt ngay khi đọc mã.",
+      "formula": "Bộ nhớ, đĩa, mạng - mỗi bậc khoảng một nghìn lần.",
+      "commonMistake": "Tối ưu phép tính trong khi nút thắt là một lời gọi ra ngoài."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Tìm trong mã của bạn một vòng lặp có chứa lời gọi ra ngoài tiến trình - truy vấn, gọi dịch vụ, đọc tệp. Đó là ứng viên đầu tiên cho mọi cuộc điều tra hiệu năng."
+    },
+    "practicePrompt": {
+      "question": "Vì sao phép tính thuần tuý hiếm khi là nút thắt trong mã nghiệp vụ?",
+      "options": [
+        "Vì nó rẻ hơn hàng nghìn lần so với mọi thao tác ra ngoài tiến trình",
+        "Vì trình biên dịch tự động tối ưu hầu hết các phép tính",
+        "Vì bộ xử lý hiện đại chạy nhiều phép tính song song cùng lúc với nhau",
+        "Vì mã nghiệp vụ thường có rất ít phép tính phức tạp"
+      ],
+      "correct": 0,
+      "explanation": "Một phép tính mất vài nano giây, còn một truy vấn mất vài trăm micro giây - chênh nhau khoảng năm bậc độ lớn. Vì thế trong mã nghiệp vụ điển hình, thời gian gần như luôn nằm ở chỗ chờ chứ không ở chỗ tính."
     },
     "quiz": [
       {
-        "question": "Đường yield curve dốc lên (steep) cho biết gì?",
+        "question": "Khoảng cách chi phí giữa hai bậc lưu trữ liền kề thường là bao nhiêu?",
         "options": [
-          "Thị trường kỳ vọng kinh tế tăng trưởng và lạm phát cao hơn trong tương lai - nhà đầu tư đòi premium dài hạn lớn",
-          "Suy thoái sắp xảy ra",
-          "Lãi suất ngắn hạn cao",
-          "Fed đang tăng lãi suất"
+          "Khoảng một nghìn lần",
+          "Khoảng mười lần",
+          "Khoảng hai tới ba lần",
+          "Khoảng một trăm lần"
         ],
         "correct": 0,
-        "explanation": "Steep curve: spread giữa 10-year và 2-year yield lớn → thị trường lạc quan về tăng trưởng dài hạn. Xảy ra sau recession khi Fed cắt lãi ngắn hạn nhưng dài hạn còn cao do kỳ vọng recovery."
+        "explanation": "Bộ nhớ chính tính bằng nano giây, đĩa thể rắn bằng micro giây, mạng bằng trăm micro giây trở lên. Chính khoảng cách lớn ấy làm cho việc nhận ra bậc quan trọng hơn nhiều so với việc nhớ con số chính xác."
       },
       {
-        "question": "Vì sao các nhà đầu tư tổ chức lớn theo dõi Yield Curve chặt chẽ hơn nhiều so với việc chỉ nhìn một mức lãi suất đơn lẻ (như lãi suất 10 năm)?",
+        "question": "Vì sao đọc mã không cho biết chi phí?",
         "options": [
-          "Vì Yield Curve dễ đọc hơn một con số lãi suất đơn lẻ",
-          "Vì hình dạng của toàn bộ đường cong (không chỉ một điểm) phản ánh kỳ vọng tổng hợp của thị trường về tăng trưởng kinh tế và lạm phát trong nhiều khung thời gian khác nhau cùng lúc - cung cấp thông tin phong phú hơn nhiều so với bất kỳ lãi suất đơn lẻ nào",
-          "Chỉ ngân hàng trung ương mới cần quan tâm đến Yield Curve",
-          "Yield Curve không cung cấp thông tin gì hữu ích hơn một mức lãi suất"
+          "Vì một dòng có thể là vài lệnh máy hoặc một vòng gọi mạng",
+          "Vì trình biên dịch sắp xếp lại thứ tự các câu lệnh",
+          "Vì chi phí phụ thuộc vào phiên bản ngôn ngữ lập trình đang dùng",
+          "Vì mã nguồn không thể hiện số lần mỗi dòng được chạy"
         ],
-        "correct": 1,
-        "explanation": "Yield Curve là một \"bản đồ\" kỳ vọng thị trường trải dài qua nhiều kỳ hạn - độ dốc, hình dạng đảo ngược hay bình thường của toàn bộ đường cong cho biết nhiều thông tin về kỳ vọng lãi suất tương lai và triển vọng kinh tế hơn nhiều so với một điểm dữ liệu đơn lẻ."
+        "correct": 0,
+        "explanation": "Cú pháp gọi hàm giống nhau bất kể phía sau là một phép cộng hay một lời gọi xuyên châu lục. Số lần chạy cũng là một yếu tố thật nhưng nó là vấn đề riêng, đã bàn ở bài hồ sơ hiệu năng."
+      },
+      {
+        "question": "Chỗ chậm phổ biến nhất trong các hệ thống thực tế là gì?",
+        "options": [
+          "Lời gọi ra ngoài tiến trình được đặt bên trong một vòng lặp",
+          "Thuật toán có độ phức tạp cao trên tập dữ liệu lớn",
+          "Phép tính dấu phẩy động lặp lại nhiều lần liên tiếp",
+          "Việc cấp phát bộ nhớ cho các đối tượng nhỏ"
+        ],
+        "correct": 0,
+        "explanation": "Nó trông vô hại trong mã và chỉ lộ ra khi danh sách đủ dài. Ba nguyên nhân còn lại đều có thật nhưng chúng hiếm hơn nhiều trong mã nghiệp vụ điển hình."
+      },
+      {
+        "question": "Bảng độ lớn tương đối dùng để làm gì?",
+        "options": [
+          "Đoán nhanh chỗ đáng đo trước khi chạy công cụ",
+          "Thay thế cho việc phải đo hiệu năng thực tế",
+          "Tính chính xác thời gian mà một thao tác cụ thể sẽ mất",
+          "So sánh hiệu năng giữa các loại phần cứng"
+        ],
+        "correct": 0,
+        "explanation": "Nó không thay được phép đo nhưng nó thu hẹp danh sách nghi ngờ rất nhanh. Biết mạng đắt hơn bộ nhớ một triệu lần thì bạn nhìn vào vòng lặp có lời gọi mạng trước tiên."
+      },
+      {
+        "question": "Vì sao thứ tự các bậc chi phí gần như không đổi qua các thế hệ phần cứng?",
+        "options": [
+          "Vì mọi bậc đều nhanh lên nhưng khoảng cách tương đối vẫn giữ nguyên",
+          "Vì phần cứng mới không cải thiện tốc độ truy cập bộ nhớ",
+          "Vì các tiêu chuẩn công nghiệp cố định các con số này",
+          "Vì phần mềm luôn được viết để phù hợp với thứ tự đó"
+        ],
+        "correct": 0,
+        "explanation": "Bộ nhớ nhanh lên, đĩa nhanh lên, mạng nhanh lên - nhưng khoảng cách giữa chúng vẫn còn đó vì chúng bị chặn bởi những giới hạn vật lý khác nhau. Đó là lý do bảng này vẫn dùng được sau nhiều năm."
       }
     ],
-    "keyTakeaways": [
-      "Yield curve: lợi suất trái phiếu theo kỳ hạn",
-      "Inverted curve: báo hiệu suy thoái (chính xác ~80% lịch sử)",
-      "Steep curve: kỳ vọng tăng trưởng và lạm phát cao"
-    ],
-    "practicePrompt": {
-      "question": "Bạn vẽ một biểu đồ với trục hoành là kỳ hạn trái phiếu chính phủ (1 năm, 5 năm, 10 năm, 30 năm) và trục tung là lợi suất tương ứng của mỗi kỳ hạn, rồi nối các điểm lại. Biểu đồ này gọi là gì, và bình thường nó có hình dạng thế nào?",
-      "options": [
-        "Đây được gọi là Credit Spread Curve, phản ánh rủi ro tín dụng của từng kỳ hạn",
-        "Yield curve: lợi suất theo kỳ hạn; đảo ngược thường báo hiệu suy thoái sắp tới",
-        "Đây được gọi là Efficient Frontier, thể hiện mối quan hệ giữa rủi ro và lợi nhuận kỳ vọng của danh mục",
-        "Biểu đồ này không có tên gọi chuyên môn cụ thể trong phân tích trái phiếu"
-      ],
-      "correct": 1,
-      "explanation": "Yield curve: lợi suất trái phiếu theo kỳ hạn. Đây là 'bản đồ' tổng hợp kỳ vọng của thị trường về lãi suất và tăng trưởng kinh tế tương lai - đường cong đảo ngược (inverted curve, kỳ hạn ngắn có lợi suất cao hơn dài hạn) là một trong những chỉ báo suy thoái được theo dõi sát nhất."
-    },
-    "summary": {
-      "keyIdea": "Yield curve: lợi suất trái phiếu theo kỳ hạn",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Inverted curve: báo hiệu suy thoái (chính xác ~80% lịch sử)"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Tra lợi suất trái phiếu chính phủ kỳ hạn ngắn (VD 2 năm) và dài hạn (VD 10 năm) hiện tại, so sánh xem đường cong đang bình thường hay đảo ngược.",
-      "secondary": "Đây là một trong những chỉ báo kinh tế vĩ mô được theo dõi sát nhất trên thế giới."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Yield curve (đường cong lợi suất) là đồ thị nối lợi suất trái phiếu chính phủ theo từng kỳ hạn - từ vài tháng đến 30 năm. Đây không chỉ là một biểu đồ kỹ thuật: nó là phong vũ biểu phản ánh kỳ vọng tập thể của toàn bộ thị trường về tăng trưởng, lạm phát và chính sách lãi suất trong tương lai."
+        "text": "Trực giác về hiệu năng sai chủ yếu vì một lý do rất đơn giản: trên trang mã, mọi dòng trông như nhau. Cú pháp không phân biệt một phép cộng với một vòng gọi xuyên châu lục."
       },
       {
         "type": "heading",
-        "text": "Steep curve: thị trường lạc quan"
+        "text": "Bậc thang chi phí"
       },
       {
-        "type": "paragraph",
-        "text": "Khi đường cong dốc lên mạnh (steep) - tức chênh lệch giữa lợi suất 10 năm và 2 năm lớn - thị trường đang kỳ vọng tăng trưởng kinh tế và lạm phát cao hơn trong tương lai, nên đòi hỏi một khoản premium lớn cho việc khóa vốn dài hạn. Hiện tượng này thường xảy ra sau một cuộc suy thoái, khi ngân hàng trung ương đã cắt lãi suất ngắn hạn về thấp nhưng lãi suất dài hạn vẫn cao vì thị trường tin vào sự phục hồi."
-      },
-      {
-        "type": "heading",
-        "text": "Inverted curve: tín hiệu suy thoái đáng tin cậy nhất"
-      },
-      {
-        "type": "paragraph",
-        "text": "Ngược lại, khi lãi suất ngắn hạn cao hơn dài hạn (inverted), thị trường đang đặt cược rằng ngân hàng trung ương sẽ sớm phải cắt giảm lãi suất để cứu một nền kinh tế đang suy yếu. Từ năm 1955 đến nay, hầu như mọi lần yield curve của Mỹ đảo ngược đều đi trước một cuộc suy thoái thực sự từ 12 đến 18 tháng - một trong những chỉ báo kinh tế vĩ mô có độ chính xác lịch sử cao nhất. Giai đoạn 2022-2023, khi Fed tăng lãi suất mạnh để chống lạm phát 9%, yield curve Mỹ đảo ngược sâu và kéo dài nhất trong hơn 40 năm, khiến giới kinh tế học theo dõi sát để dự báo khả năng suy thoái."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Yield curve là bức tranh tổng hợp nhiều kỳ hạn cùng lúc - giàu thông tin hơn hẳn một mức lãi suất đơn lẻ",
-          "Normal curve (dốc lên): tăng trưởng và lạm phát kỳ vọng bình thường đến cao",
-          "Flat curve (phẳng): thị trường không chắc chắn, thường ở điểm chuyển tiếp chu kỳ",
-          "Inverted curve (đảo ngược): cảnh báo suy thoái, độ chính xác lịch sử ~80%"
+        "type": "conceptTable",
+        "title": "Mỗi bậc khoảng một nghìn lần",
+        "subtitle": "Nhớ bậc, đừng nhớ con số chính xác",
+        "concepts": [
+          {
+            "vi": "Bộ nhớ đệm bộ xử lý",
+            "en": "cache",
+            "def": "Vài nano giây. Đây là chỗ mọi phép tính diễn ra khi dữ liệu nằm gần."
+          },
+          {
+            "vi": "Bộ nhớ chính",
+            "en": "RAM",
+            "def": "Vài chục nano giây. Chậm hơn bộ nhớ đệm khoảng hai chục lần, và đó là lý do độ định vị dữ liệu quan trọng."
+          },
+          {
+            "vi": "Ổ đĩa thể rắn",
+            "en": "SSD",
+            "def": "Vài chục micro giây. Nhanh hơn đĩa quay rất nhiều, và vẫn chậm hơn bộ nhớ khoảng một nghìn lần."
+          },
+          {
+            "vi": "Vòng gọi mạng",
+            "en": "network",
+            "def": "Vài trăm micro giây trong cùng trung tâm dữ liệu, tới hàng trăm mili giây khi xuyên lục địa."
+          }
         ]
+      },
+      {
+        "type": "heading",
+        "text": "Hệ quả thực dụng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Trong mã nghiệp vụ điển hình, thời gian gần như luôn nằm ở chỗ chờ chứ không ở chỗ tính. Vì thế khi đọc một đoạn mã chậm, mắt nên tìm những thao tác rời khỏi tiến trình trước - truy vấn, lời gọi dịch vụ, đọc ghi tệp - đặc biệt là những thao tác nằm bên trong một vòng lặp."
+      },
+      {
+        "type": "callout",
+        "label": "Nhớ bậc, không nhớ số",
+        "text": "Con số chính xác đổi theo phần cứng và không quan trọng. Thứ quan trọng là khoảng cách giữa các bậc, vì nó cho bạn biết một lời gọi mạng trong vòng lặp trăm phần tử đắt hơn toàn bộ phép tính trong cùng vòng lặp đó bao nhiêu lần."
       },
       {
         "type": "closing",
         "lines": [
-          "Đừng chỉ nhìn một mức lãi suất - hình dạng cả đường cong mới kể câu chuyện đầy đủ.",
-          "Yield curve là công cụ vĩ mô được cả Fed lẫn nhà đầu tư tổ chức theo dõi sát nhất."
+          "Mã nguồn giấu chi phí. Một bảng độ lớn trong đầu là cách rẻ nhất để nhìn xuyên qua nó.",
+          "Bài sau đi vào bậc gần nhất và cũng hay bị bỏ qua nhất: bộ nhớ, và cái giá của việc cấp phát."
         ]
       }
     ]
   },
   {
     "id": 146,
-    "slug": "lai-suat-thuc-vs-danh-nghia",
-    "title": "Tự học Tài chính Day 146: Lãi suất thực vs Lãi suất danh nghĩa",
-    "subtitle": "Fisher Equation và sức mua thực của lãi suất",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "💹",
-    "openingQuestion": "Lãi suất ngân hàng 8%, lạm phát 6%. Lãi suất thực là bao nhiêu?",
+    "slug": "bo-nho-va-thu-gom-rac",
+    "title": "Bộ nhớ: cấp phát rẻ, dọn dẹp thì không",
+    "subtitle": "Thu gom rác giúp bạn khỏi nghĩ về bộ nhớ, cho tới lúc nó dừng chương trình lại để dọn.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🧹",
+    "track": "professional",
+    "whyItMatters": "Rất nhiều đợt tăng độ trễ đột ngột không phải do mã chậm mà do bộ thu gom rác dừng chương trình để dọn. Nó không hiện ở thời gian trung bình, chỉ hiện ở phân vị cao - đúng chỗ người dùng cảm nhận.",
+    "openingQuestion": "Thời gian phản hồi trung bình ổn định nhưng cứ vài giây lại có một yêu cầu mất hai trăm mili giây. Nguyên nhân khả dĩ nhất?",
     "openingOptions": [
-      "14%, tức là cộng cả lạm phát vào lãi suất ngân hàng",
-      "8%",
-      "Khoảng 2% (8% − 6%) - bạn chỉ thực sự giàu hơn 2%",
-      "6%"
+      "Bộ thu gom rác đang dừng chương trình theo chu kỳ để dọn bộ nhớ",
+      "Một truy vấn nào đó thỉnh thoảng quét toàn bộ một bảng dữ liệu lớn",
+      "Mạng có những đợt mất gói khiến gói tin phải gửi lại",
+      "Bộ nhớ đệm hết hạn theo chu kỳ nên phải tính lại từ đầu"
     ],
-    "correctOption": 2,
-    "explanation": "Lãi suất danh nghĩa là con số ngân hàng niêm yết; lãi suất thực là phần còn lại sau khi trừ lạm phát, tức mức tăng sức mua thật. Phân biệt hai thứ này quan trọng vì mọi quyết định kinh tế đều phản ứng với lãi suất thực: gửi tiết kiệm 8% khi lạm phát 6% chỉ giàu thêm khoảng 2%. Khi lãi suất thực âm, giữ tiền mặt là mất sức mua một cách chắc chắn, và đó là lúc dòng tiền chảy mạnh sang tài sản.",
+    "correctOption": 0,
+    "explanation": "Dấu hiệu đặc trưng là tính chu kỳ đi kèm với việc yêu cầu bị chậm không có gì đặc biệt: nó chậm vì đến nhầm lúc, không phải vì nó nặng hơn. Bộ thu gom rác chạy khi bộ nhớ đã cấp phát đạt ngưỡng, và ở nhiều cấu hình nó dừng toàn bộ chương trình trong lúc dọn. Ba nguyên nhân còn lại đều có thật nhưng chúng gắn với đặc điểm của yêu cầu hoặc của thời điểm chứ không lặp lại theo nhịp đều đặn như vậy.",
     "diagram": [
       {
-        "label": "Lãi suất ngân hàng niêm yết",
+        "label": "Cấp phát liên tục trong lúc xử lý",
         "arrow": true
       },
       {
-        "label": "Trừ đi tỷ lệ lạm phát cùng kỳ",
+        "label": "Bộ nhớ đã dùng chạm ngưỡng",
         "arrow": true
       },
       {
-        "label": "Còn lại là lãi suất thực",
+        "label": "Thu gom rác chạy, chương trình dừng",
         "arrow": true
       },
       {
-        "label": "Âm thì tiền gửi vẫn tăng số nhưng mua được ít hàng hơn"
+        "label": "Yêu cầu đang chờ đều cộng thêm thời gian dừng ấy"
       }
     ],
-    "interactiveType": "inflation-calculator",
     "realWorldExample": {
-      "company": "Lạm phát Việt Nam và lãi suất tiết kiệm",
-      "description": "Khi lạm phát Việt Nam tăng cao trong một số giai đoạn, lãi suất tiết kiệm ngân hàng danh nghĩa dù có vẻ hấp dẫn (7-8%/năm) thực chất mang lại lãi suất thực rất thấp hoặc thậm chí âm sau khi trừ đi lạm phát - khiến người gửi tiết kiệm mất sức mua dù tài khoản vẫn tăng về mặt con số."
+      "company": "Phân vị cao gợn sóng đều đặn",
+      "description": "Đồ thị độ trễ phân vị chín mươi chín có hình răng cưa rất đều trong khi trung bình phẳng lặng. Đó là chữ ký của thu gom rác, và nó không sửa được bằng cách tối ưu mã xử lý yêu cầu."
+    },
+    "keyTakeaways": [
+      "Cấp phát rẻ, nhưng chi phí dọn được trả sau và trả một cục.",
+      "Thu gom rác hiện ở phân vị cao chứ không ở thời gian trung bình.",
+      "Giảm số đối tượng rác tạo ra hiệu quả hơn chỉnh tham số bộ thu gom.",
+      "Đối tượng sống lâu đắt hơn đối tượng chết sớm, vì chúng bị dọn nhiều lần."
+    ],
+    "summary": {
+      "keyIdea": "Chi phí bộ nhớ không nằm ở lúc cấp phát mà ở lúc dọn.",
+      "formula": "Ít rác hơn thì dừng ít hơn.",
+      "commonMistake": "Nhìn thời gian trung bình rồi kết luận rằng bộ nhớ không phải vấn đề."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Bật ghi nhật ký thu gom rác trong một giờ và so nhịp của nó với đồ thị độ trễ phân vị cao. Nếu hai hình khớp nhau thì bạn vừa tìm ra nguyên nhân."
+    },
+    "practicePrompt": {
+      "question": "Cách hiệu quả nhất để giảm ảnh hưởng của thu gom rác là gì?",
+      "options": [
+        "Tạo ra ít đối tượng rác hơn trong đường xử lý nóng",
+        "Tăng giới hạn bộ nhớ để bộ thu gom chạy thưa hơn",
+        "Chuyển bộ thu gom sang một chế độ cấu hình khác",
+        "Khởi động lại tiến trình theo lịch trước khi bộ nhớ đầy"
+      ],
+      "correct": 0,
+      "explanation": "Ba cách còn lại đều đổi thời điểm hoặc độ dài của lần dừng chứ không đổi lượng việc phải làm - tăng bộ nhớ chẳng hạn khiến mỗi lần dừng lâu hơn. Ít rác thì bộ thu gom vừa chạy thưa hơn vừa dọn nhanh hơn mỗi lần."
     },
     "quiz": [
       {
-        "question": "TIPS (Treasury Inflation-Protected Securities) bảo vệ nhà đầu tư thế nào?",
+        "question": "Vì sao thu gom rác không hiện ở thời gian trung bình?",
         "options": [
-          "Không bị thuế",
-          "Được chính phủ đảm bảo 100%",
-          "Lãi suất cao hơn trái phiếu thông thường",
-          "Mệnh giá điều chỉnh theo CPI - bảo vệ sức mua dù lạm phát tăng"
-        ],
-        "correct": 3,
-        "explanation": "TIPS: principal tăng theo CPI. Nếu CPI tăng 5%, mệnh giá tăng 5% → coupon (%) × principal lớn hơn → thu nhập thực được bảo toàn. Nhà đầu tư lo ngại lạm phát thường chọn TIPS dù yield thấp hơn nominal bonds."
-      },
-      {
-        "question": "Nếu Ngân hàng Nhà nước công bố lãi suất tiết kiệm danh nghĩa tăng từ 6% lên 8%, nhưng lạm phát cũng tăng từ 3% lên 7% cùng lúc, người gửi tiết kiệm có thực sự lợi hơn không?",
-        "options": [
-          "Không - lãi suất thực giảm từ khoảng 3% (6%−3%) xuống chỉ còn khoảng 1% (8%−7%), người gửi tiết kiệm thực chất có sức mua tăng thêm ÍT HƠN trước dù con số lãi suất danh nghĩa trông có vẻ cao hơn",
-          "Có, vì lãi suất danh nghĩa đã tăng đáng kể",
-          "Lãi suất thực không thay đổi trong tình huống này",
-          "Lạm phát không ảnh hưởng gì đến người gửi tiết kiệm"
+          "Vì nó chỉ ảnh hưởng một phần nhỏ số yêu cầu, nhưng ảnh hưởng nặng",
+          "Vì các công cụ đo thường loại bỏ những giá trị bất thường",
+          "Vì thời gian dừng được tính riêng vào phần hệ điều hành",
+          "Vì nó chạy vào lúc hệ thống có ít yêu cầu đi tới nhất"
         ],
         "correct": 0,
-        "explanation": "Đây là bài học cốt lõi của Fisher Equation: chỉ nhìn lãi suất danh nghĩa mà bỏ qua lạm phát có thể dẫn đến kết luận sai hoàn toàn về việc bạn có thực sự \"giàu hơn\" hay không - lãi suất thực (đã điều chỉnh lạm phát) mới là thước đo chính xác sức mua thực sự tăng thêm."
+        "explanation": "Vài yêu cầu chậm hai trăm mili giây trong hàng nghìn yêu cầu nhanh gần như không dịch được trung bình. Phân vị chín mươi chín thì thấy rõ, và đó cũng là nhóm người dùng cảm nhận được."
+      },
+      {
+        "question": "Vì sao tăng giới hạn bộ nhớ không phải giải pháp tốt?",
+        "options": [
+          "Vì bộ thu gom chạy thưa hơn nhưng mỗi lần dừng lại lâu hơn",
+          "Vì hệ điều hành sẽ không cấp thêm bộ nhớ khi máy đã đầy",
+          "Vì chương trình sẽ tự động dùng hết phần bộ nhớ vừa được cấp thêm",
+          "Vì chi phí thuê máy tăng theo lượng bộ nhớ được cấu hình"
+        ],
+        "correct": 0,
+        "explanation": "Lượng rác phải dọn không đổi, chỉ có nhịp trả chi phí là đổi. Với hệ thống nhạy cảm về độ trễ thì gộp chi phí thành những lần dừng dài hơn là đi sai hướng."
+      },
+      {
+        "question": "Loại đối tượng nào tốn kém nhất cho bộ thu gom?",
+        "options": [
+          "Đối tượng sống đủ lâu để bị kiểm tra qua nhiều lần dọn",
+          "Đối tượng có kích thước lớn nhất trong bộ nhớ",
+          "Đối tượng đang được nhiều đối tượng khác cùng tham chiếu tới",
+          "Đối tượng được tạo ra nhiều nhất trong một giây"
+        ],
+        "correct": 0,
+        "explanation": "Đối tượng chết ngay sau khi tạo gần như miễn phí vì bộ thu gom chỉ cần bỏ qua chúng. Đối tượng sống dai thì bị duyệt lại ở mỗi vòng dọn, nên chi phí của nó được trả nhiều lần."
+      },
+      {
+        "question": "Dấu hiệu nào giúp phân biệt thu gom rác với truy vấn chậm?",
+        "options": [
+          "Yêu cầu bị chậm không có gì đặc biệt, và nhịp chậm rất đều",
+          "Thời gian bị chậm luôn là đúng một con số cố định và không đổi",
+          "Chỉ những yêu cầu ghi dữ liệu mới bị ảnh hưởng",
+          "Mức sử dụng bộ xử lý giảm xuống trong lúc bị chậm"
+        ],
+        "correct": 0,
+        "explanation": "Truy vấn chậm gắn với một loại yêu cầu cụ thể; thu gom rác thì đánh vào bất kỳ yêu cầu nào đang chạy đúng lúc nó dọn. Tính ngẫu nhiên về nội dung đi cùng tính đều đặn về thời điểm là chữ ký khá đặc trưng."
+      },
+      {
+        "question": "Vì sao cấp phát bộ nhớ được coi là rẻ?",
+        "options": [
+          "Vì nó thường chỉ là việc dịch một con trỏ đi về phía trước",
+          "Vì hệ điều hành đã dành sẵn bộ nhớ cho tiến trình từ đầu",
+          "Vì bộ nhớ hiện nay có dung lượng lớn hơn nhu cầu rất nhiều",
+          "Vì phần lớn đối tượng đủ nhỏ để nằm vừa trong bộ nhớ đệm"
+        ],
+        "correct": 0,
+        "explanation": "Đó là lý do vòng lặp tạo hàng triệu đối tượng trông không có gì đắt khi đọc mã. Chi phí thật được ghi nợ và thanh toán một cục sau đó, ở một chỗ khác trong đồ thị."
       }
     ],
-    "keyTakeaways": [
-      "Lãi suất thực ≈ Lãi suất danh nghĩa − Lạm phát",
-      "Fisher Equation: (1+r) = (1+n)/(1+π)",
-      "Lãi suất thực âm: gửi ngân hàng mất sức mua"
-    ],
-    "practicePrompt": {
-      "question": "Bạn gửi tiết kiệm với lãi suất danh nghĩa 7%/năm, trong khi lạm phát năm đó là 5%. Sức mua thực tế của khoản tiền bạn có tăng đúng 7% không, hay thực chất ít hơn?",
-      "options": [
-        "Có, sức mua tăng đúng 7% vì lãi suất ngân hàng đã phản ánh đầy đủ mọi yếu tố kinh tế",
-        "Không - lãi suất thực = 7% - 5% = 2%, đây mới là mức tăng sức mua",
-        "Sức mua sẽ tăng nhiều hơn 7% vì lãi suất kép sẽ khuếch đại thêm hiệu ứng tích lũy",
-        "Lạm phát không ảnh hưởng đến sức mua của tiền gửi tiết kiệm có lãi suất cố định"
-      ],
-      "correct": 1,
-      "explanation": "Lãi suất thực ≈ Lãi suất danh nghĩa − Lạm phát = 7% - 5% = 2%. Lãi suất danh nghĩa là con số ngân hàng công bố, nhưng lãi suất thực mới phản ánh đúng mức tăng sức mua sau khi trừ đi phần bị lạm phát 'ăn mòn' - đây là lý do quan trọng khi đánh giá hiệu quả đầu tư dài hạn."
-    },
-    "summary": {
-      "keyIdea": "Lãi suất thực ≈ Lãi suất danh nghĩa − Lạm phát",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Fisher Equation: (1+r) = (1+n)/(1+π)"
-    },
-    "application": {
-      "title": "Tự tính lãi suất thực của bạn",
-      "message": "Lấy lãi suất tiết kiệm ngân hàng bạn đang gửi, trừ đi tỷ lệ lạm phát hiện tại để ra lãi suất thực - xem tiền gửi của bạn có thực sự tăng sức mua hay không.",
-      "secondary": "Nhiều người ngạc nhiên khi thấy lãi suất thực của mình gần bằng 0 hoặc âm."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "8% lãi suất tiết kiệm nghe có vẻ hấp dẫn - nhưng nếu lạm phát năm đó cũng là 6%, sức mua thực tế bạn có thêm chỉ khoảng 2%. Đây chính là khoảng cách giữa lãi suất danh nghĩa (nominal rate) - con số ngân hàng công bố - và lãi suất thực (real rate) - phần tăng trưởng sức mua thật sự sau khi trừ lạm phát."
+        "text": "Bậc gần nhất trong bảng chi phí bài trước là bộ nhớ. Nó rẻ khi cấp phát, và đó chính là chỗ hiểu lầm bắt đầu."
       },
       {
         "type": "heading",
-        "text": "Fisher Equation: công thức nối hai loại lãi suất"
+        "text": "Chi phí được ghi nợ"
       },
       {
         "type": "paragraph",
-        "text": "Công thức chính xác là (1 + r_thực) = (1 + r_danh nghĩa) / (1 + lạm phát), nhưng với mức lạm phát vừa phải, người ta thường dùng công thức xấp xỉ: r_thực ≈ r_danh nghĩa − lạm phát. Ví dụ lãi suất danh nghĩa 8%, lạm phát 6% → lãi suất thực ≈ 2%. Nếu lạm phát tăng vọt lên bằng đúng lãi suất danh nghĩa, lãi suất thực về 0 - tiền gửi ngân hàng của bạn không hề sinh lời thực, dù số dư tài khoản vẫn tăng đều."
-      },
-      {
-        "type": "heading",
-        "text": "TIPS: trái phiếu neo theo lạm phát"
-      },
-      {
-        "type": "paragraph",
-        "text": "Để bảo vệ nhà đầu tư khỏi rủi ro lạm phát bất ngờ, chính phủ Mỹ phát hành TIPS (Treasury Inflation-Protected Securities): mệnh giá của TIPS được điều chỉnh tăng theo CPI. Nếu CPI tăng 5% trong năm, mệnh giá TIPS cũng tăng 5%, khiến số tiền coupon (tính theo % trên mệnh giá mới) tăng theo, bảo toàn thu nhập thực cho nhà đầu tư - dù lợi suất danh nghĩa của TIPS thường thấp hơn trái phiếu thông thường cùng kỳ hạn."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lãi suất danh nghĩa: con số công bố trên hợp đồng, chưa trừ lạm phát",
-          "Lãi suất thực: phần tăng trưởng sức mua thật sự, quan trọng hơn để đánh giá đầu tư",
-          "Lãi suất thực âm (lạm phát > lãi suất danh nghĩa): gửi tiết kiệm = mất sức mua theo thời gian",
-          "TIPS và các công cụ neo theo CPI: cách bảo vệ trực tiếp khỏi rủi ro lạm phát"
-        ]
+        "text": "Cấp phát thường chỉ là dịch một con trỏ, nên một vòng lặp tạo hàng triệu đối tượng trông không đắt chút nào khi đọc mã. Chi phí thật nằm ở lúc dọn: bộ thu gom phải duyệt qua những gì còn sống, và ở nhiều cấu hình nó dừng toàn bộ chương trình trong lúc làm việc đó."
       },
       {
         "type": "callout",
-        "label": "Bài học Việt Nam",
-        "text": "Khi lạm phát Việt Nam tăng cao, lãi suất tiết kiệm 7-8%/năm nghe hấp dẫn nhưng có thể chỉ mang lại lãi suất thực rất thấp hoặc âm - luôn kiểm tra chênh lệch với lạm phát trước khi kết luận một mức lãi suất là 'tốt'."
+        "label": "Nhìn phân vị, đừng nhìn trung bình",
+        "text": "Vài yêu cầu chậm hai trăm mili giây trong hàng nghìn yêu cầu nhanh gần như không dịch được trung bình. Nếu chỉ theo dõi trung bình, bạn sẽ kết luận rằng bộ nhớ không phải vấn đề trong khi một phần trăm người dùng đang chờ."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đối tượng chết sớm",
+          "text": "Gần như miễn phí: bộ thu gom chỉ cần bỏ qua chúng khi duyệt. Đây là trường hợp mà thiết kế của bộ thu gom được tối ưu cho."
+        },
+        "right": {
+          "label": "Đối tượng sống dai",
+          "text": "Bị duyệt lại ở mỗi vòng dọn, nên chi phí được trả nhiều lần. Bộ nhớ đệm giữ mọi thứ mãi mãi là cách phổ biến nhất tạo ra chúng."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Sửa ở đâu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chỉnh tham số bộ thu gom chỉ đổi nhịp trả chi phí, không đổi lượng việc. Cách hiệu quả là tạo ra ít rác hơn trong đường xử lý nóng: dùng lại vùng đệm thay vì cấp phát mới mỗi vòng, tránh tạo bản sao trung gian không cần thiết, và xem lại những bộ nhớ đệm giữ đối tượng sống mãi."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Bộ nhớ không đắt lúc bạn xin. Nó đắt lúc có người phải dọn, và hoá đơn đến vào một thời điểm bạn không chọn.",
+          "Bài sau về một khía cạnh khác của bộ nhớ: dữ liệu nằm ở đâu quan trọng không kém dữ liệu có bao nhiêu."
+        ]
       }
     ]
   },
   {
     "id": 147,
-    "slug": "chinh-sach-tien-te",
-    "title": "Tự học Tài chính Day 147: Chính sách tiền tệ và lãi suất",
-    "subtitle": "Fed và NHNN điều hành kinh tế qua lãi suất thế nào?",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "💹",
-    "openingQuestion": "Khi Fed tăng lãi suất, điều gì xảy ra với nền kinh tế?",
+    "slug": "do-dinh-vi-du-lieu",
+    "title": "Dữ liệu nằm cạnh nhau chạy nhanh hơn dữ liệu nằm rải rác",
+    "subtitle": "Cùng một thuật toán, cùng một số phép tính, chênh nhau nhiều lần chỉ vì cách sắp xếp bộ nhớ.",
+    "duration": "8 phút",
+    "difficulty": "Khó",
+    "emoji": "🧱",
+    "track": "professional",
+    "whyItMatters": "Đây là lời giải thích cho những kết quả đo trông vô lý: hai đoạn mã làm đúng cùng một việc, cùng độ phức tạp, mà một cái nhanh hơn nhiều lần. Khác biệt nằm ở chỗ bộ xử lý phải đi lấy dữ liệu bao xa.",
+    "openingQuestion": "Duyệt một triệu số nguyên trong một mảng liền và trong một danh sách liên kết. Vì sao mảng nhanh hơn nhiều?",
     "openingOptions": [
-      "Không có ảnh hưởng",
-      "Chi phí vay tăng → tiêu dùng và đầu tư giảm → lạm phát hạ nhiệt → tăng trưởng chậm lại",
-      "Xuất khẩu tăng",
-      "Kinh tế sẽ tăng trưởng nhanh hơn vì tiền rẻ đi và doanh nghiệp sẽ vay đầu tư nhiều hơn hẳn"
+      "Vì các phần tử nằm cạnh nhau nên một lần đọc mang về nhiều phần tử",
+      "Vì danh sách liên kết phải tính toán địa chỉ ở mỗi bước duyệt",
+      "Vì mảng cho phép bộ xử lý bỏ qua những phần tử không thật sự cần thiết",
+      "Vì danh sách liên kết tốn thêm bộ nhớ cho các con trỏ liên kết"
     ],
-    "correctOption": 1,
-    "explanation": "Chính sách tiền tệ là cách ngân hàng trung ương tác động lên lượng tiền và giá của tiền trong nền kinh tế, chủ yếu qua lãi suất điều hành, nghiệp vụ thị trường mở và tỷ lệ dự trữ bắt buộc. Cơ chế truyền dẫn đi qua nhiều chặng - lãi suất liên ngân hàng, lãi vay, quyết định đầu tư của doanh nghiệp - nên tác động đầy đủ thường chỉ thấy sau vài quý. Chính độ trễ đó khiến điều hành khó: phải hành động dựa trên dự báo, không phải trên số liệu hôm nay.",
+    "correctOption": 0,
+    "explanation": "Bộ xử lý không đọc từng byte mà đọc theo khối, và một khối mang về đủ chỗ cho nhiều phần tử liền kề. Với mảng, một lần đi lấy dữ liệu phục vụ được cả chục vòng lặp tiếp theo. Với danh sách liên kết, mỗi nút có thể nằm ở một chỗ bất kỳ trong bộ nhớ nên gần như mỗi bước lại phải đi lấy một khối mới. Con trỏ thêm cũng tốn bộ nhớ thật, nhưng đó là chi phí dung lượng chứ không phải nguyên nhân chính của chênh lệch tốc độ.",
     "diagram": [
       {
-        "label": "Ngân hàng trung ương nhìn lạm phát và tăng trưởng",
+        "label": "Bộ xử lý đọc theo khối, không đọc từng byte",
         "arrow": true
       },
       {
-        "label": "Điều chỉnh lãi suất điều hành",
+        "label": "Mảng liền: một khối phục vụ nhiều phần tử",
         "arrow": true
       },
       {
-        "label": "Lãi suất liên ngân hàng và lãi vay thay đổi theo",
+        "label": "Rải rác: mỗi phần tử một khối mới",
         "arrow": true
       },
       {
-        "label": "Tín dụng, tiêu dùng và đầu tư phản ứng sau vài quý"
+        "label": "Cùng thuật toán, chênh nhau nhiều lần"
       }
     ],
-    "interactiveType": "interest-rate",
     "realWorldExample": {
-      "company": "Fed",
-      "description": "2022-2023: Fed tăng lãi suất từ 0% lên 5.25% - tốc độ nhanh nhất 40 năm để kiềm chế lạm phát 9%. Hệ quả: bond prices giảm mạnh, tech stocks bán tháo, Silicon Valley Bank phá sản do mất giá trái phiếu nắm giữ."
+      "company": "Kết quả đo trông vô lý",
+      "description": "Hai cách lưu cùng một tập dữ liệu, cùng số phép tính, cùng độ phức tạp - một cách nhanh hơn năm lần. Không có gì trong mã giải thích được điều đó, và toàn bộ khác biệt nằm ở cách dữ liệu được xếp trong bộ nhớ."
+    },
+    "keyTakeaways": [
+      "Bộ xử lý đọc theo khối, nên dữ liệu liền kề gần như được đọc miễn phí.",
+      "Cấu trúc dữ liệu rải rác trả chi phí đi lấy dữ liệu ở gần như mỗi bước.",
+      "Duyệt theo đúng thứ tự bộ nhớ nhanh hơn duyệt nhảy cóc rất nhiều.",
+      "Điều này chỉ quan trọng ở đường nóng xử lý khối lượng lớn."
+    ],
+    "summary": {
+      "keyIdea": "Vị trí dữ liệu trong bộ nhớ ảnh hưởng tốc độ ngang với thuật toán.",
+      "formula": "Liền kề thì rẻ, rải rác thì đắt.",
+      "commonMistake": "So sánh hai cài đặt chỉ bằng độ phức tạp lý thuyết."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Tìm một vòng lặp nóng đang duyệt qua một cấu trúc nhiều con trỏ. Thử chuyển phần dữ liệu nó thật sự cần sang một mảng liền và đo lại."
+    },
+    "practicePrompt": {
+      "question": "Vì sao độ định vị dữ liệu không đáng quan tâm trong phần lớn mã nghiệp vụ?",
+      "options": [
+        "Vì thời gian ở đó chủ yếu nằm trong các thao tác ra ngoài tiến trình",
+        "Vì các ngôn ngữ bậc cao đã tự sắp xếp bộ nhớ tối ưu sẵn",
+        "Vì lượng dữ liệu trong mã nghiệp vụ thường quá nhỏ để đo được",
+        "Vì bộ nhớ đệm của bộ xử lý ngày nay đủ lớn cho hầu hết các tập dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Một truy vấn mất vài trăm micro giây thì việc tiết kiệm vài chục nano giây khi duyệt bộ nhớ hoàn toàn bị nuốt mất. Độ định vị chỉ trở thành yếu tố quyết định ở những vòng lặp nóng xử lý khối lượng lớn hoàn toàn trong bộ nhớ."
     },
     "quiz": [
       {
-        "question": "QE (Quantitative Easing) là gì?",
+        "question": "Vì sao dữ liệu liền kề được đọc gần như miễn phí?",
         "options": [
-          "Phá giá đồng tiền",
-          "Tăng dự trữ bắt buộc",
-          "Fed mua tài sản (trái phiếu) để bơm tiền vào hệ thống, giảm lãi suất dài hạn khi lãi suất ngắn hạn đã về 0",
-          "Tăng lãi suất"
+          "Vì một lần đi lấy dữ liệu mang về cả một khối chứa nhiều phần tử",
+          "Vì bộ xử lý ưu tiên xử lý những vùng bộ nhớ liên tục",
+          "Vì hệ điều hành gom các trang bộ nhớ liền kề với nhau",
+          "Vì dữ liệu liền kề chiếm ít bộ nhớ hơn dữ liệu rải rác"
         ],
-        "correct": 2,
-        "explanation": "QE: khi lãi suất đã về 0 (zero lower bound), Fed mua Treasuries và MBS → bơm tiền, giảm lãi dài hạn. Dùng sau khủng hoảng 2008 và COVID-2020. QT (Quantitative Tightening) là ngược lại."
+        "correct": 0,
+        "explanation": "Lần đi lấy đầu tiên trả giá đủ, và nhiều vòng lặp sau đó dùng lại kết quả của nó mà không phải chờ. Đó là toàn bộ cơ chế, và nó giải thích chênh lệch nhiều lần giữa hai cấu trúc cùng độ phức tạp."
       },
       {
-        "question": "Vì sao chính sách tiền tệ thường được xem là có \"độ trễ\" đáng kể - nghĩa là tác động của việc tăng/giảm lãi suất không xuất hiện ngay lập tức mà mất nhiều tháng mới thẩm thấu vào nền kinh tế?",
+        "question": "Vì sao so sánh hai cài đặt bằng độ phức tạp lý thuyết có thể sai?",
         "options": [
-          "Vì các ngân hàng cố tình trì hoãn thực hiện chính sách mới",
-          "Chính sách tiền tệ có tác động tức thì không có độ trễ",
-          "Độ trễ chỉ xảy ra ở các nước đang phát triển",
-          "Vì các quyết định kinh tế thực (vay mua nhà, đầu tư mở rộng sản xuất, tuyển dụng) cần thời gian để lên kế hoạch và triển khai - doanh nghiệp và cá nhân không phản ứng ngay lập tức với mỗi lần thay đổi lãi suất mà điều chỉnh dần theo thời gian"
+          "Vì độ phức tạp đếm số phép tính chứ không đếm chi phí lấy dữ liệu",
+          "Vì độ phức tạp chỉ đúng khi dữ liệu đầu vào đủ lớn",
+          "Vì các hằng số bị bỏ qua thường rất nhỏ trong thực tế",
+          "Vì độ phức tạp không tính tới thời gian biên dịch của cả chương trình"
         ],
-        "correct": 3,
-        "explanation": "Độ trễ chính sách tiền tệ (thường 6-18 tháng) là lý do các ngân hàng trung ương phải đưa ra quyết định dựa trên DỰ BÁO tương lai chứ không chỉ dữ liệu hiện tại - một thách thức lớn vì họ phải hành động trước khi thấy rõ toàn bộ tác động của các quyết định trước đó."
+        "correct": 0,
+        "explanation": "Hai cấu trúc cùng độ phức tạp có thể chênh nhau năm lần vì một cái đi lấy dữ liệu ở mỗi bước còn cái kia thì không. Đó là chênh lệch trong hằng số, và hằng số ấy đủ lớn để quyết định lựa chọn."
+      },
+      {
+        "question": "Duyệt một bảng hai chiều theo thứ tự nào thì nhanh hơn?",
+        "options": [
+          "Theo đúng thứ tự các phần tử được xếp trong bộ nhớ",
+          "Theo thứ tự cột, vì cột thường ngắn hơn hàng",
+          "Theo thứ tự nào cũng như nhau nếu tổng số phép tính bằng nhau",
+          "Theo thứ tự ngược lại để tận dụng dự đoán của bộ xử lý"
+        ],
+        "correct": 0,
+        "explanation": "Duyệt nhảy cóc làm mỗi bước rơi vào một khối khác, nên lợi ích của việc đọc theo khối biến mất hoàn toàn. Cùng số phép tính, cùng dữ liệu, chỉ khác thứ tự - và chênh lệch có thể là nhiều lần."
+      },
+      {
+        "question": "Khi nào nên bỏ công tối ưu độ định vị dữ liệu?",
+        "options": [
+          "Ở vòng lặp nóng xử lý khối lượng lớn hoàn toàn trong bộ nhớ",
+          "Ở mọi đoạn mã có duyệt qua một cấu trúc dữ liệu",
+          "Ở những chỗ có gọi tới cơ sở dữ liệu hoặc dịch vụ ngoài",
+          "Ở phần mã khởi tạo được chạy một lần lúc chương trình bắt đầu"
+        ],
+        "correct": 0,
+        "explanation": "Ở chỗ có thao tác ra ngoài tiến trình, chi phí ấy nuốt mất mọi khoản tiết kiệm cỡ nano giây. Còn mã chạy một lần thì tổng chi phí nhỏ nên không đáng làm phức tạp thêm."
+      },
+      {
+        "question": "Chi phí thêm của con trỏ trong danh sách liên kết chủ yếu là gì?",
+        "options": [
+          "Chủ yếu là dung lượng, chứ nguyên nhân chậm là dữ liệu rải rác",
+          "Chủ yếu là thời gian tính địa chỉ ở mỗi bước duyệt",
+          "Chủ yếu là việc bộ thu gom rác phải theo dõi thêm rất nhiều tham chiếu",
+          "Chủ yếu là việc phải kiểm tra con trỏ rỗng ở mỗi bước"
+        ],
+        "correct": 0,
+        "explanation": "Đọc một con trỏ rồi nhảy tới địa chỉ nó chỉ vào là thao tác rất rẻ. Cái đắt là địa chỉ ấy nằm ở một khối bộ nhớ khác, nên bộ xử lý phải chờ một lần đi lấy dữ liệu mới."
       }
     ],
-    "keyTakeaways": [
-      "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-      "Tăng lãi: thắt chặt; Giảm lãi: nới lỏng",
-      "QE: bơm tiền khi lãi suất đã về 0"
-    ],
-    "practicePrompt": {
-      "question": "Khi nền kinh tế tăng trưởng quá nóng và lạm phát vượt mục tiêu, Ngân hàng Nhà nước thường tăng lãi suất điều hành để 'hạ nhiệt' nền kinh tế. Công cụ nào đang được sử dụng ở đây, và cơ chế tác động của nó là gì?",
-      "options": [
-        "Đây là chính sách tài khóa, vì liên quan đến việc điều chỉnh chi tiêu công của chính phủ",
-        "Lãi suất là công cụ chính sách tiền tệ chủ yếu: tăng lãi suất làm hạ nhiệt lạm phát",
-        "Đây là chính sách tỷ giá hối đoái, vì lãi suất chỉ ảnh hưởng đến giá trị đồng nội tệ so với ngoại tệ",
-        "Lãi suất không phải công cụ chính sách, chỉ là kết quả tự nhiên của cung cầu thị trường vốn"
-      ],
-      "correct": 1,
-      "explanation": "Lãi suất = công cụ chính sách tiền tệ chủ yếu. Ngân hàng trung ương dùng lãi suất điều hành để tác động đến toàn bộ nền kinh tế: tăng lãi suất làm vay đắt hơn (giảm chi tiêu, đầu tư, hạ nhiệt lạm phát), giảm lãi suất làm vay rẻ hơn (kích thích tăng trưởng khi kinh tế suy yếu)."
-    },
-    "summary": {
-      "keyIdea": "Lãi suất = công cụ chính sách tiền tệ chủ yếu",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Tăng lãi: thắt chặt; Giảm lãi: nới lỏng"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Theo dõi một quyết định lãi suất gần nhất của Ngân hàng Nhà nước hoặc Fed, thử giải thích bằng lời của bạn: họ đang thắt chặt hay nới lỏng, và mục tiêu là gì.",
-      "secondary": "Giải thích được cho người khác là cách kiểm tra bạn đã hiểu đúng chưa."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Lãi suất không tự nhiên mà có - phần lớn được định hình bởi các quyết định chính sách tiền tệ của ngân hàng trung ương như Fed (Mỹ) hay Ngân hàng Nhà nước Việt Nam (NHNN). Đây là công cụ mạnh nhất để điều hành cả một nền kinh tế."
+        "text": "Có những kết quả đo trông vô lý: hai đoạn mã cùng thuật toán, cùng số phép tính, mà một cái nhanh hơn năm lần. Lời giải thích thường nằm ở chỗ dữ liệu được xếp thế nào trong bộ nhớ."
       },
       {
         "type": "heading",
-        "text": "Ba công cụ chính sách tiền tệ"
+        "text": "Bộ xử lý đọc theo khối"
       },
       {
         "type": "paragraph",
-        "text": "Ngân hàng trung ương có ba công cụ chủ đạo: (1) lãi suất chính sách (Fed Funds Rate ở Mỹ, lãi suất điều hành của NHNN ở Việt Nam) - mức lãi suất neo cho toàn hệ thống ngân hàng; (2) nghiệp vụ thị trường mở (OMO) - mua/bán trái phiếu chính phủ để điều tiết lượng tiền trong hệ thống; (3) tỷ lệ dự trữ bắt buộc - quy định bao nhiêu % tiền gửi ngân hàng phải giữ lại, không được cho vay. Tăng lãi suất là thắt chặt (giảm lạm phát bằng cách làm chậm vay và chi tiêu); giảm lãi suất là nới lỏng (kích thích tăng trưởng)."
+        "text": "Khi cần một giá trị, bộ xử lý không lấy đúng vài byte ấy mà mang về cả một khối bao quanh nó. Nếu phần tử tiếp theo bạn cần nằm ngay bên cạnh, nó đã có sẵn và không phải chờ gì. Nếu nó nằm ở một chỗ bất kỳ, cả quá trình lặp lại từ đầu."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Mảng liền",
+          "text": "Một lần đi lấy phục vụ cả chục vòng lặp tiếp theo. Chi phí đi lấy dữ liệu được chia đều cho nhiều phần tử."
+        },
+        "right": {
+          "label": "Cấu trúc nhiều con trỏ",
+          "text": "Mỗi nút có thể nằm ở bất kỳ đâu, nên gần như mỗi bước lại phải chờ một lần đi lấy dữ liệu mới."
+        }
       },
       {
         "type": "heading",
-        "text": "QE: công cụ đặc biệt khi lãi suất đã về 0"
+        "text": "Thứ tự duyệt cũng quan trọng"
       },
       {
         "type": "paragraph",
-        "text": "Khi lãi suất ngắn hạn đã chạm mức 0 (zero lower bound) mà kinh tế vẫn cần thêm kích thích, ngân hàng trung ương dùng Quantitative Easing (QE): trực tiếp mua một lượng lớn trái phiếu chính phủ và các tài sản khác để bơm tiền vào hệ thống, kéo giảm lãi suất dài hạn. Fed đã dùng QE sau khủng hoảng 2008 và trong đại dịch COVID-19 năm 2020. Ngược lại là Quantitative Tightening (QT) - bán bớt tài sản, rút tiền ra khỏi hệ thống. Giai đoạn 2022-2023, Fed tăng lãi suất từ 0% lên 5,25% - tốc độ nhanh nhất trong 40 năm để kiềm chế lạm phát 9%, khiến giá trái phiếu giảm mạnh và góp phần vào sự sụp đổ của Silicon Valley Bank do ngân hàng này nắm giữ nhiều trái phiếu dài hạn bị mất giá."
+        "text": "Cùng một bảng hai chiều, duyệt theo đúng thứ tự các phần tử nằm trong bộ nhớ thì tận dụng được việc đọc theo khối; duyệt vuông góc với thứ tự ấy thì mỗi bước rơi vào một khối khác. Cùng số phép tính, cùng dữ liệu, và kết quả đo chênh nhau nhiều lần."
       },
       {
-        "type": "list",
-        "items": [
-          "Lãi suất chính sách: công cụ neo cho toàn bộ đường cong lãi suất trong nền kinh tế",
-          "OMO: mua/bán trái phiếu để điều tiết thanh khoản hệ thống ngân hàng hàng ngày",
-          "QE: bơm tiền qua mua tài sản khi lãi suất đã chạm 0",
-          "Chính sách tiền tệ có độ trễ 6-18 tháng - tác động không đến ngay lập tức"
-        ]
+        "type": "callout",
+        "label": "Chỉ quan trọng ở đường nóng",
+        "text": "Nếu đoạn mã có một truy vấn hay một lời gọi dịch vụ, chi phí ấy nuốt mất mọi khoản tiết kiệm cỡ nano giây. Độ định vị chỉ đáng bỏ công ở những vòng lặp xử lý khối lượng lớn hoàn toàn trong bộ nhớ."
       },
       {
         "type": "closing",
         "lines": [
-          "Ngân hàng trung ương luôn phải hành động dựa trên dự báo, vì tác động thực của chính sách chỉ hiện rõ sau nhiều tháng."
+          "Độ phức tạp lý thuyết đếm phép tính. Hằng số bị nó bỏ qua đôi khi mới là thứ quyết định.",
+          "Bài sau ra khỏi tiến trình và vào chỗ tốn thời gian nhất trong đa số hệ thống: cơ sở dữ liệu."
         ]
       }
     ]
   },
   {
     "id": 148,
-    "slug": "lam-phat-va-dau-tu",
-    "title": "Tự học Tài chính Day 148: Lạm phát và tác động đến đầu tư",
-    "subtitle": "Tài sản nào bảo vệ sức mua tốt nhất?",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🔥",
-    "openingQuestion": "Lạm phát 10% ảnh hưởng thế nào đến tiền gửi ngân hàng lãi suất 6%?",
+    "slug": "doc-ke-hoach-thuc-thi",
+    "title": "Kế hoạch thực thi: cơ sở dữ liệu nói nó sẽ làm gì",
+    "subtitle": "Truy vấn không cho biết nó nhanh hay chậm. Kế hoạch thì có.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🗺️",
+    "track": "professional",
+    "whyItMatters": "Trong đa số hệ thống, phần lớn thời gian một yêu cầu nằm trong cơ sở dữ liệu. Đọc được kế hoạch thực thi là kỹ năng chuyển bạn từ đoán mò sang biết chính xác vì sao một truy vấn chậm.",
+    "openingQuestion": "Cùng một truy vấn, hôm qua chạy trong mười mili giây, hôm nay mất bốn giây. Mã không đổi. Điều gì đã đổi?",
     "openingOptions": [
-      "Sức mua giảm 4% - lãi suất thực âm 4% = mất tiền thực",
-      "Tiền tăng 6%",
-      "Ngân hàng sẽ bù lại khoản thiếu hụt đó cho người gửi tiền",
-      "Không ảnh hưởng"
+      "Dữ liệu lớn lên tới mức bộ tối ưu chọn một kế hoạch khác",
+      "Cơ sở dữ liệu đang chịu tải cao hơn hôm qua rất nhiều",
+      "Một chỉ mục đã bị xoá trong lần triển khai gần đây nhất",
+      "Kết quả hôm qua được lấy từ bộ nhớ đệm của cơ sở dữ liệu"
     ],
     "correctOption": 0,
-    "explanation": "Lạm phát cao làm xói mòn sức mua: 1 triệu hôm nay mua được ít hơn 1 triệu năm ngoái. Tài sản chống lạm phát tốt: bất động sản (giá theo lạm phát), cổ phiếu (doanh nghiệp điều chỉnh giá), vàng, TIPS, commodities. Tiền mặt và trái phiếu dài hạn yếu nhất.",
+    "explanation": "Bộ tối ưu chọn kế hoạch dựa trên ước lượng về dữ liệu, và ước lượng ấy đổi khi bảng lớn lên hoặc khi thống kê được cập nhật. Một truy vấn đang dùng chỉ mục có thể chuyển sang quét toàn bảng nếu bộ tối ưu tính rằng số dòng khớp đã đủ lớn để quét rẻ hơn - và nếu ước lượng ấy sai thì bạn nhận một truy vấn chậm gấp hàng trăm lần mà không ai sửa dòng mã nào. Ba nguyên nhân còn lại đều có thể xảy ra, nhưng đây là nguyên nhân duy nhất giải thích được kiểu chậm đột ngột mà không có thay đổi nào cả.",
     "diagram": [
       {
-        "label": "Lạm phát làm mỗi đồng mua được ít hơn",
+        "label": "Truy vấn mô tả kết quả muốn có",
         "arrow": true
       },
       {
-        "label": "Tiền gửi và trái phiếu dài hạn chịu thiệt nhất",
+        "label": "Bộ tối ưu ước lượng số dòng ở mỗi bước",
         "arrow": true
       },
       {
-        "label": "Doanh nghiệp có sức định giá thì tăng giá bán theo",
+        "label": "Chọn kế hoạch rẻ nhất theo ước lượng đó",
         "arrow": true
       },
       {
-        "label": "Nên cổ phiếu và bất động sản chống đỡ tốt hơn về dài hạn"
+        "label": "Ước lượng sai → kế hoạch sai → chậm hàng trăm lần"
       }
     ],
-    "interactiveType": "inflation-calculator",
     "realWorldExample": {
-      "company": "Bất động sản như công cụ chống lạm phát tại Việt Nam",
-      "description": "Nhiều nhà đầu tư Việt Nam coi bất động sản là kênh trú ẩn chống lạm phát truyền thống - giá nhà đất có xu hướng tăng theo hoặc vượt tốc độ lạm phát trong dài hạn, khác với tiền gửi tiết kiệm có thể bị lạm phát ăn mòn sức mua theo thời gian."
+      "company": "Chậm đột ngột không ai đổi gì",
+      "description": "Một bảng vượt qua ngưỡng vài triệu dòng, thống kê được cập nhật, bộ tối ưu đổi kế hoạch, và một truy vấn vốn chạy mười mili giây bắt đầu mất bốn giây. Không có triển khai nào trong tuần đó."
+    },
+    "keyTakeaways": [
+      "Kế hoạch thực thi cho biết cơ sở dữ liệu sẽ tìm dữ liệu bằng cách nào.",
+      "So ước lượng số dòng với số dòng thật là cách phát hiện lỗi ước lượng.",
+      "Quét toàn bảng không phải lúc nào cũng xấu, nhưng phải là lựa chọn có lý.",
+      "Kế hoạch đổi theo dữ liệu, nên truy vấn có thể chậm đi mà mã không đổi."
+    ],
+    "summary": {
+      "keyIdea": "Đọc kế hoạch thực thi để biết vì sao truy vấn chậm, thay vì đoán.",
+      "formula": "So ước lượng với thực tế ở từng bước.",
+      "commonMistake": "Thêm chỉ mục theo cảm tính mà chưa xem kế hoạch."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy truy vấn chậm nhất của bạn và chạy nó kèm lệnh xem kế hoạch có thống kê thực tế. Tìm bước nào ước lượng vài chục dòng mà thực tế trả về vài trăm nghìn."
+    },
+    "practicePrompt": {
+      "question": "Trong kế hoạch thực thi, dấu hiệu nào đáng nghi nhất?",
+      "options": [
+        "Một bước ước lượng vài chục dòng nhưng thực tế trả về hàng trăm nghìn",
+        "Một bước quét toàn bộ bảng thay vì dùng chỉ mục có sẵn",
+        "Một bước sắp xếp kết quả trước khi trả về cho ứng dụng",
+        "Một bước phải kết hợp dữ liệu từ ba bảng khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Ba dấu hiệu còn lại đều có thể hoàn toàn hợp lý: quét toàn bảng rẻ hơn dùng chỉ mục khi bảng nhỏ hoặc khi truy vấn lấy phần lớn số dòng. Lệch ước lượng thì luôn là vấn đề, vì mọi quyết định phía sau trong kế hoạch đều được xây trên con số sai ấy."
     },
     "quiz": [
       {
-        "question": "Tại sao hyperinflation phá hủy nền kinh tế?",
+        "question": "Bộ tối ưu chọn kế hoạch dựa trên cái gì?",
         "options": [
-          "Giá tăng thì người bán có lợi",
-          "Tiền mất giá quá nhanh → mất chức năng làm phương tiện trao đổi → quay lại đổi hàng → kinh tế sụp đổ",
-          "Xuất khẩu tăng",
-          "Ngân hàng lãi nhiều"
+          "Ước lượng về số dòng dựa trên thống kê của các bảng",
+          "Thứ tự các mệnh đề mà người viết đặt trong truy vấn",
+          "Lịch sử thời gian chạy của truy vấn đó trước đây",
+          "Danh sách chỉ mục đang có trên các bảng liên quan"
         ],
-        "correct": 1,
-        "explanation": "Zimbabwe (2008): lạm phát 79.6 tỷ %/tháng - in tờ 100 nghìn tỷ đô Zimbabwe. Venezuela (2018): 1.000.000%+/năm. Khi tiền mất chức năng store of value và medium of exchange → kinh tế tan rã. Niềm tin vào đồng tiền là tất cả."
+        "correct": 0,
+        "explanation": "Danh sách chỉ mục là đầu vào chứ không phải căn cứ quyết định - có chỉ mục không có nghĩa là bộ tối ưu sẽ dùng nó. Thứ quyết định là ước lượng chi phí, và ước lượng ấy đến từ thống kê."
       },
       {
-        "question": "Vì sao trái phiếu dài hạn với coupon cố định thường bị xem là tài sản \"tệ nhất\" để nắm giữ trong giai đoạn lạm phát cao và tăng nhanh?",
+        "question": "Vì sao một truy vấn có thể chậm đi mà mã không đổi?",
         "options": [
-          "Lạm phát không ảnh hưởng gì đến trái phiếu",
-          "Vì trái phiếu dài hạn luôn có coupon rất thấp",
-          "Vì coupon cố định không tăng theo lạm phát - khi lạm phát tăng cao, sức mua thực của coupon giảm mạnh, đồng thời giá trái phiếu cũng giảm vì lãi suất thị trường thường tăng để đối phó lạm phát, gây thiệt hại kép cho nhà đầu tư",
-          "Trái phiếu dài hạn luôn tăng giá khi lạm phát tăng"
+          "Vì dữ liệu lớn lên khiến bộ tối ưu chọn một kế hoạch khác",
+          "Vì cơ sở dữ liệu tự động giới hạn tài nguyên cho truy vấn cũ",
+          "Vì bộ nhớ đệm của truy vấn hết hạn sau một khoảng thời gian",
+          "Vì số kết nối đồng thời tăng lên làm mọi truy vấn chậm lại"
         ],
-        "correct": 2,
-        "explanation": "Trái phiếu dài hạn coupon cố định chịu thiệt hại kép trong môi trường lạm phát tăng cao: (1) sức mua thực của dòng coupon cố định giảm, và (2) giá trái phiếu giảm do lãi suất thị trường tăng để đối phó lạm phát - đây là lý do nhà đầu tư thường giảm tỷ trọng trái phiếu dài hạn khi dự báo lạm phát tăng."
+        "correct": 0,
+        "explanation": "Kế hoạch là một quyết định được tính lại chứ không phải một thuộc tính cố định của truy vấn. Đó là lý do chậm đột ngột mà không có triển khai nào là một tình huống hoàn toàn bình thường."
+      },
+      {
+        "question": "Quét toàn bảng khi nào là lựa chọn hợp lý?",
+        "options": [
+          "Khi truy vấn lấy phần lớn số dòng hoặc khi bảng còn nhỏ",
+          "Khi bảng chưa có chỉ mục nào được tạo trên các cột lọc",
+          "Khi truy vấn cần sắp xếp kết quả theo một cột bất kỳ",
+          "Khi cơ sở dữ liệu đang có ít truy vấn khác chạy cùng lúc"
+        ],
+        "correct": 0,
+        "explanation": "Đi qua chỉ mục rồi nhảy về bảng ở mỗi dòng đắt hơn đọc tuần tự khi số dòng cần lấy đủ lớn. Bộ tối ưu biết điều đó, nên thấy quét toàn bảng chưa đủ để kết luận là có lỗi."
+      },
+      {
+        "question": "Lệch giữa số dòng ước lượng và số dòng thực tế nói lên điều gì?",
+        "options": [
+          "Mọi quyết định phía sau trong kế hoạch đều dựa trên một con số sai",
+          "Truy vấn đang đọc dữ liệu đã thay đổi trong lúc chạy",
+          "Thống kê của bảng đó chưa từng được thu thập lần nào từ trước tới nay",
+          "Cơ sở dữ liệu cần thêm bộ nhớ để chứa kết quả trung gian"
+        ],
+        "correct": 0,
+        "explanation": "Bộ tối ưu chọn cách kết hợp bảng và thứ tự các bước theo ước lượng ấy. Sai ở bước đầu thì kế hoạch có thể chọn một chiến lược chỉ hợp lý với vài chục dòng nhưng đang phải xử lý vài trăm nghìn."
+      },
+      {
+        "question": "Vì sao thêm chỉ mục theo cảm tính là cách làm rủi ro?",
+        "options": [
+          "Vì chỉ mục làm chậm ghi và có thể không được bộ tối ưu dùng tới",
+          "Vì cơ sở dữ liệu giới hạn số chỉ mục có thể tạo trên mỗi bảng dữ liệu",
+          "Vì chỉ mục phải được xây lại thủ công sau mỗi lần dữ liệu đổi",
+          "Vì việc tạo chỉ mục luôn khoá bảng trong suốt quá trình tạo"
+        ],
+        "correct": 0,
+        "explanation": "Mỗi chỉ mục là một cấu trúc phải cập nhật ở mỗi lần thêm, sửa, xoá, nên chi phí là có thật và trả liên tục. Đọc kế hoạch trước cho bạn biết chỉ mục nào sẽ thật sự được dùng."
       }
     ],
-    "keyTakeaways": [
-      "Lãi suất thực âm = tích lũy tiền mặt mất sức mua",
-      "Cổ phiếu và bất động sản bảo vệ lạm phát dài hạn tốt hơn tiền gửi",
-      "Hyperinflation: tiền mất chức năng → kinh tế sụp đổ"
-    ],
-    "practicePrompt": {
-      "question": "Trong giai đoạn lạm phát cao (ví dụ 12%/năm) trong khi lãi suất tiết kiệm ngân hàng chỉ 6%/năm, một người quyết định giữ toàn bộ tiền nhàn rỗi dưới dạng tiền mặt/tiết kiệm không đầu tư. Điều gì xảy ra với tài sản thực của họ theo thời gian?",
-      "options": [
-        "Tài sản thực của họ vẫn tăng đều đặn 6%/năm theo đúng lãi suất tiết kiệm công bố",
-        "Lãi suất thực = 6% - 12% = -6%/năm, nên số dư danh nghĩa tăng nhưng sức mua vẫn giảm",
-        "Lạm phát chỉ ảnh hưởng đến giá hàng hóa, không ảnh hưởng gì đến giá trị thực của tiền tiết kiệm",
-        "Tài sản thực của họ sẽ tăng nhanh hơn nếu lạm phát càng cao vì lãi suất ngân hàng cũng sẽ tự động điều chỉnh tăng theo"
-      ],
-      "correct": 1,
-      "explanation": "Lãi suất thực âm = tích lũy tiền mặt mất sức mua. Khi lạm phát (12%) vượt xa lãi suất danh nghĩa (6%), lãi suất thực là -6%/năm - đây là lý do giữ quá nhiều tiền mặt/tiết kiệm trong giai đoạn lạm phát cao khiến tài sản thực bị bào mòn dần theo thời gian, dù số dư danh nghĩa vẫn tăng."
-    },
-    "summary": {
-      "keyIdea": "Lãi suất thực âm = tích lũy tiền mặt mất sức mua",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Cổ phiếu và bất động sản bảo vệ lạm phát dài hạn tốt hơn tiền gửi"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Nhìn lại danh mục tài sản của bạn (tiền mặt, tiết kiệm, cổ phiếu, bất động sản nếu có), đánh giá xem tỷ trọng nào đang chống lạm phát tốt và tỷ trọng nào đang bị xói mòn sức mua.",
-      "secondary": "Không cần thay đổi ngay, chỉ cần có bức tranh rõ ràng trước đã."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "1 triệu đồng hôm nay không mua được nhiều thứ bằng 1 triệu đồng của mười năm trước - đó là hệ quả trực tiếp của lạm phát ăn mòn sức mua theo thời gian. Câu hỏi quan trọng với mọi nhà đầu tư: tài sản nào thực sự bảo vệ được sức mua khi lạm phát tăng cao?"
+        "text": "Trong đa số hệ thống, phần lớn thời gian của một yêu cầu nằm trong cơ sở dữ liệu. Và cơ sở dữ liệu sẵn sàng nói cho bạn biết chính xác nó định làm gì - chỉ cần hỏi."
       },
       {
         "type": "heading",
-        "text": "Xếp hạng khả năng chống lạm phát của các loại tài sản"
+        "text": "Truy vấn mô tả cái gì, kế hoạch mô tả thế nào"
       },
       {
         "type": "paragraph",
-        "text": "Bất động sản thường được xem là kênh trú ẩn tốt vì giá nhà đất có xu hướng tăng theo hoặc vượt tốc độ lạm phát trong dài hạn - đây cũng là lý do nhiều nhà đầu tư Việt Nam coi bất động sản là công cụ chống lạm phát truyền thống. Cổ phiếu cũng chống lạm phát khá tốt vì doanh nghiệp có thể điều chỉnh giá bán sản phẩm theo lạm phát, giữ được biên lợi nhuận. Vàng và commodities (hàng hóa cơ bản) cũng thường tăng giá cùng lạm phát. Ở thái cực ngược lại, tiền mặt và trái phiếu dài hạn coupon cố định là hai tài sản yếu nhất trước lạm phát."
+        "text": "Bạn viết ra kết quả mình muốn; cơ sở dữ liệu tự quyết định cách lấy. Nó ước lượng số dòng ở mỗi bước dựa trên thống kê của các bảng, rồi chọn tổ hợp rẻ nhất theo ước lượng ấy. Kế hoạch thực thi là bản in của quyết định đó."
+      },
+      {
+        "type": "callout",
+        "label": "Chạy kèm thống kê thực tế",
+        "text": "Xem kế hoạch không thôi cho bạn ước lượng của bộ tối ưu. Chạy kèm thống kê thực tế cho bạn cả con số thật, và chỗ hai con số lệch nhau nhiều lần chính là chỗ cần sửa."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Quét toàn bảng",
+          "text": "Đọc tuần tự, rẻ khi bảng nhỏ hoặc khi truy vấn lấy phần lớn số dòng. Không phải dấu hiệu lỗi tự thân."
+        },
+        "right": {
+          "label": "Đi qua chỉ mục",
+          "text": "Rẻ khi số dòng khớp ít. Với số dòng lớn thì việc nhảy về bảng ở mỗi dòng làm nó đắt hơn cả quét tuần tự."
+        }
       },
       {
         "type": "heading",
-        "text": "Vì sao trái phiếu dài hạn chịu thiệt hại kép"
+        "text": "Kế hoạch không cố định"
       },
       {
         "type": "paragraph",
-        "text": "Trái phiếu dài hạn với coupon cố định bị tổn thương hai lần khi lạm phát tăng cao bất ngờ: thứ nhất, sức mua thực của khoản coupon cố định giảm mạnh vì coupon không hề tăng theo lạm phát; thứ hai, giá trái phiếu trên thị trường cũng giảm vì lãi suất thị trường thường tăng lên để đối phó với lạm phát (theo quan hệ nghịch đảo giá-lãi suất đã học). Đây là lý do nhà đầu tư thường chủ động giảm tỷ trọng trái phiếu dài hạn khi dự báo lạm phát sắp tăng."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Bất động sản, cổ phiếu, vàng, commodities, TIPS: nhóm tài sản chống lạm phát tương đối tốt",
-          "Tiền mặt: mất sức mua trực tiếp mỗi năm bằng đúng tỷ lệ lạm phát",
-          "Trái phiếu dài hạn coupon cố định: thiệt hại kép (coupon mất giá trị thực + giá trái phiếu giảm)",
-          "Hyperinflation (siêu lạm phát): khi tiền mất hoàn toàn chức năng làm phương tiện trao đổi, kinh tế có thể sụp đổ - ví dụ Zimbabwe 2008 (79,6 tỷ %/tháng) và Venezuela 2018 (hơn 1.000.000%/năm)"
-        ]
+        "text": "Vì kế hoạch được tính lại theo thống kê, một bảng lớn lên qua một ngưỡng nào đó có thể khiến bộ tối ưu đổi lựa chọn. Truy vấn chạy mười mili giây suốt nhiều tháng bắt đầu mất bốn giây, và không ai triển khai gì trong tuần ấy. Đây là tình huống bình thường chứ không phải hiếm gặp."
       },
       {
         "type": "closing",
         "lines": [
-          "Niềm tin vào một đồng tiền là nền tảng của toàn bộ hệ thống tài chính - khi niềm tin đó sụp đổ, không tài sản định danh bằng đồng tiền đó còn an toàn."
+          "Trước khi thêm chỉ mục, hãy đọc kế hoạch. Nó cho biết chỉ mục nào sẽ được dùng và chỉ mục nào chỉ làm chậm việc ghi.",
+          "Bài sau về một chỗ chậm mà kế hoạch thực thi không chỉ ra được, vì lỗi nằm ở phía ứng dụng."
         ]
       }
     ]
   },
   {
     "id": 149,
-    "slug": "credit-spread",
-    "title": "Tự học Tài chính Day 149: Credit Spread",
-    "subtitle": "Phần bù rủi ro tín dụng trên lãi suất phi rủi ro",
-    "duration": "6 phút",
+    "slug": "bai-toan-n-cong-mot",
+    "title": "Bài toán N cộng một: một trăm truy vấn thay vì một",
+    "subtitle": "Mỗi truy vấn đều nhanh, và tổng vẫn mất ba giây.",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "📜",
-    "openingQuestion": "Trái phiếu doanh nghiệp BB yield 8%, T-bond yield 4%. Credit spread là bao nhiêu?",
+    "emoji": "🔁",
+    "track": "professional",
+    "whyItMatters": "Đây là chỗ chậm phổ biến nhất trong các ứng dụng có lớp ánh xạ dữ liệu, và nó vô hình với mọi công cụ chỉ nhìn từng truy vấn một - vì không truy vấn nào chậm cả.",
+    "openingQuestion": "Trang danh sách gọi một truy vấn lấy trăm bài viết, rồi trong vòng lặp lấy tác giả của từng bài. Tổng cộng bao nhiêu truy vấn?",
     "openingOptions": [
-      "2%, tức một nửa chênh lệch giữa hai loại lợi suất",
-      "12% (= 8% + 4%, cộng hai lợi suất thay vì lấy hiệu)",
-      "8%, tức lấy nguyên lợi suất của trái phiếu doanh nghiệp",
-      "4% - phần bù vì rủi ro tín dụng cao hơn T-bond"
+      "Một trăm lẻ một truy vấn, và chúng chạy nối tiếp nhau",
+      "Hai truy vấn, vì lớp dữ liệu tự gộp các lời gọi giống nhau",
+      "Một truy vấn, vì tác giả đã được lấy kèm trong lần đầu",
+      "Một trăm truy vấn, vì truy vấn đầu tiên chỉ là chuẩn bị"
     ],
-    "correctOption": 3,
-    "explanation": "Credit spread = Yield (corporate) − Yield (risk-free). Spread rộng = thị trường lo ngại rủi ro tín dụng cao hơn. Khi kinh tế xấu, spreads nới rộng (flight to quality). Khi kinh tế tốt, spreads thu hẹp. Spread OAS (option-adjusted) loại bỏ giá trị embedded options.",
+    "correctOption": 0,
+    "explanation": "Một truy vấn lấy danh sách, cộng thêm một truy vấn cho mỗi phần tử trong danh sách ấy - đó là nguồn gốc của cái tên. Điểm nguy hiểm là mỗi truy vấn đều nhanh, thường dưới một mili giây, nên không có gì hiện lên trong nhật ký truy vấn chậm. Chi phí nằm ở việc chúng chạy nối tiếp và mỗi lần đều phải trả một vòng đi về tới cơ sở dữ liệu. Một số lớp ánh xạ dữ liệu có gộp lời gọi, nhưng chỉ khi bạn yêu cầu rõ ràng chứ không mặc định.",
     "diagram": [
       {
-        "label": "Lợi suất trái phiếu doanh nghiệp",
+        "label": "1 truy vấn lấy danh sách N phần tử",
         "arrow": true
       },
       {
-        "label": "Trừ lợi suất trái phiếu chính phủ cùng kỳ hạn",
+        "label": "N truy vấn lấy dữ liệu liên quan từng phần tử",
         "arrow": true
       },
       {
-        "label": "Phần chênh là credit spread",
+        "label": "Mỗi truy vấn dưới một mili giây - không ai báo động",
         "arrow": true
       },
       {
-        "label": "Nới rộng nhanh là dấu hiệu thị trường đang lo vỡ nợ"
+        "label": "N vòng đi về nối tiếp = vài giây"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Credit Spread trong khủng hoảng COVID-19 (2020)",
-      "description": "Khi đại dịch COVID-19 bùng phát tháng 3/2020, credit spread của trái phiếu doanh nghiệp Mỹ nhảy vọt từ mức bình thường lên đỉnh điểm chỉ trong vài tuần, phản ánh nỗi lo sợ hàng loạt doanh nghiệp có thể vỡ nợ do phong tỏa kinh tế đột ngột - sau đó thu hẹp nhanh khi Fed can thiệp mạnh mẽ."
+      "company": "Nhật ký truy vấn chậm trống rỗng",
+      "description": "Trang mất ba giây, đội mở nhật ký truy vấn chậm và không thấy gì. Đếm số truy vấn trên một yêu cầu thì ra hơn bốn trăm, mỗi cái nửa mili giây."
+    },
+    "keyTakeaways": [
+      "Chi phí nằm ở số lần đi về, không ở độ nặng của từng truy vấn.",
+      "Đếm số truy vấn trên một yêu cầu là phép đo phát hiện ra nó.",
+      "Cách sửa là lấy dữ liệu liên quan trong một lần thay vì trong vòng lặp.",
+      "Cùng khuôn mẫu này lặp lại với lời gọi dịch vụ, không chỉ với truy vấn."
+    ],
+    "summary": {
+      "keyIdea": "Một lời gọi trong vòng lặp biến một thao tác thành N thao tác nối tiếp.",
+      "formula": "1 + N vòng đi về thay vì 1 hoặc 2.",
+      "commonMistake": "Tìm truy vấn chậm trong khi vấn đề là số lượng truy vấn."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Bật đếm số truy vấn trên mỗi yêu cầu ở môi trường phát triển. Bất kỳ trang nào vượt vài chục truy vấn đều đáng xem lại ngay."
+    },
+    "practicePrompt": {
+      "question": "Cách sửa đúng cho bài toán N cộng một là gì?",
+      "options": [
+        "Lấy toàn bộ dữ liệu liên quan trong một truy vấn duy nhất",
+        "Thêm chỉ mục cho cột được dùng trong các truy vấn con",
+        "Chạy các truy vấn con song song để giảm tổng thời gian chờ",
+        "Lưu kết quả từng truy vấn con vào bộ nhớ đệm để dùng lại"
+      ],
+      "correct": 0,
+      "explanation": "Ba cách còn lại đều giảm triệu chứng mà giữ nguyên cấu trúc sai: chỉ mục không giúp vì truy vấn đã nhanh sẵn, chạy song song vẫn tạo N kết nối, và bộ nhớ đệm chỉ có tác dụng khi dữ liệu lặp lại giữa các yêu cầu. Chỉ việc gộp mới cắt được số vòng đi về từ N cộng một xuống hai."
     },
     "quiz": [
       {
-        "question": "High-yield spreads nới rộng mạnh báo hiệu điều gì?",
+        "question": "Vì sao bài toán N cộng một khó phát hiện?",
         "options": [
-          "Thị trường lo ngại rủi ro vỡ nợ tăng - thường báo hiệu suy thoái hoặc khủng hoảng tín dụng",
-          "Không có ý nghĩa",
-          "Kinh tế đang tốt",
-          "Lãi suất sắp tăng"
+          "Vì từng truy vấn đều nhanh nên không có gì vào nhật ký truy vấn chậm",
+          "Vì các truy vấn con được lớp dữ liệu che giấu khỏi nhật ký",
+          "Vì nó chỉ xuất hiện khi hệ thống đang chịu tải cao",
+          "Vì số truy vấn thay đổi tuỳ theo dữ liệu của từng người dùng"
         ],
         "correct": 0,
-        "explanation": "HY spread > 800-1000 bps thường đi cùng hoặc trước suy thoái. 2008: HY spread vọt lên 2000 bps. Spreads là chỉ báo sớm sức khỏe tín dụng nền kinh tế. Nhà đầu tư theo dõi ICE BofA HY Index hàng ngày."
+        "explanation": "Mọi công cụ nhìn từng truy vấn một đều báo rằng tình hình bình thường. Phép đo phát hiện ra nó là đếm số truy vấn trên một yêu cầu, một con số ít ai theo dõi."
       },
       {
-        "question": "Nếu credit spread của toàn bộ thị trường trái phiếu doanh nghiệp đột ngột mở rộng mạnh trong một thời gian ngắn (không riêng một công ty cụ thể nào), điều này thường phản ánh điều gì về tâm lý thị trường tổng thể?",
+        "question": "Chi phí thật của bài toán này nằm ở đâu?",
         "options": [
-          "Đây luôn là dấu hiệu lỗi kỹ thuật trong tính toán spread",
-          "Phản ánh sự gia tăng lo ngại rủi ro hệ thống trên diện rộng (như suy thoái kinh tế sắp tới hoặc khủng hoảng thanh khoản) - nhà đầu tư đồng loạt đòi hỏi phần bù rủi ro cao hơn cho MỌI trái phiếu doanh nghiệp, không chỉ những công ty có vấn đề cụ thể",
-          "Credit spread không bao giờ thay đổi đồng loạt trên diện rộng",
-          "Chỉ phản ánh vấn đề của một vài công ty cụ thể"
+          "Ở số lần phải đi về tới cơ sở dữ liệu và chờ nối tiếp",
+          "Ở việc cơ sở dữ liệu phải phân tích cú pháp nhiều truy vấn",
+          "Ở lượng dữ liệu được truyền về từ cơ sở dữ liệu",
+          "Ở việc mở và đóng kết nối cho mỗi truy vấn con"
         ],
-        "correct": 1,
-        "explanation": "Sự mở rộng đồng loạt của credit spread trên toàn thị trường (không riêng công ty cụ thể) là một chỉ báo vĩ mô quan trọng về mức độ \"sợ hãi\" hệ thống - được các nhà kinh tế học và ngân hàng trung ương theo dõi sát như một tín hiệu sớm về căng thẳng tài chính lan rộng."
+        "correct": 0,
+        "explanation": "Bảng chi phí ở bài trước đã cho biết một vòng đi về mạng đắt hơn phần xử lý bên trong nhiều bậc. Nhân nó với bốn trăm lần nối tiếp thì ra vài giây, dù mỗi lần chỉ nửa mili giây."
+      },
+      {
+        "question": "Khuôn mẫu này còn xuất hiện ở đâu ngoài truy vấn dữ liệu?",
+        "options": [
+          "Ở lời gọi tới dịch vụ khác đặt bên trong một vòng lặp",
+          "Ở các phép tính phức tạp được lặp lại nhiều lần liên tiếp",
+          "Ở việc cấp phát bộ nhớ cho từng phần tử trong danh sách",
+          "Ở việc đọc cấu hình mỗi khi một hàm được gọi tới"
+        ],
+        "correct": 0,
+        "explanation": "Bản chất là một thao tác đắt đặt trong vòng lặp, nên nó lặp lại y hệt với lời gọi dịch vụ, đọc tệp, hay gọi tới bộ nhớ đệm ngoài. Ba lựa chọn còn lại đều rẻ hơn nhiều bậc nên chúng không tạo ra cùng mức độ thiệt hại."
+      },
+      {
+        "question": "Vì sao chạy các truy vấn con song song không phải cách sửa tốt?",
+        "options": [
+          "Vì nó vẫn tạo ra N kết nối và chỉ giấu đi cấu trúc sai",
+          "Vì cơ sở dữ liệu không cho phép nhiều truy vấn cùng lúc",
+          "Vì thứ tự kết quả trả về sẽ không còn đúng như mong muốn",
+          "Vì các truy vấn song song luôn chậm hơn truy vấn nối tiếp"
+        ],
+        "correct": 0,
+        "explanation": "Nó có giảm thời gian chờ, nhưng đổi lại là gánh nặng bốn trăm kết nối đồng thời lên cơ sở dữ liệu ở mỗi yêu cầu. Đó là đẩy chi phí sang chỗ khác chứ không phải loại bỏ nó."
+      },
+      {
+        "question": "Phép đo nào phát hiện được vấn đề này?",
+        "options": [
+          "Đếm số truy vấn được thực hiện trong một yêu cầu",
+          "Đo thời gian chạy trung bình của các truy vấn",
+          "Theo dõi mức sử dụng bộ xử lý của máy chủ cơ sở dữ liệu",
+          "Xem kế hoạch thực thi của từng truy vấn một"
+        ],
+        "correct": 0,
+        "explanation": "Mọi phép đo nhìn vào chất lượng của từng truy vấn đều cho kết quả tốt, vì từng truy vấn thật sự tốt. Chỉ con số đếm mới lộ ra rằng có bốn trăm truy vấn ở nơi lẽ ra chỉ cần hai."
       }
     ],
-    "keyTakeaways": [
-      "Credit spread = yield corporate − yield risk-free",
-      "Spread rộng: thị trường lo ngại rủi ro tín dụng",
-      "HY spreads: chỉ báo sớm suy thoái"
-    ],
-    "practicePrompt": {
-      "question": "Trái phiếu chính phủ kỳ hạn 5 năm có lợi suất 4%. Trái phiếu doanh nghiệp cùng kỳ hạn có lợi suất 9%. Chênh lệch 5% giữa hai loại trái phiếu này gọi là gì, và nó phản ánh điều gì?",
-      "options": [
-        "Credit spread = 9% - 4% = 5%, là phần bù rủi ro thị trường đòi cho khả năng vỡ nợ",
-        "Đây được gọi là Yield to Maturity, phản ánh lợi suất thực nếu giữ trái phiếu đến đáo hạn",
-        "Chênh lệch này không có ý nghĩa phân tích gì, chỉ là sự khác biệt ngẫu nhiên giữa hai loại trái phiếu",
-        "Đây được gọi là Coupon Rate, phản ánh mức lãi suất danh nghĩa của trái phiếu doanh nghiệp"
-      ],
-      "correct": 0,
-      "explanation": "Credit spread = yield corporate − yield risk-free = 5%. Spread càng lớn, thị trường đánh giá rủi ro vỡ nợ của doanh nghiệp càng cao - đây là thước đo tâm lý rủi ro rất nhạy, thường mở rộng nhanh khi thị trường lo ngại về sức khỏe kinh tế hoặc ngành cụ thể."
-    },
-    "summary": {
-      "keyIdea": "Credit spread = yield corporate − yield risk-free",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Spread rộng: thị trường lo ngại rủi ro tín dụng"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "So sánh lợi suất một trái phiếu doanh nghiệp với lợi suất trái phiếu chính phủ cùng kỳ hạn, tự tính credit spread để thấy thị trường đang định giá rủi ro tín dụng công ty đó ra sao.",
-      "secondary": "Spread càng rộng, thị trường càng lo ngại về khả năng trả nợ của bên phát hành."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Credit spread là thước đo trực tiếp mức độ 'sợ hãi' rủi ro tín dụng của thị trường: khoảng cách giữa lợi suất trái phiếu doanh nghiệp và lợi suất trái phiếu chính phủ (phi rủi ro) cùng kỳ hạn. Theo dõi credit spread hàng ngày là cách các nhà đầu tư chuyên nghiệp cảm nhận 'nhiệt độ' của cả nền kinh tế."
+        "text": "Bài trước dạy đọc kế hoạch thực thi. Bài này về một chỗ chậm mà kế hoạch thực thi không bao giờ chỉ ra được, vì mọi truy vấn liên quan đều có kế hoạch hoàn hảo."
       },
       {
         "type": "heading",
-        "text": "Công thức và ý nghĩa"
+        "text": "Một cộng N"
       },
       {
         "type": "paragraph",
-        "text": "Credit spread = Yield (trái phiếu doanh nghiệp) − Yield (trái phiếu chính phủ cùng kỳ hạn). Khi spread nới rộng (widening), thị trường đang định giá rủi ro tín dụng cao hơn - hiện tượng thường xảy ra trong khủng hoảng, khi nhà đầu tư đổ xô rút khỏi tài sản rủi ro để tìm đến trái phiếu chính phủ an toàn (flight to quality). Khi spread thu hẹp (tightening), đó là dấu hiệu kinh tế đang ổn định hoặc lạc quan, nhà đầu tư sẵn sàng chấp nhận rủi ro doanh nghiệp với phần bù thấp hơn. Một biến thể tinh vi hơn gọi là OAS (option-adjusted spread) - loại bỏ giá trị của các quyền chọn nhúng trong trái phiếu (như quyền mua lại sớm - callable) để có con số spread thuần túy phản ánh rủi ro tín dụng."
+        "text": "Bạn lấy danh sách một trăm bài viết bằng một truy vấn. Rồi để hiển thị tên tác giả, mã duyệt qua danh sách và lấy tác giả của từng bài. Đó là một trăm truy vấn nữa, chạy nối tiếp, mỗi cái mất nửa mili giây - và người dùng chờ ba giây."
+      },
+      {
+        "type": "callout",
+        "label": "Nhật ký truy vấn chậm sẽ trống",
+        "text": "Không truy vấn nào vượt ngưỡng, nên không có gì được ghi lại. Phép đo duy nhất phát hiện ra nó là đếm số truy vấn trên một yêu cầu, và đó là con số ít đội nào theo dõi thường xuyên."
       },
       {
         "type": "heading",
-        "text": "Spread thị trường mở rộng đồng loạt: tín hiệu hệ thống"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi credit spread nới rộng không chỉ với một công ty cụ thể mà trên toàn thị trường trái phiếu doanh nghiệp, đó là dấu hiệu lo ngại rủi ro hệ thống lan rộng - như suy thoái sắp tới hoặc khủng hoảng thanh khoản - chứ không phải vấn đề riêng lẻ của một doanh nghiệp. Tháng 3/2020, khi COVID-19 bùng phát, credit spread trái phiếu doanh nghiệp Mỹ nhảy vọt lên đỉnh điểm chỉ trong vài tuần, phản ánh nỗi lo hàng loạt doanh nghiệp có thể vỡ nợ vì phong tỏa kinh tế đột ngột - sau đó thu hẹp nhanh khi Fed can thiệp mạnh mẽ mua trái phiếu doanh nghiệp."
+        "text": "Cách sửa và cách không sửa"
       },
       {
         "type": "list",
         "items": [
-          "Spread rộng: thị trường lo ngại rủi ro tín dụng, thường đi cùng suy thoái hoặc khủng hoảng",
-          "Spread hẹp: kinh tế ổn định hoặc lạc quan, nhưng cũng có thể là dấu hiệu định giá rủi ro quá thấp",
-          "High-yield spread vượt 800-1000 bps thường báo hiệu căng thẳng kinh tế nghiêm trọng",
-          "OAS: phiên bản spread đã loại bỏ ảnh hưởng của các quyền chọn nhúng trong trái phiếu"
+          "Gộp: lấy toàn bộ tác giả của trăm bài trong một truy vấn duy nhất, rồi ghép ở phía ứng dụng.",
+          "Lấy kèm: yêu cầu lớp ánh xạ dữ liệu nạp sẵn quan hệ liên quan ngay từ truy vấn đầu.",
+          "Không phải cách sửa: thêm chỉ mục, vì truy vấn đã nhanh sẵn và vấn đề là số lượng.",
+          "Không phải cách sửa: chạy song song, vì nó đổi bốn trăm lần chờ thành bốn trăm kết nối đồng thời."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Khuôn mẫu này không chỉ thuộc về cơ sở dữ liệu. Một lời gọi tới dịch vụ khác đặt trong vòng lặp là cùng một lỗi với hậu quả nặng hơn, vì mỗi vòng đi về qua mạng còn đắt hơn một truy vấn nội bộ."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Khi một trang chậm và mọi truy vấn đều nhanh, hãy đếm chứ đừng đo.",
+          "Bài sau về một khuôn mẫu ngược lại: lấy quá nhiều dữ liệu trong một lần."
         ]
       }
     ]
   },
   {
     "id": 150,
-    "slug": "trai-phieu-doanh-nghiep",
-    "title": "Tự học Tài chính Day 150: Trái phiếu doanh nghiệp Việt Nam",
-    "subtitle": "Đặc điểm, rủi ro và bài học từ thị trường trái phiếu VN",
-    "duration": "6 phút",
+    "slug": "phan-trang-va-tap-ket-qua-lon",
+    "title": "Phân trang: đừng lấy về thứ bạn không hiển thị",
+    "subtitle": "Nhảy tới trang một nghìn đắt hơn nhảy tới trang hai rất nhiều, và lý do nằm ở cách bỏ qua.",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "📜",
-    "openingQuestion": "Tại sao trái phiếu doanh nghiệp VN lại rủi ro hơn nhiều so với trái phiếu chính phủ?",
+    "emoji": "📄",
+    "track": "professional",
+    "whyItMatters": "Phân trang trông như một chi tiết giao diện, nhưng cách bạn cài đặt nó quyết định trang cuối danh sách nhanh bằng trang đầu hay chậm gấp trăm lần. Nó cũng là chỗ dữ liệu bị bỏ sót hoặc lặp lại mà không ai để ý.",
+    "openingQuestion": "Truy vấn bỏ qua chín mươi chín nghìn dòng rồi lấy hai mươi dòng tiếp theo. Cơ sở dữ liệu làm gì?",
     "openingOptions": [
-      "Vì lãi suất cố định",
-      "Vì lãi cao hơn",
-      "Vì thiếu credit rating độc lập, thông tin kém minh bạch, thanh khoản thấp, và bảo lãnh không rõ ràng",
-      "Vì kỳ hạn ngắn hơn"
+      "Vẫn phải duyệt qua đủ chín mươi chín nghìn dòng rồi mới bỏ chúng đi",
+      "Nhảy thẳng tới vị trí cần lấy nhờ chỉ mục trên cột sắp xếp",
+      "Tải toàn bộ bảng lên bộ nhớ rồi cắt lấy phần được yêu cầu",
+      "Từ chối truy vấn nếu số dòng bỏ qua vượt quá giới hạn đã cấu hình sẵn"
     ],
-    "correctOption": 2,
-    "explanation": "Trái phiếu DN VN (TPDN): thị trường phát triển nhanh 2018-2021, nhiều vấn đề 2022: Tân Hoàng Minh, Vạn Thịnh Phát - hàng nghìn tỷ mất khả năng thanh toán. Nguyên nhân: phát hành riêng lẻ không kiểm soát, không có credit rating, bán qua ngân hàng như tiền gửi.",
+    "correctOption": 0,
+    "explanation": "Lệnh bỏ qua không phải một phép nhảy mà là một phép đếm: cơ sở dữ liệu phải sinh ra từng dòng theo đúng thứ tự rồi vứt đi cho tới khi đếm đủ. Vì thế chi phí tăng tuyến tính theo số trang, và trang một nghìn đắt hơn trang hai khoảng năm trăm lần dù cả hai đều trả về hai mươi dòng. Chỉ mục giúp cho phần sắp xếp chứ không cho phép nhảy tới dòng thứ chín mươi chín nghìn, vì cơ sở dữ liệu không biết dòng ấy nằm ở đâu nếu chưa đếm.",
     "diagram": [
       {
-        "label": "Doanh nghiệp phát hành riêng lẻ, lãi cao hơn tiền gửi",
+        "label": "Bỏ qua N dòng = sinh ra rồi vứt đi N dòng",
         "arrow": true
       },
       {
-        "label": "Không bắt buộc xếp hạng tín nhiệm",
+        "label": "Chi phí tăng tuyến tính theo số trang",
         "arrow": true
       },
       {
-        "label": "Nhà đầu tư cá nhân mua qua kênh phân phối như một khoản gửi",
+        "label": "Thay bằng con trỏ: lấy các dòng sau giá trị cuối trang trước",
         "arrow": true
       },
       {
-        "label": "2022: dòng tiền tắc, nhiều lô mất khả năng thanh toán"
+        "label": "Mọi trang đều nhanh như trang đầu"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Vạn Thịnh Phát",
-      "description": "Khủng hoảng TPDN VN 2022: Vạn Thịnh Phát phát hành hàng chục nghìn tỷ TPDN, nhiều trái phiếu không đủ điều kiện hoặc gian lận. Nhà đầu tư cá nhân mất tiền khi không phân biệt được TPDN với tiền gửi ngân hàng."
+      "company": "Trang cuối làm sập bảng theo dõi",
+      "description": "Danh sách chạy êm suốt cho tới khi một công cụ tự động duyệt hết mọi trang. Những trang cuối mất hàng giây mỗi trang và đẩy tải cơ sở dữ liệu lên đỉnh."
+    },
+    "keyTakeaways": [
+      "Bỏ qua là đếm, không phải nhảy - chi phí tăng theo số trang.",
+      "Phân trang bằng con trỏ giữ mọi trang nhanh như trang đầu.",
+      "Phân trang theo số thứ tự làm lặp hoặc sót dòng khi dữ liệu đang đổi.",
+      "Chỉ lấy về những cột thật sự hiển thị, không lấy cả dòng theo thói quen."
+    ],
+    "summary": {
+      "keyIdea": "Phân trang bằng con trỏ thay vì bằng số dòng bỏ qua.",
+      "formula": "Lấy các dòng sau giá trị cuối cùng của trang trước.",
+      "commonMistake": "Cho rằng chỉ mục làm cho lệnh bỏ qua trở nên rẻ."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Tìm một trang danh sách trong sản phẩm của bạn và đo thời gian trang đầu so với trang thứ năm trăm. Nếu chênh nhau nhiều lần thì bạn đang dùng lệnh bỏ qua."
+    },
+    "practicePrompt": {
+      "question": "Vì sao phân trang theo số thứ tự có thể làm sót dòng?",
+      "options": [
+        "Vì dòng mới chèn vào làm mọi dòng phía sau dịch sang trang khác",
+        "Vì cơ sở dữ liệu không đảm bảo thứ tự giữa hai truy vấn khác nhau",
+        "Vì giới hạn số dòng mỗi trang có thể bị làm tròn xuống",
+        "Vì bộ nhớ đệm giữ lại kết quả cũ của các trang đã xem"
+      ],
+      "correct": 0,
+      "explanation": "Người dùng đọc xong trang một rồi bấm sang trang hai; trong khoảng ấy có hai dòng mới được chèn lên đầu, nên hai dòng cuối của trang một bị đẩy xuống và xuất hiện lại ở trang hai. Nếu dòng bị xoá thì ngược lại, có dòng không bao giờ được nhìn thấy."
     },
     "quiz": [
       {
-        "question": "Cách tốt nhất để đánh giá rủi ro TPDN Việt Nam?",
+        "question": "Lệnh bỏ qua N dòng thực chất làm gì?",
         "options": [
-          "Chỉ xem lãi suất",
-          "Hỏi nhân viên ngân hàng",
-          "Xem công ty có nổi tiếng không",
-          "Đọc prospectus kỹ, kiểm tra tài sản đảm bảo, xem báo cáo tài chính kiểm toán, hiểu mục đích sử dụng vốn"
-        ],
-        "correct": 3,
-        "explanation": "TPDN VN: (1) Không có credit rating bắt buộc → tự đánh giá. (2) Tài sản đảm bảo: có thật không, định giá đúng không? (3) BCTC kiểm toán: lợi nhuận và FCF thực. (4) Mục đích vốn: sản xuất kinh doanh hay đảo nợ? Lãi suất cao thường = rủi ro cao."
-      },
-      {
-        "question": "Sau các vụ việc như Tân Hoàng Minh, Vạn Thịnh Phát, thị trường trái phiếu doanh nghiệp Việt Nam đã có những thay đổi quy định nào để tăng tính minh bạch?",
-        "options": [
-          "Các quy định mới siết chặt hơn về điều kiện phát hành riêng lẻ, yêu cầu công bố thông tin minh bạch hơn, và tăng cường vai trò giám sát của cơ quan quản lý - nhằm bảo vệ nhà đầu tư cá nhân khỏi rủi ro thông tin bất cân xứng đã từng xảy ra",
-          "Thị trường trái phiếu doanh nghiệp Việt Nam đã bị đóng cửa hoàn toàn",
-          "Chỉ nhà đầu tư tổ chức mới được phép mua trái phiếu doanh nghiệp từ đó",
-          "Không có thay đổi quy định nào sau các vụ việc này"
+          "Sinh ra đủ N dòng theo thứ tự rồi vứt chúng đi",
+          "Nhảy thẳng tới vị trí thứ N nhờ cấu trúc chỉ mục",
+          "Đọc trước toàn bộ bảng rồi cắt phần được yêu cầu",
+          "Đánh dấu vị trí đã đọc để lần sau tiếp tục từ đó"
         ],
         "correct": 0,
-        "explanation": "Các sự kiện vỡ nợ trái phiếu lớn thường dẫn đến làn sóng cải cách quy định - đây là mô thức lặp lại trong lịch sử tài chính toàn cầu: khủng hoảng bộc lộ lỗ hổng, sau đó cơ quan quản lý siết chặt quy định để ngăn tái diễn, dù đôi khi phải trả giá bằng sự thu hẹp tạm thời của thị trường."
+        "explanation": "Cơ sở dữ liệu không biết dòng thứ chín mươi chín nghìn nằm ở đâu nếu chưa đếm tới đó. Vì thế chi phí tăng tuyến tính theo số dòng bị bỏ qua chứ không phải theo số dòng trả về."
+      },
+      {
+        "question": "Phân trang bằng con trỏ hoạt động thế nào?",
+        "options": [
+          "Lấy các dòng có giá trị lớn hơn giá trị cuối cùng của trang trước",
+          "Ghi nhớ số thứ tự của dòng cuối rồi bỏ qua tới đó",
+          "Giữ một kết nối mở để cơ sở dữ liệu nhớ vị trí đang đọc",
+          "Chia sẵn dữ liệu thành các trang cố định khi ghi vào bảng"
+        ],
+        "correct": 0,
+        "explanation": "Đó là một điều kiện lọc bình thường, nên chỉ mục dùng được và cơ sở dữ liệu nhảy thẳng tới đúng chỗ. Nhờ vậy trang thứ một nghìn tốn đúng bằng trang đầu tiên."
+      },
+      {
+        "question": "Đánh đổi của phân trang bằng con trỏ là gì?",
+        "options": [
+          "Không nhảy thẳng tới một trang bất kỳ theo số thứ tự được",
+          "Không dùng được khi bảng có nhiều hơn một chỉ mục",
+          "Không đảm bảo thứ tự các dòng trả về là ổn định",
+          "Không hoạt động khi dữ liệu đang được ghi vào bảng một cách liên tục"
+        ],
+        "correct": 0,
+        "explanation": "Nó chỉ biết trang tiếp theo và trang trước đó, nên giao diện phải là cuộn hoặc nút tiếp theo chứ không phải danh sách số trang. Với phần lớn danh sách dài thì đó là đánh đổi hoàn toàn chấp nhận được."
+      },
+      {
+        "question": "Vì sao chỉ lấy các cột cần hiển thị lại quan trọng?",
+        "options": [
+          "Vì cột không dùng vẫn tốn công đọc và truyền qua mạng",
+          "Vì cơ sở dữ liệu tính phí theo số cột được truy vấn",
+          "Vì các cột thừa làm bộ tối ưu chọn sai kế hoạch thực thi",
+          "Vì cột lớn không thể được nén khi truyền về ứng dụng"
+        ],
+        "correct": 0,
+        "explanation": "Một cột văn bản dài nhân với hai mươi dòng mỗi trang là lượng dữ liệu đáng kể phải đọc và truyền cho mỗi lần lật trang. Lấy cả dòng theo thói quen là chi phí trả liên tục mà không ai nhìn thấy."
+      },
+      {
+        "question": "Chuyện gì xảy ra khi công cụ tự động duyệt hết mọi trang?",
+        "options": [
+          "Những trang cuối trở nên rất đắt và đẩy tải cơ sở dữ liệu lên cao",
+          "Cơ sở dữ liệu tự động giới hạn tốc độ để bảo vệ chính nó",
+          "Kết quả trả về bị lặp lại do bộ nhớ đệm của truy vấn",
+          "Các trang cuối trả về nhanh hơn vì dữ liệu đã được đọc sẵn"
+        ],
+        "correct": 0,
+        "explanation": "Chi phí mỗi trang tăng dần, nên tổng chi phí của một lượt duyệt hết tăng theo bình phương số trang. Danh sách chạy êm suốt nhiều tháng có thể sập ngay lần đầu có ai đó duyệt tới cuối."
       }
     ],
-    "keyTakeaways": [
-      "TPDN VN: phát triển nhanh nhưng thiếu minh bạch",
-      "Không có credit rating bắt buộc → nhà đầu tư tự đánh giá rủi ro",
-      "Lãi cao = rủi ro cao - không phải 'lợi suất tốt hơn tiền gửi'"
-    ],
-    "practicePrompt": {
-      "question": "Vụ việc Tân Hoàng Minh và Vạn Thịnh Phát (2022) liên quan đến trái phiếu doanh nghiệp phát hành sai quy định, gây thiệt hại lớn cho nhà đầu tư cá nhân. Sự kiện này phản ánh đặc điểm gì của thị trường trái phiếu doanh nghiệp Việt Nam ở giai đoạn đó?",
-      "options": [
-        "Thị trường TPDN Việt Nam đã hoàn toàn minh bạch và an toàn tuyệt đối trước khi các vụ việc này xảy ra",
-        "TPDN Việt Nam phát triển nhanh nhưng khung pháp lý và công bố thông tin chưa theo kịp",
-        "Các vụ việc này chỉ là sự cố cá biệt, không phản ánh đặc điểm chung nào của thị trường TPDN Việt Nam",
-        "Thị trường TPDN Việt Nam có mức độ minh bạch cao hơn hẳn so với các thị trường phát triển như Mỹ, châu Âu"
-      ],
-      "correct": 1,
-      "explanation": "TPDN VN: phát triển nhanh nhưng thiếu minh bạch. Các vụ việc như Tân Hoàng Minh, Vạn Thịnh Phát là bài học đắt giá cho thấy lãi suất hấp dẫn bất thường luôn đi kèm rủi ro tương ứng - nhà đầu tư cần thẩm định kỹ thay vì chỉ tin lời tư vấn viên."
-    },
-    "summary": {
-      "keyIdea": "TPDN VN: phát triển nhanh nhưng thiếu minh bạch",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Không có credit rating bắt buộc → nhà đầu tư tự đánh giá rủi ro"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Nếu ai đó giới thiệu bạn mua trái phiếu doanh nghiệp lãi suất cao qua ngân hàng, thử hỏi ngược lại: trái phiếu này có credit rating không, và ai đứng ra đảm bảo nếu công ty mất khả năng trả nợ.",
-      "secondary": "Bài học từ Tân Hoàng Minh, Vạn Thịnh Phát là lãi cao luôn đi kèm câu hỏi cần đặt ra trước, không phải sau."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Thị trường trái phiếu doanh nghiệp Việt Nam (TPDN) phát triển bùng nổ giai đoạn 2018-2021, trở thành kênh huy động vốn quan trọng cho doanh nghiệp bất động sản và sản xuất. Nhưng năm 2022, hàng loạt vụ việc lớn đã phơi bày những lỗ hổng nghiêm trọng trong cách thị trường này vận hành."
+        "text": "Bài trước về việc lấy quá nhiều lần. Bài này về việc lấy quá nhiều một lần - và về một chi tiết nhỏ trong cách cài đặt phân trang quyết định trang cuối nhanh hay chậm gấp trăm lần trang đầu."
       },
       {
         "type": "heading",
-        "text": "Vấn đề cấu trúc của TPDN Việt Nam giai đoạn đầu"
+        "text": "Bỏ qua là đếm, không phải nhảy"
       },
       {
         "type": "paragraph",
-        "text": "Khác với thị trường trái phiếu doanh nghiệp phát triển như Mỹ - nơi gần như mọi trái phiếu đều có credit rating từ Moody's, S&P hay Fitch - phần lớn TPDN Việt Nam giai đoạn 2018-2021 được phát hành riêng lẻ mà không có xếp hạng tín dụng bắt buộc. Nhiều trái phiếu được phân phối qua kênh ngân hàng theo cách khiến nhà đầu tư cá nhân dễ nhầm lẫn chúng với sản phẩm tiền gửi tiết kiệm an toàn - trong khi thực chất đây là khoản vay trực tiếp cho doanh nghiệp, mang đầy đủ rủi ro tín dụng của người phát hành."
+        "text": "Để bỏ qua chín mươi chín nghìn dòng, cơ sở dữ liệu phải sinh ra đủ chín mươi chín nghìn dòng theo đúng thứ tự rồi vứt chúng đi. Không có đường tắt, vì nó không biết dòng thứ chín mươi chín nghìn nằm ở đâu cho tới khi đếm tới đó. Chỉ mục giúp cho phần sắp xếp, không giúp cho phần đếm."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Theo số dòng bỏ qua",
+          "text": "Nhảy được tới trang bất kỳ, nhưng chi phí tăng tuyến tính theo số trang và dữ liệu đang đổi thì gây lặp hoặc sót dòng."
+        },
+        "right": {
+          "label": "Theo con trỏ",
+          "text": "Lấy các dòng sau giá trị cuối trang trước. Mọi trang nhanh như nhau và không lặp dòng, đổi lại chỉ đi tiếp hoặc lùi được."
+        }
+      },
+      {
+        "type": "callout",
+        "label": "Dữ liệu đang đổi làm lệch trang",
+        "text": "Người dùng đọc xong trang một, hai dòng mới được chèn lên đầu, và hai dòng cuối trang một xuất hiện lại ở trang hai. Nếu có dòng bị xoá thì ngược lại: có dòng không bao giờ được nhìn thấy."
       },
       {
         "type": "heading",
-        "text": "Bài học từ các vụ vỡ nợ lớn"
+        "text": "Và đừng lấy cả dòng"
       },
       {
         "type": "paragraph",
-        "text": "Năm 2022, các vụ việc như Tân Hoàng Minh và Vạn Thịnh Phát cho thấy hàng chục nghìn tỷ đồng TPDN được phát hành mà không đủ điều kiện hoặc thậm chí có dấu hiệu gian lận, khiến nhiều nhà đầu tư cá nhân mất tiền khi doanh nghiệp mất khả năng thanh toán. Sau các vụ việc này, cơ quan quản lý đã siết chặt quy định về điều kiện phát hành riêng lẻ, yêu cầu công bố thông tin minh bạch hơn và tăng cường giám sát - một mô thức lặp lại quen thuộc trong lịch sử tài chính: khủng hoảng bộc lộ lỗ hổng, sau đó quy định được siết chặt để ngăn tái diễn."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Đọc kỹ bản cáo bạch (prospectus): mục đích sử dụng vốn là sản xuất kinh doanh thực hay chỉ để đảo nợ cũ?",
-          "Kiểm tra tài sản đảm bảo: có thật không, được định giá độc lập và hợp lý không?",
-          "Xem báo cáo tài chính đã kiểm toán: lợi nhuận và dòng tiền tự do (FCF) có thực chất không?",
-          "Không dựa vào việc trái phiếu được bán qua ngân hàng để suy ra nó an toàn như tiền gửi",
-          "Lãi suất cao bất thường so với mặt bằng chung gần như luôn đồng nghĩa với rủi ro cao tương ứng"
-        ]
+        "text": "Một cột văn bản dài không hiển thị vẫn phải được đọc từ đĩa và truyền qua mạng ở mỗi lần lật trang. Đó là chi phí trả liên tục, không ai nhìn thấy, và cắt được chỉ bằng cách liệt kê đúng những cột giao diện dùng tới."
       },
       {
         "type": "closing",
         "lines": [
-          "TPDN không phải tiền gửi tiết kiệm - đó là một khoản cho vay trực tiếp, và bạn gánh rủi ro tín dụng của người vay.",
-          "Thiếu credit rating bắt buộc nghĩa là gánh nặng đánh giá rủi ro rơi hoàn toàn vào tay nhà đầu tư cá nhân."
+          "Một danh sách chạy êm suốt nhiều tháng có thể sập ngay lần đầu có công cụ nào đó duyệt tới trang cuối.",
+          "Bài sau về hướng ngược lại: gộp nhiều việc nhỏ thành một lô để trả chi phí cố định một lần."
         ]
       }
     ]
   },
   {
     "id": 151,
-    "slug": "default-risk",
-    "title": "Tự học Tài chính Day 151: Rủi ro vỡ nợ và Default Rate",
-    "subtitle": "Xác suất không trả được nợ và tỷ lệ thu hồi",
-    "duration": "6 phút",
+    "slug": "xu-ly-theo-lo",
+    "title": "Xử lý theo lô: trả chi phí cố định một lần",
+    "subtitle": "Gộp một nghìn thao tác nhỏ thành một thao tác lớn, và chấp nhận cái giá của nó.",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "⚠️",
-    "openingQuestion": "Nếu trái phiếu HY có default rate 5%/năm và recovery rate 40%, expected loss là bao nhiêu?",
+    "emoji": "📦",
+    "track": "professional",
+    "whyItMatters": "Gần như mọi thao tác đều có phần chi phí cố định không phụ thuộc lượng dữ liệu. Gộp lô là cách chia phần cố định ấy cho nhiều phần tử, và nó thường cho cải thiện lớn nhất trên một đơn vị công sức.",
+    "openingQuestion": "Ghi một nghìn dòng bằng một nghìn lệnh riêng lẻ so với bằng một lệnh gộp. Vì sao lệnh gộp nhanh hơn nhiều?",
     "openingOptions": [
-      "5%, tức đúng bằng tỷ lệ vỡ nợ hằng năm của trái phiếu",
-      "3% = 5% × (1−40%) - phần vốn thực sự mất nếu vỡ nợ",
-      "8%",
-      "40%"
+      "Vì chi phí cố định của mỗi lệnh được trả một lần thay vì một nghìn lần",
+      "Vì cơ sở dữ liệu ghi các dòng trong lô song song với nhau",
+      "Vì lệnh gộp không cần kiểm tra ràng buộc trên từng dòng một",
+      "Vì lượng dữ liệu truyền đi trong lệnh gộp nhỏ hơn đáng kể"
     ],
-    "correctOption": 1,
-    "explanation": "Rủi ro vỡ nợ được tách thành hai câu hỏi độc lập: khả năng bên vay không trả được là bao nhiêu, và nếu điều đó xảy ra thì thu hồi được bao nhiêu phần. Nhân hai con số ra tổn thất kỳ vọng. Tỷ lệ thu hồi phụ thuộc mạnh vào thứ tự ưu tiên và tài sản bảo đảm, nên hai trái phiếu của cùng một doanh nghiệp có thể có mức rủi ro rất khác nhau. Lợi suất đòi hỏi phải bù được tổn thất kỳ vọng cộng phần bù cho sự bất định của chính ước tính đó.",
+    "correctOption": 0,
+    "explanation": "Mỗi lệnh riêng lẻ phải trả một vòng đi về mạng, một lần phân tích cú pháp, một lần mở giao dịch và một lần ghi nhật ký. Phần chi phí ấy gần như không đổi dù lệnh ghi một dòng hay một nghìn dòng, nên gộp lại là chia nó cho một nghìn. Ràng buộc vẫn được kiểm tra trên từng dòng và lượng dữ liệu thật gửi đi cũng không nhỏ hơn - phần tiết kiệm nằm hoàn toàn ở chỗ chi phí cố định.",
     "diagram": [
       {
-        "label": "Ước tính xác suất vỡ nợ",
+        "label": "Mỗi thao tác = chi phí cố định + chi phí theo dữ liệu",
         "arrow": true
       },
       {
-        "label": "Ước tính tỷ lệ thu hồi nếu vỡ nợ xảy ra",
+        "label": "1000 thao tác nhỏ = 1000 lần chi phí cố định",
         "arrow": true
       },
       {
-        "label": "Nhân xác suất với phần mất đi: ra tổn thất kỳ vọng",
+        "label": "1 lô 1000 phần tử = 1 lần chi phí cố định",
         "arrow": true
       },
       {
-        "label": "Lợi suất đòi hỏi phải bù được tổn thất đó cộng phần bù bất định"
+        "label": "Đổi lại: độ trễ cao hơn và lỗi khó khoanh vùng hơn"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Vụ vỡ nợ trái phiếu Evergrande",
-      "description": "Khi tập đoàn bất động sản Evergrande (Trung Quốc) vỡ nợ trái phiếu quốc tế năm 2021, các nhà đầu tư nắm giữ trái phiếu chỉ thu hồi được một phần rất nhỏ giá trị gốc - một ví dụ thực tế về recovery rate thấp trong các vụ vỡ nợ doanh nghiệp bất động sản có đòn bẩy cao."
+      "company": "Việc chạy đêm rút từ sáu giờ xuống hai mươi phút",
+      "description": "Không có thuật toán nào đổi. Đội chỉ gộp các lệnh ghi thành lô năm nghìn dòng và gộp các lời gọi dịch vụ ngoài thành lô một trăm."
+    },
+    "keyTakeaways": [
+      "Mọi thao tác đều có phần chi phí cố định; gộp lô chia nó cho cả lô.",
+      "Kích thước lô là một đánh đổi, không phải càng lớn càng tốt.",
+      "Lô làm tăng độ trễ của phần tử đầu tiên, nên không hợp với đường tương tác.",
+      "Một lỗi trong lô lớn làm cả lô hỏng, nên cần chiến lược xử lý lỗi riêng."
+    ],
+    "summary": {
+      "keyIdea": "Gộp lô để trả chi phí cố định một lần thay vì một lần cho mỗi phần tử.",
+      "formula": "Chi phí mỗi phần tử giảm khi lô lớn lên, tới một giới hạn.",
+      "commonMistake": "Tăng kích thước lô mãi mà không đo, cho tới khi bộ nhớ vỡ."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Tìm một vòng lặp đang ghi từng dòng một hoặc gọi dịch vụ ngoài từng lần một. Gộp thành lô rồi đo với vài kích thước lô khác nhau."
+    },
+    "practicePrompt": {
+      "question": "Vì sao lô càng lớn không phải càng tốt?",
+      "options": [
+        "Vì lợi ích giảm dần trong khi bộ nhớ và rủi ro lỗi tăng lên",
+        "Vì cơ sở dữ liệu giới hạn số dòng trong một lệnh duy nhất",
+        "Vì lô lớn khiến chi phí cố định tăng lên theo kích thước",
+        "Vì thời gian xử lý một lô tăng theo bình phương kích thước của lô"
+      ],
+      "correct": 0,
+      "explanation": "Chi phí cố định chia cho mười phần tử đã cắt được chín phần mười; chia cho một nghìn chỉ cắt thêm chưa tới một phần trăm nữa. Trong khi đó lô lớn giữ nhiều dữ liệu trong bộ nhớ hơn, khoá lâu hơn, và một lỗi làm hỏng nhiều việc hơn."
     },
     "quiz": [
       {
-        "question": "Tại sao senior secured bonds có recovery rate cao hơn unsecured bonds?",
+        "question": "Phần nào của thao tác được tiết kiệm khi gộp lô?",
         "options": [
-          "Coupon cao hơn",
-          "Lãi suất thấp hơn",
-          "Có tài sản thế chấp cụ thể - trong phá sản, trái chủ có secured claim trên tài sản cụ thể trước khi thanh toán cho creditors khác",
-          "Kỳ hạn ngắn hơn"
+          "Phần chi phí cố định không phụ thuộc vào lượng dữ liệu",
+          "Phần chi phí tỷ lệ với số dòng cần được ghi xuống",
+          "Phần kiểm tra ràng buộc trên từng dòng dữ liệu",
+          "Phần chuyển đổi định dạng của dữ liệu trước khi được gửi đi"
         ],
-        "correct": 2,
-        "explanation": "Thứ tự ưu tiên phá sản: Secured creditors → Senior unsecured → Subordinated → Preferred equity → Common equity. Senior secured nhận trung bình 60-80%. Subordinated có thể nhận < 20%. Common equity thường về 0."
+        "correct": 0,
+        "explanation": "Vòng đi về mạng, phân tích cú pháp, mở giao dịch - những thứ ấy tốn gần như nhau dù lệnh có một dòng hay một nghìn dòng. Phần tỷ lệ với dữ liệu thì vẫn phải trả đủ."
       },
       {
-        "question": "Vì sao recovery rate (tỷ lệ thu hồi vốn) của trái phiếu có tài sản đảm bảo (secured) thường cao hơn đáng kể so với trái phiếu không có đảm bảo (unsecured), ngay cả khi cùng một công ty vỡ nợ?",
+        "question": "Vì sao gộp lô không hợp với đường xử lý tương tác?",
         "options": [
-          "Trái phiếu không đảm bảo luôn có recovery rate cao hơn",
-          "Recovery rate chỉ phụ thuộc vào quy mô công ty, không liên quan đến loại trái phiếu",
-          "Không có sự khác biệt về recovery rate giữa hai loại trái phiếu",
-          "Trái phiếu có tài sản đảm bảo cho phép trái chủ có quyền ưu tiên thu hồi giá trị từ CHÍNH tài sản thế chấp đó khi công ty phá sản, trong khi trái phiếu không đảm bảo phải xếp hàng chờ chia phần còn lại sau khi các chủ nợ có đảm bảo đã được thanh toán trước"
+          "Vì phần tử đầu tiên phải chờ cho tới khi lô được gom đủ",
+          "Vì lô chỉ hoạt động với các thao tác ghi chứ không phải đọc",
+          "Vì kết quả của lô không thể trả về cho từng người dùng riêng",
+          "Vì hệ thống tương tác không có đủ dữ liệu để gom thành lô"
         ],
-        "correct": 3,
-        "explanation": "Cấu trúc \"có đảm bảo\" (secured) tạo ra quyền ưu tiên pháp lý rõ ràng đối với một tài sản cụ thể của công ty - đây là lý do trái phiếu secured luôn có recovery rate cao hơn unsecured trong cùng một vụ phá sản, và cũng là lý do chúng thường có lãi suất thấp hơn (rủi ro thấp hơn)."
+        "correct": 0,
+        "explanation": "Gộp lô đánh đổi độ trễ lấy thông lượng, và trong đường tương tác thì độ trễ chính là thứ bạn đang cố giảm. Nó thuộc về việc chạy nền và xử lý luồng dữ liệu."
+      },
+      {
+        "question": "Rủi ro chính của lô lớn về mặt xử lý lỗi là gì?",
+        "options": [
+          "Một phần tử hỏng có thể làm cả lô thất bại và phải làm lại",
+          "Lỗi trong một lô lớn không được ghi vào nhật ký của hệ thống",
+          "Lô lớn không thể được thử lại sau khi thất bại",
+          "Các phần tử trong lô mất thứ tự khi có lỗi xảy ra"
+        ],
+        "correct": 0,
+        "explanation": "Vì thế lô lớn cần một chiến lược riêng: tách lô hỏng làm đôi để khoanh vùng, hoặc dùng chế độ cho phép ghi nhận từng phần tử lỗi mà không huỷ cả lô."
+      },
+      {
+        "question": "Vì sao lợi ích của việc tăng kích thước lô giảm dần?",
+        "options": [
+          "Vì chi phí cố định đã được chia gần hết ngay ở những phần tử đầu",
+          "Vì cơ sở dữ liệu xử lý lô lớn kém hiệu quả hơn lô nhỏ",
+          "Vì bộ nhớ đệm không chứa đủ dữ liệu của một lô lớn",
+          "Vì thời gian mạng tăng tỷ lệ với kích thước của lô"
+        ],
+        "correct": 0,
+        "explanation": "Chia cho mười đã cắt chín mươi phần trăm chi phí cố định; chia cho một nghìn chỉ cắt thêm chưa tới một phần trăm. Đây là lý do phải đo vài kích thước rồi chọn, thay vì tăng mãi."
+      },
+      {
+        "question": "Khuôn mẫu gộp lô áp dụng được ở đâu ngoài việc ghi dữ liệu?",
+        "options": [
+          "Ở lời gọi dịch vụ ngoài, gửi thông báo, và ghi bản ghi sự kiện",
+          "Ở các phép tính nặng được thực hiện hoàn toàn ở trong bộ nhớ chính",
+          "Ở việc cấp phát đối tượng trong vòng lặp xử lý dữ liệu",
+          "Ở việc đọc cấu hình khi ứng dụng khởi động lần đầu"
+        ],
+        "correct": 0,
+        "explanation": "Bất cứ thao tác nào có chi phí cố định đáng kể đều là ứng viên, và thao tác rời khỏi tiến trình luôn là loại có chi phí cố định lớn nhất. Phép tính trong bộ nhớ thì gần như không có phần cố định để tiết kiệm."
       }
     ],
-    "keyTakeaways": [
-      "Expected Loss = PD × LGD",
-      "Recovery rate: secured ~50-60%, unsecured ~30-40%",
-      "Thứ tự ưu tiên phá sản quan trọng với risk/return"
-    ],
-    "practicePrompt": {
-      "question": "Một khoản vay có xác suất vỡ nợ (PD) = 5%, và nếu vỡ nợ, ngân hàng chỉ thu hồi được 40% giá trị khoản vay (nghĩa là Loss Given Default = 60%). Nếu khoản vay trị giá 1.000 tỷ, Expected Loss (tổn thất kỳ vọng) là bao nhiêu?",
-      "options": [
-        "Expected Loss = PD × LGD × dư nợ = 0,05 × 0,6 × 1.000 = 30 tỷ",
-        "Expected Loss = PD × Giá trị khoản vay = 0,05 × 1.000 tỷ = 50 tỷ, không cần tính đến LGD",
-        "Expected Loss = 1.000 tỷ, vì đây là tổng giá trị khoản vay có rủi ro vỡ nợ",
-        "Expected Loss không thể tính được nếu thiếu thông tin về credit rating của người vay"
-      ],
-      "correct": 0,
-      "explanation": "Expected Loss = PD × LGD = 0,05 × 0,6 × 1.000 tỷ = 30 tỷ. Công thức này kết hợp cả xác suất vỡ nợ (PD) lẫn mức độ tổn thất nếu vỡ nợ xảy ra (LGD - Loss Given Default) để ước tính tổn thất kỳ vọng, dùng để định giá rủi ro tín dụng và trích lập dự phòng."
-    },
-    "summary": {
-      "keyIdea": "Expected Loss = PD × LGD",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Recovery rate: secured ~50-60%, unsecured ~30-40%"
-    },
-    "application": {
-      "title": "Tự tính Expected Loss đơn giản",
-      "message": "Giả sử một khoản vay hoặc trái phiếu có xác suất vỡ nợ 5% và recovery rate 40%, tự tính Expected Loss = 5% × (1-40%) để thấy phần rủi ro thực sự bạn đang gánh khi nhận lãi suất cao.",
-      "secondary": "Phép tính này giúp bạn cân nhắc lãi suất cao có thực sự bù đắp đủ rủi ro hay không."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Khi đánh giá một trái phiếu rủi ro, câu hỏi không chỉ là 'công ty này có vỡ nợ không' mà còn là 'nếu vỡ nợ, tôi mất bao nhiêu?'. Hai yếu tố này kết hợp lại tạo thành khung phân tích Expected Loss (tổn thất kỳ vọng) - công cụ định lượng rủi ro tín dụng chuẩn mực trong tài chính."
+        "text": "Bài trước cảnh báo về việc lấy quá nhiều dữ liệu một lần. Bài này về hướng ngược lại, và về lý do vì sao cùng một số việc lại có hai cái giá rất khác nhau."
       },
       {
         "type": "heading",
-        "text": "Expected Loss = PD × LGD"
+        "text": "Chi phí cố định và chi phí theo dữ liệu"
       },
       {
         "type": "paragraph",
-        "text": "Expected Loss (EL) được tính bằng Probability of Default (PD - xác suất vỡ nợ) nhân với Loss Given Default (LGD - tỷ lệ tổn thất nếu vỡ nợ xảy ra). LGD = 1 − Recovery Rate (tỷ lệ thu hồi). **Ví dụ:** một trái phiếu có xác suất vỡ nợ 5% trong năm, và nếu vỡ nợ thì recovery rate là 40% (LGD = 60%) → Expected Loss = 5% × 60% = 3%. Đây chính là phần bù rủi ro tối thiểu mà credit spread của trái phiếu đó cần bù đắp, cộng thêm phần bù cho thanh khoản kém và sự bất định (uncertainty premium)."
+        "text": "Mỗi thao tác gồm hai phần: phần cố định - vòng đi về mạng, phân tích cú pháp, mở giao dịch - và phần tỷ lệ với lượng dữ liệu. Phần cố định gần như không đổi dù bạn ghi một dòng hay một nghìn dòng. Gộp lô là cách chia phần ấy cho cả lô."
+      },
+      {
+        "type": "callout",
+        "label": "Lợi ích giảm rất nhanh",
+        "text": "Lô mười phần tử đã cắt chín mươi phần trăm chi phí cố định. Lô một nghìn chỉ cắt thêm chưa tới một phần trăm nữa, trong khi giữ nhiều dữ liệu trong bộ nhớ hơn và khoá lâu hơn. Đo vài kích thước rồi chọn, đừng tăng mãi."
       },
       {
         "type": "heading",
-        "text": "Recovery rate phụ thuộc vào thứ tự ưu tiên phá sản"
-      },
-      {
-        "type": "paragraph",
-        "text": "Recovery rate không cố định - nó phụ thuộc chủ yếu vào việc trái phiếu có tài sản đảm bảo (secured) hay không. Trái phiếu secured cho trái chủ quyền ưu tiên thu hồi giá trị trực tiếp từ tài sản thế chấp cụ thể khi công ty phá sản, nên thường có recovery rate cao (50-60% trở lên, có khi 60-80%). Trái phiếu unsecured phải xếp hàng chờ chia phần còn lại sau khi các chủ nợ có đảm bảo được thanh toán trước, nên recovery rate thấp hơn nhiều (30-40%, có khi dưới 20% với nợ subordinated). Thứ tự ưu tiên đầy đủ trong phá sản là: chủ nợ có đảm bảo → chủ nợ ưu tiên không đảm bảo → chủ nợ thứ cấp (subordinated) → cổ đông ưu đãi → cổ đông phổ thông (thường về 0). Vụ vỡ nợ trái phiếu quốc tế của Evergrande năm 2021 là ví dụ thực tế: trái chủ chỉ thu hồi được một phần rất nhỏ giá trị gốc, minh chứng cho recovery rate thấp trong các vụ vỡ nợ doanh nghiệp bất động sản có đòn bẩy cao."
+        "text": "Cái giá phải trả"
       },
       {
         "type": "list",
         "items": [
-          "Expected Loss = Probability of Default × Loss Given Default",
-          "LGD = 1 − Recovery Rate",
-          "Secured bonds: recovery rate cao hơn nhờ quyền ưu tiên trên tài sản cụ thể",
-          "Unsecured bonds: recovery rate thấp hơn, phải chờ chia phần còn lại",
-          "Credit spread phải đủ bù đắp cho cả Expected Loss lẫn rủi ro thanh khoản"
+          "Độ trễ: phần tử đầu tiên phải chờ tới khi lô gom đủ, nên lô không thuộc về đường tương tác.",
+          "Bộ nhớ: cả lô phải nằm trong bộ nhớ cùng lúc ở cả phía gửi lẫn phía nhận.",
+          "Lỗi: một phần tử hỏng có thể làm cả lô thất bại, nên cần cách khoanh vùng lỗi.",
+          "Khoá: một giao dịch lớn giữ khoá lâu hơn và cản trở các thao tác khác."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Đổi lại, cải thiện thường rất lớn trên một đơn vị công sức. Một việc chạy đêm rút từ sáu giờ xuống hai mươi phút mà không có thuật toán nào đổi là kết quả hoàn toàn bình thường của việc gộp lô đúng chỗ."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Gộp lô đổi độ trễ lấy thông lượng. Biết mình đang đổi cái gì lấy cái gì là điều quan trọng hơn kích thước lô cụ thể.",
+          "Bài sau về một cách khác để tăng thông lượng: làm nhiều việc cùng lúc, và hai khái niệm hay bị lẫn với nhau."
         ]
       }
     ]
   },
   {
     "id": 152,
-    "slug": "on-tap-trai-phieu",
-    "title": "Tự học Tài chính Day 152: Ôn tập: Trái phiếu & Lãi suất",
-    "subtitle": "Bond pricing, YTM, credit risk, yield curve - kết nối chặng Trái phiếu, lãi suất và tín dụng",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "💹",
-    "openingQuestion": "Tại sao ngân hàng trung ương dùng lãi suất làm công cụ điều hành kinh tế?",
+    "slug": "song-song-va-dong-thoi",
+    "title": "Song song và đồng thời: hai thứ khác nhau",
+    "subtitle": "Một cái là làm nhiều việc cùng lúc, cái kia là không ngồi chờ.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🧵",
+    "track": "professional",
+    "whyItMatters": "Chọn nhầm giữa hai cách này là lý do nhiều nỗ lực tối ưu không cho cải thiện nào: thêm luồng cho một việc bị chặn bởi chờ đợi, hoặc dùng bất đồng bộ cho một việc bị chặn bởi tính toán.",
+    "openingQuestion": "Một dịch vụ dành phần lớn thời gian chờ các dịch vụ khác trả lời. Cách nào tăng thông lượng?",
     "openingOptions": [
-      "Lãi suất ảnh hưởng toàn bộ nền kinh tế: chi phí vay, tỷ giá, giá tài sản",
-      "Vì ngân hàng trung ương thì không hề có công cụ điều hành nào khác nữa cả đâu",
-      "Vì truyền thống",
-      "Vì đơn giản"
+      "Xử lý đồng thời để một luồng phục vụ nhiều yêu cầu đang chờ",
+      "Thêm lõi xử lý để nhiều yêu cầu được tính toán song song với nhau",
+      "Tối ưu mã xử lý để mỗi yêu cầu tốn ít phép tính hơn",
+      "Tăng bộ nhớ để giữ được nhiều yêu cầu đang xử lý hơn"
     ],
     "correctOption": 0,
-    "explanation": "Lãi suất là 'giá của tiền'- ảnh hưởng mọi quyết định kinh tế. Tăng lãi: tiết kiệm hấp dẫn hơn, vay kém hấp dẫn → tiêu dùng giảm, đầu tư giảm, lạm phát hạ. Giảm lãi: kích thích vay, đầu tư, tăng trưởng. Tác động qua nhiều kênh: tín dụng, tỷ giá, tài sản, kỳ vọng.",
+    "explanation": "Khi thời gian chủ yếu là chờ, lõi xử lý đang rảnh chứ không thiếu, nên thêm lõi hay tối ưu phép tính đều không chạm vào nút thắt. Thứ cần là để một luồng bỏ việc đang chờ xuống và nhận việc khác, rồi quay lại khi câu trả lời tới. Đó là đồng thời. Song song thì có ích cho loại việc ngược lại, khi bộ xử lý bận liên tục và bạn cần thêm bộ xử lý chứ không phải thêm cách sắp xếp công việc.",
     "diagram": [
       {
-        "label": "Lãi suất là giá của tiền",
+        "label": "Việc bị chặn bởi chờ đợi → dùng đồng thời",
         "arrow": true
       },
       {
-        "label": "Nó chạy ngược chiều với giá trái phiếu",
+        "label": "Việc bị chặn bởi tính toán → dùng song song",
         "arrow": true
       },
       {
-        "label": "Đường cong lợi suất tóm tắt kỳ vọng theo kỳ hạn",
+        "label": "Chọn nhầm → thêm phức tạp mà không nhanh hơn",
         "arrow": true
       },
       {
-        "label": "Chênh lệch tín dụng cho biết thị trường lo rủi ro vỡ nợ tới đâu"
+        "label": "Đo trước xem thời gian nằm ở chờ hay ở tính"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Quỹ trái phiếu chuyên nghiệp",
-      "description": "Các quỹ trái phiếu lớn trên thế giới quản lý danh mục bằng cách cân bằng đồng thời rủi ro tín dụng (credit rating, spread) và rủi ro lãi suất (duration, yield curve position) - đúng hai trục cốt lõi mà toàn bộ Chặng Trái phiếu, lãi suất và tín dụng đã xây dựng."
+      "company": "Thêm luồng mà không nhanh hơn",
+      "description": "Một đội tăng số luồng xử lý từ tám lên sáu mươi tư và thông lượng gần như không đổi. Nút thắt là số kết nối tới cơ sở dữ liệu, nên sáu mươi tư luồng chỉ xếp hàng chờ dài hơn."
+    },
+    "keyTakeaways": [
+      "Đồng thời là cách sắp xếp việc; song song là chạy thật sự cùng lúc.",
+      "Việc bị chặn bởi chờ đợi cần đồng thời; việc bị chặn bởi tính toán cần song song.",
+      "Thêm luồng không giúp được gì nếu nút thắt nằm ở một tài nguyên có hạn.",
+      "Cả hai đều thêm độ phức tạp, nên phải đo trước khi chọn."
+    ],
+    "summary": {
+      "keyIdea": "Xác định thời gian nằm ở chờ hay ở tính trước khi chọn cách tăng thông lượng.",
+      "formula": "Chờ nhiều thì đồng thời, tính nhiều thì song song.",
+      "commonMistake": "Thêm luồng cho một hệ thống bị chặn bởi tài nguyên bên ngoài."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Nhìn mức sử dụng bộ xử lý của dịch vụ khi nó đang chậm. Nếu bộ xử lý rảnh thì mọi giải pháp thêm sức tính toán đều đi sai hướng."
+    },
+    "practicePrompt": {
+      "question": "Vì sao tăng số luồng từ tám lên sáu mươi tư có thể không cải thiện gì?",
+      "options": [
+        "Vì nút thắt là một tài nguyên có hạn nằm ngoài dịch vụ",
+        "Vì hệ điều hành giới hạn số luồng mà một tiến trình được tạo",
+        "Vì chuyển đổi giữa các luồng tốn nhiều thời gian hơn phần việc",
+        "Vì bộ nhớ không đủ để giữ ngăn xếp của sáu mươi tư luồng"
+      ],
+      "correct": 0,
+      "explanation": "Nếu chỉ có mười kết nối tới cơ sở dữ liệu thì sáu mươi tư luồng chỉ tạo ra một hàng chờ dài hơn trước cùng một cánh cửa. Chi phí chuyển đổi luồng có thật nhưng nó nhỏ hơn nhiều so với việc nút thắt không hề dịch chuyển."
     },
     "quiz": [
       {
-        "question": "Duration và Convexity liên quan thế nào đến quản lý rủi ro trái phiếu?",
+        "question": "Đồng thời khác song song ở điểm nào?",
         "options": [
-          "Convexity luôn âm",
-          "Duration: đo độ nhạy tuyến tính với lãi suất; Convexity: điều chỉnh cho phi tuyến tính - quan trọng khi lãi suất thay đổi lớn",
-          "Chỉ dành cho tổ chức",
-          "Không liên quan"
+          "Đồng thời là cách sắp xếp việc, song song là chạy thật sự cùng lúc",
+          "Đồng thời dùng nhiều luồng, song song dùng nhiều tiến trình",
+          "Đồng thời áp dụng cho việc đọc, còn song song cho việc ghi dữ liệu xuống",
+          "Đồng thời chạy trên một máy, song song chạy trên nhiều máy"
         ],
-        "correct": 1,
-        "explanation": "Modified Duration ≈ %ΔPrice / %ΔYield. Convexity: khi yield thay đổi lớn, duration không đủ chính xác - convexity bổ sung. Positive convexity (thông thường): giá giảm ít hơn duration dự báo khi yield tăng; giá tăng nhiều hơn khi yield giảm. Tốt cho nhà đầu tư."
+        "correct": 0,
+        "explanation": "Một lõi duy nhất có thể xử lý đồng thời hàng nghìn kết nối đang chờ, vì nó chỉ cần luân phiên giữa những việc đang rảnh. Song song thì đòi hỏi nhiều đơn vị tính toán thật."
       },
       {
-        "question": "Sau khi học Chặng Trái phiếu, lãi suất và tín dụng, vì sao hiểu về trái phiếu lại quan trọng ngay cả với một nhà đầu tư chỉ tập trung vào cổ phiếu, không bao giờ trực tiếp mua trái phiếu?",
+        "question": "Loại công việc nào được lợi từ song song?",
         "options": [
-          "Trái phiếu và cổ phiếu là hai thị trường hoàn toàn tách biệt không liên quan đến nhau",
-          "Không quan trọng, kiến thức trái phiếu chỉ dành cho nhà đầu tư trái phiếu chuyên biệt",
-          "Vì lãi suất và yield curve - hai khái niệm cốt lõi của thị trường trái phiếu - ảnh hưởng trực tiếp đến định giá CỔ PHIẾU thông qua WACC, risk-free rate trong CAPM, và tâm lý thị trường chung; hiểu thị trường trái phiếu giúp hiểu tại sao và khi nào định giá cổ phiếu biến động mạnh",
-          "Chỉ cần quan tâm đến báo cáo tài chính doanh nghiệp, không cần hiểu thị trường trái phiếu"
+          "Công việc giữ bộ xử lý bận liên tục và chia nhỏ được",
+          "Công việc dành phần lớn thời gian chờ dịch vụ khác trả lời",
+          "Công việc phải đọc và ghi nhiều tệp trên ổ đĩa",
+          "Công việc xử lý nhiều kết nối mạng cùng lúc"
         ],
-        "correct": 2,
-        "explanation": "Đây là mối liên kết xuyên suốt toàn bộ chương trình: risk-free rate (từ trái phiếu chính phủ) là nền tảng của CAPM và WACC - hai công cụ định giá cổ phiếu quan trọng nhất; khi lãi suất trái phiếu thay đổi, toàn bộ định giá thị trường cổ phiếu cũng chịu ảnh hưởng, đây là lý do nhà đầu tư cổ phiếu chuyên nghiệp luôn theo dõi sát diễn biến thị trường trái phiếu và lãi suất."
+        "correct": 0,
+        "explanation": "Ba lựa chọn còn lại đều bị chặn bởi chờ đợi, nên thêm đơn vị tính toán không giúp gì. Song song chỉ có nghĩa khi bạn thật sự đang thiếu sức tính toán."
+      },
+      {
+        "question": "Phép đo nào giúp chọn giữa hai cách?",
+        "options": [
+          "Mức sử dụng bộ xử lý trong lúc hệ thống đang chậm",
+          "Số yêu cầu được xử lý trong một giây",
+          "Lượng bộ nhớ mà tiến trình đang chiếm giữ",
+          "Số luồng đang tồn tại trong tiến trình"
+        ],
+        "correct": 0,
+        "explanation": "Bộ xử lý bận gần hết thì bạn thiếu sức tính toán; bộ xử lý rảnh trong khi mọi thứ chậm thì bạn đang chờ. Đó là câu hỏi đầu tiên và nó quyết định toàn bộ hướng giải quyết."
+      },
+      {
+        "question": "Vì sao cả hai cách đều cần đo trước khi áp dụng?",
+        "options": [
+          "Vì cả hai đều thêm độ phức tạp mà có thể không cải thiện gì",
+          "Vì cả hai đều đòi hỏi phần cứng mạnh hơn hiện tại",
+          "Vì cả hai chỉ hoạt động với một số ngôn ngữ lập trình nhất định",
+          "Vì cả hai làm thay đổi kết quả trả về của chương trình"
+        ],
+        "correct": 0,
+        "explanation": "Mã đồng thời khó đọc, khó gỡ lỗi và dễ sinh ra lỗi chỉ xuất hiện dưới tải. Trả cái giá ấy cho một cải thiện bằng không là kết quả rất phổ biến khi chưa đo."
+      },
+      {
+        "question": "Khi nút thắt là số kết nối tới cơ sở dữ liệu, nên làm gì?",
+        "options": [
+          "Giảm số truy vấn mỗi yêu cầu hoặc mở rộng nguồn kết nối",
+          "Tăng thêm số luồng để phục vụ nhiều yêu cầu hơn",
+          "Chuyển toàn bộ mã xử lý sang mô hình bất đồng bộ",
+          "Chia dịch vụ thành nhiều tiến trình con chạy song song nhau"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách còn lại đều tăng số bên đang xếp hàng trước cùng một cánh cửa hẹp. Phải nới cánh cửa hoặc giảm số lần đi qua nó thì hàng chờ mới ngắn lại."
       }
     ],
-    "keyTakeaways": [
-      "Lãi suất: công cụ điều hành kinh tế mạnh nhất",
-      "Duration: đo rủi ro lãi suất; Convexity: hiệu chỉnh phi tuyến",
-      "Yield curve: phong vũ biểu kỳ vọng kinh tế vĩ mô"
-    ],
-    "practicePrompt": {
-      "question": "Sau khi ôn tập toàn bộ chặng Trái phiếu, bạn nhận ra mọi chủ đề (giá trái phiếu, YTM, credit rating, yield curve, chính sách tiền tệ) đều xoay quanh một biến số trung tâm duy nhất mà ngân hàng trung ương kiểm soát trực tiếp. Biến số đó là gì?",
-      "options": [
-        "Đó là tỷ giá hối đoái, vì mọi quyết định đầu tư trái phiếu đều phụ thuộc vào biến động ngoại tệ",
-        "Lãi suất là công cụ điều hành kinh tế mạnh nhất, chi phối giá trái phiếu nghịch chiều",
-        "Đó là lạm phát, vì đây là yếu tố duy nhất ảnh hưởng đến quyết định mua trái phiếu",
-        "Đó là credit rating, vì mọi loại trái phiếu đều được định giá dựa hoàn toàn vào xếp hạng tín nhiệm"
-      ],
-      "correct": 1,
-      "explanation": "Lãi suất: công cụ điều hành kinh tế mạnh nhất. Từ giá trái phiếu, chi phí vay doanh nghiệp, đến toàn bộ nền kinh tế vĩ mô - lãi suất do ngân hàng trung ương điều hành là biến số trung tâm kết nối mọi chủ đề đã học trong chặng trái phiếu."
-    },
-    "summary": {
-      "keyIdea": "Lãi suất: công cụ điều hành kinh tế mạnh nhất",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Duration: đo rủi ro lãi suất; Convexity: hiệu chỉnh phi tuyến"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Nhìn lại danh mục của bạn (tiết kiệm, trái phiếu, cổ phiếu nếu có), thử liệt kê: khoản nào nhạy cảm nhất với thay đổi lãi suất, và bạn sẽ phản ứng thế nào nếu lãi suất tăng mạnh trong 6 tháng tới.",
-      "secondary": "Đây là bài tập tổng hợp giúp bạn nối lại toàn bộ kiến thức về lãi suất đã học."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Sau khi đi qua toàn bộ Chặng Trái phiếu, lãi suất và tín dụng, có thể tóm gọn lại bằng một ý: lãi suất là 'giá của tiền' - và nó ảnh hưởng đến gần như mọi quyết định kinh tế, từ việc một hộ gia đình có mua nhà hay không đến việc một tập đoàn có mở rộng nhà máy hay không."
+        "text": "Hai từ này hay được dùng thay nhau, và nhầm lẫn giữa chúng là lý do nhiều nỗ lực tối ưu kết thúc với mã phức tạp hơn mà không nhanh hơn."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đồng thời",
+          "text": "Cách sắp xếp việc để không ngồi chờ: bỏ việc đang chờ xuống, nhận việc khác, quay lại khi có kết quả. Một lõi phục vụ được hàng nghìn kết nối."
+        },
+        "right": {
+          "label": "Song song",
+          "text": "Chạy thật sự cùng lúc trên nhiều đơn vị tính toán. Chỉ có nghĩa khi bạn đang thiếu sức tính toán, và việc chia nhỏ được."
+        }
       },
       {
         "type": "heading",
-        "text": "Cơ chế truyền dẫn của lãi suất"
+        "text": "Câu hỏi đầu tiên"
       },
       {
         "type": "paragraph",
-        "text": "Khi lãi suất tăng, tiết kiệm trở nên hấp dẫn hơn (gửi tiền được lãi cao) trong khi vay nợ trở nên đắt đỏ hơn - hệ quả là tiêu dùng giảm, đầu tư doanh nghiệp giảm, và cuối cùng lạm phát hạ nhiệt. Khi lãi suất giảm, quá trình diễn ra ngược lại: vay rẻ hơn kích thích tiêu dùng và đầu tư, thúc đẩy tăng trưởng. Cơ chế truyền dẫn này đi qua nhiều kênh cùng lúc: kênh tín dụng (chi phí vay), kênh tỷ giá (dòng vốn quốc tế), kênh giá tài sản (định giá cổ phiếu, bất động sản qua chiết khấu dòng tiền), và kênh kỳ vọng (tâm lý thị trường)."
+        "text": "Nhìn mức sử dụng bộ xử lý khi hệ thống đang chậm. Nếu nó gần cạn thì bạn thiếu sức tính toán và song song là hướng đúng. Nếu nó rảnh trong khi mọi thứ chậm thì bạn đang chờ, và mọi giải pháp thêm sức tính toán đều đi sai hướng."
+      },
+      {
+        "type": "callout",
+        "label": "Nút thắt có thể nằm ngoài dịch vụ",
+        "text": "Tăng luồng từ tám lên sáu mươi tư mà thông lượng không đổi thường có nghĩa là nút thắt nằm ở một tài nguyên có hạn khác - số kết nối tới cơ sở dữ liệu chẳng hạn. Sáu mươi tư luồng chỉ tạo ra hàng chờ dài hơn trước cùng một cánh cửa."
       },
       {
         "type": "heading",
-        "text": "Duration và Convexity: đo lường chính xác hơn rủi ro lãi suất"
+        "text": "Cả hai đều có giá"
       },
       {
         "type": "paragraph",
-        "text": "Duration đo độ nhạy tuyến tính của giá trái phiếu với lãi suất: Modified Duration ≈ %ΔGiá / %ΔLợi suất. Nhưng quan hệ giá-lãi suất thực tế không hoàn toàn là đường thẳng - nó hơi cong (convex). Convexity là hệ số điều chỉnh cho độ cong này, trở nên quan trọng khi lãi suất biến động lớn. Với positive convexity (trường hợp phổ biến của trái phiếu thông thường), giá trái phiếu giảm ít hơn dự báo của duration khi lãi suất tăng, nhưng tăng nhiều hơn dự báo khi lãi suất giảm - một đặc tính có lợi cho nhà đầu tư nắm giữ trái phiếu."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lãi suất là công cụ điều hành kinh tế mạnh và trực tiếp nhất của ngân hàng trung ương",
-          "Risk-free rate (từ trái phiếu chính phủ) là nền tảng của CAPM và WACC - hai công cụ định giá cổ phiếu cốt lõi",
-          "Duration: đo độ nhạy giá với lãi suất; Convexity: hiệu chỉnh cho phần phi tuyến tính",
-          "Yield curve: bản đồ tổng hợp kỳ vọng thị trường về tăng trưởng và lạm phát"
-        ]
+        "text": "Mã đồng thời khó đọc, khó gỡ lỗi, và sinh ra một lớp lỗi chỉ xuất hiện dưới tải. Mã song song thêm chi phí chia việc và gộp kết quả. Trả những cái giá đó cho một cải thiện bằng không là chuyện xảy ra thường xuyên, và luôn vì cùng một lý do: không ai đo xem thời gian nằm ở chờ hay ở tính."
       },
       {
         "type": "closing",
         "lines": [
-          "Ngay cả nhà đầu tư chỉ tập trung vào cổ phiếu cũng cần hiểu trái phiếu - vì risk-free rate len lỏi vào mọi mô hình định giá cổ phiếu.",
-          "Hai trục cốt lõi của Chặng Trái phiếu, lãi suất và tín dụng: thời gian (duration, yield curve) và niềm tin (credit rating, spread)."
+          "Chờ nhiều thì đồng thời, tính nhiều thì song song. Một phép đo đơn giản trả lời được câu hỏi ấy.",
+          "Bài sau về cái giá cụ thể nhất của việc làm nhiều thứ cùng lúc: tranh chấp và khoá."
         ]
       }
     ]
   },
   {
     "id": 153,
-    "slug": "default-la-gi",
-    "title": "Tự học Tài chính Day 153: Default là gì?",
-    "subtitle": "Khi người vay không trả được nợ đúng hạn",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📘",
-    "openingQuestion": "Công ty không trả được lãi trái phiếu đúng hạn dù chỉ chậm 1 ngày. Đây có được gọi là default không?",
+    "slug": "tranh-chap-va-khoa",
+    "title": "Tranh chấp: thêm người làm mà việc chậm đi",
+    "subtitle": "Khi mọi luồng đều cần cùng một thứ, thêm luồng chỉ làm hàng chờ dài hơn.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🔒",
+    "track": "professional",
+    "whyItMatters": "Đây là lý do một hệ thống có thể chậm đi khi bạn tăng tài nguyên cho nó. Nếu không nhận ra tranh chấp, bạn sẽ đi tiếp theo hướng đang làm mọi thứ tệ hơn.",
+    "openingQuestion": "Tăng số luồng xử lý gấp đôi và thông lượng giảm xuống. Nguyên nhân khả dĩ nhất là gì?",
     "openingOptions": [
-      "Chỉ trái phiếu chính phủ mới có khái niệm default",
-      "Không, default chỉ tính khi phá sản",
-      "Không, phải chậm ít nhất 1 năm mới tính default",
-      "Có - mọi vi phạm điều khoản trả nợ đều tính"
+      "Các luồng đang tranh nhau một tài nguyên dùng chung nên chờ lẫn nhau",
+      "Bộ nhớ không đủ nên hệ điều hành phải đẩy dữ liệu ra đĩa",
+      "Số lõi xử lý ít hơn số luồng nên phải chia sẻ thời gian chạy",
+      "Mỗi luồng mới làm tăng lượng công việc khởi tạo của hệ thống"
     ],
-    "correctOption": 3,
-    "explanation": "Default là khi người phát hành không thực hiện đúng nghĩa vụ nợ: trễ lãi, trễ gốc, hoặc vi phạm covenant. 'Technical default' xảy ra ngay cả khi chỉ vi phạm điều khoản hợp đồng, chưa cần phá sản. Rating agency hạ bậc tín nhiệm ngay khi phát hiện dấu hiệu default.",
+    "correctOption": 0,
+    "explanation": "Chia sẻ thời gian chạy giữa nhiều luồng hơn số lõi làm thông lượng chững lại chứ hiếm khi làm nó giảm. Giảm thật sự là dấu hiệu của tranh chấp: khi nhiều luồng cần cùng một khoá hoặc cùng một tài nguyên, phần lớn thời gian của chúng chuyển sang việc chờ và bàn giao quyền sử dụng. Bản thân việc bàn giao ấy tốn công, nên thêm luồng vừa không thêm được việc làm ra vừa cộng thêm chi phí điều phối.",
     "diagram": [
       {
-        "label": "Hợp đồng vay có nghĩa vụ trả gốc, lãi và các điều khoản ràng buộc",
+        "label": "Ít luồng: thêm luồng thì thông lượng tăng",
         "arrow": true
       },
       {
-        "label": "Vi phạm bất kỳ điều nào cũng là vỡ nợ",
+        "label": "Tới điểm bão hoà: thêm luồng không đổi gì",
         "arrow": true
       },
       {
-        "label": "Vi phạm điều khoản mà chưa mất thanh toán: vỡ nợ kỹ thuật",
+        "label": "Quá điểm ấy: chi phí điều phối lớn hơn phần việc thêm",
         "arrow": true
       },
       {
-        "label": "Chủ nợ có quyền đòi trả ngay toàn bộ khoản vay"
+        "label": "Thông lượng đi xuống dù tài nguyên tăng lên"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Evergrande (Trung Quốc)",
-      "description": "Evergrande default trái phiếu USD năm 2021 khi không trả lãi đúng hạn cho trái chủ quốc tế, dù công ty vẫn hoạt động - minh họa rõ default không đồng nghĩa phá sản ngay lập tức."
+      "company": "Đường cong thông lượng có đỉnh",
+      "description": "Vẽ thông lượng theo số luồng gần như luôn ra một đường cong có đỉnh chứ không phải một đường thẳng đi lên. Vị trí đỉnh là con số cần tìm, và nó chỉ tìm được bằng cách đo."
+    },
+    "keyTakeaways": [
+      "Thông lượng theo số luồng là đường cong có đỉnh, không phải đường thẳng.",
+      "Giảm phạm vi khoá quan trọng hơn chọn loại khoá.",
+      "Đừng giữ khoá trong lúc chờ một thao tác ra ngoài tiến trình.",
+      "Tránh dùng chung được thì tốt hơn mọi cách khoá khéo léo."
+    ],
+    "summary": {
+      "keyIdea": "Tài nguyên dùng chung đặt ra trần cho việc mở rộng bằng cách thêm luồng.",
+      "formula": "Khoá càng hẹp và càng ngắn thì trần càng cao.",
+      "commonMistake": "Coi thông lượng là hàm tăng của số luồng."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Đo thông lượng ở bốn mức số luồng khác nhau và vẽ ra. Nếu đường cong có đỉnh thì bạn vừa tìm được cấu hình đúng, và cả một chỗ tranh chấp cần xem."
+    },
+    "practicePrompt": {
+      "question": "Đâu là sai lầm nguy hiểm nhất khi dùng khoá?",
+      "options": [
+        "Giữ khoá trong lúc chờ một truy vấn hoặc một lời gọi mạng",
+        "Dùng một loại khoá không phù hợp với kiểu truy cập dữ liệu",
+        "Tạo quá nhiều khoá nhỏ thay vì một khoá lớn duy nhất",
+        "Đặt khoá ở tầng ứng dụng thay vì ở tầng cơ sở dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Một thao tác ra ngoài tiến trình mất hàng trăm micro giây tới hàng chục mili giây, và trong suốt thời gian ấy mọi luồng khác cần cùng khoá đều đứng yên. Đó là cách nhanh nhất để biến một khoá lẽ ra vô hại thành nút thắt của cả hệ thống."
     },
     "quiz": [
       {
-        "question": "Recovery rate trong default nghĩa là gì?",
+        "question": "Vì sao thông lượng có thể giảm khi thêm luồng?",
         "options": [
-          "Tỷ lệ phần trăm giá trị gốc mà trái chủ thu hồi được sau khi thanh lý tài sản",
-          "Tốc độ công ty phục hồi sau default",
-          "Thời gian trước khi default tiếp theo",
-          "Lãi suất mới sau khi tái cơ cấu nợ"
+          "Vì chi phí điều phối và chờ khoá vượt quá phần việc thêm được",
+          "Vì hệ điều hành ưu tiên các luồng cũ hơn các luồng mới",
+          "Vì mỗi luồng mới chiếm thêm một phần bộ nhớ đệm",
+          "Vì số luồng vượt quá số lõi nên phải chia sẻ thời gian chạy với nhau"
         ],
         "correct": 0,
-        "explanation": "Recovery rate = số tiền trái chủ thực nhận / mệnh giá gốc. Trái phiếu có tài sản đảm bảo (secured) thường recovery rate cao hơn (60-80%) so với trái phiếu không đảm bảo (unsecured, 20-40%)."
+        "explanation": "Chia sẻ thời gian chạy làm thông lượng chững lại chứ hiếm khi làm nó giảm. Giảm thật sự cần một cơ chế tiêu tốn thêm công sức, và việc bàn giao khoá giữa các luồng chính là cơ chế đó."
       },
       {
-        "question": "Vì sao \"technical default\" (vi phạm điều khoản hợp đồng, chưa hẳn là mất khả năng trả nợ hoàn toàn) vẫn có thể gây ra hậu quả nghiêm trọng cho một công ty, ngay cả khi họ vẫn còn khả năng trả một phần nghĩa vụ?",
+        "question": "Cách hiệu quả nhất để giảm tranh chấp là gì?",
         "options": [
-          "Không có hậu quả gì vì technical default không phải default thực sự",
-          "Technical default thường kích hoạt điều khoản \"cross-default\" trong các hợp đồng vay khác - khiến toàn bộ các khoản nợ khác của công ty cũng bị coi là vi phạm và có thể bị chủ nợ khác yêu cầu trả ngay lập tức, tạo ra khủng hoảng thanh khoản lan rộng dù ban đầu chỉ là một vi phạm nhỏ",
-          "Các chủ nợ luôn bỏ qua technical default",
-          "Technical default chỉ ảnh hưởng đến uy tín, không có hậu quả tài chính thực sự"
+          "Thu hẹp phạm vi khoá xuống đúng phần thật sự cần bảo vệ",
+          "Đổi sang một loại khoá có chi phí thấp hơn",
+          "Tăng độ ưu tiên cho những luồng đang giữ khoá",
+          "Giảm số luồng xuống dưới số lõi xử lý của máy"
         ],
-        "correct": 1,
-        "explanation": "Điều khoản cross-default phổ biến trong hợp đồng vay là lý do một vi phạm kỹ thuật nhỏ có thể leo thang thành khủng hoảng toàn diện - các chủ nợ khác có quyền coi khoản vay của họ cũng đã vi phạm, kích hoạt yêu cầu trả nợ ngay lập tức đồng loạt."
+        "correct": 0,
+        "explanation": "Thời gian giữ khoá là thứ quyết định bao nhiêu luồng phải chờ. Loại khoá chỉ đổi được chi phí của một lần bàn giao, một con số nhỏ hơn nhiều bậc so với thời gian giữ."
+      },
+      {
+        "question": "Vì sao tránh dùng chung tốt hơn khoá khéo léo?",
+        "options": [
+          "Vì không có tài nguyên chung thì không có gì để tranh chấp",
+          "Vì mỗi khoá đều có chi phí cố định rất cao ngay khi được tạo ra",
+          "Vì các ngôn ngữ hiện đại không còn hỗ trợ khoá thủ công",
+          "Vì tài nguyên riêng cho mỗi luồng tốn ít bộ nhớ hơn"
+        ],
+        "correct": 0,
+        "explanation": "Cho mỗi luồng một vùng làm việc riêng rồi gộp kết quả ở cuối là mô hình mở rộng gần như tuyến tính. Mọi cách khoá khéo léo đến đâu cũng chỉ đẩy trần lên cao hơn chứ không bỏ được nó."
+      },
+      {
+        "question": "Đường cong thông lượng theo số luồng thường có hình gì?",
+        "options": [
+          "Tăng lên tới một đỉnh rồi đi xuống",
+          "Tăng đều theo đường thẳng cho tới giới hạn phần cứng",
+          "Phẳng ở mức thấp rồi tăng vọt khi đủ luồng",
+          "Dao động ngẫu nhiên quanh một giá trị trung bình"
+        ],
+        "correct": 0,
+        "explanation": "Đoạn đầu thêm luồng thì thêm việc làm được; qua điểm bão hoà thì chi phí điều phối bắt đầu lớn hơn phần thêm ấy. Vị trí đỉnh là cấu hình đúng và nó chỉ tìm được bằng cách đo."
+      },
+      {
+        "question": "Vì sao tranh chấp khó phát hiện qua các chỉ số thông thường?",
+        "options": [
+          "Vì luồng đang chờ khoá không tiêu tốn bộ xử lý",
+          "Vì các công cụ giám sát không ghi lại trạng thái của luồng",
+          "Vì tranh chấp chỉ xảy ra trong khoảng thời gian rất ngắn",
+          "Vì số lần chờ khoá không được đếm bởi hệ điều hành"
+        ],
+        "correct": 0,
+        "explanation": "Cùng một dấu hiệu với thu gom rác và với chờ mạng: máy trông nhàn rỗi trong khi mọi thứ đứng yên. Phải nhìn vào thông lượng và vào thời gian chờ chứ không nhìn vào mức dùng tài nguyên."
       }
     ],
-    "keyTakeaways": [
-      "Default: vi phạm nghĩa vụ trả nợ, không nhất thiết là phá sản",
-      "Technical default có thể xảy ra chỉ vì vi phạm covenant",
-      "Recovery rate phụ thuộc vào việc trái phiếu có tài sản đảm bảo hay không"
-    ],
-    "practicePrompt": {
-      "question": "Một công ty bỏ lỡ một khoản thanh toán lãi trái phiếu đúng hạn do khó khăn dòng tiền tạm thời, nhưng vẫn tiếp tục hoạt động bình thường và trả bù sau đó. Đây có phải là phá sản không, và thuật ngữ chính xác cho tình huống này là gì?",
-      "options": [
-        "Đây chính là phá sản, vì công ty đã không thể thực hiện đúng nghĩa vụ trả nợ",
-        "Không phải phá sản - default là vi phạm nghĩa vụ trả nợ, có thể khắc phục",
-        "Đây được gọi là technical default và luôn dẫn đến phá sản trong vòng vài tháng sau đó",
-        "Không có thuật ngữ chuyên môn nào cho tình huống này, đây chỉ đơn thuần là chậm trả tiền"
-      ],
-      "correct": 1,
-      "explanation": "Default: vi phạm nghĩa vụ trả nợ, không nhất thiết là phá sản. Default có nhiều mức độ - từ vi phạm covenant nhẹ (technical default) đến mất khả năng thanh toán hoàn toàn dẫn đến phá sản (bankruptcy) - đây là hai khái niệm khác nhau dù liên quan."
-    },
-    "summary": {
-      "keyIdea": "Default: vi phạm nghĩa vụ trả nợ, không nhất thiết là phá sản",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Technical default có thể xảy ra chỉ vì vi phạm covenant"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Tra tin tức một trường hợp default hoặc technical default gần đây (trong nước hoặc quốc tế), xác định nguyên nhân là trễ lãi, trễ gốc, hay vi phạm covenant.",
-      "secondary": "Phân biệt được các dạng default giúp bạn đọc tin tức tài chính chính xác hơn."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Default (vỡ nợ) là khi người phát hành trái phiếu không thực hiện đúng nghĩa vụ đã cam kết - có thể là trễ trả lãi, trễ hoàn vốn gốc, hoặc thậm chí chỉ đơn giản là vi phạm một điều khoản trong hợp đồng vay. Điều quan trọng cần hiểu: default không đồng nghĩa với phá sản ngay lập tức, và cũng không phải lúc nào cũng có nghĩa là công ty mất trắng khả năng trả nợ."
+        "text": "Bài trước nói khi nào nên làm nhiều việc cùng lúc. Bài này về giới hạn của việc đó, và về một hiện tượng trái trực giác: thêm tài nguyên làm hệ thống chậm đi."
       },
       {
         "type": "heading",
-        "text": "Technical default: vi phạm mà chưa mất khả năng chi trả"
+        "text": "Đường cong có đỉnh"
       },
       {
         "type": "paragraph",
-        "text": "'Technical default' xảy ra khi công ty vi phạm một điều khoản (covenant) trong hợp đồng vay - ví dụ tỷ lệ nợ/vốn chủ sở hữu vượt ngưỡng cho phép - ngay cả khi công ty vẫn đang trả lãi và gốc đầy đủ, đúng hạn. Về mặt kỹ thuật, đây vẫn được tính là một sự kiện default, và các tổ chức xếp hạng tín dụng thường hạ bậc tín nhiệm ngay khi phát hiện dấu hiệu này, dù công ty chưa hề mất khả năng chi trả thực sự."
+        "text": "Ở đoạn đầu, thêm một luồng nghĩa là thêm việc làm được. Tới một điểm nào đó, các luồng bắt đầu tranh nhau cùng một khoá hoặc cùng một tài nguyên, và phần lớn thời gian của chúng chuyển sang chờ nhau. Qua điểm ấy, chi phí bàn giao lớn hơn phần việc thêm được, và thông lượng đi xuống."
+      },
+      {
+        "type": "callout",
+        "label": "Trông như máy đang nhàn rỗi",
+        "text": "Luồng chờ khoá không tiêu tốn bộ xử lý, nên mọi chỉ số tài nguyên đều bình thường trong khi hệ thống đứng yên. Đây là cùng một chữ ký với thu gom rác và với chờ mạng - phải nhìn thông lượng chứ không nhìn mức dùng."
       },
       {
         "type": "heading",
-        "text": "Cross-default: khi một vi phạm nhỏ lan thành khủng hoảng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Điều khiến technical default trở nên nguy hiểm là điều khoản cross-default phổ biến trong các hợp đồng vay: khi công ty vi phạm một khoản vay, các khoản vay khác - dù hoàn toàn không liên quan trực tiếp - cũng có thể tự động bị coi là vi phạm theo. Các chủ nợ khác khi đó có quyền yêu cầu trả nợ ngay lập tức, tạo ra một khủng hoảng thanh khoản lan rộng chỉ từ một vi phạm ban đầu tưởng chừng nhỏ. Vụ Evergrande (Trung Quốc) năm 2021 là ví dụ điển hình: công ty default trái phiếu USD quốc tế khi không trả lãi đúng hạn cho trái chủ, dù công ty vẫn tiếp tục hoạt động kinh doanh - minh họa rõ default và phá sản là hai khái niệm khác nhau."
+        "text": "Ba mức can thiệp, theo thứ tự hiệu quả"
       },
       {
         "type": "list",
         "items": [
-          "Default: vi phạm nghĩa vụ nợ - trễ lãi, trễ gốc, hoặc vi phạm covenant - không nhất thiết là phá sản",
-          "Technical default: vi phạm điều khoản hợp đồng dù vẫn đang trả nợ đầy đủ",
-          "Cross-default: một vi phạm có thể kích hoạt vi phạm dây chuyền ở các khoản vay khác",
-          "Recovery rate = số tiền trái chủ thực nhận / mệnh giá gốc sau thanh lý tài sản"
+          "Không dùng chung: cho mỗi luồng một vùng làm việc riêng rồi gộp kết quả ở cuối. Mở rộng gần như tuyến tính.",
+          "Thu hẹp khoá: chỉ bảo vệ đúng phần cần bảo vệ, và giữ nó trong thời gian ngắn nhất có thể.",
+          "Không bao giờ giữ khoá trong lúc chờ ra ngoài tiến trình: một truy vấn trong vùng khoá làm mọi luồng khác đứng yên hàng chục mili giây."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Chọn loại khoá nằm ở tận cuối danh sách, vì nó chỉ đổi chi phí của một lần bàn giao. Thời gian giữ khoá mới là thứ quyết định bao nhiêu luồng phải xếp hàng, và nó lớn hơn chi phí bàn giao nhiều bậc."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Thông lượng không phải hàm tăng của số luồng. Vẽ đường cong ra thì bạn thấy đỉnh của nó, và biết cấu hình đúng.",
+          "Bài sau về việc phải làm gì khi nhu cầu vượt quá khả năng, thay vì để hệ thống sụp đổ."
         ]
       }
     ]
   },
   {
     "id": 154,
-    "slug": "spread-la-gi",
-    "title": "Tự học Tài chính Day 154: Spread là gì?",
-    "subtitle": "Khoảng cách lợi suất phản ánh mức độ rủi ro cảm nhận",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "⚠️",
-    "openingQuestion": "Trái phiếu doanh nghiệp yield 8%, trái phiếu chính phủ cùng kỳ hạn yield 5%. Credit spread là bao nhiêu?",
+    "slug": "ap-luc-nguoc",
+    "title": "Áp lực ngược: nói không thay vì gục ngã",
+    "subtitle": "Khi nhu cầu vượt khả năng, hàng đợi không cứu bạn - nó chỉ giấu vấn đề rồi làm nó tệ hơn.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🚧",
+    "track": "professional",
+    "whyItMatters": "Đây là khác biệt giữa một hệ thống chậm lại có kiểm soát khi quá tải và một hệ thống sụp đổ hoàn toàn. Và cách phản ứng bản năng - thêm hàng đợi - thường dẫn tới kết quả thứ hai.",
+    "openingQuestion": "Yêu cầu đến nhanh hơn khả năng xử lý. Thêm một hàng đợi lớn ở phía trước giải quyết được gì?",
     "openingOptions": [
-      "8%",
-      "13%",
-      "3% (300 basis points)",
-      "Không tính được nếu thiếu thông tin khác"
+      "Không gì cả, nó chỉ chuyển tình trạng quá tải thành độ trễ ngày một tăng",
+      "Nó cho hệ thống thời gian để xử lý hết phần việc đang tồn đọng",
+      "Nó phân bố tải đều hơn nên tránh được các đỉnh đột ngột",
+      "Nó bảo vệ các dịch vụ phía sau khỏi bị quá nhiều yêu cầu"
     ],
-    "correctOption": 2,
-    "explanation": "Chênh lệch lợi suất là phần vượt trội mà một trái phiếu rủi ro trả thêm so với trái phiếu chính phủ cùng kỳ hạn, tính bằng điểm cơ bản. Nó là giá thị trường đang gán cho rủi ro tín dụng, nên nó phản ứng nhanh hơn nhiều so với xếp hạng tín nhiệm - vốn chỉ thay đổi sau khi tổ chức xếp hạng họp. Vì lý do đó, chênh lệch nới rộng đồng loạt trên toàn thị trường là một trong những tín hiệu cảnh báo sớm đáng tin nhất.",
+    "correctOption": 0,
+    "explanation": "Hàng đợi hấp thụ được đỉnh ngắn hạn, nhưng nếu tốc độ đến vượt tốc độ xử lý một cách bền vững thì nó chỉ dài ra mãi. Yêu cầu nằm trong hàng càng lâu thì thời gian chờ càng tăng, và tới lúc được xử lý thì người dùng đã bỏ đi hoặc đã thử lại - nghĩa là công sức ấy bị lãng phí trong khi tải lại tăng thêm. Hàng đợi chỉ có ích khi nó có giới hạn và có cách từ chối khi đầy.",
     "diagram": [
       {
-        "label": "Lấy lợi suất của tài sản có rủi ro",
+        "label": "Tốc độ đến > tốc độ xử lý",
         "arrow": true
       },
       {
-        "label": "Trừ lợi suất trái phiếu chính phủ cùng kỳ hạn",
+        "label": "Hàng đợi dài ra, độ trễ tăng dần",
         "arrow": true
       },
       {
-        "label": "Phần chênh tính bằng điểm cơ bản",
+        "label": "Người dùng bỏ đi hoặc thử lại → tải tăng thêm",
         "arrow": true
       },
       {
-        "label": "Nó phản ánh tâm lý rủi ro nhanh hơn hầu hết chỉ số khác"
+        "label": "Từ chối sớm giữ hệ thống phục vụ được phần còn lại"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Khủng hoảng 2008",
-      "description": "Credit spread trái phiếu doanh nghiệp Mỹ nhảy từ ~150 basis points lên hơn 600 basis points trong khủng hoảng tài chính 2008, phản ánh nỗi sợ vỡ nợ hàng loạt của thị trường."
+      "company": "Sụp đổ vì thử lại",
+      "description": "Dịch vụ chậm lại, khách thử lại, tải tăng gấp ba, dịch vụ chậm hơn nữa. Vòng xoáy này đưa nhiều hệ thống từ chỗ chậm tới chỗ ngừng hoạt động chỉ trong vài phút."
+    },
+    "keyTakeaways": [
+      "Hàng đợi không giới hạn biến quá tải thành độ trễ tăng vô hạn.",
+      "Từ chối sớm và rõ ràng tốt hơn nhận vào rồi phục vụ chậm cho tất cả.",
+      "Thử lại làm tải tăng đúng lúc hệ thống yếu nhất.",
+      "Đặt giới hạn cho hàng đợi và cho thời gian chờ ở mọi ranh giới."
+    ],
+    "summary": {
+      "keyIdea": "Khi quá tải, hãy từ chối một phần để phục vụ được phần còn lại.",
+      "formula": "Hàng đợi có giới hạn, thời gian chờ có giới hạn.",
+      "commonMistake": "Coi hàng đợi lớn là cách xử lý tình trạng quá tải bền vững."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Kiểm tra xem mọi hàng đợi trong hệ thống của bạn có giới hạn kích thước không, và điều gì xảy ra khi chúng đầy. Nếu câu trả lời là dài ra mãi thì đó là một chỗ chờ sụp đổ."
+    },
+    "practicePrompt": {
+      "question": "Vì sao thử lại tự động có thể làm sự cố tệ hơn?",
+      "options": [
+        "Vì nó nhân tải lên đúng vào lúc hệ thống đang yếu nhất",
+        "Vì các yêu cầu thử lại thường nặng hơn yêu cầu ban đầu",
+        "Vì nó làm hỏng thứ tự xử lý của các yêu cầu đang chờ",
+        "Vì hệ thống không phân biệt được yêu cầu mới và yêu cầu cũ"
+      ],
+      "correct": 0,
+      "explanation": "Một dịch vụ đang chật vật bỗng nhận gấp ba lượng yêu cầu vì mỗi khách thử lại hai lần nữa. Đó là lý do thử lại phải đi kèm giãn cách tăng dần, thêm một chút ngẫu nhiên, và một cầu dao cắt hẳn khi dịch vụ đích đang hỏng."
     },
     "quiz": [
       {
-        "question": "Khi nền kinh tế suy thoái, credit spread thường thay đổi thế nào?",
+        "question": "Hàng đợi không giới hạn làm gì khi tải vượt khả năng bền vững?",
         "options": [
-          "Biến mất hoàn toàn",
-          "Thu hẹp lại vì lãi suất giảm",
-          "Không đổi vì spread cố định theo hợp đồng",
-          "Mở rộng ra - nhà đầu tư đòi bù đắp nhiều hơn cho rủi ro vỡ nợ tăng lên"
-        ],
-        "correct": 3,
-        "explanation": "Suy thoái làm tăng xác suất vỡ nợ doanh nghiệp → nhà đầu tư yêu cầu lợi suất bù đắp cao hơn cho trái phiếu rủi ro → spread mở rộng (widening). Đây là chỉ báo sớm phổ biến để đo 'khẩu vị rủi ro' của thị trường."
-      },
-      {
-        "question": "Nếu credit spread giữa trái phiếu Investment Grade và High-Yield thu hẹp mạnh (gần bằng nhau), điều này có thể là tín hiệu gì về tâm lý thị trường?",
-        "options": [
-          "Thị trường có thể đang trong giai đoạn \"tìm kiếm lợi suất\" (search for yield) quá mức lạc quan - nhà đầu tư sẵn sàng chấp nhận rủi ro tín dụng cao hơn mà không đòi hỏi đủ phần bù tương xứng, một dấu hiệu cảnh báo tiềm ẩn về định giá rủi ro chưa hợp lý trên thị trường",
-          "Thị trường đang lo ngại rủi ro tăng cao",
-          "Đây luôn là dấu hiệu nền kinh tế đang cực kỳ khỏe mạnh không có rủi ro",
-          "Spread thu hẹp không có ý nghĩa phân tích nào"
+          "Dài ra mãi và biến quá tải thành độ trễ tăng không giới hạn",
+          "Tự động loại bỏ những yêu cầu đã phải chờ quá lâu ở trong hàng đợi",
+          "Làm chậm tốc độ nhận yêu cầu mới từ phía người gửi",
+          "Phân bổ đều tải sang các khoảng thời gian ít bận hơn"
         ],
         "correct": 0,
-        "explanation": "Credit spread quá hẹp (dưới mức lịch sử trung bình) đôi khi là dấu hiệu thị trường đang định giá rủi ro thấp một cách phi lý (mispricing risk) trong giai đoạn lạc quan quá mức - các nhà đầu tư thận trọng thường xem đây là tín hiệu cảnh báo cần thận trọng hơn, không phải dấu hiệu an toàn."
+        "explanation": "Hai hành vi hữu ích ở lựa chọn thứ hai và thứ ba đều phải được lập trình vào chứ không tự có. Một hàng đợi mặc định chỉ làm đúng một việc là nhận thêm."
+      },
+      {
+        "question": "Vì sao từ chối sớm tốt hơn phục vụ chậm cho tất cả?",
+        "options": [
+          "Vì phần được nhận vẫn được phục vụ đúng chất lượng cam kết",
+          "Vì việc từ chối tốn ít tài nguyên hơn việc xếp vào hàng đợi",
+          "Vì người dùng thích nhận lỗi hơn là phải chờ đợi lâu",
+          "Vì hệ thống có thời gian phục hồi trước khi nhận tiếp"
+        ],
+        "correct": 0,
+        "explanation": "Phục vụ chậm cho tất cả nghĩa là không ai được phục vụ đủ tốt, và phần lớn công sức đổ vào những yêu cầu đã bị bỏ dở. Từ chối một phần giữ cho phần còn lại vẫn có giá trị."
+      },
+      {
+        "question": "Cơ chế nào giúp thử lại không làm tình hình tệ hơn?",
+        "options": [
+          "Giãn cách tăng dần kèm ngẫu nhiên, và cầu dao cắt khi đích đang hỏng",
+          "Giới hạn số lần thử lại tối đa cho mỗi yêu cầu",
+          "Chỉ thử lại những yêu cầu đọc chứ không thử lại yêu cầu ghi",
+          "Ghi lại mọi lần thử lại vào nhật ký để phân tích về sau"
+        ],
+        "correct": 0,
+        "explanation": "Giới hạn số lần có giúp nhưng nếu mọi khách cùng thử lại ngay lập tức thì bạn vẫn có một đợt sóng đồng bộ. Thêm ngẫu nhiên để rải sóng ra, và cầu dao để dừng hẳn khi thử lại chắc chắn vô ích."
+      },
+      {
+        "question": "Vì sao giới hạn thời gian chờ lại quan trọng ở mọi ranh giới?",
+        "options": [
+          "Vì không có nó thì một dịch vụ chậm sẽ giữ tài nguyên của mọi bên gọi",
+          "Vì nó giúp phát hiện sớm các dịch vụ đang hoạt động một cách không ổn định",
+          "Vì các giao thức mạng yêu cầu phải khai báo thời gian chờ",
+          "Vì nó cho phép hệ thống chuyển sang dịch vụ dự phòng"
+        ],
+        "correct": 0,
+        "explanation": "Mỗi lời gọi đang treo chiếm một luồng hoặc một kết nối ở phía gọi. Không có giới hạn thì một dịch vụ chậm kéo theo mọi dịch vụ phụ thuộc nó, và sự cố lan ngược lên toàn hệ thống."
+      },
+      {
+        "question": "Hàng đợi có ích trong tình huống nào?",
+        "options": [
+          "Hấp thụ những đỉnh ngắn hạn khi khả năng xử lý trung bình vẫn đủ",
+          "Xử lý tình trạng nhu cầu vượt quá khả năng xử lý trong thời gian dài",
+          "Thay thế cho việc phải mở rộng năng lực của hệ thống",
+          "Bảo đảm mọi yêu cầu đều được xử lý dù mất bao lâu"
+        ],
+        "correct": 0,
+        "explanation": "Đó là công dụng đúng của nó: san phẳng biến động quanh một mức trung bình mà hệ thống theo kịp. Dùng nó cho tình trạng thiếu năng lực bền vững thì nó chỉ trì hoãn thời điểm mọi thứ vỡ."
       }
     ],
-    "keyTakeaways": [
-      "Spread = Yield rủi ro − Yield phi rủi ro cùng kỳ hạn",
-      "Spread mở rộng = thị trường lo ngại rủi ro vỡ nợ tăng",
-      "Spread là thước đo tâm lý rủi ro nhanh và nhạy hơn nhiều chỉ số khác"
-    ],
-    "practicePrompt": {
-      "question": "Trái phiếu doanh nghiệp kỳ hạn 10 năm có lợi suất 8,5%; trái phiếu chính phủ cùng kỳ hạn 10 năm có lợi suất 4%. 'Spread' giữa hai loại trái phiếu này là bao nhiêu, và nó thay đổi thế nào khi thị trường lo ngại rủi ro?",
-      "options": [
-        "Spread = 8,5% - 4% = 4,5%, mở rộng khi thị trường lo ngại rủi ro",
-        "Spread luôn cố định ở mức 4,5% bất kể tình hình kinh tế hay tâm lý thị trường thay đổi ra sao",
-        "Spread = 8,5% + 4% = 12,5%, cộng dồn cả hai mức lợi suất lại với nhau",
-        "Spread không có ý nghĩa phân tích thực tế, chỉ là một con số thống kê đơn thuần"
-      ],
-      "correct": 0,
-      "explanation": "Spread = Yield rủi ro − Yield phi rủi ro cùng kỳ hạn = 4,5%. Spread là thước đo tâm lý rủi ro nhanh và nhạy - mở rộng khi thị trường lo ngại (chiến tranh, suy thoái, khủng hoảng tín dụng) và thu hẹp khi tâm lý lạc quan trở lại."
-    },
-    "summary": {
-      "keyIdea": "Spread = Yield rủi ro − Yield phi rủi ro cùng kỳ hạn",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Spread mở rộng = thị trường lo ngại rủi ro vỡ nợ tăng"
-    },
-    "application": {
-      "title": "Tự tính một spread",
-      "message": "Bài học đã có ví dụ thật tính spread từ lợi suất trái phiếu chính phủ 10 năm (4,11%/năm) - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự tìm một trái phiếu doanh nghiệp và tính spread của nó.",
-      "secondary": "Con số này cho bạn cảm nhận thị trường đang định giá rủi ro vỡ nợ ra sao."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Spread là ngôn ngữ chung mà thị trường trái phiếu dùng để định giá rủi ro: khoảng cách lợi suất giữa một trái phiếu rủi ro và một tài sản phi rủi ro cùng kỳ hạn. Đây là con số bạn sẽ gặp lại liên tục khi đọc tin tức tài chính."
+        "text": "Mọi hệ thống đều có giới hạn. Câu hỏi không phải làm sao để không bao giờ chạm giới hạn, mà là chuyện gì xảy ra khi chạm - và đó là một quyết định thiết kế chứ không phải một tai nạn."
       },
       {
         "type": "heading",
-        "text": "Công thức và đơn vị đo (basis points)"
+        "text": "Hàng đợi không tạo ra năng lực"
       },
       {
         "type": "paragraph",
-        "text": "Spread = Yield trái phiếu rủi ro cao hơn − Yield tài sản phi rủi ro cùng kỳ hạn (thường là trái phiếu chính phủ). **Ví dụ:** trái phiếu doanh nghiệp yield 8%, trái phiếu chính phủ cùng kỳ hạn yield 5% → spread = 3%, tương đương 300 basis points (1 basis point = 0,01%). Trong khủng hoảng tài chính 2008, credit spread trái phiếu doanh nghiệp Mỹ nhảy từ khoảng 150 basis points lên hơn 600 basis points - phản ánh nỗi sợ vỡ nợ hàng loạt lan khắp thị trường."
-      },
-      {
-        "type": "heading",
-        "text": "Spread thu hẹp quá mức: khi thị trường trở nên chủ quan"
-      },
-      {
-        "type": "paragraph",
-        "text": "Trong suy thoái, spread mở rộng vì nhà đầu tư đòi bù đắp nhiều hơn cho rủi ro vỡ nợ tăng lên. Nhưng chiều ngược lại cũng đáng chú ý: nếu spread giữa Investment Grade và High-Yield thu hẹp mạnh, gần bằng nhau, đó có thể là dấu hiệu thị trường đang trong giai đoạn 'tìm kiếm lợi suất' (search for yield) quá mức lạc quan - nhà đầu tư sẵn sàng chấp nhận rủi ro tín dụng cao hơn mà không đòi hỏi đủ phần bù tương xứng. Nhà đầu tư thận trọng thường xem spread quá hẹp so với mức lịch sử trung bình là tín hiệu cảnh báo cần thận trọng hơn, chứ không phải dấu hiệu thị trường an toàn."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Spread rộng: kinh tế suy yếu, nhà đầu tư đòi bù đắp rủi ro cao hơn",
-          "Spread hẹp bất thường: có thể là dấu hiệu thị trường định giá rủi ro quá thấp",
-          "1 basis point (bps) = 0,01% - đơn vị chuẩn để đo spread và mọi thay đổi lãi suất nhỏ",
-          "Spread là chỉ báo tâm lý rủi ro nhạy và nhanh hơn nhiều chỉ số kinh tế vĩ mô khác"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ thật: tự tính spread với lợi suất trái phiếu chính phủ 10 năm"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lợi suất trái phiếu chính phủ VN kỳ hạn 10 năm: khoảng 4,11%/năm (2026) - đây là mốc tham chiếu phi rủi ro",
-          "Trái phiếu doanh nghiệp cùng kỳ hạn thường giao dịch với lợi suất cao hơn 300-700 basis points (3-7 điểm %) tùy mức tín nhiệm - ví dụ một trái phiếu doanh nghiệp lợi suất 9%/năm sẽ có spread khoảng 489 basis points so với mốc 4,11%",
-          "Spread càng lớn, thị trường càng định giá rủi ro tín dụng của bên phát hành đó cao"
-        ]
+        "text": "Nếu yêu cầu đến nhanh hơn khả năng xử lý một cách bền vững, hàng đợi chỉ dài ra. Thời gian chờ tăng dần, và tới lúc một yêu cầu được xử lý thì người gửi đã bỏ đi hoặc đã thử lại. Công sức bỏ ra không tạo ra giá trị nào, trong khi tải thì tăng thêm."
       },
       {
         "type": "callout",
-        "label": "Công thức để tự áp dụng",
-        "text": "Spread (basis points) = (Lợi suất trái phiếu doanh nghiệp - Lợi suất trái phiếu chính phủ cùng kỳ hạn) × 10.000. Tự áp dụng với một trái phiếu doanh nghiệp bất kỳ bạn tra được lợi suất giao dịch."
+        "label": "Vòng xoáy thử lại",
+        "text": "Dịch vụ chậm lại, khách thử lại, tải tăng gấp ba, dịch vụ chậm hơn nữa. Vòng này đưa nhiều hệ thống từ chỗ chậm tới chỗ ngừng hẳn trong vài phút, và nó luôn tự khuếch đại."
+      },
+      {
+        "type": "heading",
+        "text": "Nói không là một tính năng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hàng đợi có giới hạn: khi đầy thì từ chối ngay, đừng nhận thêm.",
+          "Thời gian chờ ở mọi ranh giới: một lời gọi treo chiếm tài nguyên của bên gọi.",
+          "Bỏ yêu cầu đã chờ quá lâu: nó không còn giá trị cho ai nữa.",
+          "Cầu dao: khi dịch vụ đích đang hỏng, dừng gọi hẳn thay vì thử lại vô ích."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Từ chối một phần nghe như thất bại, nhưng nó là lựa chọn duy nhất giữ cho phần được nhận vẫn có giá trị. Phục vụ chậm cho tất cả nghĩa là không ai được phục vụ đủ tốt, và gần như toàn bộ công sức đổ vào những việc rồi sẽ bị bỏ dở."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Một hệ thống tốt chậm lại có kiểm soát khi quá tải. Một hệ thống không có áp lực ngược thì sụp đổ.",
+          "Bài sau về cách biết trước giới hạn ấy nằm ở đâu, trước khi người dùng tìm ra hộ bạn."
+        ]
       }
     ]
   },
   {
     "id": 155,
-    "slug": "treasury-bond-la-gi",
-    "title": "Tự học Tài chính Day 155: Treasury Bond là gì?",
-    "subtitle": "Trái phiếu chính phủ - chuẩn tham chiếu an toàn nhất thị trường",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "📜",
-    "openingQuestion": "Vì sao trái phiếu chính phủ Mỹ (US Treasury) được xem là tài sản 'phi rủi ro' trên toàn cầu?",
+    "slug": "kiem-thu-tai",
+    "title": "Kiểm thử tải: tìm giới hạn trước khi người dùng tìm hộ",
+    "subtitle": "Một phép thử tải sai còn tệ hơn không thử, vì nó cho bạn một con số để yên tâm.",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🏋️",
+    "track": "professional",
+    "whyItMatters": "Kiểm thử tải là cách duy nhất biết hệ thống hỏng ở đâu và hỏng thế nào trước khi nó hỏng thật. Nhưng phần lớn phép thử tải đo một hệ thống không tồn tại, vì dữ liệu và hình dạng tải đều không giống thật.",
+    "openingQuestion": "Phép thử tải cho biết hệ thống chịu được năm nghìn yêu cầu mỗi giây. Sản phẩm sập ở một nghìn. Vì sao?",
     "openingOptions": [
-      "Vì lãi suất luôn cao nhất thị trường",
-      "Vì chính phủ Mỹ có khả năng in tiền và thu thuế để trả nợ, xác suất vỡ nợ gần như bằng 0",
-      "Vì không ai được phép bán nó",
-      "Vì giá không bao giờ biến động"
+      "Phép thử dùng dữ liệu và hình dạng tải không giống thực tế",
+      "Sản phẩm thật chạy trên phần cứng yếu hơn môi trường thử",
+      "Con số năm nghìn được đo trong khoảng thời gian quá ngắn",
+      "Người dùng thật gửi yêu cầu vào cùng một thời điểm cao điểm"
     ],
-    "correctOption": 1,
-    "explanation": "Trái phiếu chính phủ là công cụ nợ do nhà nước phát hành để tài trợ chi tiêu công. Quyền thu thuế và quyền phát hành nội tệ khiến rủi ro không trả được nợ bằng đồng tiền của chính mình rất thấp, nên lợi suất của nó thành mốc phi rủi ro cho mọi định giá khác. Cần nhớ hai giới hạn: điều này chỉ đúng với nợ bằng nội tệ, và phi rủi ro ở đây là phi rủi ro vỡ nợ chứ không phải phi rủi ro về giá hay về lạm phát.",
+    "correctOption": 0,
+    "explanation": "Nguyên nhân phổ biến nhất là phép thử lặp lại vài yêu cầu giống nhau trên một tập dữ liệu nhỏ, nên mọi thứ đều nằm sẵn trong bộ nhớ đệm và không truy vấn nào phải làm việc thật. Tải thật thì trải trên hàng triệu bản ghi khác nhau, có cả đọc lẫn ghi, có cả những người dùng có dữ liệu lớn bất thường. Ba nguyên nhân còn lại đều có thể góp phần, nhưng chúng giải thích chênh lệch vài chục phần trăm chứ không phải chênh lệch năm lần.",
     "diagram": [
       {
-        "label": "Chính phủ cần tài trợ chi tiêu công",
+        "label": "Dữ liệu thử nhỏ → mọi thứ nằm trong bộ nhớ đệm",
         "arrow": true
       },
       {
-        "label": "Phát hành trái phiếu bằng nội tệ",
+        "label": "Yêu cầu lặp lại → không truy vấn nào làm việc thật",
         "arrow": true
       },
       {
-        "label": "Quyền thu thuế và phát hành tiền khiến rủi ro vỡ nợ rất thấp",
+        "label": "Con số đo được cao gấp nhiều lần thực tế",
         "arrow": true
       },
       {
-        "label": "Lợi suất của nó thành mốc phi rủi ro cho mọi định giá khác"
+        "label": "Và nó khiến bạn yên tâm sai chỗ"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Trái phiếu Chính phủ Việt Nam",
-      "description": "Trái phiếu Chính phủ Việt Nam kỳ hạn 10 năm là chuẩn tham chiếu risk-free cho thị trường vốn trong nước - mọi định giá cổ phiếu, trái phiếu doanh nghiệp Việt Nam đều neo theo lợi suất này."
+      "company": "Con số đẹp cho hệ thống không tồn tại",
+      "description": "Phép thử gửi cùng một mã sản phẩm mười nghìn lần vào một cơ sở dữ liệu có năm trăm bản ghi. Nó đo tốc độ của bộ nhớ đệm, không phải của hệ thống."
+    },
+    "keyTakeaways": [
+      "Dữ liệu thử phải có quy mô và hình dạng giống dữ liệu thật.",
+      "Tải thử phải trộn nhiều loại thao tác theo tỷ lệ như ngoài đời.",
+      "Tăng tải dần để tìm điểm gãy, đừng chỉ kiểm tra một mức mục tiêu.",
+      "Quan sát cả cách hệ thống hỏng, không chỉ con số nó chịu được."
+    ],
+    "summary": {
+      "keyIdea": "Kiểm thử tải chỉ đáng tin khi dữ liệu và hình dạng tải giống thật.",
+      "formula": "Tăng dần cho tới khi gãy, rồi xem nó gãy thế nào.",
+      "commonMistake": "Lặp lại vài yêu cầu giống nhau trên một tập dữ liệu nhỏ."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Xem kịch bản kiểm thử tải hiện tại của bạn và đếm xem nó dùng bao nhiêu bản ghi khác nhau. Nếu con số ấy nhỏ hơn vài nghìn thì bạn đang đo bộ nhớ đệm."
+    },
+    "practicePrompt": {
+      "question": "Vì sao nên tăng tải dần thay vì chỉ kiểm tra ở mức mục tiêu?",
+      "options": [
+        "Vì bạn cần biết điểm gãy nằm ở đâu và còn cách mục tiêu bao xa",
+        "Vì hệ thống cần thời gian khởi động trước khi đạt hiệu năng tối đa",
+        "Vì tăng tải đột ngột có thể làm hỏng dữ liệu trong môi trường thử",
+        "Vì các công cụ kiểm thử tải không hỗ trợ đặt tải cố định ngay"
+      ],
+      "correct": 0,
+      "explanation": "Biết rằng hệ thống chịu được mức mục tiêu không cho bạn biết nó chịu được gấp rưỡi hay chỉ hơn năm phần trăm. Khoảng đệm ấy chính là thứ quyết định bạn ngủ yên hay không vào ngày có sự kiện bất thường."
     },
     "quiz": [
       {
-        "question": "Vì sao risk-free rate lại quan trọng với mọi mô hình định giá tài chính?",
+        "question": "Sai lầm phổ biến nhất trong kiểm thử tải là gì?",
         "options": [
-          "Vì đó là lãi suất cao nhất có thể",
-          "Vì risk-free rate không bao giờ thay đổi",
-          "Vì nó là điểm khởi đầu để cộng thêm phần bù rủi ro (risk premium) khi định giá bất kỳ tài sản rủi ro nào",
-          "Chỉ quan trọng với trái phiếu, không liên quan cổ phiếu"
+          "Dùng tập dữ liệu nhỏ và lặp lại vài yêu cầu giống nhau",
+          "Chạy phép thử trong khoảng thời gian quá ngắn để ổn định",
+          "Không tính tới độ trễ mạng của người dùng ở xa",
+          "Chạy phép thử trên môi trường chia sẻ với các đội khác"
         ],
-        "correct": 2,
-        "explanation": "CAPM, WACC, DCF đều dùng risk-free rate làm nền: Expected Return = Risk-free rate + Risk premium. Risk-free rate tăng (Fed hike) làm chi phí vốn mọi tài sản tăng theo, kéo giá cổ phiếu và trái phiếu giảm."
+        "correct": 0,
+        "explanation": "Khi ấy mọi thứ nằm sẵn trong bộ nhớ đệm và bạn đang đo tốc độ của bộ nhớ đệm chứ không phải của hệ thống. Ba vấn đề còn lại đều có thật nhưng chúng làm lệch kết quả vài chục phần trăm, không phải vài lần."
       },
       {
-        "question": "Nếu một quốc gia có chính phủ ổn định nhưng phát hành trái phiếu bằng NGOẠI TỆ (không phải đồng nội tệ có thể tự in), trái phiếu đó có còn được xem là hoàn toàn \"risk-free\" như trái phiếu Mỹ không?",
+        "question": "Vì sao phải quan sát cách hệ thống hỏng chứ không chỉ mức nó chịu được?",
         "options": [
-          "Trái phiếu ngoại tệ luôn an toàn hơn trái phiếu nội tệ",
-          "Có, mọi trái phiếu chính phủ đều risk-free như nhau",
-          "Loại tiền tệ phát hành không ảnh hưởng gì đến mức độ rủi ro",
-          "Không hoàn toàn - khi vay bằng ngoại tệ, chính phủ không thể \"in tiền\" để trả nợ như với đồng nội tệ, khiến rủi ro vỡ nợ thực tế cao hơn nhiều so với trái phiếu bằng đồng tiền riêng của quốc gia phát hành (như trường hợp nhiều quốc gia đang phát triển từng vỡ nợ trái phiếu USD)"
+          "Vì hỏng có kiểm soát và sụp đổ hoàn toàn là hai kết quả rất khác nhau",
+          "Vì cách hỏng cho biết nên mua thêm phần cứng loại nào",
+          "Vì con số chịu tải thay đổi theo từng lần chạy phép thử",
+          "Vì các công cụ đo không ghi lại được mức tải tối đa chính xác"
         ],
-        "correct": 3,
-        "explanation": "Đây là lý do khái niệm \"risk-free\" chỉ thực sự áp dụng chặt chẽ cho trái phiếu bằng đồng tiền mà chính phủ phát hành có toàn quyền kiểm soát (như USD với Mỹ) - nhiều quốc gia đang phát triển từng vỡ nợ trái phiếu ngoại tệ dù chưa từng vỡ nợ trái phiếu nội tệ, vì thiếu công cụ \"in tiền\" để trả nợ ngoại tệ."
+        "correct": 0,
+        "explanation": "Một hệ thống từ chối bớt yêu cầu và giữ nguyên độ trễ cho phần còn lại thì vẫn dùng được ở quá tải. Một hệ thống để hàng đợi dài ra rồi ngừng hẳn thì không, dù hai hệ thống có cùng con số tối đa."
+      },
+      {
+        "question": "Hình dạng tải thử cần phản ánh điều gì?",
+        "options": [
+          "Tỷ lệ trộn giữa các loại thao tác như trong thực tế",
+          "Số lượng người dùng đăng ký của toàn bộ sản phẩm",
+          "Tốc độ tăng trưởng dự kiến trong mười hai tháng tới",
+          "Phân bố địa lý của những người dùng đang hoạt động"
+        ],
+        "correct": 0,
+        "explanation": "Chín phần đọc một phần ghi cho một bức tranh hoàn toàn khác với năm ăn năm, vì thao tác ghi tạo tranh chấp và làm hỏng hiệu quả của bộ nhớ đệm. Tỷ lệ trộn thường quan trọng hơn tổng số yêu cầu."
+      },
+      {
+        "question": "Vì sao một phép thử tải sai còn tệ hơn không thử?",
+        "options": [
+          "Vì nó cho một con số khiến đội yên tâm về một giới hạn không có thật",
+          "Vì nó tiêu tốn tài nguyên hạ tầng mà không mang lại thông tin",
+          "Vì nó có thể làm hỏng dữ liệu trong môi trường được thử",
+          "Vì nó chiếm thời gian mà đội có thể dùng để tối ưu mã"
+        ],
+        "correct": 0,
+        "explanation": "Không có số liệu thì đội còn thận trọng. Có một con số sai thì đội lập kế hoạch dựa trên nó, và phát hiện ra sự thật vào đúng ngày có nhiều người dùng nhất."
+      },
+      {
+        "question": "Dữ liệu thử cần giống dữ liệu thật ở khía cạnh nào?",
+        "options": [
+          "Cả quy mô lẫn hình dạng, gồm những bản ghi lớn bất thường",
+          "Chỉ cần đúng quy mô tổng số bản ghi trong các bảng",
+          "Chỉ cần đúng cấu trúc bảng và các ràng buộc đặt trên dữ liệu",
+          "Chỉ cần đủ đa dạng để không bị bộ nhớ đệm ảnh hưởng"
+        ],
+        "correct": 0,
+        "explanation": "Người dùng có mười nghìn bản ghi con là trường hợp làm gãy hệ thống, và nó không xuất hiện trong dữ liệu sinh đều. Phân bố lệch của dữ liệu thật quan trọng ngang với tổng số dòng."
       }
     ],
-    "keyTakeaways": [
-      "Treasury bond: chuẩn tham chiếu risk-free toàn cầu",
-      "Rủi ro vỡ nợ cực thấp nhờ quyền in tiền và thu thuế của chính phủ",
-      "Risk-free rate là nền tảng của mọi mô hình định giá tài chính"
-    ],
-    "practicePrompt": {
-      "question": "Khi các nhà phân tích tài chính trên toàn thế giới cần một mức 'risk-free rate' để tính CAPM, WACC, hay bất kỳ mô hình định giá nào, họ gần như luôn dùng lãi suất trái phiếu Chính phủ Mỹ (US Treasury) kỳ hạn 10 năm làm chuẩn tham chiếu. Vì sao trái phiếu này được chọn làm chuẩn toàn cầu?",
-      "options": [
-        "Vì trái phiếu Chính phủ Mỹ luôn có lợi suất cao nhất trong tất cả các loại trái phiếu trên thế giới",
-        "Treasury bond là chuẩn tham chiếu risk-free toàn cầu, vì rủi ro vỡ nợ của chính phủ Mỹ gần bằng 0",
-        "Vì đây là quy định bắt buộc của các tổ chức tài chính quốc tế, không có lý do kinh tế nào khác",
-        "Treasury bond chỉ được dùng làm chuẩn tham chiếu ở thị trường Mỹ, không áp dụng cho các thị trường khác trên thế giới"
-      ],
-      "correct": 1,
-      "explanation": "Treasury bond: chuẩn tham chiếu risk-free toàn cầu. Vì rủi ro vỡ nợ gần như bằng 0, lợi suất Treasury bond được dùng làm điểm khởi đầu (Rf) trong hầu hết các mô hình định giá tài chính (CAPM, WACC) trên toàn thế giới."
-    },
-    "summary": {
-      "keyIdea": "Treasury bond: chuẩn tham chiếu risk-free toàn cầu",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Rủi ro vỡ nợ cực thấp nhờ quyền in tiền và thu thuế của chính phủ"
-    },
-    "application": {
-      "title": "Tra risk-free rate hôm nay",
-      "message": "Bài học đã có ví dụ thật với risk-free rate của VN (~4,11%/năm, kỳ hạn 10 năm) - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự tra số mới nhất trên VBMA vì con số này thay đổi theo từng phiên đấu thầu.",
-      "secondary": "Ghi lại con số này, bạn sẽ dùng nó nhiều lần khi định giá cổ phiếu sau này."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Trong mọi mô hình định giá tài chính - từ định giá cổ phiếu đến trái phiếu doanh nghiệp - luôn có một điểm khởi đầu chung: risk-free rate, lãi suất phi rủi ro. Và chuẩn tham chiếu cho risk-free rate gần như luôn là trái phiếu chính phủ (Treasury bond)."
+        "text": "Bài trước nói hệ thống nên hành xử thế nào khi chạm giới hạn. Bài này về cách biết giới hạn ấy nằm ở đâu - trước khi người dùng tìm ra hộ bạn vào một ngày bận rộn."
       },
       {
         "type": "heading",
-        "text": "Vì sao trái phiếu chính phủ được xem là phi rủi ro"
+        "text": "Phần lớn phép thử tải đo nhầm hệ thống"
       },
       {
         "type": "paragraph",
-        "text": "Treasury bond là công cụ nợ do chính phủ phát hành để tài trợ chi tiêu công. Với một quốc gia vay bằng chính đồng nội tệ của mình, rủi ro vỡ nợ gần như bằng 0 vì chính phủ có hai công cụ đặc biệt mà doanh nghiệp không có: quyền in thêm tiền (dù có cái giá là lạm phát) và quyền thu thuế để đảm bảo nghĩa vụ nợ. Vì lẽ đó, lợi suất trái phiếu chính phủ (như Treasury Mỹ kỳ hạn 10 năm, hay trái phiếu Chính phủ Việt Nam kỳ hạn 10 năm) trở thành 'sàn' để cộng thêm risk premium khi định giá bất kỳ tài sản rủi ro nào: Expected Return = Risk-free rate + Risk premium. Đây chính là nền tảng của CAPM, WACC và mọi mô hình DCF."
-      },
-      {
-        "type": "heading",
-        "text": "Ngoại lệ quan trọng: trái phiếu chính phủ bằng ngoại tệ"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khái niệm 'risk-free' chỉ thực sự vững chắc khi chính phủ vay bằng đồng tiền mà chính họ có toàn quyền kiểm soát phát hành. Nếu một quốc gia phát hành trái phiếu bằng ngoại tệ (ví dụ USD), họ không thể 'in tiền' để trả nợ ngoại tệ như với đồng nội tệ - khiến rủi ro vỡ nợ thực tế cao hơn nhiều. Lịch sử ghi nhận nhiều quốc gia đang phát triển từng vỡ nợ trái phiếu USD dù chưa từng vỡ nợ trái phiếu nội tệ, chính vì thiếu công cụ 'in tiền' cho khoản nợ ngoại tệ đó."
+        "text": "Kịch bản điển hình gửi cùng một vài yêu cầu, lặp đi lặp lại, vào một cơ sở dữ liệu có vài trăm bản ghi. Sau lần đầu, mọi thứ nằm trong bộ nhớ đệm: không truy vấn nào phải chạm đĩa, không kế hoạch nào phải được tính lại. Con số thu được là tốc độ của bộ nhớ đệm, và nó có thể cao gấp năm lần thực tế."
       },
       {
         "type": "list",
         "items": [
-          "Treasury bond: chuẩn tham chiếu risk-free rate cho toàn bộ thị trường vốn",
-          "Rủi ro vỡ nợ cực thấp nhờ quyền in tiền (nội tệ) và quyền thu thuế của chính phủ",
-          "Risk-free rate tăng (Fed hoặc NHNN tăng lãi suất) kéo chi phí vốn của mọi tài sản khác tăng theo",
-          "Trái phiếu chính phủ bằng ngoại tệ không hoàn toàn phi rủi ro như trái phiếu bằng nội tệ"
+          "Quy mô dữ liệu: đủ lớn để chỉ mục không nằm gọn trong bộ nhớ.",
+          "Hình dạng dữ liệu: có cả những bản ghi lớn bất thường, vì đó là chỗ hệ thống gãy.",
+          "Tỷ lệ trộn thao tác: chín đọc một ghi cho bức tranh rất khác với năm ăn năm.",
+          "Đa dạng yêu cầu: hàng nghìn khoá khác nhau, không phải cùng một khoá lặp lại."
         ]
       },
       {
         "type": "heading",
-        "text": "Ví dụ thật: risk-free rate hôm nay tại Việt Nam"
+        "text": "Tăng dần cho tới khi gãy"
       },
       {
-        "type": "list",
-        "items": [
-          "Lợi suất trúng thầu trái phiếu chính phủ VN kỳ hạn 10 năm: khoảng 4,11%/năm (số liệu 2026, nguồn Kho bạc Nhà nước/VBMA)",
-          "Đây là con số gần đúng nhất với \"risk-free rate\" trong các mô hình định giá tại VN - vì chính phủ gần như không có rủi ro vỡ nợ nội tệ",
-          "Con số này được dùng làm điểm neo trong hầu hết mô hình: CAPM (tính lợi nhuận kỳ vọng cổ phiếu), chiết khấu dòng tiền (DCF), Sharpe Ratio..."
-        ]
+        "type": "paragraph",
+        "text": "Kiểm tra một mức mục tiêu chỉ cho biết đạt hay không đạt. Tăng tải dần cho bạn điểm gãy, và khoảng cách từ mức hiện tại tới điểm ấy chính là khoảng đệm bạn đang có. Đó là con số quyết định bạn có ngủ yên vào ngày có sự kiện bất thường hay không."
       },
       {
         "type": "callout",
-        "label": "Cách tự cập nhật số mới nhất",
-        "text": "Lợi suất này thay đổi theo từng phiên đấu thầu - tra số mới nhất trên trang VBMA (vbma.org.vn, mục Kết quả đấu thầu Trái phiếu Chính phủ) hoặc Kho bạc Nhà nước trước khi dùng cho bất kỳ mô hình định giá nào."
+        "label": "Xem nó gãy thế nào",
+        "text": "Hai hệ thống cùng chịu được ba nghìn yêu cầu mỗi giây có thể hành xử hoàn toàn khác nhau ở ba nghìn năm trăm: một cái từ chối bớt và giữ nguyên độ trễ cho phần còn lại, cái kia để hàng đợi dài ra rồi ngừng hẳn."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Một con số sai còn nguy hiểm hơn không có số nào, vì người ta lập kế hoạch dựa trên nó.",
+          "Bài sau chuyển sang phía bên kia của hệ thống: hiệu năng trên thiết bị của người dùng."
+        ]
       }
     ]
   },
   {
     "id": 156,
-    "slug": "corporate-bond-la-gi",
-    "title": "Tự học Tài chính Day 156: Corporate Bond là gì?",
-    "subtitle": "Doanh nghiệp vay vốn trực tiếp từ nhà đầu tư, không qua ngân hàng",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "📜",
-    "openingQuestion": "Vì sao một doanh nghiệp lớn có thể chọn phát hành trái phiếu thay vì vay ngân hàng?",
+    "slug": "hieu-nang-phia-trinh-duyet",
+    "title": "Phía trình duyệt: một luồng duy nhất phải làm mọi thứ",
+    "subtitle": "Máy chủ trả lời trong tám mươi mili giây, rồi thiết bị người dùng làm việc trong ba giây.",
+    "duration": "9 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🖥️",
+    "track": "professional",
+    "whyItMatters": "Với ứng dụng giao diện hiện đại, phần lớn thời gian người dùng chờ diễn ra trên thiết bị của họ chứ không trên máy chủ của bạn. Và thiết bị ấy thường yếu hơn máy của người viết mã rất nhiều.",
+    "openingQuestion": "Trang hiện nội dung nhanh nhưng bấm vào không phản hồi trong hai giây. Nguyên nhân là gì?",
     "openingOptions": [
-      "Vì tiếp cận được nhiều nhà đầu tư cùng lúc",
-      "Vì trái phiếu không cần trả lãi",
-      "Vì trái phiếu luôn rẻ hơn vay ngân hàng trong mọi trường hợp",
-      "Vì ngân hàng không cho doanh nghiệp lớn vay"
+      "Luồng chính đang bận chạy mã nên không xử lý được thao tác của người dùng",
+      "Máy chủ chưa trả lời xong phần dữ liệu cần cho tương tác",
+      "Kết nối mạng của người dùng quá chậm để gửi thao tác đi",
+      "Trình duyệt đang chờ tải xong toàn bộ hình ảnh của trang"
     ],
     "correctOption": 0,
-    "explanation": "Corporate bond là công cụ nợ do doanh nghiệp phát hành trực tiếp cho nhà đầu tư (không qua trung gian ngân hàng). Cho phép huy động vốn quy mô lớn, đa dạng hóa nguồn vốn, và đôi khi có chi phí thấp hơn vay ngân hàng nếu doanh nghiệp có xếp hạng tín nhiệm tốt.",
+    "explanation": "Trình duyệt chạy mã giao diện trên một luồng duy nhất, và luồng ấy cũng chính là luồng xử lý thao tác của người dùng và vẽ lại màn hình. Khi một đoạn mã chạy liên tục hai giây, mọi cú bấm đều nằm trong hàng chờ cho tới khi nó xong. Đây là lý do nội dung có thể hiện ra rất nhanh mà trang vẫn cho cảm giác đơ, và nó không liên quan gì tới máy chủ hay tới đường truyền.",
     "diagram": [
       {
-        "label": "Doanh nghiệp cần vốn dài hạn",
+        "label": "Một luồng chính lo cả ba việc",
         "arrow": true
       },
       {
-        "label": "Phát hành trái phiếu bán thẳng cho nhà đầu tư",
+        "label": "Chạy mã, xử lý thao tác, vẽ màn hình",
         "arrow": true
       },
       {
-        "label": "Không qua trung gian ngân hàng, quy mô lớn hơn",
+        "label": "Mã chạy dài → hai việc kia đứng yên",
         "arrow": true
       },
       {
-        "label": "Lợi suất luôn cao hơn trái phiếu chính phủ cùng kỳ hạn"
+        "label": "Người dùng thấy trang đơ dù đã có nội dung"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Apple Inc.",
-      "description": "Apple thường xuyên phát hành trái phiếu doanh nghiệp dù có hàng trăm tỷ USD tiền mặt - để tận dụng lãi suất thấp tài trợ cho buyback cổ phiếu thay vì mang tiền mặt ở nước ngoài về chịu thuế."
+      "company": "Máy của người viết mã không phải máy của người dùng",
+      "description": "Đội phát triển trên máy tính cao cấp với mạng nội bộ. Phần lớn người dùng vào bằng điện thoại tầm trung qua mạng di động, nơi cùng đoạn mã ấy chạy chậm hơn nhiều lần."
+    },
+    "keyTakeaways": [
+      "Luồng chính lo cả chạy mã, nhận thao tác và vẽ màn hình.",
+      "Việc nặng phải chia nhỏ hoặc đẩy sang luồng nền để không chặn tương tác.",
+      "Thiết bị thật của người dùng yếu hơn máy phát triển nhiều lần.",
+      "Hiện ra được không có nghĩa là dùng được - đó là hai mốc khác nhau."
+    ],
+    "summary": {
+      "keyIdea": "Trên trình duyệt, nút thắt thường là luồng chính chứ không phải mạng.",
+      "formula": "Chia nhỏ việc dài hoặc chuyển nó ra khỏi luồng chính.",
+      "commonMistake": "Đo hiệu năng giao diện trên máy phát triển và mạng nội bộ."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Mở công cụ đo hiệu năng của trình duyệt, bật chế độ giả lập thiết bị chậm gấp bốn lần, và tìm những đoạn mã chạy liên tục quá năm mươi mili giây."
+    },
+    "practicePrompt": {
+      "question": "Cách xử lý một tác vụ tính toán nặng ở phía trình duyệt là gì?",
+      "options": [
+        "Đẩy nó sang luồng nền hoặc chia thành nhiều đoạn ngắn",
+        "Chuyển toàn bộ tính toán ấy về xử lý ở phía máy chủ",
+        "Chạy nó sau khi trang đã tải xong hoàn toàn mọi tài nguyên",
+        "Tối ưu thuật toán để nó chạy nhanh hơn vài lần"
+      ],
+      "correct": 0,
+      "explanation": "Chuyển về máy chủ chỉ đổi vấn đề thành một vòng đi về mạng và tốn năng lực máy chủ; chạy muộn hơn thì vẫn chặn đúng như vậy khi nó chạy. Tối ưu thuật toán có giúp nhưng một tác vụ nặng dù nhanh gấp bốn vẫn có thể vượt ngưỡng người dùng cảm nhận."
     },
     "quiz": [
       {
-        "question": "Trái phiếu doanh nghiệp luôn có lợi suất cao hơn trái phiếu chính phủ cùng kỳ hạn vì sao?",
+        "question": "Vì sao trang có thể hiện nội dung nhanh mà vẫn cho cảm giác đơ?",
         "options": [
-          "Vì quy định pháp luật bắt buộc",
-          "Vì rủi ro vỡ nợ của doanh nghiệp cao hơn chính phủ, nhà đầu tư đòi credit spread bù đắp",
-          "Vì trái phiếu doanh nghiệp có kỳ hạn dài hơn",
-          "Không đúng - đôi khi thấp hơn"
+          "Vì luồng chính đang bận chạy mã nên không nhận được thao tác",
+          "Vì các hình ảnh trên trang chưa được tải về đầy đủ",
+          "Vì trình duyệt phải chờ máy chủ xác nhận trước khi phản hồi thao tác",
+          "Vì bộ nhớ của thiết bị không đủ để giữ toàn bộ trang"
         ],
-        "correct": 1,
-        "explanation": "Bất kỳ doanh nghiệp nào cũng có rủi ro vỡ nợ cao hơn chính phủ (trừ trường hợp cực hiếm) → luôn phải trả credit spread dương so với risk-free rate. Spread lớn hay nhỏ tùy vào credit rating của từng doanh nghiệp."
+        "correct": 0,
+        "explanation": "Vẽ được nội dung và nhận được thao tác là hai việc của cùng một luồng, và chúng không xảy ra cùng lúc. Đó là lý do phải có hai mốc đo riêng cho hiện ra và cho dùng được."
       },
       {
-        "question": "Vì sao lãi suất trái phiếu doanh nghiệp của cùng một công ty có thể khác nhau đáng kể tùy vào kỳ hạn phát hành (5 năm, 10 năm, 30 năm), ngay cả khi rủi ro tín dụng công ty không đổi?",
+        "question": "Vì sao đo hiệu năng giao diện trên máy phát triển cho kết quả lệch?",
         "options": [
-          "Kỳ hạn không ảnh hưởng gì đến lãi suất trái phiếu doanh nghiệp",
-          "Chỉ có trái phiếu chính phủ mới bị ảnh hưởng bởi kỳ hạn",
-          "Vì lãi suất trái phiếu doanh nghiệp phản ánh cả credit spread (rủi ro công ty) VÀ vị trí trên yield curve (rủi ro lãi suất theo kỳ hạn) - trái phiếu doanh nghiệp kỳ hạn dài hơn thường phải cộng thêm phần bù cho cả hai loại rủi ro cùng lúc",
-          "Trái phiếu doanh nghiệp luôn có cùng lãi suất bất kể kỳ hạn"
+          "Vì thiết bị thật của người dùng yếu hơn nhiều lần",
+          "Vì trình duyệt trên máy phát triển có bật chế độ gỡ lỗi",
+          "Vì mã trong môi trường phát triển chưa được nén và tối ưu",
+          "Vì máy phát triển đã lưu sẵn dữ liệu của trang trong bộ nhớ đệm"
         ],
-        "correct": 2,
-        "explanation": "Lãi suất trái phiếu doanh nghiệp = Risk-free rate (theo đúng kỳ hạn tương ứng trên yield curve) + Credit spread (phản ánh rủi ro tín dụng riêng của công ty) - cả hai thành phần đều có thể thay đổi theo kỳ hạn, khiến lãi suất tổng thể khác nhau đáng kể giữa các kỳ hạn phát hành."
+        "correct": 0,
+        "explanation": "Ba nguyên nhân còn lại có thật và đều xử lý được bằng cách đo trên bản dựng thật với bộ nhớ đệm trống. Chênh lệch phần cứng thì không xử lý được bằng cấu hình - phải giả lập thiết bị chậm hoặc đo trên máy thật."
+      },
+      {
+        "question": "Ngưỡng nào thường được dùng cho một tác vụ chặn luồng chính?",
+        "options": [
+          "Khoảng năm mươi mili giây, vì quá đó người dùng bắt đầu cảm nhận",
+          "Khoảng năm trăm mili giây, tương ứng với thời gian phản xạ của con người",
+          "Khoảng năm mili giây, tương ứng với một khung hình",
+          "Không có ngưỡng chung, nó phụ thuộc vào từng loại thao tác"
+        ],
+        "correct": 0,
+        "explanation": "Một tác vụ dài hơn thế làm cú bấm ngay sau đó phải chờ đủ lâu để người dùng nhận ra độ trễ. Chia nhỏ việc thành các đoạn dưới ngưỡng ấy cho phép luồng chính chen vào giữa để phản hồi."
+      },
+      {
+        "question": "Vì sao chuyển tính toán nặng về máy chủ không hẳn là giải pháp?",
+        "options": [
+          "Vì nó đổi thành một vòng đi về mạng và tốn năng lực máy chủ",
+          "Vì máy chủ thường có ít năng lực tính toán hơn thiết bị người dùng",
+          "Vì dữ liệu cần tính toán không thể gửi qua mạng được",
+          "Vì kết quả tính ở máy chủ sẽ khác với kết quả tính tại chỗ"
+        ],
+        "correct": 0,
+        "explanation": "Với thao tác tương tác thì một vòng đi về mạng có thể còn tệ hơn việc tính tại chỗ. Đẩy sang luồng nền giữ được tính tại chỗ mà vẫn không chặn giao diện."
+      },
+      {
+        "question": "Hai mốc nào cần đo riêng cho một trang?",
+        "options": [
+          "Lúc nội dung hiện ra và lúc trang thật sự phản hồi được thao tác",
+          "Lúc nhận byte đầu tiên và lúc nhận byte cuối cùng của phản hồi từ máy chủ",
+          "Lúc trang bắt đầu tải và lúc mọi tài nguyên đã tải xong",
+          "Lúc mã khởi tạo chạy và lúc dữ liệu từ máy chủ trả về"
+        ],
+        "correct": 0,
+        "explanation": "Khoảng cách giữa hai mốc ấy chính là thời gian trang trông như đã sẵn sàng mà thật ra chưa. Đó là quãng gây khó chịu nhất, vì người dùng đã bắt đầu bấm."
       }
     ],
-    "keyTakeaways": [
-      "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư",
-      "Ưu điểm: huy động vốn lớn, đa dạng nguồn tài trợ ngoài ngân hàng",
-      "Luôn có credit spread dương so với trái phiếu chính phủ cùng kỳ hạn"
-    ],
-    "practicePrompt": {
-      "question": "Một công ty cần huy động 500 tỷ để mở rộng nhà máy, thay vì vay ngân hàng, họ phát hành trái phiếu bán trực tiếp cho các nhà đầu tư trên thị trường. Hình thức huy động vốn này gọi là gì, và khác gì với vay ngân hàng truyền thống?",
-      "options": [
-        "Đây gọi là IPO, vì công ty đang huy động vốn từ công chúng để mở rộng hoạt động",
-        "Corporate bond: vay trực tiếp từ nhiều nhà đầu tư, không qua trung gian ngân hàng",
-        "Đây gọi là buyback, vì công ty đang mua lại một phần vốn từ các nhà đầu tư",
-        "Corporate bond và vay ngân hàng hoàn toàn giống nhau, chỉ khác tên gọi"
-      ],
-      "correct": 1,
-      "explanation": "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư (không qua trung gian ngân hàng như vay truyền thống). Lãi suất phụ thuộc vào credit rating của công ty - công ty rủi ro cao hơn phải trả lãi suất cao hơn để thu hút nhà đầu tư."
-    },
-    "summary": {
-      "keyIdea": "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Ưu điểm: huy động vốn lớn, đa dạng nguồn tài trợ ngoài ngân hàng"
-    },
-    "application": {
-      "title": "So sánh corporate bond với treasury",
-      "message": "Bài học đã có ví dụ thật với lợi suất trái phiếu chính phủ 10 năm (4,11%/năm) làm điểm neo - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự tìm một trái phiếu doanh nghiệp cùng kỳ hạn để so sánh.",
-      "secondary": "Chênh lệch càng lớn, thị trường càng nghi ngờ khả năng trả nợ của doanh nghiệp."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Khi một doanh nghiệp cần vốn lớn, họ có hai lựa chọn chính: vay ngân hàng, hoặc phát hành trái phiếu doanh nghiệp (corporate bond) - vay trực tiếp từ hàng nghìn nhà đầu tư trên thị trường mà không qua trung gian ngân hàng."
+        "text": "Bài đầu chặng nói rằng thời gian máy chủ chỉ là một đoạn của hành trình. Đây là đoạn còn lại, và với ứng dụng giao diện hiện đại thì nó thường là đoạn dài nhất."
       },
       {
         "type": "heading",
-        "text": "Vì sao doanh nghiệp phát hành trái phiếu thay vì chỉ vay ngân hàng"
+        "text": "Một luồng, ba việc"
       },
       {
         "type": "paragraph",
-        "text": "Phát hành trái phiếu cho phép huy động vốn quy mô lớn cùng lúc, đa dạng hóa nguồn tài trợ ngoài ngân hàng, và với doanh nghiệp có credit rating tốt, đôi khi chi phí vay qua trái phiếu còn thấp hơn vay ngân hàng truyền thống. Một ví dụ thú vị: Apple thường xuyên phát hành trái phiếu doanh nghiệp dù công ty có hàng trăm tỷ USD tiền mặt - lý do là tận dụng lãi suất thấp để tài trợ cho chương trình mua lại cổ phiếu (buyback), thay vì phải mang tiền mặt đang giữ ở nước ngoài về chịu thuế."
-      },
-      {
-        "type": "heading",
-        "text": "Lãi suất trái phiếu doanh nghiệp = risk-free rate + credit spread"
-      },
-      {
-        "type": "paragraph",
-        "text": "Bất kỳ doanh nghiệp nào - dù mạnh đến đâu - cũng có rủi ro vỡ nợ cao hơn chính phủ, nên trái phiếu doanh nghiệp luôn phải trả một credit spread dương so với trái phiếu chính phủ cùng kỳ hạn. Nhưng lãi suất trái phiếu doanh nghiệp không chỉ phụ thuộc vào credit spread - nó còn phụ thuộc vào vị trí trên yield curve theo đúng kỳ hạn phát hành. Vì vậy cùng một công ty, trái phiếu 5 năm, 10 năm và 30 năm có thể có lãi suất khác nhau đáng kể, dù rủi ro tín dụng của công ty không đổi: lãi suất tổng = risk-free rate (theo đúng kỳ hạn) + credit spread (theo rating công ty)."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Corporate bond: doanh nghiệp vay trực tiếp từ nhà đầu tư, không qua trung gian ngân hàng",
-          "Ưu điểm: huy động vốn lớn, đa dạng hóa nguồn tài trợ, đôi khi chi phí thấp hơn vay ngân hàng",
-          "Luôn có credit spread dương so với trái phiếu chính phủ cùng kỳ hạn",
-          "Lãi suất khác nhau theo kỳ hạn phát hành, ngay cả với cùng một công ty"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ thật: lợi suất trái phiếu chính phủ làm điểm neo"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Trái phiếu chính phủ VN kỳ hạn 10 năm: lợi suất trúng thầu khoảng 4,11%/năm (số liệu 2026) - đây gần như phi rủi ro",
-          "Trái phiếu doanh nghiệp cùng kỳ hạn thường yêu cầu lợi suất cao hơn 3-7 điểm % (300-700 basis points) tùy mức độ rủi ro tín dụng của bên phát hành",
-          "Phần chênh lệch đó (spread) chính là \"phần thưởng\" nhà đầu tư đòi hỏi để bù đắp rủi ro công ty không trả được nợ"
-        ]
+        "text": "Trình duyệt chạy mã giao diện trên một luồng duy nhất, và luồng ấy cũng nhận thao tác của người dùng và vẽ lại màn hình. Khi một đoạn mã chạy liên tục, hai việc kia đứng yên. Người dùng bấm và không có gì xảy ra, dù nội dung đã hiện đầy đủ trên màn hình."
       },
       {
         "type": "callout",
-        "label": "Cách tự so sánh với một trái phiếu doanh nghiệp thật",
-        "text": "Tra lợi suất trái phiếu chính phủ kỳ hạn tương ứng trên VBMA (vbma.org.vn, mục Kết quả đấu thầu Trái phiếu Chính phủ) hoặc HNX, đặt cạnh lợi suất phát hành/giao dịch của một trái phiếu doanh nghiệp cùng kỳ hạn để tự tính spread thật."
+        "label": "Hiện ra không phải dùng được",
+        "text": "Đây là hai mốc khác nhau và khoảng cách giữa chúng là quãng khó chịu nhất: trang trông như đã sẵn sàng nên người dùng bắt đầu bấm, và không gì phản hồi. Đo cả hai chứ đừng gộp làm một."
+      },
+      {
+        "type": "heading",
+        "text": "Thiết bị của bạn không phải thiết bị của họ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Đội phát triển ngồi trên máy cao cấp với mạng nội bộ; phần lớn người dùng vào bằng điện thoại tầm trung qua mạng di động. Cùng đoạn mã ấy chạy chậm hơn nhiều lần ở đó. Công cụ đo của trình duyệt có chế độ giả lập thiết bị chậm và mạng chậm - bật nó lên là thay đổi rẻ nhất bạn có thể làm."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chia việc dài thành nhiều đoạn ngắn để luồng chính chen vào giữa mà phản hồi.",
+          "Đẩy tính toán nặng sang luồng nền, giữ luồng chính cho giao diện.",
+          "Tránh làm việc trong lúc người dùng đang cuộn hoặc đang gõ.",
+          "Đo trên bản dựng thật với bộ nhớ đệm trống, không đo trên môi trường phát triển."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Nút thắt phía trình duyệt hiếm khi là mạng. Nó gần như luôn là luồng chính đang bận.",
+          "Bài sau về thứ đến trước cả việc chạy mã: lượng mã phải tải về và phân tích."
+        ]
       }
     ]
   },
   {
     "id": 157,
-    "slug": "municipal-bond-la-gi",
-    "title": "Tự học Tài chính Day 157: Municipal Bond là gì?",
-    "subtitle": "Trái phiếu địa phương tài trợ hạ tầng công cộng",
-    "duration": "6 phút",
-    "difficulty": "Dễ",
-    "emoji": "📜",
-    "openingQuestion": "Chính quyền một thành phố muốn xây cầu mới nhưng ngân sách hạn chế. Công cụ tài chính nào phù hợp?",
+    "slug": "kich-thuoc-goi-tai-ve",
+    "title": "Kích thước gói: mã phải tải về, giải nén và phân tích",
+    "subtitle": "Một thư viện thêm vào tốn thời gian ở mọi lần tải trang, mãi mãi.",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "📦",
+    "track": "professional",
+    "whyItMatters": "Kích thước gói tăng dần từng chút một qua mỗi tính năng và không ai để ý, cho tới lúc trang mất bốn giây để bắt đầu phản hồi trên điện thoại tầm trung.",
+    "openingQuestion": "Thêm một thư viện làm gói tải về tăng hai trăm kilobyte. Chi phí lớn nhất nằm ở đâu?",
     "openingOptions": [
-      "In thêm tiền địa phương",
-      "Vay ngân hàng thương mại thông thường",
-      "Không có cách nào ngoài xin ngân sách trung ương",
-      "Phát hành municipal bond để huy động vốn"
+      "Ở việc thiết bị phải giải nén và phân tích lượng mã đó ở mỗi lần tải",
+      "Ở thời gian truyền hai trăm kilobyte qua đường mạng di động của người dùng",
+      "Ở dung lượng lưu trữ mà trình duyệt phải dành cho bộ nhớ đệm",
+      "Ở chi phí băng thông mà máy chủ phải trả cho mỗi lượt tải"
     ],
-    "correctOption": 3,
-    "explanation": "Municipal bond (muni) là trái phiếu do chính quyền địa phương hoặc cơ quan công phát hành để tài trợ hạ tầng: trường học, cầu đường, bệnh viện công. Nguồn trả nợ thường từ thuế địa phương (general obligation) hoặc doanh thu dự án cụ thể (revenue bond).",
+    "correctOption": 0,
+    "explanation": "Trên mạng hiện nay, truyền hai trăm kilobyte thường mất vài trăm mili giây và có thể được bộ nhớ đệm che đi ở những lần sau. Phần không được che là công việc thiết bị phải làm với lượng mã ấy: giải nén, phân tích cú pháp, biên dịch, rồi chạy. Trên điện thoại tầm trung, phần này có thể mất lâu hơn phần truyền, và nó xảy ra ngay trên luồng chính - tức là chặn mọi tương tác trong suốt thời gian đó.",
     "diagram": [
       {
-        "label": "Địa phương cần vốn xây trường, cầu, bệnh viện",
+        "label": "Tải về - có thể được bộ nhớ đệm che đi",
         "arrow": true
       },
       {
-        "label": "Phát hành trái phiếu đô thị",
+        "label": "Giải nén và phân tích - phải làm lại mỗi lần",
         "arrow": true
       },
       {
-        "label": "Trả nợ bằng thuế địa phương hoặc doanh thu chính dự án",
+        "label": "Biên dịch và chạy - trên luồng chính",
         "arrow": true
       },
       {
-        "label": "Thường kèm ưu đãi thuế nên hấp dẫn nhà đầu tư cá nhân"
+        "label": "Phần đắt nhất là phần bộ nhớ đệm không cứu được"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Mỹ - Municipal Bond Market",
-      "description": "Thị trường municipal bond Mỹ trị giá hàng nghìn tỷ USD, phổ biến vì lãi thu được thường được miễn thuế thu nhập liên bang - hấp dẫn nhà đầu tư cá nhân có thu nhập cao."
+      "company": "Tăng dần không ai để ý",
+      "description": "Mỗi tính năng thêm vài chục kilobyte và không lần nào đáng để phản đối. Sau hai năm, gói tải về gấp bốn lần và không có một thay đổi cụ thể nào để đổ lỗi."
+    },
+    "keyTakeaways": [
+      "Chi phí lớn nhất là phân tích và chạy mã, không phải truyền dữ liệu.",
+      "Chỉ tải phần mã cần cho màn hình hiện tại, phần còn lại tải sau.",
+      "Đặt ngưỡng kích thước trong quy trình dựng để chặn tăng dần.",
+      "Một thư viện lớn dùng cho một tính năng nhỏ là đánh đổi tồi."
+    ],
+    "summary": {
+      "keyIdea": "Mã tải về phải được thiết bị xử lý ở mọi lần tải trang, không chỉ tải một lần.",
+      "formula": "Chia nhỏ theo màn hình, tải phần còn lại khi cần.",
+      "commonMistake": "Cho rằng bộ nhớ đệm đã giải quyết xong vấn đề kích thước gói."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Xem báo cáo thành phần của gói dựng và tìm ba mục lớn nhất. Với mỗi mục, hỏi xem màn hình đầu tiên có thật sự cần nó không."
+    },
+    "practicePrompt": {
+      "question": "Vì sao bộ nhớ đệm không giải quyết được vấn đề kích thước gói?",
+      "options": [
+        "Vì nó chỉ bỏ được phần tải về, còn phân tích và chạy vẫn phải làm lại",
+        "Vì bộ nhớ đệm của trình duyệt bị xoá thường xuyên hơn ta nghĩ",
+        "Vì mỗi lần triển khai mới đều làm mọi bộ nhớ đệm hết hiệu lực",
+        "Vì người dùng lần đầu không có gì trong bộ nhớ đệm cả"
+      ],
+      "correct": 0,
+      "explanation": "Ba lý do còn lại đều đúng và đều đáng quan tâm, nhưng chúng chỉ nói về những lần bộ nhớ đệm không hoạt động. Điểm quan trọng hơn là ngay cả khi nó hoạt động hoàn hảo, thiết bị vẫn phải phân tích và chạy lại toàn bộ lượng mã ấy ở mỗi lần tải trang."
     },
     "quiz": [
       {
-        "question": "Revenue bond khác General Obligation bond ở điểm nào?",
+        "question": "Phần nào của chi phí gói tải về không được bộ nhớ đệm che đi?",
         "options": [
-          "Revenue bond trả nợ từ doanh thu dự án cụ thể (như phí cầu đường); GO bond trả từ ngân sách thuế chung của địa phương",
-          "GO bond chỉ dùng cho dự án tư nhân",
-          "Revenue bond luôn an toàn hơn GO bond",
-          "Không có khác biệt"
+          "Phân tích cú pháp, biên dịch và chạy mã trên thiết bị",
+          "Thời gian truyền dữ liệu qua đường mạng",
+          "Thời gian thiết lập kết nối tới máy chủ",
+          "Thời gian máy chủ chuẩn bị nội dung phản hồi"
         ],
         "correct": 0,
-        "explanation": "GO bond được đảm bảo bởi 'full faith and credit' của chính quyền - dùng quyền thu thuế để trả nợ. Revenue bond chỉ phụ thuộc vào dòng tiền từ chính dự án (ví dụ phí cầu đường), nên rủi ro cao hơn nếu dự án không tạo đủ doanh thu."
+        "explanation": "Bộ nhớ đệm bỏ được việc lấy dữ liệu về, nhưng lượng mã ấy vẫn phải được thiết bị xử lý lại từ đầu ở mỗi lần tải trang. Đó là phần diễn ra trên luồng chính và chặn mọi tương tác."
       },
       {
-        "question": "Vì sao lãi suất trái phiếu địa phương (municipal bond) tại Mỹ thường thấp hơn đáng kể so với trái phiếu doanh nghiệp cùng mức xếp hạng tín dụng?",
+        "question": "Cách hiệu quả nhất để giảm chi phí gói là gì?",
         "options": [
-          "Chính quyền địa phương luôn có tín dụng tốt hơn doanh nghiệp",
-          "Vì lãi từ trái phiếu địa phương thường được miễn thuế thu nhập liên bang (và đôi khi cả thuế bang) - nhà đầu tư chấp nhận lãi suất danh nghĩa thấp hơn để đổi lấy lợi ích thuế, khiến lợi suất SAU THUẾ thực tế có thể tương đương hoặc cao hơn trái phiếu doanh nghiệp chịu thuế đầy đủ",
-          "Không có sự khác biệt thực sự nào về lãi suất giữa hai loại trái phiếu",
-          "Vì trái phiếu địa phương luôn an toàn hơn trái phiếu doanh nghiệp bất kể xếp hạng"
+          "Chỉ tải phần mã cần cho màn hình hiện tại",
+          "Nén mã ở mức cao nhất mà công cụ dựng hỗ trợ",
+          "Gộp mọi tệp mã thành một tệp duy nhất để giảm số lần tải",
+          "Chuyển các tệp mã sang một mạng phân phối nội dung"
         ],
-        "correct": 1,
-        "explanation": "Ưu đãi thuế là yếu tố quyết định khiến municipal bond hấp dẫn dù lãi suất danh nghĩa thấp hơn - nhà đầu tư có thu nhập cao (chịu thuế suất cao) thường nhận thấy lợi suất SAU THUẾ của muni bond cạnh tranh hơn nhiều so với trái phiếu doanh nghiệp chịu thuế đầy đủ."
+        "correct": 0,
+        "explanation": "Ba cách còn lại chỉ tác động tới phần truyền dữ liệu, phần vốn đã nhỏ hơn. Mã không được tải về là mã không phải phân tích, và đó là khoản tiết kiệm duy nhất chạm được vào phần đắt nhất."
+      },
+      {
+        "question": "Vì sao kích thước gói tăng dần mà không ai phản đối?",
+        "options": [
+          "Vì mỗi lần tăng đều nhỏ và có lý do chính đáng riêng",
+          "Vì các công cụ dựng không báo cáo kích thước sau mỗi thay đổi",
+          "Vì kích thước chỉ được đo lại khi có người yêu cầu cụ thể",
+          "Vì phần tăng thêm thường nằm trong mã của bên thứ ba"
+        ],
+        "correct": 0,
+        "explanation": "Ba mươi kilobyte cho một tính năng thật sự cần thiết là một đánh đổi hợp lý ở từng lần một. Vấn đề là tổng của một trăm quyết định hợp lý, nên cách chặn nó phải là một ngưỡng trong quy trình dựng chứ không phải sự cảnh giác của từng người."
+      },
+      {
+        "question": "Vì sao dùng thư viện lớn cho một tính năng nhỏ là đánh đổi tồi?",
+        "options": [
+          "Vì bạn trả chi phí cho toàn bộ thư viện mà chỉ dùng một phần nhỏ",
+          "Vì thư viện lớn thường có nhiều lỗi bảo mật hơn các thư viện nhỏ",
+          "Vì thư viện lớn khó cập nhật lên phiên bản mới hơn",
+          "Vì thư viện lớn làm thời gian dựng dự án lâu hơn nhiều"
+        ],
+        "correct": 0,
+        "explanation": "Công cụ dựng có thể loại bỏ phần mã không dùng tới ở nhiều trường hợp, nhưng không phải mọi trường hợp, và kết quả thường kém hơn kỳ vọng. Viết ba mươi dòng thay cho một thư viện hai trăm kilobyte thường là lựa chọn đúng."
+      },
+      {
+        "question": "Vì sao thiết bị tầm trung chịu ảnh hưởng nặng hơn?",
+        "options": [
+          "Vì việc phân tích và biên dịch mã phụ thuộc vào sức mạnh bộ xử lý",
+          "Vì thiết bị tầm trung có bộ nhớ đệm nhỏ hơn nhiều",
+          "Vì trình duyệt trên thiết bị ấy thường là phiên bản cũ hơn",
+          "Vì thiết bị ấy thường kết nối qua mạng di động chậm hơn"
+        ],
+        "correct": 0,
+        "explanation": "Cùng một lượng mã có thể mất gấp nhiều lần thời gian để xử lý trên một bộ xử lý yếu hơn. Đây là phần chênh lệch không cải thiện được bằng mạng nhanh hơn hay bằng bộ nhớ đệm."
       }
     ],
-    "keyTakeaways": [
-      "Municipal bond: tài trợ hạ tầng công cộng ở cấp địa phương",
-      "Hai loại chính: General Obligation (thuế chung) và Revenue bond (doanh thu dự án)",
-      "Thường có ưu đãi thuế, hấp dẫn nhà đầu tư cá nhân"
-    ],
-    "practicePrompt": {
-      "question": "Chính quyền một thành phố phát hành trái phiếu để huy động vốn xây dựng hệ thống cầu đường và trường học công cộng, trả lãi từ nguồn thu thuế địa phương. Loại trái phiếu này gọi là gì, và khác gì với trái phiếu chính phủ trung ương (treasury bond)?",
-      "options": [
-        "Đây là treasury bond, vì bất kỳ trái phiếu nào do cơ quan nhà nước phát hành đều được gọi chung là treasury bond",
-        "Municipal bond: do chính quyền địa phương phát hành để tài trợ một dự án công cộng cụ thể",
-        "Đây là corporate bond, vì chính quyền thành phố đang hoạt động như một doanh nghiệp khi phát hành trái phiếu",
-        "Không có sự khác biệt nào giữa municipal bond và treasury bond về bản chất hay rủi ro"
-      ],
-      "correct": 1,
-      "explanation": "Municipal bond: tài trợ hạ tầng công cộng ở cấp địa phương. Khác với treasury bond (chính phủ trung ương phát hành), municipal bond do chính quyền địa phương phát hành để tài trợ các dự án công cộng cụ thể, mức rủi ro phụ thuộc vào tình hình tài chính của địa phương đó."
-    },
-    "summary": {
-      "keyIdea": "Municipal bond: tài trợ hạ tầng công cộng ở cấp địa phương",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Hai loại chính: General Obligation (thuế chung) và Revenue bond (doanh thu dự án)"
-    },
-    "application": {
-      "title": "Tìm một municipal bond thực tế",
-      "message": "Bài học đã giải thích vì sao municipal bond gần như chưa phát triển tại VN - xem lại phần phía trên trước khi tự tra cứu, để không mất thời gian tìm một thứ chưa tồn tại phổ biến.",
-      "secondary": "Không có cũng không sao - việc đi tìm giúp bạn hiểu rõ hơn khái niệm general obligation và revenue bond."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Khi một thành phố ở Mỹ cần xây trường học mới hay sửa cầu đường, họ thường không chỉ dùng ngân sách thuế hiện có - họ phát hành municipal bond (muni), trái phiếu địa phương, để huy động vốn dài hạn từ nhà đầu tư."
+        "text": "Bài trước nói về mã chạy trên luồng chính. Bài này về thứ xảy ra trước đó: lượng mã ấy phải được tải về, giải nén và phân tích trước khi có dòng nào chạy."
       },
       {
         "type": "heading",
-        "text": "Hai loại municipal bond: General Obligation và Revenue"
+        "text": "Chi phí không nằm ở chỗ bạn nghĩ"
       },
       {
         "type": "paragraph",
-        "text": "General Obligation bond (GO bond) được đảm bảo bởi 'full faith and credit' (toàn bộ uy tín và quyền lực) của chính quyền địa phương - nguồn trả nợ đến từ ngân sách thuế chung, nên rủi ro tương đối thấp miễn là địa phương đó có nền tài khóa lành mạnh. Revenue bond thì khác: nguồn trả nợ chỉ đến từ dòng tiền của chính dự án cụ thể được tài trợ - ví dụ phí thu từ một cây cầu thu phí, doanh thu từ một bệnh viện công. Nếu dự án không tạo đủ doanh thu như kỳ vọng, revenue bond có rủi ro cao hơn hẳn GO bond, dù cả hai đều là trái phiếu 'chính quyền địa phương'."
-      },
-      {
-        "type": "heading",
-        "text": "Ưu đãi thuế: lý do muni bond hấp dẫn dù lãi suất thấp"
-      },
-      {
-        "type": "paragraph",
-        "text": "Điểm đặc biệt khiến municipal bond hấp dẫn nhà đầu tư Mỹ có thu nhập cao là lãi thu được thường được miễn thuế thu nhập liên bang (và đôi khi cả thuế bang nếu mua trái phiếu của chính bang mình cư trú). Vì lợi ích thuế này, nhà đầu tư chấp nhận lãi suất danh nghĩa thấp hơn hẳn so với trái phiếu doanh nghiệp cùng mức xếp hạng tín dụng - nhưng lợi suất SAU THUẾ thực tế của muni bond có thể tương đương hoặc thậm chí cao hơn. Đây là lý do thị trường municipal bond Mỹ trị giá hàng nghìn tỷ USD, phần lớn được nắm giữ bởi nhà đầu tư cá nhân có thu nhập chịu thuế suất cao."
-      },
-      {
-        "type": "list",
-        "items": [
-          "GO bond: trả nợ từ ngân sách thuế chung của địa phương",
-          "Revenue bond: trả nợ từ doanh thu của chính dự án được tài trợ - rủi ro cao hơn GO bond",
-          "Ưu đãi miễn thuế thu nhập liên bang là động lực chính khiến nhà đầu tư chấp nhận lãi suất danh nghĩa thấp hơn",
-          "Luôn so sánh lợi suất SAU THUẾ khi cân nhắc muni bond với các loại trái phiếu khác"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Thực tế tại Việt Nam: municipal bond gần như chưa phát triển"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Khác với Mỹ (nơi municipal bond là thị trường lớn, có ưu đãi thuế), Việt Nam chưa có thị trường trái phiếu chính quyền địa phương phát triển tương tự",
-          "Một số ít địa phương (như TP.HCM, Hà Nội) từng phát hành trái phiếu đô thị/công trình quy mô nhỏ để tài trợ hạ tầng, nhưng không phổ biến và không có thị trường thứ cấp thanh khoản như trái phiếu chính phủ",
-          "Phần lớn hạ tầng địa phương tại VN được tài trợ qua ngân sách nhà nước, ODA, hoặc trái phiếu chính phủ phát hành tập trung - không qua kênh municipal bond riêng"
-        ]
+        "text": "Trực giác cho rằng gói lớn thì tốn thời gian truyền. Trên mạng hiện nay, phần truyền thường nhỏ hơn phần xử lý - và phần truyền còn được bộ nhớ đệm che đi ở những lần sau, trong khi phần xử lý thì phải làm lại từ đầu ở mọi lần tải trang, ngay trên luồng chính."
       },
       {
         "type": "callout",
-        "label": "Vì sao bạn khó tìm thấy ví dụ",
-        "text": "Đây là quan sát thực tế của thị trường, không phải bạn tra cứu sai: municipal bond đúng nghĩa (do chính quyền địa phương phát hành, nguồn trả nợ từ ngân sách/thuế địa phương, giao dịch thứ cấp thường xuyên) gần như chưa tồn tại phổ biến tại Việt Nam ở thời điểm hiện tại."
+        "label": "Bộ nhớ đệm không cứu được",
+        "text": "Ngay cả khi bộ nhớ đệm hoạt động hoàn hảo, thiết bị vẫn phân tích và chạy lại toàn bộ lượng mã đó mỗi lần người dùng mở trang. Đó là lý do kích thước gói vẫn quan trọng với người quay lại, không chỉ với người tới lần đầu."
+      },
+      {
+        "type": "heading",
+        "text": "Cách duy nhất chạm được phần đắt nhất"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nén tốt hơn, gộp tệp, dùng mạng phân phối nội dung - tất cả đều chỉ tác động tới phần truyền. Khoản tiết kiệm duy nhất chạm vào phần phân tích và chạy là không tải mã ấy về ngay từ đầu: chia gói theo màn hình, và để phần còn lại tải khi người dùng thật sự đi tới đó."
+      },
+      {
+        "type": "callout",
+        "label": "Đặt một ngưỡng trong quy trình dựng",
+        "text": "Ba mươi kilobyte cho một tính năng cần thiết là hợp lý ở mỗi lần một. Vấn đề là tổng của một trăm quyết định hợp lý, và sự cảnh giác của từng người không chặn được nó. Một ngưỡng tự động thì có."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Mã không được tải về là mã không phải phân tích. Đó là khoản tiết kiệm duy nhất không có nhược điểm nào.",
+          "Bài sau về câu hỏi ngược lại với cả chặng này: khi nào thì nên dừng tối ưu."
+        ]
       }
     ]
   },
   {
     "id": 158,
-    "slug": "yield-curve-la-gi",
-    "title": "Tự học Tài chính Day 158: Yield Curve là gì?",
-    "subtitle": "Đường cong nối các mức lợi suất theo từng kỳ hạn khác nhau",
-    "duration": "7 phút",
+    "slug": "khi-nao-nen-dung-toi-uu",
+    "title": "Khi nào nên dừng: tối ưu cũng có chi phí",
+    "subtitle": "Mã nhanh hơn mà không ai đọc nổi là một khoản nợ, không phải một thành tựu.",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "📘",
-    "openingQuestion": "Bình thường, trái phiếu kỳ hạn 10 năm có lợi suất cao hơn hay thấp hơn trái phiếu kỳ hạn 1 năm?",
+    "emoji": "🛑",
+    "track": "professional",
+    "whyItMatters": "Chặng này đã dạy nhiều cách làm hệ thống nhanh hơn. Bài này về câu hỏi quan trọng không kém: khi nào thì nhanh hơn không còn đáng giá nữa.",
+    "openingQuestion": "Một thao tác mất chín mươi mili giây và bạn có thể đưa nó xuống bốn mươi. Nên làm không?",
     "openingOptions": [
-      "Thấp hơn, vì kỳ hạn ngắn rủi ro cao hơn",
-      "Không có quy luật nào",
-      "Cao hơn - nhà đầu tư đòi bù đắp thêm cho rủi ro nắm giữ lâu hơn (lãi suất, lạm phát biến động khó lường)",
-      "Bằng nhau luôn"
+      "Còn tuỳ: cần biết người dùng có cảm nhận được khác biệt ấy hay không",
+      "Nên, vì giảm hơn một nửa thời gian là cải thiện rất đáng kể",
+      "Không nên, vì cả hai con số đều đã nằm dưới ngưỡng một phần mười của giây",
+      "Nên, vì mọi cải thiện hiệu năng đều tích luỹ theo thời gian"
     ],
-    "correctOption": 2,
-    "explanation": "Đường cong lợi suất vẽ lợi suất theo kỳ hạn của cùng một nhóm rủi ro, thường là trái phiếu chính phủ. Dạng dốc lên là bình thường vì giữ tiền lâu hơn thì chịu nhiều bất định hơn về lạm phát và lãi suất, nên đòi bù nhiều hơn. Điều làm đường cong này đáng theo dõi là nó không phải một dự báo của ai cả - nó là mức giá mà thị trường thực sự đang giao dịch, tức là kỳ vọng có tiền đặt phía sau.",
+    "correctOption": 0,
+    "explanation": "Tỷ lệ phần trăm không trả lời được câu hỏi này. Nếu thao tác ấy nằm trong một vòng lặp chạy một nghìn lần thì năm mươi mili giây tiết kiệm được nhân lên thành năm mươi giây và rất đáng làm. Nếu nó là một cú bấm đơn lẻ thì cả hai con số đều nằm dưới ngưỡng người dùng nhận ra, và công sức ấy nên dành cho chỗ khác. Câu hỏi đúng luôn là ai được lợi và lợi bao nhiêu, chứ không phải cải thiện được mấy phần trăm.",
     "diagram": [
       {
-        "label": "Lấy trái phiếu cùng mức rủi ro, khác kỳ hạn",
+        "label": "Đo cải thiện: bao nhiêu mili giây",
         "arrow": true
       },
       {
-        "label": "Vẽ lợi suất theo kỳ hạn",
+        "label": "Nhân với số lần xảy ra thật sự",
         "arrow": true
       },
       {
-        "label": "Dốc lên là bình thường: giữ lâu hơn đòi bù nhiều hơn",
+        "label": "So với chi phí: độ phức tạp thêm vào và rủi ro",
         "arrow": true
       },
       {
-        "label": "Phẳng hoặc đảo ngược là thị trường đang đổi kỳ vọng"
+        "label": "Dưới ngưỡng cảm nhận và không nhân lên thì dừng"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Fed và đường cong lợi suất Mỹ",
-      "description": "Cục Dự trữ Liên bang Mỹ (Fed) theo dõi sát yield curve của Treasury để đánh giá kỳ vọng thị trường về lãi suất và tăng trưởng kinh tế tương lai."
+      "company": "Nhanh hơn mười lăm phần trăm, không ai sửa nổi",
+      "description": "Một hàm được viết lại theo cách tối ưu tới mức không còn ai trong đội hiểu nó. Sáu tháng sau, một lỗi nghiệp vụ nằm trong đó mất ba ngày để tìm ra thay vì nửa giờ."
+    },
+    "keyTakeaways": [
+      "Tính lợi ích bằng thời gian tuyệt đối nhân số lần, không bằng phần trăm.",
+      "Chi phí của tối ưu là độ phức tạp, và nó được trả mãi về sau.",
+      "Dưới ngưỡng người dùng cảm nhận được thì cải thiện thêm không tạo giá trị.",
+      "Viết mục tiêu hiệu năng ra trước, để biết lúc nào đã đạt và dừng lại."
+    ],
+    "summary": {
+      "keyIdea": "Tối ưu là một khoản đầu tư có chi phí, nên nó có điểm dừng.",
+      "formula": "Lợi ích = thời gian tiết kiệm × số lần xảy ra.",
+      "commonMistake": "Đánh giá một tối ưu bằng tỷ lệ phần trăm cải thiện."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Viết ra mục tiêu hiệu năng cho thao tác quan trọng nhất của bạn bằng một con số cụ thể. Khi đạt được nó, dừng lại và chuyển sang việc khác."
+    },
+    "practicePrompt": {
+      "question": "Vì sao độ phức tạp thêm vào là một chi phí thật?",
+      "options": [
+        "Vì nó làm mọi thay đổi và mọi lần sửa lỗi về sau tốn kém hơn",
+        "Vì mã phức tạp thường chạy chậm hơn mã đơn giản trên máy mới",
+        "Vì các công cụ phân tích mã sẽ cảnh báo về nó liên tục",
+        "Vì nó làm tăng kích thước của gói mã được tải về"
+      ],
+      "correct": 0,
+      "explanation": "Khoản này được trả dần trong nhiều năm bởi những người chưa từng tham gia quyết định ban đầu, nên nó rất dễ bị bỏ qua khi cân nhắc. Một lỗi mất ba ngày để tìm thay vì nửa giờ là cái giá cụ thể của nó."
     },
     "quiz": [
       {
-        "question": "Đường cong lợi suất bị 'đảo ngược' (inverted yield curve) - khi lãi suất ngắn hạn cao hơn dài hạn - thường báo hiệu điều gì?",
+        "question": "Vì sao tỷ lệ phần trăm cải thiện là thước đo tồi?",
         "options": [
-          "Lạm phát sắp giảm về 0",
-          "Không có ý nghĩa dự báo gì",
-          "Nền kinh tế đang tăng trưởng rất mạnh",
-          "Thị trường lo ngại suy thoái kinh tế trong tương lai gần - đây là một trong những chỉ báo suy thoái đáng tin cậy nhất lịch sử"
-        ],
-        "correct": 3,
-        "explanation": "Inverted yield curve xảy ra khi nhà đầu tư kỳ vọng ngân hàng trung ương sẽ phải hạ lãi suất trong tương lai để cứu nền kinh tế đang suy yếu, nên đổ xô mua trái phiếu dài hạn đẩy lợi suất dài hạn xuống thấp hơn ngắn hạn. Lịch sử Mỹ: gần như mọi lần đảo ngược đều đi trước suy thoái 6-24 tháng."
-      },
-      {
-        "question": "Nếu yield curve có dạng \"hình chữ U\" bất thường (lợi suất ngắn hạn cao, giữa kỳ thấp, dài hạn lại cao trở lại), điều này có thể phản ánh sự pha trộn của những kỳ vọng nào từ thị trường?",
-        "options": [
-          "Có thể phản ánh kỳ vọng hỗn hợp: lãi suất ngắn hạn cao do chính sách thắt chặt hiện tại, lợi suất trung hạn thấp phản ánh kỳ vọng suy thoái và cắt giảm lãi suất, trong khi lợi suất dài hạn tăng trở lại phản ánh kỳ vọng lạm phát hoặc tăng trưởng phục hồi trong dài hạn hơn",
-          "Hình dạng yield curve luôn đơn giản và dễ dự đoán",
-          "Yield curve không bao giờ có hình dạng phức tạp như vậy",
-          "Yield curve chỉ có thể có hai dạng: bình thường hoặc đảo ngược hoàn toàn"
+          "Vì nó không cho biết cải thiện ấy có ai nhận ra hay không",
+          "Vì nó thay đổi tuỳ theo phần cứng dùng để đo",
+          "Vì nó không tính tới thời gian bỏ ra để tối ưu",
+          "Vì nó chỉ đúng khi so hai lần đo trong cùng một điều kiện đo"
         ],
         "correct": 0,
-        "explanation": "Yield curve trong thực tế có thể có nhiều hình dạng phức tạp hơn hai trạng thái đơn giản (bình thường/đảo ngược) - mỗi đoạn của đường cong phản ánh kỳ vọng thị trường về các giai đoạn kinh tế khác nhau trong tương lai, đòi hỏi phân tích tinh tế hơn là chỉ nhìn độ dốc tổng thể."
+        "explanation": "Giảm một nửa từ chín mươi xuống bốn mươi mili giây nghe rất ấn tượng, và với một cú bấm đơn lẻ thì không người dùng nào phân biệt được. Con số tuyệt đối nhân với số lần xảy ra mới nói lên giá trị thật."
+      },
+      {
+        "question": "Khi nào một cải thiện nhỏ vẫn rất đáng làm?",
+        "options": [
+          "Khi thao tác ấy được lặp lại rất nhiều lần trong một quy trình",
+          "Khi nó nằm trong phần mã mới được viết gần đây",
+          "Khi kỹ thuật tối ưu đó dễ áp dụng và không tốn nhiều thời gian",
+          "Khi nó giúp giảm mức sử dụng bộ nhớ của tiến trình"
+        ],
+        "correct": 0,
+        "explanation": "Năm mươi mili giây nhân một nghìn lần là năm mươi giây, một khác biệt hoàn toàn nhìn thấy được. Đó là lý do phải nhân trước khi quyết định thay vì nhìn con số một lần chạy."
+      },
+      {
+        "question": "Chi phí lớn nhất của một tối ưu phức tạp là gì?",
+        "options": [
+          "Mọi thay đổi và mọi lần sửa lỗi về sau đều tốn kém hơn",
+          "Thời gian mà đội bỏ ra để thực hiện việc tối ưu đó",
+          "Nguy cơ tối ưu ấy không còn hiệu quả trên phần cứng mới",
+          "Việc phải viết thêm nhiều bài kiểm thử cho phần mã mới"
+        ],
+        "correct": 0,
+        "explanation": "Thời gian thực hiện là chi phí trả một lần và nhìn thấy được. Khoản kia trả dần trong nhiều năm bởi những người không tham gia quyết định ban đầu, và tổng của nó thường lớn hơn nhiều."
+      },
+      {
+        "question": "Vì sao nên viết mục tiêu hiệu năng ra bằng một con số cụ thể?",
+        "options": [
+          "Vì không có nó thì không có thời điểm nào được coi là đủ tốt",
+          "Vì các công cụ giám sát cần một ngưỡng để phát cảnh báo",
+          "Vì nó giúp so sánh hệ thống của bạn với các sản phẩm khác",
+          "Vì nó là yêu cầu bắt buộc trong hầu hết quy trình phát triển"
+        ],
+        "correct": 0,
+        "explanation": "Tối ưu là loại công việc luôn còn chỗ để làm tiếp, nên nếu không có điểm dừng viết sẵn thì nó ăn hết thời gian dành cho việc khác. Một con số cụ thể biến nó thành một mục tiêu có thể hoàn thành."
+      },
+      {
+        "question": "Ngưỡng cảm nhận của người dùng ảnh hưởng thế nào tới quyết định?",
+        "options": [
+          "Cải thiện nằm hoàn toàn dưới ngưỡng ấy không tạo ra giá trị nào",
+          "Cải thiện dưới ngưỡng ấy vẫn có giá trị nhưng rất khó đo được",
+          "Ngưỡng ấy chỉ áp dụng cho giao diện chứ không cho máy chủ",
+          "Ngưỡng ấy khác nhau nhiều giữa các nhóm người dùng"
+        ],
+        "correct": 0,
+        "explanation": "Nếu không ai phân biệt được trước và sau, thì bạn vừa thêm độ phức tạp để đổi lấy con số trên bảng theo dõi. Ngoại lệ duy nhất là khi thao tác ấy được nhân lên nhiều lần."
       }
     ],
-    "keyTakeaways": [
-      "Yield curve bình thường: dốc lên, kỳ hạn dài lợi suất cao hơn",
-      "Yield curve đảo ngược: tín hiệu cảnh báo suy thoái kinh tế mạnh",
-      "Là công cụ vĩ mô được ngân hàng trung ương và nhà đầu tư theo dõi sát nhất"
-    ],
-    "practicePrompt": {
-      "question": "Bạn quan sát lợi suất trái phiếu chính phủ: kỳ hạn 1 năm = 3%, kỳ hạn 5 năm = 4,5%, kỳ hạn 10 năm = 5,5%. Hình dạng đường cong lợi suất (yield curve) này là gì, và đây có phải hình dạng 'bình thường' được kỳ vọng trong điều kiện kinh tế ổn định không?",
-      "options": [
-        "Đây là yield curve đảo ngược (inverted), thường là tín hiệu cảnh báo suy thoái kinh tế sắp tới",
-        "Yield curve bình thường thì dốc lên, vì kỳ hạn dài đòi hỏi phần bù rủi ro cao hơn so với kỳ hạn ngắn",
-        "Đây là yield curve phẳng (flat), cho thấy thị trường không có kỳ vọng rõ ràng về tương lai kinh tế",
-        "Hình dạng yield curve không có ý nghĩa phân tích gì, chỉ phản ánh sự khác biệt ngẫu nhiên giữa các kỳ hạn"
-      ],
-      "correct": 1,
-      "explanation": "Yield curve bình thường: dốc lên, kỳ hạn dài lợi suất cao hơn. Đây là hình dạng được kỳ vọng trong điều kiện kinh tế ổn định vì nhà đầu tư đòi hỏi phần bù rủi ro cao hơn cho việc khóa vốn dài hạn (rủi ro lãi suất và lạm phát tăng trong tương lai xa)."
-    },
-    "summary": {
-      "keyIdea": "Yield curve bình thường: dốc lên, kỳ hạn dài lợi suất cao hơn",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Yield curve đảo ngược: tín hiệu cảnh báo suy thoái kinh tế mạnh"
-    },
-    "application": {
-      "title": "Vẽ yield curve của chính bạn",
-      "message": "Bài học đã có 2 điểm dữ liệu thật (2 năm: 3,27%, 10 năm: 4,11%) cho thấy đường cong đang dốc lên - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự tra thêm 2 kỳ hạn khác để vẽ đường cong đầy đủ.",
-      "secondary": "Đây chính là công cụ mà giới đầu tư chuyên nghiệp nhìn vào mỗi ngày."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Trước khi đọc được các tín hiệu vĩ mô phức tạp từ đường cong lợi suất, cần hiểu bản chất cơ học của nó trước: yield curve đơn giản là một đồ thị, nối lợi suất của các trái phiếu cùng một loại rủi ro (ví dụ đều là trái phiếu chính phủ) nhưng khác nhau về kỳ hạn - từ 1 tháng đến 30 năm."
+        "text": "Cả chặng này nói về cách làm nhanh hơn. Bài này về câu hỏi ngược lại, và nó quan trọng không kém: khi nào thì nhanh hơn không còn đáng giá."
       },
       {
         "type": "heading",
-        "text": "Vì sao đường cong 'bình thường' lại dốc lên"
+        "text": "Phần trăm nói dối"
       },
       {
         "type": "paragraph",
-        "text": "Ở trạng thái bình thường, yield curve dốc lên: kỳ hạn càng dài, lợi suất càng cao. Lý do đơn giản là nhà đầu tư gánh nhiều rủi ro hơn khi khóa vốn trong thời gian dài hơn - rủi ro lãi suất biến động (nếu lãi suất tăng trong lúc bạn đang giữ trái phiếu dài hạn, giá trị nó giảm mạnh hơn) và rủi ro lạm phát bào mòn sức mua trong một khoảng thời gian dài hơn. Khoản lợi suất tăng thêm để bù đắp cho những rủi ro này gọi là term premium (phần bù kỳ hạn). Cục Dự trữ Liên bang Mỹ theo dõi sát yield curve của Treasury hàng ngày để đánh giá kỳ vọng thị trường về lãi suất và tăng trưởng tương lai."
+        "text": "Giảm từ chín mươi xuống bốn mươi mili giây nghe như một chiến thắng lớn. Với một cú bấm đơn lẻ, không người dùng nào phân biệt được. Với một thao tác lặp một nghìn lần trong quy trình xử lý nền, đó là năm mươi giây và rất đáng làm. Cùng một tỷ lệ, hai kết luận trái ngược."
       },
       {
-        "type": "heading",
-        "text": "Khi đường cong đảo ngược"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khi lãi suất ngắn hạn cao hơn dài hạn - gọi là inverted yield curve - đó là một hiện tượng bất thường so với trạng thái tự nhiên. Nó xảy ra khi nhà đầu tư kỳ vọng ngân hàng trung ương sẽ phải hạ lãi suất trong tương lai để cứu một nền kinh tế đang suy yếu, nên đổ xô mua trái phiếu dài hạn ngay bây giờ để khóa lợi suất hiện tại, đẩy lợi suất dài hạn xuống thấp hơn ngắn hạn. Đây là một trong những chỉ báo suy thoái đáng tin cậy nhất trong lịch sử tài chính Mỹ - gần như mọi lần đảo ngược đều đi trước suy thoái thực sự từ 6 đến 24 tháng."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Yield curve: đồ thị lợi suất theo kỳ hạn, cùng một loại rủi ro tín dụng (thường là trái phiếu chính phủ)",
-          "Normal curve: dốc lên, phản ánh term premium bù đắp rủi ro thời gian",
-          "Inverted curve: lãi suất ngắn hạn cao hơn dài hạn, tín hiệu cảnh báo suy thoái mạnh",
-          "Trong thực tế, yield curve có thể có hình dạng phức tạp hơn (như hình chữ U) phản ánh kỳ vọng hỗn hợp ở từng giai đoạn thời gian khác nhau"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ thật: vẽ yield curve Việt Nam với 2 điểm dữ liệu thật"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kỳ hạn 2 năm: lợi suất khoảng 3,27%/năm",
-          "Kỳ hạn 10 năm: lợi suất khoảng 4,11%/năm",
-          "Với 2 điểm này, đường cong đang dốc lên (upward sloping) - kỳ hạn dài hơn đòi hỏi lợi suất cao hơn, đúng với hình dạng \"bình thường\" của yield curve trong phần lớn thời gian, phản ánh kỳ vọng lạm phát/tăng trưởng dài hạn"
+        "type": "conceptTable",
+        "title": "Ba con số trước khi quyết định",
+        "subtitle": "Thiếu bất kỳ con số nào cũng dẫn tới sai lựa chọn",
+        "concepts": [
+          {
+            "vi": "Thời gian tiết kiệm",
+            "en": "absolute gain",
+            "def": "Bằng mili giây, không bằng phần trăm. Đây là con số duy nhất so được với ngưỡng cảm nhận."
+          },
+          {
+            "vi": "Số lần xảy ra",
+            "en": "frequency",
+            "def": "Nhân với con số trên. Một cải thiện nhỏ lặp lại nhiều lần thắng một cải thiện lớn xảy ra một lần."
+          },
+          {
+            "vi": "Độ phức tạp thêm",
+            "en": "complexity cost",
+            "def": "Trả dần trong nhiều năm bởi những người chưa tham gia quyết định. Chi phí dễ bị bỏ qua nhất."
+          }
         ]
       },
       {
         "type": "callout",
-        "label": "Cách tự vẽ đầy đủ",
-        "text": "Tra thêm lợi suất kỳ hạn 5 năm và 15 năm trên VBMA (mục Kết quả đấu thầu Trái phiếu Chính phủ), nối 4 điểm lại thành đường cong hoàn chỉnh - nếu đường cong phẳng dần hoặc đảo ngược (kỳ hạn ngắn cao hơn dài), đó thường là tín hiệu thị trường lo ngại suy thoái."
+        "label": "Viết điểm dừng ra trước",
+        "text": "Tối ưu là loại việc luôn còn chỗ làm tiếp. Không có một con số mục tiêu viết sẵn thì không có thời điểm nào được coi là đủ tốt, và nó sẽ ăn hết thời gian dành cho việc khác."
+      },
+      {
+        "type": "paragraph",
+        "text": "Có một ngoại lệ đáng nhớ: mã ở đường nóng của một hệ thống lớn có thể xứng đáng với độ phức tạp cao, miễn là nó được cô lập rõ ràng, có ghi chú giải thích vì sao, và có bài kiểm thử bảo vệ hành vi. Điều kiện ấy làm cho khoản nợ được kiểm soát chứ không lan ra."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Mã nhanh hơn mười lăm phần trăm mà không ai sửa nổi là một khoản nợ đội bạn sẽ trả trong nhiều năm.",
+          "Bài sau về một chiều đo mà chặng này chưa chạm tới: tiền."
+        ]
       }
     ]
   },
   {
     "id": 159,
-    "slug": "case-doc-duong-cong-loi-suat",
-    "title": "Tự học Tài chính Day 159: Case nhỏ - Đọc đường cong lợi suất",
-    "subtitle": "Áp dụng thực tế: nhìn yield curve đoán chu kỳ kinh tế",
-    "duration": "7 phút",
-    "difficulty": "Khó",
-    "emoji": "🏢",
-    "openingQuestion": "Bạn thấy lợi suất trái phiếu 2 năm là 4.8%, lợi suất trái phiếu 10 năm là 4.2%. Tín hiệu này nói gì với bạn?",
+    "slug": "chi-phi-ha-tang-nhu-mot-chi-so",
+    "title": "Tiền cũng là một chỉ số hiệu năng",
+    "subtitle": "Nhanh hơn bằng cách thuê máy to hơn không phải tối ưu, đó là hoãn hoá đơn.",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "💳",
+    "track": "professional",
+    "whyItMatters": "Trên hạ tầng thuê, mọi lãng phí hiệu năng đều biến thành một khoản chi hằng tháng. Theo dõi chi phí trên mỗi đơn vị công việc biến hiệu năng từ chuyện kỹ thuật thành một con số cả công ty hiểu.",
+    "openingQuestion": "Hoá đơn hạ tầng tăng gấp đôi trong khi số người dùng tăng mười phần trăm. Nên xem con số nào?",
     "openingOptions": [
-      "Lợi suất luôn phải tăng dần theo kỳ hạn, đây là dữ liệu sai",
-      "Inverted yield curve - thị trường lo ngại suy thoái",
-      "Không có ý nghĩa gì, chỉ là nhiễu thị trường",
-      "Kinh tế đang bùng nổ, nên đầu tư mạnh vào cổ phiếu chu kỳ"
+      "Chi phí trên mỗi đơn vị công việc, để biết hiệu quả đã xấu đi chỗ nào",
+      "Tổng chi phí theo từng loại dịch vụ được sử dụng",
+      "Số lượng máy chủ đang chạy so với tháng trước",
+      "Mức sử dụng trung bình của các tài nguyên đã thuê"
     ],
-    "correctOption": 1,
-    "explanation": "Đọc đường cong lợi suất là đọc kỳ vọng chứ không phải đọc dự báo của một tổ chức nào. Khi lợi suất kỳ hạn hai năm vượt kỳ hạn mười năm, thị trường đang nói rằng mặt bằng lãi suất hiện tại quá cao so với sức chịu đựng của nền kinh tế và sẽ phải hạ. Điều cần cẩn trọng khi dùng tín hiệu này là độ trễ: khoảng cách từ lúc đảo ngược tới lúc suy thoái đã dao động từ vài tháng tới hơn hai năm.",
+    "correctOption": 0,
+    "explanation": "Tổng chi phí tăng có thể vì công việc tăng, và điều đó bình thường. Con số nói lên vấn đề là chi phí chia cho lượng công việc thật sự làm được - mỗi yêu cầu, mỗi đơn hàng, mỗi người dùng hoạt động. Nếu con số ấy tăng thì hệ thống đang trở nên kém hiệu quả, và bạn có thể so nó giữa các tháng, giữa các dịch vụ, giữa các tính năng. Ba lựa chọn còn lại đều là dữ liệu đầu vào hữu ích nhưng không cái nào tự nó phân biệt được tăng trưởng với lãng phí.",
     "diagram": [
       {
-        "label": "So lợi suất kỳ hạn 2 năm với 10 năm",
+        "label": "Tổng chi phí tăng - chưa nói lên điều gì",
         "arrow": true
       },
       {
-        "label": "Ngắn hạn cao hơn dài hạn: đường cong đảo ngược",
+        "label": "Chia cho lượng công việc làm được",
         "arrow": true
       },
       {
-        "label": "Thị trường đang đặt cược lãi suất sẽ phải hạ",
+        "label": "Chi phí đơn vị tăng = hiệu quả xấu đi",
         "arrow": true
       },
       {
-        "label": "Lịch sử: tín hiệu này thường đi trước suy thoái 12-18 tháng"
+        "label": "Chi phí đơn vị giảm = tăng trưởng lành mạnh"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Mỹ 2022-2023",
-      "description": "Yield curve Mỹ đảo ngược sâu nhất trong hơn 40 năm giai đoạn 2022-2023 khi Fed tăng lãi suất mạnh để chống lạm phát - nhiều nhà kinh tế học dự báo suy thoái dựa trên tín hiệu này."
+      "company": "Thuê máy to hơn thay vì sửa",
+      "description": "Một truy vấn kém hiệu quả được xử lý bằng cách nâng cấp cơ sở dữ liệu lên gấp đôi. Hệ thống nhanh trở lại, hoá đơn tăng vĩnh viễn, và truy vấn ấy vẫn nằm nguyên đó chờ lần quá tải sau."
+    },
+    "keyTakeaways": [
+      "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
+      "Nâng cấp phần cứng là cách mua thời gian, không phải cách sửa.",
+      "Gắn chi phí về từng dịch vụ và từng tính năng thì mới quyết định được.",
+      "Lãng phí hiệu năng trên hạ tầng thuê là một khoản chi trả hằng tháng."
+    ],
+    "summary": {
+      "keyIdea": "Chi phí trên mỗi đơn vị công việc là chỉ số hiệu năng cả công ty đọc được.",
+      "formula": "Chi phí đơn vị = tổng chi phí ÷ lượng công việc làm được.",
+      "commonMistake": "Nâng cấp phần cứng rồi coi vấn đề đã được giải quyết."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chia hoá đơn hạ tầng tháng trước cho tổng số yêu cầu đã phục vụ, rồi làm điều đó cho ba tháng gần nhất. Xu hướng của con số ấy quan trọng hơn giá trị của nó."
+    },
+    "practicePrompt": {
+      "question": "Vì sao nâng cấp phần cứng không phải là cách sửa?",
+      "options": [
+        "Vì nguyên nhân vẫn còn đó và sẽ quay lại ở mức tải cao hơn",
+        "Vì phần cứng mạnh hơn không luôn làm mã chạy nhanh hơn",
+        "Vì việc nâng cấp đòi hỏi phải dừng dịch vụ trong một khoảng thời gian",
+        "Vì có giới hạn về kích thước máy chủ mà nhà cung cấp hỗ trợ"
+      ],
+      "correct": 0,
+      "explanation": "Bạn mua được thời gian, và đôi khi đó chính xác là lựa chọn đúng khi đang có sự cố. Nhưng nếu không có ai quay lại sửa nguyên nhân thì bạn đã đổi một vấn đề kỹ thuật lấy một khoản chi vĩnh viễn, và vấn đề ấy vẫn chờ ở mức tải cao hơn."
     },
     "quiz": [
       {
-        "question": "Nếu bạn là nhà đầu tư trái phiếu và tin rằng lãi suất sắp giảm mạnh, chiến lược nào hợp lý?",
+        "question": "Vì sao tổng chi phí tăng chưa nói lên vấn đề?",
         "options": [
-          "Không có chiến lược nào tối ưu",
-          "Bán hết trái phiếu, chuyển sang tiền mặt",
-          "Mua trái phiếu kỳ hạn dài - khi lãi suất giảm, giá trái phiếu dài hạn tăng mạnh hơn nhiều so với ngắn hạn (do duration cao hơn)",
-          "Chỉ mua trái phiếu kỳ hạn cực ngắn"
+          "Vì nó có thể chỉ phản ánh việc lượng công việc đã tăng lên",
+          "Vì giá của nhà cung cấp thay đổi theo từng tháng",
+          "Vì các khoản chi thường được ghi nhận trễ một chu kỳ",
+          "Vì nó gộp chung nhiều loại dịch vụ khác nhau vào một con số"
         ],
-        "correct": 2,
-        "explanation": "Trái phiếu kỳ hạn dài có duration cao hơn → nhạy cảm hơn với thay đổi lãi suất. Nếu dự đoán đúng lãi suất giảm, giá trái phiếu dài hạn sẽ tăng mạnh hơn, mang lại lợi nhuận vốn (capital gain) lớn hơn trái phiếu ngắn hạn."
+        "correct": 0,
+        "explanation": "Một hệ thống phục vụ gấp đôi số người dùng thì tốn nhiều tiền hơn là điều bình thường. Chỉ khi chia cho lượng công việc thì bạn mới phân biệt được tăng trưởng với lãng phí."
       },
       {
-        "question": "Nếu bạn thấy yield curve gần như hoàn toàn PHẲNG (lợi suất các kỳ hạn gần bằng nhau) thay vì dốc lên hay đảo ngược rõ ràng, điều này thường phản ánh giai đoạn nào của chu kỳ kinh tế?",
+        "question": "Vì sao cần gắn chi phí về từng dịch vụ và tính năng?",
         "options": [
-          "Chỉ xảy ra khi nền kinh tế đang tăng trưởng rất mạnh",
-          "Yield curve phẳng không có ý nghĩa phân tích nào",
-          "Luôn là dấu hiệu chắc chắn của suy thoái sắp xảy ra",
-          "Thường là giai đoạn chuyển tiếp - thị trường không chắc chắn về hướng đi tiếp theo của lãi suất và kinh tế, có thể đang ở điểm \"đỉnh\" của chu kỳ thắt chặt tiền tệ trước khi chuyển sang nới lỏng hoặc tiếp tục thắt chặt tùy diễn biến lạm phát"
+          "Vì không biết tiền đi đâu thì không quyết định được nên sửa chỗ nào",
+          "Vì nhà cung cấp yêu cầu phân loại chi phí theo từng mục đích sử dụng cụ thể",
+          "Vì mỗi đội cần chịu trách nhiệm về phần chi phí của riêng mình",
+          "Vì việc phân bổ giúp dự báo chi phí của tháng tiếp theo"
         ],
-        "correct": 3,
-        "explanation": "Yield curve phẳng thường xuất hiện ở giai đoạn chuyển tiếp giữa chu kỳ thắt chặt và nới lỏng tiền tệ - thị trường đang \"cân bằng\" giữa các kịch bản khác nhau, khiến nó trở thành một tín hiệu mơ hồ hơn (cần kết hợp thêm dữ liệu khác) so với yield curve dốc rõ ràng hoặc đảo ngược sâu."
+        "correct": 0,
+        "explanation": "Một hoá đơn tổng chỉ cho biết có vấn đề chứ không cho biết vấn đề ở đâu. Cùng logic với hồ sơ hiệu năng ở đầu chặng: phải chia nhỏ mới có việc để làm."
+      },
+      {
+        "question": "Khi nào nâng cấp phần cứng là lựa chọn đúng?",
+        "options": [
+          "Khi đang có sự cố và cần mua thời gian để sửa nguyên nhân sau",
+          "Khi chi phí nâng cấp thấp hơn công sức bỏ ra để tối ưu mã",
+          "Khi hệ thống đã được tối ưu tới giới hạn của thiết kế hiện tại",
+          "Khi đội không có ai đủ kinh nghiệm để phân tích hiệu năng"
+        ],
+        "correct": 0,
+        "explanation": "Trong lúc sự cố thì phục hồi dịch vụ quan trọng hơn tìm nguyên nhân, và tiền là cách nhanh nhất. Điều biến nó thành sai lầm là không có ai quay lại sửa sau khi mọi thứ đã yên."
+      },
+      {
+        "question": "Lãng phí hiệu năng trên hạ tầng thuê khác gì trên máy tự vận hành?",
+        "options": [
+          "Nó biến thành một khoản chi trả đều đặn hằng tháng và nhìn thấy được",
+          "Nó gây ảnh hưởng lớn hơn tới độ trễ mà người dùng cảm nhận",
+          "Nó khó phát hiện hơn vì hạ tầng thuê không cho xem các chỉ số chi tiết",
+          "Nó chỉ xuất hiện khi lượng tải vượt quá mức đã đăng ký trước"
+        ],
+        "correct": 0,
+        "explanation": "Trên máy đã mua thì lãng phí là năng lực nhàn rỗi và gần như vô hình. Trên hạ tầng thuê thì nó có một con số cụ thể trên hoá đơn mỗi tháng, và đó là lý do hiệu năng dễ được ưu tiên hơn ở đây."
+      },
+      {
+        "question": "Xu hướng của chi phí đơn vị nói lên điều gì?",
+        "options": [
+          "Hệ thống đang hiệu quả hơn hay kém hiệu quả hơn theo thời gian",
+          "Sản phẩm đang tăng trưởng nhanh hay chậm lại",
+          "Nhà cung cấp hạ tầng có đang tăng giá dịch vụ hay không",
+          "Đội đang đầu tư nhiều hay ít cho công việc tối ưu"
+        ],
+        "correct": 0,
+        "explanation": "Đó là chỉ số duy nhất trong danh sách này tách được hiệu quả kỹ thuật khỏi quy mô kinh doanh. Giá trị tuyệt đối của nó ít có ý nghĩa; hướng đi của nó thì rất nhiều."
       }
     ],
-    "keyTakeaways": [
-      "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-      "Inverted curve: tín hiệu cảnh báo kinh tế mạnh, không nên bỏ qua",
-      "Duration cao hơn khuếch đại cả lãi và lỗ khi lãi suất biến động"
-    ],
-    "practicePrompt": {
-      "question": "Bạn nhận thấy lợi suất trái phiếu chính phủ kỳ hạn 2 năm đang cao hơn lợi suất kỳ hạn 10 năm - một hiện tượng bất thường so với thông thường. Làm sao bạn 'đọc' được tín hiệu kinh tế từ hiện tượng này, và bước phân tích đó gọi là gì?",
-      "options": [
-        "Đây chỉ là sự trùng hợp ngẫu nhiên giữa hai kỳ hạn, không mang ý nghĩa phân tích kinh tế nào",
-        "Lợi suất ngắn vượt dài hạn là đường cong đảo ngược, thường báo hiệu kỳ vọng suy thoái",
-        "Hiện tượng này luôn có nghĩa là lạm phát sắp tăng mạnh trong ngắn hạn, không liên quan đến suy thoái",
-        "Không có cách nào để phân tích ý nghĩa kinh tế từ sự chênh lệch lợi suất giữa các kỳ hạn khác nhau"
-      ],
-      "correct": 1,
-      "explanation": "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng. Yield curve đảo ngược (kỳ hạn ngắn cao hơn dài hạn) đã báo hiệu suy thoái với độ chính xác lịch sử cao (~80%) - đây là một trong những chỉ báo kinh tế được theo dõi sát nhất bởi nhà đầu tư và ngân hàng trung ương."
-    },
-    "summary": {
-      "keyIdea": "Đọc yield curve: so sánh lợi suất ngắn hạn và dài hạn để nhận diện xu hướng",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Inverted curve: tín hiệu cảnh báo kinh tế mạnh, không nên bỏ qua"
-    },
-    "application": {
-      "title": "Đọc yield curve hiện tại",
-      "message": "Tra lợi suất kỳ hạn 2 năm và 10 năm của trái phiếu chính phủ Mỹ ngay lúc này, so sánh xem cái nào cao hơn, và tự kết luận thị trường đang kỳ vọng gì về kinh tế sắp tới.",
-      "secondary": "Đây là bài tập chỉ mất vài phút nhưng cho bạn góc nhìn vĩ mô thực tế."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Hiểu lý thuyết về yield curve là một chuyện - áp dụng nó để đọc chu kỳ kinh tế thực tế là chuyện khác. Cách đơn giản nhất mà giới đầu tư chuyên nghiệp dùng hàng ngày: so sánh lợi suất trái phiếu chính phủ kỳ hạn 2 năm với kỳ hạn 10 năm."
+        "text": "Cả chặng đo hiệu năng bằng thời gian. Có một chiều đo nữa mà bảng theo dõi kỹ thuật hiếm khi hiển thị, và nó là chiều duy nhất cả công ty đều hiểu ngay: tiền."
       },
       {
         "type": "heading",
-        "text": "Đọc tín hiệu 2-năm so với 10-năm"
+        "text": "Chia trước khi kết luận"
       },
       {
         "type": "paragraph",
-        "text": "Khi lợi suất 2 năm vượt lợi suất 10 năm, đó là dấu hiệu inverted rõ ràng - thị trường tin rằng mức lãi suất hiện tại đang cao bất thường và sẽ phải giảm trong tương lai để ứng phó với tăng trưởng chậm lại hoặc suy thoái. Giai đoạn 2022-2023, yield curve Mỹ đảo ngược sâu nhất trong hơn 40 năm khi Fed tăng lãi suất mạnh để chống lạm phát - nhiều nhà kinh tế học đã dựa trên tín hiệu này để đưa ra các dự báo suy thoái, dù thời điểm chính xác vẫn luôn khó xác định."
+        "text": "Hoá đơn tăng gấp đôi có thể là tin tốt nếu lượng công việc tăng gấp ba. Con số đáng theo dõi là chi phí chia cho một đơn vị công việc thật: mỗi yêu cầu, mỗi đơn hàng, mỗi người dùng hoạt động. Nó tách hiệu quả kỹ thuật khỏi quy mô kinh doanh, và xu hướng của nó quan trọng hơn giá trị của nó."
+      },
+      {
+        "type": "callout",
+        "label": "Nâng cấp là mua thời gian",
+        "text": "Thuê máy to gấp đôi làm hệ thống nhanh trở lại ngay, và trong lúc sự cố thì đó có thể là lựa chọn đúng. Nó trở thành sai lầm khi không có ai quay lại sửa nguyên nhân - lúc ấy bạn đã đổi một truy vấn kém hiệu quả lấy một khoản chi vĩnh viễn."
       },
       {
         "type": "heading",
-        "text": "Chiến lược đầu tư khi dự đoán lãi suất sắp giảm"
+        "text": "Phải biết tiền đi đâu"
       },
       {
         "type": "paragraph",
-        "text": "Nếu một nhà đầu tư trái phiếu tin rằng lãi suất sắp giảm mạnh (ví dụ vì tin ngân hàng trung ương sắp chuyển sang nới lỏng), chiến lược hợp lý là mua trái phiếu kỳ hạn dài thay vì ngắn. Lý do nằm ở duration: trái phiếu kỳ hạn dài có duration cao hơn, nên khi lãi suất giảm, giá của chúng tăng mạnh hơn nhiều so với trái phiếu ngắn hạn - mang lại lợi nhuận vốn (capital gain) lớn hơn nếu dự đoán đúng. Ngược lại, nếu tin lãi suất sắp tăng, nên nghiêng về trái phiếu ngắn hạn để giảm thiểu tổn thất giá."
+        "text": "Một hoá đơn tổng cho biết có vấn đề chứ không cho biết vấn đề ở đâu - đúng cùng một giới hạn với việc chỉ đo tổng thời gian ở đầu chặng. Gắn nhãn tài nguyên theo dịch vụ và theo tính năng là bước tương đương với việc chạy hồ sơ hiệu năng: nó biến một con số thành một danh sách xếp theo tỷ trọng."
       },
       {
-        "type": "heading",
-        "text": "Khi đường cong phẳng: tín hiệu mơ hồ hơn"
+        "type": "callout",
+        "label": "Trên hạ tầng thuê thì lãng phí nhìn thấy được",
+        "text": "Trên máy đã mua, năng lực nhàn rỗi gần như vô hình. Trên hạ tầng thuê, mỗi vòng lặp kém hiệu quả có một con số cụ thể trên hoá đơn mỗi tháng - và đó là lý do hiệu năng dễ được ưu tiên hơn ở đây."
       },
       {
-        "type": "paragraph",
-        "text": "Không phải lúc nào yield curve cũng cho tín hiệu rõ ràng dốc lên hay đảo ngược. Khi đường cong gần như hoàn toàn phẳng - lợi suất các kỳ hạn gần bằng nhau - đó thường là giai đoạn chuyển tiếp: thị trường chưa chắc chắn về hướng đi tiếp theo của lãi suất và kinh tế, có thể đang ở gần đỉnh của chu kỳ thắt chặt tiền tệ trước khi chuyển hướng. Đây là lúc cần kết hợp thêm các dữ liệu khác (lạm phát, thất nghiệp, tăng trưởng GDP) thay vì chỉ dựa vào hình dạng đường cong."
-      },
-      {
-        "type": "list",
-        "items": [
-          "So sánh lợi suất 2 năm và 10 năm: cách đọc nhanh và phổ biến nhất về trạng thái yield curve",
-          "Dự đoán lãi suất giảm → nghiêng về trái phiếu kỳ hạn dài để tối đa hóa capital gain",
-          "Dự đoán lãi suất tăng → nghiêng về trái phiếu kỳ hạn ngắn để giảm thiểu tổn thất giá",
-          "Đường cong phẳng: tín hiệu mơ hồ, cần kết hợp thêm dữ liệu kinh tế khác"
+        "type": "closing",
+        "lines": [
+          "Thời gian là chỉ số của người dùng. Chi phí đơn vị là chỉ số của công ty. Một hệ thống tốt cải thiện cả hai.",
+          "Bài sau tổng kết lại toàn bộ chặng."
         ]
       }
     ]
   },
   {
     "id": 160,
-    "slug": "tong-on-chang-8-trai-phieu",
-    "title": "Tự học Tài chính Day 160: Tổng ôn Chặng Trái phiếu, lãi suất và tín dụng - Trái phiếu là thế giới của lãi suất và niềm tin",
-    "subtitle": "Kết nối coupon, yield, credit risk và yield curve thành một bức tranh hoàn chỉnh",
-    "duration": "8 phút",
+    "slug": "tong-on-chang-hieu-nang",
+    "title": "Tổng ôn: đo, tìm, sửa, dừng",
+    "subtitle": "Hai mươi bài về hiệu năng gói lại thành một quy trình bốn bước.",
+    "duration": "10 phút",
     "difficulty": "Trung bình",
-    "emoji": "💹",
-    "openingQuestion": "Sau 20 ngày học về trái phiếu, điều quan trọng nhất cần nhớ là gì?",
+    "emoji": "🎯",
+    "track": "professional",
+    "whyItMatters": "Kiến thức hiệu năng rời rạc thì khó dùng khi có sự cố. Một quy trình bốn bước thì nhớ được, và nó tự nói cho bạn biết bước tiếp theo là gì.",
+    "openingQuestion": "Bước đầu tiên khi ai đó báo rằng hệ thống chậm là gì?",
     "openingOptions": [
-      "Hai trục: lãi suất và niềm tin tín dụng thị trường",
-      "Trái phiếu luôn an toàn hơn cổ phiếu trong mọi trường hợp",
-      "Chỉ cần quan tâm đến trái phiếu chính phủ",
-      "Công thức tính coupon là đủ để hiểu trái phiếu"
+      "Xác định thao tác nào chậm và đo nó từ phía người dùng",
+      "Xem lại những thay đổi đã triển khai trong thời gian gần đây",
+      "Kiểm tra mức sử dụng tài nguyên của các máy chủ đang chạy",
+      "Chạy công cụ đo hiệu năng trên dịch vụ bị nghi ngờ nhiều nhất"
     ],
     "correctOption": 0,
-    "explanation": "Hành trình Chặng Trái phiếu, lãi suất và tín dụng: từ khái niệm cơ bản (coupon, face value) → cơ chế giá-lãi suất ngược chiều → đo lường rủi ro (duration, convexity) → đánh giá tín dụng (rating, default, spread) → các loại trái phiếu (treasury, corporate, municipal) → yield curve như bản đồ kỳ vọng kinh tế. Tất cả xoay quanh hai trục: thời gian và niềm tin.",
+    "explanation": "Ba việc còn lại đều hữu ích nhưng chúng đều giả định rằng bạn đã biết chậm ở đâu. Rất nhiều cuộc điều tra hiệu năng bắt đầu bằng việc nhìn vào một dịch vụ được nghi ngờ vì lý do lịch sử, rồi mất nửa ngày trước khi ai đó nghĩ tới việc bấm thử. Xác định thao tác cụ thể và đo nó từ phía người dùng là bước rẻ nhất, và nó thường loại được phần lớn danh sách nghi ngờ ngay lập tức.",
     "diagram": [
       {
-        "label": "Trái phiếu là một lời hứa trả tiền theo lịch",
+        "label": "1. Đo từ phía người dùng: thao tác nào, chậm bao nhiêu",
         "arrow": true
       },
       {
-        "label": "Giá trị lời hứa đó phụ thuộc lãi suất - giá chạy ngược chiều",
+        "label": "2. Tìm: chia nhỏ thời gian tới khi thấy tỷ trọng lớn nhất",
         "arrow": true
       },
       {
-        "label": "Và phụ thuộc niềm tin trả được - đo bằng xếp hạng và chênh lệch tín dụng",
+        "label": "3. Sửa: cắt số lần gọi, gộp lô, giảm chờ, giảm tranh chấp",
         "arrow": true
       },
       {
-        "label": "Đường cong lợi suất gộp cả hai thành bản đồ kỳ vọng"
+        "label": "4. Dừng: khi đạt mục tiêu đã viết ra từ trước"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Danh mục trái phiếu thực tế",
-      "description": "Một quỹ trái phiếu chuyên nghiệp luôn cân nhắc đồng thời: kỳ hạn (duration risk), xếp hạng tín dụng (credit risk), và vị trí trên yield curve - không chỉ nhìn vào lợi suất bề mặt."
+      "company": "Cùng một quy trình cho mọi tầng",
+      "description": "Bốn bước này dùng được cho một truy vấn, một dịch vụ, một trang web hay cả một hệ thống. Chỉ có công cụ ở bước hai là đổi theo tầng."
+    },
+    "keyTakeaways": [
+      "Đo trước, và đo từ phía người dùng chứ không ở ranh giới hệ thống.",
+      "Trần cải thiện bằng tỷ trọng, nên chọn chỗ sửa theo tỷ trọng.",
+      "Phần lớn chỗ chậm là chờ đợi và số lần gọi, không phải phép tính.",
+      "Viết mục tiêu ra trước để biết khi nào dừng."
+    ],
+    "summary": {
+      "keyIdea": "Hiệu năng là một quy trình lặp: đo, tìm, sửa, đo lại, dừng khi đủ.",
+      "formula": "Đo → tìm tỷ trọng lớn nhất → sửa → đo lại.",
+      "commonMistake": "Bắt đầu từ bước ba, dựa trên một giả thuyết chưa được đo."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn thao tác chậm nhất trong sản phẩm của bạn và chạy đủ bốn bước một lần. Viết lại con số trước và sau, cùng với mục tiêu bạn đã đặt."
+    },
+    "practicePrompt": {
+      "question": "Sau khi sửa xong một nút thắt, vì sao phải quay lại bước đo?",
+      "options": [
+        "Vì tỷ trọng của mọi phần đã đổi nên nút thắt tiếp theo có thể ở chỗ khác",
+        "Vì cần xác nhận rằng thay đổi không làm hỏng tính đúng đắn",
+        "Vì kết quả đo trước đó có thể đã bị ảnh hưởng bởi mức tải",
+        "Vì công cụ đo cần chạy lại để cập nhật dữ liệu nền"
+      ],
+      "correct": 0,
+      "explanation": "Quy trình là một vòng lặp chứ không phải một danh sách chạy một lần. Bản đồ tỷ trọng cũ mô tả một hệ thống không còn tồn tại, và tiếp tục làm theo nó dẫn tới việc tối ưu sâu vào một phần giờ đã rất nhỏ."
     },
     "quiz": [
       {
-        "question": "Vì sao lợi suất cao bất thường của một trái phiếu doanh nghiệp nên khiến nhà đầu tư thận trọng thay vì hào hứng?",
+        "question": "Vì sao đo phải đứng trước mọi bước khác?",
         "options": [
-          "Không có mối liên hệ nào giữa lợi suất và rủi ro",
-          "Lợi suất cao bất thường thường phản ánh rủi ro vỡ nợ cao mà thị trường đã định giá vào -'lợi suất miễn phí' không tồn tại",
-          "Lợi suất cao luôn là cơ hội tốt cần nắm bắt ngay",
-          "Lợi suất cao nghĩa là công ty đang phát triển rất tốt"
+          "Vì trực giác về chỗ chậm sai thường xuyên hơn ta nghĩ",
+          "Vì các công cụ đo cần thời gian để thu thập đủ dữ liệu",
+          "Vì không đo thì không chứng minh được kết quả với đội",
+          "Vì đo là bước tốn ít thời gian nhất trong cả quy trình"
         ],
-        "correct": 1,
-        "explanation": "Thị trường trái phiếu hiệu quả: lợi suất phản ánh rủi ro cảm nhận. Trái phiếu 'high yield' (junk bond) có lợi suất hấp dẫn chính vì xác suất vỡ nợ cao hơn nhiều so với investment grade. Đây là bài học cốt lõi: không có lợi nhuận nào miễn phí, kể cả trong thế giới trái phiếu."
+        "correct": 0,
+        "explanation": "Mục đầu tiên trong hồ sơ hiệu năng thường là thứ không có trong danh sách nghi ngờ của ai cả. Mã nguồn không hiển thị chi phí, nên đọc mã và đoán là cách rất kém tin cậy."
       },
       {
-        "question": "Nhìn lại toàn bộ Chặng Trái phiếu, lãi suất và tín dụng, mối quan hệ giữa \"niềm tin\" (credit risk) và \"thời gian\" (interest rate risk) trong định giá trái phiếu có thể tóm gọn thành nguyên tắc nào?",
+        "question": "Chọn chỗ sửa nên dựa vào tiêu chí nào?",
         "options": [
-          "Chỉ credit risk mới quan trọng, interest rate risk không đáng kể",
-          "Hai yếu tố này hoàn toàn độc lập, không ảnh hưởng lẫn nhau khi định giá trái phiếu",
-          "Giá trái phiếu = hàm số của CẢ HAI: (1) độ tin cậy người vay sẽ trả đúng hạn (credit risk, phản ánh qua rating và spread) VÀ (2) giá trị thời gian của tiền theo kỳ hạn (interest rate risk, phản ánh qua yield curve và duration) - hai trục này cùng quyết định lợi suất và giá của bất kỳ trái phiếu nào",
-          "Chỉ interest rate risk mới quan trọng với trái phiếu chính phủ"
+          "Tỷ trọng thời gian của phần đó trong tổng",
+          "Mức cải thiện có thể đạt được ở phần đó",
+          "Độ dễ của việc thực hiện thay đổi",
+          "Mức độ quan trọng của tính năng liên quan"
         ],
-        "correct": 2,
-        "explanation": "Đây chính là bức tranh tổng hợp của Chặng Trái phiếu, lãi suất và tín dụng: mọi trái phiếu, từ chính phủ đến doanh nghiệp, đều được định giá dựa trên sự kết hợp của hai trục độc lập nhưng luôn tương tác - thời gian (bao lâu mới lấy lại tiền, càng lâu càng rủi ro lãi suất) và niềm tin (khả năng thực sự lấy lại được tiền, càng thấp càng rủi ro tín dụng)."
+        "correct": 0,
+        "explanation": "Tỷ trọng là trần cứng của cải thiện, nên nó phải là tiêu chí đầu. Ba tiêu chí còn lại chỉ có ý nghĩa khi so giữa những phần đã có tỷ trọng đủ lớn."
+      },
+      {
+        "question": "Nhóm nguyên nhân nào chiếm phần lớn các trường hợp chậm thực tế?",
+        "options": [
+          "Chờ đợi và số lần gọi ra ngoài tiến trình",
+          "Thuật toán có độ phức tạp cao trên dữ liệu lớn",
+          "Thiếu bộ nhớ khiến hệ điều hành phải dùng đĩa",
+          "Phần cứng không đủ mạnh cho khối lượng công việc"
+        ],
+        "correct": 0,
+        "explanation": "Bảng chi phí ở bài về độ lớn giải thích vì sao: thao tác rời khỏi tiến trình đắt hơn phép tính nhiều bậc. Bài toán N cộng một và lời gọi mạng trong vòng lặp là hai hình dạng phổ biến nhất của nó."
+      },
+      {
+        "question": "Điều gì phân biệt một hệ thống chịu tải tốt với một hệ thống sụp đổ?",
+        "options": [
+          "Có giới hạn cho hàng đợi và thời gian chờ ở mọi ranh giới",
+          "Có nhiều máy chủ hơn để phân bổ tải khi cần thiết",
+          "Có bộ nhớ đệm được cấu hình đúng cho những dữ liệu hay dùng nhất",
+          "Có công cụ giám sát phát cảnh báo sớm khi tải tăng"
+        ],
+        "correct": 0,
+        "explanation": "Ba thứ còn lại đẩy giới hạn lên cao hơn nhưng không quyết định chuyện gì xảy ra khi chạm giới hạn. Từ chối một phần để phục vụ được phần còn lại là lựa chọn thiết kế, không phải tài nguyên."
+      },
+      {
+        "question": "Bước dừng thuộc về quy trình vì lý do gì?",
+        "options": [
+          "Vì tối ưu luôn còn chỗ làm tiếp và có chi phí trả về sau",
+          "Vì đội cần thời gian nghỉ giữa các đợt tối ưu",
+          "Vì các công cụ đo mất dần độ chính xác sau rất nhiều lần chạy",
+          "Vì hệ thống cần thời gian ổn định sau mỗi thay đổi"
+        ],
+        "correct": 0,
+        "explanation": "Không có điểm dừng viết sẵn thì công việc này ăn hết thời gian dành cho việc khác, và mỗi vòng lại thêm một lớp phức tạp mà đội sẽ trả dần trong nhiều năm."
       }
     ],
-    "keyTakeaways": [
-      "Trái phiếu vận hành trên hai trục: giá trị thời gian của tiền và niềm tin tín dụng",
-      "Yield cao bất thường luôn đi kèm rủi ro cao tương ứng, không có ngoại lệ",
-      "Yield curve là bản đồ tổng hợp kỳ vọng của toàn thị trường về tương lai kinh tế"
-    ],
-    "practicePrompt": {
-      "question": "Sau khi ôn tập toàn bộ chặng Trái phiếu (giá-lãi suất, YTM, credit rating, spread, yield curve, các loại trái phiếu), bạn tổng kết lại: mọi khái niệm này thực chất chỉ xoay quanh hai trục cốt lõi nào?",
-      "options": [
-        "Chỉ có một trục duy nhất quan trọng là mức lãi suất coupon của từng trái phiếu cụ thể",
-        "Trái phiếu vận hành trên hai trục: giá trị thời gian của tiền và niềm tin tín dụng thị trường",
-        "Hai trục duy nhất là kỳ hạn ngắn và kỳ hạn dài, không có yếu tố nào khác đáng quan tâm",
-        "Trái phiếu chỉ vận hành trên một trục duy nhất là quan hệ cung-cầu trên thị trường thứ cấp"
-      ],
-      "correct": 1,
-      "explanation": "Trái phiếu vận hành trên hai trục: giá trị thời gian của tiền (chi phối mối quan hệ giá-lãi suất, YTM) và niềm tin tín dụng (chi phối rating, spread, rủi ro vỡ nợ) - đây là khung tổng quát kết nối mọi chủ đề đã học trong chặng trái phiếu."
-    },
-    "summary": {
-      "keyIdea": "Trái phiếu vận hành trên hai trục: giá trị thời gian của tiền và niềm tin tín dụng",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Yield cao bất thường luôn đi kèm rủi ro cao tương ứng, không có ngoại lệ"
-    },
-    "application": {
-      "title": "Tóm tắt Chặng Trái phiếu, lãi suất và tín dụng bằng lời của bạn",
-      "message": "Viết ra 3 câu giải thích mối liên hệ giữa coupon, yield, credit rating và yield curve như thể đang giải thích cho một người bạn chưa học tài chính bao giờ.",
-      "secondary": "Nếu giải thích được trôi chảy, nghĩa là bạn đã thực sự nắm được cả chặng."
-    },
     "sections": [
       {
         "type": "lead",
-        "text": "Chặng Trái phiếu, lãi suất và tín dụng đã đưa chúng ta đi từ những khái niệm cơ bản nhất của trái phiếu đến bức tranh vĩ mô toàn diện về cách thị trường nợ vận hành. Nhìn lại toàn bộ hành trình, mọi thứ có thể gói gọn trong hai trục duy nhất: thời gian và niềm tin."
+        "text": "Hai mươi bài vừa rồi có thể gói lại thành bốn bước, và bốn bước ấy dùng được cho một truy vấn, một dịch vụ, một trang web hay cả một hệ thống."
       },
       {
         "type": "heading",
-        "text": "Hành trình từ coupon đến yield curve"
-      },
-      {
-        "type": "paragraph",
-        "text": "Chúng ta bắt đầu với những khái niệm nền tảng nhất - coupon, face value, maturity - rồi đến cơ chế giá và lãi suất di chuyển ngược chiều nhau. Từ đó, học cách đo lường rủi ro lãi suất qua duration và convexity, và đánh giá rủi ro tín dụng qua credit rating, default probability, recovery rate và credit spread. Cuối cùng, phân loại các loại trái phiếu chính - treasury (chuẩn risk-free), corporate (có credit spread), municipal (ưu đãi thuế) - và khép lại bằng yield curve, tấm bản đồ tổng hợp mọi kỳ vọng của thị trường về tương lai kinh tế."
-      },
-      {
-        "type": "heading",
-        "text": "Không có lợi suất nào miễn phí"
-      },
-      {
-        "type": "paragraph",
-        "text": "Bài học cốt lõi xuyên suốt cả chặng: lợi suất cao bất thường của một trái phiếu doanh nghiệp không nên khiến nhà đầu tư hào hứng, mà nên khiến họ thận trọng hơn. Thị trường trái phiếu hiệu quả luôn định giá lợi suất theo đúng mức rủi ro cảm nhận - trái phiếu 'high yield' (junk bond) có lợi suất hấp dẫn chính vì xác suất vỡ nợ cao hơn nhiều so với investment grade, không phải vì đó là một món hời bị thị trường bỏ sót. 'Lợi suất miễn phí' không tồn tại, kể cả trong thế giới trái phiếu vốn được xem là an toàn hơn cổ phiếu."
-      },
-      {
-        "type": "heading",
-        "text": "Hai trục quyết định giá mọi trái phiếu"
-      },
-      {
-        "type": "paragraph",
-        "text": "Giá của bất kỳ trái phiếu nào - từ trái phiếu chính phủ đến trái phiếu doanh nghiệp junk - đều là hàm số của hai yếu tố độc lập nhưng luôn tương tác với nhau: (1) niềm tin (credit risk) - độ tin cậy rằng người vay sẽ trả đúng hạn, phản ánh qua rating và credit spread; và (2) thời gian (interest rate risk) - giá trị thời gian của tiền theo kỳ hạn, phản ánh qua vị trí trên yield curve và duration. Càng lâu mới lấy lại được tiền, rủi ro lãi suất càng lớn. Càng ít tin tưởng vào khả năng trả nợ, rủi ro tín dụng càng lớn."
+        "text": "Bốn bước"
       },
       {
         "type": "list",
         "items": [
-          "Coupon, face value, maturity: ba con số nền tảng của mọi trái phiếu",
-          "Giá và lãi suất luôn nghịch chiều - duration đo mức độ nhạy cảm đó",
-          "Credit rating, default probability, recovery rate, credit spread: bộ công cụ đánh giá rủi ro tín dụng",
-          "Yield curve: bản đồ tổng hợp kỳ vọng thị trường về cả tăng trưởng lẫn lạm phát tương lai"
+          "Đo: thao tác nào chậm, chậm bao nhiêu, đo từ phía người dùng chứ không ở ranh giới hệ thống.",
+          "Tìm: chia nhỏ thời gian cho tới khi thấy phần chiếm tỷ trọng lớn nhất - hồ sơ hiệu năng, kế hoạch thực thi, đếm số truy vấn.",
+          "Sửa: giảm số lần gọi ra ngoài, gộp lô, cắt chờ đợi, giảm tranh chấp. Hiếm khi là tối ưu phép tính.",
+          "Dừng: khi đạt mục tiêu đã viết ra từ trước. Rồi quay lại bước một nếu vẫn chưa đủ."
         ]
+      },
+      {
+        "type": "heading",
+        "text": "Những gì lặp lại nhiều lần trong chặng"
+      },
+      {
+        "type": "conceptTable",
+        "title": "Bốn ý xuyên suốt",
+        "subtitle": "Chúng xuất hiện ở nhiều bài khác nhau vì cùng một lý do",
+        "concepts": [
+          {
+            "vi": "Chờ đợi vô hình",
+            "en": "invisible waiting",
+            "def": "Chờ khoá, chờ mạng, chờ thu gom rác - máy trông nhàn rỗi trong khi người dùng đang chờ."
+          },
+          {
+            "vi": "Trần bằng tỷ trọng",
+            "en": "share ceiling",
+            "def": "Cải thiện tổng không vượt được tỷ trọng của phần bạn sửa, dù phần ấy nhanh hơn bao nhiêu lần."
+          },
+          {
+            "vi": "Số lần nhân lên",
+            "en": "multiplicity",
+            "def": "Một thao tác rẻ đặt trong vòng lặp đắt hơn một thao tác đắt chạy một lần."
+          },
+          {
+            "vi": "Phân vị chứ không trung bình",
+            "en": "percentiles",
+            "def": "Trung bình che mất nhóm chậm, và nhóm chậm mới là nhóm phàn nàn."
+          }
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Chặng này bắt đầu và kết thúc ở cùng một chỗ",
+        "text": "Bài đầu nói đo trước, đoán sau. Bài cuối nói đo lại sau mỗi lần sửa. Giữa hai câu ấy là toàn bộ nội dung, và cả hai đều nói rằng phép đo chứ không phải trực giác là thứ dẫn đường."
       },
       {
         "type": "closing",
         "lines": [
-          "Trái phiếu vận hành trên hai trục: giá trị thời gian của tiền và niềm tin tín dụng.",
-          "Yield cao bất thường luôn đi kèm rủi ro cao tương ứng, không có ngoại lệ."
+          "Hiệu năng không phải một đợt công việc mà là một vòng lặp có điểm dừng viết sẵn.",
+          "Chặng sau chuyển sang một chủ đề khác trong cùng nghề: cách hệ thống được xây để nhiều người cùng làm việc trên đó."
         ]
       }
     ]
@@ -53798,7 +54564,8 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🪟",
     "track": "bonus",
-    "openingQuestion": "Mọi chỉ số đều bình thường nhưng người dùng báo chậm. Khả năng nào cao nhất?",
+    "interactiveType": "tail-risk",
+"openingQuestion": "Mọi chỉ số đều bình thường nhưng người dùng báo chậm. Khả năng nào cao nhất?",
     "openingOptions": [
       "Chỉ số đang đo phần hệ thống, còn người dùng cảm nhận phần bạn chưa đo",
       "Người dùng nhầm lẫn giữa mạng của họ với hiệu năng của dịch vụ",
@@ -56236,7 +57003,8 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🔬",
     "track": "bonus",
-    "openingQuestion": "Một endpoint mất 800ms. Bước đầu tiên để làm nó nhanh hơn là gì?",
+    "interactiveType": "tail-risk",
+"openingQuestion": "Một endpoint mất 800ms. Bước đầu tiên để làm nó nhanh hơn là gì?",
     "openingOptions": [
       "Tách 800ms ra thành từng chặng và xem chặng nào chiếm phần lớn",
       "Thêm một lớp đệm trước endpoint đó để tránh phải tính lại mỗi lần",
@@ -56427,194 +57195,209 @@ export const lessons: Lesson[] = [
   {
     "id": 1017,
     "slug": "dividend",
-    "title": "Dividend - Cổ Tức",
-    "subtitle": "FCF coverage và chất lượng dòng tiền",
+    "title": "SLO - Cam Kết Độ Tin Cậy",
+    "subtitle": "Ngân sách lỗi và chất lượng dung lượng dự phòng",
     "duration": "6 phút",
     "difficulty": "Dễ",
     "emoji": "💰",
-    "openingQuestion": "Cổ tức bền vững phụ thuộc nhiều nhất vào yếu tố nào?",
+    "track": "bonus",
+    "openingQuestion": "Một cam kết SLO bền vững phụ thuộc nhiều nhất vào yếu tố nào?",
     "openingOptions": [
-      "Doanh thu tăng trưởng đều đặn hằng năm",
-      "Free cash flow và payout discipline",
-      "P/B thấp",
-      "Số lượng nhân viên"
+      "Số lượng máy chủ đang chạy trong cụm",
+      "Ngân sách lỗi và kỷ luật khi tiêu nó",
+      "Tốc độ phản hồi trung bình thấp",
+      "Số kỹ sư trực ca đêm"
     ],
     "correctOption": 1,
-    "explanation": "Cổ tức chỉ bền khi nó được trả từ dòng tiền tự do, tức phần còn lại sau khi doanh nghiệp đã chi đủ để duy trì và mở rộng năng lực kinh doanh. Vì thế con số cần nhìn không phải tỷ lệ chi trả trên lợi nhuận mà là tỷ lệ trên dòng tiền tự do. Trả cổ tức bằng tiền vay hoặc bằng quỹ tiền mặt tích lũy trong khi dòng tiền tự do âm có thể duy trì vài năm, nhưng nó là khoản vay từ tương lai chứ không phải thành quả.",
+    "explanation": "Một con số SLO đẹp trên trang trạng thái không nói gì về việc nó có giữ được không. Thứ quyết định là ngân sách lỗi - phần được phép hỏng - và việc đội có dừng phát hành khi tiêu hết nó hay không. Thêm máy chủ và giảm độ trễ trung bình đều giúp ích, nhưng chúng là kết quả chứ không phải nguyên nhân: một hệ thống nhiều máy vẫn tiêu sạch ngân sách lỗi nếu mỗi tuần đẩy năm bản chưa kiểm thử. Còn số người trực đêm chỉ nói lên chi phí chịu đựng sự cố, không nói lên tần suất chúng xảy ra.",
     "diagram": [
       {
-        "label": "FCF",
+        "label": "SLO đã công bố",
         "arrow": true
       },
       {
-        "label": "Payout ratio",
+        "label": "Ngân sách lỗi = 1 − SLO",
         "arrow": true
       },
       {
-        "label": "Cổ tức",
+        "label": "Mỗi sự cố tiêu một phần ngân sách",
         "arrow": true
       },
       {
-        "label": "Tính bền vững",
-        "arrow": false
+        "label": "Tiêu hết mà vẫn phát hành thì SLO chỉ còn là con số"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Doanh nghiệp trưởng thành",
-      "description": "Các công ty mature thường chi trả cổ tức đều hơn vì nhu cầu tái đầu tư thấp hơn các doanh nghiệp tăng trưởng."
-    },
-    "quiz": [
-      {
-        "question": "Một doanh nghiệp có Net Income cao nhưng FCF âm thì trả cổ tức thế nào?",
-        "options": [
-          "Có thể phải vay hoặc dùng tiền mặt dự trữ",
-          "Không liên quan, cổ tức chỉ phụ thuộc lợi nhuận",
-          "Chỉ cần chuyển sang chia cổ tức bằng cổ phiếu",
-          "Rất bền vững vì lợi nhuận kế toán vẫn cao"
-        ],
-        "correct": 0,
-        "explanation": "Nếu tiền mặt thật không đủ, cổ tức chỉ có thể đến từ nguồn khác chứ không phải từ hoạt động hiện tại."
-      },
-      {
-        "question": "Một công ty giữ nguyên mức cổ tức trong 5 năm liền dù FCF giảm dần mỗi năm. Rủi ro lớn nhất là gì?",
-        "options": [
-          "Payout ratio tăng dần tới mức phải cắt cổ tức đột ngột",
-          "Giá cổ phiếu chắc chắn sẽ tăng nhờ chính sách cổ tức ổn định",
-          "Không có rủi ro nào vì mức cổ tức luôn được giữ nguyên",
-          "Cổ đông sẽ được hưởng lợi nhiều hơn qua từng năm liền"
-        ],
-        "correct": 0,
-        "explanation": "Giữ nguyên cổ tức khi FCF giảm dần nghĩa là payout ratio đang âm thầm tăng lên - đến một điểm tới hạn, công ty sẽ phải vay để trả cổ tức hoặc cắt giảm đột ngột, điều mà thị trường thường phản ứng rất tiêu cực vì đã kỳ vọng mức cổ tức ổn định."
-      },
-      {
-        "question": "Doanh nghiệp có lợi nhuận 500 tỷ, FCF 300 tỷ, đã trả cổ tức 350 tỷ. Nhận định nào đúng?",
-        "options": [
-          "Payout trên lợi nhuận là 70% nhưng cổ tức đã vượt FCF",
-          "Chưa thể đánh giá nếu chưa biết doanh nghiệp thuộc ngành nào",
-          "Cổ tức hoàn toàn bền vững vì payout ratio vẫn dưới 100%",
-          "Doanh nghiệp chắc chắn đang gian lận báo cáo tài chính"
-        ],
-        "correct": 0,
-        "explanation": "Đây chính là điểm mấu chốt bài học: hai thước đo trên hai mẫu số khác nhau cho hai kết luận khác nhau, và FCF mới phản ánh tiền mặt thật."
-      },
-      {
-        "question": "Vì sao ban lãnh đạo thường ngại cắt giảm cổ tức, kể cả khi FCF đã yếu đi rõ rệt?",
-        "options": [
-          "Vì thị trường đọc việc cắt cổ tức như tín hiệu tiêu cực",
-          "Vì cổ đông luôn đồng ý khi được giải thích lý do",
-          "Vì pháp luật cấm doanh nghiệp niêm yết cắt giảm cổ tức",
-          "Vì cổ tức không hề ảnh hưởng tới giá cổ phiếu trên sàn"
-        ],
-        "correct": 0,
-        "explanation": "Tín hiệu học (signaling) là lý do kinh tế thực sự đằng sau việc nhiều doanh nghiệp trì hoãn cắt cổ tức lâu hơn mức tài chính cho phép, cho tới khi không còn lựa chọn khác."
-      },
-      {
-        "question": "Chương trình mua lại cổ phiếu khác cổ tức tiền mặt ở điểm nào về mặt cam kết?",
-        "options": [
-          "Có thể tạm dừng mà thị trường không phản ứng mạnh như khi bị cắt cổ tức",
-          "Bắt buộc phải hoàn thành đúng khối lượng đã công bố với cơ quan quản lý",
-          "Chỉ được thực hiện khi doanh nghiệp có lợi nhuận giữ lại dương trong kỳ",
-          "Làm giảm vốn hóa thị trường của doanh nghiệp đúng bằng số tiền đã chi ra"
-        ],
-        "correct": 0,
-        "explanation": "Cổ tức được thị trường đọc như một lời hứa, nên cắt nó là tín hiệu xấu rất mạnh và ban lãnh đạo tránh bằng mọi giá. Mua lại cổ phiếu linh hoạt hơn - đó là lý do các doanh nghiệp có dòng tiền biến động thường thích công cụ này hơn."
-      }
-    ],
-    "keyTakeaways": [
-      "Cổ tức phải đọc cùng FCF",
-      "Payout ratio cao chưa chắc bền",
-      "Mature business thường phù hợp hơn growth business để chia cổ tức"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Cổ tức phải đọc cùng FCF",
-      "commonMistake": "Dễ bỏ qua: payout ratio cao chưa chắc bền",
-      "action": "Mature business thường phù hợp hơn growth business để chia cổ tức"
+      "company": "Bốn số chín trên trang trạng thái",
+      "description": "Một dịch vụ công bố 99,99% và giữ được hai năm. Năm thứ ba nhóm tăng nhịp phát hành từ hai tuần một lần lên mỗi ngày, nhưng không đổi con số trên trang trạng thái. Ngân sách lỗi bị tiêu hết trong tuần thứ hai của mỗi tháng, và ba tuần còn lại họ vẫn phát hành như thường. Con số vẫn nằm đó suốt mười hai tháng trong khi thực tế đã là 99,7% - không ai sửa nó, vì sửa xuống là một thông báo, còn để nguyên thì không ai hỏi."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Cổ tức đều đặn là dấu hiệu doanh nghiệp ổn định - nhưng cổ tức chỉ thực sự bền vững khi nó được trả từ tiền mặt thật, không phải từ vay nợ hay dự trữ."
+        "text": "Một SLO ổn định là dấu hiệu hệ thống đáng tin - nhưng một SLO ổn định trên giấy không có nghĩa là nó đang được đỡ bằng dung lượng thật. Phân biệt hai thứ ấy là toàn bộ nội dung bài này."
       },
       {
         "type": "heading",
-        "text": "Free Cash Flow quyết định tính bền vững của cổ tức"
+        "text": "Ngân sách lỗi quyết định tính bền vững của một cam kết"
       },
       {
         "type": "paragraph",
-        "text": "Cổ tức chỉ bền khi doanh nghiệp thật sự tạo ra đủ tiền mặt sau khi đã trừ CapEx và các nhu cầu tái đầu tư cần thiết. Nếu Net Income cao nhưng FCF âm, doanh nghiệp chỉ có thể trả cổ tức bằng cách vay thêm hoặc dùng tiền mặt dự trữ - một mô hình khó duy trì lâu dài. Giữ nguyên mức cổ tức trong khi FCF giảm dần mỗi năm là một tín hiệu cảnh báo âm thầm: payout ratio đang tăng dần đến mức không bền vững."
+        "text": "Một cam kết độ tin cậy chỉ bền khi hệ thống thật sự còn dư phần được phép hỏng sau khi đã trừ hết những gì đã tiêu trong kỳ. Nhìn vào tỷ lệ uptime của tháng vừa rồi thì gần như tháng nào cũng đẹp, vì một sự cố bốn mươi phút chia cho ba mươi ngày vẫn ra một con số dễ nhìn. Thứ phải nhìn là ngân sách lỗi còn lại bao nhiêu phần trăm khi tháng mới bắt đầu."
       },
       {
         "type": "list",
         "items": [
-          "Cổ tức phải luôn được đọc cùng FCF, không chỉ Net Income",
-          "Payout ratio cao và tăng dần là tín hiệu cảnh báo, ngay cả khi mức cổ tức tuyệt đối không đổi",
-          "Doanh nghiệp trưởng thành (mature) thường phù hợp trả cổ tức hơn doanh nghiệp đang tăng trưởng mạnh"
+          "SLO phải luôn được đọc cùng ngân sách lỗi còn lại, không chỉ cùng uptime tháng trước",
+          "Ngân sách lỗi nạp lại theo chu kỳ, nên tiêu hết sớm nghĩa là phần còn lại của kỳ đi vay",
+          "Một sự cố lớn và mười sự cố nhỏ có thể tiêu cùng một lượng, nhưng chỉ cái đầu bị nhớ",
+          "Nhịp phát hành tăng mà SLO giữ nguyên là một cam kết ngày càng khó giữ"
         ]
       },
       {
         "type": "formula",
-        "title": "Tỷ lệ chi trả và phần dư ra",
-        "equation": "Payout ratio = Cổ tức đã trả ÷ Lợi nhuận sau thuế",
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "Lợi nhuận 500 tỷ, FCF 300 tỷ, cổ tức đã trả 350 tỷ",
-          "result": "Payout ratio 70% trên lợi nhuận nhưng vượt cả FCF",
-          "explanation": "Doanh nghiệp đang trả nhiều hơn số tiền mặt tự do nó tạo ra trong kỳ - phần chênh 50 tỷ phải lấy từ tiền mặt dự trữ hoặc vay thêm. Payout ratio tính trên lợi nhuận kế toán trông vẫn an toàn (70%), nhưng so với FCF thì đã vượt 100%."
-        }
+        "title": "Tỷ lệ tiêu và phần dư ra",
+        "variables": [
+          {
+            "symbol": "EB",
+            "name": "Ngân sách lỗi = (1 − SLO) × thời gian kỳ",
+            "description": "99,9% trong ba mươi ngày cho khoảng bốn mươi ba phút. Đây là toàn bộ số tiền bạn có trong kỳ."
+          },
+          {
+            "symbol": "Burn",
+            "name": "Tỷ lệ tiêu = Thời gian hỏng đã dùng / Ngân sách lỗi",
+            "description": "Vượt 100% nghĩa là đã vi phạm cam kết. Vượt 100% nhiều kỳ liên tiếp nghĩa là cam kết ấy sai ngay từ đầu."
+          },
+          {
+            "symbol": "Rate",
+            "name": "Nhịp tiêu = Tỷ lệ tiêu / Phần kỳ đã trôi qua",
+            "description": "Tiêu 50% ngân sách khi mới qua 20% tháng là dấu hiệu sớm, và nó xuất hiện trước khi có bất kỳ vi phạm nào."
+          },
+          {
+            "symbol": "Head",
+            "name": "Phần dư = Ngân sách lỗi − Đã tiêu",
+            "description": "Phần này mới là thứ trả cho việc phát hành tính năng. Hết phần dư thì mọi bản phát hành đều là đi vay."
+          }
+        ]
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Cổ tức bền vững",
-          "text": "FCF ổn định và lớn hơn cổ tức chi trả nhiều năm liền, payout ratio giữ trong khoảng an toàn, doanh nghiệp vẫn còn dư tiền cho các nhu cầu bất ngờ."
+          "label": "Cam kết được đỡ bằng dung lượng thật",
+          "text": "Ngân sách lỗi thường còn dư khi hết kỳ. Sự cố xảy ra thì có chỗ để hấp thụ, và nhóm không phải chọn giữa sửa lỗi và ra tính năng."
         },
         "right": {
-          "label": "Cổ tức đang ăn vào vốn",
-          "text": "FCF giảm dần hoặc âm nhưng mức cổ tức tuyệt đối vẫn được giữ nguyên - ban lãnh đạo lo ngại cắt cổ tức sẽ bị thị trường phản ứng tiêu cực, nên vay thêm hoặc rút dự trữ để duy trì."
+          "label": "Cam kết đi vay",
+          "text": "Kỳ nào cũng tiêu sạch trước khi hết. Một sự cố bình thường cũng thành vi phạm, và mỗi lần vi phạm lại được xử lý bằng cách hứa hẹn thay vì bằng dung lượng."
         }
       },
       {
         "type": "heading",
-        "text": "Ba dấu hiệu cổ tức đang gặp rủi ro"
+        "text": "Ba dấu hiệu một cam kết đang gặp rủi ro"
       },
       {
         "type": "list",
         "items": [
-          "Payout ratio tính trên FCF liên tục vượt 100% qua nhiều năm, dù payout ratio trên lợi nhuận kế toán vẫn trông ổn.",
-          "Nợ vay tăng đều đặn trong khi mức cổ tức không đổi - dấu hiệu vay để trả cổ tức thay vì để đầu tư.",
-          "Tiền mặt và tương đương tiền giảm dần qua các kỳ trong khi cổ tức vẫn giữ nguyên mức cũ."
+          "Tỷ lệ tiêu ngân sách lỗi liên tục vượt 100% qua nhiều kỳ mà con số công bố không đổi",
+          "Nhịp phát hành tăng rõ rệt trong khi SLO và quy trình kiểm thử giữ nguyên",
+          "Mỗi lần vi phạm được đóng lại bằng một cam kết mới thay vì một thay đổi trong hệ thống"
         ]
       },
       {
         "type": "callout",
-        "label": "Vì sao doanh nghiệp ngại cắt cổ tức",
-        "text": "Cắt giảm cổ tức thường bị thị trường đọc như tín hiệu ban lãnh đạo không còn tin vào triển vọng dòng tiền tương lai, nên giá cổ phiếu hay phản ứng tiêu cực mạnh hơn mức giảm cổ tức thực tế. Chính nỗi lo này đôi khi khiến doanh nghiệp duy trì cổ tức bằng mọi giá lâu hơn mức lành mạnh, cho tới khi buộc phải cắt đột ngột."
+        "label": "Hạ SLO bị đọc như một tín hiệu xấu",
+        "text": "Hạ con số trên trang trạng thái thường bị khách hàng đọc như lời thú nhận rằng sản phẩm đang xuống cấp, nên các đội hay giữ nguyên con số quá lâu. Nhưng giữ một cam kết không đỡ nổi thì tốn hơn nhiều: nó biến mọi sự cố bình thường thành một vi phạm hợp đồng, và nó lấy mất chính công cụ mà ngân sách lỗi sinh ra để cung cấp - quyền dừng phát hành mà không phải tranh cãi."
       },
       {
         "type": "closing",
         "lines": [
-          "Một mức cổ tức ổn định trên giấy tờ không đảm bảo nó bền vững.",
-          "Luôn kiểm tra: tiền mặt thật có đủ để trả cổ tức đó không?"
+          "Một con số SLO ổn định trên trang trạng thái không đảm bảo nó đang được đỡ bằng dung lượng thật.",
+          "Hỏi ngân sách lỗi còn bao nhiêu, chứ đừng hỏi tháng trước uptime bao nhiêu."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Một dịch vụ có uptime tháng trước rất cao nhưng ngân sách lỗi âm thì nghĩa là gì?",
+        "options": [
+          "Nó đã vi phạm cam kết trong kỳ, chỉ là phần hỏng dồn vào ít lần nên nhìn không rõ",
+          "Nó đang chạy tốt hơn cam kết đã công bố nên có thể nâng SLO lên một mức cao hơn nữa",
+          "Ngân sách lỗi được tính sai vì uptime cao thì ngân sách không thể âm",
+          "Nó cần thêm máy chủ để uptime tháng sau tiếp tục giữ được mức này"
+        ],
+        "correct": 0,
+        "explanation": "Uptime tháng là một con số trung bình, còn ngân sách lỗi là một con số tích luỹ. Một sự cố duy nhất dài bằng cả ngân sách vẫn cho ra uptime đẹp khi chia cho ba mươi ngày - và đó chính là lý do phải theo dõi cả hai."
+      },
+      {
+        "question": "Một đội giữ nguyên SLO suốt 5 kỳ dù kỳ nào cũng tiêu sạch ngân sách lỗi. Điều đó nói lên gì?",
+        "options": [
+          "Cam kết đang được đỡ bằng may mắn, và nó sẽ vỡ vào kỳ có sự cố lớn",
+          "Hệ thống đã đạt đúng mức tin cậy mà cam kết yêu cầu nên không cần đổi",
+          "Ngân sách lỗi được đặt quá rộng nên tiêu hết cũng không ảnh hưởng gì",
+          "Đội đang phát hành quá ít nên không tận dụng hết ngân sách được cấp"
+        ],
+        "correct": 0,
+        "explanation": "Tiêu sạch mọi kỳ nghĩa là không còn chỗ hấp thụ. Hệ thống ấy vẫn đúng cam kết cho tới lần đầu tiên có một sự cố lớn hơn thường lệ, và lúc đó nó vi phạm ngay lập tức chứ không có giai đoạn cảnh báo."
+      },
+      {
+        "question": "SLO 99,9% trong 30 ngày, đã hỏng 30 phút. Tỷ lệ tiêu ngân sách lỗi là bao nhiêu?",
+        "options": [
+          "Khoảng 70%",
+          "Khoảng 0,07% (= 30 phút chia cho cả tháng, đó là tỷ lệ hỏng chứ không phải tỷ lệ tiêu)",
+          "Khoảng 30% (= lấy thẳng số phút làm phần trăm)",
+          "Khoảng 7% (= chia đúng nhưng nhầm ngân sách thành 430 phút)"
+        ],
+        "correct": 0,
+        "explanation": "Ngân sách lỗi là 0,1% của 43.200 phút, tức khoảng 43 phút. Ba mươi chia bốn mươi ba ra khoảng 70%. Ba phương án còn lại đều là kết quả của việc so số phút hỏng với sai mẫu số."
+      },
+      {
+        "question": "Vì sao các đội thường ngại hạ SLO kể cả khi không giữ nổi?",
+        "options": [
+          "Vì hạ con số công bố bị đọc như lời thú nhận sản phẩm đang xuống cấp",
+          "Vì hệ thống giám sát không cho phép sửa ngưỡng sau khi đã đặt",
+          "Vì hạ SLO làm ngân sách lỗi nhỏ lại nên càng khó giữ hơn nữa",
+          "Vì hợp đồng với nhà cung cấp hạ tầng quy định mức tối thiểu phải công bố"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lý do xã hội chứ không phải kỹ thuật, và nó mạnh hơn người ta tưởng. Cái giá của việc giữ một con số không đỡ nổi là mất quyền dừng phát hành - thứ duy nhất mà ngân sách lỗi sinh ra để cấp cho đội."
+      },
+      {
+        "question": "Một đợt gia cố hạ tầng một lần khác một cam kết SLO ở điểm nào?",
+        "options": [
+          "Đợt gia cố là khoản chi một lần, còn cam kết là nghĩa vụ lặp lại mỗi kỳ",
+          "Đợt gia cố cần được công bố ra ngoài, còn cam kết chỉ dùng trong nội bộ",
+          "Đợt gia cố chỉ cải thiện độ trễ, còn cam kết chỉ nói về tỷ lệ lỗi",
+          "Đợt gia cố tiêu ngân sách lỗi, còn cam kết thì tạo thêm ngân sách lỗi"
+        ],
+        "correct": 0,
+        "explanation": "Cùng một khác biệt giữa một khoản chi một lần và một nghĩa vụ định kỳ. Gia cố xong có thể dừng mà không ai phàn nàn; hạ một cam kết đã công bố thì luôn là một thông báo, và đó là lý do phải cẩn thận trước khi đưa ra nó."
+      }
+    ],
+    "keyTakeaways": [
+      "Đọc SLO cùng ngân sách lỗi còn lại, không chỉ cùng uptime của kỳ trước",
+      "Tỷ lệ tiêu vượt 100% nhiều kỳ liên tiếp nghĩa là cam kết sai ngay từ đầu",
+      "Nhịp tiêu cảnh báo sớm hơn vi phạm: 50% ngân sách khi mới qua 20% kỳ",
+      "Cam kết là nghĩa vụ lặp lại, còn gia cố hạ tầng là khoản chi một lần"
+    ],
     "practicePrompt": {
-      "question": "Yếu tố tài chính quan trọng nhất bảo chứng cho độ bền vững của cổ tức tiền mặt (Dividend Sustainability) là gì?",
+      "question": "SLO 99,5% trong 30 ngày, đã hỏng 2 giờ. Ngân sách lỗi còn lại bao nhiêu?",
       "options": [
-        "Dòng tiền tự do FCF (Free Cash Flow) dồi dào và Tỷ lệ chi trả cổ tức / FCF ở mức an toàn (< 70%)",
-        "Giá cổ phiếu đang tăng trần liên tục",
-        "Tổng doanh thu báo cáo năm vừa qua",
-        "Ý chí cá nhân của Chủ tịch HĐQT không cần xem xét dòng tiền"
+        "Khoảng 1,6 giờ",
+        "Khoảng 5,4 giờ (= toàn bộ ngân sách, quên trừ phần đã hỏng)",
+        "Đã âm khoảng 1,5 giờ (= nhầm ngân sách của 99,9%)",
+        "Khoảng 28 giờ (= nhầm 0,5% thành 5%)"
       ],
       "correct": 0,
-      "explanation": "Cổ tức tiền mặt thực sự được trả bằng tiền mặt. Dòng tiền tự do FCF vững chắc là nguồn trả cổ tức bền vững nhất, không phụ thuộc vào lợi nhuận sổ sách kế toán."
+      "explanation": "0,5% của 720 giờ là 3,6 giờ. Trừ 2 giờ đã hỏng còn khoảng 1,6 giờ. Ba phương án còn lại đều là kết quả của việc bỏ một bước hoặc nhầm một bậc trong phép tính."
+    },
+    "summary": {
+      "keyIdea": "Một cam kết chỉ bền khi ngân sách lỗi còn dư sau khi trừ hết những gì đã tiêu",
+      "commonMistake": "Đọc uptime trung bình của kỳ thay vì đọc ngân sách lỗi còn lại",
+      "action": "Mở bảng giám sát và tính tỷ lệ tiêu ngân sách lỗi của ba kỳ gần nhất."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Dividend - Cổ Tức",
-      "message": "Yếu tố tài chính quan trọng nhất bảo chứng cho độ bền vững của cổ tức tiền mặt (Dividend Sustainability) là gì?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
+      "title": "Ba kỳ gần nhất",
+      "message": "Với dịch vụ bạn đang làm, tính ngân sách lỗi của kỳ, cộng tổng thời gian hỏng, rồi chia. Làm cho ba kỳ liên tiếp để thấy xu hướng chứ không chỉ thấy một điểm.",
+      "secondary": "Nếu cả ba kỳ đều vượt 100%, vấn đề không nằm ở kỳ nào cả - con số cam kết đang cao hơn thứ hệ thống đỡ nổi, và đó là một quyết định chứ không phải một sự cố."
     }
   },
   {
@@ -56984,189 +57767,204 @@ export const lessons: Lesson[] = [
   {
     "id": 1020,
     "slug": "post-ipo-dividend",
-    "title": "Post-IPO: Nên Trả Cổ Tức?",
-    "subtitle": "FCF vs Net Income - khi nào nên chia tiền cho cổ đông",
+    "title": "Sau Khi Ra Mắt: Nên Công Bố SLO?",
+    "subtitle": "Dung lượng dư thật so với nhịp phát hành - khi nào nên cam kết ra ngoài",
     "duration": "6 phút",
     "difficulty": "Trung bình",
     "emoji": "🚀",
-    "openingQuestion": "Sau IPO, khi nào doanh nghiệp nên trả cổ tức?",
+    "track": "bonus",
+    "openingQuestion": "Sau khi sản phẩm ra mắt, khi nào nên công bố một SLO ra bên ngoài?",
     "openingOptions": [
-      "Ngay lập tức nếu công ty đã có chút tên tuổi",
-      "Khi FCF ổn định và đầu tư tăng trưởng đã đủ",
-      "Chỉ khi thị giá giảm",
-      "Càng nhiều càng tốt"
+      "Ngay lập tức nếu sản phẩm đã có chút người dùng",
+      "Khi độ tin cậy đã ổn định và phần việc tăng trưởng đã đủ chỗ",
+      "Chỉ khi có khách hàng lớn yêu cầu bằng văn bản",
+      "Càng sớm và càng nhiều số chín càng tốt"
     ],
     "correctOption": 1,
-    "explanation": "Sau khi lên sàn, doanh nghiệp thường chịu áp lực chia cổ tức để chứng minh mình đã trưởng thành. Nhưng phép so sánh đúng chỉ có một: cơ hội tái đầu tư còn sinh lời cao hơn chi phí vốn không. Còn thì mỗi đồng chia ra là một đồng lẽ ra tạo được nhiều giá trị hơn. Cũng cần nhớ thị trường đọc cổ tức như một cam kết, nên bắt đầu chia sớm rồi phải cắt là tín hiệu tệ hơn nhiều so với chưa từng chia.",
+    "explanation": "Một SLO công bố ra ngoài là nghĩa vụ lặp lại, và nó cạnh tranh trực tiếp với việc ra tính năng. Công bố quá sớm nghĩa là mỗi lần muốn thử một thay đổi lớn bạn đều phải cân với một con số đã hứa với người ngoài, trong khi giai đoạn đầu chính là lúc cần thử nhiều nhất. Công bố quá muộn thì khách hàng lớn không có gì để dựa vào khi ký hợp đồng. Điều kiện đúng nằm ở giữa: độ tin cậy đã đủ ổn định để đo được một cách đáng tin, và phần công sức dành cho tăng trưởng đã có chỗ mà không phải ăn vào ngân sách lỗi.",
     "diagram": [
       {
-        "label": "FCF",
+        "label": "Giai đoạn đầu: đo nội bộ, chưa cam kết",
         "arrow": true
       },
       {
-        "label": "Opportunities",
+        "label": "Độ tin cậy ổn định qua vài kỳ liên tiếp",
         "arrow": true
       },
       {
-        "label": "Payout policy",
+        "label": "Phần việc tăng trưởng đã có chỗ riêng",
         "arrow": true
       },
       {
-        "label": "Cổ tức hay tái đầu tư",
-        "arrow": false
+        "label": "Khi đó mới công bố, và công bố mức giữ được"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Công ty mới niêm yết",
-      "description": "Một doanh nghiệp sau IPO có thể còn cần giữ tiền mặt để mở rộng hơn là chia hết cho cổ đông."
-    },
-    "quiz": [
-      {
-        "question": "Tại sao nhiều công ty tăng trưởng không nên trả cổ tức cao ngay?",
-        "options": [
-          "Vì cần giữ vốn cho cơ hội đầu tư tốt hơn",
-          "Vì cổ đông của công ty tăng trưởng không thích tiền mặt",
-          "Vì quy định niêm yết cấm chia cổ tức trong ba năm đầu",
-          "Vì chuẩn mực kế toán không cho phép chia sớm sau IPO"
-        ],
-        "correct": 0,
-        "explanation": "Khi doanh nghiệp còn dự án sinh lời cao hơn mức cổ đông tự kiếm được ở nơi khác, giữ lại một đồng lợi nhuận tạo ra nhiều giá trị hơn chia một đồng cổ tức - đó là lý do duy nhất trong bốn phương án đứng vững. Không có quy định niêm yết nào cấm chia cổ tức ba năm đầu, chuẩn mực kế toán cũng không, và cổ đông của công ty tăng trưởng không phải không thích tiền mặt: họ chấp nhận chờ vì kỳ vọng phần vốn giữ lại sinh lời tốt hơn."
-      },
-      {
-        "question": "Một công ty vừa IPO tuyên bố sẽ trả cổ tức cao ngay để tri ân cổ đông dù vẫn còn nhiều dự án mở rộng có ROIC cao hơn WACC. Quyết định này nên được đánh giá thế nào?",
-        "options": [
-          "Có thể là phân bổ vốn kém - giữ lại tái đầu tư tạo giá trị hơn",
-          "Chỉ nên đánh giá dựa trên phản ứng của giá cổ phiếu trong ngắn hạn",
-          "Không quan trọng vì cổ tức không ảnh hưởng giá trị công ty",
-          "Luôn tích cực vì cổ đông thích nhận tiền mặt ngay lập tức"
-        ],
-        "correct": 0,
-        "explanation": "Nguyên tắc phân bổ vốn cơ bản: nếu công ty có dự án với ROIC > WACC, giữ lại vốn để tái đầu tư thường tạo nhiều giá trị hơn chia cổ tức - một công ty mới IPO vẫn còn nhiều cơ hội tăng trưởng tốt mà vội chia cổ tức cao có thể đang bỏ lỡ cơ hội tạo giá trị lớn hơn cho chính cổ đông đó."
-      },
-      {
-        "question": "Công ty mới IPO còn nhiều dự án ROIC 25% trong khi WACC là 12%. Quyết định nào tạo nhiều giá trị hơn cho cổ đông dài hạn?",
-        "options": [
-          "Giữ lại vốn tái đầu tư, vì chênh 13 điểm là giá trị bỏ lỡ",
-          "Không có cách nào quyết định đúng nếu chưa biết ngành",
-          "Chia một nửa và giữ một nửa bất kể tình hình các dự án",
-          "Chia cổ tức ngay để tri ân cổ đông đã tham gia đợt IPO"
-        ],
-        "correct": 0,
-        "explanation": "Khi ROIC vượt WACC rõ rệt, giữ lại vốn tái đầu tư gần như luôn tạo nhiều giá trị hơn chia ngay - đây là logic cốt lõi của chính sách phân bổ vốn."
-      },
-      {
-        "question": "Khi nào một doanh nghiệp nên chuyển từ giữ lại vốn sang chia cổ tức?",
-        "options": [
-          "Khi ROIC biên của dự án còn lại giảm về gần chi phí vốn",
-          "Chỉ khi lợi nhuận sau thuế vượt một ngưỡng tuyệt đối cố định",
-          "Không bao giờ nên chia cổ tức nếu công ty còn tăng trưởng",
-          "Ngay khi vừa niêm yết, bất kể tình hình các dự án còn lại"
-        ],
-        "correct": 0,
-        "explanation": "Đây là logic vòng đời doanh nghiệp: khi cơ hội đầu tư ROIC cao cạn dần, giữ tiền mặt không mục đích trở thành chi phí cơ hội, và chia cổ tức trở thành lựa chọn hợp lý hơn."
-      },
-      {
-        "question": "Vì sao thị trường thường đọc việc một công ty tăng trưởng bắt đầu trả cổ tức đều như một tín hiệu về giai đoạn phát triển?",
-        "options": [
-          "Vì nó ngầm nói rằng cơ hội tái đầu tư sinh lời cao đã vơi đi",
-          "Vì cổ tức chỉ được phép chi trả sau khi doanh nghiệp đã hết dự án đầu tư",
-          "Vì trả cổ tức làm giảm vốn chủ nên hệ số sinh lời trên vốn tăng lên",
-          "Vì đây là điều kiện bắt buộc để cổ phiếu được vào các chỉ số lớn"
-        ],
-        "correct": 0,
-        "explanation": "Ban lãnh đạo chỉ trả tiền về cho cổ đông khi họ không còn chỗ nào tốt hơn để đặt đồng vốn đó. Bản thân điều này không xấu - nhưng nó đổi câu chuyện đầu tư từ tăng trưởng sang thu nhập, và mức bội số thị trường trả cũng đổi theo."
-      }
-    ],
-    "keyTakeaways": [
-      "Dividend policy phải gắn với growth stage",
-      "FCF và cơ hội đầu tư quan trọng hơn cảm xúc chia tiền",
-      "IPO không đồng nghĩa với việc phải trả cổ tức ngay"
-    ],
-    "track": "bonus",
-    "summary": {
-      "keyIdea": "Dividend policy phải gắn với growth stage",
-      "commonMistake": "Dễ bỏ qua: fCF và cơ hội đầu tư quan trọng hơn cảm xúc chia tiền",
-      "action": "IPO không đồng nghĩa với việc phải trả cổ tức ngay"
+      "company": "Ba số chín hứa quá sớm",
+      "description": "Một sản phẩm ra mắt được bốn tháng thì công bố 99,9% để ký được một khách hàng lớn. Sáu tháng sau họ cần viết lại tầng dữ liệu - việc bắt buộc phải làm và chắc chắn gây gián đoạn. Nhưng con số đã hứa biến một đợt di trú bình thường thành chuyện phải xin phép, phải làm vào ban đêm, và cuối cùng bị hoãn ba quý. Cái giá của việc cam kết sớm không phải là sự cố, mà là những thay đổi cần thiết bị lùi lại."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Sau khi IPO, nhiều nhà đầu tư mong chờ doanh nghiệp sớm chia cổ tức để 'tri ân cổ đông' - nhưng đây không phải lúc nào cũng là quyết định phân bổ vốn tốt nhất."
+        "text": "Công bố một SLO là dấu hiệu sản phẩm đã trưởng thành - nhưng công bố khi chưa có dung lượng dư thật thì nó chỉ chuyển rủi ro từ chỗ đo được sang chỗ không đo được."
       },
       {
         "type": "heading",
-        "text": "Nguyên tắc phân bổ vốn: giữ lại hay chia?"
+        "text": "Dung lượng dư quyết định thời điểm cam kết"
       },
       {
         "type": "paragraph",
-        "text": "Nếu công ty vẫn còn nhiều dự án với ROIC vượt WACC (chi phí vốn), giữ lại vốn để tái đầu tư thường tạo nhiều giá trị dài hạn hơn cho cổ đông so với chia cổ tức sớm. Một công ty mới IPO thường vẫn còn nhiều cơ hội tăng trưởng tốt - vội chia cổ tức cao ngay có thể đang bỏ lỡ cơ hội tạo giá trị lớn hơn nhiều cho chính những cổ đông đó."
+        "text": "Ở giai đoạn đầu, gần như mọi phần công sức đều nên chảy vào việc làm sản phẩm đúng hướng, vì mỗi thay đổi lớn còn tạo ra giá trị lớn hơn nhiều so với việc giữ thêm một số chín. Chỉ khi hai điều kiện cùng đúng - độ tin cậy đo được ổn định qua vài kỳ, và phần việc tăng trưởng đã có chỗ riêng không ăn vào ngân sách lỗi - thì cam kết ra ngoài mới là một quyết định chứ không phải một lời hứa."
       },
       {
         "type": "list",
         "items": [
-          "Cổ tức chỉ hợp lý khi FCF ổn định và các cơ hội đầu tư có ROIC cao đã được khai thác đủ",
-          "Nếu còn dự án ROIC > WACC, giữ lại vốn thường tạo giá trị lớn hơn chia cổ tức",
-          "Dividend policy cần gắn với giai đoạn tăng trưởng của doanh nghiệp, không phải cảm xúc 'tri ân cổ đông'"
+          "Đo nội bộ trước ít nhất vài kỳ, để biết mức thật chứ không đoán",
+          "Công bố mức bạn đã giữ được, không phải mức bạn muốn đạt tới",
+          "Một số chín ít hơn mà giữ được luôn tốt hơn một số chín nhiều mà phải xin lỗi",
+          "Cam kết sớm khoá lại đúng những thay đổi lớn mà giai đoạn đầu cần nhất"
         ]
       },
       {
         "type": "formula",
-        "title": "Khi nào giữ lại vốn tạo giá trị hơn chia ra",
-        "equation": "Giữ lại có lợi khi: ROIC của dự án tái đầu tư > WACC",
-        "example": {
-          "title": "So sánh hai lựa chọn",
-          "calculation": "Giữ lại 1.000 tỷ, đầu tư ở ROIC 25%, WACC 12%",
-          "result": "Tạo thêm giá trị ròng khoảng 13% trên số vốn đó mỗi năm",
-          "explanation": "Nếu công ty vẫn còn dự án ở mức sinh lời này, chia hết 1.000 tỷ đó cho cổ đông đồng nghĩa từ bỏ khoản chênh lệch 13% mỗi năm - một chi phí cơ hội rất lớn mà bảng cân đối không hiện ra trực tiếp."
-        }
+        "title": "Hai điều kiện phải cùng đúng",
+        "variables": [
+          {
+            "symbol": "Stable",
+            "name": "Ổn định = độ lệch giữa các kỳ đủ nhỏ",
+            "description": "Ba kỳ liên tiếp trong cùng một dải nghĩa là con số đã đo được. Ba kỳ nhảy loạn nghĩa là bạn đang đo may rủi."
+          },
+          {
+            "symbol": "Head",
+            "name": "Dung lượng dư = Ngân sách lỗi − Phần đã tiêu đều đặn",
+            "description": "Phần này phải đủ để hấp thụ những thay đổi lớn còn ở phía trước, chứ không chỉ đủ cho vận hành thường ngày."
+          },
+          {
+            "symbol": "Growth",
+            "name": "Chi phí cơ hội = Giá trị của thay đổi bị hoãn",
+            "description": "Đây là khoản đắt nhất và ít ai tính. Một cam kết sớm không làm hệ thống hỏng, nó làm những việc cần làm bị lùi lại."
+          },
+          {
+            "symbol": "SLO",
+            "name": "Mức công bố ≤ Mức đã giữ được qua các kỳ đo",
+            "description": "Công bố cao hơn thứ đã đo được là đi vay từ tương lai, và khoản vay ấy được trả bằng những đêm trực."
+          }
+        ]
       },
       {
         "type": "heading",
-        "text": "Vòng đời doanh nghiệp và chính sách cổ tức"
+        "text": "Ba dấu hiệu chưa nên cam kết"
       },
       {
         "type": "list",
         "items": [
-          "Giai đoạn tăng trưởng cao: nhiều dự án ROIC vượt WACC, giữ lại vốn gần như luôn tốt hơn chia ra.",
-          "Giai đoạn trưởng thành: dự án còn lại ít dần, ROIC biên giảm về gần WACC - đây là lúc cổ tức bắt đầu hợp lý.",
-          "Giai đoạn bão hòa: hầu như không còn dự án ROIC cao, giữ tiền mặt không mục đích chỉ tạo chi phí cơ hội - lúc này chia cổ tức hoặc mua lại cổ phiếu là lựa chọn tốt cho cổ đông."
+          "Kiến trúc còn một thay đổi lớn đã biết trước nhưng chưa làm",
+          "Số liệu độ tin cậy giữa các kỳ còn chênh nhau nhiều lần",
+          "Đội chưa có quy trình dừng phát hành khi tiêu hết ngân sách lỗi"
         ]
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Áp lực chia cổ tức sớm",
-          "text": "Nhà đầu tư quen với việc nhận cổ tức đều đặn từ các khoản đầu tư khác, kỳ vọng công ty mới niêm yết cũng làm vậy để 'chứng minh sức khỏe tài chính' - dù công ty vẫn còn nhiều cơ hội tăng trưởng tốt hơn."
+          "label": "Cam kết đúng lúc",
+          "text": "Con số công bố thấp hơn mức đã đo được, nên vẫn còn chỗ cho những thay đổi lớn. Khách hàng có thứ để dựa vào, và đội không phải xin phép để làm việc cần làm."
         },
         "right": {
-          "label": "Phân bổ vốn đúng giai đoạn",
-          "text": "Ban lãnh đạo giải thích rõ các dự án ROIC cao đang cần vốn, và cam kết sẽ chuyển sang chia cổ tức khi cơ hội tái đầu tư cạn dần - đây là cách truyền thông đúng với nhà đầu tư dài hạn."
+          "label": "Cam kết quá sớm",
+          "text": "Con số công bố bằng hoặc cao hơn mức tốt nhất từng đạt. Mọi đợt di trú thành sự kiện phải phê duyệt, và những việc khó nhất bị đẩy lùi hết quý này sang quý khác."
         }
       },
       {
         "type": "closing",
         "lines": [
-          "Chia cổ tức sớm nghe có vẻ hào phóng, nhưng chưa chắc là quyết định tốt nhất cho cổ đông.",
-          "Câu hỏi đúng là: công ty còn cơ hội đầu tư nào tốt hơn việc trả tiền ngay không?"
+          "Cam kết ra ngoài không làm hệ thống tin cậy hơn - nó chỉ chuyển rủi ro sang chỗ khó thấy hơn.",
+          "Công bố mức bạn đã giữ được, và công bố khi những thay đổi lớn đã nằm lại phía sau."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Vì sao sản phẩm giai đoạn đầu thường chưa nên công bố SLO?",
+        "options": [
+          "Vì mỗi thay đổi lớn ở giai đoạn này còn tạo giá trị cao hơn việc giữ thêm một số chín",
+          "Vì hệ thống giám sát ở giai đoạn này chưa đủ chính xác để đo tỷ lệ uptime thật sự của dịch vụ",
+          "Vì số người dùng còn ít nên không có ai quan tâm tới con số cam kết",
+          "Vì quy định yêu cầu sản phẩm phải hoạt động tối thiểu một năm mới được công bố"
+        ],
+        "correct": 0,
+        "explanation": "Đây là so sánh chi phí cơ hội, không phải so sánh kỹ thuật. Giai đoạn đầu là lúc thay đổi lớn còn rẻ và còn đáng làm, và một cam kết công khai là thứ đắt nhất bạn có thể đặt lên đúng giai đoạn ấy."
+      },
+      {
+        "question": "Một sản phẩm vừa ra mắt công bố ngay 99,99%. Rủi ro lớn nhất là gì?",
+        "options": [
+          "Những thay đổi kiến trúc cần thiết bị hoãn vì không còn chỗ trong ngân sách lỗi",
+          "Chi phí hạ tầng tăng ngay lập tức vì phải chạy thêm nhiều máy dự phòng ở mỗi vùng triển khai",
+          "Khách hàng sẽ so sánh con số ấy với các sản phẩm lớn hơn và thấy chưa đủ",
+          "Hệ thống giám sát phải lấy mẫu dày hơn nên tốn thêm dung lượng lưu trữ"
+        ],
+        "correct": 0,
+        "explanation": "Bốn số chín cho phép hỏng hơn bốn phút mỗi tháng. Một đợt di trú dữ liệu bình thường đã vượt xa mức đó, nên cam kết ấy biến mọi việc khó thành việc phải hoãn - và đó là cái giá không xuất hiện trên bất kỳ bảng giám sát nào."
+      },
+      {
+        "question": "Sản phẩm còn nhiều thay đổi lớn phía trước, độ tin cậy hiện tại đã ổn định. Nên làm gì?",
+        "options": [
+          "Chưa công bố, tiếp tục đo nội bộ và làm nốt các thay đổi lớn trước",
+          "Công bố ngay ở mức đang đo được vì độ tin cậy đã ổn định",
+          "Công bố ở mức thấp hơn hai bậc để chắc chắn không bao giờ vi phạm",
+          "Công bố nhưng ghi rõ là số liệu tham khảo, không phải cam kết"
+        ],
+        "correct": 0,
+        "explanation": "Ổn định là điều kiện cần chứ chưa đủ. Điều kiện còn lại là những thay đổi lớn đã nằm lại phía sau - vì chính chúng, chứ không phải vận hành thường ngày, mới là thứ tiêu hết ngân sách lỗi."
+      },
+      {
+        "question": "Khi nào nên chuyển từ đo nội bộ sang cam kết công khai?",
+        "options": [
+          "Khi mức đo được đã ổn định qua vài kỳ và phần việc tăng trưởng đã có chỗ riêng",
+          "Khi có khách hàng đầu tiên hỏi tới con số cam kết trong lúc thương lượng",
+          "Khi hệ thống đã chạy đủ mười hai tháng liên tục không có sự cố lớn nào",
+          "Khi đội đã đủ người để trực hai mươi tư trên bảy mà không phải luân phiên"
+        ],
+        "correct": 0,
+        "explanation": "Hai điều kiện này phải cùng đúng. Có khách hàng hỏi là áp lực chứ không phải điều kiện, và trả lời áp lực ấy bằng một con số chưa đỡ nổi là cách phổ biến nhất để tự khoá chân mình."
+      },
+      {
+        "question": "Vì sao thị trường thường đọc việc một sản phẩm trẻ công bố SLO cao là tín hiệu đáng ngờ?",
+        "options": [
+          "Vì nó ngụ ý sản phẩm đã hết những thay đổi lớn, điều hiếm đúng với sản phẩm trẻ",
+          "Vì các sản phẩm trẻ thường chưa có đủ ngân sách để bồi thường cho khách hàng mỗi khi vi phạm",
+          "Vì con số cao luôn được tính trên khoảng thời gian ngắn nên không đáng tin",
+          "Vì nhà cung cấp hạ tầng bên dưới cũng chỉ cam kết ở mức thấp hơn"
+        ],
+        "correct": 0,
+        "explanation": "Một cam kết cao là lời tuyên bố rằng kiến trúc đã ổn định tới mức không còn thay đổi lớn nào. Với sản phẩm mới ra mắt, điều đó thường sai - và người đọc kỹ sẽ hiểu con số ấy là để bán hàng chứ không phải để mô tả hệ thống."
+      }
+    ],
+    "keyTakeaways": [
+      "Cam kết ra ngoài là nghĩa vụ lặp lại, và nó cạnh tranh trực tiếp với việc ra tính năng",
+      "Hai điều kiện phải cùng đúng: mức đo được đã ổn định, và tăng trưởng đã có chỗ riêng",
+      "Công bố mức đã giữ được, không phải mức muốn đạt tới",
+      "Cái giá của cam kết sớm không phải sự cố, mà là những thay đổi cần thiết bị hoãn"
+    ],
     "practicePrompt": {
-      "question": "Một doanh nghiệp vừa thực hiện IPO thành công và đang trong giai đoạn mở rộng thị trường nhanh có nên chi trả cổ tức tiền mặt lớn không?",
+      "question": "Ba kỳ gần nhất đo được 99,93% / 99,81% / 99,95%. Nên công bố mức nào?",
       "options": [
-        "Không nên - nên giữ lại tái đầu tư vào dự án có ROI > WACC",
-        "Nên chi trả 100% lợi nhuận làm cổ tức để thu hút nhà đầu tư lướt sóng",
-        "Nên đi vay nợ ngân hàng thêm để chia cổ tức",
-        "Bắt buộc phải trả cổ tức theo quy định của Luật Chứng khoán"
+        "99,5% - dưới mức thấp nhất đã đo, còn chỗ cho thay đổi lớn",
+        "99,95% - mức tốt nhất đã đạt được trong ba kỳ",
+        "99,9% - trung bình của ba kỳ vừa đo",
+        "99,99% - làm tròn lên để con số dễ nhìn hơn với khách hàng"
       ],
       "correct": 0,
-      "explanation": "Trong giai đoạn tăng trưởng (Growth Stage), tái đầu tư lợi nhuận giữ lại vào các dự án mang lại lợi nhuận cao hơn chi phí vốn WACC mang lại giá trị lớn hơn nhiều so với chia cổ tức."
+      "explanation": "Công bố theo mức tốt nhất hoặc theo trung bình đều là cam kết đúng bằng thứ bạn vừa đo, tức không còn chỗ dư nào. Kỳ 99,81% cho thấy dải dao động thật, nên mức công bố phải nằm dưới cả dải ấy."
+    },
+    "summary": {
+      "keyIdea": "Chỉ cam kết ra ngoài khi mức đo được đã ổn định và tăng trưởng đã có chỗ riêng",
+      "commonMistake": "Công bố đúng bằng mức tốt nhất từng đạt, nên không còn chỗ cho thay đổi lớn",
+      "action": "Đo ba kỳ liên tiếp, lấy mức thấp nhất, rồi công bố thấp hơn mức đó."
     },
     "application": {
-      "title": "Ứng dụng thực tế: Post-IPO: Nên Trả Cổ Tức?",
-      "message": "Một doanh nghiệp vừa thực hiện IPO thành công và đang trong giai đoạn mở rộng thị trường nhanh có nên chi trả cổ tức tiền mặt lớn không?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
+      "title": "Ba kỳ rồi mới quyết",
+      "message": "Đo độ tin cậy nội bộ ba kỳ liên tiếp. Nếu dải dao động còn rộng thì chưa công bố. Nếu đã hẹp, lấy mức thấp nhất trong dải và công bố thấp hơn nữa một bậc.",
+      "secondary": "Liệt kê trước những thay đổi lớn còn ở phía trước. Nếu còn một đợt di trú dữ liệu chưa làm, hãy làm nó trước khi hứa bất cứ điều gì ra ngoài."
     }
   },
   {
@@ -59966,7 +60764,7 @@ export const lessons: Lesson[] = [
     "difficulty": "Trung bình",
     "emoji": "🧮",
     "track": "bonus",
-    "whyItMatters": "Phỏng vấn thiết kế hệ thống gần như luôn bắt đầu bằng một con số lưu lượng và kết thúc bằng một con số hạ tầng. Mười công thức này là đường nối giữa hai đầu ấy, và biết chúng nghĩa là ước lượng được thay vì đoán.",
+  "whyItMatters": "Phỏng vấn thiết kế hệ thống gần như luôn bắt đầu bằng một con số lưu lượng và kết thúc bằng một con số hạ tầng. Mười công thức này là đường nối giữa hai đầu ấy, và biết chúng nghĩa là ước lượng được thay vì đoán.",
     "openingQuestion": "Bạn đã có số request mỗi ngày và thông lượng mỗi node. Muốn ra số node cần triển khai thì còn thiếu thứ gì?",
     "openingOptions": [
       "Hệ số tải đỉnh và tỷ lệ trúng cache",
