@@ -55,13 +55,13 @@ async function markup(
 }
 
 describe("trang /lo-trinh dựng ra chữ gì", () => {
-  it("hiện con số 6 phút ngay đầu trang, trước mọi phần giải thích", async () => {
+  it("hiện con số 5 phút ngay đầu trang, trước mọi phần giải thích", async () => {
     const html = await markup("vi");
     // Đo bằng ID của khối, không bằng tên khối. Mục lục ở đầu trang liệt kê
     // đúng những cái tên đó, nên indexOf trên chữ sẽ bắt trúng mục lục và báo
     // sai thứ tự trong khi thứ tự vẫn đúng - phép kiểm hỏng theo kiểu tệ nhất,
     // đỏ vì một thay đổi hợp lệ.
-    const minutes = html.indexOf("6 phút mỗi ngày");
+    const minutes = html.indexOf("5 phút mỗi ngày");
     const howTo = html.indexOf('id="how"');
     expect(minutes).toBeGreaterThan(-1);
     expect(howTo).toBeGreaterThan(-1);
@@ -108,8 +108,8 @@ describe("trang /lo-trinh dựng ra chữ gì", () => {
     const html = await markup("vi", { savedPace: { perDay: 2, daysPerWeek: 3 } });
     // 123 bài còn lại, 2 bài/ngày, 3 ngày/tuần = 6 bài/tuần -> 21 tuần.
     expect(html).toContain("21 tuần");
-    // 2 bài x 6 phút.
-    expect(html).toContain("12 phút");
+    // 2 bài x 5 phút.
+    expect(html).toContain("10 phút");
   });
 
   it("thanh tiến độ nói được với trình đọc màn hình", async () => {

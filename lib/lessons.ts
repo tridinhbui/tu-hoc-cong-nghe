@@ -61770,1741 +61770,1870 @@ export const lessons: Lesson[] = [
 
   {
     "id": 1101,
-    "slug": "quality-of-earnings-nang-cao",
-    "title": "IB & Phân tích, Bài 1: Quality of Earnings - đọc lợi nhuận như nhà phân tích thực thụ",
-    "subtitle": "Hai công ty cùng EPS nhưng chất lượng lợi nhuận có thể rất khác nhau",
-    "duration": "8 phút",
+    "slug": "chat-luong-ma-do-bang-gi",
+    "title": "Nền tảng nâng cao, Bài 1: Chất lượng mã đo bằng gì",
+    "subtitle": "Mọi chỉ số đều đo được, và không chỉ số nào đo đúng thứ bạn quan tâm.",
+    "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "🔍",
     "track": "professional",
-    "openingQuestion": "Công ty A có Net Income tăng 20% chủ yếu nhờ giảm dự phòng nợ xấu và bán tài sản; công ty B có Net Income tăng 15% nhờ tăng doanh thu và cải thiện biên lợi nhuận gộp. Công ty nào có chất lượng lợi nhuận tốt hơn?",
+    "emoji": "📐",
+    "isFundamental": true,
+    "whyItMatters": "Đội nào cũng muốn mã chất lượng cao, và gần như không đội nào định nghĩa được nó. Không có định nghĩa thì mọi tranh luận về chất lượng đều là tranh luận về sở thích.",
+    "openingQuestion": "Chỉ số nào phản ánh chất lượng mã đúng nhất?",
     "openingOptions": [
-      "Công ty A vì tăng trưởng lợi nhuận cao hơn",
-      "Công ty B - lợi nhuận từ hoạt động kinh doanh cốt lõi",
-      "Cả hai như nhau vì đều có Net Income tăng",
-      "Không thể so sánh nếu không biết ngành nghề"
+      "Không chỉ số nào - chúng đo thuộc tính bề mặt, còn chất lượng là chi phí thay đổi",
+      "Độ phủ kiểm thử, vì nó cho biết bao nhiêu phần mã đã được kiểm tra tính đúng đắn",
+      "Độ phức tạp vòng lặp, vì nó đo trực tiếp mức độ khó hiểu của từng hàm trong mã",
+      "Số lỗi được báo cáo trên mỗi nghìn dòng mã trong một khoảng thời gian nhất định"
     ],
-    "correctOption": 1,
-    "explanation": "Quality of Earnings (chất lượng lợi nhuận) đánh giá lợi nhuận đến từ đâu, không chỉ con số cuối cùng. Lợi nhuận từ hoạt động kinh doanh cốt lõi (doanh thu tăng, biên lợi nhuận cải thiện) có tính lặp lại và bền vững; lợi nhuận từ điều chỉnh dự phòng, bán tài sản, hay các khoản một lần khác thường không lặp lại và có thể che giấu sự suy yếu của hoạt động lõi.",
+    "correctOption": 0,
+    "explanation": "Chất lượng mã là một tính chất về TƯƠNG LAI: sửa một thứ trong này tốn bao nhiêu, và sửa xong có yên tâm không. Mọi chỉ số đều đo hiện tại và đo thuộc tính bề mặt của nó. Chúng vẫn có ích vì chúng chỉ ra chỗ đáng nhìn, nhưng đặt chúng làm mục tiêu thì người ta tối ưu chỉ số chứ không tối ưu thứ chỉ số đại diện.",
     "diagram": [
       {
-        "label": "Net Income báo cáo",
+        "label": "Chất lượng = chi phí thay đổi trong tương lai",
         "arrow": true
       },
       {
-        "label": "Tách phần lõi (recurring) khỏi phần một lần (non-recurring)",
+        "label": "Chỉ số đo thuộc tính bề mặt của hiện tại",
         "arrow": true
       },
       {
-        "label": "Đánh giá tính bền vững của tăng trưởng"
+        "label": "Dùng chúng để TÌM chỗ đáng nhìn",
+        "arrow": true
+      },
+      {
+        "label": "Đặt làm mục tiêu thì người ta tối ưu chính chỉ số"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Phân tích Quality of Earnings trong M&A",
-      "description": "Trước mỗi thương vụ mua bán sáp nhập, bên mua luôn thuê kiểm toán độc lập thực hiện Quality of Earnings report - rà soát kỹ xem lợi nhuận công ty mục tiêu có thực sự bền vững không, tránh trả giá cao cho lợi nhuận được 'làm đẹp' bằng các thủ thuật kế toán một lần."
+      "company": "Độ phủ chín mươi phần trăm",
+      "description": "Một đội đặt mục tiêu độ phủ chín mươi phần trăm và đạt được trong hai tháng. Số lỗi lọt ra không giảm, vì phần lớn kiểm thử mới chỉ gọi hàm mà không khẳng định gì. Chỉ số đạt, thứ nó đại diện thì không."
     },
     "quiz": [
       {
-        "question": "Vì sao nhà phân tích cần đặc biệt cẩn trọng khi thấy lợi nhuận tăng mạnh ngay trước một đợt IPO hoặc bán công ty?",
+        "question": "Vì sao chất lượng mã khó đo trực tiếp?",
         "options": [
-          "Vì lợi nhuận trước IPO luôn chính xác tuyệt đối",
-          "Ban lãnh đạo có động cơ tài chính rõ ràng để tối đa hóa lợi nhuận báo cáo trước các sự kiện định giá quan trọng (IPO, bán công ty) - cần soi kỹ xem tăng trưởng đến từ hoạt động lõi hay các điều chỉnh kế toán một lần",
-          "Vì luật pháp yêu cầu lợi nhuận phải tăng trước IPO",
-          "Không cần cẩn trọng gì thêm vì kiểm toán đã xác nhận số liệu"
-        ],
-        "correct": 1,
-        "explanation": "Đây là một red flag kinh điển: thời điểm ngay trước các sự kiện định giá lớn (IPO, bán doanh nghiệp) là lúc động cơ 'làm đẹp' báo cáo tài chính mạnh nhất, vì định giá công ty thường dựa trên bội số của lợi nhuận - lợi nhuận cao hơn (dù không bền vững) có thể đẩy giá bán/giá IPO lên đáng kể."
-      },
-      {
-        "question": "Free Cash Flow liên tục thấp hơn Net Income nhiều năm liền, dù công ty vẫn báo lãi đều đặn, là dấu hiệu gì về chất lượng lợi nhuận?",
-        "options": [
-          "Đây luôn là dấu hiệu tốt vì công ty đang đầu tư mạnh",
-          "Có thể là dấu hiệu cảnh báo - lợi nhuận kế toán không chuyển hóa thành tiền mặt thực tế, thường do vốn lưu động phình to hoặc các khoản điều chỉnh phi tiền mặt tăng lợi nhuận báo cáo mà không có dòng tiền tương ứng",
-          "Không liên quan gì đến chất lượng lợi nhuận",
-          "Chỉ là vấn đề kế toán, không ảnh hưởng đánh giá doanh nghiệp"
-        ],
-        "correct": 1,
-        "explanation": "Khoảng cách dai dẳng giữa Net Income và FCF là một trong những tín hiệu chất lượng lợi nhuận quan trọng nhất - nó gợi ý lợi nhuận báo cáo có thể đang được 'thổi phồng' bởi các khoản ghi nhận doanh thu sớm, giảm trích lập dự phòng, hoặc vốn lưu động bị kẹt ngày càng nhiều mà không tạo ra tiền mặt thực."
-      },
-      {
-        "question": "Công ty báo lãi 400 tỷ nhưng dòng tiền kinh doanh chỉ 90 tỷ, kéo dài ba năm liên tiếp. Đánh giá đúng là gì?",
-        "options": [
-          "Chất lượng lợi nhuận thấp, cần tìm khoảng chênh nằm ở phải thu, tồn kho hay chính sách ghi nhận",
-          "Bình thường vì lợi nhuận và dòng tiền luôn khác nhau",
-          "Doanh nghiệp đang đầu tư mạnh nên chưa có tiền",
-          "Cần chờ thêm 5 năm nữa mới kết luận được"
+          "Vì nó là tính chất về tương lai - chi phí thay đổi - còn chỉ số thì đo hiện tại",
+          "Vì mỗi dự án có tiêu chuẩn riêng nên không có thước đo chung nào áp dụng được",
+          "Vì chất lượng phụ thuộc vào cảm nhận chủ quan của từng lập trình viên khác nhau trong đội",
+          "Vì các công cụ đo hiện nay chưa đủ chính xác để đánh giá được mã nguồn phức tạp"
         ],
         "correct": 0,
-        "explanation": "Lệch một kỳ là chuyện bình thường. Lệch sâu và kéo dài ba năm liền là dấu hiệu lợi nhuận kế toán không chuyển thành tiền, và câu hỏi tiếp theo là khoản chênh đó đang nằm ở đâu."
+        "explanation": "Bạn chỉ biết chắc chi phí thay đổi khi đã thay đổi thật - tức là sau khi cần tới nó. Đây không phải hạn chế của công cụ mà là tính chất của thứ đang được đo."
       },
       {
-        "question": "Doanh nghiệp giảm mạnh mức trích lập dự phòng nợ khó đòi trong khi phải thu quá hạn tăng. Điều này ảnh hưởng thế nào?",
+        "question": "Vì sao đặt một chỉ số làm mục tiêu lại làm nó mất giá trị?",
         "options": [
-          "Làm lợi nhuận tăng mà không cần thêm tiền mặt nào - một dạng làm đẹp lợi nhuận cần soi kỹ",
-          "Làm giảm lợi nhuận trong kỳ",
-          "Không ảnh hưởng đến lợi nhuận",
-          "Chỉ ảnh hưởng đến dòng tiền chứ không ảnh hưởng lợi nhuận"
+          "Vì người ta sẽ tối ưu chính chỉ số đó thay vì tối ưu thứ mà nó đại diện",
+          "Vì chỉ số sẽ nhanh chóng đạt mức tối đa và không còn phân biệt được nữa",
+          "Vì việc theo dõi chỉ số tốn thời gian mà thời gian đó lẽ ra dùng để sửa mã",
+          "Vì các chỉ số thường mâu thuẫn nhau nên tối ưu cái này làm hỏng cái kia"
         ],
         "correct": 0,
-        "explanation": "Dự phòng là chi phí phi tiền mặt, nên giảm trích lập làm lợi nhuận tăng ngay. Khi xu hướng này đi ngược chiều với chất lượng phải thu thực tế, đó là chỗ cần đọc thuyết minh rất kỹ."
+        "explanation": "Độ phủ chín mươi phần trăm đạt được bằng những kiểm thử gọi hàm mà không khẳng định gì. Chỉ số đạt, thứ nó đại diện thì không - và bạn còn mất luôn khả năng dùng chỉ số đó để phát hiện vấn đề."
+      },
+      {
+        "question": "Chỉ số nào có ích nhất khi dùng đúng cách?",
+        "options": [
+          "Tần suất thay đổi kết hợp với độ phức tạp, vì giao của hai cái là chỗ rủi ro nhất",
+          "Tổng số dòng mã, vì dự án càng lớn thì càng khó bảo trì về lâu dài",
+          "Tỷ lệ chú thích trên mã, vì mã được giải thích kỹ thì người sau dễ hiểu hơn",
+          "Số lượng phụ thuộc bên ngoài, vì càng ít phụ thuộc thì hệ thống lại càng ổn định hơn"
+        ],
+        "correct": 0,
+        "explanation": "Một hàm phức tạp mà không ai đụng tới thì không gây hại; một hàm đơn giản bị sửa hằng tuần cũng không. Chỗ giao của hai điều kiện mới là chỗ chi phí thay đổi thật sự cao và thật sự bị trả thường xuyên."
+      },
+      {
+        "question": "Vì sao tỷ lệ chú thích không phản ánh chất lượng?",
+        "options": [
+          "Vì chú thích nhiều thường là dấu hiệu mã khó hiểu, và chú thích cũ đi mà mã thì không",
+          "Vì các công cụ đo hiện nay không phân biệt được chú thích hữu ích với chú thích tự động sinh ra",
+          "Vì tiêu chuẩn về lượng chú thích khác nhau giữa các ngôn ngữ lập trình",
+          "Vì chú thích không ảnh hưởng tới cách chương trình hoạt động khi chạy"
+        ],
+        "correct": 0,
+        "explanation": "Hai vế đều quan trọng và vế thứ hai tệ hơn: một chú thích sai còn hại hơn không có chú thích, vì người đọc tin nó. Cần chú thích nhiều thường là dấu hiệu nên viết lại mã cho rõ hơn."
+      },
+      {
+        "question": "Cách dùng chỉ số nào đúng?",
+        "options": [
+          "Dùng để tìm chỗ đáng nhìn kỹ, rồi con người quyết định có vấn đề hay không",
+          "Đặt ngưỡng cho từng chỉ số và chặn việc gộp mã khi vượt ngưỡng đó",
+          "Theo dõi xu hướng theo thời gian và báo cáo định kỳ cho cả đội cùng biết",
+          "So sánh chỉ số của dự án mình với mức trung bình của ngành để biết đang ở đâu"
+        ],
+        "correct": 0,
+        "explanation": "Chỉ số là công cụ tìm kiếm, không phải công cụ phán xét. Đặt ngưỡng chặn thì bạn vừa biến chỉ số thành mục tiêu - và nhận lại đúng hành vi tối ưu chỉ số mà câu trên mô tả."
       }
     ],
     "keyTakeaways": [
-      "Quality of Earnings đánh giá lợi nhuận đến từ hoạt động lõi bền vững hay các khoản một lần không lặp lại",
-      "Cẩn trọng đặc biệt với lợi nhuận tăng vọt ngay trước các sự kiện định giá (IPO, M&A)",
-      "Khoảng cách dai dẳng giữa Net Income và FCF là tín hiệu cảnh báo chất lượng lợi nhuận"
+      "Chất lượng mã là chi phí thay đổi trong TƯƠNG LAI; mọi chỉ số đo hiện tại.",
+      "Đặt chỉ số làm mục tiêu thì người ta tối ưu chỉ số, không tối ưu thứ nó đại diện.",
+      "Chỉ số hữu ích nhất là giao của TẦN SUẤT THAY ĐỔI và ĐỘ PHỨC TẠP.",
+      "Chú thích nhiều thường là dấu hiệu mã khó hiểu; chú thích sai hại hơn không có.",
+      "Dùng chỉ số để TÌM chỗ đáng nhìn, không dùng để phán xét hay chặn."
     ],
     "practicePrompt": {
-      "question": "Công ty A báo lãi tăng 40% so với năm trước, nhưng phần tăng chủ yếu đến từ việc bán một mảng kinh doanh không cốt lõi (khoản lãi một lần). Công ty B lãi tăng chỉ 10% nhưng hoàn toàn từ hoạt động kinh doanh chính. Nhà phân tích Quality of Earnings nên đánh giá công ty nào có triển vọng bền vững hơn?",
+      "question": "Đội bạn muốn một con số duy nhất để theo dõi chất lượng mã. Nên trả lời thế nào?",
       "options": [
-        "Công ty B: lợi nhuận cốt lõi bền vững hơn khoản lãi một lần từ bán tài sản",
-        "Công ty A vì có tốc độ tăng trưởng lợi nhuận cao hơn nhiều, bất kể nguồn gốc khoản lãi đến từ đâu",
-        "Cả hai công ty có triển vọng như nhau vì đều có Net Income dương trong năm báo cáo",
-        "Không thể đánh giá được nếu chỉ dựa vào Net Income, cần thêm thông tin về giá cổ phiếu hiện tại"
+        "Đề xuất giao của tần suất thay đổi và độ phức tạp, kèm cảnh báo nó là chỉ dấu chứ không phải điểm số",
+        "Chọn độ phủ kiểm thử vì đó là chỉ số phổ biến nhất và dễ đo lường nhất hiện nay",
+        "Từ chối vì không có con số nào phản ánh đúng chất lượng mã của một dự án",
+        "Đề xuất kết hợp nhiều chỉ số thành một điểm số tổng hợp có trọng số cho từng cái"
       ],
       "correct": 0,
-      "explanation": "Lợi nhuận từ hoạt động kinh doanh cốt lõi bền vững hơn lợi nhuận từ các khoản một lần. Quality of Earnings đánh giá chính xác điều này - lãi từ bán tài sản một lần không lặp lại, trong khi lãi từ vận hành cốt lõi phản ánh khả năng sinh lời thực sự trong tương lai."
+      "explanation": "Từ chối thẳng thì đội vẫn cần một thứ để nhìn và sẽ tự chọn một chỉ số tệ hơn. Điểm tổng hợp có trọng số thì càng tệ vì nó giấu đi thông tin của từng thành phần và làm cho việc tối ưu chỉ số dễ hơn nữa."
+    },
+    "summary": {
+      "keyIdea": "Chất lượng là chi phí thay đổi; chỉ số chỉ là dấu hiệu bề mặt của nó.",
+      "formula": "Tần suất thay đổi × độ phức tạp = chỗ đáng nhìn trước tiên.",
+      "commonMistake": "Đặt ngưỡng cho chỉ số và chặn gộp mã, biến nó thành mục tiêu.",
+      "action": "Lấy danh sách tệp bị sửa nhiều nhất và xem cái nào cũng phức tạp nhất."
     },
     "application": {
-      "title": "Vẽ đường Net Income và CFO cạnh nhau",
-      "message": "Lấy năm năm gần nhất của một doanh nghiệp niêm yết và đặt lợi nhuận sau thuế cạnh dòng tiền từ hoạt động kinh doanh. Hai đường bám nhau là bình thường; một đường đi lên trong khi đường kia đi ngang nhiều năm là câu hỏi cần trả lời trước khi định giá.",
-      "secondary": "Chỗ chênh thường nằm ở phải thu và hàng tồn kho tăng nhanh hơn doanh thu. Tính số ngày phải thu qua từng năm để thấy nó.",
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy lịch sử kho mã, liệt kê mười tệp bị sửa nhiều nhất trong sáu tháng qua, rồi xem tệp nào trong đó cũng thuộc nhóm phức tạp nhất.",
+      "secondary": "Chỗ giao đó là danh sách việc đáng làm của bạn. Nó thường ngắn hơn nhiều so với danh sách mà một công cụ đo độ phức tạp đơn thuần đưa ra."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Hai công ty cùng EPS nhưng chất lượng lợi nhuận có thể rất khác nhau - phân biệt được điều này là kỹ năng phân tích quan trọng bậc nhất."
+        "text": "Đội nào cũng muốn mã chất lượng cao, và gần như không đội nào định nghĩa được nó. Không có định nghĩa thì mọi tranh luận về chất lượng đều là tranh luận về sở thích cá nhân."
       },
       {
         "type": "heading",
-        "text": "Lợi nhuận lõi bền vững hay khoản một lần không lặp lại"
-      },
-      {
-        "type": "paragraph",
-        "text": "Quality of Earnings đánh giá lợi nhuận đến từ đâu, không chỉ con số cuối cùng. Lợi nhuận từ hoạt động kinh doanh cốt lõi có tính lặp lại; lợi nhuận từ điều chỉnh dự phòng, bán tài sản hay các khoản một lần khác thường không lặp lại và có thể che giấu sự suy yếu của hoạt động lõi. Đặc biệt cẩn trọng với lợi nhuận tăng vọt ngay trước các sự kiện định giá lớn như IPO hay M&A, khi động cơ 'làm đẹp' báo cáo mạnh nhất."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lợi nhuận từ hoạt động lõi bền vững hơn lợi nhuận từ các khoản một lần",
-          "Cẩn trọng đặc biệt với lợi nhuận tăng vọt trước các sự kiện định giá (IPO, M&A)",
-          "Khoảng cách dai dẳng giữa Net Income và FCF là tín hiệu cảnh báo chất lượng lợi nhuận"
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Tỷ lệ chuyển đổi lợi nhuận thành tiền",
-        "equation": "Cash conversion = Dòng tiền kinh doanh ÷ Lợi nhuận sau thuế",
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "Công ty A: 520 ÷ 500 = 1,04 · Công ty B: 180 ÷ 500 = 0,36",
-          "result": "Cùng lợi nhuận, chất lượng khác hẳn",
-          "explanation": "Cùng báo lãi 500 tỷ, nhưng A thu về hơn 500 tỷ tiền thật còn B chỉ thu được 180 tỷ. Chênh lệch của B đang nằm ở phải thu, tồn kho hoặc các khoản ghi nhận chưa có tiền - và nếu tình trạng này kéo dài nhiều năm, con số lợi nhuận của B ngày càng ít ý nghĩa."
-        }
-      },
-      {
-        "type": "heading",
-        "text": "Sáu chỗ nên soi khi đánh giá chất lượng lợi nhuận"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Khoảng cách giữa lợi nhuận và dòng tiền kinh doanh, theo dõi liên tục 3-5 năm chứ không nhìn một kỳ.",
-          "Thay đổi chính sách kế toán: cách ghi nhận doanh thu, thời gian khấu hao, tiêu chí vốn hóa chi phí. Đổi chính sách đúng năm lợi nhuận đẹp lên là chỗ cần đọc kỹ thuyết minh.",
-          "Mức trích lập dự phòng: giảm dự phòng nợ khó đòi trong khi phải thu quá hạn tăng là cách làm đẹp lợi nhuận không tốn tiền mặt.",
-          "Tỷ trọng thu nhập tài chính và lợi nhuận từ công ty liên kết trong tổng lợi nhuận - phần này không phản ánh hoạt động lõi.",
-          "Vốn hóa chi phí thay vì ghi nhận ngay: đưa chi phí vào tài sản làm lợi nhuận năm nay tăng nhưng đẩy gánh nặng khấu hao sang các năm sau.",
-          "Doanh thu dồn vào quý cuối năm bất thường - có thể là đẩy hàng cho nhà phân phối để đạt kế hoạch."
-        ]
+        "text": "Một định nghĩa dùng được"
       },
       {
         "type": "callout",
-        "label": "Vì sao IPO và M&A là giai đoạn cần thận trọng nhất",
-        "text": "Giá trị doanh nghiệp trong hai sự kiện này thường được xác định dựa trên kết quả một vài kỳ gần nhất. Điều đó tạo động cơ rất mạnh để những kỳ ấy trông đẹp nhất có thể - bằng các thủ pháp hoàn toàn hợp lệ về kế toán như đẩy chi phí sang kỳ sau hay ghi nhận sớm doanh thu. Cách kiểm tra: so kết quả 2-3 năm trước sự kiện với các năm xa hơn, xem có bước nhảy bất thường nào không."
+        "label": "Chất lượng là chi phí thay đổi",
+        "text": "Sửa một thứ trong này tốn bao nhiêu, và sửa xong có yên tâm không. Định nghĩa này có một hệ quả khó chịu: nó nói về TƯƠNG LAI, nên bạn chỉ biết chắc khi đã thay đổi thật - tức là sau khi cần tới nó."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao chỉ số không thay được"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chúng đo được",
+          "text": "Độ phức tạp vòng lặp, độ phủ kiểm thử, số dòng, tỷ lệ chú thích, số phụ thuộc. Tất cả đều là thuộc tính bề mặt của hiện tại."
+        },
+        "right": {
+          "label": "Chúng không đo được",
+          "text": "Chi phí để sửa một thứ ở đây vào tháng sau. Đó là thứ bạn thật sự quan tâm, và không con số nào chạm tới được."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Hệ quả quan trọng nhất: đặt một chỉ số làm MỤC TIÊU thì người ta tối ưu chính chỉ số đó. Một đội đặt mục tiêu độ phủ chín mươi phần trăm và đạt được trong hai tháng; số lỗi lọt ra không giảm, vì phần lớn kiểm thử mới chỉ gọi hàm mà không khẳng định gì."
+      },
+      {
+        "type": "heading",
+        "text": "Chỉ số dùng đúng cách"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dùng chúng để TÌM chỗ đáng nhìn kỹ, rồi con người quyết định có vấn đề hay không. Chỉ số là công cụ tìm kiếm, không phải công cụ phán xét - và đặt ngưỡng chặn việc gộp mã là cách biến nó thành mục tiêu."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chỉ dấu hữu ích nhất là GIAO của hai thứ: tần suất thay đổi và độ phức tạp. Một hàm phức tạp mà không ai đụng tới thì không gây hại; một hàm đơn giản bị sửa hằng tuần cũng không. Chỗ giao mới là nơi chi phí thay đổi vừa cao vừa bị trả thường xuyên."
       },
       {
         "type": "closing",
         "lines": [
-          "Một con số EPS đẹp chỉ là điểm khởi đầu của phân tích, không phải kết luận.",
-          "Luôn hỏi: lợi nhuận này có lặp lại được trong tương lai không?"
+          "Một chỉ số đáng bỏ hẳn: tỷ lệ chú thích. Chú thích nhiều thường là dấu hiệu mã khó hiểu, và chú thích cũ đi trong khi mã thì không - một chú thích sai còn hại hơn không có chú thích.",
+          "Bài sau là một chỉ số mà nhiều người dùng sai theo hướng ngược lại: đối chuẩn hiệu năng."
         ]
       }
-    ],
-    "summary": {
-      "keyIdea": "Quality of Earnings đánh giá lợi nhuận đến từ hoạt động lõi bền vững hay các khoản một lần không lặp lại",
-      "commonMistake": "Dễ bỏ qua: cẩn trọng đặc biệt với lợi nhuận tăng vọt ngay trước các sự kiện định giá (IPO, M&A)",
-      "action": "Khoảng cách dai dẳng giữa Net Income và FCF là tín hiệu cảnh báo chất lượng lợi nhuận"
-    }
+    ]
   },
   {
     "id": 1102,
-    "slug": "comps-thuc-chien",
-    "title": "IB & Phân tích, Bài 2: Comps thực chiến - chọn công ty so sánh đúng cách",
-    "subtitle": "Comparable Company Analysis dễ sai nhất ở bước chọn công ty, không phải bước tính toán",
-    "duration": "8 phút",
+    "slug": "doi-chuan-hieu-nang-do-cho-dung",
+    "title": "Nền tảng nâng cao, Bài 2: Đối chuẩn hiệu năng - đo cho đúng",
+    "subtitle": "Phần lớn con số hiệu năng người ta trích dẫn được đo trong điều kiện không tồn tại.",
+    "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "📋",
     "track": "professional",
-    "openingQuestion": "Khi định giá một công ty bán lẻ thời trang online quy mô vừa bằng phương pháp Comps, vì sao không nên chỉ chọn công ty có cùng mã ngành GICS mà bỏ qua các yếu tố khác?",
+    "emoji": "⏱️",
+    "isFundamental": true,
+    "whyItMatters": "Quyết định kiến trúc thường dựa trên một con số ai đó đã đo, và nếu con số đó đo sai điều kiện thì cả quyết định sai theo. Biết cách đọc một phép đo quan trọng hơn biết cách chạy nó.",
+    "openingQuestion": "Vì sao trung bình là con số tệ nhất để mô tả thời gian phản hồi?",
     "openingOptions": [
-      "Mã ngành GICS luôn đủ để đảm bảo công ty so sánh phù hợp",
-      "Cùng mã ngành vẫn khác nhau nhiều về quy mô, tăng trưởng, biên lợi nhuận",
-      "Mã ngành GICS chỉ dùng cho mục đích thống kê, không liên quan định giá",
-      "Nên chọn công ty ở quốc gia khác để đa dạng hóa mẫu so sánh"
+      "Vì nó giấu đi phần đuôi, mà phần đuôi mới là phần người dùng thật sự cảm nhận",
+      "Vì nó bị ảnh hưởng bởi các giá trị bất thường nên không phản ánh xu hướng chung",
+      "Vì nó không cho biết thời gian phản hồi thay đổi thế nào theo từng thời điểm trong ngày",
+      "Vì nó cần một lượng mẫu rất lớn mới có ý nghĩa thống kê đáng tin cậy"
     ],
-    "correctOption": 1,
-    "explanation": "Mã ngành chỉ là bước lọc đầu tiên. Comps thực chiến đòi hỏi tinh chỉnh sâu hơn: quy mô doanh thu tương đồng, tốc độ tăng trưởng tương đồng, mô hình kinh doanh tương tự (online vs offline, B2B vs B2C), và biên lợi nhuận ở mức tương đương - một công ty tăng trưởng 40%/năm không nên so bội số trực tiếp với công ty cùng ngành nhưng tăng trưởng 5%/năm.",
+    "correctOption": 0,
+    "explanation": "Trung bình một trăm mili giây nghe rất tốt, và nó tương thích với việc năm phần trăm người dùng chờ ba giây. Năm phần trăm đó là những người bỏ đi. Và nếu một trang gọi mười dịch vụ thì xác suất chạm ít nhất một lần vào phần đuôi cao hơn nhiều so với năm phần trăm - nên phần đuôi là phần quyết định trải nghiệm thật.",
     "diagram": [
       {
-        "label": "Lọc theo ngành (GICS)",
+        "label": "Trung bình giấu phần đuôi; phân vị thì không",
         "arrow": true
       },
       {
-        "label": "Tinh chỉnh: quy mô, tăng trưởng, biên lợi nhuận, mô hình kinh doanh",
+        "label": "Đo trên dữ liệu THẬT, không phải dữ liệu mẫu",
         "arrow": true
       },
       {
-        "label": "Chọn nhóm comps thực sự tương đồng",
+        "label": "Làm nóng trước khi đo, và đo nhiều lần",
         "arrow": true
       },
       {
-        "label": "Áp bội số trung vị vào công ty mục tiêu"
+        "label": "Một con số không kèm điều kiện là một con số vô nghĩa"
       }
     ],
     "realWorldExample": {
-      "company": "Định giá công ty công nghệ tăng trưởng cao",
-      "description": "Các ngân hàng đầu tư khi định giá một startup công nghệ tăng trưởng 50%/năm thường loại các 'big tech' tăng trưởng chậm dù cùng ngành ra khỏi nhóm comps, và ưu tiên so sánh với các công ty tăng trưởng tương đồng dù quy mô nhỏ hơn nhiều, vì thị trường định giá tăng trưởng cao ở một mức bội số hoàn toàn khác."
+      "company": "Phần đuôi nhân lên",
+      "description": "Nếu một trang gọi mười dịch vụ và mỗi dịch vụ có năm phần trăm lượt chậm, xác suất trang đó chạm ít nhất một lượt chậm là khoảng bốn mươi phần trăm. Phần đuôi của từng dịch vụ trở thành trải nghiệm điển hình của cả trang."
     },
     "quiz": [
       {
-        "question": "Vì sao công ty tăng trưởng nhanh thường được thị trường định giá ở bội số P/E hoặc EV/Revenue cao hơn nhiều so với công ty cùng ngành tăng trưởng chậm?",
+        "question": "Vì sao nên đo bằng phân vị thay vì trung bình?",
         "options": [
-          "Vì công ty tăng trưởng nhanh luôn có rủi ro thấp hơn",
-          "Thị trường định giá dựa trên dòng tiền/lợi nhuận TƯƠNG LAI, không chỉ hiện tại - công ty tăng trưởng nhanh hứa hẹn lợi nhuận lớn hơn nhiều trong tương lai, nên nhà đầu tư sẵn sàng trả bội số cao hơn trên lợi nhuận hiện tại để sở hữu phần tăng trưởng đó",
-          "Vì công ty tăng trưởng nhanh luôn có nợ thấp hơn",
-          "Không có lý do hợp lý, đây chỉ là tâm lý thị trường phi lý tính"
-        ],
-        "correct": 1,
-        "explanation": "Bội số định giá về bản chất phản ánh kỳ vọng tăng trưởng và lợi nhuận tương lai được chiết khấu về hiện tại - công ty tăng trưởng nhanh hơn sẽ có dòng tiền tương lai lớn hơn nhiều so với công ty tăng trưởng chậm, nên hợp lý khi thị trường trả bội số cao hơn trên cùng một đồng lợi nhuận hiện tại."
-      },
-      {
-        "question": "Khi không tìm đủ số lượng công ty so sánh trực tiếp (ví dụ ngành quá đặc thù, ít công ty niêm yết), cách tiếp cận nào hợp lý hơn là ép dùng một nhóm comps không thực sự tương đồng?",
-        "options": [
-          "Vẫn nên dùng nhóm comps không tương đồng vì có còn hơn không",
-          "Mở rộng phạm vi tìm kiếm sang các công ty có đặc điểm kinh doanh tương tự dù khác ngành chính thức (ví dụ cùng mô hình subscription, cùng cấu trúc chi phí), kết hợp thêm phương pháp định giá khác (DCF, precedent transactions) để đối chiếu chéo thay vì chỉ dựa vào một nhóm comps yếu",
-          "Từ bỏ hoàn toàn việc định giá vì không đủ dữ liệu",
-          "Chỉ dùng một công ty duy nhất làm comps dù không hoàn toàn tương đồng"
-        ],
-        "correct": 1,
-        "explanation": "Khi comps trực tiếp khan hiếm, nhà phân tích giỏi sẽ tìm các công ty có đặc điểm kinh doanh cốt lõi tương tự (mô hình doanh thu, cấu trúc chi phí, động lực tăng trưởng) dù khác mã ngành chính thức, và luôn đối chiếu với các phương pháp định giá khác - không nên phụ thuộc hoàn toàn vào một nhóm comps yếu chỉ vì đó là dữ liệu có sẵn."
-      },
-      {
-        "question": "Vì sao nên dùng trung vị thay vì trung bình khi tổng hợp bội số của nhóm so sánh?",
-        "options": [
-          "Vì trung vị ít bị kéo lệch bởi một vài doanh nghiệp có bội số cực đoan",
-          "Vì trung vị luôn cho kết quả cao hơn",
-          "Vì trung bình không tính được với số lẻ",
-          "Vì chuẩn mực định giá bắt buộc dùng trung vị"
+          "Vì phân vị cho biết trải nghiệm của nhóm chậm nhất, và đó là nhóm quyết định",
+          "Vì phân vị dễ tính hơn nhiều nên tốn ít tài nguyên hơn khi phải theo dõi liên tục",
+          "Vì phân vị ổn định hơn qua thời gian nên dễ so sánh giữa các phiên bản",
+          "Vì phân vị là chuẩn được các công cụ theo dõi hiệu năng hỗ trợ sẵn"
         ],
         "correct": 0,
-        "explanation": "Nhóm so sánh thường chỉ có vài doanh nghiệp, nên một trường hợp bội số bất thường có thể làm lệch hẳn trung bình. Trung vị bền vững hơn với cỡ mẫu nhỏ."
+        "explanation": "Trung bình một trăm mili giây tương thích với việc năm phần trăm người dùng chờ ba giây - và năm phần trăm đó là những người bỏ đi. Phân vị làm cho nhóm đó hiện ra thay vì bị hoà tan."
       },
       {
-        "question": "Hạn chế cố hữu của định giá so sánh là gì?",
+        "question": "Vì sao phần đuôi của một dịch vụ lại thành trải nghiệm điển hình của cả trang?",
         "options": [
-          "Nó giả định thị trường đang định giá đúng nhóm so sánh, nên sẽ lặp lại sai lệch nếu cả ngành đang bị định giá lệch",
-          "Nó không dùng được cho doanh nghiệp niêm yết",
-          "Nó luôn cho kết quả thấp hơn giá thị trường",
-          "Nó không tính được nếu doanh nghiệp có nợ"
+          "Vì một trang gọi nhiều dịch vụ, nên xác suất chạm ít nhất một lượt chậm cộng dồn lên",
+          "Vì các dịch vụ chậm thường phụ thuộc lẫn nhau nên chúng chậm cùng lúc",
+          "Vì trình duyệt phải chờ cho tất cả các lượt gọi hoàn tất thì mới hiển thị được nội dung",
+          "Vì các lượt gọi chậm chiếm giữ kết nối làm những lượt gọi sau cũng chậm theo"
         ],
         "correct": 0,
-        "explanation": "Phương pháp này đo giá trị tương đối chứ không đo giá trị nội tại. Vì vậy nó cần được đặt cạnh một phương pháp dựa trên dòng tiền để phát hiện những giai đoạn cả ngành lệch khỏi nền tảng."
+        "explanation": "Với mười dịch vụ mỗi cái năm phần trăm chậm, xác suất trang chạm ít nhất một lượt chậm là khoảng bốn mươi phần trăm. Đây là phép nhân xác suất chứ không phải hiện tượng kỹ thuật nào."
+      },
+      {
+        "question": "Vì sao phải làm nóng trước khi đo?",
+        "options": [
+          "Vì những lượt chạy đầu tiên phải khởi tạo bộ nhớ đệm và tối ưu hoá lúc chạy",
+          "Vì máy cần thời gian để đạt được nhiệt độ hoạt động ổn định của bộ vi xử lý",
+          "Vì các kết nối mạng cần vài lượt gọi đầu để thiết lập đường truyền tối ưu",
+          "Vì hệ điều hành cần nạp toàn bộ chương trình vào bộ nhớ trước khi chạy nhanh"
+        ],
+        "correct": 0,
+        "explanation": "Không làm nóng thì bạn đo giai đoạn khởi động chứ không đo trạng thái ổn định - và hai thứ đó có thể chênh nhau nhiều lần. Nhưng nếu điều bạn quan tâm chính là lần chạy đầu thì ngược lại, làm nóng làm hỏng phép đo."
+      },
+      {
+        "question": "Vì sao đo trên dữ liệu mẫu thường cho kết quả sai lệch?",
+        "options": [
+          "Vì dữ liệu thật có phân bố khác hẳn: lệch, có ngoại lệ, và lớn hơn nhiều",
+          "Vì dữ liệu mẫu thường được lưu trong bộ nhớ còn dữ liệu thật nằm trên đĩa",
+          "Vì dữ liệu mẫu không có các ràng buộc toàn vẹn như dữ liệu trong hệ thống thật",
+          "Vì dữ liệu mẫu thường được sinh ngẫu nhiên nên không có tính lặp lại khi đo"
+        ],
+        "correct": 0,
+        "explanation": "Một truy vấn chạy tốt với một nghìn dòng phân bố đều có thể sập với một triệu dòng lệch nặng về một giá trị. Đây là lý do phép đo trên môi trường phát triển hiếm khi dự đoán được môi trường thật."
+      },
+      {
+        "question": "Điều gì phải luôn đi kèm một con số hiệu năng?",
+        "options": [
+          "Điều kiện đo: kích thước dữ liệu, phần cứng, mức tải và cách tính con số đó",
+          "Ngày tháng thực hiện phép đo và phiên bản mã nguồn tại thời điểm đó",
+          "Tên người thực hiện phép đo để có thể hỏi lại khi cần làm rõ chi tiết",
+          "So sánh với con số tương ứng của giải pháp thay thế để thấy được mức cải thiện"
+        ],
+        "correct": 0,
+        "explanation": "Một con số không kèm điều kiện thì không tái lập được và cũng không so sánh được với gì. Đó là lý do phần lớn con số hiệu năng người ta trích dẫn trên mạng gần như vô dụng cho quyết định của bạn."
       }
     ],
     "keyTakeaways": [
-      "Comps thực chiến cần tinh chỉnh sâu hơn mã ngành: quy mô, tăng trưởng, biên lợi nhuận, mô hình kinh doanh tương đồng",
-      "Công ty tăng trưởng nhanh hợp lý được định giá bội số cao hơn vì phản ánh kỳ vọng dòng tiền tương lai lớn hơn",
-      "Khi comps trực tiếp khan hiếm, nên đối chiếu chéo với các phương pháp định giá khác thay vì ép dùng nhóm comps yếu"
+      "Trung bình giấu phần đuôi, mà phần đuôi mới là phần người dùng cảm nhận.",
+      "Mười dịch vụ mỗi cái năm phần trăm chậm → khoảng bốn mươi phần trăm lượt trang chạm phần đuôi.",
+      "Làm nóng trước khi đo, trừ khi thứ bạn quan tâm chính là lần chạy đầu.",
+      "Đo trên dữ liệu THẬT: dữ liệu thật lệch, có ngoại lệ và lớn hơn nhiều.",
+      "Một con số không kèm điều kiện đo là một con số không dùng được."
     ],
     "practicePrompt": {
-      "question": "Một nhà phân tích chọn 10 công ty cùng mã ngành 'bán lẻ' để làm Comps cho công ty mục tiêu, nhưng trong đó có cả siêu thị lớn tăng trưởng chậm lẫn startup thương mại điện tử tăng trưởng nhanh. Cách chọn nhóm so sánh này có vấn đề gì?",
+      "question": "Ai đó trích dẫn thư viện A nhanh gấp ba lần thư viện B. Câu hỏi đầu tiên nên hỏi là gì?",
       "options": [
-        "Không có vấn đề gì, vì tất cả đều thuộc cùng mã ngành 'bán lẻ' nên có thể so sánh trực tiếp với nhau",
-        "Comps cần tinh chỉnh theo quy mô, tăng trưởng và biên lợi nhuận, không chỉ mã ngành",
-        "Nên chọn nhiều công ty hơn nữa trong cùng mã ngành để tăng độ tin cậy của mẫu so sánh",
-        "Mã ngành luôn là tiêu chí duy nhất và đủ để đảm bảo tính tương đồng khi làm Comps"
+        "Đo trong điều kiện nào: dữ liệu bao lớn, phần cứng gì, và tính bằng trung bình hay phân vị",
+        "Phép đo đó được thực hiện trên phiên bản nào của hai thư viện đó",
+        "Có ai khác đã thực hiện lại phép đo đó và thu được kết quả tương tự không",
+        "Thư viện A có đánh đổi gì về mặt bộ nhớ hoặc độ phức tạp để đạt tốc độ đó không"
       ],
-      "correct": 1,
-      "explanation": "Comps thực chiến cần tinh chỉnh theo quy mô, tăng trưởng, biên lợi nhuận và mô hình kinh doanh, không chỉ mã ngành. Trộn lẫn các công ty có đặc điểm kinh doanh khác xa nhau dù cùng ngành sẽ làm bội số trung bình mất ý nghĩa so sánh."
+      "correct": 0,
+      "explanation": "Ba câu kia đều đáng hỏi nhưng chúng là câu hỏi thứ hai. Không biết điều kiện đo thì con số gấp ba lần không mang thông tin nào về việc nó có gấp ba lần trong hệ thống của bạn hay không."
+    },
+    "summary": {
+      "keyIdea": "Biết cách đọc một phép đo quan trọng hơn biết cách chạy nó.",
+      "formula": "Phân vị + dữ liệu thật + làm nóng + ghi rõ điều kiện.",
+      "commonMistake": "Trích dẫn trung bình, vốn tương thích với việc nhiều người dùng chờ rất lâu.",
+      "action": "Xem lại một chỉ số hiệu năng đội bạn đang theo dõi - nó là trung bình hay phân vị?"
     },
     "application": {
-      "title": "Loại bớt cho tới khi còn năm cái",
-      "message": "Bắt đầu từ danh sách cùng ngành rồi loại dần theo quy mô, tốc độ tăng trưởng, biên lợi nhuận và mô hình doanh thu, cho tới khi còn khoảng năm công ty bạn bảo vệ được từng cái. Năm công ty giống thật cho khoảng giá hẹp hơn hai mươi công ty cùng mã ngành.",
-      "secondary": "Nếu loại xong còn hai công ty, đừng nới tiêu chí để lấp đủ số. Ghi rõ comps yếu và chuyển trọng số sang DCF.",
+      "title": "Làm ngay hôm nay",
+      "message": "Xem lại các chỉ số hiệu năng đội bạn đang theo dõi. Nếu chúng là trung bình, thêm phân vị vào - con số đó thường gây bất ngờ ở lần đầu nhìn thấy.",
+      "secondary": "Rồi đếm xem một lượt tải trang điển hình gọi bao nhiêu dịch vụ. Nhân số đó với tỷ lệ chậm của từng dịch vụ để biết bao nhiêu phần trăm lượt trang thật sự chạm phần đuôi."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Comparable Company Analysis nghe đơn giản - tìm công ty tương tự rồi so bội số - nhưng bước dễ sai nhất không phải phép tính, mà là bước chọn công ty."
+        "text": "Quyết định kiến trúc thường dựa trên một con số ai đó đã đo. Bài này về việc đọc con số đó - vì phần lớn con số hiệu năng người ta trích dẫn được đo trong điều kiện không tồn tại."
       },
       {
         "type": "heading",
-        "text": "Vượt qua mã ngành: tinh chỉnh theo quy mô, tăng trưởng, mô hình kinh doanh"
+        "text": "Con số tệ nhất"
+      },
+      {
+        "type": "callout",
+        "label": "Trung bình giấu phần đuôi",
+        "text": "Trung bình một trăm mili giây nghe rất tốt, và nó hoàn toàn tương thích với việc năm phần trăm người dùng chờ ba giây. Năm phần trăm đó là những người bỏ đi - và họ không xuất hiện trong con số bạn đang nhìn."
       },
       {
         "type": "paragraph",
-        "text": "Các công ty cùng mã ngành có thể khác nhau rất nhiều về quy mô, tốc độ tăng trưởng, biên lợi nhuận, và mô hình kinh doanh - những khác biệt này ảnh hưởng lớn đến bội số định giá hợp lý. Công ty tăng trưởng nhanh hợp lý được thị trường trả bội số cao hơn vì phản ánh kỳ vọng dòng tiền tương lai lớn hơn nhiều. Khi comps trực tiếp khan hiếm, nên mở rộng tìm kiếm sang công ty có đặc điểm kinh doanh tương tự và đối chiếu chéo với các phương pháp định giá khác."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Comps thực chiến cần tinh chỉnh theo quy mô, tăng trưởng, biên lợi nhuận, mô hình kinh doanh - không chỉ mã ngành",
-          "Công ty tăng trưởng nhanh hợp lý được định giá bội số cao hơn vì phản ánh kỳ vọng tương lai",
-          "Khi comps khan hiếm, nên đối chiếu chéo với phương pháp định giá khác thay vì ép dùng nhóm comps yếu"
-        ]
+        "text": "Phần đuôi còn quan trọng hơn vẻ ngoài của nó vì nó NHÂN LÊN. Nếu một trang gọi mười dịch vụ và mỗi dịch vụ có năm phần trăm lượt chậm, xác suất trang chạm ít nhất một lượt chậm là khoảng bốn mươi phần trăm - phần đuôi của từng dịch vụ trở thành trải nghiệm điển hình của cả trang."
       },
       {
         "type": "heading",
-        "text": "Năm tiêu chí sàng lọc công ty so sánh"
+        "text": "Bốn cách làm hỏng một phép đo"
       },
       {
         "type": "list",
         "items": [
-          "Mô hình kinh doanh: cách kiếm tiền có giống nhau không, chứ không phải cùng ngành trên danh mục phân loại.",
-          "Quy mô: doanh nghiệp lớn hơn nhiều lần thường có bội số khác vì thanh khoản cổ phiếu tốt hơn và rủi ro thấp hơn.",
-          "Tốc độ tăng trưởng: đây là biến giải thích phần lớn chênh lệch bội số giữa các doanh nghiệp cùng ngành.",
-          "Biên lợi nhuận và mức sinh lời trên vốn: hai doanh nghiệp cùng tăng trưởng nhưng khác hẳn về hiệu quả vốn không thể cùng một bội số.",
-          "Cấu trúc vốn: nếu mức nợ chênh lệch lớn thì nên dùng bội số trên giá trị doanh nghiệp thay vì bội số trên lợi nhuận sau thuế."
+          "Không làm nóng: bạn đo giai đoạn khởi động thay vì trạng thái ổn định, và hai thứ chênh nhau nhiều lần.",
+          "Đo trên dữ liệu mẫu: dữ liệu thật lệch, có ngoại lệ và lớn hơn nhiều - một truy vấn tốt với một nghìn dòng đều có thể sập với một triệu dòng lệch.",
+          "Đo một lần: nhiễu từ hệ điều hành, mạng và các tiến trình khác đủ lớn để đảo ngược kết luận.",
+          "Đo phần không phải nút thắt: tối ưu thứ chiếm hai phần trăm thời gian thì trần cải thiện là hai phần trăm."
         ]
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Nhóm so sánh yếu",
-          "text": "Lấy toàn bộ doanh nghiệp cùng ngành trên sàn, tính trung bình bội số rồi áp cho công ty đang định giá. Kết quả là một con số trông khách quan nhưng thực chất trộn lẫn nhiều mô hình kinh doanh khác nhau."
+          "label": "Làm nóng là cần",
+          "text": "Khi bạn quan tâm tới trạng thái ổn định - tức phần lớn trường hợp, vì hệ thống thật chạy liên tục."
         },
         "right": {
-          "label": "Nhóm so sánh tốt",
-          "text": "Từ 4-8 doanh nghiệp thực sự tương đồng về mô hình, quy mô và tăng trưởng; dùng trung vị thay vì trung bình để giảm ảnh hưởng của giá trị ngoại lai; và giải thích được vì sao mỗi doanh nghiệp có mặt trong nhóm."
+          "label": "Và làm nóng là sai",
+          "text": "Khi thứ bạn quan tâm chính là lần chạy đầu: khởi động nguội của hàm không máy chủ, lần tải trang đầu tiên của người dùng mới."
         }
-      },
-      {
-        "type": "callout",
-        "label": "Ba lỗi kỹ thuật hay gặp",
-        "text": "Một: dùng trung bình thay vì trung vị, khiến một doanh nghiệp bội số cực đoan kéo lệch cả nhóm. Hai: trộn bội số quá khứ với bội số dự phóng trong cùng một bảng. Ba: so P/E giữa các doanh nghiệp có mức nợ rất khác nhau, thay vì dùng bội số trên giá trị doanh nghiệp để trung hòa yếu tố cấu trúc vốn."
-      },
-      {
-        "type": "paragraph",
-        "text": "Điểm cuối cùng và cũng quan trọng nhất: định giá so sánh giả định rằng thị trường đang định giá đúng nhóm so sánh. Trong một giai đoạn cả ngành bị định giá quá cao hoặc quá thấp, phương pháp này sẽ dẫn bạn đến cùng mức sai lệch đó. Đây là lý do nó luôn cần được đối chiếu với một phương pháp dựa trên dòng tiền nội tại."
       },
       {
         "type": "closing",
         "lines": [
-          "Chọn sai nhóm comps làm hỏng toàn bộ kết quả định giá, dù phép tính sau đó có chính xác đến đâu.",
-          "Bước chọn công ty so sánh xứng đáng nhiều thời gian nhất trong toàn bộ quy trình."
+          "Quy tắc gói lại cả bài: một con số hiệu năng không kèm ĐIỀU KIỆN đo là một con số không dùng được - không tái lập được, không so sánh được với gì.",
+          "Bài sau là thứ mà mọi phép đo cuối cùng dẫn tới: nợ kỹ thuật và cách quyết định trả cái nào."
         ]
       }
     ],
-    "summary": {
-      "keyIdea": "Comps thực chiến cần tinh chỉnh sâu hơn mã ngành: quy mô, tăng trưởng, biên lợi nhuận, mô hình kinh doanh tương đồng",
-      "commonMistake": "Dễ bỏ qua: công ty tăng trưởng nhanh hợp lý được định giá bội số cao hơn vì phản ánh kỳ vọng dòng tiền tương lai lớn hơn",
-      "action": "Khi comps trực tiếp khan hiếm, nên đối chiếu chéo với các phương pháp định giá khác thay vì ép dùng nhóm comps yếu"
-    }
+    "interactiveType": "tail-risk"
   },
   {
     "id": 1103,
-    "slug": "precedent-transactions-thuc-chien",
-    "title": "IB & Phân tích, Bài 3: Precedent Transactions - định giá qua thương vụ M&A quá khứ",
-    "subtitle": "Vì sao bội số M&A thường cao hơn bội số công ty đại chúng cùng ngành",
+    "slug": "no-ky-thuat-quyet-dinh-tra-cai-nao",
+    "title": "Nền tảng nâng cao, Bài 3: Nợ kỹ thuật - quyết định trả cái nào",
+    "subtitle": "Danh sách nợ thì dài; ngân sách thì có hạn. Bài này là cách xếp thứ tự.",
     "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "🤝",
     "track": "professional",
-    "openingQuestion": "Bội số EV/EBITDA trung bình của các thương vụ M&A trong một ngành thường cao hơn bội số giao dịch cổ phiếu trên sàn của các công ty cùng ngành đó. Vì sao?",
+    "emoji": "📊",
+    "isFundamental": true,
+    "whyItMatters": "Mọi đội đều biết mình có nợ kỹ thuật và gần như không đội nào có cách xếp thứ tự. Không có cách xếp thì việc trả nợ diễn ra theo cảm hứng, và thứ được sửa là thứ ai đó vừa thấy khó chịu.",
+    "openingQuestion": "Nên trả khoản nợ kỹ thuật nào trước?",
     "openingOptions": [
-      "Vì thương vụ M&A luôn được định giá sai",
-      "Bên mua trả thêm control premium cho quyền kiểm soát",
-      "Vì thị trường chứng khoán luôn định giá thấp hơn giá trị thực",
-      "Không có sự khác biệt hệ thống nào giữa hai loại bội số này"
+      "Khoản nằm ở chỗ bạn sắp phải làm việc nhiều nhất trong vài tháng tới",
+      "Khoản có mức độ nghiêm trọng cao nhất theo đánh giá kỹ thuật của đội",
+      "Khoản đã tồn tại lâu nhất vì nó tích tụ nhiều hậu quả nhất theo thời gian",
+      "Khoản dễ sửa nhất để giải quyết được nhiều mục trong danh sách một cách nhanh chóng"
     ],
-    "correctOption": 1,
-    "explanation": "Precedent Transactions (thương vụ tiền lệ) thường có bội số cao hơn Comps giao dịch cổ phiếu vì bên mua trả 'control premium' - phần bù cho quyền kiểm soát toàn bộ hoạt động, khả năng thay đổi chiến lược, và tạo ra synergy (cắt giảm chi phí, tăng doanh thu chéo) mà một cổ đông thiểu số mua vài cổ phiếu trên sàn không thể có được.",
+    "correctOption": 0,
+    "explanation": "Nợ kỹ thuật chỉ tính lãi khi bạn CHẠM vào nó. Một khoản nợ tệ trong một module không ai đụng tới trong hai năm thì thực tế bạn chưa trả đồng lãi nào. Xếp theo mức nghiêm trọng kỹ thuật là cách xếp phổ biến nhất và nó bỏ qua điều đó - bạn sửa những chỗ tệ nhất thay vì những chỗ đắt nhất.",
     "diagram": [
       {
-        "label": "Tìm các thương vụ M&A tương tự trong quá khứ",
+        "label": "Nợ chỉ tính lãi khi bạn chạm vào nó",
         "arrow": true
       },
       {
-        "label": "Tính bội số EV/EBITDA, EV/Revenue tại thời điểm giao dịch",
+        "label": "Xếp theo: chỗ sắp làm việc × mức cản trở",
         "arrow": true
       },
       {
-        "label": "Bội số này đã bao gồm control premium",
+        "label": "Không phải theo mức tệ về mặt kỹ thuật",
         "arrow": true
       },
       {
-        "label": "Áp dụng cho công ty mục tiêu (thường cho ra định giá cao hơn Comps)"
+        "label": "Và có loại nợ nên để nguyên mãi mãi"
       }
     ],
     "realWorldExample": {
-      "company": "Định giá mục tiêu thâu tóm",
-      "description": "Khi tư vấn một thương vụ mua lại, ngân hàng đầu tư thường trình bày cả hai phương pháp Comps và Precedent Transactions song song - Precedent Transactions thường cho ra khoảng định giá cao hơn, phản ánh mức giá thực tế bên mua sẽ phải trả để giành quyền kiểm soát, không chỉ giá trị 'công bằng' trên thị trường thứ cấp."
+      "company": "Khoản nợ nên để nguyên",
+      "description": "Một module viết rất tệ nhưng chạy ổn định năm năm, không ai sửa và cũng không ai định sửa. Viết lại nó là bỏ tiền mua một thứ bạn không dùng - và còn thêm rủi ro làm hỏng một thứ đang chạy tốt."
     },
     "quiz": [
       {
-        "question": "Vì sao Precedent Transactions dễ bị 'lỗi thời' hơn Comparable Company Analysis theo thời gian?",
+        "question": "Vì sao xếp thứ tự theo mức nghiêm trọng kỹ thuật lại sai?",
         "options": [
-          "Vì các thương vụ M&A trong quá khứ phản ánh điều kiện thị trường (lãi suất, tâm lý nhà đầu tư, mức độ cạnh tranh giữa các bên mua) tại THỜI ĐIỂM giao dịch đó, có thể khác biệt đáng kể so với điều kiện thị trường hiện tại, trong khi Comps luôn dùng giá cổ phiếu cập nhật theo thời gian thực",
-          "Vì các công ty tham gia thương vụ M&A quá khứ không còn tồn tại",
-          "Vì luật pháp cấm sử dụng dữ liệu thương vụ quá 1 năm",
-          "Precedent Transactions không bao giờ lỗi thời vì dựa trên số liệu thực tế đã xảy ra"
+          "Vì nợ chỉ tính lãi khi bạn chạm vào, nên chỗ tệ nhất chưa chắc là chỗ đắt nhất",
+          "Vì mức nghiêm trọng kỹ thuật khó đánh giá khách quan giữa các thành viên trong đội",
+          "Vì các khoản nghiêm trọng thường là những khoản khó sửa nhất nên tốn nhiều thời gian",
+          "Vì mức nghiêm trọng thay đổi theo thời gian nên đánh giá hôm nay có thể sai ngày mai"
         ],
         "correct": 0,
-        "explanation": "Một thương vụ M&A diễn ra trong giai đoạn lãi suất thấp, thị trường sôi động, nhiều bên mua cạnh tranh sẽ có bội số cao hơn hẳn so với thương vụ tương tự diễn ra trong giai đoạn thị trường trầm lắng - đây là lý do các nhà phân tích cần cân nhắc kỹ thời điểm của từng thương vụ tiền lệ khi áp dụng, không chỉ nhìn vào loại hình giao dịch."
+        "explanation": "Đây là cách xếp phổ biến nhất và cũng là cách bỏ qua yếu tố quyết định. Một khoản nợ tệ trong module không ai đụng tới hai năm thì bạn chưa trả đồng lãi nào cho nó."
       },
       {
-        "question": "Một công ty bị mua lại với mức giá thấp bất thường so với các thương vụ tiền lệ khác trong ngành. Điều gì có thể giải thích hợp lý ngoài việc 'công ty bị định giá thấp'?",
+        "question": "Loại nợ nào nên để nguyên?",
         "options": [
-          "Không có lý do nào khác ngoài định giá thấp, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "Có thể do bên bán đang gặp khó khăn tài chính buộc phải bán gấp (distressed sale), thiếu các bên mua cạnh tranh khiến quyền thương lượng nghiêng về bên mua, hoặc công ty có vấn đề pháp lý/quản trị làm giảm sức hấp dẫn - những yếu tố này không nhất thiết phản ánh giá trị nội tại thấp",
-          "Chắc chắn công ty này có sai sót kế toán nghiêm trọng, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "Bên mua chắc chắn đã trả giá không công bằng, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Giá thương vụ M&A phản ánh cả bối cảnh giao dịch, không chỉ giá trị nội tại - một công ty bán trong tình trạng cấp bách (distressed), thiếu người mua cạnh tranh, hay có vấn đề đặc thù có thể bán ở mức giá thấp hơn nhiều so với 'giá trị công bằng' mà một quy trình bán đấu giá cạnh tranh, không cấp bách sẽ mang lại."
-      },
-      {
-        "question": "Vì sao bội số trong các thương vụ M&A thường cao hơn bội số giao dịch trên sàn?",
-        "options": [
-          "Vì giá mua bao gồm quyền kiểm soát và giá trị cộng hưởng kỳ vọng, những thứ cổ đông thiểu số không có",
-          "Vì doanh nghiệp bị mua luôn tốt hơn doanh nghiệp niêm yết",
-          "Vì giao dịch M&A không phải nộp thuế",
-          "Vì bên mua luôn tính sai giá trị"
+          "Nợ trong phần chạy ổn định mà không ai đụng tới và cũng không có kế hoạch đụng tới",
+          "Nợ trong các phần mã cũ được viết bởi những người đã rời khỏi dự án",
+          "Nợ trong những phần có ít bài kiểm thử nên việc sửa sẽ rất rủi ro",
+          "Nợ nằm trong các thư viện bên thứ ba mà đội hoàn toàn không kiểm soát được mã nguồn của chúng"
         ],
         "correct": 0,
-        "explanation": "Mua toàn bộ doanh nghiệp cho phép bên mua thay đổi cách vận hành và khai thác cộng hưởng. Phần chênh lệch chính là giá của những quyền đó, cộng thêm ảnh hưởng của cạnh tranh trong đấu giá."
+        "explanation": "Viết lại nó là bỏ tiền mua một thứ bạn không dùng, và còn thêm rủi ro làm hỏng thứ đang chạy tốt. Ba lựa chọn kia mô tả nợ KHÓ TRẢ, và khó trả không phải lý do để không trả."
       },
       {
-        "question": "Một thương vụ tiền lệ có bội số rất thấp. Kết luận nào hợp lý nhất?",
+        "question": "Vì sao nên ghi nợ kỹ thuật thành mục công việc có ước lượng?",
         "options": [
-          "Cần kiểm tra bối cảnh: bên bán có buộc phải bán gấp không, có bao nhiêu bên mua tham gia",
-          "Doanh nghiệp đó chắc chắn có giá trị nội tại thấp",
-          "Nên dùng ngay bội số này làm mốc định giá",
-          "Dữ liệu thương vụ chắc chắn bị ghi nhận sai"
+          "Vì thứ không nằm trong danh sách công việc thì không bao giờ được xếp lịch",
+          "Vì đội cần thống kê được tổng khối lượng nợ để báo cáo cho cấp quản lý",
+          "Vì chính việc ước lượng giúp phát hiện ra những khoản nợ khó hơn nhiều so với mức mọi người nghĩ",
+          "Vì mỗi khoản nợ cần được gán cho một người cụ thể chịu trách nhiệm xử lý"
         ],
         "correct": 0,
-        "explanation": "Giá giao dịch phản ánh cả hoàn cảnh của hai bên chứ không chỉ giá trị doanh nghiệp. Một thương vụ bán trong thế bị động không nói lên nhiều về giá trị nội tại."
+        "explanation": "Đây là cùng cơ chế với bài về thiên kiến hiện tại: chi phí trả ngay, lợi ích rải ra tương lai, nên nó luôn thua việc gấp. Việc duy nhất giúp được là đưa nó vào cùng danh sách với việc gấp để nó được cân nhắc."
+      },
+      {
+        "question": "Cách trả nợ nào thường hiệu quả hơn viết lại toàn bộ?",
+        "options": [
+          "Cải thiện dần mỗi lần chạm vào phần đó, vì nó không cần xin một khoảng thời gian riêng",
+          "Dành hẳn ra một chu kỳ phát triển chỉ để xử lý nợ kỹ thuật và tạm dừng mọi tính năng mới",
+          "Viết lại từng module một theo thứ tự từ nhỏ tới lớn để giảm rủi ro mỗi lần",
+          "Song song duy trì mã cũ và mã mới cho tới khi mã mới đủ ổn định để thay thế"
+        ],
+        "correct": 0,
+        "explanation": "Nó không phải cạnh tranh với việc gấp, đúng như quy tắc dọn chỗ mình vừa chạm vào ở chặng rà soát. Viết lại toàn bộ thì có tỷ lệ thất bại rất cao và nó cũng khoá đội lại trong nhiều tháng không ra được tính năng nào."
+      },
+      {
+        "question": "Vì sao nợ kỹ thuật có ý thức lại khác nợ do cẩu thả?",
+        "options": [
+          "Vì khoản có ý thức được ghi lại kèm lý do nên nó trả được, còn khoản kia thì bị bắt chước",
+          "Vì khoản có ý thức thường nhỏ hơn nên chi phí sửa cũng thấp hơn đáng kể",
+          "Vì khoản có ý thức đã được người quản lý phê duyệt nên nó có sẵn ngân sách để sửa lại về sau",
+          "Vì khoản có ý thức nằm ở những phần ít quan trọng nên hậu quả nhẹ hơn"
+        ],
+        "correct": 0,
+        "explanation": "Vế thứ hai là vế đáng chú ý: một chỗ viết tắt không được ghi lại thì người sau đọc và tưởng đó là quy ước của dự án, rồi làm theo. Nợ không ghi lại tự nhân bản."
       }
     ],
     "keyTakeaways": [
-      "Precedent Transactions thường có bội số cao hơn Comps vì bao gồm control premium",
-      "Bội số M&A phản ánh điều kiện thị trường tại thời điểm giao dịch - cần cân nhắc thời điểm khi áp dụng",
-      "Giá thương vụ M&A thấp bất thường có thể do bối cảnh giao dịch (bán gấp, ít bên mua cạnh tranh), không nhất thiết phản ánh giá trị nội tại thấp"
+      "Nợ chỉ tính lãi khi bạn CHẠM vào nó - chỗ tệ nhất chưa chắc là chỗ đắt nhất.",
+      "Xếp theo: chỗ sắp phải làm việc nhiều × mức nó cản trở việc đó.",
+      "Có loại nợ nên để nguyên mãi: phần chạy ổn định mà không ai định đụng tới.",
+      "Ghi thành mục công việc có ước lượng - thứ không trong danh sách không được xếp lịch.",
+      "Nợ không ghi lại tự nhân bản: người sau tưởng đó là quy ước rồi làm theo."
     ],
     "practicePrompt": {
-      "question": "Định giá bằng Comps cho ra bội số EV/EBITDA trung bình 8x, nhưng định giá bằng Precedent Transactions (dựa trên các thương vụ M&A tương tự đã hoàn tất) lại cho ra bội số trung bình 11x cho cùng ngành. Vì sao hai phương pháp cho kết quả khác nhau đến vậy?",
+      "question": "Đội có hai khoản nợ. Một rất tệ ở module không ai đụng; một vừa phải ở chỗ sắp làm tính năng mới. Trả cái nào?",
       "options": [
-        "Precedent Transactions có bội số cao hơn Comps vì đã bao gồm control premium",
-        "Đây là lỗi tính toán, hai phương pháp lẽ ra phải luôn cho ra cùng một kết quả bội số",
-        "Comps luôn chính xác hơn Precedent Transactions nên nên bỏ qua kết quả 11x",
-        "Precedent Transactions chỉ áp dụng được cho các thương vụ xuyên biên giới, không áp dụng trong nước"
+        "Cái thứ hai, vì nợ chỉ tính lãi khi bạn chạm vào và bạn sắp chạm vào nó nhiều",
+        "Cái thứ nhất, vì mức độ nghiêm trọng cao hơn nên rủi ro tiềm ẩn lớn hơn",
+        "Cả hai, vì để lại khoản nào cũng sẽ tích tụ thêm hậu quả theo thời gian",
+        "Cái nào dễ sửa hơn trước, để tạo đà rồi mới xử lý khoản còn lại"
       ],
       "correct": 0,
-      "explanation": "Precedent Transactions thường có bội số cao hơn Comps vì bao gồm control premium. Đây là phần chênh lệch phải trả thêm để giành quyền kiểm soát toàn bộ công ty, khác với giao dịch cổ phiếu thông thường trên sàn."
+      "explanation": "Câu hỏi này là toàn bộ nội dung bài gói vào một tình huống. Rủi ro tiềm ẩn của khoản thứ nhất chỉ thành thật khi có người chạm vào nó, và trong kịch bản này thì không ai định chạm."
+    },
+    "summary": {
+      "keyIdea": "Xếp thứ tự theo chỗ bạn sắp làm việc, không theo mức tệ về kỹ thuật.",
+      "formula": "Tần suất sắp chạm × mức cản trở = thứ tự trả nợ.",
+      "commonMistake": "Viết lại module tệ nhất, vốn có thể là module không ai đụng tới.",
+      "action": "Lấy danh sách nợ của đội và xếp lại theo lộ trình sản phẩm ba tháng tới."
     },
     "application": {
-      "title": "Ghi bối cảnh cạnh mỗi bội số",
-      "message": "Với từng thương vụ trong bảng, ghi thêm ba cột: năm giao dịch, số bên tham gia đấu giá, và người bán có ở thế phải bán không. Một bội số 12x năm 2021 khi có bốn bên tranh mua không nói gì về hôm nay, và một thương vụ 5x của doanh nghiệp bán tháo cũng vậy.",
-      "secondary": "Loại các thương vụ cách quá xa về chu kỳ lãi suất trước khi lấy trung vị, thay vì lấy hết rồi giải thích sau.",
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy danh sách nợ kỹ thuật của đội và xếp lại nó theo lộ trình sản phẩm ba tháng tới: khoản nào nằm ở chỗ đội sắp làm việc nhiều nhất?",
+      "secondary": "Thứ tự mới thường khác hẳn thứ tự cũ. Và những khoản rơi xuống cuối danh sách là những khoản đáng ghi rõ là để nguyên có chủ đích, chứ không phải bỏ quên."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Bội số các thương vụ M&A thường cao hơn hẳn bội số giao dịch cổ phiếu trên sàn của cùng ngành - lý do nằm ở một khái niệm gọi là control premium."
+        "text": "Bài về thiên kiến hiện tại giải thích vì sao nợ kỹ thuật luôn bị hoãn. Bài này giả định bạn đã có ngân sách để trả - và câu hỏi bây giờ là trả cái nào trước."
       },
       {
         "type": "heading",
-        "text": "Control premium và tính lỗi thời của dữ liệu tiền lệ"
-      },
-      {
-        "type": "paragraph",
-        "text": "Bên mua trong M&A trả thêm 'control premium' cho quyền kiểm soát toàn bộ công ty và khả năng tạo synergy - điều một nhà đầu tư mua vài cổ phiếu lẻ trên sàn không có được. Nhưng Precedent Transactions dễ 'lỗi thời' hơn Comps, vì mỗi thương vụ phản ánh điều kiện thị trường (lãi suất, tâm lý, mức cạnh tranh giữa các bên mua) tại đúng thời điểm giao dịch đó - cần cân nhắc kỹ thời điểm khi áp dụng."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Precedent Transactions thường có bội số cao hơn Comps vì bao gồm control premium",
-          "Bội số M&A phản ánh điều kiện thị trường tại thời điểm giao dịch - cần cân nhắc thời điểm khi áp dụng",
-          "Giá thương vụ thấp bất thường có thể do bối cảnh giao dịch (bán gấp, ít bên mua), không nhất thiết phản ánh giá trị nội tại thấp"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Phần chênh lệch so với giá thị trường gồm những gì"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Quyền kiểm soát: bên mua được quyết định chiến lược, phân bổ vốn, chính sách cổ tức - thứ cổ đông nhỏ lẻ không có.",
-          "Giá trị cộng hưởng kỳ vọng: tiết kiệm chi phí trùng lặp, mở rộng kênh phân phối, tận dụng công nghệ. Đây là phần bên mua thường lạc quan nhất và cũng hay hụt nhất trong thực tế.",
-          "Áp lực cạnh tranh trong phiên đấu giá: khi có nhiều bên mua, giá bị đẩy lên vượt mức mà phân tích ban đầu chứng minh được.",
-          "Điều kiện thị trường lúc giao dịch: mặt bằng lãi suất và mức độ dễ dàng huy động vốn ảnh hưởng trực tiếp đến mức giá bên mua sẵn sàng trả."
-        ]
+        "text": "Nguyên tắc xếp thứ tự"
       },
       {
         "type": "callout",
-        "label": "Ba câu hỏi cho mỗi thương vụ tiền lệ",
-        "text": "Thương vụ diễn ra khi nào và mặt bằng lãi suất lúc đó ra sao? Có bao nhiêu bên tham gia đấu giá - một bên duy nhất hay một cuộc cạnh tranh? Và bên bán ở thế nào - chủ động chọn thời điểm hay buộc phải bán vì áp lực tài chính? Ba câu này giải thích phần lớn khoảng dao động giữa các bội số tiền lệ."
+        "label": "Nợ chỉ tính lãi khi bạn chạm vào nó",
+        "text": "Một khoản nợ rất tệ trong module không ai đụng tới trong hai năm thì thực tế bạn chưa trả đồng lãi nào. Đó là lý do cách xếp phổ biến nhất - theo mức nghiêm trọng kỹ thuật - lại sai: bạn sửa những chỗ tệ nhất thay vì những chỗ đắt nhất."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách xếp đúng nhân hai yếu tố: chỗ bạn SẮP phải làm việc nhiều trong vài tháng tới, và mức nó CẢN TRỞ việc đó. Yếu tố đầu lấy từ lộ trình sản phẩm, không lấy từ mã."
+      },
+      {
+        "type": "heading",
+        "text": "Loại nợ nên để nguyên"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Bội số tiền lệ cao bất thường",
-          "text": "Thường đến từ cuộc đấu giá nhiều bên, hoặc bên mua kỳ vọng giá trị cộng hưởng rất lớn, hoặc giao dịch xảy ra trong giai đoạn tiền rẻ. Không nên dùng làm mốc nếu bối cảnh hiện tại khác hẳn."
+          "label": "Để nguyên có chủ đích",
+          "text": "Phần viết tệ nhưng chạy ổn định nhiều năm, không ai sửa và cũng không ai định sửa. Viết lại là bỏ tiền mua thứ bạn không dùng, cộng rủi ro làm hỏng thứ đang chạy tốt."
         },
         "right": {
-          "label": "Bội số tiền lệ thấp bất thường",
-          "text": "Thường đến từ việc bên bán buộc phải bán gấp, chỉ có một bên mua, hoặc doanh nghiệp có vấn đề chưa lộ ra trong số liệu công khai. Cũng không phản ánh giá trị nội tại."
+          "label": "Đừng nhầm với",
+          "text": "Nợ KHÓ TRẢ: phần thiếu kiểm thử, phần do người đã rời dự án viết. Khó trả không phải lý do để không trả - nó chỉ là chi phí cao hơn."
         }
       },
       {
+        "type": "heading",
+        "text": "Cách trả"
+      },
+      {
         "type": "paragraph",
-        "text": "Vì lý do đó, phương pháp này ít khi đứng một mình. Vai trò tự nhiên của nó là cho biết cận trên của vùng định giá - mức mà một bên mua chiến lược có thể sẵn sàng trả - trong khi định giá so sánh cho biết mức thị trường trả cho cổ phần thiểu số, và phương pháp dòng tiền cho biết giá trị nội tại theo giả định của chính bạn."
+        "text": "Cải thiện dần mỗi lần chạm vào phần đó thường hiệu quả hơn viết lại toàn bộ, vì nó không cần xin một khoảng thời gian riêng - đúng quy tắc dọn chỗ mình vừa chạm vào ở chặng rà soát."
+      },
+      {
+        "type": "paragraph",
+        "text": "Viết lại toàn bộ có tỷ lệ thất bại rất cao, và nó khoá đội lại trong nhiều tháng không ra được tính năng nào - trong khi hệ thống cũ vẫn phải được bảo trì song song."
+      },
+      {
+        "type": "heading",
+        "text": "Hai loại nợ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nợ có ý thức là quyết định hợp lý để ra sản phẩm sớm, với điều kiện được ghi lại kèm lý do. Nợ do cẩu thả thì không có ai ghi gì, và nó có một tính chất riêng: nó tự nhân bản."
       },
       {
         "type": "closing",
         "lines": [
-          "Một thương vụ tiền lệ từ 3 năm trước có thể không còn phản ánh đúng thị trường hôm nay.",
-          "Luôn kiểm tra bối cảnh thị trường tại thời điểm mỗi thương vụ diễn ra."
+          "Một chỗ viết tắt không được ghi lại thì người sau đọc và tưởng đó là quy ước của dự án, rồi làm theo ở chỗ mới. Sáu tháng sau bạn có năm chỗ cùng kiểu thay vì một.",
+          "Bài sau là công cụ mà mọi đội dùng để chặn nợ mới sinh ra: quy ước và kiểm tra tự động."
         ]
       }
-    ],
-    "summary": {
-      "keyIdea": "Precedent Transactions thường có bội số cao hơn Comps vì bao gồm control premium",
-      "commonMistake": "Dễ bỏ qua: bội số M&A phản ánh điều kiện thị trường tại thời điểm giao dịch - cần cân nhắc thời điểm khi áp dụng",
-      "action": "Giá thương vụ M&A thấp bất thường có thể do bối cảnh giao dịch (bán gấp, ít bên mua cạnh tranh), không nhất thiết phản ánh giá trị nội tại thấp"
-    }
+    ]
   },
   {
     "id": 1104,
-    "slug": "credit-analysis-co-ban-cho-nha-phan-tich",
-    "title": "IB & Phân tích, Bài 4: Credit Analysis cơ bản cho nhà phân tích tín dụng",
-    "subtitle": "Đánh giá khả năng trả nợ khác hoàn toàn đánh giá tiềm năng tăng trưởng cổ phiếu",
-    "duration": "8 phút",
-    "difficulty": "Khó",
-    "emoji": "📉",
+    "slug": "quy-uoc-va-kiem-tra-tu-dong",
+    "title": "Nền tảng nâng cao, Bài 4: Quy ước và kiểm tra tự động",
+    "subtitle": "Thứ máy kiểm được thì đừng để người kiểm - và ngược lại.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
     "track": "professional",
-    "openingQuestion": "Một nhà phân tích cổ phiếu (equity analyst) và một nhà phân tích tín dụng (credit analyst) cùng nhìn vào một công ty. Vì sao họ có thể đưa ra kết luận khác nhau về mức độ hấp dẫn của công ty đó?",
+    "emoji": "🤖",
+    "isFundamental": false,
+    "whyItMatters": "Rà soát mã tốn thời gian đắt nhất trong đội, và phần lớn nhận xét trong một lượt rà soát điển hình là thứ máy kiểm được. Chuyển đúng phần đó sang máy giải phóng sự chú ý cho phần chỉ người làm được.",
+    "openingQuestion": "Việc nào nên chuyển từ người rà soát sang kiểm tra tự động?",
     "openingOptions": [
-      "Vì một trong hai người chắc chắn đã phân tích sai, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-      "Equity analyst nhìn tiềm năng tăng trưởng (upside), còn credit analyst chỉ nhìn khả năng trả nợ đúng hạn (downside protection)",
-      "Vì hai người dùng dữ liệu tài chính khác nhau, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-      "Credit analyst chỉ quan tâm đến giá cổ phiếu, không quan tâm báo cáo tài chính, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
+      "Mọi thứ có quy tắc rõ ràng: định dạng, quy ước đặt tên, khuôn mẫu bị cấm",
+      "Những việc mà người rà soát hay bỏ sót nhất do mệt hoặc do bản thay đổi quá dài",
+      "Những phần mã mà người rà soát không có đủ chuyên môn để đánh giá chính xác",
+      "Những việc lặp lại nhiều lần trong ngày và tốn nhiều thời gian của cả đội"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là khác biệt cốt lõi về góc nhìn: cổ đông (equity) hưởng lợi từ TOÀN BỘ phần tăng trưởng vượt trội (upside không giới hạn) nhưng cũng chịu rủi ro mất vốn hoàn toàn nếu công ty phá sản; trái chủ/người cho vay (credit) chỉ nhận lại đúng số tiền gốc + lãi cố định (upside giới hạn) nên mối quan tâm hàng đầu là XÁC SUẤT KHÔNG BỊ MẤT VỐN, không phải mức độ tăng trưởng.",
+    "correctOption": 0,
+    "explanation": "Tiêu chí là có QUY TẮC RÕ RÀNG hay không, không phải việc đó tốn bao nhiêu thời gian. Một việc rất tốn thời gian mà không có quy tắc rõ - ví dụ đánh giá tên biến có mô tả đúng ý nghĩa không - thì không tự động hoá được, và cố làm sẽ sinh ra một công cụ báo sai liên tục. Còn thứ có quy tắc rõ thì để người kiểm là lãng phí đúng loại thời gian đắt nhất.",
     "diagram": [
       {
-        "label": "Equity analyst: quan tâm upside, chấp nhận rủi ro cao",
-        "arrow": false
+        "label": "Có quy tắc rõ → máy kiểm",
+        "arrow": true
       },
       {
-        "label": "Credit analyst: quan tâm downside protection, ưu tiên an toàn",
-        "arrow": false
+        "label": "Cần phán đoán → người kiểm",
+        "arrow": true
+      },
+      {
+        "label": "Máy kiểm giải phóng sự chú ý cho phần cần phán đoán",
+        "arrow": true
+      },
+      {
+        "label": "Công cụ báo sai liên tục thì cả đội học cách bỏ qua nó"
       }
     ],
-    "interactiveType": "bond",
     "realWorldExample": {
-      "company": "Xếp hạng tín nhiệm doanh nghiệp (S&P, Moody's, Fitch)",
-      "description": "Các tổ chức xếp hạng tín nhiệm đánh giá doanh nghiệp dựa trên các chỉ số như Debt/EBITDA, Interest Coverage Ratio, và dòng tiền tự do ổn định - một công ty có thể có cổ phiếu tăng trưởng ấn tượng nhưng vẫn bị xếp hạng tín dụng thấp nếu đòn bẩy tài chính quá cao so với dòng tiền tạo ra."
+      "company": "Tranh luận về định dạng",
+      "description": "Một công cụ định dạng tự động chấm dứt hẳn loại tranh luận tốn kém nhất mà cũng vô nghĩa nhất trong rà soát mã. Điều quan trọng không phải nó chọn kiểu nào, mà nó chọn một kiểu và không ai phải nghĩ về chuyện đó nữa."
     },
     "quiz": [
       {
-        "question": "Interest Coverage Ratio (EBIT/Chi phí lãi vay) thấp là tín hiệu gì đối với credit analyst?",
+        "question": "Vì sao công cụ định dạng tự động có giá trị cao?",
         "options": [
-          "Tín hiệu tốt vì công ty đang tận dụng đòn bẩy hiệu quả",
-          "Tín hiệu cảnh báo - công ty có ít biên an toàn để trả lãi vay từ lợi nhuận hoạt động, chỉ cần lợi nhuận giảm nhẹ cũng có thể không đủ khả năng trả lãi đúng hạn",
-          "Không liên quan đến khả năng trả nợ",
-          "Chỉ số này chỉ quan trọng với công ty không có nợ"
-        ],
-        "correct": 1,
-        "explanation": "Interest Coverage Ratio thấp nghĩa là lợi nhuận hoạt động chỉ vừa đủ (hoặc gần như không đủ) để trả chi phí lãi vay - biên an toàn mỏng khiến công ty dễ rơi vào khó khăn trả nợ chỉ với một cú sốc nhỏ về lợi nhuận, đây là tín hiệu cảnh báo quan trọng hàng đầu với credit analyst."
-      },
-      {
-        "question": "Vì sao credit analyst thường quan tâm đến tính ỔN ĐỊNH của dòng tiền hơn là TỐC ĐỘ TĂNG TRƯỞNG của dòng tiền?",
-        "options": [
-          "Vì tốc độ tăng trưởng không bao giờ quan trọng trong phân tích tài chính",
-          "Trái chủ chỉ cần công ty tạo đủ dòng tiền ổn định để trả nợ gốc và lãi đúng hạn mỗi kỳ - dòng tiền tăng trưởng nhanh nhưng biến động mạnh (có kỳ rất tốt, có kỳ rất tệ) rủi ro hơn dòng tiền tăng trưởng chậm nhưng đều đặn, vì rủi ro vỡ nợ xảy ra ở đúng những kỳ dòng tiền tệ nhất",
-          "Vì công ty tăng trưởng nhanh luôn có dòng tiền ổn định hơn",
-          "Tính ổn định và tốc độ tăng trưởng luôn đi cùng nhau, không cần phân biệt"
-        ],
-        "correct": 1,
-        "explanation": "Khả năng trả nợ được kiểm tra ở TỪNG KỲ THANH TOÁN cụ thể, không phải trung bình dài hạn - một công ty có dòng tiền trung bình tăng trưởng tốt nhưng biến động mạnh giữa các kỳ vẫn có thể vỡ nợ đúng vào kỳ dòng tiền tệ nhất, dù triển vọng dài hạn vẫn tích cực. Đây là lý do tính ổn định quan trọng hơn tốc độ tăng trưởng trong phân tích tín dụng."
-      },
-      {
-        "question": "Vì sao chủ nợ không thích các chiến lược làm tăng độ biến động của doanh nghiệp, kể cả khi chúng làm tăng giá trị kỳ vọng?",
-        "options": [
-          "Vì phần lợi của chủ nợ bị giới hạn ở gốc và lãi, trong khi phần thua có thể là toàn bộ khoản vay",
-          "Vì chủ nợ không được phép nắm cổ phần",
-          "Vì biến động cao làm tăng thuế của doanh nghiệp",
-          "Vì chủ nợ luôn muốn doanh nghiệp trả nợ sớm"
+          "Vì nó chấm dứt một loại tranh luận vô nghĩa, bất kể nó chọn kiểu định dạng nào",
+          "Vì mã được định dạng nhất quán thì dễ đọc hơn hẳn nên giảm được thời gian rà soát của cả đội",
+          "Vì nó phát hiện được các lỗi cú pháp tiềm ẩn trong lúc định dạng lại mã nguồn",
+          "Vì nó giúp người mới vào dự án nhanh chóng viết mã theo đúng phong cách chung"
         ],
         "correct": 0,
-        "explanation": "Đây là bất đối xứng cơ bản giữa hai loại nhà đầu tư, và cũng là nguồn gốc của gần như mọi điều khoản ràng buộc trong hợp đồng vay."
+        "explanation": "Chữ BẤT KỂ NÓ CHỌN KIỂU NÀO là mấu chốt: giá trị nằm ở việc có một lựa chọn dứt khoát, không ở việc lựa chọn đó tối ưu. Đó cũng là lý do tranh luận về cấu hình của công cụ định dạng là tranh luận lặp lại đúng thứ nó sinh ra để chấm dứt."
       },
       {
-        "question": "Hệ số khả năng trả lãi bằng 3,0 nên được đánh giá thế nào?",
+        "question": "Vì sao một công cụ báo sai liên tục lại gây hại?",
         "options": [
-          "Tùy tính ổn định của dòng tiền: an toàn với doanh nghiệp ổn định, nhưng rất mỏng với doanh nghiệp chu kỳ",
-          "Luôn là mức an toàn",
-          "Luôn là mức nguy hiểm",
-          "Không có ý nghĩa vì chỉ số này đã lỗi thời"
+          "Vì cả đội học cách bỏ qua nó, nên những cảnh báo thật cũng bị bỏ qua theo",
+          "Vì nó làm chậm quy trình tự động và kéo dài thời gian chờ trước khi gộp mã",
+          "Vì việc cấu hình lại công cụ tốn nhiều thời gian hơn lợi ích nó mang lại",
+          "Vì các cảnh báo sai khiến người mới hiểu nhầm về quy ước của dự án"
         ],
         "correct": 0,
-        "explanation": "Chỉ số này cho biết lợi nhuận hoạt động được phép giảm bao nhiêu trước khi không đủ trả lãi. Mức giảm khả dĩ đó khác nhau hoàn toàn giữa ngành ổn định và ngành chu kỳ."
+        "explanation": "Đây là cùng cơ chế với kiểm thử chập chờn ở chặng rà soát code: thiệt hại nằm ở thói quen chứ không ở bản thân cảnh báo. Một quy tắc gây nhiễu nên bị tắt hẳn thay vì để đó."
+      },
+      {
+        "question": "Việc nào KHÔNG tự động hoá được?",
+        "options": [
+          "Đánh giá tên biến có mô tả đúng ý nghĩa của giá trị nó chứa hay không",
+          "Kiểm tra xem mọi hàm công khai có chú thích mô tả đi kèm hay không",
+          "Phát hiện các hàm dài hơn một số dòng nhất định trong dự án",
+          "Tìm những đoạn mã bị lặp lại giống nhau ở nhiều nơi khác nhau"
+        ],
+        "correct": 0,
+        "explanation": "Nó cần hiểu ý nghĩa chứ không chỉ hình thức - máy kiểm được tên có đúng quy ước viết hoa không, nhưng không kiểm được tên đó có đúng không. Ba việc kia đều có quy tắc đo được rõ ràng."
+      },
+      {
+        "question": "Vì sao nên chạy kiểm tra tự động ở máy lập trình viên chứ không chỉ ở quy trình chung?",
+        "options": [
+          "Vì phản hồi càng sớm thì càng rẻ, và chờ quy trình chung mất vài phút mỗi lần",
+          "Vì quy trình chung có thể bị lỗi nên cần một lớp kiểm tra dự phòng ở máy cá nhân",
+          "Vì chạy ở máy cá nhân sẽ giúp giảm tải cho hệ thống tự động hoá dùng chung của cả đội",
+          "Vì mỗi lập trình viên có thể cấu hình các quy tắc phù hợp với phong cách của mình"
+        ],
+        "correct": 0,
+        "explanation": "Vòng phản hồi ngắn là nguyên tắc chung của mọi thứ trong chặng này. Lựa chọn cuối là phản ví dụ đáng chú ý: cấu hình khác nhau giữa các máy phá vỡ chính tính nhất quán mà công cụ sinh ra để tạo."
+      },
+      {
+        "question": "Nên xử lý thế nào với đội đang có nhiều mã cũ vi phạm quy ước mới?",
+        "options": [
+          "Chỉ áp quy tắc cho mã mới và mã vừa sửa, thay vì bắt sửa hết một lượt",
+          "Sửa toàn bộ trong một bản thay đổi lớn để mã nguồn nhất quán ngay lập tức",
+          "Chỉ bật cảnh báo mà không chặn, cho tới khi phần lớn mã cũ đã được sửa xong",
+          "Giảm bớt yêu cầu của quy tắc xuống mức mà phần lớn mã hiện tại đã đáp ứng"
+        ],
+        "correct": 0,
+        "explanation": "Sửa hết một lượt tạo ra một bản thay đổi khổng lồ không ai rà soát nổi và phá vỡ lịch sử kho mã. Còn giảm yêu cầu xuống mức mã cũ đạt được là hạ chuẩn để làm cho cổng xanh - đúng thứ AGENTS.md của mọi dự án đều cảnh báo."
       }
     ],
     "keyTakeaways": [
-      "Equity analyst quan tâm upside tăng trưởng; credit analyst quan tâm downside protection - khả năng trả nợ đúng hạn",
-      "Interest Coverage Ratio thấp là tín hiệu cảnh báo quan trọng về biên an toàn trả lãi vay",
-      "Tính ổn định của dòng tiền quan trọng hơn tốc độ tăng trưởng trong phân tích tín dụng, vì vỡ nợ xảy ra ở từng kỳ cụ thể"
+      "Tiêu chí là có QUY TẮC RÕ hay không, không phải việc đó tốn bao nhiêu thời gian.",
+      "Công cụ định dạng có giá trị vì nó chọn dứt khoát, bất kể nó chọn kiểu nào.",
+      "Công cụ báo sai liên tục dạy cả đội bỏ qua nó - tắt hẳn quy tắc gây nhiễu.",
+      "Máy không kiểm được tên biến có ĐÚNG không, chỉ kiểm được nó có đúng quy ước không.",
+      "Với mã cũ: chỉ áp quy tắc cho mã mới và mã vừa sửa."
     ],
     "practicePrompt": {
-      "question": "Một startup công nghệ tăng trưởng doanh thu 150%/năm nhưng dòng tiền âm và nợ cao. Nhà đầu tư cổ phiếu (equity investor) rất hào hứng với tiềm năng tăng trưởng, nhưng credit analyst của ngân hàng lại từ chối cho vay thêm. Vì sao hai bên có góc nhìn trái ngược nhau?",
+      "question": "Đội tranh luận nên cấu hình công cụ định dạng theo kiểu nào. Nên góp ý gì?",
       "options": [
-        "Credit analyst đánh giá khả năng trả nợ đúng hạn, không phải tiềm năng tăng trưởng",
-        "Credit analyst đang đánh giá sai vì không nhìn thấy tiềm năng tăng trưởng vượt trội của công ty",
-        "Cả hai bên thực chất có cùng quan điểm, chỉ khác nhau về cách diễn đạt kết luận",
-        "Ngân hàng luôn từ chối cho vay các công ty công nghệ bất kể tình hình tài chính cụ thể ra sao"
+        "Chọn mặc định của công cụ và chuyển sang việc khác, vì giá trị nằm ở việc có lựa chọn dứt khoát",
+        "Khảo sát ý kiến cả đội rồi chọn theo phương án được nhiều người ủng hộ nhất",
+        "Chọn theo kiểu phổ biến nhất trong cộng đồng ngôn ngữ đó để người mới quen sẵn",
+        "Thử vài kiểu trong một tháng rồi đánh giá xem kiểu nào dễ đọc nhất với đội"
       ],
       "correct": 0,
-      "explanation": "Credit analyst quan tâm khả năng trả nợ đúng hạn (downside protection), không phải tiềm năng tăng trưởng (upside). Đây là khác biệt cơ bản giữa tư duy chủ nợ (bảo toàn vốn, tránh rủi ro vỡ nợ) và tư duy cổ đông (tối đa hóa tiềm năng lợi nhuận)."
+      "explanation": "Tranh luận về cấu hình là lặp lại đúng loại tranh luận mà công cụ sinh ra để chấm dứt. Ba cách kia đều tiêu thời gian của cả đội cho một quyết định mà mọi phương án đều chấp nhận được."
+    },
+    "summary": {
+      "keyIdea": "Thứ máy kiểm được thì đừng để người kiểm, để dành sự chú ý cho phần cần phán đoán.",
+      "formula": "Có quy tắc rõ → máy. Cần hiểu ý nghĩa → người.",
+      "commonMistake": "Tranh luận về cấu hình công cụ định dạng, tức lặp lại thứ nó xoá bỏ.",
+      "action": "Đếm xem lượt rà soát gần nhất có bao nhiêu nhận xét mà máy kiểm được."
     },
     "application": {
-      "title": "Xếp lịch trả nợ theo từng năm",
-      "message": "Kẻ bảng: mỗi năm tới, tổng gốc và lãi phải trả bao nhiêu, dòng tiền hoạt động dự kiến bao nhiêu. Vỡ nợ xảy ra ở một năm cụ thể chứ không xảy ra trên số trung bình, nên một năm có khoản gốc lớn đáo hạn quan trọng hơn tăng trưởng của cả giai đoạn.",
-      "secondary": "Kiểm luôn các điều khoản ràng buộc trong hợp đồng vay: chạm ngưỡng covenant kích hoạt trả nợ trước hạn, và đó thường là thứ đến trước cả việc thiếu tiền.",
+      "title": "Làm ngay hôm nay",
+      "message": "Mở lượt rà soát gần nhất của đội và đếm: bao nhiêu nhận xét là thứ một công cụ kiểm được? Tỷ lệ đó là phần thời gian đắt đang bị tiêu sai chỗ.",
+      "secondary": "Sau đó kiểm tra xem có quy tắc nào trong công cụ hiện tại đang báo sai thường xuyên không. Nếu có, tắt hẳn nó - để đó thì nó đang dạy cả đội bỏ qua màu đỏ."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Equity analyst và credit analyst có thể nhìn cùng một công ty nhưng đưa ra kết luận trái ngược nhau - vì họ đang trả lời hai câu hỏi hoàn toàn khác nhau."
+        "text": "Bài trước là cách trả nợ đã có. Bài này là cách chặn nợ mới sinh ra - và nguyên tắc gói cả bài vào một câu: thứ máy kiểm được thì đừng để người kiểm."
       },
       {
         "type": "heading",
-        "text": "Upside không giới hạn vs downside protection"
-      },
-      {
-        "type": "paragraph",
-        "text": "Cổ đông hưởng lợi từ toàn bộ phần tăng trưởng vượt trội nhưng chịu rủi ro mất vốn hoàn toàn; trái chủ chỉ nhận lại đúng gốc + lãi cố định nên mối quan tâm hàng đầu là xác suất KHÔNG bị mất vốn. Interest Coverage Ratio thấp là tín hiệu cảnh báo quan trọng - biên an toàn mỏng để trả lãi vay. Tính ổn định của dòng tiền quan trọng hơn tốc độ tăng trưởng trong phân tích tín dụng, vì vỡ nợ xảy ra ở từng kỳ thanh toán cụ thể, không phải trung bình dài hạn."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Equity analyst quan tâm upside tăng trưởng; credit analyst quan tâm downside protection",
-          "Interest Coverage Ratio thấp là tín hiệu cảnh báo quan trọng về biên an toàn trả lãi vay",
-          "Tính ổn định dòng tiền quan trọng hơn tốc độ tăng trưởng trong phân tích tín dụng"
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Hai chỉ số cốt lõi của phân tích tín dụng",
-        "equation": "Khả năng trả lãi = EBIT ÷ Chi phí lãi vay · Mức đòn bẩy = Nợ ròng ÷ EBITDA",
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "EBIT 300 tỷ, chi phí lãi vay 100 tỷ → hệ số 3,0",
-          "result": "Lợi nhuận hoạt động có thể giảm khoảng hai phần ba trước khi không đủ trả lãi",
-          "explanation": "Hệ số 3,0 nghe có vẻ an toàn với doanh nghiệp có doanh thu ổn định, nhưng với doanh nghiệp chu kỳ nơi lợi nhuận hoạt động có thể giảm 70% trong pha xuống, đây là mức rất mỏng. Cùng một con số, hai kết luận khác nhau tùy tính chất dòng tiền."
-        }
+        "text": "Ranh giới"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Góc nhìn cổ đông",
-          "text": "Phần thắng không giới hạn, phần thua giới hạn ở số vốn bỏ ra. Vì vậy một chiến lược rủi ro cao nhưng có khả năng thắng lớn có thể hấp dẫn - giá trị quyền chọn nghiêng về phía họ."
+          "label": "Máy kiểm",
+          "text": "Mọi thứ có quy tắc rõ ràng: định dạng, quy ước đặt tên, độ dài hàm, khuôn mẫu bị cấm, mã lặp lại, hàm công khai thiếu chú thích."
         },
         "right": {
-          "label": "Góc nhìn chủ nợ",
-          "text": "Phần thắng cố định ở mức gốc và lãi, phần thua có thể là toàn bộ khoản cho vay. Vì vậy mọi chiến lược làm tăng độ biến động đều bất lợi, kể cả khi nó làm tăng giá trị kỳ vọng của doanh nghiệp."
+          "label": "Người kiểm",
+          "text": "Mọi thứ cần hiểu ý nghĩa: tên biến có mô tả đúng giá trị nó chứa không, thiết kế có hợp lý không, mã có làm đúng việc nghiệp vụ cần làm không."
         }
       },
       {
+        "type": "callout",
+        "label": "Tiêu chí là quy tắc, không phải thời gian",
+        "text": "Một việc rất tốn thời gian mà không có quy tắc rõ thì vẫn không tự động hoá được - và cố làm sẽ sinh ra một công cụ báo sai liên tục. Máy kiểm được tên có đúng quy ước viết hoa không, nhưng không kiểm được tên đó có ĐÚNG không."
+      },
+      {
         "type": "heading",
-        "text": "Vì sao hai bên có thể xung đột lợi ích"
+        "text": "Vì sao báo sai lại nguy hiểm"
       },
       {
         "type": "paragraph",
-        "text": "Sự bất đối xứng này giải thích nhiều điều khoản trong hợp đồng vay. Cổ đông có động cơ vay thêm để mở rộng hoặc chia cổ tức lớn, vì phần lợi thuộc về họ còn phần rủi ro san sẻ sang chủ nợ. Chủ nợ vì vậy đưa vào hợp đồng các ràng buộc: trần tỷ lệ đòn bẩy, sàn cho hệ số khả năng trả lãi, giới hạn chia cổ tức, hạn chế bán tài sản đảm bảo. Đọc phần điều khoản ràng buộc trong thuyết minh nợ vay thường cho biết nhiều về mức độ rủi ro của doanh nghiệp hơn cả bản thân con số dư nợ."
+        "text": "Cả đội học cách bỏ qua nó, nên những cảnh báo THẬT cũng bị bỏ qua theo. Đây là cùng cơ chế với kiểm thử chập chờn ở chặng rà soát code: thiệt hại nằm ở thói quen chứ không ở bản thân cảnh báo."
       },
       {
-        "type": "callout",
-        "label": "Bốn thứ cần xem cùng lúc",
-        "text": "Khả năng trả lãi, mức đòn bẩy, cơ cấu kỳ hạn nợ (bao nhiêu đáo hạn trong 12 tháng tới), và tính ổn định của dòng tiền qua chu kỳ. Ba chỉ số đầu là ảnh chụp tại một thời điểm; yếu tố thứ tư mới cho biết ảnh chụp đó có giữ được hay không."
+        "type": "paragraph",
+        "text": "Hệ quả thực dụng: một quy tắc gây nhiễu nên bị TẮT HẲN thay vì để đó và bảo mọi người tự lọc. Số lượng quy tắc ít mà tin được luôn tốt hơn số lượng nhiều mà phải lọc."
+      },
+      {
+        "type": "heading",
+        "text": "Hai chi tiết triển khai"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Chạy ở máy lập trình viên chứ không chỉ ở quy trình chung - phản hồi càng sớm càng rẻ. Nhưng cấu hình phải GIỐNG NHAU giữa các máy, nếu không bạn phá chính tính nhất quán mình đang xây.",
+          "Với mã cũ vi phạm quy ước mới: chỉ áp quy tắc cho mã mới và mã vừa sửa. Sửa hết một lượt tạo ra bản thay đổi khổng lồ không ai rà soát nổi."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Và tuyệt đối đừng hạ yêu cầu của quy tắc xuống mức mã cũ đã đạt được. Đó là hạ chuẩn để làm cho cổng xanh, và nó xoá luôn lý do quy tắc tồn tại."
       },
       {
         "type": "closing",
         "lines": [
-          "Một công ty 'hấp dẫn' với nhà đầu tư cổ phiếu có thể 'rủi ro' với trái chủ - và ngược lại.",
-          "Luôn hỏi rõ: bạn đang phân tích từ góc nhìn nào?"
+          "Về công cụ định dạng: giá trị của nó không nằm ở kiểu nó chọn mà ở việc nó CHỌN DỨT KHOÁT. Tranh luận về cấu hình là lặp lại đúng loại tranh luận mà nó sinh ra để chấm dứt.",
+          "Bài sau ghép ba bài đầu lại thành một việc cụ thể: đánh giá sức khoẻ một kho mã bạn vừa nhận."
         ]
       }
-    ],
-    "summary": {
-      "keyIdea": "Equity analyst quan tâm upside tăng trưởng; credit analyst quan tâm downside protection - khả năng trả nợ đúng hạn",
-      "commonMistake": "Dễ bỏ qua: interest Coverage Ratio thấp là tín hiệu cảnh báo quan trọng về biên an toàn trả lãi vay",
-      "action": "Tính ổn định của dòng tiền quan trọng hơn tốc độ tăng trưởng trong phân tích tín dụng, vì vỡ nợ xảy ra ở từng kỳ cụ thể"
-    }
+    ]
   },
   {
     "id": 1105,
-    "slug": "case-dinh-gia-tong-hop-nhieu-phuong-phap",
-    "title": "IB & Phân tích, Bài 5: Case tổng hợp - định giá một công ty bằng nhiều phương pháp",
-    "subtitle": "DCF, Comps, Precedent Transactions cho ra ba con số khác nhau - vậy tin ai?",
-    "duration": "8 phút",
+    "slug": "danh-gia-suc-khoe-mot-kho-ma",
+    "title": "Nền tảng nâng cao, Bài 5: Đánh giá sức khoẻ một kho mã",
+    "subtitle": "Bốn thứ đọc được trong một buổi, và chúng nói nhiều hơn cả tuần đọc mã.",
+    "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "🧮",
     "track": "professional",
-    "openingQuestion": "Định giá cùng một công ty bằng DCF cho ra 100.000đ/cổ phiếu, Comps cho ra 85.000đ, Precedent Transactions cho ra 110.000đ. Cách tiếp cận nào đúng nhất khi trình bày kết luận định giá?",
+    "emoji": "🩺",
+    "isFundamental": false,
+    "whyItMatters": "Bạn sẽ phải đánh giá một kho mã lạ nhiều lần trong đời: nhận bàn giao, cân nhắc lời mời làm việc, thẩm định một sản phẩm sắp mua. Bốn thứ trong bài này đọc nhanh và khó nguỵ trang.",
+    "openingQuestion": "Thứ nào nói nhiều nhất về sức khoẻ một kho mã?",
     "openingOptions": [
-      "Chỉ chọn con số cao nhất để thuyết phục khách hàng",
-      "Trình bày một vùng định giá dựa trên cả ba phương pháp",
-      "Chỉ dùng DCF vì đây là phương pháp 'khoa học' nhất, bỏ qua hai phương pháp còn lại",
-      "Lấy trung bình cộng đơn giản của ba con số mà không cần giải thích gì thêm"
+      "Lịch sử kho mã, vì nó ghi lại hành vi thật của đội chứ không phải ý định của họ",
+      "Bản thân mã nguồn, vì đó là thứ trực tiếp quyết định chất lượng của sản phẩm",
+      "Tài liệu kiến trúc, vì nó cho biết hệ thống được thiết kế theo nguyên tắc nào",
+      "Bộ kiểm thử, vì độ phủ và chất lượng kiểm thử phản ánh mức độ cẩn thận của đội"
     ],
-    "correctOption": 1,
-    "explanation": "Thực hành chuẩn trong ngành là trình bày một VÙNG định giá (valuation range) tổng hợp từ nhiều phương pháp, thường minh họa bằng 'football field chart' - mỗi phương pháp cho ra một khoảng giá trị dựa trên giả định riêng, và vùng chồng lấn giữa các phương pháp thường được xem là vùng định giá đáng tin cậy nhất. Không có phương pháp nào 'đúng tuyệt đối', mỗi phương pháp có điểm mạnh và hạn chế riêng.",
+    "correctOption": 0,
+    "explanation": "Mã cho bạn thấy trạng thái hiện tại; lịch sử cho bạn thấy đội LÀM VIỆC thế nào - bản thay đổi lớn hay nhỏ, có bản quay lại gấp lúc nửa đêm không, phần nào bị sửa liên tục. Tài liệu kiến trúc mô tả ý định và nó thường lỗi thời; lịch sử thì không nguỵ trang được vì nó là dấu vết của hành vi thật.",
     "diagram": [
       {
-        "label": "DCF - dựa trên giả định dòng tiền tương lai",
-        "arrow": false
+        "label": "1. Lịch sử kho: hành vi thật của đội",
+        "arrow": true
       },
       {
-        "label": "Comps - dựa trên định giá thị trường hiện tại",
-        "arrow": false
+        "label": "2. Quy trình tự động: đội tin vào cái gì",
+        "arrow": true
       },
       {
-        "label": "Precedent Transactions - dựa trên giá M&A thực tế đã xảy ra",
-        "arrow": false
+        "label": "3. Cách chạy dự án lần đầu: mức ma sát hằng ngày",
+        "arrow": true
       },
       {
-        "label": "Tổng hợp thành một vùng định giá (football field)"
+        "label": "4. Bộ kiểm thử: có khẳng định gì không"
       }
     ],
     "realWorldExample": {
-      "company": "Báo cáo định giá của ngân hàng đầu tư",
-      "description": "Trong các thương vụ IPO hay M&A thực tế, ngân hàng đầu tư luôn trình bày 'football field chart' - một biểu đồ dạng thanh ngang thể hiện vùng định giá từ nhiều phương pháp khác nhau (DCF, Comps, Precedent Transactions, 52-week trading range...) để hội đồng quản trị và nhà đầu tư có cái nhìn toàn diện, thay vì tin tưởng tuyệt đối vào một con số duy nhất."
+      "company": "Thời gian chạy dự án lần đầu",
+      "description": "Từ lúc sao chép kho mã tới lúc chạy được lần đầu là một phép đo rất tốt về ma sát hằng ngày. Nửa giờ là bình thường; hai ngày và phải hỏi ba người thì đó là chi phí mà mọi thành viên trả lại mỗi lần đổi máy hoặc có người mới."
     },
     "quiz": [
       {
-        "question": "Vì sao kết quả DCF thường nhạy cảm hơn nhiều so với Comps khi thay đổi một giả định nhỏ (ví dụ tốc độ tăng trưởng dài hạn tăng thêm 0.5%)?",
+        "question": "Vì sao lịch sử kho mã khó nguỵ trang hơn mã nguồn?",
         "options": [
-          "Vì DCF luôn tính toán sai, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "DCF chiết khấu dòng tiền RẤT XA trong tương lai (terminal value thường chiếm 60-80% giá trị DCF), nên một thay đổi nhỏ trong giả định tăng trưởng dài hạn hoặc discount rate được nhân lên qua hàng chục năm, tạo ra chênh lệch giá trị hiện tại rất lớn - trong khi Comps chỉ phản ánh giá thị trường hiện tại, ít nhạy cảm với giả định dài hạn",
-          "Vì Comps không sử dụng bất kỳ giả định nào, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "DCF và Comps có độ nhạy như nhau với mọi giả định, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Terminal value (giá trị cuối kỳ, đại diện cho dòng tiền sau giai đoạn dự báo chi tiết) thường chiếm phần lớn giá trị DCF - một thay đổi nhỏ trong giả định tăng trưởng dài hạn hoặc WACC được nhân lên qua công thức Gordon Growth (chia cho WACC trừ g), khiến kết quả cuối cùng rất nhạy với các giả định này. Đây là lý do DCF cần luôn đi kèm sensitivity analysis."
-      },
-      {
-        "question": "Khi ba phương pháp định giá cho ra kết quả chênh lệch rất lớn (ví dụ 50.000đ vs 150.000đ), điều này thường phản ánh điều gì về công ty đang định giá?",
-        "options": [
-          "Chắc chắn có lỗi tính toán ở một trong ba phương pháp, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "Có thể công ty đang trong giai đoạn chuyển đổi mô hình kinh doanh, thị trường đang có bất đồng lớn về triển vọng tương lai, hoặc thiếu dữ liệu comps/precedent transactions phù hợp - chênh lệch lớn giữa các phương pháp bản thân nó là một tín hiệu về mức độ không chắc chắn cao trong việc định giá công ty đó",
-          "Luôn nên bỏ qua phương pháp cho ra kết quả khác biệt nhất, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "Chênh lệch lớn không có ý nghĩa gì đặc biệt, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Chênh lệch lớn giữa các phương pháp định giá thường không phải lỗi tính toán mà là tín hiệu thực chất - nó cho thấy công ty có mức độ không chắc chắn cao (thị trường bất đồng về triển vọng, thiếu dữ liệu so sánh tốt, hoặc đang trong giai đoạn chuyển đổi) - bản thân độ rộng của vùng định giá là thông tin hữu ích, không chỉ điểm giữa của nó."
-      },
-      {
-        "question": "Ba phương pháp định giá cho ra ba con số rất khác nhau. Cách hiểu đúng nhất là gì?",
-        "options": [
-          "Chúng trả lời ba câu hỏi khác nhau, nên khác biệt là bình thường và độ rộng của vùng phản ánh mức độ bất định",
-          "Chắc chắn có ít nhất hai phương pháp bị tính sai",
-          "Nên chọn phương pháp cho kết quả gần giá thị trường nhất",
-          "Nên lấy trung bình cộng của ba con số làm kết luận"
+          "Vì nó là dấu vết của hành vi thật, không ai dọn lại lịch sử để gây ấn tượng",
+          "Vì lịch sử được lưu ở dạng không sửa được nên không ai thay đổi được nó",
+          "Vì lịch sử chứa nhiều thông tin hơn nên khó che giấu hết mọi dấu hiệu xấu",
+          "Vì các công cụ phân tích lịch sử chạy tự động nên kết quả khách quan hơn là ngồi đọc mã"
         ],
         "correct": 0,
-        "explanation": "Mỗi phương pháp đo một thứ khác: giá trị nội tại theo giả định của bạn, mức thị trường đang trả, và mức một bên mua chiến lược từng trả. Khác biệt giữa chúng chính là thông tin."
+        "explanation": "Người ta có thể dọn dẹp mã trước khi bàn giao, nhưng gần như không ai viết lại lịch sử để gây ấn tượng. Lịch sử vẫn sửa được về mặt kỹ thuật - chỉ là không ai bỏ công làm."
       },
       {
-        "question": "Vì sao giá trị cuối trong mô hình chiết khấu dòng tiền lại nhạy cảm đến vậy?",
+        "question": "Dấu hiệu nào trong lịch sử kho đáng lo nhất?",
         "options": [
-          "Vì mẫu số là hiệu giữa tỷ suất chiết khấu và tăng trưởng dài hạn - hai số gần nhau, nên thay đổi nhỏ bị khuếch đại mạnh",
-          "Vì giá trị cuối không được chiết khấu về hiện tại",
-          "Vì nó dựa trên dữ liệu quá khứ",
-          "Vì nó luôn chiếm đúng một nửa giá trị doanh nghiệp"
+          "Nhiều bản quay lại gấp vào buổi tối và cuối tuần, cho thấy quy trình phát hành yếu",
+          "Số lượng bản thay đổi giảm dần đều theo thời gian, cho thấy dự án đang dần bị bỏ bê",
+          "Nhiều người khác nhau cùng sửa một tệp, cho thấy trách nhiệm không rõ ràng",
+          "Thông điệp commit ngắn và không mô tả rõ nội dung thay đổi đã thực hiện"
         ],
         "correct": 0,
-        "explanation": "Khi mẫu số chỉ khoảng 7-9%, việc nó thay đổi 2 điểm phần trăm đã làm kết quả đổi hàng chục phần trăm. Đó là lý do bảng nhạy cảm là phần bắt buộc chứ không phải phần bổ sung."
+        "explanation": "Nó cho biết ba thứ cùng lúc: mã lên sản phẩm chưa được kiểm đủ, quy trình phát hành không bắt được lỗi, và đội đang chịu áp lực ngoài giờ. Nhiều người cùng sửa một tệp thì bình thường ở phần lõi của mọi dự án."
+      },
+      {
+        "question": "Quy trình tự động của một dự án nói lên điều gì?",
+        "options": [
+          "Đội thật sự tin vào cái gì - vì thứ họ chặn việc gộp mã là thứ họ coi trọng thật",
+          "Mức độ hiện đại của công nghệ mà đội đang sử dụng trong quy trình phát triển",
+          "Quy mô của đội, vì đội càng lớn thì quy trình tự động càng phức tạp hơn",
+          "Tần suất phát hành của dự án và mức độ ổn định của các bản phát hành đó"
+        ],
+        "correct": 0,
+        "explanation": "Tài liệu nói đội coi trọng gì; quy trình tự động cho thấy điều đó. Khoảng cách giữa hai thứ là một trong những thông tin có giá trị nhất khi đánh giá một kho mã lạ."
+      },
+      {
+        "question": "Vì sao nên đọc vài bài kiểm thử thay vì nhìn con số độ phủ?",
+        "options": [
+          "Vì con số không cho biết kiểm thử có khẳng định gì hay chỉ gọi hàm rồi thôi",
+          "Vì con số độ phủ có thể được cấu hình để loại trừ những phần khó kiểm thử",
+          "Vì đọc kiểm thử giúp bạn hiểu nhanh hành vi mong đợi của hệ thống",
+          "Vì độ phủ chỉ tính phần mã được chạy chứ không tính phần mã chết trong dự án"
+        ],
+        "correct": 0,
+        "explanation": "Đây là điều bài đầu chặng đã nói: một kiểm thử gọi hàm rồi không kiểm tra gì vẫn làm độ phủ tăng. Đọc năm bài kiểm thử ngẫu nhiên mất mười phút và cho biết nhiều hơn con số độ phủ."
+      },
+      {
+        "question": "Vì sao thời gian chạy dự án lần đầu là phép đo tốt?",
+        "options": [
+          "Vì nó đo mức ma sát mà mọi thành viên trả lại mỗi lần đổi máy hoặc có người mới",
+          "Vì nó cho biết dự án có được ghi tài liệu hướng dẫn đầy đủ hay không",
+          "Vì khoảng thời gian đó tỷ lệ thuận với độ phức tạp thật sự của kiến trúc hệ thống",
+          "Vì nó phản ánh mức độ hiện đại của công cụ mà dự án đang sử dụng"
+        ],
+        "correct": 0,
+        "explanation": "Chi phí này lặp lại và nó nhân với số người - nên nửa giờ hay hai ngày là khác biệt rất lớn về tổng. Nó cũng là phép đo mà không ai chuẩn bị trước được vì bạn tự chạy."
       }
     ],
     "keyTakeaways": [
-      "Nên trình bày một vùng định giá tổng hợp từ nhiều phương pháp (football field chart), không chốt một con số tuyệt đối",
-      "DCF rất nhạy với giả định dài hạn (tăng trưởng, WACC) vì terminal value chiếm phần lớn giá trị",
-      "Chênh lệch lớn giữa các phương pháp định giá là tín hiệu về mức độ không chắc chắn cao, không chỉ là lỗi tính toán"
+      "Lịch sử kho mã là dấu vết hành vi thật, và gần như không ai viết lại nó để gây ấn tượng.",
+      "Nhiều bản quay lại gấp lúc tối và cuối tuần là dấu hiệu đáng lo nhất.",
+      "Quy trình tự động cho thấy đội tin vào cái gì - khoảng cách với tài liệu là thông tin quý.",
+      "Đọc năm bài kiểm thử ngẫu nhiên nói nhiều hơn con số độ phủ.",
+      "Thời gian chạy lần đầu đo ma sát hằng ngày, và chi phí đó nhân với số người."
     ],
     "practicePrompt": {
-      "question": "DCF cho ra giá trị công ty 8.000 tỷ, Comps cho ra 9.500 tỷ, Precedent Transactions cho ra 10.500 tỷ. Khi trình bày kết quả cuối cùng cho ban lãnh đạo, nhà phân tích nên chọn cách nào?",
+      "question": "Bạn có một buổi để đánh giá kho mã của một dự án sắp nhận. Dùng nó thế nào?",
       "options": [
-        "Nên trình bày một vùng định giá tổng hợp, không chốt một con số tuyệt đối",
-        "Nên chỉ chọn con số cao nhất (10.500 tỷ) để có lợi thế khi đàm phán mua bán",
-        "Nên chỉ chọn con số của DCF vì đây luôn là phương pháp chính xác nhất trong mọi tình huống",
-        "Nên tính trung bình cộng đơn giản của ba con số mà không cần giải thích thêm về sự chênh lệch"
+        "Chạy dự án lần đầu, đọc lịch sử ba tháng, xem quy trình tự động, đọc năm bài kiểm thử",
+        "Đọc kỹ toàn bộ phần lõi của hệ thống để đánh giá chất lượng mã nguồn trực tiếp",
+        "Đọc tài liệu kiến trúc rồi đối chiếu với cấu trúc thư mục của dự án",
+        "Chạy các công cụ phân tích tĩnh và xem báo cáo chỉ số chất lượng chúng đưa ra"
       ],
       "correct": 0,
-      "explanation": "Nên trình bày một vùng định giá tổng hợp từ nhiều phương pháp, không chốt một con số tuyệt đối. Mỗi phương pháp có điểm mạnh/yếu khác nhau, và trình bày dưới dạng vùng giá trị (football field) là thực hành chuẩn trong định giá chuyên nghiệp."
+      "explanation": "Bốn việc này đọc nhanh và khó nguỵ trang. Đọc kỹ phần lõi thì trong một buổi bạn chỉ thấy được một phần nhỏ, còn chỉ số phân tích tĩnh thì đo thuộc tính bề mặt như bài đầu chặng đã nói."
+    },
+    "summary": {
+      "keyIdea": "Bốn thứ đọc trong một buổi nói nhiều hơn cả tuần đọc mã.",
+      "formula": "Lịch sử + quy trình tự động + thời gian chạy lần đầu + vài bài kiểm thử.",
+      "commonMistake": "Đọc tài liệu kiến trúc, vốn mô tả ý định và thường đã lỗi thời.",
+      "action": "Chạy bốn phép kiểm này trên chính kho mã bạn đang làm việc."
     },
     "application": {
-      "title": "Dựng football field cho một mã bạn đang theo",
-      "message": "Định giá cùng một doanh nghiệp bằng DCF, comps và precedent, rồi vẽ ba khoảng lên cùng một trục. Chỗ ba khoảng chồng nhau là vùng đáng tin; chỗ chúng rời nhau hẳn là chỗ bạn cần nói được vì sao trước khi đưa ra bất kỳ kết luận nào.",
-      "secondary": "Chạy độ nhạy hai chiều của DCF theo WACC và tăng trưởng dài hạn. Nếu vùng kết quả rộng gấp đôi giá thị trường, điều bạn học được là mô hình chưa quyết định được gì.",
+      "title": "Làm ngay hôm nay",
+      "message": "Chạy bốn phép kiểm này trên chính kho mã bạn đang làm việc, như thể bạn là người ngoài. Kết quả thường khó chịu hơn bạn nghĩ.",
+      "secondary": "Chú ý riêng phép đo thời gian chạy lần đầu: hỏi người mới nhất trong đội xem họ mất bao lâu. Bạn không tự đo được vì máy bạn đã cấu hình xong từ lâu."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "DCF, Comps, Precedent Transactions cho cùng một công ty ba con số khác nhau - vậy nên tin ai?"
+        "text": "Bốn bài trước là các khái niệm rời. Bài này ghép chúng thành một việc cụ thể bạn sẽ làm nhiều lần trong đời: đánh giá một kho mã lạ trong thời gian ngắn."
       },
       {
         "type": "heading",
-        "text": "Football field: trình bày một vùng, không phải một điểm"
+        "text": "Vì sao không bắt đầu bằng đọc mã"
       },
       {
-        "type": "paragraph",
-        "text": "Thực hành chuẩn trong ngành là trình bày một VÙNG định giá tổng hợp từ nhiều phương pháp, không chốt một con số duy nhất. DCF rất nhạy với giả định dài hạn vì terminal value thường chiếm 60-80% giá trị DCF - một thay đổi nhỏ trong tăng trưởng dài hạn hoặc WACC được nhân lên qua công thức Gordon Growth. Chênh lệch lớn giữa các phương pháp định giá thường không phải lỗi tính toán, mà là tín hiệu về mức độ không chắc chắn thực sự của công ty đó."
+        "type": "callout",
+        "label": "Mã cho trạng thái, lịch sử cho hành vi",
+        "text": "Mã nguồn cho bạn thấy hiện tại. Lịch sử kho cho bạn thấy đội LÀM VIỆC thế nào - và đó là thứ dự đoán được tương lai. Người ta có thể dọn dẹp mã trước khi bàn giao, nhưng gần như không ai viết lại lịch sử để gây ấn tượng."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn thứ, theo thứ tự"
       },
       {
         "type": "list",
         "items": [
-          "Nên trình bày một vùng định giá tổng hợp từ nhiều phương pháp, không chốt một con số tuyệt đối",
-          "DCF rất nhạy với giả định dài hạn vì terminal value chiếm phần lớn giá trị",
-          "Chênh lệch lớn giữa các phương pháp là tín hiệu về mức độ không chắc chắn cao, không chỉ là lỗi tính toán"
+          "Chạy dự án lần đầu và bấm giờ. Nửa giờ là bình thường; hai ngày và phải hỏi ba người là một chi phí mà mọi thành viên trả lại mỗi lần đổi máy.",
+          "Đọc lịch sử ba tháng gần nhất: bản thay đổi lớn hay nhỏ, có bản quay lại gấp lúc tối và cuối tuần không, phần nào bị sửa liên tục.",
+          "Xem quy trình tự động: nó chặn việc gộp mã ở những điều kiện nào.",
+          "Đọc năm bài kiểm thử ngẫu nhiên - không nhìn con số độ phủ."
         ]
       },
       {
-        "type": "conceptTable",
-        "title": "Ba phương pháp trả lời ba câu hỏi khác nhau",
-        "subtitle": "Chúng khác nhau là bình thường, vì chúng không hỏi cùng một điều",
-        "concepts": [
-          {
-            "vi": "Chiết khấu dòng tiền",
-            "en": "DCF",
-            "def": "Doanh nghiệp đáng giá bao nhiêu theo chính giả định của bạn về tương lai? Độc lập với tâm lý thị trường, nhưng rất nhạy với giả định dài hạn."
-          },
-          {
-            "vi": "So sánh công ty tương đương",
-            "en": "Comps",
-            "def": "Thị trường đang trả bao nhiêu cho những doanh nghiệp tương tự ngay lúc này? Phản ánh thực tế giao dịch, nhưng lặp lại cả sai lệch của thị trường."
-          },
-          {
-            "vi": "Thương vụ tiền lệ",
-            "en": "Precedent transactions",
-            "def": "Một bên mua toàn bộ doanh nghiệp đã từng trả bao nhiêu? Thường tạo cận trên của vùng định giá vì bao gồm quyền kiểm soát và cộng hưởng."
-          }
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Vì sao giá trị cuối chi phối kết quả chiết khấu dòng tiền",
-        "equation": "Giá trị cuối = FCF năm cuối × (1 + g) ÷ (r − g)",
-        "example": {
-          "title": "Độ nhạy của mẫu số",
-          "calculation": "r = 12%, g = 3% → mẫu số 9% · r = 11%, g = 4% → mẫu số 7%",
-          "result": "Giá trị cuối tăng khoảng 29% chỉ với thay đổi 1 điểm phần trăm ở mỗi biến",
-          "explanation": "Vì mẫu số là hiệu của hai số gần nhau, mọi thay đổi nhỏ đều bị khuếch đại rất mạnh. Đây là lý do kết quả DCF luôn phải đi kèm bảng nhạy cảm chứ không bao giờ nên trình bày dưới dạng một con số."
+        "type": "comparison",
+        "left": {
+          "label": "Dấu hiệu đáng lo nhất",
+          "text": "Nhiều bản quay lại gấp vào buổi tối và cuối tuần. Nó cho biết ba thứ cùng lúc: mã lên sản phẩm chưa được kiểm đủ, quy trình phát hành không bắt được lỗi, và đội đang chịu áp lực ngoài giờ."
+        },
+        "right": {
+          "label": "Dấu hiệu KHÔNG đáng lo",
+          "text": "Nhiều người cùng sửa một tệp - chuyện bình thường ở phần lõi của mọi dự án. Và thông điệp commit ngắn, vốn là thói quen chứ không phải bệnh."
         }
       },
       {
         "type": "heading",
-        "text": "Đọc một vùng định giá cho đúng"
+        "text": "Vì sao quy trình tự động lại nói nhiều"
       },
       {
-        "type": "list",
-        "items": [
-          "Vùng hẹp: các phương pháp đồng thuận, mức độ tin cậy cao hơn. Vẫn nên kiểm tra xem có phải do dùng chung một bộ giả định lạc quan hay không.",
-          "Vùng rộng: doanh nghiệp khó định giá - có thể do tăng trưởng bất định, mô hình kinh doanh đang chuyển đổi, hoặc phụ thuộc vào một vài yếu tố khó dự báo. Vùng rộng là câu trả lời trung thực, không phải dấu hiệu làm ẩu.",
-          "Một phương pháp lệch hẳn khỏi hai phương pháp còn lại: đây là tín hiệu cần điều tra chứ không phải để loại bỏ. Thường nó chỉ ra một giả định đang khác biệt đáng kể so với những gì thị trường đang tin."
-        ]
+        "type": "paragraph",
+        "text": "Tài liệu nói đội coi trọng gì; quy trình tự động cho THẤY điều đó, vì thứ họ chặn việc gộp mã là thứ họ coi trọng thật. Khoảng cách giữa hai thứ là một trong những thông tin có giá trị nhất khi đánh giá một kho mã lạ."
       },
       {
-        "type": "callout",
-        "label": "Điều quan trọng nhất cần trình bày",
-        "text": "Không phải con số cuối cùng, mà là danh sách giả định tạo ra nó cùng với việc kết quả thay đổi ra sao khi từng giả định dịch chuyển. Một bản định giá cho phép người đọc thay giả định của họ vào và tự tính lại thì hữu ích hơn nhiều so với một con số chính xác đến từng đồng mà không ai kiểm chứng được."
+        "type": "paragraph",
+        "text": "Và về kiểm thử: đọc năm bài ngẫu nhiên mất mười phút và cho biết nhiều hơn con số độ phủ, vì một kiểm thử gọi hàm rồi không khẳng định gì vẫn làm độ phủ tăng - đúng như bài đầu chặng đã nói."
       },
       {
         "type": "closing",
         "lines": [
-          "Một vùng định giá rộng không phải dấu hiệu phân tích kém.",
-          "Đôi khi nó chính là câu trả lời trung thực nhất về một công ty khó định giá."
+          "Bốn việc này đều đọc nhanh và đều khó nguỵ trang. Đó là tiêu chí chọn chúng, chứ không phải vì chúng bao quát nhất.",
+          "Phần sau của chặng chuyển sang việc thay đổi một hệ thống đang chạy: di trú, tách khối và phát hành."
         ]
       }
-    ],
-    "summary": {
-      "keyIdea": "Nên trình bày một vùng định giá tổng hợp từ nhiều phương pháp (football field chart), không chốt một con số tuyệt đối",
-      "commonMistake": "Dễ bỏ qua: dCF rất nhạy với giả định dài hạn (tăng trưởng, WACC) vì terminal value chiếm phần lớn giá trị",
-      "action": "Chênh lệch lớn giữa các phương pháp định giá là tín hiệu về mức độ không chắc chắn cao, không chỉ là lỗi tính toán"
-    }
+    ]
   },
   {
     "id": 1106,
-    "slug": "lbo-model-co-che-co-ban",
-    "title": "IB & Phân tích, Bài 6: LBO Model - cơ chế cơ bản của mua lại bằng đòn bẩy",
-    "subtitle": "Vì sao quỹ Private Equity có thể mua công ty với rất ít vốn tự có",
-    "duration": "8 phút",
+    "slug": "di-tru-he-thong-cay-da-bop-nghet",
+    "title": "Nền tảng nâng cao, Bài 6: Di trú hệ thống - cây đa bóp nghẹt",
+    "subtitle": "Không có ngày chuyển đổi - có một giai đoạn hai hệ thống cùng sống.",
+    "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "🏗️",
     "track": "professional",
-    "openingQuestion": "Một quỹ Private Equity mua công ty giá 1.000 tỷ, dùng 700 tỷ vốn vay và 300 tỷ vốn tự có (equity). Sau 5 năm, bán công ty với giá 1.500 tỷ, đã trả bớt nợ xuống còn 400 tỷ. Vì sao lợi nhuận trên vốn tự có (equity) của quỹ lại tăng rất mạnh dù giá trị công ty chỉ tăng 50%?",
+    "emoji": "🌳",
+    "isFundamental": true,
+    "whyItMatters": "Viết lại một hệ thống rồi chuyển đổi trong một đêm là kế hoạch thất bại thường xuyên nhất trong nghề. Khuôn hình thay thế nó dài hơn và nhàm chán hơn, và nó có tỷ lệ thành công cao hơn hẳn.",
+    "openingQuestion": "Vì sao viết lại toàn bộ rồi chuyển đổi một lần lại hay thất bại?",
     "openingOptions": [
-      "Vì giá trị công ty không thực sự liên quan đến lợi nhuận của quỹ",
-      "Đòn bẩy khuếch đại lợi nhuận: 300 tỷ vốn góp thành 1.100 tỷ đồng ròng",
-      "Vì quỹ Private Equity không phải trả thuế",
-      "Vì lãi suất vay luôn thấp hơn tốc độ tăng trưởng doanh nghiệp"
+      "Vì hệ thống cũ vẫn phải chạy và đổi tiếp, nên đích đến di chuyển trong lúc bạn đuổi theo",
+      "Vì viết lại luôn tốn nhiều thời gian hơn ước lượng ban đầu của đội phát triển",
+      "Vì hệ thống mới thiếu những tính năng nhỏ mà người dùng đã quen sử dụng",
+      "Vì việc chuyển đổi dữ liệu từ hệ thống cũ sang hệ thống mới rất phức tạp"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là cơ chế cốt lõi của LBO: dùng đòn bẩy (nợ vay) để mua phần lớn giá trị doanh nghiệp, chỉ bỏ một phần vốn tự có nhỏ. Khi giá trị doanh nghiệp tăng VÀ nợ được trả bớt bằng dòng tiền doanh nghiệp tạo ra, phần equity (giá trị doanh nghiệp trừ nợ còn lại) tăng nhanh hơn nhiều so với tốc độ tăng giá trị doanh nghiệp - đây là 'phép màu' đòn bẩy tài chính mà PE fund khai thác.",
+    "correctOption": 0,
+    "explanation": "Trong lúc bạn viết lại, hệ thống cũ vẫn phải sửa lỗi và thêm tính năng cho khách hàng đang dùng - nên bạn không đuổi theo một đích đứng yên. Ba lý do kia đều thật và đều làm mọi thứ tệ hơn, nhưng chúng là hệ quả. Đích di chuyển là nguyên nhân gốc, và nó không giải quyết được bằng cách viết nhanh hơn.",
     "diagram": [
       {
-        "label": "Mua công ty: phần lớn bằng nợ vay, ít vốn tự có",
+        "label": "Đặt một lớp trung gian ở trước hệ thống cũ",
         "arrow": true
       },
       {
-        "label": "Dùng dòng tiền doanh nghiệp trả bớt nợ theo thời gian",
+        "label": "Chuyển từng phần sang hệ thống mới, sau lớp đó",
         "arrow": true
       },
       {
-        "label": "Giá trị doanh nghiệp tăng + nợ giảm",
+        "label": "Mỗi phần chuyển xong là một lần quay lại được",
         "arrow": true
       },
       {
-        "label": "Equity value tăng vọt so với vốn góp ban đầu"
+        "label": "Hệ thống cũ teo dần cho tới khi không còn gì"
       }
     ],
     "realWorldExample": {
-      "company": "Các thương vụ LBO kinh điển của quỹ Private Equity",
-      "description": "Các quỹ PE lớn (KKR, Blackstone, Carlyle) thường dùng tỷ lệ đòn bẩy 60-80% giá trị thương vụ khi mua lại doanh nghiệp, sau đó tập trung cải thiện dòng tiền hoạt động để vừa trả nợ vừa tăng giá trị doanh nghiệp, trước khi thoái vốn (bán lại hoặc IPO) sau 3-7 năm."
+      "company": "Phần dễ trước hay phần khó trước",
+      "description": "Chuyển phần dễ trước cho bạn kinh nghiệm với quy trình và một thắng lợi sớm. Chuyển phần khó trước cho biết sớm liệu kế hoạch có khả thi không. Với đội chưa từng làm việc này, phần dễ trước thường đúng - vì rủi ro lớn nhất là quy trình chưa chạy được."
     },
     "quiz": [
       {
-        "question": "Yếu tố nào quan trọng nhất để một thương vụ LBO thành công, ngoài việc mua được giá tốt?",
+        "question": "Lớp trung gian trong khuôn hình này làm gì?",
         "options": [
-          "Chỉ cần mua được giá thấp là đủ đảm bảo thành công",
-          "Doanh nghiệp mục tiêu cần tạo ra dòng tiền ổn định, đủ để vừa trả nợ vay theo lịch trình vừa duy trì hoạt động kinh doanh - một doanh nghiệp dòng tiền bấp bênh sẽ gặp khó khăn nghiêm trọng khi phải gánh khoản nợ lớn sau LBO",
-          "Chỉ cần lãi suất vay thấp là đủ đảm bảo thành công",
-          "Ngành nghề kinh doanh không ảnh hưởng đến khả năng thành công của LBO"
-        ],
-        "correct": 1,
-        "explanation": "Vì LBO tạo ra gánh nặng nợ vay lớn ngay sau thương vụ, doanh nghiệp mục tiêu bắt buộc phải có dòng tiền hoạt động ổn định và dự đoán được để đảm bảo khả năng trả nợ đúng hạn - đây là lý do các ngành có dòng tiền ổn định (hàng tiêu dùng thiết yếu, dịch vụ thuê bao) thường được PE fund ưa chuộng hơn ngành chu kỳ mạnh."
-      },
-      {
-        "question": "Vì sao PE fund thường tìm cách cải thiện hiệu quả vận hành (operational improvement) của doanh nghiệp sau khi mua lại, thay vì chỉ 'ngồi chờ' đòn bẩy tài chính phát huy tác dụng?",
-        "options": [
-          "Vì cải thiện vận hành không ảnh hưởng gì đến lợi nhuận của quỹ",
-          "Cải thiện vận hành (tăng biên lợi nhuận, tối ưu chi phí, tăng trưởng doanh thu) trực tiếp làm tăng dòng tiền doanh nghiệp - vừa giúp trả nợ nhanh hơn vừa tăng giá trị doanh nghiệp khi thoái vốn, tạo ra lợi nhuận lớn hơn nhiều so với chỉ dựa vào đòn bẩy tài chính đơn thuần",
-          "Vì luật pháp yêu cầu PE fund phải cải thiện vận hành",
-          "Vì đòn bẩy tài chính một mình đã đủ đảm bảo lợi nhuận cao nhất có thể"
-        ],
-        "correct": 1,
-        "explanation": "Đòn bẩy tài chính khuếch đại lợi nhuận nhưng không TẠO RA giá trị mới - PE fund thành công nhất thường kết hợp đòn bẩy với việc thực sự cải thiện hiệu quả kinh doanh (tăng doanh thu, tối ưu chi phí, quản trị chuyên nghiệp hơn), tạo ra giá trị thực sự thay vì chỉ 'vay tiền để mua rồi bán lại'."
-      },
-      {
-        "question": "Mua doanh nghiệp 1.000 tỷ với 300 tỷ vốn tự có và 700 tỷ nợ. Sau 5 năm giá trị doanh nghiệp là 1.300 tỷ và nợ còn 400 tỷ. Vốn tự có bây giờ là bao nhiêu?",
-        "options": [
-          "900 tỷ, tức gấp 3 lần vốn ban đầu",
-          "1.300 tỷ",
-          "600 tỷ",
-          "300 tỷ"
+          "Nhận mọi yêu cầu rồi định tuyến sang hệ thống cũ hoặc mới tuỳ từng phần",
+          "Đồng bộ dữ liệu giữa hệ thống cũ và hệ thống mới trong suốt quá trình chuyển",
+          "Chuyển đổi định dạng dữ liệu qua lại giữa hai hệ thống có cấu trúc khác nhau",
+          "Ghi lại toàn bộ yêu cầu để có thể phát lại khi cần kiểm tra hệ thống mới"
         ],
         "correct": 0,
-        "explanation": "1.300 − 400 = 900. Hai nguồn tạo ra mức tăng này là phần giá trị doanh nghiệp tăng thêm và phần nợ được trả bớt bằng dòng tiền doanh nghiệp tạo ra."
+        "explanation": "Nó là điểm điều khiển duy nhất, và đó là thứ làm cho việc chuyển từng phần khả thi: đổi định tuyến một phần là một dòng cấu hình, và quay lại cũng vậy. Đồng bộ dữ liệu là vấn đề riêng và thường khó hơn nhiều."
       },
       {
-        "question": "Vì sao doanh nghiệp có nhu cầu chi đầu tư lớn thường không phù hợp cho mua lại bằng đòn bẩy?",
+        "question": "Vì sao khuôn hình này có tỷ lệ thành công cao hơn?",
         "options": [
-          "Vì tiền phải dùng để duy trì tài sản, không còn đủ để trả nghĩa vụ nợ cố định",
-          "Vì tài sản lớn khó thế chấp",
-          "Vì doanh nghiệp đó luôn có biên lợi nhuận thấp",
-          "Vì ngân hàng không cho vay với doanh nghiệp có tài sản cố định"
+          "Vì mỗi phần chuyển xong là một lần quay lại được, nên rủi ro chia nhỏ ra",
+          "Vì tổng thời gian thực hiện ngắn hơn so với việc viết lại toàn bộ hệ thống",
+          "Vì đội không phải bảo trì hai hệ thống cùng lúc trong suốt quá trình chuyển",
+          "Vì hệ thống mới đã được xây dựng trên một nền tảng công nghệ hiện đại hơn hẳn"
         ],
         "correct": 0,
-        "explanation": "Cấu trúc mua lại bằng đòn bẩy sống nhờ dòng tiền tự do dùng để trả nợ. Chi đầu tư cao hút mất chính dòng tiền đó, khiến lịch trả nợ trở nên rủi ro."
+        "explanation": "Đây là cùng nguyên tắc với phát hành thay đổi nhỏ ở chặng triển khai: rủi ro nằm ở kích thước thay đổi và tốc độ hồi phục. Lựa chọn thứ ba thì ngược lại - đội PHẢI bảo trì hai hệ thống cùng lúc, và đó là cái giá của khuôn hình này."
+      },
+      {
+        "question": "Cái giá của khuôn hình này là gì?",
+        "options": [
+          "Giai đoạn hai hệ thống cùng sống kéo dài, và đội phải bảo trì cả hai",
+          "Hệ thống mới bị ràng buộc bởi thiết kế của hệ thống cũ nên không tối ưu được",
+          "Lớp trung gian trở thành điểm nghẽn hiệu năng cho toàn bộ hệ thống",
+          "Chi phí hạ tầng tăng gấp đôi trong suốt thời gian chuyển đổi diễn ra"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cái giá thật và nó là lý do khuôn hình này bị bỏ giữa chừng nhiều lần: sau một năm, đội mệt và phần còn lại nằm nguyên đó mãi. Lớp trung gian thì hiếm khi thành điểm nghẽn vì nó chỉ định tuyến."
+      },
+      {
+        "question": "Vì sao cần một ngày kết thúc được ghi ra?",
+        "options": [
+          "Vì không có nó thì giai đoạn hai hệ thống kéo dài vô hạn và thành trạng thái vĩnh viễn",
+          "Vì hợp đồng với khách hàng thường yêu cầu cam kết về thời điểm hoàn thành",
+          "Vì đội cần một mốc để đánh giá xem tiến độ có đang đi đúng hướng không",
+          "Vì chi phí duy trì hai hệ thống tăng dần nên cần giới hạn thời gian chịu chi phí đó"
+        ],
+        "correct": 0,
+        "explanation": "Trạng thái nửa vời là kết cục phổ biến nhất của khuôn hình này, và nó tệ hơn cả hai phương án ban đầu vì đội gánh độ phức tạp của cả hai hệ thống mà không được lợi ích của bên nào."
+      },
+      {
+        "question": "Đội chưa từng làm di trú nên chuyển phần nào trước?",
+        "options": [
+          "Phần dễ, vì rủi ro lớn nhất lúc đó là quy trình chuyển chưa chạy được",
+          "Phần khó, vì nếu không khả thi thì biết sớm sẽ đỡ tốn kém hơn nhiều",
+          "Phần có nhiều người dùng nhất, vì lợi ích thu được sẽ lớn nhất ngay từ đầu",
+          "Phần ít người dùng nhất, vì nếu có sự cố thì ảnh hưởng sẽ nhỏ nhất"
+        ],
+        "correct": 0,
+        "explanation": "Với đội đã quen thì phần khó trước hợp lý hơn vì nó trả lời sớm câu hỏi khả thi. Nhưng với đội chưa từng làm, rủi ro lớn nhất không phải phần khó mà là chính quy trình chuyển - và phần dễ kiểm chứng được điều đó."
       }
     ],
     "keyTakeaways": [
-      "LBO dùng đòn bẩy tài chính (nợ vay lớn) để khuếch đại lợi nhuận trên vốn tự có",
-      "Doanh nghiệp mục tiêu LBO cần dòng tiền ổn định để đảm bảo khả năng trả nợ sau thương vụ",
-      "PE fund thành công thường kết hợp đòn bẩy tài chính với cải thiện thực sự hiệu quả vận hành doanh nghiệp"
+      "Viết lại rồi chuyển một lần thất bại vì đích di chuyển: hệ thống cũ vẫn đổi tiếp.",
+      "Lớp trung gian là điểm điều khiển duy nhất - đổi định tuyến và quay lại đều là một dòng.",
+      "Mỗi phần chuyển xong là một lần quay lại được, nên rủi ro chia nhỏ ra.",
+      "Cái giá: giai đoạn hai hệ thống cùng sống, và đội bảo trì cả hai.",
+      "Phải ghi ra NGÀY KẾT THÚC, nếu không trạng thái nửa vời thành vĩnh viễn."
     ],
     "practicePrompt": {
-      "question": "Một quỹ PE mua công ty trị giá 1.000 tỷ, chỉ bỏ ra 250 tỷ vốn tự có, phần còn lại 750 tỷ vay bằng tài sản/dòng tiền của công ty mục tiêu. Sau 5 năm, công ty được bán lại với giá 1.800 tỷ, sau khi trả hết nợ quỹ thu về 1.050 tỷ. Vì sao cấu trúc vay nợ cao này lại giúp quỹ đạt lợi nhuận vượt trội trên vốn tự có?",
+      "question": "Sau một năm di trú, đội đã chuyển được sáu mươi phần trăm và đang mệt. Rủi ro lớn nhất là gì?",
       "options": [
-        "LBO dùng đòn bẩy để khuếch đại lợi nhuận trên vốn tự có: 250 tỷ thành 1.050 tỷ",
-        "Đây là kết quả ngẫu nhiên không liên quan gì đến cấu trúc vay nợ của thương vụ",
-        "Lợi nhuận cao chỉ đến từ việc công ty tăng trưởng tốt, không liên quan gì đến đòn bẩy tài chính đã sử dụng",
-        "Cấu trúc vay nợ cao thực chất làm giảm lợi nhuận của quỹ so với dùng toàn bộ vốn tự có"
+        "Dừng ở đây thành vĩnh viễn, và đội gánh độ phức tạp của cả hai hệ thống mãi mãi",
+        "Phần bốn mươi phần trăm còn lại là phần khó nhất nên sẽ tốn nhiều thời gian hơn",
+        "Hệ thống cũ đã lỗi thời tới mức không còn ai trong đội hiểu cách nó hoạt động",
+        "Chi phí hạ tầng cho hai hệ thống đã vượt quá ngân sách dự kiến ban đầu"
       ],
       "correct": 0,
-      "explanation": "LBO dùng đòn bẩy tài chính để khuếch đại lợi nhuận trên vốn tự có của quỹ Private Equity. Vì chỉ bỏ ra một phần vốn nhỏ (250/1.000 tỷ) nhưng hưởng toàn bộ phần tăng giá trị công ty, tỷ suất sinh lời trên vốn tự có (MOIC) được khuếch đại đáng kể so với đầu tư không đòn bẩy."
+      "explanation": "Đây là kết cục phổ biến nhất của khuôn hình này, và nó tệ hơn cả hai phương án ban đầu - đội gánh độ phức tạp của cả hai mà không được lợi ích trọn vẹn của bên nào. Cách phòng là một ngày kết thúc được ghi ra từ đầu."
+    },
+    "summary": {
+      "keyIdea": "Không có ngày chuyển đổi; có một giai đoạn hai hệ thống cùng sống, và nó phải có hạn.",
+      "formula": "Lớp trung gian → chuyển từng phần → hệ thống cũ teo dần → ngày kết thúc.",
+      "commonMistake": "Dừng ở giữa chừng, tức gánh độ phức tạp của cả hai hệ thống mãi mãi.",
+      "action": "Nếu đội đang di trú, kiểm xem có ngày kết thúc được ghi ra không."
     },
     "application": {
-      "title": "Tách IRR thành ba nguồn",
-      "message": "Với một mô hình LBO đơn giản, tính xem lợi nhuận đến từ đâu: trả bớt nợ, tăng trưởng EBITDA, hay bội số thoái vốn cao hơn bội số mua vào. Phần thứ ba là phần bạn không kiểm soát được, và một thương vụ dựa chủ yếu vào nó là một vụ cược vào thị trường lúc thoái.",
-      "secondary": "Hạ bội số thoái vốn xuống bằng đúng bội số mua vào rồi chạy lại. Nếu IRR sập dưới ngưỡng quỹ, luận điểm thật sự nằm ở kỳ vọng giá chứ không ở vận hành.",
+      "title": "Làm ngay hôm nay",
+      "message": "Nếu đội bạn đang trong một cuộc di trú, kiểm hai thứ: có lớp trung gian điều khiển định tuyến không, và có ngày kết thúc được ghi ra không.",
+      "secondary": "Nếu thiếu thứ hai, đó là việc đáng làm trước cả việc chuyển thêm một phần. Không có nó thì mỗi phần chuyển xong lại làm trạng thái nửa vời trở nên dễ chấp nhận hơn."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Vì sao một quỹ Private Equity có thể mua công ty với rất ít vốn tự có, rồi vẫn thu về lợi nhuận gấp nhiều lần sau vài năm?"
+        "text": "Bài về nợ kỹ thuật nói viết lại toàn bộ có tỷ lệ thất bại rất cao. Bài này là khuôn hình thay thế nó - dài hơn, nhàm chán hơn, và có tỷ lệ thành công cao hơn hẳn."
       },
       {
         "type": "heading",
-        "text": "Đòn bẩy khuếch đại lợi nhuận trên vốn tự có"
+        "text": "Vì sao viết lại rồi chuyển một lần hay hỏng"
+      },
+      {
+        "type": "callout",
+        "label": "Đích di chuyển trong lúc bạn đuổi theo",
+        "text": "Trong lúc bạn viết lại, hệ thống cũ vẫn phải sửa lỗi và thêm tính năng cho khách hàng đang dùng. Nên bạn không đuổi theo một đích đứng yên - và vấn đề này không giải quyết được bằng cách viết nhanh hơn."
+      },
+      {
+        "type": "heading",
+        "text": "Khuôn hình thay thế"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Đặt một lớp trung gian ở trước hệ thống cũ, nhận mọi yêu cầu. Ban đầu nó chuyển tất cả sang hệ thống cũ.",
+          "Xây phần đầu tiên trong hệ thống mới, rồi đổi định tuyến của đúng phần đó ở lớp trung gian.",
+          "Lặp lại cho từng phần. Hệ thống cũ teo dần cho tới khi không còn gì.",
+          "Tắt hệ thống cũ và gỡ lớp trung gian nếu không cần nữa."
+        ]
       },
       {
         "type": "paragraph",
-        "text": "LBO dùng phần lớn nợ vay để mua doanh nghiệp, chỉ bỏ một phần vốn tự có nhỏ. Khi giá trị doanh nghiệp tăng và nợ được trả bớt bằng chính dòng tiền doanh nghiệp tạo ra, phần equity (giá trị trừ nợ còn lại) tăng nhanh hơn nhiều so với tốc độ tăng giá trị doanh nghiệp. Yếu tố quyết định thành công không chỉ là mua giá tốt, mà doanh nghiệp mục tiêu cần dòng tiền ổn định để đảm bảo khả năng trả nợ - và PE fund giỏi luôn kết hợp đòn bẩy với cải thiện thực sự hiệu quả vận hành, không chỉ 'vay tiền để mua rồi bán lại'."
-      },
-      {
-        "type": "list",
-        "items": [
-          "LBO dùng đòn bẩy tài chính để khuếch đại lợi nhuận trên vốn tự có",
-          "Doanh nghiệp mục tiêu LBO cần dòng tiền ổn định để đảm bảo khả năng trả nợ",
-          "PE fund thành công thường kết hợp đòn bẩy với cải thiện thực sự hiệu quả vận hành"
-        ]
-      },
-      {
-        "type": "formula",
-        "title": "Vì sao đòn bẩy khuếch đại lợi nhuận trên vốn tự có",
-        "equation": "Giá trị vốn tự có = Giá trị doanh nghiệp − Nợ còn lại",
-        "example": {
-          "title": "Thương vụ 1.000 tỷ, vốn tự có 300 tỷ",
-          "calculation": "Sau 5 năm: giá trị doanh nghiệp 1.300 tỷ, nợ giảm từ 700 xuống 400",
-          "result": "Vốn tự có từ 300 → 900 tỷ, gấp 3 lần",
-          "explanation": "Giá trị doanh nghiệp chỉ tăng 30%, nhưng vốn tự có tăng gấp ba. Hai nguồn tạo ra điều đó: phần tăng giá trị và phần nợ được trả bớt bằng chính dòng tiền doanh nghiệp làm ra. Cơ chế này cũng chạy ngược lại - nếu giá trị doanh nghiệp giảm 30%, vốn tự có gần như bị xóa sạch."
-        }
+        "text": "Lớp trung gian là thứ làm cho khuôn hình này khả thi: nó là điểm điều khiển DUY NHẤT, nên đổi định tuyến một phần là một dòng cấu hình - và quay lại cũng vậy. Mỗi phần chuyển xong là một lần quay lại được, đúng nguyên tắc rủi ro nằm ở kích thước thay đổi ở chặng triển khai."
       },
       {
         "type": "heading",
-        "text": "Bốn đặc điểm của một doanh nghiệp mục tiêu phù hợp"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Dòng tiền ổn định và dự báo được - vì nghĩa vụ trả nợ là cố định và không chờ chu kỳ thuận lợi.",
-          "Nhu cầu chi đầu tư thấp - tiền phải dùng để trả nợ chứ không bị hút hết vào duy trì tài sản.",
-          "Có tài sản đảm bảo hoặc vị thế thị trường vững, giúp huy động nợ với chi phí thấp hơn.",
-          "Còn dư địa cải thiện vận hành - nếu doanh nghiệp đã tối ưu hết mức thì nguồn tạo giá trị duy nhất còn lại là đòn bẩy, và đó là nguồn rủi ro nhất."
-        ]
+        "text": "Cái giá, và kết cục phổ biến nhất"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Tạo giá trị bền vững",
-          "text": "Cải thiện biên lợi nhuận, mở rộng sang thị trường mới, tối ưu vốn lưu động, mua bổ sung các doanh nghiệp nhỏ cùng ngành. Những thứ này làm doanh nghiệp thực sự tốt hơn khi bán ra."
+          "label": "Cái giá",
+          "text": "Giai đoạn hai hệ thống cùng sống kéo dài, và đội phải bảo trì cả hai. Đây là chi phí thật, trả đều đặn suốt quá trình."
         },
         "right": {
-          "label": "Chỉ dựa vào đòn bẩy và bội số",
-          "text": "Kỳ vọng bán ra ở bội số cao hơn lúc mua mà không cải thiện gì về vận hành. Cách này phụ thuộc hoàn toàn vào điều kiện thị trường tại thời điểm thoái vốn - tức là vào may mắn."
+          "label": "Kết cục hay gặp",
+          "text": "Sau một năm, đội đã chuyển sáu mươi phần trăm và mệt. Phần còn lại nằm nguyên đó mãi - và trạng thái nửa vời tệ hơn cả hai phương án ban đầu."
         }
       },
       {
-        "type": "callout",
-        "label": "Mặt trái của đòn bẩy",
-        "text": "Chính cơ chế khuếch đại lợi nhuận cũng khuếch đại rủi ro. Doanh nghiệp sau mua lại phải gánh nghĩa vụ trả nợ lớn, nên không còn nhiều đệm cho sai lầm: một mùa kinh doanh kém, một đợt lãi suất tăng, hay một khách hàng lớn ra đi đều có thể đẩy doanh nghiệp vào vi phạm điều khoản vay."
+        "type": "paragraph",
+        "text": "Cách phòng duy nhất có tác dụng là một NGÀY KẾT THÚC được ghi ra từ đầu. Không có nó thì mỗi phần chuyển xong lại làm trạng thái nửa vời trở nên dễ chấp nhận hơn một chút."
       },
       {
         "type": "closing",
         "lines": [
-          "Đòn bẩy tài chính khuếch đại kết quả, nhưng không tự nó tạo ra giá trị mới.",
-          "Giá trị thực sự đến từ việc doanh nghiệp hoạt động tốt hơn trong thời gian nắm giữ."
+          "Về thứ tự: đội đã quen thì chuyển phần khó trước, vì nó trả lời sớm câu hỏi kế hoạch có khả thi không. Đội chưa từng làm thì chuyển phần dễ trước - rủi ro lớn nhất lúc đó không phải phần khó mà là chính quy trình chuyển.",
+          "Bài sau là một quyết định thường đi kèm di trú: tách khối, và tách theo đường nào."
         ]
       }
-    ],
-    "summary": {
-      "keyIdea": "LBO dùng đòn bẩy tài chính (nợ vay lớn) để khuếch đại lợi nhuận trên vốn tự có",
-      "commonMistake": "Dễ bỏ qua: doanh nghiệp mục tiêu LBO cần dòng tiền ổn định để đảm bảo khả năng trả nợ sau thương vụ",
-      "action": "PE fund thành công thường kết hợp đòn bẩy tài chính với cải thiện thực sự hiệu quả vận hành doanh nghiệp"
-    }
+    ]
   },
   {
     "id": 1107,
-    "slug": "deal-structure-stock-vs-cash",
-    "title": "IB & Phân tích, Bài 7: Deal Structure - thương vụ trả bằng tiền mặt hay cổ phiếu?",
-    "subtitle": "Cách trả tiền trong M&A ảnh hưởng ai chịu rủi ro và ai được lợi",
+    "slug": "tach-khoi-tach-theo-duong-nao",
+    "title": "Nền tảng nâng cao, Bài 7: Tách khối - tách theo đường nào",
+    "subtitle": "Câu hỏi không phải có nên tách không, mà tách ở đâu thì đường cắt ít đau nhất.",
     "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "💱",
     "track": "professional",
-    "openingQuestion": "Công ty A mua công ty B bằng cách phát hành cổ phiếu mới của A để trả cho cổ đông B (stock deal), thay vì trả tiền mặt. Điều gì khác biệt cơ bản về rủi ro so với deal trả bằng tiền mặt?",
+    "emoji": "🔪",
+    "isFundamental": true,
+    "whyItMatters": "Tách sai đường tạo ra một hệ thống có mọi chi phí của kiến trúc phân tán mà không có lợi ích nào. Và đường cắt thì rất khó sửa sau khi đã tách xong.",
+    "openingQuestion": "Đường cắt nào ít đau nhất khi tách một hệ thống lớn?",
     "openingOptions": [
-      "Không có khác biệt gì về rủi ro giữa hai cách trả, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-      "Trong stock deal, cổ đông của B sẽ trở thành cổ đông của A và chia sẻ rủi ro tương lai; còn trong cash deal thì họ nhận tiền và không còn liên quan gì",
-      "Cash deal luôn rủi ro hơn cho cổ đông công ty B, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-      "Stock deal luôn có lợi hơn cho cổ đông công ty B trong mọi trường hợp, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
+      "Đường mà hai bên ít phải nói chuyện với nhau và ít dùng chung dữ liệu nhất",
+      "Đường theo các lớp kỹ thuật: giao diện, xử lý nghiệp vụ và truy cập dữ liệu",
+      "Đường theo cơ cấu tổ chức: mỗi đội trong công ty sở hữu một dịch vụ riêng",
+      "Đường theo mức độ tải: tách riêng những phần cần mở rộng nhiều nhất"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là khác biệt cốt lõi về phân bổ rủi ro: trong stock deal, cổ đông bên bán (công ty B) nhận cổ phiếu của bên mua thay vì tiền mặt - họ tiếp tục có lợi ích (và rủi ro) gắn với hiệu quả hoạt động tương lai của công ty sáp nhập. Trong cash deal, cổ đông bên bán 'thoát' hoàn toàn khỏi rủi ro tương lai ngay khi nhận tiền, nhưng cũng bỏ lỡ phần lợi ích nếu thương vụ thành công vượt kỳ vọng.",
+    "correctOption": 0,
+    "explanation": "Mỗi lần hai phần phải nói chuyện qua mạng, bạn trả độ trễ, xử lý lỗi và một khả năng hỏng mới. Đường cắt ít đau nhất là đường mà lượng nói chuyện đó nhỏ nhất. Tách theo lớp kỹ thuật là cách sai điển hình: gần như mọi thay đổi nghiệp vụ đều cần sửa cả ba lớp, nên bạn phải phối hợp ba lần phát hành cho một tính năng.",
     "diagram": [
       {
-        "label": "Cash deal: cổ đông bên bán nhận tiền, thoát rủi ro tương lai",
-        "arrow": false
+        "label": "Tách theo NĂNG LỰC nghiệp vụ, không theo lớp kỹ thuật",
+        "arrow": true
       },
       {
-        "label": "Stock deal: cổ đông bên bán nhận cổ phiếu, tiếp tục chia sẻ rủi ro/lợi ích",
-        "arrow": false
+        "label": "Đo lượng nói chuyện qua đường cắt trước khi cắt",
+        "arrow": true
+      },
+      {
+        "label": "Dữ liệu dùng chung là dấu hiệu đường cắt sai",
+        "arrow": true
+      },
+      {
+        "label": "Tách khối là giải pháp cho vấn đề TỔ CHỨC, không phải kỹ thuật"
       }
     ],
     "realWorldExample": {
-      "company": "Cấu trúc thanh toán trong các thương vụ M&A lớn",
-      "description": "Nhiều thương vụ M&A lớn dùng cấu trúc hỗn hợp (một phần tiền mặt, một phần cổ phiếu) để cân bằng giữa việc cổ đông bên bán nhận được thanh khoản ngay (phần tiền mặt) và vẫn có động lực gắn bó với thành công của công ty sáp nhập (phần cổ phiếu)."
+      "company": "Khối liền mạch làm tốt trước",
+      "description": "Cách an toàn nhất là tách module rõ ràng bên trong một khối liền mạch trước - cùng đường cắt, nhưng chưa qua mạng. Nếu đường cắt sai, bạn phát hiện trong một tuần và sửa bằng cách di chuyển tệp. Tách qua mạng rồi mới phát hiện thì sửa tính bằng quý."
     },
     "quiz": [
       {
-        "question": "Vì sao bên mua đôi khi ưu tiên trả bằng cổ phiếu thay vì tiền mặt, ngay cả khi có đủ tiền mặt để thực hiện thương vụ?",
+        "question": "Vì sao tách theo lớp kỹ thuật là cách sai điển hình?",
         "options": [
-          "Vì cổ phiếu luôn rẻ hơn tiền mặt, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "Giữ lại tiền mặt để dùng cho các mục đích khác (đầu tư, dự phòng rủi ro), và nếu bên mua tin rằng cổ phiếu của mình đang được định giá cao (overvalued), trả bằng cổ phiếu thay vì tiền mặt thực chất là cách 'mua' tài sản thực bằng một loại tiền tệ họ cho là đang đắt hơn giá trị thực",
-          "Vì luật pháp yêu cầu ưu tiên trả bằng cổ phiếu, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "Vì cổ đông bên bán luôn thích nhận cổ phiếu hơn tiền mặt, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Đây là một chiến lược tài chính tinh vi: nếu ban lãnh đạo bên mua tin cổ phiếu công ty mình đang được thị trường định giá cao hơn giá trị thực, dùng cổ phiếu (một 'đồng tiền' họ cho là đắt) để mua tài sản thực (công ty mục tiêu) là cách tận dụng chênh lệch định giá có lợi cho cổ đông hiện hữu của bên mua."
-      },
-      {
-        "question": "Nếu bạn là cổ đông của công ty đang bị mua lại (target) và tin tưởng mạnh vào tiềm năng synergy của thương vụ sáp nhập, bạn nên ưu tiên nhận thanh toán dưới hình thức nào?",
-        "options": [
-          "Luôn nên chọn tiền mặt vì an toàn tuyệt đối trong mọi trường hợp",
-          "Có thể cân nhắc ưu tiên cổ phiếu (hoặc một phần cổ phiếu) hơn, vì nếu thực sự tin synergy sẽ thành hiện thực và đẩy giá trị công ty sáp nhập lên cao, việc tiếp tục nắm giữ cổ phiếu cho phép hưởng lợi từ phần giá trị tăng thêm đó, điều mà nhận toàn bộ tiền mặt sẽ bỏ lỡ",
-          "Không có sự khác biệt nào cần cân nhắc",
-          "Luôn nên yêu cầu bằng vàng thay vì cổ phiếu hoặc tiền mặt"
-        ],
-        "correct": 1,
-        "explanation": "Đây chính là logic đánh đổi cốt lõi: tiền mặt mang lại sự chắc chắn ngay lập tức nhưng giới hạn upside; cổ phiếu mang lại rủi ro (nếu thương vụ không thành công) nhưng cũng mở ra khả năng hưởng lợi từ synergy nếu niềm tin vào thương vụ là có cơ sở - lựa chọn phụ thuộc vào mức độ tin tưởng thực sự vào tiềm năng của thương vụ."
-      },
-      {
-        "question": "Vì sao giá cổ phiếu bên mua thường giảm khi công bố thương vụ thanh toán bằng cổ phiếu?",
-        "options": [
-          "Vì thị trường đọc đó như tín hiệu ban lãnh đạo cho rằng cổ phiếu của mình đang được định giá cao",
-          "Vì phát hành cổ phiếu là hành vi bị hạn chế",
-          "Vì thanh toán bằng cổ phiếu luôn khiến thương vụ thất bại",
-          "Vì bên bán lập tức bán hết cổ phiếu nhận được"
+          "Vì gần như mọi thay đổi nghiệp vụ đều cần sửa cả ba lớp nên phải phối hợp ba lần phát hành",
+          "Vì các lớp kỹ thuật có yêu cầu về hiệu năng khác nhau nên khó tối ưu chung",
+          "Vì việc phân chia theo lớp khiến mỗi đội chỉ hiểu một phần của hệ thống",
+          "Vì các lớp phụ thuộc tuyến tính vào nhau nên chỉ cần một lớp hỏng là cả chuỗi phía sau hỏng theo"
         ],
         "correct": 0,
-        "explanation": "Ban lãnh đạo biết về doanh nghiệp mình nhiều hơn thị trường. Chọn dùng cổ phiếu thay vì tiền mặt để thanh toán là một tín hiệu về đánh giá của họ đối với mức giá hiện tại."
+        "explanation": "Bạn nhận về toàn bộ chi phí của kiến trúc phân tán mà không được lợi ích chính của nó là phát hành độc lập. Đây là cách tách nghe hợp lý nhất trên sơ đồ và tệ nhất trong thực tế."
       },
       {
-        "question": "Khi bên mua và bên bán bất đồng lớn về triển vọng tương lai của doanh nghiệp, cấu trúc nào giúp thu hẹp khoảng cách?",
+        "question": "Dấu hiệu nào cho biết đường cắt sai?",
         "options": [
-          "Thanh toán có điều kiện, phần thêm chỉ trả khi đạt các mốc kết quả đã thỏa thuận",
-          "Trả toàn bộ bằng tiền mặt ngay lập tức",
-          "Hủy thương vụ và đàm phán lại từ đầu sau một năm",
-          "Trả toàn bộ bằng cổ phiếu ưu đãi"
+          "Hai bên phải dùng chung dữ liệu, hoặc mọi tính năng đều cần đổi cả hai bên",
+          "Một bên có lượng mã lớn hơn nhiều so với bên còn lại sau khi tách xong",
+          "Hai bên được viết bằng hai ngôn ngữ lập trình khác nhau nên khó dùng chung thư viện",
+          "Một bên có tần suất phát hành cao hơn hẳn so với bên còn lại của hệ thống"
         ],
         "correct": 0,
-        "explanation": "Thay vì hai bên phải thống nhất một dự báo, cấu trúc này để kết quả thực tế quyết định phần giá trị còn tranh cãi - nên nó biến bất đồng thành điều khoản hợp đồng thay vì thành bế tắc."
+        "explanation": "Cả hai dấu hiệu đều nói cùng một điều: hai phần này thực ra là một. Kích thước không đối xứng thì hoàn toàn bình thường - phần lõi nghiệp vụ thường lớn hơn nhiều so với các dịch vụ phụ trợ."
+      },
+      {
+        "question": "Vì sao nên tách module bên trong khối liền mạch trước?",
+        "options": [
+          "Vì nếu đường cắt sai thì phát hiện trong một tuần và sửa bằng cách di chuyển tệp",
+          "Vì việc tách module giúp đội làm quen với kiến trúc mới trước khi triển khai thật",
+          "Vì các công cụ phân tích phụ thuộc chỉ hoạt động được trong cùng một khối mã",
+          "Vì tách module không cần thay đổi hạ tầng nên tiết kiệm được chi phí ban đầu"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cách biến một quyết định rất khó sửa thành một quyết định rẻ để thử. Tách qua mạng rồi mới phát hiện đường cắt sai thì sửa tính bằng quý chứ không bằng tuần."
+      },
+      {
+        "question": "Tách khối giải quyết vấn đề gì?",
+        "options": [
+          "Vấn đề tổ chức: nhiều đội cùng làm trên một kho mã và cản nhau khi phát hành",
+          "Vấn đề hiệu năng: hệ thống lớn chạy chậm nên cần chia nhỏ để tối ưu từng phần",
+          "Vấn đề chất lượng mã: khối lớn khó bảo trì nên chia nhỏ sẽ dễ quản lý hơn",
+          "Vấn đề công nghệ: cho phép mỗi phần dùng công nghệ phù hợp nhất với nó"
+        ],
+        "correct": 0,
+        "explanation": "Ba lợi ích kia có thật nhưng chúng đạt được rẻ hơn nhiều bằng cách khác: mở rộng theo chiều ngang cho hiệu năng, tách module cho chất lượng mã. Chỉ có vấn đề nhiều đội cản nhau là không có cách nào rẻ hơn."
+      },
+      {
+        "question": "Vì sao một đội nhỏ tách khối thường là quyết định sai?",
+        "options": [
+          "Vì họ nhận toàn bộ chi phí vận hành phân tán để giải một vấn đề tổ chức chưa có",
+          "Vì đội nhỏ không có đủ người để duy trì nhiều dịch vụ chạy song song",
+          "Vì hệ thống của đội nhỏ thường chưa đủ lớn để cần chia thành nhiều phần",
+          "Vì đội nhỏ thường chưa có nhiều kinh nghiệm vận hành hệ thống phân tán trong thực tế"
+        ],
+        "correct": 0,
+        "explanation": "Chữ VẤN ĐỀ CHƯA CÓ là mấu chốt: một đội năm người trên một kho mã không cản nhau, nên lợi ích chính của việc tách bằng không trong khi chi phí thì đầy đủ. Ba lý do kia đều là hệ quả của cùng điều này."
       }
     ],
     "keyTakeaways": [
-      "Cash deal: cổ đông bên bán nhận tiền mặt, thoát rủi ro/lợi ích tương lai của công ty sáp nhập",
-      "Stock deal: cổ đông bên bán tiếp tục chia sẻ rủi ro và lợi ích với công ty sáp nhập",
-      "Bên mua có thể ưu tiên trả bằng cổ phiếu nếu tin cổ phiếu mình đang được định giá cao"
+      "Tách theo NĂNG LỰC nghiệp vụ; tách theo lớp kỹ thuật là cách sai điển hình.",
+      "Đường cắt ít đau nhất là đường có ít nói chuyện qua nó nhất.",
+      "Dữ liệu dùng chung hoặc mọi tính năng đều đổi cả hai bên = đường cắt sai.",
+      "Tách module trong khối liền mạch trước: sai thì sửa bằng tuần, không phải bằng quý.",
+      "Tách khối giải vấn đề TỔ CHỨC - đội nhỏ chưa có vấn đề đó."
     ],
     "practicePrompt": {
-      "question": "Trong một thương vụ M&A, cổ đông công ty bị mua có thể nhận tiền mặt (cash deal) hoặc cổ phiếu của công ty đi mua (stock deal). Nếu cổ đông lo ngại công ty sáp nhập sau này có thể gặp khó khăn, họ nên ưu tiên hình thức nào, và vì sao?",
+      "question": "Đội năm người muốn tách hệ thống thành sáu dịch vụ để dễ bảo trì hơn. Nên góp ý gì?",
       "options": [
-        "Nên ưu tiên cash deal: cổ đông bên bán thoát hẳn rủi ro tương lai",
-        "Nên ưu tiên stock deal vì cổ phiếu công ty sáp nhập luôn tăng giá sau khi thương vụ hoàn tất",
-        "Cả hai hình thức đều có mức độ rủi ro như nhau đối với cổ đông bên bán",
-        "Hình thức thanh toán không ảnh hưởng gì đến mức độ rủi ro mà cổ đông bên bán phải gánh chịu"
+        "Tách module bên trong khối liền mạch trước, vì vấn đề nhiều đội cản nhau chưa tồn tại",
+        "Tách thành hai dịch vụ trước thay vì sáu, để giảm độ phức tạp vận hành ban đầu",
+        "Đồng ý nhưng yêu cầu chuẩn bị hạ tầng theo dõi và ghi nhật ký tập trung trước",
+        "Đề nghị hoãn lại cho tới khi đội đủ lớn để mỗi dịch vụ có một người phụ trách"
       ],
       "correct": 0,
-      "explanation": "Trong cash deal, cổ đông bên bán thoát hoàn toàn khỏi rủi ro tương lai của công ty sáp nhập vì nhận tiền mặt ngay. Trong stock deal, họ tiếp tục nắm giữ rủi ro (và tiềm năng lợi nhuận) của công ty sau sáp nhập."
+      "explanation": "Nó cho đội đúng lợi ích họ đang muốn - mã dễ bảo trì hơn - mà không phải trả chi phí vận hành phân tán. Tách thành hai thay vì sáu vẫn là trả chi phí cho một vấn đề chưa tồn tại, chỉ là trả ít hơn."
+    },
+    "summary": {
+      "keyIdea": "Câu hỏi là tách ở đâu, và đường cắt rất khó sửa sau khi đã tách qua mạng.",
+      "formula": "Ít nói chuyện qua đường cắt + không dùng chung dữ liệu = đường cắt tốt.",
+      "commonMistake": "Tách theo lớp kỹ thuật - nghe hợp lý trên sơ đồ, tệ nhất trong thực tế.",
+      "action": "Vẽ đường cắt bạn định tách và đếm số lượt gọi sẽ phải đi qua nó."
     },
     "application": {
-      "title": "Hỏi vì sao bên mua chọn cách trả đó",
-      "message": "Khi thấy một thương vụ trả bằng cổ phiếu, xem cổ phiếu bên mua đang ở đâu so với vùng giá hai năm. Trả bằng giấy tờ của chính mình lúc giấy tờ đó đang đắt là quyết định hợp lý của bên mua, và là thông tin đáng giá cho bên bán.",
-      "secondary": "Bên bán nhận cổ phiếu vẫn còn nguyên rủi ro tích hợp thất bại. Nếu vẫn muốn nhận, hỏi về điều khoản hạn chế chuyển nhượng - nó quyết định bạn thoát được lúc nào.",
+      "title": "Làm ngay hôm nay",
+      "message": "Nếu đội đang bàn chuyện tách, vẽ đường cắt dự định ra giấy và đếm: một tính năng điển hình sẽ phải đi qua đường đó bao nhiêu lượt gọi?",
+      "secondary": "Con số đó là chi phí bạn sắp trả mãi mãi. Và nếu hai bên phải dùng chung một bảng dữ liệu, đó là dấu hiệu đường cắt nằm sai chỗ."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Cách một thương vụ M&A được thanh toán - tiền mặt hay cổ phiếu - quyết định ai chịu rủi ro và ai được hưởng lợi nếu thương vụ thành công vượt kỳ vọng."
+        "text": "Tách khối thường đi kèm di trú, và nó là một trong những quyết định khó sửa nhất trong nghề. Câu hỏi không phải có nên tách không - mà tách ở đâu."
       },
       {
         "type": "heading",
-        "text": "Cash deal thoát rủi ro, stock deal tiếp tục chia sẻ"
-      },
-      {
-        "type": "paragraph",
-        "text": "Trong cash deal, cổ đông bên bán nhận tiền và thoát hoàn toàn khỏi rủi ro/lợi ích tương lai của công ty sáp nhập. Trong stock deal, họ trở thành cổ đông bên mua và tiếp tục chia sẻ cả rủi ro lẫn lợi ích. Bên mua đôi khi ưu tiên trả bằng cổ phiếu nếu tin cổ phiếu mình đang được thị trường định giá cao - một cách tận dụng chênh lệch định giá có lợi cho cổ đông hiện hữu."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Cash deal: cổ đông bên bán thoát hoàn toàn khỏi rủi ro tương lai của công ty sáp nhập",
-          "Stock deal: cổ đông bên bán tiếp tục chia sẻ rủi ro và lợi ích với công ty sáp nhập",
-          "Bên mua có thể ưu tiên trả bằng cổ phiếu nếu tin cổ phiếu mình đang được định giá cao"
-        ]
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba câu hỏi mà cách thanh toán trả lời",
-        "concepts": [
-          {
-            "vi": "Ai chịu rủi ro cộng hưởng",
-            "en": "Risk sharing",
-            "def": "Trả tiền mặt: bên mua chịu toàn bộ rủi ro nếu cộng hưởng không đạt. Trả cổ phiếu: bên bán tiếp tục gánh một phần vì họ đã thành cổ đông."
-          },
-          {
-            "vi": "Bên mua đang nghĩ gì về cổ phiếu mình",
-            "en": "Signaling",
-            "def": "Chọn trả bằng cổ phiếu thường được thị trường đọc như tín hiệu ban lãnh đạo cho rằng cổ phiếu đang được định giá cao - đó là lý do giá cổ phiếu bên mua hay giảm khi công bố thương vụ trả bằng cổ phiếu."
-          },
-          {
-            "vi": "Ảnh hưởng đến cấu trúc vốn",
-            "en": "Financing",
-            "def": "Trả tiền mặt thường phải vay hoặc dùng hết dự trữ, làm tăng đòn bẩy. Trả cổ phiếu không tốn tiền nhưng pha loãng cổ đông hiện hữu."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Các cấu trúc trung gian"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kết hợp tiền mặt và cổ phiếu: phổ biến nhất trong thực tế, cân bằng giữa nhu cầu thanh khoản của bên bán và mong muốn chia sẻ rủi ro của bên mua.",
-          "Khoản thanh toán có điều kiện: một phần giá mua chỉ được trả nếu doanh nghiệp đạt các mốc kết quả đã thỏa thuận. Rất hữu ích khi hai bên bất đồng về triển vọng tương lai.",
-          "Giữ lại một phần giá mua trong tài khoản phong tỏa: dùng để bù đắp nếu phát hiện vấn đề sau khi hoàn tất, đặc biệt với các rủi ro pháp lý chưa rõ ràng.",
-          "Yêu cầu ban lãnh đạo bên bán tái đầu tư một phần tiền nhận được vào doanh nghiệp mới: cách gắn lợi ích của họ với giai đoạn sau sáp nhập."
-        ]
+        "text": "Tách để giải quyết vấn đề gì"
       },
       {
         "type": "callout",
-        "label": "Vì sao thanh toán có điều kiện lại hữu ích",
-        "text": "Khi bên bán tin doanh nghiệp sẽ tăng trưởng mạnh còn bên mua thì hoài nghi, hai bên khó gặp nhau ở một mức giá. Thanh toán có điều kiện giải quyết bằng cách để chính kết quả thực tế quyết định: nếu đạt mốc thì bên bán nhận thêm, nếu không thì bên mua không phải trả cho một triển vọng chưa từng thành hiện thực."
+        "label": "Vấn đề TỔ CHỨC, không phải kỹ thuật",
+        "text": "Nhiều đội cùng làm trên một kho mã và cản nhau khi phát hành. Các lợi ích khác - hiệu năng, chất lượng mã, tự do chọn công nghệ - đều đạt được rẻ hơn nhiều bằng cách khác. Chỉ vấn đề nhiều đội cản nhau là không có cách nào rẻ hơn."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hệ quả trực tiếp: một đội năm người tách khối gần như luôn sai, vì họ nhận toàn bộ chi phí vận hành phân tán để giải một vấn đề chưa tồn tại. Năm người trên một kho mã không cản nhau."
+      },
+      {
+        "type": "heading",
+        "text": "Đường cắt"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Theo năng lực nghiệp vụ",
+          "text": "Đặt hàng, thanh toán, kho. Mỗi phần sở hữu dữ liệu của mình và phần lớn thay đổi chỉ đụng vào một phần - nên lượng nói chuyện qua đường cắt nhỏ."
+        },
+        "right": {
+          "label": "Theo lớp kỹ thuật",
+          "text": "Giao diện, nghiệp vụ, dữ liệu. Nghe hợp lý nhất trên sơ đồ và tệ nhất trong thực tế: gần như mọi thay đổi đều cần sửa cả ba lớp, nên bạn phối hợp ba lần phát hành cho một tính năng."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Lý do đứng sau cả hai cột: mỗi lần hai phần phải nói chuyện qua mạng, bạn trả độ trễ, xử lý lỗi và một khả năng hỏng mới. Đường cắt tốt là đường mà lượng nói chuyện đó nhỏ nhất."
+      },
+      {
+        "type": "heading",
+        "text": "Hai dấu hiệu đường cắt sai"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hai bên phải dùng chung một bảng dữ liệu.",
+          "Mọi tính năng mới đều cần đổi cả hai bên cùng lúc."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Cả hai nói cùng một điều: hai phần này thực ra là một. Còn kích thước không đối xứng thì hoàn toàn bình thường - phần lõi nghiệp vụ thường lớn hơn nhiều so với các dịch vụ phụ trợ."
       },
       {
         "type": "closing",
         "lines": [
-          "Cách thanh toán một thương vụ M&A không chỉ là chi tiết kỹ thuật.",
-          "Nó phản ánh niềm tin thực sự của cả hai bên vào tương lai của công ty sáp nhập."
+          "Cách an toàn nhất: tách module rõ ràng BÊN TRONG một khối liền mạch trước - cùng đường cắt, nhưng chưa qua mạng. Sai thì phát hiện trong một tuần và sửa bằng cách di chuyển tệp.",
+          "Tách qua mạng rồi mới phát hiện thì sửa tính bằng quý. Bài sau là việc bạn làm trước khi nhận một hệ thống của người khác."
         ]
       }
-    ],
-    "summary": {
-      "keyIdea": "Cash deal: cổ đông bên bán nhận tiền mặt, thoát rủi ro/lợi ích tương lai của công ty sáp nhập",
-      "commonMistake": "Dễ bỏ qua: stock deal: cổ đông bên bán tiếp tục chia sẻ rủi ro và lợi ích với công ty sáp nhập",
-      "action": "Bên mua có thể ưu tiên trả bằng cổ phiếu nếu tin cổ phiếu mình đang được định giá cao"
-    }
+    ]
   },
   {
     "id": 1108,
-    "slug": "due-diligence-quy-trinh-tham-dinh",
-    "title": "IB & Phân tích, Bài 8: Due Diligence - quy trình thẩm định trước M&A",
-    "subtitle": "Vì sao nhiều thương vụ đổ vỡ ở giai đoạn 'kiểm tra kỹ trước khi ký'",
-    "duration": "7 phút",
+    "slug": "tham-dinh-truoc-khi-nhan-mot-he-thong",
+    "title": "Nền tảng nâng cao, Bài 8: Thẩm định trước khi nhận một hệ thống",
+    "subtitle": "Bốn câu hỏi mà câu trả lời khó chịu nhất lại là câu trả lời có giá trị nhất.",
+    "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "🔬",
     "track": "professional",
-    "openingQuestion": "Due Diligence (thẩm định doanh nghiệp) trong M&A chủ yếu nhằm mục đích gì?",
+    "emoji": "🔬",
+    "isFundamental": false,
+    "whyItMatters": "Nhận bàn giao một hệ thống là nhận cả những khoản nợ bạn chưa biết. Bốn câu hỏi trong bài này làm cho phần lớn số đó hiện ra trước khi bạn ký, chứ không phải sau.",
+    "openingQuestion": "Câu hỏi nào cho biết nhiều nhất về một hệ thống sắp nhận?",
     "openingOptions": [
-      "Chỉ để xác nhận báo cáo tài chính đã được kiểm toán là đúng",
-      "Xác minh độc lập thông tin bên bán và phát hiện rủi ro chưa công bố",
-      "Chỉ là thủ tục hình thức bắt buộc theo luật, không ảnh hưởng đến quyết định mua",
-      "Chỉ áp dụng cho các thương vụ dưới 100 tỷ đồng"
+      "Ai là người duy nhất biết cách sửa từng phần - và người đó có còn ở đây không",
+      "Hệ thống được xây dựng bằng công nghệ nào và các phiên bản có còn được hỗ trợ không",
+      "Có bao nhiêu lỗi đang mở trong hệ thống quản lý công việc của dự án hiện tại",
+      "Kiến trúc tổng thể của hệ thống được thiết kế theo mô hình nào và vì sao"
     ],
-    "correctOption": 1,
-    "explanation": "Due Diligence là quá trình bên mua (và đội ngũ tư vấn: kiểm toán, luật sư, chuyên gia ngành) kiểm tra sâu mọi khía cạnh của công ty mục tiêu - tài chính, pháp lý, thuế, vận hành, nhân sự, công nghệ - để phát hiện rủi ro ẩn (nợ tiềm tàng, tranh chấp pháp lý, khách hàng tập trung quá cao) và xác minh các giả định dùng để định giá thương vụ có cơ sở thực tế, không chỉ dựa vào những gì bên bán trình bày.",
+    "correctOption": 0,
+    "explanation": "Đây là rủi ro khó nhìn thấy nhất và cũng khó chữa nhất: một phần mà chỉ một người biết cách sửa, và người đó sắp rời đi. Công nghệ cũ thì đọc được từ tệp cấu hình, số lỗi đang mở thì đọc được từ hệ thống công việc - cả hai đều hiện ra mà không cần hỏi ai. Tri thức nằm trong đầu người thì không.",
     "diagram": [
       {
-        "label": "Ký thỏa thuận sơ bộ (LOI)",
+        "label": "1. Ai là người duy nhất biết sửa phần nào?",
         "arrow": true
       },
       {
-        "label": "Due Diligence: tài chính, pháp lý, vận hành, thuế",
+        "label": "2. Lần gần nhất khôi phục từ sao lưu là khi nào?",
         "arrow": true
       },
       {
-        "label": "Phát hiện rủi ro/điều chỉnh giá",
+        "label": "3. Phần nào không ai dám đụng vào, và vì sao?",
         "arrow": true
       },
       {
-        "label": "Đàm phán lại hoặc hoàn tất giao dịch"
+        "label": "4. Sự cố gần nhất là gì và nó được xử lý thế nào?"
       }
     ],
     "realWorldExample": {
-      "company": "Các thương vụ M&A đổ vỡ sau Due Diligence",
-      "description": "Không ít thương vụ M&A lớn bị hủy hoặc giảm giá đáng kể sau giai đoạn Due Diligence khi bên mua phát hiện các vấn đề nghiêm trọng chưa được công bố - từ nợ tiềm tàng, tranh chấp pháp lý, đến chất lượng lợi nhuận không như báo cáo ban đầu."
+      "company": "Phần không ai dám đụng",
+      "description": "Gần như hệ thống nào cũng có một phần mà mọi người tránh - thường vì nó từng gây sự cố lớn, hoặc vì người viết nó đã đi và không ai hiểu. Hỏi thẳng câu này thường nhận được câu trả lời ngay lập tức, vì ai trong đội cũng biết."
     },
     "quiz": [
       {
-        "question": "Vì sao 'nợ tiềm tàng' (contingent liabilities - ví dụ vụ kiện đang chờ xử lý, bảo lãnh chưa phát sinh) là một trong những rủi ro quan trọng nhất cần phát hiện trong Due Diligence?",
+        "question": "Vì sao câu hỏi về người duy nhất biết sửa lại quan trọng nhất?",
         "options": [
-          "Vì nợ tiềm tàng luôn xuất hiện rõ ràng trên bảng cân đối kế toán",
-          "Nợ tiềm tàng thường KHÔNG xuất hiện đầy đủ trên báo cáo tài chính chuẩn (chỉ được ghi chú), nhưng có thể trở thành nghĩa vụ tài chính thực sự lớn sau khi thương vụ hoàn tất - bên mua có thể phải gánh chịu mà không lường trước nếu không thẩm định kỹ",
-          "Vì nợ tiềm tàng không bao giờ trở thành nghĩa vụ thực sự",
-          "Vì luật pháp cấm các công ty có nợ tiềm tàng tham gia M&A"
-        ],
-        "correct": 1,
-        "explanation": "Nợ tiềm tàng (như vụ kiện đang chờ phán quyết, bảo lãnh cho công ty con, cam kết hợp đồng dài hạn bất lợi) thường chỉ được ghi chú trong phần thuyết minh báo cáo tài chính, không phản ánh đầy đủ trên bảng cân đối - Due Diligence pháp lý kỹ lưỡng là cách duy nhất để phát hiện đầy đủ những rủi ro này trước khi cam kết mua."
-      },
-      {
-        "question": "Một công ty mục tiêu có 70% doanh thu đến từ một khách hàng duy nhất. Vì sao đây là phát hiện quan trọng trong Due Diligence, có thể ảnh hưởng đến giá mua?",
-        "options": [
-          "Không quan trọng vì doanh thu vẫn ổn định ở thời điểm hiện tại",
-          "Rủi ro tập trung khách hàng cực cao - nếu khách hàng đó chấm dứt hợp đồng sau thương vụ (có thể vì lý do liên quan đến chính việc đổi chủ sở hữu), phần lớn giá trị doanh nghiệp có thể biến mất gần như ngay lập tức, đây là rủi ro cần được phản ánh vào giá mua hoặc cấu trúc thương vụ (như earnout)",
-          "Đây là dấu hiệu tích cực cho thấy công ty có quan hệ khách hàng bền vững",
-          "Chỉ quan trọng nếu công ty hoạt động trong ngành công nghệ"
-        ],
-        "correct": 1,
-        "explanation": "Rủi ro tập trung khách hàng là một trong những phát hiện Due Diligence quan trọng nhất - đặc biệt vì việc thay đổi chủ sở hữu doanh nghiệp đôi khi chính là nguyên nhân khiến khách hàng lớn xem xét lại quan hệ hợp tác. Phát hiện này thường dẫn đến điều chỉnh giá mua hoặc cấu trúc thanh toán có điều kiện (earnout) gắn với việc giữ chân khách hàng đó."
-      },
-      {
-        "question": "Thẩm định phát hiện lợi nhuận chuẩn hóa thấp hơn báo cáo 20 tỷ. Với bội số định giá 8 lần, giá mua nên điều chỉnh ra sao?",
-        "options": [
-          "Giảm khoảng 160 tỷ, vì giá được tính theo bội số nhân lợi nhuận",
-          "Giảm đúng 20 tỷ",
-          "Giữ nguyên vì đây chỉ là điều chỉnh kế toán",
-          "Tăng lên để bù rủi ro"
+          "Vì tri thức nằm trong đầu người không hiện ra ở bất cứ đâu và biến mất khi họ đi",
+          "Vì người đó thường sẽ yêu cầu mức lương cao hơn nên chi phí nhân sự của đội sẽ tăng lên",
+          "Vì việc phụ thuộc vào một người vi phạm nguyên tắc quản trị rủi ro cơ bản",
+          "Vì người đó có thể không muốn chia sẻ kiến thức với đội mới tiếp nhận"
         ],
         "correct": 0,
-        "explanation": "20 × 8 = 160 tỷ. Hiệu ứng nhân này giải thích vì sao chi phí thẩm định, dù không nhỏ, gần như luôn xứng đáng so với rủi ro trả thừa."
+        "explanation": "Mọi rủi ro khác trong danh sách đều đọc được từ đâu đó: công nghệ từ tệp cấu hình, lỗi từ hệ thống công việc, chất lượng từ lịch sử kho. Cái này thì chỉ hỏi mới ra."
       },
       {
-        "question": "Vì sao nghĩa vụ tiềm tàng lại nguy hiểm với bên mua?",
+        "question": "Vì sao hỏi lần gần nhất khôi phục từ sao lưu lại hữu ích?",
         "options": [
-          "Vì chúng thường chỉ nằm ở thuyết minh chứ không hiện trên bảng cân đối, nên dễ bị bỏ qua khi định giá",
-          "Vì chúng luôn có giá trị lớn hơn tổng tài sản",
-          "Vì pháp luật cấm chuyển giao chúng cho bên mua",
-          "Vì chúng làm giảm doanh thu ghi nhận"
+          "Vì câu trả lời chưa bao giờ nghĩa là sao lưu chưa được chứng minh là dùng được",
+          "Vì nó cho biết hệ thống đã từng gặp sự cố nghiêm trọng tới mức nào trước đây",
+          "Vì tần suất khôi phục phản ánh mức độ ổn định của hệ thống trong vận hành",
+          "Vì nó giúp ước lượng thời gian cần thiết để khôi phục khi có sự cố xảy ra"
         ],
         "correct": 0,
-        "explanation": "Một vụ kiện đang chờ xử lý hay một cam kết bảo lãnh không xuất hiện như một dòng nợ. Chỉ thẩm định pháp lý kỹ mới phát hiện đủ, và đó là lý do khâu này không thể làm qua loa."
+        "explanation": "Đây là cùng nguyên tắc với chặng triển khai: một bản sao lưu chưa được khôi phục thử thì chưa phải là một bản sao lưu. Câu hỏi này biến một giả định thành một sự kiện kiểm chứng được."
+      },
+      {
+        "question": "Câu trả lời nào cho câu hỏi về phần không ai dám đụng là đáng lo nhất?",
+        "options": [
+          "Không có phần nào cả - vì nó nghĩa là người trả lời chưa làm việc đủ sâu với hệ thống",
+          "Có nhiều phần như vậy nằm rải rác ở các module khác nhau của hệ thống",
+          "Có một phần lớn ở lõi hệ thống mà mọi tính năng đều phải đi qua nó",
+          "Có một phần nhỏ nhưng nó lại liên quan trực tiếp tới việc xử lý thanh toán của khách hàng"
+        ],
+        "correct": 0,
+        "explanation": "Gần như hệ thống nào cũng có ít nhất một phần như vậy. Câu trả lời không có nghĩa là người trả lời hoặc chưa đủ sâu, hoặc đang giấu - và cả hai đều đáng lo hơn một câu trả lời thẳng thắn."
+      },
+      {
+        "question": "Vì sao nên hỏi về sự cố gần nhất thay vì hỏi về quy trình xử lý sự cố?",
+        "options": [
+          "Vì một sự cố thật cho thấy quy trình hoạt động ra sao dưới áp lực, còn tài liệu thì không",
+          "Vì quy trình xử lý sự cố thường được sao chép lại từ các mẫu chung nên giữa các nơi ít khác biệt",
+          "Vì sự cố gần nhất cho biết những phần nào của hệ thống đang yếu nhất hiện tại",
+          "Vì việc hỏi về quy trình khiến người trả lời cảm thấy bị đánh giá về năng lực"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cùng nguyên tắc với việc xem quy trình tự động thay vì đọc tài liệu ở bài 5: hành vi thật cho biết nhiều hơn ý định được ghi ra."
+      },
+      {
+        "question": "Nên làm gì với những rủi ro phát hiện được?",
+        "options": [
+          "Ghi ra thành danh sách kèm ước lượng chi phí, và đưa nó vào cuộc thương lượng",
+          "Yêu cầu bên bàn giao khắc phục hết trước khi tiến hành nhận bàn giao chính thức",
+          "Ghi nhận lại để xử lý dần sau khi đã tiếp nhận và làm quen với hệ thống",
+          "Đánh giá xem tổng mức rủi ro có vượt quá ngưỡng chấp nhận được hay không"
+        ],
+        "correct": 0,
+        "explanation": "Rủi ro có giá, và giá đó thuộc về cuộc thương lượng chứ không thuộc về danh sách việc cần làm sau này. Yêu cầu khắc phục hết trước khi nhận thì gần như không bao giờ khả thi và nó chỉ làm cuộc bàn giao bế tắc."
       }
     ],
     "keyTakeaways": [
-      "Due Diligence xác minh độc lập thông tin bên bán cung cấp và phát hiện rủi ro ẩn trước khi hoàn tất thương vụ",
-      "Nợ tiềm tàng thường không xuất hiện đầy đủ trên báo cáo tài chính chuẩn, cần thẩm định pháp lý riêng để phát hiện",
-      "Rủi ro tập trung khách hàng cao là phát hiện quan trọng có thể ảnh hưởng trực tiếp đến giá mua hoặc cấu trúc thương vụ"
+      "Câu quan trọng nhất: ai là người duy nhất biết sửa phần nào, và họ còn ở đây không.",
+      "Hỏi lần gần nhất khôi phục từ sao lưu - chưa bao giờ nghĩa là chưa được chứng minh.",
+      "Hỏi phần nào không ai dám đụng; câu trả lời không có phần nào là đáng lo nhất.",
+      "Hỏi sự cố gần nhất chứ đừng hỏi quy trình - hành vi thật nói nhiều hơn tài liệu.",
+      "Rủi ro có giá, và giá đó thuộc về cuộc thương lượng."
     ],
     "practicePrompt": {
-      "question": "Trước khi hoàn tất một thương vụ M&A trị giá hàng nghìn tỷ, bên mua thuê một đội ngũ luật sư, kế toán và nhà phân tích tài chính để rà soát kỹ lưỡng hợp đồng, nợ tiềm tàng, và tính chính xác của các con số tài chính công ty mục tiêu công bố. Bước này gọi là gì, và vì sao quan trọng?",
+      "question": "Bạn hỏi phần nào không ai dám đụng và nhận câu trả lời là không có phần nào. Nên hiểu thế nào?",
       "options": [
-        "Due Diligence: phát hiện rủi ro ẩn và xác minh giả định định giá trước khi chốt",
-        "Đây gọi là Post-merger Integration, bước tích hợp hai công ty sau khi thương vụ hoàn tất",
-        "Đây chỉ là thủ tục hình thức bắt buộc theo luật, không thực sự ảnh hưởng đến quyết định mua của bên mua",
-        "Đây gọi là Comps Analysis, bước so sánh công ty mục tiêu với các công ty tương đồng khác"
+        "Đáng lo: hoặc người trả lời chưa làm sâu với hệ thống, hoặc họ đang giấu",
+        "Tốt: hệ thống được thiết kế rõ ràng nên mọi phần đều có thể sửa được an toàn",
+        "Bình thường: nhiều hệ thống nhỏ thật sự không có phần nào phức tạp tới mức đó",
+        "Chưa kết luận được: cần hỏi thêm vài người khác trong đội để đối chiếu"
       ],
       "correct": 0,
-      "explanation": "Due Diligence giúp phát hiện rủi ro ẩn và xác minh giả định định giá trước khi hoàn tất thương vụ M&A. Đây là bước bảo vệ bên mua khỏi những rủi ro không được công bố đầy đủ trong báo cáo tài chính công khai."
+      "explanation": "Gần như hệ thống nào chạy đủ lâu cũng có ít nhất một phần như vậy. Hỏi thêm người khác là bước tiếp theo hợp lý, nhưng câu trả lời đầu tiên đã là một tín hiệu chứ không phải một khoảng trống thông tin."
+    },
+    "summary": {
+      "keyIdea": "Bốn câu hỏi làm hiện ra những khoản nợ mà không tài liệu nào ghi lại.",
+      "formula": "Người duy nhất biết + sao lưu chưa thử + phần không dám đụng + sự cố gần nhất.",
+      "commonMistake": "Đọc tài liệu kiến trúc, vốn mô tả ý định chứ không mô tả rủi ro.",
+      "action": "Chạy bốn câu hỏi này trên chính hệ thống đội bạn đang vận hành."
     },
     "application": {
-      "title": "Đi tìm thứ không có trong data room",
-      "message": "Lập danh sách những thứ báo cáo tài chính không hiển thị: tranh chấp lao động đang xử, bảo lãnh chéo cho công ty liên quan, hợp đồng thuê có điều khoản đổi chủ sở hữu, cam kết bảo hành. Mỗi mục cần một nguồn xác minh độc lập, không phải một câu trả lời của bên bán.",
-      "secondary": "Tính tỷ trọng doanh thu của năm khách hàng lớn nhất và xem hợp đồng của họ còn bao lâu. Nếu một khách chiếm 40% và hợp đồng hết hạn sau sáu tháng, đó là điều khoản giá chứ không phải một ghi chú.",
+      "title": "Làm ngay hôm nay",
+      "message": "Chạy bốn câu hỏi này trên chính hệ thống đội bạn đang vận hành, và trả lời thành thật. Bạn không cần nhận bàn giao mới cần biết những điều này.",
+      "secondary": "Câu đầu tiên thường cho ra một cái tên. Nếu người đó nghỉ một tháng thì phần nào của hệ thống sẽ không sửa được - đó là một rủi ro có thể giảm ngay tuần này."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Nhiều thương vụ M&A đổ vỡ không phải ở bàn đàm phán, mà ở giai đoạn 'kiểm tra kỹ trước khi ký' - Due Diligence."
+        "text": "Bài 5 là cách đánh giá một kho mã từ dữ liệu. Bài này là phần bổ sung mà dữ liệu không cho được: những thứ chỉ hiện ra khi bạn hỏi đúng câu."
       },
       {
         "type": "heading",
-        "text": "Phát hiện rủi ro ẩn trước khi cam kết"
-      },
-      {
-        "type": "paragraph",
-        "text": "Due Diligence xác minh độc lập thông tin bên bán cung cấp và phát hiện rủi ro tiềm ẩn chưa công bố. Nợ tiềm tàng (như vụ kiện đang chờ xử lý) thường chỉ được ghi chú trong thuyết minh báo cáo tài chính, không phản ánh đầy đủ trên bảng cân đối - Due Diligence pháp lý kỹ lưỡng là cách duy nhất phát hiện đầy đủ. Rủi ro tập trung khách hàng cao (một khách hàng chiếm phần lớn doanh thu) là phát hiện quan trọng khác, thường dẫn đến điều chỉnh giá mua hoặc cấu trúc thanh toán có điều kiện."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Due Diligence phát hiện rủi ro ẩn và xác minh giả định định giá trước khi hoàn tất thương vụ",
-          "Nợ tiềm tàng thường không xuất hiện đầy đủ trên báo cáo tài chính chuẩn, cần thẩm định pháp lý riêng",
-          "Rủi ro tập trung khách hàng cao có thể ảnh hưởng trực tiếp đến giá mua hoặc cấu trúc thương vụ"
-        ]
+        "text": "Bốn câu hỏi"
       },
       {
         "type": "conceptTable",
-        "title": "Năm mảng thẩm định và câu hỏi trọng tâm",
+        "title": "Và vì sao mỗi câu",
         "concepts": [
           {
-            "vi": "Tài chính",
-            "en": "Financial DD",
-            "def": "Lợi nhuận báo cáo có bền vững không? Cần dựng lại EBITDA chuẩn hóa sau khi loại các khoản một lần và chi phí của chủ sở hữu cũ."
+            "vi": "Người duy nhất",
+            "en": "bus factor",
+            "def": "Ai là người duy nhất biết cách sửa từng phần? Đây là rủi ro duy nhất trong danh sách không đọc được từ đâu cả - nó nằm trong đầu người."
           },
           {
-            "vi": "Pháp lý",
-            "en": "Legal DD",
-            "def": "Có vụ kiện đang chờ, tranh chấp sở hữu trí tuệ, hay cam kết bảo lãnh nào không nằm trên bảng cân đối không?"
+            "vi": "Sao lưu",
+            "en": "restore",
+            "def": "Lần gần nhất khôi phục từ sao lưu là khi nào? Câu trả lời chưa bao giờ nghĩa là bạn đang có một giả định, không phải một bản sao lưu."
           },
           {
-            "vi": "Thương mại",
-            "en": "Commercial DD",
-            "def": "Khách hàng có tập trung vào một vài đơn vị không? Hợp đồng lớn còn hiệu lực bao lâu và có điều khoản chấm dứt khi đổi chủ sở hữu không?"
+            "vi": "Vùng cấm",
+            "en": "no-go zone",
+            "def": "Phần nào không ai dám đụng, và vì sao? Hỏi thẳng thường nhận được câu trả lời ngay, vì ai trong đội cũng biết."
           },
           {
-            "vi": "Vận hành",
-            "en": "Operational DD",
-            "def": "Hệ thống, quy trình và chuỗi cung ứng có tích hợp được không, và chi phí tích hợp thực tế là bao nhiêu?"
-          },
-          {
-            "vi": "Nhân sự",
-            "en": "HR DD",
-            "def": "Ai là những người thực sự tạo ra giá trị, hợp đồng lao động của họ ra sao, và họ có động cơ ở lại sau thương vụ không?"
+            "vi": "Sự cố gần nhất",
+            "en": "last incident",
+            "def": "Chuyện gì đã xảy ra và nó được xử lý thế nào? Một sự cố thật cho thấy quy trình hoạt động ra sao dưới áp lực."
           }
         ]
       },
       {
         "type": "heading",
-        "text": "Ba phát hiện thường làm thay đổi giá hoặc cấu trúc thương vụ"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Lợi nhuận chuẩn hóa thấp hơn con số báo cáo, sau khi loại các khoản một lần và điều chỉnh chi phí ở mức thị trường - dẫn tới giảm giá mua vì giá thường tính theo bội số của lợi nhuận.",
-          "Tập trung khách hàng cao: một khách chiếm phần lớn doanh thu biến toàn bộ giá trị thương vụ thành một canh bạc vào việc giữ được quan hệ đó - thường dẫn tới thanh toán có điều kiện.",
-          "Nghĩa vụ tiềm tàng: vụ kiện, nợ thuế đang tranh chấp, cam kết bảo lãnh cho bên thứ ba - thường dẫn tới giữ lại một phần giá mua trong tài khoản phong tỏa."
-        ]
+        "text": "Vì sao câu đầu quan trọng nhất"
       },
       {
         "type": "callout",
-        "label": "Vì sao chuẩn hóa lợi nhuận lại quan trọng đến vậy",
-        "text": "Nếu giá mua được tính bằng bội số nhân với lợi nhuận, thì mỗi đồng lợi nhuận bị điều chỉnh giảm sẽ kéo giá mua xuống theo đúng bội số đó. Với bội số 8 lần, phát hiện lợi nhuận thực thấp hơn báo cáo 20 tỷ nghĩa là giá mua nên giảm 160 tỷ - đây là lý do khâu thẩm định tài chính thường mang lại giá trị lớn nhất so với chi phí bỏ ra."
+        "label": "Nó là rủi ro duy nhất không hiện ra ở đâu",
+        "text": "Công nghệ cũ đọc được từ tệp cấu hình. Lỗi đang mở đọc được từ hệ thống công việc. Chất lượng đọc được từ lịch sử kho. Tri thức nằm trong đầu một người thì không hiện ra ở bất cứ đâu - và nó biến mất khi người đó đi."
+      },
+      {
+        "type": "heading",
+        "text": "Đọc câu trả lời"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Câu trả lời thẳng",
+          "text": "Có, phần xử lý đơn hàng, vì anh A viết và anh ấy nghỉ năm ngoái. Đây là câu trả lời tốt - nó cho bạn một rủi ro cụ thể và có giá."
+        },
+        "right": {
+          "label": "Câu trả lời đáng lo hơn",
+          "text": "Không có phần nào cả. Gần như hệ thống nào chạy đủ lâu cũng có ít nhất một vùng như vậy, nên câu này nghĩa là người trả lời hoặc chưa đủ sâu, hoặc đang giấu."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Một lưu ý về cách nhìn: thẩm định không phải để tìm lý do hủy thương vụ. Phần lớn phát hiện không dẫn tới việc dừng lại mà dẫn tới điều chỉnh - giá thấp hơn, cấu trúc thanh toán khác đi, hoặc thêm điều khoản bảo vệ. Thương vụ bị hủy hoàn toàn thường chỉ xảy ra khi phát hiện điều gì đó phá vỡ chính luận điểm ban đầu về lý do mua."
+        "text": "Về câu hỏi thứ tư: hỏi sự cố THẬT chứ đừng hỏi quy trình xử lý sự cố. Đây là cùng nguyên tắc với việc xem quy trình tự động thay vì đọc tài liệu ở bài 5 - hành vi thật nói nhiều hơn ý định được ghi ra."
       },
       {
         "type": "closing",
         "lines": [
-          "Due Diligence không phải thủ tục hình thức để làm cho có.",
-          "Đây là bước cuối cùng để tránh trả giá cao cho những rủi ro chưa được biết đến."
+          "Cuối cùng, làm gì với những rủi ro tìm được: ghi thành danh sách kèm ước lượng chi phí, và đưa nó vào cuộc thương lượng. Rủi ro có giá, và giá đó thuộc về lúc thương lượng chứ không thuộc về danh sách việc cần làm sau này.",
+          "Bài sau là lý do những cuộc thay đổi lớn hay thất bại, nhìn từ phía con người."
         ]
       }
-    ],
-    "summary": {
-      "keyIdea": "Due Diligence xác minh độc lập thông tin bên bán cung cấp và phát hiện rủi ro ẩn trước khi hoàn tất thương vụ",
-      "commonMistake": "Dễ bỏ qua: nợ tiềm tàng thường không xuất hiện đầy đủ trên báo cáo tài chính chuẩn, cần thẩm định pháp lý riêng để phát hiện",
-      "action": "Rủi ro tập trung khách hàng cao là phát hiện quan trọng có thể ảnh hưởng trực tiếp đến giá mua hoặc cấu trúc thương vụ"
-    }
+    ]
   },
   {
     "id": 1109,
-    "slug": "post-merger-integration-vi-sao-that-bai",
-    "title": "IB & Phân tích, Bài 9: Post-Merger Integration - vì sao nhiều thương vụ M&A thất bại",
-    "subtitle": "Ký được deal chỉ là bước đầu - phần khó nhất bắt đầu sau khi ký",
+    "slug": "vi-sao-nhieu-cuoc-thay-doi-lon-that-bai",
+    "title": "Nền tảng nâng cao, Bài 9: Vì sao nhiều cuộc thay đổi lớn thất bại",
+    "subtitle": "Phần kỹ thuật hiếm khi là phần hỏng - nó chỉ là phần được ghi trong biên bản.",
     "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "⚠️",
+    "difficulty": "Khó",
     "track": "professional",
-    "openingQuestion": "Nhiều nghiên cứu học thuật cho thấy phần lớn thương vụ M&A không đạt được mức synergy như kỳ vọng ban đầu. Nguyên nhân phổ biến nhất thường KHÔNG phải là gì?",
+    "emoji": "🧩",
+    "isFundamental": true,
+    "whyItMatters": "Bạn sẽ tham gia nhiều cuộc thay đổi lớn trong đời làm nghề, và tỷ lệ thất bại của chúng cao tới mức đáng học trước. Nguyên nhân thì lặp lại, nên biết chúng là biết chỗ để nhìn.",
+    "openingQuestion": "Nguyên nhân phổ biến nhất khiến một cuộc di trú hay tách khối thất bại là gì?",
     "openingOptions": [
-      "Định giá thương vụ sai hoàn toàn ngay từ đầu",
-      "Thất bại ở tích hợp văn hóa và vận hành",
-      "Giá cổ phiếu thị trường biến động",
-      "Lãi suất ngân hàng trung ương thay đổi"
+      "Không ai định nghĩa được xong nghĩa là gì, nên không có thời điểm nào để dừng lại",
+      "Công nghệ mới phức tạp hơn dự kiến nên đội không kịp làm chủ trong thời gian có hạn",
+      "Ước lượng ban đầu quá lạc quan nên dự án vượt xa ngân sách đã được phê duyệt",
+      "Yêu cầu nghiệp vụ thay đổi giữa chừng khiến thiết kế ban đầu không còn phù hợp"
     ],
-    "correctOption": 1,
-    "explanation": "Nghiên cứu về M&A cho thấy nguyên nhân phổ biến nhất khiến thương vụ không đạt kỳ vọng thường không phải là sai sót trong mô hình tài chính/định giá, mà là thất bại trong POST-MERGER INTEGRATION - xung đột văn hóa doanh nghiệp, hệ thống công nghệ/quy trình không tương thích, mất nhân sự chủ chốt do bất ổn sau sáp nhập, và mất khách hàng do gián đoạn dịch vụ trong quá trình chuyển đổi.",
+    "correctOption": 0,
+    "explanation": "Ba lý do kia đều thật và đều xuất hiện trong biên bản tổng kết, nhưng chúng là triệu chứng. Không có định nghĩa xong thì mọi vấn đề đều trở thành lý do hợp lý để kéo dài thêm - và một dự án không có điểm dừng thì không thất bại dứt khoát, nó chỉ mờ dần cho tới lúc mọi người chuyển sang việc khác.",
     "diagram": [
       {
-        "label": "Ký kết thương vụ M&A",
+        "label": "Không định nghĩa xong → không có điểm dừng",
         "arrow": true
       },
       {
-        "label": "Post-Merger Integration: hợp nhất văn hóa, hệ thống, con người",
+        "label": "Không đo tiến độ bằng thứ quan sát được",
         "arrow": true
       },
       {
-        "label": "**Rủi ro:** xung đột văn hóa, mất nhân sự chủ chốt, gián đoạn khách hàng",
+        "label": "Không ai chịu trách nhiệm cho phần cuối cùng",
         "arrow": true
       },
       {
-        "label": "Quyết định synergy có thực sự đạt được hay không"
+        "label": "Kết cục: mờ dần, không thất bại dứt khoát"
       }
     ],
     "realWorldExample": {
-      "company": "Các thương vụ M&A gặp khó khăn tích hợp",
-      "description": "Nhiều thương vụ sáp nhập giữa các công ty có văn hóa doanh nghiệp rất khác biệt (ví dụ công ty truyền thống mua lại startup công nghệ) gặp khó khăn lớn trong giai đoạn hậu sáp nhập - tốc độ ra quyết định, phong cách quản lý, và kỳ vọng về môi trường làm việc khác biệt có thể khiến nhân sự chủ chốt của bên bị mua rời đi hàng loạt."
+      "company": "Chín mươi phần trăm trong sáu tháng",
+      "description": "Một dự án đạt chín mươi phần trăm rất nhanh rồi đứng nguyên đó một năm. Mười phần trăm cuối gồm những trường hợp lạ, những khách hàng đặc biệt và những phần không ai muốn đụng - và chúng không tiến bộ vì không ai được giao chúng một cách rõ ràng."
     },
     "quiz": [
       {
-        "question": "Vì sao việc giữ chân nhân sự chủ chốt của công ty bị mua lại thường là ưu tiên hàng đầu ngay sau khi thương vụ M&A hoàn tất?",
+        "question": "Vì sao dự án không có định nghĩa xong lại nguy hiểm?",
         "options": [
-          "Vì luật pháp yêu cầu phải giữ toàn bộ nhân sự cũ, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "Ở nhiều thương vụ, giá trị thực sự của công ty mục tiêu nằm ở kiến thức, mối quan hệ khách hàng, và năng lực vận hành của đội ngũ nhân sự chủ chốt - nếu những người này rời đi ngay sau sáp nhập vì bất ổn hoặc văn hóa không phù hợp, phần lớn giá trị mà bên mua trả tiền để có được có thể 'bốc hơi' theo họ",
-          "Vì nhân sự cũ luôn giỏi hơn nhân sự của bên mua, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "Giữ chân nhân sự không ảnh hưởng đến giá trị thương vụ, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Đặc biệt với các công ty dịch vụ, công nghệ, hoặc doanh nghiệp phụ thuộc nhiều vào mối quan hệ cá nhân với khách hàng, giá trị thực sự của thương vụ có thể gắn chặt với con người - đây là lý do nhiều thương vụ M&A có điều khoản giữ chân (retention package, earnout gắn với nhân sự chủ chốt) để giảm rủi ro mất giá trị ngay sau khi ký kết."
-      },
-      {
-        "question": "Một công ty công nghệ nhỏ, linh hoạt, ra quyết định nhanh bị một tập đoàn lớn với quy trình phê duyệt nhiều tầng mua lại. Rủi ro tích hợp lớn nhất có thể là gì?",
-        "options": [
-          "Không có rủi ro gì đặc biệt vì cả hai đều cùng ngành tài chính/kinh doanh",
-          "Xung đột văn hóa vận hành - tốc độ ra quyết định chậm lại do quy trình phê duyệt phức tạp của tập đoàn lớn có thể làm mất đi chính lợi thế cạnh tranh (sự linh hoạt, tốc độ) mà công ty nhỏ từng có, khiến giá trị mua lại giảm dần theo thời gian",
-          "Rủi ro duy nhất là về mặt tài chính, không liên quan đến văn hóa vận hành",
-          "Công ty nhỏ luôn thích nghi tốt với quy trình của tập đoàn lớn"
-        ],
-        "correct": 1,
-        "explanation": "Đây là một dạng rủi ro tích hợp rất thực tế và phổ biến: nếu lý do công ty lớn muốn mua công ty nhỏ chính là sự nhanh nhạy, sáng tạo của nó, nhưng sau sáp nhập lại áp đặt quy trình quản lý cứng nhắc lên công ty nhỏ, chính hành động 'tích hợp' có thể phá hủy giá trị mà thương vụ ban đầu muốn mua."
-      },
-      {
-        "question": "Loại cộng hưởng nào thường được ước tính quá lạc quan nhất trong các thương vụ M&A?",
-        "options": [
-          "Cộng hưởng doanh thu, vì phụ thuộc vào hành vi khách hàng nên đến chậm hơn và ít hơn kế hoạch",
-          "Cộng hưởng chi phí từ việc bỏ vị trí trùng lặp",
-          "Tiết kiệm từ gộp mặt bằng văn phòng",
-          "Lợi ích từ đàm phán lại giá với nhà cung cấp"
+          "Vì mọi vấn đề đều thành lý do hợp lý để kéo dài, và nó mờ dần thay vì dừng lại",
+          "Vì đội không biết mình còn phải làm bao nhiêu nên không ước lượng được thời gian",
+          "Vì người quản lý không đánh giá được hiệu quả công việc của từng thành viên",
+          "Vì các bên liên quan có kỳ vọng khác nhau về kết quả cuối cùng của dự án"
         ],
         "correct": 0,
-        "explanation": "Cắt chi phí là việc bên mua tự quyết định được. Tăng doanh thu đòi hỏi khách hàng phải hành động theo cách mình mong muốn - biến số nằm ngoài tầm kiểm soát."
+        "explanation": "Chữ MỜ DẦN là điểm quan trọng: dự án không thất bại dứt khoát nên không ai phải quyết định gì. Một thất bại dứt khoát ít nhất giải phóng được nguồn lực; một dự án mờ dần thì tiếp tục ngốn chúng."
       },
       {
-        "question": "Khi đánh giá một thương vụ M&A đã công bố, câu hỏi nào dự báo kết quả tốt hơn bản thân mức giá mua?",
+        "question": "Vì sao mười phần trăm cuối lại là phần khó nhất?",
         "options": [
-          "Những người tạo ra giá trị ở doanh nghiệp mục tiêu có lý do gì để ở lại sau sáp nhập?",
-          "Bên mua dùng ngân hàng tư vấn nào?",
-          "Thương vụ được công bố vào thời điểm nào trong năm?",
-          "Bên bán có phải doanh nghiệp niêm yết không?"
+          "Vì nó gồm những trường hợp lạ và những phần không ai muốn đụng nên không ai nhận",
+          "Vì phần cuối thường cũng là phần phức tạp nhất về mặt kỹ thuật trong cả hệ thống",
+          "Vì tới lúc đó ngân sách đã cạn nên không còn nguồn lực để hoàn thành nốt",
+          "Vì đội đã mất động lực sau thời gian dài làm việc trên cùng một dự án"
         ],
         "correct": 0,
-        "explanation": "Phần lớn thương vụ không đạt kỳ vọng vì thất bại ở khâu thực thi chứ không vì định giá sai. Giữ được người và thực hiện được kế hoạch tích hợp mới là biến số quyết định."
+        "explanation": "Chữ KHÔNG AI NHẬN là mấu chốt - đây là vấn đề phân công chứ không phải vấn đề độ khó. Cách chữa là giao đích danh phần cuối cho một người ngay từ đầu, không đợi tới lúc chỉ còn nó."
+      },
+      {
+        "question": "Nên đo tiến độ di trú bằng gì?",
+        "options": [
+          "Tỷ lệ lưu lượng thật đã chạy qua hệ thống mới, vì đó là thứ quan sát được",
+          "Tỷ lệ số module đã được viết lại xong so với tổng số module trong hệ thống",
+          "Số lượng công việc đã hoàn thành so với tổng số công việc trong kế hoạch ban đầu",
+          "Đánh giá của cả đội về mức độ hoàn thành sau mỗi chu kỳ phát triển kéo dài hai tuần"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều đo thứ đội tự khai báo và đều có thể ở mức cao trong khi không người dùng nào chạm vào hệ thống mới. Lưu lượng thật thì không khai báo được - nó là số đo từ hệ thống."
+      },
+      {
+        "question": "Vì sao nên có một người chịu trách nhiệm cho toàn bộ cuộc thay đổi?",
+        "options": [
+          "Vì phần khó nhất là phần nằm giữa các đội, và phần đó không thuộc về ai theo mặc định",
+          "Vì cần có một người ra quyết định thật nhanh mỗi khi có bất đồng về kỹ thuật giữa các đội",
+          "Vì việc có người chịu trách nhiệm giúp cấp quản lý dễ theo dõi tiến độ hơn",
+          "Vì các cuộc thay đổi lớn cần một người nắm được toàn bộ bức tranh kỹ thuật"
+        ],
+        "correct": 0,
+        "explanation": "Mỗi đội lo phần của mình và không ai lo phần ở giữa - đó là chỗ các cuộc thay đổi lớn hay mắc kẹt. Người chịu trách nhiệm tồn tại chủ yếu để phần giữa có chủ."
+      },
+      {
+        "question": "Dấu hiệu sớm nào cho biết một cuộc thay đổi lớn đang trượt?",
+        "options": [
+          "Ngày kết thúc bị dời lần thứ hai mà không có gì trong phạm vi bị cắt bớt",
+          "Đội báo cáo tiến độ chậm hơn kế hoạch trong hai chu kỳ phát triển liên tiếp",
+          "Số lượng lỗi phát sinh trong hệ thống mới cao hơn so với dự kiến ban đầu",
+          "Một số thành viên chủ chốt của đội chuyển sang làm dự án khác giữa chừng"
+        ],
+        "correct": 0,
+        "explanation": "Chữ MÀ KHÔNG CẮT GÌ là mấu chốt: dời hạn kèm cắt phạm vi là điều chỉnh bình thường và lành mạnh. Dời hạn mà giữ nguyên phạm vi nghĩa là ước lượng chưa được sửa lại, nên lần dời thứ ba đã nằm sẵn trong kế hoạch."
       }
     ],
     "keyTakeaways": [
-      "Nguyên nhân phổ biến nhất M&A không đạt kỳ vọng thường là thất bại tích hợp (con người, văn hóa, vận hành), không phải sai sót định giá",
-      "Giữ chân nhân sự chủ chốt là ưu tiên hàng đầu vì giá trị công ty mục tiêu có thể gắn chặt với con người",
-      "Áp đặt quy trình cứng nhắc lên công ty mục tiêu có thể phá hủy chính lợi thế cạnh tranh khiến nó đáng mua ban đầu"
+      "Không định nghĩa xong thì dự án mờ dần thay vì thất bại dứt khoát.",
+      "Mười phần trăm cuối khó vì không ai NHẬN, không phải vì nó phức tạp nhất.",
+      "Đo bằng lưu lượng thật đã chạy qua hệ thống mới - thứ không khai báo được.",
+      "Phần khó nhất nằm GIỮA các đội, và nó không thuộc về ai theo mặc định.",
+      "Dấu hiệu sớm: dời hạn lần hai mà không cắt gì trong phạm vi."
     ],
     "practicePrompt": {
-      "question": "Một thương vụ M&A được định giá kỹ lưỡng, đúng mức hợp lý theo mọi phương pháp (DCF, Comps, Precedent Transactions), nhưng 2 năm sau vẫn thất bại - không đạt được synergy kỳ vọng, nhân sự chủ chốt nghỉ việc hàng loạt, văn hóa hai công ty xung đột. Nguyên nhân thất bại phổ biến nhất này là gì?",
+      "question": "Đội báo cáo di trú đã hoàn thành tám mươi phần trăm. Câu hỏi kiểm chứng tốt nhất?",
       "options": [
-        "Thường là thất bại ở khâu tích hợp hậu sáp nhập, không phải sai sót khi định giá",
-        "Đây chắc chắn là do định giá sai ngay từ đầu, dù mọi phương pháp định giá đều cho kết quả hợp lý",
-        "Thương vụ M&A luôn thất bại sau 2 năm bất kể chất lượng định giá hay quá trình tích hợp ra sao",
-        "Nguyên nhân là do Due Diligence chưa được thực hiện đầy đủ trước khi ký kết thương vụ"
+        "Bao nhiêu phần trăm lưu lượng thật đang chạy qua hệ thống mới ngay lúc này",
+        "Còn bao nhiêu module nữa cần được viết lại để hoàn tất quá trình chuyển đổi",
+        "Đội dự kiến mất bao lâu nữa để hoàn thành hai mươi phần trăm còn lại",
+        "Có phần nào trong hai mươi phần trăm còn lại chưa có kế hoạch cụ thể không"
       ],
       "correct": 0,
-      "explanation": "Nguyên nhân phổ biến nhất khiến M&A không đạt kỳ vọng thường là thất bại trong tích hợp hậu sáp nhập, không phải sai sót định giá. Nhiều thương vụ được định giá đúng nhưng vẫn thất bại vì không quản lý tốt quá trình hợp nhất con người, hệ thống, và văn hóa doanh nghiệp."
+      "explanation": "Tám mươi phần trăm module viết xong hoàn toàn tương thích với không phần trăm lưu lượng đi qua. Ba câu kia đều hỏi tiếp về con số tự khai báo, nên chúng không kiểm chứng được gì."
+    },
+    "summary": {
+      "keyIdea": "Phần kỹ thuật hiếm khi là phần hỏng; nó chỉ là phần được ghi trong biên bản.",
+      "formula": "Định nghĩa xong + đo bằng lưu lượng thật + giao đích danh phần cuối.",
+      "commonMistake": "Đo tiến độ bằng con số đội tự khai báo, vốn cao trong khi không ai dùng.",
+      "action": "Hỏi dự án đang chạy trong đội: xong nghĩa là gì, và đo bằng gì?"
     },
     "application": {
-      "title": "Lên kế hoạch giữ người trước ngày ký",
-      "message": "Xác định nhóm nhân sự mà thiếu họ thì lý do mua biến mất - kỹ sư lõi, người giữ quan hệ khách hàng, người biết vận hành - và chuẩn bị điều khoản giữ chân trước khi công bố, không phải sau khi có người nộp đơn.",
-      "secondary": "Trước khi áp quy trình của bên mua, viết ra cái gì ở công ty mục tiêu đang tạo ra lợi thế. Những gì nằm trong danh sách đó là thứ không được chuẩn hoá.",
+      "title": "Làm ngay hôm nay",
+      "message": "Với một dự án lớn đội bạn đang chạy, hỏi hai câu: xong nghĩa là gì, và chúng ta đo tiến độ bằng con số quan sát được nào?",
+      "secondary": "Nếu câu thứ hai không có câu trả lời, đề xuất một con số đo từ hệ thống chứ không phải từ báo cáo. Đó là thay đổi nhỏ nhất có tác dụng lớn nhất trong cả bài."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Ký được deal chỉ là bước đầu - phần khó nhất của một thương vụ M&A thường bắt đầu ngay sau khi ký."
+        "text": "Ba bài trước là kỹ thuật của việc thay đổi một hệ thống đang chạy. Bài này về lý do những cuộc thay đổi đó hay thất bại - và phần kỹ thuật hiếm khi là phần hỏng."
       },
       {
         "type": "heading",
-        "text": "Con người và vận hành, không chỉ định giá"
+        "text": "Nguyên nhân gốc"
+      },
+      {
+        "type": "callout",
+        "label": "Không ai định nghĩa được xong nghĩa là gì",
+        "text": "Không có định nghĩa thì mọi vấn đề đều trở thành lý do hợp lý để kéo dài thêm. Và một dự án không có điểm dừng thì không thất bại dứt khoát - nó MỜ DẦN cho tới lúc mọi người chuyển sang việc khác."
       },
       {
         "type": "paragraph",
-        "text": "Nghiên cứu về M&A cho thấy nguyên nhân phổ biến khiến thương vụ không đạt kỳ vọng thường không phải sai sót định giá, mà là thất bại trong Post-Merger Integration - xung đột văn hóa, hệ thống không tương thích, mất nhân sự chủ chốt. Giá trị công ty mục tiêu có thể gắn chặt với con người - nếu họ rời đi vì bất ổn hoặc văn hóa không phù hợp, phần lớn giá trị bên mua trả tiền có thể 'bốc hơi' theo họ. Áp đặt quy trình cứng nhắc lên một công ty nhỏ linh hoạt có thể phá hủy chính lợi thế khiến nó đáng mua."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Nguyên nhân phổ biến nhất M&A không đạt kỳ vọng là thất bại tích hợp, không phải sai sót định giá",
-          "Giữ chân nhân sự chủ chốt là ưu tiên hàng đầu vì giá trị công ty mục tiêu có thể gắn chặt với con người",
-          "Áp đặt quy trình cứng nhắc lên công ty mục tiêu có thể phá hủy chính lợi thế khiến nó đáng mua"
-        ]
+        "text": "Điều này tệ hơn một thất bại dứt khoát. Thất bại dứt khoát ít nhất giải phóng được nguồn lực và buộc ai đó ra quyết định; một dự án mờ dần thì tiếp tục ngốn nguồn lực mà không ai phải quyết gì."
       },
       {
         "type": "heading",
-        "text": "Bốn nguyên nhân phổ biến khiến tích hợp thất bại"
+        "text": "Ba biểu hiện"
       },
       {
         "type": "list",
         "items": [
-          "Mất nhân sự chủ chốt: những người có nhiều lựa chọn nhất thường rời đi sớm nhất, và với nhiều doanh nghiệp, giá trị bên mua trả tiền chính là những người đó.",
-          "Ước tính cộng hưởng quá lạc quan: phần tiết kiệm chi phí thường đến được một phần, nhưng phần tăng doanh thu nhờ bán chéo hầu như luôn đến chậm hơn và ít hơn kế hoạch.",
-          "Xung đột về cách làm việc: áp quy trình phê duyệt nhiều tầng lên một đội ngũ vốn quyết định nhanh sẽ phá hủy đúng thứ khiến doanh nghiệp đó đáng mua.",
-          "Kéo dài trạng thái bất định: khi nhân viên không biết ai sẽ là quản lý mới hay vị trí của mình còn không, năng suất giảm và người giỏi bắt đầu tìm chỗ khác - chi phí này gần như không bao giờ nằm trong mô hình định giá."
+          "Đo tiến độ bằng con số đội tự khai báo. Tám mươi phần trăm module viết xong hoàn toàn tương thích với không phần trăm lưu lượng đi qua hệ thống mới.",
+          "Mười phần trăm cuối không ai nhận. Nó gồm những trường hợp lạ, khách hàng đặc biệt, phần không ai muốn đụng - đây là vấn đề phân công chứ không phải độ khó.",
+          "Không ai chịu trách nhiệm cho phần nằm GIỮA các đội. Mỗi đội lo phần của mình, và phần ở giữa không thuộc về ai theo mặc định."
         ]
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Cộng hưởng chi phí",
-          "text": "Bỏ vị trí trùng lặp, gộp mặt bằng, đàm phán lại với nhà cung cấp bằng quy mô lớn hơn. Định lượng được, kiểm soát được, và thường đạt được phần lớn nếu thực hiện dứt khoát."
+          "label": "Đo sai",
+          "text": "Số module đã viết lại, số công việc đã hoàn thành, đánh giá của đội sau mỗi chu kỳ. Tất cả đều là thứ đội tự khai báo."
         },
         "right": {
-          "label": "Cộng hưởng doanh thu",
-          "text": "Bán sản phẩm của bên này cho khách hàng của bên kia, mở rộng địa bàn. Phụ thuộc vào hành vi khách hàng và năng lực đội ngũ bán hàng, nên đến chậm hơn và không chắc chắn - đây là phần hay bị tính quá tay nhất trong mô hình."
+          "label": "Đo đúng",
+          "text": "Tỷ lệ lưu lượng THẬT đang chạy qua hệ thống mới. Nó là số đo từ hệ thống, nên không khai báo được và cũng không hiểu nhầm được."
         }
       },
       {
-        "type": "callout",
-        "label": "Vì sao 100 ngày đầu quan trọng",
-        "text": "Đây là khoảng thời gian nhân viên hai bên quyết định xem thương vụ này có ý nghĩa gì với họ. Ba việc cần xong sớm: công bố rõ ai báo cáo cho ai, giữ chân bằng cam kết cụ thể với những người then chốt, và chọn ra vài kết quả tích hợp nhìn thấy được để chứng minh việc sáp nhập đang tạo ra điều gì đó thật."
+        "type": "heading",
+        "text": "Dấu hiệu sớm"
       },
       {
         "type": "paragraph",
-        "text": "Điểm rút ra cho người phân tích: khi đánh giá một thương vụ đã công bố, đừng dừng ở việc mức giá có hợp lý không. Hãy hỏi thêm kế hoạch tích hợp là gì, phần cộng hưởng dự kiến nghiêng về chi phí hay doanh thu, và những người tạo ra giá trị ở doanh nghiệp mục tiêu có lý do gì để ở lại. Ba câu này dự báo kết quả tốt hơn nhiều so với bản thân bội số mua."
+        "text": "Ngày kết thúc bị dời lần thứ hai mà KHÔNG có gì trong phạm vi bị cắt bớt. Dời hạn kèm cắt phạm vi là điều chỉnh bình thường và lành mạnh; dời hạn mà giữ nguyên phạm vi nghĩa là ước lượng chưa được sửa lại - nên lần dời thứ ba đã nằm sẵn trong kế hoạch."
       },
       {
         "type": "closing",
         "lines": [
-          "Một mô hình định giá hoàn hảo không cứu được một thương vụ tích hợp kém.",
-          "Giá trị thực sự của M&A được quyết định trong những tháng sau khi ký, không phải tại bàn đàm phán."
+          "Cách chữa cho mười phần trăm cuối: giao đích danh cho một người ngay từ đầu, đừng đợi tới lúc chỉ còn nó. Lúc đó thì phần khó nhất lại là phần ít người muốn nhận nhất.",
+          "Bài cuối chặng là một trường hợp thật, đi qua đủ cả bốn bài trên."
         ]
       }
-    ],
-    "summary": {
-      "keyIdea": "Nguyên nhân phổ biến nhất M&A không đạt kỳ vọng thường là thất bại tích hợp (con người, văn hóa, vận hành), không phải sai sót định giá",
-      "commonMistake": "Dễ bỏ qua: giữ chân nhân sự chủ chốt là ưu tiên hàng đầu vì giá trị công ty mục tiêu có thể gắn chặt với con người",
-      "action": "Áp đặt quy trình cứng nhắc lên công ty mục tiêu có thể phá hủy chính lợi thế cạnh tranh khiến nó đáng mua ban đầu"
-    }
+    ]
   },
   {
     "id": 1110,
-    "slug": "masan-wincommerce-case-study",
-    "title": "IB & Phân tích, Bài 10: Masan mua WinCommerce - vì sao là chuỗi này?",
-    "subtitle": "Stock-swap, độ phủ bán lẻ và logic chiến lược đằng sau một thương vụ M&A thực tế",
-    "duration": "8 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🛒",
+    "slug": "case-mot-lan-di-tru-that",
+    "title": "Nền tảng nâng cao, Bài 10: Một lần di trú thật",
+    "subtitle": "Cùng một câu chuyện, hai cách kể - và cách thứ hai là cách hữu ích.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
     "track": "professional",
-    "openingQuestion": "Vì sao Masan chọn WinCommerce thay vì một chuỗi bán lẻ nhỏ hơn?",
+    "emoji": "📖",
+    "isFundamental": false,
+    "whyItMatters": "Chín bài trước là các nguyên tắc rời. Bài này ghép chúng vào một trường hợp cụ thể, vì nguyên tắc chỉ dùng được khi bạn nhận ra tình huống nó áp dụng.",
+    "openingQuestion": "Một đội chuyển hệ thống thanh toán sang dịch vụ mới. Việc đầu tiên nên làm là gì?",
     "openingOptions": [
-      "Vì chuỗi nhỏ hơn luôn rẻ hơn nên chắc chắn tốt hơn",
-      "Vì WinCommerce mang lại độ phủ và quy mô sẵn có ngay",
-      "Vì Masan muốn thoát khỏi mảng hàng tiêu dùng",
-      "Vì WinCommerce có biên lợi nhuận cao nhất ngành"
+      "Định nghĩa xong nghĩa là gì và chọn một con số quan sát được để đo tiến độ",
+      "Thiết kế kiến trúc của hệ thống mới và thống nhất nó với tất cả các bên liên quan",
+      "Đánh giá xem hệ thống cũ có những phần nào và phần nào phức tạp nhất cần xử lý",
+      "Chuẩn bị hạ tầng theo dõi và ghi nhật ký để giám sát quá trình chuyển đổi"
     ],
-    "correctOption": 1,
-    "explanation": "Masan không mua WinCommerce chỉ để 'có thêm siêu thị'. Điều họ muốn là kiểm soát tốt hơn đường đi của hàng hóa từ nhà máy tới giỏ hàng - tức kênh bán, dữ liệu khách và khả năng phân phối. WinCommerce mang lại độ phủ lớn gần như ngay lập tức, giúp Masan tiết kiệm nhiều năm tự xây chuỗi mới, và còn khớp với hệ sinh thái hàng tiêu dùng sẵn có của họ.",
+    "correctOption": 0,
+    "explanation": "Ba việc kia đều phải làm và đều nằm trong tuần đầu tiên. Nhưng chúng đều cần một đích để hướng tới, và bài trước cho biết dự án không có định nghĩa xong thì mờ dần thay vì kết thúc. Định nghĩa xong là việc rẻ nhất trong bốn việc, mất một buổi, và nó quyết định ba việc còn lại được làm tới đâu.",
     "diagram": [
       {
-        "label": "Masan mạnh về hàng tiêu dùng",
+        "label": "Tuần 1: định nghĩa xong + chọn con số đo",
         "arrow": true
       },
       {
-        "label": "WinCommerce mạnh về điểm bán và khách hàng",
+        "label": "Tháng 1: lớp trung gian, chuyển phần dễ nhất",
         "arrow": true
       },
       {
-        "label": "Kết hợp để kiểm soát kệ hàng, dữ liệu và phân phối"
+        "label": "Tháng 2-5: chuyển từng phần, đo bằng lưu lượng thật",
+        "arrow": true
+      },
+      {
+        "label": "Tháng 6: phần cuối - đã có người nhận từ đầu"
       }
     ],
-    "interactiveType": "accretion",
     "realWorldExample": {
-      "company": "Thương vụ Masan - Vingroup / WinCommerce",
-      "description": "WinCommerce có khoảng 2.600 cửa hàng tại 50 tỉnh thành và 14 nông trại VinEco vào cuối 2019. Thay vì tự xây một chuỗi bán lẻ từ đầu (rất chậm), Masan có thể mua một mạng lưới bán lẻ đã có độ phủ, sau đó tái cấu trúc vận hành, tăng sở hữu dần và tận dụng kênh này để bán hàng tiêu dùng hiệu quả hơn."
+      "company": "Hai cách kể cùng một câu chuyện",
+      "description": "Cách thứ nhất: chúng tôi chuyển sang dịch vụ mới trong sáu tháng và tiết kiệm ba mươi phần trăm chi phí. Cách thứ hai: chúng tôi mất hai tuần đầu chỉ để thống nhất xong nghĩa là gì, và đó là hai tuần cứu cả dự án. Chỉ cách thứ hai dùng lại được."
     },
     "quiz": [
       {
-        "question": "Điểm mạnh chiến lược lớn nhất của WinCommerce đối với Masan là gì?",
+        "question": "Vì sao đội nên chuyển phần dễ nhất trước trong tháng đầu?",
         "options": [
-          "WinCommerce có giá cổ phiếu cao nhất thị trường",
-          "WinCommerce cung cấp độ phủ bán lẻ rộng và kênh chạm khách hàng sẵn có, giúp Masan kiểm soát tốt hơn hành trình từ nhà máy tới giỏ hàng",
-          "WinCommerce có số lượng nông trại lớn nhất",
-          "WinCommerce giúp Masan loại bỏ hoàn toàn nhu cầu marketing"
+          "Vì rủi ro lớn nhất lúc đó là quy trình chuyển chưa chạy được, không phải phần khó",
+          "Vì một thắng lợi sớm sẽ giúp thuyết phục cấp quản lý cấp thêm nguồn lực cho cả dự án về sau",
+          "Vì phần dễ thường có ít người dùng nên nếu có sự cố thì ảnh hưởng nhỏ nhất",
+          "Vì đội cần thời gian làm quen với công nghệ mới trước khi xử lý phần phức tạp"
         ],
-        "correct": 1,
-        "explanation": "Mục tiêu của Masan là chiến lược chứ không chỉ là sở hữu thêm tài sản. Khi kiểm soát kênh bán, họ chủ động hơn về kệ hàng, giá, khuyến mãi và dữ liệu mua sắm - đây là lợi thế phân phối mà một chuỗi nhỏ khó mang lại nhanh bằng một chuỗi đã có sẵn quy mô lớn."
+        "correct": 0,
+        "explanation": "Đây là bài 6 áp vào tình huống cụ thể. Thắng lợi sớm cũng có giá trị thật nhưng nó là lợi ích phụ - lợi ích chính là kiểm chứng được quy trình chuyển trước khi đặt cược phần khó vào nó."
       },
       {
-        "question": "Vì sao stock-swap là cấu trúc giao dịch hợp lý trong thương vụ này?",
+        "question": "Vì sao con số đo phải là lưu lượng thật chứ không phải số module?",
         "options": [
-          "Vì stock-swap luôn làm bên mua không cần tiền mặt và không có rủi ro gì",
-          "Vì stock-swap giúp bên mua giảm áp lực tiền mặt và nợ, bên bán vẫn giữ quyền hưởng lợi nếu công ty mới tăng giá trị, nên cả hai bên chia sẻ rủi ro và upside tương lai",
-          "Vì stock-swap khiến thương vụ trở thành một khoản vay",
-          "Vì stock-swap luôn rẻ hơn trả tiền mặt trong mọi trường hợp"
+          "Vì số module là thứ đội tự khai báo, còn lưu lượng là số đo từ hệ thống",
+          "Vì số module không phản ánh được độ phức tạp rất khác nhau giữa từng phần của hệ thống",
+          "Vì lưu lượng thay đổi theo thời gian nên nó cho thấy xu hướng rõ hơn",
+          "Vì cấp quản lý dễ hiểu con số lưu lượng hơn so với con số kỹ thuật"
         ],
-        "correct": 1,
-        "explanation": "Trong deal Masan - Vingroup, hoán đổi cổ phiếu (stock-swap) giúp giảm áp lực tiền mặt ban đầu. Bên bán không nhận tiền ngay hoàn toàn mà trở thành cổ đông của công ty mới, vì vậy họ vẫn hưởng lợi nếu chiến lược tái cấu trúc và mở rộng bán lẻ thành công. Đây là cách chia sẻ rủi ro và giá trị tương lai rất điển hình trong M&A."
+        "correct": 0,
+        "explanation": "Đây là bài 9. Tám mươi phần trăm module viết xong hoàn toàn tương thích với không phần trăm người dùng thật chạm vào hệ thống mới - và chỉ con số thứ hai mới cho biết dự án đang ở đâu."
       },
       {
-        "question": "Tại sao trong M&A, 'target phù hợp' thường quan trọng hơn 'target hoàn hảo'?",
+        "question": "Vì sao phần cuối cần có người nhận ngay từ đầu?",
         "options": [
-          "Vì target hoàn hảo luôn tồn tại trên thị trường",
-          "Vì một target có quy mô, độ phủ, và kênh phân phối phù hợp có thể tạo ra giá trị chiến lược nhanh hơn nhiều so với việc chờ một target đẹp hoàn toàn về lợi nhuận nhưng không có tài sản chiến lược đúng thứ cần",
-          "Vì target nhỏ luôn an toàn hơn target lớn",
-          "Vì thương vụ M&A chỉ nên được quyết định bởi giá mua thấp hay cao"
+          "Vì tới lúc chỉ còn nó thì đó là phần khó nhất và ít người muốn nhận nhất",
+          "Vì người đó cần một thời gian dài để nghiên cứu thật kỹ những trường hợp đặc biệt còn lại",
+          "Vì việc phân công sớm giúp người đó chuẩn bị được kiến thức cần thiết",
+          "Vì phần cuối thường liên quan tới nhiều đội nên cần điều phối từ sớm"
         ],
-        "correct": 1,
-        "explanation": "WinCommerce không phải target hoàn hảo về biên lợi nhuận tại thời điểm giao dịch, nhưng lại rất phù hợp về chiến lược: có độ phủ bán lẻ, điểm bán, khách hàng, và khả năng trở thành kênh phân phối cho hệ sinh thái hàng tiêu dùng của Masan. Trong M&A, tài sản chiến lược đúng thứ thường quan trọng hơn một báo cáo lợi nhuận đẹp nhưng không giúp thay đổi vị thế thị trường."
+        "correct": 0,
+        "explanation": "Vấn đề của mười phần trăm cuối là phân công chứ không phải chuẩn bị. Giao sớm không làm phần đó dễ hơn - nó chỉ đảm bảo có người chịu trách nhiệm khi tới lượt nó."
+      },
+      {
+        "question": "Nếu tới tháng thứ tư mà lưu lượng mới đạt hai mươi phần trăm thì nên làm gì?",
+        "options": [
+          "Cắt bớt phạm vi và dời hạn cùng lúc, thay vì chỉ dời hạn mà giữ nguyên phạm vi",
+          "Tăng thêm người vào dự án để đẩy nhanh tiến độ cho kịp thời hạn ban đầu",
+          "Giữ nguyên kế hoạch vì phần khó thường chậm ở giữa rồi nhanh dần về cuối",
+          "Dừng hẳn dự án lại và đánh giá lại toàn bộ tính khả thi của phương án đã chọn từ đầu"
+        ],
+        "correct": 0,
+        "explanation": "Dời hạn mà không cắt gì là dấu hiệu sớm ở bài 9 - nó nghĩa là ước lượng chưa được sửa lại. Thêm người vào một dự án đang chậm thường làm nó chậm hơn vì chi phí trao đổi tăng lên."
+      },
+      {
+        "question": "Cách kể nào về một dự án đã xong thì hữu ích hơn?",
+        "options": [
+          "Kể những quyết định đã làm nó khác đi, kể cả những quyết định nghe nhàm chán",
+          "Kể kết quả đã đạt được và mức cải thiện so với hệ thống cũ một cách thật định lượng",
+          "Kể các vấn đề kỹ thuật đã gặp và cách đội giải quyết từng vấn đề đó",
+          "Kể theo trình tự thời gian từ lúc bắt đầu tới lúc kết thúc để dễ theo dõi"
+        ],
+        "correct": 0,
+        "explanation": "Kết quả thì không dùng lại được vì hệ thống của người đọc khác hệ thống của bạn. Quyết định thì dùng lại được - và những quyết định nhàm chán như dành hai tuần định nghĩa xong thường là những quyết định quan trọng nhất."
       }
     ],
     "keyTakeaways": [
-      "WinCommerce phù hợp vì độ phủ bán lẻ và khả năng kiểm soát kênh phân phối, không chỉ vì doanh thu",
-      "Stock-swap giúp chia sẻ rủi ro và upside tương lai, giảm áp lực tiền mặt ban đầu",
-      "Trong M&A, target phù hợp thường quan trọng hơn target hoàn hảo"
+      "Việc đầu tiên là định nghĩa xong và chọn con số đo - rẻ nhất, và quyết định mọi thứ sau.",
+      "Chuyển phần dễ trước vì rủi ro lớn nhất lúc đó là quy trình chưa chạy được.",
+      "Đo bằng lưu lượng thật: số module viết xong không nói được người dùng đã sang chưa.",
+      "Giao phần cuối cho một người từ đầu - vấn đề của nó là phân công, không phải độ khó.",
+      "Chậm thì cắt phạm vi và dời hạn CÙNG LÚC, đừng chỉ dời hạn."
     ],
     "practicePrompt": {
-      "question": "Một công ty hàng tiêu dùng đang cân nhắc mua lại một chuỗi bán lẻ đã có 2.600 cửa hàng thay vì tự xây mạng lưới từ đầu. Theo logic tài chính chiến lược, lý do nào hợp lý nhất để chọn chuỗi này?",
+      "question": "Bạn viết lại bài tổng kết một dự án cho đội đọc. Phần nào có giá trị nhất?",
       "options": [
-        "Vì có sẵn độ phủ, kênh bán và dữ liệu khách hàng, tiết kiệm nhiều năm tự xây",
-        "Vì chuỗi bán lẻ này chắc chắn đã có lợi nhuận biên rất cao nên mua là an toàn tuyệt đối",
-        "Vì mua chuỗi bán lẻ luôn rẻ hơn tự xây trong mọi trường hợp",
-        "Vì chuỗi bán lẻ không tạo ra bất kỳ synergy nào"
+        "Những quyết định đã làm dự án khác đi, kể cả quyết định nghe nhàm chán nhất",
+        "Kết quả định lượng đạt được để đội thấy được giá trị của công sức bỏ ra",
+        "Danh sách các vấn đề kỹ thuật đã gặp để lần sau đội biết mà tránh trước",
+        "Bài học rút ra được diễn đạt thành các nguyên tắc ngắn gọn dễ nhớ"
       ],
       "correct": 0,
-      "explanation": "Lý do hợp lý nhất là chiến lược: có sẵn độ phủ, kênh bán và dữ liệu khách hàng giúp công ty tiết kiệm nhiều năm tự xây - một tài sản chiến lược đúng thứ thường quan trọng hơn lợi nhuận 'đẹp' nhưng không mang lại vị thế thị trường."
+      "explanation": "Danh sách vấn đề kỹ thuật ít dùng lại được vì lần sau sẽ là những vấn đề khác. Còn nguyên tắc ngắn gọn thì mất phần ngữ cảnh khiến người đọc biết khi nào nó áp dụng - và đó chính là phần khó nhất của việc dùng lại một bài học."
     },
     "summary": {
-      "keyIdea": "Target phù hợp quan trọng hơn target hoàn hảo. WinCommerce được chọn vì độ phủ bán lẻ và quyền kiểm soát kênh phân phối, không vì con số doanh thu đẹp.",
-      "commonMistake": "Đánh giá thương vụ bằng chỉ số tài chính của bên bị mua, tách rời khỏi câu hỏi nó khớp vào đâu trong chuỗi giá trị của bên mua."
+      "keyIdea": "Nguyên tắc chỉ dùng được khi bạn nhận ra tình huống nó áp dụng.",
+      "formula": "Định nghĩa xong → phần dễ trước → đo lưu lượng thật → phần cuối có chủ.",
+      "commonMistake": "Kể lại dự án bằng kết quả, vốn không dùng lại được cho hệ thống khác.",
+      "action": "Viết lại một dự án bạn từng làm theo các quyết định thay vì theo kết quả."
     },
     "application": {
-      "title": "Vì sao chọn hoán đổi cổ phiếu",
-      "message": "Trả bằng cổ phiếu chia sẻ cả rủi ro lẫn phần tăng giá tương lai với bên bán, và giảm áp lực tiền mặt ngay lúc thương vụ đóng. Cấu trúc thanh toán là một phần của luận điểm, không phải chi tiết kỹ thuật."
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một dự án lớn bạn từng tham gia và viết lại nó theo các QUYẾT ĐỊNH đã làm nó khác đi, thay vì theo kết quả hay theo trình tự thời gian.",
+      "secondary": "Chú ý những quyết định nghe nhàm chán nhất - dành hai tuần định nghĩa phạm vi, chọn một con số để đo. Chúng thường là những quyết định quan trọng nhất và cũng là những quyết định hay bị bỏ khỏi bài kể."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Đây là một case study M&A thực tế: thương vụ Masan gắn với WinCommerce không chỉ là chuyện mua thêm tài sản, mà là chuyện kiểm soát kênh phân phối, dữ liệu khách hàng và đường đi của hàng hóa từ nhà máy tới giỏ hàng."
+        "text": "Chín bài trước là các nguyên tắc rời. Bài này ghép chúng vào một trường hợp cụ thể - một đội chuyển hệ thống thanh toán sang dịch vụ mới - vì nguyên tắc chỉ dùng được khi bạn nhận ra tình huống nó áp dụng."
       },
       {
         "type": "heading",
-        "text": "Vì sao WinCommerce là target hợp lý"
+        "text": "Tuần đầu: hai việc rẻ nhất"
+      },
+      {
+        "type": "callout",
+        "label": "Xong nghĩa là gì, và đo bằng gì",
+        "text": "Mất một buổi, và nó quyết định mọi thứ sau đó. Bài 9 cho biết dự án không có định nghĩa xong thì mờ dần thay vì kết thúc - nên hai việc này đứng trước cả việc thiết kế kiến trúc."
       },
       {
         "type": "paragraph",
-        "text": "Cuối 2019, WinCommerce đã có khoảng 2.600 cửa hàng tại 50 tỉnh thành, kèm 14 nông trại VinEco. Với Masan, đây là độ phủ gần như có sẵn nếu so với phương án tự xây chuỗi nhỏ hoặc mở mới từ đầu. Masan mạnh về hàng tiêu dùng; WinCommerce mạnh về điểm bán và khách hàng. Một bên có sản phẩm, một bên có kênh đưa sản phẩm tới người mua - đó là sự khớp chiến lược rất điển hình trong M&A."
+        "text": "Con số đo phải là thứ QUAN SÁT ĐƯỢC: tỷ lệ lưu lượng thật đang chạy qua hệ thống mới. Số module đã viết lại là thứ đội tự khai báo, và tám mươi phần trăm module xong hoàn toàn tương thích với không phần trăm người dùng đã sang."
       },
       {
         "type": "heading",
-        "text": "Stock-swap và bài toán tiền mặt"
+        "text": "Tháng đầu: lớp trung gian và phần dễ"
       },
       {
         "type": "paragraph",
-        "text": "Thương vụ này không phải kiểu Masan trả một cục tiền rồi mua đứt ngay. Cấu trúc stock-swap giúp bên mua bớt áp lực tiền mặt và nợ; bên bán vẫn giữ quyền hưởng lợi nếu công ty mới tăng giá trị. Sau đó Masan tiếp tục bỏ vốn để tăng sở hữu, riêng Q2/2020 chi thêm 862 triệu USD mua 12,6% The CrownX, nâng tỷ lệ sở hữu WinCommerce lên khoảng 69,2%. Cách làm này rất hợp lý vì mua WinCommerce chỉ là bước đầu - sau đó còn phải đóng cửa hàng yếu, sửa vận hành và tiếp tục đầu tư để tái cấu trúc."
+        "text": "Dựng lớp trung gian trước hệ thống cũ, rồi chuyển phần dễ nhất qua nó. Đây là bài 6: với một đội chưa từng làm việc này, rủi ro lớn nhất không phải phần khó mà là chính quy trình chuyển - và phần dễ kiểm chứng được điều đó."
       },
       {
         "type": "heading",
-        "text": "Synergy phải ra tiền"
+        "text": "Giữa chặng: đo, và phản ứng đúng cách"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Nếu chậm - làm đúng",
+          "text": "Cắt bớt phạm vi VÀ dời hạn cùng lúc. Đây là điều chỉnh lành mạnh: nó sửa lại ước lượng dựa trên thứ đã học được."
+        },
+        "right": {
+          "label": "Nếu chậm - làm sai",
+          "text": "Chỉ dời hạn mà giữ nguyên phạm vi. Bài 9 gọi đây là dấu hiệu sớm nhất: ước lượng chưa được sửa, nên lần dời thứ ba đã nằm sẵn trong kế hoạch."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Synergy thực tế ở đây không chỉ là 'có thêm cửa hàng'. Nó là thêm kênh bán cho các nhãn hàng cùng tập đoàn, có thêm dữ liệu mua sắm, và có khả năng ưu tiên danh mục hàng bán tốt hoặc biên cao hơn trên kệ. Nói thẳng: nếu chỉ mua vì có thêm điểm bán mà không biến được điểm bán thành doanh thu, biên lợi nhuận và dữ liệu, thì thương vụ chưa xứng đáng với chi phí vốn bỏ ra. Bài học M&A ở đây là target phù hợp, cấu trúc deal hợp lý, rồi sau đó phải làm cho synergy ra tiền."
+        "text": "Và đừng thêm người vào một dự án đang chậm - chi phí trao đổi tăng theo bình phương số người, nên nó thường làm mọi thứ chậm hơn."
       },
       {
-        "type": "list",
-        "items": [
-          "Tốc độ và quy mô thường quan trọng hơn việc có một chuỗi nhỏ nhưng 'đẹp' trên giấy",
-          "Stock-swap giúp chia sẻ rủi ro và upside giữa hai bên",
-          "Sau deal, vận hành mới là phần khó nhất: đóng cửa hàng yếu, cải thiện biên lợi nhuận, tận dụng dữ liệu",
-          "Synergy phải ra tiền thật - thêm cửa hàng thôi chưa đủ"
-        ]
+        "type": "heading",
+        "text": "Phần cuối"
+      },
+      {
+        "type": "paragraph",
+        "text": "Giao đích danh cho một người NGAY TỪ ĐẦU. Vấn đề của mười phần trăm cuối là phân công chứ không phải độ khó - và tới lúc chỉ còn nó thì đó là phần ít người muốn nhận nhất."
       },
       {
         "type": "closing",
         "lines": [
-          "Một target tốt không phải target hoàn hảo - mà là target đúng thứ bạn đang cần."
+          "Về cách kể lại một dự án đã xong: kể những QUYẾT ĐỊNH đã làm nó khác đi, đừng kể kết quả. Kết quả không dùng lại được vì hệ thống của người đọc khác hệ thống của bạn.",
+          "Và những quyết định nghe nhàm chán nhất - dành hai tuần định nghĩa phạm vi, chọn một con số để đo - thường là những quyết định quan trọng nhất, đồng thời cũng là những quyết định hay bị bỏ khỏi bài kể nhất."
         ]
       }
     ]

@@ -12,8 +12,18 @@
 
 export const PACE_KEY = "thtcdn_path_pace";
 
-/** Một bài mất khoảng bằng này phút, tính cả câu hỏi cuối bài. */
-export const MEDIAN_LESSON_MINUTES = 6;
+/** Một bài mất khoảng bằng này phút, tính cả câu hỏi cuối bài.
+ *
+ *  Đây là trung vị THẬT của kho, đo bằng totalMinutes trong lib/lessons-data,
+ *  và learning-path-claims.test.ts gác cho nó khớp. Đổi từ 6 xuống 5 khi kho
+ *  chuyển từ nội dung tài chính sang công nghệ.
+ *
+ *  Con số này nằm sát ranh giới hơn vẻ ngoài của nó: phân bố hiện tại có 53
+ *  bài ở mức 4 và 269 bài ở mức 5, nên vị trí trung vị (322/643) rơi đúng vào
+ *  ô cuối của nhóm 5. Một bài đổi từ 5 sang 6 là con số này lật lại. Nên khi
+ *  test đỏ ở đây, hãy đo lại phân bố trước khi kết luận có gì đó hỏng - rất
+ *  có thể chỉ là một lô bài mới vừa đi qua ranh giới. */
+export const MEDIAN_LESSON_MINUTES = 5;
 
 export interface Pace {
   perDay: 1 | 2;

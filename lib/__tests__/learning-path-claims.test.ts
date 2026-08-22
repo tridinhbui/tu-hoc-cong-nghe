@@ -12,7 +12,7 @@ import { en as enDict } from "../i18n/dictionaries/en";
 // nhãn hết đúng, và không test nào buộc nhãn khớp thực tế.
 
 /** Phải khớp MEDIAN_LESSON_MINUTES trong components/LearningPathClient.tsx. */
-const CLAIMED_MEDIAN_MINUTES = 6;
+const CLAIMED_MEDIAN_MINUTES = 5;
 
 function median(xs: number[]): number {
   const s = [...xs].sort((a, b) => a - b);

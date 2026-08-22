@@ -4994,11 +4994,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "1106": [
     {
       "fromDay": 1101,
-      "fromTitle": "IB & Phân tích, Bài 1: Quality of Earnings - đọc lợi nhuận như nhà phân tích thực thụ",
-      "text": "Quality of Earnings đánh giá lợi nhuận đến từ hoạt động lõi bền vững hay các khoản một lần không lặp lại",
+      "fromTitle": "Nền tảng nâng cao, Bài 1: Chất lượng mã đo bằng gì",
+      "text": "Chất lượng mã là chi phí thay đổi trong TƯƠNG LAI; mọi chỉ số đo hiện tại.",
       "distractors": [
-        "Nên trình bày một vùng định giá tổng hợp từ nhiều phương pháp (football field chart), không chốt một con số tuyệt đối",
-        "Comps thực chiến cần tinh chỉnh sâu hơn mã ngành: quy mô, tăng trưởng, biên lợi nhuận, mô hình kinh doanh tương đồng"
+        "Lịch sử kho mã là dấu vết hành vi thật, và gần như không ai viết lại nó để gây ấn tượng.",
+        "Viết lại rồi chuyển một lần thất bại vì đích di chuyển: hệ thống cũ vẫn đổi tiếp."
       ]
     },
     {
@@ -5014,11 +5014,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "1107": [
     {
       "fromDay": 1102,
-      "fromTitle": "IB & Phân tích, Bài 2: Comps thực chiến - chọn công ty so sánh đúng cách",
-      "text": "Comps thực chiến cần tinh chỉnh sâu hơn mã ngành: quy mô, tăng trưởng, biên lợi nhuận, mô hình kinh doanh tương đồng",
+      "fromTitle": "Nền tảng nâng cao, Bài 2: Đối chuẩn hiệu năng - đo cho đúng",
+      "text": "Trung bình giấu phần đuôi, mà phần đuôi mới là phần người dùng cảm nhận.",
       "distractors": [
-        "Nên trình bày một vùng định giá tổng hợp từ nhiều phương pháp (football field chart), không chốt một con số tuyệt đối",
-        "Equity analyst quan tâm upside tăng trưởng; credit analyst quan tâm downside protection - khả năng trả nợ đúng hạn"
+        "Chất lượng mã là chi phí thay đổi trong TƯƠNG LAI; mọi chỉ số đo hiện tại.",
+        "Lịch sử kho mã là dấu vết hành vi thật, và gần như không ai viết lại nó để gây ấn tượng."
       ]
     },
     {
@@ -5034,11 +5034,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "1108": [
     {
       "fromDay": 1103,
-      "fromTitle": "IB & Phân tích, Bài 3: Precedent Transactions - định giá qua thương vụ M&A quá khứ",
-      "text": "Precedent Transactions thường có bội số cao hơn Comps vì bao gồm control premium",
+      "fromTitle": "Nền tảng nâng cao, Bài 3: Nợ kỹ thuật - quyết định trả cái nào",
+      "text": "Nợ chỉ tính lãi khi bạn CHẠM vào nó - chỗ tệ nhất chưa chắc là chỗ đắt nhất.",
       "distractors": [
-        "Nên trình bày một vùng định giá tổng hợp từ nhiều phương pháp (football field chart), không chốt một con số tuyệt đối",
-        "Comps thực chiến cần tinh chỉnh sâu hơn mã ngành: quy mô, tăng trưởng, biên lợi nhuận, mô hình kinh doanh tương đồng"
+        "Chất lượng mã là chi phí thay đổi trong TƯƠNG LAI; mọi chỉ số đo hiện tại.",
+        "Lịch sử kho mã là dấu vết hành vi thật, và gần như không ai viết lại nó để gây ấn tượng."
       ]
     },
     {
@@ -5054,11 +5054,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "1109": [
     {
       "fromDay": 1104,
-      "fromTitle": "IB & Phân tích, Bài 4: Credit Analysis cơ bản cho nhà phân tích tín dụng",
-      "text": "Equity analyst quan tâm upside tăng trưởng; credit analyst quan tâm downside protection - khả năng trả nợ đúng hạn",
+      "fromTitle": "Nền tảng nâng cao, Bài 4: Quy ước và kiểm tra tự động",
+      "text": "Tiêu chí là có QUY TẮC RÕ hay không, không phải việc đó tốn bao nhiêu thời gian.",
       "distractors": [
-        "Nên trình bày một vùng định giá tổng hợp từ nhiều phương pháp (football field chart), không chốt một con số tuyệt đối",
-        "Comps thực chiến cần tinh chỉnh sâu hơn mã ngành: quy mô, tăng trưởng, biên lợi nhuận, mô hình kinh doanh tương đồng"
+        "Việc đầu tiên là định nghĩa xong và chọn con số đo - rẻ nhất, và quyết định mọi thứ sau.",
+        "Chất lượng mã là chi phí thay đổi trong TƯƠNG LAI; mọi chỉ số đo hiện tại."
       ]
     },
     {
@@ -5074,11 +5074,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "1110": [
     {
       "fromDay": 1105,
-      "fromTitle": "IB & Phân tích, Bài 5: Case tổng hợp - định giá một công ty bằng nhiều phương pháp",
-      "text": "Nên trình bày một vùng định giá tổng hợp từ nhiều phương pháp (football field chart), không chốt một con số tuyệt đối",
+      "fromTitle": "Nền tảng nâng cao, Bài 5: Đánh giá sức khoẻ một kho mã",
+      "text": "Lịch sử kho mã là dấu vết hành vi thật, và gần như không ai viết lại nó để gây ấn tượng.",
       "distractors": [
-        "Comps thực chiến cần tinh chỉnh sâu hơn mã ngành: quy mô, tăng trưởng, biên lợi nhuận, mô hình kinh doanh tương đồng",
-        "Equity analyst quan tâm upside tăng trưởng; credit analyst quan tâm downside protection - khả năng trả nợ đúng hạn"
+        "Việc đầu tiên là định nghĩa xong và chọn con số đo - rẻ nhất, và quyết định mọi thứ sau.",
+        "Chất lượng mã là chi phí thay đổi trong TƯƠNG LAI; mọi chỉ số đo hiện tại."
       ]
     },
     {

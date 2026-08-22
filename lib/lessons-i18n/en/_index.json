@@ -126,11 +126,6 @@
     "subtitle": "A complex cap table is the first tool you need to master when analysing a startup investment",
     "duration": "8 min"
   },
-  "case-dinh-gia-tong-hop-nhieu-phuong-phap": {
-    "title": "IB & Analysis, Lesson 5: A combined case - valuing one company by several methods",
-    "subtitle": "DCF, comps and precedent transactions give three different numbers - so which do you believe?",
-    "duration": "8 min"
-  },
   "case-hang-hang-khong-phong-ho-gia-dau": {
     "title": "Small Case - An Airline Hedges Oil Prices",
     "subtitle": "Applying theory in practice: building a hedging strategy for fuel cost"
@@ -218,11 +213,6 @@
     "subtitle": "Supply, demand, inventory - the three things that price a commodity",
     "duration": "6 min"
   },
-  "comps-thuc-chien": {
-    "title": "IB & Analysis, Lesson 2: Comps in practice - choosing the right comparable companies",
-    "subtitle": "Comparable company analysis goes wrong at the selection step, not at the arithmetic",
-    "duration": "8 min"
-  },
   "cong-bo-thong-tin-va-quan-tri-cong-ty-niem-yet": {
     "title": "Vietnam Market, Lesson 4: Disclosure and corporate governance - the small investor's first line of defence",
     "subtitle": "Related-party transactions, cross-ownership, major shareholders and the signals to read in AGM documents",
@@ -232,11 +222,6 @@
     "title": "Correlation between assets",
     "subtitle": "A measure of how much two assets move together or apart",
     "duration": "7 min"
-  },
-  "credit-analysis-co-ban-cho-nha-phan-tich": {
-    "title": "IB & Analysis, Lesson 4: Credit analysis basics for the credit analyst",
-    "subtitle": "Assessing the ability to repay is an entirely different job from assessing a share's growth potential",
-    "duration": "8 min"
   },
   "credit-debit-phan-2": {
     "title": "Journal entries in practice: from the rule to the ledger",
@@ -281,11 +266,6 @@
     "title": "Day 1 Readiness & Integration Playbook: the first 100 days after M&A",
     "subtitle": "Why most of a deal's synergy value is decided (or destroyed) within the first 100 days",
     "duration": "8 min"
-  },
-  "deal-structure-stock-vs-cash": {
-    "title": "IB & Analysis, Lesson 7: Deal structure - is the deal paid in cash or in stock?",
-    "subtitle": "How an M&A deal is paid for decides who carries the risk and who captures the upside",
-    "duration": "7 min"
   },
   "derivatives-la-gi": {
     "title": "What Are Derivatives?",
@@ -385,11 +365,6 @@
     "title": "Actuarial pricing, Lesson 2: Technical reserves - why an insurer's profit is an estimate",
     "subtitle": "Three kinds of reserve, the IBNR held for losses nobody has reported yet, and why reported profit can be wrong for years before anyone notices",
     "duration": "12 min"
-  },
-  "due-diligence-quy-trinh-tham-dinh": {
-    "title": "IB & Analysis, Lesson 8: Due Diligence - the review that runs before an M&A deal",
-    "subtitle": "Why so many deals fall apart at the 'check carefully before signing' stage",
-    "duration": "7 min"
   },
   "dung-mo-hinh-ba-bao-cao-trong-excel": {
     "title": "Excel, Lesson 3: Building a real three-statement model - links, circularity and check cells",
@@ -668,11 +643,6 @@
     "subtitle": "Tie revenue and cost back to operating quantities, so that when the plan slips you know where it slipped",
     "duration": "11 min"
   },
-  "lbo-model-co-che-co-ban": {
-    "title": "IB & Analysis, Lesson 6: The LBO model - the basic mechanics of a leveraged buyout",
-    "subtitle": "Why a Private Equity fund can buy a company with very little equity of its own",
-    "duration": "8 min"
-  },
   "lo-trinh-ifrs-tai-viet-nam": {
     "title": "Standards & Tax, Lesson 2: Converting to IFRS - what changes on the statements",
     "subtitle": "Why a change of standards makes the ratios jump while the business itself is no different",
@@ -722,11 +692,6 @@
     "title": "Deep-dive case: Market Fair Value",
     "subtitle": "The P/E multiple and growth companies",
     "duration": "6 min"
-  },
-  "masan-wincommerce-case-study": {
-    "title": "IB & Analysis, Lesson 10: Masan buys WinCommerce - why this chain?",
-    "subtitle": "The stock swap, retail coverage and the strategic logic behind a real M&A deal",
-    "duration": "8 min"
   },
   "mau-sai-so-chuan-va-khoang-tin-cay": {
     "title": "Quant, Lesson 2: Samples, standard errors and confidence intervals - how precise is your number really",
@@ -856,20 +821,10 @@
     "subtitle": "FCF vs net income - when it makes sense to hand cash back to shareholders",
     "duration": "6 min"
   },
-  "post-merger-integration-vi-sao-that-bai": {
-    "title": "IB & Analysis, Lesson 9: Post-Merger Integration - why so many M&A deals fail",
-    "subtitle": "Signing the deal is only the start - the hard part begins after the ink dries",
-    "duration": "7 min"
-  },
   "power-query-lam-sach-du-lieu": {
     "title": "Excel, Lesson 5: Power Query - clean the data once, reuse it forever",
     "subtitle": "A repeatable cleaning process instead of copying and hand-fixing every month",
     "duration": "11 min"
-  },
-  "precedent-transactions-thuc-chien": {
-    "title": "IB & Analysis, Lesson 3: Precedent transactions - valuing from past M&A deals",
-    "subtitle": "Why M&A multiples usually sit above the trading multiples of listed companies in the same industry",
-    "duration": "7 min"
   },
   "prospect-theory-khung-ly-thuyet-chinh-thuc": {
     "title": "Prospect Theory: the formal framework behind every behavioural bias",
@@ -884,11 +839,6 @@
   "put-option-la-gi": {
     "title": "What Is a Put Option?",
     "subtitle": "The right to sell an asset at a fixed price - expecting a price drop or wanting to insure a portfolio"
-  },
-  "quality-of-earnings-nang-cao": {
-    "title": "IB & Analysis, Lesson 1: Quality of earnings - reading profit like a real analyst",
-    "subtitle": "Two companies can report the same EPS and have very different earnings quality",
-    "duration": "8 min"
   },
   "quan-ly-rui-ro-lai-suat-doanh-nghiep": {
     "title": "CFO & Operations, Lesson 6: Managing corporate interest rate risk",
