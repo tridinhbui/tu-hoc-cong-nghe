@@ -34,7 +34,7 @@
     {
       "question": "What does the equals sign in a = 5 mean?",
       "options": [
-        "A permanent definition, meaning a will hold the value 5 for the rest of the program",
+        "A permanent definition, meaning a holds 5 for the whole program",
         "Comparison, meaning it checks whether a currently equals 5",
         "Assignment, meaning the name a now points at the value 5",
         "A type declaration, meaning it tells the machine that a is an integer"
@@ -44,9 +44,9 @@
     {
       "question": "Why should a variable's name say what it holds?",
       "options": [
-        "Because linting tools report an error whenever a variable name is a single character",
-        "Because a longer name helps the program run faster when it is processing data",
-        "Because the translator uses the variable's name to infer a suitable data type for it",
+        "Because linting tools reject any single-character variable name",
+        "Because a longer name makes the program run faster on data",
+        "Because the translator infers a data type from the name",
         "Because source code is read many more times than it is written"
       ],
       "explanation": "A piece of code is written once and read back dozens of times, by colleagues and by you six months later. totalAmount says what it holds in half a second, while x forces the reader to trace back to wherever it was assigned. Variable names have no effect at all on speed - this is purely about the reader."
@@ -55,9 +55,9 @@
       "question": "How does a constant differ from an ordinary variable?",
       "options": [
         "A constant cannot be reassigned once its value has been set the first time",
-        "A constant can only hold numbers, whereas an ordinary variable holds any kind of data",
-        "A constant exists for the whole program, whereas an ordinary variable is cleared each line",
-        "A constant is stored on disk, whereas an ordinary variable only sits in temporary memory"
+        "A constant holds only numbers, an ordinary variable anything",
+        "A constant lasts the whole program, while a variable is cleared each line",
+        "A constant is stored on disk, a variable only in temporary memory"
       ],
       "explanation": "Declaring a constant is a statement to the reader that this value does not change, and the translator helps you keep your word by reporting an error if anybody reassigns it. The good habit is to reach for a constant by default and switch to a variable only when the value genuinely has to change - it narrows the set of things that can shift unexpectedly."
     },
@@ -77,7 +77,7 @@
         "It creates a new variable also called a, independent of the a that already existed",
         "A meaningless mathematical statement, since no number equals itself plus one",
         "It works out a's current value plus one, then assigns the result back to a",
-        "It compares the value of a against the value of a plus one to see whether they match"
+        "It compares a against a plus one to see whether they match"
       ],
       "explanation": "Read it right to left and it falls out immediately: the right-hand side is worked out first into a value, then the left-hand side receives it. Seen as a mathematical statement it is absurd, and this is exactly where the mathematical reading of the equals sign has to go. The pattern is so common that most languages have a shorthand for it."
     }
@@ -92,10 +92,10 @@
   "practicePrompt": {
     "question": "score = 10, then score = score * 2, then score = score - 5. What is the final value?",
     "options": [
-      "15 (= 10 × 2, then subtract 5)",
-      "25 (= 10, with both operations added on top of the original value)",
-      "10 (= the first value assigned, since the later operations were not saved)",
-      "5 (= 10 minus 5 first and only then doubled, i.e. the wrong order)"
+      "15 (= 10 × 2, then subtract 5, applied in that order)",
+      "25 (= 10, with both operations added onto the original)",
+      "10 (= the first value, later operations not saved)",
+      "5 (= 10 minus 5 first, then doubled: the wrong order)"
     ],
     "explanation": "Each line runs in turn and each one overwrites the old value: 10 becomes 20, then 20 becomes 15. The way to check is to write the variable's value beside each line - that habit clears up most of the confusion of the first week."
   },

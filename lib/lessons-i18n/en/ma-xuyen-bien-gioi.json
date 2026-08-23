@@ -1,0 +1,176 @@
+{
+  "title": "Taking over a system from another organisation",
+  "subtitle": "Technical barriers can be measured; operational ones are what wreck the plan",
+  "duration": "9 min",
+  "whyItMatters": "Taking on a system written by other people, to other conventions, for another organisation is something almost everyone who stays in this job long enough meets - and it has the highest failure rate of anything in it.",
+  "openingQuestion": "You are taking over a system from a team being disbanded. What is the first thing to do?",
+  "openingOptions": [
+    "Rebuild it from scratch on your own machine without reading the code",
+    "Read the entire source so you understand the architecture before touching anything at all",
+    "Rewrite the core to your own team's conventions so it becomes easier to maintain later on",
+    "Meet the main users to learn what the system is actually doing for them day to day"
+  ],
+  "explanation": "Being able to rebuild it from scratch is the only test that proves you have everything: code, config, environment variables, sample data, and the services it depends on. Reading the code and meeting users are both necessary and both come later, because either can be done on top of a wrong understanding without that ever surfacing. Rebuilding either runs or it does not.",
+  "diagram": [
+    {
+      "label": "Rebuild from scratch to find what is missing"
+    },
+    {
+      "label": "Run both in parallel and compare results"
+    },
+    {
+      "label": "Take on the on-call responsibility"
+    },
+    {
+      "label": "The old team stops supporting"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A handover completed on paper",
+    "description": "A team took on six services from a department being closed. The handover session ran two hours, with documentation and diagrams, and everyone nodded. Three weeks later the person who wrote them resigned. Six months on, needing to change one rule, the new team discovered one of the six read its configuration from a host that appeared on no diagram, stood up four years earlier by somebody who had already left."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Handovers rarely fail because the code is hard. They fail because of the things that are not in the code: unwritten conventions, dependencies recorded nowhere, and the people who knew about them having gone."
+    },
+    {
+      "type": "heading",
+      "text": "Two kinds of barrier"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Technical barriers",
+        "text": "An unfamiliar language, a different architecture, different tooling. Unpleasant, but measurable, estimable, and always solvable with time."
+      },
+      "right": {
+        "label": "Operational barriers",
+        "text": "Unwritten conventions, a different standard for what counts as finished, and dependencies nobody recorded. Not measurable, so nobody plans for them."
+      }
+    },
+    {
+      "type": "paragraph",
+      "text": "A handover plan is nearly always built around the first kind, because it is the only kind that can be written down as tasks. Then the project runs late because of the second kind, and nobody can say what it ran late for."
+    },
+    {
+      "type": "heading",
+      "text": "Three things to get before the last person leaves"
+    },
+    {
+      "type": "list",
+      "items": [
+        "A list of everything the system calls outward, including whatever runs only once a month",
+        "A way to rebuild the whole thing from a blank machine, performed by hand at least once",
+        "The names of the people who use this system and what they depend on it to do"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "The most dangerous dependency is the monthly one",
+      "text": "A system that runs daily will reveal all its dependencies in the first week. Anything that runs only at month end, quarter end, or on a rare event stays silent through the whole handover and then breaks at the moment there is nobody left to ask. The cheapest way to find them is to read the schedule and the access list, not to read the code."
+    },
+    {
+      "type": "heading",
+      "text": "Run in parallel before you take it on"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most expensive stage, and the most worthwhile, is running the old system and your rebuilt one side by side and comparing results daily. It surfaces every difference in configuration and data that no handover session ever surfaces, and it surfaces them while the old team can still answer."
+    },
+    {
+      "type": "heading",
+      "text": "Do not rewrite yet"
+    },
+    {
+      "type": "paragraph",
+      "text": "The natural reflex on receiving somebody else's code is to rewrite it the way you are used to. This is the most expensive mistake in the whole process, because most of the odd-looking places in old code are places where somebody fixed a real bug you do not know about yet. Leave them alone until you understand why they were written that way - and understanding here means finding the change that produced them."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Technical barriers can be measured, so they get planned for; operational ones cannot.",
+        "Being able to rebuild from a blank machine is the only test that does not lie."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why is rebuilding from a blank machine the first thing to do?",
+      "options": [
+        "Because it proves you already have everything you need",
+        "Because it lets the new team experiment freely without affecting the version running live",
+        "Because it is the fastest way to understand the overall architecture of an unfamiliar system",
+        "Because it creates a clean environment to compare against the old one when they differ"
+      ],
+      "explanation": "Every other way of getting familiar can proceed on an incomplete understanding without that ever showing. Rebuilding either runs or it does not, and every time it does not something missing has just been named."
+    },
+    {
+      "question": "Which kind of dependency is most dangerous during a handover?",
+      "options": [
+        "Anything that only runs at month end or quarter end",
+        "Anything calling out to an external service that a different vendor operates and maintains",
+        "Anything written in a language nobody on the receiving team has ever worked with before",
+        "Anything running continuously at high volume, so it cannot be stopped to be examined"
+      ],
+      "explanation": "The other three surface immediately and all get written into the plan. The monthly one stays silent throughout the handover and then breaks at the moment there is nobody left to ask, which is the definition of the worst kind of risk."
+    },
+    {
+      "question": "Why are handover plans usually short of what is needed?",
+      "options": [
+        "Because only technical barriers can be written down as tasks",
+        "Because the handover window is set by the closing team's schedule rather than by the work",
+        "Because the receiving team underestimates a system whose code they have never read before",
+        "Because stakeholders are rarely consulted while the plan is being drawn up in the first place"
+      ],
+      "explanation": "A plan can only contain things that can be expressed as work. Unwritten conventions and differing standards for what counts as finished cannot be, so they are absent from the plan and present in the delay."
+    },
+    {
+      "question": "Why should you not rewrite the odd-looking code straight away?",
+      "options": [
+        "Because most odd-looking places are where somebody fixed a real bug",
+        "Because rewriting loses the change history, making it harder to trace bugs back later on",
+        "Because the new team lacks the tests to know whether the rewrite is still correct or not",
+        "Because rewriting takes longer than learning to read the code that is already there"
+      ],
+      "explanation": "The other three are all true and all reasons to be careful. The first is a reason not to do it at all: deleting an odd-looking place reopens a closed bug, and you will meet it again without knowing you are meeting it again."
+    },
+    {
+      "question": "What is the greatest value of running two systems in parallel?",
+      "options": [
+        "It exposes differences while the old team can still answer",
+        "It allows traffic to be moved across gradually and safely, a portion at a time",
+        "It provides a fallback to return to if the new system runs into a serious incident",
+        "It measures the performance gap between the two so you know whether tuning is needed"
+      ],
+      "explanation": "The other three are real and all of them survive if you run in parallel later. The first one expires: every week that passes is another person gone, and why is this different becomes a question nobody can answer."
+    }
+  ],
+  "keyTakeaways": [
+    "Rebuilding from a blank machine is the only test that proves you have everything",
+    "Operational barriers cannot be measured, so they miss the plan and then delay it",
+    "Monthly dependencies stay silent through the handover and break when nobody is left",
+    "Leave odd code alone until you find the change that produced it"
+  ],
+  "practicePrompt": {
+    "question": "A system has 12 scheduled jobs: 8 daily, 3 weekly, 1 quarterly. After four weeks of handover, how many have you never seen run?",
+    "options": [
+      "1",
+      "4 (= counting the three weekly jobs too, although each has already run four times)",
+      "0 (= assuming four weeks is enough for every scheduled job to appear at least once)",
+      "3 (= counting the weekly group and missing the quarterly one exactly)"
+    ],
+    "explanation": "The eight daily jobs ran 28 times, the three weekly ones ran 4 times, and the quarterly one has not run at all. That single job is the one you know nothing about, and it will run for the first time after the old team has been disbanded."
+  },
+  "summary": {
+    "keyIdea": "Technical barriers can be measured and solved; operational ones cannot",
+    "commonMistake": "Planning a handover around how hard the code is",
+    "action": "List every scheduled job on a system you look after, with its interval."
+  },
+  "application": {
+    "title": "Three things before the last person leaves",
+    "message": "Rebuild from a blank machine once by hand. Get the list of everything the system calls outward. Write down the users and what they depend on.",
+    "secondary": "All three expire at the same moment as the contract of the last person who knew."
+  },
+  "slug": "ma-xuyen-bien-gioi"
+}

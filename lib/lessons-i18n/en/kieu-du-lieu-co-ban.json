@@ -44,10 +44,10 @@
     {
       "question": "What values can a boolean hold?",
       "options": [
-        "Exactly two values: true and false",
+        "Exactly two values: true and false, and nothing else",
         "Three values: true, false, and undetermined",
-        "Any number, where zero means false and everything else means true",
-        "Two strings whose contents are the words true and false"
+        "Any number at all, with zero false and the rest true",
+        "Two strings reading the words true and false"
       ],
       "explanation": "A boolean has exactly two values, and it is the result of every comparison. Some languages have rules that treat a few other values as false inside a condition - zero, say, or the empty string - but that is a conversion rule belonging to the language and it does not widen the boolean type."
     },
@@ -55,7 +55,7 @@
       "question": "What does explicit type conversion mean?",
       "options": [
         "You declare a variable's type up front at the moment you create it in the program",
-        "You call the conversion yourself to turn a value from one type into another, rather than letting the language guess",
+        "You declare a variable's type up front when you create it in the program",
         "You let the translator pick the most suitable type based on the value assigned into it",
         "You use a comment in the source to record which data type a variable currently holds"
       ],
@@ -74,9 +74,9 @@
     {
       "question": "How does a statically typed language differ from a dynamically typed one?",
       "options": [
-        "Static typing requires declaring a variable's name first, whereas dynamic typing needs no declaration",
-        "Static typing has only a few fixed data types, whereas dynamic typing lets you create new ones",
-        "Static typing is for small programs, whereas dynamic typing is for large-scale systems",
+        "Static typing declares a variable's name first, dynamic typing does not",
+        "Static typing offers only a few fixed data types, whereas dynamic typing lets you create new ones",
+        "Static typing suits small programs, dynamic typing large-scale systems",
         "Static typing checks types before running; dynamic typing checks them while running"
       ],
       "explanation": "A statically typed language catches type errors at translation time, before a single line runs - in exchange you write more. A dynamically typed language is more flexible and shorter, but a type error only shows up when execution reaches that exact line, sometimes on a user's machine."
@@ -93,9 +93,9 @@
     "question": "You store prices as floats and after many additions the total is off by a few pence. What is the right fix?",
     "options": [
       "Store money as integers of the smallest unit, counting in pence for instance",
-      "Rounding the final result to two decimal places is enough to make the drift go away",
-      "Switch to strings for prices, because strings are not subject to rounding error",
-      "Add from the largest number down to the smallest so the error cannot accumulate"
+      "Rounding the final result to two decimal places is enough to clear the drift",
+      "Switch to strings for prices, which have no rounding error",
+      "Add from the largest number down so the error cannot accumulate"
     ],
     "explanation": "This is what real financial systems do: store 12500 rather than 125.00 and only divide at display time. The error disappears entirely because integers are exact. Rounding at the end only hides the symptom, and strings cannot be added."
   },

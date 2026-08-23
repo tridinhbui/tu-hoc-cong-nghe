@@ -1,0 +1,162 @@
+{
+  "title": "Conditional handover: how long the old team stays",
+  "subtitle": "When the two sides disagree about readiness, let a milestone answer",
+  "duration": "8 min",
+  "whyItMatters": "Every handover carries a question nobody can answer at the start: is the receiving team ready. A milestone structure is the only way to answer it with evidence rather than with a feeling.",
+  "openingQuestion": "The old team says the system is ready to hand over, the new team says it is not. How do you settle it?",
+  "openingOptions": [
+    "Set a measurable milestone and keep the old team until it is met",
+    "Extend the handover by another month and then reassess the situation at the end of it",
+    "Let the new team take responsibility with the old team supporting on request for three months",
+    "Ask the old team to write more documentation until the new team feels it is enough"
+  ],
+  "explanation": "The other three all move the question to a later date without adding any information that would answer it. A measurable milestone turns a disagreement about feelings into a test: the new team handles three incidents in a row without calling anyone, or ships twice in a row without rolling back. Met means done; not met means both sides can see why.",
+  "diagram": [
+    {
+      "label": "Disagreement about readiness"
+    },
+    {
+      "label": "Pick a measurable milestone with a deadline"
+    },
+    {
+      "label": "The old team stays but does not do the work"
+    },
+    {
+      "label": "Milestone met, responsibility transfers fully"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Three months of support on request",
+    "description": "A handover agreed that the old team would support on request for three months. In the first month the new team asked daily, in the second weekly, in the third not at all. Everyone read that as a good sign. In fact the new team had stopped asking because they felt awkward, and they had handled three incidents by restarting the service. By the fourth month, when restarting no longer worked, there was nobody left to ask."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "A handover is a transfer of responsibility, and responsibility does not transfer in a meeting. It transfers when the receiving team has actually handled the thing they will have to handle."
+    },
+    {
+      "type": "heading",
+      "text": "Why time is a poor milestone"
+    },
+    {
+      "type": "paragraph",
+      "text": "Three months of support is easy to write into a document and says nothing about readiness. It can be too long for a simple service and too short for one with a quarterly cycle. Worse, it rewards silence: if the new team is reluctant to ask, time passes anyway and the deadline arrives anyway."
+    },
+    {
+      "type": "heading",
+      "text": "What a good milestone looks like"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The new team handles three incidents in a row without calling anyone from the old team",
+        "The new team ships twice in a row without having to roll back because of a new fault",
+        "The system passes through one complete cycle, including anything that runs quarterly",
+        "At least two people on the receiving side understand it well enough to be on call, not one"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "These four share a property: they measure what the new team can do rather than what the old team said. And all four can only be reached by letting the new team do the work for real, so they also define how the old team ought to behave during that period."
+    },
+    {
+      "type": "callout",
+      "label": "The old team stays but does not do the work",
+      "text": "This is the hardest clause to hold and the one that decides everything. When an incident hits at two in the morning, somebody from the old team knows how to fix it in three minutes, while letting the new team fix it takes forty. Choosing the three minutes is reasonable for that night and destroys the whole handover, because the milestone never advances and nobody notices."
+    },
+    {
+      "type": "heading",
+      "text": "What happens if the milestone is not met"
+    },
+    {
+      "type": "paragraph",
+      "text": "Write it in advance, while the conversation is still easy. There are usually three ways out: extend by another cycle, narrow the scope of the handover and keep the hardest part, or conclude that this system should be replaced rather than taken on. The third sounds extreme and is sometimes the cheapest, and it only gets considered if it was written down from the start."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Time does not measure readiness, it measures time.",
+        "The old team stays to answer, not to do the work - that is the whole agreement."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why is 'support for three months' a poor milestone?",
+      "options": [
+        "Because it passes even when the new team has done nothing at all",
+        "Because three months is rarely enough for systems of moderate complexity or above",
+        "Because it does not state what priority or response time the old team owes the new one",
+        "Because it forces the old team to hold people who have already moved to other work"
+      ],
+      "explanation": "A milestone has to distinguish ready from not ready. Time distinguishes nothing at all - it passes identically in both cases, so it is not a milestone but only a deadline."
+    },
+    {
+      "question": "The new team stops asking questions in the third month. How should you read that?",
+      "options": [
+        "As ambiguous data - it could be understanding or it could be reluctance",
+        "As a good sign that the transfer of knowledge has gone the way it was meant to",
+        "As a bad sign that the new team is avoiding the harder parts of the system entirely",
+        "As normal, because question counts always fall over time in any handover of this kind"
+      ],
+      "explanation": "A falling question count is a two-valued signal with no way to tell the two apart from outside. That is exactly why the milestone has to measure what the new team can do rather than an indirect sign like how often they ask."
+    },
+    {
+      "question": "An incident at two in the morning that the old team can fix in three minutes. Who should fix it?",
+      "options": [
+        "The new team, with somebody from the old team sitting beside them answering",
+        "The old team, because the shorter recovery means fewer users are affected by it",
+        "The old team fixes it and explains what happened to the new team the following morning",
+        "It depends on severity - the old team for large incidents and the new team for small ones"
+      ],
+      "explanation": "This is where every handover breaks, and it breaks through a chain of reasonable decisions. Every time three minutes is chosen the milestone fails to advance, and not one of those choices looks like a mistake."
+    },
+    {
+      "question": "Why write down in advance what happens if the milestone is missed?",
+      "options": [
+        "Because once it is missed every option becomes a negotiation",
+        "Because stakeholders need to know the risk in advance so they can prepare a fallback plan",
+        "Because it helps the new team understand how seriously the milestones were meant to be taken",
+        "Because otherwise the old team may leave the moment the deadline passes, milestone or not"
+      ],
+      "explanation": "By the time the milestone is missed both sides are tired and both have reasons to blame the other. A way out written while the conversation was still easy is the only thing keeping that decision from depending on who is more tired."
+    },
+    {
+      "question": "Which way out gets forgotten when a system cannot be handed over?",
+      "options": [
+        "Concluding that it should be replaced rather than taken on",
+        "Splitting the system into smaller parts and handing them over one at a time in sequence",
+        "Hiring somebody from the old team back on a short contract to keep supporting it",
+        "Keeping ownership with the old team and transferring only day-to-day operations across"
+      ],
+      "explanation": "The other three all assume the system is worth keeping, and that assumption is rarely tested. A system nobody can hand over is sometimes a system at the end of its life, and replacing it is the cheapest way out."
+    }
+  ],
+  "keyTakeaways": [
+    "Time does not measure readiness; only a milestone about work does",
+    "The old team stays to answer, not to do the work, including at two in the morning",
+    "A falling question count is a two-valued signal, not a good sign",
+    "Write the way out in advance, while the conversation is still easy"
+  ],
+  "practicePrompt": {
+    "question": "A system has a quarterly job. What is the minimum time for the milestone 'passes one complete cycle'?",
+    "options": [
+      "Three months",
+      "One month (= counting only the cycles of the daily and weekly scheduled jobs)",
+      "Six months (= requiring the quarterly cycle to repeat twice over to be certain)",
+      "One year (= mistaking a quarterly cycle for one measured against the financial year)"
+    ],
+    "explanation": "The longest cycle sets the minimum, so a quarterly job puts a floor of three months. This is why a work-based milestone and a time-based one sometimes coincide - but that three-month figure comes from the system rather than from the document."
+  },
+  "summary": {
+    "keyIdea": "Transfer responsibility when the new team has done it, not when the deadline passes",
+    "commonMistake": "Letting the old team fix it because it is faster that night",
+    "action": "Write three measurable milestones for a handover you are part of."
+  },
+  "application": {
+    "title": "Four milestones and one way out",
+    "message": "Three incidents handled alone. Two releases without a rollback. One complete cycle. Two people who can be on call. And one line saying what happens if they are not met.",
+    "secondary": "The first four measure the new team; the last line protects both sides from the tired version of themselves."
+  },
+  "slug": "ma-cau-truc-earnout"
+}

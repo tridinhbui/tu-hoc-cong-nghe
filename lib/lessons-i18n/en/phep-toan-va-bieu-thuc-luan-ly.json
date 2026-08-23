@@ -34,20 +34,20 @@
     {
       "question": "How do one equals sign and two equals signs differ?",
       "options": [
-        "One is used for numbers, while two is used when comparing two pieces of text",
+        "One is for numbers, two is for comparing two pieces of text",
         "One assigns a value, two compares whether things are equal",
-        "One compares both type and value, while two compares only the value",
-        "The two spellings are entirely equivalent and differ only by presentation convention"
+        "One compares type and value, two compares only the value",
+        "The two spellings are equivalent and differ only by convention"
       ],
       "explanation": "This is the classic mistake because mathematics has only one equals sign. The danger is that many languages accept both spellings inside a condition: write one by accident and the program still runs, but it assigns a value and then treats the assigned result as the condition, so the branch either always runs or never does."
     },
     {
       "question": "What does NOT do to a boolean value?",
       "options": [
-        "Keeps the value but marks it to be skipped at the next check",
-        "Turns it into a null value to signal that the condition is undetermined",
+        "Keeps the value but marks it skipped at the next check",
+        "Turns it into null to signal the condition is undetermined",
         "Inverts it: true becomes false and false becomes true",
-        "Turns it into a number, where true is one and false is zero"
+        "Turns it into a number, with true one and false zero"
       ],
       "explanation": "Negation is very useful, but overused it makes code hard to read: a condition with three nested negations forces the reader to solve a logic puzzle in their head. When you see that, there is usually a way to rewrite it positively by flipping the comparison instead."
     },
@@ -67,14 +67,14 @@
         "Because the names explain what each side means, turning logic into something readable",
         "Because a shorter expression makes the program compute noticeably faster",
         "Because the language limits how many comparisons may appear in one condition",
-        "Because intermediate variables help the language choose a better evaluation order"
+        "Because intermediate variables help the language pick a better evaluation order"
       ],
       "explanation": "A condition made of five comparisons joined by ANDs and ORs is not something anyone reads in one pass. Split it into two variables called isOldEnough and hasIdentification and join those two, and the condition reads almost like a sentence. Performance is unchanged - the benefit belongs entirely to the reader."
     },
     {
       "question": "What is the modulo operator for?",
       "options": [
-        "Dividing two numbers and automatically rounding the result down to the nearest integer",
+        "Dividing two numbers and rounding the result down to the nearest integer",
         "Taking the remainder of a division, often used to test whether a number divides evenly",
         "Working out one number as a percentage of another number supplied alongside it",
         "Turning a float into an integer by discarding its decimal part"

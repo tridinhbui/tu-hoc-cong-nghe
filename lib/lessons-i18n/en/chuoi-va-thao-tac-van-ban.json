@@ -35,9 +35,9 @@
       "question": "Why are strings in many languages described as immutable?",
       "options": [
         "Because every editing operation produces a new string rather than changing the original in place",
-        "Because once assigned, a variable holding that string may not be assigned again",
+        "Because once assigned, the variable holding that string may never be assigned again",
         "Because the string's contents live on disk and so cannot be edited while running",
-        "Because a string can only hold characters, not numbers or boolean values"
+        "Because a string is only ever able to hold characters, and never numbers or boolean values of any kind"
       ],
       "explanation": "Calling a function that upper-cases a string does not change the original variable - it returns a new string, and you have to catch that result. Plenty of beginners call the function, print the old variable, and conclude the function is broken. A second consequence: joining strings inside a long loop is expensive, because each join creates a new string."
     },
@@ -47,7 +47,7 @@
         "It runs many times faster because languages optimise specially for this spelling",
         "It is far easier to read, since the sentence keeps its shape and only the changing part is a slot",
         "It automatically converts every numeric value to a string before joining them",
-        "It checks the spelling of the fixed text sitting between the slots"
+        "It checks the spelling of the fixed text sitting between the slots there"
       ],
       "explanation": "A sentence assembled from five plus signs and four quote marks is hard to read and easy to lose a space in. Interpolation keeps the sentence's shape and leaves a slot only where something varies, so you can picture the result at a glance. The benefit is purely for the reader; performance is much the same."
     },

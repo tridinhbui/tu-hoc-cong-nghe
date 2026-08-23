@@ -47,7 +47,7 @@
         "Because source code is written as machine instructions and so runs on every kind of processor",
         "Because every operating system in use today shares one identical set of machine instructions",
         "Because the translation stage is built separately for each platform, while the source stays as it is",
-        "Because the operating system rewrites the source code to suit itself the moment you open the file"
+        "Because the operating system quietly rewrites your source code to suit itself the moment you open that file"
       ],
       "explanation": "Source code is text, and text is the same everywhere. What has to be built separately per platform is the translating program and the system libraries it calls. That is also why you have to install an interpreter or a compiler toolchain that matches your machine before anything will run."
     },
@@ -65,8 +65,8 @@
       "question": "How do syntax errors and logic errors differ?",
       "options": [
         "A syntax error stops the program running; a logic error lets it run and give a wrong answer",
-        "A syntax error shows up at run time, whereas a logic error is caught while you are still typing",
-        "A syntax error is caused by the machine, while a logic error is always caused by the person writing",
+        "A syntax error shows up at run time, a logic error while you type",
+        "A syntax error comes from the machine, a logic error from the writer",
         "A syntax error only exists in compiled languages, and a logic error only in interpreted ones"
       ],
       "explanation": "A syntax error is the kindest kind: the translator points straight at the offending line and you fix it in a minute. Logic errors are the frightening ones - the code runs smoothly, says nothing, and produces a wrong number you only discover when somebody reconciles it. Most debugging time in this job goes on the second kind."
@@ -74,10 +74,10 @@
     {
       "question": "What form is source code stored in on disk?",
       "options": [
-        "A compressed binary file that only opens in the exact tool that created it",
-        "A plain text file that opens in any text editor at all",
-        "An entry in a database that the development environment manages privately",
-        "A file in a format specific to each language, unreadable by the naked eye"
+        "A compressed binary file, opening only in the tool that made it",
+        "A plain text file that opens in any ordinary text editor at all",
+        "An entry in a database the development environment keeps private",
+        "A format specific to each language, unreadable by the naked eye"
       ],
       "explanation": "This surprises a lot of beginners: source code is nothing but plain text. You can write it in Notepad, and an extension like .py or .js only tells the tools how to treat it rather than changing what the file is. Precisely because it is text, Git can compare it line by line and you can read the history of changes."
     }
@@ -93,9 +93,9 @@
     "question": "The program runs, reports no error at all, and prints the wrong total. What kind of error is this?",
     "options": [
       "A logic error, because the code is syntactically fine but does the wrong thing",
-      "A syntax error, because some punctuation mark has certainly been mistyped in an expression",
-      "A translator error, because it translated your source code into machine instructions wrongly",
-      "A hardware error, because the processor got one of the additions wrong while running"
+      "A syntax error, because a punctuation mark was surely mistyped",
+      "A translator error, because it turned your source into the wrong instructions",
+      "A hardware error, because the processor got an addition wrong"
     ],
     "explanation": "That the program ran to the end means the syntax was correct - the translator understood what you wrote. A wrong result means what you wrote was not what you meant. The translator and the processor are almost never the culprit, and looking there will have you searching in the wrong place all afternoon."
   },
