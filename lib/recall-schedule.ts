@@ -3009,10 +3009,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 162,
       "fromTitle": "SLI, SLO và SLA - ba thứ hay bị nhầm",
-      "text": "SLI là phép đo, SLO là mục tiêu nội bộ, SLA là hợp đồng có tiền phạt.",
+      "text": "SLI là phép đo - thường là tỷ lệ thành công hoặc độ trễ ở một phân vị cụ thể.",
       "distractors": [
-        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
-        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
+        "Luồng chính lo cả chạy mã, nhận thao tác và vẽ màn hình."
       ]
     },
     {
@@ -3158,10 +3158,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 162,
       "fromTitle": "SLI, SLO và SLA - ba thứ hay bị nhầm",
-      "text": "SLI là phép đo, SLO là mục tiêu nội bộ, SLA là hợp đồng có tiền phạt.",
+      "text": "SLI là phép đo - thường là tỷ lệ thành công hoặc độ trễ ở một phân vị cụ thể.",
       "distractors": [
-        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
-        "Bốn con số: lưu lượng, tỷ lệ lỗi, độ trễ, mức bão hoà."
+        "Theo dõi chi phí trên mỗi đơn vị công việc, không chỉ tổng chi phí.",
+        "Luồng chính lo cả chạy mã, nhận thao tác và vẽ màn hình."
       ]
     }
   ],
@@ -3189,10 +3189,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 171,
       "fromTitle": "Đo thời gian phát hiện và thời gian hồi phục",
-      "text": "Đếm số sự cố khuyến khích gộp nhiều vấn đề thành một để con số đẹp hơn.",
+      "text": "Đếm số sự cố khuyến khích gộp lại cho đẹp; hai con số thời gian thì đo bằng phân vị.",
       "distractors": [
-        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
-        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
+        "Chi phí thật là số lần bị ĐÁNH THỨC, không phải số ngày trực.",
+        "Tiêu chí duy nhất: có ai phải làm gì NGAY không. Không thì đó là mục công việc."
       ]
     },
     {
@@ -3338,10 +3338,10 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     {
       "fromDay": 171,
       "fromTitle": "Đo thời gian phát hiện và thời gian hồi phục",
-      "text": "Đếm số sự cố khuyến khích gộp nhiều vấn đề thành một để con số đẹp hơn.",
+      "text": "Đếm số sự cố khuyến khích gộp lại cho đẹp; hai con số thời gian thì đo bằng phân vị.",
       "distractors": [
-        "Không đổ lỗi vì lý do THỰC DỤNG: người ta sẽ kể bớt ở lần sau.",
-        "Hai nhóm - tốc độ và ổn định - KHÔNG đánh đổi nhau như trực giác nói."
+        "Chi phí thật là số lần bị ĐÁNH THỨC, không phải số ngày trực.",
+        "Tiêu chí duy nhất: có ai phải làm gì NGAY không. Không thì đó là mục công việc."
       ]
     }
   ],
@@ -3388,11 +3388,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "186": [
     {
       "fromDay": 181,
-      "fromTitle": "Derivatives là gì?",
-      "text": "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác",
+      "fromTitle": "Vì sao cần xử lý bất đồng bộ",
+      "text": "Tiêu chí: người dùng có cần kết quả để đi tiếp không - không phải việc đó tốn bao lâu.",
       "distractors": [
         "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
+        "Mỗi lớp dự phòng thêm vào cũng là một thứ nữa có thể hỏng."
       ]
     },
     {
@@ -3408,11 +3408,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "187": [
     {
       "fromDay": 182,
-      "fromTitle": "Forward Contract là gì?",
-      "text": "Forward: hợp đồng riêng tư (OTC), khóa giá mua/bán trong tương lai",
+      "fromTitle": "Hàng đợi - ba phần và một hợp đồng",
+      "text": "Hàng đợi giao tin nhắn nhưng CHƯA xoá; nó chỉ xoá khi nhận được xác nhận.",
       "distractors": [
-        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
+        "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống.",
+        "Cam kết của các phụ thuộc NHÂN với nhau, nên trần của bạn thấp hơn cái thấp nhất."
       ]
     },
     {
@@ -3428,11 +3428,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "188": [
     {
       "fromDay": 183,
-      "fromTitle": "Futures Contract là gì?",
-      "text": "Futures: chuẩn hóa, giao dịch qua sàn, có clearing house đảm bảo",
+      "fromTitle": "Hàng đợi so với xuất bản và đăng ký",
+      "text": "Hàng đợi: một tin, một người làm. Xuất bản: một sự kiện, nhiều người nghe.",
       "distractors": [
-        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
+        "Độ tin cậy là đánh đổi có giá - câu hỏi là mức nào đủ, không phải làm sao cao hơn.",
+        "Hệ thống không tự nhiên hỏng - cái vừa đổi là ứng viên số một."
       ]
     },
     {
@@ -3448,11 +3448,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "189": [
     {
       "fromDay": 184,
-      "fromTitle": "Option là gì?",
-      "text": "Option: quyền (không phải nghĩa vụ) mua/bán ở strike price",
+      "fromTitle": "Bảo đảm giao nhận - ba mức",
+      "text": "Ít nhất một lần là mức thực tế: hệ quả trực tiếp của cơ chế xác nhận.",
       "distractors": [
-        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
+        "Tiêu chí: người dùng có cần kết quả để đi tiếp không - không phải việc đó tốn bao lâu.",
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng."
       ]
     },
     {
@@ -3468,11 +3468,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "190": [
     {
       "fromDay": 185,
-      "fromTitle": "Call Option là gì?",
-      "text": "Call option: quyền mua ở strike price, có lợi khi giá tăng",
+      "fromTitle": "Thứ tự tin nhắn",
+      "text": "Thứ tự và xử lý song song xung khắc - hai người tiêu thụ hoàn thành theo thứ tự bất kỳ.",
       "distractors": [
-        "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống.",
-        "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác"
+        "Hàng đợi giao tin nhắn nhưng CHƯA xoá; nó chỉ xoá khi nhận được xác nhận.",
+        "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống."
       ]
     },
     {
@@ -3488,11 +3488,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "191": [
     {
       "fromDay": 186,
-      "fromTitle": "Put Option là gì?",
-      "text": "Put option: quyền bán ở strike price, có lợi khi giá giảm",
+      "fromTitle": "Người tiêu thụ chậm và tồn đọng",
+      "text": "Nhìn XU HƯỚNG, không nhìn số lượng - cùng con số, hai tình huống khác hẳn.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác"
+        "Hàng đợi: một tin, một người làm. Xuất bản: một sự kiện, nhiều người nghe.",
+        "Độ tin cậy là đánh đổi có giá - câu hỏi là mức nào đủ, không phải làm sao cao hơn."
       ]
     },
     {
@@ -3508,11 +3508,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "192": [
     {
       "fromDay": 187,
-      "fromTitle": "Strike Price và Expiration Date",
-      "text": "Strike price gần giá thị trường hơn → premium cao hơn (với option có lợi)",
+      "fromTitle": "Hàng đợi thư chết",
+      "text": "Xác nhận không phân biệt lỗi tạm thời với lỗi vĩnh viễn - cần cơ chế đếm và bỏ cuộc.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau"
+        "Ít nhất một lần là mức thực tế: hệ quả trực tiếp của cơ chế xác nhận.",
+        "Tiêu chí: người dùng có cần kết quả để đi tiếp không - không phải việc đó tốn bao lâu."
       ]
     },
     {
@@ -3528,160 +3528,160 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "193": [
     {
       "fromDay": 188,
-      "fromTitle": "Intrinsic Value và Time Value",
-      "text": "Option Price = Intrinsic Value + Time Value",
+      "fromTitle": "Sự kiện chứa dữ liệu hay chỉ chứa tham chiếu",
+      "text": "Mặc định: chứa dữ liệu của THỜI ĐIỂM sự kiện xảy ra, không chỉ mã định danh.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau"
+        "Thứ tự và xử lý song song xung khắc - hai người tiêu thụ hoàn thành theo thứ tự bất kỳ.",
+        "Hàng đợi giao tin nhắn nhưng CHƯA xoá; nó chỉ xoá khi nhận được xác nhận."
       ]
     },
     {
       "fromDay": 181,
-      "fromTitle": "Derivatives là gì?",
-      "text": "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác",
+      "fromTitle": "Vì sao cần xử lý bất đồng bộ",
+      "text": "Tiêu chí: người dùng có cần kết quả để đi tiếp không - không phải việc đó tốn bao lâu.",
       "distractors": [
         "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
+        "Mỗi lớp dự phòng thêm vào cũng là một thứ nữa có thể hỏng."
       ]
     }
   ],
   "194": [
     {
       "fromDay": 189,
-      "fromTitle": "Hedging là gì?",
-      "text": "Hedging: giảm rủi ro đã có sẵn, không tạo thêm rủi ro mới",
+      "fromTitle": "Gọi trực tiếp hay qua hàng đợi",
+      "text": "Cần kết quả để đi tiếp → gọi trực tiếp, bất kể hệ thống lớn tới đâu.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau"
+        "Nhìn XU HƯỚNG, không nhìn số lượng - cùng con số, hai tình huống khác hẳn.",
+        "Hàng đợi: một tin, một người làm. Xuất bản: một sự kiện, nhiều người nghe."
       ]
     },
     {
       "fromDay": 182,
-      "fromTitle": "Forward Contract là gì?",
-      "text": "Forward: hợp đồng riêng tư (OTC), khóa giá mua/bán trong tương lai",
+      "fromTitle": "Hàng đợi - ba phần và một hợp đồng",
+      "text": "Hàng đợi giao tin nhắn nhưng CHƯA xoá; nó chỉ xoá khi nhận được xác nhận.",
       "distractors": [
-        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
+        "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống.",
+        "Cam kết của các phụ thuộc NHÂN với nhau, nên trần của bạn thấp hơn cái thấp nhất."
       ]
     }
   ],
   "195": [
     {
       "fromDay": 190,
-      "fromTitle": "Speculation là gì?",
-      "text": "Speculation: đặt cược vào hướng giá để kiếm lời, không có rủi ro nền tảng cần bảo vệ",
+      "fromTitle": "Theo dõi một hệ thống bất đồng bộ",
+      "text": "Mã định danh phải đi qua CẢ hàng đợi - đó là chỗ luồng đứt và khó nối nhất.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Xác nhận không phân biệt lỗi tạm thời với lỗi vĩnh viễn - cần cơ chế đếm và bỏ cuộc.",
+        "Ít nhất một lần là mức thực tế: hệ quả trực tiếp của cơ chế xác nhận."
       ]
     },
     {
       "fromDay": 183,
-      "fromTitle": "Futures Contract là gì?",
-      "text": "Futures: chuẩn hóa, giao dịch qua sàn, có clearing house đảm bảo",
+      "fromTitle": "Hàng đợi so với xuất bản và đăng ký",
+      "text": "Hàng đợi: một tin, một người làm. Xuất bản: một sự kiện, nhiều người nghe.",
       "distractors": [
-        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
+        "Độ tin cậy là đánh đổi có giá - câu hỏi là mức nào đủ, không phải làm sao cao hơn.",
+        "Hệ thống không tự nhiên hỏng - cái vừa đổi là ứng viên số một."
       ]
     }
   ],
   "196": [
     {
       "fromDay": 191,
-      "fromTitle": "Swap là gì?",
-      "text": "Swap: hoán đổi dòng tiền tương lai theo công thức đã thỏa thuận",
+      "fromTitle": "Bất biến khi lặp lại - điều kiện bắt buộc",
+      "text": "Đặt thành giá trị thì bất biến; cộng thêm, gửi thư, ghi thêm dòng thì không.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Mặc định: chứa dữ liệu của THỜI ĐIỂM sự kiện xảy ra, không chỉ mã định danh.",
+        "Thứ tự và xử lý song song xung khắc - hai người tiêu thụ hoàn thành theo thứ tự bất kỳ."
       ]
     },
     {
       "fromDay": 184,
-      "fromTitle": "Option là gì?",
-      "text": "Option: quyền (không phải nghĩa vụ) mua/bán ở strike price",
+      "fromTitle": "Bảo đảm giao nhận - ba mức",
+      "text": "Ít nhất một lần là mức thực tế: hệ quả trực tiếp của cơ chế xác nhận.",
       "distractors": [
-        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng.",
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng"
+        "Tiêu chí: người dùng có cần kết quả để đi tiếp không - không phải việc đó tốn bao lâu.",
+        "Số liệu: có chuyện gì không - rẻ vì đã tổng hợp, giữ được nhiều tháng."
       ]
     }
   ],
   "197": [
     {
       "fromDay": 192,
-      "fromTitle": "Interest Rate Swap",
-      "text": "IRS: hoán đổi dòng lãi suất cố định và thả nổi giữa hai bên",
+      "fromTitle": "Khoá chống trùng",
+      "text": "BÊN GỌI sinh khoá, và giữ nguyên qua mọi lần thử lại của cùng một ý định.",
       "distractors": [
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%",
-        "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu"
+        "Cần kết quả để đi tiếp → gọi trực tiếp, bất kể hệ thống lớn tới đâu.",
+        "Nhìn XU HƯỚNG, không nhìn số lượng - cùng con số, hai tình huống khác hẳn."
       ]
     },
     {
       "fromDay": 185,
-      "fromTitle": "Call Option là gì?",
-      "text": "Call option: quyền mua ở strike price, có lợi khi giá tăng",
+      "fromTitle": "Thứ tự tin nhắn",
+      "text": "Thứ tự và xử lý song song xung khắc - hai người tiêu thụ hoàn thành theo thứ tự bất kỳ.",
       "distractors": [
-        "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống.",
-        "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác"
+        "Hàng đợi giao tin nhắn nhưng CHƯA xoá; nó chỉ xoá khi nhận được xác nhận.",
+        "Bảng xanh mà người dùng kêu: nghi PHÉP ĐO trước, không nghi hệ thống."
       ]
     }
   ],
   "198": [
     {
       "fromDay": 193,
-      "fromTitle": "Currency Swap",
-      "text": "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau",
+      "fromTitle": "Mẫu hộp thư đi",
+      "text": "Ghi dữ liệu rồi gửi tin nhắn là hai thao tác, và khe hở giữa chúng không ai phát hiện.",
       "distractors": [
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%",
-        "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu"
+        "Mã định danh phải đi qua CẢ hàng đợi - đó là chỗ luồng đứt và khó nối nhất.",
+        "Xác nhận không phân biệt lỗi tạm thời với lỗi vĩnh viễn - cần cơ chế đếm và bỏ cuộc."
       ]
     },
     {
       "fromDay": 186,
-      "fromTitle": "Put Option là gì?",
-      "text": "Put option: quyền bán ở strike price, có lợi khi giá giảm",
+      "fromTitle": "Người tiêu thụ chậm và tồn đọng",
+      "text": "Nhìn XU HƯỚNG, không nhìn số lượng - cùng con số, hai tình huống khác hẳn.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác"
+        "Hàng đợi: một tin, một người làm. Xuất bản: một sự kiện, nhiều người nghe.",
+        "Độ tin cậy là đánh đổi có giá - câu hỏi là mức nào đủ, không phải làm sao cao hơn."
       ]
     }
   ],
   "199": [
     {
       "fromDay": 194,
-      "fromTitle": "Vì sao doanh nghiệp dùng phái sinh để phòng hộ?",
-      "text": "Mục tiêu hedging: giảm bất định, không phải tối đa hóa lợi nhuận",
+      "fromTitle": "Bù trừ lỗi thay vì giao dịch phân tán",
+      "text": "Không có giao dịch nào bao được nhiều dịch vụ độc lập - không quay lại được.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Đặt thành giá trị thì bất biến; cộng thêm, gửi thư, ghi thêm dòng thì không.",
+        "Mặc định: chứa dữ liệu của THỜI ĐIỂM sự kiện xảy ra, không chỉ mã định danh."
       ]
     },
     {
       "fromDay": 187,
-      "fromTitle": "Strike Price và Expiration Date",
-      "text": "Strike price gần giá thị trường hơn → premium cao hơn (với option có lợi)",
+      "fromTitle": "Hàng đợi thư chết",
+      "text": "Xác nhận không phân biệt lỗi tạm thời với lỗi vĩnh viễn - cần cơ chế đếm và bỏ cuộc.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau"
+        "Ít nhất một lần là mức thực tế: hệ quả trực tiếp của cơ chế xác nhận.",
+        "Tiêu chí: người dùng có cần kết quả để đi tiếp không - không phải việc đó tốn bao lâu."
       ]
     }
   ],
   "200": [
     {
       "fromDay": 195,
-      "fromTitle": "Vì sao phái sinh có thể rất nguy hiểm?",
-      "text": "Đòn bẩy cao khuếch đại cả lãi và lỗ trên vốn bỏ ra",
+      "fromTitle": "Chạy lại và phát lại",
+      "text": "Rủi ro lớn nhất là hiệu ứng phụ chạy lại - chúng đi ra ngoài và không thu hồi được.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "BÊN GỌI sinh khoá, và giữ nguyên qua mọi lần thử lại của cùng một ý định.",
+        "Cần kết quả để đi tiếp → gọi trực tiếp, bất kể hệ thống lớn tới đâu."
       ]
     },
     {
       "fromDay": 188,
-      "fromTitle": "Intrinsic Value và Time Value",
-      "text": "Option Price = Intrinsic Value + Time Value",
+      "fromTitle": "Sự kiện chứa dữ liệu hay chỉ chứa tham chiếu",
+      "text": "Mặc định: chứa dữ liệu của THỜI ĐIỂM sự kiện xảy ra, không chỉ mã định danh.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau"
+        "Thứ tự và xử lý song song xung khắc - hai người tiêu thụ hoàn thành theo thứ tự bất kỳ.",
+        "Hàng đợi giao tin nhắn nhưng CHƯA xoá; nó chỉ xoá khi nhận được xác nhận."
       ]
     }
   ],
@@ -4894,100 +4894,100 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
   "1101": [
     {
       "fromDay": 196,
-      "fromTitle": "Case nhỏ - Hãng hàng không phòng hộ giá dầu",
-      "text": "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%",
+      "fromTitle": "Hàng đợi ưu tiên và cách ly",
+      "text": "Ưu tiên quyết định thứ tự LẤY tin nhắn - nó không giải phóng người tiêu thụ đang bận.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu"
+        "Ghi dữ liệu rồi gửi tin nhắn là hai thao tác, và khe hở giữa chúng không ai phát hiện.",
+        "Mã định danh phải đi qua CẢ hàng đợi - đó là chỗ luồng đứt và khó nối nhất."
       ]
     },
     {
       "fromDay": 189,
-      "fromTitle": "Hedging là gì?",
-      "text": "Hedging: giảm rủi ro đã có sẵn, không tạo thêm rủi ro mới",
+      "fromTitle": "Gọi trực tiếp hay qua hàng đợi",
+      "text": "Cần kết quả để đi tiếp → gọi trực tiếp, bất kể hệ thống lớn tới đâu.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau"
+        "Nhìn XU HƯỚNG, không nhìn số lượng - cùng con số, hai tình huống khác hẳn.",
+        "Hàng đợi: một tin, một người làm. Xuất bản: một sự kiện, nhiều người nghe."
       ]
     }
   ],
   "1102": [
     {
       "fromDay": 197,
-      "fromTitle": "Case nhỏ - Doanh nghiệp xuất khẩu phòng hộ tỷ giá",
-      "text": "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu",
+      "fromTitle": "Case - một hàng đợi bị tồn đọng",
+      "text": "Vẽ tốc độ VÀO và tốc độ RA chồng lên nhau - nó trả lời câu vì đâu trong ba mươi giây.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Không có giao dịch nào bao được nhiều dịch vụ độc lập - không quay lại được.",
+        "Đặt thành giá trị thì bất biến; cộng thêm, gửi thư, ghi thêm dòng thì không."
       ]
     },
     {
       "fromDay": 190,
-      "fromTitle": "Speculation là gì?",
-      "text": "Speculation: đặt cược vào hướng giá để kiếm lời, không có rủi ro nền tảng cần bảo vệ",
+      "fromTitle": "Theo dõi một hệ thống bất đồng bộ",
+      "text": "Mã định danh phải đi qua CẢ hàng đợi - đó là chỗ luồng đứt và khó nối nhất.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Xác nhận không phân biệt lỗi tạm thời với lỗi vĩnh viễn - cần cơ chế đếm và bỏ cuộc.",
+        "Ít nhất một lần là mức thực tế: hệ quả trực tiếp của cơ chế xác nhận."
       ]
     }
   ],
   "1103": [
     {
       "fromDay": 198,
-      "fromTitle": "Tổng ôn công cụ phái sinh",
-      "text": "Bốn công cụ phái sinh chính đều xoay quanh việc chuyển giao rủi ro có cấu trúc",
+      "fromTitle": "Công việc theo lịch so với sự kiện",
+      "text": "Đối chiếu phải chạy KỂ CẢ khi không có sự kiện - vì cái nó tìm là sự kiện bị mất.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Rủi ro lớn nhất là hiệu ứng phụ chạy lại - chúng đi ra ngoài và không thu hồi được.",
+        "BÊN GỌI sinh khoá, và giữ nguyên qua mọi lần thử lại của cùng một ý định."
       ]
     },
     {
       "fromDay": 191,
-      "fromTitle": "Swap là gì?",
-      "text": "Swap: hoán đổi dòng tiền tương lai theo công thức đã thỏa thuận",
+      "fromTitle": "Bất biến khi lặp lại - điều kiện bắt buộc",
+      "text": "Đặt thành giá trị thì bất biến; cộng thêm, gửi thư, ghi thêm dòng thì không.",
       "distractors": [
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Mặc định: chứa dữ liệu của THỜI ĐIỂM sự kiện xảy ra, không chỉ mã định danh.",
+        "Thứ tự và xử lý song song xung khắc - hai người tiêu thụ hoàn thành theo thứ tự bất kỳ."
       ]
     }
   ],
   "1104": [
     {
       "fromDay": 199,
-      "fromTitle": "Kết nối tất cả - Báo cáo tài chính, Định giá, Rủi ro, Thị trường",
-      "text": "Phân tích tài chính toàn diện kết nối bốn lớp: kế toán, định giá, rủi ro, thị trường",
+      "fromTitle": "Một luồng đặt hàng bất đồng bộ từ đầu tới cuối",
+      "text": "Đồng bộ chỉ những gì quyết định CÂU TRẢ LỜI cho người dùng - không theo tầm quan trọng.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Ưu tiên quyết định thứ tự LẤY tin nhắn - nó không giải phóng người tiêu thụ đang bận.",
+        "Ghi dữ liệu rồi gửi tin nhắn là hai thao tác, và khe hở giữa chúng không ai phát hiện."
       ]
     },
     {
       "fromDay": 192,
-      "fromTitle": "Interest Rate Swap",
-      "text": "IRS: hoán đổi dòng lãi suất cố định và thả nổi giữa hai bên",
+      "fromTitle": "Khoá chống trùng",
+      "text": "BÊN GỌI sinh khoá, và giữ nguyên qua mọi lần thử lại của cùng một ý định.",
       "distractors": [
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%",
-        "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu"
+        "Cần kết quả để đi tiếp → gọi trực tiếp, bất kể hệ thống lớn tới đâu.",
+        "Nhìn XU HƯỚNG, không nhìn số lượng - cùng con số, hai tình huống khác hẳn."
       ]
     }
   ],
   "1105": [
     {
       "fromDay": 200,
-      "fromTitle": "Bài cuối - Tự phân tích một doanh nghiệp hoàn chỉnh từ A đến Z",
-      "text": "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
+      "fromTitle": "Ôn tập - xử lý bất đồng bộ",
+      "text": "Bất đồng bộ đổi độ trễ lấy khả năng chịu lỗi; cái giá là độ phức tạp khi quan sát.",
       "distractors": [
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%",
-        "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu"
+        "Vẽ tốc độ VÀO và tốc độ RA chồng lên nhau - nó trả lời câu vì đâu trong ba mươi giây.",
+        "Không có giao dịch nào bao được nhiều dịch vụ độc lập - không quay lại được."
       ]
     },
     {
       "fromDay": 193,
-      "fromTitle": "Currency Swap",
-      "text": "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau",
+      "fromTitle": "Mẫu hộp thư đi",
+      "text": "Ghi dữ liệu rồi gửi tin nhắn là hai thao tác, và khe hở giữa chúng không ai phát hiện.",
       "distractors": [
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%",
-        "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu"
+        "Mã định danh phải đi qua CẢ hàng đợi - đó là chỗ luồng đứt và khó nối nhất.",
+        "Xác nhận không phân biệt lỗi tạm thời với lỗi vĩnh viễn - cần cơ chế đếm và bỏ cuộc."
       ]
     }
   ],
@@ -5003,11 +5003,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 194,
-      "fromTitle": "Vì sao doanh nghiệp dùng phái sinh để phòng hộ?",
-      "text": "Mục tiêu hedging: giảm bất định, không phải tối đa hóa lợi nhuận",
+      "fromTitle": "Bù trừ lỗi thay vì giao dịch phân tán",
+      "text": "Không có giao dịch nào bao được nhiều dịch vụ độc lập - không quay lại được.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Đặt thành giá trị thì bất biến; cộng thêm, gửi thư, ghi thêm dòng thì không.",
+        "Mặc định: chứa dữ liệu của THỜI ĐIỂM sự kiện xảy ra, không chỉ mã định danh."
       ]
     }
   ],
@@ -5023,11 +5023,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 195,
-      "fromTitle": "Vì sao phái sinh có thể rất nguy hiểm?",
-      "text": "Đòn bẩy cao khuếch đại cả lãi và lỗ trên vốn bỏ ra",
+      "fromTitle": "Chạy lại và phát lại",
+      "text": "Rủi ro lớn nhất là hiệu ứng phụ chạy lại - chúng đi ra ngoài và không thu hồi được.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "BÊN GỌI sinh khoá, và giữ nguyên qua mọi lần thử lại của cùng một ý định.",
+        "Cần kết quả để đi tiếp → gọi trực tiếp, bất kể hệ thống lớn tới đâu."
       ]
     }
   ],
@@ -5043,11 +5043,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 196,
-      "fromTitle": "Case nhỏ - Hãng hàng không phòng hộ giá dầu",
-      "text": "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%",
+      "fromTitle": "Hàng đợi ưu tiên và cách ly",
+      "text": "Ưu tiên quyết định thứ tự LẤY tin nhắn - nó không giải phóng người tiêu thụ đang bận.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu"
+        "Ghi dữ liệu rồi gửi tin nhắn là hai thao tác, và khe hở giữa chúng không ai phát hiện.",
+        "Mã định danh phải đi qua CẢ hàng đợi - đó là chỗ luồng đứt và khó nối nhất."
       ]
     }
   ],
@@ -5063,11 +5063,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 197,
-      "fromTitle": "Case nhỏ - Doanh nghiệp xuất khẩu phòng hộ tỷ giá",
-      "text": "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu",
+      "fromTitle": "Case - một hàng đợi bị tồn đọng",
+      "text": "Vẽ tốc độ VÀO và tốc độ RA chồng lên nhau - nó trả lời câu vì đâu trong ba mươi giây.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Không có giao dịch nào bao được nhiều dịch vụ độc lập - không quay lại được.",
+        "Đặt thành giá trị thì bất biến; cộng thêm, gửi thư, ghi thêm dòng thì không."
       ]
     }
   ],
@@ -5083,11 +5083,11 @@ export const RECALL_SCHEDULE: Record<number, RecallItem[]> = {
     },
     {
       "fromDay": 198,
-      "fromTitle": "Tổng ôn công cụ phái sinh",
-      "text": "Bốn công cụ phái sinh chính đều xoay quanh việc chuyển giao rủi ro có cấu trúc",
+      "fromTitle": "Công việc theo lịch so với sự kiện",
+      "text": "Đối chiếu phải chạy KỂ CẢ khi không có sự kiện - vì cái nó tìm là sự kiện bị mất.",
       "distractors": [
-        "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-        "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%"
+        "Rủi ro lớn nhất là hiệu ứng phụ chạy lại - chúng đi ra ngoài và không thu hồi được.",
+        "BÊN GỌI sinh khoá, và giữ nguyên qua mọi lần thử lại của cùng một ý định."
       ]
     }
   ]

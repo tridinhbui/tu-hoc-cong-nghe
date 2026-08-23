@@ -21,7 +21,7 @@ import { VN_TECH_MARKET_LESSONS } from "./vn-tech-market-lessons";
 import { CRYPTO_LESSONS } from "./crypto-lessons";
 import { FRAUD_SAFETY_LESSONS } from "./fraud-safety-lessons";
 import { MOBILE_APPS_VN_LESSONS } from "./mobile-apps-vn-lessons";
-import { LIFE_EXPENSES_LESSONS } from "./life-expenses-lessons";
+import { CAREER_PROJECTS_LESSONS } from "./career-projects-lessons";
 import { OCCUPATIONAL_HEALTH_LESSONS } from "./occupational-health-lessons";
 import { CAREER_STAGE_LESSONS } from "./career-stage-lessons";
 import { PERSONAL_OPS_LESSONS } from "./personal-ops-lessons";
@@ -58,7 +58,7 @@ export const lessons: Lesson[] = [
   ...CRYPTO_LESSONS,
   ...FRAUD_SAFETY_LESSONS,
   ...MOBILE_APPS_VN_LESSONS,
-  ...LIFE_EXPENSES_LESSONS,
+  ...CAREER_PROJECTS_LESSONS,
   ...OCCUPATIONAL_HEALTH_LESSONS,
   ...CAREER_STAGE_LESSONS,
   ...PERSONAL_OPS_LESSONS,
@@ -28869,7 +28869,7 @@ export const lessons: Lesson[] = [
         "question": "Vì sao bốn chỉ số này áp dụng được cho gần như mọi hệ thống?",
         "options": [
           "Vì chúng mô tả quan hệ giữa yêu cầu vào và khả năng đáp ứng, không phụ thuộc công nghệ",
-          "Vì các công cụ theo dõi hiện nay đều đã thu thập sẵn bốn chỉ số này theo cấu hình mặc định",
+          "Vì các công cụ theo dõi hiện nay đều đã thu thập sẵn cả bốn chỉ số này theo đúng cấu hình mặc định",
           "Vì chúng đã được chuẩn hoá thành tiêu chuẩn chung cho ngành vận hành hệ thống",
           "Vì bốn chỉ số này đủ đơn giản để mọi thành viên trong đội đều hiểu được"
         ],
@@ -31983,2730 +31983,3665 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 181,
-    "slug": "derivatives-la-gi",
-    "title": "Tự học Tài chính Day 181: Derivatives là gì?",
-    "subtitle": "Công cụ có giá trị phụ thuộc vào một tài sản cơ sở khác",
+    "slug": "vi-sao-can-xu-ly-bat-dong-bo",
+    "title": "Vì sao cần xử lý bất đồng bộ",
+    "subtitle": "Không phải để nhanh hơn - mà để người dùng không phải chờ thứ họ không cần chờ.",
     "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "🔄",
-    "openingQuestion": "Tại sao phái sinh được Warren Buffett gọi là 'vũ khí tài chính hủy diệt hàng loạt'?",
+    "track": "professional",
+    "emoji": "📬",
+    "isFundamental": true,
+    "whyItMatters": "Chuyển một việc sang chạy nền là quyết định kiến trúc rẻ nhất mà nhiều đội bỏ qua, và nó cũng là quyết định dễ dùng sai nhất khi người ta chuyển cả những việc phải xong ngay.",
+    "openingQuestion": "Việc nào nên chuyển sang xử lý bất đồng bộ?",
     "openingOptions": [
-      "Vì chỉ ngân hàng trung ương mới được dùng",
-      "Vì đắt tiền",
-      "Vì bất hợp pháp ở nhiều nước",
-      "Vì đòn bẩy cực cao và rủi ro dễ lan truyền"
+      "Việc mà người dùng không cần biết kết quả ngay để đi tiếp bước sau",
+      "Việc tốn nhiều thời gian nhất trong toàn bộ luồng xử lý một yêu cầu",
+      "Việc gọi tới dịch vụ bên ngoài, vì đó là phần không kiểm soát được độ trễ",
+      "Việc có khả năng thất bại cao, để có thể thử lại nhiều lần trong nền"
     ],
-    "correctOption": 3,
-    "explanation": "Derivatives (phái sinh) là công cụ tài chính có giá trị phụ thuộc vào một tài sản cơ sở (underlying asset): cổ phiếu, trái phiếu, hàng hóa, tỷ giá, lãi suất. Bốn loại chính: Forward, Futures, Options, Swaps. Dùng để hedging (phòng ngừa rủi ro) hoặc speculation (đầu cơ) - đòn bẩy cao khiến rủi ro nhân lên nhanh.",
+    "correctOption": 0,
+    "explanation": "Tiêu chí là NGƯỜI DÙNG có cần kết quả để đi tiếp không, không phải việc đó tốn bao lâu. Một việc mất năm giây mà người dùng phải biết kết quả thì không chuyển đi được; một việc mất năm mươi mili giây mà họ không quan tâm thì chuyển đi vẫn có lợi, vì nó rời khỏi phép nhân độ tin cậy của đường xử lý chính.",
     "diagram": [
       {
-        "label": "Tài sản cơ sở (underlying asset)",
+        "label": "Hỏi: người dùng có cần kết quả để đi tiếp không?",
         "arrow": true
       },
       {
-        "label": "Công cụ phái sinh gắn giá trị vào đó",
+        "label": "Không → đưa vào hàng đợi, trả lời ngay",
         "arrow": true
       },
       {
-        "label": "Forward, Futures, Options, Swaps"
+        "label": "Có → giữ trên đường xử lý chính",
+        "arrow": true
+      },
+      {
+        "label": "Đổi lại: hệ thống khó theo dõi và khó gỡ lỗi hơn hẳn"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Khủng hoảng tài chính 2008",
-      "description": "CDO (Collateralized Debt Obligation) và CDS (Credit Default Swap) - hai loại phái sinh phức tạp dựa trên nợ vay dưới chuẩn - đã khuếch đại rủi ro tín dụng ra toàn hệ thống ngân hàng toàn cầu năm 2008."
+      "company": "Gửi thư xác nhận đơn hàng",
+      "description": "Người dùng cần biết đơn đã được ghi nhận; họ không cần biết thư đã gửi xong. Đưa việc gửi thư vào hàng đợi thì một sự cố ở dịch vụ thư không còn chặn được việc bán hàng - và mức tin cậy của dịch vụ đó rời khỏi phép nhân của bạn."
     },
     "quiz": [
       {
-        "question": "Ai là người dùng phái sinh một cách hợp pháp và có ích cho nền kinh tế thực?",
+        "question": "Tiêu chí quyết định một việc có nên chạy nền là gì?",
         "options": [
-          "Hãng hàng không hedge giá dầu, nông dân khóa giá nông sản, doanh nghiệp xuất khẩu hedge tỷ giá - đều giảm rủi ro kinh doanh thực tế",
-          "Chỉ nhà đầu tư cá nhân chuyên nghiệp",
-          "Chỉ ngân hàng đầu tư lớn",
-          "Chỉ các quỹ đầu cơ (hedge fund)"
+          "Người dùng có cần kết quả của nó để đi tiếp bước sau hay không",
+          "Thời gian xử lý của việc đó có vượt quá một ngưỡng nhất định hay không",
+          "Việc đó có phụ thuộc vào dịch vụ bên ngoài mà bạn không kiểm soát không",
+          "Việc đó có thể thất bại và cần được thử lại nhiều lần hay không"
         ],
         "correct": 0,
-        "explanation": "Mục đích gốc của phái sinh là hedging - giúp doanh nghiệp thực (không phải tài chính) giảm rủi ro giá cả, tỷ giá, lãi suất trong hoạt động kinh doanh cốt lõi. Vấn đề chỉ nảy sinh khi phái sinh bị dùng để đầu cơ với đòn bẩy quá cao."
+        "explanation": "Một việc mất năm mươi mili giây mà người dùng không quan tâm thì chuyển đi vẫn có lợi, còn một việc mất năm giây mà họ cần kết quả thì không chuyển được. Thời gian không phải tiêu chí."
       },
       {
-        "question": "Nếu một nông dân dùng forward contract để chốt giá bán nông sản trước vụ mùa, đây có phải một dạng phái sinh dù không liên quan gì đến thị trường tài chính phức tạp?",
+        "question": "Lợi ích nào của xử lý bất đồng bộ hay bị bỏ qua nhất?",
         "options": [
-          "Không, forward contract không phải là phái sinh",
-          "Có - bất kỳ hợp đồng nào có giá trị phụ thuộc vào một tài sản cơ sở khác (ở đây là giá nông sản tương lai) đều là phái sinh, bất kể mục đích sử dụng đơn giản hay phức tạp, dùng bởi nông dân hay ngân hàng đầu tư lớn",
-          "Chỉ các hợp đồng giao dịch qua sàn chứng khoán mới được coi là phái sinh",
-          "Phái sinh chỉ tồn tại trong thị trường tài chính hiện đại, không áp dụng cho nông nghiệp"
+          "Phụ thuộc đó rời khỏi phép nhân độ tin cậy của đường xử lý chính",
+          "Hệ thống xử lý được nhiều yêu cầu đồng thời hơn với cùng lượng tài nguyên",
+          "Các việc chạy nền có thể được ưu tiên theo mức độ quan trọng khác nhau",
+          "Chi phí hạ tầng giảm vì công việc được dàn đều thay vì dồn vào giờ cao điểm"
         ],
-        "correct": 1,
-        "explanation": "Định nghĩa phái sinh không phụ thuộc vào độ phức tạp hay đối tượng sử dụng - bất kỳ hợp đồng nào có giá trị bắt nguồn từ một tài sản cơ sở khác đều là phái sinh, từ hợp đồng nông sản đơn giản đến CDS phức tạp của phố Wall."
+        "correct": 0,
+        "explanation": "Đây là điểm nối với bài về phụ thuộc bên ngoài ở chặng độ tin cậy: mỗi phụ thuộc trên đường xử lý chính nhân vào trần của bạn, và đưa nó ra khỏi đó là cách nâng trần mà không cần ai nâng cam kết."
+      },
+      {
+        "question": "Cái giá lớn nhất của xử lý bất đồng bộ là gì?",
+        "options": [
+          "Hệ thống khó theo dõi và khó gỡ lỗi hơn hẳn vì luồng bị cắt thành nhiều mảnh",
+          "Chi phí hạ tầng tăng lên vì phải duy trì thêm hệ thống hàng đợi",
+          "Kết quả trả về cho người dùng chậm hơn so với xử lý trực tiếp",
+          "Cần thêm mã để có thể xử lý tất cả các trường hợp công việc thất bại trong nền"
+        ],
+        "correct": 0,
+        "explanation": "Một lỗi xảy ra ba mươi giây sau khi người dùng đã rời đi, ở một tiến trình khác, với ngữ cảnh đã mất. Ba lựa chọn kia đều là chi phí thật nhưng chúng đo được và trả được; cái giá về khả năng quan sát thì lan ra mọi việc gỡ lỗi về sau."
+      },
+      {
+        "question": "Vì sao cần cho người dùng biết trạng thái của việc chạy nền?",
+        "options": [
+          "Vì nếu không, họ không phân biệt được việc đang chờ với việc đã thất bại",
+          "Vì các quy định về trải nghiệm người dùng yêu cầu phải hiển thị tiến trình xử lý",
+          "Vì người dùng sẽ gửi lại yêu cầu nếu không thấy phản hồi trong thời gian ngắn",
+          "Vì thông tin trạng thái giúp đội hỗ trợ trả lời câu hỏi của khách hàng nhanh hơn"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba là hệ quả trực tiếp của lựa chọn đầu và nó tạo ra bản ghi trùng. Cách chữa gốc là làm cho trạng thái nhìn thấy được, chứ không phải chặn nút gửi lại."
+      },
+      {
+        "question": "Vì sao không nên chuyển mọi thứ sang chạy nền?",
+        "options": [
+          "Vì mỗi việc chạy nền thêm một chỗ có thể hỏng mà không ai nhìn thấy ngay",
+          "Vì hệ thống hàng đợi có giới hạn về số lượng công việc xử lý được mỗi giây",
+          "Vì các việc chạy nền cạnh tranh tài nguyên với luồng xử lý chính của hệ thống",
+          "Vì thứ tự thực hiện các việc chạy nền không được đảm bảo như xử lý trực tiếp"
+        ],
+        "correct": 0,
+        "explanation": "Chữ KHÔNG AI NHÌN THẤY NGAY là mấu chốt: một việc chạy nền thất bại không làm ai phàn nàn ngay, nên nó có thể hỏng âm thầm hàng tuần. Ba lựa chọn kia đều là ràng buộc kỹ thuật giải quyết được."
       }
     ],
     "keyTakeaways": [
-      "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác",
-      "Bốn loại chính: Forward, Futures, Options, Swaps",
-      "Dùng đúng mục đích (hedging) rất hữu ích; dùng sai (đầu cơ đòn bẩy cao) rất nguy hiểm"
+      "Tiêu chí: người dùng có cần kết quả để đi tiếp không - không phải việc đó tốn bao lâu.",
+      "Lợi ích hay bị bỏ qua: phụ thuộc rời khỏi phép nhân độ tin cậy của đường chính.",
+      "Cái giá lớn nhất: hệ thống khó theo dõi và khó gỡ lỗi hơn hẳn.",
+      "Phải cho người dùng thấy trạng thái, nếu không họ gửi lại và tạo bản ghi trùng.",
+      "Mỗi việc chạy nền là một chỗ có thể hỏng âm thầm mà không ai phàn nàn ngay."
     ],
     "practicePrompt": {
-      "question": "Một hợp đồng tài chính có giá trị hoàn toàn phụ thuộc vào biến động giá dầu thô trong tương lai - nếu giá dầu tăng, hợp đồng có giá trị; nếu giảm, hợp đồng mất giá trị - dù bản thân hợp đồng này không phải là dầu thô thực tế. Loại công cụ tài chính này gọi là gì?",
+      "question": "Việc kiểm tra tồn kho mất hai trăm mili giây. Có nên chuyển sang chạy nền không?",
       "options": [
-        "Đây gọi là cổ phiếu, vì giá trị của nó biến động theo thị trường giống như cổ phiếu dầu khí",
-        "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác, ở đây là dầu thô",
-        "Đây gọi là trái phiếu, vì hợp đồng có giá trị cố định không thay đổi theo thời gian",
-        "Đây gọi là tiền gửi tiết kiệm có kỳ hạn, gắn với lãi suất ngân hàng"
+        "Không, vì người dùng cần biết còn hàng hay không mới quyết định đặt được",
+        "Có, vì hai trăm mili giây là đáng kể trong tổng thời gian phản hồi của trang",
+        "Có, vì nó gọi tới hệ thống kho nên không kiểm soát được độ trễ",
+        "Tuỳ, vì còn phụ thuộc vào việc hệ thống kho có ổn định hay không"
       ],
-      "correct": 1,
-      "explanation": "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác. Bốn loại phái sinh chính (forward, futures, option, swap) đều xoay quanh việc chuyển giao rủi ro có cấu trúc dựa trên biến động của một tài sản cơ sở, không sở hữu trực tiếp tài sản đó."
+      "correct": 0,
+      "explanation": "Đây là ví dụ rõ cho việc thời gian không phải tiêu chí. Hai trăm mili giây đáng kể thật, nhưng kết quả của nó quyết định bước tiếp theo của người dùng - nên nó phải nằm trên đường xử lý chính."
     },
     "summary": {
-      "keyIdea": "Derivatives: giá trị phụ thuộc vào một tài sản cơ sở khác",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Bốn loại chính: Forward, Futures, Options, Swaps"
+      "keyIdea": "Chuyển việc người dùng không cần chờ ra khỏi đường xử lý chính.",
+      "formula": "Cần kết quả để đi tiếp → đồng bộ. Không cần → hàng đợi.",
+      "commonMistake": "Chọn theo thời gian xử lý thay vì theo nhu cầu của người dùng.",
+      "action": "Liệt kê các bước trong một yêu cầu và đánh dấu bước nào người dùng cần."
     },
     "application": {
-      "title": "Tìm một ví dụ derivatives quanh bạn",
-      "message": "Bài học đã có ví dụ thật về hợp đồng tương lai VN30F1M - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự mở app công ty chứng khoán để xem bảng giá phái sinh thật.",
-      "secondary": "Nhận diện được tài sản cơ sở là bước đầu tiên để hiểu bất kỳ phái sinh nào."
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy một luồng xử lý quan trọng trong sản phẩm của bạn, liệt kê các bước, và đánh dấu bước nào người dùng THẬT SỰ cần kết quả để đi tiếp.",
+      "secondary": "Những bước không được đánh dấu là ứng viên chuyển sang chạy nền. Với mỗi cái, tính xem nó đang đóng góp bao nhiêu vào thời gian chờ và vào phép nhân độ tin cậy."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Derivatives (phái sinh) nghe có vẻ phức tạp, nhưng ý tưởng gốc rất đơn giản: đây là một hợp đồng mà giá trị của nó không tự đứng một mình, mà 'bám' vào giá của một tài sản khác - cổ phiếu, trái phiếu, hàng hóa, tỷ giá, lãi suất. Bản thân hợp đồng không có giá trị nội tại; nó chỉ phản chiếu chuyện gì đang xảy ra với tài sản cơ sở (underlying asset) đó."
+        "text": "Chặng trước kết thúc ở việc đưa phụ thuộc ra khỏi đường xử lý chính. Chặng này là cách làm điều đó - và bài đầu là câu hỏi quyết định: việc nào nên đi ra."
       },
       {
         "type": "heading",
-        "text": "Bốn hình dạng cơ bản"
-      },
-      {
-        "type": "paragraph",
-        "text": "Dù thị trường phái sinh trông đồ sộ và phức tạp, gần như mọi sản phẩm đều là biến thể của bốn dạng gốc: Forward (cam kết mua/bán riêng tư trong tương lai), Futures (giống forward nhưng chuẩn hóa, giao dịch qua sàn), Options (quyền, không phải nghĩa vụ, mua/bán ở một mức giá), và Swaps (hoán đổi dòng tiền theo công thức đã định). CDO, CDS mà báo chí hay nhắc tới thời khủng hoảng 2008 chỉ là các biến thể phức tạp hơn được xây trên nền bốn dạng này."
-      },
-      {
-        "type": "heading",
-        "text": "Hai mục đích, một công cụ"
-      },
-      {
-        "type": "paragraph",
-        "text": "Cùng một hợp đồng phái sinh có thể được dùng cho hai mục đích trái ngược nhau. Hedging là dùng nó để giảm một rủi ro đã có sẵn trong kinh doanh - nông dân khóa giá bán trước vụ mùa, hãng hàng không khóa giá dầu. Speculation là dùng nó để đặt cược vào biến động giá nhằm kiếm lời, không có rủi ro nền tảng nào cần bảo vệ. Đòn bẩy cao của phái sinh khiến cả hai mục đích đều bị khuếch đại - hedging tốt giúp ổn định, nhưng speculation sai lầm với đòn bẩy lớn có thể sụp đổ nhanh chóng."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Underlying asset: tài sản cơ sở mà giá trị phái sinh phụ thuộc vào",
-          "Forward/Futures: cam kết bắt buộc mua/bán trong tương lai",
-          "Options: quyền, không phải nghĩa vụ",
-          "Swaps: hoán đổi dòng tiền định kỳ theo công thức"
-        ]
+        "text": "Tiêu chí"
       },
       {
         "type": "callout",
-        "label": "Bài học từ 2008",
-        "text": "CDS và CDO - hai phái sinh phức tạp dựa trên nợ dưới chuẩn - đã khuếch đại rủi ro tín dụng ra toàn hệ thống ngân hàng toàn cầu. Vấn đề không nằm ở bản thân công cụ, mà ở việc dùng chúng để đầu cơ với đòn bẩy vượt tầm kiểm soát."
+        "label": "Người dùng có cần kết quả để đi tiếp không",
+        "text": "Không phải việc đó tốn bao lâu. Một việc mất năm mươi mili giây mà họ không quan tâm thì chuyển đi vẫn có lợi; một việc mất năm giây mà họ cần kết quả thì không chuyển được, dù nó là bước chậm nhất."
       },
       {
         "type": "heading",
-        "text": "Ví dụ thật: hợp đồng tương lai VN30F1M"
+        "text": "Hai lợi ích"
       },
       {
-        "type": "list",
-        "items": [
-          "VN30F1M là hợp đồng tương lai có tài sản cơ sở là chỉ số VN30 - phái sinh vì giá trị của nó phụ thuộc hoàn toàn vào một tài sản khác, không có giá trị tự thân",
-          "Ký quỹ ban đầu phổ biến khoảng 20% giá trị hợp đồng - đòn bẩy tối đa khoảng 1:5, nghĩa là biến động 1% của VN30 có thể tạo lãi/lỗ tương đương 5% số vốn ký quỹ",
-          "Nhà đầu tư dùng VN30F1M để đầu cơ theo xu hướng chỉ số, hoặc để phòng ngừa rủi ro (hedge) cho danh mục cổ phiếu đang nắm giữ"
-        ]
+        "type": "comparison",
+        "left": {
+          "label": "Thời gian chờ ngắn hơn",
+          "text": "Cái ai cũng nghĩ tới. Người dùng nhận phản hồi ngay thay vì chờ mọi bước phụ hoàn tất."
+        },
+        "right": {
+          "label": "Phép nhân độ tin cậy",
+          "text": "Cái hay bị bỏ qua. Mỗi phụ thuộc trên đường xử lý chính nhân vào trần của bạn - đưa nó ra khỏi đó là cách nâng trần mà không cần ai nâng cam kết."
+        }
       },
       {
-        "type": "callout",
-        "label": "Cách tự tìm derivatives quanh bạn",
-        "text": "Mở mục \"Phái sinh\" trên app công ty chứng khoán để xem bảng giá VN30F1M theo thời gian thực, xác định tài sản cơ sở (chỉ số VN30) và mức ký quỹ yêu cầu."
+        "type": "heading",
+        "text": "Và cái giá"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hệ thống khó theo dõi và khó gỡ lỗi hơn hẳn. Một lỗi xảy ra ba mươi giây sau khi người dùng đã rời đi, ở một tiến trình khác, với ngữ cảnh đã mất - đó là bài toán mà cả chặng này phải giải."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cái giá thứ hai ít rõ hơn: một việc chạy nền thất bại không làm ai phàn nàn ngay, nên nó có thể hỏng âm thầm hàng tuần. Đó là lý do đừng chuyển mọi thứ sang chạy nền chỉ vì làm được."
+      },
+      {
+        "type": "heading",
+        "text": "Một việc phải làm kèm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cho người dùng thấy TRẠNG THÁI. Không có nó thì họ không phân biệt được việc đang chờ với việc đã thất bại - và phản ứng tự nhiên là gửi lại, tạo ra bản ghi trùng."
       },
       {
         "type": "closing",
         "lines": [
-          "Phái sinh không tốt hay xấu - nó là một công cụ chuyển giao rủi ro.",
-          "Ai dùng, dùng để làm gì, và dùng bao nhiêu đòn bẩy mới là điều quyết định kết quả."
+          "Chặn nút gửi lại không phải cách chữa; nó chữa triệu chứng. Cách chữa gốc là làm cho trạng thái nhìn thấy được.",
+          "Bài sau là công cụ đứng giữa: hàng đợi, và ba phần của nó."
         ]
       }
     ]
   },
   {
     "id": 182,
-    "slug": "forward-contract-la-gi",
-    "title": "Tự học Tài chính Day 182: Forward Contract là gì?",
-    "subtitle": "Cam kết mua/bán một tài sản ở giá thỏa thuận hôm nay, giao dịch trong tương lai",
+    "slug": "hang-doi-ba-phan-va-mot-hop-dong",
+    "title": "Hàng đợi - ba phần và một hợp đồng",
+    "subtitle": "Cái ở giữa không chỉ chứa tin nhắn; nó quyết định chuyện gì xảy ra khi có lỗi.",
     "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "⚖️",
-    "openingQuestion": "Nông dân trồng cà phê lo giá giảm khi thu hoạch 6 tháng nữa. Forward contract giúp gì?",
+    "track": "professional",
+    "emoji": "📮",
+    "isFundamental": true,
+    "whyItMatters": "Người ta chọn hệ thống hàng đợi theo tính năng trên bảng so sánh, trong khi thứ quyết định là hợp đồng nó đưa ra khi có lỗi. Hiểu hợp đồng đó trước giúp bạn không phải viết lại phần xử lý lỗi sau.",
+    "openingQuestion": "Phần nào của một hàng đợi quyết định hành vi khi người tiêu thụ chết giữa chừng?",
     "openingOptions": [
-      "Không giúp được gì vì giá tương lai không ai biết trước",
-      "Chỉ ngân hàng mới được ký forward contract",
-      "Nông dân ký bán cà phê ở giá cố định hôm nay",
-      "Chỉ giúp nếu giá tăng"
+      "Cơ chế xác nhận: tin nhắn chỉ bị xoá sau khi người tiêu thụ báo đã xử lý xong",
+      "Dung lượng lưu trữ của hệ thống hàng đợi, vì chính nó quyết định giữ được bao nhiêu tin nhắn",
+      "Số lượng phía người tiêu thụ đang chạy song song trên cùng một hệ thống hàng đợi đó",
+      "Thứ tự sắp xếp tất cả các tin nhắn trong toàn bộ hệ thống hàng đợi theo thời điểm chúng được đưa vào"
     ],
-    "correctOption": 2,
-    "explanation": "Forward contract là thỏa thuận song phương (OTC, không qua sàn) giữa hai bên: cam kết mua/bán một tài sản ở mức giá xác định (forward price) tại một thời điểm tương lai. Không chuẩn hóa, linh hoạt theo nhu cầu hai bên, nhưng có rủi ro đối tác không thực hiện cam kết (counterparty risk).",
+    "correctOption": 0,
+    "explanation": "Đây là hợp đồng cốt lõi: hàng đợi giao tin nhắn nhưng chưa xoá nó, và chỉ xoá khi nhận được xác nhận. Người tiêu thụ chết trước khi xác nhận thì tin nhắn quay lại hàng đợi và được giao cho người khác. Cơ chế này là lý do bạn không mất việc khi một tiến trình chết - và cũng là lý do một việc có thể được xử lý hai lần.",
     "diagram": [
       {
-        "label": "Hai bên thỏa thuận hôm nay",
+        "label": "Nhà sản xuất → hàng đợi → người tiêu thụ",
         "arrow": true
       },
       {
-        "label": "Giá cố định, giao dịch trong tương lai",
+        "label": "Giao tin nhắn nhưng CHƯA xoá",
         "arrow": true
       },
       {
-        "label": "= Forward Contract (OTC, không qua sàn)"
+        "label": "Xoá khi nhận được xác nhận đã xử lý xong",
+        "arrow": true
+      },
+      {
+        "label": "Nên: không mất việc, nhưng có thể xử lý hai lần"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Doanh nghiệp xuất khẩu Việt Nam",
-      "description": "Công ty xuất khẩu cà phê Việt Nam thường ký forward contract với nhà nhập khẩu nước ngoài để khóa giá bán trước vụ thu hoạch, tránh biến động giá cà phê thế giới."
+      "company": "Xác nhận trước hay sau khi làm",
+      "description": "Xác nhận ngay khi nhận tin nhắn thì bạn mất việc nếu tiến trình chết giữa chừng. Xác nhận sau khi làm xong thì việc có thể chạy hai lần. Không có lựa chọn thứ ba, và đó là lý do bài về bất biến khi lặp lại tồn tại."
     },
     "quiz": [
       {
-        "question": "Rủi ro lớn nhất của forward contract so với futures là gì?",
+        "question": "Vì sao hàng đợi không xoá tin nhắn ngay khi giao?",
         "options": [
-          "Forward luôn đắt hơn futures",
-          "Forward yêu cầu ký quỹ hàng ngày",
-          "Forward không thể dùng cho hàng hóa",
-          "Counterparty risk cao hơn - vì là thỏa thuận riêng tư (OTC), không có sàn giao dịch đảm bảo, một bên có thể không thực hiện cam kết"
-        ],
-        "correct": 3,
-        "explanation": "Forward là hợp đồng OTC (over-the-counter) - không qua trung gian sàn giao dịch đảm bảo thực hiện. Nếu một bên phá sản hoặc từ chối thực hiện, bên còn lại chịu rủi ro. Futures giải quyết vấn đề này bằng cơ chế ký quỹ và thanh toán hàng ngày qua sàn."
-      },
-      {
-        "question": "Hai bên A và B ký forward contract mua/bán 100 tấn gạo sau 6 tháng ở giá 15.000đ/kg. Nếu sau 6 tháng, một bên phá sản và không thể thực hiện hợp đồng, hậu quả pháp lý xảy ra với bên còn lại là gì?",
-        "options": [
-          "Bên còn lại phải chịu tổn thất tài chính (counterparty risk) vì không có cơ chế đảm bảo tập trung như futures - họ có thể phải mua/bán ở giá thị trường hiện tại (có thể bất lợi hơn nhiều) và tìm cách đòi bồi thường qua thủ tục pháp lý riêng lẻ",
-          "Cả hai bên đều không chịu trách nhiệm gì trong tình huống này",
-          "Sàn giao dịch sẽ tự động bồi thường cho bên bị thiệt hại",
-          "Không có hậu quả gì, hợp đồng tự động hủy bỏ"
+          "Vì người tiêu thụ có thể chết giữa chừng, và tin nhắn cần quay lại để người khác làm",
+          "Vì cần giữ tất cả các tin nhắn để có thể tra cứu lại lịch sử xử lý mỗi khi cần kiểm tra",
+          "Vì rất nhiều người tiêu thụ hoàn toàn có thể cùng cần đọc một tin nhắn cho các mục đích khác nhau",
+          "Vì việc xoá ngay làm tăng số lần ghi vào ổ đĩa nên ảnh hưởng tới hiệu năng"
         ],
         "correct": 0,
-        "explanation": "Đây chính là rủi ro cốt lõi của forward contract (OTC, không qua sàn): không có clearing house đứng giữa đảm bảo thực hiện nghĩa vụ, khiến bên còn lại phải tự gánh chịu rủi ro đối tác và tìm cách khắc phục qua con đường pháp lý riêng - khác hẳn với futures có cơ chế bảo vệ tập trung."
+        "explanation": "Đây là bảo đảm quan trọng nhất mà hàng đợi cung cấp. Lựa chọn thứ ba mô tả mô hình xuất bản và đăng ký, một mô hình khác sẽ được nói ở bài sau."
+      },
+      {
+        "question": "Xác nhận ngay khi nhận tin nhắn dẫn tới hệ quả gì?",
+        "options": [
+          "Việc bị mất nếu tiến trình chết giữa chừng, vì tin nhắn đã bị xoá khỏi hàng đợi",
+          "Tin nhắn được xử lý nhiều lần vì toàn bộ hệ thống hàng đợi không biết chính nó đã xong hay chưa",
+          "Hàng đợi bị tồn đọng vì tốc độ xác nhận nhanh hơn tốc độ xử lý thật",
+          "Thứ tự xử lý bị đảo lộn khi có nhiều người tiêu thụ cùng nhận tin nhắn"
+        ],
+        "correct": 0,
+        "explanation": "Hai cách xác nhận cho hai kiểu hỏng đối lập, và không có lựa chọn thứ ba: hoặc bạn chấp nhận có thể mất việc, hoặc chấp nhận có thể làm hai lần. Phần lớn hệ thống chọn cái thứ hai."
+      },
+      {
+        "question": "Vì sao thời gian chờ xác nhận cần được đặt đúng?",
+        "options": [
+          "Quá ngắn thì việc đang chạy bị giao lại cho người khác, quá dài thì việc hỏng nằm im lâu",
+          "Quá ngắn thì hàng đợi bị quá tải, quá dài thì tin nhắn bị hết hạn và mất đi",
+          "Quá ngắn thì rốt cuộc tốn phần tài nguyên mạng, quá dài thì phía người tiêu thụ giữ kết nối vô ích",
+          "Quá ngắn thì thứ tự bị đảo, quá dài thì tồn đọng tích tụ nhanh hơn mức xử lý"
+        ],
+        "correct": 0,
+        "explanation": "Kiểu hỏng ở vế đầu tệ hơn: một việc chạy lâu hơn thời gian chờ sẽ bị giao lại trong khi bản gốc vẫn đang chạy, nên bạn có hai bản cùng xử lý một việc - và cả hai đều tưởng mình là bản duy nhất."
+      },
+      {
+        "question": "Vì sao nên tách người tiêu thụ khỏi nhà sản xuất về mặt triển khai?",
+        "options": [
+          "Vì hai bên có nhu cầu mở rộng khác nhau và có thể phát hành độc lập với nhau",
+          "Vì việc tách ra giúp giảm tải cho hệ thống hàng đợi ở giữa hai bên",
+          "Vì hai bên thường được viết bằng những ngôn ngữ lập trình khác nhau",
+          "Vì các quy định về bảo mật đều yêu cầu phải tách biệt những thành phần xử lý dữ liệu"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lợi ích kiến trúc thật của hàng đợi và nó ít được nói tới: nhà sản xuất có thể phát hành mà không đụng người tiêu thụ, và bạn tăng số người tiêu thụ khi tồn đọng lớn mà không đụng gì tới phía sản xuất."
+      },
+      {
+        "question": "Thứ gì trong tin nhắn quyết định hàng đợi dùng được lâu dài?",
+        "options": [
+          "Một phiên bản hoặc lược đồ, để hai bên đổi độc lập mà không phá nhau",
+          "Một dấu khoảng thời gian để biết các tin nhắn đã nằm trong hệ thống hàng đợi bao lâu",
+          "Một mức ưu tiên để hệ thống hàng đợi biết được xử lý các tin nhắn nào trước tiên",
+          "Kích thước tin nhắn được giữ nhỏ để hàng đợi có thể xử lý được nhiều hơn"
+        ],
+        "correct": 0,
+        "explanation": "Tin nhắn là một hợp đồng giữa hai bên triển khai độc lập - đúng như API ở chặng gọi dịch vụ ngoài. Không có phiên bản thì một thay đổi ở phía sản xuất có thể làm người tiêu thụ hỏng, và các tin nhắn cũ vẫn nằm trong hàng đợi."
       }
     ],
     "keyTakeaways": [
-      "Forward: hợp đồng riêng tư (OTC), khóa giá mua/bán trong tương lai",
-      "Linh hoạt về điều khoản nhưng có rủi ro đối tác (counterparty risk)",
-      "Phù hợp với nhu cầu hedging tùy chỉnh của từng doanh nghiệp"
+      "Hàng đợi giao tin nhắn nhưng CHƯA xoá; nó chỉ xoá khi nhận được xác nhận.",
+      "Xác nhận trước khi làm thì có thể MẤT việc; xác nhận sau thì có thể làm HAI LẦN.",
+      "Thời gian chờ xác nhận quá ngắn: hai bản cùng chạy một việc, cả hai tưởng mình duy nhất.",
+      "Tách sản xuất và tiêu thụ để hai bên mở rộng và phát hành độc lập.",
+      "Tin nhắn là hợp đồng - nó cần phiên bản, đúng như một API."
     ],
     "practicePrompt": {
-      "question": "Một công ty xuất khẩu cà phê Việt Nam ký thỏa thuận riêng tư trực tiếp với một nhà nhập khẩu châu Âu, khóa giá bán 2.000 USD/tấn cho lô hàng sẽ giao sau 6 tháng, không thông qua bất kỳ sàn giao dịch nào. Loại hợp đồng phái sinh này gọi là gì?",
+      "question": "Một việc mất trung bình bốn phút, thời gian chờ xác nhận đặt ba phút. Chuyện gì xảy ra?",
       "options": [
-        "Đây gọi là Futures, vì hợp đồng đã ấn định giá cụ thể cho một thời điểm tương lai",
-        "Forward: hợp đồng OTC song phương khóa giá mua/bán trước, nhưng kèm rủi ro đối tác",
-        "Đây gọi là Option, vì công ty có quyền nhưng không có nghĩa vụ phải bán cà phê theo giá đã thỏa thuận",
-        "Đây gọi là Swap, vì hai bên đang trao đổi dòng tiền theo một công thức đã thỏa thuận"
+        "Mỗi việc bị giao lại trước khi xong, nên hệ thống xử lý mọi thứ ít nhất hai lần",
+        "Các việc bị đánh dấu là thất bại và chuyển sang toàn bộ hệ thống hàng đợi thư chết sau ba phút",
+        "Hàng đợi tồn đọng dần vì tốc độ xử lý chậm hơn thời gian chờ đã đặt",
+        "Người tiêu thụ bị ngắt kết nối và phải thiết lập lại kết nối với hàng đợi"
       ],
-      "correct": 1,
-      "explanation": "Forward: hợp đồng riêng tư (OTC), khóa giá mua/bán trong tương lai. Vì là thỏa thuận song phương trực tiếp (không qua sàn), Forward linh hoạt tùy chỉnh theo nhu cầu cụ thể của từng doanh nghiệp, nhưng đi kèm rủi ro đối tác (counterparty risk) không có clearing house đảm bảo như Futures."
+      "correct": 0,
+      "explanation": "Đây là một trong những cấu hình sai tốn kém nhất và nó rất khó nhận ra: mọi việc đều hoàn thành, không có lỗi nào, chỉ là mỗi việc chạy hai lần trở lên - và hậu quả chỉ lộ ra ở dữ liệu trùng lặp."
     },
     "summary": {
-      "keyIdea": "Forward: hợp đồng riêng tư (OTC), khóa giá mua/bán trong tương lai",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Linh hoạt về điều khoản nhưng có rủi ro đối tác (counterparty risk)"
+      "keyIdea": "Hợp đồng khi có lỗi mới là thứ quyết định, không phải bảng tính năng.",
+      "formula": "Giao → xử lý → xác nhận → xoá. Chết trước khi xác nhận thì giao lại.",
+      "commonMistake": "Đặt thời gian chờ xác nhận ngắn hơn thời gian xử lý thật.",
+      "action": "Kiểm thời gian chờ xác nhận của hàng đợi so với thời gian xử lý thật."
     },
     "application": {
-      "title": "Phân biệt forward với giao dịch thường",
-      "message": "Viết ra một tình huống thực tế bạn có thể gặp (ví dụ đặt cọc mua vàng ở giá hôm nay, nhận hàng sau 1 tháng) và xác định xem đó có mang bản chất của một forward contract hay không.",
-      "secondary": "Bản chất forward xuất hiện nhiều hơn trong đời sống thường ngày hơn bạn nghĩ."
+      "title": "Làm ngay hôm nay",
+      "message": "Kiểm hai con số của hàng đợi bạn đang dùng: thời gian chờ xác nhận đặt bao nhiêu, và thời gian xử lý thật ở phân vị cao là bao nhiêu.",
+      "secondary": "Nếu con số thứ hai lớn hơn con số thứ nhất, hệ thống của bạn đang xử lý trùng mà không báo lỗi nào - và hậu quả nằm ở dữ liệu chứ không ở nhật ký."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Forward contract là dạng phái sinh nguyên thủy nhất: hai bên ngồi lại, thỏa thuận riêng tư với nhau rằng sẽ mua/bán một tài sản ở một mức giá cố định (forward price) tại một thời điểm trong tương lai. Không sàn giao dịch, không trung gian đứng giữa - chỉ có lời hứa giữa hai bên."
+        "text": "Một hàng đợi có ba phần và một hợp đồng. Ba phần thì ai cũng biết; hợp đồng mới là thứ quyết định chuyện gì xảy ra khi có lỗi - và đó là thứ nên hiểu trước khi chọn công cụ."
       },
       {
         "type": "heading",
-        "text": "Vì sao doanh nghiệp thích forward"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một công ty xuất khẩu cà phê Việt Nam ký forward bán USD cho nhà nhập khẩu nước ngoài trước vụ thu hoạch. Vì là thỏa thuận song phương, hai bên có thể tùy chỉnh mọi điều khoản: số lượng chính xác, ngày giao hàng chính xác, mức giá chính xác theo nhu cầu thực tế của họ - không bị gò vào những con số chuẩn hóa của sàn giao dịch."
-      },
-      {
-        "type": "heading",
-        "text": "Cái giá của sự linh hoạt: counterparty risk"
-      },
-      {
-        "type": "paragraph",
-        "text": "Sự linh hoạt đó đi kèm một rủi ro lớn: không có clearing house nào đứng giữa đảm bảo hai bên thực hiện cam kết. Nếu một bên phá sản hoặc từ chối thực hiện khi hợp đồng đáo hạn, bên còn lại phải tự gánh chịu tổn thất - có thể phải mua/bán ở giá thị trường hiện tại (bất lợi hơn nhiều so với giá đã thỏa thuận) rồi tự tìm cách đòi bồi thường qua con đường pháp lý riêng lẻ, chứ không có cơ chế bảo vệ tập trung nào can thiệp."
-      },
-      {
-        "type": "formula",
-        "title": "Đáo hạn thì ai được, ai mất",
-        "equation": "Lãi/lỗ của bên bán = (Giá forward − Giá thị trường lúc đáo hạn) × Số lượng",
-        "variables": [
-          { "symbol": "Giá forward", "name": "Giá đã chốt hôm ký", "description": "Cố định, không đổi suốt vòng đời hợp đồng" },
-          { "symbol": "Giá thị trường", "name": "Giá giao ngay lúc đáo hạn", "description": "Chỉ biết được khi tới ngày đó" }
-        ],
-        "example": {
-          "title": "Nhà xuất khẩu cà phê chốt bán 1 triệu USD ở 25.000 VND/USD",
-          "calculation": "VND lên giá còn 24.000 → (25.000 − 24.000) × 1tr = +1 tỷ VND · VND mất giá lên 26.000 → (25.000 − 26.000) × 1tr = −1 tỷ VND",
-          "result": "Doanh thu quy đổi luôn là 25 tỷ VND",
-          "explanation": "Hai kịch bản cho ra hai kết quả trái dấu trên hợp đồng, nhưng cộng với doanh thu USD thật thì tổng luôn bằng nhau. Đó là điều nhà xuất khẩu muốn: một con số để đưa vào kế hoạch, không phải con số lớn nhất."
-        }
+        "text": "Hợp đồng"
       },
       {
         "type": "callout",
-        "label": "Counterparty risk trông như thế nào",
-        "text": "Vẫn ví dụ trên, VND mất giá lên 26.000 và bên mua biến mất. Nhà xuất khẩu không mất 25 tỷ - họ vẫn có 1 triệu USD để bán ở giá thị trường. Cái mất là 1 tỷ VND lẽ ra hợp đồng bù cho, đúng vào lúc cần nhất. Rủi ro đối tác luôn hiện thực hóa ở phía bất lợi, vì bên thua mới là bên có động cơ bỏ chạy."
+        "label": "Giao nhưng chưa xoá",
+        "text": "Hàng đợi đưa tin nhắn cho người tiêu thụ và giữ lại một bản. Nó chỉ xoá khi nhận được XÁC NHẬN đã xử lý xong. Người tiêu thụ chết trước khi xác nhận thì tin nhắn quay lại và được giao cho người khác."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Xác nhận trước khi làm",
+          "text": "Tiến trình chết giữa chừng thì việc MẤT hẳn - tin nhắn đã bị xoá khỏi hàng đợi."
+        },
+        "right": {
+          "label": "Xác nhận sau khi làm xong",
+          "text": "Tiến trình chết sau khi làm nhưng trước khi xác nhận thì việc chạy HAI LẦN. Phần lớn hệ thống chọn cái này."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Không có lựa chọn thứ ba, và đó là lý do bài về bất biến khi lặp lại ở phần sau chặng tồn tại - nó không phải một cải tiến tuỳ chọn mà là điều kiện để mô hình này dùng được."
+      },
+      {
+        "type": "heading",
+        "text": "Một cấu hình dễ đặt sai"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thời gian chờ xác nhận. Đặt ngắn hơn thời gian xử lý thật thì mỗi việc bị giao lại TRƯỚC KHI xong - bạn có hai bản cùng chạy, và cả hai đều tưởng mình là bản duy nhất."
+      },
+      {
+        "type": "paragraph",
+        "text": "Kiểu hỏng này rất khó nhận ra vì mọi việc đều hoàn thành và không có lỗi nào trong nhật ký. Hậu quả chỉ lộ ra ở dữ liệu trùng lặp, thường là nhiều tuần sau."
+      },
+      {
+        "type": "heading",
+        "text": "Hai điều đáng làm ngay từ đầu"
       },
       {
         "type": "list",
         "items": [
-          "OTC (over-the-counter): giao dịch trực tiếp giữa hai bên, không qua sàn",
-          "Không chuẩn hóa: số lượng, ngày đáo hạn, giá cả tùy chỉnh theo nhu cầu",
-          "Counterparty risk: rủi ro một bên không thực hiện nghĩa vụ khi đáo hạn",
-          "Phù hợp nhất cho hedging tùy chỉnh của doanh nghiệp, ít phù hợp cho nhà đầu cơ cần thanh khoản cao"
+          "Tách người tiêu thụ khỏi nhà sản xuất về mặt triển khai. Bạn tăng số người tiêu thụ khi tồn đọng lớn mà không đụng gì tới phía sản xuất.",
+          "Đặt PHIÊN BẢN vào tin nhắn. Nó là hợp đồng giữa hai bên triển khai độc lập - đúng như một API - và các tin nhắn cũ vẫn nằm trong hàng đợi khi bạn đổi lược đồ."
         ]
       },
       {
         "type": "closing",
         "lines": [
-          "Forward đổi lấy sự linh hoạt bằng rủi ro đối tác - đây chính là lý do futures ra đời để giải quyết vấn đề này."
+          "Mục thứ hai hay bị bỏ vì lúc mới dựng thì hai bên do cùng một người viết, nên hợp đồng có vẻ thừa. Nó thừa cho tới lần đầu ai đó đổi một trường.",
+          "Bài sau là một mô hình khác hay bị nhầm với hàng đợi: xuất bản và đăng ký."
         ]
       }
     ]
   },
   {
     "id": 183,
-    "slug": "futures-contract-la-gi",
-    "title": "Tự học Tài chính Day 183: Futures Contract là gì?",
-    "subtitle": "Giống forward nhưng chuẩn hóa, giao dịch trên sàn, an toàn hơn",
+    "slug": "hang-doi-so-voi-xuat-ban-dang-ky",
+    "title": "Hàng đợi so với xuất bản và đăng ký",
+    "subtitle": "Một tin nhắn cho một người làm, hay một sự kiện cho mọi người quan tâm.",
     "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "📘",
-    "openingQuestion": "Vì sao futures contract được xem là an toàn hơn forward contract dù bản chất tương tự?",
+    "track": "professional",
+    "emoji": "📡",
+    "isFundamental": true,
+    "whyItMatters": "Chọn nhầm mô hình dẫn tới việc phải sửa mọi nhà sản xuất mỗi khi có người tiêu thụ mới - đúng thứ mà kiến trúc hướng sự kiện sinh ra để tránh.",
+    "openingQuestion": "Khác biệt cốt lõi giữa hai mô hình là gì?",
     "openingOptions": [
-      "Vì futures chỉ dành riêng cho chính phủ và các định chế tài chính lớn phát hành",
-      "Vì futures giao dịch qua sàn chuẩn hóa, có ký quỹ và thanh toán hàng ngày",
-      "Vì futures không có rủi ro giá",
-      "Vì futures không cần đặt cọc"
+      "Hàng đợi: một tin nhắn cho một người xử lý. Xuất bản: một sự kiện cho mọi người đăng ký",
+      "Hàng đợi lưu tin nhắn trên đĩa còn xuất bản chỉ giữ chúng trong bộ nhớ tạm",
+      "Hàng đợi bảo đảm thứ tự còn xuất bản thì không đảm bảo thứ tự các sự kiện",
+      "Hàng đợi dùng cho việc nội bộ còn xuất bản dùng để có thể giao tiếp giữa tất cả các hệ thống"
     ],
-    "correctOption": 1,
-    "explanation": "Futures là phiên bản chuẩn hóa của forward: giao dịch trên sàn (như CME, sàn hàng hóa), quy mô hợp đồng cố định, có trung tâm thanh toán bù trừ (clearing house) đứng giữa đảm bảo cả hai bên thực hiện nghĩa vụ. Mark-to-market: lãi/lỗ được tính toán và thanh toán mỗi ngày, không đợi đến khi đáo hạn.",
+    "correctOption": 0,
+    "explanation": "Đây là khác biệt về ngữ nghĩa chứ không về công cụ: hàng đợi phân chia công việc, xuất bản thông báo một chuyện đã xảy ra. Ba lựa chọn kia mô tả các đặc điểm kỹ thuật có thể khác nhau giữa các sản phẩm cụ thể, nhưng chúng không phải điểm phân biệt hai mô hình - nhiều hệ thống hiện đại hỗ trợ cả hai với cùng cơ chế lưu trữ.",
     "diagram": [
       {
-        "label": "Giống Forward nhưng chuẩn hóa",
+        "label": "Hàng đợi: một tin, một người làm, có việc cần làm",
         "arrow": true
       },
       {
-        "label": "Giao dịch trên sàn (CME...)",
+        "label": "Xuất bản: một sự kiện, nhiều người nghe, chuyện đã xảy ra",
         "arrow": true
       },
       {
-        "label": "Có clearing house đảm bảo cả hai bên"
+        "label": "Xuất bản cho phép thêm người nghe mà không đụng người gửi",
+        "arrow": true
+      },
+      {
+        "label": "Đổi lại: không ai biết ai đang nghe"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Hãng hàng không quốc tế",
-      "description": "Các hãng hàng không lớn thường mua futures dầu thô trên sàn NYMEX để khóa chi phí nhiên liệu - chiếm 20-30% chi phí vận hành - tránh biến động giá dầu đột ngột."
+      "company": "Thêm một người nghe mà không sửa gì",
+      "description": "Đơn hàng được tạo là một sự kiện. Ban đầu chỉ có dịch vụ gửi thư nghe. Sau đó thêm dịch vụ tích điểm, rồi dịch vụ phân tích - và không lần nào phải sửa phần tạo đơn hàng. Đó là toàn bộ giá trị của mô hình này."
     },
     "quiz": [
       {
-        "question": "Mark-to-market trong futures nghĩa là gì?",
+        "question": "Khi nào nên dùng hàng đợi thay vì xuất bản?",
         "options": [
-          "Giá futures không bao giờ thay đổi",
-          "Chỉ áp dụng cho hợp đồng hàng hóa",
-          "Lãi/lỗ trên hợp đồng được tính toán và ghi nhận vào tài khoản ký quỹ mỗi ngày dựa trên giá đóng cửa thị trường",
-          "Chỉ thanh toán một lần khi đáo hạn hợp đồng"
+          "Khi có một việc cụ thể cần được làm đúng một lần bởi một người xử lý",
+          "Khi cần đảm bảo tất cả các tin nhắn được lưu trữ bền vững hoàn toàn không bị mất đi",
+          "Khi số lượng tin nhắn quá lớn để mọi bên có thể cùng nhận và đồng thời xử lý được",
+          "Khi các bên xử lý nằm ở ngay trong cùng chính hệ thống nội bộ của chính tổ chức"
         ],
-        "correct": 2,
-        "explanation": "Mỗi ngày, sàn giao dịch tính lại giá trị hợp đồng theo giá thị trường hiện tại (mark-to-market), cộng/trừ lãi lỗ vào tài khoản ký quỹ của nhà đầu tư ngay lập tức. Nếu tài khoản xuống dưới mức ký quỹ tối thiểu, nhà đầu tư phải nộp thêm tiền (margin call) hoặc bị đóng vị thế."
+        "correct": 0,
+        "explanation": "Gửi một thư, xử lý một ảnh, tính lại một báo cáo - đây là những việc cần làm, không phải những chuyện đã xảy ra. Ngữ nghĩa quyết định lựa chọn, không phải quy mô hay vị trí."
       },
       {
-        "question": "Một nhà đầu cơ mua futures dầu thô mà không hề có nhu cầu sử dụng dầu thực tế, chỉ để kiếm lời từ biến động giá. Khi hợp đồng gần đáo hạn, họ phải làm gì để tránh phải nhận giao hàng vật lý 1.000 thùng dầu?",
+        "question": "Lợi ích lớn nhất của mô hình xuất bản và đăng ký là gì?",
         "options": [
-          "Bắt buộc phải nhận giao hàng vật lý bất kể mục đích ban đầu",
-          "Chỉ có thể thoát khỏi hợp đồng bằng cách tuyên bố phá sản",
-          "Futures không cho phép đóng vị thế trước khi đáo hạn",
-          "Đóng vị thế (close out) bằng cách bán lại đúng số lượng hợp đồng tương ứng trước ngày đáo hạn - phần lớn nhà đầu cơ trên thị trường futures hàng hóa không bao giờ thực sự nhận/giao hàng vật lý mà chỉ giao dịch trên giấy tờ tài chính"
+          "Thêm người tiêu thụ mới mà không phải sửa gì ở phía người gửi sự kiện",
+          "Nhiều người tiêu thụ chia nhau khối lượng công việc nên xử lý nhanh hơn",
+          "Các sự kiện được lưu lại nên có thể phát lại khi cần khôi phục trạng thái",
+          "Người gửi hoàn toàn không cần chờ người nhận xử lý xong nên rốt cuộc phản hồi nhanh hơn"
         ],
-        "correct": 3,
-        "explanation": "Tính thanh khoản cao của futures cho phép nhà đầu tư đóng vị thế bất kỳ lúc nào trước đáo hạn bằng giao dịch ngược chiều - đây là lý do đại đa số hợp đồng futures hàng hóa (ước tính trên 97%) không bao giờ dẫn đến giao hàng vật lý thực sự, chỉ có ý nghĩa tài chính thuần túy với phần lớn người tham gia."
+        "correct": 0,
+        "explanation": "Đây là toàn bộ lý do mô hình này tồn tại. Lựa chọn thứ hai mô tả hàng đợi chứ không phải xuất bản - trong xuất bản thì mọi người nghe đều nhận bản sao của cùng sự kiện, không chia nhau."
+      },
+      {
+        "question": "Cái giá của việc không ai biết ai đang nghe là gì?",
+        "options": [
+          "Đổi một sự kiện trở nên rủi ro vì bạn không biết ai sẽ hỏng vì thay đổi đó",
+          "Không thể xác định được sự kiện nào đã được xử lý và sự kiện nào chưa",
+          "Hiệu năng giảm đi vì hệ thống buộc phải gửi một bản sao cho tất cả các bên đăng ký",
+          "Khó gỡ lỗi vì không biết một sự kiện đã đi qua những dịch vụ nào"
+        ],
+        "correct": 0,
+        "explanation": "Đây là mặt trái trực tiếp của lợi ích: cùng một sự tách rời khiến bạn thêm người nghe dễ dàng cũng khiến bạn không biết ai bị ảnh hưởng khi đổi. Lựa chọn cuối cũng là vấn đề thật nhưng nó giải được bằng dấu vết."
+      },
+      {
+        "question": "Sự kiện nên chứa gì?",
+        "options": [
+          "Chuyện đã xảy ra và dữ liệu đủ để người nghe làm việc, không chứa mệnh lệnh",
+          "Danh sách tất cả các hành động mà mỗi bên đăng ký thật sự cần thực hiện mỗi khi nhận được",
+          "Tham chiếu tới bản ghi gốc để người nghe tự truy vấn dữ liệu mới nhất",
+          "Toàn bộ trạng thái của hệ thống tại thời điểm sự kiện được phát ra"
+        ],
+        "correct": 0,
+        "explanation": "Chữ KHÔNG CHỨA MỆNH LỆNH là mấu chốt: ngay khi sự kiện nói người nghe phải làm gì, bạn đã đưa tri thức về người nghe vào người gửi - và mất luôn lợi ích tách rời. Chỉ chứa tham chiếu thì cũng dùng được nhưng nó tạo ra một lượt gọi ngược lại."
+      },
+      {
+        "question": "Vì sao đặt tên sự kiện ở thì quá khứ lại quan trọng?",
+        "options": [
+          "Vì nó giữ cho sự kiện là một sự thật đã xảy ra chứ không thành một mệnh lệnh trá hình",
+          "Vì một quy ước đặt tên thống nhất sẽ giúp cả đội dễ tìm kiếm sự kiện trong toàn hệ thống",
+          "Vì thì quá khứ cho biết sự kiện đã được xử lý xong bởi người gửi",
+          "Vì các công cụ theo dõi phân loại sự kiện dựa trên quy ước đặt tên này"
+        ],
+        "correct": 0,
+        "explanation": "Đây là một quy ước nhỏ mà có tác dụng thật: đơn hàng đã được tạo là một sự thật, còn gửi thư xác nhận là một mệnh lệnh. Cái tên giữ cho ranh giới đó không trôi khi có người thêm trường vào sau."
       }
     ],
     "keyTakeaways": [
-      "Futures: chuẩn hóa, giao dịch qua sàn, có clearing house đảm bảo",
-      "Mark-to-market: thanh toán lãi/lỗ hàng ngày, giảm rủi ro đối tác",
-      "Futures phù hợp với nhà đầu tư cần thanh khoản cao và minh bạch giá"
+      "Hàng đợi: một tin, một người làm. Xuất bản: một sự kiện, nhiều người nghe.",
+      "Khác biệt là NGỮ NGHĨA - việc cần làm so với chuyện đã xảy ra.",
+      "Lợi ích: thêm người nghe mà không sửa gì ở phía gửi.",
+      "Cái giá: không ai biết ai đang nghe, nên đổi sự kiện trở nên rủi ro.",
+      "Sự kiện chứa sự thật, không chứa mệnh lệnh - đặt tên ở thì quá khứ."
     ],
     "practicePrompt": {
-      "question": "Khác với Forward (thỏa thuận riêng tư giữa hai bên), một nhà đầu tư mua hợp đồng tương lai dầu thô với các điều khoản đã được chuẩn hóa sẵn (khối lượng, ngày đáo hạn cố định), giao dịch qua sàn CME, và một tổ chức trung gian đảm bảo cả hai bên đều thực hiện đúng cam kết. Loại hợp đồng này gọi là gì?",
+      "question": "Bạn cần xử lý ảnh sau khi người dùng tải lên. Dùng mô hình nào?",
       "options": [
-        "Đây vẫn là Forward, chỉ khác về nơi giao dịch, không có sự khác biệt bản chất nào khác",
-        "Futures: chuẩn hóa, giao dịch qua sàn, có clearing house đảm bảo",
-        "Đây gọi là Option, vì nhà đầu tư có quyền lựa chọn thực hiện hợp đồng hay không",
-        "Đây gọi là trái phiếu doanh nghiệp, vì được giao dịch qua sàn chứng khoán chính thức"
+        "Hàng đợi, vì đây là một việc cụ thể cần được làm đúng một lần",
+        "Xuất bản, vì sau này có thể có thêm dịch vụ khác quan tâm tới ảnh mới",
+        "Cả hai: xuất bản sự kiện ảnh đã tải lên, và hàng đợi cho việc xử lý",
+        "Gọi trực tiếp, vì xử lý ảnh cần biết kết quả để cập nhật giao diện"
       ],
-      "correct": 1,
-      "explanation": "Futures: chuẩn hóa, giao dịch qua sàn, có clearing house đảm bảo. Sự chuẩn hóa và có clearing house giúp Futures thanh khoản cao hơn và ít rủi ro đối tác hơn Forward, nhưng đổi lại kém linh hoạt hơn vì điều khoản đã được ấn định sẵn."
+      "correct": 0,
+      "explanation": "Xử lý ảnh là một việc cần làm, không phải một chuyện cần thông báo. Lựa chọn thứ ba là kiến trúc đúng khi đã có nhiều bên quan tâm, nhưng dựng cả hai lớp ngay từ đầu cho một người tiêu thụ là độ phức tạp trả trước cho một nhu cầu chưa tồn tại."
     },
     "summary": {
-      "keyIdea": "Futures: chuẩn hóa, giao dịch qua sàn, có clearing house đảm bảo",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Mark-to-market: thanh toán lãi/lỗ hàng ngày, giảm rủi ro đối tác"
+      "keyIdea": "Chọn theo ngữ nghĩa: việc cần làm hay chuyện đã xảy ra.",
+      "formula": "Một việc, một người làm → hàng đợi. Một sự thật, nhiều người quan tâm → xuất bản.",
+      "commonMistake": "Đưa mệnh lệnh vào sự kiện, và mất luôn lợi ích tách rời.",
+      "action": "Đọc tên các tin nhắn trong hệ thống bạn - chúng là việc hay là sự thật?"
     },
     "application": {
-      "title": "So sánh futures với forward",
-      "message": "Viết ra 3 điểm khác biệt giữa futures và forward mà bạn nhớ được, đặc biệt là vai trò của clearing house và cơ chế mark-to-market.",
-      "secondary": "Nắm chắc 3 điểm này là đủ để phân biệt hai công cụ dễ nhầm lẫn nhất."
+      "title": "Làm ngay hôm nay",
+      "message": "Đọc tên các tin nhắn hoặc sự kiện trong hệ thống bạn và phân loại: cái nào là VIỆC CẦN LÀM, cái nào là CHUYỆN ĐÃ XẢY RA.",
+      "secondary": "Nếu có cái nào tên là mệnh lệnh mà lại được nhiều bên nghe, đó là chỗ mô hình đang bị dùng lẫn - và nó sẽ lộ ra ở lần đầu bạn cần thêm một người nghe mới."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Futures là câu trả lời của thị trường tài chính cho vấn đề counterparty risk của forward: cùng một ý tưởng - cam kết mua/bán ở giá cố định trong tương lai - nhưng được chuẩn hóa và đưa lên sàn giao dịch, nơi một trung tâm thanh toán bù trừ (clearing house) đứng giữa đảm bảo cả hai bên đều thực hiện nghĩa vụ."
+        "text": "Hai mô hình này thường được dựng trên cùng một công cụ, nên người ta hay nhầm chúng là một. Khác biệt nằm ở ngữ nghĩa, và chọn nhầm thì hậu quả lộ ra khá muộn."
       },
       {
         "type": "heading",
-        "text": "Mark-to-market: thanh toán mỗi ngày, không đợi đáo hạn"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khác với forward chỉ thanh toán một lần khi đáo hạn, futures tính toán lãi/lỗ và ghi nhận vào tài khoản ký quỹ của nhà đầu tư mỗi ngày dựa trên giá đóng cửa thị trường - gọi là mark-to-market. Nếu tài khoản xuống dưới mức ký quỹ tối thiểu, nhà đầu tư nhận margin call, phải nộp thêm tiền hoặc bị đóng vị thế. Cơ chế này khiến rủi ro không bao giờ dồn tích quá lớn đến lúc đáo hạn mới lộ ra."
-      },
-      {
-        "type": "heading",
-        "text": "Hãng hàng không dùng futures dầu như thế nào"
-      },
-      {
-        "type": "paragraph",
-        "text": "Các hãng hàng không lớn mua futures dầu thô trên sàn NYMEX để khóa chi phí nhiên liệu - khoản mục chiếm 20-30% chi phí vận hành. Điều thú vị: đa số nhà giao dịch futures hàng hóa (ước tính trên 97%) không bao giờ thực sự nhận hay giao hàng vật lý. Họ đóng vị thế (close out) bằng cách giao dịch ngược chiều trước ngày đáo hạn - futures với họ chỉ có ý nghĩa tài chính thuần túy."
+        "text": "Hai ngữ nghĩa"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Forward",
-          "text": "OTC, tùy chỉnh theo nhu cầu hai bên, thanh toán một lần khi đáo hạn, có counterparty risk vì không qua clearing house."
+          "label": "Hàng đợi",
+          "text": "Một VIỆC CẦN LÀM, giao cho một người xử lý, và chỉ một. Gửi một thư, xử lý một ảnh, tính lại một báo cáo."
         },
         "right": {
-          "label": "Futures",
-          "text": "Giao dịch qua sàn, quy mô hợp đồng chuẩn hóa, mark-to-market thanh toán mỗi ngày, clearing house đảm bảo nghĩa vụ hai bên."
+          "label": "Xuất bản và đăng ký",
+          "text": "Một CHUYỆN ĐÃ XẢY RA, gửi tới mọi bên quan tâm. Đơn hàng đã được tạo, người dùng đã đăng ký, thanh toán đã hoàn tất."
         }
       },
       {
-        "type": "list",
-        "items": [
-          "Clearing house: trung tâm thanh toán bù trừ đứng giữa đảm bảo cả hai bên thực hiện nghĩa vụ",
-          "Margin call: yêu cầu nộp thêm tiền ký quỹ khi tài khoản xuống dưới mức tối thiểu",
-          "Close out: đóng vị thế bằng giao dịch ngược chiều trước đáo hạn, tránh phải giao/nhận hàng vật lý",
-          "Tính thanh khoản cao khiến futures phù hợp cả cho hedging lẫn speculation"
+        "type": "heading",
+        "text": "Lợi ích, và cái giá đi kèm nó"
+      },
+      {
+        "type": "callout",
+        "label": "Thêm người nghe mà không sửa người gửi",
+        "text": "Ban đầu chỉ có dịch vụ gửi thư nghe sự kiện đơn hàng đã tạo. Sau đó thêm dịch vụ tích điểm, rồi phân tích - và không lần nào phải sửa phần tạo đơn hàng. Đó là toàn bộ giá trị của mô hình này."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cái giá là mặt trái trực tiếp của chính lợi ích đó: KHÔNG AI BIẾT AI ĐANG NGHE. Cùng một sự tách rời khiến bạn thêm người nghe dễ dàng cũng khiến bạn không biết ai sẽ hỏng khi bạn đổi cấu trúc sự kiện."
+      },
+      {
+        "type": "heading",
+        "text": "Sự kiện chứa gì"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chuyện đã xảy ra, và dữ liệu đủ để người nghe làm việc. KHÔNG chứa mệnh lệnh - ngay khi sự kiện nói người nghe phải làm gì, bạn đã đưa tri thức về người nghe vào người gửi, và mất luôn lợi ích tách rời."
+      },
+      {
+        "type": "paragraph",
+        "text": "Có một quy ước nhỏ giữ cho ranh giới đó không trôi: đặt tên sự kiện ở THÌ QUÁ KHỨ. Đơn hàng đã được tạo là một sự thật; gửi thư xác nhận là một mệnh lệnh. Cái tên nhắc điều đó mỗi lần có người định thêm trường vào."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Và đừng dựng cả hai lớp ngay từ đầu cho một người tiêu thụ duy nhất. Đó là độ phức tạp trả trước cho một nhu cầu chưa tồn tại - chuyển từ hàng đợi sang xuất bản về sau không khó.",
+          "Bài sau là bảo đảm mà hàng đợi đưa ra về việc giao tin nhắn, và ba mức của nó."
         ]
       }
     ]
   },
   {
     "id": 184,
-    "slug": "option-la-gi",
-    "title": "Tự học Tài chính Day 184: Option là gì?",
-    "subtitle": "Quyền - không phải nghĩa vụ - mua hoặc bán một tài sản",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🔄",
-    "openingQuestion": "Điểm khác biệt cốt lõi giữa option và futures/forward là gì?",
+    "slug": "bao-dam-giao-nhan-ba-muc",
+    "title": "Bảo đảm giao nhận - ba mức",
+    "subtitle": "Đúng một lần là thứ ai cũng muốn và gần như không hệ thống nào cho được.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "🎫",
+    "isFundamental": true,
+    "whyItMatters": "Hiểu ba mức này quyết định bạn phải viết bao nhiêu mã xử lý lỗi, và nó cũng ngăn bạn tin vào một lời hứa mà công cụ không giữ được theo cách bạn nghĩ.",
+    "openingQuestion": "Mức bảo đảm nào phần lớn hệ thống hàng đợi thật sự cung cấp?",
     "openingOptions": [
-      "Option cho QUYỀN chứ không bắt buộc; futures/forward là cam kết phải thực hiện",
-      "Option chỉ dùng cho cổ phiếu",
-      "Option luôn rẻ hơn futures",
-      "Không có khác biệt bản chất nào cả, chúng chỉ khác nhau ở mỗi tên gọi mà thôi chứ"
+      "Ít nhất một lần - tin nhắn không mất, nhưng có thể được giao lại nhiều lần",
+      "Chính xác đúng một lần, chỉ vì đó là mức mà tất cả các sản phẩm hiện đại đều quảng cáo hỗ trợ",
+      "Nhiều nhất đúng một lần, chỉ vì đó chính là mức đơn giản nhất và tốn ít tài nguyên nhất",
+      "Tuỳ cấu hình, vì cả ba mức đều được hỗ trợ như nhau trong các sản phẩm phổ biến"
     ],
     "correctOption": 0,
-    "explanation": "Option (quyền chọn) trao cho người mua quyền - nhưng không có nghĩa vụ - mua (call) hoặc bán (put) một tài sản ở mức giá xác định (strike price) trước hoặc tại một ngày đáo hạn. Người mua option trả một khoản phí gọi là premium để có quyền này; nếu không có lợi, họ có thể chọn không thực hiện.",
+    "explanation": "Ít nhất một lần là mức mặc định và thực tế của gần như mọi hệ thống hàng đợi, vì nó là hệ quả trực tiếp của cơ chế xác nhận. Đúng một lần được nhiều sản phẩm quảng cáo nhưng nó chỉ đúng trong phạm vi hệ thống của họ - ngay khi người tiêu thụ ghi ra một cơ sở dữ liệu bên ngoài thì bảo đảm đó không còn với tới nữa.",
     "diagram": [
       {
-        "label": "Trả phí mua Option",
+        "label": "Nhiều nhất một lần: có thể mất, không bao giờ trùng",
         "arrow": true
       },
       {
-        "label": "Có QUYỀN - không có nghĩa vụ",
+        "label": "Ít nhất một lần: không mất, có thể trùng - mức thực tế",
         "arrow": true
       },
       {
-        "label": "Mua (Call) hoặc bán (Put) ở strike price"
+        "label": "Đúng một lần: chỉ trong phạm vi hệ thống đó",
+        "arrow": true
+      },
+      {
+        "label": "Nên bên nhận phải tự chịu được việc nhận trùng"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Thị trường quyền chọn Chicago (CBOE)",
-      "description": "CBOE (Chicago Board Options Exchange) là sàn giao dịch quyền chọn lớn nhất thế giới, nơi nhà đầu tư mua bán options trên hàng nghìn cổ phiếu và chỉ số mỗi ngày."
+      "company": "Đúng một lần dừng ở biên hệ thống",
+      "description": "Một hệ thống có thể bảo đảm mỗi tin nhắn ảnh hưởng tới trạng thái nội bộ của nó đúng một lần. Nhưng khi người tiêu thụ gọi một API bên ngoài hoặc ghi vào cơ sở dữ liệu khác, bảo đảm đó dừng lại ở biên - và bạn quay về ít nhất một lần."
     },
     "quiz": [
       {
-        "question": "Vì sao option được ví như một loại 'bảo hiểm' tài chính?",
+        "question": "Vì sao ít nhất một lần là mức thực tế của phần lớn hệ thống?",
         "options": [
-          "Vì các công ty bảo hiểm phát hành option",
-          "Vì người mua trả một khoản phí cố định (premium) để có quyền bảo vệ trước biến động giá bất lợi, giống như phí bảo hiểm - rủi ro tối đa giới hạn ở mức premium đã trả",
-          "Vì option luôn có lãi",
-          "Option không liên quan gì đến bảo hiểm"
+          "Vì nó là hệ quả trực tiếp của cơ chế xác nhận: chết trước khi xác nhận thì giao lại",
+          "Vì nó là mức duy nhất mà các giao thức mạng hiện nay hỗ trợ được",
+          "Vì tất cả các mức khác đòi hỏi tài nguyên lớn hơn hẳn nên rốt cuộc hiếm khi được dùng",
+          "Vì đó là mức mặc định trong cấu hình của hầu hết sản phẩm hàng đợi"
         ],
-        "correct": 1,
-        "explanation": "Giống hợp đồng bảo hiểm: bạn trả premium (phí) để có quyền bảo vệ nếu có sự kiện bất lợi xảy ra (giá giảm mạnh với người giữ cổ phiếu, ví dụ). Nếu sự kiện đó không xảy ra, bạn chỉ mất phí premium - không mất thêm gì khác."
+        "correct": 0,
+        "explanation": "Nó không phải một lựa chọn thiết kế mà là hệ quả của việc giữ tin nhắn cho tới khi có xác nhận. Bỏ cơ chế đó đi thì bạn được nhiều nhất một lần, tức là chấp nhận mất việc."
       },
       {
-        "question": "Một nhà đầu tư mua cả call option VÀ put option cùng strike price, cùng ngày đáo hạn trên cùng một cổ phiếu (chiến lược \"straddle\"). Họ đang đặt cược vào điều gì?",
+        "question": "Vì sao đúng một lần chỉ đúng trong phạm vi một hệ thống?",
         "options": [
-          "Đặt cược giá cổ phiếu sẽ hoàn toàn không thay đổi",
-          "Đặt cược giá cổ phiếu sẽ tăng mạnh",
-          "Đặt cược giá cổ phiếu sẽ BIẾN ĐỘNG MẠNH theo BẤT KỲ hướng nào (tăng hoặc giảm mạnh) - nếu giá đứng yên gần strike price, cả hai option đều mất giá trị và họ lỗ toàn bộ premium đã trả cho cả hai",
-          "Đặt cược giá cổ phiếu sẽ giảm mạnh"
+          "Vì khi người tiêu thụ ghi ra ngoài, hệ thống hàng đợi không kiểm soát được thao tác đó",
+          "Vì các hệ thống khác nhau thường dùng những giao thức đồng bộ hoàn toàn không tương thích nhau",
+          "Vì việc phối hợp giữa nhiều hệ thống đòi hỏi giao dịch phân tán rất tốn kém",
+          "Vì đồng hồ giữa các hệ thống không đồng bộ nên không xác định được thứ tự"
         ],
-        "correct": 2,
-        "explanation": "Straddle là chiến lược đặt cược vào ĐỘ BIẾN ĐỘNG (volatility) chứ không phải hướng đi cụ thể của giá - phù hợp khi nhà đầu tư dự đoán một sự kiện lớn sắp xảy ra (như báo cáo lợi nhuận) sẽ tạo biến động mạnh nhưng không chắc chắn về hướng tăng hay giảm."
+        "correct": 0,
+        "explanation": "Hệ thống hàng đợi có thể bảo đảm trạng thái NỘI BỘ của nó được cập nhật đúng một lần. Nhưng lời gọi API bên ngoài hay lần ghi vào cơ sở dữ liệu khác nằm ngoài tầm với của nó."
+      },
+      {
+        "question": "Hệ quả thực dụng của việc chấp nhận ít nhất một lần là gì?",
+        "options": [
+          "Bên nhận phải tự chịu được việc nhận trùng, chứ không chờ hàng đợi lo",
+          "Cần cấu hình số lần thử lại tối đa để tránh tin nhắn được giao vô hạn",
+          "Phải ghi lại toàn bộ lịch sử tin nhắn để đối chiếu khi có nghi ngờ trùng lặp",
+          "Nên giảm thời gian chờ xác nhận xuống để phát hiện lỗi sớm hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là kết luận quan trọng nhất của bài và nó dời trách nhiệm sang phía bạn: không có cấu hình nào của hàng đợi thay được việc bên nhận tự xử lý trùng lặp."
+      },
+      {
+        "question": "Khi nào nhiều nhất một lần là lựa chọn hợp lý?",
+        "options": [
+          "Khi mất một tin nhắn không gây hậu quả, ví dụ số liệu đo lường lấy mẫu",
+          "Khi hệ thống cần xử lý khối lượng rất lớn nên rốt cuộc buộc phải giảm chi phí xử lý",
+          "Khi các tin nhắn hoàn toàn có thể được tạo lại dễ dàng từ nguồn phần dữ liệu gốc",
+          "Khi thứ tự tin nhắn quan trọng hơn việc đảm bảo mọi tin nhắn đều tới nơi"
+        ],
+        "correct": 0,
+        "explanation": "Với số liệu đo lường thì mất một mẫu trong hàng nghìn không đổi kết luận nào, và bạn tiết kiệm được toàn bộ phần mã chống trùng. Lựa chọn thứ ba nghe hợp lý nhưng việc tạo lại thường tốn hơn nhiều so với chống trùng."
+      },
+      {
+        "question": "Điều gì làm cho bảo đảm của hàng đợi trở nên vô nghĩa?",
+        "options": [
+          "Người tiêu thụ xác nhận trước khi hoàn tất công việc để xử lý nhanh hơn",
+          "Số lượng người tiêu thụ vượt quá số phân vùng của chính hệ thống hàng đợi đang dùng",
+          "Kích thước tin nhắn vượt quá giới hạn nên phải chia nhỏ thành nhiều phần",
+          "Thời gian lưu trữ tất cả các tin nhắn ngắn hơn khoảng thời gian xử lý của người tiêu thụ"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cách phổ biến nhất để vô hiệu hoá bảo đảm mà vẫn tưởng mình đang có nó: bạn cấu hình mức ít nhất một lần nhưng viết mã hành xử như nhiều nhất một lần, nên bạn có mặt xấu của cả hai."
       }
     ],
     "keyTakeaways": [
-      "Option: quyền (không phải nghĩa vụ) mua/bán ở strike price",
-      "Premium: phí trả để có quyền chọn, là rủi ro tối đa của người mua",
-      "Option hoạt động như một dạng bảo hiểm tài chính có thể định giá được"
+      "Ít nhất một lần là mức thực tế: hệ quả trực tiếp của cơ chế xác nhận.",
+      "Đúng một lần chỉ đúng trong phạm vi hệ thống đó; ghi ra ngoài là hết bảo đảm.",
+      "Bên NHẬN phải tự chịu được việc nhận trùng - không cấu hình nào thay được.",
+      "Nhiều nhất một lần hợp lý khi mất một tin nhắn không đổi kết luận nào.",
+      "Xác nhận trước khi làm xong là cách vô hiệu hoá bảo đảm mà vẫn tưởng còn."
     ],
     "practicePrompt": {
-      "question": "Bạn mua một hợp đồng cho phép (nhưng không bắt buộc) mua cổ phiếu VNM ở giá 80.000đ trong vòng 3 tháng tới. Nếu giá thị trường giảm xuống 70.000đ, bạn hoàn toàn có thể chọn không thực hiện hợp đồng và chỉ mất phí đã trả ban đầu. Đặc điểm 'có thể chọn không thực hiện' này là điểm khác biệt cốt lõi của loại hợp đồng phái sinh nào?",
+      "question": "Sản phẩm hàng đợi bạn dùng quảng cáo đúng một lần. Có thể bỏ mã chống trùng không?",
       "options": [
-        "Đây là đặc điểm của Forward, vì cả hai bên đều bắt buộc phải thực hiện hợp đồng khi đến hạn",
-        "Option: quyền - không phải nghĩa vụ - mua/bán ở strike, rủi ro tối đa là premium",
-        "Đây là đặc điểm của Futures, vì hợp đồng được chuẩn hóa và giao dịch qua sàn",
-        "Mọi loại hợp đồng phái sinh đều có đặc điểm này, không có gì đặc biệt với Option"
+        "Không, nếu người tiêu thụ ghi ra bất cứ nơi nào ngoài chính hệ thống hàng đợi đó",
+        "Có, vì đó là bảo đảm được nhà cung cấp cam kết trong tài liệu chính thức",
+        "Có, nếu bạn cấu hình đúng theo hướng dẫn và bật các tuỳ chọn liên quan",
+        "Không, vì không có hệ thống nào thật sự đảm bảo được mức đúng một lần"
       ],
-      "correct": 1,
-      "explanation": "Option: quyền (không phải nghĩa vụ) mua/bán ở strike price. Đây là sự khác biệt cốt lõi so với Forward và Futures (cả hai bên đều bắt buộc thực hiện) - người mua Option chỉ mất tối đa khoản phí (premium) nếu chọn không thực hiện quyền."
+      "correct": 0,
+      "explanation": "Lựa chọn cuối quá tuyệt đối: bảo đảm đó có thật và có giá trị trong phạm vi của nó. Vấn đề là phạm vi - và gần như mọi người tiêu thụ thật đều ghi ra một nơi nằm ngoài phạm vi đó."
     },
     "summary": {
-      "keyIdea": "Option: quyền (không phải nghĩa vụ) mua/bán ở strike price",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Premium: phí trả để có quyền chọn, là rủi ro tối đa của người mua"
+      "keyIdea": "Đúng một lần là lời hứa có phạm vi, và phạm vi đó hẹp hơn hệ thống của bạn.",
+      "formula": "Ít nhất một lần + bên nhận chống trùng = đúng một lần trên thực tế.",
+      "commonMistake": "Xác nhận trước khi hoàn tất, tức có mặt xấu của cả hai mức.",
+      "action": "Kiểm mã người tiêu thụ: nó xác nhận trước hay sau khi làm xong?"
     },
     "application": {
-      "title": "Tìm giá một option thực tế",
-      "message": "Bài học đã có ví dụ thật về cách đọc bảng giá VN30F1M - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy tự mở bảng giá phái sinh và xác định các thành phần đã học.",
-      "secondary": "Nhìn bảng giá thật giúp khái niệm option bớt trừu tượng hẳn."
+      "title": "Làm ngay hôm nay",
+      "message": "Mở mã người tiêu thụ của bạn và tìm chỗ xác nhận tin nhắn. Nó nằm trước hay sau phần xử lý thật?",
+      "secondary": "Nếu nằm trước, bạn đang chấp nhận mất việc mà có thể không biết. Nếu nằm sau, hãy kiểm tiếp: phần xử lý có chịu được việc chạy hai lần không?"
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Option (quyền chọn) khác hẳn forward và futures ở một điểm then chốt: nó trao cho người mua QUYỀN, không phải NGHĨA VỤ, mua (call) hoặc bán (put) một tài sản ở mức giá xác định (strike price) trước hoặc tại ngày đáo hạn. Nếu bất lợi, người mua đơn giản không thực hiện quyền đó."
+        "text": "Ba mức bảo đảm này xuất hiện trong mọi tài liệu về hàng đợi, và mức thứ ba - thứ ai cũng muốn - là mức bị hiểu sai nhiều nhất."
       },
       {
         "type": "heading",
-        "text": "Premium: cái giá của sự lựa chọn"
+        "text": "Ba mức"
       },
       {
-        "type": "paragraph",
-        "text": "Quyền này không miễn phí. Người mua option phải trả một khoản phí gọi là premium ngay khi mua hợp đồng - bất kể sau này có thực hiện quyền hay không. Đây chính là điểm khiến option được ví như bảo hiểm tài chính: bạn trả một khoản phí cố định để có quyền bảo vệ trước biến động giá bất lợi, và rủi ro tối đa của bạn chỉ giới hạn ở đúng khoản premium đã trả - không bao giờ mất thêm."
-      },
-      {
-        "type": "heading",
-        "text": "Đặt cược vào biến động, không phải hướng đi"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một chiến lược thú vị là straddle: mua cả call option và put option cùng strike price, cùng ngày đáo hạn trên cùng cổ phiếu. Nhà đầu tư không đặt cược giá sẽ tăng hay giảm, mà đặt cược giá sẽ BIẾN ĐỘNG MẠNH theo bất kỳ hướng nào - thường dùng trước một sự kiện lớn như báo cáo lợi nhuận. Nếu giá đứng yên gần strike, cả hai option đều mất giá trị và họ lỗ toàn bộ premium đã trả."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Call option: quyền MUA ở strike price",
-          "Put option: quyền BÁN ở strike price",
-          "Premium: phí trả trước để có quyền, cũng là rủi ro tối đa của người mua",
-          "CBOE (Chicago Board Options Exchange): sàn giao dịch option lớn nhất thế giới"
+        "type": "conceptTable",
+        "title": "Đổi gì lấy gì",
+        "concepts": [
+          {
+            "vi": "Nhiều nhất một lần",
+            "en": "at most once",
+            "def": "Xác nhận trước khi làm. Không bao giờ trùng, nhưng có thể mất việc. Hợp lý với số liệu đo lường lấy mẫu."
+          },
+          {
+            "vi": "Ít nhất một lần",
+            "en": "at least once",
+            "def": "Xác nhận sau khi làm. Không mất, nhưng có thể trùng. Đây là mức THỰC TẾ của gần như mọi hệ thống."
+          },
+          {
+            "vi": "Đúng một lần",
+            "en": "exactly once",
+            "def": "Thứ ai cũng muốn. Có thật - nhưng chỉ trong PHẠM VI hệ thống hàng đợi đó."
+          }
         ]
       },
       {
         "type": "heading",
-        "text": "Ví dụ thật: đọc bảng giá phái sinh VN30F1M"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Dù VN chưa có thị trường option cổ phiếu đại chúng như Mỹ, hợp đồng tương lai VN30F1M dùng chung logic đọc bảng giá: giá hợp đồng, mức ký quỹ, khối lượng mở (open interest)",
-          "Với option thực sự (phổ biến ở thị trường Mỹ), hai số cần xác định trên bảng giá là strike price (giá thực hiện quyền) và premium (giá mua quyền chọn) - premium là số tiền trả ngay, strike là giá được quyền mua/bán trong tương lai",
-          "Ký quỹ ban đầu cho hợp đồng tương lai VN30F1M khoảng 20% giá trị hợp đồng, đòn bẩy tối đa khoảng 1:5"
-        ]
+        "text": "Vì sao mức thứ ba bị hiểu sai"
       },
       {
         "type": "callout",
-        "label": "Cách tự tra cứu",
-        "text": "Mở mục \"Phái sinh\" trên app công ty chứng khoán VN để xem VN30F1M; muốn xem option chain cổ phiếu thật, tra trên các trang quốc tế như Yahoo Finance với một mã cổ phiếu Mỹ (ví dụ AAPL)."
+        "label": "Bảo đảm dừng ở biên hệ thống",
+        "text": "Một hệ thống có thể bảo đảm mỗi tin nhắn ảnh hưởng tới trạng thái NỘI BỘ của nó đúng một lần. Nhưng khi người tiêu thụ gọi một API bên ngoài hoặc ghi vào cơ sở dữ liệu khác, bảo đảm đó không với tới - và bạn quay về ít nhất một lần."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lời hứa đó không sai; nó chỉ có phạm vi hẹp hơn hệ thống của bạn. Và gần như mọi người tiêu thụ thật đều ghi ra một nơi nằm ngoài phạm vi đó."
+      },
+      {
+        "type": "heading",
+        "text": "Kết luận thực dụng"
+      },
+      {
+        "type": "paragraph",
+        "text": "BÊN NHẬN phải tự chịu được việc nhận trùng. Không có cấu hình nào của hàng đợi thay được điều này, và đó là lý do bài về bất biến khi lặp lại ở phần sau chặng là bài bắt buộc chứ không phải bài nâng cao."
+      },
+      {
+        "type": "heading",
+        "text": "Cách vô hiệu hoá bảo đảm mà vẫn tưởng còn"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Bạn cấu hình",
+          "text": "Mức ít nhất một lần. Hàng đợi giữ tin nhắn cho tới khi có xác nhận."
+        },
+        "right": {
+          "label": "Nhưng mã bạn viết",
+          "text": "Xác nhận ngay khi nhận, rồi mới xử lý - để tăng thông lượng. Lúc này bạn có mặt xấu của cả hai mức: vẫn phải chống trùng vì hàng đợi có thể giao lại, mà vẫn mất việc khi tiến trình chết."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Option cho bạn sự bất đối xứng có lợi: rủi ro giới hạn, lợi nhuận tiềm năng không giới hạn - nhưng cái giá của sự bất đối xứng đó chính là premium."
+          "Đây là chỗ đáng mở mã ra kiểm ngay: xác nhận nằm trước hay sau phần xử lý thật.",
+          "Bài sau là một bảo đảm khác mà người ta hay giả định là có: thứ tự."
         ]
       }
     ]
   },
   {
     "id": 185,
-    "slug": "call-option-la-gi",
-    "title": "Tự học Tài chính Day 185: Call Option là gì?",
-    "subtitle": "Quyền mua tài sản ở mức giá cố định - kỳ vọng giá sẽ tăng",
+    "slug": "thu-tu-tin-nhan",
+    "title": "Thứ tự tin nhắn",
+    "subtitle": "Bảo đảm thứ tự là thứ đắt nhất trong hàng đợi, và phần lớn hệ thống không cần nó.",
     "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🔄",
-    "openingQuestion": "Bạn mua call option cổ phiếu X với strike price 50.000đ, trả premium 2.000đ. Nếu giá cổ phiếu lên 60.000đ khi đáo hạn, bạn lãi bao nhiêu?",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "🔢",
+    "isFundamental": true,
+    "whyItMatters": "Người ta giả định thứ tự mà không nói ra, rồi hệ thống chạy đúng suốt giai đoạn thử nghiệm với một người tiêu thụ và hỏng khi tăng lên năm người.",
+    "openingQuestion": "Vì sao thêm người tiêu thụ lại phá vỡ thứ tự?",
     "openingOptions": [
-      "Lỗ, vì vẫn phải trả khoản premium 2.000đ ban đầu đó",
-      "60.000đ",
-      "10.000đ",
-      "8.000đ (60.000 − 50.000 − 2.000 premium đã trả)"
+      "Vì các người tiêu thụ chạy song song và không có gì bắt họ hoàn thành theo thứ tự nhận",
+      "Vì hàng đợi phân phối tin nhắn ngẫu nhiên cho các người tiêu thụ đang rảnh",
+      "Vì mỗi người tiêu thụ giữ một bản sao riêng của hàng đợi nên thứ tự khác nhau",
+      "Vì độ trễ mạng khác nhau giữa các người tiêu thụ làm tin nhắn tới không đều"
     ],
-    "correctOption": 3,
-    "explanation": "Quyền chọn mua cho người nắm giữ quyền - chứ không phải nghĩa vụ - mua tài sản ở một mức giá định trước cho tới ngày đáo hạn. Vì là quyền, phần lỗ tối đa chỉ bằng khoản phí đã trả, trong khi phần lãi không có trần. Chính tính bất đối xứng đó là lý do quyền chọn được dùng để đặt cược có kiểm soát rủi ro - nhưng cũng là lý do phần lớn quyền chọn hết hạn mà không có giá trị nào.",
+    "correctOption": 0,
+    "explanation": "Ngay cả khi hàng đợi giao tin nhắn theo đúng thứ tự, hai người tiêu thụ nhận hai tin nhắn liên tiếp có thể hoàn thành theo thứ tự ngược lại - vì một cái xử lý nhanh hơn cái kia. Đây là lý do thứ tự và xử lý song song là hai thứ xung khắc, và bạn phải chọn.",
     "diagram": [
       {
-        "label": "Mua Call Option ở strike price",
+        "label": "Thứ tự và song song là hai thứ xung khắc",
         "arrow": true
       },
       {
-        "label": "Giá thị trường tăng vượt strike",
+        "label": "Muốn cả hai: chia phân vùng theo khoá",
         "arrow": true
       },
       {
-        "label": "Thực hiện quyền mua rẻ, bán lại giá cao"
+        "label": "Cùng khoá → cùng phân vùng → cùng một người xử lý",
+        "arrow": true
+      },
+      {
+        "label": "Nhưng phần lớn hệ thống không cần thứ tự toàn cục"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Nhà đầu tư cá nhân",
-      "description": "Nhà đầu tư tin cổ phiếu công nghệ sẽ tăng mạnh sau báo cáo lợi nhuận thường mua call option thay vì mua cổ phiếu trực tiếp - đòn bẩy cao hơn nhiều với vốn bỏ ra nhỏ hơn."
+      "company": "Chỉ cần thứ tự trong một phạm vi",
+      "description": "Các thay đổi của cùng một đơn hàng cần đúng thứ tự; thay đổi của hai đơn hàng khác nhau thì không liên quan gì. Chia phân vùng theo mã đơn hàng cho bạn thứ tự ở đúng chỗ cần và vẫn xử lý song song được ở mọi chỗ khác."
     },
     "quiz": [
       {
-        "question": "Nếu giá cổ phiếu X chỉ đạt 48.000đ khi đáo hạn (thấp hơn strike 50.000đ), người mua call option sẽ làm gì?",
+        "question": "Chia phân vùng theo khoá giải quyết vấn đề gì?",
         "options": [
-          "Không thực hiện quyền - để option hết hạn vô giá trị, chỉ mất phần premium đã trả (2.000đ)",
-          "Bắt buộc phải mua ở giá 50.000đ dù đang lỗ",
-          "Phải bồi thường thêm tiền cho người bán",
-          "Có thể bán lại option cho ai đó với giá cao hơn"
+          "Cho thứ tự trong phạm vi một khoá mà vẫn xử lý song song giữa các khoá",
+          "Phân bổ đều khối lượng công việc giữa các người tiêu thụ đang hoạt động",
+          "Giảm dung lượng lưu trữ cần thiết bằng cách nhóm các tin nhắn giống nhau",
+          "Cho phép xử lý lại các tin nhắn của một khoá cụ thể khi cần khắc phục lỗi"
         ],
         "correct": 0,
-        "explanation": "Đây chính là ý nghĩa của 'quyền, không phải nghĩa vụ'. Nếu thực hiện quyền mua ở 50.000đ trong khi giá thị trường chỉ 48.000đ là bất lợi, người mua đơn giản không thực hiện - rủi ro tối đa chỉ giới hạn ở khoản premium đã trả, không bao giờ lỗ thêm."
+        "explanation": "Đây là cách thoát khỏi việc phải chọn giữa thứ tự và song song. Nó dựa trên một quan sát rất thực dụng: bạn hầu như không bao giờ cần thứ tự toàn cục, chỉ cần thứ tự trong một phạm vi."
       },
       {
-        "question": "Vì sao người mua call option chỉ có rủi ro giới hạn (bằng premium đã trả) nhưng người bán (writer) call option lại có rủi ro về mặt lý thuyết là VÔ HẠN?",
+        "question": "Cái giá của việc chia phân vùng theo khoá là gì?",
         "options": [
-          "Không đúng, người bán call option cũng chỉ có rủi ro giới hạn như người mua",
-          "Vì nếu giá cổ phiếu tăng không giới hạn, người bán call option (đã cam kết bán ở strike price cố định) phải mua cổ phiếu ở giá thị trường (có thể tăng vô hạn) để giao cho người mua ở mức giá strike thấp hơn nhiều - khoản lỗ tiềm năng của người bán không có giới hạn trên",
-          "Người bán option không bao giờ chịu rủi ro gì",
-          "Rủi ro của người bán luôn bằng đúng premium nhận được"
+          "Một khoá có lưu lượng lớn bất thường sẽ làm phân vùng đó thành điểm nghẽn",
+          "Số lượng phân vùng buộc phải cố định từ đầu và hoàn toàn không thay đổi được về sau",
+          "Việc tra cứu một tin nhắn cụ thể trở nên chậm hơn vì phải tìm qua nhiều phân vùng",
+          "Tất cả các tin nhắn hoàn toàn không có khoá sẽ bị loại bỏ thay vì được xử lý bình thường"
         ],
-        "correct": 1,
-        "explanation": "Đây là sự bất đối xứng rủi ro nổi tiếng trong option: người mua call có lãi tiềm năng vô hạn, lỗ giới hạn ở premium; người bán call (writer) có lãi giới hạn ở premium nhận được, nhưng lỗ tiềm năng vô hạn nếu giá cổ phiếu tăng mạnh - đây là lý do bán \"naked call\" (không có cổ phiếu bảo chứng) được xem là chiến lược cực kỳ rủi ro."
+        "correct": 0,
+        "explanation": "Phân vùng nóng là vấn đề thực tế phổ biến nhất của mô hình này: một khách hàng lớn hoặc một mã sản phẩm bán chạy có thể chiếm phần lớn lưu lượng, và bạn không mở rộng riêng phân vùng đó được."
+      },
+      {
+        "question": "Vì sao nên thiết kế người tiêu thụ chịu được sai thứ tự?",
+        "options": [
+          "Vì nó rẻ hơn nhiều so với việc bảo đảm thứ tự, và nó cũng chịu được cả việc thử lại",
+          "Vì các hệ thống hàng đợi hiện đại không còn hỗ trợ bảo đảm thứ tự nữa",
+          "Vì việc bảo đảm thứ tự làm giảm thông lượng xuống dưới mức chấp nhận được",
+          "Vì sai thứ tự chỉ xảy ra trong những trường hợp hiếm nên rốt cuộc cũng không đáng đầu tư chống"
+        ],
+        "correct": 0,
+        "explanation": "Vế thứ hai là phần đáng giá: cùng một thiết kế giải cả hai vấn đề. Một người tiêu thụ bỏ qua tin nhắn cũ hơn trạng thái hiện tại thì vừa chịu được sai thứ tự vừa chịu được nhận trùng."
+      },
+      {
+        "question": "Cách nào giúp người tiêu thụ chịu được sai thứ tự?",
+        "options": [
+          "Dùng số phiên bản trong tin nhắn và bỏ qua tin nhắn cũ hơn trạng thái hiện tại",
+          "Đợi một khoảng thời gian rồi sắp xếp lại các tin nhắn nhận được theo dấu thời gian",
+          "Xử lý tin nhắn một cách tuần tự và chỉ dùng đúng một người tiêu thụ",
+          "Yêu cầu nhà sản xuất đánh số thứ tự và gửi lại nếu phát hiện thiếu số nào"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cách rẻ nhất và cũng chịu được cả việc nhận trùng. Lựa chọn thứ hai có dùng được nhưng nó thêm độ trễ cho mọi tin nhắn để xử lý một trường hợp thiểu số."
+      },
+      {
+        "question": "Vì sao giả định thứ tự mà không nói ra lại nguy hiểm?",
+        "options": [
+          "Vì hệ thống chạy đúng với một người tiêu thụ rồi hỏng khi tăng lên nhiều người",
+          "Vì tất cả các thành viên mới trong đội sẽ hoàn toàn không biết về giả định đó mỗi khi sửa mã",
+          "Vì hàng đợi có thể thay đổi hành vi mặc định sau khi nâng cấp phiên bản",
+          "Vì việc kiểm thử không phát hiện được các vấn đề liên quan tới thứ tự"
+        ],
+        "correct": 0,
+        "explanation": "Đây là kiểu hỏng khó chịu nhất: nó xuất hiện đúng vào lúc bạn mở rộng vì tải tăng, tức lúc bạn ít muốn gỡ lỗi nhất. Và nguyên nhân không nằm trong mã vừa đổi mà nằm trong một giả định từ nhiều tháng trước."
       }
     ],
     "keyTakeaways": [
-      "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-      "Lãi = Giá thị trường − Strike price − Premium (nếu thực hiện quyền)",
-      "Rủi ro tối đa của người mua call = premium đã trả, không hơn"
+      "Thứ tự và xử lý song song xung khắc - hai người tiêu thụ hoàn thành theo thứ tự bất kỳ.",
+      "Chia phân vùng theo khoá: thứ tự trong một khoá, song song giữa các khoá.",
+      "Cái giá là phân vùng nóng - một khoá lưu lượng lớn thành điểm nghẽn.",
+      "Rẻ hơn cả: thiết kế người tiêu thụ chịu được sai thứ tự bằng số phiên bản.",
+      "Cách đó cũng chịu được việc nhận trùng - một thiết kế giải hai vấn đề."
     ],
     "practicePrompt": {
-      "question": "Bạn mua một quyền chọn cho phép mua cổ phiếu ở giá cố định 100.000đ, kỳ vọng giá cổ phiếu sẽ tăng mạnh trong vài tháng tới. Nếu giá thị trường tăng lên 130.000đ, bạn có thể thực hiện quyền mua ở 100.000đ rồi bán ngay ở giá thị trường để hưởng chênh lệch. Loại quyền chọn này gọi là gì?",
+      "question": "Hệ thống chạy đúng suốt thử nghiệm rồi lỗi dữ liệu sau khi bạn tăng lên năm người tiêu thụ. Nguyên nhân?",
       "options": [
-        "Đây gọi là Put option, quyền bán ở strike price, có lợi khi giá giảm",
-        "Call option cho quyền mua ở strike price, có lợi khi giá tăng",
-        "Đây gọi là Forward, hợp đồng bắt buộc mua ở một mức giá đã thỏa thuận trước",
-        "Loại hợp đồng này không có tên gọi cụ thể, chỉ là một dạng đầu cơ thông thường"
+        "Mã đang ngầm giả định thứ tự, và giả định đó chỉ đúng với một người tiêu thụ",
+        "Năm người tiêu thụ cùng ghi vào cùng một bản ghi nên rốt cuộc gây xung đột khi cập nhật",
+        "Hàng đợi không đủ phân vùng nên các tin nhắn bị phân phối không đều",
+        "Thời gian chờ xác nhận không đủ cho năm người tiêu thụ chạy song song"
       ],
-      "correct": 1,
-      "explanation": "Call option: quyền mua ở strike price, có lợi khi giá tăng. Người mua call option kiếm lời khi giá tài sản cơ sở tăng vượt strike price + premium đã trả, và rủi ro tối đa chỉ giới hạn ở khoản premium nếu giá không tăng như kỳ vọng."
+      "correct": 0,
+      "explanation": "Đây là biểu hiện kinh điển của giả định thứ tự không được nói ra. Xung đột khi ghi cũng là vấn đề thật khi tăng song song, nhưng nó thường biểu hiện thành lỗi rõ ràng chứ không thành dữ liệu sai âm thầm."
     },
     "summary": {
-      "keyIdea": "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Lãi = Giá thị trường − Strike price − Premium (nếu thực hiện quyền)"
+      "keyIdea": "Bảo đảm thứ tự là thứ đắt nhất, và phần lớn hệ thống chỉ cần nó trong một phạm vi.",
+      "formula": "Không cần thứ tự → song song thoải mái. Cần trong phạm vi → phân vùng theo khoá.",
+      "commonMistake": "Giả định thứ tự mà không nói ra, rồi mở rộng và hỏng.",
+      "action": "Hỏi mã người tiêu thụ của bạn có ngầm giả định thứ tự ở chỗ nào không."
     },
     "application": {
-      "title": "Tự tính lãi một call option",
-      "message": "Giả sử bạn mua call option với strike 50.000đ, trả premium 2.000đ, và giá thị trường lúc đáo hạn là 65.000đ - tự tính lãi ròng của bạn theo công thức đã học.",
-      "secondary": "Tự làm phép tính này một lần sẽ giúp công thức ghi nhớ lâu hơn nhiều."
+      "title": "Làm ngay hôm nay",
+      "message": "Đọc mã người tiêu thụ và tìm chỗ nó ngầm giả định thứ tự - ví dụ cập nhật trạng thái mà không kiểm tra trạng thái hiện tại có mới hơn không.",
+      "secondary": "Nếu tìm thấy, thêm một số phiên bản vào tin nhắn và bỏ qua tin nhắn cũ hơn. Cách đó vừa chịu được sai thứ tự vừa chịu được nhận trùng - hai vấn đề, một thiết kế."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Call option cho quyền MUA một tài sản ở strike price đã định trước - công cụ dành cho người kỳ vọng giá sẽ tăng. Nếu dự đoán đúng, người mua có thể mua tài sản với giá rẻ hơn giá thị trường và hưởng lợi từ phần chênh lệch."
+        "text": "Thứ tự là bảo đảm mà người ta hay giả định là có mà không nói ra. Hậu quả xuất hiện muộn và đúng vào lúc bất tiện nhất."
       },
       {
         "type": "heading",
-        "text": "Ví dụ có lãi: giá tăng vượt strike"
+        "text": "Vì sao thứ tự đắt"
+      },
+      {
+        "type": "callout",
+        "label": "Thứ tự và song song xung khắc",
+        "text": "Ngay cả khi hàng đợi giao tin nhắn theo đúng thứ tự, hai người tiêu thụ nhận hai tin nhắn liên tiếp có thể hoàn thành theo thứ tự ngược lại - vì một cái xử lý nhanh hơn cái kia. Muốn thứ tự tuyệt đối thì chỉ được một người tiêu thụ."
       },
       {
         "type": "paragraph",
-        "text": "Giả sử strike price là 50.000đ, premium đã trả là 2.000đ. Nếu đến ngày đáo hạn giá thị trường lên 60.000đ, người mua thực hiện quyền: mua ở 50.000đ, bán ngay ở giá thị trường 60.000đ, lãi gộp 10.000đ. Trừ đi 2.000đ premium đã trả ban đầu, lãi ròng còn 8.000đ. Công thức tổng quát: Lãi = Giá thị trường − Strike price − Premium."
+        "text": "Đó là lý do kiểu hỏng này xuất hiện đúng lúc bạn mở rộng vì tải tăng: hệ thống chạy đúng suốt giai đoạn thử nghiệm với một người tiêu thụ, rồi hỏng khi lên năm. Và nguyên nhân không nằm trong mã vừa đổi mà trong một giả định từ nhiều tháng trước."
       },
       {
         "type": "heading",
-        "text": "Ví dụ không thực hiện quyền: giá thấp hơn strike"
+        "text": "Hai cách thoát"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chia phân vùng theo khoá",
+          "text": "Cùng khoá thì cùng phân vùng, và mỗi phân vùng do một người xử lý. Bạn có thứ tự trong phạm vi một khoá và vẫn song song giữa các khoá."
+        },
+        "right": {
+          "label": "Chịu được sai thứ tự",
+          "text": "Rẻ hơn. Dùng số phiên bản trong tin nhắn và bỏ qua tin nhắn cũ hơn trạng thái hiện tại - và cách này cũng chịu được cả việc nhận trùng."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Nếu giá cổ phiếu chỉ đạt 48.000đ khi đáo hạn - thấp hơn strike 50.000đ - việc thực hiện quyền mua ở 50.000đ trong khi thị trường chỉ 48.000đ là vô lý. Người mua đơn giản để option hết hạn vô giá trị, chỉ mất đúng phần premium 2.000đ đã trả. Đây chính là ý nghĩa 'quyền, không phải nghĩa vụ' - không bao giờ lỗ thêm ngoài premium."
-      },
-      {
-        "type": "heading",
-        "text": "Rủi ro bất đối xứng giữa người mua và người bán"
+        "text": "Cột bên trái dựa trên một quan sát rất thực dụng: bạn hầu như không bao giờ cần thứ tự TOÀN CỤC. Các thay đổi của cùng một đơn hàng cần đúng thứ tự; thay đổi của hai đơn hàng khác nhau thì không liên quan gì."
       },
       {
         "type": "paragraph",
-        "text": "Người mua call option có rủi ro giới hạn (bằng premium) nhưng lãi tiềm năng không giới hạn. Ngược lại, người bán (writer) call có lãi giới hạn ở premium nhận được, nhưng lỗ tiềm năng vô hạn: nếu giá cổ phiếu tăng không ngừng, họ vẫn phải mua ở giá thị trường (có thể tăng vô hạn) để giao cho người mua ở mức strike thấp hơn nhiều. Đây là lý do bán 'naked call' - không có cổ phiếu bảo chứng - bị xem là chiến lược cực kỳ rủi ro."
+        "text": "Cái giá của nó là phân vùng nóng: một khách hàng lớn hoặc một mã sản phẩm bán chạy có thể chiếm phần lớn lưu lượng, và bạn không mở rộng riêng phân vùng đó được."
       },
       {
-        "type": "list",
-        "items": [
-          "Lãi call option = Giá thị trường − Strike price − Premium (nếu thực hiện quyền)",
-          "Rủi ro tối đa của người mua call = premium đã trả",
-          "Rủi ro của người bán (writer) call = về lý thuyết vô hạn",
-          "Call option thường dùng để đầu cơ giá tăng với vốn nhỏ hơn nhiều so với mua cổ phiếu trực tiếp"
+        "type": "closing",
+        "lines": [
+          "Cột bên phải đáng ưu tiên vì một lý do gọn: một thiết kế giải hai vấn đề. Người tiêu thụ bỏ qua tin nhắn cũ thì vừa chịu được sai thứ tự vừa chịu được nhận trùng - đúng hai thứ mà mức bảo đảm ít nhất một lần bắt bạn phải chịu.",
+          "Bài sau là chuyện xảy ra khi người tiêu thụ không theo kịp nhà sản xuất."
         ]
       }
     ]
   },
   {
     "id": 186,
-    "slug": "put-option-la-gi",
-    "title": "Tự học Tài chính Day 186: Put Option là gì?",
-    "subtitle": "Quyền bán tài sản ở mức giá cố định - kỳ vọng giá sẽ giảm hoặc muốn bảo hiểm danh mục",
+    "slug": "nguoi-tieu-thu-cham-va-ton-dong",
+      "interactiveType": "tail-risk",
+    "title": "Người tiêu thụ chậm và tồn đọng",
+    "subtitle": "Hàng đợi hấp thụ được đợt tăng ngắn; nó không cứu được chênh lệch kéo dài.",
     "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "🔄",
-    "openingQuestion": "Bạn đang giữ cổ phiếu Y giá 100.000đ, lo giá giảm. Mua put option strike 95.000đ giúp gì?",
+    "track": "professional",
+    "emoji": "🧯",
+    "isFundamental": true,
+    "whyItMatters": "Tồn đọng là chỉ số sức khoẻ quan trọng nhất của một hệ thống bất đồng bộ, và nó cũng là chỉ số hay bị đọc sai nhất - người ta nhìn số lượng thay vì nhìn xu hướng.",
+    "openingQuestion": "Hàng đợi có mười nghìn tin nhắn đang chờ. Đó có phải vấn đề không?",
     "openingOptions": [
-      "Chỉ có tác dụng nếu giá tăng",
-      "Không giúp được gì",
-      "Giá giảm dưới 95.000đ thì bạn vẫn bán được ở 95.000đ - giới hạn khoản lỗ",
-      "Bắt buộc phải bán hết cổ phiếu ngay lập tức khi giá chạm tới mốc 95.000đ đó"
+      "Chưa biết - phải nhìn xu hướng: nó đang tăng, đang giảm, hay đứng yên",
+      "Có, chỉ vì mười nghìn là con số lớn cho thấy cả hệ thống hoàn toàn không xử lý kịp",
+      "Không, vì hàng đợi sinh ra để chứa tin nhắn nên tồn đọng là bình thường",
+      "Tuỳ vào dung lượng tối đa mà toàn bộ hệ thống hàng đợi được cấu hình để có thể lưu trữ"
     ],
-    "correctOption": 2,
-    "explanation": "Quyền chọn bán cho quyền bán tài sản ở mức giá định trước, nên giá trị của nó tăng khi thị trường giảm. Ứng dụng phổ biến nhất không phải đầu cơ mà là bảo hiểm: người đang nắm cổ phiếu mua quyền chọn bán để khóa một mức giá sàn cho danh mục. Cách nghĩ đúng về khoản phí phải trả cũng giống phí bảo hiểm - bạn trả một khoản chắc chắn để loại bỏ một khoản lỗ không chắc chắn nhưng có thể rất lớn.",
+    "correctOption": 0,
+    "explanation": "Mười nghìn tin nhắn đang giảm dần sau một đợt cao điểm là hệ thống đang làm đúng việc của nó. Mười nghìn tin nhắn đang tăng đều là một sự cố sẽ nổ ra trong vài giờ nữa. Cùng một con số, hai tình huống hoàn toàn khác - nên xu hướng mới là thứ đáng cảnh báo, không phải mức tuyệt đối.",
     "diagram": [
       {
-        "label": "Mua Put Option ở strike price",
+        "label": "Nhìn XU HƯỚNG, không nhìn số lượng",
         "arrow": true
       },
       {
-        "label": "Giá thị trường giảm dưới strike",
+        "label": "Đang giảm sau cao điểm → bình thường",
         "arrow": true
       },
       {
-        "label": "Vẫn bán được ở giá strike cao hơn"
+        "label": "Đang tăng đều → sự cố sẽ nổ trong vài giờ",
+        "arrow": true
+      },
+      {
+        "label": "Đo bằng thời gian chờ, không bằng số tin nhắn"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Quỹ đầu tư tổ chức",
-      "description": "Các quỹ hưu trí lớn thường mua put option trên chỉ số S&P 500 để bảo vệ danh mục khỏi các đợt sụt giảm mạnh bất ngờ của thị trường, chấp nhận trả premium như một khoản phí bảo hiểm định kỳ."
+      "company": "Tuổi của tin nhắn cũ nhất",
+      "description": "Con số hữu ích hơn số lượng tồn đọng là tuổi của tin nhắn cũ nhất trong hàng đợi. Nó trả lời thẳng câu hỏi người dùng quan tâm: việc của tôi đang chờ bao lâu rồi. Và nó không đổi ý nghĩa khi kích thước tin nhắn hay tốc độ xử lý thay đổi."
     },
     "quiz": [
       {
-        "question": "Người bán (writer) put option ở vị thế nào?",
+        "question": "Vì sao tuổi tin nhắn cũ nhất tốt hơn số lượng tồn đọng?",
         "options": [
-          "Luôn phải bán tài sản trước",
-          "Có quyền chọn thực hiện hay không giống người mua",
-          "Không có rủi ro gì",
-          "Có NGHĨA VỤ phải mua tài sản ở strike price nếu người mua put quyết định thực hiện quyền - đổi lại nhận được premium ngay từ đầu"
-        ],
-        "correct": 3,
-        "explanation": "Bất đối xứng quyền lợi trong option: người MUA có quyền chọn (không nghĩa vụ), người BÁN (writer) luôn có NGHĨA VỤ nếu bên mua thực hiện quyền. Đổi lại rủi ro này, người bán nhận premium ngay lập tức làm thu nhập, bất kể sau đó có bị thực hiện quyền hay không."
-      },
-      {
-        "question": "Một nhà đầu tư giữ cổ phiếu và bán (viết) covered call trên chính cổ phiếu đó (cam kết bán ở strike price nếu người mua thực hiện quyền). Chiến lược này giới hạn điều gì và tạo ra thu nhập từ đâu?",
-        "options": [
-          "Giới hạn lợi nhuận tối đa (nếu giá tăng vượt strike, họ vẫn phải bán ở strike, bỏ lỡ phần tăng thêm), nhưng tạo ra thu nhập từ premium nhận được ngay lập tức - một chiến lược phổ biến để tạo thu nhập bổ sung từ cổ phiếu đang nắm giữ, đổi lấy giới hạn lợi nhuận tăng giá",
-          "Chiến lược này chỉ có lợi khi giá cổ phiếu giảm mạnh",
-          "Không giới hạn gì và không tạo ra thu nhập gì thêm",
-          "Covered call luôn mang lại rủi ro cao hơn nắm giữ cổ phiếu thông thường"
+          "Vì nó trả lời thẳng câu việc của tôi đang chờ bao lâu, và không đổi nghĩa khi tốc độ đổi",
+          "Vì nó dễ đo hơn so với việc đếm chính xác số tin nhắn trong hàng đợi",
+          "Vì số lượng tồn đọng thay đổi liên tục nên khó đặt ngưỡng cảnh báo ổn định",
+          "Vì tuổi các tin nhắn phản ánh được cả những tin nhắn đã bị buộc chuyển sang toàn bộ hệ thống hàng đợi lỗi"
         ],
         "correct": 0,
-        "explanation": "Covered call là chiến lược \"income generation\" phổ biến: nhà đầu tư chấp nhận giới hạn lợi nhuận tăng giá (upside) để đổi lấy thu nhập premium chắc chắn ngay lập tức - phù hợp với nhà đầu tư kỳ vọng giá đi ngang hoặc tăng nhẹ, không kỳ vọng tăng đột biến."
+        "explanation": "Mười nghìn tin nhắn với người tiêu thụ nhanh là ba mươi giây chờ; cũng mười nghìn với người tiêu thụ chậm là ba giờ. Số lượng không nói được điều đó, còn tuổi thì nói thẳng."
+      },
+      {
+        "question": "Vì sao hàng đợi không cứu được chênh lệch tốc độ kéo dài?",
+        "options": [
+          "Vì nó chỉ dời thời điểm vấn đề lộ ra, còn khoảng chênh vẫn tích tụ mỗi giây",
+          "Vì dung lượng lưu trữ của hàng đợi đó có giới hạn nên chắc chắn sẽ đầy sau một thời gian",
+          "Vì tin nhắn nằm quá lâu ở ngay trong hàng đợi chắc chắn sẽ bị hết hạn và tự động bị xoá",
+          "Vì hiệu năng của toàn bộ hệ thống hàng đợi giảm dần khi số lượng các tin nhắn tăng lên quá lớn"
+        ],
+        "correct": 0,
+        "explanation": "Hàng đợi là một bộ đệm, và bộ đệm chỉ hấp thụ được biến động ngắn hạn. Nếu nhà sản xuất tạo ra nhiều hơn người tiêu thụ xử lý được thì không dung lượng nào đủ - chỉ là thời điểm vỡ bị dời ra xa."
+      },
+      {
+        "question": "Cách nào giảm tồn đọng nhanh nhất khi đang có sự cố?",
+        "options": [
+          "Tăng số người tiêu thụ, nếu công việc chia song song được và phần dưới chịu nổi",
+          "Tăng dung lượng hàng đợi để có thể chứa được nhiều tin nhắn hơn trong lúc chờ xử lý",
+          "Tạm dừng nhà sản xuất để hàng đợi có thời gian xử lý hết phần đang tồn đọng",
+          "Giảm thời gian chờ xác nhận để các tin nhắn được xử lý nhanh hơn"
+        ],
+        "correct": 0,
+        "explanation": "Chữ NẾU PHẦN DƯỚI CHỊU NỔI là điều kiện quan trọng: tăng người tiêu thụ mà cơ sở dữ liệu phía sau đã đầy kết nối thì bạn chỉ chuyển điểm nghẽn. Tạm dừng nhà sản xuất cũng dùng được nhưng nó thường nghĩa là dừng phục vụ người dùng."
+      },
+      {
+        "question": "Vì sao nên tách hàng đợi theo loại công việc?",
+        "options": [
+          "Vì một loại việc chậm hoặc lỗi sẽ không làm nghẽn những loại việc khác",
+          "Vì mỗi loại công việc cần cấu hình thời gian chờ xác nhận khác nhau",
+          "Vì việc phân loại giúp theo dõi và báo cáo khối lượng của từng loại riêng",
+          "Vì các loại công việc khác nhau thường do các đội khác nhau chịu trách nhiệm"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cách ly tài nguyên ở chặng độ tin cậy, áp vào hàng đợi. Một loạt tin nhắn gửi thư bị kẹt không nên làm chậm việc xử lý thanh toán, và chung hàng đợi thì chúng chặn nhau."
+      },
+      {
+        "question": "Ngưỡng cảnh báo cho tồn đọng nên đặt theo gì?",
+        "options": [
+          "Theo tuổi tin nhắn cũ nhất và theo tốc độ tăng, không theo số lượng tuyệt đối",
+          "Theo phần trăm dung lượng hàng đợi đã được sử dụng so với mức tối đa",
+          "Theo số lượng tin nhắn trung bình trong giờ cao điểm của tuần trước đó",
+          "Theo tỷ lệ giữa số tin nhắn vào và số tin nhắn ra ở ngay trong mỗi khoảng thời gian"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn cuối gần đúng và nó chính là tốc độ tăng nói theo cách khác, nhưng nó thiếu vế tuổi - vế trả lời được câu người dùng đang chờ bao lâu. Số lượng tuyệt đối thì đổi ý nghĩa mỗi khi tốc độ xử lý đổi."
       }
     ],
     "keyTakeaways": [
-      "Put option: quyền bán ở strike price, có lợi khi giá giảm",
-      "Protective put: chiến lược bảo hiểm danh mục phổ biến nhất",
-      "Người bán option có nghĩa vụ, người mua chỉ có quyền - rủi ro bất đối xứng"
+      "Nhìn XU HƯỚNG, không nhìn số lượng - cùng con số, hai tình huống khác hẳn.",
+      "Tuổi tin nhắn cũ nhất trả lời thẳng câu việc của tôi đang chờ bao lâu.",
+      "Hàng đợi là bộ đệm: nó hấp thụ biến động ngắn, không cứu chênh lệch kéo dài.",
+      "Tăng người tiêu thụ chỉ giúp nếu phần dưới còn chịu nổi, nếu không là dời điểm nghẽn.",
+      "Tách hàng đợi theo loại việc - đây là cách ly tài nguyên áp vào hàng đợi."
     ],
     "practicePrompt": {
-      "question": "Bạn đang nắm giữ cổ phiếu VNM và lo ngại giá có thể giảm mạnh trong thời gian tới, nên mua một quyền chọn cho phép bán cổ phiếu này ở giá cố định 90.000đ, dù giá thị trường có giảm xuống bao nhiêu. Loại quyền chọn nào giúp bạn 'bảo hiểm' cho khoản đầu tư theo cách này?",
+      "question": "Tồn đọng tăng đều suốt ba giờ. Việc đầu tiên nên làm là gì?",
       "options": [
-        "Put option: quyền bán ở strike price, có lợi khi giá giảm",
-        "Call option: quyền mua ở strike price, có lợi khi giá tăng",
-        "Forward, vì đây là hợp đồng bắt buộc bán cổ phiếu ở một mức giá cố định",
-        "Không có công cụ phái sinh nào có thể giúp bảo vệ khoản đầu tư khỏi rủi ro giảm giá"
+        "Xem người tiêu thụ chậm đi hay nhà sản xuất tăng lên, vì hai nguyên nhân chữa khác nhau",
+        "Tăng ngay số người tiêu thụ lên để xử lý kịp phần đang tồn đọng",
+        "Kiểm tra dung lượng còn lại của hàng đợi đó để có thể biết còn bao lâu trước khi hàng đợi đầy",
+        "Tạm dừng nhà sản xuất để hàng đợi kịp xử lý hết phần đang chờ"
       ],
       "correct": 0,
-      "explanation": "Put option: quyền bán ở strike price, có lợi khi giá giảm. Đây là công cụ hedging phổ biến (protective put) - nhà đầu tư đang nắm giữ cổ phiếu mua thêm put option để giới hạn rủi ro giảm giá, giống như mua bảo hiểm cho danh mục."
+      "explanation": "Người tiêu thụ chậm đi thường nghĩa là có gì đó hỏng ở phía dưới, và tăng số người tiêu thụ lúc đó chỉ dồn thêm tải vào chỗ đang yếu. Nhà sản xuất tăng lên thì mới là lúc thêm người tiêu thụ đúng hướng."
     },
     "summary": {
-      "keyIdea": "Put option: quyền bán ở strike price, có lợi khi giá giảm",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Protective put: chiến lược bảo hiểm danh mục phổ biến nhất"
+      "keyIdea": "Tồn đọng là chỉ số sức khoẻ quan trọng nhất, và phải đọc nó bằng xu hướng.",
+      "formula": "Tuổi tin nhắn cũ nhất + tốc độ tăng = hai con số đáng cảnh báo.",
+      "commonMistake": "Đặt ngưỡng theo số lượng tuyệt đối, vốn đổi nghĩa khi tốc độ xử lý đổi.",
+      "action": "Kiểm xem bạn đang theo dõi số lượng hay tuổi tin nhắn cũ nhất."
     },
     "application": {
-      "title": "Thiết kế một protective put giả định",
-      "message": "Giả sử bạn đang giữ một cổ phiếu và lo giá giảm, mô tả bằng lời cách bạn sẽ dùng put option để giới hạn khoản lỗ tối đa - không cần thực hiện, chỉ cần tư duy qua kịch bản.",
-      "secondary": "Đây là chiến lược bảo hiểm danh mục phổ biến nhất mà nhà đầu tư chuyên nghiệp hay dùng."
+      "title": "Làm ngay hôm nay",
+      "message": "Kiểm bảng theo dõi hàng đợi của bạn: nó đang hiển thị số lượng tồn đọng hay tuổi tin nhắn cũ nhất? Nếu chỉ có cái đầu, thêm cái sau.",
+      "secondary": "Rồi kiểm xem các loại công việc có dùng chung một hàng đợi không. Nếu có, đó là chỗ một loại việc chậm sẽ chặn mọi loại còn lại."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Put option cho quyền BÁN một tài sản ở strike price đã định trước - công cụ dành cho người kỳ vọng giá sẽ giảm, hoặc đơn giản là muốn bảo hiểm cho một tài sản đang nắm giữ trước rủi ro giảm giá."
+        "text": "Tồn đọng là chỉ số sức khoẻ quan trọng nhất của một hệ thống bất đồng bộ. Nó cũng là chỉ số hay bị đọc sai nhất, và cách đọc sai rất cụ thể."
       },
       {
         "type": "heading",
-        "text": "Protective put: bảo hiểm danh mục"
+        "text": "Cùng một con số, hai tình huống"
+      },
+      {
+        "type": "callout",
+        "label": "Xu hướng, không phải số lượng",
+        "text": "Mười nghìn tin nhắn đang GIẢM sau một đợt cao điểm là hệ thống đang làm đúng việc của nó. Mười nghìn tin nhắn đang TĂNG đều là một sự cố sẽ nổ ra trong vài giờ. Mức tuyệt đối không phân biệt được hai chuyện đó."
       },
       {
         "type": "paragraph",
-        "text": "Chiến lược phổ biến nhất với put option là protective put: nhà đầu tư đang giữ tài sản mua thêm put option để giới hạn rủi ro giảm giá. Nếu giá rơi mạnh, họ vẫn có quyền bán ở mức strike đã chọn, thay vì chịu lỗ không giới hạn theo đà giảm của thị trường. Các quỹ hưu trí lớn thường mua put option trên chỉ số S&P 500 để bảo vệ danh mục khỏi các đợt sụt giảm bất ngờ, chấp nhận trả premium như một khoản phí bảo hiểm định kỳ."
+        "text": "Con số hữu ích hơn cả là TUỔI của tin nhắn cũ nhất. Nó trả lời thẳng câu hỏi người dùng quan tâm - việc của tôi đang chờ bao lâu rồi - và nó không đổi ý nghĩa khi tốc độ xử lý thay đổi."
       },
       {
         "type": "heading",
-        "text": "Người bán put: nghĩa vụ, không phải quyền"
+        "text": "Giới hạn của bộ đệm"
       },
       {
         "type": "paragraph",
-        "text": "Người bán (writer) put option có nghĩa vụ phải MUA tài sản ở strike price nếu người mua put quyết định thực hiện quyền - đổi lại, họ nhận premium ngay từ đầu như một khoản thu nhập, bất kể sau đó có bị thực hiện quyền hay không. Đây là sự bất đối xứng cốt lõi của mọi option: người mua có quyền chọn, người bán luôn có nghĩa vụ."
+        "text": "Hàng đợi hấp thụ được đợt tăng NGẮN. Nếu nhà sản xuất tạo ra nhiều hơn người tiêu thụ xử lý được một cách kéo dài thì không dung lượng nào đủ - hàng đợi chỉ dời thời điểm vấn đề lộ ra."
       },
       {
         "type": "heading",
-        "text": "Covered call: biến cổ phiếu đang giữ thành nguồn thu nhập"
+        "text": "Hai nguyên nhân, hai cách chữa"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Nhà sản xuất tăng",
+          "text": "Đợt cao điểm, một chiến dịch, một đợt nhập dữ liệu. Tăng số người tiêu thụ là đúng hướng - nếu công việc chia song song được."
+        },
+        "right": {
+          "label": "Người tiêu thụ chậm đi",
+          "text": "Thường nghĩa là có gì đó hỏng ở phía dưới. Tăng số người tiêu thụ lúc này chỉ dồn thêm tải vào chỗ đang yếu."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Một chiến lược liên quan là covered call: nhà đầu tư đang giữ cổ phiếu bán (viết) call option trên chính cổ phiếu đó, cam kết bán ở strike nếu bị thực hiện quyền. Đổi lại nhận premium ngay lập tức làm thu nhập, họ chấp nhận giới hạn lợi nhuận tối đa - nếu giá tăng vượt strike, họ vẫn phải bán ở strike, bỏ lỡ phần tăng thêm. Phù hợp khi kỳ vọng giá đi ngang hoặc tăng nhẹ."
+        "text": "Đây là lý do việc đầu tiên khi thấy tồn đọng tăng không phải tăng người tiêu thụ mà là phân biệt hai nguyên nhân trên. Chúng nhìn giống nhau trên biểu đồ tồn đọng và cần hai hành động ngược nhau."
       },
       {
-        "type": "list",
-        "items": [
-          "Put option: quyền BÁN ở strike price, có lợi khi giá giảm",
-          "Protective put: mua put để bảo hiểm tài sản đang nắm giữ",
-          "Covered call: bán call trên cổ phiếu đang giữ để tạo thu nhập, đổi lấy giới hạn upside",
-          "Người bán option luôn có nghĩa vụ nếu bên mua thực hiện quyền"
+        "type": "closing",
+        "lines": [
+          "Một quyết định thiết kế phòng trước được nhiều chuyện: TÁCH hàng đợi theo loại công việc. Một loạt tin nhắn gửi thư bị kẹt không nên làm chậm việc xử lý thanh toán.",
+          "Đây là cách ly tài nguyên ở chặng độ tin cậy, áp vào hàng đợi. Bài sau là chỗ những tin nhắn không xử lý được sẽ đi."
         ]
       }
     ]
   },
   {
     "id": 187,
-    "slug": "strike-price-expiration-date",
-    "title": "Tự học Tài chính Day 187: Strike Price và Expiration Date",
-    "subtitle": "Hai yếu tố quyết định giá trị và vòng đời của mọi hợp đồng quyền chọn",
+    "slug": "hang-doi-thu-chet",
+    "title": "Hàng đợi thư chết",
+    "subtitle": "Chỗ để tin nhắn hỏng đi, thay vì để nó quay vòng mãi trong hệ thống.",
     "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "📘",
-    "openingQuestion": "Hai call option cùng cổ phiếu, cùng ngày đáo hạn nhưng strike price khác nhau (50.000đ và 60.000đ). Option nào thường có premium cao hơn?",
+    "track": "professional",
+    "emoji": "🪦",
+    "isFundamental": true,
+    "whyItMatters": "Không có nó thì một tin nhắn hỏng sẽ được thử lại vô hạn, chiếm tài nguyên và có thể chặn cả hàng đợi. Có nó mà không ai xem thì bạn mất việc một cách im lặng.",
+    "openingQuestion": "Một tin nhắn gây lỗi ở mọi lần thử. Chuyện gì xảy ra nếu không có hàng đợi thư chết?",
     "openingOptions": [
-      "Cả hai bằng nhau",
-      "Strike 50.000đ có premium cao hơn",
-      "Không thể so sánh nếu thiếu thông tin khác",
-      "Option strike 60.000đ luôn cao hơn"
+      "Nó được thử lại vô hạn, chiếm tài nguyên và có thể chặn các tin nhắn phía sau",
+      "Nó bị xoá tự động sau khi vượt quá số lần thử lại mặc định của hệ thống",
+      "Nó đã được chuyển xuống cuối hàng đợi để các tin nhắn khác có thể được xử lý trước",
+      "Nó được ghi vào nhật ký lỗi và hệ thống tự động bỏ qua nó ở các lần sau"
     ],
-    "correctOption": 1,
-    "explanation": "Strike price càng gần hoặc thấp hơn giá thị trường hiện tại (với call option), xác suất option kết thúc có lãi (in-the-money) càng cao → premium càng đắt. Expiration date là ngày cuối cùng option còn hiệu lực - càng xa, premium càng cao vì có nhiều thời gian hơn để giá biến động có lợi (time value).",
+    "correctOption": 0,
+    "explanation": "Cơ chế xác nhận không phân biệt được tin nhắn hỏng vĩnh viễn với tin nhắn gặp lỗi tạm thời - cả hai đều là không nhận được xác nhận, nên cả hai đều được giao lại. Với hàng đợi giữ thứ tự thì tin nhắn hỏng còn chặn mọi tin nhắn phía sau, và một bản ghi sai duy nhất làm ngừng cả luồng.",
     "diagram": [
       {
-        "label": "Strike price gần giá thị trường",
+        "label": "Thử lại N lần → vẫn hỏng → chuyển sang thư chết",
         "arrow": true
       },
       {
-        "label": "Xác suất in-the-money cao hơn",
+        "label": "Luồng chính chạy tiếp, không bị một tin nhắn chặn",
         "arrow": true
       },
       {
-        "label": "Premium (phí option) đắt hơn"
+        "label": "Nhưng phải có người XEM hàng đợi thư chết",
+        "arrow": true
+      },
+      {
+        "label": "Không ai xem thì bạn mất việc một cách im lặng"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Chuỗi option (option chain)",
-      "description": "Mỗi cổ phiếu niêm yết trên sàn có hàng chục strike price và nhiều ngày đáo hạn khác nhau để nhà đầu tư lựa chọn tùy theo chiến lược và mức độ tự tin về hướng giá."
+      "company": "Hàng đợi thư chết không ai mở",
+      "description": "Nhiều đội dựng hàng đợi thư chết rồi không bao giờ mở nó. Sáu tháng sau nó có bốn nghìn tin nhắn, không ai biết chúng là gì, và không ai dám chạy lại vì không rõ chúng đã được xử lý một phần chưa."
     },
     "quiz": [
       {
-        "question": "Option 'in-the-money' nghĩa là gì?",
+        "question": "Vì sao cơ chế xác nhận một mình không đủ?",
         "options": [
-          "Option không có ai mua bán",
-          "Option đã hết hạn",
-          "Option có giá trị thực hiện ngay lập tức - với call: giá thị trường cao hơn strike; với put: giá thị trường thấp hơn strike",
-          "Option chưa được niêm yết"
+          "Vì nó không phân biệt được lỗi tạm thời với lỗi vĩnh viễn - cả hai đều là không xác nhận",
+          "Vì nó không ghi lại được nguyên nhân khiến tin nhắn xử lý thất bại",
+          "Vì chính nó chỉ hoạt động khi phía người tiêu thụ còn sống chứ không xử lý được lỗi đó ra logic",
+          "Vì số lần thử lại mặc định thường quá thấp cho các lỗi tạm thời kéo dài"
         ],
-        "correct": 2,
-        "explanation": "In-the-money (ITM): thực hiện quyền ngay sẽ có lãi. Out-of-the-money (OTM): thực hiện quyền ngay sẽ lỗ, không ai làm vậy. At-the-money (ATM): giá thị trường bằng đúng strike price. Vị trí ITM/OTM/ATM ảnh hưởng trực tiếp đến premium."
+        "correct": 0,
+        "explanation": "Đây là lý do phải có một cơ chế bên ngoài đếm số lần thử và quyết định bỏ cuộc. Hàng đợi không biết vì sao bạn không xác nhận, nó chỉ biết là bạn chưa xác nhận."
       },
       {
-        "question": "Hai option cùng cổ phiếu, cùng strike price, nhưng một đáo hạn sau 1 tuần và một đáo hạn sau 1 năm. Nếu cả hai đều đang out-of-the-money (chưa có lãi nếu thực hiện ngay), option nào có Time Value cao hơn?",
+        "question": "Vì sao một tin nhắn hỏng có thể chặn cả hàng đợi?",
         "options": [
-          "Cả hai có Time Value bằng nhau vì cùng strike price",
-          "Option đáo hạn sau 1 tuần luôn có Time Value cao hơn",
-          "Time Value không liên quan gì đến thời gian còn lại đến đáo hạn",
-          "Option đáo hạn sau 1 năm có Time Value cao hơn nhiều - nhiều thời gian hơn đồng nghĩa với nhiều cơ hội hơn để giá di chuyển có lợi trước khi đáo hạn, khiến Time Value tăng theo thời gian còn lại đến đáo hạn"
+          "Vì với hàng đợi giữ thứ tự, tin nhắn phía sau không được xử lý trước tin nhắn phía trước",
+          "Vì tin nhắn hỏng chiếm hết số lượng kết nối mà người tiêu thụ có thể mở",
+          "Vì tất cả các lần thử lại liên tục làm người tiêu thụ hoàn toàn không còn thời gian cho tin nhắn khác",
+          "Vì hệ thống tự động tạm dừng hàng đợi khi phát hiện có lỗi lặp lại nhiều lần"
         ],
-        "correct": 3,
-        "explanation": "Time Value phản ánh trực tiếp \"cơ hội\" còn lại để giá di chuyển có lợi trước khi đáo hạn - thời gian còn lại càng dài, xác suất giá di chuyển đủ xa để option trở nên có lãi càng cao, khiến Time Value tăng theo thời gian đến đáo hạn (ceteris paribus)."
+        "correct": 0,
+        "explanation": "Đây là lý do vấn đề này nghiêm trọng hơn vẻ ngoài của nó: một bản ghi sai duy nhất làm ngừng cả luồng. Với hàng đợi không giữ thứ tự thì nó chỉ tốn tài nguyên chứ không chặn."
+      },
+      {
+        "question": "Điều gì biến hàng đợi thư chết từ có ích thành vô ích?",
+        "options": [
+          "Không có ai xem nó, nên tin nhắn hỏng nằm đó và việc mất đi một cách im lặng",
+          "Dung lượng của nó không đủ để có thể chứa cho hết được tin nhắn hỏng ở ngay trong thời gian dài",
+          "Không ghi lại được nguyên nhân lỗi nên khó xác định vấn đề khi xem lại",
+          "Số lần thử lại trước khi chuyển sang được đặt quá cao nên phát hiện muộn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là kiểu hỏng phổ biến nhất của cơ chế này: nó hoạt động đúng như thiết kế, nhưng nó chỉ chuyển việc mất từ chỗ ồn ào sang chỗ im lặng nếu không ai theo dõi."
+      },
+      {
+        "question": "Nên đặt cảnh báo cho hàng đợi thư chết thế nào?",
+        "options": [
+          "Cảnh báo khi có bất kỳ tin nhắn nào vào, vì một tin nhắn ở đó đã là một việc bị mất",
+          "Cảnh báo khi số lượng vượt quá một ngưỡng nhất định để tránh nhiễu",
+          "Cảnh báo mỗi khi tốc độ tin nhắn đi vào tăng lên đột ngột so với mức bình thường vẫn thấy",
+          "Không cần cảnh báo, chỉ cần xem lại định kỳ mỗi tuần một lần là đủ"
+        ],
+        "correct": 0,
+        "explanation": "Đây là một trong số ít trường hợp ngưỡng không nên là con số lớn hơn không. Một việc rơi vào đó nghĩa là một người dùng không nhận được thứ họ chờ, và điều đó đáng biết ngay."
+      },
+      {
+        "question": "Vì sao nên lưu nguyên nhân lỗi kèm tin nhắn khi chuyển sang thư chết?",
+        "options": [
+          "Vì không có nó thì sau vài tháng không ai biết tin nhắn đó hỏng vì lý do gì",
+          "Vì tất cả các công cụ phân tích thật sự cần thông tin lỗi để phân loại tin nhắn tự động",
+          "Vì cần bằng chứng khi báo cáo sự cố cho các bên liên quan bên ngoài",
+          "Vì nguyên nhân lỗi quyết định tin nhắn có được thử lại lần nữa hay không"
+        ],
+        "correct": 0,
+        "explanation": "Không có ngữ cảnh thì hàng đợi thư chết thành một đống dữ liệu không ai dám động vào - vừa không dám xoá vì có thể mất việc, vừa không dám chạy lại vì không rõ đã xử lý một phần chưa."
       }
     ],
     "keyTakeaways": [
-      "Strike price gần giá thị trường hơn → premium cao hơn (với option có lợi)",
-      "Expiration date xa hơn → premium cao hơn (nhiều thời gian biến động hơn)",
-      "In-the-money, at-the-money, out-of-the-money mô tả vị thế option so với giá thị trường"
+      "Xác nhận không phân biệt lỗi tạm thời với lỗi vĩnh viễn - cần cơ chế đếm và bỏ cuộc.",
+      "Với hàng đợi giữ thứ tự, một tin nhắn hỏng chặn mọi tin nhắn phía sau.",
+      "Có hàng đợi thư chết mà không ai xem thì bạn chỉ chuyển việc mất sang chỗ im lặng.",
+      "Cảnh báo khi có BẤT KỲ tin nhắn nào vào - một việc ở đó là một người dùng bị bỏ rơi.",
+      "Lưu nguyên nhân lỗi kèm tin nhắn, nếu không sau vài tháng không ai dám động vào."
     ],
     "practicePrompt": {
-      "question": "Cổ phiếu đang giao dịch ở giá 100.000đ. Bạn so sánh phí mua (premium) của hai call option: một có strike price 105.000đ (gần giá hiện tại), một có strike price 150.000đ (xa giá hiện tại). Option nào sẽ có premium cao hơn, và vì sao?",
+      "question": "Hàng đợi thư chết của bạn có bốn nghìn tin nhắn từ sáu tháng qua. Nên làm gì?",
       "options": [
-        "Option strike 150.000đ có premium cao hơn vì có tiềm năng lợi nhuận lớn hơn nếu giá tăng mạnh",
-        "Strike càng gần giá thị trường thì xác suất có lời càng cao, nên premium cao hơn",
-        "Cả hai option có premium bằng nhau vì đều dựa trên cùng một cổ phiếu cơ sở",
-        "Premium của option chỉ phụ thuộc vào thời gian đến ngày đáo hạn, không liên quan đến strike price"
+        "Phân loại theo nguyên nhân trước, vì bốn nghìn cái này gần như chắc chắn thuộc vài nhóm",
+        "Chạy lại tất cả để không bỏ sót việc nào của người dùng đang chờ xử lý",
+        "Xoá hết vì sau sáu tháng thì phần lớn đã không còn ý nghĩa với người dùng",
+        "Giữ nguyên và đặt cảnh báo từ nay để không tích tụ thêm tin nhắn mới"
       ],
-      "correct": 1,
-      "explanation": "Strike price gần giá thị trường hơn → premium cao hơn (với option có lợi). Option có strike gần giá hiện tại có xác suất kết thúc có lời (in-the-money) cao hơn, nên người bán đòi phí bảo hiểm (premium) cao hơn để bù đắp rủi ro phải thực hiện nghĩa vụ."
+      "correct": 0,
+      "explanation": "Bốn nghìn tin nhắn hiếm khi có bốn nghìn nguyên nhân; phân loại thường rút xuống vài nhóm và mỗi nhóm có cách xử lý riêng. Chạy lại tất cả thì nguy hiểm vì một số có thể đã được xử lý một phần."
     },
     "summary": {
-      "keyIdea": "Strike price gần giá thị trường hơn → premium cao hơn (với option có lợi)",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Expiration date xa hơn → premium cao hơn (nhiều thời gian biến động hơn)"
+      "keyIdea": "Chỗ để tin nhắn hỏng đi - nhưng chỉ có ích nếu có người xem nó.",
+      "formula": "Thử N lần → thư chết + lưu nguyên nhân → cảnh báo ngay khi có cái đầu tiên.",
+      "commonMistake": "Dựng hàng đợi thư chết rồi không bao giờ mở nó.",
+      "action": "Mở hàng đợi thư chết của bạn ngay bây giờ và đếm xem có bao nhiêu."
     },
     "application": {
-      "title": "So sánh hai option khác strike/ngày đáo hạn",
-      "message": "Nếu tra được bảng giá option thực tế, so sánh premium của hai option cùng cổ phiếu nhưng khác strike price hoặc khác ngày đáo hạn, và giải thích vì sao chúng chênh lệch giá.",
-      "secondary": "Việc tự giải thích chênh lệch giá là cách kiểm tra bạn đã hiểu đúng chưa."
+      "title": "Làm ngay hôm nay",
+      "message": "Mở hàng đợi thư chết của hệ thống bạn và đếm. Nếu bạn không biết nó ở đâu hoặc chưa từng mở, đó chính là câu trả lời cho câu hỏi nó có đang hoạt động không.",
+      "secondary": "Rồi đặt một cảnh báo khi có bất kỳ tin nhắn nào vào. Đây là một trong số ít trường hợp ngưỡng đúng là lớn hơn không."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Hai yếu tố quyết định giá trị (premium) và vòng đời của mọi option là strike price và expiration date. Strike price định vị option so với giá thị trường; expiration date quyết định option còn bao nhiêu 'thời gian sống' để giá biến động có lợi."
+        "text": "Bài trước là tồn đọng do chênh lệch tốc độ. Bài này là một loại tắc nghẽn khác và nó chỉ cần đúng một tin nhắn để xảy ra."
       },
       {
         "type": "heading",
-        "text": "In-the-money, at-the-money, out-of-the-money"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một call option được gọi là in-the-money (ITM) khi giá thị trường cao hơn strike - thực hiện quyền ngay sẽ có lãi. Với put option thì ngược lại: ITM khi giá thị trường thấp hơn strike. Out-of-the-money (OTM) là trạng thái thực hiện quyền ngay sẽ lỗ - không ai làm vậy. At-the-money (ATM) là khi giá thị trường bằng đúng strike. Strike price càng gần hoặc thuận lợi hơn so với giá thị trường, premium càng đắt vì xác suất kết thúc có lãi càng cao."
-      },
-      {
-        "type": "heading",
-        "text": "Thời gian còn lại càng dài, premium càng cao"
-      },
-      {
-        "type": "paragraph",
-        "text": "So sánh hai option cùng cổ phiếu, cùng strike, cùng đang out-of-the-money: một đáo hạn sau 1 tuần, một sau 1 năm. Option đáo hạn sau 1 năm có Time Value cao hơn nhiều - đơn giản vì có nhiều thời gian hơn để giá di chuyển đủ xa theo hướng có lợi trước khi đáo hạn. Thời gian còn lại càng dài đồng nghĩa với nhiều 'cơ hội' hơn, nên premium tăng theo thời gian đến đáo hạn."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba trạng thái của một option",
-        "subtitle": "Cùng một cổ phiếu giá 50.000đ, ba mức strike khác nhau",
-        "concepts": [
-          { "vi": "Trong tiền", "en": "In-the-money (ITM)", "def": "Call strike 45.000đ: thực hiện ngay lãi 5.000đ. Put strike 55.000đ cũng ITM. Có Intrinsic Value > 0, premium đắt nhất." },
-          { "vi": "Ngang tiền", "en": "At-the-money (ATM)", "def": "Strike đúng 50.000đ. Intrinsic Value = 0, nhưng Time Value cao nhất vì đây là điểm bất định nhất về việc có thực hiện quyền hay không." },
-          { "vi": "Ngoài tiền", "en": "Out-of-the-money (OTM)", "def": "Call strike 55.000đ: thực hiện ngay sẽ lỗ nên không ai làm. Premium hoàn toàn là Time Value, rẻ nhất - và về 0 nếu đáo hạn vẫn OTM." }
-        ]
+        "text": "Vì sao xác nhận một mình không đủ"
       },
       {
         "type": "callout",
-        "label": "Vì sao option OTM hấp dẫn rồi nuốt tiền",
-        "text": "OTM rẻ nên trông như đòn bẩy giá hời: bỏ 500đ có thể thành 5.000đ nếu giá chạy đủ xa. Nhưng phần lớn option OTM hết hạn vô giá trị - toàn bộ premium là Time Value, và Time Value luôn về đúng 0 vào ngày đáo hạn. Mua OTM là đặt cược rằng giá sẽ đi đủ xa VÀ đủ nhanh; sai một trong hai vế là mất trắng, kể cả khi bạn đoán đúng hướng."
+        "label": "Hàng đợi không biết vì sao bạn không xác nhận",
+        "text": "Nó chỉ biết là bạn CHƯA xác nhận. Một tin nhắn gặp lỗi mạng tạm thời và một tin nhắn có dữ liệu sai vĩnh viễn trông giống hệt nhau từ phía hàng đợi - nên cả hai đều được giao lại, mãi mãi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Với hàng đợi giữ thứ tự thì hậu quả nghiêm trọng hơn nhiều: tin nhắn hỏng chặn mọi tin nhắn phía sau. Một bản ghi sai duy nhất làm ngừng cả luồng, và tồn đọng tăng trong khi người tiêu thụ vẫn chạy hết công suất."
+      },
+      {
+        "type": "heading",
+        "text": "Cơ chế"
       },
       {
         "type": "list",
         "items": [
-          "ITM: thực hiện quyền ngay sẽ có lãi",
-          "OTM: thực hiện quyền ngay sẽ lỗ",
-          "ATM: giá thị trường bằng đúng strike price",
-          "Mỗi cổ phiếu niêm yết có hàng chục strike price và nhiều ngày đáo hạn để lựa chọn (option chain)"
+          "Đếm số lần một tin nhắn đã được giao. Vượt ngưỡng thì chuyển nó sang hàng đợi thư chết.",
+          "Lưu NGUYÊN NHÂN lỗi kèm theo. Không có ngữ cảnh thì sau vài tháng không ai biết nó hỏng vì gì.",
+          "Luồng chính chạy tiếp, không bị một tin nhắn chặn."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Chỗ cơ chế này hay hỏng"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Thiết kế nói",
+          "text": "Tin nhắn hỏng được tách ra một chỗ riêng để đội xem lại và xử lý."
+        },
+        "right": {
+          "label": "Thực tế hay xảy ra",
+          "text": "Không ai mở nó. Sáu tháng sau nó có bốn nghìn tin nhắn, không ai biết chúng là gì, và không ai dám chạy lại vì không rõ chúng đã được xử lý một phần chưa."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Lúc đó cơ chế không hỏng - nó hoạt động đúng như thiết kế. Nó chỉ chuyển việc mất từ chỗ ồn ào sang chỗ im lặng, và im lặng thì tệ hơn."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Cách chữa gọn: cảnh báo khi có BẤT KỲ tin nhắn nào vào. Đây là một trong số ít trường hợp ngưỡng đúng là lớn hơn không, vì một việc rơi vào đó nghĩa là một người dùng không nhận được thứ họ chờ.",
+          "Bài sau là một quyết định thiết kế ảnh hưởng tới mọi thứ phía sau: sự kiện chứa gì."
         ]
       }
     ]
   },
   {
     "id": 188,
-    "slug": "intrinsic-value-time-value",
-    "title": "Tự học Tài chính Day 188: Intrinsic Value và Time Value",
-    "subtitle": "Hai thành phần cấu thành nên giá của mọi option",
-    "duration": "7 phút",
+    "slug": "su-kien-chua-du-lieu-hay-tham-chieu",
+    "title": "Sự kiện chứa dữ liệu hay chỉ chứa tham chiếu",
+    "subtitle": "Hai lựa chọn, và cái rẻ hơn lúc viết là cái đắt hơn lúc gỡ lỗi.",
+    "duration": "6 phút",
     "difficulty": "Khó",
-    "emoji": "⏳",
-    "openingQuestion": "Call option strike 50.000đ đang giao dịch với premium 5.000đ, trong khi cổ phiếu đang ở giá 52.000đ. Time value là bao nhiêu?",
+    "track": "professional",
+    "emoji": "📦",
+    "isFundamental": false,
+    "whyItMatters": "Đây là quyết định bạn đưa ra một lần và sống với nó rất lâu, vì đổi nó nghĩa là sửa mọi người tiêu thụ cùng lúc.",
+    "openingQuestion": "Sự kiện nên chứa dữ liệu đầy đủ hay chỉ một mã định danh?",
     "openingOptions": [
-      "3.000đ (Premium 5.000 − Intrinsic Value 2.000)",
-      "0đ, vì option này chưa có giá trị nội tại nào cả",
-      "5.000đ",
-      "2.000đ"
+      "Dữ liệu đủ để làm việc, vì tham chiếu buộc người nghe gọi ngược lại và có thể đọc ra trạng thái đã đổi",
+      "Chỉ mã định danh, vì như vậy sự kiện nhỏ gọn và người nghe luôn lấy được dữ liệu mới nhất",
+      "Chỉ mã định danh, vì dữ liệu đầy đủ sẽ nhanh chóng lỗi thời khi bản ghi gốc thay đổi",
+      "Tuỳ vào kích thước dữ liệu, vì sự kiện quá lớn sẽ ảnh hưởng tới thông lượng hàng đợi"
     ],
     "correctOption": 0,
-    "explanation": "Option Price = Intrinsic Value + Time Value. Intrinsic Value = giá trị nếu thực hiện quyền ngay bây giờ = 52.000 − 50.000 = 2.000đ. Time Value = phần còn lại của premium phản ánh khả năng giá còn biến động có lợi trước khi đáo hạn = 5.000 − 2.000 = 3.000đ.",
+    "explanation": "Chỉ gửi mã định danh nghe gọn gàng và nó tạo ra một vấn đề tinh vi: người nghe xử lý sự kiện năm phút sau, gọi ngược lại, và đọc được trạng thái ĐÃ ĐỔI - nên họ hành động dựa trên một sự thật khác với sự thật lúc sự kiện xảy ra. Nó cũng tạo ra một lượt gọi ngược cho mỗi sự kiện, biến một hệ thống tách rời thành một hệ thống phụ thuộc hai chiều.",
     "diagram": [
       {
-        "label": "Giá trị nếu thực hiện quyền ngay",
+        "label": "Chứa dữ liệu: người nghe làm được ngay, không gọi ngược",
         "arrow": true
       },
       {
-        "label": "= Intrinsic Value",
+        "label": "Chỉ tham chiếu: nhỏ gọn, nhưng đọc ra trạng thái đã đổi",
         "arrow": true
       },
       {
-        "label": "Phần còn lại của premium",
+        "label": "Và mỗi sự kiện thành một lượt gọi ngược lại",
         "arrow": true
       },
       {
-        "label": "= Time Value"
+        "label": "Mặc định: chứa dữ liệu của thời điểm sự kiện xảy ra"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Option gần đáo hạn",
-      "description": "Time value của mọi option giảm dần về 0 khi càng gần ngày đáo hạn (time decay) - đây là lý do các trader chuyên nghiệp theo dõi sát chỉ số 'theta' đo tốc độ mất giá trị theo thời gian của option."
+      "company": "Đọc ra trạng thái đã đổi",
+      "description": "Sự kiện đơn hàng đã tạo chỉ chứa mã đơn. Người nghe xử lý năm phút sau, gọi ngược lại lấy đơn - và lúc đó đơn đã bị huỷ. Họ gửi thư xác nhận cho một đơn không còn tồn tại, hoặc tệ hơn, họ bỏ qua và không ai biết."
     },
     "quiz": [
       {
-        "question": "Vào đúng ngày đáo hạn, Time Value của một option sẽ bằng bao nhiêu?",
+        "question": "Vấn đề tinh vi nhất của việc chỉ gửi mã định danh là gì?",
         "options": [
-          "Không thể xác định được",
-          "Bằng 0 - option chỉ còn giá trị đúng bằng Intrinsic Value, vì không còn thời gian nào để giá biến động thêm",
-          "Luôn bằng với Intrinsic Value",
-          "Luôn tăng lên cao nhất"
+          "Người nghe đọc ra trạng thái tại thời điểm họ xử lý, không phải lúc sự kiện xảy ra",
+          "Việc gọi ngược lại làm tăng độ trễ xử lý của toàn bộ luồng sự kiện",
+          "Bản ghi gốc có thể đã bị xoá nên người nghe không lấy được dữ liệu nào",
+          "Số lượng lượt gọi tăng lên rất có thể vượt quá giới hạn tần suất mà dịch vụ gốc đặt ra"
         ],
-        "correct": 1,
-        "explanation": "Time decay (theta): Time Value giảm dần đều theo thời gian và về 0 chính xác vào lúc đáo hạn. Đây là lý do người bán option (option writers) thường có lợi thế thời gian - mỗi ngày trôi qua, Time Value họ cần trả giảm dần, có lợi cho vị thế bán."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là vấn đề thật và dễ nhận ra. Cái này thì im lặng: người nghe hành động dựa trên một sự thật khác với sự thật mà sự kiện thông báo, và không có lỗi nào được ghi lại."
       },
       {
-        "question": "Một call option đang sâu trong trạng thái in-the-money (giá cổ phiếu cao hơn nhiều so với strike price) và gần đến ngày đáo hạn. Tỷ trọng giữa Intrinsic Value và Time Value trong tổng giá option lúc này sẽ như thế nào?",
+        "question": "Vì sao gửi kèm dữ liệu giữ được tính tách rời tốt hơn?",
         "options": [
-          "Time Value sẽ chiếm phần lớn giá trị option",
-          "Cả hai luôn chiếm tỷ trọng bằng nhau bất kể tình huống",
-          "Intrinsic Value sẽ chiếm gần như toàn bộ giá trị option, trong khi Time Value gần như biến mất - vì gần đáo hạn (ít thời gian) và đã sâu trong trạng thái có lãi (ít bất định thêm về việc có thực hiện quyền hay không)",
-          "Không thể xác định tỷ trọng nếu thiếu thêm thông tin về volatility"
+          "Vì người nghe không phải gọi ngược lại, nên không tạo phụ thuộc hai chiều",
+          "Vì dữ liệu trong sự kiện được chuẩn hoá nên người nghe không cần hiểu cấu trúc gốc",
+          "Vì người nghe không cần biết dịch vụ nào đã phát ra sự kiện đó",
+          "Vì việc gửi kèm dữ liệu cho phép người nghe xử lý sự kiện theo thứ tự bất kỳ"
         ],
-        "correct": 2,
-        "explanation": "Khi option sâu trong trạng thái ITM và gần đáo hạn, hầu như chắc chắn sẽ được thực hiện quyền - điều này làm giảm mạnh \"giá trị của sự bất định\" (Time Value), khiến giá option gần như chỉ còn phản ánh đúng Intrinsic Value, một hiện tượng gọi là \"time decay\" tăng tốc gần đáo hạn."
+        "correct": 0,
+        "explanation": "Chỉ gửi mã định danh biến một hệ thống tách rời thành một hệ thống phụ thuộc hai chiều - và lúc đó bạn mất phần lớn lợi ích của mô hình xuất bản, trong khi vẫn trả toàn bộ độ phức tạp của nó."
+      },
+      {
+        "question": "Khi nào chỉ gửi tham chiếu là hợp lý?",
+        "options": [
+          "Khi dữ liệu quá lớn để đưa vào tin nhắn, ví dụ một tệp hoặc một hình ảnh",
+          "Khi có nhiều người nghe và mỗi người trong số họ cần một phần dữ liệu khác nhau",
+          "Khi bản ghi gốc thay đổi thường xuyên nên dữ liệu trong sự kiện nhanh lỗi thời",
+          "Khi hệ thống có yêu cầu cao về thông lượng nên cần giảm kích thước tin nhắn"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba nghe hợp lý nhất và nó ngược: chính vì bản ghi hay đổi mà bạn CẦN dữ liệu của thời điểm sự kiện xảy ra, không phải trạng thái mới nhất. Kích thước là lý do kỹ thuật duy nhất thật sự."
+      },
+      {
+        "question": "Rủi ro của việc đưa quá nhiều dữ liệu vào sự kiện là gì?",
+        "options": [
+          "Người nghe bắt đầu dựa vào những trường mà bạn không có ý định cam kết",
+          "Kích thước tin nhắn lớn làm giảm thông lượng tối đa của hệ thống hàng đợi",
+          "Dữ liệu nhạy cảm hoàn toàn có thể bị lộ ra những dịch vụ hoàn toàn không cần biết tới nó",
+          "Chi phí lưu trữ tăng lên mỗi khi cả hệ thống cần giữ lại lịch sử tất cả các sự kiện"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là chi phí thật nhưng chúng đo được và trả được. Cái này thì biến mọi trường trong sự kiện thành một phần của hợp đồng mà bạn không biết mình đã ký - và bạn chỉ phát hiện khi xoá một trường và có người hỏng."
+      },
+      {
+        "question": "Vì sao nên có phiên bản trong sự kiện?",
+        "options": [
+          "Vì người nghe được triển khai độc lập, và các sự kiện cũ vẫn nằm trong hàng đợi",
+          "Vì thật sự cần biết thứ tự tất cả các sự kiện mỗi khi chúng tới không đúng thứ tự phát sinh",
+          "Vì phiên bản giúp phân biệt tất cả các sự kiện trùng lặp mỗi khi toàn bộ hệ thống hàng đợi giao lại",
+          "Vì các công cụ theo dõi cần phiên bản để có thể phân loại sự kiện chính xác hơn"
+        ],
+        "correct": 0,
+        "explanation": "Đây là điểm nối với chặng API: sự kiện là một hợp đồng, và hợp đồng cần phiên bản. Lựa chọn thứ hai mô tả số phiên bản của BẢN GHI, một thứ khác cũng hữu ích nhưng phục vụ mục đích khác."
       }
     ],
     "keyTakeaways": [
-      "Option Price = Intrinsic Value + Time Value",
-      "Intrinsic Value: giá trị nếu thực hiện quyền ngay lập tức (tối thiểu là 0)",
-      "Time Value giảm dần về 0 khi tiến gần ngày đáo hạn (time decay)"
+      "Mặc định: chứa dữ liệu của THỜI ĐIỂM sự kiện xảy ra, không chỉ mã định danh.",
+      "Chỉ gửi tham chiếu thì người nghe đọc ra trạng thái đã đổi - và không lỗi nào được ghi.",
+      "Nó cũng biến hệ thống tách rời thành phụ thuộc hai chiều.",
+      "Tham chiếu chỉ hợp lý khi dữ liệu quá lớn để đưa vào tin nhắn.",
+      "Đưa quá nhiều trường thì người nghe dựa vào thứ bạn không định cam kết."
     ],
     "practicePrompt": {
-      "question": "Một call option strike 100.000đ đang được giao dịch ở giá 8.000đ, trong khi cổ phiếu cơ sở hiện đang ở 105.000đ (nghĩa là nếu thực hiện ngay, bạn lãi 5.000đ). Vì sao option lại có giá 8.000đ cao hơn 5.000đ 'giá trị thực dùng ngay' đó?",
+      "question": "Bạn muốn xoá một trường khỏi sự kiện vì không ai dùng. Cách kiểm chứng an toàn?",
       "options": [
-        "Đây là lỗi định giá trên thị trường, giá option luôn phải bằng đúng chênh lệch giá cổ phiếu và strike price",
-        "Intrinsic Value = 105.000 - 100.000 = 5.000đ; còn phần 3.000đ chênh lệch chính là Time Value",
-        "Phần 3.000đ chênh lệch là phí giao dịch mà sàn chứng khoán thu thêm khi mua bán option",
-        "Giá option không liên quan gì đến giá cổ phiếu cơ sở, đây chỉ là sự trùng hợp ngẫu nhiên"
+        "Không kiểm chứng được chắc chắn - đó chính là cái giá của mô hình xuất bản",
+        "Tìm trong mã của tất cả các dịch vụ xem có chỗ nào đọc trường đó không",
+        "Xoá trường và đồng thời theo dõi xem có dịch vụ nào báo lỗi ở ngay trong vài ngày sau đó",
+        "Hỏi các đội khác xem họ có dùng trường đó trong dịch vụ của mình không"
       ],
-      "correct": 1,
-      "explanation": "Option Price = Intrinsic Value + Time Value. Intrinsic Value (5.000đ) là giá trị nếu thực hiện option ngay lập tức; Time Value (3.000đ) phản ánh khả năng giá còn biến động có lợi trước khi đáo hạn - Time Value giảm dần về 0 khi tiến gần ngày đáo hạn (time decay)."
+      "correct": 0,
+      "explanation": "Đây là cái giá đã nêu ở bài về xuất bản và đăng ký: không ai biết ai đang nghe. Ba cách kia đều giảm rủi ro nhưng không cái nào cho câu trả lời chắc chắn - tìm trong mã bỏ sót người nghe ngoài tổ chức, và theo dõi lỗi bỏ sót người nghe chạy theo lịch tháng."
     },
     "summary": {
-      "keyIdea": "Option Price = Intrinsic Value + Time Value",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Intrinsic Value: giá trị nếu thực hiện quyền ngay lập tức (tối thiểu là 0)"
+      "keyIdea": "Sự kiện mang sự thật của thời điểm nó xảy ra, không phải một con trỏ tới hiện tại.",
+      "formula": "Chứa dữ liệu đủ để làm việc + phiên bản; tham chiếu chỉ khi dữ liệu quá lớn.",
+      "commonMistake": "Chỉ gửi mã định danh, và người nghe đọc ra trạng thái đã đổi.",
+      "action": "Đọc một sự kiện trong hệ thống bạn - nó mang sự thật hay mang một con trỏ?"
     },
     "application": {
-      "title": "Tự tách Intrinsic Value và Time Value",
-      "message": "Với một option có giá thị trường 55.000đ, strike 50.000đ, premium 7.000đ, tự tính Intrinsic Value và Time Value theo công thức Option Price = Intrinsic Value + Time Value.",
-      "secondary": "Tách được hai phần này giúp bạn hiểu vì sao option gần đáo hạn thường rẻ đi nhanh."
+      "title": "Làm ngay hôm nay",
+      "message": "Đọc định nghĩa một sự kiện trong hệ thống của bạn và hỏi: người nghe có phải gọi ngược lại để làm việc không? Nếu có, đó là chỗ trạng thái có thể đã đổi.",
+      "secondary": "Rồi hỏi tiếp: nếu người nghe xử lý sự kiện đó năm phút sau, kết quả có khác không? Nếu khác, sự kiện đang mang một con trỏ chứ không mang một sự thật."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Premium của mọi option được cấu thành từ đúng hai phần: Option Price = Intrinsic Value + Time Value. Hiểu được hai thành phần này giúp lý giải vì sao premium thay đổi ngay cả khi giá cổ phiếu đứng yên."
+        "text": "Đây là quyết định bạn đưa ra một lần và sống với nó rất lâu, vì đổi nó nghĩa là sửa mọi người tiêu thụ cùng lúc. Và lựa chọn nghe gọn gàng hơn lại là lựa chọn có vấn đề."
       },
       {
         "type": "heading",
-        "text": "Intrinsic Value: giá trị nếu thực hiện quyền ngay"
+        "text": "Vấn đề của việc chỉ gửi mã định danh"
+      },
+      {
+        "type": "callout",
+        "label": "Người nghe đọc ra trạng thái đã đổi",
+        "text": "Sự kiện đơn hàng đã tạo chỉ chứa mã đơn. Người nghe xử lý năm phút sau, gọi ngược lại lấy đơn - và lúc đó đơn đã bị huỷ. Họ hành động dựa trên một sự thật khác với sự thật mà sự kiện thông báo, và không có lỗi nào được ghi lại."
       },
       {
         "type": "paragraph",
-        "text": "Intrinsic Value là giá trị nếu thực hiện quyền ngay bây giờ - tối thiểu bằng 0, không bao giờ âm. Ví dụ với call option strike 50.000đ, giá thị trường hiện tại 52.000đ: Intrinsic Value = 52.000 − 50.000 = 2.000đ. Nếu premium đang là 5.000đ, phần còn lại - 5.000 − 2.000 = 3.000đ - chính là Time Value."
+        "text": "Vấn đề thứ hai ít tinh vi hơn nhưng cũng lớn: mỗi sự kiện thành một lượt gọi ngược lại. Bạn vừa biến một hệ thống tách rời thành một hệ thống phụ thuộc hai chiều - mất phần lớn lợi ích của mô hình xuất bản trong khi vẫn trả toàn bộ độ phức tạp của nó."
       },
       {
         "type": "heading",
-        "text": "Time Value và hiện tượng time decay"
-      },
-      {
-        "type": "paragraph",
-        "text": "Time Value phản ánh khả năng giá còn biến động có lợi hơn nữa trước khi đáo hạn. Nó giảm dần đều theo thời gian và chạm đúng 0 vào lúc đáo hạn - hiện tượng gọi là time decay, được đo bằng chỉ số 'theta' mà các trader chuyên nghiệp theo dõi sát. Khi một call option đã sâu trong trạng thái ITM và gần đáo hạn, gần như chắc chắn sẽ được thực hiện quyền - điều này làm Time Value gần như biến mất, giá option lúc đó gần như chỉ còn phản ánh đúng Intrinsic Value."
-      },
-      {
-        "type": "formula",
-        "title": "Tách một premium thành hai phần",
-        "equation": "Time Value = Premium − Intrinsic Value",
-        "variables": [
-          { "symbol": "Premium", "name": "Giá option trên thị trường", "description": "Số tiền bạn thực trả để mua option" },
-          { "symbol": "Intrinsic Value", "name": "Giá trị nội tại", "description": "Call: max(S − K, 0). Put: max(K − S, 0). Không bao giờ âm" },
-          { "symbol": "Time Value", "name": "Giá trị thời gian", "description": "Phần còn lại - tiền bạn trả cho khả năng giá còn chạy tiếp" }
-        ],
-        "example": {
-          "title": "Call strike 50.000đ, cổ phiếu đang 52.000đ, premium 5.000đ",
-          "calculation": "Intrinsic Value = max(52.000 − 50.000, 0) = 2.000đ · Time Value = 5.000 − 2.000 = 3.000đ",
-          "result": "60% premium là Time Value",
-          "explanation": "Bạn trả 5.000đ cho thứ mà thực hiện quyền ngay chỉ đáng 2.000đ. 3.000đ chênh lệch là tiền mua thời gian, và nó sẽ tan hết vào ngày đáo hạn dù giá cổ phiếu không đổi."
-        }
+        "text": "Mặc định đúng"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Call option",
-          "text": "Intrinsic Value = max(S − K, 0). Có giá trị nội tại khi giá thị trường CAO hơn strike. Cổ phiếu 52.000đ, strike 50.000đ → 2.000đ."
+          "label": "Chứa dữ liệu",
+          "text": "Đủ để người nghe làm việc, và là dữ liệu của THỜI ĐIỂM sự kiện xảy ra. Sự kiện mang một sự thật, không mang một con trỏ tới hiện tại."
         },
         "right": {
-          "label": "Put option",
-          "text": "Intrinsic Value = max(K − S, 0). Có giá trị nội tại khi giá thị trường THẤP hơn strike. Cổ phiếu 48.000đ, strike 50.000đ → 2.000đ."
+          "label": "Chỉ tham chiếu",
+          "text": "Hợp lý khi dữ liệu quá lớn để đưa vào tin nhắn - một tệp, một hình ảnh. Đó là lý do kỹ thuật duy nhất thật sự."
         }
       },
       {
-        "type": "callout",
-        "label": "Lỗi thường gặp",
-        "text": "Lấy S − K rồi để kết quả âm. Nếu cổ phiếu đang 48.000đ mà strike call là 50.000đ, Intrinsic Value là 0 chứ không phải −2.000đ - bạn có quyền, không có nghĩa vụ, nên sẽ đơn giản là không thực hiện. Khi đó toàn bộ premium là Time Value, và toàn bộ số đó có thể về 0."
+        "type": "paragraph",
+        "text": "Có một lập luận nghe rất hợp lý cho cột bên phải và nó ngược: người ta nói bản ghi hay đổi nên dữ liệu trong sự kiện sẽ lỗi thời. Thực ra chính vì bản ghi hay đổi mà bạn CẦN dữ liệu của thời điểm sự kiện xảy ra."
       },
       {
-        "type": "list",
-        "items": [
-          "Option Price = Intrinsic Value + Time Value",
-          "Intrinsic Value tối thiểu là 0, không bao giờ âm",
-          "Time Value luôn bằng 0 đúng vào ngày đáo hạn",
-          "Theta: chỉ số đo tốc độ mất Time Value theo thời gian"
-        ]
+        "type": "heading",
+        "text": "Nhưng đừng đưa quá nhiều"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi trường trong sự kiện là một phần của hợp đồng, kể cả những trường bạn không có ý định cam kết. Người nghe sẽ dựa vào chúng, và bạn chỉ phát hiện điều đó khi xoá một trường và có người hỏng."
       },
       {
         "type": "closing",
         "lines": [
-          "Người bán option thường có lợi thế thời gian: mỗi ngày trôi qua, Time Value họ phải 'gánh' giảm dần."
+          "Và đặt PHIÊN BẢN vào sự kiện. Người nghe được triển khai độc lập, còn các sự kiện cũ vẫn nằm trong hàng đợi khi bạn đổi lược đồ - đúng bài toán mà chặng API đã giải bằng phiên bản.",
+          "Bài sau là câu hỏi đứng trước tất cả những chuyện này: có nên dùng hàng đợi không."
         ]
       }
     ]
   },
   {
     "id": 189,
-    "slug": "hedging-la-gi",
-    "title": "Tự học Tài chính Day 189: Hedging là gì?",
-    "subtitle": "Dùng phái sinh để giảm rủi ro, không phải để kiếm thêm lợi nhuận",
+    "slug": "goi-truc-tiep-hay-qua-hang-doi",
+    "title": "Gọi trực tiếp hay qua hàng đợi",
+    "subtitle": "Hàng đợi không miễn phí - nó đổi một loại độ phức tạp lấy một loại khác.",
     "duration": "6 phút",
     "difficulty": "Trung bình",
-    "emoji": "⚠️",
-    "openingQuestion": "Một hãng hàng không mua futures dầu để khóa giá nhiên liệu 12 tháng tới. Đây có phải đầu cơ không?",
+    "track": "professional",
+    "emoji": "🔀",
+    "isFundamental": true,
+    "whyItMatters": "Thêm một hàng đợi là quyết định kiến trúc mà nhiều đội đưa ra vì nó nghe hiện đại, không vì bài toán cần nó. Và độ phức tạp nó mang theo thì trả suốt vòng đời hệ thống.",
+    "openingQuestion": "Khi nào KHÔNG nên dùng hàng đợi?",
     "openingOptions": [
-      "Có, vì mọi giao dịch phái sinh đều là đầu cơ",
-      "Có, vì họ đang dự đoán giá dầu",
-      "Chỉ là đầu cơ nếu lãi",
-      "Không - đây là hedging vì rủi ro vốn đã có sẵn"
+      "Khi người gọi cần kết quả để đi tiếp, hoặc khi hệ thống còn nhỏ và luồng đơn giản",
+      "Khi khối lượng công việc chưa đủ lớn để hàng đợi phát huy hiệu quả",
+      "Khi đội chưa có kinh nghiệm vận hành hệ thống hàng đợi trong môi trường thật",
+      "Khi công việc cần được xử lý theo đúng thứ tự phát sinh của các yêu cầu"
     ],
-    "correctOption": 3,
-    "explanation": "Hedging là dùng phái sinh để giảm hoặc loại bỏ một rủi ro đã tồn tại sẵn trong hoạt động kinh doanh thực. Hãng hàng không CHẮC CHẮN phải mua nhiên liệu - họ chỉ không biết giá bao nhiêu. Futures giúp cố định chi phí đó trước, giảm sự bất định, không phải tạo ra rủi ro mới để kiếm lời.",
+    "correctOption": 0,
+    "explanation": "Vế đầu là ràng buộc cứng: cần kết quả để đi tiếp thì hàng đợi không dùng được, bất kể hệ thống lớn tới đâu. Vế thứ hai là ràng buộc mềm nhưng quan trọng hơn trong thực tế - một hệ thống nhỏ thêm hàng đợi sẽ nhận toàn bộ độ phức tạp về theo dõi và gỡ lỗi để giải một vấn đề chưa tồn tại.",
     "diagram": [
       {
-        "label": "Rủi ro kinh doanh có sẵn (giá nhiên liệu...)",
+        "label": "Cần kết quả để đi tiếp → gọi trực tiếp, hết",
         "arrow": true
       },
       {
-        "label": "Dùng phái sinh để bù trừ rủi ro đó",
+        "label": "Không cần → hàng đợi giúp được, nhưng không miễn phí",
         "arrow": true
       },
       {
-        "label": "Mục tiêu: ổn định, không phải kiếm lời thêm"
+        "label": "Cái giá: theo dõi khó, gỡ lỗi khó, một thứ nữa phải vận hành",
+        "arrow": true
+      },
+      {
+        "label": "Hệ thống nhỏ: gọi trực tiếp và thử lại thường là đủ"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Southwest Airlines",
-      "description": "Southwest Airlines nổi tiếng với chiến lược hedge giá dầu tích cực trong thập niên 2000, giúp hãng duy trì lợi thế chi phí đáng kể so với đối thủ khi giá dầu tăng vọt."
+      "company": "Bảng công việc trong cơ sở dữ liệu",
+      "description": "Với đội nhỏ, một bảng công việc trong cơ sở dữ liệu sẵn có thường đủ: ghi một dòng, một tiến trình chạy nền đọc và xử lý. Nó không mở rộng bằng hàng đợi thật nhưng nó dùng lại hạ tầng đã có, và nó có giao dịch - thứ mà hàng đợi ngoài không có."
     },
     "quiz": [
       {
-        "question": "Điều kiện để một giao dịch phái sinh được xem là hedging thuần túy?",
+        "question": "Cái giá lớn nhất của việc thêm hàng đợi là gì?",
         "options": [
-          "Phải có một rủi ro nền tảng (underlying exposure) đã tồn tại sẵn trong hoạt động kinh doanh mà giao dịch phái sinh nhằm bù trừ, giảm thiểu",
-          "Phải có lãi từ giao dịch đó",
-          "Chỉ cần dùng futures hoặc forward",
-          "Phải giao dịch qua sàn chính thức"
+          "Luồng xử lý bị cắt thành nhiều mảnh nên theo dõi và gỡ lỗi khó hơn hẳn",
+          "Chi phí hạ tầng cho cụm máy chủ hàng đợi cộng với công vận hành và trực nó hằng ngày",
+          "Độ trễ tăng lên vì tin nhắn phải qua thêm một chặng trung gian",
+          "Cần viết thêm mã cho phần xử lý lỗi và thử lại ở phía người tiêu thụ"
         ],
         "correct": 0,
-        "explanation": "Bản chất hedging là có một exposure (rủi ro) có sẵn, và vị thế phái sinh đi NGƯỢC chiều với exposure đó để triệt tiêu rủi ro. Nếu không có exposure nền tảng mà vẫn giao dịch phái sinh chỉ để kiếm lời từ biến động giá, đó là đầu cơ (speculation), không phải hedging."
+        "explanation": "Ba lựa chọn kia đều là chi phí thật nhưng chúng đo được và trả một lần. Chi phí về khả năng quan sát thì lan ra mọi việc gỡ lỗi về sau, và nó tăng theo số hàng đợi bạn thêm vào."
       },
       {
-        "question": "Một công ty xuất khẩu Việt Nam ký hợp đồng bán hàng bằng USD, nhận thanh toán sau 3 tháng. Họ có nên hedge 100% giá trị hợp đồng này bằng forward tỷ giá không, hay nên để một phần không hedge?",
+        "question": "Vì sao bảng công việc trong cơ sở dữ liệu thường đủ cho đội nhỏ?",
         "options": [
-          "Không bao giờ nên hedge vì luôn làm giảm lợi nhuận tiềm năng",
-          "Tùy thuộc vào khẩu vị rủi ro và chiến lược công ty - hedge 100% loại bỏ hoàn toàn bất định nhưng cũng bỏ lỡ hoàn toàn khả năng hưởng lợi nếu tỷ giá biến động có lợi; nhiều công ty chọn hedge một phần (ví dụ 50-70%) để cân bằng giữa an toàn và linh hoạt",
-          "Luôn nên hedge 100% để loại bỏ hoàn toàn rủi ro tỷ giá",
-          "Quyết định hedge bao nhiêu phần trăm không quan trọng, kết quả luôn giống nhau"
+          "Vì nó dùng lại hạ tầng đã có và có giao dịch - thứ mà hàng đợi ngoài không có",
+          "Vì cơ sở dữ liệu xử lý được khối lượng lớn hơn hẳn so với tất cả các hệ thống hàng đợi",
+          "Vì việc truy vấn bảng công việc đơn giản hơn so với đọc từ hàng đợi",
+          "Vì dữ liệu công việc được lưu vĩnh viễn nên dễ kiểm tra lại khi cần"
         ],
-        "correct": 1,
-        "explanation": "Quyết định tỷ lệ hedge là một lựa chọn chiến lược, không phải công thức cố định - phụ thuộc vào mức độ chấp nhận rủi ro, tầm quan trọng của việc dự đoán chính xác dòng tiền, và quan điểm về hướng biến động tỷ giá tương lai của ban lãnh đạo doanh nghiệp."
+        "correct": 0,
+        "explanation": "Vế giao dịch là vế đáng giá nhất: bạn ghi bản ghi nghiệp vụ và ghi công việc trong cùng một giao dịch, nên không có khe hở nào giữa hai thao tác. Với hàng đợi ngoài thì khe hở đó tồn tại và cần một mẫu riêng để xử lý."
+      },
+      {
+        "question": "Khi nào nên chuyển từ bảng công việc sang hàng đợi thật?",
+        "options": [
+          "Khi khối lượng vượt quá mức cơ sở dữ liệu chịu được, hoặc cần nhiều người nghe",
+          "Khi đội đã đủ lớn để có người chuyên vận hành hệ thống hàng đợi",
+          "Khi hệ thống đã được tách ra thành nhiều dịch vụ nhỏ chạy độc lập với nhau",
+          "Khi cần đảm bảo công việc không bị mất trong mọi tình huống lỗi"
+        ],
+        "correct": 0,
+        "explanation": "Hai điều kiện này đều là giới hạn thật của bảng công việc. Lựa chọn cuối thì ngược: bảng công việc trong cơ sở dữ liệu có bảo đảm về mất mát TỐT HƠN, vì nó nằm trong cùng giao dịch với dữ liệu nghiệp vụ."
+      },
+      {
+        "question": "Vì sao gọi trực tiếp kèm thử lại thường đủ cho hệ thống nhỏ?",
+        "options": [
+          "Vì nó giải được phần lớn vấn đề lỗi tạm thời mà không cắt luồng xử lý thành mảnh",
+          "Vì hệ thống nhỏ hiếm khi gặp lỗi nên không cần cơ chế phức tạp hơn",
+          "Vì thử lại tự động đã được hầu hết thư viện gọi dịch vụ hỗ trợ sẵn",
+          "Vì việc gọi trực tiếp cho độ trễ thấp hơn hẳn nên trải nghiệm của người dùng cũng tốt hơn"
+        ],
+        "correct": 0,
+        "explanation": "Chữ KHÔNG CẮT LUỒNG là mấu chốt: bạn giữ được khả năng theo dõi một yêu cầu từ đầu tới cuối. Đó là thứ đắt nhất mà hàng đợi lấy đi, và với hệ thống nhỏ thì nó không đáng đánh đổi."
+      },
+      {
+        "question": "Dấu hiệu nào cho thấy đã tới lúc cần hàng đợi thật?",
+        "options": [
+          "Nhiều dịch vụ cần biết về cùng một sự kiện, hoặc tải có đỉnh cao hơn hẳn mức trung bình",
+          "Số lượng công việc chạy nền trong hệ thống đã vượt quá mười loại khác nhau",
+          "Đội bắt đầu gặp khó khăn trong việc theo dõi và tra cứu trạng thái của từng công việc chạy nền",
+          "Thời gian phản hồi của các yêu cầu người dùng bắt đầu tăng lên đáng kể"
+        ],
+        "correct": 0,
+        "explanation": "Hai dấu hiệu này tương ứng với hai lợi ích chính của hàng đợi: nhiều người nghe và hấp thụ đỉnh tải. Lựa chọn thứ ba là dấu hiệu ngược - khó theo dõi là cái giá của hàng đợi chứ không phải lý do thêm nó."
       }
     ],
     "keyTakeaways": [
-      "Hedging: giảm rủi ro đã có sẵn, không tạo thêm rủi ro mới",
-      "Điều kiện: phải có underlying exposure thực tế cần bảo vệ",
-      "Mục tiêu là sự ổn định và dự đoán được, không phải tối đa hóa lợi nhuận"
+      "Cần kết quả để đi tiếp → gọi trực tiếp, bất kể hệ thống lớn tới đâu.",
+      "Cái giá lớn nhất của hàng đợi: luồng bị cắt nên theo dõi và gỡ lỗi khó hơn hẳn.",
+      "Bảng công việc trong cơ sở dữ liệu có GIAO DỊCH - thứ hàng đợi ngoài không có.",
+      "Chuyển sang hàng đợi thật khi vượt sức cơ sở dữ liệu hoặc cần nhiều người nghe.",
+      "Khó theo dõi là cái GIÁ của hàng đợi, không phải lý do để thêm nó."
     ],
     "practicePrompt": {
-      "question": "Một công ty xuất khẩu Việt Nam có khoản phải thu 1 triệu USD sẽ nhận sau 3 tháng, lo ngại tỷ giá USD/VND biến động bất lợi, nên ký hợp đồng forward để khóa tỷ giá trước. Mục đích của giao dịch phái sinh này là gì?",
+      "question": "Đội ba người muốn thêm hàng đợi cho việc gửi thư. Nên góp ý gì?",
       "options": [
-        "Mục đích là đầu cơ để kiếm thêm lợi nhuận từ biến động tỷ giá trong 3 tháng tới",
-        "Hedging là giảm rủi ro đã có sẵn từ khoản phải thu, không tạo rủi ro mới",
-        "Mục đích là tăng đòn bẩy tài chính để khuếch đại lợi nhuận tiềm năng của công ty",
-        "Hợp đồng forward này không có mục đích rõ ràng, chỉ là thủ tục hành chính thông thường"
+        "Thử bảng công việc trong cơ sở dữ liệu trước, vì nó cho cùng lợi ích mà rẻ hơn nhiều",
+        "Đồng ý, vì gửi thư là ví dụ chuẩn của việc nên chạy nền qua hàng đợi",
+        "Phản đối, vì đội ba người chưa đủ nguồn lực để vận hành thêm một hệ thống",
+        "Đề nghị gọi trực tiếp kèm thử lại, vì gửi thư hiếm khi thất bại lâu dài"
       ],
-      "correct": 1,
-      "explanation": "Hedging: giảm rủi ro đã có sẵn, không tạo thêm rủi ro mới. Khác với speculation (đặt cược để kiếm lời), hedging chỉ nhằm loại bỏ sự bất định từ rủi ro đã tồn tại sẵn trong hoạt động kinh doanh - công ty vẫn giữ nguyên rủi ro nếu không hedging, chứ hedging không tạo thêm rủi ro."
+      "correct": 0,
+      "explanation": "Ý định của đội đúng - gửi thư nên rời khỏi đường xử lý chính. Vấn đề chỉ là công cụ, và bảng công việc cho họ cùng lợi ích với hạ tầng đã có. Phản đối thẳng thì bỏ mất một cải thiện thật."
     },
     "summary": {
-      "keyIdea": "Hedging: giảm rủi ro đã có sẵn, không tạo thêm rủi ro mới",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Điều kiện: phải có underlying exposure thực tế cần bảo vệ"
+      "keyIdea": "Hàng đợi đổi một loại độ phức tạp lấy một loại khác, không xoá độ phức tạp.",
+      "formula": "Cần kết quả → trực tiếp. Không cần và hệ thống nhỏ → bảng công việc. Lớn → hàng đợi.",
+      "commonMistake": "Thêm hàng đợi vì nó nghe hiện đại, không vì bài toán cần nó.",
+      "action": "Với mỗi hàng đợi trong hệ thống, hỏi bảng công việc có đủ không."
     },
     "application": {
-      "title": "Tìm một tình huống hedging thực tế",
-      "message": "Nghĩ về một rủi ro tài chính bạn hoặc gia đình đang thực sự gánh (ví dụ khoản vay lãi suất thả nổi, hoặc thu nhập bằng ngoại tệ) và mô tả một công cụ có thể giúp cố định sự bất định đó.",
-      "secondary": "Hedging chỉ có ý nghĩa khi có một rủi ro nền tảng thực sự cần bảo vệ."
+      "title": "Làm ngay hôm nay",
+      "message": "Với mỗi hàng đợi trong hệ thống bạn, hỏi hai câu: có nhiều hơn một người nghe không, và tải có đỉnh cao hơn hẳn mức trung bình không?",
+      "secondary": "Nếu cả hai đều không, một bảng công việc trong cơ sở dữ liệu có thể cho cùng lợi ích với ít hạ tầng hơn - và với giao dịch mà hàng đợi ngoài không có."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Hedging là dùng phái sinh để giảm hoặc loại bỏ một rủi ro đã tồn tại sẵn trong hoạt động kinh doanh thực - không phải để kiếm thêm lợi nhuận. Điều kiện cốt lõi: phải có một underlying exposure (rủi ro nền tảng) có sẵn mà vị thế phái sinh đi ngược chiều để triệt tiêu."
+        "text": "Tám bài trước nói về cách dùng hàng đợi. Bài này lùi ra một bước và hỏi câu đứng trước tất cả: có nên dùng nó không."
       },
       {
         "type": "heading",
-        "text": "Hãng hàng không: chắc chắn phải mua dầu, chỉ không biết giá"
-      },
-      {
-        "type": "paragraph",
-        "text": "Hãng hàng không CHẮC CHẮN phải mua nhiên liệu để bay - họ chỉ không biết giá bao nhiêu vào thời điểm mua thực tế. Futures giúp cố định chi phí đó trước, giảm sự bất định. Southwest Airlines từng nổi tiếng với chiến lược hedge giá dầu tích cực trong thập niên 2000, giúp hãng duy trì lợi thế chi phí đáng kể so với đối thủ khi giá dầu tăng vọt. Đây là hedging thuần túy: có một exposure có sẵn (nhu cầu mua dầu), và vị thế futures bù trừ đúng rủi ro đó."
-      },
-      {
-        "type": "heading",
-        "text": "Hedge bao nhiêu phần trăm?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một doanh nghiệp xuất khẩu Việt Nam nhận thanh toán USD sau 3 tháng không nhất thiết phải hedge 100% giá trị hợp đồng bằng forward. Hedge 100% loại bỏ hoàn toàn bất định nhưng cũng bỏ lỡ hoàn toàn khả năng hưởng lợi nếu tỷ giá biến động có lợi. Nhiều công ty chọn hedge một phần - ví dụ 50-70% - để cân bằng giữa an toàn và linh hoạt. Đây là một lựa chọn chiến lược, không phải công thức cố định."
-      },
-      {
-        "type": "formula",
-        "title": "Vì sao hedge thành công thường trông như một khoản lỗ",
-        "equation": "Chi phí thực = Giá mua trên thị trường ± Lãi/lỗ hợp đồng phái sinh",
-        "variables": [
-          { "symbol": "Giá thị trường", "name": "Giá phải trả tại thời điểm mua thật", "description": "Biến động, không kiểm soát được" },
-          { "symbol": "Lãi/lỗ phái sinh", "name": "Kết quả của vị thế hedge", "description": "Luôn ngược chiều với biến động của giá thị trường" }
-        ],
-        "example": {
-          "title": "Hãng bay chốt giá dầu 80 USD/thùng bằng futures cho 1 triệu thùng",
-          "calculation": "Giá dầu rơi về 60 USD → mua thật tốn 60 triệu USD, nhưng lỗ futures 20 triệu USD · Tổng: 60 + 20 = 80 triệu USD",
-          "result": "80 triệu USD - đúng bằng mức đã chốt",
-          "explanation": "Giá dầu tăng lên 100 thì kết quả vẫn là 80 triệu. Đó là toàn bộ mục đích. Nhưng báo cáo sẽ ghi nhận khoản lỗ futures 20 triệu USD rất dễ thấy, còn 20 triệu tiết kiệm được thì không nằm ở dòng nào cả."
-        }
+        "text": "Một ràng buộc cứng và một ràng buộc mềm"
       },
       {
         "type": "callout",
-        "label": "Hiểu nhầm nguy hiểm nhất",
-        "text": "Coi khoản lỗ trên hợp đồng hedge là bằng chứng hedge sai. Hedge đúng nghĩa là từ bỏ phần được để loại bỏ phần mất - nửa số năm nó sẽ lỗ, và đó là dấu hiệu nó đang chạy đúng. Ban lãnh đạo dừng chương trình hedge sau một năm lỗ thường là lúc rủi ro quay lại đúng vào thời điểm tệ nhất."
+        "label": "Cần kết quả để đi tiếp thì hết chuyện",
+        "text": "Đây là ràng buộc cứng và nó không phụ thuộc vào quy mô. Ràng buộc mềm thì quan trọng hơn trong thực tế: một hệ thống nhỏ thêm hàng đợi sẽ nhận toàn bộ độ phức tạp về theo dõi và gỡ lỗi để giải một vấn đề chưa tồn tại."
+      },
+      {
+        "type": "heading",
+        "text": "Ba mức, theo độ phức tạp"
       },
       {
         "type": "list",
         "items": [
-          "Điều kiện hedging thuần túy: phải có underlying exposure thực tế cần bảo vệ",
-          "Mục tiêu: sự ổn định và dự đoán được, không phải tối đa hóa lợi nhuận",
-          "Tỷ lệ hedge (0-100%) là một quyết định chiến lược tùy khẩu vị rủi ro",
-          "Không có underlying exposure mà vẫn giao dịch phái sinh để kiếm lời từ biến động giá - đó là speculation, không phải hedging"
+          "Gọi trực tiếp kèm thử lại. Giải được phần lớn lỗi tạm thời và giữ nguyên khả năng theo dõi một yêu cầu từ đầu tới cuối.",
+          "Bảng công việc trong cơ sở dữ liệu. Ghi một dòng, một tiến trình chạy nền đọc và xử lý. Dùng lại hạ tầng đã có.",
+          "Hàng đợi thật. Mở rộng tốt hơn, hỗ trợ nhiều người nghe, hấp thụ đỉnh tải."
+        ]
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Ưu điểm ít được nói của mức hai",
+          "text": "Nó có GIAO DỊCH. Bạn ghi bản ghi nghiệp vụ và ghi công việc trong cùng một giao dịch, nên không có khe hở nào giữa hai thao tác."
+        },
+        "right": {
+          "label": "Hàng đợi ngoài thì không",
+          "text": "Ghi cơ sở dữ liệu xong rồi gửi tin nhắn là hai thao tác riêng, và có một khe hở giữa chúng. Bài sau của chặng này là mẫu sinh ra để đóng khe hở đó."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Khi nào lên mức ba"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hai dấu hiệu, và chúng tương ứng với hai lợi ích chính của hàng đợi: nhiều dịch vụ cần biết về cùng một sự kiện, hoặc tải có đỉnh cao hơn hẳn mức trung bình. Vượt sức chịu của cơ sở dữ liệu là dấu hiệu thứ ba."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Có một dấu hiệu người ta hay nêu mà nó ngược: đội thấy khó theo dõi trạng thái các công việc chạy nền. Khó theo dõi là CÁI GIÁ của hàng đợi, không phải lý do để thêm nó.",
+          "Bài sau là cách trả cái giá đó: theo dõi một hệ thống bất đồng bộ."
         ]
       }
     ]
   },
   {
     "id": 190,
-    "slug": "speculation-la-gi",
-    "title": "Tự học Tài chính Day 190: Speculation là gì?",
-    "subtitle": "Dùng phái sinh để đặt cược vào hướng giá nhằm kiếm lời - không có rủi ro nền tảng cần bảo vệ",
+    "slug": "theo-doi-he-thong-bat-dong-bo",
+      "interactiveType": "tail-risk",
+    "title": "Theo dõi một hệ thống bất đồng bộ",
+    "subtitle": "Luồng bị cắt thành nhiều mảnh, và mã định danh là thứ duy nhất nối chúng lại.",
     "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "⚠️",
-    "openingQuestion": "Một trader không sở hữu cổ phiếu nào mua call option cổ phiếu Z vì tin giá sẽ tăng mạnh. Đây là hedging hay speculation?",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "🧵",
+    "isFundamental": true,
+    "whyItMatters": "Cái giá lớn nhất của xử lý bất đồng bộ là khả năng quan sát, và nó là cái giá trả được - nhưng chỉ nếu bạn chuẩn bị từ đầu chứ không phải lúc đang gỡ lỗi.",
+    "openingQuestion": "Thứ gì cần nhất để gỡ lỗi một hệ thống bất đồng bộ?",
     "openingOptions": [
-      "Không phải cả hai",
-      "Hedging, vì dùng option",
-      "Speculation - trader không có rủi ro nền tảng nào cần bảo vệ",
-      "Không đủ thông tin để có thể xác định được đó là loại nào cả đâu"
+      "Một mã định danh đi theo yêu cầu qua mọi chặng, kể cả qua hàng đợi",
+      "Nhật ký chi tiết ở mỗi dịch vụ để biết chính xác từng bước đã làm gì",
+      "Đồng bộ đồng hồ giữa các máy chủ để dấu thời gian khớp nhau chính xác",
+      "Một bảng theo dõi tập trung hiển thị trạng thái của tất cả các hàng đợi"
     ],
-    "correctOption": 2,
-    "explanation": "Speculation là dùng công cụ tài chính (bao gồm phái sinh) để đặt cược có chủ đích vào biến động giá nhằm kiếm lợi nhuận, không nhằm bảo vệ một rủi ro kinh doanh có sẵn. Speculation không xấu về bản chất - nó cung cấp thanh khoản cho thị trường - nhưng đòn bẩy cao của phái sinh khiến rủi ro thua lỗ cũng khuếch đại tương ứng.",
+    "correctOption": 0,
+    "explanation": "Không có mã định danh chung thì bạn có nhiều kho nhật ký rời rạc và phải nối chúng bằng tay theo dấu thời gian - việc rất tốn và rất dễ sai khi có nhiều yêu cầu chạy song song. Ba lựa chọn kia đều hữu ích và đều cần, nhưng chúng chỉ phát huy được khi đã có thứ nối các mảnh lại.",
     "diagram": [
       {
-        "label": "Không có rủi ro nền tảng cần bảo vệ",
+        "label": "Mã định danh đi qua HTTP, qua hàng đợi, qua mọi chặng",
         "arrow": true
       },
       {
-        "label": "Dùng phái sinh đặt cược vào hướng giá",
+        "label": "Ba câu hỏi: đang ở đâu, chờ bao lâu, thất bại chỗ nào",
         "arrow": true
       },
       {
-        "label": "= Speculation (khác Hedging)"
+        "label": "Trạng thái phải nhìn thấy được từ phía nghiệp vụ",
+        "arrow": true
+      },
+      {
+        "label": "Không phải chỉ từ phía hạ tầng hàng đợi"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Barings Bank (1995)",
-      "description": "Trader Nick Leeson dùng futures để đầu cơ (không phải hedging) trên thị trường Nikkei, thua lỗ 1.3 tỷ USD và làm sụp đổ Barings Bank - ngân hàng lâu đời nhất nước Anh - chỉ trong vài tuần."
+      "company": "Hạ tầng xanh mà việc vẫn kẹt",
+      "description": "Bảng theo dõi hàng đợi có thể xanh hoàn toàn - không tồn đọng, không lỗi - trong khi một loại công việc cụ thể đang kẹt vì người tiêu thụ của nó bị tắt. Cần một câu trả lời từ phía nghiệp vụ: bao nhiêu đơn hàng chưa được xác nhận sau ba mươi phút."
     },
     "quiz": [
       {
-        "question": "Vì sao speculation với phái sinh rủi ro cao hơn speculation bằng cổ phiếu thông thường?",
+        "question": "Vì sao mã định danh phải đi qua cả hàng đợi?",
         "options": [
-          "Không có khác biệt về mức độ rủi ro",
-          "Phái sinh luôn có phí giao dịch cao hơn",
-          "Phái sinh chỉ dành cho nhà đầu tư tổ chức nên an toàn hơn",
-          "Đòn bẩy (leverage) của phái sinh cho phép kiểm soát vị thế lớn với vốn nhỏ hơn nhiều - khuếch đại cả lãi lẫn lỗ theo cùng tỷ lệ"
-        ],
-        "correct": 3,
-        "explanation": "Margin trong futures/options thường chỉ 5-15% giá trị hợp đồng - đòn bẩy 7-20 lần. Biến động giá nhỏ trên tài sản cơ sở tạo ra biến động lớn gấp nhiều lần trên vốn đã bỏ ra, có thể mất trắng hoặc thậm chí nợ thêm tiền nếu không quản trị rủi ro chặt chẽ."
-      },
-      {
-        "question": "Vì sao các quỹ đầu cơ (hedge fund) đôi khi bị chỉ trích là làm tăng thêm bất ổn thị trường, dù về lý thuyết speculation cũng cung cấp thanh khoản có ích cho thị trường?",
-        "options": [
-          "Khi speculation dùng đòn bẩy quá cao và tập trung (nhiều quỹ cùng đặt cược một chiều), nó có thể khuếch đại biến động giá cả hai chiều - tạo đợt tăng/giảm cực đoan hơn biến động cơ bản của kinh tế thực, đặc biệt khi thanh lý vị thế hàng loạt",
-          "Hedge fund không bao giờ dùng đòn bẩy trong chiến lược đầu tư",
-          "Speculation luôn có lợi cho thị trường trong mọi trường hợp không có ngoại lệ",
-          "Speculation luôn có hại cho thị trường trong mọi trường hợp"
+          "Vì nếu nó dừng ở biên hàng đợi thì luồng bị đứt đúng chỗ khó nối lại nhất",
+          "Vì hàng đợi cần mã định danh để phân phối tin nhắn cho đúng người tiêu thụ",
+          "Vì tất cả các hệ thống hàng đợi yêu cầu mỗi tin nhắn buộc phải có một mã duy nhất",
+          "Vì mã định danh giúp phát hiện các tin nhắn trùng lặp ở ngay trong toàn bộ hệ thống hàng đợi"
         ],
         "correct": 0,
-        "explanation": "Đây là sự cân bằng phức tạp: speculation vừa cung cấp thanh khoản cần thiết cho thị trường (ai đó phải sẵn sàng nhận rủi ro mà bên hedging muốn chuyển giao), vừa có thể khuếch đại bất ổn khi đòn bẩy cao và vị thế tập trung dẫn đến các đợt thanh lý hàng loạt gây biến động cực đoan."
+        "explanation": "Chỗ đứt là chỗ khó nối nhất vì thời điểm gửi và thời điểm xử lý cách nhau bất kỳ khoảng nào. Nối bằng dấu thời gian ở chỗ đó gần như không làm được khi có nhiều yêu cầu song song."
+      },
+      {
+        "question": "Ba câu hỏi mà hệ thống bất đồng bộ phải trả lời được là gì?",
+        "options": [
+          "Việc này đang ở đâu, nó đã chờ bao lâu, và nếu thất bại thì thất bại ở chặng nào",
+          "Có bao nhiêu việc đang chờ, tốc độ xử lý là bao nhiêu, và tồn đọng đang tăng hay giảm",
+          "Người tiêu thụ nào đang xử lý việc gì, mất bao lâu, và tiêu tốn bao nhiêu tài nguyên",
+          "Việc nào có mức ưu tiên cao nhất, việc nào chờ lâu nhất, và việc nào thất bại nhiều nhất"
+        ],
+        "correct": 0,
+        "explanation": "Ba câu này nhìn từ phía MỘT VIỆC CỤ THỂ, tức là từ phía người dùng đang hỏi về đơn hàng của họ. Lựa chọn thứ hai là các chỉ số tổng hợp - cần thiết, nhưng chúng không trả lời được câu hỏi về một trường hợp."
+      },
+      {
+        "question": "Vì sao bảng theo dõi hàng đợi xanh không có nghĩa là mọi việc đều ổn?",
+        "options": [
+          "Vì một loại công việc có thể đang kẹt trong khi hạ tầng hàng đợi hoạt động bình thường",
+          "Vì bảng theo dõi hàng đợi thường có độ trễ vài phút so với trạng thái thực",
+          "Vì các chỉ số hàng đợi được tính trung bình nên che đi các trường hợp cá biệt",
+          "Vì hàng đợi chỉ báo lỗi khi tin nhắn không gửi được chứ không khi xử lý sai"
+        ],
+        "correct": 0,
+        "explanation": "Người tiêu thụ bị tắt là ví dụ rõ nhất: không có tin nhắn nào lỗi, không có tồn đọng bất thường ở tổng thể, và một loại việc không được làm. Đây là lý do phải có chỉ số từ phía NGHIỆP VỤ."
+      },
+      {
+        "question": "Chỉ số nghiệp vụ tốt cho một hệ thống bất đồng bộ trông thế nào?",
+        "options": [
+          "Bao nhiêu đơn hàng chưa được xác nhận sau ba mươi phút kể từ lúc tạo",
+          "Số lượng tin nhắn được xử lý thành công trong mỗi khoảng thời gian",
+          "Tỷ lệ giữa số tin nhắn vào hàng đợi và số tin nhắn được xử lý xong",
+          "Thời gian xử lý trung bình của mỗi tin nhắn trong hàng đợi chính"
+        ],
+        "correct": 0,
+        "explanation": "Nó đo KẾT QUẢ nghiệp vụ chứ không đo hoạt động của hạ tầng, nên nó bắt được cả những kiểu hỏng mà hạ tầng không biết. Ba lựa chọn kia đều là chỉ số hạ tầng và đều có thể xanh trong lúc việc đang kẹt."
+      },
+      {
+        "question": "Vì sao nên đo thời gian từ đầu tới cuối chứ không chỉ thời gian xử lý?",
+        "options": [
+          "Vì thời gian chờ trong hàng đợi thường lớn hơn nhiều so với thời gian xử lý thật",
+          "Vì thời gian xử lý thay đổi theo đúng tải nên rốt cuộc không ổn định để có thể so sánh giữa các kỳ",
+          "Vì đo từ đầu tới cuối cho phép so sánh với hệ thống đồng bộ tương đương",
+          "Vì khoảng thời gian xử lý hoàn toàn không tính tới tất cả các lần thử lại khi có lỗi tạm thời"
+        ],
+        "correct": 0,
+        "explanation": "Người tiêu thụ báo xử lý xong trong hai trăm mili giây nghe rất tốt, và tin nhắn đã nằm chờ bốn mươi phút trước đó. Con số người dùng cảm nhận là tổng của cả hai, và chỉ con số đó mới có nghĩa với họ."
       }
     ],
     "keyTakeaways": [
-      "Speculation: đặt cược vào hướng giá để kiếm lời, không có rủi ro nền tảng cần bảo vệ",
-      "Không xấu về bản chất - cung cấp thanh khoản cho thị trường phái sinh",
-      "Đòn bẩy cao khiến speculation bằng phái sinh rủi ro hơn nhiều so với giao dịch tài sản cơ sở trực tiếp"
+      "Mã định danh phải đi qua CẢ hàng đợi - đó là chỗ luồng đứt và khó nối nhất.",
+      "Ba câu hỏi: việc này đang ở đâu, chờ bao lâu, thất bại ở chặng nào.",
+      "Bảng theo dõi hàng đợi xanh không có nghĩa mọi việc đều ổn.",
+      "Cần chỉ số từ phía NGHIỆP VỤ, ví dụ số đơn chưa xác nhận sau ba mươi phút.",
+      "Đo thời gian từ đầu tới cuối - thời gian chờ thường lớn hơn thời gian xử lý nhiều lần."
     ],
     "practicePrompt": {
-      "question": "Một nhà đầu tư không sở hữu bất kỳ tài sản nào liên quan đến dầu thô, nhưng mua hợp đồng futures dầu thô vì tin rằng giá sẽ tăng mạnh trong quý tới, với mục đích kiếm lời từ chênh lệch giá. Hành động này khác gì với hedging của một công ty xuất khẩu dầu?",
+      "question": "Người dùng hỏi đơn hàng của họ đang ở đâu. Hệ thống bạn trả lời được không?",
       "options": [
-        "Không có sự khác biệt nào, cả hai đều đang sử dụng cùng một công cụ phái sinh với cùng một mục đích",
-        "Speculation: đặt cược vào hướng giá, không có rủi ro nền tảng cần bảo vệ",
-        "Đây vẫn được coi là hedging vì cả hai đều liên quan đến hợp đồng futures dầu thô",
-        "Speculation luôn là hành vi vi phạm pháp luật và không được phép thực hiện trên thị trường tài chính"
+        "Chỉ khi có mã định danh đi theo yêu cầu và trạng thái được ghi ở mức nghiệp vụ",
+        "Được, nếu nhật ký của tất cả các dịch vụ được lưu tập trung ở một chỗ",
+        "Được, nếu bảng theo dõi hàng đợi cho thấy không có tồn đọng bất thường",
+        "Không, vì hệ thống bất đồng bộ về bản chất hoàn toàn không theo dõi được từng yêu cầu"
       ],
-      "correct": 1,
-      "explanation": "Speculation: đặt cược vào hướng giá để kiếm lời, không có rủi ro nền tảng cần bảo vệ. Giá trị của phái sinh phụ thuộc vào mục đích sử dụng: hedging (như công ty xuất khẩu) tạo giá trị thực bằng cách giảm rủi ro có sẵn, còn speculation thiếu kỷ luật có thể gây thảm họa vì tạo ra rủi ro mới hoàn toàn không cần thiết."
+      "correct": 0,
+      "explanation": "Lựa chọn cuối quá bi quan - theo dõi được, chỉ là phải chuẩn bị từ đầu. Nhật ký tập trung mà không có mã định danh chung thì bạn vẫn phải nối bằng dấu thời gian, và việc đó không làm được khi có nhiều yêu cầu song song."
     },
     "summary": {
-      "keyIdea": "Speculation: đặt cược vào hướng giá để kiếm lời, không có rủi ro nền tảng cần bảo vệ",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Không xấu về bản chất - cung cấp thanh khoản cho thị trường phái sinh"
+      "keyIdea": "Luồng bị cắt thành mảnh, và mã định danh là thứ duy nhất nối chúng lại.",
+      "formula": "Mã định danh xuyên suốt + trạng thái ở mức nghiệp vụ + đo từ đầu tới cuối.",
+      "commonMistake": "Chỉ theo dõi hạ tầng hàng đợi, nên bảng xanh trong lúc việc đang kẹt.",
+      "action": "Kiểm xem mã định danh của bạn có đi qua được hàng đợi không."
     },
     "application": {
-      "title": "Phân biệt hedging và speculation trong đầu tư của bạn",
-      "message": "Xem lại một giao dịch phái sinh hoặc đòn bẩy bạn từng cân nhắc, tự hỏi liệu bạn đang bảo vệ một rủi ro có sẵn (hedging) hay đơn thuần đặt cược vào hướng giá (speculation).",
-      "secondary": "Trung thực với chính mình ở câu hỏi này giúp bạn tránh nhầm lẫn nguy hiểm."
+      "title": "Làm ngay hôm nay",
+      "message": "Kiểm xem mã định danh yêu cầu của bạn có được đưa vào tin nhắn khi gửi vào hàng đợi và đọc ra ở phía người tiêu thụ không. Đây là chỗ nó hay bị đứt nhất.",
+      "secondary": "Rồi thêm một chỉ số nghiệp vụ: bao nhiêu việc chưa hoàn tất sau một khoảng thời gian mà người dùng còn chấp nhận được. Đó là chỉ số bắt được kiểu hỏng mà hạ tầng không biết."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Speculation là dùng công cụ tài chính - bao gồm phái sinh - để đặt cược có chủ đích vào biến động giá nhằm kiếm lợi nhuận, không nhằm bảo vệ một rủi ro kinh doanh có sẵn. Đây là mặt đối lập trực tiếp với hedging."
+        "text": "Bài trước nói cái giá lớn nhất của xử lý bất đồng bộ là khả năng quan sát. Bài này là cách trả cái giá đó - và nó phải trả từ đầu chứ không phải lúc đang gỡ lỗi."
       },
       {
         "type": "heading",
-        "text": "Đòn bẩy: con dao hai lưỡi"
+        "text": "Thứ nối các mảnh lại"
       },
       {
-        "type": "paragraph",
-        "text": "Margin trong futures/options thường chỉ 5-15% giá trị hợp đồng - tương đương đòn bẩy 7-20 lần. Một biến động giá nhỏ trên tài sản cơ sở tạo ra biến động lớn gấp nhiều lần trên vốn đã bỏ ra. Trader Nick Leeson dùng futures để đầu cơ (không phải hedging) trên thị trường Nikkei năm 1995, thua lỗ 1.3 tỷ USD và làm sụp đổ Barings Bank - ngân hàng lâu đời nhất nước Anh - chỉ trong vài tuần."
+        "type": "callout",
+        "label": "Mã định danh, và nó phải đi qua hàng đợi",
+        "text": "Nhiều hệ thống có mã định danh đi qua các lượt gọi HTTP rồi dừng lại ở biên hàng đợi. Đó là chỗ luồng đứt, và cũng là chỗ khó nối lại nhất - vì thời điểm gửi và thời điểm xử lý cách nhau bất kỳ khoảng nào."
       },
       {
         "type": "heading",
-        "text": "Speculation không xấu về bản chất"
-      },
-      {
-        "type": "paragraph",
-        "text": "Speculation cung cấp thanh khoản cần thiết cho thị trường - ai đó phải sẵn sàng nhận rủi ro mà bên hedging muốn chuyển giao đi. Vấn đề nảy sinh khi đòn bẩy quá cao và vị thế quá tập trung (nhiều quỹ cùng đặt cược một chiều): nó có thể khuếch đại biến động giá theo cả hai chiều, tạo ra các đợt tăng/giảm cực đoan hơn mức biến động cơ bản của nền kinh tế thực, đặc biệt khi xảy ra thanh lý vị thế hàng loạt (forced liquidation)."
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Hedging",
-          "text": "Có sẵn một rủi ro trong hoạt động thật, dùng phái sinh để triệt tiêu nó. Thành công = kết quả ổn định và dự đoán được. Vị thế phái sinh luôn ngược chiều với exposure."
-        },
-        "right": {
-          "label": "Speculation",
-          "text": "Không có rủi ro nền tảng nào cả - vị thế phái sinh CHÍNH LÀ rủi ro, được tạo ra một cách chủ động. Thành công = lãi. Cùng một hợp đồng futures, khác nhau ở chỗ có exposure nền hay không."
-        }
-      },
-      {
-        "type": "formula",
-        "title": "Vì sao đòn bẩy giết nhanh đến vậy",
-        "equation": "% thay đổi trên vốn = % thay đổi giá tài sản × (1 ÷ tỷ lệ ký quỹ)",
-        "variables": [
-          { "symbol": "Tỷ lệ ký quỹ", "name": "Margin", "description": "Phần giá trị hợp đồng phải đặt cọc, thường 5-15%" }
-        ],
-        "example": {
-          "title": "Ký quỹ 10%, giá tài sản cơ sở giảm 10%",
-          "calculation": "Đòn bẩy = 1 ÷ 0,10 = 10 lần · Mất mát trên vốn = 10% × 10 = 100%",
-          "result": "Cháy sạch tài khoản khi giá chỉ nhúc nhích 10%",
-          "explanation": "Và thực tế còn tệ hơn: margin call ập đến trước khi chạm 100%, buộc phải nộp thêm tiền hoặc bị đóng vị thế ngay tại đáy. Đây là cách 1,3 tỷ USD của Barings bốc hơi trong vài tuần."
-        }
+        "text": "Ba câu hỏi phải trả lời được"
       },
       {
         "type": "list",
         "items": [
-          "Speculation: đặt cược vào hướng giá để kiếm lời, không có exposure nền tảng",
-          "Đòn bẩy 7-20 lần trong futures/options khuếch đại cả lãi lẫn lỗ",
-          "Cung cấp thanh khoản có ích cho thị trường phái sinh",
-          "Có thể khuếch đại bất ổn thị trường khi tập trung và dùng đòn bẩy quá cao"
+          "Việc này đang ở đâu - đã vào hàng đợi chưa, đang xử lý hay đã xong.",
+          "Nó đã chờ bao lâu tính từ lúc người dùng gửi yêu cầu.",
+          "Nếu thất bại thì thất bại ở chặng nào, và vì sao."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Ba câu này nhìn từ phía MỘT VIỆC CỤ THỂ - tức là từ phía người dùng đang hỏi về đơn hàng của họ. Các chỉ số tổng hợp về hàng đợi cần thiết nhưng chúng không trả lời được câu hỏi về một trường hợp."
+      },
+      {
+        "type": "heading",
+        "text": "Vì sao hạ tầng xanh chưa đủ"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chỉ số hạ tầng",
+          "text": "Tồn đọng, tỷ lệ lỗi, thông lượng. Chúng có thể xanh hoàn toàn trong khi một người tiêu thụ bị tắt và một loại việc không được làm."
+        },
+        "right": {
+          "label": "Chỉ số nghiệp vụ",
+          "text": "Bao nhiêu đơn hàng chưa được xác nhận sau ba mươi phút. Nó đo KẾT QUẢ chứ không đo hoạt động, nên nó bắt được cả kiểu hỏng mà hạ tầng không biết."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Đo từ đầu tới cuối"
+      },
+      {
+        "type": "paragraph",
+        "text": "Người tiêu thụ báo xử lý xong trong hai trăm mili giây nghe rất tốt, và tin nhắn đã nằm chờ bốn mươi phút trước đó. Con số người dùng cảm nhận là TỔNG của cả hai."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Đây là cùng bài học với việc đo từ phía người dùng ở chặng độ tin cậy, chỉ khác là ở đây khoảng bị bỏ sót nằm trong hàng đợi thay vì trên đường truyền.",
+          "Phần sau của chặng là điều kiện để mọi thứ trên dùng được: bên nhận phải chịu được việc nhận trùng."
         ]
       }
     ]
   },
   {
     "id": 191,
-    "slug": "swap-la-gi",
-    "title": "Tự học Tài chính Day 191: Swap là gì?",
-    "subtitle": "Hai bên hoán đổi dòng tiền tương lai theo một công thức đã thỏa thuận",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🔄",
-    "openingQuestion": "Khái niệm cốt lõi của mọi loại swap (hoán đổi) là gì?",
+    "slug": "bat-bien-khi-lap-lai-dieu-kien-bat-buoc",
+    "title": "Bất biến khi lặp lại - điều kiện bắt buộc",
+    "subtitle": "Không phải một cải tiến tuỳ chọn; nó là cái giá vào cửa của xử lý bất đồng bộ.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "🔁",
+    "isFundamental": true,
+    "whyItMatters": "Mức bảo đảm ít nhất một lần nghĩa là tin nhắn sẽ được giao lại - không phải có thể, mà sẽ. Bên nhận không chịu được điều đó thì hệ thống tạo ra dữ liệu sai một cách đều đặn.",
+    "openingQuestion": "Việc tăng số dư tài khoản lên một trăm nghìn có bất biến khi lặp lại không?",
     "openingOptions": [
-      "Chỉ áp dụng cho ngoại tệ",
-      "Hai bên hoán đổi một chuỗi dòng tiền tương lai",
-      "Swap luôn có kỳ hạn dưới 1 năm",
-      "Hai bên trao đổi tài sản vật chất trực tiếp"
+      "Không - chạy hai lần thì cộng hai lần, và không có gì trong thao tác đó ngăn được",
+      "Có, nếu cả hệ thống ghi lại lịch sử giao dịch để có thể đối chiếu mỗi khi cần kiểm tra",
+      "Có, chỉ vì cơ sở dữ liệu đảm bảo mỗi thao tác cập nhật chỉ được thực hiện đúng một lần",
+      "Tuỳ, vì còn phụ thuộc vào chính việc thao tác đó có nằm ở ngay trong đúng một giao dịch hay không"
     ],
-    "correctOption": 1,
-    "explanation": "Swap là hợp đồng phái sinh trong đó hai bên đồng ý hoán đổi các dòng tiền trong tương lai theo một công thức xác định trước. Phổ biến nhất: Interest Rate Swap (hoán đổi lãi suất cố định và thả nổi) và Currency Swap (hoán đổi dòng tiền bằng hai loại tiền tệ khác nhau). Swap giúp mỗi bên chuyển đổi loại rủi ro họ đang gánh sang loại họ mong muốn hơn.",
+    "correctOption": 0,
+    "explanation": "Cộng thêm là thao tác phụ thuộc vào trạng thái hiện tại, nên lặp lại thì cộng lại. Ngược lại, đặt số dư THÀNH một giá trị cụ thể thì bất biến - chạy mười lần cũng ra cùng kết quả. Giao dịch cơ sở dữ liệu bảo đảm một thao tác hoàn tất trọn vẹn hoặc không, nhưng nó không ngăn được việc thao tác đó được gửi tới hai lần.",
     "diagram": [
       {
-        "label": "Hai bên thỏa thuận công thức trước",
+        "label": "Đặt thành giá trị X: bất biến - chạy mười lần cũng vậy",
         "arrow": true
       },
       {
-        "label": "Hoán đổi dòng tiền tương lai cho nhau",
+        "label": "Cộng thêm X: không bất biến - lặp là cộng lại",
         "arrow": true
       },
       {
-        "label": "= Swap"
+        "label": "Không viết lại được thì dùng khoá chống trùng",
+        "arrow": true
+      },
+      {
+        "label": "Ít nhất một lần nghĩa là SẼ giao lại, không phải có thể"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Thị trường swap toàn cầu",
-      "description": "Thị trường Interest Rate Swap toàn cầu có giá trị danh nghĩa (notional) lên tới hàng trăm nghìn tỷ USD - là một trong những thị trường phái sinh OTC lớn nhất thế giới, chủ yếu giữa các ngân hàng và tập đoàn lớn."
+      "company": "Viết lại thao tác thay vì chống trùng",
+      "description": "Nhiều thao tác chuyển được sang dạng bất biến chỉ bằng cách đổi cách diễn đạt: thay vì tăng số lượt xem lên một, ghi lại một lượt xem có mã định danh riêng rồi đếm. Chuyển được thì rẻ hơn nhiều so với dựng cơ chế chống trùng."
     },
     "quiz": [
       {
-        "question": "Notional principal trong một hợp đồng swap có được hai bên thực sự trao đổi cho nhau không?",
+        "question": "Thao tác nào bất biến khi lặp lại?",
         "options": [
-          "Có, đây chính là bản chất của swap",
-          "Phụ thuộc hoàn toàn vào luật từng quốc gia",
-          "Thường KHÔNG - notional chỉ là con số dùng để tính toán dòng tiền hoán đổi (như lãi suất áp lên đó); chỉ phần chênh lệch (net payment) mới thực sự được thanh toán",
-          "Chỉ trao đổi khi đáo hạn hợp đồng"
+          "Đặt trạng thái đơn hàng thành đã thanh toán, vì lặp lại vẫn ra cùng kết quả",
+          "Tăng số lượt xem của bài viết lên một mỗi khi có người truy cập",
+          "Gửi một thư thông báo tới địa chỉ email đã đăng ký của người dùng",
+          "Ghi thêm một dòng vào bảng lịch sử giao dịch của tài khoản đó"
         ],
-        "correct": 2,
-        "explanation": "Trong Interest Rate Swap thông thường, notional principal (ví dụ 100 tỷ đồng) không đổi tay - nó chỉ là cơ sở để tính lãi suất cố định và thả nổi mỗi bên nợ nhau. Cuối kỳ, chỉ phần chênh lệch (net) được thanh toán, giảm đáng kể rủi ro đối tác so với việc chuyển toàn bộ notional."
+        "correct": 0,
+        "explanation": "Điểm phân biệt là thao tác có phụ thuộc vào trạng thái hiện tại không. Đặt thành một giá trị thì không phụ thuộc; tăng thêm, gửi thư, ghi thêm dòng thì đều tạo ra hiệu ứng mới mỗi lần chạy."
       },
       {
-        "question": "Nếu lãi suất thị trường biến động rất mạnh trong thời gian một hợp đồng swap còn hiệu lực, ai là bên có lợi và ai là bên chịu bất lợi trong một Interest Rate Swap điển hình (một bên trả cố định, một bên trả thả nổi)?",
+        "question": "Vì sao giao dịch cơ sở dữ liệu không giải quyết được vấn đề này?",
         "options": [
-          "Bên trả lãi suất cố định luôn thua thiệt bất kể lãi suất biến động thế nào",
-          "Cả hai bên luôn có lợi như nhau bất kể lãi suất biến động thế nào",
-          "Swap không bị ảnh hưởng bởi biến động lãi suất thị trường",
-          "Nếu lãi suất thị trường TĂNG mạnh, bên trả LÃI SUẤT CỐ ĐỊNH (nhận thả nổi) sẽ có lợi vì đang trả mức cố định thấp hơn so với lãi suất thả nổi mới cao hơn; nếu lãi suất GIẢM, bên trả thả nổi (nhận cố định) sẽ có lợi"
+          "Vì nó bảo đảm một thao tác trọn vẹn, nhưng không ngăn thao tác đó được gửi hai lần",
+          "Vì giao dịch chỉ hoạt động trong phạm vi một cơ sở dữ liệu duy nhất",
+          "Vì các thao tác trong hàng đợi thường nằm ngoài phạm vi của giao dịch",
+          "Vì giao dịch bị huỷ mỗi khi có xung đột nên rốt cuộc thao tác chắc chắn sẽ được thử lại tự động"
         ],
-        "correct": 3,
-        "explanation": "Swap về bản chất là một trò chơi có tổng bằng không (zero-sum) giữa hai bên đối với biến động lãi suất - một bên luôn có lợi khi lãi suất di chuyển theo một hướng, bên còn lại chịu bất lợi tương ứng, đây chính là lý do các bên tham gia swap có kỳ vọng khác nhau về hướng lãi suất tương lai."
+        "correct": 0,
+        "explanation": "Đây là hai vấn đề khác nhau hay bị gộp làm một: giao dịch giải quyết tính nguyên tử của MỘT lần thực hiện, còn bất biến khi lặp lại giải quyết việc có NHIỀU lần thực hiện."
+      },
+      {
+        "question": "Cách rẻ nhất để làm một thao tác trở nên bất biến là gì?",
+        "options": [
+          "Viết lại nó thành dạng đặt giá trị thay vì dạng thay đổi tương đối",
+          "Thêm một khoá chống trùng và kiểm tra khoá đó trước khi thực hiện",
+          "Lưu lại lịch sử các lần thực hiện và bỏ qua nếu đã thực hiện gần đây",
+          "Đặt một khoá phân tán để chỉ một tiến trình được thực hiện tại một thời điểm"
+        ],
+        "correct": 0,
+        "explanation": "Chuyển được thì rẻ hơn nhiều so với mọi cơ chế bên ngoài, vì nó không cần thêm hạ tầng nào. Thay vì tăng số lượt xem lên một, ghi lại một lượt xem có mã riêng rồi đếm - cùng kết quả, và lặp lại vô hại."
+      },
+      {
+        "question": "Vì sao gửi thư khó làm bất biến?",
+        "options": [
+          "Vì hành động đã xảy ra ở bên ngoài hệ thống của bạn và không thu hồi được",
+          "Vì dịch vụ gửi thư không cung cấp cơ chế kiểm tra thư đã được gửi hay chưa",
+          "Vì mỗi lần gửi tạo ra đúng một mã thư khác nhau nên rốt cuộc không đối chiếu được",
+          "Vì thư có thể bị chậm nên bạn không biết lần gửi trước đã thành công chưa"
+        ],
+        "correct": 0,
+        "explanation": "Đây là ranh giới thật của khái niệm này: bạn không làm cho một thư đã gửi trở nên chưa gửi. Cách duy nhất là ghi lại rằng mình đã gửi TRƯỚC khi gửi, và kiểm tra bản ghi đó ở lần sau."
+      },
+      {
+        "question": "Vì sao nói bất biến khi lặp lại không phải cải tiến tuỳ chọn?",
+        "options": [
+          "Vì mức bảo đảm ít nhất một lần nghĩa là tin nhắn SẼ được giao lại, không phải có thể",
+          "Vì các tiêu chuẩn thiết kế hệ thống phân tán đều yêu cầu tính chất này",
+          "Vì không có nó thì hệ thống sẽ báo lỗi mỗi khi có tin nhắn được giao lại",
+          "Vì các hệ thống hàng đợi hiện đại yêu cầu người tiêu thụ khai báo tính chất này"
+        ],
+        "correct": 0,
+        "explanation": "Giao lại là hành vi bình thường của hệ thống chứ không phải trường hợp ngoại lệ - nó xảy ra mỗi khi có triển khai mới, mỗi khi một tiến trình bị dừng, mỗi khi mạng chập chờn. Không chuẩn bị cho nó là chuẩn bị cho dữ liệu sai."
       }
     ],
     "keyTakeaways": [
-      "Swap: hoán đổi dòng tiền tương lai theo công thức đã thỏa thuận",
-      "Hai loại phổ biến nhất: Interest Rate Swap và Currency Swap",
-      "Notional principal thường không đổi tay - chỉ phần chênh lệch (net) được thanh toán"
+      "Đặt thành giá trị thì bất biến; cộng thêm, gửi thư, ghi thêm dòng thì không.",
+      "Giao dịch giải tính nguyên tử của MỘT lần chạy; bất biến giải việc có NHIỀU lần.",
+      "Cách rẻ nhất là VIẾT LẠI thao tác, không phải dựng cơ chế chống trùng.",
+      "Hành động ra bên ngoài không thu hồi được - phải ghi trước khi làm.",
+      "Giao lại là hành vi bình thường, không phải ngoại lệ - nó xảy ra mỗi lần triển khai."
     ],
     "practicePrompt": {
-      "question": "Hai công ty đồng ý: mỗi kỳ, công ty A sẽ trả cho công ty B một khoản tiền tính theo lãi suất cố định 6%, và B trả lại cho A một khoản tính theo lãi suất thả nổi (Libor+1%) trên cùng một số tiền gốc danh nghĩa. Không bên nào chuyển giao số tiền gốc đó. Giao dịch này gọi là gì?",
+      "question": "Người tiêu thụ của bạn tăng điểm thưởng của khách hàng khi nhận sự kiện. Vấn đề gì?",
       "options": [
-        "Đây là một hợp đồng trái phiếu thông thường, vì có liên quan đến lãi suất cố định và thả nổi",
-        "Swap: hoán đổi dòng tiền tương lai theo công thức, chỉ thanh toán phần chênh lệch",
-        "Đây là một hợp đồng option, vì công ty A có quyền chọn thực hiện hoặc không thực hiện giao dịch",
-        "Đây là một hợp đồng futures, vì hai bên đã thỏa thuận trước giá giao dịch trong tương lai"
+        "Tin nhắn giao lại thì cộng điểm lại - viết lại thành đặt tổng điểm hoặc ghi từng lần cộng",
+        "Điểm thưởng có thể bị cộng sai nếu nhiều sự kiện tới cùng lúc cho một khách hàng",
+        "Cần một giao dịch để đảm bảo việc cộng điểm không bị mất khi có lỗi xảy ra",
+        "Nên kiểm tra số điểm hiện tại trước khi cộng để tránh vượt quá giới hạn cho phép"
       ],
-      "correct": 1,
-      "explanation": "Swap: hoán đổi dòng tiền tương lai theo công thức đã thỏa thuận. Đây là Interest Rate Swap - notional principal (số tiền gốc) thường không đổi tay, chỉ phần chênh lệch (net) giữa hai dòng lãi suất được thanh toán mỗi kỳ."
+      "correct": 0,
+      "explanation": "Lựa chọn thứ hai mô tả một vấn đề khác - tranh chấp khi ghi đồng thời - và nó giải bằng khoá hoặc giao dịch. Vấn đề ở đây là giao lại, và nó không giải bằng giao dịch được."
     },
     "summary": {
-      "keyIdea": "Swap: hoán đổi dòng tiền tương lai theo công thức đã thỏa thuận",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Hai loại phổ biến nhất: Interest Rate Swap và Currency Swap"
+      "keyIdea": "Ít nhất một lần nghĩa là sẽ giao lại; bên nhận phải chịu được điều đó.",
+      "formula": "Viết lại thành đặt giá trị nếu được; nếu không được thì dùng khoá chống trùng.",
+      "commonMistake": "Tin rằng giao dịch cơ sở dữ liệu đã giải quyết vấn đề này.",
+      "action": "Đọc mã người tiêu thụ và tìm thao tác nào không bất biến khi lặp lại."
     },
     "application": {
-      "title": "Vẽ sơ đồ dòng tiền một swap",
-      "message": "Vẽ tay hai mũi tên thể hiện dòng tiền hai bên trao đổi trong một interest rate swap đơn giản: một bên trả lãi cố định, một bên trả lãi thả nổi.",
-      "secondary": "Hình dung bằng sơ đồ giúp khái niệm swap bớt trừu tượng hơn nhiều."
+      "title": "Làm ngay hôm nay",
+      "message": "Đọc mã người tiêu thụ và với mỗi thao tác ghi dữ liệu, hỏi: nếu cái này chạy hai lần thì kết quả có khác không?",
+      "secondary": "Với mỗi chỗ trả lời có, thử viết lại thành dạng đặt giá trị trước khi nghĩ tới cơ chế chống trùng. Phần lớn chuyển được, và chuyển được thì rẻ hơn nhiều."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Swap là hợp đồng phái sinh trong đó hai bên đồng ý hoán đổi các dòng tiền tương lai theo một công thức đã thỏa thuận trước. Phổ biến nhất là Interest Rate Swap (hoán đổi lãi suất cố định và thả nổi) và Currency Swap (hoán đổi dòng tiền bằng hai loại tiền tệ khác nhau)."
+        "text": "Bài về bảo đảm giao nhận kết thúc ở chỗ bên nhận phải tự chịu được việc nhận trùng. Bài này là cách làm điều đó, và nó bắt đầu bằng việc phân loại thao tác."
       },
       {
         "type": "heading",
-        "text": "Notional principal: con số để tính toán, không phải để trao tay"
+        "text": "Điểm phân biệt"
       },
       {
-        "type": "paragraph",
-        "text": "Trong một hợp đồng Interest Rate Swap thông thường, notional principal - ví dụ 100 tỷ đồng - thường KHÔNG được hai bên thực sự trao đổi cho nhau. Nó chỉ là cơ sở để tính lãi suất cố định và thả nổi mỗi bên nợ nhau. Cuối kỳ, chỉ phần chênh lệch (net payment) mới thực sự được thanh toán - điều này giảm đáng kể rủi ro đối tác so với việc phải chuyển toàn bộ notional qua lại."
-      },
-      {
-        "type": "heading",
-        "text": "Ai được lợi khi lãi suất biến động?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Trong một Interest Rate Swap điển hình - một bên trả cố định, một bên trả thả nổi - đây là trò chơi có tổng bằng không giữa hai bên. Nếu lãi suất thị trường TĂNG mạnh, bên trả lãi suất cố định (và nhận thả nổi) có lợi vì đang trả mức cố định thấp hơn nhiều so với lãi suất thả nổi mới. Nếu lãi suất GIẢM, bên trả thả nổi (nhận cố định) lại có lợi. Chính sự khác biệt về kỳ vọng lãi suất tương lai là lý do hai bên đồng ý tham gia swap."
-      },
-      {
-        "type": "formula",
-        "title": "Vì sao notional 100 tỷ mà chỉ chuyển vài trăm triệu",
-        "equation": "Thanh toán ròng = Notional × (Lãi suất cố định − Lãi suất thả nổi kỳ này)",
-        "variables": [
-          { "symbol": "Notional", "name": "Vốn danh nghĩa", "description": "Chỉ là cơ sở để nhân ra tiền lãi, không đổi tay" },
-          { "symbol": "Chênh lệch lãi suất", "name": "Fixed − Floating", "description": "Dương thì bên trả cố định chuyển tiền, âm thì ngược lại" }
-        ],
-        "example": {
-          "title": "Notional 100 tỷ, cố định 5%, thả nổi kỳ này 4,2%, kỳ hạn 6 tháng",
-          "calculation": "100 tỷ × (5% − 4,2%) × 6/12 = 100 tỷ × 0,8% × 0,5",
-          "result": "400 triệu VND đổi tay",
-          "explanation": "0,4% của notional. Nếu phải trao đổi cả 100 tỷ gốc hai chiều, rủi ro đối tác sẽ lớn gấp 250 lần cho cùng một mục đích kinh tế - đó chính là lý do notional đứng yên."
+        "type": "comparison",
+        "left": {
+          "label": "Bất biến",
+          "text": "Đặt trạng thái đơn hàng thành đã thanh toán. Đặt số dư thành một giá trị. Chạy mười lần cũng ra cùng kết quả, vì thao tác không phụ thuộc vào trạng thái hiện tại."
+        },
+        "right": {
+          "label": "Không bất biến",
+          "text": "Tăng số dư thêm một trăm nghìn. Gửi một thư. Ghi thêm một dòng. Mỗi lần chạy tạo ra một hiệu ứng mới."
         }
       },
       {
         "type": "callout",
-        "label": "Notional không đổi tay không có nghĩa là không có rủi ro",
-        "text": "Cái bạn có thể mất không phải 100 tỷ, mà là chuỗi thanh toán ròng còn lại nếu đối tác sập - cộng với chi phí ký lại một hợp đồng tương đương ở mức giá thị trường mới, thường đúng lúc thị trường đã dịch chuyển bất lợi. Nhỏ hơn notional rất nhiều, nhưng không phải bằng không."
+        "label": "Giao dịch không giải quyết chuyện này",
+        "text": "Hai vấn đề khác nhau hay bị gộp làm một: giao dịch bảo đảm tính nguyên tử của MỘT lần thực hiện, còn bất biến khi lặp lại xử lý việc có NHIỀU lần thực hiện. Một thao tác trong giao dịch được gửi hai lần vẫn chạy hai lần, mỗi lần trọn vẹn."
       },
       {
-        "type": "list",
-        "items": [
-          "Swap: hoán đổi dòng tiền tương lai theo công thức đã thỏa thuận",
-          "Hai loại phổ biến nhất: Interest Rate Swap và Currency Swap",
-          "Notional principal thường không đổi tay - chỉ phần net được thanh toán",
-          "Thị trường Interest Rate Swap toàn cầu có giá trị danh nghĩa lên tới hàng trăm nghìn tỷ USD, chủ yếu giữa ngân hàng và tập đoàn lớn"
+        "type": "heading",
+        "text": "Cách rẻ nhất: viết lại"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhiều thao tác chuyển được sang dạng bất biến chỉ bằng cách đổi cách diễn đạt. Thay vì tăng số lượt xem lên một, ghi lại một lượt xem có mã định danh riêng rồi đếm - cùng kết quả, và lặp lại vô hại vì ghi cùng một mã hai lần chỉ để lại một bản ghi."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chuyển được thì rẻ hơn nhiều so với mọi cơ chế bên ngoài, vì nó không cần thêm hạ tầng nào. Đây là bước nên thử trước khi nghĩ tới khoá chống trùng."
+      },
+      {
+        "type": "heading",
+        "text": "Ranh giới của khái niệm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hành động ra BÊN NGOÀI hệ thống thì không viết lại được: bạn không làm cho một thư đã gửi trở nên chưa gửi. Cách duy nhất là ghi lại rằng mình đã gửi TRƯỚC khi gửi, và kiểm tra bản ghi đó ở lần sau."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Và nhớ vì sao chuyện này bắt buộc chứ không tuỳ chọn: giao lại là hành vi BÌNH THƯỜNG của hệ thống. Nó xảy ra mỗi khi có triển khai mới, mỗi khi một tiến trình bị dừng, mỗi khi mạng chập chờn.",
+          "Bài sau là cơ chế cho những thao tác không viết lại được: khoá chống trùng."
         ]
       }
     ]
   },
   {
     "id": 192,
-    "slug": "interest-rate-swap-chuyen-sau",
-    "title": "Tự học Tài chính Day 192: Interest Rate Swap",
-    "subtitle": "Hoán đổi giữa lãi suất cố định và lãi suất thả nổi",
+    "slug": "khoa-chong-trung",
+    "title": "Khoá chống trùng",
+    "subtitle": "Ai sinh khoá quan trọng hơn khoá trông như thế nào.",
     "duration": "6 phút",
     "difficulty": "Khó",
-    "emoji": "🔄",
-    "openingQuestion": "Doanh nghiệp đang vay với lãi suất thả nổi (SOFR + 2%) và lo lãi suất sẽ tăng mạnh. Dùng Interest Rate Swap (IRS) thế nào để phòng hộ?",
+    "track": "professional",
+    "emoji": "🔑",
+    "isFundamental": true,
+    "whyItMatters": "Cơ chế này đơn giản tới mức người ta dựng nó sai mà không nhận ra, và cái sai phổ biến nhất nằm ở chỗ ai sinh ra khoá chứ không ở phần lưu trữ.",
+    "openingQuestion": "Ai nên sinh khoá chống trùng cho một yêu cầu?",
     "openingOptions": [
-      "Ký IRS: nhận thả nổi, trả cố định",
-      "Trả hết nợ cũ và vay khoản mới",
-      "Không có cách nào ngoài đàm phán lại với ngân hàng",
-      "Mua bảo hiểm lãi suất từ chính phủ"
+      "Bên gọi, và giữ nguyên khoá đó qua mọi lần thử lại của cùng một ý định",
+      "Bên nhận, vì chỉ họ mới biết đã xử lý những yêu cầu nào trước đó",
+      "Hệ thống hàng đợi, vì nó là nơi duy nhất thấy được toàn bộ các tin nhắn",
+      "Cả hai bên cùng sinh và đối chiếu để đảm bảo không có xung đột khoá"
     ],
     "correctOption": 0,
-    "explanation": "Interest Rate Swap (IRS): doanh nghiệp vẫn trả SOFR+2% cho ngân hàng cho vay gốc, đồng thời ký thêm hợp đồng IRS với một swap dealer: nhận SOFR (bù đắp phần thả nổi), trả lãi suất cố định (ví dụ 5%). Kết quả ròng: doanh nghiệp trả tổng cộng 5%+2%=7% cố định, không còn lo biến động SOFR.",
+    "explanation": "Nếu bên nhận sinh khoá thì mỗi lần thử lại là một khoá mới, và cơ chế không phát hiện được gì. Khoá phải đại diện cho Ý ĐỊNH của bên gọi, và ý định đó không đổi qua các lần thử lại - đó là toàn bộ điều làm cho cơ chế hoạt động. Đây cũng là chỗ người ta dựng sai nhiều nhất.",
     "diagram": [
       {
-        "label": "Trả lãi suất thả nổi cho khoản vay gốc",
+        "label": "BÊN GỌI sinh khoá, giữ nguyên qua mọi lần thử lại",
         "arrow": true
       },
       {
-        "label": "Ký thêm hợp đồng IRS",
+        "label": "Bên nhận lưu khoá đã xử lý và kết quả của nó",
         "arrow": true
       },
       {
-        "label": "Nhận thả nổi, trả cố định → ổn định chi phí"
+        "label": "Gặp lại khoá cũ → trả lại kết quả cũ, không làm lại",
+        "arrow": true
+      },
+      {
+        "label": "Khoá có hạn: giữ đủ lâu hơn cửa sổ thử lại"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Tập đoàn đa quốc gia",
-      "description": "Nhiều tập đoàn lớn dùng IRS để chuyển đổi cơ cấu nợ giữa cố định và thả nổi tùy theo dự báo lãi suất, tối ưu chi phí vốn mà không cần tái cấu trúc khoản vay gốc."
+      "company": "Trả lại kết quả cũ, không báo lỗi",
+      "description": "Gặp lại một khoá đã xử lý thì nên trả về đúng kết quả của lần đầu, không nên báo lỗi trùng lặp. Bên gọi thử lại vì họ không chắc lần trước có thành công không - trả lỗi thì họ vẫn không biết, còn trả kết quả cũ thì họ biết ngay."
     },
     "quiz": [
       {
-        "question": "Ai thường là bên đối tác cung cấp Interest Rate Swap cho doanh nghiệp?",
+        "question": "Vì sao bên nhận không nên sinh khoá?",
         "options": [
-          "Không cần đối tác, tự động qua sàn chứng khoán",
-          "Ngân hàng đầu tư và các tổ chức tài chính lớn đóng vai trò swap dealer, làm trung gian và market maker cho thị trường IRS",
-          "Chính phủ",
-          "Chỉ các quỹ hưu trí"
+          "Vì mỗi lần thử lại sẽ có một khoá mới, nên cơ chế không phát hiện được trùng lặp",
+          "Vì bên nhận hoàn toàn không biết được yêu cầu đó thuộc về nghiệp vụ nào của chính bên gọi",
+          "Vì việc sinh khoá ở bên nhận làm tăng tải xử lý cho hệ thống nhận",
+          "Vì các bên nhận khác nhau sẽ sinh ra những khoá không thống nhất với nhau"
         ],
-        "correct": 1,
-        "explanation": "Các ngân hàng đầu tư lớn (Goldman Sachs, JP Morgan, HSBC...) đóng vai trò swap dealer, sẵn sàng làm đối tác cho cả hai chiều của swap, kiếm lợi nhuận từ chênh lệch giá (bid-ask spread) giữa lãi suất cố định và thả nổi họ báo giá."
+        "correct": 0,
+        "explanation": "Khoá phải đại diện cho Ý ĐỊNH, và ý định không đổi qua các lần thử lại. Sinh ở bên nhận thì khoá đại diện cho lần nhận, mà mỗi lần thử lại là một lần nhận khác - nên cơ chế vô hiệu."
       },
       {
-        "question": "Một ngân hàng có nhiều khoản cho vay lãi suất thả nổi nhưng lại huy động vốn bằng tiền gửi lãi suất cố định. Rủi ro chính họ đang đối mặt là gì, và IRS có thể giúp gì?",
+        "question": "Khi gặp lại một khoá đã xử lý thì nên làm gì?",
         "options": [
-          "Ngân hàng nên chuyển toàn bộ khoản cho vay sang lãi suất cố định ngay lập tức mà không cần dùng swap",
-          "IRS chỉ có thể giúp doanh nghiệp phi tài chính, không áp dụng được cho ngân hàng",
-          "Rủi ro là nếu lãi suất thị trường giảm, thu nhập từ khoản cho vay thả nổi giảm theo trong khi vẫn phải trả lãi tiền gửi cố định như cũ, làm giảm biên lợi nhuận - ngân hàng có thể dùng IRS để chuyển một phần thu nhập cho vay thả nổi thành cố định, khớp với chi phí vốn cố định",
-          "Không có rủi ro gì đáng kể trong tình huống này"
+          "Trả về đúng kết quả của lần đầu, không báo lỗi và không thực hiện lại",
+          "Báo lỗi trùng lặp để bên gọi có thể biết yêu cầu này đã được xử lý trước đó",
+          "Bỏ qua yêu cầu và không trả về gì để tiết kiệm tài nguyên xử lý",
+          "Thực hiện lại nhưng ghi nhận vào nhật ký rằng đây là lần lặp lại"
         ],
-        "correct": 2,
-        "explanation": "Đây là ứng dụng thực tế phổ biến của IRS trong quản trị rủi ro lãi suất ngân hàng (asset-liability management) - khớp đúng đặc tính lãi suất giữa tài sản (cho vay) và nợ phải trả (tiền gửi) giúp ổn định biên lợi nhuận ngân hàng trước biến động lãi suất thị trường."
+        "correct": 0,
+        "explanation": "Bên gọi thử lại vì họ KHÔNG CHẮC lần trước có thành công không. Trả lỗi thì họ vẫn không biết và có thể xử lý sai; trả kết quả cũ thì họ biết ngay là đã xong và biết kết quả là gì."
+      },
+      {
+        "question": "Vì sao khoá chống trùng cần có hạn lưu trữ?",
+        "options": [
+          "Vì giữ vĩnh viễn thì kho khoá lớn vô hạn, nhưng phải giữ lâu hơn cửa sổ thử lại",
+          "Vì các khoá cũ có thể xung đột với khoá mới được sinh ra về sau",
+          "Vì quy định về lưu trữ dữ liệu yêu cầu xoá thông tin sau một thời gian",
+          "Vì việc tra cứu trong kho khoá chậm dần khi số lượng khoá tăng lên"
+        ],
+        "correct": 0,
+        "explanation": "Hai vế phải cân nhau và vế thứ hai là vế quyết định: xoá khoá sớm hơn cửa sổ thử lại thì một lần thử lại muộn sẽ được coi là yêu cầu mới. Đây là chỗ cấu hình sai tạo ra bản ghi trùng mà không ai biết."
+      },
+      {
+        "question": "Khoá nên được sinh từ đâu?",
+        "options": [
+          "Từ ý định của bên gọi, ví dụ mã đơn hàng cộng loại thao tác đang thực hiện",
+          "Từ đúng một bộ sinh số ngẫu nhiên để có thể đảm bảo hoàn toàn không bao giờ trùng nhau",
+          "Từ dấu thời gian kết hợp với mã định danh của tiến trình đang gọi",
+          "Từ nội dung của chính toàn bộ yêu cầu để hai yêu cầu giống hệt nhau có cùng khoá"
+        ],
+        "correct": 0,
+        "explanation": "Sinh ngẫu nhiên hoặc theo dấu thời gian thì mỗi lần thử lại ra một khoá khác. Băm toàn bộ nội dung thì gần đúng nhưng nó coi hai yêu cầu giống hệt nhau nhưng khác ý định là một - ví dụ mua cùng món hai lần thật."
+      },
+      {
+        "question": "Vì sao ghi khoá và thực hiện thao tác nên nằm trong cùng một giao dịch?",
+        "options": [
+          "Vì nếu tách ra thì có khe hở: ghi khoá rồi chết trước khi làm, hoặc ngược lại",
+          "Vì giao dịch làm cho việc ghi khoá nhanh hơn so với ghi riêng lẻ",
+          "Vì cần đảm bảo khoá được ghi trước khi thao tác bắt đầu thực hiện",
+          "Vì các khoá phải được ghi theo đúng thứ tự mà yêu cầu tới hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Ghi khoá trước rồi chết thì thao tác không bao giờ được làm và lần thử lại bị coi là trùng. Làm trước rồi ghi khoá sau mà chết thì thao tác được làm hai lần. Cùng giao dịch thì đóng được cả hai khe hở."
       }
     ],
     "keyTakeaways": [
-      "IRS: hoán đổi dòng lãi suất cố định và thả nổi giữa hai bên",
-      "Phòng hộ lãi suất thả nổi: nhận thả nổi, trả cố định qua hợp đồng IRS",
-      "Swap dealer (ngân hàng đầu tư) đóng vai trò trung gian, market maker cho thị trường"
+      "BÊN GỌI sinh khoá, và giữ nguyên qua mọi lần thử lại của cùng một ý định.",
+      "Gặp khoá cũ thì trả lại KẾT QUẢ cũ, đừng báo lỗi - bên gọi cần biết kết quả.",
+      "Khoá sinh từ Ý ĐỊNH, không sinh ngẫu nhiên và không theo dấu thời gian.",
+      "Khoá phải giữ lâu HƠN cửa sổ thử lại, nếu không lần thử muộn thành yêu cầu mới.",
+      "Ghi khoá và thực hiện thao tác trong CÙNG một giao dịch, nếu không còn khe hở."
     ],
     "practicePrompt": {
-      "question": "Một công ty vay ngân hàng 500 tỷ với lãi suất thả nổi, lo ngại lãi suất sẽ tăng mạnh trong 3 năm tới. Để 'khóa' chi phí lãi vay ở mức cố định mà không cần tái cấu trúc khoản vay gốc, công ty nên dùng công cụ nào, và cơ chế hoạt động ra sao?",
+      "question": "Bạn sinh khoá chống trùng bằng dấu thời gian tại thời điểm nhận yêu cầu. Vấn đề gì?",
       "options": [
-        "Công ty nên mua bảo hiểm lãi suất, một sản phẩm không liên quan gì đến thị trường phái sinh",
-        "Ký hợp đồng IRS trả cố định - nhận thả nổi để khóa chi phí lãi vay ở mức cố định",
-        "Công ty nên bán khống trái phiếu chính phủ để bù đắp cho rủi ro lãi suất tăng",
-        "Công ty không có công cụ nào để xử lý rủi ro này ngoài việc trả hết khoản vay ngay lập tức"
+        "Mỗi lần thử lại có dấu thời gian khác nên ra khoá khác, và cơ chế không bắt được gì",
+        "Hai yêu cầu tới cùng đúng một mili giây chắc chắn sẽ có cùng khoá nên rốt cuộc một cái bị bỏ nhầm",
+        "Dấu thời gian không đồng bộ giữa các máy chủ nên khoá có thể bị trùng",
+        "Kho khoá tăng nhanh vì mỗi yêu cầu tạo ra một khoá mới không bao giờ lặp"
       ],
-      "correct": 1,
-      "explanation": "IRS: hoán đổi dòng lãi suất cố định và thả nổi giữa hai bên. Công ty phòng hộ lãi suất thả nổi bằng cách nhận thả nổi (bù đắp khoản vay gốc), trả cố định (khóa chi phí) qua hợp đồng IRS - swap dealer (ngân hàng đầu tư) đóng vai trò trung gian cho giao dịch này."
+      "correct": 0,
+      "explanation": "Đây là cách dựng sai phổ biến nhất và nó không báo lỗi gì - cơ chế chạy đủ, tốn tài nguyên đủ, và không chặn được một trường hợp trùng lặp nào. Ba lựa chọn kia đều là vấn đề thật nhưng nhỏ hơn nhiều."
     },
     "summary": {
-      "keyIdea": "IRS: hoán đổi dòng lãi suất cố định và thả nổi giữa hai bên",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Phòng hộ lãi suất thả nổi: nhận thả nổi, trả cố định qua hợp đồng IRS"
+      "keyIdea": "Khoá đại diện cho ý định của bên gọi, và ý định không đổi qua các lần thử lại.",
+      "formula": "Bên gọi sinh từ ý định → bên nhận lưu khoá và kết quả → gặp lại thì trả kết quả cũ.",
+      "commonMistake": "Sinh khoá ở bên nhận hoặc từ dấu thời gian, khiến cơ chế vô hiệu mà không báo.",
+      "action": "Kiểm xem khoá chống trùng của bạn được sinh ở đâu và từ cái gì."
     },
     "application": {
-      "title": "Tự tính lãi suất ròng sau IRS",
-      "message": "Với ví dụ doanh nghiệp trả SOFR+2% cho khoản vay gốc, ký IRS nhận SOFR trả cố định 5%, tự cộng trừ để ra lãi suất cố định ròng cuối cùng doanh nghiệp phải trả.",
-      "secondary": "Tự làm phép tính này một lần giúp bạn hiểu vì sao IRS 'khóa' được lãi suất."
+      "title": "Làm ngay hôm nay",
+      "message": "Nếu hệ thống bạn có cơ chế chống trùng, kiểm hai thứ: khoá được sinh ở bên gọi hay bên nhận, và nó sinh từ ý định hay từ dấu thời gian.",
+      "secondary": "Rồi kiểm thứ ba: thời gian giữ khoá có dài hơn cửa sổ thử lại tối đa không. Ba câu này bắt được gần như mọi cách dựng sai cơ chế này."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Interest Rate Swap (IRS) là công cụ giúp doanh nghiệp chuyển đổi giữa lãi suất cố định và lãi suất thả nổi mà không cần tái cấu trúc khoản vay gốc - chỉ cần ký thêm một hợp đồng song song với swap dealer."
+        "text": "Bài trước nói viết lại thao tác là cách rẻ nhất. Bài này là cơ chế cho những thao tác không viết lại được - và nó đơn giản tới mức người ta dựng sai mà không nhận ra."
       },
       {
         "type": "heading",
-        "text": "Cơ chế: hai lớp hợp đồng chồng lên nhau"
-      },
-      {
-        "type": "paragraph",
-        "text": "Doanh nghiệp vẫn trả SOFR+2% cho ngân hàng cho vay gốc như bình thường. Đồng thời, họ ký thêm một hợp đồng IRS với một swap dealer: nhận SOFR (bù đắp đúng phần thả nổi họ đang phải trả), trả lại lãi suất cố định - ví dụ 5%. Kết quả ròng: doanh nghiệp trả tổng cộng 5% + 2% = 7% cố định, không còn lo biến động SOFR nữa dù khoản vay gốc vẫn là thả nổi."
-      },
-      {
-        "type": "heading",
-        "text": "Ứng dụng trong quản trị rủi ro ngân hàng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một ngân hàng có nhiều khoản cho vay lãi suất thả nổi nhưng huy động vốn bằng tiền gửi lãi suất cố định đang đối mặt với rủi ro: nếu lãi suất thị trường GIẢM, thu nhập từ các khoản cho vay thả nổi giảm theo trong khi vẫn phải trả lãi tiền gửi cố định như cũ, làm giảm biên lợi nhuận (net interest margin). Ngân hàng có thể dùng IRS để chuyển đổi một phần thu nhập cho vay thả nổi thành cố định, khớp đúng với cơ cấu chi phí vốn cố định của họ - đây là asset-liability management."
-      },
-      {
-        "type": "formula",
-        "title": "Cộng hai lớp hợp đồng lại thành một con số",
-        "equation": "Lãi suất ròng = (Lãi vay gốc − Phần nhận từ swap) + Phần trả cho swap",
-        "variables": [
-          { "symbol": "Lãi vay gốc", "name": "Khoản vay ban đầu", "description": "Vẫn giữ nguyên, thả nổi, không đụng tới" },
-          { "symbol": "Nhận từ swap", "name": "Chân thả nổi", "description": "Thiết kế để khớp đúng phần thả nổi đang phải trả" },
-          { "symbol": "Trả cho swap", "name": "Chân cố định", "description": "Mức cố định đã thỏa thuận với dealer" }
-        ],
-        "example": {
-          "title": "Vay SOFR + 2%, ký IRS nhận SOFR trả 5% cố định",
-          "calculation": "(SOFR + 2% − SOFR) + 5% = 2% + 5%",
-          "result": "7% cố định, dù khoản vay gốc vẫn là thả nổi",
-          "explanation": "SOFR triệt tiêu nhau nên biến động của nó không còn chạm tới doanh nghiệp. Phần biên 2% của ngân hàng cho vay thì swap không xử lý được - nó vẫn ở đó."
-        }
+        "text": "Chỗ dựng sai phổ biến nhất"
       },
       {
         "type": "callout",
-        "label": "Cái giá của sự chắc chắn",
-        "text": "Chốt 7% không phải là thắng - đó là đổi cái không biết lấy cái biết. Nếu SOFR rơi từ 4% xuống 1%, doanh nghiệp không hedge sẽ trả 3% trong khi bạn vẫn trả 7%, và hợp đồng swap khi đó mang giá trị thị trường âm nằm trên bảng cân đối. Cấp phê duyệt cần hiểu điều này trước khi ký, không phải sau."
+        "label": "Ai sinh khoá",
+        "text": "Phải là BÊN GỌI, và họ giữ nguyên khoá đó qua mọi lần thử lại. Khoá đại diện cho một Ý ĐỊNH, và ý định không đổi qua các lần thử lại - đó là toàn bộ điều làm cho cơ chế hoạt động."
+      },
+      {
+        "type": "paragraph",
+        "text": "Sinh ở bên nhận, hoặc sinh từ dấu thời gian, hoặc sinh ngẫu nhiên - cả ba đều cho ra một khoá mới ở mỗi lần thử lại. Cơ chế chạy đủ, tốn tài nguyên đủ, và không chặn được một trường hợp trùng lặp nào. Không có lỗi nào được ghi."
+      },
+      {
+        "type": "heading",
+        "text": "Ba phần của cơ chế"
       },
       {
         "type": "list",
         "items": [
-          "IRS cho phép chuyển đổi cơ cấu lãi suất mà không cần tái cấu trúc khoản vay gốc",
-          "Swap dealer: các ngân hàng đầu tư lớn (Goldman Sachs, JP Morgan, HSBC...) làm trung gian, market maker",
-          "Kiếm lợi từ bid-ask spread giữa lãi suất cố định và thả nổi họ báo giá",
-          "Ứng dụng phổ biến trong asset-liability management của ngân hàng"
+          "Bên gọi sinh khoá từ ý định - ví dụ mã đơn hàng cộng loại thao tác.",
+          "Bên nhận lưu khoá đã xử lý CÙNG với kết quả của nó.",
+          "Gặp lại khoá cũ thì trả về kết quả cũ, không thực hiện lại và không báo lỗi."
+        ]
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Trả kết quả cũ",
+          "text": "Bên gọi biết ngay là đã xong, và biết kết quả là gì. Họ thử lại chính vì không chắc lần trước có thành công không."
+        },
+        "right": {
+          "label": "Báo lỗi trùng lặp",
+          "text": "Bên gọi vẫn không biết lần trước thành công hay không, nên họ phải đi tra cứu - hoặc tệ hơn, coi đó là thất bại."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Hai chi tiết dễ làm hỏng"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thời gian giữ khoá phải dài HƠN cửa sổ thử lại tối đa. Xoá sớm hơn thì một lần thử lại muộn sẽ được coi là yêu cầu mới - và bạn có bản ghi trùng mà không ai biết."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Và ghi khoá cùng với thực hiện thao tác trong CÙNG một giao dịch. Tách ra thì còn khe hở theo cả hai chiều: ghi khoá rồi chết thì thao tác không bao giờ được làm, làm rồi chết trước khi ghi khoá thì nó được làm hai lần.",
+          "Bài sau là khe hở tương tự ở một chỗ khác: giữa việc ghi cơ sở dữ liệu và việc gửi tin nhắn."
         ]
       }
     ]
   },
   {
     "id": 193,
-    "slug": "currency-swap-chuyen-sau",
-    "title": "Tự học Tài chính Day 193: Currency Swap",
-    "subtitle": "Hoán đổi dòng tiền giữa hai loại tiền tệ khác nhau",
-    "duration": "6 phút",
+    "slug": "mau-hop-thu-di",
+    "title": "Mẫu hộp thư đi",
+    "subtitle": "Ghi cơ sở dữ liệu rồi gửi tin nhắn là hai thao tác, và giữa chúng có một khe hở.",
+    "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "🔄",
-    "openingQuestion": "Một công ty Việt Nam vay USD để mở rộng nhà máy nhưng doanh thu chủ yếu bằng VND. Currency swap giúp gì?",
+    "track": "professional",
+    "emoji": "📤",
+    "isFundamental": true,
+    "whyItMatters": "Khe hở này gây ra loại lỗi dữ liệu khó truy nhất trong hệ thống bất đồng bộ: đơn hàng tồn tại mà không ai được thông báo, hoặc thông báo về một đơn hàng không tồn tại.",
+    "openingQuestion": "Bạn ghi đơn hàng vào cơ sở dữ liệu rồi gửi sự kiện. Chuyện gì xảy ra nếu tiến trình chết ở giữa?",
     "openingOptions": [
-      "Currency swap chỉ dùng để đầu cơ tỷ giá",
-      "Không giúp được gì vì tiền tệ khác nhau không thể hoán đổi",
-      "Chỉ ngân hàng trung ương mới được làm currency swap",
-      "Ký currency swap hoán đổi nghĩa vụ USD sang VND"
+      "Đơn hàng tồn tại mà không ai được thông báo, và không có gì phát hiện ra điều đó",
+      "Giao dịch cơ sở dữ liệu bị huỷ nên đơn hàng cũng không được tạo ra",
+      "Hệ thống hàng đợi phát hiện sự kiện bị thiếu và yêu cầu gửi lại",
+      "Đơn hàng đã được đánh dấu là chưa hoàn tất và đồng thời chắc chắn sẽ được xử lý ở lần chạy sau"
     ],
-    "correctOption": 3,
-    "explanation": "Currency swap: hai bên hoán đổi cả gốc lẫn lãi bằng hai loại tiền tệ khác nhau theo tỷ giá đã thỏa thuận trước, thường trong dài hạn. Doanh nghiệp có doanh thu VND nhưng nợ USD có thể dùng currency swap để 'khóa' tỷ giá quy đổi, tránh rủi ro VND mất giá làm tăng gánh nặng trả nợ USD.",
+    "correctOption": 0,
+    "explanation": "Giao dịch cơ sở dữ liệu đã hoàn tất nên đơn hàng có thật; sự kiện chưa gửi nên không dịch vụ nào biết. Không có cơ chế nào phát hiện ra vì mỗi bên đều thấy trạng thái của mình là nhất quán - và nó chỉ lộ ra khi có người hỏi vì sao đơn hàng này không có thư xác nhận, thường là nhiều ngày sau.",
     "diagram": [
       {
-        "label": "Doanh thu VND, nợ USD",
+        "label": "Ghi dữ liệu + ghi tin nhắn vào cùng một bảng, một giao dịch",
         "arrow": true
       },
       {
-        "label": "Ký Currency Swap",
+        "label": "Một tiến trình riêng đọc bảng đó và gửi tin nhắn đi",
         "arrow": true
       },
       {
-        "label": "Hoán đổi gốc và lãi hai loại tiền tệ"
+        "label": "Gửi xong thì đánh dấu đã gửi",
+        "arrow": true
+      },
+      {
+        "label": "Đổi khe hở lấy việc gửi trùng - và trùng thì xử lý được"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Doanh nghiệp FDI tại Việt Nam",
-      "description": "Nhiều doanh nghiệp có vốn đầu tư nước ngoài (FDI) tại Việt Nam vay USD từ công ty mẹ nhưng có doanh thu bằng VND, thường dùng currency swap hoặc forward tỷ giá dài hạn để quản trị rủi ro tỷ giá xuyên suốt vòng đời khoản vay."
+      "company": "Đổi một vấn đề khó lấy một vấn đề đã giải",
+      "description": "Mẫu này không xoá được việc gửi trùng: tiến trình có thể gửi tin nhắn rồi chết trước khi đánh dấu. Nhưng gửi trùng thì bên nhận đã chuẩn bị sẵn để chịu, còn tin nhắn mất thì không có cách nào phát hiện."
     },
     "quiz": [
       {
-        "question": "Currency swap khác Interest Rate Swap ở điểm cốt lõi nào?",
+        "question": "Vì sao khe hở giữa ghi dữ liệu và gửi tin nhắn khó phát hiện?",
         "options": [
-          "Currency swap thường trao đổi CẢ notional principal (gốc) bằng hai đồng tiền khác nhau ở đầu và cuối kỳ, trong khi Interest Rate Swap chỉ trao đổi phần lãi, notional không đổi tay",
-          "Không có khác biệt đáng kể",
-          "Currency swap luôn ngắn hạn hơn",
-          "Interest Rate Swap không có rủi ro tỷ giá nên phức tạp hơn"
+          "Vì mỗi bên đều thấy trạng thái của mình là nhất quán, không bên nào báo lỗi",
+          "Vì lỗi chỉ xảy ra khi hệ thống chịu tải cao nên khó tái hiện trong thử nghiệm",
+          "Vì nhật ký của cả hai thao tác riêng lẻ nằm ở hai hệ thống riêng biệt khác nhau nên rốt cuộc khó đối chiếu",
+          "Vì tần suất xảy ra rất thấp nên hoàn toàn không đủ dữ liệu để có thể nhận ra khuôn mẫu"
         ],
         "correct": 0,
-        "explanation": "Vì hai bên dùng hai đồng tiền khác nhau, currency swap thường thực sự trao đổi notional principal ở đầu kỳ (theo tỷ giá giao ngay) và trao đổi lại ở cuối kỳ (theo tỷ giá đã thỏa thuận trước hoặc tỷ giá ban đầu) - khác với Interest Rate Swap nơi notional cùng một đồng tiền nên không cần đổi tay."
+        "explanation": "Cơ sở dữ liệu thấy giao dịch hoàn tất; hàng đợi thấy không có tin nhắn nào đến. Không bên nào biết là có gì đó thiếu, và nó chỉ lộ ra khi có người hỏi vì sao đơn hàng này không có thư xác nhận."
       },
       {
-        "question": "Một tập đoàn đa quốc gia có doanh thu bằng nhiều đồng tiền khác nhau (USD, EUR, JPY) nhưng báo cáo tài chính hợp nhất bằng USD. Vì sao họ có thể cần dùng currency swap thay vì chỉ đơn giản chuyển đổi tiền tệ ngay lập tức mỗi khi cần?",
+        "question": "Mẫu hộp thư đi hoạt động thế nào?",
         "options": [
-          "Không có lý do gì để dùng currency swap thay vì chuyển đổi trực tiếp",
-          "Currency swap cho phép khóa tỷ giá quy đổi trong DÀI HẠN (nhiều năm) cho các dòng tiền định kỳ lặp lại, giúp lập kế hoạch tài chính ổn định hơn nhiều so với việc phải chuyển đổi tiền tệ ở tỷ giá thị trường biến động mỗi lần phát sinh giao dịch",
-          "Chuyển đổi tiền tệ trực tiếp luôn tốt hơn dùng currency swap trong mọi trường hợp",
-          "Currency swap chỉ có ý nghĩa với giao dịch một lần, không áp dụng được cho dòng tiền định kỳ"
+          "Ghi dữ liệu và ghi tin nhắn vào cùng một giao dịch, rồi một tiến trình riêng gửi đi",
+          "Gửi tin nhắn trước rồi mới ghi dữ liệu để đảm bảo tin nhắn không bị mất",
+          "Ghi tin nhắn vào một hàng đợi tạm rồi chuyển sang hàng đợi chính khi ghi xong",
+          "Dùng giao dịch phân tán để đồng bộ giữa cơ sở dữ liệu và hệ thống hàng đợi"
         ],
-        "correct": 1,
-        "explanation": "Currency swap đặc biệt hữu ích khi doanh nghiệp có dòng tiền định kỳ, lặp lại bằng ngoại tệ trong dài hạn (như trả lãi trái phiếu ngoại tệ hàng năm) - khóa tỷ giá một lần cho cả chuỗi dòng tiền tương lai hiệu quả hơn nhiều so với phải giao dịch tỷ giá riêng lẻ mỗi lần phát sinh."
+        "correct": 0,
+        "explanation": "Điểm mấu chốt là hai thao tác cùng nằm trong một giao dịch của MỘT hệ thống, nên tính nguyên tử được đảm bảo mà không cần giao dịch phân tán. Lựa chọn cuối cũng giải được vấn đề nhưng nó tốn kém hơn nhiều và ít hệ thống hỗ trợ."
+      },
+      {
+        "question": "Mẫu này đổi vấn đề gì lấy vấn đề gì?",
+        "options": [
+          "Đổi việc mất tin nhắn lấy việc gửi trùng, và gửi trùng thì bên nhận đã chuẩn bị chịu",
+          "Đổi độ trễ thấp lấy độ tin cậy cao hơn trong việc gửi các sự kiện quan trọng",
+          "Đổi độ phức tạp ở phía gửi lấy độ đơn giản ở phía nhận tin nhắn",
+          "Đổi chi phí lưu trữ lấy việc không cần dùng giao dịch phân tán tốn kém"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cách đọc đúng về mẫu này: nó không xoá được mọi vấn đề mà chuyển một vấn đề KHÔNG giải được thành một vấn đề ĐÃ giải. Tiến trình gửi vẫn có thể gửi rồi chết trước khi đánh dấu."
+      },
+      {
+        "question": "Vì sao mẫu này không cần giao dịch phân tán?",
+        "options": [
+          "Vì cả hai thao tác đều nằm trong cùng một cơ sở dữ liệu nên một giao dịch là đủ",
+          "Vì tiến trình gửi tin nhắn chạy độc lập nên không cần đồng bộ với phần ghi dữ liệu",
+          "Vì toàn bộ hệ thống hàng đợi hỗ trợ sẵn cơ chế đảm bảo tất cả các tin nhắn hoàn toàn không bị mất",
+          "Vì các tin nhắn đã được ghi trước nên rốt cuộc nếu có lỗi thì chỉ mất phần dữ liệu nghiệp vụ"
+        ],
+        "correct": 0,
+        "explanation": "Đây là toàn bộ điểm khéo của mẫu này: nó biến một bài toán giữa hai hệ thống thành một bài toán trong một hệ thống, nơi công cụ giải quyết đã có sẵn và rẻ."
+      },
+      {
+        "question": "Nên xử lý thế nào với các bản ghi đã gửi trong bảng hộp thư đi?",
+        "options": [
+          "Xoá theo lịch sau một khoảng đủ dài, vì bảng này tăng nhanh và ảnh hưởng hiệu năng",
+          "Giữ lại vĩnh viễn để có một lịch sử đầy đủ các sự kiện đã được gửi khỏi hệ thống",
+          "Chuyển sang một bảng lưu trữ riêng ngay sau khi tin nhắn được gửi thành công",
+          "Xoá ngay sau khi gửi để bảng luôn chỉ chứa các tin nhắn đang chờ xử lý"
+        ],
+        "correct": 0,
+        "explanation": "Xoá ngay thì mất khả năng điều tra khi có nghi ngờ; giữ vĩnh viễn thì bảng phình ra và tiến trình quét chậm dần. Một khoảng đủ dài để điều tra rồi xoá là điểm cân bằng thực dụng."
       }
     ],
     "keyTakeaways": [
-      "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau",
-      "Công cụ quan trọng cho doanh nghiệp có nợ và doanh thu bằng các đồng tiền khác nhau",
-      "Giúp khóa tỷ giá quy đổi trong dài hạn, giảm rủi ro biến động tỷ giá"
+      "Ghi dữ liệu rồi gửi tin nhắn là hai thao tác, và khe hở giữa chúng không ai phát hiện.",
+      "Mẫu hộp thư đi: ghi cả hai vào CÙNG một giao dịch của cùng một cơ sở dữ liệu.",
+      "Một tiến trình riêng đọc bảng đó, gửi tin nhắn, rồi đánh dấu đã gửi.",
+      "Nó đổi việc MẤT tin nhắn lấy việc GỬI TRÙNG - và trùng thì bên nhận đã chịu được.",
+      "Bảng hộp thư đi phải được xoá theo lịch, nếu không tiến trình quét chậm dần."
     ],
     "practicePrompt": {
-      "question": "Một công ty Việt Nam có khoản vay bằng USD, doanh thu chủ yếu bằng VNĐ. Công ty muốn hoán đổi toàn bộ nghĩa vụ trả nợ (cả gốc lẫn lãi) từ USD sang VNĐ để khớp với dòng tiền doanh thu, tránh rủi ro tỷ giá dài hạn. Công cụ phái sinh nào phù hợp, và khác gì với Interest Rate Swap?",
+      "question": "Đội bạn đang ghi cơ sở dữ liệu rồi gọi hàng đợi ở dòng tiếp theo. Rủi ro thật là gì?",
       "options": [
-        "Nên dùng Interest Rate Swap, vì công cụ này cũng có thể xử lý được rủi ro tỷ giá giữa hai đồng tiền khác nhau",
-        "Currency swap: hoán đổi dòng tiền bằng hai loại tiền tệ khác nhau, giúp khóa tỷ giá dài hạn",
-        "Công ty nên mua vàng để phòng hộ rủi ro tỷ giá thay vì dùng bất kỳ công cụ phái sinh nào",
-        "Không có công cụ phái sinh nào giải quyết được vấn đề chênh lệch tiền tệ giữa nợ vay và doanh thu"
+        "Một tỷ lệ nhỏ dữ liệu tồn tại mà không có sự kiện nào, và không gì phát hiện được",
+        "Việc gọi toàn bộ hệ thống hàng đợi làm chậm khoảng thời gian phản hồi của chính yêu cầu người dùng",
+        "Nếu toàn bộ hệ thống hàng đợi không sẵn sàng thì rốt cuộc toàn bộ thao tác ghi dữ liệu sẽ thất bại",
+        "Thứ tự tất cả các sự kiện hoàn toàn có thể không khớp với thứ tự các bản ghi được tạo"
       ],
-      "correct": 1,
-      "explanation": "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau. Đây là công cụ quan trọng cho doanh nghiệp có nợ và doanh thu bằng các đồng tiền khác nhau, giúp khóa tỷ giá quy đổi trong dài hạn, giảm rủi ro biến động tỷ giá."
+      "correct": 0,
+      "explanation": "Chữ KHÔNG GÌ PHÁT HIỆN ĐƯỢC là phần đáng lo: tỷ lệ nhỏ nhưng nó tích tụ và không có cảnh báo nào. Lựa chọn thứ ba mô tả tình huống ngược lại và nó thật ra ít hại hơn, vì lúc đó bạn biết ngay có vấn đề."
     },
     "summary": {
-      "keyIdea": "Currency swap: hoán đổi dòng tiền và có thể cả notional bằng hai loại tiền tệ khác nhau",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Công cụ quan trọng cho doanh nghiệp có nợ và doanh thu bằng các đồng tiền khác nhau"
+      "keyIdea": "Biến bài toán giữa hai hệ thống thành bài toán trong một hệ thống.",
+      "formula": "Ghi dữ liệu + ghi tin nhắn cùng giao dịch → tiến trình riêng gửi → đánh dấu.",
+      "commonMistake": "Ghi cơ sở dữ liệu rồi gọi hàng đợi ở dòng tiếp theo, để nguyên khe hở.",
+      "action": "Tìm trong mã chỗ ghi dữ liệu xong rồi gửi tin nhắn ở dòng sau."
     },
     "application": {
-      "title": "Tìm một tình huống cần currency swap",
-      "message": "Nghĩ về một doanh nghiệp Việt Nam có doanh thu bằng VND nhưng vay nợ bằng USD, và mô tả cách currency swap có thể giúp họ khóa tỷ giá quy đổi trong dài hạn.",
-      "secondary": "Tình huống này rất phổ biến với doanh nghiệp xuất nhập khẩu ở Việt Nam."
+      "title": "Làm ngay hôm nay",
+      "message": "Tìm trong mã những chỗ ghi cơ sở dữ liệu xong rồi gửi tin nhắn ở dòng tiếp theo. Mỗi chỗ như vậy là một khe hở.",
+      "secondary": "Với chỗ quan trọng nhất, thử đối chiếu: đếm số bản ghi được tạo trong một ngày và số sự kiện tương ứng đã gửi. Chênh lệch nếu có sẽ nhỏ - và đó là lý do không ai phát hiện ra nó."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Currency swap là hợp đồng trong đó hai bên hoán đổi cả gốc lẫn lãi bằng hai loại tiền tệ khác nhau theo tỷ giá đã thỏa thuận trước, thường trong dài hạn - công cụ then chốt cho doanh nghiệp có nợ và doanh thu bằng các đồng tiền khác nhau."
+        "text": "Bài trước đóng khe hở giữa việc ghi khoá và thực hiện thao tác. Bài này là khe hở tương tự ở một chỗ khác, và nó gây ra loại lỗi dữ liệu khó truy nhất."
       },
       {
         "type": "heading",
-        "text": "Khác biệt cốt lõi với Interest Rate Swap"
+        "text": "Khe hở"
+      },
+      {
+        "type": "callout",
+        "label": "Hai thao tác, hai hệ thống",
+        "text": "Ghi đơn hàng vào cơ sở dữ liệu, rồi gửi sự kiện vào hàng đợi. Tiến trình chết ở giữa thì đơn hàng có thật mà không ai được thông báo - và không có cơ chế nào phát hiện, vì mỗi bên đều thấy trạng thái của mình là nhất quán."
       },
       {
         "type": "paragraph",
-        "text": "Vì hai bên dùng hai đồng tiền khác nhau, currency swap thường thực sự trao đổi notional principal ở đầu kỳ (theo tỷ giá giao ngay) và trao đổi lại ở cuối kỳ (theo tỷ giá đã thỏa thuận trước hoặc tỷ giá ban đầu) - khác hẳn với Interest Rate Swap, nơi notional cùng một đồng tiền nên không cần đổi tay, chỉ phần chênh lệch lãi mới thanh toán."
+        "text": "Nó chỉ lộ ra khi có người hỏi vì sao đơn hàng này không có thư xác nhận, thường là nhiều ngày sau và với một trường hợp cụ thể. Lúc đó bạn không biết đây là một trường hợp hay là đỉnh của một tỷ lệ đang tích tụ."
       },
       {
         "type": "heading",
-        "text": "Doanh nghiệp FDI: nợ USD, doanh thu VND"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nhiều doanh nghiệp FDI tại Việt Nam vay USD từ công ty mẹ nhưng có doanh thu bằng VND. Nếu VND mất giá so với USD, gánh nặng trả nợ USD (quy đổi ra VND) sẽ tăng lên. Currency swap giúp họ 'khóa' tỷ giá quy đổi ngay từ đầu, tránh rủi ro này xuyên suốt vòng đời khoản vay - thay vì phải chuyển đổi tiền tệ ở tỷ giá thị trường biến động mỗi lần phát sinh giao dịch, một hợp đồng swap khóa tỷ giá cho cả chuỗi dòng tiền tương lai lặp lại, như trả lãi trái phiếu ngoại tệ hàng năm."
-      },
-      {
-        "type": "comparison",
-        "left": {
-          "label": "Interest Rate Swap",
-          "text": "Notional cùng một đồng tiền ở cả hai chân, nên không ai trao tay gốc - chỉ thanh toán phần chênh lệch lãi. Rủi ro đối tác vì thế nhỏ hơn nhiều."
-        },
-        "right": {
-          "label": "Currency Swap",
-          "text": "Hai đồng tiền khác nhau nên gốc thường thực sự đổi tay ở đầu kỳ và cuối kỳ. Toàn bộ notional nằm trong vùng rủi ro đối tác, không chỉ phần chênh lệch."
-        }
-      },
-      {
-        "type": "formula",
-        "title": "Khóa tỷ giá cho một khoản vay USD bằng doanh thu VND",
-        "equation": "Nghĩa vụ VND = Nợ USD × Tỷ giá đã khóa trong hợp đồng swap",
-        "variables": [
-          { "symbol": "Tỷ giá đã khóa", "name": "Tỷ giá thỏa thuận trước", "description": "Cố định suốt vòng đời hợp đồng, không phụ thuộc thị trường" }
-        ],
-        "example": {
-          "title": "Vay 10 triệu USD, khóa ở 25.000 VND/USD, sau đó VND mất giá về 27.000",
-          "calculation": "Không swap: 10tr × 27.000 = 270 tỷ VND · Có swap: 10tr × 25.000 = 250 tỷ VND",
-          "result": "Chênh 20 tỷ VND",
-          "explanation": "20 tỷ này không phải lợi nhuận - đó là khoản lỗ đã không xảy ra. Nếu VND lên giá về 23.000 thì hợp đồng swap khiến doanh nghiệp trả nhiều hơn 20 tỷ so với không làm gì. Đổi lấy sự chắc chắn, cả hai chiều."
-        }
+        "text": "Cách đóng"
       },
       {
         "type": "list",
         "items": [
-          "Currency swap: hoán đổi dòng tiền và thường cả notional bằng hai loại tiền tệ khác nhau",
-          "Trao đổi notional ở đầu kỳ và cuối kỳ - khác Interest Rate Swap",
-          "Đặc biệt hữu ích cho dòng tiền định kỳ, lặp lại bằng ngoại tệ trong dài hạn",
-          "Công cụ quan trọng cho doanh nghiệp FDI, tập đoàn đa quốc gia có doanh thu đa tiền tệ"
+          "Ghi dữ liệu nghiệp vụ VÀ ghi tin nhắn vào một bảng hộp thư đi - trong cùng một giao dịch.",
+          "Một tiến trình riêng đọc bảng đó và gửi các tin nhắn chưa gửi vào hàng đợi.",
+          "Gửi xong thì đánh dấu đã gửi.",
+          "Xoá các bản ghi đã gửi theo lịch, sau một khoảng đủ dài để điều tra."
+        ]
+      },
+      {
+        "type": "callout",
+        "label": "Điểm khéo",
+        "text": "Cả hai thao tác ở bước một đều nằm trong CÙNG một cơ sở dữ liệu, nên một giao dịch bình thường là đủ. Mẫu này biến một bài toán giữa hai hệ thống thành một bài toán trong một hệ thống, nơi công cụ giải quyết đã có sẵn và rẻ."
+      },
+      {
+        "type": "heading",
+        "text": "Nó không xoá mọi vấn đề"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Vấn đề còn lại",
+          "text": "Tiến trình gửi có thể gửi tin nhắn rồi chết trước khi đánh dấu, nên tin nhắn đó sẽ được gửi lại ở lượt sau."
+        },
+        "right": {
+          "label": "Vì sao vẫn đáng",
+          "text": "Gửi trùng thì bên nhận đã chuẩn bị sẵn để chịu - đó là nội dung hai bài trước. Còn tin nhắn MẤT thì không có cách nào phát hiện."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Cách đọc đúng về mẫu này: nó không xoá vấn đề mà chuyển một vấn đề KHÔNG giải được thành một vấn đề ĐÃ giải.",
+          "Bài sau là câu hỏi lớn hơn cùng loại: khi một luồng đi qua nhiều dịch vụ và một bước ở giữa thất bại."
         ]
       }
     ]
   },
   {
     "id": 194,
-    "slug": "vi-sao-doanh-nghiep-dung-phai-sinh-phong-ho",
-    "title": "Tự học Tài chính Day 194: Vì sao doanh nghiệp dùng phái sinh để phòng hộ?",
-    "subtitle": "Ổn định dòng tiền và bảo vệ biên lợi nhuận khỏi biến động thị trường",
-    "duration": "6 phút",
-    "difficulty": "Trung bình",
-    "emoji": "🔄",
-    "openingQuestion": "CFO của một hãng hàng không nói: 'Chúng tôi hedge không phải để kiếm thêm lợi nhuận, mà để dự đoán được lợi nhuận.' Câu này có ý nghĩa gì?",
+    "slug": "bu-tru-loi-thay-vi-giao-dich-phan-tan",
+    "title": "Bù trừ lỗi thay vì giao dịch phân tán",
+    "subtitle": "Không quay lại được thì phải đi tiếp bằng một hành động ngược.",
+    "duration": "7 phút",
+    "difficulty": "Khó",
+    "track": "professional",
+    "emoji": "↩️",
+    "isFundamental": true,
+    "whyItMatters": "Một luồng đi qua ba dịch vụ và thất bại ở bước hai là tình huống bình thường, không phải ngoại lệ. Cách xử lý nó quyết định hệ thống của bạn có tự dọn được hay để lại rác.",
+    "openingQuestion": "Luồng đặt hàng đi qua ba dịch vụ và thất bại ở bước ba. Nên làm gì với hai bước đầu?",
     "openingOptions": [
-      "Câu nói này không có ý nghĩa tài chính thực tế",
-      "CFO đang từ chối trách nhiệm quản trị rủi ro",
-      "Hedging giảm sự bất định của dòng tiền và lợi nhuận",
-      "CFO đang nói mâu thuẫn, hedging phải sinh lời mới có ý nghĩa"
+      "Chạy hành động ngược cho từng bước đã hoàn tất, theo thứ tự ngược lại",
+      "Huỷ giao dịch để tất cả các bước có thể tự động quay về trạng thái ban đầu",
+      "Để nguyên và đánh dấu luồng này là thất bại để có thể xử lý thủ công sau",
+      "Thử lại bước ba nhiều lần cho tới khi nó thành công hoặc hết số lần thử"
     ],
-    "correctOption": 2,
-    "explanation": "Doanh nghiệp dùng phái sinh để hedging chủ yếu vì: (1) ổn định dòng tiền giúp lập ngân sách và kế hoạch đầu tư chính xác hơn; (2) bảo vệ biên lợi nhuận khỏi biến động giá nguyên liệu/tỷ giá/lãi suất ngoài tầm kiểm soát; (3) giảm khả năng vi phạm covenant vay nợ do biến động thu nhập bất ngờ; (4) tạo niềm tin cho nhà đầu tư về tính ổn định của doanh nghiệp.",
+    "correctOption": 0,
+    "explanation": "Không có giao dịch nào bao được ba dịch vụ độc lập, nên không huỷ được. Bước một và hai đã hoàn tất thật - tiền đã trừ, kho đã giữ hàng - và cách duy nhất là chạy hành động NGƯỢC: hoàn tiền, trả hàng về kho. Thử lại bước ba là bước hợp lý trước đó, nhưng khi nó hết cách thì bù trừ là thứ còn lại.",
     "diagram": [
       {
-        "label": "Biến động giá nguyên liệu/tỷ giá/lãi suất",
+        "label": "Không có giao dịch bao được nhiều dịch vụ độc lập",
         "arrow": true
       },
       {
-        "label": "Dùng phái sinh để phòng hộ (hedge)",
+        "label": "Mỗi bước có một hành động NGƯỢC được định nghĩa trước",
         "arrow": true
       },
       {
-        "label": "Dòng tiền và biên lợi nhuận ổn định hơn"
+        "label": "Thất bại ở bước N → chạy ngược từ N-1 về 1",
+        "arrow": true
+      },
+      {
+        "label": "Hành động ngược cũng phải bất biến khi lặp lại"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Vietnam Airlines",
-      "description": "Vietnam Airlines sử dụng công cụ hedging giá nhiên liệu để ổn định chi phí vận hành - dù có thể đôi khi trả giá cao hơn giá thị trường giao ngay, đổi lại là khả năng dự báo lợi nhuận chính xác hơn cho cổ đông."
+      "company": "Hành động ngược không phải là xoá",
+      "description": "Bù trừ cho một khoản đã trừ là một khoản hoàn lại, không phải xoá bản ghi trừ tiền. Hai cách cho cùng số dư nhưng chỉ cách đầu giữ được lịch sử - và lịch sử là thứ bạn cần khi khách hàng hỏi vì sao tài khoản của họ biến động hai lần."
     },
     "quiz": [
       {
-        "question": "Một công ty hedge giá dầu ở mức 70 USD/thùng, nhưng sau đó giá dầu giảm còn 50 USD. Công ty có 'thua lỗ' trong việc hedging này không?",
+        "question": "Vì sao không dùng giao dịch phân tán cho luồng nhiều dịch vụ?",
         "options": [
-          "Công ty nên hủy hợp đồng hedging ngay lập tức",
-          "Không thể xảy ra tình huống này trong thực tế",
-          "Có, họ đã mất tiền do quyết định sai lầm",
-          "Về mặt kế toán họ trả giá cao hơn thị trường hiện tại, nhưng mục tiêu hedging đã đạt được: chi phí đã được dự đoán và cố định trước - đây không phải là thất bại mà là cái giá của sự chắc chắn"
-        ],
-        "correct": 3,
-        "explanation": "Đây là hiểu lầm phổ biến nhất về hedging: mục tiêu không phải là 'thắng thị trường' mà là loại bỏ sự bất định. Nếu giá giảm sau khi đã hedge ở mức cao hơn, công ty 'mất' cơ hội hưởng giá thấp hơn - nhưng đó là cái giá hợp lý để đổi lấy sự ổn định đã cam kết với cổ đông và kế hoạch kinh doanh."
-      },
-      {
-        "question": "Một CFO quyết định KHÔNG hedge rủi ro giá nguyên liệu đầu vào, với lý do \"chúng tôi tin vào khả năng dự đoán thị trường tốt hơn đối thủ\". Quan điểm này có phù hợp với triết lý hedging đã học không?",
-        "options": [
-          "Không phù hợp - đây thực chất là một quyết định ĐẦU CƠ (spec ulation) trá hình dưới danh nghĩa quản trị rủi ro, đặt cược vào khả năng dự đoán thị trường tốt hơn người khác, đi ngược lại triết lý cốt lõi của hedging là giảm bất định chứ không phải đặt cược vào dự đoán",
-          "CFO luôn đúng vì có nhiều kinh nghiệm hơn nhân viên khác",
-          "Hoàn toàn phù hợp, đây chính xác là mục đích của hedging",
-          "Không có sự khác biệt giữa hedging và speculation trong tình huống này"
+          "Vì nó khoá tài nguyên ở mọi bên trong suốt luồng và một bên chậm làm kẹt tất cả",
+          "Vì tất cả các cơ sở dữ liệu khác nhau hoàn toàn không hỗ trợ cùng đúng một giao thức giao dịch",
+          "Vì giao dịch phân tán không đảm bảo được thứ tự thực hiện các bước",
+          "Vì việc triển khai giao dịch phân tán đòi hỏi thay đổi lớn về kiến trúc"
         ],
         "correct": 0,
-        "explanation": "Đây là một cái bẫy tư duy phổ biến ở cấp quản lý doanh nghiệp: viện lý do \"dự đoán tốt hơn thị trường\" để không hedge thực chất là đang đầu cơ, không phải quản trị rủi ro - nhầm lẫn này đã gây ra nhiều thiệt hại tài chính lớn khi doanh nghiệp \"cá cược\" sai vào biến động giá nguyên liệu hoặc tỷ giá."
+        "explanation": "Đây là lý do thực dụng nhất và nó áp dụng cả khi công nghệ hỗ trợ: một bên chậm hoặc chết trong lúc giữ khoá sẽ kẹt tài nguyên của mọi bên còn lại, và bạn vừa nối độ tin cậy của tất cả lại với nhau."
+      },
+      {
+        "question": "Vì sao hành động ngược nên là một bản ghi mới thay vì xoá bản ghi cũ?",
+        "options": [
+          "Vì lịch sử là thứ bạn cần khi khách hàng hỏi vì sao tài khoản biến động hai lần",
+          "Vì việc xoá bản ghi có thể vi phạm ràng buộc toàn vẹn của cơ sở dữ liệu",
+          "Vì các hệ thống kế toán về nguyên tắc không cho phép xoá một bản ghi đã được ghi nhận",
+          "Vì xoá bản ghi làm mất dữ liệu cần thiết cho việc phân tích về sau"
+        ],
+        "correct": 0,
+        "explanation": "Hai cách cho cùng trạng thái cuối nhưng chỉ một cách trả lời được câu hỏi chuyện gì đã xảy ra. Với luồng bù trừ thì khách hàng CÓ nhìn thấy hai biến động, nên bạn phải giải thích được chúng."
+      },
+      {
+        "question": "Vì sao hành động ngược cũng phải bất biến khi lặp lại?",
+        "options": [
+          "Vì nó cũng chạy trong môi trường bất đồng bộ nên cũng có thể được gọi hai lần",
+          "Vì nếu chạy hai lần thì trạng thái sẽ vượt quá mức ban đầu trước khi bắt đầu luồng",
+          "Vì các hành động ngược thường được thực hiện song song nên dễ xung đột",
+          "Vì hệ thống cần đảm bảo hành động ngược luôn thành công trong mọi trường hợp"
+        ],
+        "correct": 0,
+        "explanation": "Đây là điều dễ quên nhất khi dựng mẫu này: người ta làm cho các bước tiến bất biến rồi bỏ qua các bước lùi. Lựa chọn thứ hai mô tả đúng hậu quả nhưng nó là hệ quả chứ không phải lý do."
+      },
+      {
+        "question": "Điều gì xảy ra nếu chính hành động ngược thất bại?",
+        "options": [
+          "Cần thử lại và cuối cùng phải có cảnh báo cho người xử lý thủ công",
+          "Hệ thống tự động quay về trạng thái ban đầu bằng một cơ chế dự phòng",
+          "Luồng được đánh dấu hoàn tất vì đã cố gắng hết mức có thể thực hiện",
+          "Bước tiếp theo ở ngay trong chuỗi bù trừ vẫn được thực hiện bình thường"
+        ],
+        "correct": 0,
+        "explanation": "Đây là ranh giới thật của mẫu này: nó không tự dọn được trong mọi trường hợp. Có một tỷ lệ nhỏ cần người can thiệp, và thiết kế phải thừa nhận điều đó thay vì giả vờ mọi thứ đều tự động."
+      },
+      {
+        "question": "Thứ tự chạy các hành động ngược nên thế nào?",
+        "options": [
+          "Ngược lại thứ tự tiến, vì bước sau có thể phụ thuộc vào kết quả của bước trước",
+          "Theo đúng thứ tự tiến để dễ theo dõi và ghi nhật ký một cách nhất quán",
+          "Song song tất cả để có thể rút ngắn thời gian hệ thống ở trạng thái không nhất quán",
+          "Theo thứ tự ưu tiên, xử lý những bước ảnh hưởng tới tiền bạc trước tiên"
+        ],
+        "correct": 0,
+        "explanation": "Chạy song song nghe hấp dẫn vì nó nhanh hơn, nhưng nếu bước ba đã dựa trên kết quả của bước hai thì hoàn tác bước hai trước có thể làm hoàn tác bước ba thất bại. Thứ tự ngược giữ cho mỗi bước lùi có đủ ngữ cảnh nó cần."
       }
     ],
     "keyTakeaways": [
-      "Mục tiêu hedging: giảm bất định, không phải tối đa hóa lợi nhuận",
-      "Ổn định dòng tiền giúp lập kế hoạch tài chính và bảo vệ covenant vay nợ",
-      "'Thua' so với giá thị trường sau hedge không đồng nghĩa hedging thất bại"
+      "Không có giao dịch nào bao được nhiều dịch vụ độc lập - không quay lại được.",
+      "Mỗi bước cần một hành động NGƯỢC được định nghĩa trước, không nghĩ ra lúc có lỗi.",
+      "Hành động ngược là bản ghi MỚI, không phải xoá bản ghi cũ - lịch sử là thứ cần giữ.",
+      "Hành động ngược cũng phải bất biến khi lặp lại; đây là chỗ hay bị quên.",
+      "Chạy ngược thứ tự tiến, vì bước sau có thể dựa trên kết quả bước trước."
     ],
     "practicePrompt": {
-      "question": "Một công ty hedging giá nguyên liệu đầu vào bằng hợp đồng futures. Sau đó giá nguyên liệu trên thị trường giảm mạnh, khiến công ty phải mua nguyên liệu ở mức giá đã khóa cao hơn giá thị trường hiện tại. Đây có phải là hedging thất bại không?",
+      "question": "Bạn thiết kế luồng ba bước và chưa nghĩ tới hành động ngược. Khi nào nên nghĩ?",
       "options": [
-        "Có, đây là hedging thất bại vì công ty đã mua nguyên liệu với giá cao hơn giá thị trường hiện tại",
-        "Không - mục tiêu của hedging là giảm bất định, không phải tối đa hóa lợi nhuận",
-        "Đây luôn là dấu hiệu công ty đã chọn sai công cụ phái sinh và cần thay đổi chiến lược ngay lập tức",
-        "Hedging chỉ thành công khi giá thị trường di chuyển đúng theo hướng có lợi cho công ty"
+        "Ngay lúc thiết kế, vì hành động ngược quyết định cả cách thiết kế bước tiến",
+        "Sau khi luồng chính chạy ổn định, vì lúc đó mới biết bước nào hay thất bại",
+        "Khi gặp trường hợp thất bại đầu tiên trong môi trường thật để biết cần gì",
+        "Không cần, vì có thể xử lý thủ công những trường hợp thất bại hiếm gặp"
       ],
-      "correct": 1,
-      "explanation": "Mục tiêu hedging: giảm bất định, không phải tối đa hóa lợi nhuận. 'Thua' so với giá thị trường sau hedge không đồng nghĩa hedging thất bại - công ty đã đạt mục tiêu thực sự là ổn định dòng tiền và bảo vệ kế hoạch tài chính, bất kể giá thị trường sau đó biến động thế nào."
+      "correct": 0,
+      "explanation": "Một bước không hoàn tác được sẽ buộc bạn thiết kế lại toàn bộ thứ tự - ví dụ gửi thư nên đặt ở cuối chuỗi vì nó không thu hồi được. Phát hiện điều đó sau khi đã dựng xong thì phải làm lại."
     },
     "summary": {
-      "keyIdea": "Mục tiêu hedging: giảm bất định, không phải tối đa hóa lợi nhuận",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Ổn định dòng tiền giúp lập kế hoạch tài chính và bảo vệ covenant vay nợ"
+      "keyIdea": "Không quay lại được thì đi tiếp bằng một hành động ngược, được định nghĩa trước.",
+      "formula": "Mỗi bước tiến có một bước lùi; thất bại ở N thì chạy lùi từ N-1 về 1.",
+      "commonMistake": "Làm cho các bước tiến bất biến rồi quên rằng bước lùi cũng cần thế.",
+      "action": "Lấy một luồng nhiều bước và viết ra hành động ngược cho từng bước."
     },
     "application": {
-      "title": "Liệt kê lý do doanh nghiệp bạn biết dùng phái sinh",
-      "message": "Nghĩ về một doanh nghiệp bạn quen thuộc (nơi bạn làm việc hoặc theo dõi) và liệt kê xem họ có rủi ro nguyên liệu, tỷ giá hay lãi suất nào có thể cần phòng hộ hay không.",
-      "secondary": "Không phải doanh nghiệp nào cũng cần hedging - việc xác định đúng nhu cầu là bước đầu tiên."
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy một luồng nhiều bước trong hệ thống bạn và viết ra hành động ngược cho từng bước. Nếu có bước nào không viết được, đó là bước phải chuyển xuống cuối chuỗi.",
+      "secondary": "Rồi kiểm: các hành động ngược đó có bất biến khi lặp lại không? Đây là chỗ hay bị quên nhất, vì người ta chỉ nghĩ tới tính chất đó cho các bước tiến."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Doanh nghiệp dùng phái sinh để hedging không phải vì muốn kiếm thêm lợi nhuận, mà vì bốn lý do thực dụng: ổn định dòng tiền, bảo vệ biên lợi nhuận, tránh vi phạm covenant vay nợ, và tạo niềm tin cho nhà đầu tư."
+        "text": "Một luồng đi qua ba dịch vụ và thất bại ở bước hai là tình huống bình thường, không phải ngoại lệ. Bài này là cách xử lý nó khi không có giao dịch nào bao được cả ba."
       },
       {
         "type": "heading",
-        "text": "'Thua' thị trường không phải là thất bại"
+        "text": "Vì sao không dùng giao dịch phân tán"
       },
       {
-        "type": "paragraph",
-        "text": "Giả sử một công ty hedge giá dầu ở mức 70 USD/thùng, nhưng sau đó giá dầu giảm còn 50 USD. Về mặt kế toán, họ trả giá cao hơn thị trường hiện tại - nhưng mục tiêu hedging đã đạt được: chi phí đã được dự đoán và cố định trước. Đây không phải là thất bại mà là cái giá của sự chắc chắn. Đây là hiểu lầm phổ biến nhất về hedging: mục tiêu không phải là 'thắng thị trường' mà là loại bỏ sự bất định."
+        "type": "callout",
+        "label": "Nó nối độ tin cậy của mọi bên lại với nhau",
+        "text": "Giao dịch phân tán khoá tài nguyên ở mọi bên trong suốt luồng. Một bên chậm hoặc chết trong lúc giữ khoá sẽ kẹt tài nguyên của tất cả - và bạn vừa biến ba hệ thống độc lập thành một hệ thống có ba điểm hỏng chung."
       },
       {
         "type": "heading",
-        "text": "Bẫy tư duy: 'không hedge vì tin vào dự đoán của mình'"
+        "text": "Bù trừ"
       },
       {
         "type": "paragraph",
-        "text": "Một CFO quyết định KHÔNG hedge rủi ro giá nguyên liệu đầu vào với lý do 'chúng tôi tin vào khả năng dự đoán thị trường tốt hơn đối thủ' thực chất đang đưa ra một quyết định đầu cơ (speculation) trá hình dưới danh nghĩa quản trị rủi ro. Đây đi ngược lại triết lý cốt lõi của hedging là giảm bất định chứ không phải đặt cược vào dự đoán - một nhầm lẫn đã gây ra nhiều thiệt hại tài chính lớn trong thực tế."
+        "text": "Mỗi bước có một hành động NGƯỢC được định nghĩa TRƯỚC. Thất bại ở bước ba thì chạy hành động ngược của bước hai, rồi của bước một - theo thứ tự ngược lại, vì bước sau có thể đã dựa trên kết quả của bước trước."
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Hedge theo chính sách",
-          "text": "Quyết định trước bằng văn bản: hedge bao nhiêu %, kỳ hạn nào, rà soát khi nào. Không phụ thuộc vào việc CFO nghĩ gì về giá dầu quý tới. Kết quả nhàm chán và lặp lại - đó là dấu hiệu tốt."
+          "label": "Hành động ngược đúng",
+          "text": "Một bản ghi MỚI: hoàn lại khoản đã trừ, trả hàng về kho. Khách hàng nhìn thấy hai biến động, và bạn giải thích được cả hai."
         },
         "right": {
-          "label": "Hedge theo dự đoán",
-          "text": "Hedge khi nghĩ giá sẽ tăng, bỏ hedge khi nghĩ giá sẽ giảm. Đây là đầu cơ mang tên quản trị rủi ro, và nó sai đúng vào lúc đắt nhất: khi cả thị trường cùng nghĩ giống bạn."
+          "label": "Xoá bản ghi cũ",
+          "text": "Cùng trạng thái cuối, nhưng mất lịch sử. Và với luồng bù trừ thì lịch sử là thứ bạn cần nhất, vì khách hàng sẽ hỏi chuyện gì đã xảy ra."
         }
       },
       {
-        "type": "callout",
-        "label": "Covenant: chỗ biến động giết doanh nghiệp nhanh nhất",
-        "text": "Hợp đồng vay thường buộc Nợ/EBITDA dưới một ngưỡng, ví dụ 3,5 lần. Một doanh nghiệp nợ 350 tỷ với EBITDA 100 tỷ đang ở đúng 3,5. Chi phí nguyên liệu tăng làm EBITDA rơi còn 85 tỷ thì tỷ lệ thành 4,1 - vi phạm covenant, ngân hàng có quyền đòi nợ trước hạn. Doanh nghiệp không phá sản vì lỗ, mà vì một điều khoản kích hoạt đúng lúc dòng tiền yếu nhất. Hedge nguyên liệu là mua bảo hiểm cho chính điều khoản đó."
+        "type": "heading",
+        "text": "Hai chi tiết hay bị quên"
       },
       {
         "type": "list",
         "items": [
-          "Ổn định dòng tiền giúp lập ngân sách và kế hoạch đầu tư chính xác hơn",
-          "Bảo vệ biên lợi nhuận khỏi biến động giá nguyên liệu/tỷ giá/lãi suất ngoài tầm kiểm soát",
-          "Giảm khả năng vi phạm covenant vay nợ do biến động thu nhập bất ngờ",
-          "Tạo niềm tin cho nhà đầu tư về tính ổn định của doanh nghiệp"
+          "Hành động ngược cũng phải BẤT BIẾN khi lặp lại. Người ta làm cho các bước tiến bất biến rồi bỏ qua các bước lùi - mà bước lùi cũng chạy trong cùng môi trường bất đồng bộ đó.",
+          "Chính hành động ngược cũng có thể thất bại. Cần thử lại, và cuối cùng cần một cảnh báo cho người xử lý thủ công."
         ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Mục thứ hai là ranh giới thật của mẫu này: nó không tự dọn được trong MỌI trường hợp. Có một tỷ lệ nhỏ cần người can thiệp, và thiết kế nên thừa nhận điều đó thay vì giả vờ mọi thứ đều tự động."
       },
       {
         "type": "closing",
         "lines": [
-          "Mục tiêu hedging: giảm bất định, không phải tối đa hóa lợi nhuận."
+          "Nghĩ về hành động ngược NGAY lúc thiết kế, đừng để sau. Một bước không hoàn tác được sẽ buộc bạn đổi cả thứ tự - ví dụ gửi thư nên đặt ở cuối chuỗi vì nó không thu hồi được.",
+          "Bài sau là công cụ dọn dẹp khi mọi cơ chế tự động đã hết cách: chạy lại và phát lại."
         ]
       }
     ]
   },
   {
     "id": 195,
-    "slug": "vi-sao-phai-sinh-nguy-hiem",
-    "title": "Tự học Tài chính Day 195: Vì sao phái sinh có thể rất nguy hiểm?",
-    "subtitle": "Đòn bẩy cao, tính phức tạp và rủi ro lan truyền hệ thống",
-    "duration": "7 phút",
+    "slug": "chay-lai-va-phat-lai",
+    "title": "Chạy lại và phát lại",
+    "subtitle": "Công cụ mạnh nhất trong hệ thống bất đồng bộ, và cũng là công cụ dễ gây hại nhất.",
+    "duration": "6 phút",
     "difficulty": "Khó",
-    "emoji": "🔄",
-    "openingQuestion": "Điều gì khiến phái sinh nguy hiểm hơn nhiều so với đầu tư cổ phiếu hay trái phiếu thông thường?",
+    "track": "professional",
+    "emoji": "⏪",
+    "isFundamental": false,
+    "whyItMatters": "Khả năng phát lại là thứ cứu bạn sau một sự cố, và nó cũng là thứ có thể gửi lại mười nghìn thư cho khách hàng nếu chạy mà không nghĩ.",
+    "openingQuestion": "Bạn muốn phát lại các sự kiện của ba ngày qua để sửa dữ liệu sai. Rủi ro lớn nhất là gì?",
     "openingOptions": [
-      "Phái sinh chỉ dành cho tổ chức lớn nên rủi ro tập trung",
-      "Đòn bẩy cực cao cộng tính phức tạp khó định giá",
-      "Phái sinh không được pháp luật quản lý",
-      "Phái sinh có phí giao dịch cao hơn"
+      "Các hiệu ứng phụ chạy lại: thư gửi lại, thanh toán gọi lại, thông báo bắn lại",
+      "Việc phát lại làm tăng tải đột ngột và có thể gây quá tải cho hệ thống",
+      "Các sự kiện cũ hoàn toàn có thể không còn tương thích với phiên bản mã hiện tại",
+      "Thứ tự tất cả các sự kiện mỗi khi phát lại có thể khác với thứ tự ban đầu của chính chúng"
     ],
-    "correctOption": 1,
-    "explanation": "Ba yếu tố khiến phái sinh nguy hiểm: (1) Đòn bẩy - margin nhỏ kiểm soát vị thế lớn, thua lỗ khuếch đại nhanh; (2) Tính phức tạp - nhiều phái sinh có cấu trúc lồng ghép (như CDO) khó định giá và đánh giá rủi ro chính xác; (3) Rủi ro hệ thống - vì các tổ chức tài chính lớn liên kết chặt chẽ qua phái sinh, một sự sụp đổ có thể lan truyền dây chuyền (contagion) ra toàn hệ thống, như khủng hoảng 2008.",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều là rủi ro thật và đều xử lý được bằng cách chuẩn bị. Hiệu ứng phụ thì khác: chúng đi ra ngoài hệ thống và không thu hồi được. Mười nghìn thư gửi lại cho khách hàng là thứ bạn không sửa được bằng bất kỳ thao tác nào, và nó làm hỏng niềm tin nhiều hơn cả sự cố ban đầu.",
     "diagram": [
       {
-        "label": "Margin nhỏ kiểm soát vị thế lớn",
+        "label": "Trước khi phát lại: hiệu ứng phụ có chạy lại không?",
         "arrow": true
       },
       {
-        "label": "Đòn bẩy khuếch đại thua lỗ",
+        "label": "Tách phần tính toán khỏi phần gây hiệu ứng ra ngoài",
         "arrow": true
       },
       {
-        "label": "Cấu trúc phức tạp khó định giá, đánh giá rủi ro"
+        "label": "Phát lại vào một phạm vi hẹp trước, rồi mới mở rộng",
+        "arrow": true
+      },
+      {
+        "label": "Và giữ được khả năng phát lại là quyết định từ đầu"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Long-Term Capital Management (LTCM), 1998",
-      "description": "Quỹ đầu cơ LTCM với đội ngũ gồm 2 nhà kinh tế học đoạt giải Nobel đã sụp đổ năm 1998 do sử dụng đòn bẩy cực cao trên các vị thế phái sinh, suýt gây khủng hoảng hệ thống tài chính toàn cầu, buộc Fed phải can thiệp giải cứu."
+      "company": "Chạy thử không ghi",
+      "description": "Trước khi phát lại thật, chạy một lượt chỉ tính toán và ghi ra kết quả dự kiến mà không thay đổi gì. Nó cho bạn thấy phạm vi ảnh hưởng bằng con số cụ thể - bao nhiêu bản ghi sẽ đổi, bao nhiêu thư sẽ gửi - trước khi có gì xảy ra thật."
     },
     "quiz": [
       {
-        "question": "Vì sao rủi ro phái sinh được gọi là có khả năng 'lan truyền hệ thống' (systemic risk)?",
+        "question": "Vì sao nên tách phần tính toán khỏi phần gây hiệu ứng ra ngoài?",
         "options": [
-          "Hệ thống ngân hàng không liên quan đến thị trường phái sinh",
-          "Vì phái sinh chỉ ảnh hưởng đến một công ty duy nhất",
-          "Vì các tổ chức tài chính lớn thường là đối tác của nhau trong hàng loạt hợp đồng phái sinh - một tổ chức sụp đổ có thể khiến các đối tác của nó cũng gặp khó khăn theo phản ứng dây chuyền",
-          "Vì phái sinh luôn được chính phủ bảo lãnh"
+          "Vì như vậy bạn phát lại được phần tính toán mà không kích hoạt lại phần gây hiệu ứng",
+          "Vì hai phần đó có yêu cầu về hiệu năng khác nhau nên nên chạy riêng",
+          "Vì phần gây hiệu ứng thường xuyên phụ thuộc vào dịch vụ ngoài nên rốt cuộc hay thất bại hơn",
+          "Vì việc tách ra giúp kiểm thử từng phần một cách độc lập và dễ dàng hơn"
         ],
-        "correct": 2,
-        "explanation": "Mạng lưới đối tác (counterparty network) trong thị trường phái sinh OTC rất chằng chịt - ngân hàng A có hợp đồng với B, B có hợp đồng với C. Nếu A sụp đổ và không thể thực hiện nghĩa vụ, B chịu thiệt hại, có thể kéo theo C - đây chính là cơ chế 'too interconnected to fail' đã xảy ra năm 2008 với AIG và các hợp đồng CDS khổng lồ."
+        "correct": 0,
+        "explanation": "Đây là quyết định thiết kế biến phát lại từ nguy hiểm thành an toàn, và nó phải làm TRƯỚC khi cần phát lại. Ba lợi ích kia đều có thật nhưng chúng là lợi ích phụ."
       },
       {
-        "question": "Sau khủng hoảng tài chính 2008, các quy định như Dodd-Frank Act tại Mỹ yêu cầu nhiều loại phái sinh OTC phải giao dịch qua trung tâm thanh toán bù trừ (central clearing) thay vì song phương trực tiếp. Thay đổi này nhằm giải quyết vấn đề gì đã gây ra khủng hoảng 2008?",
+        "question": "Vì sao nên chạy thử không ghi trước khi phát lại thật?",
         "options": [
-          "Quy định mới chỉ áp dụng cho phái sinh hàng hóa, không liên quan đến CDS",
-          "Central clearing chỉ làm tăng thêm chi phí mà không giải quyết vấn đề gì",
-          "Không liên quan gì đến nguyên nhân khủng hoảng 2008",
-          "Giảm rủi ro lan truyền hệ thống (systemic risk) và rủi ro đối tác không minh bạch - trước 2008, nhiều hợp đồng CDS được giao dịch song phương không qua sàn khiến không ai biết chính xác ai đang gánh rủi ro gì, khi AIG gặp khó khăn, rủi ro lan truyền không kiểm soát được ra toàn hệ thống"
+          "Vì nó cho biết phạm vi ảnh hưởng bằng con số trước khi có gì xảy ra thật",
+          "Vì nó kiểm tra được mã phát lại có lỗi cú pháp hoặc lỗi logic nào không",
+          "Vì nó đo được thời gian mà lượt phát lại thật sẽ cần để hoàn thành",
+          "Vì nó xác nhận các sự kiện cũ vẫn đọc được với phiên bản mã hiện tại"
         ],
-        "correct": 3,
-        "explanation": "Central clearing giải quyết đúng vấn đề cốt lõi đã gây ra khủng hoảng 2008: minh bạch hóa và tập trung hóa rủi ro đối tác qua một trung tâm thanh toán bù trừ giám sát, thay vì mạng lưới hợp đồng song phương chồng chéo, không minh bạch giữa các tổ chức tài chính lớn."
+        "correct": 0,
+        "explanation": "Bao nhiêu bản ghi sẽ đổi, bao nhiêu thư sẽ gửi - hai con số này thường lớn hơn mức người ta ước lượng. Ba lợi ích kia đều có nhưng chúng là kiểm tra kỹ thuật, còn con số phạm vi mới là thứ quyết định có nên chạy không."
+      },
+      {
+        "question": "Vì sao nên phát lại vào phạm vi hẹp trước?",
+        "options": [
+          "Vì sai sót lộ ra trên vài chục bản ghi thay vì trên toàn bộ ba ngày dữ liệu",
+          "Vì phạm vi hẹp giúp việc phát lại hoàn thành nhanh hơn nhiều lần",
+          "Vì hệ thống không chịu được tải của việc phát lại toàn bộ cùng lúc",
+          "Vì thật sự cần có kết quả sớm để có thể báo cáo tiến độ khắc phục sự cố cho tất cả các bên"
+        ],
+        "correct": 0,
+        "explanation": "Đây là nguyên tắc chia nhỏ thay đổi ở chặng triển khai, áp vào một thao tác nguy hiểm. Tải cũng là lý do thật nhưng nó giải được bằng cách giới hạn tốc độ, còn sai sót thì chỉ giải được bằng phạm vi hẹp."
+      },
+      {
+        "question": "Khả năng phát lại đòi hỏi điều gì từ thiết kế ban đầu?",
+        "options": [
+          "Sự kiện phải được giữ lại đủ lâu, và người tiêu thụ phải bất biến khi lặp lại",
+          "Hệ thống hàng đợi phải hỗ trợ tính năng phát lại theo khoảng thời gian",
+          "Mọi sự kiện phải được đánh số thứ tự liên tục để có thể phát lại đúng trình tự",
+          "Cần một hệ thống lưu trữ riêng cho các sự kiện đã được xử lý xong"
+        ],
+        "correct": 0,
+        "explanation": "Hai điều kiện này quyết định bạn có khả năng phát lại hay không, và cả hai đều là quyết định từ đầu. Một hàng đợi xoá tin nhắn ngay sau khi xác nhận thì không phát lại được, bất kể công cụ hỗ trợ gì."
+      },
+      {
+        "question": "Vì sao mười nghìn thư gửi lại tệ hơn sự cố ban đầu?",
+        "options": [
+          "Vì nó không thu hồi được và nó làm hỏng niềm tin của người dùng vào hệ thống",
+          "Vì nó gây quá tải cho dịch vụ gửi thư và đồng thời hoàn toàn có thể làm tài khoản bị chặn",
+          "Vì chi phí gửi thư tăng đột biến vượt quá ngân sách đã dự kiến",
+          "Vì các thư trùng lặp làm hộp thư của khách hàng bị đầy nhanh chóng"
+        ],
+        "correct": 0,
+        "explanation": "Sự cố dữ liệu sửa được; thư đã gửi thì không. Ba lựa chọn kia đều là hậu quả thật nhưng chúng là chi phí đo được, còn niềm tin thì không mua lại được bằng thao tác nào."
       }
     ],
     "keyTakeaways": [
-      "Đòn bẩy cao khuếch đại cả lãi và lỗ trên vốn bỏ ra",
-      "Tính phức tạp của một số phái sinh khiến rủi ro khó định giá và đánh giá chính xác",
-      "Mạng lưới đối tác chằng chịt tạo ra rủi ro lan truyền hệ thống (systemic risk)"
+      "Rủi ro lớn nhất là hiệu ứng phụ chạy lại - chúng đi ra ngoài và không thu hồi được.",
+      "Tách phần tính toán khỏi phần gây hiệu ứng ra ngoài, và tách TRƯỚC khi cần.",
+      "Chạy thử không ghi để biết phạm vi bằng con số trước khi có gì xảy ra thật.",
+      "Phát lại vào phạm vi hẹp trước - sai sót lộ trên vài chục thay vì trên ba ngày.",
+      "Khả năng phát lại đòi sự kiện được giữ đủ lâu và người tiêu thụ bất biến."
     ],
     "practicePrompt": {
-      "question": "Vụ sụp đổ của Barings Bank (1995) liên quan đến một nhân viên giao dịch phái sinh dùng đòn bẩy rất cao, đặt cược sai hướng thị trường, gây thiệt hại vượt xa vốn tự có của ngân hàng. Vì sao phái sinh với đòn bẩy cao lại nguy hiểm đến mức có thể phá sản cả một tổ chức tài chính lớn?",
+      "question": "Bạn cần phát lại nhưng người tiêu thụ vừa tính toán vừa gửi thư. Nên làm gì?",
       "options": [
-        "Vì phái sinh luôn là công cụ lừa đảo, không có giá trị kinh tế thực sự nào trong mọi trường hợp",
-        "Đòn bẩy cao khuếch đại cả lãi lẫn lỗ trên số vốn tự có thực tế, đủ sức xóa sổ toàn bộ vốn tổ chức",
-        "Vì phái sinh chỉ nguy hiểm khi được giao dịch bởi các ngân hàng nhỏ, không áp dụng cho tổ chức tài chính lớn",
-        "Đòn bẩy trong phái sinh chỉ khuếch đại lợi nhuận, không có tác động gì đến rủi ro thua lỗ"
+        "Tách hai phần ra trước, rồi chỉ phát lại phần tính toán",
+        "Tạm tắt dịch vụ gửi thư trong lúc phát lại rồi bật lại sau khi xong",
+        "Phát lại vào giờ thấp điểm để hạn chế số người dùng bị ảnh hưởng",
+        "Chấp nhận gửi lại thư và thông báo trước cho khách hàng về việc này"
       ],
-      "correct": 1,
-      "explanation": "Đòn bẩy cao khuếch đại cả lãi và lỗ trên vốn bỏ ra. Đây là một trong những lý do phái sinh nguy hiểm: tính phức tạp khiến rủi ro khó định giá chính xác, và mạng lưới đối tác chằng chịt có thể tạo ra rủi ro lan truyền hệ thống (systemic risk) khi một tổ chức lớn sụp đổ."
+      "correct": 0,
+      "explanation": "Tạm tắt dịch vụ gửi thư nghe nhanh hơn nhưng nó làm mất cả những thư của luồng bình thường đang chạy song song. Tách hai phần tốn công hơn nhưng nó là thứ bạn cần lần sau nữa, và lần sau nữa."
     },
     "summary": {
-      "keyIdea": "Đòn bẩy cao khuếch đại cả lãi và lỗ trên vốn bỏ ra",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Tính phức tạp của một số phái sinh khiến rủi ro khó định giá và đánh giá chính xác"
+      "keyIdea": "Công cụ mạnh nhất và dễ gây hại nhất - vì hiệu ứng phụ không thu hồi được.",
+      "formula": "Tách hiệu ứng phụ → chạy thử không ghi → phạm vi hẹp → mở rộng dần.",
+      "commonMistake": "Phát lại mà không hỏi hiệu ứng phụ có chạy lại hay không.",
+      "action": "Kiểm xem người tiêu thụ của bạn có tách phần gây hiệu ứng ra ngoài không."
     },
     "application": {
-      "title": "Tìm hiểu một vụ sụp đổ liên quan đến phái sinh",
-      "message": "Tra cứu nhanh một trường hợp thực tế (như khủng hoảng 2008 hoặc một quỹ đầu cơ sụp đổ) và xác định yếu tố nào trong ba yếu tố đòn bẩy, phức tạp, rủi ro hệ thống đóng vai trò chính.",
-      "secondary": "Học từ ví dụ thực tế giúp bạn nhớ rủi ro phái sinh lâu hơn lý thuyết suông."
+      "title": "Làm ngay hôm nay",
+      "message": "Với mỗi người tiêu thụ, hỏi: nếu tôi phát lại các sự kiện của tuần trước ngay bây giờ, chuyện gì sẽ xảy ra ở bên ngoài hệ thống?",
+      "secondary": "Nếu câu trả lời có chứa từ gửi, thanh toán hay thông báo, đó là chỗ cần tách phần tính toán khỏi phần gây hiệu ứng - và tách trước khi bạn cần phát lại, không phải lúc đang cần."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Cùng một công cụ giúp hãng hàng không ổn định chi phí dầu cũng có thể làm sụp đổ một ngân hàng lâu đời hàng trăm năm chỉ trong vài tuần. Ba yếu tố khiến phái sinh nguy hiểm: đòn bẩy, tính phức tạp, và rủi ro lan truyền hệ thống."
+        "text": "Phát lại là công cụ mạnh nhất trong hệ thống bất đồng bộ: nó cứu bạn sau một sự cố dữ liệu. Nó cũng là công cụ dễ gây hại nhất, và lý do rất cụ thể."
       },
       {
         "type": "heading",
-        "text": "Đòn bẩy khuếch đại thua lỗ nhanh hơn tưởng tượng"
+        "text": "Rủi ro chính"
       },
       {
-        "type": "paragraph",
-        "text": "Quỹ đầu cơ LTCM (Long-Term Capital Management), với đội ngũ gồm 2 nhà kinh tế học đoạt giải Nobel, đã sụp đổ năm 1998 do sử dụng đòn bẩy cực cao trên các vị thế phái sinh, suýt gây khủng hoảng hệ thống tài chính toàn cầu, buộc Fed phải can thiệp giải cứu. Ngay cả những bộ óc tài chính giỏi nhất cũng có thể sụp đổ khi đòn bẩy quá lớn gặp một cú sốc thị trường bất ngờ."
-      },
-      {
-        "type": "heading",
-        "text": "'Too interconnected to fail'"
-      },
-      {
-        "type": "paragraph",
-        "text": "Các tổ chức tài chính lớn thường là đối tác của nhau trong hàng loạt hợp đồng phái sinh - ngân hàng A có hợp đồng với B, B có hợp đồng với C. Nếu A sụp đổ và không thể thực hiện nghĩa vụ, B chịu thiệt hại, có thể kéo theo C. Đây chính là cơ chế đã xảy ra năm 2008 với AIG và các hợp đồng CDS khổng lồ - trước đó, nhiều CDS giao dịch song phương không qua sàn khiến không ai biết chính xác ai đang gánh rủi ro gì."
+        "type": "callout",
+        "label": "Hiệu ứng phụ không thu hồi được",
+        "text": "Sự cố dữ liệu thì sửa được. Mười nghìn thư gửi lại cho khách hàng thì không - và nó làm hỏng niềm tin nhiều hơn cả sự cố ban đầu. Đây là khác biệt giữa một thao tác khôi phục và một sự cố thứ hai."
       },
       {
         "type": "heading",
-        "text": "Central clearing: giải pháp hậu khủng hoảng"
+        "text": "Quyết định làm cho phát lại an toàn"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Người tiêu thụ trộn lẫn",
+          "text": "Vừa tính toán vừa gửi thư trong cùng một hàm. Phát lại thì cả hai chạy, và bạn không tách được."
+        },
+        "right": {
+          "label": "Người tiêu thụ tách lớp",
+          "text": "Phần tính toán riêng, phần gây hiệu ứng ra ngoài riêng. Bạn phát lại được phần tính toán mà không kích hoạt phần kia."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Sau 2008, các quy định như Dodd-Frank Act tại Mỹ yêu cầu nhiều loại phái sinh OTC phải giao dịch qua trung tâm thanh toán bù trừ (central clearing) thay vì song phương trực tiếp. Thay đổi này minh bạch hóa và tập trung hóa rủi ro đối tác qua một trung tâm giám sát, thay vì mạng lưới hợp đồng song phương chồng chéo, không minh bạch giữa các tổ chức tài chính lớn."
+        "text": "Quyết định này phải làm TRƯỚC khi cần phát lại. Lúc đang có sự cố và cần dọn dữ liệu thì bạn không có thời gian tái cấu trúc - và cách nhanh là tạm tắt dịch vụ gửi thư, thứ làm mất cả những thư của luồng bình thường đang chạy song song."
+      },
+      {
+        "type": "heading",
+        "text": "Quy trình"
       },
       {
         "type": "list",
         "items": [
-          "Đòn bẩy cao khuếch đại cả lãi và lỗ trên vốn bỏ ra",
-          "Một số phái sinh có cấu trúc lồng ghép (như CDO) khó định giá chính xác",
-          "Mạng lưới đối tác chằng chịt tạo ra rủi ro lan truyền hệ thống (systemic risk)",
-          "Central clearing sau 2008 nhằm minh bạch hóa rủi ro đối tác trong thị trường OTC"
+          "Chạy thử KHÔNG GHI: chỉ tính toán và ghi ra kết quả dự kiến. Nó cho biết bao nhiêu bản ghi sẽ đổi và bao nhiêu thư sẽ gửi - hai con số thường lớn hơn ước lượng.",
+          "Phát lại vào phạm vi HẸP trước: một khách hàng, một giờ. Sai sót lộ ra trên vài chục bản ghi thay vì trên ba ngày.",
+          "Mở rộng dần, và giới hạn tốc độ để không tạo ra một đợt tải đột ngột."
+        ]
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Và nhớ điều kiện để có khả năng này: sự kiện phải được giữ lại đủ lâu, và người tiêu thụ phải bất biến khi lặp lại. Một hàng đợi xoá tin nhắn ngay sau khi xác nhận thì không phát lại được, bất kể công cụ hỗ trợ gì.",
+          "Bài sau là một case đi qua đủ những thứ chặng này đã nói."
         ]
       }
     ]
   },
   {
     "id": 196,
-    "slug": "case-hang-hang-khong-phong-ho-gia-dau",
-    "title": "Tự học Tài chính Day 196: Case nhỏ - Hãng hàng không phòng hộ giá dầu",
-    "subtitle": "Áp dụng thực tế: xây dựng chiến lược hedging cho chi phí nhiên liệu",
-    "duration": "7 phút",
-    "difficulty": "Khó",
-    "emoji": "🏢",
-    "openingQuestion": "Một hãng hàng không dự kiến tiêu thụ 10 triệu thùng dầu trong năm tới, giá hiện tại 70 USD/thùng. CFO lo giá có thể tăng lên 90 USD. Chiến lược hedging nào hợp lý?",
+    "slug": "hang-doi-uu-tien-va-cach-ly",
+    "title": "Hàng đợi ưu tiên và cách ly",
+    "subtitle": "Một loại việc chậm không nên làm chậm mọi loại việc còn lại.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "🚦",
+    "isFundamental": false,
+    "whyItMatters": "Dùng chung một hàng đợi cho mọi việc là mặc định dễ nhất, và nó tạo ra một điểm hỏng chung mà không ai chọn một cách có ý thức.",
+    "openingQuestion": "Việc gửi thư quảng cáo và việc xử lý thanh toán nên nằm chung một hàng đợi không?",
     "openingOptions": [
-      "Mua futures dầu để khóa một phần chi phí",
-      "Không làm gì, chấp nhận rủi ro hoàn toàn",
-      "Tăng giá vé máy bay ngay lập tức để bù trừ trước",
-      "Bán khống cổ phiếu các công ty dầu khí"
+      "Không - một đợt thư lớn sẽ đẩy thanh toán ra sau và người dùng chờ mà không rõ vì sao",
+      "Có, nếu đặt mức ưu tiên khác nhau thì hệ thống tự xử lý thanh toán trước",
+      "Có, vì dùng chung giúp giảm số lượng hạ tầng cần vận hành và theo dõi",
+      "Tuỳ vào khối lượng, vì với khối lượng nhỏ thì chung hay riêng đều hoàn toàn không khác nhau"
     ],
     "correctOption": 0,
-    "explanation": "Chiến lược thực tế: hãng hàng không thường hedge một tỷ lệ nhất định (ví dụ 50-70%) nhu cầu nhiên liệu dự kiến bằng futures hoặc call option dầu, không hedge 100% để vẫn có thể hưởng lợi phần nào nếu giá giảm. Đây là bài toán cân bằng giữa chắc chắn về chi phí và giữ lại một phần linh hoạt.",
+    "explanation": "Đây là cách ly tài nguyên áp vào hàng đợi, và cách rẻ nhất để làm là tách hàng đợi chứ không phải đặt mức ưu tiên. Mức ưu tiên trong cùng một hàng đợi vẫn dùng chung nhóm người tiêu thụ, nên một loạt việc chậm vẫn chiếm hết chỗ - ưu tiên quyết định thứ tự LẤY tin nhắn, không giải phóng người tiêu thụ đang bận.",
     "diagram": [
       {
-        "label": "Hãng bay dự báo nhu cầu nhiên liệu",
+        "label": "Tách hàng đợi theo loại việc, không đặt mức ưu tiên",
         "arrow": true
       },
       {
-        "label": "Hedge 50-70% bằng futures/option dầu",
+        "label": "Ưu tiên quyết định thứ tự LẤY, không giải phóng người bận",
         "arrow": true
       },
       {
-        "label": "Vẫn hưởng lợi một phần nếu giá giảm"
+        "label": "Người tiêu thụ riêng cho mỗi hàng đợi mới là cách ly thật",
+        "arrow": true
+      },
+      {
+        "label": "Đổi lại: nhiều thứ phải vận hành và theo dõi hơn"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Delta Air Lines",
-      "description": "Delta Air Lines từng thử nghiệm mua hẳn một nhà máy lọc dầu (Trainer Refinery) năm 2012 để kiểm soát trực tiếp chi phí nhiên liệu - một hình thức 'hedging tự nhiên' cực đoan thay vì chỉ dùng phái sinh tài chính."
+      "company": "Một khách hàng lớn chiếm hết chỗ",
+      "description": "Một khách hàng nhập một triệu bản ghi sẽ đẩy mọi khách hàng khác ra sau nếu dùng chung hàng đợi. Cách chữa là một hàng đợi riêng cho việc nhập theo lô, hoặc giới hạn số tin nhắn mỗi khách hàng được xử lý cùng lúc."
     },
     "quiz": [
       {
-        "question": "Vì sao hãng hàng không thường không hedge 100% nhu cầu nhiên liệu?",
+        "question": "Vì sao mức ưu tiên trong cùng một hàng đợi không đủ để cách ly?",
         "options": [
-          "Vì phái sinh dầu không đủ thanh khoản cho khối lượng lớn",
-          "Vì nếu giá dầu giảm mạnh, hedge 100% sẽ khiến công ty mất hoàn toàn lợi thế chi phí so với đối thủ không hedge hoặc hedge ít hơn - cần cân bằng giữa an toàn và cạnh tranh",
-          "Vì luật pháp cấm hedge toàn bộ",
-          "Vì chi phí hedge 100% luôn quá đắt so với ngân sách"
+          "Vì ưu tiên quyết định thứ tự lấy tin nhắn, không giải phóng người tiêu thụ đang bận",
+          "Vì hầu hết các hệ thống hàng đợi hoàn toàn không hỗ trợ nhiều hơn hai mức ưu tiên",
+          "Vì việc sắp xếp theo ưu tiên làm giảm thông lượng tổng thể của hàng đợi",
+          "Vì các tin nhắn ưu tiên thấp có thể không bao giờ được xử lý tới"
         ],
-        "correct": 1,
-        "explanation": "Hedging là con dao hai lưỡi: nếu hedge toàn bộ ở giá cao và sau đó giá thị trường giảm mạnh, đối thủ không hedge sẽ có lợi thế chi phí lớn hơn. Vì vậy các hãng hàng không thường chỉ hedge một phần, cân bằng giữa bảo vệ khỏi rủi ro tăng giá và không bị bất lợi cạnh tranh nếu giá giảm."
+        "correct": 0,
+        "explanation": "Mười người tiêu thụ đang bận với mười việc chậm thì tin nhắn ưu tiên cao vẫn phải chờ họ xong. Lựa chọn cuối cũng là vấn đề thật của ưu tiên nhưng nó khác - đó là chuyện đói tài nguyên, không phải chuyện cách ly."
       },
       {
-        "question": "Nếu hãng hàng không trong case này đã hedge 60% nhu cầu nhiên liệu ở giá 70 USD/thùng, nhưng giá dầu sau đó tăng vọt lên 120 USD/thùng, họ có lợi thế cạnh tranh gì so với đối thủ không hedge?",
+        "question": "Cách cách ly rẻ nhất là gì?",
         "options": [
-          "Không có lợi thế gì vì vẫn phải mua 40% còn lại ở giá cao",
-          "Đối thủ không hedge sẽ luôn có lợi thế hơn trong mọi tình huống giá dầu",
-          "Có lợi thế chi phí đáng kể - chi phí nhiên liệu trung bình của họ sẽ thấp hơn nhiều so với đối thủ hoàn toàn không hedge, đặc biệt quan trọng trong ngành hàng không có biên lợi nhuận mỏng, giúp họ duy trì khả năng cạnh tranh về giá vé hoặc lợi nhuận tốt hơn trong giai đoạn giá dầu tăng cao",
-          "Hedging chỉ có tác dụng khi giá dầu giảm, không có tác dụng khi giá dầu tăng"
+          "Tách hàng đợi theo loại việc và cho mỗi hàng đợi một nhóm người tiêu thụ riêng",
+          "Đặt mức ưu tiên khác nhau cho từng loại công việc trong cùng một hệ thống hàng đợi",
+          "Tăng số lượng phía người tiêu thụ để có thể luôn có người rảnh cho việc quan trọng",
+          "Giới hạn thời gian xử lý tối đa của mỗi tin nhắn để có thể tránh chiếm chỗ quá lâu"
         ],
-        "correct": 2,
-        "explanation": "Đây chính là kịch bản mà hedging phát huy tác dụng rõ ràng nhất: khi giá nguyên liệu tăng vọt đúng như lo ngại ban đầu, phần đã hedge giúp doanh nghiệp tránh được cú sốc chi phí toàn phần, tạo lợi thế cạnh tranh thực sự so với đối thủ không có chiến lược phòng hộ."
+        "correct": 0,
+        "explanation": "Chữ NGƯỜI TIÊU THỤ RIÊNG là phần làm nên cách ly; tách hàng đợi mà dùng chung nhóm người tiêu thụ thì bạn quay về tình trạng cũ. Tăng số người tiêu thụ chỉ dời ngưỡng vỡ chứ không cách ly."
+      },
+      {
+        "question": "Một khách hàng nhập một triệu bản ghi. Cách chữa nào phù hợp?",
+        "options": [
+          "Một hàng đợi riêng cho việc nhập theo lô, hoặc giới hạn số việc mỗi khách hàng",
+          "Tăng số người tiêu thụ trong khoảng thời gian khách hàng đó thực hiện nhập",
+          "Đặt mức ưu tiên thấp cho các tin nhắn thuộc về công việc nhập theo lô",
+          "Chia nhỏ việc nhập thành nhiều đợt và yêu cầu khách hàng chạy tuần tự"
+        ],
+        "correct": 0,
+        "explanation": "Hai cách nêu ra là hai hình thức của cùng một ý: giới hạn phần tài nguyên mà một nguồn được chiếm. Đặt ưu tiên thấp không giải quyết vì người tiêu thụ vẫn bận với chúng khi hàng đợi không còn việc ưu tiên cao."
+      },
+      {
+        "question": "Cái giá của việc tách nhiều hàng đợi là gì?",
+        "options": [
+          "Nhiều thứ phải vận hành, theo dõi và đặt cảnh báo hơn so với một hàng đợi chung",
+          "Tổng chi phí hạ tầng tăng lên theo số lượng hàng đợi được tạo ra",
+          "Các tin nhắn ở những hệ thống hàng đợi khác nhau không còn giữ được thứ tự tương đối",
+          "Việc điều phối giữa các hàng đợi đòi hỏi thêm một thành phần trung gian"
+        ],
+        "correct": 0,
+        "explanation": "Đây là cái giá thật và nó là lý do không nên tách quá tay: tách theo mỗi loại việc thì bạn có ba mươi hàng đợi cần ba mươi bảng theo dõi. Tách theo mức độ ảnh hưởng khi hỏng thì thường chỉ ra ba hoặc bốn."
+      },
+      {
+        "question": "Nên tách hàng đợi theo tiêu chí nào?",
+        "options": [
+          "Theo mức độ ảnh hưởng khi hỏng, vì nó thường gom lại chỉ còn ba hoặc bốn nhóm",
+          "Theo loại công việc, vì mỗi loại có đặc điểm xử lý và thời gian khác nhau",
+          "Theo đội chịu trách nhiệm, vì như vậy mỗi đội tự quản lý phần của mình",
+          "Theo khối lượng dự kiến, để những việc nhiều được tách khỏi những việc ít"
+        ],
+        "correct": 0,
+        "explanation": "Tách theo loại việc là mặc định dễ nghĩ nhất và nó dẫn tới quá nhiều hàng đợi. Câu hỏi đúng là cái gì không được chậm khi cái khác chậm - và câu đó thường gom hai mươi loại việc lại thành ba nhóm."
       }
     ],
     "keyTakeaways": [
-      "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%",
-      "Cần cân bằng giữa sự chắc chắn về chi phí và lợi thế cạnh tranh nếu giá biến động có lợi",
-      "Chiến lược hedging tốt là một phần của chiến lược cạnh tranh tổng thể, không chỉ là quyết định tài chính đơn thuần"
+      "Ưu tiên quyết định thứ tự LẤY tin nhắn - nó không giải phóng người tiêu thụ đang bận.",
+      "Cách ly thật là hàng đợi riêng CỘNG nhóm người tiêu thụ riêng.",
+      "Một khách hàng lớn chiếm hết chỗ - giới hạn phần tài nguyên mỗi nguồn được chiếm.",
+      "Cái giá: nhiều thứ phải vận hành, theo dõi và đặt cảnh báo hơn.",
+      "Tách theo MỨC ẢNH HƯỞNG khi hỏng, không theo loại việc - thường ra ba hoặc bốn nhóm."
     ],
     "practicePrompt": {
-      "question": "Một hãng hàng không dự kiến tiêu thụ 100 triệu lít nhiên liệu trong năm tới, nhưng chỉ ký hợp đồng phòng hộ giá dầu (hedging) cho 60 triệu lít, để lại 40 triệu lít chịu rủi ro biến động giá thị trường. Vì sao hãng không hedging toàn bộ 100%?",
+      "question": "Bạn có hai mươi loại công việc chạy nền. Nên tách thành bao nhiêu hàng đợi?",
       "options": [
-        "Đây là sai lầm quản trị rủi ro, hãng hàng không nên luôn hedging 100% nhu cầu nhiên liệu để loại bỏ hoàn toàn rủi ro",
-        "Hedging trong thực tế thường chỉ áp dụng cho một phần nhu cầu nhiên liệu, không phải toàn bộ 100%",
-        "Hãng hàng không không hedging toàn bộ vì hedging phái sinh dầu mỏ là bất hợp pháp ở một số quốc gia",
-        "Tỷ lệ hedging không quan trọng, chỉ cần có hedging là đủ để bảo vệ hoàn toàn khỏi biến động giá"
+        "Ba hoặc bốn, gom theo cái gì không được chậm khi cái khác chậm",
+        "Hai mươi, mỗi loại việc một hàng đợi riêng để cách ly hoàn toàn giữa chúng với nhau",
+        "Một, vì với hai mươi loại thì chi phí vận hành nhiều hàng đợi quá lớn",
+        "Mười, gom tất cả các loại công việc có thời gian xử lý tương tự nhau vào chung một chỗ"
       ],
-      "correct": 1,
-      "explanation": "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%. Cần cân bằng giữa sự chắc chắn về chi phí và lợi thế cạnh tranh nếu giá biến động có lợi - chiến lược hedging tốt là một phần của chiến lược cạnh tranh tổng thể, không chỉ là quyết định tài chính đơn thuần."
+      "correct": 0,
+      "explanation": "Hai mươi hàng đợi cần hai mươi bảng theo dõi và hai mươi bộ cảnh báo, và phần lớn trong đó không bao giờ được nhìn tới. Gom theo thời gian xử lý nghe hợp lý nhưng nó không phải tiêu chí quyết định thiệt hại khi hỏng."
     },
     "summary": {
-      "keyIdea": "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu, không phải 100%",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Cần cân bằng giữa sự chắc chắn về chi phí và lợi thế cạnh tranh nếu giá biến động có lợi"
+      "keyIdea": "Cách ly tài nguyên áp vào hàng đợi, và tách hàng đợi là cách rẻ nhất.",
+      "formula": "Hàng đợi riêng + người tiêu thụ riêng, gom theo mức ảnh hưởng khi hỏng.",
+      "commonMistake": "Đặt mức ưu tiên và tưởng đã cách ly, trong khi vẫn dùng chung người tiêu thụ.",
+      "action": "Liệt kê các loại việc chạy nền và hỏi cái nào không được chậm vì cái nào."
     },
     "application": {
-      "title": "Tự thiết kế tỷ lệ hedging",
-      "message": "Giả sử bạn là CFO một hãng hàng không, quyết định xem sẽ hedge bao nhiêu phần trăm nhu cầu nhiên liệu năm tới (ví dụ 50% hay 70%) và giải thích lý do không chọn hedge 100%.",
-      "secondary": "Không có đáp án đúng tuyệt đối - mục tiêu là luyện tư duy đánh đổi rủi ro."
+      "title": "Làm ngay hôm nay",
+      "message": "Liệt kê các loại công việc chạy nền của bạn và hỏi từng cặp: nếu cái này chậm, cái kia có được phép chậm theo không?",
+      "secondary": "Các cặp trả lời không phải nằm ở hàng đợi khác nhau. Danh sách này thường gom lại còn ba hoặc bốn nhóm, ít hơn nhiều so với số loại việc."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Hãy hình dung một hãng hàng không đang lập kế hoạch ngân sách năm sau, biết chắc mình sẽ cần một lượng nhiên liệu khổng lồ nhưng không biết giá dầu sẽ đi đâu. Chiến lược thực tế: hedge một tỷ lệ nhất định của nhu cầu dự kiến, không hedge toàn bộ."
+        "text": "Dùng chung một hàng đợi cho mọi việc là mặc định dễ nhất, và nó tạo ra một điểm hỏng chung mà không ai chọn một cách có ý thức."
       },
       {
         "type": "heading",
-        "text": "Vì sao không hedge 100%"
+        "text": "Vì sao mức ưu tiên không đủ"
       },
       {
-        "type": "paragraph",
-        "text": "Nếu hedge toàn bộ nhu cầu ở một mức giá cố định và sau đó giá dầu giảm mạnh, công ty sẽ mất hoàn toàn lợi thế chi phí so với đối thủ không hedge hoặc hedge ít hơn. Vì vậy các hãng hàng không thường chỉ hedge 50-70% nhu cầu bằng futures hoặc call option dầu, giữ lại phần còn lại để vẫn có thể hưởng lợi nếu giá giảm - một bài toán cân bằng giữa chắc chắn về chi phí và giữ lại sự linh hoạt cạnh tranh."
-      },
-      {
-        "type": "heading",
-        "text": "Kịch bản giá tăng: hedging phát huy tác dụng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Giả sử hãng hàng không đã hedge 60% nhu cầu nhiên liệu ở giá 70 USD/thùng, nhưng giá dầu sau đó tăng vọt lên 120 USD/thùng. Chi phí nhiên liệu trung bình của họ sẽ thấp hơn nhiều so với đối thủ hoàn toàn không hedge - đặc biệt quan trọng trong ngành hàng không có biên lợi nhuận mỏng, giúp họ duy trì khả năng cạnh tranh về giá vé hoặc lợi nhuận tốt hơn trong giai đoạn giá dầu tăng cao."
+        "type": "callout",
+        "label": "Ưu tiên quyết định thứ tự LẤY",
+        "text": "Nó không giải phóng người tiêu thụ đang bận. Mười người tiêu thụ đang xử lý mười việc chậm thì tin nhắn ưu tiên cao vẫn phải chờ họ xong - và trong lúc đó bảng theo dõi vẫn báo hàng đợi hoạt động bình thường."
       },
       {
         "type": "heading",
-        "text": "Hedging tự nhiên: một hướng đi khác"
+        "text": "Cách ly thật"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đủ",
+          "text": "Hàng đợi riêng CỘNG nhóm người tiêu thụ riêng. Việc chậm ở nhóm này không chiếm tài nguyên của nhóm kia."
+        },
+        "right": {
+          "label": "Chưa đủ",
+          "text": "Tách hàng đợi mà dùng chung nhóm người tiêu thụ. Bạn quay về đúng tình trạng cũ, chỉ khác là bảng theo dõi trông đẹp hơn."
+        }
       },
       {
         "type": "paragraph",
-        "text": "Delta Air Lines từng thử nghiệm mua hẳn một nhà máy lọc dầu (Trainer Refinery) năm 2012 để kiểm soát trực tiếp chi phí nhiên liệu - một hình thức 'hedging tự nhiên' cực đoan thay vì chỉ dùng phái sinh tài chính, cho thấy hedging không chỉ giới hạn ở futures và option."
+        "text": "Một biến thể của cùng bài toán: một khách hàng nhập một triệu bản ghi sẽ đẩy mọi khách hàng khác ra sau. Cách chữa là hàng đợi riêng cho việc nhập theo lô, hoặc giới hạn số tin nhắn mỗi khách hàng được xử lý cùng lúc - hai hình thức của cùng một ý về giới hạn phần tài nguyên mỗi nguồn được chiếm."
       },
       {
-        "type": "list",
-        "items": [
-          "Hedging thực tế thường chỉ áp dụng cho một tỷ lệ nhu cầu (ví dụ 50-70%), không phải 100%",
-          "Hedge toàn bộ ở giá cao có thể tạo bất lợi cạnh tranh nếu giá sau đó giảm mạnh",
-          "Khi giá tăng đúng như lo ngại, phần đã hedge tạo lợi thế chi phí rõ rệt",
-          "Chiến lược hedging là một phần của chiến lược cạnh tranh tổng thể, không chỉ là quyết định tài chính đơn thuần"
+        "type": "heading",
+        "text": "Đừng tách quá tay"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mỗi hàng đợi là một thứ phải vận hành, theo dõi và đặt cảnh báo. Hai mươi loại việc thành hai mươi hàng đợi nghĩa là hai mươi bảng theo dõi, và phần lớn trong đó không bao giờ được nhìn tới."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Câu hỏi đúng không phải có bao nhiêu loại việc mà là: cái gì không được chậm khi cái khác chậm. Câu đó thường gom hai mươi loại việc lại thành ba hoặc bốn nhóm.",
+          "Bài sau là một case đi qua đúng những thứ chặng này đã nói."
         ]
       }
     ]
   },
   {
     "id": 197,
-    "slug": "case-xuat-khau-phong-ho-ty-gia",
-    "title": "Tự học Tài chính Day 197: Case nhỏ - Doanh nghiệp xuất khẩu phòng hộ tỷ giá",
-    "subtitle": "Áp dụng thực tế: bảo vệ doanh thu xuất khẩu khỏi biến động tỷ giá",
+    "slug": "case-mot-hang-doi-bi-ton-dong",
+    "title": "Case - một hàng đợi bị tồn đọng",
+    "subtitle": "Đi qua một sự cố thật, từ cảnh báo đầu tiên tới biên bản.",
     "duration": "7 phút",
-    "difficulty": "Khó",
-    "emoji": "🏢",
-    "openingQuestion": "Doanh nghiệp Việt Nam xuất khẩu hàng sang Mỹ, sẽ nhận 1 triệu USD sau 3 tháng. Tỷ giá hiện tại 25.000 VND/USD nhưng có thể biến động. Công cụ nào giúp khóa tỷ giá?",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "🔎",
+    "isFundamental": false,
+    "whyItMatters": "Các bài trước là từng mảnh; case này cho thấy chúng ghép lại thế nào dưới áp lực thời gian, khi bạn chưa biết nguyên nhân.",
+    "openingQuestion": "Cảnh báo báo tồn đọng tăng. Việc đầu tiên nên làm là gì?",
     "openingOptions": [
-      "Chờ đến khi nhận tiền mới đổi sang VND",
-      "Chuyển sang bán hàng bằng VND ngay lập tức",
-      "Không có công cụ nào giúp được",
-      "Ký forward bán USD ở tỷ giá cố định"
+      "Xem tồn đọng tăng vì nhà sản xuất nhiều lên hay vì người tiêu thụ chậm đi",
+      "Tăng số người tiêu thụ ngay để có thể bắt đầu giảm tồn đọng trong lúc điều tra",
+      "Xem nhật ký của người tiêu thụ để tìm lỗi nào đang xảy ra nhiều nhất",
+      "Thông báo cho các bên liên quan biết hệ thống đang có sự cố xử lý"
     ],
-    "correctOption": 3,
-    "explanation": "Doanh nghiệp xuất khẩu có 'long' exposure với USD (sẽ nhận USD trong tương lai) nhưng chi phí hoạt động bằng VND - rủi ro là VND tăng giá (USD giảm giá) làm giảm giá trị quy đổi. Ký forward bán USD lấy VND ở tỷ giá cố định ngay hôm nay loại bỏ hoàn toàn sự bất định này, dù tỷ giá thị trường sau đó tăng hay giảm.",
+    "correctOption": 0,
+    "explanation": "Hai nguyên nhân này nhìn giống hệt nhau trên biểu đồ tồn đọng và cần hai hành động ngược nhau. Nhà sản xuất tăng thì thêm người tiêu thụ là đúng; người tiêu thụ chậm đi thì thêm người tiêu thụ dồn thêm tải vào chỗ đang yếu. Câu hỏi này trả lời được trong ba mươi giây nếu có biểu đồ tốc độ vào và tốc độ ra.",
     "diagram": [
       {
-        "label": "DN xuất khẩu sẽ nhận USD tương lai",
+        "label": "Tốc độ VÀO và tốc độ RA - hai đường trên một biểu đồ",
         "arrow": true
       },
       {
-        "label": "Chi phí hoạt động bằng VND",
+        "label": "Vào phẳng, ra giảm → có gì hỏng phía dưới",
         "arrow": true
       },
       {
-        "label": "Ký forward bán USD lấy VND trước",
+        "label": "Giảm tải cho chỗ yếu trước, rồi mới tăng thông lượng",
         "arrow": true
       },
       {
-        "label": "Cố định tỷ giá, tránh rủi ro"
+        "label": "Biên bản: vì sao không ai biết sớm hơn"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Doanh nghiệp dệt may Việt Nam",
-      "description": "Các doanh nghiệp dệt may, thủy sản xuất khẩu Việt Nam thường ký hợp đồng forward tỷ giá với ngân hàng thương mại để khóa tỷ giá quy đổi cho các khoản phải thu USD, bảo vệ biên lợi nhuận đã tính toán khi ký hợp đồng xuất khẩu."
+      "company": "Cảnh báo tới trễ hai giờ",
+      "description": "Trong nhiều sự cố loại này, câu hỏi đáng giá nhất trong biên bản không phải vì sao nó hỏng mà là vì sao không ai biết sớm hơn. Cảnh báo đặt theo số lượng tuyệt đối thường chỉ kêu khi tồn đọng đã lớn - tức là hai giờ sau khi xu hướng đã đổi."
     },
     "quiz": [
       {
-        "question": "Nếu VND giảm giá mạnh so với USD sau khi doanh nghiệp đã ký forward bán USD ở tỷ giá cố định, doanh nghiệp có 'thiệt' không?",
+        "question": "Biểu đồ nào trả lời nhanh nhất câu tồn đọng tăng vì đâu?",
         "options": [
-          "Đúng về mặt cơ hội (opportunity cost), nhưng mục tiêu ban đầu là loại bỏ rủi ro biến động - họ đã đạt được mục tiêu quản trị rủi ro, không phải mục tiêu tối đa hóa lợi nhuận",
-          "Có, họ mất cơ hội thu về nhiều VND hơn nếu không hedge",
-          "Hợp đồng forward sẽ tự động hủy trong trường hợp này",
-          "Ngân hàng phải bồi thường phần chênh lệch"
+          "Tốc độ tin nhắn vào và tốc độ tin nhắn ra vẽ chồng lên nhau trên cùng một trục",
+          "Số lượng tin nhắn còn tồn đọng vẽ theo thời gian trong khoảng hai mươi bốn giờ vừa qua",
+          "Thời gian xử lý trung bình của mỗi tin nhắn đo ở phía người tiêu thụ nhận nó",
+          "Tỷ lệ tin nhắn xử lý thất bại so với tổng số tin nhắn được nhận"
         ],
         "correct": 0,
-        "explanation": "Tương tự case hedging giá dầu: khi đã chọn sự chắc chắn (certainty) thay vì đầu cơ vào biến động tỷ giá có lợi, doanh nghiệp chấp nhận đánh đổi cơ hội tiềm năng để đổi lấy khả năng dự đoán chính xác dòng tiền - đây là bản chất và mục đích của hedging, không phải một sai lầm."
+        "explanation": "Hai đường chồng nhau cho thấy ngay đường nào đổi: vào phẳng mà ra giảm thì có gì hỏng phía dưới. Biểu đồ tồn đọng chỉ cho thấy hiệu số của hai đường đó, nên nó báo có vấn đề mà không nói vấn đề ở đâu."
       },
       {
-        "question": "Nếu doanh nghiệp xuất khẩu trong case này chọn hedge bằng option (mua put option bán USD) thay vì forward contract, điều gì khác biệt về khả năng linh hoạt so với dùng forward?",
+        "question": "Vào phẳng và ra giảm. Điều này nghĩa là gì?",
         "options": [
-          "Option không thể dùng để hedge rủi ro tỷ giá",
-          "Với option, doanh nghiệp có quyền (không nghĩa vụ) bán USD ở tỷ giá đã chọn - nếu tỷ giá thị trường sau đó có lợi hơn, họ có thể không thực hiện quyền và bán theo giá thị trường tốt hơn, linh hoạt hơn forward (nghĩa vụ bắt buộc), nhưng phải trả premium từ đầu",
-          "Option luôn rẻ hơn forward contract trong mọi trường hợp",
-          "Không có sự khác biệt nào giữa hai công cụ"
+          "Có gì đó hỏng ở phía dưới người tiêu thụ, và thêm người tiêu thụ sẽ làm nặng thêm",
+          "Số lượng người tiêu thụ đang hoạt động đã giảm so với mức bình thường",
+          "Các tin nhắn trong đợt này có kích thước lớn hơn nên xử lý lâu hơn",
+          "Hệ thống hàng đợi đang giới hạn tốc độ giao tin nhắn cho người tiêu thụ"
         ],
-        "correct": 1,
-        "explanation": "Đây là sự đánh đổi cốt lõi giữa forward và option đã học: forward miễn phí (không premium) nhưng bắt buộc thực hiện dù bất lợi; option có phí (premium) nhưng linh hoạt hơn - cho phép hưởng lợi nếu thị trường di chuyển có lợi trong khi vẫn được bảo vệ nếu bất lợi."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là những nguyên nhân cụ thể có thể đúng, và tất cả đều nằm trong nhóm phía dưới chậm. Điều quan trọng lúc đó là kết luận về HÀNH ĐỘNG: thêm người tiêu thụ sẽ làm nặng thêm."
+      },
+      {
+        "question": "Thứ tự xử lý đúng khi phía dưới đang yếu là gì?",
+        "options": [
+          "Giảm tải cho chỗ yếu trước, khi nó hồi phục rồi mới tăng thông lượng để giải tồn đọng",
+          "Tăng thông lượng ngay để giảm tồn đọng, rồi xử lý nguyên nhân gốc sau đó",
+          "Tạm dừng người tiêu thụ hoàn toàn cho tới khi mọi thứ ở phía dưới hoạt động bình thường trở lại",
+          "Chuyển toàn bộ các tin nhắn đang tồn đọng sang một hàng đợi khác để xử lý riêng ở đó"
+        ],
+        "correct": 0,
+        "explanation": "Đây là trật tự dễ làm ngược nhất dưới áp lực, vì tồn đọng là con số đang được nhìn nên người ta muốn làm nó giảm ngay. Tạm dừng hoàn toàn thì hiếm khi cần và nó làm tồn đọng xấu đi nhanh hơn."
+      },
+      {
+        "question": "Câu hỏi đáng giá nhất trong biên bản sự cố loại này là gì?",
+        "options": [
+          "Vì sao không ai biết sớm hơn, chứ không phải vì sao nó hỏng",
+          "Ai đã thực hiện thay đổi nào dẫn tới việc phía dưới bị chậm đi",
+          "Làm sao để tăng dung lượng hàng đợi đủ chứa trong các sự cố tương tự",
+          "Có nên tự động tăng số người tiêu thụ khi tồn đọng vượt một ngưỡng không"
+        ],
+        "correct": 0,
+        "explanation": "Nguyên nhân kỹ thuật thường đã rõ khi viết biên bản. Khoảng thời gian từ lúc xu hướng đổi tới lúc có người biết mới là thứ lặp lại ở mọi sự cố sau, và nó sửa được bằng cách đổi cách đặt cảnh báo."
+      },
+      {
+        "question": "Cảnh báo nên đổi thế nào sau sự cố này?",
+        "options": [
+          "Cảnh báo theo tuổi tin nhắn cũ nhất và theo tốc độ tăng, thay vì theo số lượng",
+          "Hạ ngưỡng số lượng tồn đọng xuống thấp hơn để cảnh báo kêu sớm hơn",
+          "Thêm cảnh báo cho tỷ lệ lỗi ở phía dịch vụ nằm dưới người tiêu thụ",
+          "Đặt cảnh báo khi số người tiêu thụ đang hoạt động giảm dưới mức tối thiểu"
+        ],
+        "correct": 0,
+        "explanation": "Hạ ngưỡng số lượng thì kêu sớm hơn một chút nhưng vẫn cùng một khuyết điểm: nó đổi ý nghĩa mỗi khi tốc độ xử lý đổi. Cảnh báo theo tuổi và theo xu hướng thì bắt được lúc xu hướng đổi, không phải lúc hậu quả đã tích tụ."
       }
     ],
     "keyTakeaways": [
-      "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu",
-      "Doanh nghiệp có dòng tiền ngoại tệ tương lai nên xác định rõ exposure trước khi chọn công cụ hedging",
-      "Chấp nhận đánh đổi cơ hội tiềm năng để đổi lấy sự chắc chắn là bản chất của hedging"
+      "Vẽ tốc độ VÀO và tốc độ RA chồng lên nhau - nó trả lời câu vì đâu trong ba mươi giây.",
+      "Vào phẳng, ra giảm nghĩa là phía dưới hỏng - thêm người tiêu thụ làm nặng thêm.",
+      "Giảm tải cho chỗ yếu TRƯỚC, tăng thông lượng SAU. Dễ làm ngược dưới áp lực.",
+      "Câu hỏi đáng giá nhất trong biên bản: vì sao không ai biết sớm hơn.",
+      "Đổi cảnh báo sang tuổi tin nhắn cũ nhất và tốc độ tăng."
     ],
     "practicePrompt": {
-      "question": "Một công ty xuất khẩu Việt Nam sẽ nhận 1 triệu USD từ khách hàng nước ngoài sau 6 tháng, lo ngại VNĐ có thể tăng giá so với USD trong thời gian đó (khiến số VNĐ quy đổi nhận về ít hơn). Công ty nên dùng công cụ phái sinh nào để khóa tỷ giá quy đổi ngay từ bây giờ?",
+      "question": "Tồn đọng đã giải hết. Sự cố kết thúc chưa?",
       "options": [
-        "Công ty nên chờ đến khi nhận được tiền rồi mới quyết định quy đổi theo tỷ giá tại thời điểm đó, không cần công cụ phái sinh nào",
-        "Forward tỷ giá là công cụ phổ biến nhất để hedging rủi ro tỷ giá trong xuất nhập khẩu",
-        "Công ty nên dùng Interest Rate Swap, vì công cụ này giải quyết được mọi loại rủi ro tài chính doanh nghiệp",
-        "Công ty nên mua cổ phiếu của các công ty xuất khẩu khác để phòng hộ rủi ro tỷ giá"
+        "Chưa - còn phải kiểm hàng đợi thư chết, vì phần việc thất bại đã rơi vào đó",
+        "Rồi, vì toàn bộ tin nhắn tồn đọng đã được xử lý và hệ thống trở lại bình thường",
+        "Chưa, phải chờ theo dõi thêm vài giờ để chắc chắn tồn đọng không tăng lại",
+        "Rồi, nhưng cần viết biên bản sự cố trong vòng vài ngày làm việc tới"
       ],
-      "correct": 1,
-      "explanation": "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu. Doanh nghiệp có dòng tiền ngoại tệ tương lai nên xác định rõ exposure trước khi chọn công cụ hedging - chấp nhận đánh đổi cơ hội tiềm năng (nếu tỷ giá biến động có lợi) để đổi lấy sự chắc chắn là bản chất của hedging."
+      "correct": 0,
+      "explanation": "Trong lúc phía dưới yếu, một phần tin nhắn đã hết số lần thử và rơi vào hàng đợi thư chết. Chúng không nằm trong con số tồn đọng nữa, nên bảng theo dõi xanh hoàn toàn trong khi vẫn còn việc chưa được làm."
     },
     "summary": {
-      "keyIdea": "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Doanh nghiệp có dòng tiền ngoại tệ tương lai nên xác định rõ exposure trước khi chọn công cụ hedging"
+      "keyIdea": "Phân biệt nguyên nhân trước khi hành động - hai nguyên nhân cần hai hành động ngược.",
+      "formula": "Vào và ra chồng nhau → tìm đường nào đổi → giảm tải chỗ yếu → mới tăng thông lượng.",
+      "commonMistake": "Tăng người tiêu thụ ngay, dồn thêm tải vào đúng chỗ đang yếu.",
+      "action": "Kiểm xem bạn có biểu đồ tốc độ vào và tốc độ ra chồng nhau không."
     },
     "application": {
-      "title": "Tính thử một hợp đồng forward tỷ giá",
-      "message": "Giả sử doanh nghiệp sẽ nhận 100.000 USD sau 6 tháng, ký forward bán USD lấy VND ở tỷ giá cố định hôm nay - tự tính số VND nhận được chắc chắn dù tỷ giá thị trường sau đó biến động ra sao.",
-      "secondary": "Phép tính đơn giản này thể hiện đúng bản chất loại bỏ bất định của hedging."
+      "title": "Làm ngay hôm nay",
+      "message": "Kiểm xem bảng theo dõi của bạn có biểu đồ tốc độ vào và tốc độ ra vẽ chồng lên nhau không. Nếu chỉ có biểu đồ tồn đọng, bạn đang nhìn hiệu số mà không nhìn được hai số hạng.",
+      "secondary": "Và thêm một bước vào quy trình đóng sự cố hàng đợi: kiểm hàng đợi thư chết. Phần việc thất bại trong lúc sự cố nằm ở đó, và nó không xuất hiện trong con số tồn đọng."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Một doanh nghiệp xuất khẩu ký hợp đồng bán hàng, sẽ nhận USD sau vài tháng - họ đang ở vị thế 'long' USD trong tương lai, nhưng chi phí hoạt động lại bằng VND. **Rủi ro:** nếu VND tăng giá (USD giảm giá), giá trị quy đổi khoản thu USD đó sẽ giảm."
+        "text": "Các bài trước là từng mảnh. Case này cho thấy chúng ghép lại thế nào dưới áp lực thời gian, khi bạn chưa biết nguyên nhân."
       },
       {
         "type": "heading",
-        "text": "Forward: khóa tỷ giá, loại bỏ bất định"
+        "text": "Phút thứ nhất"
+      },
+      {
+        "type": "callout",
+        "label": "Vì đâu, trước khi làm gì",
+        "text": "Nhà sản xuất nhiều lên hay người tiêu thụ chậm đi? Hai nguyên nhân này nhìn giống hệt nhau trên biểu đồ tồn đọng và cần hai hành động NGƯỢC nhau. Vẽ tốc độ vào và tốc độ ra chồng lên nhau thì câu trả lời tới trong ba mươi giây."
       },
       {
         "type": "paragraph",
-        "text": "Ký forward bán USD lấy VND ở tỷ giá cố định ngay hôm nay loại bỏ hoàn toàn sự bất định này, dù tỷ giá thị trường sau đó tăng hay giảm. Các doanh nghiệp dệt may, thủy sản xuất khẩu Việt Nam thường ký hợp đồng forward tỷ giá với ngân hàng thương mại để khóa tỷ giá quy đổi cho các khoản phải thu USD, bảo vệ biên lợi nhuận đã tính toán khi ký hợp đồng xuất khẩu."
+        "text": "Giả sử biểu đồ cho thấy vào phẳng và ra giảm. Kết luận: có gì đó hỏng ở phía dưới người tiêu thụ - có thể cơ sở dữ liệu đầy kết nối, có thể một dịch vụ ngoài đang chậm. Và kết luận về hành động: thêm người tiêu thụ lúc này sẽ làm nặng thêm."
       },
       {
         "type": "heading",
-        "text": "Nếu VND giảm giá sau khi đã hedge, có 'thiệt' không?"
+        "text": "Trật tự dễ làm ngược"
       },
       {
-        "type": "paragraph",
-        "text": "Nếu VND giảm giá mạnh so với USD sau khi doanh nghiệp đã ký forward bán USD ở tỷ giá cố định, đúng là họ mất cơ hội thu về nhiều VND hơn nếu không hedge - nhưng đây chỉ là chi phí cơ hội (opportunity cost). Mục tiêu ban đầu là loại bỏ rủi ro biến động, và họ đã đạt được đúng mục tiêu quản trị rủi ro đó, không phải mục tiêu tối đa hóa lợi nhuận."
+        "type": "comparison",
+        "left": {
+          "label": "Đúng",
+          "text": "Giảm tải cho chỗ yếu trước. Khi nó hồi phục rồi mới tăng thông lượng để giải phần tồn đọng."
+        },
+        "right": {
+          "label": "Cám dỗ",
+          "text": "Tăng thông lượng ngay, vì tồn đọng là con số đang được mọi người nhìn. Nó dồn thêm tải vào đúng chỗ đang yếu."
+        }
       },
       {
         "type": "heading",
-        "text": "Forward hay option: đánh đổi giữa miễn phí và linh hoạt"
+        "text": "Trước khi đóng sự cố"
       },
       {
         "type": "paragraph",
-        "text": "Nếu doanh nghiệp chọn hedge bằng put option (mua quyền bán USD) thay vì forward, họ có QUYỀN - không nghĩa vụ - bán USD ở tỷ giá đã chọn. Nếu tỷ giá thị trường sau đó có lợi hơn, họ có thể chọn KHÔNG thực hiện quyền và bán theo giá thị trường tốt hơn - một sự linh hoạt mà forward (nghĩa vụ bắt buộc) không có. Đổi lại, họ phải trả premium ngay từ đầu, trong khi forward không tốn phí nhưng bắt buộc thực hiện dù bất lợi."
+        "text": "Kiểm hàng đợi thư chết. Trong lúc phía dưới yếu, một phần tin nhắn đã hết số lần thử và rơi vào đó. Chúng không nằm trong con số tồn đọng nữa, nên bảng theo dõi có thể xanh hoàn toàn trong khi vẫn còn việc chưa được làm."
       },
       {
-        "type": "list",
-        "items": [
-          "Forward tỷ giá: công cụ phổ biến nhất để hedging rủi ro tỷ giá xuất nhập khẩu",
-          "Xác định rõ exposure (long hay short ngoại tệ) trước khi chọn công cụ hedging",
-          "Forward: miễn phí nhưng bắt buộc thực hiện",
-          "Option: có phí (premium) nhưng linh hoạt hơn, có thể không thực hiện nếu bất lợi"
+        "type": "closing",
+        "lines": [
+          "Trong biên bản, câu đáng giá nhất không phải vì sao nó hỏng - nguyên nhân kỹ thuật thường đã rõ. Câu đáng giá là VÌ SAO KHÔNG AI BIẾT SỚM HƠN.",
+          "Và câu trả lời thường là cảnh báo đặt theo số lượng tuyệt đối, nên nó chỉ kêu khi tồn đọng đã lớn - tức là hai giờ sau khi xu hướng đã đổi."
         ]
       }
     ]
   },
   {
     "id": 198,
-    "slug": "tong-on-cong-cu-phai-sinh",
-    "title": "Tự học Tài chính Day 198: Tổng ôn công cụ phái sinh",
-    "subtitle": "Kết nối Forward, Futures, Options và Swaps thành một bức tranh thống nhất",
-    "duration": "8 phút",
-    "difficulty": "Khó",
-    "emoji": "🔄",
-    "openingQuestion": "Nếu chỉ được chọn một nguyên tắc để nhớ về toàn bộ thế giới phái sinh, đó nên là gì?",
+    "slug": "cong-viec-theo-lich-so-voi-su-kien",
+    "title": "Công việc theo lịch so với sự kiện",
+    "subtitle": "Hai cách kích hoạt, và cách cũ hơn vẫn đúng ở nhiều chỗ.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "⏰",
+    "isFundamental": false,
+    "whyItMatters": "Sự kiện là mặc định thời thượng, và với một số bài toán thì công việc theo lịch vừa đơn giản hơn vừa đúng đắn hơn - đặc biệt là những bài toán đối chiếu.",
+    "openingQuestion": "Việc nào hợp với công việc theo lịch hơn là với sự kiện?",
     "openingOptions": [
-      "Chỉ tổ chức lớn mới nên dùng phái sinh",
-      "Phái sinh chỉ có ý nghĩa với thị trường hàng hóa",
-      "Phái sinh trung lập - giá trị tùy mục đích sử dụng",
-      "Phái sinh luôn nguy hiểm và nên tránh hoàn toàn"
+      "Đối chiếu dữ liệu giữa hai hệ thống để tìm những chỗ chúng đã lệch nhau",
+      "Gửi thư xác nhận cho khách hàng ngay sau khi đơn hàng được tạo thành công",
+      "Cập nhật số lượng tồn kho khi có một đơn hàng mới được đặt trong hệ thống",
+      "Ghi lại lịch sử thay đổi trạng thái mỗi khi một bản ghi được chỉnh sửa"
     ],
-    "correctOption": 2,
-    "explanation": "Bốn công cụ - Forward, Futures, Options, Swaps - đều xoay quanh cùng một ý tưởng cốt lõi: chuyển giao rủi ro từ bên không muốn gánh sang bên sẵn sàng gánh (đổi lấy một khoản phí hoặc kỳ vọng lợi nhuận). Sự khác biệt nằm ở mức độ chuẩn hóa (Forward tùy chỉnh vs Futures chuẩn hóa), tính bất đối xứng (Option) hay tính định kỳ (Swap). Bản chất tốt hay xấu của phái sinh phụ thuộc hoàn toàn vào mục đích và kỷ luật quản trị rủi ro của người sử dụng.",
+    "correctOption": 0,
+    "explanation": "Đối chiếu là việc phải chạy KỂ CẢ khi không có sự kiện nào - đặc biệt là khi sự kiện bị mất, vì đó chính là tình huống bạn cần phát hiện. Một cơ chế dựa vào sự kiện không tìm được sự kiện thiếu. Ba việc còn lại đều nên xảy ra ngay tại thời điểm có thay đổi, nên chúng là việc của sự kiện.",
     "diagram": [
       {
-        "label": "Forward và Futures: cam kết giao dịch",
+        "label": "Đối chiếu phải chạy KỂ CẢ khi không có sự kiện nào",
         "arrow": true
       },
       {
-        "label": "Options: quyền, không phải nghĩa vụ",
+        "label": "Cơ chế dựa vào sự kiện không tìm được sự kiện thiếu",
         "arrow": true
       },
       {
-        "label": "Swaps: hoán đổi dòng tiền định kỳ",
+        "label": "Theo lịch: đơn giản hơn, dễ theo dõi hơn, chấp nhận độ trễ",
         "arrow": true
       },
       {
-        "label": "Tất cả chuyển giao rủi ro giữa hai bên"
+        "label": "Nhiều hệ thống cần CẢ HAI - và đó là thiết kế đúng"
       }
     ],
-    "interactiveType": "payoff",
     "realWorldExample": {
-      "company": "Tổng kết ngành tài chính",
-      "description": "Từ hãng hàng không hedge giá dầu đến quỹ hưu trí bảo vệ danh mục bằng put option, đến doanh nghiệp xuất khẩu khóa tỷ giá bằng forward - phái sinh khi dùng đúng mục đích là công cụ quản trị rủi ro không thể thiếu của nền kinh tế hiện đại."
+      "company": "Lưới an toàn cho hệ thống sự kiện",
+      "description": "Một hệ thống dùng sự kiện làm đường chính vẫn nên có một công việc theo lịch chạy hằng đêm để tìm những bản ghi lẽ ra đã được xử lý mà chưa. Đó không phải thừa - đó là cơ chế duy nhất bắt được sự kiện bị mất."
     },
     "quiz": [
       {
-        "question": "Điểm chung quan trọng nhất giữa Forward, Futures, Options và Swaps là gì?",
+        "question": "Vì sao đối chiếu không thể dựa vào sự kiện?",
         "options": [
-          "Tất cả đều giao dịch qua sàn chính thức",
-          "Tất cả đều yêu cầu premium trả trước",
-          "Tất cả chỉ áp dụng được với cổ phiếu",
-          "Tất cả đều là công cụ chuyển giao rủi ro (risk transfer) dựa trên một tài sản cơ sở, khác nhau chủ yếu ở cấu trúc cam kết và mức độ chuẩn hóa"
-        ],
-        "correct": 3,
-        "explanation": "Dù cấu trúc khác nhau (cam kết bắt buộc với Forward/Futures, quyền chọn với Options, hoán đổi định kỳ với Swaps), bản chất chung của mọi phái sinh là công cụ cho phép chuyển giao một loại rủi ro cụ thể (giá, lãi suất, tỷ giá) từ bên này sang bên khác một cách có cấu trúc và có thể định giá được."
-      },
-      {
-        "question": "Một sinh viên vừa học xong về Options, Futures, Swaps hỏi: \"Nếu phái sinh nguy hiểm như vậy, tại sao không cấm hoàn toàn để bảo vệ hệ thống tài chính?\" Câu trả lời hợp lý nhất là gì?",
-        "options": [
-          "Cấm hoàn toàn sẽ loại bỏ luôn công cụ hedging thiết yếu mà hàng nghìn doanh nghiệp thực (hãng hàng không, nông dân, nhà xuất khẩu) đang dùng để quản trị rủi ro - giải pháp hợp lý hơn là quản lý chặt chẽ (minh bạch, central clearing, giới hạn đòn bẩy) thay vì cấm hoàn toàn",
-          "Nên cấm hoàn toàn phái sinh vì chúng luôn gây hại cho nền kinh tế",
-          "Phái sinh chỉ có hại, không có bất kỳ lợi ích nào cho nền kinh tế thực",
-          "Chỉ nên cho phép chính phủ sử dụng phái sinh, cấm hoàn toàn với doanh nghiệp tư nhân"
+          "Vì thứ nó cần tìm chính là những sự kiện đã bị mất, mà cái mất thì không kích hoạt gì",
+          "Vì việc đối chiếu thật sự cần đọc toàn bộ dữ liệu nên rốt cuộc tốn tài nguyên hơn hẳn xử lý sự kiện",
+          "Vì các sự kiện đến không theo thứ tự nên kết quả đối chiếu có thể sai lệch",
+          "Vì việc đối chiếu cần so sánh dữ liệu của hai hệ thống ở cùng một thời điểm nhất định"
         ],
         "correct": 0,
-        "explanation": "Đây là bài học cân bằng quan trọng: giải pháp chính sách hợp lý không phải là cấm đoán cực đoan một công cụ có giá trị thực sự (hedging cho nền kinh tế thực), mà là quản lý rủi ro có hệ thống (minh bạch, giới hạn đòn bẩy, central clearing) để tối đa hóa lợi ích và giảm thiểu tác hại tiềm tàng."
+        "explanation": "Đây là lập luận có tính vòng tròn nếu làm ngược: bạn không thể phát hiện thứ bị thiếu bằng một cơ chế được kích hoạt bởi chính thứ đó. Ba lựa chọn kia đều là đặc điểm thật của đối chiếu nhưng không phải lý do quyết định."
+      },
+      {
+        "question": "Ưu điểm chính của công việc theo lịch là gì?",
+        "options": [
+          "Đơn giản hơn nhiều: một tiến trình, một khoảng thời gian, dễ theo dõi và chạy lại",
+          "Sử dụng tài nguyên hiệu quả hơn vì nó gom được nhiều việc lại rồi xử lý hết trong cùng một lượt",
+          "Không phụ thuộc vào hệ thống hàng đợi nên giảm được một điểm hỏng",
+          "Kết quả có tính nhất quán cao hơn vì mọi dữ liệu được xử lý cùng lúc"
+        ],
+        "correct": 0,
+        "explanation": "Chữ DỄ CHẠY LẠI là phần đáng giá nhất trong thực tế: chạy lại một công việc theo lịch là chạy lại một lệnh, còn phát lại sự kiện thì cần cả một quy trình như bài về phát lại đã mô tả."
+      },
+      {
+        "question": "Nhược điểm chính của công việc theo lịch là gì?",
+        "options": [
+          "Độ trễ bằng đúng khoảng cách giữa hai lần chạy, và nó cố định dù tải thế nào",
+          "Không xử lý được khối lượng lớn vì mọi việc dồn vào cùng một thời điểm",
+          "Khó mở rộng vì chỉ chạy được trên một tiến trình duy nhất tại một thời điểm",
+          "Không biết được bản ghi nào đã thay đổi nên phải quét lại toàn bộ dữ liệu"
+        ],
+        "correct": 0,
+        "explanation": "Đây là lý do nó không thay được sự kiện cho những việc cần phản hồi ngay. Lựa chọn thứ hai là vấn đề thật khi khoảng chạy quá thưa, nhưng nó giải được bằng cách chạy dày hơn - còn độ trễ thì cố hữu."
+      },
+      {
+        "question": "Vì sao nhiều hệ thống nên có cả hai cơ chế?",
+        "options": [
+          "Sự kiện cho phản hồi nhanh, còn công việc theo lịch là lưới an toàn bắt cái bị lọt",
+          "Vì hai cơ chế này xử lý được hai loại công việc có yêu cầu về tốc độ phản hồi khác nhau",
+          "Vì có hai đường xử lý thì hệ thống vẫn hoạt động khi một đường gặp sự cố",
+          "Vì công việc chạy theo lịch giúp giảm bớt tải cho hệ thống hàng đợi vào những giờ cao điểm nhất"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba nghe gần đúng nhưng nó mô tả dự phòng chung, còn ở đây vai trò cụ thể hơn: công việc theo lịch tìm những bản ghi lẽ ra đã được xử lý mà chưa, tức là nó phát hiện chứ không chỉ thay thế."
+      },
+      {
+        "question": "Công việc theo lịch nên viết theo nguyên tắc nào?",
+        "options": [
+          "Bất biến khi lặp lại, vì nó sẽ chạy chồng lên phần dữ liệu mà lượt trước đã xử lý",
+          "Chỉ xử lý phần dữ liệu mới phát sinh kể từ lần chạy trước để tránh làm lại việc đã làm",
+          "Chạy trong một giao dịch duy nhất để đảm bảo tính nhất quán của kết quả",
+          "Ghi lại thời điểm chạy cuối cùng để lần sau biết bắt đầu từ đâu"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai và thứ tư là cùng một ý và chúng hữu ích, nhưng chúng không thay được tính bất biến: một lượt chạy bị dừng giữa chừng sẽ để lại mốc thời gian sai, và lượt sau chạy chồng lên phần đã xử lý."
       }
     ],
     "keyTakeaways": [
-      "Bốn công cụ phái sinh chính đều xoay quanh việc chuyển giao rủi ro có cấu trúc",
-      "Giá trị của phái sinh phụ thuộc vào mục đích sử dụng: hedging tạo giá trị thực, speculation thiếu kỷ luật có thể gây thảm họa",
-      "Hiểu bản chất chuyển giao rủi ro giúp đánh giá đúng bất kỳ sản phẩm phái sinh mới nào trong tương lai"
+      "Đối chiếu phải chạy KỂ CẢ khi không có sự kiện - vì cái nó tìm là sự kiện bị mất.",
+      "Theo lịch đơn giản hơn nhiều, và quan trọng nhất là DỄ CHẠY LẠI.",
+      "Nhược điểm cố hữu: độ trễ bằng đúng khoảng cách giữa hai lần chạy.",
+      "Nhiều hệ thống cần CẢ HAI - sự kiện cho tốc độ, theo lịch làm lưới an toàn.",
+      "Công việc theo lịch cũng phải bất biến, vì nó chạy chồng lên phần đã xử lý."
     ],
     "practicePrompt": {
-      "question": "Sau khi ôn tập forward, futures, option, và swap, bạn nhận ra bốn công cụ này rất khác nhau về cấu trúc (chuẩn hóa hay tùy chỉnh, có nghĩa vụ hay chỉ có quyền), nhưng đều phục vụ cùng một mục đích cốt lõi. Mục đích đó là gì?",
+      "question": "Hệ thống bạn dùng sự kiện cho mọi thứ. Nên thêm công việc theo lịch nào?",
       "options": [
-        "Mục đích duy nhất của cả bốn công cụ là tạo ra lợi nhuận đầu cơ tối đa cho người sử dụng chúng",
-        "Cả bốn đều xoay quanh việc chuyển giao rủi ro có cấu trúc, chỉ khác nhau về hình thức",
-        "Bốn công cụ này không có điểm chung nào, mỗi công cụ phục vụ một mục đích hoàn toàn độc lập",
-        "Mục đích duy nhất là giúp các ngân hàng đầu tư thu phí giao dịch từ khách hàng"
+        "Một lượt đối chiếu tìm bản ghi lẽ ra đã được xử lý mà chưa, chạy hằng đêm",
+        "Một lượt xử lý lại tất cả các sự kiện của ngày hôm trước để đảm bảo đầy đủ",
+        "Một lượt dọn dẹp các bản ghi cũ trong hàng đợi thư chết và bảng hộp thư đi",
+        "Một lượt kiểm tra sức khoẻ của các hàng đợi và gửi báo cáo cho đội vận hành"
       ],
-      "correct": 1,
-      "explanation": "Bốn công cụ phái sinh chính đều xoay quanh việc chuyển giao rủi ro có cấu trúc. Giá trị của phái sinh phụ thuộc vào mục đích sử dụng: hedging tạo giá trị thực (chuyển giao rủi ro không mong muốn), speculation thiếu kỷ luật có thể gây thảm họa (dùng đòn bẩy để đặt cược thay vì phòng hộ)."
+      "correct": 0,
+      "explanation": "Lựa chọn thứ hai là phát lại toàn bộ, tốn hơn nhiều và mang mọi rủi ro về hiệu ứng phụ. Đối chiếu chỉ TÌM chỗ lệch rồi báo, nên nó rẻ và an toàn hơn - và nó là cơ chế duy nhất bắt được sự kiện bị mất."
     },
     "summary": {
-      "keyIdea": "Bốn công cụ phái sinh chính đều xoay quanh việc chuyển giao rủi ro có cấu trúc",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Giá trị của phái sinh phụ thuộc vào mục đích sử dụng: hedging tạo giá trị thực, speculation thiếu kỷ luật có thể gây thảm họa"
+      "keyIdea": "Sự kiện không tìm được sự kiện thiếu; công việc theo lịch thì tìm được.",
+      "formula": "Cần phản hồi ngay → sự kiện. Cần chạy kể cả khi không có gì xảy ra → theo lịch.",
+      "commonMistake": "Chuyển hết sang sự kiện và bỏ mất lưới an toàn phát hiện sự kiện mất.",
+      "action": "Thêm một lượt đối chiếu hằng đêm cho luồng sự kiện quan trọng nhất."
     },
     "application": {
-      "title": "Vẽ sơ đồ so sánh 4 công cụ phái sinh",
-      "message": "Vẽ một bảng 4 cột cho Forward, Futures, Options, Swaps và ghi vào mỗi cột một câu ngắn về đặc điểm khác biệt chính của công cụ đó.",
-      "secondary": "Tự tổng hợp bằng bảng giúp bạn nhớ lâu hơn nhiều so với đọc lại lý thuyết."
+      "title": "Làm ngay hôm nay",
+      "message": "Với luồng sự kiện quan trọng nhất của bạn, viết một lượt đối chiếu: đếm số bản ghi lẽ ra đã được xử lý và số bản ghi thực sự đã được xử lý.",
+      "secondary": "Chạy nó một lần bằng tay trước. Con số chênh lệch nếu có sẽ nhỏ, và đó chính là lý do không có cơ chế nào khác phát hiện ra nó."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Sau khi đi qua Forward, Futures, Options và Swaps, đã đến lúc nhìn lại bức tranh tổng thể: bốn công cụ này không phải bốn thứ tách rời, mà đều xoay quanh cùng một ý tưởng cốt lõi - chuyển giao rủi ro từ bên không muốn gánh sang bên sẵn sàng gánh, đổi lấy một khoản phí hoặc kỳ vọng lợi nhuận."
+        "text": "Sự kiện là mặc định thời thượng. Với một số bài toán thì công việc theo lịch vừa đơn giản hơn vừa đúng đắn hơn, và lý do không phải là hoài cổ."
       },
       {
         "type": "heading",
-        "text": "Điểm khác biệt nằm ở cấu trúc, không phải bản chất"
-      },
-      {
-        "type": "paragraph",
-        "text": "Forward và Futures đều là cam kết bắt buộc, khác nhau ở mức độ chuẩn hóa: Forward tùy chỉnh theo nhu cầu hai bên (OTC), Futures chuẩn hóa và giao dịch qua sàn với clearing house đảm bảo. Options mang tính bất đối xứng - quyền chứ không phải nghĩa vụ, đổi lấy premium. Swaps mang tính định kỳ - hoán đổi dòng tiền lặp lại theo công thức. Dù cấu trúc khác nhau, tất cả đều là công cụ chuyển giao một loại rủi ro cụ thể (giá, lãi suất, tỷ giá) một cách có cấu trúc và có thể định giá được."
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao không cấm hoàn toàn phái sinh?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Cấm hoàn toàn phái sinh sẽ loại bỏ luôn công cụ hedging thiết yếu mà hàng nghìn doanh nghiệp thực - hãng hàng không, nông dân, nhà xuất khẩu - đang dùng để quản trị rủi ro kinh doanh hợp pháp. Giải pháp hợp lý hơn là quản lý chặt chẽ: minh bạch, central clearing, giới hạn đòn bẩy - thay vì cấm hoàn toàn một công cụ có cả mặt lợi và hại."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Bốn công cụ, chọn cái nào",
-        "subtitle": "Cùng một câu hỏi: ai gánh rủi ro, và trả bao nhiêu để không gánh nữa",
-        "concepts": [
-          { "vi": "Kỳ hạn", "en": "Forward", "def": "Khi cần khớp chính xác số lượng và ngày của một giao dịch thật. Trả giá bằng rủi ro đối tác và gần như không thoát ra được giữa chừng." },
-          { "vi": "Tương lai", "en": "Futures", "def": "Khi cần thanh khoản và không muốn lo đối tác. Trả giá bằng việc phải chấp nhận quy cách chuẩn và ký quỹ bổ sung mỗi ngày khi giá đi ngược." },
-          { "vi": "Quyền chọn", "en": "Options", "def": "Khi muốn chặn chiều xấu mà vẫn giữ chiều tốt. Trả giá bằng premium mất đứt, kể cả khi không dùng tới." },
-          { "vi": "Hoán đổi", "en": "Swaps", "def": "Khi rủi ro lặp lại đều đặn nhiều kỳ - lãi vay, dòng ngoại tệ. Trả giá bằng một cam kết dài hạn khó gỡ và giá trị thị trường nằm trên bảng cân đối." }
-        ]
+        "text": "Bài toán mà sự kiện không giải được"
       },
       {
         "type": "callout",
-        "label": "Câu hỏi lọc trước mọi thứ khác",
-        "text": "Trước khi chọn công cụ, trả lời được: rủi ro nền tảng của tôi là gì, lớn bao nhiêu, và xảy ra vào lúc nào? Nếu không trả lời được ba câu đó thì vị thế phái sinh sắp mở không phải hedge - nó là một rủi ro mới, cộng thêm vào cái đang có chứ không trừ đi."
+        "label": "Đối chiếu",
+        "text": "Nó phải chạy KỂ CẢ khi không có sự kiện nào - đặc biệt là khi sự kiện bị mất, vì đó chính là tình huống cần phát hiện. Bạn không thể tìm thứ bị thiếu bằng một cơ chế được kích hoạt bởi chính thứ đó."
       },
       {
-        "type": "list",
-        "items": [
-          "Forward: OTC, tùy chỉnh, cam kết bắt buộc",
-          "Futures: chuẩn hóa, qua sàn, cam kết bắt buộc, mark-to-market",
-          "Options: quyền chứ không phải nghĩa vụ, đổi lấy premium",
-          "Swaps: hoán đổi dòng tiền định kỳ theo công thức đã thỏa thuận"
-        ]
+        "type": "heading",
+        "text": "Đánh đổi"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Theo lịch",
+          "text": "Một tiến trình, một khoảng thời gian. Dễ theo dõi, và quan trọng nhất là DỄ CHẠY LẠI - chạy lại là chạy lại một lệnh."
+        },
+        "right": {
+          "label": "Sự kiện",
+          "text": "Phản hồi ngay khi có thay đổi. Nhưng phát lại thì cần cả một quy trình, với mọi rủi ro về hiệu ứng phụ."
+        }
+      },
+      {
+        "type": "paragraph",
+        "text": "Nhược điểm cố hữu của công việc theo lịch là độ trễ bằng đúng khoảng cách giữa hai lần chạy. Nó cố định dù tải thế nào, và đó là lý do nó không thay được sự kiện cho những việc cần phản hồi ngay."
+      },
+      {
+        "type": "heading",
+        "text": "Cả hai, không phải một"
+      },
+      {
+        "type": "paragraph",
+        "text": "Một hệ thống dùng sự kiện làm đường chính vẫn nên có một công việc theo lịch chạy hằng đêm để tìm những bản ghi lẽ ra đã được xử lý mà chưa. Đó không phải thừa - đó là cơ chế duy nhất bắt được sự kiện bị mất."
       },
       {
         "type": "closing",
         "lines": [
-          "Giá trị của phái sinh phụ thuộc vào mục đích sử dụng: hedging tạo giá trị thực, speculation thiếu kỷ luật có thể gây thảm họa."
+          "Và công việc theo lịch cũng phải BẤT BIẾN khi lặp lại. Một lượt chạy bị dừng giữa chừng sẽ để lại mốc thời gian sai, và lượt sau chạy chồng lên phần đã xử lý.",
+          "Đây là cùng tính chất mà chặng này đã đòi ở người tiêu thụ, chỉ khác nguồn gây lặp lại."
         ]
       }
     ]
   },
   {
     "id": 199,
-    "slug": "ket-noi-tat-ca-tai-chinh",
-    "title": "Tự học Tài chính Day 199: Kết nối tất cả - Báo cáo tài chính, Định giá, Rủi ro, Thị trường",
-    "subtitle": "Nhìn lại toàn bộ hành trình như một hệ thống liên kết chặt chẽ",
-    "duration": "8 phút",
+    "slug": "mot-luong-dat-hang-bat-dong-bo",
+    "title": "Một luồng đặt hàng bất đồng bộ từ đầu tới cuối",
+    "subtitle": "Ghép mọi thứ chặng này đã nói vào một luồng duy nhất.",
+    "duration": "7 phút",
     "difficulty": "Khó",
-    "emoji": "📊",
-    "openingQuestion": "Một nhà phân tích giỏi khi đọc báo cáo tài chính của một doanh nghiệp thực ra đang làm gì?",
+    "track": "professional",
+    "emoji": "🧩",
+    "isFundamental": false,
+    "whyItMatters": "Từng mảnh riêng lẻ thì dễ hiểu; chỗ khó là quyết định mảnh nào đặt ở đâu, và những quyết định đó ràng buộc lẫn nhau.",
+    "openingQuestion": "Trong luồng đặt hàng, việc nào phải chạy đồng bộ trước khi trả lời người dùng?",
     "openingOptions": [
-      "Chỉ đơn giản kiểm tra xem công ty có lãi hay lỗ",
-      "Kết nối kế toán, định giá, rủi ro và cả thị trường",
-      "Chỉ cần đọc phần tóm tắt do công ty tự công bố",
-      "Chỉ so sánh P/E với các công ty khác"
+      "Những việc mà kết quả của chúng quyết định câu trả lời cho người dùng ngay lúc đó",
+      "Những việc quan trọng nhất với chính nghiệp vụ, ví dụ trừ tiền và đồng thời giữ hàng trong kho",
+      "Những việc nhanh, còn việc chậm thì đẩy hết sang xử lý bất đồng bộ",
+      "Những việc không phụ thuộc vào dịch vụ bên ngoài nên chắc chắn thành công"
     ],
-    "correctOption": 1,
-    "explanation": "Toàn bộ hành trình 200 ngày thực chất xây dựng bốn lớp năng lực liên kết chặt chẽ: (1) Kế toán và 3 báo cáo tài chính - ngôn ngữ đọc hiểu con số; (2) Định giá - chuyển con số kế toán thành ước tính giá trị thực (DCF, multiples); (3) Quản trị rủi ro - hiểu điều gì có thể khiến giả định định giá sai (đòn bẩy, biến động lãi suất, phái sinh); (4) Thị trường - hiểu tâm lý, cung cầu, và hành vi tập thể ảnh hưởng đến giá cả ngắn hạn. Bốn lớp này không tách rời - thiếu một lớp, phân tích sẽ phiến diện.",
+    "correctOption": 0,
+    "explanation": "Tiêu chí là NGƯỜI DÙNG CẦN BIẾT GÌ NGAY, không phải việc nào quan trọng hơn. Kiểm tra hàng còn không phải chạy đồng bộ vì người dùng cần biết có đặt được không; gửi thư xác nhận thì không, dù nó cũng quan trọng. Chọn theo tốc độ thì sai hướng - một việc nhanh mà người dùng không cần biết kết quả thì vẫn nên đẩy sang bất đồng bộ.",
     "diagram": [
       {
-        "label": "Kế toán: ngôn ngữ đọc con số",
+        "label": "Đồng bộ: chỉ những gì quyết định câu trả lời cho người dùng",
         "arrow": true
       },
       {
-        "label": "Định giá: chuyển con số thành giá trị",
+        "label": "Ghi đơn + ghi sự kiện vào hộp thư đi, cùng một giao dịch",
         "arrow": true
       },
       {
-        "label": "Rủi ro và thị trường: bối cảnh quyết định"
+        "label": "Mỗi người tiêu thụ bất biến, mỗi bước có hành động ngược",
+        "arrow": true
+      },
+      {
+        "label": "Lưới an toàn: đối chiếu hằng đêm tìm đơn chưa xử lý xong"
       }
     ],
     "realWorldExample": {
-      "company": "Phân tích một cổ phiếu thực tế",
-      "description": "Khi định giá một công ty, nhà phân tích chuyên nghiệp không chỉ nhìn P/E (định giá) mà còn kiểm tra chất lượng lợi nhuận (kế toán), cơ cấu nợ và độ nhạy lãi suất (rủi ro), và tâm lý dòng tiền đang chảy vào/ra ngành đó (thị trường) trước khi đưa ra khuyến nghị."
+      "company": "Trạng thái nhìn thấy được",
+      "description": "Người dùng đặt hàng xong nhìn thấy đang xử lý, và họ cần biết khi nào nó đổi. Một luồng bất đồng bộ mà không có trạng thái nhìn thấy được sẽ tạo ra một loại phiếu hỗ trợ mà bạn không trả lời được: đơn của tôi đâu rồi."
     },
     "quiz": [
       {
-        "question": "Vì sao một công ty có P/E thấp (có vẻ 'rẻ') đôi khi vẫn là một khoản đầu tư tệ?",
+        "question": "Tiêu chí chọn việc chạy đồng bộ là gì?",
         "options": [
-          "P/E không bao giờ phản ánh đúng giá trị công ty",
-          "Chỉ cần P/E thấp hơn đối thủ là đủ để quyết định đầu tư",
-          "P/E thấp có thể phản ánh rủi ro thực sự cao (nợ lớn, lợi nhuận kém chất lượng, ngành suy thoái) mà thị trường đã định giá đúng -'rẻ' không có nghĩa là 'tốt' nếu không kết hợp phân tích rủi ro và chất lượng lợi nhuận",
-          "P/E thấp luôn luôn là cơ hội tốt, không có ngoại lệ"
+          "Kết quả của việc đó có quyết định câu trả lời cho người dùng ngay lúc đó không",
+          "Việc đó có quan trọng với chính nghiệp vụ và vốn không được phép thất bại hay không",
+          "Việc đó có chạy đủ nhanh để không làm chậm phản hồi cho người dùng không",
+          "Việc đó có phụ thuộc vào dịch vụ bên ngoài mà bạn không kiểm soát không"
         ],
-        "correct": 2,
-        "explanation": "Đây chính là bài học kết nối bốn lớp: một chỉ số định giá (P/E thấp) đơn lẻ không đủ để ra quyết định - cần kiểm tra chất lượng lợi nhuận (kế toán: liệu lợi nhuận có bền vững, hay đến từ khoản mục bất thường), rủi ro (đòn bẩy nợ cao, ngành đang suy thoái), và tâm lý thị trường (liệu giá thấp phản ánh đúng rủi ro hay là cơ hội bị định giá sai)."
+        "correct": 0,
+        "explanation": "Chọn theo tầm quan trọng thì gửi thư xác nhận cũng quan trọng, mà nó không cần đồng bộ. Chọn theo tốc độ thì một việc nhanh mà người dùng không cần biết kết quả vẫn bị giữ lại trong đường xử lý chính."
       },
       {
-        "question": "Một nhà phân tích chỉ giỏi đọc báo cáo tài chính nhưng không hiểu về định giá, rủi ro thị trường hay phái sinh (Chặng 10). Hạn chế lớn nhất của họ khi phân tích một doanh nghiệp thực tế là gì?",
+        "question": "Vì sao ghi đơn hàng và ghi sự kiện phải cùng một giao dịch?",
         "options": [
-          "Các chặng học sau không liên quan gì đến việc đọc báo cáo tài chính cơ bản",
-          "Đọc báo cáo tài chính là đủ để đưa ra mọi quyết định đầu tư chính xác",
-          "Không có hạn chế gì vì đọc báo cáo tài chính là kỹ năng quan trọng nhất",
-          "Họ có thể phát hiện con số bất thường trên báo cáo nhưng không chuyển hóa được thành khuyến nghị đầu tư hoàn chỉnh - không biết công ty đắt hay rẻ, không đánh giá được rủi ro danh mục khi thêm cổ phiếu này, không hiểu công cụ tài chính công ty đang dùng để quản trị rủi ro"
+          "Vì tách ra thì có lúc đơn tồn tại mà không sự kiện nào được phát ra",
+          "Vì cần đảm bảo sự kiện được phát ra trước khi người dùng nhận phản hồi",
+          "Vì hai thao tác này cùng thuộc về một nghiệp vụ nên nên nằm cùng nhau",
+          "Vì giao dịch chung giúp giảm số lượt ghi xuống cơ sở dữ liệu"
         ],
-        "correct": 3,
-        "explanation": "Đây chính là lý do toàn bộ chương trình 200 ngày được thiết kế như MỘT HỆ THỐNG liên kết - mỗi chặng xây dựng năng lực cần thiết cho các quyết định phân tích và đầu tư thực tế, thiếu bất kỳ mảnh ghép nào (kế toán, định giá, rủi ro, phái sinh) đều để lại một góc mù nguy hiểm trong quy trình phân tích hoàn chỉnh."
+        "correct": 0,
+        "explanation": "Đây là mẫu hộp thư đi áp vào luồng cụ thể. Và cái tệ nhất của khe hở đó là không cơ chế nào phát hiện được - mỗi bên đều thấy trạng thái của mình là nhất quán."
+      },
+      {
+        "question": "Vì sao mỗi người tiêu thụ trong luồng phải bất biến khi lặp lại?",
+        "options": [
+          "Vì tin nhắn sẽ được giao lại, và luồng nhiều bước thì mỗi bước là một chỗ lặp",
+          "Vì các bước trong luồng có thể được thực hiện song song với nhau",
+          "Vì thật sự cần đảm bảo kết quả cuối cùng hoàn toàn không phụ thuộc vào thứ tự tất cả các bước",
+          "Vì một bước thất bại sẽ khiến toàn bộ luồng phải chạy lại từ đầu"
+        ],
+        "correct": 0,
+        "explanation": "Trong luồng một bước thì rủi ro lặp lại nằm ở một chỗ. Trong luồng năm bước thì nó nằm ở năm chỗ, và xác suất ít nhất một chỗ gặp giao lại tăng theo số bước."
+      },
+      {
+        "question": "Vì sao luồng bất đồng bộ cần trạng thái nhìn thấy được?",
+        "options": [
+          "Vì nếu không thì có một loại phiếu hỗ trợ mà bạn không trả lời được",
+          "Vì các quy định về thương mại yêu cầu thông báo tiến độ cho khách hàng",
+          "Vì trạng thái giúp đội vận hành theo dõi được hiệu năng của luồng xử lý",
+          "Vì người dùng cần biết chính xác bước nào trong hệ thống đang được thực hiện"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là phiên bản quá đà của ý đúng: người dùng không cần biết kiến trúc bên trong, họ chỉ cần biết đang xử lý hay đã xong. Nhưng nếu không có cả điều tối thiểu đó thì bạn không trả lời được câu đơn của tôi đâu rồi."
+      },
+      {
+        "question": "Vì sao vẫn cần đối chiếu hằng đêm dù luồng đã có đủ mọi cơ chế?",
+        "options": [
+          "Vì mọi cơ chế trong luồng đều dựa vào sự kiện, nên không cái nào tìm được sự kiện thiếu",
+          "Vì các cơ chế có thể bị cấu hình sai và đối chiếu là cách phát hiện điều đó",
+          "Vì cần một bản báo cáo tổng hợp về số lượng đơn hàng được xử lý mỗi ngày",
+          "Vì đối chiếu sẽ giúp phát hiện những đơn hàng có dữ liệu hoàn toàn không hợp lệ ở ngay trong hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Hộp thư đi giảm khả năng sự kiện bị mất nhưng nó không đưa về không, và mọi thứ còn lại trong luồng đều được kích hoạt bởi sự kiện. Đối chiếu là cơ chế duy nhất nhìn từ bên ngoài chuỗi đó."
       }
     ],
     "keyTakeaways": [
-      "Phân tích tài chính toàn diện kết nối bốn lớp: kế toán, định giá, rủi ro, thị trường",
-      "Một chỉ số đơn lẻ (như P/E) không bao giờ đủ để ra quyết định đầu tư",
-      "Năng lực thực sự là khả năng nhìn thấy mối liên kết giữa các lớp, không chỉ thuộc từng công thức riêng lẻ"
+      "Đồng bộ chỉ những gì quyết định CÂU TRẢ LỜI cho người dùng - không theo tầm quan trọng.",
+      "Ghi đơn và ghi sự kiện cùng một giao dịch: hộp thư đi áp vào luồng cụ thể.",
+      "Luồng năm bước có năm chỗ lặp lại - mỗi người tiêu thụ phải bất biến.",
+      "Trạng thái nhìn thấy được, nếu không có loại phiếu hỗ trợ bạn không trả lời được.",
+      "Đối chiếu hằng đêm là cơ chế duy nhất nhìn từ ngoài chuỗi sự kiện."
     ],
     "practicePrompt": {
-      "question": "Bạn đọc báo cáo tài chính một công ty (kế toán), tính P/E và EV/EBITDA (định giá), đánh giá Beta và volatility (rủi ro), rồi so sánh với diễn biến ngành và tâm lý thị trường hiện tại (thị trường). Việc kết hợp cả bốn bước này thể hiện điều gì về bản chất của phân tích tài chính chuyên nghiệp?",
+      "question": "Trong luồng đặt hàng, gửi thư xác nhận nên đặt ở đâu trong chuỗi bù trừ?",
       "options": [
-        "Chỉ cần thực hiện một trong bốn bước này là đã đủ để đưa ra quyết định đầu tư đáng tin cậy",
-        "Phân tích tài chính toàn diện kết nối bốn lớp: kế toán, định giá, rủi ro, thị trường",
-        "Bốn bước này hoàn toàn độc lập với nhau, không cần kết hợp để đưa ra quyết định đầu tư",
-        "Chỉ nhà phân tích chuyên nghiệp mới cần thực hiện đầy đủ bốn bước, nhà đầu tư cá nhân không cần thiết"
+        "Ở cuối, vì nó không thu hồi được nên phải là bước cuối cùng có thể thất bại",
+        "Ở đầu, để khách hàng biết ngay được đơn hàng của họ đã được ghi nhận thành công",
+        "Ở giữa, sau khi trừ tiền thành công nhưng trước khi giao việc cho kho",
+        "Không nằm trong chuỗi, vì gửi thư là việc độc lập với các bước còn lại"
       ],
-      "correct": 1,
-      "explanation": "Phân tích tài chính toàn diện kết nối bốn lớp: kế toán, định giá, rủi ro, thị trường. Đây là bài học tổng kết của toàn bộ track chuyên ngành - năng lực thực sự nằm ở khả năng nhìn thấy mối liên kết giữa các lớp kiến thức, không phải thuộc lòng từng công thức riêng lẻ."
+      "correct": 0,
+      "explanation": "Đặt nó ở đầu thì mọi bước sau thất bại đều để lại một thư đã gửi cho một đơn không tồn tại - và thư thì không thu hồi được. Đây là ví dụ của việc hành động ngược quyết định cả THỨ TỰ các bước tiến."
     },
     "summary": {
-      "keyIdea": "Phân tích tài chính toàn diện kết nối bốn lớp: kế toán, định giá, rủi ro, thị trường",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Một chỉ số đơn lẻ (như P/E) không bao giờ đủ để ra quyết định đầu tư"
+      "keyIdea": "Chỗ khó không phải từng mảnh mà là quyết định mảnh nào đặt ở đâu.",
+      "formula": "Đồng bộ tối thiểu → hộp thư đi → người tiêu thụ bất biến → bù trừ → đối chiếu.",
+      "commonMistake": "Chọn việc chạy đồng bộ theo tầm quan trọng thay vì theo câu trả lời cho người dùng.",
+      "action": "Vẽ một luồng của bạn và đánh dấu chỗ nào đồng bộ, chỗ nào không."
     },
     "application": {
-      "title": "Vẽ bản đồ 4 lớp năng lực tài chính",
-      "message": "Bài học đã có ví dụ thật áp bản đồ 4 lớp vào FPT - xem lại phần 'Ví dụ thật' phía trên. Giờ hãy vẽ sơ đồ tương tự cho một cổ phiếu bạn quan tâm.",
-      "secondary": "Bài tập này lộ ra ngay bạn đang mạnh ở lớp nào và còn yếu ở lớp nào."
+      "title": "Làm ngay hôm nay",
+      "message": "Vẽ một luồng nhiều bước trong hệ thống bạn và đánh dấu: chỗ nào đồng bộ, chỗ nào bất đồng bộ, và với mỗi chỗ đồng bộ hỏi người dùng có thật sự cần biết kết quả ngay không.",
+      "secondary": "Rồi kiểm bốn thứ: hộp thư đi ở chỗ ghi dữ liệu, tính bất biến ở mỗi người tiêu thụ, hành động ngược cho mỗi bước, và một lượt đối chiếu nhìn từ ngoài."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Nhìn lại toàn bộ hành trình học tài chính, có thể thấy nó thực chất xây dựng bốn lớp năng lực liên kết chặt chẽ với nhau: kế toán và báo cáo tài chính, định giá, quản trị rủi ro, và thị trường. Thiếu một lớp, mọi phân tích đều trở nên phiến diện."
+        "text": "Từng mảnh riêng lẻ thì dễ hiểu. Chỗ khó là quyết định mảnh nào đặt ở đâu, và bài này ghép chúng vào một luồng duy nhất."
       },
       {
         "type": "heading",
-        "text": "Bốn lớp năng lực"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kế toán và ba báo cáo tài chính là ngôn ngữ đọc hiểu con số. Định giá chuyển những con số kế toán đó thành ước tính giá trị thực, qua DCF hay các phương pháp multiples. Quản trị rủi ro giúp hiểu điều gì có thể khiến các giả định định giá sai - đòn bẩy, biến động lãi suất, phái sinh. Thị trường giúp hiểu tâm lý, cung cầu, và hành vi tập thể ảnh hưởng đến giá cả trong ngắn hạn. Khi phân tích một cổ phiếu thực tế, nhà phân tích chuyên nghiệp không chỉ nhìn P/E mà còn kiểm tra chất lượng lợi nhuận, cơ cấu nợ, độ nhạy lãi suất, và tâm lý dòng tiền trong ngành trước khi đưa ra khuyến nghị."
-      },
-      {
-        "type": "heading",
-        "text": "Vì sao P/E thấp chưa chắc là 'rẻ'"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một công ty có P/E thấp (có vẻ 'rẻ') đôi khi vẫn là một khoản đầu tư tệ, vì P/E thấp có thể phản ánh rủi ro thực sự cao - nợ lớn, lợi nhuận kém chất lượng, ngành đang suy thoái - mà thị trường đã định giá đúng. 'Rẻ' không có nghĩa là 'tốt' nếu không kết hợp phân tích rủi ro và chất lượng lợi nhuận. Đây chính là bài học kết nối bốn lớp: một chỉ số định giá đơn lẻ không bao giờ đủ để ra quyết định."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kế toán: ngôn ngữ đọc hiểu con số qua ba báo cáo tài chính",
-          "Định giá: chuyển con số kế toán thành ước tính giá trị (DCF, multiples)",
-          "Quản trị rủi ro: hiểu điều gì có thể khiến giả định định giá sai",
-          "Thị trường: hiểu tâm lý và hành vi tập thể ảnh hưởng đến giá ngắn hạn"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Ví dụ thật: áp bản đồ 4 lớp vào FPT"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Kế toán: doanh thu 70.112,83 tỷ đồng, lợi nhuận sau thuế 9.369,31 tỷ đồng (2025), biên lợi nhuận gộp 39,2%",
-          "Định giá: P/E hiện tại khoảng 10,5 lần, thấp hơn trung bình 3 năm (18,4 lần) - thị trường đang định giá thận trọng",
-          "**Rủi ro:** cổ phiếu công nghệ VN thường có beta lớn hơn 1 (biến động mạnh hơn thị trường); rủi ro cụ thể của FPT là AI có thể thay thế một phần dịch vụ IT truyền thống",
-          "Thị trường: FPT niêm yết trên HOSE, thanh khoản cao, thuộc rổ VN30"
-        ]
+        "text": "Bước một: cắt ở đâu"
       },
       {
         "type": "callout",
-        "label": "Cách tự áp dụng cho cổ phiếu bạn quan tâm",
-        "text": "Lặp lại đúng 4 câu hỏi trên (Kế toán, Định giá, Rủi ro, Thị trường) với một công ty khác, ghi cụ thể số liệu tìm được vào mỗi ô thay vì để trống hoặc ghi chung chung."
+        "label": "Người dùng cần biết gì NGAY",
+        "text": "Đó là tiêu chí, không phải việc nào quan trọng hơn. Kiểm tra hàng còn thì chạy đồng bộ vì người dùng cần biết có đặt được không. Gửi thư xác nhận thì không, dù nó cũng quan trọng."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chọn theo tốc độ là sai hướng phổ biến: một việc nhanh mà người dùng không cần biết kết quả thì vẫn nên rời khỏi đường xử lý chính, vì nó vẫn là một thứ có thể hỏng và làm hỏng cả yêu cầu."
+      },
+      {
+        "type": "heading",
+        "text": "Bốn mảnh còn lại, đặt đúng chỗ"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Ghi đơn hàng VÀ ghi sự kiện vào hộp thư đi trong cùng một giao dịch. Tách ra thì có lúc đơn tồn tại mà không ai được thông báo.",
+          "Mỗi người tiêu thụ bất biến khi lặp lại. Luồng năm bước có năm chỗ lặp lại chứ không phải một.",
+          "Mỗi bước có hành động ngược, và thứ tự các bước tiến do đó mà ra - gửi thư đặt ở cuối vì nó không thu hồi được.",
+          "Một lượt đối chiếu hằng đêm nhìn từ ngoài chuỗi sự kiện."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Mục cuối đáng giải thích thêm: hộp thư đi giảm khả năng sự kiện bị mất nhưng không đưa về không, và mọi cơ chế còn lại trong luồng đều được kích hoạt bởi sự kiện. Đối chiếu là thứ duy nhất không nằm trong chuỗi đó."
+      },
+      {
+        "type": "heading",
+        "text": "Mảnh hay bị quên"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Có trạng thái nhìn thấy được",
+          "text": "Người dùng thấy đang xử lý rồi thấy đã xong. Phiếu hỗ trợ về đơn hàng trả lời được trong ba mươi giây."
+        },
+        "right": {
+          "label": "Không có",
+          "text": "Một loại phiếu hỗ trợ mà bạn không trả lời được: đơn của tôi đâu rồi. Và mỗi phiếu như vậy cần một người đi tra bằng tay."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Một nhà phân tích chỉ giỏi đọc báo cáo tài chính nhưng không hiểu định giá, rủi ro hay phái sinh sẽ để lại một góc mù nguy hiểm trong mọi khuyến nghị đầu tư."
+          "Luồng này không phức tạp hơn mức cần thiết - mỗi mảnh có mặt vì một kiểu hỏng cụ thể mà chặng này đã đi qua.",
+          "Bài sau tổng ôn cả chặng và nêu những chỗ dễ nhầm nhất."
         ]
       }
     ]
   },
   {
     "id": 200,
-    "slug": "bai-cuoi-phan-tich-doanh-nghiep-hoan-chinh",
-    "title": "Tự học Tài chính Day 200: Bài cuối - Tự phân tích một doanh nghiệp hoàn chỉnh từ A đến Z",
-    "subtitle": "Áp dụng toàn bộ 200 ngày vào một quy trình phân tích thực chiến",
-    "duration": "10 phút",
-    "difficulty": "Khó",
-    "emoji": "📘",
-    "openingQuestion": "Sau 200 ngày, điều quan trọng nhất bạn học được về tài chính là gì?",
+    "slug": "on-tap-xu-ly-bat-dong-bo",
+    "title": "Ôn tập - xử lý bất đồng bộ",
+    "subtitle": "Bốn quyết định của chặng, và bốn chỗ dễ nhầm.",
+    "duration": "6 phút",
+    "difficulty": "Trung bình",
+    "track": "professional",
+    "emoji": "📚",
+    "isFundamental": true,
+    "whyItMatters": "Chặng này có nhiều cơ chế, và chúng chỉ có nghĩa khi bạn nhớ được mỗi cơ chế sinh ra để chặn kiểu hỏng nào.",
+    "openingQuestion": "Câu nào tóm đúng nhất tinh thần của cả chặng?",
     "openingOptions": [
-      "Tài chính là một hệ thống liên kết, chứ không hề rời rạc",
-      "Cách chọn cổ phiếu thắng lớn trong ngắn hạn",
-      "Cách dùng phái sinh phức tạp để kiếm lời nhanh",
-      "Cách đánh bại thị trường bằng một công thức duy nhất"
+      "Bất đồng bộ đổi độ trễ lấy khả năng chịu lỗi, và cái giá trả bằng độ phức tạp khi quan sát",
+      "Bất đồng bộ giúp hệ thống xử lý được khối lượng lớn hơn so với gọi trực tiếp",
+      "Bất đồng bộ là cách tách rời tất cả các dịch vụ để chúng có thể phát triển độc lập với nhau",
+      "Bất đồng bộ đảm bảo công việc không bị mất khi một thành phần gặp sự cố"
     ],
     "correctOption": 0,
-    "explanation": "Hành trình 200 ngày: từ tư duy tiền bạc cơ bản → kế toán → đọc ba báo cáo tài chính → chỉ số tài chính → giá trị thời gian của tiền → tài chính doanh nghiệp → định giá cổ phiếu → trái phiếu và tín dụng → danh mục đầu tư và quản trị rủi ro → phái sinh. Mỗi chặng xây dựng trên nền tảng của chặng trước. Quy trình phân tích một doanh nghiệp hoàn chỉnh: đọc 3 báo cáo → tính các chỉ số then chốt → ước tính giá trị nội tại (DCF, multiples) → đánh giá rủi ro (đòn bẩy, thanh khoản, ngành) → đối chiếu với giá thị trường để ra quyết định.",
+    "explanation": "Ba lựa chọn kia đều đúng một phần và đều bỏ mất vế cái giá. Khối lượng và tách rời là lợi ích thật; không mất việc thì chỉ đúng khi bạn đã dựng đủ hộp thư đi, thư chết và đối chiếu. Vế cái giá mới là vế quyết định có nên dùng hay không, và nó là vế hay bị bỏ qua lúc quyết định.",
     "diagram": [
       {
-        "label": "Tư duy tiền bạc cơ bản",
+        "label": "1. Có cần bất đồng bộ không - người dùng cần biết kết quả ngay?",
         "arrow": true
       },
       {
-        "label": "Đọc báo cáo tài chính",
+        "label": "2. Ai chịu việc nhận trùng - bất biến hoặc khoá chống trùng",
         "arrow": true
       },
       {
-        "label": "Định giá và rủi ro",
+        "label": "3. Khe hở ghi và gửi - hộp thư đi",
         "arrow": true
       },
       {
-        "label": "Tự phân tích một doanh nghiệp hoàn chỉnh"
+        "label": "4. Thất bại giữa chừng - bù trừ, không phải huỷ giao dịch"
       }
     ],
     "realWorldExample": {
-      "company": "Charlie Munger - Mental Models",
-      "description": "Charlie Munger, cộng sự lâu năm của Warren Buffett, luôn nhấn mạnh: 'Người có nhiều công cụ tư duy (mental models) sẽ đưa ra quyết định tốt hơn người chỉ biết một loại.' Tài chính cung cấp một bộ mental models mạnh mẽ: DCF (giá trị), WACC (chi phí vốn), Portfolio Theory (rủi ro), Options Thinking (phân tích kịch bản) - đây là giá trị thực sự của 200 ngày này."
+      "company": "Bốn chỗ dễ nhầm",
+      "description": "Ưu tiên không phải cách ly. Giao dịch không giải quyết việc nhận trùng. Hàng đợi thư chết không ai xem thì chỉ chuyển việc mất sang chỗ im lặng. Và số lượng tồn đọng không nói được gì nếu không nhìn xu hướng."
     },
     "quiz": [
       {
-        "question": "Trong thực tế phân tích doanh nghiệp, điều gì quan trọng hơn: thuộc lòng công thức hay hiểu tư duy đằng sau nó?",
+        "question": "Cơ chế nào chặn kiểu hỏng đơn hàng tồn tại mà không sự kiện nào được phát?",
         "options": [
-          "Công thức - cần tính toán chính xác tuyệt đối",
-          "Tư duy - hiểu tại sao và khi nào nên dùng công thức nào quan trọng hơn nhiều so với việc thuộc lòng công thức, vì mỗi tình huống thực tế đều có điểm khác biệt cần điều chỉnh",
-          "Cả hai không quan trọng bằng trực giác",
-          "Chỉ cần dùng phần mềm tính toán tự động là đủ"
+          "Mẫu hộp thư đi, vì nó đưa việc ghi dữ liệu và ghi tin nhắn vào cùng một giao dịch",
+          "Khoá chống trùng, vì nó đảm bảo được rằng mỗi ý định chỉ được thực hiện đúng một lần",
+          "Hàng đợi thư chết, vì nó giữ lại những tin nhắn không xử lý được để xem lại",
+          "Bù trừ lỗi, vì nó hoàn tác những bước đã hoàn tất khi luồng thất bại giữa chừng"
         ],
-        "correct": 1,
-        "explanation": "200 ngày không phải để ghi nhớ hàng trăm công thức - mà để xây dựng một hệ thống tư duy phân tích: khi nào dùng P/E thay vì DCF, khi nào một chỉ số ratio đang bị bóp méo bởi kế toán, khi nào rủi ro đòn bẩy đáng lo hơn cơ hội tăng trưởng. Đây là nền tảng để tự tin đọc và phân tích BẤT KỲ doanh nghiệp nào trong tương lai, kể cả những ngành chưa từng học qua."
+        "correct": 0,
+        "explanation": "Ba cơ chế kia đều xử lý những kiểu hỏng khác của cùng chặng: nhận trùng, tin nhắn hỏng vĩnh viễn, và thất bại giữa chừng. Bài tập hữu ích là nhớ được cặp cơ chế với kiểu hỏng, vì đó là thứ giúp bạn chọn đúng lúc thiết kế."
       },
       {
-        "question": "Nếu phải chọn MỘT kỹ năng duy nhất để mang theo sau 200 ngày này vào mọi quyết định tài chính tương lai - dù là đọc một báo cáo tài chính mới, đánh giá một cơ hội đầu tư, hay hiểu một bản tin kinh tế - đó nên là kỹ năng gì?",
+        "question": "Cơ chế nào chặn kiểu hỏng một tin nhắn hỏng chặn cả hàng đợi?",
         "options": [
-          "Khả năng phân tích báo cáo tài chính nhanh hơn người khác",
-          "Khả năng ghi nhớ chính xác mọi công thức đã học trong 200 ngày",
-          "Khả năng đặt đúng câu hỏi và tìm kết nối giữa các mảnh thông tin - hiểu một con số tài chính không đứng riêng lẻ mà luôn kết nối với bối cảnh kế toán, định giá, rủi ro và thị trường xung quanh nó, đây là tư duy hệ thống chứ không phải một kỹ năng tính toán đơn lẻ",
-          "Khả năng dự đoán chính xác giá cổ phiếu trong ngắn hạn"
+          "Hàng đợi thư chết kèm giới hạn số lần thử lại cho mỗi tin nhắn",
+          "Tách hàng đợi theo loại việc để một loại chậm không ảnh hưởng loại khác",
+          "Bất biến khi lặp lại ở phía người tiêu thụ mỗi lúc nó xử lý một tin nhắn nhận về",
+          "Giới hạn thời gian xử lý tối đa cho mỗi tin nhắn trong hàng đợi"
         ],
-        "correct": 2,
-        "explanation": "Đây là thông điệp cốt lõi khép lại toàn bộ hành trình 200 ngày: giá trị thực sự không nằm ở việc thuộc lòng công thức hay dự đoán ngắn hạn, mà ở tư duy hệ thống - khả năng nhìn thấy MỐI LIÊN KẾT giữa các mảnh kiến thức để hiểu bức tranh tài chính đầy đủ của bất kỳ tình huống nào trong tương lai, kể cả những tình huống chưa từng học qua."
+        "correct": 0,
+        "explanation": "Tách hàng đợi giới hạn được thiệt hại nhưng nó không chặn: trong hàng đợi bị ảnh hưởng, tin nhắn hỏng vẫn chặn phần còn lại. Chỉ có việc đếm số lần thử và bỏ cuộc mới đưa nó ra khỏi luồng."
+      },
+      {
+        "question": "Điều gì đúng về mối quan hệ giữa giao dịch và việc nhận trùng?",
+        "options": [
+          "Giao dịch giải tính nguyên tử của một lần chạy, không giải việc có nhiều lần chạy",
+          "Giao dịch ngăn được việc nhận trùng nếu người tiêu thụ đọc và ghi trong cùng phạm vi",
+          "Giao dịch và bất biến khi lặp lại là hai cách khác nhau giải cùng một vấn đề",
+          "Giao dịch chỉ không đủ khi luồng xử lý đi qua nhiều cơ sở dữ liệu khác nhau"
+        ],
+        "correct": 0,
+        "explanation": "Đây là chỗ nhầm phổ biến nhất của chặng và nó dẫn tới việc bỏ qua toàn bộ phần bất biến. Lựa chọn cuối gần đúng nhưng nó gợi ý rằng với một cơ sở dữ liệu thì giao dịch là đủ, và điều đó sai."
+      },
+      {
+        "question": "Vì sao nói tồn đọng phải đọc bằng xu hướng?",
+        "options": [
+          "Vì cùng một con số có thể là hệ thống đang hồi phục hoặc là sự cố sắp nổ ra",
+          "Vì số lượng tồn đọng dao động nhiều nên khó đặt được ngưỡng cảnh báo ổn định",
+          "Vì xu hướng cho biết tốc độ xử lý của người tiêu thụ đang thay đổi thế nào",
+          "Vì cần biết tồn đọng sẽ đạt mức tối đa vào lúc nào để chuẩn bị trước"
+        ],
+        "correct": 0,
+        "explanation": "Mười nghìn đang giảm sau cao điểm và mười nghìn đang tăng đều là hai tình huống trái ngược nhau. Đây cũng là lý do cảnh báo nên đặt theo tuổi tin nhắn cũ nhất và tốc độ tăng."
+      },
+      {
+        "question": "Quyết định nào nên đưa ra TRƯỚC khi cần dùng tới nó?",
+        "options": [
+          "Tách phần tính toán khỏi phần gây hiệu ứng ra ngoài, để phát lại được an toàn",
+          "Chọn số lần thử lại tối đa trước khi chuyển tin nhắn sang hàng đợi thư chết",
+          "Quyết định khoảng thời gian giữ lại các bản ghi trong bảng hộp thư đi",
+          "Đặt mức ngưỡng cảnh báo cho tuổi của tin nhắn cũ nhất trong hàng đợi"
+        ],
+        "correct": 0,
+        "explanation": "Ba quyết định kia đều điều chỉnh được bất cứ lúc nào bằng một thay đổi cấu hình. Việc tách lớp thì là thay đổi cấu trúc mã, và lúc đang có sự cố cần dọn dữ liệu thì bạn không có thời gian làm nó."
       }
     ],
     "keyTakeaways": [
-      "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-      "Quy trình phân tích hoàn chỉnh: đọc báo cáo → tính chỉ số → định giá → đánh giá rủi ro → đối chiếu thị trường",
-      "200 ngày xây dựng tư duy phân tích, không phải một danh sách công thức để học thuộc - đây là nền tảng để tự phân tích bất kỳ doanh nghiệp nào"
+      "Bất đồng bộ đổi độ trễ lấy khả năng chịu lỗi; cái giá là độ phức tạp khi quan sát.",
+      "Ưu tiên không phải cách ly - nó không giải phóng người tiêu thụ đang bận.",
+      "Giao dịch giải MỘT lần chạy; bất biến giải việc có NHIỀU lần chạy.",
+      "Hàng đợi thư chết không ai xem chỉ chuyển việc mất sang chỗ im lặng.",
+      "Tách phần gây hiệu ứng ra ngoài TRƯỚC khi cần phát lại - lúc có sự cố thì đã muộn."
     ],
     "practicePrompt": {
-      "question": "Sau 200 ngày học từ kế toán cơ bản, chỉ số tài chính, giá trị thời gian của tiền, cổ phiếu/trái phiếu, đến phái sinh, bạn nhận ra kiến thức không nằm rời rạc trong từng chặng mà liên kết chặt chẽ với nhau (ví dụ: EBITDA từ kế toán dùng để tính EV/EBITDA trong định giá, WACC từ chi phí vốn dùng để chiết khấu trong DCF). Bài học tổng kết quan trọng nhất từ 200 ngày này là gì?",
+      "question": "Bạn kiểm một hệ thống bất đồng bộ. Ba câu hỏi đầu tiên nên là gì?",
       "options": [
-        "Bài học quan trọng nhất là ghi nhớ càng nhiều công thức càng tốt để áp dụng khi cần",
-        "Tài chính là một hệ thống liên kết từ kế toán đến phái sinh, không phải module rời rạc",
-        "Mỗi chặng kiến thức nên được học và áp dụng hoàn toàn độc lập với các chặng khác",
-        "Sau khi học xong 200 ngày, không cần tiếp tục cập nhật hay ôn tập lại kiến thức nữa"
+        "Người tiêu thụ có bất biến không, ghi và gửi có cùng giao dịch không, ai xem thư chết",
+        "Tồn đọng bao nhiêu, có bao nhiêu người tiêu thụ, thời gian xử lý trung bình là bao lâu",
+        "Dùng hệ thống hàng đợi nào, cấu hình ra sao, và ai chịu trách nhiệm vận hành nó",
+        "Có bao nhiêu loại sự kiện, chúng được định nghĩa ở đâu, và ai là người tiêu thụ"
       ],
-      "correct": 1,
-      "explanation": "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc. Quy trình phân tích hoàn chỉnh (đọc báo cáo → tính chỉ số → định giá → đánh giá rủi ro → đối chiếu thị trường) chính là tư duy được xây dựng qua 200 ngày, không phải một danh sách công thức rời rạc để học thuộc."
+      "correct": 0,
+      "explanation": "Ba câu này bắt được ba kiểu hỏng tạo ra dữ liệu sai một cách im lặng. Ba lựa chọn kia là những câu hỏi hợp lý về vận hành và kiến trúc, nhưng chúng đều xanh trong một hệ thống đang tích tụ dữ liệu sai."
     },
     "summary": {
-      "keyIdea": "Tài chính là hệ thống liên kết từ kế toán đến phái sinh, không phải các module rời rạc",
-      "commonMistake": "Đọc khái niệm như một câu chữ thay vì như một nguyên lý để áp dụng vào quyết định thực tế.",
-      "action": "Quy trình phân tích hoàn chỉnh: đọc báo cáo → tính chỉ số → định giá → đánh giá rủi ro → đối chiếu thị trường"
+      "keyIdea": "Mỗi cơ chế của chặng sinh ra để chặn một kiểu hỏng cụ thể - nhớ theo cặp.",
+      "formula": "Hộp thư đi cho khe hở ghi-gửi; bất biến cho nhận trùng; thư chết cho tin nhắn hỏng.",
+      "commonMistake": "Tin rằng giao dịch cơ sở dữ liệu đã lo được việc nhận trùng.",
+      "action": "Chạy ba câu hỏi kiểm nhanh lên hệ thống bất đồng bộ gần nhất của bạn."
     },
     "application": {
-      "title": "Tự phân tích một doanh nghiệp thật",
-      "message": "Chọn một công ty bạn quan tâm, đọc báo cáo tài chính gần nhất, tính vài chỉ số then chốt, thử ước tính giá trị bằng multiples đơn giản, rồi đối chiếu với giá thị trường hiện tại.",
-      "secondary": "Đây là bài tập tổng hợp toàn bộ 200 ngày - không cần hoàn hảo, chỉ cần đi hết quy trình một lần."
+      "title": "Làm ngay hôm nay",
+      "message": "Chạy ba câu hỏi lên một hệ thống bất đồng bộ của bạn: người tiêu thụ có bất biến không, việc ghi dữ liệu và gửi tin nhắn có cùng giao dịch không, và ai đang xem hàng đợi thư chết.",
+      "secondary": "Ba câu này bắt được ba kiểu hỏng tạo ra dữ liệu sai một cách im lặng - loại mà mọi bảng theo dõi vẫn xanh trong lúc nó đang xảy ra."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "200 ngày, từ tư duy tiền bạc cơ bản đến phái sinh phức tạp - hành trình đã đi qua kế toán, đọc ba báo cáo tài chính, chỉ số tài chính, giá trị thời gian của tiền, tài chính doanh nghiệp, định giá cổ phiếu, trái phiếu và tín dụng, danh mục đầu tư và quản trị rủi ro. Mỗi chặng xây dựng trên nền tảng của chặng trước."
+        "text": "Chặng này có nhiều cơ chế, và chúng chỉ có nghĩa khi bạn nhớ được mỗi cơ chế sinh ra để chặn kiểu hỏng nào. Bài này ghép chúng thành từng cặp."
       },
       {
         "type": "heading",
-        "text": "Quy trình phân tích một doanh nghiệp hoàn chỉnh"
-      },
-      {
-        "type": "paragraph",
-        "text": "Đọc ba báo cáo tài chính để hiểu tình hình hiện tại → tính các chỉ số then chốt để so sánh và phát hiện bất thường → ước tính giá trị nội tại qua DCF hoặc multiples → đánh giá rủi ro về đòn bẩy, thanh khoản, ngành → đối chiếu với giá thị trường để ra quyết định cuối cùng. Đây là một quy trình tuần tự, mỗi bước đều cần bước trước làm nền."
-      },
-      {
-        "type": "heading",
-        "text": "Tư duy quan trọng hơn công thức"
-      },
-      {
-        "type": "paragraph",
-        "text": "200 ngày không phải để ghi nhớ hàng trăm công thức, mà để xây dựng một hệ thống tư duy phân tích: khi nào dùng P/E thay vì DCF, khi nào một chỉ số ratio đang bị bóp méo bởi kế toán, khi nào rủi ro đòn bẩy đáng lo hơn cơ hội tăng trưởng. Charlie Munger, cộng sự lâu năm của Warren Buffett, luôn nhấn mạnh rằng người có nhiều công cụ tư duy (mental models) sẽ đưa ra quyết định tốt hơn người chỉ biết một loại - tài chính cung cấp một bộ mental models mạnh mẽ: DCF, WACC, Portfolio Theory, Options Thinking."
-      },
-      {
-        "type": "heading",
-        "text": "Kỹ năng duy nhất đáng mang theo"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nếu phải chọn một kỹ năng duy nhất để mang theo sau 200 ngày này, đó là khả năng đặt đúng câu hỏi và tìm kết nối giữa các mảnh thông tin - hiểu rằng một con số tài chính không bao giờ đứng riêng lẻ mà luôn kết nối với bối cảnh kế toán, định giá, rủi ro và thị trường xung quanh nó. Đây là tư duy hệ thống, không phải một kỹ năng tính toán đơn lẻ."
+        "text": "Bốn quyết định"
       },
       {
         "type": "list",
         "items": [
-          "Quy trình: đọc báo cáo → tính chỉ số → định giá → đánh giá rủi ro → đối chiếu thị trường",
-          "Tài chính là hệ thống liên kết, không phải các module rời rạc",
-          "Giá trị thực sự nằm ở tư duy hệ thống, không phải thuộc lòng công thức",
-          "Nền tảng này giúp tự tin phân tích bất kỳ doanh nghiệp nào, kể cả những ngành chưa từng học qua"
+          "Có cần bất đồng bộ không - hỏi người dùng có cần biết kết quả ngay, không hỏi việc nào quan trọng hơn.",
+          "Ai chịu việc nhận trùng - viết lại thao tác cho bất biến, hoặc khoá chống trùng do BÊN GỌI sinh.",
+          "Khe hở giữa ghi dữ liệu và gửi tin nhắn - mẫu hộp thư đi.",
+          "Thất bại giữa chừng - bù trừ bằng hành động ngược, không phải huỷ giao dịch."
         ]
+      },
+      {
+        "type": "heading",
+        "text": "Bốn chỗ dễ nhầm"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Người ta hay nghĩ",
+          "text": "Ưu tiên là cách ly. Giao dịch lo được việc nhận trùng. Có hàng đợi thư chết là xong. Tồn đọng mười nghìn là nhiều."
+        },
+        "right": {
+          "label": "Thực ra",
+          "text": "Ưu tiên không giải phóng người tiêu thụ đang bận. Giao dịch giải MỘT lần chạy. Thư chết không ai xem thì chỉ chuyển việc mất sang chỗ im lặng. Mười nghìn đang giảm và đang tăng là hai tình huống trái ngược."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Quyết định phải làm sớm"
+      },
+      {
+        "type": "callout",
+        "label": "Tách phần gây hiệu ứng ra ngoài",
+        "text": "Số lần thử lại, thời gian giữ bản ghi, mức ngưỡng cảnh báo - tất cả đều đổi được bất cứ lúc nào. Việc tách lớp thì là thay đổi cấu trúc mã, và lúc đang có sự cố cần dọn dữ liệu thì bạn không có thời gian làm nó."
       },
       {
         "type": "closing",
         "lines": [
-          "200 ngày kết thúc ở đây, nhưng cách nhìn một báo cáo tài chính, một bản tin kinh tế, hay một cơ hội đầu tư - đã thay đổi vĩnh viễn.",
-          "Đó mới là điều thực sự mang theo."
+          "Ba câu hỏi để kiểm nhanh một hệ thống bất đồng bộ: người tiêu thụ có bất biến không, ghi và gửi có cùng giao dịch không, và ai đang xem hàng đợi thư chết.",
+          "Ba câu này bắt được ba kiểu hỏng tạo ra dữ liệu sai một cách IM LẶNG - loại mà mọi bảng theo dõi vẫn xanh trong lúc nó đang xảy ra."
         ]
       }
     ]

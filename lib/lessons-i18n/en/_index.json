@@ -29,10 +29,6 @@
     "subtitle": "The concrete steps a compliance officer takes, and the legal lines that cannot be crossed",
     "duration": "10 min"
   },
-  "bai-cuoi-phan-tich-doanh-nghiep-hoan-chinh": {
-    "title": "Final lesson - Analyze a complete company from A to Z yourself",
-    "subtitle": "Applying all 200 days to a real analysis workflow"
-  },
   "ban-cheo-san-pham-va-kpi-cua-rm-ngan-hang": {
     "title": "Cross-selling bank products and the RM's KPIs: balancing sales against the customer's interest",
     "subtitle": "How to hit the sales target while genuinely advising on real needs, rather than pushing product at people",
@@ -103,22 +99,10 @@
     "subtitle": "15 common ESG indicators, how an ESG score is built, and the red flags to watch for in a report",
     "duration": "8 min"
   },
-  "call-option-la-gi": {
-    "title": "What Is a Call Option?",
-    "subtitle": "The right to buy an asset at a fixed price - expecting the price to rise"
-  },
   "cap-table-va-vesting-cau-truc-von-startup": {
     "title": "Cap table & vesting: the startup capital structure every PE/VC analyst must be able to read",
     "subtitle": "A complex cap table is the first tool you need to master when analysing a startup investment",
     "duration": "8 min"
-  },
-  "case-hang-hang-khong-phong-ho-gia-dau": {
-    "title": "Small Case - An Airline Hedges Oil Prices",
-    "subtitle": "Applying theory in practice: building a hedging strategy for fuel cost"
-  },
-  "case-xuat-khau-phong-ho-ty-gia": {
-    "title": "Small case - An exporter hedges its FX exposure",
-    "subtitle": "Real-world application: protecting export revenue from exchange-rate swings"
   },
   "cau-truc-family-office-single-vs-multi": {
     "title": "Family office structures: single-family, multi-family, and when to choose which",
@@ -205,10 +189,6 @@
     "subtitle": "Debits and credits for the transactions you meet every day, and a startup's first month",
     "duration": "7 min"
   },
-  "currency-swap-chuyen-sau": {
-    "title": "Currency Swap",
-    "subtitle": "Swapping cash flows between two different currencies"
-  },
   "danh-gia-deal-dau-tu": {
     "title": "Evaluating an investment deal",
     "subtitle": "A framework for reading a buyout the way a private equity fund reads one",
@@ -243,10 +223,6 @@
     "title": "Day 1 Readiness & Integration Playbook: the first 100 days after M&A",
     "subtitle": "Why most of a deal's synergy value is decided (or destroyed) within the first 100 days",
     "duration": "8 min"
-  },
-  "derivatives-la-gi": {
-    "title": "What Are Derivatives?",
-    "subtitle": "Instruments whose value depends on another underlying asset"
   },
   "dinh-gia-bat-dong-san-tai-san-vo-hinh": {
     "title": "Valuing real estate & intangible assets - when DCF is not enough",
@@ -383,10 +359,6 @@
     "subtitle": "Credit, liquidity, interest rate, market and concentration risk",
     "duration": "6 min"
   },
-  "forward-contract-la-gi": {
-    "title": "What Is a Forward Contract?",
-    "subtitle": "A commitment to buy/sell an asset at a price agreed today, settled in the future"
-  },
   "fpa-la-gi-vai-tro-doanh-nghiep": {
     "title": "What FP&A is, and what it does inside a company",
     "subtitle": "From an accounting department to the CEO's strategic partner",
@@ -396,10 +368,6 @@
     "title": "FPT's CFO and 8,500bn of cash",
     "subtitle": "Balancing liquidity, financial income and capital allocation",
     "duration": "6 min"
-  },
-  "futures-contract-la-gi": {
-    "title": "What Is a Futures Contract?",
-    "subtitle": "Like a forward but standardized, exchange-traded, and safer"
   },
   "gia-goi-thau-va-hieu-qua-du-an-xay-dung": {
     "title": "Contractors, Part 3: Pricing a bid and measuring what it really returns",
@@ -425,10 +393,6 @@
     "title": "Hedging instruments & FX derivatives - cutting exchange-rate risk",
     "subtitle": "When you have to transact in foreign currency, use derivatives to 'lock in' the rate instead of carrying the risk.",
     "duration": "8 min"
-  },
-  "hedging-la-gi": {
-    "title": "What Is Hedging?",
-    "subtitle": "Using derivatives to reduce risk, not to earn extra profit"
   },
   "hoach-dinh-tai-chinh-theo-giai-doan-cuoc-doi": {
     "title": "Financial planning by life stage: the same person, four different problems",
@@ -460,18 +424,10 @@
     "subtitle": "Why finance people abandon VLOOKUP, and how to join data from several sources without getting a single row wrong",
     "duration": "11 min"
   },
-  "interest-rate-swap-chuyen-sau": {
-    "title": "Interest Rate Swap",
-    "subtitle": "Swapping between a fixed interest rate and a floating interest rate"
-  },
   "interim-comprehensive-income": {
     "title": "Interim Statement & OCI",
     "subtitle": "Comprehensive Income = Net Income + OCI",
     "duration": "6 min"
-  },
-  "intrinsic-value-time-value": {
-    "title": "Intrinsic Value and Time Value",
-    "subtitle": "The two components that make up every option's price"
   },
   "inventory-turnover": {
     "title": "Inventory",
@@ -522,10 +478,6 @@
     "title": "Accrual vs cash accounting: the foundational distinction every accountant must hold",
     "subtitle": "Why recognised revenue does not always coincide with money arriving in the bank",
     "duration": "7 min"
-  },
-  "ket-noi-tat-ca-tai-chinh": {
-    "title": "Connecting it all - Financial statements, Valuation, Risk, Markets",
-    "subtitle": "Looking back at the whole journey as one tightly linked system"
   },
   "khau-hao": {
     "title": "Depreciation: three methods and the path through three statements",
@@ -697,10 +649,6 @@
     "subtitle": "SaaS versus airlines - fixed costs and margin expansion",
     "duration": "6 min"
   },
-  "option-la-gi": {
-    "title": "What Is an Option?",
-    "subtitle": "A right - not an obligation - to buy or sell an asset"
-  },
   "phan-bo-chi-phi-va-loi-nhuan-bo-phan": {
     "title": "Planning, part 5: cost allocation - why segment profit is always contested",
     "subtitle": "Direct costs, overheads and the allocation basis: when a number decides whose budget gets cut",
@@ -775,10 +723,6 @@
     "title": "Derivatives, Lesson 1: Put-call parity - pricing options before you have any formula",
     "subtitle": "The no-arbitrage principle and the binding relationship between calls, puts, stock and bonds",
     "duration": "11 min"
-  },
-  "put-option-la-gi": {
-    "title": "What Is a Put Option?",
-    "subtitle": "The right to sell an asset at a fixed price - expecting a price drop or wanting to insure a portfolio"
   },
   "quan-ly-rui-ro-lai-suat-doanh-nghiep": {
     "title": "CFO & Operations, Lesson 6: Managing corporate interest rate risk",
@@ -860,10 +804,6 @@
     "subtitle": "SCR, MCR, and the framework that keeps the insurance industry from repeating the solvency crises in its own history",
     "duration": "7 min"
   },
-  "speculation-la-gi": {
-    "title": "What Is Speculation?",
-    "subtitle": "Using derivatives to bet on price direction for profit - with no underlying risk to protect"
-  },
   "sql-co-ban-cho-dan-tai-chinh": {
     "title": "Excel, Lesson 6: Basic SQL for finance people - getting exactly the data you need",
     "subtitle": "SELECT, WHERE, GROUP BY, JOIN: enough to query for yourself instead of waiting on the data team",
@@ -873,14 +813,6 @@
     "title": "Data, Lesson 6: Advanced SQL - joining tables and computing over windows",
     "subtitle": "The four kinds of JOIN, the row-duplication trap, and the family of functions that solves ranking and running totals",
     "duration": "12 min"
-  },
-  "strike-price-expiration-date": {
-    "title": "Strike Price and Expiration Date",
-    "subtitle": "The two factors that determine the value and life span of every option contract"
-  },
-  "swap-la-gi": {
-    "title": "What Is a Swap?",
-    "subtitle": "Two parties exchange future cash flows according to an agreed formula"
   },
   "synergy-ma": {
     "title": "Estimating synergy soberly: why most deals fall short",
@@ -962,10 +894,6 @@
     "subtitle": "From bookkeeper to strategic partner of the CEO",
     "duration": "7 min"
   },
-  "tong-on-cong-cu-phai-sinh": {
-    "title": "Derivatives review",
-    "subtitle": "Connecting Forwards, Futures, Options and Swaps into one picture"
-  },
   "trai-phieu-doanh-nghiep-rieng-le-bai-hoc": {
     "title": "Vietnam Markets, Lesson 3: Privately placed corporate bonds - anatomy of a crisis",
     "subtitle": "Private placement, professional investors, and the lesson about refinancing risk",
@@ -1025,14 +953,6 @@
     "title": "Standards & Tax, Lesson 1: Where VAS and IFRS differ",
     "subtitle": "Historical cost versus fair value: one philosophical difference that drags a long list of numerical differences behind it",
     "duration": "11 min"
-  },
-  "vi-sao-doanh-nghiep-dung-phai-sinh-phong-ho": {
-    "title": "Why Do Businesses Use Derivatives to Hedge?",
-    "subtitle": "Stabilizing cash flow and protecting profit margin from market volatility"
-  },
-  "vi-sao-phai-sinh-nguy-hiem": {
-    "title": "Why Can Derivatives Be So Dangerous?",
-    "subtitle": "High leverage, complexity, and systemic risk"
   },
   "viet-memo-dau-tu-mot-trang": {
     "title": "Professional Skills, Lesson 1: The one-page investment memo - conclusion first, evidence after",
