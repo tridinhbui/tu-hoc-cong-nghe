@@ -256,7 +256,7 @@ export const FPA_PLANNING_LESSONS: Lesson[] = [
         options: [
           "Vì chi phí và tác động lên tổ chức của việc không tuyển thấp hơn hẳn so với cắt giảm",
           "Vì việc chưa tuyển thì chưa phát sinh chi phí nào nên không ảnh hưởng tới báo cáo",
-          "Vì quy định pháp luật hiện hành không cho phép doanh nghiệp cắt giảm nhân sự đang làm",
+          "Vì quy định pháp luật hiện hành không cho phép doanh nghiệp cắt giảm nhân sự",
           "Vì giảm nhân sự hiện có không tiết kiệm được chi phí trong năm tài chính đang chạy",
         ],
         correct: 0,

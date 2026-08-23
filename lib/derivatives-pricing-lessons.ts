@@ -233,7 +233,7 @@ export const DERIVATIVES_PRICING_LESSONS: Lesson[] = [
       {
         question: "Ý tưởng cốt lõi đằng sau lời giải Black-Scholes là gì?",
         options: [
-          "Ước lượng xác suất cổ phiếu tăng giá rồi lấy khoản chi trả kỳ vọng",
+          "Ước lượng xác suất cổ phiếu tăng giá rồi lấy chi trả kỳ vọng",
           "Tái tạo quyền chọn bằng cổ phiếu và tiền vay, điều chỉnh liên tục",
           "Hồi quy giá quyền chọn trong quá khứ theo các yếu tố thị trường",
           "Nội suy từ giá của các quyền chọn có mức thực hiện lân cận",

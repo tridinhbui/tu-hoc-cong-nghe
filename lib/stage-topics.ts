@@ -31,7 +31,7 @@ export type StageTopicId =
   | "mobile-apps-vn"
   | "life-expenses"
   | "health-risk"
-  | "life-stage"
+  | "career-stage"
   | "personal-ops"
   // Dùng ở cả hai track: track cá nhân Chặng 10, chuyên ngành Chặng 12
   | "investing-psychology"
@@ -83,7 +83,7 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
   "mobile-apps-vn": "generic",
   "life-expenses": "generic",
   "health-risk": "generic",
-  "life-stage": "generic",
+  "career-stage": "generic",
   "personal-ops": "generic",
   "investing-psychology": "generic",
   "accounting-reporting": "accounting",
@@ -150,7 +150,7 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 17": "mobile-apps-vn",
   "Chặng 18": "life-expenses",
   "Chặng 19": "health-risk",
-  "Chặng 20": "life-stage",
+  "Chặng 20": "career-stage",
   "Chặng 21": "personal-ops",
 };
 

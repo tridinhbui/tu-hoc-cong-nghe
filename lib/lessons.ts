@@ -23,7 +23,7 @@ import { FRAUD_SAFETY_LESSONS } from "./fraud-safety-lessons";
 import { MOBILE_APPS_VN_LESSONS } from "./mobile-apps-vn-lessons";
 import { LIFE_EXPENSES_LESSONS } from "./life-expenses-lessons";
 import { OCCUPATIONAL_HEALTH_LESSONS } from "./occupational-health-lessons";
-import { LIFE_STAGE_LESSONS } from "./life-stage-lessons";
+import { CAREER_STAGE_LESSONS } from "./career-stage-lessons";
 import { PERSONAL_OPS_LESSONS } from "./personal-ops-lessons";
 import { PRIVATE_MARKETS_LESSONS } from "./private-markets-lessons";
 import { ANALYST_CRAFT_LESSONS } from "./analyst-craft-lessons";
@@ -60,7 +60,7 @@ export const lessons: Lesson[] = [
   ...MOBILE_APPS_VN_LESSONS,
   ...LIFE_EXPENSES_LESSONS,
   ...OCCUPATIONAL_HEALTH_LESSONS,
-  ...LIFE_STAGE_LESSONS,
+  ...CAREER_STAGE_LESSONS,
   ...PERSONAL_OPS_LESSONS,
   ...PRIVATE_MARKETS_LESSONS,
   ...ANALYST_CRAFT_LESSONS,
@@ -68518,152 +68518,182 @@ export const lessons: Lesson[] = [
 
 
   {
-    "id": 1327,
-    "slug": "khung-bao-cao-esg-csrd-sfdr-issb",
-    "title": "Khung báo cáo & quy định ESG: CSRD, SFDR, ISSB và TCFD",
-    "subtitle": "Từ công bố tự nguyện sang bắt buộc - doanh nghiệp Việt xuất khẩu sang EU cần biết gì",
-    "duration": "9 phút",
-    "difficulty": "Khó",
-    "emoji": "📋",
-    "track": "bonus",
-    "openingQuestion": "Vì sao các khung báo cáo ESG bắt buộc như CSRD của EU lại quan trọng với một doanh nghiệp Việt Nam không niêm yết ở châu Âu?",
+    "title": "Vì sao có nhiều chuẩn báo cáo chỉ số, và chọn thế nào",
+    "subtitle": "Cùng một hệ thống, ba chuẩn đo, ba con số - và không cái nào sai",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "📐",
+    "whyItMatters": "Khi hai đội báo hai con số khác nhau cho cùng một dịch vụ, phản xạ đầu tiên là tìm xem ai đo sai. Thường không ai sai cả - họ đang dùng hai chuẩn khác nhau, và biết điều đó tiết kiệm rất nhiều tranh cãi.",
+    "openingQuestion": "Hai đội báo độ khả dụng của cùng một dịch vụ: 99,9% và 99,2%. Ai đúng?",
     "openingOptions": [
-      "Không quan trọng - quy định EU chỉ áp dụng cho doanh nghiệp đăng ký tại EU",
-      "Vì CSRD buộc doanh nghiệp EU báo cáo cả chuỗi cung ứng",
-      "Vì mọi doanh nghiệp trên thế giới đều phải nộp báo cáo cho EU",
-      "Vì Việt Nam đã ký kết áp dụng CSRD từ năm 2024"
+      "Cả hai, nếu họ định nghĩa lúc nào là hỏng khác nhau",
+      "Đội báo 99,2%, vì con số thấp hơn thường là con số trung thực hơn",
+      "Đội báo 99,9%, vì họ có nhiều điểm đo hơn nên mẫu của họ đáng tin cậy hơn",
+      "Chưa xác định được, cần đo lại bằng một công cụ thứ ba làm trọng tài"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là cơ chế lan truyền quan trọng nhất của quy định ESG. CSRD buộc doanh nghiệp EU công bố phát thải Scope 3 - tức phát thải trong toàn chuỗi giá trị, bao gồm nhà cung cấp. Doanh nghiệp EU không tự đo được phần đó nên chuyển yêu cầu xuống nhà cung cấp qua hợp đồng. Kết quả là một xưởng dệt ở Việt Nam bán hàng cho thương hiệu châu Âu sẽ được yêu cầu báo cáo dữ liệu môi trường, dù không chịu quy định EU trực tiếp.",
-    interactiveType: "esg-score",
-    "realWorldExample": {
-      "company": "CBAM và ngành thép, xi măng xuất khẩu sang EU",
-      "description": "Cơ chế điều chỉnh biên giới carbon (CBAM) của EU bắt đầu giai đoạn báo cáo từ 2023 và thu phí từ 2026, áp lên thép, xi măng, nhôm, phân bón, điện và hydro nhập khẩu. Nhà xuất khẩu phải khai báo lượng phát thải gắn với hàng hóa; nếu không đo được thì bị áp giá trị mặc định thường bất lợi. Đây là ví dụ rõ nhất về việc quy định môi trường trở thành rào cản thương mại thực tế."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Một đội tính hỏng là khi dịch vụ không trả lời; đội kia tính hỏng là khi dịch vụ trả lời chậm hơn ngưỡng. Cùng một khoảng thời gian, cùng một hệ thống, hai định nghĩa cho hai con số. Tranh cãi ai đúng là tranh cãi sai câu hỏi - câu đúng là hai chuẩn ấy đang trả lời cho ai.",
+    "diagram": [
       {
-        "question": "Khái niệm 'double materiality' (tính trọng yếu kép) trong CSRD nghĩa là gì?",
-        "options": [
-          "Doanh nghiệp phải báo cáo hai lần mỗi năm thay vì một lần",
-          "Doanh nghiệp phải công bố cả hai chiều: các vấn đề bền vững tác động tới tình hình tài chính của doanh nghiệp, VÀ tác động của doanh nghiệp lên môi trường và xã hội",
-          "Báo cáo phải được hai đơn vị kiểm toán độc lập xác nhận",
-          "Doanh nghiệp phải báo cáo theo cả chuẩn EU và chuẩn quốc gia"
-        ],
-        "correct": 1,
-        "explanation": "Double materiality là điểm khác biệt then chốt giữa CSRD của EU và cách tiếp cận của ISSB. Chiều thứ nhất - financial materiality - hỏi: biến đổi khí hậu ảnh hưởng thế nào tới dòng tiền và rủi ro của doanh nghiệp? Chiều thứ hai - impact materiality - hỏi: hoạt động của doanh nghiệp gây tác động gì lên môi trường và xã hội? ISSB chỉ yêu cầu chiều thứ nhất, phục vụ nhà đầu tư. CSRD yêu cầu cả hai, phục vụ cả xã hội."
+        "label": "Cùng một hệ thống",
+        "arrow": true
       },
       {
-        "question": "Phát thải Scope 1, Scope 2 và Scope 3 khác nhau thế nào?",
-        "options": [
-          "Scope 1 là phát thải nhỏ, Scope 2 trung bình, Scope 3 lớn - phân loại theo khối lượng",
-          "Scope 1 là phát thải trực tiếp từ nguồn doanh nghiệp sở hữu hoặc kiểm soát; Scope 2 là phát thải gián tiếp từ năng lượng mua vào (chủ yếu là điện); Scope 3 là mọi phát thải gián tiếp khác trong chuỗi giá trị, cả thượng nguồn và hạ nguồn",
-          "Scope 1 áp dụng cho sản xuất, Scope 2 cho dịch vụ, Scope 3 cho tài chính",
-          "Ba mức độ chính xác của phép đo phát thải, từ ước lượng thô tới đo lường chính xác"
-        ],
-        "correct": 1,
-        "explanation": "Đây là phân loại theo GHG Protocol, chuẩn nền tảng của mọi khung báo cáo. Scope 1: đốt nhiên liệu tại nhà máy, xe của công ty. Scope 2: điện, hơi nước, làm mát mua từ bên ngoài. Scope 3: nguyên vật liệu đầu vào, vận chuyển, đi lại của nhân viên, và cả việc khách hàng sử dụng sản phẩm. Với hầu hết doanh nghiệp, Scope 3 chiếm phần lớn tổng phát thải nhưng lại khó đo nhất - đây là điểm nghẽn thực tế của mọi chương trình ESG."
+        "label": "Ba chuẩn với ba định nghĩa hỏng",
+        "arrow": true
       },
       {
-        "question": "SFDR phân loại quỹ đầu tư theo Điều 6, Điều 8 và Điều 9. Điều 9 nghĩa là gì?",
-        "options": [
-          "Quỹ không tính đến yếu tố bền vững nào",
-          "Quỹ có mục tiêu đầu tư bền vững rõ ràng làm mục tiêu chính - mức cam kết cao nhất, thường gọi là quỹ 'dark green'",
-          "Quỹ chỉ được đầu tư vào trái phiếu chính phủ",
-          "Quỹ bị cấm bán cho nhà đầu tư cá nhân"
-        ],
-        "correct": 1,
-        "explanation": "SFDR (Sustainable Finance Disclosure Regulation) phân ba mức: Điều 6 - quỹ thông thường, không đưa yếu tố bền vững vào quy trình; Điều 8 - quỹ 'light green', có thúc đẩy đặc tính môi trường hoặc xã hội nhưng không phải mục tiêu chính; Điều 9 - quỹ 'dark green', đầu tư bền vững là mục tiêu. Đáng chú ý là sau khi quy định siết chặt, nhiều quỹ đã tự hạ cấp từ Điều 9 xuống Điều 8 vì không đáp ứng nổi tiêu chuẩn chứng minh - một bài học về khoảng cách giữa marketing và thực chất."
+        "label": "Ba con số khác nhau",
+        "arrow": true
+      },
+      {
+        "label": "Chọn theo người đọc, không theo con số đẹp"
       }
     ],
-    "keyTakeaways": [
-      "Quy định ESG lan truyền qua chuỗi cung ứng: nghĩa vụ Scope 3 của doanh nghiệp EU trở thành yêu cầu dữ liệu với nhà cung cấp Việt Nam",
-      "Double materiality (CSRD) yêu cầu cả hai chiều tác động; ISSB chỉ yêu cầu chiều tài chính phục vụ nhà đầu tư",
-      "Scope 1 trực tiếp, Scope 2 từ năng lượng mua vào, Scope 3 toàn chuỗi giá trị - Scope 3 thường lớn nhất và khó đo nhất",
-      "SFDR phân quỹ theo Điều 6/8/9; nhiều quỹ đã tự hạ cấp khi tiêu chuẩn chứng minh siết lại"
-    ],
-    "practicePrompt": {
-      "question": "Một công ty may Việt Nam xuất 60% doanh thu sang EU. Khách hàng châu Âu vừa gửi yêu cầu cung cấp dữ liệu phát thải Scope 1 và 2 trong vòng 6 tháng. Ban lãnh đạo nên coi đây là gì?",
-      "options": [
-        "Một yêu cầu hình thức, có thể trả lời qua loa vì không có chế tài pháp lý trực tiếp từ EU với công ty Việt Nam",
-        "Rủi ro thương mại thực sự: không đáp ứng có thể mất đơn hàng từ khách EU",
-        "Chỉ là vấn đề của bộ phận môi trường, không liên quan tới tài chính hay chiến lược",
-        "Nên từ chối vì chi phí đo lường quá lớn so với lợi ích"
-      ],
-      "correct": 1,
-      "explanation": "Đúng là EU không có chế tài trực tiếp với công ty Việt Nam, nhưng cơ chế ép buộc nằm ở hợp đồng thương mại chứ không phải luật. Khách hàng EU bắt buộc phải báo cáo Scope 3, và nếu nhà cung cấp không cung cấp được số liệu, cách rẻ nhất với họ là đổi nhà cung cấp. Với 60% doanh thu phụ thuộc thị trường EU, đây là rủi ro tập trung nghiêm trọng. Ngược lại, doanh nghiệp đo được sớm có lợi thế đàm phán rõ ràng."
-    },
-    "summary": {
-      "keyIdea": "Báo cáo ESG đã chuyển từ tự nguyện sang bắt buộc ở EU, và lan sang doanh nghiệp Việt Nam qua yêu cầu dữ liệu chuỗi cung ứng chứ không qua luật.",
-      "commonMistake": "Cho rằng quy định ESG của EU không liên quan vì doanh nghiệp không đăng ký tại EU - bỏ qua cơ chế lan truyền qua Scope 3 và hợp đồng",
-      "action": "Nếu doanh nghiệp xuất khẩu sang EU, bắt đầu đo Scope 1 và Scope 2 ngay - đây là dữ liệu khách hàng sẽ yêu cầu"
-    },
-    "application": {
-      "title": "Áp dụng vào phân tích doanh nghiệp",
-      "message": "Khi phân tích một doanh nghiệp xuất khẩu, mức độ sẵn sàng dữ liệu ESG giờ là một yếu tố rủi ro thương mại có thể định lượng - không còn là chuyện hình ảnh.",
-      "secondary": "Với doanh nghiệp thép, xi măng, nhôm xuất sang EU, chi phí CBAM từ 2026 nên được đưa thẳng vào mô hình dự báo biên lợi nhuận."
+    "realWorldExample": {
+      "company": "Cam kết trong hợp đồng và cam kết trên bảng",
+      "description": "Một công ty cam kết 99,9% với khách hàng và đo bằng cách kiểm tra dịch vụ mỗi phút từ một máy chủ giám sát. Đội sản phẩm đo bằng tỷ lệ yêu cầu thật thành công của người dùng thật và ra 99,2%. Con số trong hợp đồng luôn đẹp hơn vì phép kiểm tra mỗi phút bỏ sót mọi sự cố ngắn hơn một phút, và người dùng thì không bỏ sót."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Trong mười năm, ESG đi từ báo cáo tự nguyện đẹp đẽ sang nghĩa vụ pháp lý có chế tài. Và điều đáng chú ý nhất: quy định châu Âu đang chạm tới doanh nghiệp Việt Nam qua hợp đồng, không qua luật."
+        "text": "Chuẩn báo cáo không phải thủ tục hành chính. Mỗi chuẩn là một câu trả lời cho một người đọc khác nhau, và chọn nhầm chuẩn là trả lời đúng cho người không hỏi."
       },
       {
         "type": "heading",
-        "text": "Bốn khung cần phân biệt"
+        "text": "Ba loại người đọc, ba loại chuẩn"
       },
       {
         "type": "list",
         "items": [
-          "TCFD: khuyến nghị công bố rủi ro tài chính liên quan khí hậu theo bốn trụ - quản trị, chiến lược, quản lý rủi ro, chỉ tiêu và mục tiêu. Là nền tảng mà các khung sau kế thừa",
-          "ISSB (IFRS S1 và S2): chuẩn công bố bền vững toàn cầu, tập trung vào thông tin trọng yếu với NHÀ ĐẦU TƯ - tức chỉ chiều tác động tài chính",
-          "CSRD (EU): bắt buộc, phạm vi rộng hơn nhiều, yêu cầu double materiality và phải được kiểm toán độc lập xác nhận",
-          "SFDR (EU): không áp lên doanh nghiệp mà áp lên tổ chức quản lý quỹ, buộc phân loại và công bố mức độ bền vững của sản phẩm đầu tư"
+          "Khách hàng hỏi hệ thống có giữ đúng cam kết không, nên chuẩn của họ ràng buộc và đơn giản",
+          "Đội vận hành hỏi hôm nay có gì bất thường không, nên chuẩn của họ nhạy và nhiều chiều",
+          "Ban lãnh đạo hỏi xu hướng đang đi đâu, nên chuẩn của họ gộp mạnh và đọc theo quý"
         ]
       },
       {
-        "type": "heading",
-        "text": "Vì sao Scope 3 là điểm nghẽn"
-      },
-      {
         "type": "paragraph",
-        "text": "Scope 1 và 2 tương đối dễ: đếm nhiên liệu đốt và hóa đơn điện. Scope 3 bao gồm mười lăm hạng mục trải khắp chuỗi giá trị - từ phát thải để sản xuất ra nguyên liệu bạn mua, tới phát thải khi khách hàng dùng sản phẩm của bạn. Với một ngân hàng, Scope 3 chủ yếu là phát thải của các doanh nghiệp mà ngân hàng cho vay. Với một hãng xe, phần lớn nằm ở việc khách hàng đổ xăng chạy xe trong mười năm sau khi mua. Không doanh nghiệp nào tự đo được phần này - họ buộc phải đi hỏi đối tác, và đó là lý do quy định lan truyền."
+        "text": "Ba nhu cầu ấy không gộp được vào một chuẩn duy nhất. Một chuẩn đủ nhạy để đội vận hành thấy bất thường sẽ báo động liên tục nếu đưa cho khách hàng đọc; một chuẩn đủ ổn định để ghi vào hợp đồng thì mù trước những sự cố ngắn mà đội vận hành cần thấy nhất."
       },
       {
         "type": "heading",
-        "text": "CBAM - khi môi trường thành rào cản thương mại"
+        "text": "Khác biệt luôn nằm ở định nghĩa, không ở phép tính"
       },
       {
         "type": "paragraph",
-        "text": "Cơ chế điều chỉnh biên giới carbon của EU đánh phí lên hàng nhập khẩu dựa trên lượng phát thải gắn với sản phẩm, nhằm ngăn doanh nghiệp EU chuyển sản xuất sang nước có quy định lỏng hơn. Giai đoạn báo cáo bắt đầu 2023, thu phí từ 2026, áp lên thép, xi măng, nhôm, phân bón, điện và hydro. Nhà xuất khẩu không chứng minh được lượng phát thải thực sẽ bị áp giá trị mặc định, thường cao hơn thực tế. Với các ngành này, chi phí CBAM là một khoản chi phí biên mới cần đưa vào mô hình tài chính."
+        "text": "Khi hai con số lệch nhau, nguyên nhân gần như luôn là một trong bốn chỗ: hỏng được định nghĩa thế nào, đo ở đâu, đo với tần suất nào, và có bỏ qua khoảng bảo trì đã báo trước hay không. Bốn câu ấy giải quyết được phần lớn tranh cãi, và chúng nên được viết ra cạnh mỗi con số chứ không cất trong đầu người dựng bảng."
       },
       {
         "type": "callout",
-        "label": "Điểm dễ nhầm",
-        "text": "ISSB và CSRD không thay thế nhau. Doanh nghiệp lớn hoạt động ở EU có thể phải đáp ứng cả hai, với CSRD là tập hợp rộng hơn. Đừng giả định tuân thủ một khung là tự động tuân thủ khung kia."
+        "label": "Đổi chuẩn thì đổi cả lịch sử",
+        "text": "Khi một đội đổi định nghĩa hỏng, con số mới không so được với con số cũ. Cách xử lý đúng là tính lại toàn bộ lịch sử theo chuẩn mới rồi mới công bố, hoặc vẽ rõ một đường gián đoạn ở chỗ đổi. Công bố con số mới cạnh lịch sử cũ tạo ra một xu hướng không có thật, và đó là cách một cải tiến trên giấy ra đời."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Chuẩn cho hợp đồng",
+          "text": "Định nghĩa hẹp, đo từ bên ngoài, tần suất thấp, có loại trừ bảo trì. Ổn định và tranh cãi được trước toà."
+        },
+        "right": {
+          "label": "Chuẩn cho vận hành",
+          "text": "Định nghĩa rộng gồm cả chậm, đo từ phía người dùng, liên tục, không loại trừ gì. Nhạy và luôn xấu hơn."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Nhiều chuẩn tồn tại vì có nhiều người đọc với nhiều câu hỏi khác nhau.",
+          "Con số không có định nghĩa đi kèm thì chưa phải một phép đo hoàn chỉnh."
+        ]
       }
     ],
-    "diagram": [
+    "quiz": [
       {
-        "label": "TCFD - khung khuyến nghị công bố rủi ro khí hậu",
-        "arrow": true
+        "question": "Vì sao không gộp được ba nhu cầu vào một chuẩn duy nhất?",
+        "options": [
+          "Vì chuẩn đủ nhạy cho vận hành sẽ báo động liên tục nếu đưa cho khách hàng",
+          "Vì mỗi nhóm người đọc lại dùng một hệ thống công cụ giám sát khác nhau hoàn toàn",
+          "Vì dữ liệu cần cho ba chuẩn được lưu ở ba nơi với ba chu kỳ giữ khác nhau",
+          "Vì chuẩn dùng cho hợp đồng phải qua bộ phận pháp lý duyệt nên không đổi nhanh được"
+        ],
+        "correct": 0,
+        "explanation": "Độ nhạy là một đánh đổi chứ không phải một mức chất lượng. Nhạy hơn thì thấy sớm hơn nhưng cũng báo nhầm nhiều hơn, và mức chấp nhận được của người trực khác hẳn mức chấp nhận được của người ký hợp đồng."
       },
       {
-        "label": "ISSB - chuẩn báo cáo toàn cầu kế thừa TCFD",
-        "arrow": true
+        "question": "Hai con số khả dụng lệch nhau. Chỗ nào nên xem trước?",
+        "options": [
+          "Định nghĩa thế nào là hỏng ở mỗi bên",
+          "Công thức tính phần trăm mà mỗi bên đang dùng để quy đổi thời gian hỏng",
+          "Khoảng thời gian mà mỗi bên lấy làm mẫu để tính ra con số đã báo cáo",
+          "Phiên bản công cụ giám sát mà mỗi bên đang chạy tại thời điểm đo lường"
+        ],
+        "correct": 0,
+        "explanation": "Phép tính phần trăm ở hai bên gần như luôn giống nhau. Thứ khác nhau là cái gì được đếm vào tử số, và định nghĩa hỏng chính là chỗ quyết định điều đó."
       },
       {
-        "label": "CSRD áp cho doanh nghiệp EU · SFDR áp cho tổ chức tài chính",
-        "arrow": true
+        "question": "Vì sao con số trong hợp đồng thường đẹp hơn con số đội sản phẩm đo?",
+        "options": [
+          "Vì kiểm tra theo chu kỳ bỏ sót mọi sự cố ngắn hơn chu kỳ ấy",
+          "Vì hợp đồng chỉ tính những sự cố đã được khách hàng chính thức gửi báo cáo lại",
+          "Vì máy chủ giám sát thường đặt gần trung tâm dữ liệu nên đường truyền tốt hơn",
+          "Vì các khoảng bảo trì được báo trước đều bị loại ra khỏi phép tính khả dụng"
+        ],
+        "correct": 0,
+        "explanation": "Hai lý do cuối đều có thật và đều góp phần, nhưng lý do lớn nhất là tần suất lấy mẫu. Kiểm tra mỗi phút thì một sự cố bốn mươi giây có xác suất cao là không rơi vào lần kiểm tra nào, còn người dùng thật thì gặp nó."
       },
       {
-        "label": "Scope 3 là điểm nghẽn: phát thải nằm ở chuỗi cung ứng",
-        "arrow": true
+        "question": "Đội đổi định nghĩa hỏng rồi công bố con số mới cạnh lịch sử cũ. Hệ quả là gì?",
+        "options": [
+          "Một xu hướng cải thiện hoặc xấu đi không có thật",
+          "Các cảnh báo tự động dựa trên ngưỡng cũ sẽ ngừng hoạt động cho tới khi được đặt lại",
+          "Dữ liệu lịch sử trở nên vô dụng và cần phải xoá đi để tránh gây nhầm lẫn về sau",
+          "Con số mới sẽ luôn thấp hơn con số cũ vì định nghĩa mới thường rộng hơn định nghĩa cũ"
+        ],
+        "correct": 0,
+        "explanation": "Đường xu hướng bị bẻ tại đúng điểm đổi chuẩn, và người đọc quy nó cho một thay đổi kỹ thuật nào đó. Phải tính lại lịch sử theo chuẩn mới, hoặc vẽ rõ chỗ gián đoạn."
       },
       {
-        "label": "CBAM biến yêu cầu môi trường thành rào cản thương mại thực tế",
-        "arrow": false
+        "question": "Điều gì nên đi kèm mỗi con số trên bảng?",
+        "options": [
+          "Định nghĩa, điểm đo, tần suất và phần bị loại trừ",
+          "Tên người chịu trách nhiệm về dịch vụ và thời điểm bảng được cập nhật lần cuối",
+          "Ngưỡng cảnh báo tương ứng cùng với lịch sử của chỉ số ấy trong ba tháng gần nhất",
+          "Công cụ đã dùng để đo và phiên bản của công cụ ấy tại thời điểm lấy số liệu"
+        ],
+        "correct": 0,
+        "explanation": "Bốn thứ này là toàn bộ chỗ hai con số có thể lệch nhau. Viết chúng cạnh con số biến một cuộc tranh cãi kéo dài thành một lần đối chiếu mất ba mươi giây."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Nhiều chuẩn tồn tại vì có nhiều người đọc với nhiều câu hỏi khác nhau",
+      "Khác biệt giữa hai con số gần như luôn nằm ở định nghĩa, không ở phép tính",
+      "Kiểm tra theo chu kỳ bỏ sót mọi sự cố ngắn hơn chu kỳ ấy",
+      "Đổi chuẩn thì tính lại lịch sử, nếu không sẽ tạo ra một xu hướng không có thật"
+    ],
+    "practicePrompt": {
+      "question": "Dịch vụ hỏng 40 giây, giám sát kiểm tra mỗi 60 giây. Xác suất sự cố này bị ghi nhận là bao nhiêu?",
+      "options": [
+        "Khoảng hai phần ba",
+        "100% (= giả định mọi sự cố đều rơi trúng vào một lần kiểm tra)",
+        "Khoảng một phần ba (= lấy phần thời gian không hỏng thay vì phần hỏng)",
+        "0% (= giả định sự cố ngắn hơn chu kỳ thì luôn lọt qua kẽ hở giám sát)"
+      ],
+      "correct": 0,
+      "explanation": "Cửa sổ 40 giây trong chu kỳ 60 giây có xác suất khoảng 40 trên 60 là chứa một điểm kiểm tra. Nghĩa là cứ ba sự cố loại này thì một cái biến mất khỏi báo cáo, và nó biến mất một cách có hệ thống."
+    },
+    "summary": {
+      "keyIdea": "Mỗi chuẩn trả lời cho một người đọc, nên chọn chuẩn theo người đọc",
+      "commonMistake": "Tranh cãi ai đo đúng thay vì đối chiếu hai định nghĩa",
+      "action": "Viết định nghĩa, điểm đo, tần suất và phần loại trừ cạnh một chỉ số bạn đang báo cáo."
+    },
+    "application": {
+      "title": "Bốn câu khi hai con số lệch nhau",
+      "message": "Hỏng được định nghĩa thế nào? Đo ở đâu? Tần suất bao nhiêu? Có loại trừ gì không?",
+      "secondary": "Bốn câu này giải quyết phần lớn tranh cãi, và thường cho thấy cả hai bên đều đang đo đúng thứ họ định đo."
+    },
+    "id": 1327,
+    "slug": "khung-bao-cao-esg-csrd-sfdr-issb",
+    "track": "bonus"
   },
   {
     "id": 1328,
@@ -68814,786 +68844,900 @@ export const lessons: Lesson[] = [
     ]
   },
   {
-    "id": 1329,
-    "slug": "esg-trong-dinh-gia-doanh-nghiep",
-    "title": "ESG trong định giá doanh nghiệp: Đưa vào WACC hay dòng tiền?",
-    "subtitle": "Cách tích hợp ESG vào mô hình mà không biến nó thành con số tùy tiện",
+    "title": "Chỉ số phi chức năng khi đánh giá một dịch vụ",
+    "subtitle": "Gộp ba thứ không cùng đơn vị thành một điểm, và ai chọn trọng số",
     "duration": "9 phút",
     "difficulty": "Khó",
     "emoji": "🧮",
-    "track": "bonus",
-    "openingQuestion": "Cách tích hợp ESG vào mô hình định giá nào là chặt chẽ nhất?",
+    "interactiveType": "esg-score",
+    "whyItMatters": "Mọi bảng điều khiển sức khoẻ dịch vụ đều gộp nhiều thứ khác đơn vị vào một ô. Ô ấy trông như một phép đo nhưng là một quan điểm, và biết đọc nó là biết hỏi trọng số nằm ở đâu.",
+    "openingQuestion": "Dịch vụ A đứng đầu bảng sức khoẻ ở đội hạ tầng nhưng đứng chót ở bảng của đội sản phẩm. Vì sao?",
     "openingOptions": [
-      "Cộng thêm một khoản 'điểm thưởng ESG' vào giá trị doanh nghiệp cuối cùng",
-      "Đưa vào giả định cụ thể của mô hình: doanh thu, chi phí, CapEx",
-      "Giảm WACC đi 1% cho mọi doanh nghiệp có điểm ESG cao",
-      "Nhân giá trị doanh nghiệp với hệ số tương ứng điểm ESG"
+      "Hai bảng cân ba trụ cột theo hai tỷ lệ khác nhau",
+      "Một trong hai bảng đang lấy số liệu từ nguồn đo đã cũ",
+      "Đội sản phẩm có tiêu chuẩn khắt khe hơn nên chấm điểm chặt tay hơn hẳn",
+      "Dịch vụ A vừa đổi kiến trúc nên số liệu chưa kịp ổn định trở lại"
     ],
-    "correctOption": 1,
-    "explanation": "Cách sai phổ biến nhất là gắn một con số điều chỉnh tùy tiện dựa trên điểm ESG tổng hợp. Cách chặt chẽ là buộc mọi điều chỉnh phải đi qua một biến số cụ thể trong mô hình và giải thích được cơ chế: rủi ro ESG này làm doanh thu giảm bao nhiêu, chi phí tăng bao nhiêu, hay CapEx thêm bao nhiêu. Nếu không nói được cơ chế, có nghĩa là chưa hiểu đủ để định lượng.",
-    interactiveType: "esg-score",
-    "realWorldExample": {
-      "company": "Vụ bê bối khí thải diesel và chi phí thực của rủi ro G",
-      "description": "Một hãng xe lớn gian lận kết quả kiểm tra khí thải bị phát hiện năm 2015. Hậu quả tài chính không đến qua 'điểm ESG thấp' mà qua các dòng cụ thể: hàng chục tỷ euro tiền phạt và dàn xếp, chi phí thu hồi xe, doanh số sụt giảm, và chi phí vay tăng khi xếp hạng tín nhiệm bị hạ. Mọi tác động đều đo được bằng dòng tiền - đó là cách rủi ro quản trị hiện ra trong báo cáo tài chính."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Cả ba khả năng kia đều xảy ra được, nhưng nguyên nhân thường gặp nhất đơn giản hơn: hai bảng dùng cùng một bộ số liệu và ra hai thứ hạng ngược nhau, chỉ vì một bên coi chi phí hạ tầng là quan trọng nhất còn bên kia coi độ trễ là quan trọng nhất. Không con số nào sai, và cũng không con số nào thay đổi.",
+    "diagram": [
       {
-        "question": "Bằng chứng thực nghiệm về mối quan hệ giữa ESG và hiệu quả tài chính nói gì?",
-        "options": [
-          "Điểm ESG cao luôn dẫn tới lợi nhuận cổ phiếu vượt trội, điều này đã được chứng minh dứt khoát",
-          "Kết quả nghiên cứu không đồng nhất; bằng chứng mạnh nhất là ở chiều rủi ro - doanh nghiệp quản trị ESG tốt có xu hướng ít gặp sự cố nghiêm trọng và biến động thấp hơn, chứ không phải luôn có lợi nhuận cao hơn",
-          "ESG không có bất kỳ liên hệ nào với kết quả tài chính",
-          "Điểm ESG cao luôn làm giảm lợi nhuận vì tốn chi phí tuân thủ"
-        ],
-        "correct": 1,
-        "explanation": "Đây là điểm cần trung thực. Hàng nghìn nghiên cứu cho kết quả trái chiều, một phần vì các bảng xếp hạng ESG mâu thuẫn nhau nên chính biến số đầu vào đã không đáng tin. Phát hiện nhất quán nhất là ở chiều giảm rủi ro đuôi: doanh nghiệp có quản trị tốt ít gặp bê bối, kiện tụng, tai nạn môi trường - những sự kiện gây mất giá trị đột ngột. Trụ cột G có bằng chứng mạnh nhất, E và S yếu và phụ thuộc ngành hơn."
+        "label": "Ba trụ cột, ba đơn vị khác nhau",
+        "arrow": true
       },
       {
-        "question": "Khi nào việc điều chỉnh chi phí vốn (WACC) vì yếu tố ESG là hợp lý?",
-        "options": [
-          "Luôn luôn - mọi doanh nghiệp ESG kém đều nên bị áp WACC cao hơn",
-          "Chỉ khi rủi ro ESG đó không thể đa dạng hóa được, hoặc khi có bằng chứng thực tế rằng doanh nghiệp thực sự chịu chi phí vay cao hơn hay khó tiếp cận vốn hơn - còn rủi ro đặc thù doanh nghiệp nên đưa vào dòng tiền",
-          "Không bao giờ - WACC chỉ phụ thuộc vào cấu trúc vốn",
-          "Chỉ với doanh nghiệp trong ngành năng lượng"
-        ],
-        "correct": 1,
-        "explanation": "Nguyên tắc tài chính chuẩn: rủi ro đặc thù (idiosyncratic) có thể đa dạng hóa nên về lý thuyết không được đền bù bằng chi phí vốn cao hơn - nó thuộc về kịch bản dòng tiền. Chỉ rủi ro hệ thống mới thuộc về chi phí vốn. Tuy nhiên có ngoại lệ thực tế: nếu quan sát được doanh nghiệp thực sự phải trả lãi suất cao hơn hoặc bị nhóm nhà đầu tư lớn loại trừ, thì đó là chi phí vốn quan sát được chứ không phải giả định."
+        "label": "Chuẩn hoá về thang 0-100",
+        "arrow": true
       },
       {
-        "question": "Vì sao điểm ESG từ các nhà cung cấp khác nhau lại mâu thuẫn với nhau?",
-        "options": [
-          "Vì một số nhà cung cấp cố tình làm sai",
-          "Vì họ khác nhau ở ba tầng: chọn chỉ số nào để đo, đo chỉ số đó thế nào, và gán trọng số bao nhiêu cho từng chỉ số - ba khác biệt này cộng dồn khiến cùng một doanh nghiệp có thể xếp hạng cao ở bảng này và thấp ở bảng kia",
-          "Vì dữ liệu doanh nghiệp công bố luôn sai",
-          "Vì mỗi nhà cung cấp chỉ đánh giá một trụ cột trong ba trụ cột"
-        ],
-        "correct": 1,
-        "explanation": "Nghiên cứu học thuật cho thấy tương quan giữa điểm ESG của các nhà cung cấp lớn chỉ khoảng 0,4-0,6 - thấp hơn nhiều so với tương quan gần như hoàn hảo giữa các tổ chức xếp hạng tín nhiệm. Nguyên nhân được phân rã thành ba nguồn: phạm vi (đo cái gì), đo lường (đo thế nào), và trọng số (cái nào quan trọng hơn). Hệ quả thực tế: đừng dùng điểm ESG tổng hợp làm đầu vào mô hình, hãy nhìn vào các chỉ số cụ thể trọng yếu với ngành đó."
+        "label": "Nhân trọng số do ai đó chọn",
+        "arrow": true
+      },
+      {
+        "label": "Một điểm duy nhất, đã mất dấu vết"
       }
     ],
-    "keyTakeaways": [
-      "Tích hợp ESG đúng cách là điều chỉnh các giả định cụ thể trong mô hình, không phải cộng trừ một con số vào kết quả cuối",
-      "Rủi ro ESG đặc thù doanh nghiệp thuộc về dòng tiền và kịch bản; chỉ rủi ro hệ thống hoặc chi phí vốn quan sát được mới thuộc về WACC",
-      "Bằng chứng thực nghiệm mạnh nhất ở chiều giảm rủi ro đuôi, không phải ở chiều tạo lợi nhuận vượt trội",
-      "Điểm ESG tổng hợp mâu thuẫn giữa các nhà cung cấp - dùng chỉ số cụ thể trọng yếu theo ngành thay vì điểm tổng"
-    ],
-    "practicePrompt": {
-      "question": "Bạn định giá một doanh nghiệp thực phẩm bị phát hiện vi phạm an toàn lao động nghiêm trọng tại một nhà máy. Cách phản ánh vào mô hình DCF nào hợp lý nhất?",
-      "options": [
-        "Tăng WACC thêm 2% để phản ánh rủi ro ESG cao hơn",
-        "Mô hình hóa cụ thể: tiền phạt, CapEx khắc phục, kịch bản mất doanh thu",
-        "Giảm giá trị doanh nghiệp cuối cùng đi 15% theo quy ước với các vụ bê bối ESG",
-        "Không phản ánh gì vì vi phạm lao động không ảnh hưởng tới dòng tiền"
-      ],
-      "correct": 1,
-      "explanation": "Mỗi hệ quả của sự việc này đều đi vào một dòng cụ thể có thể ước lượng và tranh luận được: tiền phạt là dòng tiền ra một lần, cải thiện nhà máy là CapEx, mất hợp đồng là kịch bản doanh thu. Cộng thêm 2% vào WACC hay giảm 15% giá trị đều là con số không giải thích được nguồn gốc - người đọc mô hình không thể kiểm tra hay phản biện. Nguyên tắc: mọi điều chỉnh phải trả lời được câu hỏi 'con số này đến từ đâu'."
-    },
-    "summary": {
-      "keyIdea": "ESG vào mô hình định giá qua các giả định cụ thể về doanh thu, chi phí, CapEx và rủi ro - không qua một hệ số điều chỉnh tùy tiện gắn với điểm ESG tổng hợp.",
-      "commonMistake": "Điều chỉnh WACC theo điểm ESG mà không phân biệt rủi ro đặc thù (thuộc dòng tiền) với rủi ro hệ thống (thuộc chi phí vốn)",
-      "action": "Với mỗi rủi ro ESG nhận diện được, viết ra cơ chế: nó tác động vào dòng nào của mô hình và ước lượng bao nhiêu"
-    },
-    "application": {
-      "title": "Áp dụng vào công việc phân tích",
-      "message": "Khi trình bày định giá có yếu tố ESG, luôn tách riêng phần điều chỉnh và giải thích cơ chế - đây là điểm khác biệt giữa phân tích ESG nghiêm túc và ESG mang tính hình thức.",
-      "secondary": "Bảng độ nhạy theo mức độ nghiêm trọng của rủi ro ESG thường thuyết phục hơn một con số điểm duy nhất."
+    "realWorldExample": {
+      "company": "Ô màu xanh trên bảng điều khiển",
+      "description": "Một công ty dựng bảng sức khoẻ chấm mọi dịch vụ từ 0 tới 100 và tô màu theo ngưỡng. Dịch vụ thanh toán luôn xanh, điểm 82. Sau một sự cố kéo dài bốn giờ, đội mới mở tệp cấu hình ra xem: điểm ấy gồm 60% là chi phí hạ tầng trên mỗi yêu cầu, thứ dịch vụ thanh toán làm rất tốt, và 15% là độ phủ kiểm thử, thứ nó gần như không có. Bảng chưa bao giờ nói dối - nó chỉ chưa bao giờ nói ra mình đang cân theo tỷ lệ nào."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Nhiều báo cáo phân tích viết 'doanh nghiệp có ESG tốt nên chúng tôi định giá cao hơn' rồi dừng lại. Đó không phải phân tích - đó là ý kiến khoác áo số học."
+        "text": "Chỉ số phi chức năng là những thứ người dùng không bấm vào được nhưng cảm nhận được: hệ thống tốn bao nhiêu, chạy nhanh thế nào, sửa được dễ tới đâu. Chúng khó gộp vì không cùng đơn vị, và cách người ta gộp là chỗ bài học này bắt đầu."
       },
       {
         "type": "heading",
-        "text": "Ba đường ESG đi vào mô hình"
+        "text": "Ba trụ cột"
       },
       {
         "type": "list",
         "items": [
-          "Dòng tiền: chi phí carbon và tuân thủ, tiền phạt, chi phí khắc phục, tiết kiệm năng lượng, doanh thu từ sản phẩm xanh, hay mất doanh thu khi khách hàng rời đi",
-          "Tài sản và CapEx: đầu tư bắt buộc để đáp ứng quy định, khả năng phải ghi giảm tài sản mắc kẹt, và tuổi thọ kinh tế của tài sản bị rút ngắn",
-          "Chi phí vốn: chỉ khi có bằng chứng doanh nghiệp thực sự chịu lãi suất cao hơn, bị hạ xếp hạng tín nhiệm, hoặc bị loại khỏi danh mục của nhóm nhà đầu tư đủ lớn"
+          "Hiệu quả tài nguyên: chi phí hạ tầng và năng lượng trên mỗi đơn vị việc làm được",
+          "Trải nghiệm người dùng: độ trễ ở phân vị cao và tỷ lệ lỗi người dùng thật nhìn thấy",
+          "Chất lượng vận hành: độ phủ kiểm thử, tài liệu, thời gian trung bình để khôi phục"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Ba trụ cột này thường xung đột chứ không đi cùng nhau. Một dịch vụ nhẹ và nhanh có thể nhẹ và nhanh vì nó bỏ qua kiểm thử và ghi nhật ký. Một dịch vụ vận hành kỷ luật có thể tốn gấp đôi tài nguyên vì nó chạy song song và kiểm tra chéo mọi thứ. Chính vì xung đột nên trọng số mới quan trọng tới thế."
+      },
+      {
+        "type": "heading",
+        "text": "Điều chỉnh phải đi qua một biến cụ thể"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cách sai phổ biến nhất là gắn thêm một khoản cộng trừ tuỳ tiện dựa trên cảm nhận chung về dịch vụ. Cách chặt chẽ là buộc mọi điều chỉnh đi qua một biến đo được và giải thích được cơ chế: thiếu kiểm thử làm thời gian khôi phục dài thêm bao nhiêu phút, chạy song song làm chi phí mỗi yêu cầu tăng bao nhiêu. Nếu không nói được cơ chế thì chưa hiểu đủ để định lượng."
+      },
+      {
+        "type": "heading",
+        "text": "Trọng số là một quyết định, không phải hằng số"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kéo trọng số nghiêng về hiệu quả tài nguyên thì dịch vụ tiết kiệm nhất lên đầu bảng dù nó không có lấy một bài kiểm thử. Kéo nghiêng về vận hành thì đúng dịch vụ ấy rơi xuống chót. Không con số nào của dịch vụ thay đổi trong cả hai lần. Widget bên dưới cho làm đúng thao tác ấy."
+      },
+      {
+        "type": "callout",
+        "label": "Điểm tổng hợp giấu đi thứ nó gộp",
+        "text": "Giá trị của một điểm tổng hợp là gọn: một ô thay cho mười biểu đồ. Cái giá là mất dấu vết - nhìn vào 82 không biết nó đến từ đâu, nên cũng không biết phải sửa gì để nó lên 90. Cách dùng đúng là để nó cảnh báo rằng có gì đó đáng xem, rồi luôn mở ba trụ cột thành phần ra trước khi kết luận."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Bảng đọc được",
+          "text": "Hiện cả ba trụ cột cạnh điểm tổng, ghi rõ trọng số, và cho xem lịch sử từng thành phần chứ không chỉ của điểm tổng."
+        },
+        "right": {
+          "label": "Bảng chỉ để nhìn",
+          "text": "Một con số và một màu. Trọng số nằm trong tệp cấu hình, không ai nhớ nó được đặt khi nào và vì lý do gì."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Điểm tổng hợp không phải phép đo, nó là một quan điểm về điều gì đáng giá.",
+          "Câu hỏi đầu tiên trước mọi bảng xếp hạng: ai chọn trọng số, và chọn khi nào."
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Vì sao ba trụ cột phi chức năng thường xung đột nhau?",
+        "options": [
+          "Vì tiết kiệm tài nguyên thường phải bỏ bớt kiểm thử và ghi nhật ký",
+          "Vì mỗi trụ cột do một đội khác nhau đo và các đội lại dùng công cụ khác nhau",
+          "Vì ba trụ cột thay đổi theo những chu kỳ thời gian rất khác nhau nên khó so",
+          "Vì chỉ trụ cột trải nghiệm là đo trực tiếp được, hai cái còn lại đều gián tiếp"
+        ],
+        "correct": 0,
+        "explanation": "Xung đột đến từ bản chất chứ không từ cách đo. Ghi nhật ký, kiểm tra chéo, chạy song song đều tốn tài nguyên, nên dịch vụ ghi điểm cao ở hiệu quả thường ghi điểm thấp ở vận hành."
+      },
+      {
+        "question": "Cùng một bộ số liệu, hai bảng cho hai thứ hạng ngược nhau. Điều đó nói lên gì?",
+        "options": [
+          "Rằng thứ hạng phản ánh trọng số nhiều hơn phản ánh dịch vụ",
+          "Rằng ít nhất một trong hai bảng đang có lỗi ở bước tính ra điểm tổng hợp",
+          "Rằng bộ số liệu chưa đủ để phân biệt các dịch vụ nên cần thêm chỉ số mới",
+          "Rằng hai bảng đang chuẩn hoá số liệu về hai thang điểm khác nhau hoàn toàn"
+        ],
+        "correct": 0,
+        "explanation": "Không bảng nào sai. Khi đầu vào giống hệt mà đầu ra ngược nhau, thứ duy nhất khác là tỷ lệ gộp - nên chính tỷ lệ ấy mới là thứ đang quyết định thứ hạng."
+      },
+      {
+        "question": "Điều chỉnh điểm một dịch vụ theo cảm nhận chung thay vì qua một biến cụ thể. Vấn đề là gì?",
+        "options": [
+          "Không ai kiểm chứng hay bác bỏ được con số ấy",
+          "Con số điều chỉnh sẽ phải được cập nhật lại thủ công sau mỗi lần đo lại chỉ số",
+          "Cách ấy làm điểm tổng hợp lệch khỏi thang 0-100 mà bảng đang dùng để tô màu",
+          "Các dịch vụ được điều chỉnh sẽ không còn so sánh được với những dịch vụ khác"
+        ],
+        "correct": 0,
+        "explanation": "Một con số không có cơ chế thì không sai được, và thứ không sai được thì cũng không đúng được. Buộc điều chỉnh đi qua một biến đo được là cách duy nhất để người sau còn tranh luận với nó."
+      },
+      {
+        "question": "Cách dùng đúng một bảng sức khoẻ tổng hợp là gì?",
+        "options": [
+          "Coi nó là tín hiệu để mở ba trụ cột ra xem",
+          "Đặt ngưỡng cảnh báo trên điểm tổng và chỉ can thiệp khi điểm rơi xuống dưới ngưỡng",
+          "So điểm giữa các dịch vụ để quyết định đội nào cần thêm người và thêm nguồn lực",
+          "Theo dõi xu hướng điểm tổng theo tháng thay vì nhìn giá trị tại một thời điểm"
+        ],
+        "correct": 0,
+        "explanation": "Ba cách kia đều lấy điểm tổng làm kết luận. Điểm tổng chỉ đủ tin cậy ở vai trò một tín hiệu, vì nó gộp những thứ bù trừ được cho nhau: một trụ cột sụp có thể bị hai trụ cột kia che kín."
+      },
+      {
+        "question": "Dịch vụ điểm 82 vừa gây sự cố bốn giờ. Nên xem gì trước tiên?",
+        "options": [
+          "Trọng số của bảng và trụ cột nào đang bị đè nhẹ",
+          "Nhật ký của dịch vụ trong khoảng bốn giờ xảy ra sự cố của ngày hôm đó",
+          "Lịch sử điểm tổng của dịch vụ ấy trong sáu tháng gần nhất để tìm ra xu hướng",
+          "Điểm của những dịch vụ khác cùng phụ thuộc vào hạ tầng chung với dịch vụ này"
+        ],
+        "correct": 0,
+        "explanation": "Nhật ký sự cố trả lời câu hỏi lần này hỏng ở đâu. Trọng số trả lời câu hỏi lớn hơn: vì sao bảng đã xanh suốt trong khi thứ vừa hỏng thì luôn yếu, và còn bao nhiêu dịch vụ nữa đang xanh theo đúng cách ấy."
+      }
+    ],
+    "keyTakeaways": [
+      "Điểm tổng hợp là một quan điểm về điều gì đáng giá, không phải một phép đo",
+      "Ba trụ cột xung đột nhau, nên trọng số quyết định thứ hạng nhiều hơn số liệu",
+      "Mọi điều chỉnh phải đi qua một biến đo được và nói ra được cơ chế",
+      "Dùng điểm tổng làm tín hiệu, rồi luôn mở ba trụ cột ra trước khi kết luận"
+    ],
+    "practicePrompt": {
+      "question": "Trọng số 60/25/15 cho hiệu quả, trải nghiệm, vận hành. Dịch vụ có H=90, T=40, V=20 được bao nhiêu điểm?",
+      "options": [
+        "67",
+        "50 (= lấy trung bình cộng của ba trụ cột, bỏ qua trọng số đã cho)",
+        "90 (= chỉ lấy trụ cột có trọng số lớn nhất làm điểm tổng hợp)",
+        "150 (= cộng thẳng ba trụ cột rồi chia đôi thay vì nhân trọng số)"
+      ],
+      "correct": 0,
+      "explanation": "90 nhân 0,6 cộng 40 nhân 0,25 cộng 20 nhân 0,15 ra 67. Đáng chú ý là điểm 67 ấy che kín một trụ cột đang ở mức 20, và đó chính là hình dạng của mọi sự cố bất ngờ."
+    },
+    "summary": {
+      "keyIdea": "Một điểm tổng hợp gộp ba thứ khác đơn vị theo tỷ lệ do ai đó chọn",
+      "commonMistake": "Đọc thứ hạng như một phép đo khách quan",
+      "action": "Tìm tệp cấu hình chứa trọng số của bảng sức khoẻ đội bạn đang dùng."
+    },
+    "application": {
+      "title": "Ba câu trước mọi bảng xếp hạng",
+      "message": "Điểm này gộp những gì? Trọng số bao nhiêu và ai đặt? Có trụ cột nào đang bị hai trụ cột kia che không?",
+      "secondary": "Nếu không trả lời được câu thứ hai từ chính bảng ấy, bảng đang giấu thứ quan trọng nhất của nó."
+    },
+    "id": 1329,
+    "slug": "esg-trong-dinh-gia-doanh-nghiep",
+    "track": "bonus"
+  },
+  {
+    "title": "Chất lượng vận hành: trụ cột ít được nhắc nhất",
+    "subtitle": "Vì sao trụ cột khó thấy nhất lại là trụ cột báo trước sự cố sớm nhất",
+    "duration": "8 phút",
+    "difficulty": "Trung bình",
+    "emoji": "🔧",
+    "interactiveType": "esg-score",
+    "whyItMatters": "Hiệu quả tài nguyên và độ trễ đều có biểu đồ riêng và được nhìn mỗi ngày. Chất lượng vận hành thì không có biểu đồ nào, nên nó xuống dần mà không ai thấy - cho tới lúc một sự cố bốn giờ nói hộ.",
+    "openingQuestion": "Dịch vụ nào dễ gây sự cố kéo dài hơn: chậm nhưng có tài liệu và kiểm thử, hay nhanh nhưng không có gì cả?",
+    "openingOptions": [
+      "Cái nhanh, vì khi hỏng thì không ai biết bắt đầu từ đâu",
+      "Cái chậm, vì độ trễ cao làm lỗi lan sang các dịch vụ phụ thuộc nhanh hơn",
+      "Hai cái tương đương, vì thời gian sự cố phụ thuộc vào người trực chứ không vào mã",
+      "Chưa đủ dữ kiện, cần biết dịch vụ nào có nhiều người dùng hơn trong hai cái"
+    ],
+    "correctOption": 0,
+    "explanation": "Độ trễ cao gây khó chịu nhưng nó hiện ra ngay và ai cũng đo được. Thiếu tài liệu và kiểm thử thì không gây ra sự cố nào, nó chỉ quyết định sự cố kéo dài bốn phút hay bốn giờ. Đó là lý do trụ cột này khó thấy: nó không tạo ra vấn đề, nó nhân độ lớn của mọi vấn đề khác lên.",
+    "diagram": [
+      {
+        "label": "Vận hành xuống dần, không biểu đồ nào ghi",
+        "arrow": true
+      },
+      {
+        "label": "Hai trụ cột kia vẫn xanh, bảng vẫn xanh",
+        "arrow": true
+      },
+      {
+        "label": "Một sự cố bình thường xảy ra",
+        "arrow": true
+      },
+      {
+        "label": "Bốn giờ thay vì bốn phút"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Dịch vụ không ai dám sửa",
+      "description": "Một dịch vụ chạy ổn định ba năm, gần như không lỗi, chi phí thấp. Điểm sức khoẻ luôn cao. Người viết nó đã nghỉ từ lâu, không có tài liệu, độ phủ kiểm thử dưới mười phần trăm. Khi cần đổi một quy tắc nghiệp vụ nhỏ, việc ấy mất sáu tuần thay vì hai ngày, vì mỗi thay đổi đều phải kiểm tra bằng tay. Dịch vụ chưa từng hỏng - nó chỉ đã thôi thay đổi được, và không chỉ số nào bắt được điều đó."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Trong ba trụ cột, hai cái đầu có bảng theo dõi riêng và được nhìn mỗi ngày. Cái thứ ba thì không, và đó là toàn bộ vấn đề của nó."
+      },
+      {
+        "type": "heading",
+        "text": "Chất lượng vận hành gồm những gì"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Độ phủ kiểm thử, và quan trọng hơn là kiểm thử có chạy tự động ở mỗi thay đổi không",
+          "Tài liệu đủ để một người mới khôi phục dịch vụ lúc ba giờ sáng mà không cần gọi ai",
+          "Quyền truy cập rõ ràng: ai đổi được gì, và mọi thay đổi có để lại dấu vết không",
+          "Thời gian trung bình để khôi phục, đo từ lúc bắt đầu hỏng chứ không từ lúc phát hiện"
         ]
       },
       {
         "type": "heading",
-        "text": "Vì sao không nên nghịch WACC tùy tiện"
+        "text": "Vì sao nó luôn bị hy sinh trước"
       },
       {
         "type": "paragraph",
-        "text": "Chi phí vốn theo lý thuyết chỉ đền bù cho rủi ro không thể đa dạng hóa. Một vụ bê bối tại một doanh nghiệp là rủi ro đặc thù - nhà đầu tư nắm danh mục rộng có thể phân tán được, nên về nguyên tắc không đòi hỏi phần bù. Đưa nó vào WACC vừa sai về lý thuyết, vừa che giấu giả định: một con số 2% cộng thêm không cho biết bạn đang giả định tiền phạt bao nhiêu hay mất bao nhiêu khách hàng. Đưa vào dòng tiền buộc bạn phải nói rõ, và người đọc có thể phản biện từng con số."
-      },
-      {
-        "type": "heading",
-        "text": "Tính trọng yếu theo ngành là chìa khóa"
-      },
-      {
-        "type": "paragraph",
-        "text": "Không phải chỉ số ESG nào cũng quan trọng với mọi ngành. Với ngân hàng, quản trị và bảo mật dữ liệu là trọng yếu, còn lượng nước tiêu thụ gần như vô nghĩa. Với doanh nghiệp đồ uống, nước lại là rủi ro sống còn. Khung SASB xây dựng bộ chỉ số trọng yếu riêng cho từng ngành chính vì lý do này. Khi phân tích, hãy bắt đầu bằng câu hỏi: với mô hình kinh doanh này, ba đến năm yếu tố ESG nào thực sự có thể làm thay đổi dòng tiền? Phần còn lại là nhiễu."
+        "text": "Bỏ kiểm thử tuần này thì tuần này đi nhanh hơn thật, và không có hậu quả nào nhìn thấy được. Hậu quả chỉ xuất hiện ở lần sự cố tiếp theo, có thể là ba tháng sau, và tới lúc ấy không ai nối được nó với quyết định của tuần này nữa. Mọi thứ có phần thưởng đến ngay và cái giá đến muộn đều bị hy sinh trước, và trụ cột này là ví dụ sạch nhất của hình dạng đó."
       },
       {
         "type": "callout",
-        "label": "Thước đo chất lượng phân tích",
-        "text": "Một tích hợp ESG tốt phải vượt qua bài kiểm tra này: xóa từ 'ESG' khỏi báo cáo, phần phân tích còn lại vẫn đứng vững như một luận điểm tài chính bình thường về rủi ro và dòng tiền hay không?"
+        "label": "Nó không gây ra sự cố, nó nhân sự cố lên",
+        "text": "Đây là điểm hay bị hiểu sai. Thiếu tài liệu không làm dịch vụ hỏng. Nhưng khi dịch vụ hỏng vì một lý do hoàn toàn khác, thiếu tài liệu là thứ quyết định người trực mất mười lăm phút hay ba giờ để hiểu chuyện gì đang xảy ra. Nên đừng đọc trụ cột này như một xác suất hỏng - đọc nó như một hệ số nhân cho thời gian hỏng."
       },
       {
-        "type": "formula",
-        "title": "Thay số vào hai cách đưa ESG vào định giá",
-        "equation": "Cách 1: cộng vào WACC · Cách 2: trừ thẳng vào dòng tiền",
-        "example": {
-                "title": "Một nhà máy xi măng đối mặt giá carbon",
-                "calculation": "Dòng tiền 500 tỷ/năm vĩnh viễn, WACC 11% · Cách 1: cộng 1,5 điểm rủi ro ESG → 12,5% · Cách 2: giữ 11% nhưng trừ 60 tỷ chi phí carbon mỗi năm",
-                "result": "Cách 1: 500 ÷ 12,5% = 4.000 tỷ · Cách 2: 440 ÷ 11% = 4.000 tỷ",
-                "explanation": "Hai cách ra cùng một con số ở đây là do chọn số cho khớp, và đó chính là điều đáng thấy: chúng có thể tương đương, nên làm CẢ HAI là tính hai lần một rủi ro. Cách 2 tốt hơn khi ước lượng được chi phí thật - giá carbon nhân lượng phát thải là con số kiểm chứng được, còn '1,5 điểm' thì không ai kiểm được."
+        "type": "comparison",
+        "left": {
+          "label": "Đo được",
+          "text": "Độ phủ kiểm thử, số bước thủ công khi triển khai, thời gian khôi phục ở ba sự cố gần nhất, số người đủ hiểu để trực dịch vụ này."
+        },
+        "right": {
+          "label": "Không đo được, nhưng hỏi được",
+          "text": "Một người mới vào có tự triển khai được không? Đổi một quy tắc nhỏ mất bao lâu? Có ai sợ đụng vào phần nào của mã không?"
         }
-}
-    ],
-    "diagram": [
-      {
-        "label": "Xác định yếu tố ESG trọng yếu theo đặc thù ngành",
-        "arrow": true
       },
       {
-        "label": "Đưa vào dòng tiền: doanh thu, chi phí, chi đầu tư cần thiết",
-        "arrow": true
-      },
-      {
-        "label": "Hoặc vào tỷ suất chiết khấu nếu ảnh hưởng rủi ro hệ thống",
-        "arrow": true
-      },
-      {
-        "label": "Hoặc vào giá trị cuối nếu ảnh hưởng tính bền vững dài hạn",
-        "arrow": true
-      },
-      {
-        "label": "Ghi rõ giả định và chạy bảng nhạy cảm - tránh điều chỉnh tùy tiện",
-        "arrow": false
+        "type": "closing",
+        "lines": [
+          "Trụ cột này không tạo ra vấn đề, nó quyết định vấn đề kéo dài bao lâu.",
+          "Không có biểu đồ nào cho nó, nên phải hỏi bằng câu hỏi thay vì nhìn bằng bảng."
+        ]
       }
-    ]
-  },
-  {
+    ],
+    "quiz": [
+      {
+        "question": "Vì sao chất lượng vận hành luôn là thứ bị hy sinh trước?",
+        "options": [
+          "Vì phần thưởng đến ngay còn cái giá đến rất muộn",
+          "Vì phần lớn các đội không có đủ công cụ để đo lường trụ cột này một cách chính xác",
+          "Vì nó phụ thuộc vào người cụ thể nên thay đổi mỗi lần có ai đó rời khỏi đội",
+          "Vì nó là trụ cột duy nhất không ảnh hưởng trực tiếp tới người dùng cuối"
+        ],
+        "correct": 0,
+        "explanation": "Bỏ kiểm thử tuần này đi nhanh hơn thật và không có hậu quả nào thấy được. Hậu quả tới ở sự cố ba tháng sau, lúc không ai nối nó với quyết định cũ nữa - nên vòng phản hồi bị đứt."
+      },
+      {
+        "question": "Nên đọc trụ cột vận hành như một đại lượng gì?",
+        "options": [
+          "Một hệ số nhân cho thời gian sự cố",
+          "Một xác suất cho biết dịch vụ có khả năng hỏng cao hay thấp trong tháng tới",
+          "Một chỉ số phản ánh mức độ hài lòng của đội đang trực tiếp bảo trì dịch vụ",
+          "Một thước đo chất lượng mã nguồn, đọc kèm với số lỗi tìm thấy mỗi tháng"
+        ],
+        "correct": 0,
+        "explanation": "Thiếu tài liệu không làm dịch vụ hỏng. Nó quyết định người trực mất mười lăm phút hay ba giờ khi dịch vụ hỏng vì một lý do khác, nên nó nhân chứ không cộng."
+      },
+      {
+        "question": "Dịch vụ chạy ổn định ba năm, không lỗi, chi phí thấp, nhưng đổi một quy tắc nhỏ mất sáu tuần. Vấn đề nằm ở đâu?",
+        "options": [
+          "Nó đã thôi thay đổi được, và không chỉ số nào bắt được điều đó",
+          "Nó đang chạy trên hạ tầng cũ nên mọi thay đổi đều cần thêm bước triển khai thủ công",
+          "Chi phí thấp cho thấy dịch vụ đang thiếu tài nguyên nên không chịu nổi thay đổi",
+          "Ba năm không lỗi là dấu hiệu cho thấy các phép đo lỗi của dịch vụ đã hỏng từ lâu"
+        ],
+        "correct": 0,
+        "explanation": "Ổn định và sửa được là hai thứ khác nhau, và bảng sức khoẻ chỉ đo được cái đầu. Một dịch vụ không ai dám đụng vào vẫn xanh trên mọi biểu đồ cho tới ngày cần đổi nó."
+      },
+      {
+        "question": "Câu hỏi nào đo trụ cột này tốt nhất khi không có sẵn số liệu?",
+        "options": [
+          "Một người mới vào có tự triển khai được không",
+          "Đội đã viết bao nhiêu bài kiểm thử cho dịch vụ này trong quý vừa rồi",
+          "Có bao nhiêu sự cố xảy ra với dịch vụ này trong sáu tháng gần đây nhất",
+          "Tài liệu của dịch vụ được cập nhật lần cuối vào khoảng thời gian nào"
+        ],
+        "correct": 0,
+        "explanation": "Ba câu kia đo đầu vào hoặc đo triệu chứng. Câu đầu đo đúng thứ cần biết bằng một phép thử thật: nếu người mới làm được thì tài liệu, kiểm thử và quyền truy cập đều đang ở mức đủ."
+      },
+      {
+        "question": "Thời gian khôi phục nên đo từ mốc nào?",
+        "options": [
+          "Từ lúc dịch vụ bắt đầu hỏng",
+          "Từ lúc cảnh báo tự động đầu tiên được gửi tới người đang trực ca hôm đó",
+          "Từ lúc người trực xác nhận đã tiếp nhận và bắt đầu xử lý sự cố đang xảy ra",
+          "Từ lúc người dùng đầu tiên gửi báo cáo về việc dịch vụ không hoạt động"
+        ],
+        "correct": 0,
+        "explanation": "Đo từ lúc phát hiện là bỏ mất khoảng thời gian hệ thống đã hỏng mà không ai biết - thường là phần dài nhất và cũng là phần dễ rút ngắn nhất. Chọn mốc muộn làm con số đẹp lên mà không sửa gì."
+      }
+    ],
+    "keyTakeaways": [
+      "Trụ cột này không tạo ra sự cố, nó nhân thời gian sự cố lên",
+      "Nó luôn bị hy sinh trước vì phần thưởng đến ngay còn cái giá đến muộn",
+      "Ổn định và sửa được là hai thứ khác nhau, bảng chỉ đo được cái đầu",
+      "Không có biểu đồ thì hỏi bằng phép thử: người mới có tự triển khai được không"
+    ],
+    "practicePrompt": {
+      "question": "Sự cố bắt đầu 2h00, cảnh báo 2h40, người trực vào việc 2h50, khôi phục 3h20. Thời gian khôi phục là bao lâu?",
+      "options": [
+        "80 phút",
+        "30 phút (= chỉ tính từ lúc người trực bắt đầu xử lý sự cố)",
+        "40 phút (= tính từ lúc cảnh báo được gửi cho tới lúc khôi phục xong)",
+        "10 phút (= tính khoảng chờ từ lúc có cảnh báo tới lúc người trực vào việc)"
+      ],
+      "correct": 0,
+      "explanation": "Từ 2h00 tới 3h20 là 80 phút. Bốn mươi phút đầu là khoảng hệ thống hỏng mà không ai biết, và nó thường là phần dài nhất - bỏ nó ra khỏi phép đo là bỏ đúng phần đáng sửa nhất."
+    },
+    "summary": {
+      "keyIdea": "Chất lượng vận hành quyết định sự cố kéo dài bao lâu, không phải có xảy ra hay không",
+      "commonMistake": "Coi dịch vụ chạy ổn định là dịch vụ khoẻ mạnh",
+      "action": "Hỏi xem một người mới vào đội có tự triển khai được dịch vụ bạn đang giữ không."
+    },
+    "application": {
+      "title": "Bốn câu cho một dịch vụ bạn đang giữ",
+      "message": "Người mới tự triển khai được không? Đổi một quy tắc nhỏ mất bao lâu? Ai đủ hiểu để trực? Có phần mã nào không ai dám đụng vào không?",
+      "secondary": "Bốn câu này không cần công cụ nào và thường chính xác hơn mọi biểu đồ đang có."
+    },
     "id": 1330,
     "slug": "quan-tri-doanh-nghiep-g-trong-esg",
-    "title": "Quản trị doanh nghiệp (G): Trụ cột ít được nói nhưng quan trọng nhất",
-    "subtitle": "Hội đồng quản trị, quyền cổ đông, giao dịch bên liên quan - đọc dấu hiệu trước khi tiền bốc hơi",
-    "duration": "9 phút",
-    "difficulty": "Khó",
-    "emoji": "🏛️",
-    "track": "bonus",
-    "openingQuestion": "Vì sao trụ cột G (Governance) thường có tương quan rõ nhất với hiệu quả tài chính dài hạn trong ba trụ cột ESG?",
+    "track": "bonus"
+  },
+  {
+    "title": "Chỉ số phi chức năng là gì và vì sao quan trọng",
+    "subtitle": "Những thứ người dùng không bấm vào được nhưng rời đi vì chúng",
+    "duration": "7 phút",
+    "difficulty": "Dễ",
+    "emoji": "🧭",
+    "interactiveType": "esg-score",
+    "whyItMatters": "Một tính năng chạy đúng vẫn có thể là một tính năng tệ, nếu nó mất tám giây để mở, tốn gấp mười lần tiền hạ tầng, hoặc không ai sửa nổi khi hỏng. Đó là ba thứ chỉ số phi chức năng đo.",
+    "openingQuestion": "Tính năng chạy đúng mọi trường hợp nhưng mất tám giây để hiện. Nó có lỗi không?",
     "openingOptions": [
-      "Vì quản trị dễ đo lường hơn môi trường và xã hội",
-      "Quản trị kém cho phép rút giá trị ra khỏi tay cổ đông thiểu số",
-      "Vì các cơ quan quản lý chỉ kiểm tra yếu tố quản trị",
-      "Vì nhà đầu tư quan tâm tới quản trị nhiều hơn hai trụ cột kia"
+      "Có, vì tám giây là một hành vi sai với người dùng",
+      "Không, vì mọi trường hợp đều cho ra kết quả đúng như đặc tả yêu cầu",
+      "Chỉ có lỗi nếu đặc tả đã ghi rõ một ngưỡng thời gian phản hồi cụ thể",
+      "Chưa xác định được, cần đo lại trên nhiều loại thiết bị và đường truyền"
     ],
-    "correctOption": 1,
-    "explanation": "E và S tác động lên tài chính qua nhiều bước trung gian và thường trong dài hạn. G thì tác động trực tiếp: hội đồng quản trị yếu không ngăn được thương vụ M&A phá hủy giá trị, cổ đông lớn có thể chuyển lợi ích qua giao dịch bên liên quan, và kiểm soát nội bộ lỏng lẻo tạo điều kiện cho gian lận. Mỗi cơ chế này đều làm giảm dòng tiền thuộc về cổ đông thiểu số ngay lập tức.",
-    interactiveType: "esg-score",
-    "realWorldExample": {
-      "company": "Các vụ hủy niêm yết và cổ phiếu mất thanh khoản trên thị trường Việt Nam",
-      "description": "Nhiều trường hợp cổ phiếu mất phần lớn giá trị trên thị trường Việt Nam có chung mẫu hình quản trị: cổ đông lớn kiêm ban điều hành, hội đồng quản trị thiếu thành viên độc lập thực chất, dòng tiền chảy qua các công ty liên quan mà báo cáo tài chính công bố không giải thích rõ, và kiểm toán đưa ý kiến ngoại trừ nhiều năm liên tiếp. Các dấu hiệu này đều xuất hiện trước khi giá cổ phiếu sụp đổ."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Phân biệt chạy đúng với chạy được là một trong những phân biệt hữu ích nhất trong nghề. Người dùng không đọc đặc tả; với họ, tám giây và không hoạt động là cùng một trải nghiệm. Đặc tả không ghi ngưỡng thời gian là một thiếu sót của đặc tả, không phải một lý do để tính năng ấy được coi là đạt.",
+    "diagram": [
       {
-        "question": "Thành viên hội đồng quản trị 'độc lập' theo chuẩn quản trị tốt nghĩa là gì?",
-        "options": [
-          "Người không sở hữu bất kỳ cổ phiếu nào của công ty",
-          "Người không có quan hệ vật chất với công ty ngoài vai trò thành viên HĐQT - không phải nhân viên hiện tại hay gần đây, không phải nhà cung cấp hay khách hàng lớn, không có quan hệ gia đình với ban điều hành - nên có thể phản biện ban điều hành mà không sợ mất lợi ích",
-          "Người được cổ đông lớn nhất chỉ định",
-          "Người có kinh nghiệm trong ngành ít nhất 10 năm"
-        ],
-        "correct": 1,
-        "explanation": "Bản chất của tính độc lập là khả năng nói không. Một thành viên HĐQT phụ thuộc vào công ty về thu nhập, hợp đồng kinh doanh, hay quan hệ gia đình sẽ khó phản đối một đề xuất tồi từ ban điều hành. Điểm quan trọng khi phân tích: đừng chỉ đếm số thành viên được gắn nhãn 'độc lập' trong báo cáo thường niên, hãy đọc tiểu sử để xem họ có thực sự độc lập hay không - đây là chỗ hình thức và thực chất hay lệch nhau nhất."
+        "label": "Chức năng: có làm đúng việc không",
+        "arrow": true
       },
       {
-        "question": "Vấn đề người đại diện (agency problem) trong quản trị doanh nghiệp là gì?",
-        "options": [
-          "Doanh nghiệp thuê quá nhiều đại lý bán hàng",
-          "Xung đột lợi ích khi người điều hành công ty không phải người sở hữu: ban điều hành có thể ưu tiên lợi ích riêng - mở rộng đế chế, thù lao cao, tránh rủi ro để giữ ghế - thay vì tối đa hóa giá trị cho cổ đông",
-          "Tranh chấp giữa công ty và các đại lý phân phối",
-          "Việc công ty phải trả phí cho các đơn vị trung gian tài chính"
-        ],
-        "correct": 1,
-        "explanation": "Agency problem là nền tảng lý thuyết của toàn bộ ngành quản trị doanh nghiệp. Khi quyền sở hữu tách khỏi quyền quản lý, người quản lý có thông tin nhiều hơn và động cơ khác với chủ sở hữu. Các cơ chế quản trị - HĐQT độc lập, thù lao gắn với hiệu quả dài hạn, kiểm toán độc lập, quyền biểu quyết của cổ đông - đều là công cụ để thu hẹp khoảng cách đó. Ở thị trường có cổ đông kiểm soát tập trung, dạng xung đột chính lại chuyển thành cổ đông lớn với cổ đông thiểu số."
+        "label": "Phi chức năng: làm việc ấy tốn gì",
+        "arrow": true
       },
       {
-        "question": "Vì sao giao dịch với bên liên quan (related-party transactions) là dấu hiệu cần đặc biệt chú ý?",
-        "options": [
-          "Vì mọi giao dịch với bên liên quan đều là bất hợp pháp",
-          "Vì chúng có thể được định giá không theo thị trường, tạo kênh chuyển giá trị từ công ty niêm yết sang công ty riêng của cổ đông kiểm soát - hợp pháp về hình thức nhưng làm cổ đông thiểu số thiệt hại",
-          "Vì chúng luôn làm tăng chi phí kiểm toán",
-          "Vì chúng không được ghi nhận trong báo cáo tài chính"
-        ],
-        "correct": 1,
-        "explanation": "Giao dịch bên liên quan không phải lúc nào cũng xấu - nhiều tập đoàn có lý do vận hành chính đáng. Vấn đề là chúng thiếu cơ chế thị trường để kiểm chứng giá. Nếu công ty niêm yết mua nguyên liệu từ công ty riêng của chủ tịch với giá cao hơn thị trường, giá trị chảy ra ngoài mà mọi thứ vẫn hợp pháp và được thuyết minh đầy đủ. Vì thế cần đọc kỹ thuyết minh về bên liên quan, xem quy mô so với doanh thu và xu hướng qua các năm."
+        "label": "Tài nguyên, thời gian, khả năng sửa",
+        "arrow": true
+      },
+      {
+        "label": "Ba thứ quyết định hệ thống sống được bao lâu"
       }
     ],
-    "keyTakeaways": [
-      "G tác động lên dòng tiền trực tiếp và nhanh hơn E và S, nên có tương quan rõ nhất với hiệu quả tài chính",
-      "Tính độc lập của thành viên HĐQT nằm ở khả năng phản biện, không ở nhãn dán trong báo cáo thường niên",
-      "Agency problem: xung đột giữa người quản lý và chủ sở hữu, hoặc giữa cổ đông kiểm soát và cổ đông thiểu số",
-      "Giao dịch bên liên quan là kênh chuyển giá trị hợp pháp về hình thức - phải đọc thuyết minh và theo dõi quy mô qua các năm"
-    ],
-    "practicePrompt": {
-      "question": "Bạn phân tích một công ty niêm yết có: chủ tịch HĐQT kiêm tổng giám đốc, 2/7 thành viên HĐQT là người nhà chủ tịch, doanh thu 30% đến từ các công ty do gia đình chủ tịch sở hữu, và kiểm toán viên vừa thay đổi năm thứ hai liên tiếp. Đánh giá thế nào?",
-      "options": [
-        "Bình thường - mô hình doanh nghiệp gia đình phổ biến và không có gì sai",
-        "Bốn dấu hiệu quản trị yếu cùng xuất hiện, tạo thành mẫu hình đáng ngại",
-        "Chỉ cần lo về việc thay kiểm toán, ba yếu tố còn lại không quan trọng",
-        "Không đánh giá được nếu chưa xem chỉ số tài chính"
-      ],
-      "correct": 1,
-      "explanation": "Từng dấu hiệu riêng lẻ có thể có lời giải thích chấp nhận được, nhưng cả bốn xuất hiện cùng lúc tạo thành một mẫu hình rất đáng ngại. Kiêm nhiệm hai vị trí nghĩa là người bị giám sát cũng là người chủ trì cơ quan giám sát. Hai thành viên gia đình cộng với chủ tịch có thể chi phối HĐQT bảy người. Doanh thu 30% từ bên liên quan là mức không thể kiểm chứng bằng giá thị trường. Và thay kiểm toán hai năm liên tiếp thường xảy ra khi kiểm toán viên không đồng ý với cách ghi nhận nào đó. Đây chính là loại phân tích G mà số liệu tài chính đơn thuần không phát hiện được."
-    },
-    "summary": {
-      "keyIdea": "Quản trị là trụ cột ESG có tác động tài chính trực tiếp nhất, và phần lớn dấu hiệu cảnh báo đọc được từ báo cáo thường niên trước khi chúng hiện ra trong con số.",
-      "commonMistake": "Đánh giá quản trị bằng cách đếm các mục trong bảng kiểm tra hình thức, thay vì đọc xem cơ chế giám sát có thực sự vận hành hay không",
-      "action": "Với mỗi cổ phiếu đang nắm, đọc thuyết minh giao dịch bên liên quan và tiểu sử thành viên HĐQT độc lập trong báo cáo thường niên gần nhất"
-    },
-    "application": {
-      "title": "Áp dụng vào phân tích đầu tư",
-      "message": "Quản trị kém không làm giảm lợi nhuận đều đặn mỗi năm - nó tạo ra rủi ro đuôi, tức xác suất nhỏ của một khoản mất mát rất lớn. Vì thế nó ảnh hưởng tới quy mô vị thế hơn là tới định giá điểm.",
-      "secondary": "Với thị trường có cổ đông kiểm soát tập trung như Việt Nam, xung đột chính không phải giữa ban điều hành và cổ đông, mà giữa cổ đông lớn và cổ đông nhỏ."
+    "realWorldExample": {
+      "company": "Tính năng đạt mọi bài kiểm thử",
+      "description": "Một đội hoàn thành tính năng tìm kiếm, qua toàn bộ kiểm thử, đúng đặc tả từng dòng. Sau khi phát hành, tỷ lệ người dùng bỏ giữa chừng ở màn hình ấy tăng gấp ba. Không bài kiểm thử nào sai và không dòng đặc tả nào bị vi phạm - tính năng chỉ mất trung bình sáu giây trên đường truyền thật, trong khi mọi bài kiểm thử đều chạy trên máy của lập trình viên."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Trong ba chữ cái ESG, chữ G ít được nhắc tới nhất trong các báo cáo tiếp thị - nhưng lại là chữ khiến nhà đầu tư mất tiền nhanh nhất khi nó có vấn đề."
+        "text": "Yêu cầu chức năng nói hệ thống phải làm được gì. Yêu cầu phi chức năng nói nó phải làm được điều đó tốt tới mức nào - và phần thứ hai mới là phần quyết định hệ thống dùng được hay không."
       },
       {
         "type": "heading",
-        "text": "Cấu trúc hội đồng quản trị"
+        "text": "Ba nhóm đáng theo dõi nhất"
       },
       {
         "type": "list",
         "items": [
-          "Tách bạch vai trò chủ tịch HĐQT và tổng giám đốc: nếu một người giữ cả hai, cơ chế giám sát ban điều hành về cơ bản mất hiệu lực",
-          "Tỷ lệ và chất lượng thành viên độc lập: đọc tiểu sử thay vì đếm nhãn dán, kiểm tra xem họ có quan hệ kinh doanh hay gia đình nào không",
-          "Các ủy ban chuyên trách: ủy ban kiểm toán, ủy ban nhân sự và thù lao - có tồn tại thực chất và do thành viên độc lập chủ trì hay chỉ có trên giấy",
-          "Tần suất họp và tỷ lệ tham dự: HĐQT họp hai lần một năm khó có thể giám sát được điều gì"
+          "Hiệu quả tài nguyên: một đơn vị việc làm được tốn bao nhiêu tiền hạ tầng và bao nhiêu điện",
+          "Trải nghiệm: độ trễ ở phân vị cao, tỷ lệ lỗi người dùng thật gặp, hành vi khi mạng yếu",
+          "Vận hành: kiểm thử, tài liệu, quyền truy cập, và thời gian để khôi phục khi hỏng"
         ]
       },
       {
-        "type": "heading",
-        "text": "Thù lao ban điều hành - đọc cơ cấu, không đọc con số"
-      },
-      {
         "type": "paragraph",
-        "text": "Mức thù lao cao không tự nó là vấn đề. Vấn đề nằm ở cơ cấu: thù lao gắn với chỉ tiêu gì và trong khung thời gian nào. Thưởng theo tăng trưởng doanh thu ngắn hạn khuyến khích ban điều hành mở rộng bằng mọi giá kể cả các thương vụ phá hủy giá trị. Thưởng theo lợi nhuận trên vốn đầu tư trong nhiều năm, kèm điều khoản thu hồi nếu kết quả bị điều chỉnh lại, tạo động cơ ngược lại. Khi đọc báo cáo, hãy hỏi: nếu tôi là tổng giám đốc với cơ cấu thù lao này, tôi sẽ được thưởng khi làm gì?"
+        "text": "Ba nhóm này có chung một đặc điểm khiến chúng dễ bị bỏ qua: không nhóm nào xuất hiện trong danh sách việc cần làm. Không ai viết phiếu công việc tên là hệ thống phải khôi phục được trong mười lăm phút, nên không ai làm nó, cho tới khi có một sự cố dài và nó trở thành việc gấp nhất."
       },
       {
         "type": "heading",
-        "text": "Quyền cổ đông và cấu trúc sở hữu"
+        "text": "Vì sao đo bằng phân vị chứ không bằng trung bình"
       },
       {
         "type": "paragraph",
-        "text": "Cấu trúc hai lớp cổ phiếu cho phép nhóm sáng lập giữ quyền kiểm soát với tỷ lệ sở hữu kinh tế nhỏ - hợp pháp, nhưng nghĩa là cổ đông bên ngoài góp phần lớn tiền mà gần như không có tiếng nói. Các điều khoản chống thâu tóm bảo vệ ban điều hành khỏi áp lực thị trường. Ở thị trường có sở hữu tập trung như Việt Nam, câu hỏi trọng tâm không phải 'ban điều hành có phục vụ cổ đông không' mà là 'cổ đông kiểm soát có đối xử công bằng với cổ đông thiểu số không' - và câu trả lời thường nằm trong thuyết minh giao dịch bên liên quan."
+        "text": "Độ trễ trung bình một giây nghe ổn cho tới khi nhìn ra rằng nó có thể là chín mươi phần trăm người dùng chờ ba trăm mili giây và mười phần trăm chờ bảy giây. Mười phần trăm ấy không phải trường hợp hiếm - họ là những người dùng nhiều nhất, vì họ có nhiều dữ liệu nhất. Trung bình che đúng nhóm người mà bạn ít muốn mất nhất."
       },
       {
         "type": "callout",
-        "label": "Bốn dấu hiệu đọc được từ báo cáo thường niên",
-        "text": "Kiêm nhiệm chủ tịch và tổng giám đốc; giao dịch bên liên quan chiếm tỷ trọng lớn và tăng dần; thay đổi kiểm toán viên hoặc giám đốc tài chính liên tục; và ý kiến kiểm toán ngoại trừ lặp lại. Không dấu hiệu nào tự nó kết luận điều gì, nhưng ba bốn cái cùng lúc thì đáng để bỏ qua cơ hội đầu tư."
+        "label": "Không có phiếu công việc thì không có ai làm",
+        "text": "Cách hiệu quả nhất để một yêu cầu phi chức năng được thực hiện là biến nó thành một con số có ngưỡng và một người chịu trách nhiệm. Hệ thống phải nhanh là một mong muốn; phân vị chín mươi lăm dưới tám trăm mili giây, đo từ trình duyệt người dùng, là một yêu cầu. Chỉ cái thứ hai mới bị coi là chưa xong khi nó chưa đạt."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Yêu cầu chức năng",
+          "text": "Người dùng tìm được sản phẩm theo tên. Kiểm chứng bằng một bài kiểm thử, đúng hoặc sai, không có vùng xám."
+        },
+        "right": {
+          "label": "Yêu cầu phi chức năng",
+          "text": "Kết quả hiện trong tám trăm mili giây ở phân vị chín mươi lăm, đo trên đường truyền thật. Kiểm chứng bằng đo liên tục."
+        }
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Chạy đúng và chạy được là hai câu hỏi khác nhau, và câu thứ hai ít ai hỏi.",
+          "Một yêu cầu phi chức năng không có số và không có ngưỡng thì không tồn tại."
+        ]
       }
     ],
-    "diagram": [
+    "quiz": [
       {
-        "label": "Cấu trúc hội đồng quản trị - tính độc lập và năng lực chuyên môn",
-        "arrow": true
+        "question": "Vì sao độ trễ nên đo bằng phân vị thay vì trung bình?",
+        "options": [
+          "Vì trung bình che nhóm người dùng có nhiều dữ liệu nhất",
+          "Vì phân vị là cách đo được các công cụ giám sát hiện đại hỗ trợ tốt hơn hẳn",
+          "Vì trung bình bị lệch mạnh bởi những yêu cầu trả về rất nhanh do đã có sẵn đệm",
+          "Vì phân vị cho phép so sánh giữa các dịch vụ có lượng yêu cầu chênh nhau nhiều"
+        ],
+        "correct": 0,
+        "explanation": "Đuôi chậm hầu như luôn là người dùng nặng - nhiều dữ liệu hơn nên truy vấn lâu hơn. Họ vừa là nhóm khó chịu nhất vừa là nhóm đáng giữ nhất, và trung bình làm họ biến mất khỏi báo cáo."
       },
       {
-        "label": "Cơ cấu thù lao ban điều hành - gắn với chỉ tiêu nào, thời hạn bao lâu",
-        "arrow": true
+        "question": "Vì sao yêu cầu phi chức năng hay không được thực hiện?",
+        "options": [
+          "Vì nó không xuất hiện dưới dạng một phiếu công việc cụ thể",
+          "Vì phần lớn các đội chưa có công cụ đủ tốt để đo lường được những yêu cầu ấy",
+          "Vì nó thường đòi hỏi thay đổi kiến trúc nên tốn kém hơn nhiều so với tính năng",
+          "Vì trách nhiệm về nó thường được giao cho đội hạ tầng chứ không cho đội sản phẩm"
+        ],
+        "correct": 0,
+        "explanation": "Công việc được làm khi nó nằm trong danh sách. Một mong muốn chung chung như hệ thống phải nhanh không bao giờ vào được danh sách, nên nó không bao giờ được làm và cũng không bao giờ bị coi là thiếu."
       },
       {
-        "label": "Quyền cổ đông và cấu trúc sở hữu - ai thực sự kiểm soát quyết định",
-        "arrow": true
+        "question": "Biến 'hệ thống phải nhanh' thành một yêu cầu thật cần thêm gì?",
+        "options": [
+          "Một con số, một ngưỡng và một điểm đo",
+          "Một bản mô tả chi tiết về những trường hợp sử dụng cần được tối ưu trước tiên",
+          "Một cam kết từ đội hạ tầng về mức tài nguyên sẽ được cấp cho dịch vụ ấy",
+          "Một danh sách các công cụ đo lường được thống nhất giữa những đội liên quan"
+        ],
+        "correct": 0,
+        "explanation": "Ba thành phần ấy là tối thiểu để câu hỏi đã xong chưa có câu trả lời. Thiếu điểm đo thì cùng một ngưỡng vẫn cho hai kết luận, vì đo trên máy lập trình viên và đo trên trình duyệt người dùng là hai thế giới."
       },
       {
-        "label": "Giao dịch với bên liên quan - nơi giá trị dễ bị chuyển ra ngoài nhất",
-        "arrow": true
+        "question": "Tính năng qua mọi kiểm thử nhưng tỷ lệ bỏ giữa chừng tăng gấp ba. Điều gì đã sai?",
+        "options": [
+          "Kiểm thử chạy trong điều kiện không giống điều kiện thật",
+          "Bộ kiểm thử còn thiếu những trường hợp biên mà người dùng thật hay gặp phải",
+          "Đặc tả của tính năng đã mô tả sai điều mà người dùng thực sự cần ở màn hình đó",
+          "Giao diện của tính năng khó hiểu nên người dùng không biết phải thao tác thế nào"
+        ],
+        "correct": 0,
+        "explanation": "Ba khả năng kia đều là lỗi chức năng và bộ kiểm thử có thể bắt được. Điều kiện chạy thì không - máy lập trình viên không có đường truyền yếu, không có dữ liệu thật, và đó là chỗ mọi vấn đề phi chức năng ẩn nấp."
       },
       {
-        "label": "Đọc các dấu hiệu này trước khi rủi ro hiện ra trên báo cáo tài chính",
-        "arrow": false
+        "question": "Đặc tả không ghi ngưỡng thời gian phản hồi. Kết luận đúng là gì?",
+        "options": [
+          "Đặc tả đang thiếu, không phải tính năng đang đạt",
+          "Tính năng được coi là đạt cho tới khi có một ngưỡng chính thức được bổ sung vào",
+          "Ngưỡng nên được đặt bằng đúng thời gian mà phiên bản hiện tại đang đạt được",
+          "Việc đặt ngưỡng thuộc trách nhiệm của đội vận hành chứ không phải của đội sản phẩm"
+        ],
+        "correct": 0,
+        "explanation": "Im lặng trong đặc tả không phải một lời cho phép. Người dùng vẫn rời đi ở giây thứ tám dù tài liệu có nói gì, nên thứ cần sửa là tài liệu chứ không phải cách hiểu về tính năng."
       }
-    ]
-  },
-  {
+    ],
+    "keyTakeaways": [
+      "Chạy đúng và chạy được là hai câu hỏi khác nhau",
+      "Trung bình che nhóm người dùng nặng, nên đo bằng phân vị cao",
+      "Yêu cầu không có con số, ngưỡng và điểm đo thì không tồn tại",
+      "Điều kiện chạy khi kiểm thử là chỗ mọi vấn đề phi chức năng ẩn nấp"
+    ],
+    "practicePrompt": {
+      "question": "90% người dùng chờ 300ms, 10% chờ 7000ms. Độ trễ trung bình là bao nhiêu?",
+      "options": [
+        "970ms",
+        "3650ms (= lấy trung bình cộng của hai con số, bỏ qua tỷ lệ mỗi nhóm)",
+        "700ms (= chỉ tính phần đóng góp của nhóm chậm vào con số chung)",
+        "330ms (= nhân 300 với 1,1 thay vì cộng phần đóng góp của nhóm chậm)"
+      ],
+      "correct": 0,
+      "explanation": "0,9 nhân 300 cộng 0,1 nhân 7000 ra 970. Con số 970ms nghe chấp nhận được, trong khi thực tế là cứ mười người thì một người chờ bảy giây - đó chính là thứ trung bình che đi."
+    },
+    "summary": {
+      "keyIdea": "Chỉ số phi chức năng đo hệ thống làm việc ấy tốn gì, không phải có làm được không",
+      "commonMistake": "Coi tính năng qua kiểm thử là tính năng đã xong",
+      "action": "Chọn một tính năng vừa phát hành và viết cho nó một ngưỡng phân vị 95."
+    },
+    "application": {
+      "title": "Ba câu cho tính năng tiếp theo",
+      "message": "Nó tốn bao nhiêu tài nguyên mỗi lần chạy? Phân vị 95 là bao nhiêu trên đường truyền thật? Khi nó hỏng thì ai sửa và mất bao lâu?",
+      "secondary": "Ba câu này thường không có trong phiếu công việc, và chúng là ba câu quyết định tính năng ấy sống được bao lâu."
+    },
     "id": 1229,
     "slug": "esg-la-gi-va-tai-sao-quan-trong",
-    "title": "ESG là gì & Tại sao nó quan trọng với nhà đầu tư",
-    "subtitle": "Environmental, Social, Governance - 3 trụ cột đang định hình lại cách thế giới đánh giá doanh nghiệp",
-    "duration": "7 phút",
+    "track": "bonus"
+  },
+  {
+    "title": "Cách đánh giá ba trụ cột của một dịch vụ",
+    "subtitle": "Đo cái gì, đo ở đâu, và vì sao phần lớn phép đo đầu tiên đều sai chỗ",
+    "duration": "8 phút",
     "difficulty": "Trung bình",
-    "emoji": "🌍",
-    "openingQuestion": "ESG là viết tắt của gì, và tại sao các quỹ đầu tư lớn ngày càng quan tâm đến nó khi ra quyết định đầu tư?",
+    "emoji": "🔬",
+    "interactiveType": "esg-score",
+    "whyItMatters": "Đánh giá sai một dịch vụ không chỉ tốn công. Nó dẫn cả đội đi tối ưu đúng thứ không quan trọng trong nhiều tháng, và mọi con số trên bảng suốt thời gian ấy đều xác nhận rằng họ đang đi đúng.",
+    "openingQuestion": "Muốn biết một dịch vụ tốn bao nhiêu, nên đo ở đâu?",
     "openingOptions": [
-      "Economic, Social, Government - đo lường mức độ ổn định chính trị của một quốc gia",
-      "Environmental, Social, Governance - khung đánh giá các rủi ro phi tài chính dài hạn",
-      "Equity, Securities, Growth - 3 loại tài sản chính trong danh mục đầu tư",
-      "Earnings, Sales, Growth - 3 chỉ số tài chính cơ bản nhất"
+      "Trên mỗi đơn vị việc làm được, không phải tổng mỗi tháng",
+      "Trên tổng hoá đơn hạ tầng hằng tháng của dịch vụ đó qua nhiều kỳ liên tiếp",
+      "Trên mức tài nguyên đỉnh mà dịch vụ đã yêu cầu trong khoảng thời gian đo",
+      "Trên số máy chủ mà dịch vụ đang chiếm và cấu hình của từng máy trong số đó"
     ],
-    "correctOption": 1,
-    "explanation": "ESG (Environmental - Social - Governance) là khung đánh giá phi tài chính bổ sung cho phân tích báo cáo tài chính truyền thống. Lý do nhà đầu tư quan tâm: những rủi ro như biến đổi khí hậu, bê bối lao động, hay gian lận quản trị thường KHÔNG xuất hiện rõ ràng trong báo cáo tài chính hiện tại, nhưng có thể gây thiệt hại tài chính nghiêm trọng trong tương lai (phạt tiền, mất uy tín thương hiệu, gián đoạn chuỗi cung ứng, kiện tụng) - ESG giúp định lượng những rủi ro 'ẩn' này.",
-    interactiveType: "esg-score",
-    "realWorldExample": {
-      "company": "Volkswagen Dieselgate (2015) và BP Deepwater Horizon (2010)",
-      "description": "Volkswagen bị phát hiện gian lận thiết bị kiểm soát khí thải, khiến cổ phiếu mất gần 40% giá trị chỉ trong vài ngày và công ty phải trả hơn 30 tỷ USD tiền phạt/bồi thường - một rủi ro Environmental & Governance không hề xuất hiện trong báo cáo tài chính trước đó. Tương tự, sự cố tràn dầu Deepwater Horizon của BP gây thiệt hại hơn 65 tỷ USD - hai ví dụ kinh điển cho thấy rủi ro ESG có thể chuyển hóa thành thiệt hại tài chính khổng lồ mà phân tích tài chính truyền thống không lường trước được."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Tổng chi phí mỗi tháng trộn hai thứ khác hẳn nhau: dịch vụ có hiệu quả tới đâu, và nó đang phục vụ bao nhiêu việc. Một dịch vụ tăng gấp đôi hoá đơn trong khi phục vụ gấp ba lượng việc là một dịch vụ đang tốt lên, nhưng tổng chi phí báo ngược lại. Chia cho đơn vị việc làm được là cách tách hai thứ ấy ra.",
+    "diagram": [
       {
-        "question": "GRI (Global Reporting Initiative) và SASB (Sustainability Accounting Standards Board) khác nhau như thế nào trong cách tiếp cận báo cáo ESG?",
-        "options": [
-          "Hai tổ chức này hoàn toàn giống nhau, chỉ khác tên gọi",
-          "GRI tập trung vào tính TOÀN DIỆN - báo cáo tác động của doanh nghiệp lên MỌI bên liên quan (stakeholder) bao gồm cộng đồng, môi trường rộng; SASB tập trung vào TÍNH TRỌNG YẾU TÀI CHÍNH (financial materiality) - chỉ những yếu tố ESG có khả năng ảnh hưởng trực tiếp đến giá trị tài chính doanh nghiệp, phù hợp hơn với nhà đầu tư",
-          "GRI chỉ áp dụng cho doanh nghiệp Mỹ, SASB chỉ áp dụng cho doanh nghiệp châu Âu",
-          "GRI và SASB đều không được công nhận rộng rãi trên thế giới"
-        ],
-        "correct": 1,
-        "explanation": "Đây là phân biệt quan trọng nhất trong ESG reporting: GRI hướng đến TẤT CẢ bên liên quan (stakeholder-focused, toàn diện hơn nhưng có thể ít liên quan trực tiếp đến giá trị tài chính), còn SASB hướng đến NHÀ ĐẦU TƯ (investor-focused, chỉ tập trung vào các yếu tố ESG có 'tính trọng yếu tài chính' - tức có khả năng ảnh hưởng thực sự đến dòng tiền/rủi ro của doanh nghiệp). Nhiều doanh nghiệp lớn báo cáo theo cả hai khung để phục vụ các nhóm đối tượng khác nhau."
+        "label": "Chọn đơn vị việc làm được",
+        "arrow": true
       },
       {
-        "question": "'Materiality' (tính trọng yếu) trong ESG investing có nghĩa là gì?",
-        "options": [
-          "Tất cả các yếu tố ESG đều quan trọng như nhau cho mọi ngành nghề",
-          "Mức độ quan trọng của một yếu tố ESG cụ thể PHỤ THUỘC vào ngành nghề của doanh nghiệp - ví dụ, phát thải carbon là yếu tố trọng yếu với ngành năng lượng/sản xuất, nhưng bảo mật dữ liệu khách hàng mới là yếu tố trọng yếu với ngành công nghệ/tài chính",
-          "Materiality chỉ áp dụng cho yếu tố Governance, không áp dụng cho Environmental và Social",
-          "Materiality là thuật ngữ kế toán không liên quan gì đến ESG"
-        ],
-        "correct": 1,
-        "explanation": "Nguyên lý cốt lõi của phân tích ESG chuyên nghiệp: không phải mọi yếu tố ESG đều quan trọng như nhau cho mọi ngành. SASB xây dựng các bộ tiêu chuẩn RIÊNG cho từng ngành (industry-specific standards) chính vì lý do này - một công ty khai khoáng cần báo cáo chi tiết về tác động môi trường và an toàn lao động, trong khi một ngân hàng cần báo cáo chi tiết về bảo mật dữ liệu và cho vay có trách nhiệm (responsible lending)."
+        "label": "Đo ba trụ cột trên cùng đơn vị ấy",
+        "arrow": true
       },
       {
-        "question": "'Greenwashing' trong ESG là gì và tại sao nhà đầu tư cần cảnh giác với nó?",
-        "options": [
-          "Là việc doanh nghiệp thực sự đầu tư mạnh vào các dự án môi trường xanh",
-          "Là hành vi doanh nghiệp PHÓNG ĐẠI hoặc GIẢ MẠO cam kết/thành tích ESG của mình để tạo hình ảnh tốt, trong khi thực tế hoạt động kinh doanh không thay đổi đáng kể - nhà đầu tư cần phân biệt cam kết ESG thực chất (có số liệu cụ thể, kiểm toán độc lập) với marketing ESG hời hợt",
-          "Là thuật ngữ chỉ các công ty sản xuất sản phẩm màu xanh lá cây",
-          "Greenwashing chỉ là vấn đề marketing, không ảnh hưởng gì đến quyết định đầu tư"
-        ],
-        "correct": 1,
-        "explanation": "Greenwashing là rủi ro thực sự trong ESG investing: nhiều doanh nghiệp công bố các cam kết ESG mơ hồ, không có số liệu cụ thể, hoặc không được kiểm toán độc lập, chỉ nhằm mục đích marketing/PR. Nhà đầu tư ESG chuyên nghiệp phải phân biệt được cam kết THỰC CHẤT (có mục tiêu định lượng rõ ràng, lộ trình cụ thể, báo cáo tiến độ minh bạch, kiểm toán bên thứ ba) với những tuyên bố ESG chỉ mang tính hình thức."
+        "label": "Đo ở nơi người dùng đứng",
+        "arrow": true
+      },
+      {
+        "label": "So theo thời gian, không so tuyệt đối"
       }
     ],
-    "keyTakeaways": [
-      "ESG = Environmental (Môi trường) + Social (Xã hội) + Governance (Quản trị) - khung đánh giá phi tài chính bổ sung cho phân tích báo cáo tài chính truyền thống",
-      "GRI hướng đến toàn bộ bên liên quan (toàn diện); SASB hướng đến nhà đầu tư (tập trung tính trọng yếu tài chính) - hai cách tiếp cận khác nhau, phục vụ đối tượng khác nhau",
-      "Materiality (tính trọng yếu) của yếu tố ESG phụ thuộc vào ngành nghề - không phải yếu tố nào cũng quan trọng như nhau cho mọi doanh nghiệp",
-      "Greenwashing là rủi ro cần cảnh giác - phân biệt cam kết ESG thực chất (số liệu, kiểm toán độc lập) với marketing hời hợt"
-    ],
-    "practicePrompt": {
-      "question": "Bạn là nhà phân tích ESG đang đánh giá 2 công ty: (A) Công ty khai khoáng công bố báo cáo ESG dài 100 trang nhưng không có số liệu cụ thể về giảm phát thải, chỉ có hình ảnh cây xanh và cam kết chung chung; (B) Công ty công nghệ công bố báo cáo ngắn gọn nhưng có mục tiêu cụ thể (giảm 30% phát thải carbon vào 2030, kiểm toán bởi bên thứ ba). Công ty nào đáng tin cậy hơn về ESG?",
-      "options": [
-        "Công ty A đáng tin cậy hơn vì báo cáo dài và nhiều hình ảnh minh họa đẹp",
-        "Công ty B, vì có mục tiêu định lượng cụ thể và được kiểm toán độc lập",
-        "Không thể đánh giá được công ty nào tốt hơn nếu không biết ngành nghề",
-        "Cả hai công ty đều như nhau về mức độ đáng tin cậy ESG"
-      ],
-      "correct": 1,
-      "explanation": "Đây là bài học thực hành cốt lõi của phân tích ESG: độ dài báo cáo hay hình ảnh minh họa không phản ánh chất lượng cam kết ESG. Dấu hiệu đáng tin cậy thực sự là: mục tiêu ĐỊNH LƯỢNG cụ thể (không mơ hồ), có KIỂM TOÁN ĐỘC LẬP (không tự công bố một chiều), và LIÊN QUAN TRỰC TIẾP đến hoạt động kinh doanh cốt lõi (không phải sáng kiến PR bên lề)."
-    },
-    "summary": {
-      "keyIdea": "ESG là khung đánh giá phi tài chính (Environmental, Social, Governance) giúp nhà đầu tư nhận diện rủi ro dài hạn mà báo cáo tài chính truyền thống không phản ánh đầy đủ, với hai chuẩn báo cáo chính là GRI (toàn diện) và SASB (trọng yếu tài chính).",
-      "commonMistake": "Đánh giá cam kết ESG của doanh nghiệp dựa trên độ dài/hình thức báo cáo thay vì tính cụ thể và khả năng kiểm chứng của các số liệu",
-      "action": "Khi đọc báo cáo ESG của một doanh nghiệp, tìm kiếm 3 dấu hiệu: mục tiêu định lượng cụ thể, kiểm toán độc lập bên thứ ba, và liên quan trực tiếp đến hoạt động kinh doanh cốt lõi"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Chọn một doanh nghiệp bạn quan tâm, tìm báo cáo ESG/phát triển bền vững của họ (thường có trên website 'Nhà đầu tư quan hệ' - Investor Relations), và đánh giá xem đó là cam kết thực chất hay có dấu hiệu greenwashing.",
-      "secondary": "Bài tiếp theo sẽ đi sâu vào cách tính điểm ESG (ESG scoring) và các chỉ số cụ thể theo từng ngành."
+    "realWorldExample": {
+      "company": "Sáu tháng tối ưu nhầm chỗ",
+      "description": "Một đội thấy hoá đơn hạ tầng tăng đều và dành sáu tháng tối ưu dịch vụ tốn nhất. Họ giảm được mười tám phần trăm. Hoá đơn vẫn tăng, vì lượng việc tăng nhanh hơn. Khi cuối cùng họ chia chi phí cho số yêu cầu, con số ấy đã giảm liên tục từ trước cả khi họ bắt đầu - thứ họ theo đuổi suốt sáu tháng chưa bao giờ là một vấn đề."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "ESG không phải là xu hướng nhất thời hay chỉ dành cho nhà đầu tư 'có lương tâm' - nó đang trở thành công cụ quản trị rủi ro chính thống, được các quỹ đầu tư hàng nghìn tỷ USD tích hợp vào quy trình phân tích cốt lõi."
+        "text": "Đánh giá một dịch vụ khó không phải vì thiếu số liệu mà vì thừa. Việc khó là chọn đúng mẫu số, đúng điểm đo, và đúng mốc để so."
       },
       {
         "type": "heading",
-        "text": "Ba trụ cột của ESG"
+        "text": "Bước một: chọn đơn vị việc làm được"
       },
       {
-        "type": "conceptTable",
-        "title": "Environmental - Social - Governance",
-        "concepts": [
-          {
-            "vi": "Environmental (Môi trường)",
-            "en": "Environmental",
-            "def": "Phát thải carbon, sử dụng năng lượng/nước, quản lý chất thải, rủi ro biến đổi khí hậu, bảo tồn đa dạng sinh học"
-          },
-          {
-            "vi": "Social (Xã hội)",
-            "en": "Social",
-            "def": "Điều kiện lao động, đa dạng & bình đẳng, quan hệ cộng đồng, an toàn sản phẩm, bảo mật dữ liệu khách hàng, chuỗi cung ứng có trách nhiệm"
-          },
-          {
-            "vi": "Governance (Quản trị)",
-            "en": "Governance",
-            "def": "Cấu trúc hội đồng quản trị, minh bạch tài chính, chống tham nhũng/hối lộ, quyền cổ đông, đạo đức kinh doanh, thù lao ban lãnh đạo"
-          }
+        "type": "paragraph",
+        "text": "Mọi con số phi chức năng chỉ có nghĩa khi chia cho một đơn vị việc. Với dịch vụ trả lời yêu cầu thì đó là mỗi nghìn yêu cầu; với dịch vụ xử lý theo lô thì là mỗi triệu bản ghi; với dịch vụ lưu trữ thì là mỗi terabyte mỗi tháng. Chọn sai đơn vị làm mọi so sánh về sau vô nghĩa, và đây là chỗ dễ chọn sai nhất vì nó được quyết định sớm rồi không ai xem lại."
+      },
+      {
+        "type": "heading",
+        "text": "Bước hai: đo ở nơi người dùng đứng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Độ trễ đo từ trình duyệt hoặc thiết bị, không đo từ trong trung tâm dữ liệu",
+          "Tỷ lệ lỗi đếm cả những yêu cầu không bao giờ tới được máy chủ vì mạng đứt",
+          "Thời gian khôi phục tính từ lúc bắt đầu hỏng, không từ lúc cảnh báo kêu"
         ]
       },
       {
-        "type": "heading",
-        "text": "Tại sao ESG quan trọng với hiệu quả tài chính, không chỉ đạo đức"
-      },
-      {
         "type": "paragraph",
-        "text": "Nhiều người hiểu lầm ESG chỉ là 'đầu tư có đạo đức', đánh đổi lợi nhuận để làm việc tốt. Thực tế, luận điểm chính của ESG investing là: các yếu tố E-S-G thường là chỉ báo SỚM của rủi ro tài chính chưa xuất hiện trong báo cáo hiện tại. Một công ty quản trị kém (Governance yếu) dễ xảy ra gian lận kế toán; một công ty phát thải cao (Environmental yếu) đối mặt rủi ro pháp lý/thuế carbon tăng trong tương lai; một công ty có điều kiện lao động tệ (Social yếu) dễ gặp đình công/kiện tụng. ESG giúp định lượng những rủi ro 'ẩn' này trước khi chúng biến thành thiệt hại tài chính thực sự."
+        "text": "Ba điều chỉnh này luôn làm con số xấu đi, và đó là dấu hiệu cho thấy chúng đúng. Một phép đo tự làm mình đẹp lên là một phép đo đang đo cái khác với thứ nó tuyên bố."
       },
       {
         "type": "heading",
-        "text": "GRI vs SASB - Hai chuẩn báo cáo chính"
+        "text": "Bước ba: so với chính mình theo thời gian"
       },
       {
         "type": "paragraph",
-        "text": "GRI (Global Reporting Initiative) là chuẩn báo cáo ESG được sử dụng rộng rãi nhất toàn cầu, hướng đến TẤT CẢ bên liên quan (nhà đầu tư, nhân viên, cộng đồng, chính phủ) - tính toàn diện cao nhưng đôi khi khó xác định yếu tố nào thực sự ảnh hưởng đến giá trị tài chính. SASB (Sustainability Accounting Standards Board, nay thuộc IFRS Foundation) tập trung riêng vào NHÀ ĐẦU TƯ, với bộ tiêu chuẩn ĐẶC THÙ THEO NGÀNH (77 ngành khác nhau), chỉ báo cáo những yếu tố ESG có 'tính trọng yếu tài chính' - phù hợp hơn khi tích hợp ESG vào mô hình định giá đầu tư."
+        "text": "So chi phí mỗi yêu cầu của hai dịch vụ khác nhau gần như luôn vô nghĩa vì chúng làm hai loại việc khác nhau. So chính dịch vụ ấy tháng này với sáu tháng trước thì luôn có nghĩa. Đó là lý do mọi trụ cột nên được ghi lại theo thời gian ngay từ ngày đầu, kể cả khi chưa ai biết dùng số liệu ấy để làm gì."
       },
       {
         "type": "callout",
-        "label": "Cảnh giác Greenwashing",
-        "text": "Không phải mọi báo cáo ESG đều đáng tin cậy. Dấu hiệu greenwashing: ngôn ngữ mơ hồ ('cam kết bền vững', 'hướng tới tương lai xanh') không đi kèm số liệu cụ thể; không có kiểm toán độc lập; sáng kiến ESG chỉ là hoạt động PR bên lề, không liên quan đến hoạt động kinh doanh cốt lõi gây tác động ESG lớn nhất."
+        "label": "Phép đo đầu tiên gần như luôn sai chỗ",
+        "text": "Đừng chờ có phép đo hoàn hảo rồi mới bắt đầu ghi. Ghi một phép đo hơi lệch từ hôm nay còn hơn có một phép đo hoàn hảo bắt đầu từ tháng sau, vì giá trị nằm ở chuỗi thời gian chứ không ở độ chính xác tuyệt đối. Khi phát hiện mẫu số sai, tính lại toàn bộ lịch sử theo mẫu số mới - đừng nối hai đoạn của hai phép đo khác nhau."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Con số tuyệt đối trộn hiệu quả với quy mô; chia cho đơn vị việc mới tách được.",
+          "Một phép đo tự làm mình đẹp lên là một phép đo đang đo nhầm thứ."
+        ]
       }
     ],
-    "diagram": [
+    "quiz": [
       {
-        "label": "Environmental - tác động môi trường",
-        "arrow": true
+        "question": "Vì sao tổng chi phí hạ tầng mỗi tháng là một chỉ số kém?",
+        "options": [
+          "Vì nó trộn hiệu quả của dịch vụ với lượng việc dịch vụ đang làm",
+          "Vì hoá đơn của nhà cung cấp thường về chậm nên số liệu luôn trễ một chu kỳ",
+          "Vì nhiều dịch vụ dùng chung hạ tầng nên không tách được phần của từng cái",
+          "Vì giá của nhà cung cấp thay đổi theo hợp đồng nên con số không ổn định qua kỳ"
+        ],
+        "correct": 0,
+        "explanation": "Ba lý do kia đều gây phiền nhưng đều xử lý được. Việc trộn hai đại lượng thì không xử lý được bằng công cụ - nó khiến một dịch vụ đang tốt lên và một dịch vụ đang xấu đi cho ra cùng một đường biểu đồ."
       },
       {
-        "label": "Social - quan hệ với người lao động và cộng đồng",
-        "arrow": true
+        "question": "Vì sao độ trễ nên đo từ trình duyệt thay vì từ trong trung tâm dữ liệu?",
+        "options": [
+          "Vì phần lớn thời gian chờ nằm ngoài máy chủ",
+          "Vì các công cụ đo phía máy chủ thường lấy mẫu chứ không ghi lại toàn bộ yêu cầu",
+          "Vì đo trong trung tâm dữ liệu bỏ sót những yêu cầu bị cân bằng tải chuyển hướng",
+          "Vì đồng hồ của máy chủ và của thiết bị người dùng không được đồng bộ với nhau"
+        ],
+        "correct": 0,
+        "explanation": "Đường truyền, phân giải tên miền, thiết lập kết nối bảo mật và việc dựng giao diện đều nằm ngoài máy chủ, và cộng lại chúng thường lớn hơn phần máy chủ. Đo trong nhà là đo đúng phần nhỏ nhất."
       },
       {
-        "label": "Governance - chất lượng quản trị",
-        "arrow": true
+        "question": "Một phép đo mới cho con số đẹp hơn hẳn phép đo cũ. Phản xạ đúng là gì?",
+        "options": [
+          "Nghi ngờ rằng nó đang đo thứ khác với thứ nó tuyên bố",
+          "Kiểm tra lại xem phép đo cũ có bị lỗi ở khâu thu thập dữ liệu hay không",
+          "Chấp nhận con số mới nếu công cụ đo mới có độ tin cậy cao hơn công cụ cũ",
+          "Chạy song song hai phép đo trong một quý rồi lấy giá trị trung bình của chúng"
+        ],
+        "correct": 0,
+        "explanation": "Các điều chỉnh đúng đắn về điểm đo và mốc thời gian đều làm con số xấu đi, vì chúng thêm vào những phần trước đây bị bỏ sót. Một phép đo đẹp lên thường là một phép đo vừa bỏ bớt thứ gì đó."
       },
       {
-        "label": "Gắn với rủi ro dài hạn và giá trị doanh nghiệp",
-        "arrow": true
+        "question": "Phát hiện mẫu số đã chọn sai sau một năm ghi số liệu. Nên làm gì?",
+        "options": [
+          "Tính lại toàn bộ lịch sử theo mẫu số mới",
+          "Giữ nguyên lịch sử cũ và bắt đầu một chuỗi số liệu mới song song với chuỗi cũ",
+          "Chỉ đổi mẫu số từ kỳ tới và ghi chú lại thời điểm đã thay đổi cách tính",
+          "Bỏ dữ liệu cũ đi vì nó được tính theo một cách không còn dùng nữa"
+        ],
+        "correct": 0,
+        "explanation": "Giá trị của những chỉ số này nằm ở chuỗi thời gian liên tục. Nối hai đoạn tính theo hai cách tạo ra một bước nhảy mà người đọc sau này sẽ quy cho một thay đổi kỹ thuật không hề tồn tại."
       },
       {
-        "label": "Công bố theo chuẩn GRI hoặc SASB",
-        "arrow": false
+        "question": "So chi phí mỗi yêu cầu giữa dịch vụ tìm kiếm và dịch vụ thanh toán. Vấn đề là gì?",
+        "options": [
+          "Hai dịch vụ làm hai loại việc nên mẫu số không tương đương",
+          "Hai dịch vụ có lượng yêu cầu chênh nhau nên phép so bị lệch về phía cái nhỏ hơn",
+          "Chi phí của hai dịch vụ được ghi nhận theo hai chu kỳ kế toán khác nhau",
+          "Dịch vụ thanh toán có yêu cầu bảo mật cao hơn nên chi phí luôn cao hơn hẳn"
+        ],
+        "correct": 0,
+        "explanation": "Một yêu cầu tìm kiếm và một yêu cầu thanh toán không phải cùng một đơn vị việc dù cùng được gọi là yêu cầu. Phép so duy nhất luôn có nghĩa là so một dịch vụ với chính nó ở thời điểm trước."
       }
-    ]
-  },
-  {
+    ],
+    "keyTakeaways": [
+      "Chia cho đơn vị việc làm được để tách hiệu quả khỏi quy mô",
+      "Đo ở nơi người dùng đứng, và chấp nhận con số xấu hơn",
+      "So dịch vụ với chính nó theo thời gian, không so giữa các dịch vụ",
+      "Ghi số liệu hơi lệch từ hôm nay hơn là chờ phép đo hoàn hảo tháng sau"
+    ],
+    "practicePrompt": {
+      "question": "Hoá đơn tăng từ 100 lên 180 triệu, lượng yêu cầu tăng từ 10 lên 30 triệu. Chi phí mỗi triệu yêu cầu đổi thế nào?",
+      "options": [
+        "Giảm từ 10 xuống 6 triệu",
+        "Tăng 80% (= chỉ nhìn hoá đơn, bỏ qua phần lượng yêu cầu đã tăng)",
+        "Giảm từ 10 xuống 3 triệu (= chia hoá đơn cũ cho lượng yêu cầu mới)",
+        "Không đổi, vì cả hai con số đều tăng nên chúng bù trừ cho nhau"
+      ],
+      "correct": 0,
+      "explanation": "100 chia 10 ra 10; 180 chia 30 ra 6. Dịch vụ đã tốt lên bốn mươi phần trăm trong khi hoá đơn tăng tám mươi phần trăm, và đó chính là hai kết luận ngược nhau mà cùng một bộ số liệu cho ra."
+    },
+    "summary": {
+      "keyIdea": "Chọn đúng mẫu số, đúng điểm đo, đúng mốc so - theo thứ tự đó",
+      "commonMistake": "Theo đuổi con số tuyệt đối và tối ưu nhầm chỗ trong nhiều tháng",
+      "action": "Chia một chỉ số đội bạn đang theo dõi cho đơn vị việc và xem đường có đổi hướng không."
+    },
+    "application": {
+      "title": "Ba câu trước khi tin một biểu đồ",
+      "message": "Mẫu số là gì? Đo ở đâu? Đang so với chính nó hay so với thứ khác?",
+      "secondary": "Nếu mẫu số là thời gian thay vì lượng việc, biểu đồ ấy đang kể chuyện tăng trưởng chứ không kể chuyện hiệu quả."
+    },
     "id": 1230,
     "slug": "cach-danh-gia-esg-cua-doanh-nghiep",
-    "title": "Cách đánh giá ESG của một doanh nghiệp: Từ chỉ số đến điểm số",
-    "subtitle": "15 chỉ số ESG phổ biến, cách tính ESG score, và những 'red flag' cần cảnh giác trong báo cáo",
-    "duration": "8 phút",
-    "difficulty": "Khó",
-    "emoji": "📊",
-    "openingQuestion": "Hai công ty cùng ngành sản xuất có ESG score gần bằng nhau từ một tổ chức xếp hạng (MSCI, Sustainalytics). Điều này có nghĩa là rủi ro ESG của hai công ty hoàn toàn giống nhau không?",
-    "openingOptions": [
-      "Có, ESG score là thước đo tuyệt đối và khách quan, hai công ty điểm bằng nhau nghĩa là rủi ro y hệt nhau của nhau",
-      "Không nhất thiết - mỗi tổ chức xếp hạng lại dùng phương pháp luận và trọng số khác nhau khá là nhiều đấy chứ",
-      "ESG score chỉ áp dụng cho công ty niêm yết ở Mỹ",
-      "ESG score luôn chính xác 100% và không cần kiểm chứng thêm"
-    ],
-    "correctOption": 1,
-    "explanation": "Đây là hạn chế quan trọng cần biết khi dùng ESG score: các tổ chức xếp hạng khác nhau (MSCI ESG Ratings, Sustainalytics, ISS ESG...) sử dụng phương pháp luận, trọng số chỉ số, và nguồn dữ liệu khác nhau - nghiên cứu học thuật đã chỉ ra sự tương quan giữa điểm số của các tổ chức khác nhau cho CÙNG một công ty có thể khá thấp. Nhà phân tích chuyên nghiệp không nên chỉ dựa vào một con số ESG score duy nhất mà cần hiểu phương pháp luận đằng sau và tự đánh giá thêm các chỉ số cụ thể liên quan đến ngành.",
-    interactiveType: "esg-score",
-    "realWorldExample": {
-      "company": "Tesla - ESG score gây tranh cãi",
-      "description": "Tesla, dù sản xuất xe điện (đóng góp tích cực cho Environmental qua giảm phát thải giao thông), từng bị S&P Global loại khỏi chỉ số ESG năm 2022 do các vấn đề về Social (điều kiện lao động tại nhà máy, tai nạn lao động) và Governance (thiếu minh bạch, tranh chấp với cơ quan quản lý). Sự kiện này gây tranh cãi lớn, minh họa rõ việc một công ty có thể mạnh ở một trụ cột (Environmental) nhưng yếu ở trụ cột khác (Social/Governance) - và các tổ chức xếp hạng có thể đưa ra kết luận khác nhau tùy trọng số họ đặt cho từng trụ cột."
-    },
-    "quiz": [
-      {
-        "question": "Tại sao chỉ số 'board independence' (tính độc lập của hội đồng quản trị) - tỷ lệ thành viên HĐQT không liên quan đến ban điều hành - lại là một chỉ số Governance quan trọng?",
-        "options": [
-          "Vì HĐQT càng nhiều thành viên càng tốt, không liên quan đến tính độc lập",
-          "Vì thành viên HĐQT độc lập (không phải nhân viên/người thân của ban điều hành) có khả năng giám sát khách quan hơn, giảm rủi ro xung đột lợi ích và các quyết định có lợi cho ban lãnh đạo nhưng gây hại cho cổ đông - một HĐQT thiếu độc lập là dấu hiệu cảnh báo quản trị yếu",
-          "Board independence chỉ là yêu cầu hình thức, không ảnh hưởng gì đến hiệu quả giám sát thực tế",
-          "Chỉ số này chỉ áp dụng cho công ty gia đình, không áp dụng cho công ty đại chúng"
-        ],
-        "correct": 1,
-        "explanation": "Tính độc lập của HĐQT là một trong những chỉ số Governance được theo dõi chặt chẽ nhất: khi phần lớn thành viên HĐQT có quan hệ với ban điều hành (là nhân viên cũ, người thân, đối tác kinh doanh), khả năng họ giám sát khách quan và bảo vệ lợi ích cổ đông giảm đi đáng kể - đây là một trong những nguyên nhân gốc rễ của nhiều vụ bê bối tài chính doanh nghiệp lớn trong lịch sử."
-      },
-      {
-        "question": "Scope 1, Scope 2, và Scope 3 trong báo cáo phát thải carbon (một chỉ số Environmental quan trọng) khác nhau như thế nào?",
-        "options": [
-          "Ba khái niệm này hoàn toàn giống nhau, chỉ là cách gọi khác",
-          "Scope 1: phát thải TRỰC TIẾP từ hoạt động của chính doanh nghiệp (nhà máy, xe công ty); Scope 2: phát thải GIÁN TIẾP từ năng lượng mua vào (điện, hơi nước); Scope 3: phát thải GIÁN TIẾP từ toàn bộ CHUỖI GIÁ TRỊ (nhà cung cấp, vận chuyển, sử dụng sản phẩm bởi khách hàng) - Scope 3 thường lớn nhất nhưng khó đo lường và kiểm soát nhất",
-          "Scope 1 chỉ áp dụng cho ngành năng lượng, Scope 2 và 3 áp dụng cho các ngành khác",
-          "Chỉ Scope 1 mới quan trọng, Scope 2 và 3 không cần báo cáo"
-        ],
-        "correct": 1,
-        "explanation": "Đây là phân loại phát thải carbon chuẩn quốc tế (GHG Protocol): Scope 1 (trực tiếp từ hoạt động của công ty), Scope 2 (gián tiếp từ năng lượng mua vào), Scope 3 (gián tiếp từ toàn chuỗi giá trị - thường chiếm 70-90% tổng phát thải của nhiều doanh nghiệp nhưng khó đo lường chính xác nhất vì phụ thuộc vào dữ liệu từ hàng trăm/nghìn nhà cung cấp và cách khách hàng sử dụng sản phẩm). Nhà phân tích ESG cần kiểm tra xem doanh nghiệp có báo cáo đầy đủ cả 3 Scope hay chỉ báo cáo Scope 1-2 (dễ hơn) để né tránh con số Scope 3 lớn hơn nhiều."
-      },
-      {
-        "question": "Chỉ số 'employee turnover rate' (tỷ lệ nghỉ việc của nhân viên) cao bất thường so với trung bình ngành có thể là dấu hiệu 'red flag' về khía cạnh ESG nào?",
-        "options": [
-          "Không liên quan gì đến ESG, chỉ là vấn đề quản lý nhân sự thông thường",
-          "Có thể là dấu hiệu cảnh báo về Social (điều kiện làm việc kém, văn hóa công ty độc hại, lương thưởng không cạnh tranh) - một chỉ số định lượng giúp phát hiện vấn đề Social mà báo cáo tài chính không thể hiện trực tiếp",
-          "Chỉ liên quan đến Governance, không liên quan đến Social",
-          "Tỷ lệ nghỉ việc cao luôn là dấu hiệu tích cực cho thấy công ty đang phát triển nhanh"
-        ],
-        "correct": 1,
-        "explanation": "Tỷ lệ nghỉ việc cao bất thường là một trong những 'proxy indicator' (chỉ số gián tiếp) phổ biến để đánh giá khía cạnh Social - nó có thể phản ánh văn hóa công ty độc hại, quản lý kém, lương thưởng không cạnh tranh, hoặc áp lực công việc quá mức. Nhà phân tích ESG thường theo dõi các chỉ số 'proxy' như thế này (cùng với dữ liệu từ Glassdoor, khảo sát nhân viên) để đánh giá khía cạnh Social khi doanh nghiệp không công bố đủ chi tiết."
-      }
-    ],
-    "keyTakeaways": [
-      "Các tổ chức xếp hạng ESG khác nhau (MSCI, Sustainalytics, ISS) có thể cho điểm số khác biệt đáng kể cho cùng một công ty do phương pháp luận khác nhau - không nên chỉ dựa vào một con số duy nhất",
-      "Board independence (tính độc lập HĐQT) là chỉ số Governance quan trọng - HĐQT thiếu độc lập là dấu hiệu cảnh báo quản trị yếu",
-      "Phát thải carbon chia thành Scope 1 (trực tiếp), Scope 2 (năng lượng mua vào), Scope 3 (toàn chuỗi giá trị - thường lớn nhất, khó đo lường nhất)",
-      "Các chỉ số 'proxy' như tỷ lệ nghỉ việc nhân viên giúp phát hiện vấn đề Social khi doanh nghiệp không công bố đủ chi tiết trực tiếp"
-    ],
-    "practicePrompt": {
-      "question": "Bạn đang so sánh ESG score của một công ty dầu khí: MSCI cho điểm AA (cao), nhưng Sustainalytics xếp công ty vào nhóm 'rủi ro cao'. Cách tiếp cận đúng khi gặp mâu thuẫn này là gì?",
-      "options": [
-        "Chỉ tin vào điểm số của MSCI vì đây là tổ chức lớn hơn",
-        "MSCI chấm tương đối trong ngành, còn Sustainalytics chấm rủi ro tuyệt đối",
-        "Bỏ qua cả hai điểm số vì ESG rating không đáng tin cậy",
-        "Tự động kết luận công ty này có rủi ro ESG thấp vì có ít nhất một tổ chức xếp hạng cao"
-      ],
-      "correct": 1,
-      "explanation": "Đây là hạn chế thực tế quan trọng của ESG ratings mà nhà phân tích chuyên nghiệp cần hiểu: một số tổ chức xếp hạng theo phương pháp 'best-in-class' (so sánh tương đối trong cùng ngành - một công ty dầu khí 'tốt nhất trong các công ty dầu khí' vẫn có thể được điểm cao dù ngành đó vốn rủi ro ESG cao), trong khi tổ chức khác đánh giá rủi ro TUYỆT ĐỐI không phân biệt ngành. Hiểu phương pháp luận đằng sau con số quan trọng hơn việc chỉ nhìn điểm số cuối cùng."
-    },
-    "summary": {
-      "keyIdea": "Đánh giá ESG đòi hỏi hiểu các chỉ số cụ thể (board independence, Scope 1-2-3 emissions, employee turnover) và phương pháp luận của các tổ chức xếp hạng, không chỉ nhìn vào một con số ESG score duy nhất.",
-      "commonMistake": "Coi ESG score từ một tổ chức xếp hạng là con số tuyệt đối, khách quan, thay vì hiểu đó là kết quả của một phương pháp luận cụ thể có thể khác biệt giữa các tổ chức",
-      "action": "Khi xem ESG score của một công ty, luôn kiểm tra thêm: tổ chức nào xếp hạng, phương pháp luận là gì (tuyệt đối hay tương đối theo ngành), và đối chiếu với ít nhất một nguồn khác nếu có thể"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Tra cứu ESG score của một công ty niêm yết bạn quan tâm trên ít nhất 2 nguồn khác nhau (ví dụ trang IR của công ty và một tổ chức xếp hạng công khai), so sánh xem có mâu thuẫn gì không và tìm hiểu tại sao.",
-      "secondary": "Bài tiếp theo sẽ đi vào ứng dụng thực tế: làm sao dùng ESG data để xây dựng danh mục đầu tư (ESG screening, portfolio construction)."
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Biết ESG là gì chỉ là bước đầu - kỹ năng thực sự của một chuyên viên ESG là đọc được các chỉ số cụ thể, hiểu phương pháp tính điểm, và nhận diện khi nào một con số ESG score đáng tin hay đáng ngờ."
-      },
-      {
-        "type": "heading",
-        "text": "15 chỉ số ESG phổ biến theo từng trụ cột"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Environmental: Phát thải carbon (Scope 1-2-3), tiêu thụ năng lượng/nước, tỷ lệ tái chế chất thải, mục tiêu Net Zero, rủi ro vật lý từ biến đổi khí hậu",
-          "Social: Tỷ lệ nghỉ việc nhân viên, tỷ lệ tai nạn lao động, đa dạng giới tính trong quản lý, mức lương tối thiểu so với chuẩn sống, mức độ hài lòng khách hàng, số vụ vi phạm bảo mật dữ liệu",
-          "Governance: Tính độc lập HĐQT, tỷ lệ nữ trong HĐQT, tỷ lệ lương CEO/nhân viên trung bình, số vụ kiện tụng/vi phạm quy định, chính sách chống hối lộ-tham nhũng"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Cách các tổ chức xếp hạng tính ESG Score"
-      },
-      {
-        "type": "paragraph",
-        "text": "Các tổ chức xếp hạng lớn (MSCI ESG Ratings, Sustainalytics, ISS ESG) thu thập dữ liệu từ báo cáo công khai của doanh nghiệp, tin tức, dữ liệu bên thứ ba, sau đó áp dụng trọng số riêng cho từng chỉ số theo ngành (một công ty dầu khí sẽ có trọng số Environmental cao hơn nhiều so với công ty dịch vụ tài chính, nơi Governance thường được coi trọng hơn). Điểm số cuối cùng thường là điểm TƯƠNG ĐỐI trong ngành (so với các đối thủ cùng ngành) chứ không phải điểm tuyệt đối trên toàn thị trường - đây là lý do một công ty dầu khí vẫn có thể được ESG score cao dù ngành dầu khí vốn có rủi ro môi trường lớn hơn ngành công nghệ."
-      },
-      {
-        "type": "heading",
-        "text": "Red Flags cần cảnh giác trong báo cáo ESG"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Ngôn ngữ mơ hồ, thiếu số liệu định lượng cụ thể ('cam kết phát triển bền vững' mà không có mục tiêu, deadline, hay số liệu tiến độ)",
-          "Chỉ báo cáo Scope 1-2 emissions, tránh né Scope 3 (thường lớn nhất) mà không giải thích lý do",
-          "Không có kiểm toán độc lập bên thứ ba cho các số liệu ESG được công bố",
-          "Ban lãnh đạo/HĐQT thiếu tính độc lập nhưng công ty vẫn tự nhận điểm Governance cao",
-          "Có lịch sử vi phạm quy định/kiện tụng nhưng không được đề cập trong báo cáo ESG"
-        ]
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "Đọc ESG score như đọc một chỉ số tài chính - hiểu phương pháp tính đằng sau con số quan trọng hơn bản thân con số đó.",
-          "Kỹ năng phát hiện greenwashing và red flags là điều phân biệt một chuyên viên ESG chuyên nghiệp với một người chỉ đọc báo cáo bề mặt."
-        ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Thu thập dữ liệu công bố theo từng trụ cột",
-        "arrow": true
-      },
-      {
-        "label": "Chọn chỉ số trọng yếu (material) cho ngành đó",
-        "arrow": true
-      },
-      {
-        "label": "Chuẩn hóa và gán trọng số → điểm ESG",
-        "arrow": true
-      },
-      {
-        "label": "Soi red flag: cam kết chung chung, thiếu số liệu, greenwashing",
-        "arrow": false
-      }
-    ]
+    "track": "bonus"
   },
   {
-    "id": 1231,
-    "slug": "esg-investing-screening-den-portfolio",
-    "title": "ESG Investing: Từ screening đến xây dựng danh mục đầu tư",
-    "subtitle": "Exclusionary screening, best-in-class, impact investing - các chiến lược ESG investing khác nhau và khi nào dùng chiến lược nào",
+    "title": "Từ sàng lọc tới ưu tiên: sửa dịch vụ nào trước",
+    "subtitle": "Ba cách phân bổ công sức trên một danh mục dịch vụ, và cái giá của từng cách",
     "duration": "8 phút",
     "difficulty": "Khó",
-    "emoji": "💼",
-    "openingQuestion": "Một quỹ đầu tư quyết định loại bỏ hoàn toàn cổ phiếu ngành thuốc lá, vũ khí, và than đá khỏi danh mục, bất kể hiệu quả tài chính của các công ty đó. Đây là chiến lược ESG investing nào?",
+    "emoji": "🎯",
+    "whyItMatters": "Một đội có ba mươi dịch vụ và công sức cho ba. Cách chọn ra ba cái ấy quyết định nhiều hơn cả chất lượng công việc bỏ vào chúng, vì sửa xuất sắc đúng thứ không quan trọng vẫn là công sức bỏ đi.",
+    "openingQuestion": "Ba mươi dịch vụ, chỉ đủ sức sửa ba. Chọn theo tiêu chí nào?",
     "openingOptions": [
-      "Impact investing - đầu tư trực tiếp tạo tác động xã hội đo lường được",
-      "Exclusionary screening - loại bỏ hoàn toàn các ngành bị coi là gây hại lớn",
-      "Best-in-class selection - chọn công ty tốt nhất về ESG trong mỗi ngành",
-      "Thematic investing - đầu tư theo chủ đề tăng trưởng cụ thể"
+      "Điểm thấp nhân với mức độ quan trọng của dịch vụ",
+      "Ba dịch vụ có điểm sức khoẻ thấp nhất trên bảng xếp hạng của quý này",
+      "Ba dịch vụ mà đội đang có sẵn người hiểu rõ nhất nên sửa sẽ nhanh nhất",
+      "Ba dịch vụ vừa gây ra sự cố trong khoảng thời gian ba tháng gần đây nhất"
     ],
-    "correctOption": 1,
-    "explanation": "Đây là chiến lược Exclusionary Screening (còn gọi là negative screening) - chiến lược ESG investing lâu đời nhất và đơn giản nhất: loại trừ HOÀN TOÀN các ngành/công ty bị coi là gây hại (thuốc lá, vũ khí, than đá, cờ bạc...) khỏi danh mục đầu tư ngay từ đầu, không xét đến hiệu quả tài chính riêng lẻ của từng công ty trong nhóm bị loại trừ.",
-    interactiveType: "esg-score",
-    "realWorldExample": {
-      "company": "Norway Government Pension Fund Global",
-      "description": "Quỹ hưu trí quốc gia Na Uy - một trong những quỹ đầu tư lớn nhất thế giới (hơn 1.4 nghìn tỷ USD) - áp dụng chính sách loại trừ nghiêm ngặt: cấm đầu tư vào các công ty sản xuất vũ khí hạt nhân, thuốc lá, than đá (trên một ngưỡng doanh thu nhất định), và các công ty vi phạm nghiêm trọng quyền con người - minh họa quy mô và tầm ảnh hưởng thực tế của chiến lược exclusionary screening ở cấp độ quỹ đầu tư quốc gia."
-    },
-    "quiz": [
+    "correctOption": 0,
+    "explanation": "Điểm thấp một mình không đủ. Một dịch vụ nội bộ điểm hai mươi mà mỗi tuần ba người dùng thì đứng sau một dịch vụ điểm sáu mươi nằm trên đường đi của mọi giao dịch. Nhân điểm với mức độ quan trọng là cách rẻ nhất để đưa hậu quả vào danh sách ưu tiên, thay vì chỉ đưa triệu chứng vào.",
+    "diagram": [
       {
-        "question": "Chiến lược 'Best-in-class' trong ESG investing khác với 'Exclusionary screening' như thế nào?",
-        "options": [
-          "Hai chiến lược này hoàn toàn giống nhau",
-          "Best-in-class KHÔNG loại trừ toàn bộ một ngành, mà chọn ĐẦU TƯ vào những công ty có điểm ESG TỐT NHẤT trong MỖI ngành (kể cả ngành 'nhạy cảm' như dầu khí) - ngược lại, exclusionary screening loại bỏ HOÀN TOÀN một số ngành bất kể công ty nào trong đó có ESG tốt đến đâu",
-          "Best-in-class chỉ áp dụng cho cổ phiếu công nghệ",
-          "Exclusionary screening luôn mang lại lợi nhuận cao hơn best-in-class"
-        ],
-        "correct": 1,
-        "explanation": "Đây là khác biệt chiến lược quan trọng: Best-in-class cho phép nhà đầu tư vẫn có tiếp cận đến những ngành có rủi ro ESG cao (như năng lượng, khai khoáng) bằng cách chọn lọc những công ty DẪN ĐẦU về thực hành ESG trong ngành đó (ví dụ, một công ty dầu khí đầu tư mạnh vào năng lượng tái tạo và có tiêu chuẩn an toàn cao) - trong khi exclusionary screening loại bỏ hoàn toàn khả năng đầu tư vào ngành đó."
+        "label": "Chấm điểm cả danh mục",
+        "arrow": true
       },
       {
-        "question": "Impact investing khác với ESG investing thông thường ở điểm quan trọng nào?",
-        "options": [
-          "Không có sự khác biệt nào, hai khái niệm là một",
-          "Impact investing yêu cầu MỤC TIÊU TẠO TÁC ĐỘNG XÃ HỘI/MÔI TRƯỜNG CÓ THỂ ĐO LƯỜNG ĐƯỢC là mục tiêu chính (song song với lợi nhuận tài chính) - ví dụ đầu tư trực tiếp vào dự án năng lượng tái tạo với mục tiêu giảm X tấn CO2; ESG investing thông thường (như best-in-class) chủ yếu dùng ESG như công cụ QUẢN LÝ RỦI RO trong danh mục cổ phiếu niêm yết thông thường",
-          "Impact investing chỉ dành cho tổ chức phi lợi nhuận, không dành cho nhà đầu tư thương mại",
-          "ESG investing luôn mang lại tác động xã hội lớn hơn impact investing"
-        ],
-        "correct": 1,
-        "explanation": "Impact investing đặt YÊU CẦU ĐO LƯỜNG TÁC ĐỘNG cụ thể (ví dụ: số tấn CO2 giảm được, số hộ gia đình được tiếp cận tài chính) làm mục tiêu SONG SONG với lợi nhuận tài chính - thường đầu tư trực tiếp vào dự án/doanh nghiệp có sứ mệnh xã hội rõ ràng (năng lượng tái tạo, tài chính vi mô, nhà ở giá rẻ). Trong khi đó, các chiến lược ESG investing khác (exclusionary, best-in-class) chủ yếu vẫn đầu tư vào cổ phiếu niêm yết thông thường, dùng ESG như một lớp phân tích rủi ro bổ sung, không nhất thiết đòi hỏi đo lường tác động xã hội trực tiếp."
+        "label": "Nhân với mức độ quan trọng",
+        "arrow": true
       },
       {
-        "question": "Green bonds (trái phiếu xanh) là công cụ tài chính bền vững hoạt động như thế nào?",
-        "options": [
-          "Là cổ phiếu của các công ty năng lượng tái tạo",
-          "Là trái phiếu thông thường về cấu trúc (lãi suất, kỳ hạn, xếp hạng tín dụng) nhưng số tiền huy động được CAM KẾT sử dụng RIÊNG cho các dự án có lợi ích môi trường cụ thể (năng lượng tái tạo, giao thông sạch, quản lý nước) - nhà phát hành phải báo cáo định kỳ về việc sử dụng vốn đúng mục đích",
-          "Là một loại tiền mã hóa liên quan đến môi trường",
-          "Green bonds luôn có lãi suất cao hơn trái phiếu thông thường để bù đắp rủi ro"
-        ],
-        "correct": 1,
-        "explanation": "Green bonds có cấu trúc tài chính (lãi suất, kỳ hạn, mức độ rủi ro tín dụng) giống hệt trái phiếu thông thường - điểm khác biệt duy nhất là CAM KẾT SỬ DỤNG VỐN cho các dự án môi trường cụ thể, với báo cáo minh bạch định kỳ (thường theo chuẩn Green Bond Principles của ICMA) về việc vốn có thực sự được dùng đúng mục đích hay không. Đây là công cụ giúp nhà đầu tư ESG tiếp cận trực tiếp các dự án bền vững qua thị trường trái phiếu, thường không có lãi suất cao hơn đáng kể so với trái phiếu thông thường cùng mức xếp hạng tín dụng."
+        "label": "Loại phần không ai còn dùng",
+        "arrow": true
+      },
+      {
+        "label": "Ba việc, có người và có hạn"
       }
     ],
-    "keyTakeaways": [
-      "Exclusionary screening: loại trừ hoàn toàn một số ngành/công ty (thuốc lá, vũ khí, than đá) bất kể hiệu quả tài chính riêng lẻ - chiến lược ESG investing lâu đời và đơn giản nhất",
-      "Best-in-class: chọn công ty ESG tốt nhất trong MỖI ngành (kể cả ngành nhạy cảm), không loại trừ hoàn toàn ngành nào",
-      "Impact investing: yêu cầu mục tiêu tác động xã hội/môi trường có thể ĐO LƯỜNG được, song song với lợi nhuận tài chính - thường đầu tư trực tiếp vào dự án cụ thể",
-      "Green bonds: cấu trúc tài chính như trái phiếu thông thường, nhưng vốn huy động cam kết dùng riêng cho dự án môi trường, có báo cáo minh bạch định kỳ"
-    ],
-    "practicePrompt": {
-      "question": "Một nhà đầu tư muốn xây dựng danh mục ESG nhưng vẫn muốn có tiếp cận đến ngành năng lượng (vì tin ngành này sẽ chuyển đổi mạnh sang năng lượng sạch trong 10 năm tới) thay vì loại trừ hoàn toàn. Chiến lược ESG investing nào phù hợp nhất?",
-      "options": [
-        "Exclusionary screening - loại bỏ hoàn toàn ngành năng lượng khỏi danh mục",
-        "Best-in-class selection: chọn công ty ESG tốt nhất ngành, không loại trừ",
-        "Không có chiến lược ESG nào phù hợp với mục tiêu này",
-        "Impact investing là lựa chọn duy nhất phù hợp trong trường hợp này"
-      ],
-      "correct": 1,
-      "explanation": "Best-in-class selection chính xác là chiến lược phù hợp cho mục tiêu này: nó cho phép nhà đầu tư vẫn duy trì tiếp cận đến ngành năng lượng (thay vì loại trừ hoàn toàn như exclusionary screening) nhưng chọn lọc đầu tư vào những công ty dẫn đầu về thực hành ESG trong ngành đó - phù hợp với luận điểm đầu tư 'ngành sẽ chuyển đổi, công ty dẫn đầu chuyển đổi sẽ hưởng lợi nhiều nhất'."
-    },
-    "summary": {
-      "keyIdea": "ESG investing có nhiều chiến lược khác nhau (exclusionary screening, best-in-class, impact investing) với mức độ can thiệp và mục tiêu khác nhau - lựa chọn chiến lược phù hợp phụ thuộc vào mục tiêu cụ thể của nhà đầu tư (tránh rủi ro đạo đức, quản lý rủi ro tài chính, hay tạo tác động đo lường được).",
-      "commonMistake": "Coi tất cả các chiến lược ESG investing là giống nhau, không phân biệt được khi nào nên loại trừ hoàn toàn một ngành và khi nào nên chọn lọc công ty tốt nhất trong ngành đó",
-      "action": "Trước khi xây dựng danh mục ESG, xác định rõ mục tiêu: bạn muốn tránh hoàn toàn một số ngành vì lý do đạo đức, hay muốn quản lý rủi ro ESG trong khi vẫn giữ được sự đa dạng hóa ngành?"
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Nghiên cứu một quỹ ETF/quỹ mở có gắn nhãn 'ESG' hoặc 'Sustainable' đang có trên thị trường, đọc bản cáo bạch (prospectus) để xác định quỹ đó áp dụng chiến lược nào (exclusionary, best-in-class, hay kết hợp).",
-      "secondary": "Đây là kỹ năng thực tế quan trọng cho vị trí ESG Analyst - phân biệt được các quỹ ESG 'thực chất' với các quỹ chỉ gắn nhãn ESG để marketing (một dạng greenwashing ở cấp độ quỹ đầu tư)."
+    "realWorldExample": {
+      "company": "Quý dọn dẹp không ai nhớ được đã sửa gì",
+      "description": "Một đội dành trọn một quý nâng độ phủ kiểm thử cho mọi dịch vụ dưới ngưỡng, tổng cộng mười một cái. Cuối quý mọi ô đều xanh. Sáu tháng sau, hai sự cố lớn nhất đến từ hai dịch vụ vốn đã xanh từ đầu và không nằm trong đợt dọn ấy - chúng không bao giờ dưới ngưỡng, chúng chỉ quan trọng hơn mười một cái kia cộng lại."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Hiểu ESG là gì và cách đánh giá là chưa đủ - công việc thực sự của một ESG Analyst là biến những phân tích đó thành chiến lược xây dựng danh mục đầu tư cụ thể."
+        "text": "Khi có nhiều dịch vụ hơn sức người, chiến lược chọn quan trọng hơn chất lượng thực thi. Có ba cách chọn thường gặp, và chúng thất bại theo ba kiểu khác nhau."
       },
       {
         "type": "heading",
-        "text": "Các chiến lược ESG Investing chính"
-      },
-      {
-        "type": "conceptTable",
-        "title": "So sánh các chiến lược ESG Investing",
-        "concepts": [
-          {
-            "vi": "Exclusionary Screening",
-            "en": "Negative Screening",
-            "def": "Loại trừ hoàn toàn ngành/công ty bị coi là gây hại (thuốc lá, vũ khí, than đá) khỏi danh mục, bất kể hiệu quả tài chính"
-          },
-          {
-            "vi": "Best-in-class Selection",
-            "en": "Positive Screening",
-            "def": "Chọn công ty có điểm ESG tốt nhất trong MỖI ngành, không loại trừ ngành nào hoàn toàn"
-          },
-          {
-            "vi": "ESG Integration",
-            "en": "ESG Integration",
-            "def": "Tích hợp phân tích ESG như một lớp dữ liệu bổ sung vào mô hình định giá/phân tích tài chính truyền thống, không loại trừ hay ưu tiên riêng biệt"
-          },
-          {
-            "vi": "Impact Investing",
-            "en": "Impact Investing",
-            "def": "Đầu tư trực tiếp vào dự án/doanh nghiệp với mục tiêu tác động xã hội/môi trường ĐO LƯỜNG ĐƯỢC, song song với lợi nhuận tài chính"
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Công cụ tài chính bền vững: Green Bonds và hơn thế"
+        "text": "Cách một: đặt ngưỡng và loại"
       },
       {
         "type": "paragraph",
-        "text": "Green bonds là công cụ phổ biến nhất trong tài chính bền vững - trái phiếu với cấu trúc thông thường nhưng vốn cam kết dùng cho dự án môi trường cụ thể. Các biến thể khác gồm: Social Bonds (vốn dùng cho dự án xã hội như nhà ở giá rẻ, y tế), Sustainability-Linked Bonds (lãi suất trái phiếu thay đổi tùy theo việc doanh nghiệp có đạt được mục tiêu ESG cụ thể hay không - tạo động lực tài chính trực tiếp cho cam kết ESG)."
+        "text": "Mọi dịch vụ dưới một ngưỡng đều phải được sửa. Cách này đơn giản, công bằng, và dễ theo dõi. Điểm yếu là nó coi mọi dịch vụ như nhau: một dịch vụ nội bộ ba người dùng được ưu tiên ngang một dịch vụ nằm trên đường đi của mọi giao dịch, chỉ vì cả hai cùng dưới ngưỡng."
       },
       {
         "type": "heading",
-        "text": "Xây dựng danh mục ESG thực tế - Quy trình 4 bước"
+        "text": "Cách hai: chọn cái tệ nhất trong mỗi nhóm"
       },
       {
-        "type": "list",
-        "items": [
-          "Bước 1: Xác định mục tiêu (tránh rủi ro đạo đức, quản lý rủi ro tài chính, hay tạo tác động đo lường được?)",
-          "Bước 2: Chọn chiến lược phù hợp (exclusionary, best-in-class, ESG integration, hay kết hợp)",
-          "Bước 3: Thiết lập tiêu chí sàng lọc cụ thể (ngưỡng ESG score tối thiểu, ngành bị loại trừ, chỉ số ưu tiên)",
-          "Bước 4: Giám sát định kỳ - ESG score và thực hành của doanh nghiệp có thể thay đổi theo thời gian, cần đánh giá lại danh mục thường xuyên"
-        ]
+        "type": "paragraph",
+        "text": "Chia danh mục theo loại rồi mỗi loại sửa cái yếu nhất. Cách này giữ được sự cân bằng giữa các mảng và tránh dồn hết công sức vào một chỗ. Điểm yếu là nó buộc phải sửa gì đó ở cả những nhóm đang hoàn toàn ổn, tức là tiêu công sức để đổi lấy sự cân đối trên bảng."
+      },
+      {
+        "type": "heading",
+        "text": "Cách ba: đưa chỉ số vào mọi quyết định thường ngày"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thay vì có một đợt dọn dẹp riêng, mỗi thay đổi thường ngày đều phải không làm ba trụ cột xấu đi. Đây là cách bền nhất vì nó không cần ai phê duyệt một dự án riêng, nhưng nó chậm và gần như không nhìn thấy được, nên nó khó sống sót qua những quý mà đội bị ép tiến độ."
+      },
+      {
+        "type": "callout",
+        "label": "Loại bỏ thường rẻ hơn cải thiện",
+        "text": "Trước khi xếp một dịch vụ vào danh sách cần sửa, hỏi xem còn ai dùng nó không. Trong phần lớn danh mục có vài dịch vụ chỉ còn được gọi bởi một dịch vụ khác cũng đã chết. Xoá chúng đi vừa nâng điểm trung bình vừa giảm việc phải làm về sau, và đó là hành động duy nhất trong danh sách này có hiệu quả kép."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Danh sách theo triệu chứng",
+          "text": "Sắp theo điểm từ thấp lên cao. Dễ lập, và luôn dẫn tới việc sửa những thứ ít người dùng nhất trước tiên."
+        },
+        "right": {
+          "label": "Danh sách theo hậu quả",
+          "text": "Sắp theo điểm nhân mức độ quan trọng. Khó lập hơn vì phải định nghĩa quan trọng, nhưng nó xếp đúng thứ tự sự cố sẽ đến."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "ESG investing không phải là 'một cách tiếp cận duy nhất' - đó là một bộ công cụ với nhiều chiến lược khác nhau, phù hợp với các mục tiêu và khẩu vị rủi ro khác nhau.",
-          "Kỹ năng cốt lõi của ESG Analyst là chọn đúng chiến lược cho đúng mục tiêu, và phát hiện được khi nào một sản phẩm 'ESG' chỉ là vỏ bọc marketing."
+          "Chọn sai việc thì làm tốt tới đâu cũng vẫn là công sức bỏ đi.",
+          "Điểm số là triệu chứng; điểm nhân mức độ quan trọng mới là hậu quả."
         ]
       }
     ],
-    "diagram": [
+    "quiz": [
       {
-        "label": "Sàng lọc loại trừ hoặc chọn tốt nhất trong ngành",
-        "arrow": true
+        "question": "Điểm yếu lớn nhất của cách đặt ngưỡng rồi loại là gì?",
+        "options": [
+          "Nó coi mọi dịch vụ quan trọng như nhau",
+          "Nó đòi hỏi phải chấm điểm toàn bộ danh mục trước khi bắt đầu làm bất cứ việc gì",
+          "Nó khiến các đội tìm cách nâng điểm vừa đủ qua ngưỡng rồi dừng lại ở đó",
+          "Nó không tính tới chi phí và thời gian cần bỏ ra để sửa từng dịch vụ một"
+        ],
+        "correct": 0,
+        "explanation": "Ba điểm kia đều đúng và đều là nhược điểm thật, nhưng chúng đều xử lý được bằng cách điều chỉnh quy trình. Việc coi mọi dịch vụ ngang nhau thì nằm trong chính định nghĩa của cách làm này."
       },
       {
-        "label": "Tích hợp yếu tố ESG vào phân tích tài chính",
-        "arrow": true
+        "question": "Vì sao nên hỏi 'còn ai dùng không' trước khi xếp một dịch vụ vào danh sách sửa?",
+        "options": [
+          "Vì xoá vừa nâng điểm vừa giảm việc phải làm về sau",
+          "Vì dịch vụ ít người dùng thường có điểm thấp hơn nên làm lệch bảng xếp hạng chung",
+          "Vì cần xác nhận với các đội khác trước khi thay đổi bất cứ dịch vụ dùng chung nào",
+          "Vì số lượng người dùng là cách đo mức độ quan trọng đơn giản và đáng tin cậy nhất"
+        ],
+        "correct": 0,
+        "explanation": "Mọi hành động khác trong danh sách đều đánh đổi công sức lấy điểm. Xoá là hành động duy nhất trả về cả hai, và trong phần lớn danh mục luôn có vài dịch vụ chỉ còn được gọi bởi thứ cũng đã chết."
       },
       {
-        "label": "Chọn công cụ: cổ phiếu, trái phiếu xanh, đầu tư tác động",
-        "arrow": true
+        "question": "Đội dọn xong mười một dịch vụ dưới ngưỡng, sáu tháng sau sự cố lớn đến từ hai dịch vụ vốn đã xanh. Điều gì đã sai?",
+        "options": [
+          "Danh sách sắp theo triệu chứng chứ không theo hậu quả",
+          "Ngưỡng được đặt quá thấp nên nhiều dịch vụ đáng lo vẫn nằm trên ngưỡng đó",
+          "Đợt dọn dẹp chỉ nâng độ phủ kiểm thử mà không đụng tới hai trụ cột còn lại",
+          "Sáu tháng là quá dài nên các dịch vụ đã xanh kịp xuống cấp trở lại từ lúc nào"
+        ],
+        "correct": 0,
+        "explanation": "Hai dịch vụ ấy chưa bao giờ dưới ngưỡng, nên không cách đặt ngưỡng nào bắt được chúng. Thứ khiến chúng nguy hiểm là mức độ quan trọng, và đó là chiều mà danh sách sắp theo điểm không hề có."
       },
       {
-        "label": "Xây danh mục và theo dõi cả lợi nhuận lẫn chỉ tiêu ESG",
-        "arrow": false
+        "question": "Vì sao cách đưa chỉ số vào mọi quyết định thường ngày lại khó sống sót?",
+        "options": [
+          "Vì nó không nhìn thấy được nên không ai bảo vệ nó khi bị ép tiến độ",
+          "Vì nó đòi hỏi mọi thành viên trong đội đều phải hiểu cách tính của cả ba trụ cột",
+          "Vì nó làm chậm từng thay đổi nhỏ nên tổng thời gian phát hành bị kéo dài ra",
+          "Vì nó cần công cụ đo tự động chạy ở mỗi lần thay đổi mà không phải đội nào cũng có"
+        ],
+        "correct": 0,
+        "explanation": "Một dự án dọn dẹp có tên, có hạn và có người báo cáo kết quả, nên nó được bảo vệ. Một nguyên tắc thường ngày thì không xuất hiện ở đâu cả, và thứ không xuất hiện ở đâu là thứ bị cắt đầu tiên."
+      },
+      {
+        "question": "Cách nào cho danh sách ưu tiên xếp đúng thứ tự sự cố sẽ đến?",
+        "options": [
+          "Điểm nhân với mức độ quan trọng của dịch vụ",
+          "Điểm sức khoẻ hiện tại kết hợp với xu hướng của điểm ấy trong sáu tháng qua",
+          "Số sự cố mà mỗi dịch vụ đã gây ra trong khoảng một năm gần đây nhất",
+          "Lượng yêu cầu mỗi giây mà dịch vụ đang phục vụ vào giờ cao điểm trong ngày"
+        ],
+        "correct": 0,
+        "explanation": "Sự cố là tích của khả năng hỏng và hậu quả khi hỏng. Điểm đo được vế đầu, mức độ quan trọng đo vế sau, và bỏ vế nào cũng cho ra một danh sách xếp sai ở đúng chỗ nguy hiểm nhất."
       }
-    ]
+    ],
+    "keyTakeaways": [
+      "Chọn việc quan trọng hơn chất lượng thực thi khi nguồn lực có hạn",
+      "Điểm là triệu chứng; điểm nhân mức độ quan trọng mới là hậu quả",
+      "Hỏi còn ai dùng không trước khi sửa - xoá là hành động duy nhất có hiệu quả kép",
+      "Nguyên tắc thường ngày bền hơn dự án dọn dẹp, nhưng dễ bị cắt hơn vì không ai thấy"
+    ],
+    "practicePrompt": {
+      "question": "Dịch vụ A: điểm 20, quan trọng 1. Dịch vụ B: điểm 60, quan trọng 5. Thang điểm càng thấp càng tệ. Sửa cái nào trước?",
+      "options": [
+        "B, vì thiếu hụt nhân quan trọng của nó lớn hơn",
+        "A, vì điểm 20 thấp hơn hẳn điểm 60 nên nó đang ở tình trạng tệ hơn nhiều",
+        "A, vì sửa từ 20 lên 60 cho mức cải thiện lớn hơn sửa từ 60 lên 80",
+        "Cả hai cùng lúc, vì tổng công sức cho hai dịch vụ vẫn nằm trong khả năng của đội"
+      ],
+      "correct": 0,
+      "explanation": "Phần thiếu của A là 80 nhân 1 bằng 80; của B là 40 nhân 5 bằng 200. B đứng trước dù nhìn qua nó khoẻ hơn gấp ba, và đó chính là thứ tự mà một danh sách sắp theo điểm không bao giờ cho ra."
+    },
+    "summary": {
+      "keyIdea": "Xếp danh mục theo hậu quả, không theo triệu chứng",
+      "commonMistake": "Sắp danh sách theo điểm từ thấp lên cao rồi làm từ trên xuống",
+      "action": "Gán mức độ quan trọng từ 1 tới 5 cho từng dịch vụ đội bạn đang giữ."
+    },
+    "application": {
+      "title": "Ba bước cho quý tới",
+      "message": "Chấm điểm cả danh mục. Gán mức độ quan trọng. Xoá phần không ai dùng trước khi sửa phần còn lại.",
+      "secondary": "Bước thứ ba thường rút ngắn danh sách nhiều hơn cả hai bước đầu cộng lại."
+    },
+    "id": 1231,
+    "slug": "esg-investing-screening-den-portfolio",
+    "track": "bonus"
   },
   {
     "id": 1232,

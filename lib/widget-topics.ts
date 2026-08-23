@@ -50,7 +50,7 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   "tail-risk": ["p99", "độ trễ", "latency", "percentile", "phân vị", "đuôi", "tail", "tốc độ tải", "thời gian chờ", "biến động", "phân phối"],
   ratios: ["chỉ số", "tỷ số", "ratio", "cân đối", "thanh toán", "đòn bẩy", "turnover", "vòng quay", "hiệu quả sử dụng"],
   "fee-drag": ["phí", "fee", "chi phí quản lý", "ter", "hiệu suất", "etf", "quỹ mở", "quỹ chỉ số"],
-  "esg-score": ["esg", "bền vững", "xếp hạng", "khí hậu", "carbon", "quản trị doanh nghiệp", "governance"],
+  "esg-score": ["điểm tổng hợp", "sức khoẻ dịch vụ", "trọng số", "trụ cột", "phi chức năng", "bền vững"],
   "prompt-craft": ["câu lệnh", "prompt", "ai", "chatgpt", "claude", "giao việc", "tài liệu"],
   "ai-verify": ["ai", "kiểm chứng", "bịa", "đối chiếu", "soát", "nguồn"],
   sampling: ["chọn mẫu", "mẫu", "kiểm toán", "kiểm soát", "bằng chứng", "rcsa", "kri", "ba tuyến", "gian lận", "tuân thủ", "phát hiện"],

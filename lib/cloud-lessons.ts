@@ -672,7 +672,7 @@ export const CLOUD_LESSONS: Lesson[] = [
         "question": "Cách tiết kiệm nào thường bị đánh giá thấp nhất?",
         "options": [
           "Đặt bộ nhớ đệm, vì nó vừa giảm số máy cần chạy vừa giảm phí truyền dữ liệu ra",
-          "Nén dữ liệu trước khi lưu để giảm dung lượng lưu trữ phải trả tiền hằng tháng",
+          "Nén dữ liệu trước khi lưu để giảm bớt dung lượng lưu trữ phải trả tiền hằng tháng",
           "Chuyển dữ liệu cũ sang loại lưu trữ giá thấp dành cho dữ liệu ít khi truy cập",
           "Gộp nhiều dịch vụ nhỏ vào chung một máy để giảm tổng số máy đang chạy"
         ],
@@ -1031,7 +1031,7 @@ export const CLOUD_LESSONS: Lesson[] = [
           "Đặt bản sao nội dung tĩnh ở nhiều nơi để người dùng lấy từ điểm gần mình nhất",
           "Tăng băng thông của đường truyền giữa máy chủ và người dùng ở xa",
           "Nén nội dung trước khi gửi đi để giảm lượng dữ liệu phải truyền qua mạng",
-          "Phân tán tải giữa nhiều máy chủ để không máy nào bị quá tải khi lưu lượng cao"
+          "Phân tán tải giữa nhiều máy chủ để không máy nào bị quá tải khi lưu lượng lên cao"
         ],
         "correct": 0,
         "explanation": "Nó tấn công đúng nguyên nhân gốc bằng cách rút ngắn khoảng cách vật lý. Đó cũng là lý do nó chỉ giúp cho nội dung TĨNH - phần dữ liệu động riêng cho từng người vẫn phải về tận máy chủ gốc."

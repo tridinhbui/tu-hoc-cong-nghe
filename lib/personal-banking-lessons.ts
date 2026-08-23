@@ -77,7 +77,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
           "Tiến trình nền không giữ terminal nên bạn gõ lệnh khác được ngay",
           "Tiến trình nền được ưu tiên CPU cao hơn để chạy xong sớm hơn",
           "Tiến trình nền không ghi được gì ra tệp nhật ký của hệ thống",
-          "Tiến trình nền tự dừng lại khi bạn đăng xuất khỏi phiên làm việc",
+          "Tiến trình nền sẽ tự dừng lại khi bạn đăng xuất khỏi phiên làm việc",
         ],
         correct: 0,
         explanation:
@@ -393,7 +393,7 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         question: "Lắng nghe trên 127.0.0.1 khác với lắng nghe trên 0.0.0.0 thế nào?",
         options: [
           "127.0.0.1 chỉ nhận kết nối từ chính máy đó, 0.0.0.0 nhận từ mọi giao diện",
-          "127.0.0.1 nhanh hơn vì bỏ qua hẳn bước kiểm tra địa chỉ nguồn của gói tin",
+          "127.0.0.1 nhanh hơn vì nó bỏ qua hẳn bước kiểm tra địa chỉ nguồn của gói tin",
           "0.0.0.0 chỉ dùng được cho các dịch vụ đã bật mã hoá bằng chứng chỉ",
           "Hai cách giống nhau, chỉ khác cách viết trong tệp cấu hình dịch vụ",
         ],

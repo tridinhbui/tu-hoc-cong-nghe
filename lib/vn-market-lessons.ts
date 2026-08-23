@@ -264,7 +264,7 @@ export const VN_MARKET_LESSONS: Lesson[] = [
       "question": "Cổ phiếu đã hết room ngoại tạo ra hệ quả gì cho việc phân tích?",
       "options": [
         "Giá có thể giao dịch cao hơn giá trị vì cầu ngoại không mua thêm được",
-        "Cổ phiếu đó sẽ bị loại khỏi các bộ chỉ số của tổ chức xếp hạng quốc tế",
+        "Cổ phiếu đó sẽ bị loại khỏi các bộ chỉ số xếp hạng quốc tế",
         "Nhà đầu tư trong nước cũng bị giới hạn tỷ lệ sở hữu tương ứng",
         "Doanh nghiệp buộc phải phát hành thêm cổ phiếu để mở rộng room"
       ],

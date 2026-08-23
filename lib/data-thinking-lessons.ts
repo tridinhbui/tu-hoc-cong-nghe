@@ -597,7 +597,7 @@ export const DATA_THINKING_LESSONS: Lesson[] = [
         question: "Thiên lệch sống sót xuất hiện khi nào?",
         options: [
           "Khi mẫu chỉ còn lại những đối tượng đã vượt qua một quá trình sàng lọc nào đó trước đó",
-          "Khi dữ liệu được thu thập trong một khoảng thời gian quá ngắn để phản ánh đúng xu hướng",
+          "Khi dữ liệu được thu thập trong khoảng thời gian quá ngắn để thấy xu hướng",
           "Khi cỡ mẫu quá nhỏ nên kết quả thống kê không đạt được mức ý nghĩa cần thiết",
           "Khi người thu thập dữ liệu vô tình ưu tiên ghi nhận các trường hợp có kết quả tích cực",
         ],

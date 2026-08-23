@@ -280,7 +280,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
           "Ở nửa trên của dải, để phần thương lượng xuống vẫn còn nằm trong vùng hợp lý",
           "Ở mức 16 triệu, tức đáy dải, để chắc chắn không bị loại khỏi vòng xét duyệt",
           "Ở mức 30 triệu, tức trên hẳn dải, để lấy chỗ mặc cả xuống thật nhiều",
-          "Ở đúng 19 triệu, tức điểm giữa dải, vì đó là con số công bằng cho cả hai bên",
+          "Ở đúng 19 triệu, tức điểm giữa của dải, vì đó là con số công bằng cho cả hai bên",
         ],
         correct: 0,
         explanation:
@@ -473,7 +473,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
         options: [
           "Vì nó cho bạn thời gian đối chiếu toàn bộ đãi ngộ thay vì phản ứng theo cảm xúc",
           "Vì quy định lao động buộc nhà tuyển dụng phải cho ứng viên ít nhất bảy ngày",
-          "Vì trả lời ngay khiến công ty nghĩ bạn đang thất nghiệp và hạ mức đề nghị xuống",
+          "Vì trả lời ngay khiến công ty nghĩ bạn đang thất nghiệp rồi hạ mức đề nghị xuống thấp",
           "Vì lời mời chỉ có giá trị pháp lý sau khi ứng viên đã suy nghĩ trong một ngày",
         ],
         correct: 0,
@@ -628,7 +628,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
         question: "Thời điểm nào nên đặt vấn đề tăng lương?",
         options: [
           "Trước kỳ chốt ngân sách của công ty, không phải lúc thông báo kết quả",
-          "Ngay sau khi nhận được kết quả đánh giá cuối năm để phản hồi kịp thời",
+          "Ngay sau khi nhận được kết quả đánh giá cuối năm để còn phản hồi kịp thời",
           "Vào đúng ngày kỷ niệm ký hợp đồng lao động của bạn với công ty",
           "Khi công ty vừa công bố một quý kinh doanh có lợi nhuận cao kỷ lục",
         ],
@@ -1650,7 +1650,7 @@ export const INCOME_GROWTH_LESSONS: Lesson[] = [
         options: [
           "Vì nó cần ít thời gian hơn nhiều để đạt tới cùng một mức tăng thu nhập",
           "Vì nghề tay trái luôn vi phạm điều khoản trong hợp đồng lao động",
-          "Vì thu nhập từ việc chính chịu thuế suất thấp hơn thu nhập ngoài lương",
+          "Vì thu nhập từ việc chính chịu thuế suất thấp hơn so với thu nhập ngoài lương",
           "Vì công ty sẽ từ chối tăng lương nếu biết bạn đang làm thêm bên ngoài",
         ],
         correct: 0,

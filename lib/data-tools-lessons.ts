@@ -590,7 +590,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
           "Vì mắt người so sánh góc và diện tích kém chính xác hơn nhiều so với so sánh chiều dài",
           "Vì biểu đồ tròn không thể hiện được các giá trị phần trăm nhỏ hơn một phần trăm",
           "Vì biểu đồ tròn cần nhiều màu sắc hơn nên khó in trên máy in đen trắng thông thường",
-          "Vì tổng các phần trong biểu đồ tròn không phải lúc nào cũng cộng lại đúng bằng một trăm",
+          "Vì tổng các phần trong biểu đồ tròn không phải lúc nào cũng đúng bằng một trăm",
         ],
         correct: 0,
         explanation:

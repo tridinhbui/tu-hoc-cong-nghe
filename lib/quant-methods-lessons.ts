@@ -780,7 +780,7 @@ export const QUANT_METHODS_LESSONS: Lesson[] = [
           "Làm các hệ số ước lượng bị chệch một cách nghiêm trọng và có hệ thống",
           "Làm sai số chuẩn bị hạ thấp, khiến kết quả trông đáng tin hơn thực chất",
           "Làm R bình phương của mô hình rơi về 0 dù quan hệ thật vẫn tồn tại",
-          "Không gây hậu quả nào đáng kể với dữ liệu tài chính theo chuỗi thời gian",
+          "Không gây hậu quả nào đáng kể với dữ liệu tài chính theo chuỗi",
         ],
         correct: 1,
         explanation:

@@ -1606,7 +1606,7 @@ export const vi = {
     "mobile-apps-vn": "Ứng dụng di động Việt Nam",
     "life-expenses": "Dự án lớn trong nghề",
     "health-risk": "Sức khoẻ nghề nghiệp & rủi ro con người",
-    "life-stage": "Nghề công nghệ theo giai đoạn",
+    "career-stage": "Nghề công nghệ theo giai đoạn",
     "personal-ops": "Công cụ và vận hành",
     "investing-psychology": "Tâm lý người dùng & sản phẩm",
     "accounting-reporting": "Web & giao diện",

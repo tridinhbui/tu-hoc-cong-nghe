@@ -51,7 +51,7 @@ export const GIT_LESSONS: Lesson[] = [
         question: "Git khác một thư mục sao lưu trên ổ cứng ngoài ở điểm căn bản nào?",
         options: [
           "Git lưu chuỗi thay đổi kèm lý do, còn sao lưu chỉ lưu trạng thái tại một thời điểm",
-          "Git nén dữ liệu chặt hơn nên cùng một dự án sẽ chiếm ít dung lượng lưu trữ hơn hẳn",
+          "Git nén dữ liệu chặt hơn nên cùng một dự án sẽ chiếm ít dung lượng lưu trữ hơn hẳn trên đĩa",
           "Git chạy tự động theo lịch còn sao lưu thì phải tự tay bấm mỗi lần muốn lưu lại",
           "Git chỉ lưu được tệp mã nguồn còn sao lưu thì lưu được mọi định dạng tệp khác",
         ],
@@ -75,7 +75,7 @@ export const GIT_LESSONS: Lesson[] = [
         question: "Vì sao nói Git là hệ thống phân tán?",
         options: [
           "Vì mỗi người sao chép về đều có bản lịch sử đầy đủ, làm việc được cả khi mất mạng",
-          "Vì các tệp trong kho được chia nhỏ ra rồi phân tán lưu trên nhiều ổ đĩa khác nhau",
+          "Vì các tệp trong kho được chia nhỏ ra rồi phân tán lưu trên nhiều ổ đĩa vật lý khác nhau",
           "Vì nhiều người có thể mở cùng một tệp trên máy chủ trung tâm và sửa đồng thời",
           "Vì Git chia dự án thành nhiều thư mục con để mỗi người phụ trách một thư mục",
         ],
@@ -1216,7 +1216,7 @@ export const GIT_LESSONS: Lesson[] = [
         options: [
           "Vấn đề đang giải quyết và cách tiếp cận, chứ không phải danh sách tệp đã sửa",
           "Danh sách đầy đủ mọi tệp đã thay đổi kèm số dòng thêm bớt của từng tệp một",
-          "Thời gian bạn đã bỏ ra để hoàn thành phần việc này tính theo số giờ làm việc",
+          "Thời gian bạn đã bỏ ra để hoàn thành phần việc này tính theo tổng số giờ làm việc",
           "Tên những người bạn muốn mời vào đọc lại và thời hạn bạn cần họ trả lời",
         ],
         correct: 0,
@@ -1227,7 +1227,7 @@ export const GIT_LESSONS: Lesson[] = [
         question: "Vì sao pull request nhỏ lại được đọc kỹ hơn?",
         options: [
           "Vì người đọc giữ được toàn bộ thay đổi trong đầu nên hiểu thay vì chỉ lướt qua",
-          "Vì các dịch vụ lưu trữ mã nguồn sắp xếp pull request nhỏ lên đầu danh sách chờ",
+          "Vì các dịch vụ lưu trữ mã nguồn tự sắp xếp pull request nhỏ lên đầu danh sách chờ",
           "Vì pull request nhỏ thường do người có kinh nghiệm hơn trong nhóm tạo ra",
           "Vì thay đổi ít dòng thì công cụ kiểm tra tự động chạy nhanh hơn nhiều lần",
         ],

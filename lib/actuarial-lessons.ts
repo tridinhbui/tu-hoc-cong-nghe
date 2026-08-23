@@ -66,7 +66,7 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
         question: "Vì sao bảo hiểm cần luật số lớn?",
         options: [
           "Vì với một người, kết quả chỉ có thể là 0 hoặc toàn bộ số tiền bảo hiểm",
-          "Vì quy định yêu cầu doanh nghiệp bảo hiểm có số lượng hợp đồng tối thiểu",
+          "Vì quy định yêu cầu doanh nghiệp bảo hiểm có đủ số hợp đồng tối thiểu",
           "Vì tập khách hàng lớn giúp giảm chi phí quản lý trên mỗi hợp đồng",
           "Vì các công ty tái bảo hiểm chỉ nhận chuyển giao từ tập đủ lớn",
         ],
@@ -435,7 +435,7 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
           "Vì thị trường tái bảo hiểm là toàn cầu và vốn của nó bị hao hụt chung",
           "Vì các công ty trong nước phải bù đắp khoản lỗ từ đầu tư quốc tế",
           "Vì quy định buộc điều chỉnh phí theo mặt bằng khu vực hằng năm",
-          "Vì chi phí tái bảo hiểm được tính bằng ngoại tệ nên chịu rủi ro tỷ giá",
+          "Vì chi phí tái bảo hiểm tính bằng ngoại tệ nên chịu rủi ro tỷ giá",
         ],
         correct: 0,
         explanation:
@@ -743,7 +743,7 @@ export const ACTUARIAL_LESSONS: Lesson[] = [
           "Nghĩa vụ bảo hiểm không đổi trong khi thị trường đầu tư biến động",
           "Cơ quan quản lý giới hạn tỷ trọng lợi nhuận đầu tư được ghi nhận",
           "Lợi nhuận đầu tư chịu thuế suất cao hơn lợi nhuận từ nghiệp vụ",
-          "Nhà tái bảo hiểm sẽ tăng phí khi thấy công ty phụ thuộc vào đầu tư",
+          "Nhà tái bảo hiểm sẽ tăng phí khi thấy công ty dựa vào đầu tư",
         ],
         correct: 0,
         explanation:

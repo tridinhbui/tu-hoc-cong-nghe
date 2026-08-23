@@ -1502,7 +1502,7 @@ export const en: Dictionary = {
     "mobile-apps-vn": "Mobile apps in Vietnam",
     "life-expenses": "The big projects in a career",
     "health-risk": "Occupational health & human risk",
-    "life-stage": "A tech career by stage",
+    "career-stage": "A tech career by stage",
     "personal-ops": "Tooling and workflow",
     "investing-psychology": "User psychology & product",
     "accounting-reporting": "Web & front end",
