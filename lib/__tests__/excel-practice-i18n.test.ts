@@ -84,22 +84,22 @@ describe("mọi ô chữ trên lưới đều dịch, trừ những ô có tên 
 });
 
 describe("những thứ KHÔNG được dịch thì vẫn nguyên", () => {
-  it('ô "HPG " giữ đúng khoảng trắng ở cuối sau khi hợp nhất', () => {
+  it('ô "CDN " giữ đúng khoảng trắng ở cuối sau khi hợp nhất', () => {
     // Cả nhiệm vụ 2 của bộ excel-lookup tồn tại để học viên tìm ra khoảng trắng
     // này. Dịch hay cắt gọn ô đó là xoá mất bài học, và không phép kiểm nào
     // khác thấy - lưới vẫn hiện ra bình thường.
     const merged = mergeExcelPracticeSet("excel-lookup", EXCEL_PRACTICE_SETS["excel-lookup"], "en");
     const cell = (merged as Extract<typeof merged, { kind: "grid" }>).cells.A3;
-    expect(cell).toEqual({ value: "HPG " });
+    expect(cell).toEqual({ value: "CDN " });
   });
 
-  it("mọi mã chứng khoán giữ nguyên qua bản tiếng Anh", () => {
+  it("mọi mã dịch vụ giữ nguyên qua bản tiếng Anh", () => {
     const merged = mergeExcelPracticeSet("excel-lookup", EXCEL_PRACTICE_SETS["excel-lookup"], "en");
     const cells = (merged as Extract<typeof merged, { kind: "grid" }>).cells;
     for (const [ref, ticker] of [
-      ["A2", "FPT"],
-      ["A4", "VNM"],
-      ["E5", "GAS"],
+      ["A2", "API"],
+      ["A4", "SSO"],
+      ["E5", "MSG"],
     ] as const) {
       expect(cells[ref], ref).toEqual({ value: ticker });
     }
@@ -127,13 +127,13 @@ describe("những thứ KHÔNG được dịch thì vẫn nguyên", () => {
   });
 
   it("tên bảng và tên cột SQL không bị dịch trong phần gợi ý", () => {
-    // `danh_muc`, `gia`, `so_luong`, `nganh`, `ma` là định danh trong `db` của
+    // `dich_vu`, `don_gia`, `so_luot`, `nhom`, `ma` là định danh trong `db` của
     // tệp gốc và bộ chấm chạy truy vấn THẬT. Dịch chúng là đưa cho học viên một
     // câu truy vấn không chạy được.
     const hints = (excelPracticeEn["excel-sql"].tasks ?? []).map((t) => t.hint ?? "").join(" ");
-    expect(hints).toContain("danh_muc");
-    expect(hints).toContain("so_luong");
-    expect(hints).toContain("nganh");
+    expect(hints).toContain("dich_vu");
+    expect(hints).toContain("so_luot");
+    expect(hints).toContain("nhom");
   });
 });
 

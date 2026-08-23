@@ -1,0 +1,186 @@
+{
+  "title": "Review: bringing future benefit back to today",
+  "subtitle": "Why an hour saved next year is not worth an hour saved next month",
+  "duration": "6 min",
+  "whyItMatters": "Every large technical decision compares something paid now against a stream of benefit spread out later. Without bringing them to the same point they cannot be compared, and instinct always favours whichever side sounds better.",
+  "openingQuestion": "Two options both save 12 hours. A pays it all next month, B spreads it over 12 months. Which do you take?",
+  "openingOptions": [
+    "A, because benefit that arrives sooner is more certain",
+    "B, because spreading it out is steadier and easier for the team to sustain over time",
+    "They are equivalent, because the total hours saved is the same in both cases",
+    "Not enough information - you need to know the effort each option costs to build"
+  ],
+  "explanation": "The same total at different times is not the same value. Twelve hours arriving next month is near enough to be certain; twelve hours spread across a year has to survive every change of direction, change of people and change of need in that year. That is the entire content of discounting.",
+  "diagram": [
+    {
+      "label": "Benefit promised, period by period"
+    },
+    {
+      "label": "Multiply by a factor that shrinks with distance"
+    },
+    {
+      "label": "Add it up into a present value"
+    },
+    {
+      "label": "Compare against effort spent today"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Two proposals with the same number",
+    "description": "A team presented two load-reduction options, both claiming a 40% cut in infrastructure cost. The first reached it immediately after rollout; the second only reached the full 40% once traffic tripled, expected in two years. On the slide the two numbers looked identical. Brought back to today, the second was worth about half the first."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Discounting is usually taught as a formula. It is really a question: the further out this promise is, the more easily it goes wrong, and by how much."
+    },
+    {
+      "type": "heading",
+      "text": "Three things that erode distant benefit"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Direction changes: the product takes another route and that optimisation is no longer on the path",
+        "People change: whoever understood the system leaves, and the saving that needed maintaining is not maintained",
+        "Ground changes: tools, versions or infrastructure move and make that optimisation redundant"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "None of those three is a rare risk; they are ordinary weeks. They also do not add up linearly - the chance a promise survives eight quarters intact is far lower than the chance it survives two, multiplied by four. That is why the discount factor falls geometrically rather than in equal steps."
+    },
+    {
+      "type": "formula",
+      "title": "The factor, period by period",
+      "variables": [
+        {
+          "symbol": "r",
+          "name": "Discount rate per period",
+          "description": "Read it as the chance this promise breaks within one period. Low for stable infrastructure, high for a product still finding its way."
+        },
+        {
+          "symbol": "n",
+          "name": "Periods until you receive it",
+          "description": "Counting in quarters is enough. Counting in months creates a sense of precision the data cannot support."
+        },
+        {
+          "symbol": "DF",
+          "name": "Factor = 1 divided by (1 + r) to the power n",
+          "description": "At r = 15% a quarter, period four is 0.57 and period eight is 0.33. A promise in period eight is worth a third."
+        },
+        {
+          "symbol": "PV",
+          "name": "Present value = the sum of each period's benefit times its factor",
+          "description": "The only figure you can set next to the effort spent, because both now stand at today."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Choosing a rate"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Low, about 5% a quarter",
+        "text": "Core infrastructure, a need clear for years, little chance of replacement. A benefit in period eight still keeps two thirds of its value."
+      },
+      "right": {
+        "label": "High, about 20% a quarter",
+        "text": "A new product, direction still being found, the team could be restructured. A benefit in period eight keeps about a fifth."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "The rate is a statement, not a constant",
+      "text": "Choosing 5% for a project on a newly launched product is saying you believe that product keeps this shape for two years. That may be true, but it has to be said out loud rather than hidden in one cell of a spreadsheet. When somebody asks why the number came out as it did, the discount rate is the first place to look."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The same total at two different times is two different values.",
+        "The discount rate is how you say how much you believe the future resembles today."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why does the discount factor fall geometrically rather than in equal steps?",
+      "options": [
+        "Because the promise has to survive every period before it",
+        "Because the team's opportunity cost rises period by period over the life of the project",
+        "Because standard financial formulas use exponents for this kind of calculation",
+        "Because estimation error compounds every time the team updates its plan"
+      ],
+      "explanation": "The chance of surviving eight periods is the chance of surviving one period multiplied by itself eight times. Repeated multiplication is exactly what an exponent is, so the shape comes from the substance rather than from convention."
+    },
+    {
+      "question": "At r = 15% a quarter, what fraction of its value does a benefit in quarter eight keep?",
+      "options": [
+        "About a third",
+        "About a half (= using the factor for quarter four on quarter eight)",
+        "About 88% (= subtracting 15% once instead of compounding it eight times)",
+        "Zero (= treating any benefit beyond four quarters as uncountable)"
+      ],
+      "explanation": "1 divided by 1.15 to the eighth is about 0.33. This one is worth remembering because it says that at a moderate rate, a benefit two years out is worth a third - enough to reverse most comparisons."
+    },
+    {
+      "question": "A project on a newly launched product is costed at 5% a quarter. What does that implicitly claim?",
+      "options": [
+        "That the product will hold its current shape for two years",
+        "That the team is capable enough to deliver the project on the schedule it has committed to",
+        "That the company's infrastructure cost will not rise materially over the next two years",
+        "That the saving has been measured from real data rather than estimated"
+      ],
+      "explanation": "A low rate is a statement about how stable the context is, not about the quality of the team or of the measurement. On a new product that statement is almost always too optimistic."
+    },
+    {
+      "question": "Two proposals both say 'saves 40%'. What is the first question to ask?",
+      "options": [
+        "When it reaches that figure",
+        "What method produced the 40% and on what dataset it was measured",
+        "How many people each option needs and over how long a period they are needed",
+        "Whether the two options can be rolled out alongside each other"
+      ],
+      "explanation": "The other three are all worth asking and all come later. A percentage with no point in time attached is not yet a complete promise, and that is exactly where two proposals that look identical differ most."
+    },
+    {
+      "question": "Why count in quarters rather than months?",
+      "options": [
+        "Because the data is not fine enough to support that precision",
+        "Because most internal planning cycles in a company are organised by quarter",
+        "Because a monthly discount rate produces a materially different result from a quarterly one",
+        "Because savings usually only start appearing after the third month of a project"
+      ],
+      "explanation": "The whole calculation rests on estimates that are off by tens of percent. Splitting it into months creates an appearance of precision the inputs never had, and false precision is what stops readers asking questions."
+    }
+  ],
+  "keyTakeaways": [
+    "The same total at two different times is two different values",
+    "The factor falls geometrically because the promise must survive every period before it",
+    "The discount rate is a statement about context stability - say it out loud",
+    "A percentage with no point in time attached is not yet a complete promise"
+  ],
+  "practicePrompt": {
+    "question": "r = 10% a quarter. A benefit of 100 hours in quarter four is worth roughly what today?",
+    "options": [
+      "68 hours",
+      "60 hours (= subtracting 10% for each of four periods, that is, subtracting linearly)",
+      "90 hours (= applying the discount rate for only one period)",
+      "40 hours (= using the factor for quarter nine instead of quarter four)"
+    ],
+    "explanation": "1.1 to the fourth is 1.464, and 100 divided by 1.464 is about 68. The gap between 68 and the linear answer of 60 is small in a near period and grows very quickly in a distant one."
+  },
+  "summary": {
+    "keyIdea": "Bring every benefit back to today before comparing it with effort spent today",
+    "commonMistake": "Adding up benefits that arrive at different times",
+    "action": "Find a recent proposal that gives a percentage without a point in time."
+  },
+  "application": {
+    "title": "Three questions when reading a proposal",
+    "message": "Which period does this benefit arrive in? What discount rate is being used implicitly? Is the context stable enough to support that rate?",
+    "secondary": "Those three are usually enough to separate a proposal that holds up from one that only sounds good."
+  },
+  "slug": "on-tap-npv"
+}

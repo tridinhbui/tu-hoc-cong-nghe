@@ -1,0 +1,195 @@
+{
+  "title": "Evaluating an internal platform project",
+  "subtitle": "What you put in, how long it takes to come back, and why the return has to be discounted",
+  "duration": "8 min",
+  "whyItMatters": "Every platform project trades effort spent now against time saved later. There is no way to compare those two without bringing them to the same point in time, and that is what discounting is for.",
+  "openingQuestion": "A platform project costs 6 person-months and saves 1 person-month per quarter. How long until it pays back?",
+  "openingOptions": [
+    "Six quarters, if the saving holds",
+    "Six months, because that is the effort going in",
+    "One quarter, because each quarter saves one person-month of work",
+    "Not calculable without knowing how many people are on the team"
+  ],
+  "explanation": "Six person-months divided by one per quarter is six quarters, which is a year and a half. That figure is a starting point rather than an answer, because it assumes the saving holds for all six quarters and the team is still building the same product. Both assumptions are fragile, and that is exactly why the return has to be discounted rather than simply added up.",
+  "diagram": [
+    {
+      "label": "Effort in, paid now"
+    },
+    {
+      "label": "Time saved, spread over quarters"
+    },
+    {
+      "label": "Discount the spread part back to today"
+    },
+    {
+      "label": "The difference is the reason to build or not"
+    }
+  ],
+  "realWorldExample": {
+    "company": "A platform finished as the product changed direction",
+    "description": "A team spent eight months building an internal platform so that each product group would save two weeks a quarter. That paid back in four quarters on paper. By the second quarter the company changed direction, two of the four groups using it were disbanded, and half the saving went with them. The project was not technically wrong - it was costed on the assumption that the next four quarters would look like today."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Platform projects always have the same shape: paid for in effort up front, returned as time saved over a long stretch. The hard question is not the arithmetic but how much the return can be trusted."
+    },
+    {
+      "type": "heading",
+      "text": "Why the return has to be discounted"
+    },
+    {
+      "type": "paragraph",
+      "text": "A person-month saved next quarter is worth more than one saved in the eighth quarter, because next quarter is near enough to be almost certain while the eighth depends on the product still existing, the team still being intact, and the need not having changed. Discounting is not an accounting trick - it is how that uncertainty gets into the number instead of sitting outside it."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Effort in: count it in person-months, and always double your first estimate",
+        "Time returned: count only what you can measure, not the part where you assume the team gets faster",
+        "Discount rate: high when the product direction is unsettled, low when the infrastructure is stable",
+        "Horizon: no more than eight quarters, because past that every assumption is meaningless"
+      ]
+    },
+    {
+      "type": "formula",
+      "title": "Two numbers and one condition",
+      "variables": [
+        {
+          "symbol": "C",
+          "name": "Cost = total person-months in",
+          "description": "Including the pull on the team away from other work. This is the only certain quantity in the whole calculation."
+        },
+        {
+          "symbol": "S",
+          "name": "Saving per quarter = person-months no longer spent",
+          "description": "Measured against what actually costs something today, not against what you think it would cost if you did nothing."
+        },
+        {
+          "symbol": "PV",
+          "name": "Present value = the sum of each quarter's S, discounted",
+          "description": "Each further quarter contributes less. The eighth usually contributes about half."
+        },
+        {
+          "symbol": "Net",
+          "name": "Net = PV minus C",
+          "description": "Positive means worth doing. But a thin positive plus an optimistic estimate is really a negative."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Three ways this calculation gets bent"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Counting the saving against something never measured, only a feeling that it will be faster",
+        "Stretching the horizon to twelve quarters until the difference turns positive",
+        "Leaving out the effort of maintaining the platform itself once it is built"
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A platform has to be fed too",
+      "text": "The most commonly forgotten item is maintenance. An internal platform needs someone to fix bugs, answer questions, upgrade versions and write documentation - typically about a fifth of the effort it took to build, every year. Subtract that from the saving before comparing, or you are comparing a one-off cost against a permanent benefit."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A project worth doing",
+        "text": "The saving is measured from today's numbers, the horizon is short, and the difference stays positive after maintenance is subtracted."
+      },
+      "right": {
+        "label": "A project that sounds good",
+        "text": "The saving is an estimate, the horizon is stretched until the difference turns positive, and nobody has costed maintenance."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The cost is paid now and measurable; the benefit is spread out and depends on the future resembling today.",
+        "Discounting is how that gets into the number instead of sitting outside the spreadsheet."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why does a saving in a distant quarter get discounted more heavily?",
+      "options": [
+        "Because the further out it is, the less certain it is to still apply",
+        "Because the team's staffing cost will rise quarter by quarter over that stretch of time",
+        "Because measurement tools lose accuracy as the period being measured gets longer",
+        "Because savings in distant quarters are often double-counted with those in nearer ones"
+      ],
+      "explanation": "The discounting here is not about inflation but about probability. The eighth quarter requires the product to still be alive, the team intact and the need unchanged - three conditions, each of which can fail."
+    },
+    {
+      "question": "Cost 6 person-months, saving 1 per quarter, horizon 8 quarters. What is the undiscounted difference?",
+      "options": [
+        "Positive 2 person-months",
+        "Positive 8 person-months (= the total saving, forgetting to subtract the cost paid in)",
+        "Negative 6 person-months (= counting only the cost and forgetting to add the saving)",
+        "Positive 14 person-months (= adding the cost to the saving instead of subtracting it)"
+      ],
+      "explanation": "Eight quarters times one is eight, minus six leaves two. A margin of two person-months across eight quarters is very thin, so a light discount or a slightly optimistic estimate turns it negative."
+    },
+    {
+      "question": "What gets forgotten most often when costing an internal platform?",
+      "options": [
+        "The effort of maintaining the platform itself once it is built",
+        "The time the team needs to learn the new platform during the first month of using it",
+        "The extra infrastructure cost of running the new platform alongside the old system",
+        "The effort spent persuading other teams to move across to it in the first place"
+      ],
+      "explanation": "The other three are all real and all one-off, which is why they get remembered. Maintenance repeats forever at roughly a fifth of the build effort per year, and it turns a thin positive into a negative."
+    },
+    {
+      "question": "Stretching the horizon from 8 to 12 quarters until the difference turns positive. What is wrong with that?",
+      "options": [
+        "It is choosing the assumption to justify a conclusion already reached",
+        "A longer horizon needs a different discount rate, which makes the calculation more involved",
+        "Internal planning tools usually do not support horizons longer than eight quarters",
+        "Savings from the ninth quarter onward are very difficult to measure with any accuracy"
+      ],
+      "explanation": "This is the clearest sign of a calculation done backwards. The horizon has to be chosen by how far the assumptions can be trusted, not by the number you want to see in the final cell."
+    },
+    {
+      "question": "A thin positive, with the effort estimated by the team proposing the project. What now?",
+      "options": [
+        "Double the cost and recalculate before deciding",
+        "Accept the figure, since the proposing team understands the volume of work best of all",
+        "Halve the horizon to arrive at a more conservative number for the comparison",
+        "Ask a different team to produce an independent estimate of the whole project from scratch"
+      ],
+      "explanation": "Effort estimates run low as a rule rather than as an exception, and they run lowest when the estimator is also the person who wants the project approved. Doubling is crude and it catches most cases."
+    }
+  ],
+  "keyTakeaways": [
+    "Cost is paid now and measurable; benefit is spread out and rests on assumptions",
+    "Discounting here is about the odds the assumption still holds, not about inflation",
+    "Subtract maintenance before comparing, or it is a one-off cost against a permanent benefit",
+    "Pick the horizon by how far assumptions can be trusted, not by the number you want"
+  ],
+  "practicePrompt": {
+    "question": "A project costs 10 person-months, saves 2 per quarter, and maintenance runs 2 person-months a year. What is the net saving per quarter?",
+    "options": [
+      "1.5 months",
+      "2 months (= the gross saving, forgetting to subtract annual maintenance)",
+      "0 months (= subtracting the full 2 months of maintenance from every quarter instead of every year)",
+      "1 month (= halving the saving rather than subtracting the maintenance share)"
+    ],
+    "explanation": "Two months of maintenance a year is half a month a quarter. Two minus a half is one and a half, so payback is not five quarters but closer to seven."
+  },
+  "summary": {
+    "keyIdea": "Bring effort in and time out to the same point before comparing them",
+    "commonMistake": "Comparing a one-off cost against a saving treated as permanent",
+    "action": "Recalculate your most recent project with an eight-quarter horizon and maintenance subtracted."
+  },
+  "application": {
+    "title": "Four numbers before you present",
+    "message": "Effort in, already doubled. Saving per quarter, from today's data. Maintenance per year. Horizon of at most eight quarters.",
+    "secondary": "If the difference is still positive after those four cuts, the project stands. If it is only positive when the horizon is stretched, you have just learned the real answer."
+  },
+  "slug": "danh-gia-du-an-npv-irr"
+}

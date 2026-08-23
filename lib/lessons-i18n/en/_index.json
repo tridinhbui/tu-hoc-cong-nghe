@@ -24,6 +24,11 @@
     "subtitle": "Debits and credits for the transactions you meet every day, and a startup's first month",
     "duration": "7 min"
   },
+  "danh-gia-du-an-npv-irr": {
+    "title": "Evaluating an internal platform project",
+    "subtitle": "What you put in, how long it takes to come back, and why the return has to be discounted",
+    "duration": "8 min"
+  },
   "dao-duc-du-lieu-va-thien-lech-thuat-toan": {
     "title": "Data Thinking, Lesson 6: Data ethics - privacy, bias and accountability",
     "subtitle": "Why a credit scoring model can discriminate without using any sensitive data at all",
@@ -113,6 +118,11 @@
     "title": "Budgeting & financial forecasting - planning in order to steer",
     "subtitle": "From forecast to replanning when reality moves",
     "duration": "8 min"
+  },
+  "on-tap-npv": {
+    "title": "Review: bringing future benefit back to today",
+    "subtitle": "Why an hour saved next year is not worth an hour saved next month",
+    "duration": "6 min"
   },
   "operating-leverage": {
     "title": "Fixed cost and cost that scales with usage",

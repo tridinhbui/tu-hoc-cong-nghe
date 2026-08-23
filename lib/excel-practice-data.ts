@@ -98,7 +98,7 @@ const REVENUE = [100, 105, 98, 112, 120, 118, 125, 130, 127, 140, 135, 150];
 
 const shortcutsCells: Sheet = {
   A1: t("Tháng"),
-  B1: t("Doanh thu"),
+  B1: t("Lượt gọi"),
   C1: t("Dự phóng"),
   E1: t("Giả định"),
   E2: t("Tăng trưởng"),
@@ -117,114 +117,114 @@ const shortcutsCells: Sheet = {
  * Bài 2 - Tra cứu: INDEX/MATCH, XLOOKUP, SUMIFS, và một khoá bẩn
  * ------------------------------------------------------------------ */
 
-// "HPG " có một khoảng trắng ở cuối. Đây không phải lỗi đánh máy trong file
+// "CDN " có một khoảng trắng ở cuối. Đây không phải lỗi đánh máy trong file
 // này - nó là dữ liệu thật xuất từ một hệ thống khác, và là cả nội dung của
 // nhiệm vụ số 3.
 const lookupCells: Sheet = {
   A1: t("Mã"),
-  B1: t("Ngành"),
-  C1: t("Giá"),
-  A2: t("FPT"),
-  B2: t("Công nghệ"),
+  B1: t("Nhóm"),
+  C1: t("Đơn giá"),
+  A2: t("API"),
+  B2: t("Cổng vào"),
   C2: n(120),
-  A3: t("HPG "),
-  B3: t("Thép"),
+  A3: t("CDN "),
+  B3: t("Phân phối"),
   C3: n(27),
-  A4: t("VNM"),
-  B4: t("Tiêu dùng"),
+  A4: t("SSO"),
+  B4: t("Danh tính"),
   C4: n(68),
-  A5: t("MWG"),
-  B5: t("Bán lẻ"),
+  A5: t("JOB"),
+  B5: t("Chạy nền"),
   C5: n(56),
-  A6: t("SSI"),
-  B6: t("Chứng khoán"),
+  A6: t("LOG"),
+  B6: t("Ghi nhật ký"),
   C6: n(31),
-  E1: t("Danh mục"),
-  F1: t("Số lượng"),
-  G1: t("Giá ghép được"),
-  E2: t("VNM"),
+  E1: t("Dịch vụ dùng"),
+  F1: t("Số lượt"),
+  G1: t("Đơn giá ghép được"),
+  E2: t("SSO"),
   F2: n(1000),
-  E3: t("MWG"),
+  E3: t("JOB"),
   F3: n(500),
   // Một dòng đã làm sẵn để bạn thấy dạng công thức trước khi tự viết.
   G3: { formula: "=INDEX(C2:C6, MATCH(E3, A2:A6, 0))" },
-  E4: t("HPG"),
+  E4: t("CDN"),
   F4: n(2000),
-  E5: t("GAS"),
+  E5: t("MSG"),
   F5: n(300),
-  I1: t("Giá trị danh mục"),
+  I1: t("Tổng chi phí"),
 };
 
 /* ------------------------------------------------------------------ *
- * Bài 3 - Ba báo cáo: liên kết, vòng lặp lãi vay, ô cân đối
+ * Bài 3 - Ba bảng nối nhau: liên kết, vòng lặp chi phí co giãn, ô cân đối
  * ------------------------------------------------------------------ */
 
 const modelCells: Sheet = {
-  A1: t("Kết quả kinh doanh"),
-  A2: t("Doanh thu"),
+  A1: t("Ngân sách vận hành"),
+  A2: t("Hạn mức tính toán"),
   B2: n(1000),
-  A3: t("Giá vốn"),
+  A3: t("Tải nền"),
   B3: n(-620),
-  A4: t("Chi phí bán hàng & QL"),
+  A4: t("Tải phụ trợ & giám sát"),
   B4: n(-180),
-  A5: t("EBIT"),
-  A6: t("Lãi vay"),
-  A7: t("Lợi nhuận trước thuế"),
-  A8: t("Thuế 20%"),
-  A9: t("Lợi nhuận sau thuế"),
+  A5: t("Dư địa trước co giãn"),
+  A6: t("Chi phí co giãn"),
+  A7: t("Dư địa sau co giãn"),
+  A8: t("Hao phí 20%"),
+  A9: t("Dư địa thực"),
 
-  D1: t("Nợ vay & tiền"),
-  D2: t("Dư nợ đầu kỳ"),
+  D1: t("Máy chủ thuê thêm"),
+  D2: t("Số máy đầu kỳ"),
   E2: n(400),
-  D3: t("Vay thêm trong kỳ"),
+  D3: t("Thuê thêm trong kỳ"),
   E3: n(100),
-  D4: t("Dư nợ cuối kỳ"),
-  D5: t("Dư nợ bình quân"),
-  D6: t("Lãi suất"),
+  D4: t("Số máy cuối kỳ"),
+  D5: t("Số máy bình quân"),
+  D6: t("Đơn giá mỗi máy"),
   E6: n(0.09),
   D8: t("Công tắc phá vòng lặp"),
   E8: n(0),
 
   G1: t("Ô kiểm tra"),
-  G2: t("Lãi vay khớp bảng nợ"),
+  G2: t("Chi phí co giãn khớp bảng máy"),
 };
 
 /* ------------------------------------------------------------------ *
  * Bài 4 - Kiểm tra và dò lỗi: dòng kiểm tra và số cứng
  * ------------------------------------------------------------------ */
 
-// Bảng cân đối này lệch. Con số 1.200 trong bài học là ví dụ; ở đây độ lệch
+// Bảng phân bổ dung lượng này lệch. Con số 1.200 trong bài học là ví dụ; ở đây độ lệch
 // là 60 và nguyên nhân là một số cứng trong ô C4 - học viên phải tự tìm ra.
 const auditCells: Sheet = {
-  A1: t("Tài sản"),
-  A2: t("Tiền"),
+  A1: t("Đã cấp phát"),
+  A2: t("Bộ nhớ"),
   B2: n(150),
-  A3: t("Phải thu"),
+  A3: t("Đĩa"),
   B3: n(320),
-  A4: t("Tài sản cố định"),
+  A4: t("CPU"),
   B4: n(890),
-  A5: t("Tổng tài sản"),
+  A5: t("Tổng đã cấp"),
 
-  D1: t("Nguồn vốn"),
-  D2: t("Phải trả"),
+  D1: t("Nguồn cấp"),
+  D2: t("Cụm A"),
   E2: n(260),
-  D3: t("Nợ vay"),
+  D3: t("Cụm B"),
   E3: n(400),
-  D4: t("Vốn chủ sở hữu"),
+  D4: t("Cụm C"),
   E4: n(640),
-  D5: t("Tổng nguồn vốn"),
+  D5: t("Tổng nguồn cấp"),
 
-  A7: t("Doanh thu"),
+  A7: t("Lượt gọi"),
   B7: n(1000),
-  A8: t("Biên lợi nhuận"),
+  A8: t("Tỷ lệ lỗi"),
   B8: n(0.12),
-  A9: t("Lợi nhuận (đang sai)"),
+  A9: t("Số lỗi (đang sai)"),
   B9: { formula: "=1000*0.12" },
 
   G1: t("Ô kiểm tra"),
   G2: t("Cân đối"),
-  G3: t("Lợi nhuận không số cứng"),
-  G4: t("Tỷ suất an toàn"),
+  G3: t("Số lỗi không số cứng"),
+  G4: t("Tỷ lệ trên mỗi đơn vị"),
 };
 
 /* ------------------------------------------------------------------ *
@@ -236,14 +236,14 @@ export const EXCEL_PRACTICE_SETS: Record<string, ExcelPracticeSet> = {
     kind: "grid",
     title: "Vùng dữ liệu và ô giả định",
     intro:
-      "Cột B có 12 tháng doanh thu. Trong Excel thật bạn tìm dòng cuối bằng Ctrl + Shift + mũi tên xuống thay vì cuộn chuột; ở đây bạn gõ thẳng vùng đó ra. Ô F2 là giả định duy nhất - mọi công thức phải trỏ về nó chứ không được chép giá trị của nó.",
+      "Cột B có 12 tháng lượt gọi. Trong Excel thật bạn tìm dòng cuối bằng Ctrl + Shift + mũi tên xuống thay vì cuộn chuột; ở đây bạn gõ thẳng vùng đó ra. Ô F2 là giả định duy nhất - mọi công thức phải trỏ về nó chứ không được chép giá trị của nó.",
     columns: ["A", "B", "C", "E", "F"],
     rows: 13,
     cells: shortcutsCells,
     tasks: [
       {
         target: "F4",
-        prompt: "Tính tổng doanh thu cả năm.",
+        prompt: "Tính tổng lượt gọi cả năm.",
         expect: REVENUE.reduce((s, x) => s + x, 0),
         mustAvoid: [
           {
@@ -258,7 +258,7 @@ export const EXCEL_PRACTICE_SETS: Record<string, ExcelPracticeSet> = {
       },
       {
         target: "F5",
-        prompt: "Đếm số tháng có doanh thu lớn hơn 120.",
+        prompt: "Đếm số tháng có lượt gọi lớn hơn 120.",
         expect: REVENUE.filter((v) => v > 120).length,
         hint: '=COUNTIF(vùng, ">120")',
         solution: "=COUNTIF(B2:B13, \">120\")",
@@ -268,7 +268,7 @@ export const EXCEL_PRACTICE_SETS: Record<string, ExcelPracticeSet> = {
       {
         target: "C2",
         prompt:
-          "Ô C2: dự phóng doanh thu tháng 1 của năm sau, bằng doanh thu tháng 1 nhân với tăng trưởng ở F2. Viết sao cho kéo xuống cả cột vẫn đúng.",
+          "Ô C2: dự phóng lượt gọi tháng 1 của năm sau, bằng lượt gọi tháng 1 nhân với tăng trưởng ở F2. Viết sao cho kéo xuống cả cột vẫn đúng.",
         expect: 108,
         mustUse: [
           {
@@ -286,51 +286,51 @@ export const EXCEL_PRACTICE_SETS: Record<string, ExcelPracticeSet> = {
         hint: "=B2*(1+$F$2)",
         solution: "=B2*(1+$F$2)",
         explain:
-          "F4 là phím thêm dấu $ trong Excel. Đây là lý do bài kiểm tra modeling chấm cả cách bạn viết chứ không chỉ kết quả: một công thức kéo được cho cả cột là một công thức, còn 12 ô gõ tay là 12 cơ hội sai.",
+          "F4 là phím thêm dấu $ trong Excel. Đây là lý do bài kiểm tra dữ liệu chấm cả cách bạn viết chứ không chỉ kết quả: một công thức kéo được cho cả cột là một công thức, còn 12 ô gõ tay là 12 cơ hội sai.",
       },
     ],
   },
 
   "excel-lookup": {
     kind: "grid",
-    title: "Ghép giá vào danh mục",
+    title: "Ghép đơn giá vào bảng dịch vụ",
     intro:
-      "Bảng A:C là dữ liệu giá xuất từ hệ thống. Bảng E:F là danh mục của bạn. Nhiệm vụ là ghép giá vào danh mục - và phát hiện ra dòng không ghép được trước khi nó đi vào báo cáo.",
+      "Bảng A:C là bảng đơn giá xuất từ hệ thống tính tiền. Bảng E:F là các dịch vụ bạn đang dùng. Nhiệm vụ là ghép đơn giá vào bảng dịch vụ - và phát hiện ra dòng không ghép được trước khi nó đi vào báo cáo.",
     columns: ["A", "B", "C", "E", "F", "G", "I"],
     rows: 6,
     cells: lookupCells,
     tasks: [
       {
         target: "G2",
-        prompt: "Ghép giá của VNM vào danh mục. Ô G3 đã làm sẵn cho MWG - làm theo dạng đó.",
+        prompt: "Ghép đơn giá của SSO vào bảng dịch vụ. Ô G3 đã làm sẵn cho JOB - làm theo dạng đó.",
         expect: 68,
         mustAvoid: [
           {
             text: "VLOOKUP",
             why: "VLOOKUP chôn số thứ tự cột vào công thức. Chèn thêm một cột vào bảng nguồn là nó lấy sai dữ liệu mà không báo lỗi.",
           },
-          { text: "=68", why: "Gõ thẳng đáp án thì công thức không cập nhật khi giá đổi." },
+          { text: "=68", why: "Gõ thẳng đáp án thì công thức không cập nhật khi đơn giá đổi." },
         ],
         hint: "=INDEX(C2:C6, MATCH(E2, A2:A6, 0)) - đọc từ trong ra ngoài",
         solution: "=INDEX(C2:C6, MATCH(E2, A2:A6, 0))",
         explain:
-          "MATCH trả về VNM nằm ở dòng thứ mấy, INDEX lấy giá trị ở đúng dòng đó. Hai hàm tách rời nhau nên bảng nguồn đổi cấu trúc thế nào công thức vẫn đúng.",
+          "MATCH trả về SSO nằm ở dòng thứ mấy, INDEX lấy giá trị ở đúng dòng đó. Hai hàm tách rời nhau nên bảng nguồn đổi cấu trúc thế nào công thức vẫn đúng.",
       },
       {
         target: "G4",
         prompt:
-          "Ghép giá cho HPG theo đúng dạng đó. Công thức viết đúng vẫn ra #N/A - đừng sửa công thức, hãy tìm ra vì sao rồi sửa dữ liệu trong bảng nguồn.",
+          "Ghép đơn giá cho CDN theo đúng dạng đó. Công thức viết đúng vẫn ra #N/A - đừng sửa công thức, hãy tìm ra vì sao rồi sửa dữ liệu trong bảng nguồn.",
         expect: 27,
-        dataFix: { ref: "A3", value: "HPG" },
+        dataFix: { ref: "A3", value: "CDN" },
         hint: "Bấm vào từng ô ở cột A và nhìn kỹ nội dung. Có một ký tự bạn không thấy được.",
         solution: "=INDEX(C2:C6, MATCH(E4, A2:A6, 0))",
         explain:
-          "Ô A3 chứa 'HPG ' với một khoảng trắng ở cuối. Đây là nguyên nhân số một của lỗi tra cứu trong công việc thật, và nó luôn xuất hiện khi dữ liệu đi qua nhiều hệ thống. Ở quy mô lớn, cách xử lý đúng là chuẩn hoá cả cột bằng TRIM một lần, không phải sửa từng dòng.",
+          "Ô A3 chứa 'CDN ' với một khoảng trắng ở cuối. Đây là nguyên nhân số một của lỗi tra cứu trong công việc thật, và nó luôn xuất hiện khi dữ liệu đi qua nhiều hệ thống. Ở quy mô lớn, cách xử lý đúng là chuẩn hoá cả cột bằng TRIM một lần, không phải sửa từng dòng.",
       },
       {
         target: "G5",
         prompt:
-          "GAS không có trong bảng giá. Ghép giá cho nó bằng XLOOKUP, và cho công thức trả về 0 khi không tìm thấy thay vì mã lỗi.",
+          "MSG không có trong bảng đơn giá. Ghép đơn giá cho nó bằng XLOOKUP, và cho công thức trả về 0 khi không tìm thấy thay vì mã lỗi.",
         expect: 0,
         mustUse: [{ text: "XLOOKUP", why: "Bài này luyện đúng tham số thứ tư của XLOOKUP." }],
         hint: "=XLOOKUP(E5, A2:A6, C2:C6, 0) - tham số thứ tư là giá trị khi không tìm thấy",
@@ -340,74 +340,74 @@ export const EXCEL_PRACTICE_SETS: Record<string, ExcelPracticeSet> = {
       },
       {
         target: "I2",
-        prompt: "Tổng giá trị danh mục: số lượng nhân giá, cộng cả bốn mã.",
+        prompt: "Tổng chi phí: số lượt nhân đơn giá, cộng cả bốn dịch vụ.",
         expect: 1000 * 68 + 500 * 56 + 2000 * 27,
         hint: "=F2*G2+F3*G3+F4*G4+F5*G5",
         solution: "=F2*G2+F3*G3+F4*G4+F5*G5",
         explain:
-          "Để ý điều vừa xảy ra: 300 cổ GAS đóng góp đúng 0 đồng vào tổng, và không có gì báo cho bạn biết. Giá trị thay thế 0 đã biến một dòng thiếu dữ liệu thành một dòng trông như đã tính xong. Vì vậy sau mỗi lần ghép phải có phép đối chiếu số dòng khớp được với số dòng cần khớp - nếu không bạn chỉ đang hy vọng.",
+          "Để ý điều vừa xảy ra: 300 lượt gọi MSG đóng góp đúng 0 đồng vào tổng, và không có gì báo cho bạn biết. Giá trị thay thế 0 đã biến một dòng thiếu dữ liệu thành một dòng trông như đã tính xong. Vì vậy sau mỗi lần ghép phải có phép đối chiếu số dòng khớp được với số dòng cần khớp - nếu không bạn chỉ đang hy vọng.",
       },
     ],
   },
 
   "excel-three-statement": {
     kind: "grid",
-    title: "Vòng lặp lãi vay và ô cân đối",
+    title: "Vòng lặp chi phí co giãn và ô cân đối",
     intro:
-      "Đây là lát cắt nhỏ nhất của một mô hình ba báo cáo có vòng lặp thật: lãi vay phụ thuộc dư nợ, dư nợ phụ thuộc tiền cần vay, tiền cần vay phụ thuộc lợi nhuận sau lãi vay. Bạn sẽ dựng nó, nhìn Excel báo tham chiếu vòng, rồi phá vòng bằng công tắc E8.",
+      "Đây là lát cắt nhỏ nhất của một bảng ba tầng có vòng lặp thật: chi phí co giãn phụ thuộc số máy, số máy phụ thuộc phần tải phải gánh thêm, phần tải ấy lại phụ thuộc dư địa còn lại sau chi phí co giãn. Bạn sẽ dựng nó, nhìn Excel báo tham chiếu vòng, rồi phá vòng bằng công tắc E8.",
     columns: ["A", "B", "D", "E", "G", "H"],
     rows: 9,
     cells: modelCells,
     tasks: [
       {
         target: "B5",
-        prompt: "EBIT = doanh thu trừ giá vốn và chi phí. Lưu ý B3 và B4 đã mang dấu âm.",
+        prompt: "Dư địa trước co giãn = hạn mức trừ tải nền và tải phụ trợ. Lưu ý B3 và B4 đã mang dấu âm.",
         expect: 200,
         hint: "=SUM(B2:B4)",
         solution: "=SUM(B2:B4)",
         explain:
-          "Quy ước ghi chi phí bằng số âm rồi cộng tất cả lại tốt hơn là trừ đi từng dòng: thêm một dòng chi phí mới chỉ cần nằm trong vùng, không cần sửa công thức.",
+          "Quy ước ghi phần tải chiếm chỗ bằng số âm rồi cộng tất cả lại tốt hơn là trừ đi từng dòng: thêm một dòng tải mới chỉ cần nằm trong vùng, không cần sửa công thức.",
       },
       {
         target: "E4",
-        prompt: "Dư nợ cuối kỳ = dư nợ đầu kỳ cộng vay thêm.",
+        prompt: "Số máy cuối kỳ = số máy đầu kỳ cộng thuê thêm.",
         expect: 500,
         hint: "=E2+E3",
         solution: "=E2+E3",
         explain:
-          "Bảng nợ luôn dựng theo dạng cuộn chiếu: đầu kỳ, cộng phát sinh tăng, trừ phát sinh giảm, ra cuối kỳ. Dạng này cho bạn một phép kiểm tra sẵn ở mọi kỳ.",
+          "Bảng máy chủ luôn dựng theo dạng cuộn chiếu: đầu kỳ, cộng phần thêm mới, trừ phần gỡ bỏ, ra cuối kỳ. Dạng này cho bạn một phép kiểm tra sẵn ở mọi kỳ.",
       },
       {
         target: "E5",
-        prompt: "Dư nợ bình quân = trung bình của đầu kỳ và cuối kỳ.",
+        prompt: "Số máy bình quân = trung bình của đầu kỳ và cuối kỳ.",
         expect: 450,
         hint: "=AVERAGE(E2,E4)",
         solution: "=AVERAGE(E2,E4)",
         explain:
-          "Tính lãi trên dư nợ bình quân thay vì dư nợ cuối kỳ chính là thứ tạo ra vòng lặp - và cũng là thứ khiến con số lãi vay đúng hơn khi doanh nghiệp vay thêm giữa kỳ.",
+          "Tính chi phí trên số máy bình quân thay vì số máy cuối kỳ chính là thứ tạo ra vòng lặp - và cũng là thứ khiến con số chi phí đúng hơn khi hệ thống bật thêm máy giữa kỳ.",
       },
       {
         target: "B6",
         prompt:
-          "Lãi vay = âm của dư nợ bình quân nhân lãi suất, NHƯNG nếu công tắc E8 bằng 1 thì lãi vay phải bằng 0.",
+          "Chi phí co giãn = âm của số máy bình quân nhân đơn giá, NHƯNG nếu công tắc E8 bằng 1 thì chi phí phải bằng 0.",
         expect: -40.5,
         mustUse: [
-          { text: "E8", why: "Không có công tắc thì bạn không có cách nào phá vòng lặp khi mô hình rơi vào lỗi." },
+          { text: "E8", why: "Không có công tắc thì bạn không có cách nào phá vòng lặp khi bảng tính rơi vào lỗi." },
         ],
         hint: "=IF(E8=1, 0, -E5*E6)",
         solution: "=IF(E8=1, 0, -E5*E6)",
         explain:
-          "Công tắc này là thứ mọi mô hình có vòng lặp đều phải có. Khi Excel rơi vào trạng thái lỗi lan khắp file, bạn bật công tắc, mọi thứ trở lại tính được, sửa xong thì tắt đi. Không có nó, cách duy nhất là đóng file không lưu.",
+          "Công tắc này là thứ mọi bảng tính có vòng lặp đều phải có. Khi Excel rơi vào trạng thái lỗi lan khắp file, bạn bật công tắc, mọi thứ trở lại tính được, sửa xong thì tắt đi. Không có nó, cách duy nhất là đóng file không lưu.",
       },
       {
         target: "H2",
         prompt:
-          "Ô kiểm tra: hiệu giữa lãi vay trên báo cáo kết quả kinh doanh và lãi vay tính từ bảng nợ. Phải ra 0.",
+          "Ô kiểm tra: hiệu giữa chi phí co giãn trên bảng ngân sách và chi phí tính từ bảng máy chủ. Phải ra 0.",
         expect: 0,
         hint: "=B6-(-E5*E6) - hoặc bất kỳ cách nào diễn tả cùng phép so sánh đó",
         solution: "=B6-(-E5*E6)",
         explain:
-          "Ô kiểm tra không phải thủ tục trang trí: nó là thứ báo cho bạn biết mô hình vừa hỏng, ngay lúc nó hỏng. Một file tốt gom mọi ô kiểm tra về một ô tổng ở đầu sheet, và ô đó luôn phải bằng 0.",
+          "Ô kiểm tra không phải thủ tục trang trí: nó là thứ báo cho bạn biết bảng tính vừa hỏng, ngay lúc nó hỏng. Một file tốt gom mọi ô kiểm tra về một ô tổng ở đầu sheet, và ô đó luôn phải bằng 0.",
       },
     ],
   },
@@ -416,23 +416,23 @@ export const EXCEL_PRACTICE_SETS: Record<string, ExcelPracticeSet> = {
     kind: "grid",
     title: "Dòng kiểm tra và số cứng",
     intro:
-      "Bảng cân đối này không cân, và ô B9 chứa một số cứng. Cả hai lỗi đều không làm Excel báo gì cả - đó chính là lý do phải tự dựng dòng kiểm tra.",
+      "Bảng phân bổ này không cân, và ô B9 chứa một số cứng. Cả hai lỗi đều không làm Excel báo gì cả - đó chính là lý do phải tự dựng dòng kiểm tra.",
     columns: ["A", "B", "D", "E", "G", "H"],
     rows: 9,
     cells: auditCells,
     tasks: [
       {
         target: "B5",
-        prompt: "Tổng tài sản.",
+        prompt: "Tổng đã cấp phát.",
         expect: 1360,
         hint: "=SUM(B2:B4)",
         solution: "=SUM(B2:B4)",
         explain:
-          "Cộng bằng vùng chứ không phải =B2+B3+B4: một dòng tài sản chèn thêm vào giữa sẽ tự động nằm trong vùng, còn phép cộng từng ô thì bỏ quên nó và không báo gì cả. Đây là dạng lỗi im lặng phổ biến nhất trong các mô hình được nhiều người sửa.",
+          "Cộng bằng vùng chứ không phải =B2+B3+B4: một dòng tài nguyên chèn thêm vào giữa sẽ tự động nằm trong vùng, còn phép cộng từng ô thì bỏ quên nó và không báo gì cả. Đây là dạng lỗi im lặng phổ biến nhất trong các bảng tính được nhiều người sửa.",
       },
       {
         target: "E5",
-        prompt: "Tổng nguồn vốn.",
+        prompt: "Tổng nguồn cấp.",
         expect: 1300,
         hint: "=SUM(E2:E4)",
         solution: "=SUM(E2:E4)",
@@ -442,32 +442,32 @@ export const EXCEL_PRACTICE_SETS: Record<string, ExcelPracticeSet> = {
       {
         target: "H2",
         prompt:
-          "Ô kiểm tra cân đối: tổng tài sản trừ tổng nguồn vốn. Cứ điền công thức đúng - kết quả ra khác 0 là bình thường ở bước này.",
+          "Ô kiểm tra cân đối: tổng đã cấp trừ tổng nguồn cấp. Cứ điền công thức đúng - kết quả ra khác 0 là bình thường ở bước này.",
         expect: 60,
         hint: "=B5-E5",
         solution: "=B5-E5",
         explain:
-          "Lệch 60. Việc cần làm bây giờ là tìm khoản 60 đã vào một phía mà chưa vào phía kia. Việc TUYỆT ĐỐI không được làm là cộng 60 vào vốn chủ sở hữu cho cân - đó là biến một lỗi nhìn thấy được thành một lỗi vĩnh viễn không ai tìm ra.",
+          "Lệch 60. Việc cần làm bây giờ là tìm khoản 60 đã vào một phía mà chưa vào phía kia. Việc TUYỆT ĐỐI không được làm là cộng 60 vào cụm C cho cân - đó là biến một lỗi nhìn thấy được thành một lỗi vĩnh viễn không ai tìm ra.",
       },
       {
         target: "B9",
         prompt:
-          "Ô B9 đang là =1000*0.12, hai con số cứng. Viết lại sao cho nó trỏ về ô doanh thu và ô biên lợi nhuận.",
+          "Ô B9 đang là =1000*0.12, hai con số cứng. Viết lại sao cho nó trỏ về ô lượt gọi và ô tỷ lệ lỗi.",
         expect: 120,
         prefilled: true,
         mustAvoid: [
-          { text: "1000", why: "Doanh thu đã có ở B7. Chép lại nó là tạo ra một bản sao sẽ lệch đi." },
-          { text: "0.12", why: "Biên lợi nhuận đã có ở B8." },
+          { text: "1000", why: "Lượt gọi đã có ở B7. Chép lại nó là tạo ra một bản sao sẽ lệch đi." },
+          { text: "0.12", why: "Tỷ lệ lỗi đã có ở B8." },
         ],
         hint: "=B7*B8",
         solution: "=B7*B8",
         explain:
-          "Cả hai công thức đều cho 120 hôm nay. Khác biệt lộ ra vào ngày ai đó sửa doanh thu ở B7: bản trỏ ô cập nhật theo, bản số cứng thì không, và không có gì báo cho bạn biết. Bật chế độ hiện công thức bằng Ctrl + ` là cách quét cả sheet tìm loại ô này trong vài giây.",
+          "Cả hai công thức đều cho 120 hôm nay. Khác biệt lộ ra vào ngày ai đó sửa lượt gọi ở B7: bản trỏ ô cập nhật theo, bản số cứng thì không, và không có gì báo cho bạn biết. Bật chế độ hiện công thức bằng Ctrl + ` là cách quét cả sheet tìm loại ô này trong vài giây.",
       },
       {
         target: "H4",
         prompt:
-          "Tỷ suất lợi nhuận trên tổng tài sản, viết sao cho nếu tổng tài sản bằng 0 thì ra 0 thay vì mã lỗi.",
+          "Số lỗi trên mỗi đơn vị đã cấp, viết sao cho nếu tổng đã cấp bằng 0 thì ra 0 thay vì mã lỗi.",
         expect: 120 / 1360,
         mustUse: [{ text: "IFERROR", why: "Bài này luyện đúng chỗ nên bọc lỗi và chỗ không nên." }],
         hint: "=IFERROR(B9/B5, 0)",
@@ -482,59 +482,59 @@ export const EXCEL_PRACTICE_SETS: Record<string, ExcelPracticeSet> = {
     kind: "sql",
     title: "Lấy đúng dữ liệu mình cần",
     intro:
-      "Hai bảng trong kho dữ liệu: danh_muc là danh mục đầu tư của bạn, gia là bảng giá cuối ngày. Gõ truy vấn thật vào ô bên dưới. Bảng gia thiếu một mã - nhiệm vụ cuối là tìm ra nó trước khi nó làm sai mọi tỷ trọng.",
+      "Hai bảng trong kho dữ liệu: dich_vu là các dịch vụ đang chạy, don_gia là bảng đơn giá tính tiền. Gõ truy vấn thật vào ô bên dưới. Bảng don_gia thiếu một mã - nhiệm vụ cuối là tìm ra nó trước khi nó làm sai mọi tỷ trọng.",
     db: {
-      danh_muc: {
-        name: "danh_muc",
-        columns: ["ma", "nganh", "so_luong"],
+      dich_vu: {
+        name: "dich_vu",
+        columns: ["ma", "nhom", "so_luot"],
         rows: [
-          { ma: "FPT", nganh: "Cong nghe", so_luong: 1000 },
-          { ma: "HPG", nganh: "Thep", so_luong: 2000 },
-          { ma: "VNM", nganh: "Tieu dung", so_luong: 500 },
-          { ma: "MWG", nganh: "Ban le", so_luong: 800 },
-          { ma: "SSI", nganh: "Chung khoan", so_luong: 1500 },
-          { ma: "GAS", nganh: "Nang luong", so_luong: 300 },
+          { ma: "API", nhom: "Cong vao", so_luot: 1000 },
+          { ma: "CDN", nhom: "Phan phoi", so_luot: 2000 },
+          { ma: "SSO", nhom: "Danh tinh", so_luot: 500 },
+          { ma: "JOB", nhom: "Chay nen", so_luot: 800 },
+          { ma: "LOG", nhom: "Ghi nhat ky", so_luot: 1500 },
+          { ma: "MSG", nhom: "Hang doi", so_luot: 300 },
         ],
       },
-      gia: {
-        name: "gia",
-        columns: ["ma", "gia"],
+      don_gia: {
+        name: "don_gia",
+        columns: ["ma", "don_gia"],
         rows: [
-          { ma: "FPT", gia: 120 },
-          { ma: "HPG", gia: 27 },
-          { ma: "VNM", gia: 68 },
-          { ma: "MWG", gia: 56 },
-          { ma: "SSI", gia: 31 },
+          { ma: "API", don_gia: 120 },
+          { ma: "CDN", don_gia: 27 },
+          { ma: "SSO", don_gia: 68 },
+          { ma: "JOB", don_gia: 56 },
+          { ma: "LOG", don_gia: 31 },
         ],
       },
     },
     tasks: [
       {
-        prompt: "Lấy mã và số lượng của những vị thế từ 1000 cổ phiếu trở lên.",
-        solution: "SELECT ma, so_luong FROM danh_muc WHERE so_luong >= 1000",
+        prompt: "Lấy mã và số lượt của những dịch vụ từ 1000 lượt gọi trở lên.",
+        solution: "SELECT ma, so_luot FROM dich_vu WHERE so_luot >= 1000",
         hint: "SELECT cột, cột FROM bảng WHERE điều kiện",
         explain:
           "Điều kiện lọc chạy ở phía cơ sở dữ liệu, nên thứ đi qua đường truyền về máy bạn chỉ là ba dòng chứ không phải cả bảng. Ở quy mô vài triệu dòng, khác biệt này là khác biệt giữa một truy vấn hai giây và một bảng tính treo.",
       },
       {
-        prompt: "Tổng số lượng cổ phiếu đang nắm, gom theo ngành, sắp xếp giảm dần.",
-        solution: "SELECT nganh, SUM(so_luong) AS tong FROM danh_muc GROUP BY nganh ORDER BY tong DESC",
+        prompt: "Tổng số lượt gọi, gom theo nhóm dịch vụ, sắp xếp giảm dần.",
+        solution: "SELECT nhom, SUM(so_luot) AS tong FROM dich_vu GROUP BY nhom ORDER BY tong DESC",
         ordered: true,
-        hint: "SELECT nganh, SUM(so_luong) AS tong FROM ... GROUP BY nganh ORDER BY tong DESC",
+        hint: "SELECT nhom, SUM(so_luot) AS tong FROM ... GROUP BY nhom ORDER BY tong DESC",
         explain:
           "GROUP BY quyết định mỗi dòng kết quả đại diện cho cái gì. Mọi cột trong SELECT phải hoặc nằm trong GROUP BY, hoặc nằm trong một hàm tổng hợp - nếu không, cơ sở dữ liệu không biết phải lấy giá trị nào trong nhóm.",
       },
       {
         prompt:
-          "Ghép hai bảng và tính tổng giá trị danh mục: số lượng nhân giá, cộng tất cả. Dùng JOIN thường.",
-        solution: "SELECT SUM(d.so_luong * g.gia) AS gia_tri FROM danh_muc d JOIN gia g ON d.ma = g.ma",
-        hint: "SELECT SUM(d.so_luong * g.gia) FROM danh_muc d JOIN gia g ON d.ma = g.ma",
+          "Ghép hai bảng và tính tổng chi phí: số lượt nhân đơn giá, cộng tất cả. Dùng JOIN thường.",
+        solution: "SELECT SUM(d.so_luot * g.don_gia) AS chi_phi FROM dich_vu d JOIN don_gia g ON d.ma = g.ma",
+        hint: "SELECT SUM(d.so_luot * g.don_gia) FROM dich_vu d JOIN don_gia g ON d.ma = g.ma",
         explain:
-          "Con số này SAI, và không có gì báo cho bạn biết. Danh mục có sáu mã, bảng giá có năm - JOIN thường là INNER JOIN, nên mã thiếu giá bị loại khỏi kết quả cùng với toàn bộ giá trị của nó. Tổng vẫn ra một con số trông hoàn toàn hợp lý. Nhiệm vụ cuối là cách phát hiện ra chuyện này.",
+          "Con số này SAI, và không có gì báo cho bạn biết. Bảng dịch vụ có sáu mã, bảng đơn giá có năm - JOIN thường là INNER JOIN, nên mã thiếu đơn giá bị loại khỏi kết quả cùng với toàn bộ chi phí của nó. Tổng vẫn ra một con số trông hoàn toàn hợp lý. Nhiệm vụ cuối là cách phát hiện ra chuyện này.",
       },
       {
-        prompt: "Tìm ra chính xác những mã trong danh mục không có giá trong bảng gia.",
-        solution: "SELECT d.ma FROM danh_muc d LEFT JOIN gia g ON d.ma = g.ma WHERE g.gia IS NULL",
+        prompt: "Tìm ra chính xác những mã dịch vụ không có đơn giá trong bảng don_gia.",
+        solution: "SELECT d.ma FROM dich_vu d LEFT JOIN don_gia g ON d.ma = g.ma WHERE g.don_gia IS NULL",
         hint: "LEFT JOIN giữ đủ dòng bên trái; chỗ không ghép được sẽ là NULL. Lọc bằng IS NULL.",
         explain:
           "LEFT JOIN buộc phần dữ liệu thiếu phải hiện ra thay vì biến mất. Chú ý phải viết IS NULL chứ không phải = NULL: trong SQL, NULL không bằng bất cứ thứ gì, kể cả chính nó, nên = NULL luôn trả về rỗng.\n\nĐây là phép kiểm tra nên chạy sau MỌI lần ghép bảng: so số dòng trước và sau, và nếu lệch thì tìm cho ra lệch ở đâu. Công cụ mạnh hơn không thay thế được việc kiểm tra.",
@@ -546,16 +546,16 @@ export const EXCEL_PRACTICE_SETS: Record<string, ExcelPracticeSet> = {
     kind: "steps",
     title: "Dựng quy trình làm sạch",
     intro:
-      "Mỗi tháng bạn nhận cùng một file bán hàng từ hệ thống: bốn dòng tiêu đề rác ở trên, mỗi tháng một cột, mã cửa hàng dính khoảng trắng. Hãy xếp các bước Power Query theo đúng thứ tự chạy. Thứ tự sai vẫn ra kết quả, nhưng ra kết quả sai.",
+      "Mỗi tháng bạn nhận cùng một file nhật ký xuất từ hệ thống: bốn dòng tiêu đề rác ở trên, mỗi tháng một cột, mã dịch vụ dính khoảng trắng. Hãy xếp các bước Power Query theo đúng thứ tự chạy. Thứ tự sai vẫn ra kết quả, nhưng ra kết quả sai.",
     task: {
       prompt: "Kéo các bước về đúng thứ tự trong quy trình.",
       steps: [
         "Kết nối tới thư mục chứa file của tất cả các tháng",
         "Xoá bốn dòng rác ở đầu và đặt dòng đầu tiên làm tiêu đề",
-        "Cắt khoảng trắng thừa ở cột mã cửa hàng",
+        "Cắt khoảng trắng thừa ở cột mã dịch vụ",
         "Đặt đúng kiểu dữ liệu cho từng cột",
-        "Unpivot các cột tháng thành hai cột: tháng và doanh số",
-        "Ghép thêm cột vùng miền từ bảng danh mục cửa hàng theo mã",
+        "Unpivot các cột tháng thành hai cột: tháng và số lượt",
+        "Ghép thêm cột cụm máy chủ từ bảng khai báo dịch vụ theo mã",
         "Nạp kết quả ra bảng tính để làm báo cáo",
       ],
       explain:
@@ -622,7 +622,7 @@ export function gradeTask(sheet: Sheet, task: ExcelTask): Grade {
 
 /**
  * Chấm truy vấn SQL bằng cách so KẾT QUẢ với kết quả của truy vấn mẫu, chứ
- * không so chuỗi: `WHERE so_luong >= 1000` và `WHERE NOT so_luong < 1000` cùng
+ * không so chuỗi: `WHERE so_luot >= 1000` và `WHERE NOT so_luot < 1000` cùng
  * ra một bảng và đều đúng. Thứ tự dòng chỉ tính khi đề bài yêu cầu sắp xếp.
  */
 export function gradeSqlTask(db: Database, task: SqlTask, sql: string): Grade {

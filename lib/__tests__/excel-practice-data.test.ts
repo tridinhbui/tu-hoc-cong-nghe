@@ -137,7 +137,7 @@ describe("bài tập SQL", () => {
     if (set.kind !== "sql") return;
     for (const task of set.tasks) {
       expect(gradeSqlTask(set.db, task, task.solution).ok, task.solution).toBe(true);
-      expect(gradeSqlTask(set.db, task, "SELECT ma FROM danh_muc LIMIT 1").ok).toBe(false);
+      expect(gradeSqlTask(set.db, task, "SELECT ma FROM dich_vu LIMIT 1").ok).toBe(false);
     }
   });
 
@@ -149,11 +149,11 @@ describe("bài tập SQL", () => {
     expect(g.message.length).toBeGreaterThan(5);
   });
 
-  it("bảng gia cố ý thiếu đúng một mã - đó là nội dung nhiệm vụ cuối", () => {
+  it("bảng don_gia cố ý thiếu đúng một mã - đó là nội dung nhiệm vụ cuối", () => {
     if (set.kind !== "sql") return;
     const missing = runQuery(
       set.db,
-      "SELECT d.ma FROM danh_muc d LEFT JOIN gia g ON d.ma = g.ma WHERE g.gia IS NULL",
+      "SELECT d.ma FROM dich_vu d LEFT JOIN don_gia g ON d.ma = g.ma WHERE g.don_gia IS NULL",
     );
     expect(missing.rows.length).toBe(1);
   });

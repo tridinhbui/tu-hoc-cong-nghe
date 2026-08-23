@@ -84,8 +84,8 @@ describe("ExcelPractice - lưới", () => {
     expect(screen.getAllByText(/#N\/A/).length).toBeGreaterThan(0);
 
     // Sửa khoảng trắng thừa trong ô A3 rồi kiểm lại - không cần sửa công thức.
-    fireEvent.click(screen.getAllByText("HPG")[0]);
-    fireEvent.change(formulaBar(), { target: { value: "HPG" } });
+    fireEvent.click(screen.getAllByText("CDN")[0]);
+    fireEvent.change(formulaBar(), { target: { value: "CDN" } });
     fireEvent.click(screen.getByRole("button", { name: "Nhiệm vụ 2" }));
     fireEvent.click(screen.getByRole("button", { name: "Kiểm tra" }));
     expect(screen.getByText(/Đúng\./)).toBeTruthy();
@@ -122,14 +122,14 @@ describe("ExcelPractice - SQL", () => {
 
   it("chạy truy vấn đúng và hiện bảng kết quả", () => {
     renderPractice("excel-sql");
-    runSql("SELECT ma, so_luong FROM danh_muc WHERE so_luong >= 1000");
+    runSql("SELECT ma, so_luot FROM dich_vu WHERE so_luot >= 1000");
     expect(screen.getByText(/Đúng\./)).toBeTruthy();
     expect(screen.getByText("3 dòng")).toBeTruthy();
   });
 
   it("truy vấn sai vẫn hiện bảng để nhìn ra mình đã lấy về cái gì", () => {
     renderPractice("excel-sql");
-    runSql("SELECT ma, so_luong FROM danh_muc");
+    runSql("SELECT ma, so_luot FROM dich_vu");
     expect(screen.getByText("6 dòng")).toBeTruthy();
     expect(screen.queryByText(/Đúng\./)).toBeNull();
   });
@@ -142,7 +142,7 @@ describe("ExcelPractice - SQL", () => {
 
   it("NULL trong kết quả hiện rõ chứ không hiện thành ô trống", () => {
     renderPractice("excel-sql");
-    runSql("SELECT d.ma, g.gia FROM danh_muc d LEFT JOIN gia g ON d.ma = g.ma");
+    runSql("SELECT d.ma, g.don_gia FROM dich_vu d LEFT JOIN don_gia g ON d.ma = g.ma");
     expect(screen.getAllByText("NULL").length).toBeGreaterThan(0);
   });
 });

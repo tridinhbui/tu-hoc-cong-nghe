@@ -2,9 +2,9 @@ import type { Lesson } from "./lesson-types";
 
 // Chặng "Excel & Dữ liệu" (ids 1431-1436, professional track).
 //
-// Chặng 15 (Mô hình tài chính) cố ý dạy tư duy dựng mô hình bằng chữ và nói
-// thẳng rằng nó không dạy phím bấm. Nhưng bài kiểm tra đầu vào của gần như
-// mọi vị trí phân tích lại kiểm tra đúng phần phím bấm đó: dựng model trong
+// Chặng thống kê cố ý dạy tư duy đọc dữ liệu bằng chữ và nói thẳng rằng nó
+// không dạy phím bấm. Nhưng bài kiểm tra đầu vào của gần như mọi vị trí kỹ
+// thuật dữ liệu lại kiểm tra đúng phần phím bấm đó: dựng bảng tổng hợp trong
 // 60-90 phút, không chuột. Chặng này lấp khoảng trống ấy. Nó vẫn là bài học
 // dạng chữ, nên trọng tâm đặt vào cái mà chữ truyền tải được: chọn hàm nào và
 // vì sao, bố cục thế nào để dò lỗi được, quy trình kiểm tra - kèm bài tập
@@ -14,16 +14,16 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
   {
     id: 1431,
     slug: "phim-tat-excel-va-ky-luat-ban-phim",
-    title: "Excel, Bài 1: Kỷ luật bàn phím - vì sao bài kiểm tra modeling cấm dùng chuột",
-    subtitle: "Nhóm phím tắt cốt lõi, điều hướng vùng dữ liệu và thói quen làm việc của người dựng mô hình chuyên nghiệp",
+    title: "Excel, Bài 1: Kỷ luật bàn phím - vì sao bài kiểm tra dữ liệu cấm dùng chuột",
+    subtitle: "Nhóm phím tắt cốt lõi, điều hướng vùng dữ liệu và thói quen làm việc của người xử lý dữ liệu chuyên nghiệp",
     duration: "10 phút",
     difficulty: "Trung bình",
     emoji: "⌨️",
     track: "professional",
     whyItMatters:
-      "Bài kiểm tra modeling cho vị trí phân tích thường giới hạn 60 đến 90 phút cho một mô hình mà nếu dùng chuột bạn sẽ không kịp hoàn thành. Tốc độ ở đây không phải để gây ấn tượng: nó quyết định bạn có đủ thời gian kiểm tra lại mô hình hay không.",
+      "Bài kiểm tra xử lý dữ liệu cho vị trí kỹ thuật thường giới hạn 60 đến 90 phút cho một bảng mà nếu dùng chuột bạn sẽ không kịp hoàn thành. Tốc độ ở đây không phải để gây ấn tượng: nó quyết định bạn có đủ thời gian kiểm tra lại kết quả hay không.",
     openingQuestion:
-      "Vì sao các bài kiểm tra dựng mô hình thường đánh giá cả tốc độ thao tác bàn phím?",
+      "Vì sao các bài kiểm tra xử lý dữ liệu thường đánh giá cả tốc độ thao tác bàn phím?",
     openingOptions: [
       "Vì nhà tuyển dụng muốn nhân viên làm việc nhanh cho kịp tiến độ",
       "Vì thao tác bằng chuột chậm hơn nhiều lần",
@@ -32,7 +32,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     ],
     correctOption: 1,
     explanation:
-      "Người dùng chuột mất khoảng ba đến năm lần thời gian cho cùng một thao tác. Trong một bài kiểm tra 90 phút, khoảng chênh đó chính là toàn bộ quỹ thời gian dành cho việc rà soát và chạy kịch bản - phần thực sự phân biệt một mô hình đúng với một mô hình chỉ ra số. Nói cách khác, kỷ luật bàn phím không phải kỹ năng trình diễn, nó là điều kiện để bạn còn đủ thời gian tư duy.",
+      "Người dùng chuột mất khoảng ba đến năm lần thời gian cho cùng một thao tác. Trong một bài kiểm tra 90 phút, khoảng chênh đó chính là toàn bộ quỹ thời gian dành cho việc rà soát và chạy thử - phần thực sự phân biệt một kết quả đúng với một kết quả chỉ trông giống đúng. Nói cách khác, kỷ luật bàn phím không phải kỹ năng trình diễn, nó là điều kiện để bạn còn đủ thời gian tư duy.",
     diagram: [
       { label: "Điều hướng: Ctrl + phím mũi tên", arrow: true },
       { label: "Chọn vùng: thêm Shift", arrow: true },
@@ -41,9 +41,9 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     ],
     interactiveType: "excel-shortcuts",
     realWorldExample: {
-      company: "Bài kiểm tra modeling trong tuyển dụng phân tích",
+      company: "Bài kiểm tra dữ liệu trong tuyển dụng kỹ thuật",
       description:
-        "Một dạng đề phổ biến: cho một trang báo cáo tài chính in ra giấy, yêu cầu dựng mô hình ba báo cáo liên kết và dự phóng năm năm trong 90 phút. Ứng viên trượt hầu như không phải vì không biết kế toán, mà vì hết giờ khi chưa liên kết xong ba báo cáo - phần lớn thời gian đã bị tiêu vào thao tác thủ công lẽ ra chỉ mất vài giây.",
+        "Một dạng đề phổ biến: cho một tệp nhật ký thô, yêu cầu dựng bảng tổng hợp ba tầng liên kết và dự phóng tải cho năm kỳ tới trong 90 phút. Ứng viên trượt hầu như không phải vì không hiểu dữ liệu, mà vì hết giờ khi chưa nối xong ba bảng - phần lớn thời gian đã bị tiêu vào thao tác thủ công lẽ ra chỉ mất vài giây.",
     },
     quiz: [
       {
@@ -56,7 +56,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Kết hợp thêm Shift sẽ vừa nhảy vừa chọn cả vùng. Đây là cặp thao tác nền tảng: gần như mọi phím tắt chọn vùng trong mô hình tài chính đều xây trên nó.",
+          "Kết hợp thêm Shift sẽ vừa nhảy vừa chọn cả vùng. Đây là cặp thao tác nền tảng: gần như mọi phím tắt chọn vùng trong một bảng dữ liệu lớn đều xây trên nó.",
       },
       {
         question: "F2 dùng để làm gì và vì sao quan trọng khi dò lỗi?",
@@ -80,10 +80,10 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Nắm chắc tham chiếu tuyệt đối và tương đối là điều kiện để viết một công thức rồi kéo cho cả bảng - kỹ thuật cốt lõi giúp mô hình nhất quán và giảm mạnh nguy cơ sai sót.",
+          "Nắm chắc tham chiếu tuyệt đối và tương đối là điều kiện để viết một công thức rồi kéo cho cả bảng - kỹ thuật cốt lõi giúp bảng tính nhất quán và giảm mạnh nguy cơ sai sót.",
       },
       {
-        question: "Vì sao nên tránh trộn ô (merge cells) trong mô hình tài chính?",
+        question: "Vì sao nên tránh trộn ô (merge cells) trong một bảng dữ liệu?",
         options: [
           "Vì ô đã trộn làm tăng đáng kể dung lượng của tệp bảng tính khi lưu lại",
           "Vì nó phá vỡ việc chọn vùng, sao chép và điều hướng bằng phím tắt",
@@ -92,7 +92,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Người làm mô hình chuyên nghiệp gần như không bao giờ trộn ô. Muốn căn giữa tiêu đề trên nhiều cột, hãy dùng tùy chọn căn giữa theo vùng chọn - đạt hiệu quả trình bày tương đương mà không phá cấu trúc bảng.",
+          "Người làm dữ liệu chuyên nghiệp gần như không bao giờ trộn ô. Muốn căn giữa tiêu đề trên nhiều cột, hãy dùng tùy chọn căn giữa theo vùng chọn - đạt hiệu quả trình bày tương đương mà không phá cấu trúc bảng.",
       },
     ],
     keyTakeaways: [
@@ -128,7 +128,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Chặng Mô hình tài chính đã dạy bạn cấu trúc và tư duy đằng sau một mô hình tốt. Chặng này bổ sung phần còn thiếu và cũng là phần được kiểm tra trực tiếp trong tuyển dụng: khả năng biến tư duy đó thành một file hoàn chỉnh, trong giới hạn thời gian.",
+        text: "Chặng thống kê đã dạy bạn cách đọc và kiểm chứng một tập dữ liệu. Chặng này bổ sung phần còn thiếu và cũng là phần được kiểm tra trực tiếp trong tuyển dụng: khả năng biến tư duy đó thành một bảng kết quả hoàn chỉnh, trong giới hạn thời gian.",
       },
       {
         type: "heading",
@@ -142,19 +142,19 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
           { vi: "Điều hướng", en: "Ctrl + mũi tên", def: "Nhảy tới rìa vùng dữ liệu. Thêm Shift để vừa nhảy vừa chọn. Ctrl + Home về ô đầu bảng." },
           { vi: "Chỉnh sửa", en: "F2, F4", def: "F2 vào chế độ sửa và tô màu các ô được tham chiếu. F4 xoay vòng giữa các dạng tham chiếu tuyệt đối và tương đối." },
           { vi: "Dán đặc biệt", en: "Paste Special", def: "Dán riêng giá trị, riêng định dạng, hoặc dán chuyển vị. Dán giá trị là thao tác bắt buộc khi cắt liên kết vòng lặp hoặc đóng băng kết quả." },
-          { vi: "Dò lỗi", en: "Ctrl + [ , Ctrl + `", def: "Ctrl + [ nhảy tới ô nguồn của công thức. Ctrl + ` bật chế độ hiện toàn bộ công thức thay vì kết quả - cách soát mô hình nhanh nhất." },
+          { vi: "Dò lỗi", en: "Ctrl + [ , Ctrl + `", def: "Ctrl + [ nhảy tới ô nguồn của công thức. Ctrl + ` bật chế độ hiện toàn bộ công thức thay vì kết quả - cách soát bảng tính nhanh nhất." },
         ],
       },
       {
         type: "callout",
         label: "Quy tắc bố cục hỗ trợ tốc độ",
-        text: "Bố cục tốt và thao tác nhanh gắn liền nhau. Một mô hình có trục thời gian thống nhất và mỗi dòng chỉ chứa một loại logic cho phép bạn viết một công thức rồi kéo cho toàn bộ hàng. Một mô hình chắp vá buộc bạn gõ lại từng ô, và mỗi lần gõ lại là một cơ hội cho lỗi.",
+        text: "Bố cục tốt và thao tác nhanh gắn liền nhau. Một bảng có trục thời gian thống nhất và mỗi dòng chỉ chứa một loại logic cho phép bạn viết một công thức rồi kéo cho toàn bộ hàng. Một bảng chắp vá buộc bạn gõ lại từng ô, và mỗi lần gõ lại là một cơ hội cho lỗi.",
       },
       {
         type: "closing",
         lines: [
           "Không ai tra phím tắt trong lúc làm bài kiểm tra. Thao tác phải nằm ở tay, không nằm trong đầu.",
-          "Bài sau chuyển sang nhóm hàm quan trọng nhất: tra cứu và tổng hợp dữ liệu.",
+          "Bài sau chuyển sang nhóm thao tác quan trọng nhất: tra cứu và tổng hợp dữ liệu.",
         ],
       },
     ],
@@ -265,12 +265,12 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       "So sánh với giá trị rỗng không cho đúng cũng không cho sai - dòng bị bỏ lặng lẽ."
     ],
     "practicePrompt": {
-      "question": "Truy vấn của bạn ghép bốn bảng và cho tổng doanh thu cao hơn dự kiến. Kiểm gì trước?",
+      "question": "Truy vấn của bạn ghép bốn bảng và cho tổng lượt gọi cao hơn dự kiến. Kiểm gì trước?",
       "options": [
         "Đếm số dòng sau mỗi phép ghép để tìm chỗ số dòng bắt đầu nhân lên",
         "Kiểm tra lại các điều kiện lọc xem có bỏ sót điều kiện nào không",
         "So sánh kết quả với một nguồn dữ liệu khác để xác nhận con số đúng",
-        "Xem lại định nghĩa của chỉ số doanh thu để chắc chắn công thức đúng"
+        "Xem lại định nghĩa của chỉ số lượt gọi để chắc chắn công thức đúng"
       ],
       "correct": 0,
       "explanation": "Tổng CAO hơn dự kiến gần như luôn là dấu hiệu nhân bản, và với bốn phép ghép thì việc cần biết là nó xảy ra ở phép nào. Ba cách kia đều hợp lý và đều bắt đầu từ giả định rằng lỗi nằm ở chỗ khác."
@@ -338,171 +338,162 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
   },
   {
     id: 1433,
-    slug: "dung-mo-hinh-ba-bao-cao-trong-excel",
-    title: "Excel, Bài 3: Dựng mô hình ba báo cáo trong Excel thật - liên kết, vòng lặp và ô kiểm tra",
-    subtitle: "Từ bố cục sheet đến ô cân đối bằng 0: quy trình dựng một mô hình chạy được",
-    duration: "13 phút",
-    difficulty: "Khó",
+    slug: "dung-mo-hinh-lien-ket-trong-bang-tinh",
+    title: "Excel, Bài 3: Dựng mô hình liên kết - ba bảng nối nhau, vòng lặp và ô kiểm tra",
+    subtitle: "Từ bố cục sheet tới ô kiểm bằng 0: quy trình dựng một mô hình chạy được",
+    duration: "8 phút",
+    difficulty: "Trung bình",
     emoji: "🔗",
     track: "professional",
-    whyItMatters:
-      "Chặng Mô hình tài chính đã dạy logic liên kết ba báo cáo. Bài này là phần thực thi: đặt gì ở sheet nào, xử lý vòng lặp lãi vay ra sao, và đặt ô kiểm tra ở đâu để mô hình tự báo lỗi thay vì để bạn phát hiện muộn.",
-    openingQuestion:
-      "Trong mô hình ba báo cáo, ô kiểm tra quan trọng nhất là ô nào?",
-    openingOptions: [
-      "Ô doanh thu của năm cuối cùng trong toàn bộ giai đoạn dự phóng chi tiết",
-      "Ô chênh lệch giữa tổng tài sản và tổng nguồn vốn - phải luôn bằng 0",
-      "Ô lợi nhuận sau thuế",
-      "Ô tỷ lệ tăng trưởng",
-    ],
-    correctOption: 1,
-    explanation:
-      "Bảng cân đối kế toán cân bằng là điều kiện cần để mô hình không có lỗi liên kết. Khi nó lệch, gần như chắc chắn có một khoản nào đó đã đi vào bảng cân đối mà không đi qua báo cáo lưu chuyển tiền tệ, hoặc ngược lại. Đặt ô này ở vị trí luôn nhìn thấy được, tô màu nổi bật, và kiểm tra nó sau mỗi thay đổi - đó là thói quen phân biệt người dựng mô hình có kỷ luật với người ghép số.",
-    diagram: [
-      { label: "Sheet giả định", arrow: true },
-      { label: "Sheet báo cáo lịch sử", arrow: true },
-      { label: "Sheet dự phóng + bảng hỗ trợ", arrow: true },
-      { label: "Ô kiểm tra cân đối = 0" },
-    ],
     interactiveType: "excel-three-statement",
+    whyItMatters:
+      "Một bảng tính dự báo dung lượng, chi phí và nhân sự chỉ hữu ích khi ba phần ấy nối vào nhau: đổi một giả định thì cả ba cùng đổi. Dựng được mối nối đó, và biết cách bắt lỗi trong nó, là kỹ năng phân biệt một mô hình dùng được với một tờ giấy đẹp.",
+    openingQuestion: "Vì sao ba bảng cần nối vào nhau thay vì tính riêng?",
+    openingOptions: [
+      "Vì đổi một giả định phải làm cả ba cùng đổi, nếu không chúng sẽ mâu thuẫn",
+      "Vì việc nối các bảng giúp giảm số lượng công thức phải viết trong mô hình",
+      "Vì các bảng riêng lẻ khó trình bày và khó theo dõi khi mô hình lớn dần lên",
+      "Vì cần một chỗ duy nhất để nhập dữ liệu đầu vào cho toàn bộ mô hình"
+    ],
+    correctOption: 0,
+    explanation:
+      "Ba bảng tính riêng thì mỗi bảng đúng theo giả định của nó, và không có gì đảm bảo ba bộ giả định ấy nhất quán. Tăng dự báo lưu lượng lên gấp đôi mà bảng chi phí vẫn dùng con số cũ thì mô hình vẫn chạy, vẫn ra số, và số đó vô nghĩa. Khi ba bảng nối vào nhau qua một bộ giả định duy nhất, việc đổi một ô kéo theo toàn bộ - và đó chính là điều làm mô hình trả lời được câu hỏi nếu thì. Ba lý do kia đều là tiện lợi về hình thức; lý do ở đây là điều kiện để mô hình có ý nghĩa.",
+    diagram: [
+      { label: "Một sheet giả định duy nhất, mọi thứ trỏ vào đó", arrow: true },
+      { label: "Bảng lưu lượng → bảng chi phí → bảng nhân sự", arrow: true },
+      { label: "Vòng lặp: chi phí ảnh hưởng ngược lên quy mô", arrow: true },
+      { label: "Ô kiểm tra phải bằng 0 ở mọi cột" }
+    ],
     realWorldExample: {
-      company: "Quy ước bố cục phổ biến trong ngành",
+      company: "Ba bảng, ba bộ giả định",
       description:
-        "Một mô hình bàn giao được thường có thứ tự sheet cố định: Bìa và hướng dẫn, Giả định, Số liệu lịch sử, Bảng hỗ trợ (khấu hao, vốn lưu động, nợ vay), Ba báo cáo, Định giá, và cuối cùng là Kết quả tóm tắt. Người nhận bàn giao chỉ cần nhìn tên sheet là biết bắt đầu đọc từ đâu, và biết mình chỉ được phép sửa sheet Giả định.",
+        "Một đội dựng ba bảng riêng để dự báo lưu lượng, chi phí hạ tầng và nhu cầu nhân sự. Khi lãnh đạo hỏi nếu tăng trưởng chậm một nửa thì sao, họ mất hai ngày để sửa cả ba và vẫn ra kết quả không khớp nhau. Mô hình nối lại trả lời cùng câu hỏi đó trong mười giây, và khác biệt không nằm ở công thức mà ở chỗ giả định chỉ được nhập một lần."
     },
     quiz: [
       {
-        question: "Vòng lặp trong mô hình tài chính phát sinh từ đâu?",
+        question: "Giả định của mô hình nên đặt ở đâu?",
         options: [
-          "Từ việc dùng quá nhiều hàm tra cứu lồng nhau trong cùng một công thức",
-          "Từ lãi vay: lãi phụ thuộc dư nợ, dư nợ lại phụ thuộc lãi",
-          "Từ việc liên kết dữ liệu qua lại giữa quá nhiều sheet trong cùng một file",
-          "Từ việc định dạng số không thống nhất giữa các vùng trong cùng bảng tính",
+          "Một sheet riêng, và không công thức nào chứa số cứng",
+          "Ngay cạnh phần tính toán để dễ theo dõi mối liên hệ giữa chúng",
+          "Trong các ô đầu mỗi bảng để mỗi phần tự chứa giả định của nó",
+          "Trong phần chú thích của từng công thức để giải thích nguồn gốc con số"
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Đây là vòng lặp kinh điển và cũng gần như là vòng lặp duy nhất được chấp nhận trong mô hình tài chính. Cách xử lý là bật tính toán lặp trong tùy chọn của Excel, kèm một công tắc để ngắt vòng lặp khi mô hình bị treo.",
+          "Số cứng nằm rải trong công thức là lỗi khó tìm nhất trong mọi bảng tính, vì nó không sai và cũng không hiện ra ở đâu. Gom hết vào một sheet thì mọi thứ có thể đổi đều nằm ở một chỗ, và mọi thứ ngoài chỗ đó là công thức thuần."
       },
       {
-        question: "Vì sao nên có công tắc ngắt vòng lặp (circuit breaker)?",
+        question: "Ô kiểm tra trong mô hình nên được thiết kế thế nào?",
         options: [
-          "Để mô hình tính toán nhanh hơn khi số vòng lặp được đặt ở mức cao",
-          "Để đặt lãi vay về 0, phá vòng lặp và tìm được nguyên nhân lỗi",
-          "Vì chuẩn mực kiểm toán yêu cầu mọi mô hình phải có cơ chế ngắt tính toán",
-          "Để giảm dung lượng file bằng cách hạn chế số công thức phải lưu lại",
+          "Bằng 0 khi mọi thứ đúng, và hiện rõ ngay khi khác 0",
+          "Tính ra tỷ lệ phần trăm sai lệch để biết mức độ nghiêm trọng của lỗi",
+          "Đặt ở cuối mô hình để kiểm tra kết quả tổng hợp sau khi tính xong",
+          "So sánh kết quả với mô hình của kỳ trước để phát hiện thay đổi bất thường"
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Không có công tắc, một lỗi nhỏ trong vòng lặp sẽ khiến toàn bộ mô hình hiển thị lỗi và bạn không còn thấy được số nào đúng số nào sai. Công tắc là thứ giúp bạn quay lại trạng thái chẩn đoán được.",
+          "Số 0 là giá trị dễ quét mắt qua nhất trong một hàng dài. Một ô kiểm cho ra 0,003 buộc người đọc phải quyết định xem thế là đúng hay sai, và với sức ép thời gian thì phần lớn sẽ cho qua. Bằng 0 hoặc khác 0 là phân loại không cần suy nghĩ."
       },
       {
-        question: "Nguyên tắc đặt công thức giữa các sheet nên như thế nào?",
+        question: "Vòng lặp trong mô hình xuất hiện khi nào?",
         options: [
-          "Càng nhiều liên kết chéo giữa các sheet càng tốt cho tính linh hoạt",
-          "Dữ liệu chảy một chiều, tránh liên kết qua lại giữa hai sheet",
-          "Dồn toàn bộ mô hình vào một sheet duy nhất để không phải liên kết gì cả",
-          "Mỗi công thức nên tham chiếu tới ít nhất ba sheet để tận dụng dữ liệu",
+          "Khi một đại lượng ảnh hưởng tới chính thứ đã tạo ra nó",
+          "Khi hai bảng cùng tham chiếu tới một ô giả định chung",
+          "Khi công thức của một ô trỏ tới ô nằm ở phía dưới nó trong cùng cột",
+          "Khi mô hình có quá nhiều tầng liên kết nên khó xác định thứ tự tính"
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Dòng chảy dữ liệu một chiều - từ giả định sang bảng hỗ trợ rồi sang báo cáo - giúp việc dò lỗi trở nên khả thi. Liên kết qua lại giữa hai sheet tạo ra vòng lặp ẩn rất khó tìm.",
+          "Chi phí hạ tầng phụ thuộc quy mô, quy mô phụ thuộc số tiền đầu tư được, và số tiền ấy phụ thuộc chi phí còn lại - vòng tròn khép kín. Bảng tính không giải trực tiếp được nó và phải lặp tới khi hội tụ, nên đây là chỗ duy nhất trong mô hình cần bật một tuỳ chọn đặc biệt."
       },
       {
-        question: "Bảng hỗ trợ (schedule) phục vụ mục đích gì?",
+        question: "Cách nào tránh được vòng lặp khi không thật sự cần nó?",
         options: [
-          "Chỉ để trình bày mô hình cho đẹp và dễ đọc khi in ra hoặc gửi đi",
-          "Tách logic phức tạp ra khỏi báo cáo chính để kiểm tra độc lập",
-          "Lưu trữ bản dự phòng của dữ liệu gốc trong trường hợp mô hình bị lỗi",
-          "Thay thế cho báo cáo lưu chuyển tiền tệ trong mô hình dự phóng nhiều năm",
+          "Dùng giá trị của kỳ trước thay vì giá trị của chính kỳ đang tính",
+          "Tách phần gây vòng lặp ra tính thủ công",
+          "Đơn giản công thức để bỏ phụ thuộc hai chiều",
+          "Đặt giá trị cố định cho đại lượng đó"
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Nếu nhồi toàn bộ logic vào báo cáo chính, mỗi ô sẽ chứa một công thức dài không ai kiểm tra nổi. Bảng hỗ trợ giữ cho báo cáo sạch và làm cho từng phần logic có thể được kiểm tra độc lập.",
+          "Thủ thuật này giải quyết phần lớn trường hợp và sai số của nó thường nhỏ hơn sai số của chính các giả định đầu vào. Nó cũng làm mô hình tính được trong một lượt, dễ dò lỗi hơn hẳn, và không phụ thuộc vào một tuỳ chọn mà người mở file có thể chưa bật."
       },
       {
-        question: "Dòng cân đối cuối cùng (plug) trong mô hình thường là gì?",
+        question: "Dấu hiệu nào cho thấy mô hình đã trở nên khó tin?",
         options: [
-          "Doanh thu dự phóng của năm cuối trong giai đoạn mô hình hóa",
-          "Tiền mặt dư thừa hoặc hạn mức vay quay vòng",
-          "Vốn chủ sở hữu, chỉnh cho khớp tổng tài sản",
-          "Chi phí bán hàng, ước theo tỷ lệ trên doanh thu",
+          "Không ai ngoài người dựng nó dám sửa một con số nào",
+          "Mô hình mất nhiều thời gian để tính lại sau mỗi lần thay đổi giả định",
+          "Số lượng sheet và công thức đã vượt quá mức có thể theo dõi được",
+          "Kết quả của mô hình khác xa so với những gì đã xảy ra trong thực tế"
         ],
-        correct: 1,
+        correct: 0,
         explanation:
-          "Khi doanh nghiệp thừa tiền, phần dư chảy vào tiền mặt. Khi thiếu, mô hình rút hạn mức vay quay vòng. Đây là cơ chế giúp bảng cân đối luôn cân, và cũng là nơi bạn đọc ra doanh nghiệp cần bao nhiêu vốn trong kịch bản đang chạy.",
-      },
-    ],
-    keyTakeaways: [
-      "Bố cục sheet theo dòng chảy một chiều: giả định, lịch sử, bảng hỗ trợ, ba báo cáo, định giá, tóm tắt",
-      "Vòng lặp lãi vay là vòng lặp duy nhất được chấp nhận - bật tính toán lặp và luôn kèm công tắc ngắt",
-      "Bảng hỗ trợ giữ cho báo cáo chính sạch và cho phép kiểm tra từng phần logic độc lập",
-      "Ô kiểm tra cân đối phải luôn hiển thị và luôn bằng 0; kiểm tra nó sau mỗi thay đổi",
+          "Đây là dấu hiệu sớm nhất và nó nói đúng điều cần biết: mô hình đã mất tính minh bạch. Một mô hình mà chỉ tác giả dám chạm vào thì mọi câu hỏi nếu thì đều phải đi qua một người, và nó ngừng là công cụ chung ngay từ lúc đó."
+      }
     ],
     practicePrompt: {
       question:
-        "Bảng cân đối trong mô hình của bạn lệch đúng 1.200 ở mọi năm dự phóng. Cách tìm lỗi hiệu quả nhất là gì?",
+        "Bạn nhận một bảng tính dự báo do người khác dựng và cần tin vào nó. Nên kiểm gì trước?",
       options: [
-        "Cộng thêm 1.200 vào dòng vốn chủ sở hữu cho bảng cân lại",
-        "Tìm khoản 1.200 bị bỏ sót ở một trong hai báo cáo",
-        "Xóa mô hình và dựng lại từ đầu cho chắc",
-        "Tắt tính toán lặp trong tuỳ chọn Excel",
+        "Tìm số cứng nằm trong công thức, và xem có ô kiểm tra nào không",
+        "Đọc lại toàn bộ công thức của các bảng để hiểu logic tính toán bên trong",
+        "So sánh kết quả của mô hình với số liệu thực tế của các kỳ đã qua",
+        "Hỏi người dựng về các giả định chính mà mô hình đang sử dụng"
       ],
-      correct: 1,
+      correct: 0,
       explanation:
-        "Ép cho cân bằng cách nhét số vào vốn chủ sở hữu là sai lầm nghiêm trọng nhất trong dựng mô hình: nó giấu lỗi thay vì sửa. Mức lệch cố định qua các năm là manh mối mạnh - hãy so từng dòng thay đổi trên bảng cân đối với dòng tương ứng trên báo cáo lưu chuyển tiền tệ để tìm ra khoản bị bỏ quên.",
+        "Hai thứ này kiểm được trong mười phút bằng công cụ dò của bảng tính và chúng nói ngay mô hình có được dựng cẩn thận hay không. Đọc hết công thức thì tốn hàng giờ, còn hỏi tác giả thì cho bạn giả định họ nhớ, không phải giả định đang nằm trong file."
     },
+    keyTakeaways: [
+      "Ba bảng riêng thì mỗi bảng đúng theo giả định của nó, và ba bộ giả định không khớp",
+      "Số cứng trong công thức là lỗi khó tìm nhất vì nó không sai và không hiện ra",
+      "Ô kiểm nên bằng 0 hoặc khác 0, không nên là một tỷ lệ cần diễn giải",
+      "Mô hình mà chỉ tác giả dám sửa đã ngừng là công cụ chung"
+    ],
     summary: {
-      keyIdea: "Mô hình tốt là mô hình tự phát hiện lỗi cho bạn",
-      formula: "Kiểm tra: Tổng tài sản − Tổng nguồn vốn = 0 ở mọi kỳ",
-      commonMistake: "Ép bảng cân đối cân bằng cách chèn số vào vốn chủ sở hữu, qua đó chôn vĩnh viễn một lỗi liên kết",
-      action: "Dựng lại mô hình ba báo cáo cho một doanh nghiệp nhỏ và đặt ít nhất ba ô kiểm tra tự động.",
+      keyIdea: "Mô hình có ý nghĩa khi đổi một giả định kéo theo toàn bộ, không phải khi mỗi bảng tự đúng",
+      commonMistake: "Rải số cứng trong công thức, khiến mô hình không trả lời được câu hỏi nếu thì",
+      action: "Gom mọi giả định vào một sheet, và đặt ô kiểm bằng 0 ở cuối mỗi bảng."
     },
     application: {
-      title: "Ba ô kiểm tra tối thiểu",
+      title: "Một sheet giả định, một hàng ô kiểm",
       message:
-        "Một: tổng tài sản trừ tổng nguồn vốn bằng 0. Hai: tiền cuối kỳ trên báo cáo lưu chuyển tiền tệ bằng tiền trên bảng cân đối. Ba: lợi nhuận sau thuế trên báo cáo kết quả kinh doanh bằng dòng đầu tiên của báo cáo lưu chuyển tiền tệ. Cả ba nên nằm cùng một khu vực và tô màu để thấy ngay khi lệch.",
-      secondary: "Đặt thêm một ô tổng hợp báo trạng thái chung để bạn chỉ cần liếc một chỗ duy nhất.",
+        "Mọi con số có thể đổi nằm trong một sheet duy nhất; mọi thứ khác là công thức. Cuối mỗi bảng có một ô kiểm phải bằng 0.",
+      secondary:
+        "Với mô hình nhận từ người khác, dùng công cụ dò để tìm số cứng trong công thức trước khi tin bất kỳ con số kết quả nào."
     },
     sections: [
       {
         type: "lead",
-        text: "Biết ba báo cáo liên kết với nhau thế nào là một chuyện; làm cho chúng thực sự liên kết trong một file Excel mà vẫn kiểm tra được lại là chuyện khác. Bài này đi qua đúng phần thực thi đó.",
+        text: "Một bảng tính dự báo chỉ hữu ích khi nó trả lời được câu hỏi nếu thì. Điều đó đòi hỏi các phần nối vào nhau, và mối nối ấy là phần khó nhất của việc dựng mô hình."
       },
+      { type: "heading", text: "Một nguồn giả định duy nhất" },
       {
-        type: "heading",
-        text: "Bố cục: dòng chảy một chiều",
+        type: "paragraph",
+        text: "Nguyên tắc quan trọng nhất là mọi con số có thể đổi đều nằm trong một sheet riêng, và không công thức nào chứa số cứng. Nghe hiển nhiên và bị vi phạm ở gần như mọi bảng tính, vì lúc đang dựng thì gõ thẳng con số vào công thức nhanh hơn. Cái giá đến sau: mô hình không trả lời được câu hỏi nếu thì, và không ai tìm ra vì sao."
       },
       {
         type: "list",
         items: [
-          "Sheet Giả định: nơi duy nhất có số nhập tay, tô màu xanh dương theo quy ước",
-          "Sheet Lịch sử: số liệu quá khứ đã kiểm toán, không sửa",
-          "Sheet Bảng hỗ trợ: khấu hao, vốn lưu động, nợ vay và lãi vay",
-          "Sheet Ba báo cáo: chỉ tổng hợp, mỗi ô là một công thức ngắn",
-          "Sheet Định giá và Tóm tắt: kết quả cuối cùng và các bảng độ nhạy",
-        ],
-      },
-      {
-        type: "heading",
-        text: "Vòng lặp lãi vay và cách sống chung với nó",
-      },
-      {
-        type: "paragraph",
-        text: "Lãi vay tính trên dư nợ bình quân, dư nợ phụ thuộc vào lượng tiền doanh nghiệp cần vay thêm, lượng tiền đó lại phụ thuộc vào lợi nhuận sau khi trừ lãi vay. Excel sẽ báo tham chiếu vòng. Cách xử lý chuẩn: bật tính toán lặp với số vòng lặp đủ lớn, và thêm một ô công tắc mà khi bật lên sẽ ép lãi vay về 0, giúp bạn phá vòng lặp bất cứ khi nào mô hình rơi vào trạng thái lỗi.",
+          "Một sheet giả định; mọi thứ khác chỉ chứa công thức",
+          "Ô kiểm ở cuối mỗi bảng, bằng 0 khi mọi thứ khớp",
+          "Vòng lặp chỉ bật khi thật sự cần; phần lớn trường hợp dùng giá trị kỳ trước",
+          "Đặt tên cho vùng dữ liệu thay vì tham chiếu bằng toạ độ ô"
+        ]
       },
       {
         type: "callout",
-        label: "Tuyệt đối không làm",
-        text: "Không bao giờ ép bảng cân đối cân bằng cách chèn một con số vào vốn chủ sở hữu hay một khoản phải trả nào đó. Đó là hành động biến một lỗi nhìn thấy được thành một lỗi vĩnh viễn không ai tìm ra - và nó sẽ đi theo mô hình đến tận bản báo cáo cuối cùng.",
+        label: "Ô kiểm phải là 0 hoặc không phải 0",
+        text: "Một ô kiểm cho ra tỷ lệ sai lệch buộc người đọc phải quyết định ngưỡng nào là chấp nhận được, và dưới sức ép thời gian thì mọi con số nhỏ đều được cho qua. Bằng 0 thì không cần diễn giải: mắt lướt qua một hàng số 0 và dừng lại ngay ở ô đầu tiên khác đi."
       },
       {
         type: "closing",
         lines: [
-          "Mô hình chạy được không đồng nghĩa với mô hình đúng.",
-          "Bài sau tập trung hoàn toàn vào việc làm cho sự khác biệt đó lộ ra: kiểm tra và dò lỗi.",
-        ],
-      },
-    ],
+          "Mô hình tốt không phải mô hình chính xác nhất, mà là mô hình người khác dám sửa.",
+          "Bài sau: biến mô hình thành thứ tự báo lỗi trước khi bạn kịp gửi nó đi."
+        ]
+      }
+    ]
   },
   {
     id: 1434,
@@ -514,7 +505,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     emoji: "🔍",
     track: "professional",
     whyItMatters:
-      "Một mô hình sai không bao giờ báo lỗi; nó chỉ đưa ra một con số trông hợp lý. Kỹ năng dò lỗi là thứ đứng giữa bạn và việc gửi một khuyến nghị đầu tư dựa trên một công thức lệch một dòng.",
+      "Một bảng tính sai không bao giờ báo lỗi; nó chỉ đưa ra một con số trông hợp lý. Kỹ năng dò lỗi là thứ đứng giữa bạn và việc chốt một kế hoạch nâng cấp hạ tầng dựa trên một công thức lệch một dòng.",
     openingQuestion:
       "Bạn nghi ngờ một ô kết quả sai nhưng công thức trông có vẻ đúng. Kỹ thuật kiểm tra hiệu quả nhất là gì?",
     openingOptions: [
@@ -534,9 +525,9 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     ],
     interactiveType: "excel-audit",
     realWorldExample: {
-      company: "Sai sót mô hình trong các giao dịch thực tế",
+      company: "Sai sót bảng tính trong các dự án thực tế",
       description:
-        "Đã có những giao dịch lớn phải điều chỉnh lại giá trị hàng trăm triệu đô la vì một lỗi công thức đơn giản trong bảng tính - thường là một vùng cộng bị thiếu vài dòng, hoặc một dòng bị ẩn không được tính vào tổng. Không lỗi nào trong số đó là lỗi tài chính phức tạp; tất cả đều là lỗi mà một quy trình rà soát mười phút có thể bắt được.",
+        "Đã có những dự án lớn phải mua thừa hàng trăm máy chủ vì một lỗi công thức đơn giản trong bảng tính dự phóng tải - thường là một vùng cộng bị thiếu vài dòng, hoặc một dòng bị ẩn không được tính vào tổng. Không lỗi nào trong số đó là lỗi kỹ thuật phức tạp; tất cả đều là lỗi mà một quy trình rà soát mười phút có thể bắt được.",
     },
     quiz: [
       {
@@ -573,7 +564,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Đây là lớp phòng vệ mạnh nhất và cũng rẻ nhất. Một mô hình cho ra biên lợi nhuận gộp 95% cho doanh nghiệp bán lẻ là sai ở đâu đó, dù mọi công thức đều chạy trơn tru.",
+          "Đây là lớp phòng vệ mạnh nhất và cũng rẻ nhất. Một bảng tính cho ra tỷ lệ trúng cache 95% cho một hệ thống ghi nhiều hơn đọc là sai ở đâu đó, dù mọi công thức đều chạy trơn tru.",
       },
       {
         question: "Vì sao dòng và cột bị ẩn là nguồn lỗi nguy hiểm?",
@@ -617,7 +608,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       ],
       correct: 1,
       explanation:
-        "Chạy kịch bản cực đoan là bước hay bị bỏ qua nhưng rất hiệu quả: đặt tăng trưởng doanh thu về âm 50% và xem mô hình có còn hành xử hợp lý không. Mô hình sai thường vẫn trông ổn ở kịch bản cơ sở và chỉ lộ ra ở các giá trị biên.",
+        "Chạy kịch bản cực đoan là bước hay bị bỏ qua nhưng rất hiệu quả: đặt tăng trưởng lưu lượng về âm 50% và xem bảng tính có còn hành xử hợp lý không. Mô hình sai thường vẫn trông ổn ở kịch bản cơ sở và chỉ lộ ra ở các giá trị biên.",
     },
     summary: {
       keyIdea: "Không phải tìm lỗi khi nghi ngờ, mà thiết kế mô hình để lỗi tự lộ ra",
@@ -655,7 +646,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       },
       {
         type: "paragraph",
-        text: "Kỹ thuật hiệu quả nhất cũng là kỹ thuật đơn giản nhất: mỗi bảng có một dòng riêng tính hiệu số của hai thứ đáng lẽ phải bằng nhau, và một ô tổng gom mọi dòng kiểm tra của cả file. Bảng cân đối: tổng tài sản trừ tổng nguồn vốn. Bảng nợ: số dư cuối kỳ trừ (đầu kỳ + vay thêm − trả bớt). Bảng dòng tiền: tiền cuối kỳ trên bảng lưu chuyển trừ tiền cuối kỳ trên bảng cân đối. Tất cả phải ra 0. Đặt định dạng có điều kiện tô đỏ khi khác 0, và để ô tổng đó ở góc trên cùng của mọi sheet - lỗi sẽ tự báo ngay khi bạn vừa gõ sai, chứ không đợi tới lúc gửi đi.",
+        text: "Kỹ thuật hiệu quả nhất cũng là kỹ thuật đơn giản nhất: mỗi bảng có một dòng riêng tính hiệu số của hai thứ đáng lẽ phải bằng nhau, và một ô tổng gom mọi dòng kiểm tra của cả file. Bảng dung lượng: tổng công suất cấp trừ tổng công suất đã phân bổ. Bảng máy chủ: số máy cuối kỳ trừ (đầu kỳ + thêm mới − gỡ bỏ). Bảng lưu lượng: tổng lượt gọi trên bảng theo dịch vụ trừ tổng lượt gọi trên bảng theo vùng. Tất cả phải ra 0. Đặt định dạng có điều kiện tô đỏ khi khác 0, và để ô tổng đó ở góc trên cùng của mọi sheet - lỗi sẽ tự báo ngay khi bạn vừa gõ sai, chứ không đợi tới lúc gửi đi.",
       },
       {
         type: "conceptTable",
@@ -811,7 +802,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       ],
       correct: 1,
       explanation:
-        "Đây là bài toán đầu tư đơn giản: ba giờ bỏ ra một lần đổi lấy khoảng hai mươi giờ tiết kiệm mỗi năm, cộng thêm lợi ích lớn hơn nhiều là số liệu giữa các kỳ được xử lý y hệt nhau nên thực sự so sánh được với nhau.",
+        "Đây là phép đánh đổi đơn giản: ba giờ bỏ ra một lần đổi lấy khoảng hai mươi giờ tiết kiệm mỗi năm, cộng thêm lợi ích lớn hơn nhiều là số liệu giữa các kỳ được xử lý y hệt nhau nên thực sự so sánh được với nhau.",
     },
     summary: {
       keyIdea: "Làm sạch dữ liệu là quy trình cần được tài liệu hóa, không phải công việc tay chân lặp lại",
@@ -822,7 +813,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       title: "Nguyên tắc nguồn sự thật duy nhất",
       message:
         "Giữ dữ liệu gốc ở một nơi không ai chỉnh sửa. Mọi biến đổi diễn ra trong các bước có thể xem lại. Kết quả cuối được nạp ra một bảng riêng. Ba lớp tách bạch này khiến mọi con số trong báo cáo đều truy vết ngược về nguồn được.",
-      secondary: "Đây chính là nguyên tắc tách lớp input - calculation - output của mô hình tài chính, áp dụng cho dữ liệu.",
+      secondary: "Đây chính là nguyên tắc tách lớp input - calculation - output của một đường ống dữ liệu, áp dụng cho khâu làm sạch.",
     },
     sections: [
       {
@@ -890,15 +881,15 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
   },
   {
     id: 1436,
-    slug: "sql-co-ban-cho-dan-tai-chinh",
-    title: "Excel, Bài 6: SQL cơ bản cho dân tài chính - lấy đúng dữ liệu mình cần",
+    slug: "sql-co-ban-cho-ky-su-he-thong",
+    title: "Excel, Bài 6: SQL cơ bản cho kỹ sư hệ thống - lấy đúng dữ liệu mình cần",
     subtitle: "SELECT, WHERE, GROUP BY, JOIN: đủ để tự truy vấn thay vì chờ bộ phận dữ liệu",
     duration: "12 phút",
     difficulty: "Trung bình",
     emoji: "🗄️",
     track: "professional",
     whyItMatters:
-      "Khi dữ liệu vượt quá giới hạn của bảng tính, hoặc khi bạn phải chờ bộ phận dữ liệu ba ngày cho mỗi lần đổi điều kiện lọc, SQL là thứ đưa quyền chủ động về tay bạn. Bốn câu lệnh đầu tiên đã giải quyết phần lớn nhu cầu của một người làm phân tích tài chính.",
+      "Khi dữ liệu vượt quá giới hạn của bảng tính, hoặc khi bạn phải chờ bộ phận dữ liệu ba ngày cho mỗi lần đổi điều kiện lọc, SQL là thứ đưa quyền chủ động về tay bạn. Bốn câu lệnh đầu tiên đã giải quyết phần lớn nhu cầu của một người làm kỹ thuật.",
     openingQuestion:
       "Trong SQL, GROUP BY dùng để làm gì?",
     openingOptions: [
@@ -909,7 +900,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     ],
     correctOption: 1,
     explanation:
-      "GROUP BY tương đương với PivotTable trong Excel: gom dữ liệu chi tiết thành các nhóm rồi tính toán trên từng nhóm. Ví dụ, tổng doanh thu theo từng chi nhánh và từng tháng. Đây là câu lệnh mà người làm phân tích tài chính dùng nhiều nhất, vì gần như mọi báo cáo đều là kết quả của việc gom dữ liệu giao dịch theo một chiều nào đó.",
+      "GROUP BY tương đương với PivotTable trong Excel: gom dữ liệu chi tiết thành các nhóm rồi tính toán trên từng nhóm. Ví dụ, số lượt lỗi theo từng dịch vụ và từng giờ. Đây là câu lệnh mà người vận hành hệ thống dùng nhiều nhất, vì gần như mọi báo cáo đều là kết quả của việc gom dữ liệu sự kiện theo một chiều nào đó.",
     diagram: [
       { label: "SELECT: chọn cột", arrow: true },
       { label: "FROM + JOIN: từ bảng nào", arrow: true },
@@ -918,9 +909,9 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     ],
     interactiveType: "excel-sql",
     realWorldExample: {
-      company: "Phân tích danh mục tín dụng tại ngân hàng",
+      company: "Điều tra sự cố trên kho log tập trung",
       description:
-        "Một chuyên viên phân tích tín dụng cần biết dư nợ và tỷ lệ nợ quá hạn theo từng ngành nghề và từng vùng miền. Dữ liệu nằm ở hai bảng: bảng khoản vay và bảng thông tin khách hàng, với hàng triệu dòng - vượt xa khả năng của bảng tính. Một truy vấn khoảng mười dòng lệnh trả về đúng bảng tổng hợp cần thiết trong vài giây, và có thể chỉnh điều kiện lọc chạy lại ngay lập tức.",
+        "Một kỹ sư trực sự cố cần biết số lượt lỗi và tỷ lệ lỗi theo từng dịch vụ và từng vùng máy chủ. Dữ liệu nằm ở hai bảng: bảng lượt gọi và bảng khai báo dịch vụ, với hàng triệu dòng - vượt xa khả năng của bảng tính. Một truy vấn khoảng mười dòng lệnh trả về đúng bảng tổng hợp cần thiết trong vài giây, và có thể chỉnh điều kiện lọc chạy lại ngay lập tức.",
     },
     quiz: [
       {
@@ -933,7 +924,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Muốn lọc các giao dịch của năm 2025 thì dùng WHERE. Muốn chỉ lấy những chi nhánh có tổng doanh thu trên 10 tỷ thì dùng HAVING, vì điều kiện đó chỉ tồn tại sau khi đã gom nhóm và tính tổng.",
+          "Muốn lọc các lượt gọi của tháng 8 thì dùng WHERE. Muốn chỉ lấy những dịch vụ có tổng số lỗi trên 1.000 thì dùng HAVING, vì điều kiện đó chỉ tồn tại sau khi đã gom nhóm và tính tổng.",
       },
       {
         question: "INNER JOIN và LEFT JOIN khác nhau ra sao?",
@@ -945,12 +936,12 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         ],
         correct: 0,
         explanation:
-          "Đây là phân biệt quan trọng bậc nhất trong thực tế. Dùng INNER JOIN khi ghép danh mục với dữ liệu giá sẽ âm thầm làm biến mất các mã không có giá, khiến tổng danh mục bị thiếu mà bạn không hề biết.",
+          "Đây là phân biệt quan trọng bậc nhất trong thực tế. Dùng INNER JOIN khi ghép bảng lượt gọi với bảng khai báo dịch vụ sẽ âm thầm làm biến mất các dịch vụ chưa khai báo, khiến tổng lưu lượng bị thiếu mà bạn không hề biết.",
       },
       {
         question: "Vì sao SQL phù hợp hơn bảng tính khi dữ liệu lớn?",
         options: [
-          "Vì SQL có sẵn nhiều hàm tài chính chuyên dụng hơn so với bảng tính",
+          "Vì SQL có sẵn nhiều hàm thống kê chuyên dụng hơn so với bảng tính",
           "Vì dữ liệu được xử lý ngay tại nơi lưu trữ, chỉ trả về kết quả tổng hợp",
           "Vì SQL tự động phát hiện và cảnh báo các giá trị bất thường trong dữ liệu",
           "Vì kết quả truy vấn SQL luôn đúng nên không cần bước kiểm tra lại nữa",
@@ -985,23 +976,23 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
       },
     ],
     keyTakeaways: [
-      "Bốn mệnh đề SELECT, WHERE, GROUP BY, JOIN đủ cho phần lớn nhu cầu phân tích tài chính",
+      "Bốn mệnh đề SELECT, WHERE, GROUP BY, JOIN đủ cho phần lớn nhu cầu phân tích hệ thống",
       "WHERE lọc dòng trước khi gom nhóm; HAVING lọc nhóm sau khi đã tổng hợp",
       "LEFT JOIN giữ trọn bảng bên trái; INNER JOIN có thể âm thầm làm mất dòng không khớp",
       "Luôn đối chiếu kết quả truy vấn với một con số tổng đã biết trước khi sử dụng",
     ],
     practicePrompt: {
       question:
-        "Bạn ghép bảng danh mục 200 mã với bảng giá bằng INNER JOIN và kết quả chỉ còn 187 dòng. Nên làm gì?",
+        "Bạn ghép bảng 200 dịch vụ với bảng lượt gọi bằng INNER JOIN và kết quả chỉ còn 187 dòng. Nên làm gì?",
       options: [
         "Chấp nhận 187 dòng vì chênh lệch nhỏ",
-        "Đổi sang LEFT JOIN để thấy 13 mã thiếu giá",
+        "Đổi sang LEFT JOIN để thấy 13 dịch vụ chưa có lượt gọi",
         "Nhân kết quả với hệ số 200 chia 187 để bù lại",
-        "Chạy lại truy vấn nhiều lần cho đến khi đủ 200",
+        "Chạy lại truy vấn nhiều lần cho đến khi đủ 200 dòng",
       ],
       correct: 1,
       explanation:
-        "Đây chính là kiểu lỗi im lặng nguy hiểm nhất trong phân tích dữ liệu: tổng danh mục bị thiếu 13 mã và mọi tỷ trọng đều sai, nhưng không có bất kỳ thông báo lỗi nào. LEFT JOIN buộc phần dữ liệu thiếu phải hiện ra để bạn xử lý một cách có ý thức.",
+        "Đây chính là kiểu lỗi im lặng nguy hiểm nhất trong phân tích dữ liệu: bảng tổng hợp thiếu 13 dịch vụ và mọi tỷ trọng đều sai, nhưng không có bất kỳ thông báo lỗi nào. LEFT JOIN buộc phần dữ liệu thiếu phải hiện ra để bạn xử lý một cách có ý thức.",
     },
     summary: {
       keyIdea: "SQL cho bạn quyền tự lấy đúng dữ liệu cần, thay vì chờ người khác và nhận thứ gần đúng",
@@ -1012,7 +1003,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
     application: {
       title: "Đủ dùng là bao nhiêu",
       message:
-        "Với vai trò phân tích tài chính, bạn không cần thành thạo tối ưu truy vấn hay thiết kế cơ sở dữ liệu. Bốn mệnh đề trong bài này cùng vài hàm tổng hợp đã bao phủ phần lớn công việc. Phần còn lại học dần khi gặp nhu cầu thật.",
+        "Với vai trò phát triển hay vận hành, bạn không cần thành thạo tối ưu truy vấn hay thiết kế cơ sở dữ liệu. Bốn mệnh đề trong bài này cùng vài hàm tổng hợp đã bao phủ phần lớn công việc. Phần còn lại học dần khi gặp nhu cầu thật.",
       secondary: "Mục tiêu không phải trở thành kỹ sư dữ liệu, mà là không còn phải chờ ai để có được con số mình cần.",
     },
     sections: [
@@ -1034,8 +1025,8 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
         ],
         example: {
           title: "Đọc một truy vấn thực tế",
-          calculation: "Tổng dư nợ theo ngành, chỉ lấy khoản vay còn hiệu lực, chỉ hiện ngành có dư nợ trên 100 tỷ",
-          result: "WHERE lọc khoản vay, GROUP BY gom theo ngành, HAVING lọc ngành theo tổng",
+          calculation: "Tổng lượt gọi theo dịch vụ, chỉ lấy lượt còn trong hạn lưu trữ, chỉ hiện dịch vụ có trên 100 nghìn lượt",
+          result: "WHERE lọc lượt gọi, GROUP BY gom theo dịch vụ, HAVING lọc dịch vụ theo tổng",
           explanation:
             "Ba tầng lọc ở ba thời điểm khác nhau. Nhầm lẫn giữa WHERE và HAVING là lỗi phổ biến nhất, và nó cho ra kết quả sai chứ không báo lỗi.",
         },
