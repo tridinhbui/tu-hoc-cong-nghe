@@ -1097,7 +1097,6 @@ export const MOBILE_APPS_VN_LESSONS: Lesson[] = [
     difficulty: "Trung bình",
     emoji: "🧮",
     track: "personal",
-    interactiveType: "profit-calc",
     whyItMatters:
       "Con số lượt tải là thứ dễ khoe nhất và ít liên quan nhất tới việc ứng dụng có nuôi nổi chính nó hay không. Phép tính trong bài này ngắn, làm được trên giấy, và nó trả lời câu hỏi mà mọi chỉ số khác né tránh.",
     openingQuestion: "Tỷ lệ người dùng miễn phí chuyển sang trả tiền ở phần lớn ứng dụng nằm ở mức nào?",

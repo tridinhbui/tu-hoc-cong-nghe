@@ -5,6 +5,17 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   NotAuthenticatedError,
+  adminResyncAllUserStats,
+  applyWorldBossDamage,
+  claimStudyRoomWeeklyReward,
+  grantCoins,
+  joinOrCreateStudyRoom,
+  joinStudyRoom,
+  purchaseCosmetic,
+  recordQuizMistake,
+  syncLessonsAtomic,
+  toggleChatMessageReaction,
+  weeklyRematchStudyRooms,
   incrementDocumentDownload,
   leaveStudyRoom,
   markAdminChatMessagesSeen,
@@ -969,5 +980,157 @@ describe.skipIf(!hasLocalData)("NHÓM B - các hàm ghi", () => {
     const row2 = await recordStudyRoomQuizAttempt(db, tv.user_id, tv.room_id, "  ", 2, 4);
     expect(row2!.track).toBe("personal");
     expect(row2!.percent).toBe(50);
+  });
+});
+
+describe.skipIf(!hasLocalData)("NHÓM C - cần nguyên tử", () => {
+  const so = async (sql: string, ...a: unknown[]) =>
+    (await db.prepare(sql).bind(...a).all().then((r) => r.results as { c: number }[]))[0].c;
+  const AI = async () =>
+    (await db.prepare("select id from user_profiles limit 1").bind().all()
+      .then((r) => r.results as { id: string }[]))[0].id;
+
+  it("grantCoins kẹp theo trần nguồn, không tin số client gửi", async () => {
+    const u = await AI();
+    // wheel trần 100: xin 999999 chỉ nhận 100.
+    const r = await grantCoins(db, u, "wheel", `test-${Date.now()}`, 999999);
+    expect(r.granted).toBe(100);
+    expect(r.duplicate).toBe(false);
+    await expect(grantCoins(db, u, "khong-co-that", "x", 10)).rejects.toThrow("Nguồn không hợp lệ");
+    await expect(grantCoins(db, "", "wheel", "x", 10)).rejects.toThrow(NotAuthenticatedError);
+  });
+
+  it("grantCoins cùng ref hai lần chỉ cộng một lần", async () => {
+    const u = await AI();
+    const ref = `dup-${Date.now()}`;
+    const truoc = await so("select coins as c from user_profiles where id = ?", u);
+    const a = await grantCoins(db, u, "game", ref, 50);
+    const b = await grantCoins(db, u, "game", ref, 50);
+    expect(a.granted).toBe(50);
+    expect(b.granted).toBe(0);
+    expect(b.duplicate).toBe(true);
+    expect(await so("select coins as c from user_profiles where id = ?", u)).toBe(truoc + 50);
+  });
+
+  it("purchaseCosmetic KHÔNG trừ tiền khi không đủ xu", async () => {
+    // Đây là bất biến quan trọng nhất của cả nhóm C: điều kiện nằm TRONG lệnh
+    // ghi (`where coins >= ?`), nên không có khoảng hở giữa lúc kiểm và lúc trừ.
+    const mon = (await db
+      .prepare("select asset_key, price from gamification_assets where price is not null order by price desc limit 1")
+      .bind().all().then((r) => r.results as { asset_key: string; price: number }[]))[0];
+    if (!mon) return;
+    const ngheo = (await db
+      .prepare("select id, coins from user_profiles where coalesce(coins,0) < ? limit 1")
+      .bind(mon.price).all().then((r) => r.results as { id: string; coins: number }[]))[0];
+    if (!ngheo) return;
+
+    await expect(purchaseCosmetic(db, ngheo.id, mon.asset_key)).rejects.toThrow("Không đủ xu");
+    expect(await so("select coalesce(coins,0) as c from user_profiles where id = ?", ngheo.id))
+      .toBe(ngheo.coins ?? 0);
+  });
+
+  it("toggleChatMessageReaction: bật rồi tắt, và chặn người không phải chủ", async () => {
+    const m = (await db.prepare("select id, user_id from chat_messages limit 1")
+      .bind().all().then((r) => r.results as { id: number; user_id: string }[]))[0];
+    if (!m) return;
+    await expect(toggleChatMessageReaction(db, "nguoi-khac", m.id, "👍")).rejects.toThrow("Not authorized");
+    await expect(toggleChatMessageReaction(db, m.user_id, 999999999, "👍")).rejects.toThrow("Message not found");
+
+    const dem = () => so("select count(*) as c from chat_message_reactions where message_id = ? and user_id = ? and emoji = '🔥'", m.id, m.user_id);
+    const truoc = await dem();
+    await toggleChatMessageReaction(db, m.user_id, m.id, "🔥");
+    expect(await dem()).toBe(truoc === 0 ? 1 : 0);
+    await toggleChatMessageReaction(db, m.user_id, m.id, "🔥");
+    expect(await dem()).toBe(truoc);
+  });
+
+  it("recordQuizMistake: sai thì tăng đếm, đúng thì đánh dấu đã giải quyết", async () => {
+    const u = await AI();
+    const L = 999001, Q = 7;
+    await recordQuizMistake(db, u, L, Q, false, "hash-a");
+    await recordQuizMistake(db, u, L, Q, false, "hash-b");
+    const row = (await db
+      .prepare("select wrong_count, resolved, question_hash from quiz_mistakes where user_id=? and lesson_id=? and question_index=?")
+      .bind(u, L, Q).all().then((r) => r.results as { wrong_count: number; resolved: number; question_hash: string }[]))[0];
+    expect(row.wrong_count).toBe(2);
+    expect(row.resolved).toBe(0);
+    expect(row.question_hash).toBe("hash-b"); // lần mới nhất thắng
+
+    await recordQuizMistake(db, u, L, Q, true);
+    expect(await so("select resolved as c from quiz_mistakes where user_id=? and lesson_id=? and question_index=?", u, L, Q)).toBe(1);
+  });
+
+  it("joinStudyRoom ném khi phòng đã đầy, và rời phòng cũ trước", async () => {
+    const u = await AI();
+    const day = (await db
+      .prepare(`select r.id, r.max_members from study_rooms r
+                 where (select count(*) from study_room_members m
+                         where m.room_id = r.id and m.left_at is null) >= r.max_members limit 1`)
+      .bind().all().then((r) => r.results as { id: number }[]))[0];
+    if (day) await expect(joinStudyRoom(db, u, day.id)).rejects.toThrow("Room is full");
+    await expect(joinStudyRoom(db, u, 999999999)).rejects.toThrow("Room not found");
+  });
+
+  it("joinOrCreateStudyRoom: chủ đề lạ bị chặn, và người dùng chỉ ở một phòng", async () => {
+    const u = await AI();
+    await expect(joinOrCreateStudyRoom(db, u, "khong-co-that")).rejects.toThrow("Invalid topic");
+    const id = await joinOrCreateStudyRoom(db, u, "personal");
+    expect(id).toBeGreaterThan(0);
+    expect(await so("select count(*) as c from study_room_members where user_id = ? and left_at is null", u)).toBe(1);
+  });
+
+  it("applyWorldBossDamage kẹp điểm ở 15, không nhận số từ client", async () => {
+    const boss = (await db.prepare("select id from world_bosses where is_active = 1 limit 1")
+      .bind().all().then((r) => r.results as { id: string }[]))[0];
+    await expect(applyWorldBossDamage(db, await AI(), "x", 0)).rejects.toThrow("Không có sát thương");
+    if (!boss) return;
+    const r = await applyWorldBossDamage(db, await AI(), boss.id, 99999);
+    expect(r.damage_applied).toBe(15 * 6000); // kẹp, không phải 99999*6000
+    expect(r.current_hp).toBeGreaterThanOrEqual(0);
+  });
+
+  it("syncLessonsAtomic TỪ CHỐI chạy khi không có batch()", async () => {
+    // Hàm này XOÁ các bài không có trong payload, và hai bảng dữ liệu người học
+    // cascade theo lessons(id). Chạy nửa vời là mất dữ liệu, nên phải từ chối.
+    const khongBatch = { prepare: db.prepare.bind(db) } as unknown as typeof db;
+    await expect(syncLessonsAtomic(khongBatch, [])).rejects.toThrow("cần batch()");
+  });
+
+  it("syncLessonsAtomic chặn payload trùng id hoặc trùng slug", async () => {
+    const a = { id: 1, slug: "x", title: "A" };
+    await expect(syncLessonsAtomic(db, [a, { ...a, slug: "y" }])).rejects.toThrow("duplicate lesson ids");
+    await expect(syncLessonsAtomic(db, [a, { ...a, id: 2 }])).rejects.toThrow("duplicate lesson slugs");
+  });
+
+  it("adminResyncAllUserStats chạy được và trả số người bị đổi", async () => {
+    const n = await adminResyncAllUserStats(db);
+    expect(typeof n).toBe("number");
+    // Chạy lần hai ngay sau đó thì không còn ai lệch nữa.
+    expect(await adminResyncAllUserStats(db)).toBe(0);
+  });
+
+  it("weeklyRematchStudyRooms chạy trọn và không để ai ở hai phòng", async () => {
+    const r = await weeklyRematchStudyRooms(db, (a) => a); // xáo cố định để lặp lại được
+    expect(r.rooms_created).toBeGreaterThanOrEqual(0);
+    expect(r.users_matched).toBeGreaterThanOrEqual(0);
+    const haiPhong = await so(
+      `select count(*) as c from (
+         select user_id from study_room_members where left_at is null
+          group by user_id having count(*) > 1)`
+    );
+    expect(haiPhong).toBe(0);
+  });
+
+  it("claimStudyRoomWeeklyReward không cho nhận hai lần trong cùng tuần", async () => {
+    const tv = (await db
+      .prepare("select room_id, user_id from study_room_members where left_at is null limit 1")
+      .bind().all().then((r) => r.results as { room_id: number; user_id: string }[]))[0];
+    if (!tv) return;
+    const a = await claimStudyRoomWeeklyReward(db, tv.user_id, tv.room_id);
+    const b = await claimStudyRoomWeeklyReward(db, tv.user_id, tv.room_id);
+    // Hoặc chưa đủ nhiệm vụ (cả hai lần đều false), hoặc lần đầu thành công và
+    // lần hai báo đã nhận. Không bao giờ hai lần cùng ok.
+    expect(a.ok && b.ok).toBe(false);
+    if (a.ok) expect(b.message).toContain("đã nhận thưởng rồi");
   });
 });

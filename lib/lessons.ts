@@ -59589,192 +59589,183 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1019,
-    "slug": "inventory-turnover",
-    "title": "Inventory - Hàng Tồn Kho",
-    "subtitle": "Inventory Turnover, DSI, DOH và Supply Chain",
+    "slug": "ton-dong-cong-viec-vong-quay-va-so-ngay-ton",
+    "title": "Tồn đọng công việc: vòng quay và số ngày tồn",
+    "subtitle": "Hai cách đọc cùng một đống việc đang chờ, và chúng dẫn tới hai hành động khác nhau.",
     "duration": "6 phút",
     "difficulty": "Trung bình",
+    "track": "bonus",
     "emoji": "📦",
-    "openingQuestion": "Inventory turnover giảm mạnh thường báo hiệu điều gì?",
+    "interactiveType": "profit-calc",
+    "whyItMatters": "Mọi đội đều có một đống việc đang chờ, và phần lớn chỉ đo nó bằng số lượng - con số ít thông tin nhất trong ba con số có thể đo.",
+    "openingQuestion": "Đội bạn có 120 hạng mục đang chờ. Con số đó nói lên điều gì?",
     "openingOptions": [
-      "Hàng bán chậm hơn",
-      "Lợi nhuận chắc chắn tăng",
-      "Tiền mặt tăng ngay",
-      "Không có ý nghĩa"
+      "Rất ít - phải biết mỗi tuần vào bao nhiêu và ra bao nhiêu mới đọc được",
+      "Khối lượng công việc tồn đọng đang ở mức cao và cần được xử lý",
+      "Đội đang nhận nhiều yêu cầu hơn năng lực xử lý hiện tại của họ",
+      "Cần so sánh với chính số lượng của các đội khác để đánh giá được mức này"
     ],
     "correctOption": 0,
-    "explanation": "Vòng quay hàng tồn kho lấy giá vốn chia tồn kho bình quân, cho biết trong năm doanh nghiệp bán hết và nhập lại kho bao nhiêu lần. Quy thành số ngày tồn kho thì dễ đọc hơn khi so sánh. Điều đáng theo dõi là chiều thay đổi: vòng quay chậm dần nghĩa là vốn bị giam lâu hơn và rủi ro phải xả giá tăng lên. Nhưng vòng quay tăng đột biến cũng cần kiểm tra - nó có thể là bán chạy, mà cũng có thể là vừa xả kho.",
+    "explanation": "Một trăm hai mươi hạng mục với tốc độ ra sáu mươi mỗi tuần là hai tuần chờ; cũng con số đó với tốc độ ra ba mỗi tuần là bốn mươi tuần. Cùng một đống việc, hai tình huống hoàn toàn khác nhau - và số lượng tuyệt đối không phân biệt được, đúng như tồn đọng của một hàng đợi kỹ thuật.",
     "diagram": [
       {
-        "label": "COGS",
+        "label": "Ba con số: số lượng, tốc độ ra, và SỐ NGÀY TỒN",
         "arrow": true
       },
       {
-        "label": "Average inventory",
+        "label": "Số ngày tồn = số lượng chia cho tốc độ ra",
         "arrow": true
       },
       {
-        "label": "Inventory turnover",
+        "label": "Nó trả lời câu người yêu cầu quan tâm: bao giờ tới lượt tôi",
         "arrow": true
       },
       {
-        "label": "Days inventory outstanding",
-        "arrow": false
+        "label": "Và tuổi hạng mục CŨ NHẤT nói thứ mà trung bình che mất"
       }
     ],
-    "interactiveType": "profit-calc",
     "realWorldExample": {
-      "company": "Zara",
-      "description": "Fast fashion thành công một phần vì vòng quay tồn kho nhanh, giảm rủi ro hàng lỗi mốt."
+      "company": "Hạng mục cũ nhất",
+      "description": "Một đống việc có số ngày tồn trung bình hai tuần vẫn có thể chứa những hạng mục đã nằm đó mười tám tháng - vì đội luôn lấy việc mới nhất hoặc dễ nhất. Tuổi của hạng mục cũ nhất là con số duy nhất bắt được điều đó."
     },
     "quiz": [
       {
-        "question": "DIO tăng mạnh thường hàm ý gì?",
+        "question": "Số ngày tồn được tính thế nào và nó trả lời câu gì?",
         "options": [
-          "Mất nhiều ngày hơn để bán hết hàng",
-          "Tồn kho không liên quan tới vòng quay",
-          "Hàng được bán ngay khi vừa nhập về",
-          "ROIC sẽ tự động tăng lên theo DIO"
+          "Số lượng chia cho tốc độ ra; nó trả lời bao giờ tới lượt một hạng mục mới",
+          "Tổng thời gian chờ của mọi hạng mục chia cho số hạng mục đang có",
+          "Khoảng cách từ lúc hạng mục cũ nhất vào tới thời điểm hiện tại",
+          "Số ngày trung bình mà đội thật sự cần để có thể hoàn thành một hạng mục điển hình"
         ],
         "correct": 0,
-        "explanation": "DIO là số ngày trung bình hàng nằm trong kho trước khi bán được, nên tăng mạnh nghĩa là tiền đã bỏ ra mua hàng bị chôn lâu hơn - vốn lưu động phải nhiều hơn, và rủi ro hàng ế hoặc lỗi mốt cũng tăng theo. Hàng bán ngay khi vừa nhập là mô tả DIO rất THẤP. Tồn kho nằm ngay trong công thức vòng quay nên không thể không liên quan, còn ROIC thì tiền kẹt trong kho kéo xuống chứ không đẩy lên."
+        "explanation": "Lựa chọn thứ tư mô tả thời gian XỬ LÝ, một con số khác hẳn và thường nhỏ hơn nhiều. Phần lớn thời gian một hạng mục nằm trong đống việc là thời gian CHỜ, không phải thời gian làm."
       },
       {
-        "question": "Một công ty thời trang có DIO tăng từ 60 ngày lên 120 ngày trong một năm, trong khi doanh thu vẫn tăng nhẹ. Điều gì đáng lo nhất ở đây?",
+        "question": "Vì sao tuổi của hạng mục cũ nhất lại quan trọng?",
         "options": [
-          "Doanh thu tăng có thể chỉ nhờ giảm giá xả hàng tồn cũ",
-          "Chỉ cần quan tâm doanh thu, không cần nhìn tới chỉ số DIO",
-          "DIO tăng luôn là dấu hiệu tốt với ngành thời trang",
-          "Không có gì đáng lo vì doanh thu vẫn tăng trong kỳ"
+          "Vì đội luôn lấy việc mới nhất hoặc dễ nhất, nên trung bình che mất phần đuôi",
+          "Vì hạng mục để lâu thường không còn phù hợp với bối cảnh hiện tại",
+          "Vì nó cho biết đội đã tồn đọng công việc từ khoảng thời gian nào",
+          "Vì các hạng mục cũ thường xuyên có mức độ ưu tiên thấp nên rốt cuộc thật sự cần được xem lại"
         ],
         "correct": 0,
-        "explanation": "Với ngành có tính mùa vụ và thời trang cao như apparel, DIO tăng gấp đôi là tín hiệu cảnh báo nghiêm trọng: nếu doanh thu tăng chỉ nhờ giảm giá mạnh để đẩy hàng tồn, biên lợi nhuận gộp thường sẽ giảm theo - cần đọc DIO cùng gross margin để có bức tranh đầy đủ."
+        "explanation": "Ba lựa chọn kia đều đúng về những hạng mục cũ. Cái này giải thích vì sao chúng tồn tại: không phải ngẫu nhiên mà là hệ quả của cách chọn việc - nên chúng sẽ không tự biến mất khi đội làm nhanh hơn."
       },
       {
-        "question": "COGS 720 tỷ, tồn kho bình quân 120 tỷ. Số ngày tồn kho trung bình là bao nhiêu?",
+        "question": "Tốc độ vào lớn hơn tốc độ ra kéo dài nghĩa là gì?",
         "options": [
-          "Khoảng 61 ngày (= 365 ÷ 6 vòng quay)",
-          "Khoảng 120 ngày (lấy thẳng tồn kho bình quân)",
-          "Khoảng 720 ngày (lấy thẳng COGS làm số ngày)",
-          "Khoảng 6 ngày (nhầm vòng với ngày)"
+          "Đống việc sẽ tăng vô hạn, và làm nhanh hơn không giải quyết được",
+          "Đội cần được bổ sung thêm người để tăng năng lực xử lý công việc",
+          "Cần sắp xếp lại thứ tự ưu tiên để xử lý những việc quan trọng trước",
+          "Một số hạng mục đang bị đánh giá sai về khối lượng công việc cần làm"
         ],
         "correct": 0,
-        "explanation": "Turnover = 720 ÷ 120 = 6 lần. DIO = 365 ÷ 6 ≈ 61 ngày. Đây là thời gian trung bình một lô hàng nằm trong kho trước khi được bán."
+        "explanation": "Đây là cùng kết luận với tồn đọng của một hàng đợi kỹ thuật: bộ đệm hấp thụ được biến động ngắn, không cứu được chênh lệch kéo dài. Cách chữa nằm ở đầu VÀO - từ chối, gộp, hoặc đóng bớt."
       },
       {
-        "question": "DIO tăng dần trong khi biên lợi nhuận gộp cũng giảm dần. Cách đọc hợp lý nhất là gì?",
+        "question": "Vì sao đóng bớt hạng mục cũ lại là hành động hợp lệ?",
         "options": [
-          "Có thể đang giảm giá để đẩy hàng tồn đang bán chậm",
-          "Đây là dấu hiệu doanh nghiệp đang mở rộng quy mô rất tốt",
-          "Chắc chắn doanh nghiệp đang gian lận số liệu kế toán",
-          "Hai chỉ số này hoàn toàn không liên quan gì tới nhau"
+          "Vì một hạng mục nằm mười tám tháng thì việc không làm nó đã là một quyết định",
+          "Vì việc dọn dẹp giúp danh sách gọn hơn và dễ quản lý hơn cho đội",
+          "Vì các hạng mục cũ thường trùng lặp với những hạng mục mới hơn",
+          "Vì giữ chúng làm số liệu tồn đọng trông tệ hơn thực tế của đội"
         ],
         "correct": 0,
-        "explanation": "Đọc hai chỉ số cùng nhau giúp phân biệt DIO tăng vì lý do chiến lược với DIO tăng vì vấn đề nhu cầu - biên lợi nhuận giảm đồng thời là bằng chứng nghiêng về khả năng thứ hai."
+        "explanation": "Đóng nó chỉ là ghi nhận một quyết định đã được đưa ra bằng hành động suốt mười tám tháng. Lựa chọn cuối là lý do tệ nhất và nó khá phổ biến - đóng để làm đẹp số liệu thì bạn mất luôn thông tin về chênh lệch vào-ra."
       },
       {
-        "question": "Vòng quay hàng tồn kho tăng đột biến trong một quý. Trường hợp nào cho thấy đây là tin xấu?",
+        "question": "Cách chữa nào áp dụng khi tốc độ vào vượt tốc độ ra kéo dài?",
         "options": [
-          "Khi doanh nghiệp vừa xả kho giảm giá sâu để đẩy hàng tồn đọng",
-          "Khi doanh thu trong quý tăng nhanh hơn so với cùng kỳ năm trước",
-          "Khi doanh nghiệp vừa rút ngắn được thời gian giao hàng của nhà cung cấp",
-          "Khi biên lợi nhuận gộp trong quý được cải thiện so với quý liền trước"
+          "Giảm ở đầu vào: từ chối rõ ràng, gộp yêu cầu trùng, hoặc đóng bớt",
+          "Tăng tốc độ ra bằng cách tối ưu quy trình làm việc của đội",
+          "Chia đống việc thành nhiều nhóm nhỏ theo từng lĩnh vực chuyên môn",
+          "Đặt thời hạn cho mỗi hạng mục để tạo áp lực hoàn thành đúng hẹn"
         ],
         "correct": 0,
-        "explanation": "Cùng một chỉ số đi lên có thể đến từ hai chuyện trái ngược: bán chạy hơn, hoặc bán tháo. Cách phân biệt là nhìn kèm biên lợi nhuận gộp - vòng quay tăng mà biên tụt là dấu hiệu hàng được đẩy đi bằng chiết khấu chứ không phải bằng nhu cầu."
+        "explanation": "Ba lựa chọn kia đều tác động vào đầu ra hoặc vào cách sắp xếp, và cả ba đều bị chặn bởi cùng một trần năng lực. Chỉ giảm đầu vào mới đổi được dấu của chênh lệch, và từ chối rõ ràng thì trung thực hơn là để hạng mục nằm im vô thời hạn."
       }
     ],
     "keyTakeaways": [
-      "Inventory turnover = COGS / average inventory",
-      "DIO = 365 / turnover",
-      "Tồn kho là cảnh báo sớm của vấn đề bán hàng"
+      "Ba con số: số lượng, tốc độ ra, và SỐ NGÀY TỒN - số lượng ít thông tin nhất.",
+      "Số ngày tồn trả lời câu người yêu cầu quan tâm: bao giờ tới lượt tôi.",
+      "Tuổi hạng mục CŨ NHẤT bắt được thứ mà trung bình che mất.",
+      "Hạng mục cũ tồn tại vì cách chọn việc, nên làm nhanh hơn không xoá được chúng.",
+      "Vào lớn hơn ra kéo dài thì cách chữa nằm ở ĐẦU VÀO, không ở đầu ra."
     ],
-    "track": "bonus",
+    "practicePrompt": {
+      "question": "Đống việc của đội có hạng mục nằm hai năm chưa ai đụng tới. Nên làm gì?",
+      "options": [
+        "Đóng nó và ghi lý do, vì việc không làm suốt hai năm đã là một quyết định",
+        "Đưa nó lên đầu danh sách ưu tiên vì nó đã chờ quá lâu so với các hạng mục khác",
+        "Giữ nguyên vì có thể sẽ có lúc cần tới nó trong tương lai",
+        "Chuyển nó sang một danh sách riêng dành cho các hạng mục dài hạn"
+      ],
+      "correct": 0,
+      "explanation": "Lựa chọn cuối là cách phổ biến nhất và nó chỉ đổi chỗ vấn đề - danh sách riêng đó không bao giờ được mở lại. Đóng kèm lý do thì trung thực với người yêu cầu và giữ được thông tin nếu về sau cần tra lại."
+    },
     "summary": {
-      "keyIdea": "Inventory turnover = COGS / average inventory",
-      "commonMistake": "Dễ bỏ qua: dIO = 365 / turnover",
-      "action": "Tồn kho là cảnh báo sớm của vấn đề bán hàng"
+      "keyIdea": "Số lượng là con số ít thông tin nhất trong ba con số đo được về một đống việc.",
+      "formula": "Số ngày tồn = số lượng ÷ tốc độ ra; thêm tuổi hạng mục cũ nhất.",
+      "commonMistake": "Đo bằng số lượng, con số đổi ý nghĩa mỗi khi tốc độ xử lý đổi.",
+      "action": "Tính số ngày tồn cho đống việc của đội bạn."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Lấy số hạng mục đang chờ chia cho số hạng mục đội bạn hoàn thành mỗi tuần. Con số đó là số tuần chờ của một yêu cầu mới.",
+      "secondary": "Rồi tìm hạng mục cũ nhất và xem nó đã nằm đó bao lâu. Hai con số này thường làm đổi hẳn cuộc trò chuyện về việc đội có đang quá tải hay không."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Hàng tồn kho không chỉ là một dòng trên bảng cân đối - tốc độ quay vòng của nó là một trong những chỉ báo sớm nhất về sức khỏe kinh doanh của một doanh nghiệp bán hàng hóa vật lý."
+        "text": "Mọi đội đều có một đống việc đang chờ, và phần lớn chỉ đo nó bằng số lượng - con số ít thông tin nhất trong ba con số có thể đo."
       },
       {
         "type": "heading",
-        "text": "Inventory Turnover và Days Inventory Outstanding"
+        "text": "Vì sao số lượng không đủ"
       },
       {
-        "type": "paragraph",
-        "text": "Inventory Turnover = COGS / Average Inventory, cho biết doanh nghiệp bán hết và thay mới tồn kho bao nhiêu lần trong kỳ. Days Inventory Outstanding (DIO = 365/turnover) cho biết trung bình mất bao nhiêu ngày để bán hết hàng. Turnover giảm mạnh (DIO tăng) thường báo hiệu hàng ứ đọng hoặc bán chậm - đặc biệt nguy hiểm với ngành có tính mùa vụ cao như thời trang, nơi hàng tồn có nguy cơ lỗi mốt trước khi bán được."
+        "type": "callout",
+        "label": "Cùng con số, hai tình huống",
+        "text": "Một trăm hai mươi hạng mục với tốc độ ra sáu mươi mỗi tuần là hai tuần chờ. Cũng con số đó với tốc độ ra ba mỗi tuần là bốn mươi tuần. Đây đúng là bài học về tồn đọng của một hàng đợi kỹ thuật, áp vào công việc của con người."
+      },
+      {
+        "type": "heading",
+        "text": "Hai con số đáng thêm"
       },
       {
         "type": "list",
         "items": [
-          "Inventory Turnover giảm mạnh thường báo hiệu hàng bán chậm hơn",
-          "DIO tăng nghĩa là vốn lưu động bị kẹt trong kho lâu hơn, tăng rủi ro hàng lỗi mốt/hư hỏng",
-          "Với ngành thời trang, cần đọc DIO cùng biên lợi nhuận gộp để phát hiện việc tăng doanh thu chỉ nhờ giảm giá xả hàng tồn"
+          "SỐ NGÀY TỒN: số lượng chia cho tốc độ ra. Nó trả lời thẳng câu mà người yêu cầu quan tâm - bao giờ tới lượt tôi.",
+          "TUỔI HẠNG MỤC CŨ NHẤT: bắt được thứ mà trung bình che mất."
         ]
       },
       {
-        "type": "formula",
-        "title": "Số ngày tồn kho trung bình",
-        "equation": "DIO = 365 ÷ Inventory Turnover",
-        "example": {
-          "title": "Ví dụ minh họa",
-          "calculation": "COGS 600 tỷ, tồn kho bình quân 100 tỷ → turnover 6 lần",
-          "result": "DIO ≈ 61 ngày",
-          "explanation": "Trung bình mất khoảng hai tháng để bán hết một lô hàng và thay mới. Nếu năm sau DIO tăng lên 85 ngày mà doanh thu không tăng tương ứng, đó là dấu hiệu hàng đang bán chậm lại, đáng để tìm hiểu nguyên nhân trước khi nó lộ ra ở dòng lợi nhuận."
-        }
+        "type": "paragraph",
+        "text": "Con số thứ hai quan trọng vì hạng mục cũ không tồn tại một cách ngẫu nhiên: đội luôn lấy việc mới nhất hoặc dễ nhất, nên những thứ khó và cũ tích lại. Chúng sẽ không tự biến mất khi đội làm nhanh hơn."
       },
       {
         "type": "heading",
-        "text": "Vì sao DIO tăng là cảnh báo sớm"
-      },
-      {
-        "type": "paragraph",
-        "text": "Doanh nghiệp thường phát hiện vấn đề bán hàng chậm chạp qua tồn kho trước khi nó hiện rõ trên báo cáo lợi nhuận, vì hàng tồn phải chờ vài kỳ mới được ghi nhận thành doanh thu hoặc bị giảm giá xả kho. Đó là lý do DIO được xem là chỉ báo sớm: nó cho thấy vấn đề đang tích tụ trước khi ảnh hưởng lan tới lợi nhuận."
+        "text": "Khi vào lớn hơn ra"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "DIO tăng vì mở rộng có kế hoạch",
-          "text": "Doanh nghiệp chủ động tích trữ hàng trước mùa cao điểm hoặc trước khi mở thêm kênh phân phối mới. DIO tăng tạm thời nhưng có lý do rõ ràng và dự kiến giảm lại sau đó."
+          "label": "Tác động vào đầu ra",
+          "text": "Tối ưu quy trình, chia nhóm, đặt thời hạn. Cả ba đều bị chặn bởi cùng một trần năng lực."
         },
         "right": {
-          "label": "DIO tăng vì hàng bán chậm",
-          "text": "Nhu cầu yếu đi nhưng doanh nghiệp chưa điều chỉnh kế hoạch sản xuất hoặc nhập hàng. DIO tăng dần đều qua nhiều quý mà không có lý do mùa vụ hay chiến lược rõ ràng."
+          "label": "Tác động vào đầu vào",
+          "text": "Từ chối rõ ràng, gộp yêu cầu trùng, đóng bớt hạng mục cũ. Chỉ hướng này đổi được dấu của chênh lệch."
         }
-      },
-      {
-        "type": "callout",
-        "label": "Đọc cùng biên lợi nhuận gộp",
-        "text": "Nếu doanh thu vẫn tăng nhưng biên lợi nhuận gộp giảm cùng lúc DIO tăng, khả năng cao doanh nghiệp đang phải giảm giá để đẩy bớt hàng tồn - tức là con số doanh thu đẹp đang được mua bằng lợi nhuận kém đi, chứ không phải nhu cầu thực sự mạnh lên."
       },
       {
         "type": "closing",
         "lines": [
-          "Tồn kho tăng chậm lại không phải lúc nào cũng xấu, nhưng luôn đáng để hỏi vì sao.",
-          "Đây là một trong những cảnh báo sớm nhất trước khi vấn đề xuất hiện trên báo cáo lợi nhuận."
+          "Đóng một hạng mục nằm hai năm không phải là bỏ cuộc - nó là ghi nhận một quyết định đã được đưa ra bằng hành động suốt hai năm.",
+          "Chuyển nó sang một danh sách dài hạn thì chỉ đổi chỗ vấn đề: danh sách đó không bao giờ được mở lại, và người yêu cầu vẫn đang chờ một câu trả lời họ chưa từng nhận được."
         ]
       }
-    ],
-    "practicePrompt": {
-      "question": "Số ngày tồn kho bình quân (Days Sales of Inventory - DSI hoặc DOH) tăng đột biến từ 45 ngày lên 90 ngày cảnh báo rủi ro gì?",
-      "options": [
-        "Hàng tồn kho ứ đọng, chôn vốn lưu động",
-        "Doanh nghiệp đang bán hàng quá nhanh không kịp sản xuất",
-        "Năng lực quản trị chuỗi cung ứng đạt hiệu quả tối ưu",
-        "Doanh thu năm tới chắc chắn tăng gấp đôi"
-      ],
-      "correct": 0,
-      "explanation": "DSI/DOH tăng cao nghĩa là hàng tồn đọng lâu trong kho, tốn chi phí lưu kho, nguy cơ lỗi thời và suy giảm chất lượng vốn lưu động."
-    },
-    "application": {
-      "title": "Ứng dụng thực tế: Inventory - Hàng Tồn Kho",
-      "message": "Số ngày tồn kho bình quân (Days Sales of Inventory - DSI hoặc DOH) tăng đột biến từ 45 ngày lên 90 ngày cảnh báo rủi ro gì?",
-      "secondary": "Nắm vững nguyên lý này giúp bạn nâng cao năng lực phân tích tài chính chuyên nghiệp."
-    }
+    ]
   },
   {
     "id": 1020,
@@ -65979,179 +65970,209 @@ export const lessons: Lesson[] = [
     "track": "professional"
   },
   {
-    "id": 1204,
-    "slug": "phan-tich-variance-thuc-te-vs-ke-hoach",
-    "title": "CFO & Vận hành, Bài 3: Phân tích Variance - so sánh thực tế với kế hoạch",
-    "subtitle": "Lệch kế hoạch không tự động là xấu - quan trọng là hiểu vì sao lệch",
-    "duration": "7 phút",
-    "difficulty": "Trung bình",
-    "emoji": "📊",
-    "track": "professional",
-    "openingQuestion": "Doanh thu thực tế tháng này thấp hơn kế hoạch 10%, nhưng lợi nhuận thực tế lại CAO hơn kế hoạch 5%. Điều gì có thể giải thích tình huống có vẻ mâu thuẫn này?",
+    "title": "Kỹ sư trưởng & Vận hành, Bài 3: Đọc chênh lệch",
+    "subtitle": "Tách phần lệch vì đơn giá khỏi phần lệch vì lượng dùng",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🔬",
+    "whyItMatters": "Một con số vượt dự trù không nói gì cho tới khi được tách ra. Cùng mức vượt có thể là dấu hiệu tốt hoặc là một vấn đề đang lớn dần, và phép tách phân biệt được hai điều đó.",
+    "openingQuestion": "Chi phí một dịch vụ vượt dự trù 30%. Câu hỏi đầu tiên là gì?",
     "openingOptions": [
-      "Đây chắc chắn là lỗi trong báo cáo tài chính",
-      "Chi phí thực tế đã được kiểm soát tốt hơn kế hoạch",
-      "Không thể xảy ra tình huống này trong thực tế kinh doanh",
-      "Doanh thu và lợi nhuận luôn phải di chuyển cùng chiều với nhau"
+      "Vượt vì dùng nhiều hơn hay vì mỗi đơn vị đắt hơn",
+      "Vượt từ tháng nào",
+      "Dịch vụ nào trong hệ thống đang chiếm phần lớn nhất trong khoản chi phí vượt đó",
+      "Có sự kiện bất thường nào trong kỳ khiến chi phí tăng đột biến so với mức thường ngày"
     ],
-    "correctOption": 1,
-    "explanation": "Phân tích variance (chênh lệch) không dừng ở việc phát hiện một con số lệch kế hoạch, mà phải TÁCH RA từng nguyên nhân cụ thể (variance theo doanh thu, variance theo chi phí, variance theo giá, variance theo sản lượng...) để hiểu bức tranh đầy đủ. Doanh thu thấp hơn kế hoạch nhưng chi phí được kiểm soát tốt hơn nhiều có thể khiến lợi nhuận cuối cùng vẫn vượt kế hoạch - một kết quả tưởng mâu thuẫn nhưng hoàn toàn hợp lý khi phân tích đúng cách.",
+    "correctOption": 0,
+    "explanation": "Hai nguyên nhân này cho ra cùng một con số vượt và cần hai cách xử lý ngược nhau. Dùng nhiều hơn vì có nhiều người dùng hơn là tin tốt và không cần sửa gì. Mỗi đơn vị đắt hơn thì nghĩa là hệ thống đang kém hiệu quả đi, và nó sẽ tiếp tục tệ hơn. Ba câu kia đều hữu ích nhưng đều hỏi sau câu này.",
     "diagram": [
       {
-        "label": "So sánh thực tế vs kế hoạch",
+        "label": "Chênh lệch tổng so với dự trù",
         "arrow": true
       },
       {
-        "label": "Tách variance theo từng nguyên nhân: giá, sản lượng, chi phí",
+        "label": "Tách phần do lượng dùng",
         "arrow": true
       },
       {
-        "label": "Xác định nguyên nhân gốc rễ, không chỉ nhìn con số tổng"
+        "label": "Tách phần do đơn giá mỗi đơn vị",
+        "arrow": true
+      },
+      {
+        "label": "Hai phần, hai cách xử lý ngược nhau"
       }
     ],
     "realWorldExample": {
-      "company": "Báo cáo variance hàng tháng của FP&A",
-      "description": "Đội FP&A thường trình bày báo cáo variance hàng tháng cho ban lãnh đạo, không chỉ nêu 'lợi nhuận cao/thấp hơn kế hoạch X%' mà phải giải thích cụ thể: bao nhiêu phần trăm đến từ biến động giá bán, bao nhiêu từ sản lượng, bao nhiêu từ chi phí nguyên vật liệu hay chi phí nhân sự - để ban lãnh đạo biết chính xác cần hành động ở đâu."
-    },
-    "quiz": [
-      {
-        "question": "Vì sao việc tách variance thành 'variance theo giá' (price variance) và 'variance theo sản lượng' (volume variance) quan trọng hơn là chỉ nhìn tổng chênh lệch doanh thu?",
-        "options": [
-          "Vì hai loại variance này không có gì khác biệt về mặt phân tích, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "Hai nguyên nhân cần hành động khắc phục hoàn toàn khác nhau - doanh thu thấp do BÁN ĐƯỢC ÍT HÀNG HƠN (volume) cần giải pháp về marketing/bán hàng, trong khi doanh thu thấp do PHẢI GIẢM GIÁ (price) cần xem lại chiến lược định giá hoặc áp lực cạnh tranh - gộp chung sẽ khiến ban lãnh đạo khó xác định đúng hành động cần làm",
-          "Vì variance theo giá luôn quan trọng hơn variance theo sản lượng, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "Chỉ cần biết tổng doanh thu chênh lệch bao nhiêu là đủ để ra quyết định, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Đây là giá trị cốt lõi của phân tích variance chi tiết: cùng một mức chênh lệch doanh thu tổng có thể đến từ những nguyên nhân hoàn toàn khác nhau, đòi hỏi hành động khắc phục khác nhau - tách riêng price variance và volume variance giúp ban lãnh đạo biết chính xác nên tập trung vào định giá hay vào nỗ lực bán hàng."
-      },
-      {
-        "question": "Một bộ phận liên tục đạt kết quả 'sát đúng kế hoạch' (variance gần như bằng 0) trong nhiều quý liên tiếp. Điều này có nên tự động được xem là dấu hiệu quản lý xuất sắc không?",
-        "options": [
-          "Có, variance thấp luôn là dấu hiệu quản lý xuất sắc trong mọi trường hợp",
-          "Không nhất thiết - kết quả 'quá sát' kế hoạch nhiều kỳ liên tiếp đôi khi là dấu hiệu của việc quản lý đang chủ động điều chỉnh số liệu báo cáo (ví dụ trì hoãn/đẩy nhanh ghi nhận doanh thu-chi phí) để khớp với kế hoạch, thay vì phản ánh kết quả kinh doanh thực tế",
-          "Variance luôn phải bằng 0 mới là quản lý tốt",
-          "Không có cách nào để đánh giá được điều này"
-        ],
-        "correct": 1,
-        "explanation": "Đây là một 'red flag' tinh tế mà nhà phân tích tài chính có kinh nghiệm cần lưu ý: kết quả kinh doanh thực tế hiếm khi khớp chính xác với kế hoạch nhiều kỳ liên tiếp một cách tự nhiên - độ chính xác bất thường này đôi khi gợi ý về việc quản lý đang 'làm mượt' số liệu (earnings management) để tránh giải trình các khoản lệch lớn, cần được kiểm tra kỹ hơn."
-      },
-      {
-        "question": "Kế hoạch 100.000 sản phẩm giá 50k; thực tế 80.000 sản phẩm giá 55k. Nhận định nào đúng?",
-        "options": [
-          "Doanh thu hụt 600 triệu, do sản lượng giảm nhiều hơn phần giá tăng bù lại - lợi nhuận vẫn có thể vượt kế hoạch",
-          "Doanh thu vượt kế hoạch vì giá bán cao hơn",
-          "Không thể kết luận gì nếu chưa biết chi phí",
-          "Chênh lệch hoàn toàn do giá"
-        ],
-        "correct": 0,
-        "explanation": "4,4 tỷ so với 5 tỷ là hụt 600 triệu. Nhưng vì bán ở giá cao hơn, biên lợi nhuận mỗi sản phẩm tăng, nên lợi nhuận có thể vượt - đó chính là lý do phải tách nguyên nhân thay vì chỉ nhìn tổng."
-      },
-      {
-        "question": "Doanh nghiệp đạt 99-101% kế hoạch suốt tám quý liên tiếp trong một ngành biến động mạnh. Cách đọc thận trọng là gì?",
-        "options": [
-          "Cần soi khả năng số liệu đang được làm mượt giữa các kỳ",
-          "Đây là bằng chứng rõ ràng về năng lực điều hành xuất sắc",
-          "Đây là dấu hiệu kế hoạch được lập rất chính xác",
-          "Không có gì đáng chú ý"
-        ],
-        "correct": 0,
-        "explanation": "Trong môi trường biến động, sai số dự báo là điều bình thường. Sự chính xác đều đặn bất thường thường phản ánh việc điều tiết ghi nhận giữa các kỳ hơn là khả năng dự báo."
-      }
-    ],
-    "keyTakeaways": [
-      "Phân tích variance cần tách theo từng nguyên nhân cụ thể (giá, sản lượng, chi phí), không chỉ nhìn con số tổng chênh lệch",
-      "Lệch kế hoạch không tự động là xấu - quan trọng là hiểu nguyên nhân gốc rễ đằng sau",
-      "Kết quả 'quá sát' kế hoạch nhiều kỳ liên tiếp có thể là dấu hiệu cảnh báo về việc làm mượt số liệu, không chỉ là tin tốt"
-    ],
-    "practicePrompt": {
-      "question": "Doanh thu thực tế thấp hơn ngân sách 10%. Nếu chỉ nhìn con số tổng chênh lệch này, nhà quản lý không biết nên hành động gì. Cách tiếp cận nào giúp biến con số 10% này thành thông tin hữu ích để ra quyết định?",
-      "options": [
-        "Chỉ cần biết chênh lệch 10% là đủ để đánh giá hiệu suất của bộ phận kinh doanh trong kỳ",
-        "Cần tách variance theo từng nguyên nhân cụ thể: chênh lệch do giá khác chênh lệch do sản lượng",
-        "Nên báo cáo con số 10% này lên ban lãnh đạo mà không cần phân tích thêm chi tiết nào khác",
-        "Chênh lệch giữa thực tế và ngân sách luôn là do lỗi lập kế hoạch ban đầu, không cần tìm nguyên nhân khác"
-      ],
-      "correct": 1,
-      "explanation": "Phân tích variance cần tách theo từng nguyên nhân cụ thể như giá và sản lượng, không chỉ nhìn tổng chênh lệch. Tách price variance và volume variance giúp xác định đúng vấn đề (chiến lược giá hay khả năng bán hàng) để có hành động khắc phục phù hợp."
-    },
-    "application": {
-      "title": "Tách chênh lệch thành giá và lượng",
-      "message": "Khi doanh thu lệch kế hoạch, tách phần do giá bán khác dự kiến và phần do sản lượng khác dự kiến, rồi mới tìm nguyên nhân. Doanh thu đạt kế hoạch nhờ bán rẻ hơn nhiều hơn là một kết quả xấu được ghi thành một dòng màu xanh.",
-      "secondary": "Đặt ngưỡng cho phần cần giải trình - chẳng hạn lệch quá 5% hoặc quá một số tiền tuyệt đối - để cuộc họp bàn về vài mục thật sự, thay vì đọc lướt cả bảng.",
+      "company": "Vượt hai mươi phần trăm, và đó là tin tốt",
+      "description": "Một đội báo cáo chi phí vượt dự trù hai mươi phần trăm và chuẩn bị một kế hoạch cắt giảm. Khi tách ra thì lượng yêu cầu đã tăng năm mươi phần trăm so với dự trù, còn chi phí mỗi yêu cầu giảm hai mươi phần trăm. Hệ thống đang hiệu quả hơn hẳn và chỉ đơn giản là phục vụ nhiều hơn - kế hoạch cắt giảm ấy sẽ làm hỏng đúng thứ đang chạy tốt."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Doanh thu thấp hơn kế hoạch nhưng lợi nhuận lại cao hơn - nghe có vẻ mâu thuẫn, nhưng phân tích variance đúng cách sẽ giải thích được điều này."
-      },
-      {
-        "type": "heading",
-        "text": "Tách nguyên nhân, không chỉ nhìn con số tổng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Phân tích variance cần tách theo từng nguyên nhân cụ thể - price variance (do giá) và volume variance (do sản lượng) đòi hỏi hành động khắc phục hoàn toàn khác nhau. Lệch kế hoạch không tự động là xấu - quan trọng là hiểu nguyên nhân gốc rễ. Ngược lại, kết quả 'quá sát' kế hoạch nhiều kỳ liên tiếp đôi khi là dấu hiệu của việc làm mượt số liệu, không chỉ là tin tốt."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Phân tích variance cần tách theo nguyên nhân cụ thể (giá, sản lượng, chi phí), không chỉ nhìn tổng chênh lệch",
-          "Lệch kế hoạch không tự động là xấu - quan trọng là hiểu nguyên nhân gốc rễ",
-          "Kết quả quá sát kế hoạch nhiều kỳ liên tiếp có thể là dấu hiệu cảnh báo về làm mượt số liệu"
-        ]
+        "text": "Đọc chênh lệch là kỹ năng biến một con số gây lo lắng thành một hoặc hai việc cụ thể. Phép tách chỉ có một bước và nó gần như không bao giờ được làm."
       },
       {
         "type": "formula",
-        "title": "Tách chênh lệch doanh thu thành hai nguyên nhân",
-        "equation": "Chênh do giá = (Giá thực − Giá kế hoạch) × Sản lượng thực · Chênh do sản lượng = (Sản lượng thực − Sản lượng kế hoạch) × Giá kế hoạch",
-        "example": {
-          "title": "Doanh thu hụt nhưng lợi nhuận vượt",
-          "calculation": "Kế hoạch: 100.000 sản phẩm × 50k = 5 tỷ. Thực tế: 80.000 × 55k = 4,4 tỷ",
-          "result": "Chênh do giá +400 triệu · Chênh do sản lượng −1 tỷ",
-          "explanation": "Doanh thu hụt 600 triệu, nhưng nguyên nhân là bán ít hơn ở mức giá cao hơn. Nếu biên lợi nhuận trên mỗi sản phẩm tăng đủ nhiều, lợi nhuận hoàn toàn có thể vượt kế hoạch dù doanh thu hụt - và hành động cần làm khác hẳn so với trường hợp giá giảm."
-        }
+        "title": "Tách một chênh lệch",
+        "variables": [
+          {
+            "symbol": "Tổng",
+            "name": "Chi phí thực tế trừ chi phí dự trù",
+            "description": "Con số duy nhất xuất hiện trên báo cáo, và con số ít có giá trị nhất trong bốn dòng này."
+          },
+          {
+            "symbol": "Lượng",
+            "name": "Phần lệch do lượng dùng khác dự trù",
+            "description": "Tính bằng chênh lệch lượng nhân đơn giá dự trù. Dương thường là tin tốt nếu doanh thu đi cùng."
+          },
+          {
+            "symbol": "Giá",
+            "name": "Phần lệch do chi phí mỗi đơn vị khác dự trù",
+            "description": "Tính bằng chênh lệch đơn giá nhân lượng thực tế. Dương gần như luôn là vấn đề, và nó lớn dần."
+          },
+          {
+            "symbol": "Còn lại",
+            "name": "Phần giao nhau giữa hai loại lệch",
+            "description": "Nhỏ khi các sai lệch nhỏ. Đừng dành thời gian cho nó trước khi đã đọc xong hai dòng trên."
+          }
+        ]
       },
       {
         "type": "heading",
-        "text": "Mỗi loại chênh lệch dẫn tới một hành động khác nhau"
+        "text": "Hai phần, hai loại hành động"
       },
       {
         "type": "list",
         "items": [
-          "Chênh do giá: liên quan đến sức mạnh định giá, cơ cấu sản phẩm bán ra, hoặc chính sách chiết khấu. Việc cần làm nằm ở khối kinh doanh và marketing.",
-          "Chênh do sản lượng: liên quan đến nhu cầu thị trường, năng lực sản xuất, hoặc khâu phân phối. Việc cần làm nằm ở vận hành và chuỗi cung ứng.",
-          "Chênh do chi phí đơn vị: liên quan đến giá nguyên vật liệu và hiệu suất sản xuất. Cần tách tiếp phần do giá đầu vào và phần do định mức tiêu hao.",
-          "Chênh do cơ cấu sản phẩm: bán đúng tổng sản lượng nhưng lệch về nhóm sản phẩm biên lợi nhuận thấp - dạng này rất hay bị bỏ sót vì tổng doanh thu trông vẫn đạt."
+          "Lệch do lượng: xem lại dự báo, không xem lại hệ thống. Nếu lượng tăng vì sản phẩm thành công thì không có gì để sửa",
+          "Lệch do đơn giá: xem lại hệ thống, không xem lại dự báo. Chi phí mỗi đơn vị tăng nghĩa là có gì đó đã kém đi",
+          "Nhầm hai loại là nguồn của cả hai kiểu sai lầm: cắt nhầm thứ đang tốt, hoặc bỏ qua thứ đang hỏng"
         ]
       },
       {
-        "type": "callout",
-        "label": "Khi kết quả quá sát kế hoạch",
-        "text": "Đạt 99-101% kế hoạch nhiều kỳ liên tiếp trong một thị trường biến động không phải là dấu hiệu điều hành xuất sắc mà thường là dấu hiệu con số đang được làm mượt: đẩy doanh thu sang kỳ sau khi đã vượt, hoặc kéo về khi sắp hụt. Kinh doanh thật hiếm khi mượt đến vậy."
+        "type": "heading",
+        "text": "Dấu của chênh lệch không nói lên tốt hay xấu"
       },
       {
         "type": "paragraph",
-        "text": "Nguyên tắc cuối cùng: phân tích chênh lệch chỉ có giá trị nếu kết thúc bằng hành động. Một bản báo cáo liệt kê đủ mọi loại chênh lệch nhưng không nói ai cần làm gì trước kỳ sau thì chỉ là bài tập số học tốn thời gian."
+        "text": "Chi phí dưới dự trù nghe như tin tốt và thường không được ai xem xét. Nhưng nó cũng có hai nguyên nhân: lượng dùng thấp hơn kỳ vọng, hoặc đơn giá giảm. Cái đầu nghĩa là sản phẩm đang có ít người dùng hơn dự tính, và đó là tin xấu nhất trong cả bảng - nó chỉ trông tốt vì đang được đọc trên một báo cáo chi phí."
+      },
+      {
+        "type": "callout",
+        "label": "Chênh lệch nhỏ đáng ngờ hơn chênh lệch lớn",
+        "text": "Một dòng khớp gần như chính xác với dự trù qua nhiều kỳ liên tiếp thường không phải dấu hiệu dự báo giỏi. Nó thường nghĩa là dự trù được lập bằng cách lấy số kỳ trước, hoặc chi tiêu được điều chỉnh cho vừa khung. Cả hai đều làm bản báo cáo mất hết khả năng cảnh báo, và cả hai đều trông giống hệt sự kỷ luật."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Đã tách",
+          "text": "Vượt 20%: lượng tăng 50%, đơn giá giảm 20%. Kết luận trong một câu và không cần họp."
+        },
+        "right": {
+          "label": "Chưa tách",
+          "text": "Vượt 20%. Dẫn tới một cuộc họp, một kế hoạch cắt giảm, và một rủi ro làm hỏng thứ đang chạy tốt."
+        }
       },
       {
         "type": "closing",
         "lines": [
-          "Một con số chênh lệch không kể hết câu chuyện.",
-          "Luôn hỏi thêm: chênh lệch này đến từ đâu, và nó có ý nghĩa gì cho hành động tiếp theo?"
+          "Lệch do lượng thì xem lại dự báo; lệch do đơn giá thì xem lại hệ thống.",
+          "Chi phí dưới dự trù vì ít người dùng là tin xấu nhất trong bảng, và nó trông như tin tốt."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Vì sao phải tách chênh lệch thành phần lượng và phần đơn giá?",
+        "options": [
+          "Vì hai phần cần hai cách xử lý ngược nhau",
+          "Vì tổng chênh lệch không đủ chính xác",
+          "Vì các bên liên quan cần hiểu rõ nguyên nhân trước khi phê duyệt điều chỉnh ngân sách",
+          "Vì việc tách giúp so sánh được kết quả của kỳ này với những kỳ trước một cách công bằng"
+        ],
+        "correct": 0,
+        "explanation": "Lệch do lượng dẫn tới việc xem lại dự báo; lệch do đơn giá dẫn tới việc xem lại hệ thống. Một con số tổng không phân biệt được hai điều đó, nên nó dẫn tới hành động sai với xác suất khoảng một nửa."
+      },
+      {
+        "question": "Vượt dự trù 20%, lượng yêu cầu tăng 50%, chi phí mỗi yêu cầu giảm 20%. Nên kết luận gì?",
+        "options": [
+          "Hệ thống đang hiệu quả hơn và chỉ phục vụ nhiều hơn",
+          "Cần cắt giảm chi phí ngay",
+          "Cần xem lại dự trù ban đầu vì nó đã đánh giá thấp mức tăng trưởng của sản phẩm",
+          "Cần theo dõi thêm một kỳ nữa trước khi đưa ra bất kỳ kết luận nào về xu hướng"
+        ],
+        "correct": 0,
+        "explanation": "Phương án nói cần xem lại dự trù cũng đúng và là việc nên làm tiếp theo. Nhưng kết luận quan trọng nhất là hệ thống không có vấn đề gì, vì đó là điều ngăn được một kế hoạch cắt giảm nhắm vào thứ đang chạy tốt."
+      },
+      {
+        "question": "Loại lệch nào gần như luôn là vấn đề?",
+        "options": [
+          "Chi phí mỗi đơn vị tăng so với dự trù",
+          "Tổng chi phí vượt dự trù",
+          "Lượng dùng thấp hơn nhiều so với mức đã dự trù từ đầu kỳ cho dịch vụ đó",
+          "Chênh lệch xuất hiện đột ngột trong một tháng thay vì tăng dần qua nhiều tháng"
+        ],
+        "correct": 0,
+        "explanation": "Lượng dùng thấp cũng là vấn đề nhưng là vấn đề của sản phẩm chứ không của hệ thống. Đơn giá tăng thì luôn nghĩa là có gì đó đã kém đi về mặt kỹ thuật, và nó lớn dần theo lượng dùng."
+      },
+      {
+        "question": "Chi phí dưới dự trù vì lượng dùng thấp hơn kỳ vọng. Nên đọc thế nào?",
+        "options": [
+          "Là tin xấu nhất trong bảng, chỉ trông tốt vì đọc trên báo cáo chi phí",
+          "Là tin tốt vì tiết kiệm được ngân sách",
+          "Là tin trung tính vì mức chi phí luôn dao động quanh dự trù theo cả hai chiều",
+          "Là dấu hiệu cho thấy dự trù ban đầu đã được lập rộng hơn mức cần thiết cho kỳ đó"
+        ],
+        "correct": 0,
+        "explanation": "Cùng một dòng số đọc trên báo cáo chi phí là tiết kiệm, đọc trên báo cáo sản phẩm là mất người dùng. Đây là lý do chênh lệch chi phí không bao giờ nên đọc tách khỏi đại lượng sinh ra nó."
+      },
+      {
+        "question": "Một dòng khớp gần như chính xác với dự trù qua nhiều kỳ. Vì sao đáng ngờ?",
+        "options": [
+          "Vì nó thường nghĩa là dự trù lấy từ số kỳ trước hoặc chi tiêu được ép cho vừa khung",
+          "Vì không có hệ thống nào ổn định tới mức đó",
+          "Vì mức khớp cao cho thấy dự trù được lập ở mức quá rộng nên luôn đủ để chi tiêu",
+          "Vì cách phân loại chi phí có thể đang gộp nhiều khoản khác nhau vào cùng một dòng"
+        ],
+        "correct": 0,
+        "explanation": "Cả hai nguyên nhân đều làm báo cáo mất khả năng cảnh báo, và cả hai đều trông giống hệt sự kỷ luật từ bên ngoài. Đó là lý do một dòng quá khớp đáng được hỏi kỹ hơn một dòng lệch mạnh."
+      }
+    ],
+    "keyTakeaways": [
+      "Lệch do lượng thì xem lại dự báo; lệch do đơn giá thì xem lại hệ thống",
+      "Đơn giá tăng gần như luôn là vấn đề, và nó lớn dần theo lượng dùng",
+      "Chi phí dưới dự trù vì ít người dùng là tin xấu đội lốt tin tốt",
+      "Dòng khớp quá chính xác qua nhiều kỳ đáng ngờ hơn dòng lệch mạnh"
+    ],
+    "practicePrompt": {
+      "question": "Dự trù 100 triệu yêu cầu ở 1 đô/nghìn. Thực tế 130 triệu ở 1,1 đô/nghìn. Phần lệch do đơn giá là bao nhiêu?",
+      "options": [
+        "13 triệu đô",
+        "10 triệu đô (= nhân chênh đơn giá với lượng DỰ TRÙ thay vì lượng thực tế)",
+        "30 triệu đô (= đây là phần lệch do lượng, không phải do đơn giá)",
+        "43 triệu đô (= tổng chênh lệch, chưa tách thành hai phần)"
+      ],
+      "correct": 0,
+      "explanation": "Chênh đơn giá 0,1 đô nhân 130 nghìn đơn vị nghìn yêu cầu ra 13. Phần lệch do lượng là 30 nhân 1 bằng 30, cộng lại đúng 43 - và 13 mới là phần cần đội kỹ thuật xem, còn 30 là việc của người lập dự báo."
+    },
     "summary": {
-      "keyIdea": "Phân tích variance cần tách theo từng nguyên nhân cụ thể (giá, sản lượng, chi phí), không chỉ nhìn con số tổng chênh lệch",
-      "commonMistake": "Dễ bỏ qua: lệch kế hoạch không tự động là xấu - quan trọng là hiểu nguyên nhân gốc rễ đằng sau",
-      "action": "Kết quả 'quá sát' kế hoạch nhiều kỳ liên tiếp có thể là dấu hiệu cảnh báo về việc làm mượt số liệu, không chỉ là tin tốt"
-    }
+      "keyIdea": "Tách chênh lệch thành phần lượng và phần đơn giá trước khi hành động",
+      "commonMistake": "Lập kế hoạch cắt giảm dựa trên một con số vượt chưa tách",
+      "action": "Tách một khoản vượt dự trù gần đây của đội bạn thành hai phần."
+    },
+    "application": {
+      "title": "Hai phép nhân",
+      "message": "Chênh lượng nhân đơn giá dự trù. Chênh đơn giá nhân lượng thực tế. Hai con số ấy đi tới hai người khác nhau.",
+      "secondary": "Nếu chỉ có thời gian đọc một con số, đọc phần đơn giá - nó là phần không tự hết."
+    },
+    "id": 1204,
+    "slug": "phan-tich-variance-thuc-te-vs-ke-hoach",
+    "track": "professional"
   },
   {
     "id": 1205,
     "slug": "chon-dung-chi-so-cho-doi-ky-thuat",
-    "title": "CFO & Vận hành, Bài 4: Chọn đúng chỉ số để theo dõi",
+    "title": "Kỹ sư trưởng & Vận hành, Bài 4: Chọn đúng chỉ số để theo dõi",
     "subtitle": "Theo dõi quá nhiều chỉ số cũng nguy hiểm như theo dõi quá ít",
     "duration": "7 phút",
     "difficulty": "Trung bình",
@@ -66286,7 +66307,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1206,
     "slug": "dung-luong-du-phong-bao-nhieu-la-du",
-    "title": "CFO & Vận hành, Bài 5: Dung lượng dự phòng - bao nhiêu là đủ",
+    "title": "Kỹ sư trưởng & Vận hành, Bài 5: Dung lượng dự phòng - bao nhiêu là đủ",
     "subtitle": "Thiếu thì sập vào đúng lúc đông nhất; thừa thì trả tiền cho thứ không ai dùng",
     "duration": "7 phút",
     "difficulty": "Trung bình",
@@ -66419,7 +66440,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1207,
     "slug": "rui-ro-tap-trung-khi-mot-phan-chi-phoi",
-    "title": "CFO & Vận hành, Bài 6: Rủi ro tập trung - khi một phần chi phối tất cả",
+    "title": "Kỹ sư trưởng & Vận hành, Bài 6: Rủi ro tập trung - khi một phần chi phối tất cả",
     "subtitle": "Một nhà cung cấp chiếm phần lớn chi phí, một dịch vụ gây phần lớn sự cố, một người biết phần lớn hệ thống",
     "duration": "8 phút",
     "difficulty": "Trung bình",
@@ -66549,7 +66570,7 @@ export const lessons: Lesson[] = [
   {
     "id": 1208,
     "slug": "quan-tri-rui-ro-nha-cung-cap-dich-vu",
-    "title": "CFO & Vận hành, Bài 7: Quản trị rủi ro nhà cung cấp - khi bên ngoài đổi giá hoặc điều khoản",
+    "title": "Kỹ sư trưởng & Vận hành, Bài 7: Quản trị rủi ro nhà cung cấp - khi bên ngoài đổi giá hoặc điều khoản",
     "subtitle": "Rủi ro lớn nhất từ một nhà cung cấp không phải họ ngừng hoạt động mà là họ đổi điều kiện.",
     "duration": "7 phút",
     "difficulty": "Khó",
@@ -66720,374 +66741,381 @@ export const lessons: Lesson[] = [
     ]
   },
   {
+    "title": "Kỹ sư trưởng & Vận hành, Bài 8: Cấu trúc sở hữu hạ tầng",
+    "subtitle": "Ba cách trả tiền cho dung lượng, và tỷ lệ giữa chúng nói gì về đội",
+    "duration": "9 phút",
+    "difficulty": "Khó",
+    "emoji": "🧩",
+    "whyItMatters": "Cùng một lượng dung lượng có thể được trả bằng ba cách với ba mức giá và ba mức ràng buộc khác nhau, và tỷ lệ giữa chúng quyết định đội xoay xở được tới đâu khi tình hình đổi.",
+    "openingQuestion": "Nên trả bao nhiêu phần dung lượng bằng cam kết dài hạn?",
+    "openingOptions": [
+      "Đúng bằng phần chạy liên tục kể cả trong kịch bản xấu",
+      "Càng nhiều càng tốt vì cam kết rẻ hơn",
+      "Khoảng một nửa, để cân bằng giữa mức tiết kiệm và khả năng điều chỉnh khi cần thiết",
+      "Bằng mức trung bình của lượng dùng trong mười hai tháng gần nhất đã đo được"
+    ],
+    "correctOption": 0,
+    "explanation": "Phần chạy liên tục trong kịch bản xấu là phần duy nhất bạn chắc chắn còn cần, nên nó là phần duy nhất cam kết mà không mang rủi ro. Lấy mức trung bình thì đã bao gồm cả những đỉnh không lặp lại; lấy một nửa thì là một con số không đến từ phép đo nào. Cả hai đều cam kết cho thứ có thể không còn.",
+    "diagram": [
+      {
+        "label": "Phần chạy liên tục kể cả lúc xấu nhất",
+        "arrow": true
+      },
+      {
+        "label": "Cam kết dài hạn cho đúng phần đó",
+        "arrow": true
+      },
+      {
+        "label": "Phần dao động trả theo nhu cầu",
+        "arrow": true
+      },
+      {
+        "label": "Phần đỉnh hiếm dùng dung lượng co giãn"
+      }
+    ],
+    "realWorldExample": {
+      "company": "Bảy mươi phần trăm cam kết, và một lần đổi hướng",
+      "description": "Một công ty cam kết bảy mươi phần trăm dung lượng để lấy mức giảm lớn, tính trên mức dùng trung bình của năm trước. Năm sau công ty tách một mảng sản phẩm ra và lượng dùng giảm bốn mươi phần trăm. Phần cam kết không dùng tới vẫn phải trả trong mười tám tháng, và nó lớn hơn toàn bộ khoản tiết kiệm mà mức giảm kia từng mang lại."
+    },
+    "sections": [
+      {
+        "type": "lead",
+        "text": "Ba cách trả tiền cho cùng một dung lượng khác nhau ở hai chiều: giá, và mức ràng buộc. Đội nào cũng nhìn chiều thứ nhất, và chiều thứ hai mới là chiều quyết định khi tình hình đổi."
+      },
+      {
+        "type": "heading",
+        "text": "Ba tầng"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cam kết dài hạn: rẻ nhất, ràng buộc nhất. Dùng cho phần chắc chắn còn cần kể cả trong kịch bản xấu",
+          "Trả theo nhu cầu: đắt hơn, ngừng được bất cứ lúc nào. Dùng cho phần dao động theo mùa hoặc theo tăng trưởng",
+          "Dung lượng co giãn tức thời: đắt nhất, có ngay. Dùng cho đỉnh hiếm, và chấp nhận rằng đôi khi nó không có"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Hình dạng đúng gần như luôn là ba tầng chứ không phải một. Một đội trả toàn bộ theo nhu cầu thì trả thừa cho phần nền suốt nhiều năm; một đội cam kết toàn bộ thì tiết kiệm được cho tới lần đầu tiên có gì đó đổi."
+      },
+      {
+        "type": "heading",
+        "text": "Tỷ lệ nói gì về đội"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tỷ lệ cam kết cao là một tuyên bố rằng đội tin nhu cầu của mình ổn định nhiều năm. Với một hệ thống nội bộ đã chạy năm năm thì tuyên bố ấy hợp lý. Với một sản phẩm mới thì nó gần như luôn quá tự tin, và cái giá không phải là mức giảm bị mất mà là những quyết định kỹ thuật bị ép về sau để dùng cho hết phần đã trả."
+      },
+      {
+        "type": "callout",
+        "label": "Cam kết thừa biến thành áp lực kỹ thuật",
+        "text": "Đây là hậu quả ít được lường nhất. Khi có một khoản đã trả mà không dùng hết, tổ chức sẽ tìm cách dùng nó - ép các đội chuyển tải sang, giữ lại một hệ thống lẽ ra nên tắt, hoặc chọn một vùng không tối ưu vì phần cam kết nằm ở đó. Không quyết định nào trong số đó được đưa ra vì lý do kỹ thuật, và tất cả đều được biện minh bằng chữ tiết kiệm."
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Ba tầng",
+          "text": "Cam kết phần nền, trả theo nhu cầu phần dao động, co giãn cho đỉnh. Mỗi phần được trả theo cách hợp với hình dạng của nó."
+        },
+        "right": {
+          "label": "Một tầng",
+          "text": "Toàn bộ cùng một cách. Hoặc trả thừa cho phần nền nhiều năm, hoặc bị khoá vào một dự báo đã hết hạn."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Xem lại theo nhịp, không theo sự kiện"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tỷ lệ ba tầng nên được xem lại mỗi sáu tháng dù không có gì xảy ra. Chờ tới lúc có sự kiện thì đã muộn, vì sự kiện thường là thứ làm phần cam kết trở nên thừa - và lúc đó không còn lựa chọn nào ngoài việc trả cho hết."
+      },
+      {
+        "type": "closing",
+        "lines": [
+          "Ba cách trả khác nhau ở giá và ở mức ràng buộc; chiều thứ hai mới quyết định.",
+          "Cam kết thừa không biến mất, nó biến thành áp lực lên các quyết định kỹ thuật."
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "question": "Phần nào nên được trả bằng cam kết dài hạn?",
+        "options": [
+          "Phần chạy liên tục kể cả trong kịch bản xấu",
+          "Phần chiếm tỷ trọng lớn nhất trong hoá đơn",
+          "Phần đã có mức sử dụng ổn định trong khoảng mười hai tháng gần nhất theo số liệu đo",
+          "Phần thuộc những dịch vụ quan trọng nhất mà công ty không thể ngừng vận hành"
+        ],
+        "correct": 0,
+        "explanation": "Phương án về mười hai tháng ổn định gần đúng nhưng nó nhìn về quá khứ. Kịch bản xấu nhìn về tương lai và trả lời đúng câu hỏi cần trả lời: phần nào còn cần kể cả khi mọi thứ khác biến mất."
+      },
+      {
+        "question": "Vì sao lấy mức trung bình làm mức cam kết là sai?",
+        "options": [
+          "Vì trung bình đã bao gồm cả những đỉnh không lặp lại",
+          "Vì mức trung bình luôn thấp hơn nhu cầu thật",
+          "Vì mức trung bình của năm trước không phản ánh được xu hướng tăng trưởng của năm nay",
+          "Vì cách tính trung bình khác nhau giữa các nhà cung cấp nên con số không so sánh được"
+        ],
+        "correct": 0,
+        "explanation": "Cam kết là một nghĩa vụ, nên nó phải dựa trên phần chắc chắn nhất chứ không phải phần điển hình. Trung bình nằm ở đâu đó giữa mức nền và mức đỉnh, tức nó cam kết cho một lượng chưa bao giờ là lượng tối thiểu."
+      },
+      {
+        "question": "Cam kết thừa dẫn tới hậu quả kỹ thuật nào?",
+        "options": [
+          "Các đội bị ép chuyển tải hoặc giữ lại hệ thống lẽ ra nên tắt",
+          "Ngân sách cho các hạng mục khác bị cắt",
+          "Đội mất khả năng thương lượng ở lần gia hạn tiếp theo với nhà cung cấp hạ tầng đó",
+          "Chi phí trên mỗi đơn vị việc tăng lên vì phần dung lượng không dùng vẫn tính vào tổng"
+        ],
+        "correct": 0,
+        "explanation": "Ba hậu quả kia đều là hậu quả tài chính và đều dừng ở đó. Hậu quả đầu thì đi vào kiến trúc: những quyết định ấy không được đưa ra vì lý do kỹ thuật nào, và tất cả đều được biện minh bằng chữ tiết kiệm."
+      },
+      {
+        "question": "Tỷ lệ cam kết cao là một tuyên bố về điều gì?",
+        "options": [
+          "Rằng đội tin nhu cầu của mình ổn định nhiều năm",
+          "Rằng đội ưu tiên chi phí hơn sự linh hoạt",
+          "Rằng đội đã đo lường mức sử dụng đủ kỹ để dự báo được nhu cầu trong dài hạn",
+          "Rằng công ty có đủ dòng tiền để trả trước cho một khoản cam kết lớn ngay từ đầu"
+        ],
+        "correct": 0,
+        "explanation": "Phương án về việc ưu tiên chi phí là cách tỷ lệ ấy được biện minh, nhưng nó không phải điều tỷ lệ ấy khẳng định. Điều được khẳng định là một dự báo về sự ổn định, và với sản phẩm mới thì dự báo ấy gần như luôn quá tự tin."
+      },
+      {
+        "question": "Vì sao nên xem lại tỷ lệ ba tầng theo nhịp thay vì khi có sự kiện?",
+        "options": [
+          "Vì sự kiện thường chính là thứ làm phần cam kết trở nên thừa",
+          "Vì việc xem lại định kỳ dễ đưa vào quy trình hơn",
+          "Vì nhà cung cấp thường chỉ cho phép điều chỉnh cam kết vào những thời điểm nhất định",
+          "Vì mức sử dụng thay đổi dần dần nên chỉ nhận ra được khi so sánh qua nhiều kỳ liên tiếp"
+        ],
+        "correct": 0,
+        "explanation": "Tới lúc sự kiện xảy ra thì phần cam kết đã thừa và không còn lựa chọn nào ngoài việc trả cho hết. Xem lại theo nhịp là cách duy nhất phát hiện được điều đó trong lúc còn điều chỉnh được."
+      }
+    ],
+    "keyTakeaways": [
+      "Ba cách trả khác nhau ở giá và ở mức ràng buộc; chiều thứ hai quyết định",
+      "Cam kết cho phần chắc chắn còn cần trong kịch bản xấu, không cho mức trung bình",
+      "Cam kết thừa biến thành áp lực lên các quyết định kỹ thuật",
+      "Xem lại tỷ lệ mỗi sáu tháng, vì lúc có sự kiện thì đã muộn"
+    ],
+    "practicePrompt": {
+      "question": "Nền 40 đơn vị, dao động 30, đỉnh hiếm 30. Nên cam kết bao nhiêu?",
+      "options": [
+        "40",
+        "70",
+        "50, tức mức nền cộng thêm một phần của khoảng dao động để tận dụng mức giảm giá",
+        "100, vì cam kết toàn bộ cho mức giảm lớn nhất rồi bán lại phần thừa nếu không dùng hết"
+      ],
+      "correct": 0,
+      "explanation": "Chỉ 40 là phần chạy liên tục và chắc chắn còn cần. Cam kết 70 nghĩa là cam kết cho cả phần dao động, tức đang cược rằng dao động ấy không bao giờ đi xuống - trong khi bản chất của dao động là nó đi cả hai chiều."
+    },
+    "summary": {
+      "keyIdea": "Ba tầng cho ba hình dạng nhu cầu, không một tầng cho tất cả",
+      "commonMistake": "Cam kết theo mức trung bình thay vì theo mức nền",
+      "action": "Vẽ lượng dùng của một dịch vụ theo giờ trong một tháng và tìm mức nền."
+    },
+    "application": {
+      "title": "Ba con số",
+      "message": "Mức nền chạy liên tục. Biên độ dao động. Đỉnh hiếm. Ba con số ấy trỏ thẳng vào ba tầng.",
+      "secondary": "Nếu chỉ đo được một, hãy đo mức nền - nó là con số duy nhất an toàn để cam kết."
+    },
     "id": 1209,
     "slug": "cau-truc-von-toi-uu-cho-doanh-nghiep",
-    "title": "CFO & Vận hành, Bài 8: Cấu trúc vốn tối ưu cho doanh nghiệp",
-    "subtitle": "Bao nhiêu nợ là 'vừa đủ' - không quá ít, không quá nhiều",
-    "duration": "7 phút",
-    "difficulty": "Khó",
-    "emoji": "⚖️",
-    "track": "professional",
-    "openingQuestion": "Vì sao một doanh nghiệp hoàn toàn không dùng nợ vay (100% vốn chủ sở hữu) thường KHÔNG được xem là có cấu trúc vốn tối ưu, dù an toàn tuyệt đối về mặt rủi ro vỡ nợ?",
-    "openingOptions": [
-      "Vì luật pháp yêu cầu mọi doanh nghiệp phải có nợ vay",
-      "Bỏ lỡ lợi ích tax shield và đòn bẩy hợp lý giúp tăng ROE",
-      "Vì doanh nghiệp không có nợ vay không thể phát triển kinh doanh",
-      "Cấu trúc vốn 100% vốn chủ sở hữu luôn là lựa chọn tối ưu tuyệt đối"
-    ],
-    "correctOption": 1,
-    "explanation": "Cấu trúc vốn tối ưu cân bằng giữa lợi ích của nợ vay (tax shield từ lãi vay được khấu trừ thuế, đòn bẩy tài chính khuếch đại ROE khi ROIC vượt chi phí nợ) và chi phí/rủi ro của nợ (rủi ro vỡ nợ tăng, chi phí kiệt quệ tài chính - financial distress cost - khi nợ quá cao). Một doanh nghiệp hoàn toàn không có nợ đang bỏ lỡ lợi ích tax shield mà không cần thiết, trong khi vẫn có thể duy trì mức nợ an toàn.",
-    "diagram": [
-      {
-        "label": "Lợi ích của nợ: tax shield, khuếch đại ROE",
-        "arrow": false
-      },
-      {
-        "label": "Chi phí của nợ: rủi ro vỡ nợ, chi phí kiệt quệ tài chính",
-        "arrow": false
-      },
-      {
-        "label": "Cấu trúc vốn tối ưu: điểm cân bằng giữa hai yếu tố"
-      }
-    ],
-    "realWorldExample": {
-      "company": "So sánh cấu trúc vốn giữa các ngành",
-      "description": "Các ngành có dòng tiền ổn định, tài sản hữu hình lớn (bất động sản, tiện ích công cộng) thường duy trì tỷ lệ nợ cao hơn nhiều so với các ngành có dòng tiền biến động, tài sản chủ yếu vô hình (công nghệ, dược phẩm giai đoạn nghiên cứu) - phản ánh khả năng chịu đựng nợ vay khác nhau giữa các mô hình kinh doanh."
-    },
-    "quiz": [
-      {
-        "question": "Vì sao các công ty công nghệ giai đoạn tăng trưởng cao thường duy trì tỷ lệ nợ vay thấp hơn nhiều so với các công ty bất động sản hay tiện ích công cộng?",
-        "options": [
-          "Vì công ty công nghệ không được phép vay nợ theo quy định, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "Công ty công nghệ tăng trưởng cao thường có dòng tiền biến động mạnh, ít tài sản hữu hình để thế chấp, và cần linh hoạt tài chính cho các quyết định đầu tư nhanh - nợ vay cao làm tăng rủi ro tài chính trong bối cảnh dòng tiền vốn đã không ổn định, trong khi bất động sản/tiện ích có dòng tiền và tài sản thế chấp ổn định hơn nhiều để chịu đựng đòn bẩy cao",
-          "Vì công ty công nghệ luôn có lợi nhuận thấp hơn bất động sản, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "Tỷ lệ nợ vay không liên quan gì đến đặc thù ngành nghề, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Khả năng chịu đựng nợ vay phụ thuộc nhiều vào tính ổn định của dòng tiền và giá trị tài sản có thể thế chấp - ngành có dòng tiền ổn định và tài sản hữu hình lớn (bất động sản) có thể an toàn duy trì tỷ lệ nợ cao hơn nhiều so với ngành dòng tiền biến động mạnh, tài sản chủ yếu vô hình (công nghệ giai đoạn tăng trưởng)."
-      },
-      {
-        "question": "Chi phí kiệt quệ tài chính (financial distress cost) là gì, và vì sao nó là một yếu tố quan trọng giới hạn mức nợ vay tối ưu của doanh nghiệp?",
-        "options": [
-          "Chỉ đơn giản là chi phí lãi vay phải trả hàng kỳ, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-          "Là các chi phí gián tiếp phát sinh khi doanh nghiệp có nguy cơ vỡ nợ cao - khách hàng, nhà cung cấp, nhân viên giỏi có thể rời bỏ vì lo ngại rủi ro, chi phí vay mới tăng vọt, ban lãnh đạo phải tập trung xử lý khủng hoảng thay vì phát triển kinh doanh - những tổn thất này có thể lớn hơn nhiều so với lợi ích tax shield từ nợ vay bổ sung",
-          "Chi phí kiệt quệ tài chính chỉ phát sinh sau khi doanh nghiệp đã chính thức phá sản, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-          "Đây là một khoản chi phí cố định giống nhau cho mọi doanh nghiệp, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
-        ],
-        "correct": 1,
-        "explanation": "Chi phí kiệt quệ tài chính là chi phí GIÁN TIẾP, thường bắt đầu xuất hiện ngay cả trước khi doanh nghiệp thực sự vỡ nợ - chỉ cần thị trường NHẬN THẤY rủi ro vỡ nợ tăng cao, các bên liên quan (khách hàng, nhà cung cấp, nhân sự giỏi) đã có thể bắt đầu rời bỏ hoặc yêu cầu điều khoản khắt khe hơn, làm tổn hại giá trị doanh nghiệp trước khi vỡ nợ thực sự xảy ra."
-      },
-      {
-        "question": "Vì sao chi phí kiệt quệ tài chính lại xuất hiện trước khi doanh nghiệp thực sự vỡ nợ?",
-        "options": [
-          "Vì chỉ cần khách hàng, nhà cung cấp và nhân sự bắt đầu nghi ngờ là hành vi của họ đã thay đổi theo hướng bất lợi",
-          "Vì kế toán phải trích lập dự phòng ngay khi nợ tăng",
-          "Vì ngân hàng bắt buộc công bố tình trạng khó khăn",
-          "Vì thuế suất tăng khi tỷ lệ nợ vượt ngưỡng"
-        ],
-        "correct": 0,
-        "explanation": "Đây là chi phí gián tiếp và không hiện trên báo cáo tài chính dưới một dòng riêng, nhưng lại là lý do chính khiến mức nợ tối ưu thấp hơn nhiều so với gợi ý từ lợi ích lá chắn thuế đơn thuần."
-      },
-      {
-        "question": "Vì sao doanh nghiệp công nghệ có giá trị chủ yếu ở tài sản vô hình nên duy trì tỷ lệ nợ thấp?",
-        "options": [
-          "Vì ít tài sản thế chấp và giá trị nằm ở con người - thứ có thể mất rất nhanh khi doanh nghiệp gặp khó khăn",
-          "Vì họ không được phép vay ngân hàng",
-          "Vì lá chắn thuế không áp dụng cho ngành công nghệ",
-          "Vì họ luôn có nhiều tiền mặt"
-        ],
-        "correct": 0,
-        "explanation": "Khi khó khăn xảy ra, một nhà máy vẫn còn đó để bán, nhưng một đội ngũ kỹ sư có thể rời đi trong vài tuần. Giá trị dễ bốc hơi làm chi phí kiệt quệ tài chính cao hơn nhiều."
-      }
-    ],
-    "keyTakeaways": [
-      "Cấu trúc vốn tối ưu cân bằng giữa lợi ích của nợ (tax shield, khuếch đại ROE) và chi phí của nợ (rủi ro vỡ nợ, chi phí kiệt quệ tài chính)",
-      "Khả năng chịu đựng nợ vay phụ thuộc vào tính ổn định dòng tiền và tài sản thế chấp - khác nhau lớn giữa các ngành",
-      "Chi phí kiệt quệ tài chính là chi phí gián tiếp, có thể xuất hiện ngay cả trước khi doanh nghiệp vỡ nợ thực sự"
-    ],
-    "practicePrompt": {
-      "question": "Một CFO cân nhắc: vay thêm nợ giúp công ty hưởng lá chắn thuế (tax shield) từ lãi vay, nhưng vay quá nhiều lại làm tăng rủi ro kiệt quệ tài chính (financial distress) nếu kinh doanh gặp khó khăn. Làm sao CFO xác định được mức vay nợ 'tối ưu', không quá ít cũng không quá nhiều?",
-      "options": [
-        "Cấu trúc vốn tối ưu cân bằng lợi ích tax shield của nợ với chi phí kiệt quệ tài chính",
-        "Nên vay nợ càng nhiều càng tốt vì lá chắn thuế luôn mang lại lợi ích ròng dương cho công ty trong mọi trường hợp",
-        "Nên tránh vay nợ hoàn toàn để giảm thiểu mọi rủi ro tài chính có thể xảy ra cho doanh nghiệp",
-        "Mức vay nợ tối ưu luôn giống nhau cho mọi công ty bất kể ngành nghề hay giai đoạn phát triển"
-      ],
-      "correct": 0,
-      "explanation": "Cấu trúc vốn tối ưu cân bằng giữa lợi ích tax shield của nợ và chi phí kiệt quệ tài chính. Mức vay nợ tối ưu khác nhau tùy ngành - công ty có dòng tiền ổn định (bất động sản, tiện ích) chịu được nợ cao hơn công ty tăng trưởng cao biến động (công nghệ)."
-    },
-    "application": {
-      "title": "Thử mức nợ ở kịch bản xấu, không ở kịch bản kế hoạch",
-      "message": "Lấy tỷ lệ nợ đang cân nhắc và chạy lại với EBITDA giảm 30%. Kiểm hai thứ: hệ số bao phủ lãi vay còn trên 2 lần không, và có chạm ngưỡng covenant nào không. Cấu trúc vốn tối ưu là cấu trúc còn đứng được ở năm tệ nhất, không phải cấu trúc đẹp nhất ở năm kế hoạch.",
-      "secondary": "So mức nợ của bạn với trung vị ngành trước khi kết luận. Doanh nghiệp có dòng tiền hợp đồng dài hạn gánh được mức nợ mà doanh nghiệp theo chu kỳ không gánh nổi.",
-    },
-    "sections": [
-      {
-        "type": "lead",
-        "text": "Một doanh nghiệp hoàn toàn không dùng nợ vay nghe có vẻ an toàn tuyệt đối - nhưng lại thường không phải là cấu trúc vốn tối ưu."
-      },
-      {
-        "type": "heading",
-        "text": "Cân bằng giữa tax shield và chi phí kiệt quệ tài chính"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nợ vay mang lại lợi ích tax shield (lãi vay được khấu trừ thuế) và có thể khuếch đại ROE, nhưng cũng đi kèm rủi ro vỡ nợ và chi phí kiệt quệ tài chính - chi phí gián tiếp khi khách hàng, nhà cung cấp, nhân sự giỏi rời bỏ vì lo ngại rủi ro, thường xuất hiện ngay cả TRƯỚC khi doanh nghiệp thực sự vỡ nợ. Khả năng chịu đựng nợ vay phụ thuộc nhiều vào tính ổn định dòng tiền và tài sản thế chấp - khác nhau lớn giữa các ngành, từ bất động sản (chịu được nợ cao) đến công nghệ tăng trưởng (nên duy trì nợ thấp)."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Cấu trúc vốn tối ưu cân bằng giữa lợi ích tax shield của nợ và chi phí kiệt quệ tài chính",
-          "Khả năng chịu đựng nợ vay phụ thuộc vào tính ổn định dòng tiền và tài sản thế chấp - khác nhau giữa các ngành",
-          "Chi phí kiệt quệ tài chính là chi phí gián tiếp, có thể xuất hiện ngay cả trước khi vỡ nợ thực sự"
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Chi phí kiệt quệ tài chính trông như thế nào"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Khách hàng lớn ngần ngại ký hợp đồng dài hạn vì lo doanh nghiệp không trụ được đến khi giao hàng.",
-          "Nhà cung cấp siết điều kiện thanh toán, yêu cầu trả trước thay vì cho nợ - làm nhu cầu vốn lưu động tăng vọt đúng lúc khó khăn nhất.",
-          "Nhân sự giỏi rời đi trước tiên, vì họ là người có nhiều lựa chọn nhất.",
-          "Ban lãnh đạo phải dành thời gian đàm phán với chủ nợ thay vì điều hành, và các dự án đầu tư dài hạn bị hoãn kể cả những dự án tốt."
-        ]
-      },
-      {
-        "type": "paragraph",
-        "text": "Điểm quan trọng là toàn bộ những chi phí này xuất hiện từ trước khi doanh nghiệp thực sự mất khả năng thanh toán - chỉ cần thị trường bắt đầu nghi ngờ là đủ. Đó là lý do mức nợ tối ưu luôn thấp hơn mức mà lý thuyết thuần túy về lá chắn thuế gợi ý."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Khả năng chịu nợ khác nhau theo đặc thù",
-        "subtitle": "Cùng một tỷ lệ nợ không mang cùng mức rủi ro",
-        "concepts": [
-          {
-            "vi": "Dòng tiền ổn định",
-            "en": "Điện, nước, hạ tầng, cho thuê dài hạn",
-            "def": "Doanh thu dự báo được nhiều năm, tài sản có thể thế chấp. Chịu được tỷ lệ nợ cao hơn hẳn mặt bằng chung."
-          },
-          {
-            "vi": "Dòng tiền chu kỳ",
-            "en": "Thép, hóa chất, bất động sản, hàng không",
-            "def": "Lợi nhuận có thể sụt rất sâu trong pha xuống của chu kỳ. Cần giữ đệm rộng vì tỷ lệ đòn bẩy đo được sẽ xấu đi nhanh."
-          },
-          {
-            "vi": "Tài sản vô hình là chính",
-            "en": "Công nghệ, dịch vụ chuyên môn",
-            "def": "Ít tài sản thế chấp, giá trị nằm ở con người và có thể bốc hơi nhanh khi doanh nghiệp gặp khó. Nên duy trì nợ thấp."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Thứ tự ưu tiên nguồn vốn trong thực tế",
-        "text": "Nhiều doanh nghiệp trên thực tế không nhắm tới một tỷ lệ nợ mục tiêu, mà đi theo thứ tự: dùng lợi nhuận giữ lại trước, rồi mới vay, và phát hành cổ phần là lựa chọn cuối. Lý do là phát hành cổ phần thường bị thị trường hiểu như tín hiệu ban lãnh đạo cho rằng cổ phiếu đang được định giá cao - nên nó vừa tốn kém vừa gửi đi thông điệp không mong muốn."
-      },
-      {
-        "type": "closing",
-        "lines": [
-          "'Không có nợ' không đồng nghĩa với 'cấu trúc vốn tối ưu'.",
-          "Mức nợ tối ưu là mức cân bằng đúng giữa lợi ích và rủi ro, phù hợp với đặc thù ngành và dòng tiền doanh nghiệp."
-        ]
-      }
-    ],
-    "summary": {
-      "keyIdea": "Cấu trúc vốn tối ưu cân bằng giữa lợi ích của nợ (tax shield, khuếch đại ROE) và chi phí của nợ (rủi ro vỡ nợ, chi phí kiệt quệ tài chính)",
-      "commonMistake": "Dễ bỏ qua: khả năng chịu đựng nợ vay phụ thuộc vào tính ổn định dòng tiền và tài sản thế chấp - khác nhau lớn giữa các ngành",
-      "action": "Chi phí kiệt quệ tài chính là chi phí gián tiếp, có thể xuất hiện ngay cả trước khi doanh nghiệp vỡ nợ thực sự"
-    }
+    "track": "professional"
   },
   {
-    "id": 1210,
-    "slug": "tong-ket-vai-tro-cfo-hien-dai",
-    "title": "CFO & Vận hành, Bài 9: Tổng kết - Vai trò CFO hiện đại",
-    "subtitle": "Từ người giữ sổ sách đến đối tác chiến lược của CEO",
-    "duration": "7 phút",
+    "title": "Kỹ sư trưởng & Vận hành, Bài 9: Tổng kết",
+    "subtitle": "Vai trò người chịu trách nhiệm về chi phí và độ tin cậy của hệ thống",
+    "duration": "9 phút",
     "difficulty": "Trung bình",
-    "emoji": "🏁",
-    "track": "professional",
-    "openingQuestion": "Sau khi học qua FP&A, Treasury, quản trị rủi ro lãi suất/tỷ giá, và cấu trúc vốn, điểm chung lớn nhất kết nối vai trò của một CFO hiện đại là gì?",
+    "emoji": "🎯",
+    "whyItMatters": "Ở một quy mô nhất định, có người phải trả lời được vì sao hệ thống tốn từng ấy và chịu được tới đâu. Vai trò ấy hiếm khi có tên chính thức, và khi không ai nhận thì cả hai câu đều không có câu trả lời.",
+    "openingQuestion": "Vai trò này khác vai trò kiến trúc sư hệ thống ở điểm nào?",
     "openingOptions": [
-      "CFO chỉ cần đảm bảo báo cáo tài chính được lập đúng chuẩn mực kế toán, và điều này thường được xem là chuẩn mực chung áp dụng rộng rãi trong ngành",
-      "CFO hiện đại kết nối FP&A, Treasury, quản trị rủi ro thị trường và cấu trúc vốn để hỗ trợ CEO ra quyết định chiến lược",
-      "CFO chỉ cần giỏi về thuế và kiểm toán, bất kể quy mô hay lĩnh vực hoạt động cụ thể của từng doanh nghiệp riêng biệt",
-      "Vai trò CFO không có điểm chung nào giữa các mảng đã học, đây là quan điểm được nhiều chuyên gia tài chính đồng thuận rộng rãi hiện nay"
+      "Nó trả lời cho câu hỏi tốn bao nhiêu, không chỉ chạy thế nào",
+      "Nó tập trung vào vận hành hơn thiết kế",
+      "Nó làm việc với các bộ phận ngoài kỹ thuật nhiều hơn nên cần kỹ năng giao tiếp khác biệt",
+      "Nó chịu trách nhiệm về những quyết định dài hạn còn kiến trúc sư lo phần triển khai"
     ],
-    "correctOption": 1,
-    "explanation": "Xuyên suốt Chặng CFO & Vận hành, mỗi bài học là một mảnh ghép trong bức tranh lớn hơn: FP&A giúp lập kế hoạch và dự báo, Treasury đảm bảo doanh nghiệp không bao giờ thiếu thanh khoản, quản trị rủi ro lãi suất/tỷ giá bảo vệ doanh nghiệp khỏi biến động thị trường ngoài tầm kiểm soát, và quyết định cấu trúc vốn cân bằng giữa tăng trưởng và an toàn tài chính. CFO hiện đại không chỉ 'giữ sổ sách' mà là đối tác chiến lược, kết nối tất cả các mảnh ghép này để hỗ trợ CEO ra quyết định.",
+    "correctOption": 0,
+    "explanation": "Kiến trúc sư trả lời hệ thống nên được xây thế nào để làm được việc. Vai trò này thêm một chiều: làm được việc ấy tốn bao nhiêu, và đánh đổi giữa chi phí với độ tin cậy nằm ở đâu. Hai chiều ấy thường mâu thuẫn, và giá trị của vai trò nằm đúng ở chỗ có người phải cầm cả hai cùng lúc.",
     "diagram": [
       {
-        "label": "FP&A: lập kế hoạch, dự báo",
-        "arrow": false
+        "label": "Chi phí hệ thống",
+        "arrow": true
       },
       {
-        "label": "Treasury: đảm bảo thanh khoản",
-        "arrow": false
+        "label": "Độ tin cậy hệ thống",
+        "arrow": true
       },
       {
-        "label": "Quản trị rủi ro: lãi suất, tỷ giá",
-        "arrow": false
+        "label": "Hai chiều mâu thuẫn nhau",
+        "arrow": true
       },
       {
-        "label": "Cấu trúc vốn: cân bằng tăng trưởng và an toàn",
-        "arrow": false
-      },
-      {
-        "label": "→ CFO: đối tác chiến lược của CEO"
+        "label": "Một người cầm cả hai và nói ra đánh đổi"
       }
     ],
     "realWorldExample": {
-      "company": "Vai trò CFO tại các tập đoàn lớn hiện nay",
-      "description": "Ở nhiều tập đoàn hiện đại, CFO không chỉ báo cáo về quá khứ mà tham gia trực tiếp vào các quyết định chiến lược lớn - mở rộng thị trường mới, M&A, tái cấu trúc vốn - với vai trò đảm bảo mọi quyết định kinh doanh đều được đặt trên nền tảng phân tích tài chính vững chắc và quản trị rủi ro phù hợp."
-    },
-    "quiz": [
-      {
-        "question": "Vì sao một CEO giỏi về sản phẩm và thị trường vẫn cần một CFO mạnh, thay vì tự mình quyết định mọi vấn đề tài chính?",
-        "options": [
-          "Vì luật pháp yêu cầu bắt buộc phải có CFO riêng biệt với CEO",
-          "CFO mang chuyên môn sâu về đánh đổi rủi ro-lợi ích tài chính (cấu trúc vốn, quản trị rủi ro thị trường, thanh khoản) mà một CEO tập trung vào sản phẩm/thị trường khó có đủ thời gian và chuyên môn để tự quản lý chi tiết, đặc biệt khi doanh nghiệp mở rộng quy mô và độ phức tạp tài chính tăng lên",
-          "Vì CEO không bao giờ được phép quyết định về tài chính doanh nghiệp",
-          "CFO chỉ cần thiết cho các công ty niêm yết trên sàn chứng khoán"
-        ],
-        "correct": 1,
-        "explanation": "Sự phân công vai trò CEO-CFO phản ánh việc quản trị doanh nghiệp hiện đại đòi hỏi chuyên môn sâu ở nhiều lĩnh vực khác nhau - CEO tập trung vào tầm nhìn, sản phẩm, thị trường; CFO mang chuyên môn sâu về phân tích, quản trị rủi ro tài chính, và cấu trúc vốn để đảm bảo các quyết định chiến lược của CEO được thực hiện trên nền tảng tài chính bền vững."
-      },
-      {
-        "question": "Sau khi hoàn thành toàn bộ Chặng CFO & Vận hành, kỹ năng thực tế nào có giá trị nhất để áp dụng vào công việc phân tích tài chính doanh nghiệp thực tế?",
-        "options": [
-          "Thuộc lòng chính xác định nghĩa của từng thuật ngữ đã học trong chặng",
-          "Khả năng nhận diện đúng vấn đề tài chính doanh nghiệp đang đối mặt (thanh khoản, rủi ro thị trường, cấu trúc vốn) và biết công cụ/khung phân tích nào phù hợp để giải quyết - tư duy hệ thống kết nối các mảnh ghép, không chỉ ghi nhớ từng khái niệm riêng lẻ",
-          "Không cần áp dụng gì thêm, chỉ cần đọc qua lý thuyết một lần là đủ",
-          "Chỉ cần giỏi Excel là đủ để làm tốt công việc FP&A hoặc Treasury"
-        ],
-        "correct": 1,
-        "explanation": "Giống như các chặng trước trong chương trình, giá trị thực sự không nằm ở việc ghi nhớ định nghĩa riêng lẻ, mà ở khả năng NHẬN DIỆN đúng loại vấn đề tài chính doanh nghiệp đang gặp phải và áp dụng đúng công cụ/tư duy đã học - đây là kỹ năng phân biệt một nhà phân tích tài chính doanh nghiệp thực thụ với người chỉ thuộc lòng lý thuyết."
-      },
-      {
-        "question": "Doanh nghiệp quyết định vay thêm 500 tỷ để mở rộng. Quyết định này ảnh hưởng đến những mảng nào?",
-        "options": [
-          "Cả bốn: cấu trúc vốn, kế hoạch tài chính, phơi nhiễm lãi suất, và nhu cầu đệm thanh khoản",
-          "Chỉ cấu trúc vốn",
-          "Chỉ kế hoạch tài chính",
-          "Chỉ quản lý ngân quỹ"
-        ],
-        "correct": 0,
-        "explanation": "Đây chính là điểm cốt lõi của chặng: các mảng tài chính doanh nghiệp không tách rời nhau. Một quyết định ở mảng này luôn tạo hệ quả cần xử lý ở các mảng còn lại."
-      },
-      {
-        "question": "Đâu là câu hỏi thể hiện đúng vai trò đối tác chiến lược hơn là vai trò giữ sổ sách?",
-        "options": [
-          "Trong các dự án đang xin vốn, dự án nào tạo mức sinh lời vượt chi phí vốn?",
-          "Số dư tài khoản cuối tháng là bao nhiêu?",
-          "Báo cáo quý đã nộp đúng hạn chưa?",
-          "Hóa đơn tháng này đã được lưu trữ đầy đủ chưa?"
-        ],
-        "correct": 0,
-        "explanation": "Ba câu sau đều cần thiết nhưng chỉ mô tả trạng thái đã xảy ra. Câu đầu định hình việc doanh nghiệp sẽ phân bổ nguồn lực vào đâu - tức là ảnh hưởng đến tương lai chứ không chỉ ghi lại quá khứ."
-      }
-    ],
-    "keyTakeaways": [
-      "CFO hiện đại kết nối FP&A, Treasury, quản trị rủi ro thị trường và cấu trúc vốn để hỗ trợ CEO ra quyết định chiến lược",
-      "Sự phân công CEO-CFO phản ánh nhu cầu chuyên môn sâu ở các lĩnh vực khác nhau khi doanh nghiệp mở rộng quy mô",
-      "Giá trị lớn nhất là tư duy hệ thống nhận diện đúng vấn đề và áp dụng đúng công cụ, không chỉ ghi nhớ khái niệm riêng lẻ"
-    ],
-    "practicePrompt": {
-      "question": "Sau khi ôn tập toàn bộ chặng FP&A & Treasury (ngân sách, dự báo, KPI, quản lý dòng tiền, quản trị rủi ro lãi suất/tỷ giá, cấu trúc vốn), bạn nhận ra vai trò CFO hiện đại không chỉ là 'người giữ sổ sách'. Vai trò thực sự của CFO hiện đại là gì?",
-      "options": [
-        "CFO hiện đại kết nối FP&A, Treasury, quản trị rủi ro và cấu trúc vốn để hỗ trợ CEO ra quyết định chiến lược",
-        "CFO chỉ cần đảm bảo báo cáo tài chính đúng chuẩn mực kế toán, đây là vai trò duy nhất và quan trọng nhất",
-        "CFO hiện đại không cần hiểu về quản trị rủi ro lãi suất hay tỷ giá, đây là công việc của bộ phận Treasury riêng biệt",
-        "Vai trò CFO không thay đổi qua thời gian, vẫn giữ nguyên chức năng ghi chép sổ sách như trước đây"
-      ],
-      "correct": 0,
-      "explanation": "CFO hiện đại kết nối FP&A, Treasury, quản trị rủi ro và cấu trúc vốn để hỗ trợ CEO ra quyết định chiến lược. Đây là bài học tổng kết: CFO không chỉ báo cáo quá khứ mà chủ động định hình tương lai tài chính của doanh nghiệp thông qua các chức năng đã học trong chặng này."
-    },
-    "application": {
-      "title": "Nhận diện vấn đề trước khi chọn công cụ",
-      "message": "Với một vấn đề tài chính đang có thật, hỏi nó thuộc nhóm nào trước: lệch kế hoạch là FP&A, thiếu tiền dù có lãi là Treasury, chi phí vốn biến động là quản trị rủi ro, huy động sai loại vốn là cấu trúc vốn. Chẩn đoán sai nhóm dẫn tới dùng đúng công cụ cho sai bệnh.",
-      "secondary": "Phần lớn khủng hoảng tài chính doanh nghiệp bắt đầu ở một nhóm rồi lan sang nhóm khác. Sau khi xử lý, truy ngược xem nó khởi phát ở đâu.",
+      "company": "Không ai trả lời được câu hỏi của giám đốc",
+      "description": "Một công ty được hỏi vì sao chi phí hạ tầng tăng gấp đôi trong một năm. Đội hạ tầng trả lời họ chỉ cấp thứ được yêu cầu. Các đội sản phẩm trả lời họ chỉ dùng thứ được cấp. Cả hai đều đúng và không ai sai, nhưng câu hỏi vẫn không có câu trả lời trong sáu tuần - vì nó là câu hỏi duy nhất không thuộc phạm vi của bất kỳ ai."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "FP&A, Treasury, quản trị rủi ro lãi suất/tỷ giá, cấu trúc vốn - mỗi bài học trong Chặng CFO & Vận hành là một mảnh ghép của cùng một bức tranh lớn hơn."
+        "text": "Tám bài trước là các công cụ. Bài này nói về việc ai cầm chúng, và vì sao khoảng trống ấy tồn tại ở gần như mọi công ty đang lớn."
       },
       {
         "type": "heading",
-        "text": "CFO hiện đại: đối tác chiến lược, không chỉ giữ sổ sách"
-      },
-      {
-        "type": "paragraph",
-        "text": "CFO hiện đại kết nối tất cả các mảnh ghép tài chính doanh nghiệp - lập kế hoạch (FP&A), đảm bảo thanh khoản (Treasury), quản trị rủi ro thị trường, và quyết định cấu trúc vốn - để hỗ trợ CEO ra quyết định chiến lược trên nền tảng tài chính vững chắc. CEO tập trung vào sản phẩm và thị trường; CFO mang chuyên môn sâu về đánh đổi rủi ro-lợi ích tài chính mà CEO khó có đủ thời gian tự quản lý chi tiết khi doanh nghiệp mở rộng quy mô."
+        "text": "Bốn việc của vai trò này"
       },
       {
         "type": "list",
         "items": [
-          "CFO hiện đại kết nối FP&A, Treasury, quản trị rủi ro và cấu trúc vốn để hỗ trợ CEO ra quyết định chiến lược",
-          "Sự phân công CEO-CFO phản ánh nhu cầu chuyên môn sâu ở các lĩnh vực khác nhau khi doanh nghiệp mở rộng",
-          "Giá trị lớn nhất là tư duy hệ thống nhận diện đúng vấn đề, không chỉ ghi nhớ khái niệm riêng lẻ"
+          "Trả lời được chi phí đang đi vào đâu, tách theo nhóm và theo đơn vị việc",
+          "Nói ra được hệ thống chịu được tới đâu, bằng số chứ không bằng cảm giác",
+          "Đặt đánh đổi giữa hai thứ trên thành lựa chọn rõ ràng cho người quyết định",
+          "Giữ cho những khoản không ai đo - dự phòng, sao lưu, kiểm thử - không bị cắt lặng lẽ"
         ]
       },
       {
-        "type": "conceptTable",
-        "title": "Bốn mảng của chặng, ghép lại thành một hệ thống",
-        "subtitle": "Mỗi mảng trả lời một câu hỏi khác nhau",
-        "concepts": [
-          {
-            "vi": "Lập kế hoạch & phân tích",
-            "en": "FP&A - Bài 1-4",
-            "def": "Doanh nghiệp định đi đâu, và thực tế đang lệch khỏi kế hoạch ở chỗ nào, vì nguyên nhân gì?"
-          },
-          {
-            "vi": "Quản lý ngân quỹ",
-            "en": "Treasury - Bài 5",
-            "def": "Doanh nghiệp có đủ tiền cho các nghĩa vụ đến hạn không, và tiền nhàn rỗi đang được dùng ra sao?"
-          },
-          {
-            "vi": "Quản trị rủi ro thị trường",
-            "en": "Bài 6-7",
-            "def": "Những biến số ngoài tầm kiểm soát - lãi suất, tỷ giá - có thể phá vỡ kế hoạch đến mức nào, và phần nào cần được phòng hộ?"
-          },
-          {
-            "vi": "Cấu trúc vốn",
-            "en": "Bài 8",
-            "def": "Doanh nghiệp nên tài trợ hoạt động bằng nguồn nào, và tỷ lệ nợ nào là bền vững với đặc thù dòng tiền của mình?"
-          }
-        ]
+        "type": "paragraph",
+        "text": "Việc thứ tư là việc khó nhất và cũng là việc chỉ vai trò này làm được. Ba việc đầu đều có người khác làm được một phần; việc thứ tư đòi hỏi một người vừa hiểu cái giá kỹ thuật của việc cắt vừa có mặt trong cuộc trao đổi về ngân sách, và hai điều kiện ấy hiếm khi gặp nhau."
       },
       {
         "type": "heading",
-        "text": "Bốn mảng này gắn với nhau chặt hơn vẻ ngoài"
+        "text": "Vì sao khoảng trống này tồn tại"
       },
       {
         "type": "paragraph",
-        "text": "Một quyết định vay thêm để mở rộng không chỉ là chuyện cấu trúc vốn. Nó làm tăng nghĩa vụ trả lãi nên phải vào lại kế hoạch tài chính; nó tạo ra phơi nhiễm lãi suất mới cần được đo và có thể cần phòng hộ; và nó làm thay đổi nhu cầu đệm thanh khoản vì nghĩa vụ cố định đã lớn hơn. Người chỉ nhìn một mảng sẽ thấy một quyết định đơn giản; người nhìn cả hệ thống thấy bốn hệ quả cần xử lý cùng lúc. Đó chính là khác biệt giữa vai trò giữ sổ sách và vai trò đối tác chiến lược."
+        "text": "Đội hạ tầng cấp thứ được yêu cầu và không quyết định lượng cầu. Đội sản phẩm dùng thứ được cấp và không thấy hoá đơn. Bộ phận tài chính thấy hoá đơn và không đọc được nó. Ba nhóm ấy đều làm đúng việc của mình, và câu hỏi nằm ở khoảng giữa - nên nó không có ai, chứ không phải có ai làm sai."
       },
       {
         "type": "callout",
-        "label": "Ba câu hỏi một giám đốc tài chính phải luôn trả lời được",
-        "text": "Nếu doanh thu giảm 30% trong hai quý liên tiếp, doanh nghiệp trụ được bao lâu trước khi mất khả năng thanh toán? Nếu lãi suất và tỷ giá cùng đi theo hướng bất lợi nhất, kế hoạch năm nay còn đứng vững không? Và trong tất cả các dự án đang xin vốn, dự án nào tạo ra mức sinh lời vượt chi phí vốn - dự án nào không?"
+        "label": "Vai trò này không cần một chức danh mới",
+        "text": "Ở phần lớn công ty, việc này được làm tốt nhất bởi một người đã có sẵn trong đội - thường là người vận hành lâu năm nhất - với một thay đổi duy nhất: họ được mời vào cuộc trao đổi về ngân sách. Lập một vị trí mới thì chậm và thường tạo ra một người báo cáo về chi phí thay vì một người quyết định về nó."
       },
       {
-        "type": "paragraph",
-        "text": "Ba câu hỏi này không thể trả lời bằng cách nhớ định nghĩa. Chúng đòi hỏi ghép được số liệu từ cả bốn mảng lại với nhau, và đó là lý do tư duy hệ thống có giá trị hơn nhiều so với việc thuộc từng khái niệm riêng lẻ."
+        "type": "comparison",
+        "left": {
+          "label": "Có người cầm",
+          "text": "Câu hỏi vì sao tốn từng ấy có câu trả lời trong một ngày, kèm ba lựa chọn và cái giá của từng cái."
+        },
+        "right": {
+          "label": "Không ai cầm",
+          "text": "Câu hỏi đi vòng giữa ba nhóm trong sáu tuần rồi kết thúc bằng một chỉ thị cắt đều mọi khoản."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Dấu hiệu công ty đã cần vai trò này"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Hoá đơn hạ tầng đủ lớn để xuất hiện trong cuộc họp lãnh đạo",
+          "Có hơn ba đội cùng dùng chung hạ tầng và không ai thấy phần của mình",
+          "Đã từng có một chỉ thị cắt đều mọi khoản, vì đó là điều xảy ra khi không ai đọc được hoá đơn"
+        ]
       },
       {
         "type": "closing",
         "lines": [
-          "Mỗi bài học trong chặng này là một công cụ riêng lẻ.",
-          "Nhưng giá trị thực sự nằm ở khả năng kết nối chúng lại thành một hệ thống quản trị tài chính hoàn chỉnh."
+          "Chi phí và độ tin cậy mâu thuẫn nhau, nên phải có người cầm cả hai cùng lúc.",
+          "Cắt đều mọi khoản là điều xảy ra khi không ai đọc được hoá đơn."
         ]
       }
     ],
+    "quiz": [
+      {
+        "question": "Vai trò này khác kiến trúc sư hệ thống ở chỗ nào?",
+        "options": [
+          "Nó cầm cả chi phí lẫn độ tin cậy, hai chiều thường mâu thuẫn",
+          "Nó tập trung vào vận hành thay vì thiết kế",
+          "Nó có thẩm quyền quyết định về ngân sách còn kiến trúc sư chỉ đưa ra khuyến nghị",
+          "Nó nhìn hệ thống ở phạm vi toàn công ty còn kiến trúc sư nhìn ở phạm vi một sản phẩm"
+        ],
+        "correct": 0,
+        "explanation": "Kiến trúc sư trả lời hệ thống nên được xây thế nào để làm được việc. Chiều thêm vào là cái giá, và giá trị của vai trò nằm đúng ở chỗ hai chiều ấy mâu thuẫn nên phải có người cầm cả hai."
+      },
+      {
+        "question": "Vì sao khoảng trống này tồn tại ở gần như mọi công ty đang lớn?",
+        "options": [
+          "Vì ba nhóm liên quan đều đang làm đúng việc của mình",
+          "Vì không ai muốn nhận trách nhiệm về chi phí",
+          "Vì việc đọc hoá đơn hạ tầng đòi hỏi kỹ năng vừa kỹ thuật vừa tài chính nên khó tuyển",
+          "Vì cơ cấu tổ chức thường tách bộ phận hạ tầng khỏi bộ phận sản phẩm nên thông tin bị đứt"
+        ],
+        "correct": 0,
+        "explanation": "Đây là điểm dễ hiểu nhầm nhất. Không nhóm nào lười hay né tránh: đội hạ tầng không quyết lượng cầu, đội sản phẩm không thấy hoá đơn, tài chính không đọc được nó. Câu hỏi nằm ở khoảng giữa nên nó không có ai."
+      },
+      {
+        "question": "Việc nào chỉ vai trò này làm được?",
+        "options": [
+          "Giữ cho những khoản không ai đo không bị cắt lặng lẽ",
+          "Tách chi phí theo nhóm và theo đơn vị việc",
+          "Đo và báo cáo mức độ chịu tải thực tế của hệ thống theo từng kỳ",
+          "Trình bày các lựa chọn về hạ tầng cho ban lãnh đạo kèm chi phí của từng phương án"
+        ],
+        "correct": 0,
+        "explanation": "Ba việc kia đều có người khác làm được một phần. Việc đầu đòi hỏi một người vừa hiểu cái giá kỹ thuật của việc cắt vừa có mặt trong cuộc trao đổi về ngân sách, và hai điều kiện ấy hiếm khi gặp nhau."
+      },
+      {
+        "question": "Cách lập vai trò này hiệu quả nhất là gì?",
+        "options": [
+          "Mời một người đã có trong đội vào cuộc trao đổi về ngân sách",
+          "Tuyển một vị trí mới chuyên trách",
+          "Giao thêm trách nhiệm này cho người đứng đầu bộ phận hạ tầng của công ty",
+          "Lập một nhóm liên bộ phận gặp nhau định kỳ để rà soát chi phí và độ tin cậy"
+        ],
+        "correct": 0,
+        "explanation": "Lập vị trí mới thì chậm và thường tạo ra một người báo cáo về chi phí thay vì một người quyết định về nó. Thay đổi cần thiết không phải một chức danh mà là chỗ ngồi trong cuộc trao đổi nơi các con số được quyết."
+      },
+      {
+        "question": "Chỉ thị cắt đều mọi khoản là dấu hiệu của điều gì?",
+        "options": [
+          "Không ai đọc được hoá đơn",
+          "Công ty đang gặp khó khăn về tài chính",
+          "Ngân sách kỳ trước đã được lập rộng hơn nhiều so với nhu cầu thực tế của các đội",
+          "Ban lãnh đạo muốn buộc các đội tự tìm ra những khoản lãng phí trong phần của mình"
+        ],
+        "correct": 0,
+        "explanation": "Cắt đều là lựa chọn của người không phân biệt được khoản nào đang lãng phí với khoản nào đang giữ hệ thống đứng. Nó công bằng về hình thức và gần như luôn cắt nhầm, vì hai loại khoản ấy không phân bố đều."
+      }
+    ],
+    "keyTakeaways": [
+      "Chi phí và độ tin cậy mâu thuẫn nhau nên phải có người cầm cả hai",
+      "Khoảng trống tồn tại vì ba nhóm đều đang làm đúng việc của mình",
+      "Việc khó nhất là giữ cho khoản không ai đo khỏi bị cắt lặng lẽ",
+      "Cắt đều mọi khoản là điều xảy ra khi không ai đọc được hoá đơn"
+    ],
+    "practicePrompt": {
+      "question": "Bốn đội dùng chung hạ tầng, không đội nào thấy phần của mình. Việc đầu tiên nên làm là gì?",
+      "options": [
+        "Chia hoá đơn theo lượng dùng đo được",
+        "Lập một vị trí phụ trách chi phí",
+        "Đặt mức trần chi phí cho từng đội dựa trên quy mô và mức độ quan trọng của họ",
+        "Yêu cầu mỗi đội tự báo cáo mức sử dụng hạ tầng của mình theo chu kỳ hằng tháng"
+      ],
+      "correct": 0,
+      "explanation": "Ba phương án kia đều cần người khác đồng ý và đều mất nhiều tuần. Chia hoá đơn theo lượng đo được là việc làm được ngay, và nó thường đủ để hành vi đổi mà không cần thêm vai trò hay mức trần nào."
+    },
     "summary": {
-      "keyIdea": "CFO hiện đại kết nối FP&A, Treasury, quản trị rủi ro thị trường và cấu trúc vốn để hỗ trợ CEO ra quyết định chiến lược",
-      "commonMistake": "Dễ bỏ qua: sự phân công CEO-CFO phản ánh nhu cầu chuyên môn sâu ở các lĩnh vực khác nhau khi doanh nghiệp mở rộng quy mô",
-      "action": "Giá trị lớn nhất là tư duy hệ thống nhận diện đúng vấn đề và áp dụng đúng công cụ, không chỉ ghi nhớ khái niệm riêng lẻ"
-    }
+      "keyIdea": "Phải có người cầm cả chi phí lẫn độ tin cậy, vì hai chiều mâu thuẫn nhau",
+      "commonMistake": "Chờ một chức danh mới thay vì mời người có sẵn vào bàn",
+      "action": "Hỏi ở công ty bạn: ai trả lời được vì sao hạ tầng tốn từng ấy."
+    },
+    "application": {
+      "title": "Ba câu để biết vai trò này đang trống",
+      "message": "Ai trả lời được hoá đơn đi vào đâu? Ai nói được hệ thống chịu tới đâu, bằng số? Ai bảo vệ khoản dự phòng khi có chỉ thị cắt?",
+      "secondary": "Nếu ba câu trỏ vào ba người khác nhau thì đánh đổi giữa chúng đang không ai cầm."
+    },
+    "id": 1210,
+    "slug": "tong-ket-vai-tro-cfo-hien-dai",
+    "track": "professional"
   },
   {
     "id": 1213,
@@ -67969,204 +67997,170 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1218,
-    "track": "professional",
-    "slug": "basel-iii-regulatory-capital-requirements",
-    "interactiveType": "risk",
-    "title": "Basel III & Quy định vốn - Làm sao ngân hàng không phá sản",
-    "subtitle": "Sau khủng hoảng 2008, thế giới quyết định: các ngân hàng phải giữ đủ vốn dự phòng để sống sót qua các cuộc khủng hoảng.",
+    "slug": "han-muc-va-nguong-xet-duyet",
+    "title": "Hạn mức và ngưỡng xét duyệt: vì sao mọi thao tác lớn cần một trần",
+    "subtitle": "Một hạn mức không ngăn được người có ý đồ; nó giới hạn thiệt hại của một thao tác sai.",
     "duration": "8 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🏛️",
-    "openingQuestion": "Khi Basel III nói rằng một ngân hàng phải có 'Tier 1 capital ratio 10.5%', điều này có nghĩa là gì?",
+    "interactiveType": "risk",
+    "whyItMatters": "Phần lớn thiệt hại lớn từ một thao tác đơn lẻ đều có thể đã nhỏ đi rất nhiều nếu có một con số trần đặt đúng chỗ.",
+    "openingQuestion": "Hạn mức cho một thao tác nguy hiểm nên đặt theo gì?",
     "openingOptions": [
-      "Ngân hàng phải có 10,5% vốn chủ sở hữu mạnh",
-      "Ngân hàng chỉ được cho vay 10.5% của tổng vốn của mình",
-      "Ngân hàng phải lợi nhuận 10.5% mỗi năm",
-      "Lợi tức trên vốn của ngân hàng phải đạt 10.5%"
+      "Theo mức thiệt hại mà tổ chức chịu được nếu thao tác đó chạy sai một lần",
+      "Theo mức mà người dùng thông thường cần trong công việc hằng ngày",
+      "Theo mức cao nhất từng được ghi nhận trong lịch sử sử dụng hệ thống",
+      "Theo mức mà các hệ thống tương tự trong ngành đang áp dụng hiện nay"
     ],
     "correctOption": 0,
-    "explanation": "Tier 1 capital ratio là tỷ lệ vốn chủ sở hữu (vốn dự phòng tốt nhất, không thể mất) trên tổng tài sản có trọng số rủi ro. Tỷ lệ cao hơn = ngân hàng an toàn hơn, vì nó có 'đệm' lớn hơn để hấp thụ tổn thất trước khi phá sản. Basel III yêu cầu tối thiểu 10.5% để bảo vệ hệ thống tài chính.",
+    "explanation": "Lựa chọn thứ hai là con số quen thuộc nhất và nó trả lời một câu hỏi khác - nó nói về tiện lợi, không về thiệt hại. Hạn mức là công cụ giới hạn hậu quả, nên nó phải được suy ra từ mức hậu quả chịu được, rồi mới đối chiếu xem nó có làm khó công việc bình thường hay không.",
+    "diagram": [
+      {
+        "label": "Trần suy ra từ mức thiệt hại chịu được, không từ nhu cầu thường ngày",
+        "arrow": true
+      },
+      {
+        "label": "Vượt trần thì không CHẶN, mà chuyển sang một đường khác",
+        "arrow": true
+      },
+      {
+        "label": "Hạn mức theo khoảng thời gian, không chỉ theo từng lần",
+        "arrow": true
+      },
+      {
+        "label": "Và phải có đường vượt hạn mức khẩn cấp, có ghi lại"
+      }
+    ],
     "realWorldExample": {
-      "company": "Lehman Brothers",
-      "description": "Trước khủng hoảng 2008, Lehman Brothers chỉ giữ ~3% Tier 1 capital ratio (thấp hơn nhiều so với yêu cầu Basel III ngày nay). Khi tài sản suy giảm, ngân hàng không đủ vốn để hấp thụ tổn thất và phá sản. Nếu Basel III có lúc đó, có thể tình cảnh khác."
+      "company": "Chặn cứng thì người ta đi vòng",
+      "description": "Một hạn mức chặn cứng không có đường vượt sẽ bị đi vòng ngay lần đầu có việc gấp: người ta chia nhỏ thao tác, mượn tài khoản khác, hoặc tắt kiểm tra. Đường vượt có ghi lại thì vừa cho phép việc gấp chạy, vừa để lại dấu vết."
     },
     "quiz": [
       {
-        "question": "Sự khác biệt giữa Tier 1 capital và Tier 2 capital là gì?",
+        "question": "Vì sao đặt hạn mức theo nhu cầu thường ngày là trả lời sai câu hỏi?",
         "options": [
-          "Tier 1 là tiền mặt, Tier 2 là cổ phiếu",
-          "Tier 1 là vốn chủ sở hữu + lợi nhuận chưa phân phối (mạnh nhất); Tier 2 là trái phiếu và hỗ trợ khác (yếu hơn). Khi tổn thất, Tier 1 được dùng trước",
-          "Tier 1 và Tier 2 giống nhau, chỉ là tên gọi khác nhau"
+          "Vì nó nói về tiện lợi, còn hạn mức là công cụ giới hạn hậu quả",
+          "Vì nhu cầu thường ngày thay đổi theo thời gian nên hạn mức nhanh lỗi thời",
+          "Vì có những người dùng cần mức cao hơn nhiều so với mức trung bình",
+          "Vì nhu cầu thường ngày không phản ánh được các tình huống bất thường"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là khó khăn khi ước lượng nhu cầu. Cái này chỉ ra rằng con số đó không phải đầu vào đúng: hai câu hỏi khác nhau cho hai con số khác nhau, và chỉ một trong hai liên quan tới mục đích của hạn mức."
       },
       {
-        "question": "RWA (Risk Weighted Assets) là gì?",
+        "question": "Vì sao vượt hạn mức nên chuyển sang đường khác thay vì bị chặn cứng?",
         "options": [
-          "Tổng tất cả tài sản của ngân hàng nhân với giá trị của chúng",
-          "Tài sản được điều chỉnh theo độ rủi ro - ví dụ, trái phiếu chính phủ có trọng số 0%, khoản vay cá nhân có trọng số 100%. RWA = tổng tài sản được cân nhắc theo rủi ro",
-          "Tiền lãi lầu ngân hàng kiếm được trong quá khứ"
+          "Vì chặn cứng sẽ bị đi vòng ngay lần đầu có việc gấp, và đường vòng không ai theo dõi",
+          "Vì có tất cả các trường hợp hợp lệ thật sự cần vượt hạn mức nên rốt cuộc cũng không thể chặn hoàn toàn",
+          "Vì việc chặn cứng làm gián đoạn công việc và ảnh hưởng tới người dùng",
+          "Vì cần thu thập dữ liệu về các trường hợp vượt để điều chỉnh hạn mức"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai đúng và nhẹ hơn. Vế thứ hai của lựa chọn đầu mới là phần nguy hiểm: người ta chia nhỏ thao tác, mượn tài khoản khác, hoặc tắt kiểm tra - và không cách nào trong ba cách đó để lại dấu vết."
       },
       {
-        "question": "Nếu một ngân hàng không đạt yêu cầu Tier 1 capital ratio, điều gì xảy ra?",
+        "question": "Vì sao cần hạn mức theo khoảng thời gian chứ không chỉ theo từng lần?",
         "options": [
-          "Không có gì, những quy định chỉ là gợi ý",
-          "Cơ quan quản lý sẽ buộc ngân hàng tăng vốn (qua cấp thêm cổ phiếu), giảm rủi ro, hoặc cắt giảm cổ tức - nếu vẫn không tuân thủ, ngân hàng có thể bị kìm chế hoặc đóng cửa",
-          "Ngân hàng phải nộp phạt nhưng có thể tiếp tục kinh doanh bình thường"
+          "Vì chia nhỏ thành nhiều lần dưới trần là cách đi vòng đơn giản nhất",
+          "Vì tổng thiệt hại trong một ngày quan trọng hơn thiệt hại của một lần",
+          "Vì hạn mức theo lần không phản ánh được tần suất sử dụng thực tế",
+          "Vì các hệ thống theo dõi thường tổng hợp số liệu theo khoảng thời gian"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai mô tả hậu quả, còn đây là cơ chế. Một hạn mức chỉ theo từng lần có thể bị vô hiệu hoàn toàn bằng một vòng lặp, và điều đó không đòi hỏi kỹ năng gì đặc biệt."
+      },
+      {
+        "question": "Đường vượt hạn mức khẩn cấp cần có điều kiện gì?",
+        "options": [
+          "Ghi lại ai dùng, lúc nào, vì lý do gì - và được rà soát sau đó",
+          "Chỉ những người có thẩm quyền tương đối cao nhất mới được phép sử dụng",
+          "Chỉ được dùng trong các tình huống sự cố đã được định nghĩa trước",
+          "Tự động hết hiệu lực sau một khoảng thời gian ngắn kể từ khi kích hoạt"
+        ],
+        "correct": 0,
+        "explanation": "Ba điều kiện kia đều siết chặt việc dùng và đều làm nó khó hơn trong lúc gấp - tức là đẩy người ta về phía đường vòng. Vế RÀ SOÁT SAU thì cho phép dùng nhanh mà vẫn giữ được trách nhiệm."
+      },
+      {
+        "question": "Dấu hiệu nào cho thấy một hạn mức đang đặt sai?",
+        "options": [
+          "Nó bị vượt thường xuyên bằng đường khẩn cấp trong công việc bình thường",
+          "Nó chưa bao giờ bị chạm tới trong suốt thời gian được áp dụng",
+          "Người dùng phàn nàn rằng hạn mức làm chậm công việc của họ",
+          "Số lượng thao tác bị chặn tăng lên theo quy mô sử dụng hệ thống"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai cũng đáng xem lại nhưng nó có thể chỉ nghĩa là hạn mức được đặt rộng rãi một cách hợp lý. Đường khẩn cấp bị dùng trong việc thường ngày thì rõ ràng hơn: nó nghĩa là trần đang nằm dưới mức công việc bình thường cần."
       }
     ],
+    "keyTakeaways": [
+      "Trần suy ra từ mức THIỆT HẠI chịu được, không từ nhu cầu thường ngày.",
+      "Chặn cứng thì bị đi vòng - chia nhỏ, mượn tài khoản, tắt kiểm tra, không dấu vết.",
+      "Cần hạn mức theo KHOẢNG THỜI GIAN, nếu không một vòng lặp vô hiệu hoá nó.",
+      "Đường khẩn cấp phải nhanh khi dùng và được RÀ SOÁT SAU, không siết trước.",
+      "Đường khẩn cấp bị dùng trong việc thường ngày = trần đang đặt quá thấp."
+    ],
+    "practicePrompt": {
+      "question": "Một thao tác xoá dữ liệu chưa có hạn mức nào. Đặt trần theo con số nào?",
+      "options": [
+        "Số bản ghi mà việc khôi phục lại còn khả thi trong thời gian chấp nhận được",
+        "Số bản ghi lớn nhất mà một lượt xoá hợp lệ từng cần trong quá khứ",
+        "Số bản ghi trung bình của chính đúng một lượt xoá thông thường xuyên nhân với hệ số dự phòng",
+        "Số bản ghi mà hệ thống xử lý được trong một lượt mà không bị quá tải"
+      ],
+      "correct": 0,
+      "explanation": "Ba con số kia đều mô tả nhu cầu hoặc năng lực. Con số này mô tả HẬU QUẢ, và nó là con số duy nhất trả lời được câu hỏi mà hạn mức tồn tại để trả lời."
+    },
+    "summary": {
+      "keyIdea": "Hạn mức không ngăn người có ý đồ; nó giới hạn thiệt hại của một thao tác sai.",
+      "formula": "Trần theo thiệt hại chịu được + hạn mức theo kỳ + đường vượt có ghi lại.",
+      "commonMistake": "Đặt trần theo nhu cầu thường ngày - một con số trả lời câu hỏi khác.",
+      "action": "Với thao tác nguy hiểm nhất, tính xem khôi phục được bao nhiêu bản ghi."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn thao tác nguy hiểm nhất trong hệ thống và trả lời một câu: nếu nó chạy sai một lần, mức thiệt hại nào là mức bạn còn khôi phục được?",
+      "secondary": "Con số đó là trần. Nếu hệ thống hiện chưa có trần nào, đây là thay đổi nhỏ nhất có thể làm với tác dụng lớn nhất."
+    },
     "sections": [
       {
-        "type": "heading",
-        "text": "Basel III là gì?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Basel III là một bộ quy chuẩn quốc tế được Ủy ban Basel (tập hợp các cơ quan quản lý từ 28 quốc gia) công bố lần đầu năm 2010 (sau khủng hoảng 2008), để tăng cường sức khỏe của hệ thống ngân hàng toàn cầu. Nó quy định tối thiểu bao nhiêu vốn các ngân hàng phải giữ, tính thanh khoản như thế nào, và quản lý rủi ro thế nào."
+        "type": "lead",
+        "text": "Phần lớn thiệt hại lớn từ một thao tác đơn lẻ đều có thể đã nhỏ đi rất nhiều nếu có một con số trần đặt đúng chỗ."
       },
       {
         "type": "heading",
-        "text": "Làm sao Basel III sinh ra?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khủng hoảng 2008 bắt đầu từ ngân hàng Lehman Brothers - một khối lượng lớn rủi ro được che dấu trong các công cụ tài chính phức tạp, và khi thị trường sụp đổ, ngân hàng không có đủ vốn để hấp thụ tổn thất. Hệ thống tài chính gần như tê liệt. Basel III được thiết kế để đảm bảo điều này không tái diễn."
-      },
-      {
-        "type": "heading",
-        "text": "Ba trụ cột của Basel III"
-      },
-      {
-        "type": "paragraph",
-        "text": "Trụ cột 1 - Yêu cầu vốn tối thiểu: Tier 1 >= 10.5% RWA, Total Capital >= 13.5% RWA. Trụ cột 2 - Giám sát cơ quan quản lý: cơ quan cần kiểm tra xem ngân hàng tính VaR, stress test, và quản lý rủi ro đúng không. Trụ cột 3 - Minh bạch (Disclosure): ngân hàng phải công bố vốn, rủi ro định kỳ để thị trường có thể giám sát."
-      },
-      {
-        "type": "heading",
-        "text": "Tier 1, Tier 2 - Loại vốn nào?"
-      },
-      {
-        "type": "paragraph",
-        "text": "Tier 1 (vốn cốt lõi): cổ phiếu phát hành, lợi nhuận chưa phân phối, một số trái phiếu vĩnh viễn. Đây là vốn 'khó mất' nhất. Tier 2 (vốn bổ trợ): trái phiếu dài hạn không được cấp, lợi nhuận tích lũy khác. Khi tổn thất xảy ra, Tier 1 được sử dụng trước vì nó mạnh hơn."
-      },
-      {
-        "type": "heading",
-        "text": "RWA (Risk Weighted Assets) - Tạo sao không phải tất cả tài sản đều bằng nhau"
-      },
-      {
-        "type": "paragraph",
-        "text": "Tài sản không rủi ro bằng nhau. Trái phiếu chính phủ Mỹ an toàn hơn khoản vay cho một người khởi nghiệp. Basel III quy định trọng số rủi ro cho mỗi loại tài sản: trái phiếu chính phủ = 0%, khoản vay dân sự = 100%. RWA = tổng (tài sản × trọng số rủi ro). Tỷ lệ vốn = Tier 1 Capital / RWA."
-      },
-      {
-        "type": "heading",
-        "text": "Yêu cầu Tier 1 Capital Ratio"
-      },
-      {
-        "type": "paragraph",
-        "text": "Basel III yêu cầu Tier 1 capital ratio >= 10.5%. Điều này bao gồm 'Common Equity Tier 1' (CET1) >= 7% + 'Tier 1 capital buffer' >= 3.5%. Nếu ngân hàng có RWA $100 tỷ, nó phải có Tier 1 vốn >= $10.5 tỷ. Con số này cao hơn Basel II (trước đó là 4%), để tăng sự an toàn."
-      },
-      {
-        "type": "heading",
-        "text": "Thanh khoản (Liquidity) - Yếu tố thứ hai"
-      },
-      {
-        "type": "paragraph",
-        "text": "Basel III cũng quy định các ngân hàng phải giữ đủ tài sản thanh khoản cao (tiền mặt, trái phiếu chính phủ) để sống sót qua 30 ngày nếu không huy động được tiền gửi. Này là Liquidity Coverage Ratio (LCR) >= 100%. Trước đó, các ngân hàng sống phụ thuộc vào 'tiền qua đêm' và gặp khủng hoảng khi tài chính khô cằn."
-      },
-      {
-        "type": "heading",
-        "text": "Giám sát và hậu quả không tuân thủ"
-      },
-      {
-        "type": "paragraph",
-        "text": "Các cơ quan quản lý định kỳ kiểm tra xem ngân hàng có đạt yêu cầu không. Nếu không: (1) buộc tăng vốn qua phát hành cổ phiếu; (2) cắt giảm cổ tức; (3) giảm tiền thưởng quản lý; (4) hạn chế cho vay mới; (5) trong trường hợp cực kỳ, can thiệp trực tiếp hoặc đóng cửa."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba trụ cột của Basel III",
-        "subtitle": "Chỉ trụ cột một là công thức; hai trụ cột còn lại là thứ quyết định công thức đó có được dùng tử tế hay không",
-        "concepts": [
-          {
-            "vi": "Yêu cầu vốn tối thiểu",
-            "en": "Pillar 1 - Minimum Capital",
-            "def": "Công thức bắt buộc: vốn cấp 1 chia cho tài sản có rủi ro, tối thiểu 10,5% gồm cả bộ đệm bảo toàn vốn."
-          },
-          {
-            "vi": "Rà soát giám sát",
-            "en": "Pillar 2 - Supervisory Review",
-            "def": "Cơ quan quản lý đánh giá các rủi ro mà công thức trụ cột một không phủ, và có quyền yêu cầu thêm vốn."
-          },
-          {
-            "vi": "Kỷ luật thị trường",
-            "en": "Pillar 3 - Market Discipline",
-            "def": "Bắt buộc công bố thông tin, để chính nhà đầu tư và đối tác gây áp lực lên ngân hàng giữ rủi ro ở mức hợp lý."
-          }
-        ]
+        "text": "Trần suy ra từ đâu"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Vốn cấp 1 (Tier 1)",
-          "text": "Vốn chủ sở hữu và lợi nhuận giữ lại. Hấp thụ lỗ NGAY TRONG LÚC ngân hàng vẫn đang hoạt động - đó là điều làm nó là vốn thật."
+          "label": "Từ nhu cầu thường ngày",
+          "text": "Con số quen thuộc nhất, và nó trả lời một câu hỏi khác - câu về tiện lợi."
         },
         "right": {
-          "label": "Vốn cấp 2 (Tier 2)",
-          "text": "Chủ yếu là nợ thứ cấp. Chỉ hấp thụ lỗ khi đã đến bước thanh lý, nên chất lượng thấp hơn và bị giới hạn tỷ trọng."
+          "label": "Từ thiệt hại chịu được",
+          "text": "Hạn mức là công cụ giới hạn hậu quả, nên đây là đầu vào đúng. Đối chiếu với nhu cầu thường ngày SAU, để biết trần có làm khó việc bình thường không."
         }
       },
       {
+        "type": "heading",
+        "text": "Vượt trần thì làm gì"
+      },
+      {
         "type": "callout",
-        "label": "Đáng nhớ",
-        "text": "RWA là lý do hai ngân hàng cùng tổng tài sản có thể phải giữ lượng vốn rất khác nhau: 100 tỷ trái phiếu chính phủ mang hệ số 0% trong khi 100 tỷ cho vay doanh nghiệp mang hệ số 100%. Cấu trúc tài sản quyết định, không phải quy mô."
-      }
-    ],
-    "keyTakeaways": [
-      "Basel III là bộ quy chuẩn quốc tế sinh ra sau khủng hoảng 2008 để tăng cường sức khỏe hệ thống ngân hàng",
-      "Tier 1 capital ratio >= 10.5% là yêu cầu tối thiểu; nó cho biết ngân hàng có đủ vốn để hấp thụ tổn thất",
-      "RWA điều chỉnh tài sản theo độ rủi ro - tài sản rủi ro cao cần vốn dự phòng cao hơn",
-      "Basel III cũng quy định yêu cầu thanh khoản (LCR, NSFR) để ngân hàng có đủ tiền mặt trong khủng hoảng"
-    ],
-    "practicePrompt": {
-      "question": "Ngân hàng có Tier 1 capital $50 tỷ, RWA $400 tỷ. Tier 1 capital ratio là bao nhiêu, và có đạt yêu cầu Basel III (tối thiểu 10.5%) không?",
-      "options": [
-        "12.5% - đạt yêu cầu Basel III vì cao hơn mức tối thiểu 10.5%",
-        "8% - không đạt yêu cầu vì thấp hơn mức tối thiểu",
-        "12.5% - vẫn không đạt vì Basel III yêu cầu tối thiểu 15%",
-        "800% - đạt yêu cầu rất dư (tính nhầm RWA/Tier 1 thay vì Tier 1/RWA)"
-      ],
-      "correct": 0,
-      "explanation": "Tier 1 capital ratio = Tier 1 Capital / RWA = 50/400 = 12.5%. Vì 12.5% > 10.5% (mức tối thiểu Basel III), ngân hàng này đạt yêu cầu và có vùng đệm an toàn 2 điểm phần trăm."
-    },
-    "summary": {
-      "keyIdea": "Basel III là phòng vệ của hệ thống tài chính chống lại khủng hoảng ngân hàng. Bằng cách yêu cầu vốn cao hơn, thanh khoản tốt hơn, và giám sát tốt hơn, nó giảm xác suất một ngân hàng lớn sụp đổ và gây tổn thất toàn bộ nền kinh tế."
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Trong công việc quản lý rủi ro hay phân tích tín dụng, bạn sẽ thường xuyên kiểm tra xem ngân hàng có đạt yêu cầu Basel III không. Nó ảnh hưởng đến quyết định cho vay (nếu ngân hàng gần đạt ngưỡng, nó sẽ cho vay ít hơn) và định giá (các nhà đầu tư sẽ yêu cầu lợi nhuận cao hơn nếu ngân hàng yếu)."
-    },
-    "diagram": [
-      {
-        "label": "Tài sản ngân hàng",
-        "arrow": true
+        "label": "Chuyển đường, đừng chặn cứng",
+        "text": "Một hạn mức chặn cứng không có đường vượt sẽ bị đi vòng ngay lần đầu có việc gấp: chia nhỏ thao tác, mượn tài khoản khác, tắt kiểm tra. Không cách nào trong ba cách đó để lại dấu vết."
       },
       {
-        "label": "Gán trọng số rủi ro → RWA",
-        "arrow": true
+        "type": "paragraph",
+        "text": "Đường vượt phải NHANH khi dùng và được RÀ SOÁT SAU - ghi lại ai dùng, lúc nào, vì lý do gì. Siết chặt điều kiện dùng thì bạn chỉ đẩy người ta về lại phía đường vòng."
       },
       {
-        "label": "Vốn Tier 1 + Tier 2 chia cho RWA",
-        "arrow": true
-      },
-      {
-        "label": "So với ngưỡng tối thiểu + bộ đệm",
-        "arrow": true
-      },
-      {
-        "label": "Thiếu vốn → hạn chế cổ tức, buộc tăng vốn",
-        "arrow": false
+        "type": "closing",
+        "lines": [
+          "Và luôn đặt kèm một hạn mức theo KHOẢNG THỜI GIAN. Một trần chỉ theo từng lần bị vô hiệu hoàn toàn bằng một vòng lặp, và điều đó không đòi hỏi kỹ năng gì đặc biệt.",
+          "Dấu hiệu trần đang sai: đường khẩn cấp bị dùng trong công việc bình thường. Lúc đó trần đang nằm dưới mức mà việc thường ngày cần."
+        ]
       }
     ]
   },
@@ -68707,193 +68701,175 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1222,
-    "track": "professional",
-    "slug": "quy-trinh-tham-dinh-tin-dung-5c-framework",
-    "title": "Quy trình thẩm định tín dụng: 5C Framework - Đừng cho vay tiền xấu",
-    "subtitle": "Trước khi cho vay, phải kiểm tra kỹ khách hàng - 5C giúp bạn làm điều đó có hệ thống.",
+    "slug": "nam-cau-hoi-truoc-khi-cap-quyen",
+    "title": "Năm câu hỏi trước khi cấp một quyền truy cập",
+    "subtitle": "Cấp quyền mất ba mươi giây và sống trong hệ thống nhiều năm.",
     "duration": "7 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "💳",
-    "openingQuestion": "5C framework trong thẩm định tín dụng bao gồm những gì?",
+    "whyItMatters": "Không có một danh sách câu hỏi cố định thì mỗi lượt cấp quyền được quyết bằng cảm giác của người đang bận, và câu trả lời mặc định luôn là đồng ý.",
+    "openingQuestion": "Câu hỏi nào nên hỏi đầu tiên khi có yêu cầu cấp quyền?",
     "openingOptions": [
-      "Chỉ cần kiểm tra số tiền hiện có của khách hàng là đủ",
-      "Character, Capacity, Capital, Collateral, Conditions",
-      "Chỉ dùng CIC score là đủ"
+      "Việc cụ thể nào cần quyền này, và có cách nào làm việc đó với quyền hẹp hơn không",
+      "Người yêu cầu có thuộc nhóm được phép sử dụng loại quyền này hay không",
+      "Quyền này có nằm trong danh sách quyền tiêu chuẩn của vai trò đó không",
+      "Người quản lý trực tiếp của người yêu cầu đã phê duyệt yêu cầu này chưa"
     ],
-    "correctOption": 1,
-    "explanation": "5C framework là phương pháp toàn diện để đánh giá một khoản vay: (1) Character: Đạo đức, lịch sử trả nợ của người vay; (2) Capacity: Khả năng trả nợ (thu nhập, dòng tiền); (3) Capital: Tài sản, vốn của người vay; (4) Collateral: Tài sản thế chấp (bất động sản, cổ phiếu); (5) Conditions: Điều kiện kinh tế, ngành, quy định. Nếu yếu ở bất kỳ C nào, khoản vay sẽ rủi ro.",
+    "correctOption": 0,
+    "explanation": "Ba câu kia đều kiểm tra thủ tục và đều trả lời được bằng cách tra một bảng. Câu đầu buộc người yêu cầu nói ra việc cụ thể, và trong thực tế nó thường dẫn tới một quyền hẹp hơn nhiều so với thứ họ xin ban đầu - vì họ xin theo tên vai trò chứ không theo việc.",
+    "diagram": [
+      {
+        "label": "Việc gì cần quyền này - và có cách nào hẹp hơn không",
+        "arrow": true
+      },
+      {
+        "label": "Cần trong bao lâu - mặc định là có hạn, không vĩnh viễn",
+        "arrow": true
+      },
+      {
+        "label": "Ai rà soát lại, và vào lúc nào",
+        "arrow": true
+      },
+      {
+        "label": "Nếu tài khoản này bị chiếm thì thiệt hại tới đâu"
+      }
+    ],
     "realWorldExample": {
-      "company": "Một ngân hàng Việt",
-      "description": "Một bà chủ xưởng dệt may muốn vay $1M. CIC score tốt (6.5/10), nhưng doanh số xưởng giảm 30% vì khách đặt hàng ít → Capacity yếu. Tài sản thế chấp là nhà cũ trị giá $500K (Collateral chỉ 50%) → Rủi ro. Tuy chữ (Character) tốt, ngân hàng sẽ từ chối hoặc cho vay nhỏ hơn."
+      "company": "Xin theo tên vai trò, không theo việc",
+      "description": "Người ta thường xin quyền theo tên vai trò họ nghe thấy - quản trị viên, toàn quyền đọc - vì đó là thứ họ biết cách gọi. Hỏi việc cụ thể thì gần như luôn tìm ra một quyền hẹp hơn nhiều đủ để làm đúng việc đó."
     },
     "quiz": [
       {
-        "question": "Character trong 5C là gì?",
+        "question": "Vì sao hỏi việc cụ thể lại dẫn tới quyền hẹp hơn?",
         "options": [
-          "Tính cách của người vay",
-          "Lịch sử trả nợ, danh tiếng, willingness to pay - liệu người này có ý định trả nợ không?",
-          "Giáo dục của người vay"
+          "Vì người yêu cầu thường xin theo tên vai trò họ biết, không theo việc họ cần",
+          "Vì người xử lý yêu cầu hiểu hệ thống rõ hơn nên tìm được cách khác",
+          "Vì các quyền hẹp thường vốn không hề được ghi ở ngay trong tài liệu nên ít ai biết",
+          "Vì người yêu cầu có xu hướng xin dư để tránh phải xin lại lần nữa"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Lựa chọn cuối cũng xảy ra và nó giả định người xin biết mình đang xin dư. Thực tế thường đơn giản hơn: họ chỉ biết gọi tên vai trò, và không ai từng nói với họ rằng có lựa chọn hẹp hơn."
       },
       {
-        "question": "Capacity là gì?",
+        "question": "Vì sao mặc định phải là quyền CÓ HẠN?",
         "options": [
-          "Kích thước công ty",
-          "Khả năng trả nợ - dựa trên thu nhập, lợi nhuận, dòng tiền. Ratio D/E, Interest Coverage Ratio là các chỉ số",
-          "Tuổi của người vay"
+          "Vì quyền vĩnh viễn chỉ bị thu hồi khi có người chủ động làm, mà không ai chủ động",
+          "Vì nhu cầu dùng quyền thường xuyên chỉ kéo dài trong một thời gian ngắn",
+          "Vì các tiêu chuẩn bảo mật khuyến nghị áp dụng nguyên tắc quyền tối thiểu",
+          "Vì quyền có hạn sẽ giúp giảm số lượng quyền thật sự cần rà soát ở ngay trong mỗi đợt kiểm tra"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Đây là bất đối xứng động cơ đã gặp ở bài rà soát phân quyền: cấp thêm có người yêu cầu, thu hồi thì không ai. Thời hạn tự hết là cơ chế duy nhất không cần ai nhớ."
       },
       {
-        "question": "Tại sao Conditions (điều kiện kinh tế) lại quan trọng?",
+        "question": "Câu hỏi về thiệt hại khi tài khoản bị chiếm dùng để làm gì?",
         "options": [
-          "Vì nó là bắt buộc theo luật",
-          "Vì ngay cả với Character, Capacity, Capital, Collateral tốt, nếu nền kinh tế suy thoái hoặc ngành bị ảnh hưởng (ví dụ, lệnh cấm xuất khẩu), khách hàng vẫn có thể không trả được",
-          "Vì nó ảnh hưởng tới lãi suất"
+          "Để quyết định quyền này cần thêm lớp bảo vệ nào ngoài việc chỉ cấp hay không",
+          "Để đánh giá mức độ rủi ro tổng thể của hệ thống theo định kỳ",
+          "Để xác định người chịu trách nhiệm nếu có sự cố liên quan tới quyền đó",
+          "Để ưu tiên thứ tự rà soát các quyền trong đợt kiểm tra tiếp theo"
         ],
-        "correct": 1
+        "correct": 0,
+        "explanation": "Câu hỏi này biến quyết định từ hai lựa chọn thành nhiều lựa chọn: cấp kèm xác thực hai yếu tố, cấp kèm hạn mức, cấp kèm cảnh báo khi dùng. Ba lựa chọn kia đều dùng câu trả lời cho việc khác và đến sau."
+      },
+      {
+        "question": "Vì sao phải xác định ai rà soát lại ngay lúc cấp?",
+        "options": [
+          "Vì sau vài tháng không ai nhớ quyền đó được cấp cho việc gì và còn cần không",
+          "Vì tất cả các đợt rà soát định kỳ thường xuyên hoàn toàn không đủ thời gian xem hết mọi quyền",
+          "Vì người cấp quyền có thể đã chuyển sang bộ phận khác vào lúc rà soát",
+          "Vì cần có người chịu trách nhiệm nếu quyền đó bị lạm dụng về sau"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia là những khó khăn của việc rà soát. Cái này là nguyên nhân làm rà soát trở nên vô nghĩa: không có ngữ cảnh gốc thì người rà soát chỉ có thể hỏi còn cần không - và câu đó luôn nhận được câu trả lời có."
+      },
+      {
+        "question": "Điều gì nên ghi lại cùng mỗi lượt cấp quyền?",
+        "options": [
+          "Việc cụ thể, thời hạn, và người sẽ rà soát - ba thứ tạo ra ngữ cảnh về sau",
+          "Thời điểm cấp và người phê duyệt yêu cầu cấp quyền đó",
+          "Danh sách tất cả các quyền truy cập khác mà một tài khoản đó đang có tại thời điểm cấp",
+          "Mức độ rủi ro được đánh giá cho quyền đó theo thang của tổ chức"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn thứ hai thường được ghi tự động và nó không giúp gì cho việc rà soát. Ba thứ trong lựa chọn đầu là thứ duy nhất cho phép người rà soát sáu tháng sau đánh giá được mà không phải đi hỏi lại."
       }
     ],
+    "keyTakeaways": [
+      "Hỏi VIỆC CỤ THỂ trước - người ta xin theo tên vai trò, không theo việc.",
+      "Mặc định là quyền CÓ HẠN; thời hạn tự hết là cơ chế duy nhất không cần ai nhớ.",
+      "Hỏi thiệt hại khi bị chiếm để biết cần thêm lớp bảo vệ nào, không chỉ cấp hay không.",
+      "Xác định NGƯỜI RÀ SOÁT ngay lúc cấp, nếu không rà soát sau này vô nghĩa.",
+      "Ghi ba thứ: việc cụ thể, thời hạn, người rà soát - đó là ngữ cảnh cho sáu tháng sau."
+    ],
+    "practicePrompt": {
+      "question": "Có người xin quyền quản trị cơ sở dữ liệu. Câu hỏi đầu tiên?",
+      "options": [
+        "Bạn cần chạy truy vấn gì - có thể chỉ cần quyền đọc trên một vài bảng",
+        "Bạn có được người quản lý trực tiếp phê duyệt yêu cầu này chưa",
+        "Bạn cần quyền này trong bao lâu và cho dự án nào cụ thể",
+        "Bạn đã được đào tạo về quy trình an toàn khi thao tác trên cơ sở dữ liệu chưa"
+      ],
+      "correct": 0,
+      "explanation": "Ba câu kia đều là câu hỏi đúng và đều nên hỏi sau. Câu này hỏi trước vì nó thường làm ba câu kia trở nên không cần thiết - nếu việc chỉ cần quyền đọc trên hai bảng thì toàn bộ cuộc thảo luận về quyền quản trị biến mất."
+    },
+    "summary": {
+      "keyIdea": "Cấp quyền mất ba mươi giây và sống trong hệ thống nhiều năm.",
+      "formula": "Việc gì → hẹp hơn được không → bao lâu → ai rà soát → bị chiếm thì sao.",
+      "commonMistake": "Kiểm tra thủ tục thay vì hỏi việc cụ thể, nên cấp theo tên vai trò.",
+      "action": "Thêm câu hỏi việc cụ thể vào biểu mẫu xin cấp quyền của bạn."
+    },
+    "application": {
+      "title": "Làm ngay hôm nay",
+      "message": "Mở biểu mẫu xin cấp quyền của tổ chức bạn và xem nó có ô nào hỏi VIỆC CỤ THỂ cần làm không - không phải ô hỏi lý do chung chung.",
+      "secondary": "Nếu không có, thêm nó. Đây là thay đổi một dòng và nó thường cắt được phần lớn các yêu cầu quyền rộng ngay từ khâu điền biểu mẫu."
+    },
     "sections": [
       {
-        "type": "heading",
-        "text": "Character - Đạo đức & Lịch sử trả nợ"
-      },
-      {
-        "type": "paragraph",
-        "text": "Character đánh giá: (1) Lịch sử trả nợ: Trước đây có từng vỡ nợ, trả trễ hạn không? (2) CIC score: Điểm tín dụng từ công ty tín dụng (6.0/10 là bình thường, <5 là rủi ro cao). (3) Danh tiếng: Người này có tiếng là 'chơi bẩn' không, có tranh cãi pháp lý không? (4) Willingness to pay: Liệu người này có ý định trả nợ hay dự định 'bỏ chạy' sau khi lấy tiền? Điều này đánh giá qua tương tác, lịch sử giao dịch."
+        "type": "lead",
+        "text": "Không có một danh sách câu hỏi cố định thì mỗi lượt cấp quyền được quyết bằng cảm giác của người đang bận, và câu trả lời mặc định luôn là đồng ý."
       },
       {
         "type": "heading",
-        "text": "Capacity - Khả năng trả nợ"
+        "text": "Năm câu hỏi"
       },
       {
-        "type": "paragraph",
-        "text": "Capacity đánh giá khả năng sinh lợi nhuận: (1) Thu nhập: Nếu vay $1M với kỳ hạn 5 năm và lãi 8%/năm, tổng trả = $1.46M. Thu nhập hàng năm phải đủ để chi trả khoảng $292K/năm mà vẫn có tiền chi tiêu. Thường ngân hàng chỉ cho vay nếu debt payment < 40% thu nhập. (2) EBITDA (nếu công ty): Lợi nhuận trước lãi, thuế, khấu hao. Nếu EBITDA = $200K/năm, khó trả khoản vay đòi $300K/năm. (3) Interest Coverage Ratio = EBITDA / Lãi vay: Nếu ratio < 1.5x, nguy hiểm."
-      },
-      {
-        "type": "heading",
-        "text": "Capital - Tài sản của người vay"
-      },
-      {
-        "type": "paragraph",
-        "text": "Capital đánh giá: (1) Vốn chủ sở hữu: Nếu người vay không có vốn riêng, họ sẽ không 'chịu chia sẻ rủi ro'. (2) Debt/Equity ratio: Nếu người vay đã có nợ quá nhiều (D/E > 2), cho vay thêm sẽ quá rủi ro. (3) Tài sản net: Nhân vật này có bao nhiêu tài sản (trừ nợ)? Nếu tài sản net âm, họ có thể 'bỏ chạy' vì mất gì. (4) Quy mô vốn: Một công ty khởi nghiệp với vốn $50K yêu cầu vay $1M là nguy hiểm."
-      },
-      {
-        "type": "heading",
-        "text": "Collateral - Tài sản thế chấp"
-      },
-      {
-        "type": "paragraph",
-        "text": "Collateral là 'giải pháp cuối cùng' nếu người vay mất khả năng trả nợ. Ngân hàng sẽ tịch thu và bán collateral để lấy lại tiền. Loại collateral: (1) Real estate (nhà, đất): Dễ định giá, dễ bán, nhưng lỏng lẻo. (2) Cổ phiếu, trái phiếu: Dễ bán nhưng giá biến động. (3) Hàng tồn kho: Khó định giá, khó bán, thường giá thực < giá định giá. Ngân hàng thường chỉ cho vay 60-80% giá trị collateral (để có biên độ an toàn)."
-      },
-      {
-        "type": "heading",
-        "text": "Conditions - Điều kiện kinh tế & Ngành"
-      },
-      {
-        "type": "paragraph",
-        "text": "Ngay cả người vay tốt, nếu bối cảnh kinh tế xấu, họ vẫn gặp khó: (1) Suy thoái kinh tế: Doanh số giảm, khó bán hàng. (2) Ngành bị ảnh hưởng: Ví dụ, ngành hàng không bị ảnh hưởng bởi COVID-19, ngành dệt may bị ảnh hưởng bởi tariff Mỹ. (3) Quy định thay đổi: Chính phủ ban hành quy định mới, cấm xuất khẩu, v.v. Ngân hàng phải đánh giá: nếu điều kiện toàn cầu xấu, khách hàng có thể vẫn không trả được."
-      },
-      {
-        "type": "heading",
-        "text": "CIC Score - Thứ tự phụ cấp"
-      },
-      {
-        "type": "paragraph",
-        "text": "CIC (Central Information Bureau - tương tự CRB ở Mỹ) là một agency tập hợp lịch sử vay và trả nợ của mọi người ở Việt Nam. Điểm CIC từ 1-10: 8-10 là tuyệt vời (ít rủi ro), 6-8 là bình thường, <5 là rủi ro cao. Tuy nhiên, CIC score chỉ là một phần - 5C framework giúp hiểu rõ hơn toàn bộ tình hình."
-      },
-      {
-        "type": "heading",
-        "text": "Quy trình thẩm định - Từ A đến Z"
-      },
-      {
-        "type": "paragraph",
-        "text": "1. Nhận đơn vay: Khách hàng nộp hồ sơ (giấy tờ, tài chính). 2. Kiểm tra sơ bộ: CIC, Character, lịch sử giao dịch. 3. Phân tích 5C: Chi tiết mỗi C. 4. On-site visit (nếu cần): Thăm công ty, kiểm tra tài sản. 5. Quyết định: Phê duyệt, từ chối, hoặc đề xuất điều kiện khác (vay nhỏ hơn, lãi cao hơn, collateral thêm). 6. Ký hợp đồng: Xác định kỳ hạn, lãi suất, phạt nếu trả trễ."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Năm chữ C, và chữ nào không đánh đổi được",
-        "subtitle": "Bốn chữ mô tả người vay ở hiện tại; chữ thứ năm mô tả thế giới mà khoản vay sẽ sống trong đó",
-        "concepts": [
-          {
-            "vi": "Đạo đức và ý định trả",
-            "en": "Character",
-            "def": "Điều kiện CẦN, không phải một điểm cộng đánh đổi được. Người có khả năng trả nhưng không có ý định trả sẽ biến khoản vay thành một vụ kiện nhiều năm."
-          },
-          {
-            "vi": "Khả năng trả",
-            "en": "Capacity",
-            "def": "Dòng tiền có đủ phục vụ nợ không - đo qua thu nhập, EBITDA và hệ số bao phủ lãi vay."
-          },
-          {
-            "vi": "Vốn tự có",
-            "en": "Capital",
-            "def": "Người vay có bao nhiêu phần của chính mình trong đó. Không có vốn riêng thì không chia sẻ rủi ro, và bỏ đi cũng không mất gì."
-          },
-          {
-            "vi": "Tài sản bảo đảm",
-            "en": "Collateral",
-            "def": "Phương án cuối, không phải phương án chính. Thu hồi và phát mại gần như luôn mất cả giá trị lẫn thời gian."
-          },
-          {
-            "vi": "Điều kiện kinh tế",
-            "en": "Conditions",
-            "def": "Bốn chữ trên đo hiện tại, nhưng khoản vay sống trong tương lai. Doanh nghiệp khoẻ vẫn mất khả năng trả khi giá nhiên liệu tăng gấp đôi."
-          }
+        "type": "list",
+        "items": [
+          "VIỆC CỤ THỂ nào cần quyền này?",
+          "Có cách nào làm việc đó với quyền HẸP HƠN không?",
+          "Cần trong BAO LÂU? Mặc định là có hạn, không vĩnh viễn.",
+          "AI RÀ SOÁT lại, và vào lúc nào?",
+          "Nếu tài khoản này bị chiếm thì THIỆT HẠI tới đâu?"
         ]
       },
       {
         "type": "callout",
-        "label": "Cái bẫy",
-        "text": "Tài sản bảo đảm tốt không cứu được Character xấu. Ngân hàng cho vay để nhận lãi, không phải để đi bán nhà - mỗi lần phải phát mại là một lần khoản vay đã thất bại, dù cuối cùng có thu đủ tiền hay không."
-      }
-    ],
-    "keyTakeaways": [
-      "5C: Character (đạo đức), Capacity (khả năng trả), Capital (tài sản), Collateral (thế chấp), Conditions (điều kiện kinh tế)",
-      "Character là nền tảng - nếu người vay không có ý định trả, không có gì cứu được",
-      "Capacity đánh giá qua thu nhập, lợi nhuận, Interest Coverage Ratio",
-      "Ngay cả các C tốt, nếu điều kiện kinh tế xấu (Conditions), khoản vay vẫn gặp rủi ro"
-    ],
-    "practicePrompt": {
-      "question": "Đánh giá khoản vay $500K cho chủ nhà hàng: CIC 7.0, doanh số $5M/năm, nợ hiện tại $200K, bất động sản thế chấp $800K. Quyết định nào hợp lý nhất theo khung 5C?",
-      "options": [
-        "Duyệt vay: Character, Capacity, Collateral đạt, cần theo dõi nợ hiện tại",
-        "Từ chối ngay vì CIC 7.0 chưa đạt mức tuyệt đối 8-10",
-        "Duyệt toàn bộ ngay lập tức mà không cần xem xét thêm bất kỳ yếu tố nào khác",
-        "Từ chối vì doanh số dưới $10 triệu/năm, không đạt ngưỡng cho vay"
-      ],
-      "correct": 0,
-      "explanation": "Áp dụng 5C: Character (CIC 7.0 - bình thường tốt), Capacity (doanh số $5M >> khoản vay $500K, khả năng trả nợ tốt), Capital & Collateral (bất động sản thế chấp $800K vượt khoản vay, tỷ lệ cho vay/tài sản thế chấp = 62.5% - an toàn), nhưng nợ hiện tại $200K cần được tính vào tổng đòn bẩy trước khi duyệt. Không có ngưỡng CIC hay doanh thu cứng nhắc nào áp dụng máy móc - phải nhìn tổng thể 5C."
-    },
-    "summary": {
-      "keyIdea": "5C framework là phương pháp toàn diện để đánh giá rủi ro tín dụng. Ngân hàng không bao giờ chỉ nhìn vào một C - phải nhìn cả 5 để quyết định cho vay."
-    },
-    "application": {
-      "title": "Áp dụng ngay",
-      "message": "Nếu bạn làm credit officer, bạn sẽ sử dụng 5C framework mỗi ngày. Không ai muốn cho vay tiền 'xấu' - 5C giúp bạn loại trừ các khoản vay sẽ mất tiền. Ngoài ra, bạn cũng có thể dùng 5C để đàm phán điều kiện: nếu một C yếu, bạn sẽ yêu cầu lãi cao hơn hoặc collateral thêm để bù lấp rủi ro."
-    },
-    "diagram": [
-      {
-        "label": "Character - lịch sử trả nợ, CIC",
-        "arrow": true
+        "label": "Vì sao câu đầu quan trọng nhất",
+        "text": "Người ta xin quyền theo tên vai trò họ biết gọi - quản trị viên, toàn quyền đọc - chứ không theo việc họ cần làm. Hỏi việc cụ thể thì gần như luôn tìm ra một quyền hẹp hơn nhiều đủ để làm đúng việc đó."
       },
       {
-        "label": "Capacity - dòng tiền trả nợ",
-        "arrow": true
+        "type": "heading",
+        "text": "Câu cuối đổi bản chất quyết định"
       },
       {
-        "label": "Capital - vốn tự có của người vay",
-        "arrow": true
+        "type": "comparison",
+        "left": {
+          "label": "Không hỏi",
+          "text": "Quyết định chỉ có hai lựa chọn: cấp hoặc không cấp."
+        },
+        "right": {
+          "label": "Có hỏi",
+          "text": "Quyết định có nhiều lựa chọn: cấp kèm xác thực hai yếu tố, cấp kèm hạn mức, cấp kèm cảnh báo khi dùng."
+        }
       },
       {
-        "label": "Collateral - tài sản thế chấp",
-        "arrow": true
-      },
-      {
-        "label": "Conditions - ngành và kinh tế vĩ mô → quyết định cấp tín dụng",
-        "arrow": false
+        "type": "closing",
+        "lines": [
+          "Ghi lại ba thứ cùng mỗi lượt cấp: việc cụ thể, thời hạn, và người rà soát. Thời điểm cấp và người phê duyệt thường đã được ghi tự động và chúng không giúp gì cho việc rà soát.",
+          "Không có ngữ cảnh gốc thì người rà soát sáu tháng sau chỉ có thể hỏi còn cần không - và câu đó luôn nhận được câu trả lời có."
+        ]
       }
     ]
   },
@@ -74467,170 +74443,176 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1256,
-    "track": "professional",
-    "slug": "mo-hinh-cham-diem-tin-dung-credit-scoring",
-    "title": "Mô hình Chấm điểm Tín dụng: Từ dữ liệu đến quyết định cho vay",
-    "subtitle": "5C framework là cách tiếp cận định tính - Credit Scoring Model là cách tiếp cận định lượng có hệ thống mà các ngân hàng lớn thực sự sử dụng",
+    "slug": "cham-diem-rui-ro-tu-dong-va-nguong-quyet-dinh",
+    "title": "Chấm điểm rủi ro tự động: từ dữ liệu tới một quyết định",
+    "subtitle": "Điểm số là phần dễ; ngưỡng cắt và những gì xảy ra ở vùng giữa mới là phần quyết định.",
     "duration": "8 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🎯",
-    "openingQuestion": "Một mô hình chấm điểm tín dụng (credit scoring model) sử dụng thống kê để dự đoán xác suất vỡ nợ (Probability of Default - PD) của khách hàng. Tại sao các ngân hàng lớn ưu tiên phương pháp định lượng này hơn là chỉ dựa vào đánh giá định tính của từng chuyên viên tín dụng?",
+    "whyItMatters": "Một mô hình chấm điểm đưa ra hàng nghìn quyết định mỗi ngày mà không ai xem từng cái, nên mọi khuyết điểm của nó đều được nhân lên với quy mô đó.",
+    "openingQuestion": "Mô hình chấm điểm cho ra một con số. Phần khó nhất còn lại là gì?",
     "openingOptions": [
-      "Vì đánh giá định tính của con người luôn hoàn toàn không đáng tin cậy trong mọi trường hợp",
-      "Đánh giá nhất quán hàng nghìn hồ sơ theo cùng một tiêu chuẩn khách quan, giảm thiên kiến cá nhân",
-      "Mô hình định lượng luôn chính xác 100% và không bao giờ sai",
-      "Chấm điểm tín dụng không liên quan gì đến quyết định cho vay thực tế"
+      "Chọn ngưỡng cắt, vì nó quyết định đánh đổi giữa hai loại sai lầm",
+      "Đảm bảo mô hình có độ chính xác đủ tương đối cao trên dữ liệu kiểm chứng",
+      "Giải thích được vì sao mô hình cho ra con số đó cho từng trường hợp",
+      "Cập nhật mô hình định kỳ khi dữ liệu đầu vào thay đổi theo thời gian"
     ],
-    "correctOption": 1,
-    "explanation": "Credit Scoring Model mang lại 3 lợi ích cốt lõi so với đánh giá thuần định tính: tính NHẤT QUÁN (mọi hồ sơ được đánh giá theo cùng tiêu chuẩn, giảm thiên kiến cá nhân của từng chuyên viên tín dụng), khả năng KIỂM CHỨNG VÀ CẢI THIỆN (mô hình có thể được back-test với dữ liệu vỡ nợ thực tế, điều chỉnh trọng số các yếu tố theo thời gian), và khả năng MỞ RỘNG QUY MÔ (xử lý hàng nghìn hồ sơ vay tiêu dùng mỗi ngày mà vẫn duy trì tốc độ và độ tin cậy). Điều này không có nghĩa mô hình định lượng hoàn hảo - nó vẫn cần được giám sát và bổ sung bởi phán đoán con người trong các trường hợp đặc biệt.",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều là công việc thật và đều thuộc về mô hình. Ngưỡng cắt thì không phải quyết định kỹ thuật: dịch ngưỡng lên thì bớt cho qua nhầm và tăng chặn nhầm, dịch xuống thì ngược lại. Không có con số nào tối ưu cả hai, nên nó là một lựa chọn về giá trị chứ không phải về độ chính xác.",
+    "diagram": [
+      {
+        "label": "Ngưỡng cắt là lựa chọn về GIÁ TRỊ, không về độ chính xác",
+        "arrow": true
+      },
+      {
+        "label": "Lên thì bớt cho qua nhầm và tăng chặn nhầm - không tối ưu được cả hai",
+        "arrow": true
+      },
+      {
+        "label": "Vùng giữa: đừng ép thành hai nhóm, hãy chuyển sang người xem",
+        "arrow": true
+      },
+      {
+        "label": "Và mô hình học từ dữ liệu quá khứ sẽ lặp lại thiên lệch của nó"
+      }
+    ],
     "realWorldExample": {
-      "company": "FICO Score và hệ thống chấm điểm tín dụng tại Mỹ",
-      "description": "FICO Score - hệ thống chấm điểm tín dụng phổ biến nhất tại Mỹ - sử dụng mô hình thống kê phân tích 5 nhóm yếu tố chính (lịch sử thanh toán 35%, số dư nợ hiện tại 30%, độ dài lịch sử tín dụng 15%, loại tín dụng đa dạng 10%, tín dụng mới mở gần đây 10%) để cho ra một điểm số từ 300-850. Hệ thống này được xây dựng dựa trên phân tích thống kê hàng triệu hồ sơ tín dụng lịch sử, cho phép các tổ chức cho vay đưa ra quyết định nhanh chóng và nhất quán, dù vẫn gây tranh cãi về khả năng phản ánh đầy đủ 'độ tin cậy' thực sự của một cá nhân trong mọi hoàn cảnh."
+      "company": "Vùng giữa không nên bị ép về hai phía",
+      "description": "Với những trường hợp điểm nằm quanh ngưỡng, mô hình gần như không phân biệt được. Ép chúng về một trong hai phía nghĩa là để một con số ngẫu nhiên quyết định - trong khi chuyển chúng sang người xem lại là việc rẻ, vì nhóm đó thường nhỏ."
     },
     "quiz": [
       {
-        "question": "'Probability of Default' (PD - Xác suất vỡ nợ) khác với 'Loss Given Default' (LGD - Tổn thất khi vỡ nợ) như thế nào, và tại sao cả hai đều cần thiết để đánh giá đầy đủ rủi ro tín dụng?",
+        "question": "Vì sao chọn ngưỡng cắt không phải quyết định kỹ thuật?",
         "options": [
-          "Hai khái niệm này hoàn toàn giống nhau, chỉ khác cách gọi",
-          "PD đo lường XÁC SUẤT khách hàng sẽ vỡ nợ trong một khoảng thời gian (ví dụ 1 năm); LGD đo lường TỔN THẤT THỰC TẾ (tính theo % dư nợ) mà bên cho vay sẽ chịu NẾU vỡ nợ xảy ra (sau khi trừ đi giá trị thu hồi được từ tài sản thế chấp/thanh lý) - Expected Loss (Tổn thất kỳ vọng) = PD × LGD × Exposure at Default, cả hai yếu tố đều cần thiết vì một khoản vay có PD cao nhưng LGD thấp (có tài sản thế chấp tốt) có thể ít rủi ro hơn khoản vay PD thấp nhưng LGD rất cao (không có tài sản đảm bảo)",
-          "PD chỉ áp dụng cho vay doanh nghiệp, LGD chỉ áp dụng cho vay cá nhân",
-          "Chỉ cần biết PD là đủ để đánh giá đầy đủ rủi ro tín dụng, LGD không quan trọng"
+          "Vì nó đánh đổi giữa hai loại sai lầm mà không con số nào tối ưu được cả hai",
+          "Vì ngưỡng phụ thuộc vào quy định hiện hành chứ không vào mô hình",
+          "Vì người ra quyết định kinh doanh mới nắm được bối cảnh sử dụng",
+          "Vì ngưỡng cần được điều chỉnh thường xuyên theo tình hình thực tế"
         ],
-        "correct": 1,
-        "explanation": "Đây là công thức nền tảng của quản trị rủi ro tín dụng hiện đại (theo khung Basel): Expected Loss = PD × LGD × EAD (Exposure at Default). Một khoản vay tín chấp (không tài sản đảm bảo) có thể có PD tương đương một khoản vay thế chấp, nhưng LGD của khoản vay tín chấp thường cao hơn nhiều (gần như mất trắng nếu vỡ nợ) so với vay thế chấp (có thể thu hồi phần lớn qua thanh lý tài sản) - đây là lý do lãi suất vay tín chấp luôn cao hơn đáng kể so với vay thế chấp cùng mức PD."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia mô tả ai nên quyết và khi nào. Cái này nói vì sao nó không quyết được bằng kỹ thuật: hai loại sai lầm có chi phí khác nhau và chi phí đó nằm ngoài dữ liệu, nên phải có người nói ra."
       },
       {
-        "question": "'Reject Inference' (Suy luận về hồ sơ bị từ chối) là thách thức kỹ thuật quan trọng nào trong việc xây dựng và cải thiện mô hình chấm điểm tín dụng theo thời gian?",
+        "question": "Nên làm gì với những trường hợp có điểm nằm quanh ngưỡng?",
         "options": [
-          "Đây không phải là vấn đề thực sự, mô hình luôn có đủ dữ liệu để hoạt động chính xác",
-          "Mô hình chấm điểm tín dụng chỉ có dữ liệu VỀ KẾT QUẢ THỰC TẾ (trả nợ đúng hạn hay vỡ nợ) đối với những khách hàng ĐÃ ĐƯỢC CHẤP THUẬN vay, nhưng KHÔNG BAO GIỜ biết được điều gì sẽ xảy ra với những hồ sơ ĐÃ BỊ TỪ CHỐI (vì họ không được vay nên không có dữ liệu trả nợ) - điều này tạo ra 'selection bias' (thiên kiến chọn mẫu) khi huấn luyện lại mô hình, vì dữ liệu huấn luyện chỉ phản ánh nhóm khách hàng đã được duyệt, không đại diện đầy đủ cho toàn bộ tập khách hàng nộp đơn",
-          "Reject Inference chỉ là vấn đề lý thuyết, không ảnh hưởng gì đến độ chính xác thực tế của mô hình",
-          "Vấn đề này chỉ xảy ra với các ngân hàng nhỏ, không xảy ra với các tổ chức tín dụng lớn"
+          "Chuyển sang người xem, vì mô hình gần như không phân biệt được ở vùng đó",
+          "Áp dụng ngưỡng chặt hơn cho vùng này để giảm rủi ro cho qua nhầm",
+          "Yêu cầu thêm thông tin từ người dùng để mô hình chấm lại điểm",
+          "Chấp nhận kết quả của mô hình vì nó vẫnxác hơn phán đoán của người"
         ],
-        "correct": 1,
-        "explanation": "Reject Inference là một trong những thách thức kỹ thuật tinh vi nhất trong xây dựng mô hình credit scoring: vì mô hình chỉ 'học' từ dữ liệu của khách hàng ĐÃ ĐƯỢC DUYỆT VAY, nó có nguy cơ trở nên ngày càng 'bảo thủ' qua mỗi lần huấn luyện lại (chỉ củng cố các tiêu chí đã dùng để duyệt trước đó), có thể bỏ lỡ những khách hàng tốt bị từ chối sai (false rejection) mà không bao giờ có cơ hội chứng minh khả năng trả nợ thực tế của họ - các kỹ thuật thống kê nâng cao được phát triển riêng để cố gắng 'suy luận' hiệu suất tiềm năng của nhóm bị từ chối, dù không bao giờ hoàn toàn chính xác."
+        "correct": 0,
+        "explanation": "Lựa chọn cuối đúng ở mức tổng thể và sai ở vùng này: mô hình chính xác hơn người TRUNG BÌNH, nhưng quanh ngưỡng thì nó gần như đang tung đồng xu. Chuyển sang người xem cũng rẻ vì nhóm đó thường nhỏ."
       },
       {
-        "question": "Tại sao các mô hình credit scoring hiện đại (dùng machine learning) cần đặc biệt cẩn trọng về vấn đề 'algorithmic bias' (thiên kiến thuật toán) khi đưa vào sử dụng thực tế cho quyết định cho vay?",
+        "question": "Vì sao mô hình học từ dữ liệu quá khứ có thể lặp lại thiên lệch?",
         "options": [
-          "Algorithmic bias không tồn tại trong các mô hình thống kê/machine learning, chỉ tồn tại trong quyết định của con người",
-          "Nếu dữ liệu lịch sử dùng để huấn luyện mô hình phản ánh các thiên kiến xã hội/lịch sử đã tồn tại (ví dụ, một nhóm nhân khẩu học từng bị hạn chế tiếp cận tín dụng trong quá khứ do phân biệt đối xử), mô hình có thể VÔ THỨC HỌC LẠI VÀ TÁI TẠO những thiên kiến đó trong quyết định tương lai, ngay cả khi không sử dụng trực tiếp các đặc điểm nhân khẩu học nhạy cảm (như chủng tộc, giới tính) làm biến đầu vào - đây là lý do nhiều thị trường tài chính có quy định pháp lý nghiêm ngặt (như Fair Lending Laws) yêu cầu kiểm tra và giám sát định kỳ tính công bằng của mô hình chấm điểm tín dụng",
-          "Algorithmic bias chỉ là vấn đề lý thuyết học thuật, không có ứng dụng thực tế nào trong ngành tài chính",
-          "Các mô hình machine learning luôn công bằng hơn con người trong mọi trường hợp không cần kiểm tra thêm"
+          "Vì dữ liệu quá khứ ghi lại các quyết định cũ, kể cả những quyết định sai",
+          "Vì dữ liệu cũ không phản ánh được tình hình hiện tại của hệ thống",
+          "Vì các nhóm ít xuất hiện trong dữ liệu sẽ được mô hình dự báo kém hơn",
+          "Vì mô hình hoàn toàn không phân biệt được nguyên nhân với chính tương quan trong dữ liệu"
         ],
-        "correct": 1,
-        "explanation": "Đây là vấn đề đạo đức và pháp lý ngày càng quan trọng trong ngành tài chính hiện đại: mô hình học máy 'học' từ dữ liệu lịch sử, và nếu dữ liệu đó phản ánh những bất công tồn tại trong quá khứ (dù không cố ý), mô hình có nguy cơ tự động hóa và khuếch đại những bất công đó ở quy mô lớn hơn nhiều so với quyết định thủ công của từng cá nhân - đây là lý do các tổ chức tài chính có trách nhiệm phải thực hiện kiểm tra 'fairness audit' định kỳ cho mô hình chấm điểm tín dụng của họ, không chỉ tối ưu hóa độ chính xác dự đoán đơn thuần."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là hạn chế thật và đều mang tính kỹ thuật. Cái này là cơ chế: nếu một nhóm từng bị từ chối nhiều hơn mức đáng có, mô hình học đúng khuôn mẫu đó và biến một thiên lệch của con người thành một quy tắc chạy tự động."
+      },
+      {
+        "question": "Vì sao cần giải thích được từng quyết định của mô hình?",
+        "options": [
+          "Vì người bị từ chối có quyền biết lý do, và đội cần gỡ lỗi khi có khiếu nại",
+          "Vì việc giải thích sẽ giúp cải thiện độxác của mô hình theo thời gian",
+          "Vì các mô hình giải thích đã được thường xuyên ổn định hơn hẳn mỗi khi dữ liệu thay đổi",
+          "Vì cần chứng minh mô hình không dùng các biến bị cấm theo quy định"
+        ],
+        "correct": 0,
+        "explanation": "Lựa chọn cuối là một phần của yêu cầu này ở phạm vi hẹp hơn. Vế gỡ lỗi là vế thực dụng nhất: không giải thích được thì khi có khiếu nại, bạn không có cách nào phân biệt một quyết định đúng với một lỗi."
+      },
+      {
+        "question": "Chỉ số nào cần theo dõi sau khi mô hình chạy thật?",
+        "options": [
+          "Phân bố điểm theo thời gian, vì nó dịch chuyển khi dữ liệu đầu vào đổi",
+          "Độ chính xác của mô hình trên tập dữ liệu kiểm chứng ban đầu",
+          "Số lượng quyết định mà mô hình đưa ra trong mỗi khoảng thời gian",
+          "Thời gian mô hình cần để chấm điểm cho một trường hợp đầu vào"
+        ],
+        "correct": 0,
+        "explanation": "Độ chính xác trên tập kiểm chứng ban đầu là một con số cố định và nó không đổi dù thực tế đã đổi. Phân bố điểm dịch chuyển thì ngưỡng cũ đang cắt ở một chỗ khác so với lúc nó được chọn, mà không ai thông báo."
       }
     ],
     "keyTakeaways": [
-      "Credit Scoring Model mang lại tính nhất quán, khả năng kiểm chứng/cải thiện liên tục, và khả năng mở rộng quy mô so với đánh giá thuần định tính - nhưng vẫn cần giám sát bởi phán đoán con người",
-      "Expected Loss = PD (xác suất vỡ nợ) × LGD (tổn thất khi vỡ nợ) × EAD (dư nợ tại thời điểm vỡ nợ) - công thức nền tảng của quản trị rủi ro tín dụng hiện đại",
-      "Reject Inference: mô hình chỉ học từ khách hàng ĐÃ ĐƯỢC DUYỆT, tạo ra selection bias khi huấn luyện lại, có nguy cơ ngày càng bảo thủ theo thời gian",
-      "Algorithmic bias là rủi ro thực tế cần giám sát: mô hình có thể vô thức tái tạo thiên kiến xã hội/lịch sử từ dữ liệu huấn luyện, đòi hỏi fairness audit định kỳ"
+      "Ngưỡng cắt là lựa chọn về GIÁ TRỊ - chi phí hai loại sai lầm nằm ngoài dữ liệu.",
+      "Quanh ngưỡng, mô hình gần như tung đồng xu - chuyển sang người xem.",
+      "Mô hình học từ quyết định cũ sẽ biến thiên lệch của người thành quy tắc tự động.",
+      "Giải thích được từng quyết định là điều kiện để GỠ LỖI khi có khiếu nại.",
+      "Theo dõi PHÂN BỐ ĐIỂM - nó dịch chuyển và ngưỡng cũ cắt ở chỗ khác."
     ],
     "practicePrompt": {
-      "question": "Bạn đang đánh giá 2 khoản vay: Khoản A ($100 triệu, PD 2%, LGD 80% - vay tín chấp) và Khoản B ($100 triệu, PD 5%, LGD 20% - vay có tài sản thế chấp tốt). Khoản nào có Expected Loss cao hơn, và điều này có ý nghĩa gì cho việc định giá lãi suất?",
+      "question": "Ai nên quyết ngưỡng cắt của một mô hình chấm điểm?",
       "options": [
-        "Khoản A có Expected Loss cao hơn vì PD luôn quan trọng hơn LGD",
-        "Khoản A: EL = 2% × 80% × $100tr = $1,6tr, cao hơn Khoản B = 5% × 20% × $100tr = $1tr",
-        "Cả hai khoản vay có Expected Loss bằng nhau vì cùng dư nợ $100 triệu",
-        "Không thể so sánh hai khoản vay này vì chúng thuộc loại hình khác nhau"
+        "Người chịu trách nhiệm về cả hai loại thiệt hại, với số liệu do đội kỹ thuật đưa",
+        "Đội kỹ thuật, vì họ hiểu rõ nhất mô hình hoạt động thế nào",
+        "Bộ phận tuân thủ, vì ngưỡng ảnh hưởng trực tiếp tới rủi ro pháp lý",
+        "Hội đồng gồm đại diện của tất cả các bộ phận có liên quan tới quyết định"
       ],
-      "correct": 1,
-      "explanation": "Đây là bài tập minh họa trực tiếp tại sao chỉ nhìn vào PD đơn lẻ (như nhiều người thường làm khi nghĩ về 'rủi ro tín dụng') có thể gây hiểu lầm - Expected Loss (kết hợp cả PD và LGD) mới phản ánh đúng mức độ rủi ro tài chính thực sự. Đây chính là lý do khoản vay tín chấp luôn có lãi suất cao hơn đáng kể so với vay thế chấp, ngay cả khi xác suất vỡ nợ (PD) tương đương hoặc thấp hơn."
+      "correct": 0,
+      "explanation": "Đội kỹ thuật cung cấp được đường đánh đổi giữa hai loại sai lầm nhưng không quyết được nên chọn điểm nào trên đường đó. Một hội đồng thì thường dẫn tới ngưỡng bảo thủ nhất mà không ai chịu trách nhiệm."
     },
     "summary": {
-      "keyIdea": "Mô hình chấm điểm tín dụng hiện đại kết hợp thống kê định lượng (PD, LGD, Expected Loss) để đánh giá rủi ro nhất quán và có thể mở rộng quy mô, nhưng đối mặt với các thách thức kỹ thuật (reject inference) và đạo đức (algorithmic bias) cần được giám sát cẩn thận.",
-      "commonMistake": "Chỉ nhìn vào xác suất vỡ nợ (PD) mà bỏ qua mức độ tổn thất nếu vỡ nợ xảy ra (LGD) khi đánh giá rủi ro thực sự của một khoản vay",
-      "action": "Khi đánh giá rủi ro một khoản vay, luôn tính Expected Loss (PD × LGD × EAD) thay vì chỉ dựa vào một chỉ số PD đơn lẻ"
+      "keyIdea": "Điểm số là phần dễ; ngưỡng cắt và vùng giữa mới là phần quyết định.",
+      "formula": "Đưa đường đánh đổi cho người chịu trách nhiệm → chọn ngưỡng → vùng giữa cho người xem.",
+      "commonMistake": "Coi ngưỡng là quyết định kỹ thuật, nên nó được chọn bởi người không chịu hậu quả.",
+      "action": "Tìm xem ngưỡng cắt trong hệ thống bạn do ai chọn và dựa trên gì."
     },
     "application": {
-      "title": "Áp dụng vào công việc Consumer Credit Analysis",
-      "message": "Nghiên cứu cách một tổ chức tín dụng (ngân hàng, công ty tài chính tiêu dùng) công bố tiêu chí chấm điểm tín dụng của họ (nếu có công khai) - so sánh với khung 5C truyền thống để thấy sự kết hợp giữa định tính và định lượng trong thực tế.",
-      "secondary": "Hiểu cả khía cạnh kỹ thuật (PD/LGD) lẫn đạo đức (algorithmic bias) của credit scoring là kỹ năng ngày càng quan trọng khi ngành tài chính tiêu dùng chuyển dịch mạnh sang các mô hình AI/machine learning."
+      "title": "Làm ngay hôm nay",
+      "message": "Với một ngưỡng tự động trong hệ thống bạn, tìm hai thứ: ai đã chọn con số đó, và họ dựa trên đường đánh đổi nào.",
+      "secondary": "Nếu câu trả lời là không ai nhớ, thì đó là một quyết định về giá trị đang chạy hằng ngày mà không có người chịu trách nhiệm - và nó là quyết định dễ sửa nhất trong bài này."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Đằng sau mỗi quyết định 'duyệt' hay 'từ chối' một khoản vay tiêu dùng trong vài giây là một mô hình thống kê phức tạp, được xây dựng từ hàng triệu hồ sơ tín dụng lịch sử - hiểu được cơ chế này là kỹ năng cốt lõi của chuyên viên phân tích tín dụng hiện đại."
+        "text": "Một mô hình chấm điểm đưa ra hàng nghìn quyết định mỗi ngày mà không ai xem từng cái, nên mọi khuyết điểm của nó đều được nhân lên với quy mô đó."
       },
       {
         "type": "heading",
-        "text": "Từ 5C Định tính đến Credit Scoring Định lượng"
-      },
-      {
-        "type": "paragraph",
-        "text": "Khung 5C (Character, Capacity, Capital, Collateral, Conditions) cung cấp cấu trúc tư duy định tính toàn diện, nhưng khi xử lý khối lượng lớn hồ sơ vay tiêu dùng (thẻ tín dụng, vay mua xe, vay tiêu dùng nhỏ), các tổ chức tài chính cần một cách tiếp cận có thể TỰ ĐỘNG HÓA và NHẤT QUÁN - đây là lý do credit scoring model ra đời, chuyển hóa các yếu tố 5C thành các biến số định lượng có thể đưa vào mô hình thống kê."
-      },
-      {
-        "type": "heading",
-        "text": "PD, LGD, và Expected Loss - Bộ ba Chỉ số Cốt lõi"
-      },
-      {
-        "type": "paragraph",
-        "text": "Quản trị rủi ro tín dụng hiện đại (theo khung Basel) không chỉ dừng ở việc dự đoán xác suất vỡ nợ (PD), mà còn phải ước tính mức độ tổn thất THỰC TẾ nếu vỡ nợ xảy ra (LGD - phụ thuộc vào tài sản đảm bảo, khả năng thu hồi nợ). Kết hợp cả hai với quy mô dư nợ (Exposure at Default - EAD) cho ra Expected Loss - con số phản ánh đầy đủ nhất mức độ rủi ro tài chính thực sự của một khoản vay."
-      },
-      {
-        "type": "heading",
-        "text": "Hai Thách thức Quan trọng: Reject Inference và Algorithmic Bias"
-      },
-      {
-        "type": "paragraph",
-        "text": "Credit scoring model không phải là công cụ hoàn hảo tự động: Reject Inference là thách thức kỹ thuật (mô hình không bao giờ biết chính xác điều gì xảy ra với hồ sơ bị từ chối), trong khi Algorithmic Bias là thách thức đạo đức (mô hình có thể vô thức học lại và khuếch đại thiên kiến xã hội từ dữ liệu lịch sử). Cả hai đòi hỏi sự giám sát liên tục từ con người, không chỉ tối ưu hóa thuần túy về độ chính xác dự đoán."
-      },
-      {
-        "type": "formula",
-        "title": "Tổn thất kỳ vọng của một khoản vay",
-        "label": "Expected Loss",
-        "equation": "EL = PD × LGD × EAD",
-        "variables": [
-          {
-            "symbol": "PD",
-            "name": "Xác suất vỡ nợ trong một năm"
-          },
-          {
-            "symbol": "LGD",
-            "name": "Tỷ lệ mất thật sau khi đã thu hồi tài sản bảo đảm"
-          },
-          {
-            "symbol": "EAD",
-            "name": "Dư nợ tại thời điểm vỡ nợ"
-          }
-        ]
+        "text": "Ngưỡng cắt không phải quyết định kỹ thuật"
       },
       {
         "type": "callout",
-        "label": "Hai thách thức",
-        "text": "Reject inference: mô hình chỉ học được từ hồ sơ đã được duyệt, nên nó giỏi xếp hạng trong nhóm từng được chấp nhận và mù với nhóm bị từ chối - kể cả những người lẽ ra sẽ trả tốt. Và thiên lệch thuật toán: mô hình học từ dữ liệu quá khứ sẽ tái tạo cả những khác biệt đối xử có trong quá khứ đó."
+        "label": "Không con số nào tối ưu cả hai",
+        "text": "Dịch ngưỡng lên thì bớt cho qua nhầm và tăng chặn nhầm; dịch xuống thì ngược lại. Chi phí của hai loại sai lầm nằm NGOÀI dữ liệu, nên phải có người nói ra - và người đó phải là người chịu trách nhiệm về cả hai."
+      },
+      {
+        "type": "heading",
+        "text": "Vùng giữa"
+      },
+      {
+        "type": "comparison",
+        "left": {
+          "label": "Ép về hai phía",
+          "text": "Quanh ngưỡng, mô hình gần như không phân biệt được. Ép chúng về một phía là để một con số ngẫu nhiên quyết định."
+        },
+        "right": {
+          "label": "Chuyển cho người xem",
+          "text": "Rẻ, vì nhóm quanh ngưỡng thường nhỏ. Và đây là chỗ mà phán đoán của người thật sự có giá trị hơn mô hình."
+        }
+      },
+      {
+        "type": "heading",
+        "text": "Hai thứ phải chuẩn bị từ đầu"
+      },
+      {
+        "type": "list",
+        "items": [
+          "GIẢI THÍCH ĐƯỢC từng quyết định. Không có nó thì khi có khiếu nại, bạn không phân biệt được một quyết định đúng với một lỗi.",
+          "Theo dõi PHÂN BỐ ĐIỂM theo thời gian. Nó dịch chuyển khi dữ liệu đầu vào đổi, và lúc đó ngưỡng cũ đang cắt ở một chỗ khác so với lúc nó được chọn."
+        ]
       },
       {
         "type": "closing",
         "lines": [
-          "Chấm điểm tín dụng hiện đại là sự kết hợp giữa khoa học dữ liệu và trách nhiệm đạo đức - một chuyên viên phân tích tín dụng giỏi cần thành thạo cả hai khía cạnh.",
-          "Khi ngành tài chính tiếp tục chuyển dịch sang các mô hình AI phức tạp hơn, khả năng hiểu và giám sát tính công bằng của những mô hình này sẽ ngày càng trở thành kỹ năng cốt lõi, không chỉ là kiến thức kỹ thuật đơn thuần."
+          "Và một rủi ro không sửa được bằng kỹ thuật: mô hình học từ dữ liệu quá khứ đang học cả những quyết định SAI trong quá khứ.",
+          "Nếu một nhóm từng bị từ chối nhiều hơn mức đáng có, mô hình học đúng khuôn mẫu đó - và biến một thiên lệch của con người thành một quy tắc chạy tự động ở quy mô lớn hơn nhiều."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Dữ liệu hồ sơ và lịch sử tín dụng",
-        "arrow": true
-      },
-      {
-        "label": "Mô hình cho ra xác suất vỡ nợ (PD)",
-        "arrow": true
-      },
-      {
-        "label": "Kết hợp LGD và dư nợ → tổn thất kỳ vọng",
-        "arrow": true
-      },
-      {
-        "label": "Quyết định duyệt, hạn mức và mức lãi suất",
-        "arrow": true
-      },
-      {
-        "label": "Kiểm soát reject inference và thiên lệch thuật toán",
-        "arrow": false
       }
     ]
   },
@@ -79145,647 +79127,524 @@ export const lessons: Lesson[] = [
   },
   {
     "id": 1281,
-    "track": "professional",
-    "slug": "aml-kyc-la-gi",
-    "title": "AML & KYC là gì: Nền tảng công việc của chuyên viên tuân thủ",
-    "subtitle": "Vì sao ngân hàng phải biết rõ khách hàng của mình là ai trước khi nhận tiền của họ",
+    "slug": "xac-minh-danh-tinh-nguoi-dung-toi-muc-nao",
+    "title": "Xác minh danh tính người dùng: vì sao, và tới mức nào",
+    "subtitle": "Mỗi mức xác minh thêm một lớp bảo vệ và cắt đi một phần người dùng thật.",
     "duration": "9 phút",
     "difficulty": "Trung bình",
+    "track": "professional",
     "emoji": "🛡️",
-    "openingQuestion": "Một khách hàng mở tài khoản tại ngân hàng, khai nghề nghiệp là chủ một quán ăn nhỏ, thu nhập khoảng 30 triệu đồng/tháng. Ba tháng sau, tài khoản này nhận về hơn 40 tỷ đồng qua hàng trăm giao dịch chuyển vào từ nhiều người khác nhau, rồi gần như toàn bộ được chuyển ra ngay trong ngày. Theo góc nhìn tuân thủ, vấn đề cốt lõi ở đây là gì?",
+    "interactiveType": "ethics-case",
+    "whyItMatters": "Đặt mức xác minh là quyết định đánh đổi giữa hai loại thiệt hại, và đội kỹ thuật thường chỉ được nghe về một loại.",
+    "openingQuestion": "Vì sao không đặt mức xác minh cao nhất cho mọi người dùng?",
     "openingOptions": [
-      "Không có vấn đề gì, vì mọi giao dịch đều thành công và không bị hệ thống ngân hàng từ chối",
-      "Hoạt động của tài khoản hoàn toàn không khớp với chân dung khách hàng mà chính họ đã khai báo",
-      "Chỉ cần khách hàng đóng đủ phí dịch vụ chuyển tiền thì ngân hàng không cần quan tâm",
-      "Vấn đề duy nhất là ngân hàng nên tính phí cao hơn cho tài khoản có nhiều giao dịch như vậy"
+      "Vì mỗi lớp thêm vào cắt đi một phần người dùng thật, và phần đó không quay lại",
+      "Vì chi phí cho các dịch vụ xác minh danh tính tăng theo số lượt kiểm tra",
+      "Vì quy trình xác minh phức tạp làm tăng thời gian xử lý của hệ thống",
+      "Vì các quy định chỉ yêu cầu xác minh ở mức tối thiểu nhất định"
     ],
-    "correctOption": 1,
-    "explanation": "Trọng tâm của phòng chống rửa tiền không phải là kiểm tra từng giao dịch có hợp lệ về mặt kỹ thuật hay không, mà là đối chiếu hành vi thực tế của tài khoản với chân dung khách hàng đã được xác lập lúc mở tài khoản. Một quán ăn nhỏ có dòng tiền hàng chục tỷ mỗi tháng, tiền vào rồi ra ngay trong ngày, không giữ lại số dư - đó là mẫu hình kinh điển của việc tài khoản bị dùng làm trung gian luân chuyển tiền, thường gọi là tài khoản trung gian. Chính vì vậy KYC không phải thủ tục giấy tờ một lần lúc mở tài khoản, mà là nền tảng để hệ thống giám sát biết thế nào là bất thường về sau.",
-    interactiveType: "ethics-case",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều là chi phí thật và đều đo được bằng tiền hoặc thời gian. Phần người dùng bị cắt thì không xuất hiện ở đâu cả - họ bỏ giữa chừng và không ai ghi lại lý do. Đây là lý do đội kỹ thuật thường chỉ nghe về thiệt hại của việc xác minh quá lỏng, mà không nghe về thiệt hại của việc xác minh quá chặt.",
+    "diagram": [
+      {
+        "label": "Hai loại thiệt hại: cho qua kẻ xấu, và chặn nhầm người thật",
+        "arrow": true
+      },
+      {
+        "label": "Loại thứ hai không xuất hiện ở đâu - họ bỏ giữa chừng",
+        "arrow": true
+      },
+      {
+        "label": "Nên đặt mức theo RỦI RO của từng thao tác, không một mức chung",
+        "arrow": true
+      },
+      {
+        "label": "Và đo cả tỷ lệ bỏ giữa chừng, không chỉ tỷ lệ chặn được"
+      }
+    ],
     "realWorldExample": {
-      "company": "Khuôn khổ pháp lý tại Việt Nam và chuẩn mực quốc tế",
-      "description": "Hoạt động phòng chống rửa tiền ở Việt Nam được điều chỉnh bởi Luật Phòng, chống rửa tiền cùng các văn bản hướng dẫn của Ngân hàng Nhà nước, trong đó quy định các tổ chức tài chính phải nhận biết khách hàng, báo cáo giao dịch có giá trị lớn và báo cáo giao dịch đáng ngờ. Ở tầm quốc tế, khuôn khổ này dựa trên các khuyến nghị của Lực lượng đặc nhiệm hành động tài chính (FATF) - tổ chức liên chính phủ đặt ra chuẩn mực chung mà các quốc gia được đánh giá định kỳ. Một quốc gia bị đưa vào danh sách cần tăng cường giám sát của FATF sẽ khiến các ngân hàng nước đó chịu thêm nhiều lớp kiểm tra khi giao dịch quốc tế, làm tăng chi phí và thời gian cho toàn bộ nền kinh tế - đây là lý do tuân thủ không chỉ là vấn đề nội bộ của từng ngân hàng."
+      "company": "Thiệt hại không ai đo",
+      "description": "Tỷ lệ chặn được kẻ xấu có bảng theo dõi, có người báo cáo hằng tháng. Tỷ lệ người dùng thật bỏ giữa chừng vì quy trình xác minh thì thường không ai đo - nên mọi cuộc tranh luận về mức xác minh chỉ có số liệu cho một bên."
     },
     "quiz": [
       {
-        "question": "Khác biệt cơ bản giữa AML (phòng chống rửa tiền) và KYC (nhận biết khách hàng) là gì?",
+        "question": "Vì sao thiệt hại của việc xác minh quá chặt khó thấy?",
         "options": [
-          "Hai thuật ngữ hoàn toàn đồng nghĩa, chỉ khác cách gọi ở từng quốc gia",
-          "AML là toàn bộ mục tiêu và hệ thống ngăn dòng tiền bất hợp pháp đi qua tổ chức tài chính; KYC là một cấu phần trong đó - việc xác định và hiểu rõ khách hàng để làm cơ sở phát hiện bất thường",
-          "KYC dành cho khách hàng cá nhân, còn AML chỉ dành cho khách hàng doanh nghiệp",
-          "AML là công việc của cơ quan công an, KYC là công việc của ngân hàng"
+          "Vì người dùng bị chặn nhầm bỏ giữa chừng và không ai ghi lại lý do",
+          "Vì thiệt hại đó xuất hiện tương đối chậm nên khó liên hệ với nguyên nhân",
+          "Vì các cả đội đo đạc lường khá thường xuyên tập trung vào chỉ số bảo mật hơn",
+          "Vì số lượng người bị chặn nhầm khá thường xuyên tương đối nhỏ so với tổng người dùng"
         ],
-        "correct": 1,
-        "explanation": "AML là mục tiêu và cả hệ thống kiểm soát nhằm ngăn tổ chức tài chính bị dùng làm kênh hợp pháp hóa tiền bất hợp pháp. KYC là nền móng của hệ thống đó: nếu không biết rõ khách hàng là ai, làm nghề gì, nguồn tiền từ đâu, thì không có cơ sở nào để nói một giao dịch là bất thường."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều làm nó khó đo hơn. Vấn đề gốc là nó KHÔNG ĐƯỢC TẠO RA dưới dạng dữ liệu: một người bỏ giữa chừng trông giống hệt một người đổi ý, và hệ thống không phân biệt được hai chuyện đó nếu không được thiết kế để phân biệt."
       },
       {
-        "question": "Ba giai đoạn kinh điển của quá trình rửa tiền theo thứ tự là gì?",
+        "question": "Mức xác minh nên được đặt theo gì?",
         "options": [
-          "Đầu tư - vay vốn - trả nợ",
-          "Sắp xếp (placement) - phân tán (layering) - hợp nhất (integration): đưa tiền bất hợp pháp vào hệ thống tài chính, xé nhỏ và luân chuyển qua nhiều lớp giao dịch để xóa dấu vết nguồn gốc, rồi đưa trở lại dưới vỏ bọc tài sản hoặc thu nhập hợp pháp",
-          "Gửi tiết kiệm - nhận lãi - rút gốc",
-          "Mở tài khoản - nộp thuế - chuyển ra nước ngoài"
+          "Theo rủi ro của từng thao tác, chứ không một mức chung cho mọi thao tác",
+          "Theo mức mà các quy định trong ngành yêu cầu tối thiểu phải đạt",
+          "Theo mức mà các đối thủ trên thị trường đang áp dụng cho người dùng",
+          "Theo khả năng kỹ thuật của hệ thống xác minh mà đội đang tích hợp"
         ],
-        "correct": 1,
-        "explanation": "Ba giai đoạn này là khung tư duy nền tảng: giai đoạn sắp xếp dễ bị phát hiện nhất vì tiền mặt phải tiếp xúc với hệ thống, nên tội phạm bỏ nhiều công vào giai đoạn phân tán để cắt đứt liên hệ giữa tiền và nguồn gốc phạm tội. Hiểu ba giai đoạn giúp chuyên viên tuân thủ biết loại dấu hiệu nào cần tìm ở đâu."
+        "correct": 0,
+        "explanation": "Xem một bản ghi công khai và chuyển một khoản tiền lớn không cần cùng mức chắc chắn về danh tính. Một mức chung thì hoặc quá lỏng cho thao tác nguy hiểm, hoặc quá chặt cho thao tác vô hại - và thường là cả hai cùng lúc."
       },
       {
-        "question": "Vì sao KYC không thể chỉ là một thủ tục làm một lần vào thời điểm mở tài khoản?",
+        "question": "Vì sao xác minh theo bậc lại hiệu quả hơn?",
         "options": [
-          "Vì giấy tờ tùy thân có thời hạn nên phải gia hạn định kỳ, ngoài ra không có lý do nào khác",
-          "Vì hoàn cảnh và hành vi của khách hàng thay đổi theo thời gian - chân dung khách hàng phải được cập nhật liên tục để hệ thống giám sát còn cơ sở phân biệt giao dịch bình thường với giao dịch bất thường",
-          "Vì ngân hàng muốn có thêm cơ hội bán chéo sản phẩm cho khách hàng",
-          "Vì quy định yêu cầu khách hàng phải đến quầy giao dịch mỗi năm một lần"
+          "Vì người dùng chỉ trả cái giá tương ứng với thao tác họ thật sự muốn làm",
+          "Vì nó giảm được chi phí gọi tới các dịch vụ xác minh bên ngoài",
+          "Vì nó cho phép thu thập dần thông tin thay vì hỏi hết một lần",
+          "Vì các quy định cho phép áp dụng mức xác minh khác nhau theo nhóm"
         ],
-        "correct": 1,
-        "explanation": "Nếu chân dung khách hàng đóng băng ở thời điểm mở tài khoản, mọi so sánh về sau đều vô nghĩa. Đây là lý do khuôn khổ tuân thủ đòi hỏi cập nhật thông tin định kỳ, với tần suất dày hơn cho nhóm khách hàng rủi ro cao."
+        "correct": 0,
+        "explanation": "Lựa chọn thứ ba mô tả đúng cách làm và không nói vì sao nó tốt hơn. Điểm mấu chốt là ai trả giá: người chỉ muốn xem thì không phải qua bước nào, còn người muốn làm thao tác lớn thì chấp nhận thêm bước vì họ đã có động cơ rõ ràng."
       },
       {
-        "question": "Nhóm khách hàng nào thường được xếp vào diện phải áp dụng biện pháp nhận biết tăng cường (Enhanced Due Diligence)?",
+        "question": "Chỉ số nào còn thiếu ở phần lớn hệ thống xác minh?",
         "options": [
-          "Mọi khách hàng có số dư tài khoản trên một ngưỡng nhất định",
-          "Cá nhân có ảnh hưởng chính trị (PEP), khách hàng đến từ quốc gia có rủi ro cao, chủ sở hữu hưởng lợi bị che qua nhiều lớp pháp nhân, và các mô hình kinh doanh sử dụng nhiều tiền mặt",
-          "Chỉ những khách hàng đã từng bị từ chối mở tài khoản ở ngân hàng khác",
-          "Khách hàng dưới 25 tuổi vì chưa có lịch sử tín dụng"
+          "Tỷ lệ người dùng bắt đầu quy trình xác minh mà không hoàn tất được",
+          "Thời gian trung bình để hoàn tất một lượt xác minh danh tính",
+          "Tỷ lệ hồ sơ bị từ chối do thông tin hoàn toàn không khớp với chính dữ liệu gốc",
+          "Số lượt xác minh phải chuyển sang xử lý thủ công mỗi ngày"
         ],
-        "correct": 1,
-        "explanation": "Tiêu chí xếp loại rủi ro cao không dựa trên số dư mà dựa trên khả năng bị lạm dụng: quyền lực chính trị có thể đi kèm rủi ro tham nhũng, cấu trúc sở hữu nhiều lớp che giấu người thụ hưởng thật, còn mô hình nhiều tiền mặt khiến việc truy nguồn gốc trở nên khó khăn."
+        "correct": 0,
+        "explanation": "Ba chỉ số kia đều nằm trong hệ thống xác minh và đều được đo. Cái này nằm ở khoảng giữa - người dùng rời đi trước khi hệ thống kết luận gì - nên nó chỉ tồn tại nếu có ai chủ động đo nó."
+      },
+      {
+        "question": "Vì sao lưu bản sao giấy tờ của người dùng là quyết định cần cân nhắc?",
+        "options": [
+          "Vì kho ảnh giấy tờ là mục tiêu giá trị cao và bạn phải giữ nó nhiều năm",
+          "Vì dung lượng lưu trữ cho ảnh chất lượng cao khá lớn với nhiều người dùng",
+          "Vì cần một quy trình riêng để xoá chúng khi người dùng rời đi",
+          "Vì chất lượng ảnh do người dùng tải lên thường không đủ để đối chiếu"
+        ],
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là chi phí vận hành. Cái này là rủi ro tích tụ: một kho ảnh giấy tờ tuỳ thân bị lộ gây thiệt hại lớn hơn nhiều so với việc lộ tên và địa chỉ thư điện tử, và nó không giảm đi theo thời gian."
       }
     ],
     "keyTakeaways": [
-      "KYC là nền móng của AML: không biết rõ khách hàng thì không có cơ sở nào để nói một giao dịch là bất thường.",
-      "Rửa tiền diễn ra theo ba giai đoạn - sắp xếp, phân tán, hợp nhất - và mỗi giai đoạn để lại loại dấu vết khác nhau.",
-      "Chân dung khách hàng phải được cập nhật liên tục, không đóng băng ở thời điểm mở tài khoản.",
-      "Xếp loại rủi ro dựa trên khả năng bị lạm dụng, không dựa trên quy mô số dư của khách hàng."
+      "Hai loại thiệt hại: cho qua kẻ xấu, và chặn nhầm người thật.",
+      "Loại thứ hai không xuất hiện ở đâu - nên tranh luận chỉ có số liệu cho một bên.",
+      "Đặt mức theo RỦI RO của từng thao tác, không một mức chung cho tất cả.",
+      "Xác minh theo bậc: ai muốn làm thao tác lớn thì mới trả thêm giá.",
+      "Kho ảnh giấy tờ là rủi ro tích tụ và không giảm đi theo thời gian."
     ],
     "practicePrompt": {
-      "question": "Một công ty mới thành lập ba tháng, vốn điều lệ 100 triệu đồng, đăng ký ngành tư vấn quản lý, nhận chuyển khoản 25 tỷ đồng từ một pháp nhân nước ngoài với nội dung 'phí dịch vụ tư vấn'. Bước xử lý đầu tiên đúng đắn nhất của chuyên viên tuân thủ là gì?",
+      "question": "Đội muốn bắt mọi người dùng xác minh giấy tờ ngay khi đăng ký. Góp ý gì?",
       "options": [
-        "Chặn tài khoản ngay lập tức và thông báo cho khách hàng biết lý do là nghi ngờ rửa tiền",
-        "Nhận biết tăng cường: xác minh chủ sở hữu hưởng lợi và bản chất giao dịch",
-        "Bỏ qua vì giao dịch có nội dung chuyển khoản rõ ràng là phí dịch vụ",
-        "Yêu cầu khách hàng chuyển tiền qua ngân hàng khác để tránh trách nhiệm"
+        "Hỏi tỷ lệ bỏ giữa chừng dự kiến, và đề nghị chỉ xác minh ở thao tác rủi ro",
+        "Phản đối bởi vì việc này khiến cho giảm xuống số lượng người sử dụng đăng ký mới",
+        "Đồng ý vì xác minh sớm chắc chắn sẽ giúp phát hiện tài khoản giả trước mỗi khi họ gây hại",
+        "Đề nghị khiến cho quy trình xác minh nhanh hơn để giảm xuống tỷ lệ bỏ giữa chừng"
       ],
-      "correct": 1,
-      "explanation": "Quy mô giao dịch chênh lệch quá xa so với năng lực thực tế của một công ty mới thành lập là dấu hiệu cần xác minh sâu, không phải cơ sở để kết luận ngay. Đồng thời, tuyệt đối không được tiết lộ cho khách hàng biết họ đang bị xem xét hoặc bị báo cáo - đây là nguyên tắc cấm tiết lộ, sẽ được nói kỹ ở bài tiếp theo."
+      "correct": 0,
+      "explanation": "Phản đối thẳng thì bỏ mất mối lo chính đáng về tài khoản giả; đồng ý thẳng thì bỏ mất phần thiệt hại không ai đo. Câu hỏi về tỷ lệ bỏ giữa chừng buộc cuộc tranh luận phải có số liệu cho cả hai bên."
     },
     "summary": {
-      "keyIdea": "AML là hệ thống ngăn tổ chức tài chính bị dùng làm kênh hợp pháp hóa tiền bất hợp pháp; KYC là nền móng cung cấp chuẩn so sánh để nhận ra điều bất thường.",
-      "commonMistake": "Coi KYC là thủ tục giấy tờ một lần lúc mở tài khoản, thay vì một chân dung sống cần cập nhật liên tục.",
-      "action": "Chọn một loại khách hàng bạn hay gặp và viết ra ba dấu hiệu cho thấy hoạt động của họ đã lệch khỏi chân dung ban đầu."
+      "keyIdea": "Mỗi lớp xác minh thêm một lớp bảo vệ và cắt đi một phần người dùng thật.",
+      "formula": "Đặt mức theo rủi ro từng thao tác + đo cả tỷ lệ bỏ giữa chừng.",
+      "commonMistake": "Một mức chung cho mọi thao tác - vừa quá lỏng vừa quá chặt cùng lúc.",
+      "action": "Đo tỷ lệ người dùng bắt đầu xác minh mà không hoàn tất được."
     },
     "application": {
-      "title": "Áp dụng vào công việc",
-      "message": "Với mỗi khách hàng bạn đang phụ trách, hãy trả lời ba câu: nguồn tiền của họ đến từ đâu, hoạt động tài khoản có khớp với ngành nghề đã khai không, và ai là người thực sự hưởng lợi phía sau.",
-      "secondary": "Nếu không trả lời được câu nào trong ba câu đó, hồ sơ nhận biết khách hàng của bạn chưa hoàn chỉnh - bất kể đã đủ giấy tờ hay chưa."
+      "title": "Làm ngay hôm nay",
+      "message": "Tìm xem hệ thống bạn có đo tỷ lệ người dùng bắt đầu quy trình xác minh mà không hoàn tất không. Phần lớn hệ thống không đo.",
+      "secondary": "Không có con số đó thì mọi cuộc tranh luận về mức xác minh chỉ có số liệu cho một bên, và bên có số liệu luôn thắng."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Với một chuyên viên tuân thủ, câu hỏi cần trả lời mỗi ngày không phải 'giao dịch này có hợp lệ về mặt kỹ thuật không' mà là 'giao dịch này có hợp lý với những gì ta biết về khách hàng này không'. Toàn bộ nghề tuân thủ nằm trong khoảng cách giữa hai câu hỏi đó."
+        "text": "Đặt mức xác minh là quyết định đánh đổi giữa hai loại thiệt hại, và đội kỹ thuật thường chỉ được nghe về một loại."
       },
       {
         "type": "heading",
-        "text": "Rửa tiền là gì và diễn ra theo ba giai đoạn nào"
-      },
-      {
-        "type": "paragraph",
-        "text": "Rửa tiền là quá trình làm cho tiền có nguồn gốc từ hành vi phạm tội trông như thu nhập hợp pháp. Vấn đề của tội phạm không phải là kiếm tiền mà là giải thích được tiền đó ở đâu ra - và hệ thống tài chính chính thức là nơi duy nhất có thể cung cấp lời giải thích đó. Vì vậy các tổ chức tài chính vừa là mục tiêu bị lợi dụng, vừa là tuyến phòng thủ đầu tiên."
-      },
-      {
-        "type": "conceptTable",
-        "title": "Ba giai đoạn của quá trình rửa tiền",
-        "subtitle": "Mỗi giai đoạn để lại loại dấu vết khác nhau",
-        "concepts": [
-          {
-            "vi": "Sắp xếp",
-            "en": "Placement",
-            "def": "Đưa tiền bất hợp pháp vào hệ thống tài chính - nộp tiền mặt, mua tài sản, dùng doanh nghiệp bình phong nhiều tiền mặt. Đây là giai đoạn dễ phát hiện nhất vì tiền phải tiếp xúc trực tiếp với hệ thống."
-          },
-          {
-            "vi": "Phân tán",
-            "en": "Layering",
-            "def": "Xé nhỏ và luân chuyển qua nhiều lớp giao dịch, nhiều tài khoản, nhiều pháp nhân và nhiều quốc gia để cắt đứt liên hệ giữa tiền và nguồn gốc phạm tội. Đây là giai đoạn tội phạm bỏ nhiều công nhất."
-          },
-          {
-            "vi": "Hợp nhất",
-            "en": "Integration",
-            "def": "Đưa tiền trở lại nền kinh tế dưới vỏ bọc hợp pháp - đầu tư bất động sản, mua cổ phần doanh nghiệp, hoặc thể hiện thành doanh thu của một hoạt động kinh doanh thật."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "KYC: xây chuẩn so sánh trước khi có gì để so sánh"
-      },
-      {
-        "type": "paragraph",
-        "text": "Nhận biết khách hàng thường bị hiểu là việc thu thập đủ giấy tờ. Thực chất mục đích của nó là xây dựng một chân dung: khách hàng này là ai, kiếm tiền bằng cách nào, quy mô hoạt động khoảng bao nhiêu, giao dịch với những đối tác nào là bình thường. Chân dung đó chính là chuẩn so sánh - và không có chuẩn so sánh thì khái niệm 'bất thường' không tồn tại."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Nhận diện và xác minh danh tính: khách hàng là ai, giấy tờ có thật và còn hiệu lực không.",
-          "Xác định chủ sở hữu hưởng lợi thực sự: ai là người cuối cùng kiểm soát và hưởng lợi, đặc biệt khi khách hàng là pháp nhân có nhiều lớp sở hữu.",
-          "Hiểu bản chất hoạt động: ngành nghề, quy mô doanh thu, đối tác chính, dòng tiền dự kiến vào và ra.",
-          "Xác định mục đích mở quan hệ: khách hàng cần sản phẩm này để làm gì, có hợp lý với hoạt động của họ không.",
-          "Xếp loại mức rủi ro và định tần suất cập nhật thông tin tương ứng."
-        ]
+        "text": "Hai loại thiệt hại"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "KYC làm cho có",
-          "text": "Thu đủ bản sao giấy tờ, lưu vào hồ sơ, đánh dấu hoàn thành. Sáu tháng sau khi tài khoản có dòng tiền lạ, không ai biết mức bình thường của khách hàng này lẽ ra là bao nhiêu để đối chiếu."
+          "label": "Cho qua kẻ xấu",
+          "text": "Có bảng theo dõi, có người báo cáo hằng tháng, có tên trong biên bản sự cố."
         },
         "right": {
-          "label": "KYC làm đúng mục đích",
-          "text": "Ghi rõ khách hàng làm nghề gì, doanh thu khoảng bao nhiêu, thường giao dịch với ai, dòng tiền dự kiến ra sao. Khi có bất thường, hệ thống và con người đều có mốc để so."
+          "label": "Chặn nhầm người thật",
+          "text": "Không xuất hiện ở đâu. Họ bỏ giữa chừng, và một người bỏ giữa chừng trông giống hệt một người đổi ý."
         }
       },
       {
+        "type": "callout",
+        "label": "Hệ quả của việc chỉ đo một bên",
+        "text": "Mọi cuộc tranh luận về mức xác minh đều có số liệu cho một phía và cảm tính cho phía kia - nên nó luôn kết thúc theo cùng một hướng, bất kể hướng đó có đúng hay không."
+      },
+      {
         "type": "heading",
-        "text": "Cách tiếp cận dựa trên rủi ro"
+        "text": "Đặt mức theo rủi ro của thao tác"
       },
       {
         "type": "paragraph",
-        "text": "Không thể áp cùng một mức độ kiểm tra cho mọi khách hàng - vừa tốn kém vô ích, vừa làm loãng nguồn lực khỏi những nơi rủi ro thật. Vì vậy khuôn khổ tuân thủ hiện đại dựa trên phân loại rủi ro: khách hàng rủi ro thấp áp dụng biện pháp nhận biết đơn giản hóa, khách hàng rủi ro cao áp dụng biện pháp tăng cường với nhiều lớp xác minh và tần suất rà soát dày hơn."
+        "text": "Xem một bản ghi công khai và chuyển một khoản tiền lớn không cần cùng mức chắc chắn về danh tính. Một mức chung cho tất cả thì hoặc quá lỏng cho thao tác nguy hiểm, hoặc quá chặt cho thao tác vô hại - và thường là cả hai cùng lúc."
       },
       {
-        "type": "conceptTable",
-        "title": "Các nhóm rủi ro cao điển hình",
-        "concepts": [
-          {
-            "vi": "Cá nhân có ảnh hưởng chính trị",
-            "en": "PEP - Politically Exposed Person",
-            "def": "Người giữ chức vụ quan trọng trong bộ máy nhà nước, cùng người thân và cộng sự gần. Không hàm ý họ có hành vi sai, nhưng vị trí đó đi kèm rủi ro tham nhũng cao hơn nên cần nhiều lớp xác minh hơn."
-          },
-          {
-            "vi": "Chủ sở hữu hưởng lợi bị che",
-            "en": "Complex ownership",
-            "def": "Pháp nhân nắm bởi pháp nhân khác qua nhiều lớp, thường ở nhiều quốc gia. Đây là cấu trúc phổ biến trong giai đoạn phân tán của rửa tiền."
-          },
-          {
-            "vi": "Mô hình nhiều tiền mặt",
-            "en": "Cash-intensive business",
-            "def": "Nhà hàng, karaoke, kinh doanh vàng bạc, đổi tiền, rửa xe. Doanh thu bằng tiền mặt rất khó đối chiếu độc lập, nên dễ bị dùng để trộn tiền bất hợp pháp vào doanh thu thật."
-          },
-          {
-            "vi": "Quốc gia rủi ro cao",
-            "en": "High-risk jurisdiction",
-            "def": "Quốc gia nằm trong danh sách cần tăng cường giám sát của các tổ chức quốc tế, hoặc có khuôn khổ phòng chống rửa tiền yếu."
-          }
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Vì sao đây không chỉ là chuyện thủ tục",
-        "text": "Hậu quả của việc tuân thủ yếu không dừng ở khoản tiền xử phạt. Ngân hàng bị mất quan hệ đại lý với các ngân hàng nước ngoài sẽ gặp khó khăn trong thanh toán quốc tế cho toàn bộ khách hàng của mình. Ở tầm quốc gia, bị đưa vào danh sách cần tăng cường giám sát khiến mọi giao dịch xuyên biên giới của các ngân hàng trong nước bị soi kỹ hơn, chậm hơn và đắt hơn. Đây là lý do bộ phận tuân thủ tồn tại như một chức năng độc lập, không phải một khâu phụ trong quy trình bán hàng."
+        "type": "paragraph",
+        "text": "Xác minh THEO BẬC giải quyết chuyện đó bằng cách đổi người trả giá: ai chỉ muốn xem thì không qua bước nào, còn ai muốn làm thao tác lớn thì chấp nhận thêm bước vì họ đã có động cơ rõ ràng."
       },
       {
         "type": "closing",
         "lines": [
-          "KYC không phải là tập hồ sơ giấy tờ - đó là chuẩn so sánh giúp bạn nhận ra điều bất thường về sau.",
-          "Câu hỏi trung tâm của nghề tuân thủ luôn là: hoạt động này có hợp lý với những gì ta biết về khách hàng này không?"
+          "Một quyết định kỹ thuật đi kèm cần cân nhắc riêng: có LƯU bản sao giấy tờ hay không.",
+          "Một kho ảnh giấy tờ tuỳ thân là mục tiêu giá trị cao, bạn phải giữ nó nhiều năm, và rủi ro đó không giảm đi theo thời gian."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Nhận diện và xác minh danh tính khách hàng",
-        "arrow": true
-      },
-      {
-        "label": "Xác định chủ sở hữu hưởng lợi thực sự",
-        "arrow": true
-      },
-      {
-        "label": "Hiểu bản chất hoạt động và nguồn tiền → xây chân dung khách hàng",
-        "arrow": true
-      },
-      {
-        "label": "Xếp loại rủi ro: đơn giản hóa · tiêu chuẩn · tăng cường",
-        "arrow": true
-      },
-      {
-        "label": "Giám sát liên tục và đối chiếu hành vi thực tế với chân dung",
-        "arrow": false
       }
     ]
   },
   {
     "id": 1282,
-    "track": "professional",
-    "slug": "aml-kyc-quy-trinh-chi-tiet",
-    "title": "Quy trình AML/KYC chi tiết: Từ sàng lọc đến báo cáo giao dịch đáng ngờ",
-    "subtitle": "Các bước cụ thể một chuyên viên tuân thủ thực hiện, và ranh giới pháp lý không được vượt qua",
+    "slug": "quy-trinh-xac-minh-tu-sang-loc-toi-bao-cao",
+    "title": "Quy trình xác minh: từ sàng lọc tự động tới xử lý thủ công",
+    "subtitle": "Phần khó không phải luật sàng lọc mà là chuyện gì xảy ra với những hồ sơ luật không quyết được.",
     "duration": "10 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🔍",
-    "openingQuestion": "Sau khi rà soát, bạn kết luận một khách hàng có dấu hiệu đáng ngờ và quyết định lập báo cáo giao dịch đáng ngờ gửi cơ quan có thẩm quyền. Khách hàng gọi điện hỏi vì sao giao dịch của họ bị chậm. Bạn được phép làm gì?",
+    "interactiveType": "ethics-case",
+    "whyItMatters": "Mọi hệ thống sàng lọc đều đẩy một phần hồ sơ sang cho người xử lý, và tỷ lệ đó quyết định hệ thống có vận hành nổi hay không.",
+    "openingQuestion": "Luật sàng lọc chặt hơn thì chuyện gì xảy ra với đội xử lý thủ công?",
     "openingOptions": [
-      "Giải thích thẳng rằng giao dịch đang bị xem xét vì có dấu hiệu đáng ngờ và đã được báo cáo, để khách hàng chủ động giải trình",
-      "Tuyệt đối không tiết lộ việc đã lập báo cáo",
-      "Chuyển máy cho cơ quan điều tra để họ trực tiếp làm việc với khách hàng",
-      "Từ chối trả lời mọi câu hỏi và đóng tài khoản ngay lập tức không cần thông báo"
+      "Số hồ sơ chuyển sang tăng lên, và tới một mức thì họ duyệt qua loa cho kịp",
+      "Số hồ sơ chuyển sang giảm vì luật đã lọc được nhiều trường hợp hơn",
+      "Chất lượng hồ sơ chuyển sang tăng lên vì chỉ còn các trường hợp thật sự khó",
+      "Không đổi, vì luật sàng lọc và xử lý thủ công là hai khâu độc lập nhau"
     ],
-    "correctOption": 1,
-    "explanation": "Cấm tiết lộ là một trong những nguyên tắc nghiêm ngặt nhất của khuôn khổ phòng chống rửa tiền: nếu đối tượng biết mình đang bị báo cáo, họ sẽ kịp tẩu tán tài sản và xóa dấu vết, làm vô hiệu toàn bộ giá trị của báo cáo. Vì vậy chuyên viên tuân thủ phải giữ được ranh giới tinh tế - vẫn tiếp tục yêu cầu bổ sung tài liệu theo quy trình nhận biết khách hàng bình thường, nhưng không được để lộ rằng đang có một báo cáo đáng ngờ. Vi phạm nguyên tắc này có thể dẫn tới trách nhiệm pháp lý cho cả cá nhân và tổ chức.",
-    interactiveType: "ethics-case",
+    "correctOption": 0,
+    "explanation": "Luật chặt hơn nghĩa là nhiều hồ sơ bị đánh dấu nghi ngờ hơn, và phần lớn trong số đó là báo động giả. Vế thứ hai là phần quan trọng: khi khối lượng vượt quá năng lực xử lý, chất lượng từng lượt xem xét sụt xuống - nên siết luật quá tay có thể làm cả hệ thống phát hiện KÉM đi chứ không tốt lên.",
+    "diagram": [
+      {
+        "label": "Luật chặt hơn → nhiều báo động giả hơn → đội xử lý quá tải",
+        "arrow": true
+      },
+      {
+        "label": "Quá tải → duyệt qua loa → tỷ lệ phát hiện thật GIẢM",
+        "arrow": true
+      },
+      {
+        "label": "Nên đo năng lực xử lý TRƯỚC khi siết luật",
+        "arrow": true
+      },
+      {
+        "label": "Và mỗi lượt xử lý phải ghi lại lý do, không chỉ kết luận"
+      }
+    ],
     "realWorldExample": {
-      "company": "Vì sao số lượng báo cáo lớn không đồng nghĩa với hệ thống tốt",
-      "description": "Một sai lầm thường gặp ở các bộ phận tuân thủ chịu áp lực là hạ ngưỡng cảnh báo xuống rất thấp để bảo đảm 'không bỏ sót gì'. Kết quả là hệ thống tạo ra hàng nghìn cảnh báo mỗi tháng mà phần lớn là dương tính giả, đội ngũ rà soát không đủ thời gian xử lý, và những trường hợp thực sự đáng ngờ bị chôn giữa đám cảnh báo vô hại. Cơ quan quản lý ở nhiều nước đã ghi nhận tình trạng này và nhấn mạnh chất lượng phân tích quan trọng hơn số lượng báo cáo. Đây là lý do việc tinh chỉnh ngưỡng cảnh báo theo từng nhóm khách hàng, và ghi lại cơ sở của mỗi lần điều chỉnh, là một phần công việc thực sự của chuyên viên tuân thủ chứ không phải việc phụ của bộ phận công nghệ."
+      "company": "Vòng phản hồi bị đứt",
+      "description": "Nếu người xử lý chỉ ghi kết luận mà không ghi lý do, không ai học được gì từ hàng nghìn lượt xem xét đó. Lý do là dữ liệu duy nhất cho phép chỉnh lại luật sàng lọc - không có nó, luật chỉ được chỉnh theo cảm giác."
     },
     "quiz": [
       {
-        "question": "Sàng lọc danh sách (screening) trong quy trình nhận biết khách hàng nhằm mục đích gì?",
+        "question": "Vì sao siết luật sàng lọc quá tay có thể làm giảm tỷ lệ phát hiện?",
         "options": [
-          "Kiểm tra xem khách hàng có đủ điều kiện tín dụng để được cấp hạn mức vay hay không",
-          "Đối chiếu khách hàng và các bên liên quan với danh sách cấm vận, danh sách cá nhân có ảnh hưởng chính trị, và thông tin bất lợi trên truyền thông - trước khi thiết lập quan hệ và định kỳ trong suốt quan hệ đó",
-          "Chấm điểm mức hài lòng của khách ngân hàng",
-          "Xác định khách hàng thuộc phân khúc nào để phân công nhân viên bán hàng phù hợp"
-        ],
-        "correct": 1,
-        "explanation": "Sàng lọc là bước bắt buộc và phải được thực hiện lặp lại, vì các danh sách cấm vận được cập nhật liên tục - một khách hàng hợp lệ hôm nay có thể xuất hiện trên danh sách vào tháng sau, và nghĩa vụ của tổ chức tài chính là phát hiện được sự thay đổi đó."
-      },
-      {
-        "question": "Sự khác nhau giữa báo cáo giao dịch có giá trị lớn và báo cáo giao dịch đáng ngờ là gì?",
-        "options": [
-          "Hai loại báo cáo giống nhau, chỉ khác tên gọi theo từng ngân hàng",
-          "Báo cáo giao dịch giá trị lớn dựa trên ngưỡng số tiền được quy định sẵn nên mang tính máy móc; báo cáo giao dịch đáng ngờ dựa trên đánh giá và phân tích của chuyên viên tuân thủ về dấu hiệu bất thường, không phụ thuộc vào việc giao dịch có vượt ngưỡng hay không",
-          "Báo cáo đáng ngờ chỉ áp dụng cho khách hàng nước ngoài",
-          "Báo cáo giá trị lớn do khách hàng tự khai, báo cáo đáng ngờ do ngân hàng lập"
-        ],
-        "correct": 1,
-        "explanation": "Đây là điểm mấu chốt: một chuỗi giao dịch nhỏ dưới ngưỡng nhưng có mẫu hình xé nhỏ có chủ ý vẫn phải bị báo cáo là đáng ngờ, trong khi một giao dịch lớn của doanh nghiệp có hoạt động rõ ràng chỉ cần báo cáo theo ngưỡng mà không hàm ý gì bất thường."
-      },
-      {
-        "question": "Hành vi 'structuring' (xé nhỏ giao dịch) là gì và vì sao nó là dấu hiệu đáng ngờ?",
-        "options": [
-          "Là việc chia một khoản tiền lớn thành nhiều giao dịch nhỏ nằm ngay dưới ngưỡng phải báo cáo, nhằm tránh bị hệ thống ghi nhận - chính ý đồ né ngưỡng đã là dấu hiệu đáng ngờ, độc lập với việc tiền có nguồn gốc hợp pháp hay không",
-          "Là việc cấu trúc lại danh mục đầu tư của khách hàng để giảm rủi ro",
-          "Là việc ngân hàng chia nhỏ hạn mức tín dụng cho nhiều khách hàng",
-          "Là việc chuyển tiền qua nhiều ngân hàng để tiết kiệm phí giao dịch"
+          "Vì khối lượng vượt năng lực xử lý thì chất lượng từng lượt xem xét sụt xuống",
+          "Vì luật quá chặt sẽ chặn nhầm cả những trường hợp hoàn toàn bình thường",
+          "Vì hệ thống mất nhiều thời gian hơn để chạy các luật phức tạp",
+          "Vì người xử lý mất niềm tin vào hệ thống nên bỏ qua các cảnh báo"
         ],
         "correct": 0,
-        "explanation": "Điểm quan trọng là hành vi né ngưỡng tự nó đã đáng ngờ. Một khách hàng liên tục nộp các khoản tiền mặt sát dưới ngưỡng báo cáo, nhiều lần trong tuần, ở nhiều điểm giao dịch khác nhau, đang thể hiện sự hiểu biết về ngưỡng và ý đồ tránh nó."
+        "explanation": "Đây là vòng phản hồi ngược mà ít người tính tới khi đề xuất siết luật: đầu vào của khâu sau là đầu ra của khâu trước, nên cải thiện một khâu mà không xem khâu kia có thể làm tổng thể tệ đi."
       },
       {
-        "question": "Vì sao hạ ngưỡng cảnh báo xuống rất thấp lại có thể làm hệ thống tuân thủ yếu đi?",
+        "question": "Vì sao mỗi lượt xử lý phải ghi lại lý do chứ không chỉ kết luận?",
         "options": [
-          "Vì chi phí vận hành hệ thống công nghệ sẽ tăng, ngoài ra không ảnh hưởng gì đến chất lượng",
-          "Vì lượng cảnh báo dương tính giả quá lớn khiến đội ngũ rà soát không đủ thời gian xử lý, và những trường hợp thực sự đáng ngờ bị chôn giữa đám cảnh báo vô hại",
-          "Vì cơ quan quản lý sẽ phạt tổ chức nào lập quá nhiều báo cáo",
-          "Vì khách hàng sẽ phàn nàn và chuyển sang ngân hàng khác"
+          "Vì lý do là dữ liệu duy nhất cho phép chỉnh lại luật sàng lọc có cơ sở",
+          "Vì cần bằng chứng khi cơ quan quản lý yêu cầu giải trình về sau",
+          "Vì người xử lý sau cần biết trường hợp tương tự đã được xử lý thế nào",
+          "Vì việc ghi lý do buộc người xử lý phải suy nghĩ kỹ hơn trước khi kết luận"
         ],
-        "correct": 1,
-        "explanation": "Đây là nghịch lý quan trọng của nghề: nguồn lực rà soát là hữu hạn, nên một hệ thống cảnh báo quá nhạy thực chất làm giảm khả năng phát hiện. Chất lượng phân tích và việc tinh chỉnh ngưỡng theo từng nhóm khách hàng quan trọng hơn số lượng cảnh báo tạo ra."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều là lợi ích thật. Cái này đóng được vòng phản hồi: không có lý do thì hàng nghìn lượt xem xét không tạo ra thông tin nào, và luật chỉ được chỉnh theo cảm giác của người đề xuất."
+      },
+      {
+        "question": "Con số nào nên đo trước khi siết luật sàng lọc?",
+        "options": [
+          "Năng lực xử lý thủ công hiện tại, tính bằng số hồ sơ mỗi ngày",
+          "Tỷ lệ báo động giả hiện tại của bộ luật đang chạy",
+          "Số lượng trường hợp đã bị bỏ lọt trong khoảng thời gian gần đây",
+          "Thời gian trung bình để xử lý xong một hồ sơ được đánh dấu"
+        ],
+        "correct": 0,
+        "explanation": "Ba con số kia đều cần và đều mô tả hệ thống hiện tại. Năng lực xử lý là RÀNG BUỘC: nó quyết định luật mới có khả thi hay không, và nó là con số duy nhất trong bốn cái không nằm trong hệ thống sàng lọc."
+      },
+      {
+        "question": "Vì sao ưu tiên hồ sơ trong hàng chờ lại quan trọng?",
+        "options": [
+          "Vì xử lý theo thứ tự tới trước làm hồ sơ nguy hiểm nhất chờ sau hồ sơ vô hại",
+          "Vì nó giúp cân bằng khối lượng công việc giữa những người trong đội",
+          "Vì các hồ sơ có thời hạn xử lý khác nhau theo quy định hiện hành",
+          "Vì hồ sơ để lâu sẽ khó xác minh hơn do thông tin đã thay đổi"
+        ],
+        "correct": 0,
+        "explanation": "Với một hàng chờ luôn dài, thứ tự quyết định thứ gì thực sự được xem. Xử lý theo thứ tự tới trước là mặc định dễ nhất và nó bỏ qua toàn bộ thông tin mà chính hệ thống sàng lọc đã tạo ra."
+      },
+      {
+        "question": "Điều gì cho thấy bộ luật sàng lọc đang cần chỉnh lại?",
+        "options": [
+          "Tỷ lệ hồ sơ được đánh dấu mà người xử lý kết luận là bình thường tăng dần",
+          "Số lượng hồ sơ được đánh dấu mỗi ngày tăng theo số lượng người dùng",
+          "Thời gian xử lý trung bình mỗi hồ sơ dài hơn so với vài tháng trước",
+          "Đội xử lý đề nghị bổ sung thêm người để có thể giải quyết hàng chờ tồn đọng"
+        ],
+        "correct": 0,
+        "explanation": "Ba dấu hiệu kia đều có thể do khối lượng tăng chứ không do luật kém. Tỷ lệ báo động giả tăng dần thì chỉ thẳng vào luật - và nó chỉ đo được nếu người xử lý ghi lại kết luận một cách có cấu trúc."
       }
     ],
     "keyTakeaways": [
-      "Quy trình chuẩn gồm năm khâu: nhận biết khách hàng, sàng lọc danh sách, giám sát giao dịch, rà soát cảnh báo, và báo cáo khi đủ cơ sở.",
-      "Báo cáo giao dịch đáng ngờ dựa trên phân tích dấu hiệu, không phụ thuộc vào việc giao dịch có vượt ngưỡng số tiền hay không.",
-      "Cấm tiết lộ là ranh giới pháp lý tuyệt đối: không được để đối tượng biết mình đang bị báo cáo.",
-      "Ngưỡng cảnh báo quá nhạy làm hệ thống yếu đi vì cảnh báo thật bị chôn giữa dương tính giả."
+      "Luật chặt hơn → nhiều báo động giả → đội xử lý quá tải → duyệt qua loa.",
+      "Nên siết luật quá tay có thể làm tỷ lệ phát hiện THẬT giảm xuống.",
+      "Đo NĂNG LỰC XỬ LÝ trước khi siết - đó là ràng buộc, không phải chỉ số.",
+      "Ghi LÝ DO mỗi lượt xử lý, nếu không hàng nghìn lượt không tạo ra thông tin nào.",
+      "Ưu tiên hàng chờ theo rủi ro - thứ tự tới trước bỏ qua thông tin đã có."
     ],
     "practicePrompt": {
-      "question": "Hệ thống giám sát tạo cảnh báo cho một khách hàng doanh nghiệp: dòng tiền tháng này gấp 8 lần bình quân 12 tháng trước. Trình tự xử lý đúng là gì?",
+      "question": "Tỷ lệ báo động giả là 95%. Nên kết luận gì?",
       "options": [
-        "Lập báo cáo giao dịch đáng ngờ ngay vì mức tăng quá lớn so với lịch sử",
-        "Rà soát hồ sơ và bối cảnh trước, chỉ báo cáo nếu vẫn không giải trình được",
-        "Đóng cảnh báo ngay vì khách hàng doanh nghiệp thường có dòng tiền biến động",
-        "Gọi điện thông báo cho khách hàng rằng họ đang bị hệ thống cảnh báo để họ tự giải thích"
+        "Chưa kết luận được - phải biết thiệt hại của một lần bỏ lọt lớn tới đâu",
+        "Bộ luật đang quá chặt và cần được nới lỏng để giảm khối lượng xử lý",
+        "Bộ luật hoạt động bình thường vì tỷ lệ này là mức thông thường trong ngành",
+        "Cần bổ sung người xử lý để đáp ứng được khối lượng hồ sơ hiện tại"
       ],
-      "correct": 1,
-      "explanation": "Cảnh báo là điểm bắt đầu của phân tích, không phải kết luận. Điều quan trọng không kém là ghi lại đầy đủ căn cứ cho cả quyết định báo cáo và quyết định đóng cảnh báo - hồ sơ này là cơ sở để chứng minh tổ chức đã thực hiện nghĩa vụ của mình khi bị cơ quan quản lý kiểm tra về sau."
+      "correct": 0,
+      "explanation": "Chín mươi lăm phần trăm báo động giả là chấp nhận được nếu một lần bỏ lọt gây thiệt hại rất lớn, và là quá tệ nếu thiệt hại nhỏ. Con số một mình không nói được gì cho tới khi đặt cạnh vế thiệt hại."
     },
     "summary": {
-      "keyIdea": "Quy trình tuân thủ là một chuỗi khép kín từ nhận biết khách hàng đến báo cáo, trong đó mọi quyết định - báo cáo hay không báo cáo - đều phải có căn cứ được ghi lại.",
-      "commonMistake": "Coi cảnh báo của hệ thống là kết luận, hoặc lập báo cáo theo số lượng để an toàn thay vì theo chất lượng phân tích.",
-      "action": "Lấy một cảnh báo bạn từng xử lý và viết lại căn cứ đóng hoặc báo cáo theo cấu trúc: dấu hiệu, bằng chứng đã thu thập, giải trình của khách hàng, kết luận và lý do."
+      "keyIdea": "Phần khó là chuyện gì xảy ra với những hồ sơ mà luật không quyết được.",
+      "formula": "Đo năng lực xử lý → siết luật trong giới hạn đó → ghi lý do → chỉnh lại luật.",
+      "commonMistake": "Siết luật mà không xem khâu sau, làm tỷ lệ phát hiện thật giảm xuống.",
+      "action": "Kiểm xem người xử lý có ghi lý do hay chỉ ghi kết luận."
     },
     "application": {
-      "title": "Áp dụng vào công việc",
-      "message": "Với mỗi cảnh báo bạn xử lý, hãy bảo đảm hồ sơ trả lời được ba câu: dấu hiệu bất thường cụ thể là gì, đã thu thập được bằng chứng và giải trình nào, và vì sao kết luận cuối cùng là hợp lý dựa trên những gì đã có.",
-      "secondary": "Hồ sơ ghi chép đầy đủ bảo vệ chính bạn: nó chứng minh quyết định được đưa ra có cơ sở tại thời điểm đó, kể cả khi thông tin mới xuất hiện về sau làm kết luận trở nên khác đi."
+      "title": "Làm ngay hôm nay",
+      "message": "Kiểm xem hệ thống của bạn ghi gì sau mỗi lượt xử lý thủ công: chỉ kết luận, hay cả lý do dẫn tới kết luận đó?",
+      "secondary": "Nếu chỉ có kết luận, hàng nghìn lượt xem xét đang không tạo ra thông tin nào để chỉnh lại luật - và luật sẽ chỉ được chỉnh theo cảm giác."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Bài trước trả lời câu hỏi vì sao. Bài này trả lời câu hỏi làm thế nào: năm khâu cụ thể của quy trình tuân thủ, các mẫu hình đáng ngờ cần nhận diện, và những ranh giới pháp lý mà một chuyên viên tuân thủ không được vượt qua."
+        "text": "Mọi hệ thống sàng lọc đều đẩy một phần hồ sơ sang cho người xử lý, và tỷ lệ đó quyết định hệ thống có vận hành nổi hay không."
       },
       {
         "type": "heading",
-        "text": "Năm khâu của quy trình"
+        "text": "Vòng phản hồi ngược"
       },
       {
-        "type": "conceptTable",
-        "title": "Từ mở quan hệ đến báo cáo",
-        "subtitle": "Mỗi khâu có đầu ra riêng và phải được lưu vết",
-        "concepts": [
-          {
-            "vi": "Nhận biết khách hàng",
-            "en": "CDD - Customer Due Diligence",
-            "def": "Xác minh danh tính, xác định chủ sở hữu hưởng lợi, hiểu bản chất hoạt động và mục đích quan hệ, xếp loại rủi ro. Với nhóm rủi ro cao thì áp dụng biện pháp tăng cường (EDD) với nhiều lớp xác minh hơn."
-          },
-          {
-            "vi": "Sàng lọc danh sách",
-            "en": "Screening",
-            "def": "Đối chiếu khách hàng và các bên liên quan với danh sách cấm vận, danh sách cá nhân có ảnh hưởng chính trị và thông tin bất lợi trên truyền thông. Phải làm lại định kỳ vì danh sách được cập nhật liên tục."
-          },
-          {
-            "vi": "Giám sát giao dịch",
-            "en": "Transaction monitoring",
-            "def": "Hệ thống theo dõi giao dịch theo các quy tắc và ngưỡng đã cấu hình, so hành vi thực tế với chân dung khách hàng và với chính lịch sử của khách hàng đó."
-          },
-          {
-            "vi": "Rà soát cảnh báo",
-            "en": "Alert investigation",
-            "def": "Con người phân tích cảnh báo do hệ thống tạo ra: thu thập thêm tài liệu, yêu cầu khách hàng giải trình khi cần, rồi kết luận đóng cảnh báo hoặc chuyển sang bước báo cáo."
-          },
-          {
-            "vi": "Báo cáo",
-            "en": "Reporting",
-            "def": "Báo cáo giao dịch có giá trị lớn theo ngưỡng quy định, và báo cáo giao dịch đáng ngờ khi phân tích cho thấy dấu hiệu bất thường không giải trình được."
-          }
-        ]
+        "type": "callout",
+        "label": "Siết luật có thể làm phát hiện kém đi",
+        "text": "Luật chặt hơn nghĩa là nhiều hồ sơ bị đánh dấu hơn, và phần lớn là báo động giả. Khi khối lượng vượt quá năng lực xử lý, chất lượng từng lượt xem xét sụt xuống - nên tổng tỷ lệ phát hiện thật có thể GIẢM."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hệ quả: con số cần đo TRƯỚC khi siết luật là NĂNG LỰC XỬ LÝ, tính bằng số hồ sơ mỗi ngày. Nó là ràng buộc chứ không phải chỉ số, và nó là con số duy nhất không nằm trong hệ thống sàng lọc."
       },
       {
         "type": "heading",
-        "text": "Các mẫu hình đáng ngờ cần nhận diện"
+        "text": "Hai thứ quyết định chất lượng khâu sau"
       },
       {
         "type": "list",
         "items": [
-          "Xé nhỏ giao dịch: nhiều khoản nằm sát dưới ngưỡng báo cáo, thực hiện nhiều lần, ở nhiều điểm giao dịch - ý đồ né ngưỡng tự nó đã là dấu hiệu.",
-          "Tiền vào rồi ra ngay: tài khoản nhận tiền rồi chuyển đi gần hết trong cùng ngày, không giữ số dư, không có mục đích kinh tế rõ ràng.",
-          "Hoạt động lệch chân dung: quy mô hoặc loại giao dịch không khớp với ngành nghề và năng lực đã khai báo.",
-          "Giao dịch không có lý do kinh tế: chuyển tiền qua nhiều tài khoản trung gian rồi quay về gần điểm ban đầu, hoặc chấp nhận chi phí cao bất thường mà không có lợi ích tương ứng.",
-          "Đối tác ở quốc gia rủi ro cao: dòng tiền liên quan các địa bàn có khuôn khổ phòng chống rửa tiền yếu, đặc biệt khi không liên quan gì đến hoạt động kinh doanh đã khai.",
-          "Khách hàng né tránh cung cấp thông tin: từ chối làm rõ chủ sở hữu hưởng lợi, hoặc thúc ép hoàn tất giao dịch trước khi hoàn tất xác minh."
+          "THỨ TỰ hàng chờ. Với một hàng chờ luôn dài, thứ tự quyết định thứ gì thực sự được xem. Xử lý theo thứ tự tới trước bỏ qua toàn bộ thông tin mà hệ thống sàng lọc vừa tạo ra.",
+          "GHI LÝ DO, không chỉ ghi kết luận. Đây là dữ liệu duy nhất cho phép chỉnh lại luật có cơ sở."
         ]
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Cảnh báo được xử lý kém",
-          "text": "Đóng cảnh báo với ghi chú một dòng: 'khách hàng lâu năm, không có gì bất thường'. Khi cơ quan quản lý kiểm tra sau hai năm, không có gì chứng minh đã thực sự phân tích."
+          "label": "Chỉ ghi kết luận",
+          "text": "Hàng nghìn lượt xem xét không tạo ra thông tin nào. Luật được chỉnh theo cảm giác của người đề xuất."
         },
         "right": {
-          "label": "Cảnh báo được xử lý đúng",
-          "text": "Ghi rõ dấu hiệu cụ thể, tài liệu đã yêu cầu và nhận được, giải trình của khách hàng, đối chiếu với ngành nghề và mùa vụ, rồi kết luận kèm lý do. Hồ sơ đứng vững độc lập với người viết."
+          "label": "Ghi cả lý do",
+          "text": "Tỷ lệ báo động giả tách được theo từng luật, và bạn biết luật nào đang tạo ra phần lớn khối lượng vô ích."
         }
-      },
-      {
-        "type": "heading",
-        "text": "Ba ranh giới pháp lý không được vượt qua"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Cấm tiết lộ: không được cho khách hàng hoặc bất kỳ bên không có thẩm quyền biết rằng một báo cáo đáng ngờ đã hoặc đang được lập. Vẫn được tiếp tục yêu cầu bổ sung tài liệu theo quy trình bình thường, nhưng không lộ lý do thật.",
-          "Bảo mật thông tin khách hàng: dữ liệu thu thập cho mục đích tuân thủ chỉ được dùng cho mục đích đó, không chia sẻ sang bộ phận kinh doanh để khai thác bán hàng.",
-          "Không tự tiến hành điều tra hình sự: vai trò của tổ chức tài chính là phát hiện, ghi nhận và báo cáo cho cơ quan có thẩm quyền, không phải kết luận về hành vi phạm tội hay tự thu thập chứng cứ theo hướng đó."
-        ]
-      },
-      {
-        "type": "callout",
-        "label": "Vì sao lưu vết quan trọng ngang với phát hiện",
-        "text": "Khi cơ quan quản lý kiểm tra, họ không chỉ hỏi tổ chức đã phát hiện được gì mà còn hỏi quy trình có được thực hiện đúng và nhất quán không. Một hồ sơ ghi rõ căn cứ - kể cả cho những cảnh báo được đóng lại - chứng minh nghĩa vụ đã được thực hiện. Ngược lại, một quyết định đúng nhưng không có ghi chép nào chứng minh vẫn có thể bị coi là thiếu sót về mặt kiểm soát."
-      },
-      {
-        "type": "paragraph",
-        "text": "Điểm cuối cùng và cũng dễ bị bỏ qua nhất: hệ thống tuân thủ chỉ hoạt động khi bộ phận tuân thủ độc lập thực sự với bộ phận kinh doanh. Nếu người có quyền phê duyệt cảnh báo cũng chịu chỉ tiêu doanh số, xung đột lợi ích là điều không thể tránh - và đây là lý do các khuôn khổ quản trị đều yêu cầu chức năng tuân thủ có đường báo cáo riêng lên cấp lãnh đạo cao nhất."
       },
       {
         "type": "closing",
         "lines": [
-          "Cảnh báo của hệ thống là điểm bắt đầu của phân tích, không phải kết luận.",
-          "Chất lượng của hồ sơ ghi chép quyết định giá trị của cả quy trình - cho cả trường hợp báo cáo và trường hợp đóng lại."
+          "Và khi đọc tỷ lệ báo động giả, đừng đọc nó một mình. Chín mươi lăm phần trăm là chấp nhận được nếu một lần bỏ lọt gây thiệt hại rất lớn, và là quá tệ nếu thiệt hại nhỏ.",
+          "Con số chỉ có nghĩa khi đặt cạnh vế thiệt hại - đúng như mọi quyết định về ngưỡng khác trong chương trình này."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Nhận biết khách hàng và xếp loại rủi ro",
-        "arrow": true
-      },
-      {
-        "label": "Sàng lọc danh sách cấm vận, PEP, tin bất lợi",
-        "arrow": true
-      },
-      {
-        "label": "Giám sát giao dịch theo ngưỡng và mẫu hình",
-        "arrow": true
-      },
-      {
-        "label": "Rà soát cảnh báo: thu thập bằng chứng, yêu cầu giải trình",
-        "arrow": true
-      },
-      {
-        "label": "Đóng cảnh báo có căn cứ, hoặc báo cáo giao dịch đáng ngờ - tuyệt đối không tiết lộ",
-        "arrow": false
       }
     ]
   },
   {
     "id": 1283,
-    "track": "professional",
-    "slug": "aml-kyc-case-study",
-    "title": "Case thực chiến AML/KYC: Bốn tình huống và cách xử lý",
-    "subtitle": "Luyện phản xạ nhận diện dấu hiệu và ra quyết định trên các tình huống sát công việc thật",
+    "slug": "bon-tinh-huong-xac-minh-va-cach-xu-ly",
+    "title": "Bốn tình huống xác minh khó và cách xử lý",
+    "subtitle": "Luật xử lý được phần lớn; bốn tình huống này là phần luật không quyết được.",
     "duration": "10 phút",
     "difficulty": "Khó",
+    "track": "professional",
     "emoji": "🧩",
-    "openingQuestion": "Một khách hàng cá nhân là chủ chuỗi ba cửa hàng bán lẻ, có lịch sử giao dịch 5 năm ổn định, doanh thu nộp vào khoảng 800 triệu đến 1 tỷ đồng mỗi tháng. Tháng này, ngoài dòng tiền thường lệ, tài khoản nhận thêm 6 tỷ đồng từ 14 cá nhân khác nhau, mỗi khoản từ 300 đến 500 triệu, và khách hàng giải thích đây là tiền bạn bè góp để cùng mua một lô đất. Cách xử lý phù hợp nhất là gì?",
+    "interactiveType": "ethics-case",
+    "whyItMatters": "Người xử lý gặp bốn tình huống này thường xuyên, và quyết định của họ tạo ra tiền lệ mà không ai ghi lại thành quy tắc.",
+    "openingQuestion": "Một người dùng hợp lệ có giấy tờ hệ thống không đọc được. Xử lý thế nào?",
     "openingOptions": [
-      "Đóng cảnh báo ngay vì khách hàng lâu năm, có lịch sử tốt và đã đưa ra lời giải thích hợp lý",
-      "Yêu cầu tài liệu chứng minh cụ thể và đối chiếu danh tính của cả 14 người đã chuyển tiền vào đó nữa",
-      "Lập báo cáo giao dịch đáng ngờ ngay lập tức mà không cần hỏi thêm gì",
-      "Yêu cầu khách hàng chuyển số tiền này sang một ngân hàng khác để tránh rủi ro cho ngân hàng mình"
+      "Có một đường xử lý riêng cho trường hợp này, được thiết kế từ trước",
+      "Từ chối và đề nghị họ cung cấp một loại giấy tờ khác được hỗ trợ",
+      "Chấp nhận dựa trên các thông tin khác mà người dùng đã cung cấp",
+      "Chuyển cho người có thẩm quyền cao hơn quyết định theo từng trường hợp"
     ],
-    "correctOption": 1,
-    "explanation": "Lịch sử tốt làm tăng độ tin cậy nhưng không thay thế được nghĩa vụ xác minh - đặc biệt vì tội phạm thường tìm đến những tài khoản có lịch sử sạch chính vì lý do đó. Lời giải thích 'bạn bè góp tiền mua đất' hoàn toàn có thể là thật, và cũng là một trong những vỏ bọc phổ biến nhất cho việc gom tiền từ nhiều nguồn. Điểm phân biệt duy nhất là tài liệu chứng minh: hợp đồng góp vốn có tồn tại không, thửa đất có thật không, giao dịch mua bán có diễn ra sau đó không. Nếu tài liệu đầy đủ và khớp, cảnh báo được đóng với căn cứ rõ ràng; nếu không, đó là trường hợp phải báo cáo bất kể quan hệ khách hàng kéo dài bao lâu.",
-    interactiveType: "ethics-case",
+    "correctOption": 0,
+    "explanation": "Ba lựa chọn kia đều là những cách xử lý cụ thể và mỗi cách đúng trong một bối cảnh khác nhau - vấn đề là chúng được chọn tại chỗ, bởi người đang vội, và không ai ghi lại lựa chọn đó thành quy tắc. Kết quả là hai người dùng giống hệt nhau nhận hai kết quả khác nhau tuỳ vào ai xử lý hồ sơ của họ.",
+    "diagram": [
+      {
+        "label": "Bốn tình huống lặp lại: giấy tờ lạ, dữ liệu lệch, đại diện, và rủi ro cao",
+        "arrow": true
+      },
+      {
+        "label": "Không có đường xử lý viết trước → mỗi người quyết một kiểu",
+        "arrow": true
+      },
+      {
+        "label": "Hai hồ sơ giống nhau ra hai kết quả tuỳ ai xử lý",
+        "arrow": true
+      },
+      {
+        "label": "Ghi tiền lệ thành quy tắc là việc của tuần sau, không phải năm sau"
+      }
+    ],
     "realWorldExample": {
-      "company": "Tài khoản trung gian - mắt xích phổ biến nhất trong thực tế",
-      "description": "Trong nhiều vụ việc được cơ quan chức năng công bố, mắt xích trung gian không phải các cấu trúc tài chính phức tạp mà là tài khoản của những người bình thường: sinh viên, người lao động thu nhập thấp, người cao tuổi - được thuê hoặc dụ mở tài khoản rồi bán lại quyền sử dụng với giá vài triệu đồng. Đặc điểm nhận diện thường khá rõ khi nhìn vào dữ liệu: tài khoản gần như không hoạt động trong thời gian dài rồi bỗng có dòng tiền lớn; tiền vào rồi ra gần hết trong vài giờ; số dư cuối ngày luôn xấp xỉ bằng không; và địa chỉ IP hoặc thiết bị đăng nhập không khớp với nơi cư trú đã khai. Chính vì mẫu hình này khá đặc trưng, nó thường là nơi hệ thống giám sát mang lại hiệu quả cao nhất so với công sức bỏ ra."
+      "company": "Tiền lệ không được ghi",
+      "description": "Quyết định của người xử lý trong một tình huống khó tạo ra tiền lệ ngay lập tức - người bên cạnh sẽ hỏi và làm theo. Nhưng nếu nó không được ghi thành quy tắc thì tiền lệ đó chỉ tồn tại trong trí nhớ của vài người, và nó biến mất khi họ đổi việc."
     },
     "quiz": [
       {
-        "question": "Tình huống: một doanh nghiệp xuất nhập khẩu thanh toán cho nhà cung cấp nước ngoài với giá hàng hóa cao hơn rõ rệt so với giá thị trường của cùng loại hàng. Đây có thể là dấu hiệu của hành vi gì?",
+        "question": "Vì sao thiếu đường xử lý viết trước lại tạo ra kết quả không nhất quán?",
         "options": [
-          "Doanh nghiệp đang được nhà cung cấp cho vay trả chậm với lãi suất ưu đãi",
-          "Rửa tiền qua thương mại (trade-based money laundering) - dùng chênh lệch giá trong hóa đơn thương mại để chuyển giá trị ra nước ngoài dưới vỏ bọc thanh toán hàng hóa hợp pháp",
-          "Doanh nghiệp đơn giản là đàm phán kém nên bị mua đắt",
-          "Đây là dấu hiệu doanh nghiệp sắp mở rộng quy mô nhập khẩu"
+          "Vì mỗi người xử lý quyết một kiểu, nên hai hồ sơ giống nhau ra hai kết quả",
+          "Vì người xử lý không có đủ thông tin để đưa ra quyết định chính xác",
+          "Vì thời gian xử lý mỗi hồ sơ khác nhau nên mức độ cẩn thận khác nhau",
+          "Vì tất cả các trường hợp khó thường xuyên hoàn toàn không đủ giống nhau để so sánh trực tiếp"
         ],
-        "correct": 1,
-        "explanation": "Khai giá cao hơn hoặc thấp hơn giá trị thực trên hóa đơn là kỹ thuật phổ biến để chuyển giá trị qua biên giới. Vì vậy với khách hàng xuất nhập khẩu, việc đối chiếu giá trên hóa đơn với giá thị trường của hàng hóa cùng loại là một bước rà soát có giá trị cao."
+        "correct": 0,
+        "explanation": "Đây là vấn đề về công bằng chứ không phải về độ chính xác: kể cả khi mỗi quyết định riêng lẻ đều hợp lý, việc hai người dùng tương đương nhận kết quả khác nhau vẫn là một lỗi của hệ thống."
       },
       {
-        "question": "Một khách hàng mới được xác định là người thân của một cá nhân có ảnh hưởng chính trị. Điều này có nghĩa gì?",
+        "question": "Vì sao trường hợp dữ liệu lệch nhẹ lại khó xử lý?",
         "options": [
-          "Phải từ chối thiết lập quan hệ với khách hàng này vì rủi ro quá cao",
-          "Không hàm ý khách hàng có hành vi sai, nhưng bắt buộc áp dụng biện pháp nhận biết tăng cường: xác minh nguồn tài sản và nguồn tiền, phê duyệt ở cấp quản lý cao hơn, và rà soát định kỳ với tần suất dày hơn",
-          "Có thể giảm bớt thủ tục vì khách hàng có địa vị xã hội đáng tin cậy",
-          "Chỉ cần lưu ý nếu khách hàng đó trực tiếp giữ chức vụ, người thân thì không liên quan"
+          "Vì lệch nhẹ có thể là lỗi nhập liệu và cũng có thể là dấu hiệu giả mạo",
+          "Vì hệ thống không so sánh được các định dạng dữ liệu khác nhau",
+          "Vì người dùng thường xuyên hoàn toàn không nhớ chính xác thông tin đã đăng ký trước đó",
+          "Vì dữ liệu gốc để đối chiếu có thể đã cũ so với thông tin hiện tại"
         ],
-        "correct": 1,
-        "explanation": "Người thân và cộng sự gần của cá nhân có ảnh hưởng chính trị cũng thuộc diện phải áp dụng biện pháp tăng cường, chính vì tài sản có nguồn gốc không minh bạch thường được đặt dưới tên người thân. Trọng tâm của việc xác minh là nguồn gốc tài sản, không phải bản thân địa vị."
+        "correct": 0,
+        "explanation": "Hai khả năng này có cùng biểu hiện và cần hai hành động ngược nhau. Đây là lý do quy tắc cho trường hợp này phải nói rõ ngưỡng nào là lệch nhẹ và bằng chứng bổ sung nào đủ để kết luận."
       },
       {
-        "question": "Tình huống: bộ phận kinh doanh gây áp lực để nhanh chóng hoàn tất mở tài khoản cho một khách hàng lớn, trong khi hồ sơ xác định chủ sở hữu hưởng lợi chưa hoàn tất. Hướng xử lý đúng là gì?",
+        "question": "Vì sao trường hợp có người đại diện cần quy tắc riêng?",
         "options": [
-          "Mở tài khoản trước để không mất khách, hoàn thiện hồ sơ sau khi khách hàng đã bắt đầu giao dịch",
-          "Không thiết lập quan hệ hoặc chưa cho phép giao dịch khi chưa hoàn tất xác minh chủ sở hữu hưởng lợi; đồng thời ghi lại việc bộ phận kinh doanh yêu cầu bỏ qua bước này và báo cáo lên cấp quản lý tuân thủ theo đường báo cáo độc lập",
-          "Chuyển hồ sơ sang một chi nhánh khác để họ xử lý",
-          "Mở tài khoản với hạn mức giao dịch thấp và không cần xác minh thêm"
+          "Vì phải xác minh cả hai bên, và mối quan hệ giữa họ cũng cần bằng chứng",
+          "Vì người đại diện thường không có đủ giấy tờ của bên được đại diện",
+          "Vì quy định pháp luật về đại diện khác nhau giữa các loại giao dịch",
+          "Vì việc liên hệ với bên được đại diện làm kéo dài thời gian xử lý"
         ],
-        "correct": 1,
-        "explanation": "Xác định chủ sở hữu hưởng lợi là điều kiện bắt buộc, không phải bước có thể làm sau. Điều quan trọng thứ hai trong tình huống này là ghi nhận áp lực từ bộ phận kinh doanh - đó là lý do chức năng tuân thủ được thiết kế có đường báo cáo độc lập lên cấp lãnh đạo cao nhất."
+        "correct": 0,
+        "explanation": "Vế thứ hai là vế hay bị bỏ: xác minh xong cả hai người mà không xác minh được mối quan hệ thì bạn mới chỉ biết hai người đó là ai, chưa biết người này có quyền hành động thay người kia hay không."
       },
       {
-        "question": "Sau khi lập báo cáo giao dịch đáng ngờ về một khách hàng, tổ chức tài chính có bắt buộc phải đóng tài khoản của khách hàng đó không?",
+        "question": "Khi nào một quyết định xử lý nên được ghi thành quy tắc?",
         "options": [
-          "Có, phải đóng tài khoản ngay để cắt đứt quan hệ và tránh trách nhiệm",
-          "Không tự động phải đóng - quyết định duy trì hay chấm dứt quan hệ dựa trên đánh giá rủi ro của tổ chức và hướng dẫn của cơ quan có thẩm quyền; trong một số trường hợp việc duy trì tài khoản dưới sự giám sát chặt lại có giá trị hơn cho công tác điều tra",
-          "Phải đóng nếu khách hàng là cá nhân, được giữ nếu là doanh nghiệp",
-          "Chỉ đóng khi khách hàng yêu cầu"
+          "Ngay tuần đó, vì tiền lệ hình thành ngay khi người bên cạnh hỏi và làm theo",
+          "Sau khi tình huống đó lặp lại đủ nhiều lần để thấy được khuôn mẫu",
+          "Trong đợt rà soát quy trình định kỳ tiếp theo của bộ phận",
+          "Khi có tranh chấp hoặc khiếu nại liên quan tới cách xử lý đó"
         ],
-        "correct": 1,
-        "explanation": "Đóng tài khoản ngay có thể vô tình cảnh báo đối tượng và làm mất dấu dòng tiền. Đây là lý do quyết định này cần được cân nhắc cùng cơ quan có thẩm quyền chứ không phải phản xạ tự động sau mỗi báo cáo."
+        "correct": 0,
+        "explanation": "Ba lựa chọn kia đều để tiền lệ chạy trước quy tắc trong nhiều tháng. Trong khoảng đó, tiền lệ chỉ tồn tại trong trí nhớ vài người và nó biến mất khi họ đổi việc - còn những quyết định đã đưa ra thì vẫn ở đó."
+      },
+      {
+        "question": "Điều gì cần có trong quy tắc cho một tình huống khó?",
+        "options": [
+          "Bằng chứng nào là đủ, và ai được quyết khi bằng chứng vẫn chưa đủ",
+          "Danh sách các bước cần thực hiện theo đúng thứ tự khi gặp tình huống",
+          "Thời hạn tối đa để hoàn tất việc xử lý một hồ sơ thuộc loại đó",
+          "Mẫu văn bản trả lời cho người dùng trong từng khả năng kết luận"
+        ],
+        "correct": 0,
+        "explanation": "Ba thứ kia đều hữu ích và đều giả định rằng bằng chứng cuối cùng sẽ đủ. Vế thứ hai của lựa chọn đầu mới là phần thật sự khó: mọi tình huống khó đều có một nhánh mà không có câu trả lời chắc chắn, và ai quyết ở nhánh đó phải được nói rõ."
       }
     ],
     "keyTakeaways": [
-      "Lịch sử khách hàng tốt làm tăng độ tin cậy nhưng không thay thế nghĩa vụ xác minh - tội phạm tìm đến tài khoản sạch chính vì lý do đó.",
-      "Lời giải thích bằng miệng chỉ có giá trị khi kèm tài liệu chứng minh khớp với nội dung giải thích.",
-      "Tài khoản trung gian có mẫu hình khá đặc trưng: ngủ đông rồi bùng nổ, tiền vào ra trong ngày, số dư cuối ngày xấp xỉ bằng không.",
-      "Chức năng tuân thủ phải độc lập với kinh doanh; áp lực bỏ qua bước xác minh cần được ghi nhận và báo cáo theo đường riêng."
+      "Bốn tình huống lặp lại: giấy tờ lạ, dữ liệu lệch nhẹ, người đại diện, rủi ro cao.",
+      "Không có đường xử lý viết trước thì hai hồ sơ giống nhau ra hai kết quả.",
+      "Lệch nhẹ có thể là lỗi nhập liệu hoặc dấu hiệu giả mạo - cùng biểu hiện, ngược hành động.",
+      "Có người đại diện thì MỐI QUAN HỆ giữa hai bên cũng cần bằng chứng.",
+      "Ghi tiền lệ thành quy tắc NGAY TUẦN ĐÓ - nó hình thành ngay khi người bên cạnh hỏi."
     ],
     "practicePrompt": {
-      "question": "Một tài khoản cá nhân gần như không phát sinh giao dịch trong 14 tháng. Tuần này, tài khoản nhận 47 khoản chuyển vào từ 47 người khác nhau, mỗi khoản 5 đến 20 triệu đồng, và toàn bộ được chuyển ra trong vòng vài giờ tới ba tài khoản đích. Đánh giá đúng nhất là gì?",
+      "question": "Người xử lý vừa quyết một trường hợp chưa có quy tắc. Việc tiếp theo là gì?",
       "options": [
-        "Khách hàng có thể đang tổ chức một hoạt động gây quỹ từ thiện, nên chỉ cần ghi chú lại",
-        "Mẫu hình tài khoản trung gian: cần rà soát và lập báo cáo giao dịch đáng ngờ",
-        "Không có gì bất thường vì từng khoản đều nhỏ, dưới ngưỡng phải báo cáo",
-        "Chỉ cần yêu cầu khách hàng cam kết bằng văn bản là tiền hợp pháp rồi đóng cảnh báo"
+        "Viết lại quyết định và lý do vào tài liệu quy tắc ngay trong tuần đó",
+        "Báo cáo trường hợp đó cho người phụ trách để có thể xem xét lại quyết định",
+        "Đánh dấu hồ sơ để rà soát lại trong đợt kiểm tra định kỳ tiếp theo",
+        "Chia sẻ cách xử lý trong nhóm để những người khác biết mà làm theo"
       ],
-      "correct": 1,
-      "explanation": "Ba yếu tố cộng lại tạo thành mẫu hình rất đặc trưng: tài khoản không hoạt động lâu bỗng bùng nổ, cấu trúc nhiều nguồn vào và ít đích ra, và tiền không lưu lại. Việc từng khoản nhỏ dưới ngưỡng không làm giảm mức độ đáng ngờ - ngược lại, đó chính là đặc điểm của hành vi né ngưỡng."
+      "correct": 0,
+      "explanation": "Lựa chọn cuối là bước hay được làm nhất và nó tạo ra đúng vấn đề: tiền lệ lan trong nhóm mà không được ghi, nên nó không tồn tại được quá lâu và cũng không rà soát lại được."
     },
     "summary": {
-      "keyIdea": "Kỹ năng cốt lõi của nghề tuân thủ là đọc mẫu hình của cả chuỗi giao dịch, không phải xét từng giao dịch riêng lẻ có hợp lệ hay không.",
-      "commonMistake": "Chấp nhận lời giải thích hợp lý về mặt câu chữ mà không yêu cầu tài liệu chứng minh, đặc biệt với khách hàng lâu năm.",
-      "action": "Lấy một tình huống trong bài và viết ra danh sách tài liệu cụ thể bạn sẽ yêu cầu để xác minh lời giải thích của khách hàng."
+      "keyIdea": "Bốn tình huống này là phần mà luật không quyết được, và người quyết tạo ra tiền lệ.",
+      "formula": "Viết đường xử lý trước + nói rõ ai quyết khi bằng chứng chưa đủ + ghi tiền lệ ngay.",
+      "commonMistake": "Chia sẻ cách xử lý trong nhóm mà không ghi lại thành quy tắc.",
+      "action": "Chọn một tình huống khó gần đây và viết nó thành quy tắc."
     },
     "application": {
-      "title": "Luyện phản xạ",
-      "message": "Với mỗi tình huống, tự trả lời theo thứ tự: dấu hiệu bất thường cụ thể là gì, tài liệu nào sẽ xác minh hoặc phủ nhận lời giải thích, và nếu tài liệu không có thì kết luận là gì.",
-      "secondary": "Đây chính là cấu trúc lập luận mà một hồ sơ rà soát cảnh báo tốt cần có - luyện trên tình huống giả định giúp bạn viết nhanh và chặt hơn khi làm việc thật."
+      "title": "Làm ngay hôm nay",
+      "message": "Chọn một trường hợp khó mà đội bạn vừa xử lý và viết ba dòng: bằng chứng nào là đủ, ai quyết khi chưa đủ, và quyết định lần này là gì.",
+      "secondary": "Ba dòng đó biến một tiền lệ trong trí nhớ thành một quy tắc rà soát lại được. Không có chúng, quyết định của bạn vẫn có hiệu lực và không ai kiểm được nó."
     },
     "sections": [
       {
         "type": "lead",
-        "text": "Hai bài trước xây khung khái niệm và quy trình. Bài này đưa khung đó vào bốn tình huống sát công việc thật, vì kỹ năng tuân thủ chỉ hình thành qua việc lặp lại một dạng lập luận: dấu hiệu là gì, tài liệu nào xác minh được, và nếu không có tài liệu thì kết luận ra sao."
+        "text": "Người xử lý gặp bốn tình huống này thường xuyên, và quyết định của họ tạo ra tiền lệ mà không ai ghi lại thành quy tắc."
       },
       {
         "type": "heading",
-        "text": "Tình huống 1: Tài khoản cá nhân bị dùng làm trung gian"
-      },
-      {
-        "type": "paragraph",
-        "text": "Một tài khoản cá nhân im lặng nhiều tháng rồi bỗng nhận hàng chục khoản chuyển vào từ nhiều người không quen biết nhau, và chuyển ra gần hết trong vài giờ. Ba đặc điểm cần soi: quỹ thời gian (ngủ đông rồi bùng nổ), cấu trúc dòng tiền (nhiều nguồn vào, ít đích ra), và số dư còn lại (xấp xỉ bằng không). Câu hỏi quan trọng nhất không phải tiền từ đâu, mà là chủ tài khoản có thực sự đang kiểm soát tài khoản của mình hay không."
+        "text": "Bốn tình huống"
       },
       {
         "type": "list",
         "items": [
-          "Việc cần làm: đối chiếu thiết bị và địa chỉ đăng nhập với thông tin cư trú đã khai; liên hệ trực tiếp chủ tài khoản để xác minh; sàng lọc danh tính các bên chuyển tiền và ba tài khoản đích.",
-          "Dấu hiệu xác nhận nghi ngờ: chủ tài khoản không biết về các giao dịch, không giải thích được nguồn tiền, hoặc đăng nhập luôn từ thiết bị và địa bàn không liên quan đến nơi cư trú.",
-          "Kết luận: lập báo cáo giao dịch đáng ngờ, đồng thời cân nhắc biện pháp hạn chế giao dịch theo quy định nội bộ - nhưng không tiết lộ lý do thật cho khách hàng."
+          "GIẤY TỜ LẠ: hợp lệ nhưng hệ thống không đọc được, hoặc không nằm trong danh sách hỗ trợ.",
+          "DỮ LIỆU LỆCH NHẸ: một ký tự khác, một ngày khác. Có thể là lỗi nhập liệu, có thể là dấu hiệu giả mạo - cùng biểu hiện, hai hành động ngược nhau.",
+          "NGƯỜI ĐẠI DIỆN: phải xác minh cả hai bên, VÀ mối quan hệ giữa họ.",
+          "RỦI RO CAO nhưng không có bằng chứng đủ để từ chối."
         ]
       },
       {
-        "type": "heading",
-        "text": "Tình huống 2: Doanh nghiệp mới với dòng tiền vượt xa năng lực"
+        "type": "callout",
+        "label": "Vế hay bị bỏ ở tình huống thứ ba",
+        "text": "Xác minh xong cả hai người mà không xác minh được mối quan hệ thì bạn mới biết hai người đó là ai - chưa biết người này có quyền hành động thay người kia hay không."
       },
       {
-        "type": "paragraph",
-        "text": "Một công ty thành lập vài tháng, vốn điều lệ nhỏ, ngành nghề đăng ký là dịch vụ tư vấn - loại hình gần như không có tài sản và rất khó đối chiếu đầu ra - nhận về những khoản chuyển khoản lớn từ pháp nhân nước ngoài với nội dung phí dịch vụ. Vấn đề không nằm ở việc giao dịch có hợp lệ mà ở khoảng cách giữa quy mô dòng tiền và năng lực thực tế của doanh nghiệp."
+        "type": "heading",
+        "text": "Thứ mà quy tắc phải nói rõ"
       },
       {
         "type": "comparison",
         "left": {
-          "label": "Dấu hiệu nghiêng về hợp pháp",
-          "text": "Có hợp đồng dịch vụ với phạm vi công việc cụ thể, có bằng chứng công việc đã thực hiện, có nhân sự và năng lực tương ứng với giá trị hợp đồng, và bên chi trả có hoạt động kinh doanh xác minh được."
+          "label": "Phần dễ viết",
+          "text": "Bằng chứng nào là đủ. Đây là phần mà mọi tài liệu quy trình đều có."
         },
         "right": {
-          "label": "Dấu hiệu nghiêng về đáng ngờ",
-          "text": "Hợp đồng mô tả chung chung, không có bằng chứng công việc, doanh nghiệp không có nhân sự tương ứng, tiền đến rồi chuyển đi ngay, và bên chi trả là pháp nhân đặt tại địa bàn có khuôn khổ giám sát yếu."
+          "label": "Phần thật sự khó",
+          "text": "AI QUYẾT khi bằng chứng vẫn chưa đủ. Mọi tình huống khó đều có một nhánh không có câu trả lời chắc chắn, và nhánh đó thường bị bỏ trống."
         }
-      },
-      {
-        "type": "heading",
-        "text": "Tình huống 3: Rửa tiền qua thương mại"
-      },
-      {
-        "type": "paragraph",
-        "text": "Với khách hàng xuất nhập khẩu, giá trị khai trên hóa đơn là điểm dễ bị lợi dụng nhất. Khai giá cao hơn thực tế cho phép chuyển giá trị ra nước ngoài; khai thấp hơn thực tế cho phép chuyển giá trị vào. Ngoài ra còn các biến thể: lập hóa đơn nhiều lần cho cùng một lô hàng, khai sai loại hàng hoặc số lượng, hoặc thanh toán cho hàng hóa không bao giờ được giao."
-      },
-      {
-        "type": "list",
-        "items": [
-          "Đối chiếu giá trên hóa đơn với giá thị trường của hàng hóa cùng loại, cùng thời điểm.",
-          "Kiểm tra tính nhất quán giữa hóa đơn, vận đơn, tờ khai hải quan và chứng từ thanh toán - đặc biệt về số lượng và mô tả hàng.",
-          "Xem tuyến đường vận chuyển và các bên trung gian có hợp lý về mặt kinh tế không, hay đi qua những địa bàn không liên quan.",
-          "Đối chiếu quy mô giao dịch với công suất, kho bãi và lịch sử hoạt động thực tế của doanh nghiệp."
-        ]
-      },
-      {
-        "type": "heading",
-        "text": "Tình huống 4: Áp lực nội bộ từ bộ phận kinh doanh"
-      },
-      {
-        "type": "paragraph",
-        "text": "Đây là tình huống ít được nói tới nhưng xảy ra thường xuyên nhất, và cũng là phép thử thật cho tính độc lập của chức năng tuân thủ. Một khách hàng có giá trị thương mại lớn, bộ phận kinh doanh muốn hoàn tất nhanh, trong khi hồ sơ xác minh chưa đầy đủ. Nguyên tắc ở đây không có vùng xám: xác định chủ sở hữu hưởng lợi là điều kiện bắt buộc trước khi thiết lập quan hệ, không phải việc có thể hoàn thiện sau."
-      },
-      {
-        "type": "callout",
-        "label": "Vì sao đường báo cáo độc lập là cấu phần kỹ thuật, không phải hình thức",
-        "text": "Nếu người phê duyệt cảnh báo cũng chịu chỉ tiêu doanh số, hoặc chịu đánh giá hiệu quả công việc từ chính bộ phận kinh doanh, thì xung đột lợi ích là điều tất yếu chứ không phải rủi ro. Đây là lý do các khuôn khổ quản trị yêu cầu chức năng tuân thủ có đường báo cáo riêng lên cấp lãnh đạo cao nhất hoặc hội đồng quản trị - để một quyết định từ chối khách hàng lớn không phụ thuộc vào người có lợi ích trực tiếp trong việc nhận khách hàng đó."
-      },
-      {
-        "type": "paragraph",
-        "text": "Một lưu ý xuyên suốt cả bốn tình huống: mục tiêu của rà soát không phải chứng minh khách hàng có tội. Rất nhiều cảnh báo kết thúc bằng việc đóng lại với căn cứ hợp lý, và đó là kết quả bình thường. Điều bắt buộc là quyết định - dù theo hướng nào - phải dựa trên bằng chứng đã thu thập và được ghi lại đủ để người khác đọc lại vẫn hiểu vì sao."
       },
       {
         "type": "closing",
         "lines": [
-          "Mẫu hình của cả chuỗi giao dịch nói nhiều hơn tính hợp lệ của từng giao dịch riêng lẻ.",
-          "Lời giải thích chỉ có giá trị khi có tài liệu khớp với nó - và điều này đúng với cả khách hàng lâu năm nhất."
+          "Quyết định trong một tình huống khó tạo ra tiền lệ NGAY LẬP TỨC - người bên cạnh sẽ hỏi và làm theo.",
+          "Nên việc ghi nó thành quy tắc là việc của tuần đó, không phải của đợt rà soát quy trình sáu tháng sau. Trong khoảng giữa, tiền lệ chỉ tồn tại trong trí nhớ vài người và nó biến mất khi họ đổi việc."
         ]
-      }
-    ],
-    "diagram": [
-      {
-        "label": "Cảnh báo hoặc dấu hiệu bất thường xuất hiện",
-        "arrow": true
-      },
-      {
-        "label": "Xác định mẫu hình: thời gian · cấu trúc dòng tiền · số dư còn lại",
-        "arrow": true
-      },
-      {
-        "label": "Yêu cầu tài liệu chứng minh lời giải thích",
-        "arrow": true
-      },
-      {
-        "label": "Đối chiếu tài liệu với năng lực và chân dung thực tế",
-        "arrow": true
-      },
-      {
-        "label": "Đóng cảnh báo có căn cứ, hoặc báo cáo đáng ngờ và lưu vết đầy đủ",
-        "arrow": false
       }
     ]
   },

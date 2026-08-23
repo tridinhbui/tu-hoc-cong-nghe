@@ -687,7 +687,6 @@ export const RARE_EVENT_LESSONS: Lesson[] = [
     difficulty: "Trung bình",
     emoji: "🧮",
     track: "professional",
-    interactiveType: "profit-calc",
     whyItMatters:
       "Ngân sách cho một biện pháp phòng ngừa gần như luôn được duyệt theo chi phí dựng. Thứ quyết định biện pháp ấy có hoạt động vào ngày cần tới lại là khoản đều đặn phía sau, và khoản đó thường không được duyệt cùng.",
     openingQuestion: "Phần nào của một biện pháp phòng ngừa hay bị bỏ khỏi phép tính chi phí?",

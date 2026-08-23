@@ -1731,10 +1731,15 @@ export async function grantCoins(
 
   if (give === 0) return { granted: 0, coins_left: await doc(), duplicate: false };
 
+  // `coin_grants.id` là TEXT NOT NULL trong lược đồ D1 và KHÔNG có giá trị mặc
+  // định: trên Postgres nó là uuid với `gen_random_uuid()`, mà bản chụp
+  // PostgREST chỉ lấy được KIỂU chứ không lấy được DEFAULT. 15 bảng đang ở
+  // trạng thái này. Sinh id ở đây cho tới khi lược đồ có mặc định.
   const changes = await exec(
     db,
-    `insert into coin_grants (user_id, source, ref, amount) values (?, ?, ?, ?)
-     on conflict (user_id, source, ref) do nothing`,
+    `insert into coin_grants (id, user_id, source, ref, amount) values (?, ?, ?, ?, ?)
+     on conflict (user_id, source, ref) where ref is not null do nothing`,
+    crypto.randomUUID(),
     actor,
     source,
     ref,
@@ -2100,4 +2105,545 @@ export async function applyWorldBossDamage(
     max_hp: b?.max_hp ?? 0,
     damage_applied: damage,
   };
+}
+
+/** `set_study_room_pomodoro(...)` - upsert một dòng theo `room_id`.
+ *  Một lệnh duy nhất nên không có chạy đua; hai người cùng bấm thì người sau
+ *  thắng, y như bản gốc. `greatest/least` → `max/min`. */
+export async function setStudyRoomPomodoro(
+  db: D1Like,
+  actor: string,
+  roomId: number,
+  mode: "focus" | "break",
+  isRunning: boolean,
+  durationSeconds: number,
+  remainingSeconds: number
+): Promise<Record<string, unknown> | null> {
+  if (!actor) throw new NotAuthenticatedError();
+  if (mode !== "focus" && mode !== "break") throw new Error("Invalid mode");
+  if (!(await isActiveRoomMember(db, actor, roomId))) throw new Error("Not a room member");
+
+  await exec(
+    db,
+    `insert into study_room_pomodoro
+       (room_id, mode, is_running, duration_seconds, remaining_seconds,
+        started_at, updated_by, updated_at)
+     values (?1, ?2, ?3, max(60, min(7200, ?4)), max(0, min(7200, ?5)),
+             case when ?3 = 1 then datetime('now') else null end, ?6, datetime('now'))
+     on conflict (room_id) do update set
+       mode = excluded.mode,
+       is_running = excluded.is_running,
+       duration_seconds = excluded.duration_seconds,
+       remaining_seconds = excluded.remaining_seconds,
+       started_at = excluded.started_at,
+       updated_by = excluded.updated_by,
+       updated_at = datetime('now')`,
+    roomId,
+    mode,
+    isRunning ? 1 : 0,
+    Math.trunc(Number(durationSeconds)) || 0,
+    Math.trunc(Number(remainingSeconds)) || 0,
+    actor
+  );
+  return one(db, `select * from study_room_pomodoro where room_id = ?`, roomId);
+}
+
+/** `claim_study_room_weekly_reward(p_room_id)` - hàm nhiều lệnh ghi nhất còn lại.
+ *
+ *  CHỐNG NHẬN HAI LẦN nằm ở `insert ... on conflict (room_id, week_start) do
+ *  nothing` rồi kiểm `not found`. Đây đúng là cách (a): việc "giành quyền nhận"
+ *  và việc "kiểm tra đã nhận chưa" là CÙNG MỘT lệnh, nên hai thành viên bấm
+ *  cùng lúc chỉ một người thắng. Giữ nguyên thứ tự này; đọc trước rồi mới chèn
+ *  là mở đúng lỗ mà bản gốc đã tránh.
+ *
+ *  Phần thưởng cho từng thành viên gói vào `batch()`: chúng không phụ thuộc kết
+ *  quả của nhau, và gói lại thì không có ai nhận nửa chừng. */
+export async function claimStudyRoomWeeklyReward(
+  db: D1Like,
+  actor: string,
+  roomId: number
+): Promise<{ ok: boolean; message: string; streak_weeks: number; is_permanent: boolean }> {
+  if (!actor) throw new NotAuthenticatedError();
+  if (!(await isActiveRoomMember(db, actor, roomId))) throw new Error("Not a room member");
+
+  const phong = async () =>
+    (await one<{ streak_weeks: number; is_permanent: number }>(
+      db,
+      `select streak_weeks, is_permanent from study_rooms where id = ?`,
+      roomId
+    )) ?? { streak_weeks: 0, is_permanent: 0 };
+
+  const nhiemVu = await getStudyRoomMissionStatus(db, actor, roomId);
+  const chuaXong = nhiemVu.filter((m) => !m.completed).length;
+  if (chuaXong > 0) {
+    const r = await phong();
+    return {
+      ok: false,
+      message: "Nhóm chưa hoàn thành đủ 3 nhiệm vụ tuần.",
+      streak_weeks: r.streak_weeks,
+      is_permanent: Boolean(r.is_permanent),
+    };
+  }
+
+  const gianh = await exec(
+    db,
+    `insert into study_room_reward_claims (room_id, week_start, claimed_by)
+     values (?, ${WEEK_START}, ?)
+     on conflict (room_id, week_start) do nothing`,
+    roomId,
+    actor
+  );
+  if (gianh === 0) {
+    const r = await phong();
+    return {
+      ok: false,
+      message: "Tuần này nhóm đã nhận thưởng rồi.",
+      streak_weeks: r.streak_weeks,
+      is_permanent: Boolean(r.is_permanent),
+    };
+  }
+
+  await exec(
+    db,
+    `update study_rooms
+        set streak_weeks = streak_weeks + 1,
+            is_permanent = case when streak_weeks + 1 >= 3 then 1 else 0 end
+      where id = ?`,
+    roomId
+  );
+
+  const thanhVien = await rows<{ user_id: string }>(
+    db,
+    `select user_id from study_room_members where room_id = ? and left_at is null`,
+    roomId
+  );
+  const lenh = thanhVien.flatMap((m) => [
+    db.prepare(`update user_profiles set coins = coalesce(coins, 0) + 25 where id = ?`).bind(m.user_id),
+    db.prepare(`insert into user_chests (user_id, source) values (?, 'study_group')`).bind(m.user_id),
+  ]);
+  if (typeof db.batch === "function" && lenh.length) await db.batch(lenh as never[]);
+  else for (const st of lenh) await (st as { run?: () => Promise<unknown>; all(): Promise<unknown> }).run?.();
+
+  const r = await phong();
+  return {
+    ok: true,
+    message: "Đã mở rương nhóm: mỗi thành viên nhận +25 coin và 1 rương.",
+    streak_weeks: r.streak_weeks,
+    is_permanent: Boolean(r.is_permanent),
+  };
+}
+
+/** CTE tính lại toàn bộ chỉ số của mọi người, dùng bởi `adminResyncAllUserStats`.
+ *
+ *  Ba chỗ đã đổi so với bản gốc:
+ *   - `distinct on (user_id, game_type)` → `row_number()` (xem bẫy 6).
+ *   - `avg(quiz_score) filter (where ...)` → `avg(...)` bỏ qua NULL sẵn trong
+ *     SQLite, nên `filter` là thừa; giữ `case when` cho rõ ý.
+ *   - `floor(total_xp / 150)` → `/ 150.0` rồi mới `cast(... as integer)`. Chia
+ *     nguyên ở đây tình cờ cho cùng kết quả với `floor`, nhưng viết thập phân
+ *     thì ý định rõ ràng và không phụ thuộc vào sự trùng hợp ấy. */
+const RESYNC_COMPUTED = `with lesson_agg as (
+     select user_id, count(*) as lessons_completed,
+            avg(case when quiz_score is not null then quiz_score end) as avg_quiz_score
+       from user_progress where completed = 1 group by user_id
+   ),
+   quiz_agg as (
+     select user_id, coalesce(sum(xp_earned), 0) as quiz_xp
+       from user_quiz_sessions group by user_id
+   ),
+   game_ranked as (
+     select user_id, game_type, xp_earned,
+            row_number() over (partition by user_id, game_type
+                               order by xp_earned desc, created_at asc) as rn
+       from game_sessions
+   ),
+   game_agg as (
+     select user_id, coalesce(sum(xp_earned), 0) as game_xp
+       from game_ranked where rn = 1 group by user_id
+   ),
+   referral_agg as (
+     select user_id, coalesce(sum(bonus), 0) as referral_xp from (
+       select referrer_id as user_id, 50 as bonus from referrals where status = 'rewarded'
+       union all
+       select referred_id as user_id, 30 as bonus from referrals where status = 'rewarded'
+     ) x group by user_id
+   ),
+   computed as (
+     select prof.id as user_id,
+            coalesce(la.lessons_completed, 0) as lessons_completed,
+            coalesce(la.avg_quiz_score, 0) as avg_quiz_score,
+            coalesce(la.lessons_completed, 0) * 10
+              + coalesce(qa.quiz_xp, 0)
+              + coalesce(ga.game_xp, 0)
+              + coalesce(ra.referral_xp, 0) as total_xp
+       from user_profiles prof
+       left join lesson_agg la on la.user_id = prof.id
+       left join quiz_agg qa on qa.user_id = prof.id
+       left join game_agg ga on ga.user_id = prof.id
+       left join referral_agg ra on ra.user_id = prof.id
+   )`;
+
+/** `admin_resync_all_user_stats()`.
+ *
+ *  Bốn lệnh ghi, và THỨ TỰ là một phần của tính đúng đắn: đổi trạng thái lượt
+ *  giới thiệu TRƯỚC, vì XP của mọi người phụ thuộc vào nó. Đảo lại là một đợt
+ *  đồng bộ tính thiếu điểm giới thiệu vừa được duyệt.
+ *
+ *  `update ... from computed` (cú pháp UPDATE-FROM của Postgres) không có trong
+ *  SQLite; thay bằng truy vấn con tương quan. Điều kiện `is distinct from` giữ
+ *  nguyên - nó khiến lệnh chỉ chạm những hàng THẬT SỰ đổi, nên `changes` trả về
+ *  đúng số người bị ảnh hưởng chứ không phải toàn bộ bảng. */
+export async function adminResyncAllUserStats(db: D1Like): Promise<number> {
+  await exec(
+    db,
+    `update referrals set status = 'rewarded', rewarded_at = datetime('now')
+      where status = 'pending'
+        and exists (select 1 from user_progress up
+                     where up.user_id = referrals.referred_id and up.completed = 1)`
+  );
+
+  const affected = await exec(
+    db,
+    `${RESYNC_COMPUTED}
+     update user_profiles set
+       lessons_completed = (select c.lessons_completed from computed c where c.user_id = user_profiles.id),
+       total_xp          = (select c.total_xp from computed c where c.user_id = user_profiles.id),
+       current_level     = (select cast(c.total_xp / 150.0 as integer) + 1 from computed c where c.user_id = user_profiles.id),
+       avg_quiz_score    = (select round(c.avg_quiz_score, 2) from computed c where c.user_id = user_profiles.id)
+     where exists (
+       select 1 from computed c where c.user_id = user_profiles.id and (
+            coalesce(user_profiles.lessons_completed, -1) <> c.lessons_completed
+         or coalesce(user_profiles.total_xp, -1) <> c.total_xp
+         or coalesce(user_profiles.current_level, -1) <> cast(c.total_xp / 150.0 as integer) + 1
+       ))`
+  );
+
+  await exec(
+    db,
+    `${RESYNC_COMPUTED}
+     insert into user_stats (user_id, total_lessons_completed, total_xp, current_level, avg_quiz_score)
+     select c.user_id, c.lessons_completed, c.total_xp,
+            cast(c.total_xp / 150.0 as integer) + 1, round(c.avg_quiz_score, 2)
+       from computed c
+      where true
+     on conflict (user_id) do update set
+       total_lessons_completed = excluded.total_lessons_completed,
+       total_xp = excluded.total_xp,
+       current_level = excluded.current_level,
+       avg_quiz_score = excluded.avg_quiz_score`
+  );
+
+  return affected;
+}
+
+/** Câu bot gửi vào phòng, chép nguyên văn từ `weekly_rematch_study_rooms`. */
+const BOT = {
+  vinhVienChaoTuan:
+    "Chào cả nhóm! Tuần mới lại bắt đầu. Nhóm của chúng ta đã đạt trạng thái Vĩnh Viễn, hãy tiếp tục đồng hành và học tập cùng nhau nhé! 🚀",
+  lenVinhVien:
+    "Chúc mừng nhóm! 🎉 Nhóm đã xuất sắc đạt chỉ tiêu tuần qua (trung bình >= 3 bài học/thành viên) trong 3 tuần liên tiếp! Từ nay, nhóm của chúng ta được nâng cấp thành **Nhóm Vĩnh Viễn**, sẽ duy trì mãi mãi và không bị xếp lại nữa!",
+  datChiTieu: (tb: string, lienTiep: number) =>
+    `Chúc mừng nhóm! 🎉 Nhóm đã đạt chỉ tiêu tuần qua (trung bình ${tb} bài học/thành viên, yêu cầu >= 3). Nhóm sẽ tiếp tục được duy trì vào tuần tới! Số tuần đạt chỉ tiêu liên tiếp hiện tại: ${lienTiep}/3 tuần.`,
+  giaiTan: (tb: string) =>
+    `Rất tiếc! 💔 Tuần vừa qua nhóm chỉ đạt trung bình ${tb} bài học/thành viên, không đủ chỉ tiêu tối thiểu là 3 bài/thành viên. Nhóm của chúng ta sẽ bị giải tán. Hãy cố gắng học tập đều đặn hơn ở các nhóm mới nhé! Tạm biệt mọi người!`,
+  gioiThieu: (danhSach: string) =>
+    `Chào mọi người! Mình là Tài Tài 👋 Đây là nhóm học chung tuần này của các bạn: ${danhSach}. Chỉ tiêu của nhóm: mỗi thành viên học trung bình ít nhất 3 bài/tuần. Nếu đạt chỉ tiêu, nhóm sẽ tiếp tục duy trì vào tuần sau. Nếu không đạt, nhóm sẽ bị giải tán vào cuối tuần. Đặc biệt, nếu đạt chỉ tiêu liên tiếp 3 tuần, nhóm sẽ được duy trì Vĩnh Viễn!`,
+};
+
+/** `weekly_rematch_study_rooms()` - hàm dài nhất trong 53 hàm (185 dòng, 10 lệnh ghi).
+ *
+ *  ĐÂY LÀ VIỆC CHẠY THEO LỊCH, không nằm trên đường phục vụ yêu cầu. Nên nó
+ *  KHÔNG cần nguyên tử toàn phần: chạy lại được, và nếu đứt giữa chừng thì lần
+ *  chạy sau dọn nốt. Vì thế vòng lặp `for ... loop` của plpgsql chuyển thẳng
+ *  thành vòng lặp TypeScript thay vì phải nhồi vào một câu SQL.
+ *
+ *  Ba chỗ Postgres không có trong SQLite, đã đổi:
+ *   - `array_agg(uid order by random())` → xáo trộn ở TypeScript. `random()`
+ *     của SQLite có tồn tại nhưng xáo ở đây thì kiểm thử được (truyền hàm xáo
+ *     vào), còn xáo trong SQL thì không.
+ *   - `string_agg(... order by full_name)` → gom ở TypeScript.
+ *   - `unnest(array[...])` → mảng thường.
+ *
+ *  `now() - interval '7 days'` → `datetime('now','-7 days')`.
+ */
+export async function weeklyRematchStudyRooms(
+  db: D1Like,
+  xao: <T>(a: T[]) => T[] = (a) => a
+): Promise<{ rooms_created: number; users_matched: number }> {
+  let rooms_created = 0;
+  let users_matched = 0;
+
+  // 1. Đánh giá các phòng đang có TRƯỚC khi giải tán hay xếp lại.
+  const phongs = await rows<{
+    id: number; topic: string; consecutive_weeks_hit: number; is_permanent: number;
+  }>(db, `select id, topic, consecutive_weeks_hit, is_permanent from study_rooms`);
+
+  for (const p of phongs) {
+    const dem = await one<{ c: number }>(
+      db,
+      `select count(*) as c from study_room_members where room_id = ? and left_at is null`,
+      p.id
+    );
+    const soThanhVien = dem?.c ?? 0;
+    if (soThanhVien === 0) continue;
+
+    if (p.is_permanent) {
+      await exec(
+        db,
+        `insert into study_room_messages (room_id, sender_id, is_bot, content) values (?, null, 1, ?)`,
+        p.id,
+        BOT.vinhVienChaoTuan
+      );
+      continue;
+    }
+
+    const hoc = await one<{ c: number }>(
+      db,
+      `select count(*) as c from user_progress up
+        where up.completed = 1
+          and datetime(up.completed_at) >= datetime('now', '-7 days')
+          and up.user_id in (select user_id from study_room_members
+                              where room_id = ? and left_at is null)`,
+      p.id
+    );
+    const trungBinh = (hoc?.c ?? 0) / soThanhVien;
+    const tb = trungBinh.toFixed(1);
+
+    if (trungBinh >= 3.0) {
+      const lienTiep = (p.consecutive_weeks_hit ?? 0) + 1;
+      const vinhVien = lienTiep >= 3;
+      await exec(
+        db,
+        `update study_rooms set consecutive_weeks_hit = ?, is_permanent = ? where id = ?`,
+        lienTiep,
+        vinhVien ? 1 : 0,
+        p.id
+      );
+      await exec(
+        db,
+        `insert into study_room_messages (room_id, sender_id, is_bot, is_pinned, content)
+         values (?, null, 1, ?, ?)`,
+        p.id,
+        vinhVien ? 1 : 0,
+        vinhVien ? BOT.lenVinhVien : BOT.datChiTieu(tb, lienTiep)
+      );
+    } else {
+      await exec(
+        db,
+        `insert into study_room_messages (room_id, sender_id, is_bot, content) values (?, null, 1, ?)`,
+        p.id,
+        BOT.giaiTan(tb)
+      );
+      await exec(
+        db,
+        `update study_room_members set left_at = datetime('now')
+          where room_id = ? and left_at is null`,
+        p.id
+      );
+    }
+  }
+
+  // 2. Xoá phòng rỗng và không vĩnh viễn.
+  //
+  //    Bản gốc chỉ có MỘT lệnh `delete from study_rooms` và dựa vào
+  //    `on delete cascade` để dọn tin nhắn với thành viên. Lược đồ D1 có 0
+  //    mệnh đề ON DELETE (bản chụp PostgREST không lấy được chúng, trong khi
+  //    migration Supabase có 111 chỗ), nên lệnh xoá thẳng sẽ đụng khoá ngoại.
+  //    Xoá tường minh theo thứ tự phụ thuộc - đúng dù lược đồ có cascade hay
+  //    không, nên không phải sửa lại khi cascade được bổ sung.
+  const boDi = (
+    await rows<{ id: number }>(
+      db,
+      `select id from study_rooms
+        where coalesce(is_permanent, 0) = 0
+          and not exists (select 1 from study_room_members m
+                           where m.room_id = study_rooms.id and m.left_at is null)`
+    )
+  ).map((r) => r.id);
+
+  for (const id of boDi) {
+    await exec(db, `delete from study_room_message_reactions
+                     where message_id in (select id from study_room_messages where room_id = ?)`, id);
+    for (const t of ["study_room_messages", "study_room_members", "study_room_checkins",
+                     "study_room_quiz_attempts", "study_room_reward_claims", "study_room_pomodoro"]) {
+      await exec(db, `delete from ${t} where room_id = ?`, id);
+    }
+    await exec(db, `delete from study_rooms where id = ?`, id);
+  }
+
+  // 3. Xếp lại những người còn hoạt động mà chưa ở phòng nào.
+  for (const topic of ["personal", "professional"]) {
+    const ids = (
+      await rows<{ user_id: string }>(
+        db,
+        `select distinct up.user_id
+           from user_progress up
+           join user_profiles prof on prof.id = up.user_id
+          where up.completed = 1
+            and datetime(up.completed_at) >= datetime('now', '-7 days')
+            and coalesce(prof.is_disabled, 0) = 0
+            and not exists (select 1 from study_room_members m
+                             where m.user_id = up.user_id and m.left_at is null)
+            and ((?1 = 'personal' and coalesce(prof.preferred_track, 'personal') = 'personal')
+              or (?1 = 'professional' and prof.preferred_track = 'professional'))
+          order by up.user_id`,
+        topic
+      )
+    ).map((r) => r.user_id);
+    if (!ids.length) continue;
+
+    const daXao = xao(ids);
+    for (let i = 0; i < daXao.length; i += 5) {
+      const nhom = daXao.slice(i, i + 5);
+
+      await exec(db, `insert into study_rooms (topic) values (?)`, topic);
+      const moi = await one<{ id: number }>(
+        db,
+        `select id from study_rooms where topic = ? order by id desc limit 1`,
+        topic
+      );
+      if (!moi) continue;
+      rooms_created++;
+
+      for (const u of nhom) {
+        await exec(
+          db,
+          `insert into study_room_members (room_id, user_id) values (?, ?)`,
+          moi.id,
+          u
+        );
+      }
+      users_matched += nhom.length;
+
+      const cho = nhom.map(() => "?").join(",");
+      const tomTat = await rows<{ ten: string; cnt: number }>(
+        db,
+        `select ${DISPLAY_NAME} as ten,
+                (select count(*) from user_progress p
+                  where p.user_id = prof.id and p.completed = 1
+                    and datetime(p.completed_at) >= datetime('now', '-7 days')) as cnt
+           from user_profiles prof
+          where prof.id in (${cho})
+          order by prof.full_name`,
+        ...nhom
+      );
+      const danhSach = tomTat.map((t) => `${t.ten} (${t.cnt ?? 0} bài tuần này)`).join(", ");
+
+      await exec(
+        db,
+        `insert into study_room_messages (room_id, sender_id, is_bot, is_pinned, content)
+         values (?, null, 1, 1, ?)`,
+        moi.id,
+        BOT.gioiThieu(danhSach)
+      );
+    }
+  }
+
+  return { rooms_created, users_matched };
+}
+
+export interface LessonSyncRow {
+  id: number; slug: string; title: string; subtitle?: string | null;
+  duration?: string | null; difficulty?: string | null; emoji?: string | null;
+  opening_question?: string | null; opening_options?: unknown;
+  correct_option?: number | null; explanation?: string | null;
+  key_takeaways?: unknown; track?: string | null; status?: string | null;
+  stage_number?: number | null; day_number?: number | null;
+}
+
+/** `sync_lessons_atomic(p_lessons jsonb)` - hàm cuối của cả 53.
+ *
+ *  ĐÂY LÀ HÀM DUY NHẤT THẬT SỰ CẦN MỘT TRANSACTION. Nó kết thúc bằng
+ *  `delete from lessons where not exists (... trong payload)`, và hai bảng
+ *  cascade theo `lessons(id)` là DỮ LIỆU NGƯỜI HỌC:
+ *  `lesson_unlock_requests` và `user_lesson_unlocks`.
+ *
+ *  Nếu tiến trình đứt giữa chừng mà không có transaction, ta có thể xoá xong
+ *  rồi chưa chèn lại - mất bài học kèm dữ liệu mở khoá của mọi người. Vì thế
+ *  TOÀN BỘ chuỗi lệnh đi qua `batch()`, và nếu môi trường không có `batch`
+ *  thì hàm TỪ CHỐI CHẠY thay vì chạy nửa vời.
+ *
+ *  Hai phép kiểm đầu vào của bản gốc giữ nguyên - chúng chặn một payload hỏng
+ *  xoá sạch bảng: trùng `id` và trùng `slug` đều ném trước khi ghi bất cứ gì.
+ *
+ *  Bước đổi tên slug tạm cũng giữ: một slug đang thuộc id cũ mà payload gán
+ *  cho id mới sẽ đụng ràng buộc duy nhất, nên bản gốc đổi nó thành
+ *  `__sync_tmp__<id>__<ngẫu nhiên>` trước khi chèn.
+ */
+export async function syncLessonsAtomic(db: D1Like, lessons: LessonSyncRow[]): Promise<number> {
+  if (!Array.isArray(lessons)) throw new Error("p_lessons must be a JSON array");
+  if (typeof db.batch !== "function") {
+    throw new Error(
+      "syncLessonsAtomic cần batch(): hàm này XOÁ các bài không có trong payload, " +
+        "và hai bảng dữ liệu người học cascade theo lessons(id)."
+    );
+  }
+
+  const ids = new Set<number>();
+  const slugs = new Set<string>();
+  for (const l of lessons) {
+    if (ids.has(l.id)) throw new Error("Payload contains duplicate lesson ids");
+    if (slugs.has(l.slug)) throw new Error("Payload contains duplicate lesson slugs");
+    ids.add(l.id);
+    slugs.add(l.slug);
+  }
+
+  const json = (v: unknown) =>
+    v == null ? null : typeof v === "string" ? v : JSON.stringify(v);
+
+  const stmts: unknown[] = [];
+
+  // 1. Gỡ đụng độ slug: hàng nào đang giữ slug của payload nhưng khác id.
+  for (const l of lessons) {
+    stmts.push(
+      db
+        .prepare(
+          `update lessons set slug = '__sync_tmp__' || id || '__' || hex(randomblob(5)),
+                              updated_at = datetime('now')
+            where slug = ? and id <> ?`
+        )
+        .bind(l.slug, l.id)
+    );
+  }
+
+  // 2. Chèn hoặc cập nhật. `is_visible`, `is_fundamental`, `prerequisite_id`
+  //    KHÔNG nằm trong payload nên không được đụng tới ở nhánh update.
+  for (const l of lessons) {
+    stmts.push(
+      db
+        .prepare(
+          `insert into lessons
+             (id, slug, title, subtitle, duration, difficulty, emoji, opening_question,
+              opening_options, correct_option, explanation, key_takeaways, track, status,
+              stage_number, day_number)
+           values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+           on conflict (id) do update set
+             slug = excluded.slug, title = excluded.title, subtitle = excluded.subtitle,
+             duration = excluded.duration, difficulty = excluded.difficulty,
+             emoji = excluded.emoji, opening_question = excluded.opening_question,
+             opening_options = excluded.opening_options, correct_option = excluded.correct_option,
+             explanation = excluded.explanation, key_takeaways = excluded.key_takeaways,
+             track = excluded.track, status = excluded.status,
+             stage_number = excluded.stage_number, day_number = excluded.day_number,
+             updated_at = datetime('now')`
+        )
+        .bind(
+          l.id, l.slug, l.title, l.subtitle ?? null, l.duration ?? null,
+          l.difficulty ?? null, l.emoji ?? null, l.opening_question ?? null,
+          json(l.opening_options), l.correct_option ?? null, l.explanation ?? null,
+          json(l.key_takeaways), l.track ?? "professional", l.status ?? "published",
+          l.stage_number ?? null, l.day_number ?? null
+        )
+    );
+  }
+
+  // 3. Xoá những bài không còn trong payload. Nằm CUỐI và trong cùng batch:
+  //    nếu bước 2 hỏng thì bước này không bao giờ chạy.
+  const cho = [...ids].map(() => "?").join(",");
+  stmts.push(
+    db.prepare(`delete from lessons where id not in (${cho})`).bind(...[...ids])
+  );
+
+  await db.batch(stmts as never[]);
+  return lessons.length;
 }
