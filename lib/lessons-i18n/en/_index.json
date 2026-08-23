@@ -4,6 +4,11 @@
     "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
     "duration": "12 min"
   },
+  "cach-danh-gia-esg-cua-doanh-nghiep": {
+    "title": "How to assess the three pillars of a service",
+    "subtitle": "What to measure, where to measure it, and why most first measurements are taken in the wrong place",
+    "duration": "8 min"
+  },
   "chon-chi-so-do-luong-va-vanity-metric": {
     "title": "Data Thinking, Lesson 1: Choosing a metric - and why the pretty ones are usually useless",
     "subtitle": "Telling a vanity metric from one that drives action, and the trap of turning a metric into a target",
@@ -13,6 +18,11 @@
     "title": "Professional Skills, Lesson 3: Preparing for the modelling test and the case interview",
     "subtitle": "Time management, the order in which you build a model, and how to think out loud while working",
     "duration": "12 min"
+  },
+  "chuong-trinh-la-gi": {
+    "title": "Lesson 1: What a program actually is",
+    "subtitle": "From the text file you type to the thing the machine really runs.",
+    "duration": "7 min"
   },
   "commodity-phan-2": {
     "title": "Deep dive: scarce compute",
@@ -53,6 +63,11 @@
     "title": "What non-functional measures are, and why they matter",
     "subtitle": "The things users cannot click on, and leave because of",
     "duration": "7 min"
+  },
+  "esg-trong-dinh-gia-doanh-nghiep": {
+    "title": "Non-functional measures when judging a service",
+    "subtitle": "Combining three things with no common unit into one score, and who picks the weights",
+    "duration": "9 min"
   },
   "financial-risk": {
     "title": "Classifying technical risk",

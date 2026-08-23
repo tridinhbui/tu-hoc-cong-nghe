@@ -1,0 +1,172 @@
+{
+  "title": "Non-functional measures when judging a service",
+  "subtitle": "Combining three things with no common unit into one score, and who picks the weights",
+  "duration": "9 min",
+  "whyItMatters": "Every service health dashboard combines several things with no common unit into a single cell. That cell looks like a measurement and is an opinion, and reading it means asking where the weights are.",
+  "openingQuestion": "Service A tops the health table for the infrastructure team and comes last on the product team's. Why?",
+  "openingOptions": [
+    "The two tables weigh the three pillars differently",
+    "One of the two tables is pulling its numbers from a measurement source that has gone stale",
+    "The product team applies stricter standards, so it scores everything more harshly than the other",
+    "Service A recently changed architecture, so its numbers have not settled back down yet"
+  ],
+  "explanation": "All three of the other possibilities happen, but the usual cause is simpler: both tables use the same numbers and produce opposite rankings, because one treats infrastructure cost as most important and the other treats latency as most important. No number is wrong, and no number changed.",
+  "diagram": [
+    {
+      "label": "Three pillars, three different units"
+    },
+    {
+      "label": "Normalise onto a 0-100 scale"
+    },
+    {
+      "label": "Multiply by weights somebody chose"
+    },
+    {
+      "label": "One score, and the trail is gone"
+    }
+  ],
+  "realWorldExample": {
+    "company": "The green cell on the dashboard",
+    "description": "A company built a health board scoring every service from 0 to 100 and colouring it by threshold. The payments service was always green at 82. After a four-hour incident, the team finally opened the config file: 60% of that score was infrastructure cost per request, which payments does very well, and 15% was test coverage, which it has almost none of. The board never lied - it just never said what proportions it was using."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Non-functional measures cover the things users cannot click on but do feel: what the system costs, how fast it runs, how easily it can be fixed. They are hard to combine because they share no unit, and how people combine them is where this lesson starts."
+    },
+    {
+      "type": "heading",
+      "text": "The three pillars"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Resource efficiency: infrastructure cost and energy per unit of useful work done",
+        "User experience: latency at high percentiles and the error rate real users encounter",
+        "Operational quality: test coverage, documentation, mean time to recovery"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "These three usually conflict rather than move together. A service that is light and fast may be light and fast because it skips tests and logging. A service run with discipline may cost twice as much because it runs in parallel and cross-checks everything. It is precisely because they conflict that the weights matter so much."
+    },
+    {
+      "type": "heading",
+      "text": "Adjustments must go through a specific variable"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common mistake is bolting on an arbitrary adjustment based on a general feeling about a service. The rigorous approach forces every adjustment through a measurable variable with an explainable mechanism: how many extra minutes of recovery time does the missing test coverage cost, how much does running in parallel add per request. If you cannot state the mechanism, you do not understand it well enough to quantify it."
+    },
+    {
+      "type": "heading",
+      "text": "Weights are a decision, not a constant"
+    },
+    {
+      "type": "paragraph",
+      "text": "Tilt the weights toward resource efficiency and the cheapest service goes to the top of the table even though it does not have a single test. Tilt them toward operations and that same service drops to the bottom. Not one of the service's numbers changed in either case. The widget below lets you do exactly that."
+    },
+    {
+      "type": "callout",
+      "label": "A combined score hides what it combined",
+      "text": "The value of a combined score is compactness: one cell instead of ten charts. The price is the lost trail - looking at 82 tells you nothing about where it came from, so it also tells you nothing about what to fix to reach 90. The right use is to let it flag that something is worth looking at, then always open the three component pillars before concluding anything."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "A readable board",
+        "text": "All three pillars shown beside the total, weights stated, and history available per component rather than only for the total."
+      },
+      "right": {
+        "label": "A board only to be looked at",
+        "text": "One number and one colour. The weights live in a config file, and nobody remembers when they were set or why."
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A combined score is not a measurement, it is an opinion about what counts.",
+        "The first question before any ranking: who picked the weights, and when."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why do the three non-functional pillars usually conflict?",
+      "options": [
+        "Because saving resources usually means cutting tests and logging",
+        "Because each pillar is measured by a different team and the teams use different tooling",
+        "Because the three pillars change on very different time cycles, which makes them hard to compare",
+        "Because only the experience pillar is measured directly while the other two are indirect"
+      ],
+      "explanation": "The conflict comes from the substance rather than from the measurement. Logging, cross-checking and running in parallel all cost resources, so a service scoring high on efficiency usually scores low on operations."
+    },
+    {
+      "question": "The same data, two boards, opposite rankings. What does that tell you?",
+      "options": [
+        "That the ranking reflects the weights more than it reflects the service",
+        "That at least one of the two boards has a fault in how it computes the combined score",
+        "That the data is not yet rich enough to separate the services, so more measures are needed",
+        "That the two boards are normalising the numbers onto two completely different scales"
+      ],
+      "explanation": "Neither board is wrong. When the inputs are identical and the outputs are opposite, the only thing that differs is the blending proportion - so that proportion is what is deciding the ranking."
+    },
+    {
+      "question": "Adjusting a service's score by general impression rather than through a specific variable. What is wrong with that?",
+      "options": [
+        "Nobody can check it or argue with it",
+        "The adjustment figure will need updating by hand every time the underlying measures are re-taken",
+        "It pushes the combined score off the 0-100 scale the board uses for its colour thresholds",
+        "Adjusted services stop being comparable with the services that were not adjusted"
+      ],
+      "explanation": "A number with no mechanism cannot be wrong, and what cannot be wrong also cannot be right. Forcing adjustments through a measurable variable is the only way anyone after you can still argue with it."
+    },
+    {
+      "question": "What is the right way to use a combined health board?",
+      "options": [
+        "Treat it as a signal to open the three pillars",
+        "Set an alert threshold on the total and only intervene when the score falls below it",
+        "Compare scores between services to decide which team needs more people and resources",
+        "Track the trend of the total by month rather than looking at the value at a point in time"
+      ],
+      "explanation": "The other three all take the total as the conclusion. The total is only trustworthy as a signal, because it combines things that can offset each other: one collapsed pillar can be completely covered by the other two."
+    },
+    {
+      "question": "A service scoring 82 just caused a four-hour incident. What should you look at first?",
+      "options": [
+        "The board's weights, and which pillar is being under-weighted",
+        "The service's logs across the four hours during which the incident took place that day",
+        "The history of that service's total score over the last six months to find a trend",
+        "The scores of other services that share common infrastructure with this one"
+      ],
+      "explanation": "Incident logs answer where it broke this time. The weights answer a larger question: why the board stayed green while the thing that just broke was always weak, and how many other services are green in exactly the same way."
+    }
+  ],
+  "keyTakeaways": [
+    "A combined score is an opinion about what counts, not a measurement",
+    "The three pillars conflict, so weights decide the ranking more than the data does",
+    "Every adjustment must go through a measurable variable with a stateable mechanism",
+    "Use the total as a signal, then always open the three pillars before concluding"
+  ],
+  "practicePrompt": {
+    "question": "Weights 60/25/15 for efficiency, experience, operations. A service scores E=90, X=40, O=20. What is its total?",
+    "options": [
+      "67",
+      "50 (= taking a plain average of the three pillars and ignoring the given weights)",
+      "90 (= taking only the pillar with the largest weight as the combined score)",
+      "150 (= adding the three pillars and halving instead of applying the weights)"
+    ],
+    "explanation": "90 times 0.6 plus 40 times 0.25 plus 20 times 0.15 is 67. What is worth noticing is that a score of 67 completely covers a pillar sitting at 20, and that is the shape of every surprise incident."
+  },
+  "summary": {
+    "keyIdea": "A combined score blends three things with no common unit in proportions somebody chose",
+    "commonMistake": "Reading a ranking as an objective measurement",
+    "action": "Find the config file holding the weights of the health board your team uses."
+  },
+  "application": {
+    "title": "Three questions before any ranking",
+    "message": "What does this score combine? What are the weights and who set them? Is any pillar being covered by the other two?",
+    "secondary": "If the board itself cannot answer the second question, it is hiding the most important thing about it."
+  },
+  "slug": "esg-trong-dinh-gia-doanh-nghiep"
+}

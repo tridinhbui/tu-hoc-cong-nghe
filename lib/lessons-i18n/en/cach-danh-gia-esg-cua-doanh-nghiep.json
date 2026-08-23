@@ -1,0 +1,161 @@
+{
+  "title": "How to assess the three pillars of a service",
+  "subtitle": "What to measure, where to measure it, and why most first measurements are taken in the wrong place",
+  "duration": "8 min",
+  "whyItMatters": "Assessing a service wrongly does not only waste effort. It sends a whole team optimising the thing that does not matter for months, and every number on the board during that time confirms they are on the right track.",
+  "openingQuestion": "To find out what a service costs, where should you measure?",
+  "openingOptions": [
+    "Per unit of useful work, not per month",
+    "On the total monthly infrastructure invoice for that service across several consecutive periods",
+    "On the peak resource level the service requested during the measurement window",
+    "On the number of machines the service holds and the configuration of each of them"
+  ],
+  "explanation": "A monthly total mixes two entirely different things: how efficient the service is, and how much work it is serving. A service that doubles its invoice while serving three times the work is getting better, and the total says the opposite. Dividing by a unit of work is how those two get separated.",
+  "diagram": [
+    {
+      "label": "Pick a unit of useful work"
+    },
+    {
+      "label": "Measure all three pillars against that unit"
+    },
+    {
+      "label": "Measure where the user stands"
+    },
+    {
+      "label": "Compare over time, not in absolute terms"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Six months optimising the wrong thing",
+    "description": "A team watched the infrastructure invoice climb steadily and spent six months optimising the most expensive service. They got it down eighteen percent. The invoice still climbed, because the volume of work grew faster. When they finally divided cost by request count, that figure had been falling continuously since before they started - the thing they chased for six months had never been a problem."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Assessing a service is hard not because data is scarce but because it is plentiful. The hard part is choosing the right denominator, the right measurement point, and the right baseline to compare against."
+    },
+    {
+      "type": "heading",
+      "text": "Step one separates scale from efficiency"
+    },
+    {
+      "type": "paragraph",
+      "text": "A rising total cost can be a good sign or a bad one and there is no way to tell from the total alone. Dividing by a unit of work - an active user, a request, a processed record - separates those two stories, and it is the one step in this lesson that every team skips."
+    },
+    {
+      "type": "heading",
+      "text": "Step two: measure where the user stands"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Measure latency from the browser or the device, not from inside the data centre",
+        "Count as errors the requests that never reached the server because the network dropped",
+        "Measure recovery from when it started breaking, not from when the alert fired"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "All three adjustments make the number worse, and that is the sign that they are right. A measurement that makes itself look better is a measurement of something other than what it claims."
+    },
+    {
+      "type": "heading",
+      "text": "Step three: compare against yourself over time"
+    },
+    {
+      "type": "paragraph",
+      "text": "Comparing cost per request between two different services is nearly always meaningless, because they do two different kinds of work. Comparing that service this month against six months ago is always meaningful. That is why every pillar should be recorded over time from the first day, even when nobody yet knows what the data will be used for."
+    },
+    {
+      "type": "callout",
+      "label": "The first measurement is nearly always taken in the wrong place",
+      "text": "Do not wait for a perfect measurement before you start recording. A slightly wrong measurement starting today beats a perfect one starting next month, because the value lives in the time series rather than in absolute accuracy. When you discover the denominator was wrong, recompute the whole history against the new one - never join two stretches measured two different ways."
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "An absolute number mixes efficiency with scale; only dividing by work separates them.",
+        "A measurement that makes itself look better is measuring something other than what it claims."
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Why is total monthly infrastructure cost a poor metric?",
+      "options": [
+        "Because it mixes the service's efficiency with the amount of work it is doing",
+        "Because vendor invoices usually arrive late, so the figure always lags by a full period",
+        "Because several services share infrastructure, so no single one's share can be isolated",
+        "Because vendor pricing shifts with contracts, making the number unstable across periods"
+      ],
+      "explanation": "The other three are all annoying and all solvable with tooling. Mixing two quantities is not solvable with tooling - it makes a service that is improving and a service that is deteriorating produce the same line on the chart."
+    },
+    {
+      "question": "Why measure latency from the browser rather than inside the data centre?",
+      "options": [
+        "Because most of the waiting happens outside the server",
+        "Because server-side measurement tools usually sample rather than recording every request",
+        "Because measuring in the data centre misses requests the load balancer redirected elsewhere",
+        "Because the clocks on the server and on the user's device are not synchronised with each other"
+      ],
+      "explanation": "Network time, name resolution, secure connection setup and rendering all happen outside the server, and together they usually exceed the server's own share. Measuring indoors measures the smallest part."
+    },
+    {
+      "question": "A new measurement gives a much better number than the old one. What is the right reflex?",
+      "options": [
+        "Suspect it is measuring something other than what it claims",
+        "Check whether the old measurement had a fault in how it collected its data",
+        "Accept the new figure if the new tool is more reliable than the one it replaced",
+        "Run both measurements side by side for a quarter and take the average of the two"
+      ],
+      "explanation": "Every correct adjustment to measurement point and starting moment makes the number worse, because they add back things that were previously left out. A measurement that improves has usually just dropped something."
+    },
+    {
+      "question": "You discover after a year of recording that the denominator was wrong. What now?",
+      "options": [
+        "Recompute the whole history against the new denominator",
+        "Keep the old history and start a second series alongside it using the new denominator",
+        "Change the denominator only from the next period and note when the method changed",
+        "Discard the old data, since it was computed a way that is no longer used"
+      ],
+      "explanation": "The value of these metrics lives in an unbroken time series. Joining two stretches computed two ways creates a step that a later reader will attribute to a technical change that never happened."
+    },
+    {
+      "question": "Comparing cost per request between a search service and a payments service. What is wrong?",
+      "options": [
+        "The two do different kinds of work, so the denominator is not equivalent",
+        "The two have very different request volumes, so the comparison skews toward the smaller one",
+        "The two services' costs are recorded under two different accounting cycles",
+        "Payments has higher security requirements, so its cost is always going to be higher"
+      ],
+      "explanation": "A search request and a payments request are not the same unit of work even though both are called requests. The only comparison that is always meaningful is a service against itself at an earlier point."
+    }
+  ],
+  "keyTakeaways": [
+    "Divide by a unit of work to separate efficiency from scale",
+    "Measure where the user stands, and accept the worse number",
+    "Compare a service against itself over time, not against other services",
+    "Record a slightly wrong measurement today rather than a perfect one next month"
+  ],
+  "practicePrompt": {
+    "question": "The invoice goes from 100 to 180 million while requests go from 10 to 30 million. How does cost per million requests change?",
+    "options": [
+      "It falls from 10 to 6 million",
+      "It rises 80% (= looking only at the invoice and ignoring the growth in request count)",
+      "It falls from 10 to 3 million (= dividing the old invoice by the new request count)",
+      "It stays flat, because both numbers rose so they cancel each other out"
+    ],
+    "explanation": "100 over 10 is 10; 180 over 30 is 6. The service got forty percent better while the invoice rose eighty percent, and those are the two opposite conclusions the same data set produces."
+  },
+  "summary": {
+    "keyIdea": "Right denominator, right measurement point, right baseline - in that order",
+    "commonMistake": "Chasing an absolute number and optimising the wrong thing for months",
+    "action": "Divide a metric your team tracks by a unit of work and see whether the line changes direction."
+  },
+  "application": {
+    "title": "Three questions before trusting a chart",
+    "message": "What is the denominator? Where was it measured? Is it being compared against itself or against something else?",
+    "secondary": "If the denominator is time rather than work, that chart is telling a growth story rather than an efficiency one."
+  },
+  "slug": "cach-danh-gia-esg-cua-doanh-nghiep"
+}

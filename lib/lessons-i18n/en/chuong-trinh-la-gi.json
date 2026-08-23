@@ -1,0 +1,159 @@
+{
+  "slug": "chuong-trinh-la-gi",
+  "title": "Lesson 1: What a program actually is",
+  "subtitle": "From the text file you type to the thing the machine really runs.",
+  "duration": "7 min",
+  "whyItMatters": "Beginners usually learn syntax first and never ask how source code becomes something that can run. Without that picture every error message is a mystery, because you have no idea which stage of the chain it came from.",
+  "openingQuestion": "You type a text file containing source code. Does the processor read that file directly?",
+  "openingOptions": [
+    "No, another program has to translate it into machine instructions first",
+    "Yes, the processor reads every popular programming language directly today without any intermediate stage at all",
+    "Yes, as long as the file is saved in the format that the installed operating system specifies in advance",
+    "No, but only because the text file is encoded and has to be decoded again before it can be run"
+  ],
+  "explanation": "A processor understands exactly one thing: machine instructions, the number sequences fixed in advance for that family of chips. The source code you write is text meant for humans to read. Between those two ends there is always a translating program - a compiler translates the whole thing before it runs, an interpreter reads and executes as it goes. Knowing which one you are using explains why some languages report an error the moment you hit run, while others run half your program before stopping.",
+  "diagram": [
+    { "label": "Source code: the text you type" },
+    { "label": "Compiler or interpreter" },
+    { "label": "Machine instructions the processor understands" },
+    { "label": "A process running in memory" }
+  ],
+  "realWorldExample": {
+    "company": "The browser you have open right now",
+    "description": "Every web page you open carries JavaScript, and the browser downloads it and translates it into machine instructions on the spot. That is why a bug in one page's code does not break the whole browser: that code runs inside a layer the browser controls rather than directly on the processor."
+  },
+  "quiz": [
+    {
+      "question": "How does a compiler differ from an interpreter?",
+      "options": [
+        "A compiler only works with older languages, while an interpreter is for languages that appeared more recently",
+        "A compiler translates the whole program before it runs; an interpreter reads and executes as it goes",
+        "A compiler runs on the server, whereas an interpreter can only ever run on a personal machine locally",
+        "A compiler produces new source code, while an interpreter edits the original source file in place"
+      ],
+      "explanation": "The difference is when the translation happens. A compiler processes the whole program first, so a syntax error on the last line is caught before the first line runs. An interpreter translates as far as it has got, so a program can run halfway and then stop on an error further down."
+    },
+    {
+      "question": "Why does the same source code run on several different operating systems?",
+      "options": [
+        "Because source code is written as machine instructions and so runs on every kind of processor",
+        "Because every operating system in use today shares one identical set of machine instructions",
+        "Because the translation stage is built separately for each platform, while the source stays as it is",
+        "Because the operating system rewrites the source code to suit itself the moment you open the file"
+      ],
+      "explanation": "Source code is text, and text is the same everywhere. What has to be built separately per platform is the translating program and the system libraries it calls. That is also why you have to install an interpreter or a compiler toolchain that matches your machine before anything will run."
+    },
+    {
+      "question": "What is the syntax of a programming language?",
+      "options": [
+        "The way that language arranges source files into directories inside a project",
+        "The list of every single thing that language will allow you to do",
+        "The speed at which that language processes a given volume of data",
+        "The rules for writing it correctly, so the translator understands you"
+      ],
+      "explanation": "Syntax is a formal set of rules, like the grammar of a natural language. Break the syntax and the translator stops dead, with no idea what you meant. But correct syntax does not mean the program does the right thing - those are two completely different kinds of error, and you will meet the distinction over and over."
+    },
+    {
+      "question": "How do syntax errors and logic errors differ?",
+      "options": [
+        "A syntax error stops the program running; a logic error lets it run and give a wrong answer",
+        "A syntax error shows up at run time, whereas a logic error is caught while you are still typing",
+        "A syntax error is caused by the machine, while a logic error is always caused by the person writing",
+        "A syntax error only exists in compiled languages, and a logic error only in interpreted ones"
+      ],
+      "explanation": "A syntax error is the kindest kind: the translator points straight at the offending line and you fix it in a minute. Logic errors are the frightening ones - the code runs smoothly, says nothing, and produces a wrong number you only discover when somebody reconciles it. Most debugging time in this job goes on the second kind."
+    },
+    {
+      "question": "What form is source code stored in on disk?",
+      "options": [
+        "A compressed binary file that only opens in the exact tool that created it",
+        "A plain text file that opens in any text editor at all",
+        "An entry in a database that the development environment manages privately",
+        "A file in a format specific to each language, unreadable by the naked eye"
+      ],
+      "explanation": "This surprises a lot of beginners: source code is nothing but plain text. You can write it in Notepad, and an extension like .py or .js only tells the tools how to treat it rather than changing what the file is. Precisely because it is text, Git can compare it line by line and you can read the history of changes."
+    }
+  ],
+  "keyTakeaways": [
+    "A processor only understands machine instructions; source code is text for humans.",
+    "A compiler translates the whole thing before it runs; an interpreter reads and runs as it goes.",
+    "Source code is a plain text file - that is why Git can compare it line by line.",
+    "Syntax errors stop a program running; logic errors let it run and produce a wrong answer.",
+    "The same source runs in many places because the translation stage is built per platform."
+  ],
+  "practicePrompt": {
+    "question": "The program runs, reports no error at all, and prints the wrong total. What kind of error is this?",
+    "options": [
+      "A logic error, because the code is syntactically fine but does the wrong thing",
+      "A syntax error, because some punctuation mark has certainly been mistyped in an expression",
+      "A translator error, because it translated your source code into machine instructions wrongly",
+      "A hardware error, because the processor got one of the additions wrong while running"
+    ],
+    "explanation": "That the program ran to the end means the syntax was correct - the translator understood what you wrote. A wrong result means what you wrote was not what you meant. The translator and the processor are almost never the culprit, and looking there will have you searching in the wrong place all afternoon."
+  },
+  "summary": {
+    "keyIdea": "Source code is text for people to read; a translation stage always sits between it and the processor.",
+    "formula": "Source code → compiler or interpreter → machine instructions → a running process.",
+    "commonMistake": "Thinking a program that runs is a program that is correct - that is only the syntax being correct.",
+    "action": "Open any source file in an ordinary text editor and see for yourself that it is only letters."
+  },
+  "application": {
+    "title": "Do this today",
+    "message": "Install an interpreter for a language of your choice, create hello.py or hello.js with a single line that prints something, then run it from the command line.",
+    "secondary": "Then delete a bracket on purpose and run it again. Read the error message closely - that is a syntax error, and you will meet it a few thousand more times."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Before you type the first line of code there is a question worth five minutes: how does the text file you just saved become something the machine can run? Skip it and every later error message is a mystery, because you have no idea which stage it came from."
+    },
+    { "type": "heading", "text": "The machine does not understand your language" },
+    {
+      "type": "paragraph",
+      "text": "A processor only understands machine instructions: number sequences fixed in advance for that family of chips, each one standing for a tiny operation like adding two numbers or copying a value from one place to another. Nobody writes programs that way any more. You write in a language meant for humans, and another program handles the translation."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Compiler",
+        "text": "Translates the whole program into machine instructions first, then you run the translated result. A syntax error on the last line is caught before the first line gets to run. Languages like C, Go and Rust work this way."
+      },
+      "right": {
+        "label": "Interpreter",
+        "text": "Reads and executes piece by piece. The program can run halfway and then stop on an error further down. Python and JavaScript, the ones beginners meet first, work this way."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Source code is only text",
+      "text": "This surprises many beginners: a .py or .js file opens in Notepad and contains nothing but letters. The extension only tells the tools how to treat it. Precisely because it is plain text, Git can compare it line by line and you could read the history of changes in the previous chapter."
+    },
+    { "type": "heading", "text": "Two kinds of error, and which one to fear" },
+    {
+      "type": "paragraph",
+      "text": "This distinction will follow you through your whole career, so take it in from the first lesson. A syntax error means breaking the formal rules - a missing bracket, wrong indentation, a mistyped keyword. The translator stops, points straight at the offending line, and you fix it in a minute."
+    },
+    {
+      "type": "paragraph",
+      "text": "A logic error is another thing entirely: the code is perfectly correct syntactically, runs smoothly, says nothing at all, and produces the wrong result. No tool can point at the wrong line, because the machine did exactly what you wrote - you simply did not write what you meant. Most debugging time in this job goes on this kind."
+    },
+    {
+      "type": "conceptTable",
+      "title": "Vocabulary from the first lesson",
+      "concepts": [
+        { "en": "Source code", "def": "The text you write following the rules of a programming language. It is a plain text file." },
+        { "en": "Machine code", "def": "The only form a processor understands. It differs between families of chips." },
+        { "en": "Compiler", "def": "Translates the whole program into machine instructions before it runs." },
+        { "en": "Interpreter", "def": "Reads the source and executes as it goes, producing no separate translated file." },
+        { "en": "Syntax", "def": "The rules for writing a language correctly. Correct syntax does not mean correct behaviour." }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "The chain source code - translator - machine instructions - process is the map for locating every error you meet later.",
+        "The next lesson starts the part you actually type: variables, the simplest thing there is and the most often misunderstood."
+      ]
+    }
+  ]
+}
